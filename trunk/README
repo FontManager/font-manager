@@ -1,0 +1,50 @@
+Font Manager
+
+A font management application for the GNOME desktop
+
+Font Manager is an application that allows users to easily manage fonts on their system.
+
+Font Manager is not intended to be a professional-grade font management solution, 
+but rather a simple application suitable for the needs of most desktop users, 
+and even graphics designers who may need to manage just a few thousand font files.
+
+Although designed with the GNOME desktop environment in mind, 
+it should work well with most major desktop environments such as XFCE, Enlightenment, 
+and even KDE.
+
+
+Font Manager currently allows the user to:
+
+    * Preview installed fonts
+
+    * Easily activate and de-activate installed fonts
+
+    * Group fonts into "Collections", and easily activate or de-activate groups of fonts
+
+    * Provides quick access to the users font folder 
+	  so that font installation or removal can be done by drag and drop
+
+    * It can also display basic information about the selected font, 
+	  detailed information if gnome-font-viewer is available
+
+
+In the future Font Manager intends to allow the user to:
+
+    * Specify different directories to search for fonts
+
+    * Export "Collections" to a PDF "fontbook"
+
+    * Export "Collections" to an archive for easy backup, sharing, etc.
+
+    * Compare fonts
+
+
+Requirements:
+
+	* Python 		2.x 	http://www.python.org/
+	* PyGTK  		2.xx	http://www.pygtk.org/
+	* PyGobject  		2.xx	http://www.pygtk.org/
+	* libxml2-python		http://xmlsoft.org/python.html
+
+
+

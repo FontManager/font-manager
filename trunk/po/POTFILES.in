@@ -1,0 +1,10 @@
+src/fontmanager.py
+src/fm_collections.py
+src/fontload.py
+src/handlers.py
+src/stores.py
+src/xmlconf.py
+src/ui.py
+src/config.py
+
+
