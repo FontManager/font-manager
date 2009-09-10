@@ -1,0 +1,40 @@
+#!/usr/bin/make -f
+
+build:
+	dh_testdir
+	./configure --prefix=/usr
+	$(MAKE)
+	touch $@
+
+clean: 
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp 
+	autoreconf -i
+	./configure --prefix=/usr
+	make
+	[ ! -f Makefile ] || $(MAKE) distclean
+	rm -f config.sub config.guess config.log
+	dh_clean 
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_prep  
+	dh_installdirs
+	$(MAKE) DESTDIR=$(CURDIR)/debian/font-manager install
+
+binary-indep: install
+	dh_testdir
+	dh_testroot
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary-arch:
+
+binary: binary-indep
+.PHONY: build clean binary-indep binary-arch binary install 

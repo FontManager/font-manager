@@ -1,0 +1,22 @@
+This package was debianized by Jerry Casiano on
+Thu, 13 Aug 2009 02:45:52 -0400.
+
+It was downloaded from: http://code.google.com/p/font-manager/
+
+Upstream Author(s):
+
+    Jerry Casiano <none@nospam4me.com>
+
+Copyright:
+
+    Copyright (C) 2009 Jerry Casiano <none@nospam4me.com>
+
+License:
+
+    GNU GENERAL PUBLIC LICENSE Version 3
+
+The Debian packaging is copyright 2009, Jerry Casiano and
+is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
+
+# Please also look if there are files or directories which have a
+# different copyright/license attached and list them here.

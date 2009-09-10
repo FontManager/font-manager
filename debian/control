@@ -1,0 +1,20 @@
+Source: font-manager
+Section: graphics
+Priority: optional
+Maintainer: Jerry Casiano <none@nospam4me.com>
+Build-Depends: debhelper (>= 7), autotools-dev, automake, autoconf, libtool, python-gtk2-dev, 
+Standards-Version: 3.8.0
+Homepage: http://code.google.com/p/font-manager/
+
+Package: font-manager
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, python, python-gtk2, python-libxml2
+Description: A font management application for the GNOME desktop
+ Font Manager is not intended to be a professional-grade font management
+ solution, but rather a simple application suitable for the needs of most
+ desktop users, and even some graphics designers who may need to manage just a
+ few thousand font files.
+ .
+ Although designed with the GNOME desktop environment in mind, it should work
+ well with most major desktop environments such as XFCE, Enlightenment, 
+ and even KDE.
