@@ -21,9 +21,7 @@
 import os
 import logging
 
-import config
 from stores import Family
-
 
 # Names of system font families as reported by fc-list
 g_system_families = {}
@@ -41,7 +39,6 @@ class FontLoad:
         
     Parse, count and store the results in a list
     """
-
     def __init__(self, widget):
         
         self.load_fontconfig_system_families()
@@ -53,8 +50,6 @@ class FontLoad:
         cmd = "fc-list : file family"
         for l in os.popen(cmd).readlines():
             l = l.strip()
-            if l.find(":") < 0:
-                continue
             # let's stop at the first : 
             # so we don't crash on fonts with : in their name
             file, family = l.split(":", 1)
@@ -72,7 +67,6 @@ class FontLoad:
             family = self.strip_fontconfig_family(l)
             g_system_families[family] = 1
 
-
     def load_fonts(self, widget):
         ctx = widget.get_pango_context()
         families = ctx.list_families()
@@ -88,7 +82,7 @@ class FontLoad:
         n = family.find(',')
         if n > 0:
             family = family[:n]
-        family = family.replace("\\-", "-")
+        family = family.replace("\\", "")
         family = family.strip()
         return family
 

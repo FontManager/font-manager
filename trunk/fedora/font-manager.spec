@@ -1,5 +1,5 @@
 Name:           font-manager
-Version:        0.1
+Version:        0.2
 Release:        1%{?dist}
 Summary:        A font management application for the GNOME desktop environment
 
@@ -15,6 +15,7 @@ BuildRequires:  automake
 BuildRequires:	pygtk2
 Requires:  		pygtk2
 Requires:  		libxml2-python
+Requires: 		fontconfig
 
 %description
 Font Manager is an application that allows users to easily manage fonts on their system.
@@ -49,6 +50,15 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+
+* Tue Aug 18 2009 JC
+- Update to 0.2
+- Fix - Properly handle font names containing illegal characters.
+- Fix - Return only the first result when detailed info is requested
+- New feature - Added option to select different directories to scan for fonts
+- New feature - Added option to export collections to an archive ( requires file-roller )
+- New feature - Added a category for fonts not present in user collections
+- New feature - Added preferences dialog
 
 * Tue Aug 11 2009 JC
 - Initial build.

@@ -1,5 +1,13 @@
-font-manager (0.1-1) unstable; urgency=low
+font-manager (0.2-1) unstable; urgency=low
 
   * Initial release (0.1)
 
- -- Jerry Casiano <none@nospam4me.com>  Thu, 13 Aug 2009 02:45:52 -0400
+  * Update (0.2)
+        Properly handle font names containing illegal characters.
+        Return only the first result when detailed info is requested
+        Added option to select different directories to scan
+        Added option to export collections to an archive
+        Added a category for fonts not present in user collections
+        Added preferences dialog 
+
+ -- Jerry Casiano <jerry@Ubuntu>  Tue, 18 Aug 2009 11:59:39 -0400

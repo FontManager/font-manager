@@ -20,8 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 MA 02110-1301, USA.
 """)
 
-#import pdb
-
 import os
 import gtk
 import logging
@@ -29,16 +27,15 @@ import subprocess
 
 from os.path import exists
 
-import config
 import xmlconf
-from config import USER, USER_FONT_DIR, PACKAGE_DIR
-from fm_collections import Collections, collection_tv, family_tv, collection_ls
+from config import *
+from fm_collections import *
 
 C = Collections()
 
 def on_about_button(self, widget):
 	d = gtk.AboutDialog()
-	d.set_name(config.PACKAGE)
+	d.set_name(PACKAGE)
 	d.set_comments(_("Font management for the GNOME Desktop"))
 	d.set_copyright(u"Copyright \u00A9 2008 Karl Pickett\nCopyright \u00A9 2009 Jerry Casiano")
 	d.set_license(license)
@@ -46,7 +43,7 @@ def on_about_button(self, widget):
 	d.destroy()
 	
 def on_help(self, widget):
-	help_files = "'" + PACKAGE_DIR + "/doc/en/Font Manager.html'"
+	help_files = "'%s/doc/en/Font Manager.html'" % PACKAGE_DIR
 	if exists("/usr/bin/xdg-open") or exists("/usr/local/bin/xdg-open"):
 		xdgopen = "xdg-open "
 		cmd = xdgopen + help_files
@@ -59,11 +56,37 @@ def on_help(self, widget):
 		logging.warn("Could not find xdg-open")
 			
 def on_export(self, widget):
-	pass 
-	
+	from export_collection import export
+	c = C.get_current_collection()
+	if len(c.fonts) < 1:
+		md = gtk.MessageDialog(self, 
+		gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_ERROR, 
+		gtk.BUTTONS_CLOSE, _('Please add fonts to the collection'))
+		md.set_title(_("Attempt to export empty collection"))
+		md.set_size_request(350, 125)
+		md.run()
+		md.destroy()
+		return
+	if len(c.fonts) > 500:
+		md = gtk.MessageDialog(self, 
+		gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_INFO, 
+		gtk.BUTTONS_OK_CANCEL, 
+		_('''Exporting a large number of fonts can take some time'''))
+		md.set_default_response(gtk.RESPONSE_OK)
+		md.set_title(_('Please be patient'))
+		response = md.run()
+		if response == gtk.RESPONSE_OK:
+			pass
+		else:
+			md.destroy()
+			return
+		md.destroy()
+	export()
+
 def on_app_prefs(self, widget):
-	#pdb.set_trace()
-	pass
+	from app_prefs import Preferences
+	p = Preferences()
+	p.run()
 	
 def on_disable_font(self, widget):
 	how_many = 0
@@ -102,7 +125,7 @@ def on_enable_font(self, widget):
 def disable_mad_fonts(how_many):
 	d = gtk.Dialog(_("Confirm Action"), 
 	None, gtk.DIALOG_MODAL, 
-	(gtk.STOCK_NO, gtk.RESPONSE_NO, gtk.STOCK_YES, gtk.RESPONSE_YES))
+	(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL, gtk.STOCK_YES, gtk.RESPONSE_YES))
 	d.set_default_response(gtk.RESPONSE_CANCEL)
 	str = _("""
 	Disabling large amounts of fonts at once can have quite an impact on the desktop.	
@@ -135,9 +158,15 @@ def on_manage_fonts(self, widget):
 		os.mkdir(USER_FONT_DIR, 0775)
 	else: logging.info("Found font directory for " + USER)
 	
-	# XXX a preferences dialog is almost inevitable so...
-	#if exists(default_file_browser):
-		#file_browser = default_file_browser.replace('/usr/bin/', '')
+	import ConfigParser
+	config = ConfigParser.ConfigParser()
+	config.read(INI)
+	try:
+		dir =  config.get('Font Folder', 'default')
+		FONT_DIR = dir
+	except ConfigParser.NoSectionError:
+		FONT_DIR = USER_FONT_DIR
+
 	if exists("/usr/bin/nautilus") or exists("/usr/local/bin/nautilus"):
 		logging.info("Found Nautilus File Browser")
 		file_browser = "nautilus"
@@ -175,25 +204,25 @@ please file a bug against Font Manager"""))
 	if file_browser == "nautilus":
 		try:
 			logging.info("Launching Nautilus")
-			subprocess.call([file_browser, "--no-desktop", USER_FONT_DIR])
+			subprocess.call([file_browser, "--no-desktop", FONT_DIR])
 		except OSError, e:
 			logging.error("Error: %s" % e)
 	elif file_browser == "thunar":
 		try:
 			logging.info("Launching Thunar")
-			subprocess.call([file_browser, USER_FONT_DIR])
+			subprocess.call([file_browser, FONT_DIR])
 		except OSError, e:
 			logging.error("Error: %s" % e)
 	elif file_browser == "dolphin":
 		try:
 			logging.info("Launching Dolphin")
-			subprocess.call([file_browser, USER_FONT_DIR])
+			subprocess.call([file_browser, FONT_DIR])
 		except OSError, e:
 			logging.error("Error: %s" % e)
 	elif file_browser == "konqueror":
 		try:
 			logging.info("Launching Konqueror")
-			subprocess.call([file_browser, USER_FONT_DIR])
+			subprocess.call([file_browser, FONT_DIR])
 		except OSError, e:
 			logging.error("Error: %s" % e)
 			
@@ -212,6 +241,8 @@ def on_disable_collection(self, widget):
 	how_many = 0
 	for font in c.fonts:
 		how_many +=1
+	#if c.builtin:
+		#C.enable_collection(False)
 	if how_many > 1000 and disable_mad_fonts(how_many):
 		C.enable_collection(False)
 	elif how_many < 1000:
@@ -220,7 +251,7 @@ def on_disable_collection(self, widget):
 def on_enable_collection(self, widget):
 	c = C.get_current_collection()
 	if not c:
-		return 
+		return
 	C.enable_collection(True)
 	
 def on_new_collection(self, widget):
@@ -240,6 +271,14 @@ def on_remove_collection(self, widget):
 		md.run()
 		md.destroy()
 		return
+	elif str == 'Orphans':
+		md = gtk.MessageDialog(self, 
+		gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_INFO, 
+		gtk.BUTTONS_CLOSE, 
+		_("\n Please use the preferences dialog to disable this collection  \n"))
+		md.run()
+		md.destroy()
+		return		
 	elif confirm_remove_collection():
 		C.delete_collection()
 		collection_tv.get_selection().select_path(0)
@@ -337,27 +376,56 @@ def on_font_info(self, widget):
 	if selected == 0 or selected > 1:
 		logging.info("For detailed info please select one font at a time")
 		return 
-	get_extended_font_details(self.current_font.family)
+	get_extended_font_details(self.current_font)
             
-def get_extended_font_details(family):
+def get_extended_font_details(font):
 	
 	from fontload import g_font_files
 	
-	filelist = g_font_files.get(family, None)
+	filelist = g_font_files.get(font.family, None)
+		
 	if not filelist:
-		md = gtk.MessageDialog(self, 
+		filelist = []
+		font = font.family
+		try:
+			# can't find path... :-?
+			# f it, try to guess for now
+			import re
+			if re.search(',', font):
+				font, scrap = font.split(',')
+			cmd = "fc-list : file family"
+			for l in os.popen(cmd).readlines():
+				file, family = l.split(":", 1)
+				if re.search(font, family):
+					if font == 'Sans' \
+					or font == 'Serif' \
+					or font == 'Monospace':
+						raise NameError('Common name')
+					path = file
+					filelist.append(path)
+		except:
+			md = gtk.MessageDialog(None, 
+			gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_ERROR, 
+		gtk.BUTTONS_CLOSE, _("Sorry could not load information for selected font"))
+			md.set_title(_("Unavailable"))
+			md.run()
+			md.destroy()
+			return
+	
+	filelist.sort()
+	try:
+		cmd = "gnome-font-viewer '%s' &\n" % filelist[0]
+		#cmd = ""
+		#for f in filelist:
+			#cmd += "gnome-font-viewer '%s' &\n" % f
+		subprocess.call(cmd, shell=True)
+	except IndexError:
+		md = gtk.MessageDialog(None, 
 		gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_ERROR, 
 	gtk.BUTTONS_CLOSE, _("Sorry could not load information for selected font"))
 		md.set_title(_("Unavailable"))
 		md.run()
 		md.destroy()
 		return
-	else:
-		cmd = ""
-		for f in filelist:
-			cmd += "gnome-font-viewer '%s' &\n" % f
-		try:
-			subprocess.call(cmd, shell=True)
-		except OSError, e:
-			logging.error("Error opening font file: %s" % e)
-
+	except OSError, e:
+		logging.error("Error opening font file: %s" % e)
