@@ -1,6 +1,5 @@
 # Font Manager, a font management application for the GNOME desktop
 #
-# Copyright (C) 2008 Karl Pickett <http://fontmanager.blogspot.com/>
 # Copyright (C) 2009 Jerry Casiano
 #
 # This program is free software; you can redistribute it and/or modify
@@ -19,7 +18,6 @@
 # MA 02110-1301, USA.
 
 import sys
-import config
 
 def exit_with_error(msg, err):
     sys.stderr.write('Error: %s (%s)\n' % (msg, str(err)))
@@ -39,11 +37,6 @@ def main():
         import gobject
     except ImportError, e:
         exit_with_error('Importing gobject module failed',  e)
-
-    try:
-        import pango
-    except ImportError, e:
-        exit_with_error('Importing pango module failed',  e)
 
     try:
         import libxml2

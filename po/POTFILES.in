@@ -1,10 +1,8 @@
-src/fontmanager.py
+src/app_prefs.py
+src/export_collection.py
 src/fm_collections.py
-src/fontload.py
+src/fontmanager.py
 src/handlers.py
-src/stores.py
-src/xmlconf.py
 src/ui.py
-src/config.py
 
 

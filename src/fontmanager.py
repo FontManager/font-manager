@@ -19,24 +19,21 @@
 # MA 02110-1301, USA.
 
 import os
-import gtk
-import gobject
+import gtk, gobject
 import logging
 
 from os.path import exists
 
-import config
 import xmlconf
 from fontload import FontLoad
 from stores import Family
-from config import TEST_TEXT, DEFAULT_CUSTOM_TEXT, DEFAULT_STYLES
-from fm_collections import Collections, collections, \
-collection_tv, family_tv, collection_ls, family_ls
+from config import *
+from fm_collections import *
 
 C = Collections()
 
 class FontManager(gtk.Window):
-    
+    # at this level import * works but throws a warning... :-\
     from handlers import \
     on_about_button, on_help, on_disable_font, on_enable_font, \
     on_manage_fonts, on_disable_collection, on_enable_collection, \
@@ -69,7 +66,7 @@ class FontManager(gtk.Window):
         
         self.MainWindow = self.builder.get_object("window")
         self.MainWindow.connect('destroy', quit)
-        self.MainWindow.set_title(config.PACKAGE)
+        self.MainWindow.set_title(PACKAGE)
         self.MainWindow.set_size_request(850, 500)
         
         # find and set up icon for use throughout app windows
@@ -126,15 +123,10 @@ class FontManager(gtk.Window):
         else:
             self.font_prefs.set_sensitive(False)
         
-        # XXX help - not implemented yet
-        #self.help = self.builder.get_object("help")
-        #self.help.set_sensitive(False)
-        # XXX app prefences - not implemented yet
-        self.prefs = self.builder.get_object("app_prefs")
-        self.prefs.set_sensitive(False)
-        # XXX export collection - not implemented yet
         self.export = self.builder.get_object("export")
-        self.export.set_sensitive(False)
+        if not exists("/usr/bin/file-roller") and \
+        not exists("usr/local/bin/file-roller"):
+            self.export.set_sensitive(False)
             
         # fill everything
         FontLoad(self.MainWindow)
@@ -145,7 +137,7 @@ class FontManager(gtk.Window):
         from fontload import total_fonts
         # and used here for our silly "status" bar
         self.status_bar = self.builder.get_object("total_fonts")
-        self.status_bar.set_label("  Fonts : %s" % total_fonts)
+        self.status_bar.set_label(_("  Fonts : %s") % total_fonts)
         
         # showtime
         self.MainWindow.show()
@@ -159,8 +151,7 @@ class FontManager(gtk.Window):
         
         logging.info("Re-enabling blacklist")
         xmlconf.enable_blacklist()
-
-
+        
 # Init --------------------------------------------------------------- #
 
 
@@ -180,8 +171,7 @@ class FontManager(gtk.Window):
         (gtk.gdk.BUTTON1_MASK | gtk.gdk.RELEASE_MASK, self.DRAG_TARGETS, self.DRAG_ACTIONS)
         tv.connect("row-activated", C.collection_activated)
         tv.set_row_separator_func(C.is_row_separator_collection)
-        r = gtk.CellRendererText()
-        column = gtk.TreeViewColumn(_('Collection'), r, markup=0)
+        column = gtk.TreeViewColumn(_('Collection'), gtk.CellRendererText(), markup=0)
         tv.append_column(column)
         sw.add(tv)
         sw.show_all()
@@ -205,8 +195,7 @@ class FontManager(gtk.Window):
         tv.connect("row-activated", self.font_activated)
         tv.enable_model_drag_source\
         (gtk.gdk.BUTTON1_MASK, self.DRAG_TARGETS, self.DRAG_ACTIONS)
-        column = gtk.TreeViewColumn(_('Font'), gtk.CellRendererText(), 
-                markup=0)
+        column = gtk.TreeViewColumn(_('Font'), gtk.CellRendererText(), markup=0)
         column.set_sort_column_id(2)
         tv.append_column(column)
         sw.add(tv)
@@ -301,7 +290,7 @@ class FontManager(gtk.Window):
 # and handles multiple drops from the fonts treeview
     def drag_data_received(self, treeview, context, x, y, 
                 selection, info, timestamp):
-        model = treeview.get_model()
+
         drop_info = treeview.get_dest_row_at_pos(x, y)
         # need this path before it changes
         drop_list = (drop_info)
@@ -313,17 +302,25 @@ class FontManager(gtk.Window):
         sc1 = model.get_value(iter, 1)
         sc2 = model.get_value(iter, 2)
         sc = (sc0, sc1, sc2)
+        if drop_info:
+            path, position = drop_info
+            collection = model[path][1]
+            
+        orphans = collection_ls[3][1]
             
         try:
-            # if user attempts to re-order built-in collections, deny 
-            if sc2 != 'All Fonts' and sc2 != 'System' and sc2 != 'User':
+            # if user attempts to re-order built-in collections, do nothing 
+            if sc2 != 'All Fonts' \
+            and sc2 != 'System' \
+            and sc2 != 'User' \
+            and sc2 != 'Orphans':
                 if p == [] and drop_info:
                     path, position = drop_info
                     iter = model.get_iter(path)
-                    # again leave our defaults alone please
-                    if path == (0,) or path == (1,) \
-                    or path == (2,) or path == (3,):
-                        logging.info("Built-in collections cannot be modified")
+                    if path == (0,) \
+                    or path == (1,) \
+                    or path == (2,) \
+                    or path == (3,):
                         return
                     if (position == gtk.TREE_VIEW_DROP_BEFORE
                         or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
@@ -339,20 +336,23 @@ class FontManager(gtk.Window):
             if p != [] and drop_info:
                 selected_collection, info_we_dont_care_about = drop_list
                 path, position = drop_info
-                collection = model[path][1]
                 # if user drags fonts into default collections, do nothing
                 if selected_collection == (0,) or \
                 selected_collection == (1,) or \
-                selected_collection == (2,):
+                selected_collection == (2,) or \
+                selected_collection == (3,):
                     logging.info("Built-in collections cannot be modified")
                     return
                 for path in p:
                     object = font_model[path][1]
                     collection.add(object)
+                    try:
+                        orphans.remove(object)
+                    except:
+                        pass
                 collection_tv.get_selection().select_path(selected_collection)
                 self.update_views()
-                xmlconf.save_blacklist()
-            elif p[0] == (0,) or p[0] == (1,) or p[0] == (2,):
+            elif p[0] == (0,) or p[0] == (1,) or p[0] == (2,) or p[0] == (3,):
                 logging.info("Built-in collections cannot be modified")
         except:
             pass
@@ -529,9 +529,10 @@ http://ftp.gnome.org/pub/GNOME/sources/fontilus/
 
 
 # -------------------------------------------------------------------- #  
-
+    
 def quit(widget):
     logging.info("Saving configuration")
     C.save_collection()
+    xmlconf.check_libxml2_leak()
     logging.info("Exiting...")
     gtk.main_quit()

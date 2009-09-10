@@ -19,18 +19,16 @@
 # MA 02110-1301, USA.
 
 import os
-import gtk
-import gobject
+import gtk, gobject
 import libxml2
 import logging
 
 from os.path import exists
 
-import config
 import xmlconf
-import stores
-from fontload import g_fonts
-from stores import Collection
+from config import *
+from fontload import g_fonts, g_font_files
+from stores import *
 
 
 collection_ls = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT, 
@@ -45,12 +43,11 @@ family_tv = gtk.TreeView()
 
 collections = []
 
-FM_DIR                  =       os.getenv("HOME") + "/.FontManager"
-FM_GROUP_CONF           =       os.path.join(FM_DIR, "groups.xml")
-FM_GROUP_CONF_BACKUP    =       FM_GROUP_CONF + ".bak"
+collected = []
+available = []
 
 class Collections:
-        
+    
     def update_views(self):
         self.update_collection_view()
         self.update_font_view()
@@ -110,21 +107,19 @@ class Collections:
 
     def create_collections(self):
         
-        from fontload import g_fonts
-        
         c = Collection(_("All Fonts"))
-        for f in sorted(g_fonts.itervalues(), stores.cmp_family):
+        for f in sorted(g_fonts.itervalues(), cmp_family):
             c.fonts.append(f)
         self.add_collection(c)
 
         c = Collection(_("System"))
-        for f in sorted(g_fonts.itervalues(), stores.cmp_family):
+        for f in sorted(g_fonts.itervalues(), cmp_family):
             if not f.user:
                 c.fonts.append(f)
         self.add_collection(c)
 
         c = Collection(_("User"))
-        for f in sorted(g_fonts.itervalues(), stores.cmp_family):
+        for f in sorted(g_fonts.itervalues(), cmp_family):
             if f.user:
                 c.fonts.append(f)
         self.add_collection(c)
@@ -133,12 +128,40 @@ class Collections:
         lstore = collection_tv.get_model()
         iter = lstore.append()
         lstore.set(iter, 1, None)
-
-        # XXX  need to add a category containing 
-        # any enabled fonts not in a collection
         
         self.load_user_collections()
-
+        
+        import ConfigParser
+        config = ConfigParser.ConfigParser()
+        config.read(INI)      
+        
+        try:
+            self.show_orphaned = config.get('Orphans', 'show')
+        except ConfigParser.NoSectionError:
+            self.show_orphaned = 'False'
+			
+        if self.show_orphaned == 'True':
+            for c in collections:
+                if c.name != 'All Fonts' and \
+                c.name != 'System' and c.name != 'User':
+                    for font in c.fonts:
+                        collected.append(font)
+            for font in sorted(g_fonts.itervalues(), cmp_family):
+                available.append(font)
+            orphans = [font for font in available if font not in collected]
+            if len(set(orphans)) > 0:
+                c = Collection(_('Orphans'))
+                for f in set(orphans):
+                    c.fonts.append(f)
+                c.set_enabled_from_fonts()
+                lstore = collection_ls
+                iter = lstore.insert(3)
+                lstore.set(iter, 0, c.get_label())
+                lstore.set(iter, 1, c)
+                lstore.set(iter, 2, c.get_text())
+                collections.append(c)
+        else: pass
+        
     def add_collection(self, c):
         c.set_enabled_from_fonts()
         lstore = collection_tv.get_model()
@@ -216,25 +239,25 @@ class Collections:
         c = self.get_current_collection()
         if enabled:
             str = _("""
-    Are you sure you want to enable the \"%s\" built in collection?    
-    """) % c.name
+    Are you sure you want to enable the \"%s\" built in collection?      
+            """) % c.name
         else:
-	    if c.name == "All Fonts":
-		str = _("""
+            if c.name == "All Fonts":
+                str = _("""
     Disabling the \"All Fonts\" collection is a really bad idea !
 
-    Are you positive you want to disable the \"%s\" built in collection?    
-    """) % c.name
-	    elif c.name == "System":
-		str = _("""  
+    Are you positive you want to disable the \"%s\" built in collection?     
+            """) % c.name
+            elif c.name == "System":
+                str = _("""  
     Disabling the \"System\" collection is a really bad idea !
-    
-    Are you positive you want to disable the \"%s\" built in collection?    
-    """) % c.name
-	    else:
-		str = _("""
-    Are you sure you want to disable the \"%s\" built in collection?    
-        """) % c.name
+
+    Are you positive you want to disable the \"%s\" built in collection?      
+            """) % c.name
+            else:
+                str = _("""
+    Are you sure you want to disable the \"%s\" built in collection?      
+                """) % c.name
         text = gtk.Label()
         text.set_text(str)
         d.vbox.pack_start(text, padding=10)
@@ -258,28 +281,38 @@ class Collections:
         c = self.get_current_collection()
         if c: self.show_collection(c)
         else: self.show_collection(None)
-
+	
     def load_user_collections(self):
         if not exists(FM_GROUP_CONF):
+            if exists(FM_GROUP_CONF_BACKUP):
+                os.rename(FM_GROUP_CONF_BACKUP, FM_GROUP_CONF)
+            else: return
+        try:
+            doc = libxml2.parseFile(FM_GROUP_CONF)
+        except:
+            # XXX Need to log error here ? possibly empty or corrupt config
+            # backup file, inform user, etc
+            logging.warn("Failed to parse collection configuration")
             return
-        doc = libxml2.parseFile(FM_GROUP_CONF)
         nodes = doc.xpathEval('//fontcollection')
         for a in nodes:
             patterns = []
+            family = []
             name = a.prop("name")
             xmlconf.get_fontconfig_patterns(a, patterns)
             c = Collection(name)
             c.builtin = False
-            for p in patterns:
+            for p in set(patterns):
                 font = g_fonts.get((p.family), None)
                 if font:
                     c.fonts.append(font)
             self.add_collection(c)
             logging.info("Loaded user collection %s" % name)
         doc.freeDoc()
-        check_libxml2_leak()
-
+        
     def save_collection(self):
+        
+        import re
         
         # backup existing user collection in case something goes wrong
         if exists(FM_GROUP_CONF):
@@ -288,8 +321,9 @@ class Collections:
             os.rename(FM_GROUP_CONF, FM_GROUP_CONF_BACKUP)
         # disconnect the model so the user doesn't see what comes next
         collection_tv.set_model(None)
-        max = 0
         # drop our default collections from the model
+        self.ditch_orphans()
+        max = 0
         while max < 4:
             path = collection_ls.get_iter(0)
             collection_ls.remove(path)
@@ -313,26 +347,61 @@ class Collections:
                     if c.name == name:
                         cn = root.newChild(None, "fontcollection", None)
                         cn.setProp("name", c.name)
-                        for f in c.fonts:
-                            p = cn.newChild(None, "pattern", None)
-                            xmlconf.add_patelt_node(p, "family", f.family)
+                        for font in c.fonts:
+                            # check for illegal characters in names
+                            if re.search('&', font.family):
+                                font.family = re.sub('&', '&amp;', font.family)
+                                p = cn.newChild(None, "pattern", None)
+                                xmlconf.add_patelt_node(p, "family", font.family)
+                            elif re.search('<', font.family):
+                                font.family = re.sub('&', '&lt;', font.family)
+                                p = cn.newChild(None, "pattern", None)
+                                add_patelt_node(p, "family", font.family)
+                            elif re.search('>', font.family):
+                                font.family = re.sub('&', '&gt;', font.family)
+                                p = cn.newChild(None, "pattern", None)
+                                add_patelt_node(p, "family", font.family)
+                            elif re.search("'", font.family):
+                                font.family = re.sub("'", '&apos;', font.family)
+                                p = cn.newChild(None, "pattern", None)
+                                add_patelt_node(p, "family", font.family)
+                            elif re.search('"', font.family):
+                                font.family = re.sub('"', '&quote;', font.family)
+                                p = cn.newChild(None, "pattern", None)
+                                add_patelt_node(p, "family", font.family)
+                            else:
+                                p = cn.newChild(None, "pattern", None)
+                                xmlconf.add_patelt_node(p, "family", font.family)
         except: 
             doc.freeDoc()
-            check_libxml2_leak()
             logging.warn("There was a problem saving collection information")
-            logging.info("Restoring previous collection")
-            os.rename(FM_GROUP_CONF_BACKUP, FM_GROUP_CONF)
+            logging.info("Attempting to restore previous configuration")
+            if exists(FM_GROUP_CONF_BACKUP):
+                os.rename(FM_GROUP_CONF_BACKUP, FM_GROUP_CONF)
+            else: logging.info("Nothing to restore...")
             return     
                         
         doc.saveFormatFile(FM_GROUP_CONF, format=1)
         doc.freeDoc()
-        check_libxml2_leak()
         
-
-def check_libxml2_leak():
-    libxml2.cleanupParser()
-    leak = libxml2.debugMemory(1)
+    def ditch_orphans(self):
+        orphans = search(collection_ls, collection_ls.iter_children(None),
+									match, (2, 'Orphans'))
+        try:
+            if collection_ls.iter_is_valid(orphans):
+                collection_ls.remove(orphans)
+        except: pass
+        
+def match(model, iter, data):
+    column, key = data
+    value = model.get_value(iter, column)
+    return value == key
     
-    if leak > 0:
-        logging.debug("libxml2 --> memory leak %s bytes" % (leak))
-        libxml2.dumpMemory()
+def search(model, iter, func, data):
+    while iter:
+        if func(model, iter, data):
+            return iter
+        result = search(model, model.iter_children(iter), func, data)
+        if result: return result
+        iter = model.iter_next(iter)
+    return None

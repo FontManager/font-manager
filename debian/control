@@ -2,13 +2,14 @@ Source: font-manager
 Section: graphics
 Priority: optional
 Maintainer: Jerry Casiano <none@nospam4me.com>
-Build-Depends: debhelper (>= 7), autotools-dev, automake, autoconf, libtool, python-gtk2-dev, 
+Build-Depends: debhelper (>= 7), autotools-dev, automake, autoconf, libtool, python-gtk2-dev, fontconfig 
 Standards-Version: 3.8.0
 Homepage: http://code.google.com/p/font-manager/
 
 Package: font-manager
 Architecture: all
 Depends: ${shlibs:Depends}, ${misc:Depends}, python, python-gtk2, python-libxml2
+Suggests: file-roller
 Description: A font management application for the GNOME desktop
  Font Manager is not intended to be a professional-grade font management
  solution, but rather a simple application suitable for the needs of most

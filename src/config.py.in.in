@@ -16,10 +16,10 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-PACKAGE     = "Font Manager"
-VERSION     = "@PACKAGE_VERSION@"
-PACKAGE_DIR = "@prefix@/share/font-manager"
-LOCALEDIR   = "@LOCALEDIR@"
+PACKAGE     = 'Font Manager'
+VERSION     = '@PACKAGE_VERSION@'
+PACKAGE_DIR = '@prefix@/share/font-manager'
+LOCALEDIR   = '@LOCALEDIR@'
 
 import os
 import gettext
@@ -38,31 +38,62 @@ abcdefghijklmnopqrstuvwxyz
 1234567890.:,;(*!?')
 """)
 
-DEFAULT_CUSTOM_TEXT = _("Enter Your Text Here")
+DEFAULT_CUSTOM_TEXT     =       _('Enter Your Text Here')
 
-DEFAULT_STYLES = ["Regular", "Roman", "Medium", "Normal", "Book"]
-
-USER                    =       os.getenv("LOGNAME")
-USER_FONT_DIR           =       os.getenv("HOME") + "/.fonts"
-USER_FONT_CONF          =       os.getenv("HOME") + "/.fonts.conf"
-USER_FONT_CONF_BACKUP   =       os.getenv("HOME") + "/.fonts.conf.original"
-USER_FONT_CONF_INVALID  =       os.getenv("HOME") + "/original.fonts.conf"
-
-FM_DIR                  =       os.getenv("HOME") + "/.FontManager"
-FM_BLOCK_CONF           =       os.path.join(FM_DIR, "FontManager.conf")
-FM_BLOCK_CONF_TMP       =       FM_BLOCK_CONF + ".tmp"
+DEFAULT_STYLES          =       ['Regular', 'Roman', 'Medium', 'Normal', 'Book']
 
 
-INCLUDE_LINE            = \
-"<!-- Added by Font Manager -->\n    <include ignore_missing=\"yes\">%s</include>"\
- % FM_BLOCK_CONF
+HOME                    =       os.getenv('HOME')
+USER                    =       os.getenv('LOGNAME')
+USER_FONT_DIR           =       os.path.join(HOME, '.fonts')
+USER_FONT_CONF          =       os.path.join(HOME, '.fonts.conf')
+USER_FONT_CONF_BACKUP   =       os.path.join(HOME, '.fonts.conf.original')
+USER_FONT_CONF_INVALID  =       os.path.join(HOME, 'original.fonts.conf')
 
-LOG_FILE = os.path.join(FM_DIR, "session.log")
-LOG_FILE_BACKUP = os.path.join(FM_DIR, "previous-session.log")
+FM_DIR                  =       os.path.join(HOME, '.FontManager')
+CONF_DIR                =       os.path.join(FM_DIR, 'config')
+GROUPS_DIR              =       os.path.join(FM_DIR, 'collections')
+LOG_DIR                 =       os.path.join(FM_DIR, 'logs')
 
+REV                     =       os.path.join(FM_DIR, '0.2')
+INI                     =       os.path.join(CONF_DIR, 'FontManager.ini')
+FM_CONF                 =       os.path.join(FM_DIR, 'FontManager.conf')
+FM_BLOCK_CONF           =       os.path.join(CONF_DIR, 'rejects.conf')
+FM_BLOCK_CONF_TMP       =       FM_BLOCK_CONF + '.tmp'
+OLD_FM_BLOCK_CONF       =       os.path.join(FM_DIR, 'FontManager.conf')
+
+DIRS_CONF               =       os.path.join(CONF_DIR, 'dirs.conf')
+DIRS_CONF_BACKUP        =       DIRS_CONF + '.bak'
+
+LOG_FILE                =       os.path.join(FM_DIR, 'logs/session.log')
+LOG_FILE_BACKUP         =       os.path.join(FM_DIR, 'logs/previous-session.log')
+OLD_LOG_FILE            =       os.path.join(FM_DIR, 'session.log')
+OLD_LOG_FILE_BACKUP     =       os.path.join(FM_DIR, 'previous-session.log')
+
+
+OLD_FM_GROUP_CONF       =       os.path.join(FM_DIR, 'groups.xml')
+FM_GROUP_CONF           =       os.path.join(GROUPS_DIR, 'groups.xml')
+FM_GROUP_CONF_BACKUP    =       FM_GROUP_CONF + '.bak'
+
+
+INCLUDE_LINE            =       """
+<!-- Added by Font Manager -->
+    <include ignore_missing=\"yes\">%s</include>
+    <include ignore_missing=\"yes\">%s</include>
+<!--                       -->""" % (FM_BLOCK_CONF, DIRS_CONF)
+ 
+ 
 valid_config = """<?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
 %s
 </fontconfig>
 """ % INCLUDE_LINE
+
+new_fm_config = """<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+    <include ignore_missing=\"yes\">config</include>
+</fontconfig>
+"""
+
