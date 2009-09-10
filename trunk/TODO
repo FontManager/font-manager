@@ -1,15 +1,10 @@
 
- * Allow user to select directories to load fonts from.
-
  * Allow users to export collections
 
     - Export collection to .pdf
 
-    - Export collection to an archive [zip, gz, bz2, iso]
-
- * Compare Mode
-
-    - See gnome-specimen
+    - Export collection to an archive [iso]
+    
 
  * Optimize the way fonts are "blacklisted"
  

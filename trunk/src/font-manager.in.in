@@ -18,9 +18,5 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301, USA.
 
-# pulse crashes on some systems, taking the app with it... :-/
-# http://www.pulseaudio.org/ticket/628
-export CANBERRA_DRIVER=NULL
 @PYTHON@ "@prefix@/share/font-manager/Font Manager"
-unset CANBERRA_DRIVER
 exit 0
