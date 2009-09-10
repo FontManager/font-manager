@@ -1,8 +1,16 @@
-src/app_prefs.py
-src/export_collection.py
-src/fm_collections.py
-src/fontmanager.py
-src/handlers.py
-src/ui.py
-
-
+[encoding: UTF-8]
+src/FontManager.py
+src/preferences.py
+src/__init__.py
+src/config.py
+src/export.py
+src/fontload.py
+src/treeviews.py
+src/main.py
+src/fontviews.py
+src/common.py
+src/static.py
+src/xmlutils.py
+src/ui/main.glade
+src/ui/preferences.glade
+src/ui/splash.glade

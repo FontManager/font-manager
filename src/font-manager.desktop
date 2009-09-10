@@ -1,5 +1,6 @@
 [Desktop Entry]
 Name=Font Manager
+Name[en_US]=Font Manager
 Comment=Preview, compare and manage fonts
 Exec=font-manager
 StartupNotify=false

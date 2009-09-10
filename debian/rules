@@ -9,11 +9,8 @@ build:
 clean: 
 	dh_testdir
 	dh_testroot
-	rm -f build-stamp 
-	autoreconf -i
-	./configure --prefix=/usr
-	make
-	[ ! -f Makefile ] || $(MAKE) distclean
+	rm -f build-stamp
+	-$(MAKE) clean
 	rm -f config.sub config.guess config.log
 	dh_clean 
 

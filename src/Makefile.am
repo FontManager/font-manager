@@ -5,6 +5,9 @@ font-manager: font-manager.in
 		< $< \
 		> $@
 
+rmconf:
+	@rm -f config.py
+	
 config.py: config.py.in
 	@sed \
 		-e 's|@PACKAGE_NAME[@]|$(PACKAGE_NAME)|g' \
@@ -13,20 +16,23 @@ config.py: config.py.in
 		< $< \
 		> $@
 
-all: config.py font-manager
+all: rmconf config.py font-manager
 	@if [ -e FontManager.py ]; then mv 'FontManager.py' 'Font Manager'; fi
 	@python -m compileall .
-	@python -O -m compileall .
+	@python -OO -m compileall .
+	@rm -f static.py[co]
 
 install: make-install-dirs
 	install -m 644 'Font Manager' $(DESTDIR)$(prefix)/share/font-manager/
 	install -m 644 *.py[co] $(DESTDIR)$(prefix)/share/font-manager/
+	install -m 644 ui/*.ui $(DESTDIR)$(prefix)/share/font-manager/ui/
 	install -m 755 font-manager.desktop $(DESTDIR)$(prefix)/share/applications/
 	install -m 755 font-manager $(DESTDIR)$(prefix)/bin/
 
 make-install-dirs:
 	@mkdir -p $(DESTDIR)$(prefix)/share/applications
 	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager
+	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager/ui
 	@mkdir -p $(DESTDIR)$(prefix)/bin
 
 uninstall:
@@ -35,12 +41,13 @@ uninstall:
 	@rm -fv $(DESTDIR)$(prefix)/bin/font-manager
 
 clean:
+	@if [ -e 'Font Manager' ]; then mv 'Font Manager' 'FontManager.py'; fi
 	@rm -f *.py[co] config.py font-manager
-	@if [ -e 'Font Manager' ]; then mv 'Font Manager' 'FontManager.py'; fi
+	@if [ -e 'static.py' ]; then cp -f 'static.py' 'config.py'; fi
 
-distclean:
-	@rm -f Makefile *.py[co] config.py font-manager config.py.in font-manager.in
-	@if [ -e 'Font Manager' ]; then mv 'Font Manager' 'FontManager.py'; fi
+distclean: clean
+	@rm -f Makefile config.py.in font-manager.in
+
 
 
 

@@ -1,6 +1,22 @@
-font-manager (0.2-1) unstable; urgency=low
+font-manager (0.3-1) unstable; urgency=low
 
-  * Initial release (0.1)
+  * Update (0.3)
+	    Added the ability to compare fonts, thanks to gnome-specimen.
+	    When detailed info is requested it now brings up the selected style.
+	    Changed the way font information is loaded, this allows the application
+	    to have a map of exactly which files belong to which font family.
+	    It unfortunately also means that loading fonts is significantly slower,
+	    to compensate for this, results are now cached and re-used.
+
+	    Startup times on an X2 5600+ :
+
+	    First run  - 6300 fonts = 3m30.738s - Ouch!
+	    Second run - same fonts = 0m4.969s
+
+	    Also added a basic splash screen to provide some feedback in case
+	    someone actually has that many active fonts on their system.
+	    Various bug fixes.
+	    Code cleanup.
 
   * Update (0.2)
         Properly handle font names containing illegal characters.
@@ -10,4 +26,6 @@ font-manager (0.2-1) unstable; urgency=low
         Added a category for fonts not present in user collections
         Added preferences dialog 
 
- -- Jerry Casiano <jerry@Ubuntu>  Tue, 18 Aug 2009 11:59:39 -0400
+  * Initial release (0.1)
+  
+ -- Jerry Casiano <none@nospam4me.com>  Tue, 18 Aug 2009 11:59:39 -0400

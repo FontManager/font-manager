@@ -23,10 +23,10 @@
 
 import os
 
-PACKAGE     = 'Font Manager'
-VERSION     = '@PACKAGE_VERSION@'
-PACKAGE_DIR = '@prefix@/share/font-manager'
-LOCALEDIR   = '@LOCALEDIR@'
+PACKAGE     = 'Install Me'
+VERSION     = ';-)'
+PACKAGE_DIR = os.getcwd()
+LOCALEDIR   = PACKAGE_DIR
 
 HOME                    =   os.getenv('HOME')
 USER                    =   os.getenv('LOGNAME')
@@ -62,5 +62,3 @@ OLD_FM_BLOCK_CONF       =   os.path.join(FM_DIR, 'FontManager.conf')
 OLD_FM_GROUP_CONF       =   os.path.join(FM_DIR, 'groups.xml')
 OLD_LOG_FILE            =   os.path.join(FM_DIR, 'session.log')
 OLD_LOG_FILE_BACKUP     =   os.path.join(FM_DIR, 'previous-session.log')
-
-

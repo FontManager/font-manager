@@ -1,4 +1,29 @@
 
-2009-08-11 Jerry Casiano
+    * Update (0.3)
+        Added the ability to compare fonts, thanks to gnome-specimen.
+        When detailed info is requested it now brings up the selected style.
+        Changed the way font information is loaded, this allows the application
+        to have a map of exactly which files belong to which font family.
+        It unfortunately also means that loading fonts is significantly slower,
+        to compensate for this, results are now cached and re-used.
 
-		* See commit log, if any.
+        Startup times on an X2 5600+ :
+
+        First run  - 6300 fonts = 3m30.738s - Ouch!
+        Second run - same fonts = 0m4.969s
+
+        Also added a basic splash screen to provide some feedback in case
+        someone actually has that many active fonts on their system.
+        Various bug fixes.
+        Code cleanup.
+
+    * Update (0.2)
+        Properly handle font names containing illegal characters.
+        Return only the first result when detailed info is requested
+        Added option to select different directories to scan
+        Added option to export collections to an archive
+        Added a category for fonts not present in user collections
+        Added preferences dialog
+
+    * Initial release (0.1)
+        Preview release.

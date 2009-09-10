@@ -1,0 +1,410 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2009-09-08 17:17-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../src/preferences.py:65
+msgid "Preferences"
+msgstr ""
+
+#: ../src/preferences.py:147
+msgid "Restart Required"
+msgstr ""
+
+#: ../src/preferences.py:154
+msgid "Changes will not be reflected until Font Manager is restarted"
+msgstr ""
+
+#: ../src/preferences.py:253
+msgid "Select Directory"
+msgstr ""
+
+#: ../src/export.py:80
+msgid "Missing information"
+msgstr ""
+
+#: ../src/export.py:81
+msgid "Cancel"
+msgstr ""
+
+#: ../src/export.py:82
+msgid "Continue"
+msgstr ""
+
+#: ../src/export.py:146
+msgid ""
+"\n"
+"Filepaths for the following fonts could not be determined.\n"
+msgstr ""
+
+#: ../src/export.py:147
+msgid ""
+"\n"
+"These fonts will not be included :\n"
+"\n"
+msgstr ""
+
+#: ../src/fontload.py:167
+msgid "All Fonts"
+msgstr ""
+
+#: ../src/fontload.py:181
+msgid "System"
+msgstr ""
+
+#: ../src/fontload.py:196
+msgid "User"
+msgstr ""
+
+#: ../src/fontload.py:256
+msgid "Orphans"
+msgstr ""
+
+#: ../src/treeviews.py:108
+msgid "Collection"
+msgstr ""
+
+#: ../src/treeviews.py:125
+msgid "Font"
+msgstr ""
+
+#: ../src/treeviews.py:283
+msgid "New Collection"
+msgstr ""
+
+#: ../src/treeviews.py:296
+msgid "Enter Collection Name"
+msgstr ""
+
+#: ../src/treeviews.py:329
+msgid ""
+"\n"
+" Please use the preferences dialog to disable this collection  \n"
+msgstr ""
+
+#: ../src/treeviews.py:346 ../src/treeviews.py:383
+msgid "Confirm Action"
+msgstr ""
+
+#: ../src/treeviews.py:350
+#, python-format
+msgid ""
+"\n"
+"Deleted collections cannot be recovered.\n"
+"\n"
+"Really delete \"%s\"?\n"
+"        "
+msgstr ""
+
+#: ../src/treeviews.py:388
+#, python-format
+msgid ""
+"\n"
+"Disabling large amounts of fonts at once can have quite an impact on the "
+"desktop.\n"
+"If you choose to continue, it is suggested that you close all open "
+"applications\n"
+"and be patient should your desktop become unresponsive for a bit.\n"
+"\n"
+"Really disable %s fonts?\n"
+"        "
+msgstr ""
+
+#.
+#. Copyright (C) 2009 Jerry Casiano
+#.
+#: ../src/main.py:8
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to: \n"
+"\n"
+"    Free Software Foundation, Inc. \n"
+"    51 Franklin Street, Fifth Floor \n"
+"    Boston, MA 02110-1301, USA.\n"
+msgstr ""
+
+#: ../src/main.py:35
+msgid "\tFont Manager is based on Karl's work"
+msgstr ""
+
+#: ../src/main.py:38
+msgid "\tFont Manager's compare mode is modeled after,"
+msgstr ""
+
+#: ../src/main.py:39
+msgid "\tand uses portions of gnome-specimen"
+msgstr ""
+
+#: ../src/main.py:94
+#, python-format
+msgid "Fonts : %s"
+msgstr ""
+
+#: ../src/main.py:171
+msgid "Font management for the GNOME Desktop"
+msgstr ""
+
+#: ../src/main.py:257
+msgid ""
+"* This file was placed here by Font Manager because this directory \n"
+"did not exist, feel free to delete, it will not be generated again.\n"
+"\n"
+"\n"
+"This is a per-user font directory.\n"
+"\n"
+"\n"
+"Any fonts ( or folders containing fonts ) present in this directory are \n"
+"automatically picked up by the system and available, but only to you.\n"
+"\n"
+"\n"
+"Please note that not only can you specify other directories to scan for \n"
+"fonts from the applications preferences dialog, but you can also set the \n"
+"default folder that's opened when 'Manage Fonts' is selected.\n"
+"\n"
+"\n"
+"If you wish to make fonts available to everyone using the system they will \n"
+"need to be placed in /usr/share/fonts\n"
+"\n"
+msgstr ""
+
+#: ../src/main.py:317
+msgid ""
+"Supported file browsers include :\n"
+"\n"
+"- Nautilus\n"
+"- Thunar\n"
+"- Dolphin\n"
+"- Konqueror\n"
+"\n"
+"If a supported file browser is installed,\n"
+"please file a bug against Font Manager"
+msgstr ""
+
+#: ../src/main.py:326
+msgid "Please install a supported file browser"
+msgstr ""
+
+#. Note to translators: this should be a pangram (a sentence containing all
+#. letters of your alphabet. See http://en.wikipedia.org/wiki/Pangram for
+#. more information and possible samples for your language.
+#: ../src/fontviews.py:47
+msgid ""
+"The quick brown fox jumps over a lazy dog.\n"
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ\n"
+"abcdefghijklmnopqrstuvwxyz\n"
+"1234567890.:,;(*!?')\n"
+msgstr ""
+
+#: ../src/fontviews.py:52
+msgid "The quick brown fox jumps over a lazy dog."
+msgstr ""
+
+#: ../src/fontviews.py:147
+msgid "Preview Fonts"
+msgstr ""
+
+#: ../src/fontviews.py:156 ../src/ui/main.glade.h:8
+msgid "Compare Fonts"
+msgstr ""
+
+#: ../src/fontviews.py:259
+msgid "Change colors"
+msgstr ""
+
+#. The widgets for the foreground color
+#: ../src/fontviews.py:275
+msgid "Foreground color:"
+msgstr ""
+
+#. The widgets for the background color
+#: ../src/fontviews.py:282
+msgid "Background color:"
+msgstr ""
+
+#: ../src/fontviews.py:476
+msgid "Sorry could not load information for selected font"
+msgstr ""
+
+#: ../src/fontviews.py:477
+msgid "Unavailable"
+msgstr ""
+
+#: ../src/ui/main.glade.h:1
+msgid " GNOME Character Map "
+msgstr ""
+
+#: ../src/ui/main.glade.h:2
+msgid "About Font Manager"
+msgstr ""
+
+#: ../src/ui/main.glade.h:3
+msgid "Add font"
+msgstr ""
+
+#: ../src/ui/main.glade.h:4
+msgid "Add new font collection"
+msgstr ""
+
+#: ../src/ui/main.glade.h:5
+msgid "Clear all"
+msgstr ""
+
+#: ../src/ui/main.glade.h:6
+msgid "Close search box"
+msgstr ""
+
+#: ../src/ui/main.glade.h:7
+msgid "Color Selector"
+msgstr ""
+
+#: ../src/ui/main.glade.h:9
+msgid "Custom Text"
+msgstr ""
+
+#: ../src/ui/main.glade.h:10
+msgid "Disable selected collection"
+msgstr ""
+
+#: ../src/ui/main.glade.h:11
+msgid "Disable selected fonts"
+msgstr ""
+
+#: ../src/ui/main.glade.h:12
+msgid "Display Font Information"
+msgstr ""
+
+#: ../src/ui/main.glade.h:13
+msgid "Enable selected collection"
+msgstr ""
+
+#: ../src/ui/main.glade.h:14
+msgid "Enable selected fonts"
+msgstr ""
+
+#: ../src/ui/main.glade.h:15
+msgid "Export collection"
+msgstr ""
+
+#: ../src/ui/main.glade.h:16
+msgid "Font Size:"
+msgstr ""
+
+#: ../src/ui/main.glade.h:17
+msgid "Fonts: "
+msgstr ""
+
+#: ../src/ui/main.glade.h:18
+msgid "Help"
+msgstr ""
+
+#: ../src/ui/main.glade.h:19
+msgid "Manage Fonts"
+msgstr ""
+
+#: ../src/ui/main.glade.h:20
+msgid "Remove font"
+msgstr ""
+
+#: ../src/ui/main.glade.h:21
+msgid "Remove selected collection"
+msgstr ""
+
+#: ../src/ui/main.glade.h:22
+msgid "Remove selected fonts from list"
+msgstr ""
+
+#: ../src/ui/main.glade.h:23
+msgid "Rename Collection"
+msgstr ""
+
+#: ../src/ui/main.glade.h:24
+msgid "Search through font listing"
+msgstr ""
+
+#: ../src/ui/main.glade.h:25
+msgid "Set application preferences"
+msgstr ""
+
+#: ../src/ui/main.glade.h:26
+msgid "Set font preferences"
+msgstr ""
+
+#: ../src/ui/preferences.glade.h:1
+msgid " Apply Changes"
+msgstr ""
+
+#: ../src/ui/preferences.glade.h:2
+msgid "<b>Default archive type</b>"
+msgstr ""
+
+#: ../src/ui/preferences.glade.h:3
+msgid "<b>Default font folder</b>"
+msgstr ""
+
+#: ../src/ui/preferences.glade.h:4
+msgid "<b>Families in database</b>"
+msgstr ""
+
+#: ../src/ui/preferences.glade.h:5
+msgid "<b>Fonts not present in user collections</b>"
+msgstr ""
+
+#: ../src/ui/preferences.glade.h:6
+msgid "<b>Select directories to scan for fonts</b>"
+msgstr ""
+
+#: ../src/ui/preferences.glade.h:7
+msgid "Collection Options"
+msgstr ""
+
+#: ../src/ui/preferences.glade.h:8
+msgid "Database Options"
+msgstr ""
+
+#: ../src/ui/preferences.glade.h:9
+msgid "Folder Options"
+msgstr ""
+
+#: ../src/ui/preferences.glade.h:10
+msgid "Remove selected entry"
+msgstr ""
+
+#: ../src/ui/preferences.glade.h:11
+msgid "Reset database"
+msgstr ""
+
+#: ../src/ui/preferences.glade.h:12
+msgid "Show Orphans"
+msgstr ""
+
+#: ../src/ui/splash.glade.h:1
+msgid "\tLoading : "
+msgstr ""
+
+#: ../src/ui/splash.glade.h:2
+msgid "Progress"
+msgstr ""

@@ -1,5 +1,5 @@
 Name:           font-manager
-Version:        0.2
+Version:        0.3
 Release:        1%{?dist}
 Summary:        A font management application for the GNOME desktop environment
 
@@ -9,13 +9,12 @@ License:        GPLv3
 Source0:        %{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildArch:		noarch
-BuildRequires:	autoconf
-BuildRequires:  automake
-BuildRequires:	pygtk2
-Requires:  		pygtk2
-Requires:  		libxml2-python
-Requires: 		fontconfig
+BuildArch:	noarch
+BuildRequires:	make
+BuildRequires:	python
+Requires:  	pygtk2
+Requires:  	libxml2-python
+Requires: 	fontconfig
 
 %description
 Font Manager is an application that allows users to easily manage fonts on their system.
@@ -26,7 +25,6 @@ Although designed with the GNOME desktop environment in mind, it should work wel
 %setup -q
 
 %build
-autoreconf -i
 %configure --prefix=/usr 
 make
 
@@ -50,6 +48,23 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Sep 7 2009 JC
+- Added the ability to compare fonts, thanks to gnome-specimen.
+- When detailed info is requested it now brings up the selected style.
+- Changed the way font information is loaded, this allows the application
+  to have a map of exactly which files belong to which font family.
+  It unfortunately also means that loading fonts is significantly slower,
+  to compensate for this, results are now cached and re-used.
+
+  Startup times on an X2 5600+ :
+
+  First run  - 6300 fonts = 3m30.738s - Ouch!
+  Second run - same fonts = 0m4.969s
+
+  Also added a basic splash screen to provide some feedback in case
+  someone actually has that many active fonts on their system.
+- Various bug fixes.
+- Code cleanup.
 
 * Tue Aug 18 2009 JC
 - Update to 0.2
