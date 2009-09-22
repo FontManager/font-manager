@@ -22,7 +22,6 @@ distclean: clean
 
 install: all
 	$(MAKE) -C src install
-	cp -Rf doc $(DESTDIR)$(prefix)/share/font-manager/
 	for f in `find po -name font-manager.mo` ; do \
 	  install -d -m 755 \
 		`echo $$f | sed "s|^po|$(DESTDIR)$(prefix)/share/locale|" | \
