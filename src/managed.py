@@ -303,7 +303,7 @@ class RemoveFonts:
         self.families = []
         self.families_at_start = []
         self.installed_fonts = None
-        self.builder.add_from_file('ui/remove.ui')
+        self.builder.add_from_file(PACKAGE_DIR  + 'ui/remove.ui')
         self.window = self.builder.get_object('window')
         self.window.set_title(_('Remove Fonts'))
         self.window.set_transient_for(self.parent)
