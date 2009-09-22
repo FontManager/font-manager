@@ -35,7 +35,7 @@ uninstall:
 	$(MAKE) -C src uninstall
 	find $(DESTDIR)$(prefix)/share/locale -name font-manager.mo -exec rm -f {} \;
 
-EXTRA_DIST = doc po src/config.py.in.in src/*.py src/font-manager.in.in\
+EXTRA_DIST = src/doc po src/config.py.in.in src/*.py src/font-manager.in.in\
 			 src/font-manager.desktop src/Makefile.in src/Makefile.am src/ui
 
 dist-hook:
