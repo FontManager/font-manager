@@ -138,9 +138,6 @@ class Preferences:
         font_directories = []
         for path in GOOD_PATHS:
             for root, dirs, files in os.walk(path):
-                for dir in dirs:
-                    if dir.startswith('.'):
-                        dirs.remove(dir)
                 if not root.startswith(BAD_PATHS):
                     for name in files:
                         if name.endswith(EXTS) and \
@@ -427,7 +424,7 @@ System paths are not allowed
         dialog.destroy()
         return
         
-INFO = _(""" 
+INFO = _("""
 The autoscan feature will look in the following directories:
 
 %s
@@ -441,6 +438,7 @@ Please be patient, as this operation can take some time depending on filesystem 
 
 Autoscan will not follow symbolic links or add hidden directories. These will have to be added manually, if needed.
 
+Autoscan is a new feature and has not been tested extensively, there is no progress reported and no way to abort for now, do not use it if you have network mounts or other slow filesystems in the scanned paths. Instead add folders manually.
 
 Adding system directories, or directories for which you don't have full access, is discouraged. The following directories are not allowed when manually adding directories:
 

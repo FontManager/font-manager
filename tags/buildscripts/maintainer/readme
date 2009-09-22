@@ -1,0 +1,6 @@
+These scripts build release packages in a chroot environment.
+
+mock on Fedora
+pbuilder on Ubuntu
+
+They don't cleanup after themselves and tend to install a lot of packages most people will never need.
