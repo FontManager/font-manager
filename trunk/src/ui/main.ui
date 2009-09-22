@@ -3,6 +3,7 @@
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
   <object class="GtkWindow" id="window">
+    <property name="window_position">center</property>
     <property name="icon_name">preferences-desktop-font</property>
     <child>
       <object class="GtkVBox" id="top_box">
@@ -13,388 +14,161 @@
           <object class="GtkHBox" id="main_box">
             <property name="visible">True</property>
             <child>
-              <object class="GtkVBox" id="collections_list_box">
+              <object class="GtkHPaned" id="hpane">
                 <property name="visible">True</property>
-                <property name="border_width">5</property>
-                <property name="orientation">vertical</property>
+                <property name="can_focus">True</property>
                 <child>
-                  <object class="GtkScrolledWindow" id="collections_scroll">
+                  <object class="GtkVBox" id="collections_list_box">
+                    <property name="width_request">190</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">automatic</property>
-                    <property name="vscrollbar_policy">automatic</property>
-                    <property name="shadow_type">etched-in</property>
+                    <property name="border_width">5</property>
+                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkTreeView" id="collections_tree">
-                        <property name="width_request">155</property>
-                        <property name="height_request">375</property>
+                      <object class="GtkScrolledWindow" id="collections_scroll">
+                        <property name="height_request">125</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="headers_clickable">False</property>
-                        <property name="enable_search">False</property>
-                        <property name="search_column">2</property>
-                        <property name="show_expanders">False</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="position">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkNotebook" id="collection_buttons_frame">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="show_tabs">False</property>
-                    <child>
-                      <object class="GtkHBox" id="collections_button_box">
-                        <property name="visible">True</property>
-                        <property name="homogeneous">True</property>
+                        <property name="hscrollbar_policy">never</property>
+                        <property name="vscrollbar_policy">never</property>
+                        <property name="shadow_type">etched-in</property>
                         <child>
-                          <object class="GtkButton" id="new_collection">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">Add new font collection</property>
-                            <property name="image">add_collection_icon</property>
-                            <property name="relief">none</property>
-                          </object>
-                          <packing>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="remove_collection">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">Remove selected collection</property>
-                            <property name="image">collections_remove_icon</property>
-                            <property name="relief">none</property>
-                          </object>
-                          <packing>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="enable_collection">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">Enable selected collection</property>
-                            <property name="image">collections_apply_icon</property>
-                            <property name="relief">none</property>
-                          </object>
-                          <packing>
-                            <property name="position">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="disable_collection">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">Disable selected collection</property>
-                            <property name="image">collections_disable_icon</property>
-                            <property name="relief">none</property>
-                          </object>
-                          <packing>
-                            <property name="position">3</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                    <child type="tab">
-                      <object class="GtkLabel" id="null1">
-                        <property name="visible">True</property>
-                      </object>
-                      <packing>
-                        <property name="tab_fill">False</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="padding">4</property>
-                    <property name="pack_type">end</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkHBox" id="align1">
-                    <property name="visible">True</property>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="rename_collection">
-                        <property name="label" translatable="yes">Rename Collection</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="receives_default">False</property>
-                        <property name="relief">half</property>
-                      </object>
-                      <packing>
-                        <property name="padding">2</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="padding">1</property>
-                    <property name="pack_type">end</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="padding">1</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkVBox" id="fonts_list_box">
-                <property name="visible">True</property>
-                <property name="border_width">5</property>
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="GtkScrolledWindow" id="families_scroll">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="hscrollbar_policy">never</property>
-                    <property name="vscrollbar_policy">automatic</property>
-                    <property name="shadow_type">etched-in</property>
-                    <child>
-                      <object class="GtkTreeView" id="families_tree">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="search_column">2</property>
-                        <property name="show_expanders">False</property>
-                        <property name="rubber_banding">True</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkNotebook" id="fonts_button_frame">
-                    <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="show_tabs">False</property>
-                    <child>
-                      <object class="GtkHBox" id="fonts_button_box">
-                        <property name="visible">True</property>
-                        <child>
-                          <object class="GtkButton" id="remove_font">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">Remove selected fonts from list</property>
-                            <property name="image">remove_font_icon</property>
-                            <property name="relief">none</property>
-                          </object>
-                          <packing>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="enable_font">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">Enable selected fonts</property>
-                            <property name="image">fonts_enable_icon</property>
-                            <property name="relief">none</property>
-                          </object>
-                          <packing>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="disable_font">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">Disable selected fonts</property>
-                            <property name="image">fonts_disable_icon</property>
-                            <property name="relief">none</property>
-                          </object>
-                          <packing>
-                            <property name="position">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="find_button">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">Search through font listing</property>
-                            <property name="image">find_icon</property>
-                            <property name="relief">none</property>
-                          </object>
-                          <packing>
-                            <property name="position">3</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                    <child type="tab">
-                      <object class="GtkLabel" id="null2">
-                        <property name="visible">True</property>
-                      </object>
-                      <packing>
-                        <property name="tab_fill">False</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="padding">4</property>
-                    <property name="pack_type">end</property>
-                    <property name="position">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkNotebook" id="find_box">
-                    <property name="can_focus">True</property>
-                    <property name="show_tabs">False</property>
-                    <child>
-                      <object class="GtkHBox" id="find_container">
-                        <property name="visible">True</property>
-                        <child>
-                          <object class="GtkEntry" id="find_entry">
+                          <object class="GtkTreeView" id="collections_tree">
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
-                            <property name="invisible_char">&#x25CF;</property>
-                            <property name="secondary_icon_stock">gtk-clear</property>
-                            <property name="secondary_icon_activatable">True</property>
-                            <property name="secondary_icon_sensitive">True</property>
+                            <property name="enable_search">False</property>
+                            <property name="search_column">2</property>
+                            <property name="show_expanders">False</property>
                           </object>
-                          <packing>
-                            <property name="position">0</property>
-                          </packing>
                         </child>
-                        <child>
-                          <object class="GtkButton" id="close_find">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">Close search box</property>
-                            <property name="image">close_find_icon</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">False</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                      </object>
-                    </child>
-                    <child type="tab">
-                      <object class="GtkLabel" id="null3">
-                        <property name="visible">True</property>
                       </object>
                       <packing>
-                        <property name="tab_fill">False</property>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="pack_type">end</property>
-                    <property name="position">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkHBox" id="align2">
-                    <property name="visible">True</property>
                     <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="manage_fonts">
-                        <property name="label" translatable="yes">Manage Fonts</property>
+                      <object class="GtkScrolledWindow" id="user_collections_scroll">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="receives_default">False</property>
-                        <property name="relief">half</property>
+                        <property name="can_focus">True</property>
+                        <property name="hscrollbar_policy">automatic</property>
+                        <property name="vscrollbar_policy">automatic</property>
+                        <property name="shadow_type">etched-in</property>
+                        <child>
+                          <object class="GtkTreeView" id="user_collections_tree">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="reorderable">True</property>
+                            <property name="enable_search">False</property>
+                            <property name="show_expanders">False</property>
+                          </object>
+                        </child>
                       </object>
                       <packing>
+                        <property name="padding">4</property>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkNotebook" id="collection_buttons_frame">
+                        <property name="visible">True</property>
+                        <property name="show_tabs">False</property>
+                        <child>
+                          <object class="GtkHBox" id="collections_button_box">
+                            <property name="visible">True</property>
+                            <property name="homogeneous">True</property>
+                            <child>
+                              <object class="GtkButton" id="new_collection">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="receives_default">False</property>
+                                <property name="tooltip_text" translatable="yes">Add new collection</property>
+                                <property name="image">add_collection_icon</property>
+                                <property name="relief">none</property>
+                                <property name="focus_on_click">False</property>
+                              </object>
+                              <packing>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="remove_collection">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="receives_default">False</property>
+                                <property name="tooltip_text" translatable="yes">Remove selected collection</property>
+                                <property name="image">collections_remove_icon</property>
+                                <property name="relief">none</property>
+                                <property name="focus_on_click">False</property>
+                              </object>
+                              <packing>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="enable_collection">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="receives_default">False</property>
+                                <property name="tooltip_text" translatable="yes">Enable selected collection</property>
+                                <property name="image">collections_apply_icon</property>
+                                <property name="relief">none</property>
+                                <property name="focus_on_click">False</property>
+                              </object>
+                              <packing>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="disable_collection">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="receives_default">False</property>
+                                <property name="tooltip_text" translatable="yes">Disable selected collection</property>
+                                <property name="image">collections_disable_icon</property>
+                                <property name="relief">none</property>
+                                <property name="focus_on_click">False</property>
+                              </object>
+                              <packing>
+                                <property name="position">3</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                        <child type="tab">
+                          <object class="GtkLabel" id="null1">
+                            <property name="visible">True</property>
+                          </object>
+                          <packing>
+                            <property name="tab_fill">False</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
                         <property name="padding">2</property>
+                        <property name="pack_type">end</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="padding">1</property>
-                    <property name="pack_type">end</property>
-                    <property name="position">0</property>
-                  </packing>
-                </child>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="padding">1</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkVBox" id="font_preview_box">
-                <property name="visible">True</property>
-                <property name="border_width">2</property>
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="GtkHBox" id="font_size_box">
-                    <property name="visible">True</property>
-                    <property name="border_width">2</property>
-                    <child>
-                      <object class="GtkHBox" id="combo_button_box">
+                      <object class="GtkHBox" id="align1">
                         <property name="visible">True</property>
                         <child>
-                          <object class="GtkButton" id="font_info">
+                          <placeholder/>
+                        </child>
+                        <child>
+                          <object class="GtkButton" id="rename_collection">
+                            <property name="label" translatable="yes">Rename Collection</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">Display Font Information</property>
-                            <property name="image">font_info_icon</property>
-                            <property name="relief">half</property>
-                          </object>
-                          <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">False</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="color_selector">
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="tooltip_text" translatable="yes">Color Selector</property>
-                            <property name="image">color_selector_icon</property>
                             <property name="relief">half</property>
                             <property name="focus_on_click">False</property>
                           </object>
                           <packing>
-                            <property name="expand">False</property>
-                            <property name="fill">False</property>
+                            <property name="padding">2</property>
                             <property name="position">1</property>
                           </packing>
                         </child>
@@ -403,244 +177,483 @@
                         </child>
                       </object>
                       <packing>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="font_size_label">
-                        <property name="visible">True</property>
-                        <property name="xalign">1</property>
-                        <property name="xpad">3</property>
-                        <property name="label" translatable="yes">Font Size:</property>
-                      </object>
-                      <packing>
-                        <property name="pack_type">end</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkSpinButton" id="font_size_spinbutton">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
-                        <property name="adjustment">size_adjustment</property>
-                      </object>
-                      <packing>
                         <property name="expand">False</property>
                         <property name="fill">False</property>
+                        <property name="padding">1</property>
                         <property name="pack_type">end</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="padding">3</property>
-                    <property name="position">0</property>
+                    <property name="resize">False</property>
+                    <property name="shrink">True</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkHBox" id="compare_buttons_box">
-                    <property name="border_width">3</property>
-                    <property name="homogeneous">True</property>
-                    <child>
-                      <object class="GtkButton" id="add_compare">
-                        <property name="label" translatable="yes">Add font</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="receives_default">False</property>
-                        <property name="image">add_compare_icon</property>
-                        <property name="relief">half</property>
-                        <property name="focus_on_click">False</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="remove_compare">
-                        <property name="label" translatable="yes">Remove font</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="receives_default">False</property>
-                        <property name="image">remove_compare_icon</property>
-                        <property name="relief">half</property>
-                        <property name="focus_on_click">False</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="clear_compare">
-                        <property name="label" translatable="yes">Clear all</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="receives_default">False</property>
-                        <property name="image">clear_compare_icon</property>
-                        <property name="relief">half</property>
-                        <property name="focus_on_click">False</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkScrolledWindow" id="preview_scroll">
+                  <object class="GtkVPaned" id="vpane">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="border_width">4</property>
-                    <property name="hscrollbar_policy">automatic</property>
-                    <property name="vscrollbar_policy">automatic</property>
-                    <property name="shadow_type">etched-in</property>
-                    <child>
-                      <object class="GtkTextView" id="font_preview">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="pixels_above_lines">6</property>
-                        <property name="editable">False</property>
-                        <property name="left_margin">6</property>
-                        <property name="right_margin">6</property>
-                        <property name="cursor_visible">False</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="position">2</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkScrolledWindow" id="compare_scroll">
-                    <property name="can_focus">True</property>
-                    <property name="border_width">4</property>
-                    <property name="hscrollbar_policy">automatic</property>
-                    <property name="vscrollbar_policy">automatic</property>
-                    <property name="shadow_type">etched-in</property>
-                    <child>
-                      <object class="GtkTreeView" id="compare_tree">
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="headers_visible">False</property>
-                        <property name="headers_clickable">False</property>
-                        <property name="enable_search">False</property>
-                        <property name="show_expanders">False</property>
-                      </object>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="position">3</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkNotebook" id="size_slider_frame">
-                    <property name="visible">True</property>
-                    <property name="border_width">4</property>
-                    <property name="show_tabs">False</property>
-                    <child>
-                      <object class="GtkHScale" id="font_size_slider">
-                        <property name="visible">True</property>
-                        <property name="adjustment">size_adjustment</property>
-                        <property name="draw_value">False</property>
-                      </object>
-                    </child>
-                    <child type="tab">
-                      <object class="GtkLabel" id="null4">
-                        <property name="visible">True</property>
-                      </object>
-                      <packing>
-                        <property name="tab_fill">False</property>
-                      </packing>
-                    </child>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">False</property>
-                    <property name="padding">1</property>
-                    <property name="position">4</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkVBox" id="vbox1">
-                    <property name="visible">True</property>
-                    <property name="border_width">3</property>
                     <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkEntry" id="custom_text_entry">
-                        <property name="can_focus">True</property>
-                        <property name="invisible_char">&#x25CF;</property>
-                        <property name="secondary_icon_stock">gtk-clear</property>
-                        <property name="secondary_icon_activatable">True</property>
-                        <property name="secondary_icon_sensitive">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="padding">4</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkHBox" id="hbox1">
+                      <object class="GtkHBox" id="hbox2">
                         <property name="visible">True</property>
-                        <property name="spacing">5</property>
-                        <property name="homogeneous">True</property>
                         <child>
-                          <object class="GtkToggleButton" id="compare_preview">
-                            <property name="label" translatable="yes">Compare Fonts</property>
+                          <object class="GtkVBox" id="fonts_list_box">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="relief">half</property>
-                            <property name="focus_on_click">False</property>
+                            <property name="border_width">5</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkScrolledWindow" id="families_scroll">
+                                <property name="height_request">125</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="hscrollbar_policy">never</property>
+                                <property name="vscrollbar_policy">automatic</property>
+                                <property name="shadow_type">etched-in</property>
+                                <child>
+                                  <object class="GtkTreeView" id="families_tree">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="show_expanders">False</property>
+                                    <property name="rubber_banding">True</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkEntry" id="find_entry">
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="secondary_icon_stock">gtk-clear</property>
+                                <property name="secondary_icon_activatable">True</property>
+                                <property name="secondary_icon_sensitive">True</property>
+                              </object>
+                              <packing>
+                                <property name="padding">2</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
                             <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkToggleButton" id="custom_text">
-                            <property name="label" translatable="yes">Custom Text</property>
+                          <object class="GtkVBox" id="vbox2">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="relief">half</property>
-                            <property name="focus_on_click">False</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkNotebook" id="notebook1">
+                                <property name="visible">True</property>
+                                <property name="border_width">5</property>
+                                <property name="show_tabs">False</property>
+                                <child>
+                                  <object class="GtkVBox" id="vbox3">
+                                    <property name="visible">True</property>
+                                    <property name="orientation">vertical</property>
+                                    <property name="spacing">7</property>
+                                    <property name="homogeneous">True</property>
+                                    <child>
+                                      <object class="GtkButton" id="enable_font">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="tooltip_text" translatable="yes">Enable selected fonts</property>
+                                        <property name="image">fonts_enable_icon</property>
+                                        <property name="relief">none</property>
+                                        <property name="focus_on_click">False</property>
+                                      </object>
+                                      <packing>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkButton" id="disable_font">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="tooltip_text" translatable="yes">Disable selected fonts</property>
+                                        <property name="image">fonts_disable_icon</property>
+                                        <property name="relief">none</property>
+                                        <property name="focus_on_click">False</property>
+                                      </object>
+                                      <packing>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkButton" id="remove_font">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="tooltip_text" translatable="yes">Remove selected fonts from collection</property>
+                                        <property name="image">remove_font_icon</property>
+                                        <property name="relief">none</property>
+                                        <property name="focus_on_click">False</property>
+                                      </object>
+                                      <packing>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="tab_fill">False</property>
+                                  </packing>
+                                </child>
+                                <child type="tab">
+                                  <object class="GtkLabel" id="null2">
+                                    <property name="visible">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="tab_fill">False</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="padding">7</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
                           </object>
                           <packing>
+                            <property name="expand">False</property>
                             <property name="position">1</property>
                           </packing>
                         </child>
                       </object>
                       <packing>
-                        <property name="expand">False</property>
-                        <property name="padding">1</property>
-                        <property name="position">1</property>
+                        <property name="resize">False</property>
+                        <property name="shrink">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkVBox" id="font_preview_box">
+                        <property name="visible">True</property>
+                        <property name="border_width">2</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkHBox" id="font_size_box">
+                            <property name="visible">True</property>
+                            <property name="border_width">2</property>
+                            <child>
+                              <object class="GtkHBox" id="combo_button_box">
+                                <property name="visible">True</property>
+                                <child>
+                                  <object class="GtkButton" id="color_selector">
+                                    <property name="can_focus">False</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">Open color selector</property>
+                                    <property name="image">color_selector_icon</property>
+                                    <property name="relief">half</property>
+                                    <property name="focus_on_click">False</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkButton" id="font_info">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">Display font information</property>
+                                    <property name="image">font_info_icon</property>
+                                    <property name="relief">half</property>
+                                    <property name="focus_on_click">False</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">False</property>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkButton" id="gucharmap">
+                                    <property name="label" translatable="yes">Character Map </property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">True</property>
+                                    <property name="image">char_map_icon</property>
+                                    <property name="relief">half</property>
+                                    <property name="focus_on_click">False</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="padding">6</property>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkHBox" id="compare_buttons_box">
+                                    <property name="spacing">3</property>
+                                    <child>
+                                      <object class="GtkButton" id="add_compare">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="tooltip_text" translatable="yes">Add font to compare</property>
+                                        <property name="image">add_compare_icon</property>
+                                        <property name="relief">half</property>
+                                        <property name="focus_on_click">False</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">0</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkButton" id="remove_compare">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="tooltip_text" translatable="yes">Remove selected font from comparison</property>
+                                        <property name="image">remove_compare_icon</property>
+                                        <property name="relief">half</property>
+                                        <property name="focus_on_click">False</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">1</property>
+                                      </packing>
+                                    </child>
+                                    <child>
+                                      <object class="GtkButton" id="clear_compare">
+                                        <property name="visible">True</property>
+                                        <property name="can_focus">False</property>
+                                        <property name="receives_default">False</property>
+                                        <property name="tooltip_text" translatable="yes">Clear all</property>
+                                        <property name="image">clear_compare_icon</property>
+                                        <property name="relief">half</property>
+                                        <property name="focus_on_click">False</property>
+                                      </object>
+                                      <packing>
+                                        <property name="expand">False</property>
+                                        <property name="fill">False</property>
+                                        <property name="position">2</property>
+                                      </packing>
+                                    </child>
+                                  </object>
+                                  <packing>
+                                    <property name="fill">False</property>
+                                    <property name="position">3</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="position">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="font_size_label">
+                                <property name="visible">True</property>
+                                <property name="xalign">1</property>
+                                <property name="xpad">7</property>
+                                <property name="label" translatable="yes">Font Size:</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="pack_type">end</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkSpinButton" id="font_size_spinbutton">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="adjustment">size_adjustment</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="fill">False</property>
+                                <property name="pack_type">end</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="padding">3</property>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkScrolledWindow" id="preview_scroll">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="border_width">4</property>
+                            <property name="hscrollbar_policy">automatic</property>
+                            <property name="vscrollbar_policy">automatic</property>
+                            <property name="shadow_type">etched-in</property>
+                            <child>
+                              <object class="GtkTextView" id="font_preview">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="pixels_above_lines">6</property>
+                                <property name="editable">False</property>
+                                <property name="left_margin">6</property>
+                                <property name="right_margin">6</property>
+                                <property name="cursor_visible">False</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="padding">1</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkScrolledWindow" id="compare_scroll">
+                            <property name="can_focus">True</property>
+                            <property name="border_width">4</property>
+                            <property name="hscrollbar_policy">automatic</property>
+                            <property name="vscrollbar_policy">automatic</property>
+                            <property name="shadow_type">etched-in</property>
+                            <child>
+                              <object class="GtkTreeView" id="compare_tree">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="headers_visible">False</property>
+                                <property name="enable_search">False</property>
+                                <property name="show_expanders">False</property>
+                              </object>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="padding">1</property>
+                            <property name="position">2</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkNotebook" id="size_slider_frame">
+                            <property name="visible">True</property>
+                            <property name="border_width">4</property>
+                            <property name="show_tabs">False</property>
+                            <child>
+                              <object class="GtkHScale" id="font_size_slider">
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="adjustment">size_adjustment</property>
+                                <property name="draw_value">False</property>
+                              </object>
+                            </child>
+                            <child type="tab">
+                              <object class="GtkLabel" id="null3">
+                                <property name="visible">True</property>
+                              </object>
+                              <packing>
+                                <property name="tab_fill">False</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="padding">1</property>
+                            <property name="position">3</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkVBox" id="vbox1">
+                            <property name="visible">True</property>
+                            <property name="border_width">3</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <object class="GtkEntry" id="custom_text_entry">
+                                <property name="can_focus">True</property>
+                                <property name="invisible_char">&#x25CF;</property>
+                                <property name="secondary_icon_stock">gtk-clear</property>
+                                <property name="secondary_icon_activatable">True</property>
+                                <property name="secondary_icon_sensitive">True</property>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="padding">4</property>
+                                <property name="position">0</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkHBox" id="hbox1">
+                                <property name="visible">True</property>
+                                <property name="spacing">5</property>
+                                <property name="homogeneous">True</property>
+                                <child>
+                                  <object class="GtkToggleButton" id="find_font">
+                                    <property name="label" translatable="yes">Search Fonts</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="focus_on_click">False</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="compare_preview">
+                                    <property name="label" translatable="yes">Compare Fonts</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="relief">half</property>
+                                    <property name="focus_on_click">False</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkToggleButton" id="custom_text">
+                                    <property name="label" translatable="yes">Custom Text</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="relief">half</property>
+                                    <property name="focus_on_click">False</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">2</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="expand">False</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="padding">1</property>
+                            <property name="position">4</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="resize">True</property>
+                        <property name="shrink">True</property>
                       </packing>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
-                    <property name="padding">1</property>
-                    <property name="position">5</property>
+                    <property name="resize">True</property>
+                    <property name="shrink">True</property>
                   </packing>
                 </child>
               </object>
               <packing>
-                <property name="padding">1</property>
-                <property name="pack_type">end</property>
-                <property name="position">2</property>
+                <property name="position">0</property>
               </packing>
             </child>
           </object>
@@ -652,7 +665,8 @@
           <object class="GtkHBox" id="bottom_box">
             <property name="visible">True</property>
             <child>
-              <object class="GtkHBox" id="align4">
+              <object class="GtkHBox" id="options_box">
+                <property name="width_request">182</property>
                 <property name="visible">True</property>
                 <property name="homogeneous">True</property>
                 <child>
@@ -734,6 +748,23 @@
                     <property name="position">4</property>
                   </packing>
                 </child>
+                <child>
+                  <object class="GtkButton" id="manage_fonts">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="receives_default">False</property>
+                    <property name="tooltip_text" translatable="yes">Manage fonts</property>
+                    <property name="image">manage_fonts_icon</property>
+                    <property name="relief">half</property>
+                    <property name="focus_on_click">False</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="padding">2</property>
+                    <property name="position">5</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -748,6 +779,7 @@
                 <child>
                   <object class="GtkLabel" id="total_fonts">
                     <property name="visible">True</property>
+                    <property name="xpad">3</property>
                     <property name="label" translatable="yes">Fonts: </property>
                   </object>
                   <packing>
@@ -762,23 +794,73 @@
               </packing>
             </child>
             <child>
-              <object class="GtkHBox" id="align5">
+              <object class="GtkAlignment" id="alignment1">
                 <property name="visible">True</property>
+                <property name="right_padding">5</property>
                 <child>
-                  <object class="GtkButton" id="gucharmap">
-                    <property name="label" translatable="yes"> GNOME Character Map </property>
+                  <object class="GtkHBox" id="align5">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="receives_default">False</property>
-                    <property name="relief">half</property>
-                    <property name="focus_on_click">False</property>
+                    <child>
+                      <object class="GtkAlignment" id="alignment2">
+                        <property name="visible">True</property>
+                        <property name="top_padding">2</property>
+                        <property name="bottom_padding">2</property>
+                        <property name="left_padding">7</property>
+                        <property name="right_padding">7</property>
+                        <child>
+                          <object class="GtkProgressBar" id="progressbar"/>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="loading_label">
+                        <property name="xalign">1</property>
+                        <property name="xpad">5</property>
+                        <property name="label" translatable="yes">Loading : </property>
+                      </object>
+                      <packing>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="progress_label">
+                        <property name="xalign">0</property>
+                        <property name="ellipsize">end</property>
+                        <property name="width_chars">24</property>
+                      </object>
+                      <packing>
+                        <property name="position">2</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkImage" id="throbber">
+                        <property name="xalign">1</property>
+                        <property name="xpad">7</property>
+                        <property name="pixbuf">Throbber.png</property>
+                      </object>
+                      <packing>
+                        <property name="position">3</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="refresh">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="image">refresh_icon</property>
+                        <property name="relief">none</property>
+                        <property name="focus_on_click">False</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">False</property>
+                        <property name="position">4</property>
+                      </packing>
+                    </child>
                   </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="padding">6</property>
-                    <property name="pack_type">end</property>
-                    <property name="position">0</property>
-                  </packing>
                 </child>
               </object>
               <packing>
@@ -796,57 +878,12 @@
       </object>
     </child>
   </object>
-  <object class="GtkImage" id="collections_apply_icon">
-    <property name="visible">True</property>
-    <property name="stock">gtk-apply</property>
-    <property name="icon-size">1</property>
-  </object>
-  <object class="GtkImage" id="collections_disable_icon">
-    <property name="visible">True</property>
-    <property name="stock">gtk-no</property>
-    <property name="icon-size">1</property>
-  </object>
-  <object class="GtkImage" id="fonts_enable_icon">
-    <property name="visible">True</property>
-    <property name="stock">gtk-apply</property>
-    <property name="icon-size">1</property>
-  </object>
-  <object class="GtkImage" id="fonts_disable_icon">
-    <property name="visible">True</property>
-    <property name="stock">gtk-no</property>
-    <property name="icon-size">1</property>
-  </object>
   <object class="GtkAdjustment" id="size_adjustment">
     <property name="value">12</property>
     <property name="lower">6</property>
     <property name="upper">97</property>
     <property name="step_increment">1</property>
     <property name="page_increment">6</property>
-  </object>
-  <object class="GtkImage" id="collections_remove_icon">
-    <property name="visible">True</property>
-    <property name="stock">gtk-remove</property>
-    <property name="icon-size">1</property>
-  </object>
-  <object class="GtkImage" id="add_collection_icon">
-    <property name="visible">True</property>
-    <property name="stock">gtk-add</property>
-    <property name="icon-size">1</property>
-  </object>
-  <object class="GtkImage" id="close_find_icon">
-    <property name="visible">True</property>
-    <property name="stock">gtk-close</property>
-    <property name="icon-size">1</property>
-  </object>
-  <object class="GtkImage" id="find_icon">
-    <property name="visible">True</property>
-    <property name="stock">gtk-find</property>
-    <property name="icon-size">1</property>
-  </object>
-  <object class="GtkImage" id="remove_font_icon">
-    <property name="visible">True</property>
-    <property name="stock">gtk-remove</property>
-    <property name="icon-size">1</property>
   </object>
   <object class="GtkImage" id="about_icon">
     <property name="visible">True</property>
@@ -873,6 +910,31 @@
     <property name="icon_name">media-floppy</property>
     <property name="icon-size">1</property>
   </object>
+  <object class="GtkImage" id="add_collection_icon">
+    <property name="visible">True</property>
+    <property name="stock">gtk-add</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="collections_remove_icon">
+    <property name="visible">True</property>
+    <property name="stock">gtk-remove</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="collections_apply_icon">
+    <property name="visible">True</property>
+    <property name="stock">gtk-apply</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="collections_disable_icon">
+    <property name="visible">True</property>
+    <property name="stock">gtk-no</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="color_selector_icon">
+    <property name="visible">True</property>
+    <property name="stock">gtk-select-color</property>
+    <property name="icon-size">1</property>
+  </object>
   <object class="GtkImage" id="font_info_icon">
     <property name="visible">True</property>
     <property name="stock">gtk-index</property>
@@ -893,9 +955,37 @@
     <property name="stock">gtk-clear</property>
     <property name="icon-size">1</property>
   </object>
-  <object class="GtkImage" id="color_selector_icon">
+  <object class="GtkImage" id="fonts_enable_icon">
     <property name="visible">True</property>
-    <property name="stock">gtk-select-color</property>
+    <property name="stock">gtk-apply</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="fonts_disable_icon">
+    <property name="visible">True</property>
+    <property name="stock">gtk-no</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="remove_font_icon">
+    <property name="visible">True</property>
+    <property name="stock">gtk-remove</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="manage_fonts_icon">
+    <property name="visible">True</property>
+    <property name="pixel_size">16</property>
+    <property name="icon_name">font-x-generic</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="char_map_icon">
+    <property name="visible">True</property>
+    <property name="xpad">3</property>
+    <property name="pixel_size">16</property>
+    <property name="icon_name">accessories-character-map</property>
+  </object>
+  <object class="GtkImage" id="refresh_icon">
+    <property name="visible">True</property>
+    <property name="tooltip_text" translatable="yes">Refresh views</property>
+    <property name="stock">gtk-refresh</property>
     <property name="icon-size">1</property>
   </object>
 </interface>

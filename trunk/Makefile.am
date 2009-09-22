@@ -4,12 +4,13 @@ VERSION=@PACKAGE_VERSION@
 default: all
 
 all:
-	$(MAKE) -C src
 	@cp -f src/ui/main.ui src/ui/main.glade
-	@cp -f src/ui/splash.ui src/ui/splash.glade
 	@cp -f src/ui/preferences.ui src/ui/preferences.glade
+	@cp -f src/ui/remove.ui src/ui/remove.glade
+	@cp -f src/ui/splash.ui src/ui/splash.glade
 	python po/compile_translations.py
 	-rm -f src/ui/*.glade
+	$(MAKE) -C src
 	
 clean:
 	$(MAKE) -C src clean
@@ -20,10 +21,7 @@ distclean: clean
 	-rm -f config.log config.status Makefile
 
 install: all
-	chmod -R 777 src
 	$(MAKE) -C src install
-	chmod -R 777 doc
-	chmod -R 777 po
 	cp -Rf doc $(DESTDIR)$(prefix)/share/font-manager/
 	for f in `find po -name font-manager.mo` ; do \
 	  install -d -m 755 \

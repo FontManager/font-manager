@@ -18,6 +18,7 @@
     <child>
       <object class="GtkVBox" id="vbox1">
         <property name="visible">True</property>
+        <property name="border_width">10</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkImage" id="app_icon">
@@ -33,11 +34,12 @@
         <child>
           <object class="GtkHBox" id="hbox1">
             <property name="visible">True</property>
+            <property name="border_width">10</property>
             <child>
               <object class="GtkLabel" id="loading">
                 <property name="visible">True</property>
                 <property name="xalign">1</property>
-                <property name="label" translatable="yes">	Loading : </property>
+                <property name="label" translatable="yes">Loading : </property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -48,7 +50,8 @@
               <object class="GtkLabel" id="progress">
                 <property name="visible">True</property>
                 <property name="xalign">0</property>
-                <property name="label" translatable="yes">Progress</property>
+                <property name="ellipsize">end</property>
+                <property name="max_width_chars">20</property>
               </object>
               <packing>
                 <property name="position">1</property>

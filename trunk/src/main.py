@@ -26,18 +26,18 @@ along with this program; if not, write to:
 #
 # Suppress errors related to gettext
 # pylint: disable-msg=E0602
+# Suppress messages related to missing docstrings
+# pylint: disable-msg=C0111
 
-# Suppress warnings related to unused arguments
-# pylint: disable-msg=W0613
 
-AUTHORS = ['\nJerry Casiano\n', '\nSpecial thanks to:\n', 
+AUTHORS = ['\nJerry Casiano\n', _('\nSpecial thanks to:\n'), 
 '  Karl Pickett', 
 _('\tFont Manager is based on Karl\'s work'),
-'\t<fontmanager.blogspot.com>\n', 
+'\t<http://fontmanager.blogspot.com/>\n', 
 '  Wouter Bolsterlee',
 _('\tFont Manager\'s compare mode is modeled after,'), 
 _('\tand uses portions of gnome-specimen'), 
-'\t<launchpad.net/gnome-specimen>\n']
+'\t<https://launchpad.net/gnome-specimen>\n']
     
 import os
 import gtk
@@ -45,12 +45,13 @@ import gobject
 import logging
 import subprocess
 import ConfigParser
+import webbrowser
 
-import fontload
-import fontviews
-import treeviews
+import loader
+import managed
 import xmlutils
 
+from common import install_readme
 from config import INI, PACKAGE, PACKAGE_DIR, VERSION, USER, USER_FONT_DIR
 
 
@@ -60,18 +61,32 @@ class FontManager:
     """
     builder = gtk.Builder()
     builder.set_translation_domain('font-manager')
-
     def __init__(self):
         # Make sure all needed files are present in users home folder
         xmlutils.check_install()
-        # Disable blacklist so all fonts are returned by fc-config
-        xmlutils.disable_blacklist()
+        # Disable blacklist so all fonts are returned by fc-list
+        xmlutils.BlackList.disable_blacklist()
         # Load ui file
         self.builder.add_from_file(PACKAGE_DIR  + '/ui/main.ui')
         self.mainwindow = self.builder.get_object("window")
-        self.mainwindow.connect('destroy', self.quit)
+        # Find out if user wants window closed or sent to tray
+        config = ConfigParser.ConfigParser()
+        config.read(INI)
+        try:
+            tray = config.get('Delete Event', 'tray')
+            if tray == 'True':
+                tray = True
+            elif tray == 'False':
+                tray = False
+        except ConfigParser.NoSectionError:
+            tray = True
+        #
+        if tray:
+            self.mainwindow.connect('delete-event', delete_handler)
+        else:
+            self.mainwindow.connect('destroy', self.quit)
         self.mainwindow.set_title(PACKAGE)
-        self.mainwindow.set_size_request(850, 500)
+        self.mainwindow.set_size_request(800, 500)
         # Find and set up icon for use throughout app windows
         icon_theme = gtk.icon_theme_get_default()
         try:
@@ -79,76 +94,175 @@ class FontManager:
         except gobject.GError, exc:
             logging.warn("Could not find preferences-desktop-font icon", exc)
         gtk.window_set_default_icon_list(app_icon)
-        # Fill everything
-        self.fontload = fontload.FontLoad(self.builder)
-        self.fontload.load_fonts()
-        # Need to load blacklist now before loading collections
-        xmlutils.BlackList(self.fontload.fc_fonts).load()
-        self.fontload.load_collections()
-        self.fontview = fontviews.Views(parent=self.mainwindow,
-                                                    builder=self.builder)
-        self.treeviews = treeviews.Trees(self.fontload,
-                            parent=self.mainwindow, builder=self.builder)
-        # "statusbar" is just a label...
-        self.status_bar = self.builder.get_object("total_fonts")
-        self.status_bar.set_label(_("Fonts : %s") %
-                                        self.fontload.total_fonts)
         # Font preferences, at least for GNOME
         font_prefs = self.builder.get_object("font_preferences")
         font_prefs.connect('clicked', on_font_preferences)
         if os.path.exists('/usr/bin/gnome-appearance-properties') or \
         os.path.exists('/usr/local/bin/gnome-appearance-properties'):
             font_prefs.set_sensitive(True)
+            self.fprefs = True
         else:
             font_prefs.set_sensitive(False)
+            self.fprefs = False
             font_prefs.set_tooltip_text\
-            ('This feature requires gnome-appearance-properties')
-            
-        gucharmap = self.builder.get_object("gucharmap")
-        if os.path.exists('/usr/bin/gucharmap') or \
-        os.path.exists('/usr/local/bin/gucharmap'):
-            gucharmap.connect('clicked', self.fontview.on_char_map)
-        else:
-            gucharmap.set_sensitive(False)
-            gucharmap.hide()
-
-        # Export requires file-roller
+            (_('This feature requires gnome-appearance-properties'))
+        # Export and install_fonts require file-roller
         export = self.builder.get_object("export")
         export.connect('clicked', self.on_export)
         if os.path.exists('/usr/bin/file-roller') or \
         os.path.exists('usr/local/bin/file-roller'):
             export.set_sensitive(True)
+            self.froller = True
         else:
             export.set_sensitive(False)
+            self.froller = False
             export.set_tooltip_text\
-            ('This feature requires file-roller')
-
+            (_('This feature requires file-roller'))
         # Connect handlers
         about = self.builder.get_object('about_button')
         about.connect('clicked', on_about)
+        refresh = self.builder.get_object('refresh')
+        refresh.connect('clicked', self.refresh)
         fmhelp = self.builder.get_object('help')
         fmhelp.connect('clicked', on_help)
         prefs = self.builder.get_object('app_prefs')
         prefs.connect('clicked', self.on_prefs)
-        manage_fonts = self.builder.get_object('manage_fonts')
-        manage_fonts.connect('clicked', on_manage_fonts)
+        self.manage_fonts = self.builder.get_object('manage_fonts')
+        self.manage_fonts.connect('button-press-event', self.on_manage_fonts)
+        # Load fonts, collections, setup treeviews, etc
+        self.loader = loader.Ui(parent=self.mainwindow, builder=self.builder)
+        self.loader.initialize()
         # Showtime
         self.mainwindow.show()
-        xmlutils.enable_blacklist()
+        # Tray icon
+        self.tray_icon = \
+        gtk.status_icon_new_from_icon_name('preferences-desktop-font')
+        self.tray_icon.set_tooltip(_('Font Manager'))
+        self.tray_icon.connect('activate', self.tray_icon_clicked)
+        self.tray_icon.connect('popup-menu', self.tray_icon_menu)
+        
+    def refresh(self, unused_widget):
+        self.loader.reboot()
+        return
+            
+    def tray_icon_menu(self, unused_widget, button, event_time):
+        """
+        Popup menu for the tray icon.
+        
+        Provides quick access to common functions
+        """
+        popup_menu = gtk.Menu()
+        separator = gtk.SeparatorMenuItem()
+        separator1 = gtk.SeparatorMenuItem()
+        separator2 = gtk.SeparatorMenuItem()
+        install = gtk.ImageMenuItem(_('Install fonts'))
+        remove = gtk.ImageMenuItem(_('Remove fonts'))
+        font_prefs = gtk.ImageMenuItem(_('Font Preferences'))
+        char_map = gtk.ImageMenuItem(_('Character Map'))
+        prefs = gtk.ImageMenuItem(_('Preferences'))
+        yelp = gtk.ImageMenuItem(_('Help'))
+        about = gtk.ImageMenuItem(_('About'))
+        quit_app = gtk.ImageMenuItem(_('Quit'))
+        install_image = gtk.image_new_from_icon_name('gtk-add', 
+                                                        gtk.ICON_SIZE_MENU)
+        install.set_image(install_image)
+        remove_image = gtk.image_new_from_icon_name('gtk-remove', 
+                                                        gtk.ICON_SIZE_MENU)
+        remove.set_image(remove_image)
+        font_prefs_image = gtk.image_new_from_icon_name(
+                            'preferences-desktop-font', gtk.ICON_SIZE_MENU)
+        font_prefs.set_image(font_prefs_image)        
+        char_map_image = gtk.image_new_from_icon_name(
+                            'accessories-character-map', gtk.ICON_SIZE_MENU)
+        char_map.set_image(char_map_image)
+        prefs_image = gtk.image_new_from_icon_name('gtk-preferences', 
+                                                        gtk.ICON_SIZE_MENU)
+        prefs.set_image(prefs_image)
+        help_image = gtk.image_new_from_icon_name('help-contents', 
+                                                        gtk.ICON_SIZE_MENU)
+        yelp.set_image(help_image)
+        about_image = gtk.image_new_from_icon_name('help-about', 
+                                                        gtk.ICON_SIZE_MENU)
+        about.set_image(about_image)
+        quit_image = gtk.image_new_from_icon_name('application-exit', 
+                                                        gtk.ICON_SIZE_MENU)
+        quit_app.set_image(quit_image)
+        install.connect('activate', managed.InstallFonts,
+                                    self.mainwindow, self.loader, self.builder)
+        remove.connect('activate', managed.RemoveFonts,
+                                    self.mainwindow, self.loader, self.builder)
+        font_prefs.connect('activate', on_font_preferences)
+        char_map.connect('activate', self.loader.fontviews.on_char_map)
+        prefs.connect('activate', self.on_prefs)
+        yelp.connect('activate', on_help)
+        about.connect('activate', on_about)
+        quit_app.connect('activate', self.quit)
+        if self.froller:
+            popup_menu.append(install)
+            popup_menu.append(remove)
+            popup_menu.append(separator)   
+        if self.fprefs:
+            popup_menu.append(font_prefs)
+        if self.loader.fontviews.charmap:
+            popup_menu.append(char_map)
+        popup_menu.append(separator1)
+        popup_menu.append(prefs)
+        popup_menu.append(yelp)
+        popup_menu.append(about)
+        popup_menu.append(separator2)
+        popup_menu.append(quit_app)
+        popup_menu.show_all()
+        popup_menu.popup(None, None, None, button, event_time)
 
+    def tray_icon_clicked(self, unused_widget):
+        self.mainwindow.set_skip_taskbar_hint(False)
+        self.mainwindow.present()
+        return
+        
+    def on_manage_fonts(self, unused_widget, event):
+        if event.button != 1:
+            return
+        popup_menu = gtk.Menu()
+        separator = gtk.SeparatorMenuItem()
+        install = gtk.ImageMenuItem(_('Install fonts'))
+        remove = gtk.ImageMenuItem(_('Remove fonts'))
+        open_font_folder = gtk.ImageMenuItem(_('Open fonts folder'))
+        install_image = gtk.image_new_from_icon_name('gtk-add', 
+                                                        gtk.ICON_SIZE_MENU)
+        install.set_image(install_image)
+        remove_image = gtk.image_new_from_icon_name('gtk-remove', 
+                                                        gtk.ICON_SIZE_MENU)
+        remove.set_image(remove_image)
+        open_image = gtk.image_new_from_icon_name('folder-open', 
+                                                        gtk.ICON_SIZE_MENU)
+        open_font_folder.set_image(open_image)        
+        if self.froller:
+            popup_menu.append(install)
+            popup_menu.append(remove)
+        popup_menu.append(separator)
+        popup_menu.append(open_font_folder)
+        install.connect('activate', managed.InstallFonts,
+                                    self.mainwindow, self.loader, self.builder)
+        remove.connect('activate', managed.RemoveFonts,
+                                    self.mainwindow, self.loader, self.builder)
+        open_font_folder.connect('activate', _open_font_folder)
+        popup_menu.show_all()
+        popup_menu.attach_to_widget(self.manage_fonts, detach_popup)
+        popup_menu.popup(None, None, None, event.button, event.time)
+    
     def on_prefs(self, unused_widget):
         """
         Displays applications preferences dialog
         """
         from preferences import Preferences
-        Preferences(parent=self.mainwindow, builder=self.builder).run()
+        Preferences(self.mainwindow, self.builder, self.loader).run()
 
     def on_export(self, unused_widget):
         """
         Exports selected collection
         """
         from export import Export
-        collection = self.treeviews.get_current_collection()
+        collection = self.loader.treeviews.current_collection
         Export(collection)
 
     def quit(self, unused_widget):
@@ -156,10 +270,14 @@ class FontManager:
         Saves collection information before exiting
         """
         logging.info("Saving configuration")
-        self.treeviews.save()
+        self.loader.treeviews.save()
         xmlutils.check_libxml2_leak()
         logging.info("Exiting...")
         gtk.main_quit()
+        
+def detach_popup(menu, unused_widget):
+    menu.destroy()
+    return
 
 def on_about(unused_widget):
     """
@@ -180,27 +298,10 @@ def on_help(unused_widget):
     """
     Opens users preferred browser to our help pages
     """
-    help_files = "'%s/doc/en_US.html'" % PACKAGE_DIR
-    xdg = '/usr/bin/xdg-open'
-    lxdg = '/usr/local/bin/xdg-open'
-    fire = '/usr/bin/firefox'
-    lfire = '/usr/local/bin/firefox'
-    # Try xdg first
-    if os.path.exists(xdg) or os.path.exists(lxdg):
-        cmd = 'xdg-open %s' % help_files
-        try:
-            logging.info("Launching Help browser")
-            subprocess.call(cmd, shell=True)
-        except OSError, error:
-            logging.error("Error: %s" % error)
-    # Fall back to firefox or nothing
-    elif os.path.exists(fire) or os.path.exists(lfire):
-        cmd = 'firefox %s' % help_files
-        try:
-            logging.info("Launching Help browser")
-            subprocess.call(cmd, shell=True)
-        except OSError, error:
-            logging.error("Error: %s" % error)
+    lang = 'en_US'
+    help_files = '%s/doc/%s.html' % (PACKAGE_DIR, lang)
+    if webbrowser.open(help_files):
+        logging.info("Launching Help browser")
     else:
         logging.warn("Could not find any suitable browser")
     return
@@ -210,14 +311,13 @@ def on_font_preferences(unused_widget):
     Launches gnome-appearance-properties with the fonts tab active
     """
     try:
-        cmd = "gnome-appearance-properties --show-page=fonts &"
         logging.info("Launching font preferences dialog")
-        subprocess.call(cmd, shell=True)
+        subprocess.Popen(['gnome-appearance-properties', '--show-page=fonts'])
     except OSError, error:
         logging.error("Error: %s" % error)
     return
-
-def on_manage_fonts(unused_widget):
+    
+def _open_font_folder(unused_widget):
     """
     Opens users preferred file browser to the users default font folder
     """
@@ -254,33 +354,6 @@ def on_manage_fonts(unused_widget):
         launch_file_browser(file_browser, font_dir)
     return
 
-README =_("""* This file was placed here by Font Manager because this directory 
-did not exist, feel free to delete, it will not be generated again.
-
-
-This is a per-user font directory.
-
-
-Any fonts ( or folders containing fonts ) present in this directory are 
-automatically picked up by the system and available, but only to you.
-
-
-Please note that not only can you specify other directories to scan for 
-fonts from the applications preferences dialog, but you can also set the 
-default folder that's opened when 'Manage Fonts' is selected.
-
-
-If you wish to make fonts available to everyone using the system they will 
-need to be placed in /usr/share/fonts
-
-""")
-
-def install_readme():
-    RM = os.path.join(USER_FONT_DIR, 'Read Me.txt')
-    readme = open(RM, 'w')
-    readme.write(README)
-    readme.close()
-
 def find_file_browser():
     """
     Looks for common file browsers, if xdg-open is unavailable
@@ -310,7 +383,13 @@ def launch_file_browser(file_browser, font_dir):
     """
     Launches file browser, displays a dialog if none was found
     """
-    if file_browser is None:
+    if file_browser:
+        try:
+            logging.info("Launching %s" % file_browser)
+            subprocess.Popen([file_browser, font_dir])
+        except OSError, error:
+            logging.error("Error: %s" % error)
+    else:
         dialog = gtk.MessageDialog(None,
         gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_ERROR,
         gtk.BUTTONS_CLOSE,
@@ -327,29 +406,19 @@ please file a bug against Font Manager"""))
         dialog.run()
         dialog.destroy()
         return
-
-    if file_browser == "nautilus":
-        try:
-            logging.info("Launching Nautilus")
-            subprocess.Popen([file_browser, "--no-desktop", font_dir])
-        except OSError, error:
-            logging.error("Error: %s" % error)
-    elif file_browser == "thunar":
-        try:
-            logging.info("Launching Thunar")
-            subprocess.Popen([file_browser, font_dir])
-        except OSError, error:
-            logging.error("Error: %s" % error)
-    elif file_browser == "dolphin":
-        try:
-            logging.info("Launching Dolphin")
-            subprocess.Popen([file_browser, font_dir])
-        except OSError, error:
-            logging.error("Error: %s" % error)
-    elif file_browser == "konqueror":
-        try:
-            logging.info("Launching Konqueror")
-            subprocess.Popen([file_browser, font_dir])
-        except OSError, error:
-            logging.error("Error: %s" % error)
     return
+
+def delete_handler(window, unused_event):
+    """
+    This handler is required so that the window isn't actually destroyed when the
+    close button is pressed, just connecting it to hide_on_delete is not enough.
+    
+    PyGTK destroys the window by default so returning True from this function 
+    is necessary in this case, it tells PyGTK that no further action is needed.
+    
+    Returning False would tell PyGTK to perform these actions then go ahead and
+    finish up, in other words go ahead and destroy the window after this.
+    """
+    window.set_skip_taskbar_hint(True)
+    window.hide()
+    return True

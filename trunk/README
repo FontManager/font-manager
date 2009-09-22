@@ -18,6 +18,8 @@ Font Manager currently allows the user to:
     * Preview installed fonts
     
     * Compare fonts
+    
+    * Install and remove fonts
 
     * Easily activate and de-activate installed fonts
 
@@ -58,6 +60,6 @@ Suggested:
     * file-roller               http://fileroller.sourceforge.net/
     * gnome-font-viewer         http://www.jamesh.id.au/software/fontilus/
 
-    gnome-font-viewer is now a part of gnome-control-center
+    gnome-font-viewer is now included in gnome-control-center
 
 
