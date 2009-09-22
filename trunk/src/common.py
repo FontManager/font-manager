@@ -39,8 +39,8 @@ class Throbber:
         else:
             self.builder = builder
         self.throbber = self.builder.get_object("throbber")
-        self.animation = gtk.gdk.PixbufAnimation('ui/Throbber.gif')
-        self.pixbuf = gtk.gdk.pixbuf_new_from_file('ui/Throbber.png')
+        self.animation = gtk.gdk.PixbufAnimation(PACKAGE_DIR  + 'ui/Throbber.gif')
+        self.pixbuf = gtk.gdk.pixbuf_new_from_file(PACKAGE_DIR  + 'ui/Throbber.png')
         
     def start(self):
         # Start animation
