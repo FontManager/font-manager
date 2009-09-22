@@ -25,8 +25,6 @@ This module handles everything related to the font preview area.
 #
 # Suppress errors related to gettext
 # pylint: disable-msg=E0602
-# Suppress warnings related to unused arguments
-# pylint: disable-msg=W0613
 # Suppress messages related to missing docstrings
 # pylint: disable-msg=C0111
 
@@ -38,6 +36,7 @@ import subprocess
 
 import fontload
 
+COMPARE_LS = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
 
 DEFAULT_STYLES  =  ['Regular', 'Roman', 'Medium', 'Normal', 'Book']
 
@@ -47,44 +46,35 @@ DEFAULT_STYLES  =  ['Regular', 'Roman', 'Medium', 'Normal', 'Book']
 PREVIEW_TEXT = _("""The quick brown fox jumps over a lazy dog.
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 abcdefghijklmnopqrstuvwxyz
-1234567890.:,;(*!?')
-""")
+1234567890.:,;(*!?')""")
 COMPARE_TEXT = _('The quick brown fox jumps over a lazy dog.')
+
 
 class Views:
     """
     Sets up preview area
     """
-
     preview_text = PREVIEW_TEXT
     compare_text = COMPARE_TEXT
-
-    compare_ls = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
     # default colors
     preview_fgcolor = gtk.gdk.color_parse('black')
     preview_bgcolor = gtk.gdk.color_parse('white')
-
     mode = 'preview'
-
+    colors_dialog = None
+    have_gfw = False
     def __init__(self, parent=None, builder=None):
-
         if builder is None:
             self.builder = gtk.Builder()
             self.builder.set_translation_domain('font-manager')
         else:
             self.builder = builder
-
         self.parent = parent
-
         self.current_font = None
         self.current_style = None
-        
         self.style_combo = gtk.combo_box_new_text()
         self.style_combo.set_focus_on_click(False)
         self.family_tv = self.builder.get_object('families_tree')
-        self.family_tv.get_selection().connect("changed",
-                                                    self._font_changed)
-
+        self.family_tv.get_selection().connect("changed", self._font_changed)
         self.preview_scroll = self.builder.get_object('preview_scroll')
         self.compare_scroll = self.builder.get_object('compare_scroll')
         self.compare_tree = self.builder.get_object('compare_tree')
@@ -92,53 +82,53 @@ class Views:
         self.toggle = self.builder.get_object('compare_preview')
         self.toggle.connect('toggled', self.switch_mode)
         self.preview_column = gtk.TreeViewColumn()
-        self.addb = self.builder.get_object('add_compare')
-        self.delb = self.builder.get_object('remove_compare')
-        self.clearb = self.builder.get_object('clear_compare')
         self.font_info = self.builder.get_object('font_info')
         self.cb_box = self.builder.get_object('compare_buttons_box')
         self.color_selector = self.builder.get_object('color_selector')
-
         self.tentry = self.builder.get_object('custom_text_entry')
         self.tentry.connect('changed', self.preview_text_changed)
         self.tentry.connect('icon-press', self.clear_custom_text)
-        self.custom_text = self.builder.get_object('custom_text')
-        self.custom_text.connect('toggled', self.custom_toggled)
-
+        custom_text = self.builder.get_object('custom_text')
+        custom_text.connect('toggled', self.custom_toggled)
         size_adjustment = self.builder.get_object('size_adjustment')
         # correct value on start
         size_adjustment.set_value(11)
         self.size = size_adjustment.get_value()
         # make it do something
         size_adjustment.connect('value-changed', self.on_size_adj_v_change)
-        
-
+        self.gucharmap = self.builder.get_object("gucharmap")
+        if os.path.exists('/usr/bin/gucharmap') or \
+        os.path.exists('/usr/local/bin/gucharmap'):
+            self.gucharmap.connect('clicked', self.on_char_map)
+            self.charmap = True
+        else:
+            self.gucharmap.hide()
+            self.charmap = False
         self.check_for_gfw()
         self.setup_style_combo()
         self.init_compare_tree()
         return
 
-
-    # Aside from a few functions most of the code in this section is either #
-    #     'lifted' right out of gnome-specimen or heavily based on it.      #
-
-
     def init_compare_tree(self):
-        self.compare_tree.set_model(self.compare_ls)
+        self.compare_tree.set_model(COMPARE_LS)
         cell_render = gtk.CellRendererText()
         self.preview_column.pack_start(cell_render, True)
         self.preview_column.set_cell_data_func(cell_render, self.cell_data_cb)
         self.compare_tree.append_column(self.preview_column)
         compare_selection = self.compare_tree.get_selection()
         compare_selection.set_select_function(self._set_preview_row_selection)
-
-        self.addb.connect('clicked', self.add_compare)
-        self.delb.connect('clicked', self.remove_compare)
-        self.clearb.connect('clicked', self.clear_compare)
+        addb = self.builder.get_object('add_compare')
+        delb = self.builder.get_object('remove_compare')
+        clearb = self.builder.get_object('clear_compare')
+        addb.connect('clicked', self.add_compare)
+        delb.connect('clicked', self.remove_compare)
+        clearb.connect('clicked', self.clear_compare)
         self.color_selector.connect('clicked', self.show_colors_dialog)
 
     def switch_mode(self, unused_widget):
-
+        """
+        Hides or shows widgets depending on selected mode
+        """
         if self.toggle.get_active():
             self.mode = 'compare'
             self.preview_scroll.hide()
@@ -147,8 +137,9 @@ class Views:
             self.toggle.set_label(_('Preview Fonts'))
             self.font_info.hide()
             self.color_selector.show()
+            if self.charmap:
+                self.gucharmap.hide()
             self.cb_box.show()
-
         elif not self.toggle.get_active():
             self.mode = 'preview'
             self.compare_scroll.hide()
@@ -157,16 +148,24 @@ class Views:
             self.color_selector.hide()
             self.font_info.show()
             self.cb_box.hide()
+            if self.charmap:
+                self.gucharmap.show()
 
     def add_compare(self, unused_widget):
-        lstore = self.compare_ls
+        lstore = COMPARE_LS
         lstore.append([self.current_style.to_string(), self.current_style])
         lstore.append([self.current_style.to_string(), self.current_style])
         self.select_last_preview()
         self.update_compare_view()
         return
 
+    # Aside from a few functions most of the code in this section is either #
+    #     'lifted' right out of gnome-specimen or heavily based on it.      #
+    
     def remove_compare(self, unused_widget):
+        """
+        Removes selected entry from compare view
+        """
         model, treeiter = self.compare_tree.get_selection().get_selected()
         if treeiter is not None:
             # Remove 2 rows
@@ -179,7 +178,7 @@ class Views:
                 # The treeiter is still valid. This means that there's another
                 # row has "shifted" to the location the deleted row occupied
                 # before. Set the cursor to that row.
-                new_path = self.compare_ls.get_path(treeiter)
+                new_path = COMPARE_LS.get_path(treeiter)
                 if (new_path[0] >= 0):
                     self.compare_tree.set_cursor(new_path)
             else:
@@ -191,17 +190,20 @@ class Views:
         return
 
     def clear_compare(self, unused_widget):
-        self.compare_ls.clear()
+        """
+        Removes all entries from compare view
+        """
+        COMPARE_LS.clear()
         self.update_compare_view()
         return
 
-    def cell_data_cb(self, column, cell, model, treeiter, data=None):
+    def cell_data_cb(self, column, cell, model, treeiter):
         if model.get_path(treeiter)[0] % 2 == 0:
             # this is a name row
             cell.set_property('text', model.get_value(treeiter, 0))
             cell.set_property('font', 'Sans 11')
             cell.set_property('ypad', 2)
-            cell.set_property('background', None)
+            cell.set_property('background', '#F7F7F7')
             cell.set_property('foreground', None)
         else:
             # this is a preview row
@@ -214,6 +216,9 @@ class Views:
         return
 
     def _set_preview_row_selection(self, path):
+        """
+        Prevents selection of rows which hold a preview
+        """
         # http://bugzilla.gnome.org/show_bug.cgi?id=340475
         if (path[0] % 2) == 0:
             # this is a name row
@@ -225,11 +230,11 @@ class Views:
             return False
 
     def select_last_preview(self):
-        path_to_select = self.compare_ls.iter_n_children(None) - 2
+        path_to_select = COMPARE_LS.iter_n_children(None) - 2
         if (path_to_select >= 0):
             self.compare_tree.get_selection().select_path(path_to_select)
-
-            path_to_scroll_to = path_to_select + 1 # this the actual last row
+            # this the actual last row
+            path_to_scroll_to = path_to_select + 1 
             if path_to_scroll_to > 1:
                 # workaround strange row height bug for first title row
                 self.compare_tree.scroll_to_cell(path_to_scroll_to)
@@ -247,14 +252,17 @@ class Views:
         return
 
     def set_colors(self, fgcolor, bgcolor):
-        'Sets the colors for the font previews'
+        """
+        Sets the colors for the font previews
+        """
         self.preview_fgcolor = fgcolor
         self.preview_bgcolor = bgcolor
         self.update_compare_view()
 
     def show_colors_dialog(self, unused_widget):
-        'Shows the colors dialog'
-
+        """
+        Shows the colors dialog
+        """
         self.colors_dialog = gtk.Dialog(
                 _('Change colors'),
                 self.parent,
@@ -264,29 +272,24 @@ class Views:
         self.colors_dialog.set_default_response(gtk.RESPONSE_ACCEPT)
         self.colors_dialog.set_resizable(False)
         self.colors_dialog.set_has_separator(False)
-
         # A table is used to layout the dialog
         table = gtk.Table(2, 2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_homogeneous(True)
-
         # The widgets for the foreground color
         fglabel = gtk.Label(_('Foreground color:'))
         fgchooser = gtk.ColorButton()
         fgchooser.set_color(self.preview_fgcolor)
         table.attach(fglabel, 0, 1, 0, 1)
         table.attach(fgchooser, 1, 2, 0, 1)
-
         # The widgets for the background color
         bglabel = gtk.Label(_('Background color:'))
         bgchooser = gtk.ColorButton()
         bgchooser.set_color(self.preview_bgcolor)
         table.attach(bglabel, 0, 1, 1, 2)
         table.attach(bgchooser, 1, 2, 1, 2)
-
-        self.colors_dialog.vbox.add(table)
-
+        self.colors_dialog.vbox.pack_start(table, True, True, 0)
         # Keep direct references to the buttons on the dialog itself. The
         # callback method for the color-set signal uses those retrieve the
         # color values (the colors_dialog is passed as user_data).
@@ -296,20 +299,20 @@ class Views:
         ('color-set', self.colors_dialog_color_changed_cb, self.colors_dialog)
         bgchooser.connect\
         ('color-set', self.colors_dialog_color_changed_cb, self.colors_dialog)
-
         # We abuse lambda functions here to handle the correct signals/events:
         # the window will be hidden (not destroyed) and can be used again
         self.colors_dialog.connect\
         ('response', lambda widget, response: self.colors_dialog.hide())
         self.colors_dialog.connect\
         ('delete-event', lambda widget, event: widget.hide() or True)
-
         # Show the dialog
         self.colors_dialog.show_all()
         self.colors_dialog.present()
 
     def colors_dialog_color_changed_cb(self, button, dialog):
-        'Updates the colors when the color buttons have changed'
+        """
+        Updates the colors when the color buttons have changed
+        """
         fgcolor = dialog.fgchooser.get_color()
         bgcolor = dialog.bgchooser.get_color()
         self.set_colors(fgcolor, bgcolor)
@@ -317,12 +320,21 @@ class Views:
     #########################################################################
 
     def custom_toggled(self, widget):
+        """
+        Shows or hides the custom text entry widget depending on toggle state
+        """
         if widget.get_active():
             self.tentry.show()
+            self.tentry.grab_focus()
+            widget.set_label(_('Hide text entry'))
         else:
             self.tentry.hide()
-
+            widget.set_label(_('Custom Text'))
+            
     def clear_custom_text(self, unused_widget, unused_x, unused_y):
+        """
+        Clears text entry when clear icon is clicked
+        """
         self.tentry.set_text('')
         self.compare_text = COMPARE_TEXT
         self.preview_text = PREVIEW_TEXT
@@ -335,7 +347,7 @@ class Views:
         Sets up style selection combo
         """
         fsb = self.builder.get_object("font_size_box")
-        fsb.pack_start(self.style_combo, False, True)
+        fsb.pack_end(self.style_combo, False, False)
         self.style_combo.connect('changed', self._on_style_changed)
         self.style_combo.show()
         return
@@ -350,13 +362,16 @@ class Views:
         font_info = self.builder.get_object('font_info')
         if os.path.exists(gfw) or os.path.exists(lgfw):
             font_info.connect('clicked', self._on_font_info)
-            font_info.set_sensitive(True)
+            self.have_gfw = True
         else:
             font_info.set_sensitive(False)
             font_info.set_tooltip_text\
-            ('This feature requires gnome-font-viewer')
+            (_('This feature requires gnome-font-viewer'))
             
     def on_char_map(self, unused_widget):
+        """
+        Launches gucharmap with the currently selected font active
+        """
         font = self.current_style.to_string()
         try:
             logging.info("Launching GNOME Character Map")
@@ -371,13 +386,16 @@ class Views:
         """
         tree = sel
         model, path_list = tree.get_selected_rows()
-
         try:
             obj = model[path_list[0]][1]
         except IndexError:
             return
         if isinstance(obj, fontload.Family):
             self._change_font(obj)
+            if obj.enabled:
+                self.gucharmap.set_sensitive(True)
+            else:
+                self.gucharmap.set_sensitive(False)
         return
 
     def _on_style_changed(self, unused_widget):
@@ -386,12 +404,18 @@ class Views:
         """
         if self.style_combo.get_active() < 0:
             return
-        style = self.style_combo.get_model()[self.style_combo.get_active()][0]
-        if style in self.current_font.filelist:
+        try:
+            style = self.style_combo.get_model()\
+            [self.style_combo.get_active()][0]
+        except IndexError:
+            logging.warn('Font failed to provide style information')
+            return
+        if style in self.current_font.filelist and self.have_gfw:
             self.font_info.set_sensitive(True)
         else:
             self.font_info.set_sensitive(False)
-        faces = self.current_font.pango_family.list_faces()
+        faces = sorted(self.current_font.pango_family.list_faces(),
+                cmp=lambda x, y: cmp(x.get_face_name(), y.get_face_name()))
         for face in faces:
             if face.get_face_name() == style:
                 descr = face.describe()
@@ -405,19 +429,23 @@ class Views:
         """
         self.current_font = font
         self.style_combo.get_model().clear()
-        faces = font.pango_family.list_faces()
+        faces = sorted(font.pango_family.list_faces(),
+                cmp=lambda x, y: cmp(x.get_face_name(), y.get_face_name()))
         selected_face = None
         active = -1
         i = 0
+        added = []
         for face in faces:
-            name = face.get_face_name()
-            self.style_combo.append_text(name)
-            if name in DEFAULT_STYLES or not selected_face:
+            if face not in added:
+                self.style_combo.append_text(face.get_face_name())
+            if face.get_face_name() in DEFAULT_STYLES or not selected_face:
                 selected_face = face
                 active = i
             i += 1
         self.style_combo.set_active(active)
-        self._set_preview_text(selected_face.describe())
+        if selected_face:
+            descr = selected_face.describe()
+            self._set_preview_text(descr)
         return
 
     def on_size_adj_v_change(self, widget):
@@ -438,12 +466,9 @@ class Views:
         """
         font = self.current_font
         style = self.style_combo.get_model()[self.style_combo.get_active()][0]
-        
         fontfile = font.filelist[style]
-        
         try:
-            cmd = "gnome-font-viewer '%s' &\n" % fontfile
-            subprocess.call(cmd, shell=True)
+            subprocess.Popen(['gnome-font-viewer', fontfile])
         except (TypeError, IndexError):
             self._font_info_unavailable()    
         except OSError, error:
@@ -478,5 +503,3 @@ class Views:
         dialog.run()
         dialog.destroy()
         return
-
-

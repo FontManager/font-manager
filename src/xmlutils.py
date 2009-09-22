@@ -23,29 +23,30 @@ This module is used to group any functions which make use of libxml2.
 # 51 Franklin Street, Fifth Floor
 # Boston, MA  02110-1301, USA.
 #
-# Suppress 5 warnings due to catch all exceptions
-# pylint: disable-msg=W0702
+
 
 import os
+import gtk
 import libxml2
 import logging
 import shutil
 
 from config import *
-from common import match, search
-
 
 INCLUDE_LINE = """<!-- Added by Font Manager -->
     <include ignore_missing=\"yes\">%s</include>
     <include ignore_missing=\"yes\">%s</include>
-<!-- ~~~~~~~~~~~~~~~~~~~~~ -->""" % (FM_BLOCK_CONF, DIRS_CONF)
+    <include ignore_missing=\"yes\">%s</include>
+<!-- ~~~~~~~~~~~~~~~~~~~~~ -->""" % \
+(FM_BLOCK_CONF, DIRS_CONF, RENDER_CONF)
 
 
 VALID_CONFIG = """<?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
 %s
-</fontconfig>""" % INCLUDE_LINE
+</fontconfig>
+""" % INCLUDE_LINE
 
 
 def add_patelt_node(parent, pat_type, val):
@@ -70,8 +71,8 @@ def add_patelt_node(parent, pat_type, val):
 
 def add_valid_node(node_ref, node_value):
     """
-    Searches given value for characters that are illegal or
-    discouraged in xml and replaces them, then calls add_patelt_node.
+    Replaces characters that are illegal or discouraged in xml, 
+    then calls add_patelt_node.
 
     Keyword arguments:
     node_ref -- parent node
@@ -79,16 +80,11 @@ def add_valid_node(node_ref, node_value):
     """
     node = node_ref
     family = node_value
-    if family.find('&'):
-        family = family.replace('&', '&amp;')
-    if family.find('<'):
-        family = family.replace('&', '&lt;')
-    if family.find('>'):
-        family = family.replace('&', '&gt;')
-    if family.find("'"):
-        family = family.replace("'", '&apos;')
-    if family.find('"'):
-        family = family.replace('"', '&quot;')
+    family = family.replace('&', '&amp;')
+    family = family.replace('&', '&lt;')
+    family = family.replace('&', '&gt;')
+    family = family.replace("'", '&apos;')
+    family = family.replace('"', '&quot;')
     parent = node.newChild(None, "pattern", None)
     add_patelt_node(parent, "family", family)
     return
@@ -118,17 +114,11 @@ def get_fc_patterns(node, fam_list):
             name = collection.prop("name")
             if name == "family":
                 family = collection.xpathEval('string')[0].content
-            if family.find('&amp;'):
                 family = family.replace('&amp;', '&')
-            if family.find('&lt;'):
                 family = family.replace('&lt;', '<')
-            if family.find('&gt;'):
                 family = family.replace('&gt;', '>')
-            if family.find('&apos;'):
                 family = family.replace('&apos;', "'")
-            if family.find('&quot;'):
                 family = family.replace('&quot;', '"')
-
             if family:
                 fam_list.append(family)
     return
@@ -145,7 +135,6 @@ def load_directories():
     except libxml2.parserError:
         logging.warn("Failed to parse user directories configuration!")
         return
-
     dirs = doc.xpathEval('//dir')
     if len(dirs) < 1:
         doc.freeDoc()
@@ -167,12 +156,10 @@ def save_directories(dirs):
     Save user specified directories to configuration file
     """
     directories = dirs
-
     if os.path.exists(DIRS_CONF):
-        if os.path.exists(DIRS_CONF_BACKUP):
-            os.unlink(DIRS_CONF_BACKUP)
-        os.rename(DIRS_CONF, DIRS_CONF_BACKUP)
-
+        os.unlink(DIRS_CONF)
+    if os.path.exists(DIRS_CONF_BACKUP):
+        os.unlink(DIRS_CONF_BACKUP)
     doc = libxml2.newDoc("1.0")
     root = doc.newChild(None, "fontconfig", None)
     # don't save, it's always added
@@ -195,14 +182,15 @@ class BlackList:
     Disable or enable fonts.
 
     Keyword Arguments:
-    fc_fonts -- a dictionary, see fontload.FontLoad
+    fc_fonts -- a dictionary, see fontload
     """
-    def __init__(self, fc_fonts):
+    def __init__(self, parent=None, fc_fonts=None):
         self.fc_fonts = fc_fonts
-
+        self.parent = parent
+        
     def save(self):
         """
-        Save list of disabled fonts
+        Saves list of disabled fonts
         """
         doc = libxml2.newDoc("1.0")
         root = doc.newChild(None, "fontconfig", None)
@@ -214,10 +202,14 @@ class BlackList:
         doc.saveFormatFile(FM_BLOCK_CONF, format=1)
         doc.freeDoc()
         logging.info("Changes applied")
+        while gtk.events_pending():
+            gtk.main_iteration()
+        return
 
-    def load(self):
+    @staticmethod
+    def load():
         """
-        Load list of disabled fonts
+        Loads list of disabled fonts
         """
         filename = FM_BLOCK_CONF_TMP
         if not os.path.exists(filename):
@@ -232,11 +224,27 @@ class BlackList:
         for reject in rejects:
             get_fc_patterns(reject, patterns)
         doc.freeDoc()
-        for family in patterns:
-            font = self.fc_fonts.get(family, None)
-            if font:
-                font.enabled = False
-
+        return patterns
+    
+    @staticmethod
+    def enable_blacklist():
+        """
+        Enable blacklist
+        """
+        if os.path.exists(FM_BLOCK_CONF_TMP):
+            if os.path.exists(FM_BLOCK_CONF):
+                os.unlink(FM_BLOCK_CONF)
+            os.rename(FM_BLOCK_CONF_TMP, FM_BLOCK_CONF)
+    
+    @staticmethod
+    def disable_blacklist():
+        """
+        Disable blacklist
+        """
+        if os.path.exists(FM_BLOCK_CONF):
+            if os.path.exists(FM_BLOCK_CONF_TMP):
+                os.unlink(FM_BLOCK_CONF_TMP)
+            os.rename(FM_BLOCK_CONF, FM_BLOCK_CONF_TMP)
 
 class Groups:
     """
@@ -249,7 +257,6 @@ class Groups:
     fc_fonts -- a dictionary, see fontload.Families
     """
     def __init__(self, clist, cmodel, cobject, fc_fonts):
-
         self.collections = clist
         self.collection_ls = cmodel
         self.collection = cobject
@@ -284,104 +291,52 @@ class Groups:
         doc.freeDoc()
         return
 
-    def save(self, ctree):
+    def save(self):
         """
-        Saves user defined collections in the right order to an xml file.
+        Saves user defined collections to an xml file.
         """
         if os.path.exists(FM_GROUP_CONF):
             if os.path.exists(FM_GROUP_CONF_BACKUP):
                 os.unlink(FM_GROUP_CONF_BACKUP)
             os.rename(FM_GROUP_CONF, FM_GROUP_CONF_BACKUP)
-        # Disconnect the model so the user doesn't see what comes next
-        collection_tv = ctree
-        collection_tv.set_model(None)
-        # _drop_defaults removes any builtin collections from the model
-        # and returns an ordered list of user collections.
-        order = self._drop_defaults()
+        order = self._get_collection_order()
+        printed = []
         # Start "printing"
         doc = libxml2.newDoc("1.0")
         root = doc.newChild(None, "fontmanager", None)
         try:
             while len(order) != 0:
                 name = order[0]
-                order.pop(0)
                 for collection in self.collections:
-                    if collection.name == name:
+                    if collection.name == name and name not in printed:
                         node = root.newChild(None, "fontcollection", None)
                         node.setProp("name", collection.name)
                         for font in collection.fonts:
                             add_valid_node(node, font.family)
+                        printed.append(name)
+                order.pop(0)
         except:
             doc.freeDoc()
             logging.warn("There was a problem saving collection information")
             logging.info("Attempting to restore previous configuration")
             if os.path.exists(FM_GROUP_CONF_BACKUP):
                 os.rename(FM_GROUP_CONF_BACKUP, FM_GROUP_CONF)
-            else: logging.info("Nothing to restore...")
+            else:
+                logging.info("Nothing to restore...")
             return
         doc.saveFormatFile(FM_GROUP_CONF, format=1)
         doc.freeDoc()
 
-    def _drop_defaults(self):
+    def _get_collection_order(self):
         """
-        Drop our default collections from the model
+        Returns a list of user collections in order
         """
-        # Seek and destroy
-        allfonts = search(self.collection_ls,
-        self.collection_ls.iter_children(None), match, (3, 'All Fonts'))
-        if allfonts is not None and self.collection_ls.iter_is_valid(allfonts):
-            self.collection_ls.remove(allfonts)       
-        
-        system = search(self.collection_ls,
-        self.collection_ls.iter_children(None), match, (3, 'System'))
-        if system is not None and self.collection_ls.iter_is_valid(system):
-            self.collection_ls.remove(system)
-        
-        user = search(self.collection_ls,
-        self.collection_ls.iter_children(None), match, (3, 'User'))
-        if user is not None and self.collection_ls.iter_is_valid(user):
-            self.collection_ls.remove(user)
-                
-        orphans = search(self.collection_ls,
-        self.collection_ls.iter_children(None), match, (3, 'Orphans'))
-        if orphans is not None and self.collection_ls.iter_is_valid(orphans):
-            self.collection_ls.remove(orphans)
-                
-        while True:
-            separator = search(self.collection_ls,
-            self.collection_ls.iter_children(None), match, (1, None))
-            if separator is not None and \
-            self.collection_ls.iter_is_valid(separator):
-                self.collection_ls.remove(separator)
-            if separator is None:
-                break
-
-        # Get the order of the remaining collections
         order = []
         item = self.collection_ls.get_iter_first()
         while ( item != None ):
             order.append(self.collection_ls.get_value(item, 2))
             item = self.collection_ls.iter_next(item)
         return order
-
-
-def enable_blacklist():
-    """
-    Enable blacklist
-    """
-    if os.path.exists(FM_BLOCK_CONF_TMP):
-        if os.path.exists(FM_BLOCK_CONF):
-            os.unlink(FM_BLOCK_CONF)
-        os.rename(FM_BLOCK_CONF_TMP, FM_BLOCK_CONF)
-
-def disable_blacklist():
-    """
-    Disable blacklist
-    """
-    if os.path.exists(FM_BLOCK_CONF):
-        if os.path.exists(FM_BLOCK_CONF_TMP):
-            os.unlink(FM_BLOCK_CONF_TMP)
-        os.rename(FM_BLOCK_CONF, FM_BLOCK_CONF_TMP)
 
 
 def check_install():
@@ -409,9 +364,9 @@ def check_for_logfile():
     """
     if os.path.exists(LOG_FILE):
         os.rename(LOG_FILE, LOG_FILE_BACKUP)
-        log = open(LOG_FILE, 'w')
-        log.write(' ')
-        log.close()
+    log = open(LOG_FILE, 'w')
+    log.write('\n')
+    log.close()
     return
 
 def check_for_fm_req_dir():
@@ -432,38 +387,31 @@ def check_for_fm_req_dir():
         log = open(LOG_FILE, 'w')
         log.write(' ')
         log.close()
-        
     if not os.path.exists(CONF_DIR):
         os.mkdir(CONF_DIR)
     if not os.path.exists(GROUPS_DIR):
         os.mkdir(GROUPS_DIR)  
     if not os.path.exists(LOG_DIR):
         os.mkdir(LOG_DIR)
-        log = open(LOG_FILE, 'w')
-        log.write(' ')
-        log.close()
     if not os.path.exists(DB_DIR):
         os.mkdir(DB_DIR) 
-        
     return
 
 def check_version():
     """
     Check version, update application folder
     """
-    if os.path.exists(REV):
-        os.unlink(REV)
-        os.unlink(USER_FONT_CONF)
-        
+    if os.path.exists(os.path.join(FM_DIR, '0.2')):
+        os.unlink(os.path.join(FM_DIR, '0.2'))
+        # FIXME: just deleting a config is not cool,
+        # but it'll have to do for now
+        if os.path.exists(USER_FONT_CONF):
+            os.unlink(USER_FONT_CONF)
+    if os.path.exists(os.path.join(FM_DIR, '0.3')):
+        os.unlink(os.path.join(FM_DIR, '0.3'))
+        if os.path.exists(USER_FONT_CONF):
+            os.unlink(USER_FONT_CONF)
     if not os.path.exists(VER):
-        if not os.path.exists(CONF_DIR):
-            os.mkdir(CONF_DIR)
-        if not os.path.exists(GROUPS_DIR):
-            os.mkdir(GROUPS_DIR)
-        if not os.path.exists(LOG_DIR):
-            os.mkdir(LOG_DIR)
-        if not os.path.exists(DB_DIR):
-            os.mkdir(DB_DIR)
         if os.path.exists(OLD_FM_BLOCK_CONF):
             os.renames(OLD_FM_BLOCK_CONF, FM_BLOCK_CONF)
         if os.path.exists(OLD_FM_GROUP_CONF):
@@ -475,7 +423,7 @@ def check_version():
         if os.path.exists(OLD_LOG_FILE):
             shutil.move(OLD_LOG_FILE, LOG_DIR)
         rev = open(VER, 'w')
-        rev.write(' ')
+        rev.write('Font Manager 0.4')
         rev.close()
     return
 
@@ -485,6 +433,7 @@ def validate_config():
 
     If we can't parse it, it's broken, replace it
     """
+    # Todo: need this to be strict
     if os.path.exists(USER_FONT_CONF):
         try:
             logging.info("Validating %s" % USER_FONT_CONF)
@@ -543,16 +492,8 @@ def fm_included():
         if included == FM_BLOCK_CONF:
             doc.freeDoc()
             return True
-        elif included == FM_CONF:
-            i.unlinkNode()
-            i.freeNode()
-            doc.saveFormatFile(USER_FONT_CONF, format=1)
-            doc.freeDoc()
-            update_config()
-            return True
-        else:
-            doc.freeDoc()
-            return False
+    doc.freeDoc()
+    return False
 
 def fm_include():
     """
@@ -562,17 +503,6 @@ def fm_include():
     for line in fileinput.input(USER_FONT_CONF, inplace=1):
         print line[:-1]
         if line.startswith('<fontconfig>'):
-            print INCLUDE_LINE
-
-def update_config():
-    """
-    Swap our old include line with new ones
-    """
-    import fileinput
-    for line in fileinput.input(USER_FONT_CONF, inplace=1):
-        if not line.startswith('<!-- Added by Font Manager -->'):
-            print line[:-1]
-        if line.startswith('<!-- Added by Font Manager -->'):
             print INCLUDE_LINE
 
 def setup_logging():
@@ -595,3 +525,4 @@ def setup_logging():
         logging.getLogger('').addHandler(console)
     except:
         print "failed to find/create log file, logging disabled"
+

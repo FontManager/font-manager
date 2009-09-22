@@ -1,5 +1,5 @@
 Name:           font-manager
-Version:        0.3
+Version:        0.4
 Release:        1%{?dist}
 Summary:        A font management application for the GNOME desktop environment
 
@@ -9,12 +9,13 @@ License:        GPLv3
 Source0:        %{name}-%{version}.tar.bz2
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-BuildArch:	noarch
-BuildRequires:	make
-BuildRequires:	python
-Requires:  	pygtk2
-Requires:  	libxml2-python
-Requires: 	fontconfig
+BuildArch:      noarch
+BuildRequires:  make
+BuildRequires:  python
+Requires:       pygtk2
+Requires:       libxml2-python
+Requires:       fontconfig
+Requires:       xorg-x11-font-utils
 
 %description
 Font Manager is an application that allows users to easily manage fonts on their system.
@@ -25,7 +26,7 @@ Although designed with the GNOME desktop environment in mind, it should work wel
 %setup -q
 
 %build
-%configure --prefix=/usr 
+%configure --prefix=/usr
 make
 
 %install
@@ -40,7 +41,7 @@ rm -rf $RPM_BUILD_ROOT
 #%files -f %{name}.lang
 %files
 %defattr(-,root,root,-)
-%doc 
+%doc
 %{_bindir}/*
 %dir %{_datadir}/font-manager
 %{_datadir}/font-manager/*
@@ -48,7 +49,16 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+
+* Mon Sep 21 2009 JC
+- Update to 0.4
+- Re-factored user interface to have a more flexible layout and take up
+  less space while displaying the same amount of information.
+- Added font installation/removal.
+- Various bug fixes.
+
 * Mon Sep 7 2009 JC
+- Update to 0.3
 - Added the ability to compare fonts, thanks to gnome-specimen.
 - When detailed info is requested it now brings up the selected style.
 - Changed the way font information is loaded, this allows the application
@@ -68,12 +78,12 @@ rm -rf $RPM_BUILD_ROOT
 
 * Tue Aug 18 2009 JC
 - Update to 0.2
-- Fix - Properly handle font names containing illegal characters.
-- Fix - Return only the first result when detailed info is requested
-- New feature - Added option to select different directories to scan for fonts
-- New feature - Added option to export collections to an archive ( requires file-roller )
-- New feature - Added a category for fonts not present in user collections
-- New feature - Added preferences dialog
+- Properly handle font names containing illegal characters.
+- Return only the first result when detailed info is requested
+- Added option to select different directories to scan for fonts
+- Added option to export collections to an archive ( requires file-roller )
+- Added a category for fonts not present in user collections
+- Added preferences dialog
 
 * Tue Aug 11 2009 JC
 - Initial build.

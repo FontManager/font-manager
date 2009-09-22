@@ -27,18 +27,17 @@ program will exit and print the name of the missing module to stdout.
 #
 # Suppress warning due to except: pass
 # pylint: disable-msg=W0704
-# Suppress warnings due to unused variables when checking for modules
+# Suppress warnings due to unused imports
 # pylint: disable-msg=W0612
 
 import sys
+# i18n
 import gettext
-import locale
-
-from config import LOCALEDIR
-
 gettext.install('font-manager')
+from config import LOCALEDIR
 gettext.bindtextdomain('font-manager', LOCALEDIR)
 gettext.textdomain('font-manager')
+
     
 def _exit_with_error(msg, error):
     """
@@ -57,12 +56,12 @@ def main():
         import gtk
     except (ImportError, AssertionError), error:
         _exit_with_error('Importing pygtk and gtk modules failed',  error)
-
+        
     try:
         import gobject
     except ImportError, error:
         _exit_with_error('Importing gobject module failed',  error)
-
+        
     try:
         import libxml2
     except ImportError, error:
@@ -71,12 +70,11 @@ def main():
     from main import FontManager
 
     FontManager()
-
+    
     try:
         gtk.main()
     except (KeyboardInterrupt):
-        pass
-
+        sys.exit(0)
 
 if __name__ == '__main__':
     main()

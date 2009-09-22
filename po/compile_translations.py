@@ -3,8 +3,8 @@
 import os, sys, glob
 
 os.chdir('po')
-#os.environ['XGETTEXT_ARGS'] = '--language=Python'
-#os.system('intltool-update --pot --gettext-package=messages --verbose')
+os.environ['XGETTEXT_ARGS'] = '--language=Python'
+os.system('intltool-update --pot --gettext-package=messages --verbose')
 
 files = glob.glob('*.po')
 for f in files:

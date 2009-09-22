@@ -41,12 +41,10 @@ class Export:
     file_list = []
     # fonts for which filepath is ?
     no_info = []
-
     def __init__(self, collection, archive = 1, pdf = 0):
         self.collection = collection
         self.file_list = []
         self.no_info = []
-        tmpfile = '/tmp/%s-MISSING' % self.collection.name
         tmpdir = "/tmp/%s" % self.collection.name
         for font in self.collection.fonts:
             file_path = font.filelist.itervalues()
@@ -55,13 +53,15 @@ class Export:
                     path = os.path.realpath(path)
                     if exists(path):
                         self.file_list.append(path)
-            # at this point this never happens, it just fails silently :-\
+                    # Try to catch 'broken' fonts...
+                    # at this point this rarely works, 
+                    # it just tends to fail silently :-\
                     else:
                         self.no_info.append(font)           
             else:
                 self.no_info.append(font)
         if len(self.no_info) > 0:
-            if export_anyways(tmpfile):
+            if self.export_anyways():
                 pass
             else:
                 return
@@ -71,12 +71,10 @@ class Export:
             return
         return
 
-    def export_anyways(self, tmpfile):
+    def export_anyways(self):
         """
-        If any filepaths were not found ask for confirmation before
-        continuing.
+        If any filepaths were not found ask for confirmation before continuing.
         """
-        show_missing(tmpfile, self.no_info)
         dialog = gtk.Dialog(_('Missing information'), None, 0,
                                     (_('Cancel'), gtk.RESPONSE_CANCEL,
                                     _('Continue'), gtk.RESPONSE_OK),)
@@ -91,25 +89,19 @@ class Export:
         view.set_cursor_visible(False)
         view.set_editable(False)
         t_buffer = view.get_buffer()
-        infile = open(tmpfile, 'r')
-        if infile:
-            string = infile.read()
-            infile.close()
-            t_buffer.set_text(string)
+        t_buffer.insert_at_cursor\
+        (_("\nFilepaths for the following fonts could not be determined.\n"))
+        t_buffer.insert_at_cursor(_("\nThese fonts will not be included :\n\n"))
+        for i in set(self.no_info):
+            t_buffer.insert_at_cursor("\t" + i.get_name() + "\n")
         scrolled.add(view)
         box.pack_start(scrolled, True, True, 0)
         box.show_all()
         response = dialog.run()
         if response == gtk.RESPONSE_OK:
             dialog.destroy()
-            os.unlink(tmpfile)
             return True
-        elif response == gtk.RESPONSE_CANCEL:
-            os.unlink(tmpfile)
-            dialog.destroy()
-            return False
-        elif response == gtk.RESPONSE_DELETE_EVENT:
-            os.unlink(tmpfile)
+        else:
             dialog.destroy()
             return False
 
@@ -136,16 +128,4 @@ class Export:
         (self.collection.name, arch_type, tmpdir)
         subprocess.call(cmd, shell=True)
         shutil.rmtree(tmpdir)
-
-def show_missing(tmpfile, no_info):
-    """
-    Shouldn't happen, but.. list of fonts which were not included
-    """
-    tmp_file = open(tmpfile, 'w')
-    tmp_file.write\
-    (_("\nFilepaths for the following fonts could not be determined.\n"))
-    tmp_file.write(_("\nThese fonts will not be included :\n\n"))
-    for i in set(no_info):
-        tmp_file.write(i + "\n")
-    tmp_file.close()
-
+        return

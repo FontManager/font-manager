@@ -23,8 +23,8 @@
 
 import os
 
-PACKAGE     = 'Install Me'
-VERSION     = ';-)'
+PACKAGE     = _('Font Manager')
+VERSION     = 'Uninstalled'
 PACKAGE_DIR = os.getcwd()
 LOCALEDIR   = PACKAGE_DIR
 
@@ -38,17 +38,18 @@ USER_FONT_CONF          =   os.path.join(HOME, '.fonts.conf')
 USER_FONT_CONF_INVALID  =   os.path.join(HOME, 'original.fonts.conf')
 FM_DIR                  =   os.path.join(HOME, '.FontManager')
 
-VER                     =   os.path.join(FM_DIR, '0.3')
-REV                     =   os.path.join(FM_DIR, '0.2')
+VER                     =   os.path.join(FM_DIR, '0.4')
 CONF_DIR                =   os.path.join(FM_DIR, 'config')
 GROUPS_DIR              =   os.path.join(FM_DIR, 'collections')
 DB_DIR                  =   os.path.join(FM_DIR, 'db')
 LOG_DIR                 =   os.path.join(FM_DIR, 'logs')
+INSTALL_DIRECTORY       =   os.path.join(FM_DIR, 'Library')
 FM_CONF                 =   os.path.join(FM_DIR, 'FontManager.conf')
 
 INI                     =   os.path.join(CONF_DIR, 'FontManager.ini')
 FM_BLOCK_CONF           =   os.path.join(CONF_DIR, 'rejects.conf')
 DIRS_CONF               =   os.path.join(CONF_DIR, 'dirs.conf')
+RENDER_CONF				= 	os.path.join(CONF_DIR, 'render.conf')
 DIRS_CONF_BACKUP        =   DIRS_CONF + '.bak'
 FM_BLOCK_CONF_TMP       =   FM_BLOCK_CONF + '.tmp'
 
@@ -62,3 +63,4 @@ OLD_FM_BLOCK_CONF       =   os.path.join(FM_DIR, 'FontManager.conf')
 OLD_FM_GROUP_CONF       =   os.path.join(FM_DIR, 'groups.xml')
 OLD_LOG_FILE            =   os.path.join(FM_DIR, 'session.log')
 OLD_LOG_FILE_BACKUP     =   os.path.join(FM_DIR, 'previous-session.log')
+

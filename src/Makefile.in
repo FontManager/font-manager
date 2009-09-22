@@ -299,6 +299,7 @@ install: make-install-dirs
 	install -m 644 'Font Manager' $(DESTDIR)$(prefix)/share/font-manager/
 	install -m 644 *.py[co] $(DESTDIR)$(prefix)/share/font-manager/
 	install -m 644 ui/*.ui $(DESTDIR)$(prefix)/share/font-manager/ui/
+	install -m 644 ui/Throbber* $(DESTDIR)$(prefix)/share/font-manager/ui/
 	install -m 755 font-manager.desktop $(DESTDIR)$(prefix)/share/applications/
 	install -m 755 font-manager $(DESTDIR)$(prefix)/bin/
 
