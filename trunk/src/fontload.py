@@ -308,10 +308,11 @@ class FontLoad:
     
     @staticmethod
     def disable_rejects(patterns):
-        for family in patterns:
-            font = fc_fonts.get(family, None)
-            if font:
-                font.enabled = False
+        if patterns:
+            for family in patterns:
+                font = fc_fonts.get(family, None)
+                if font:
+                    font.enabled = False
         return
         
     def load_collections(self):
