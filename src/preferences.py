@@ -135,20 +135,19 @@ class Preferences:
         db_column.clicked()
         
     def autoscan(self, unused_widget):
-        font_directories = []
         for path in GOOD_PATHS:
             for root, dirs, files in os.walk(path):
                 if not root.startswith(BAD_PATHS):
                     for name in files:
                         if name.endswith(EXTS) and \
-                        root not in font_directories and \
                         root.find('/.') == -1:
-                            font_directories.append(root)
-        for path in font_directories:
-            if path in self.directories:
-                continue
-            else:
-                self.add_directory(path)
+                            if root in self.directories:
+                                continue
+                            else:
+                                self.add_directory(root)
+                                # Ensure update
+                                while gtk.events_pending():
+                                    gtk.main_iteration()
         return
 
     def scaninfo(self, unused_widget):

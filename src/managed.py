@@ -35,11 +35,10 @@ import shutil
 import subprocess
 import cPickle
 
-from common import Throbber
+from common import Throbber, install_readme
 from config import HOME, FM_DIR, INSTALL_DIRECTORY, DB_DIR, USER_FONT_DIR
 
 TMP_DIR = os.path.join(FM_DIR, 'temp')
-
 FILE_EXTS = ('.ttf', '.ttc', '.otf', '.TTF', '.TTC', '.OTF')
 ARCH_EXTS = ('.zip', '.tar', '.tar.gz', '.tar.bz2',
                '.ZIP', '.TAR', '.TAR.GZ', '.TAR.BZ2' )
@@ -48,6 +47,9 @@ A_EXTS = ['*.zip', '*.tar*', '*.ZIP', '*.TAR*']
 
 
 def setup_install_directories():
+    if not os.path.exists(USER_FONT_DIR):
+        os.mkdir(USER_FONT_DIR)
+        install_readme()
     if not os.path.exists(INSTALL_DIRECTORY):
         os.mkdir(INSTALL_DIRECTORY)
     if not os.path.exists(TMP_DIR):
