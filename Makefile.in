@@ -128,7 +128,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 PKGNAME = @PACKAGE_NAME@
-EXTRA_DIST = doc po src/config.py.in.in src/*.py src/font-manager.in.in\
+EXTRA_DIST = src/doc po src/config.py.in.in src/*.py src/font-manager.in.in\
 			 src/font-manager.desktop src/Makefile.in src/Makefile.am src/ui
 
 all: all-am

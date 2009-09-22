@@ -1,4 +1,10 @@
 
+  	* Update (0.4)
+  		Re-factored user interface to have a more flexible layout and take up
+  		less space while displaying the same amount of information.
+  		Added font installation/removal.
+  		Various bug fixes.
+  		
     * Update (0.3)
         Added the ability to compare fonts, thanks to gnome-specimen.
         When detailed info is requested it now brings up the selected style.
