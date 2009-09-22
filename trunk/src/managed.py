@@ -36,7 +36,8 @@ import subprocess
 import cPickle
 
 from common import Throbber, install_readme
-from config import HOME, FM_DIR, INSTALL_DIRECTORY, DB_DIR, USER_FONT_DIR
+from config import HOME, FM_DIR, INSTALL_DIRECTORY, DB_DIR, USER_FONT_DIR, \
+PACKAGE_DIR
 
 TMP_DIR = os.path.join(FM_DIR, 'temp')
 FILE_EXTS = ('.ttf', '.ttc', '.otf', '.TTF', '.TTC', '.OTF')
