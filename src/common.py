@@ -25,7 +25,7 @@ import os
 import gtk
 import subprocess
 
-from config import USER_FONT_DIR, HOME
+from config import USER_FONT_DIR, HOME, PACKAGE_DIR
 
 class Throbber:
     """
