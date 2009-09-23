@@ -5,7 +5,7 @@
 
 Users who have customized their ~/.fonts.conf, should take a backup before 
 running Font Manager. After running Font Manager, you can add your customizations 
-to ~/.FontManager/config/render.conf, just create the file if it doesn't exist. 
+to ~/.!FontManager/config/render.conf, just create the file if it doesn't exist. 
 This will ensure that they do not get overwritten by the application.
 
 An autoscan option has been added to the preferences dialog, this option is *not* 
