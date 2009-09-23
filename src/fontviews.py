@@ -34,6 +34,8 @@ import gobject
 import logging
 import subprocess
 
+from os.path import exists
+
 import fontload
 
 COMPARE_LS = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
@@ -97,8 +99,8 @@ class Views:
         # make it do something
         size_adjustment.connect('value-changed', self.on_size_adj_v_change)
         self.gucharmap = self.builder.get_object("gucharmap")
-        if os.path.exists('/usr/bin/gucharmap') or \
-        os.path.exists('/usr/local/bin/gucharmap'):
+        if exists('/usr/bin/gucharmap') or \
+        exists('/usr/local/bin/gucharmap'):
             self.gucharmap.connect('clicked', self.on_char_map)
             self.charmap = True
         else:
@@ -161,7 +163,7 @@ class Views:
 
     # Aside from a few functions most of the code in this section is either #
     #     'lifted' right out of gnome-specimen or heavily based on it.      #
-    
+
     def remove_compare(self, unused_widget):
         """
         Removes selected entry from compare view
@@ -234,7 +236,7 @@ class Views:
         if (path_to_select >= 0):
             self.compare_tree.get_selection().select_path(path_to_select)
             # this the actual last row
-            path_to_scroll_to = path_to_select + 1 
+            path_to_scroll_to = path_to_select + 1
             if path_to_scroll_to > 1:
                 # workaround strange row height bug for first title row
                 self.compare_tree.scroll_to_cell(path_to_scroll_to)
@@ -330,7 +332,7 @@ class Views:
         else:
             self.tentry.hide()
             widget.set_label(_('Custom Text'))
-            
+
     def clear_custom_text(self, unused_widget, unused_x, unused_y):
         """
         Clears text entry when clear icon is clicked
@@ -357,17 +359,16 @@ class Views:
         Enables the font info button if gnome-font-viewer is
         found on the system
         """
-        gfw = '/usr/bin/gnome-font-viewer'
-        lgfw = '/usr/local/bin/gnome-font-viewer'
         font_info = self.builder.get_object('font_info')
-        if os.path.exists(gfw) or os.path.exists(lgfw):
+        if exists('/usr/bin/gnome-font-viewer') or \
+        exists('/usr/local/bin/gnome-font-viewer'):
             font_info.connect('clicked', self._on_font_info)
             self.have_gfw = True
         else:
             font_info.set_sensitive(False)
             font_info.set_tooltip_text\
             (_('This feature requires gnome-font-viewer'))
-            
+
     def on_char_map(self, unused_widget):
         """
         Launches gucharmap with the currently selected font active
@@ -379,7 +380,7 @@ class Views:
         except OSError, error:
             logging.error("Error: %s" % error)
         return
-    
+
     def _font_changed(self, sel):
         """
         Calls _change_font with the newly selected font
@@ -470,7 +471,7 @@ class Views:
         try:
             subprocess.Popen(['gnome-font-viewer', fontfile])
         except (TypeError, IndexError):
-            self._font_info_unavailable()    
+            self._font_info_unavailable()
         except OSError, error:
             logging.error("Error opening font file: %s" % error)
             self._font_info_unavailable()

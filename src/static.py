@@ -43,13 +43,14 @@ CONF_DIR                =   os.path.join(FM_DIR, 'config')
 GROUPS_DIR              =   os.path.join(FM_DIR, 'collections')
 DB_DIR                  =   os.path.join(FM_DIR, 'db')
 LOG_DIR                 =   os.path.join(FM_DIR, 'logs')
+TMP_DIR                 =   os.path.join(FM_DIR, 'temp')
 INSTALL_DIRECTORY       =   os.path.join(FM_DIR, 'Library')
 FM_CONF                 =   os.path.join(FM_DIR, 'FontManager.conf')
 
 INI                     =   os.path.join(CONF_DIR, 'FontManager.ini')
 FM_BLOCK_CONF           =   os.path.join(CONF_DIR, 'rejects.conf')
 DIRS_CONF               =   os.path.join(CONF_DIR, 'dirs.conf')
-RENDER_CONF				= 	os.path.join(CONF_DIR, 'render.conf')
+RENDER_CONF             =   os.path.join(CONF_DIR, 'render.conf')
 DIRS_CONF_BACKUP        =   DIRS_CONF + '.bak'
 FM_BLOCK_CONF_TMP       =   FM_BLOCK_CONF + '.tmp'
 
