@@ -24,15 +24,12 @@ it anyways, you can just kill the application if the scan is taking too long,
 changes are not applied automatically so it shouldn't be a problem if this 
 process is interrupted.
 </p>
+
 <p>
 A 'refresh' feature has been added that will attempt to reload the application 
 without re-starting when directories or fonts are added or removed. This may fail 
-at times, if so the application just needs to be re-started. 
-
-On some systems this seems to work well when fonts or directories are added, it 
-seems to fail mostly when fonts or directories are removed, on others it's the 
-other way around, not sure why the Pango context won't update or why this varies 
-from one system to another. :-\
+at times, if so the application just needs to be re-started, at this point I'm not 
+sure why the Pango context won't update or why this varies from one system to another. :-(
 </p>
 
 === Notes for those installing from source ===
@@ -70,4 +67,3 @@ already there. So releases will be done at a much slower pace, and the next few
 releases will not see anything in the way of added features, releases will only be 
 done for critical bugs or when there are enough bugfixes/translations/enhancements to warrant it.
 </p>
-
