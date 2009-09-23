@@ -37,6 +37,8 @@ import logging
 import cPickle
 import time
 
+from os.path import exists, join
+
 import xmlutils
 
 from common import get_cli_output, shell_escape, strip_fc_family
@@ -110,10 +112,10 @@ class Family(object):
         self.enabled = True
         self.filelist = {}
         self.pango_family = None
-        
+
     def get_name(self):
         return self.family
-        
+
     def get_label(self):
         if self.enabled:
             return _on(self.family)
@@ -146,7 +148,7 @@ class FontLoad:
         self.show_orphans = False
         self.installed_fonts = {}
         self.load_fonts()
-        
+
     def load_fonts(self, reboot=False):
         """
         Get all font families and styles recognized by Fontconfig
@@ -197,7 +199,7 @@ class FontLoad:
 
     def _load_fonts(self, reboot):
         if not reboot:
-            self.builder.add_from_file(PACKAGE_DIR  + '/ui/splash.ui')
+            self.builder.add_from_file(join(PACKAGE_DIR, 'ui/splash.ui'))
             splash = self.builder.get_object('splash')
             progress = self.builder.get_object('progress')
             splash.show_all()
@@ -226,10 +228,12 @@ class FontLoad:
             if strip_fc_family(name) in self.fc_user_fams:
                 obj.user = True
             dbname = shell_escape(name)
-            if os.path.exists\
-            (os.path.join(DB_DIR, '%s.db' % dbname)):
-                loadobj = open\
-                (os.path.join(DB_DIR, '%s.db' % dbname), 'r')
+            if exists(join(DB_DIR, 'installed_fonts.db')):
+                loadobj = open(join(DB_DIR, 'installed_fonts.db'), 'r')
+                self.installed_fonts = cPickle.load(loadobj)
+                loadobj.close()
+            if exists(join(DB_DIR, '%s.db' % dbname)):
+                loadobj = open(join(DB_DIR, '%s.db' % dbname), 'r')
                 obj.filelist = cPickle.load(loadobj)
                 loadobj.close()
             else:
@@ -252,15 +256,15 @@ class FontLoad:
                                 if fullname.find(','):
                                     fullname = fullname.split(',')[0]
                                 fullname = fullname.strip()
-                                style = fullname 
+                                style = fullname
                         except IndexError:
                             logging.warn('%s is missing required information')
                     styles[style] = filepath
                 obj.filelist = styles
-                if not os.path.exists(DB_DIR):
+                if not exists(DB_DIR):
                     os.mkdir(DB_DIR)
                 saveobj = open\
-                (os.path.join(DB_DIR, '%s.db' % dbname), 'w')
+                (join(DB_DIR, '%s.db' % dbname), 'w')
                 cPickle.dump(styles, saveobj, cPickle.HIGHEST_PROTOCOL)
                 saveobj.close()
                 for path in styles.itervalues():
@@ -270,10 +274,9 @@ class FontLoad:
                             del self.installed_fonts[dbname]
                         self.installed_fonts[dbname] = styles
             fc_fonts[name] = obj
-        if os.path.exists(os.path.join(DB_DIR, 'installed_fonts.db')):
-            os.unlink(os.path.join(DB_DIR, 'installed_fonts.db'))
-        saveobj = open\
-        (os.path.join(DB_DIR, 'installed_fonts.db'), 'w')
+        if exists(join(DB_DIR, 'installed_fonts.db')):
+            os.unlink(join(DB_DIR, 'installed_fonts.db'))
+        saveobj = open(join(DB_DIR, 'installed_fonts.db'), 'w')
         cPickle.dump(self.installed_fonts, saveobj, cPickle.HIGHEST_PROTOCOL)
         saveobj.close()
         if not reboot:
@@ -283,12 +286,12 @@ class FontLoad:
             progress.hide()
             load_label.hide()
             return
-         
+
     def _count_fonts(self):
         for unused_i in self.fc_fams:
             self.total_fonts += 1
         return
-    
+
     @staticmethod
     def add_collection(collection):
         """
@@ -305,7 +308,7 @@ class FontLoad:
         lstore.set(treeiter, 2, collection.get_name())
         collections.append(collection)
         return
-    
+
     @staticmethod
     def disable_rejects(patterns):
         if patterns:
@@ -314,7 +317,7 @@ class FontLoad:
                 if font:
                     font.enabled = False
         return
-        
+
     def load_collections(self):
         """
         Set up default categories and load any saved user collections
@@ -325,7 +328,7 @@ class FontLoad:
             collection.fonts.append(font)
         collection.set_enabled_from_fonts()
         lstore = category_ls
-        treeiter = lstore.append()    
+        treeiter = lstore.append()
         lstore.set(treeiter, 0, collection.get_label())
         lstore.set(treeiter, 1, collection)
         lstore.set(treeiter, 2, collection.get_name())
@@ -338,7 +341,7 @@ class FontLoad:
                 collection.fonts.append(font)
         collection.set_enabled_from_fonts()
         lstore = category_ls
-        treeiter = lstore.append()    
+        treeiter = lstore.append()
         lstore.set(treeiter, 0, collection.get_label())
         lstore.set(treeiter, 1, collection)
         lstore.set(treeiter, 2, collection.get_name())
@@ -351,7 +354,7 @@ class FontLoad:
                 collection.fonts.append(font)
         collection.set_enabled_from_fonts()
         lstore = category_ls
-        treeiter = lstore.append()    
+        treeiter = lstore.append()
         lstore.set(treeiter, 0, collection.get_label())
         lstore.set(treeiter, 1, collection)
         lstore.set(treeiter, 2, collection.get_name())
@@ -368,8 +371,7 @@ class FontLoad:
             # This should never happen but...
             if collection not in collections:
                 self.add_collection(collection)
-                logging.info\
-                ('Loaded user collection %s' % collection.name)
+                logging.info('Loaded user collection %s' % collection.name)
         # Show orphans if requested
         config = ConfigParser.ConfigParser()
         config.read(INI)

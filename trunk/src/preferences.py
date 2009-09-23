@@ -36,16 +36,18 @@ import logging
 import shutil
 import ConfigParser
 
+from os.path import exists, join
+
 import xmlutils
 from config import HOME, INI, PACKAGE_DIR, DB_DIR, FM_DIR, USER_FONT_DIR
 from common import match, search
 
 EXTS = ('.ttf', '.ttc', '.otf', '.pfb', '.pfa', '.pfm', '.afm', '.bdf',
             '.TTF', '.TTC', '.OTF', '.PFB', '.PFA', '.PFM', '.AFM', '.BDF')
-# Fixes http://code.google.com/p/font-manager/issues/detail?id=1
-BAD_PATHS = ('/usr', '/bin', '/boot', '/dev', '/lost+found', '/proc', 
-             '/root', '/selinux', '/srv', '/sys', '/etc', '/lib', 
-             '/sbin', '/tmp', '/var', '/opt/picasa', FM_DIR, USER_FONT_DIR)
+# http://code.google.com/p/font-manager/issues/detail?id=1
+BAD_PATHS = ('/usr', '/bin', '/boot', '/dev', '/lost+found', '/proc',
+             '/root', '/selinux', '/srv', '/sys', '/etc', '/lib',
+             '/sbin', '/tmp', '/var')
 GOOD_PATHS = (HOME, '/media', '/opt', '/mnt')
 
 
@@ -64,7 +66,7 @@ class Preferences:
         self.loader = loader
         self.directories = []
         self.start_dirs = []
-        self.builder.add_from_file(PACKAGE_DIR  + '/ui/preferences.ui')
+        self.builder.add_from_file(join(PACKAGE_DIR, 'ui/preferences.ui'))
         self.builder.connect_signals(self)
         self.window = self.builder.get_object('window')
         self.window.connect('destroy', self.quit)
@@ -95,7 +97,7 @@ class Preferences:
         db_column.set_sort_column_id(0)
         self.db_tree.get_selection().set_mode(gtk.SELECTION_SINGLE)
         self.db_list = []
-        if os.path.exists(DB_DIR):
+        if exists(DB_DIR):
             for family in os.listdir(DB_DIR):
                 if family != 'installed_fonts.db':
                     self.db_list.append(family)
@@ -127,20 +129,20 @@ class Preferences:
         # always have the default folder in list at the top
         store = self.dir_model
         treeiter = store.prepend()
-        default_dir = os.path.join(HOME, '.fonts')
+        default_dir = join(HOME, '.fonts')
         store.set(treeiter, 0, default_dir)
         self.directories.insert(0, default_dir)
         self.tree.get_selection().select_path(0)
         self.load_config()
         db_column.clicked()
-        
+
     def autoscan(self, unused_widget):
+        ignore = '/opt/picasa'
         for path in GOOD_PATHS:
             for root, dirs, files in os.walk(path):
-                if not root.startswith(BAD_PATHS):
+                if not root.startswith(ignore):
                     for name in files:
-                        if name.endswith(EXTS) and \
-                        root.find('/.') == -1:
+                        if name.endswith(EXTS) and root.find('/.') == -1:
                             if root in self.directories:
                                 continue
                             else:
@@ -151,11 +153,11 @@ class Preferences:
         return
 
     def scaninfo(self, unused_widget):
-        dialog = gtk.MessageDialog(self.parent, 
-                                    gtk.DIALOG_DESTROY_WITH_PARENT, 
-                                    gtk.MESSAGE_INFO, 
+        dialog = gtk.MessageDialog(self.parent,
+                                    gtk.DIALOG_DESTROY_WITH_PARENT,
+                                    gtk.MESSAGE_INFO,
                                     gtk.BUTTONS_CLOSE)
-        
+
         dialog.set_markup\
         (_('<b>Notes on adding directories to the search path</b>'))
         vbox = dialog.get_content_area()
@@ -178,18 +180,18 @@ class Preferences:
         vbox.show_all()
         dialog.run()
         dialog.destroy()
-        
+
     def _on_clear_icon(self, unused_widget, unused_x, unused_y):
         self.db_search.set_text('')
         self.db_tree.scroll_to_point(0, 0)
         return
-        
+
     def remove_db_entry(self, unused_widget):
         treeiter = self.db_tree.get_selection().get_selected()[1]
         family = self.db_model.get_value(treeiter, 0)
         try:
-            os.remove(os.path.join(DB_DIR, family + '.db'))
-            os.remove(os.path.join(DB_DIR, family + '.db'))
+            os.remove(join(DB_DIR, family + '.db'))
+            os.remove(join(DB_DIR, family + '.db'))
         except OSError:
             # FIXME
             pass
@@ -197,7 +199,7 @@ class Preferences:
         self.db_model.remove(treeiter)
         self.db_tree.queue_draw()
         return
-        
+
     def reset_db(self, unused_widget):
         shutil.rmtree(DB_DIR, ignore_errors=True)
         self.db_model.clear()
@@ -297,7 +299,7 @@ class Preferences:
 
     def get_new_dir(self):
         """
-        Displays file chooser dialog so user can add new directories 
+        Displays file chooser dialog so user can add new directories
         to fontconfig search path.
         """
         dialog = gtk.FileChooserDialog(_('Select Directory'), self.window,
@@ -403,14 +405,14 @@ class Preferences:
         self.window.hide()
         while gtk.events_pending():
             gtk.main_iteration()
-    
+
     def bad_path(self, directory):
         dialog = gtk.Dialog(_("Invalid Selection"),
                                 self.parent, gtk.DIALOG_MODAL,
                                     (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE))
         dialog.set_default_response(gtk.RESPONSE_CANCEL)
         message = _("""
-%s 
+%s
 
 System paths are not allowed
         """) % directory
@@ -422,7 +424,7 @@ System paths are not allowed
         dialog.run()
         dialog.destroy()
         return
-        
+
 INFO = _("""
 The autoscan feature will look in the following directories:
 
@@ -437,7 +439,7 @@ Please be patient, as this operation can take some time depending on filesystem 
 
 Autoscan will not follow symbolic links or add hidden directories. These will have to be added manually, if needed.
 
-Autoscan is a new feature and has not been tested extensively, there is no progress reported and no way to abort for now, do not use it if you have network mounts or other slow filesystems in the scanned paths. Instead add folders manually.
+Autoscan is a new feature and has not been tested extensively, there is no progress reported and no way to abort for now, do not use it if you have network shares or extremely slow filesystems in the scanned paths. Instead add folders manually.
 
 Adding system directories, or directories for which you don't have full access, is discouraged. The following directories are not allowed when manually adding directories:
 

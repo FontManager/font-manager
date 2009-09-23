@@ -31,7 +31,10 @@ import libxml2
 import logging
 import shutil
 
+from os.path import exists, join
+
 from config import *
+from common import install_readme
 
 INCLUDE_LINE = """<!-- Added by Font Manager -->
     <include ignore_missing=\"yes\">%s</include>
@@ -39,7 +42,6 @@ INCLUDE_LINE = """<!-- Added by Font Manager -->
     <include ignore_missing=\"yes\">%s</include>
 <!-- ~~~~~~~~~~~~~~~~~~~~~ -->""" % \
 (FM_BLOCK_CONF, DIRS_CONF, RENDER_CONF)
-
 
 VALID_CONFIG = """<?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
@@ -71,7 +73,7 @@ def add_patelt_node(parent, pat_type, val):
 
 def add_valid_node(node_ref, node_value):
     """
-    Replaces characters that are illegal or discouraged in xml, 
+    Replaces characters that are illegal or discouraged in xml,
     then calls add_patelt_node.
 
     Keyword arguments:
@@ -127,8 +129,8 @@ def load_directories():
     """
     Load user specified directories from configuration file
     """
-    if not os.path.exists(DIRS_CONF) \
-    and not os.path.exists(DIRS_CONF_BACKUP):
+    if not exists(DIRS_CONF) \
+    and not exists(DIRS_CONF_BACKUP):
         return
     try:
         doc = libxml2.parseFile(DIRS_CONF)
@@ -156,15 +158,15 @@ def save_directories(dirs):
     Save user specified directories to configuration file
     """
     directories = dirs
-    if os.path.exists(DIRS_CONF):
+    if exists(DIRS_CONF):
         os.unlink(DIRS_CONF)
-    if os.path.exists(DIRS_CONF_BACKUP):
+    if exists(DIRS_CONF_BACKUP):
         os.unlink(DIRS_CONF_BACKUP)
     doc = libxml2.newDoc("1.0")
     root = doc.newChild(None, "fontconfig", None)
     # don't save, it's always added
     for directory in directories:
-        if directory == os.path.join(HOME, '.fonts'):
+        if directory == USER_FONT_DIR:
             directories.remove(directory)
     if len(set(directories)) < 1:
         doc.saveFormatFile(DIRS_CONF, format=1)
@@ -187,7 +189,7 @@ class BlackList:
     def __init__(self, parent=None, fc_fonts=None):
         self.fc_fonts = fc_fonts
         self.parent = parent
-        
+
     def save(self):
         """
         Saves list of disabled fonts
@@ -212,7 +214,7 @@ class BlackList:
         Loads list of disabled fonts
         """
         filename = FM_BLOCK_CONF_TMP
-        if not os.path.exists(filename):
+        if not exists(filename):
             return
         try:
             doc = libxml2.parseFile(filename)
@@ -225,24 +227,24 @@ class BlackList:
             get_fc_patterns(reject, patterns)
         doc.freeDoc()
         return patterns
-    
+
     @staticmethod
     def enable_blacklist():
         """
         Enable blacklist
         """
-        if os.path.exists(FM_BLOCK_CONF_TMP):
-            if os.path.exists(FM_BLOCK_CONF):
+        if exists(FM_BLOCK_CONF_TMP):
+            if exists(FM_BLOCK_CONF):
                 os.unlink(FM_BLOCK_CONF)
             os.rename(FM_BLOCK_CONF_TMP, FM_BLOCK_CONF)
-    
+
     @staticmethod
     def disable_blacklist():
         """
         Disable blacklist
         """
-        if os.path.exists(FM_BLOCK_CONF):
-            if os.path.exists(FM_BLOCK_CONF_TMP):
+        if exists(FM_BLOCK_CONF):
+            if exists(FM_BLOCK_CONF_TMP):
                 os.unlink(FM_BLOCK_CONF_TMP)
             os.rename(FM_BLOCK_CONF, FM_BLOCK_CONF_TMP)
 
@@ -266,8 +268,8 @@ class Groups:
         """
         Loads saved collections from an xml file.
         """
-        if not os.path.exists(FM_GROUP_CONF):
-            if os.path.exists(FM_GROUP_CONF_BACKUP):
+        if not exists(FM_GROUP_CONF):
+            if exists(FM_GROUP_CONF_BACKUP):
                 os.rename(FM_GROUP_CONF_BACKUP, FM_GROUP_CONF)
             else: return
         try:
@@ -295,8 +297,8 @@ class Groups:
         """
         Saves user defined collections to an xml file.
         """
-        if os.path.exists(FM_GROUP_CONF):
-            if os.path.exists(FM_GROUP_CONF_BACKUP):
+        if exists(FM_GROUP_CONF):
+            if exists(FM_GROUP_CONF_BACKUP):
                 os.unlink(FM_GROUP_CONF_BACKUP)
             os.rename(FM_GROUP_CONF, FM_GROUP_CONF_BACKUP)
         order = self._get_collection_order()
@@ -319,7 +321,7 @@ class Groups:
             doc.freeDoc()
             logging.warn("There was a problem saving collection information")
             logging.info("Attempting to restore previous configuration")
-            if os.path.exists(FM_GROUP_CONF_BACKUP):
+            if exists(FM_GROUP_CONF_BACKUP):
                 os.rename(FM_GROUP_CONF_BACKUP, FM_GROUP_CONF)
             else:
                 logging.info("Nothing to restore...")
@@ -362,69 +364,71 @@ def check_for_logfile():
     """
     Ensures logfile is present
     """
-    if os.path.exists(LOG_FILE):
+    if exists(LOG_FILE):
         os.rename(LOG_FILE, LOG_FILE_BACKUP)
-    log = open(LOG_FILE, 'w')
-    log.write('\n')
-    log.close()
+    with open(LOG_FILE, 'w') as log:
+        log.write('\n')
     return
 
 def check_for_fm_req_dir():
     """
     Checks if required application directory exists, creates it if not
     """
-    if not os.path.exists(FM_DIR):
+    if not exists(FM_DIR):
         print "This appears to be the first run"
         print "Creating %s" % FM_DIR
         os.mkdir(FM_DIR)
+    if not exists(CONF_DIR):
         os.mkdir(CONF_DIR)
+    if not exists(GROUPS_DIR):
         os.mkdir(GROUPS_DIR)
+    if not exists(LOG_DIR):
         os.mkdir(LOG_DIR)
+        with open(LOG_FILE, 'w') as log:
+            log.write('\n')
+    if not exists(DB_DIR):
         os.mkdir(DB_DIR)
-        ver = open(VER, 'w')
-        ver.write(' ')
-        ver.close()
-        log = open(LOG_FILE, 'w')
-        log.write(' ')
-        log.close()
-    if not os.path.exists(CONF_DIR):
-        os.mkdir(CONF_DIR)
-    if not os.path.exists(GROUPS_DIR):
-        os.mkdir(GROUPS_DIR)  
-    if not os.path.exists(LOG_DIR):
-        os.mkdir(LOG_DIR)
-    if not os.path.exists(DB_DIR):
-        os.mkdir(DB_DIR) 
+    if not exists(TMP_DIR):
+        os.mkdir(TMP_DIR)
+    if not exists(USER_FONT_DIR):
+        print "No font directory found for %s" % USER
+        print "Creating font directory"
+        os.mkdir(USER_FONT_DIR, 0775)
+        install_readme()
+    if not exists(INSTALL_DIRECTORY):
+        os.mkdir(INSTALL_DIRECTORY)
+    if not exists(join(USER_FONT_DIR, 'Library')):
+        os.symlink(INSTALL_DIRECTORY, join(USER_FONT_DIR, 'Library'))
+    return
     return
 
 def check_version():
     """
     Check version, update application folder
     """
-    if os.path.exists(os.path.join(FM_DIR, '0.2')):
-        os.unlink(os.path.join(FM_DIR, '0.2'))
+    if exists(join(FM_DIR, '0.2')):
+        os.unlink(join(FM_DIR, '0.2'))
         # FIXME: just deleting a config is not cool,
         # but it'll have to do for now
-        if os.path.exists(USER_FONT_CONF):
+        if exists(USER_FONT_CONF):
             os.unlink(USER_FONT_CONF)
-    if os.path.exists(os.path.join(FM_DIR, '0.3')):
-        os.unlink(os.path.join(FM_DIR, '0.3'))
-        if os.path.exists(USER_FONT_CONF):
+    if exists(join(FM_DIR, '0.3')):
+        os.unlink(join(FM_DIR, '0.3'))
+        if exists(USER_FONT_CONF):
             os.unlink(USER_FONT_CONF)
-    if not os.path.exists(VER):
-        if os.path.exists(OLD_FM_BLOCK_CONF):
+    if not exists(VER):
+        if exists(OLD_FM_BLOCK_CONF):
             os.renames(OLD_FM_BLOCK_CONF, FM_BLOCK_CONF)
-        if os.path.exists(OLD_FM_GROUP_CONF):
+        if exists(OLD_FM_GROUP_CONF):
             os.renames(OLD_FM_GROUP_CONF, FM_GROUP_CONF)
-        if os.path.exists(os.path.join(FM_DIR, 'groups.xml.bak')):
-            os.unlink(os.path.join(FM_DIR, 'groups.xml.bak'))
-        if os.path.exists(OLD_LOG_FILE_BACKUP):
+        if exists(join(FM_DIR, 'groups.xml.bak')):
+            os.unlink(join(FM_DIR, 'groups.xml.bak'))
+        if exists(OLD_LOG_FILE_BACKUP):
             os.unlink(OLD_LOG_FILE_BACKUP)
-        if os.path.exists(OLD_LOG_FILE):
+        if exists(OLD_LOG_FILE):
             shutil.move(OLD_LOG_FILE, LOG_DIR)
-        rev = open(VER, 'w')
-        rev.write('Font Manager 0.4')
-        rev.close()
+        with open(VER, 'w') as revfile:
+            revfile.write('Font Manager %s' % VERSION)
     return
 
 def validate_config():
@@ -434,7 +438,7 @@ def validate_config():
     If we can't parse it, it's broken, replace it
     """
     # Todo: need this to be strict
-    if os.path.exists(USER_FONT_CONF):
+    if exists(USER_FONT_CONF):
         try:
             logging.info("Validating %s" % USER_FONT_CONF)
             parser = libxml2.parseFile(USER_FONT_CONF)
@@ -473,9 +477,8 @@ def write_valid_config():
 
     It will overwrite any existing conf file!
     """
-    conf = open(USER_FONT_CONF, 'w')
-    conf.write(VALID_CONFIG)
-    conf.close()
+    with open(USER_FONT_CONF, 'w') as conf:
+        conf.write(VALID_CONFIG)
     logging.info("Wrote %s" % USER_FONT_CONF)
 
 def fm_included():

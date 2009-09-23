@@ -35,11 +35,12 @@ import shutil
 import subprocess
 import cPickle
 
-from common import Throbber, install_readme
-from config import HOME, FM_DIR, INSTALL_DIRECTORY, DB_DIR, USER_FONT_DIR, \
-PACKAGE_DIR
+from os.path import exists, join
 
-TMP_DIR = os.path.join(FM_DIR, 'temp')
+from common import Throbber
+from config import HOME, FM_DIR, INSTALL_DIRECTORY, DB_DIR, USER_FONT_DIR, \
+PACKAGE_DIR, TMP_DIR
+
 FILE_EXTS = ('.ttf', '.ttc', '.otf', '.TTF', '.TTC', '.OTF')
 ARCH_EXTS = ('.zip', '.tar', '.tar.gz', '.tar.bz2',
                '.ZIP', '.TAR', '.TAR.GZ', '.TAR.BZ2' )
@@ -47,24 +48,11 @@ F_EXTS = ['*.ttf', '*.ttc', '*.otf', '*.TTF', '*.TTC', '*.OTF']
 A_EXTS = ['*.zip', '*.tar*', '*.ZIP', '*.TAR*']
 
 
-def setup_install_directories():
-    if not os.path.exists(USER_FONT_DIR):
-        os.mkdir(USER_FONT_DIR)
-        install_readme()
-    if not os.path.exists(INSTALL_DIRECTORY):
-        os.mkdir(INSTALL_DIRECTORY)
-    if not os.path.exists(TMP_DIR):
-        os.mkdir(TMP_DIR)
-    if not os.path.exists(os.path.join(USER_FONT_DIR, 'Library')):
-        os.symlink(INSTALL_DIRECTORY, os.path.join(USER_FONT_DIR, 'Library'))
-    return
-    
 class InstallFonts:
     """
     Bring up a dialog where user is allowed to select font files or archives
     """
     def __init__(self, unused_widget, parent, loader, builder):
-        setup_install_directories()
         self.filelist = []
         self.installed = []
         self.pending = []
@@ -117,13 +105,13 @@ class InstallFonts:
             if filepath.endswith(ARCH_EXTS):
                 # There is a slim possibility that a file gets changed
                 # between being selected in the filechooser and getting here
-                if os.path.exists(filepath):
+                if exists(filepath):
                     self.install_archive(filepath)
                 else:
                     no_such_file.append(filepath)
                     continue
             elif filepath.endswith(FILE_EXTS):
-                if os.path.exists(filepath):
+                if exists(filepath):
                     shutil.copy(filepath, TMP_DIR)
                 else:
                     no_such_file.append(filepath)
@@ -153,10 +141,10 @@ class InstallFonts:
     @staticmethod
     def install_archive(filepath):
         dir_name = strip_archive_name(filepath)
-        arch_dir = os.path.join(TMP_DIR, dir_name)
-        if os.path.exists(arch_dir):
+        arch_dir = join(TMP_DIR, dir_name)
+        if exists(arch_dir):
             i = 0
-            while os.path.exists(arch_dir):
+            while exists(arch_dir):
                 arch_dir = arch_dir + str(i)
                 i += 1
         os.mkdir(arch_dir)
@@ -164,9 +152,9 @@ class InstallFonts:
         # Todo: Need to check whether archive actually contained any fonts
         # if user_is_stupid:
         #     self.notify()
-        # ;-p 
+        # ;-p
         return
-    
+
     @staticmethod
     def finish_install():
         """
@@ -174,29 +162,29 @@ class InstallFonts:
         """
         for root, dirs, files in os.walk(TMP_DIR):
             for directory in dirs:
-                fullpath = os.path.join(root, directory)
+                fullpath = join(root, directory)
                 new = directory[0]
                 new = new.upper()
-                newpath = os.path.join(INSTALL_DIRECTORY, new)
-                if not os.path.exists(newpath):
+                newpath = join(INSTALL_DIRECTORY, new)
+                if not exists(newpath):
                     os.mkdir(newpath)
-                newname = os.path.join(newpath, directory)
+                newname = join(newpath, directory)
                 shutil.move(fullpath, newname)
         for root, dirs, files in os.walk(TMP_DIR):
             for name in files:
                 if name.endswith(FILE_EXTS):
-                    oldpath = os.path.join(root, name)
+                    oldpath = join(root, name)
                     truename = name.split('.')[0]
                     truename = name.strip()
                     new = truename[0]
                     new = new.upper()
-                    newpath = os.path.join(INSTALL_DIRECTORY, new)
-                    if not os.path.exists(newpath):
+                    newpath = join(INSTALL_DIRECTORY, new)
+                    if not exists(newpath):
                         os.mkdir(newpath)
-                    newname = os.path.join(newpath, name)
+                    newname = join(newpath, name)
                     shutil.move(oldpath, newname)
         return
-        
+
     def _check_dupes(self):
         """
         Check for duplicates
@@ -210,7 +198,7 @@ class InstallFonts:
             for name in files:
                 if name.endswith(FILE_EXTS):
                     self.pending.append(name)
-                    self.need_2_remove.append(os.path.join(root, name))
+                    self.need_2_remove.append(join(root, name))
         self.dupes = [ f for f in self.pending if f in self.installed]
         if len(self.dupes) > 0:
             found_dupes = True
@@ -218,12 +206,12 @@ class InstallFonts:
             return True
         else:
             return False
-            
+
     def skip_dupes(self):
         for filepath in self.need_2_remove:
             os.unlink(filepath)
         return
-    
+
     def _show_dupes(self, filelist):
         """
         Presents a dialog showing duplicate files
@@ -261,7 +249,7 @@ class InstallFonts:
         while gtk.events_pending():
             gtk.main_iteration()
         return
-        
+
     def _install_mad_fonts(self, how_many):
         dialog = gtk.Dialog(_("Confirm Action"),
         self.parent, gtk.DIALOG_MODAL,
@@ -293,7 +281,6 @@ class RemoveFonts:
     """
     remove_ls =  gtk.ListStore(gobject.TYPE_STRING)
     def __init__(self, unused_widget, parent=None, loader=None, builder=None):
-        setup_install_directories()
         if not builder:
             self.builder = gtk.Builder()
             self.builder.set_translation_domain('font-manager')
@@ -304,7 +291,7 @@ class RemoveFonts:
         self.families = []
         self.families_at_start = []
         self.installed_fonts = None
-        self.builder.add_from_file(PACKAGE_DIR  + '/ui/remove.ui')
+        self.builder.add_from_file(join(PACKAGE_DIR, 'ui/remove.ui'))
         self.window = self.builder.get_object('window')
         self.window.set_title(_('Remove Fonts'))
         self.window.set_transient_for(self.parent)
@@ -316,7 +303,7 @@ class RemoveFonts:
         self.init_tree()
         self.load()
         self.window.show()
-    
+
     def init_tree(self):
         self.remove_tree.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
         cell_render = gtk.CellRendererText()
@@ -330,7 +317,7 @@ class RemoveFonts:
         self.remove_search.set_text('')
         self.remove_tree.scroll_to_point(0, 0)
         return
-        
+
     def load(self):
         throbber = Throbber(self.builder)
         throbber.start()
@@ -338,10 +325,10 @@ class RemoveFonts:
             gtk.main_iteration()
         self.remove_tree.set_model(None)
         self.remove_ls.clear()
-        if os.path.exists\
-        (os.path.join(DB_DIR, 'installed_fonts.db')):
+        if exists\
+        (join(DB_DIR, 'installed_fonts.db')):
             loadobj = open\
-            (os.path.join(DB_DIR, 'installed_fonts.db'), 'r')
+            (join(DB_DIR, 'installed_fonts.db'), 'r')
             self.installed_fonts = cPickle.load(loadobj)
             loadobj.close()
         for font in self.installed_fonts.iterkeys():
@@ -355,7 +342,7 @@ class RemoveFonts:
         while gtk.events_pending():
             gtk.main_iteration()
         return
-        
+
     def delete_selected(self, unused_widget):
         selected_paths = []
         selected_fams = {}
@@ -373,18 +360,18 @@ class RemoveFonts:
         for treeiter in selected_fams.itervalues():
             self.remove_ls.remove(treeiter)
         return
-            
+
     def do_delete(self, selected_paths, selected_db):
         for filepath in selected_paths:
-            if os.path.exists(filepath):
+            if exists(filepath):
                 os.unlink(filepath)
         for db in selected_db:
-            if os.path.exists(os.path.join(DB_DIR, '%s.db' % db)):
-                os.unlink(os.path.join(DB_DIR, '%s.db' % db))
+            if exists(join(DB_DIR, '%s.db' % db)):
+                os.unlink(join(DB_DIR, '%s.db' % db))
             self.installed_fonts.pop(db)
             self.families.remove(db)
         return
-        
+
     def quit(self, unused_widget):
         """
         Does some cleanup actions after hiding the dialog
@@ -401,11 +388,11 @@ class RemoveFonts:
             do_cleanup(INSTALL_DIRECTORY)
             # Second call to remove empty toplevel directories
             do_cleanup(INSTALL_DIRECTORY)
-    
+
 def mkfontdirs():
     """
     Generates fonts.scale and fonts.dir files for all 'managed' fonts
-    
+
     Not sure these files are even necessary but it doesn't hurt anything.
     """
     for root, dirs, files in os.walk(INSTALL_DIRECTORY):
@@ -443,7 +430,7 @@ def do_cleanup(directory):
             if not keep:
                 shutil.rmtree(root)
     return
-        
+
 def strip_archive_name(name):
     for i in '.zip', '.tar', '.bz2', '.gz':
         name = name.replace(i, '')
@@ -480,4 +467,4 @@ def show_problem_files(filelist):
     dialog.run()
     dialog.destroy()
     return
-    
+

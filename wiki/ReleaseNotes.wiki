@@ -1,0 +1,74 @@
+#summary Release Notes for Font Manager 0.4
+#labels Featured
+
+= Release Notes 0.4 =
+
+These notes are in addition to the information and Known Issues listed in the 
+help file, please make sure any problems you encounter are not listed there 
+before reporting them.
+
+Users who have customized their ~/.fonts.conf, should take a backup before 
+running Font Manager. After running Font Manager, you can add your customizations 
+to ~/.FontManager/config/render.conf, just create the file if it doesn't exist. 
+This will ensure that they do not get overwritten by the application.
+
+An autoscan option has been added to the preferences dialog, this option is *not* 
+well tested or complete, there is no progress reported, aside from directories 
+being added to the list, and for now there is no way to cancel the operation aside 
+from killing the application.
+
+Autoscan looks in the following directories :
+ * /home/`<`yourusername`>`
+ * /media
+ * /mnt
+ * /opt
+ 
+and attempts to find any folders that contain fonts.
+ 
+You probably should *not* use this feature if you have network shares or other 
+filesystems to which access may be very slow in those paths. If you wish to test 
+it anyways, you can just kill the application if the scan is taking too long, 
+changes are not applied automatically so it shouldn't be a problem if this 
+process is interrupted.
+
+A 'refresh' feature has been added that will attempt to reload the application 
+without re-starting when directories or fonts are added or removed. This may fail 
+at times, if so the application just needs to be re-started. 
+If this fails consistently for you, please file an issue.
+
+
+=== Notes for those installing from source ===
+
+Check the README for requirements, and make sure they are available, they should 
+be on any recent distro. Configure does not check for deps, 
+deps are checked at runtime and then only for the required python modules.
+
+If updating from source, make sure to completely remove the previous version, 
+either by running 'make uninstall' from the source directory or by doing something like
+
+rm -rf /usr/local/share/font-manager
+
+or whatever prefix you specified during the install.
+
+
+=== Localization ===
+
+Not sure how friendly this app is to other locales, but if it works well in yours 
+and you are able to provide a translation for it, please grab the package 
+tagged i18n from the downloads section on the homepage.
+
+Thanks in advance.
+
+
+==== Other ====
+
+My apologies to anyone who is working on or has already completed a translation, 
+I think I may have jumped the gun on requesting those, a lot has changed 
+between 0.3 and 0.4 so those will need to be updated.
+
+At this point, I'm pretty satisfied with the feature set and feel that the 
+application is pretty useful as is. The focus now shifts to improving on what's 
+already there. So releases will be done at a much slower pace, and the next few 
+releases will not see anything in the way of added features, releases will only be 
+done for critical bugs or when there are enough bugfixes/translations/enhancements to warrant it.
+

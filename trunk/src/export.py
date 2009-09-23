@@ -29,7 +29,7 @@ import gtk
 import shutil
 import subprocess
 
-from os.path import exists
+from os.path import exists, join
 
 from config import INI, HOME
 
@@ -48,16 +48,17 @@ class Export:
         tmpdir = "/tmp/%s" % self.collection.name
         for font in self.collection.fonts:
             file_path = font.filelist.itervalues()
-            if file_path is not None:
+            if file_path:
                 for path in file_path:
+                    # grab the real file, not a symlink
                     path = os.path.realpath(path)
                     if exists(path):
                         self.file_list.append(path)
                     # Try to catch 'broken' fonts...
-                    # at this point this rarely works, 
+                    # at this point this rarely works,
                     # it just tends to fail silently :-\
                     else:
-                        self.no_info.append(font)           
+                        self.no_info.append(font)
             else:
                 self.no_info.append(font)
         if len(self.no_info) > 0:
@@ -123,7 +124,7 @@ class Export:
         os.mkdir(tmpdir)
         for path in set(self.file_list):
             shutil.copy(path, tmpdir)
-        os.chdir(os.path.join(HOME, "Desktop"))
+        os.chdir(join(HOME, "Desktop"))
         cmd = "file-roller -a '%s.%s' '%s'" % \
         (self.collection.name, arch_type, tmpdir)
         subprocess.call(cmd, shell=True)
