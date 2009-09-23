@@ -33,7 +33,12 @@ process is interrupted.
 A 'refresh' feature has been added that will attempt to reload the application 
 without re-starting when directories or fonts are added or removed. This may fail 
 at times, if so the application just needs to be re-started. 
-If this fails consistently for you, please file an issue.
+
+This seems to work well when fonts or directories are added, it seems to fail mostly 
+when fonts or directories are removed, not sure why the Pango context is still listing 
+families that are no longer available. :-\
+
+If this feature *never* works you, please file an issue.
 </p>
 
 === Notes for those installing from source ===
@@ -71,3 +76,4 @@ already there. So releases will be done at a much slower pace, and the next few
 releases will not see anything in the way of added features, releases will only be 
 done for critical bugs or when there are enough bugfixes/translations/enhancements to warrant it.
 </p>
+

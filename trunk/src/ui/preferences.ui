@@ -3,7 +3,7 @@
   <requires lib="gtk+" version="2.16"/>
   <!-- interface-naming-policy project-wide -->
   <object class="GtkWindow" id="window">
-    <property name="width_request">395</property>
+    <property name="width_request">425</property>
     <property name="height_request">475</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
