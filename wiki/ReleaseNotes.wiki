@@ -1,7 +1,5 @@
-#summary These notes are in addition to the information and Known Issues listed in the
+#summary These notes are in addition to the information and Known Issues listed in the help file, please make sure any problems you encounter are not listed there before reporting them.
 #labels Featured
-help file, please make sure any problems you encounter are not listed there 
-before reporting them.
 
 = Release Notes 0.4 =
 
