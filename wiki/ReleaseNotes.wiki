@@ -28,8 +28,9 @@ process is interrupted.
 <p>
 A 'refresh' feature has been added that will attempt to reload the application 
 without re-starting when directories or fonts are added or removed. This may fail 
-at times, if so the application just needs to be re-started, at this point I'm not 
-sure why the Pango context won't update or why this varies from one system to another. :-(
+at times, if so the application just needs to be re-started.
+
+This seems to work well when fonts are installed or removed using the application, not so well when directories are added or removed, at this point I'm not sure why the Pango context won't update or why this seems to vary from one system to another.  :-(
 </p>
 
 === Notes for those installing from source ===
