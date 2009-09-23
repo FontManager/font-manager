@@ -48,7 +48,6 @@ EXTS = ('.ttf', '.ttc', '.otf', '.pfb', '.pfa', '.pfm', '.afm', '.bdf',
 BAD_PATHS = ('/usr', '/bin', '/boot', '/dev', '/lost+found', '/proc',
              '/root', '/selinux', '/srv', '/sys', '/etc', '/lib',
              '/sbin', '/tmp', '/var')
-GOOD_PATHS = (HOME, '/media', '/opt', '/mnt')
 
 
 class Preferences:
@@ -137,19 +136,16 @@ class Preferences:
         db_column.clicked()
 
     def autoscan(self, unused_widget):
-        ignore = '/opt/picasa'
-        for path in GOOD_PATHS:
-            for root, dirs, files in os.walk(path):
-                if not root.startswith(ignore):
-                    for name in files:
-                        if name.endswith(EXTS) and root.find('/.') == -1:
-                            if root in self.directories:
-                                continue
-                            else:
-                                self.add_directory(root)
-                                # Ensure update
-                                while gtk.events_pending():
-                                    gtk.main_iteration()
+        for root, dirs, files in os.walk(HOME):
+            for name in files:
+                if name.endswith(EXTS) and root.find('/.') == -1:
+                    if root in self.directories:
+                        continue
+                    else:
+                        self.add_directory(root)
+                        # Ensure update
+                        while gtk.events_pending():
+                            gtk.main_iteration()
         return
 
     def scaninfo(self, unused_widget):
@@ -426,12 +422,9 @@ System paths are not allowed
         return
 
 INFO = _("""
-The autoscan feature will look in the following directories:
+The autoscan feature will look in:
 
 %s
-/media
-/mnt
-/opt
 
 for any folders containing font files and add them to the list.
 
