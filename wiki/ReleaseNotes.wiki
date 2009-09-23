@@ -1,11 +1,9 @@
-#summary Release Notes for Font Manager 0.4
+#summary These notes are in addition to the information and Known Issues listed in the
 #labels Featured
-
-= Release Notes 0.4 =
-
-These notes are in addition to the information and Known Issues listed in the 
 help file, please make sure any problems you encounter are not listed there 
 before reporting them.
+
+= Release Notes 0.4 =
 
 Users who have customized their ~/.fonts.conf, should take a backup before 
 running Font Manager. After running Font Manager, you can add your customizations 
@@ -71,4 +69,3 @@ application is pretty useful as is. The focus now shifts to improving on what's
 already there. So releases will be done at a much slower pace, and the next few 
 releases will not see anything in the way of added features, releases will only be 
 done for critical bugs or when there are enough bugfixes/translations/enhancements to warrant it.
-
