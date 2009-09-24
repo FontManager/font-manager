@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.63])
-AC_INIT([font-manager], [0.4])
+AC_INIT([font-manager], [0.4.1])
 AM_INIT_AUTOMAKE()
 
 # Checks for programs.
