@@ -42,3 +42,4 @@ rm -rf BUILD
 echo
 echo 'If the build was successful you will find a deb package in font-manager/RESULTS'
 
+
