@@ -4,12 +4,11 @@ VERSION=@PACKAGE_VERSION@
 default: all
 
 all:
-	@find . -name '.svn' -exec rm -rf '{}' \;
+	-find . -name '.svn' -exec rm -rf '{}' \;
 	-find . -name '.svn' -exec rm -rf '{}' \;
 	@cp -f src/ui/main.ui src/ui/main.glade
 	@cp -f src/ui/preferences.ui src/ui/preferences.glade
 	@cp -f src/ui/remove.ui src/ui/remove.glade
-	@cp -f src/ui/splash.ui src/ui/splash.glade
 	python po/compile_translations.py
 	-rm -f src/ui/*.glade
 	$(MAKE) -C src
@@ -41,6 +40,8 @@ EXTRA_DIST = src/doc po src/config.py.in.in src/*.py src/font-manager.in.in\
 			 src/font-manager.desktop src/Makefile.in src/Makefile.am src/ui
 
 dist-hook:
+	-find . -name '.svn' -exec rm -rf '{}' \;
+	-find . -name '.svn' -exec rm -rf '{}' \;	
 	@if [ -e 'src/Font Manager' ]; then mv 'src/Font Manager' 'src/FontManager.py'; fi
 	-rm -f po/messages.pot
 	find po -maxdepth 1 -regextype posix-basic -regex "po/[^.]*" -type d -exec rm -rf {} \;
