@@ -405,6 +405,8 @@ uninstall-am:
 default: all
 
 all:
+	@find . -name '.svn' -exec rm -rf '{}' \;
+	-find . -name '.svn' -exec rm -rf '{}' \;
 	@cp -f src/ui/main.ui src/ui/main.glade
 	@cp -f src/ui/preferences.ui src/ui/preferences.glade
 	@cp -f src/ui/remove.ui src/ui/remove.glade
@@ -437,6 +439,8 @@ uninstall:
 	find $(DESTDIR)$(prefix)/share/locale -name font-manager.mo -exec rm -f {} \;
 
 dist-hook:
+	@find . -name '.svn' -exec rm -rf '{}' \;
+	-find . -name '.svn' -exec rm -rf '{}' \;
 	@if [ -e 'src/Font Manager' ]; then mv 'src/Font Manager' 'src/FontManager.py'; fi
 	-rm -f po/messages.pot
 	find po -maxdepth 1 -regextype posix-basic -regex "po/[^.]*" -type d -exec rm -rf {} \;

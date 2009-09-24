@@ -1,8 +1,7 @@
 """
 This module handles UI initialization, font loading, treeview setup, etc.
 
-It also provides a way to 'reboot' the application so adding or removing
-fonts can be reflected in the interface without the need for a restart.
+It also restarts the application when changes require it.
 .
 """
 # Font Manager, a font management application for the GNOME desktop
@@ -34,6 +33,7 @@ fonts can be reflected in the interface without the need for a restart.
 import gtk
 import time
 import shutil
+import subprocess
 
 import fontload
 import fontviews
@@ -41,7 +41,7 @@ import treeviews
 import xmlutils
 
 from config import DB_DIR
-from common import Throbber, reset_fontconfig_cache
+from common import reset_fontconfig_cache
 
 
 class Ui:
@@ -55,10 +55,6 @@ class Ui:
         else:
             self.builder = builder
         self.parent = parent
-        # UI elements
-        self.mainbox = self.builder.get_object('main_box')
-        self.options = self.builder.get_object('options_box')
-        self.refresh = self.builder.get_object('refresh')
         # "statusbar" is just a label...
         self.status_bar = self.builder.get_object("total_fonts")
 
@@ -67,7 +63,7 @@ class Ui:
                                                     builder=self.builder)
         self.fontviews = fontviews.Views(parent=self.parent,
                                                     builder=self.builder)
-        self.treeviews = treeviews.Trees(parent=self.parent, 
+        self.treeviews = treeviews.Trees(parent=self.parent,
                                                     builder=self.builder)
         self.status_bar.set_text(_("Fonts : %s") %
                                         self.fontload.total_fonts)
@@ -75,46 +71,24 @@ class Ui:
 
     def reboot(self):
         """
-        Attempts to reload all font information and refreshes treeviews, 
-        so that restarting the application is not necessary after installing, 
+        Attempts to reload all font information and refreshes treeviews,
+        so that restarting the application is not necessary after installing,
         removing fonts, or changing preferences.
         """
+        import logging
+
         shutil.rmtree(DB_DIR, ignore_errors=True)
         # Save any changes to collections before reloading
         self.treeviews.save()
         # Disable blacklist so all fonts are returned by fc-list
         xmlutils.BlackList.disable_blacklist()
-        self.insensitive()
-        throbber = Throbber(self.builder)
-        throbber.start()
-        while gtk.events_pending():
-            gtk.main_iteration()
         # Stall so fontconfig returns up to date results
         # Hopefully this is enough on most systems
         time.sleep(3)
         reset_fontconfig_cache()
         time.sleep(3)
-        self.fontload.load_fonts(reboot=True)
-        self.status_bar.set_text(_("Fonts : %s") %
-                                    self.fontload.total_fonts)
-        self.treeviews.init_select()
-        throbber.stop()
-        self.sensitive()
+        xmlutils.check_libxml2_leak()
+        logging.info("Restarting...")
+        subprocess.Popen(['font-manager'])
+        gtk.main_quit()
         return
-
-    def insensitive(self):
-        self.refresh.hide()
-        self.mainbox.set_sensitive(False)
-        self.options.set_sensitive(False)
-        while gtk.events_pending():
-            gtk.main_iteration()
-        return
-        
-    def sensitive(self):
-        self.refresh.show()
-        self.mainbox.set_sensitive(True)
-        self.options.set_sensitive(True)
-        while gtk.events_pending():
-            gtk.main_iteration()
-        return
-        

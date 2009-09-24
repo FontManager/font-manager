@@ -4,6 +4,8 @@ VERSION=@PACKAGE_VERSION@
 default: all
 
 all:
+	@find . -name '.svn' -exec rm -rf '{}' \;
+	-find . -name '.svn' -exec rm -rf '{}' \;
 	@cp -f src/ui/main.ui src/ui/main.glade
 	@cp -f src/ui/preferences.ui src/ui/preferences.glade
 	@cp -f src/ui/remove.ui src/ui/remove.glade

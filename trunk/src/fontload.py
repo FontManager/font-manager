@@ -41,7 +41,7 @@ from os.path import exists, join
 
 import xmlutils
 
-from common import get_cli_output, shell_escape, strip_fc_family
+from common import get_cli_output, shell_escape, strip_fc_family, Throbber
 from config import INI, PACKAGE_DIR, DB_DIR, INSTALL_DIRECTORY, USER_FONT_DIR
 
 # Dictionary --> 'family' : 'Family object'
@@ -149,35 +149,31 @@ class FontLoad:
         self.installed_fonts = {}
         self.load_fonts()
 
-    def load_fonts(self, reboot=False):
+    def load_fonts(self):
         """
         Get all font families and styles recognized by Fontconfig
 
         Parse, count and store, then return the results
         """
-        if reboot:
-            category_ls.clear()
-            collection_ls.clear()
-            self.total_fonts = 0
-            categories = []
-            collections = []
-            self.collected = []
-            self.available = []
-            self.orphans = []
-            self.fc_sys_fams = []
-            self.fc_user_fams = []
-            self.fc_fams = []
-            fc_fonts.clear()
-            self.installed_fonts.clear()
+        # UI elements
+        self.mainbox = self.builder.get_object('main_box')
+        self.options = self.builder.get_object('options_box')
+        self.refresh = self.builder.get_object('refresh')
+
+        self.insensitive()
+        throbber = Throbber(self.builder)
+        throbber.start()
         self._load_fc_sys_fams()
         self._load_fc_fams()
-        self._load_fonts(reboot)
+        self._load_fonts()
         self._count_fonts()
         # Need to load blacklist now before loading collections
         patterns = xmlutils.BlackList(fc_fonts=fc_fonts).load()
         self.disable_rejects(patterns)
         self.load_collections()
         xmlutils.BlackList.enable_blacklist()
+        throbber.stop()
+        self.sensitive()
         return
 
     def _load_fc_sys_fams(self):
@@ -197,17 +193,11 @@ class FontLoad:
         [ font for font in self.fc_fams if font not in self.fc_sys_fams]
         return
 
-    def _load_fonts(self, reboot):
-        if not reboot:
-            self.builder.add_from_file(join(PACKAGE_DIR, 'ui/splash.ui'))
-            splash = self.builder.get_object('splash')
-            progress = self.builder.get_object('progress')
-            splash.show_all()
-        else:
-            load_label = self.builder.get_object('loading_label')
-            progress = self.builder.get_object('progress_label')
-            load_label.show()
-            progress.show()
+    def _load_fonts(self):
+        load_label = self.builder.get_object('loading_label')
+        progress = self.builder.get_object('progress_label')
+        load_label.show()
+        progress.show()
         # Ensure update
         while gtk.events_pending():
             gtk.main_iteration()
@@ -279,13 +269,9 @@ class FontLoad:
         saveobj = open(join(DB_DIR, 'installed_fonts.db'), 'w')
         cPickle.dump(self.installed_fonts, saveobj, cPickle.HIGHEST_PROTOCOL)
         saveobj.close()
-        if not reboot:
-            splash.destroy()
-            return
-        else:
-            progress.hide()
-            load_label.hide()
-            return
+        progress.hide()
+        load_label.hide()
+        return
 
     def _count_fonts(self):
         for unused_i in self.fc_fams:
@@ -409,6 +395,22 @@ class FontLoad:
             lstore.set(treeiter, 1, collection)
             lstore.set(treeiter, 2, collection.get_name())
             categories.append(collection)
+        return
+
+    def insensitive(self):
+        self.refresh.hide()
+        self.mainbox.set_sensitive(False)
+        self.options.set_sensitive(False)
+        while gtk.events_pending():
+            gtk.main_iteration()
+        return
+
+    def sensitive(self):
+        self.refresh.show()
+        self.mainbox.set_sensitive(True)
+        self.options.set_sensitive(True)
+        while gtk.events_pending():
+            gtk.main_iteration()
         return
 
 

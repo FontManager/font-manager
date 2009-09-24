@@ -10,8 +10,6 @@ echo 'Fetching source'
 echo
 svn co http://font-manager.googlecode.com/svn/trunk/ font-manager
 cd font-manager
-find . -name '.svn' -exec rm -rf '{}' \;
-find . -name '.svn' -exec rm -rf '{}' \;
 . ./release
 echo
 echo 'Preparing source'
