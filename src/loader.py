@@ -77,6 +77,8 @@ class Ui:
         """
         import logging
         self.parent.hide()
+        while gtk.events_pending():
+            gtk.main_iteration()
         shutil.rmtree(DB_DIR, ignore_errors=True)
         # Save any changes to collections before reloading
         self.treeviews.save()
