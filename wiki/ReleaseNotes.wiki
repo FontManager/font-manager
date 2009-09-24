@@ -31,6 +31,8 @@ without re-starting when directories or fonts are added or removed. This may fai
 at times, if so the application just needs to be re-started.
 
 This seems to work well when fonts are installed or removed using the application, not so well when directories are added or removed, at this point I'm not sure why the Pango context won't update or why this seems to vary from one system to another.  :-(
+
+Note: 0.4.1 drops this approach and just restarts the application for you when a refresh is requested or required.
 </p>
 
 === Notes for those installing from source ===
