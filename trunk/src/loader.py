@@ -76,7 +76,7 @@ class Ui:
         removing fonts, or changing preferences.
         """
         import logging
-		self.parent.hide()
+        self.parent.hide()
         shutil.rmtree(DB_DIR, ignore_errors=True)
         # Save any changes to collections before reloading
         self.treeviews.save()
