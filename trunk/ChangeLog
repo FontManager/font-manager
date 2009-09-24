@@ -1,7 +1,7 @@
-	
-	* Update (0.4.1)
-		Restart application instead of attempting to reload in place.
-		
+
+    * Update (0.4.1)
+        Restart application instead of attempting to reload in place.
+
     * Update (0.4)
         Re-factored user interface to have a more flexible layout and take up
         less space while displaying the same amount of information.
