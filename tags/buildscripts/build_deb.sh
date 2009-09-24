@@ -26,7 +26,7 @@ mkdir BUILD
 cd BUILD
 unzip -q ../$PACKAGE-$VERSION.zip
 cp -R ../debian $PACKAGE-$VERSION/
-cp -R $PACKAGE-$VERSION $PACKAGE.orig
+cp -R $PACKAGE-$VERSION $PACKAGE-$VERSION.orig
 cd $PACKAGE-$VERSION
 echo
 echo 'Building package'
