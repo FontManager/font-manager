@@ -129,11 +129,13 @@ class FontManager:
         prefs.connect('clicked', self.on_prefs)
         self.manage_fonts = self.builder.get_object('manage_fonts')
         self.manage_fonts.connect('button-press-event', self.on_manage_fonts)
+        # Showtime
+        self.mainwindow.show()
+        while gtk.events_pending():
+            gtk.main_iteration()
         # Load fonts, collections, setup treeviews, etc
         self.loader = loader.Ui(parent=self.mainwindow, builder=self.builder)
         self.loader.initialize()
-        # Showtime
-        self.mainwindow.show()
         # Tray icon
         self.tray_icon = \
         gtk.status_icon_new_from_icon_name('preferences-desktop-font')
