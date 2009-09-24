@@ -161,8 +161,12 @@ class FontLoad:
         self.refresh = self.builder.get_object('refresh')
 
         self.insensitive()
+        while gtk.events_pending():
+            gtk.main_iteration()
         throbber = Throbber(self.builder)
         throbber.start()
+        while gtk.events_pending():
+            gtk.main_iteration()
         self._load_fc_sys_fams()
         self._load_fc_fams()
         self._load_fonts()
@@ -174,6 +178,8 @@ class FontLoad:
         xmlutils.BlackList.enable_blacklist()
         throbber.stop()
         self.sensitive()
+        while gtk.events_pending():
+            gtk.main_iteration()
         return
 
     def _load_fc_sys_fams(self):
