@@ -76,7 +76,7 @@ class Ui:
         removing fonts, or changing preferences.
         """
         import logging
-
+		self.parent.hide()
         shutil.rmtree(DB_DIR, ignore_errors=True)
         # Save any changes to collections before reloading
         self.treeviews.save()
@@ -84,7 +84,6 @@ class Ui:
         xmlutils.BlackList.disable_blacklist()
         # Stall so fontconfig returns up to date results
         # Hopefully this is enough on most systems
-        time.sleep(3)
         reset_fontconfig_cache()
         time.sleep(3)
         xmlutils.check_libxml2_leak()
