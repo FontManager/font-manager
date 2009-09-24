@@ -1,5 +1,5 @@
 Name:           font-manager
-Version:        0.4
+Version:        0.4.1
 Release:        1%{?dist}
 Summary:        A font management application for the GNOME desktop environment
 
@@ -49,6 +49,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+
+* Wed Sep 23 2009 JC
+- Update to 0.4.1
 
 * Mon Sep 21 2009 JC
 - Update to 0.4
