@@ -15,4 +15,4 @@ src/xmlutils.py
 src/ui/main.glade
 src/ui/preferences.glade
 src/ui/remove.glade
-src/ui/splash.glade
+

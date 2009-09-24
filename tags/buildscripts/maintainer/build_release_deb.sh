@@ -21,7 +21,7 @@ mkdir BUILD
 cd BUILD
 unzip -q ../$PACKAGE-$VERSION.zip
 cp -R ../debian $PACKAGE-$VERSION/
-cp -R $PACKAGE-$VERSION $PACKAGE-$VERSION.orig
+cp -R $PACKAGE-$VERSION $PACKAGE.orig
 cd $PACKAGE-$VERSION
 echo
 echo 'Doing initial source build'
