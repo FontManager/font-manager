@@ -1,5 +1,8 @@
-font-manager (0.4-1) unstable; urgency=low
+font-manager (0.4.1-1) unstable; urgency=low
 
+  * Update (0.4.1)
+  		Restart app instead of attempting to reload in place.
+  		
   * Update (0.4)
   		Re-factored user interface to have a more flexible layout and take up
   		less space while displaying the same amount of information.
