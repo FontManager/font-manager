@@ -147,7 +147,7 @@ automatically picked up by the system and available, but only to you.
 
 Please note that not only can you specify other directories to scan for
 fonts from the applications preferences dialog, but you can also set the
-default folder that's opened when 'Manage Fonts' is selected.
+default folder that's opened when 'Open fonts folder' is selected.
 
 
 If you wish to make fonts available to everyone using the system they will

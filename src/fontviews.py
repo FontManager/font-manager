@@ -45,11 +45,11 @@ DEFAULT_STYLES  =  ['Regular', 'Roman', 'Medium', 'Normal', 'Book']
 # Note to translators: this should be a pangram (a sentence containing all
 # letters of your alphabet. See http://en.wikipedia.org/wiki/Pangram for
 # more information and possible samples for your language.
-PREVIEW_TEXT = _("""The quick brown fox jumps over a lazy dog.
+PREVIEW_TEXT = _("""The quick brown fox jumps over the lazy dog.
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 abcdefghijklmnopqrstuvwxyz
 1234567890.:,;(*!?')""")
-COMPARE_TEXT = _('The quick brown fox jumps over a lazy dog.')
+COMPARE_TEXT = _('The quick brown fox jumps over the lazy dog.')
 
 
 class Views:
@@ -94,7 +94,7 @@ class Views:
         custom_text.connect('toggled', self.custom_toggled)
         size_adjustment = self.builder.get_object('size_adjustment')
         # correct value on start
-        size_adjustment.set_value(11)
+        size_adjustment.set_value(13)
         self.size = size_adjustment.get_value()
         # make it do something
         size_adjustment.connect('value-changed', self.on_size_adj_v_change)

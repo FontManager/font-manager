@@ -71,9 +71,7 @@ class Ui:
 
     def reboot(self):
         """
-        Attempts to reload all font information and refreshes treeviews,
-        so that restarting the application is not necessary after installing,
-        removing fonts, or changing preferences.
+        Restarts the application when changes require it or user requests it.
         """
         import logging
         self.parent.hide()
