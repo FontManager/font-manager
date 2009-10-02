@@ -12,14 +12,15 @@ su -c 'yum install rpmdevtools subversion make -y'
 clean='no'
 if [ ! -e ~/rpmbuild ]
 then
-	rpmdev-setuptree
-	clean='yes'
+    rpmdev-setuptree
+    clean='yes'
 fi
 echo
 echo 'Fetching source'
 echo
 svn co http://font-manager.googlecode.com/svn/trunk/ font-manager
 cd font-manager
+find . -name '.svn' -print | xargs rm -rf
 . ./release
 echo
 echo 'Preparing source'
@@ -40,11 +41,11 @@ rm -f $PACKAGE-$VERSION.tar.bz2
 make clean
 if [ $clean = 'yes' ]
 then
-	rm -rf ~/rpmbuild
+    rm -rf ~/rpmbuild
 else
-	rm -f ~/rpmbuild/RPMS/noarch/$PACKAGE*
-	rm -f ~/rpmbuild/SPECS/$PACKAGE*
-	rm -f ~/rpmbuild/SOURCES/$PACKAGE*
+    rm -f ~/rpmbuild/RPMS/noarch/$PACKAGE*
+    rm -f ~/rpmbuild/SPECS/$PACKAGE*
+    rm -f ~/rpmbuild/SOURCES/$PACKAGE*
 fi
 echo
 echo 'If the build was successful you will find an rpm package in font-manager/RESULTS'

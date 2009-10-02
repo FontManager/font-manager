@@ -217,8 +217,15 @@ class FontManager:
         popup_menu.popup(None, None, None, button, event_time)
 
     def tray_icon_clicked(self, unused_widget):
-        self.mainwindow.set_skip_taskbar_hint(False)
-        self.mainwindow.present()
+        """
+        Show or hide application when tray icon is clicked
+        """
+        if not self.mainwindow.get_property('visible'):
+            self.mainwindow.set_skip_taskbar_hint(False)
+            self.mainwindow.present()
+        else:
+            self.mainwindow.set_skip_taskbar_hint(True)
+            self.mainwindow.hide()
         return
 
     def on_manage_fonts(self, unused_widget, event):
