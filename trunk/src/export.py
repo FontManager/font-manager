@@ -179,7 +179,9 @@ class Export:
     def sampler_toggled(self, widget):
         try:
             import reportlab
-            print reportlab.Version
+            import logging
+            logging.info\
+            ('Using ReportLab Toolkit Version %s' % reportlab.Version)
         except ImportError:
             widget.set_active(False)
             widget.set_sensitive(False)

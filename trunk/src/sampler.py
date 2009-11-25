@@ -39,6 +39,7 @@ import gobject
 from os.path import join
 
 from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.pdfmetrics import FontError, FontNotFoundError
 from reportlab.pdfbase.ttfonts import TTFont, TTFontFile, TTFError
 from reportlab.lib.units import inch
 from reportlab.lib.fonts import addMapping
@@ -118,52 +119,19 @@ class BuildSample:
                 fontfile = filename
                 filename = join(root, filename)
                 if filename.endswith(TRUETYPE_EXTS):
-                    name = self.register_truetype(fontfile, filename)
+                    name = self.register_ttf(fontfile, filename)
                     while gtk.events_pending():
                         gtk.main_iteration()
                     if not name:
                         continue
-                    # Build our current sample
-                    try:
-                        sample = []
-                        current_file = Paragraph\
-                        ('<font size="10">' + fontfile + '</font>', style)
-                        sample.append(current_file)
-                        sample.append(Spacer(1, 0.1*inch))
-                        current_sample = Paragraph\
-                        ('<font name="%s" size="%s">' % \
-                        (name, self.font_size) + name + '</font>', style)
-                        sample.append(current_sample)
-                        sample.append(Spacer(1, 0.5*inch))
-                        self.body.append(KeepTogether(sample))
-                        while gtk.events_pending():
-                            gtk.main_iteration()
-                    # Triggered by some font psnames?
-                    except ValueError, error:
-                        self.failed[fontfile] = error
+                    self.build_basic_paragraph(fontfile, name, style)
                 elif filename.endswith(TYPE1_EXTS):
                     name = self.register_type1(fontfile, filename)
                     while gtk.events_pending():
                         gtk.main_iteration()
                     if not name:
                         continue
-                    # Build our current sample
-                    try:
-                        sample = []
-                        current_file = Paragraph\
-                        ('<font size="10">' + fontfile + '</font>', style)
-                        sample.append(current_file)
-                        sample.append(Spacer(1, 0.1*inch))
-                        current_sample = Paragraph\
-                        ('<font name="%s" size="%s">' % \
-                        (name, self.font_size) + name + '</font>', style)
-                        sample.append(current_sample)
-                        sample.append(Spacer(1, 0.5*inch))
-                        self.body.append(KeepTogether(sample))
-                        while gtk.events_pending():
-                            gtk.main_iteration()
-                    except ValueError, error:
-                        self.failed[fontfile] = error
+                    self.build_basic_paragraph(fontfile, name, style)
         self.load_label.set_text('')
         self.load_label.hide()
         self.progress_label.set_text('')
@@ -189,14 +157,36 @@ class BuildSample:
         while gtk.events_pending():
             gtk.main_iteration()
         return True
+    
+    def build_basic_paragraph(self, fontfile, name, style):
+        # Build our current sample
+        try:
+            sample = []
+            current_file = Paragraph\
+            ('<font size="10">' + fontfile + '</font>', style)
+            sample.append(current_file)
+            sample.append(Spacer(1, 0.1*inch))
+            current_sample = Paragraph\
+            ('<font name="%s" size="%s">' % \
+            (name, self.font_size) + name + '</font>', style)
+            sample.append(current_sample)
+            sample.append(Spacer(1, 0.5*inch))
+            self.body.append(KeepTogether(sample))
+            while gtk.events_pending():
+                gtk.main_iteration()
+        # Triggered by some font psnames?
+        except ValueError, error:
+            self.failed[fontfile] = error
+        return
         
-    def register_truetype(self, fontfile, filename):
+    def register_ttf(self, fontfile, filename):
         self.progress_label.set_text(fontfile)
         try:
             # Prepare the font for use
             tt_file = TTFontFile(filename)#(filename, charInfo=1, validate=1)
-            # Thanks to ttfsampler for this part, seems to only happen 
-            # with shoddy font files.
+            # This is called during the build, so we call it here to 
+            # make sure we catch an IndexError in time if it's raised.
+            # Seems to only happen with shoddy fonts.
             tt_file.makeSubset(range(128))
             name = tt_file.name
             font = TTFont(name, filename)
@@ -204,7 +194,10 @@ class BuildSample:
             # Map the same file to every style
             map_font(name)
             return name
-        except (TTFError, IndexError), error:
+        except TTFError, error:
+            self.failed[fontfile] = error
+            return False
+        except (IndexError, AssertionError), error:
             self.failed[fontfile] = error
             return False
             
@@ -223,10 +216,10 @@ class BuildSample:
             font = pdfmetrics.Font(name, name, 'WinAnsiEncoding')
             pdfmetrics.registerFont(font)
             return name
-        except (pdfmetrics.FontError, pdfmetrics.FontNotFoundError), error:
+        except (FontError, FontNotFoundError), error:
             self.failed[fontfile] = error
             return False
-        except AssertionError, error:
+        except (IndexError, AssertionError), error:
             self.failed[fontfile] = error
             return False
             
@@ -288,7 +281,7 @@ class BuildSample:
 def map_font(name):
     """
     This just maps every style to the same file so that Platypus doesn't
-     balk if it encounters style tags i.e. <b></b>
+     balk if it encounters style tags i.e. <b></b><i></i>
     
     Not really necessary since we're not using those anyways, but...
     """
@@ -305,7 +298,7 @@ def map_font(name):
     
 def find_type1_name(path):
     """
-    Extract a font name from an AFM file.
+    Try to extract a font name from an AFM file.
     """
     noname = _('Face name unavailable')
     try:
@@ -318,10 +311,10 @@ def find_type1_name(path):
         if not found and line[:16] == 'StartCharMetrics':
             return noname
         if line[:8] == 'FontName':
-            fontName = line[9:]
+            fontname = line[9:]
             found = 1
-    fontName.strip()
-    return fontName
+    fontname.strip()
+    return fontname
 
 def _build_tree(dic):
     lstore = SKIP_LS
