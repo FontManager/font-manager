@@ -1,13 +1,29 @@
 #summary These notes are in addition to the information and Known Issues listed in the help file, please make sure any problems you encounter are not listed there before reporting them.
 #labels Featured
 
-= Release Notes 0.4 =
+= Release Notes 0.4.2 =
 <p>
 Users who have customized their ~/.fonts.conf, should take a backup before 
 running Font Manager. After running Font Manager, you can add your customizations 
 to ~/.!FontManager/config/render.conf, just create the file if it doesn't exist. 
 This will ensure that they do not get overwritten by the application.
 </p>
+
+<p>
+An option to include a pdf sample sheet has been added when exporting collections, 
+you need to have the Report Lab Toolkit installed for this option to be available, 
+on most distributions this is readily available in your package manager as python-reportlab.
+
+Please note that this feature is not well tested, if you have any problems please file an issue.
+
+However, please do not file issues regarding fonts that have naming issues, are broken or those 
+that restrict embedding in their license, if you don't care about licenses then a font editor is your friend.
+
+Also, I suggest you do not try to create a sample sheet for any collection that exceeds 2500 fonts.
+
+Doing so can not only take a long time but also lots of cpu and loads of memory.
+</p>
+
 <p>
 An autoscan option has been added to the preferences dialog, this option is *not* 
 well tested or complete, there is no progress reported, aside from directories 
@@ -26,13 +42,8 @@ process is interrupted.
 </p>
 
 <p>
-A 'refresh' feature has been added that will attempt to reload the application 
-~~without re-starting~~ when directories or fonts are added or removed. ~~This may fail 
-at times, if so the application just needs to be re-started.~~
-
-~~This seems to work well when fonts are installed or removed using the application, not so well when directories are added or removed, at this point I'm not sure why the Pango context won't update or why this seems to vary from one system to another.  :-(~~
-
-Note: 0.4.1 drops this approach and just restarts the application for you when a refresh is requested or required.
+The application now restarts itself anytime fonts are installed or removed through it, 
+if a lot of fonts are installed at once it may take a moment to start back up.
 </p>
 
 === Notes for those installing from source ===
