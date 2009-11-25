@@ -226,7 +226,10 @@ class BuildSample:
         except (pdfmetrics.FontError, pdfmetrics.FontNotFoundError), error:
             self.failed[fontfile] = error
             return False
-    
+        except AssertionError, error:
+            self.failed[fontfile] = error
+            return False
+            
     def prompt_for_failed_fonts(self):
         if len(self.failed) > 0:
             if not self.confirm_action(self.failed):
