@@ -13,6 +13,7 @@ font-manager (0.4.2-1) unstable; urgency=low
         or someone would have mentioned it... oh, well it's useful to me. ;-)
 
         Ask for confirmation before exporting a collection
+
         Fix http://code.google.com/p/font-manager/issues/detail?id=6 by
         allowing user to specify where exported collection is to be saved,
         whether it should be compressed or not, and whether to include
