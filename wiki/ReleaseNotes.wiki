@@ -4,7 +4,7 @@
 = Release Notes 0.4.2 =
 
 <p>
-Users who have customized their ~/.fonts.conf, should take a backup before 
+Users who have customized their ~/.fonts.conf, should move it before 
 running Font Manager. After running Font Manager, you can add your customizations 
 to ~/.!FontManager/config/render.conf, just create the file if it doesn't exist. 
 This will ensure that they do not get overwritten by the application.
@@ -13,7 +13,7 @@ This will ensure that they do not get overwritten by the application.
 <p>
 An option to include a pdf sample sheet has been added when exporting collections, 
 you need to have the Report Lab Toolkit installed for this option to be available, 
-on most distributions this is readily available in your package manager as python-reportlab. This feature only accepts True Type and Type 1 fonts, some Open Type fonts may be compatible but most aren't.
+on most distributions this is readily available in your package manager as python-reportlab. This feature only accepts !TrueType and Type 1 fonts, some !OpenType fonts may be compatible but most aren't.
 
 Please note that this feature is not well tested, if you have any problems please file an issue.
 
