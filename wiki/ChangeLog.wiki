@@ -1,5 +1,5 @@
 #labels Featured
-
+<pre>
 
     * Update (0.4.2)
 
@@ -19,7 +19,7 @@
         whether it should be compressed or not, and whether to include
         a sample sheet in the archive or folder.
 
-        This last feature only works if ReportLab is installed and then
+        This last feature only works if Report Lab is installed and then
         only for Truetype and Type 1 fonts. Open Type supposedly works
         but I don't have any that do.
 
@@ -82,3 +82,5 @@
     * Initial release (0.1)
 
         Preview release.
+
+</pre>
