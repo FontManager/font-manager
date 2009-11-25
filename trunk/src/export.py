@@ -165,6 +165,23 @@ class Export:
         if self.archive:
             self.create_archive()
         else:
+            if exists(join(self.outdir, self.collection.name)):
+                dialog = gtk.Dialog(_('Destination already exists'), None, 
+                    gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                                    (_('Cancel'), gtk.RESPONSE_CANCEL,
+                                    _('Overwrite'), gtk.RESPONSE_OK),)
+                dialog.set_default_size(300, 100)
+                label = gtk.Label('Overwrite %s?' % \
+                join(self.outdir, self.collection.name))
+                dialog.vbox.pack_start(label)
+                label.show()
+                response = dialog.run()
+                dialog.destroy()
+                if response != gtk.RESPONSE_OK:
+                    shutil.rmtree(self.tmpdir)
+                    return
+                else:
+                    shutil.rmtree(join(self.outdir, self.collection.name))
             shutil.move(self.tmpdir, self.outdir)
         return
     
