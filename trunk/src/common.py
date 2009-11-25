@@ -20,14 +20,41 @@ This module is just a convenient place to group re-usable functions.
 # along with this program; if not, write to: Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 # MA 02110-1301, USA.
+# Suppress errors related to gettext
+# pylint: disable-msg=E0602
+# Suppress messages related to missing docstrings
+# pylint: disable-msg=C0111
 
 import os
+import re
 import gtk
 import subprocess
 
 from os.path import exists, join
 
 from config import USER_FONT_DIR, HOME, PACKAGE_DIR
+
+
+def natural_sort(l):
+    """
+    Sort the given list in the way that humans expect
+    """
+    alphanum = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ]
+    l.sort( key=alphanum )
+    return l
+
+def convert(t):
+    """
+    Make sure certain characters don't affect sort order
+    
+    So that a doesn't end up under a-a.
+    """
+    if t.isdigit():
+        return int(t)
+    else:
+        t = t.replace('-', '')
+        t = t.replace('_', '')
+        return t
 
 class Throbber:
     """
@@ -99,7 +126,7 @@ def search(model, treeiter, func, data):
 
 def shell_escape(family):
     """
-    Remove special shell characters
+    Escape or remove special shell characters
     """
     family = family.replace("'", "\'")
     family = family.replace('"', '\"')
@@ -157,7 +184,7 @@ need to be placed in /usr/share/fonts
 
 def install_readme():
     """
-    Install a readme into ~/.fonts
+    Install a readme into ~/.fonts if it didn't previously exist
 
     Really just intended for users new to linux ;-)
     """

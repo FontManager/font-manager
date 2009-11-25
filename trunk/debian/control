@@ -9,7 +9,7 @@ Homepage: http://font-manager.googlecode.com/
 Package: font-manager
 Architecture: all
 Depends: python, python-gtk2, python-libxml2, xfonts-utils
-Suggests: file-roller, gucharmap, gnome-control-center
+Suggests: file-roller, gucharmap, gnome-control-center, python-reportlab
 Description: A font management application for the GNOME desktop
  Font Manager is not intended to be a professional-grade font management
  solution, but rather a simple application suitable for the needs of most

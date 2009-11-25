@@ -33,13 +33,13 @@ along with this program; if not, write to:
 AUTHORS = ['\nJerry Casiano\n', _('\nSpecial thanks to:\n'),
 '  Karl Pickett',
 _('\tFont Manager is based on Karl\'s work'),
-'\t<http://fontmanager.blogspot.com/>\n',
+'\t< http://fontmanager.blogspot.com >\n',
 '  Wouter Bolsterlee',
 _('\tFont Manager\'s compare mode is modeled after,'),
 _('\tand uses portions of gnome-specimen'),
-'\t<https://launchpad.net/gnome-specimen>\n']
+'\t< https://launchpad.net/gnome-specimen >\n']
 
-import os
+
 import gtk
 import gobject
 import logging
@@ -53,7 +53,7 @@ import loader
 import managed
 import xmlutils
 
-from config import INI, PACKAGE, PACKAGE_DIR, VERSION, USER, USER_FONT_DIR
+from config import INI, PACKAGE, PACKAGE_DIR, VERSION, USER_FONT_DIR
 
 
 class FontManager:
@@ -92,9 +92,9 @@ class FontManager:
         icon_theme = gtk.icon_theme_get_default()
         try:
             app_icon = icon_theme.load_icon("preferences-desktop-font", 48, 0)
+            gtk.window_set_default_icon_list(app_icon)
         except gobject.GError, exc:
             logging.warn("Could not find preferences-desktop-font icon", exc)
-        gtk.window_set_default_icon_list(app_icon)
         # Font preferences, at least for GNOME
         font_prefs = self.builder.get_object("font_preferences")
         font_prefs.connect('clicked', on_font_preferences)
@@ -272,7 +272,7 @@ class FontManager:
         """
         from export import Export
         collection = self.loader.treeviews.current_collection
-        Export(collection)
+        Export(collection, self.builder)
 
     def quit(self, unused_widget):
         """
@@ -292,16 +292,25 @@ def on_about(unused_widget):
     """
     Displays about dialog
     """
+    gtk.about_dialog_set_url_hook(homepage)
     dialog = gtk.AboutDialog()
     dialog.set_name(PACKAGE)
     dialog.set_version(VERSION)
     dialog.set_comments(_("Font management for the GNOME Desktop"))
     dialog.set_copyright(u"Copyright \u00A9 2009 Jerry Casiano")
     dialog.set_authors(AUTHORS)
-    dialog.set_website('font-manager.googlecode.com')
+    dialog.set_website('http://font-manager.googlecode.com')
+    dialog.set_website_label('Font Manager Homepage')
     dialog.set_license(LICENSE_TEXT)
     dialog.run()
     dialog.destroy()
+    
+def homepage(dialog, link):
+    if webbrowser.open(link):
+        return
+    else:
+        logging.warn("Could not find any suitable web browser")
+    return   
 
 def on_help(unused_widget):
     """
@@ -344,12 +353,12 @@ def _open_font_folder(unused_widget):
             subprocess.Popen(['xdg-open', font_dir])
             return
         except OSError:
-            logging.info(' xdg-open is not available? ')
-            logging.info('Looking for common file browsers')
-    else:
-        # Fallback to looking for specific file browsers
-        file_browser = find_file_browser()
-        launch_file_browser(file_browser, font_dir)
+            pass
+    logging.info(' xdg-open is not available ')
+    logging.info('Looking for common file browsers')
+    # Fallback to looking for specific file browsers
+    file_browser = find_file_browser()
+    launch_file_browser(file_browser, font_dir)
     return
 
 def find_file_browser():
