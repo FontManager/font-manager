@@ -54,7 +54,7 @@ def convert(t):
     else:
         t = t.replace('-', '')
         t = t.replace('_', '')
-        return t
+        return t.upper()
 
 class Throbber:
     """
