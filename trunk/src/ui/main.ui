@@ -850,6 +850,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
+                        <property name="tooltip_text" translatable="yes">Reset cache and reload application</property>
                         <property name="image">refresh_icon</property>
                         <property name="relief">none</property>
                         <property name="focus_on_click">False</property>
@@ -984,7 +985,6 @@
   </object>
   <object class="GtkImage" id="refresh_icon">
     <property name="visible">True</property>
-    <property name="tooltip_text" translatable="yes">Refresh views</property>
     <property name="stock">gtk-refresh</property>
     <property name="icon-size">1</property>
   </object>
