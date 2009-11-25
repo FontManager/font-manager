@@ -2,6 +2,7 @@
 #labels Featured
 
 = Release Notes 0.4.2 =
+
 <p>
 Users who have customized their ~/.fonts.conf, should take a backup before 
 running Font Manager. After running Font Manager, you can add your customizations 
@@ -12,7 +13,7 @@ This will ensure that they do not get overwritten by the application.
 <p>
 An option to include a pdf sample sheet has been added when exporting collections, 
 you need to have the Report Lab Toolkit installed for this option to be available, 
-on most distributions this is readily available in your package manager as python-reportlab.
+on most distributions this is readily available in your package manager as python-reportlab. This feature only accepts True Type and Type 1 fonts, some Open Type fonts may be compatible but most aren't.
 
 Please note that this feature is not well tested, if you have any problems please file an issue.
 
@@ -32,9 +33,7 @@ being added to the list, and for now there is no way to cancel the operation asi
 from killing the application.
 
 Autoscan looks in your home directory and attempts to find any folders that contain fonts.
-</p>
 
-<p>
 You probably should *not* use this feature if you have network shares or other 
 filesystems to which access may be very slow in your home path. If you wish to test 
 it anyways, you can just kill the application if the scan is taking too long, 
@@ -48,6 +47,7 @@ if a lot of fonts are installed at once it may take a moment to start back up.
 </p>
 
 === Notes for those installing from source ===
+
 <p>
 Check the README for requirements, and make sure they are available, they should 
 be on any recent distro. Configure does not check for deps, 
@@ -68,17 +68,4 @@ and you are able to provide a translation for it, please grab the package
 tagged i18n from the downloads section on the homepage.
 
 Thanks in advance.
-</p>
-
-==== Other ====
-<p>
-My apologies to anyone who is working on or has already completed a translation, 
-I think I may have jumped the gun on requesting those, a lot has changed 
-between 0.3 and 0.4 so those will need to be updated.
-
-At this point, I'm pretty satisfied with the feature set and feel that the 
-application is pretty useful as is. The focus now shifts to improving on what's 
-already there. So releases will be done at a much slower pace, and the next few 
-releases will not see anything in the way of added features, releases will only be 
-done for critical bugs or when there are enough bugfixes/translations/enhancements to warrant it.
 </p>
