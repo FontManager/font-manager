@@ -31,19 +31,16 @@ LOCALEDIR   = PACKAGE_DIR
 HOME                    =   os.getenv('HOME')
 USER                    =   os.getenv('LOGNAME')
 USER_FONT_DIR           =   os.path.join(HOME, '.fonts')
-
-HOME                    =   os.getenv('HOME')
-USER                    =   os.getenv('LOGNAME')
 USER_FONT_CONF          =   os.path.join(HOME, '.fonts.conf')
 USER_FONT_CONF_INVALID  =   os.path.join(HOME, 'original.fonts.conf')
 FM_DIR                  =   os.path.join(HOME, '.FontManager')
+TMP_DIR                 =   os.path.join(USER_FONT_DIR, 'temp')
 
 VER                     =   os.path.join(FM_DIR, '0.4')
 CONF_DIR                =   os.path.join(FM_DIR, 'config')
 GROUPS_DIR              =   os.path.join(FM_DIR, 'collections')
 DB_DIR                  =   os.path.join(FM_DIR, 'db')
 LOG_DIR                 =   os.path.join(FM_DIR, 'logs')
-TMP_DIR                 =   os.path.join(FM_DIR, 'temp')
 INSTALL_DIRECTORY       =   os.path.join(FM_DIR, 'Library')
 FM_CONF                 =   os.path.join(FM_DIR, 'FontManager.conf')
 

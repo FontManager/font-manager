@@ -28,7 +28,6 @@ This module handles everything related to the font preview area.
 # Suppress messages related to missing docstrings
 # pylint: disable-msg=C0111
 
-import os
 import gtk
 import gobject
 import logging
@@ -94,7 +93,7 @@ class Views:
         custom_text.connect('toggled', self.custom_toggled)
         size_adjustment = self.builder.get_object('size_adjustment')
         # correct value on start
-        size_adjustment.set_value(13)
+        size_adjustment.set_value(11)
         self.size = size_adjustment.get_value()
         # make it do something
         size_adjustment.connect('value-changed', self.on_size_adj_v_change)

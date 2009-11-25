@@ -1,5 +1,5 @@
 """
-For now this module only exports collections to an archive.
+This module allows users to export "collections".
 .
 """
 #!/usr/bin/env python
@@ -23,11 +23,14 @@ For now this module only exports collections to an archive.
 #
 # Suppress errors related to gettext
 # pylint: disable-msg=E0602
+# Suppress messages related to missing docstrings
+# pylint: disable-msg=C0111
 
 import os
 import gtk
 import shutil
 import subprocess
+import ConfigParser
 
 from os.path import exists, join
 
@@ -35,17 +38,32 @@ from config import INI, HOME
 
 class Export:
     """
-    Export collections to an archive.
+    Export a collection.
     """
-    font_list = []
-    file_list = []
-    # fonts for which filepath is ?
-    no_info = []
-    def __init__(self, collection, archive = 1, pdf = 0):
+    def __init__(self, collection, builder):
         self.collection = collection
+        self.builder = builder
+        self.archive = True
+        self.sample = False
+        self.outdir = join(HOME, "Desktop")
+        self.font_list = []       
         self.file_list = []
+        # Fonts for which filepath is ?
         self.no_info = []
-        tmpdir = "/tmp/%s" % self.collection.name
+        self.tmpdir = "/tmp/%s" % self.collection.name
+        # Get preferences
+        config = ConfigParser.ConfigParser()
+        config.read(INI)
+        try:
+            self.arch_type = config.get('Archive Type', 'default')
+        except ConfigParser.NoSectionError:
+            self.arch_type = 'zip'
+        # UI elements
+        self.compress = gtk.CheckButton(_('Export as archive'))
+        self.sampler = gtk.CheckButton(_('Include sample sheet'))
+        self.chooser = gtk.FileChooserButton(_('Select destination'))
+        self.status = gtk.Label()
+        # Build filelist
         for font in self.collection.fonts:
             file_path = font.filelist.itervalues()
             if file_path:
@@ -66,17 +84,137 @@ class Export:
                 pass
             else:
                 return
-        if archive:
-            self.archive(tmpdir)
-        elif pdf:
-            return
-        return
+        self.confirm_export()
 
+    # Fixes http://code.google.com/p/font-manager/issues/detail?id=6
+    def confirm_export(self):
+        dialog = gtk.Dialog(_('Export Collection'),
+                            None,
+                    gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                            (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                                gtk.STOCK_OK, gtk.RESPONSE_OK))
+        dialog.set_default_size(350, 190)
+        self.compress.set_border_width(10)
+        self.compress.connect('toggled', self.compress_toggled)
+        self.compress.set_active(True)
+        self.set_compress_tooltip()
+        dialog.vbox.pack_start(self.compress, False, True, 0)
+        self.sampler.set_border_width(10)
+        self.sampler.connect('toggled', self.sampler_toggled)
+        dialog.vbox.pack_start(self.sampler, False, True, 0)
+        dialog.vbox.pack_start(self.status, True, True, 5)
+        choose = gtk.Expander('Select a different folder')
+        choose.set_expanded(False)
+        choose.connect('activate', self.choose_toggled)
+        self.chooser.set_current_folder(self.outdir)
+        self.chooser.set_action(gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER)
+        self.chooser.connect('current-folder-changed', self.change_dest)
+        choose.add(self.chooser)
+        dialog.vbox.pack_end(choose, False, True, 0)
+        dialog.vbox.show_all()
+        response = dialog.run()
+        dialog.destroy()
+        while gtk.events_pending():
+            gtk.main_iteration()
+        if not response == gtk.RESPONSE_OK:
+            return
+        self.process_export()
+        return
+        
+    def process_export(self):
+        if exists(self.tmpdir):
+            shutil.rmtree(self.tmpdir)
+        os.mkdir(self.tmpdir)
+        for path in set(self.file_list):
+            shutil.copy(path, self.tmpdir)
+            # Try to include AFM files for Type 1 fonts
+            if path.endswith('.pfb'):
+                afm_path = path.replace('.pfb', '.afm')
+                try:
+                    shutil.copy(afm_path, self.tmpdir)
+                except OSError:
+                    pass
+            elif path.endswith('.PFB'):
+                afm_path = path.replace('.PFB', '.AFM')
+                try:
+                    shutil.copy(afm_path, self.tmpdir)
+                except OSError:
+                    pass
+        if self.sample:
+            from sampler import BuildSample
+            buildsample = BuildSample\
+            (self.tmpdir, join\
+            (self.tmpdir, '%s.pdf' % self.collection.name), self.builder)
+            if not buildsample.basic():
+                return
+        if self.archive:
+            self.create_archive()
+        else:
+            shutil.move(self.tmpdir, self.outdir)
+        return
+    
+    def compress_toggled(self, widget):
+        if widget.get_active():
+            self.archive = True
+        else:
+            self.archive = False
+        self.status.set_text('')
+        return
+        
+    def sampler_toggled(self, widget):
+        try:
+            import reportlab
+            print reportlab.Version
+        except ImportError:
+            widget.set_active(False)
+            widget.set_sensitive(False)
+            self.status.set_markup\
+            ('<span weight="light" size="small"><tt>' + \
+            _('Install the ReportLab Toolkit to enable this feature') \
+            + '</tt></span>')
+        if widget.get_active():
+            self.sample = True
+        else:
+            self.sample = False
+        return
+    
+    def choose_toggled(self, widget):
+        # Seems like this is backwords?
+        if not widget.get_expanded():
+            self.status.set_markup\
+            ('<span weight="light" size="small"><tt>' + \
+            _('You must have write permissions to the selected path') \
+            + '</tt></span>')
+            # Force an update
+            while gtk.events_pending():
+                gtk.main_iteration()
+        else:
+            self.status.set_text('')
+            while gtk.events_pending():
+                gtk.main_iteration()
+        return
+    
+    def change_dest(self, widget):
+        newdir = widget.get_filename()
+        if os.access(newdir, os.W_OK):
+            self.outdir = newdir
+        else:
+            widget.set_current_folder(join(HOME, "Desktop"))
+        self.set_compress_tooltip()
+        return
+    
+    def set_compress_tooltip(self):
+        self.compress.set_tooltip_text\
+        (_('Archive will be saved in %s format to %s') \
+        % (self.arch_type, self.outdir))
+        return
+        
     def export_anyways(self):
         """
         If any filepaths were not found ask for confirmation before continuing.
         """
-        dialog = gtk.Dialog(_('Missing information'), None, 0,
+        dialog = gtk.Dialog(_('Missing information'), None, 
+                    gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                     (_('Cancel'), gtk.RESPONSE_CANCEL,
                                     _('Continue'), gtk.RESPONSE_OK),)
         dialog.set_default_response(gtk.RESPONSE_OK)
@@ -84,6 +222,7 @@ class Export:
         box = dialog.get_content_area()
         scrolled = gtk.ScrolledWindow()
         scrolled.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+        scrolled.set_property('shadow-type', gtk.SHADOW_ETCHED_IN)
         view = gtk.TextView()
         view.set_left_margin(5)
         view.set_right_margin(5)
@@ -106,27 +245,16 @@ class Export:
             dialog.destroy()
             return False
 
-    def archive(self, tmpdir):
+    def create_archive(self):
         """
         Produces an archive from the selected collection
 
         Requires file-roller to be installed
         """
-        import ConfigParser
-        config = ConfigParser.ConfigParser()
-        config.read(INI)
-        try:
-            arch_type = config.get('Archive Type' , 'default')
-        except ConfigParser.NoSectionError:
-            arch_type = 'zip'
-        if exists(tmpdir):
-            shutil.rmtree(tmpdir)
-        os.mkdir(tmpdir)
-        for path in set(self.file_list):
-            shutil.copy(path, tmpdir)
-        os.chdir(join(HOME, "Desktop"))
+        os.chdir(self.outdir)
         cmd = "file-roller -a '%s.%s' '%s'" % \
-        (self.collection.name, arch_type, tmpdir)
+        (self.collection.name, self.arch_type, self.tmpdir)
         subprocess.call(cmd, shell=True)
-        shutil.rmtree(tmpdir)
+        shutil.rmtree(self.tmpdir)
         return
+

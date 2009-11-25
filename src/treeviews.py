@@ -30,12 +30,10 @@ This module handles everything related to the two main treeviews.
 
 import gtk
 import gobject
-import operator
 
 import xmlutils
 import fontload
 
-from common import match, search
 
 family_ls = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT,
                                                     gobject.TYPE_STRING)
@@ -75,6 +73,7 @@ class Trees:
         self.disable_font = self.builder.get_object('disable_font')
         self.find_button = self.builder.get_object('find_font')
         self.find_entry = self.builder.get_object('find_entry')
+        self.export = self.builder.get_object("export")
         self.init_treeviews()
         self.connect_handlers()
         self.init_select()
@@ -437,6 +436,7 @@ Really disable %s fonts?
         Controls UI sensitivity
         """
         block = _('All Fonts'), _('System'), _('Orphans')
+        fonts = self.current_collection.fonts
         collection = self.current_collection.get_name()
         if collection in block:
             self.remove_collection.set_sensitive(False)
@@ -453,6 +453,10 @@ Really disable %s fonts?
             self.disable_collection.set_sensitive(True)
             self.rename_collection.set_sensitive(True)
             self.remove_font.set_sensitive(True)
+        if not len(fonts) > 0:
+            self.export.set_sensitive(False)
+        else:
+            self.export.set_sensitive(True)
         if treeview == self.category_tv:
             self.collection_tv.get_selection().unselect_all()
         else:
@@ -533,7 +537,6 @@ Really disable %s fonts?
         lstore = tree.get_model()
         if not collection:
             return
-        # This function gets triggered during a reset
         # lstore can be None during a reset
         if lstore:
             scroll = self.builder.get_object('families_scroll')

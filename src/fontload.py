@@ -28,21 +28,19 @@ This module uses fontconfig to find available fonts on a system.
 # Suppress messages related to missing docstrings
 # pylint: disable-msg=C0111
 
-
 import os
 import ConfigParser
 import gtk
 import gobject
 import logging
 import cPickle
-import time
 
 from os.path import exists, join
 
 import xmlutils
 
 from common import get_cli_output, shell_escape, strip_fc_family, Throbber
-from config import INI, PACKAGE_DIR, DB_DIR, INSTALL_DIRECTORY, USER_FONT_DIR
+from config import INI, DB_DIR, INSTALL_DIRECTORY, USER_FONT_DIR
 
 # Dictionary --> 'family' : 'Family object'
 fc_fonts = {}
@@ -147,6 +145,14 @@ class FontLoad:
         self.parent = parent
         self.show_orphans = False
         self.installed_fonts = {}
+        # UI elements
+        self.mainbox = self.builder.get_object('main_box')
+        self.options = self.builder.get_object('options_box')
+        self.refresh = self.builder.get_object('refresh')
+        if exists(join(DB_DIR, 'installed_fonts.db')):
+            loadobj = open(join(DB_DIR, 'installed_fonts.db'), 'r')
+            self.installed_fonts = cPickle.load(loadobj)
+            loadobj.close()
         self.load_fonts()
 
     def load_fonts(self):
@@ -155,11 +161,6 @@ class FontLoad:
 
         Parse, count and store, then return the results
         """
-        # UI elements
-        self.mainbox = self.builder.get_object('main_box')
-        self.options = self.builder.get_object('options_box')
-        self.refresh = self.builder.get_object('refresh')
-
         self.insensitive()
         while gtk.events_pending():
             gtk.main_iteration()
@@ -224,10 +225,6 @@ class FontLoad:
             if strip_fc_family(name) in self.fc_user_fams:
                 obj.user = True
             dbname = shell_escape(name)
-            if exists(join(DB_DIR, 'installed_fonts.db')):
-                loadobj = open(join(DB_DIR, 'installed_fonts.db'), 'r')
-                self.installed_fonts = cPickle.load(loadobj)
-                loadobj.close()
             if exists(join(DB_DIR, '%s.db' % dbname)):
                 loadobj = open(join(DB_DIR, '%s.db' % dbname), 'r')
                 obj.filelist = cPickle.load(loadobj)

@@ -51,12 +51,14 @@ Requirements:
     
     You can also just try running the program ;-)
     
-    python src/FontManager.py
+    cd src
+    python FontManager.py
     
     to see if it complains about anything.
 
 Suggested:
 
+    * ReportLab Toolkit         http://www.reportlab.org/
     * file-roller               http://fileroller.sourceforge.net/
     * gnome-font-viewer         http://www.jamesh.id.au/software/fontilus/
 

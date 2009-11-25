@@ -35,6 +35,7 @@ from os.path import exists, join
 
 from config import *
 from common import install_readme
+from managed import log_fonts
 
 INCLUDE_LINE = """<!-- Added by Font Manager -->
     <include ignore_missing=\"yes\">%s</include>
@@ -50,6 +51,7 @@ VALID_CONFIG = """<?xml version="1.0"?>
 </fontconfig>
 """ % INCLUDE_LINE
 
+FILE_EXTS = ('.ttf', '.ttc', '.otf', '.TTF', '.TTC', '.OTF')
 
 def add_patelt_node(parent, pat_type, val):
     """
@@ -388,8 +390,6 @@ def check_for_fm_req_dir():
             log.write('\n')
     if not exists(DB_DIR):
         os.mkdir(DB_DIR)
-    if not exists(TMP_DIR):
-        os.mkdir(TMP_DIR)
     if not exists(USER_FONT_DIR):
         print "No font directory found for %s" % USER
         print "Creating font directory"
@@ -399,36 +399,36 @@ def check_for_fm_req_dir():
         os.mkdir(INSTALL_DIRECTORY)
     if not exists(join(USER_FONT_DIR, 'Library')):
         os.symlink(INSTALL_DIRECTORY, join(USER_FONT_DIR, 'Library'))
-    return
+    # Check for newly installed fonts
+    if exists(TMP_DIR):
+        finish_install()
     return
 
 def check_version():
     """
     Check version, update application folder
     """
-    if exists(join(FM_DIR, '0.2')):
-        os.unlink(join(FM_DIR, '0.2'))
-        # FIXME: just deleting a config is not cool,
-        # but it'll have to do for now
-        if exists(USER_FONT_CONF):
-            os.unlink(USER_FONT_CONF)
-    if exists(join(FM_DIR, '0.3')):
-        os.unlink(join(FM_DIR, '0.3'))
-        if exists(USER_FONT_CONF):
-            os.unlink(USER_FONT_CONF)
-    if not exists(VER):
-        if exists(OLD_FM_BLOCK_CONF):
-            os.renames(OLD_FM_BLOCK_CONF, FM_BLOCK_CONF)
-        if exists(OLD_FM_GROUP_CONF):
-            os.renames(OLD_FM_GROUP_CONF, FM_GROUP_CONF)
-        if exists(join(FM_DIR, 'groups.xml.bak')):
-            os.unlink(join(FM_DIR, 'groups.xml.bak'))
-        if exists(OLD_LOG_FILE_BACKUP):
-            os.unlink(OLD_LOG_FILE_BACKUP)
-        if exists(OLD_LOG_FILE):
-            shutil.move(OLD_LOG_FILE, LOG_DIR)
-        with open(VER, 'w') as revfile:
-            revfile.write('Font Manager %s' % VERSION)
+    obsolete = 1, 2, 3
+    for version in obsolete:
+        if exists(join(FM_DIR, '0.%s' % version)):
+            os.unlink(join(FM_DIR, '0.%s' % version))
+            # FIXME: just deleting a config is not cool,
+            # but it'll have to do for now
+            if exists(USER_FONT_CONF):
+                os.unlink(USER_FONT_CONF)
+        if version == '1':
+            if exists(OLD_FM_BLOCK_CONF):
+                os.renames(OLD_FM_BLOCK_CONF, FM_BLOCK_CONF)
+            if exists(OLD_FM_GROUP_CONF):
+                os.renames(OLD_FM_GROUP_CONF, FM_GROUP_CONF)
+            if exists(join(FM_DIR, 'groups.xml.bak')):
+                os.unlink(join(FM_DIR, 'groups.xml.bak'))
+            if exists(OLD_LOG_FILE_BACKUP):
+                os.unlink(OLD_LOG_FILE_BACKUP)
+            if exists(OLD_LOG_FILE):
+                shutil.move(OLD_LOG_FILE, LOG_DIR)
+    with open(VER, 'w') as revfile:
+        revfile.write('Font Manager %s' % VERSION)
     return
 
 def validate_config():
@@ -528,4 +528,25 @@ def setup_logging():
         logging.getLogger('').addHandler(console)
     except:
         print "failed to find/create log file, logging disabled"
+
+def finish_install():
+    """
+    Finish installation of fonts for font-viewer.
+    """
+    log_fonts(True, TMP_DIR)
+    for root, dirs, files in os.walk(TMP_DIR):
+        for name in files:
+            if name.endswith(FILE_EXTS):
+                oldpath = join(root, name)
+                truename = name.split('.')[0]
+                truename = name.strip()
+                new = truename[0]
+                new = new.upper()
+                newpath = join(INSTALL_DIRECTORY, new)
+                if not exists(newpath):
+                    os.mkdir(newpath)
+                newname = join(newpath, name)
+                shutil.move(oldpath, newname)
+    shutil.rmtree(TMP_DIR)
+    return
 

@@ -28,7 +28,6 @@ This module provides a simple preferences dialog
 # Suppress messages related to missing docstrings
 # pylint: disable-msg=C0111
 
-
 import os
 import gtk
 import gobject
@@ -39,7 +38,7 @@ import ConfigParser
 from os.path import exists, join
 
 import xmlutils
-from config import HOME, INI, PACKAGE_DIR, DB_DIR, FM_DIR, USER_FONT_DIR
+from config import HOME, INI, PACKAGE_DIR, DB_DIR
 from common import match, search
 
 EXTS = ('.ttf', '.ttc', '.otf', '.pfb', '.pfa', '.pfm', '.afm', '.bdf',
