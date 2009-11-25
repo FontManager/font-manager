@@ -77,11 +77,11 @@
 				<span class="caps">Optional features :</span>
 				<br /><br />
 				<p class ="prepend-1 append-1">
-				If gnome-font-viewer is installed on the system, the information icon at the top left of the preview area will display any available descriptions, copyrights, etc.
+				If <a href='http://www.jamesh.id.au/software/fontilus/'>gnome-font-viewer</a> is installed on the system, gnome-font-viewer is included in gnome-control-center, the information icon at the top left of the preview area will launch gnome-font-viewer with the currently selected font, useful for checking available descriptions, copyrights, etc.
 				<br /><br />
-				If file-roller is installed on the system, exporting collections to an archive, font installation and removal become available options.
+				If <a href='http://fileroller.sourceforge.net/'>file-roller</a> is installed on the system, exporting collections to an archive, font installation and removal become available options.
 				<br /><br />
-				If gucharmap is installed, a "shortcut" will be available which opens gucharmap with the currently selected font active. This allows for closer inspection of characters included in the font as well as quickly determining coverage.
+				If <a href='http://live.gnome.org/Gucharmap'>gucharmap</a> is installed, a "shortcut" will be available which opens gucharmap with the currently selected font active. This allows for closer inspection of characters included in the font as well as quickly determining coverage.
 				<br />
 				</p>
 				<div class="prepend-2 append-2">
@@ -89,6 +89,14 @@
 				</div>
 				<p class ="prepend-1 append-1">
 				<br /><br />
+				If the <a href='http://www.reportlab.org/'>ReportLab Toolkit</a> is available, on most Linux distributions this is called python-reportlab, then an option to include a sample sheet in exported collections becomes available. At this point only TrueType and Type 1 fonts are supported.
+				<br /><br />
+				Please note that ReportLab will refuse to embed fonts which restrict it in their license, those with invalid names and those that are just broken internally. 
+				<br /><br />
+				If this occurs a dialog will show you which fonts were rejected and for what reason. In the case where a font just has an invalid PostScript font name you just need to rename the font using a font editor, such as <a href='http://fontforge.sourceforge.net/'>FontForge</a>, not only will this allow ReportLab to embed the font, but it will also ensure that other applications including Font Manager don't have problems with it.
+				</p>
+				<p class ="prepend-1 append-1">
+				<br />
 				<b>Additional Notes:</b>
 				<br /><br />
 				The font installation feature accepts most common font formats along with the most common archive types. ( .ttf .ttc .otf .zip .tar* )
