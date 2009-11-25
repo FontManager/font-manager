@@ -17,7 +17,8 @@ on most distributions this is readily available in your package manager as pytho
 Please note that this feature is not well tested, if you have any problems please file an issue.
 
 However, please do not file issues regarding fonts that have naming issues, are broken or those 
-that restrict embedding in their license, if you don't care about licenses then a font editor is your friend.
+that restrict embedding in their license, if you need to rename, fix or maybe you just don't care about
+ licenses then a font editor is your friend.
 
 Also, I suggest you do not try to create a sample sheet for any collection that exceeds 2500 fonts.
 
