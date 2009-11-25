@@ -34,6 +34,7 @@ import ConfigParser
 
 from os.path import exists, join
 
+from common import Throbber
 from config import INI, HOME
 
 class Export:
@@ -46,11 +47,17 @@ class Export:
         self.archive = True
         self.sample = False
         self.outdir = join(HOME, "Desktop")
+        self.tmpdir = "/tmp/%s" % self.collection.name
         self.font_list = []       
         self.file_list = []
         # Fonts for which filepath is ?
         self.no_info = []
-        self.tmpdir = "/tmp/%s" % self.collection.name
+        # UI elements
+        self.mainbox = self.builder.get_object('main_box')
+        self.options = self.builder.get_object('options_box')
+        self.refresh = self.builder.get_object('refresh')
+        # Visual feedback
+        self.throbber = Throbber(self.builder)
         # Get preferences
         config = ConfigParser.ConfigParser()
         config.read(INI)
@@ -118,7 +125,15 @@ class Export:
             gtk.main_iteration()
         if not response == gtk.RESPONSE_OK:
             return
+        self.insensitive()
+        self.throbber.start()
+        while gtk.events_pending():
+            gtk.main_iteration()
         self.process_export()
+        self.sensitive()
+        self.throbber.stop()
+        while gtk.events_pending():
+            gtk.main_iteration()
         return
         
     def process_export(self):
@@ -256,5 +271,21 @@ class Export:
         (self.collection.name, self.arch_type, self.tmpdir)
         subprocess.call(cmd, shell=True)
         shutil.rmtree(self.tmpdir)
+        return
+
+    def insensitive(self):
+        self.refresh.hide()
+        self.mainbox.set_sensitive(False)
+        self.options.set_sensitive(False)
+        while gtk.events_pending():
+            gtk.main_iteration()
+        return
+
+    def sensitive(self):
+        self.refresh.show()
+        self.mainbox.set_sensitive(True)
+        self.options.set_sensitive(True)
+        while gtk.events_pending():
+            gtk.main_iteration()
         return
 
