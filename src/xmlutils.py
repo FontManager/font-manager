@@ -408,6 +408,10 @@ def check_version():
     """
     Check version, update application folder
     """
+    # Clean up app folder
+    if exists(join(FM_DIR, 'temp')):
+        shutil.rmtree(join(FM_DIR, 'temp'))
+
     obsolete = 1, 2, 3
     for version in obsolete:
         if exists(join(FM_DIR, '0.%s' % version)):
@@ -427,6 +431,7 @@ def check_version():
                 os.unlink(OLD_LOG_FILE_BACKUP)
             if exists(OLD_LOG_FILE):
                 shutil.move(OLD_LOG_FILE, LOG_DIR)
+
     with open(VER, 'w') as revfile:
         revfile.write('Font Manager %s' % VERSION)
     return
