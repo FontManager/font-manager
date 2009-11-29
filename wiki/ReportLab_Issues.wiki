@@ -1,4 +1,5 @@
 #summary Possible issues users may encounter while generating font sample sheets
+#labels Featured
 
 = Crashes within the !ReportLab Toolkit=
 <p>
