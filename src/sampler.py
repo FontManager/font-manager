@@ -106,7 +106,7 @@ class BuildSample:
         doc = SimpleDocTemplate(self.output, pagesize=letter, \
         title=self.collection, author=self.author, subject=self.subject, \
         leftMargin=0.75*inch, rightMargin=0.75*inch, \
-        topMargin=0.75*inch, bottomMargin=0.75*inch)
+        topMargin=1*inch, bottomMargin=0.75*inch)
         self.body = [ Spacer(1, 0.01*inch) ]
         style = self.styles[ "Normal" ]
         self.load_label.set_text(_('Preparing : '))
@@ -239,7 +239,7 @@ class BuildSample:
                         gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                 ('Cancel', gtk.RESPONSE_CANCEL,
                                     'Continue', gtk.RESPONSE_OK))
-        dialog.set_default_size(550, 225)
+        dialog.set_default_size(625, 225)
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         sw.set_property('shadow-type', gtk.SHADOW_ETCHED_IN)
@@ -247,10 +247,11 @@ class BuildSample:
         sw.add(tree)
         dialog.vbox.pack_start(sw, True, True, 5)
         status = gtk.Label\
-(_('Due to the reasons listed above %s out of %s fonts will not be included') \
+(_('Due to the reasons listed above %s out of %s fonts will not be included in the sample sheet') \
 % (len(self.failed), self.total))
         dialog.vbox.pack_start(status, False, True, 5)
         dialog.vbox.show_all()
+        # Sort listing by simulating a click on header
         column.clicked()
         response = dialog.run()
         dialog.destroy()
@@ -326,6 +327,7 @@ def _build_tree(dic):
             except IndexError:
                 pass
         error.strip()
+        error = unicode(error, errors='replace')
         lstore.append([font, error])
     tree = gtk.TreeView(lstore)
     cell_render = gtk.CellRendererText()
@@ -337,5 +339,4 @@ def _build_tree(dic):
     tree.append_column(c1)
     tree.append_column(c2)
     return tree, c1
-
 

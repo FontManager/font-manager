@@ -286,9 +286,18 @@ class Export:
         Requires file-roller to be installed
         """
         os.chdir(self.outdir)
-        cmd = "file-roller -a '%s.%s' '%s'" % \
-        (self.collection.name, self.arch_type, self.tmpdir)
-        subprocess.call(cmd, shell=True)
+        # Wanted to block here till file-roller finishes but compiz seems 
+        # especially sensitive at times and not only darkens the window
+        # ( which is cool ) but also asks user to force quit very quickly
+        # ( which is not cool ) :-(
+        # cmd = "file-roller -a '%s.%s' '%s'" % \
+        # (self.collection.name, self.arch_type, self.tmpdir)
+        # subprocess.call(cmd, shell=True)
+        roller = subprocess.Popen('file-roller' + ' -a "%s.%s" "%s"' % \
+        (self.collection.name, self.arch_type, self.tmpdir), shell=True)
+        # So let's block here instead :-p
+        while roller.poll() is None:
+            continue
         shutil.rmtree(self.tmpdir)
         return
 

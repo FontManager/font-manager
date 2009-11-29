@@ -32,6 +32,7 @@ import os
 import gtk
 import gobject
 import hashlib
+import logging
 import shutil
 import subprocess
 import cPickle
@@ -128,9 +129,11 @@ class InstallFonts:
         self.progress.hide()
         while gtk.events_pending():
             gtk.main_iteration()
-        if len(no_such_file) > 0:
+        problems = len(no_such_file)
+        if problems > 0:
             show_problem_files(no_such_file)
-        if len(no_such_file) == len(self.filelist) or len(self.filelist) < 1:
+        if problems == allfiles or allfiles < 1:
+            logging.error('No files to process...')
             return
         if self._check_dupes():
             self._show_dupes(self.dupes)
@@ -418,33 +421,31 @@ def mkfontdirs():
 
 def do_cleanup(directory):
     """
-    Removes empty leftover directories
+    Removes empty leftover directories and ensures correct permissions.
     """
+    # Two passes here to get rid of empty top level directories
+    passes = 0
+    while passes <= 1:
+        for root, dirs, files in os.walk(directory):
+            if root == directory or len(dirs) > 0:
+                pass
+            else:
+                keep = False
+                if len(files) > 0:
+                    for filename in files:
+                        if filename.endswith(FILE_EXTS):
+                            keep = True
+                            break
+                if not keep:
+                    shutil.rmtree(root)
+        passes += 1
+    # Make sure we don't have any executables among our 'managed' files 
+    # and make sure others have read-only access, apparently this can be
+    # an issue for some programs
     for root, dirs, files in os.walk(directory):
-        if root == directory or len(dirs) > 0:
-            pass
-        else:
-            keep = False
-            if len(files) > 0:
-                for filename in files:
-                    if filename.endswith(FILE_EXTS):
-                        keep = True
-                        break
-            if not keep:
-                shutil.rmtree(root)
-    # Second pass to remove empty toplevel directories
-    for root, dirs, files in os.walk(directory):
-        if root == directory or len(dirs) > 0:
-            pass
-        else:
-            keep = False
-            if len(files) > 0:
-                for filename in files:
-                    if filename.endswith(FILE_EXTS):
-                        keep = True
-                        break
-            if not keep:
-                shutil.rmtree(root)
+        if len(files) > 0:
+            for filename in files:
+                os.chmod(join(root, filename), 0644)
     return
     
 def log_fonts(append=False, DIRECTORY=INSTALL_DIRECTORY):

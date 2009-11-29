@@ -352,7 +352,6 @@ def check_install():
     """
     check_for_fm_req_dir()
     check_version()
-    check_for_logfile()
     setup_logging()
     logging.info("Font Manager is now starting")
     validate_config()
@@ -360,16 +359,6 @@ def check_install():
         return
     else:
         fm_include()
-    return
-
-def check_for_logfile():
-    """
-    Ensures logfile is present
-    """
-    if exists(LOG_FILE):
-        os.rename(LOG_FILE, LOG_FILE_BACKUP)
-    with open(LOG_FILE, 'w') as log:
-        log.write('\n')
     return
 
 def check_for_fm_req_dir():
@@ -386,8 +375,6 @@ def check_for_fm_req_dir():
         os.mkdir(GROUPS_DIR)
     if not exists(LOG_DIR):
         os.mkdir(LOG_DIR)
-        with open(LOG_FILE, 'w') as log:
-            log.write('\n')
     if not exists(DB_DIR):
         os.mkdir(DB_DIR)
     if not exists(USER_FONT_DIR):
@@ -515,9 +502,13 @@ def fm_include():
 
 def setup_logging():
     """
-    Set logging options
+    Ensure log exists and set logging options
     """
     try:
+        if exists(LOG_FILE):
+            os.rename(LOG_FILE, LOG_FILE_BACKUP)
+        with open(LOG_FILE, 'w') as log:
+            log.write('\n')
         # to send messages somewhere useful
         logging.basicConfig(filename=LOG_FILE,
                             format=\
@@ -532,7 +523,7 @@ def setup_logging():
         console.setFormatter(formatter)
         logging.getLogger('').addHandler(console)
     except:
-        print "failed to find/create log file, logging disabled"
+        print "FontManagerError : failed to find/create log file, logging disabled"
 
 def finish_install():
     """
