@@ -55,7 +55,6 @@ Canvas and TextObject have special support for dynamic fonts.
 import string
 from types import StringType, UnicodeType
 from struct import pack, unpack
-from struct import error as structError
 from cStringIO import StringIO
 from reportlab.pdfbase import pdfmetrics, pdfdoc
 
@@ -324,11 +323,7 @@ class TTFontParser:
     def read_short(self):
         "Reads a signed short"
         self._pos += 2
-        try:
-            result = unpack('>h',self._ttf_data[self._pos-2:self._pos])[0]
-        except structError, error:
-             raise TTFError, error
-        return result
+        return unpack('>h',self._ttf_data[self._pos-2:self._pos])[0]
 
     def get_ushort(self, pos):
         "Return an unsigned short at given position"
@@ -750,6 +745,8 @@ class TTFontFile(TTFontParser):
             originalGlyphIdx = glyphMap[n]
             glyphPos = self.glyphPos[originalGlyphIdx]
             glyphLen = self.glyphPos[originalGlyphIdx + 1] - glyphPos
+            n += 1
+            if not glyphLen: continue
             self.seek(start + glyphPos)
             numberOfContours = self.read_short()
             if numberOfContours < 0:
@@ -772,7 +769,6 @@ class TTFontFile(TTFontParser):
                         self.skip(4)
                     elif flags & GF_WE_HAVE_A_TWO_BY_TWO:
                         self.skip(8)
-            n += 1
 
         numGlyphs = n = len(glyphMap)
         while n > 1 and self.hmetrics[n][0] == self.hmetrics[n - 1][0]:
