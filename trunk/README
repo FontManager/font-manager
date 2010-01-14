@@ -35,8 +35,10 @@ Font Manager currently allows the user to:
 In the future Font Manager intends to allow the user to:
 
     * Export "Collections" to a PDF "fontbook" (partially implemented)
+
     * Edit font metadata
 
+    * Convert fonts to a different format
 
 Requirements:
 

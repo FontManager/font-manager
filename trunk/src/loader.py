@@ -40,7 +40,7 @@ import fontviews
 import treeviews
 import xmlutils
 
-from config import DB_DIR, INI
+from config import DB_DIR
 from common import reset_fontconfig_cache
 
 
