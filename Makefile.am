@@ -41,9 +41,9 @@ EXTRA_DIST = src/doc po src/config.py.in.in src/*.py src/font-manager.in.in\
 
 dist-hook:
 	-find . -name '.svn' -exec rm -rf '{}' \;
-	-find . -name '.svn' -exec rm -rf '{}' \;	
-	@if [ -e 'src/Font Manager' ]; then mv 'src/Font Manager' 'src/FontManager.py'; fi
+	-find . -name '.svn' -exec rm -rf '{}' \;
 	-rm -f po/messages.pot
 	find po -maxdepth 1 -regextype posix-basic -regex "po/[^.]*" -type d -exec rm -rf {} \;
 
 .PHONY: check clean install uninstall
+

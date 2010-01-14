@@ -34,7 +34,8 @@ Font Manager currently allows the user to:
 
 In the future Font Manager intends to allow the user to:
 
-    * Export "Collections" to a PDF "fontbook"
+    * Export "Collections" to a PDF "fontbook" (partially implemented)
+    * Edit font metadata
 
 
 Requirements:
@@ -47,8 +48,7 @@ Requirements:
     
     You can also just try running the program ;-)
     
-    cd src
-    python FontManager.py
+    python src/font-manager.in
     
     to see if it complains about anything.
 

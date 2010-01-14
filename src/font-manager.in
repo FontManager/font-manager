@@ -1,7 +1,8 @@
+#!@PYTHON@
 """
-This module ensures that all necessary python modules are available
+This script ensures that all necessary python modules are available
 before running the actual program, if any modules are missing the
-program will exit and print the name of the missing module to stdout.
+script will exit and print the name of the missing module to stdout.
 """
 # Font Manager, a font management application for the GNOME desktop
 #
@@ -28,8 +29,16 @@ program will exit and print the name of the missing module to stdout.
 # Suppress warnings due to unused imports
 # pylint: disable-msg=W0612
 
+import os
 import sys
-# i18n
+
+if os.path.exists(os.path.join(os.path.dirname(__file__), 'Makefile.am')):
+    PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
+else:
+    PACKAGE_DIR = '@prefix@/share/font-manager'
+if not PACKAGE_DIR in sys.path:
+    sys.path.insert(0, PACKAGE_DIR)
+
 import gettext
 gettext.install('font-manager')
 from config import LOCALEDIR
@@ -76,3 +85,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

@@ -23,18 +23,29 @@
 
 import os
 
+from os.path import join, exists, dirname
+
+
 PACKAGE     = _('Font Manager')
-VERSION     = 'Uninstalled'
-PACKAGE_DIR = os.getcwd()
-LOCALEDIR   = PACKAGE_DIR
+
+if exists(join(dirname(__file__), 'Makefile.am')):
+    VERSION     = 'is not installed'
+    PACKAGE_DIR = dirname(os.path.abspath(__file__))
+    LOCALEDIR   = join(dirname(__file__), '../po')
+else:
+    VERSION     = '0.4.3'
+    PACKAGE_DIR = '/usr/share/font-manager'
+    LOCALEDIR   = '/usr/share/locale'
 
 HOME                    =   os.getenv('HOME')
 USER                    =   os.getenv('LOGNAME')
 USER_FONT_DIR           =   os.path.join(HOME, '.fonts')
 USER_FONT_CONF          =   os.path.join(HOME, '.fonts.conf')
 USER_FONT_CONF_INVALID  =   os.path.join(HOME, 'original.fonts.conf')
+AUTOSTART_DIR           =   os.path.join(HOME, '.config/autostart')
 FM_DIR                  =   os.path.join(HOME, '.FontManager')
 TMP_DIR                 =   os.path.join(USER_FONT_DIR, 'temp')
+WORK_DIR                =   os.path.join(FM_DIR, 'temp')
 
 VER                     =   os.path.join(FM_DIR, '0.4')
 CONF_DIR                =   os.path.join(FM_DIR, 'config')
@@ -61,4 +72,6 @@ OLD_FM_BLOCK_CONF       =   os.path.join(FM_DIR, 'FontManager.conf')
 OLD_FM_GROUP_CONF       =   os.path.join(FM_DIR, 'groups.xml')
 OLD_LOG_FILE            =   os.path.join(FM_DIR, 'session.log')
 OLD_LOG_FILE_BACKUP     =   os.path.join(FM_DIR, 'previous-session.log')
+
+
 

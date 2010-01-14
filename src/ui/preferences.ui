@@ -4,11 +4,14 @@
   <!-- interface-naming-policy project-wide -->
   <object class="GtkWindow" id="window">
     <property name="width_request">425</property>
-    <property name="height_request">475</property>
+    <property name="height_request">525</property>
+    <property name="title" translatable="yes">Preferences</property>
+    <property name="resizable">False</property>
     <property name="modal">True</property>
     <property name="window_position">center</property>
     <property name="destroy_with_parent">True</property>
     <property name="type_hint">dialog</property>
+    <signal name="destroy" handler="on_window_destroy"/>
     <child>
       <object class="GtkNotebook" id="notebook">
         <property name="visible">True</property>
@@ -132,6 +135,7 @@
                                     <property name="receives_default">True</property>
                                     <property name="relief">half</property>
                                     <property name="focus_on_click">False</property>
+                                    <signal name="clicked" handler="on_autoscan_clicked"/>
                                   </object>
                                   <packing>
                                     <property name="position">1</property>
@@ -146,6 +150,7 @@
                                     <property name="image">info_icon</property>
                                     <property name="relief">none</property>
                                     <property name="focus_on_click">False</property>
+                                    <signal name="clicked" handler="on_info_clicked"/>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -264,7 +269,7 @@
             <property name="border_width">7</property>
             <property name="orientation">vertical</property>
             <child>
-              <object class="GtkFrame" id="frame2">
+              <object class="GtkFrame" id="general_frame">
                 <property name="visible">True</property>
                 <property name="label_xalign">0</property>
                 <property name="shadow_type">none</property>
@@ -277,27 +282,42 @@
                         <property name="visible">True</property>
                         <property name="orientation">vertical</property>
                         <child>
-                          <object class="GtkCheckButton" id="to_tray">
-                            <property name="label" translatable="yes">Minimize to tray</property>
+                          <object class="GtkCheckButton" id="start_at_login">
+                            <property name="label" translatable="yes">Start at login</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
+                            <property name="padding">5</property>
                             <property name="position">0</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkLabel" id="label7">
+                          <object class="GtkCheckButton" id="start_minimized">
+                            <property name="label" translatable="yes">Start minimized</property>
                             <property name="visible">True</property>
-                            <property name="xalign">0.10999999940395355</property>
-                            <property name="ypad">7</property>
-                            <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Change takes effect on the next start&lt;/i&gt;&lt;/small&gt;</property>
-                            <property name="use_markup">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="draw_indicator">True</property>
                           </object>
                           <packing>
+                            <property name="padding">5</property>
                             <property name="position">1</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkCheckButton" id="to_tray">
+                            <property name="label" translatable="yes">Minimize to tray instead of closing window</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                          <packing>
+                            <property name="padding">5</property>
+                            <property name="position">2</property>
                           </packing>
                         </child>
                       </object>
@@ -308,7 +328,7 @@
                   <object class="GtkLabel" id="label6">
                     <property name="visible">True</property>
                     <property name="ypad">10</property>
-                    <property name="label" translatable="yes">&lt;b&gt;When window is closed&lt;/b&gt;</property>
+                    <property name="label" translatable="yes">&lt;b&gt;General Preferences&lt;/b&gt;</property>
                     <property name="use_markup">True</property>
                   </object>
                 </child>
@@ -316,6 +336,20 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="restart_required_label">
+                <property name="visible">True</property>
+                <property name="xalign">0.070000000298023224</property>
+                <property name="xpad">7</property>
+                <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;Changes take effect on the next start&lt;/i&gt;&lt;/small&gt;</property>
+                <property name="use_markup">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="padding">5</property>
+                <property name="position">1</property>
               </packing>
             </child>
             <child>
@@ -329,7 +363,7 @@
                     <property name="left_padding">12</property>
                     <child>
                       <object class="GtkCheckButton" id="show_orphans">
-                        <property name="label" translatable="yes">Show orphans</property>
+                        <property name="label" translatable="yes">Show fonts not present in user collections</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
@@ -342,7 +376,7 @@
                   <object class="GtkLabel" id="label3">
                     <property name="visible">True</property>
                     <property name="ypad">10</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Show fonts not present in user collections&lt;/b&gt;</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Default Categories&lt;/b&gt;</property>
                     <property name="use_markup">True</property>
                   </object>
                 </child>
@@ -350,7 +384,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="padding">7</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
             <child>
@@ -359,18 +393,99 @@
                 <property name="label_xalign">0</property>
                 <property name="shadow_type">none</property>
                 <child>
-                  <object class="GtkAlignment" id="align4">
+                  <object class="GtkVBox" id="vbox4">
                     <property name="visible">True</property>
-                    <property name="left_padding">47</property>
-                    <property name="right_padding">50</property>
+                    <property name="orientation">vertical</property>
                     <child>
-                      <object class="GtkVBox" id="arch_box">
+                      <object class="GtkAlignment" id="alignment5">
                         <property name="visible">True</property>
-                        <property name="orientation">vertical</property>
+                        <property name="left_padding">12</property>
                         <child>
-                          <placeholder/>
+                          <object class="GtkCheckButton" id="pangram">
+                            <property name="label" translatable="yes">Include pangram in samples</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
                         </child>
                       </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="padding">5</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox4">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkLabel" id="label7">
+                            <property name="visible">True</property>
+                            <property name="xalign">0</property>
+                            <property name="xpad">15</property>
+                            <property name="label" translatable="yes">Default font size for sample sheets</property>
+                          </object>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkSpinButton" id="font_size">
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="max_length">2</property>
+                            <property name="invisible_char">&#x25CF;</property>
+                            <property name="adjustment">font_size_adjustment</property>
+                          </object>
+                          <packing>
+                            <property name="fill">False</property>
+                            <property name="pack_type">end</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="padding">5</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkHBox" id="hbox5">
+                        <property name="visible">True</property>
+                        <child>
+                          <object class="GtkLabel" id="label8">
+                            <property name="visible">True</property>
+                            <property name="xalign">0</property>
+                            <property name="yalign">0.25</property>
+                            <property name="xpad">15</property>
+                            <property name="label" translatable="yes">Default archive type</property>
+                          </object>
+                          <packing>
+                            <property name="position">0</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkVBox" id="arch_box">
+                            <property name="visible">True</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <placeholder/>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="expand">False</property>
+                            <property name="fill">False</property>
+                            <property name="position">1</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="padding">5</property>
+                        <property name="position">2</property>
+                      </packing>
                     </child>
                   </object>
                 </child>
@@ -378,14 +493,14 @@
                   <object class="GtkLabel" id="label4">
                     <property name="visible">True</property>
                     <property name="ypad">10</property>
-                    <property name="label" translatable="yes">&lt;b&gt;Default archive type&lt;/b&gt;</property>
+                    <property name="label" translatable="yes">&lt;b&gt;Export Options&lt;/b&gt;</property>
                     <property name="use_markup">True</property>
                   </object>
                 </child>
               </object>
               <packing>
                 <property name="padding">7</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
             <child>
@@ -419,7 +534,7 @@
                 <property name="expand">False</property>
                 <property name="fill">False</property>
                 <property name="padding">7</property>
-                <property name="position">3</property>
+                <property name="position">4</property>
               </packing>
             </child>
           </object>
@@ -498,6 +613,7 @@
                     <property name="secondary_icon_stock">gtk-clear</property>
                     <property name="secondary_icon_activatable">True</property>
                     <property name="secondary_icon_sensitive">True</property>
+                    <signal name="icon_press" handler="_on_clear_icon"/>
                   </object>
                 </child>
               </object>
@@ -612,5 +728,11 @@
     <property name="visible">True</property>
     <property name="stock">gtk-info</property>
     <property name="icon-size">1</property>
+  </object>
+  <object class="GtkAdjustment" id="font_size_adjustment">
+    <property name="lower">6</property>
+    <property name="upper">26</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
   </object>
 </interface>

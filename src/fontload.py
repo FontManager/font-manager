@@ -42,6 +42,7 @@ import xmlutils
 from common import get_cli_output, shell_escape, strip_fc_family, Throbber
 from config import INI, DB_DIR, INSTALL_DIRECTORY, USER_FONT_DIR
 
+
 # Dictionary --> 'family' : 'Family object'
 fc_fonts = {}
 # Default categories
@@ -136,12 +137,8 @@ class FontLoad:
     fc_fams = []
     # 'statusbar'
     total_fonts = 0
-    def __init__(self, parent=None, builder=None):
-        if builder is None:
-            self.builder = gtk.Builder()
-            self.builder.set_translation_domain('font-manager')
-        else:
-            self.builder = builder
+    def __init__(self, parent, builder):
+        self.builder = builder
         self.parent = parent
         self.show_orphans = False
         self.installed_fonts = {}
@@ -211,7 +208,7 @@ class FontLoad:
         ctx = self.parent.create_pango_context()
         families = ctx.list_families()
         psuedo_fams = 'Monospace', 'Sans', 'Serif'
-        for family in families:
+        for family in sorted(families):
             styles = {}
             name = family.get_name()
             if name in psuedo_fams:
@@ -290,11 +287,8 @@ class FontLoad:
         collection -- collection object to add
         """
         collection.set_enabled_from_fonts()
-        lstore = collection_ls
-        treeiter = lstore.append()
-        lstore.set(treeiter, 0, collection.get_label())
-        lstore.set(treeiter, 1, collection)
-        lstore.set(treeiter, 2, collection.get_name())
+        collection_ls.append\
+        ([collection.get_label(), collection, collection.get_name()])
         collections.append(collection)
         return
 
@@ -316,11 +310,8 @@ class FontLoad:
                         cmp=lambda x, y: cmp(x.family, y.family)):
             collection.fonts.append(font)
         collection.set_enabled_from_fonts()
-        lstore = category_ls
-        treeiter = lstore.append()
-        lstore.set(treeiter, 0, collection.get_label())
-        lstore.set(treeiter, 1, collection)
-        lstore.set(treeiter, 2, collection.get_name())
+        category_ls.append\
+        ([collection.get_label(), collection, collection.get_name()])
         categories.append(collection)
 
         collection = Collection(_('System'))
@@ -329,11 +320,8 @@ class FontLoad:
             if not font.user:
                 collection.fonts.append(font)
         collection.set_enabled_from_fonts()
-        lstore = category_ls
-        treeiter = lstore.append()
-        lstore.set(treeiter, 0, collection.get_label())
-        lstore.set(treeiter, 1, collection)
-        lstore.set(treeiter, 2, collection.get_name())
+        category_ls.append\
+        ([collection.get_label(), collection, collection.get_name()])
         categories.append(collection)
 
         collection = Collection(_('User'))
@@ -342,11 +330,8 @@ class FontLoad:
             if font.user:
                 collection.fonts.append(font)
         collection.set_enabled_from_fonts()
-        lstore = category_ls
-        treeiter = lstore.append()
-        lstore.set(treeiter, 0, collection.get_label())
-        lstore.set(treeiter, 1, collection)
-        lstore.set(treeiter, 2, collection.get_name())
+        category_ls.append\
+        ([collection.get_label(), collection, collection.get_name()])
         categories.append(collection)
 
         self._load_user_collections()
@@ -365,11 +350,11 @@ class FontLoad:
         config = ConfigParser.ConfigParser()
         config.read(INI)
         try:
-            self.show_orphans = config.get('Orphans', 'show')
+            self.show_orphans = config.getboolean('Categories', 'orphans')
         except ConfigParser.NoSectionError:
-            self.show_orphans = 'False'
+            self.show_orphans = False
 
-        if self.show_orphans == 'True':
+        if self.show_orphans:
             self._add_orphans()
         return
 
@@ -392,11 +377,8 @@ class FontLoad:
                         cmp=lambda x, y: cmp(x.family, y.family)):
                 collection.fonts.append(font)
             collection.set_enabled_from_fonts()
-            lstore = category_ls
-            treeiter = lstore.insert(3)
-            lstore.set(treeiter, 0, collection.get_label())
-            lstore.set(treeiter, 1, collection)
-            lstore.set(treeiter, 2, collection.get_name())
+            category_ls.append\
+            ([collection.get_label(), collection, collection.get_name()])
             categories.append(collection)
         return
 
@@ -431,5 +413,6 @@ def _on(name):
 
 def _off(name):
     name = _gtk_markup_escape(name)
-    return '<span weight="ultralight">%s Off</span>' % name
+    off = _('off')
+    return '<span weight="ultralight">%s %s</span>' % (name, off)
 
