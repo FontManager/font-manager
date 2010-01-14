@@ -1,7 +1,7 @@
 #summary These notes are in addition to the information and Known Issues listed in the help file, please make sure any problems you encounter are not listed there before reporting them.
 #labels Featured
 
-= Release Notes 0.4.2 =
+= Release Notes 0.4.3 =
 
 <p>
 Users who have customized their ~/.fonts.conf, should move it before 
@@ -64,8 +64,7 @@ or whatever prefix you specified during the install.
 === Localization ===
 <p>
 Not sure how friendly this app is to other locales, but if it works well in yours 
-and you are able to provide a translation for it, please grab the package 
-tagged i18n from the downloads section on the homepage.
+and you are able to provide a translation for it that would be great.
 
 Thanks in advance.
 </p>
