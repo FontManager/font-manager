@@ -32,41 +32,54 @@ import subprocess
 
 from os.path import exists, join
 
-from config import USER_FONT_DIR, HOME, PACKAGE_DIR
+from config import USER_FONT_DIR, HOME, PACKAGE_DIR, AUTOSTART_DIR
 
 
-def natural_sort(l):
-    """
-    Sort the given list in the way that humans expect
-    """
-    alphanum = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ]
-    l.sort( key=alphanum )
-    return l
+README = \
+_("""* This file was placed here by Font Manager because this directory
+did not exist, feel free to delete, it will not be generated again.
 
-def convert(t):
-    """
-    Make sure certain characters don't affect sort order
-    
-    So that a doesn't end up under a-a.
-    """
-    if t.isdigit():
-        return int(t)
-    else:
-        t = t.replace('-', '')
-        t = t.replace('_', '')
-        return t.upper()
+
+This is a per-user font directory.
+
+
+Any fonts ( or folders containing fonts ) present in this directory are
+automatically picked up by the system and available, but only to you.
+
+
+Please note that not only can you specify other directories to scan for
+fonts from the applications preferences dialog, but you can also set the
+default folder that's opened when 'Open fonts folder' is selected.
+
+
+If you wish to make fonts available to everyone using the system they will
+need to be placed in /usr/share/fonts
+
+""")
+
+STARTME = \
+_("""[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=Font Manager
+Name[en_US]=Font Manager
+Comment=Preview, compare and manage fonts
+Type=Application
+Exec=font-manager
+Terminal=false
+StartupNotify=false
+Icon=preferences-desktop-font
+Categories=Graphics;Viewer;GNOME;GTK;Publishing;
+""")
+
 
 class Throbber:
     """
     A simple throbber to provide some visual feedback
     """
     pixbuf = None
-    def __init__(self, builder=None):
-        if builder is None:
-            self.builder = gtk.Builder()
-            self.builder.set_translation_domain('font-manager')
-        else:
-            self.builder = builder
+    def __init__(self, builder):
+        self.builder = builder
         self.throbber = self.builder.get_object("throbber")
         self.animation = \
         gtk.gdk.PixbufAnimation(join(PACKAGE_DIR, 'ui/Throbber.gif'))
@@ -87,6 +100,28 @@ class Throbber:
         while gtk.events_pending():
             gtk.main_iteration()
         return
+
+
+def natural_sort(l):
+    """
+    Sort the given list in the way that humans expect
+    """
+    alphanum = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ]
+    l.sort( key=alphanum )
+    return l
+
+def convert(t):
+    """
+    Make sure certain characters don't affect sort order
+    
+    So that a doesn't end up under a-a for example.
+    """
+    if t.isdigit():
+        return int(t)
+    else:
+        t = t.replace('-', '')
+        t = t.replace('_', '')
+        return t.upper()
 
 def reset_fontconfig_cache():
     """
@@ -132,6 +167,7 @@ def shell_escape(family):
     family = family.replace('"', '\"')
     family = family.replace('/', ' ')
     family = family.replace('$', '\$')
+    family = family.replace(',', '\,')
     return family
 
 def strip_fc_family(family):
@@ -152,35 +188,13 @@ def get_cli_output(cmd):
     This replaces os.popen(cmd).readline()
     """
     result = subprocess.Popen(cmd, stdout=subprocess.PIPE,
-                                        stderr=subprocess.STDOUT, shell=True)
+                                    stderr=subprocess.STDOUT, shell=True)
     output = result.communicate()[0].split('\n')
     for line in output:
         if not line:
             break
         yield line
     return
-
-README = \
-_("""* This file was placed here by Font Manager because this directory
-did not exist, feel free to delete, it will not be generated again.
-
-
-This is a per-user font directory.
-
-
-Any fonts ( or folders containing fonts ) present in this directory are
-automatically picked up by the system and available, but only to you.
-
-
-Please note that not only can you specify other directories to scan for
-fonts from the applications preferences dialog, but you can also set the
-default folder that's opened when 'Open fonts folder' is selected.
-
-
-If you wish to make fonts available to everyone using the system they will
-need to be placed in /usr/share/fonts
-
-""")
 
 def install_readme():
     """
@@ -191,3 +205,19 @@ def install_readme():
     with open(join(USER_FONT_DIR, 'Read Me.txt'), 'w') as readme:
         readme.write(README)
     return
+
+def autostart(startme=True):
+    """
+    Install or remove a .desktop file when requested
+    """
+    if startme:
+        if not exists(AUTOSTART_DIR):
+            os.makedirs(AUTOSTART_DIR, 0644)
+        with open\
+        (join(AUTOSTART_DIR, 'font-manager.desktop'), 'w') as startup:
+            startup.write(STARTME)
+    else:
+        if exists(join(AUTOSTART_DIR, 'font-manager.desktop')):
+            os.unlink(join(AUTOSTART_DIR, 'font-manager.desktop'))
+    return
+

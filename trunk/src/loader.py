@@ -40,36 +40,38 @@ import fontviews
 import treeviews
 import xmlutils
 
-from config import DB_DIR
+from config import DB_DIR, INI
 from common import reset_fontconfig_cache
 
 
-class Ui:
+class Load:
     fontload = None
     fontviews = None
     treeviews = None
-    def __init__(self, parent=None, builder=None):
-        if builder is None:
-            self.builder = gtk.Builder()
-            self.builder.set_translation_domain('font-manager')
-        else:
-            self.builder = builder
+    def __init__(self, parent, builder, app_icon):
+        self.builder = builder
         self.parent = parent
         # "statusbar" is just a label...
         self.status_bar = self.builder.get_object("total_fonts")
-
-    def initialize(self):
-        self.fontload = fontload.FontLoad(parent=self.parent,
-                                                    builder=self.builder)
-        self.fontviews = fontviews.Views(parent=self.parent,
-                                                    builder=self.builder)
-        self.treeviews = treeviews.Trees(parent=self.parent,
-                                                    builder=self.builder)
-        self.status_bar.set_text(_("Fonts : %s") %
-                                        self.fontload.total_fonts)
+        self.app_icon = app_icon
+        
+    def initialize(self, MESSAGE, hidden):
+        self.fontload = fontload.FontLoad(self.parent, self.builder)
+        self.fontviews = fontviews.Views(self.parent, self.builder)
+        self.treeviews = treeviews.Trees(self.parent, self.builder)
+        self.status_bar.set_text\
+        (_("Fonts : %s") % self.fontload.total_fonts)
+        # If minimizeonstart is set, let's throw up a notification
+        if hidden and MESSAGE is not None:
+            notification = MESSAGE(_('Font Manager'), \
+                                _('Finished loading %s fonts') % \
+                            self.fontload.total_fonts, 'dialog-info')
+            if self.app_icon is not None:
+                notification.set_icon_from_pixbuf(self.app_icon)
+            notification.show()
         return self.treeviews
 
-    def reboot(self):
+    def reboot(self, MESSAGE):
         """
         Restarts the application when changes require it or user requests it.
         """
@@ -77,6 +79,13 @@ class Ui:
         self.parent.hide()
         while gtk.events_pending():
             gtk.main_iteration()
+        # If possible notify about impending restart
+        if MESSAGE is not None:
+            notification = MESSAGE(_('Font Manager'), \
+                            _('Will restart in a moment'), 'dialog-info')
+            if self.app_icon is not None:
+                notification.set_icon_from_pixbuf(self.app_icon)
+            notification.show()
         shutil.rmtree(DB_DIR, ignore_errors=True)
         # Save any changes to collections before reloading
         self.treeviews.save()
@@ -91,3 +100,4 @@ class Ui:
         subprocess.Popen(['font-manager'])
         gtk.main_quit()
         return
+

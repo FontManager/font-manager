@@ -37,8 +37,8 @@ import fontload
 
 family_ls = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT,
                                                     gobject.TYPE_STRING)
-                                                    
-                                                   
+
+
 class Trees:
     """
     Set up treeviews.
@@ -52,12 +52,8 @@ class Trees:
     pending_event = None
     current_collection = None
     fonts_column = None
-    def __init__(self, parent=None, builder=None):
-        if builder is None:
-            self.builder = gtk.Builder()
-            self.builder.set_translation_domain('font-manager')
-        else:
-            self.builder = builder
+    def __init__(self, parent, builder):
+        self.builder = builder
         self.selected_rows = []
         self.parent = parent
         self.category_tv = self.builder.get_object('collections_tree')
@@ -76,7 +72,9 @@ class Trees:
         self.export = self.builder.get_object("export")
         self.init_treeviews()
         self.connect_handlers()
-        self.init_select()
+        # select the first option in each column
+        self.category_tv.get_selection().select_path(1)
+        self.family_tv.get_selection().select_path(0)
         return
 
     def init_treeviews(self):
@@ -117,13 +115,6 @@ class Trees:
                                     gtk.CellRendererText(), markup=0)
         self.fonts_column.set_sort_column_id(2)
         self.family_tv.append_column(self.fonts_column)
-        
-        
-    def init_select(self):
-        # select the first option in each column
-        self.category_tv.get_selection().select_path(1)
-        self.family_tv.get_selection().select_path(0)
-        return
 
     def connect_handlers(self):
         self.new_collection.connect('clicked', self._on_new_collection)
@@ -283,35 +274,11 @@ class Trees:
         collection = self.current_collection
         if not collection:
             return
-        if len(collection.fonts) <= 1:
-            fontload.collections.remove(collection)
-            self.category_tv.get_selection().select_path(0)
-            self.family_tv.get_selection().select_path(0)
-        elif self._confirm_remove_collection(collection):
-            fontload.collections.remove(collection)
-            self.category_tv.get_selection().select_path(0)
-            self.family_tv.get_selection().select_path(0)
+        fontload.collections.remove(collection)
+        self.category_tv.get_selection().select_path(0)
+        self.family_tv.get_selection().select_path(0)
         self.update_views()
         return
-
-    def _confirm_remove_collection(self, collection):
-        dialog = gtk.Dialog(_("Confirm Action"),
-        self.parent, gtk.DIALOG_MODAL,
-        (gtk.STOCK_NO, gtk.RESPONSE_NO, gtk.STOCK_YES, gtk.RESPONSE_YES))
-        dialog.set_default_response(gtk.RESPONSE_CANCEL)
-        message = _("""
-Deleted collections cannot be recovered.
-
-Really delete \"%s\"?
-        """) % collection.name
-        text = gtk.Label()
-        text.set_padding(15, 0)
-        text.set_text(message)
-        dialog.vbox.pack_start(text, padding=10)
-        text.show()
-        ret = dialog.run()
-        dialog.destroy()
-        return (ret == gtk.RESPONSE_YES)
 
     def _on_enable_collection(self, unused_widget):
         self._enable_collection(True)
@@ -328,9 +295,9 @@ Really delete \"%s\"?
 
     def _disable_mad_fonts(self, how_many):
         dialog = gtk.Dialog(_("Confirm Action"),
-        self.parent, gtk.DIALOG_MODAL,
-        (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                gtk.STOCK_YES, gtk.RESPONSE_YES))
+                            self.parent, gtk.DIALOG_MODAL,
+                            (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
+                                gtk.STOCK_YES, gtk.RESPONSE_YES))
         dialog.set_default_response(gtk.RESPONSE_CANCEL)
         message = _("""
 Disabling large amounts of fonts at once can have quite an impact on the desktop.
@@ -555,10 +522,7 @@ Really disable %s fonts?
         lstore = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT,
                                                     gobject.TYPE_STRING)
         for font in fontlist:
-            treeiter = lstore.append()
-            lstore.set(treeiter, 0, font.get_label())
-            lstore.set(treeiter, 1, font)
-            lstore.set(treeiter, 2, font.family)
+            lstore.append([font.get_label(), font, font.family])
         tree.set_model(lstore)
         tree.thaw_child_notify()
         scroll.set_sensitive(True)
@@ -656,5 +620,6 @@ def _begin_drag(unused_widget, context):
     #max = 1
     # if dragging more than one row, change drag icon
     #if len(paths) > max:
-    context.set_icon_stock(gtk.STOCK_ADD, 22, 22)
+    context.set_icon_stock(gtk.STOCK_ADD, 16, 16)
     return
+

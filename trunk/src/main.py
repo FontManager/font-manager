@@ -55,6 +55,17 @@ import xmlutils
 
 from config import INI, PACKAGE, PACKAGE_DIR, VERSION, USER_FONT_DIR
 
+# Show notifications, if available
+MESSAGE = None
+try:
+    import pynotify
+    if not pynotify.init('font-manager'):
+        pass
+    else:
+        MESSAGE = pynotify.Notification
+except ImportError:
+    pass
+
 
 class FontManager:
     """
@@ -69,19 +80,14 @@ class FontManager:
         xmlutils.BlackList.disable_blacklist()
         # Load ui file
         self.builder.add_from_file(join(PACKAGE_DIR, 'ui/main.ui'))
-        self.mainwindow = self.builder.get_object("window")
+        self.mainwindow = self.builder.get_object("fm_mainwindow")
         # Find out if user wants window closed or sent to tray
         config = ConfigParser.ConfigParser()
         config.read(INI)
         try:
-            tray = config.get('Delete Event', 'tray')
-            if tray == 'True':
-                tray = True
-            elif tray == 'False':
-                tray = False
+            tray = config.getboolean('General', 'minimizeonclose')
         except ConfigParser.NoSectionError:
             tray = True
-        #
         if tray:
             self.mainwindow.connect('delete-event', delete_handler)
         else:
@@ -95,6 +101,7 @@ class FontManager:
             gtk.window_set_default_icon_list(app_icon)
         except gobject.GError, exc:
             logging.warn("Could not find preferences-desktop-font icon", exc)
+            app_icon = None
         # Font preferences, at least for GNOME
         font_prefs = self.builder.get_object("font_preferences")
         font_prefs.connect('clicked', on_font_preferences)
@@ -130,12 +137,18 @@ class FontManager:
         self.manage_fonts = self.builder.get_object('manage_fonts')
         self.manage_fonts.connect('button-press-event', self.on_manage_fonts)
         # Showtime
-        self.mainwindow.show()
-        while gtk.events_pending():
-            gtk.main_iteration()
+        # Find out if user wants the window shown at startup or not
+        try:
+            hidden = config.getboolean('General', 'minimizeonstart')
+        except ConfigParser.NoSectionError:
+            hidden = False
+        if not hidden:
+            self.mainwindow.show()
+            while gtk.events_pending():
+                gtk.main_iteration()
         # Load fonts, collections, setup treeviews, etc
-        self.loader = loader.Ui(parent=self.mainwindow, builder=self.builder)
-        self.loader.initialize()
+        self.loader = loader.Load(self.mainwindow, self.builder, app_icon)
+        self.loader.initialize(MESSAGE, hidden)
         # Tray icon
         self.tray_icon = \
         gtk.status_icon_new_from_icon_name('preferences-desktop-font')
@@ -144,7 +157,7 @@ class FontManager:
         self.tray_icon.connect('popup-menu', self.tray_icon_menu)
 
     def refresh(self, unused_widget):
-        self.loader.reboot()
+        self.loader.reboot(MESSAGE)
         return
 
     def tray_icon_menu(self, unused_widget, button, event_time):
@@ -154,9 +167,9 @@ class FontManager:
         Provides quick access to common functions
         """
         popup_menu = gtk.Menu()
-        separator = gtk.SeparatorMenuItem()
-        separator1 = gtk.SeparatorMenuItem()
-        separator2 = gtk.SeparatorMenuItem()
+        sep = gtk.SeparatorMenuItem()
+        sep1 = gtk.SeparatorMenuItem()
+        sep2 = gtk.SeparatorMenuItem()
         install = gtk.ImageMenuItem(_('Install fonts'))
         remove = gtk.ImageMenuItem(_('Remove fonts'))
         font_prefs = gtk.ImageMenuItem(_('Font Preferences'))
@@ -165,34 +178,29 @@ class FontManager:
         yelp = gtk.ImageMenuItem(_('Help'))
         about = gtk.ImageMenuItem(_('About'))
         quit_app = gtk.ImageMenuItem(_('Quit'))
-        install_image = gtk.image_new_from_icon_name('gtk-add',
-                                                        gtk.ICON_SIZE_MENU)
+        ISM = gtk.ICON_SIZE_MENU
+        install_image = gtk.image_new_from_icon_name('gtk-add', ISM)
+        remove_image = gtk.image_new_from_icon_name('gtk-remove', ISM)
+        font_prefs_image = \
+        gtk.image_new_from_icon_name('preferences-desktop-font', ISM)
+        char_map_image = \
+        gtk.image_new_from_icon_name('accessories-character-map', ISM)
+        prefs_image = gtk.image_new_from_icon_name('gtk-preferences', ISM)
+        help_image = gtk.image_new_from_icon_name('help-contents', ISM)
+        about_image = gtk.image_new_from_icon_name('help-about', ISM)
+        quit_image = gtk.image_new_from_icon_name('application-exit', ISM)
         install.set_image(install_image)
-        remove_image = gtk.image_new_from_icon_name('gtk-remove',
-                                                        gtk.ICON_SIZE_MENU)
         remove.set_image(remove_image)
-        font_prefs_image = gtk.image_new_from_icon_name(
-                            'preferences-desktop-font', gtk.ICON_SIZE_MENU)
         font_prefs.set_image(font_prefs_image)
-        char_map_image = gtk.image_new_from_icon_name(
-                            'accessories-character-map', gtk.ICON_SIZE_MENU)
         char_map.set_image(char_map_image)
-        prefs_image = gtk.image_new_from_icon_name('gtk-preferences',
-                                                        gtk.ICON_SIZE_MENU)
         prefs.set_image(prefs_image)
-        help_image = gtk.image_new_from_icon_name('help-contents',
-                                                        gtk.ICON_SIZE_MENU)
         yelp.set_image(help_image)
-        about_image = gtk.image_new_from_icon_name('help-about',
-                                                        gtk.ICON_SIZE_MENU)
         about.set_image(about_image)
-        quit_image = gtk.image_new_from_icon_name('application-exit',
-                                                        gtk.ICON_SIZE_MENU)
         quit_app.set_image(quit_image)
         install.connect('activate', managed.InstallFonts,
-                                self.mainwindow, self.loader, self.builder)
+                    self.mainwindow, self.loader, self.builder, MESSAGE)
         remove.connect('activate', managed.RemoveFonts,
-                                self.mainwindow, self.loader, self.builder)
+                    self.mainwindow, self.loader, self.builder, MESSAGE)
         font_prefs.connect('activate', on_font_preferences)
         char_map.connect('activate', self.loader.fontviews.on_char_map)
         prefs.connect('activate', self.on_prefs)
@@ -200,19 +208,14 @@ class FontManager:
         about.connect('activate', on_about)
         quit_app.connect('activate', self.quit)
         if self.froller:
-            popup_menu.append(install)
-            popup_menu.append(remove)
-            popup_menu.append(separator)
+            for entry in install, remove, sep:
+                popup_menu.append(entry)
         if self.fprefs:
             popup_menu.append(font_prefs)
         if self.loader.fontviews.charmap:
             popup_menu.append(char_map)
-        popup_menu.append(separator1)
-        popup_menu.append(prefs)
-        popup_menu.append(yelp)
-        popup_menu.append(about)
-        popup_menu.append(separator2)
-        popup_menu.append(quit_app)
+        for entry in sep1, prefs, yelp, about, sep2, quit_app:
+            popup_menu.append(entry)
         popup_menu.show_all()
         popup_menu.popup(None, None, None, button, event_time)
 
@@ -236,14 +239,12 @@ class FontManager:
         install = gtk.ImageMenuItem(_('Install fonts'))
         remove = gtk.ImageMenuItem(_('Remove fonts'))
         open_font_folder = gtk.ImageMenuItem(_('Open fonts folder'))
-        install_image = gtk.image_new_from_icon_name('gtk-add',
-                                                        gtk.ICON_SIZE_MENU)
+        ISM = gtk.ICON_SIZE_MENU
+        install_image = gtk.image_new_from_icon_name('gtk-add', ISM)
+        remove_image = gtk.image_new_from_icon_name('gtk-remove', ISM)
+        open_image = gtk.image_new_from_icon_name('folder-open', ISM)
         install.set_image(install_image)
-        remove_image = gtk.image_new_from_icon_name('gtk-remove',
-                                                        gtk.ICON_SIZE_MENU)
         remove.set_image(remove_image)
-        open_image = gtk.image_new_from_icon_name('folder-open',
-                                                        gtk.ICON_SIZE_MENU)
         open_font_folder.set_image(open_image)
         if self.froller:
             popup_menu.append(install)
@@ -251,12 +252,12 @@ class FontManager:
         popup_menu.append(separator)
         popup_menu.append(open_font_folder)
         install.connect('activate', managed.InstallFonts,
-                                self.mainwindow, self.loader, self.builder)
+                    self.mainwindow, self.loader, self.builder, MESSAGE)
         remove.connect('activate', managed.RemoveFonts,
-                                self.mainwindow, self.loader, self.builder)
+                    self.mainwindow, self.loader, self.builder, MESSAGE)
         open_font_folder.connect('activate', _open_font_folder)
         popup_menu.show_all()
-        popup_menu.attach_to_widget(self.manage_fonts, detach_popup)
+        popup_menu.attach_to_widget(self.manage_fonts, popup_menu.destroy)
         popup_menu.popup(None, None, None, event.button, event.time)
 
     def on_prefs(self, unused_widget):
@@ -264,7 +265,7 @@ class FontManager:
         Displays applications preferences dialog
         """
         from preferences import Preferences
-        Preferences(self.mainwindow, self.builder, self.loader).run()
+        Preferences(self.mainwindow, self.builder, self.loader, MESSAGE).run()
 
     def on_export(self, unused_widget):
         """
@@ -284,9 +285,6 @@ class FontManager:
         logging.info("Exiting...")
         gtk.main_quit()
 
-def detach_popup(menu, unused_widget):
-    menu.destroy()
-    return
 
 def on_about(unused_widget):
     """
@@ -429,3 +427,4 @@ def delete_handler(window, unused_event):
     window.set_skip_taskbar_hint(True)
     window.hide()
     return True
+

@@ -2,7 +2,7 @@
 This module allows users to export "collections".
 .
 """
-#!/usr/bin/env python
+# Font Manager, a font management application for the GNOME desktop
 #
 # Copyright 2009 Jerry Casiano
 #
@@ -35,7 +35,9 @@ import ConfigParser
 from os.path import exists, join
 
 from common import Throbber
-from config import INI, HOME
+from config import INI, HOME, WORK_DIR
+from sampler import Config
+
 
 class Export:
     """
@@ -47,7 +49,9 @@ class Export:
         self.archive = True
         self.sample = False
         self.outdir = join(HOME, "Desktop")
-        self.tmpdir = "/tmp/%s" % self.collection.name
+        # https://bugzilla.redhat.com/show_bug.cgi?id=551878
+        # Do our staging elsewhere 
+        self.tmpdir = "%s/%s" % (WORK_DIR, self.collection.name)
         self.font_list = []       
         self.file_list = []
         # Fonts for which filepath is ?
@@ -62,7 +66,7 @@ class Export:
         config = ConfigParser.ConfigParser()
         config.read(INI)
         try:
-            self.arch_type = config.get('Archive Type', 'default')
+            self.arch_type = config.get('Export Options', 'archivetype')
         except ConfigParser.NoSectionError:
             self.arch_type = 'zip'
         # UI elements
@@ -117,7 +121,7 @@ class Export:
         self.chooser.set_action(gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER)
         self.chooser.connect('current-folder-changed', self.change_dest)
         choose.add(self.chooser)
-        dialog.vbox.pack_end(choose, False, True, 0)
+        dialog.vbox.pack_end(choose, False, True, 2)
         dialog.vbox.show_all()
         response = dialog.run()
         dialog.destroy()
@@ -139,6 +143,8 @@ class Export:
     def process_export(self):
         if exists(self.tmpdir):
             shutil.rmtree(self.tmpdir)
+        if not exists(WORK_DIR):
+            os.mkdir(WORK_DIR)
         os.mkdir(self.tmpdir)
         for path in set(self.file_list):
             shutil.copy(path, self.tmpdir)
@@ -156,9 +162,20 @@ class Export:
                 except OSError:
                     pass
         if self.sample:
+            # Get preferences
+            config = ConfigParser.ConfigParser()
+            config.read(INI)
+            try:
+                size = float(config.get('Export Options', 'fontsize'))
+                pangram = config.getboolean('Export Options', 'pangram')
+                C = Config()
+                C.font_size = size
+                C.include_pangram = pangram
+            except ConfigParser.NoSectionError:
+                C = None
             from sampler import BuildSample
             buildsample = BuildSample\
-            (self.tmpdir, join\
+            (C, self.collection.name, self.tmpdir, join\
             (self.tmpdir, '%s.pdf' % self.collection.name), self.builder)
             if not buildsample.basic():
                 return
@@ -183,6 +200,7 @@ class Export:
                 else:
                     shutil.rmtree(join(self.outdir, self.collection.name))
             shutil.move(self.tmpdir, self.outdir)
+        shutil.rmtree(WORK_DIR)
         return
     
     def compress_toggled(self, widget):
@@ -213,7 +231,7 @@ class Export:
         return
     
     def choose_toggled(self, widget):
-        # Seems like this is backwords?
+        # Seems like this is backwards?
         if not widget.get_expanded():
             self.status.set_markup\
             ('<span weight="light" size="small"><tt>' + \
@@ -266,8 +284,8 @@ class Export:
         t_buffer.insert_at_cursor\
         (_("\nFilepaths for the following fonts could not be determined.\n"))
         t_buffer.insert_at_cursor(_("\nThese fonts will not be included :\n\n"))
-        for i in set(self.no_info):
-            t_buffer.insert_at_cursor("\t" + i.get_name() + "\n")
+        for font in set(self.no_info):
+            t_buffer.insert_at_cursor("\t" + font.get_name() + "\n")
         scrolled.add(view)
         box.pack_start(scrolled, True, True, 0)
         box.show_all()
@@ -286,16 +304,9 @@ class Export:
         Requires file-roller to be installed
         """
         os.chdir(self.outdir)
-        # Wanted to block here till file-roller finishes but compiz seems 
-        # especially sensitive at times and not only darkens the window
-        # ( which is cool ) but also asks user to force quit very quickly
-        # ( which is not cool ) :-(
-        # cmd = "file-roller -a '%s.%s' '%s'" % \
-        # (self.collection.name, self.arch_type, self.tmpdir)
-        # subprocess.call(cmd, shell=True)
         roller = subprocess.Popen('file-roller' + ' -a "%s.%s" "%s"' % \
         (self.collection.name, self.arch_type, self.tmpdir), shell=True)
-        # So let's block here instead :-p
+        # Wait for file-roller to finish
         while roller.poll() is None:
             continue
         shutil.rmtree(self.tmpdir)

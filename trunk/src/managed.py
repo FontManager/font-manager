@@ -40,8 +40,9 @@ import cPickle
 from os.path import exists, join
 
 from common import Throbber
-from config import HOME, INSTALL_DIRECTORY, DB_DIR, USER_FONT_DIR, \
-PACKAGE_DIR, TMP_DIR
+from config import HOME, INSTALL_DIRECTORY, DB_DIR
+from config import USER_FONT_DIR, PACKAGE_DIR, TMP_DIR
+
 
 FILE_EXTS = ('.ttf', '.ttc', '.otf', '.TTF', '.TTC', '.OTF')
 ARCH_EXTS = ('.zip', '.tar', '.tar.gz', '.tar.bz2',
@@ -54,7 +55,7 @@ class InstallFonts:
     """
     Bring up a dialog where user is allowed to select font files or archives
     """
-    def __init__(self, unused_widget, parent, loader, builder):
+    def __init__(self, unused_widget, parent, loader, builder, MESSAGE):
         self.filelist = []
         self.installed = []
         self.pending = []
@@ -63,6 +64,7 @@ class InstallFonts:
         self.parent = parent
         self.loader = loader
         self.builder = builder
+        self.MESSAGE = MESSAGE
         self.progress = self.builder.get_object('progressbar')
         dialog = gtk.FileChooserDialog(_('Select File'), self.parent,
                                         gtk.FILE_CHOOSER_ACTION_OPEN,
@@ -137,10 +139,10 @@ class InstallFonts:
             return
         if self._check_dupes():
             self._show_dupes(self.dupes)
-        self.finish_install()
+        finish_install()
         # Are fonts.scale and fonts.dir even necessary anymore?
         mkfontdirs()
-        self.loader.reboot()
+        self.loader.reboot(self.MESSAGE)
         return
 
     @staticmethod
@@ -158,39 +160,6 @@ class InstallFonts:
         # if user_is_stupid:
         #     self.notify()
         # ;-p
-        return
-
-    @staticmethod
-    def finish_install():
-        """
-        Organize fonts alphabetically
-        """
-        log_fonts(True, TMP_DIR)
-        for root, dirs, files in os.walk(TMP_DIR):
-            for directory in dirs:
-                fullpath = join(root, directory)
-                new = directory[0]
-                new = new.upper()
-                newpath = join(INSTALL_DIRECTORY, new)
-                if not exists(newpath):
-                    os.mkdir(newpath)
-                newname = join(newpath, directory)
-                shutil.move(fullpath, newname)
-        for root, dirs, files in os.walk(TMP_DIR):
-            for name in files:
-                if name.endswith(FILE_EXTS):
-                    oldpath = join(root, name)
-                    truename = name.split('.')[0]
-                    truename = name.strip()
-                    new = truename[0]
-                    new = new.upper()
-                    newpath = join(INSTALL_DIRECTORY, new)
-                    if not exists(newpath):
-                        os.mkdir(newpath)
-                    newname = join(newpath, name)
-                    shutil.move(oldpath, newname)
-        do_cleanup(INSTALL_DIRECTORY)
-        shutil.rmtree(TMP_DIR)
         return
 
     def _check_dupes(self):
@@ -288,14 +257,11 @@ class RemoveFonts:
     Displays a treeview where user can select which fonts to delete
     """
     remove_ls =  gtk.ListStore(gobject.TYPE_STRING)
-    def __init__(self, unused_widget, parent=None, loader=None, builder=None):
-        if not builder:
-            self.builder = gtk.Builder()
-            self.builder.set_translation_domain('font-manager')
-        else:
-            self.builder = builder
+    def __init__(self, unused_widget, parent, loader, builder, MESSAGE):
+        self.builder = builder
         self.loader = loader
         self.parent = parent
+        self.MESSAGE = MESSAGE
         self.families = []
         self.families_at_start = []
         self.installed_fonts = {}
@@ -308,16 +274,16 @@ class RemoveFonts:
         self.remove_search = self.builder.get_object('remove_search')
         self.delete_font = self.builder.get_object('delete_font')
         self.delete_font.connect('clicked', self.delete_selected)
+        cell_render = gtk.CellRendererText()
+        self.column = gtk.TreeViewColumn(None, cell_render, text=0)
         self.init_tree()
         self.load()
         self.window.show()
 
     def init_tree(self):
         self.remove_tree.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
-        cell_render = gtk.CellRendererText()
-        column = gtk.TreeViewColumn(None, cell_render, text=0)
-        column.set_sort_column_id(0)
-        self.remove_tree.append_column(column)
+        self.column.set_sort_column_id(0)
+        self.remove_tree.append_column(self.column)
         self.remove_tree.set_search_entry(self.remove_search)
         self.remove_search.connect('icon-press', self._on_clear_icon)
 
@@ -344,6 +310,7 @@ class RemoveFonts:
             self.families_at_start.append(font)
         self.families = self.families_at_start[:]
         self.remove_tree.set_model(self.remove_ls)
+        self.column.clicked()
         if len(self.families) > 0:
             self.remove_tree.get_selection().select_path(0)
         throbber.stop()
@@ -367,6 +334,26 @@ class RemoveFonts:
         self.do_delete(selected_paths, selected_db)
         for treeiter in selected_fams.itervalues():
             self.remove_ls.remove(treeiter)
+        for treeiter in selected_fams.itervalues():
+            still_valid = self.remove_ls.iter_is_valid(treeiter)
+            if still_valid:
+                break
+        # Set the cursor to a remaining row instead of having the cursor
+        # disappear. This allows for easy deletion of multiple rows by
+        # hitting the Remove button repeatedly.  
+        if still_valid:
+            # The treeiter is still valid. This means that there's another
+            # row has "shifted" to the location the deleted row occupied
+            # before. Select that row.
+            new_path = self.remove_ls.get_path(treeiter)
+            if (new_path[0] >= 0):
+                self.remove_tree.get_selection().select_path(new_path)
+        else:
+            # It's no longer valid which means it was the last row that
+            # was deleted, select the new last row.
+            path_to_select = self.remove_ls.iter_n_children(None) - 1
+            if (path_to_select >= 0):
+                self.remove_tree.get_selection().select_path(path_to_select)     
         return
 
     def do_delete(self, selected_paths, selected_db):
@@ -392,8 +379,40 @@ class RemoveFonts:
         if self.families_at_start != self.families:
             mkfontdirs()
             do_cleanup(INSTALL_DIRECTORY)
-            self.loader.reboot()
-            
+            self.loader.reboot(self.MESSAGE)
+
+
+def finish_install():
+    """
+    Organize fonts alphabetically
+    """
+    log_fonts(True, TMP_DIR)
+    for root, dirs, files in os.walk(TMP_DIR):
+        for directory in dirs:
+            fullpath = join(root, directory)
+            new = directory[0]
+            new = new.upper()
+            newpath = join(INSTALL_DIRECTORY, new)
+            if not exists(newpath):
+                os.mkdir(newpath)
+            newname = join(newpath, directory)
+            shutil.move(fullpath, newname)
+    for root, dirs, files in os.walk(TMP_DIR):
+        for name in files:
+            if name.endswith(FILE_EXTS):
+                oldpath = join(root, name)
+                truename = name.split('.')[0]
+                truename = name.strip()
+                new = truename[0]
+                new = new.upper()
+                newpath = join(INSTALL_DIRECTORY, new)
+                if not exists(newpath):
+                    os.mkdir(newpath)
+                newname = join(newpath, name)
+                shutil.move(oldpath, newname)
+    do_cleanup(INSTALL_DIRECTORY)
+    shutil.rmtree(TMP_DIR)
+    return
 
 def mkfontdirs():
     """
@@ -443,6 +462,9 @@ def do_cleanup(directory):
     # and make sure others have read-only access, apparently this can be
     # an issue for some programs
     for root, dirs, files in os.walk(directory):
+        if len(dirs) > 0:
+            for dir in dirs:
+                os.chmod(join(root, dir), 0744)        
         if len(files) > 0:
             for filename in files:
                 os.chmod(join(root, filename), 0644)

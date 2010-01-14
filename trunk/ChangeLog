@@ -1,3 +1,21 @@
+    * Update (0.4.3)
+
+        Added the following options
+        
+          Start application at login
+          Start application minimized
+          Include pangram in sample sheets
+          Set default font size for sample sheets
+    
+        Removed unnecessary, possibly confusing, confirmation dialog 
+        when removing collections.
+        
+        Correct permissions for installed files.
+        
+        Some code cleanup
+        
+        Clean up obsolete files.
+
 
     * Update (0.4.2)
 

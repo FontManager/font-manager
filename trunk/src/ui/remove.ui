@@ -5,6 +5,7 @@
   <object class="GtkWindow" id="window">
     <property name="width_request">360</property>
     <property name="height_request">425</property>
+    <property name="resizable">False</property>
     <property name="window_position">center</property>
     <child>
       <object class="GtkFrame" id="frame1">

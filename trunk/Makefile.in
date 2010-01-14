@@ -63,7 +63,6 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
-BASH = @BASH@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 ECHO_C = @ECHO_C@
@@ -472,8 +471,7 @@ uninstall:
 
 dist-hook:
 	-find . -name '.svn' -exec rm -rf '{}' \;
-	-find . -name '.svn' -exec rm -rf '{}' \;	
-	@if [ -e 'src/Font Manager' ]; then mv 'src/Font Manager' 'src/FontManager.py'; fi
+	-find . -name '.svn' -exec rm -rf '{}' \;
 	-rm -f po/messages.pot
 	find po -maxdepth 1 -regextype posix-basic -regex "po/[^.]*" -type d -exec rm -rf {} \;
 

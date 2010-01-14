@@ -37,10 +37,11 @@ from os.path import exists
 
 import fontload
 
+
 COMPARE_LS = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
 
 DEFAULT_STYLES  =  ['Regular', 'Roman', 'Medium', 'Normal', 'Book']
-
+DEFAULT_PREVIEW_SIZE = 11
 # Note to translators: this should be a pangram (a sentence containing all
 # letters of your alphabet. See http://en.wikipedia.org/wiki/Pangram for
 # more information and possible samples for your language.
@@ -63,12 +64,8 @@ class Views:
     mode = 'preview'
     colors_dialog = None
     have_gfw = False
-    def __init__(self, parent=None, builder=None):
-        if builder is None:
-            self.builder = gtk.Builder()
-            self.builder.set_translation_domain('font-manager')
-        else:
-            self.builder = builder
+    def __init__(self, parent, builder):
+        self.builder = builder
         self.parent = parent
         self.current_font = None
         self.current_style = None
@@ -92,11 +89,12 @@ class Views:
         custom_text = self.builder.get_object('custom_text')
         custom_text.connect('toggled', self.custom_toggled)
         size_adjustment = self.builder.get_object('size_adjustment')
-        # correct value on start
-        size_adjustment.set_value(11)
+        # Correct value on start
+        size_adjustment.set_value(DEFAULT_PREVIEW_SIZE)
         self.size = size_adjustment.get_value()
-        # make it do something
+        # Make it do something
         size_adjustment.connect('value-changed', self.on_size_adj_v_change)
+        # GNOME character map
         self.gucharmap = self.builder.get_object("gucharmap")
         if exists('/usr/bin/gucharmap') or \
         exists('/usr/local/bin/gucharmap'):
@@ -349,6 +347,7 @@ class Views:
         """
         fsb = self.builder.get_object("font_size_box")
         fsb.pack_end(self.style_combo, False, False)
+        
         self.style_combo.connect('changed', self._on_style_changed)
         self.style_combo.show()
         return
@@ -384,6 +383,8 @@ class Views:
         """
         Calls _change_font with the newly selected font
         """
+        enable_font = self.builder.get_object('enable_font')
+        disable_font = self.builder.get_object('disable_font')
         tree = sel
         model, path_list = tree.get_selected_rows()
         try:
@@ -393,8 +394,12 @@ class Views:
         if isinstance(obj, fontload.Family):
             self._change_font(obj)
             if obj.enabled:
+                enable_font.set_sensitive(False)
+                disable_font.set_sensitive(True)
                 self.gucharmap.set_sensitive(True)
             else:
+                enable_font.set_sensitive(True)
+                disable_font.set_sensitive(False)
                 self.gucharmap.set_sensitive(False)
         return
 
@@ -480,14 +485,13 @@ class Views:
         """
         Sets up sample text
         """
-        buff = self.preview.get_buffer()
-        buff.set_text("", 0)
+        buffer = gtk.TextBuffer()
+        self.preview.set_buffer(buffer)
         size = self.size
-        tag = buff.create_tag(None, font_desc=descr, size_points=size)
-        buff.insert_with_tags\
-        (buff.get_end_iter(), descr.to_string() + '\n', tag)
-        buff.insert_with_tags\
-        (buff.get_end_iter(), '\n' + self.preview_text + '\n', tag)
+        tag = buffer.create_tag(None, font_desc=descr, size_points=size)
+        buffer.insert(buffer.get_end_iter(), descr.to_string() + '\n')
+        buffer.insert(buffer.get_end_iter(), '\n' + self.preview_text + '\n')
+        buffer.apply_tag(tag, buffer.get_start_iter(), buffer.get_end_iter())
         self.current_style = descr
         return
 
@@ -503,3 +507,4 @@ class Views:
         dialog.run()
         dialog.destroy()
         return
+

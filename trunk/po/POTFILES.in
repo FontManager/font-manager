@@ -3,7 +3,6 @@ src/common.py
 src/config.py
 src/export.py
 src/fontload.py
-src/FontManager.py
 src/fontviews.py
 src/__init__.py
 src/loader.py

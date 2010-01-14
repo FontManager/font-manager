@@ -35,14 +35,15 @@ from os.path import exists, join
 
 from config import *
 from common import install_readme
-from managed import log_fonts
+from managed import finish_install
+
 
 INCLUDE_LINE = """<!-- Added by Font Manager -->
-    <include ignore_missing=\"yes\">%s</include>
-    <include ignore_missing=\"yes\">%s</include>
-    <include ignore_missing=\"yes\">%s</include>
+<include ignore_missing=\"yes\">%s</include>
+<include ignore_missing=\"yes\">%s</include>
+<include ignore_missing=\"yes\">%s</include>
 <!-- ~~~~~~~~~~~~~~~~~~~~~ -->""" % \
-(FM_BLOCK_CONF, DIRS_CONF, RENDER_CONF)
+(DIRS_CONF, FM_BLOCK_CONF, RENDER_CONF)
 
 VALID_CONFIG = """<?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
@@ -52,6 +53,7 @@ VALID_CONFIG = """<?xml version="1.0"?>
 """ % INCLUDE_LINE
 
 FILE_EXTS = ('.ttf', '.ttc', '.otf', '.TTF', '.TTC', '.OTF')
+
 
 def add_patelt_node(parent, pat_type, val):
     """
@@ -369,26 +371,27 @@ def check_for_fm_req_dir():
         print "This appears to be the first run"
         print "Creating %s" % FM_DIR
         os.mkdir(FM_DIR)
-    if not exists(CONF_DIR):
-        os.mkdir(CONF_DIR)
-    if not exists(GROUPS_DIR):
-        os.mkdir(GROUPS_DIR)
-    if not exists(LOG_DIR):
-        os.mkdir(LOG_DIR)
-    if not exists(DB_DIR):
-        os.mkdir(DB_DIR)
+    for DIR in CONF_DIR, GROUPS_DIR, LOG_DIR, DB_DIR, INSTALL_DIRECTORY:
+        if not exists(DIR):
+            os.mkdir(DIR)
     if not exists(USER_FONT_DIR):
         print "No font directory found for %s" % USER
         print "Creating font directory"
-        os.mkdir(USER_FONT_DIR, 0775)
+        os.mkdir(USER_FONT_DIR)
         install_readme()
-    if not exists(INSTALL_DIRECTORY):
-        os.mkdir(INSTALL_DIRECTORY)
     if not exists(join(USER_FONT_DIR, 'Library')):
         os.symlink(INSTALL_DIRECTORY, join(USER_FONT_DIR, 'Library'))
+    # Make sure we have reasonable permissions on anything we own
+    DIRS = FM_DIR, CONF_DIR, GROUPS_DIR, LOG_DIR, DB_DIR, \
+    INSTALL_DIRECTORY, USER_FONT_DIR, TMP_DIR
+    for DIR in DIRS:
+        if exists(DIR):
+            os.chmod(DIR, 0744)
     # Check for newly installed fonts
     if exists(TMP_DIR):
         finish_install()
+    if exists(WORK_DIR):
+        shutil.rmtree(WORK_DIR)
     return
 
 def check_version():
@@ -398,8 +401,7 @@ def check_version():
     # Clean up app folder
     if exists(join(FM_DIR, 'temp')):
         shutil.rmtree(join(FM_DIR, 'temp'))
-
-    obsolete = 1, 2, 3
+    obsolete = '1', '2', '3'
     for version in obsolete:
         if exists(join(FM_DIR, '0.%s' % version)):
             os.unlink(join(FM_DIR, '0.%s' % version))
@@ -407,18 +409,17 @@ def check_version():
             # but it'll have to do for now
             if exists(USER_FONT_CONF):
                 os.unlink(USER_FONT_CONF)
-        if version == '1':
-            if exists(OLD_FM_BLOCK_CONF):
-                os.renames(OLD_FM_BLOCK_CONF, FM_BLOCK_CONF)
-            if exists(OLD_FM_GROUP_CONF):
-                os.renames(OLD_FM_GROUP_CONF, FM_GROUP_CONF)
-            if exists(join(FM_DIR, 'groups.xml.bak')):
-                os.unlink(join(FM_DIR, 'groups.xml.bak'))
-            if exists(OLD_LOG_FILE_BACKUP):
-                os.unlink(OLD_LOG_FILE_BACKUP)
-            if exists(OLD_LOG_FILE):
-                shutil.move(OLD_LOG_FILE, LOG_DIR)
-
+            if version == '1':
+                if exists(OLD_FM_BLOCK_CONF):
+                    os.renames(OLD_FM_BLOCK_CONF, FM_BLOCK_CONF)
+                if exists(OLD_FM_GROUP_CONF):
+                    os.renames(OLD_FM_GROUP_CONF, FM_GROUP_CONF)
+                if exists(join(FM_DIR, 'groups.xml.bak')):
+                    os.unlink(join(FM_DIR, 'groups.xml.bak'))
+                if exists(OLD_LOG_FILE_BACKUP):
+                    os.unlink(OLD_LOG_FILE_BACKUP)
+                if exists(OLD_LOG_FILE):
+                    shutil.move(OLD_LOG_FILE, LOG_DIR)
     with open(VER, 'w') as revfile:
         revfile.write('Font Manager %s' % VERSION)
     return
@@ -523,26 +524,6 @@ def setup_logging():
         console.setFormatter(formatter)
         logging.getLogger('').addHandler(console)
     except:
-        print "FontManagerError : failed to find/create log file, logging disabled"
-
-def finish_install():
-    """
-    Finish installation of fonts for font-viewer.
-    """
-    log_fonts(True, TMP_DIR)
-    for root, dirs, files in os.walk(TMP_DIR):
-        for name in files:
-            if name.endswith(FILE_EXTS):
-                oldpath = join(root, name)
-                truename = name.split('.')[0]
-                truename = name.strip()
-                new = truename[0]
-                new = new.upper()
-                newpath = join(INSTALL_DIRECTORY, new)
-                if not exists(newpath):
-                    os.mkdir(newpath)
-                newname = join(newpath, name)
-                shutil.move(oldpath, newname)
-    shutil.rmtree(TMP_DIR)
-    return
+        print \
+    "FontManagerError : failed to find/create log file, logging disabled"
 

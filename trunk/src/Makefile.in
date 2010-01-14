@@ -33,13 +33,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/config.py.in.in $(srcdir)/font-manager.in.in
+	$(srcdir)/config.py.in.in $(srcdir)/font-manager.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES = font-manager.in config.py.in
+CONFIG_CLEAN_FILES = font-manager config.py.in
 CONFIG_CLEAN_VPATH_FILES =
 SOURCES =
 DIST_SOURCES =
@@ -50,7 +50,6 @@ AUTOCONF = @AUTOCONF@
 AUTOHEADER = @AUTOHEADER@
 AUTOMAKE = @AUTOMAKE@
 AWK = @AWK@
-BASH = @BASH@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 ECHO_C = @ECHO_C@
@@ -151,7 +150,7 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-font-manager.in: $(top_builddir)/config.status $(srcdir)/font-manager.in.in
+font-manager: $(top_builddir)/config.status $(srcdir)/font-manager.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 config.py.in: $(top_builddir)/config.status $(srcdir)/config.py.in.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
@@ -294,15 +293,6 @@ uninstall-am:
 	mostlyclean-generic pdf pdf-am ps ps-am uninstall uninstall-am
 
 
-font-manager: font-manager.in
-	@sed \
-		-e 's|@prefix[@]|$(prefix)|g'\
-		< $< \
-		> $@
-
-rmconf:
-	@rm -f config.py
-
 config.py: config.py.in
 	@sed \
 		-e 's|@PACKAGE_NAME[@]|$(PACKAGE_NAME)|g' \
@@ -311,18 +301,15 @@ config.py: config.py.in
 		< $< \
 		> $@
 
-all: rmconf config.py font-manager
-	@if [ -e FontManager.py ]; then mv 'FontManager.py' 'Font Manager'; fi
+all: config.py
 	@python -m compileall .
 	@python -OO -m compileall .
-	@rm -f static.py[co]
 
 install: make-install-dirs
-	install -m 644 'Font Manager' $(DESTDIR)$(prefix)/share/font-manager/
-	install -m 644 *.py[co] $(DESTDIR)$(prefix)/share/font-manager/
+	install -m 644 *.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/
 	install -m 644 ui/*.ui $(DESTDIR)$(prefix)/share/font-manager/ui/
 	install -m 644 ui/Throbber* $(DESTDIR)$(prefix)/share/font-manager/ui/
-	install -m 755 font-manager.desktop $(DESTDIR)$(prefix)/share/applications/
+	install -m 644 font-manager.desktop $(DESTDIR)$(prefix)/share/applications/
 	install -m 755 font-manager $(DESTDIR)$(prefix)/bin/
 
 make-install-dirs:
@@ -337,12 +324,10 @@ uninstall:
 	@rm -fv $(DESTDIR)$(prefix)/bin/font-manager
 
 clean:
-	@if [ -e 'Font Manager' ]; then mv 'Font Manager' 'FontManager.py'; fi
-	@rm -f *.py[co] config.py font-manager
-	@if [ -e 'static.py' ]; then cp -f 'static.py' 'config.py'; fi
+	@rm -f *.py[co] font-manager
 
 distclean: clean
-	@rm -f Makefile config.py.in font-manager.in
+	@rm -f Makefile config.py.in
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

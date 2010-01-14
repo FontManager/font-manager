@@ -23,18 +23,29 @@
 
 import os
 
+from os.path import join, exists, dirname
+
+
 PACKAGE     = _('Font Manager')
-VERSION     = '@PACKAGE_VERSION@'
-PACKAGE_DIR = '@prefix@/share/font-manager'
-LOCALEDIR   = '@LOCALEDIR@'
+
+if exists(join(dirname(__file__), 'Makefile.am')):
+    VERSION     = 'is not installed'
+    PACKAGE_DIR = dirname(os.path.abspath(__file__))
+    LOCALEDIR   = join(dirname(__file__), '../po')
+else:
+    VERSION     = '@PACKAGE_VERSION@'
+    PACKAGE_DIR = '@prefix@/share/font-manager'
+    LOCALEDIR   = '@LOCALEDIR@'
 
 HOME                    =   os.getenv('HOME')
 USER                    =   os.getenv('LOGNAME')
 USER_FONT_DIR           =   os.path.join(HOME, '.fonts')
 USER_FONT_CONF          =   os.path.join(HOME, '.fonts.conf')
 USER_FONT_CONF_INVALID  =   os.path.join(HOME, 'original.fonts.conf')
+AUTOSTART_DIR           =   os.path.join(HOME, '.config/autostart')
 FM_DIR                  =   os.path.join(HOME, '.FontManager')
 TMP_DIR                 =   os.path.join(USER_FONT_DIR, 'temp')
+WORK_DIR                =   os.path.join(FM_DIR, 'temp')
 
 VER                     =   os.path.join(FM_DIR, '0.4')
 CONF_DIR                =   os.path.join(FM_DIR, 'config')

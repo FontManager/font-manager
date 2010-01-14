@@ -1,6 +1,6 @@
 """
-This module generates a pdf sample page from a directory of fonts.
-It supports Truetype and Type 1 fonts. 
+This module generates a pdf sample page from a directory or a python
+ list of fonts. It supports Truetype and Type 1 fonts. 
 
 At the moment the output is very basic, but more complex styles and 
 options will be added over time, hopefully.
@@ -36,7 +36,7 @@ import os
 import gtk
 import gobject
 
-from os.path import join
+from os.path import join, exists
 
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.pdfmetrics import FontError, FontNotFoundError
@@ -50,33 +50,54 @@ from reportlab.platypus.flowables import KeepTogether
 
 from common import Throbber, natural_sort
 
-
-PAGE_HEIGHT = letter[1]
+# letter == (612.0, 792.0)
 PAGE_WIDTH = letter[0]
+PAGE_HEIGHT = letter[1]
+# file extensions to include
 TYPE1_EXTS = ('.pfb', '.PFB')
 TRUETYPE_EXTS = ('.ttf', '.ttc', '.otf', '.TTF', '.TTC', '.OTF')
 # A place for rejected files
 SKIP_LS = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+# Typical font preview
+LINE1 = _("The quick brown fox jumps over the lazy dog.")
+LINE2 = _("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+LINE3 = _("abcdefghijklmnopqrstuvwxyz")
+LINE4 = _("1234567890.:,;(*!?')")
+LINE = { 1 : LINE1, 2 : LINE2, 3 : LINE3, 4 : LINE4 }
 
 
+class Config(object):
+    def __init__(self):
+        self.styles = getSampleStyleSheet()
+        self.font_size = 20
+        author =  os.getenv('LOGNAME')
+        self.author = author.capitalize()
+        self.subject = _('Sample of included fonts')
+        self.include_pangram = True
 
 class BuildSample:
     """
-    Build a sample pdf from given directory
+    Build a sample pdf from given directory or list
         
     Keyword arguments:
-    fontdir -- the directory to scan for font files
-    output -- the name of output file - fontdir/filename.pdf
+    config -- a Config instance or None to use default values
+    collection -- collection name / pdf name
+    fontdir -- a python list or the directory to scan for font files
+    output -- the name of output file - <fullpath>/filename.pdf
+    builder -- a gtk.Builder instance
     """    
-    def __init__(self, fontdir, output, builder):
-        # Need to split these off later so we can offer options
-        self.styles = getSampleStyleSheet()
-        self.font_size = 20
-        self.collection = fontdir.rsplit('/', 1)[1]
-        author =  os.getenv('LOGNAME')
-        self.author = author.capitalize()
-        self.subject = _('Sample of included fonts')        
+    def __init__(self, config, collection, fontdir, output, builder):
         #
+        if config is None:
+            self.config = Config()
+        else:
+            self.config = config
+        self.styles = self.config.styles
+        self.font_size = self.config.font_size
+        self.author =  self.config.author
+        self.subject = self.config.subject
+        #
+        self.collection = collection
         self.fontdir = fontdir
         self.output = output
         self.builder = builder
@@ -112,31 +133,27 @@ class BuildSample:
         self.load_label.set_text(_('Preparing : '))
         self.load_label.show()
         self.progress_label.show()
-        for root, dirs, files in os.walk(self.fontdir):
-            files = natural_sort(files)
-            for filename in files:
-                self.total += 1
-                fontfile = filename
-                filename = join(root, filename)
-                if filename.endswith(TRUETYPE_EXTS):
-                    name = self.register_ttf(fontfile, filename)
-                    while gtk.events_pending():
-                        gtk.main_iteration()
-                    if not name:
-                        continue
-                    self.build_basic_paragraph(fontfile, name, style)
-                elif filename.endswith(TYPE1_EXTS):
-                    name = self.register_type1(fontfile, filename)
-                    while gtk.events_pending():
-                        gtk.main_iteration()
-                    if not name:
-                        continue
-                    self.build_basic_paragraph(fontfile, name, style)
-        self.load_label.set_text('')
-        self.load_label.hide()
-        self.progress_label.set_text('')
-        self.progress_label.hide()
-        self.throbber.stop()
+        if type(self.fontdir) == list:
+            files = natural_sort(self.fontdir)
+            self.total = len(filelist)
+            for filepath in files:
+                filename = filepath.rsplit('/', 1)[1]
+                self.sort_and_register(filename, filepath, style)
+        elif exists(self.fontdir):
+            for root, dirs, files in os.walk(self.fontdir):
+                files = natural_sort(files)
+                for filename in files:
+                    self.total += 1
+                    filepath = join(root, filename)
+                    self.sort_and_register(filename, filepath, style)
+        else:
+            self.blank_labels()
+            self.sensitive()
+            while gtk.events_pending():
+                gtk.main_iteration()   
+            logging.error('No files given for export')
+            return False
+        self.blank_labels()
         while gtk.events_pending():
             gtk.main_iteration()
         if not self.prompt_for_failed_fonts():
@@ -151,65 +168,95 @@ class BuildSample:
         # Render and save pdf
         doc.build(self.body)
         #
-        self.progress_label.set_text('')
-        self.progress_label.hide()
+        self.blank_labels()
         self.sensitive()
         while gtk.events_pending():
             gtk.main_iteration()
         return True
     
-    def build_basic_paragraph(self, fontfile, name, style):
+    def build_basic_paragraph(self, filename, name, style):
+        fullsize = self.font_size
+        halfsize = fullsize / 2
+        quarter = fullsize / 4
+        threequarter = halfsize + quarter
         # Build our current sample
         try:
             sample = []
             current_file = Paragraph\
-            ('<font size="10">' + fontfile + '</font>', style)
+            ('<font size="%s">' % halfsize + filename + '</font>', style)
             sample.append(current_file)
             sample.append(Spacer(1, 0.1*inch))
             current_sample = Paragraph\
             ('<font name="%s" size="%s">' % \
-            (name, self.font_size) + name + '</font>', style)
+            (name, fullsize) + name + '</font>', style)
             sample.append(current_sample)
+            sample.append(Spacer(1, 0.2*inch))
+            #
+            if self.config.include_pangram:
+                for linenumber in 1, 2, 3, 4:
+                    current_sample = Paragraph\
+                    ('<font name="%s" size="%s">' % \
+                    (name, threequarter) + LINE[linenumber] \
+                    + '</font>', style)
+                    sample.append(current_sample)
+                    sample.append(Spacer(1, 0.1*inch))
             sample.append(Spacer(1, 0.5*inch))
             self.body.append(KeepTogether(sample))
             while gtk.events_pending():
                 gtk.main_iteration()
         # Triggered by some font psnames?
         except ValueError, error:
-            self.failed[fontfile] = error
+            self.failed[filename] = error
         return
         
-    def register_ttf(self, fontfile, filename):
-        self.progress_label.set_text(fontfile)
+    def sort_and_register(self, filename, filepath, style):
+        if filename.endswith(TRUETYPE_EXTS):
+            name = self.register_ttf(filename, filepath)
+            while gtk.events_pending():
+                gtk.main_iteration()
+            if not name:
+                return False
+            self.build_basic_paragraph(filename, name, style)
+        elif filename.endswith(TYPE1_EXTS):
+            name = self.register_type1(filename, filepath)
+            while gtk.events_pending():
+                gtk.main_iteration()
+            if not name:
+                return False
+            self.build_basic_paragraph(filename, name, style)
+        return True
+        
+    def register_ttf(self, filename, filepath):
+        self.progress_label.set_text(filename)
         try:
             # Prepare the font for use
-            tt_file = TTFontFile(filename)#(filename, charInfo=1, validate=1)
-            # This is called during the build, so we call it here to 
-            # make sure we catch an IndexError in time if it's raised.
+            tt_file = TTFontFile(filepath)#(filepath, charInfo=1, validate=1)
+            # makeSubset is called later on and sometimes raises an
+            # IndexError, so we call it here so we can catch it in time.
             # Seems to only happen with shoddy fonts.
             tt_file.makeSubset(range(128))
             name = tt_file.name
-            font = TTFont(name, filename)
+            font = TTFont(name, filepath)
             pdfmetrics.registerFont(font)
             # Map the same file to every style
             map_font(name)
             return name
         except TTFError, error:
-            self.failed[fontfile] = error
+            self.failed[filename] = error
             return False
         except (IndexError, AssertionError), error:
-            self.failed[fontfile] = error
+            self.failed[filename] = error
             return False
             
-    def register_type1(self, fontfile, filename):
-        self.progress_label.set_text(fontfile)
+    def register_type1(self, filename, filepath):
+        self.progress_label.set_text(filename)
         try:
             # Prepare the font for use
-            pfb_file = filename
-            if filename.endswith('.pfb'):
-                afm_file = filename.replace('.pfb', '.afm')
-            elif filename.endswith('.PFB'):
-                afm_file = filename.replace('.PFB', '.AFM')
+            pfb_file = filepath
+            if filepath.endswith('.pfb'):
+                afm_file = filepath.replace('.pfb', '.afm')
+            elif filepath.endswith('.PFB'):
+                afm_file = filepath.replace('.PFB', '.AFM')
             face = pdfmetrics.EmbeddedType1Face(afm_file, pfb_file)
             name = find_type1_name(afm_file)
             pdfmetrics.registerTypeFace(face)
@@ -217,16 +264,16 @@ class BuildSample:
             pdfmetrics.registerFont(font)
             return name
         except (FontError, FontNotFoundError), error:
-            self.failed[fontfile] = error
+            self.failed[filename] = error
             return False
         except (IndexError, AssertionError), error:
-            self.failed[fontfile] = error
+            self.failed[filename] = error
             return False
             
     def prompt_for_failed_fonts(self):
+        SKIP_LS.clear()
         if len(self.failed) > 0:
             if not self.confirm_action(self.failed):
-                SKIP_LS.clear()
                 return False
         return True
     
@@ -261,6 +308,16 @@ class BuildSample:
             return False
         else:
             return True
+            
+    def blank_labels(self):
+        self.load_label.set_text('')
+        self.load_label.hide()
+        self.progress_label.set_text('')
+        self.progress_label.hide()
+        self.throbber.stop()
+        while gtk.events_pending():
+            gtk.main_iteration()
+        return
         
     def insensitive(self):
         self.refresh.hide()
