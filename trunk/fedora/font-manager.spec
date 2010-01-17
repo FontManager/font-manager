@@ -1,5 +1,5 @@
 Name:           font-manager
-Version:        0.4.2
+Version:        0.4.3
 Release:        1%{?dist}
 Summary:        A font management application for the GNOME desktop environment
 
@@ -49,6 +49,25 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sun Jan 17 2010 JC
+
+- Update to 0.4.3
+
+- Added the following options
+
+  Start application at login
+  Start application minimized
+  Include pangram in sample sheets
+  Set default font size for sample sheets
+
+- Removed unnecessary, possibly confusing, confirmation dialog 
+  when removing collections.
+
+- Correct permissions for installed files.
+
+- Some code cleanup
+
+- Clean up obsolete files.
 
 * Wed Nov 25 2009 JC
 
