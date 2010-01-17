@@ -32,7 +32,7 @@ script will exit and print the name of the missing module to stdout.
 import os
 import sys
 
-if os.path.exists(os.path.join(os.path.dirname(__file__), 'Makefile.am')):
+if os.path.exists(os.path.join(os.path.dirname(__file__), 'font-manager.desktop')):
     PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
 else:
     PACKAGE_DIR = '@prefix@/share/font-manager'
