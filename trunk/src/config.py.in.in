@@ -26,7 +26,7 @@ import os
 
 PACKAGE     = _('Font Manager')
 
-if os.path.exists(os.path.join(os.path.dirname(__file__), 'Makefile.am')):
+if os.path.exists(os.path.join(os.path.dirname(__file__), 'font-manager.desktop')):
     VERSION     = 'is not installed'
     PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
     LOCALEDIR   = os.path.join(os.path.dirname(__file__), '../po')
