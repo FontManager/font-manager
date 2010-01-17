@@ -36,7 +36,10 @@ from os.path import exists, join
 
 from common import Throbber
 from config import INI, HOME, WORK_DIR
-from sampler import Config
+try:
+    from sampler import Config
+except ImportError:
+    pass
 
 
 class Export:

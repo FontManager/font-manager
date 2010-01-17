@@ -23,7 +23,7 @@ echo 'Building package'
 echo
 rm -rf RESULTS
 mkdir RESULTS
-mock --resultdir=./RESULTS/ -r fedora-11-i386 ~/rpmbuild/SRPMS/$PACKAGE*.src.rpm
+mock --resultdir=./RESULTS/ -r fedora-12-i386 ~/rpmbuild/SRPMS/$PACKAGE*.src.rpm
 echo 'Now running cleanup'
 rm -f ~/rpmbuild/SRPMS/$PACKAGE*
 rm -f ~/rpmbuild/SPECS/$PACKAGE*
