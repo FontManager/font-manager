@@ -73,7 +73,7 @@ class Config(object):
         author =  os.getenv('LOGNAME')
         self.author = author.capitalize()
         self.subject = _('Sample of included fonts')
-        self.include_pangram = True
+        self.include_pangram = False
 
 class BuildSample:
     """
