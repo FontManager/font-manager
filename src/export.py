@@ -204,6 +204,7 @@ class Export:
                     shutil.rmtree(join(self.outdir, self.collection.name))
             shutil.move(self.tmpdir, self.outdir)
         shutil.rmtree(WORK_DIR)
+        os.chdir(HOME)
         return
     
     def compress_toggled(self, widget):
