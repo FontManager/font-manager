@@ -341,7 +341,7 @@ class Preferences:
             for name in files:
                 if name.endswith(EXTS) and root.find('/.') == -1:
                     if root in self.directories:
-                        continue
+                        break
                     else:
                         self.add_directory(root)
                         # Ensure update
