@@ -158,7 +158,7 @@ class FontLoad:
 
         Parse, count and store, then return the results
         """
-        self.insensitive()
+        self.sensitive(False)
         while gtk.events_pending():
             gtk.main_iteration()
         throbber = Throbber(self.builder)
@@ -382,21 +382,14 @@ class FontLoad:
             categories.append(collection)
         return
 
-    def insensitive(self):
-        self.refresh.hide()
-        self.mainbox.set_sensitive(False)
-        self.options.set_sensitive(False)
+    def sensitive(self, state=True):
+        self.refresh.show()
+        self.mainbox.set_sensitive(state)
+        self.options.set_sensitive(state)
         while gtk.events_pending():
             gtk.main_iteration()
         return
 
-    def sensitive(self):
-        self.refresh.show()
-        self.mainbox.set_sensitive(True)
-        self.options.set_sensitive(True)
-        while gtk.events_pending():
-            gtk.main_iteration()
-        return
 
 
 def _gtk_markup_escape(name):

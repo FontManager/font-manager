@@ -118,7 +118,7 @@ class BuildSample:
         Constructs a basic pdf listing the filename followed by a sample 
         rendering of the font. 
         """
-        self.insensitive()
+        self.sensitive(False)
         self.throbber.start()
         # Threads would be nice
         # But sprinkling these around works for now
@@ -318,23 +318,15 @@ class BuildSample:
         while gtk.events_pending():
             gtk.main_iteration()
         return
-        
-    def insensitive(self):
-        self.refresh.hide()
-        self.mainbox.set_sensitive(False)
-        self.options.set_sensitive(False)
+
+    def sensitive(self, state=True):
+        self.refresh.show()
+        self.mainbox.set_sensitive(state)
+        self.options.set_sensitive(state)
         while gtk.events_pending():
             gtk.main_iteration()
         return
 
-    def sensitive(self):
-        self.refresh.show()
-        self.mainbox.set_sensitive(True)
-        self.options.set_sensitive(True)
-        while gtk.events_pending():
-            gtk.main_iteration()
-        return
-        
 
 def map_font(name):
     """
