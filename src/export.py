@@ -132,7 +132,7 @@ class Export:
             gtk.main_iteration()
         if not response == gtk.RESPONSE_OK:
             return
-        self.insensitive()
+        self.sensitive(False)
         self.throbber.start()
         while gtk.events_pending():
             gtk.main_iteration()
@@ -154,16 +154,13 @@ class Export:
             # Try to include AFM files for Type 1 fonts
             if path.endswith('.pfb'):
                 afm_path = path.replace('.pfb', '.afm')
-                try:
-                    shutil.copy(afm_path, self.tmpdir)
-                except OSError:
-                    pass
-            elif path.endswith('.PFB'):
-                afm_path = path.replace('.PFB', '.AFM')
-                try:
-                    shutil.copy(afm_path, self.tmpdir)
-                except OSError:
-                    pass
+                if not exists(afm_path):
+                    afm_path = path.replace('afm', 'AFM')
+                if exists(afm_path):
+                    try:
+                        shutil.copy(afm_path, self.tmpdir)
+                    except OSError:
+                        pass
         if self.sample:
             # Get preferences
             config = ConfigParser.ConfigParser()
@@ -316,18 +313,10 @@ class Export:
         shutil.rmtree(self.tmpdir)
         return
 
-    def insensitive(self):
-        self.refresh.hide()
-        self.mainbox.set_sensitive(False)
-        self.options.set_sensitive(False)
-        while gtk.events_pending():
-            gtk.main_iteration()
-        return
-
-    def sensitive(self):
+    def sensitive(self, state=True):
         self.refresh.show()
-        self.mainbox.set_sensitive(True)
-        self.options.set_sensitive(True)
+        self.mainbox.set_sensitive(state)
+        self.options.set_sensitive(state)
         while gtk.events_pending():
             gtk.main_iteration()
         return
