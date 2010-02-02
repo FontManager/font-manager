@@ -1,7 +1,7 @@
 Source: font-manager
 Section: graphics
 Priority: optional
-Maintainer: Jerry Casiano <none@nospam4me.com>
+Maintainer: Jerry Casiano <JerryCasiano@gmail.com>
 Build-Depends: debhelper (>=7), make (>=3.81), devscripts, python2.6-dev
 Standards-Version: 3.8.0
 Homepage: http://font-manager.googlecode.com/
