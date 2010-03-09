@@ -1,5 +1,5 @@
 Name:           font-manager
-Version:        0.4.3
+Version:        0.4.4
 Release:        1%{?dist}
 Summary:        A font management application for the GNOME desktop environment
 
@@ -49,6 +49,33 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Mar 9 2010 JC
+
+- Update to 0.4.4
+
+- Maintenance release.
+
+- Fix redraw/corruption issues when widgets are shown/hidden or panes
+  are repositioned.
+
+- Fix unnecessary escapes in treeview text column.
+
+- Fix typos affecting the way illegal xml characters are escaped.
+
+- Some code cleanup
+
+- Removed the "font info" button, because gnome-font-viewer sucks and the
+  latest "improved" version is even silly enough to allow installation of
+  already installed fonts...
+
+- The rename collection button/dialog was also dropped as it's unnecessary,
+  renaming collections can be done directly by clicking on the collection
+  name once it's been selected.
+
+- The "font info" feature should be back in a future release along with a
+  more competent, at least according to me, "font-viewer" and the ability
+  to edit font details.
+
 * Sun Jan 17 2010 JC
 
 - Update to 0.4.3
