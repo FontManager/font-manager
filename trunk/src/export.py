@@ -36,10 +36,6 @@ from os.path import exists, join
 
 from common import Throbber
 from config import INI, HOME, WORK_DIR
-try:
-    from sampler import Config
-except ImportError:
-    pass
 
 
 class Export:
@@ -53,16 +49,19 @@ class Export:
         self.sample = False
         self.outdir = join(HOME, "Desktop")
         # https://bugzilla.redhat.com/show_bug.cgi?id=551878
-        # Do our staging elsewhere 
+        # Do our staging elsewhere
         self.tmpdir = "%s/%s" % (WORK_DIR, self.collection.name)
-        self.font_list = []       
+        self.font_list = []
         self.file_list = []
         # Fonts for which filepath is ?
         self.no_info = []
         # UI elements
         self.mainbox = self.builder.get_object('main_box')
         self.options = self.builder.get_object('options_box')
-        self.refresh = self.builder.get_object('refresh')
+        self.compress = gtk.CheckButton(_('Export as archive'))
+        self.sampler = gtk.CheckButton(_('Include sample sheet'))
+        self.chooser = gtk.FileChooserButton(_('Select destination'))
+        self.status = gtk.Label()
         # Visual feedback
         self.throbber = Throbber(self.builder)
         # Get preferences
@@ -72,12 +71,13 @@ class Export:
             self.arch_type = config.get('Export Options', 'archivetype')
         except ConfigParser.NoSectionError:
             self.arch_type = 'zip'
-        # UI elements
-        self.compress = gtk.CheckButton(_('Export as archive'))
-        self.sampler = gtk.CheckButton(_('Include sample sheet'))
-        self.chooser = gtk.FileChooserButton(_('Select destination'))
-        self.status = gtk.Label()
-        # Build filelist
+        # Do work
+        if self.build_filelist():
+            self.confirm_export()
+        else:
+            return
+
+    def build_filelist(self):
         for font in self.collection.fonts:
             file_path = font.filelist.itervalues()
             if file_path:
@@ -95,10 +95,10 @@ class Export:
                 self.no_info.append(font)
         if len(self.no_info) > 0:
             if self.export_anyways():
-                pass
+                return True
             else:
-                return
-        self.confirm_export()
+                return False
+        return True
 
     # Fixes http://code.google.com/p/font-manager/issues/detail?id=6
     def confirm_export(self):
@@ -142,13 +142,27 @@ class Export:
         while gtk.events_pending():
             gtk.main_iteration()
         return
-        
-    def process_export(self):
-        if exists(self.tmpdir):
+
+    def confirm_overwrite(self):
+        dialog = gtk.Dialog(_('Destination already exists'), None,
+            gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
+                            (_('Cancel'), gtk.RESPONSE_CANCEL,
+                            _('Overwrite'), gtk.RESPONSE_OK),)
+        dialog.set_default_size(300, 100)
+        label = gtk.Label('Overwrite %s?' % \
+        join(self.outdir, self.collection.name))
+        dialog.vbox.pack_start(label)
+        label.show()
+        response = dialog.run()
+        dialog.destroy()
+        if response != gtk.RESPONSE_OK:
             shutil.rmtree(self.tmpdir)
-        if not exists(WORK_DIR):
-            os.mkdir(WORK_DIR)
-        os.mkdir(self.tmpdir)
+            return False
+        else:
+            shutil.rmtree(join(self.outdir, self.collection.name))
+            return True
+
+    def do_file_copy(self):
         for path in set(self.file_list):
             shutil.copy(path, self.tmpdir)
             # Try to include AFM files for Type 1 fonts
@@ -161,49 +175,52 @@ class Export:
                         shutil.copy(afm_path, self.tmpdir)
                     except OSError:
                         pass
+        return
+
+    def do_pdf_setup(self):
+        # Get preferences
+        config = ConfigParser.ConfigParser()
+        config.read(INI)
+        try:
+            from sampler import Config
+            size = float(config.get('Export Options', 'fontsize'))
+            pangram = config.getboolean('Export Options', 'pangram')
+            C = Config()
+            C.font_size = size
+            C.include_pangram = pangram
+        except ConfigParser.NoSectionError:
+            C = None
+        from sampler import BuildSample
+        buildsample = BuildSample\
+        (C, self.collection.name, self.tmpdir, join\
+        (self.tmpdir, '%s.pdf' % self.collection.name), self.builder)
+        if not buildsample.basic():
+            return False
+        else:
+            return True
+
+    def process_export(self):
+        if exists(self.tmpdir):
+            shutil.rmtree(self.tmpdir)
+        if not exists(WORK_DIR):
+            os.mkdir(WORK_DIR)
+        os.mkdir(self.tmpdir)
+        self.do_file_copy()
         if self.sample:
-            # Get preferences
-            config = ConfigParser.ConfigParser()
-            config.read(INI)
-            try:
-                size = float(config.get('Export Options', 'fontsize'))
-                pangram = config.getboolean('Export Options', 'pangram')
-                C = Config()
-                C.font_size = size
-                C.include_pangram = pangram
-            except ConfigParser.NoSectionError:
-                C = None
-            from sampler import BuildSample
-            buildsample = BuildSample\
-            (C, self.collection.name, self.tmpdir, join\
-            (self.tmpdir, '%s.pdf' % self.collection.name), self.builder)
-            if not buildsample.basic():
-                return
+            self.do_pdf_setup()
         if self.archive:
             self.create_archive()
         else:
-            if exists(join(self.outdir, self.collection.name)):
-                dialog = gtk.Dialog(_('Destination already exists'), None, 
-                    gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
-                                    (_('Cancel'), gtk.RESPONSE_CANCEL,
-                                    _('Overwrite'), gtk.RESPONSE_OK),)
-                dialog.set_default_size(300, 100)
-                label = gtk.Label('Overwrite %s?' % \
-                join(self.outdir, self.collection.name))
-                dialog.vbox.pack_start(label)
-                label.show()
-                response = dialog.run()
-                dialog.destroy()
-                if response != gtk.RESPONSE_OK:
-                    shutil.rmtree(self.tmpdir)
-                    return
-                else:
-                    shutil.rmtree(join(self.outdir, self.collection.name))
+            if exists(join(self.outdir, self.collection.name)) \
+            and not self.confirm_overwrite():
+                shutil.rmtree(WORK_DIR)
+                os.chdir(HOME)
+                return
             shutil.move(self.tmpdir, self.outdir)
         shutil.rmtree(WORK_DIR)
         os.chdir(HOME)
         return
-    
+
     def compress_toggled(self, widget):
         if widget.get_active():
             self.archive = True
@@ -211,7 +228,7 @@ class Export:
             self.archive = False
         self.status.set_text('')
         return
-        
+
     def sampler_toggled(self, widget):
         try:
             import reportlab
@@ -230,7 +247,7 @@ class Export:
         else:
             self.sample = False
         return
-    
+
     def choose_toggled(self, widget):
         # Seems like this is backwards?
         if not widget.get_expanded():
@@ -246,7 +263,7 @@ class Export:
             while gtk.events_pending():
                 gtk.main_iteration()
         return
-    
+
     def change_dest(self, widget):
         newdir = widget.get_filename()
         if os.access(newdir, os.W_OK):
@@ -255,18 +272,18 @@ class Export:
             widget.set_current_folder(join(HOME, "Desktop"))
         self.set_compress_tooltip()
         return
-    
+
     def set_compress_tooltip(self):
         self.compress.set_tooltip_text\
         (_('Archive will be saved in %s format to %s') \
         % (self.arch_type, self.outdir))
         return
-        
+
     def export_anyways(self):
         """
         If any filepaths were not found ask for confirmation before continuing.
         """
-        dialog = gtk.Dialog(_('Missing information'), None, 
+        dialog = gtk.Dialog(_('Missing information'), None,
                     gtk.DIALOG_MODAL | gtk.DIALOG_DESTROY_WITH_PARENT,
                                     (_('Cancel'), gtk.RESPONSE_CANCEL,
                                     _('Continue'), gtk.RESPONSE_OK),)
@@ -291,11 +308,10 @@ class Export:
         box.pack_start(scrolled, True, True, 0)
         box.show_all()
         response = dialog.run()
+        dialog.destroy()
         if response == gtk.RESPONSE_OK:
-            dialog.destroy()
             return True
         else:
-            dialog.destroy()
             return False
 
     def create_archive(self):
@@ -314,7 +330,6 @@ class Export:
         return
 
     def sensitive(self, state=True):
-        self.refresh.show()
         self.mainbox.set_sensitive(state)
         self.options.set_sensitive(state)
         while gtk.events_pending():

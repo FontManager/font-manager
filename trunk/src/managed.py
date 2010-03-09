@@ -4,7 +4,7 @@ This module handles installation and removal of fonts
 """
 # Font Manager, a font management application for the GNOME desktop
 #
-# Copyright (C) 2009 Jerry Casiano
+# Copyright (C) 2009, 2010 Jerry Casiano
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -338,22 +338,14 @@ class RemoveFonts:
             still_valid = self.remove_ls.iter_is_valid(treeiter)
             if still_valid:
                 break
-        # Set the cursor to a remaining row instead of having the cursor
-        # disappear. This allows for easy deletion of multiple rows by
-        # hitting the Remove button repeatedly.  
         if still_valid:
-            # The treeiter is still valid. This means that there's another
-            # row has "shifted" to the location the deleted row occupied
-            # before. Select that row.
             new_path = self.remove_ls.get_path(treeiter)
             if (new_path[0] >= 0):
                 self.remove_tree.get_selection().select_path(new_path)
         else:
-            # It's no longer valid which means it was the last row that
-            # was deleted, select the new last row.
             path_to_select = self.remove_ls.iter_n_children(None) - 1
             if (path_to_select >= 0):
-                self.remove_tree.get_selection().select_path(path_to_select)     
+                self.remove_tree.get_selection().select_path(path_to_select)
         return
 
     def do_delete(self, selected_paths, selected_db):
@@ -458,21 +450,21 @@ def do_cleanup(directory):
                 if not keep:
                     shutil.rmtree(root)
         passes += 1
-    # Make sure we don't have any executables among our 'managed' files 
+    # Make sure we don't have any executables among our 'managed' files
     # and make sure others have read-only access, apparently this can be
     # an issue for some programs
     for root, dirs, files in os.walk(directory):
         if len(dirs) > 0:
             for dir in dirs:
-                os.chmod(join(root, dir), 0744)        
+                os.chmod(join(root, dir), 0744)
         if len(files) > 0:
             for filename in files:
                 os.chmod(join(root, filename), 0644)
     return
-    
+
 def log_fonts(append=False, DIRECTORY=INSTALL_DIRECTORY):
     """
-    Log md5sum of each installed font, for later use by font-viewer in 
+    Log md5sum of each installed font, for later use by font-viewer in
     determining whether a file is already installed or not.
     """
     installed_files = []
@@ -498,7 +490,7 @@ def log_fonts(append=False, DIRECTORY=INSTALL_DIRECTORY):
         install_log.write(font + '\n')
     install_log.close()
     return
-        
+
 def strip_archive_name(name):
     for i in '.zip', '.tar', '.bz2', '.gz':
         name = name.replace(i, '')

@@ -6,7 +6,7 @@ It also restarts the application when changes require it.
 """
 # Font Manager, a font management application for the GNOME desktop
 #
-# Copyright (C) 2009 Jerry Casiano
+# Copyright (C) 2009, 2010 Jerry Casiano
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -54,7 +54,7 @@ class Load:
         # "statusbar" is just a label...
         self.status_bar = self.builder.get_object("total_fonts")
         self.app_icon = app_icon
-        
+
     def initialize(self, MESSAGE, hidden):
         self.fontload = fontload.FontLoad(self.parent, self.builder)
         self.fontviews = fontviews.Views(self.parent, self.builder)
@@ -69,7 +69,7 @@ class Load:
             if self.app_icon is not None:
                 notification.set_icon_from_pixbuf(self.app_icon)
             notification.show()
-        return self.treeviews
+        return
 
     def reboot(self, MESSAGE):
         """

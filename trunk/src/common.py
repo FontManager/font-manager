@@ -4,7 +4,7 @@ This module is just a convenient place to group re-usable functions.
 """
 # Font Manager, a font management application for the GNOME desktop
 #
-# Copyright (C) 2009 Jerry Casiano
+# Copyright (C) 2009, 2010 Jerry Casiano
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -81,6 +81,7 @@ class Throbber:
     def __init__(self, builder):
         self.builder = builder
         self.throbber = self.builder.get_object("throbber")
+        self.refresh = self.builder.get_object('refresh')
         self.animation = \
         gtk.gdk.PixbufAnimation(join(PACKAGE_DIR, 'ui/Throbber.gif'))
         self.pixbuf = \
@@ -88,6 +89,7 @@ class Throbber:
 
     def start(self):
         # Start animation
+        self.refresh.hide()
         self.throbber.show()
         self.throbber.set_from_animation(self.animation)
         while gtk.events_pending():
@@ -97,10 +99,17 @@ class Throbber:
     def stop(self):
         self.throbber.set_from_pixbuf(self.pixbuf)
         self.throbber.hide()
+        self.refresh.show()
         while gtk.events_pending():
             gtk.main_iteration()
         return
 
+
+def have_bin(bin):
+    """
+    Returns if a program exists in /usr/bin or /usr/local/bin
+    """
+    return (exists('/usr/bin/%s' % bin) or exists('/usr/local/bin/%s' % bin))
 
 def natural_sort(l):
     """
@@ -113,7 +122,7 @@ def natural_sort(l):
 def convert(t):
     """
     Make sure certain characters don't affect sort order
-    
+
     So that a doesn't end up under a-a for example.
     """
     if t.isdigit():
@@ -159,16 +168,38 @@ def search(model, treeiter, func, data):
         treeiter = model.iter_next(treeiter)
     return None
 
-def shell_escape(family):
+def shell_escape(data):
     """
     Escape or remove special shell characters
     """
-    family = family.replace("'", "\'")
-    family = family.replace('"', '\"')
-    family = family.replace('/', ' ')
-    family = family.replace('$', '\$')
-    family = family.replace(',', '\,')
-    return family
+    special = {
+    "'" : "\'",
+    '"' : '\"',
+    '/' : ' ',
+    '$' : '\$',
+    ',' : '\,'
+    }
+    for normal, escaped in special.iteritems():
+        if data.find(normal) > 0:
+            data = data.replace(normal, escaped)
+    return data
+
+def xml_escape(data):
+    """
+    Replaces characters that are illegal or discouraged in xml
+    with a proper escape sequence.
+    """
+    entities = {
+    '<' : '&lt;',
+    '>' : '&gt;',
+    "'" : "&apos;",
+    '"' : '&quot;'
+    }
+    data = data.replace('&', '&amp;')
+    for illegal, legal in entities.iteritems():
+        if data.find(illegal) > 0:
+            data = data.replace(illegal, legal)
+    return data
 
 def strip_fc_family(family):
     """
@@ -212,7 +243,7 @@ def autostart(startme=True):
     """
     if startme:
         if not exists(AUTOSTART_DIR):
-            os.makedirs(AUTOSTART_DIR, 0644)
+            os.makedirs(AUTOSTART_DIR, 0744)
         with open\
         (join(AUTOSTART_DIR, 'font-manager.desktop'), 'w') as startup:
             startup.write(STARTME)

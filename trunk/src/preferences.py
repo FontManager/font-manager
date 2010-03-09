@@ -4,7 +4,7 @@ This module provides a simple preferences dialog
 """
 # Font Manager, a font management application for the GNOME desktop
 #
-# Copyright (C) 2009 Jerry Casiano
+# Copyright (C) 2009, 2010 Jerry Casiano
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -44,7 +44,7 @@ from common import match, search, autostart
 
 EXTS = ('.ttf', '.ttc', '.otf', '.pfb', '.pfa', '.pfm', '.afm', '.bdf',
             '.TTF', '.TTC', '.OTF', '.PFB', '.PFA', '.PFM', '.AFM', '.BDF')
-            
+
 # http://code.google.com/p/font-manager/issues/detail?id=1
 BAD_PATHS = ('/usr', '/bin', '/boot', '/dev', '/lost+found', '/proc',
              '/root', '/selinux', '/srv', '/sys', '/etc', '/lib',
@@ -166,7 +166,7 @@ class Preferences:
         """
         logging.info('Loading preferences dialog')
         self.builder.get_object('window').show_all()
-        
+
     def load_config(self):
         """
         Load user preferences
@@ -176,10 +176,10 @@ class Preferences:
         show_orphans = self.builder.get_object('show_orphans')
         to_tray = self.builder.get_object('to_tray')
         pangram = self.builder.get_object('pangram')
-        
+
         config = ConfigParser.ConfigParser()
         config.read(INI)
-        
+
         try:
             directory =  config.get('Font Folder', 'default')
             dir_iter = search(self.dir_model,
@@ -191,7 +191,7 @@ class Preferences:
                 self.dir_combo.set_active(0)
         except ConfigParser.NoSectionError:
             self.dir_combo.set_active(0)
-        
+
         try:
             AUTOSTART = config.getboolean('General', 'autostart')
         except ConfigParser.NoSectionError:
@@ -209,7 +209,7 @@ class Preferences:
             start_minimized.set_active(False)
         else:
             start_minimized.set_active(True)
-            
+
         try:
             TRAY = config.getboolean('General', 'minimizeonclose')
         except ConfigParser.NoSectionError:
@@ -218,7 +218,7 @@ class Preferences:
             to_tray.set_active(False)
         else:
             to_tray.set_active(True)
-        
+
         try:
             ORPHANS = config.getboolean('Categories', 'orphans')
         except ConfigParser.NoSectionError:
@@ -238,7 +238,7 @@ class Preferences:
                 self.arch_combo.set_active(2)
         except ConfigParser.NoSectionError:
             self.arch_combo.set_active(0)
-        
+
         try:
             PANGRAM = config.getboolean('Export Options', 'pangram')
         except ConfigParser.NoSectionError:
@@ -247,12 +247,12 @@ class Preferences:
             pangram.set_active(False)
         else:
             pangram.set_active(True)
-        
+
         try:
             self.font_size = float(config.get('Export Options', 'fontsize'))
         except ConfigParser.NoSectionError:
             pass
-        
+
         return
 
     def save_config(self, unused_widget):
@@ -270,21 +270,21 @@ class Preferences:
         TRAY = to_tray.get_active()
         PANGRAM= pangram.get_active()
         treeiter = self.dir_combo.get_active_iter()
-        
+
         if treeiter:
             font_folder = self.dir_model.get_value(treeiter, 0)
         else:
             font_folder = USER_FONT_DIR
         arch_type = self.arch_combo.get_active_text()
-        
+
         config = ConfigParser.ConfigParser()
         config.read(INI)
-        
+
         try:
             previous = config.get('Categories', 'orphans')
         except ConfigParser.NoSectionError:
             previous = 'False'
-        
+
         sections = 'Font Folder', 'Orphans', 'General', 'Archive Type', \
                     'Categories', 'Export Options', 'Delete Event'
         for section in sections:
@@ -294,7 +294,7 @@ class Preferences:
         config.add_section('Export Options')
         config.add_section('Font Folder')
         config.add_section('General')
-        
+
         if font_folder:
             config.set('Font Folder', 'default', font_folder)
         if arch_type:
@@ -323,10 +323,10 @@ class Preferences:
         else:
             actual = 'False'
             config.set('Categories', 'orphans', 'False')
-        
+
         self.font_size = self.font_size_adj.get_value()
         config.set('Export Options', 'fontsize', self.font_size)
-        
+
         with open(INI, 'wb') as ini:
             config.write(ini)
         self.start_dirs.sort()
@@ -339,14 +339,13 @@ class Preferences:
     def on_autoscan_clicked(self, unused_widget):
         for root, dirs, files in os.walk(HOME):
             for name in files:
-                if name.endswith(EXTS) and root.find('/.') == -1:
-                    if root in self.directories:
-                        break
-                    else:
-                        self.add_directory(root)
-                        # Ensure update
-                        while gtk.events_pending():
-                            gtk.main_iteration()
+                if name.endswith(EXTS) and root.find('/.') == -1 \
+                and root not in self.directories:
+                    self.add_directory(root)
+                    # Ensure update
+                    while gtk.events_pending():
+                        gtk.main_iteration()
+                    break
         return
 
     def on_info_clicked(self, unused_widget):
@@ -400,26 +399,16 @@ class Preferences:
         # No idea why this would happen...
         except ValueError:
             pass
-        # This is a really nice touch - taken from gnome-specimen
-        # Need to remember to use this whenever possible
         self.db_model.remove(treeiter)
         still_valid = self.db_model.iter_is_valid(treeiter)
-        # Set the cursor to a remaining row instead of having the cursor
-        # disappear. This allows for easy deletion of multiple rows by
-        # hitting the Remove button repeatedly.  
         if still_valid:
-            # The treeiter is still valid. This means that there's another
-            # row has "shifted" to the location the deleted row occupied
-            # before. Select that row.
             new_path = self.db_model.get_path(treeiter)
             if (new_path[0] >= 0):
                 self.db_tree.get_selection().select_path(new_path)
         else:
-            # It's no longer valid which means it was the last row that
-            # was deleted, select the new last row.
             path_to_select = self.db_model.iter_n_children(None) - 1
             if (path_to_select >= 0):
-                self.db_tree.get_selection().select_path(path_to_select)            
+                self.db_tree.get_selection().select_path(path_to_select)
         self.db_tree.queue_draw()
         return
 
@@ -473,22 +462,14 @@ class Preferences:
                 self.directories.remove(i)
                 self.dir_model.remove(treeiter)
                 still_valid = self.dir_model.iter_is_valid(treeiter)
-                # Set the cursor to a remaining row instead of having the cursor
-                # disappear. This allows for easy deletion of multiple rows by
-                # hitting the Remove button repeatedly.  
                 if still_valid:
-                    # The treeiter is still valid. This means that there's another
-                    # row has "shifted" to the location the deleted row occupied
-                    # before. Select that row.
                     new_path = self.dir_model.get_path(treeiter)
                     if (new_path[0] >= 0):
                         self.tree.get_selection().select_path(new_path)
                 else:
-                    # It's no longer valid which means it was the last row that
-                    # was deleted, select the new last row.
                     path_to_select = self.dir_model.iter_n_children(None) - 1
                     if (path_to_select >= 0):
-                        self.tree.get_selection().select_path(path_to_select)         
+                        self.tree.get_selection().select_path(path_to_select)
         return
 
     def get_new_dir(self):
@@ -553,7 +534,7 @@ class Preferences:
         dialog = gtk.Dialog(_("Invalid Selection"),
                                 self.parent, gtk.DIALOG_MODAL,
                                     (gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE))
-        dialog.set_default_response(gtk.RESPONSE_CANCEL)
+        dialog.set_default_response(gtk.RESPONSE_CLOSE)
         message = _("""
 %s
 

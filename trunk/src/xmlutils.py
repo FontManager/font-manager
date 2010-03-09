@@ -4,7 +4,7 @@ This module is used to group any functions which make use of libxml2.
 """
 # Font Manager, a font management application for the GNOME desktop
 #
-# Copyright (C) 2009 Jerry Casiano
+# Copyright (C) 2009, 2010 Jerry Casiano
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -34,7 +34,7 @@ import shutil
 from os.path import exists, join
 
 from config import *
-from common import install_readme
+from common import install_readme, xml_escape
 from managed import finish_install
 
 
@@ -52,17 +52,16 @@ VALID_CONFIG = """<?xml version="1.0"?>
 </fontconfig>
 """ % INCLUDE_LINE
 
-FILE_EXTS = ('.ttf', '.ttc', '.otf', '.TTF', '.TTC', '.OTF')
 
-
-def add_patelt_node(parent, pat_type, val):
+def add_patelt_node(parent, pat_name, val, val_type='string'):
     """
     Writes a valid fontconfig patelt node.
 
     Keyword arguments:
     parent -- parent node
-    type -- patelt name
-    val -- string value
+    pat_name -- patelt name
+    val -- value
+    val_type -- value type, string by default
 
     <parent>
         <patelt name=type>
@@ -71,8 +70,8 @@ def add_patelt_node(parent, pat_type, val):
     </parent>
     """
     par = parent.newChild(None, "patelt", None)
-    par.setProp("name", pat_type)
-    par.newChild(None, "string", val)
+    par.setProp("name", pat_name)
+    par.newChild(None, val_type, val)
     return
 
 def add_valid_node(node_ref, node_value):
@@ -84,14 +83,8 @@ def add_valid_node(node_ref, node_value):
     node_ref -- parent node
     node value -- family / font name
     """
-    node = node_ref
-    family = node_value
-    family = family.replace('&', '&amp;')
-    family = family.replace('&', '&lt;')
-    family = family.replace('&', '&gt;')
-    family = family.replace("'", '&apos;')
-    family = family.replace('"', '&quot;')
-    parent = node.newChild(None, "pattern", None)
+    family = xml_escape(node_value)
+    parent = node_ref.newChild(None, "pattern", None)
     add_patelt_node(parent, "family", family)
     return
 
@@ -120,11 +113,6 @@ def get_fc_patterns(node, fam_list):
             name = collection.prop("name")
             if name == "family":
                 family = collection.xpathEval('string')[0].content
-                family = family.replace('&amp;', '&')
-                family = family.replace('&lt;', '<')
-                family = family.replace('&gt;', '>')
-                family = family.replace('&apos;', "'")
-                family = family.replace('&quot;', '"')
             if family:
                 fam_list.append(family)
     return
@@ -457,8 +445,7 @@ def parse_file_failed():
     # in case the user or another app has modified it
     # move it to users home directory for inspection
     logging.info\
-    ("Moving invalid file to %s for inspection" \
-    % USER_FONT_CONF_INVALID)
+    ("Moving invalid file to %s for inspection" % USER_FONT_CONF_INVALID)
     logging.info("Replacing it with a valid file")
     os.rename(USER_FONT_CONF, USER_FONT_CONF_INVALID)
     logging.info("Creating %s" % USER_FONT_CONF)
@@ -498,7 +485,7 @@ def fm_include():
     import fileinput
     for line in fileinput.input(USER_FONT_CONF, inplace=1):
         print line[:-1]
-        if line.startswith('<fontconfig>'):
+        if line.strip().startswith('<fontconfig>'):
             print INCLUDE_LINE
 
 def setup_logging():
