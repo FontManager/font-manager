@@ -44,7 +44,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">False</property>
-                        <property name="position">2</property>
+                        <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
@@ -66,7 +66,7 @@
                       </object>
                       <packing>
                         <property name="padding">4</property>
-                        <property name="position">3</property>
+                        <property name="position">1</property>
                       </packing>
                     </child>
                     <child>
@@ -147,41 +147,7 @@
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">False</property>
-                        <property name="padding">2</property>
-                        <property name="pack_type">end</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkHBox" id="align1">
-                        <property name="visible">True</property>
-                        <child>
-                          <placeholder/>
-                        </child>
-                        <child>
-                          <object class="GtkButton" id="rename_collection">
-                            <property name="label" translatable="yes">Rename Collection</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="relief">half</property>
-                            <property name="focus_on_click">False</property>
-                          </object>
-                          <packing>
-                            <property name="padding">2</property>
-                            <property name="position">1</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="padding">1</property>
-                        <property name="pack_type">end</property>
-                        <property name="position">0</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -233,6 +199,7 @@
                                 <property name="secondary_icon_sensitive">True</property>
                               </object>
                               <packing>
+                                <property name="expand">False</property>
                                 <property name="padding">2</property>
                                 <property name="position">1</property>
                               </packing>
@@ -359,7 +326,6 @@
                                 </child>
                                 <child>
                                   <object class="GtkButton" id="font_info">
-                                    <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="receives_default">False</property>
                                     <property name="tooltip_text" translatable="yes">Display font information</property>
@@ -385,7 +351,6 @@
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
-                                    <property name="padding">6</property>
                                     <property name="position">2</property>
                                   </packing>
                                 </child>
@@ -650,6 +615,16 @@
           </packing>
         </child>
         <child>
+          <object class="GtkHSeparator" id="hseparator1">
+            <property name="visible">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="padding">2</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkHBox" id="bottom_box">
             <property name="visible">True</property>
             <child>
@@ -861,7 +836,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
-            <property name="position">1</property>
+            <property name="position">2</property>
           </packing>
         </child>
       </object>

@@ -3,7 +3,7 @@
 """
 # Font Manager, a font management application for the GNOME desktop
 #
-# Copyright (C) 2009 Jerry Casiano
+# Copyright (C) 2009, 2010 Jerry Casiano
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ if os.path.exists(os.path.join(os.path.dirname(__file__), 'font-manager.desktop'
     PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
     LOCALEDIR   = os.path.join(os.path.dirname(__file__), '../po')
 else:
-    VERSION     = '0.4.3'
+    VERSION     = '0.4.4'
     PACKAGE_DIR = '/usr/share/font-manager'
     LOCALEDIR   = '/usr/share/locale'
 

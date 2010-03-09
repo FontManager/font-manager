@@ -1,14 +1,14 @@
 """
 This module generates a pdf sample page from a directory or a python
- list of fonts. It supports Truetype and Type 1 fonts. 
+ list of fonts. It supports Truetype and Type 1 fonts.
 
-At the moment the output is very basic, but more complex styles and 
+At the moment the output is very basic, but more complex styles and
 options will be added over time, hopefully.
 .
 """
 # Font Manager, a font management application for the GNOME desktop
 #
-# Copyright (C) 2009 Jerry Casiano
+# Copyright (C) 2009, 2010 Jerry Casiano
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -78,14 +78,14 @@ class Config(object):
 class BuildSample:
     """
     Build a sample pdf from given directory or list
-        
+
     Keyword arguments:
     config -- a Config instance or None to use default values
     collection -- collection name / pdf name
     fontdir -- a python list or the directory to scan for font files
     output -- the name of output file - <fullpath>/filename.pdf
     builder -- a gtk.Builder instance
-    """    
+    """
     def __init__(self, config, collection, fontdir, output, builder):
         #
         if config is None:
@@ -107,16 +107,15 @@ class BuildSample:
         # UI elements
         self.mainbox = self.builder.get_object('main_box')
         self.options = self.builder.get_object('options_box')
-        self.refresh = self.builder.get_object('refresh')
         # Visual feedback
         self.load_label = self.builder.get_object('loading_label')
         self.progress_label = self.builder.get_object('progress_label')
         self.throbber = Throbber(self.builder)
-        
+
     def basic(self):
         """
-        Constructs a basic pdf listing the filename followed by a sample 
-        rendering of the font. 
+        Constructs a basic pdf listing the filename followed by a sample
+        rendering of the font.
         """
         self.sensitive(False)
         self.throbber.start()
@@ -150,7 +149,7 @@ class BuildSample:
             self.blank_labels()
             self.sensitive()
             while gtk.events_pending():
-                gtk.main_iteration()   
+                gtk.main_iteration()
             logging.error('No files given for export')
             return False
         self.blank_labels()
@@ -159,7 +158,7 @@ class BuildSample:
         if not self.prompt_for_failed_fonts():
             self.sensitive()
             while gtk.events_pending():
-                gtk.main_iteration()         
+                gtk.main_iteration()
             return False
         self.progress_label.set_text(_('Rendering PDF sample sheet...'))
         self.progress_label.show()
@@ -173,7 +172,7 @@ class BuildSample:
         while gtk.events_pending():
             gtk.main_iteration()
         return True
-    
+
     def build_basic_paragraph(self, filename, name, style):
         fullsize = self.font_size
         halfsize = fullsize / 2
@@ -208,7 +207,7 @@ class BuildSample:
         except ValueError, error:
             self.failed[filename] = error
         return
-        
+
     def sort_and_register(self, filename, filepath, style):
         if filename.endswith(TRUETYPE_EXTS):
             name = self.register_ttf(filename, filepath)
@@ -225,7 +224,7 @@ class BuildSample:
                 return False
             self.build_basic_paragraph(filename, name, style)
         return True
-        
+
     def register_ttf(self, filename, filepath):
         self.progress_label.set_text(filename)
         try:
@@ -247,7 +246,7 @@ class BuildSample:
         except (IndexError, AssertionError), error:
             self.failed[filename] = error
             return False
-            
+
     def register_type1(self, filename, filepath):
         self.progress_label.set_text(filename)
         try:
@@ -269,17 +268,17 @@ class BuildSample:
         except (IndexError, AssertionError), error:
             self.failed[filename] = error
             return False
-            
+
     def prompt_for_failed_fonts(self):
         SKIP_LS.clear()
         if len(self.failed) > 0:
             if not self.confirm_action(self.failed):
                 return False
         return True
-    
+
     def confirm_action(self, dic):
         """
-        For whatever reason not all fonts will be included, show the user 
+        For whatever reason not all fonts will be included, show the user
         which, why and confirm that they still wants to continue.
         """
         dialog = gtk.Dialog(_('Skipping the following fonts'), None,
@@ -308,7 +307,7 @@ class BuildSample:
             return False
         else:
             return True
-            
+
     def blank_labels(self):
         self.load_label.set_text('')
         self.load_label.hide()
@@ -320,7 +319,6 @@ class BuildSample:
         return
 
     def sensitive(self, state=True):
-        self.refresh.show()
         self.mainbox.set_sensitive(state)
         self.options.set_sensitive(state)
         while gtk.events_pending():
@@ -332,7 +330,7 @@ def map_font(name):
     """
     This just maps every style to the same file so that Platypus doesn't
      balk if it encounters style tags i.e. <b></b><i></i>
-    
+
     Not really necessary since we're not using those anyways, but...
     """
     # Give this a pass as it's not that important and a fail here
@@ -341,11 +339,11 @@ def map_font(name):
         addMapping(name, 0, 0, name)
         addMapping(name, 0, 1, name)
         addMapping(name, 1, 0, name)
-        addMapping(name, 1, 1, name) 
+        addMapping(name, 1, 1, name)
     except:
         pass
     return
-    
+
 def find_type1_name(path):
     """
     Try to extract a font name from an AFM file.

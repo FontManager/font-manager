@@ -4,7 +4,7 @@ This module handles everything related to the font preview area.
 """
 # Font Manager, a font management application for the GNOME desktop
 #
-# Copyright (C) 2009 Jerry Casiano
+# Copyright (C) 2009, 2010 Jerry Casiano
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -33,10 +33,9 @@ import gobject
 import logging
 import subprocess
 
-from os.path import exists
-
 import fontload
 
+from common import have_bin
 
 COMPARE_LS = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
 
@@ -63,7 +62,6 @@ class Views:
     preview_bgcolor = gtk.gdk.color_parse('white')
     mode = 'preview'
     colors_dialog = None
-    have_gfw = False
     def __init__(self, parent, builder):
         self.builder = builder
         self.parent = parent
@@ -71,39 +69,37 @@ class Views:
         self.current_style = None
         self.style_combo = gtk.combo_box_new_text()
         self.style_combo.set_focus_on_click(False)
-        self.family_tv = self.builder.get_object('families_tree')
+        get = self.builder.get_object
+        self.family_tv = get('families_tree')
         self.family_tv.get_selection().connect("changed", self._font_changed)
-        self.preview_scroll = self.builder.get_object('preview_scroll')
-        self.compare_scroll = self.builder.get_object('compare_scroll')
-        self.compare_tree = self.builder.get_object('compare_tree')
-        self.preview = self.builder.get_object('font_preview')
-        self.toggle = self.builder.get_object('compare_preview')
+        self.preview_scroll = get('preview_scroll')
+        self.compare_scroll = get('compare_scroll')
+        self.compare_tree = get('compare_tree')
+        self.preview = get('font_preview')
+        self.toggle = get('compare_preview')
         self.toggle.connect('toggled', self.switch_mode)
         self.preview_column = gtk.TreeViewColumn()
-        self.font_info = self.builder.get_object('font_info')
-        self.cb_box = self.builder.get_object('compare_buttons_box')
-        self.color_selector = self.builder.get_object('color_selector')
-        self.tentry = self.builder.get_object('custom_text_entry')
+        self.cb_box = get('compare_buttons_box')
+        self.color_selector = get('color_selector')
+        self.tentry = get('custom_text_entry')
         self.tentry.connect('changed', self.preview_text_changed)
         self.tentry.connect('icon-press', self.clear_custom_text)
-        custom_text = self.builder.get_object('custom_text')
+        custom_text = get('custom_text')
         custom_text.connect('toggled', self.custom_toggled)
-        size_adjustment = self.builder.get_object('size_adjustment')
+        size_adjustment = get('size_adjustment')
         # Correct value on start
         size_adjustment.set_value(DEFAULT_PREVIEW_SIZE)
         self.size = size_adjustment.get_value()
         # Make it do something
         size_adjustment.connect('value-changed', self.on_size_adj_v_change)
         # GNOME character map
-        self.gucharmap = self.builder.get_object("gucharmap")
-        if exists('/usr/bin/gucharmap') or \
-        exists('/usr/local/bin/gucharmap'):
+        self.gucharmap = get("gucharmap")
+        if have_bin('gucharmap'):
             self.gucharmap.connect('clicked', self.on_char_map)
             self.charmap = True
         else:
             self.gucharmap.hide()
             self.charmap = False
-        self.check_for_gfw()
         self.setup_style_combo()
         self.init_compare_tree()
         return
@@ -134,7 +130,6 @@ class Views:
             self.update_compare_view()
             self.compare_scroll.show()
             self.toggle.set_label(_('Preview Fonts'))
-            self.font_info.hide()
             self.color_selector.show()
             if self.charmap:
                 self.gucharmap.hide()
@@ -145,7 +140,6 @@ class Views:
             self.preview_scroll.show()
             self.toggle.set_label(_('Compare Fonts'))
             self.color_selector.hide()
-            self.font_info.show()
             self.cb_box.hide()
             if self.charmap:
                 self.gucharmap.show()
@@ -197,21 +191,22 @@ class Views:
         return
 
     def cell_data_cb(self, column, cell, model, treeiter):
+        set = cell.set_property
         if model.get_path(treeiter)[0] % 2 == 0:
             # this is a name row
-            cell.set_property('text', model.get_value(treeiter, 0))
-            cell.set_property('font', 'Sans 11')
-            cell.set_property('ypad', 2)
-            cell.set_property('background', '#F7F7F7')
-            cell.set_property('foreground', None)
+            set('text', model.get_value(treeiter, 0))
+            set('font', 'Sans 11')
+            set('ypad', 2)
+            set('background', '#F7F7F7')
+            set('foreground', None)
         else:
             # this is a preview row
-            cell.set_property('text', self.compare_text)
-            cell.set_property('font-desc', model.get_value(treeiter, 1))
-            cell.set_property('size-points', self.size)
-            cell.set_property('ypad', 2)
-            cell.set_property('background-gdk', self.preview_bgcolor)
-            cell.set_property('foreground-gdk', self.preview_fgcolor)
+            set('text', self.compare_text)
+            set('font-desc', model.get_value(treeiter, 1))
+            set('size-points', self.size)
+            set('ypad', 2)
+            set('background-gdk', self.preview_bgcolor)
+            set('foreground-gdk', self.preview_fgcolor)
         return
 
     def _set_preview_row_selection(self, path):
@@ -244,8 +239,7 @@ class Views:
         return
 
     def preview_text_changed(self, widget):
-        self.compare_text = widget.get_text()
-        self.preview_text = widget.get_text()
+        self.compare_text = self.preview_text = widget.get_text()
         self.update_compare_view()
         self._set_preview_text(self.current_style)
         return
@@ -347,25 +341,9 @@ class Views:
         """
         fsb = self.builder.get_object("font_size_box")
         fsb.pack_end(self.style_combo, False, False)
-        
         self.style_combo.connect('changed', self._on_style_changed)
         self.style_combo.show()
         return
-
-    def check_for_gfw(self):
-        """
-        Enables the font info button if gnome-font-viewer is
-        found on the system
-        """
-        font_info = self.builder.get_object('font_info')
-        if exists('/usr/bin/gnome-font-viewer') or \
-        exists('/usr/local/bin/gnome-font-viewer'):
-            font_info.connect('clicked', self._on_font_info)
-            self.have_gfw = True
-        else:
-            font_info.set_sensitive(False)
-            font_info.set_tooltip_text\
-            (_('This feature requires gnome-font-viewer'))
 
     def on_char_map(self, unused_widget):
         """
@@ -415,10 +393,6 @@ class Views:
         except IndexError:
             logging.warn('Font failed to provide style information')
             return
-        if style in self.current_font.filelist and self.have_gfw:
-            self.font_info.set_sensitive(True)
-        else:
-            self.font_info.set_sensitive(False)
         faces = sorted(self.current_font.pango_family.list_faces(),
                 cmp=lambda x, y: cmp(x.get_face_name(), y.get_face_name()))
         for face in faces:
@@ -463,24 +437,6 @@ class Views:
             self.update_compare_view()
         return
 
-    def _on_font_info(self, unused_widget):
-        """
-        Displays detailed font information
-
-        Requires gnome-font-viewer to be installed
-        """
-        font = self.current_font
-        style = self.style_combo.get_model()[self.style_combo.get_active()][0]
-        fontfile = font.filelist[style]
-        try:
-            subprocess.Popen(['gnome-font-viewer', fontfile])
-        except (TypeError, IndexError):
-            self._font_info_unavailable()
-        except OSError, error:
-            logging.error("Error opening font file: %s" % error)
-            self._font_info_unavailable()
-        return
-
     def _set_preview_text(self, descr):
         """
         Sets up sample text
@@ -493,18 +449,5 @@ class Views:
         buffer.insert(buffer.get_end_iter(), '\n' + self.preview_text + '\n')
         buffer.apply_tag(tag, buffer.get_start_iter(), buffer.get_end_iter())
         self.current_style = descr
-        return
-
-    def _font_info_unavailable(self):
-        """
-        Displays a dialog if we couldn't load specified file
-        """
-        dialog = gtk.MessageDialog(self.parent,
-        gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_ERROR,
-        gtk.BUTTONS_CLOSE,
-        _("Sorry could not load information for selected font"))
-        dialog.set_title(_("Unavailable"))
-        dialog.run()
-        dialog.destroy()
         return
 

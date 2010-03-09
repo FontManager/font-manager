@@ -4,7 +4,7 @@ This module handles everything related to the two main treeviews.
 """
 # Font Manager, a font management application for the GNOME desktop
 #
-# Copyright (C) 2009 Jerry Casiano
+# Copyright (C) 2009, 2010 Jerry Casiano
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -34,8 +34,10 @@ import gobject
 import xmlutils
 import fontload
 
+from common import match, search
 
-family_ls = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT,
+
+FAMILY_LS = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT,
                                                     gobject.TYPE_STRING)
 
 
@@ -56,79 +58,78 @@ class Trees:
         self.builder = builder
         self.selected_rows = []
         self.parent = parent
-        self.category_tv = self.builder.get_object('collections_tree')
-        self.collection_tv = self.builder.get_object('user_collections_tree')
-        self.family_tv = self.builder.get_object('families_tree')
-        self.new_collection = self.builder.get_object('new_collection')
-        self.remove_collection = self.builder.get_object('remove_collection')
-        self.enable_collection = self.builder.get_object('enable_collection')
-        self.disable_collection = self.builder.get_object('disable_collection')
-        self.rename_collection = self.builder.get_object('rename_collection')
-        self.remove_font = self.builder.get_object('remove_font')
-        self.enable_font = self.builder.get_object('enable_font')
-        self.disable_font = self.builder.get_object('disable_font')
-        self.find_button = self.builder.get_object('find_font')
-        self.find_entry = self.builder.get_object('find_entry')
-        self.export = self.builder.get_object("export")
+        get = self.builder.get_object
+        self.category_tv = get('collections_tree')
+        self.collection_tv = get('user_collections_tree')
+        self.family_tv = get('families_tree')
+        self.new_collection = get('new_collection')
+        self.remove_collection = get('remove_collection')
+        self.enable_collection = get('enable_collection')
+        self.disable_collection = get('disable_collection')
+        self.remove_font = get('remove_font')
+        self.enable_font = get('enable_font')
+        self.disable_font = get('disable_font')
+        self.find_button = get('find_font')
+        self.find_entry = get('find_entry')
+        self.export = get("export")
+        self.vpane = get('vpane')
+        self.hpane = get('hpane')
+        self.vpane.connect_after('event', self.pane_resized)
+        self.hpane.connect_after('event', self.pane_resized)
         self.init_treeviews()
         self.connect_handlers()
-        # select the first option in each column
+        # select a row in each column
         self.category_tv.get_selection().select_path(1)
         self.family_tv.get_selection().select_path(0)
         return
 
     def init_treeviews(self):
         self.category_tv.set_model(fontload.category_ls)
-        self.category_tv.get_selection().connect('changed',
-                                                self._category_changed)
-        column = gtk.TreeViewColumn(_('Category'),
-                                    gtk.CellRendererText(), markup=0)
+        self.category_tv.get_selection().connect('changed', self._collection_changed)
+        column = gtk.TreeViewColumn(_('Category'), gtk.CellRendererText(), markup=0)
         self.category_tv.append_column(column)
-        
+
         self.collection_tv.set_model(fontload.collection_ls)
-        self.collection_tv.get_selection().connect('changed',
-                                                self._collection_changed)
-        self.collection_tv.connect('drag-data-received',
-                                                self._drag_data_received)
-        self.collection_tv.connect('row-activated',
-                                    self._collection_activated)
-        self.collection_tv.enable_model_drag_dest(self.DRAG_TARGETS,
-                                                    self.DRAG_ACTIONS)
+        self.collection_tv.get_selection().connect('changed', self._collection_changed)
+        self.collection_tv.connect('drag-data-received', self._drag_data_received)
+        self.collection_tv.enable_model_drag_dest(self.DRAG_TARGETS, self.DRAG_ACTIONS)
         self.collection_tv.enable_model_drag_source(gtk.gdk.BUTTON1_MASK
          | gtk.gdk.RELEASE_MASK, self.DRAG_TARGETS, self.DRAG_ACTIONS)
-        column = gtk.TreeViewColumn(_('Collection'),
-                                    gtk.CellRendererText(), markup=0)
-        column.set_sort_column_id(2)
-        self.collection_tv.append_column(column)
+        renderer = gtk.CellRendererText()
+        renderer.set_property('editable', True)
+        renderer.connect('edited', self._set_collection_name)
+        self.collection_column = gtk.TreeViewColumn(_('Collection'), renderer, markup=0)
+        self.collection_column.set_sort_column_id(2)
+        self.collection_tv.append_column(self.collection_column)
 
-        self.family_tv.set_model(family_ls)
+        self.family_tv.set_model(FAMILY_LS)
         self.family_tv.get_selection().set_mode(gtk.SELECTION_MULTIPLE)
-        self.family_tv.connect_object('button-press-event',
-                                    self._button_press, self)
-        self.family_tv.connect_object('button-release-event',
-                                    self._button_release, self)
+        self.family_tv.connect_object('button-press-event', self._button_press, self)
+        self.family_tv.connect_object('button-release-event', self._button_release, self)
         self.family_tv.connect_after('drag-begin', _begin_drag)
         self.family_tv.connect("row-activated", self._font_activated)
         self.family_tv.enable_model_drag_source(gtk.gdk.BUTTON1_MASK,
                                 self.DRAG_TARGETS, self.DRAG_ACTIONS)
-        self.fonts_column = gtk.TreeViewColumn(_('Font'),
-                                    gtk.CellRendererText(), markup=0)
+        self.fonts_column = gtk.TreeViewColumn(_('Font'), gtk.CellRendererText(), markup=0)
         self.fonts_column.set_sort_column_id(2)
         self.family_tv.append_column(self.fonts_column)
 
     def connect_handlers(self):
-        self.new_collection.connect('clicked', self._on_new_collection)
-        self.remove_collection.connect('clicked', self._on_remove_collection)
-        self.enable_collection.connect('clicked', self._on_enable_collection)
-        self.disable_collection.connect('clicked', self._on_disable_collection)
-        self.rename_collection.connect('clicked', self._on_rename_collection)
-        self.remove_font.connect('clicked', self._on_remove_font)
-        self.enable_font.connect('clicked', self._on_enable_font)
-        self.disable_font.connect('clicked', self._on_disable_font)
-        self.find_button.connect('clicked', self._on_find_font)
+        handlers = {
+        self.new_collection : self._on_new_collection,
+        self.remove_collection : self._on_remove_collection,
+        self.enable_collection : self._on_enable_collection,
+        self.disable_collection : self._on_disable_collection,
+        self.remove_font : self._on_remove_font,
+        self.enable_font : self._on_enable_font,
+        self.disable_font : self._on_disable_font,
+        self.find_button : self._on_find_font
+        }
+        for widget, function in handlers.iteritems():
+            widget.connect('clicked', function)
         self.find_entry.connect('icon-press', self._on_find_entry_icon)
         return
-        
+
     def _button_press(self, unused_inst, event):
         """
         Intercept left mouse click
@@ -194,8 +195,7 @@ class Trees:
         drop_info = treeview.get_dest_row_at_pos(x, y)
         if drop_info:
             cpath, cpos = drop_info
-            fonts = self.family_tv.get_selection().get_selected_rows()
-            fmodel, fpaths = fonts
+            fmodel, fpaths = self.family_tv.get_selection().get_selected_rows()
             cmodel = treeview.get_model()
             citer = cmodel.get_iter(cpath)
             collection = cmodel[cpath][1]
@@ -204,10 +204,9 @@ class Trees:
         if not fpaths:
             collection_tv = self.collection_tv.get_selection()
             unused_model, selected_iter = collection_tv.get_selected()
-            sc0 = cmodel.get_value(selected_iter, 0)
-            sc1 = cmodel.get_value(selected_iter, 1)
-            sc2 = cmodel.get_value(selected_iter, 2)
-            row_data = (sc0, sc1, sc2)
+            row_data = (cmodel.get_value(selected_iter, 0),
+                        cmodel.get_value(selected_iter, 1),
+                        cmodel.get_value(selected_iter, 2))
             if (cpos == gtk.TREE_VIEW_DROP_BEFORE
                 or cpos == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
                 cmodel.insert_before(citer, row_data)
@@ -231,53 +230,54 @@ class Trees:
                         pass
         treeview.get_selection().select_path(cpath)
         self.update_views()
+        font_tree = self.family_tv
+        if font_tree.get_model().get_iter_first() is not None:
+            font_tree.get_selection().select_path(0)
         return
 
-    def _on_new_collection(self, widget):
-        new_name = _("New Collection")
-        default_names = _('All Fonts'), _('System'), _('User'), _('Orphans')
-        while True:
-            new_name = self._get_new_collection_name(widget, new_name)
-            if not new_name:
-                return
-            if not self._collection_name_exists(new_name) \
-            and new_name != None \
-            and new_name not in default_names:
-                break
+    def _on_new_collection(self, unused_widget):
+        new_name = _('New Collection')
+        alt = 0
+        while self._collection_exists(new_name):
+            alt += 1
+            new_name =  _('New Collection %s' % alt)
         collection = fontload.Collection(new_name)
         collection.builtin = False
         fontload.FontLoad.add_collection(collection)
-        xmlutils.BlackList(parent=self.parent, 
-                            fc_fonts=fontload.fc_fonts).save()
-
-    def _get_new_collection_name(self, unused_widget, old_name):
-        dialog = gtk.Dialog(_("Enter Collection Name"),
-                self.parent, gtk.DIALOG_MODAL,
-                (gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL,
-                    gtk.STOCK_OK, gtk.RESPONSE_OK))
-        dialog.set_default_size(325, 50)
-        dialog.set_default_response(gtk.RESPONSE_OK)
-        text = gtk.Entry()
-        if old_name:
-            text.set_text(old_name)
-        text.set_property("activates-default", True)
-        dialog.vbox.set_spacing(5)
-        dialog.vbox.pack_start(text)
-        text.show()
-        ret = dialog.run()
-        dialog.destroy()
-        if ret == gtk.RESPONSE_OK:
-            return text.get_text().strip()
-        return None
+        xmlutils.BlackList(parent=self.parent, fc_fonts=fontload.fc_fonts).save()
+        model = self.collection_tv.get_model()
+        path = model.iter_n_children(None) - 1
+        self.collection_tv.scroll_to_cell(path, self.collection_column,
+                            use_align=True, row_align=0.25, col_align=0.0)
+        self.collection_tv.set_cursor(path, self.collection_column,
+                                                start_editing=True)
 
     def _on_remove_collection(self, unused_widget):
         collection = self.current_collection
-        if not collection:
+        name = collection.name
+        tree = self.collection_tv
+        model = tree.get_model()
+        treeiter = search(model, model.iter_children(None), match, (2, name))
+        try:
+            path = model.get_path(treeiter)
+            fontload.collections.remove(collection)
+            self._update_collection_view(fontload.collection_ls)
+        except (ValueError, TypeError):
+            # Nothing selected, nothing to do...
             return
-        fontload.collections.remove(collection)
-        self.category_tv.get_selection().select_path(0)
-        self.family_tv.get_selection().select_path(0)
-        self.update_views()
+        try:
+            model.get_iter(path)
+            self.update_views()
+            while gtk.events_pending():
+                gtk.main_iteration()
+            tree.get_selection().select_path(path)
+        except ValueError:
+            path_to_select = model.iter_n_children(None) - 1
+            if (path_to_select >= 0):
+                self.update_views()
+                while gtk.events_pending():
+                    gtk.main_iteration()
+                tree.get_selection().select_path(path_to_select)
         return
 
     def _on_enable_collection(self, unused_widget):
@@ -315,29 +315,14 @@ Really disable %s fonts?
         dialog.destroy()
         return (ret == gtk.RESPONSE_YES)
 
-    def _on_rename_collection(self, unused_widget):
-        collection = self.current_collection
-        default_names = _('All Fonts'), _('System'), _('User'), _('Orphans')
-        if not collection:
-            return
-        name = collection.name
-        while True:
-            name = self._get_new_collection_name(self, name)
-            if not self._collection_name_exists(name) and \
-            name != None and name not in default_names:
-                self._rename_collection(name)
-                collection.name = name
-                break
-            elif not name or collection.name == name:
-                return
+    def _set_collection_name(self, unused_widget, path, new_name):
+        model = self.collection_tv.get_model()
+        treeiter = model.get_iter(path)
+        collection = model.get_value(treeiter, 1)
+        if not self._collection_exists(new_name) and new_name.strip() != "":
+            model.set(treeiter, 2, new_name)
+            collection.name = new_name
         self.update_views()
-
-    def _rename_collection(self, new_name):
-        sel = self.collection_tv.get_selection()
-        model, treeiter = sel.get_selected()
-        if not treeiter:
-            return
-        model.set(treeiter, 2, new_name)
 
     def _on_remove_font(self, unused_widget):
         collection = self.current_collection
@@ -354,12 +339,12 @@ Really disable %s fonts?
         else:
             return
         self.update_views()
-        xmlutils.BlackList(parent=self.parent, 
+        xmlutils.BlackList(parent=self.parent,
                             fc_fonts=fontload.fc_fonts).save()
 
     def _on_disable_font(self, unused_widget):
         selected_fonts = self.family_tv.get_selection().count_selected_rows()
-        if selected_fonts < 1:
+        if not selected_fonts:
             return
         elif selected_fonts < 1000:
             for font in self._iter_selected_fonts():
@@ -371,16 +356,21 @@ Really disable %s fonts?
                 if font.enabled:
                     font.enabled = False
         self.update_views()
-        xmlutils.BlackList(parent=self.parent, 
+        xmlutils.BlackList(parent=self.parent,
                             fc_fonts=fontload.fc_fonts).save()
 
     def _on_find_font(self, widget):
+        box_height = self.find_entry.size_request()[1]
+        vpane_pos = self.vpane.get_position()
         if widget.get_active():
-            #self.find_entry.set_text('')
+            if vpane_pos > 0:
+                self.vpane.set_position(vpane_pos + box_height)
             self.find_entry.show()
             self.find_entry.grab_focus()
             widget.set_label(_('Hide search box'))
         else:
+            if vpane_pos > 0:
+                self.vpane.set_position(vpane_pos - box_height)
             self.find_entry.hide()
             widget.set_label(_('Search Fonts'))
             if self.family_tv.get_selection().count_selected_rows() == 0 \
@@ -391,35 +381,23 @@ Really disable %s fonts?
         self.find_entry.set_text('')
         self.family_tv.scroll_to_point(0, 0)
 
-    def _collection_activated(self, unused_treeview, unused_path, unused_col):
-        """
-        Handles collection treeview events -- double clicks, enter key
-        """
-        self._enable_collection(not self.current_collection.enabled)
-        return
-
     def update_sensitivity(self, treeview):
         """
         Controls UI sensitivity
         """
         block = _('All Fonts'), _('System'), _('Orphans')
+        widgets = self.remove_collection, self.disable_collection, self.remove_font
         fonts = self.current_collection.fonts
         collection = self.current_collection.get_name()
-        if collection in block:
-            self.remove_collection.set_sensitive(False)
-            self.disable_collection.set_sensitive(False)
-            self.rename_collection.set_sensitive(False)
-            self.remove_font.set_sensitive(False)
-        elif collection == _('User'):
-            self.remove_collection.set_sensitive(False)
-            self.disable_collection.set_sensitive(True)
-            self.rename_collection.set_sensitive(False)
-            self.remove_font.set_sensitive(False)
-        else:
-            self.remove_collection.set_sensitive(True)
-            self.disable_collection.set_sensitive(True)
-            self.rename_collection.set_sensitive(True)
-            self.remove_font.set_sensitive(True)
+        for widget in widgets:
+            if collection in block:
+                widget.set_sensitive(False)
+            elif collection == _('User'):
+                widget.set_sensitive(False)
+                if widget == widgets[1]:
+                    widget.set_sensitive(True)
+            else:
+                widget.set_sensitive(True)
         if not len(fonts) > 0:
             self.export.set_sensitive(False)
         else:
@@ -429,24 +407,7 @@ Really disable %s fonts?
         else:
             self.category_tv.get_selection().unselect_all()
         return
-        
-    def _category_changed(self, tree_selection):
-        """
-        Sets current collection
-        """
-        while gtk.events_pending():
-            gtk.main_iteration()
-        try:
-            model, treeiter = tree_selection.get_selected()
-            self.current_collection = model.get_value(treeiter, 1)
-            self._show_collection()
-            treeview = tree_selection.get_tree_view()
-            self.update_sensitivity(treeview)
-        # This happens when we unselect all in the sister view
-        except TypeError:
-            pass
-        return
-            
+
     def _collection_changed(self, tree_selection):
         """
         Sets current collection
@@ -455,16 +416,22 @@ Really disable %s fonts?
             model, treeiter = tree_selection.get_selected()
             self.current_collection = model.get_value(treeiter, 1)
             self._show_collection()
+            font_tree = self.family_tv
+            if font_tree.get_model().get_iter_first() is not None:
+                font_tree.get_selection().select_path(0)
             treeview = tree_selection.get_tree_view()
             self.update_sensitivity(treeview)
         # This happens when we unselect all in the sister view
         except TypeError:
             pass
         return
-    
+
     @staticmethod
-    def _collection_name_exists(name):
+    def _collection_exists(name):
         for collection in fontload.collections:
+            if collection.name == name:
+                return True
+        for collection in fontload.categories:
             if collection.name == name:
                 return True
         return False
@@ -475,10 +442,10 @@ Really disable %s fonts?
             return
         collection.set_enabled(enabled)
         self.update_views()
-        xmlutils.BlackList(parent=self.parent, 
+        xmlutils.BlackList(parent=self.parent,
                             fc_fonts=fontload.fc_fonts).save()
         self._show_collection()
-        
+
     def _font_activated(self, unused_tree, unused_path, unused_col):
         """
         Handles family treeview events -- double clicks, enter key
@@ -486,9 +453,9 @@ Really disable %s fonts?
         for font in self._iter_selected_fonts():
             font.enabled = (not font.enabled)
         self.update_views()
-        xmlutils.BlackList(parent=self.parent, 
+        xmlutils.BlackList(parent=self.parent,
                             fc_fonts=fontload.fc_fonts).save()
-            
+
     def _iter_selected_fonts(self):
         selected_fonts = \
         self.family_tv.get_selection().get_selected_rows()
@@ -497,7 +464,7 @@ Really disable %s fonts?
             self.selected_rows.append(path)
             obj = model[path][1]
             yield obj
-    
+
     def _show_collection(self):
         collection = self.current_collection
         tree = self.family_tv
@@ -517,7 +484,7 @@ Really disable %s fonts?
             return
         fontlist = sorted(collection.fonts,
                         cmp=lambda x, y: cmp(x.family, y.family))
-        # Create a new liststore on every call to this function since 
+        # Create a new liststore on every call to this function since
         # re-using an already sorted liststore can cause MAJOR slowdown.
         lstore = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT,
                                                     gobject.TYPE_STRING)
@@ -532,25 +499,25 @@ Really disable %s fonts?
         # I guess this setting gets thrown out with the old model
         tree.set_search_column(2)
         tree.set_search_entry(self.find_entry)
-        # In case update was triggered by enabling/disabling fonts prevent 
+        # In case update was triggered by enabling/disabling fonts prevent
         # list from shifting too much and confusing or annoying the user
         if len(collection.fonts) > 0 and len(self.selected_rows) > 0:
             self.selected_rows.sort()
             path = self.selected_rows[0]
             tree.get_selection().select_path(path)
-            tree.scroll_to_cell(path, self.fonts_column, 
+            tree.scroll_to_cell(path, self.fonts_column,
                                 use_align=True, row_align=0.25, col_align=0.0)
             self.selected_rows = []
         return
-    
+
     @staticmethod
-    def _update_categories_view(model):
-        for collection in fontload.categories:
+    def _update_collection_view(model, collections=fontload.collections):
+        for collection in collections:
             collection.set_enabled_from_fonts()
         treeiter = model.get_iter_first()
         while treeiter:
             label, obj = model.get(treeiter, 0, 1)
-            if obj in fontload.categories:
+            if obj in collections:
                 new_label = obj.get_label()
                 if label != new_label:
                     model.set(treeiter, 0, new_label)
@@ -559,24 +526,7 @@ Really disable %s fonts?
                 if not model.remove(treeiter):
                     return
         return
-    
-    @staticmethod
-    def _update_collection_view(model):
-        for collection in fontload.collections:
-            collection.set_enabled_from_fonts()
-        treeiter = model.get_iter_first()
-        while treeiter:
-            label, obj = model.get(treeiter, 0, 1)
-            if obj in fontload.collections:
-                new_label = obj.get_label()
-                if label != new_label:
-                    model.set(treeiter, 0, new_label)
-                treeiter = model.iter_next(treeiter)
-            else:
-                if not model.remove(treeiter):
-                    return
-        return
-    
+
     @staticmethod
     def _update_font_view(tree):
         model = tree.get_model()
@@ -591,7 +541,7 @@ Really disable %s fonts?
                 if not model.remove(treeiter):
                     return
         return
-    
+
     @staticmethod
     def save():
         """
@@ -604,12 +554,17 @@ Really disable %s fonts?
         """
         Refresh both the collection and fonts treeviews.
         """
-        self._update_categories_view(fontload.category_ls)
+        self._update_collection_view(fontload.category_ls, collections=fontload.categories)
         self._update_collection_view(fontload.collection_ls)
         self._update_font_view(self.family_tv)
         self._show_collection()
         self.parent.queue_draw()
-        
+
+    def pane_resized(self, unused_widget, event):
+        if event.type == gtk.gdk.BUTTON_RELEASE:
+            self.parent.queue_resize()
+
+
 # this is strictly cosmetic
 # Todo: make this nice instead of just a stock icon
 def _begin_drag(unused_widget, context):

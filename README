@@ -29,8 +29,6 @@ Font Manager currently allows the user to:
 
     * Export "Collections" to an archive for easy backup, sharing, etc.
 
-    * Provides quick access to detailed information about the selected font if gnome-font-viewer is available
-
 
 In the future Font Manager intends to allow the user to:
 
@@ -56,11 +54,7 @@ Requirements:
 
 Suggested:
 
-    * ReportLab Toolkit         http://www.reportlab.org/
     * file-roller               http://fileroller.sourceforge.net/
-    * gnome-font-viewer         http://www.jamesh.id.au/software/fontilus/
     * gucharmap                 http://live.gnome.org/Gucharmap
-
-    gnome-font-viewer is now included in gnome-control-center
-
+    * ReportLab Toolkit         http://www.reportlab.org/
 

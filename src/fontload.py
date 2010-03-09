@@ -4,7 +4,7 @@ This module uses fontconfig to find available fonts on a system.
 """
 # Font Manager, a font management application for the GNOME desktop
 #
-# Copyright (C) 2009 Jerry Casiano
+# Copyright (C) 2009, 2010 Jerry Casiano
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -145,7 +145,6 @@ class FontLoad:
         # UI elements
         self.mainbox = self.builder.get_object('main_box')
         self.options = self.builder.get_object('options_box')
-        self.refresh = self.builder.get_object('refresh')
         if exists(join(DB_DIR, 'installed_fonts.db')):
             loadobj = open(join(DB_DIR, 'installed_fonts.db'), 'r')
             self.installed_fonts = cPickle.load(loadobj)
@@ -170,8 +169,8 @@ class FontLoad:
         self._load_fonts()
         self._count_fonts()
         # Need to load blacklist now before loading collections
-        patterns = xmlutils.BlackList(fc_fonts=fc_fonts).load()
-        self.disable_rejects(patterns)
+        rejects = xmlutils.BlackList(fc_fonts=fc_fonts).load()
+        self.disable_rejects(rejects)
         self.load_collections()
         xmlutils.BlackList.enable_blacklist()
         throbber.stop()
@@ -205,6 +204,12 @@ class FontLoad:
         # Ensure update
         while gtk.events_pending():
             gtk.main_iteration()
+        self.update_db(progress)
+        progress.hide()
+        load_label.hide()
+        return
+
+    def update_db(self, progress):
         ctx = self.parent.create_pango_context()
         families = ctx.list_families()
         psuedo_fams = 'Monospace', 'Sans', 'Serif'
@@ -227,30 +232,7 @@ class FontLoad:
                 obj.filelist = cPickle.load(loadobj)
                 loadobj.close()
             else:
-                cmd = 'fc-list "%s" file style fullname' % dbname
-                for line in get_cli_output(cmd):
-                    filepath = line.split(':')[0]
-                    try:
-                        style = line.split(':style=')[1]
-                        style = style.split(':fullname=')[0]
-                        if style.find(','):
-                            style = style.split(',')[0]
-                        style = style.strip()
-                    except IndexError:
-                        style = None
-                    if not style:
-                        try:
-                            fullname = line.split(':fullname=')[1]
-                            if fullname:
-                                fullname = fullname.replace(name, '')
-                                if fullname.find(','):
-                                    fullname = fullname.split(',')[0]
-                                fullname = fullname.strip()
-                                style = fullname
-                        except IndexError:
-                            logging.warn('%s is missing required information')
-                    styles[style] = filepath
-                obj.filelist = styles
+                obj.filelist = self.build_filelist(styles, obj, name, dbname)
                 if not exists(DB_DIR):
                     os.mkdir(DB_DIR)
                 saveobj = open\
@@ -258,8 +240,7 @@ class FontLoad:
                 cPickle.dump(styles, saveobj, cPickle.HIGHEST_PROTOCOL)
                 saveobj.close()
                 for path in styles.itervalues():
-                    if path.startswith(INSTALL_DIRECTORY) or \
-                    path.startswith(USER_FONT_DIR):
+                    if path.startswith(USER_FONT_DIR):
                         if dbname in self.installed_fonts:
                             del self.installed_fonts[dbname]
                         self.installed_fonts[dbname] = styles
@@ -269,9 +250,32 @@ class FontLoad:
         saveobj = open(join(DB_DIR, 'installed_fonts.db'), 'w')
         cPickle.dump(self.installed_fonts, saveobj, cPickle.HIGHEST_PROTOCOL)
         saveobj.close()
-        progress.hide()
-        load_label.hide()
         return
+
+    def build_filelist(self, styles, obj, name, dbname):
+        cmd = 'fc-list "%s" file style fullname' % dbname
+        for line in get_cli_output(cmd):
+            filepath = line.split(':')[0]
+            try:
+                style = line.split(':style=')[1]
+                style = style.split(':fullname=')[0]
+                if style.find(','):
+                    style = style.split(',')[0]
+                style = style.strip()
+            except IndexError:
+                style = None
+            if not style:
+                try:
+                    fullname = line.split(':fullname=')[1]
+                    if fullname:
+                        if fullname.find(','):
+                            fullname = fullname.split(',')[0]
+                        fullname = fullname.replace(name, '').strip()
+                        style = fullname
+                except IndexError:
+                    logging.warn('%s is missing required information')
+            styles[style] = filepath
+        return styles
 
     def _count_fonts(self):
         for unused_i in self.fc_fams:
@@ -293,9 +297,9 @@ class FontLoad:
         return
 
     @staticmethod
-    def disable_rejects(patterns):
-        if patterns:
-            for family in patterns:
+    def disable_rejects(rejects):
+        if rejects:
+            for family in rejects:
                 font = fc_fonts.get(family, None)
                 if font:
                     font.enabled = False
@@ -353,7 +357,6 @@ class FontLoad:
             self.show_orphans = config.getboolean('Categories', 'orphans')
         except ConfigParser.NoSectionError:
             self.show_orphans = False
-
         if self.show_orphans:
             self._add_orphans()
         return
@@ -383,13 +386,11 @@ class FontLoad:
         return
 
     def sensitive(self, state=True):
-        self.refresh.show()
         self.mainbox.set_sensitive(state)
         self.options.set_sensitive(state)
         while gtk.events_pending():
             gtk.main_iteration()
         return
-
 
 
 def _gtk_markup_escape(name):
@@ -407,5 +408,5 @@ def _on(name):
 def _off(name):
     name = _gtk_markup_escape(name)
     off = _('off')
-    return '<span weight="ultralight">%s %s</span>' % (name, off)
+    return '<span strikethrough="true" weight="ultralight">%s</span>' % name
 

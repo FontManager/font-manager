@@ -1,3 +1,29 @@
+    * Update (0.4.4)
+
+        Maintenance release.
+
+        Fix redraw/corruption issues when widgets are shown/hidden or panes
+        are repositioned.
+
+        Fix unnecessary escapes in treeview text column.
+
+        Fix typos affecting the way illegal xml characters are escaped.
+
+        Some code cleanup
+
+        Removed the "font info" button, because gnome-font-viewer sucks and the
+        latest "improved" version is even silly enough to allow installation of
+        already installed fonts...
+
+        The rename collection button/dialog was also dropped as it's unnecessary,
+        renaming collections can be done directly by clicking on the collection
+        name once it's been selected.
+
+        The "font info" feature should be back in a future release along with a
+        more competent, at least according to me, "font-viewer" and the ability
+        to edit font details.
+
+
     * Update (0.4.3)
 
         Added the following options
@@ -7,7 +33,7 @@
           Include pangram in sample sheets
           Set default font size for sample sheets
 
-        Removed unnecessary, possibly confusing, confirmation dialog 
+        Removed unnecessary, possibly confusing, confirmation dialog
         when removing collections.
 
         Correct permissions for installed files.
