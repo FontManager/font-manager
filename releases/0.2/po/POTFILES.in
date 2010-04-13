@@ -1,0 +1,8 @@
+src/app_prefs.py
+src/export_collection.py
+src/fm_collections.py
+src/fontmanager.py
+src/handlers.py
+src/ui.py
+
+
