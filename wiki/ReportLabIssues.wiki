@@ -54,7 +54,7 @@ struct.error: unpack requires a string argument of length 2
 }}}
 <br />
 <p>
-If it matches either of those, then your crash is happening within python-reportlab, please save the following file <a href='http://font-manager.googlecode.com/svn/tags/ReportLab/ttfonts.py' target='_blank'>ttfonts.py</a>, and after making a copy of your current ttfonts.py replace it with the one you just downloaded and attempt to recreate the crash.
+If it matches either of those, then your crash is happening within python-reportlab, please save the following file <a href='http://font-manager.googlecode.com/svn/resources/ReportLab/ttfonts.py' target='_blank'>ttfonts.py</a>, and after making a copy of your current ttfonts.py replace it with the one you just downloaded and attempt to recreate the crash.
 </p>
 <br />
 <p>
