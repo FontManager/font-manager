@@ -98,7 +98,7 @@ _("""
 
     Should you wish to customize rendering options, use
 
-        %s
+      %s
 -->
 """) % USER_FONT_CONFIG_RENDER
 

@@ -40,7 +40,7 @@ from ui.treeviews import Treeviews
 from ui.previews import Previews
 from utils.common import disable_blacklist, open_folder, delete_cache, \
                             delete_database, reset_fontconfig_cache
-from utils.xmlutils import save_collections
+from utils.xmlutils import check_libxml2_leak, save_collections
 
 
 class Main(object):
@@ -177,6 +177,7 @@ class Main(object):
 
     def quit(self, unused_widget = None, possible_event = None):
         save_collections(self.objects)
+        check_libxml2_leak()
         gtk.main_quit()
 
 

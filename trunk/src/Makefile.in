@@ -340,7 +340,7 @@ make-install-dirs:
 
 install: all make-install-dirs
 	install -m 644 *.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/
-	install -m 644 core/* $(DESTDIR)$(prefix)/share/font-manager/core/
+	install -m 644 core/*.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/core/
 	install -m 644 data/* $(DESTDIR)$(prefix)/share/font-manager/data/
 	install -m 644 ui/* $(DESTDIR)$(prefix)/share/font-manager/ui/
 	install -m 644 utils/* $(DESTDIR)$(prefix)/share/font-manager/utils/
@@ -359,7 +359,7 @@ clean:
 	@find . -type f -name '*.py[co]' -exec rm -f '{}' \;
 
 distclean: clean
-	@rm -f Makefile constants.py.in
+	@rm -f Makefile constants.py.in core/__init__.py
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

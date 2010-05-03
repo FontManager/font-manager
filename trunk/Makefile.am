@@ -40,7 +40,7 @@ src/Makefile.am po
 
 dist-hook:
 	-find . -name '.svn' -exec rm -rf '{}' \;
-	-find . -name '.svn' -exec rm -rf '{}' \;
+	@find . -name '.svn' -exec rm -rf '{}' \;
 #	-rm -f po/messages.pot
 #	find po -maxdepth 1 -regextype posix-basic -regex "po/[^.]*" -type d -exec rm -rf {} \;
 

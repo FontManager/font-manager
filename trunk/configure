@@ -3689,7 +3689,7 @@ fi
 
 # Checks for library functions.
 
-ac_config_files="$ac_config_files Makefile src/Makefile src/font-manager src/constants.py.in"
+ac_config_files="$ac_config_files Makefile src/Makefile src/font-manager src/constants.py.in src/core/__init__.py"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -4422,6 +4422,7 @@ do
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "src/font-manager") CONFIG_FILES="$CONFIG_FILES src/font-manager" ;;
     "src/constants.py.in") CONFIG_FILES="$CONFIG_FILES src/constants.py.in" ;;
+    "src/core/__init__.py") CONFIG_FILES="$CONFIG_FILES src/core/__init__.py" ;;
 
   *) as_fn_error "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac

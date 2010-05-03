@@ -531,7 +531,7 @@ class Preferences(gobject.GObject):
         self.fontsize = 20
         self.minimize = True
         self.pangram = False
-        self.orphans = True
+        self.orphans = False
         self.hidden = False
         self.tooltips = True
         return
@@ -645,6 +645,8 @@ def _migrate():
         if exists(old):
             if old == install_directory:
                 shutil.rmtree(USER_LIBRARY_DIR)
+                if exists(join(install_directory, 'fontlog')):
+                    os.unlink(join(install_directory, 'fontlog'))
             shutil.move(old, new)
     shutil.rmtree(fm_dir, ignore_errors=True)
 
@@ -674,4 +676,4 @@ with open(USER_FONT_CONFIG, 'wb') as conf:
 # possibility has been in the release notes for a while, now that it's
 # the default there's even a message about it in the file itself so... :-p
 
-__version__ = VERSION
+__version__ = '@VERSION@'
