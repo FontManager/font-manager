@@ -3,3 +3,16 @@
 
 - Find a sane way to handle files containing multiple fonts (.ttc)
   For now typically only the first style is displayed.
+
+- Enable font installation by dragging and dropping fonts onto the application.
+  Dragging fonts onto the families column should both install them and add them
+  to the currently selected collection.
+
+- Possibly enable system-wide font installation and removal.
+  This would require PolicyKit, and using an application specific "Library" in 
+  /usr/local/share/fonts, so that's there's no chance that we ever modify anything
+  installed through the distributions package manager.
+
+- Enable DBus service? Would anyone even find it useful?
+
+
