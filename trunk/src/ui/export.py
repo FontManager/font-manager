@@ -56,7 +56,7 @@ class Export(object):
         self.objects['IncludeSampler'].set_sensitive(reportlab)
         self.objects['ExportAsPDF'].set_sensitive(reportlab)
         if not reportlab:
-            tooltip = 'This feature requires the Report Lab Toolkit'
+            tooltip = _('This feature requires the Report Lab Toolkit')
             self.objects['IncludeSampler'].set_tooltip_text(tooltip)
             self.objects['ExportAsPDF'].set_tooltip_text(tooltip)
         self.objects['ExportFileChooser'].connect('current-folder-changed',

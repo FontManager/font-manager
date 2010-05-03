@@ -281,7 +281,7 @@ class ObjectContainer(UserDict.UserDict):
         """
         if self.message is None:
             return
-        notification = self.message(_('Font Manager'), _('%s') % message)
+        notification = self.message(_('Font Manager'), '%s' % message)
         if self.icon:
             notification.set_icon_from_pixbuf(self.icon)
         notification.show()

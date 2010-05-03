@@ -103,7 +103,7 @@ _("""
 """) % USER_FONT_CONFIG_RENDER
 
 VALID_USER_FONT_CONFIG = \
-_("""<?xml version="1.0"?>
+"""<?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
 %s
@@ -113,6 +113,6 @@ _("""<?xml version="1.0"?>
     <include ignore_missing=\"yes\">%s</include>
 
 </fontconfig>
-""") % (USER_FONT_CONFIG_NOTICE, USER_FONT_CONFIG_DIRS,
+""" % (USER_FONT_CONFIG_NOTICE, USER_FONT_CONFIG_DIRS,
         USER_FONT_CONFIG_RENDER, USER_FONT_CONFIG_SELECT)
 

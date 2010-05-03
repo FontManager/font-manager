@@ -281,7 +281,7 @@ def install_readme():
 
     Really just intended for users new to linux ;-)
     """
-    with open(join(USER_FONT_DIR, 'Read Me.txt'), 'w') as readme:
+    with open(join(USER_FONT_DIR, _('Read Me.txt')), 'w') as readme:
         readme.write(README)
     return
 
