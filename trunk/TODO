@@ -1,0 +1,5 @@
+
+- Finish up on font-viewer
+
+- Find a sane way to handle files containing multiple fonts (.ttc)
+  For now typically only the first style is displayed.
