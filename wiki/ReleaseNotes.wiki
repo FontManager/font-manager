@@ -1,12 +1,12 @@
 #summary These notes are in addition to the information and Known Issues listed in the help file, please make sure any problems you encounter are not listed there before reporting them.
 #labels Featured
 
-= Release Notes 0.4.3 =
+= Release Notes 0.5.1 =
 
 <p>
 Users who have customized their ~/.fonts.conf, should move it before 
 running Font Manager. After running Font Manager, you can add your customizations 
-to ~/.!FontManager/config/render.conf, just create the file if it doesn't exist. 
+to ~/.config/font-manager/local.conf, just create the file if it doesn't exist. 
 This will ensure that they do not get overwritten by the application.
 </p>
 
@@ -50,8 +50,7 @@ if a lot of fonts are installed at once it may take a moment to start back up.
 
 <p>
 Check the README for requirements, and make sure they are available, they should 
-be on any recent distro. Configure does not check for deps, 
-deps are checked at runtime and then only for the required python modules.
+be on any recent distro. Python deps are checked at runtime.
 
 If updating from source, make sure to completely remove the previous version, 
 either by running 'make uninstall' from the source directory or by doing something like
