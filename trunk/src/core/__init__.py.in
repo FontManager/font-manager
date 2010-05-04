@@ -530,7 +530,7 @@ class Preferences(gobject.GObject):
         self.autostart = False
         self.folder = USER_FONT_DIR
         self.fontsize = 20
-        self.minimize = True
+        self.minimize = False
         self.pangram = False
         self.orphans = False
         self.hidden = False
