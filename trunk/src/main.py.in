@@ -257,6 +257,7 @@ class ObjectContainer(UserDict.UserDict):
         self.data['Help'].connect('clicked', _on_help)
         self.data['FontSettings'].connect('clicked', _on_font_settings)
         self.data['AppPreferences'].connect('clicked', self.on_prefs)
+        return
 
     def load_core(self, progress_callback = None):
         """
@@ -406,6 +407,7 @@ def _on_about_dialog(unused_widget, dialog):
     """
     dialog.run()
     dialog.hide()
+    return
 
 def _on_font_settings(unused_widget):
     """

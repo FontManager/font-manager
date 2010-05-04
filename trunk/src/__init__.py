@@ -21,16 +21,15 @@ along with this program; if not, write to:
     Boston, MA 02110-1301, USA.
 
 """
-# FIXME - this stuff belongs in the calling script
-import os
-import sys
+#import os
+#import sys
 
-basepath = os.path.dirname(os.path.realpath(__file__))
-if not basepath in sys.path:
-    sys.path.insert(0, basepath)
+#basepath = os.path.dirname(os.path.realpath(__file__))
+#if not basepath in sys.path:
+    #sys.path.insert(0, basepath)
 
-import gettext
-gettext.install('font-manager')
-from constants import LOCALEDIR
-gettext.bindtextdomain('font-manager', LOCALEDIR)
-gettext.textdomain('font-manager')
+#import gettext
+#gettext.install('font-manager')
+#from constants import LOCALEDIR
+#gettext.bindtextdomain('font-manager', LOCALEDIR)
+#gettext.textdomain('font-manager')
