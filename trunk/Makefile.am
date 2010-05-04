@@ -2,6 +2,8 @@
 PKGNAME = @PACKAGE_NAME@
 VERSION = @PACKAGE_VERSION@
 
+all: default
+
 default:
 	$(MAKE) -C src
 
