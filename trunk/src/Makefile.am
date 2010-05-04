@@ -58,8 +58,8 @@ clean:
 	@find . -type f -name '*.py[co]' -exec rm -f '{}' \;
 
 distclean: clean
-	@rm -f constants.py
-	@rm -f constants.py.in
+	@rm -f font-manager _fontutils.so
+	@rm -f constants.py constants.py.in
 	@rm -f main.py
 	@rm -f core/__init__.py
 	@rm -f Makefile

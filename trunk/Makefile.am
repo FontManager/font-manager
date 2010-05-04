@@ -38,9 +38,13 @@ EXTRA_DIST = src/core src/data src/doc src/ui src/utils src/*.py src/*.c \
 src/*.in src/font-manager.in src/font-manager.desktop src/Makefile.in \
 src/Makefile.am po
 
-dist-hook: distclean
-	-find . -name '.svn' -exec rm -rf '{}' \;
-	@find . -name '.svn' -exec rm -rf '{}' \;
+dist-hook: 
+	-find $(distdir) -name '.svn' -exec rm -rf '{}' \;
+	@find $(distdir) -name '.svn' -exec rm -rf '{}' \;
+	@rm -f $(distdir)/src/font-manager $(distdir)/src/_fontutils.so
+	@rm -f $(distdir)/src/constants.py $(distdir)/src/constants.py.in
+	@rm -f $(distdir)/src/main.py
+	@rm -f $(distdir)/src/core/__init__.py
 #	-rm -f po/messages.pot
 #	find po -maxdepth 1 -regextype posix-basic -regex "po/[^.]*" -type d -exec rm -rf {} \;
 
