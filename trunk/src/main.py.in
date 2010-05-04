@@ -69,7 +69,8 @@ class Main(object):
         self.objects.load_widgets()
         self.objects.load_core()
         # Notification
-        self.objects.notify_send(_('Finished loading %s families') % \
+        if self.preferences.hidden:
+            self.objects.notify_send(_('Finished loading %s families') % \
                                 self.objects['FontManager'].total_families)
         # Main UI elements
         self.objects.load_ui_elements()
