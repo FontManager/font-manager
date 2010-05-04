@@ -12,7 +12,7 @@
         The applications private directories now follow the XDG specifications,
         which not only helps keep user home directories cleaner but also makes
         it easier when doing backups. Old files should automatically be migrated
-        to the new structure.
+        to the new structure. That said make sure you have a recent backup of your fonts. ;-)
 
         Font information is now kept in an SQLite3 database.
 
