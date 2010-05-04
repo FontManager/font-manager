@@ -180,6 +180,10 @@ class Main(object):
         else:
             self.quit_id = \
             self.main_window.connect('delete-event', self.quit)
+            if not self.main_window.get_property('visible'):
+                self.main_window.present()
+                while gtk.events_pending():
+                    gtk.main_iteration()
         return
 
     def quit(self, unused_widget = None, possible_event = None):
