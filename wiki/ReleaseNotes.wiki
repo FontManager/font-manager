@@ -6,7 +6,7 @@
 <p>
 Users who have customized their ~/.fonts.conf, should move it before 
 running Font Manager. After running Font Manager, you can add your customizations 
-to ~/.config/font-manager/local.conf, just create the file if it doesn't exist. 
+to *~/.config/font-manager/local.conf*, just create the file if it doesn't exist. 
 This will ensure that they do not get overwritten by the application.
 </p>
 
