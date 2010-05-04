@@ -29,6 +29,7 @@ options will be added over time, hopefully.
 import os
 import gtk
 import gobject
+import logging
 
 from os.path import join, exists, isdir
 

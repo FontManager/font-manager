@@ -27,7 +27,6 @@ user specified collections.
 
 import gtk
 import glib
-#import logging
 import cPickle
 import shelve
 
@@ -244,7 +243,8 @@ class Sort(object):
         """
         rejects = get_blacklisted()
         if rejects:
-            self.manager.set_disabled(rejects)
+            valid_rejects = [f for f in rejects if f in self.manager.iterkeys()]
+            self.manager.set_disabled(valid_rejects)
         return
 
     def _get_available(self):

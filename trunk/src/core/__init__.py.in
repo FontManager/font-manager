@@ -31,6 +31,7 @@ objects and collections.
 import os
 import glib
 import gobject
+import logging
 import shutil
 import UserDict
 import ConfigParser
@@ -618,6 +619,30 @@ def _save_rejects(unused_cls_instance, families):
     return
 
 
+def _setup_logging():
+    """
+    Ensure log exists and set logging options
+    """
+    try:
+        with open(APP_LOG, 'w') as log:
+            log.write('\n')
+        # to send messages somewhere useful
+        logging.basicConfig(filename=APP_LOG,
+                            format=\
+                        '%(asctime)s - %(levelname)s - %(message)s',
+                            datefmt='%b %d %Y %H:%M:%S',
+                            level=logging.DEBUG,filemode='w')
+        # send them to the console too
+        console = logging.StreamHandler()
+        console.setLevel(logging.DEBUG)
+        formatter = logging.Formatter\
+        ('%(levelname)-8s:  %(message)s')
+        console.setFormatter(formatter)
+        logging.getLogger('').addHandler(console)
+    except:
+        print \
+    "FontManagerError : failed to find/create log file, logging disabled"
+
 def _migrate():
     """
     Migrate old files to new more XDG-like structure.
@@ -651,6 +676,7 @@ def _migrate():
     shutil.rmtree(fm_dir, ignore_errors=True)
 
 # Make sure we have everything we need to run properly
+_setup_logging()
 for folder in CACHE_DIR, CONFIG_DIR, APP_CONFIG_DIR, AUTOSTART_DIR, DATA_DIR, \
                         USER_FONT_DIR, USER_LIBRARY_DIR:
     if not exists(folder):

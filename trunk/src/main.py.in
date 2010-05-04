@@ -48,6 +48,7 @@ class Main(object):
     Where everything starts.
     """
     def __init__(self):
+        logging.info("Font Manager is now starting")
         # FIXME disable blacklist is called by FontManager
         # But for whatever reason, we need to disable our blacklist right at
         # the start anytime we launch the gui... from cli it works as intended.
@@ -71,6 +72,8 @@ class Main(object):
         # Notification
         if self.preferences.hidden:
             self.objects.notify_send(_('Finished loading %s families') % \
+                                self.objects['FontManager'].total_families)
+        logging.info(_('Finished loading %s families') % \
                                 self.objects['FontManager'].total_families)
         # Main UI elements
         self.objects.load_ui_elements()
@@ -149,6 +152,7 @@ class Main(object):
     def reload(self, unused_widget, delete_cache = False):
         save_collections(self.objects)
         self.objects.notify_send(_('Font Manager will restart in a moment'))
+        logging.info("Restarting...")
         if delete_cache:
             delete_cache()
             delete_database()
@@ -179,8 +183,10 @@ class Main(object):
         return
 
     def quit(self, unused_widget = None, possible_event = None):
+        logging.info("Saving configuration")
         save_collections(self.objects)
         check_libxml2_leak()
+        logging.info("Exiting...")
         gtk.main_quit()
 
 

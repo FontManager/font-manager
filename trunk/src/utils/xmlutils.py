@@ -200,6 +200,7 @@ def load_collections(fontmanager):
         comment = node.prop("comment")
         _get_fc_families(node, families)
         fontmanager.create_collection(name, comment, list(set(families)))
+        logging.info('Loaded user collection %s' % name)
         order.append(name)
     doc.freeDoc()
     return order
