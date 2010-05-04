@@ -142,7 +142,7 @@ class Treeviews(object):
         self.collection_tree.connect('drag-drop', self._on_drag_drop)
         self.collection_tree.connect('drag-data-received',
                                             self._on_drag_data_received)
-        self._load_collections(True)
+        self._load_collections()
         return
 
     def _setup_families(self):
@@ -288,17 +288,12 @@ class Treeviews(object):
         self.category_tree.expand_all()
         return
 
-    def _load_collections(self, init = False):
+    def _load_collections(self, init = True):
         collection_model = self.collection_tree.get_model()
         header = collection_model.append(None,
                         [_('Collection'), get_header(_('Collection')), None])
-        if init:
+        if self.manager.initial_collection_order is not None:
             for collection in self.manager.initial_collection_order:
-                obj = self.manager.collections[collection]
-                collection_model.append(header,
-                                [obj.get_name(), obj.get_label(), obj.comment])
-        else:
-            for collection in self.manager.list_collections():
                 obj = self.manager.collections[collection]
                 collection_model.append(header,
                                 [obj.get_name(), obj.get_label(), obj.comment])

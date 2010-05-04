@@ -1045,6 +1045,8 @@ If you choose to continue, it is suggested that you close all open applications 
     </action-widgets>
   </object>
   <object class="GtkDialog" id="PreferencesDialog">
+    <property name="width_request">420</property>
+    <property name="height_request">520</property>
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Preferences</property>
     <property name="window_position">center-on-parent</property>
@@ -2364,8 +2366,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="icon_name">preferences-desktop-font</property>
     <property name="type_hint">dialog</property>
     <property name="transient_for">MainWindow</property>
-    <property name="select_multiple">True</property>
     <property name="create_folders">False</property>
+    <property name="select_multiple">True</property>
     <signal name="file_activated" handler="gtk_true"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">

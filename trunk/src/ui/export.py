@@ -33,7 +33,10 @@ from os.path import exists, join, realpath
 
 from constants import HOME, DESKTOP_DIR, TMP_DIR
 from utils.common import finish_font_install, create_archive_from_folder
-from sampler import BuildSample, Config
+try:
+    from sampler import BuildSample, Config
+except ImportError:
+    pass
 
 class Export(object):
     """

@@ -2,7 +2,7 @@
 
 sudo apt-get update -qq
 sudo apt-get upgrade -qq
-sudo apt-get install -y -q --install-recommends build-essential devscripts debhelper pbuilder subversion
+sudo apt-get install -y -q --install-recommends build-essential devscripts debhelper python2.6-dev libfreetype6-dev libglib2.0-dev libfontconfig1-dev intltool binutils pbuilder subversion
 sudo pbuilder create --debootstrapopts --variant=buildd
 
 echo
