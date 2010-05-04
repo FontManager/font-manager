@@ -3,11 +3,7 @@
 
 = Crashes within the !ReportLab Toolkit=
 <p>
-If you experience crashes while trying to generate a sample sheet using Font Manager, if the application stops for more than few seconds while processing fonts it probably crashed, in that case the last file shown in the statusbar:
-
-Processing: somefile.ttf
-
-somefile.ttf is usually the culprit. This is normally an indication that there is something wrong with the font, typically it's because expected fields are missing. !ReportLab sticks to the specifications and so understandably fonts which do not follow them can cause issues.
+If you experience crashes while trying to generate a sample sheet using Font Manager, if the application stops for more than few seconds while processing fonts it probably crashed, in that case the last file shown in the progressbar is usually the culprit. This is normally an indication that there is something wrong with the font, typically it's because expected fields are missing. !ReportLab sticks to the specifications and so understandably fonts which do not follow them can cause issues.
 </p>
 <br />
 <p>
