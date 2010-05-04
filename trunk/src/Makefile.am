@@ -58,4 +58,9 @@ clean:
 	@find . -type f -name '*.py[co]' -exec rm -f '{}' \;
 
 distclean: clean
-	@rm -f Makefile constants.py.in core/__init__.py
+	@rm -f constants.py
+	@rm -f constants.py.in
+	@rm -f main.py
+	@rm -f core/__init__.py
+	@rm -f Makefile
+

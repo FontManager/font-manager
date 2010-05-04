@@ -489,7 +489,7 @@ install:
 uninstall:
 	$(MAKE) -C src uninstall
 
-dist-hook:
+dist-hook: distclean
 	-find . -name '.svn' -exec rm -rf '{}' \;
 	@find . -name '.svn' -exec rm -rf '{}' \;
 #	-rm -f po/messages.pot
