@@ -199,7 +199,7 @@ class Sort(object):
         # List of actually available families
         self.all_available = []
         self._get_available()
-        self.available = [f for f in self.indexed if f in self.all_available]
+        self.available = [f for f in self.all_available if f in self.indexed]
         # List of system families
         self.system = []
         self._get_system_families()
@@ -251,7 +251,7 @@ class Sort(object):
         """
         Get a list of actually available font families.
         """
-        context = self.widget.create_pango_context()
+        context = self.widget.get_pango_context()
         pango_families = context.list_families()
         psuedo_families = 'Monospace', 'Sans', 'Serif'
         self.total = len(pango_families)
@@ -273,7 +273,8 @@ class Sort(object):
         Get a list of font families which belong to the "System".
         """
         for row in set(self.table.get('family', 'owner="System"')):
-            self.system.append(row[0])
+            if row[0] in self.all_available:
+                self.system.append(row[0])
         return
 
     def _load_default_categories(self):
@@ -302,7 +303,7 @@ class Sort(object):
         """
         Load details for all available font families as reported by Pango.
         """
-        context = self.widget.create_pango_context()
+        context = self.widget.get_pango_context()
         pango_families = context.list_families()
         psuedo_families = 'Monospace', 'Sans', 'Serif'
         self.total = len(pango_families)

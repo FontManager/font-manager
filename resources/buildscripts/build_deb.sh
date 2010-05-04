@@ -7,7 +7,7 @@ echo "This script will need superuser access to install required development pac
 echo
 echo
 sudo apt-get update -qq
-sudo apt-get install -y -q --install-recommends build-essential devscripts debhelper python2.6-dev libfreetype6-dev libglib2.0-dev libfontconfig1-dev intltool binutils pbuilder subversion
+sudo apt-get install -y -q --install-recommends build-essential devscripts debhelper python2.6-dev libfreetype6-dev libglib2.0-dev libfontconfig1-dev intltool binutils subversion
 #
 
 echo
@@ -21,13 +21,13 @@ echo
 echo 'Preparing source'
 echo
 ./configure
-make dist-zip
+make dist-gzip
 rm -rf BUILD
 mkdir BUILD
+mv $PACKAGE-$VERSION.tar.gz BUILD/$PACKAGE\_$VERSION.orig.tar.gz
 cd BUILD
-unzip -q ../$PACKAGE-$VERSION.zip
+tar -xvf $PACKAGE\_$VERSION.orig.tar.gz
 cp -R ../debian $PACKAGE-$VERSION/
-cp -R $PACKAGE-$VERSION $PACKAGE-$VERSION.orig
 cd $PACKAGE-$VERSION
 echo
 echo 'Building package'
@@ -40,6 +40,8 @@ cp -f BUILD/$PACKAGE*deb ./RESULTS/
 echo 'Now running cleanup'
 rm -f $PACKAGE-$VERSION.zip
 rm -rf BUILD
+make distclean
+
 echo
 echo 'If the build was successful you will find a deb package in font-manager/RESULTS'
 
