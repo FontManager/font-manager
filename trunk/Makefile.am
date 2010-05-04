@@ -2,25 +2,25 @@
 PKGNAME = @PACKAGE_NAME@
 VERSION = @PACKAGE_VERSION@
 
-default: all
-
-all:
-#	@cp -f src/data/font-manager.ui src/data/font-manager.glade
-#	@cp -f src/data/font-information.ui src/data/font-information.glade
-#	@cp -f src/data/menus.ui src/data/menus.glade
-#	python po/compile_translations.py
-#	-rm -f src/data/*.glade
+default:
 	$(MAKE) -C src
 
 clean:
 	$(MAKE) -C src clean
 #	find po -maxdepth 1 -regextype posix-basic -regex "po/[^.]*" -type d -exec rm -rf {} \;
 
+compile_translations:
+#	@cp -f src/data/font-manager.ui src/data/font-manager.glade
+#	@cp -f src/data/font-information.ui src/data/font-information.glade
+#	@cp -f src/data/menus.ui src/data/menus.glade
+#	python po/compile_translations.py
+#	-rm -f src/data/*.glade
+
 distclean: clean
 	$(MAKE) -C src distclean
 	-rm -f config.log config.status Makefile
 
-install: all
+install:
 	$(MAKE) -C src install
 #	for f in `find po -name font-manager.mo` ; do \
 #	  install -d -m 755 \
@@ -34,8 +34,8 @@ uninstall:
 	$(MAKE) -C src uninstall
 #	find $(DESTDIR)$(prefix)/share/locale -name font-manager.mo -exec rm -f {} \;
 
-EXTRA_DIST = src/core src/data src/doc src/ui src/utils src/constants.py.in.in \
-src/*.py src/font-manager.in src/font-manager.desktop src/Makefile.in \
+EXTRA_DIST = src/core src/data src/doc src/ui src/utils src/*.py src/*.c \
+src/*.in src/font-manager.in src/font-manager.desktop src/Makefile.in \
 src/Makefile.am po
 
 dist-hook:

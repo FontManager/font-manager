@@ -28,9 +28,10 @@ import sqlite3
 
 from os.path import exists, join
 
+import _fontutils
+
 from utils.common import delete_cache
 from constants import DATABASE_FILE, HOME
-from utils import _fontutils
 
 
 FIELDS = ('owner', 'filepath', 'filetype', 'filesize', 'checksum', 'psname',

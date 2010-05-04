@@ -557,12 +557,12 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
-Glib_LIBS
-Glib_CFLAGS
-FreeType2_LIBS
-FreeType2_CFLAGS
-FontConfig_LIBS
-FontConfig_CFLAGS
+glib_LIBS
+glib_CFLAGS
+freetype2_LIBS
+freetype2_CFLAGS
+fontconfig_LIBS
+fontconfig_CFLAGS
 PKG_CONFIG
 PYTHON
 am__fastdepCC_FALSE
@@ -656,12 +656,12 @@ LDFLAGS
 LIBS
 CPPFLAGS
 PKG_CONFIG
-FontConfig_CFLAGS
-FontConfig_LIBS
-FreeType2_CFLAGS
-FreeType2_LIBS
-Glib_CFLAGS
-Glib_LIBS'
+fontconfig_CFLAGS
+fontconfig_LIBS
+freetype2_CFLAGS
+freetype2_LIBS
+glib_CFLAGS
+glib_LIBS'
 
 
 # Initialize some variables set by options.
@@ -1289,16 +1289,16 @@ Some influential environment variables:
   CPPFLAGS    (Objective) C/C++ preprocessor flags, e.g. -I<include dir> if
               you have headers in a nonstandard directory <include dir>
   PKG_CONFIG  path to pkg-config utility
-  FontConfig_CFLAGS
-              C compiler flags for FontConfig, overriding pkg-config
-  FontConfig_LIBS
-              linker flags for FontConfig, overriding pkg-config
-  FreeType2_CFLAGS
-              C compiler flags for FreeType2, overriding pkg-config
-  FreeType2_LIBS
-              linker flags for FreeType2, overriding pkg-config
-  Glib_CFLAGS C compiler flags for Glib, overriding pkg-config
-  Glib_LIBS   linker flags for Glib, overriding pkg-config
+  fontconfig_CFLAGS
+              C compiler flags for fontconfig, overriding pkg-config
+  fontconfig_LIBS
+              linker flags for fontconfig, overriding pkg-config
+  freetype2_CFLAGS
+              C compiler flags for freetype2, overriding pkg-config
+  freetype2_LIBS
+              linker flags for freetype2, overriding pkg-config
+  glib_CFLAGS C compiler flags for glib, overriding pkg-config
+  glib_LIBS   linker flags for glib, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -3293,6 +3293,46 @@ $as_echo "no" >&6; }
 fi
 
 
+# Extract the first word of "strip", so it can be a program name with args.
+set dummy strip; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_path_STRIP+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $STRIP in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_STRIP="$STRIP" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_path_STRIP="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+STRIP=$ac_cv_path_STRIP
+if test -n "$STRIP"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $STRIP" >&5
+$as_echo "$STRIP" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
 
 # Checks for libraries.
 
@@ -3414,12 +3454,12 @@ $as_echo "no" >&6; }
 fi
 
 pkg_failed=no
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for FontConfig" >&5
-$as_echo_n "checking for FontConfig... " >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for fontconfig" >&5
+$as_echo_n "checking for fontconfig... " >&6; }
 
 if test -n "$PKG_CONFIG"; then
-    if test -n "$FontConfig_CFLAGS"; then
-        pkg_cv_FontConfig_CFLAGS="$FontConfig_CFLAGS"
+    if test -n "$fontconfig_CFLAGS"; then
+        pkg_cv_fontconfig_CFLAGS="$fontconfig_CFLAGS"
     else
         if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"fontconfig\""; } >&5
@@ -3427,7 +3467,7 @@ if test -n "$PKG_CONFIG"; then
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_FontConfig_CFLAGS=`$PKG_CONFIG --cflags "fontconfig" 2>/dev/null`
+  pkg_cv_fontconfig_CFLAGS=`$PKG_CONFIG --cflags "fontconfig" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -3436,8 +3476,8 @@ else
 	pkg_failed=untried
 fi
 if test -n "$PKG_CONFIG"; then
-    if test -n "$FontConfig_LIBS"; then
-        pkg_cv_FontConfig_LIBS="$FontConfig_LIBS"
+    if test -n "$fontconfig_LIBS"; then
+        pkg_cv_fontconfig_LIBS="$fontconfig_LIBS"
     else
         if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"fontconfig\""; } >&5
@@ -3445,7 +3485,7 @@ if test -n "$PKG_CONFIG"; then
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_FontConfig_LIBS=`$PKG_CONFIG --libs "fontconfig" 2>/dev/null`
+  pkg_cv_fontconfig_LIBS=`$PKG_CONFIG --libs "fontconfig" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -3464,22 +3504,22 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        FontConfig_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "fontconfig"`
+	        fontconfig_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "fontconfig"`
         else
-	        FontConfig_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "fontconfig"`
+	        fontconfig_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "fontconfig"`
         fi
 	# Put the nasty error message in config.log where it belongs
-	echo "$FontConfig_PKG_ERRORS" >&5
+	echo "$fontconfig_PKG_ERRORS" >&5
 
 	as_fn_error "Package requirements (fontconfig) were not met:
 
-$FontConfig_PKG_ERRORS
+$fontconfig_PKG_ERRORS
 
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively, you may set the environment variables FontConfig_CFLAGS
-and FontConfig_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables fontconfig_CFLAGS
+and fontconfig_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 " "$LINENO" 5
 elif test $pkg_failed = untried; then
@@ -3489,27 +3529,27 @@ as_fn_error "The pkg-config script could not be found or is too old.  Make sure 
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
 
-Alternatively, you may set the environment variables FontConfig_CFLAGS
-and FontConfig_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables fontconfig_CFLAGS
+and fontconfig_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
 To get pkg-config, see <http://pkg-config.freedesktop.org/>.
 See \`config.log' for more details." "$LINENO" 5; }
 else
-	FontConfig_CFLAGS=$pkg_cv_FontConfig_CFLAGS
-	FontConfig_LIBS=$pkg_cv_FontConfig_LIBS
+	fontconfig_CFLAGS=$pkg_cv_fontconfig_CFLAGS
+	fontconfig_LIBS=$pkg_cv_fontconfig_LIBS
         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
 	:
 fi
 
 pkg_failed=no
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for FreeType2" >&5
-$as_echo_n "checking for FreeType2... " >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for freetype2" >&5
+$as_echo_n "checking for freetype2... " >&6; }
 
 if test -n "$PKG_CONFIG"; then
-    if test -n "$FreeType2_CFLAGS"; then
-        pkg_cv_FreeType2_CFLAGS="$FreeType2_CFLAGS"
+    if test -n "$freetype2_CFLAGS"; then
+        pkg_cv_freetype2_CFLAGS="$freetype2_CFLAGS"
     else
         if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"freetype2\""; } >&5
@@ -3517,7 +3557,7 @@ if test -n "$PKG_CONFIG"; then
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_FreeType2_CFLAGS=`$PKG_CONFIG --cflags "freetype2" 2>/dev/null`
+  pkg_cv_freetype2_CFLAGS=`$PKG_CONFIG --cflags "freetype2" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -3526,8 +3566,8 @@ else
 	pkg_failed=untried
 fi
 if test -n "$PKG_CONFIG"; then
-    if test -n "$FreeType2_LIBS"; then
-        pkg_cv_FreeType2_LIBS="$FreeType2_LIBS"
+    if test -n "$freetype2_LIBS"; then
+        pkg_cv_freetype2_LIBS="$freetype2_LIBS"
     else
         if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"freetype2\""; } >&5
@@ -3535,7 +3575,7 @@ if test -n "$PKG_CONFIG"; then
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_FreeType2_LIBS=`$PKG_CONFIG --libs "freetype2" 2>/dev/null`
+  pkg_cv_freetype2_LIBS=`$PKG_CONFIG --libs "freetype2" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -3554,22 +3594,22 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        FreeType2_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "freetype2"`
+	        freetype2_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "freetype2"`
         else
-	        FreeType2_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "freetype2"`
+	        freetype2_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "freetype2"`
         fi
 	# Put the nasty error message in config.log where it belongs
-	echo "$FreeType2_PKG_ERRORS" >&5
+	echo "$freetype2_PKG_ERRORS" >&5
 
 	as_fn_error "Package requirements (freetype2) were not met:
 
-$FreeType2_PKG_ERRORS
+$freetype2_PKG_ERRORS
 
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively, you may set the environment variables FreeType2_CFLAGS
-and FreeType2_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables freetype2_CFLAGS
+and freetype2_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 " "$LINENO" 5
 elif test $pkg_failed = untried; then
@@ -3579,27 +3619,27 @@ as_fn_error "The pkg-config script could not be found or is too old.  Make sure 
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
 
-Alternatively, you may set the environment variables FreeType2_CFLAGS
-and FreeType2_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables freetype2_CFLAGS
+and freetype2_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
 To get pkg-config, see <http://pkg-config.freedesktop.org/>.
 See \`config.log' for more details." "$LINENO" 5; }
 else
-	FreeType2_CFLAGS=$pkg_cv_FreeType2_CFLAGS
-	FreeType2_LIBS=$pkg_cv_FreeType2_LIBS
+	freetype2_CFLAGS=$pkg_cv_freetype2_CFLAGS
+	freetype2_LIBS=$pkg_cv_freetype2_LIBS
         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
 	:
 fi
 
 pkg_failed=no
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Glib" >&5
-$as_echo_n "checking for Glib... " >&6; }
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for glib" >&5
+$as_echo_n "checking for glib... " >&6; }
 
 if test -n "$PKG_CONFIG"; then
-    if test -n "$Glib_CFLAGS"; then
-        pkg_cv_Glib_CFLAGS="$Glib_CFLAGS"
+    if test -n "$glib_CFLAGS"; then
+        pkg_cv_glib_CFLAGS="$glib_CFLAGS"
     else
         if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"glib-2.0\""; } >&5
@@ -3607,7 +3647,7 @@ if test -n "$PKG_CONFIG"; then
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_Glib_CFLAGS=`$PKG_CONFIG --cflags "glib-2.0" 2>/dev/null`
+  pkg_cv_glib_CFLAGS=`$PKG_CONFIG --cflags "glib-2.0" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -3616,8 +3656,8 @@ else
 	pkg_failed=untried
 fi
 if test -n "$PKG_CONFIG"; then
-    if test -n "$Glib_LIBS"; then
-        pkg_cv_Glib_LIBS="$Glib_LIBS"
+    if test -n "$glib_LIBS"; then
+        pkg_cv_glib_LIBS="$glib_LIBS"
     else
         if test -n "$PKG_CONFIG" && \
     { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"glib-2.0\""; } >&5
@@ -3625,7 +3665,7 @@ if test -n "$PKG_CONFIG"; then
   ac_status=$?
   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_Glib_LIBS=`$PKG_CONFIG --libs "glib-2.0" 2>/dev/null`
+  pkg_cv_glib_LIBS=`$PKG_CONFIG --libs "glib-2.0" 2>/dev/null`
 else
   pkg_failed=yes
 fi
@@ -3644,22 +3684,22 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        Glib_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "glib-2.0"`
+	        glib_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "glib-2.0"`
         else
-	        Glib_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0"`
+	        glib_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "glib-2.0"`
         fi
 	# Put the nasty error message in config.log where it belongs
-	echo "$Glib_PKG_ERRORS" >&5
+	echo "$glib_PKG_ERRORS" >&5
 
 	as_fn_error "Package requirements (glib-2.0) were not met:
 
-$Glib_PKG_ERRORS
+$glib_PKG_ERRORS
 
 Consider adjusting the PKG_CONFIG_PATH environment variable if you
 installed software in a non-standard prefix.
 
-Alternatively, you may set the environment variables Glib_CFLAGS
-and Glib_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables glib_CFLAGS
+and glib_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 " "$LINENO" 5
 elif test $pkg_failed = untried; then
@@ -3669,15 +3709,15 @@ as_fn_error "The pkg-config script could not be found or is too old.  Make sure 
 is in your PATH or set the PKG_CONFIG environment variable to the full
 path to pkg-config.
 
-Alternatively, you may set the environment variables Glib_CFLAGS
-and Glib_LIBS to avoid the need to call pkg-config.
+Alternatively, you may set the environment variables glib_CFLAGS
+and glib_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
 To get pkg-config, see <http://pkg-config.freedesktop.org/>.
 See \`config.log' for more details." "$LINENO" 5; }
 else
-	Glib_CFLAGS=$pkg_cv_Glib_CFLAGS
-	Glib_LIBS=$pkg_cv_Glib_LIBS
+	glib_CFLAGS=$pkg_cv_glib_CFLAGS
+	glib_LIBS=$pkg_cv_glib_LIBS
         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
 	:
@@ -3689,7 +3729,7 @@ fi
 
 # Checks for library functions.
 
-ac_config_files="$ac_config_files Makefile src/Makefile src/font-manager src/constants.py.in src/core/__init__.py"
+ac_config_files="$ac_config_files Makefile src/Makefile src/font-manager src/constants.py.in src/main.py src/core/__init__.py"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -4422,6 +4462,7 @@ do
     "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "src/font-manager") CONFIG_FILES="$CONFIG_FILES src/font-manager" ;;
     "src/constants.py.in") CONFIG_FILES="$CONFIG_FILES src/constants.py.in" ;;
+    "src/main.py") CONFIG_FILES="$CONFIG_FILES src/main.py" ;;
     "src/core/__init__.py") CONFIG_FILES="$CONFIG_FILES src/core/__init__.py" ;;
 
   *) as_fn_error "invalid argument: \`$ac_config_target'" "$LINENO" 5;;

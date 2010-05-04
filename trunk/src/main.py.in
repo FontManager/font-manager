@@ -153,7 +153,8 @@ class Main(object):
             delete_database()
             reset_fontconfig_cache()
         try:
-            os.execvp('@prefix@/bin/font-manager',
+            font_manager = join('@prefix@', 'bin/font-manager')
+            os.execvp(font_manager,
                         ('--execvp_needs_to_stop_crying="True"',))
         except OSError, error:
             logging.error(error)

@@ -32,8 +32,9 @@ import subprocess
 
 from os.path import basename, exists, join, isdir
 
+import _fontutils
+
 from core import database
-from utils import _fontutils
 from constants import HOME, TMP_DIR, USER_LIBRARY_DIR
 from utils.common import finish_font_install, install_font_archive, \
                             mkfontdirs, natural_sort, do_library_cleanup

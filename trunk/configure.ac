@@ -10,12 +10,13 @@ AM_INIT_AUTOMAKE
 AC_PROG_CC
 AC_PROG_INSTALL
 AC_PATH_PROG(PYTHON, python)
+AC_PATH_PROG(STRIP, strip)
 
 # Checks for libraries.
 
-PKG_CHECK_MODULES([FontConfig], [fontconfig])
-PKG_CHECK_MODULES([FreeType2], [freetype2])
-PKG_CHECK_MODULES([Glib], [glib-2.0])
+PKG_CHECK_MODULES([fontconfig], [fontconfig])
+PKG_CHECK_MODULES([freetype2], [freetype2])
+PKG_CHECK_MODULES([glib], [glib-2.0])
 
 # Checks for header files.
 
@@ -23,5 +24,5 @@ PKG_CHECK_MODULES([Glib], [glib-2.0])
 
 # Checks for library functions.
 
-AC_CONFIG_FILES([Makefile src/Makefile src/font-manager src/constants.py.in src/core/__init__.py])
+AC_CONFIG_FILES([Makefile src/Makefile src/font-manager src/constants.py.in src/main.py src/core/__init__.py])
 AC_OUTPUT
