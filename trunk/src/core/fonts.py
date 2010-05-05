@@ -30,11 +30,9 @@ import glib
 import cPickle
 import shelve
 
-from os.path import join
-
 import database
 
-from constants import CACHE_DIR, CACHE_FILE, USER
+from constants import CACHE_FILE, USER
 from utils.xmlutils import get_blacklisted, load_collections
 
 
@@ -257,6 +255,8 @@ class Sort(object):
         self.total = len(pango_families)
         for family in pango_families:
             name = family.get_name()
+            if name in psuedo_families:
+                continue
             self.all_available.append(name)
         return
 

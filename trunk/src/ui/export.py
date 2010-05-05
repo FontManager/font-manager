@@ -27,7 +27,6 @@ import glib
 import gtk
 import logging
 import shutil
-import subprocess
 
 from os.path import exists, join, realpath
 
@@ -37,6 +36,7 @@ try:
     from sampler import BuildSample, Config
 except ImportError:
     pass
+
 
 class Export(object):
     """
@@ -49,6 +49,9 @@ class Export(object):
         self.outdir = DESKTOP_DIR
         self.current_collection = None
         self.workdir = None
+        self.archtype = None
+        self.pangram = None
+        self.fontsize = None
         try:
             import reportlab
             logging.info\
@@ -80,7 +83,6 @@ class Export(object):
             gtk.main_iteration()
         if response:
             self.process_export()
-            pass
 
     def _on_dest_set(self, widget):
         """
@@ -97,7 +99,8 @@ class Export(object):
             glib.timeout_add_seconds(6, self._dismiss_warning)
         return
 
-    def _reset_filechooser(self, widget):
+    @staticmethod
+    def _reset_filechooser(widget):
         """
         Reset filechooser to default folder.
         """
@@ -125,12 +128,12 @@ class Export(object):
         if self.objects['ExportAsArchive'].get_active():
             self._do_work_copy(self._get_filelist())
             if self.objects['IncludeSampler'].get_active():
-                self.do_pdf_setup()
+                self._do_pdf_setup()
             create_archive_from_folder(self.current_collection, self.archtype,
                                                     self.outdir, self.workdir)
             self._do_cleanup()
         elif self.objects['ExportAsPDF'].get_active():
-            self._do_pdf_setup(self._get_filelist(), output = self.outdir)
+            self._do_pdf_setup(self._get_filelist(), outp = self.outdir)
             self._do_cleanup()
         elif self.objects['ExportTo'].get_active():
             self._do_direct_copy(self._get_filelist())
@@ -203,7 +206,7 @@ class Export(object):
         self.objects.set_sensitive(True)
         return
 
-    def _do_pdf_setup(self, input = None, output = None):
+    def _do_pdf_setup(self, inp = None, outp = None):
         """
         Build PDF sample sheet from given files.
 
@@ -212,15 +215,15 @@ class Export(object):
         input -- a python list of filepaths or a folder containing font files
         output -- folder to store reulting pdf in
         """
-        if input is None:
-            input = self.workdir
-        if output is None:
-            output = self.workdir
+        if inp is None:
+            inp = self.workdir
+        if outp is None:
+            outp = self.workdir
         config = Config()
         config.fontsize = self.fontsize
         config.pangram = self.pangram
         buildsample = BuildSample(self.objects, config, self.current_collection,
-                        input, join(output, '%s.pdf' % self.current_collection))
+                        inp, join(outp, '%s.pdf' % self.current_collection))
         if not buildsample.basic():
             return False
         else:

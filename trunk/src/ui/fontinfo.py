@@ -25,7 +25,6 @@ This module provides a dialog which displays font information.
 import os
 import gtk
 import logging
-import subprocess
 import webbrowser
 
 from os.path import basename, dirname, join
@@ -58,7 +57,8 @@ class FontInformation(object):
     def __init__(self, objects):
         self.objects = objects
         self.builder = objects.builder
-        self.builder.add_from_file(os.path.join(PACKAGE_DATA_DIR, 'font-information.ui'))
+        self.builder.add_from_file(os.path.join(PACKAGE_DATA_DIR,
+                                                    'font-information.ui'))
         self.window = self.builder.get_object('FontInformationDialog')
         self.window.set_transient_for(objects['MainWindow'])
         self.window.connect('delete-event', self._on_close)
@@ -67,14 +67,14 @@ class FontInformation(object):
         self.style = None
         self.filename = None
         self.filedir = None
-        self.type = None
+        self.typ = None
         for widget in self._widgets:
             self.widgets[widget] = self.builder.get_object(widget)
         # Load font type logos
         self.logos = {}
         pixbuf = gtk.gdk.pixbuf_new_from_file
-        for type in self._types.iterkeys():
-            self.logos[type] = pixbuf(join(PACKAGE_DATA_DIR, self._types[type]))
+        for typ in self._types.iterkeys():
+            self.logos[typ] = pixbuf(join(PACKAGE_DATA_DIR, self._types[typ]))
         self.logos['blank'] = pixbuf(join(PACKAGE_DATA_DIR, 'blank.png'))
         # Connect handlers
         self.widgets['FileEntry'].connect('icon-press', self._open_folder)
@@ -99,18 +99,19 @@ class FontInformation(object):
         self.style = None
         self.filename = None
         self.filedir = None
-        self.type = None
+        self.typ = None
         entries = ('FamilyLabel', 'FamilyEntry', 'StyleEntry', 'TypeEntry',
                     'SizeEntry', 'FileEntry')
         for widget in entries:
             self.widgets[widget].set_text('')
         for widget in 'CopyrightView', 'DescriptionView', 'LicenseView':
             view = self.widgets[widget]
-            buffer = view.get_buffer()
-            buffer.set_text('')
+            t_buffer = view.get_buffer()
+            t_buffer.set_text('')
         self.widgets['TypeLogo'].set_from_pixbuf(self._get_blank_logo())
         return
 
+    @staticmethod
     def _get_blank_logo():
         """
         Return a blank pixbuf.
@@ -132,18 +133,18 @@ class FontInformation(object):
         self.filedir = dirname(current_file)
         return self.filename
 
-    def _get_logo(self, type):
+    def _get_logo(self, typ):
         """
         Return a pixbuf based on font type.
         """
-        if type == 'TrueType' and self.filename.endswith('.otf'):
-            type = 'CFF'
-        if type in self._types.iterkeys():
-            return self.logos[type]
+        if typ == 'TrueType' and self.filename.endswith('.otf'):
+            typ = 'CFF'
+        if typ in self._types.iterkeys():
+            return self.logos[typ]
         else:
             return self.logos['blank']
 
-    def _open_folder(self, widget, unused_icon_pos, unused_event):
+    def _open_folder(self, unused_widget, unused_icon_pos, unused_event):
         """
         Open containing folder.
         """
@@ -156,17 +157,17 @@ class FontInformation(object):
         """
         self.family = family
         self.style = style
-        self.type = family.styles[style]['filetype']
+        self.typ = family.styles[style]['filetype']
         markup = \
         '<span font_desc="%s" size="xx-large">%s</span>' % \
         (descr, family.get_name())
         self.widgets['FamilyLabel'].set_markup(markup)
         self.widgets['FamilyEntry'].set_text(family.get_name())
         self.widgets['StyleEntry'].set_text(style)
-        self.widgets['TypeEntry'].set_text(self.type)
+        self.widgets['TypeEntry'].set_text(self.typ)
         self.widgets['SizeEntry'].set_text(self._get_filesize())
         self.widgets['FileEntry'].set_text(self._get_filename())
-        self.widgets['TypeLogo'].set_from_pixbuf(self._get_logo(self.type))
+        self.widgets['TypeLogo'].set_from_pixbuf(self._get_logo(self.typ))
         self._set_copyright()
         self._set_description()
         self._set_license()
@@ -175,7 +176,8 @@ class FontInformation(object):
         self.window.resize(1, 1)
         self.window.queue_draw()
 
-    def _show_type_description(self, widget, unused_icon_pos, unused_event):
+    def _show_type_description(self, unused_widget,
+                                unused_icon_pos, unused_event):
         """
         Open a link containing information about font format.
         """
@@ -193,7 +195,7 @@ class FontInformation(object):
         'PFR'        :   'http://en.wikipedia.org/wiki/TrueDoc',
         'Windows FNT':   'http://support.microsoft.com/kb/65123'
                 }
-        if webbrowser.open(_pages[self.type]):
+        if webbrowser.open(_pages[self.typ]):
             return
         else:
             logging.warn("Could not find any suitable web browser")
@@ -205,10 +207,10 @@ class FontInformation(object):
         """
         box = self.widgets['CopyrightBox']
         view = self.widgets['CopyrightView']
-        buffer = view.get_buffer()
-        copyright = self.family.styles[self.style]['copyright']
-        if copyright != 'None':
-            buffer.set_text(copyright)
+        t_buffer = view.get_buffer()
+        copyrite = self.family.styles[self.style]['copyright']
+        if copyrite != 'None':
+            t_buffer.set_text(copyrite)
             box.show()
         else:
             box.hide()
@@ -220,10 +222,10 @@ class FontInformation(object):
         """
         box = self.widgets['DescriptionBox']
         view = self.widgets['DescriptionView']
-        buffer = view.get_buffer()
+        t_buffer = view.get_buffer()
         description = self.family.styles[self.style]['description']
         if description != 'None':
-            buffer.set_text(description)
+            t_buffer.set_text(description)
             box.show()
         else:
             box.hide()
@@ -236,12 +238,12 @@ class FontInformation(object):
         nolicense = self.widgets['NoLicense']
         box = self.widgets['LicenseBox']
         view = self.widgets['LicenseView']
-        buffer = view.get_buffer()
-        license = self.family.styles[self.style]['license']
+        t_buffer = view.get_buffer()
+        licens = self.family.styles[self.style]['license']
         url = self.family.styles[self.style]['license_url']
-        if license != 'None':
+        if licens != 'None':
             nolicense.hide()
-            buffer.set_text(license)
+            t_buffer.set_text(licens)
             box.show()
         else:
             box.hide()

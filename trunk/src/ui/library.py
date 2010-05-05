@@ -28,7 +28,6 @@ import gtk
 import gobject
 import logging
 import shutil
-import subprocess
 
 from os.path import basename, exists, join, isdir
 
@@ -58,14 +57,14 @@ class InstallFonts(object):
         self.dialog.set_current_folder(HOME)
         # I can't seem to find an option in Glade to get this behavior?
         self.dialog.connect('file-activated', self._send_response)
-        filter = gtk.FileFilter()
-        filter.set_name(_('Font Manager supported types'))
+        filefilter = gtk.FileFilter()
+        filefilter.set_name(_('Font Manager supported types'))
         for extension in FONT_GLOBS:
-            filter.add_pattern(extension)
+            filefilter.add_pattern(extension)
         if 'file-roller' in self.objects['AvailableApps']:
             for extension in ARCH_GLOBS:
-                filter.add_pattern(extension)
-        self.dialog.add_filter(filter)
+                filefilter.add_pattern(extension)
+        self.dialog.add_filter(filefilter)
 
     def _check_dupes(self):
         """
@@ -76,12 +75,12 @@ class InstallFonts(object):
         new_hash = {}
         known_hash = []
         found_dupes = False
-        for root, dirs, files in os.walk(TMP_DIR):
+        for root, unused_dirs, files in os.walk(TMP_DIR):
             for filename in files:
                 if filename.endswith(FONT_EXTS):
                     fileinfo = _fontutils.FT_Get_File_Info(join(root, filename))
-                    hash = fileinfo['checksum']
-                    new_hash[hash] = fileinfo
+                    ash = fileinfo['checksum']
+                    new_hash[ash] = fileinfo
         fonts = database.Table('Fonts')
         for row in set(fonts.get('checksum')):
             known_hash.append(row[0])
@@ -186,10 +185,10 @@ class InstallFonts(object):
         """
         dialog = self.objects['DuplicatesWarning']
         view = self.objects['DuplicatesView']
-        buffer = view.get_buffer()
-        buffer.set_text('')
+        t_buffer = view.get_buffer()
+        t_buffer.set_text('')
         for filepath in filelist:
-            buffer.insert_at_cursor(basename(filepath) + '\n')
+            t_buffer.insert_at_cursor(basename(filepath) + '\n')
         response = dialog.run()
         dialog.hide()
         while gtk.events_pending():
@@ -204,10 +203,10 @@ class InstallFonts(object):
         """
         dialog = self.objects['FileMissingDialog']
         view = self.objects['FileMissingView']
-        buffer = view.get_buffer()
-        buffer.set_text('')
+        t_buffer = view.get_buffer()
+        t_buffer.set_text('')
         for filepath in filelist:
-            buffer.insert_at_cursor(filepath + '\n')
+            t_buffer.insert_at_cursor(filepath + '\n')
         dialog.run()
         dialog.hide()
         return

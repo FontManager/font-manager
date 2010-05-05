@@ -31,9 +31,10 @@ import logging
 import shutil
 import subprocess
 
-from os.path import basename, exists, join
-from constants import AUTOSTART_DIR, PACKAGE_DIR, USER_FONT_DIR, HOME, \
-README, USER_FONT_CONFIG_SELECT, USER_FONT_CONFIG_DESELECT, USER_LIBRARY_DIR, \
+from os.path import basename, exists, join, isdir
+
+from constants import AUTOSTART_DIR, USER_FONT_DIR, HOME, README, \
+USER_FONT_CONFIG_SELECT, USER_FONT_CONFIG_DESELECT, USER_LIBRARY_DIR, \
 TMP_DIR, CACHE_FILE, DATABASE_FILE
 
 
@@ -209,8 +210,8 @@ def do_library_cleanup(root_dir = USER_LIBRARY_DIR):
     # and make sure others have read-only access, apparently this can be
     # an issue for some programs
     for root, dirs, files in os.walk(root_dir):
-        for dir in dirs:
-            os.chmod(join(root, dir), 0744)
+        for directory in dirs:
+            os.chmod(join(root, directory), 0744)
         for filename in files:
             os.chmod(join(root, filename), 0644)
     return
@@ -312,23 +313,23 @@ def mkfontdirs(root_dir = USER_LIBRARY_DIR):
                         break
     return
 
-def natural_sort(iter):
+def natural_sort(alist):
     """
     Sort the given iterable in the way that humans expect.
     """
     alphanum = lambda key: [ _convert(c) for c in re.split('([0-9]+)', key) ]
-    return sorted(iter, key=alphanum)
+    return sorted(alist, key=alphanum)
 
-def natural_sort_pathlist(iter):
+def natural_sort_pathlist(alist):
     """
     Sort the given list of filepaths in the way that humans expect.
     """
     alphanum = lambda key: [ _convert(c) for c in re.split('([0-9]+)', basename(key)) ]
-    return sorted(iter, key=alphanum)
+    return sorted(alist, key=alphanum)
 
 def natural_size(size):
     size = float(size)
-    for unit in ('bytes','kB','MB','GB','TB'):
+    for unit in ('bytes', 'kB', 'MB', 'GB', 'TB'):
         if size < 1000.0:
             return "%3.1f %s" % (size, unit)
         size /= 1000.0
@@ -348,16 +349,15 @@ def open_folder(folder, objects = None):
             return
         except OSError, error:
             logging.error('xdg-open failed : %s' % error)
-            pass
     else:
         logging.info('xdg-open is not available')
     logging.info('Looking for common file browsers')
     # Fallback to looking for specific file browsers
-    file_browser = _find_file_browser()
+    file_browser = _find_file_browser(applist)
     _launch_file_browser(file_browser, folder)
     return
 
-def _find_file_browser():
+def _find_file_browser(applist):
     """
     Look for common file browsers.
     """

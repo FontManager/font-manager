@@ -139,7 +139,7 @@ class PreferencesDialog():
             while gtk.events_pending():
                 gtk.main_iteration()
             if directory == '/' or directory.startswith(BAD_PATHS):
-                self._on_bad_path(directory)
+                self._on_bad_path()
             else:
                 return directory
         dialog.hide()
@@ -183,7 +183,7 @@ class PreferencesDialog():
         """
         # FIXME
         # Dirs shouldn't be added twice
-        for root, dirs, files in os.walk(HOME, topdown = False):
+        for root, unused_dirs, files in os.walk(HOME, topdown = False):
             for name in files:
                 if name.endswith(EXTS) and root.find('/.') == -1 \
                 and root not in self.directories:
@@ -201,7 +201,7 @@ class PreferencesDialog():
         self.preferences.on_autostart(widget.get_active())
         return
 
-    def _on_bad_path(self, directory):
+    def _on_bad_path(self):
         """
         Display warning dialog.
         """

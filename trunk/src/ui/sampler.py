@@ -31,7 +31,7 @@ import gtk
 import gobject
 import logging
 
-from os.path import join, exists, isdir
+from os.path import join, isdir
 
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.pdfmetrics import FontError, FontNotFoundError
@@ -101,8 +101,8 @@ class BuildSample:
         self.total = len(families)
         self.failed = {}
         self.body = None
-        self.RLtotal = None
-        self.RLprogress = None
+        self.rltotal = None
+        self.rlprogress = None
 
     def basic(self):
         """
@@ -130,7 +130,7 @@ class BuildSample:
         elif isdir(self.fontlist):
             files = natural_sort(os.listdir(self.fontlist))
             for filename in files:
-                filepath = join(root, filename)
+                filepath = join(self.fontlist, filename)
                 self.sort_and_register(filename, filepath, style)
                 processed += 1
                 progressbar.set_text(_('Registering %s' % filename))
@@ -155,14 +155,14 @@ class BuildSample:
 
     def _on_render_progress(self, typ, val):
         if typ == 'SIZE_EST':
-            self.RLtotal = val
-        elif typ == 'PROGRESS' and self.RLtotal is not None:
-            if val > self.RLprogress:
-                self.objects.progress_callback(None, self.RLtotal, val)
-                self.RLprogress = val
+            self.rltotal = val
+        elif typ == 'PROGRESS' and self.rltotal is not None:
+            if val > self.rlprogress:
+                self.objects.progress_callback(None, self.rltotal, val)
+                self.rlprogress = val
         elif typ == 'FINISHED':
-            self.RLtotal = None
-            self.RLprogress = None
+            self.rltotal = None
+            self.rlprogress = None
         return
 
     def build_basic_paragraph(self, filename, name, style):

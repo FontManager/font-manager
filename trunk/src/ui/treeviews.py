@@ -41,6 +41,7 @@ COLLECTION_DRAG_TARGETS = [
                 ]
 COLLECTION_DRAG_ACTIONS = (gtk.gdk.ACTION_DEFAULT | gtk.gdk.ACTION_MOVE)
 
+
 class Treeviews(object):
     _types = {
                 'TrueType'      :   'truetype.png',
@@ -57,6 +58,7 @@ class Treeviews(object):
         self.objects = objects
         self.manager = self.objects['FontManager']
         self.current_collection = None
+        self.pending_event = None
         self.selected_families = []
         self.selected_paths = []
         self.category_tree = self.objects['CategoryTree']
@@ -71,8 +73,8 @@ class Treeviews(object):
         # Load font type logos
         self.logos = {}
         pixbuf = gtk.gdk.pixbuf_new_from_file
-        for type in self._types.iterkeys():
-            self.logos[type] = pixbuf(join(PACKAGE_DATA_DIR, self._types[type]))
+        for typ in self._types.iterkeys():
+            self.logos[typ] = pixbuf(join(PACKAGE_DATA_DIR, self._types[typ]))
         self.logos['blank'] = pixbuf(join(PACKAGE_DATA_DIR, 'blank.png'))
 
     def _connect_handlers(self):
@@ -164,7 +166,8 @@ class Treeviews(object):
 
         return
 
-    def _on_drag_drop(self, widget, context, x, y, tstamp):
+    @staticmethod
+    def _on_drag_drop(widget, context, x, y, tstamp):
         try:
             return (len(widget.get_path_at_pos(x, y)[0]) != 2)
         except TypeError:
@@ -174,25 +177,25 @@ class Treeviews(object):
         model = widget.get_model()
         root = model.get_iter_root()
         if info == TARGET_TYPE_COLLECTION_ROW:
-            iter = widget.get_selection().get_selected()[1]
-            data = model.get(iter, 0, 1, 2)
+            treeiter = widget.get_selection().get_selected()[1]
+            data = model.get(treeiter, 0, 1, 2)
             drop_info = widget.get_dest_row_at_pos(x, y)
             if drop_info:
                 path, position = drop_info
-                iter = model.get_iter(path)
+                treeiter = model.get_iter(path)
                 if (position == gtk.TREE_VIEW_DROP_BEFORE
                     or position == gtk.TREE_VIEW_DROP_INTO_OR_BEFORE):
-                    model.insert_before(root, iter, data)
+                    model.insert_before(root, treeiter, data)
                 else:
-                    model.insert_after(root, iter, data)
+                    model.insert_after(root, treeiter, data)
             else:
                 model.append(root, [data])
             if context.action == gtk.gdk.ACTION_MOVE:
                 context.finish(True, True, tstamp)
         elif info == TARGET_TYPE_FAMILY_ROW:
             path = widget.get_path_at_pos(x, y)[0]
-            iter = model.get_iter(path)
-            data = model.get(iter, 0, 1)
+            treeiter = model.get_iter(path)
+            data = model.get(treeiter, 0, 1)
             families = self._selected_families()
             collection = data[0]
             self.manager.add_families_to(collection, families)
@@ -238,15 +241,15 @@ class Treeviews(object):
                 widget.set_cursor(cell[0], cell[1], 0)
         return
 
-    def _on_family_tooltip(self, widget, x, y, kmode, tooltip):
+    def _on_family_tooltip(self, widget, x, y, unused_kmode, tooltip):
         if not x > (widget.size_request()[0] * 1.5):
             return False
         try:
             model = widget.get_model()
             x, y = widget.convert_widget_to_bin_window_coords(x, y)
             path = widget.get_path_at_pos(x, y)[0]
-            iter = model.get_iter(path)
-            name = model.get_value(iter, 0)
+            treeiter = model.get_iter(path)
+            name = model.get_value(treeiter, 0)
             family = self.manager[name].pango_family
             markup = \
             '\n\t<span weight="heavy" size="large">%s</span>\t\t\n\n' % name
@@ -257,20 +260,20 @@ class Treeviews(object):
             icon = self._get_type_icon(name)
             tooltip.set_icon(icon)
             return True
-        except (TypeError, ValueError), e:
+        except (TypeError, ValueError):
             return False
 
     def _get_type_icon(self, family):
-        type = None
+        typ = None
         for k, v in self.manager[family].styles.iteritems():
-            type = self.manager[family].styles[k]['filetype']
-            if type == 'TrueType' and \
+            typ = self.manager[family].styles[k]['filetype']
+            if typ == 'TrueType' and \
             self.manager[family].styles[k]['filepath'].endswith('.otf'):
-                type = 'CFF'
+                typ = 'CFF'
             break
-        if not type:
-            type = 'blank'
-        return self.logos[type]
+        if not typ:
+            typ = 'blank'
+        return self.logos[typ]
 
     def _load_categories(self):
         category_model = self.category_tree.get_model()
@@ -288,7 +291,7 @@ class Treeviews(object):
         self.category_tree.expand_all()
         return
 
-    def _load_collections(self, init = True):
+    def _load_collections(self):
         collection_model = self.collection_tree.get_model()
         header = collection_model.append(None,
                         [_('Collection'), get_header(_('Collection')), None])
@@ -300,10 +303,10 @@ class Treeviews(object):
         self.collection_tree.expand_all()
         return
 
-    def _set_collection_name(self, renderer, path, new_name):
+    def _set_collection_name(self, unused_renderer, path, new_name):
         model = self.collection_tree.get_model()
-        iter = model.get_iter(path)
-        old_name = model.get_value(iter, 0)
+        treeiter = model.get_iter(path)
+        old_name = model.get_value(treeiter, 0)
         if new_name == old_name:
             return
         collections = self.manager.list_collections()
@@ -312,14 +315,14 @@ class Treeviews(object):
             collections[new_name] = collections[old_name]
             collections[new_name].name = new_name
             del collections[old_name]
-            model.set(iter, 0, new_name)
-            model.set(iter, 1, collections[new_name].get_label())
+            model.set(treeiter, 0, new_name)
+            model.set(treeiter, 1, collections[new_name].get_label())
         print path
 
     def _on_collection_selected(self, tree_selection):
         try:
-            model, iter = tree_selection.get_selected()
-            self.current_collection = model.get_value(iter, 0)
+            model, treeiter = tree_selection.get_selected()
+            self.current_collection = model.get_value(treeiter, 0)
             self._show_collection()
             path = self.family_tree.get_model().get_iter_first()
             if path is not None:
@@ -329,7 +332,7 @@ class Treeviews(object):
         # This happens when we unselect all in the sister view
         except TypeError:
             pass
-        self.update_views
+        self.update_views()
         return
 
     def _on_disable_collection(self, unused_widget):
@@ -389,9 +392,9 @@ class Treeviews(object):
     def _on_remove_collection(self, unused_widget):
         model = self.collection_tree.get_model()
         name = self.current_collection
-        iter = search(model, model.iter_children(None), match, (0, name))
+        treeiter = search(model, model.iter_children(None), match, (0, name))
         try:
-            path = model.get_path(iter)
+            path = model.get_path(treeiter)
             self.manager.remove_collection(name)
             self._update_collection_treeview()
             while gtk.events_pending():
@@ -401,7 +404,7 @@ class Treeviews(object):
             return
         # Select the next available colllection or the first category
         try:
-            iter = model.get_iter(path)
+            treeiter = model.get_iter(path)
             self.collection_tree.get_selection().select_path(path)
         except ValueError:
             root_node = model.get_iter_root()
@@ -492,9 +495,9 @@ class Treeviews(object):
         obj = self.manager.collections[new_name]
         model = self.collection_tree.get_model()
         header = model.get_iter_first()
-        iter = model.append(header,
+        treeiter = model.append(header,
                             [obj.get_name(), obj.get_label(), obj.comment])
-        path = model.get_path(iter)
+        path = model.get_path(treeiter)
         self.collection_tree.expand_all()
         column = self.collection_tree.get_column(0)
         self.collection_tree.scroll_to_cell(path, column,
@@ -560,54 +563,54 @@ class Treeviews(object):
     def _update_category_treeview(self):
         model = self.category_tree.get_model()
         header = model.get_iter_first()
-        iter = model.iter_children(header)
-        while iter:
-            name, label = model.get(iter, 0, 1)
+        treeiter = model.iter_children(header)
+        while treeiter:
+            name, label = model.get(treeiter, 0, 1)
             try:
                 obj = self.manager.categories[name]
             except KeyError:
-                if not model.remove(iter):
+                if not model.remove(treeiter):
                     return
                 continue
             new_label = obj.get_label()
             if label != new_label:
-                model.set(iter, 1, new_label)
-            iter = model.iter_next(iter)
+                model.set(treeiter, 1, new_label)
+            treeiter = model.iter_next(treeiter)
         return
 
     def _update_collection_treeview(self):
         model = self.collection_tree.get_model()
         header = model.get_iter_first()
-        iter = model.iter_children(header)
-        while iter:
-            name, label = model.get(iter, 0, 1)
+        treeiter = model.iter_children(header)
+        while treeiter:
+            name, label = model.get(treeiter, 0, 1)
             try:
                 obj = self.manager.collections[name]
             except KeyError:
-                if not model.remove(iter):
+                if not model.remove(treeiter):
                     return
                 continue
             new_label = obj.get_label()
             if label != new_label:
-                model.set(iter, 1, new_label)
-            iter = model.iter_next(iter)
+                model.set(treeiter, 1, new_label)
+            treeiter = model.iter_next(treeiter)
         return
 
     def _update_family_treeview(self):
         model = self.family_tree.get_model()
-        iter = model.get_iter_first()
-        while iter:
-            name, label = model.get(iter, 0, 1)
+        treeiter = model.get_iter_first()
+        while treeiter:
+            name, label = model.get(treeiter, 0, 1)
             try:
                 obj = self.manager[name]
             except KeyError:
-                if not model.remove(iter):
+                if not model.remove(treeiter):
                     return
                 continue
             new_label = obj.get_label()
             if label != new_label:
-                model.set(iter, 1, new_label)
-            iter = model.iter_next(iter)
+                model.set(treeiter, 1, new_label)
+            treeiter = model.iter_next(treeiter)
         return
 
     def update_views(self):

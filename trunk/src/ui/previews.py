@@ -24,7 +24,6 @@ This module handles everything related to the font preview area.
 
 import gtk
 import gobject
-import pango
 import logging
 import subprocess
 
@@ -85,7 +84,8 @@ class Previews(object):
         self._init_compare_tree()
 
     def _init_compare_tree(self):
-        compare_model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
+        compare_model = gtk.ListStore(gobject.TYPE_STRING,
+                                        gobject.TYPE_PYOBJECT)
         self.compare_tree.set_model(compare_model)
         cell_renderer = gtk.CellRendererText()
         preview_column = gtk.TreeViewColumn()
@@ -95,9 +95,12 @@ class Previews(object):
         compare_selection = self.compare_tree.get_selection()
         compare_selection.set_select_function(self._set_preview_row_selection)
         self.objects['AddToCompare'].connect('clicked', self._on_add_compare)
-        self.objects['RemoveFromCompare'].connect('clicked', self._on_remove_compare)
-        self.objects['ClearComparison'].connect('clicked', self._on_clear_compare)
-        self.objects['ColorSelect'].connect('clicked', self._on_show_colors_dialog)
+        self.objects['RemoveFromCompare'].connect('clicked',
+                                                    self._on_remove_compare)
+        self.objects['ClearComparison'].connect('clicked',
+                                                        self._on_clear_compare)
+        self.objects['ColorSelect'].connect('clicked',
+                                                    self._on_show_colors_dialog)
 
     def _on_switch_mode(self, unused_widget):
         """
@@ -177,22 +180,22 @@ class Previews(object):
         return
 
     def _cell_data_cb(self, column, cell, model, treeiter):
-        set = cell.set_property
+        cellset = cell.set_property
         if model.get_path(treeiter)[0] % 2 == 0:
             # this is a name row
-            set('text', model.get_value(treeiter, 0))
-            set('font', 'Sans 11')
-            set('ypad', 2)
-            set('background', '#F7F7F7')
-            set('foreground', None)
+            cellset('text', model.get_value(treeiter, 0))
+            cellset('font', 'Sans 11')
+            cellset('ypad', 2)
+            cellset('background', '#F7F7F7')
+            cellset('foreground', None)
         else:
             # this is a preview row
-            set('text', self.compare_text)
-            set('font-desc', model.get_value(treeiter, 1))
-            set('size-points', self.size)
-            set('ypad', 2)
-            set('background-gdk', self.preview_bgcolor)
-            set('foreground-gdk', self.preview_fgcolor)
+            cellset('text', self.compare_text)
+            cellset('font-desc', model.get_value(treeiter, 1))
+            cellset('size-points', self.size)
+            cellset('ypad', 2)
+            cellset('background-gdk', self.preview_bgcolor)
+            cellset('foreground-gdk', self.preview_fgcolor)
         return
 
     def _set_preview_row_selection(self, path):
@@ -401,14 +404,15 @@ class Previews(object):
         """
         Set preview text.
         """
-        buffer = gtk.TextBuffer()
+        t_buffer = gtk.TextBuffer()
         preview = self.objects['FontPreview']
-        preview.set_buffer(buffer)
+        preview.set_buffer(t_buffer)
         size = self.size
-        tag = buffer.create_tag(None, font_desc=descr, size_points=size)
-        buffer.insert(buffer.get_end_iter(), descr.to_string() + '\n')
-        buffer.insert(buffer.get_end_iter(), '\n' + self.preview_text + '\n')
-        buffer.apply_tag(tag, buffer.get_start_iter(), buffer.get_end_iter())
+        tag = t_buffer.create_tag(None, font_desc=descr, size_points=size)
+        t_buffer.insert(t_buffer.get_end_iter(), descr.to_string() + '\n')
+        t_buffer.insert(t_buffer.get_end_iter(), '\n' + self.preview_text + '\n')
+        t_buffer.apply_tag(tag, t_buffer.get_start_iter(),
+                                    t_buffer.get_end_iter())
 
         style_combo = self.objects['StyleCombo']
         style = style_combo.get_model()[style_combo.get_active()][0]

@@ -23,7 +23,6 @@ Font Manager, a font management application for the GNOME desktop
 #    Boston, MA 02110-1301, USA.
 
 import os
-import glib
 import gtk
 import gobject
 import logging
@@ -149,11 +148,11 @@ class Main(object):
             self.main_window.hide()
         return
 
-    def reload(self, unused_widget, delete_cache = False):
+    def reload(self, unused_widget, del_cache = False):
         save_collections(self.objects)
         self.objects.notify_send(_('Font Manager will restart in a moment'))
         logging.info("Restarting...")
-        if delete_cache:
+        if del_cache:
             delete_cache()
             delete_database()
             reset_fontconfig_cache()
@@ -259,7 +258,7 @@ class ObjectContainer(UserDict.UserDict):
         self.data['AppPreferences'].connect('clicked', self.on_prefs)
         return
 
-    def load_core(self, progress_callback = None):
+    def load_core(self):
         """
         Load FontManager.
         """
@@ -418,7 +417,6 @@ def _on_font_settings(unused_widget):
         subprocess.Popen(['gnome-appearance-properties', '--show-page=fonts'])
     except OSError, error:
         logging.error("Error: %s" % error)
-        pass
     return
 
 def _on_help(unused_widget):
