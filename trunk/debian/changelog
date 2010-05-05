@@ -1,6 +1,6 @@
-font-manager (0.5.1-1) lucid; urgency=low
+font-manager (0.5.2-1) lucid; urgency=low
 
-  * Update (0.5.1)
+  * Update (0.5.2)
 
         This is a major update, *almost* a complete rewrite.
 

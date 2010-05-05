@@ -1718,7 +1718,7 @@ If you choose to continue, it is suggested that you close all open applications 
     <property name="type_hint">dialog</property>
     <property name="transient_for">MainWindow</property>
     <property name="program_name">Font Manager</property>
-    <property name="version">0.5.1</property>
+    <property name="version">0.5.2</property>
     <property name="copyright" translatable="yes">Copyright &#xA9; 2009, 2010 Jerry Casiano</property>
     <property name="comments" translatable="yes">Font management for the GNOME Desktop</property>
     <property name="website">http://font-manager.googlecode.com</property>
