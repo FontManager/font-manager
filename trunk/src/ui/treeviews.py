@@ -163,7 +163,6 @@ class Treeviews(object):
         self.family_tree.enable_model_drag_source\
                                 (gtk.gdk.BUTTON1_MASK | gtk.gdk.RELEASE_MASK,
                             COLLECTION_DRAG_TARGETS, COLLECTION_DRAG_ACTIONS)
-
         return
 
     @staticmethod
@@ -317,7 +316,7 @@ class Treeviews(object):
             del collections[old_name]
             model.set(treeiter, 0, new_name)
             model.set(treeiter, 1, collections[new_name].get_label())
-        print path
+        return
 
     def _on_collection_selected(self, tree_selection):
         try:
@@ -521,8 +520,9 @@ class Treeviews(object):
         return self.selected_families
 
     def _show_collection(self):
-        if not self.current_collection:
-            return
+        allcollections = self.manager.list_collections() + self.manager.list_categories()
+        if not self.current_collection in allcollections:
+            self.current_collection = _('All Fonts')
         model = self.family_tree.get_model()
         # model can be None during a reset
         if model:
