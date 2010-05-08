@@ -39,6 +39,7 @@ static PyObject * FcAddAppFontDir(PyObject *self, PyObject *args);
 static PyObject * FcAddAppFontFile(PyObject *self, PyObject *args);
 static PyObject * FcClearAppFonts(PyObject *self, PyObject *args);
 static PyObject * FcEnableHomeConfig(PyObject *self, PyObject *args);
+static PyObject * FcGetFontDirs(PyObject *self, PyObject *args);
 static PyObject * FcFileList(PyObject *self, PyObject *args);
 static PyObject * FT_Get_File_Info(PyObject *self, PyObject *args);
 static PyObject * _get_sfnt_info(FT_Face face);
@@ -150,6 +151,21 @@ FcEnableHomeConfig(PyObject *self, PyObject *args)
     FcConfigEnableHome(enable);
 
     return Py_None;
+}
+
+static PyObject *
+FcGetFontDirs(PyObject *self, PyObject *args)
+{
+    gchar       *directory;
+    FcStrList   *fdlist;
+    PyObject    *dirlist = PyList_New(0);
+
+    fdlist = FcConfigGetFontDirs(NULL);
+    while ( directory = FcStrListNext(fdlist) )
+        PyList_Append(dirlist, PyString_FromString(directory));
+    FcStrListDone(fdlist);
+
+    return dirlist;
 }
 
 /* This function is just a really simplified version of fc-list. */
@@ -528,6 +544,10 @@ static PyMethodDef Methods[] = {
     {"FcEnableHomeConfig", FcEnableHomeConfig, METH_VARARGS,
     "True/False to Enable/Disable user specific files\n\n\
     Useful when the only thing we're interested in is \"system-wide\" files."},
+
+    {"FcGetFontDirs", FcGetFontDirs, METH_NOARGS,
+    "Return a list of configured font directories.\n\n\
+    This function takes no arguments and always returns None."},
 
     {"FcFileList", FcFileList, METH_VARARGS,
     "Query FontConfig for all installed font files.\n\n\

@@ -2,10 +2,10 @@
 #
 # Copyright (C) 2009, 2010 Jerry Casiano
 #
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 3 of the License, or
-# (at your option) any later version.
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 3
+# of the License, or (at your option) any later version.
 #
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -15,17 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to:
 #
-#    Free Software Foundation, Inc.
-#    51 Franklin Street, Fifth Floor
-#    Boston, MA 02110-1301, USA.
+# Free Software Foundation, Inc.
+# 51 Franklin Street, Fifth Floor
+# Boston, MA  02110-1301, USA.
 #
-#: ../src/main.py:332
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-03 14:03-0400\n"
+"POT-Creation-Date: 2010-05-08 00:17-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,7 +163,7 @@ msgstr ""
 msgid "Color Selection"
 msgstr ""
 
-#: ../src/data/font-manager.glade.h:42 ../src/ui/previews.py:127
+#: ../src/data/font-manager.glade.h:42 ../src/ui/previews.py:130
 msgid "Compare Fonts"
 msgstr ""
 
@@ -184,7 +183,7 @@ msgstr ""
 msgid "Create Sample Sheet"
 msgstr ""
 
-#: ../src/data/font-manager.glade.h:47 ../src/ui/previews.py:284
+#: ../src/data/font-manager.glade.h:47 ../src/ui/previews.py:287
 msgid "Custom Text"
 msgstr ""
 
@@ -258,7 +257,8 @@ msgstr ""
 msgid "Folder Options"
 msgstr ""
 
-#: ../src/data/font-manager.glade.h:67 ../src/main.py:165 ../src/main.py:284
+#: ../src/data/font-manager.glade.h:67 ../src/main.py.in:172
+#: ../src/main.py.in:302
 msgid "Font Manager"
 msgstr ""
 
@@ -342,7 +342,7 @@ msgstr ""
 msgid "Reset database"
 msgstr ""
 
-#: ../src/data/font-manager.glade.h:88 ../src/ui/treeviews.py:442
+#: ../src/data/font-manager.glade.h:88 ../src/ui/treeviews.py:444
 msgid "Search Fonts"
 msgstr ""
 
@@ -542,89 +542,84 @@ msgid ""
 "\n"
 "    Should you wish to customize rendering options, use\n"
 "\n"
-"        %s\n"
+"      %s\n"
 "-->\n"
 msgstr ""
 
 #: ../src/ui/preferences.py:370 ../src/ui/preferences.py:380
-#: ../src/ui/treeviews.py:285 ../src/ui/treeviews.py:463
-#: ../src/core/fonts.py:290 ../src/core/__init__.py:422
+#: ../src/ui/treeviews.py:292 ../src/ui/treeviews.py:465
+#: ../src/core/fonts.py:290 ../src/core/__init__.py:423
 msgid "Orphans"
 msgstr ""
 
 #. Typical font preview
-#: ../src/ui/sampler.py:56 ../src/ui/previews.py:45
+#: ../src/ui/sampler.py:57 ../src/ui/previews.py:44
 msgid "The quick brown fox jumps over the lazy dog."
 msgstr ""
 
-#: ../src/ui/sampler.py:57
+#: ../src/ui/sampler.py:58
 msgid "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 msgstr ""
 
-#: ../src/ui/sampler.py:58
+#: ../src/ui/sampler.py:59
 msgid "abcdefghijklmnopqrstuvwxyz"
 msgstr ""
 
-#: ../src/ui/sampler.py:59
+#: ../src/ui/sampler.py:60
 msgid "1234567890.:,;(*!?')"
 msgstr ""
 
-#: ../src/ui/sampler.py:69
+#: ../src/ui/sampler.py:70
 msgid "Sample of included fonts"
 msgstr ""
 
-#: ../src/ui/sampler.py:120
+#: ../src/ui/sampler.py:134
 msgid "Registering font files..."
 msgstr ""
 
-#: ../src/ui/sampler.py:127 ../src/ui/sampler.py:135
-#, python-format
-msgid "Registering %s"
-msgstr ""
-
-#: ../src/ui/sampler.py:145
+#: ../src/ui/sampler.py:151
 msgid "Rendering PDF file..."
 msgstr ""
 
-#: ../src/ui/sampler.py:267
+#: ../src/ui/sampler.py:272
 msgid "Skipping the following families"
 msgstr ""
 
-#: ../src/ui/sampler.py:278
+#: ../src/ui/sampler.py:283
 #, python-format
 msgid ""
-"Due to the reasons listed above %s out of %s families will not be included "
-"in the sample sheet"
+"Due to the reasons listed above %s out of %s fonts will not be included in "
+"the sample sheet"
 msgstr ""
 
-#: ../src/ui/sampler.py:317
+#: ../src/ui/sampler.py:320
 msgid "Face name unavailable"
 msgstr ""
 
-#: ../src/ui/sampler.py:347
+#: ../src/ui/sampler.py:351
 msgid "Font file"
 msgstr ""
 
-#: ../src/ui/sampler.py:350
+#: ../src/ui/sampler.py:354
 msgid "Problem encountered"
 msgstr ""
 
-#: ../src/ui/export.py:59
+#: ../src/ui/export.py:67
 msgid "This feature requires the Report Lab Toolkit"
 msgstr ""
 
-#: ../src/ui/export.py:91
+#: ../src/ui/export.py:102
 msgid "Selected folder must be writeable"
 msgstr ""
 
-#: ../src/ui/export.py:165 ../src/ui/export.py:186
+#: ../src/ui/export.py:177 ../src/ui/export.py:198
 msgid "Copying files..."
 msgstr ""
 
 #. Note to translators: this should be a pangram (a sentence containing all
 #. letters of your alphabet. See http://en.wikipedia.org/wiki/Pangram for
 #. more information and possible samples for your language.
-#: ../src/ui/previews.py:41
+#: ../src/ui/previews.py:40
 msgid ""
 "The quick brown fox jumps over the lazy dog.\n"
 "ABCDEFGHIJKLMNOPQRSTUVWXYZ\n"
@@ -632,35 +627,35 @@ msgid ""
 "1234567890.:,;(*!?')"
 msgstr ""
 
-#: ../src/ui/previews.py:82
+#: ../src/ui/previews.py:81
 msgid "This feature requires Gucharmap"
 msgstr ""
 
-#: ../src/ui/previews.py:118
+#: ../src/ui/previews.py:121
 msgid "Preview Fonts"
 msgstr ""
 
-#: ../src/ui/previews.py:281
+#: ../src/ui/previews.py:284
 msgid "Hide text entry"
 msgstr ""
 
-#: ../src/ui/previews.py:344
+#: ../src/ui/previews.py:347
 msgid "Bold"
 msgstr ""
 
-#: ../src/ui/previews.py:344
+#: ../src/ui/previews.py:347
 msgid "Bold Italic"
 msgstr ""
 
-#: ../src/ui/previews.py:344
+#: ../src/ui/previews.py:347
 msgid "Italic"
 msgstr ""
 
-#: ../src/ui/previews.py:417
+#: ../src/ui/previews.py:421
 msgid "Style provided by the rendering library."
 msgstr ""
 
-#: ../src/ui/previews.py:421
+#: ../src/ui/previews.py:425
 #, python-format
 msgid "Style provided by %s"
 msgstr ""
@@ -669,55 +664,55 @@ msgstr ""
 msgid "Font Manager supported types"
 msgstr ""
 
-#: ../src/ui/treeviews.py:108 ../src/ui/treeviews.py:278
+#: ../src/ui/treeviews.py:110 ../src/ui/treeviews.py:285
 msgid "Category"
 msgstr ""
 
-#: ../src/ui/treeviews.py:128 ../src/ui/treeviews.py:294
+#: ../src/ui/treeviews.py:130 ../src/ui/treeviews.py:301
 msgid "Collection"
 msgstr ""
 
-#: ../src/ui/treeviews.py:150
+#: ../src/ui/treeviews.py:152
 msgid "Family"
 msgstr ""
 
-#: ../src/ui/treeviews.py:279 ../src/ui/treeviews.py:463
-#: ../src/core/fonts.py:283
+#: ../src/ui/treeviews.py:286 ../src/ui/treeviews.py:465
+#: ../src/ui/treeviews.py:530 ../src/core/fonts.py:283
 msgid "All Fonts"
 msgstr ""
 
-#: ../src/ui/treeviews.py:279 ../src/ui/treeviews.py:463
+#: ../src/ui/treeviews.py:286 ../src/ui/treeviews.py:465
 #: ../src/core/fonts.py:286
 msgid "System"
 msgstr ""
 
-#: ../src/ui/treeviews.py:279 ../src/ui/treeviews.py:474
+#: ../src/ui/treeviews.py:286 ../src/ui/treeviews.py:476
 #: ../src/core/fonts.py:288
 msgid "User"
 msgstr ""
 
-#: ../src/ui/treeviews.py:437
+#: ../src/ui/treeviews.py:439
 msgid "Hide search box"
 msgstr ""
 
-#: ../src/ui/treeviews.py:491
+#: ../src/ui/treeviews.py:493
 msgid "New Collection"
 msgstr ""
 
-#: ../src/ui/treeviews.py:495
+#: ../src/ui/treeviews.py:497
 #, python-format
 msgid "New Collection %s"
 msgstr ""
 
-#: ../src/utils/common.py:284
+#: ../src/utils/common.py:290
 msgid "Read Me.txt"
 msgstr ""
 
-#: ../src/utils/common.py:387
+#: ../src/utils/common.py:392
 msgid "Please install a supported file browser"
 msgstr ""
 
-#: ../src/utils/common.py:390
+#: ../src/utils/common.py:395
 msgid ""
 "Supported file browsers include :\n"
 "\n"
@@ -731,19 +726,34 @@ msgid ""
 "please file a bug against Font Manager"
 msgstr ""
 
-#. Notification
-#: ../src/main.py:72
+#: ../src/main.py.in:74 ../src/main.py.in:76
 #, python-format
 msgid "Finished loading %s families"
 msgstr ""
 
-#: ../src/main.py:150
+#: ../src/main.py.in:154
 msgid "Font Manager will restart in a moment"
 msgstr ""
 
-#: ../src/main.py:330
+#: ../src/main.py.in:348
 #, python-format
 msgid "Families : %s"
+msgstr ""
+
+#: ../src/font-sampler.in:66
+msgid "On most distributions this is available as python-reportlab."
+msgstr ""
+
+#: ../src/font-sampler.in:74
+msgid "This program requires the ReportLab Toolit"
+msgstr ""
+
+#: ../src/font-sampler.in:142
+msgid "Save as..."
+msgstr ""
+
+#: ../src/font-sampler.in:176
+msgid "<b>Selected folder must be writeable</b>"
 msgstr ""
 
 #: ../src/core/fonts.py:285
@@ -763,7 +773,7 @@ msgstr ""
 msgid "Fonts not present in any collection"
 msgstr ""
 
-#: ../src/core/__init__.py:241
+#: ../src/core/__init__.py:242
 #, python-format
 msgid "Created on %s"
 msgstr ""

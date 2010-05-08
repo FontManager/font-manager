@@ -10,7 +10,8 @@ src/ui/previews.py
 src/ui/library.py
 src/ui/treeviews.py
 src/utils/common.py
-src/main.py
+src/main.py.in
+src/font-sampler.in
 src/core/fonts.py
 src/core/__init__.py
 

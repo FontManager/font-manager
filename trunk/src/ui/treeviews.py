@@ -175,6 +175,8 @@ class Treeviews(object):
     def _on_drag_data_received(self, widget, context, x, y, data, info, tstamp):
         model = widget.get_model()
         root = model.get_iter_root()
+        if not root:
+            return
         if info == TARGET_TYPE_COLLECTION_ROW:
             treeiter = widget.get_selection().get_selected()[1]
             data = model.get(treeiter, 0, 1, 2)
@@ -250,10 +252,13 @@ class Treeviews(object):
             treeiter = model.get_iter(path)
             name = model.get_value(treeiter, 0)
             family = self.manager[name].pango_family
+            famname = glib.markup_escape_text(name)
             markup = \
-            '\n\t<span weight="heavy" size="large">%s</span>\t\t\n\n' % name
+            '\n\t<span weight="heavy" size="large">%s</span>\t\t\n\n' % famname
             for face in family.list_faces():
-                subs = (face.describe(), face.get_face_name())
+                facename = glib.markup_escape_text(face.get_face_name())
+                facedescr = glib.markup_escape_text(face.describe().to_string())
+                subs = (facedescr, facename)
                 markup += '<span font_desc="%s">\t%s\t\t</span>\n' % subs
             tooltip.set_markup(markup)
             icon = self._get_type_icon(name)

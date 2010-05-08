@@ -34,13 +34,13 @@ POST_UNINSTALL = :
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(srcdir)/constants.py.in.in $(srcdir)/font-manager.in \
-	$(srcdir)/main.py.in
+	$(srcdir)/font-sampler.in $(srcdir)/main.py.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES = font-manager constants.py.in main.py
+CONFIG_CLEAN_FILES = font-manager font-sampler constants.py.in main.py
 CONFIG_CLEAN_VPATH_FILES =
 SOURCES =
 DIST_SOURCES =
@@ -173,6 +173,8 @@ $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
 font-manager: $(top_builddir)/config.status $(srcdir)/font-manager.in
+	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
+font-sampler: $(top_builddir)/config.status $(srcdir)/font-sampler.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 constants.py.in: $(top_builddir)/config.status $(srcdir)/constants.py.in.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
@@ -347,15 +349,16 @@ make-install-dirs:
 
 install: all make-install-dirs
 	install -m 755 font-manager $(DESTDIR)$(prefix)/bin/
+	install -m 755 font-sampler $(DESTDIR)$(prefix)/bin/
 	install -m 644 *.so $(DESTDIR)$(prefix)/lib/font-manager/
 	@find doc -type f -exec chmod 644 '{}' \;
 	@cp -R doc $(DESTDIR)$(prefix)/share/font-manager/
 	install -m 644 *.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/
 	install -m 644 core/*.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/core/
 	install -m 644 data/* $(DESTDIR)$(prefix)/share/font-manager/data/
-	install -m 644 ui/* $(DESTDIR)$(prefix)/share/font-manager/ui/
+	install -m 644 ui/*.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/ui/
 	install -m 644 utils/* $(DESTDIR)$(prefix)/share/font-manager/utils/
-	install -m 644 font-manager.desktop $(DESTDIR)$(prefix)/share/applications/
+	install -m 644 *.desktop $(DESTDIR)$(prefix)/share/applications/
 
 uninstall:
 	@rm -fv $(DESTDIR)$(prefix)/bin/font-manager
@@ -364,7 +367,7 @@ uninstall:
 	@rm -fv $(DESTDIR)$(prefix)/share/applications/font-manager.desktop
 
 clean:
-	@rm -f font-manager _fontutils.so
+	@rm -f font-manager font-sampler _fontutils.so
 	@find . -type f -name '*.py[co]' -exec rm -f '{}' \;
 
 distclean: clean

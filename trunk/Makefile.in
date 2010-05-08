@@ -34,8 +34,9 @@ POST_UNINSTALL = :
 subdir = .
 DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/configure \
-	$(top_srcdir)/src/core/__init__.py.in AUTHORS COPYING \
-	ChangeLog INSTALL NEWS TODO install-sh missing
+	$(top_srcdir)/src/core/__init__.py.in \
+	$(top_srcdir)/src/ui/export.py.in AUTHORS COPYING ChangeLog \
+	INSTALL NEWS TODO install-sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
@@ -43,7 +44,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES = src/core/__init__.py
+CONFIG_CLEAN_FILES = src/core/__init__.py src/ui/export.py
 CONFIG_CLEAN_VPATH_FILES =
 SOURCES =
 DIST_SOURCES =
@@ -193,6 +194,8 @@ $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
 src/core/__init__.py: $(top_builddir)/config.status $(top_srcdir)/src/core/__init__.py.in
+	cd $(top_builddir) && $(SHELL) ./config.status $@
+src/ui/export.py: $(top_builddir)/config.status $(top_srcdir)/src/ui/export.py.in
 	cd $(top_builddir) && $(SHELL) ./config.status $@
 tags: TAGS
 TAGS:

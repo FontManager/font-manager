@@ -1,0 +1,17 @@
+[encoding: UTF-8]
+src/data/font-manager.glade
+src/data/font-information.glade
+src/data/menus.glade
+src/constants.py
+src/ui/preferences.py
+src/ui/sampler.py
+src/ui/export.py
+src/ui/previews.py
+src/ui/library.py
+src/ui/treeviews.py
+src/utils/common.py
+src/main.py
+src/core/fonts.py
+src/core/__init__.py
+
+

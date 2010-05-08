@@ -423,7 +423,7 @@ class Previews(object):
             filepath = self.current_family.styles[style]['filepath']
             tooltip = \
             _('Style provided by %s' % basename(filepath))
-        style_combo.set_tooltip_markup(tooltip)
+        style_combo.set_tooltip_text(tooltip)
         return
 
     def _on_font_info(self, unused_widget):

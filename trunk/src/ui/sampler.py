@@ -31,7 +31,7 @@ import gtk
 import gobject
 import logging
 
-from os.path import join, isdir
+from os.path import join, isdir, realpath
 
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.pdfmetrics import FontError, FontNotFoundError
@@ -70,6 +70,7 @@ class Config(object):
         self.subject = _('Sample of included fonts')
         self.pangram = False
 
+
 class BuildSample:
     """
     Build a sample pdf from given directory or list
@@ -80,9 +81,9 @@ class BuildSample:
     config -- a Config instance or None to use default values
     collection -- collection name / pdf name
     fontlist -- a python list or the directory to scan for font files
-    output -- the name of output file - <fullpath>/filename.pdf
+    outfile -- the name of output file - <fullpath>/filename.pdf
     """
-    def __init__(self, objects, config, collection, fontlist, output):
+    def __init__(self, objects, config, collection, fontlist, outfile):
         #
         if config is None:
             self.config = Config()
@@ -96,9 +97,21 @@ class BuildSample:
         self.objects = objects
         self.collection = collection
         self.fontlist = fontlist
-        self.output = output
-        families = self.objects['FontManager'].list_families_in(collection)
-        self.total = len(families)
+        self.outfile = outfile
+        filelist = []
+        if isinstance(fontlist, list):
+            filelist = fontlist
+        elif isdir(fontlist):
+            for root, dirs, files in os.walk(fontlist):
+                for filename in files:
+                    filepath = realpath(join(root, filename))
+                    if not filepath in filelist:
+                        filelist.append(filepath)
+        else:
+            raise TypeError\
+            ('No files given for export, not a valid filepath or python list')
+        self.total = len(filelist)
+        self.fontlist = filelist
         self.failed = {}
         self.body = None
         self.rltotal = None
@@ -111,46 +124,37 @@ class BuildSample:
         """
         processed = 0
         progressbar = self.objects['ProgressBar']
-        self.objects.set_sensitive(False)
-        doc = SimpleDocTemplate(self.output, pagesize=letter, \
+        progress_label = self.objects['ProgressLabel']
+        doc = SimpleDocTemplate(self.outfile, pagesize=letter, \
         title=self.collection, author=self.author, subject=self.subject, \
         leftMargin=0.75*inch, rightMargin=0.75*inch, \
         topMargin=1*inch, bottomMargin=0.75*inch)
         self.body = [ Spacer(1, 0.01*inch) ]
         style = self.styles[ "Normal" ]
-        progressbar.set_text(_('Registering font files...'))
-        if type(self.fontlist) == list:
-            files = natural_sort_pathlist(self.fontlist)
-            for filepath in files:
-                filename = filepath.rsplit('/', 1)[1]
-                self.sort_and_register(filename, filepath, style)
-                processed += 1
-                progressbar.set_text(_('Registering %s' % filename))
-                self.objects.progress_callback(None, self.total, processed)
-        elif isdir(self.fontlist):
-            files = natural_sort(os.listdir(self.fontlist))
-            for filename in files:
-                filepath = join(self.fontlist, filename)
-                self.sort_and_register(filename, filepath, style)
-                processed += 1
-                progressbar.set_text(_('Registering %s' % filename))
-                self.objects.progress_callback(None, self.total, processed)
-        else:
-            self.objects.set_sensitive(True)
-            logging.error('No files given for export')
-            return False
+        progress_label.set_text(_('Registering font files...'))
+        while gtk.events_pending():
+            gtk.main_iteration()
+        for filepath in natural_sort_pathlist(self.fontlist):
+            filename = filepath.rsplit('/', 1)[1]
+            self.sort_and_register(filename, filepath, style)
+            processed += 1
+            progressbar.set_text(filename)
+            self.objects.progress_callback(None, self.total, processed)
+        progress_label.set_text('')
         progressbar.set_text('')
+        self.objects['ProgressWindow'].hide()
+        while gtk.events_pending():
+            gtk.main_iteration()
         if not self.prompt_for_failed_fonts():
-            self.objects.set_sensitive(True)
             return False
-        progressbar.set_text(_('Rendering PDF file...'))
+        self.objects['ProgressWindow'].show()
+        progress_label.set_text(_('Rendering PDF file...'))
         while gtk.events_pending():
             gtk.main_iteration()
         # Render and save pdf
         doc.setProgressCallBack(self._on_render_progress)
         doc.build(self.body)
         #
-        self.objects.set_sensitive(True)
         return True
 
     def _on_render_progress(self, typ, val):
@@ -273,16 +277,14 @@ class BuildSample:
         sw = gtk.ScrolledWindow()
         sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         sw.set_property('shadow-type', gtk.SHADOW_ETCHED_IN)
-        tree, column = _build_tree(dic)
+        tree = _build_tree(dic)
         sw.add(tree)
         dialog.vbox.pack_start(sw, True, True, 5)
         status = gtk.Label(_('Due to the reasons listed above %s out of %s \
-families will not be included in the sample sheet') % \
+fonts will not be included in the sample sheet') % \
                             (len(self.failed), self.total))
         dialog.vbox.pack_start(status, False, True, 5)
         dialog.vbox.show_all()
-        # Sort listing by simulating a click on header
-        column.clicked()
         response = dialog.run()
         dialog.destroy()
         while gtk.events_pending():
@@ -333,8 +335,9 @@ def find_type1_name(path):
 
 def _build_tree(dic):
     lstore = SKIP_LS
-    for font, error in dic.iteritems():
-        error = str(error)
+    ordered = natural_sort([e for e in dic.iterkeys()])
+    for font in ordered:
+        error = str(dic[font])
         if error.find(':'):
             try:
                 error = error.split(':')[1]
@@ -345,12 +348,12 @@ def _build_tree(dic):
         lstore.append([font, error])
     tree = gtk.TreeView(lstore)
     cell_render = gtk.CellRendererText()
-    c1 = gtk.TreeViewColumn(_('Font file'), cell_render, text=0)
-    c1.set_min_width(175)
-    c1.set_sort_column_id(0)
-    c2 = gtk.TreeViewColumn(_('Problem encountered'), cell_render, text=1)
-    c2.set_min_width(275)
-    tree.append_column(c1)
-    tree.append_column(c2)
-    return tree, c1
+    col1 = gtk.TreeViewColumn(_('Font file'), cell_render, text=0)
+    col1.set_min_width(175)
+    col1.set_sort_column_id(0)
+    col2 = gtk.TreeViewColumn(_('Problem encountered'), cell_render, text=1)
+    col2.set_min_width(275)
+    tree.append_column(col1)
+    tree.append_column(col2)
+    return tree
 

@@ -157,6 +157,11 @@ def create_archive_from_folder(arch_name, arch_type, destination,
                                 (arch_name, arch_type, folder), shell=True)
     # Wait for file-roller to finish
     while roller.poll() is None:
+        # Prevent loop from hogging cpu
+        time.sleep(0.5)
+        # Avoid the main window becoming unresponsive
+        while gtk.events_pending():
+            gtk.main_iteration()
         continue
     if delete:
         shutil.rmtree(folder, ignore_errors = True)
@@ -344,7 +349,7 @@ def open_folder(folder, objects = None):
         applist = AvailableApps()
     if 'xdg-open' in applist:
         try:
-            logging.info('Opening font folder')
+            logging.info('Opening folder : %s' % folder)
             subprocess.Popen(['xdg-open', folder])
             return
         except OSError, error:

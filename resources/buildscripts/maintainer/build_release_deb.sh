@@ -41,5 +41,5 @@ rm -f $PACKAGE-$VERSION.zip
 rm -rf BUILD
 make distclean
 echo
-echo 'Done!'
+echo 'If the build was successful you will find a deb package in font-manager/RESULTS'
 

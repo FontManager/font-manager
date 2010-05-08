@@ -23,6 +23,7 @@ Font Manager, a font management application for the GNOME desktop
 #    Boston, MA 02110-1301, USA.
 
 import os
+import sys
 import gtk
 import gobject
 import logging
@@ -191,6 +192,9 @@ class Main(object):
         check_libxml2_leak()
         logging.info("Exiting...")
         gtk.main_quit()
+        # FIXME
+        # This shouldn't be needed...
+        sys.exit(0)
 
 
 class ObjectContainer(UserDict.UserDict):
@@ -343,7 +347,7 @@ class ObjectContainer(UserDict.UserDict):
             self.data['FamilyTotal'].set_text\
             (_('Families : %s') % str(self.data['FontManager'].total_families))
         else:
-            self.data['FamilyTotal'].set_text(_(''))
+            self.data['FamilyTotal'].set_text('')
             self.data['ProgressBar'].set_text('')
             self.data['ProgressBar'].show()
         while gtk.events_pending():

@@ -24,6 +24,7 @@ This module provides a dialog which displays font information.
 
 import os
 import gtk
+import glib
 import logging
 import webbrowser
 
@@ -158,9 +159,9 @@ class FontInformation(object):
         self.family = family
         self.style = style
         self.typ = family.styles[style]['filetype']
+        famname = glib.markup_escape_text(family.get_name())
         markup = \
-        '<span font_desc="%s" size="xx-large">%s</span>' % \
-        (descr, family.get_name())
+        '<span font_desc="%s" size="xx-large">%s</span>' % (descr, famname)
         self.widgets['FamilyLabel'].set_markup(markup)
         self.widgets['FamilyEntry'].set_text(family.get_name())
         self.widgets['StyleEntry'].set_text(style)

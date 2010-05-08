@@ -63,8 +63,7 @@ class Collection(object):
             raise TypeError\
             ('Expected a string, tuple or list but got %s instead' % \
             type(families[0]))
-        nodupes = set(self.families)
-        self.families = [f for f in nodupes]
+        self.families = set(self.families)
         return
 
     def contains(self, family):
