@@ -25,21 +25,32 @@ This module handles everything related to treeviews.
 import gtk
 import glib
 import gobject
+import urlparse
 
 from os.path import join
 
-from constants import PACKAGE_DATA_DIR
-from utils.common import match, search
+import _fontutils
 
+from actions import UserActions
+from core.database import Table
+from constants import PACKAGE_DATA_DIR
+from library import InstallFonts
+from utils.common import match, natural_sort, search, FONT_EXTS
 
 TARGET_TYPE_COLLECTION_ROW = 10
 TARGET_TYPE_FAMILY_ROW = 20
+TARGET_TYPE_EXTERNAL_DROP = 30
 
 COLLECTION_DRAG_TARGETS = [
                 ('reorder', gtk.TARGET_SAME_WIDGET, TARGET_TYPE_COLLECTION_ROW),
-                ("receive", gtk.TARGET_SAME_APP, TARGET_TYPE_FAMILY_ROW)
+                ('add', gtk.TARGET_SAME_APP, TARGET_TYPE_FAMILY_ROW)
                 ]
 COLLECTION_DRAG_ACTIONS = (gtk.gdk.ACTION_DEFAULT | gtk.gdk.ACTION_MOVE)
+
+FAMILY_DRAG_TARGETS = [
+                ('TEXT', 0, TARGET_TYPE_EXTERNAL_DROP)
+                ]
+FAMILY_DRAG_ACTIONS = (gtk.gdk.ACTION_DEFAULT)
 
 
 class Treeviews(object):
@@ -57,8 +68,11 @@ class Treeviews(object):
     def __init__(self, objects):
         self.objects = objects
         self.manager = self.objects['FontManager']
+        self.actions = UserActions(self.objects)
+        self.filter = TreeviewFilter(self.objects)
         self.current_collection = None
         self.pending_event = None
+        self.installer = None
         self.selected_families = []
         self.selected_paths = []
         self.category_tree = self.objects['CategoryTree']
@@ -93,6 +107,7 @@ class Treeviews(object):
         self.objects['HorizontalPane'].connect('event', self._on_pane_resize)
         self.objects['SearchFonts'].connect('toggled', self._on_search)
         self.objects['FamilySearchBox'].connect('icon-press', self._on_entry_icon)
+        self.objects['Advanced'].connect('clicked', self._on_advanced)
         return
 
     def _setup_columns(self):
@@ -163,7 +178,18 @@ class Treeviews(object):
         self.family_tree.enable_model_drag_source\
                                 (gtk.gdk.BUTTON1_MASK | gtk.gdk.RELEASE_MASK,
                             COLLECTION_DRAG_TARGETS, COLLECTION_DRAG_ACTIONS)
+        self.family_tree.enable_model_drag_dest(FAMILY_DRAG_TARGETS,
+                                                    FAMILY_DRAG_ACTIONS)
+        self.family_tree.connect('drag-data-received',
+                                                    self._on_files_dropped)
         return
+
+    def _on_advanced(self, unused_widget):
+        filter = self.filter.run()
+        if filter:
+            self._show_collection(filter)
+        else:
+            return
 
     @staticmethod
     def _on_drag_drop(widget, context, x, y, tstamp):
@@ -171,6 +197,21 @@ class Treeviews(object):
             return (len(widget.get_path_at_pos(x, y)[0]) != 2)
         except TypeError:
             return True
+
+    def _on_files_dropped(self, widget, context, x, y, data, info, tstamp):
+        if not info == TARGET_TYPE_EXTERNAL_DROP:
+            return
+        filelist = [urlparse.urlsplit(path)[2] for path in \
+                    data.data.split('\r\n') if path.endswith(FONT_EXTS)]
+        block = _('All Fonts'), _('System'), _('User'), _('Orphans')
+        if self.current_collection not in block:
+            families = [ _fontutils.FT_Get_File_Info(path)['family'] \
+                        for path in filelist]
+            self.manager.add_families_to(self.current_collection, families)
+        if not self.installer:
+            self.installer = InstallFonts(self.objects)
+        self.installer.process_install(filelist)
+        return
 
     def _on_drag_data_received(self, widget, context, x, y, data, info, tstamp):
         model = widget.get_model()
@@ -208,14 +249,13 @@ class Treeviews(object):
         """
         Block first release to allow dragging multiple rows. Set pending event.
         """
-        # FIXME
-        if event.button == 2:
-            # bring up our popup menu
-            pass
         cell = widget.get_path_at_pos(int(event.x), int(event.y))
         if cell is None:
             return True
         path = cell[0]
+        if event.button == 3:
+            self._show_context_menu(widget, event)
+            return True
         selection = widget.get_selection()
         if ((selection.path_is_selected(path) and not\
         (event.state & (gtk.gdk.CONTROL_MASK | gtk.gdk.SHIFT_MASK)))):
@@ -240,6 +280,39 @@ class Treeviews(object):
             cell = widget.get_path_at_pos(int(event.x), int(event.y))
             if cell is not None:
                 widget.set_cursor(cell[0], cell[1], 0)
+        return
+
+    def _show_context_menu(self, widget, event):
+        menu = gtk.Menu()
+        actions = self.actions.actions
+        selection = widget.get_selection()
+        if selection.count_selected_rows() > 1:
+            return
+        model, path = selection.get_selected_rows()
+        treeiter = model.get_iter(path[0])
+        family = model.get_value(treeiter, 0)
+        try:
+            style = self.objects['Main'].previews.current_style_as_string
+            filepath = self.manager[family].styles[style]['filepath']
+        except KeyError:
+            return
+        for action in self.actions.get_actions():
+            menuitem = gtk.MenuItem(actions[action]['name'])
+            menuitem.set_name(actions[action]['name'])
+            if actions[action]['comment'] != 'None':
+                menuitem.set_tooltip_text(actions[action]['comment'])
+            menu.append(menuitem)
+            menuitem.connect('activate', self.actions.run_command, 
+                                        (filepath, family, style))
+        separator = gtk.SeparatorMenuItem()
+        menu.append(separator)
+        menuitem = gtk.MenuItem(_('Edit actions...'))
+        menuitem.connect('activate', self.actions.run)
+        menu.append(menuitem)
+        menu.show_all()
+        menu.popup(None, None, None, event.button, event.time)
+        while gtk.events_pending():
+            gtk.main_iteration()
         return
 
     def _on_family_tooltip(self, widget, x, y, unused_kmode, tooltip):
@@ -427,24 +500,25 @@ class Treeviews(object):
         return
 
     def _on_search(self, widget):
-        search_box = self.objects['FamilySearchBox']
+        search_box = self.objects['SearchBox']
         vpane = self.objects['VerticalPane']
         box_height = search_box.size_request()[1]
         vpane_pos = vpane.get_position()
         if widget.get_active():
             if vpane_pos > 0:
-                vpane.set_position(vpane_pos + box_height)
+                vpane.set_position(vpane_pos + (box_height +1))
             search_box.show()
             search_box.grab_focus()
             widget.set_label(_('Hide search box'))
         else:
             if vpane_pos > 0:
-                vpane.set_position(vpane_pos - box_height)
+                vpane.set_position(vpane_pos - (box_height +1))
             search_box.hide()
             widget.set_label(_('Search Fonts'))
             if self.family_tree.get_selection().count_selected_rows() == 0 \
-            or search_box.get_text() == '':
+            or self.objects['FamilySearchBox'].get_text() == '':
                 self.family_tree.scroll_to_point(0, 0)
+        return
 
     def _on_pane_resize(self, unused_widget, event):
         if event.type == gtk.gdk.BUTTON_RELEASE:
@@ -524,8 +598,9 @@ class Treeviews(object):
             self.selected_families.append(model[path][0])
         return self.selected_families
 
-    def _show_collection(self):
-        allcollections = self.manager.list_collections() + self.manager.list_categories()
+    def _show_collection(self, filter = None):
+        allcollections = \
+        self.manager.list_collections() + self.manager.list_categories()
         if not self.current_collection in allcollections:
             self.current_collection = _('All Fonts')
         model = self.family_tree.get_model()
@@ -540,6 +615,8 @@ class Treeviews(object):
         else:
             return
         families = self.manager.list_families_in(self.current_collection)
+        if filter is not None:
+            families = [f for f in families if f in filter]
         # Create a new liststore on every call to this function since
         # re-using an already sorted liststore can cause MAJOR slowdown.
         family_model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
@@ -636,10 +713,182 @@ class Treeviews(object):
         self.objects['MainWindow'].queue_draw()
 
 
+class TreeviewFilter(object):
+    _widgets = (
+                'SearchDialog', 'FamilyCombo', 'FamilyEntry', 'TypeCombo',
+                'TypeComboEntry', 'FoundryCombo', 'FoundryComboEntry',
+                'FilepathCombo', 'FilepathEntry'
+                )
+    def __init__(self, objects):
+        self.objects = objects
+        self.builder = objects.builder
+        self.widgets = {}
+        for widget in self._widgets:
+            self.widgets[widget] = self.builder.get_object(widget)
+        self.widgets['SearchDialog'].connect('delete-event', \
+                                lambda widget, event: widget.hide() is None)
+        self.combos = (
+                    'FamilyCombo', 'TypeCombo', 'FoundryCombo', 'FilepathCombo'
+                    )
+        self._types = self._get_types()
+        self._foundries = self._get_foundries()
+        self._setup_combos()
+        self._setup_entries()
+
+    def _get_filter(self):
+        """
+        Return query results.
+        """
+        family = self._get_family()
+        typ = self._get_type()
+        foundry = self._get_foundry()
+        filepath = self._get_filepath()
+        query = ''
+        for entry in family, typ, foundry, filepath:
+            if entry:
+                if query == '':
+                    query = '%s' % entry
+                else:
+                    query = '%s AND %s' % (query, entry)
+        fonts = Table('Fonts')
+        filter = []
+        for row in set(fonts.get('family', query)):
+            filter.append(row[0])
+        fonts.close()
+        return filter
+
+    def _get_family(self):
+        family = self.widgets['FamilyEntry'].get_text()
+        if family != '':
+            active = self.widgets['FamilyCombo'].get_active()
+            like = 'family LIKE "'
+            if active == 0:
+                query = like + '%' + family + '%"'
+            elif active == 1:
+                query = like + family + '%"'
+            elif active == 2:
+                query = like + '%' + family + '"'
+        else:
+            query = False
+        return query
+
+    def _get_type(self):
+        typ = self.widgets['TypeComboEntry'].child.get_text()
+        if typ != '':
+            active = self.widgets['TypeCombo'].get_active()
+            if active == 0:
+                query = 'filetype="%s"' % typ
+            elif active == 1:
+                query = 'filetype!="%s"' % typ
+        else:
+            query = False
+        return query
+
+    def _get_foundry(self):
+        foundry = self.widgets['FoundryComboEntry'].child.get_text()
+        if foundry != '':
+            active = self.widgets['FoundryCombo'].get_active()
+            if active == 0:
+                query = 'foundry="%s"' % foundry
+            elif active == 1:
+                query = 'foundry!="%s"' % foundry
+        else:
+            query = False
+        return query
+
+    def _get_filepath(self):
+        filepath = self.widgets['FilepathEntry'].get_text()
+        if filepath != '':
+            active = self.widgets['FilepathCombo'].get_active()
+            like = 'filepath LIKE "'
+            if active == 0:
+                query = like + '%' + filepath + '%"'
+            elif active == 1:
+                query = like + filepath + '%"'
+            elif active == 2:
+                query = like + '%' + filepath + '"'
+        else:
+            query = False
+        return query
+
+    def _get_foundries(self):
+        """
+        Return a list of foundries in database.
+        """
+        foundries = []
+        fonts = Table('Fonts')
+        for row in set(fonts.get('foundry')):
+            foundries.append(row[0])
+        fonts.close()
+        return natural_sort(foundries)
+
+    def _get_types(self):
+        """
+        Return a list of types in database.
+        """
+        types = []
+        fonts = Table('Fonts')
+        for row in set(fonts.get('filetype')):
+            types.append(row[0])
+        fonts.close()
+        return natural_sort(types)
+
+    def _setup_combos(self):
+        model1 = gtk.ListStore(gobject.TYPE_STRING)
+        model2 = gtk.ListStore(gobject.TYPE_STRING)
+        for entry in 'contains', 'begins with', 'ends with':
+            model1.append([entry])
+        for entry in '=', '!=':
+            model2.append([entry])
+        self.widgets['FamilyCombo'].set_model(model1)
+        self.widgets['TypeCombo'].set_model(model2)
+        self.widgets['FoundryCombo'].set_model(model2)
+        self.widgets['FilepathCombo'].set_model(model1)
+        cell = gtk.CellRendererText()
+        for widget in self.combos:
+            self.widgets[widget].pack_start(cell, True)
+            self.widgets[widget].add_attribute(cell, 'text', 0)
+            self.widgets[widget].set_active(0)
+        return
+
+    def _setup_entries(self):
+        model1 = gtk.ListStore(gobject.TYPE_STRING)
+        model2 = gtk.ListStore(gobject.TYPE_STRING)
+        for entry in self._types:
+            model1.append([entry])
+        for entry in self._foundries:
+            model2.append([entry])
+        self.widgets['TypeComboEntry'].set_model(model1)
+        self.widgets['FoundryComboEntry'].set_model(model2)
+        for widget in 'TypeComboEntry', 'FoundryComboEntry':
+            self.widgets[widget].set_text_column(0)
+        return
+
+    def _run_dialog(self):
+        """
+        Display "advanced search" dialog.
+        """
+        for widget in self.combos:
+            self.widgets[widget].set_active(0)
+        for widget in 'FamilyEntry', 'FilepathEntry':
+            self.widgets[widget].set_text('')
+        for widget in 'TypeComboEntry', 'FoundryComboEntry':
+            self.widgets[widget].child.set_text('')
+        dialog = self.widgets['SearchDialog']
+        response = dialog.run()
+        dialog.hide()
+        return response
+
+    def run(self):
+        if self._run_dialog():
+            return self._get_filter()
+        else:
+            return False
+
+
 def get_header(title):
     header = glib.markup_escape_text(title)
     return '<span size="x-large" weight="heavy">%s</span>' % header
-
 
 # this is strictly cosmetic
 # Todo: make this nice instead of just a stock icon

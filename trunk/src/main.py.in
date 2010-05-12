@@ -54,9 +54,9 @@ class Main(object):
         # the start anytime we launch the gui... from cli it works as intended.
         disable_blacklist()
         self.objects = ObjectContainer()
-        self.menus = PopupMenu()
         self.main_window = self.objects['MainWindow']
         self.preferences = self.objects['Preferences']
+        self.menus = self.objects['PopupMenus']
         # Showtime
         self.main_window.show()
         if self.preferences.hidden:
@@ -221,7 +221,7 @@ class ObjectContainer(UserDict.UserDict):
         'RemoveFontsTree', 'RemoveSearchEntry', 'RemoveFontsButton',
         'ExportDialog', 'ExportAsArchive', 'ExportAsPDF', 'ExportTo',
         'ExportFileChooserBox', 'ExportFileChooser', 'ExportPermissionsWarning',
-        'ExportArchiveOptionsBox', 'IncludeSampler'
+        'ExportArchiveOptionsBox', 'IncludeSampler', 'SearchBox', 'Advanced'
         )
     def __init__(self):
         UserDict.UserDict.__init__(self)
@@ -234,6 +234,7 @@ class ObjectContainer(UserDict.UserDict):
         self.data['Preferences'] = core.get_preferences()
         self.data['Preferences'].connect('update-font-dirs', self.reload)
         self.data['AvailableApps'] = core.get_applist()
+        self.data['PopupMenus'] = PopupMenu()
         # Find and set up icon for use throughout app windows
         try:
             icon_theme = gtk.icon_theme_get_default()
@@ -332,9 +333,7 @@ class ObjectContainer(UserDict.UserDict):
         return
 
     def reload(self, *args):
-        self.set_sensitive(False)
         self.data['Main'].reload(None)
-        self.set_sensitive(True)
         return
 
     def set_sensitive(self, state = True):

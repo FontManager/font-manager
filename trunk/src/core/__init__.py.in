@@ -118,30 +118,6 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         enable_blacklist()
         self.connid = self.connect('update-font-groups', self._update_orphans)
 
-    # FIXME
-    # Find reliable way to reload in place
-    #def reload(self):
-        #"""
-        #Reload to include changes, such as a recently installed font.
-        #"""
-        #self.disconnect(self.connid)
-        #disable_blacklist()
-        #self._loading = True
-        #del self._disabled[:]
-        #del self._enabled[:]
-        #self.categories.clear()
-        #self.collections.clear()
-        #self.data.clear()
-        #reload(fonts)
-        #fonts.Sort(self, self.progress)
-        #self._update_selections()
-        #self.auto_enable_collections()
-        #self.total_families = len(self)
-        #self._loading = False
-        #enable_blacklist()
-        #self.connid = self.connect('update-font-groups', self._update_orphans)
-        #return
-
     def _add_category(self, category):
         """
         Add a category object.

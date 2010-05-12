@@ -24,6 +24,7 @@ This module allows users to export "collections".
 
 import os
 import glib
+import glob
 import gtk
 import logging
 import shutil
@@ -32,9 +33,9 @@ import shelve
 import subprocess
 import time
 
-from os.path import exists, join, realpath
+from os.path import exists, join, realpath, splitext
 
-from constants import HOME, CACHE_DIR, DESKTOP_DIR, TMP_DIR
+from constants import HOME, CACHE_DIR, DESKTOP_DIR, TMP_DIR, T1_EXTS
 from utils.common import finish_font_install, create_archive_from_folder
 
 SAMPLER_CACHE   =   join(CACHE_DIR, 'sampler.cache')
@@ -178,10 +179,10 @@ class Export(object):
         for path in set(filelist):
             shutil.copy(path, self.workdir)
             # Try to include .afm, .pfm files for Type 1 fonts
-            if path.endswith('.pfb'):
-                self._get_pfb_files(path)
-            elif path.endswith('.pfa'):
-                self._get_pfa_files(path)
+            if path.endswith(T1_EXTS):
+                metrics = splitext(path)[0] + '.*'
+                for path in glob.glob(metrics):
+                    shutil.move(path, self.workdir)
             progress += 1
             self.objects.progress_callback(None, total, progress)
         self.objects['ProgressBar'].set_text('')
@@ -202,11 +203,11 @@ class Export(object):
         for path in set(filelist):
             shutil.copy(path, self.workdir)
             # Try to include .afm, .pfm files for Type 1 fonts
-            if path.endswith('.pfb'):
-                self._get_pfb_files(path)
-            elif path.endswith('.pfa'):
-                self._get_pfa_files(path)
-                progress += 1
+            if path.endswith(T1_EXTS):
+                metrics = splitext(path)[0] + '.*'
+                for path in glob.glob(metrics):
+                    shutil.move(path, self.workdir)
+            progress += 1
             self.objects.progress_callback(None, total, progress)
         self.objects['ProgressBar'].set_text('')
         self.objects.set_sensitive(True)
@@ -242,44 +243,6 @@ class Export(object):
             while gtk.events_pending():
                 gtk.main_iteration()
             continue
-        return
-
-    def _get_pfb_files(self, path):
-        """
-        Try to include extra PostScript font files.
-        """
-        try:
-            afm_path = path.replace('.pfb', '.afm')
-            if not exists(afm_path):
-                afm_path = path.replace('afm', 'AFM')
-            if exists(afm_path):
-                shutil.copy(afm_path, self.workdir)
-            pfm_path = path.replace('.pfb', '.pfm')
-            if not exists(pfm_path):
-                pfm_path = path.replace('pfm', 'PFM')
-            if exists(pfm_path):
-                shutil.copy(pfm_path, self.workdir)
-        except OSError:
-            pass
-        return
-
-    def _get_pfa_files(self, path):
-        """
-        Try to include extra PostScript font files.
-        """
-        try:
-            afm_path = path.replace('.pfa', '.afm')
-            if not exists(afm_path):
-                afm_path = path.replace('afm', 'AFM')
-            if exists(afm_path):
-                shutil.copy(afm_path, self.workdir)
-            pfm_path = path.replace('.pfa', '.pfm')
-            if not exists(pfm_path):
-                pfm_path = path.replace('pfm', 'PFM')
-            if exists(pfm_path):
-                shutil.copy(pfm_path, self.workdir)
-        except OSError:
-            pass
         return
 
     def _update_sensitivity(self, unused_widget):

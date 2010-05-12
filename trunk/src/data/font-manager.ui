@@ -198,12 +198,36 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkEntry" id="FamilySearchBox">
-                                <property name="can_focus">True</property>
-                                <property name="invisible_char">&#x25CF;</property>
-                                <property name="secondary_icon_stock">gtk-clear</property>
-                                <property name="secondary_icon_activatable">True</property>
-                                <property name="secondary_icon_sensitive">True</property>
+                              <object class="GtkHBox" id="SearchBox">
+                                <child>
+                                  <object class="GtkEntry" id="FamilySearchBox">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="invisible_char">&#x25CF;</property>
+                                    <property name="secondary_icon_stock">gtk-clear</property>
+                                    <property name="secondary_icon_activatable">True</property>
+                                    <property name="secondary_icon_sensitive">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="position">1</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkButton" id="Advanced">
+                                    <property name="label" translatable="yes">Advanced</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">True</property>
+                                    <property name="relief">none</property>
+                                    <property name="focus_on_click">False</property>
+                                  </object>
+                                  <packing>
+                                    <property name="expand">False</property>
+                                    <property name="fill">False</property>
+                                    <property name="pack_type">end</property>
+                                    <property name="position">0</property>
+                                  </packing>
+                                </child>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1049,10 +1073,12 @@ If you choose to continue, it is suggested that you close all open applications 
     <property name="height_request">520</property>
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Preferences</property>
+    <property name="resizable">False</property>
     <property name="window_position">center-on-parent</property>
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">preferences-desktop-font</property>
     <property name="type_hint">dialog</property>
+    <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
     <property name="has_separator">False</property>
     <child internal-child="vbox">
@@ -1716,9 +1742,10 @@ If you choose to continue, it is suggested that you close all open applications 
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">preferences-desktop-font</property>
     <property name="type_hint">dialog</property>
+    <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
     <property name="program_name">Font Manager</property>
-    <property name="version">0.5.2</property>
+    <property name="version">0.5.3</property>
     <property name="copyright" translatable="yes">Copyright &#xA9; 2009, 2010 Jerry Casiano</property>
     <property name="comments" translatable="yes">Font management for the GNOME Desktop</property>
     <property name="website">http://font-manager.googlecode.com</property>
@@ -1785,6 +1812,7 @@ Special thanks to:
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">preferences-desktop-font</property>
     <property name="type_hint">dialog</property>
+    <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">PreferencesDialog</property>
     <property name="action">select-folder</property>
     <child internal-child="vbox">
@@ -1843,6 +1871,7 @@ Special thanks to:
   <object class="GtkMessageDialog" id="PrefsInvalidDir">
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Invalid Selection</property>
+    <property name="resizable">False</property>
     <property name="window_position">center-on-parent</property>
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">preferences-desktop-font</property>
@@ -1892,6 +1921,7 @@ Special thanks to:
   <object class="GtkMessageDialog" id="AutoScanInfo">
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Adding directories to the search path</property>
+    <property name="resizable">False</property>
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">preferences-desktop-font</property>
     <property name="type_hint">dialog</property>
@@ -1936,6 +1966,7 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">preferences-desktop-font</property>
     <property name="type_hint">dialog</property>
+    <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
     <property name="text" translatable="yes">
 
@@ -2092,9 +2123,11 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
   <object class="GtkTextBuffer" id="FileMissingBuffer"/>
   <object class="GtkWindow" id="FontRemovalDialog">
     <property name="title" translatable="yes">Remove Fonts</property>
+    <property name="resizable">False</property>
     <property name="window_position">center-on-parent</property>
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">preferences-desktop-font</property>
+    <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
     <child>
       <object class="GtkVBox" id="vbox2">
@@ -2169,10 +2202,12 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="width_request">325</property>
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Export Collection</property>
+    <property name="resizable">False</property>
     <property name="window_position">center-on-parent</property>
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">package-x-generic</property>
     <property name="type_hint">dialog</property>
+    <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox18">
@@ -2282,8 +2317,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
                 <child>
                   <object class="GtkFileChooserButton" id="ExportFileChooser">
                     <property name="visible">True</property>
-                    <property name="do_overwrite_confirmation">True</property>
                     <property name="action">select-folder</property>
+                    <property name="do_overwrite_confirmation">True</property>
                     <property name="title" translatable="yes">Select A Folder</property>
                   </object>
                   <packing>
@@ -2365,9 +2400,10 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">preferences-desktop-font</property>
     <property name="type_hint">dialog</property>
+    <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
-    <property name="create_folders">False</property>
     <property name="select_multiple">True</property>
+    <property name="create_folders">False</property>
     <signal name="file_activated" handler="gtk_true"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">
@@ -2420,6 +2456,290 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <action-widgets>
       <action-widget response="0">button3</action-widget>
       <action-widget response="1">button4</action-widget>
+    </action-widgets>
+  </object>
+  <object class="GtkMessageDialog" id="ReloadDialog">
+    <property name="border_width">5</property>
+    <property name="resizable">False</property>
+    <property name="icon_name">view-refresh</property>
+    <property name="type_hint">normal</property>
+    <property name="skip_taskbar_hint">True</property>
+    <property name="message_type">question</property>
+    <property name="text" translatable="yes">Font Manager needs to reload
+</property>
+    <property name="secondary_text" translatable="yes">Until then, recent changes will not be visible and certain features, such as font previews, may not work properly.</property>
+    <child internal-child="vbox">
+      <object class="GtkVBox" id="dialog-vbox21">
+        <property name="visible">True</property>
+        <property name="spacing">12</property>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area21">
+            <property name="visible">True</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="button7">
+                <property name="label" translatable="yes">Reload Later</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="receives_default">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button8">
+                <property name="label" translatable="yes">Reload Now</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="0">button7</action-widget>
+      <action-widget response="1">button8</action-widget>
+    </action-widgets>
+  </object>
+  <object class="GtkDialog" id="SearchDialog">
+    <property name="border_width">5</property>
+    <property name="title" translatable="yes">Advanced Search</property>
+    <property name="resizable">False</property>
+    <property name="modal">True</property>
+    <property name="window_position">center-on-parent</property>
+    <property name="destroy_with_parent">True</property>
+    <property name="icon_name">edit-find</property>
+    <property name="type_hint">normal</property>
+    <property name="skip_taskbar_hint">True</property>
+    <property name="skip_pager_hint">True</property>
+    <property name="transient_for">MainWindow</property>
+    <child internal-child="vbox">
+      <object class="GtkVBox" id="dialog-vbox23">
+        <property name="visible">True</property>
+        <property name="spacing">2</property>
+        <child>
+          <object class="GtkTable" id="SearchTable">
+            <property name="visible">True</property>
+            <property name="border_width">12</property>
+            <property name="n_rows">4</property>
+            <property name="n_columns">3</property>
+            <property name="column_spacing">10</property>
+            <property name="row_spacing">7</property>
+            <child>
+              <object class="GtkLabel" id="label14">
+                <property name="visible">True</property>
+                <property name="xalign">0</property>
+                <property name="xpad">5</property>
+                <property name="label" translatable="yes">Family :</property>
+              </object>
+              <packing>
+                <property name="y_options">GTK_FILL</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label15">
+                <property name="visible">True</property>
+                <property name="xalign">0</property>
+                <property name="xpad">5</property>
+                <property name="label" translatable="yes">Type :</property>
+              </object>
+              <packing>
+                <property name="top_attach">1</property>
+                <property name="bottom_attach">2</property>
+                <property name="y_options">GTK_FILL</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label16">
+                <property name="visible">True</property>
+                <property name="xalign">0</property>
+                <property name="xpad">5</property>
+                <property name="label" translatable="yes">Foundry :</property>
+              </object>
+              <packing>
+                <property name="top_attach">2</property>
+                <property name="bottom_attach">3</property>
+                <property name="y_options">GTK_FILL</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label17">
+                <property name="visible">True</property>
+                <property name="xalign">0</property>
+                <property name="xpad">5</property>
+                <property name="label" translatable="yes">Filepath :</property>
+              </object>
+              <packing>
+                <property name="top_attach">3</property>
+                <property name="bottom_attach">4</property>
+                <property name="y_options">GTK_FILL</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="FamilyEntry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="invisible_char">&#x25CF;</property>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="right_attach">3</property>
+                <property name="x_options">GTK_FILL</property>
+                <property name="y_options">GTK_FILL</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="FilepathEntry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="invisible_char">&#x25CF;</property>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="right_attach">3</property>
+                <property name="top_attach">3</property>
+                <property name="bottom_attach">4</property>
+                <property name="y_options">GTK_FILL</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxEntry" id="TypeComboEntry">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="right_attach">3</property>
+                <property name="top_attach">1</property>
+                <property name="bottom_attach">2</property>
+                <property name="y_options">GTK_FILL</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxEntry" id="FoundryComboEntry">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">2</property>
+                <property name="right_attach">3</property>
+                <property name="top_attach">2</property>
+                <property name="bottom_attach">3</property>
+                <property name="y_options">GTK_FILL</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBox" id="FamilyCombo">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="y_options">GTK_FILL</property>
+                <property name="x_padding">5</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBox" id="TypeCombo">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">1</property>
+                <property name="bottom_attach">2</property>
+                <property name="y_options">GTK_FILL</property>
+                <property name="x_padding">5</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBox" id="FoundryCombo">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">2</property>
+                <property name="bottom_attach">3</property>
+                <property name="y_options">GTK_FILL</property>
+                <property name="x_padding">5</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBox" id="FilepathCombo">
+                <property name="visible">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="right_attach">2</property>
+                <property name="top_attach">3</property>
+                <property name="bottom_attach">4</property>
+                <property name="y_options">GTK_FILL</property>
+                <property name="x_padding">5</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child internal-child="action_area">
+          <object class="GtkHButtonBox" id="dialog-action_area23">
+            <property name="visible">True</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="button9">
+                <property name="label" translatable="yes">Cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button10">
+                <property name="label" translatable="yes">OK</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="has_default">True</property>
+                <property name="receives_default">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="0">button9</action-widget>
+      <action-widget response="1">button10</action-widget>
     </action-widgets>
   </object>
 </interface>

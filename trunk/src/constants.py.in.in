@@ -66,6 +66,16 @@ USER_FONT_CONFIG_SELECT     =   join(APP_CONFIG_DIR, 'select.conf')
 USER_FONT_CONFIG_DESELECT   =   join(APP_CONFIG_DIR, 'select.conf.tmp')
 USER_LIBRARY_DIR            =   join(DATA_DIR, 'Library')
 USER_LIBRARY_SYMLINK        =   join(USER_FONT_DIR, 'Library')
+USER_ACTIONS_CONFIG         =   join(APP_CONFIG_DIR, 'actions.conf')
+
+
+FONT_EXTS = ('.pfa', '.pfb', '.ttf', '.ttc', '.otf', \
+                '.PFA', '.PFB', '.TTF', '.TTC', '.OTF')
+T1_EXTS = ('.pfa', '.pfb', '.PFA', '.PFB')
+ARCH_EXTS = ('.zip', '.tar', '.tar.gz', '.tar.bz2',
+               '.ZIP', '.TAR', '.TAR.GZ', '.TAR.BZ2' )
+FONT_GLOBS = ['*.ttf', '*.ttc', '*.otf', '*.TTF', '*.TTC', '*.OTF']
+ARCH_GLOBS = ['*.zip', '*.tar*', '*.ZIP', '*.TAR*']
 
 README = \
 _("""* This file was placed here by Font Manager because this directory
@@ -107,7 +117,6 @@ VALID_USER_FONT_CONFIG = \
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
 %s
-
     <include ignore_missing=\"yes\">%s</include>
     <include ignore_missing=\"yes\">%s</include>
     <include ignore_missing=\"yes\">%s</include>

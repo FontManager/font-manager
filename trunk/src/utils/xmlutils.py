@@ -32,7 +32,8 @@ from os.path import exists
 
 from constants import USER_FONT_DIR, USER_FONT_CONFIG_DIRS, \
                         USER_FONT_CONFIG_SELECT, USER_FONT_CONFIG_DESELECT, \
-                        USER_FONT_COLLECTIONS, USER_FONT_COLLECTIONS_BAK
+                        USER_FONT_COLLECTIONS, USER_FONT_COLLECTIONS_BAK, \
+                        USER_ACTIONS_CONFIG
 
 
 def add_patelt_node(node_ref, node_value, pat_name='family', val_type='string'):
@@ -111,10 +112,41 @@ def _get_fc_families(node, families):
         for entry in pattern.xpathEval('patelt'):
             name = entry.prop("name")
             if name == "family":
-                family = entry.xpathEval('string')[0].content
+                family = _unescape_markup(entry.xpathEval('string')[0].content)
             if family:
                 families.append(family)
     return
+
+def load_actions():
+    """
+    Load any user-configured actions from file.
+    """
+    results = {}
+    if not exists(USER_ACTIONS_CONFIG):
+        return results
+    try:
+        doc = libxml2.parseFile(USER_ACTIONS_CONFIG)
+    except libxml2.parserError:
+        logging.warn("Failed to parse user actions configuration!")
+        return results
+    actions = doc.xpathEval('//action')
+    if len(actions) == 0:
+        doc.freeDoc()
+        return results
+    for entry in actions:
+        action = {}
+        action['name'] = _unescape_markup(entry.prop('name'))
+        action['comment'] = _unescape_markup(entry.prop('comment'))
+        action['executable'] = \
+        _unescape_markup(entry.xpathEval('executable')[0].content)
+        action['arguments'] = \
+        _unescape_markup(entry.xpathEval('arguments')[0].content)
+        action['terminal'] = _tobool(entry.xpathEval('terminal')[0].content)
+        action['block'] = _tobool(entry.xpathEval('block')[0].content)
+        action['restart'] = _tobool(entry.xpathEval('restart')[0].content)
+        results[action['name']] = action
+    doc.freeDoc()
+    return results
 
 def load_directories():
     """
@@ -140,6 +172,27 @@ def load_directories():
             logging.warn\
             ('User specified directory %s not found on disk' % content)
             logging.info('Skipping...')
+    doc.freeDoc()
+    return
+
+def save_actions(actions):
+    """
+    Save user-configured "actions" to a file.
+    """
+    doc = libxml2.newDoc('1.0')
+    root = doc.newChild(None, 'actions', None)
+    escape = glib.markup_escape_text
+    for entry in actions.iterkeys():
+        action = actions[entry]
+        node = root.newChild(None, 'action', None)
+        node.setProp('name', escape(action['name']))
+        node.setProp('comment', escape(action['comment']))
+        node.newChild(None, 'executable', escape(action['executable']))
+        node.newChild(None, 'arguments', escape(action['arguments']))
+        node.newChild(None, 'terminal', str(action['terminal']))
+        node.newChild(None, 'block', str(action['block']))
+        node.newChild(None, 'restart', str(action['restart']))
+    doc.saveFormatFile(USER_ACTIONS_CONFIG, format=1)
     doc.freeDoc()
     return
 
@@ -174,7 +227,6 @@ def save_directories(directories):
     doc.freeDoc()
     logging.info("Changes applied")
     return
-
 
 def load_collections(fontmanager):
     """
@@ -261,3 +313,19 @@ def _get_collection_order(objects):
         order.append(model.get_value(item, 0))
         item = model.iter_next(item)
     return order
+
+def _tobool(val):
+    return val != 'False'
+
+def _unescape_markup(val):
+    _illegal = {
+                '<' :   '&lt;',
+                '>' :   '&gt;',
+                '&' :   '&amp;',
+                "'" :   '&apos;',
+                '"' :   '&quot;'
+                }
+    for illegal, legal in _illegal.iteritems():
+        val = val.replace(legal, illegal)
+    return val
+

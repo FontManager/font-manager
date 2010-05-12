@@ -52,18 +52,16 @@ class Collection(object):
         """
         Add a family, a tuple or list of families to the collection.
         """
-        dupe = self.families
         if isinstance(families[0], str):
             self.families.append(families[0])
-        elif isinstance(families[0], tuple):
-            self.families = dupe + list(families[0])
-        elif isinstance(families[0], list):
-            self.families = dupe + families[0]
+        elif isinstance(families[0], tuple) or isinstance(families[0], list):
+            for family in families[0]:
+                self.families.append(family)
         else:
             raise TypeError\
             ('Expected a string, tuple or list but got %s instead' % \
             type(families[0]))
-        self.families = set(self.families)
+        self.families = list(set(self.families))
         return
 
     def contains(self, family):

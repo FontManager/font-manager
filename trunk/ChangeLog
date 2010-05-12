@@ -1,3 +1,20 @@
+    * Update (0.5.3)
+
+        Fix several errors due to escaped/unescaped markup.
+
+        Separated the "sample sheet" feature from the rest of the program to
+        prevent the application from 'keeping' the memory used during
+        pdf generation. Added font-sampler, a stand-alone script that can be
+        called by the user to generate a "sample sheet" from a directory of fonts.
+
+        As suggested by http://code.google.com/p/font-manager/issues/detail?id=8
+        Added a way for users to add "actions" that can be called on font files
+        directly from the family column by right clicking.
+
+        As suggested by http://code.google.com/p/font-manager/issues/detail?id=7
+        Added an "Advanced Search" dialog that allows filtering the selected
+        collection based on family, filetype, foundry or filepath.
+
     * Update (0.5.2)
 
         Fixes a lot of issues in 0.5.1

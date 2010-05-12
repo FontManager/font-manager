@@ -1,4 +1,25 @@
-font-manager (0.5.2) lucid; urgency=low
+font-manager (0.5.3-1) lucid; urgency=low
+
+  * Update (0.5.3)
+
+        Fix several errors due to escaped/unescaped markup.
+
+        Separated the "sample sheet" feature from the rest of the program to
+        prevent the application from 'keeping' the memory used during
+        pdf generation. Added font-sampler, a stand-alone script that can be
+        called by the user to generate a "sample sheet" from a directory of fonts.
+
+        As suggested by http://code.google.com/p/font-manager/issues/detail?id=8
+        Added a way for users to add "actions" that can be called on font files
+        directly from the family column by right clicking.
+
+        As suggested by http://code.google.com/p/font-manager/issues/detail?id=7
+        Added an "Advanced Search" dialog that allows filtering the selected
+        collection based on family, filetype, foundry or filepath.
+
+
+ -- Jerry Casiano <JerryCasiano@gmail.com>  Wed, 12 May 2010 1:35:45 -0400
+
 
   * Update (0.5.2)
 
@@ -61,7 +82,7 @@ font-manager (0.4.4-1) karmic; urgency=low
           Include pangram in sample sheets
           Set default font size for sample sheets
 
-        Removed unnecessary, possibly confusing, confirmation dialog 
+        Removed unnecessary, possibly confusing, confirmation dialog
         when removing collections.
 
         Correct permissions for installed files.

@@ -23,6 +23,7 @@
 #include <Python.h>
 /* <Python.h> includes <stdio.h>, <string.h>, <errno.h>, and <stdlib.h> */
 #include <glib.h>
+#include <glib/gprintf.h>
 #include <glib/gstdio.h>
 #include <fontconfig/fontconfig.h>
 #include <ft2build.h>
@@ -244,7 +245,6 @@ FT_Get_File_Info(PyObject *self, PyObject *args)
     if (!PyArg_ParseTuple(args, "s|s", &filepath, &foundry))
         return NULL;
 
-
     if (!g_file_get_contents(filepath, &font, &filesize, NULL))
     {
         gchar *err;
@@ -308,17 +308,12 @@ FT_Get_File_Info(PyObject *self, PyObject *args)
                                             FT_Get_Postscript_Name(face)));
     }
 
-    if (foundry)
+    /* Prefer the foundry provided by FontConfig */
+    if (foundry && !g_strcmp0(foundry, "unknown") == 0)
     {
         PyDict_SetItem(fileinfo,
                         PyString_FromString("foundry"),
                         PyString_FromString(foundry));
-    }
-    else
-    {
-        PyDict_SetItem(fileinfo,
-                        PyString_FromString("foundry"),
-                        PyString_FromString("unknown"));
     }
 
     g_free(hash);
@@ -362,7 +357,8 @@ _get_sfnt_info(FT_Face face)
             *copyright = NULL,
             *description = NULL,
             *license = NULL,
-            *license_url = NULL;
+            *license_url = NULL,
+            *foundry = NULL;
 
     PyObject    *info = PyDict_New();
 
@@ -414,6 +410,11 @@ _get_sfnt_info(FT_Face face)
             case TT_NAME_ID_LICENSE_URL:
                 g_free(license_url);
                 license_url = g_convert(sname.string, sname.string_len,
+                                "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                break;
+            case TT_NAME_ID_MANUFACTURER:
+                g_free(foundry);
+                foundry = g_convert(sname.string, sname.string_len,
                                 "UTF-8", "UTF-16BE", NULL, NULL, NULL);
                 break;
             default:
@@ -475,6 +476,20 @@ _get_sfnt_info(FT_Face face)
                         PyString_FromString("license_url"),
                         PyString_FromString(license_url));
         g_free(license_url);
+    }
+
+    if (foundry)
+    {
+        PyDict_SetItem(info,
+                        PyString_FromString("foundry"),
+                        PyString_FromString(foundry));
+        g_free(foundry);
+    }
+    else
+    {
+        PyDict_SetItem(info,
+                        PyString_FromString("foundry"),
+                        PyString_FromString("unknown"));
     }
 
     return info;

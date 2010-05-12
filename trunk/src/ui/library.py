@@ -25,25 +25,20 @@ This module handles installation and removal of fonts
 
 import os
 import gtk
+import glob
 import gobject
 import logging
 import shutil
 
-from os.path import basename, exists, join, isdir
+from os.path import basename, exists, join, isdir, splitext
 
 import _fontutils
 
 from core import database
-from constants import HOME, TMP_DIR, USER_LIBRARY_DIR
+from constants import HOME, TMP_DIR, USER_LIBRARY_DIR, FONT_EXTS, T1_EXTS, \
+                        ARCH_EXTS, FONT_GLOBS, ARCH_GLOBS
 from utils.common import finish_font_install, install_font_archive, \
                             mkfontdirs, natural_sort, do_library_cleanup
-
-
-FONT_EXTS = ('.ttf', '.ttc', '.otf', '.TTF', '.TTC', '.OTF')
-ARCH_EXTS = ('.zip', '.tar', '.tar.gz', '.tar.bz2',
-               '.ZIP', '.TAR', '.TAR.GZ', '.TAR.BZ2' )
-FONT_GLOBS = ['*.ttf', '*.ttc', '*.otf', '*.TTF', '*.TTC', '*.OTF']
-ARCH_GLOBS = ['*.zip', '*.tar*', '*.ZIP', '*.TAR*']
 
 
 class InstallFonts(object):
@@ -56,7 +51,7 @@ class InstallFonts(object):
         self.dialog = self.objects['FontInstallDialog']
         self.dialog.set_current_folder(HOME)
         # I can't seem to find an option in Glade to get this behavior?
-        self.dialog.connect('file-activated', self._send_response)
+        self.dialog.connect('file-activated', lambda widget: widget.response(1))
         filefilter = gtk.FileFilter()
         filefilter.set_name(_('Font Manager supported types'))
         for extension in FONT_GLOBS:
@@ -129,6 +124,10 @@ class InstallFonts(object):
                     no_such_file.append(filepath)
                     continue
                 shutil.copy(filepath, TMP_DIR)
+                if filepath.endswith(T1_EXTS):
+                    metrics = splitext(filepath)[0] + '.*'
+                    for path in glob.glob(metrics):
+                        shutil.move(path, TMP_DIR)
             processed += 1
             self.objects.progress_callback(filename, total, processed)
         self.objects.set_sensitive(True)
@@ -164,10 +163,6 @@ class InstallFonts(object):
             gtk.main_iteration()
         if filelist:
             self.process_install(filelist)
-        return
-
-    def _send_response(self, unused_widget):
-        self.dialog.response(1)
         return
 
     @staticmethod
@@ -311,6 +306,7 @@ class RemoveFonts(object):
         """
         Show dialog.
         """
+        self.update_required = False
         self.families.clear()
         self.remove_tree.set_model(None)
         self.remove_list.clear()

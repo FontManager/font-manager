@@ -364,7 +364,10 @@ def _get_details(filedict, system=False):
     """
     details = []
     for font, foundry in _get_file_details(filedict):
-        metadata = _fontutils.FT_Get_File_Info(font, foundry)
+        try:
+            metadata = _fontutils.FT_Get_File_Info(font, foundry)
+        except IOError:
+            continue
         metadata = _add_details(metadata, system)
         metadata = _pad_metadata(metadata)
         details.append(metadata)

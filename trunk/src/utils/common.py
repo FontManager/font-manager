@@ -26,17 +26,17 @@ This module is just a convenient place to group re-usable functions.
 import os
 import re
 import gtk
+import glob
 import time
 import logging
 import shutil
 import subprocess
 
-from os.path import basename, exists, join, isdir
+from os.path import basename, exists, join, isdir, splitext
 
 from constants import AUTOSTART_DIR, USER_FONT_DIR, HOME, README, \
 USER_FONT_CONFIG_SELECT, USER_FONT_CONFIG_DESELECT, USER_LIBRARY_DIR, \
-TMP_DIR, CACHE_FILE, DATABASE_FILE
-
+TMP_DIR, CACHE_FILE, DATABASE_FILE, FONT_EXTS, T1_EXTS, ARCH_EXTS
 
 AUTOSTART = \
 """[Desktop Entry]
@@ -53,9 +53,6 @@ Icon=preferences-desktop-font
 Categories=Graphics;Viewer;GNOME;GTK;Publishing;
 """
 
-FONT_EXTS = ('.ttf', '.ttc', '.otf', '.TTF', '.TTC', '.OTF')
-ARCH_EXTS = ('.zip', '.tar', '.tar.gz', '.tar.bz2',
-                '.ZIP', '.TAR', '.TAR.GZ', '.TAR.BZ2' )
 
 class AvailableApps(list):
     """
@@ -63,7 +60,8 @@ class AvailableApps(list):
     """
     _defaults = ('dolphin', 'file-roller', 'gnome-appearance-properties',
                 'gucharmap', 'konqueror', 'nautilus', 'pcmanfm', 'thunar',
-                'xdg-open')
+                'xdg-open', 'gnome-terminal', 'konsole', 'terminal', 
+                'lxterminal', 'xterm')
     _dirs = ['/usr/bin', '/usr/local/bin', '/bin', '/sw/bin']
     def __init__(self):
         list.__init__(self)
@@ -194,10 +192,12 @@ def disable_blacklist():
     time.sleep(0.5)
     return
 
-def do_library_cleanup(root_dir = USER_LIBRARY_DIR):
+def do_library_cleanup(root_dir = None):
     """
     Removes empty leftover directories and ensures correct permissions.
     """
+    if not root_dir:
+        root_dir = USER_LIBRARY_DIR
     # Two passes here to get rid of empty top level directories
     passes = 0
     while passes <= 1:
@@ -230,16 +230,18 @@ def enable_blacklist():
     time.sleep(0.5)
     return
 
-def finish_font_install():
+def finish_font_install(library = None):
     """
     Organize fonts alphabetically and move them to library.
     """
+    if not library:
+        library = USER_LIBRARY_DIR
     for root, dirs, files in os.walk(TMP_DIR):
         for directory in dirs:
             fullpath = join(root, directory)
             new = directory[0]
             new = new.upper()
-            newpath = join(USER_LIBRARY_DIR, new)
+            newpath = join(library, new)
             if not exists(newpath):
                 os.mkdir(newpath)
             newname = join(newpath, directory)
@@ -254,14 +256,18 @@ def finish_font_install():
                 truename = name.strip()
                 new = truename[0]
                 new = new.upper()
-                newpath = join(USER_LIBRARY_DIR, new)
+                newpath = join(library, new)
                 if not exists(newpath):
                     os.mkdir(newpath)
                 newname = join(newpath, name)
                 if exists(newname):
                     shutil.rmtree(newname, ignore_errors=True)
                 shutil.move(oldpath, newname)
-    do_library_cleanup()
+                if oldpath.endswith(T1_EXTS):
+                    metrics = splitext(oldpath)[0] + '.*'
+                    for path in glob.glob(metrics):
+                        shutil.move(path, newpath)
+    do_library_cleanup(library)
     shutil.rmtree(TMP_DIR, ignore_errors=True)
     return
 
