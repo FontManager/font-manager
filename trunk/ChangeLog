@@ -15,9 +15,15 @@
         Added an "Advanced Search" dialog that allows filtering the selected
         collection based on family, filetype, foundry or filepath.
 
+        Added drag and drop installation of font files.
+        Font files can now be dragged onto the family column and they will be
+        installed and if possible added to the selected collection.
+
+
     * Update (0.5.2)
 
         Fixes a lot of issues in 0.5.1
+
 
     * Update (0.5.1)
 

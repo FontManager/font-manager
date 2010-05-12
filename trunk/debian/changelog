@@ -17,6 +17,10 @@ font-manager (0.5.3-1) lucid; urgency=low
         Added an "Advanced Search" dialog that allows filtering the selected
         collection based on family, filetype, foundry or filepath.
 
+        Added drag and drop installation of font files.
+        Font files can now be dragged onto the family column and they will be
+        installed and if possible added to the selected collection.
+
 
  -- Jerry Casiano <JerryCasiano@gmail.com>  Wed, 12 May 2010 1:35:45 -0400
 
