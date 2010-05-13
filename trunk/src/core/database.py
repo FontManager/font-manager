@@ -23,10 +23,7 @@ This module is used to group functions which access the database.
 #    Boston, MA 02110-1301, USA.
 
 
-import os
 import sqlite3
-
-from os.path import exists, join
 
 import _fontutils
 

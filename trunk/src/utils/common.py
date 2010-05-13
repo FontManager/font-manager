@@ -22,6 +22,8 @@ This module is just a convenient place to group re-usable functions.
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
 
 import os
 import re

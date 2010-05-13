@@ -308,7 +308,7 @@ FT_Get_File_Info(PyObject *self, PyObject *args)
                                             FT_Get_Postscript_Name(face)));
     }
 
-    /* Prefer the foundry provided by FontConfig */
+    /* Prefer the foundry provided by FontConfig, use manufacturer as fallback */
     if (foundry && !g_strcmp0(foundry, "unknown") == 0)
     {
         PyDict_SetItem(fileinfo,
@@ -478,7 +478,7 @@ _get_sfnt_info(FT_Face face)
         g_free(license_url);
     }
 
-    if (foundry)
+    if (foundry && (int) strlen(foundry) < 50)
     {
         PyDict_SetItem(info,
                         PyString_FromString("foundry"),

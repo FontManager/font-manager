@@ -22,6 +22,11 @@ This module handles everything related to treeviews.
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
+# Disable warnings related to missing docstrings, for now...
+# pylint: disable-msg=C0111
+
 import gtk
 import glib
 import gobject
@@ -185,9 +190,9 @@ class Treeviews(object):
         return
 
     def _on_advanced(self, unused_widget):
-        filter = self.filter.run()
-        if filter:
-            self._show_collection(filter)
+        filt = self.filter.run()
+        if filt:
+            self._show_collection(filt)
         else:
             return
 
@@ -289,7 +294,10 @@ class Treeviews(object):
         if selection.count_selected_rows() > 1:
             return
         model, path = selection.get_selected_rows()
-        treeiter = model.get_iter(path[0])
+        try:
+            treeiter = model.get_iter(path[0])
+        except IndexError:
+            return
         family = model.get_value(treeiter, 0)
         try:
             style = self.objects['Main'].previews.current_style_as_string
@@ -598,7 +606,7 @@ class Treeviews(object):
             self.selected_families.append(model[path][0])
         return self.selected_families
 
-    def _show_collection(self, filter = None):
+    def _show_collection(self, filt = None):
         allcollections = \
         self.manager.list_collections() + self.manager.list_categories()
         if not self.current_collection in allcollections:
@@ -615,8 +623,8 @@ class Treeviews(object):
         else:
             return
         families = self.manager.list_families_in(self.current_collection)
-        if filter is not None:
-            families = [f for f in families if f in filter]
+        if filt is not None:
+            families = [f for f in families if f in filt]
         # Create a new liststore on every call to this function since
         # re-using an already sorted liststore can cause MAJOR slowdown.
         family_model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
@@ -699,11 +707,6 @@ class Treeviews(object):
         """
         Refresh both the collection and fonts treeviews.
         """
-        #available_collections = \
-        #self.manager.list_categories() + self.manager.list_collections()
-        #if not self.current_collection in available_collections:
-            #self.category_tree.get_selection().select_path((0, 0))
-            #self.family_tree.get_selection().select_path(0)
         self._selected_paths()
         self.manager.auto_enable_collections()
         self._update_category_treeview()
@@ -751,11 +754,11 @@ class TreeviewFilter(object):
                 else:
                     query = '%s AND %s' % (query, entry)
         fonts = Table('Fonts')
-        filter = []
+        filt = []
         for row in set(fonts.get('family', query)):
-            filter.append(row[0])
+            filt.append(row[0])
         fonts.close()
-        return filter
+        return filt
 
     def _get_family(self):
         family = self.widgets['FamilyEntry'].get_text()
@@ -818,7 +821,7 @@ class TreeviewFilter(object):
         foundries = []
         fonts = Table('Fonts')
         for row in set(fonts.get('foundry')):
-            foundries.append(row[0])
+            foundries.append(row[0].strip())
         fonts.close()
         return natural_sort(foundries)
 

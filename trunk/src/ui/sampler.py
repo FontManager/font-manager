@@ -26,10 +26,14 @@ options will be added over time, hopefully.
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
+# Disable warnings related to accessing gtk.Dialog.vbox
+# pylint: disable-msg=E1101
+
 import os
 import gtk
 import gobject
-import logging
 
 from os.path import join, isdir, realpath
 

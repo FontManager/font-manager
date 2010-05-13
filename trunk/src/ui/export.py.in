@@ -22,6 +22,9 @@ This module allows users to export "collections".
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
+
 import os
 import glib
 import glob
@@ -36,7 +39,7 @@ import time
 from os.path import exists, join, realpath, splitext
 
 from constants import HOME, CACHE_DIR, DESKTOP_DIR, TMP_DIR, T1_EXTS
-from utils.common import finish_font_install, create_archive_from_folder
+from utils.common import create_archive_from_folder
 
 SAMPLER_CACHE   =   join(CACHE_DIR, 'sampler.cache')
 

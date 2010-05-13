@@ -315,9 +315,15 @@ def _get_collection_order(objects):
     return order
 
 def _tobool(val):
+    """
+    Convert from string to boolean.
+    """
     return val != 'False'
 
 def _unescape_markup(val):
+    """
+    Replace escape characters with normal characters.
+    """
     _illegal = {
                 '<' :   '&lt;',
                 '>' :   '&gt;',

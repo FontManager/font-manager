@@ -287,7 +287,7 @@ class UserActions(object):
         """
         name = widget.get_name()
         action = self.actions[name]
-        bin = action['executable']
+        exe = action['executable']
         args = action['arguments'].replace('None', '')
         filepath, family, style = details
         args = args.replace('FAMILY', family)
@@ -297,7 +297,7 @@ class UserActions(object):
         else:
             args = '%s %s' % (args, filepath)
         command = shlex.split(args)
-        command.insert(0, bin)
+        command.insert(0, exe)
         try:
             process = subprocess.Popen(command)
         except (OSError, ValueError), error:
