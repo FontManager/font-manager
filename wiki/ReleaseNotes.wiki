@@ -1,49 +1,56 @@
 #summary These notes are in addition to the information and Known Issues listed in the help file, please make sure any problems you encounter are not listed there before reporting them.
 #labels Featured
 
-= Release Notes 0.5.2 =
+= Release Notes 0.5.3 =
 
 <p>
-Users who have customized their ~/.fonts.conf, should move it before 
-running Font Manager. After running Font Manager, you can add your customizations 
-to *~/.config/font-manager/local.conf*, just create the file if it doesn't exist. 
+Users who have customized their ~/.fonts.conf, should move it before running Font Manager.
+<br></br>
+After running Font Manager, you can add your customizations to *~/.config/font-manager/local.conf*,
+just create the file if it doesn't exist.
+<br></br>
 This will ensure that they do not get overwritten by the application.
 </p>
 
 <p>
-An option to include a pdf sample sheet has been added when exporting collections, 
-you need to have the Report Lab Toolkit installed for this option to be available, 
-on most distributions this is readily available in your package manager as python-reportlab. This feature only accepts !TrueType and Type 1 fonts, some !OpenType fonts may be compatible but most aren't.
+The family search box now contains and "Advanced Search" option which allows filtering the selected collection by family name, type, manufacturer, and filepath.
+</p>
 
-Please note that this feature is not well tested, if you have any problems please file an issue.
+<p>
+Font files can now be installed by dragging them onto the family column.
+<br></br>
+If possible, they will also be added to the currently selected collection.
+</p>
 
-However, please do not file issues regarding fonts that have naming issues, are broken or those 
-that restrict embedding in their license, if you need to rename, fix or maybe you just don't care about 
-licenses then a font editor is your friend.
+<p>
+Users can now define "actions" to run on the currently selected font, this is accessed by right clicking the selected font. 
+<br></br>
+This option has not seen much testing, if you run into problems please file an issue.
+</p>
 
-Also, I suggest you do not try to create a sample sheet for any collection that exceeds 2500 fonts.
+<p>
+Since the "Sample sheet" feature had to be separated from the application to prevent it from "keeping" the memory used during PDF generation,
+<br></br>
+Font Manager now also ships with a small utility, font-sampler, which can be called to generate a sample sheet from any directory of fonts. 
 
+This utility only accepts !TrueType and Type 1 fonts, some !OpenType fonts may be compatible but most aren't.
+</p>
+
+=== General ===
+
+<p>
+The application restarts itself anytime changes require it and may take a moment to start back up depending on the number of additional fonts.
+</p>
+
+<p>
+I suggest you do not try to create a sample sheet from any collection or folder that exceeds 2500 fonts.
+<br></br>
 Doing so can not only take a long time but also lots of cpu and loads of memory.
-</p>
 
-<p>
-An autoscan option has been added to the preferences dialog, this option is *not* 
-well tested or complete, there is no progress reported, aside from directories 
-being added to the list, and for now there is no way to cancel the operation aside 
-from killing the application.
-
-Autoscan looks in your home directory and attempts to find any folders that contain fonts.
-
-You probably should *not* use this feature if you have network shares or other 
-filesystems to which access may be very slow in your home path. If you wish to test 
-it anyways, you can just kill the application if the scan is taking too long, 
-changes are not applied automatically so it shouldn't be a problem if this 
-process is interrupted.
-</p>
-
-<p>
-The application now restarts itself anytime fonts are installed or removed through it, 
-if a lot of fonts are installed at once it may take a moment to start back up.
+Please do not file issues regarding fonts that have naming issues, are broken or those 
+that restrict embedding in their license,
+<br></br>
+if you need to rename, fix or maybe you just don't care about licenses then a font editor is your friend.
 </p>
 
 === Notes for those installing from source ===
