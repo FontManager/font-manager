@@ -820,8 +820,10 @@ class TreeviewFilter(object):
         """
         foundries = []
         fonts = Table('Fonts')
-        for row in set(fonts.get('foundry')):
-            foundries.append(row[0].strip())
+        families = self.objects['FontManager'].list_families()
+        for row in fonts.get('family, foundry'):
+            if row[0] in families and row[1] not in foundries:
+                foundries.append(row[1])
         fonts.close()
         return natural_sort(foundries)
 

@@ -25,6 +25,8 @@ font-manager (0.5.3-1) lucid; urgency=low
  -- Jerry Casiano <JerryCasiano@gmail.com>  Wed, 12 May 2010 1:35:45 -0400
 
 
+font-manager (0.5.2) lucid; urgency=low
+
   * Update (0.5.2)
 
         This is a major update, *almost* a complete rewrite.

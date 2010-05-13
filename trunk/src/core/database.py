@@ -332,6 +332,7 @@ def _add_details(metadata, system):
         metadata['owner'] = 'User'
     foundry = metadata.get('foundry')
     if foundry != 'unknown':
+        foundry = foundry.strip()
         if len(foundry) < 4:
             foundry = foundry.upper()
         else:

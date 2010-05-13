@@ -117,7 +117,8 @@ class PreferencesDialog():
         """
         Add a directory to fontconfig search path.
         """
-        self.pending_additions.append(directory)
+        if directory not in self.pending_additions:
+            self.pending_additions.append(directory)
         tree = self.widgets['UserDirTree']
         tree.get_model().append([directory])
         tree.queue_draw()
@@ -162,11 +163,7 @@ class PreferencesDialog():
         Add a directory to fontconfig search path.
         """
         directory = self._get_new_dir()
-        if directory:
-            for entry in self.directories:
-                if directory == entry:
-                    return
-            self._add_dir(directory)
+        self._add_dir(directory)
         return
 
     def _on_arch_type_changed(self, widget):
@@ -183,7 +180,7 @@ class PreferencesDialog():
         """
         # FIXME
         # Dirs shouldn't be added twice
-        for root, unused_dirs, files in os.walk(HOME, topdown = False):
+        for root, unused_dirs, files in os.walk(HOME):
             for name in files:
                 if name.endswith(EXTS) and root.find('/.') == -1 \
                 and root not in self.directories:
@@ -227,12 +224,12 @@ class PreferencesDialog():
         self.widgets['PreferencesDialog'].hide()
         while gtk.events_pending():
             gtk.main_iteration()
-        for directory in self.pending_additions:
-            self.preferences.add_user_font_dir(directory)
-        del self.pending_additions[:]
         for directory in self.pending_removals:
             self.preferences.remove_user_font_dir(directory)
         del self.pending_removals[:]
+        for directory in self.pending_additions:
+            self.preferences.add_user_font_dir(directory)
+        del self.pending_additions[:]
         return True
 
     def _on_default_dir_changed(self, widget):
@@ -282,22 +279,21 @@ class PreferencesDialog():
             treeiter, directory = self._get_selected_dir()
         except TypeError:
             return
-        for entry in self.directories:
-            if entry == directory:
-                self.pending_removals.append(directory)
-                dir_tree = self.widgets['UserDirTree']
-                model = dir_tree.get_model()
-                selection = dir_tree.get_selection()
-                model.remove(treeiter)
-                still_valid = model.iter_is_valid(treeiter)
-                if still_valid:
-                    new_path = model.get_path(treeiter)
-                    if (new_path[0] >= 0):
-                        selection.select_path(new_path)
-                else:
-                    path_to_select = model.iter_n_children(None) - 1
-                    if (path_to_select >= 0):
-                        selection.select_path(path_to_select)
+        if directory not in self.pending_removals:
+            self.pending_removals.append(directory)
+        dir_tree = self.widgets['UserDirTree']
+        model = dir_tree.get_model()
+        selection = dir_tree.get_selection()
+        model.remove(treeiter)
+        still_valid = model.iter_is_valid(treeiter)
+        if still_valid:
+            new_path = model.get_path(treeiter)
+            if (new_path[0] >= 0):
+                selection.select_path(new_path)
+        else:
+            path_to_select = model.iter_n_children(None) - 1
+            if (path_to_select >= 0):
+                selection.select_path(path_to_select)
         return
 
     def _on_dir_selection_changed(self, treeselection):
