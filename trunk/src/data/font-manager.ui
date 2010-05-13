@@ -1456,6 +1456,7 @@ If you choose to continue, it is suggested that you close all open applications 
                                 <property name="adjustment">FontSizeAdjustment</property>
                               </object>
                               <packing>
+                                <property name="expand">False</property>
                                 <property name="fill">False</property>
                                 <property name="pack_type">end</property>
                                 <property name="position">1</property>
@@ -1775,7 +1776,6 @@ Special thanks to:
   Karl Pickett
 	Font Manager is based on Karl's work
 	http://fontmanager.blogspot.com
-
 
   Wouter Bolsterlee
 	Font Manager's compare mode is modeled
@@ -2317,8 +2317,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
                 <child>
                   <object class="GtkFileChooserButton" id="ExportFileChooser">
                     <property name="visible">True</property>
-                    <property name="action">select-folder</property>
                     <property name="do_overwrite_confirmation">True</property>
+                    <property name="action">select-folder</property>
                     <property name="title" translatable="yes">Select A Folder</property>
                   </object>
                   <packing>
@@ -2402,8 +2402,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
-    <property name="select_multiple">True</property>
     <property name="create_folders">False</property>
+    <property name="select_multiple">True</property>
     <signal name="file_activated" handler="gtk_true"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">
