@@ -313,8 +313,10 @@ class RemoveFonts(object):
         fonts = database.Table('Fonts')
         families = fonts.get('*', 'filepath LIKE "/home%"')
         fontdirs = tuple(self.objects['Preferences'].fontdirs)
+        active = self.objects['FontManager'].list_families()
         for result in families:
-            if not result['filepath'].startswith(fontdirs):
+            if not result['filepath'].startswith(fontdirs) \
+            and result['family'] in active:
                 self.families.add(result['family'])
         fonts.close()
         for family in natural_sort(list(self.families)):
