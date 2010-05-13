@@ -206,8 +206,8 @@ class Treeviews(object):
     def _on_files_dropped(self, widget, context, x, y, data, info, tstamp):
         if not info == TARGET_TYPE_EXTERNAL_DROP:
             return
-        filelist = [urlparse.urlsplit(path)[2] for path in \
-                    data.data.split('\r\n') if path.endswith(FONT_EXTS)]
+        filelist = [urlparse.urlsplit(path)[2].replace('%20', ' ') for path \
+                        in data.data.split('\r\n') if path.endswith(FONT_EXTS)]
         block = _('All Fonts'), _('System'), _('User'), _('Orphans')
         if self.current_collection not in block:
             families = [ _fontutils.FT_Get_File_Info(path)['family'] \
