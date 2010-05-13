@@ -471,11 +471,13 @@ clean:
 #	find po -maxdepth 1 -regextype posix-basic -regex "po/[^.]*" -type d -exec rm -rf {} \;
 
 compile_translations:
-#	@cp -f src/data/font-manager.ui src/data/font-manager.glade
-#	@cp -f src/data/font-information.ui src/data/font-information.glade
-#	@cp -f src/data/menus.ui src/data/menus.glade
-#	python po/compile_translations.py
-#	-rm -f src/data/*.glade
+	@cp -f src/data/actions.ui src/data/actions.glade
+	@cp -f src/data/font-information.ui src/data/font-information.glade
+	@cp -f src/data/font-manager.ui src/data/font-manager.glade
+	@cp -f src/data/font-sampler.ui src/data/font-sampler.glade
+	@cp -f src/data/menus.ui src/data/menus.glade
+	python po/compile_translations.py
+	-rm -f src/data/*.glade
 
 distclean: clean
 	$(MAKE) -C src distclean
