@@ -339,7 +339,7 @@ def _add_details(metadata, system):
             foundry = foundry.upper()
         else:
             foundry = foundry.capitalize()
-        metadata['foundry'] = foundry
+    metadata['foundry'] = foundry
     return metadata
 
 def _drop_indexed(available, indexed):
