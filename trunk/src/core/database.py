@@ -331,6 +331,8 @@ def _add_details(metadata, system):
     elif not system or metadata['filepath'].startswith(HOME):
         metadata['owner'] = 'User'
     foundry = metadata.get('foundry')
+    if foundry is None:
+        foundry = 'unknown'
     if foundry != 'unknown':
         foundry = foundry.strip()
         if len(foundry) < 4:
