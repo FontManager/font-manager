@@ -418,11 +418,12 @@ def reset_fontconfig_cache():
     """
     Clear all fontconfig cache files in users home directory.
     """
-    cache = join(HOME, '.fontconfig')
-    if exists(cache):
-        for path in os.listdir(cache):
-            if path.endswith('cache-2'):
-                os.unlink(join(cache, path))
+    cache = join(HOME, '.fontconfig', '*.cache-*')
+    for path in glob.glob(cache):
+        try:
+            os.unlink(path)
+        except OSError:
+            pass
     return
 
 def search(model, treeiter, func, data):
