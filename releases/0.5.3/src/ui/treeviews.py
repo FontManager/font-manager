@@ -168,15 +168,9 @@ class Treeviews(object):
         return
 
     def _setup_families(self):
-        family_header = gtk.Label()
-        family_header.set_markup('<span size="large" weight="heavy">%s</span>'\
-                                                                % _('Family'))
         family_model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
-        cell_renderer = gtk.CellRendererText()
-        cell_renderer.set_property('xpad', 5)
-        cell_renderer.set_property('ypad', 2)
         family_column = gtk.TreeViewColumn(_('Family'),
-                                                cell_renderer, markup = 1)
+                                            gtk.CellRendererText(), markup = 1)
         self.family_tree.set_model(family_model)
         family_treeselect = self.family_tree.get_selection()
         family_treeselect.set_mode(gtk.SELECTION_MULTIPLE)
@@ -193,8 +187,6 @@ class Treeviews(object):
                                                     FAMILY_DRAG_ACTIONS)
         self.family_tree.connect('drag-data-received',
                                                     self._on_files_dropped)
-        family_column.set_widget(family_header)
-        family_header.show()
         return
 
     def _on_advanced(self, unused_widget):
