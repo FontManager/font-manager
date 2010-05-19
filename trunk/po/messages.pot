@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-13 08:22-0400\n"
+"POT-Creation-Date: 2010-05-19 17:54-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,20 +70,24 @@ msgid ""
 "-->\n"
 msgstr ""
 
-#: ../src/main.py:74 ../src/main.py:76
+#: ../src/main.py:76 ../src/main.py:78
 #, python-format
 msgid "Finished loading %s families"
 msgstr ""
 
-#: ../src/main.py:154
+#: ../src/main.py:113 ../src/main.py:273
+msgid "Yelp is required to view help files"
+msgstr ""
+
+#: ../src/main.py:161
 msgid "Font Manager will restart in a moment"
 msgstr ""
 
-#: ../src/main.py:172 ../src/main.py:303 ../src/data/font-manager.glade.h:72
+#: ../src/main.py:179 ../src/main.py:315 ../src/data/font-manager.glade.h:72
 msgid "Font Manager"
 msgstr ""
 
-#: ../src/main.py:347
+#: ../src/main.py:359
 #, python-format
 msgid "Families : %s"
 msgstr ""
@@ -104,9 +108,9 @@ msgstr ""
 msgid "<b>Selected folder must be writeable</b>"
 msgstr ""
 
-#: ../src/core/fonts.py:283 ../src/ui/treeviews.py:211
-#: ../src/ui/treeviews.py:367 ../src/ui/treeviews.py:547
-#: ../src/ui/treeviews.py:613
+#: ../src/core/fonts.py:283 ../src/ui/treeviews.py:219
+#: ../src/ui/treeviews.py:375 ../src/ui/treeviews.py:555
+#: ../src/ui/treeviews.py:621
 msgid "All Fonts"
 msgstr ""
 
@@ -114,8 +118,8 @@ msgstr ""
 msgid "All available fonts"
 msgstr ""
 
-#: ../src/core/fonts.py:286 ../src/ui/treeviews.py:211
-#: ../src/ui/treeviews.py:367 ../src/ui/treeviews.py:547
+#: ../src/core/fonts.py:286 ../src/ui/treeviews.py:219
+#: ../src/ui/treeviews.py:375 ../src/ui/treeviews.py:555
 msgid "System"
 msgstr ""
 
@@ -123,8 +127,8 @@ msgstr ""
 msgid "Fonts available to all users"
 msgstr ""
 
-#: ../src/core/fonts.py:288 ../src/ui/treeviews.py:211
-#: ../src/ui/treeviews.py:367 ../src/ui/treeviews.py:558
+#: ../src/core/fonts.py:288 ../src/ui/treeviews.py:219
+#: ../src/ui/treeviews.py:375 ../src/ui/treeviews.py:566
 msgid "User"
 msgstr ""
 
@@ -134,9 +138,9 @@ msgid "Fonts available only to %s"
 msgstr ""
 
 #: ../src/core/fonts.py:290 ../src/core/__init__.py:399
-#: ../src/ui/preferences.py:370 ../src/ui/preferences.py:380
-#: ../src/ui/treeviews.py:211 ../src/ui/treeviews.py:373
-#: ../src/ui/treeviews.py:547
+#: ../src/ui/preferences.py:366 ../src/ui/preferences.py:376
+#: ../src/ui/treeviews.py:219 ../src/ui/treeviews.py:381
+#: ../src/ui/treeviews.py:555
 msgid "Orphans"
 msgstr ""
 
@@ -610,7 +614,7 @@ msgstr ""
 msgid "Reset database"
 msgstr ""
 
-#: ../src/data/font-manager.glade.h:99 ../src/ui/treeviews.py:525
+#: ../src/data/font-manager.glade.h:99 ../src/ui/treeviews.py:533
 msgid "Search Fonts"
 msgstr ""
 
@@ -894,31 +898,31 @@ msgstr ""
 msgid "Problem encountered"
 msgstr ""
 
-#: ../src/ui/treeviews.py:130 ../src/ui/treeviews.py:366
+#: ../src/ui/treeviews.py:130 ../src/ui/treeviews.py:374
 msgid "Category"
 msgstr ""
 
-#: ../src/ui/treeviews.py:150 ../src/ui/treeviews.py:382
+#: ../src/ui/treeviews.py:150 ../src/ui/treeviews.py:390
 msgid "Collection"
 msgstr ""
 
-#: ../src/ui/treeviews.py:172
+#: ../src/ui/treeviews.py:173 ../src/ui/treeviews.py:178
 msgid "Family"
 msgstr ""
 
-#: ../src/ui/treeviews.py:317
+#: ../src/ui/treeviews.py:325
 msgid "Edit actions..."
 msgstr ""
 
-#: ../src/ui/treeviews.py:520
+#: ../src/ui/treeviews.py:528
 msgid "Hide search box"
 msgstr ""
 
-#: ../src/ui/treeviews.py:575
+#: ../src/ui/treeviews.py:583
 msgid "New Collection"
 msgstr ""
 
-#: ../src/ui/treeviews.py:579
+#: ../src/ui/treeviews.py:587
 #, python-format
 msgid "New Collection %s"
 msgstr ""

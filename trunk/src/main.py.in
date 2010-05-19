@@ -31,9 +31,11 @@ import UserDict
 import webbrowser
 import subprocess
 
+from os.path import exists, join, splitext
+
 import core
 
-from constants import PACKAGE_DATA_DIR, PACKAGE_DIR
+from constants import PACKAGE, PACKAGE_DATA_DIR
 from ui.export import Export
 from ui.library import InstallFonts, RemoveFonts
 from ui.treeviews import Treeviews
@@ -103,7 +105,12 @@ class Main(object):
         self.menus['TrayCharacterMap'].connect('activate',
                                                     self.previews.on_char_map)
         self.menus['TrayPreferences'].connect('activate', self.objects.on_prefs)
-        self.menus['TrayHelp'].connect('activate', _on_help)
+        if 'yelp' in self.objects['AvailableApps']:
+            self.menus['TrayHelp'].connect('activate', _on_help)
+        else:
+            self.menus['TrayHelp'].set_sensitive(False)
+            self.menus['TrayHelp'].set_tooltip_text\
+            (_('Yelp is required to view help files'))
         self.menus['TrayAbout'].connect('activate', _on_about_dialog,
                                             self.objects['AboutDialog'])
         self.menus['TrayQuit'].connect('activate', self.quit)
@@ -158,7 +165,7 @@ class Main(object):
             delete_database()
             reset_fontconfig_cache()
         try:
-            font_manager = os.path.join('@prefix@', 'bin/font-manager')
+            font_manager = join('@prefix@', 'bin/font-manager')
             os.execvp(font_manager,
                         ('--execvp_needs_to_stop_crying="True"',))
         except OSError, error:
@@ -229,7 +236,7 @@ class ObjectContainer(UserDict.UserDict):
         self.prefs_dialog = None
         self.builder = gtk.Builder()
         self.builder.set_translation_domain('font-manager')
-        self.builder.add_from_file(os.path.join(PACKAGE_DATA_DIR, 'font-manager.ui'))
+        self.builder.add_from_file(join(PACKAGE_DATA_DIR, 'font-manager.ui'))
         self.data['MainWindow'] = self.builder.get_object('MainWindow')
         self.data['Preferences'] = core.get_preferences()
         self.data['Preferences'].connect('update-font-dirs', self.reload)
@@ -258,7 +265,12 @@ class ObjectContainer(UserDict.UserDict):
         """
         self.data['About'].connect('clicked', _on_about_dialog,
                                             self.data['AboutDialog'])
-        self.data['Help'].connect('clicked', _on_help)
+        if 'yelp' in self.data['AvailableApps']:
+            self.data['Help'].connect('clicked', _on_help)
+        else:
+            self.data['Help'].set_sensitive(False)
+            self.data['Help'].set_tooltip_text\
+            (_('Yelp is required to view help files'))
         self.data['FontSettings'].connect('clicked', _on_font_settings)
         self.data['AppPreferences'].connect('clicked', self.on_prefs)
         return
@@ -368,7 +380,7 @@ class PopupMenu(UserDict.UserDict):
             self.builder = gtk.Builder()
         else:
             self.builder = objects.builder
-        self.builder.add_from_file(os.path.join(PACKAGE_DATA_DIR, 'menus.ui'))
+        self.builder.add_from_file(join(PACKAGE_DATA_DIR, 'menus.ui'))
         for widget in self._widgets:
             self.data[widget] = self.builder.get_object(widget)
         self.tray_menu = self.data['TrayMenu']
@@ -426,11 +438,18 @@ def _on_help(unused_widget):
     """
     Open help pages in browser.
     """
-    lang = 'en_US'
-    help_files = '%s/doc/%s.html' % (PACKAGE_DIR, lang)
-    if webbrowser.open(help_files):
+    # The trailing slash is required, otherwise yelp will not find images...
+    lang = splitext(os.environ['LANG'])[0] + '/'
+    help_dir = join('@prefix@', 'share', PACKAGE, 'help')
+    help = join(help_dir, lang)
+    if not exists(help):
+        logging.info('No translation exists for %s, using default...' % \
+                                        splitext(os.environ['LANG'])[0])
+        help = join(help_dir, 'C/')
+    try:
+        subprocess.Popen(['yelp', help])
         logging.info("Launching Help browser")
-    else:
+    except OSError:
         logging.warn("Could not find any suitable browser")
     return
 

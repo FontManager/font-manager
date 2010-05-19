@@ -26,6 +26,8 @@ distclean: clean
 
 install:
 	$(MAKE) -C src install
+	@find help -type f -exec chmod 644 '{}' \;
+	@cp -R help $(DESTDIR)$(prefix)/share/font-manager/
 #	for f in `find po -name font-manager.mo` ; do \
 #	  install -d -m 755 \
 #		`echo $$f | sed "s|^po|$(DESTDIR)$(prefix)/share/locale|" | \
@@ -36,9 +38,10 @@ install:
 
 uninstall:
 	$(MAKE) -C src uninstall
+	@rm -rfv $(DESTDIR)$(prefix)/share/gnome/help/font-manager
 #	find $(DESTDIR)$(prefix)/share/locale -name font-manager.mo -exec rm -f {} \;
 
-EXTRA_DIST = src/core src/data src/doc src/ui src/utils src/*.py src/*.c \
+EXTRA_DIST = help src/core src/data src/ui src/utils src/*.py src/*.c \
 src/*.in src/font-manager.in src/font-manager.desktop src/Makefile.in \
 src/Makefile.am po
 

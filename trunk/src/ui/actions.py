@@ -188,7 +188,11 @@ class UserActions(object):
         self.widgets['AddAction'].set_sensitive(False)
         return
 
-    def _create_action(self, unused_widget):
+    def _create_action(self, widget):
+        if widget != self.widgets['NewAction']:
+            self.widgets['AddActionDialog'].set_title(_('Edit Action'))
+        else:
+            self.widgets['AddActionDialog'].set_title(_('New Action'))
         self.widgets['ActionsDialog'].hide()
         self.widgets['AddActionDialog'].show()
         while gtk.events_pending():

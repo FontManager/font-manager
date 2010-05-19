@@ -63,7 +63,7 @@ class AvailableApps(list):
     _defaults = ('dolphin', 'file-roller', 'gnome-appearance-properties',
                 'gucharmap', 'konqueror', 'nautilus', 'pcmanfm', 'thunar',
                 'xdg-open', 'gnome-terminal', 'konsole', 'terminal', 
-                'lxterminal', 'xterm')
+                'lxterminal', 'xterm', 'yelp')
     _dirs = ['/usr/bin', '/usr/local/bin', '/bin', '/sw/bin']
     def __init__(self):
         list.__init__(self)

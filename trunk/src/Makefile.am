@@ -33,20 +33,16 @@ make-install-dirs:
 	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager/ui
 	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager/utils
 
-
 install: all make-install-dirs
 	install -m 755 font-manager $(DESTDIR)$(prefix)/bin/
 	install -m 755 font-sampler $(DESTDIR)$(prefix)/bin/
 	install -m 644 *.so $(DESTDIR)$(prefix)/lib/font-manager/
-	@find doc -type f -exec chmod 644 '{}' \;
-	@cp -R doc $(DESTDIR)$(prefix)/share/font-manager/
 	install -m 644 *.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/
 	install -m 644 core/*.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/core/
 	install -m 644 data/* $(DESTDIR)$(prefix)/share/font-manager/data/
 	install -m 644 ui/*.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/ui/
 	install -m 644 utils/* $(DESTDIR)$(prefix)/share/font-manager/utils/
 	install -m 644 *.desktop $(DESTDIR)$(prefix)/share/applications/
-
 
 uninstall:
 	@rm -fv $(DESTDIR)$(prefix)/bin/font-manager
@@ -64,4 +60,3 @@ distclean: clean
 	@rm -f main.py
 	@rm -f core/__init__.py
 	@rm -f Makefile
-

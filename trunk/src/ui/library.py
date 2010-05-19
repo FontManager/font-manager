@@ -252,7 +252,7 @@ class RemoveFonts(object):
 
     def _on_remove_fonts(self, unused_widget):
         """
-        Remove selected fonts from database and filesystem.
+        Remove selected fonts from filesystem.
         """
         selected_paths = []
         selected_fams = {}
@@ -265,7 +265,6 @@ class RemoveFonts(object):
             filelist = []
             for row in filepaths:
                 filelist.append(row['filepath'])
-            fonts.remove('family="%s"' % val)
             selected_fams[val] = treeiter
             for filepath in filelist:
                 selected_paths.append(filepath)

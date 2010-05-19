@@ -42,6 +42,7 @@ static PyObject * FcClearAppFonts(PyObject *self, PyObject *args);
 static PyObject * FcEnableHomeConfig(PyObject *self, PyObject *args);
 static PyObject * FcGetFontDirs(PyObject *self, PyObject *args);
 static PyObject * FcFileList(PyObject *self, PyObject *args);
+static PyObject * FT_Get_Face_Count(PyObject *self, PyObject *args);
 static PyObject * FT_Get_File_Info(PyObject *self, PyObject *args);
 static PyObject * _get_sfnt_info(FT_Face face);
 static PyObject * _get_ps_info(FT_Face face, PS_FontInfoRec  ps_info);
@@ -226,6 +227,40 @@ FcFileList(PyObject *self, PyObject *args)
     return fontlist;
 }
 
+static PyObject *
+FT_Get_Face_Count(PyObject *self, PyObject *args)
+{
+    FT_Face         face;
+    FT_Library      library;
+    FT_Error        error;
+
+    gchar           *filepath = NULL;
+
+    if (!PyArg_ParseTuple(args, "s", &filepath))
+        return NULL;
+
+    error = FT_Init_FreeType(&library);
+    if (error)
+    {
+        PyErr_SetString(PyExc_EnvironmentError,
+                        "Failed to initialize FreeType library!\n");
+        return NULL;
+    }
+
+    error = FT_New_Face(library, filepath, 0, &face);
+    if (error)
+    {
+        PyErr_SetString(PyExc_EnvironmentError, "Failed to load font!\n");
+        return NULL;
+    }
+
+    FT_Long num_faces = face->num_faces;
+    FT_Done_Face(face);
+    FT_Done_FreeType(library);
+
+    return PyInt_FromLong(num_faces);
+}
+
 /* This function uses FreeType to open a font and gather information about it. */
 static PyObject *
 FT_Get_File_Info(PyObject *self, PyObject *args)
@@ -235,6 +270,7 @@ FT_Get_File_Info(PyObject *self, PyObject *args)
     FT_Error        error;
     PS_FontInfoRec  ps_info;
 
+    int             index = 0;
     gsize           filesize;
     gchar           *filepath = NULL,
                     *font = NULL,
@@ -242,7 +278,7 @@ FT_Get_File_Info(PyObject *self, PyObject *args)
                     *hash = NULL;
     PyObject        *fileinfo = PyDict_New();
 
-    if (!PyArg_ParseTuple(args, "s|s", &filepath, &foundry))
+    if (!PyArg_ParseTuple(args, "s|is", &filepath, &index, &foundry))
         return NULL;
 
     if (!g_file_get_contents(filepath, &font, &filesize, NULL))
@@ -268,7 +304,7 @@ FT_Get_File_Info(PyObject *self, PyObject *args)
 
     error = FT_New_Memory_Face(library,
                                 (const FT_Byte *) font,
-                                (FT_Long) filesize, 0, &face);
+                                (FT_Long) filesize, index, &face);
     if (error)
     {
         PyErr_SetString(PyExc_EnvironmentError, "Failed to load font!\n");
@@ -570,9 +606,15 @@ static PyMethodDef Methods[] = {
      False to exclude vendor information.\n\n\
      Returns a list of filepaths."},
 
+    {"FT_Get_Face_Count", FT_Get_Face_Count, METH_VARARGS,
+    "Query FreeType for the number of faces contained in a font file.\n\n\
+     Takes one argument, the filepath.\n\n\
+     Returns an int."},
+
     {"FT_Get_File_Info", FT_Get_File_Info, METH_VARARGS,
     "Query FreeType for file details.\n\n\
-     Takes two arguments, the filepath and optionally the vendor.\n\n\
+     Takes three arguments, the filepath, and optionally the face index and \
+     vendor.\n\n\
      Returns a dictionary."},
 
     {NULL, NULL, 0, NULL}           /* Signals end of method definitions */

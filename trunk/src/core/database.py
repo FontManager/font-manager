@@ -364,13 +364,14 @@ def _get_details(filedict, system=False):
     """
     details = []
     for font, foundry in _get_file_details(filedict):
-        try:
-            metadata = _fontutils.FT_Get_File_Info(font, foundry)
-        except IOError:
-            continue
-        metadata = _add_details(metadata, system)
-        metadata = _pad_metadata(metadata)
-        details.append(metadata)
+        for index in range(_fontutils.FT_Get_Face_Count(font)):
+            try:
+                metadata = _fontutils.FT_Get_File_Info(font, index, foundry)
+            except IOError:
+                break
+            metadata = _add_details(metadata, system)
+            metadata = _pad_metadata(metadata)
+            details.append(metadata)
     return details
 
 def _get_file_details(filedict):

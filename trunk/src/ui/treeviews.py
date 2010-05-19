@@ -737,7 +737,7 @@ class TreeviewFilter(object):
         for widget in self._widgets:
             self.widgets[widget] = self.builder.get_object(widget)
         self.widgets['SearchDialog'].connect('delete-event', \
-                                lambda widget, event: widget.hide() is None)
+                                lambda widget, event: widget.response(0))
         self.combos = (
                     'FamilyCombo', 'TypeCombo', 'FoundryCombo', 'FilepathCombo'
                     )

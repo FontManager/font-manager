@@ -1,0 +1,837 @@
+# Font Manager, a font management application for the GNOME desktop
+#
+# Copyright (C) 2009, 2010 Jerry Casiano
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 3
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to:
+#
+# Free Software Foundation, Inc.
+# 51 Franklin Street, Fifth Floor
+# Boston, MA  02110-1301, USA.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2010-05-18 22:54-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ui.page:5(app) ui.page:12(app) ui.page:25(app) ui.page:66(app) remove.page:15(app) remove.page:63(app) organize.page:13(app) organize.page:57(app) manage.page:14(app) manage.page:81(app) issues.page:6(app) introduction.page:6(app) introduction.page:12(app) install.page:13(app) install.page:72(app) index.page:6(title) index.page:7(title) export.page:13(app) directories.page:13(app) directories.page:29(app) directories.page:67(app) directories.page:111(app) actions.page:12(app) about.page:10(app) about.page:16(app) about.page:24(app)
+msgid "Font Manager"
+msgstr ""
+
+#: ui.page:4(desc)
+msgid "<placeholder-1/> user interface"
+msgstr ""
+
+#: ui.page:9(title)
+msgid "User Interface"
+msgstr ""
+
+#: ui.page:11(link)
+msgid "<placeholder-1/> window"
+msgstr ""
+
+#: ui.page:10(p)
+msgid "The <placeholder-1/> contains the following elements:"
+msgstr ""
+
+#: ui.page:16(title) organize.page:79(link) organize.page:110(link) organize.page:130(link) organize.page:150(link) export.page:28(link)
+msgid "Side Pane"
+msgstr ""
+
+#: ui.page:17(p)
+msgid "The side pane is divided into two sections:"
+msgstr ""
+
+#: ui.page:22(title)
+msgid "Category"
+msgstr ""
+
+#: ui.page:23(p)
+msgid "Default categories provided by <placeholder-1/>"
+msgstr ""
+
+#: ui.page:29(title)
+msgid "Collection"
+msgstr ""
+
+#: ui.page:30(p)
+msgid "User defined collections"
+msgstr ""
+
+#: ui.page:41(title) search.page:14(link) preview.page:15(link) organize.page:175(link) manage.page:41(link) manage.page:61(link) install.page:24(link) actions.page:23(link) actions.page:55(link) actions.page:87(link)
+msgid "Family Pane"
+msgstr ""
+
+#: ui.page:42(p)
+msgid "The family pane displays any font families present in the currently selected collection."
+msgstr ""
+
+#: ui.page:52(title) preview.page:17(link)
+msgid "Preview Pane"
+msgstr ""
+
+#: ui.page:53(p)
+msgid "The preview pane allows previewing selected fonts. It also allows comparing several fonts at once."
+msgstr ""
+
+#: ui.page:63(title) remove.page:30(link) organize.page:46(link) install.page:43(link) export.page:36(link) export.page:54(link) directories.page:35(link) directories.page:73(link)
+msgid "Statusbar"
+msgstr ""
+
+#: ui.page:64(p)
+msgid "The statusbar displays information about current <placeholder-1/> activity and doubles as a toolbar, providing access to application options."
+msgstr ""
+
+#: search.page:8(desc)
+msgid "Finding the right font"
+msgstr ""
+
+#: search.page:11(title)
+msgid "Searching Your Fonts"
+msgstr ""
+
+#: search.page:13(gui)
+msgid "Search Fonts"
+msgstr ""
+
+#: search.page:12(p)
+msgid "Clicking on <placeholder-1/> will reveal an entry in the <placeholder-2/> in which you can type the name of a font family and it will be highlighted in the list if it's present in the current collection."
+msgstr ""
+
+#: search.page:22(gui)
+msgid "Advanced"
+msgstr ""
+
+#: search.page:19(p)
+msgid "If you do not know the exact name but you know a portion of it or some other detail about the font, click on <placeholder-1/>. The advanced search dialog allows you to search by family, type, foundry, and filepath."
+msgstr ""
+
+#: remove.page:8(desc)
+msgid "Getting rid of unneeded fonts"
+msgstr ""
+
+#: remove.page:11(title)
+msgid "Font Removal"
+msgstr ""
+
+#: remove.page:13(p)
+msgid "The only fonts listed in the removal dialog will be those which were installed by <placeholder-1/> and those present in your user font folder."
+msgstr ""
+
+#: remove.page:21(title)
+msgid "To remove fonts you no longer need:"
+msgstr ""
+
+#: remove.page:24(p) install.page:37(p)
+msgid "Click <gui><media type=\"image\" src=\"figures/manage.png\"/></gui> in the <placeholder-1/>."
+msgstr ""
+
+#: remove.page:34(p)
+msgid "Select \"Remove Fonts\" from the popup menu."
+msgstr ""
+
+#: remove.page:39(p)
+msgid "Select the families you wish to remove from the list that is displayed."
+msgstr ""
+
+#: remove.page:47(gui)
+msgid "Delete Selected Fonts"
+msgstr ""
+
+#: remove.page:45(p)
+msgid "Click <placeholder-1/>."
+msgstr ""
+
+#: remove.page:55(p)
+msgid "Files are permanently deleted. Before removing any fonts ensure you have backups if there is a chance you may need them again."
+msgstr ""
+
+#: remove.page:62(p) install.page:71(p) directories.page:110(p)
+msgid "<placeholder-1/> will restart anytime changes require it."
+msgstr ""
+
+#: preview.page:8(desc)
+msgid "Previewing your fonts"
+msgstr ""
+
+#: preview.page:11(title)
+msgid "Font Previews"
+msgstr ""
+
+#: preview.page:13(p)
+msgid "To preview a font select a family from the list displayed in the <placeholder-1/>, then select a style from the drop-down list at the top right of the <placeholder-2/>. You can set the font size by using the slider at the bottom or for more control the spinbox at the top right."
+msgstr ""
+
+#: preview.page:23(gui)
+msgid "Custom Text"
+msgstr ""
+
+#: preview.page:22(p)
+msgid "Clicking <placeholder-1/> will reveal an entry which you can use to change the text that is used in the preview."
+msgstr ""
+
+#: organize.page:7(desc)
+msgid "Using collections to sort your fonts"
+msgstr ""
+
+#: organize.page:10(title)
+msgid "Organizing Your Fonts"
+msgstr ""
+
+#: organize.page:12(p)
+msgid "<placeholder-1/> automatically places your fonts into four default categories."
+msgstr ""
+
+#: organize.page:19(title)
+msgid "All Fonts"
+msgstr ""
+
+#: organize.page:20(p)
+msgid "All available fonts."
+msgstr ""
+
+#: organize.page:25(title)
+msgid "System"
+msgstr ""
+
+#: organize.page:26(p)
+msgid "Fonts available to all users."
+msgstr ""
+
+#: organize.page:31(title)
+msgid "User"
+msgstr ""
+
+#: organize.page:32(p)
+msgid "Fonts available only to you."
+msgstr ""
+
+#: organize.page:37(title)
+msgid "Orphans"
+msgstr ""
+
+#: organize.page:38(p)
+msgid "Fonts not present in any of your collections."
+msgstr ""
+
+#: organize.page:47(gui) export.page:55(gui)
+msgid "Application Options"
+msgstr ""
+
+#: organize.page:48(gui)
+msgid "Default Categories"
+msgstr ""
+
+#: organize.page:41(p)
+msgid "By default this category is not visible, but it can be enabled/disabled by clicking <media type=\"image\" src=\"figures/preferences.png\"/> in the <placeholder-1/>, then selecting the <placeholder-2/> tab and making your changes under <placeholder-3/>."
+msgstr ""
+
+#: organize.page:54(title)
+msgid "User Collections"
+msgstr ""
+
+#: organize.page:56(p)
+msgid "<placeholder-1/> allows you to define your own collections."
+msgstr ""
+
+#: organize.page:61(p)
+msgid "Collections are a way of grouping together font families, aside from allowing you to organize your fonts in a way that makes sense to you, collections also make it easier to enable or disable many families at once."
+msgstr ""
+
+#: organize.page:70(title)
+msgid "To create a new collection:"
+msgstr ""
+
+#: organize.page:73(p)
+msgid "Click the <gui><media type=\"image\" src=\"figures/add.png\"/></gui> at the bottom of the <placeholder-1/>."
+msgstr ""
+
+#: organize.page:83(p)
+msgid "Enter a name for your new collection"
+msgstr ""
+
+#: organize.page:88(p)
+msgid "Add fonts by dragging them from the family column to your new collection."
+msgstr ""
+
+#: organize.page:96(title)
+msgid "To delete a collection:"
+msgstr ""
+
+#: organize.page:99(p) organize.page:119(p) organize.page:139(p) organize.page:159(p)
+msgid "Select the collection"
+msgstr ""
+
+#: organize.page:104(p)
+msgid "Click the <gui><media type=\"image\" src=\"figures/remove.png\"/></gui> at the bottom of the <placeholder-1/>."
+msgstr ""
+
+#: organize.page:116(title)
+msgid "To enable a collection:"
+msgstr ""
+
+#: organize.page:124(p)
+msgid "Click the <gui><media type=\"image\" src=\"figures/enable.png\"/></gui> at the bottom of the <placeholder-1/>."
+msgstr ""
+
+#: organize.page:136(title)
+msgid "To disable a collection:"
+msgstr ""
+
+#: organize.page:144(p)
+msgid "Click the <gui><media type=\"image\" src=\"figures/disable.png\"/></gui> at the bottom of the <placeholder-1/>."
+msgstr ""
+
+#: organize.page:156(title)
+msgid "To remove families from a collection:"
+msgstr ""
+
+#: organize.page:164(p)
+msgid "Select the family or families you wish to remove"
+msgstr ""
+
+#: organize.page:169(p)
+msgid "Click the <gui><media type=\"image\" src=\"figures/remove.png\"/></gui> to the right of the <placeholder-1/>."
+msgstr ""
+
+#: organize.page:181(title)
+msgid "To rename a collection:"
+msgstr ""
+
+#: organize.page:184(p)
+msgid "Select a collection, click it again"
+msgstr ""
+
+#: organize.page:189(p)
+msgid "Enter a new name"
+msgstr ""
+
+#: organize.page:196(gui) manage.page:71(gui)
+msgid "Enter"
+msgstr ""
+
+#: organize.page:194(p)
+msgid "Hit <placeholder-1/>"
+msgstr ""
+
+#: organize.page:204(p)
+msgid "Collections do not modify your files in any way."
+msgstr ""
+
+#: organize.page:207(p)
+msgid "Feel free to create or delete as many as you like."
+msgstr ""
+
+#: manage.page:8(desc)
+msgid "Activating and De-activating font families"
+msgstr ""
+
+#: manage.page:11(title)
+msgid "Font Management"
+msgstr ""
+
+#: manage.page:13(p)
+msgid "<placeholder-1/> allows you to activate and de-activate font families."
+msgstr ""
+
+#: manage.page:18(p)
+msgid "If you have lots of fonts installed, font selection dialogs and lists in many applications can get very long and uncomfortable to use, disabling fonts you do not use very often or do not need at the moment helps keep these at a reasonable size."
+msgstr ""
+
+#: manage.page:27(title)
+msgid "To enable:"
+msgstr ""
+
+#: manage.page:30(p)
+msgid "Select the family or families you wish to enable"
+msgstr ""
+
+#: manage.page:35(p)
+msgid "Click the <gui><media type=\"image\" src=\"figures/enable.png\"/></gui> to the right of the <placeholder-1/>."
+msgstr ""
+
+#: manage.page:47(title)
+msgid "To disable:"
+msgstr ""
+
+#: manage.page:50(p)
+msgid "Select the family or families you wish to disable"
+msgstr ""
+
+#: manage.page:55(p)
+msgid "Click the <gui><media type=\"image\" src=\"figures/disable.png\"/></gui> to the right of the <placeholder-1/>."
+msgstr ""
+
+#: manage.page:69(p)
+msgid "To disable a single family, you can also just double-click it or press <placeholder-1/> while it is selected."
+msgstr ""
+
+#: manage.page:74(link)
+msgid "Collections"
+msgstr ""
+
+#: manage.page:73(p)
+msgid "<placeholder-1/> make it easy to disable multiple families at once."
+msgstr ""
+
+#: manage.page:80(p)
+msgid "While any changes made using <placeholder-1/> are applied immediately, any open applications may need to be restarted in order to reflect those changes."
+msgstr ""
+
+#: issues.page:5(desc)
+msgid "Issues users might encounter while using <placeholder-1/>"
+msgstr ""
+
+#: issues.page:10(title)
+msgid "Known Issues"
+msgstr ""
+
+#: issues.page:12(p)
+msgid "Fonts with illegal or malformed PostScript names are not handled well. Although they may be displayed, features such as previews are likely to fail silently. In some cases, while the font will appear in the list, the preview will only display a base font like Sans, and font information will be unavailable, this is usually an indication that the font needs to be renamed or is missing style information."
+msgstr ""
+
+#: issues.page:26(link)
+msgid "FontForge"
+msgstr ""
+
+#: issues.page:21(p)
+msgid "Quality fonts do not suffer from these issues. That said, verification and automatic repair of such common problems may be included in a future release. For now, if you encounter this, you can use a font editor to examine the font. <placeholder-1/> is a good choice and is already available for most distributions, check your package manager. In most cases FontForge will notify you of any issues as soon as the font is opened, in other cases it may be as simple as renaming the font using a font editor so that the name contains no leading or trailing spaces, or adding missing information such as font style."
+msgstr ""
+
+#: introduction.page:5(desc)
+msgid "Introduction to <placeholder-1/>."
+msgstr ""
+
+#: introduction.page:10(title)
+msgid "Introduction"
+msgstr ""
+
+#: introduction.page:18(title)
+msgid "Features:"
+msgstr ""
+
+#: introduction.page:20(p)
+msgid "Preview installed fonts"
+msgstr ""
+
+#: introduction.page:25(p)
+msgid "Compare fonts"
+msgstr ""
+
+#: introduction.page:30(p)
+msgid "Install and remove fonts"
+msgstr ""
+
+#: introduction.page:35(p)
+msgid "Activate and de-activate fonts"
+msgstr ""
+
+#: introduction.page:40(p)
+msgid "Specify different directories to search for fonts"
+msgstr ""
+
+#: introduction.page:45(p)
+msgid "Group fonts into \"Collections\", activate or de-activate collections"
+msgstr ""
+
+#: introduction.page:51(p)
+msgid "Export \"Collections\" to an archive for easy backup, sharing, etc."
+msgstr ""
+
+#: introduction.page:57(p)
+msgid "Quick access to all font related utilities"
+msgstr ""
+
+#: install.page:7(desc)
+msgid "Adding fonts for your use"
+msgstr ""
+
+#: install.page:10(title)
+msgid "Font Installation"
+msgstr ""
+
+#: install.page:14(link)
+msgid "font formats"
+msgstr ""
+
+#: install.page:12(p)
+msgid "<placeholder-1/> supports the most common <placeholder-2/>."
+msgstr ""
+
+#: install.page:19(title)
+msgid "First Method"
+msgstr ""
+
+#: install.page:22(p)
+msgid "Drag your font files to the family column in the <placeholder-1/>"
+msgstr ""
+
+#: install.page:26(p)
+msgid "If a collection is selected, the new fonts will automatically be added to it."
+msgstr ""
+
+#: install.page:34(title)
+msgid "Second Method"
+msgstr ""
+
+#: install.page:47(p)
+msgid "Select \"Install Fonts\" from the popup menu."
+msgstr ""
+
+#: install.page:55(gui) export.page:43(gui) actions.page:44(gui) actions.page:76(gui)
+msgid "OK"
+msgstr ""
+
+#: install.page:52(p)
+msgid "Select the files you wish to install from the file selector dialog that is displayed and click <placeholder-1/>."
+msgstr ""
+
+#: install.page:66(link)
+msgid "Archive Manager"
+msgstr ""
+
+#: install.page:63(p)
+msgid "The only advantage of the second method is that it also supports installing fonts from any archive supported by <placeholder-1/>."
+msgstr ""
+
+#: install.page:77(title)
+msgid "Supported Font Formats"
+msgstr ""
+
+#: install.page:80(title)
+msgid "TrueType"
+msgstr ""
+
+#: install.page:83(title)
+msgid "OpenType"
+msgstr ""
+
+#: install.page:86(title)
+msgid "PostScript Type 1"
+msgstr ""
+
+#: index.page:16(p)
+msgid "GNU General Public License Version 3"
+msgstr ""
+
+#: index.page:20(title)
+msgid "<media type=\"image\" mime=\"image/png\" src=\"figures/logo.png\"> Font Manager logo </media> Font Manager"
+msgstr ""
+
+#: index.page:28(title)
+msgid "Managing Your Fonts"
+msgstr ""
+
+#: index.page:32(title)
+msgid "Getting to Know Your Fonts"
+msgstr ""
+
+#: index.page:36(title)
+msgid "Additional Features"
+msgstr ""
+
+#: fontinfo.page:7(desc)
+msgid "View data embedded in your font files"
+msgstr ""
+
+#: fontinfo.page:10(title)
+msgid "Font Information"
+msgstr ""
+
+#: fontinfo.page:12(p)
+msgid "Clicking <gui><media type=\"image\" src=\"figures/fontinfo.png\"/></gui> will display information embedded in the currently selected font."
+msgstr ""
+
+#: fontinfo.page:21(title)
+msgid "Font Information Dialog"
+msgstr ""
+
+#: export.page:8(desc)
+msgid "Creating backups of your fonts"
+msgstr ""
+
+#: export.page:11(title)
+msgid "Exporting Collections"
+msgstr ""
+
+#: export.page:12(p)
+msgid "<placeholder-1/> allows you to export collections in several ways."
+msgstr ""
+
+#: export.page:16(p)
+msgid "You can choose to export a collection as an archive, you can create a \"sample sheet\" from a collection, or you can simply copy all the files that make up the collection to a different location."
+msgstr ""
+
+#: export.page:23(title)
+msgid "To export a collection:"
+msgstr ""
+
+#: export.page:26(p)
+msgid "Select a collection from the <placeholder-1/>."
+msgstr ""
+
+#: export.page:32(p)
+msgid "Click <media type=\"image\" src=\"figures/export.png\"/> in the the left side of the <placeholder-1/>."
+msgstr ""
+
+#: export.page:42(gui)
+msgid "Export Collection"
+msgstr ""
+
+#: export.page:40(p)
+msgid "Select an option in the <placeholder-1/> dialog then click <placeholder-2/>"
+msgstr ""
+
+#: export.page:56(gui)
+msgid "Export Options"
+msgstr ""
+
+#: export.page:51(p)
+msgid "You can set the type of archive created and other options by clicking <media type=\"image\" src=\"figures/preferences.png\"/> in the left side of the <placeholder-1/>, then selecting the <placeholder-2/> tab and making your changes under <placeholder-3/>."
+msgstr ""
+
+#: directories.page:7(desc)
+msgid "Adding and removing font directories"
+msgstr ""
+
+#: directories.page:10(title)
+msgid "Font Directories"
+msgstr ""
+
+#: directories.page:12(p)
+msgid "<placeholder-1/> allows you to add or remove directories to scan for fonts. Added directories are scanned recursively."
+msgstr ""
+
+#: directories.page:17(p)
+msgid "This allows keeping font files somewhere other than in your home directory or temporarily \"installing\" a directory of fonts. It also allows you to organize your font files anyway you like."
+msgstr ""
+
+#: directories.page:25(title)
+msgid "To add a directory:"
+msgstr ""
+
+#: directories.page:28(p) directories.page:66(p)
+msgid "Open the <placeholder-1/> preferences dialog by clicking <gui><media type=\"image\" src=\"figures/preferences.png\"/></gui> in the <placeholder-2/>."
+msgstr ""
+
+#: directories.page:39(p)
+msgid "Click <gui><media type=\"image\" src=\"figures/add.png\"/></gui>"
+msgstr ""
+
+#: directories.page:47(p)
+msgid "Select the directory you wish to add from the file selector that is displayed."
+msgstr ""
+
+#: directories.page:55(gui) directories.page:93(gui)
+msgid "Close"
+msgstr ""
+
+#: directories.page:53(p) directories.page:91(p) actions.page:33(p) actions.page:65(p) actions.page:102(p)
+msgid "Click <placeholder-1/>"
+msgstr ""
+
+#: directories.page:63(title)
+msgid "To remove a directory:"
+msgstr ""
+
+#: directories.page:77(p)
+msgid "Select the directory you wish to remove from the list that is displayed."
+msgstr ""
+
+#: directories.page:83(p)
+msgid "Click <gui><media type=\"image\" src=\"figures/remove.png\"/></gui>"
+msgstr ""
+
+#: directories.page:103(p)
+msgid "You can avoid having multiple copies of the same files by adding directories from other filesystems."
+msgstr ""
+
+#: compare.page:7(desc)
+msgid "Preview many fonts at once"
+msgstr ""
+
+#: compare.page:10(title)
+msgid "Font Comparison"
+msgstr ""
+
+#: compare.page:13(gui)
+msgid "Compare Fonts"
+msgstr ""
+
+#: compare.page:12(p)
+msgid "To enter compare mode click <placeholder-1/>."
+msgstr ""
+
+#: compare.page:16(p)
+msgid "Compare mode works the same as Preview Mode, except that you must add the fonts you wish to compare to the list by clicking <media type=\"image\" src=\"figures/add.png/\"/> after selecting the family and style."
+msgstr ""
+
+#: compare.page:23(p)
+msgid "To remove a font from the comparison select it then click <media type=\"image\" src=\"figures/remove.png/\"/>, or you can clear the entire list by clicking <media type=\"image\" src=\"figures/clear.png/\"/>."
+msgstr ""
+
+#: compare.page:30(p)
+msgid "You can change the colors used for the font and background by clicking <media type=\"image\" src=\"figures/color-select.png/\"/>."
+msgstr ""
+
+#: charmap.page:7(desc)
+msgid "View individual characters and their details"
+msgstr ""
+
+#: charmap.page:10(title)
+msgid "Examining glyphs"
+msgstr ""
+
+#: charmap.page:14(gui) charmap.page:18(link) charmap.page:23(app)
+msgid "Character Map"
+msgstr ""
+
+#: charmap.page:12(p)
+msgid "To get a closer look at individual characters and their details click <placeholder-1/>."
+msgstr ""
+
+#: charmap.page:17(p)
+msgid "This will launch the <placeholder-1/> application with the currently selected font active."
+msgstr ""
+
+#: charmap.page:28(title)
+msgid "Character Map Tip:"
+msgstr ""
+
+#: charmap.page:32(p)
+msgid "Click or hold the right mouse button while hovering over characters to display a large preview."
+msgstr ""
+
+#: actions.page:7(desc)
+msgid "Adding calls to external programs"
+msgstr ""
+
+#: actions.page:10(title)
+msgid "User Actions"
+msgstr ""
+
+#: actions.page:11(p)
+msgid "<placeholder-1/> allows you to call external programs to take some action on the selected font."
+msgstr ""
+
+#: actions.page:18(title)
+msgid "To add an action:"
+msgstr ""
+
+#: actions.page:21(p) actions.page:53(p) actions.page:85(p)
+msgid "Right-click a font in the <placeholder-1/>."
+msgstr ""
+
+#: actions.page:28(gui) actions.page:60(gui) actions.page:92(gui)
+msgid "Edit Actions"
+msgstr ""
+
+#: actions.page:27(p) actions.page:59(p) actions.page:91(p)
+msgid "Select <placeholder-1/> from the popup-menu that is displayed."
+msgstr ""
+
+#: actions.page:35(gui)
+msgid "Add"
+msgstr ""
+
+#: actions.page:43(gui)
+msgid "New Action"
+msgstr ""
+
+#: actions.page:41(p) actions.page:73(p)
+msgid "Enter the required information in the <placeholder-1/> dialog then click <placeholder-2/>"
+msgstr ""
+
+#: actions.page:50(title)
+msgid "To edit an action:"
+msgstr ""
+
+#: actions.page:67(gui)
+msgid "Edit"
+msgstr ""
+
+#: actions.page:75(gui)
+msgid "Edit Action"
+msgstr ""
+
+#: actions.page:82(title)
+msgid "To remove an action:"
+msgstr ""
+
+#: actions.page:97(p)
+msgid "Select the action you wish to remove from the list"
+msgstr ""
+
+#: actions.page:104(gui)
+msgid "Remove"
+msgstr ""
+
+#: about.page:6(name)
+msgid "Jerry Casiano"
+msgstr ""
+
+#: about.page:7(email)
+msgid "Jerry Casiano@gmail.com"
+msgstr ""
+
+#: about.page:8(years)
+msgid "2009-2010"
+msgstr ""
+
+#: about.page:10(desc)
+msgid "About <placeholder-1/>"
+msgstr ""
+
+#: about.page:13(title)
+msgid "About"
+msgstr ""
+
+#: about.page:17(link)
+msgid "homepage"
+msgstr ""
+
+#: about.page:15(p)
+msgid "For more information about <placeholder-1/>, please visit the <placeholder-2/>."
+msgstr ""
+
+#: about.page:26(link)
+msgid "Issue Tracker"
+msgstr ""
+
+#: about.page:22(p)
+msgid "To report a bug or make a suggestion regarding the <placeholder-1/> application or this manual, please use the projects <placeholder-2/>."
+msgstr ""
+
+#: about.page:31(p)
+msgid "This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3 of the License, or (at your option) any later version."
+msgstr ""
+
+#: about.page:43(link)
+msgid "http://www.gnu.org/licenses/gpl.html"
+msgstr ""
+
+#: about.page:37(p)
+msgid "This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the file COPYING included with the source code of this program, or visit <placeholder-1/> for more details."
+msgstr ""
+
+#. Put one translator per line, in the form of NAME <EMAIL>, YEAR1, YEAR2
+#: about.page:0(None)
+msgid "translator-credits"
+msgstr ""
+
