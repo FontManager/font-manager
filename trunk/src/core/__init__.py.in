@@ -591,9 +591,8 @@ def _save_rejects(unused_cls_instance, families):
     """
     Save disabled families to file.
     """
-    glib.idle_add(save_blacklist, families)
+    save_blacklist(families)
     return
-
 
 def _setup_logging():
     """
