@@ -32,7 +32,7 @@
                         <media type="image" src="figures/preferences.png"/>
                         </gui>
                         in the
-                        <link xref="ui#statusbar">Statusbar</link>.
+                        <link xref="ui#statusbar">Statusbar</link>
                         </p>
                     </item>
                     <item>
@@ -46,7 +46,7 @@
                     <item>
                         <p>
                         Select the directory you wish to add from the file
-                        selector that is displayed.
+                        selector that is displayed
                         </p>
                     </item>
                     <item>
@@ -70,13 +70,13 @@
                         <media type="image" src="figures/preferences.png"/>
                         </gui>
                         in the
-                        <link xref="ui#statusbar">Statusbar</link>.
+                        <link xref="ui#statusbar">Statusbar</link>
                         </p>
                     </item>
                     <item>
                         <p>
                         Select the directory you wish to remove from the list
-                        that is displayed.
+                        that is displayed
                         </p>
                     </item>
                     <item>

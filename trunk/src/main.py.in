@@ -438,8 +438,9 @@ def _on_help(unused_widget):
     """
     Open help pages in browser.
     """
+    
     # The trailing slash is required, otherwise yelp will not find images...
-    lang = splitext(os.environ['LANG'])[0] + '/'
+    lang = splitext(os.getenv('LANG', 'en_US'))[0] + '/'
     help_dir = join('@prefix@', 'share', PACKAGE, 'help')
     help = join(help_dir, lang)
     if not exists(help):

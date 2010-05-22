@@ -40,19 +40,19 @@
                             <media type="image" src="figures/manage.png"/>
                             </gui>
                             in the
-                            <link xref="ui#statusbar">Statusbar</link>.
+                            <link xref="ui#statusbar">Statusbar</link>
                             </p>
                         </item>
                         <item>
                             <p>
-                            Select "Install Fonts" from the popup menu.
+                            Select "Install Fonts" from the popup menu
                             </p>
                         </item>
                         <item>
                             <p>
                             Select the files you wish to install from the
                             file selector dialog that is displayed and click
-                            <gui style="button">OK</gui>.
+                            <gui style="button">OK</gui>
                             </p>
                         </item>
                     </steps>

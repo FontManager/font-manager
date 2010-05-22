@@ -20,13 +20,13 @@
                     <item>
                         <p>
                         Right-click a font in the
-                        <link xref="ui#family-pane">Family Pane</link>.
+                        <link xref="ui#family-pane">Family Pane</link>
                         </p>
                     </item>
                     <item>
                         <p>
                         Select <gui style="button">Edit Actions</gui> from the
-                        popup-menu that is displayed.
+                        popup-menu that is displayed
                         </p>
                     </item>
                     <item>
@@ -52,13 +52,18 @@
                     <item>
                         <p>
                         Right-click a font in the
-                        <link xref="ui#family-pane">Family Pane</link>.
+                        <link xref="ui#family-pane">Family Pane</link>
                         </p>
                     </item>
                     <item>
                         <p>
                         Select <gui style="button">Edit Actions</gui> from the
-                        popup-menu that is displayed.
+                        popup-menu that is displayed
+                        </p>
+                    </item>
+                    <item>
+                        <p>
+                        Select the action you wish to edit from the list.
                         </p>
                     </item>
                     <item>
@@ -84,13 +89,13 @@
                     <item>
                         <p>
                         Right-click a font in the
-                        <link xref="ui#family-pane">Family Pane</link>.
+                        <link xref="ui#family-pane">Family Pane</link>
                         </p>
                     </item>
                     <item>
                         <p>
                         Select <gui style="button">Edit Actions</gui> from the
-                        popup-menu that is displayed.
+                        popup-menu that is displayed
                         </p>
                     </item>
                     <item>

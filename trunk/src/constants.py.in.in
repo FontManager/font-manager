@@ -56,6 +56,7 @@ DESKTOP_DIR                 =   glib.get_user_special_dir\
 HOME                        =   os.getenv('HOME')
 USER                        =   os.getenv('LOGNAME')
 USER_FONT_DIR               =   join(HOME, '.fonts')
+COMPAT_COLLECTIONS          =   join(CONFIG_DIR, 'fontgroups.xml')
 USER_FONT_COLLECTIONS       =   join(DATA_DIR, 'Collections.xml')
 USER_FONT_COLLECTIONS_BAK   =   join(DATA_DIR, 'Collections.xml.bak')
 USER_FONT_CONFIG            =   join(HOME, '.fonts.conf')

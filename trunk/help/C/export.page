@@ -25,7 +25,7 @@
                     <item>
                         <p>
                         Select a collection from the
-                        <link xref="ui#sidepane">Side Pane</link>.
+                        <link xref="ui#sidepane">Side Pane</link>
                         </p>
                     </item>
                     <item>
@@ -33,7 +33,7 @@
                         Click
                         <media type="image" src="figures/export.png" />
                         in the the left side of the
-                        <link xref="ui#status">Statusbar</link>.
+                        <link xref="ui#status">Statusbar</link>
                         </p>
                     </item>
                     <item>

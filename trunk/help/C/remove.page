@@ -27,24 +27,24 @@
                         <media type="image" src="figures/manage.png"/>
                         </gui>
                         in the
-                        <link xref="ui#statusbar">Statusbar</link>.
+                        <link xref="ui#statusbar">Statusbar</link>
                         </p>
                     </item>
                     <item>
                         <p>
-                        Select "Remove Fonts" from the popup menu.
+                        Select "Remove Fonts" from the popup menu
                         </p>
                     </item>
                     <item>
                         <p>
                         Select the families you wish to remove from the
-                        list that is displayed.
+                        list that is displayed
                         </p>
                     </item>
                     <item>
                         <p>
                         Click
-                        <gui style="button">Delete Selected Fonts</gui>.
+                        <gui style="button">Delete Selected Fonts</gui>
                         </p>
                     </item>
                 </steps>

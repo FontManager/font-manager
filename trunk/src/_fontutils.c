@@ -36,6 +36,7 @@
 
 static PyObject * FcClose(PyObject *self, PyObject *args);
 static PyObject * FcOpen(PyObject *self, PyObject *args);
+static PyObject * FcReload(PyObject *self, PyObject *args);
 static PyObject * FcAddAppFontDir(PyObject *self, PyObject *args);
 static PyObject * FcAddAppFontFile(PyObject *self, PyObject *args);
 static PyObject * FcClearAppFonts(PyObject *self, PyObject *args);
@@ -65,6 +66,14 @@ FcClose(PyObject *self, PyObject *args)
 {
     FcFini();
     return Py_None;
+}
+
+static PyObject *
+FcReload(PyObject *self, PyObject *args)
+{
+    if (!FcInitReinitialize())
+        return Py_False;
+    return Py_True;
 }
 
 /* Add an application specific font directory */
@@ -577,6 +586,10 @@ static PyMethodDef Methods[] = {
     "Finalize FontConfig Library.\n\n\
     This function takes no arguments and always returns None.\n\n\
     Note : This call can cause a crash in newer versions of FontConfig."},
+
+    {"FcReload", FcReload, METH_NOARGS,
+    "Re-Initialize FontConfig Library.\n\n\
+    This function takes no arguments and returns True if successful."},
 
     {"FcAddAppFontDir", FcAddAppFontDir, METH_VARARGS,
     "Add an application specific font directory\n\n\

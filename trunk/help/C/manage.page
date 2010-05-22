@@ -38,7 +38,7 @@
                             <media type="image" src="figures/enable.png"/>
                             </gui>
                             to the right of the
-                            <link xref="ui#family-pane">Family Pane</link>.
+                            <link xref="ui#family-pane">Family Pane</link>
                             </p>
                         </item>
                     </steps>
@@ -58,7 +58,7 @@
                             <media type="image" src="figures/disable.png"/>
                             </gui>
                             to the right of the
-                            <link xref="ui#family-pane">Family Pane</link>.
+                            <link xref="ui#family-pane">Family Pane</link>
                             </p>
                         </item>
                     </steps>

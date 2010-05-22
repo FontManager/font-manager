@@ -76,7 +76,7 @@
                                 <media type="image" src="figures/add.png"/>
                                 </gui>
                                 at the bottom of the
-                                <link xref="ui#side-pane">Side Pane</link>.
+                                <link xref="ui#side-pane">Side Pane</link>
                                 </p>
                             </item>
                             <item>
@@ -87,7 +87,7 @@
                             <item>
                                 <p>
                                 Add fonts by dragging them from the family
-                                column to your new collection.
+                                column to your new collection
                                 </p>
                             </item>
                         </steps>
@@ -107,7 +107,7 @@
                                 <media type="image" src="figures/remove.png"/>
                                 </gui>
                                 at the bottom of the
-                                <link xref="ui#side-pane">Side Pane</link>.
+                                <link xref="ui#side-pane">Side Pane</link>
                                 </p>
                             </item>
                         </steps>
@@ -127,7 +127,7 @@
                                 <media type="image" src="figures/enable.png"/>
                                 </gui>
                                 at the bottom of the
-                                <link xref="ui#side-pane">Side Pane</link>.
+                                <link xref="ui#side-pane">Side Pane</link>
                                 </p>
                             </item>
                         </steps>
@@ -147,7 +147,7 @@
                                 <media type="image" src="figures/disable.png"/>
                                 </gui>
                                 at the bottom of the
-                                <link xref="ui#side-pane">Side Pane</link>.
+                                <link xref="ui#side-pane">Side Pane</link>
                                 </p>
                             </item>
                         </steps>
@@ -172,7 +172,7 @@
                             <media type="image" src="figures/remove.png"/>
                             </gui>
                             to the right of the
-                            <link xref="ui#family-pane">Family Pane</link>.
+                            <link xref="ui#family-pane">Family Pane</link>
                             </p>
                         </item>
                     </steps>

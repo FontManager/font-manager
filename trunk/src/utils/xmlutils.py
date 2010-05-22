@@ -27,13 +27,14 @@ import os
 import glib
 import libxml2
 import logging
+import time
 
 from os.path import exists
 
 from constants import USER_FONT_DIR, USER_FONT_CONFIG_DIRS, \
                         USER_FONT_CONFIG_SELECT, USER_FONT_CONFIG_DESELECT, \
                         USER_FONT_COLLECTIONS, USER_FONT_COLLECTIONS_BAK, \
-                        USER_ACTIONS_CONFIG
+                        USER_ACTIONS_CONFIG, COMPAT_COLLECTIONS
 
 
 def add_patelt_node(node_ref, node_value, pat_name='family', val_type='string'):
@@ -238,7 +239,9 @@ def load_collections(fontmanager):
         if exists(USER_FONT_COLLECTIONS_BAK):
             os.rename(USER_FONT_COLLECTIONS_BAK, USER_FONT_COLLECTIONS)
         else:
-            return
+            order = []
+            load_compat_collections(fontmanager, order)
+            return order
     try:
         doc = libxml2.parseFile(USER_FONT_COLLECTIONS)
     except:
@@ -255,7 +258,32 @@ def load_collections(fontmanager):
         logging.info('Loaded user collection %s' % name)
         order.append(name)
     doc.freeDoc()
+    load_compat_collections(fontmanager, order)
     return order
+
+def load_compat_collections(fontmanager, order):
+    if not exists(COMPAT_COLLECTIONS):
+        return
+    try:
+        doc = libxml2.parseFile(COMPAT_COLLECTIONS)
+    except:
+        logging.warn("Failed to parse collection configuration")
+        return
+    nodes = doc.xpathEval('//group')
+    for node in nodes:
+        name = node.prop("name")
+        if name in order:
+            continue
+        comment = _('Created on %s' % \
+                time.strftime('%A, %B %d, %Y, at %I:%M %p', time.localtime()))
+        families = []
+        for family in node.xpathEval('family'):
+            families.append(family.content)
+        fontmanager.create_collection(name, comment, list(set(families)))
+        logging.info('Imported user collection %s' % name)
+        order.append(name)
+    doc.freeDoc()
+    return
 
 def save_collections(objects):
     """
@@ -276,15 +304,14 @@ def save_collections(objects):
     try:
         while len(order) != 0:
             name = order[0]
-            for collection in collections:
+            if name not in printed:
                 collection = objects['FontManager'].collections[name]
-                if collection.name == name and name not in printed:
-                    node = root.newChild(None, "fontcollection", None)
-                    node.setProp("name", collection.name)
-                    node.setProp("comment", collection.comment)
-                    for family in collection.families:
-                        add_patelt_node(node, family)
-                    printed.append(name)
+                node = root.newChild(None, "fontcollection", None)
+                node.setProp("name", collection.name)
+                node.setProp("comment", collection.comment)
+                for family in collection.families:
+                    add_patelt_node(node, family)
+                printed.append(name)
             order.pop(0)
     except:
         doc.freeDoc()
@@ -296,6 +323,34 @@ def save_collections(objects):
             logging.info("Nothing to restore...")
         return
     doc.saveFormatFile(USER_FONT_COLLECTIONS, format=1)
+    doc.freeDoc()
+    save_compat_collections(objects)
+    return
+
+def save_compat_collections(objects):
+    if exists(COMPAT_COLLECTIONS):
+        os.unlink(COMPAT_COLLECTIONS)
+    order = _get_collection_order(objects)
+    printed = []
+    # Start "printing"
+    doc = libxml2.newDoc("1.0")
+    root = doc.newChild(None, "groups", None)
+    collections = objects['FontManager'].list_collections()
+    try:
+        while len(order) != 0:
+            name = order[0]
+            if name not in printed:
+                collection = objects['FontManager'].collections[name]
+                node = root.newChild(None, "group", None)
+                node.setProp("name", collection.name)
+                for family in collection.families:
+                    node.newChild(None, 'family', family)
+                printed.append(name)
+            order.pop(0)
+    except:
+        doc.freeDoc()
+        return
+    doc.saveFormatFile(COMPAT_COLLECTIONS, format=1)
     doc.freeDoc()
     return
 
