@@ -76,10 +76,10 @@ class InstallFonts(object):
                     fileinfo = _fontutils.FT_Get_File_Info(join(root, filename))
                     ash = fileinfo['checksum']
                     new_hash[ash] = fileinfo
-        fonts = database.Table('Fonts')
-        for row in set(fonts.get('checksum')):
-            known_hash.append(row[0])
-        fonts.close()
+        for family in self.objects['FontManager'].iterkeys():
+            fonts = self.objects['FontManager'][family].styles
+            for font in fonts.itervalues():
+                known_hash.append(font['checksum'])
         dupes = [ f for f in new_hash.iterkeys() if f in known_hash]
         for k, v in new_hash.iteritems():
             if k in dupes:
