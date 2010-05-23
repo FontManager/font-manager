@@ -254,7 +254,8 @@ class Treeviews(object):
             families = self._selected_families()
             collection = data[0]
             self.manager.add_families_to(collection, families)
-            widget.get_selection().select_path(path)
+            if self.objects['Preferences'].focusondrop:
+                widget.get_selection().select_path(path)
         self.update_views()
         return
 

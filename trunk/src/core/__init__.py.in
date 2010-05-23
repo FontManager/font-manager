@@ -113,7 +113,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         fonts.Sort(self, self.progress)
         self._update_selections()
         self.auto_enable_collections()
-        self.total_families = len(self)
+        self.total_families = len(self.data)
         self._loading = False
         enable_blacklist()
         self.connid = self.connect('update-font-groups', self._update_orphans)
@@ -432,7 +432,8 @@ class Preferences(gobject.GObject):
                                                     gobject.TYPE_NONE,
                                                     (gobject.TYPE_BOOLEAN,))
                                                     }
-    _sections = ('Categories', 'Export Options', 'Font Folder', 'General')
+    _sections = ('Categories', 'Collections', 'Export Options', 'Font Folder',
+                    'General')
     fontdirs = []
     def __init__(self):
         gobject.GObject.__init__(self)
@@ -447,6 +448,7 @@ class Preferences(gobject.GObject):
         self.orphans = None
         self.hidden = None
         self.tooltips = None
+        self.focusondrop = None
         if exists(self.config_file):
             self.config.read(self.config_file)
             self._load_user_prefs()
@@ -492,7 +494,19 @@ class Preferences(gobject.GObject):
             self.minimize = config.getboolean('General', 'minimizeonclose')
             self.orphans = config.getboolean('Categories', 'orphans')
             self.hidden = config.getboolean('General', 'minimizeonstart')
-            self.tooltips = config.getboolean('General', 'showtooltips')
+            if config.has_option('General', 'showtooltips'):
+                self.tooltips = config.getboolean('General', 'showtooltips')
+                config.remove_option('General', 'showtooltips')
+            elif config.has_option('Collections', 'showcomments'):
+                    self.tooltips = config.getboolean('Collections', 
+                                                        'showcomments')
+            else:
+                self.tooltips = True
+            if config.has_option('Collections', 'focusondrop'):
+                self.focusondrop = config.getboolean('Collections', 
+                                                        'focusondrop')
+            else:
+                self.focusondrop = True
         except (ConfigParser.NoSectionError, ConfigParser.NoOptionError,
         ConfigParser.MissingSectionHeaderError, ConfigParser.ParsingError):
             self._load_defaults()
@@ -511,6 +525,7 @@ class Preferences(gobject.GObject):
         self.orphans = False
         self.hidden = False
         self.tooltips = True
+        self.focusondrop = True
         return
 
     def minimize_to_tray(self, minimize = True):
@@ -544,7 +559,8 @@ class Preferences(gobject.GObject):
         config.set('General', 'autostart', str(self.autostart))
         config.set('General', 'minimizeonclose', str(self.minimize))
         config.set('General', 'minimizeonstart', str(self.hidden))
-        config.set('General', 'showtooltips', str(self.tooltips))
+        config.set('Collections', 'showcomments', str(self.tooltips))
+        config.set('Collections', 'focusondrop', str(self.focusondrop))
         with open(self.config_file, 'wb') as configfile:
             self.config.write(configfile)
         save_directories(self.fontdirs)
