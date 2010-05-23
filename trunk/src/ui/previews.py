@@ -329,7 +329,8 @@ class Previews(object):
         if self.current_family.enabled:
             enable_font.set_sensitive(False)
             disable_font.set_sensitive(True)
-            character_map.set_sensitive(True)
+            if 'gucharmap' in self.objects['AvailableApps']:
+                character_map.set_sensitive(True)
         else:
             enable_font.set_sensitive(True)
             disable_font.set_sensitive(False)

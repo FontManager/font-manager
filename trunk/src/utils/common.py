@@ -31,6 +31,7 @@ import gtk
 import glob
 import time
 import logging
+import shlex
 import shutil
 import subprocess
 
@@ -62,9 +63,9 @@ class AvailableApps(list):
     """
     _defaults = ('dolphin', 'file-roller', 'gnome-appearance-properties',
                 'gucharmap', 'konqueror', 'nautilus', 'pcmanfm', 'thunar',
-                'xdg-open', 'gnome-terminal', 'konsole', 'terminal', 
+                'xdg-open', 'gnome-terminal', 'konsole', 'terminal',
                 'lxterminal', 'xterm', 'yelp')
-    _dirs = ['/usr/bin', '/usr/local/bin', '/bin', '/sw/bin']
+    _dirs = os.getenv('PATH', '/usr/bin').split(':')
     def __init__(self):
         list.__init__(self)
         self.update()
@@ -152,9 +153,9 @@ def create_archive_from_folder(arch_name, arch_type, destination,
 
     If delete is True (default), folder will be deleted afterwards
     """
+    archiver = 'file-roller -a "%s.%s" "%s"' % (arch_name, arch_type, folder)
     os.chdir(destination)
-    roller = subprocess.Popen('file-roller' + ' -a "%s.%s" "%s"' % \
-                                (arch_name, arch_type, folder), shell=True)
+    roller = subprocess.Popen(shlex.split(archiver))
     # Wait for file-roller to finish
     while roller.poll() is None:
         # Prevent loop from hogging cpu

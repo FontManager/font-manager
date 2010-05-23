@@ -71,6 +71,12 @@ class Export(object):
             tooltip = _('This feature requires the Report Lab Toolkit')
             self.objects['IncludeSampler'].set_tooltip_text(tooltip)
             self.objects['ExportAsPDF'].set_tooltip_text(tooltip)
+        if not 'file-roller' in self.objects['AvailableApps']:
+            tooltip = _('This feature requires File Roller')
+            self.objects['ExportAsArchive'].set_sensitive(False)
+            self.objects['ExportAsArchive'].set_tooltip_text(tooltip)
+            self.objects['IncludeSampler'].set_sensitive(False)
+            self.objects['ExportTo'].set_active(True)
         self.objects['ExportFileChooser'].connect('current-folder-changed',
                                                         self._on_dest_set)
         self.objects['ExportFileChooser'].set_current_folder(DESKTOP_DIR)
@@ -130,7 +136,7 @@ class Export(object):
         """
         self.workdir = join(TMP_DIR, self.current_collection)
         if exists(TMP_DIR):
-            os.unlink(TMP_DIR)
+            shutil.rmtree(TMP_DIR, ignore_errors=True)
         if exists(self.workdir):
             shutil.rmtree(self.workdir, ignore_errors=True)
         os.mkdir(TMP_DIR)
@@ -185,7 +191,7 @@ class Export(object):
             if path.endswith(T1_EXTS):
                 metrics = splitext(path)[0] + '.*'
                 for path in glob.glob(metrics):
-                    shutil.move(path, self.workdir)
+                    shutil.copy(path, self.workdir)
             progress += 1
             self.objects.progress_callback(None, total, progress)
         self.objects['ProgressBar'].set_text('')
@@ -209,7 +215,7 @@ class Export(object):
             if path.endswith(T1_EXTS):
                 metrics = splitext(path)[0] + '.*'
                 for path in glob.glob(metrics):
-                    shutil.move(path, self.workdir)
+                    shutil.copy(path, self.workdir)
             progress += 1
             self.objects.progress_callback(None, total, progress)
         self.objects['ProgressBar'].set_text('')

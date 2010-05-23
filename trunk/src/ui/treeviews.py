@@ -318,7 +318,7 @@ class Treeviews(object):
             if actions[action]['comment'] != 'None':
                 menuitem.set_tooltip_text(actions[action]['comment'])
             menu.append(menuitem)
-            menuitem.connect('activate', self.actions.run_command, 
+            menuitem.connect('activate', self.actions.run_command,
                                         (filepath, family, style))
         separator = gtk.SeparatorMenuItem()
         menu.append(separator)
