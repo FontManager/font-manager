@@ -63,8 +63,7 @@ class AvailableApps(list):
     """
     _defaults = ('dolphin', 'file-roller', 'gnome-appearance-properties',
                 'gucharmap', 'konqueror', 'nautilus', 'pcmanfm', 'thunar',
-                'xdg-open', 'gnome-terminal', 'konsole', 'terminal',
-                'lxterminal', 'xterm', 'yelp')
+                'xdg-open', 'yelp')
     _dirs = os.getenv('PATH', '/usr/bin').split(':')
     def __init__(self):
         list.__init__(self)
@@ -98,7 +97,7 @@ class AvailableApps(list):
             if isinstance(apps[0], str):
                 if self.have(apps[0]) and apps[0] not in self:
                     self.append(apps[0])
-            elif isinstance(apps[0], tuple) or isinstance(apps[0], list):
+            elif isinstance(apps[0], (tuple, list)):
                 for app in apps[0]:
                     if self.have(app) and app not in self:
                         self.append(app)
@@ -146,7 +145,7 @@ def _convert(char):
         return char.lower()
 
 def create_archive_from_folder(arch_name, arch_type, destination,
-                                                folder, delete = True):
+                                                folder, delete = False):
     """
     Create an archive named arch_name of type arch_type in destination from
     the supplied folder.

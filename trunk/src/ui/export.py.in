@@ -149,7 +149,7 @@ class Export(object):
                                                     self.outdir, self.workdir)
             self._do_cleanup()
         elif self.objects['ExportAsPDF'].get_active():
-            self._do_pdf_setup(self._get_filelist(), outp = self.outdir)
+            self._do_pdf_setup(self._get_filelist(), self.outdir)
             self._do_cleanup()
         elif self.objects['ExportTo'].get_active():
             self._do_direct_copy(self._get_filelist())

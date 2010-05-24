@@ -28,14 +28,14 @@ import gtk
 import gobject
 import logging
 import UserDict
-import webbrowser
+import shutil
 import subprocess
 
 from os.path import exists, join, splitext
 
 import core
 
-from constants import PACKAGE, PACKAGE_DATA_DIR
+from constants import PACKAGE, PACKAGE_DATA_DIR, TMP_DIR
 from ui.export import Export
 from ui.library import InstallFonts, RemoveFonts
 from ui.treeviews import Treeviews
@@ -50,6 +50,10 @@ class Main(object):
     Where everything starts.
     """
     def __init__(self):
+        # If this exists it means something probably went wrong last run,
+        # for now just get rid of it so we don't have even more issues
+        if exists(TMP_DIR):
+            shutil.rmtree(TMP_DIR, ignore_errors=True)
         logging.info("Font Manager is now starting")
         # FIXME disable blacklist is called by FontManager
         # But for whatever reason, we need to disable our blacklist right at

@@ -150,7 +150,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
             raise TypeError('Not a valid collection object or family name')
         if isinstance(families[0], str):
             collection.add(families[0])
-        elif isinstance(families[0], tuple) or isinstance(families[0], list):
+        elif isinstance(families[0], (tuple, list)):
             families = list(families[0])
             collection.add(families)
         self.emit('update-font-groups', self.collections)
@@ -253,10 +253,10 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         try:
             if isinstance(values, str):
                 self.data[values].enabled = state
-            elif isinstance(values[0], tuple) or isinstance(values[0], list):
+            elif isinstance(values[0], (tuple, list)):
                 for value in values[0]:
                     self.data[value].enabled = state
-            elif isinstance(values, tuple) or isinstance(values, list):
+            elif isinstance(values, (tuple, list)):
                 for value in values:
                     self.data[value].enabled = state
             else:
@@ -684,10 +684,6 @@ if os.path.islink(USER_LIBRARY_SYMLINK):
         os.unlink(USER_LIBRARY_SYMLINK)
 if not exists(USER_LIBRARY_SYMLINK):
     os.symlink(USER_LIBRARY_DIR, join(USER_FONT_DIR, 'Library'))
-# If this exists it means something probably went wrong last run,
-# for now just get rid of it so we don't have even more issues
-if exists(TMP_DIR):
-    shutil.rmtree(TMP_DIR, ignore_errors=True)
 # Overwrite user configuration file on startup.
 if exists(USER_FONT_CONFIG):
     os.unlink(USER_FONT_CONFIG)

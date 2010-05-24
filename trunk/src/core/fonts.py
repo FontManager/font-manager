@@ -56,7 +56,7 @@ class Collection(object):
         """
         if isinstance(families[0], str):
             self.families.append(families[0])
-        elif isinstance(families[0], tuple) or isinstance(families[0], list):
+        elif isinstance(families[0], (tuple, list)):
             for family in families[0]:
                 self.families.append(family)
         else:
@@ -96,7 +96,7 @@ class Collection(object):
         if isinstance(families[0], str):
             if self.contains(families[0]):
                 self.families.remove(families[0])
-        elif isinstance(families[0], tuple) or isinstance(families[0], list):
+        elif isinstance(families[0], (tuple, list)):
             for family in families[0]:
                 while self.contains(family):
                     self.families.remove(family)

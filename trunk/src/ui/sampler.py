@@ -103,7 +103,7 @@ class BuildSample:
         self.fontlist = fontlist
         self.outfile = outfile
         filelist = []
-        if isinstance(fontlist, list):
+        if isinstance(fontlist, (tuple, list)):
             filelist = fontlist
         elif isdir(fontlist):
             for root, dirs, files in os.walk(fontlist):
