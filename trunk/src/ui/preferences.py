@@ -51,23 +51,37 @@ class PreferencesDialog():
         'PrefsMinimize', 'PrefsOrphans', 'PrefsPangram', 'PrefsFontSize',
         'DBTree', 'UserDirTree', 'SearchDB', 'RemoveFromDB', 'ResetDB',
         'PrefsClose', 'DefaultFolderBox', 'ArchTypeBox', 'PrefsFileChooser',
-        'PrefsInvalidDir', 'AutoScanInfo'
+        'PrefsInvalidDir', 'AutoScanInfo', 'PrefsCollFocus', 'PrefsCollTotal',
+        'PrefsFamTotal', 'PrefsToolTips', 'PrefsBrowseMode'
         )
     def __init__(self, objects):
         self.objects = objects
         self.builder = objects.builder
         self.preferences = objects['Preferences']
         self.widgets = {}
-        self.pending_additions = []
-        self.pending_removals = []
         self.directories = None
         self.dir_tree = None
         self.db_tree = None
+        self.update_required = False
         for widget in self._widgets:
             self.widgets[widget] = self.builder.get_object(widget)
-        self._connect_handlers()
+        self._create_widgets()
         self._setup_treeviews()
         self._update_widgets()
+        self._connect_handlers()
+
+    def _create_widgets(self):
+        widgets = self.widgets
+        dir_combo = gtk.ComboBox()
+        cell = gtk.CellRendererText()
+        dir_combo.pack_start(cell, True)
+        dir_combo.add_attribute(cell, 'text', 0)
+        arch_combo = gtk.combo_box_new_text()
+        for ext in 'zip', 'tar.bz2', 'tar.gz':
+            arch_combo.append_text(ext)
+        widgets['DirCombo'] = dir_combo
+        widgets['ArchCombo'] = arch_combo
+        return
 
     def _connect_handlers(self):
         """
@@ -87,7 +101,12 @@ class PreferencesDialog():
                     'PrefsHidden'       :   self._on_hide_at_start,
                     'PrefsMinimize'     :   self._on_minimize_to_tray,
                     'PrefsOrphans'      :   self._on_show_orphans,
-                    'PrefsPangram'      :   self._on_use_pangram
+                    'PrefsPangram'      :   self._on_use_pangram,
+                    'PrefsCollFocus'    :   self._on_focus_on_drop,
+                    'PrefsCollTotal'    :   self._on_coll_totals,
+                    'PrefsFamTotal'     :   self._on_fam_totals,
+                    'PrefsToolTips'     :   self._on_show_tooltips,
+                    'PrefsBrowseMode'   :   self._on_browse_mode
                     }
         widgets = self.widgets
         widgets['PreferencesDialog'].connect('delete-event', self._on_close)
@@ -98,32 +117,25 @@ class PreferencesDialog():
         widgets['PrefsFontSize'].connect('value-changed',
                                                 self._on_font_size_change)
         widgets['SearchDB'].connect('icon-press', self._on_clear_db_search)
-        dir_combo = gtk.ComboBox()
-        cell = gtk.CellRendererText()
-        dir_combo.pack_start(cell, True)
-        dir_combo.add_attribute(cell, 'text', 0)
-        widgets['DefaultFolderBox'].pack_start(dir_combo, False, True, 5)
-        widgets['DirCombo'] = dir_combo
+        widgets['DefaultFolderBox'].pack_start(widgets['DirCombo'], False,
+                                                                    True, 5)
         widgets['DirCombo'].connect('changed', self._on_default_dir_changed)
-        arch_combo = gtk.combo_box_new_text()
-        widgets['ArchCombo'] = arch_combo
         widgets['ArchCombo'].connect('changed', self._on_arch_type_changed)
-        widgets['ArchTypeBox'].pack_start(arch_combo, False, True, 5)
-        for ext in 'zip', 'tar.bz2', 'tar.gz':
-            arch_combo.append_text(ext)
+        widgets['ArchTypeBox'].pack_start(widgets['ArchCombo'], False, True, 5)
         return
 
     def _add_dir(self, directory):
         """
         Add a directory to fontconfig search path.
         """
-        if directory not in self.pending_additions:
-            self.pending_additions.append(directory)
-        tree = self.widgets['UserDirTree']
-        tree.get_model().append([directory])
-        tree.queue_draw()
-        while gtk.events_pending():
-            gtk.main_iteration()
+        if directory:
+            self.preferences.add_user_font_dir(directory)
+            tree = self.widgets['UserDirTree']
+            tree.get_model().append([directory])
+            tree.queue_draw()
+            while gtk.events_pending():
+                gtk.main_iteration()
+            self.update_required = True
         return
 
     def _get_new_dir(self):
@@ -208,6 +220,16 @@ class PreferencesDialog():
         self._on_add_dir()
         return
 
+    def _on_browse_mode(self, widget):
+        switch = widget.get_active()
+        self.preferences.browsemode = switch
+        if switch:
+            self.update_required = True
+        else:
+            if self.objects['BrowseFonts'].get_property('visible'):
+                self.objects['BrowseFonts'].hide()
+        return
+
     def _on_clear_db_search(self, widget, unused_icon_pos, unused_event):
         """
         Clear database search entry.
@@ -224,13 +246,52 @@ class PreferencesDialog():
         self.widgets['PreferencesDialog'].hide()
         while gtk.events_pending():
             gtk.main_iteration()
-        for directory in self.pending_removals:
-            self.preferences.remove_user_font_dir(directory)
-        del self.pending_removals[:]
-        for directory in self.pending_additions:
-            self.preferences.add_user_font_dir(directory)
-        del self.pending_additions[:]
+        if self.update_required:
+            self.objects.reload()
         return True
+
+    def _on_coll_totals(self, widget):
+        current = widget.get_active()
+        self.preferences.collectiontotals = current
+        try:
+            render = \
+            self.objects['CategoryTree'].get_column(0).get_cell_renderers()[0]
+            render.set_property('show-count', current)
+            render = \
+            self.objects['CollectionTree'].get_column(0).get_cell_renderers()[0]
+            render.set_property('show-count', current)
+            self.objects['CategoryTree'].queue_draw()
+            self.objects['CollectionTree'].queue_draw()
+        except TypeError:
+            self.update_required = True
+        return
+
+    def _on_fam_totals(self, widget):
+        current = widget.get_active()
+        self.preferences.familytotals = current
+        try:
+            render = \
+            self.objects['FamilyTree'].get_column(0).get_cell_renderers()[0]
+            render.set_property('show-count', current)
+            self.objects['FamilyTree'].queue_draw()
+        except TypeError:
+            self.update_required = True
+        return
+
+    def _on_focus_on_drop(self, widget):
+        self.preferences.focusondrop = widget.get_active()
+        return
+
+    def _on_show_tooltips(self, widget):
+        show = widget.get_active()
+        self.preferences.tooltips = show
+        if show:
+            self.objects['CategoryTree'].set_tooltip_column(2)
+            self.objects['CollectionTree'].set_tooltip_column(2)
+        else:
+            self.objects['CategoryTree'].set_tooltip_column(-1)
+            self.objects['CollectionTree'].set_tooltip_column(-1)
+        return
 
     def _on_default_dir_changed(self, widget):
         """
@@ -279,8 +340,7 @@ class PreferencesDialog():
             treeiter, directory = self._get_selected_dir()
         except TypeError:
             return
-        if directory not in self.pending_removals:
-            self.pending_removals.append(directory)
+        self.preferences.remove_user_font_dir(directory)
         dir_tree = self.widgets['UserDirTree']
         model = dir_tree.get_model()
         selection = dir_tree.get_selection()
@@ -294,6 +354,7 @@ class PreferencesDialog():
             path_to_select = model.iter_n_children(None) - 1
             if (path_to_select >= 0):
                 selection.select_path(path_to_select)
+        self.update_required = True
         return
 
     def _on_dir_selection_changed(self, treeselection):
@@ -328,10 +389,7 @@ class PreferencesDialog():
         """
         Show or hide application at startup.
         """
-        if widget.get_active():
-            self.preferences.hidden = True
-        else:
-            self.preferences.hidden = False
+        self.preferences.minimizeonstart = widget.get_active()
         return
 
     def _on_minimize_to_tray(self, widget):
@@ -339,6 +397,7 @@ class PreferencesDialog():
         Minimize application to tray instead of closing.
         """
         self.preferences.minimize_to_tray(widget.get_active())
+        self.update_required = True
         return
 
     def _on_reset_db(self, unused_widget):
@@ -376,7 +435,7 @@ class PreferencesDialog():
             obj = self.objects['FontManager'].categories[_('Orphans')]
             header = category_model.get_iter_root()
             category_model.append(header,
-                                [obj.get_name(), obj.get_label(), obj.comment])
+        [obj.get_name(), obj.get_label(), obj.comment, str(len(obj.families))])
             category_tree.expand_all()
         return
 
@@ -384,10 +443,7 @@ class PreferencesDialog():
         """
         Include pangram in exported .pdf files.
         """
-        if widget.get_active():
-            self.preferences.pangram = True
-        else:
-            self.preferences.pangram = False
+        self.preferences.pangram = widget.get_active()
         return
 
     def _populate_trees(self, dir_tree, db_tree):
@@ -465,24 +521,34 @@ class PreferencesDialog():
         """
         Update widget values.
         """
+        widgets = {
+                    'PrefsHidden'       :   'minimizeonstart',
+                    'PrefsAutoStart'    :   'autostart',
+                    'PrefsMinimize'     :   'minimizeonclose',
+                    'PrefsOrphans'      :   'orphans',
+                    'PrefsPangram'      :   'pangram',
+                    'PrefsCollFocus'    :   'focusondrop',
+                    'PrefsCollTotal'    :   'collectiontotals',
+                    'PrefsFamTotal'     :   'familytotals',
+                    'PrefsToolTips'     :   'tooltips',
+                    'PrefsBrowseMode'   :   'browsemode'
+                    }
+        preferences = self.preferences
+        for widget, val in widgets.iteritems():
+            self.widgets[widget].set_active(getattr(preferences, val))
         font_size = self.widgets['PrefsFontSize']
-        font_size.get_adjustment().set_value(self.preferences.fontsize)
-        self.widgets['PrefsHidden'].set_active(self.preferences.hidden)
-        self.widgets['PrefsAutoStart'].set_active(self.preferences.autostart)
-        self.widgets['PrefsMinimize'].set_active(self.preferences.minimize)
-        self.widgets['PrefsOrphans'].set_active(self.preferences.orphans)
-        self.widgets['PrefsPangram'].set_active(self.preferences.pangram)
+        font_size.get_adjustment().set_value(preferences.fontsize)
 
         model = self.widgets['DirCombo'].get_model()
         dir_iter = search(model, model.iter_children(None),
-                                    match, (0, self.preferences.folder))
+                                    match, (0, preferences.folder))
         try:
             if model.iter_is_valid(dir_iter):
                 self.widgets['DirCombo'].set_active_iter(dir_iter)
         except TypeError:
             self.widgets['DirCombo'].set_active(0)
 
-        arch_type = self.preferences.archivetype
+        arch_type = preferences.archivetype
         types = {
                 'zip'       :   0,
                 'tar.bz2'   :   1,

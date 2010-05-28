@@ -4,6 +4,7 @@ build:
 	dh_testdir
 	./configure --prefix=/usr
 	$(MAKE)
+	find . -name *.py[co] -exec rm -f '{}' \;
 	touch $@
 
 clean: 

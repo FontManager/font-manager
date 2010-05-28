@@ -26,17 +26,19 @@ This module handles everything related to the font preview area.
 # pylint: disable-msg=E0602
 
 import gtk
+import glib
 import gobject
 import logging
 import subprocess
+import time
 
-from os.path import basename
+from os.path import basename, join
 
+from constants import PACKAGE_DIR
 from fontinfo import FontInformation
 
 
 DEFAULT_STYLES  =  ['Regular', 'Roman', 'Medium', 'Normal', 'Book']
-DEFAULT_PREVIEW_SIZE = 11
 # Note to translators: this should be a pangram (a sentence containing all
 # letters of your alphabet. See http://en.wikipedia.org/wiki/Pangram for
 # more information and possible samples for your language.
@@ -51,10 +53,11 @@ class Previews(object):
     def __init__(self, objects):
         self.objects = objects
         self.manager = self.objects['FontManager']
+        self.preferences = self.objects['Preferences']
         self.preview_text = PREVIEW_TEXT
         self.compare_text = COMPARE_TEXT
-        self.preview_fgcolor = gtk.gdk.color_parse('black')
-        self.preview_bgcolor = gtk.gdk.color_parse('white')
+        self.preview_fgcolor = gtk.gdk.color_parse(self.preferences.fgcolor)
+        self.preview_bgcolor = gtk.gdk.color_parse(self.preferences.bgcolor)
         self.mode = 'preview'
         self.current_family = None
         self.current_style = None
@@ -71,9 +74,9 @@ class Previews(object):
         text_entry.connect('icon-press', self._on_clear_custom_text)
         self.objects['CustomText'].connect('toggled', self._on_custom_toggled)
         # Correct value on start
+        self.size = self.objects['Preferences'].previewsize
         size_adjustment = self.objects['SizeAdjustment']
-        size_adjustment.set_value(DEFAULT_PREVIEW_SIZE)
-        self.size = DEFAULT_PREVIEW_SIZE
+        size_adjustment.set_value(self.size)
         # Make it do something
         size_adjustment.connect('value-changed', self._on_size_adj_v_change)
         # Gnome Character Map
@@ -85,10 +88,11 @@ class Previews(object):
         self.objects['StyleCombo'].connect('changed', self._on_style_changed)
         self.objects['FontInformation'].connect('clicked', self._on_font_info)
         self._init_compare_tree()
+        self.objects['BrowseFonts'].connect('clicked', self._on_browse_fonts)
+        self.objects['BackButton'].connect('clicked', self._on_browse_fonts)
 
     def _init_compare_tree(self):
-        compare_model = gtk.ListStore(gobject.TYPE_STRING,
-                                        gobject.TYPE_PYOBJECT)
+        compare_model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_PYOBJECT)
         self.compare_tree.set_model(compare_model)
         cell_renderer = gtk.CellRendererText()
         preview_column = gtk.TreeViewColumn()
@@ -104,6 +108,24 @@ class Previews(object):
                                                         self._on_clear_compare)
         self.objects['ColorSelect'].connect('clicked',
                                                     self._on_show_colors_dialog)
+        return
+
+    def _on_browse_fonts(self, widget):
+        if widget == self.objects['BrowseFonts']:
+            self.objects['MainNotebook'].set_current_page(1)
+            self.objects['CollectionButtonsFrame'].hide()
+            collection = self.objects['Treeviews'].current_collection
+            families = self.manager.list_families_in(collection)
+            self.objects['Browse'].update_tree(families)
+        else:
+            if self.objects['Browse'].working:
+                self.objects['Browse'].cancel = True
+            self.objects['MainNotebook'].set_current_page(0)
+            self.objects['CollectionButtonsFrame'].show()
+            self.objects['Treeviews'].update_views(True)
+        while gtk.events_pending():
+            gtk.main_iteration()
+        return
 
     def _on_switch_mode(self, unused_widget):
         """
@@ -135,6 +157,7 @@ class Previews(object):
             compare_buttons.hide()
             character_map.show()
             font_info.show()
+        return
 
     def _on_add_compare(self, unused_widget):
         lstore = self.compare_tree.get_model()
@@ -183,14 +206,19 @@ class Previews(object):
         return
 
     def _cell_data_cb(self, column, cell, model, treeiter):
+        style = self.compare_tree.get_style()
+        # pango.SCALE is currently 9216
+        scale = 9216
+        font_desc = style.font_desc
+        font_desc.set_size(int(scale * 1.2))
         cellset = cell.set_property
         if model.get_path(treeiter)[0] % 2 == 0:
             # this is a name row
             cellset('text', model.get_value(treeiter, 0))
-            cellset('font', 'Sans 11')
+            cellset('font_desc', font_desc)
             cellset('ypad', 2)
-            cellset('background', '#F7F7F7')
-            cellset('foreground', None)
+            cellset('background', style.base[gtk.STATE_NORMAL])
+            cellset('foreground', style.text[gtk.STATE_NORMAL])
         else:
             # this is a preview row
             cellset('text', self.compare_text)
@@ -225,6 +253,7 @@ class Previews(object):
             if path_to_scroll_to > 1:
                 # workaround strange row height bug for first title row
                 self.compare_tree.scroll_to_cell(path_to_scroll_to)
+        return
 
     def update_compare_view(self):
         """
@@ -247,6 +276,7 @@ class Previews(object):
         self.preview_fgcolor = fgcolor
         self.preview_bgcolor = bgcolor
         self.update_compare_view()
+        return
 
     def _on_show_colors_dialog(self, unused_widget):
         """
@@ -259,12 +289,17 @@ class Previews(object):
                                 lambda widget, event: widget.hide() or True)
         self.objects['CloseColorSelector'].connect('clicked', \
                                         lambda widget: dialog.hide() or True)
+        self.objects['ForegroundColor'].set_property('color', 
+                                                        self.preview_fgcolor)
+        self.objects['BackgroundColor'].set_property('color', 
+                                                        self.preview_bgcolor)
         self.objects['ForegroundColor'].connect('color-set',
                                                         self._on_colors_changed)
         self.objects['BackgroundColor'].connect('color-set',
                                                         self._on_colors_changed)
         dialog.show()
         dialog.present()
+        return
 
     def _on_colors_changed(self, unused_widget):
         """
@@ -272,7 +307,10 @@ class Previews(object):
         """
         fgcolor = self.objects['ForegroundColor'].get_color()
         bgcolor = self.objects['BackgroundColor'].get_color()
+        self.preferences.fgcolor = fgcolor.to_string()
+        self.preferences.bgcolor = bgcolor.to_string()
         self.set_colors(fgcolor, bgcolor)
+        return
 
     #########################################################################
 
@@ -288,6 +326,7 @@ class Previews(object):
         else:
             text_entry.hide()
             widget.set_label(_('Custom Text'))
+        return
 
     def _on_clear_custom_text(self, unused_widget, unused_x, unused_y):
         """
@@ -391,7 +430,6 @@ class Previews(object):
         if selected_face:
             descr = selected_face.describe()
             self._set_preview_text(descr)
-
         return
 
     def _on_size_adj_v_change(self, widget):
@@ -402,6 +440,7 @@ class Previews(object):
         self._set_preview_text(self.current_style)
         if self.mode == 'compare':
             self.update_compare_view()
+        self.objects['Preferences'].previewsize = self.size
         return
 
     def _set_preview_text(self, descr):
@@ -436,3 +475,71 @@ class Previews(object):
         self.info_dialog.show(self.current_family, self.current_style,
                                         self.current_style_as_string)
         return
+
+
+class Browse(object):
+    """
+    Create a treeview containing inline previews of all fonts.
+    """
+    def __init__(self, objects):
+        self.objects = objects
+        self.browse_tree = self.objects['BrowseTree']
+        self.families = self.objects['FontManager'].list_families()
+        self.treestore = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.browse_tree.set_model(self.treestore)
+        renderer = gtk.CellRendererText()
+        renderer.set_property('ypad', 3)
+        column = gtk.TreeViewColumn(None, renderer, markup=1)
+        self.browse_tree.append_column(column)
+        self.working = False
+        self.cancel = False
+
+    def update_tree(self, families):
+        self.families = families
+        self.objects['BrowseScroll'].set_sensitive(False)
+        if self.working:
+            self.cancel = True
+        while self.working:
+            time.sleep(0.25)
+            while gtk.events_pending():
+                gtk.main_iteration()
+            continue
+        self.treestore.clear()
+        gobject.idle_add(self._populate_browse_tree)
+        return
+
+    # Adapted from gnome-specimen.
+    def _populate_browse_tree(self):
+        """
+        Idle callback that adds font families to the tree model
+        """
+        # loading is done when the list of remaining families is empty
+        if len(self.families) == 0 or self.cancel:
+            self.objects['BrowseScroll'].set_sensitive(True)
+            self.browse_tree.expand_all()
+            self.working = False
+            self.cancel = False
+            return False
+        self.working = True
+        # speedup: temporarily disconnect the model
+        model = self.browse_tree.get_model()
+        self.browse_tree.set_model(None)
+        # add a bunch of fonts and faces to the treemodel
+        try:
+            for i in range(100):
+                family = self.families.pop(0)
+                obj = self.objects['FontManager'][family].pango_family
+                root_node = self.treestore.append(None, [family,
+                    '<span size="xx-large" weight="heavy">%s</span>' % \
+                    glib.markup_escape_text(family)])
+                for style in obj.list_faces():
+                    self.treestore.append(root_node, [obj.get_name(),
+                        '<span size="x-large" font_desc="%s">%s %s</span>' % \
+                            (style.describe(), glib.markup_escape_text(family),
+                            glib.markup_escape_text(style.get_face_name()))])
+        except IndexError:
+            pass
+        # reconnect the model
+        self.browse_tree.set_model(model)
+        # run again
+        return True

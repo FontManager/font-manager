@@ -71,9 +71,19 @@ def main():
         _exit_with_error('Importing pygtk and gtk modules failed',  error)
 
     try:
+        import glib
+    except ImportError, error:
+        _exit_with_error('Importing glib module failed',  error)
+
+    try:
         import gobject
     except ImportError, error:
         _exit_with_error('Importing gobject module failed',  error)
+
+    try:
+        import cairo
+    except ImportError, error:
+        _exit_with_error('Importing pycairo module failed',  error)
 
     try:
         import libxml2

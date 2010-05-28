@@ -33,7 +33,7 @@
                         Click
                         <media type="image" src="figures/export.png" />
                         in the the left side of the
-                        <link xref="ui#status">Statusbar</link>
+                        <link xref="ui#statusbar">Statusbar</link>
                         </p>
                     </item>
                     <item>
@@ -51,9 +51,9 @@
         <p>
         You can set the type of archive created and other options by
         clicking <media type="image" src="figures/preferences.png" /> in the
-        left side of the <link xref="ui#status">Statusbar</link>, then
-        selecting the <gui>Application Options</gui> tab and making your
-        changes under <gui>Export Options</gui>.
+        left side of the <link xref="ui#statusbar">Statusbar</link>, then
+        selecting the <gui>Application</gui> tab and making your changes under
+        <gui>Export Options</gui>.
         </p>
     </note>
 

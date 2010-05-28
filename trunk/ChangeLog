@@ -1,3 +1,27 @@
+    * Update (0.5.4)
+
+        Fix several bugs introduced in the 0.5.x releases, hopefully without
+        introducing new ones.
+
+        Several interface improvements. The most important one being that
+        the application now saves most of it's state when closed,
+        i.e. window size, preview font size, compare colors, pane positions, etc.
+
+        Added an option to keep the current collection focused when adding
+        families to other collections as suggested at
+        http://code.google.com/p/font-manager/issues/detail?id=18
+
+        Added a "browser mode" as suggested at
+        http://code.google.com/p/font-manager/issues/detail?id=19
+
+        Switch to Mallard-based help, unfortunately this means users who do
+        not have Yelp installed will not have access to it. :-(
+
+        Then again, anyone who's reading the help pages for any reason other
+        than just being bored should file a bug detailing why they needed help,
+        and what would make things easier. ;-)
+
+
     * Update (0.5.3)
 
         Fix several errors due to escaped/unescaped markup.

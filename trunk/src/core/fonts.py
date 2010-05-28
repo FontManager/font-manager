@@ -144,6 +144,21 @@ class Family(object):
         """
         self.name, self.user, self.enabled, self.styles = state
 
+    def get_count(self, format = True):
+        """
+        Return the number of styles.
+        
+        If format is True, return a string suitable for display, i.e '5 Fonts'
+        """
+        count = len(self.styles)
+        if not format:
+            return count
+        else:
+            if count > 1:
+                return _('%s Fonts') % count
+            else:
+                return _('%s Font') % count
+
     def get_label(self):
         """
         Return a label suitable for display in a gtk.TreeView.
@@ -280,7 +295,7 @@ class Sort(object):
         """
         Set up default categories.
         """
-        self.manager.create_category(_('All Fonts'),
+        self.manager.create_category(_('All'),
                                         families = self.available,
                                         comment = _('All available fonts'))
         self.manager.create_category(_('System'), families = self.system,

@@ -39,7 +39,7 @@ from constants import PACKAGE, PACKAGE_DATA_DIR, TMP_DIR
 from ui.export import Export
 from ui.library import InstallFonts, RemoveFonts
 from ui.treeviews import Treeviews
-from ui.previews import Previews
+from ui.previews import Browse, Previews
 from utils.common import disable_blacklist, open_folder, delete_cache, \
                             delete_database, reset_fontconfig_cache
 from utils.xmlutils import check_libxml2_leak, save_collections
@@ -61,11 +61,24 @@ class Main(object):
         disable_blacklist()
         self.objects = ObjectContainer()
         self.main_window = self.objects['MainWindow']
+        self.main_window.connect('window-state-event', self._set_window_state)
         self.preferences = self.objects['Preferences']
         self.menus = self.objects['PopupMenus']
         # Showtime
+        self.objects.load_widgets()
+        if self.preferences.hpane > 0:
+            pane = self.objects['HorizontalPane']
+            pane.set_position(self.preferences.hpane)
+        if self.preferences.vpane > 0:
+            pane = self.objects['VerticalPane']
+            pane.set_position(self.preferences.vpane)
+        if self.preferences.windowsize != '0:0':
+            width, height = self.preferences.windowsize.split(':')
+            self.main_window.resize(int(width), int(height))
+        if self.preferences.maximized:
+            self.main_window.maximize()
         self.main_window.show()
-        if self.preferences.hidden:
+        if self.preferences.minimizeonstart:
             self.main_window.iconify()
         # This is called just to force an update
         while gtk.events_pending():
@@ -73,10 +86,9 @@ class Main(object):
         # Keep a handle to this connection, so we can change it if requested
         self.quit_id = self.main_window.connect('delete-event', self.quit)
         # Load
-        self.objects.load_widgets()
         self.objects.load_core()
         # Notification
-        if self.preferences.hidden:
+        if self.preferences.minimizeonstart:
             self.objects.notify_send(_('Finished loading %s families') % \
                                 self.objects['FontManager'].total_families)
         logging.info(_('Finished loading %s families') % \
@@ -85,11 +97,14 @@ class Main(object):
         self.objects.load_ui_elements()
         self.previews = self.objects['Previews']
         self.treeviews = self.objects['Treeviews']
+        if self.preferences.browsemode:
+            self.objects['Browse'] = Browse(self.objects)
+            self.objects['BrowseFonts'].show()
         self.objects.connect_callbacks()
         self._connect_callbacks()
         # Tray icon
         self.tray_icon = None
-        if self.preferences.minimize:
+        if self.preferences.minimizeonclose:
             self._use_tray_icon(None)
         # Install/Remove/Export functions
         self.export = None
@@ -161,7 +176,7 @@ class Main(object):
         return
 
     def reload(self, unused_widget, del_cache = False):
-        save_collections(self.objects)
+        self._save_settings()
         self.objects.notify_send(_('Font Manager will restart in a moment'))
         logging.info("Restarting...")
         if del_cache:
@@ -174,6 +189,23 @@ class Main(object):
                         ('--execvp_needs_to_stop_crying="True"',))
         except OSError, error:
             logging.error(error)
+        return
+
+    def _save_settings(self):
+        if not self.preferences.maximized:
+            width, height = self.main_window.get_size()
+            self.preferences.windowsize = '%s:%s' % (width, height)
+        logging.info("Saving configuration")
+        self.preferences.save()
+        save_collections(self.objects)
+        return
+
+    def _set_window_state(self, widget, event):
+        if event.type == gtk.gdk.WINDOW_STATE:
+            if event.new_window_state == gtk.gdk.WINDOW_STATE_MAXIMIZED:
+                self.preferences.maximized = True
+            else:
+                self.preferences.maximized = False
         return
 
     def _use_tray_icon(self, unused_cls_instance, minimize = True):
@@ -198,8 +230,7 @@ class Main(object):
         return
 
     def quit(self, unused_widget = None, possible_event = None):
-        logging.info("Saving configuration")
-        save_collections(self.objects)
+        self._save_settings()
         check_libxml2_leak()
         logging.info("Exiting...")
         gtk.main_quit()
@@ -232,7 +263,9 @@ class ObjectContainer(UserDict.UserDict):
         'RemoveFontsTree', 'RemoveSearchEntry', 'RemoveFontsButton',
         'ExportDialog', 'ExportAsArchive', 'ExportAsPDF', 'ExportTo',
         'ExportFileChooserBox', 'ExportFileChooser', 'ExportPermissionsWarning',
-        'ExportArchiveOptionsBox', 'IncludeSampler', 'SearchBox', 'Advanced'
+        'ExportArchiveOptionsBox', 'IncludeSampler', 'SearchBox', 'Advanced',
+        'BrowseFonts', 'MainNotebook', 'BackButton', 'BrowseTree',
+        'BrowseScroll', 'CollectionButtonsFrame', 'SidePaneScroll'
         )
     def __init__(self):
         UserDict.UserDict.__init__(self)
@@ -243,9 +276,11 @@ class ObjectContainer(UserDict.UserDict):
         self.builder.add_from_file(join(PACKAGE_DATA_DIR, 'font-manager.ui'))
         self.data['MainWindow'] = self.builder.get_object('MainWindow')
         self.data['Preferences'] = core.get_preferences()
-        self.data['Preferences'].connect('update-font-dirs', self.reload)
+        # Preferences dialog restarts before it's done if this is enabled
+        #self.data['Preferences'].connect('update-font-dirs', self.reload)
         self.data['AvailableApps'] = core.get_applist()
         self.data['PopupMenus'] = PopupMenu()
+        self.data['Browse'] = None
         # Find and set up icon for use throughout app windows
         try:
             icon_theme = gtk.icon_theme_get_default()

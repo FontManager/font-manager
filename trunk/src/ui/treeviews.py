@@ -28,8 +28,10 @@ This module handles everything related to treeviews.
 # pylint: disable-msg=C0111
 
 import gtk
+import cairo
 import glib
 import gobject
+import logging
 import urlparse
 
 from os.path import join
@@ -40,7 +42,8 @@ from actions import UserActions
 from core.database import Table
 from constants import PACKAGE_DATA_DIR
 from library import InstallFonts
-from utils.common import match, natural_sort, search, FONT_EXTS
+from utils.common import ColorParse, CairoColors, match, natural_sort, \
+                            search, FONT_EXTS
 
 TARGET_TYPE_COLLECTION_ROW = 10
 TARGET_TYPE_FAMILY_ROW = 20
@@ -122,13 +125,20 @@ class Treeviews(object):
         return
 
     def _setup_categories(self):
-        category_model = gtk.TreeStore(gobject.TYPE_STRING,
+        category_model = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
                                     gobject.TYPE_STRING, gobject.TYPE_STRING)
-        cell_renderer = gtk.CellRendererText()
+        if self.objects['Preferences'].experimental:
+            cell_renderer = CellRendererTotal()
+            category_column = gtk.TreeViewColumn(_('Category'), cell_renderer,
+                                            markup = 1, label = 1, count = 3)
+            if not self.objects['Preferences'].collectiontotals:
+                cell_renderer.set_property('show-count', False)
+        else:
+            cell_renderer = gtk.CellRendererText()
+            category_column = gtk.TreeViewColumn(_('Category'), cell_renderer,
+                                                                    markup = 1)
         cell_renderer.set_property('xpad', 5)
         cell_renderer.set_property('ypad', 3)
-        category_column = gtk.TreeViewColumn(_('Category'),
-                                                cell_renderer, markup = 1)
         self.category_tree.set_model(category_model)
         self.category_tree.append_column(category_column)
         category_treeselect = self.category_tree.get_selection()
@@ -141,14 +151,22 @@ class Treeviews(object):
 
     def _setup_collections(self):
         collection_model = gtk.TreeStore(gobject.TYPE_STRING,
-                                    gobject.TYPE_STRING, gobject.TYPE_STRING)
-        editable_cells = gtk.CellRendererText()
+                gobject.TYPE_STRING, gobject.TYPE_STRING, gobject.TYPE_STRING)
+        if self.objects['Preferences'].experimental:
+            editable_cells = CellRendererTotal()
+            collection_column = gtk.TreeViewColumn(_('Collection'),
+                                                    editable_cells, markup = 1,
+                                                    label = 1, count = 3)
+            if not self.objects['Preferences'].collectiontotals:
+                editable_cells.set_property('show-count', False)
+        else:
+            editable_cells = gtk.CellRendererText()
+            collection_column = gtk.TreeViewColumn(_('Collection'),
+                                                    editable_cells, markup = 1)
         editable_cells.set_property('editable', True)
         editable_cells.set_property('xpad', 5)
         editable_cells.set_property('ypad', 3)
         editable_cells.connect('edited', self._set_collection_name)
-        collection_column = gtk.TreeViewColumn(_('Collection'),
-                                                    editable_cells, markup = 1)
         self.collection_tree.set_model(collection_model)
         self.collection_tree.append_column(collection_column)
         collection_treeselect = self.collection_tree.get_selection()
@@ -171,12 +189,21 @@ class Treeviews(object):
         family_header = gtk.Label()
         family_header.set_markup('<span size="large" weight="heavy">%s</span>'\
                                                                 % _('Family'))
-        family_model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
-        cell_renderer = gtk.CellRendererText()
+        family_model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                                            gobject.TYPE_STRING)
+        if self.objects['Preferences'].experimental:
+            cell_renderer = CellRendererTotal()
+            family_column = gtk.TreeViewColumn(_('Family'),
+                                                cell_renderer, markup = 1,
+                                                    label = 1, count = 2)
+            if not self.objects['Preferences'].familytotals:
+                cell_renderer.set_property('show-count', False)
+        else:
+            cell_renderer = gtk.CellRendererText()
+            family_column = gtk.TreeViewColumn(_('Family'),
+                                                cell_renderer, markup = 1)
         cell_renderer.set_property('xpad', 5)
         cell_renderer.set_property('ypad', 2)
-        family_column = gtk.TreeViewColumn(_('Family'),
-                                                cell_renderer, markup = 1)
         self.family_tree.set_model(family_model)
         family_treeselect = self.family_tree.get_selection()
         family_treeselect.set_mode(gtk.SELECTION_MULTIPLE)
@@ -216,7 +243,7 @@ class Treeviews(object):
             return
         filelist = [urlparse.urlsplit(path)[2].replace('%20', ' ') for path \
                         in data.data.split('\r\n') if path.endswith(FONT_EXTS)]
-        block = _('All Fonts'), _('System'), _('User'), _('Orphans')
+        block = _('All'), _('System'), _('User'), _('Orphans')
         if self.current_collection not in block:
             families = [ _fontutils.FT_Get_File_Info(path)['family'] \
                         for path in filelist]
@@ -227,13 +254,15 @@ class Treeviews(object):
         return
 
     def _on_drag_data_received(self, widget, context, x, y, data, info, tstamp):
+        if self.objects['MainNotebook'].get_current_page() != 0:
+            return
         model = widget.get_model()
         root = model.get_iter_root()
         if not root:
             return
         if info == TARGET_TYPE_COLLECTION_ROW:
             treeiter = widget.get_selection().get_selected()[1]
-            data = model.get(treeiter, 0, 1, 2)
+            data = model.get(treeiter, 0, 1, 2, 3)
             drop_info = widget.get_dest_row_at_pos(x, y)
             if drop_info:
                 path, position = drop_info
@@ -247,6 +276,8 @@ class Treeviews(object):
                 model.append(root, [data])
             if context.action == gtk.gdk.ACTION_MOVE:
                 context.finish(True, True, tstamp)
+            if path:
+                widget.get_selection().select_path(path)
         elif info == TARGET_TYPE_FAMILY_ROW:
             path = widget.get_path_at_pos(x, y)[0]
             treeiter = model.get_iter(path)
@@ -333,6 +364,8 @@ class Treeviews(object):
         return
 
     def _on_family_tooltip(self, widget, x, y, unused_kmode, tooltip):
+        if not self.objects['Preferences'].tooltips:
+            return False
         if not x > (widget.size_request()[0] * 1.5):
             return False
         try:
@@ -372,28 +405,28 @@ class Treeviews(object):
     def _load_categories(self):
         category_model = self.category_tree.get_model()
         header = category_model.append(None,
-                            [_('Category'), get_header(_('Category')), None])
-        categories = _('All Fonts'), _('System'), _('User')
+                    [_('Category'), get_header(_('Category')), None, None])
+        categories = _('All'), _('System'), _('User')
         for category in categories:
             obj = self.manager.categories[category]
             category_model.append(header,
-                                [obj.get_name(), obj.get_label(), obj.comment])
+        [obj.get_name(), obj.get_label(), obj.comment, str(len(obj.families))])
         if self.objects['Preferences'].orphans:
             obj = self.manager.categories[_('Orphans')]
             category_model.append(header,
-                                [obj.get_name(), obj.get_label(), obj.comment])
+        [obj.get_name(), obj.get_label(), obj.comment, str(len(obj.families))])
         self.category_tree.expand_all()
         return
 
     def _load_collections(self):
         collection_model = self.collection_tree.get_model()
         header = collection_model.append(None,
-                        [_('Collection'), get_header(_('Collection')), None])
+                [_('Collection'), get_header(_('Collection')), None, None])
         if self.manager.initial_collection_order is not None:
             for collection in self.manager.initial_collection_order:
                 obj = self.manager.collections[collection]
                 collection_model.append(header,
-                                [obj.get_name(), obj.get_label(), obj.comment])
+        [obj.get_name(), obj.get_label(), obj.comment, str(len(obj.families))])
         self.collection_tree.expand_all()
         return
 
@@ -417,10 +450,8 @@ class Treeviews(object):
         try:
             model, treeiter = tree_selection.get_selected()
             self.current_collection = model.get_value(treeiter, 0)
-            self._show_collection()
-            path = self.family_tree.get_model().get_iter_first()
-            if path is not None:
-                self.family_tree.get_selection().select_path(0)
+            # Unselect everything so the first entry gets selected
+            self.family_tree.get_selection().unselect_all()
             view = tree_selection.get_tree_view()
             self._update_sensitivity(view)
         # This happens when we unselect all in the sister view
@@ -444,7 +475,7 @@ class Treeviews(object):
             self.manager.set_disabled(selected)
         elif self._modify_mad_fonts():
             self.manager.set_disabled(selected)
-        self.update_views()
+        self._update_family_treeview()
         return
 
     def _on_enable_collection(self, unused_widget):
@@ -462,25 +493,27 @@ class Treeviews(object):
             self.manager.set_enabled(selected)
         elif self._modify_mad_fonts():
             self.manager.set_enabled(selected)
-        self.update_views()
+        self._update_family_treeview()
         return
 
     def _on_entry_icon(self, widget, unused_x, unused_y):
         self.objects['FamilySearchBox'].set_text('')
         self.family_tree.get_selection().select_path(0)
         self.family_tree.scroll_to_point(0, 0)
+        self.update_views()
         return
 
     def _on_family_activated(self, unused_tree, unused_path, unused_column):
         """
         Handle treeview double clicks.
         """
+        self._selected_paths()
         for family in self._selected_families():
             if self.manager[family].enabled:
                 self.manager.set_disabled(family)
             else:
                 self.manager.set_enabled(family)
-        self.update_views()
+        self._update_family_treeview()
         return
 
     def _on_remove_collection(self, unused_widget):
@@ -537,9 +570,14 @@ class Treeviews(object):
                 self.family_tree.scroll_to_point(0, 0)
         return
 
-    def _on_pane_resize(self, unused_widget, event):
+    def _on_pane_resize(self, widget, event):
         if event.type == gtk.gdk.BUTTON_RELEASE:
             self.objects['MainWindow'].queue_resize()
+            if isinstance(widget, gtk.HPaned):
+                self.objects['Preferences'].hpane = widget.get_position()
+            elif isinstance(widget, gtk.VPaned):
+                self.objects['Preferences'].vpane = widget.get_position()
+        return
 
     def _modify_mad_fonts(self):
         dialog = self.objects['MadFontsWarning']
@@ -553,7 +591,11 @@ class Treeviews(object):
         """
         Controls UI sensitivity
         """
-        block = _('All Fonts'), _('System'), _('Orphans')
+        if treeview == self.category_tree:
+            self.collection_tree.get_selection().unselect_all()
+        else:
+            self.category_tree.get_selection().unselect_all()
+        block = _('All'), _('System'), _('Orphans')
         widgets = (
                     self.objects['RemoveCollection'],
                     self.objects['DisableCollection'],
@@ -574,10 +616,6 @@ class Treeviews(object):
             self.objects['Export'].set_sensitive(False)
         else:
             self.objects['Export'].set_sensitive(True)
-        if treeview == self.category_tree:
-            self.collection_tree.get_selection().unselect_all()
-        else:
-            self.category_tree.get_selection().unselect_all()
         return
 
     def _on_new_collection(self, unused_widget):
@@ -591,21 +629,19 @@ class Treeviews(object):
         model = self.collection_tree.get_model()
         header = model.get_iter_first()
         treeiter = model.append(header,
-                            [obj.get_name(), obj.get_label(), obj.comment])
+        [obj.get_name(), obj.get_label(), obj.comment, str(len(obj.families))])
         path = model.get_path(treeiter)
         self.collection_tree.expand_all()
         column = self.collection_tree.get_column(0)
-        self.collection_tree.scroll_to_cell(path, column,
-                            use_align=True, row_align=0.25, col_align=0.0)
+        self.collection_tree.scroll_to_cell(path, column)
         self.collection_tree.set_cursor(path, column, start_editing=True)
         return
 
     def _selected_paths(self):
-        model, path_list = self.family_tree.get_selection().get_selected_rows()
+        path_list = self.family_tree.get_selection().get_selected_rows()[1]
         del self.selected_paths[:]
         for path in path_list:
             self.selected_paths.append(path)
-            family = model[path][0]
         return self.selected_paths
 
     def _selected_families(self):
@@ -619,7 +655,7 @@ class Treeviews(object):
         allcollections = \
         self.manager.list_collections() + self.manager.list_categories()
         if not self.current_collection in allcollections:
-            self.current_collection = _('All Fonts')
+            self.current_collection = _('All')
         model = self.family_tree.get_model()
         # model can be None during a reset
         if model:
@@ -636,10 +672,18 @@ class Treeviews(object):
             families = [f for f in families if f in filt]
         # Create a new liststore on every call to this function since
         # re-using an already sorted liststore can cause MAJOR slowdown.
-        family_model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        family_model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
+                                                            gobject.TYPE_STRING)
         for family in families:
-            obj = self.manager[family]
-            family_model.append([obj.get_name(), obj.get_label()])
+            try:
+                obj = self.manager[family]
+                family_model.append([obj.get_name(), obj.get_label(), 
+                                                            obj.get_count()])
+            except KeyError:
+                logging.error('Could not find %s for user collection %s' %
+                                (family, self.current_collection))
+                logging.info('Skipping...')
+                continue
         self.family_tree.set_model(family_model)
         self.family_tree.thaw_child_notify()
         self.objects['FamilyScroll'].set_sensitive(True)
@@ -648,15 +692,24 @@ class Treeviews(object):
         self.family_tree.get_column(0).set_sort_column_id(0)
         self.family_tree.set_enable_search(True)
         self.family_tree.set_search_entry(self.objects['FamilySearchBox'])
-        # In case update was triggered by enabling/disabling fonts *try* to
-        # prevent list from shifting too much and confusing or annoying the user
+        # Try to have something always selected
         if len(families) > 0 and len(self.selected_paths) > 0:
-            path = self.selected_paths[0]
-            self.family_tree.get_selection().select_path(path)
+            first = self.selected_paths[0]
+            selection = self.family_tree.get_selection()
+            try:
+                family_model.get_iter(first)
+                selection.select_path(first)
+            except ValueError:
+                if family_model.iter_n_children(None) > 0:
+                    first = family_model.iter_n_children(None) - 1
+                    selection.select_path(first)
             column = self.family_tree.get_column(0)
-            self.family_tree.scroll_to_cell(path, column,
-                                use_align=True, row_align=0.25, col_align=0.0)
+            self.family_tree.scroll_to_cell(first, column)
             del self.selected_paths[:]
+        elif len(families) > 0:
+            path = family_model.get_iter_first()
+            if path is not None:
+                self.family_tree.get_selection().select_iter(path)
         return
 
     def _update_category_treeview(self):
@@ -674,6 +727,7 @@ class Treeviews(object):
             new_label = obj.get_label()
             if label != new_label:
                 model.set(treeiter, 1, new_label)
+            model.set(treeiter, 3, str(len(obj.families)))
             treeiter = model.iter_next(treeiter)
         return
 
@@ -692,10 +746,13 @@ class Treeviews(object):
             new_label = obj.get_label()
             if label != new_label:
                 model.set(treeiter, 1, new_label)
+            model.set(treeiter, 3, str(len(obj.families)))
             treeiter = model.iter_next(treeiter)
         return
 
     def _update_family_treeview(self):
+        # We update sensitivity from previews.py...
+        self.family_tree.get_selection().emit('changed')
         model = self.family_tree.get_model()
         treeiter = model.get_iter_first()
         while treeiter:
@@ -712,7 +769,7 @@ class Treeviews(object):
             treeiter = model.iter_next(treeiter)
         return
 
-    def update_views(self):
+    def update_views(self, force = False):
         """
         Refresh both the collection and fonts treeviews.
         """
@@ -720,9 +777,15 @@ class Treeviews(object):
         self.manager.auto_enable_collections()
         self._update_category_treeview()
         self._update_collection_treeview()
-        self._update_family_treeview()
-        self._show_collection()
+        current_page = self.objects['MainNotebook'].get_current_page()
+        if force or current_page == 0:
+            self._update_family_treeview()
+            self._show_collection()
+        else:
+            families = self.manager.list_families_in(self.current_collection)
+            self.objects['Browse'].update_tree(families)
         self.objects['MainWindow'].queue_draw()
+        return
 
 
 class TreeviewFilter(object):
@@ -900,9 +963,160 @@ class TreeviewFilter(object):
             return False
 
 
+class CellRendererTotal(gtk.CellRendererText):
+    """
+    A custom version of gtk.CellRendererText that displays a pill-shaped
+    count at the right end of the cell.
+
+    If using markup, the label column should be the same as the markup column.
+    """
+    __gproperties__ = {
+                        'label' :   (gobject.TYPE_STRING,
+                                    'Label',
+                                    'Label to be displayed',
+                                    None,
+                                    gobject.PARAM_READWRITE),
+                        'count' :   (gobject.TYPE_STRING,
+                                    'Count',
+                                    'Count to be displayed',
+                                    None,
+                                    gobject.PARAM_READWRITE),
+                        'show-count' : (gobject.TYPE_BOOLEAN,
+                                    'Display count',
+                                    'Whether to display count or not',
+                                    True,
+                                    gobject.PARAM_READWRITE),
+                        'radius' : (gobject.TYPE_INT,
+                                    '"Pill" radius',
+                                    '"Pill" radius',
+                                    0,
+                                    24,
+                                    12,
+                                    gobject.PARAM_READWRITE)
+                                    }
+    def __init__(self):
+        gtk.CellRendererText.__init__(self)
+        self.colors = None
+        setattr(self, 'label', None)
+        setattr(self, 'count', None)
+        setattr(self, 'show-count', True)
+        setattr(self, 'radius', 12)
+
+    def do_set_property(self, pspec, value):
+        setattr(self, pspec.name, value)
+
+    def do_get_property(self, pspec):
+        return getattr(self, pspec.name)
+
+    def do_render(self, *args):
+        """
+        window, widget, background_area, cell_area, expose_area, flags
+        """
+        widget_state = self._get_state(args)
+        style = args[1].get_style().copy()
+        self.colors = ColorParse()
+        theme = CairoColors(args[1])
+        if widget_state == gtk.STATE_SELECTED:
+            text = theme['text'][gtk.STATE_SELECTED]
+            pill = theme['dark'][gtk.STATE_SELECTED]
+            if not self.colors.is_light(text):
+                # If selected text is dark it's likely the pill itself
+                # is also dark, so lighten it.
+                pill = self.colors.darker(pill, -50)
+        else:
+            text = theme['text'][gtk.STATE_NORMAL]
+            pill = theme['bg'][gtk.STATE_NORMAL]
+        context = args[0].cairo_create()
+        self._draw_text(context, style, text, args)
+        if self.get_property('count') and self.get_property('show-count'):
+            self._draw_count(context, style, widget_state, text, pill, args)
+        return
+
+    def _draw_count(self, context, style, state, text, pill, args):
+        cell_x, cell_y, cell_w, cell_h = args[3]
+        layout = context.create_layout()
+        layout.set_font_description(style.font_desc)
+        count = self.get_property('count')
+        markup = '<span size="small" weight="heavy">%s</span>' % count
+        layout.set_markup(markup)
+        layout_w, layout_h = layout.get_pixel_size()
+        center_h = cell_y + ((cell_h - layout_h) / 2)
+        if state == gtk.STATE_SELECTED:
+            context.set_source_rgba(pill[0], pill[1], pill[2], 0.25)
+        elif not self.colors.is_light(pill):
+            context.set_source_rgba(pill[0], pill[1], pill[2], 0.15)
+        else:
+            context.set_source_rgba(pill[0], pill[1], pill[2], 0.75)
+        self._draw_pill(context,
+                        cell_x + (cell_w - (layout_w + 20)),
+                        cell_y, layout_w + 20, cell_h)
+        context.set_source_rgba(text[0], text[1], text[2], 1)
+        center_w = cell_x + ((cell_w - layout_w) - 10)
+        context.move_to(center_w, center_h)
+        context.show_layout(layout)
+        return
+
+    def _draw_text(self, context, style, text, args):
+        markup = self.get_property('label')
+        if not markup:
+            markup = self.get_property('text')
+        cell_x, cell_y, cell_w, cell_h = args[3]
+        layout = context.create_layout()
+        layout.set_font_description(style.font_desc)
+        layout.set_markup(markup)
+        layout_w, layout_h = layout.get_pixel_size()
+        context.set_source_rgba(text[0], text[1], text[2], 1)
+        center_h = cell_y + ((cell_h - layout_h) / 2)
+        context.move_to(cell_x + self.get_property('xpad'), center_h)
+        context.show_layout(layout)
+        return
+
+    def _draw_pill(self, context, x, y, w, h):
+        pad = self.get_property('ypad')
+        radius = self.get_property('radius')
+        context.move_to(x + radius, y + pad)
+        context.line_to(x + (w - radius), y + pad)
+        context.curve_to(x + w, y, x + w , y + h, x + (w - radius), y + h - pad)
+        context.line_to(x + radius, y + h - pad)
+        context.curve_to(x, y + h, x , y, x + radius, y + pad)
+        context.fill()
+        return
+
+    def _get_editable_state(self, args):
+        x, y = args[1].widget_to_tree_coords(args[3].x, args[3].y)
+        path = args[1].get_path_at_pos(x, y)
+        selected_paths = args[1].get_selection().get_selected_rows()[1]
+        if path and selected_paths:
+            if path[0] == selected_paths[0]:
+                return gtk.STATE_SELECTED
+            else:
+                return gtk.STATE_NORMAL
+        return None
+
+    def _get_state(self, args):
+        """
+        window, widget, background_area, cell_area, expose_area, flags
+        """
+        # FIXME
+        # This is fugly, I'm probably just missing something obvious...
+        # But selected state for editable cells is very flaky...
+        if self.get_property('editable'):
+            state = self._get_editable_state(args)
+            if state is not None:
+                return state
+        if args[5] == gtk.CELL_RENDERER_SELECTED:
+            return gtk.STATE_SELECTED
+        elif args[5] == gtk.CELL_RENDERER_SELECTED | gtk.CELL_RENDERER_PRELIT:
+            return gtk.STATE_SELECTED
+        else:
+            return gtk.STATE_NORMAL
+
+gobject.type_register(CellRendererTotal)
+
+
 def get_header(title):
     header = glib.markup_escape_text(title)
-    return '<span size="x-large" weight="heavy">%s</span>' % header
+    return '<span size="xx-large" weight="heavy">%s</span>' % header
 
 # this is strictly cosmetic
 # Todo: make this nice instead of just a stock icon
@@ -910,9 +1124,5 @@ def _begin_drag(widget, context):
     """
     Set custom drag icon.
     """
-    paths = widget.get_selection().get_selected_rows()[1]
-    if len(paths) > 1:
-        context.set_icon_stock(gtk.STOCK_DND_MULTIPLE, 16, 16)
-    else:
-        context.set_icon_stock(gtk.STOCK_DND, 16, 16)
+    context.set_icon_name('font-x-generic', 24, 24)
     return

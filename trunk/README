@@ -40,11 +40,14 @@ In the future Font Manager intends to allow the user to:
 
     * Convert fonts to a different format
 
+
+
 Requirements:
 
     * Python      2.x  >= 2.6   http://www.python.org/
     * PyGTK       2.xx          http://www.pygtk.org/
     * PyGobject   2.xx          http://www.pygtk.org/
+    * Pycairo                   http://cairographics.org/pycairo/
     * libxml2-python            http://xmlsoft.org/python.html
     * fontconfig                http://www.fontconfig.org/wiki/
     * freetype2                 http://www.freetype.org/
@@ -53,5 +56,7 @@ Recommended:
 
     * file-roller               http://fileroller.sourceforge.net/
     * gucharmap                 http://live.gnome.org/Gucharmap
+    * yelp                      http://live.gnome.org/Yelp
     * ReportLab Toolkit         http://www.reportlab.org/
+
 

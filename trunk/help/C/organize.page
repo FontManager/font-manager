@@ -16,7 +16,7 @@
 
         <terms>
             <item>
-                <title>All Fonts</title>
+                <title>All</title>
                 <p>
                 All available fonts.
                 </p>
@@ -43,8 +43,8 @@
                 enabled/disabled by clicking
                 <media type="image" src="figures/preferences.png" />
                 in the
-                <link xref="ui#status">Statusbar</link>,
-                then selecting the <gui>Application Options</gui> tab and
+                <link xref="ui#statusbar">Statusbar</link>,
+                then selecting the <gui>Interface</gui> tab and
                 making your changes under <gui>Default Categories</gui>.
                 </p>
             </item>

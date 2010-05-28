@@ -113,7 +113,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         fonts.Sort(self, self.progress)
         self._update_selections()
         self.auto_enable_collections()
-        self.total_families = len(self.data)
+        self.total_families = len(self.categories[_('All')].families)
         self._loading = False
         enable_blacklist()
         self.connid = self.connect('update-font-groups', self._update_orphans)
@@ -433,27 +433,52 @@ class Preferences(gobject.GObject):
                                                     (gobject.TYPE_BOOLEAN,))
                                                     }
     _sections = ('Categories', 'Collections', 'Export Options', 'Font Folder',
-                    'General')
+                    'General', 'Interface')
+    _section_map = {
+                    'Categories'        :   ['orphans'],
+                    'Collections'       :   ['tooltips', 'focusondrop'],
+                    'Export Options'    :   ['archivetype', 'fontsize',
+                                                                'pangram'],
+                    'Font Folder'       :   ['folder'],
+                    'General'           :   ['autostart', 'minimizeonclose',
+                                                            'minimizeonstart'],
+                    'Interface'         :   ['collectiontotals', 'familytotals',
+                                            'hpane', 'vpane', 'windowsize',
+                                            'maximized', 'previewsize',
+                                            'bgcolor', 'fgcolor', 'browsemode']
+                    }
+    _defaults = {
+                    'config_file'       :   APP_CONFIG,
+                    'archivetype'       :   'zip',
+                    'autostart'         :   False,
+                    'folder'            :   USER_FONT_DIR,
+                    'fontsize'          :   20.0,
+                    'pangram'           :   False,
+                    'minimizeonclose'   :   False,
+                    'orphans'           :   False,
+                    'minimizeonstart'   :   False,
+                    'tooltips'          :   True,
+                    'focusondrop'       :   True,
+                    'collectiontotals'  :   False,
+                    'familytotals'      :   False,
+                    'experimental'      :   False,
+                    'hpane'             :   0,
+                    'vpane'             :   0,
+                    'windowsize'        :   '0:0',
+                    'maximized'         :   False,
+                    'previewsize'       :   11.0,
+                    'bgcolor'           :   '#FFF',
+                    'fgcolor'           :   '#000',
+                    'browsemode'        :   False
+                    }
     fontdirs = []
     def __init__(self):
         gobject.GObject.__init__(self)
         self.config = ConfigParser.ConfigParser()
-        self.config_file = APP_CONFIG
-        self.archivetype = None
-        self.autostart = None
-        self.folder = None
-        self.fontsize = None
-        self.pangram = None
-        self.minimize = None
-        self.orphans = None
-        self.hidden = None
-        self.tooltips = None
-        self.focusondrop = None
+        self._load_defaults()
         if exists(self.config_file):
             self.config.read(self.config_file)
             self._load_user_prefs()
-        else:
-            self._load_defaults()
         directories = load_directories()
         if directories:
             for directory in directories:
@@ -463,10 +488,11 @@ class Preferences(gobject.GObject):
         """
         Add a user directory to include in FontConfig search path.
         """
-        if isdir(directory) and (directory not in self.fontdirs):
-            self.fontdirs.append(directory)
-        save_directories(self.fontdirs)
-        self.emit('update-font-dirs')
+        if directory:
+            if isdir(directory) and (directory not in self.fontdirs):
+                self.fontdirs.append(directory)
+            save_directories(self.fontdirs)
+            self.emit('update-font-dirs')
         return
 
     def on_autostart(self, startme = True):
@@ -486,29 +512,22 @@ class Preferences(gobject.GObject):
         """
         try:
             config = self.config
-            self.archivetype = config.get('Export Options', 'archivetype')
-            self.autostart = config.getboolean('General', 'autostart')
-            self.folder = config.get('Font Folder', 'default')
-            self.fontsize = float(config.get('Export Options', 'fontsize'))
-            self.pangram = config.getboolean('Export Options', 'pangram')
-            self.minimize = config.getboolean('General', 'minimizeonclose')
-            self.orphans = config.getboolean('Categories', 'orphans')
-            self.hidden = config.getboolean('General', 'minimizeonstart')
-            if config.has_option('General', 'showtooltips'):
-                self.tooltips = config.getboolean('General', 'showtooltips')
-                config.remove_option('General', 'showtooltips')
-            elif config.has_option('Collections', 'showcomments'):
-                    self.tooltips = config.getboolean('Collections', 
-                                                        'showcomments')
-            else:
-                self.tooltips = True
-            if config.has_option('Collections', 'focusondrop'):
-                self.focusondrop = config.getboolean('Collections', 
-                                                        'focusondrop')
-            else:
-                self.focusondrop = True
+            for section, options in self._section_map.iteritems():
+                for option in options:
+                    if isinstance(self._defaults[option], bool):
+                        setattr(self, option, 
+                                            config.getboolean(section, option))
+                    elif isinstance(self._defaults[option], int):
+                        setattr(self, option, config.getint(section, option))
+                    elif isinstance(self._defaults[option], float):
+                        setattr(self, option, config.getfloat(section, option))
+                    else:
+                        setattr(self, option, config.get(section, option))
+            if self.collectiontotals or self.familytotals:
+                self.experimental = True
         except (ConfigParser.NoSectionError, ConfigParser.NoOptionError,
         ConfigParser.MissingSectionHeaderError, ConfigParser.ParsingError):
+            os.unlink(self.config_file)
             self._load_defaults()
         return
 
@@ -516,20 +535,12 @@ class Preferences(gobject.GObject):
         """
         Load default preferences.
         """
-        self.archivetype = 'zip'
-        self.autostart = False
-        self.folder = USER_FONT_DIR
-        self.fontsize = 20
-        self.minimize = False
-        self.pangram = False
-        self.orphans = False
-        self.hidden = False
-        self.tooltips = True
-        self.focusondrop = True
+        for attribute, default in self._defaults.iteritems():
+            setattr(self, attribute, default)
         return
 
     def minimize_to_tray(self, minimize = True):
-        self.minimize = minimize
+        self.minimizeonclose = minimize
         self.emit('update-tray-icon', minimize)
         return
 
@@ -548,19 +559,14 @@ class Preferences(gobject.GObject):
         Save current preferences to disk
         """
         config = self.config
+        for section in config.sections():
+            config.remove_section(section)
         for section in self._sections:
             if not config.has_section(section):
                 config.add_section(section)
-        config.set('Categories', 'orphans', str(self.orphans))
-        config.set('Export Options', 'archivetype', str(self.archivetype))
-        config.set('Export Options', 'fontsize', str(self.fontsize))
-        config.set('Export Options', 'pangram', str(self.pangram))
-        config.set('Font Folder', 'default', str(self.folder))
-        config.set('General', 'autostart', str(self.autostart))
-        config.set('General', 'minimizeonclose', str(self.minimize))
-        config.set('General', 'minimizeonstart', str(self.hidden))
-        config.set('Collections', 'showcomments', str(self.tooltips))
-        config.set('Collections', 'focusondrop', str(self.focusondrop))
+        for section in self._sections:
+            for option in self._section_map[section]:
+                config.set(section, option, str(getattr(self, option)))
         with open(self.config_file, 'wb') as configfile:
             self.config.write(configfile)
         save_directories(self.fontdirs)

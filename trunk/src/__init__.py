@@ -21,12 +21,21 @@ along with this program; if not, write to:
     Boston, MA 02110-1301, USA.
 
 """
+
 #import os
 #import sys
 
-#basepath = os.path.dirname(os.path.realpath(__file__))
-#if not basepath in sys.path:
-    #sys.path.insert(0, basepath)
+#desktop_file = os.path.join(os.path.dirname(__file__), 'font-manager.desktop')
+#if os.path.exists(desktop_file):
+    #PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
+    #LIB_DIR = os.path.dirname(os.path.abspath(__file__))
+#else:
+    #PACKAGE_DIR = os.path.join('@prefix@', 'share/font-manager')
+    #LIB_DIR = os.path.join('@prefix@', 'lib/font-manager')
+
+#for directory in PACKAGE_DIR, LIB_DIR:
+    #if not directory in sys.path:
+        #sys.path.insert(0, directory)
 
 #import gettext
 #gettext.install('font-manager')
