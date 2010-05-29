@@ -1142,6 +1142,8 @@ If you choose to continue, it is suggested that you close all open applications 
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="border_width">10</property>
+            <property name="tab_hborder">4</property>
+            <property name="tab_vborder">3</property>
             <child>
               <object class="GtkVBox" id="PrefsFolderTab">
                 <property name="visible">True</property>
@@ -1730,6 +1732,7 @@ If you choose to continue, it is suggested that you close all open applications 
                   <object class="GtkLabel" id="label22">
                     <property name="visible">True</property>
                     <property name="yalign">1</property>
+                    <property name="xpad">5</property>
                     <property name="label" translatable="yes">&lt;small&gt;&lt;tt&gt;* Browse mode is NOT recommended for large collections&lt;/tt&gt;&lt;/small&gt;</property>
                     <property name="use_markup">True</property>
                     <property name="wrap">True</property>
@@ -2537,8 +2540,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
                 <child>
                   <object class="GtkFileChooserButton" id="ExportFileChooser">
                     <property name="visible">True</property>
-                    <property name="do_overwrite_confirmation">True</property>
                     <property name="action">select-folder</property>
+                    <property name="do_overwrite_confirmation">True</property>
                     <property name="title" translatable="yes">Select A Folder</property>
                   </object>
                   <packing>
