@@ -1587,7 +1587,7 @@ If you choose to continue, it is suggested that you close all open applications 
                   </object>
                   <packing>
                     <property name="expand">False</property>
-                    <property name="position">0</property>
+                    <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
@@ -1725,7 +1725,7 @@ If you choose to continue, it is suggested that you close all open applications 
                   </object>
                   <packing>
                     <property name="expand">False</property>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
                 <child>
@@ -1735,11 +1735,13 @@ If you choose to continue, it is suggested that you close all open applications 
                     <property name="label" translatable="yes">* Browse mode is NOT recommended for large collections
 
   </property>
+                    <property name="use_markup">True</property>
                     <property name="wrap">True</property>
+                    <property name="track_visited_links">False</property>
                   </object>
                   <packing>
-                    <property name="padding">10</property>
-                    <property name="position">2</property>
+                    <property name="pack_type">end</property>
+                    <property name="position">0</property>
                   </packing>
                 </child>
               </object>
@@ -2625,8 +2627,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
-    <property name="create_folders">False</property>
     <property name="select_multiple">True</property>
+    <property name="create_folders">False</property>
     <signal name="file_activated" handler="gtk_true"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">
