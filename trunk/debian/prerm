@@ -1,5 +1,4 @@
 #!/bin/sh
 set -e
 
-cd /usr/share/font-manager
-find . -name *.py[co] -exec rm -f '{}' \;
+find /usr/share/font-manager -name *.py[co] -exec rm '{}' \;

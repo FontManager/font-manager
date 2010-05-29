@@ -6,8 +6,8 @@ font-manager (0.5.4-1) lucid; urgency=low
         introducing new ones.
 
         Several interface improvements. The most important one being that
-        the application now saves most of it's state when closed,
-        i.e. window size, preview font size, compare colors, pane positions, etc.
+        the application now saves most of it's state when closed, i.e.
+        window size, preview font size, compare colors, pane positions, etc.
 
         Added an option to keep the current collection focused when adding
         families to other collections as suggested at

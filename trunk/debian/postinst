@@ -1,6 +1,5 @@
 #!/bin/sh
 set -e
 
-cd /usr/share/font-manager
-python -m compileall .
-python -O -m compileall .
+python -m compileall /usr/share/font-manager
+python -O -m compileall /usr/share/font-manager
