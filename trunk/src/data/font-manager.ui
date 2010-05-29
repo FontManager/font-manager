@@ -1123,10 +1123,8 @@ If you choose to continue, it is suggested that you close all open applications 
     </action-widgets>
   </object>
   <object class="GtkDialog" id="PreferencesDialog">
-    <property name="width_request">420</property>
     <property name="border_width">5</property>
     <property name="title" translatable="yes">Preferences</property>
-    <property name="resizable">False</property>
     <property name="window_position">center-on-parent</property>
     <property name="destroy_with_parent">True</property>
     <property name="icon_name">preferences-desktop-font</property>
