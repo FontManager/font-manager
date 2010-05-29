@@ -387,7 +387,7 @@ class Previews(object):
             return
         style = style_combo.get_model()[style_combo.get_active()][0]
         self.current_style_as_string = style
-        valid_styles = _('Bold'), _('Bold Italic'), _('Italic')
+        valid_styles = 'Bold', 'Bold Italic', 'Italic'
         if style in self.current_family.styles.iterkeys() or \
         style in valid_styles:
             character_map.set_sensitive(True)

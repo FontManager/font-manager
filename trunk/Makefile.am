@@ -9,16 +9,6 @@ default:
 
 clean:
 	$(MAKE) -C src clean
-#	find po -maxdepth 1 -regextype posix-basic -regex "po/[^.]*" -type d -exec rm -rf {} \;
-
-compile_translations:
-	@cp -f src/data/actions.ui src/data/actions.glade
-	@cp -f src/data/font-information.ui src/data/font-information.glade
-	@cp -f src/data/font-manager.ui src/data/font-manager.glade
-	@cp -f src/data/font-sampler.ui src/data/font-sampler.glade
-	@cp -f src/data/menus.ui src/data/menus.glade
-	python po/compile_translations.py
-	-rm -f src/data/*.glade
 
 distclean: clean
 	$(MAKE) -C src distclean
@@ -28,18 +18,10 @@ install:
 	$(MAKE) -C src install
 	@find help -type f -exec chmod 644 '{}' \;
 	@cp -R help $(DESTDIR)$(prefix)/share/font-manager/
-#	for f in `find po -name font-manager.mo` ; do \
-#	  install -d -m 755 \
-#		`echo $$f | sed "s|^po|$(DESTDIR)$(prefix)/share/locale|" | \
-#		  xargs dirname` && \
-#	  install -m 644 $$f \
-#		`echo $$f | sed "s|^po|$(DESTDIR)$(prefix)/share/locale|"` ; \
-#	  done
 
 uninstall:
 	$(MAKE) -C src uninstall
 	@rm -rfv $(DESTDIR)$(prefix)/share/gnome/help/font-manager
-#	find $(DESTDIR)$(prefix)/share/locale -name font-manager.mo -exec rm -f {} \;
 
 EXTRA_DIST = help src/core src/data src/ui src/utils src/*.py src/*.c \
 src/*.in src/font-manager.in src/font-manager.desktop src/Makefile.in \
@@ -52,7 +34,5 @@ dist-hook:
 	@rm -f $(distdir)/src/constants.py $(distdir)/src/constants.py.in
 	@rm -f $(distdir)/src/main.py
 	@rm -f $(distdir)/src/core/__init__.py
-#	-rm -f po/messages.pot
-#	find po -maxdepth 1 -regextype posix-basic -regex "po/[^.]*" -type d -exec rm -rf {} \;
 
 .PHONY: check clean install uninstall

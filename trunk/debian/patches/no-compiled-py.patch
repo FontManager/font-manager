@@ -1,5 +1,5 @@
-Shipping byte-compiled python modules is against Debian packaging policy,
-when binary-independent modules are also shipped.
+Shipping byte-compiled python modules along with binary-independent modules
+is against Debian packaging policy.
 --- a/src/Makefile.am
 +++ b/src/Makefile.am
 @@ -20,8 +20,8 @@
