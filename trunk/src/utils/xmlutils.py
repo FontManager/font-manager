@@ -22,6 +22,10 @@ This module is used to group any functions which make use of libxml2.
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
+# Disable warnings related to missing docstrings, for now...
+# pylint: disable-msg=C0111
 
 import os
 import glib
@@ -300,7 +304,6 @@ def save_collections(objects):
     # Start "printing"
     doc = libxml2.newDoc("1.0")
     root = doc.newChild(None, "fontmanager", None)
-    collections = objects['FontManager'].list_collections()
     try:
         while len(order) != 0:
             name = order[0]
@@ -335,7 +338,6 @@ def save_compat_collections(objects):
     # Start "printing"
     doc = libxml2.newDoc("1.0")
     root = doc.newChild(None, "groups", None)
-    collections = objects['FontManager'].list_collections()
     try:
         while len(order) != 0:
             name = order[0]

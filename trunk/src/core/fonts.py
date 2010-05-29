@@ -144,20 +144,20 @@ class Family(object):
         """
         self.name, self.user, self.enabled, self.styles = state
 
-    def get_count(self, format = True):
+    def get_count(self, display = True):
         """
         Return the number of styles.
         
         If format is True, return a string suitable for display, i.e '5 Fonts'
         """
         count = len(self.styles)
-        if not format:
-            return count
-        else:
+        if display:
             if count > 1:
                 return _('%s Fonts') % count
             else:
                 return _('%s Font') % count
+        else:
+            return count
 
     def get_label(self):
         """

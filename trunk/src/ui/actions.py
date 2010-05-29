@@ -22,6 +22,11 @@ This module allows for user-configured actions.
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
+# Disable warnings related to missing docstrings, for now...
+# pylint: disable-msg=C0111
+
 import os
 import gtk
 import gobject

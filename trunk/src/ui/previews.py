@@ -24,6 +24,8 @@ This module handles everything related to the font preview area.
 
 # Disable warnings related to gettext
 # pylint: disable-msg=E0602
+# Disable warnings related to missing docstrings, for now...
+# pylint: disable-msg=C0111
 
 import gtk
 import glib
@@ -32,9 +34,8 @@ import logging
 import subprocess
 import time
 
-from os.path import basename, join
+from os.path import basename
 
-from constants import PACKAGE_DIR
 from fontinfo import FontInformation
 
 
@@ -526,7 +527,7 @@ class Browse(object):
         self.browse_tree.set_model(None)
         # add a bunch of fonts and faces to the treemodel
         try:
-            for i in range(100):
+            for unused_i in range(100):
                 family = self.families.pop(0)
                 obj = self.objects['FontManager'][family].pango_family
                 root_node = self.treestore.append(None, [family,

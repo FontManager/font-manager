@@ -22,6 +22,11 @@ This module provides a simple preferences dialog.
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
+# Disable warnings related to missing docstrings, for now...
+# pylint: disable-msg=C0111
+
 import os
 import gtk
 import gobject
@@ -474,7 +479,7 @@ class PreferencesDialog():
         """
         Save preferences and hide dialog.
         """
-        self._on_close()
+        self._on_close(None)
         return
 
     def run(self, objects):

@@ -24,6 +24,11 @@ of fonts. It supports Truetype and Type 1 fonts.
 # 51 Franklin Street, Fifth Floor
 # Boston, MA  02110-1301, USA.
 
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
+# Disable warnings related to missing docstrings, for now...
+# pylint: disable-msg=C0111
+
 import os
 import gtk
 import cPickle
@@ -170,7 +175,8 @@ class FontSampler(UserDict.UserDict):
             gtk.main_iteration()
         return
 
-    def _write_warning(self):
+    @staticmethod
+    def _write_warning():
         dialog = gtk.MessageDialog(None, 0, gtk.MESSAGE_WARNING,
                                         gtk.BUTTONS_OK, None)
         dialog.set_markup(_('<b>Selected folder must be writeable</b>'))
@@ -230,7 +236,8 @@ class FontSampler(UserDict.UserDict):
             gtk.main_iteration()
         return
 
-    def _quit(self, *args):
+    @staticmethod
+    def _quit(*args):
         gtk.main_quit()
         sys.exit(0)
 

@@ -28,6 +28,8 @@ options will be added over time, hopefully.
 
 # Disable warnings related to gettext
 # pylint: disable-msg=E0602
+# Disable warnings related to missing docstrings, for now...
+# pylint: disable-msg=C0111
 # Disable warnings related to accessing gtk.Dialog.vbox
 # pylint: disable-msg=E1101
 
@@ -106,7 +108,7 @@ class BuildSample:
         if isinstance(fontlist, (tuple, list)):
             filelist = fontlist
         elif isdir(fontlist):
-            for root, dirs, files in os.walk(fontlist):
+            for root, unused_dirs, files in os.walk(fontlist):
                 for filename in files:
                     filepath = realpath(join(root, filename))
                     if not filepath in filelist:

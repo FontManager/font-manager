@@ -255,6 +255,9 @@ class Export(object):
         return
 
     def _update_sensitivity(self, unused_widget):
+        """
+        Update UI sensitivity
+        """
         if not self.objects['ExportAsArchive'].get_active():
             self.objects['IncludeSampler'].set_sensitive(False)
         else:

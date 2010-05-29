@@ -22,6 +22,9 @@
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
+
 import os
 import glib
 
@@ -30,7 +33,8 @@ from os.path import join
 
 PACKAGE = 'font-manager'
 
-if os.path.exists(os.path.join(os.path.dirname(__file__), 'font-manager.desktop')):
+if os.path.exists(os.path.join(os.path.dirname(__file__),
+                                                    'font-manager.desktop')):
     VERSION     = 'is not installed'
     PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
     LOCALEDIR   = os.path.join(os.path.dirname(__file__), '../po')

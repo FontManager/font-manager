@@ -22,6 +22,11 @@ Font Manager, a font management application for the GNOME desktop
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
+# Disable warnings related to missing docstrings, for now...
+# pylint: disable-msg=C0111
+
 import os
 import sys
 import gtk
@@ -480,13 +485,13 @@ def _on_help(unused_widget):
     # The trailing slash is required, otherwise yelp will not find images...
     lang = splitext(os.getenv('LANG', 'en_US'))[0] + '/'
     help_dir = join('@prefix@', 'share', PACKAGE, 'help')
-    help = join(help_dir, lang)
-    if not exists(help):
+    help_files = join(help_dir, lang)
+    if not exists(help_files):
         logging.info('No translation exists for %s, using default...' % \
                                         splitext(os.environ['LANG'])[0])
-        help = join(help_dir, 'C/')
+        help_files = join(help_dir, 'C/')
     try:
-        subprocess.Popen(['yelp', help])
+        subprocess.Popen(['yelp', help_files])
         logging.info("Launching Help browser")
     except OSError:
         logging.warn("Could not find any suitable browser")

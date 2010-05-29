@@ -24,6 +24,8 @@ This module is just a convenient place to group re-usable functions.
 
 # Disable warnings related to gettext
 # pylint: disable-msg=E0602
+# Disable warnings related to missing docstrings, for now...
+# pylint: disable-msg=C0111
 
 import os
 import re
@@ -121,7 +123,8 @@ class ColorParse(object):
     """
     Taken from Project Hamster by Toms Baugis
     """
-    def parse(self, color):
+    @staticmethod
+    def parse(color):
         assert color is not None
         #parse color into rgb values
         if isinstance(color, (str, unicode)):
@@ -159,8 +162,9 @@ class CairoColors(UserDict.UserDict):
         self.data = {}
         self.get_colors()
 
-    def _color_to_cairo_rgb(self, color):
-      return color.red/65535.0, color.green/65535.0, color.blue/65535.0
+    @staticmethod
+    def _color_to_cairo_rgb(color):
+        return color.red/65535.0, color.green/65535.0, color.blue/65535.0
 
     def get_colors(self):
         for style in self._styles:
@@ -396,7 +400,8 @@ def natural_sort_pathlist(alist):
     """
     Sort the given list of filepaths in the way that humans expect.
     """
-    alphanum = lambda key: [ _convert(c) for c in re.split('([0-9]+)', basename(key)) ]
+    alphanum = lambda key: [ _convert(c) for c in re.split('([0-9]+)',
+                                                            basename(key)) ]
     return sorted(alist, key=alphanum)
 
 def natural_size(size):

@@ -28,7 +28,6 @@ This module handles everything related to treeviews.
 # pylint: disable-msg=C0111
 
 import gtk
-import cairo
 import glib
 import gobject
 import logging
@@ -231,6 +230,9 @@ class Treeviews(object):
         else:
             return
 
+    # Disable warnings related to invalid names
+    # pylint: disable-msg=C0103
+
     @staticmethod
     def _on_drag_drop(widget, context, x, y, tstamp):
         try:
@@ -289,6 +291,48 @@ class Treeviews(object):
                 widget.get_selection().select_path(path)
         self.update_views()
         return
+
+    def _on_family_tooltip(self, widget, x, y, unused_kmode, tooltip):
+        if not self.objects['Preferences'].tooltips:
+            return False
+        if not x > (widget.size_request()[0] * 1.5):
+            return False
+        try:
+            model = widget.get_model()
+            x, y = widget.convert_widget_to_bin_window_coords(x, y)
+            path = widget.get_path_at_pos(x, y)[0]
+            treeiter = model.get_iter(path)
+            name = model.get_value(treeiter, 0)
+            family = self.manager[name].pango_family
+            famname = glib.markup_escape_text(name)
+            markup = \
+            '\n\t<span weight="heavy" size="large">%s</span>\t\t\n\n' % famname
+            for face in family.list_faces():
+                facename = glib.markup_escape_text(face.get_face_name())
+                facedescr = glib.markup_escape_text(face.describe().to_string())
+                subs = (facedescr, facename)
+                markup += '<span font_desc="%s">\t%s\t\t</span>\n' % subs
+            tooltip.set_markup(markup)
+            icon = self._get_type_icon(name)
+            tooltip.set_icon(icon)
+            return True
+        except (TypeError, ValueError):
+            return False
+
+    def _get_type_icon(self, family):
+        typ = None
+        for k, v in self.manager[family].styles.iteritems():
+            typ = self.manager[family].styles[k]['filetype']
+            if typ == 'TrueType' and \
+            self.manager[family].styles[k]['filepath'].endswith('.otf'):
+                typ = 'CFF'
+            break
+        if not typ:
+            typ = 'blank'
+        return self.logos[typ]
+
+    # Disable warnings related to invalid names
+    # pylint: enable-msg=C0103
 
     def _on_button_press(self, widget, event):
         """
@@ -362,45 +406,6 @@ class Treeviews(object):
         while gtk.events_pending():
             gtk.main_iteration()
         return
-
-    def _on_family_tooltip(self, widget, x, y, unused_kmode, tooltip):
-        if not self.objects['Preferences'].tooltips:
-            return False
-        if not x > (widget.size_request()[0] * 1.5):
-            return False
-        try:
-            model = widget.get_model()
-            x, y = widget.convert_widget_to_bin_window_coords(x, y)
-            path = widget.get_path_at_pos(x, y)[0]
-            treeiter = model.get_iter(path)
-            name = model.get_value(treeiter, 0)
-            family = self.manager[name].pango_family
-            famname = glib.markup_escape_text(name)
-            markup = \
-            '\n\t<span weight="heavy" size="large">%s</span>\t\t\n\n' % famname
-            for face in family.list_faces():
-                facename = glib.markup_escape_text(face.get_face_name())
-                facedescr = glib.markup_escape_text(face.describe().to_string())
-                subs = (facedescr, facename)
-                markup += '<span font_desc="%s">\t%s\t\t</span>\n' % subs
-            tooltip.set_markup(markup)
-            icon = self._get_type_icon(name)
-            tooltip.set_icon(icon)
-            return True
-        except (TypeError, ValueError):
-            return False
-
-    def _get_type_icon(self, family):
-        typ = None
-        for k, v in self.manager[family].styles.iteritems():
-            typ = self.manager[family].styles[k]['filetype']
-            if typ == 'TrueType' and \
-            self.manager[family].styles[k]['filepath'].endswith('.otf'):
-                typ = 'CFF'
-            break
-        if not typ:
-            typ = 'blank'
-        return self.logos[typ]
 
     def _load_categories(self):
         category_model = self.category_tree.get_model()
@@ -899,7 +904,8 @@ class TreeviewFilter(object):
         fonts.close()
         return natural_sort(foundries)
 
-    def _get_types(self):
+    @staticmethod
+    def _get_types():
         """
         Return a list of types in database.
         """
@@ -962,7 +968,8 @@ class TreeviewFilter(object):
         else:
             return False
 
-
+# Disable warnings related to invalid names
+# pylint: disable-msg=C0103
 class CellRendererTotal(gtk.CellRendererText):
     """
     A custom version of gtk.CellRendererText that displays a pill-shaped
@@ -1082,7 +1089,8 @@ class CellRendererTotal(gtk.CellRendererText):
         context.fill()
         return
 
-    def _get_editable_state(self, args):
+    @staticmethod
+    def _get_editable_state(args):
         x, y = args[1].widget_to_tree_coords(args[3].x, args[3].y)
         path = args[1].get_path_at_pos(x, y)
         selected_paths = args[1].get_selection().get_selected_rows()[1]
@@ -1112,7 +1120,8 @@ class CellRendererTotal(gtk.CellRendererText):
             return gtk.STATE_NORMAL
 
 gobject.type_register(CellRendererTotal)
-
+# Enable warnings related to invalid names
+# pylint: enable-msg=C0103
 
 def get_header(title):
     header = glib.markup_escape_text(title)

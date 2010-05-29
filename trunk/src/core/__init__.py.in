@@ -28,6 +28,9 @@ objects and collections.
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
+
 import os
 import glib
 import gobject
@@ -496,7 +499,7 @@ class Preferences(gobject.GObject):
         return
 
     def on_autostart(self, startme = True):
-        self.autostart = startme
+        setattr(self, 'autostart', startme)
         autostart(startme)
         return
 
@@ -524,7 +527,7 @@ class Preferences(gobject.GObject):
                     else:
                         setattr(self, option, config.get(section, option))
             if self.collectiontotals or self.familytotals:
-                self.experimental = True
+                setattr(self, 'experimental', True)
         except (ConfigParser.NoSectionError, ConfigParser.NoOptionError,
         ConfigParser.MissingSectionHeaderError, ConfigParser.ParsingError):
             os.unlink(self.config_file)
@@ -540,7 +543,7 @@ class Preferences(gobject.GObject):
         return
 
     def minimize_to_tray(self, minimize = True):
-        self.minimizeonclose = minimize
+        setattr(self, 'minimizeonclose', minimize)
         self.emit('update-tray-icon', minimize)
         return
 
