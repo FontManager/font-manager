@@ -417,7 +417,6 @@ class FontManager(gobject.GObject, UserDict.UserDict):
                 self._disabled.append(key)
         return
 
-
 gobject.type_register(FontManager)
 
 

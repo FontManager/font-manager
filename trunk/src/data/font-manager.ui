@@ -267,6 +267,7 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="receives_default">False</property>
+                                            <property name="tooltip_text" translatable="yes">Enable selected families</property>
                                             <property name="image">EnableFamilyIcon</property>
                                             <property name="relief">none</property>
                                             <property name="focus_on_click">False</property>
@@ -280,6 +281,7 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="receives_default">False</property>
+                                            <property name="tooltip_text" translatable="yes">Disable selected families</property>
                                             <property name="image">DisableFamilyIcon</property>
                                             <property name="relief">none</property>
                                             <property name="focus_on_click">False</property>
@@ -293,6 +295,7 @@
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="receives_default">False</property>
+                                            <property name="tooltip_text" translatable="yes">Remove selected families from collection</property>
                                             <property name="image">RemoveFamilyIcon</property>
                                             <property name="relief">none</property>
                                             <property name="focus_on_click">False</property>
@@ -340,6 +343,7 @@
                                   <object class="GtkButton" id="ColorSelect">
                                     <property name="can_focus">False</property>
                                     <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">Color selector</property>
                                     <property name="image">ColorSelctIcon</property>
                                     <property name="relief">half</property>
                                     <property name="focus_on_click">False</property>
@@ -355,6 +359,7 @@
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
                                     <property name="receives_default">False</property>
+                                    <property name="tooltip_text" translatable="yes">View font metadata</property>
                                     <property name="image">FontInfoIcon</property>
                                     <property name="relief">half</property>
                                     <property name="focus_on_click">False</property>
@@ -388,6 +393,7 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="receives_default">False</property>
+                                        <property name="tooltip_text" translatable="yes">Add font to comparison</property>
                                         <property name="image">AddCompareIcon</property>
                                         <property name="relief">half</property>
                                         <property name="focus_on_click">False</property>
@@ -403,6 +409,7 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="receives_default">False</property>
+                                        <property name="tooltip_text" translatable="yes">Remove selected font</property>
                                         <property name="image">RemoveCompareIcon</property>
                                         <property name="relief">half</property>
                                         <property name="focus_on_click">False</property>
@@ -418,6 +425,7 @@
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="receives_default">False</property>
+                                        <property name="tooltip_text" translatable="yes">Clear all</property>
                                         <property name="image">ClearIcon</property>
                                         <property name="relief">half</property>
                                         <property name="focus_on_click">False</property>
@@ -653,7 +661,6 @@
                                 <property name="headers_clickable">False</property>
                                 <property name="rules_hint">True</property>
                                 <property name="enable_search">False</property>
-                                <property name="level_indentation">10</property>
                               </object>
                             </child>
                           </object>
@@ -1142,8 +1149,6 @@ If you choose to continue, it is suggested that you close all open applications 
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="border_width">10</property>
-            <property name="tab_hborder">4</property>
-            <property name="tab_vborder">3</property>
             <child>
               <object class="GtkVBox" id="PrefsFolderTab">
                 <property name="visible">True</property>
@@ -1437,7 +1442,7 @@ If you choose to continue, it is suggested that you close all open applications 
                             <property name="left_padding">12</property>
                             <child>
                               <object class="GtkCheckButton" id="PrefsPangram">
-                                <property name="label" translatable="yes">Include pangram in samples</property>
+                                <property name="label" translatable="yes">Include all characters in sample sheet</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
@@ -1459,7 +1464,7 @@ If you choose to continue, it is suggested that you close all open applications 
                                 <property name="visible">True</property>
                                 <property name="xalign">0</property>
                                 <property name="xpad">16</property>
-                                <property name="label" translatable="yes">Default font size for sample sheets</property>
+                                <property name="label" translatable="yes">Default font size</property>
                               </object>
                               <packing>
                                 <property name="position">0</property>
@@ -2541,8 +2546,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
                 <child>
                   <object class="GtkFileChooserButton" id="ExportFileChooser">
                     <property name="visible">True</property>
-                    <property name="do_overwrite_confirmation">True</property>
                     <property name="action">select-folder</property>
+                    <property name="do_overwrite_confirmation">True</property>
                     <property name="title" translatable="yes">Select A Folder</property>
                   </object>
                   <packing>

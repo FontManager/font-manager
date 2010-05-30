@@ -448,6 +448,7 @@ class Previews(object):
         """
         Set preview text.
         """
+        self.current_style = descr
         t_buffer = gtk.TextBuffer()
         preview = self.objects['FontPreview']
         preview.set_buffer(t_buffer)
@@ -468,6 +469,9 @@ class Previews(object):
             tooltip = \
             _('Style provided by %s' % basename(filepath))
         style_combo.set_tooltip_text(tooltip)
+        if self.info_dialog:
+            if self.info_dialog.window.get_property('visible'):
+                self._on_font_info(None)
         return
 
     def _on_font_info(self, unused_widget):

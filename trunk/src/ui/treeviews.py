@@ -40,9 +40,9 @@ import _fontutils
 from actions import UserActions
 from core.database import Table
 from constants import PACKAGE_DATA_DIR
+from custom import CellRendererTotal
 from library import InstallFonts
-from utils.common import ColorParse, CairoColors, match, natural_sort, \
-                            search, FONT_EXTS
+from utils.common import match, natural_sort, search, FONT_EXTS
 
 TARGET_TYPE_COLLECTION_ROW = 10
 TARGET_TYPE_FAMILY_ROW = 20
@@ -331,7 +331,7 @@ class Treeviews(object):
             typ = 'blank'
         return self.logos[typ]
 
-    # Disable warnings related to invalid names
+    # Enable warnings related to invalid names
     # pylint: enable-msg=C0103
 
     def _on_button_press(self, widget, event):
@@ -968,160 +968,6 @@ class TreeviewFilter(object):
         else:
             return False
 
-# Disable warnings related to invalid names
-# pylint: disable-msg=C0103
-class CellRendererTotal(gtk.CellRendererText):
-    """
-    A custom version of gtk.CellRendererText that displays a pill-shaped
-    count at the right end of the cell.
-
-    If using markup, the label column should be the same as the markup column.
-    """
-    __gproperties__ = {
-                        'label' :   (gobject.TYPE_STRING,
-                                    'Label',
-                                    'Label to be displayed',
-                                    None,
-                                    gobject.PARAM_READWRITE),
-                        'count' :   (gobject.TYPE_STRING,
-                                    'Count',
-                                    'Count to be displayed',
-                                    None,
-                                    gobject.PARAM_READWRITE),
-                        'show-count' : (gobject.TYPE_BOOLEAN,
-                                    'Display count',
-                                    'Whether to display count or not',
-                                    True,
-                                    gobject.PARAM_READWRITE),
-                        'radius' : (gobject.TYPE_INT,
-                                    '"Pill" radius',
-                                    '"Pill" radius',
-                                    0,
-                                    24,
-                                    12,
-                                    gobject.PARAM_READWRITE)
-                                    }
-    def __init__(self):
-        gtk.CellRendererText.__init__(self)
-        self.colors = None
-        setattr(self, 'label', None)
-        setattr(self, 'count', None)
-        setattr(self, 'show-count', True)
-        setattr(self, 'radius', 12)
-
-    def do_set_property(self, pspec, value):
-        setattr(self, pspec.name, value)
-
-    def do_get_property(self, pspec):
-        return getattr(self, pspec.name)
-
-    def do_render(self, *args):
-        """
-        window, widget, background_area, cell_area, expose_area, flags
-        """
-        widget_state = self._get_state(args)
-        style = args[1].get_style().copy()
-        self.colors = ColorParse()
-        theme = CairoColors(args[1])
-        if widget_state == gtk.STATE_SELECTED:
-            text = theme['text'][gtk.STATE_SELECTED]
-            pill = theme['dark'][gtk.STATE_SELECTED]
-            if not self.colors.is_light(text):
-                # If selected text is dark it's likely the pill itself
-                # is also dark, so lighten it.
-                pill = self.colors.darker(pill, -50)
-        else:
-            text = theme['text'][gtk.STATE_NORMAL]
-            pill = theme['bg'][gtk.STATE_NORMAL]
-        context = args[0].cairo_create()
-        self._draw_text(context, style, text, args)
-        if self.get_property('count') and self.get_property('show-count'):
-            self._draw_count(context, style, widget_state, text, pill, args)
-        return
-
-    def _draw_count(self, context, style, state, text, pill, args):
-        cell_x, cell_y, cell_w, cell_h = args[3]
-        layout = context.create_layout()
-        layout.set_font_description(style.font_desc)
-        count = self.get_property('count')
-        markup = '<span size="small" weight="heavy">%s</span>' % count
-        layout.set_markup(markup)
-        layout_w, layout_h = layout.get_pixel_size()
-        center_h = cell_y + ((cell_h - layout_h) / 2)
-        if state == gtk.STATE_SELECTED:
-            context.set_source_rgba(pill[0], pill[1], pill[2], 0.25)
-        elif not self.colors.is_light(pill):
-            context.set_source_rgba(pill[0], pill[1], pill[2], 0.15)
-        else:
-            context.set_source_rgba(pill[0], pill[1], pill[2], 0.75)
-        self._draw_pill(context,
-                        cell_x + (cell_w - (layout_w + 20)),
-                        cell_y, layout_w + 20, cell_h)
-        context.set_source_rgba(text[0], text[1], text[2], 1)
-        center_w = cell_x + ((cell_w - layout_w) - 10)
-        context.move_to(center_w, center_h)
-        context.show_layout(layout)
-        return
-
-    def _draw_text(self, context, style, text, args):
-        markup = self.get_property('label')
-        if not markup:
-            markup = self.get_property('text')
-        cell_x, cell_y, cell_w, cell_h = args[3]
-        layout = context.create_layout()
-        layout.set_font_description(style.font_desc)
-        layout.set_markup(markup)
-        layout_w, layout_h = layout.get_pixel_size()
-        context.set_source_rgba(text[0], text[1], text[2], 1)
-        center_h = cell_y + ((cell_h - layout_h) / 2)
-        context.move_to(cell_x + self.get_property('xpad'), center_h)
-        context.show_layout(layout)
-        return
-
-    def _draw_pill(self, context, x, y, w, h):
-        pad = self.get_property('ypad')
-        radius = self.get_property('radius')
-        context.move_to(x + radius, y + pad)
-        context.line_to(x + (w - radius), y + pad)
-        context.curve_to(x + w, y, x + w , y + h, x + (w - radius), y + h - pad)
-        context.line_to(x + radius, y + h - pad)
-        context.curve_to(x, y + h, x , y, x + radius, y + pad)
-        context.fill()
-        return
-
-    @staticmethod
-    def _get_editable_state(args):
-        x, y = args[1].widget_to_tree_coords(args[3].x, args[3].y)
-        path = args[1].get_path_at_pos(x, y)
-        selected_paths = args[1].get_selection().get_selected_rows()[1]
-        if path and selected_paths:
-            if path[0] == selected_paths[0]:
-                return gtk.STATE_SELECTED
-            else:
-                return gtk.STATE_NORMAL
-        return None
-
-    def _get_state(self, args):
-        """
-        window, widget, background_area, cell_area, expose_area, flags
-        """
-        # FIXME
-        # This is fugly, I'm probably just missing something obvious...
-        # But selected state for editable cells is very flaky...
-        if self.get_property('editable'):
-            state = self._get_editable_state(args)
-            if state is not None:
-                return state
-        if args[5] == gtk.CELL_RENDERER_SELECTED:
-            return gtk.STATE_SELECTED
-        elif args[5] == gtk.CELL_RENDERER_SELECTED | gtk.CELL_RENDERER_PRELIT:
-            return gtk.STATE_SELECTED
-        else:
-            return gtk.STATE_NORMAL
-
-gobject.type_register(CellRendererTotal)
-# Enable warnings related to invalid names
-# pylint: enable-msg=C0103
 
 def get_header(title):
     header = glib.markup_escape_text(title)

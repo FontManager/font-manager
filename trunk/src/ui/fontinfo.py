@@ -25,6 +25,7 @@ This module provides a dialog which displays font information.
 import os
 import gtk
 import glib
+import pango
 import logging
 import webbrowser
 
@@ -109,15 +110,8 @@ class FontInformation(object):
             view = self.widgets[widget]
             t_buffer = view.get_buffer()
             t_buffer.set_text('')
-        self.widgets['TypeLogo'].set_from_pixbuf(self._get_blank_logo())
+        self.widgets['TypeLogo'].set_from_pixbuf(self.logos['blank'])
         return
-
-    @staticmethod
-    def _get_blank_logo():
-        """
-        Return a blank pixbuf.
-        """
-        return gtk.gdk.pixbuf_new_from_file(join(PACKAGE_DATA_DIR, 'blank.png'))
 
     def _get_filesize(self):
         """
@@ -158,7 +152,17 @@ class FontInformation(object):
         """
         self.family = family
         self.style = style
-        self.typ = family.styles[style]['filetype']
+        try:
+            self.typ = family.styles[style]['filetype']
+        except KeyError:
+            for style in family.styles.iterkeys():
+                self.typ = family.styles[style]['filetype']
+                self.style = style
+                pango_fam = self.family.get_name().lower()
+                pango_fam = pango_fam.strip(',')
+                descr = pango.FontDescription('%s %s' % \
+                                                    (pango_fam, style.lower()))
+                break
         famname = glib.markup_escape_text(family.get_name())
         markup = \
         '<span font_desc="%s" size="xx-large">%s</span>' % (descr, famname)

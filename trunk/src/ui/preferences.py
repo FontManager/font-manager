@@ -417,6 +417,7 @@ class PreferencesDialog():
             os.unlink(CACHE_FILE)
         if exists(DATABASE_FILE):
             os.unlink(DATABASE_FILE)
+        self.update_required = True
         return
 
     def _on_show_orphans(self, widget):

@@ -63,12 +63,12 @@ from constants import CACHE_DIR, HOME, PACKAGE_DATA_DIR
 
 CACHE_FILE  =   join(CACHE_DIR, 'sampler.cache')
 
-def _exit_with_error(msg):
+def _exit_with_error(msg, sec_msg = None):
     dialog = gtk.MessageDialog(None, 0, gtk.MESSAGE_WARNING,
                                     gtk.BUTTONS_CLOSE, None)
     dialog.set_markup('<b>%s</b>' % msg)
-    dialog.format_secondary_text(
-_('On most distributions this is available as python-reportlab.'))
+    if sec_msg:
+        dialog.format_secondary_text(sec_msg)
     dialog.run()
     dialog.destroy()
     sys.exit(1)
@@ -76,7 +76,8 @@ _('On most distributions this is available as python-reportlab.'))
 try:
     from ui.sampler import BuildSample, Config
 except ImportError:
-    _exit_with_error(_('This program requires the ReportLab Toolit'))
+    _exit_with_error(_('This program requires the ReportLab Toolit'),
+    _('On most distributions this is available as python-reportlab.'))
 
 
 class FontSampler(UserDict.UserDict):

@@ -148,7 +148,7 @@ class Family(object):
         """
         Return the number of styles.
         
-        If format is True, return a string suitable for display, i.e '5 Fonts'
+        If display is True, return a string suitable for display, i.e '5 Fonts'
         """
         count = len(self.styles)
         if display:

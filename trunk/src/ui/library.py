@@ -314,8 +314,9 @@ class RemoveFonts(object):
         fontdirs = tuple(self.objects['Preferences'].fontdirs)
         active = self.objects['FontManager'].list_families()
         for result in families:
-            if not result['filepath'].startswith(fontdirs) \
-            and result['family'] in active:
+            if result['filepath'].startswith(fontdirs):
+                continue
+            elif result['family'] in active:
                 self.families.add(result['family'])
         fonts.close()
         for family in natural_sort(list(self.families)):
