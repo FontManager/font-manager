@@ -1596,6 +1596,40 @@ If you choose to continue, it is suggested that you close all open applications 
                   </packing>
                 </child>
                 <child>
+                  <object class="GtkFrame" id="frame2">
+                    <property name="visible">True</property>
+                    <property name="label_xalign">0</property>
+                    <property name="shadow_type">none</property>
+                    <child>
+                      <object class="GtkAlignment" id="alignment4">
+                        <property name="visible">True</property>
+                        <property name="left_padding">12</property>
+                        <child>
+                          <object class="GtkCheckButton" id="PrefsCollFocus">
+                            <property name="label" translatable="yes">Switch to collection when adding families</property>
+                            <property name="visible">True</property>
+                            <property name="can_focus">True</property>
+                            <property name="receives_default">False</property>
+                            <property name="draw_indicator">True</property>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child type="label">
+                      <object class="GtkLabel" id="label23">
+                        <property name="visible">True</property>
+                        <property name="ypad">10</property>
+                        <property name="label" translatable="yes">&lt;b&gt;Collections&lt;/b&gt;</property>
+                        <property name="use_markup">True</property>
+                      </object>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="position">2</property>
+                  </packing>
+                </child>
+                <child>
                   <object class="GtkFrame" id="UIFrame">
                     <property name="visible">True</property>
                     <property name="label_xalign">0</property>
@@ -1609,18 +1643,6 @@ If you choose to continue, it is suggested that you close all open applications 
                             <property name="visible">True</property>
                             <property name="spacing">5</property>
                             <child>
-                              <object class="GtkCheckButton" id="PrefsCollFocus">
-                                <property name="label" translatable="yes">Switch to collection when adding families</property>
-                                <property name="visible">True</property>
-                                <property name="can_focus">True</property>
-                                <property name="receives_default">False</property>
-                                <property name="draw_indicator">True</property>
-                              </object>
-                              <packing>
-                                <property name="position">0</property>
-                              </packing>
-                            </child>
-                            <child>
                               <object class="GtkCheckButton" id="PrefsToolTips">
                                 <property name="label" translatable="yes">Display extra tooltips</property>
                                 <property name="visible">True</property>
@@ -1629,7 +1651,7 @@ If you choose to continue, it is suggested that you close all open applications 
                                 <property name="draw_indicator">True</property>
                               </object>
                               <packing>
-                                <property name="position">1</property>
+                                <property name="position">0</property>
                               </packing>
                             </child>
                             <child>
@@ -1712,7 +1734,7 @@ If you choose to continue, it is suggested that you close all open applications 
                                 </child>
                               </object>
                               <packing>
-                                <property name="position">2</property>
+                                <property name="position">1</property>
                               </packing>
                             </child>
                           </object>
@@ -1730,7 +1752,7 @@ If you choose to continue, it is suggested that you close all open applications 
                   </object>
                   <packing>
                     <property name="expand">False</property>
-                    <property name="position">2</property>
+                    <property name="position">3</property>
                   </packing>
                 </child>
                 <child>
@@ -2546,8 +2568,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
                 <child>
                   <object class="GtkFileChooserButton" id="ExportFileChooser">
                     <property name="visible">True</property>
-                    <property name="action">select-folder</property>
                     <property name="do_overwrite_confirmation">True</property>
+                    <property name="action">select-folder</property>
                     <property name="title" translatable="yes">Select A Folder</property>
                   </object>
                   <packing>
@@ -2631,8 +2653,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
-    <property name="select_multiple">True</property>
     <property name="create_folders">False</property>
+    <property name="select_multiple">True</property>
     <signal name="file_activated" handler="gtk_true"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">
