@@ -1,7 +1,7 @@
 #summary These notes are in addition to the information and Known Issues listed in the help file, please make sure any problems you encounter are not listed there before reporting them.
 #labels Featured
 
-= Release Notes 0.5.3 =
+= Release Notes 0.5.4 =
 
 <p>
 Users who have customized their ~/.fonts.conf, should move it before running Font Manager.
@@ -11,6 +11,10 @@ just create the file if it doesn't exist.
 <br></br>
 This will ensure that they do not get overwritten by the application.
 </p>
+
+<p>
+Apologies in advance, as you'll have to reset your preferences, a lot of new preferences were added and I didn't want to deal with backwards compatibility...
+<p>
 
 <p>
 The family search box now contains and "Advanced Search" option which allows filtering the selected collection by family name, type, manufacturer, and filepath.
