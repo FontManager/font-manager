@@ -71,7 +71,7 @@ class Config(object):
     def __init__(self):
         self.styles = getSampleStyleSheet()
         self.fontsize = 20
-        author =  os.getenv('USER')
+        author =  os.getenv('LOGNAME')
         self.author = author.capitalize()
         self.subject = _('Sample of included fonts')
         self.pangram = False

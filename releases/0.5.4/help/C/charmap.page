@@ -1,0 +1,38 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="charmap">
+
+    <info>
+        <link type="guide" xref="index#explore"/>
+        <desc>View individual characters and their details</desc>
+    </info>
+
+    <title>Examining glyphs</title>
+
+        <p>
+        To get a closer look at individual characters and their details click
+        <gui style="button">Character Map</gui>.
+        </p>
+
+        <p>
+        This will launch the <link href="ghelp:gucharmap">Character Map</link>
+        application with the currently selected font active.
+        </p>
+
+        <figure>
+            <title><app>Character Map</app></title>
+            <media type="image" src="figures/charmap.png"/>
+        </figure>
+
+    <note style="tip">
+        <title>Character Map Tip:</title>
+        <p>
+
+        </p>
+        <p>
+        Click or hold the right mouse button while hovering over characters to
+        display a large preview.
+        </p>
+    </note>
+
+</page>

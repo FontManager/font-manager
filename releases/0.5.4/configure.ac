@@ -27,8 +27,8 @@ PKG_CHECK_MODULES([glib], [glib-2.0])
 AC_CONFIG_FILES([
 	Makefile 
 	src/Makefile 
-	src/font-manager.in
-	src/font-sampler.in
+	src/font-manager 
+	src/font-sampler 
 	src/constants.py.in 
 	src/main.py 
 	src/core/__init__.py 
