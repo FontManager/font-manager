@@ -38,7 +38,6 @@ rm -rf RESULTS
 mkdir RESULTS
 cp -f BUILD/$PACKAGE*deb ./RESULTS/
 echo 'Now running cleanup'
-rm -f $PACKAGE-$VERSION.zip
 rm -rf BUILD
 make distclean
 

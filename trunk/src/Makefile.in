@@ -33,15 +33,13 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
-	$(srcdir)/constants.py.in.in $(srcdir)/font-manager.in.in \
-	$(srcdir)/font-sampler.in.in $(srcdir)/main.py.in
+	$(srcdir)/constants.py.in.in $(srcdir)/main.py.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES = font-manager.in font-sampler.in constants.py.in \
-	main.py
+CONFIG_CLEAN_FILES = constants.py.in main.py
 CONFIG_CLEAN_VPATH_FILES =
 SOURCES =
 DIST_SOURCES =
@@ -173,10 +171,6 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-font-manager.in: $(top_builddir)/config.status $(srcdir)/font-manager.in.in
-	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
-font-sampler.in: $(top_builddir)/config.status $(srcdir)/font-sampler.in.in
-	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 constants.py.in: $(top_builddir)/config.status $(srcdir)/constants.py.in.in
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
 main.py: $(top_builddir)/config.status $(srcdir)/main.py.in
@@ -336,6 +330,7 @@ constants.py: constants.py.in
 
 font-manager: font-manager.in
 	@sed \
+		-e 's|@PYTHON[@]|$(PYTHON)|g' \
 		-e 's|@PREFIX[@]|$(prefix)|g' \
 		-e 's|@LIBDIR[@]|$(libdir)|g' \
 		< $< \
@@ -343,6 +338,7 @@ font-manager: font-manager.in
 
 font-sampler: font-sampler.in
 	@sed \
+		-e 's|@PYTHON[@]|$(PYTHON)|g' \
 		-e 's|@PREFIX[@]|$(prefix)|g' \
 		-e 's|@LIBDIR[@]|$(libdir)|g' \
 		< $< \

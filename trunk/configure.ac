@@ -25,13 +25,11 @@ PKG_CHECK_MODULES([glib], [glib-2.0])
 # Checks for library functions.
 
 AC_CONFIG_FILES([
-	Makefile 
-	src/Makefile 
-	src/font-manager.in
-	src/font-sampler.in
-	src/constants.py.in 
-	src/main.py 
-	src/core/__init__.py 
+	Makefile
+	src/Makefile
+	src/constants.py.in
+	src/main.py
+	src/core/__init__.py
 	src/ui/export.py
 ])
 

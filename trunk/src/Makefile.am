@@ -1,6 +1,7 @@
 
 CC = @CC@
 FLAGS = -fPIC -shared -D_REENTRANT
+PYTHON = @PYTHON@
 LIBS = $(fontconfig_LIBS)$(freetype2_LIBS)$(glib_LIBS)
 INCLUDES = $(fontconfig_CFLAGS)$(freetype2_CFLAGS)$(glib_CFLAGS)
 PyInclude = -I`python -c 'import distutils.sysconfig; print "%s" % distutils.sysconfig.get_python_inc()'`
@@ -21,6 +22,7 @@ constants.py: constants.py.in
 
 font-manager: font-manager.in
 	@sed \
+		-e 's|@PYTHON[@]|$(PYTHON)|g' \
 		-e 's|@PREFIX[@]|$(prefix)|g' \
 		-e 's|@LIBDIR[@]|$(libdir)|g' \
 		< $< \
@@ -28,6 +30,7 @@ font-manager: font-manager.in
 
 font-sampler: font-sampler.in
 	@sed \
+		-e 's|@PYTHON[@]|$(PYTHON)|g' \
 		-e 's|@PREFIX[@]|$(prefix)|g' \
 		-e 's|@LIBDIR[@]|$(libdir)|g' \
 		< $< \

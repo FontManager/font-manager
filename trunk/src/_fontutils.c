@@ -611,7 +611,7 @@ static PyMethodDef Methods[] = {
 
     {"FcGetFontDirs", FcGetFontDirs, METH_NOARGS,
     "Return a list of configured font directories.\n\n\
-    This function takes no arguments and always returns None."},
+    This function takes no arguments."},
 
     {"FcFileList", FcFileList, METH_VARARGS,
     "Query FontConfig for all installed font files.\n\n\

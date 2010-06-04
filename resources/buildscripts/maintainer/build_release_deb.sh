@@ -37,7 +37,6 @@ rm -rf RESULTS
 mkdir RESULTS
 cp -f /var/cache/pbuilder/result/$PACKAGE* ./RESULTS/
 echo 'Now running cleanup'
-rm -f $PACKAGE-$VERSION.zip
 rm -rf BUILD
 make distclean
 echo
