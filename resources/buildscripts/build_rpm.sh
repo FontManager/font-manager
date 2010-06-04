@@ -35,7 +35,7 @@ echo
 rpmbuild -bb ~/rpmbuild/SPECS/$PACKAGE.spec
 rm -rf RESULTS
 mkdir RESULTS
-cp -f ~/rpmbuild/RPMS/noarch/$PACKAGE*rpm ./RESULTS/
+cp -f ~/rpmbuild/RPMS/$(arch)/$PACKAGE*rpm ./RESULTS/
 echo 'Now running cleanup'
 rm -f $PACKAGE-$VERSION.tar.bz2
 make clean
