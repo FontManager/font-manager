@@ -51,5 +51,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/font-manager.desktop
 
 %changelog
-* Fri Jun 4 2010
+* Fri Jun 4 2010 Jerry Casiano <JerryCasiano@gmail.com> - 0.5.4
 - Jack the upstream spec for testing
