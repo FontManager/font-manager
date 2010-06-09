@@ -167,13 +167,13 @@ FcEnableHomeConfig(PyObject *self, PyObject *args)
 static PyObject *
 FcGetFontDirs(PyObject *self, PyObject *args)
 {
-    gchar       *directory;
+    FcChar8       *directory;
     FcStrList   *fdlist;
     PyObject    *dirlist = PyList_New(0);
 
     fdlist = FcConfigGetFontDirs(NULL);
-    while ( directory = FcStrListNext(fdlist) )
-        PyList_Append(dirlist, PyString_FromString(directory));
+    while ( (directory = FcStrListNext(fdlist)) )
+        PyList_Append(dirlist, PyString_FromString((const char *) directory));
     FcStrListDone(fdlist);
 
     return dirlist;
@@ -215,14 +215,14 @@ FcFileList(PyObject *self, PyObject *args)
             FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &file);
             FcPatternGetString(fontset->fonts[i], FC_FOUNDRY, 0, &foundry);
             PyDict_SetItem(details,
-                                PyString_FromString(file),
-                                PyString_FromString(foundry));
+                                PyString_FromString((const char *) file),
+                                PyString_FromString((const char *) foundry));
             PyList_Append(fontlist, details);
         }
         else
         {
             FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &file);
-            PyList_Append(fontlist, PyString_FromString(file));
+            PyList_Append(fontlist, PyString_FromString((const char *) file));
         }
     }
 
@@ -424,43 +424,43 @@ _get_sfnt_info(FT_Face face)
         {
             case TT_NAME_ID_FONT_FAMILY:
                 g_free(family);
-                family = g_convert(sname.string, sname.string_len,
-                                "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                family = g_convert((const gchar *) sname.string,
+                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
                 break;
             case TT_NAME_ID_FONT_SUBFAMILY:
                 g_free(style);
-                style = g_convert(sname.string, sname.string_len,
-                                "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                style = g_convert((const gchar *) sname.string,
+                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
                 break;
             case TT_NAME_ID_COPYRIGHT:
                 g_free(copyright);
-                copyright = g_convert(sname.string, sname.string_len,
-                                "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                copyright = g_convert((const gchar *) sname.string,
+                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
                 break;
             case TT_NAME_ID_VERSION_STRING:
                 g_free(version);
-                version = g_convert(sname.string, sname.string_len,
-                                "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                version = g_convert((const gchar *) sname.string,
+                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
                 break;
             case TT_NAME_ID_DESCRIPTION:
                 g_free(description);
-                description = g_convert(sname.string, sname.string_len,
-                                "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                description = g_convert((const gchar *) sname.string,
+                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
                 break;
             case TT_NAME_ID_LICENSE:
                 g_free(license);
-                license = g_convert(sname.string, sname.string_len,
-                                "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                license = g_convert((const gchar *) sname.string,
+                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
                 break;
             case TT_NAME_ID_LICENSE_URL:
                 g_free(license_url);
-                license_url = g_convert(sname.string, sname.string_len,
-                                "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                license_url = g_convert((const gchar *) sname.string,
+                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
                 break;
             case TT_NAME_ID_MANUFACTURER:
                 g_free(foundry);
-                foundry = g_convert(sname.string, sname.string_len,
-                                "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                foundry = g_convert((const gchar *) sname.string,
+                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
                 break;
             default:
                 break;

@@ -6,7 +6,7 @@ echo
 echo "This script will need superuser access to install required development packages"
 echo
 echo
-su -c 'yum install rpmdevtools subversion make fontconfig-devel freetype-devel glib2-devel -y'
+su -c 'yum install rpmdevtools subversion make fontconfig-devel freetype-devel glib2-devel python-devel -y'
 #
 
 clean='no'

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-su -c 'yum update -y && yum groupinstall "Development Tools" "Fedora Packager" -y && yum install fontconfig-devel freetype-devel glib2-devel -y'
+su -c 'yum update -y && yum groupinstall "Development Tools" "Fedora Packager" -y && yum install fontconfig-devel freetype-devel glib2-devel python-devel -y'
 
 echo
 echo 'Fetching source'
