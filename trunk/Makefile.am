@@ -97,8 +97,7 @@ distclean: clean
 	@rm -f config.log config.status Makefile
 
 EXTRA_DIST = help src/core src/data src/ui src/utils src/*.py src/*.c \
-src/*.in src/font-manager.in src/font-manager.desktop src/Makefile.in \
-src/Makefile.am po
+src/*.in src/*.desktop po
 
 dist-hook: 
 	-find $(distdir) -name '.svn' -exec rm -rf '{}' \;

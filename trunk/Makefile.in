@@ -164,8 +164,7 @@ PyLibs = `python -c 'import distutils.sysconfig; print "-L%s -lpython%s" % (dist
 @DEBUGINFO_FALSE@STRIP_LIB = $(STRIP) --strip-unneeded src/_fontutils.so
 @DEBUGINFO_TRUE@STRIP_LIB = @echo
 EXTRA_DIST = help src/core src/data src/ui src/utils src/*.py src/*.c \
-src/*.in src/font-manager.in src/font-manager.desktop src/Makefile.in \
-src/Makefile.am po
+src/*.in src/*.desktop po
 
 all: all-am
 
