@@ -26,26 +26,27 @@ PKG_CHECK_MODULES([glib], [glib-2.0])
 
 # Optional arguments
 
-AC_ARG_WITH([debuginfo],
-[AS_HELP_STRING([--with-debuginfo], [Do not run strip on libraries])],
-[case "${withval}" in
+AC_ARG_ENABLE([debuginfo],
+[AS_HELP_STRING([--enable-debuginfo], [Do not strip libraries])],
+[case "${enableval}" in
   yes) debuginfo=true ;;
   no)  debuginfo=false ;;
-  *) AC_MSG_ERROR([bad value ${withval} for --with-debuginfo]) ;;
+  *) AC_MSG_ERROR([bad value ${enableval} for --enable-debuginfo]) ;;
 esac],
 [debuginfo=false])
 AM_CONDITIONAL([DEBUGINFO], [test x$debuginfo = xtrue])
 
-AC_ARG_WITH([winlib],
-[AS_HELP_STRING([--with-winlib], [Install .dll instead of .so])],
-[case "${withval}" in
+AC_ARG_ENABLE([winlib],
+[AS_HELP_STRING([--enable-winlib], [Install .dll instead of .so])],
+[case "${enableval}" in
   yes) winlib=true ;;
   no)  winlib=false ;;
-  *) AC_MSG_ERROR([bad value ${withval} for --with-winlib]) ;;
+  *) AC_MSG_ERROR([bad value ${enableval} for --enable-winlib]) ;;
 esac],
 [winlib=false])
 AM_CONDITIONAL([WINLIB], [test x$winlib = xtrue])
 
+# Files that should be created by configure
 
 AC_CONFIG_FILES([
 	Makefile
@@ -55,4 +56,5 @@ AC_CONFIG_FILES([
 	src/ui/export.py
 ])
 
+# Required
 AC_OUTPUT

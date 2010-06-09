@@ -650,8 +650,8 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 enable_dependency_tracking
-with_debuginfo
-with_winlib
+enable_debuginfo
+enable_winlib
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1285,12 +1285,8 @@ Optional Features:
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
-
-Optional Packages:
-  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
-  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
-  --with-debuginfo        Do not run strip on libraries
-  --with-winlib           Install .dll instead of .so
+  --enable-debuginfo      Do not strip libraries
+  --enable-winlib         Install .dll instead of .so
 
 Some influential environment variables:
   CC          C compiler command
@@ -3743,13 +3739,12 @@ fi
 
 # Optional arguments
 
-
-# Check whether --with-debuginfo was given.
-if test "${with_debuginfo+set}" = set; then :
-  withval=$with_debuginfo; case "${withval}" in
+# Check whether --enable-debuginfo was given.
+if test "${enable_debuginfo+set}" = set; then :
+  enableval=$enable_debuginfo; case "${enableval}" in
   yes) debuginfo=true ;;
   no)  debuginfo=false ;;
-  *) as_fn_error "bad value ${withval} for --with-debuginfo" "$LINENO" 5 ;;
+  *) as_fn_error "bad value ${enableval} for --enable-debuginfo" "$LINENO" 5 ;;
 esac
 else
   debuginfo=false
@@ -3764,13 +3759,12 @@ else
 fi
 
 
-
-# Check whether --with-winlib was given.
-if test "${with_winlib+set}" = set; then :
-  withval=$with_winlib; case "${withval}" in
+# Check whether --enable-winlib was given.
+if test "${enable_winlib+set}" = set; then :
+  enableval=$enable_winlib; case "${enableval}" in
   yes) winlib=true ;;
   no)  winlib=false ;;
-  *) as_fn_error "bad value ${withval} for --with-winlib" "$LINENO" 5 ;;
+  *) as_fn_error "bad value ${enableval} for --enable-winlib" "$LINENO" 5 ;;
 esac
 else
   winlib=false
@@ -3785,10 +3779,12 @@ else
 fi
 
 
+# Files that should be created by configure
 
 ac_config_files="$ac_config_files Makefile src/constants.py.in src/main.py src/core/__init__.py src/ui/export.py"
 
 
+# Required
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure

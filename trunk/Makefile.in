@@ -540,11 +540,10 @@ uninstall:
 	@rm -rfv $(DESTDIR)$(prefix)/share/gnome/help/font-manager
 
 clean:
-	@rm -f src/font-manager src/font-sampler src/_fontutils.so
+	@rm -f src/font-manager src/font-sampler src/_fontutils.so src/_fontutils.dll
 	@find src/ -type f -name '*.py[co]' -exec rm -f '{}' \;
 
 distclean: clean
-	@rm -f src/font-manager src/_fontutils.so
 	@rm -f src/constants.py src/constants.py.in
 	@rm -f src/main.py src/core/__init__.py src/ui/export.py
 	@rm -f config.log config.status Makefile
@@ -557,7 +556,7 @@ dist-hook:
 	@rm -f $(distdir)/src/main.py
 	@rm -f $(distdir)/src/core/__init__.py
 
-.PHONY: check clean install uninstall
+.PHONY: default all make-install-dirs install uninstall clean distclean dist-hook
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -1,4 +1,4 @@
-
+## Process this file with automake to produce Makefile.in
 PKGNAME = @PACKAGE_NAME@
 VERSION = @PACKAGE_VERSION@
 
@@ -8,18 +8,18 @@ INCLUDES = $(fontconfig_CFLAGS)$(freetype2_CFLAGS)$(glib_CFLAGS)
 PyInclude = `python -c 'import distutils.sysconfig; print "-I%s" % distutils.sysconfig.get_python_inc()'`
 PyLibs = `python -c 'import distutils.sysconfig; print "-L%s -lpython%s" % (distutils.sysconfig.get_config_var("LIBPL"), distutils.sysconfig.get_python_version())'`
 
-if WINLIB
-  BUILD_LIB = $(CC) src/_fontutils.c $(CFLAGS) $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS) $(PyLibs) -o src/_fontutils.dll
-  INSTALL_LIB = install -m 644 src/_fontutils.dll $(DESTDIR)$(libdir)/font-manager/
-else
+if !WINLIB
   BUILD_LIB = $(CC) src/_fontutils.c $(CFLAGS) $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS) $(PyLibs) -o src/_fontutils.so
   INSTALL_LIB = install -m 644 src/_fontutils.so $(DESTDIR)$(libdir)/font-manager/
+else
+  BUILD_LIB = $(CC) src/_fontutils.c $(CFLAGS) $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS) $(PyLibs) -o src/_fontutils.dll
+  INSTALL_LIB = install -m 644 src/_fontutils.dll $(DESTDIR)$(libdir)/font-manager/
 endif
 
-if DEBUGINFO
-  STRIP_LIB = @echo
-else
+if !DEBUGINFO
   STRIP_LIB = $(STRIP) --strip-unneeded src/_fontutils.so
+else
+  STRIP_LIB = @echo
 endif
 
 default: all
@@ -87,11 +87,10 @@ uninstall:
 	@rm -rfv $(DESTDIR)$(prefix)/share/gnome/help/font-manager
 
 clean:
-	@rm -f src/font-manager src/font-sampler src/_fontutils.so
+	@rm -f src/font-manager src/font-sampler src/_fontutils.so src/_fontutils.dll
 	@find src/ -type f -name '*.py[co]' -exec rm -f '{}' \;
 
 distclean: clean
-	@rm -f src/font-manager src/_fontutils.so
 	@rm -f src/constants.py src/constants.py.in
 	@rm -f src/main.py src/core/__init__.py src/ui/export.py
 	@rm -f config.log config.status Makefile
@@ -107,4 +106,4 @@ dist-hook:
 	@rm -f $(distdir)/src/main.py
 	@rm -f $(distdir)/src/core/__init__.py
 
-.PHONY: check clean install uninstall
+.PHONY: default all make-install-dirs install uninstall clean distclean dist-hook

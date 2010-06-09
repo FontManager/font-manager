@@ -26,7 +26,7 @@ Enlightenment, and even KDE.
 %setup -q
 
 %build
-%configure --with-debuginfo
+%configure --enable-debuginfo
 make %{?_smp_mflags}
 
 %install
@@ -51,7 +51,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %changelog
 * Wed Jun  9 2010 Jerry Casiano <JerryCasiano@gmail.com> - 0.5.4-4
-- Provide a --with-debuginfo switch for packagers
+- Provide an --enable-debuginfo switch for packagers
 - Include all desktop files
 
 * Tue Jun  8 2010 Jean-Francois Saucier <jfsaucier@infoglobe.ca> - 0.5.4-4
