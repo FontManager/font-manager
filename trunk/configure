@@ -557,6 +557,10 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
+WINLIB_FALSE
+WINLIB_TRUE
+DEBUGINFO_FALSE
+DEBUGINFO_TRUE
 glib_LIBS
 glib_CFLAGS
 freetype2_LIBS
@@ -646,6 +650,8 @@ ac_subst_files=''
 ac_user_opts='
 enable_option_checking
 enable_dependency_tracking
+with_debuginfo
+with_winlib
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1279,6 +1285,12 @@ Optional Features:
   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
+
+Optional Packages:
+  --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
+  --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
+  --with-debuginfo        Do not run strip on libraries
+  --with-winlib           Install .dll instead of .so
 
 Some influential environment variables:
   CC          C compiler command
@@ -3729,7 +3741,52 @@ fi
 
 # Checks for library functions.
 
-ac_config_files="$ac_config_files Makefile src/Makefile src/constants.py.in src/main.py src/core/__init__.py src/ui/export.py"
+# Optional arguments
+
+
+# Check whether --with-debuginfo was given.
+if test "${with_debuginfo+set}" = set; then :
+  withval=$with_debuginfo; case "${withval}" in
+  yes) debuginfo=true ;;
+  no)  debuginfo=false ;;
+  *) as_fn_error "bad value ${withval} for --with-debuginfo" "$LINENO" 5 ;;
+esac
+else
+  debuginfo=false
+fi
+
+ if test x$debuginfo = xtrue; then
+  DEBUGINFO_TRUE=
+  DEBUGINFO_FALSE='#'
+else
+  DEBUGINFO_TRUE='#'
+  DEBUGINFO_FALSE=
+fi
+
+
+
+# Check whether --with-winlib was given.
+if test "${with_winlib+set}" = set; then :
+  withval=$with_winlib; case "${withval}" in
+  yes) winlib=true ;;
+  no)  winlib=false ;;
+  *) as_fn_error "bad value ${withval} for --with-winlib" "$LINENO" 5 ;;
+esac
+else
+  winlib=false
+fi
+
+ if test x$winlib = xtrue; then
+  WINLIB_TRUE=
+  WINLIB_FALSE='#'
+else
+  WINLIB_TRUE='#'
+  WINLIB_FALSE=
+fi
+
+
+
+ac_config_files="$ac_config_files Makefile src/constants.py.in src/main.py src/core/__init__.py src/ui/export.py"
 
 
 cat >confcache <<\_ACEOF
@@ -3879,6 +3936,14 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCC_TRUE}" && test -z "${am__fastdepCC_FALSE}"; then
   as_fn_error "conditional \"am__fastdepCC\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${DEBUGINFO_TRUE}" && test -z "${DEBUGINFO_FALSE}"; then
+  as_fn_error "conditional \"DEBUGINFO\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${WINLIB_TRUE}" && test -z "${WINLIB_FALSE}"; then
+  as_fn_error "conditional \"WINLIB\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 
@@ -4460,7 +4525,6 @@ do
   case $ac_config_target in
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
-    "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
     "src/constants.py.in") CONFIG_FILES="$CONFIG_FILES src/constants.py.in" ;;
     "src/main.py") CONFIG_FILES="$CONFIG_FILES src/main.py" ;;
     "src/core/__init__.py") CONFIG_FILES="$CONFIG_FILES src/core/__init__.py" ;;

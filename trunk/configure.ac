@@ -24,9 +24,31 @@ PKG_CHECK_MODULES([glib], [glib-2.0])
 
 # Checks for library functions.
 
+# Optional arguments
+
+AC_ARG_WITH([debuginfo],
+[AS_HELP_STRING([--with-debuginfo], [Do not run strip on libraries])],
+[case "${withval}" in
+  yes) debuginfo=true ;;
+  no)  debuginfo=false ;;
+  *) AC_MSG_ERROR([bad value ${withval} for --with-debuginfo]) ;;
+esac],
+[debuginfo=false])
+AM_CONDITIONAL([DEBUGINFO], [test x$debuginfo = xtrue])
+
+AC_ARG_WITH([winlib],
+[AS_HELP_STRING([--with-winlib], [Install .dll instead of .so])],
+[case "${withval}" in
+  yes) winlib=true ;;
+  no)  winlib=false ;;
+  *) AC_MSG_ERROR([bad value ${withval} for --with-winlib]) ;;
+esac],
+[winlib=false])
+AM_CONDITIONAL([WINLIB], [test x$winlib = xtrue])
+
+
 AC_CONFIG_FILES([
 	Makefile
-	src/Makefile
 	src/constants.py.in
 	src/main.py
 	src/core/__init__.py
