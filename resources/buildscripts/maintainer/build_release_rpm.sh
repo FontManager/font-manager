@@ -1,6 +1,6 @@
 #!/bin/sh
 
-su -c 'yum update -y && yum groupinstall "Development Tools" "Fedora Packager" -y'
+su -c 'yum update -y && yum groupinstall "Development Tools" "Fedora Packager" -y && yum install fontconfig-devel freetype-devel glib2-devel -y'
 
 echo
 echo 'Fetching source'
@@ -23,7 +23,7 @@ echo 'Building package'
 echo
 rm -rf RESULTS
 mkdir RESULTS
-mock --resultdir=./RESULTS/ -r fedora-12-i386 ~/rpmbuild/SRPMS/$PACKAGE*.src.rpm
+mock --resultdir=./RESULTS/ -r fedora-$(cat /etc/system-release | tr -cd '[[:digit:]]')-$(arch) ~/rpmbuild/SRPMS/$PACKAGE*.src.rpm
 echo 'Now running cleanup'
 rm -f ~/rpmbuild/SRPMS/$PACKAGE*
 rm -f ~/rpmbuild/SPECS/$PACKAGE*

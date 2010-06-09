@@ -6,7 +6,7 @@ echo
 echo "This script will need superuser access to install required development packages"
 echo
 echo
-su -c 'yum install rpmdevtools subversion make -y'
+su -c 'yum install rpmdevtools subversion make fontconfig-devel freetype-devel glib2-devel -y'
 #
 
 clean='no'
@@ -47,6 +47,8 @@ else
     rm -f ~/rpmbuild/SPECS/$PACKAGE*
     rm -f ~/rpmbuild/SOURCES/$PACKAGE*
 fi
+echo
+echo 'Done!'
 echo
 echo 'If the build was successful you will find an rpm package in font-manager/RESULTS'
 
