@@ -47,11 +47,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_bindir}/font-sampler
 %{_libdir}/font-manager/
 %{_datadir}/font-manager/
-%{_datadir}/applications/font-manager.desktop
+%{_datadir}/applications/*.desktop
 
 %changelog
 * Wed Jun  9 2010 Jerry Casiano <JerryCasiano@gmail.com> - 0.5.4-4
-- Fix debuginfo issues by providing a switch for packagers
+- Provide a --with-debuginfo switch for packagers
+- Include all desktop files
 
 * Tue Jun  8 2010 Jean-Francois Saucier <jfsaucier@infoglobe.ca> - 0.5.4-4
 - Fix library issue
