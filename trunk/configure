@@ -1286,7 +1286,7 @@ Optional Features:
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
   --enable-debuginfo      Do not strip libraries
-  --enable-winlib         Install .dll instead of .so
+  --enable-winlib         Install .dll instead of .so (cygwin-ports)
 
 Some influential environment variables:
   CC          C compiler command

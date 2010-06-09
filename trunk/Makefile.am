@@ -9,11 +9,9 @@ PyInclude = `python -c 'import distutils.sysconfig; print "-I%s" % distutils.sys
 PyLibs = `python -c 'import distutils.sysconfig; print "-L%s -lpython%s" % (distutils.sysconfig.get_config_var("LIBPL"), distutils.sysconfig.get_python_version())'`
 
 if !WINLIB
-  BUILD_LIB = $(CC) src/_fontutils.c $(CFLAGS) $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS) $(PyLibs) -o src/_fontutils.so
-  INSTALL_LIB = install -m 644 src/_fontutils.so $(DESTDIR)$(libdir)/font-manager/
+  FONTUTILS = src/_fontutils.so
 else
-  BUILD_LIB = $(CC) src/_fontutils.c $(CFLAGS) $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS) $(PyLibs) -o src/_fontutils.dll
-  INSTALL_LIB = install -m 644 src/_fontutils.dll $(DESTDIR)$(libdir)/font-manager/
+  FONTUTILS = src/_fontutils.dll
 endif
 
 if !DEBUGINFO
@@ -22,9 +20,12 @@ else
   STRIP_LIB = @echo
 endif
 
+BUILD_LIB = $(CC) src/_fontutils.c $(CFLAGS) $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS) $(PyLibs) -o $(FONTUTILS)
+INSTALL_LIB = install -m 644 $(FONTUTILS) $(DESTDIR)$(libdir)/font-manager/
+
 default: all
 
-src/fontutils:
+fontutils:
 	$(BUILD_LIB)
 	$(STRIP_LIB)
 
@@ -52,7 +53,7 @@ src/font-sampler: src/font-sampler.in
 		< $< \
 		> $@
 
-all: src/constants.py src/fontutils src/font-manager src/font-sampler
+all: fontutils src/constants.py src/font-manager src/font-sampler
 	@python -m compileall src/
 	@python -O -m compileall src/
 
@@ -106,4 +107,4 @@ dist-hook:
 	@rm -f $(distdir)/src/main.py
 	@rm -f $(distdir)/src/core/__init__.py
 
-.PHONY: default all make-install-dirs install uninstall clean distclean dist-hook
+.PHONY: default all make-install-dirs install uninstall clean distclean dist-hook fontutils

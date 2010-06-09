@@ -37,7 +37,7 @@ esac],
 AM_CONDITIONAL([DEBUGINFO], [test x$debuginfo = xtrue])
 
 AC_ARG_ENABLE([winlib],
-[AS_HELP_STRING([--enable-winlib], [Install .dll instead of .so])],
+[AS_HELP_STRING([--enable-winlib], [Install .dll instead of .so (cygwin-ports)])],
 [case "${enableval}" in
   yes) winlib=true ;;
   no)  winlib=false ;;

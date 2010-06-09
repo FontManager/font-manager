@@ -157,12 +157,12 @@ FLAGS = -fPIC -shared -D_REENTRANT
 INCLUDES = $(fontconfig_CFLAGS)$(freetype2_CFLAGS)$(glib_CFLAGS)
 PyInclude = `python -c 'import distutils.sysconfig; print "-I%s" % distutils.sysconfig.get_python_inc()'`
 PyLibs = `python -c 'import distutils.sysconfig; print "-L%s -lpython%s" % (distutils.sysconfig.get_config_var("LIBPL"), distutils.sysconfig.get_python_version())'`
-@WINLIB_FALSE@BUILD_LIB = $(CC) src/_fontutils.c $(CFLAGS) $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS) $(PyLibs) -o src/_fontutils.so
-@WINLIB_TRUE@BUILD_LIB = $(CC) src/_fontutils.c $(CFLAGS) $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS) $(PyLibs) -o src/_fontutils.dll
-@WINLIB_FALSE@INSTALL_LIB = install -m 644 src/_fontutils.so $(DESTDIR)$(libdir)/font-manager/
-@WINLIB_TRUE@INSTALL_LIB = install -m 644 src/_fontutils.dll $(DESTDIR)$(libdir)/font-manager/
+@WINLIB_FALSE@FONTUTILS = src/_fontutils.so
+@WINLIB_TRUE@FONTUTILS = src/_fontutils.dll
 @DEBUGINFO_FALSE@STRIP_LIB = $(STRIP) --strip-unneeded src/_fontutils.so
 @DEBUGINFO_TRUE@STRIP_LIB = @echo
+BUILD_LIB = $(CC) src/_fontutils.c $(CFLAGS) $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS) $(PyLibs) -o $(FONTUTILS)
+INSTALL_LIB = install -m 644 $(FONTUTILS) $(DESTDIR)$(libdir)/font-manager/
 EXTRA_DIST = help src/core src/data src/ui src/utils src/*.py src/*.c \
 src/*.in src/*.desktop po
 
@@ -477,7 +477,7 @@ uninstall-am:
 
 default: all
 
-src/fontutils:
+fontutils:
 	$(BUILD_LIB)
 	$(STRIP_LIB)
 
@@ -505,7 +505,7 @@ src/font-sampler: src/font-sampler.in
 		< $< \
 		> $@
 
-all: src/constants.py src/fontutils src/font-manager src/font-sampler
+all: fontutils src/constants.py src/font-manager src/font-sampler
 	@python -m compileall src/
 	@python -O -m compileall src/
 
@@ -556,7 +556,7 @@ dist-hook:
 	@rm -f $(distdir)/src/main.py
 	@rm -f $(distdir)/src/core/__init__.py
 
-.PHONY: default all make-install-dirs install uninstall clean distclean dist-hook
+.PHONY: default all make-install-dirs install uninstall clean distclean dist-hook fontutils
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
