@@ -15,7 +15,7 @@ else
 endif
 
 if !DEBUGINFO
-  STRIP_LIB = $(STRIP) --strip-unneeded src/_fontutils.so
+  STRIP_LIB = $(STRIP) --strip-unneeded $(FONTUTILS)
 else
   STRIP_LIB = @echo
 endif
