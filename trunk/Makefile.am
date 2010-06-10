@@ -99,12 +99,8 @@ distclean: clean
 EXTRA_DIST = help src/core src/data src/ui src/utils src/*.py src/*.c \
 src/*.in src/*.desktop po
 
-dist-hook: 
-	-find $(distdir) -name '.svn' -exec rm -rf '{}' \;
+dist-hook: distclean
 	@find $(distdir) -name '.svn' -exec rm -rf '{}' \;
-	@rm -f $(distdir)/src/font-manager $(distdir)/src/_fontutils.so
-	@rm -f $(distdir)/src/constants.py $(distdir)/src/constants.py.in
-	@rm -f $(distdir)/src/main.py
-	@rm -f $(distdir)/src/core/__init__.py
+	@find $(distdir) -name '.svn' -exec rm -rf '{}' \;
 
 .PHONY: default all make-install-dirs install uninstall clean distclean dist-hook fontutils
