@@ -127,7 +127,7 @@ class InstallFonts(object):
                 if filepath.endswith(T1_EXTS):
                     metrics = splitext(filepath)[0] + '.*'
                     for path in glob.glob(metrics):
-                        shutil.move(path, TMP_DIR)
+                        shutil.copy(path, TMP_DIR)
             processed += 1
             self.objects.progress_callback(filename, total, processed)
         self.objects.set_sensitive(True)

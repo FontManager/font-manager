@@ -1,3 +1,12 @@
+    * Update (0.5.5)
+
+        Address an issue where fontconfig/pango updates cause previews to stop
+        displaying properly for disabled families.
+
+        Added a fontconfig editor which allows users to configure settings for
+        individual families and styles. Also allows editing aliases.
+        * <matrix> transformations are not supported.
+
     * Update (0.5.4)
 
         Fix several bugs introduced in the 0.5.x releases, hopefully without

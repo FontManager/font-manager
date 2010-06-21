@@ -82,10 +82,11 @@ install: make-install-dirs
 
 uninstall:
 	@rm -fv $(DESTDIR)$(prefix)/bin/font-manager
+	@rm -fv $(DESTDIR)$(prefix)/bin/font-sampler
 	@rm -rfv $(DESTDIR)$(libdir)/font-manager
 	@rm -rfv $(DESTDIR)$(prefix)/share/font-manager
 	@rm -fv $(DESTDIR)$(prefix)/share/applications/font-manager.desktop
-	@rm -rfv $(DESTDIR)$(prefix)/share/gnome/help/font-manager
+	@rm -fv $(DESTDIR)$(prefix)/share/applications/font-sampler.desktop
 
 clean:
 	@rm -f src/font-manager src/font-sampler src/_fontutils.so src/_fontutils.dll
@@ -96,8 +97,7 @@ distclean: clean
 	@rm -f src/main.py src/core/__init__.py src/ui/export.py
 	@rm -f config.log config.status Makefile
 
-EXTRA_DIST = help src/core src/data src/ui src/utils src/*.py src/*.c \
-src/*.in src/*.desktop po
+EXTRA_DIST = help src/core src/data src/ui src/utils src/*.py src/*.c src/*.in src/*.desktop po
 
 dist-hook: distclean
 	@find $(distdir) -name '.svn' -exec rm -rf '{}' \;

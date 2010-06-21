@@ -33,13 +33,15 @@ import libxml2
 import logging
 import time
 
-from os.path import exists
+from os.path import exists, join
 
-from constants import USER_FONT_DIR, USER_FONT_CONFIG_DIRS, \
-                        USER_FONT_CONFIG_SELECT, USER_FONT_CONFIG_DESELECT, \
-                        USER_FONT_COLLECTIONS, USER_FONT_COLLECTIONS_BAK, \
-                        USER_ACTIONS_CONFIG, COMPAT_COLLECTIONS
-
+from constants import USER_FONT_DIR, USER_FONT_CONFIG_DIR, \
+                        USER_FONT_CONFIG_DIRS, USER_FONT_CONFIG_SELECT, \
+                        USER_FONT_CONFIG_DESELECT, USER_FONT_COLLECTIONS, \
+                        USER_FONT_COLLECTIONS_BAK, USER_ACTIONS_CONFIG, \
+                        COMPAT_COLLECTIONS
+from constants import CHECKBUTTONS, CONSTS, CONSTS_MAP, DEFAULTS, SKIP, \
+                                            SLANT, WEIGHT, FC_WIDGETMAP, WIDTH
 
 def add_patelt_node(node_ref, node_value, pat_name='family', val_type='string'):
     """
@@ -153,6 +155,27 @@ def load_actions():
     doc.freeDoc()
     return results
 
+def load_alias_settings():
+    if not exists(join(USER_FONT_CONFIG_DIR, '35-aliases.conf')):
+        return
+    try:
+        doc = libxml2.parseFile(join(USER_FONT_CONFIG_DIR, '35-aliases.conf'))
+    except libxml2.parserError:
+        logging.warn("Failed to parse user aliases configuration!")
+        return
+    aliases = doc.xpathEval('//alias')
+    if len(aliases) == 0:
+        doc.freeDoc()
+        return
+    results = {}
+    for alias in aliases:
+        family = alias.xpathEval('family')[0].content
+        results[family] = []
+        for prefer in alias.xpathEval('prefer'):
+            results[family].append(prefer.xpathEval('family')[0].content)
+    doc.freeDoc()
+    return results
+
 def load_directories():
     """
     Load user specified directories from configuration file
@@ -198,6 +221,24 @@ def save_actions(actions):
         node.newChild(None, 'block', str(action['block']))
         node.newChild(None, 'restart', str(action['restart']))
     doc.saveFormatFile(USER_ACTIONS_CONFIG, format=1)
+    doc.freeDoc()
+    return
+
+def save_alias_settings(tree):
+    model = tree.get_model()
+    doc = libxml2.newDoc('1.0')
+    root = doc.newChild(None, 'fontconfig', None)
+    while model.get_iter_first():
+        rootiter = model.get_iter_first()
+        node = root.newChild(None, 'alias', None)
+        node.newChild(None, 'family', model.get_value(rootiter, 0))
+        while model.iter_children(rootiter):
+            child = model.iter_children(rootiter)
+            prefer = node.newChild(None, 'prefer', None)
+            prefer.newChild(None, 'family', model.get_value(child, 0))
+            model.remove(child)
+        model.remove(rootiter)
+    doc.saveFormatFile(join(USER_FONT_CONFIG_DIR, '35-aliases.conf'), format=1)
     doc.freeDoc()
     return
 
@@ -354,6 +395,112 @@ def save_compat_collections(objects):
         return
     doc.saveFormatFile(COMPAT_COLLECTIONS, format=1)
     doc.freeDoc()
+    return
+
+def save_fontconfig_settings(settings):
+    """
+    Save user-configured settings to a file.
+    """
+    doc = libxml2.newDoc('1.0')
+    root = doc.newChild(None, 'fontconfig', None)
+    for style in sorted(settings.faces.iterkeys()):
+        dirty = False
+        for setting in CHECKBUTTONS:
+            attribute = FC_WIDGETMAP[setting]
+            default_val = DEFAULTS[FC_WIDGETMAP[setting]]
+            if getattr(settings.faces[style], attribute, default_val):
+                dirty = True
+                break
+        if not dirty:
+            continue
+        node = _add_standard_match_targets(doc, root, style, settings)
+        less_eq = FC_WIDGETMAP[_('Smaller than')]
+        more_eq = FC_WIDGETMAP[_('Larger than')]
+        less = getattr(settings.faces[style], less_eq, DEFAULTS[less_eq])
+        more = getattr(settings.faces[style], more_eq, DEFAULTS[more_eq])
+        if less:
+            test = node.newChild(None, 'test', None)
+            test.setProp('name', 'size')
+            test.setProp('compare', 'less')
+            attribute = 'min_size'
+            default_val = DEFAULTS[attribute]
+            val = int(getattr(settings.faces[style], attribute, default_val))
+            test.newChild(None, 'double', str(val))
+            _add_assignments(node, style, settings)
+        if less and more:
+            node = _add_standard_match_targets(doc, root, style, settings)
+        if more:
+            test = node.newChild(None, 'test', None)
+            test.setProp('name', 'size')
+            test.setProp('compare', 'more')
+            attribute = 'max_size'
+            default_val = DEFAULTS[attribute]
+            val = int(getattr(settings.faces[style], attribute, default_val))
+            test.newChild(None, 'double', str(val))
+            _add_assignments(node, style, settings)
+        if not less and not more:
+            _add_assignments(node, style, settings)
+    doc.saveFormatFile(join(USER_FONT_CONFIG_DIR, 
+                        '25-%s.conf' % settings.family.get_name()), format=1)
+    doc.freeDoc()
+    return
+
+def _add_standard_match_targets(doc, root, style, settings):
+    escape = glib.markup_escape_text
+    comment = (settings.family.get_name(), style)
+    root.addChild(doc.newDocComment(' %s %s ' % comment))
+    node = root.newChild(None, 'match', None)
+    node.setProp('target', 'font')
+    test = node.newChild(None, 'test', None)
+    test.setProp('name', 'family')
+    test.newChild(None, 'string', escape(settings.family.get_name()))
+    _guess_style_values(node, settings, style)
+    return node
+
+def _guess_style_values(node, settings, style):
+    descr = settings.faces[style].descr
+    test = node.newChild(None, 'test', None)
+    test.setProp('name', 'slant')
+    test.setProp('compare', 'eq')
+    test.newChild(None, 'const', SLANT[descr.get_style()])
+    test = node.newChild(None, 'test', None)
+    test.setProp('name', 'weight')
+    test.setProp('compare', 'more_eq')
+    test.newChild(None, 'int', WEIGHT[descr.get_weight()].split(':')[0])
+    test = node.newChild(None, 'test', None)
+    test.setProp('name', 'weight')
+    test.setProp('compare', 'less_eq')
+    test.newChild(None, 'int', WEIGHT[descr.get_weight()].split(':')[1])
+    test = node.newChild(None, 'test', None)
+    test.setProp('name', 'width')
+    test.setProp('compare', 'eq')
+    test.newChild(None, 'const', WIDTH[descr.get_stretch()])
+    return
+
+def _add_assignments(node, style, settings):
+    for setting in CHECKBUTTONS:
+        attribute = FC_WIDGETMAP[setting]
+        default_val = DEFAULTS[FC_WIDGETMAP[setting]]
+        val = getattr(settings.faces[style], attribute, default_val)
+        if setting not in SKIP:
+            edit = node.newChild(None, 'edit', None)
+            edit.setProp('name', attribute)
+            edit.setProp('mode', 'assign')
+            edit.newChild(None, 'bool', str(val))
+        if val and attribute in CONSTS_MAP:
+            attribute = CONSTS_MAP[attribute]
+            default_val = DEFAULTS[attribute]
+            raw_val = getattr(settings.faces[style], attribute, default_val)
+            val = str(raw_val).split('.')[1][:1]
+            edit = node.newChild(None, 'edit', None)
+            edit.setProp('name', attribute)
+            edit.setProp('mode', 'assign')
+            edit.newChild(None, 'const', CONSTS[attribute][val])
+        if val and attribute == 'disablergba':
+            edit = node.newChild(None, 'edit', None)
+            edit.setProp('name', 'rgba')
+            edit.setProp('mode', 'assign')
+            edit.newChild(None, 'const', 'none')
     return
 
 def _get_collection_order(objects):

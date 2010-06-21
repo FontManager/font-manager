@@ -101,11 +101,12 @@ class FontManager(gobject.GObject, UserDict.UserDict):
                                                     gobject.TYPE_NONE,
                                                     (gobject.TYPE_PYOBJECT,))
                                                     }
-    def __init__(self, progress_callback = None):
+    def __init__(self, progress_callback = None, parent = None):
         disable_blacklist()
         self._loading = True
         super(FontManager, self).__init__()
         self.progress = progress_callback
+        self.parent = parent
         self._disabled = []
         self._enabled = []
         self.categories = {}
@@ -113,7 +114,10 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         self.initial_collection_order = []
         self.data = {}
         self.total_families = 0
-        fonts.Sort(self, self.progress)
+        if self.parent:
+            fonts.Sort(self, self.progress, self.parent)
+        else:
+            fonts.Sort(self, self.progress)
         self._update_selections()
         self.auto_enable_collections()
         self.total_families = len(self.categories[_('All')].families)
@@ -588,7 +592,7 @@ def get_applist():
         APPLIST = AvailableApps()
         return APPLIST
 
-def get_manager():
+def get_manager(parent = None):
     """
     Return an instance of FontManager.
     """
@@ -596,7 +600,10 @@ def get_manager():
     if MANAGER:
         return MANAGER
     else:
-        MANAGER = FontManager(PROGRESS_CALLBACK)
+        if parent:
+            MANAGER = FontManager(PROGRESS_CALLBACK, parent)
+        else:
+            MANAGER = FontManager(PROGRESS_CALLBACK)
         MANAGER.connect('update-font-select', _save_rejects)
         return MANAGER
 
@@ -677,7 +684,7 @@ def _migrate():
 # Make sure we have everything we need to run properly
 _setup_logging()
 for folder in CACHE_DIR, CONFIG_DIR, APP_CONFIG_DIR, AUTOSTART_DIR, DATA_DIR, \
-                        USER_FONT_DIR, USER_LIBRARY_DIR:
+                        USER_FONT_CONFIG_DIR, USER_FONT_DIR, USER_LIBRARY_DIR:
     if not exists(folder):
         os.makedirs(folder, 0755)
         if folder == USER_FONT_DIR:

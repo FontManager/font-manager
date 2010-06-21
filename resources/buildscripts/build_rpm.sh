@@ -43,7 +43,7 @@ if [ $clean = 'yes' ]
 then
     rm -rf ~/rpmbuild
 else
-    rm -f ~/rpmbuild/RPMS/noarch/$PACKAGE*
+    rm -f ~/rpmbuild/RPMS/$(arch)/$PACKAGE*
     rm -f ~/rpmbuild/SPECS/$PACKAGE*
     rm -f ~/rpmbuild/SOURCES/$PACKAGE*
 fi

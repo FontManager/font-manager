@@ -412,8 +412,6 @@ def sync():
     update the database.
     """
 
-    table = Table('Fonts')
-
     def _get_indexed_files():
         """
         Return a list of any files already in the database.
@@ -423,26 +421,31 @@ def sync():
             paths.append(row[0])
         return paths
 
+    def _need_update():
+        available = _fontutils.FcFileList()
+        indexed = _get_indexed_files()
+        update = _drop_indexed(available, indexed)
+        return available, indexed, update
+
+    def _sync(system=False):
+        fontdetails = _get_details(update, system)
+        for font in fontdetails:
+            table.insert(_get_row_data(font))
+        return
+
+    table = Table('Fonts')
     # 'System' fonts
     _fontutils.FcEnableHomeConfig(False)
-    available = _fontutils.FcFileList()
-    indexed = _get_indexed_files()
-    update = _drop_indexed(available, indexed)
+    update = _need_update()[2]
     if len(update) > 0:
         delete_cache()
-    fontdetails = _get_details(update, True)
-    for font in fontdetails:
-        table.insert(_get_row_data(font))
+    _sync(True)
     # 'User' fonts
     _fontutils.FcEnableHomeConfig(True)
-    available = _fontutils.FcFileList()
-    indexed = _get_indexed_files()
-    update = _drop_indexed(available, indexed)
+    available, indexed, update = _need_update()
     if len(update) > 0 or len(available) != len(indexed):
         delete_cache()
-    fontdetails = _get_details(update, False)
-    for font in fontdetails:
-        table.insert(_get_row_data(font))
+    _sync(False)
     table.close()
     return
 

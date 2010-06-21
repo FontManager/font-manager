@@ -35,20 +35,8 @@ import subprocess
 import time
 
 from constants import PACKAGE_DATA_DIR
-from utils.common import natural_sort
+from utils.common import display_error, natural_sort
 from utils.xmlutils import load_actions, save_actions
-
-
-def _display_error(msg, sec_msg = None):
-    dialog = gtk.MessageDialog(None, 0, gtk.MESSAGE_ERROR,
-                                    gtk.BUTTONS_CLOSE, None)
-    dialog.set_markup('<b>%s</b>' % msg)
-    if sec_msg is not None:
-        dialog.format_secondary_text(sec_msg)
-    dialog.set_size_request(420, -1)
-    dialog.run()
-    dialog.destroy()
-    return
 
 
 class UserActions(object):
@@ -311,7 +299,7 @@ class UserActions(object):
             process = subprocess.Popen(command)
         except (OSError, ValueError), error:
             command = '\nCommand was :\n\n' + ' '.join(command)
-            _display_error(error, command)
+            display_error(error, command)
             return
         if action['block'] or action['restart']:
             while process.poll() is None:

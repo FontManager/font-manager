@@ -170,4 +170,31 @@
     <property name="stock">gtk-directory</property>
     <property name="icon-size">1</property>
   </object>
+  <object class="GtkMenu" id="SettingsMenu">
+    <property name="visible">True</property>
+    <child>
+      <object class="GtkImageMenuItem" id="DesktopSettings">
+        <property name="label" translatable="yes">Desktop Settings</property>
+        <property name="visible">True</property>
+        <property name="image">SettingsIcon1</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="FontConfigSettings">
+        <property name="label" translatable="yes">Advanced Configuration</property>
+        <property name="visible">True</property>
+        <property name="image">SettingsIcon2</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkImage" id="SettingsIcon1">
+    <property name="visible">True</property>
+    <property name="icon_name">preferences-desktop</property>
+  </object>
+  <object class="GtkImage" id="SettingsIcon2">
+    <property name="visible">True</property>
+    <property name="icon_name">preferences-desktop-font</property>
+  </object>
 </interface>

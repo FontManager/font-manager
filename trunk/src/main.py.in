@@ -39,15 +39,17 @@ import subprocess
 from os.path import exists, join, splitext
 
 import core
+import _fontutils
 
+from ui import fontconfig
 from constants import PACKAGE, PACKAGE_DATA_DIR, TMP_DIR
 from ui.export import Export
 from ui.library import InstallFonts, RemoveFonts
 from ui.treeviews import Treeviews
 from ui.previews import Browse, Previews
 from utils.common import disable_blacklist, open_folder, delete_cache, \
-                            delete_database, reset_fontconfig_cache
-from utils.xmlutils import check_libxml2_leak, save_collections
+                    delete_database, reset_fontconfig_cache, fc_config_reloaded
+from utils.xmlutils import save_collections
 
 
 class Main(object):
@@ -115,6 +117,14 @@ class Main(object):
         self.export = None
         self.installer = None
         self.remover = None
+        # Disable user configuration files so that changes to them
+        # do not interfere with our ability to render disabled fonts.
+        _fontutils.FcEnableHomeConfig(False)
+        # This means any user settings just got dropped so reload them
+        fc_config_reloaded()
+        # This also happens whenever these signals are emitted...
+        self.main_window.connect_after('style-set', fc_config_reloaded)
+        self.main_window.connect_after('direction-changed', fc_config_reloaded)
         # What the hell, let's put Main into the container... :-D
         self.objects['Main'] = self
 
@@ -138,10 +148,20 @@ class Main(object):
         self.menus['TrayAbout'].connect('activate', _on_about_dialog,
                                             self.objects['AboutDialog'])
         self.menus['TrayQuit'].connect('activate', self.quit)
+        if 'gnome-appearance-properties' in self.objects['AvailableApps']:
+            self.menus['DesktopSettings'].connect('activate', _on_font_settings)
+        else:
+            self.menus['DesktopSettings'].set_sensitive(False)
+            self.menus['DesktopSettings'].set_tooltip_text\
+            (_('This option requires gnome-appearance-properties'))
+        self.menus['FontConfigSettings'].connect('activate', 
+                                                _on_fontconfig_settings, self)
         # Miscellaneous
         self.objects['Refresh'].connect('clicked', self.reload, True)
         self.objects['Manage'].connect('button-press-event',
                                         self.menus.show_manage_menu)
+        self.objects['FontSettings'].connect('button-press-event',
+                                        self.menus.show_settings_menu)
         self.objects['Export'].connect('clicked', self._on_export)
         self.preferences.connect('update-tray-icon', self._use_tray_icon)
         return
@@ -236,7 +256,6 @@ class Main(object):
 
     def quit(self, unused_widget = None, possible_event = None):
         self._save_settings()
-        check_libxml2_leak()
         logging.info("Exiting...")
         gtk.main_quit()
         # FIXME
@@ -315,7 +334,6 @@ class ObjectContainer(UserDict.UserDict):
             self.data['Help'].set_sensitive(False)
             self.data['Help'].set_tooltip_text\
             (_('Yelp is required to view help files'))
-        self.data['FontSettings'].connect('clicked', _on_font_settings)
         self.data['AppPreferences'].connect('clicked', self.on_prefs)
         return
 
@@ -325,7 +343,7 @@ class ObjectContainer(UserDict.UserDict):
         """
         self.set_sensitive(False)
         core.PROGRESS_CALLBACK = self.progress_callback
-        self.data['FontManager'] = core.get_manager()
+        self.data['FontManager'] = core.get_manager(self.data['MainWindow'])
         self.set_sensitive(True)
         return
 
@@ -415,7 +433,7 @@ class PopupMenu(UserDict.UserDict):
         'TrayMenu', 'TrayInstall', 'TrayRemove', 'TrayFontPreferences',
         'TrayCharacterMap', 'TrayPreferences', 'TrayHelp', 'TrayAbout',
         'TrayQuit', 'ManageMenu', 'ManageInstall', 'ManageRemove',
-        'ManageFolder'
+        'ManageFolder', 'SettingsMenu', 'DesktopSettings', 'FontConfigSettings'
         )
     def __init__(self, objects = None):
         UserDict.UserDict.__init__(self)
@@ -429,6 +447,7 @@ class PopupMenu(UserDict.UserDict):
             self.data[widget] = self.builder.get_object(widget)
         self.tray_menu = self.data['TrayMenu']
         self.manage_menu = self.data['ManageMenu']
+        self.settings_menu = self.data['SettingsMenu']
 
     def show_manage_menu(self, unused_widget, event):
         """
@@ -444,6 +463,15 @@ class PopupMenu(UserDict.UserDict):
         Display tray menu.
         """
         self.tray_menu.popup(None, None, None, button, event_time)
+        return
+
+    def show_settings_menu(self, unused_widget, event):
+        """
+        Display settings menu.
+        """
+        if event.button != 1:
+            return
+        self.settings_menu.popup(None, None, None, event.button, event.time)
         return
 
 
@@ -476,6 +504,17 @@ def _on_font_settings(unused_widget):
         subprocess.Popen(['gnome-appearance-properties', '--show-page=fonts'])
     except OSError, error:
         logging.error("Error: %s" % error)
+    return
+
+def _on_fontconfig_settings(unused_widget, parent):
+    """
+    Display a dialog so user can tweak fontconfig settings for individual fonts.
+    """
+    # We enable user configuration files so that our preview actually updates,
+    # we'll be re-starting on exit anyway, so our main interface isn't broken.
+    _fontutils.FcEnableHomeConfig(True)
+    parent.main_window.hide()
+    fontconfig.ConfigEdit(parent)
     return
 
 def _on_help(unused_widget):

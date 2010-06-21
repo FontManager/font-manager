@@ -1,3 +1,18 @@
+font-manager (0.5.5-1) lucid; urgency=low
+
+  * Update (0.5.5)
+
+        Address an issue where fontconfig/pango updates cause previews to stop
+        displaying properly for disabled families.
+
+        Added a fontconfig editor which allows users to configure settings for
+        individual families and styles. Also allows editing aliases.
+        * <matrix> transformations are not supported.
+
+
+ -- Jerry Casiano <JerryCasiano@gmail.com>  Fri, 18 Jun 2010 4:35:45 -0400
+
+
 font-manager (0.5.4-1) lucid; urgency=low
 
   * Update (0.5.4)

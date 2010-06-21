@@ -402,7 +402,6 @@ class PreferencesDialog():
         Minimize application to tray instead of closing.
         """
         self.preferences.minimize_to_tray(widget.get_active())
-        self.update_required = True
         return
 
     def _on_reset_db(self, unused_widget):

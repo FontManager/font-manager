@@ -192,12 +192,15 @@ class Sort(object):
                         the total number of families to be processed and
                         the number of families processed so far.
     """
-    def __init__(self, fontmanager, progress_callback = None):
+    def __init__(self, fontmanager, progress_callback = None, parent = None):
         self.total = 0
         self.processed = 0
         self.progress_callback = progress_callback
         # To get a valid Pango context we need a widget...
-        self.widget = gtk.Window()
+        if parent:
+            self.widget = parent
+        else:
+            self.widget = gtk.Window()
         self.manager = fontmanager
         database.sync()
         self.table = database.Table('Fonts')
@@ -233,7 +236,8 @@ class Sort(object):
         # Set up default categories
         self._load_default_categories()
         self._disable_rejects()
-        self.widget.destroy()
+        if not parent:
+            self.widget.destroy()
 
     def _build_styles_dict(self, family):
         """
@@ -255,7 +259,8 @@ class Sort(object):
         """
         rejects = get_blacklisted()
         if rejects:
-            valid_rejects = [f for f in rejects if f in self.manager.iterkeys()]
+            families = self.manager.list_families()
+            valid_rejects = [f for f in rejects if f in families]
             self.manager.set_disabled(valid_rejects)
         return
 

@@ -65,6 +65,11 @@ class ColorParse(object):
 
 
 class CairoColors(UserDict.UserDict):
+    """
+    This class takes all the colors associated with a widget and tranforms them
+    into rgb values. The result is a dictionary which mimics gtk.Style, but only
+    contains color values in a format suitable for use with Cairo.
+    """
     _styles = ( "fg", "bg", "light", "dark", "mid", "text", "base", "text_aa")
     _states = ( gtk.STATE_NORMAL, gtk.STATE_ACTIVE, gtk.STATE_PRELIGHT,
                 gtk.STATE_SELECTED, gtk.STATE_INSENSITIVE )

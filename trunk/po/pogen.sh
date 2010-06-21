@@ -19,6 +19,7 @@ src/core/__init__.py
 [type: gettext/glade]src/data/menus.ui
 src/ui/actions.py
 src/ui/export.py
+src/ui/fontconfig.py
 src/ui/library.py
 src/ui/preferences.py
 src/ui/previews.py

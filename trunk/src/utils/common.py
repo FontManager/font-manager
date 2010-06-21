@@ -37,11 +37,15 @@ import shlex
 import shutil
 import subprocess
 
-from os.path import basename, exists, join, isdir, splitext
+from os.path import basename, exists, join, isdir, isfile, splitext
+
+import _fontutils
 
 from constants import AUTOSTART_DIR, USER_FONT_DIR, HOME, README, \
 USER_FONT_CONFIG_SELECT, USER_FONT_CONFIG_DESELECT, USER_LIBRARY_DIR, \
-TMP_DIR, CACHE_FILE, DATABASE_FILE, FONT_EXTS, T1_EXTS, ARCH_EXTS
+TMP_DIR, CACHE_FILE, DATABASE_FILE, FONT_EXTS, T1_EXTS, ARCH_EXTS, \
+USER_FONT_CONFIG_DIR, USER_FONT_CONFIG_RENDER
+from xmlutils import load_directories
 
 AUTOSTART = \
 """[Desktop Entry]
@@ -80,7 +84,6 @@ class AvailableApps(list):
         else:
             for appdir in self._dirs:
                 if exists(join(appdir, app)):
-                    self.append(app)
                     return True
         return False
 
@@ -196,6 +199,20 @@ def disable_blacklist():
     time.sleep(0.5)
     return
 
+def display_error(msg, sec_msg = None):
+    """
+    Display a generic error dialog.
+    """
+    dialog = gtk.MessageDialog(None, 0, gtk.MESSAGE_ERROR,
+                                    gtk.BUTTONS_CLOSE, None)
+    dialog.set_markup('<b>%s</b>' % msg)
+    if sec_msg is not None:
+        dialog.format_secondary_text(sec_msg)
+    dialog.set_size_request(420, -1)
+    dialog.run()
+    dialog.destroy()
+    return
+
 def do_library_cleanup(root_dir = None):
     """
     Removes empty leftover directories and ensures correct permissions.
@@ -220,7 +237,7 @@ def do_library_cleanup(root_dir = None):
     # an issue for some programs
     for root, dirs, files in os.walk(root_dir):
         for directory in dirs:
-            os.chmod(join(root, directory), 0744)
+            os.chmod(join(root, directory), 0755)
         for filename in files:
             os.chmod(join(root, filename), 0644)
     return
@@ -232,6 +249,20 @@ def enable_blacklist():
     if exists(USER_FONT_CONFIG_DESELECT):
         os.rename(USER_FONT_CONFIG_DESELECT, USER_FONT_CONFIG_SELECT)
     time.sleep(0.5)
+    return
+
+def fc_config_reloaded(*unused_args):
+    """
+    Work around pango/fontconfig updates breaking previews for disabled fonts.
+    """
+    _fontutils.FcClearAppFonts()
+    for directory in load_directories():
+        _fontutils.FcAddAppFontDir(directory)
+    for config in os.listdir(USER_FONT_CONFIG_DIR):
+        if config.endswith('.conf'):
+            _fontutils.FcParseConfigFile(join(USER_FONT_CONFIG_DIR, config))
+    if exists(USER_FONT_CONFIG_RENDER):
+        _fontutils.FcParseConfigFile(USER_FONT_CONFIG_RENDER)
     return
 
 def finish_font_install(library = None):
@@ -451,3 +482,16 @@ def strip_archive_ext(filename):
         filename = filename.replace(ext, '')
     return filename
 
+def touch(filepath, tstamp = None):
+    if isfile(filepath):
+        with file(filepath, 'a'):
+            os.utime(filepath, tstamp)
+    elif isdir(filepath):
+        for root, dir, files in os.walk(filepath):
+            for path in files:
+                fullpath = join(root, path)
+                with file(fullpath, 'a'):
+                    os.utime(fullpath, tstamp)
+    else:
+        raise TypeError('Expected a valid file or directory path')
+    return

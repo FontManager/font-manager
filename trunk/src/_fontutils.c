@@ -43,6 +43,7 @@ static PyObject * FcClearAppFonts(PyObject *self, PyObject *args);
 static PyObject * FcEnableHomeConfig(PyObject *self, PyObject *args);
 static PyObject * FcGetFontDirs(PyObject *self, PyObject *args);
 static PyObject * FcFileList(PyObject *self, PyObject *args);
+static PyObject * FcParseConfigFile(PyObject *self, PyObject *args);
 static PyObject * FT_Get_Face_Count(PyObject *self, PyObject *args);
 static PyObject * FT_Get_File_Info(PyObject *self, PyObject *args);
 static PyObject * _get_sfnt_info(FT_Face face);
@@ -234,6 +235,26 @@ FcFileList(PyObject *self, PyObject *args)
         FcFontSetDestroy(fontset);
 
     return fontlist;
+}
+
+/* This function parses and loads the given file */
+static PyObject *
+FcParseConfigFile(PyObject *self, PyObject *args)
+{
+    gchar     *filepath;
+
+    if (!PyArg_ParseTuple(args, "s", &filepath))
+    {
+        return NULL;
+    }
+
+    if (!FcConfigParseAndLoad(FcConfigGetCurrent(),
+                                (const FcChar8 *) filepath, (FcBool) FALSE))
+    {
+        return Py_False;
+    }
+
+    return Py_True;
 }
 
 static PyObject *
@@ -618,6 +639,10 @@ static PyMethodDef Methods[] = {
      Returns a list of dictionaries -- {filepath:vendor}\n\n\
      False to exclude vendor information.\n\n\
      Returns a list of filepaths."},
+
+    {"FcParseConfigFile", FcParseConfigFile, METH_VARARGS,
+    "Parse and load the given configuration file. \n\n\
+     Returns True on success."},
 
     {"FT_Get_Face_Count", FT_Get_Face_Count, METH_VARARGS,
     "Query FreeType for the number of faces contained in a font file.\n\n\
