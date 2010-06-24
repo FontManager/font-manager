@@ -5,6 +5,9 @@ font-manager (0.5.5-1) lucid; urgency=low
         Address an issue where fontconfig/pango updates cause previews to stop
         displaying properly for disabled families.
 
+        Address an issue where fonts from user configured folders which are
+        not in the users home directory get placed into the System category.
+
         Added a fontconfig editor which allows users to configure settings for
         individual families and styles. Also allows editing aliases.
         * <matrix> transformations are not supported.
