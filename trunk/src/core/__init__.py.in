@@ -502,6 +502,9 @@ class Preferences(gobject.GObject):
         return
 
     def on_autostart(self, startme = True):
+        """
+        Install or remove .desktop file autostart directory.
+        """
         setattr(self, 'autostart', startme)
         autostart(startme)
         return

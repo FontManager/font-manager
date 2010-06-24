@@ -76,6 +76,9 @@ class PreferencesDialog():
         self._connect_handlers()
 
     def _create_widgets(self):
+        """
+        Create widgets not defined in glade file.
+        """
         widgets = self.widgets
         dir_combo = gtk.ComboBox()
         cell = gtk.CellRendererText()

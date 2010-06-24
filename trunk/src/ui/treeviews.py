@@ -224,6 +224,9 @@ class Treeviews(object):
         return
 
     def _on_advanced(self, unused_widget):
+        """
+        Display "Advanced Search" dialog.
+        """
         filt = self.filter.run()
         if filt:
             self._show_collection(filt)
@@ -235,12 +238,18 @@ class Treeviews(object):
 
     @staticmethod
     def _on_drag_drop(widget, context, x, y, tstamp):
+        """
+        Disallow moving collections and categories to the top level.
+        """
         try:
             return (len(widget.get_path_at_pos(x, y)[0]) != 2)
         except TypeError:
             return True
 
     def _on_files_dropped(self, widget, context, x, y, data, info, tstamp):
+        """
+        Handle drag and drop of font files onto the family column.
+        """
         if not info == TARGET_TYPE_EXTERNAL_DROP:
             return
         filelist = [urlparse.urlsplit(path)[2].replace('%20', ' ') for path \
@@ -293,6 +302,9 @@ class Treeviews(object):
         return
 
     def _on_family_tooltip(self, widget, x, y, unused_kmode, tooltip):
+        """
+        If enabled, display a tooltip containing style previews.
+        """
         if not self.objects['Preferences'].tooltips:
             return False
         if not x > (widget.size_request()[0] * 1.5):
@@ -372,6 +384,9 @@ class Treeviews(object):
         return
 
     def _show_context_menu(self, widget, event):
+        """
+        Display context menu when a family is right clicked.
+        """
         menu = gtk.Menu()
         actions = self.actions.actions
         selection = widget.get_selection()

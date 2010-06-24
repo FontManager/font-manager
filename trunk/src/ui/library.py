@@ -89,6 +89,9 @@ class InstallFonts(object):
         return found_dupes
 
     def _install_mad_fonts(self):
+        """
+        Display a warning dialog.
+        """
         dialog = self.objects['MadFontsWarning']
         result = dialog.run()
         dialog.hide()

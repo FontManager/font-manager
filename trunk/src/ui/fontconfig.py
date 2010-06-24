@@ -38,8 +38,7 @@ import UserDict
 
 from os.path import exists, join
 
-from constants import CHECKBUTTONS, CONSTS, CONSTS_MAP, DEFAULTS, SKIP, \
-                        SLANT, WEIGHT, FC_WIDGETMAP, WIDTH, USER_FONT_CONFIG_DIR
+from constants import CHECKBUTTONS, DEFAULTS, FC_WIDGETMAP, USER_FONT_CONFIG_DIR
 from utils.common import natural_sort
 from utils.xmlutils import save_alias_settings, save_fontconfig_settings, \
                             load_alias_settings
@@ -69,6 +68,7 @@ COMMON_FONTS = ('American Typewriter', 'Andale Mono', 'Apple Chancery', 'Arial',
 
 DEFAULT_STYLES  =  ['Regular', 'Roman', 'Medium', 'Normal', 'Book']
 
+# Note to translators: Only translate if it REALLY makes no sense.
 PREVIEW_TEXT = _("""
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in enim eros, fringilla volutpat orci. Integer in diam vel lacus posuere rutrum. Aliquam tempor, nunc quis volutpat sodales, elit lorem ultricies quam, nec imperdiet ipsum nisi vel leo. Aenean a venenatis ipsum. Pellentesque fermentum, ligula fringilla tempus facilisis, neque libero tincidunt massa, id lacinia urna erat non enim. Cras a sem purus. Nam sit amet pellentesque lectus. In mattis tortor eget turpis pellentesque et adipiscing ante rhoncus. Phasellus commodo tempor diam, suscipit fringilla orci aliquet id. Ut diam nunc, suscipit eu ultricies a, congue ac erat. Mauris vestibulum, nibh quis tincidunt iaculis, mi magna fermentum urna, vitae aliquet neque libero a eros. Donec at risus eros, sed egestas justo. Morbi placerat, justo eget vulputate blandit, eros ligula vehicula velit, vitae volutpat risus massa quis orci. 
 """)
@@ -117,6 +117,9 @@ SENSITIVITY = {
 
 
 class AliasEdit(gtk.Window):
+    """
+    Dialog to allow easy editing of fontconfig aliases.
+    """
     def __init__(self, parent = None):
         gtk.Window.__init__(self)
         if parent:
@@ -153,6 +156,9 @@ class AliasEdit(gtk.Window):
         self.alias_tree.expand_all()
 
     def _do_edit(self, renderer, path, new_text):
+        """
+        Set actual value in model to that typed in by user.
+        """
         model = self.alias_tree.get_model()
         model.set_value(model.get_iter(path), 0, new_text)
         return
@@ -187,16 +193,21 @@ class AliasEdit(gtk.Window):
                     }
         box = gtk.VBox()
         box.set_spacing(10)
-        box.set_border_width(10)
         for label in _('Add Alias'), _('Remove Alias'), _('Add Substitute'), \
                     _('Remove Substitute'), _('Write configuration'):
             button = gtk.Button(label)
             button.connect('clicked', buttons[label])
-            box.pack_start(button, False, True, 0)
+            if label == _('Write configuration'):
+                box.pack_end(button, False, True, 0)
+            else:
+                box.pack_start(button, False, True, 0)
             self.widgets[widgets[label]] = button
         return box
 
     def _start_edit(self, renderer, editable, path):
+        """
+        Add appropriate completion support to selected entry.
+        """
         try:
             if isinstance(editable, gtk.Entry):
                 completion = gtk.EntryCompletion()
@@ -211,6 +222,9 @@ class AliasEdit(gtk.Window):
             return
 
     def _update_sensitivity(self, treeselection):
+        """
+        Enable or disable widgets based on selection.
+        """
         model, treeiter = treeselection.get_selected()
         self.widgets['del_alias'].set_sensitive(False)
         self.widgets['add_sub'].set_sensitive(False)
@@ -226,6 +240,9 @@ class AliasEdit(gtk.Window):
         return
 
     def add_alias(self, unused_widget):
+        """
+        Add a new alias.
+        """
         model = self.alias_tree.get_model()
         treeiter = model.append(None, ['Family'])
         path = model.get_path(treeiter)
@@ -235,6 +252,9 @@ class AliasEdit(gtk.Window):
         return
 
     def add_sub(self, unused_widget):
+        """
+        Add a substitution for the currently selected alias.
+        """
         selection = self.alias_tree.get_selection()
         model, treeiter = selection.get_selected()
         treeiter = model.append(treeiter, ['Substitute'])
@@ -246,12 +266,18 @@ class AliasEdit(gtk.Window):
         return
 
     def del_entry(self, unused_widget):
+        """
+        Delete currently selected alias or substitution.
+        """
         selection = self.alias_tree.get_selection()
         model, treeiter = selection.get_selected()
         model.remove(treeiter)
         return
 
     def load_config(self):
+        """
+        Load saved settings from file.
+        """
         settings = load_alias_settings()
         if settings:
             for family in settings:
@@ -262,13 +288,20 @@ class AliasEdit(gtk.Window):
         return
 
     def save_config(self, unused_widget):
+        """
+        Save settings to an xml file.
+        """
         save_alias_settings(self.alias_tree)
         self.load_config()
         self.alias_tree.expand_all()
         return
 
 
-class ConfigEdit(gtk.Window): 
+class ConfigEdit(gtk.Window):
+    """
+    Dialog to allow easy editing of fontconfig preferences for individual
+    families and styles.
+    """
     def __init__(self, parent = None):
         gtk.Window.__init__(self)
         self.set_size_request(725, -1)
@@ -318,9 +351,12 @@ class ConfigEdit(gtk.Window):
         tree = gtk.TreeView()
         model = gtk.ListStore(gobject.TYPE_PYOBJECT, gobject.TYPE_STRING)
         families = CACHE['pango_families']
+        psuedo_families = 'Monospace', 'Sans', 'Serif'
         for family in families:
-            model.append([family,
-                        '<span weight="heavy">%s</span>' % family.get_name()])
+            name = family.get_name()
+            if name in psuedo_families:
+                continue
+            model.append([family, '<span weight="heavy">%s</span>' % name])
         tree.set_model(model)
         column = gtk.TreeViewColumn(None, gtk.CellRendererText(), markup=1)
         tree.append_column(column)
@@ -335,6 +371,9 @@ class ConfigEdit(gtk.Window):
         return tree
 
     def _edit_aliases(self, unused_widget):
+        """
+        Display alias editor.
+        """
         if self.alias is None:
             self.alias = AliasEdit(self)
             self.alias.connect('delete-event', self._on_quit_aliases)
@@ -425,10 +464,16 @@ class ConfigEdit(gtk.Window):
         return
 
     def discard_settings(self, unused_widget):
+        """
+        Clear settings for selected family and delete any configuration files.
+        """
         discard_fontconfig_settings(self.cache[self.selected_family])
         return
 
     def save_cache(self):
+        """
+        Save dialog state to file.
+        """
         cache = shelve.open(join(USER_FONT_CONFIG_DIR, CACHED_SETTINGS),
                                             protocol=cPickle.HIGHEST_PROTOCOL)
         for family in self.cache.iterkeys():
@@ -439,11 +484,17 @@ class ConfigEdit(gtk.Window):
         return
 
     def save_settings(self, unused_widget):
+        """
+        Write settings for the selected family to an xml file.
+        """
         save_fontconfig_settings(self.cache[self.selected_family])
         return
 
 
 class SettingsBook(gtk.Notebook):
+    """
+    This class is a notebook containing a page for each style in a family.
+    """
     families = None
     preview = None
     def __init__(self, family):
@@ -507,6 +558,10 @@ class SettingsBook(gtk.Notebook):
         return
 
     def pick_page(self):
+        """
+        Try to select the "right" page based on known styles.
+        For example, select "Regular" instead "Bold Italic".
+        """
         old_page = self.get_current_page()
         self.set_current_page(0)
         have_known_style = False
@@ -599,6 +654,9 @@ class SettingsPage(object):
 
     @staticmethod
     def _format_value(unused_scale, val, label):
+        """
+        Return a descriptive label to display instead of a numeric value.
+        """
         return SCALE_LABELS[label][float('0.' + str(val).split('.')[1][:1])]
 
     def _get_new_checkbutton(self, label):
@@ -667,6 +725,9 @@ class SettingsPage(object):
 
     @staticmethod
     def _scroll_scale(widget, event):
+        """
+        Correct slider behavior.
+        """
         old_val = widget.get_value()
         if event.direction == gtk.gdk.SCROLL_UP:
             new_val = old_val + 0.1
@@ -709,6 +770,9 @@ class SettingsPage(object):
         return
 
     def reset(self):
+        """
+        Reset all values to default.
+        """
         for attribute, val in DEFAULTS.iteritems():
             setattr(self, attribute, val)
         self._update_state()
@@ -716,6 +780,9 @@ class SettingsPage(object):
 
 
 class SettingsPreview(gtk.Window):
+    """
+    Dialog to allow user to preview any changes.
+    """
     def __init__(self, parent = None):
         gtk.Window.__init__(self)
         self.set_size_request(550, 400)
@@ -745,9 +812,10 @@ class SettingsPreview(gtk.Window):
         box = gtk.HBox()
         box.set_spacing(10)
         box.set_border_width(5)
-        adjustment = gtk.Adjustment(0.0, 2.0, 96.0, 1.0, 2.0, 0)
+        adjustment = gtk.Adjustment(0.0, 2.0, 96.0, 0.5, 2.0, 0)
         adjustment.set_value(self.size)
         spinbutton = gtk.SpinButton(adjustment)
+        spinbutton.set_digits(1)
         slider = gtk.HScale(adjustment)
         spinbutton.connect('value-changed', self.update)
         slider.connect('value-changed', self.update)
@@ -768,6 +836,9 @@ class SettingsPreview(gtk.Window):
         return tv
 
     def update(self, widget = None, descr = None):
+        """
+        Update preview.
+        """
         if widget:
             self.size = widget.get_value()
         t_buffer = self.preview.get_buffer()
@@ -784,6 +855,9 @@ class SettingsPreview(gtk.Window):
 
 
 def discard_fontconfig_settings(settings):
+    """
+    Delete configuration file and reset page values.
+    """
     config_file = join(USER_FONT_CONFIG_DIR,
                         '25-%s.conf' % settings.family.get_name())
     if exists(config_file):

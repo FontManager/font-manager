@@ -475,6 +475,9 @@ class Previews(object):
         return
 
     def _on_font_info(self, unused_widget):
+        """
+        Display font metadata dialog.
+        """
         if not self.info_dialog:
             self.info_dialog = FontInformation(self.objects)
         self.info_dialog.show(self.current_family, self.current_style,

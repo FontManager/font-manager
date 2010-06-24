@@ -40,6 +40,9 @@ from utils.xmlutils import load_actions, save_actions
 
 
 class UserActions(object):
+    """
+    Dialog to allow the user to run arbitrary commands on selected font file.
+    """
     _widgets = (
                 'ActionsDialog', 'ActionsTree', 'NewAction', 'RemoveAction',
                 'AddActionDialog', 'ActionName', 'ActionComment',

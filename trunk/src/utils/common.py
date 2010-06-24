@@ -375,6 +375,9 @@ def natural_sort_pathlist(alist):
     return sorted(alist, key=alphanum)
 
 def natural_size(size):
+    """
+    Return given size in a format suitable for display to users.
+    """
     size = float(size)
     for unit in ('bytes', 'kB', 'MB', 'GB', 'TB'):
         if size < 1000.0:

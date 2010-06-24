@@ -36,9 +36,11 @@ class ColorParse(object):
     Taken from Project Hamster by Toms Baugis
     """
     @staticmethod
-    def parse(color):
+    def _parse(color):
+        """
+        Parse color into rgb values.
+        """
         assert color is not None
-        #parse color into rgb values
         if isinstance(color, (str, unicode)):
             color = gtk.gdk.Color(color)
         if isinstance(color, gtk.gdk.Color):
@@ -51,15 +53,18 @@ class ColorParse(object):
         return color
 
     def rgb(self, color):
-        return [c * 255 for c in self.parse(color)]
+        return [c * 255 for c in self._parse(color)]
 
     def is_light(self, color):
-        # tells you if color is dark or light, so you can up or down the scale
-        # for improved contrast
+        """
+        Determine if given color is light or dark.
+        """
         return colorsys.rgb_to_hls(*self.rgb(color))[1] > 150
 
     def darker(self, color, step):
-        # returns color darker by step (where step is in range 0..255)
+        """
+        Return color darkened by step (where step is in range 0..255)
+        """
         hls = colorsys.rgb_to_hls(*self.rgb(color))
         return colorsys.hls_to_rgb(hls[0], hls[1] - step, hls[2])
 
@@ -77,13 +82,13 @@ class CairoColors(UserDict.UserDict):
         UserDict.UserDict.__init__(self)
         self.style = widget.get_style().copy()
         self.data = {}
-        self.get_colors()
+        self._get_colors()
 
     @staticmethod
     def _color_to_cairo_rgb(color):
         return color.red/65535.0, color.green/65535.0, color.blue/65535.0
 
-    def get_colors(self):
+    def _get_colors(self):
         for style in self._styles:
             colors = {}
             original_colors = getattr(self.style, style, None)

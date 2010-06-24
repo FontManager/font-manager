@@ -164,6 +164,9 @@ class BuildSample:
         return True
 
     def _on_render_progress(self, typ, val):
+        """
+        Progress callback function.
+        """
         if typ == 'SIZE_EST':
             self.rltotal = val
         elif typ == 'PROGRESS' and self.rltotal is not None:

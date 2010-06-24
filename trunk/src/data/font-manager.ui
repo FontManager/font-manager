@@ -451,6 +451,7 @@
                                     <property name="can_focus">True</property>
                                     <property name="invisible_char">&#x25CF;</property>
                                     <property name="adjustment">SizeAdjustment</property>
+                                    <property name="digits">1</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>
@@ -543,6 +544,7 @@
                                       <object class="GtkHScale" id="FontSizeSlider">
                                         <property name="visible">True</property>
                                         <property name="adjustment">SizeAdjustment</property>
+                                        <property name="digits">2</property>
                                         <property name="draw_value">False</property>
                                       </object>
                                     </child>
@@ -927,7 +929,7 @@
     <property name="value">12</property>
     <property name="lower">6</property>
     <property name="upper">97</property>
-    <property name="step_increment">1</property>
+    <property name="step_increment">0.5</property>
     <property name="page_increment">6</property>
   </object>
   <object class="GtkImage" id="AboutIcon">
@@ -2643,8 +2645,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
-    <property name="select_multiple">True</property>
     <property name="create_folders">False</property>
+    <property name="select_multiple">True</property>
     <signal name="file_activated" handler="gtk_true"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">

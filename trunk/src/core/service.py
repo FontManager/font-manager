@@ -40,7 +40,6 @@ class FontService(dbus.service.Object):
                             allow_replacement=True, replace_existing=True)
         self.mainloop = gobject.MainLoop()
         dbus.service.Object.__init__(self, self.session_bus, '/fontmanager')
-        self.mainloop.run()
 
     @dbus.service.method('com.fonts.manage')
     def quit(self):

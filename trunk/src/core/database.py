@@ -27,8 +27,9 @@ import sqlite3
 
 import _fontutils
 
-from utils.common import delete_cache
 from constants import DATABASE_FILE, HOME
+from utils.common import delete_cache
+from utils.xmlutils import load_directories
 
 
 FIELDS = ('owner', 'filepath', 'filetype', 'filesize', 'checksum', 'psname',
@@ -322,14 +323,17 @@ class Table(object):
         return
 
 
-def _add_details(metadata, system):
+def _add_details(metadata):
     """
     Add owner information and format foundry name.
     """
-    if system and not metadata['filepath'].startswith(HOME):
-        metadata['owner'] = 'System'
-    elif not system or metadata['filepath'].startswith(HOME):
+    user_dirs = [HOME]
+    for directory in load_directories():
+        user_dirs.append(directory)
+    if metadata['filepath'].startswith(tuple(user_dirs)):
         metadata['owner'] = 'User'
+    else:
+        metadata['owner'] = 'System'
     foundry = metadata.get('foundry')
     if foundry is None:
         foundry = 'unknown'
@@ -356,7 +360,7 @@ def _drop_indexed(available, indexed):
                 new_files.append(dic)
     return new_files
 
-def _get_details(filedict, system=False):
+def _get_details(filedict):
     """
     Use FreeType2 to load each file and gather information about it.
 
@@ -369,7 +373,7 @@ def _get_details(filedict, system=False):
                 metadata = _fontutils.FT_Get_File_Info(font, index, foundry)
             except IOError:
                 break
-            metadata = _add_details(metadata, system)
+            metadata = _add_details(metadata)
             metadata = _pad_metadata(metadata)
             details.append(metadata)
     return details
@@ -427,25 +431,17 @@ def sync():
         update = _drop_indexed(available, indexed)
         return available, indexed, update
 
-    def _sync(system=False):
-        fontdetails = _get_details(update, system)
+    def _sync():
+        fontdetails = _get_details(update)
         for font in fontdetails:
             table.insert(_get_row_data(font))
         return
 
     table = Table('Fonts')
-    # 'System' fonts
-    _fontutils.FcEnableHomeConfig(False)
-    update = _need_update()[2]
-    if len(update) > 0:
-        delete_cache()
-    _sync(True)
-    # 'User' fonts
-    _fontutils.FcEnableHomeConfig(True)
     available, indexed, update = _need_update()
     if len(update) > 0 or len(available) != len(indexed):
         delete_cache()
-    _sync(False)
+    _sync()
     table.close()
     return
 

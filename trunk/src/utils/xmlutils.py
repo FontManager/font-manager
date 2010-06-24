@@ -156,6 +156,9 @@ def load_actions():
     return results
 
 def load_alias_settings():
+    """
+    Load any user-configured aliases from file.
+    """
     if not exists(join(USER_FONT_CONFIG_DIR, '35-aliases.conf')):
         return
     try:
@@ -169,10 +172,11 @@ def load_alias_settings():
         return
     results = {}
     for alias in aliases:
-        family = alias.xpathEval('family')[0].content
+        family = _unescape_markup(alias.xpathEval('family')[0].content)
         results[family] = []
         for prefer in alias.xpathEval('prefer'):
-            results[family].append(prefer.xpathEval('family')[0].content)
+            results[family].append(
+                        _unescape_markup(prefer.xpathEval('family')[0].content))
     doc.freeDoc()
     return results
 
@@ -194,7 +198,6 @@ def load_directories():
     for directory in directories:
         content = directory.getContent()
         if os.path.isdir(content):
-            logging.info('Found user specified directory %s' % content)
             yield content
         else:
             logging.warn\
@@ -225,17 +228,21 @@ def save_actions(actions):
     return
 
 def save_alias_settings(tree):
+    """
+    Save user-configured aliases to a file.
+    """
+    escape = glib.markup_escape_text
     model = tree.get_model()
     doc = libxml2.newDoc('1.0')
     root = doc.newChild(None, 'fontconfig', None)
     while model.get_iter_first():
         rootiter = model.get_iter_first()
         node = root.newChild(None, 'alias', None)
-        node.newChild(None, 'family', model.get_value(rootiter, 0))
+        node.newChild(None, 'family', escape(model.get_value(rootiter, 0)))
         while model.iter_children(rootiter):
             child = model.iter_children(rootiter)
             prefer = node.newChild(None, 'prefer', None)
-            prefer.newChild(None, 'family', model.get_value(child, 0))
+            prefer.newChild(None, 'family', escape(model.get_value(child, 0)))
             model.remove(child)
         model.remove(rootiter)
     doc.saveFormatFile(join(USER_FONT_CONFIG_DIR, '35-aliases.conf'), format=1)
@@ -307,6 +314,12 @@ def load_collections(fontmanager):
     return order
 
 def load_compat_collections(fontmanager, order):
+    """
+    If ~/.config/fontgroups.xml exists load any collections defined there.
+    
+    For compatibility with KDE font manager and any other programs which might
+    make use of that file.
+    """
     if not exists(COMPAT_COLLECTIONS):
         return
     try:
@@ -372,6 +385,12 @@ def save_collections(objects):
     return
 
 def save_compat_collections(objects):
+    """
+    Save user defined collections to ~/.config/fontgroups.xml.
+    
+    For compatibility with KDE font manager and any other programs which might
+    make use of that file.
+    """
     if exists(COMPAT_COLLECTIONS):
         os.unlink(COMPAT_COLLECTIONS)
     order = _get_collection_order(objects)
