@@ -39,7 +39,6 @@ mkdir RESULTS
 cp -f BUILD/$PACKAGE*deb ./RESULTS/
 echo 'Now running cleanup'
 rm -rf BUILD
-make distclean
 
 echo
 echo 'If the build was successful you will find a deb package in font-manager/RESULTS'
