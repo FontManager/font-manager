@@ -30,6 +30,7 @@ for individual families and styles. It also allows defining aliases.
 
 import os
 import gtk
+import glib
 import gobject
 import pango
 import cPickle
@@ -38,98 +39,35 @@ import UserDict
 
 from os.path import exists, join
 
-from constants import CHECKBUTTONS, DEFAULTS, FC_WIDGETMAP, USER_FONT_CONFIG_DIR
-from utils.common import natural_sort
+from constants import CHECKBUTTONS, COMMON_FONTS, DEFAULTS, DEFAULT_STYLES, \
+                        FC_WIDGETMAP, USER_FONT_CONFIG_DIR, CACHE_DIR, \
+                        SCALES, SCALE_LABELS, SENSITIVITY, SCALE_SENSITIVITY
+from utils.common import fc_config_reload, natural_sort, touch
 from utils.xmlutils import save_alias_settings, save_fontconfig_settings, \
                             load_alias_settings
 
 
 CACHE = None
-
-CACHED_SETTINGS = 'settings.cache'
-
-# Most common fonts found on Microsoft and Apple systems,
-# at least according to http://www.codestyle.org/
-COMMON_FONTS = ('American Typewriter', 'Andale Mono', 'Apple Chancery', 'Arial',
-'Arial Black', 'Arial Narrow', 'Arial Rounded MT Bold', 'Arial Unicode MS',
-'Baskerville', 'Big Caslon', 'Book Antiqua', 'Bookman Old Style',
-'Bradley Hand ITC', 'Brush Script MT', 'Century Gothic', 'Comic Sans MS',
-'Copperplate', 'Courier', 'Courier New', 'Didot', 'Estrangelo Edessa',
-'Franklin Gothic Medium', 'French Script MT', 'Futura', 'Garamond', 'Gautami',
-'Geneva', 'Georgia', 'Gill Sans', 'Haettenschweiler', 'Helvetica',
-'Helvetica Neue', 'Herculanum', 'Hiragino Kaku Gothic ProN',
-'Hiragino Mincho ProN', 'Hoefler Text', 'Impact', 'Kartika', 'Kristen ITC',
-'Latha', 'Lucida Bright', 'Lucida Console', 'Lucida Grande',
-'Lucida Sans Unicode', 'MS Reference Sans Serif', 'MV Boli', 'Mangal',
-'Marker Felt', 'Microsoft Sans Serif', 'Monaco', 'Monotype Corsiva', 'Optima',
-'Palatino', 'Palatino Linotype', 'Papyrus', 'Raavi', 'Shruti', 'Skia',
-'Sylfaen', 'Tahoma', 'Tempus Sans ITC', 'Times', 'Times New Roman',
-'Trebuchet MS', 'Tunga', 'Verdana', 'Vrinda', 'Zapfino')
-
-DEFAULT_STYLES  =  ['Regular', 'Roman', 'Medium', 'Normal', 'Book']
-
-# Note to translators: Only translate if it REALLY makes no sense.
-PREVIEW_TEXT = _("""
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in enim eros, fringilla volutpat orci. Integer in diam vel lacus posuere rutrum. Aliquam tempor, nunc quis volutpat sodales, elit lorem ultricies quam, nec imperdiet ipsum nisi vel leo. Aenean a venenatis ipsum. Pellentesque fermentum, ligula fringilla tempus facilisis, neque libero tincidunt massa, id lacinia urna erat non enim. Cras a sem purus. Nam sit amet pellentesque lectus. In mattis tortor eget turpis pellentesque et adipiscing ante rhoncus. Phasellus commodo tempor diam, suscipit fringilla orci aliquet id. Ut diam nunc, suscipit eu ultricies a, congue ac erat. Mauris vestibulum, nibh quis tincidunt iaculis, mi magna fermentum urna, vitae aliquet neque libero a eros. Donec at risus eros, sed egestas justo. Morbi placerat, justo eget vulputate blandit, eros ligula vehicula velit, vitae volutpat risus massa quis orci. 
-""")
-
-REVERSE = _('Auto-Hint'), _('Hinting')
-
-SCALES = {
-            _('Hinting')           :   'HintScale',
-            _('LCD Filter')        :   'FilterScale',
-            _('Force Spacing')     :   'SpacingScale'
-            }
-
-SCALE_LABELS = {
-                'HintScale'         :   {
-                                        0.0   :   'None',
-                                        0.1   :   'Slight',
-                                        0.2   :   'Medium',
-                                        0.3   :   'Full'
-                                        },
-                'FilterScale'       :   {
-                                        0.0   :   'None',
-                                        0.1   :   'Default',
-                                        0.2   :   'Light',
-                                        0.3   :   'Legacy'
-                                        },
-                'SpacingScale'      :   {
-                                        0.0   :   'Proportional',
-                                        0.1   :   'Dual',
-                                        0.2   :   'Mono',
-                                        0.3   :   'Charcell'
-                                        }
-                                        }
-
-SCALE_SENSITIVITY = {
-                    'HintScale'         :   'hinting',
-                    'FilterScale'       :   'lcdfiltering',
-                    'SpacingScale'      :   'forcespacing'
-                    }
-
-SENSITIVITY = {
-                _('Auto-Hint')     :   _('Hinting'),
-                _('Hinting')       :   _('Auto-Hint'),
-                _('Larger than')   :   'max_size',
-                _('Smaller than')  :   'min_size'
-                }
+CACHED_SETTINGS = 'fontconfig.cache'
+FAMILIES = None
 
 
 class AliasEdit(gtk.Window):
     """
     Dialog to allow easy editing of fontconfig aliases.
     """
-    def __init__(self, parent = None):
+    def __init__(self, objects):
         gtk.Window.__init__(self)
-        if parent:
-            self.set_transient_for(parent)
-            self.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
-            self.set_destroy_with_parent(True)
+        self.objects = objects
+        self.set_transient_for(objects['Main'].main_window)
+        self.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
+        self.set_destroy_with_parent(True)
         self.set_title(_('Alias Editor'))
+        self.connect('delete-event', self._on_quit)
+        self.update_required = False
         self.aliases = None
         self.widgets = {}
-        self.system_families = [f.get_name() for f in CACHE['pango_families']]
+        self.system_families = objects['FontManager'].list_families()
         self.all_families = \
         [f for f in sorted(set(COMMON_FONTS + tuple(self.system_families)))]
         self.all_store = gtk.ListStore(gobject.TYPE_STRING)
@@ -139,7 +77,7 @@ class AliasEdit(gtk.Window):
         for family in natural_sort(self.system_families):
             self.system_store.append([family])
         self.set_size_request(500, 350)
-        self.set_border_width(12)
+        self.set_border_width(10)
         self.alias_tree = self._get_alias_tree()
         sw = gtk.ScrolledWindow()
         sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
@@ -154,6 +92,7 @@ class AliasEdit(gtk.Window):
         self._update_sensitivity(self.alias_tree.get_selection())
         self.load_config()
         self.alias_tree.expand_all()
+        self.show_all()
 
     def _do_edit(self, renderer, path, new_text):
         """
@@ -203,6 +142,12 @@ class AliasEdit(gtk.Window):
                 box.pack_start(button, False, True, 0)
             self.widgets[widgets[label]] = button
         return box
+
+    def _on_quit(self, unused_widget, unused_event):
+        self.destroy()
+        if self.update_required:
+            self.objects.reload()
+        return
 
     def _start_edit(self, renderer, editable, path):
         """
@@ -271,7 +216,26 @@ class AliasEdit(gtk.Window):
         """
         selection = self.alias_tree.get_selection()
         model, treeiter = selection.get_selected()
+        old_path = model.get_path(treeiter)
         model.remove(treeiter)
+        still_valid = model.iter_is_valid(treeiter)
+        if still_valid:
+            new_path = model.get_path(treeiter)
+            if (new_path[0] >= 0):
+                selection.select_path(new_path)
+        else:
+            if len(old_path) == 2:
+                treeiter = model.get_iter(old_path[0])
+                path_to_select = model.iter_n_children(treeiter) - 1
+                new_path = (old_path[0], path_to_select)
+                if (path_to_select >= 0):
+                    selection.select_path(new_path)
+                else:
+                    selection.select_path(old_path[0])
+            else:
+                path_to_select = model.iter_n_children(None) - 1
+                if (path_to_select >= 0):
+                    selection.select_path(path_to_select)
         return
 
     def load_config(self):
@@ -294,6 +258,7 @@ class AliasEdit(gtk.Window):
         save_alias_settings(self.alias_tree)
         self.load_config()
         self.alias_tree.expand_all()
+        self.update_required = True
         return
 
 
@@ -302,40 +267,44 @@ class ConfigEdit(gtk.Window):
     Dialog to allow easy editing of fontconfig preferences for individual
     families and styles.
     """
-    def __init__(self, parent = None):
+    def __init__(self, objects):
         gtk.Window.__init__(self)
-        self.set_size_request(725, -1)
-        self.set_border_width(12)
-        self.connect('destroy', self._on_quit)
-        self.set_title(_("Advanced Configuration"))
+        self.set_size_request(525, -1)
+        self.set_border_width(5)
+        self.connect('delete-event', self._on_quit)
+        self.set_title(_("Advanced Settings"))
         self.selected_family = None
-        self.parent_window = parent
-        global CACHE
+        self.current_book = None
+        self.objects = objects
+        self.set_transient_for(self.parent)
+        global CACHE, FAMILIES
         CACHE = self.cache = SettingsCache()
-        ctx = self.create_pango_context()
-        self.cache['pango_families'] = ctx.list_families()
+        FAMILIES = objects['FontManager'].list_families()
+        SettingsBook.objects = objects
         self._load_cache()
-        self.container = gtk.HBox()
-        self.preview = SettingsPreview(self)
-        self.alias = AliasEdit(self)
-        self.alias.connect('delete-event', self._on_quit_aliases)
-        self.edit_aliases = None
-        SettingsBook.preview = self.preview
-        self.preview_toggle = None
-        self.preview.connect('delete-event', self._on_quit_preview)
-        self.family_tree = self._build_family_tree()
-        self._show_self()
+        main_box = gtk.VBox()
+        main_box.set_spacing(5)
+        self.container = gtk.VBox()
+        main_box.pack_start(self.container, False, True, 0)
+        self.set_position(gtk.WIN_POS_CENTER)
+        buttons = self._build_button_box()
+        main_box.pack_end(buttons, False, True, 0)
+        selection = self.objects['FamilyTree'].get_selection()
+        selection.connect_after("changed", self._on_selection_changed)
+        self.objects['StyleCombo'].connect_after('changed',
+                                                        self._on_style_changed)
+        self._on_selection_changed(None)
+        self.add(main_box)
+        self.show_all()
 
     def _build_button_box(self):
-        frame = gtk.Notebook()
-        frame.set_show_tabs(False)
         box = gtk.HBox()
         box.set_spacing(5)
         box.set_border_width(5)
-        self.preview_toggle = gtk.CheckButton(_('Display preview window'))
-        self.preview_toggle.connect('clicked', self._preview_toggled)
-        self.preview_toggle.set_property('can-focus', False)
-        box.pack_start(self.preview_toggle, False, True, 0)
+        do_reset = gtk.Button(_('Full Reset'))
+        do_reset.connect('clicked', self.reset_all)
+        do_reset.set_property('can-focus', False)
+        box.pack_start(do_reset, False, True, 0)
         save_config = gtk.Button(_('Write configuration'))
         save_config.connect('clicked', self.save_settings)
         save_config.set_property('can-focus', False)
@@ -344,91 +313,30 @@ class ConfigEdit(gtk.Window):
         discard_config.connect('clicked', self.discard_settings)
         discard_config.set_property('can-focus', False)
         box.pack_end(discard_config, False, True, 0)
-        frame.add(box)
-        return frame
-
-    def _build_family_tree(self):
-        tree = gtk.TreeView()
-        model = gtk.ListStore(gobject.TYPE_PYOBJECT, gobject.TYPE_STRING)
-        families = CACHE['pango_families']
-        psuedo_families = 'Monospace', 'Sans', 'Serif'
-        for family in families:
-            name = family.get_name()
-            if name in psuedo_families:
-                continue
-            model.append([family, '<span weight="heavy">%s</span>' % name])
-        tree.set_model(model)
-        column = gtk.TreeViewColumn(None, gtk.CellRendererText(), markup=1)
-        tree.append_column(column)
-        tree.set_headers_visible(False)
-        tree.columns_autosize()
-        column.set_sort_column_id(1)
-        column.clicked()
-        tree.set_size_request(200, -1)
-        selection = tree.get_selection()
-        selection.connect('changed', self._selection_changed)
-        selection.select_path(0)
-        return tree
-
-    def _edit_aliases(self, unused_widget):
-        """
-        Display alias editor.
-        """
-        if self.alias is None:
-            self.alias = AliasEdit(self)
-            self.alias.connect('delete-event', self._on_quit_aliases)
-        if self.alias.get_property('visible'):
-            self.alias.destroy()
-            self.alias = None
-        else:
-            self.alias.show_all()
-        return
+        return box
 
     def _load_cache(self):
-        cache = shelve.open(join(USER_FONT_CONFIG_DIR, CACHED_SETTINGS),
+        cache = shelve.open(join(CACHE_DIR, CACHED_SETTINGS),
                                             protocol=cPickle.HIGHEST_PROTOCOL)
         for family in cache:
             self.cache[family] = cache[family]
         cache.close()
         return
 
-    def _on_quit(self, unused_arg):
+    def _on_quit(self, unused_widget, unused_event):
         self.save_cache()
-        if self.parent_window:
-            if self.alias is not None:
-                self.alias.destroy()
-            self.preview.destroy()
-            self.destroy()
-            self.parent_window.reload(None)
-        else:
-            gtk.main_quit()
+        self.destroy()
         return
 
-    def _on_quit_aliases(self, unused_widget, unused_event):
-        self.edit_aliases.clicked()
-        return
-
-    def _on_quit_preview(self, unused_widget, unused_event):
-        self.preview_toggle.set_active(not self.preview_toggle.get_active())
-        return True
-
-    def _preview_toggled(self, widget):
-        if widget.get_active():
-            self.preview.show_all()
-        else:
-            self.preview.hide()
-        return
-
-    def _selection_changed(self, treeselection):
-        model, treeiter = treeselection.get_selected()
-        family = model.get_value(treeiter, 0)
-        family_name = family.get_name()
-        self.selected_family = family_name
-        if not family_name in self.cache:
+    def _on_selection_changed(self, unused_treeselection):
+        self.selected_family = family = \
+        self.objects['Previews'].current_family.pango_family
+        name = family.get_name()
+        if not name in self.cache:
             book = SettingsBook(family)
-            self.cache.add(family_name, book)
+            self.cache.add(name, book)
         else:
-            book = self.cache[family_name]
+            book = self.cache[name]
         try:
             old_child = self.container.get_children()[0]
             self.container.remove(old_child)
@@ -436,49 +344,41 @@ class ConfigEdit(gtk.Window):
             pass
         self.container.add(book)
         book.pick_page()
+        self.current_book = book
         self.container.show_all()
         return
 
-    def _show_self(self):
-        sidebox = gtk.VBox()
-        sidebox.set_spacing(5)
-        box = gtk.VBox()
-        box.set_spacing(5)
-        pane = gtk.HPaned()
-        sw = gtk.ScrolledWindow()
-        sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        sidebox.pack_start(sw, True, True, 0)
-        self.edit_aliases = gtk.Button(_('Alias Editor'))
-        self.edit_aliases.connect('clicked', self._edit_aliases)
-        sidebox.pack_start(self.edit_aliases, False, True, 0)
-        pane.add1(sidebox)
-        pane.add2(box)
-        box.pack_start(self.container, True, True, 0)
-        sw.add(self.family_tree)
-        buttonbox = self._build_button_box()
-        box.pack_end(buttonbox, False, True, 0)
-        self.add(pane)
-        self.set_position(gtk.WIN_POS_CENTER)
-        self.show_all()
+    def _on_style_changed(self, widget):
+        self.current_book.pick_page(widget.get_active_text())
         return
 
     def discard_settings(self, unused_widget):
         """
-        Clear settings for selected family and delete any configuration files.
+        Clear settings for selected family.
         """
-        discard_fontconfig_settings(self.cache[self.selected_family])
+        discard_fontconfig_settings(self.cache[self.selected_family.get_name()])
+        self.save_settings(None)
+        return
+
+    def reset_all(self, unused_widget):
+        """
+        Clear everything.
+        """
+        for name in self.cache.iterkeys():
+            discard_fontconfig_settings(self.cache[name])
+            self.save_settings(None)
+        os.unlink(join(CACHE_DIR, CACHED_SETTINGS))
+        os.unlink(join(USER_FONT_CONFIG_DIR, 
+                        '25-%s.conf' % self.selected_family.get_name()))
         return
 
     def save_cache(self):
         """
         Save dialog state to file.
         """
-        cache = shelve.open(join(USER_FONT_CONFIG_DIR, CACHED_SETTINGS),
+        cache = shelve.open(join(CACHE_DIR, CACHED_SETTINGS),
                                             protocol=cPickle.HIGHEST_PROTOCOL)
         for family in self.cache.iterkeys():
-            if family == 'pango_families':
-                continue
             cache[family] = self.cache[family]
         cache.close()
         return
@@ -487,7 +387,8 @@ class ConfigEdit(gtk.Window):
         """
         Write settings for the selected family to an xml file.
         """
-        save_fontconfig_settings(self.cache[self.selected_family])
+        save_fontconfig_settings(self.cache[self.selected_family.get_name()])
+        glib.timeout_add_seconds(3, touch, USER_FONT_CONFIG_DIR)
         return
 
 
@@ -496,19 +397,20 @@ class SettingsBook(gtk.Notebook):
     This class is a notebook containing a page for each style in a family.
     """
     families = None
+    objects = None
     preview = None
     def __init__(self, family):
         gtk.Notebook.__init__(self)
-        if not self.families:
-            self.families = CACHE['pango_families']
+        global FAMILIES
+        self.families = FAMILIES
         if isinstance(family, str):
-            self.family = self.families[family]
+            self.family = self.objects['FontManager'][family].pango_family
         elif isinstance(family, pango.FontFamily):
             self.family = family
         else:
             raise TypeError('Expected name or pango family, got %s' % family)
         self.faces = {}
-        for face in sorted(family.list_faces(),
+        for face in sorted(self.family.list_faces(),
                 cmp = lambda x, y: cmp(x.get_face_name(), y.get_face_name())):
             settings = SettingsPage()
             page = settings.get_page()
@@ -517,7 +419,7 @@ class SettingsBook(gtk.Notebook):
             settings.descr = face.describe()
             self.faces[face.get_face_name()] = settings
         self.set_scrollable(True)
-        self.connect('switch-page', self._update_preview)
+        self.set_show_tabs(False)
         self.pick_page()
 
     def __getstate__(self):
@@ -536,11 +438,11 @@ class SettingsBook(gtk.Notebook):
         Restore our saved state.
         """
         gtk.Notebook.__init__(self)
-        if not self.families:
-            self.families = CACHE['pango_families']
+        global FAMILIES
+        self.families = FAMILIES
         for family in self.families:
-            if family.get_name() == state['family']:
-                self.family = family
+            if family == state['family']:
+                self.family = self.objects['FontManager'][family].pango_family
                 break
         self.faces = {}
         for face in sorted(self.family.list_faces(),
@@ -554,10 +456,10 @@ class SettingsBook(gtk.Notebook):
             settings.descr = face.describe()
             self.faces[name] = settings
         self.set_scrollable(True)
-        self.connect('switch-page', self._update_preview)
+        self.set_show_tabs(False)
         return
 
-    def pick_page(self):
+    def pick_page(self, style = None):
         """
         Try to select the "right" page based on known styles.
         For example, select "Regular" instead "Bold Italic".
@@ -568,21 +470,16 @@ class SettingsBook(gtk.Notebook):
         for i in range(self.get_n_pages()):
             page = self.get_nth_page(i)
             label = self.get_tab_label(page)
-            if label.get_text() in DEFAULT_STYLES:
+            if style is not None and label.get_text() == style:
+                have_known_style = True
+                known_style = i
+                break
+            elif style is None and label.get_text() in DEFAULT_STYLES:
                 have_known_style = True
                 known_style = i
                 break
         if have_known_style:
             self.set_current_page(known_style)
-        if old_page == self.get_current_page():
-            self._update_preview(self, None, old_page)
-        return
-
-    def _update_preview(self, unused_book, unusable_pointer, page_num):
-        page = self.get_nth_page(page_num)
-        label = self.get_tab_label(page)
-        if label and self.preview:
-            self.preview.update(None, descr=self.faces[label.get_text()].descr)
         return
 
 
@@ -638,7 +535,7 @@ class SettingsPage(object):
 
     def _build_page(self):
         page = gtk.VBox()
-        page.set_border_width(20)
+        page.set_border_width(5)
         page.set_spacing(10)
         for label in CHECKBUTTONS:
             if label == _('Smaller than') or label == _('Larger than'):
@@ -729,23 +626,25 @@ class SettingsPage(object):
         Correct slider behavior.
         """
         old_val = widget.get_value()
+        step = widget.get_adjustment().get_step_increment()
         if event.direction == gtk.gdk.SCROLL_UP:
-            new_val = old_val + 0.1
+            new_val = old_val + step
         else:
-            new_val = old_val - 0.1
+            new_val = old_val - step
         widget.set_value(new_val)
         return True
 
     def _update_sensitivity(self, widget, label):
         widgets = self.widgets
+        reverse = _('Auto-Hint'), _('Hinting')
         if label in SENSITIVITY:
             if widgets[label].get_active():
-                if label in REVERSE:
+                if label in reverse:
                     widgets[SENSITIVITY[label]].set_active(False)
                 else:
                     widgets[SENSITIVITY[label]].set_sensitive(True)
             else:
-                if label not in REVERSE:
+                if label not in reverse:
                     widgets[SENSITIVITY[label]].set_sensitive(False)
         if isinstance(widget, gtk.CheckButton):
             setattr(self, FC_WIDGETMAP[label], widget.get_active())
@@ -776,81 +675,6 @@ class SettingsPage(object):
         for attribute, val in DEFAULTS.iteritems():
             setattr(self, attribute, val)
         self._update_state()
-        return
-
-
-class SettingsPreview(gtk.Window):
-    """
-    Dialog to allow user to preview any changes.
-    """
-    def __init__(self, parent = None):
-        gtk.Window.__init__(self)
-        self.set_size_request(550, 400)
-        self.set_title(_('Preview'))
-        if parent:
-            self.set_transient_for(parent)
-            self.set_destroy_with_parent(True)
-        main_box = gtk.VBox()
-        main_box.set_border_width(15)
-        main_box.set_spacing(5)
-        self.size = 10
-        self.descr = None
-        sw = gtk.ScrolledWindow()
-        sw.set_shadow_type(gtk.SHADOW_ETCHED_IN)
-        sw.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        self.preview = self._get_textview()
-        sw.add(self.preview)
-        size_box = self._get_size_box()
-        main_box.pack_start(sw, True, True, 0)
-        main_box.pack_start(size_box, False, True, 0)
-        self.add(main_box)
-        self.update()
-
-    def _get_size_box(self):
-        frame = gtk.Notebook()
-        frame.set_show_tabs(False)
-        box = gtk.HBox()
-        box.set_spacing(10)
-        box.set_border_width(5)
-        adjustment = gtk.Adjustment(0.0, 2.0, 96.0, 0.5, 2.0, 0)
-        adjustment.set_value(self.size)
-        spinbutton = gtk.SpinButton(adjustment)
-        spinbutton.set_digits(1)
-        slider = gtk.HScale(adjustment)
-        spinbutton.connect('value-changed', self.update)
-        slider.connect('value-changed', self.update)
-        slider.set_draw_value(False)
-        box.pack_start(slider, True, True, 0)
-        box.pack_end(spinbutton, False, True, 0)
-        frame.add(box)
-        return frame
-
-    @staticmethod
-    def _get_textview():
-        tv = gtk.TextView()
-        tv.set_property('wrap-mode', gtk.WRAP_WORD)
-        tv.set_property('left-margin', 10)
-        tv.set_property('right-margin', 10)
-        tv.set_property('pixels-above-lines', 2)
-        tv.set_property('cursor-visible', False)
-        return tv
-
-    def update(self, widget = None, descr = None):
-        """
-        Update preview.
-        """
-        if widget:
-            self.size = widget.get_value()
-        t_buffer = self.preview.get_buffer()
-        t_buffer.set_text(PREVIEW_TEXT)
-        if not self.descr:
-            self.descr = self.get_style().font_desc
-        if descr is not None:
-            self.descr = descr
-        tag = t_buffer.create_tag(None, font_desc = self.descr,
-                                            size_points = self.size)
-        bounds = t_buffer.get_bounds()
-        t_buffer.apply_tag(tag, bounds[0], bounds[1])
         return
 
 

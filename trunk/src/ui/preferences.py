@@ -362,7 +362,19 @@ class PreferencesDialog():
             path_to_select = model.iter_n_children(None) - 1
             if (path_to_select >= 0):
                 selection.select_path(path_to_select)
-        self.update_required = True
+        # Remove any fonts which were in that directory
+        manager = self.objects['FontManager']
+        families = manager.list_families()
+        for family in families:
+            for style in manager[family].styles.itervalues():
+                if style['filepath'].startswith(directory):
+                    manager.remove_families(family)
+                    break
+            while gtk.events_pending():
+                gtk.main_iteration()
+            self.objects.update_family_total()
+            self.objects['Treeviews'].update_category_treeview()
+        self.objects['Treeviews'].update_views()
         return
 
     def _on_dir_selection_changed(self, treeselection):

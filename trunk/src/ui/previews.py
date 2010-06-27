@@ -36,18 +36,8 @@ import time
 
 from os.path import basename
 
+from constants import COMPARE_TEXT, DEFAULT_STYLES, PREVIEW_TEXT
 from fontinfo import FontInformation
-
-
-DEFAULT_STYLES  =  ['Regular', 'Roman', 'Medium', 'Normal', 'Book']
-# Note to translators: this should be a pangram (a sentence containing all
-# letters of your alphabet. See http://en.wikipedia.org/wiki/Pangram for
-# more information and possible samples for your language.
-PREVIEW_TEXT = _("""The quick brown fox jumps over the lazy dog.
-ABCDEFGHIJKLMNOPQRSTUVWXYZ
-abcdefghijklmnopqrstuvwxyz
-1234567890.:,;(*!?')""")
-COMPARE_TEXT = _('The quick brown fox jumps over the lazy dog.')
 
 
 class Previews(object):
@@ -80,6 +70,8 @@ class Previews(object):
         size_adjustment.set_value(self.size)
         # Make it do something
         size_adjustment.connect('value-changed', self._on_size_adj_v_change)
+        # Correct slider behavior - up means up, down means down
+        self.objects['FontSizeSlider'].connect('scroll-event', self._scroll_scale)
         # Gnome Character Map
         character_map = self.objects['CharacterMap']
         character_map.connect('clicked', self.on_char_map)
@@ -352,18 +344,18 @@ class Previews(object):
             logging.error("Error: %s" % error)
         return
 
-    def _on_font_changed(self, tree):
+    def _on_font_changed(self, treeselection):
         """
         Update preview when a new font is selected.
         """
         enable_font = self.objects['EnableFamily']
         disable_font = self.objects['DisableFamily']
         character_map = self.objects['CharacterMap']
-        model, path_list = tree.get_selected_rows()
+        model, path_list = treeselection.get_selected_rows()
         try:
             family = model[path_list[0]][0]
             self.current_family = self.manager[family]
-        except IndexError:
+        except (IndexError, KeyError):
             return
         self._change_font()
         if self.current_family.enabled:
@@ -377,21 +369,24 @@ class Previews(object):
             character_map.set_sensitive(False)
         return
 
-    def _on_style_changed(self, unused_widget):
+    def _on_style_changed(self, widget):
         """
         Update preview when a different style is selected.
         """
-        style_combo = self.objects['StyleCombo']
         character_map = self.objects['CharacterMap']
         font_information = self.objects['FontInformation']
-        if style_combo.get_active() < 0:
+        if widget.get_active() < 0:
             return
-        style = style_combo.get_model()[style_combo.get_active()][0]
+        style = widget.get_active_text()
         self.current_style_as_string = style
         valid_styles = 'Bold', 'Bold Italic', 'Italic'
-        if style in self.current_family.styles.iterkeys() or \
-        style in valid_styles:
-            character_map.set_sensitive(True)
+        if self.current_family.enabled and \
+        'gucharmap' in self.objects['AvailableApps']:
+            if style in self.current_family.styles.iterkeys() or \
+            style in valid_styles:
+                character_map.set_sensitive(True)
+            else:
+                character_map.set_sensitive(False)
         else:
             character_map.set_sensitive(False)
         if style in self.current_family.styles.iterkeys():
@@ -484,6 +479,19 @@ class Previews(object):
                                         self.current_style_as_string)
         return
 
+    @staticmethod
+    def _scroll_scale(widget, event):
+        """
+        Correct slider behavior.
+        """
+        old_val = widget.get_value()
+        step = widget.get_adjustment().get_step_increment() + 0.5
+        if event.direction == gtk.gdk.SCROLL_UP:
+            new_val = old_val + step
+        else:
+            new_val = old_val - step
+        widget.set_value(new_val)
+        return True
 
 class Browse(object):
     """

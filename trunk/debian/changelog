@@ -1,4 +1,4 @@
-font-manager (0.5.5-1) lucid; urgency=low
+font-manager (0.5.5-2) lucid; urgency=low
 
   * Update (0.5.5)
 
@@ -8,9 +8,17 @@ font-manager (0.5.5-1) lucid; urgency=low
         Address an issue where fonts from user configured folders which are
         not in the users home directory get placed into the System category.
 
+        Address an issue where fonts with family names containing non-ASCII
+        characters are unusable. If you experienced this, please reset the
+        applications cache to remove outdated entries.
+
         Added a fontconfig editor which allows users to configure settings for
-        individual families and styles. Also allows editing aliases.
+        individual families and styles.
         * <matrix> transformations are not supported.
+
+        Added an alias editor which allows users to configure font substitution.
+
+        Cut down on the number of events that require a restart.
 
 
  -- Jerry Casiano <JerryCasiano@gmail.com>  Fri, 18 Jun 2010 4:35:45 -0400

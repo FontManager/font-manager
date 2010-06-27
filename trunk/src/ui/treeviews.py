@@ -328,7 +328,7 @@ class Treeviews(object):
             icon = self._get_type_icon(name)
             tooltip.set_icon(icon)
             return True
-        except (TypeError, ValueError):
+        except (TypeError, ValueError, KeyError):
             return False
 
     def _get_type_icon(self, family):
@@ -732,7 +732,7 @@ class Treeviews(object):
                 self.family_tree.get_selection().select_iter(path)
         return
 
-    def _update_category_treeview(self):
+    def update_category_treeview(self):
         model = self.category_tree.get_model()
         header = model.get_iter_first()
         treeiter = model.iter_children(header)
@@ -795,7 +795,7 @@ class Treeviews(object):
         """
         self._selected_paths()
         self.manager.auto_enable_collections()
-        self._update_category_treeview()
+        self.update_category_treeview()
         self._update_collection_treeview()
         current_page = self.objects['MainNotebook'].get_current_page()
         if force or current_page == 0:

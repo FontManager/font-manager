@@ -27,6 +27,7 @@
 
 import os
 import glib
+import pango
 
 from os.path import join
 
@@ -138,6 +139,83 @@ CHECKBUTTONS = (_('Anti-Alias'), _('Auto-Hint'), _('Hinting'),
                 _('Use Global Advance data'), _('Use Embedded Bitmaps'),
                 _('Disable rgba'), _('Smaller than'), _('Larger than'))
 
+COMPARE_TEXT = _('The quick brown fox jumps over the lazy dog.')
+
+# Some of the most common fonts at least according to http://www.codestyle.org/
+# May or may not be valid alias targets...
+COMMON_FONTS = ('A Charming Font', 'Abadi MT', 'Academy Engraved LET',
+'Adobe Fangsong Std', 'Adobe Garamond', 'Adobe Heiti Std', 'Adobe Kaiti Std',
+'Adobe Ming Std', 'Adobe Myungjo Std', 'Adobe Song Std', 'Agency FB', 'Alba',
+'Alba Matter', 'Alba Super', 'Algerian', 'American Typewriter', 'Andale Mono',
+'Andale Mono IPA', 'Andy', 'Apple Casual', 'Apple Chancery',
+'Arabic Typesetting', 'Arial', 'Arial Black', 'Arial Narrow',
+'Arial Rounded MT Bold', 'Arial Unicode MS', 'Avant Garde', 'Avenir',
+'Baby Kruffy', 'Balker', 'Base', 'Baskerville', 'Baskerville Old Face',
+'Batang', 'BatangChe', 'Bauhaus', 'Beesknees ITC', 'Bell MT', 'Belwe', 'Bembo',
+'Berlin Sans FB', 'Bernard MT', 'Bernhard Modern Std',
+'Berthold Akzidenz Grotesk BE', 'Bickley Script', 'Big Caslon',
+'Bitstream Charter', 'Bitstream Vera Sans', 'Bitstream Vera Serif',
+'Blackadder ITC', 'Blackletter', 'Bodoni MT', 'Book Antiqua', 'Bookman',
+'Bookman Old Style', 'Bradley Hand ITC', 'Braggadocio', 'Britannic Bold',
+'Broadway', 'Broadway BT', 'Brush Script MT', 'BudHand', 'CAMPBELL',
+'Caflisch Script Pro', 'Calibri', 'Californian FB', 'Calisto MT', 'Calligraph',
+'Cambria', 'Cambria Math', 'Candara', 'Capitals', 'Caslon', 'Castellar',
+'Casual', 'Cataneo BT', 'Centaur', 'Century Gothic', 'Century Schoolbook',
+'Century Schoolbook L', 'Chalkduster', 'Charcoal', 'Charter', 'Chicago',
+'Chick', 'Chiller', 'ClearlyU', 'Colonna MT', 'Comic Sans MS', 'Consolas',
+'Constantia', 'Cooper Black', 'Copperplate', 'Copperplate Gothic', 'Corbel',
+'Courier', 'Courier New', 'Croobie', 'Curlz MT', 'DaunPenh', 'DecoType Naskh',
+'DejaVu LGC Sans', 'DejaVu LGC Serif', 'DejaVu Sans', 'DejaVu Serif',
+'Desdemona', 'Didot', 'DokChampa', 'DomBold BT', 'Domestic Manners', 'Dotum',
+'DotumChe', 'Dustismo', 'Edwardian Script ITC', 'Electron', 'Engravers MT',
+'Eras Bold ITC', 'Eras Demi ITC', 'Eras Light ITC', 'Eras Medium ITC',
+'Estrangelo Edessa', 'Euphemia', 'Eurostile', 'FIRSTHOME', 'Fat',
+'Felix Titling', 'Fine Hand', 'Fixed', 'Forte', 'Franklin Gothic',
+'FreeMono', 'FreeSans', 'FreeSerif', 'Freestyle Script', 'French Script MT',
+'Freshbot', 'Frosty', 'Futura', 'GENUINE', 'Gadget', 'Garamond', 'Gautami',
+'Geneva', 'Georgia', 'Georgia Ref', 'Gigi', 'Gill Sans', 'Gill Sans MT',
+'Gill Sans MT', 'GlooGun', 'Goudy Old Style', 'Goudy Stout', 'Gulim',
+'GulimChe', 'GungSeo', 'Gungsuh', 'GungsuhChe', 'Haettenschweiler',
+'Harlow Solid Italic', 'Harrington', 'Heiti SC', 'Heiti TC', 'Helvetica',
+'Helvetica Narrow', 'Helvetica Neue', 'Herculanum', 'High Tower Text',
+'Highlight LET', 'Hiragino Kaku Gothic ProN', 'Hiragino Kaku Gothic StdN',
+'Hiragino Maru Gothic ProN', 'Hiragino Mincho ProN', 'Hoefler Text',
+'ITC Century', 'ITC Franklin Gothic', 'Impact', 'Imprint MT Shadow',
+'Informal Roman', 'Interstate', 'Isabella', 'Iskoola Pota', 'Jenkins v',
+'John Handy LET', 'Jokerman', 'Jokerman LET', 'Jokewood', 'Juice ITC',
+'Junkyard', 'Kabel Ult BT', 'Kailasa', 'Kalinga', 'Kartika', 'Kaufmann',
+'Kino MT', 'Kokonor', 'Kristen ITC', 'Kunstler Script', 'La Bamba LET',
+'Latha', 'Liberation Mono', 'Liberation Sans', 'Liberation Serif',
+'Linux Libertine', 'Linux Libertine C', 'Lucida', 'Lucida Bright',
+'Lucida Calligraphy', 'Lucida Console', 'Lucida Fax', 'Lucida Grande',
+'Lucida Handwriting', 'Lucida Sans', 'Lucida Sans Typewriter',
+'Lucida Sans Unicode', 'Lucida Typewriter', 'LucidaBright', 'Luxi Mono',
+'Luxi Sans', 'Luxi Serif', 'MARKETPRO', 'MS Gothic', 'MS Mincho', 'MS PGothic',
+'MS PMincho', 'MS Reference Sans Serif', 'MS Reference Serif', 'MS UI Gothic',
+'MV Boli', 'Magneto', 'Maiandra GD', 'Mangal', 'Marked Fool', 'Marker Felt',
+'Matisse ITC', 'Matura MT Script Capitals', 'Mead Bold', 'Mekanik LET', 'Menlo',
+'Mercurius Script MT', 'Metal', 'MgOpen Canonica', 'MgOpen Cosmetica',
+'MgOpen Modata', 'MgOpen Moderna', 'Microsoft Sans Serif', 'Microsoft Yi Baiti',
+'Milano LET', 'MingLiU', 'Minion Std', 'Minion Web', 'MisterEarl BT', 'Mistral',
+'Monaco', 'Mongolian Baiti', 'Monotype Corsiva', 'Monotype.com', 'NSimSun',
+'New Century Schoolbook', 'New York', 'News Gothic MT', 'Niagara Engraved',
+'Niagara Solid', 'Nice', 'Nimbus Mono L', 'Nimbus Roman No', 'Nimbus Sans L',
+'Nyala', 'OCR A Extended', 'OCRB', 'Odessa LET', 'Old English Text MT',
+'OldDreadfulNo', 'One Stroke Script LET', 'Onyx', 'Optima', 'Orange LET',
+'PMingLiU', 'Palace Script MT', 'Palatino', 'Palatino Linotype', 'Papyrus',
+'ParkAvenue BT', 'Penguin Attack', 'Pepita MT', 'Perpetua',
+'Perpetua Titling MT', 'Playbill', 'Poornut', 'Porcelain', 'Pristina',
+'Pump Demi Bold LET', 'Pussycat', 'Quixley LET', 'Raavi', 'Rage Italic',
+'Rage Italic LET', 'Ravie', 'Rockwell', 'RotisSemiSans', 'Ruach LET',
+'Runic MT', 'Sand', 'Script MT', 'Scruff LET', 'Segoe Print', 'Segoe Script',
+'Segoe UI', 'Shelley', 'Showcard Gothic', 'Shruti', 'SimHei', 'SimSun', 'Skia',
+'Smudger LET', 'Snap ITC', 'Square', 'Staccato', 'Stencil', 'Sylfaen', 'Tahoma',
+'Techno', 'Tempus Sans ITC', 'Terminal', 'Textile', 'Times', 'Times New Roman',
+'Tiranti Solid LET', 'TradeGothic', 'Trebuchet MS', 'Tunga', 'Tw Cen MT',
+'URW Bookman L', 'URW Chancery L', 'URW Gothic L', 'URW Palladio L',
+'University Roman LET', 'Utopia', 'Vera Sans', 'Vera Sans Mono', 'Vera Serif',
+'Verdana', 'Verdana Ref', 'Victorian LET', 'Viner Hand ITC')
+
 CONSTS = {
             'hintstyle' :   {
                             '0'   :   'hintnone',
@@ -183,15 +261,7 @@ DEFAULTS = {
             'disablergba'       :   False
             }
 
-SLANT = {
-            0   :   'roman',
-            1   :   'oblique',
-            2   :   'italic'
-            }
-
-SKIP = (_('LCD Filter'), _('Force Spacing'),
-            _('Exclude size range'), _('Disable rgba'),
-            _('Smaller than'), _('Larger than'))
+DEFAULT_STYLES  =  ['Regular', 'Roman', 'Medium', 'Normal', 'Book']
 
 FC_WIDGETMAP = {
             _('Anti-Alias')                 :   'antialias',
@@ -209,6 +279,64 @@ FC_WIDGETMAP = {
             'SpacingScale'                  :   'spacing'
             }
 
+# Note to translators: this should be a pangram (a sentence containing all
+# letters of your alphabet. See http://en.wikipedia.org/wiki/Pangram for
+# more information and possible samples for your language.
+PREVIEW_TEXT = _("""The quick brown fox jumps over the lazy dog.
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+1234567890.:,;(*!?')""")
+
+SLANT = {
+            0   :   'roman',
+            1   :   'oblique',
+            2   :   'italic'
+            }
+
+SKIP = (_('LCD Filter'), _('Force Spacing'),
+            _('Exclude size range'), _('Disable rgba'),
+            _('Smaller than'), _('Larger than'))
+
+SCALES = {
+            _('Hinting')           :   'HintScale',
+            _('LCD Filter')        :   'FilterScale',
+            _('Force Spacing')     :   'SpacingScale'
+            }
+
+SCALE_LABELS = {
+                'HintScale'         :   {
+                                        0.0   :   'None',
+                                        0.1   :   'Slight',
+                                        0.2   :   'Medium',
+                                        0.3   :   'Full'
+                                        },
+                'FilterScale'       :   {
+                                        0.0   :   'None',
+                                        0.1   :   'Default',
+                                        0.2   :   'Light',
+                                        0.3   :   'Legacy'
+                                        },
+                'SpacingScale'      :   {
+                                        0.0   :   'Proportional',
+                                        0.1   :   'Dual',
+                                        0.2   :   'Mono',
+                                        0.3   :   'Charcell'
+                                        }
+                                        }
+
+SCALE_SENSITIVITY = {
+                    'HintScale'         :   'hinting',
+                    'FilterScale'       :   'lcdfiltering',
+                    'SpacingScale'      :   'forcespacing'
+                    }
+
+SENSITIVITY = {
+                _('Auto-Hint')     :   _('Hinting'),
+                _('Hinting')       :   _('Auto-Hint'),
+                _('Larger than')   :   'max_size',
+                _('Smaller than')  :   'min_size'
+                }
+
 WIDTH = {
             0   :   'ultracondensed',
             1   :   'extracondensed',
@@ -221,11 +349,26 @@ WIDTH = {
             8   :   'ultraexpanded'
             }
 
-WEIGHT = {
-            200   :   '0:40',
-            300   :   '40:50',
-            400   :   '50:100',
-            700   :   '180:200',
-            800   :   '200:205',
-            900   :   '205:210'
-            }
+if pango.version() < 12400:
+    WEIGHT = {
+                200 :   '0:40',
+                300 :   '40:50',
+                400 :   '50:100',
+                700 :   '180:200',
+                800 :   '200:205',
+                900 :   '205:210'
+                }
+else:
+    WEIGHT = {
+                100 :   '0:0',
+                200 :   '0:40',
+                300 :   '40:50',
+                380 :   '50:75',
+                400 :   '75:80',
+                500 :   '80:100',
+                600 :   '100:180',
+                700 :   '180:200',
+                800 :   '200:205',
+                900 :   '205:210',
+               1000 :   '210:210'
+                }

@@ -113,14 +113,12 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         self.collections = {}
         self.initial_collection_order = []
         self.data = {}
-        self.total_families = 0
         if self.parent:
             fonts.Sort(self, self.progress, self.parent)
         else:
             fonts.Sort(self, self.progress)
         self._update_selections()
         self.auto_enable_collections()
-        self.total_families = len(self.categories[_('All')].families)
         self._loading = False
         enable_blacklist()
         self.connid = self.connect('update-font-groups', self._update_orphans)
@@ -182,6 +180,14 @@ class FontManager(gobject.GObject, UserDict.UserDict):
                     break
         self.emit('update-font-groups', self.collections)
         return
+
+    def contains(self, family):
+        """
+        Return True if family is aavailable.
+        """
+        if family in self.data.iterkeys():
+            return True
+        return False
 
     def create_category(self, name, comment = None, families = None):
         """
@@ -370,12 +376,39 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         self.emit('update-font-groups', self.collections)
         return
 
+    def remove_families(self, *families):
+        """
+        Remove a family, a tuple or list of families.
+        """
+        collections = self.list_collections() + self.list_categories()
+        if isinstance(families[0], str):
+            if self.contains(families[0]):
+                del self.data[families[0]]
+                for collection in collections:
+                    if families[0] in self.list_families_in(collection):
+                        self.remove_families_from(collection, families[0])
+        elif isinstance(families[0], (tuple, list)):
+            for family in families[0]:
+                while self.contains(family):
+                    del self.data[family]
+                for collection in collections:
+                    if family in self.list_families_in(collection):
+                        self.remove_families_from(collection, family)
+        else:
+            raise TypeError\
+            ('Expected a string, tuple or list but got %s instead' % \
+            type(families[0]))
+        return
+
     def remove_families_from(self, collection, *families):
         """
         Remove families from an existing collection.
         """
         if isinstance(collection, str):
-            collection = self.collections[collection]
+            try:
+                collection = self.collections[collection]
+            except KeyError:
+                collection = self.categories[collection]
         elif not isinstance(collection, fonts.Collection):
             raise TypeError('Not a valid collection object or name')
         collection.remove(families[0])
@@ -395,6 +428,12 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         """
         self._do_set(family, True)
         return
+
+    def total_families(self):
+        """
+        Return a current total of families.
+        """
+        return len(self.categories[_('All')].families)
 
     def _update_orphans(self, unused_cls_instance, unused_collections):
         """

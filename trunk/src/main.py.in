@@ -48,7 +48,7 @@ from ui.library import InstallFonts, RemoveFonts
 from ui.treeviews import Treeviews
 from ui.previews import Browse, Previews
 from utils.common import disable_blacklist, open_folder, delete_cache, \
-                    delete_database, reset_fontconfig_cache, fc_config_reloaded
+                    delete_database, reset_fontconfig_cache, fc_config_reload
 from utils.xmlutils import save_collections
 
 
@@ -97,9 +97,9 @@ class Main(object):
         # Notification
         if self.preferences.minimizeonstart:
             self.objects.notify_send(_('Finished loading %s families') % \
-                                self.objects['FontManager'].total_families)
+                                self.objects['FontManager'].total_families())
         logging.info(_('Finished loading %s families') % \
-                                self.objects['FontManager'].total_families)
+                                self.objects['FontManager'].total_families())
         # Main UI elements
         self.objects.load_ui_elements()
         self.previews = self.objects['Previews']
@@ -121,10 +121,10 @@ class Main(object):
         # do not interfere with our ability to render disabled fonts.
         _fontutils.FcEnableHomeConfig(False)
         # This means any user settings just got dropped so reload them
-        fc_config_reloaded()
+        fc_config_reload()
         # This also happens whenever these signals are emitted...
-        self.main_window.connect_after('style-set', fc_config_reloaded)
-        self.main_window.connect_after('direction-changed', fc_config_reloaded)
+        self.main_window.connect_after('style-set', fc_config_reload)
+        self.main_window.connect_after('direction-changed', fc_config_reload)
         # What the hell, let's put Main into the container... :-D
         self.objects['Main'] = self
 
@@ -155,7 +155,9 @@ class Main(object):
             self.menus['DesktopSettings'].set_tooltip_text\
             (_('This option requires gnome-appearance-properties'))
         self.menus['FontConfigSettings'].connect('activate', 
-                                                _on_fontconfig_settings, self)
+                                        _on_fontconfig_settings, self.objects)
+        self.menus['AliasEdit'].connect('activate', 
+                                        _on_edit_aliases, self.objects)
         # Miscellaneous
         self.objects['Refresh'].connect('clicked', self.reload, True)
         self.objects['Manage'].connect('button-press-event',
@@ -417,8 +419,7 @@ class ObjectContainer(UserDict.UserDict):
             widget.set_sensitive(state)
         if state:
             self.data['ProgressBar'].hide()
-            self.data['FamilyTotal'].set_text\
-            (_('Families : %s') % str(self.data['FontManager'].total_families))
+            self.update_family_total()
         else:
             self.data['FamilyTotal'].set_text('')
             self.data['ProgressBar'].set_text('')
@@ -427,13 +428,22 @@ class ObjectContainer(UserDict.UserDict):
             gtk.main_iteration()
         return
 
+    def update_family_total(self):
+        """
+        Update family total displayed in "statusbar".
+        """
+        self.data['FamilyTotal'].set_text\
+        (_('Families : %s') % str(self.data['FontManager'].total_families()))
+        return
+
 
 class PopupMenu(UserDict.UserDict):
     _widgets = (
         'TrayMenu', 'TrayInstall', 'TrayRemove', 'TrayFontPreferences',
         'TrayCharacterMap', 'TrayPreferences', 'TrayHelp', 'TrayAbout',
         'TrayQuit', 'ManageMenu', 'ManageInstall', 'ManageRemove',
-        'ManageFolder', 'SettingsMenu', 'DesktopSettings', 'FontConfigSettings'
+        'ManageFolder', 'SettingsMenu', 'DesktopSettings', 'FontConfigSettings',
+        'AliasEdit'
         )
     def __init__(self, objects = None):
         UserDict.UserDict.__init__(self)
@@ -495,6 +505,10 @@ def _on_about_dialog(unused_widget, dialog):
     dialog.hide()
     return
 
+def _on_edit_aliases(unused_widget, objects):
+    fontconfig.AliasEdit(objects)
+    return
+
 def _on_font_settings(unused_widget):
     """
     Launch gnome-appearance-properties with the fonts tab active.
@@ -506,15 +520,11 @@ def _on_font_settings(unused_widget):
         logging.error("Error: %s" % error)
     return
 
-def _on_fontconfig_settings(unused_widget, parent):
+def _on_fontconfig_settings(unused_widget, objects):
     """
     Display a dialog so user can tweak fontconfig settings for individual fonts.
     """
-    # We enable user configuration files so that our preview actually updates,
-    # we'll be re-starting on exit anyway, so our main interface isn't broken.
-    _fontutils.FcEnableHomeConfig(True)
-    parent.main_window.hide()
-    fontconfig.ConfigEdit(parent)
+    fontconfig.ConfigEdit(objects)
     return
 
 def _on_help(unused_widget):

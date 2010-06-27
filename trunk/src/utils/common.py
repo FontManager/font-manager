@@ -251,11 +251,12 @@ def enable_blacklist():
     time.sleep(0.5)
     return
 
-def fc_config_reloaded(*unused_args):
+def fc_config_reload(*unused_args):
     """
     Work around pango/fontconfig updates breaking previews for disabled fonts.
     """
     _fontutils.FcClearAppFonts()
+    _fontutils.FcAddAppFontDir(USER_FONT_DIR)
     for directory in load_directories():
         _fontutils.FcAddAppFontDir(directory)
     for config in os.listdir(USER_FONT_CONFIG_DIR):
@@ -497,4 +498,4 @@ def touch(filepath, tstamp = None):
                     os.utime(fullpath, tstamp)
     else:
         raise TypeError('Expected a valid file or directory path')
-    return
+    return False

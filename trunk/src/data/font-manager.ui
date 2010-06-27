@@ -452,6 +452,7 @@
                                     <property name="invisible_char">&#x25CF;</property>
                                     <property name="adjustment">SizeAdjustment</property>
                                     <property name="digits">1</property>
+                                    <property name="snap_to_ticks">True</property>
                                   </object>
                                   <packing>
                                     <property name="expand">False</property>

@@ -271,6 +271,7 @@ class RemoveFonts(object):
             selected_fams[val] = treeiter
             for filepath in filelist:
                 selected_paths.append(filepath)
+            self.objects['FontManager'].remove_families(val)
         self.do_delete(selected_paths)
         fonts.close()
         for treeiter in selected_fams.itervalues():
@@ -288,6 +289,8 @@ class RemoveFonts(object):
             path_to_select = self.remove_list.iter_n_children(None) - 1
             if (path_to_select >= 0):
                 self.remove_tree.get_selection().select_path(path_to_select)
+        self.objects.update_family_total()
+        self.objects['Treeviews'].update_views()
         return
 
     def _on_quit(self, unused_widget, unused_event):
@@ -300,8 +303,6 @@ class RemoveFonts(object):
         if self.update_required:
             mkfontdirs()
             do_library_cleanup(USER_LIBRARY_DIR)
-            # Reload
-            self.objects.reload()
         return True
 
     def run(self):

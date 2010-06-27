@@ -182,9 +182,17 @@
     </child>
     <child>
       <object class="GtkImageMenuItem" id="FontConfigSettings">
-        <property name="label" translatable="yes">Advanced Configuration</property>
+        <property name="label" translatable="yes">Advanced Settings</property>
         <property name="visible">True</property>
         <property name="image">SettingsIcon2</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="AliasEdit">
+        <property name="label" translatable="yes">Alias Editor</property>
+        <property name="visible">True</property>
+        <property name="image">SettingsIcon3</property>
         <property name="use_stock">False</property>
       </object>
     </child>
@@ -196,5 +204,9 @@
   <object class="GtkImage" id="SettingsIcon2">
     <property name="visible">True</property>
     <property name="icon_name">preferences-desktop-font</property>
+  </object>
+  <object class="GtkImage" id="SettingsIcon3">
+    <property name="visible">True</property>
+    <property name="icon_name">format-text-strikethrough</property>
   </object>
 </interface>

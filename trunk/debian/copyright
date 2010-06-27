@@ -9,7 +9,7 @@ Upstream Author(s):
 
 Copyright:
 
-    Copyright (C) 2009 Jerry Casiano <JerryCasiano@gmail.com>
+    Copyright (C) 2009, 2010 Jerry Casiano <JerryCasiano@gmail.com>
 
 License:
 
@@ -34,6 +34,6 @@ License:
     Public License version 3 can be found in `/usr/share/common-licenses/GPL-3'.
 
 
-The Debian packaging is copyright 2009, Jerry Casiano and
+The Debian packaging is copyright 2009, 2010 Jerry Casiano and
 is licensed under the GPL, see `/usr/share/common-licenses/GPL'.
 

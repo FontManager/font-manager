@@ -238,6 +238,7 @@ def save_alias_settings(tree):
     while model.get_iter_first():
         rootiter = model.get_iter_first()
         node = root.newChild(None, 'alias', None)
+        node.setProp('binding', 'strong')
         node.newChild(None, 'family', escape(model.get_value(rootiter, 0)))
         while model.iter_children(rootiter):
             child = model.iter_children(rootiter)

@@ -390,18 +390,38 @@ FT_Get_File_Info(PyObject *self, PyObject *args)
                     PyString_FromString(hash));
     g_free(hash);
 
-    /* Use these if possible, it's what Pango does */
+    /* Use these if possible, it's what Pango does, I think... */
     if (face->family_name)
     {
-        PyDict_SetItem(fileinfo,
-                        PyString_FromString("family"),
-                        PyString_FromString(face->family_name));
+        gchar   *family;
+
+        family = g_convert((const gchar *) face->family_name,
+                            -1, "UTF-8", "ASCII", NULL, NULL, NULL);
+        /* A ? more than likely means non-ASCII characters,
+         * if that is the case then we just keep the current
+         * value since this one will most definitely be broken.
+         */
+        if (!g_strrstr((const gchar *) family, "?"))
+        {
+            PyDict_SetItem(fileinfo,
+                            PyString_FromString("family"),
+                            PyString_FromString(family));
+        }
+        g_free(family);
     }
     if (face->style_name)
     {
-        PyDict_SetItem(fileinfo,
-                        PyString_FromString("style"),
-                        PyString_FromString(face->style_name));
+        gchar   *style;
+
+        style = g_convert((const gchar *) face->style_name,
+                            -1, "UTF-8", "ASCII", NULL, NULL, NULL);
+        if (!g_strrstr((const gchar *) style, "?"))
+        {
+            PyDict_SetItem(fileinfo,
+                            PyString_FromString("style"),
+                            PyString_FromString(style));
+        }
+        g_free(style);
     }
 
     FT_Done_Face(face);
