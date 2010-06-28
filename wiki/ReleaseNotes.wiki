@@ -1,7 +1,7 @@
 #summary These notes are in addition to the information and Known Issues listed in the help file, please make sure any problems you encounter are not listed there before reporting them.
 #labels Featured
 
-= Release Notes 0.5.4 =
+= Release Notes 0.5.5 =
 
 <p>
 Users who have customized their ~/.fonts.conf, should move it before running Font Manager.
