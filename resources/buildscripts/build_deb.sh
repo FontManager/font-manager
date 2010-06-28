@@ -13,6 +13,7 @@ sudo apt-get install -y -q --install-recommends build-essential devscripts debhe
 echo
 echo 'Fetching source'
 echo
+[ ! -e font-manager ] || rm -rf font-manager
 svn co http://font-manager.googlecode.com/svn/trunk/ font-manager
 cd font-manager
 find . -name '.svn' -print | xargs rm -rf
@@ -39,8 +40,6 @@ mkdir RESULTS
 cp -f BUILD/$PACKAGE*deb ./RESULTS/
 echo 'Now running cleanup'
 rm -rf BUILD
-
 echo
 echo 'If the build was successful you will find a deb package in font-manager/RESULTS'
-
-
+echo
