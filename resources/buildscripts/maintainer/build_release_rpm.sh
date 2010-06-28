@@ -11,13 +11,14 @@ fi
 echo
 echo 'Fetching source'
 echo
-[ -e font-manager ] || svn co http://font-manager.googlecode.com/svn/trunk/ font-manager
+[ ! -e font-manager ] || rm -rf font-manager
+svn co http://font-manager.googlecode.com/svn/trunk/ font-manager
 cd font-manager
-svn update
 . ./release
 echo
 echo 'Preparing source'
 echo
+find . -name '.svn' -print | xargs rm -rf
 ./configure
 make dist-bzip2
 rpmdev-setuptree

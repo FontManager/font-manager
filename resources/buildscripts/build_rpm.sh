@@ -18,6 +18,7 @@ fi
 echo
 echo 'Fetching source'
 echo
+[ ! -e font-manager ] || rm -rf font-manager
 svn co http://font-manager.googlecode.com/svn/trunk/ font-manager
 cd font-manager
 find . -name '.svn' -print | xargs rm -rf

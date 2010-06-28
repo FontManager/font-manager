@@ -50,7 +50,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/*.desktop
 
 %changelog
-* Wed Fri  18 2010 Jerry Casiano <JerryCasiano@gmail.com> - 0.5.5-1
+* Fri Jun  18 2010 Jerry Casiano <JerryCasiano@gmail.com> - 0.5.5-1
 - Update to latest
 
 * Wed Jun  9 2010 Jerry Casiano <JerryCasiano@gmail.com> - 0.5.4-5
