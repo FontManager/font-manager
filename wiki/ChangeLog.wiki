@@ -14,8 +14,7 @@
         applications cache to remove outdated entries.
 
         Added a fontconfig editor which allows users to configure settings for
-        individual families and styles.
-        * <matrix> transformations are not supported.
+        individual families and styles. <matrix> transformations are not supported.
 
         Added an alias editor which allows users to configure font substitution.
 
