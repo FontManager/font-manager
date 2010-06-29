@@ -31,6 +31,7 @@ import gtk
 import glib
 import gobject
 import logging
+import urllib
 import urlparse
 
 from os.path import join
@@ -252,8 +253,8 @@ class Treeviews(object):
         """
         if not info == TARGET_TYPE_EXTERNAL_DROP:
             return
-        filelist = [urlparse.urlsplit(path)[2].replace('%20', ' ') for path \
-                        in data.data.split('\r\n') if path.endswith(FONT_EXTS)]
+        filelist = [urllib.unquote(urlparse.urlsplit(path)[2]) for path \
+                        in data.data.splitlines() if path.endswith(FONT_EXTS)]
         block = _('All'), _('System'), _('User'), _('Orphans')
         if self.current_collection not in block:
             families = [ _fontutils.FT_Get_File_Info(path)['family'] \

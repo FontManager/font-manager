@@ -70,7 +70,7 @@ class AvailableApps(list):
     _defaults = ('dolphin', 'file-roller', 'gnome-appearance-properties',
                 'gucharmap', 'konqueror', 'nautilus', 'pcmanfm', 'thunar',
                 'xdg-open', 'yelp')
-    _dirs = os.getenv('PATH', '/usr/bin').split(':')
+    _dirs = os.getenv('PATH', '/usr/bin:/usr/local/bin').split(':')
     def __init__(self):
         list.__init__(self)
         self.update()
@@ -92,7 +92,6 @@ class AvailableApps(list):
         Update self to include apps.
 
         apps -- an application, list or tuple of applications.
-
         """
         del self[:]
         for app in self._defaults:
@@ -149,6 +148,20 @@ def _convert(char):
         char = char.replace('_', '')
         return char.lower()
 
+def correct_slider_behavior(widget, event, step = None):
+    """
+    Correct slider behavior so that up means up and down means down.
+    """
+    old_val = widget.get_value()
+    if step is None:
+        step = widget.get_adjustment().get_step_increment()
+    if event.direction == gtk.gdk.SCROLL_UP:
+        new_val = old_val + step
+    else:
+        new_val = old_val - step
+    widget.set_value(new_val)
+    return True
+
 def create_archive_from_folder(arch_name, arch_type, destination,
                                                 folder, delete = False):
     """
@@ -199,16 +212,17 @@ def disable_blacklist():
     time.sleep(0.5)
     return
 
-def display_error(msg, sec_msg = None):
+def display_error(msg, sec_msg = None, parent = None):
     """
     Display a generic error dialog.
     """
-    dialog = gtk.MessageDialog(None, 0, gtk.MESSAGE_ERROR,
+    dialog = gtk.MessageDialog(parent, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR,
                                     gtk.BUTTONS_CLOSE, None)
+    dialog.set_size_request(420, -1)
     dialog.set_markup('<b>%s</b>' % msg)
     if sec_msg is not None:
         dialog.format_secondary_text(sec_msg)
-    dialog.set_size_request(420, -1)
+    dialog.queue_resize()
     dialog.run()
     dialog.destroy()
     return
@@ -435,21 +449,17 @@ def _launch_file_browser(file_browser, folder):
         except OSError, error:
             logging.error("Error: %s" % error)
     else:
-        dialog = gtk.MessageDialog(_("Please install a supported file browser"),
-        gtk.DIALOG_DESTROY_WITH_PARENT, gtk.MESSAGE_ERROR,
-        gtk.BUTTONS_CLOSE,
-_("""Supported file browsers include :
-
-- Nautilus
-- Thunar
-- Dolphin
-- Konqueror
-- PCManFM
-
-If a supported file browser is installed,
-please file a bug against Font Manager"""))
-        dialog.run()
-        dialog.destroy()
+        display_error(_("Please install a supported file browser"),
+    _("""    Supported file browsers include :
+    
+    - Nautilus
+    - Thunar
+    - Dolphin
+    - Konqueror
+    - PCManFM
+    
+    If a supported file browser is installed,
+    please file a bug against Font Manager"""))
         return
 
 def reset_fontconfig_cache():

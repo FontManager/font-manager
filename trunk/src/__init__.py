@@ -25,13 +25,8 @@ along with this program; if not, write to:
 #import os
 #import sys
 
-#desktop_file = os.path.join(os.path.dirname(__file__), 'font-manager.desktop')
-#if os.path.exists(desktop_file):
-    #PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
-    #LIB_DIR = os.path.dirname(os.path.abspath(__file__))
-#else:
-    #PACKAGE_DIR = os.path.join('@prefix@', 'share/font-manager')
-    #LIB_DIR = os.path.join('@prefix@', 'lib/font-manager')
+#PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
+#LIB_DIR = os.path.dirname(os.path.abspath(__file__))
 
 #for directory in PACKAGE_DIR, LIB_DIR:
     #if not directory in sys.path:

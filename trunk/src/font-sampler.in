@@ -60,6 +60,7 @@ gettext.textdomain('font-manager')
 
 from core import Preferences
 from constants import CACHE_DIR, HOME, PACKAGE_DATA_DIR
+from utils.common import display_error
 
 CACHE_FILE  =   join(CACHE_DIR, 'sampler.cache')
 
@@ -176,15 +177,6 @@ class FontSampler(UserDict.UserDict):
             gtk.main_iteration()
         return
 
-    @staticmethod
-    def _write_warning():
-        dialog = gtk.MessageDialog(None, 0, gtk.MESSAGE_WARNING,
-                                        gtk.BUTTONS_OK, None)
-        dialog.set_markup(_('<b>Selected folder must be writeable</b>'))
-        dialog.run()
-        dialog.destroy()
-        return
-
     def _set_author(self, widget):
         self.data['Config'].author = widget.get_text()
         return
@@ -224,7 +216,8 @@ class FontSampler(UserDict.UserDict):
             # Make sure we have write access before we go any further
             new_folder = dirname(outfile)
             if not os.access(new_folder, os.W_OK):
-                self._write_warning()
+                display_error(_('Selected folder must be writeable'),
+                                    parent = self.data['MainWindow'])
                 self._show_file_selector(None)
                 return
             if not outfile.endswith('.pdf'):

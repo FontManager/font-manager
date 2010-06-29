@@ -42,7 +42,8 @@ from os.path import exists, join
 from constants import CHECKBUTTONS, COMMON_FONTS, DEFAULTS, DEFAULT_STYLES, \
                         FC_WIDGETMAP, USER_FONT_CONFIG_DIR, CACHE_DIR, \
                         SCALES, SCALE_LABELS, SENSITIVITY, SCALE_SENSITIVITY
-from utils.common import fc_config_reload, natural_sort, touch
+from utils.common import correct_slider_behavior, fc_config_reload, \
+                            natural_sort, touch
 from utils.xmlutils import save_alias_settings, save_fontconfig_settings, \
                             load_alias_settings
 
@@ -318,8 +319,13 @@ class ConfigEdit(gtk.Window):
     def _load_cache(self):
         cache = shelve.open(join(CACHE_DIR, CACHED_SETTINGS),
                                             protocol=cPickle.HIGHEST_PROTOCOL)
+        families = self.objects['FontManager'].list_families()
         for family in cache:
-            self.cache[family] = cache[family]
+            if family in families:
+                try:
+                    self.cache[family] = cache[family]
+                except Exception:
+                    pass
         cache.close()
         return
 
@@ -378,8 +384,10 @@ class ConfigEdit(gtk.Window):
         """
         cache = shelve.open(join(CACHE_DIR, CACHED_SETTINGS),
                                             protocol=cPickle.HIGHEST_PROTOCOL)
+        families = self.objects['FontManager'].list_families()
         for family in self.cache.iterkeys():
-            cache[family] = self.cache[family]
+            if family in families:
+                cache[family] = self.cache[family]
         cache.close()
         return
 
@@ -574,7 +582,7 @@ class SettingsPage(object):
         scale.set_draw_value(True)
         scale.set_value_pos(gtk.POS_TOP)
         scale.connect('format-value', self._format_value, label)
-        scale.connect('scroll-event', self._scroll_scale)
+        scale.connect('scroll-event', correct_slider_behavior)
         scale.connect('value-changed', self._scale_changed)
         align.add(scale)
         scale.set_sensitive(False)
@@ -619,20 +627,6 @@ class SettingsPage(object):
     def _set_max_size(self, widget):
         setattr(self, 'max_size', widget.get_value())
         return
-
-    @staticmethod
-    def _scroll_scale(widget, event):
-        """
-        Correct slider behavior.
-        """
-        old_val = widget.get_value()
-        step = widget.get_adjustment().get_step_increment()
-        if event.direction == gtk.gdk.SCROLL_UP:
-            new_val = old_val + step
-        else:
-            new_val = old_val - step
-        widget.set_value(new_val)
-        return True
 
     def _update_sensitivity(self, widget, label):
         widgets = self.widgets

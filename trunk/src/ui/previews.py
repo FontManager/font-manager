@@ -38,6 +38,7 @@ from os.path import basename
 
 from constants import COMPARE_TEXT, DEFAULT_STYLES, PREVIEW_TEXT
 from fontinfo import FontInformation
+from utils.common import correct_slider_behavior
 
 
 class Previews(object):
@@ -71,7 +72,8 @@ class Previews(object):
         # Make it do something
         size_adjustment.connect('value-changed', self._on_size_adj_v_change)
         # Correct slider behavior - up means up, down means down
-        self.objects['FontSizeSlider'].connect('scroll-event', self._scroll_scale)
+        self.objects['FontSizeSlider'].connect('scroll-event', 
+                                                correct_slider_behavior, 1.0)
         # Gnome Character Map
         character_map = self.objects['CharacterMap']
         character_map.connect('clicked', self.on_char_map)
@@ -479,19 +481,6 @@ class Previews(object):
                                         self.current_style_as_string)
         return
 
-    @staticmethod
-    def _scroll_scale(widget, event):
-        """
-        Correct slider behavior.
-        """
-        old_val = widget.get_value()
-        step = widget.get_adjustment().get_step_increment() + 0.5
-        if event.direction == gtk.gdk.SCROLL_UP:
-            new_val = old_val + step
-        else:
-            new_val = old_val - step
-        widget.set_value(new_val)
-        return True
 
 class Browse(object):
     """
