@@ -45,8 +45,7 @@ from os.path import exists, join, isdir, realpath
 import fonts
 
 from constants import *
-from utils.common import AvailableApps, natural_sort, disable_blacklist, \
-                            enable_blacklist, autostart
+from utils.common import AvailableApps, natural_sort, autostart
 from utils.xmlutils import load_directories, save_blacklist, save_directories
 
 APPLIST = None
@@ -102,7 +101,6 @@ class FontManager(gobject.GObject, UserDict.UserDict):
                                                     (gobject.TYPE_PYOBJECT,))
                                                     }
     def __init__(self, progress_callback = None, parent = None):
-        disable_blacklist()
         self._loading = True
         super(FontManager, self).__init__()
         self.progress = progress_callback
@@ -120,7 +118,6 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         self._update_selections()
         self.auto_enable_collections()
         self._loading = False
-        enable_blacklist()
         self.connid = self.connect('update-font-groups', self._update_orphans)
 
     def _add_category(self, category):

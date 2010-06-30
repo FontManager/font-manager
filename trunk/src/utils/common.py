@@ -186,7 +186,6 @@ def create_archive_from_folder(arch_name, arch_type, destination,
     os.chdir(HOME)
     return
 
-
 def delete_cache():
     """
     Remove stale cache file
@@ -203,14 +202,6 @@ def delete_database():
         os.unlink(DATABASE_FILE)
     return
 
-def disable_blacklist():
-    """
-    Disable user blacklist.
-    """
-    if exists(USER_FONT_CONFIG_SELECT):
-        os.rename(USER_FONT_CONFIG_SELECT, USER_FONT_CONFIG_DESELECT)
-    time.sleep(0.5)
-    return
 
 def display_error(msg, sec_msg = None, parent = None):
     """
@@ -256,23 +247,18 @@ def do_library_cleanup(root_dir = None):
             os.chmod(join(root, filename), 0644)
     return
 
-def enable_blacklist():
-    """
-    Enable user blacklist.
-    """
-    if exists(USER_FONT_CONFIG_DESELECT):
-        os.rename(USER_FONT_CONFIG_DESELECT, USER_FONT_CONFIG_SELECT)
-    time.sleep(0.5)
+def fc_config_load_user_dirs():
+    _fontutils.FcClearAppFonts()
+    _fontutils.FcAddAppFontDir(USER_FONT_DIR)
+    for directory in load_directories():
+        _fontutils.FcAddAppFontDir(directory)
     return
 
 def fc_config_reload(*unused_args):
     """
     Work around pango/fontconfig updates breaking previews for disabled fonts.
     """
-    _fontutils.FcClearAppFonts()
-    _fontutils.FcAddAppFontDir(USER_FONT_DIR)
-    for directory in load_directories():
-        _fontutils.FcAddAppFontDir(directory)
+    fc_config_load_user_dirs()
     for config in os.listdir(USER_FONT_CONFIG_DIR):
         if config.endswith('.conf'):
             _fontutils.FcParseConfigFile(join(USER_FONT_CONFIG_DIR, config))
