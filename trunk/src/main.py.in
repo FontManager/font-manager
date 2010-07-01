@@ -62,9 +62,8 @@ class Main(object):
         if exists(TMP_DIR):
             shutil.rmtree(TMP_DIR, ignore_errors=True)
         logging.info("Font Manager is now starting")
-        # http://code.google.com/p/font-manager/issues/detail?id=24
-        # Be friendlier to users with huge? collections by only affecting
-        # our internal config instead of the system one.
+        # Disable user configuration files so that changes to them
+        # do not interfere with our ability to render disabled fonts.
         _fontutils.FcEnableHomeConfig(False)
         fc_config_load_user_dirs()
         self.objects = ObjectContainer()
@@ -114,6 +113,9 @@ class Main(object):
         self.tray_icon = None
         if self.preferences.minimizeonclose:
             self._use_tray_icon(None)
+            self.main_window.emit('delete-event', None)
+            while gtk.events_pending():
+                gtk.main_iteration()
         # Install/Remove/Export functions
         self.export = None
         self.installer = None
