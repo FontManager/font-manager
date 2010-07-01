@@ -1,6 +1,13 @@
-font-manager (0.5.5-3) lucid; urgency=low
+font-manager (0.5.5-4) lucid; urgency=low
 
   * Update (0.5.5)
+
+        Be friendlier by only affecting internal configuration.
+
+ -- Jerry Casiano <JerryCasiano@gmail.com>  Fri, 18 Jun 2010 4:35:45 -0400
+
+
+font-manager (0.5.5-3) lucid; urgency=low
 
         Fix crash in fontconfig editor.
 
