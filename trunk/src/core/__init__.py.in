@@ -738,13 +738,25 @@ if os.path.islink(USER_LIBRARY_SYMLINK):
         os.unlink(USER_LIBRARY_SYMLINK)
 if not exists(USER_LIBRARY_SYMLINK):
     os.symlink(USER_LIBRARY_DIR, join(USER_FONT_DIR, 'Library'))
-# Overwrite user configuration file on startup.
+# http://code.google.com/p/font-manager/issues/detail?id=29
+# Be nice about this. 
+config_needs_update = False
 if exists(USER_FONT_CONFIG):
-    os.unlink(USER_FONT_CONFIG)
-with open(USER_FONT_CONFIG, 'wb') as conf:
-    conf.write(VALID_USER_FONT_CONFIG)
-# Yeah, that last action is probably bad form, but a warning about that
-# possibility has been in the release notes for a while, now that it's
-# the default there's even a message about it in the file itself so... :-p
+    conf = open(USER_FONT_CONFIG, 'r')
+    config_content = conf.read()
+    conf.close()
+    if config_content != VALID_USER_FONT_CONFIG:
+        config_needs_update = True
+else:
+    config_needs_update = True
+if config_needs_update:
+    logging.info('Updating %s' % USER_FONT_CONFIG)
+    logging.info('Previous version saved as %s' % USER_FONT_CONFIG_RENDER)
+    if exists(USER_FONT_CONFIG):
+        shutil.move(USER_FONT_CONFIG, USER_FONT_CONFIG_RENDER)
+    with open(USER_FONT_CONFIG, 'wb') as conf:
+        conf.write(VALID_USER_FONT_CONFIG)
+else:
+    logging.info('Verified %s' % USER_FONT_CONFIG)
 
 __version__ = '@VERSION@'
