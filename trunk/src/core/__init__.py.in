@@ -742,9 +742,8 @@ if not exists(USER_LIBRARY_SYMLINK):
 # Be nice about this. 
 config_needs_update = False
 if exists(USER_FONT_CONFIG):
-    conf = open(USER_FONT_CONFIG, 'r')
-    config_content = conf.read()
-    conf.close()
+    with open(USER_FONT_CONFIG, 'r') as conf:
+        config_content = conf.read()
     if config_content != VALID_USER_FONT_CONFIG:
         config_needs_update = True
 else:
