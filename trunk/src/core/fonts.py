@@ -31,10 +31,12 @@ import gtk
 import glib
 import cPickle
 import shelve
+import pango
 
 import database
 
 from constants import CACHE_FILE, USER
+from utils.common import delete_cache, natural_sort
 from utils.xmlutils import get_blacklisted, load_collections
 
 
@@ -118,6 +120,37 @@ class Collection(object):
             raise TypeError('Expected a string but got %s instead' \
                                                         % type(comment))
 
+class Face(object):
+    """
+    This class holds details about a face.
+    
+    Provides an equivalent to pango.FontFace that can be pickled.
+    """
+    __slots__ = ('name', 'description')
+    def __init__(self, face):
+        self.name = face.get_face_name()
+        self.description = face.describe().to_string()
+
+    def describe(self):
+        """
+        Return a pango.FontDescription for this face.
+        """
+        return pango.FontDescription(self.description)
+
+    def get_face_name(self):
+        """
+        Return the face name for the face.
+        """
+        return self.name
+
+    def list_sizes(self):
+        """
+        This always returns None for scalable fonts which is pretty much
+        the only kind we care about.
+        """
+        return None
+
+
 class Family(object):
     """
     This class holds details about a font family.
@@ -129,20 +162,6 @@ class Family(object):
         self.enabled = True
         self.pango_family = None
         self.styles = {}
-
-    def __getstate__(self):
-        """
-        Values to save when pickling object.
-
-        Note: Pango objects cannot be pickled, must be restored separately.
-        """
-        return (self.name, self.user, self.enabled, self.styles)
-
-    def __setstate__(self, state):
-        """
-        Values to restore when unpickling this object.
-        """
-        self.name, self.user, self.enabled, self.styles = state
 
     def get_count(self, display = True):
         """
@@ -175,6 +194,43 @@ class Family(object):
         return self.name
 
 
+class PangoFamily(object):
+    """
+    This class holds details about a pango family.
+    
+    Provides an equivalent to pango.FontFamily that can be pickled.
+    """
+    __slots__ = ('name', 'faces', 'mono')
+    def __init__(self, family):
+        self.name = family.get_name()
+        self.faces = self._get_faces(family)
+        self.mono = family.is_monospace()
+
+    def _get_faces(self, family):
+        faces = {}
+        for face in family.list_faces():
+            faces[face.get_face_name()] = Face(face)
+        return faces
+
+    def list_faces(self):
+        """
+        Return a sorted list of pango.FontFaces
+        """
+        return [self.faces[face] for face in natural_sort(self.faces.keys())]
+
+    def get_name(self):
+        """
+        Return the name of the family.
+        """
+        return self.name
+
+    def is_monospace(self):
+        """
+        True if the font family is monospace.
+        """
+        return self.mono
+
+
 class Sort(object):
     """
     This class sorts individual font files into their respective families
@@ -204,9 +260,8 @@ class Sort(object):
         self.manager = fontmanager
         database.sync()
         self.table = database.Table('Fonts')
-        self.cachefile = CACHE_FILE
-        self.cache = shelve.open(self.cachefile,
-                                    protocol=cPickle.HIGHEST_PROTOCOL)
+        self.cache = shelve.open(CACHE_FILE, protocol=cPickle.HIGHEST_PROTOCOL)
+        self._check_cache()
         self.file_total = len(self.table)
         # List of all indexed families
         self.indexed = []
@@ -252,6 +307,21 @@ class Sort(object):
                 face[keys[i]] = row[i]
             styles[row['style']] = face
         return styles
+
+    def _check_cache(self):
+        """
+        Delete cache if it's in an outdated format.
+        """
+        try:
+            for key in self.cache.keys():
+                test = self.cache[key]
+                break
+        except cPickle.UnpicklingError:
+            self.cache.close()
+            delete_cache()
+            self.cache = shelve.open(CACHE_FILE,
+                                        protocol=cPickle.HIGHEST_PROTOCOL)
+        return
 
     def _disable_rejects(self):
         """
@@ -337,8 +407,8 @@ class Sort(object):
                 if name in self.user:
                     obj.user = True
                 obj.styles = self._build_styles_dict(name)
+                obj.pango_family = PangoFamily(family)
                 self.cache[name] = obj
-            obj.pango_family = family
             self.manager[name] = obj
             self.processed += 1
             if self.progress_callback:

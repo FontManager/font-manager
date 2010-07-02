@@ -28,7 +28,6 @@ import sqlite3
 import _fontutils
 
 from constants import DATABASE_FILE, HOME
-from utils.common import delete_cache
 from utils.xmlutils import load_directories
 
 
@@ -439,8 +438,6 @@ def sync():
 
     table = Table('Fonts')
     available, indexed, update = _need_update()
-    if len(update) > 0 or len(available) != len(indexed):
-        delete_cache()
     _sync()
     table.close()
     return

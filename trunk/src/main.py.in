@@ -547,4 +547,3 @@ def _on_help(unused_widget):
     except OSError:
         logging.warn("Could not find any suitable browser")
     return
-
