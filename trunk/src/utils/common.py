@@ -202,7 +202,6 @@ def delete_database():
         os.unlink(DATABASE_FILE)
     return
 
-
 def display_error(msg, sec_msg = None, parent = None):
     """
     Display a generic error dialog.

@@ -395,9 +395,7 @@ class Previews(object):
             font_information.set_sensitive(True)
         else:
             font_information.set_sensitive(False)
-        faces = sorted(self.current_family.pango_family.list_faces(),
-                cmp=lambda x, y: cmp(x.get_face_name(), y.get_face_name()))
-        for face in faces:
+        for face in self.current_family.pango_family.list_faces():
             if face.get_face_name() == style:
                 descr = face.describe()
                 self._set_preview_text(descr)
@@ -411,13 +409,11 @@ class Previews(object):
         style_combo = self.objects['StyleCombo']
         style_combo.get_model().clear()
         family = self.current_family.pango_family
-        faces = sorted(family.list_faces(),
-                cmp=lambda x, y: cmp(x.get_face_name(), y.get_face_name()))
         selected_face = None
         active = -1
         i = 0
         added = []
-        for face in faces:
+        for face in family.list_faces():
             if face not in added:
                 style_combo.append_text(face.get_face_name())
             if face.get_face_name() in DEFAULT_STYLES or not selected_face:

@@ -418,8 +418,7 @@ class SettingsBook(gtk.Notebook):
         else:
             raise TypeError('Expected name or pango family, got %s' % family)
         self.faces = {}
-        for face in sorted(self.family.list_faces(),
-                cmp = lambda x, y: cmp(x.get_face_name(), y.get_face_name())):
+        for face in self.family.list_faces():
             settings = SettingsPage()
             page = settings.get_page()
             tab_label = gtk.Label(face.get_face_name())
@@ -453,8 +452,7 @@ class SettingsBook(gtk.Notebook):
                 self.family = self.objects['FontManager'][family].pango_family
                 break
         self.faces = {}
-        for face in sorted(self.family.list_faces(),
-                cmp = lambda x, y: cmp(x.get_face_name(), y.get_face_name())):
+        for face in self.family.list_faces():
             name = face.get_face_name()
             settings = state['faces'][name]
             page = settings.get_page()

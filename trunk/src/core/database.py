@@ -31,6 +31,11 @@ from constants import DATABASE_FILE, HOME
 from utils.xmlutils import load_directories
 
 
+user_config_dirs = [HOME]
+for directory in load_directories():
+    user_config_dirs.append(directory)
+USER_DIRS = tuple(user_config_dirs)
+
 FIELDS = ('owner', 'filepath', 'filetype', 'filesize', 'checksum', 'psname',
 'family', 'style', 'foundry', 'copyright', 'version', 'description',
 'license', 'license_url')
@@ -326,10 +331,7 @@ def _add_details(metadata):
     """
     Add owner information and format foundry name.
     """
-    user_dirs = [HOME]
-    for directory in load_directories():
-        user_dirs.append(directory)
-    if metadata['filepath'].startswith(tuple(user_dirs)):
+    if metadata['filepath'].startswith(USER_DIRS):
         metadata['owner'] = 'User'
     else:
         metadata['owner'] = 'System'
@@ -428,17 +430,16 @@ def sync():
         available = _fontutils.FcFileList()
         indexed = _get_indexed_files()
         update = _drop_indexed(available, indexed)
-        return available, indexed, update
+        return update
 
-    def _sync():
+    def _sync(update):
         fontdetails = _get_details(update)
         for font in fontdetails:
             table.insert(_get_row_data(font))
         return
 
     table = Table('Fonts')
-    available, indexed, update = _need_update()
-    _sync()
+    _sync(_need_update())
     table.close()
     return
 

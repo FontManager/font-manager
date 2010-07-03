@@ -614,7 +614,6 @@ class Preferences(gobject.GObject):
                 config.set(section, option, str(getattr(self, option)))
         with open(self.config_file, 'wb') as configfile:
             self.config.write(configfile)
-        save_directories(self.fontdirs)
         return
 
 gobject.type_register(Preferences)
@@ -752,7 +751,11 @@ if config_needs_update:
     logging.info('Updating %s' % USER_FONT_CONFIG)
     logging.info('Previous version saved as %s' % USER_FONT_CONFIG_RENDER)
     if exists(USER_FONT_CONFIG):
-        shutil.move(USER_FONT_CONFIG, USER_FONT_CONFIG_RENDER)
+        if config_content == OLD_FONT_CONFIG:
+            config_content = EMPTY_FONT_CONFIG
+        content = config_content.replace(USER_FONT_CONFIG_DATA, '')
+        with open(USER_FONT_CONFIG_RENDER, 'wb') as conf:
+            conf.write(content)
     with open(USER_FONT_CONFIG, 'wb') as conf:
         conf.write(VALID_USER_FONT_CONFIG)
 else:

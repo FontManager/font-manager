@@ -35,7 +35,7 @@ import pango
 
 import database
 
-from constants import CACHE_FILE, USER
+from constants import ALIAS_FAMILIES, CACHE_FILE, USER
 from utils.common import delete_cache, natural_sort
 from utils.xmlutils import get_blacklisted, load_collections
 
@@ -340,11 +340,10 @@ class Sort(object):
         """
         context = self.widget.get_pango_context()
         pango_families = context.list_families()
-        psuedo_families = 'Monospace', 'Sans', 'Serif'
         self.total = len(pango_families)
         for family in pango_families:
             name = family.get_name()
-            if name in psuedo_families:
+            if name in ALIAS_FAMILIES:
                 continue
             self.all_available.append(name)
         return
@@ -394,11 +393,10 @@ class Sort(object):
         """
         context = self.widget.get_pango_context()
         pango_families = context.list_families()
-        psuedo_families = 'Monospace', 'Sans', 'Serif'
         self.total = len(pango_families)
         for family in pango_families:
             name = family.get_name()
-            if name in psuedo_families:
+            if name in ALIAS_FAMILIES:
                 continue
             if self.cache.has_key(name):
                 obj = self.cache[name]

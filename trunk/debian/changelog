@@ -1,3 +1,12 @@
+font-manager (0.5.5-5) lucid; urgency=low
+
+  * Update (0.5.5)
+
+        Minor update to address annoyances reported by users.
+
+ -- Jerry Casiano <JerryCasiano@gmail.com>  Fri, 2 Jul 2010 4:35:45 -0400
+
+
 font-manager (0.5.5-4) lucid; urgency=low
 
   * Update (0.5.5)

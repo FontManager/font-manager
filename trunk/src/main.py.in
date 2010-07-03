@@ -304,8 +304,6 @@ class ObjectContainer(UserDict.UserDict):
         self.builder.add_from_file(join(PACKAGE_DATA_DIR, 'font-manager.ui'))
         self.data['MainWindow'] = self.builder.get_object('MainWindow')
         self.data['Preferences'] = core.get_preferences()
-        # Preferences dialog restarts before it's done if this is enabled
-        #self.data['Preferences'].connect('update-font-dirs', self.reload)
         self.data['AvailableApps'] = core.get_applist()
         self.data['PopupMenus'] = PopupMenu()
         self.data['Browse'] = None
