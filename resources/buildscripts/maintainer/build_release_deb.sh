@@ -25,6 +25,9 @@ cd BUILD
 tar -xvf $PACKAGE\_$VERSION.orig.tar.gz
 cp -R ../debian $PACKAGE-$VERSION/
 cd $PACKAGE-$VERSION
+chmod +x debian/rules
+mkdir debian/source
+echo '3.0 (quilt)' > debian/source/format
 echo
 echo 'Doing initial source build'
 echo
