@@ -37,14 +37,13 @@ import shlex
 import shutil
 import subprocess
 
-from os.path import basename, exists, join, isdir, isfile, splitext
+from os.path import basename, exists, join, isdir, isfile
 
 import _fontutils
 
 from constants import AUTOSTART_DIR, USER_FONT_DIR, HOME, README, \
-USER_FONT_CONFIG_SELECT, USER_FONT_CONFIG_DESELECT, USER_LIBRARY_DIR, \
-TMP_DIR, CACHE_FILE, DATABASE_FILE, FONT_EXTS, T1_EXTS, ARCH_EXTS, \
-USER_FONT_CONFIG_DIR, USER_FONT_CONFIG_RENDER
+USER_LIBRARY_DIR, CACHE_FILE, DATABASE_FILE, ARCH_EXTS, USER_FONT_CONFIG_DIR, \
+USER_FONT_CONFIG_RENDER
 from xmlutils import load_directories
 
 AUTOSTART = \
@@ -202,11 +201,11 @@ def delete_database():
         os.unlink(DATABASE_FILE)
     return
 
-def display_error(msg, sec_msg = None, parent = None):
+def display_warning(msg, sec_msg = None, parent = None):
     """
     Display a generic error dialog.
     """
-    dialog = gtk.MessageDialog(parent, gtk.DIALOG_MODAL, gtk.MESSAGE_ERROR,
+    dialog = gtk.MessageDialog(parent, gtk.DIALOG_MODAL, gtk.MESSAGE_WARNING,
                                     gtk.BUTTONS_CLOSE, None)
     dialog.set_size_request(420, -1)
     dialog.set_markup('<b>%s</b>' % msg)
@@ -217,36 +216,7 @@ def display_error(msg, sec_msg = None, parent = None):
     dialog.destroy()
     return
 
-def do_library_cleanup(root_dir = None):
-    """
-    Removes empty leftover directories and ensures correct permissions.
-    """
-    if not root_dir:
-        root_dir = USER_LIBRARY_DIR
-    # Two passes here to get rid of empty top level directories
-    passes = 0
-    while passes <= 1:
-        for root, dirs, files in os.walk(root_dir):
-            if not len(dirs) > 0 and root != root_dir:
-                keep = False
-                for filename in files:
-                    if filename.endswith(FONT_EXTS):
-                        keep = True
-                        break
-                if not keep:
-                    shutil.rmtree(root)
-        passes += 1
-    # Make sure we don't have any executables among our 'managed' files
-    # and make sure others have read-only access, apparently this can be
-    # an issue for some programs
-    for root, dirs, files in os.walk(root_dir):
-        for directory in dirs:
-            os.chmod(join(root, directory), 0755)
-        for filename in files:
-            os.chmod(join(root, filename), 0644)
-    return
-
-def fc_config_load_user_dirs():
+def fc_config_load_user_fonts():
     _fontutils.FcClearAppFonts()
     _fontutils.FcAddAppFontDir(USER_FONT_DIR)
     for directory in load_directories():
@@ -257,69 +227,12 @@ def fc_config_reload(*unused_args):
     """
     Work around pango/fontconfig updates breaking previews for disabled fonts.
     """
-    fc_config_load_user_dirs()
+    fc_config_load_user_fonts()
     for config in os.listdir(USER_FONT_CONFIG_DIR):
         if config.endswith('.conf'):
             _fontutils.FcParseConfigFile(join(USER_FONT_CONFIG_DIR, config))
     if exists(USER_FONT_CONFIG_RENDER):
         _fontutils.FcParseConfigFile(USER_FONT_CONFIG_RENDER)
-    return
-
-def finish_font_install(library = None):
-    """
-    Organize fonts alphabetically and move them to library.
-    """
-    if not library:
-        library = USER_LIBRARY_DIR
-    for root, dirs, files in os.walk(TMP_DIR):
-        for directory in dirs:
-            fullpath = join(root, directory)
-            new = directory[0]
-            new = new.upper()
-            newpath = join(library, new)
-            if not exists(newpath):
-                os.mkdir(newpath)
-            newname = join(newpath, directory)
-            if exists(newname):
-                shutil.rmtree(newname, ignore_errors=True)
-            shutil.move(fullpath, newname)
-    for root, dirs, files in os.walk(TMP_DIR):
-        for name in files:
-            if name.endswith(FONT_EXTS):
-                oldpath = join(root, name)
-                truename = name.split('.')[0]
-                truename = name.strip()
-                new = truename[0]
-                new = new.upper()
-                newpath = join(library, new)
-                if not exists(newpath):
-                    os.mkdir(newpath)
-                newname = join(newpath, name)
-                if exists(newname):
-                    shutil.rmtree(newname, ignore_errors=True)
-                shutil.move(oldpath, newname)
-                if oldpath.endswith(T1_EXTS):
-                    metrics = splitext(oldpath)[0] + '.*'
-                    for path in glob.glob(metrics):
-                        shutil.move(path, newpath)
-    do_library_cleanup(library)
-    shutil.rmtree(TMP_DIR, ignore_errors=True)
-    return
-
-def install_font_archive(filepath):
-    dir_name = strip_archive_ext(basename(filepath))
-    arch_dir = join(TMP_DIR, dir_name)
-    if exists(arch_dir):
-        i = 0
-        while exists(arch_dir):
-            arch_dir = arch_dir + str(i)
-            i += 1
-    os.mkdir(arch_dir)
-    subprocess.call(['file-roller', '-e', arch_dir, filepath])
-    # Todo: Need to check whether archive actually contained any fonts
-    # if user_is_stupid:
-    #     self.notify()
-    # ;-p
     return
 
 def install_readme():
@@ -339,25 +252,6 @@ def match(model, treeiter, data):
     column, key = data
     value = model.get_value(treeiter, column)
     return value == key
-
-def mkfontdirs(root_dir = USER_LIBRARY_DIR):
-    """
-    Recursively generate fonts.scale and fonts.dir for folders containing
-    font files.
-    Not sure these files are even necessary but it doesn't hurt anything.
-    """
-    for root, dirs, files in os.walk(root_dir):
-        if not len(dirs) > 0 and root != root_dir:
-            if len(files) > 0:
-                for filename in files:
-                    if filename.endswith(FONT_EXTS):
-                        try:
-                            subprocess.call(['mkfontscale', root])
-                            subprocess.call(['mkfontdir', root])
-                        except:
-                            pass
-                        break
-    return
 
 def natural_sort(alist):
     """
@@ -434,7 +328,7 @@ def _launch_file_browser(file_browser, folder):
         except OSError, error:
             logging.error("Error: %s" % error)
     else:
-        display_error(_("Please install a supported file browser"),
+        display_warning(_("Please install a supported file browser"),
     _("""    Supported file browsers include :
     
     - Nautilus
@@ -486,7 +380,7 @@ def touch(filepath, tstamp = None):
         with file(filepath, 'a'):
             os.utime(filepath, tstamp)
     elif isdir(filepath):
-        for root, dir, files in os.walk(filepath):
+        for root, dirs, files in os.walk(filepath):
             for path in files:
                 fullpath = join(root, path)
                 with file(fullpath, 'a'):

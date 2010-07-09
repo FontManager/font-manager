@@ -412,18 +412,19 @@ class Previews(object):
         selected_face = None
         active = -1
         i = 0
-        added = []
         for face in family.list_faces():
-            if face not in added:
-                style_combo.append_text(face.get_face_name())
+            style_combo.append_text(face.get_face_name())
             if face.get_face_name() in DEFAULT_STYLES or not selected_face:
-                selected_face = face
-                active = i
+                if face.get_face_name() in self.current_family.styles.keys():
+                    selected_face = face
+                    active = i
             i += 1
         style_combo.set_active(active)
         if selected_face:
             descr = selected_face.describe()
-            self._set_preview_text(descr)
+        else:
+            descr = family.list_faces()[0].describe()
+        self._set_preview_text(descr)
         return
 
     def _on_size_adj_v_change(self, widget):

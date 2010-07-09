@@ -35,7 +35,7 @@ import subprocess
 import time
 
 from constants import PACKAGE_DATA_DIR
-from utils.common import display_error, natural_sort
+from utils.common import display_warning, natural_sort
 from utils.xmlutils import load_actions, save_actions
 
 
@@ -302,7 +302,7 @@ class UserActions(object):
             process = subprocess.Popen(command)
         except (OSError, ValueError), error:
             command = '\nCommand was :\n\n' + ' '.join(command)
-            display_error(error, command)
+            display_warning(error, command)
             return
         if action['block'] or action['restart']:
             while process.poll() is None:

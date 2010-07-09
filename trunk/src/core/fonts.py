@@ -27,16 +27,24 @@ user specified collections.
 # Disable warnings related to gettext
 # pylint: disable-msg=E0602
 
+import os
 import gtk
 import glib
+import glob
 import cPickle
 import shelve
 import pango
+import tempfile
+import shutil
+import subprocess
+
+from os.path import basename, exists, join, splitext
 
 import database
 
-from constants import ALIAS_FAMILIES, CACHE_FILE, USER
-from utils.common import delete_cache, natural_sort
+from constants import ALIAS_FAMILIES, CACHE_FILE, USER, USER_LIBRARY_DIR, \
+                        T1_EXTS, FONT_EXTS
+from utils.common import delete_cache, natural_sort, strip_archive_ext
 from utils.xmlutils import get_blacklisted, load_collections
 
 
@@ -143,7 +151,8 @@ class Face(object):
         """
         return self.name
 
-    def list_sizes(self):
+    @staticmethod
+    def list_sizes():
         """
         This always returns None for scalable fonts which is pretty much
         the only kind we care about.
@@ -206,7 +215,8 @@ class PangoFamily(object):
         self.faces = self._get_faces(family)
         self.mono = family.is_monospace()
 
-    def _get_faces(self, family):
+    @staticmethod
+    def _get_faces(family):
         faces = {}
         for face in family.list_faces():
             faces[face.get_face_name()] = Face(face)
@@ -442,4 +452,96 @@ def _off(name, strike = True):
         return '<span weight="ultralight" strikethrough="true">%s</span>' % label
     else:
         return '<span weight="ultralight">%s</span>' % label
+
+
+def _set_library_permissions(library = USER_LIBRARY_DIR):
+    # Make sure we don't have any executables among our 'managed' files
+    # and make sure others have read-only access, apparently this can be
+    # an issue for some programs
+    for root, dirs, files in os.walk(library):
+        for directory in dirs:
+            os.chmod(join(root, directory), 0755)
+        for filename in files:
+            os.chmod(join(root, filename), 0644)
+    return
+
+def _mkfontdirs(library = USER_LIBRARY_DIR):
+    """
+    Recursively generate fonts.scale and fonts.dir for folders containing
+    font files.
+
+    Not sure these files are even necessary but it doesn't hurt anything.
+    """
+    for root, dirs, files in os.walk(library):
+        if not len(dirs) > 0 and root != library:
+            if len(files) > 0:
+                for filename in files:
+                    if filename.endswith(FONT_EXTS):
+                        try:
+                            subprocess.call(['mkfontscale', root])
+                            subprocess.call(['mkfontdir', root])
+                        except Exception:
+                            pass
+                        break
+    return
+
+def do_font_install(filepath, library = USER_LIBRARY_DIR, cleanup = False):
+    """
+    Install given font file. Return the new path.
+    """
+    name = basename(filepath)
+    newpath = join(library, name[0].upper())
+    if not exists(newpath):
+        os.mkdir(newpath)
+    shutil.copy(filepath, newpath)
+    if filepath.endswith(T1_EXTS):
+        metrics = splitext(filepath)[0] + '.*'
+        for path in glob.glob(metrics):
+            shutil.copy(path, newpath)
+    if cleanup:
+        do_library_cleanup(library)
+    return
+
+def install_font_archive(filepath, library = USER_LIBRARY_DIR, cleanup = False):
+    """
+    Install given font archive. Return the new path.
+    """
+    dir_name = strip_archive_ext(basename(filepath))
+    tmp_dir = tempfile.mkdtemp(suffix='-font-manager', prefix='tmp-')
+    arch_dir = join(tmp_dir, dir_name)
+    os.mkdir(arch_dir)
+    subprocess.call(['file-roller', '-e', arch_dir, filepath])
+    # Todo: Need to check whether archive actually contained any fonts
+    # if user_is_stupid:
+    #     self.notify()
+    # ;-p
+    newpath = join(library, dir_name[0].upper())
+    if not exists(newpath):
+        os.mkdir(newpath)
+    shutil.move(arch_dir, newpath)
+    shutil.rmtree(tmp_dir)
+    if cleanup:
+        do_library_cleanup(library)
+    return
+
+def do_library_cleanup(library = USER_LIBRARY_DIR):
+    """
+    Removes empty leftover directories and ensures correct permissions.
+    """
+    # Two passes here to get rid of empty top level directories
+    passes = 0
+    while passes <= 1:
+        for root, dirs, files in os.walk(library):
+            if not len(dirs) > 0 and root != library:
+                keep = False
+                for filename in files:
+                    if filename.endswith(FONT_EXTS):
+                        keep = True
+                        break
+                if not keep:
+                    shutil.rmtree(root)
+        passes += 1
+    _set_library_permissions(library)
+    _mkfontdirs(library)
+    return
 

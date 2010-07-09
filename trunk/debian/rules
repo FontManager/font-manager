@@ -2,7 +2,7 @@
 
 build:
 	dh_testdir
-	./configure --prefix=/usr
+	./configure --prefix=/usr --disable-bytecode
 	$(MAKE)
 	touch $@
 

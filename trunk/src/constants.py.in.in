@@ -32,7 +32,7 @@ import pango
 from os.path import join
 
 
-PACKAGE = 'font-manager'
+PACKAGE = '@PACKAGE_NAME@'
 
 if os.path.exists(os.path.join(os.path.dirname(__file__),
                                                     'font-manager.desktop')):
@@ -41,12 +41,11 @@ if os.path.exists(os.path.join(os.path.dirname(__file__),
     LOCALEDIR   = os.path.join(os.path.dirname(__file__), '../po')
 else:
     VERSION     = '@PACKAGE_VERSION@'
-    PACKAGE_DIR = '@prefix@/share/font-manager'
+    PACKAGE_DIR = '@DATAROOTDIR@/font-manager'
     LOCALEDIR   = '@LOCALEDIR@'
 
 PACKAGE_DATA_DIR            =   join(PACKAGE_DIR, 'data')
 CACHE_DIR                   =   join(glib.get_user_cache_dir(), PACKAGE)
-TMP_DIR                     =   join(CACHE_DIR, 'tmp')
 DATABASE_FILE               =   join(CACHE_DIR, 'font-manager.sqlite')
 CACHE_FILE                  =   join(CACHE_DIR, 'font-manager.cache')
 CONFIG_DIR                  =   glib.get_user_config_dir()

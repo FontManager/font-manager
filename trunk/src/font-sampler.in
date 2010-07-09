@@ -60,7 +60,7 @@ gettext.textdomain('font-manager')
 
 from core import Preferences
 from constants import CACHE_DIR, HOME, PACKAGE_DATA_DIR
-from utils.common import display_error
+from utils.common import display_warning
 
 CACHE_FILE  =   join(CACHE_DIR, 'sampler.cache')
 
@@ -216,7 +216,7 @@ class FontSampler(UserDict.UserDict):
             # Make sure we have write access before we go any further
             new_folder = dirname(outfile)
             if not os.access(new_folder, os.W_OK):
-                display_error(_('Selected folder must be writeable'),
+                display_warning(_('Selected folder must be writeable'),
                                     parent = self.data['MainWindow'])
                 self._show_file_selector(None)
                 return

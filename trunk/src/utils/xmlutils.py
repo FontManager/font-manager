@@ -297,7 +297,7 @@ def load_collections(fontmanager):
             return order
     try:
         doc = libxml2.parseFile(USER_FONT_COLLECTIONS)
-    except:
+    except Exception:
         logging.warn("Failed to parse collection configuration")
         return
     order = []
@@ -325,7 +325,7 @@ def load_compat_collections(fontmanager, order):
         return
     try:
         doc = libxml2.parseFile(COMPAT_COLLECTIONS)
-    except:
+    except Exception:
         logging.warn("Failed to parse collection configuration")
         return
     nodes = doc.xpathEval('//group')
@@ -371,7 +371,7 @@ def save_collections(objects):
                     add_patelt_node(node, family)
                 printed.append(name)
             order.pop(0)
-    except:
+    except Exception:
         doc.freeDoc()
         logging.warn("There was a problem saving collection information")
         logging.info("Attempting to restore previous configuration")

@@ -43,6 +43,7 @@ import time
 from os.path import exists, join, isdir, realpath
 
 import fonts
+import database
 
 from constants import *
 from utils.common import AvailableApps, natural_sort, autostart
@@ -62,15 +63,17 @@ class FontManager(gobject.GObject, UserDict.UserDict):
     provides convenience methods for enabling/disabling font families,
     adding/removing font collections and modifying them.
 
+    Emits 'restart-required'.
     Emits 'update-font-select' any time font families are enabled/disabled.
     Emits 'update-font-groups' any time collections are modified.
 
     Keyword Arguments:
 
-    progress_callback -- a function to call, it will be called everytime
-                        a family is processed with the name of the family,
-                        the total number of families to be processed and
-                        the number of families processed so far.
+    progress_callback -- a function to call.
+
+    It will be called everytime a family is processed with the name of the
+    family, the total number of families to be processed and the number of
+    families processed so far.
 
     """
     _loading = False
@@ -98,7 +101,10 @@ class FontManager(gobject.GObject, UserDict.UserDict):
                                                     (gobject.TYPE_PYOBJECT,)),
                         'update-font-groups'    :   (gobject.SIGNAL_RUN_LAST,
                                                     gobject.TYPE_NONE,
-                                                    (gobject.TYPE_PYOBJECT,))
+                                                    (gobject.TYPE_PYOBJECT,)),
+                        'restart-required'      :   (gobject.SIGNAL_RUN_LAST,
+                                                    gobject.TYPE_NONE,
+                                                    ())
                                                     }
     def __init__(self, progress_callback = None, parent = None):
         self._loading = True
@@ -142,6 +148,25 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         self.emit('update-font-groups', self.collections)
         return
 
+    def _add_families_to(self, collection, *families):
+        """
+        Add families to an existing collection.
+        """
+        if isinstance(collection, str):
+            collection = self.categories[collection]
+        elif not isinstance(collection, fonts.Collection):
+            raise TypeError('Not a valid collection object or family name')
+        if isinstance(families[0], str):
+            collection.add(families[0])
+        elif isinstance(families[0], (tuple, list)):
+            families = list(families[0])
+            collection.add(families)
+        else:
+            raise TypeError\
+            ('Expected str, tuple or list got %s instead' % type(families[0]))
+        self.emit('update-font-groups', self.collections)
+        return
+
     def add_families_to(self, collection, *families):
         """
         Add families to an existing collection.
@@ -155,6 +180,9 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         elif isinstance(families[0], (tuple, list)):
             families = list(families[0])
             collection.add(families)
+        else:
+            raise TypeError\
+            ('Expected str, tuple or list got %s instead' % type(families[0]))
         self.emit('update-font-groups', self.collections)
         return
 
@@ -198,7 +226,8 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         families -- a family, a list or tuple of families to add
         """
         if name in self.categories.iterkeys():
-            raise ValueError('Category %s already exists' % name)
+            self._add_families_to(name, families)
+            return
         collection = fonts.Collection(name)
         collection.builtin = True
         if comment and isinstance(comment, str):
@@ -220,7 +249,8 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         families -- a family, a list or tuple of families to add
         """
         if name in self.collections.iterkeys():
-            raise ValueError('Collection %s already exists' % name)
+            self.add_families_to(name, families)
+            return
         collection = fonts.Collection(name)
         if isinstance(comment, str):
             collection.comment = comment
@@ -318,6 +348,47 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         else:
             raise IndexError('No such collection or category')
 
+    def install_fonts(self, filelist, library = USER_LIBRARY_DIR,
+                                            progress_callback = None):
+        """
+        Install fonts. Does not reload, fonts will not be available till then.
+
+        filelist -- A list of supported filepaths to process.
+
+        Keyword arguments:
+
+        library -- Directory where fonts should be installed.
+        progress_callback -- a function to call.
+
+        It will be called everytime a file is processed with the name of the
+        file, the total number of files to be processed and the number of files
+        processed so far.
+        """
+        missing = []
+        total = len(filelist)
+        processed = 0
+        for filepath in filelist:
+            if isdir(filepath) or not exists(filepath):
+                # There is a slim possibility that a file gets changed
+                # between being selected in the filechooser and getting here
+                if not exists(filepath):
+                    missing.append(filepath)
+                continue
+            filename = filepath.rsplit('/', 1)[1]
+            if filepath.endswith(ARCH_EXTS):
+                fonts.install_font_archive(filepath, library, False)
+            elif filepath.endswith(FONT_EXTS):
+                fonts.do_font_install(filepath, library, False)
+            processed += 1
+            if progress_callback is not None:
+                progress_callback(filename, total, processed)
+        fonts.do_library_cleanup()
+        self.emit('restart-required')
+        if len(missing) > 0:
+            return missing
+        else:
+            return None
+
     def list_categories(self):
         """
         Return a sorted list of available categories.
@@ -410,6 +481,28 @@ class FontManager(gobject.GObject, UserDict.UserDict):
             raise TypeError('Not a valid collection object or name')
         collection.remove(families[0])
         self.emit('update-font-groups', self.collections)
+        return
+
+    def remove_fonts(self, selected_families):
+        """
+        Remove selected font files.
+        """
+        self.remove_families(selected_families)
+        table = database.Table('Fonts')
+        selected_paths = []
+        for family in selected_families:
+            filepaths = table.get('*', 'family="%s"' % family)
+            for row in filepaths:
+                selected_paths.append(row['filepath'])
+            table.remove('family="%s"' % family)
+        table.close()
+        for filepath in selected_paths:
+            if exists(filepath):
+                try:
+                    os.unlink(filepath)
+                except OSError, error:
+                    logging.error('Error : %s : %s' % (filepath, error))
+        fonts.do_library_cleanup()
         return
 
     def set_disabled(self, *family):
@@ -560,7 +653,7 @@ class Preferences(gobject.GObject):
             for section, options in self._section_map.iteritems():
                 for option in options:
                     if isinstance(self._defaults[option], bool):
-                        setattr(self, option, 
+                        setattr(self, option,
                                             config.getboolean(section, option))
                     elif isinstance(self._defaults[option], int):
                         setattr(self, option, config.getint(section, option))
@@ -738,24 +831,24 @@ if os.path.islink(USER_LIBRARY_SYMLINK):
 if not exists(USER_LIBRARY_SYMLINK):
     os.symlink(USER_LIBRARY_DIR, join(USER_FONT_DIR, 'Library'))
 # http://code.google.com/p/font-manager/issues/detail?id=29
-# Be nice about this. 
-config_needs_update = False
+# Be nice about this.
+CONFIG_NEEDS_UPDATE = False
 if exists(USER_FONT_CONFIG):
     with open(USER_FONT_CONFIG, 'r') as conf:
-        config_content = conf.read()
-    if config_content != VALID_USER_FONT_CONFIG:
-        config_needs_update = True
+        CONFIG_CONTENT = conf.read()
+    if CONFIG_CONTENT != VALID_USER_FONT_CONFIG:
+        CONFIG_NEEDS_UPDATE = True
 else:
-    config_needs_update = True
-if config_needs_update:
+    CONFIG_NEEDS_UPDATE = True
+if CONFIG_NEEDS_UPDATE:
     logging.info('Updating %s' % USER_FONT_CONFIG)
     logging.info('Previous version saved as %s' % USER_FONT_CONFIG_RENDER)
     if exists(USER_FONT_CONFIG):
-        if config_content == OLD_FONT_CONFIG:
-            config_content = EMPTY_FONT_CONFIG
-        content = config_content.replace(USER_FONT_CONFIG_DATA, '')
+        if CONFIG_CONTENT == OLD_FONT_CONFIG:
+            CONFIG_CONTENT = EMPTY_FONT_CONFIG
+        CONTENT = CONFIG_CONTENT.replace(USER_FONT_CONFIG_DATA, '')
         with open(USER_FONT_CONFIG_RENDER, 'wb') as conf:
-            conf.write(content)
+            conf.write(CONTENT)
     with open(USER_FONT_CONFIG, 'wb') as conf:
         conf.write(VALID_USER_FONT_CONFIG)
 else:

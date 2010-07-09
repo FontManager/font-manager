@@ -26,6 +26,16 @@ PKG_CHECK_MODULES([glib], [glib-2.0])
 
 # Optional arguments
 
+AC_ARG_ENABLE([bytecode],
+[AS_HELP_STRING([--enable-bytecode], [Compile python source code])],
+[case "${enableval}" in
+  yes) bytecode=true ;;
+  no)  bytecode=false ;;
+  *) AC_MSG_ERROR([bad value ${enableval} for --enable-bytecode]) ;;
+esac],
+[bytecode=true])
+AM_CONDITIONAL([BYTECODE], [test x$bytecode = xtrue])
+
 AC_ARG_ENABLE([debuginfo],
 [AS_HELP_STRING([--enable-debuginfo], [Do not strip libraries])],
 [case "${enableval}" in
@@ -51,9 +61,7 @@ AM_CONDITIONAL([WINLIB], [test x$winlib = xtrue])
 AC_CONFIG_FILES([
 	Makefile
 	src/constants.py.in
-	src/main.py
 	src/core/__init__.py
-	src/ui/export.py
 ])
 
 # Required

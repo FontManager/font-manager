@@ -35,10 +35,11 @@ import cPickle
 import shelve
 import subprocess
 import time
+import tempfile
 
 from os.path import exists, join, realpath, splitext
 
-from constants import HOME, CACHE_DIR, DESKTOP_DIR, TMP_DIR, T1_EXTS
+from constants import HOME, CACHE_DIR, DESKTOP_DIR, T1_EXTS
 from utils.common import create_archive_from_folder
 
 SAMPLER_CACHE   =   join(CACHE_DIR, 'sampler.cache')
@@ -134,12 +135,8 @@ class Export(object):
         """
         Export selected collection.
         """
-        self.workdir = join(TMP_DIR, self.current_collection)
-        if exists(TMP_DIR):
-            shutil.rmtree(TMP_DIR, ignore_errors=True)
-        if exists(self.workdir):
-            shutil.rmtree(self.workdir, ignore_errors=True)
-        os.mkdir(TMP_DIR)
+        tmp_dir = tempfile.mkdtemp(suffix='-font-manager', prefix='tmp-')
+        self.workdir = join(tmp_dir, self.current_collection)
         os.mkdir(self.workdir)
         if self.objects['ExportAsArchive'].get_active():
             self._do_work_copy(self._get_filelist())
@@ -153,9 +150,7 @@ class Export(object):
             self._do_cleanup()
         elif self.objects['ExportTo'].get_active():
             self._do_direct_copy(self._get_filelist())
-        if exists(TMP_DIR):
-            shutil.rmtree(TMP_DIR, ignore_errors=True)
-        os.chdir(HOME)
+        shutil.rmtree(tmp_dir, ignore_errors=True)
         return
 
     def _get_filelist(self):
@@ -242,7 +237,7 @@ class Export(object):
         cache['fontlist'] = inp
         cache['outfile'] = join(outp, '%s.pdf' % self.current_collection)
         cache.close()
-        font_sampler = join('@prefix@', 'bin/font-sampler')
+        font_sampler = join('@BINDIR@', 'font-sampler')
         sampler = subprocess.Popen([font_sampler])
         # Wait for font-sampler to finish
         while sampler.poll() is None:

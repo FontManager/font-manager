@@ -40,10 +40,10 @@ import _fontutils
 
 from actions import UserActions
 from core.database import Table
-from constants import PACKAGE_DATA_DIR
+from constants import PACKAGE_DATA_DIR, FONT_EXTS
 from custom import CellRendererTotal
 from library import InstallFonts
-from utils.common import match, natural_sort, search, FONT_EXTS
+from utils.common import match, natural_sort, search
 
 TARGET_TYPE_COLLECTION_ROW = 10
 TARGET_TYPE_FAMILY_ROW = 20
@@ -80,7 +80,6 @@ class Treeviews(object):
         self.filter = TreeviewFilter(self.objects)
         self.current_collection = None
         self.pending_event = None
-        self.installer = None
         self.selected_families = []
         self.selected_paths = []
         self.category_tree = self.objects['CategoryTree']
@@ -260,9 +259,9 @@ class Treeviews(object):
             families = [ _fontutils.FT_Get_File_Info(path)['family'] \
                         for path in filelist]
             self.manager.add_families_to(self.current_collection, families)
-        if not self.installer:
-            self.installer = InstallFonts(self.objects)
-        self.installer.process_install(filelist)
+        if not self.objects['Main'].installer:
+            self.objects['Main'].installer = InstallFonts(self.objects)
+        self.objects['Main'].installer.process_install(filelist)
         return
 
     def _on_drag_data_received(self, widget, context, x, y, data, info, tstamp):

@@ -58,6 +58,8 @@ FcOpen(PyObject *self, PyObject *args)
                         "Failed to initialize FontConfig library!\n");
         return NULL;
     }
+
+    Py_INCREF(Py_None);
     return Py_None;
 }
 
@@ -66,6 +68,8 @@ static PyObject *
 FcClose(PyObject *self, PyObject *args)
 {
     FcFini();
+
+    Py_INCREF(Py_None);
     return Py_None;
 }
 
@@ -73,7 +77,12 @@ static PyObject *
 FcReload(PyObject *self, PyObject *args)
 {
     if (!FcInitReinitialize())
+    {
+        Py_INCREF(Py_False);
         return Py_False;
+    }
+
+    Py_INCREF(Py_True);
     return Py_True;
 }
 
@@ -105,6 +114,7 @@ FcAddAppFontDir(PyObject *self, PyObject *args)
         return NULL;
     }
 
+    Py_INCREF(Py_None);
     return Py_None;
 }
 
@@ -136,6 +146,7 @@ FcAddAppFontFile(PyObject *self, PyObject *args)
         return NULL;
     }
 
+    Py_INCREF(Py_None);
     return Py_None;
 }
 
@@ -144,6 +155,8 @@ static PyObject *
 FcClearAppFonts(PyObject *self, PyObject *args)
 {
     FcConfigAppFontClear(FcConfigGetCurrent());
+
+    Py_INCREF(Py_None);
     return Py_None;
 }
 
@@ -162,6 +175,7 @@ FcEnableHomeConfig(PyObject *self, PyObject *args)
 
     FcConfigEnableHome(enable);
 
+    Py_INCREF(Py_None);
     return Py_None;
 }
 
@@ -251,9 +265,12 @@ FcParseConfigFile(PyObject *self, PyObject *args)
     if (!FcConfigParseAndLoad(FcConfigGetCurrent(),
                                 (const FcChar8 *) filepath, (FcBool) FALSE))
     {
+        Py_INCREF(Py_False);
         return Py_False;
     }
 
+
+    Py_INCREF(Py_True);
     return Py_True;
 }
 
@@ -280,7 +297,11 @@ FT_Get_Face_Count(PyObject *self, PyObject *args)
     error = FT_New_Face(library, filepath, 0, &face);
     if (error)
     {
-        PyErr_SetString(PyExc_EnvironmentError, "Failed to load font!\n");
+        gchar *err;
+
+        err = g_strdup_printf("Failed to load font! : '%s'\n", filepath);
+        PyErr_SetString(PyExc_EnvironmentError, err);
+        g_free(err);
         return NULL;
     }
 
@@ -337,7 +358,11 @@ FT_Get_File_Info(PyObject *self, PyObject *args)
                                 (FT_Long) filesize, index, &face);
     if (error)
     {
-        PyErr_SetString(PyExc_EnvironmentError, "Failed to load font!\n");
+        gchar *err;
+
+        err = g_strdup_printf("Failed to load font! : '%s'\n", filepath);
+        PyErr_SetString(PyExc_EnvironmentError, err);
+        g_free(err);
         return NULL;
     }
 

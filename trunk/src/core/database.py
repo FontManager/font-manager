@@ -22,7 +22,7 @@ This module is used to group functions which access the database.
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
-
+import logging
 import sqlite3
 
 import _fontutils
@@ -31,10 +31,10 @@ from constants import DATABASE_FILE, HOME
 from utils.xmlutils import load_directories
 
 
-user_config_dirs = [HOME]
+USER_CONFIG_DIRS = [HOME]
 for directory in load_directories():
-    user_config_dirs.append(directory)
-USER_DIRS = tuple(user_config_dirs)
+    USER_CONFIG_DIRS.append(directory)
+USER_DIRS = tuple(USER_CONFIG_DIRS)
 
 FIELDS = ('owner', 'filepath', 'filetype', 'filesize', 'checksum', 'psname',
 'family', 'style', 'foundry', 'copyright', 'version', 'description',
@@ -369,14 +369,14 @@ def _get_details(filedict):
     """
     details = []
     for font, foundry in _get_file_details(filedict):
-        for index in range(_fontutils.FT_Get_Face_Count(font)):
-            try:
+        try:
+            for index in range(_fontutils.FT_Get_Face_Count(font)):
                 metadata = _fontutils.FT_Get_File_Info(font, index, foundry)
-            except IOError:
-                break
-            metadata = _add_details(metadata)
-            metadata = _pad_metadata(metadata)
-            details.append(metadata)
+                metadata = _add_details(metadata)
+                metadata = _pad_metadata(metadata)
+                details.append(metadata)
+        except (EnvironmentError, IOError), error:
+            logging.error(error)
     return details
 
 def _get_file_details(filedict):
@@ -407,6 +407,32 @@ def _pad_metadata(metadata):
             metadata[field] = 'None'
     return metadata
 
+def _get_indexed_files(table):
+    """
+    Return a list of any files already in the database.
+    """
+    paths = []
+    for row in table['filepath']:
+        paths.append(row[0])
+    return paths
+
+def _need_update(table):
+    """
+    Return a list of files not in the database.
+    """
+    available = _fontutils.FcFileList()
+    indexed = _get_indexed_files(table)
+    update = _drop_indexed(available, indexed)
+    return update
+
+def get_family(filepath):
+    for index in range(_fontutils.FT_Get_Face_Count(filepath)):
+        try:
+            metadata = _fontutils.FT_Get_File_Info(filepath, index, 'unknown')
+            return metadata['family']
+        except IOError:
+            break
+    return
 
 def sync():
     """
@@ -417,29 +443,17 @@ def sync():
     update the database.
     """
 
-    def _get_indexed_files():
-        """
-        Return a list of any files already in the database.
-        """
-        paths = []
-        for row in table['filepath']:
-            paths.append(row[0])
-        return paths
-
-    def _need_update():
-        available = _fontutils.FcFileList()
-        indexed = _get_indexed_files()
-        update = _drop_indexed(available, indexed)
-        return update
-
     def _sync(update):
+        """
+        Add any missing fonts to the database.
+        """
         fontdetails = _get_details(update)
         for font in fontdetails:
             table.insert(_get_row_data(font))
         return
 
     table = Table('Fonts')
-    _sync(_need_update())
+    _sync(_need_update(table))
     table.close()
     return
 

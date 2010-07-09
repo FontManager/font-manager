@@ -42,8 +42,7 @@ from os.path import exists, join
 from constants import CHECKBUTTONS, COMMON_FONTS, DEFAULTS, DEFAULT_STYLES, \
                         FC_WIDGETMAP, USER_FONT_CONFIG_DIR, CACHE_DIR, \
                         SCALES, SCALE_LABELS, SENSITIVITY, SCALE_SENSITIVITY
-from utils.common import correct_slider_behavior, fc_config_reload, \
-                            natural_sort, touch
+from utils.common import correct_slider_behavior, natural_sort, touch
 from utils.xmlutils import save_alias_settings, save_fontconfig_settings, \
                             load_alias_settings
 
@@ -409,7 +408,6 @@ class SettingsBook(gtk.Notebook):
     preview = None
     def __init__(self, family):
         gtk.Notebook.__init__(self)
-        global FAMILIES
         self.families = FAMILIES
         if isinstance(family, str):
             self.family = self.objects['FontManager'][family].pango_family
@@ -445,7 +443,6 @@ class SettingsBook(gtk.Notebook):
         Restore our saved state.
         """
         gtk.Notebook.__init__(self)
-        global FAMILIES
         self.families = FAMILIES
         for family in self.families:
             if family == state['family']:
