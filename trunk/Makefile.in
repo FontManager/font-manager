@@ -561,13 +561,13 @@ install: make-install-dirs
 	$(INSTALL_LIB)
 	$(INSTALL_BIN)   $(SRC_DIR)/$(PKGNAME)         $(INST_BIN_DIR)/
 	$(INSTALL_BIN)   $(SRC_DIR)/$(SAMPLER)         $(INST_BIN_DIR)/
+	$(INSTALL_FILE)  $(SRC_DIR)/$(DE_FILES)        $(INST_APPS_DIR)/
 	$(INSTALL_FILE)  $(SRC_DIR)/$(PyFiles)         $(INST_DATA_DIR)/
 	$(INSTALL_FILE)  $(SRC_CORE_DIR)/$(PyFiles)    $(INST_DATA_DIR)/core/
 	$(INSTALL_FILE)  $(SRC_DATA_DIR)/$(PNG_FILES)  $(INST_DATA_DIR)/data/
 	$(INSTALL_FILE)  $(SRC_DATA_DIR)/$(UI_FILES)   $(INST_DATA_DIR)/data/
 	$(INSTALL_FILE)  $(SRC_UI_DIR)/$(PyFiles)      $(INST_DATA_DIR)/ui/
 	$(INSTALL_FILE)  $(SRC_UTILS_DIR)/$(PyFiles)   $(INST_DATA_DIR)/utils/
-	$(INSTALL_FILE)  $(SRC_DIR)/$(DE_FILES)        $(INST_APPS_DIR)/
 	@find help -type f -exec chmod 644 '{}' \;
 	@find help -type d -exec chmod 755 '{}' \;
 	@cp -R help $(INST_DATA_DIR)/
