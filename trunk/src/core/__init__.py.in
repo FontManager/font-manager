@@ -208,7 +208,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
 
     def contains(self, family):
         """
-        Return True if family is aavailable.
+        Return True if family is available.
         """
         if family in self.data.iterkeys():
             return True

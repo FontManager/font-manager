@@ -25,6 +25,7 @@
 #include <glib.h>
 #include <glib/gprintf.h>
 #include <glib/gstdio.h>
+#include <pango/pango-language.h>
 #include <fontconfig/fontconfig.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -46,6 +47,7 @@ static PyObject * FcFileList(PyObject *self, PyObject *args);
 static PyObject * FcParseConfigFile(PyObject *self, PyObject *args);
 static PyObject * FT_Get_Face_Count(PyObject *self, PyObject *args);
 static PyObject * FT_Get_File_Info(PyObject *self, PyObject *args);
+static PyObject * pango_get_sample_string(PyObject *self, PyObject *args);
 static PyObject * _get_sfnt_info(FT_Face face);
 static PyObject * _get_ps_info(FT_Face face, PS_FontInfoRec  ps_info);
 
@@ -55,7 +57,7 @@ FcOpen(PyObject *self, PyObject *args)
     if (!FcInit())
     {
         PyErr_SetString(PyExc_EnvironmentError,
-                        "Failed to initialize FontConfig library!\n");
+                        "Failed to initialize FontConfig library!");
         return NULL;
     }
 
@@ -99,7 +101,7 @@ FcAddAppFontDir(PyObject *self, PyObject *args)
     if (!g_file_test(dirpath, G_FILE_TEST_IS_DIR))
     {
         g_free(error);
-        error = g_strdup_printf("No such directory : '%s'\n", dirpath);
+        error = g_strdup_printf("No such directory : '%s'", dirpath);
         PyErr_SetString(PyExc_IOError, error);
         g_free(error);
         return NULL;
@@ -108,7 +110,7 @@ FcAddAppFontDir(PyObject *self, PyObject *args)
     if (!FcConfigAppFontAddDir(FcConfigGetCurrent(), (const FcChar8 *) dirpath))
     {
         g_free(error);
-        error = g_strdup_printf("Failed to add directory : '%s'\n", dirpath);
+        error = g_strdup_printf("Failed to add directory : '%s'", dirpath);
         PyErr_SetString(PyExc_EnvironmentError, error);
         g_free(error);
         return NULL;
@@ -131,7 +133,7 @@ FcAddAppFontFile(PyObject *self, PyObject *args)
     if (!g_file_test(filepath, G_FILE_TEST_EXISTS))
     {
         g_free(error);
-        error = g_strdup_printf("No such file : '%s'\n", filepath);
+        error = g_strdup_printf("No such file : '%s'", filepath);
         PyErr_SetString(PyExc_IOError, error);
         g_free(error);
         return NULL;
@@ -140,7 +142,7 @@ FcAddAppFontFile(PyObject *self, PyObject *args)
     if (!FcConfigAppFontAddFile(FcConfigGetCurrent(), (const FcChar8 *) filepath))
     {
         g_free(error);
-        error = g_strdup_printf("Failed to add file : '%s'\n", filepath);
+        error = g_strdup_printf("Failed to add file : '%s'", filepath);
         PyErr_SetString(PyExc_EnvironmentError, error);
         g_free(error);
         return NULL;
@@ -290,7 +292,7 @@ FT_Get_Face_Count(PyObject *self, PyObject *args)
     if (error)
     {
         PyErr_SetString(PyExc_EnvironmentError,
-                        "Failed to initialize FreeType library!\n");
+                        "Failed to initialize FreeType library!");
         return NULL;
     }
 
@@ -299,7 +301,7 @@ FT_Get_Face_Count(PyObject *self, PyObject *args)
     {
         gchar *err;
 
-        err = g_strdup_printf("Failed to load font! : '%s'\n", filepath);
+        err = g_strdup_printf("Failed to load font! : '%s'", filepath);
         PyErr_SetString(PyExc_EnvironmentError, err);
         g_free(err);
         return NULL;
@@ -337,9 +339,9 @@ FT_Get_File_Info(PyObject *self, PyObject *args)
         gchar *err;
 
         if (!g_file_test(filepath, G_FILE_TEST_EXISTS))
-            err = g_strdup_printf("No such file : '%s'\n", filepath);
+            err = g_strdup_printf("No such file : '%s'", filepath);
         else
-            err = g_strdup_printf("Open Failed : '%s'\n", filepath);
+            err = g_strdup_printf("Open Failed : '%s'", filepath);
         PyErr_SetString(PyExc_IOError, err);
         g_free(err);
         return NULL;
@@ -349,7 +351,7 @@ FT_Get_File_Info(PyObject *self, PyObject *args)
     if (error)
     {
         PyErr_SetString(PyExc_EnvironmentError,
-                        "Failed to initialize FreeType library!\n");
+                        "Failed to initialize FreeType library!");
         return NULL;
     }
 
@@ -360,7 +362,7 @@ FT_Get_File_Info(PyObject *self, PyObject *args)
     {
         gchar *err;
 
-        err = g_strdup_printf("Failed to load font! : '%s'\n", filepath);
+        err = g_strdup_printf("Failed to load font! : '%s'", filepath);
         PyErr_SetString(PyExc_EnvironmentError, err);
         g_free(err);
         return NULL;
@@ -454,6 +456,16 @@ FT_Get_File_Info(PyObject *self, PyObject *args)
     g_free(font);
 
     return fileinfo;
+}
+
+/* Sadly there is no python equivalent... or maybe I didn't look hard enough */
+static PyObject *
+pango_get_sample_string(PyObject *self, PyObject *args)
+{
+    gchar   *lang = NULL;
+    if (!PyArg_ParseTuple(args, "s", &lang))
+        return NULL;
+    return PyString_FromString(pango_language_get_sample_string(pango_language_from_string(lang)));
 }
 
 /* These last two are lifted from fontilus by James Henstridge... thanks. :-) */
@@ -699,6 +711,10 @@ static PyMethodDef Methods[] = {
      Takes three arguments, the filepath, and optionally the face index and \
      vendor.\n\n\
      Returns a dictionary."},
+
+    {"pango_get_sample_string", pango_get_sample_string, METH_VARARGS,
+    "Ask pango for a sample string appropriate for specified language.\n\n\
+    Takes lang as a string, i.e en-us, de-de, returns sample string."},
 
     {NULL, NULL, 0, NULL}           /* Signals end of method definitions */
 };

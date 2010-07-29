@@ -29,8 +29,9 @@ import os
 import glib
 import pango
 
-from os.path import join
+from os.path import join, splitext
 
+from _fontutils import pango_get_sample_string
 
 PACKAGE = '@PACKAGE_NAME@'
 
@@ -44,6 +45,8 @@ else:
     PACKAGE_DIR = '@DATAROOTDIR@/font-manager'
     LOCALEDIR   = '@LOCALEDIR@'
 
+
+LANG                        =   splitext(os.getenv('LANG', 'en_US'))[0]
 PACKAGE_DATA_DIR            =   join(PACKAGE_DIR, 'data')
 CACHE_DIR                   =   join(glib.get_user_cache_dir(), PACKAGE)
 DATABASE_FILE               =   join(CACHE_DIR, 'font-manager.sqlite')
@@ -73,6 +76,24 @@ USER_FONT_CONFIG_DESELECT   =   join(APP_CONFIG_DIR, 'select.conf.tmp')
 USER_LIBRARY_DIR            =   join(DATA_DIR, 'Library')
 USER_LIBRARY_SYMLINK        =   join(USER_FONT_DIR, 'Library')
 USER_ACTIONS_CONFIG         =   join(APP_CONFIG_DIR, 'actions.conf')
+
+
+LOCALIZED_TEXT = pango_get_sample_string(LANG.lower().replace('_', '-'))
+COMPARE_TEXT = pango_get_sample_string('xx')
+
+if LOCALIZED_TEXT == COMPARE_TEXT:
+    PREVIEW_TEXT = """%s
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+1234567890.:,;(*!?')""" % COMPARE_TEXT
+else:
+    PREVIEW_TEXT = """%s
+
+%s
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+1234567890.:,;(*!?')""" % (LOCALIZED_TEXT, COMPARE_TEXT)
+
 
 # Standard alias families
 ALIAS_FAMILIES = 'Monospace', 'Sans', 'Serif'
@@ -177,8 +198,6 @@ CHECKBUTTONS = (_('Anti-Alias'), _('Auto-Hint'), _('Hinting'),
                 _('LCD Filter'), _('Force Spacing'),
                 _('Use Global Advance data'), _('Use Embedded Bitmaps'),
                 _('Disable rgba'), _('Smaller than'), _('Larger than'))
-
-COMPARE_TEXT = _('The quick brown fox jumps over the lazy dog.')
 
 # Some of the most common fonts, at least according to http://www.codestyle.org/
 # May or may not be valid alias targets...
@@ -318,14 +337,6 @@ FC_WIDGETMAP = {
             'FilterScale'                   :   'lcdfilter',
             'SpacingScale'                  :   'spacing'
             }
-
-# Note to translators: this should be a pangram (a sentence containing all
-# letters of your alphabet. See http://en.wikipedia.org/wiki/Pangram for
-# more information and possible samples for your language.
-PREVIEW_TEXT = _("""The quick brown fox jumps over the lazy dog.
-ABCDEFGHIJKLMNOPQRSTUVWXYZ
-abcdefghijklmnopqrstuvwxyz
-1234567890.:,;(*!?')""")
 
 # These are basically identical between pango and fc
 SLANT = {

@@ -563,6 +563,8 @@ DEBUGINFO_FALSE
 DEBUGINFO_TRUE
 BYTECODE_FALSE
 BYTECODE_TRUE
+pango_LIBS
+pango_CFLAGS
 glib_LIBS
 glib_CFLAGS
 freetype2_LIBS
@@ -670,7 +672,9 @@ fontconfig_LIBS
 freetype2_CFLAGS
 freetype2_LIBS
 glib_CFLAGS
-glib_LIBS'
+glib_LIBS
+pango_CFLAGS
+pango_LIBS'
 
 
 # Initialize some variables set by options.
@@ -1311,6 +1315,9 @@ Some influential environment variables:
               linker flags for freetype2, overriding pkg-config
   glib_CFLAGS C compiler flags for glib, overriding pkg-config
   glib_LIBS   linker flags for glib, overriding pkg-config
+  pango_CFLAGS
+              C compiler flags for pango, overriding pkg-config
+  pango_LIBS  linker flags for pango, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -3730,6 +3737,96 @@ See \`config.log' for more details." "$LINENO" 5; }
 else
 	glib_CFLAGS=$pkg_cv_glib_CFLAGS
 	glib_LIBS=$pkg_cv_glib_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	:
+fi
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for pango" >&5
+$as_echo_n "checking for pango... " >&6; }
+
+if test -n "$PKG_CONFIG"; then
+    if test -n "$pango_CFLAGS"; then
+        pkg_cv_pango_CFLAGS="$pango_CFLAGS"
+    else
+        if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"pango\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "pango") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_pango_CFLAGS=`$PKG_CONFIG --cflags "pango" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+    fi
+else
+	pkg_failed=untried
+fi
+if test -n "$PKG_CONFIG"; then
+    if test -n "$pango_LIBS"; then
+        pkg_cv_pango_LIBS="$pango_LIBS"
+    else
+        if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"pango\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "pango") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_pango_LIBS=`$PKG_CONFIG --libs "pango" 2>/dev/null`
+else
+  pkg_failed=yes
+fi
+    fi
+else
+	pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        pango_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "pango"`
+        else
+	        pango_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "pango"`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$pango_PKG_ERRORS" >&5
+
+	as_fn_error "Package requirements (pango) were not met:
+
+$pango_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables pango_CFLAGS
+and pango_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+" "$LINENO" 5
+elif test $pkg_failed = untried; then
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables pango_CFLAGS
+and pango_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details." "$LINENO" 5; }
+else
+	pango_CFLAGS=$pkg_cv_pango_CFLAGS
+	pango_LIBS=$pkg_cv_pango_LIBS
         { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 $as_echo "yes" >&6; }
 	:

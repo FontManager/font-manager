@@ -17,8 +17,8 @@ UI_FILES = *.ui
 DE_FILES = *.desktop
 SAMPLER = font-sampler
 FLAGS = -fPIC -shared -D_REENTRANT
-LIBS = $(fontconfig_LIBS)$(freetype2_LIBS)$(glib_LIBS)
-INCLUDES = $(fontconfig_CFLAGS)$(freetype2_CFLAGS)$(glib_CFLAGS)
+LIBS = $(fontconfig_LIBS)$(freetype2_LIBS)$(glib_LIBS)$(pango_LIBS)
+INCLUDES = $(fontconfig_CFLAGS)$(freetype2_CFLAGS)$(glib_CFLAGS)$(pango_CFLAGS)
 SYSCONFIG = distutils.sysconfig
 PyInclude = `$(PYTHON) -c 'import $(SYSCONFIG); print "-I%s" % \
 	$(SYSCONFIG).get_python_inc()'`

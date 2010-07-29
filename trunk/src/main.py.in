@@ -126,31 +126,36 @@ class Main(object):
         self.objects['Main'] = self
 
     def _connect_callbacks(self):
+        _activate = {
+                    'ManageFolder'          :   self._on_open_folder,
+                    'ManageInstall'         :   self._on_install_fonts,
+                    'ManageRemove'          :   self._on_remove_fonts,
+                    'TrayInstall'           :   self._on_install_fonts,
+                    'TrayRemove'            :   self._on_remove_fonts,
+                    'TrayFontPreferences'   :   _on_font_settings,
+                    'TrayCharacterMap'      :   self.previews.on_char_map,
+                    'TrayPreferences'       :   self.objects.on_prefs,
+                    'TrayQuit'              :   self.quit,
+                    'TrayHelp'              :   _on_help,
+                    'DesktopSettings'       :   _on_font_settings
+                    }
         # Menu callbacks
-        self.menus['ManageFolder'].connect('activate', self._on_open_folder)
-        self.menus['ManageInstall'].connect('activate', self._on_install_fonts)
-        self.menus['ManageRemove'].connect('activate', self._on_remove_fonts)
-        self.menus['TrayInstall'].connect('activate', self._on_install_fonts)
-        self.menus['TrayRemove'].connect('activate', self._on_remove_fonts)
-        self.menus['TrayFontPreferences'].connect('activate', _on_font_settings)
-        self.menus['TrayCharacterMap'].connect('activate',
-                                                    self.previews.on_char_map)
-        self.menus['TrayPreferences'].connect('activate', self.objects.on_prefs)
-        if 'yelp' in self.objects['AvailableApps']:
-            self.menus['TrayHelp'].connect('activate', _on_help)
-        else:
+        for menuitem, func in _activate.iteritems():
+            self.menus[menuitem].connect('activate', func)
+        
+        if not 'yelp' in self.objects['AvailableApps']:
             self.menus['TrayHelp'].set_sensitive(False)
             self.menus['TrayHelp'].set_tooltip_text\
             (_('Yelp is required to view help files'))
-        self.menus['TrayAbout'].connect('activate', _on_about_dialog,
-                                            self.objects['AboutDialog'])
-        self.menus['TrayQuit'].connect('activate', self.quit)
-        if 'gnome-appearance-properties' in self.objects['AvailableApps']:
-            self.menus['DesktopSettings'].connect('activate', _on_font_settings)
-        else:
+
+        if not 'gnome-appearance-properties' in self.objects['AvailableApps']:
             self.menus['DesktopSettings'].set_sensitive(False)
             self.menus['DesktopSettings'].set_tooltip_text\
             (_('This option requires gnome-appearance-properties'))
+        
+        # Callbacks with arguments
+        self.menus['TrayAbout'].connect('activate', _on_about_dialog,
+                                            self.objects['AboutDialog'])
         self.menus['FontConfigSettings'].connect('activate', 
                                         _on_fontconfig_settings, self.objects)
         self.menus['AliasEdit'].connect('activate', 
@@ -502,6 +507,9 @@ def _on_about_dialog(unused_widget, dialog):
     return
 
 def _on_edit_aliases(unused_widget, objects):
+    """
+    Display a dialog so user can tweak font aliases.
+    """
     fontconfig.AliasEdit(objects)
     return
 

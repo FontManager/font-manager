@@ -487,7 +487,7 @@ def _mkfontdirs(library = USER_LIBRARY_DIR):
 
 def do_font_install(filepath, library = USER_LIBRARY_DIR, cleanup = False):
     """
-    Install given font file. Return the new path.
+    Install given font file.
     """
     name = basename(filepath)
     newpath = join(library, name[0].upper())
@@ -504,7 +504,7 @@ def do_font_install(filepath, library = USER_LIBRARY_DIR, cleanup = False):
 
 def install_font_archive(filepath, library = USER_LIBRARY_DIR, cleanup = False):
     """
-    Install given font archive. Return the new path.
+    Install given font archive.
     """
     dir_name = strip_archive_ext(basename(filepath))
     tmp_dir = tempfile.mkdtemp(suffix='-font-manager', prefix='tmp-')

@@ -300,21 +300,21 @@ class UserActions(object):
         command.insert(0, exe)
         try:
             process = subprocess.Popen(command)
+            if action['block'] or action['restart']:
+                while process.poll() is None:
+                    # Prevent loop from hogging cpu
+                    time.sleep(0.5)
+                    # Avoid the main window becoming unresponsive
+                    while gtk.events_pending():
+                        gtk.main_iteration()
+                    continue
+            if action['restart']:
+                self.objects.reload()
+            return
         except (OSError, ValueError), error:
             command = '\nCommand was :\n\n' + ' '.join(command)
             display_warning(error, command)
             return
-        if action['block'] or action['restart']:
-            while process.poll() is None:
-                # Prevent loop from hogging cpu
-                time.sleep(0.5)
-                # Avoid the main window becoming unresponsive
-                while gtk.events_pending():
-                    gtk.main_iteration()
-                continue
-        if action['restart']:
-            self.objects.reload()
-        return
 
     def _select_bin(self, widget):
         """

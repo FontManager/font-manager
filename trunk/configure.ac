@@ -17,6 +17,7 @@ AC_PATH_PROG(STRIP, strip)
 PKG_CHECK_MODULES([fontconfig], [fontconfig])
 PKG_CHECK_MODULES([freetype2], [freetype2])
 PKG_CHECK_MODULES([glib], [glib-2.0])
+PKG_CHECK_MODULES([pango], [pango])
 
 # Checks for header files.
 

@@ -447,9 +447,10 @@ class Previews(object):
         preview = self.objects['FontPreview']
         preview.set_buffer(t_buffer)
         size = self.size
-        tag = t_buffer.create_tag(None, font_desc=descr, size_points=size)
+        tag = t_buffer.create_tag(None, font_desc=descr, size_points=size,
+                                    wrap_mode=gtk.WRAP_WORD)
         t_buffer.insert(t_buffer.get_end_iter(), descr.to_string() + '\n')
-        t_buffer.insert(t_buffer.get_end_iter(), '\n' + self.preview_text + '\n')
+        t_buffer.insert(t_buffer.get_end_iter(), '\n' + self.preview_text)
         t_buffer.apply_tag(tag, t_buffer.get_start_iter(),
                                     t_buffer.get_end_iter())
 
@@ -530,14 +531,15 @@ class Browse(object):
         try:
             for unused_i in range(100):
                 family = self.families.pop(0)
-                obj = self.objects['FontManager'][family].pango_family
+                obj = self.objects['FontManager'][family]
                 root_node = self.treestore.append(None, [family,
                     '<span size="xx-large" weight="heavy">%s</span>' % \
                     glib.markup_escape_text(family)])
-                for style in obj.list_faces():
+                for style in obj.pango_family.list_faces():
                     self.treestore.append(root_node, [obj.get_name(),
-                        '<span size="x-large" font_desc="%s">%s %s</span>' % \
-                            (style.describe(), glib.markup_escape_text(family),
+        '<span size="x-large" font_desc="%s" strikethrough="%s">%s %s</span>' % \
+                            (style.describe(), str(not obj.enabled).lower(),
+                            glib.markup_escape_text(family),
                             glib.markup_escape_text(style.get_face_name()))])
         except IndexError:
             pass
