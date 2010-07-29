@@ -675,6 +675,7 @@
                           <object class="GtkHBox" id="hbox6">
                             <property name="visible">True</property>
                             <property name="border_width">5</property>
+                            <property name="spacing">10</property>
                             <child>
                               <object class="GtkButton" id="BackButton">
                                 <property name="label" translatable="yes">Manage Fonts</property>
@@ -689,7 +690,30 @@
                               </packing>
                             </child>
                             <child>
-                              <placeholder/>
+                              <object class="GtkNotebook" id="BrowseSizeSliderFrame">
+                                <property name="visible">True</property>
+                                <property name="show_tabs">False</property>
+                                <child>
+                                  <object class="GtkHScale" id="BrowseSizeSlider">
+                                    <property name="visible">True</property>
+                                    <property name="adjustment">SizeAdjustment</property>
+                                    <property name="digits">2</property>
+                                    <property name="draw_value">False</property>
+                                  </object>
+                                </child>
+                                <child type="tab">
+                                  <object class="GtkLabel" id="label21">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">page 1</property>
+                                  </object>
+                                  <packing>
+                                    <property name="tab_fill">False</property>
+                                  </packing>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="position">1</property>
+                              </packing>
                             </child>
                           </object>
                           <packing>
@@ -2561,8 +2585,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
                 <child>
                   <object class="GtkFileChooserButton" id="ExportFileChooser">
                     <property name="visible">True</property>
-                    <property name="do_overwrite_confirmation">True</property>
                     <property name="action">select-folder</property>
+                    <property name="do_overwrite_confirmation">True</property>
                     <property name="title" translatable="yes">Select A Folder</property>
                   </object>
                   <packing>

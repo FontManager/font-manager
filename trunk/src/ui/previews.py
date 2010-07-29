@@ -254,8 +254,8 @@ class Previews(object):
         """
         Queue redraw on the comparison view.
         """
-        self.compare_tree.get_column(0).queue_resize()
         self.compare_tree.queue_draw()
+        self.compare_tree.get_column(0).queue_resize()
         return
 
     def _on_preview_text_changed(self, widget):
@@ -488,14 +488,23 @@ class Browse(object):
         self.objects = objects
         self.browse_tree = self.objects['BrowseTree']
         self.families = self.objects['FontManager'].list_families()
-        self.treestore = gtk.TreeStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
+        self.treestore = gtk.TreeStore(gobject.TYPE_STRING,
+                                    gobject.TYPE_PYOBJECT, gobject.TYPE_BOOLEAN)
         self.browse_tree.set_model(self.treestore)
         renderer = gtk.CellRendererText()
         renderer.set_property('ypad', 3)
-        column = gtk.TreeViewColumn(None, renderer, markup=1)
+        column = gtk.TreeViewColumn(None, renderer)
+        column.set_cell_data_func(renderer, self._cell_data_cb)
         self.browse_tree.append_column(column)
         self.working = False
         self.cancel = False
+        self.size = self.objects['Preferences'].previewsize
+        size_adjustment = self.objects['SizeAdjustment']
+        # Make it do something
+        size_adjustment.connect('value-changed', self.update_browse_view)
+        # Correct slider behavior - up means up, down means down
+        self.objects['BrowseSizeSlider'].connect('scroll-event', 
+                                                correct_slider_behavior, 1.0)
 
     def update_tree(self, families):
         self.families = families
@@ -509,6 +518,27 @@ class Browse(object):
             continue
         self.treestore.clear()
         gobject.idle_add(self._populate_browse_tree)
+        return
+
+    def _cell_data_cb(self, column, cell, model, treeiter):
+        style = self.browse_tree.get_style()
+        font_desc = style.font_desc
+        font_desc.set_weight(700)
+        cellset = cell.set_property
+        if len(model.get_path(treeiter)) < 2:
+            # this is a top level row
+            cellset('text', model.get_value(treeiter, 0))
+            cellset('font_desc', font_desc)
+            cellset('size-points', self.size * 1.25)
+            cellset('ypad', 2)
+            cellset('strikethrough', model.get_value(treeiter, 2))
+        else:
+            # this is a preview row
+            cellset('text', model.get_value(treeiter, 0))
+            cellset('font_desc', model.get_value(treeiter, 1))
+            cellset('size-points', self.size)
+            cellset('ypad', 2)
+            cellset('strikethrough', model.get_value(treeiter, 2))
         return
 
     # Adapted from gnome-specimen.
@@ -532,18 +562,27 @@ class Browse(object):
             for unused_i in range(100):
                 family = self.families.pop(0)
                 obj = self.objects['FontManager'][family]
-                root_node = self.treestore.append(None, [family,
-                    '<span size="xx-large" weight="heavy">%s</span>' % \
-                    glib.markup_escape_text(family)])
+                root_node = self.treestore.append(None,
+                            [glib.markup_escape_text(family), None, False])
                 for style in obj.pango_family.list_faces():
-                    self.treestore.append(root_node, [obj.get_name(),
-        '<span size="x-large" font_desc="%s" strikethrough="%s">%s %s</span>' % \
-                            (style.describe(), str(not obj.enabled).lower(),
-                            glib.markup_escape_text(family),
-                            glib.markup_escape_text(style.get_face_name()))])
+                    displaytext = '%s %s' % (glib.markup_escape_text(family),
+                    glib.markup_escape_text(style.get_face_name()))
+                    self.treestore.append(root_node, [displaytext,
+                    style.describe(), not obj.enabled])
         except IndexError:
             pass
         # reconnect the model
         self.browse_tree.set_model(model)
         # run again
         return True
+
+    def update_browse_view(self, widget):
+        """
+        Queue redraw on the browse view.
+        """
+        self.size = widget.get_value()
+        self.objects['Preferences'].previewsize = self.size
+        self.browse_tree.queue_draw()
+        self.browse_tree.get_column(0).queue_resize()
+        return
+

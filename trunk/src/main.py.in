@@ -294,7 +294,8 @@ class ObjectContainer(UserDict.UserDict):
         'ExportFileChooserBox', 'ExportFileChooser', 'ExportPermissionsWarning',
         'ExportArchiveOptionsBox', 'IncludeSampler', 'SearchBox', 'Advanced',
         'BrowseFonts', 'MainNotebook', 'BackButton', 'BrowseTree',
-        'BrowseScroll', 'CollectionButtonsFrame', 'SidePaneScroll'
+        'BrowseScroll', 'CollectionButtonsFrame', 'SidePaneScroll',
+        'BrowseSizeSlider'
         )
     def __init__(self):
         UserDict.UserDict.__init__(self)

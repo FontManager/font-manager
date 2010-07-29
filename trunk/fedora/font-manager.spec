@@ -1,6 +1,6 @@
 Name:           font-manager
 Version:        0.5.5
-Release:        3%{?dist}
+Release:        5%{?dist}
 Summary:        A font management application for the GNOME desktop environment
 Group:          Applications/Publishing
 License:        GPLv3+
