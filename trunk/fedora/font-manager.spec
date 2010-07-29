@@ -11,8 +11,8 @@ BuildRoot:      %(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
 
 # Explicit dependencies required because there is no automatic dependencies
 # resolution for the python modules.
-Requires:       fontconfig libxml2-python pygtk2 freetype
-BuildRequires:  python desktop-file-utils fontconfig-devel glib2-devel python-devel
+Requires:       fontconfig libxml2-python pygtk2 freetype pango
+BuildRequires:  python desktop-file-utils fontconfig-devel glib2-devel python-devel pango-devel
 
 %description
 Font Manager is an application that allows users to easily manage fonts
@@ -50,7 +50,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/*.desktop
 
 %changelog
-* Fri Jun  18 2010 Jerry Casiano <JerryCasiano@gmail.com> - 0.5.5-3
+* Fri Jul 29 2010 Jerry Casiano <JerryCasiano@gmail.com> - 0.5.5-5
 - Update to latest
 
 * Wed Jun  9 2010 Jerry Casiano <JerryCasiano@gmail.com> - 0.5.4-5
