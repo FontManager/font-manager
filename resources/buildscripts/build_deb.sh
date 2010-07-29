@@ -7,7 +7,7 @@ echo "This script will need superuser access to install required development pac
 echo
 echo
 sudo apt-get update -qq
-sudo apt-get install -y -q --install-recommends build-essential devscripts debhelper python2.6-dev libfreetype6-dev libglib2.0-dev libfontconfig1-dev intltool binutils subversion
+sudo apt-get install -y -q --install-recommends build-essential devscripts debhelper python2.6-dev libfreetype6-dev libglib2.0-dev libfontconfig1-dev libpango1.0-dev intltool binutils subversion
 #
 
 echo
