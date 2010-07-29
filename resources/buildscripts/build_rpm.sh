@@ -36,7 +36,12 @@ echo
 rpmbuild -bb ~/rpmbuild/SPECS/$PACKAGE.spec
 rm -rf RESULTS
 mkdir RESULTS
-cp -f ~/rpmbuild/RPMS/$(arch)/$PACKAGE*rpm ./RESULTS/
+ARCH=$(arch)
+if [ $ARCH = 'i686' ]
+then
+    ARCH='i386'
+fi
+cp -f ~/rpmbuild/RPMS/$ARCH/$PACKAGE*rpm ./RESULTS/
 echo 'Now running cleanup'
 rm -f $PACKAGE-$VERSION.tar.bz2
 make clean
@@ -44,7 +49,7 @@ if [ $clean = 'yes' ]
 then
     rm -rf ~/rpmbuild
 else
-    rm -f ~/rpmbuild/RPMS/$(arch)/$PACKAGE*
+    rm -f ~/rpmbuild/RPMS/$ARCH/$PACKAGE*
     rm -f ~/rpmbuild/SPECS/$PACKAGE*
     rm -f ~/rpmbuild/SOURCES/$PACKAGE*
 fi

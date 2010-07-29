@@ -30,7 +30,12 @@ echo 'Building package'
 echo
 rm -rf RESULTS
 mkdir RESULTS
-mock --resultdir=./RESULTS/ -r fedora-$(cat /etc/system-release | tr -cd '[[:digit:]]')-$(arch) ~/rpmbuild/SRPMS/$PACKAGE*.src.rpm
+ARCH=$(arch)
+if [ $ARCH = 'i686' ]
+then
+    ARCH='i386'
+fi
+mock --resultdir=./RESULTS/ -r fedora-$(cat /etc/system-release | tr -cd '[[:digit:]]')-$ARCH ~/rpmbuild/SRPMS/$PACKAGE*.src.rpm
 echo 'Now running cleanup'
 if [ $clean = 'yes' ]
 then
