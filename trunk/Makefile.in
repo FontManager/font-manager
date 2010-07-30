@@ -560,6 +560,7 @@ make-install-dirs:
 	$(MKDIR) $(INST_DATA_DIR)/utils
 
 install: make-install-dirs
+	@find . -type f -name 'font-manager*.pot' -exec rm -f '{}' \;
 	$(INSTALL_LIB)
 	$(INSTALL_BIN)   $(SRC_DIR)/$(PKGNAME)         $(INST_BIN_DIR)/
 	$(INSTALL_BIN)   $(SRC_DIR)/$(SAMPLER)         $(INST_BIN_DIR)/
