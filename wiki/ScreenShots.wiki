@@ -1,4 +1,4 @@
-<br /> <br />
+<br />
 = Main Window =
 <br />
 http://font-manager.googlecode.com/svn/resources/font-manager.googlecode.com/font-manager.png
