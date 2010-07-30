@@ -36,9 +36,22 @@ import time
 
 from os.path import basename
 
-from constants import COMPARE_TEXT, DEFAULT_STYLES, PREVIEW_TEXT
+from constants import COMPARE_TEXT, DEFAULT_STYLES, PREVIEW_TEXT, \
+                        STANDARD_TEXT, LOCALIZED_TEXT
 from fontinfo import FontInformation
 from utils.common import correct_slider_behavior
+
+
+def set_preview_text(use_localized_sample):
+    global PREVIEW_TEXT
+    global COMPARE_TEXT
+    if use_localized_sample:
+        PREVIEW_TEXT = PREVIEW_TEXT % LOCALIZED_TEXT
+        COMPARE_TEXT = COMPARE_TEXT % LOCALIZED_TEXT
+    else:
+        PREVIEW_TEXT = PREVIEW_TEXT % STANDARD_TEXT
+        COMPARE_TEXT = COMPARE_TEXT % STANDARD_TEXT
+    return
 
 
 class Previews(object):
@@ -46,6 +59,7 @@ class Previews(object):
         self.objects = objects
         self.manager = self.objects['FontManager']
         self.preferences = self.objects['Preferences']
+        set_preview_text(self.objects['Preferences'].localized)
         self.preview_text = PREVIEW_TEXT
         self.compare_text = COMPARE_TEXT
         self.preview_fgcolor = gtk.gdk.color_parse(self.preferences.fgcolor)

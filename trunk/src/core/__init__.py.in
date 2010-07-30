@@ -580,7 +580,8 @@ class Preferences(gobject.GObject):
                     'Interface'         :   ['collectiontotals', 'familytotals',
                                             'hpane', 'vpane', 'windowsize',
                                             'maximized', 'previewsize',
-                                            'bgcolor', 'fgcolor', 'browsemode']
+                                            'bgcolor', 'fgcolor', 'browsemode',
+                                            'localized']
                     }
     _defaults = {
                     'config_file'       :   APP_CONFIG,
@@ -604,7 +605,8 @@ class Preferences(gobject.GObject):
                     'previewsize'       :   11.0,
                     'bgcolor'           :   '#FFF',
                     'fgcolor'           :   '#000',
-                    'browsemode'        :   False
+                    'browsemode'        :   False,
+                    'localized'         :   True
                     }
     fontdirs = []
     def __init__(self):
@@ -652,15 +654,16 @@ class Preferences(gobject.GObject):
             config = self.config
             for section, options in self._section_map.iteritems():
                 for option in options:
-                    if isinstance(self._defaults[option], bool):
-                        setattr(self, option,
-                                            config.getboolean(section, option))
-                    elif isinstance(self._defaults[option], int):
-                        setattr(self, option, config.getint(section, option))
-                    elif isinstance(self._defaults[option], float):
-                        setattr(self, option, config.getfloat(section, option))
-                    else:
-                        setattr(self, option, config.get(section, option))
+                    if config.has_option(section, option):
+                        if isinstance(self._defaults[option], bool):
+                            setattr(self, option,
+                                                config.getboolean(section, option))
+                        elif isinstance(self._defaults[option], int):
+                            setattr(self, option, config.getint(section, option))
+                        elif isinstance(self._defaults[option], float):
+                            setattr(self, option, config.getfloat(section, option))
+                        else:
+                            setattr(self, option, config.get(section, option))
             if self.collectiontotals or self.familytotals:
                 setattr(self, 'experimental', True)
         except (ConfigParser.NoSectionError, ConfigParser.NoOptionError,

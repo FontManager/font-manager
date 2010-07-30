@@ -77,22 +77,15 @@ USER_LIBRARY_DIR            =   join(DATA_DIR, 'Library')
 USER_LIBRARY_SYMLINK        =   join(USER_FONT_DIR, 'Library')
 USER_ACTIONS_CONFIG         =   join(APP_CONFIG_DIR, 'actions.conf')
 
-
+STANDARD_TEXT = pango_get_sample_string('xx')
 LOCALIZED_TEXT = pango_get_sample_string(LANG.lower().replace('_', '-'))
-COMPARE_TEXT = pango_get_sample_string('xx')
+COMPARE_TEXT = "%s"
 
-if LOCALIZED_TEXT == COMPARE_TEXT:
-    PREVIEW_TEXT = """%s
+PREVIEW_TEXT = """%s
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 abcdefghijklmnopqrstuvwxyz
-1234567890.:,;(*!?')""" % COMPARE_TEXT
-else:
-    PREVIEW_TEXT = """%s
+1234567890.:,;(*!?')"""
 
-%s
-ABCDEFGHIJKLMNOPQRSTUVWXYZ
-abcdefghijklmnopqrstuvwxyz
-1234567890.:,;(*!?')""" % (LOCALIZED_TEXT, COMPARE_TEXT)
 
 
 # Standard alias families

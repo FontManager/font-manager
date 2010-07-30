@@ -36,13 +36,13 @@ import UserDict
 import shutil
 import subprocess
 
-from os.path import exists, join, splitext
+from os.path import exists, join
 
 import core
 import _fontutils
 
 from ui import fontconfig
-from constants import PACKAGE, PACKAGE_DATA_DIR
+from constants import LANG, PACKAGE, PACKAGE_DATA_DIR
 from ui.export import Export
 from ui.library import InstallFonts, RemoveFonts
 from ui.treeviews import Treeviews
@@ -537,12 +537,11 @@ def _on_help(unused_widget):
     Open help pages in browser.
     """
     # The trailing slash is required, otherwise yelp will not find images...
-    lang = splitext(os.getenv('LANG', 'en_US'))[0] + '/'
+    lang = LANG + '/'
     help_dir = join('@DATAROOTDIR@', PACKAGE, 'help')
     help_files = join(help_dir, lang)
     if not exists(help_files):
-        logging.info('No translation exists for %s, using default...' % \
-                                        splitext(os.environ['LANG'])[0])
+        logging.info('No translation exists for %s, using default...' % LANG)
         help_files = join(help_dir, 'C/')
     try:
         subprocess.Popen(['yelp', help_files])

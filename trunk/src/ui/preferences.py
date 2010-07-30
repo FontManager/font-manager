@@ -57,7 +57,7 @@ class PreferencesDialog():
         'DBTree', 'UserDirTree', 'SearchDB', 'RemoveFromDB', 'ResetDB',
         'PrefsClose', 'DefaultFolderBox', 'ArchTypeBox', 'PrefsFileChooser',
         'PrefsInvalidDir', 'AutoScanInfo', 'PrefsCollFocus', 'PrefsCollTotal',
-        'PrefsFamTotal', 'PrefsToolTips', 'PrefsBrowseMode'
+        'PrefsFamTotal', 'PrefsToolTips', 'PrefsBrowseMode', 'PrefsLocSample'
         )
     def __init__(self, objects):
         self.objects = objects
@@ -114,7 +114,8 @@ class PreferencesDialog():
                     'PrefsCollTotal'    :   self._on_coll_totals,
                     'PrefsFamTotal'     :   self._on_fam_totals,
                     'PrefsToolTips'     :   self._on_show_tooltips,
-                    'PrefsBrowseMode'   :   self._on_browse_mode
+                    'PrefsBrowseMode'   :   self._on_browse_mode,
+                    'PrefsLocSample'    :   self._on_use_localized_sample
                     }
         widgets = self.widgets
         widgets['PreferencesDialog'].connect('delete-event', self._on_close)
@@ -466,6 +467,13 @@ class PreferencesDialog():
         self.preferences.pangram = widget.get_active()
         return
 
+    def _on_use_localized_sample(self, widget):
+        """
+        Use localized sample string instead of default pangram.
+        """
+        self.preferences.localized = widget.get_active()
+        return
+
     def _populate_trees(self, dir_tree, db_tree):
         """
         Populate the models.
@@ -551,7 +559,8 @@ class PreferencesDialog():
                     'PrefsCollTotal'    :   'collectiontotals',
                     'PrefsFamTotal'     :   'familytotals',
                     'PrefsToolTips'     :   'tooltips',
-                    'PrefsBrowseMode'   :   'browsemode'
+                    'PrefsBrowseMode'   :   'browsemode',
+                    'PrefsLocSample'    :   'localized'
                     }
         preferences = self.preferences
         for widget, val in widgets.iteritems():
