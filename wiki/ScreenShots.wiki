@@ -1,4 +1,3 @@
-#summary Font Manager screen shots
 <br /> <br />
 = Main Window =
 <br />
