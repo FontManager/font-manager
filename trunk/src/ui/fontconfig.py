@@ -39,6 +39,7 @@ import UserDict
 
 from os.path import exists, join
 
+from core.fonts import PangoFamily
 from constants import CHECKBUTTONS, COMMON_FONTS, DEFAULTS, DEFAULT_STYLES, \
                         FC_WIDGETMAP, USER_FONT_CONFIG_DIR, CACHE_DIR, \
                         SCALES, SCALE_LABELS, SENSITIVITY, SCALE_SENSITIVITY
@@ -411,7 +412,7 @@ class SettingsBook(gtk.Notebook):
         self.families = FAMILIES
         if isinstance(family, str):
             self.family = self.objects['FontManager'][family].pango_family
-        elif isinstance(family, pango.FontFamily):
+        elif isinstance(family, pango.FontFamily) or isinstance(family, PangoFamily):
             self.family = family
         else:
             raise TypeError('Expected name or pango family, got %s' % family)

@@ -45,6 +45,7 @@ static PyObject * FcEnableHomeConfig(PyObject *self, PyObject *args);
 static PyObject * FcGetFontDirs(PyObject *self, PyObject *args);
 static PyObject * FcFileList(PyObject *self, PyObject *args);
 static PyObject * FcParseConfigFile(PyObject *self, PyObject *args);
+static PyObject * FcPrivateConfig(PyObject *self, PyObject *args);
 static PyObject * FT_Get_Face_Count(PyObject *self, PyObject *args);
 static PyObject * FT_Get_File_Info(PyObject *self, PyObject *args);
 static PyObject * pango_get_sample_string(PyObject *self, PyObject *args);
@@ -277,6 +278,48 @@ FcParseConfigFile(PyObject *self, PyObject *args)
 }
 
 static PyObject *
+FcPrivateConfig(PyObject *self, PyObject *args)
+{
+    gchar       *filepath;
+    FcConfig    *private = FcConfigCreate();
+
+    if (!PyArg_ParseTuple(args, "s", &filepath))
+    {
+        return NULL;
+    }
+
+    if (!FcInit())
+    {
+        PyErr_SetString(PyExc_EnvironmentError,
+                        "Failed to initialize FontConfig library!");
+        return NULL;
+    }
+
+    if (!FcConfigSetCurrent(private))
+    {
+        PyErr_SetString(PyExc_EnvironmentError,
+                        "Failed to set private FontConfig configuration!");
+        return NULL;
+    }
+
+    if (!FcConfigParseAndLoad(private, (const FcChar8 *) filepath, (FcBool) FALSE))
+    {
+        Py_INCREF(Py_False);
+        return Py_False;
+    }
+
+    if (!FcConfigBuildFonts(private))
+    {
+        PyErr_SetString(PyExc_EnvironmentError,
+                        "Failed to build fontset for private configuration!");
+        return NULL;
+    }
+
+    Py_INCREF(Py_True);
+    return Py_True;
+}
+
+static PyObject *
 FT_Get_Face_Count(PyObject *self, PyObject *args)
 {
     FT_Face         face;
@@ -463,8 +506,10 @@ static PyObject *
 pango_get_sample_string(PyObject *self, PyObject *args)
 {
     gchar   *lang = NULL;
+
     if (!PyArg_ParseTuple(args, "s", &lang))
         return NULL;
+
     return PyString_FromString(pango_language_get_sample_string(pango_language_from_string(lang)));
 }
 
@@ -699,6 +744,10 @@ static PyMethodDef Methods[] = {
 
     {"FcParseConfigFile", FcParseConfigFile, METH_VARARGS,
     "Parse and load the given configuration file. \n\n\
+     Returns True on success."},
+
+    {"FcPrivateConfig", FcPrivateConfig, METH_VARARGS,
+    "Parse and load the given configuration file into a blank FcConfig. \n\n\
      Returns True on success."},
 
     {"FT_Get_Face_Count", FT_Get_Face_Count, METH_VARARGS,

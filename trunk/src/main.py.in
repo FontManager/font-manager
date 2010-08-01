@@ -287,14 +287,13 @@ class ObjectContainer(UserDict.UserDict):
         'Throbber', 'Refresh', 'SizeAdjustment', 'FontOptionsBox',
         'MadFontsWarning', 'ColorSelector', 'CloseColorSelector',
         'ForegroundColor', 'BackgroundColor', 'AboutDialog', 'AppOptionsBox',
-        'FontInstallDialog', 'DuplicatesWarning', 'DuplicatesView',
-        'FileMissingDialog', 'FileMissingView', 'FontRemovalDialog',
-        'RemoveFontsTree', 'RemoveSearchEntry', 'RemoveFontsButton',
-        'ExportDialog', 'ExportAsArchive', 'ExportAsPDF', 'ExportTo',
-        'ExportFileChooserBox', 'ExportFileChooser', 'ExportPermissionsWarning',
-        'ExportArchiveOptionsBox', 'IncludeSampler', 'SearchBox', 'Advanced',
-        'BrowseFonts', 'MainNotebook', 'BackButton', 'BrowseTree',
-        'BrowseScroll', 'CollectionButtonsFrame', 'SidePaneScroll',
+        'FontInstallDialog', 'FileMissingDialog', 'FileMissingView',
+        'FontRemovalDialog', 'RemoveFontsTree', 'RemoveSearchEntry',
+        'RemoveFontsButton', 'ExportDialog', 'ExportAsArchive', 'ExportAsPDF',
+        'ExportTo', 'ExportFileChooserBox', 'ExportFileChooser',
+        'ExportPermissionsWarning', 'ExportArchiveOptionsBox', 'IncludeSampler',
+        'SearchBox', 'Advanced', 'BrowseFonts', 'MainNotebook', 'BackButton',
+        'BrowseTree', 'BrowseScroll', 'CollectionButtonsFrame', 'SidePaneScroll',
         'BrowseSizeSlider'
         )
     def __init__(self):

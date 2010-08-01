@@ -158,8 +158,7 @@
   </object>
   <object class="GtkDialog" id="AddActionDialog">
     <property name="width_request">400</property>
-    <property name="height_request">425</property>
-    <property name="border_width">5</property>
+    <property name="height_request">460</property>
     <property name="title" translatable="yes">New action</property>
     <property name="window_position">center-on-parent</property>
     <property name="destroy_with_parent">True</property>
@@ -340,6 +339,7 @@
                     <property name="draw_indicator">True</property>
                   </object>
                   <packing>
+                    <property name="expand">False</property>
                     <property name="position">2</property>
                   </packing>
                 </child>
@@ -351,20 +351,35 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label6">
+              <object class="GtkHSeparator" id="hseparator1">
                 <property name="visible">True</property>
-                <property name="xpad">10</property>
-                <property name="ypad">10</property>
-                <property name="label" translatable="yes">&lt;small&gt;&lt;tt&gt;By default the filepath for the selected font will be appended to the end of the argument list. To control where the filepath is inserted use FILEPATH as a placeholder.
-
-If FAMILY or STYLE are found in the argument list they will also be replaced.
-
-Quotes used in arguments should be escaped with a backslash.&lt;/tt&gt;&lt;/small&gt;</property>
-                <property name="use_markup">True</property>
-                <property name="wrap">True</property>
               </object>
               <packing>
+                <property name="expand">False</property>
                 <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow" id="scrolledwindow2">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hscrollbar_policy">automatic</property>
+                <property name="vscrollbar_policy">automatic</property>
+                <child>
+                  <object class="GtkTextView" id="InfoView">
+                    <property name="visible">True</property>
+                    <property name="pixels_above_lines">1</property>
+                    <property name="editable">False</property>
+                    <property name="wrap_mode">word</property>
+                    <property name="left_margin">7</property>
+                    <property name="right_margin">7</property>
+                    <property name="cursor_visible">False</property>
+                    <property name="buffer">InfoBuffer</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
@@ -478,5 +493,13 @@ Quotes used in arguments should be escaped with a backslash.&lt;/tt&gt;&lt;/smal
       <action-widget response="0">button1</action-widget>
       <action-widget response="1">button2</action-widget>
     </action-widgets>
+  </object>
+  <object class="GtkTextBuffer" id="InfoBuffer">
+    <property name="text" translatable="yes">
+By default the filepath for the selected font will be appended to the end of the argument list. To control where the filepath is inserted use FILEPATH as a placeholder.
+
+If FAMILY or STYLE are found in the argument list they will also be replaced.
+
+Quotes used in arguments should be escaped with a backslash.</property>
   </object>
 </interface>

@@ -1503,7 +1503,6 @@ If you choose to continue, it is suggested that you close all open applications 
                                 <property name="can_focus">True</property>
                                 <property name="max_length">2</property>
                                 <property name="invisible_char">&#x25CF;</property>
-                                <property name="adjustment">FontSizeAdjustment</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -1747,9 +1746,6 @@ If you choose to continue, it is suggested that you close all open applications 
                                   </packing>
                                 </child>
                                 <child>
-                                  <placeholder/>
-                                </child>
-                                <child>
                                   <object class="GtkCheckButton" id="PrefsLocSample">
                                     <property name="label" translatable="yes">Use localized sample string</property>
                                     <property name="visible">True</property>
@@ -1775,6 +1771,9 @@ If you choose to continue, it is suggested that you close all open applications 
                                     <property name="top_attach">3</property>
                                     <property name="bottom_attach">4</property>
                                   </packing>
+                                </child>
+                                <child>
+                                  <placeholder/>
                                 </child>
                               </object>
                               <packing>
@@ -2025,12 +2024,6 @@ If you choose to continue, it is suggested that you close all open applications 
     <property name="stock">gtk-info</property>
     <property name="icon-size">1</property>
   </object>
-  <object class="GtkAdjustment" id="FontSizeAdjustment">
-    <property name="lower">6</property>
-    <property name="upper">26</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
-  </object>
   <object class="GtkAboutDialog" id="AboutDialog">
     <property name="border_width">5</property>
     <property name="title" translatable="yes">About Font Manager</property>
@@ -2254,95 +2247,6 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
       </object>
     </child>
   </object>
-  <object class="GtkMessageDialog" id="DuplicatesWarning">
-    <property name="border_width">5</property>
-    <property name="title" translatable="yes">Already available</property>
-    <property name="window_position">center-on-parent</property>
-    <property name="destroy_with_parent">True</property>
-    <property name="icon_name">preferences-desktop-font</property>
-    <property name="type_hint">dialog</property>
-    <property name="skip_taskbar_hint">True</property>
-    <property name="transient_for">MainWindow</property>
-    <property name="text" translatable="yes">
-
-&lt;b&gt;The following files appear to be duplicates :&lt;/b&gt;</property>
-    <property name="use_markup">True</property>
-    <child internal-child="vbox">
-      <object class="GtkVBox" id="dialog-vbox13">
-        <property name="visible">True</property>
-        <property name="spacing">2</property>
-        <child>
-          <object class="GtkScrolledWindow" id="scrolledwindow2">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="border_width">10</property>
-            <property name="hscrollbar_policy">automatic</property>
-            <property name="vscrollbar_policy">automatic</property>
-            <property name="shadow_type">etched-in</property>
-            <child>
-              <object class="GtkTextView" id="DuplicatesView">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="pixels_above_lines">2</property>
-                <property name="editable">False</property>
-                <property name="wrap_mode">word</property>
-                <property name="left_margin">5</property>
-                <property name="right_margin">5</property>
-                <property name="cursor_visible">False</property>
-                <property name="buffer">DuplicatesBuffer</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="pack_type">end</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child internal-child="action_area">
-          <object class="GtkHButtonBox" id="dialog-action_area13">
-            <property name="visible">True</property>
-            <property name="layout_style">end</property>
-            <child>
-              <object class="GtkButton" id="SkipDuplicates">
-                <property name="label" translatable="yes">Skip Duplicates</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkButton" id="InstallDuplicates">
-                <property name="label" translatable="yes">Include Duplicates</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="pack_type">end</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
-      </object>
-    </child>
-    <action-widgets>
-      <action-widget response="1">SkipDuplicates</action-widget>
-      <action-widget response="0">InstallDuplicates</action-widget>
-    </action-widgets>
-  </object>
-  <object class="GtkTextBuffer" id="DuplicatesBuffer"/>
   <object class="GtkMessageDialog" id="FileMissingDialog">
     <property name="border_width">5</property>
     <property name="title" translatable="yes">File not found</property>
@@ -2612,8 +2516,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
                 <child>
                   <object class="GtkFileChooserButton" id="ExportFileChooser">
                     <property name="visible">True</property>
-                    <property name="action">select-folder</property>
                     <property name="do_overwrite_confirmation">True</property>
+                    <property name="action">select-folder</property>
                     <property name="title" translatable="yes">Select A Folder</property>
                   </object>
                   <packing>
@@ -2697,8 +2601,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
-    <property name="create_folders">False</property>
     <property name="select_multiple">True</property>
+    <property name="create_folders">False</property>
     <signal name="file_activated" handler="gtk_true"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">
