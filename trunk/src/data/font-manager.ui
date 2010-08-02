@@ -1503,6 +1503,7 @@ If you choose to continue, it is suggested that you close all open applications 
                                 <property name="can_focus">True</property>
                                 <property name="max_length">2</property>
                                 <property name="invisible_char">&#x25CF;</property>
+                                <property name="adjustment">SampleSizeAdjustment</property>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -2986,5 +2987,11 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="visible">True</property>
     <property name="stock">gtk-clear</property>
     <property name="icon-size">1</property>
+  </object>
+  <object class="GtkAdjustment" id="SampleSizeAdjustment">
+    <property name="lower">6</property>
+    <property name="upper">26</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
   </object>
 </interface>

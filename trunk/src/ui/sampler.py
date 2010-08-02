@@ -60,10 +60,10 @@ TRUETYPE_EXTS = ('.ttf', '.ttc', '.otf', '.TTF', '.TTC', '.OTF')
 # A place for rejected files
 SKIP_LS = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING)
 # Typical font preview
-LINE1 = _("The quick brown fox jumps over the lazy dog.")
-LINE2 = _("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-LINE3 = _("abcdefghijklmnopqrstuvwxyz")
-LINE4 = _("1234567890.:,;(*!?')")
+LINE1 = "The quick brown fox jumps over the lazy dog."
+LINE2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+LINE3 = "abcdefghijklmnopqrstuvwxyz"
+LINE4 = "1234567890.:,;(*!?')"
 LINE = { 1 : LINE1, 2 : LINE2, 3 : LINE3, 4 : LINE4 }
 
 

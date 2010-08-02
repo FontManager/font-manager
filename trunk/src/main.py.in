@@ -51,6 +51,12 @@ from utils.common import open_folder, delete_cache, delete_database, \
             reset_fontconfig_cache, fc_config_load_user_fonts, fc_config_reload
 from utils.xmlutils import save_collections
 
+try:
+    import appindicator
+    HAVE_APP_INDICATOR = True
+except ImportError:
+    HAVE_APP_INDICATOR = False
+
 
 class Main(object):
     """
@@ -69,20 +75,11 @@ class Main(object):
         self.menus = self.objects['PopupMenus']
         # Showtime
         self.objects.load_widgets()
-        if self.preferences.hpane > 0:
-            pane = self.objects['HorizontalPane']
-            pane.set_position(self.preferences.hpane)
-        if self.preferences.vpane > 0:
-            pane = self.objects['VerticalPane']
-            pane.set_position(self.preferences.vpane)
-        if self.preferences.windowsize != '0:0':
-            width, height = self.preferences.windowsize.split(':')
-            self.main_window.resize(int(width), int(height))
-        if self.preferences.maximized:
-            self.main_window.maximize()
-        self.main_window.show()
+        self._restore_window_state()
         if self.preferences.minimizeonstart:
             self.main_window.iconify()
+        else:
+            self.main_window.show()
         # This is called just to force an update
         while gtk.events_pending():
             gtk.main_iteration()
@@ -109,6 +106,7 @@ class Main(object):
         self.tray_icon = None
         if self.preferences.minimizeonclose:
             self._use_tray_icon(None)
+        if self.preferences.minimizeonclose and self.preferences.minimizeonstart:
             self.main_window.emit('delete-event', None)
             while gtk.events_pending():
                 gtk.main_iteration()
@@ -192,7 +190,7 @@ class Main(object):
         self.remover.run()
         return
 
-    def _on_tray_icon_clicked(self, unused_widget):
+    def _on_tray_icon_clicked(self, widget):
         """
         Show or hide application when tray icon is clicked
         """
@@ -204,9 +202,30 @@ class Main(object):
             self.main_window.hide()
         return
 
+    def _restore_window_state(self):
+        if self.preferences.hpane > 0:
+            pane = self.objects['HorizontalPane']
+            pane.set_position(self.preferences.hpane)
+        if self.preferences.vpane > 0:
+            pane = self.objects['VerticalPane']
+            pane.set_position(self.preferences.vpane)
+        if self.preferences.windowsize != '0:0':
+            width, height = self.preferences.windowsize.split(':')
+            self.main_window.resize(int(width), int(height))
+        if self.preferences.maximized:
+            self.main_window.maximize()
+        return
+
     def reload(self, unused_widget, del_cache = False):
+        if self.main_window.get_property('visible'):
+            dialog = self.objects['ReloadDialog']
+            response = dialog.run()
+            dialog.hide()
+            if not response:
+                return
+        else:
+            self.objects.notify_send(_('Font Manager will restart in a moment'))
         self._save_settings()
-        self.objects.notify_send(_('Font Manager will restart in a moment'))
         logging.info("Restarting...")
         if del_cache:
             delete_cache()
@@ -238,13 +257,7 @@ class Main(object):
         return
 
     def _use_tray_icon(self, unused_cls_instance, minimize = True):
-        if not self.tray_icon:
-            self.tray_icon = \
-            gtk.status_icon_new_from_icon_name('preferences-desktop-font')
-            self.tray_icon.set_tooltip(_('Font Manager'))
-            self.tray_icon.connect('activate', self._on_tray_icon_clicked)
-            self.tray_icon.connect('popup-menu', self.menus.show_tray_menu)
-        self.tray_icon.set_visible(minimize)
+        self._get_supported_tray_indicator(minimize)
         self.main_window.disconnect(self.quit_id)
         if minimize:
             self.quit_id = \
@@ -257,6 +270,36 @@ class Main(object):
                 self.main_window.set_skip_taskbar_hint(False)
                 while gtk.events_pending():
                     gtk.main_iteration()
+        return
+
+    def _get_supported_tray_indicator(self, visibility):
+        if self.tray_icon is not None:
+            if not HAVE_APP_INDICATOR:
+                self.tray_icon.set_visible(visibility)
+            elif visibility:
+                self.tray_icon.set_status(appindicator.STATUS_ACTIVE)
+            else:
+                self.tray_icon.set_status(appindicator.STATUS_PASSIVE)
+            return
+        elif HAVE_APP_INDICATOR:
+            self.tray_icon = appindicator.Indicator("font-manager", "fonts",
+                                    appindicator.CATEGORY_APPLICATION_STATUS)
+            self.tray_icon.set_status(appindicator.STATUS_ACTIVE)
+            menu = self.menus['TrayMenu']
+            show = gtk.MenuItem(_('Font Manager'))
+            show.connect('activate', self._on_tray_icon_clicked)
+            menu.insert(show, 0)
+            sep = gtk.SeparatorMenuItem()
+            menu.insert(sep, 1)
+            menu.show_all()
+            self.tray_icon.set_menu(menu)
+        else:
+            self.tray_icon = \
+            gtk.status_icon_new_from_icon_name('preferences-desktop-font')
+            self.tray_icon.set_tooltip(_('Font Manager'))
+            self.tray_icon.connect('activate', self._on_tray_icon_clicked)
+            self.tray_icon.connect('popup-menu', self.menus.show_tray_menu)
+            self.tray_icon.set_visible(visibility)
         return
 
     def quit(self, unused_widget = None, possible_event = None):
@@ -294,7 +337,7 @@ class ObjectContainer(UserDict.UserDict):
         'ExportPermissionsWarning', 'ExportArchiveOptionsBox', 'IncludeSampler',
         'SearchBox', 'Advanced', 'BrowseFonts', 'MainNotebook', 'BackButton',
         'BrowseTree', 'BrowseScroll', 'CollectionButtonsFrame', 'SidePaneScroll',
-        'BrowseSizeSlider'
+        'BrowseSizeSlider', 'ReloadDialog'
         )
     def __init__(self):
         UserDict.UserDict.__init__(self)
