@@ -155,6 +155,15 @@ def _convert(char):
         char = char.replace('_', '')
         return char.lower()
 
+def filename_is_illegal(astring):
+    if len(astring) > 255:
+        return True
+    chars = set([c for c in astring])
+    if os.sep in chars or os.linesep in chars:
+        return True
+    else:
+        return False
+
 def filename_is_questionable(astring):
     if len(astring) > 255:
         return True

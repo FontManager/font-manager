@@ -26,6 +26,7 @@ import os
 import gtk
 import gio
 import gobject
+import logging
 import shutil
 
 from os.path import basename, dirname, exists, join, split, splitext
@@ -34,7 +35,7 @@ from constants import COMPARE_TEXT, FONT_EXTS, LOCALIZED_TEXT, \
                         PACKAGE_DATA_DIR, STANDARD_TEXT
 from core.database import Table
 from utils.common import correct_slider_behavior, filename_is_questionable, \
-                            natural_sort, natural_size
+                            filename_is_illegal, natural_sort, natural_size
 
 ( FAMILY, FILENAME, SUGGESTED_FILENAME, FILETYPE, FILESIZE, FILEPATH,
   PS_NAME, PANGO_NAME, PANGO_DESC, FONT_DESC, ACTIVE, INCONSISTENT,
@@ -117,6 +118,7 @@ class FontJanitor(object):
         self._populate_treeview()
         self.treeview.expand_all()
         size_adjustment.set_value(self.font_size)
+        self.treeview.connect('query-tooltip', self._on_tooltip_query)
         if self._issues:
             self.builder.get_object('IssuesButton').show()
             self.builder.get_object('IssuesButton').connect('toggled',
@@ -203,6 +205,33 @@ class FontJanitor(object):
         if len(path.split(':')) > 1:
             self.store[path][SUGGESTED_FILENAME] = new_name
         return
+
+    def _on_tooltip_query(self, widget, x, y, unused_kmode, tooltip):
+        try:
+            model = widget.get_model()
+            x, y = widget.convert_widget_to_bin_window_coords(x, y)
+            path = widget.get_path_at_pos(x, y)[0]
+            color = model[path][BG_COLOR]
+            filepath = model[path][FILEPATH]
+            if filepath.lower().endswith('.ttc'):
+                markup = '\nTrueType Collections may be listed multiple times\n'
+            elif model[path][PS_NAME].startswith('None'):
+                markup = '\nFile failed to provide a valid PostScript name\n'
+            elif color == '#ff6f6f':
+                markup = '\nSuggested filenames may contain illegal characters\n'
+            elif color == '#ffff99':
+                markup = '\nSuggested filenames may contain non-ASCII characters\n'
+            elif color == '#a3ffa3':
+                markup = '\nSuggested filenames may be too generic\n'
+            else:
+                markup = None
+            if markup:
+                tooltip.set_markup(markup)
+                return True
+            else:
+                return False
+        except (TypeError, ValueError, KeyError):
+            return False
 
     def _suggested(self, column, cell, model, treeiter):
         cell.set_property('text', model.get_value(treeiter, SUGGESTED_FILENAME))
@@ -353,8 +382,12 @@ class FontJanitor(object):
                     pango_desc = font_desc.to_string().strip('.').strip(',')
                     pango_name = font_desc.to_filename().strip('.').strip(',')
                     file_ext = splitext(styles[style]['filepath'])[1].lower()
-                    if ps_name == 'None':
+                    if filename_is_illegal(ps_name) or filename_is_illegal(pango_desc):
+                        bg_color = '#ff6f6f'
+                    elif ps_name == 'None':
                         self.broken[styles[style]['filepath']] = MISSING_PSNAME
+                        bg_color = '#ff6f6f'
+                    elif file_ext == '.ttc':
                         bg_color = '#ff6f6f'
                     elif filename_is_questionable(pango_desc):
                         bg_color = '#ffff99'
@@ -477,11 +510,14 @@ class FontJanitor(object):
                     model[path][FILENAME] = model[path][SUGGESTED_FILENAME]
                     model[path][FILEPATH] = join(folder,
                                                 model[path][SUGGESTED_FILENAME])
+                else:
+                    failed.append(model[path][FILEPATH])
             except Exception:
                 failed.append(model[path][FILEPATH])
         self._dirty = True
         if len(failed) > 0:
-            print failed
+            for font in failed:
+                logging.error('Failed to rename : %s' % font)
         return
 
     def on_quit(self, unused_widget, unused_event):
