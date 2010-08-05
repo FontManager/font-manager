@@ -2050,7 +2050,7 @@ If you choose to continue, it is suggested that you close all open applications 
     <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
     <property name="program_name">Font Manager</property>
-    <property name="version">0.5.5</property>
+    <property name="version">0.5.6</property>
     <property name="copyright" translatable="yes">Copyright &#xA9; 2009, 2010 Jerry Casiano</property>
     <property name="comments" translatable="yes">Font management for the GNOME Desktop</property>
     <property name="website">http://font-manager.googlecode.com</property>

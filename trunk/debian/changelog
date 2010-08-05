@@ -1,3 +1,27 @@
+font-manager (0.5.6) lucid; urgency=low
+
+  * Update (0.5.6)
+
+        Address an issue where our window is still displayed at startup even
+        though both minimize on startup and minimize to tray are enabled
+
+        Address and issue where failure to load a font file causes startup to
+        abort with a useless error message.
+
+        Automatically try to move any customizations found in ~/.fonts.conf to
+        ~/.config/font-manager/local.conf instead of simply overwriting them.
+        You should still edit local.conf directly and not rely on this.
+
+        Browse mode now displays disabled fonts and uses the same size setting
+        as the rest of the application, it also includes a size slider.
+
+        Added a dialog which allows mass renaming and deletion of files in
+        imported folders. This has to be enabled in the preferences dialog.
+        This feature has seen very little testing so... USE AT YOUR OWN RISK.
+
+
+ -- Jerry Casiano <JerryCasiano@gmail.com>  Thu, 05 Aug 2010 17:53:30 -0400
+
 font-manager (0.5.5-5) lucid; urgency=low
 
   * Update (0.5.5)

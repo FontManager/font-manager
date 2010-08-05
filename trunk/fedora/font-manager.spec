@@ -1,6 +1,6 @@
 Name:           font-manager
-Version:        0.5.5
-Release:        5%{?dist}
+Version:        0.5.6
+Release:        1%{?dist}
 Summary:        A font management application for the GNOME desktop environment
 Group:          Applications/Publishing
 License:        GPLv3+
@@ -50,7 +50,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/applications/*.desktop
 
 %changelog
-* Fri Jul 29 2010 Jerry Casiano <JerryCasiano@gmail.com> - 0.5.5-5
+* Thu Aug 05 2010 Jerry Casiano <JerryCasiano@gmail.com> - 0.5.6
+- Add pango-devel as a builddep
 - Update to latest
 
 * Wed Jun  9 2010 Jerry Casiano <JerryCasiano@gmail.com> - 0.5.4-5

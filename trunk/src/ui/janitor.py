@@ -215,7 +215,7 @@ class FontJanitor(object):
             filepath = model[path][FILEPATH]
             if filepath.lower().endswith('.ttc'):
                 markup = '\nTrueType Collections may be listed multiple times\n'
-            elif model[path][PS_NAME].startswith('None'):
+            elif model[path][PS_NAME].startswith('None.'):
                 markup = '\nFile failed to provide a valid PostScript name\n'
             elif color == '#ff6f6f':
                 markup = '\nSuggested filenames may contain illegal characters\n'
