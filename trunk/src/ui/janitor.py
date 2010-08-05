@@ -358,6 +358,8 @@ class FontJanitor(object):
                         bg_color = '#ff6f6f'
                     elif filename_is_questionable(pango_desc):
                         bg_color = '#ffff99'
+                    elif ps_name.startswith('New'):
+                        bg_color = '#a3ffa3'
                     else:
                         bg_color = None
                     self.store.append(parent, [SAMPLE_STRING, fontfile,
