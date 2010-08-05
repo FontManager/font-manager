@@ -576,7 +576,7 @@ class Preferences(gobject.GObject):
                                                                 'pangram'],
                     'Font Folder'       :   ['folder'],
                     'General'           :   ['autostart', 'minimizeonclose',
-                                                            'minimizeonstart'],
+                                                'minimizeonstart', 'janitor'],
                     'Interface'         :   ['collectiontotals', 'familytotals',
                                             'hpane', 'vpane', 'windowsize',
                                             'maximized', 'previewsize',
@@ -606,7 +606,8 @@ class Preferences(gobject.GObject):
                     'bgcolor'           :   '#FFF',
                     'fgcolor'           :   '#000',
                     'browsemode'        :   False,
-                    'localized'         :   True
+                    'localized'         :   True,
+                    'janitor'           :   False
                     }
     fontdirs = []
     def __init__(self):

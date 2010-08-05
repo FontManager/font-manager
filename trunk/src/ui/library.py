@@ -97,7 +97,7 @@ class InstallFonts(object):
         self.objects.set_sensitive(True)
         if missing and len(missing) > 0:
             self._show_missing_files(missing)
-        self.objects.reload()
+        self.objects.reload(True)
         return
 
     def run(self):

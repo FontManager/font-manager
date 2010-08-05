@@ -199,10 +199,6 @@ def load_directories():
         content = directory.getContent()
         if os.path.isdir(content):
             yield content
-        else:
-            logging.warn\
-            ('User specified directory %s not found on disk' % content)
-            logging.info('Skipping...')
     doc.freeDoc()
     return
 

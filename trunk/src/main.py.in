@@ -36,7 +36,7 @@ import UserDict
 import shutil
 import subprocess
 
-from os.path import exists, join
+from os.path import basename, exists, join
 
 import core
 import _fontutils
@@ -44,6 +44,7 @@ import _fontutils
 from ui import fontconfig
 from constants import LANG, PACKAGE, PACKAGE_DATA_DIR
 from ui.export import Export
+from ui.janitor import FontJanitor
 from ui.library import InstallFonts, RemoveFonts
 from ui.treeviews import Treeviews
 from ui.previews import Browse, Previews
@@ -217,6 +218,10 @@ class Main(object):
         return
 
     def reload(self, unused_widget, del_cache = False):
+        if del_cache:
+            delete_cache()
+            delete_database()
+            reset_fontconfig_cache()
         if self.main_window.get_property('visible'):
             dialog = self.objects['ReloadDialog']
             response = dialog.run()
@@ -227,10 +232,6 @@ class Main(object):
             self.objects.notify_send(_('Font Manager will restart in a moment'))
         self._save_settings()
         logging.info("Restarting...")
-        if del_cache:
-            delete_cache()
-            delete_database()
-            reset_fontconfig_cache()
         try:
             font_manager = join('@BINDIR@', 'font-manager')
             os.execvp(font_manager,
@@ -286,7 +287,8 @@ class Main(object):
                                     appindicator.CATEGORY_APPLICATION_STATUS)
             self.tray_icon.set_status(appindicator.STATUS_ACTIVE)
             menu = self.menus['TrayMenu']
-            show = gtk.MenuItem(_('Font Manager'))
+            show = gtk.ImageMenuItem('gtk-select-font')
+            show.get_child().set_text(_('Font Manager'))
             show.connect('activate', self._on_tray_icon_clicked)
             menu.insert(show, 0)
             sep = gtk.SeparatorMenuItem()
@@ -349,7 +351,7 @@ class ObjectContainer(UserDict.UserDict):
         self.data['MainWindow'] = self.builder.get_object('MainWindow')
         self.data['Preferences'] = core.get_preferences()
         self.data['AvailableApps'] = core.get_applist()
-        self.data['PopupMenus'] = PopupMenu()
+        self.data['PopupMenus'] = PopupMenu(self)
         self.data['Browse'] = None
         # Find and set up icon for use throughout app windows
         try:
@@ -452,8 +454,8 @@ class ObjectContainer(UserDict.UserDict):
             gtk.main_iteration()
         return
 
-    def reload(self, *args):
-        self.data['Main'].reload(None)
+    def reload(self, del_cache = False):
+        self.data['Main'].reload(None, del_cache)
         return
 
     def set_sensitive(self, state = True):
@@ -489,19 +491,22 @@ class PopupMenu(UserDict.UserDict):
         'ManageFolder', 'SettingsMenu', 'DesktopSettings', 'FontConfigSettings',
         'AliasEdit'
         )
-    def __init__(self, objects = None):
+    def __init__(self, objects):
         UserDict.UserDict.__init__(self)
         self.data = {}
-        if objects is None:
-            self.builder = gtk.Builder()
-        else:
-            self.builder = objects.builder
+        self.objects = objects
+        self.builder = objects.builder
         self.builder.add_from_file(join(PACKAGE_DATA_DIR, 'menus.ui'))
         for widget in self._widgets:
             self.data[widget] = self.builder.get_object(widget)
         self.tray_menu = self.data['TrayMenu']
         self.manage_menu = self.data['ManageMenu']
         self.settings_menu = self.data['SettingsMenu']
+        self.cleanup = None
+
+    def _run_cleanup(self, unused_widget, directory):
+        FontJanitor(self.objects, directory)
+        return
 
     def show_manage_menu(self, unused_widget, event):
         """
@@ -509,6 +514,26 @@ class PopupMenu(UserDict.UserDict):
         """
         if event.button != 1:
             return
+        if not self.cleanup:
+            self.cleanup = gtk.ImageMenuItem('gtk-clear')
+            self.cleanup.get_child().set_text(_('Folder Cleanup'))
+            self.manage_menu.insert(gtk.SeparatorMenuItem(), 2)
+            self.manage_menu.insert(self.cleanup, 3)
+        user_dirs = self.objects['Preferences'].list_user_font_dirs()
+        submenu = self.cleanup.get_submenu()
+        if submenu is not None:
+            self.cleanup.remove_submenu()
+            submenu.destroy()
+        submenu = gtk.Menu()
+        for directory in user_dirs:
+            item = gtk.MenuItem(basename(directory.rstrip(os.sep)))
+            item.connect('activate', self._run_cleanup, directory)
+            submenu.append(item)
+        self.cleanup.set_submenu(submenu)
+        self.cleanup.set_sensitive(True)
+        if len(user_dirs) == 0 or not self.objects['Preferences'].janitor:
+            self.cleanup.set_sensitive(False)
+        self.manage_menu.show_all()
         self.manage_menu.popup(None, None, None, event.button, event.time)
         return
 

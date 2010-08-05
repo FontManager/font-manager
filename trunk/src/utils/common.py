@@ -61,6 +61,14 @@ Icon=preferences-desktop-font
 Categories=Graphics;Viewer;GNOME;GTK;Publishing;
 """
 
+VALID_CHARS = frozenset(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
+                        'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
+                        'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g',
+                        'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+                        's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2',
+                        '3', '4', '5', '6', '7', '8', '9', '.', '_', '-', ' ',
+                        '(', ')'])
+
 
 class AvailableApps(list):
     """
@@ -146,6 +154,15 @@ def _convert(char):
         char = char.replace('-', '')
         char = char.replace('_', '')
         return char.lower()
+
+def filename_is_questionable(astring):
+    if len(astring) > 255:
+        return True
+    chars = set([c for c in astring])
+    if chars <= VALID_CHARS:
+        return False
+    else:
+        return True
 
 def correct_slider_behavior(widget, event, step = None):
     """

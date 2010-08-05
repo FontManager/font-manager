@@ -57,7 +57,8 @@ class PreferencesDialog():
         'DBTree', 'UserDirTree', 'SearchDB', 'RemoveFromDB', 'ResetDB',
         'PrefsClose', 'DefaultFolderBox', 'ArchTypeBox', 'PrefsFileChooser',
         'PrefsInvalidDir', 'AutoScanInfo', 'PrefsCollFocus', 'PrefsCollTotal',
-        'PrefsFamTotal', 'PrefsToolTips', 'PrefsBrowseMode', 'PrefsLocSample'
+        'PrefsFamTotal', 'PrefsToolTips', 'PrefsBrowseMode', 'PrefsLocSample',
+        'PrefsJanitor'
         )
     def __init__(self, objects):
         self.objects = objects
@@ -115,7 +116,8 @@ class PreferencesDialog():
                     'PrefsFamTotal'     :   self._on_fam_totals,
                     'PrefsToolTips'     :   self._on_show_tooltips,
                     'PrefsBrowseMode'   :   self._on_browse_mode,
-                    'PrefsLocSample'    :   self._on_use_localized_sample
+                    'PrefsLocSample'    :   self._on_use_localized_sample,
+                    'PrefsJanitor'      :   self._on_enable_janitor
                     }
         widgets = self.widgets
         widgets['PreferencesDialog'].connect('delete-event', self._on_close)
@@ -256,7 +258,7 @@ class PreferencesDialog():
         while gtk.events_pending():
             gtk.main_iteration()
         if self.update_required:
-            self.objects.reload()
+            self.objects.reload(True)
         return True
 
     def _on_coll_totals(self, widget):
@@ -273,6 +275,10 @@ class PreferencesDialog():
             self.objects['CollectionTree'].queue_draw()
         except TypeError:
             self.update_required = True
+        return
+
+    def _on_enable_janitor(self, widget):
+        self.preferences.janitor = widget.get_active()
         return
 
     def _on_fam_totals(self, widget):
@@ -560,7 +566,8 @@ class PreferencesDialog():
                     'PrefsFamTotal'     :   'familytotals',
                     'PrefsToolTips'     :   'tooltips',
                     'PrefsBrowseMode'   :   'browsemode',
-                    'PrefsLocSample'    :   'localized'
+                    'PrefsLocSample'    :   'localized',
+                    'PrefsJanitor'      :   'janitor'
                     }
         preferences = self.preferences
         for widget, val in widgets.iteritems():
