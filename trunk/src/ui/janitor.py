@@ -243,12 +243,14 @@ class FontJanitor(object):
             notebook.set_current_page(1)
             self.size_slider.hide()
             widget.set_tooltip_text(_('Hide possible issues'))
+            self.builder.get_object('ToolBarSpacer').show()
             for widget in _widgets:
                 self.builder.get_object(widget).hide()
         else:
             notebook.set_current_page(0)
             self.size_slider.show()
             widget.set_tooltip_text(_('View possible issues'))
+            self.builder.get_object('ToolBarSpacer').hide()
             for widget in _widgets:
                 self.builder.get_object(widget).show()
         return

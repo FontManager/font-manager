@@ -25,7 +25,7 @@
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
             <child>
@@ -76,7 +76,7 @@
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="position">3</property>
+                <property name="position">4</property>
               </packing>
             </child>
             <child>
@@ -93,7 +93,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="pack_type">end</property>
-                <property name="position">1</property>
+                <property name="position">2</property>
               </packing>
             </child>
             <child>
@@ -107,6 +107,17 @@
                 <property name="image">DeleteIcon</property>
                 <property name="relief">none</property>
                 <property name="focus_on_click">False</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="pack_type">end</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="ToolBarSpacer">
+                <property name="width_request">64</property>
+                <property name="height_request">64</property>
               </object>
               <packing>
                 <property name="expand">False</property>
