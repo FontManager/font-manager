@@ -541,14 +541,14 @@ class Browse(object):
         cellset = cell.set_property
         if len(model.get_path(treeiter)) < 2:
             # this is a top level row
-            cellset('text', model.get_value(treeiter, 0))
+            cellset('markup', model.get_value(treeiter, 0))
             cellset('font_desc', font_desc)
             cellset('size-points', self.size * 1.25)
             cellset('ypad', 2)
             cellset('strikethrough', model.get_value(treeiter, 2))
         else:
             # this is a preview row
-            cellset('text', model.get_value(treeiter, 0))
+            cellset('markup', model.get_value(treeiter, 0))
             cellset('font_desc', model.get_value(treeiter, 1))
             cellset('size-points', self.size)
             cellset('ypad', 2)
