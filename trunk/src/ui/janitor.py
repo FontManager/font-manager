@@ -42,12 +42,13 @@ from utils.common import correct_slider_behavior, filename_is_questionable, \
 
 ( MISSING_PSNAME, INVALID_PSNAME, UNUSABLE ) = range(3)
 
-COLUMNS = [ 'Family', 'Filename', 'Suggested Filename', 'Filetype', 'Filesize' ]
+COLUMNS = [ _('Family'), _('Filename'), _('Suggested Filename'),
+            _('Filetype'), _('Filesize') ]
 
 WARNING_MESSAGES = {
-                    0   :   'Missing PostScript Name',
-                    1   :   'Invalid PostScript Name',
-                    2   :   'File not listed by FontConfig'
+                    0   :   _('Missing PostScript Name'),
+                    1   :   _('Invalid PostScript Name'),
+                    2   :   _('File not listed by FontConfig')
                     }
 
 
@@ -86,7 +87,7 @@ class FontJanitor(object):
                                                     'font-janitor.ui'))
         self.window = self.builder.get_object('JanitorWindow')
         self.window.set_transient_for(objects['MainWindow'])
-        self.window.set_title('Font Janitor - %s' % self.folder.rstrip(os.sep))
+        self.window.set_title(_('Font Janitor - %s') % self.folder.rstrip(os.sep))
         self.window.set_size_request(700, 400)
         self.window.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
         self.window.set_destroy_with_parent(True)

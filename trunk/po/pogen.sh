@@ -16,10 +16,12 @@ src/core/__init__.py
 [type: gettext/glade]src/data/font-information.ui
 [type: gettext/glade]src/data/font-manager.ui
 [type: gettext/glade]src/data/font-sampler.ui
+[type: gettext/glade]src/data/font-janitor.ui
 [type: gettext/glade]src/data/menus.ui
 src/ui/actions.py
 src/ui/export.py
 src/ui/fontconfig.py
+src/ui/janitor.py
 src/ui/library.py
 src/ui/preferences.py
 src/ui/previews.py
