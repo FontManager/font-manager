@@ -8,7 +8,7 @@ cd po
 cat >> POTFILES.in << EOF
 [encoding: UTF-8]
 src/constants.py
-src/font-sampler.py
+src/font-sampler
 src/main.py
 src/core/fonts.py
 src/core/__init__.py

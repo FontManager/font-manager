@@ -210,6 +210,8 @@ class FontJanitor(object):
         return ( exists(filepath) and os.access(filepath, os.W_OK) )
 
     def _on_name_cell_edited(self, cell, path, new_name):
+        if new_name.strip() == '':
+            return
         if len(path.split(':')) > 1:
             self.store[path][SUGGESTED_FILENAME] = new_name
         return
@@ -243,7 +245,6 @@ class FontJanitor(object):
                 return False
         except (TypeError, ValueError, KeyError):
             return False
-
     # Enable warnings related to invalid names
     # pylint: enable-msg=C0103
 

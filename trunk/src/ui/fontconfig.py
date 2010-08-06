@@ -468,7 +468,6 @@ class SettingsBook(gtk.Notebook):
         Try to select the "right" page based on known styles.
         For example, select "Regular" instead "Bold Italic".
         """
-        old_page = self.get_current_page()
         self.set_current_page(0)
         have_known_style = False
         for i in range(self.get_n_pages()):
@@ -558,7 +557,7 @@ class SettingsPage(object):
         """
         Return a descriptive label to display instead of a numeric value.
         """
-        return SCALE_LABELS[label][float('0.' + str(val).split('.')[1][:1])]
+        return SCALE_LABELS[label][val]
 
     def _get_new_checkbutton(self, label):
         buttonbox = gtk.VBox()
