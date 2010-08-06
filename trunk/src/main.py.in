@@ -513,26 +513,31 @@ class PopupMenu(UserDict.UserDict):
         """
         if event.button != 1:
             return
-        if not self.cleanup:
-            self.cleanup = gtk.ImageMenuItem('gtk-clear')
-            self.cleanup.get_child().set_text(_('Folder Cleanup'))
-            self.manage_menu.insert(gtk.SeparatorMenuItem(), 2)
-            self.manage_menu.insert(self.cleanup, 3)
-        user_dirs = self.objects['Preferences'].list_user_font_dirs()
-        submenu = self.cleanup.get_submenu()
-        if submenu is not None:
-            self.cleanup.remove_submenu()
-            submenu.destroy()
-        submenu = gtk.Menu()
-        for directory in user_dirs:
-            item = gtk.MenuItem(basename(directory.rstrip(os.sep)))
-            item.connect('activate', self._run_cleanup, directory)
-            submenu.append(item)
-        self.cleanup.set_submenu(submenu)
-        self.cleanup.set_sensitive(True)
-        if len(user_dirs) == 0 or not self.objects['Preferences'].janitor:
-            self.cleanup.set_sensitive(False)
-        self.manage_menu.show_all()
+        if self.objects['Preferences'].janitor:
+            user_dirs = self.objects['Preferences'].list_user_font_dirs()
+            if not self.cleanup:
+                self.cleanup = gtk.ImageMenuItem('gtk-clear')
+                self.cleanup.get_child().set_text(_('Folder Cleanup'))
+                self.manage_menu.insert(gtk.SeparatorMenuItem(), 2)
+                self.manage_menu.insert(self.cleanup, 3)
+            submenu = self.cleanup.get_submenu()
+            if submenu is not None:
+                self.cleanup.remove_submenu()
+                submenu.destroy()
+            submenu = gtk.Menu()
+            for directory in user_dirs:
+                item = gtk.MenuItem(basename(directory.rstrip(os.sep)))
+                item.connect('activate', self._run_cleanup, directory)
+                submenu.append(item)
+            self.cleanup.set_submenu(submenu)
+            self.cleanup.set_sensitive(True)
+            if len(user_dirs) == 0:
+                self.cleanup.set_sensitive(False)
+            self.manage_menu.show_all()
+        else:
+            if self.cleanup is not None:
+                self.cleanup.hide()
+                self.manage_menu.get_children()[2].hide()
         self.manage_menu.popup(None, None, None, event.button, event.time)
         return
 
