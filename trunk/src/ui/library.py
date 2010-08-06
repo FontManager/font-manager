@@ -25,12 +25,11 @@ This module handles installation and removal of fonts
 # Disable warnings related to gettext
 # pylint: disable-msg=E0602
 
-import os
 import gtk
 import gobject
 import logging
 
-from os.path import exists, isdir
+from os.path import isdir
 
 from core import database
 from constants import HOME, USER_LIBRARY_DIR, FONT_GLOBS, ARCH_GLOBS

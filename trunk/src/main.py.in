@@ -33,7 +33,6 @@ import gtk
 import gobject
 import logging
 import UserDict
-import shutil
 import subprocess
 
 from os.path import basename, exists, join

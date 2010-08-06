@@ -22,6 +22,11 @@ This module provides a GUI which allows users to easily clean imported folders.
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
+# Disable warnings related to missing docstrings, for now...
+# pylint: disable-msg=C0111
+
 import os
 import gtk
 import gio
@@ -29,7 +34,7 @@ import gobject
 import logging
 import shutil
 
-from os.path import basename, dirname, exists, join, split, splitext
+from os.path import exists, join, split, splitext
 
 from constants import COMPARE_TEXT, FONT_EXTS, LOCALIZED_TEXT, \
                         PACKAGE_DATA_DIR, STANDARD_TEXT
@@ -52,6 +57,7 @@ WARNING_MESSAGES = {
                     2   :   _('File not listed by FontConfig')
                     }
 
+SAMPLE_STRING = ''
 
 def set_preview_text(use_localized_sample):
     global SAMPLE_STRING
@@ -133,7 +139,8 @@ class FontJanitor(object):
             self.dupelist = self.dupelist + paths
         return
 
-    def _set_cell_color(self, column, cell, model, treeiter):
+    @staticmethod
+    def _set_cell_color(column, cell, model, treeiter):
         cell.set_property('background', model.get_value(treeiter, BG_COLOR))
         return
 
@@ -190,15 +197,16 @@ class FontJanitor(object):
     def _get_unrecognized(self):
         unrecognized = []
         for root, dirs, files in os.walk(self.folder):
-            for file in files:
-                if not file.endswith(FONT_EXTS):
+            for filepath in files:
+                if not filepath.endswith(FONT_EXTS):
                     continue
-                path = join(root, file)
+                path = join(root, filepath)
                 if path not in self.recognized and path not in self.dupelist:
                     unrecognized.append(path)
         return unrecognized
 
-    def _have_write_permissions(self, filepath):
+    @staticmethod
+    def _have_write_permissions(filepath):
         return ( exists(filepath) and os.access(filepath, os.W_OK) )
 
     def _on_name_cell_edited(self, cell, path, new_name):
@@ -206,7 +214,10 @@ class FontJanitor(object):
             self.store[path][SUGGESTED_FILENAME] = new_name
         return
 
-    def _on_tooltip_query(self, widget, x, y, unused_kmode, tooltip):
+    # Disable warnings related to invalid names
+    # pylint: disable-msg=C0103
+    @staticmethod
+    def _on_tooltip_query(widget, x, y, unused_kmode, tooltip):
         try:
             model = widget.get_model()
             x, y = widget.convert_widget_to_bin_window_coords(x, y)
@@ -232,6 +243,9 @@ class FontJanitor(object):
                 return False
         except (TypeError, ValueError, KeyError):
             return False
+
+    # Enable warnings related to invalid names
+    # pylint: enable-msg=C0103
 
     def _suggested(self, column, cell, model, treeiter):
         cell.set_property('text', model.get_value(treeiter, SUGGESTED_FILENAME))
@@ -382,7 +396,8 @@ class FontJanitor(object):
                     pango_desc = font_desc.to_string().strip('.').strip(',')
                     pango_name = font_desc.to_filename().strip('.').strip(',')
                     file_ext = splitext(styles[style]['filepath'])[1].lower()
-                    if filename_is_illegal(ps_name) or filename_is_illegal(pango_desc):
+                    if filename_is_illegal(ps_name) or \
+                    filename_is_illegal(pango_desc):
                         bg_color = '#ff6f6f'
                     elif ps_name == 'None':
                         self.broken[styles[style]['filepath']] = MISSING_PSNAME
@@ -396,14 +411,14 @@ class FontJanitor(object):
                     else:
                         bg_color = None
                     self.store.append(parent, [SAMPLE_STRING, fontfile,
-                                        '%s%s' % (ps_name, file_ext),
-                                        styles[style]['filetype'],
-                                        natural_size(styles[style]['filesize']),
-                                        styles[style]['filepath'],
-                                        '%s%s' % (ps_name, file_ext),
-                                        '%s%s' % (pango_name, file_ext),
-                                        '%s%s' % (pango_desc, file_ext),
-                                        font_desc, False, False, bg_color, family])
+                                    '%s%s' % (ps_name, file_ext),
+                                    styles[style]['filetype'],
+                                    natural_size(styles[style]['filesize']),
+                                    styles[style]['filepath'],
+                                    '%s%s' % (ps_name, file_ext),
+                                    '%s%s' % (pango_name, file_ext),
+                                    '%s%s' % (pango_desc, file_ext),
+                                    font_desc, False, False, bg_color, family])
                     self.recognized.append(styles[style]['filepath'])
         self._show_dupes()
         self._show_issues()

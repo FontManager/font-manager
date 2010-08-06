@@ -41,9 +41,8 @@ from os.path import basename, exists, join, isdir, isfile
 
 import _fontutils
 
-from constants import AUTOSTART_DIR, USER_FONT_DIR, HOME, README, \
-USER_LIBRARY_DIR, CACHE_FILE, DATABASE_FILE, ARCH_EXTS, USER_FONT_CONFIG_DIR, \
-USER_FONT_CONFIG_RENDER
+from constants import AUTOSTART_DIR, USER_FONT_DIR, HOME, README, CACHE_FILE, \
+DATABASE_FILE, ARCH_EXTS, USER_FONT_CONFIG_DIR, USER_FONT_CONFIG_RENDER
 from xmlutils import load_directories
 
 AUTOSTART = \
