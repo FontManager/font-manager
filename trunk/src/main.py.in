@@ -609,7 +609,7 @@ def _on_help(unused_widget):
     """
     # The trailing slash is required, otherwise yelp will not find images...
     lang = LANG + '/'
-    help_dir = join('@DATAROOTDIR@', PACKAGE, 'help')
+    help_dir = join('@PACKAGEDIR@', 'help')
     help_files = join(help_dir, lang)
     if not exists(help_files):
         logging.info('No translation exists for %s, using default...' % LANG)

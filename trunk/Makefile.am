@@ -12,6 +12,7 @@ INST_LIB_DIR = $(DESTDIR)$(libdir)/$(PKGNAME)
 INST_DATA_ROOT = $(DESTDIR)$(datarootdir)
 INST_DATA_DIR = $(INST_DATA_ROOT)/$(PKGNAME)
 INST_APPS_DIR = $(INST_DATA_ROOT)/applications
+INST_LOC_DIR = $(INST_DATA_ROOT)/locale
 PNG_FILES = *.png
 UI_FILES = *.ui
 DE_FILES = *.desktop
@@ -66,37 +67,37 @@ $(SRC_DIR)/constants.py: $(SRC_DIR)/constants.py.in
 	@sed \
 		-e 's|@PACKAGE_NAME[@]|$(PKGNAME)|g' \
 		-e 's|@PACKAGE_VERSION[@]|$(VERSION)|g' \
-		-e 's|@DATAROOTDIR[@]|$(prefix)/share|g' \
-		-e 's|@LOCALEDIR[@]|$(prefix)/share/locale|g' \
+		-e 's|@PACKAGEDIR[@]|$(INST_DATA_DIR)|g' \
+		-e 's|@LOCALEDIR[@]|$(INST_LOC_DIR)|g' \
 		< $< \
 		> $@
 
 $(SRC_DIR)/$(PKGNAME): $(SRC_DIR)/$(PKGNAME).in
 	@sed \
 		-e 's|@PYTHON[@]|$(PYTHON)|g' \
-		-e 's|@PREFIX[@]|$(prefix)|g' \
-		-e 's|@LIBDIR[@]|$(prefix)/lib|g' \
+		-e 's|@PACKAGEDIR[@]|$(INST_DATA_DIR)|g' \
+		-e 's|@LIBDIR[@]|$(INST_LIB_DIR)|g' \
 		< $< \
 		> $@
 
 $(SRC_DIR)/$(SAMPLER): $(SRC_DIR)/$(SAMPLER).in
 	@sed \
 		-e 's|@PYTHON[@]|$(PYTHON)|g' \
-		-e 's|@PREFIX[@]|$(prefix)|g' \
-		-e 's|@LIBDIR[@]|$(prefix)/lib|g' \
+		-e 's|@PACKAGEDIR[@]|$(INST_DATA_DIR)|g' \
+		-e 's|@LIBDIR[@]|$(INST_LIB_DIR)|g' \
 		< $< \
 		> $@
 
 $(SRC_DIR)/main.py: $(SRC_DIR)/main.py.in
 	@sed \
-		-e 's|@BINDIR[@]|$(prefix)/bin|g' \
-		-e 's|@DATAROOTDIR[@]|$(prefix)/share|g' \
+		-e 's|@BINDIR[@]|$(INST_BIN_DIR)|g' \
+		-e 's|@PACKAGEDIR[@]|$(INST_DATA_DIR)|g' \
 		< $< \
 		> $@
 
 $(SRC_UI_DIR)/export.py: $(SRC_UI_DIR)/export.py.in
 	@sed \
-		-e 's|@BINDIR[@]|$(prefix)/bin|g' \
+		-e 's|@BINDIR[@]|$(INST_BIN_DIR)|g' \
 		< $< \
 		> $@
 

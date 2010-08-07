@@ -45,8 +45,8 @@ if exists(desktop_file):
     PACKAGE_DIR = dirname(abspath(__file__))
     LIB_DIR = dirname(abspath(__file__))
 else:
-    PACKAGE_DIR = join('@PREFIX@', 'share/font-manager')
-    LIB_DIR = join('@LIBDIR@', 'font-manager')
+    PACKAGE_DIR = '@PACKAGEDIR@'
+    LIB_DIR = '@LIBDIR@'
 
 for directory in PACKAGE_DIR, LIB_DIR:
     if not directory in sys.path:

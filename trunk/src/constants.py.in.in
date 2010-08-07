@@ -42,7 +42,7 @@ if os.path.exists(os.path.join(os.path.dirname(__file__),
     LOCALEDIR   = os.path.join(os.path.dirname(__file__), '../po')
 else:
     VERSION     = '@PACKAGE_VERSION@'
-    PACKAGE_DIR = '@DATAROOTDIR@/font-manager'
+    PACKAGE_DIR = '@PACKAGEDIR@'
     LOCALEDIR   = '@LOCALEDIR@'
 
 
