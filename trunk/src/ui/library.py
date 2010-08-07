@@ -183,11 +183,12 @@ class RemoveFonts(object):
                     self.remove_tree.get_selection().select_path(path_to_select)
         self.objects.update_family_total()
         self.objects['Treeviews'].update_views()
+        self.objects['Main'].dirty = True
         return
 
     def _on_quit(self, unused_widget, unused_event):
         """
-        Do cleanup actions after hiding the dialog.
+        Hide the dialog.
         """
         self.dialog.hide()
         while gtk.events_pending():

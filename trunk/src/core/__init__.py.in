@@ -313,7 +313,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         set_property
         """
         if prop.name == 'enabled':
-            self._do_set(value[0], True)
+            self._do_set(value, True)
         elif prop.name == 'disabled':
             self._do_set(value, False)
         else:

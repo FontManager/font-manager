@@ -484,15 +484,20 @@ class FontJanitor(object):
         model = self.store
         for row in selected:
             try:
-                font = gio.File(path = model[row][FILEPATH])
-                trashed = font.trash()
-                if not trashed:
+                font = gio.File(model[row][FILEPATH])
+                access = font.query_info('access::*')
+                can_trash = access.get_attribute_boolean('access::can-trash')
+                if can_trash:
+                    trashed = font.trash()
+                if not trashed or not can_trash:
                     os.unlink(model[row][FILEPATH])
                 self.manager.remove_families(model[row][REMOVE])
                 self.objects.update_family_total()
                 self.objects['Treeviews'].update_category_treeview()
-            except Exception:
+            except KeyError:
                 run_again = True
+            except OSError:
+                pass
             try:
                 treeiter = model.get_iter(row)
                 model.remove(treeiter)
