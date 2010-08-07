@@ -244,10 +244,12 @@ class CellRendererTotal(gtk.CellRendererText):
             state = self._get_editable_state(args)
             if state is not None:
                 return state
-        if (args[5] & gtk.CELL_RENDERER_SELECTED) != 0:
-            state = gtk.STATE_SELECTED
+        if args[5] == gtk.CELL_RENDERER_SELECTED:
+            return gtk.STATE_SELECTED
+        elif args[5] == gtk.CELL_RENDERER_SELECTED | gtk.CELL_RENDERER_PRELIT:
+            return gtk.STATE_SELECTED
         else:
-            state = gtk.STATE_NORMAL
+            return gtk.STATE_NORMAL
 
 gobject.type_register(CellRendererTotal)
 # Enable warnings related to invalid names
