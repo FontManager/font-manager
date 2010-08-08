@@ -816,6 +816,19 @@ def _migrate():
             shutil.move(old, new)
     shutil.rmtree(fm_dir, ignore_errors=True)
 
+def _relocate_user_config(content):
+    if content == OLD_FONT_CONFIG or content == OLD_OLD_FONT_CONFIG:
+        return
+    content = content.replace(USER_FONT_CONFIG_DATA, '')
+    if exists(USER_FONT_CONFIG_RENDER):
+        shutil.move(USER_FONT_CONFIG_RENDER, join(APP_CONFIG_DIR,
+                                                    'local.conf-previous'))
+        logging.info('Backing up existing local.conf')
+    with open(USER_FONT_CONFIG_RENDER, 'wb') as conf:
+        conf.write(content)
+    logging.info('Previous version saved as %s' % USER_FONT_CONFIG_RENDER)
+    return
+
 # Make sure we have everything we need to run properly
 _setup_logging()
 for folder in CACHE_DIR, CONFIG_DIR, APP_CONFIG_DIR, AUTOSTART_DIR, DATA_DIR, \
@@ -840,19 +853,14 @@ CONFIG_NEEDS_UPDATE = False
 if exists(USER_FONT_CONFIG):
     with open(USER_FONT_CONFIG, 'r') as conf:
         CONFIG_CONTENT = conf.read()
-    if CONFIG_CONTENT != VALID_USER_FONT_CONFIG:
+    if CONFIG_CONTENT.strip() != VALID_USER_FONT_CONFIG.strip():
         CONFIG_NEEDS_UPDATE = True
 else:
     CONFIG_NEEDS_UPDATE = True
 if CONFIG_NEEDS_UPDATE:
     logging.info('Updating %s' % USER_FONT_CONFIG)
-    logging.info('Previous version saved as %s' % USER_FONT_CONFIG_RENDER)
     if exists(USER_FONT_CONFIG):
-        if CONFIG_CONTENT == OLD_FONT_CONFIG:
-            CONFIG_CONTENT = EMPTY_FONT_CONFIG
-        CONTENT = CONFIG_CONTENT.replace(USER_FONT_CONFIG_DATA, '')
-        with open(USER_FONT_CONFIG_RENDER, 'wb') as conf:
-            conf.write(CONTENT)
+        _relocate_user_config(CONFIG_CONTENT)
     with open(USER_FONT_CONFIG, 'wb') as conf:
         conf.write(VALID_USER_FONT_CONFIG)
 else:
