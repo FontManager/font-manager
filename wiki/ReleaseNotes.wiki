@@ -1,59 +1,39 @@
 #summary These notes are in addition to the information and Known Issues listed in the help file, please make sure any problems you encounter are not listed there before reporting them.
 #labels Featured
 
-= Release Notes 0.5.5 =
+= Release Notes 0.5.6 =
 
 <p>
-Users who have customized their ~/.fonts.conf, should move it before running Font Manager.
-<br></br>
-After running Font Manager, you can add your customizations to *~/.config/font-manager/local.conf*,
-just create the file if it doesn't exist.
-<br></br>
-This will ensure that they do not get overwritten by the application.
+As requested by [http://code.google.com/p/font-manager/issues/detail?id=29 Issue #29],
+font-manager will now try to move any changes made  in ~/.fonts.conf to ~/.config/font-manager/local.conf rather than simply overwriting them.
+<br /> <br />
+If you are upgrading from a version older than 0.5.5, or even if you're not, it's possible that font-manager will get this wrong the first time and end up moving an old default configuration to ~/.config/font-manager/local.conf. If that happens you can just delete it. If you use a customized local.conf and it gets overwritten, you _should_ find the previous version was backed up as local.conf-previous.
+<br /> <br />
+Sorry for the inconvenience.
+<br /> <br />
+</p>
+<p>
+By default font-manager will now ask Pango for a localized sample string and use that instead of the default pangram.<br />
+If you dislike this behavior you can disable it in the Interface tab of the preferences dialog.
+</p>
+<p>
+As requested by [http://code.google.com/p/font-manager/issues/detail?id=34 Issue #34], font-manager now includes a utility to aide in performing clean up of imported folders.
+<br />
+"Font Janitor" allows for mass renaming and deletion of font files from imported folders. If you're interested in trying it out you'll need to enable it in the preferences dialog. <br />But please keep in mind that this utility has seen very little testing. USE AT YOUR OWN RISK!
 </p>
 
 <p>
-Apologies in advance, as you'll have to reset your preferences, a lot of new preferences were added and I didn't want to deal with backwards compatibility...
-<p>
-
-<p>
-The family search box now contains and "Advanced Search" option which allows filtering the selected collection by family name, type, manufacturer, and filepath.
-</p>
-
-<p>
-Font files can now be installed by dragging them onto the family column.
-<br></br>
-If possible, they will also be added to the currently selected collection.
-</p>
-
-<p>
-Users can now define "actions" to run on the currently selected font, this is accessed by right clicking the selected font. 
-<br></br>
-This option has not seen much testing, if you run into problems please file an issue.
-</p>
-
-<p>
-Since the "Sample sheet" feature had to be separated from the application to prevent it from "keeping" the memory used during PDF generation,
-<br></br>
-Font Manager now also ships with a small utility, font-sampler, which can be called to generate a sample sheet from any directory of fonts. 
-
-This utility only accepts !TrueType and Type 1 fonts, some !OpenType fonts may be compatible but most aren't.
+This release also adds support for [https://wiki.ubuntu.com/DesktopExperienceTeam/ApplicationIndicators "Application Indicators"].
 </p>
 
 === General ===
 
 <p>
-The application restarts itself anytime changes require it and may take a moment to start back up depending on the number of additional fonts.
+Font Manager will ask for confirmation anytime it needs to restart, unless it's minimized, in which case it will simply show a notification.
 </p>
 
 <p>
-I suggest you do not try to create a sample sheet from any collection or folder that exceeds 2500 fonts.
-<br></br>
-Doing so can not only take a long time but also lots of cpu and loads of memory.
-
-Please do not file issues regarding fonts that have naming issues, are broken or those 
-that restrict embedding in their license,
-<br></br>
+Please do not file issues regarding fonts that have naming issues, are broken or those that restrict embedding in their license,
 if you need to rename, fix or maybe you just don't care about licenses then a font editor is your friend.
 </p>
 
@@ -76,5 +56,7 @@ or whatever prefix you specified during the install.
 Not sure how friendly this app is to other locales, but if it works well in yours 
 and you are able to provide a translation for it that would be great.
 
-Thanks in advance.
+Please see https://translations.edge.launchpad.net/font-manager
+
+Thanks.
 </p>
