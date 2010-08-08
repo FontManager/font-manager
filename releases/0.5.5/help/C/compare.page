@@ -1,0 +1,35 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="compare">
+
+    <info>
+        <link type="guide" xref="index#explore"/>
+        <desc>Preview many fonts at once</desc>
+    </info>
+
+    <title>Font Comparison</title>
+
+        <p>
+        To enter compare mode click <gui style="button">Compare Fonts</gui>.
+        </p>
+
+        <p>
+        Compare mode works the same as Preview Mode, except that you
+        must add the fonts you wish to compare to the list by clicking
+        <media type="image" src="figures/add.png/" />
+        after selecting the family and style.
+        </p>
+
+        <p>
+        To remove a font from the comparison select it then click
+        <media type="image" src="figures/remove.png/" />,
+        or you can clear the entire list by clicking
+        <media type="image" src="figures/clear.png/" />.
+        </p>
+
+        <p>
+        You can change the colors used for the font and background by clicking
+        <media type="image" src="figures/color-select.png/" />.
+        </p>
+
+</page>

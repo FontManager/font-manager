@@ -1,0 +1,48 @@
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="about">
+
+    <info>
+        <link type="seealso" xref="index"/>
+        <credit type="author">
+            <name>Jerry Casiano</name>
+            <email>JerryCasiano@gmail.com</email>
+            <years>2009-2010</years>
+        </credit>
+        <desc>About <app>Font Manager</app></desc>
+    </info>
+
+    <title>About</title>
+
+    <p>
+    For more information about <app>Font Manager</app>, please visit the
+    <link href="http://code.google.com/p/font-manager/">
+    homepage
+    </link>
+    </p>
+
+    <p>
+    To report a bug or make a suggestion regarding the
+    <app>Font Manager</app> application
+    or this manual, please use the projects
+    <link href="http://code.google.com/p/font-manager/issues/list">
+    Issue Tracker
+    </link>
+    </p>
+
+    <p>
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 3 of the License, or
+    (at your option) any later version.
+    </p>
+    <p>
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the file COPYING included with the source code of this program,
+    or visit
+    <link href="http://www.gnu.org/licenses/gpl.html">
+    http://www.gnu.org/licenses/gpl.html
+    </link> for more details.
+    </p>
+
+</page>
