@@ -73,7 +73,7 @@ edit = 	sed \
 		> $@
 
 $(SRC_DIR)/constants.py $(SRC_DIR)/$(PACKAGE_NAME) $(SRC_DIR)/$(SAMPLER) \
-$(SRC_DIR)/main.py $(SRC_UI_DIR)/export.py:
+$(SRC_DIR)/main.py $(SRC_UI_DIR)/export.py $(SRC_CORE_DIR)/__init__.py:
 	rm -f $@ $@.tmp
 	$(edit) $${SRC_DIR}$@.in >$@.tmp
 	mv $@.tmp $@
@@ -82,10 +82,12 @@ $(SRC_DIR)/constants.py: $(SRC_DIR)/constants.py.in
 $(SRC_DIR)/$(PACKAGE_NAME): $(SRC_DIR)/$(PACKAGE_NAME).in
 $(SRC_DIR)/$(SAMPLER): $(SRC_DIR)/$(SAMPLER).in
 $(SRC_DIR)/main.py: $(SRC_DIR)/main.py.in
+$(SRC_CORE_DIR)/__init__.py: $(SRC_CORE_DIR)/__init__.py.in
 $(SRC_UI_DIR)/export.py: $(SRC_UI_DIR)/export.py.in
 
 all: fontutils $(SRC_DIR)/constants.py $(SRC_DIR)/$(PACKAGE_NAME) \
-$(SRC_DIR)/$(SAMPLER) $(SRC_DIR)/main.py $(SRC_UI_DIR)/export.py
+$(SRC_DIR)/$(SAMPLER) $(SRC_DIR)/main.py $(SRC_UI_DIR)/export.py \
+$(SRC_CORE_DIR)/__init__.py
 	$(Py_Compile)
 	$(Py_Optimize)
 

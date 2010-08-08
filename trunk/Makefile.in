@@ -33,9 +33,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 subdir = .
 DIST_COMMON = README $(am__configure_deps) $(srcdir)/Makefile.am \
-	$(srcdir)/Makefile.in $(top_srcdir)/configure \
-	$(top_srcdir)/src/constants.py.in.in \
-	$(top_srcdir)/src/core/__init__.py.in AUTHORS COPYING \
+	$(srcdir)/Makefile.in $(top_srcdir)/configure AUTHORS COPYING \
 	ChangeLog INSTALL NEWS TODO install-sh missing
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -44,7 +42,7 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
-CONFIG_CLEAN_FILES = src/constants.py.in src/core/__init__.py
+CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 SOURCES =
 DIST_SOURCES =
@@ -246,10 +244,6 @@ $(top_srcdir)/configure:  $(am__configure_deps)
 $(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 	$(am__cd) $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 $(am__aclocal_m4_deps):
-src/constants.py.in: $(top_builddir)/config.status $(top_srcdir)/src/constants.py.in.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
-src/core/__init__.py: $(top_builddir)/config.status $(top_srcdir)/src/core/__init__.py.in
-	cd $(top_builddir) && $(SHELL) ./config.status $@
 tags: TAGS
 TAGS:
 
@@ -518,7 +512,7 @@ fontutils:
 	$(STRIP_LIB)
 
 $(SRC_DIR)/constants.py $(SRC_DIR)/$(PACKAGE_NAME) $(SRC_DIR)/$(SAMPLER) \
-$(SRC_DIR)/main.py $(SRC_UI_DIR)/export.py:
+$(SRC_DIR)/main.py $(SRC_UI_DIR)/export.py $(SRC_CORE_DIR)/__init__.py:
 	rm -f $@ $@.tmp
 	$(edit) $${SRC_DIR}$@.in >$@.tmp
 	mv $@.tmp $@
@@ -527,10 +521,12 @@ $(SRC_DIR)/constants.py: $(SRC_DIR)/constants.py.in
 $(SRC_DIR)/$(PACKAGE_NAME): $(SRC_DIR)/$(PACKAGE_NAME).in
 $(SRC_DIR)/$(SAMPLER): $(SRC_DIR)/$(SAMPLER).in
 $(SRC_DIR)/main.py: $(SRC_DIR)/main.py.in
+$(SRC_CORE_DIR)/__init__.py: $(SRC_CORE_DIR)/__init__.py.in
 $(SRC_UI_DIR)/export.py: $(SRC_UI_DIR)/export.py.in
 
 all: fontutils $(SRC_DIR)/constants.py $(SRC_DIR)/$(PACKAGE_NAME) \
-$(SRC_DIR)/$(SAMPLER) $(SRC_DIR)/main.py $(SRC_UI_DIR)/export.py
+$(SRC_DIR)/$(SAMPLER) $(SRC_DIR)/main.py $(SRC_UI_DIR)/export.py \
+$(SRC_CORE_DIR)/__init__.py
 	$(Py_Compile)
 	$(Py_Optimize)
 

@@ -866,4 +866,4 @@ if CONFIG_NEEDS_UPDATE:
 else:
     logging.info('Verified %s' % USER_FONT_CONFIG)
 
-__version__ = '@VERSION@'
+__version__ = '@PACKAGE_VERSION@'

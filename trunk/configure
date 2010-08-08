@@ -3902,7 +3902,7 @@ fi
 
 # Files that should be created by configure
 
-ac_config_files="$ac_config_files Makefile src/constants.py.in src/core/__init__.py"
+ac_config_files="$ac_config_files Makefile"
 
 
 # Required
@@ -4646,8 +4646,6 @@ do
   case $ac_config_target in
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
-    "src/constants.py.in") CONFIG_FILES="$CONFIG_FILES src/constants.py.in" ;;
-    "src/core/__init__.py") CONFIG_FILES="$CONFIG_FILES src/core/__init__.py" ;;
 
   *) as_fn_error "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac

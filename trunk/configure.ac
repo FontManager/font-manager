@@ -61,8 +61,6 @@ AM_CONDITIONAL([WINLIB], [test x$winlib = xtrue])
 
 AC_CONFIG_FILES([
 	Makefile
-	src/constants.py.in
-	src/core/__init__.py
 ])
 
 # Required
