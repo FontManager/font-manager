@@ -1,6 +1,4 @@
 ## Process this file with automake to produce Makefile.in
-PKGNAME = @PACKAGE_NAME@
-VERSION = @PACKAGE_VERSION@
 
 SRC_DIR = src
 SRC_CORE_DIR = $(SRC_DIR)/core
@@ -8,9 +6,9 @@ SRC_DATA_DIR = $(SRC_DIR)/data
 SRC_UI_DIR = $(SRC_DIR)/ui
 SRC_UTILS_DIR = $(SRC_DIR)/utils
 INST_BIN_DIR = $(DESTDIR)$(bindir)
-INST_LIB_DIR = $(DESTDIR)$(libdir)/$(PKGNAME)
+INST_LIB_DIR = $(DESTDIR)$(libdir)/$(PACKAGE_NAME)
 INST_DATA_ROOT = $(DESTDIR)$(datarootdir)
-INST_DATA_DIR = $(INST_DATA_ROOT)/$(PKGNAME)
+INST_DATA_DIR = $(INST_DATA_ROOT)/$(PACKAGE_NAME)
 INST_APPS_DIR = $(INST_DATA_ROOT)/applications
 INST_LOC_DIR = $(INST_DATA_ROOT)/locale
 PNG_FILES = *.png
@@ -63,45 +61,30 @@ fontutils:
 	$(BUILD_LIB)
 	$(STRIP_LIB)
 
-$(SRC_DIR)/constants.py: $(SRC_DIR)/constants.py.in
-	@sed \
-		-e 's|@PACKAGE_NAME[@]|$(PKGNAME)|g' \
-		-e 's|@PACKAGE_VERSION[@]|$(VERSION)|g' \
+edit = 	sed \
+		-e 's|@PACKAGE_NAME[@]|$(PACKAGE_NAME)|g' \
+		-e 's|@PACKAGE_VERSION[@]|$(PACKAGE_VERSION)|g' \
+		-e 's|@PYTHON[@]|$(PYTHON)|g' \
 		-e 's|@PACKAGEDIR[@]|$(INST_DATA_DIR)|g' \
 		-e 's|@LOCALEDIR[@]|$(INST_LOC_DIR)|g' \
-		< $< \
-		> $@
-
-$(SRC_DIR)/$(PKGNAME): $(SRC_DIR)/$(PKGNAME).in
-	@sed \
-		-e 's|@PYTHON[@]|$(PYTHON)|g' \
-		-e 's|@PACKAGEDIR[@]|$(INST_DATA_DIR)|g' \
 		-e 's|@LIBDIR[@]|$(INST_LIB_DIR)|g' \
+		-e 's|@BINDIR[@]|$(INST_BIN_DIR)|g' \
 		< $< \
 		> $@
 
+$(SRC_DIR)/constants.py $(SRC_DIR)/$(PACKAGE_NAME) $(SRC_DIR)/$(SAMPLER) \
+$(SRC_DIR)/main.py $(SRC_UI_DIR)/export.py:
+	rm -f $@ $@.tmp
+	$(edit) $${SRC_DIR}$@.in >$@.tmp
+	mv $@.tmp $@
+
+$(SRC_DIR)/constants.py: $(SRC_DIR)/constants.py.in
+$(SRC_DIR)/$(PACKAGE_NAME): $(SRC_DIR)/$(PACKAGE_NAME).in
 $(SRC_DIR)/$(SAMPLER): $(SRC_DIR)/$(SAMPLER).in
-	@sed \
-		-e 's|@PYTHON[@]|$(PYTHON)|g' \
-		-e 's|@PACKAGEDIR[@]|$(INST_DATA_DIR)|g' \
-		-e 's|@LIBDIR[@]|$(INST_LIB_DIR)|g' \
-		< $< \
-		> $@
-
 $(SRC_DIR)/main.py: $(SRC_DIR)/main.py.in
-	@sed \
-		-e 's|@BINDIR[@]|$(INST_BIN_DIR)|g' \
-		-e 's|@PACKAGEDIR[@]|$(INST_DATA_DIR)|g' \
-		< $< \
-		> $@
-
 $(SRC_UI_DIR)/export.py: $(SRC_UI_DIR)/export.py.in
-	@sed \
-		-e 's|@BINDIR[@]|$(INST_BIN_DIR)|g' \
-		< $< \
-		> $@
 
-all: fontutils $(SRC_DIR)/constants.py $(SRC_DIR)/$(PKGNAME) \
+all: fontutils $(SRC_DIR)/constants.py $(SRC_DIR)/$(PACKAGE_NAME) \
 $(SRC_DIR)/$(SAMPLER) $(SRC_DIR)/main.py $(SRC_UI_DIR)/export.py
 	$(Py_Compile)
 	$(Py_Optimize)
@@ -119,7 +102,7 @@ make-install-dirs:
 install: make-install-dirs
 	@find . -type f -name 'font-manager*.pot' -exec rm -f '{}' \;
 	$(INSTALL_LIB)
-	$(INSTALL_BIN)   $(SRC_DIR)/$(PKGNAME)         $(INST_BIN_DIR)/
+	$(INSTALL_BIN)   $(SRC_DIR)/$(PACKAGE_NAME)    $(INST_BIN_DIR)/
 	$(INSTALL_BIN)   $(SRC_DIR)/$(SAMPLER)         $(INST_BIN_DIR)/
 	$(INSTALL_FILE)  $(SRC_DIR)/$(DE_FILES)        $(INST_APPS_DIR)/
 	$(INSTALL_FILE)  $(SRC_DIR)/$(PyFiles)         $(INST_DATA_DIR)/
@@ -133,9 +116,9 @@ install: make-install-dirs
 	@cp -R help $(INST_DATA_DIR)/
 
 uninstall:
-	$(REMOVE) $(INST_BIN_DIR)/$(PKGNAME)
+	$(REMOVE) $(INST_BIN_DIR)/$(PACKAGE_NAME)
 	$(REMOVE) $(INST_BIN_DIR)/$(SAMPLER)
-	$(REMOVE) $(INST_APPS_DIR)/$(PKGNAME).desktop
+	$(REMOVE) $(INST_APPS_DIR)/$(PACKAGE_NAME).desktop
 	$(REMOVE) $(INST_APPS_DIR)/$(SAMPLER).desktop
 	$(RECURSIVE_REMOVE) $(INST_LIB_DIR)
 	$(RECURSIVE_REMOVE) $(INST_DATA_DIR)
@@ -145,7 +128,7 @@ clean:
 	@find . -type f -name '*.py[co]' -exec rm -fv '{}' \;
 
 distclean: clean
-	$(REMOVE) $(SRC_DIR)/$(PKGNAME) $(SRC_DIR)/$(SAMPLER) \
+	$(REMOVE) $(SRC_DIR)/$(PACKAGE_NAME) $(SRC_DIR)/$(SAMPLER) \
 		$(SRC_DIR)/constants.py $(SRC_DIR)/constants.py.in $(SRC_DIR)/main.py \
 		$(SRC_CORE_DIR)/__init__.py $(SRC_UI_DIR)/export.py \
 		config.log config.status Makefile
@@ -157,3 +140,4 @@ $(SRC_DIR)/*.py $(SRC_DIR)/*.c $(SRC_DIR)/*.in $(SRC_DIR)/$(DE_FILES) po
 
 .PHONY: default all make-install-dirs install uninstall clean distclean \
 		dist-hook fontutils
+
