@@ -1,6 +1,6 @@
 #labels Featured
 <br />
-= To test SVN =
+= To test SVN without installing =
 
 First ensure that you have subversion installed, then do
 
