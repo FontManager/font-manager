@@ -56,7 +56,7 @@ or whatever prefix you specified during the install.
 Not sure how friendly this app is to other locales, but if it works well in yours 
 and you are able to provide a translation for it that would be great.
 
-Please see https://translations.edge.launchpad.net/font-manager
+Please see http://translations.edge.launchpad.net/font-manager
 
 Thanks.
 </p>
