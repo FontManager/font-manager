@@ -45,7 +45,6 @@ else:
     PACKAGE_DIR = '@PACKAGEDIR@'
     LOCALEDIR   = '@LOCALEDIR@'
 
-
 LANG                        =   splitext(os.getenv('LANG', 'en_US'))[0]
 PACKAGE_DATA_DIR            =   join(PACKAGE_DIR, 'data')
 CACHE_DIR                   =   join(glib.get_user_cache_dir(), PACKAGE)
@@ -84,8 +83,6 @@ PREVIEW_TEXT = """%s
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 abcdefghijklmnopqrstuvwxyz
 1234567890.:,;(*!?')"""
-
-
 
 # Standard alias families
 ALIAS_FAMILIES = 'Monospace', 'Sans', 'Serif'

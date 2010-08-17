@@ -549,6 +549,5 @@ class FontJanitor(object):
             except Exception:
                 pass
         if self._dirty:
-            self.objects.reload(True)
+            self.objects.reload()
         return
-

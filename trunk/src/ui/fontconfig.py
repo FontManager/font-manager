@@ -374,7 +374,7 @@ class ConfigEdit(gtk.Window):
             discard_fontconfig_settings(self.cache[name])
             self.save_settings(None)
         os.unlink(join(CACHE_DIR, CACHED_SETTINGS))
-        os.unlink(join(USER_FONT_CONFIG_DIR, 
+        os.unlink(join(USER_FONT_CONFIG_DIR,
                         '25-%s.conf' % self.selected_family.get_name()))
         return
 
@@ -557,7 +557,8 @@ class SettingsPage(object):
         """
         Return a descriptive label to display instead of a numeric value.
         """
-        return SCALE_LABELS[label][val]
+        # Kind of ugly but prevents KeyError
+        return SCALE_LABELS[label][float('0.' + str(val).split('.')[1][:1])]
 
     def _get_new_checkbutton(self, label):
         buttonbox = gtk.VBox()

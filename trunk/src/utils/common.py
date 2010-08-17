@@ -355,13 +355,13 @@ def _launch_file_browser(file_browser, folder):
     else:
         display_warning(_("Please install a supported file browser"),
     _("""    Supported file browsers include :
-    
+
     - Nautilus
     - Thunar
     - Dolphin
     - Konqueror
     - PCManFM
-    
+
     If a supported file browser is installed,
     please file a bug against Font Manager"""))
         return

@@ -697,7 +697,7 @@ class Treeviews(object):
         for family in families:
             try:
                 obj = self.manager[family]
-                family_model.append([obj.get_name(), obj.get_label(), 
+                family_model.append([obj.get_name(), obj.get_label(),
                                                             obj.get_count()])
             except KeyError:
                 logging.error('Could not find %s for user collection %s' %

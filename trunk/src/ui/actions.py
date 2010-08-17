@@ -295,7 +295,7 @@ class UserActions(object):
         if args.find('FILEPATH') > 0:
             args = args.replace('FILEPATH', filepath)
         else:
-            args = '%s %s' % (args, filepath)
+            args = '%s "%s"' % (args, filepath)
         command = shlex.split(args)
         command.insert(0, exe)
         try:
@@ -309,7 +309,7 @@ class UserActions(object):
                         gtk.main_iteration()
                     continue
             if action['restart']:
-                self.objects.reload(True)
+                self.objects.reload()
             return
         except (OSError, ValueError), error:
             command = '\nCommand was :\n\n' + ' '.join(command)
@@ -341,4 +341,3 @@ class UserActions(object):
             self.widgets['RemoveAction'].set_sensitive(False)
             self.widgets['EditAction'].set_sensitive(False)
         return
-

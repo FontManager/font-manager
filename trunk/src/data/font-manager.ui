@@ -1439,16 +1439,9 @@ If you choose to continue, it is suggested that you close all open applications 
                             <child>
                               <object class="GtkTable" id="table3">
                                 <property name="visible">True</property>
+                                <property name="n_rows">2</property>
                                 <property name="n_columns">2</property>
-                                <child>
-                                  <object class="GtkCheckButton" id="PrefsJanitor">
-                                    <property name="label" translatable="yes">Enable Folder Cleanup</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="draw_indicator">True</property>
-                                  </object>
-                                </child>
+                                <property name="row_spacing">5</property>
                                 <child>
                                   <object class="GtkLabel" id="label22">
                                     <property name="visible">True</property>
@@ -1458,6 +1451,33 @@ If you choose to continue, it is suggested that you close all open applications 
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="PrefsBrowseMode">
+                                    <property name="label" translatable="yes">Enable Browse Mode</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                </child>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <object class="GtkCheckButton" id="PrefsJanitor">
+                                    <property name="label" translatable="yes">Enable Folder Cleanup</property>
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">True</property>
+                                    <property name="receives_default">False</property>
+                                    <property name="draw_indicator">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="top_attach">1</property>
+                                    <property name="bottom_attach">2</property>
                                   </packing>
                                 </child>
                               </object>
@@ -1714,7 +1734,7 @@ If you choose to continue, it is suggested that you close all open applications 
                             <child>
                               <object class="GtkTable" id="table2">
                                 <property name="visible">True</property>
-                                <property name="n_rows">4</property>
+                                <property name="n_rows">3</property>
                                 <property name="n_columns">2</property>
                                 <property name="row_spacing">5</property>
                                 <child>
@@ -1751,19 +1771,6 @@ If you choose to continue, it is suggested that you close all open applications 
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkCheckButton" id="PrefsBrowseMode">
-                                    <property name="label" translatable="yes">Enable Browse Mode</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="draw_indicator">True</property>
-                                  </object>
-                                  <packing>
-                                    <property name="top_attach">2</property>
-                                    <property name="bottom_attach">3</property>
-                                  </packing>
-                                </child>
-                                <child>
                                   <object class="GtkLabel" id="label20">
                                     <property name="visible">True</property>
                                     <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;(experimental)&lt;/i&gt;&lt;/small&gt;</property>
@@ -1782,12 +1789,11 @@ If you choose to continue, it is suggested that you close all open applications 
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="receives_default">False</property>
-                                    <property name="tooltip_text" translatable="yes">If available a localized sample will be used instead of the default pangram</property>
                                     <property name="draw_indicator">True</property>
                                   </object>
                                   <packing>
-                                    <property name="top_attach">3</property>
-                                    <property name="bottom_attach">4</property>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
                                   </packing>
                                 </child>
                                 <child>
@@ -1799,12 +1805,9 @@ If you choose to continue, it is suggested that you close all open applications 
                                   <packing>
                                     <property name="left_attach">1</property>
                                     <property name="right_attach">2</property>
-                                    <property name="top_attach">3</property>
-                                    <property name="bottom_attach">4</property>
+                                    <property name="top_attach">2</property>
+                                    <property name="bottom_attach">3</property>
                                   </packing>
-                                </child>
-                                <child>
-                                  <placeholder/>
                                 </child>
                               </object>
                               <packing>
@@ -2619,8 +2622,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
-    <property name="create_folders">False</property>
     <property name="select_multiple">True</property>
+    <property name="create_folders">False</property>
     <signal name="file_activated" handler="gtk_true"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">

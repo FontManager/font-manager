@@ -35,59 +35,16 @@
 #include FT_TYPE1_TABLES_H
 #include FT_XFREE86_H
 
-static PyObject * FcClose(PyObject *self, PyObject *args);
-static PyObject * FcOpen(PyObject *self, PyObject *args);
-static PyObject * FcReload(PyObject *self, PyObject *args);
 static PyObject * FcAddAppFontDir(PyObject *self, PyObject *args);
-static PyObject * FcAddAppFontFile(PyObject *self, PyObject *args);
 static PyObject * FcClearAppFonts(PyObject *self, PyObject *args);
 static PyObject * FcEnableHomeConfig(PyObject *self, PyObject *args);
-static PyObject * FcGetFontDirs(PyObject *self, PyObject *args);
 static PyObject * FcFileList(PyObject *self, PyObject *args);
 static PyObject * FcParseConfigFile(PyObject *self, PyObject *args);
-static PyObject * FcPrivateConfig(PyObject *self, PyObject *args);
 static PyObject * FT_Get_Face_Count(PyObject *self, PyObject *args);
 static PyObject * FT_Get_File_Info(PyObject *self, PyObject *args);
 static PyObject * pango_get_sample_string(PyObject *self, PyObject *args);
 static PyObject * _get_sfnt_info(FT_Face face);
 static PyObject * _get_ps_info(FT_Face face, PS_FontInfoRec  ps_info);
-
-static PyObject *
-FcOpen(PyObject *self, PyObject *args)
-{
-    if (!FcInit())
-    {
-        PyErr_SetString(PyExc_EnvironmentError,
-                        "Failed to initialize FontConfig library!");
-        return NULL;
-    }
-
-    Py_INCREF(Py_None);
-    return Py_None;
-}
-
-/* Calling FcFini() can crash newer versions of FontConfig! */
-static PyObject *
-FcClose(PyObject *self, PyObject *args)
-{
-    FcFini();
-
-    Py_INCREF(Py_None);
-    return Py_None;
-}
-
-static PyObject *
-FcReload(PyObject *self, PyObject *args)
-{
-    if (!FcInitReinitialize())
-    {
-        Py_INCREF(Py_False);
-        return Py_False;
-    }
-
-    Py_INCREF(Py_True);
-    return Py_True;
-}
 
 /* Add an application specific font directory */
 static PyObject *
@@ -121,38 +78,6 @@ FcAddAppFontDir(PyObject *self, PyObject *args)
     return Py_None;
 }
 
-/* Add an application specific font */
-static PyObject *
-FcAddAppFontFile(PyObject *self, PyObject *args)
-{
-    gchar   *filepath = NULL,
-            *error = NULL;
-
-    if (!PyArg_ParseTuple(args, "s", &filepath))
-        return NULL;
-
-    if (!g_file_test(filepath, G_FILE_TEST_EXISTS))
-    {
-        g_free(error);
-        error = g_strdup_printf("No such file : '%s'", filepath);
-        PyErr_SetString(PyExc_IOError, error);
-        g_free(error);
-        return NULL;
-    }
-
-    if (!FcConfigAppFontAddFile(FcConfigGetCurrent(), (const FcChar8 *) filepath))
-    {
-        g_free(error);
-        error = g_strdup_printf("Failed to add file : '%s'", filepath);
-        PyErr_SetString(PyExc_EnvironmentError, error);
-        g_free(error);
-        return NULL;
-    }
-
-    Py_INCREF(Py_None);
-    return Py_None;
-}
-
 /* Clear any application specific fonts/directories */
 static PyObject *
 FcClearAppFonts(PyObject *self, PyObject *args)
@@ -163,7 +88,7 @@ FcClearAppFonts(PyObject *self, PyObject *args)
     return Py_None;
 }
 
-/* This function enables the users files as configuration sources */
+/* This function enables/disables the users files as configuration sources */
 static PyObject *
 FcEnableHomeConfig(PyObject *self, PyObject *args)
 {
@@ -180,21 +105,6 @@ FcEnableHomeConfig(PyObject *self, PyObject *args)
 
     Py_INCREF(Py_None);
     return Py_None;
-}
-
-static PyObject *
-FcGetFontDirs(PyObject *self, PyObject *args)
-{
-    FcChar8       *directory;
-    FcStrList   *fdlist;
-    PyObject    *dirlist = PyList_New(0);
-
-    fdlist = FcConfigGetFontDirs(NULL);
-    while ( (directory = FcStrListNext(fdlist)) )
-        PyList_Append(dirlist, PyString_FromString((const char *) directory));
-    FcStrListDone(fdlist);
-
-    return dirlist;
 }
 
 /* This function is just a really simplified version of fc-list. */
@@ -272,48 +182,6 @@ FcParseConfigFile(PyObject *self, PyObject *args)
         return Py_False;
     }
 
-
-    Py_INCREF(Py_True);
-    return Py_True;
-}
-
-static PyObject *
-FcPrivateConfig(PyObject *self, PyObject *args)
-{
-    gchar       *filepath;
-    FcConfig    *private = FcConfigCreate();
-
-    if (!PyArg_ParseTuple(args, "s", &filepath))
-    {
-        return NULL;
-    }
-
-    if (!FcInit())
-    {
-        PyErr_SetString(PyExc_EnvironmentError,
-                        "Failed to initialize FontConfig library!");
-        return NULL;
-    }
-
-    if (!FcConfigSetCurrent(private))
-    {
-        PyErr_SetString(PyExc_EnvironmentError,
-                        "Failed to set private FontConfig configuration!");
-        return NULL;
-    }
-
-    if (!FcConfigParseAndLoad(private, (const FcChar8 *) filepath, (FcBool) FALSE))
-    {
-        Py_INCREF(Py_False);
-        return Py_False;
-    }
-
-    if (!FcConfigBuildFonts(private))
-    {
-        PyErr_SetString(PyExc_EnvironmentError,
-                        "Failed to build fontset for private configuration!");
-        return NULL;
-    }
 
     Py_INCREF(Py_True);
     return Py_True;
@@ -701,27 +569,9 @@ _get_ps_info(FT_Face face, PS_FontInfoRec  ps_info)
 
 static PyMethodDef Methods[] = {
 
-    {"FcOpen", FcOpen, METH_NOARGS,
-    "Initialize FontConfig Library.\n\n\
-    This function takes no arguments and always returns None."},
-
-    {"FcClose", FcClose, METH_NOARGS,
-    "Finalize FontConfig Library.\n\n\
-    This function takes no arguments and always returns None.\n\n\
-    Note : This call can cause a crash in newer versions of FontConfig."},
-
-    {"FcReload", FcReload, METH_NOARGS,
-    "Re-Initialize FontConfig Library.\n\n\
-    This function takes no arguments and returns True if successful."},
-
     {"FcAddAppFontDir", FcAddAppFontDir, METH_VARARGS,
     "Add an application specific font directory\n\n\
     Takes one argument, the path to the directory to be added\n\n\
-    Should call FcClearAppFonts when done."},
-
-    {"FcAddAppFontFile", FcAddAppFontFile, METH_VARARGS,
-    "Add an application specific font\n\n\
-    Takes one argument, the filepath for the font to be added\n\n\
     Should call FcClearAppFonts when done."},
 
     {"FcClearAppFonts", FcClearAppFonts, METH_NOARGS,
@@ -732,10 +582,6 @@ static PyMethodDef Methods[] = {
     "True/False to Enable/Disable user specific files\n\n\
     Useful when the only thing we're interested in is \"system-wide\" files."},
 
-    {"FcGetFontDirs", FcGetFontDirs, METH_NOARGS,
-    "Return a list of configured font directories.\n\n\
-    This function takes no arguments."},
-
     {"FcFileList", FcFileList, METH_VARARGS,
     "Query FontConfig for all installed font files.\n\n\
      Returns a list of dictionaries -- {filepath:vendor}\n\n\
@@ -744,10 +590,6 @@ static PyMethodDef Methods[] = {
 
     {"FcParseConfigFile", FcParseConfigFile, METH_VARARGS,
     "Parse and load the given configuration file. \n\n\
-     Returns True on success."},
-
-    {"FcPrivateConfig", FcPrivateConfig, METH_VARARGS,
-    "Parse and load the given configuration file into a blank FcConfig. \n\n\
      Returns True on success."},
 
     {"FT_Get_Face_Count", FT_Get_Face_Count, METH_VARARGS,

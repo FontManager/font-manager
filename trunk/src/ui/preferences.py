@@ -34,7 +34,8 @@ import gobject
 from os.path import exists, join, isdir
 
 from core import database
-from utils.common import match, natural_sort, search
+from utils.common import delete_cache, delete_database, match, \
+                            natural_sort, search
 from constants import HOME, DATABASE_FILE, CACHE_FILE
 
 
@@ -258,7 +259,7 @@ class PreferencesDialog():
         while gtk.events_pending():
             gtk.main_iteration()
         if self.update_required:
-            self.objects.reload(True)
+            self.objects.reload()
         return True
 
     def _on_coll_totals(self, widget):
@@ -434,10 +435,8 @@ class PreferencesDialog():
         db_model = db_tree.get_model()
         db_model.clear()
         db_tree.queue_draw()
-        if exists(CACHE_FILE):
-            os.unlink(CACHE_FILE)
-        if exists(DATABASE_FILE):
-            os.unlink(DATABASE_FILE)
+        delete_cache()
+        delete_database()
         self.update_required = True
         return
 
@@ -592,4 +591,3 @@ class PreferencesDialog():
                 }
         self.widgets['ArchCombo'].set_active(types[arch_type])
         return
-

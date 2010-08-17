@@ -86,7 +86,7 @@ class Previews(object):
         # Make it do something
         size_adjustment.connect('value-changed', self._on_size_adj_v_change)
         # Correct slider behavior - up means up, down means down
-        self.objects['FontSizeSlider'].connect('scroll-event', 
+        self.objects['FontSizeSlider'].connect('scroll-event',
                                                 correct_slider_behavior, 1.0)
         # Gnome Character Map
         character_map = self.objects['CharacterMap']
@@ -298,9 +298,9 @@ class Previews(object):
                                 lambda widget, event: widget.hide() or True)
         self.objects['CloseColorSelector'].connect('clicked', \
                                         lambda widget: dialog.hide() or True)
-        self.objects['ForegroundColor'].set_property('color', 
+        self.objects['ForegroundColor'].set_property('color',
                                                         self.preview_fgcolor)
-        self.objects['BackgroundColor'].set_property('color', 
+        self.objects['BackgroundColor'].set_property('color',
                                                         self.preview_bgcolor)
         self.objects['ForegroundColor'].connect('color-set',
                                                         self._on_colors_changed)
@@ -517,7 +517,7 @@ class Browse(object):
         # Make it do something
         size_adjustment.connect('value-changed', self.update_browse_view)
         # Correct slider behavior - up means up, down means down
-        self.objects['BrowseSizeSlider'].connect('scroll-event', 
+        self.objects['BrowseSizeSlider'].connect('scroll-event',
                                                 correct_slider_behavior, 1.0)
 
     def update_tree(self, families):
@@ -599,4 +599,3 @@ class Browse(object):
         self.browse_tree.queue_draw()
         self.browse_tree.get_column(0).queue_resize()
         return
-

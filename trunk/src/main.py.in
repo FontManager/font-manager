@@ -62,7 +62,6 @@ class Main(object):
     """
     Where everything starts.
     """
-    dirty = False
     def __init__(self):
         logging.info("Font Manager is now starting")
         # Disable user configuration files so that changes to them
@@ -306,10 +305,6 @@ class Main(object):
 
     def quit(self, unused_widget = None, possible_event = None):
         self._save_settings()
-        if self.dirty:
-            delete_cache()
-            delete_database()
-            reset_fontconfig_cache()
         logging.info("Exiting...")
         gtk.main_quit()
         # FIXME

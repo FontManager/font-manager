@@ -365,4 +365,3 @@ def _build_tree(dic):
     tree.append_column(col1)
     tree.append_column(col2)
     return tree
-

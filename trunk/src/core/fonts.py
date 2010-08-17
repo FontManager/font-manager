@@ -128,10 +128,11 @@ class Collection(object):
             raise TypeError('Expected a string but got %s instead' \
                                                         % type(comment))
 
+
 class Face(object):
     """
     This class holds details about a face.
-    
+
     Provides an equivalent to pango.FontFace that can be pickled.
     """
     __slots__ = ('name', 'description')
@@ -175,7 +176,7 @@ class Family(object):
     def get_count(self, display = True):
         """
         Return the number of styles.
-        
+
         If display is True, return a string suitable for display, i.e '5 Fonts'
         """
         count = len(self.styles)
@@ -206,7 +207,7 @@ class Family(object):
 class PangoFamily(object):
     """
     This class holds details about a pango family.
-    
+
     Provides an equivalent to pango.FontFamily that can be pickled.
     """
     __slots__ = ('name', 'faces', 'mono')
@@ -268,10 +269,11 @@ class Sort(object):
         else:
             self.widget = gtk.Window()
         self.manager = fontmanager
-        database.sync()
+        stale_entries = database.sync(progress_callback)
         self.table = database.Table('Fonts')
         self.cache = shelve.open(CACHE_FILE, protocol=cPickle.HIGHEST_PROTOCOL)
         self._check_cache()
+        self._update_cache(stale_entries)
         self.file_total = len(self.table)
         # List of all indexed families
         self.indexed = []
@@ -331,6 +333,13 @@ class Sort(object):
             delete_cache()
             self.cache = shelve.open(CACHE_FILE,
                                         protocol=cPickle.HIGHEST_PROTOCOL)
+        return
+
+    def _update_cache(self, stale_entries):
+        if stale_entries:
+            for entry in stale_entries:
+                if self.cache.has_key(entry):
+                    del self.cache[entry]
         return
 
     def _disable_rejects(self):
@@ -544,4 +553,3 @@ def do_library_cleanup(library = USER_LIBRARY_DIR):
     _set_library_permissions(library)
     _mkfontdirs(library)
     return
-

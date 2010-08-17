@@ -313,7 +313,7 @@ def load_collections(fontmanager):
 def load_compat_collections(fontmanager, order):
     """
     If ~/.config/fontgroups.xml exists load any collections defined there.
-    
+
     For compatibility with KDE font manager and any other programs which might
     make use of that file.
     """
@@ -384,7 +384,7 @@ def save_collections(objects):
 def save_compat_collections(objects):
     """
     Save user defined collections to ~/.config/fontgroups.xml.
-    
+
     For compatibility with KDE font manager and any other programs which might
     make use of that file.
     """
@@ -456,7 +456,7 @@ def save_fontconfig_settings(settings):
             _add_assignments(node, style, settings)
         if not less and not more:
             _add_assignments(node, style, settings)
-    doc.saveFormatFile(join(USER_FONT_CONFIG_DIR, 
+    doc.saveFormatFile(join(USER_FONT_CONFIG_DIR,
                         '25-%s.conf' % settings.family.get_name()), format=1)
     doc.freeDoc()
     return
