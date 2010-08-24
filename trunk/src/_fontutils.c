@@ -378,7 +378,8 @@ pango_get_sample_string(PyObject *self, PyObject *args)
     if (!PyArg_ParseTuple(args, "s", &lang))
         return NULL;
 
-    return PyString_FromString(pango_language_get_sample_string(pango_language_from_string(lang)));
+    return PyString_FromString(pango_language_get_sample_string
+                                (pango_language_from_string(lang)));
 }
 
 /* These last two are lifted from fontilus by James Henstridge... thanks. :-) */

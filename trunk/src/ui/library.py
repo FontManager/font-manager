@@ -96,7 +96,7 @@ class InstallFonts(object):
         self.objects.set_sensitive(True)
         if missing and len(missing) > 0:
             self._show_missing_files(missing)
-        self.objects.reload()
+        self.objects.reload(True)
         return
 
     def run(self):
@@ -183,6 +183,7 @@ class RemoveFonts(object):
                     self.remove_tree.get_selection().select_path(path_to_select)
         self.objects.update_family_total()
         self.objects['Treeviews'].update_views()
+        self.objects['Main'].dirty = True
         return
 
     def _on_quit(self, unused_widget, unused_event):

@@ -269,11 +269,10 @@ class Sort(object):
         else:
             self.widget = gtk.Window()
         self.manager = fontmanager
-        stale_entries = database.sync(progress_callback)
+        database.sync()
         self.table = database.Table('Fonts')
         self.cache = shelve.open(CACHE_FILE, protocol=cPickle.HIGHEST_PROTOCOL)
         self._check_cache()
-        self._update_cache(stale_entries)
         self.file_total = len(self.table)
         # List of all indexed families
         self.indexed = []
@@ -333,13 +332,6 @@ class Sort(object):
             delete_cache()
             self.cache = shelve.open(CACHE_FILE,
                                         protocol=cPickle.HIGHEST_PROTOCOL)
-        return
-
-    def _update_cache(self, stale_entries):
-        if stale_entries:
-            for entry in stale_entries:
-                if self.cache.has_key(entry):
-                    del self.cache[entry]
         return
 
     def _disable_rejects(self):
@@ -431,18 +423,6 @@ class Sort(object):
             if self.progress_callback:
                 self.progress_callback(name, self.total, self.processed)
         return
-
-    def total_families(self):
-        """
-        Total number of font families.
-        """
-        return len(self.available)
-
-    def total_files(self):
-        """
-        Total number of font files in database.
-        """
-        return self.file_total
 
 
 def _on(name):

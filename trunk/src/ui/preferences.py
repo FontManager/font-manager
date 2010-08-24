@@ -259,7 +259,7 @@ class PreferencesDialog():
         while gtk.events_pending():
             gtk.main_iteration()
         if self.update_required:
-            self.objects.reload()
+            self.objects.reload(True)
         return True
 
     def _on_coll_totals(self, widget):

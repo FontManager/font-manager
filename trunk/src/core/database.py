@@ -423,9 +423,18 @@ def _need_update(table):
     available = _fontutils.FcFileList()
     indexed = _get_indexed_files(table)
     update = _drop_indexed(available, indexed)
-    return (available, indexed, update)
+    return update
 
-def sync(progress_callback = None):
+def get_family(filepath):
+    for index in range(_fontutils.FT_Get_Face_Count(filepath)):
+        try:
+            metadata = _fontutils.FT_Get_File_Info(filepath, index, 'unknown')
+            return metadata['family']
+        except IOError:
+            break
+    return
+
+def sync():
     """
     Use FontConfig to find installed fonts.
 
@@ -434,36 +443,17 @@ def sync(progress_callback = None):
     update the database.
     """
 
-    def _sync(results):
+    def _sync(update):
         """
         Add any missing fonts to the database.
         """
-        available, indexed, update = results
-        total = len(available)
-        processed = 0
-        stale = [fp for fp in indexed if fp not in
-                                            [k.keys()[0] for k in available]]
-        stale_families = []
-        if len(stale) > 0:
-            if progress_callback:
-                progress_callback(_('Removing stale database entries'),
-                                                            total, processed)
-            for filepath in stale:
-                table.remove('filepath="%s"' % filepath)
-            stale_families = \
-            [table.get('family', 'filepath="%s"' % fp)[0][0] for fp in stale]
         fontdetails = _get_details(update)
         for font in fontdetails:
             table.insert(_get_row_data(font))
-            if progress_callback:
-                processed += 1
-                progress_callback(_('Updating database'), total, processed)
-        if len(stale_families) > 0:
-            return stale_families
-        else:
-            return None
+        return
 
     table = Table('Fonts')
-    stale_entries = _sync(_need_update(table))
+    _sync(_need_update(table))
     table.close()
-    return stale_entries
+    return
+

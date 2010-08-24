@@ -1465,9 +1465,6 @@ If you choose to continue, it is suggested that you close all open applications 
                                   </object>
                                 </child>
                                 <child>
-                                  <placeholder/>
-                                </child>
-                                <child>
                                   <object class="GtkCheckButton" id="PrefsJanitor">
                                     <property name="label" translatable="yes">Enable Folder Cleanup</property>
                                     <property name="visible">True</property>
@@ -1478,6 +1475,17 @@ If you choose to continue, it is suggested that you close all open applications 
                                   <packing>
                                     <property name="top_attach">1</property>
                                     <property name="bottom_attach">2</property>
+                                  </packing>
+                                </child>
+                                <child>
+                                  <object class="GtkLabel" id="label25">
+                                    <property name="visible">True</property>
+                                    <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;(experimental)&lt;/i&gt;&lt;/small&gt;</property>
+                                    <property name="use_markup">True</property>
+                                  </object>
+                                  <packing>
+                                    <property name="left_attach">1</property>
+                                    <property name="right_attach">2</property>
                                   </packing>
                                 </child>
                               </object>

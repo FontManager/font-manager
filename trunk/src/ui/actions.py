@@ -309,7 +309,7 @@ class UserActions(object):
                         gtk.main_iteration()
                     continue
             if action['restart']:
-                self.objects.reload()
+                self.objects.reload(True)
             return
         except (OSError, ValueError), error:
             command = '\nCommand was :\n\n' + ' '.join(command)
