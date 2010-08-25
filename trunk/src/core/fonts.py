@@ -41,6 +41,7 @@ import subprocess
 from os.path import basename, exists, join, splitext
 
 import database
+import fontutils
 
 from constants import ALIAS_FAMILIES, CACHE_FILE, USER, USER_LIBRARY_DIR, \
                         T1_EXTS, FONT_EXTS
@@ -269,7 +270,8 @@ class Sort(object):
         else:
             self.widget = gtk.Window()
         self.manager = fontmanager
-        database.sync()
+        fontutils.set_progress_callback(progress_callback)
+        fontutils.sync_font_database()
         self.table = database.Table('Fonts')
         self.cache = shelve.open(CACHE_FILE, protocol=cPickle.HIGHEST_PROTOCOL)
         self._check_cache()
@@ -421,7 +423,8 @@ class Sort(object):
             self.manager[name] = obj
             self.processed += 1
             if self.progress_callback:
-                self.progress_callback(name, self.total, self.processed)
+                self.progress_callback(_("Loading available fonts..."), 
+                                        self.total, self.processed)
         return
 
 

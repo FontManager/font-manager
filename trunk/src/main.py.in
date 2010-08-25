@@ -38,7 +38,7 @@ import subprocess
 from os.path import basename, exists, join
 
 import core
-import _fontutils
+import fontutils
 
 from ui import fontconfig
 from constants import LANG, PACKAGE, PACKAGE_DATA_DIR
@@ -67,7 +67,7 @@ class Main(object):
         logging.info("Font Manager is now starting")
         # Disable user configuration files so that changes to them
         # do not interfere with our ability to render disabled fonts.
-        _fontutils.FcEnableHomeConfig(False)
+        fontutils.FcEnableHomeConfig(False)
         fc_config_load_user_fonts()
         self.objects = ObjectContainer()
         self.main_window = self.objects['MainWindow']
@@ -446,12 +446,12 @@ class ObjectContainer(UserDict.UserDict):
             self.prefs_dialog.run(self)
         return
 
-    def progress_callback(self, family, total, processed):
+    def progress_callback(self, pmsg, total, processed):
         """
         Set progressbar text and percentage.
         """
-        if family is not None:
-            self.data['ProgressBar'].set_text(family)
+        if pmsg is not None:
+            self.data['ProgressBar'].set_text(pmsg)
         if processed > 0 and processed <= total:
             self.data['ProgressBar'].set_fraction(float(processed)/float(total))
         while gtk.events_pending():

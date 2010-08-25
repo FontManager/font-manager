@@ -15,9 +15,9 @@ and even KDE.
 Font Manager currently allows the user to:
 
     * Preview installed fonts
-    
+
     * Compare fonts
-    
+
     * Install and remove fonts
 
     * Easily activate and de-activate installed fonts
@@ -50,6 +50,7 @@ Requirements:
     * libxml2-python            http://xmlsoft.org/python.html
     * fontconfig                http://www.fontconfig.org/wiki/
     * freetype2                 http://www.freetype.org/
+    * sqlite                    http://www.sqlite.org/
 
 Recommended:
 

@@ -81,7 +81,7 @@ INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
-LIBS = $(fontconfig_LIBS)$(freetype2_LIBS)$(glib_LIBS)$(pango_LIBS)
+LIBS = $(fontconfig_LIBS)$(freetype2_LIBS)$(glib_LIBS)$(pango_LIBS)$(sqlite_LIBS)
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
@@ -144,6 +144,8 @@ program_transform_name = @program_transform_name@
 psdir = @psdir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
+sqlite_CFLAGS = @sqlite_CFLAGS@
+sqlite_LIBS = @sqlite_LIBS@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
@@ -153,6 +155,7 @@ top_srcdir = @top_srcdir@
 SRC_DIR = src
 SRC_CORE_DIR = $(SRC_DIR)/core
 SRC_DATA_DIR = $(SRC_DIR)/data
+SRC_LIB_DIR = $(SRC_DIR)/lib
 SRC_UI_DIR = $(SRC_DIR)/ui
 SRC_UTILS_DIR = $(SRC_DIR)/utils
 INST_BIN_DIR = $(DESTDIR)$(bindir)
@@ -166,7 +169,7 @@ UI_FILES = *.ui
 DE_FILES = *.desktop
 SAMPLER = font-sampler
 FLAGS = -fPIC -shared -D_REENTRANT -fno-strict-aliasing
-INCLUDES = $(fontconfig_CFLAGS)$(freetype2_CFLAGS)$(glib_CFLAGS)$(pango_CFLAGS)
+INCLUDES = $(fontconfig_CFLAGS)$(freetype2_CFLAGS)$(glib_CFLAGS)$(pango_CFLAGS)$(sqlite_CFLAGS)
 SYSCONFIG = distutils.sysconfig
 PyInclude = `$(PYTHON) -c 'import $(SYSCONFIG); print "-I%s" % \
 	$(SYSCONFIG).get_python_inc()'`
@@ -185,12 +188,14 @@ RECURSIVE_REMOVE = @rm -rfv
 @BYTECODE_TRUE@Py_Optimize = @$(PYTHON) -O -m compileall $(SRC_DIR)
 @BYTECODE_FALSE@PyFiles = *.py
 @BYTECODE_TRUE@PyFiles = *.py{,c,o}
-@WINLIB_FALSE@FONTUTILS = $(SRC_DIR)/_fontutils.so
-@WINLIB_TRUE@FONTUTILS = $(SRC_DIR)/_fontutils.dll
+@WINLIB_FALSE@FONTUTILS = $(SRC_LIB_DIR)/fontutils.so
+@WINLIB_TRUE@FONTUTILS = $(SRC_LIB_DIR)/fontutils.dll
 @DEBUGINFO_FALSE@STRIP_LIB = $(STRIP) --strip-unneeded $(FONTUTILS)
 @DEBUGINFO_TRUE@STRIP_LIB = 
-BUILD_LIB = $(CC) $(SRC_DIR)/_fontutils.c $(CFLAGS) $(FLAGS) $(PyInclude) \
-			$(INCLUDES)$(LIBS) $(PyLibs) -o $(FONTUTILS)
+BUILD_LIB = $(CC) $(SRC_LIB_DIR)/_fontutils_.c $(SRC_LIB_DIR)/fm-common.c \
+			$(SRC_LIB_DIR)/fm-database.c $(SRC_LIB_DIR)/fm-fontutils.c \
+			$(CFLAGS) $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS) \
+			$(PyLibs) -o $(FONTUTILS)
 
 INSTALL_LIB = $(INSTALL_FILE) $(FONTUTILS) $(INST_LIB_DIR)/
 edit = sed \
@@ -565,14 +570,13 @@ uninstall:
 	$(RECURSIVE_REMOVE) $(INST_DATA_DIR)
 
 clean:
-	$(REMOVE)  $(SRC_DIR)/_fontutils.so $(SRC_DIR)/_fontutils.dll
+	$(REMOVE)  $(SRC_LIB_DIR)/fontutils.so $(SRC_LIB_DIR)/fontutils.dll
 	@find . -type f -name '*.py[co]' -exec rm -fv '{}' \;
 
 distclean: clean
 	$(REMOVE) $(SRC_DIR)/$(PACKAGE_NAME) $(SRC_DIR)/$(SAMPLER) \
-		$(SRC_DIR)/constants.py $(SRC_DIR)/constants.py.in $(SRC_DIR)/main.py \
-		$(SRC_CORE_DIR)/__init__.py $(SRC_UI_DIR)/export.py \
-		config.log config.status Makefile
+		$(SRC_DIR)/constants.py $(SRC_DIR)/main.py $(SRC_CORE_DIR)/__init__.py \
+		$(SRC_UI_DIR)/export.py config.log config.status Makefile
 	$(RECURSIVE_REMOVE) autom4te.cache
 	@find . -depth -type d -name '.svn' -exec rm -rf '{}' \;
 

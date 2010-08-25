@@ -39,7 +39,7 @@ import subprocess
 
 from os.path import basename, exists, join, isdir, isfile
 
-import _fontutils
+import fontutils
 
 from constants import AUTOSTART_DIR, USER_FONT_DIR, HOME, README, CACHE_FILE, \
 DATABASE_FILE, ARCH_EXTS, USER_FONT_CONFIG_DIR, USER_FONT_CONFIG_RENDER
@@ -242,10 +242,11 @@ def display_warning(msg, sec_msg = None, parent = None):
     return
 
 def fc_config_load_user_fonts():
-    _fontutils.FcClearAppFonts()
-    _fontutils.FcAddAppFontDir(USER_FONT_DIR)
+    fontutils.FcClearAppFonts()
+    user_dirs = [USER_FONT_DIR]
     for directory in load_directories():
-        _fontutils.FcAddAppFontDir(directory)
+        user_dirs.append(directory)
+    fontutils.FcAddAppFontDirs(user_dirs)
     return
 
 def fc_config_reload(*unused_args):
@@ -255,9 +256,9 @@ def fc_config_reload(*unused_args):
     fc_config_load_user_fonts()
     for config in os.listdir(USER_FONT_CONFIG_DIR):
         if config.endswith('.conf'):
-            _fontutils.FcParseConfigFile(join(USER_FONT_CONFIG_DIR, config))
+            fontutils.FcParseConfigFile(join(USER_FONT_CONFIG_DIR, config))
     if exists(USER_FONT_CONFIG_RENDER):
-        _fontutils.FcParseConfigFile(USER_FONT_CONFIG_RENDER)
+        fontutils.FcParseConfigFile(USER_FONT_CONFIG_RENDER)
     return
 
 def install_readme():

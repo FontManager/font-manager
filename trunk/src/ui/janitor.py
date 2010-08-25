@@ -494,10 +494,10 @@ class FontJanitor(object):
                 self.manager.remove_families(model[row][REMOVE])
                 self.objects.update_family_total()
                 self.objects['Treeviews'].update_category_treeview()
-            except KeyError:
+            except (IndexError, KeyError):
                 run_again = True
-            except OSError:
-                pass
+            except (OSError, gio.Error), error:
+                logging.error(error)
             try:
                 treeiter = model.get_iter(row)
                 model.remove(treeiter)
@@ -551,4 +551,3 @@ class FontJanitor(object):
         if self._dirty:
             self.objects.reload(True)
         return
-

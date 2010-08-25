@@ -36,7 +36,7 @@ import urlparse
 
 from os.path import join
 
-import _fontutils
+import fontutils
 
 from actions import UserActions
 from core.database import Table
@@ -256,7 +256,7 @@ class Treeviews(object):
                         in data.data.splitlines() if path.endswith(FONT_EXTS)]
         block = _('All'), _('System'), _('User'), _('Orphans')
         if self.current_collection not in block:
-            families = [ _fontutils.FT_Get_File_Info(path)['family'] \
+            families = [ fontutils.FT_Get_File_Info(path)['family'] \
                         for path in filelist]
             self.manager.add_families_to(self.current_collection, families)
         if not self.objects['Main'].installer:

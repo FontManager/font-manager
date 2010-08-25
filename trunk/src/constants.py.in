@@ -31,7 +31,7 @@ import pango
 
 from os.path import join, splitext
 
-from _fontutils import pango_get_sample_string
+from fontutils import pango_get_sample_string
 
 PACKAGE = '@PACKAGE_NAME@'
 
