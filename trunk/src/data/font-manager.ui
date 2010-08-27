@@ -1173,9 +1173,9 @@ If you choose to continue, it is suggested that you close all open applications 
         <child>
           <object class="GtkNotebook" id="PrefsNotebook">
             <property name="width_request">375</property>
+            <property name="height_request">450</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
-            <property name="border_width">10</property>
             <child>
               <object class="GtkVBox" id="PrefsFolderTab">
                 <property name="visible">True</property>
@@ -1907,7 +1907,7 @@ If you choose to continue, it is suggested that you close all open applications 
                 <child>
                   <object class="GtkAlignment" id="PrefsAlign8">
                     <property name="visible">True</property>
-                    <property name="bottom_padding">24</property>
+                    <property name="bottom_padding">12</property>
                     <property name="left_padding">24</property>
                     <property name="right_padding">28</property>
                     <child>
@@ -1958,7 +1958,7 @@ If you choose to continue, it is suggested that you close all open applications 
                 <child>
                   <object class="GtkHBox" id="hbox2">
                     <property name="visible">True</property>
-                    <property name="border_width">7</property>
+                    <property name="border_width">2</property>
                     <child>
                       <placeholder/>
                     </child>
@@ -2008,20 +2008,10 @@ If you choose to continue, it is suggested that you close all open applications 
         </child>
         <child internal-child="action_area">
           <object class="GtkHButtonBox" id="dialog-action_area4">
-            <property name="visible">True</property>
+            <property name="sensitive">False</property>
             <property name="layout_style">end</property>
             <child>
-              <object class="GtkButton" id="PrefsClose">
-                <property name="label" translatable="yes">Close</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">0</property>
-              </packing>
+              <placeholder/>
             </child>
           </object>
           <packing>
@@ -2032,9 +2022,6 @@ If you choose to continue, it is suggested that you close all open applications 
         </child>
       </object>
     </child>
-    <action-widgets>
-      <action-widget response="0">PrefsClose</action-widget>
-    </action-widgets>
   </object>
   <object class="GtkImage" id="PrefsAddIcon">
     <property name="visible">True</property>
@@ -2630,8 +2617,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
-    <property name="select_multiple">True</property>
     <property name="create_folders">False</property>
+    <property name="select_multiple">True</property>
     <signal name="file_activated" handler="gtk_true"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">

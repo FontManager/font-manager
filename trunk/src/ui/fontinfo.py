@@ -31,6 +31,7 @@ import webbrowser
 
 from os.path import basename, dirname, join
 
+from core import database
 from constants import PACKAGE_DATA_DIR
 from utils.common import natural_size, open_folder
 
@@ -43,7 +44,7 @@ class FontInformation(object):
         'CopyrightView', 'CopyrightBox', 'DescriptionView', 'DescriptionBox',
         'TypeLogo', 'FamilyLabel', 'FamilyEntry', 'StyleEntry', 'TypeEntry',
         'SizeEntry', 'FileEntry', 'LicenseBox', 'LicenseView', 'LicenseLink',
-        'Notebook', 'NoLicense', 'CloseFontInformation'
+        'Notebook', 'NoLicense'
         )
     _types = {
                 'TrueType'      :   'truetype.png',
@@ -65,11 +66,9 @@ class FontInformation(object):
         self.window.set_transient_for(objects['MainWindow'])
         self.window.connect('delete-event', self._on_close)
         self.widgets = {}
-        self.family = None
-        self.style = None
-        self.filename = None
         self.filedir = None
         self.typ = None
+        self.db_row = None
         for widget in self._widgets:
             self.widgets[widget] = self.builder.get_object(widget)
         # Load font type logos
@@ -82,7 +81,6 @@ class FontInformation(object):
         self.widgets['FileEntry'].connect('icon-press', self._open_folder)
         self.widgets['TypeEntry'].connect('icon-press',
                                             self._show_type_description)
-        self.widgets['CloseFontInformation'].connect('clicked', self._on_close)
 
     def _on_close(self, unused_widget, possible_event = None):
         """
@@ -97,11 +95,9 @@ class FontInformation(object):
         """
         Clear previous results.
         """
-        self.family = None
-        self.style = None
-        self.filename = None
         self.filedir = None
         self.typ = None
+        self.db_row = None
         entries = ('FamilyLabel', 'FamilyEntry', 'StyleEntry', 'TypeEntry',
                     'SizeEntry', 'FileEntry')
         for widget in entries:
@@ -113,26 +109,11 @@ class FontInformation(object):
         self.widgets['TypeLogo'].set_from_pixbuf(self.logos['blank'])
         return
 
-    def _get_filesize(self):
-        """
-        Return filesize in human-readable format.
-        """
-        return natural_size(self.family.styles[self.style]['filesize'])
-
-    def _get_filename(self):
-        """
-        Return the base filename for selected font.
-        """
-        current_file = self.family.styles[self.style]['filepath']
-        self.filename = basename(current_file)
-        self.filedir = dirname(current_file)
-        return self.filename
-
-    def _get_logo(self, typ):
+    def _get_logo(self, typ, filepath):
         """
         Return a pixbuf based on font type.
         """
-        if typ == 'TrueType' and self.filename.endswith('.otf'):
+        if typ == 'TrueType' and filepath.endswith('.otf'):
             typ = 'CFF'
         if typ in self._types.iterkeys():
             return self.logos[typ]
@@ -146,33 +127,26 @@ class FontInformation(object):
         open_folder(self.filedir, self.objects)
         return
 
-    def show(self, family, descr, style):
+    def show(self, filepath, descr):
         """
         Show information for the provided family object and style.
         """
-        self.family = family
-        self.style = style
-        try:
-            self.typ = family.styles[style]['filetype']
-        except KeyError:
-            for style in family.styles.iterkeys():
-                self.typ = family.styles[style]['filetype']
-                self.style = style
-                pango_fam = self.family.get_name().lower()
-                pango_fam = pango_fam.strip(',')
-                descr = pango.FontDescription('%s %s' % \
-                                                    (pango_fam, style.lower()))
-                break
-        famname = glib.markup_escape_text(family.get_name())
+        table = database.Table('Fonts')
+        self.db_row = table.get('*', 'filepath="%s"' % filepath)[0]
+        table.close()
+        self.filedir = dirname(filepath)
+        self.typ = self.db_row['filetype']
+        famname = glib.markup_escape_text(self.db_row['family'])
         markup = \
         '<span font_desc="%s" size="xx-large">%s</span>' % (descr, famname)
         self.widgets['FamilyLabel'].set_markup(markup)
-        self.widgets['FamilyEntry'].set_text(family.get_name())
-        self.widgets['StyleEntry'].set_text(style)
+        self.widgets['FamilyEntry'].set_text(self.db_row['family'])
+        self.widgets['StyleEntry'].set_text(self.db_row['style'])
         self.widgets['TypeEntry'].set_text(self.typ)
-        self.widgets['SizeEntry'].set_text(self._get_filesize())
-        self.widgets['FileEntry'].set_text(self._get_filename())
-        self.widgets['TypeLogo'].set_from_pixbuf(self._get_logo(self.typ))
+        self.widgets['SizeEntry'].set_text(natural_size(self.db_row['filesize']))
+        self.widgets['FileEntry'].set_text(basename(filepath))
+        logo = self._get_logo(self.typ, filepath)
+        self.widgets['TypeLogo'].set_from_pixbuf(logo)
         self._set_copyright()
         self._set_description()
         self._set_license()
@@ -213,7 +187,7 @@ class FontInformation(object):
         box = self.widgets['CopyrightBox']
         view = self.widgets['CopyrightView']
         t_buffer = view.get_buffer()
-        copyrite = self.family.styles[self.style]['copyright']
+        copyrite = self.db_row['copyright']
         if copyrite != 'None':
             t_buffer.set_text(copyrite)
             box.show()
@@ -228,7 +202,7 @@ class FontInformation(object):
         box = self.widgets['DescriptionBox']
         view = self.widgets['DescriptionView']
         t_buffer = view.get_buffer()
-        description = self.family.styles[self.style]['description']
+        description = self.db_row['description']
         if description != 'None':
             t_buffer.set_text(description)
             box.show()
@@ -244,15 +218,17 @@ class FontInformation(object):
         box = self.widgets['LicenseBox']
         view = self.widgets['LicenseView']
         t_buffer = view.get_buffer()
-        licens = self.family.styles[self.style]['license']
-        url = self.family.styles[self.style]['license_url']
+        licens = self.db_row['license']
+        url = self.db_row['license_url']
         if licens != 'None':
             nolicense.hide()
             t_buffer.set_text(licens)
             box.show()
+            self.widgets['Notebook'].set_show_tabs(True)
         else:
             box.hide()
             nolicense.show()
+            self.widgets['Notebook'].set_show_tabs(False)
         if url != 'None':
             self.widgets['LicenseLink'].set_uri(url)
             self.widgets['LicenseLink'].set_label(url)

@@ -410,26 +410,13 @@
         </child>
         <child internal-child="action_area">
           <object class="GtkHButtonBox" id="dialog-action_area1">
-            <property name="visible">True</property>
+            <property name="sensitive">False</property>
             <property name="layout_style">end</property>
             <child>
               <placeholder/>
             </child>
             <child>
-              <object class="GtkButton" id="CloseFontInformation">
-                <property name="label">gtk-close</property>
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="has_focus">True</property>
-                <property name="is_focus">True</property>
-                <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">False</property>
-                <property name="position">1</property>
-              </packing>
+              <placeholder/>
             </child>
           </object>
           <packing>
@@ -440,9 +427,6 @@
         </child>
       </object>
     </child>
-    <action-widgets>
-      <action-widget response="0">CloseFontInformation</action-widget>
-    </action-widgets>
   </object>
   <object class="GtkTextBuffer" id="textbuffer1"/>
   <object class="GtkTextBuffer" id="textbuffer2"/>

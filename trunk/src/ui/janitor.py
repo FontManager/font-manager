@@ -497,7 +497,9 @@ class FontJanitor(object):
             except (IndexError, KeyError):
                 run_again = True
             except (OSError, gio.Error), error:
-                logging.error(error)
+                #logging.error(error)
+                pass
+        for row in selected:
             try:
                 treeiter = model.get_iter(row)
                 model.remove(treeiter)

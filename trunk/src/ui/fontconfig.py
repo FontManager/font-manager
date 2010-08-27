@@ -77,7 +77,8 @@ class AliasEdit(gtk.Window):
         self.system_store = gtk.ListStore(gobject.TYPE_STRING)
         for family in natural_sort(self.system_families):
             self.system_store.append([family])
-        self.set_size_request(500, 350)
+        self.set_size_request(425, 350)
+        self.set_resizable(False)
         self.set_border_width(10)
         self.alias_tree = self._get_alias_tree()
         sw = gtk.ScrolledWindow()
@@ -270,7 +271,8 @@ class ConfigEdit(gtk.Window):
     """
     def __init__(self, objects):
         gtk.Window.__init__(self)
-        self.set_size_request(525, -1)
+        self.set_size_request(475, -1)
+        self.set_resizable(False)
         self.set_border_width(5)
         self.connect('delete-event', self._on_quit)
         self.set_title(_("Advanced Settings"))
@@ -286,7 +288,7 @@ class ConfigEdit(gtk.Window):
         main_box = gtk.VBox()
         main_box.set_spacing(5)
         self.container = gtk.VBox()
-        main_box.pack_start(self.container, False, True, 0)
+        main_box.pack_start(self.container, True, True, 0)
         self.set_position(gtk.WIN_POS_CENTER)
         buttons = self._build_button_box()
         main_box.pack_end(buttons, False, True, 0)

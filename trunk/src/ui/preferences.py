@@ -56,7 +56,7 @@ class PreferencesDialog():
         'AutoScanButton', 'PrefsInfoButton', 'PrefsAutoStart', 'PrefsHidden',
         'PrefsMinimize', 'PrefsOrphans', 'PrefsPangram', 'PrefsFontSize',
         'DBTree', 'UserDirTree', 'SearchDB', 'RemoveFromDB', 'ResetDB',
-        'PrefsClose', 'DefaultFolderBox', 'ArchTypeBox', 'PrefsFileChooser',
+        'DefaultFolderBox', 'ArchTypeBox', 'PrefsFileChooser',
         'PrefsInvalidDir', 'AutoScanInfo', 'PrefsCollFocus', 'PrefsCollTotal',
         'PrefsFamTotal', 'PrefsToolTips', 'PrefsBrowseMode', 'PrefsLocSample',
         'PrefsJanitor'
@@ -103,8 +103,7 @@ class PreferencesDialog():
                     'AutoScanButton'    :   self._on_autoscan,
                     'PrefsInfoButton'   :   self._on_info,
                     'RemoveFromDB'      :   self._on_del_db_item,
-                    'ResetDB'           :   self._on_reset_db,
-                    'PrefsClose'        :   self._on_close
+                    'ResetDB'           :   self._on_reset_db
                     }
         _toggled = {
                     'PrefsAutoStart'    :   self._on_autostart,

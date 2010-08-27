@@ -489,8 +489,9 @@ class Previews(object):
         """
         if not self.info_dialog:
             self.info_dialog = FontInformation(self.objects)
-        self.info_dialog.show(self.current_family, self.current_style,
-                                        self.current_style_as_string)
+        self.info_dialog.show(self.current_family.styles\
+                                [self.current_style_as_string]['filepath'],
+                                self.current_style)
         return
 
 

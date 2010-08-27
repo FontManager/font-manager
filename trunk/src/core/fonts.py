@@ -166,13 +166,14 @@ class Family(object):
     """
     This class holds details about a font family.
     """
-    __slots__ = ('name', 'user', 'enabled', 'pango_family', 'styles')
+    __slots__ = ('name', 'user', 'enabled', 'pango_family', 'styles', 'version')
     def __init__(self, family):
         self.name = family
         self.user = False
         self.enabled = True
         self.pango_family = None
         self.styles = {}
+        self.version = 1
 
     def get_count(self, display = True):
         """
@@ -203,6 +204,21 @@ class Family(object):
         Return family name.
         """
         return self.name
+
+
+class FileDetails(object):
+    """
+    This class holds file details about a particular style.
+    """
+    __slots__ = ('filepath', 'filetype', 'filesize', 'psname')
+    def __init__(self, sqlite_row):
+        self.filepath = sqlite_row['filepath']
+        self.filetype = sqlite_row['filetype']
+        self.filesize = sqlite_row['filesize']
+        self.psname = sqlite_row['psname']
+
+    def __getitem__(self, key):
+        return getattr(self, key, None)
 
 
 class PangoFamily(object):
@@ -273,16 +289,15 @@ class Sort(object):
         fontutils.set_progress_callback(progress_callback)
         fontutils.sync_font_database()
         self.table = database.Table('Fonts')
-        self.cache = shelve.open(CACHE_FILE, protocol=cPickle.HIGHEST_PROTOCOL)
+        self.cache = None
         self._check_cache()
-        self.file_total = len(self.table)
         # List of all indexed families
         self.indexed = []
         self._get_indexed()
         # List of actually available families
-        self.all_available = []
+        self.available = []
+        self.pango_families = []
         self._get_available()
-        self.available = [f for f in self.all_available if f in self.indexed]
         # List of system families
         self.system = []
         self._get_system_families()
@@ -307,33 +322,18 @@ class Sort(object):
         if not parent:
             self.widget.destroy()
 
-    def _build_styles_dict(self, family):
-        """
-        Return a dictionary holding details for all files belonging to family.
-        """
-        styles = {}
-        for row in self.table.get('*', 'family="%s"' % family):
-            # Too bad sqlite rows don't survive a pickle...
-            keys = row.keys()
-            face = {}
-            for i in range(15):
-                face[keys[i]] = row[i]
-            styles[row['style']] = face
-        return styles
-
     def _check_cache(self):
         """
         Delete cache if it's in an outdated format.
         """
         try:
-            for key in self.cache.keys():
-                test = self.cache[key]
-                break
-        except cPickle.UnpicklingError:
-            self.cache.close()
-            delete_cache()
             self.cache = shelve.open(CACHE_FILE,
                                         protocol=cPickle.HIGHEST_PROTOCOL)
+            test = self.cache[self.cache.keys()[0]]
+            assert (test.version == 1)
+        except (AssertionError, AttributeError,
+                    IndexError, cPickle.UnpicklingError):
+            self._load_new_cache()
         return
 
     def _disable_rejects(self):
@@ -358,7 +358,9 @@ class Sort(object):
             name = family.get_name()
             if name in ALIAS_FAMILIES:
                 continue
-            self.all_available.append(name)
+            if name in self.indexed:
+                self.available.append(name)
+                self.pango_families.append(family)
         return
 
     def _get_indexed(self):
@@ -374,7 +376,7 @@ class Sort(object):
         Get a list of font families which belong to the "System".
         """
         for row in set(self.table.get('family', 'owner="System"')):
-            if row[0] in self.all_available:
+            if row[0] in self.available:
                 self.system.append(row[0])
         return
 
@@ -393,6 +395,12 @@ class Sort(object):
                             comment = _('Fonts not present in any collection'))
         return
 
+    def _load_new_cache(self):
+        self.cache.close()
+        delete_cache()
+        self.cache = shelve.open(CACHE_FILE, protocol=cPickle.HIGHEST_PROTOCOL)
+        return
+
     def _load_user_collections(self):
         """
         Load any saved user collections
@@ -404,26 +412,22 @@ class Sort(object):
         """
         Load details for all available font families as reported by Pango.
         """
-        context = self.widget.get_pango_context()
-        pango_families = context.list_families()
-        self.total = len(pango_families)
-        for family in pango_families:
+        for family in self.pango_families:
             name = family.get_name()
-            if name in ALIAS_FAMILIES:
-                continue
             if self.cache.has_key(name):
                 obj = self.cache[name]
             else:
                 obj = Family(name)
                 if name in self.user:
                     obj.user = True
-                obj.styles = self._build_styles_dict(name)
+                for row in self.table.get('*', 'family="%s"' % name):
+                    obj.styles[row['style']] = FileDetails(row)
                 obj.pango_family = PangoFamily(family)
                 self.cache[name] = obj
             self.manager[name] = obj
             self.processed += 1
             if self.progress_callback:
-                self.progress_callback(_("Loading available fonts..."), 
+                self.progress_callback(_("Loading available fonts..."),
                                         self.total, self.processed)
         return
 
