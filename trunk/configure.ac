@@ -18,6 +18,7 @@ PKG_CHECK_MODULES([fontconfig], [fontconfig])
 PKG_CHECK_MODULES([freetype2], [freetype2])
 PKG_CHECK_MODULES([glib], [glib-2.0])
 PKG_CHECK_MODULES([pango], [pango])
+PKG_CHECK_MODULES([pangoft2], [pangoft2])
 PKG_CHECK_MODULES([sqlite], [sqlite3])
 
 # Checks for header files.

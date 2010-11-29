@@ -414,7 +414,7 @@ class FontJanitor(object):
                     self.store.append(parent, [SAMPLE_STRING, fontfile,
                                     '%s%s' % (ps_name, file_ext),
                                     styles[style]['filetype'],
-                                    natural_size(styles[style]['filesize']),
+                                    styles[style]['filesize'],
                                     styles[style]['filepath'],
                                     '%s%s' % (ps_name, file_ext),
                                     '%s%s' % (pango_name, file_ext),

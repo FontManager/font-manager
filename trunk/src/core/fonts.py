@@ -36,6 +36,7 @@ import shelve
 import pango
 import tempfile
 import shutil
+import sqlite3
 import subprocess
 
 from os.path import basename, exists, join, splitext
@@ -45,7 +46,8 @@ import fontutils
 
 from constants import ALIAS_FAMILIES, CACHE_FILE, USER, USER_LIBRARY_DIR, \
                         T1_EXTS, FONT_EXTS
-from utils.common import delete_cache, natural_sort, strip_archive_ext
+from utils.common import delete_cache, delete_database, natural_sort, \
+                            strip_archive_ext
 from utils.xmlutils import get_blacklisted, load_collections
 
 
@@ -218,7 +220,7 @@ class FileDetails(object):
         self.psname = sqlite_row['psname']
 
     def __getitem__(self, key):
-        return getattr(self, key, None)
+        return getattr(self, key)
 
 
 class PangoFamily(object):
@@ -286,11 +288,12 @@ class Sort(object):
         else:
             self.widget = gtk.Window()
         self.manager = fontmanager
-        fontutils.set_progress_callback(progress_callback)
-        fontutils.sync_font_database()
-        self.table = database.Table('Fonts')
         self.cache = None
         self._check_cache()
+        self._check_db()
+        fontutils.set_progress_callback(progress_callback)
+        fontutils.sync_font_database(_('Querying installed files...'))
+        self.table = database.Table('Fonts')
         # List of all indexed families
         self.indexed = []
         self._get_indexed()
@@ -321,6 +324,18 @@ class Sort(object):
         self._disable_rejects()
         if not parent:
             self.widget.destroy()
+
+    def _check_db(self):
+        """
+        Delete database if it's in an outdated format.
+        """
+        try:
+            test = database.Table('Fonts')['pstyle']
+        except sqlite3.ProgrammingError:
+            delete_database()
+            self._load_new_cache()
+        test = None
+        return
 
     def _check_cache(self):
         """

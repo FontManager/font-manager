@@ -30,12 +30,21 @@ from constants import DATABASE_FILE
 
 FIELDS = ('owner', 'filepath', 'filetype', 'filesize', 'checksum', 'psname',
 'family', 'style', 'foundry', 'copyright', 'version', 'description',
-'license', 'license_url')
+'license', 'license_url', 'panose', 'face', 'pfamily', 'pstyle', 'pvariant',
+'pweight', 'pstretch', 'pdescr')
 
 INIT = """
 CREATE TABLE IF NOT EXISTS Fonts
 (
 uid INTEGER PRIMARY KEY,
+%s TEXT,
+%s TEXT,
+%s TEXT,
+%s TEXT,
+%s TEXT,
+%s TEXT,
+%s TEXT,
+%s TEXT,
 %s TEXT,
 %s TEXT,
 %s TEXT,
@@ -317,4 +326,3 @@ class Table(object):
         else:
             self._sort = ''
         return
-

@@ -50,7 +50,7 @@ class InstallFonts(object):
         filefilter.set_name(_('Font Manager supported types'))
         for extension in FONT_GLOBS:
             filefilter.add_pattern(extension)
-        if 'file-roller' in self.objects['AvailableApps']:
+        if 'file-roller' in self.objects['AppCache']:
             for extension in ARCH_GLOBS:
                 filefilter.add_pattern(extension)
         self.dialog.add_filter(filefilter)

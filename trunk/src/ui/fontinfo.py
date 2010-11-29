@@ -44,18 +44,18 @@ class FontInformation(object):
         'CopyrightView', 'CopyrightBox', 'DescriptionView', 'DescriptionBox',
         'TypeLogo', 'FamilyLabel', 'FamilyEntry', 'StyleEntry', 'TypeEntry',
         'SizeEntry', 'FileEntry', 'LicenseBox', 'LicenseView', 'LicenseLink',
-        'Notebook', 'NoLicense'
+        'Notebook', 'VersionEntry', 'InfoBox', 'NoInfo'
         )
     _types = {
                 'TrueType'      :   'truetype.png',
                 'Type 1'        :   'type1.png',
-                'BDF'           :   'bitmap.png',
-                'PCF'           :   'bitmap.png',
+                'BDF'           :   'bdf.png',
+                'PCF'           :   'pcf.png',
                 'Type 42'       :   'type42.png',
                 'CID Type 1'    :   'type1.png',
                 'CFF'           :   'opentype.png',
-                'PFR'           :   'bitmap.png',
-                'Windows FNT'   :   'bitmap.png'
+                'PFR'           :   'pfr.png',
+                'Windows FNT'   :   'fnt.png'
                 }
     def __init__(self, objects):
         self.objects = objects
@@ -131,6 +131,17 @@ class FontInformation(object):
         """
         Show information for the provided family object and style.
         """
+        if filepath is None and descr is None:
+            self.widgets['InfoBox'].hide()
+            self.widgets['NoInfo'].show()
+            self.widgets['Notebook'].set_show_tabs(False)
+            self.window.show()
+            self.window.resize(1, 1)
+            self.window.queue_draw()
+            return
+        else:
+            self.widgets['NoInfo'].hide()
+            self.widgets['InfoBox'].show()
         table = database.Table('Fonts')
         self.db_row = table.get('*', 'filepath="%s"' % filepath)[0]
         table.close()
@@ -143,8 +154,17 @@ class FontInformation(object):
         self.widgets['FamilyEntry'].set_text(self.db_row['family'])
         self.widgets['StyleEntry'].set_text(self.db_row['style'])
         self.widgets['TypeEntry'].set_text(self.typ)
-        self.widgets['SizeEntry'].set_text(natural_size(self.db_row['filesize']))
+        self.widgets['SizeEntry'].set_text(self.db_row['filesize'])
         self.widgets['FileEntry'].set_text(basename(filepath))
+        version = self.db_row['version']
+        if len(version) > 50:
+            version = 'None'
+        if version.find('ersion') != -1:
+            version = version.replace('Version', '').replace('version', '')
+        if version.find('Revision:') != -1:
+            version = version.strip().strip('$').replace('Revision:', '')
+        version = version.strip()
+        self.widgets['VersionEntry'].set_text(version)
         logo = self._get_logo(self.typ, filepath)
         self.widgets['TypeLogo'].set_from_pixbuf(logo)
         self._set_copyright()
@@ -214,20 +234,17 @@ class FontInformation(object):
         """
         Display license if available.
         """
-        nolicense = self.widgets['NoLicense']
         box = self.widgets['LicenseBox']
         view = self.widgets['LicenseView']
         t_buffer = view.get_buffer()
         licens = self.db_row['license']
         url = self.db_row['license_url']
         if licens != 'None':
-            nolicense.hide()
             t_buffer.set_text(licens)
             box.show()
             self.widgets['Notebook'].set_show_tabs(True)
         else:
             box.hide()
-            nolicense.show()
             self.widgets['Notebook'].set_show_tabs(False)
         if url != 'None':
             self.widgets['LicenseLink'].set_uri(url)

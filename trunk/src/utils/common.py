@@ -69,62 +69,6 @@ VALID_CHARS = frozenset(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
                         '(', ')'])
 
 
-class AvailableApps(list):
-    """
-    This class is a list of available applications.
-    """
-    _defaults = ('dolphin', 'file-roller', 'gnome-appearance-properties',
-                'gucharmap', 'konqueror', 'nautilus', 'pcmanfm', 'thunar',
-                'xdg-open', 'yelp')
-    _dirs = os.getenv('PATH', '/usr/bin:/usr/local/bin').split(':')
-    def __init__(self):
-        list.__init__(self)
-        self.update()
-
-    def have(self, app):
-        """
-        Return True if app is installed.
-        """
-        if app in self:
-            return True
-        else:
-            for appdir in self._dirs:
-                if exists(join(appdir, app)):
-                    return True
-        return False
-
-    def update(self, *apps):
-        """
-        Update self to include apps.
-
-        apps -- an application, list or tuple of applications.
-        """
-        del self[:]
-        for app in self._defaults:
-            if self.have(app) and app not in self:
-                self.append(app)
-        if apps:
-            if isinstance(apps[0], str):
-                if self.have(apps[0]) and apps[0] not in self:
-                    self.append(apps[0])
-            elif isinstance(apps[0], (tuple, list)):
-                for app in apps[0]:
-                    if self.have(app) and app not in self:
-                        self.append(app)
-        return
-
-    def add_bin_dir(self, dirpath):
-        """
-        Add a directory to search for installed programs.
-        """
-        if isdir(dirpath):
-            self._dirs.append(dirpath)
-            self.update()
-            return
-        else:
-            raise TypeError('%s is not a valid directory path' % dirpath)
-
-
 def autostart(startme=True):
     """
     Install or remove a .desktop file when requested
@@ -304,15 +248,11 @@ def natural_size(size):
             return "%3.1f %s" % (size, unit)
         size /= 1000.0
 
-def open_folder(folder, objects = None):
+def open_folder(folder, objects):
     """
     Open given folder in file browser.
     """
-    if objects:
-        applist = objects['AvailableApps']
-    else:
-        applist = AvailableApps()
-    if 'xdg-open' in applist:
+    if 'xdg-open' in objects['AppCache']:
         try:
             logging.info('Opening folder : %s' % folder)
             subprocess.Popen(['xdg-open', folder])

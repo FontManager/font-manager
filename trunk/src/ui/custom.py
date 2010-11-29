@@ -254,4 +254,3 @@ class CellRendererTotal(gtk.CellRendererText):
 gobject.type_register(CellRendererTotal)
 # Enable warnings related to invalid names
 # pylint: enable-msg=C0103
-

@@ -1,18 +1,19 @@
 /* fm-fontutils.c
  *
+ * Font Manager, a font management application for the GNOME desktop
+ *
  * Copyright (C) 2009, 2010 Jerry Casiano
  *
  * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published
- * by the Free Software Foundation; either version 2.1 of the License, or
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to:
  *
  *   Free Software Foundation, Inc.
@@ -20,9 +21,24 @@
  *   Boston, MA 02110-1301, USA
 */
 
+#include <glib.h>
+#include <glib/gprintf.h>
+#include <glib/gstdio.h>
+
+#include <pango/pangofc-fontmap.h>
+#include <fontconfig/fcfreetype.h>
+#include FT_SFNT_NAMES_H
+#include FT_TRUETYPE_IDS_H
+#include FT_TRUETYPE_TABLES_H
+#include FT_TYPES_H
+#include FT_TYPE1_TABLES_H
+#include FT_XFREE86_H
+
 #include "fm-fontutils.h"
 
 static int _vendor_matches(const FT_Char vendor[4], const FT_Char *vendor_id);
+static void _get_pango_info(FontInfo *fontinfo, const FT_Face face, const gchar *filepath, int index);
+static void _get_ps_info(FontInfo *fontinfo, PS_FontInfoRec ps_info, FT_Face face);
 static void _get_sfnt_info(FontInfo *fontinfo, FT_Face face);
 static void _get_foundry_from_notice(const FT_String *notice, FontInfo *fontinfo);
 static void _get_foundry_from_vendor_id(const FT_Char vendor[4], FontInfo *fontinfo);
@@ -30,21 +46,15 @@ static void _get_foundry_from_vendor_id(const FT_Char vendor[4], FontInfo *fonti
 /**
  * FcListFiles:
  *
- * Returns a pointer to a GSList containing filepaths for installed font files
+ * Returns: a pointer to a GSList containing filepaths for installed font files
+ * 
  * Caller is responsible for freeing the returned list, i.e.
  *
  *      g_slist_foreach(list, (GFunc) g_free, NULL);
  *      g_slist_free(list);
- *
- * @Fini:   Free resources by calling FcFini()
- *
- * Note:    Calling FcFini from a graphical application which uses Pango
- *          can cause it to crash depending on FontConfig version.
- *
- * See http://code.google.com/p/chromium/issues/detail?id=32091 for an example
  */
 GSList *
-FcListFiles(int Fini)
+FcListFiles()
 {
     int         i;
     FcPattern   *pattern;
@@ -73,8 +83,6 @@ FcListFiles(int Fini)
         FcPatternDestroy(pattern);
     if (fontset)
         FcFontSetDestroy(fontset);
-    if (Fini)
-        FcFini();
 
     return filelist;
 }
@@ -82,7 +90,8 @@ FcListFiles(int Fini)
 /**
  * FcListUserDirs:
  *
- * Returns a pointer to a GSList containing filepaths for user font directories
+ * Returns: a pointer to a GSList containing filepaths for user font directories
+ * 
  * Caller is responsible for freeing the returned list, i.e.
  *
  *      g_slist_foreach(list, (GFunc) g_free, NULL);
@@ -95,12 +104,15 @@ FcListUserDirs()
     FcStrList   *fdlist;
     GSList      *dirlist = NULL;
 
+    g_assert(FcInit());
+
     fdlist = FcConfigGetFontDirs(NULL);
-    while ( (directory = FcStrListNext(fdlist)) )
+    while ((directory = FcStrListNext(fdlist)))
     {
-        if ( g_access((const gchar *) directory, W_OK) == 0 )
+        if (g_access((const gchar *) directory, W_OK) == 0)
             dirlist = g_slist_prepend(dirlist, directory);
     }
+
     FcStrListDone(fdlist);
 
     return dirlist;
@@ -114,7 +126,7 @@ FcListUserDirs()
  * Returns:     The number of faces contained in the font file.
  */
 FT_Long
-FT_Get_Face_Count(const gchar *filepath)
+FT_Get_Face_Count(const char *filepath)
 {
     FT_Face         face;
     FT_Library      library;
@@ -142,23 +154,13 @@ FT_Get_Face_Count(const gchar *filepath)
     return num_faces;
 }
 
-#define _ADD_SFNT_PROP(prop, val)                                              \
+#define ADD_PROP(prop, val)                                                    \
     {                                                                          \
         if (val)                                                               \
         {                                                                      \
             g_free_and_nullify(prop);                                          \
             prop = g_strdup(val);                                              \
-            g_free_and_nullify(val);                                           \
         }                                                                      \
-    }                                                                          \
-
-#define _ADD_PS_PROP(prop, val)                                                \
-    {                                                                          \
-        if (val && g_utf8_validate(val, -1, NULL))                            \
-            {                                                                  \
-                g_free_and_nullify(prop);                                      \
-                prop = g_strdup(val);                                          \
-            }                                                                  \
     }                                                                          \
 
 /**
@@ -171,13 +173,13 @@ FT_Get_Face_Count(const gchar *filepath)
  * Returns:     FreeType2 error code
  */
 FT_Error
-FT_Get_Font_Info(FontInfo *fontinfo, const gchar *filepath, int index)
+FT_Get_Font_Info(FontInfo *fontinfo, const char *filepath, int index)
 {
     FT_Face         face;
     FT_Library      library;
     FT_Error        error;
-    PS_FontInfoRec  ps_info;
     TT_OS2          *os2;
+    PS_FontInfoRec  ps_info;
 
     gsize           filesize = 0;
     gchar           *font       = NULL,
@@ -191,52 +193,35 @@ FT_Get_Font_Info(FontInfo *fontinfo, const gchar *filepath, int index)
 
     error = FT_Init_FreeType(&library);
     if (G_UNLIKELY(error))
-    {
         return error;
-    }
 
     error = FT_New_Memory_Face(library,
                                 (const FT_Byte *) font,
                                 (FT_Long) filesize, index, &face);
     if (G_UNLIKELY(error))
-    {
         return error;
-    }
 
-    g_free_and_nullify(fontinfo->owner);
+    ADD_PROP(fontinfo->filepath, filepath);
+
     if (g_access((const gchar *) filepath, W_OK) == 0)
+        ADD_PROP(fontinfo->owner, "User");
+
+    if (G_UNLIKELY(index != 0))
     {
-        fontinfo->owner = g_strdup("User");
-    }
-    else
-    {
-        fontinfo->owner = g_strdup("System");
+        g_free_and_nullify(fontinfo->face);
+        fontinfo->face = g_strdup_printf("%i", index);
     }
 
-    g_free_and_nullify(fontinfo->filepath);
-    fontinfo->filepath = g_strdup(filepath);
     g_free_and_nullify(fontinfo->filesize);
-    fontinfo->filesize = g_strdup_printf("%zu", (size_t) filesize);
+    /* fontinfo->filesize = g_strdup_printf("%zu", (size_t) filesize); */
+    fontinfo->filesize = g_format_size_for_display(filesize);
     g_free_and_nullify(checksum);
-    g_free_and_nullify(fontinfo->checksum);
     checksum = g_compute_checksum_for_data(G_CHECKSUM_MD5,
                                             (const guchar *) font, filesize);
-    fontinfo->checksum = g_strdup(checksum);
+    ADD_PROP(fontinfo->checksum, checksum);
     g_free_and_nullify(checksum);
 
-    os2 = (TT_OS2 *) FT_Get_Sfnt_Table (face, ft_sfnt_os2);
-    if (G_LIKELY(os2 && os2->version >= 0x0001 && os2->version != 0xffff))
-    {
-        _get_foundry_from_vendor_id(os2->achVendID, fontinfo);
-        /*
-        g_free_and_nullify(fontinfo->panose);
-        fontinfo->panose = g_strdup_printf("%i:%i:%i:%i:%i:%i:%i:%i:%i:%i",
-                                os2->panose[0], os2->panose[1], os2->panose[2],
-                                os2->panose[3], os2->panose[4], os2->panose[5],
-                                os2->panose[6], os2->panose[7], os2->panose[8],
-                                os2->panose[9]);
-                                */
-    }
+    _get_pango_info(fontinfo, face, filepath, index);
 
     if (G_LIKELY(FT_IS_SFNT(face)))
     {
@@ -244,60 +229,60 @@ FT_Get_Font_Info(FontInfo *fontinfo, const gchar *filepath, int index)
     }
     else if (FT_Get_PS_Font_Info(face, &ps_info) == 0)
     {
-        _ADD_PS_PROP(fontinfo->family, ps_info.family_name);
-        _ADD_PS_PROP(fontinfo->style, ps_info.weight);
-        _ADD_PS_PROP(fontinfo->version, ps_info.version);
-
-        if (ps_info.notice && g_utf8_validate(ps_info.notice, -1, NULL))
-        {
-            _ADD_PS_PROP(fontinfo->copyright, ps_info.notice);
-            _get_foundry_from_notice(ps_info.notice, fontinfo);
-        }
+        _get_ps_info(fontinfo, ps_info, face);
     }
 
     if (G_LIKELY(FT_Get_X11_Font_Format(face) != NULL))
     {
-        g_free_and_nullify(fontinfo->filetype);
-        fontinfo->filetype = g_strdup(FT_Get_X11_Font_Format(face));
+        ADD_PROP(fontinfo->filetype, FT_Get_X11_Font_Format(face));
     }
 
     if (G_LIKELY(FT_Get_Postscript_Name(face) != NULL))
     {
-        g_free_and_nullify(fontinfo->psname);
-        fontinfo->psname = g_strdup(FT_Get_Postscript_Name(face));
+        ADD_PROP(fontinfo->psname, FT_Get_Postscript_Name(face));
     }
 
-    /* Use these if possible */
+    os2 = (TT_OS2 *) FT_Get_Sfnt_Table(face, ft_sfnt_os2);
+    if (G_LIKELY(os2 && os2->version >= 0x0001 && os2->version != 0xffff))
+    {
+        _get_foundry_from_vendor_id(os2->achVendID, fontinfo);
+        g_free_and_nullify(fontinfo->panose);
+        fontinfo->panose = g_strdup_printf("%i:%i:%i:%i:%i:%i:%i:%i:%i:%i",
+                                os2->panose[0], os2->panose[1], os2->panose[2],
+                                os2->panose[3], os2->panose[4], os2->panose[5],
+                                os2->panose[6], os2->panose[7], os2->panose[8],
+                                os2->panose[9]);
+    }
+
+    /* Prefer these */
     if (G_LIKELY(face->family_name))
     {
         gchar   *family;
 
         family = g_convert((const gchar *) face->family_name,
                             -1, "UTF-8", "ASCII", NULL, NULL, NULL);
-        /* A ? more than likely means non-ASCII characters,
-         * if that is the case then we just keep the current
-         * value since this one will most definitely be broken.
-         */
-        if (family != NULL && !g_strrstr((const gchar *) family, "?"))
-        {
-            g_free_and_nullify(fontinfo->family);
-            fontinfo->family = g_strdup(family);
-        }
-        g_free_and_nullify(family);
+        /* A ? more than likely means non-ASCII characters */
+        if (!g_strrstr((const gchar *) family, "?"))
+            ADD_PROP(fontinfo->family, family);
+        g_free(family);
     }
+
+    if (G_UNLIKELY(g_strcmp0(fontinfo->family, "None") == 0))
+        ADD_PROP(fontinfo->family, fontinfo->pfamily);
+
     if (G_LIKELY(face->style_name))
     {
         gchar   *style;
 
         style = g_convert((const gchar *) face->style_name,
                             -1, "UTF-8", "ASCII", NULL, NULL, NULL);
-        if (style != NULL && !g_strrstr((const gchar *) style, "?"))
-        {
-            g_free_and_nullify(fontinfo->style);
-            fontinfo->style = g_strdup(style);
-        }
-        g_free_and_nullify(style);
+        if (!g_strrstr((const gchar *) style, "?"))
+            ADD_PROP(fontinfo->style, style);
+        g_free(style);
     }
+
+    if (G_UNLIKELY(g_strcmp0(fontinfo->style, "None") == 0))
+        ADD_PROP(fontinfo->style, fontinfo->pstyle);
 
     FT_Done_Face(face);
     FT_Done_FreeType(library);
@@ -306,7 +291,167 @@ FT_Get_Font_Info(FontInfo *fontinfo, const gchar *filepath, int index)
     return error;
 }
 
+static void 
+_get_pango_info(FontInfo *fontinfo, const FT_Face face,
+                        const gchar *filepath, int index)
+{
+    FcBlanks                *blanks;
+    FcPattern               *pattern;
+    PangoFontDescription    *descr;
+
+    blanks = FcBlanksCreate();
+    pattern = FcFreeTypeQueryFace(face, (const FcChar8 *) fontinfo->filepath,
+                                                                index, blanks);
+    descr = pango_fc_font_description_from_pattern (pattern, FALSE);
+
+    ADD_PROP(fontinfo->pdescr, pango_font_description_to_string(descr));
+    ADD_PROP(fontinfo->pfamily, (char *) pango_font_description_get_family(descr));
+
+    switch(pango_font_description_get_style(descr))
+    {
+        case PANGO_STYLE_NORMAL:
+            ADD_PROP(fontinfo->pstyle, "Normal");
+            break;
+        case PANGO_STYLE_OBLIQUE:
+            ADD_PROP(fontinfo->pstyle, "Oblique");
+            break;
+        case PANGO_STYLE_ITALIC:
+            ADD_PROP(fontinfo->pstyle, "Italic");
+            break;
+        default:
+            break;
+    }
+
+    switch(pango_font_description_get_variant(descr))
+    {
+        case PANGO_VARIANT_NORMAL:
+            ADD_PROP(fontinfo->pvariant, "Normal");
+            break;
+        case PANGO_VARIANT_SMALL_CAPS:
+            ADD_PROP(fontinfo->pvariant, "Small Caps");
+            break;
+        default:
+            break;
+    }
+
+    switch(pango_font_description_get_weight(descr))
+    {
+        case PANGO_WEIGHT_THIN:
+            ADD_PROP(fontinfo->pweight, "Thin");
+            break;
+        case PANGO_WEIGHT_ULTRALIGHT:
+            ADD_PROP(fontinfo->pweight, "Ultra-Light");
+            break;
+        case PANGO_WEIGHT_LIGHT:
+            ADD_PROP(fontinfo->pweight, "Light");
+            break;
+        case PANGO_WEIGHT_BOOK:
+            ADD_PROP(fontinfo->pweight, "Book");
+            break;
+        case PANGO_WEIGHT_NORMAL:
+            ADD_PROP(fontinfo->pweight, "Normal");
+            break;
+        case PANGO_WEIGHT_MEDIUM:
+            ADD_PROP(fontinfo->pweight, "Medium");
+            break;
+        case PANGO_WEIGHT_SEMIBOLD:
+            ADD_PROP(fontinfo->pweight, "Semi-Bold");
+            break;
+        case PANGO_WEIGHT_BOLD:
+            ADD_PROP(fontinfo->pweight, "Bold");
+            break;
+        case PANGO_WEIGHT_ULTRABOLD:
+            ADD_PROP(fontinfo->pweight, "Ultra-Bold");
+            break;
+        case PANGO_WEIGHT_HEAVY:
+            ADD_PROP(fontinfo->pweight, "Heavy");
+            break;
+        case PANGO_WEIGHT_ULTRAHEAVY:
+            ADD_PROP(fontinfo->pweight, "Ultra-Heavy");
+            break;
+        default:
+            break;
+    }
+
+    switch(pango_font_description_get_stretch(descr))
+    {
+        case PANGO_STRETCH_ULTRA_CONDENSED:
+            ADD_PROP(fontinfo->pstretch, "Ultra-Condensed");
+            break;
+        case PANGO_STRETCH_EXTRA_CONDENSED:
+            ADD_PROP(fontinfo->pstretch, "Extra-Condensed");
+            break;
+        case PANGO_STRETCH_CONDENSED:
+            ADD_PROP(fontinfo->pstretch, "Condensed");
+            break;
+        case PANGO_STRETCH_SEMI_CONDENSED:
+            ADD_PROP(fontinfo->pstretch, "Semi-Condensed");
+            break;
+        case PANGO_STRETCH_NORMAL:
+            ADD_PROP(fontinfo->pstretch, "Normal");
+            break;
+        case PANGO_STRETCH_SEMI_EXPANDED:
+            ADD_PROP(fontinfo->pstretch, "Semi-Expanded");
+            break;
+        case PANGO_STRETCH_EXPANDED:
+            ADD_PROP(fontinfo->pstretch, "Expanded");
+            break;
+        case PANGO_STRETCH_EXTRA_EXPANDED:
+            ADD_PROP(fontinfo->pstretch, "Extra-Expanded");
+            break;
+        case PANGO_STRETCH_ULTRA_EXPANDED:
+            ADD_PROP(fontinfo->pstretch, "Ultra-Expanded");
+            break;
+        default:
+            break;
+    }
+
+    pango_font_description_free(descr);
+
+    if (blanks)
+        FcBlanksDestroy(blanks);
+    if (pattern)
+        FcPatternDestroy(pattern);
+}
+
+#define ADD_PS_PROP(prop, val)                                                 \
+    {                                                                          \
+        if (val && g_utf8_validate(val, -1, NULL))                            \
+            {                                                                  \
+                g_free_and_nullify(prop);                                      \
+                prop = g_strdup(val);                                          \
+            }                                                                  \
+    }                                                                          \
+
 /* These two are mostly lifted from fontilus by James Henstridge. Thanks. :-) */
+static void
+_get_ps_info(FontInfo *fontinfo, PS_FontInfoRec ps_info, const FT_Face face)
+{
+    ADD_PS_PROP(fontinfo->family, ps_info.family_name);
+    ADD_PS_PROP(fontinfo->style, ps_info.weight);
+    ADD_PS_PROP(fontinfo->version, ps_info.version);
+
+    if (ps_info.notice && g_utf8_validate(ps_info.notice, -1, NULL))
+    {
+        ADD_PS_PROP(fontinfo->copyright, ps_info.notice);
+        _get_foundry_from_notice(ps_info.notice, fontinfo);
+    }
+}
+
+#define ADD_SFNT_PROP(prop, val)                                               \
+    {                                                                          \
+        if (val)                                                               \
+        {                                                                      \
+            g_free_and_nullify(prop);                                          \
+            prop = g_strdup(val);                                              \
+            g_free_and_nullify(val);                                           \
+        }                                                                      \
+    }                                                                          \
+
+#define G_CONVERT_8_2_16BE(sname)                                              \
+        g_convert((const gchar *) sname.string,                               \
+                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);    \
+
 static void
 _get_sfnt_info(FontInfo *fontinfo, const FT_Face face)
 {
@@ -338,56 +483,48 @@ _get_sfnt_info(FontInfo *fontinfo, const FT_Face face)
         {
             case TT_NAME_ID_FONT_FAMILY:
                 g_free_and_nullify(family);
-                family = g_convert((const gchar *) sname.string,
-                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                family = G_CONVERT_8_2_16BE(sname)
                 break;
             case TT_NAME_ID_FONT_SUBFAMILY:
                 g_free_and_nullify(style);
-                style = g_convert((const gchar *) sname.string,
-                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                style = G_CONVERT_8_2_16BE(sname)
                 break;
             case TT_NAME_ID_COPYRIGHT:
                 g_free_and_nullify(copyright);
-                copyright = g_convert((const gchar *) sname.string,
-                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                copyright = G_CONVERT_8_2_16BE(sname)
                 break;
             case TT_NAME_ID_VERSION_STRING:
                 g_free_and_nullify(version);
-                version = g_convert((const gchar *) sname.string,
-                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                version = G_CONVERT_8_2_16BE(sname)
                 break;
             case TT_NAME_ID_DESCRIPTION:
                 g_free_and_nullify(description);
-                description = g_convert((const gchar *) sname.string,
-                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                description = G_CONVERT_8_2_16BE(sname)
                 break;
             case TT_NAME_ID_LICENSE:
                 g_free_and_nullify(license);
-                license = g_convert((const gchar *) sname.string,
-                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                license = G_CONVERT_8_2_16BE(sname)
                 break;
             case TT_NAME_ID_LICENSE_URL:
                 g_free_and_nullify(license_url);
-                license_url = g_convert((const gchar *) sname.string,
-                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                license_url = G_CONVERT_8_2_16BE(sname)
                 break;
             case TT_NAME_ID_MANUFACTURER:
                 g_free_and_nullify(foundry);
-                foundry = g_convert((const gchar *) sname.string,
-                sname.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL);
+                foundry = G_CONVERT_8_2_16BE(sname)
                 break;
             default:
                 break;
         }
     }
 
-    _ADD_SFNT_PROP(fontinfo->family, family);
-    _ADD_SFNT_PROP(fontinfo->style, style);
-    _ADD_SFNT_PROP(fontinfo->version, version);
-    _ADD_SFNT_PROP(fontinfo->copyright, copyright);
-    _ADD_SFNT_PROP(fontinfo->description, description);
-    _ADD_SFNT_PROP(fontinfo->license, license);
-    _ADD_SFNT_PROP(fontinfo->license_url, license_url);
+    ADD_SFNT_PROP(fontinfo->family, family);
+    ADD_SFNT_PROP(fontinfo->style, style);
+    ADD_SFNT_PROP(fontinfo->version, version);
+    ADD_SFNT_PROP(fontinfo->copyright, copyright);
+    ADD_SFNT_PROP(fontinfo->description, description);
+    ADD_SFNT_PROP(fontinfo->license, license);
+    ADD_SFNT_PROP(fontinfo->license_url, license_url);
 
     if (foundry)
     {
@@ -406,7 +543,7 @@ _get_sfnt_info(FontInfo *fontinfo, const FT_Face face)
 }
 
 /*
- * Vendor data sourced from fcfreetype.c, ttmkfdir by Joerg Pommnitz and
+ * Vendor/Notice data sourced from fcfreetype.c, ttmkfdir by Joerg Pommnitz and
  * of course http://developer.apple.com/fonts/TTRefMan/RM06/Chap6OS2.html
  */
 
@@ -420,67 +557,67 @@ static const struct
 }
 NoticeData[] =
 {
-    { "Bigelow", "B&H"},
-    { "Adobe", "Adobe"},
-    { "Bitstream", "Bitstream"},
-    { "Monotype", "Monotype"},
-    { "Linotype", "Linotype"},
-    { "LINOTYPE-HELL", "Linotype"},
-    { "IBM", "IBM"},
-    { "URW", "URW"},
-    { "International Typeface Corporation", "ITC"},
-    { "Tiro Typeworks", "Tiro"},
-    { "XFree86", "XFree86"},
-    { "Microsoft", "Microsoft"},
-    { "Omega", "Omega"},
-    { "Font21", "Hwan"},
-    { "HanYang System", "HanYang"}
+    {"Bigelow", "B&H"},
+    {"Adobe", "Adobe"},
+    {"Bitstream", "Bitstream"},
+    {"Monotype", "Monotype"},
+    {"Linotype", "Linotype"},
+    {"LINOTYPE-HELL", "Linotype"},
+    {"IBM", "IBM"},
+    {"URW", "URW"},
+    {"International Typeface Corporation", "ITC"},
+    {"Tiro Typeworks", "Tiro"},
+    {"XFree86", "XFree86"},
+    {"Microsoft", "Microsoft"},
+    {"Omega", "Omega"},
+    {"Font21", "Hwan"},
+    {"HanYang System", "HanYang"}
 };
 
 static const struct
 {
     const FT_Char   vendor[5];
-    const char     foundry[50];
+    const char      foundry[50];
 }
 VendorData[] =
 {
-    { "ACG ", "AGFA Compugraphic"},
-    { "ADBE", "Adobe"},
-    { "AGFA", "AGFA Compugraphic"},
-    { "ALTS", "Altsys"},
-    { "APPL", "Apple"},
-    { "ARPH", "Arphic"},
-    { "ATEC", "Alltype"},
-    { "BERT", "Berthold"},
-    { "B&H ", "Bigelow & Holmes"},
-    { "B?  ", "Bigelow & Holmes"},
-    { "BITS", "Bitstream"},
-    { "CANO", "Cannon"},
-    { "DTC ", "Digital Typeface Corp."},
-    { "DYNA", "Dynalab"},
-    { "EPSN", "Epson"},
-    { "FJ  ", "Fujitsu"},
-    { "HP  ", "Hewlett-Packard"},
-    { "IBM ", "IBM"},
-    { "ITC ", "ITC"},
-    { "IMPR", "Impress"},
-    { "KATF", "Kingsley/ATF"},
-    { "LANS", "Lanston Type Co., Ltd."},
-    { "LARA", "Larabie Fonts"},
-    { "LEAF", "Interleaf"},
-    { "LETR", "Letraset"},
-    { "LINO", "Linotype"},
-    { "MACR", "Macromedia"},
-    { "MONO", "Monotype"},
-    { "MS  ", "Microsoft"},
-    { "MT  ", "Monotype"},
-    { "NEC ", "NEC"},
-    { "PARA", "Paratype"},
-    { "QMSI", "QMS/Imagen"},
-    { "RICO", "Ricoh"},
-    { "URW ", "URW"},
-    { "Y&Y ", "Y&Y"},
-    { "ZSFT", "ZSoft"}
+    {"ACG ", "AGFA Compugraphic"},
+    {"ADBE", "Adobe"},
+    {"AGFA", "AGFA Compugraphic"},
+    {"ALTS", "Altsys"},
+    {"APPL", "Apple"},
+    {"ARPH", "Arphic"},
+    {"ATEC", "Alltype"},
+    {"BERT", "Berthold"},
+    {"B&H ", "Bigelow & Holmes"},
+    {"B?  ", "Bigelow & Holmes"},
+    {"BITS", "Bitstream"},
+    {"CANO", "Cannon"},
+    {"DTC ", "Digital Typeface Corp."},
+    {"DYNA", "Dynalab"},
+    {"EPSN", "Epson"},
+    {"FJ  ", "Fujitsu"},
+    {"HP  ", "Hewlett-Packard"},
+    {"IBM ", "IBM"},
+    {"ITC ", "ITC"},
+    {"IMPR", "Impress"},
+    {"KATF", "Kingsley/ATF"},
+    {"LANS", "Lanston Type Co., Ltd."},
+    {"LARA", "Larabie Fonts"},
+    {"LEAF", "Interleaf"},
+    {"LETR", "Letraset"},
+    {"LINO", "Linotype"},
+    {"MACR", "Macromedia"},
+    {"MONO", "Monotype"},
+    {"MS  ", "Microsoft"},
+    {"MT  ", "Monotype"},
+    {"NEC ", "NEC"},
+    {"PARA", "Paratype"},
+    {"QMSI", "QMS/Imagen"},
+    {"RICO", "Ricoh"},
+    {"URW ", "URW"},
+    {"Y&Y ", "Y&Y"},
+    {"ZSFT", "ZSoft"}
 };
 
 #define STRUCT_LEN(s) (int) (sizeof (s) / sizeof (s[0]))
@@ -497,7 +634,8 @@ _vendor_matches(const FT_Char vendor[4], const FT_Char *vendor_id)
     a = g_string_new_len((const gchar *) vendor, 4);
     b = g_string_new_len((const gchar *) vendor_id, 4);
     result = g_string_equal(a, b);
-    g_string_free(a, TRUE); g_string_free(b, TRUE);
+    g_string_free(a, TRUE);
+    g_string_free(b, TRUE);
 
     return result;
 }
@@ -515,6 +653,7 @@ _get_foundry_from_notice(const FT_String *notice, FontInfo *fontinfo)
             {
                 g_free_and_nullify(fontinfo->foundry);
                 fontinfo->foundry = g_strdup(NoticeData[i].foundry);
+                break;
             }
         }
     }
@@ -533,6 +672,7 @@ _get_foundry_from_vendor_id(const FT_Char vendor[4], FontInfo *fontinfo)
             {
                 g_free_and_nullify(fontinfo->foundry);
                 fontinfo->foundry = g_strdup(VendorData[i].foundry);
+                break;
             }
         }
     }

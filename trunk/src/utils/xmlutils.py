@@ -538,7 +538,7 @@ def _tobool(val):
     """
     Convert from string to boolean.
     """
-    return val != 'False'
+    return (val != 'False' and val != 'false' and val != '0')
 
 def _unescape_markup(val):
     """

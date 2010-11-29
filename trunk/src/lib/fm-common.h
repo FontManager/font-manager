@@ -1,18 +1,19 @@
 /* fm-common.h
  *
+ * Font Manager, a font management application for the GNOME desktop
+ *
  * Copyright (C) 2009, 2010 Jerry Casiano
  *
  * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License as published
- * by the Free Software Foundation; either version 2.1 of the License, or
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
  * (at your option) any later version.
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public License
+ * GNU General Public License for more details.
+ * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to:
  *
  *   Free Software Foundation, Inc.
@@ -23,39 +24,40 @@
 #ifndef __FM_COMMON_H__
 #define __FM_COMMON_H__
 
-#include <glib.h>
-#include <glib/gprintf.h>
-#include <glib/gstdio.h>
+#define APPNAME "font-manager"
+#define DBNAME "font-manager.sqlite"
 
 typedef struct _fontinfo FontInfo;
-/*
- * All values in this stucture are initialized to "None"
- * Except for filetype and foundry which are initialized to "Unknown"
- */
+
 struct _fontinfo
 {
-    gchar    *owner;
-    gchar    *filepath;
-    gchar    *filetype;
-    gchar    *filesize;
-    gchar    *checksum;
-    gchar    *psname;
-    gchar    *family;
-    gchar    *style;
-    gchar    *foundry;
-    gchar    *copyright;
-    gchar    *version;
-    gchar    *description;
-    gchar    *license;
-    gchar    *license_url;
-    /* gchar    *panose; */
+    char   *owner;
+    char   *filepath;
+    char   *filetype;
+    char   *filesize;
+    char   *checksum;
+    char   *psname;
+    char   *family;
+    char   *style;
+    char   *foundry;
+    char   *copyright;
+    char   *version;
+    char   *description;
+    char   *license;
+    char   *license_url;
+    char   *panose;
+    char   *face;
+    char   *pfamily;
+    char   *pstyle;
+    char   *pvariant;
+    char   *pweight;
+    char   *pstretch;
+    char   *pdescr;
 };
 
 void fontinfo_init(FontInfo *fontinfo);
 void fontinfo_destroy(FontInfo *fontinfo);
-void g_free_and_nullify(gpointer p);
-gchar * natural_size(gsize filesize);
+void g_free_and_nullify(void *p);
 
-#endif
-/* EOF */
+#endif /* __FM_COMMON_H__ */
 

@@ -72,7 +72,7 @@ class Export(object):
             tooltip = _('This feature requires the Report Lab Toolkit')
             self.objects['IncludeSampler'].set_tooltip_text(tooltip)
             self.objects['ExportAsPDF'].set_tooltip_text(tooltip)
-        if not 'file-roller' in self.objects['AvailableApps']:
+        if not 'file-roller' in self.objects['AppCache']:
             tooltip = _('This feature requires File Roller')
             self.objects['ExportAsArchive'].set_sensitive(False)
             self.objects['ExportAsArchive'].set_tooltip_text(tooltip)

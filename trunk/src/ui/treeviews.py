@@ -65,13 +65,13 @@ class Treeviews(object):
     _types = {
                 'TrueType'      :   'truetype.png',
                 'Type 1'        :   'type1.png',
-                'BDF'           :   'bitmap.png',
-                'PCF'           :   'bitmap.png',
+                'BDF'           :   'bdf.png',
+                'PCF'           :   'pcf.png',
                 'Type 42'       :   'type42.png',
                 'CID Type 1'    :   'type1.png',
                 'CFF'           :   'opentype.png',
-                'PFR'           :   'bitmap.png',
-                'Windows FNT'   :   'bitmap.png'
+                'PFR'           :   'pfr.png',
+                'Windows FNT'   :   'fnt.png'
                 }
     def __init__(self, objects):
         self.objects = objects

@@ -91,7 +91,7 @@ class Previews(object):
         # Gnome Character Map
         character_map = self.objects['CharacterMap']
         character_map.connect('clicked', self.on_char_map)
-        if not 'gucharmap' in self.objects['AvailableApps']:
+        if not 'gucharmap' in self.objects['AppCache']:
             character_map.set_sensitive(False)
             character_map.set_tooltip_text(_('This feature requires Gucharmap'))
         self.objects['StyleCombo'].connect('changed', self._on_style_changed)
@@ -377,7 +377,7 @@ class Previews(object):
         if self.current_family.enabled:
             enable_font.set_sensitive(False)
             disable_font.set_sensitive(True)
-            if 'gucharmap' in self.objects['AvailableApps']:
+            if 'gucharmap' in self.objects['AppCache']:
                 character_map.set_sensitive(True)
         else:
             enable_font.set_sensitive(True)
@@ -397,7 +397,7 @@ class Previews(object):
         self.current_style_as_string = style
         valid_styles = 'Bold', 'Bold Italic', 'Italic'
         if self.current_family.enabled and \
-        'gucharmap' in self.objects['AvailableApps']:
+        'gucharmap' in self.objects['AppCache']:
             if style in self.current_family.styles.iterkeys() or \
             style in valid_styles:
                 character_map.set_sensitive(True)
@@ -489,9 +489,12 @@ class Previews(object):
         """
         if not self.info_dialog:
             self.info_dialog = FontInformation(self.objects)
-        self.info_dialog.show(self.current_family.styles\
+        try:
+            self.info_dialog.show(self.current_family.styles\
                                 [self.current_style_as_string]['filepath'],
                                 self.current_style)
+        except KeyError:
+            self.info_dialog.show(None, None)
         return
 
 

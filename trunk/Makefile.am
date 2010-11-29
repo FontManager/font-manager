@@ -17,8 +17,8 @@ UI_FILES = *.ui
 DE_FILES = *.desktop
 SAMPLER = font-sampler
 FLAGS = -fPIC -shared -D_REENTRANT -fno-strict-aliasing
-LIBS = $(fontconfig_LIBS)$(freetype2_LIBS)$(glib_LIBS)$(pango_LIBS)$(sqlite_LIBS)
-INCLUDES = $(fontconfig_CFLAGS)$(freetype2_CFLAGS)$(glib_CFLAGS)$(pango_CFLAGS)$(sqlite_CFLAGS)
+LIBS = $(fontconfig_LIBS)$(freetype2_LIBS)$(glib_LIBS)$(pango_LIBS)$(pangoft2_LIBS)$(sqlite_LIBS)
+INCLUDES = $(fontconfig_CFLAGS)$(freetype2_CFLAGS)$(glib_CFLAGS)$(pango_CFLAGS)$(pangoft2_CFLAGS)$(sqlite_CFLAGS)
 SYSCONFIG = distutils.sysconfig
 PyInclude = `$(PYTHON) -c 'import $(SYSCONFIG); print "-I%s" % \
 	$(SYSCONFIG).get_python_inc()'`
@@ -52,7 +52,7 @@ else
   STRIP_LIB = 
 endif
 
-BUILD_LIB = $(CC) $(SRC_LIB_DIR)/_fontutils_.c $(SRC_LIB_DIR)/fm-common.c \
+BUILD_LIB = $(CC) $(SRC_LIB_DIR)/fm-pyfontutils.c $(SRC_LIB_DIR)/fm-common.c \
 			$(SRC_LIB_DIR)/fm-database.c $(SRC_LIB_DIR)/fm-fontutils.c \
 			$(CFLAGS) $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS) \
 			$(PyLibs) -o $(FONTUTILS)

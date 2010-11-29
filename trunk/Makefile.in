@@ -81,7 +81,7 @@ INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
-LIBS = $(fontconfig_LIBS)$(freetype2_LIBS)$(glib_LIBS)$(pango_LIBS)$(sqlite_LIBS)
+LIBS = $(fontconfig_LIBS)$(freetype2_LIBS)$(glib_LIBS)$(pango_LIBS)$(pangoft2_LIBS)$(sqlite_LIBS)
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
@@ -138,6 +138,8 @@ mkdir_p = @mkdir_p@
 oldincludedir = @oldincludedir@
 pango_CFLAGS = @pango_CFLAGS@
 pango_LIBS = @pango_LIBS@
+pangoft2_CFLAGS = @pangoft2_CFLAGS@
+pangoft2_LIBS = @pangoft2_LIBS@
 pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
@@ -169,7 +171,7 @@ UI_FILES = *.ui
 DE_FILES = *.desktop
 SAMPLER = font-sampler
 FLAGS = -fPIC -shared -D_REENTRANT -fno-strict-aliasing
-INCLUDES = $(fontconfig_CFLAGS)$(freetype2_CFLAGS)$(glib_CFLAGS)$(pango_CFLAGS)$(sqlite_CFLAGS)
+INCLUDES = $(fontconfig_CFLAGS)$(freetype2_CFLAGS)$(glib_CFLAGS)$(pango_CFLAGS)$(pangoft2_CFLAGS)$(sqlite_CFLAGS)
 SYSCONFIG = distutils.sysconfig
 PyInclude = `$(PYTHON) -c 'import $(SYSCONFIG); print "-I%s" % \
 	$(SYSCONFIG).get_python_inc()'`
@@ -192,7 +194,7 @@ RECURSIVE_REMOVE = @rm -rfv
 @WINLIB_TRUE@FONTUTILS = $(SRC_LIB_DIR)/fontutils.dll
 @DEBUGINFO_FALSE@STRIP_LIB = $(STRIP) --strip-unneeded $(FONTUTILS)
 @DEBUGINFO_TRUE@STRIP_LIB = 
-BUILD_LIB = $(CC) $(SRC_LIB_DIR)/_fontutils_.c $(SRC_LIB_DIR)/fm-common.c \
+BUILD_LIB = $(CC) $(SRC_LIB_DIR)/fm-pyfontutils.c $(SRC_LIB_DIR)/fm-common.c \
 			$(SRC_LIB_DIR)/fm-database.c $(SRC_LIB_DIR)/fm-fontutils.c \
 			$(CFLAGS) $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS) \
 			$(PyLibs) -o $(FONTUTILS)

@@ -72,28 +72,31 @@ class UserActions(object):
 
     def _connect_callbacks(self):
         widgets = self.widgets
-        widgets['ActionsDialog'].connect('delete-event', \
-                                lambda widget, event: widget.hide() is None)
-        widgets['AddActionDialog'].connect('delete-event', \
-                                lambda widget, event: widget.hide() is None)
-        widgets['CloseActionsDialog'].connect('clicked', \
-                    lambda widget: widgets['ActionsDialog'].hide() is None)
-        widgets['NewAction'].connect('clicked', self._create_action)
-        widgets['RemoveAction'].connect('clicked', self._remove_action)
-        widgets['RemoveAction'].set_sensitive(False)
-        widgets['ActionName'].connect('changed', self._name_changed)
-        widgets['ActionName'].connect('icon-press', self._icon_pressed)
-        widgets['ActionComment'].connect('icon-press', self._icon_pressed)
-        widgets['ExecutablePath'].connect('changed', self._bin_changed)
-        widgets['ExecutablePath'].connect('icon-press', self._icon_pressed)
-        widgets['ArgumentList'].connect('icon-press', self._icon_pressed)
-        widgets['Cancel'].connect('clicked', self._cancel)
-        widgets['AddAction'].connect('clicked', self._add_action)
+        hide_widget = lambda widget, event: widget.hide() is None
+        close_dialog = lambda widget: widgets['ActionsDialog'].hide() is None
         selection = widgets['ActionsTree'].get_selection()
-        selection.connect('changed', self._selection_changed)
-        widgets['ActionsTree'].connect('row-activated', self._action_activated)
-        widgets['EditAction'].connect('clicked', self._activate_row)
+        callbacks = [
+            [widgets['ActionsDialog'], 'delete-event', hide_widget],
+            [widgets['AddActionDialog'], 'delete-event', hide_widget],
+            [widgets['CloseActionsDialog'], 'clicked', close_dialog],
+            [widgets['NewAction'], 'clicked', self._create_action],
+            [widgets['RemoveAction'], 'clicked', self._remove_action],
+            [widgets['ActionName'], 'changed',  self._name_changed],
+            [widgets['ActionName'], 'icon-press', self._icon_pressed],
+            [widgets['ActionComment'], 'icon-press', self._icon_pressed],
+            [widgets['ExecutablePath'], 'changed', self._bin_changed],
+            [widgets['ExecutablePath'], 'icon-press', self._icon_pressed],
+            [widgets['ArgumentList'], 'icon-press', self._icon_pressed],
+            [widgets['Cancel'], 'clicked', self._cancel],
+            [widgets['AddAction'], 'clicked', self._add_action],
+            [selection, 'changed', self._selection_changed],
+            [widgets['ActionsTree'], 'row-activated', self._action_activated],
+            [widgets['EditAction'], 'clicked', self._activate_row]
+            ]
+        for entry in callbacks:
+            entry[0].connect(entry[1], entry[2])
         widgets['EditAction'].set_sensitive(False)
+        widgets['RemoveAction'].set_sensitive(False)
         return
 
     def _action_activated(self, treeview, path, column):
@@ -124,24 +127,23 @@ class UserActions(object):
         """
         Add a user specified action
         """
-        widgets = self.widgets
         action = {}
         action['name'] = self.current_name
         action['executable'] = self.current_bin
-        comment = widgets['ActionComment'].get_text()
-        if len(comment) > 0:
+        comment = self.widgets['ActionComment'].get_text()
+        if comment.strip() != '':
             action['comment'] = comment
         else:
             action['comment'] = 'None'
-        args = widgets['ArgumentList'].get_text()
-        if len(args) > 0:
+        args = self.widgets['ArgumentList'].get_text()
+        if args.strip() != '':
             action['arguments'] = args
         else:
             action['arguments'] = 'None'
-        action['terminal'] = widgets['RunInTerminal'].get_active()
-        action['block'] = widgets['BlockOnAction'].get_active()
-        action['restart'] = widgets['RestartApp'].get_active()
-        widgets['AddActionDialog'].hide()
+        action['terminal'] = self.widgets['RunInTerminal'].get_active()
+        action['block'] = self.widgets['BlockOnAction'].get_active()
+        action['restart'] = self.widgets['RestartApp'].get_active()
+        self.widgets['AddActionDialog'].hide()
         while gtk.events_pending():
             gtk.main_iteration()
         if self.current_name in self.actions:
@@ -173,13 +175,10 @@ class UserActions(object):
         """
         Reset dialog.
         """
-        _entries = (
-            'ActionName', 'ActionComment', 'ExecutablePath', 'ArgumentList'
-                    )
-        _toggles = ( 'RunInTerminal', 'BlockOnAction', 'RestartApp' )
-        for entry in _entries:
-            self.widgets[entry].set_text('')
-        for toggle in _toggles:
+        for entry in 'ActionName', 'ActionComment', 'ExecutablePath', \
+            'ArgumentList':
+            set_widget_text(self.widgets[entry], None)
+        for toggle in 'RunInTerminal', 'BlockOnAction', 'RestartApp':
             self.widgets[toggle].set_active(False)
         self.widgets['AddAction'].set_sensitive(False)
         return
@@ -199,22 +198,15 @@ class UserActions(object):
         """
         Edit an existing action.
         """
-        widgets = self.widgets
         action = self.actions[val]
         self.current_name = val
-        widgets['ActionName'].set_text(action['name'])
-        widgets['ExecutablePath'].set_text(action['executable'])
-        if action['comment'] != 'None':
-            widgets['ActionComment'].set_text(action['comment'])
-        else:
-            widgets['ActionComment'].set_text('')
-        if action['arguments'] != 'None':
-            widgets['ArgumentList'].set_text(action['arguments'])
-        else:
-            widgets['ArgumentList'].set_text('')
-        widgets['RunInTerminal'].set_active(action['terminal'])
-        widgets['BlockOnAction'].set_active(action['block'])
-        widgets['RestartApp'].set_active(action['restart'])
+        set_widget_text(self.widgets['ActionName'], action['name'])
+        set_widget_text(self.widgets['ExecutablePath'], action['executable'])
+        set_widget_text(self.widgets['ActionComment'], action['comment'])
+        set_widget_text(self.widgets['ArgumentList'], action['arguments'])
+        self.widgets['BlockOnAction'].set_active(action['block'])
+        self.widgets['RestartApp'].set_active(action['restart'])
+        self.widgets['RunInTerminal'].set_active(action['terminal'])
         self._create_action(None)
         return
 
@@ -233,7 +225,7 @@ class UserActions(object):
         if icon_pos == 0:
             self._select_bin(widget)
         else:
-            widget.set_text('')
+            set_widget_text(widget, None)
         return
 
     def _name_changed(self, widget):
@@ -327,7 +319,7 @@ class UserActions(object):
         response = dialog.run()
         dialog.hide()
         if response:
-            widget.set_text(dialog.get_filename())
+            set_widget_text(widget, dialog.get_filename())
         return
 
     def _selection_changed(self, treeselection):
@@ -341,3 +333,11 @@ class UserActions(object):
             self.widgets['RemoveAction'].set_sensitive(False)
             self.widgets['EditAction'].set_sensitive(False)
         return
+
+
+def set_widget_text(widget, text):
+    if text is not None and text != 'None':
+        widget.set_text(text)
+    else:
+        widget.set_text('')
+    return

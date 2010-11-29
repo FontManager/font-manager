@@ -46,13 +46,69 @@ import fonts
 import database
 
 from constants import *
-from utils.common import AvailableApps, natural_sort, autostart
+from utils.common import natural_sort, autostart
 from utils.xmlutils import load_directories, save_blacklist, save_directories
 
 APPLIST = None
 MANAGER = None
 PREFERENCES = None
 PROGRESS_CALLBACK = None
+
+
+class AppCache(list):
+    """
+    This class is a list of available applications.
+    """
+    _defaults = ('dolphin', 'file-roller', 'gnome-appearance-properties',
+                'gucharmap', 'konqueror', 'nautilus', 'pcmanfm', 'thunar',
+                'xdg-open', 'yelp')
+    _dirs = os.getenv('PATH', '/usr/bin:/usr/local/bin').split(':')
+    def __init__(self):
+        list.__init__(self)
+        self.update()
+
+    def have(self, app):
+        """
+        Return True if app is installed.
+        """
+        if app in self:
+            return True
+        else:
+            for appdir in self._dirs:
+                if exists(join(appdir, app)):
+                    return True
+        return False
+
+    def update(self, *apps):
+        """
+        Update self to include apps.
+
+        apps -- an application, list or tuple of applications.
+        """
+        del self[:]
+        for app in self._defaults:
+            if self.have(app) and app not in self:
+                self.append(app)
+        if apps:
+            if isinstance(apps[0], str):
+                if self.have(apps[0]) and apps[0] not in self:
+                    self.append(apps[0])
+            elif isinstance(apps[0], (tuple, list)):
+                for app in apps[0]:
+                    if self.have(app) and app not in self:
+                        self.append(app)
+        return
+
+    def add_bin_dir(self, dirpath):
+        """
+        Add a directory to search for installed programs.
+        """
+        if isdir(dirpath):
+            self._dirs.append(dirpath)
+            self.update()
+            return
+        else:
+            raise TypeError('%s is not a valid directory path' % dirpath)
 
 
 class FontManager(gobject.GObject, UserDict.UserDict):
@@ -718,13 +774,13 @@ gobject.type_register(Preferences)
 
 def get_applist():
     """
-    Return an instance of AvailableApps.
+    Return an instance of AppCache.
     """
     global APPLIST
     if APPLIST:
         return APPLIST
     else:
-        APPLIST = AvailableApps()
+        APPLIST = AppCache()
         return APPLIST
 
 def get_manager(parent = None):
