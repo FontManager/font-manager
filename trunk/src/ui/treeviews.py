@@ -228,10 +228,9 @@ class Treeviews(object):
         Display "Advanced Search" dialog.
         """
         filt = self.filter.run()
-        if filt:
+        if isinstance(filt, list):
             self._show_collection(filt)
-        else:
-            return
+        return
 
     # Disable warnings related to invalid names
     # pylint: disable-msg=C0103
@@ -387,8 +386,6 @@ class Treeviews(object):
         """
         Display context menu when a family is right clicked.
         """
-        menu = gtk.Menu()
-        actions = self.actions.actions
         selection = widget.get_selection()
         if selection.count_selected_rows() > 1:
             return
@@ -403,6 +400,21 @@ class Treeviews(object):
             filepath = self.manager[family].styles[style]['filepath']
         except KeyError:
             return
+        menu = gtk.Menu()
+        secondary = gtk.Menu()
+        collections = self.manager.list_collections()
+        if collections:
+            menuitem = gtk.MenuItem(_('Add to'))
+            menu.append(menuitem)
+            menuitem.set_submenu(secondary)
+            top_separator = gtk.SeparatorMenuItem()
+            menu.append(top_separator)
+            for collection in natural_sort(collections):
+                menuitem = gtk.MenuItem(collection)
+                secondary.append(menuitem)
+                menuitem.connect('activate', self._add_on_right_click,
+                                                    collection, family)
+        actions = self.actions.actions
         for action in self.actions.get_actions():
             menuitem = gtk.MenuItem(actions[action]['name'])
             menuitem.set_name(actions[action]['name'])
@@ -411,8 +423,8 @@ class Treeviews(object):
             menu.append(menuitem)
             menuitem.connect('activate', self.actions.run_command,
                                         (filepath, family, style))
-        separator = gtk.SeparatorMenuItem()
-        menu.append(separator)
+        bottom_separator = gtk.SeparatorMenuItem()
+        menu.append(bottom_separator)
         menuitem = gtk.MenuItem(_('Edit actions...'))
         menuitem.connect('activate', self.actions.run)
         menu.append(menuitem)
@@ -420,6 +432,12 @@ class Treeviews(object):
         menu.popup(None, None, None, event.button, event.time)
         while gtk.events_pending():
             gtk.main_iteration()
+        return
+
+    def _add_on_right_click(self, unused_menuitem, collection, family):
+        self.manager.add_families_to(collection, family)
+        self.manager.auto_enable_collections()
+        self._update_collection_treeview()
         return
 
     def _load_categories(self):
@@ -811,9 +829,13 @@ class Treeviews(object):
 class TreeviewFilter(object):
     _widgets = (
                 'SearchDialog', 'FamilyCombo', 'FamilyEntry', 'TypeCombo',
-                'TypeComboEntry', 'FoundryCombo', 'FoundryComboEntry',
-                'FilepathCombo', 'FilepathEntry'
+                'FoundryCombo', 'FoundryComboEntry', 'FilepathCombo',
+                'FilepathEntry', 'FiletypeCombo', 'FiletypeComboEntry'
                 )
+    _family_types = (
+                    'All', 'No Fit', 'Text and Display', 'Script', 'Decorative',
+                    'Pictorial'
+                    )
     def __init__(self, objects):
         self.objects = objects
         self.builder = objects.builder
@@ -822,9 +844,8 @@ class TreeviewFilter(object):
             self.widgets[widget] = self.builder.get_object(widget)
         self.widgets['SearchDialog'].connect('delete-event', \
                                 lambda widget, event: widget.response(0))
-        self.combos = (
-                    'FamilyCombo', 'TypeCombo', 'FoundryCombo', 'FilepathCombo'
-                    )
+        self.combos = ('FamilyCombo', 'TypeCombo', 'FoundryCombo',
+                        'FilepathCombo', 'FiletypeCombo')
         self._types = self._get_types()
         self._foundries = self._get_foundries()
         self._setup_combos()
@@ -837,9 +858,10 @@ class TreeviewFilter(object):
         family = self._get_family()
         typ = self._get_type()
         foundry = self._get_foundry()
+        filetype = self._get_filetype()
         filepath = self._get_filepath()
         query = ''
-        for entry in family, typ, foundry, filepath:
+        for entry in family, typ, foundry, filetype, filepath:
             if entry:
                 if query == '':
                     query = '%s' % entry
@@ -868,9 +890,16 @@ class TreeviewFilter(object):
         return query
 
     def _get_type(self):
-        typ = self.widgets['TypeComboEntry'].child.get_text()
+        active = self.widgets['TypeCombo'].get_active()
+        if active == 0:
+            return False
+        else:
+            return 'panose LIKE "' + str(active) + ':%"'
+
+    def _get_filetype(self):
+        typ = self.widgets['FiletypeComboEntry'].child.get_text()
         if typ != '':
-            active = self.widgets['TypeCombo'].get_active()
+            active = self.widgets['FiletypeCombo'].get_active()
             if active == 0:
                 query = 'filetype="%s"' % typ
             elif active == 1:
@@ -934,14 +963,18 @@ class TreeviewFilter(object):
     def _setup_combos(self):
         model1 = gtk.ListStore(gobject.TYPE_STRING)
         model2 = gtk.ListStore(gobject.TYPE_STRING)
+        model3 = gtk.ListStore(gobject.TYPE_STRING)
         for entry in 'contains', 'begins with', 'ends with':
             model1.append([entry])
         for entry in '=', '!=':
             model2.append([entry])
+        for entry in self._family_types:
+            model3.append([entry])
         self.widgets['FamilyCombo'].set_model(model1)
-        self.widgets['TypeCombo'].set_model(model2)
+        self.widgets['FiletypeCombo'].set_model(model2)
         self.widgets['FoundryCombo'].set_model(model2)
         self.widgets['FilepathCombo'].set_model(model1)
+        self.widgets['TypeCombo'].set_model(model3)
         cell = gtk.CellRendererText()
         for widget in self.combos:
             self.widgets[widget].pack_start(cell, True)
@@ -956,9 +989,9 @@ class TreeviewFilter(object):
             model1.append([entry])
         for entry in self._foundries:
             model2.append([entry])
-        self.widgets['TypeComboEntry'].set_model(model1)
+        self.widgets['FiletypeComboEntry'].set_model(model1)
         self.widgets['FoundryComboEntry'].set_model(model2)
-        for widget in 'TypeComboEntry', 'FoundryComboEntry':
+        for widget in 'FiletypeComboEntry', 'FoundryComboEntry':
             self.widgets[widget].set_text_column(0)
         return
 
@@ -970,7 +1003,7 @@ class TreeviewFilter(object):
             self.widgets[widget].set_active(0)
         for widget in 'FamilyEntry', 'FilepathEntry':
             self.widgets[widget].set_text('')
-        for widget in 'TypeComboEntry', 'FoundryComboEntry':
+        for widget in 'FiletypeComboEntry', 'FoundryComboEntry':
             self.widgets[widget].child.set_text('')
         dialog = self.widgets['SearchDialog']
         response = dialog.run()
