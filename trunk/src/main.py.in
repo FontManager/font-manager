@@ -46,9 +46,11 @@ from ui.export import Export
 from ui.janitor import FontJanitor
 from ui.library import InstallFonts, RemoveFonts
 from ui.treeviews import Treeviews
-from ui.previews import Browse, Previews
+from ui.previews import FontBrowser, Previews
+from ui.preferences import PreferencesDialog
 from utils.common import open_folder, delete_cache, delete_database, \
-            reset_fontconfig_cache, fc_config_load_user_fonts, fc_config_reload
+                            reset_fontconfig_cache, fc_config_load_user_fonts, \
+                            fc_config_reload, run_dialog
 from utils.xmlutils import save_collections
 
 try:
@@ -99,7 +101,7 @@ class Main(object):
         self.previews = self.objects['Previews']
         self.treeviews = self.objects['Treeviews']
         if self.preferences.browsemode:
-            self.objects['Browse'] = Browse(self.objects)
+            self.objects['FontBrowser'] = FontBrowser(self.objects)
             self.objects['BrowseFonts'].show()
         self.objects.connect_callbacks()
         self._connect_callbacks()
@@ -153,7 +155,7 @@ class Main(object):
             (_('This option requires gnome-appearance-properties'))
 
         # Callbacks with arguments
-        self.menus['TrayAbout'].connect('activate', _on_about_dialog,
+        self.menus['TrayAbout'].connect('activate', run_dialog,
                                             self.objects['AboutDialog'])
         self.menus['FontConfigSettings'].connect('activate',
                                         _on_fontconfig_settings, self.objects)
@@ -172,24 +174,20 @@ class Main(object):
     def _on_export(self, unused_widget):
         if not self.export:
             self.export = Export(self.objects)
-        self.export.run()
-        return
+        return self.export.run()
 
     def _on_install_fonts(self, unused_widget):
         if not self.installer:
             self.installer = InstallFonts(self.objects)
-        self.installer.run()
-        return
+        return self.installer.run()
 
     def _on_open_folder(self, unused_widget):
-        open_folder(self.objects['Preferences'].folder, self.objects)
-        return
+        return open_folder(self.objects['Preferences'].folder, self.objects)
 
     def _on_remove_fonts(self, unused_widget):
         if not self.remover:
             self.remover = RemoveFonts(self.objects)
-        self.remover.run()
-        return
+        return self.remover.run()
 
     def _on_tray_icon_clicked(self, widget):
         """
@@ -223,10 +221,7 @@ class Main(object):
             delete_database()
             reset_fontconfig_cache()
         if self.main_window.get_property('visible'):
-            dialog = self.objects['ReloadDialog']
-            response = dialog.run()
-            dialog.hide()
-            if not response:
+            if not run_dialog(dialog = self.objects['ReloadDialog']):
                 return
         else:
             self.objects.notify_send(_('Font Manager will restart in a moment'))
@@ -250,11 +245,10 @@ class Main(object):
         return
 
     def _set_window_state(self, widget, event):
-        if event.type == gtk.gdk.WINDOW_STATE:
-            if event.new_window_state == gtk.gdk.WINDOW_STATE_MAXIMIZED:
-                self.preferences.maximized = True
-            else:
-                self.preferences.maximized = False
+        if not event.type == gtk.gdk.WINDOW_STATE:
+            return
+        max = gtk.gdk.WINDOW_STATE_MAXIMIZED
+        self.preferences.maximized = (event.new_window_state == max)
         return
 
     def _use_tray_icon(self, unused_cls_instance, minimize = True):
@@ -358,7 +352,7 @@ class ObjectContainer(UserDict.UserDict):
         self.data['Preferences'] = core.get_preferences()
         self.data['AppCache'] = core.get_applist()
         self.data['PopupMenus'] = PopupMenu(self)
-        self.data['Browse'] = None
+        self.data['FontBrowser'] = None
         # Find and set up icon for use throughout app windows
         try:
             icon_theme = gtk.icon_theme_get_default()
@@ -380,7 +374,7 @@ class ObjectContainer(UserDict.UserDict):
         """
         Connect callbacks to local functions.
         """
-        self.data['About'].connect('clicked', _on_about_dialog,
+        self.data['About'].connect('clicked', run_dialog,
                                             self.data['AboutDialog'])
         if 'yelp' in self.data['AppCache']:
             self.data['Help'].connect('clicked', _on_help)
@@ -432,21 +426,15 @@ class ObjectContainer(UserDict.UserDict):
         if self.icon:
             notification.set_icon_from_pixbuf(self.icon)
         notification.show()
-        while gtk.events_pending():
-            gtk.main_iteration()
         return
 
     def on_prefs(self, unused_widget):
         """
         Display preferences dialog.
         """
-        from ui.preferences import PreferencesDialog
         if self.prefs_dialog is None:
             self.prefs_dialog = PreferencesDialog(self)
-            self.prefs_dialog.run(self)
-        else:
-            self.prefs_dialog.run(self)
-        return
+        return self.prefs_dialog.run(self)
 
     def progress_callback(self, pmsg, total, processed):
         """
@@ -461,8 +449,7 @@ class ObjectContainer(UserDict.UserDict):
         return
 
     def reload(self, del_cache = False):
-        self.data['Main'].reload(None, del_cache)
-        return
+        return self.data['Main'].reload(None, del_cache)
 
     def set_sensitive(self, state = True):
         self.data['MainBox'].set_sensitive(state)
@@ -484,9 +471,8 @@ class ObjectContainer(UserDict.UserDict):
         """
         Update family total displayed in "statusbar".
         """
-        self.data['FamilyTotal'].set_text\
+        return self.data['FamilyTotal'].set_text\
         (_('Families : %s') % str(self.data['FontManager'].total_families()))
-        return
 
 
 class PopupMenu(UserDict.UserDict):
@@ -511,8 +497,7 @@ class PopupMenu(UserDict.UserDict):
         self.cleanup = None
 
     def _run_cleanup(self, unused_widget, directory):
-        FontJanitor(self.objects, directory)
-        return
+        return FontJanitor(self.objects, directory)
 
     def show_manage_menu(self, unused_widget, event):
         """
@@ -545,15 +530,13 @@ class PopupMenu(UserDict.UserDict):
             if self.cleanup is not None:
                 self.cleanup.hide()
                 self.manage_menu.get_children()[2].hide()
-        self.manage_menu.popup(None, None, None, event.button, event.time)
-        return
+        return self.manage_menu.popup(None, None, None, event.button, event.time)
 
     def show_tray_menu(self, unused_widget, button, event_time):
         """
         Display tray menu.
         """
-        self.tray_menu.popup(None, None, None, button, event_time)
-        return
+        return self.tray_menu.popup(None, None, None, button, event_time)
 
     def show_settings_menu(self, unused_widget, event):
         """
@@ -561,8 +544,7 @@ class PopupMenu(UserDict.UserDict):
         """
         if event.button != 1:
             return
-        self.settings_menu.popup(None, None, None, event.button, event.time)
-        return
+        return self.settings_menu.popup(None, None, None, event.button, event.time)
 
 
 def _delete_handler(window, unused_event):
@@ -577,20 +559,11 @@ def _delete_handler(window, unused_event):
     window.hide()
     return True
 
-def _on_about_dialog(unused_widget, dialog):
-    """
-    Launch about dialog.
-    """
-    dialog.run()
-    dialog.hide()
-    return
-
 def _on_edit_aliases(unused_widget, objects):
     """
     Display a dialog so user can tweak font aliases.
     """
-    fontconfig.AliasEdit(objects)
-    return
+    return fontconfig.AliasEdit(objects)
 
 def _on_font_settings(unused_widget):
     """
@@ -607,8 +580,7 @@ def _on_fontconfig_settings(unused_widget, objects):
     """
     Display a dialog so user can tweak fontconfig settings for individual fonts.
     """
-    fontconfig.ConfigEdit(objects)
-    return
+    return fontconfig.ConfigEdit(objects)
 
 def _on_help(unused_widget):
     """

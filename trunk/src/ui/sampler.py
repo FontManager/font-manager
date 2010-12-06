@@ -49,7 +49,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.platypus.flowables import KeepTogether
 
-from utils.common import natural_sort, natural_sort_pathlist
+from utils.common import natural_sort, natural_sort_pathlist, run_dialog
 
 # letter == (612.0, 792.0)
 PAGE_WIDTH = letter[0]
@@ -294,14 +294,8 @@ fonts will not be included in the sample sheet') % \
                             (len(self.failed), self.total))
         dialog.vbox.pack_start(status, False, True, 5)
         dialog.vbox.show_all()
-        response = dialog.run()
-        dialog.destroy()
-        while gtk.events_pending():
-            gtk.main_iteration()
-        if not response == gtk.RESPONSE_OK:
-            return False
-        else:
-            return True
+        result = run_dialog(dialog = dialog)
+        return (result == gtk.RESPONSE_OK)
 
 
 def map_font(name):

@@ -40,8 +40,8 @@ from constants import USER_FONT_DIR, USER_FONT_CONFIG_DIR, \
                         USER_FONT_CONFIG_DESELECT, USER_FONT_COLLECTIONS, \
                         USER_FONT_COLLECTIONS_BAK, USER_ACTIONS_CONFIG, \
                         COMPAT_COLLECTIONS
-from constants import CHECKBUTTONS, CONSTS, CONSTS_MAP, DEFAULTS, SKIP, \
-                                            SLANT, WEIGHT, FC_WIDGETMAP, WIDTH
+from constants import FC_CHECKBUTTONS, FC_CONSTS, FC_CONSTS_MAP, FC_DEFAULTS, \
+                        FC_SKIP, PSLANT, PWEIGHT, FC_WIDGETMAP, PWIDTH
 
 def add_patelt_node(node_ref, node_value, pat_name='family', val_type='string'):
     """
@@ -388,8 +388,7 @@ def save_compat_collections(objects):
     For compatibility with KDE font manager and any other programs which might
     make use of that file.
     """
-    if exists(COMPAT_COLLECTIONS):
-        os.unlink(COMPAT_COLLECTIONS)
+    not exists(COMPAT_COLLECTIONS) or os.unlink(COMPAT_COLLECTIONS)
     order = _get_collection_order(objects)
     printed = []
     # Start "printing"
@@ -421,9 +420,9 @@ def save_fontconfig_settings(settings):
     root = doc.newChild(None, 'fontconfig', None)
     for style in sorted(settings.faces.iterkeys()):
         dirty = False
-        for setting in CHECKBUTTONS:
+        for setting in FC_CHECKBUTTONS:
             attribute = FC_WIDGETMAP[setting]
-            default_val = DEFAULTS[FC_WIDGETMAP[setting]]
+            default_val = FC_DEFAULTS[FC_WIDGETMAP[setting]]
             if getattr(settings.faces[style], attribute, default_val):
                 dirty = True
                 break
@@ -432,14 +431,14 @@ def save_fontconfig_settings(settings):
         node = _add_standard_match_targets(doc, root, style, settings)
         less_eq = FC_WIDGETMAP[_('Smaller than')]
         more_eq = FC_WIDGETMAP[_('Larger than')]
-        less = getattr(settings.faces[style], less_eq, DEFAULTS[less_eq])
-        more = getattr(settings.faces[style], more_eq, DEFAULTS[more_eq])
+        less = getattr(settings.faces[style], less_eq, FC_DEFAULTS[less_eq])
+        more = getattr(settings.faces[style], more_eq, FC_DEFAULTS[more_eq])
         if less:
             test = node.newChild(None, 'test', None)
             test.setProp('name', 'size')
             test.setProp('compare', 'less')
             attribute = 'min_size'
-            default_val = DEFAULTS[attribute]
+            default_val = FC_DEFAULTS[attribute]
             val = int(getattr(settings.faces[style], attribute, default_val))
             test.newChild(None, 'double', str(val))
             _add_assignments(node, style, settings)
@@ -450,7 +449,7 @@ def save_fontconfig_settings(settings):
             test.setProp('name', 'size')
             test.setProp('compare', 'more')
             attribute = 'max_size'
-            default_val = DEFAULTS[attribute]
+            default_val = FC_DEFAULTS[attribute]
             val = int(getattr(settings.faces[style], attribute, default_val))
             test.newChild(None, 'double', str(val))
             _add_assignments(node, style, settings)
@@ -478,40 +477,40 @@ def _guess_style_values(node, settings, style):
     test = node.newChild(None, 'test', None)
     test.setProp('name', 'slant')
     test.setProp('compare', 'eq')
-    test.newChild(None, 'const', SLANT[descr.get_style()])
+    test.newChild(None, 'const', PSLANT[descr.get_style()])
     test = node.newChild(None, 'test', None)
     test.setProp('name', 'weight')
     test.setProp('compare', 'more_eq')
-    test.newChild(None, 'int', WEIGHT[descr.get_weight()].split(':')[0])
+    test.newChild(None, 'int', PWEIGHT[descr.get_weight()].split(':')[0])
     test = node.newChild(None, 'test', None)
     test.setProp('name', 'weight')
     test.setProp('compare', 'less_eq')
-    test.newChild(None, 'int', WEIGHT[descr.get_weight()].split(':')[1])
+    test.newChild(None, 'int', PWEIGHT[descr.get_weight()].split(':')[1])
     test = node.newChild(None, 'test', None)
     test.setProp('name', 'width')
     test.setProp('compare', 'eq')
-    test.newChild(None, 'const', WIDTH[descr.get_stretch()])
+    test.newChild(None, 'const', PWIDTH[descr.get_stretch()])
     return
 
 def _add_assignments(node, style, settings):
-    for setting in CHECKBUTTONS:
+    for setting in FC_CHECKBUTTONS:
         attribute = FC_WIDGETMAP[setting]
-        default_val = DEFAULTS[FC_WIDGETMAP[setting]]
+        default_val = FC_DEFAULTS[FC_WIDGETMAP[setting]]
         val = getattr(settings.faces[style], attribute, default_val)
-        if setting not in SKIP:
+        if setting not in FC_SKIP:
             edit = node.newChild(None, 'edit', None)
             edit.setProp('name', attribute)
             edit.setProp('mode', 'assign')
             edit.newChild(None, 'bool', str(val))
-        if val and attribute in CONSTS_MAP:
-            attribute = CONSTS_MAP[attribute]
-            default_val = DEFAULTS[attribute]
+        if val and attribute in FC_CONSTS_MAP:
+            attribute = FC_CONSTS_MAP[attribute]
+            default_val = FC_DEFAULTS[attribute]
             raw_val = getattr(settings.faces[style], attribute, default_val)
             val = str(raw_val).split('.')[1][:1]
             edit = node.newChild(None, 'edit', None)
             edit.setProp('name', attribute)
             edit.setProp('mode', 'assign')
-            edit.newChild(None, 'const', CONSTS[attribute][val])
+            edit.newChild(None, 'const', FC_CONSTS[attribute][val])
         if val and attribute == 'disablergba':
             edit = node.newChild(None, 'edit', None)
             edit.setProp('name', 'rgba')

@@ -207,7 +207,7 @@ class FontJanitor(object):
 
     @staticmethod
     def _have_write_permissions(filepath):
-        return ( exists(filepath) and os.access(filepath, os.W_OK) )
+        return (exists(filepath) and os.access(filepath, os.W_OK))
 
     def _on_name_cell_edited(self, cell, path, new_name):
         if new_name.strip() == '':

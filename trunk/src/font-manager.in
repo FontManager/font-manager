@@ -33,8 +33,7 @@ import os
 import sys
 
 # Allow running without installation
-desktop_file = os.path.join(os.path.dirname(__file__), 'font-manager.desktop')
-if os.path.exists(desktop_file):
+if os.path.exists(os.path.join(os.path.dirname(__file__), 'font-manager.in')):
     PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
     LIB_DIR = os.path.dirname(os.path.abspath(__file__))
 else:

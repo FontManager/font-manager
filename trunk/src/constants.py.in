@@ -35,8 +35,7 @@ from fontutils import pango_get_sample_string
 
 PACKAGE = '@PACKAGE_NAME@'
 
-if os.path.exists(os.path.join(os.path.dirname(__file__),
-                                                    'font-manager.desktop')):
+if os.path.exists(os.path.join(os.path.dirname(__file__), 'font-manager.in')):
     VERSION     = 'is not installed'
     PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
     LOCALEDIR   = os.path.join(os.path.dirname(__file__), '../po')
@@ -86,14 +85,16 @@ abcdefghijklmnopqrstuvwxyz
 
 # Standard alias families
 ALIAS_FAMILIES = 'Monospace', 'Sans', 'Serif'
+# Most common font styles, we try to select one of these if available
+DEFAULT_STYLES  =  ['Regular', 'Roman', 'Medium', 'Normal', 'Book']
 # Font types we "support"
-FONT_EXTS = ('.pfa', '.pfb', '.ttf', '.ttc', '.otf', \
+FONT_EXTS = ('.pfa', '.pfb', '.ttf', '.ttc', '.otf',
                 '.PFA', '.PFB', '.TTF', '.TTC', '.OTF')
 T1_EXTS = ('.pfa', '.pfb', '.PFA', '.PFB')
 FONT_GLOBS = ['*.ttf', '*.ttc', '*.otf', '*.TTF', '*.TTC', '*.OTF']
 # Archive types supported by most *nix systems
 ARCH_EXTS = ('.zip', '.tar', '.tar.gz', '.tar.bz2',
-               '.ZIP', '.TAR', '.TAR.GZ', '.TAR.BZ2' )
+               '.ZIP', '.TAR', '.TAR.GZ', '.TAR.BZ2')
 ARCH_GLOBS = ['*.zip', '*.tar*', '*.ZIP', '*.TAR*']
 
 README = \
@@ -209,11 +210,6 @@ EMPTY_FONT_CONFIG = \
 </fontconfig>
 """
 
-CHECKBUTTONS = (_('Anti-Alias'), _('Auto-Hint'), _('Hinting'),
-                _('LCD Filter'), _('Force Spacing'),
-                _('Use Global Advance data'), _('Use Embedded Bitmaps'),
-                _('Disable rgba'), _('Smaller than'), _('Larger than'))
-
 # Some of the most common fonts, at least according to http://www.codestyle.org/
 # May or may not be valid alias targets...
 COMMON_FONTS = ('A Charming Font', 'Abadi MT', 'Academy Engraved LET',
@@ -289,7 +285,12 @@ COMMON_FONTS = ('A Charming Font', 'Abadi MT', 'Academy Engraved LET',
 'University Roman LET', 'Utopia', 'Vera Sans', 'Vera Sans Mono', 'Vera Serif',
 'Verdana', 'Verdana Ref', 'Victorian LET', 'Viner Hand ITC')
 
-CONSTS = {
+FC_CHECKBUTTONS = (_('Anti-Alias'), _('Auto-Hint'), _('Hinting'),
+                _('LCD Filter'), _('Force Spacing'),
+                _('Use Global Advance data'), _('Use Embedded Bitmaps'),
+                _('Disable rgba'), _('Smaller than'), _('Larger than'))
+
+FC_CONSTS = {
             'hintstyle' :   {
                             '0'   :   'hintnone',
                             '1'   :   'hintslight',
@@ -310,13 +311,13 @@ CONSTS = {
                             }
                             }
 
-CONSTS_MAP = {
+FC_CONSTS_MAP = {
                 'hinting'       :   'hintstyle',
                 'lcdfiltering'  :   'lcdfilter',
                 'forcespacing'  :   'spacing'
                 }
 
-DEFAULTS = {
+FC_DEFAULTS = {
             'antialias'         :   False,
             'autohint'          :   False,
             'embeddedbitmap'    :   False,
@@ -333,9 +334,6 @@ DEFAULTS = {
             'max_size'          :   0.0,
             'disablergba'       :   False
             }
-
-# Most common font styles, we try to select one of these if available
-DEFAULT_STYLES  =  ['Regular', 'Roman', 'Medium', 'Normal', 'Book']
 
 FC_WIDGETMAP = {
             _('Anti-Alias')                 :   'antialias',
@@ -354,50 +352,50 @@ FC_WIDGETMAP = {
             }
 
 # These are basically identical between pango and fc
-SLANT = {
+PSLANT = {
             0   :   'roman',
             1   :   'oblique',
             2   :   'italic'
             }
 
-SKIP = (_('LCD Filter'), _('Force Spacing'),
+FC_SKIP = (_('LCD Filter'), _('Force Spacing'),
             _('Exclude size range'), _('Disable rgba'),
             _('Smaller than'), _('Larger than'))
 
-SCALES = {
+FC_SCALES = {
             _('Hinting')           :   'HintScale',
             _('LCD Filter')        :   'FilterScale',
             _('Force Spacing')     :   'SpacingScale'
             }
 
-SCALE_LABELS = {
+FC_SCALE_LABELS = {
                 'HintScale'         :   {
-                                        0.0   :   'None',
-                                        0.1   :   'Slight',
-                                        0.2   :   'Medium',
-                                        0.3   :   'Full'
+                                        0.0   :   _('None'),
+                                        0.1   :   _('Slight'),
+                                        0.2   :   _('Medium'),
+                                        0.3   :   _('Full')
                                         },
                 'FilterScale'       :   {
-                                        0.0   :   'None',
-                                        0.1   :   'Default',
-                                        0.2   :   'Light',
-                                        0.3   :   'Legacy'
+                                        0.0   :   _('None'),
+                                        0.1   :   _('Default'),
+                                        0.2   :   _('Light'),
+                                        0.3   :   _('Legacy')
                                         },
                 'SpacingScale'      :   {
-                                        0.0   :   'Proportional',
-                                        0.1   :   'Dual',
-                                        0.2   :   'Mono',
-                                        0.3   :   'Charcell'
+                                        0.0   :   _('Proportional'),
+                                        0.1   :   _('Dual'),
+                                        0.2   :   _('Mono'),
+                                        0.3   :   _('Charcell')
                                         }
                                         }
 
-SCALE_SENSITIVITY = {
+FC_SCALE_SENSITIVITY = {
                     'HintScale'         :   'hinting',
                     'FilterScale'       :   'lcdfiltering',
                     'SpacingScale'      :   'forcespacing'
                     }
 
-SENSITIVITY = {
+FC_SENSITIVITY = {
                 _('Auto-Hint')     :   _('Hinting'),
                 _('Hinting')       :   _('Auto-Hint'),
                 _('Larger than')   :   'max_size',
@@ -405,7 +403,7 @@ SENSITIVITY = {
                 }
 
 # These are basically identical between pango and fc
-WIDTH = {
+PWIDTH = {
             0   :   'ultracondensed',
             1   :   'extracondensed',
             2   :   'condensed',
@@ -419,7 +417,7 @@ WIDTH = {
 
 # Map of pango to fc values
 if pango.version() < 12400:
-    WEIGHT = {
+    PWEIGHT = {
                 200 :   '0:40',
                 300 :   '40:50',
                 400 :   '50:100',
@@ -428,7 +426,7 @@ if pango.version() < 12400:
                 900 :   '205:210'
                 }
 else:
-    WEIGHT = {
+    PWEIGHT = {
                 100 :   '0:0',
                 200 :   '0:40',
                 300 :   '40:50',

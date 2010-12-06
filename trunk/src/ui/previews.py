@@ -39,8 +39,12 @@ from os.path import basename
 from constants import COMPARE_TEXT, DEFAULT_STYLES, PREVIEW_TEXT, \
                         STANDARD_TEXT, LOCALIZED_TEXT
 from fontinfo import FontInformation
-from utils.common import correct_slider_behavior
+from utils.common import begin_drag, correct_slider_behavior
 
+TARGET_TYPE_BROWSE_ROW = 30
+
+BROWSE_DRAG_TARGETS = [('browser_add', gtk.TARGET_SAME_APP, TARGET_TYPE_BROWSE_ROW)]
+BROWSE_DRAG_ACTIONS = (gtk.gdk.ACTION_DEFAULT | gtk.gdk.ACTION_MOVE)
 
 def set_preview_text(use_localized_sample):
     global PREVIEW_TEXT
@@ -122,16 +126,14 @@ class Previews(object):
     def _on_browse_fonts(self, widget):
         if widget == self.objects['BrowseFonts']:
             self.objects['MainNotebook'].set_current_page(1)
-            self.objects['CollectionButtonsFrame'].hide()
             collection = self.objects['Treeviews'].current_collection
             families = self.manager.list_families_in(collection)
-            self.objects['Browse'].update_tree(families)
+            self.objects['FontBrowser'].update_tree(families)
+            self.objects['Treeviews'].set_direct_select()
         else:
-            if self.objects['Browse'].working:
-                self.objects['Browse'].cancel = True
             self.objects['MainNotebook'].set_current_page(0)
-            self.objects['CollectionButtonsFrame'].show()
             self.objects['Treeviews'].update_views(True)
+            self.objects['Treeviews'].set_indirect_select()
         while gtk.events_pending():
             gtk.main_iteration()
         return
@@ -498,7 +500,7 @@ class Previews(object):
         return
 
 
-class Browse(object):
+class FontBrowser(object):
     """
     Create a treeview containing inline previews of all fonts.
     """
@@ -507,15 +509,19 @@ class Browse(object):
         self.browse_tree = self.objects['BrowseTree']
         self.families = self.objects['FontManager'].list_families()
         self.treestore = gtk.TreeStore(gobject.TYPE_STRING,
-                                    gobject.TYPE_PYOBJECT, gobject.TYPE_BOOLEAN)
+                                    gobject.TYPE_PYOBJECT, gobject.TYPE_BOOLEAN,
+                                    gobject.TYPE_BOOLEAN, gobject.TYPE_STRING)
         self.browse_tree.set_model(self.treestore)
         renderer = gtk.CellRendererText()
         renderer.set_property('ypad', 3)
         column = gtk.TreeViewColumn(None, renderer)
         column.set_cell_data_func(renderer, self._cell_data_cb)
         self.browse_tree.append_column(column)
-        self.working = False
-        self.cancel = False
+        self.browse_tree.get_selection().set_select_function(self._on_select)
+        self.browse_tree.enable_model_drag_source\
+                                (gtk.gdk.BUTTON1_MASK | gtk.gdk.RELEASE_MASK,
+                                    BROWSE_DRAG_TARGETS, BROWSE_DRAG_ACTIONS)
+        self.browse_tree.connect_after('drag-begin', begin_drag)
         self.size = self.objects['Preferences'].previewsize
         size_adjustment = self.objects['SizeAdjustment']
         # Make it do something
@@ -524,18 +530,22 @@ class Browse(object):
         self.objects['BrowseSizeSlider'].connect('scroll-event',
                                                 correct_slider_behavior, 1.0)
 
-    def update_tree(self, families):
+    def _on_select(self, path):
+        model = self.browse_tree.get_model()
+        if model.get_value(model.get_iter(path), 3):
+            return True
+        else:
+            self.browse_tree.get_selection().select_path(path[0])
+            return False
+
+    def update_tree(self, families, scroll_to_top = True):
         self.families = families
         self.objects['BrowseScroll'].set_sensitive(False)
-        if self.working:
-            self.cancel = True
-        while self.working:
-            time.sleep(0.25)
-            while gtk.events_pending():
-                gtk.main_iteration()
-            continue
         self.treestore.clear()
-        gobject.idle_add(self._populate_browse_tree)
+        self._populate_browse_tree()
+        self.objects['BrowseScroll'].set_sensitive(True)
+        if scroll_to_top:
+            self.browse_tree.scroll_to_point(0, 0)
         return
 
     def _cell_data_cb(self, column, cell, model, treeiter):
@@ -559,40 +569,23 @@ class Browse(object):
             cellset('strikethrough', model.get_value(treeiter, 2))
         return
 
-    # Adapted from gnome-specimen.
     def _populate_browse_tree(self):
-        """
-        Idle callback that adds font families to the tree model
-        """
-        # loading is done when the list of remaining families is empty
-        if len(self.families) == 0 or self.cancel:
-            self.objects['BrowseScroll'].set_sensitive(True)
-            self.browse_tree.expand_all()
-            self.working = False
-            self.cancel = False
-            return False
-        self.working = True
         # speedup: temporarily disconnect the model
         model = self.browse_tree.get_model()
         self.browse_tree.set_model(None)
-        # add a bunch of fonts and faces to the treemodel
-        try:
-            for unused_i in range(100):
-                family = self.families.pop(0)
-                obj = self.objects['FontManager'][family]
-                root_node = self.treestore.append(None,
-                            [glib.markup_escape_text(family), None, False])
-                for style in obj.pango_family.list_faces():
-                    displaytext = '%s %s' % (glib.markup_escape_text(family),
-                    glib.markup_escape_text(style.get_face_name()))
-                    self.treestore.append(root_node, [displaytext,
-                    style.describe(), not obj.enabled])
-        except IndexError:
-            pass
+        for family in self.families:
+            obj = self.objects['FontManager'][family]
+            root_node = self.treestore.append(None,
+                [glib.markup_escape_text(family), None, False, True, family])
+            for style in obj.pango_family.list_faces():
+                displaytext = '%s %s' % (glib.markup_escape_text(family),
+                            glib.markup_escape_text(style.get_face_name()))
+                self.treestore.append(root_node,
+                [displaytext, style.describe(), not obj.enabled, False, family])
         # reconnect the model
         self.browse_tree.set_model(model)
-        # run again
-        return True
+        self.browse_tree.expand_all()
+        return
 
     def update_browse_view(self, widget):
         """
@@ -603,3 +596,4 @@ class Browse(object):
         self.browse_tree.queue_draw()
         self.browse_tree.get_column(0).queue_resize()
         return
+

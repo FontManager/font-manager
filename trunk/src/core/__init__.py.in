@@ -266,9 +266,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         """
         Return True if family is available.
         """
-        if family in self.data.iterkeys():
-            return True
-        return False
+        return (family in self.data.iterkeys())
 
     def create_category(self, name, comment = None, families = None):
         """
@@ -427,8 +425,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
             if isdir(filepath) or not exists(filepath):
                 # There is a slim possibility that a file gets changed
                 # between being selected in the filechooser and getting here
-                if not exists(filepath):
-                    missing.append(filepath)
+                exists(filepath) or missing.append(filepath)
                 continue
             filename = filepath.rsplit('/', 1)[1]
             if filepath.endswith(ARCH_EXTS):
@@ -777,37 +774,31 @@ def get_applist():
     Return an instance of AppCache.
     """
     global APPLIST
-    if APPLIST:
-        return APPLIST
-    else:
+    if APPLIST is None:
         APPLIST = AppCache()
-        return APPLIST
+    return APPLIST
 
 def get_manager(parent = None):
     """
     Return an instance of FontManager.
     """
     global MANAGER
-    if MANAGER:
-        return MANAGER
-    else:
+    if MANAGER is None:
         if parent:
             MANAGER = FontManager(PROGRESS_CALLBACK, parent)
         else:
             MANAGER = FontManager(PROGRESS_CALLBACK)
         MANAGER.connect('update-font-select', _save_rejects)
-        return MANAGER
+    return MANAGER
 
 def get_preferences():
     """
     Return an instance of Preferences.
     """
     global PREFERENCES
-    if PREFERENCES:
-        return PREFERENCES
-    else:
+    if PREFERENCES is None:
         PREFERENCES = Preferences()
-        return PREFERENCES
+    return PREFERENCES
 
 def _save_rejects(unused_cls_instance, families):
     """
@@ -895,14 +886,13 @@ for folder in CACHE_DIR, CONFIG_DIR, APP_CONFIG_DIR, AUTOSTART_DIR, DATA_DIR, \
             from utils.common import install_readme
             install_readme()
 # Migrate old files to new more XDG-like structure if needed
-if exists(join(HOME, '.FontManager')):
-    _migrate()
+not exists(join(HOME, '.FontManager')) or _migrate()
 # Make sure our library symlink exists and points to the right place
 if os.path.islink(USER_LIBRARY_SYMLINK):
     if realpath(USER_LIBRARY_SYMLINK) != USER_LIBRARY_DIR:
         os.unlink(USER_LIBRARY_SYMLINK)
-if not exists(USER_LIBRARY_SYMLINK):
-    os.symlink(USER_LIBRARY_DIR, join(USER_FONT_DIR, 'Library'))
+exists(USER_LIBRARY_SYMLINK) or os.symlink(USER_LIBRARY_DIR,
+                                            join(USER_FONT_DIR, 'Library'))
 # http://code.google.com/p/font-manager/issues/detail?id=29
 # Be nice about this.
 CONFIG_NEEDS_UPDATE = False
@@ -915,8 +905,7 @@ else:
     CONFIG_NEEDS_UPDATE = True
 if CONFIG_NEEDS_UPDATE:
     logging.info('Updating %s' % USER_FONT_CONFIG)
-    if exists(USER_FONT_CONFIG):
-        _relocate_user_config(CONFIG_CONTENT)
+    not exists(USER_FONT_CONFIG) or _relocate_user_config(CONFIG_CONTENT)
     with open(USER_FONT_CONFIG, 'wb') as conf:
         conf.write(VALID_USER_FONT_CONFIG)
 else:

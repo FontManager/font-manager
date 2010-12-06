@@ -95,17 +95,13 @@ class FontInformation(object):
         """
         Clear previous results.
         """
-        self.filedir = None
-        self.typ = None
-        self.db_row = None
+        self.filedir = self.typ = self.db_row = None
         entries = ('FamilyLabel', 'FamilyEntry', 'StyleEntry', 'TypeEntry',
                     'SizeEntry', 'FileEntry')
         for widget in entries:
             self.widgets[widget].set_text('')
         for widget in 'CopyrightView', 'DescriptionView', 'LicenseView':
-            view = self.widgets[widget]
-            t_buffer = view.get_buffer()
-            t_buffer.set_text('')
+            self.widgets[widget].get_buffer().set_text('')
         self.widgets['TypeLogo'].set_from_pixbuf(self.logos['blank'])
         return
 
@@ -124,8 +120,7 @@ class FontInformation(object):
         """
         Open containing folder.
         """
-        open_folder(self.filedir, self.objects)
-        return
+        return open_folder(self.filedir, self.objects)
 
     def show(self, filepath, descr):
         """
@@ -194,9 +189,7 @@ class FontInformation(object):
         'PFR'        :   'http://en.wikipedia.org/wiki/TrueDoc',
         'Windows FNT':   'http://support.microsoft.com/kb/65123'
                 }
-        if webbrowser.open(_pages[self.typ]):
-            return
-        else:
+        if not webbrowser.open(_pages[self.typ]):
             logging.warn("Could not find any suitable web browser")
         return
 
@@ -204,49 +197,42 @@ class FontInformation(object):
         """
         Display copyright if available.
         """
-        box = self.widgets['CopyrightBox']
-        view = self.widgets['CopyrightView']
-        t_buffer = view.get_buffer()
-        copyrite = self.db_row['copyright']
-        if copyrite != 'None':
-            t_buffer.set_text(copyrite)
-            box.show()
+        if self.db_row['copyright'] != 'None':
+            t_buffer = self.widgets['CopyrightView'].get_buffer()
+            t_buffer.set_text(self.db_row['copyright'])
+            self.widgets['CopyrightBox'].show()
         else:
-            box.hide()
+            self.widgets['CopyrightBox'].hide()
         return
 
     def _set_description(self):
         """
         Display description if available.
         """
-        box = self.widgets['DescriptionBox']
-        view = self.widgets['DescriptionView']
-        t_buffer = view.get_buffer()
-        description = self.db_row['description']
-        if description != 'None':
-            t_buffer.set_text(description)
-            box.show()
+        if self.db_row['description'] != 'None':
+            t_buffer = self.widgets['DescriptionView'].get_buffer()
+            t_buffer.set_text(self.db_row['description'])
+            self.widgets['DescriptionBox'].show()
         else:
-            box.hide()
+            self.widgets['DescriptionBox'].hide()
         return
 
     def _set_license(self):
         """
         Display license if available.
         """
-        box = self.widgets['LicenseBox']
-        view = self.widgets['LicenseView']
-        t_buffer = view.get_buffer()
-        licens = self.db_row['license']
-        url = self.db_row['license_url']
-        if licens != 'None':
-            t_buffer.set_text(licens)
-            box.show()
+        if self.db_row['license'] != 'None':
+            t_buffer = self.widgets['LicenseView'].get_buffer()
+            t_buffer.set_text(self.db_row['license'])
+            self.widgets['LicenseBox'].show()
             self.widgets['Notebook'].set_show_tabs(True)
+            if self.db_row['license_url'] != 'None':
+                self.widgets['LicenseLink'].set_uri(self.db_row['license_url'])
+                self.widgets['LicenseLink'].set_label(self.db_row['license_url'])
+                self.widgets['LicenseLink'].show()
+            else:
+                self.widgets['LicenseLink'].hide()
         else:
-            box.hide()
+            self.widgets['LicenseBox'].hide()
             self.widgets['Notebook'].set_show_tabs(False)
-        if url != 'None':
-            self.widgets['LicenseLink'].set_uri(url)
-            self.widgets['LicenseLink'].set_label(url)
         return

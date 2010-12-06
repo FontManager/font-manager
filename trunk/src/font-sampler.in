@@ -40,8 +40,7 @@ import UserDict
 from os.path import abspath, dirname, basename, exists, join, splitext
 
 # Allow running without installation
-desktop_file = join(dirname(__file__), 'font-manager.desktop')
-if exists(desktop_file):
+if os.path.exists(os.path.join(os.path.dirname(__file__), 'font-manager.in')):
     PACKAGE_DIR = dirname(abspath(__file__))
     LIB_DIR = dirname(abspath(__file__))
 else:
@@ -60,7 +59,7 @@ gettext.textdomain('font-manager')
 
 from core import Preferences
 from constants import CACHE_DIR, HOME, PACKAGE_DATA_DIR
-from utils.common import display_warning
+from utils.common import display_warning, run_dialog
 
 CACHE_FILE  =   join(CACHE_DIR, 'sampler.cache')
 
@@ -70,8 +69,7 @@ def _exit_with_error(msg, sec_msg = None):
     dialog.set_markup('<b>%s</b>' % msg)
     if sec_msg:
         dialog.format_secondary_text(sec_msg)
-    dialog.run()
-    dialog.destroy()
+    run_dialog(None, dialog, True)
     sys.exit(1)
 
 try:
@@ -237,11 +235,7 @@ class FontSampler(UserDict.UserDict):
 
 
 if __name__ == '__main__':
-    if not exists(CACHE_FILE):
-        objects = FontSampler()
-        objects.connect_callbacks()
-        objects['MainWindow'].show()
-    else:
+    if exists(CACHE_FILE):
         cache = shelve.open(CACHE_FILE, protocol=cPickle.HIGHEST_PROTOCOL)
         objects = FontSampler()
         objects.collection = cache['collection']
@@ -250,6 +244,10 @@ if __name__ == '__main__':
         cache.close()
         os.unlink(CACHE_FILE)
         objects.build_pdf(None, True)
+    else:
+        objects = FontSampler()
+        objects.connect_callbacks()
+        objects['MainWindow'].show()
     try:
         gtk.main()
     except (KeyboardInterrupt):

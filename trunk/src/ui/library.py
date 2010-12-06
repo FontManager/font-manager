@@ -33,7 +33,7 @@ from os.path import isdir
 
 from core import database
 from constants import HOME, USER_LIBRARY_DIR, FONT_GLOBS, ARCH_GLOBS
-from utils.common import natural_sort
+from utils.common import natural_sort, run_dialog
 
 
 class InstallFonts(object):
@@ -59,25 +59,17 @@ class InstallFonts(object):
         """
         Display a warning dialog.
         """
-        dialog = self.objects['MadFontsWarning']
-        result = dialog.run()
-        dialog.hide()
-        while gtk.events_pending():
-            gtk.main_iteration()
-        return result
+        return run_dialog(dialog = self.objects['MadFontsWarning'])
 
     def _show_missing_files(self, filelist):
         """
         Present a dialog showing which files could not be located
         """
-        dialog = self.objects['FileMissingDialog']
-        view = self.objects['FileMissingView']
-        t_buffer = view.get_buffer()
+        t_buffer = self.objects['FileMissingView'].get_buffer()
         t_buffer.set_text('')
         for filepath in filelist:
             t_buffer.insert_at_cursor(filepath + '\n')
-        dialog.run()
-        dialog.hide()
+        run_dialog(dialog = self.objects['FileMissingDialog'])
         return
 
     def process_install(self, filelist, library = USER_LIBRARY_DIR):

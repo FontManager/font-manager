@@ -43,15 +43,17 @@ from core.database import Table
 from constants import PACKAGE_DATA_DIR, FONT_EXTS
 from custom import CellRendererTotal
 from library import InstallFonts
-from utils.common import match, natural_sort, search
+from utils.common import begin_drag, match, natural_sort, search, run_dialog
 
 TARGET_TYPE_COLLECTION_ROW = 10
 TARGET_TYPE_FAMILY_ROW = 20
-TARGET_TYPE_EXTERNAL_DROP = 30
+TARGET_TYPE_BROWSE_ROW = 30
+TARGET_TYPE_EXTERNAL_DROP = 40
 
 COLLECTION_DRAG_TARGETS = [
                 ('reorder', gtk.TARGET_SAME_WIDGET, TARGET_TYPE_COLLECTION_ROW),
-                ('add', gtk.TARGET_SAME_APP, TARGET_TYPE_FAMILY_ROW)
+                ('add', gtk.TARGET_SAME_APP, TARGET_TYPE_FAMILY_ROW),
+                ('browser_add', gtk.TARGET_SAME_APP, TARGET_TYPE_BROWSE_ROW)
                 ]
 COLLECTION_DRAG_ACTIONS = (gtk.gdk.ACTION_DEFAULT | gtk.gdk.ACTION_MOVE)
 
@@ -143,6 +145,8 @@ class Treeviews(object):
         category_treeselect = self.category_tree.get_selection()
         category_treeselect.set_select_function(lambda path: len(path) == 2)
         category_treeselect.connect('changed', self._on_collection_selected)
+        category_treeselect.connect('changed', self.__on_collection_selected)
+        category_treeselect.handler_block_by_func(self.__on_collection_selected)
         if self.objects['Preferences'].tooltips:
             self.category_tree.set_tooltip_column(2)
         self._load_categories()
@@ -171,6 +175,8 @@ class Treeviews(object):
         collection_treeselect = self.collection_tree.get_selection()
         collection_treeselect.set_select_function(lambda path: len(path) == 2)
         collection_treeselect.connect('changed', self._on_collection_selected)
+        collection_treeselect.connect('changed', self.__on_collection_selected)
+        collection_treeselect.handler_block_by_func(self.__on_collection_selected)
         if self.objects['Preferences'].tooltips:
             self.collection_tree.set_tooltip_column(2)
         self.collection_tree.enable_model_drag_dest(COLLECTION_DRAG_TARGETS,
@@ -208,7 +214,7 @@ class Treeviews(object):
         family_treeselect.set_mode(gtk.SELECTION_MULTIPLE)
         self.family_tree.connect('button-press-event', self._on_button_press)
         self.family_tree.connect('button-release-event', self._on_button_release)
-        self.family_tree.connect_after('drag-begin', _begin_drag)
+        self.family_tree.connect_after('drag-begin', begin_drag)
         self.family_tree.connect('row-activated', self._on_family_activated)
         self.family_tree.connect('query-tooltip', self._on_family_tooltip)
         self.family_tree.append_column(family_column)
@@ -264,8 +270,6 @@ class Treeviews(object):
         return
 
     def _on_drag_data_received(self, widget, context, x, y, data, info, tstamp):
-        if self.objects['MainNotebook'].get_current_page() != 0:
-            return
         model = widget.get_model()
         root = model.get_iter_root()
         if not root:
@@ -297,6 +301,18 @@ class Treeviews(object):
             self.manager.add_families_to(collection, families)
             if self.objects['Preferences'].focusondrop:
                 widget.get_selection().select_path(path)
+        elif info == TARGET_TYPE_BROWSE_ROW:
+            iter = context.get_source_widget().get_selection().get_selected()[1]
+            family = context.get_source_widget().get_model().get_value(iter, 4)
+            collection = model.get(model.get_iter(
+                                    widget.get_path_at_pos(x,y)[0]), 0, 1)[0]
+            self.manager.add_families_to(collection, family)
+            self.manager.auto_enable_collections()
+            self._update_collection_treeview()
+            self.update_category_treeview()
+            families = self.manager.list_families_in(self.current_collection)
+            self.objects['FontBrowser'].update_tree(families, False)
+            return
         self.update_views()
         return
 
@@ -484,7 +500,29 @@ class Treeviews(object):
             model.set(treeiter, 1, collections[new_name].get_label())
         return
 
+    def set_direct_select(self):
+        direct = self.__on_collection_selected
+        indirect = self._on_collection_selected
+        self.category_tree.get_selection().handler_block_by_func(indirect)
+        self.category_tree.get_selection().handler_unblock_by_func(direct)
+        self.collection_tree.get_selection().handler_block_by_func(indirect)
+        self.collection_tree.get_selection().handler_unblock_by_func(direct)
+        return
+
+    def set_indirect_select(self):
+        direct = self.__on_collection_selected
+        indirect = self._on_collection_selected
+        self.category_tree.get_selection().handler_block_by_func(direct)
+        self.category_tree.get_selection().handler_unblock_by_func(indirect)
+        self.collection_tree.get_selection().handler_block_by_func(direct)
+        self.collection_tree.get_selection().handler_unblock_by_func(indirect)
+        return
+
     def _on_collection_selected(self, tree_selection):
+        glib.idle_add(self.__on_collection_selected, tree_selection)
+        return
+
+    def __on_collection_selected(self, tree_selection):
         try:
             model, treeiter = tree_selection.get_selected()
             self.current_collection = model.get_value(treeiter, 0)
@@ -618,11 +656,7 @@ class Treeviews(object):
         return
 
     def _modify_mad_fonts(self):
-        dialog = self.objects['MadFontsWarning']
-        result = dialog.run()
-        dialog.hide()
-        while gtk.events_pending():
-            gtk.main_iteration()
+        result = run_dialog(dialog = self.objects['MadFontsWarning'])
         return (result == gtk.RESPONSE_OK)
 
     def _update_sensitivity(self, treeview):
@@ -642,11 +676,9 @@ class Treeviews(object):
         families = self.manager.list_families_in(self.current_collection)
         collection = self.current_collection
         for widget in widgets:
-            if collection in block:
+            if collection in block or collection == _('User'):
                 widget.set_sensitive(False)
-            elif collection == _('User'):
-                widget.set_sensitive(False)
-                if widget == widgets[1]:
+                if collection == _('User') and widget == widgets[1]:
                     widget.set_sensitive(True)
             else:
                 widget.set_sensitive(True)
@@ -657,6 +689,9 @@ class Treeviews(object):
         return
 
     def _on_new_collection(self, unused_widget):
+        current_page = self.objects['MainNotebook'].get_current_page()
+        if current_page == 0:
+            self.set_direct_select()
         new_name = _('New Collection')
         alt = 0
         while new_name in self.manager.list_collections():
@@ -673,6 +708,8 @@ class Treeviews(object):
         column = self.collection_tree.get_column(0)
         self.collection_tree.scroll_to_cell(path, column)
         self.collection_tree.set_cursor(path, column, start_editing=True)
+        if current_page == 0:
+            self.set_indirect_select()
         return
 
     def _selected_paths(self):
@@ -820,8 +857,11 @@ class Treeviews(object):
             self._update_family_treeview()
             self._show_collection()
         else:
-            families = self.manager.list_families_in(self.current_collection)
-            self.objects['Browse'].update_tree(families)
+            try:
+                families = self.manager.list_families_in(self.current_collection)
+                self.objects['FontBrowser'].update_tree(families)
+            except IndexError:
+                pass
         self.objects['MainWindow'].queue_draw()
         return
 
@@ -855,24 +895,19 @@ class TreeviewFilter(object):
         """
         Return query results.
         """
-        family = self._get_family()
-        typ = self._get_type()
-        foundry = self._get_foundry()
-        filetype = self._get_filetype()
-        filepath = self._get_filepath()
         query = ''
-        for entry in family, typ, foundry, filetype, filepath:
+        filters = (self._get_family(), self._get_type(), self._get_foundry(),
+                    self._get_filetype(), self._get_filepath())
+        for entry in filters:
             if entry:
                 if query == '':
                     query = '%s' % entry
                 else:
                     query = '%s AND %s' % (query, entry)
         fonts = Table('Fonts')
-        filt = []
-        for row in set(fonts.get('family', query)):
-            filt.append(row[0])
+        filt = [row[0] for row in set(fonts.get('family', query))]
         fonts.close()
-        return filt
+        return natural_sort(filt)
 
     def _get_family(self):
         family = self.widgets['FamilyEntry'].get_text()
@@ -953,10 +988,8 @@ class TreeviewFilter(object):
         """
         Return a list of types in database.
         """
-        types = []
         fonts = Table('Fonts')
-        for row in set(fonts.get('filetype')):
-            types.append(row[0])
+        types = [row[0] for row in set(fonts.get('filetype'))]
         fonts.close()
         return natural_sort(types)
 
@@ -1005,10 +1038,7 @@ class TreeviewFilter(object):
             self.widgets[widget].set_text('')
         for widget in 'FiletypeComboEntry', 'FoundryComboEntry':
             self.widgets[widget].child.set_text('')
-        dialog = self.widgets['SearchDialog']
-        response = dialog.run()
-        dialog.hide()
-        return response
+        return run_dialog(dialog = self.widgets['SearchDialog'])
 
     def run(self):
         if self._run_dialog():
@@ -1021,11 +1051,3 @@ def get_header(title):
     header = glib.markup_escape_text(title)
     return '<span size="xx-large" weight="heavy">%s</span>' % header
 
-# this is strictly cosmetic
-# Todo: make this nice instead of just a stock icon
-def _begin_drag(widget, context):
-    """
-    Set custom drag icon.
-    """
-    context.set_icon_name('font-x-generic', 24, 24)
-    return

@@ -40,9 +40,10 @@ import UserDict
 from os.path import exists, join
 
 from core.fonts import PangoFamily
-from constants import CHECKBUTTONS, COMMON_FONTS, DEFAULTS, DEFAULT_STYLES, \
-                        FC_WIDGETMAP, USER_FONT_CONFIG_DIR, CACHE_DIR, \
-                        SCALES, SCALE_LABELS, SENSITIVITY, SCALE_SENSITIVITY
+from constants import FC_CHECKBUTTONS, COMMON_FONTS, FC_DEFAULTS, \
+                DEFAULT_STYLES, FC_WIDGETMAP, USER_FONT_CONFIG_DIR, \
+                CACHE_DIR, FC_SCALES, FC_SCALE_LABELS, FC_SENSITIVITY, \
+                FC_SCALE_SENSITIVITY
 from utils.common import correct_slider_behavior, natural_sort, touch
 from utils.xmlutils import save_alias_settings, save_fontconfig_settings, \
                             load_alias_settings
@@ -505,7 +506,7 @@ class SettingsCache(UserDict.UserDict):
 
 class SettingsPage(object):
     def __init__(self, settings = None):
-        for attribute, val in DEFAULTS.iteritems():
+        for attribute, val in FC_DEFAULTS.iteritems():
             setattr(self, attribute, val)
         if isinstance(settings, dict):
             for attribute, val in settings.iteritems():
@@ -525,7 +526,7 @@ class SettingsPage(object):
             if attribute in ignore:
                 continue
             else:
-                state[attribute] = getattr(self, attribute, DEFAULTS[attribute])
+                state[attribute] = getattr(self, attribute, FC_DEFAULTS[attribute])
         return state
 
     def __setstate__(self, state):
@@ -542,13 +543,13 @@ class SettingsPage(object):
         page = gtk.VBox()
         page.set_border_width(5)
         page.set_spacing(10)
-        for label in CHECKBUTTONS:
+        for label in FC_CHECKBUTTONS:
             if label == _('Smaller than') or label == _('Larger than'):
                 continue
             buttonbox = self._get_new_checkbutton(label)
             page.pack_start(buttonbox, False, True, 0)
-            if label in SCALES:
-                scale = self._get_new_scale(SCALES[label])
+            if label in FC_SCALES:
+                scale = self._get_new_scale(FC_SCALES[label])
                 buttonbox.pack_start(scale, True, True, 0)
         page.pack_start(self._get_rangebox(), False, True, 0)
         page.show_all()
@@ -560,12 +561,12 @@ class SettingsPage(object):
         Return a descriptive label to display instead of a numeric value.
         """
         # Kind of ugly but prevents KeyError
-        return SCALE_LABELS[label][float('0.' + str(val).split('.')[1][:1])]
+        return FC_SCALE_LABELS[label][float('0.' + str(val).split('.')[1][:1])]
 
     def _get_new_checkbutton(self, label):
         buttonbox = gtk.VBox()
         checkbutton = gtk.CheckButton(label)
-        checkbutton.set_active(DEFAULTS[FC_WIDGETMAP[label]])
+        checkbutton.set_active(FC_DEFAULTS[FC_WIDGETMAP[label]])
         buttonbox.pack_start(checkbutton, False, True, 0)
         checkbutton.connect('toggled', self._update_sensitivity, label)
         checkbutton.set_property('can-focus', False)
@@ -629,42 +630,42 @@ class SettingsPage(object):
     def _update_sensitivity(self, widget, label):
         widgets = self.widgets
         reverse = _('Auto-Hint'), _('Hinting')
-        if label in SENSITIVITY:
+        if label in FC_SENSITIVITY:
             if widgets[label].get_active():
                 if label in reverse:
-                    widgets[SENSITIVITY[label]].set_active(False)
+                    widgets[FC_SENSITIVITY[label]].set_active(False)
                 else:
-                    widgets[SENSITIVITY[label]].set_sensitive(True)
+                    widgets[FC_SENSITIVITY[label]].set_sensitive(True)
             else:
                 if label not in reverse:
-                    widgets[SENSITIVITY[label]].set_sensitive(False)
+                    widgets[FC_SENSITIVITY[label]].set_sensitive(False)
         if isinstance(widget, gtk.CheckButton):
             setattr(self, FC_WIDGETMAP[label], widget.get_active())
-        for scale, attribute in SCALE_SENSITIVITY.iteritems():
-            val = getattr(self, attribute, DEFAULTS[attribute])
+        for scale, attribute in FC_SCALE_SENSITIVITY.iteritems():
+            val = getattr(self, attribute, FC_DEFAULTS[attribute])
             widgets['scale'][scale].set_sensitive(val)
         return
 
     def _update_state(self):
         widgets = self.widgets
-        for widget in CHECKBUTTONS:
+        for widget in FC_CHECKBUTTONS:
             attribute = FC_WIDGETMAP[widget]
-            state = getattr(self, attribute, DEFAULTS[attribute])
+            state = getattr(self, attribute, FC_DEFAULTS[attribute])
             widgets[widget].set_active(state)
-        for widget in SCALES.itervalues():
+        for widget in FC_SCALES.itervalues():
             attribute = FC_WIDGETMAP[widget]
-            state = getattr(self, attribute, DEFAULTS[attribute])
+            state = getattr(self, attribute, FC_DEFAULTS[attribute])
             widgets['scale'][widget].set_value(state)
         for attribute in 'min_size', 'max_size':
             widgets[attribute].set_value(getattr(self, attribute,
-                                                    DEFAULTS[attribute]))
+                                                    FC_DEFAULTS[attribute]))
         return
 
     def reset(self):
         """
         Reset all values to default.
         """
-        for attribute, val in DEFAULTS.iteritems():
+        for attribute, val in FC_DEFAULTS.iteritems():
             setattr(self, attribute, val)
         self._update_state()
         return
@@ -676,8 +677,7 @@ def discard_fontconfig_settings(settings):
     """
     config_file = join(USER_FONT_CONFIG_DIR,
                         '25-%s.conf' % settings.family.get_name())
-    if exists(config_file):
-        os.unlink(config_file)
+    not exists(config_file) or os.unlink(config_file)
     for page in settings.faces:
         settings.faces[page].reset()
     return

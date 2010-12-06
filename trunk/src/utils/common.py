@@ -75,13 +75,21 @@ def autostart(startme=True):
     """
     autostart_file = join(AUTOSTART_DIR, 'font-manager.desktop')
     if startme:
-        if not exists(AUTOSTART_DIR):
-            os.makedirs(AUTOSTART_DIR, 0755)
+        exists(AUTOSTART_DIR) or os.makedirs(AUTOSTART_DIR, 0755)
         with open(autostart_file, 'w') as start:
             start.write(AUTOSTART)
+        os.chmod(autostart_file, 0755)
     else:
-        if exists(autostart_file):
-            os.unlink(autostart_file)
+        not exists(autostart_file) or os.unlink(autostart_file)
+    return
+
+# this is strictly cosmetic
+# Todo: make this nice instead of just a stock icon
+def begin_drag(widget, context):
+    """
+    Set custom drag icon.
+    """
+    context.set_icon_name('font-x-generic', 24, 24)
     return
 
 def _convert(char):
@@ -158,16 +166,14 @@ def delete_cache():
     """
     Remove stale cache file
     """
-    if exists(CACHE_FILE):
-        os.unlink(CACHE_FILE)
+    not exists(CACHE_FILE) or os.unlink(CACHE_FILE)
     return
 
 def delete_database():
     """
     Remove stale cache file
     """
-    if exists(DATABASE_FILE):
-        os.unlink(DATABASE_FILE)
+    not exists(DATABASE_FILE) or os.unlink(DATABASE_FILE)
     return
 
 def display_warning(msg, sec_msg = None, parent = None):
@@ -181,8 +187,7 @@ def display_warning(msg, sec_msg = None, parent = None):
     if sec_msg is not None:
         dialog.format_secondary_text(sec_msg)
     dialog.queue_resize()
-    dialog.run()
-    dialog.destroy()
+    run_dialog(None, dialog, True)
     return
 
 def fc_config_load_user_fonts():
@@ -318,6 +323,16 @@ def reset_fontconfig_cache():
         except OSError:
             pass
     return
+
+def run_dialog(unused_widget = None, dialog = None, destroy = False):
+    result = dialog.run()
+    if destroy:
+        dialog.destroy()
+    else:
+        dialog.hide()
+    while gtk.events_pending():
+        gtk.main_iteration()
+    return result
 
 def search(model, treeiter, func, data):
     """

@@ -35,7 +35,7 @@ import subprocess
 import time
 
 from constants import PACKAGE_DATA_DIR
-from utils.common import display_warning, natural_sort
+from utils.common import display_warning, natural_sort, run_dialog
 from utils.xmlutils import load_actions, save_actions
 
 
@@ -316,9 +316,7 @@ class UserActions(object):
         dialog.connect('file-activated', lambda widget: widget.response(1))
         if os.path.exists('/usr/bin'):
             dialog.set_current_folder('/usr/bin')
-        response = dialog.run()
-        dialog.hide()
-        if response:
+        if run_dialog(dialog = dialog):
             set_widget_text(widget, dialog.get_filename())
         return
 

@@ -35,7 +35,7 @@ from os.path import exists, join, isdir
 
 from core import database
 from utils.common import delete_cache, delete_database, match, \
-                            natural_sort, search
+                            natural_sort, search, run_dialog
 from constants import HOME, DATABASE_FILE, CACHE_FILE
 
 
@@ -156,19 +156,13 @@ class PreferencesDialog():
         """
         dialog = self.widgets['PrefsFileChooser']
         dialog.set_current_folder(HOME)
-        response = dialog.run()
+        response = run_dialog(dialog = dialog)
         if response:
             directory = dialog.get_filename()
-            dialog.hide()
-            while gtk.events_pending():
-                gtk.main_iteration()
             if directory == '/' or directory.startswith(BAD_PATHS):
                 self._on_bad_path()
             else:
                 return directory
-        dialog.hide()
-        while gtk.events_pending():
-            gtk.main_iteration()
         return
 
     def _get_selected_dir(self):
@@ -225,9 +219,7 @@ class PreferencesDialog():
         """
         Display warning dialog.
         """
-        dialog = self.widgets['PrefsInvalidDir']
-        dialog.run()
-        dialog.hide()
+        run_dialog(dialog = self.widgets['PrefsInvalidDir'])
         self._on_add_dir()
         return
 
@@ -407,9 +399,7 @@ class PreferencesDialog():
         """
         Display info dialog.
         """
-        dialog = self.widgets['AutoScanInfo']
-        dialog.run()
-        dialog.hide()
+        run_dialog(dialog = self.widgets['AutoScanInfo'])
         return
 
     def _on_hide_at_start(self, widget):

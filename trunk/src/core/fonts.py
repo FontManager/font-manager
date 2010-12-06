@@ -83,9 +83,7 @@ class Collection(object):
         """
         Return True if family is already in collection.
         """
-        if family in self.families:
-            return True
-        return False
+        return (family in self.families)
 
     def get_label(self):
         """
@@ -349,6 +347,7 @@ class Sort(object):
         except (AssertionError, AttributeError,
                     IndexError, cPickle.UnpicklingError):
             self._load_new_cache()
+        test = None
         return
 
     def _disable_rejects(self):
@@ -502,8 +501,7 @@ def do_font_install(filepath, library = USER_LIBRARY_DIR, cleanup = False):
     """
     name = basename(filepath)
     newpath = join(library, name[0].upper())
-    if not exists(newpath):
-        os.mkdir(newpath)
+    exists(newpath) or os.mkdir(newpath)
     shutil.copy(filepath, newpath)
     if filepath.endswith(T1_EXTS):
         metrics = splitext(filepath)[0] + '.*'
@@ -527,8 +525,7 @@ def install_font_archive(filepath, library = USER_LIBRARY_DIR, cleanup = False):
     #     self.notify()
     # ;-p
     newpath = join(library, dir_name[0].upper())
-    if not exists(newpath):
-        os.mkdir(newpath)
+    exists(newpath) or os.mkdir(newpath)
     shutil.move(arch_dir, newpath)
     shutil.rmtree(tmp_dir)
     if cleanup:
