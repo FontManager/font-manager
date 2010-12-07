@@ -100,9 +100,7 @@ class Main(object):
         self.objects.load_ui_elements()
         self.previews = self.objects['Previews']
         self.treeviews = self.objects['Treeviews']
-        if self.preferences.browsemode:
-            self.objects['FontBrowser'] = FontBrowser(self.objects)
-            self.objects['BrowseFonts'].show()
+        self.objects['FontBrowser'] = FontBrowser(self.objects)
         self.objects.connect_callbacks()
         self._connect_callbacks()
         # Tray icon

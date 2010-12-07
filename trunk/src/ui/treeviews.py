@@ -500,26 +500,26 @@ class Treeviews(object):
             model.set(treeiter, 1, collections[new_name].get_label())
         return
 
+    # http://code.google.com/p/font-manager/issues/detail?id=41
+    def _on_collection_selected(self, tree_selection):
+        glib.idle_add(self.__on_collection_selected, tree_selection)
+        return
+
+    # Sometimes we need our selection to block...
     def set_direct_select(self):
         direct = self.__on_collection_selected
         indirect = self._on_collection_selected
-        self.category_tree.get_selection().handler_block_by_func(indirect)
-        self.category_tree.get_selection().handler_unblock_by_func(direct)
-        self.collection_tree.get_selection().handler_block_by_func(indirect)
-        self.collection_tree.get_selection().handler_unblock_by_func(direct)
+        for widget in self.category_tree, self.collection_tree:
+            widget.get_selection().handler_block_by_func(indirect)
+            widget.get_selection().handler_unblock_by_func(direct)
         return
 
     def set_indirect_select(self):
         direct = self.__on_collection_selected
         indirect = self._on_collection_selected
-        self.category_tree.get_selection().handler_block_by_func(direct)
-        self.category_tree.get_selection().handler_unblock_by_func(indirect)
-        self.collection_tree.get_selection().handler_block_by_func(direct)
-        self.collection_tree.get_selection().handler_unblock_by_func(indirect)
-        return
-
-    def _on_collection_selected(self, tree_selection):
-        glib.idle_add(self.__on_collection_selected, tree_selection)
+        for widget in self.category_tree, self.collection_tree:
+            widget.get_selection().handler_block_by_func(direct)
+            widget.get_selection().handler_unblock_by_func(indirect)
         return
 
     def __on_collection_selected(self, tree_selection):

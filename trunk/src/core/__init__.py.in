@@ -633,8 +633,7 @@ class Preferences(gobject.GObject):
                     'Interface'         :   ['collectiontotals', 'familytotals',
                                             'hpane', 'vpane', 'windowsize',
                                             'maximized', 'previewsize',
-                                            'bgcolor', 'fgcolor', 'browsemode',
-                                            'localized']
+                                            'bgcolor', 'fgcolor', 'localized']
                     }
     _defaults = {
                     'config_file'       :   APP_CONFIG,
@@ -658,7 +657,6 @@ class Preferences(gobject.GObject):
                     'previewsize'       :   11.0,
                     'bgcolor'           :   '#FFF',
                     'fgcolor'           :   '#000',
-                    'browsemode'        :   False,
                     'localized'         :   True,
                     'janitor'           :   False
                     }

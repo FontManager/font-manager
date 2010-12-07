@@ -569,6 +569,7 @@
                                     <child>
                                       <object class="GtkButton" id="BrowseFonts">
                                         <property name="label" translatable="yes">Browse Fonts</property>
+                                        <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="receives_default">False</property>
                                       </object>
@@ -1456,15 +1457,6 @@ If you choose to continue, it is suggested that you close all open applications 
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkCheckButton" id="PrefsBrowseMode">
-                                    <property name="label" translatable="yes">Enable Browse Mode</property>
-                                    <property name="visible">True</property>
-                                    <property name="can_focus">True</property>
-                                    <property name="receives_default">False</property>
-                                    <property name="draw_indicator">True</property>
-                                  </object>
-                                </child>
-                                <child>
                                   <object class="GtkCheckButton" id="PrefsJanitor">
                                     <property name="label" translatable="yes">Enable Folder Cleanup</property>
                                     <property name="visible">True</property>
@@ -1478,15 +1470,10 @@ If you choose to continue, it is suggested that you close all open applications 
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkLabel" id="label25">
-                                    <property name="visible">True</property>
-                                    <property name="label" translatable="yes">&lt;small&gt;&lt;i&gt;(experimental)&lt;/i&gt;&lt;/small&gt;</property>
-                                    <property name="use_markup">True</property>
-                                  </object>
-                                  <packing>
-                                    <property name="left_attach">1</property>
-                                    <property name="right_attach">2</property>
-                                  </packing>
+                                  <placeholder/>
+                                </child>
+                                <child>
+                                  <placeholder/>
                                 </child>
                               </object>
                               <packing>
@@ -2627,8 +2614,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
-    <property name="select_multiple">True</property>
     <property name="create_folders">False</property>
+    <property name="select_multiple">True</property>
     <signal name="file_activated" handler="gtk_true"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">

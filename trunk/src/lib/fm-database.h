@@ -28,3 +28,4 @@ void sync_database(const char *progress_message,
     void (*progress_callback) (const char *msg, int total, int processed));
 
 #endif /* __FM_DATABASE_H__ */
+

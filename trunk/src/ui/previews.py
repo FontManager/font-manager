@@ -42,9 +42,13 @@ from fontinfo import FontInformation
 from utils.common import begin_drag, correct_slider_behavior
 
 TARGET_TYPE_BROWSE_ROW = 30
+TARGET_TYPE_COMPARE_ROW = 50
 
 BROWSE_DRAG_TARGETS = [('browser_add', gtk.TARGET_SAME_APP, TARGET_TYPE_BROWSE_ROW)]
 BROWSE_DRAG_ACTIONS = (gtk.gdk.ACTION_DEFAULT | gtk.gdk.ACTION_MOVE)
+COMPARE_DRAG_TARGETS = [('reorder', gtk.TARGET_SAME_WIDGET, TARGET_TYPE_COMPARE_ROW)]
+COMPARE_DRAG_ACTIONS = (gtk.gdk.ACTION_DEFAULT | gtk.gdk.ACTION_MOVE)
+
 
 def set_preview_text(use_localized_sample):
     global PREVIEW_TEXT
@@ -114,6 +118,14 @@ class Previews(object):
         self.compare_tree.append_column(preview_column)
         compare_selection = self.compare_tree.get_selection()
         compare_selection.set_select_function(self._set_preview_row_selection)
+        self.compare_tree.enable_model_drag_dest(COMPARE_DRAG_TARGETS,
+                                                    COMPARE_DRAG_ACTIONS)
+        self.compare_tree.enable_model_drag_source\
+                                (gtk.gdk.BUTTON1_MASK | gtk.gdk.RELEASE_MASK,
+                                    COMPARE_DRAG_TARGETS, COMPARE_DRAG_ACTIONS)
+        self.compare_tree.connect('drag-data-received',
+                                            self._on_drag_data_received)
+        self.compare_tree.connect_after('drag-begin', self._on_begin_drag)
         self.objects['AddToCompare'].connect('clicked', self._on_add_compare)
         self.objects['RemoveFromCompare'].connect('clicked',
                                                     self._on_remove_compare)
@@ -131,11 +143,81 @@ class Previews(object):
             self.objects['FontBrowser'].update_tree(families)
             self.objects['Treeviews'].set_direct_select()
         else:
+            self.objects['FontBrowser'].update_tree([])
             self.objects['MainNotebook'].set_current_page(0)
             self.objects['Treeviews'].update_views(True)
             self.objects['Treeviews'].set_indirect_select()
-        while gtk.events_pending():
-            gtk.main_iteration()
+        return
+
+    def _on_begin_drag(self, widget, context):
+        model, iter = self.compare_tree.get_selection().get_selected()
+        font = model.get_value(iter, 0)
+        win = gtk.Window(gtk.WINDOW_POPUP)
+        img = gtk.Label()
+        img.set_markup('<span size="x-large"> %s \n\n</span><span \
+                        font_desc="%s" size="xx-large"> %s </span>' % \
+                        (font, font, self.compare_text))
+        img.set_padding(4, 4)
+        win.add(img)
+        win.set_title('You should NOT be seeing this window frame!')
+        win.set_decorated(False)
+        win.set_opacity(0.95)
+        win.show_all()
+        win.set_transient_for(self.objects['MainWindow'])
+        context.set_icon_widget(win, 0, 0)
+        return
+
+    # Gets really ugly here dragging and dropping two separate rows...
+    # Seems to work though :-D
+    def _on_drag_data_received(self, widget, context, x, y, data, info, tstamp):
+        assert(info == TARGET_TYPE_COMPARE_ROW)
+        treeiter = widget.get_selection().get_selected()[1]
+        model = widget.get_model()
+        orig_path = model.get_path(treeiter)[0]
+        assert(orig_path % 2 == 0)
+        data = model.get(treeiter, 0, 1)
+        drop_info = widget.get_dest_row_at_pos(x, y)
+        if drop_info:
+            path, position = drop_info
+            if path[0] == orig_path or path[0] - 2 == orig_path \
+            or path[0] - 1 == orig_path:
+                return
+            if position == gtk.TREE_VIEW_DROP_BEFORE:
+                if path[0] % 2 != 0:
+                    return
+                try:
+                    treeiter = model.get_iter(path)
+                    del model[orig_path + 1]
+                    del model[orig_path]
+                    treeiter = model.insert_before(treeiter, data)
+                    treeiter = model.insert_before(treeiter, data)
+                except ValueError:
+                    return
+            elif position == gtk.TREE_VIEW_DROP_AFTER:
+                if path[0] % 2 == 0:
+                    return
+                try:
+                    treeiter = model.get_iter(path)
+                    del model[orig_path + 1]
+                    del model[orig_path]
+                    treeiter = model.insert_after(treeiter, data)
+                    treeiter = model.insert_before(treeiter, data)
+                except ValueError:
+                    del model[orig_path + 1]
+                    del model[orig_path]
+                    treeiter = model.append(data)
+                    treeiter = model.append(data)
+            else:
+                return
+        else:
+            del model[orig_path + 1]
+            del model[orig_path]
+            treeiter = model.append(data)
+            treeiter = model.append(data)
+        path = model.get_path(treeiter)
+        if path:
+            widget.get_selection().select_path(path)
+        self.update_compare_view()
         return
 
     def _on_switch_mode(self, unused_widget):

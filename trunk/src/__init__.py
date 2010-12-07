@@ -21,19 +21,3 @@ along with this program; if not, write to:
     Boston, MA 02110-1301, USA.
 
 """
-
-#import os
-#import sys
-
-#PACKAGE_DIR = os.path.dirname(os.path.abspath(__file__))
-#LIB_DIR = os.path.dirname(os.path.abspath(__file__))
-
-#for directory in PACKAGE_DIR, LIB_DIR:
-    #if not directory in sys.path:
-        #sys.path.insert(0, directory)
-
-#import gettext
-#gettext.install('font-manager')
-#from constants import LOCALEDIR
-#gettext.bindtextdomain('font-manager', LOCALEDIR)
-#gettext.textdomain('font-manager')

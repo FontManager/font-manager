@@ -58,7 +58,7 @@ class PreferencesDialog():
         'DBTree', 'UserDirTree', 'SearchDB', 'RemoveFromDB', 'ResetDB',
         'DefaultFolderBox', 'ArchTypeBox', 'PrefsFileChooser',
         'PrefsInvalidDir', 'AutoScanInfo', 'PrefsCollFocus', 'PrefsCollTotal',
-        'PrefsFamTotal', 'PrefsToolTips', 'PrefsBrowseMode', 'PrefsLocSample',
+        'PrefsFamTotal', 'PrefsToolTips', 'PrefsLocSample',
         'PrefsJanitor'
         )
     def __init__(self, objects):
@@ -115,7 +115,6 @@ class PreferencesDialog():
                     'PrefsCollTotal'    :   self._on_coll_totals,
                     'PrefsFamTotal'     :   self._on_fam_totals,
                     'PrefsToolTips'     :   self._on_show_tooltips,
-                    'PrefsBrowseMode'   :   self._on_browse_mode,
                     'PrefsLocSample'    :   self._on_use_localized_sample,
                     'PrefsJanitor'      :   self._on_enable_janitor
                     }
@@ -221,16 +220,6 @@ class PreferencesDialog():
         """
         run_dialog(dialog = self.widgets['PrefsInvalidDir'])
         self._on_add_dir()
-        return
-
-    def _on_browse_mode(self, widget):
-        switch = widget.get_active()
-        self.preferences.browsemode = switch
-        if switch:
-            self.update_required = True
-        else:
-            if self.objects['BrowseFonts'].get_property('visible'):
-                self.objects['BrowseFonts'].hide()
         return
 
     def _on_clear_db_search(self, widget, unused_icon_pos, unused_event):
@@ -553,7 +542,6 @@ class PreferencesDialog():
                     'PrefsCollTotal'    :   'collectiontotals',
                     'PrefsFamTotal'     :   'familytotals',
                     'PrefsToolTips'     :   'tooltips',
-                    'PrefsBrowseMode'   :   'browsemode',
                     'PrefsLocSample'    :   'localized',
                     'PrefsJanitor'      :   'janitor'
                     }
