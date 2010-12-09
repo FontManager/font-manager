@@ -47,7 +47,7 @@ static void _get_foundry_from_vendor_id(const FT_Char vendor[4], FontInfo *fonti
  * FcListFiles:
  *
  * Returns: a pointer to a GSList containing filepaths for installed font files
- * 
+ *
  * Caller is responsible for freeing the returned list, i.e.
  *
  *      g_slist_foreach(list, (GFunc) g_free, NULL);
@@ -91,7 +91,7 @@ FcListFiles()
  * FcListUserDirs:
  *
  * Returns: a pointer to a GSList containing filepaths for user font directories
- * 
+ *
  * Caller is responsible for freeing the returned list, i.e.
  *
  *      g_slist_foreach(list, (GFunc) g_free, NULL);
@@ -291,7 +291,7 @@ FT_Get_Font_Info(FontInfo *fontinfo, const char *filepath, int index)
     return error;
 }
 
-static void 
+static void
 _get_pango_info(FontInfo *fontinfo, const FT_Face face,
                         const gchar *filepath, int index)
 {

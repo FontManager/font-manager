@@ -143,6 +143,7 @@ class Previews(object):
             self.objects['FontBrowser'].update_tree(families)
             self.objects['Treeviews'].set_direct_select()
         else:
+            # Clearing the font browser prevents the interface from hanging
             self.objects['FontBrowser'].update_tree([])
             self.objects['MainNotebook'].set_current_page(0)
             self.objects['Treeviews'].update_views(True)
@@ -153,12 +154,12 @@ class Previews(object):
         model, iter = self.compare_tree.get_selection().get_selected()
         font = model.get_value(iter, 0)
         win = gtk.Window(gtk.WINDOW_POPUP)
-        img = gtk.Label()
-        img.set_markup('<span size="x-large"> %s \n\n</span><span \
-                        font_desc="%s" size="xx-large"> %s </span>' % \
-                        (font, font, self.compare_text))
-        img.set_padding(4, 4)
-        win.add(img)
+        preview = gtk.Label()
+        preview.set_markup('<span size="x-large"> %s \n\n</span><span \
+                            font_desc="%s" size="xx-large"> %s </span>' % \
+                            (font, font, self.compare_text))
+        preview.set_padding(4, 4)
+        win.add(preview)
         win.set_title('You should NOT be seeing this window frame!')
         win.set_decorated(False)
         win.set_opacity(0.95)

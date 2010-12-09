@@ -810,8 +810,11 @@ class Treeviews(object):
         model = self.collection_tree.get_model()
         header = model.get_iter_first()
         treeiter = model.iter_children(header)
+        collections = self.manager.list_collections()
         while treeiter:
             name, label = model.get(treeiter, 0, 1)
+            while name in collections:
+                collections.remove(name)
             try:
                 obj = self.manager.collections[name]
             except KeyError:
@@ -823,6 +826,17 @@ class Treeviews(object):
                 model.set(treeiter, 1, new_label)
             model.set(treeiter, 3, str(len(obj.families)))
             treeiter = model.iter_next(treeiter)
+        if collections:
+            for collection in collections:
+                try:
+                    obj = self.manager.collections[collection]
+                except KeyError:
+                    continue
+            model = self.collection_tree.get_model()
+            header = model.get_iter_first()
+            treeiter = model.append(header, [obj.get_name(), obj.get_label(),
+                                        obj.comment, str(len(obj.families))])
+            self.collection_tree.expand_all()
         return
 
     def _update_family_treeview(self):

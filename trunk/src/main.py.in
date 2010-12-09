@@ -40,6 +40,7 @@ from os.path import basename, exists, join
 import core
 import fontutils
 
+from core.service import *
 from ui import fontconfig
 from constants import LANG, PACKAGE, PACKAGE_DATA_DIR
 from ui.export import Export
@@ -66,6 +67,10 @@ class Main(object):
     """
     dirty = False
     def __init__(self):
+        self.dbus_service = None
+        self.have_session_bus = False
+        if HAVE_DBUS:
+            self.check_for_running_instance()
         logging.info("Font Manager is now starting")
         # Disable user configuration files so that changes to them
         # do not interfere with our ability to render disabled fonts.
@@ -90,6 +95,8 @@ class Main(object):
         self.quit_id = self.main_window.connect('delete-event', self.quit)
         # Load
         self.objects.load_core()
+        if self.have_session_bus and self.dbus_service:
+            self.dbus_service.manager = self.objects['FontManager']
         # Notification
         if self.preferences.minimizeonstart:
             self.objects.notify_send(_('Finished loading %s families') % \
@@ -123,6 +130,27 @@ class Main(object):
         self.main_window.connect_after('direction-changed', fc_config_reload)
         # What the hell, let's put Main into the container... :-D
         self.objects['Main'] = self
+
+    def check_for_running_instance(self):
+        """
+        Check if there is already a running instance, if there is present it to
+        the user and exit.
+        """
+        try:
+            session_bus = dbus.SessionBus()
+            self.have_session_bus = True
+        except:
+            logging.error("Could not get session bus...")
+            return
+        try:
+            proxy_obj = session_bus.get_object('com.fonts.manage',
+                                                '/com/fonts/manage')
+            ui = dbus.Interface(proxy_obj, 'com.fonts.interface')
+            ui.show()
+            sys.exit(0)
+        except dbus.DBusException:
+            bus_name = dbus.service.BusName('com.fonts.manage', session_bus)
+            self.dbus_service = core.service.FontService(self, bus_name)
 
     def _connect_callbacks(self):
         _activate = {

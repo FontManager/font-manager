@@ -146,7 +146,7 @@ def create_archive_from_folder(arch_name, arch_type, destination,
 
     If delete is True, folder will be deleted afterwards
     """
-    archiver = 'file-roller -a "%s.%s" "%s"' % (arch_name, arch_type, folder)
+    archiver = """file-roller -a '%s.%s' '%s'""" % (arch_name, arch_type, folder)
     os.chdir(destination)
     roller = subprocess.Popen(shlex.split(archiver))
     # Wait for file-roller to finish
