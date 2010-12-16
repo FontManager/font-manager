@@ -146,7 +146,8 @@ def create_archive_from_folder(arch_name, arch_type, destination,
 
     If delete is True, folder will be deleted afterwards
     """
-    archiver = """file-roller -a '%s.%s' '%s'""" % (arch_name, arch_type, folder)
+    archiver = """file-roller -a '{0}.{1}' '{2}'""".format(arch_name,
+                                                            arch_type, folder)
     os.chdir(destination)
     roller = subprocess.Popen(shlex.split(archiver))
     # Wait for file-roller to finish
@@ -183,7 +184,7 @@ def display_warning(msg, sec_msg = None, parent = None):
     dialog = gtk.MessageDialog(parent, gtk.DIALOG_MODAL, gtk.MESSAGE_WARNING,
                                     gtk.BUTTONS_CLOSE, None)
     dialog.set_size_request(420, -1)
-    dialog.set_markup('<b>%s</b>' % msg)
+    dialog.set_markup('<b>{0}</b>'.format(msg))
     if sec_msg is not None:
         dialog.format_secondary_text(sec_msg)
     dialog.queue_resize()
@@ -259,16 +260,16 @@ def open_folder(folder, objects):
     """
     if 'xdg-open' in objects['AppCache']:
         try:
-            logging.info('Opening folder : %s' % folder)
-            subprocess.Popen(['xdg-open', folder])
-            return
+            logging.info('Opening folder : {0}'.format(folder))
+            if subprocess.call(['xdg-open', folder]) == 0:
+                return
         except OSError, error:
-            logging.error('xdg-open failed : %s' % error)
+            logging.error('xdg-open failed : {0}'.format(error))
     else:
         logging.info('xdg-open is not available')
     logging.info('Looking for common file browsers')
     # Fallback to looking for specific file browsers
-    file_browser = _find_file_browser(applist)
+    file_browser = _find_file_browser(objects['AppCache'])
     _launch_file_browser(file_browser, folder)
     return
 
@@ -280,7 +281,7 @@ def _find_file_browser(applist):
     file_browsers = 'nautilus', 'thunar', 'dolphin', 'konqueror', 'pcmanfm'
     for browser in file_browsers:
         if browser in applist:
-            logging.info("Found %s File Browser" % browser.capitalize())
+            logging.info("Found {0} File Browser".format(browser.capitalize()))
             file_browser = browser
             break
     if not file_browser:
@@ -293,11 +294,11 @@ def _launch_file_browser(file_browser, folder):
     """
     if file_browser:
         try:
-            logging.info("Launching %s" % file_browser)
+            logging.info("Launching {0}".format(file_browser.capitalize()))
             subprocess.Popen([file_browser, folder])
             return
         except OSError, error:
-            logging.error("Error: %s" % error)
+            logging.error("Error: {0}".format(error))
     else:
         display_warning(_("Please install a supported file browser"),
     _("""    Supported file browsers include :

@@ -74,8 +74,8 @@ class Collection(object):
                 self.families.append(family)
         else:
             raise TypeError\
-            ('Expected a string, tuple or list but got %s instead' % \
-            type(families[0]))
+            ('Expected a string, tuple or list but got {0!s} instead'.format(
+            type(families[0])))
         self.families = list(set(self.families))
         return
 
@@ -113,8 +113,8 @@ class Collection(object):
                     self.families.remove(family)
         else:
             raise TypeError\
-            ('Expected a string, tuple or list but got %s instead' % \
-            type(families[0]))
+            ('Expected a string, tuple or list but got {0!s} instead'.format(
+            type(families[0])))
         return
 
     def set_comment(self, comment):
@@ -126,8 +126,8 @@ class Collection(object):
         if isinstance(comment, str):
             self.comment = comment
         else:
-            raise TypeError('Expected a string but got %s instead' \
-                                                        % type(comment))
+            raise TypeError('Expected a string but got {0!s} instead'.format(
+                            type(comment)))
 
 
 class Face(object):
@@ -184,9 +184,9 @@ class Family(object):
         count = len(self.styles)
         if display:
             if count > 1:
-                return _('%s Fonts') % count
+                return _('{0} Fonts').format(count)
             else:
-                return _('%s Font') % count
+                return _('{0} Font').format(count)
         else:
             return count
 
@@ -404,7 +404,7 @@ class Sort(object):
         self.manager.create_category(_('System'), families = self.system,
                                     comment = _('Fonts available to all users'))
         self.manager.create_category(_('User'), families = self.user,
-                comment = _('Fonts available only to %s' % USER.capitalize()))
+            comment = _('Fonts available only to {0}'.format(USER.capitalize())))
         self.manager.create_category(_('Orphans'), families = self.orphans,
                             comment = _('Fonts not present in any collection'))
         return
@@ -432,11 +432,15 @@ class Sort(object):
                 obj = self.cache[name]
             else:
                 obj = Family(name)
+                obj.pango_family = PangoFamily(family)
                 if name in self.user:
                     obj.user = True
-                for row in self.table.get('*', 'family="%s"' % name):
-                    obj.styles[row['style']] = FileDetails(row)
-                obj.pango_family = PangoFamily(family)
+                rows = self.table.get('*', 'family="{0}"'.format(name))
+                for face in obj.pango_family.list_faces():
+                    for row in rows:
+                        if row['pdescr'] == face.description:
+                            obj.styles[face.get_face_name()] = FileDetails(row)
+                            break
                 self.cache[name] = obj
             self.manager[name] = obj
             self.processed += 1
@@ -451,7 +455,7 @@ def _on(name):
     Return a label suitable for display in a gtk.TreeView.
     """
     label = glib.markup_escape_text(name)
-    return '<span weight="heavy">%s</span>' % label
+    return '<span weight="heavy">{0}</span>'.format(label)
 
 def _off(name, strike = True):
     """
@@ -459,9 +463,10 @@ def _off(name, strike = True):
     """
     label = glib.markup_escape_text(name)
     if strike:
-        return '<span weight="ultralight" strikethrough="true">%s</span>' % label
+        return \
+        '<span weight="ultralight" strikethrough="true">{0}</span>'.format(label)
     else:
-        return '<span weight="ultralight">%s</span>' % label
+        return '<span weight="ultralight">{0}</span>'.format(label)
 
 
 def _set_library_permissions(library = USER_LIBRARY_DIR):

@@ -187,21 +187,20 @@ class BuildSample:
         try:
             sample = []
             current_file = Paragraph\
-            ('<font size="%s">' % halfsize + filename + '</font>', style)
+            ('<font size="{0}">'.format(halfsize) + filename + '</font>', style)
             sample.append(current_file)
             sample.append(Spacer(1, 0.1*inch))
             current_sample = Paragraph\
-            ('<font name="%s" size="%s">' % \
-            (name, fullsize) + name + '</font>', style)
+            ('<font name="{0}" size="{1}">'.format(name,
+                                            fullsize) + name + '</font>', style)
             sample.append(current_sample)
             sample.append(Spacer(1, 0.2*inch))
             #
             if self.config.pangram:
                 for linenumber in 1, 2, 3, 4:
                     current_sample = Paragraph\
-                    ('<font name="%s" size="%s">' % \
-                    (name, threequarter) + LINE[linenumber] \
-                    + '</font>', style)
+                    ('<font name="{0}" size="{1}">'.format(name,
+                    threequarter) + LINE[linenumber] + '</font>', style)
                     sample.append(current_sample)
                     sample.append(Spacer(1, 0.1*inch))
             sample.append(Spacer(1, 0.5*inch))
@@ -289,9 +288,9 @@ class BuildSample:
         tree = _build_tree(dic)
         sw.add(tree)
         dialog.vbox.pack_start(sw, True, True, 5)
-        status = gtk.Label(_('Due to the reasons listed above %s out of %s \
-fonts will not be included in the sample sheet') % \
-                            (len(self.failed), self.total))
+        status = gtk.Label(_('Due to the reasons listed above {0!s} out of \
+{1!s} fonts will not be included in the sample sheet').format(len(self.failed),
+                                                                    self.total))
         dialog.vbox.pack_start(status, False, True, 5)
         dialog.vbox.show_all()
         result = run_dialog(dialog = dialog)

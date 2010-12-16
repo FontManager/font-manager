@@ -61,7 +61,7 @@ class Export(object):
         try:
             import reportlab
             logging.info\
-            ('Found ReportLab Toolkit Version %s' % reportlab.Version)
+            ('Found ReportLab Toolkit Version {0}'.format(reportlab.Version))
             self.reportlab = True
         except ImportError:
             self.reportlab = False
@@ -228,7 +228,7 @@ class Export(object):
         cache = shelve.open(SAMPLER_CACHE, protocol=cPickle.HIGHEST_PROTOCOL)
         cache['collection'] = self.current_collection
         cache['fontlist'] = inp
-        cache['outfile'] = join(outp, '%s.pdf' % self.current_collection)
+        cache['outfile'] = join(outp, '{0}.pdf'.format(self.current_collection))
         cache.close()
         sampler = subprocess.Popen([join('@BINDIR@', 'font-sampler')])
         # Wait for font-sampler to finish

@@ -153,11 +153,9 @@ class PreferencesDialog():
         Display file chooser dialog so user can add new directories
         to fontconfig search path.
         """
-        dialog = self.widgets['PrefsFileChooser']
-        dialog.set_current_folder(HOME)
-        response = run_dialog(dialog = dialog)
-        if response:
-            directory = dialog.get_filename()
+        self.widgets['PrefsFileChooser'].set_current_folder(HOME)
+        if run_dialog(dialog = self.widgets['PrefsFileChooser']):
+            directory = self.widgets['PrefsFileChooser'].get_filename()
             if directory == '/' or directory.startswith(BAD_PATHS):
                 self._on_bad_path()
             else:
@@ -312,7 +310,7 @@ class PreferencesDialog():
         except TypeError:
             return
         fonts = database.Table('Fonts')
-        query = 'family="%s"' % family
+        query = 'family="{0}"'.format(family)
         fonts.remove(query)
         fonts.close()
         db_model.remove(treeiter)

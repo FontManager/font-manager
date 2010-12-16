@@ -2035,7 +2035,7 @@ If you choose to continue, it is suggested that you close all open applications 
     <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
     <property name="program_name">Font Manager</property>
-    <property name="version">0.5.6</property>
+    <property name="version">0.5.7</property>
     <property name="copyright" translatable="yes">Copyright &#xA9; 2009, 2010 Jerry Casiano</property>
     <property name="comments" translatable="yes">Font management for the GNOME Desktop</property>
     <property name="website">http://font-manager.googlecode.com</property>
@@ -2084,7 +2084,6 @@ A big thank you to all those who help make this
 and other applications on Launchpad accessible
 to as many people as possible.</property>
     <property name="logo_icon_name">preferences-desktop-font</property>
-    <property name="wrap_license">True</property>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox5">
         <property name="visible">True</property>
@@ -2614,8 +2613,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
-    <property name="create_folders">False</property>
     <property name="select_multiple">True</property>
+    <property name="create_folders">False</property>
     <signal name="file_activated" handler="gtk_true"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">

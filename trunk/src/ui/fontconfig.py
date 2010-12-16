@@ -43,7 +43,7 @@ from core.fonts import PangoFamily
 from constants import FC_CHECKBUTTONS, COMMON_FONTS, FC_DEFAULTS, \
                 DEFAULT_STYLES, FC_WIDGETMAP, USER_FONT_CONFIG_DIR, \
                 CACHE_DIR, FC_SCALES, FC_SCALE_LABELS, FC_SENSITIVITY, \
-                FC_SCALE_SENSITIVITY
+                FC_SCALE_SENSITIVITY, FC_BUTTONORDER
 from utils.common import correct_slider_behavior, natural_sort, touch
 from utils.xmlutils import save_alias_settings, save_fontconfig_settings, \
                             load_alias_settings
@@ -192,7 +192,7 @@ class AliasEdit(gtk.Window):
         Add a new alias.
         """
         model = self.alias_tree.get_model()
-        treeiter = model.append(None, ['Family'])
+        treeiter = model.append(None, [_('Family')])
         path = model.get_path(treeiter)
         column = self.alias_tree.get_column(0)
         self.alias_tree.scroll_to_cell(path, column)
@@ -205,7 +205,7 @@ class AliasEdit(gtk.Window):
         """
         selection = self.alias_tree.get_selection()
         model, treeiter = selection.get_selected()
-        treeiter = model.append(treeiter, ['Substitute'])
+        treeiter = model.append(treeiter, [_('Substitute')])
         path = model.get_path(treeiter)
         column = self.alias_tree.get_column(0)
         self.alias_tree.expand_to_path(path)
@@ -378,7 +378,7 @@ class ConfigEdit(gtk.Window):
             self.save_settings(None)
         os.unlink(join(CACHE_DIR, CACHED_SETTINGS))
         os.unlink(join(USER_FONT_CONFIG_DIR,
-                        '25-%s.conf' % self.selected_family.get_name()))
+                        '25-{0}.conf'.format(self.selected_family.get_name())))
         return
 
     def save_cache(self):
@@ -415,10 +415,12 @@ class SettingsBook(gtk.Notebook):
         self.families = FAMILIES
         if isinstance(family, str):
             self.family = self.objects['FontManager'][family].pango_family
-        elif isinstance(family, pango.FontFamily) or isinstance(family, PangoFamily):
+        elif isinstance(family, pango.FontFamily) \
+        or isinstance(family, PangoFamily):
             self.family = family
         else:
-            raise TypeError('Expected name or pango family, got %s' % family)
+            raise TypeError(
+                        'Expected name or pango family, got {0}'.format(family))
         self.faces = {}
         for face in self.family.list_faces():
             settings = SettingsPage()
@@ -543,63 +545,65 @@ class SettingsPage(object):
         page = gtk.VBox()
         page.set_border_width(5)
         page.set_spacing(10)
-        for label in FC_CHECKBUTTONS:
-            if label == _('Smaller than') or label == _('Larger than'):
+        for name in FC_BUTTONORDER:
+            label = FC_CHECKBUTTONS[name]
+            if name == 'Smaller than' or name == 'Larger than':
                 continue
-            buttonbox = self._get_new_checkbutton(label)
+            buttonbox = self._get_new_checkbutton(name, label)
             page.pack_start(buttonbox, False, True, 0)
-            if label in FC_SCALES:
-                scale = self._get_new_scale(FC_SCALES[label])
+            if name in FC_SCALES:
+                scale = self._get_new_scale(FC_SCALES[name])
                 buttonbox.pack_start(scale, True, True, 0)
         page.pack_start(self._get_rangebox(), False, True, 0)
         page.show_all()
         return page
 
     @staticmethod
-    def _format_value(unused_scale, val, label):
+    def _format_value(unused_scale, val, name):
         """
         Return a descriptive label to display instead of a numeric value.
         """
         # Kind of ugly but prevents KeyError
-        return FC_SCALE_LABELS[label][float('0.' + str(val).split('.')[1][:1])]
+        return FC_SCALE_LABELS[name][float('0.' + str(val).split('.')[1][:1])]
 
-    def _get_new_checkbutton(self, label):
+    def _get_new_checkbutton(self, name, label):
         buttonbox = gtk.VBox()
         checkbutton = gtk.CheckButton(label)
-        checkbutton.set_active(FC_DEFAULTS[FC_WIDGETMAP[label]])
+        checkbutton.set_name(name)
+        checkbutton.set_active(FC_DEFAULTS[FC_WIDGETMAP[name]])
         buttonbox.pack_start(checkbutton, False, True, 0)
-        checkbutton.connect('toggled', self._update_sensitivity, label)
+        checkbutton.connect('toggled', self._update_sensitivity, name)
         checkbutton.set_property('can-focus', False)
-        self.widgets[label] = checkbutton
+        self.widgets[name] = checkbutton
         return buttonbox
 
-    def _get_new_scale(self, label):
+    def _get_new_scale(self, name):
         align = gtk.Alignment(1, 1, 1, 1)
         align.set_padding(5, 5, 25, 25)
         adjustment = gtk.Adjustment(0.0, 0.0, 0.3, 0.1, 0.1, 0)
         scale = gtk.HScale(adjustment)
         scale.set_draw_value(True)
         scale.set_value_pos(gtk.POS_TOP)
-        scale.connect('format-value', self._format_value, label)
+        scale.connect('format-value', self._format_value, name)
         scale.connect('scroll-event', correct_slider_behavior)
         scale.connect('value-changed', self._scale_changed)
         align.add(scale)
         scale.set_sensitive(False)
-        self.widgets['scale'][label] = scale
+        self.widgets['scale'][name] = scale
         return align
 
-    def _get_new_spinbutton(self, label):
+    def _get_new_spinbutton(self, name):
         adjustment = gtk.Adjustment(0.0, 0.0, 96.0, 1.0, 1.0, 0)
         spinbutton = gtk.SpinButton(adjustment)
-        self.widgets[label] = spinbutton
+        self.widgets[name] = spinbutton
         spinbutton.set_sensitive(False)
         return spinbutton
 
     def _get_rangebox(self):
         rangebox = gtk.HBox()
         rangebox.set_spacing(25)
-        less_eq = self._get_new_checkbutton(_('Smaller than'))
-        more_eq =  self._get_new_checkbutton(_('Larger than'))
+        less_eq = self._get_new_checkbutton('Smaller than', _('Smaller than'))
+        more_eq =  self._get_new_checkbutton('Larger than', _('Larger than'))
         rangebox.pack_start(less_eq, False, True, 0)
         spin1 = self._get_new_spinbutton('min_size')
         spin1.connect('value-changed', self._set_min_size)
@@ -627,20 +631,20 @@ class SettingsPage(object):
         setattr(self, 'max_size', widget.get_value())
         return
 
-    def _update_sensitivity(self, widget, label):
+    def _update_sensitivity(self, widget, name):
         widgets = self.widgets
-        reverse = _('Auto-Hint'), _('Hinting')
-        if label in FC_SENSITIVITY:
-            if widgets[label].get_active():
-                if label in reverse:
-                    widgets[FC_SENSITIVITY[label]].set_active(False)
+        reverse = 'Auto-Hint', 'Hinting'
+        if name in FC_SENSITIVITY:
+            if widgets[name].get_active():
+                if name in reverse:
+                    widgets[FC_SENSITIVITY[name]].set_active(False)
                 else:
-                    widgets[FC_SENSITIVITY[label]].set_sensitive(True)
+                    widgets[FC_SENSITIVITY[name]].set_sensitive(True)
             else:
-                if label not in reverse:
-                    widgets[FC_SENSITIVITY[label]].set_sensitive(False)
+                if name not in reverse:
+                    widgets[FC_SENSITIVITY[name]].set_sensitive(False)
         if isinstance(widget, gtk.CheckButton):
-            setattr(self, FC_WIDGETMAP[label], widget.get_active())
+            setattr(self, FC_WIDGETMAP[name], widget.get_active())
         for scale, attribute in FC_SCALE_SENSITIVITY.iteritems():
             val = getattr(self, attribute, FC_DEFAULTS[attribute])
             widgets['scale'][scale].set_sensitive(val)
@@ -648,7 +652,7 @@ class SettingsPage(object):
 
     def _update_state(self):
         widgets = self.widgets
-        for widget in FC_CHECKBUTTONS:
+        for widget in FC_CHECKBUTTONS.keys():
             attribute = FC_WIDGETMAP[widget]
             state = getattr(self, attribute, FC_DEFAULTS[attribute])
             widgets[widget].set_active(state)
@@ -676,7 +680,7 @@ def discard_fontconfig_settings(settings):
     Delete configuration file and reset page values.
     """
     config_file = join(USER_FONT_CONFIG_DIR,
-                        '25-%s.conf' % settings.family.get_name())
+                        '25-{0}.conf'.format(settings.family.get_name()))
     not exists(config_file) or os.unlink(config_file)
     for page in settings.faces:
         settings.faces[page].reset()

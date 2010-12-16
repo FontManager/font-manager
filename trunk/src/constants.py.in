@@ -44,6 +44,25 @@ else:
     PACKAGE_DIR = '@PACKAGEDIR@'
     LOCALEDIR   = '@LOCALEDIR@'
 
+
+import locale
+import gettext
+
+try:
+    locale.setlocale(locale.LC_ALL, '')
+except locale.Error:
+    pass
+
+gettext.textdomain(PACKAGE)
+gettext.install(PACKAGE, LOCALEDIR)
+gettext.bindtextdomain(PACKAGE, LOCALEDIR)
+
+try:
+    locale.bindtextdomain(PACKAGE, LOCALEDIR)
+except locale.Error:
+    pass
+
+
 LANG                        =   splitext(os.getenv('LANG', 'en_US'))[0]
 PACKAGE_DATA_DIR            =   join(PACKAGE_DIR, 'data')
 CACHE_DIR                   =   join(glib.get_user_cache_dir(), PACKAGE)
@@ -76,9 +95,9 @@ USER_ACTIONS_CONFIG         =   join(APP_CONFIG_DIR, 'actions.conf')
 
 STANDARD_TEXT = pango_get_sample_string('xx')
 LOCALIZED_TEXT = pango_get_sample_string(LANG.lower().replace('_', '-'))
-COMPARE_TEXT = "%s"
+COMPARE_TEXT = "{0}"
 
-PREVIEW_TEXT = """%s
+PREVIEW_TEXT = """{0}
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
 abcdefghijklmnopqrstuvwxyz
 1234567890.:,;(*!?')"""
@@ -126,32 +145,32 @@ _("""
 
     If you wish to make any changes it is suggested you do so using
 
-        %s
+        {0}
 
     Any changes made to this file will be automatically relocated there
     at startup and any settings already in that file will be overwritten.
 -->
-""") % USER_FONT_CONFIG_RENDER
+""").format(USER_FONT_CONFIG_RENDER)
 
 USER_FONT_CONFIG_DATA = \
-"""%s
-    <include ignore_missing=\"yes\">%s</include>
-    <include ignore_missing=\"yes\">%s</include>
-    <include ignore_missing=\"yes\">%s</include>
-    <include ignore_missing=\"yes\">%s</include>
-""" % (USER_FONT_CONFIG_NOTICE, USER_FONT_CONFIG_DIR, USER_FONT_CONFIG_DIRS,
+"""{0}
+    <include ignore_missing=\"yes\">{1}</include>
+    <include ignore_missing=\"yes\">{2}</include>
+    <include ignore_missing=\"yes\">{3}</include>
+    <include ignore_missing=\"yes\">{4}</include>
+""".format(USER_FONT_CONFIG_NOTICE, USER_FONT_CONFIG_DIR, USER_FONT_CONFIG_DIRS,
         USER_FONT_CONFIG_RENDER, USER_FONT_CONFIG_SELECT)
 
 VALID_USER_FONT_CONFIG = \
 """<?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
-%s
+{0}
 </fontconfig>
-""" % USER_FONT_CONFIG_DATA
+""".format(USER_FONT_CONFIG_DATA)
 
 OLD_NOTICE = \
-_("""
+"""
 <!--
     This file modified by Font Manager.
 
@@ -159,26 +178,26 @@ _("""
 
     Should you wish to customize anything please use
 
-      %s
+      {0}
 -->
-""") % USER_FONT_CONFIG_RENDER
+""".format(USER_FONT_CONFIG_RENDER)
 
 OLD_FONT_CONFIG = \
 """<?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
-%s
-    <include ignore_missing=\"yes\">%s</include>
-    <include ignore_missing=\"yes\">%s</include>
-    <include ignore_missing=\"yes\">%s</include>
-    <include ignore_missing=\"yes\">%s</include>
+{0}
+    <include ignore_missing=\"yes\">{1}</include>
+    <include ignore_missing=\"yes\">{2}</include>
+    <include ignore_missing=\"yes\">{3}</include>
+    <include ignore_missing=\"yes\">{4}</include>
 
 </fontconfig>
-""" % (OLD_NOTICE, USER_FONT_CONFIG_DIR, USER_FONT_CONFIG_DIRS,
+""".format(OLD_NOTICE, USER_FONT_CONFIG_DIR, USER_FONT_CONFIG_DIRS,
         USER_FONT_CONFIG_RENDER, USER_FONT_CONFIG_SELECT)
 
 OLD_OLD_NOTICE = \
-_("""
+"""
 <!--
     This file modified by Font Manager.
 
@@ -186,21 +205,21 @@ _("""
 
     Should you wish to customize rendering options, use
 
-      %s
+      {0}
 -->
-""") % USER_FONT_CONFIG_RENDER
+""".format(USER_FONT_CONFIG_RENDER)
 
 OLD_OLD_FONT_CONFIG = \
 """<?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
 <fontconfig>
-%s
-    <include ignore_missing=\"yes\">%s</include>
-    <include ignore_missing=\"yes\">%s</include>
-    <include ignore_missing=\"yes\">%s</include>
+{0}
+    <include ignore_missing=\"yes\">{1}</include>
+    <include ignore_missing=\"yes\">{2}</include>
+    <include ignore_missing=\"yes\">{3}</include>
 
 </fontconfig>
-""" % (OLD_OLD_NOTICE, USER_FONT_CONFIG_DIRS,
+""".format(OLD_OLD_NOTICE, USER_FONT_CONFIG_DIRS,
         USER_FONT_CONFIG_RENDER, USER_FONT_CONFIG_SELECT)
 
 EMPTY_FONT_CONFIG = \
@@ -285,10 +304,23 @@ COMMON_FONTS = ('A Charming Font', 'Abadi MT', 'Academy Engraved LET',
 'University Roman LET', 'Utopia', 'Vera Sans', 'Vera Sans Mono', 'Vera Serif',
 'Verdana', 'Verdana Ref', 'Victorian LET', 'Viner Hand ITC')
 
-FC_CHECKBUTTONS = (_('Anti-Alias'), _('Auto-Hint'), _('Hinting'),
-                _('LCD Filter'), _('Force Spacing'),
-                _('Use Global Advance data'), _('Use Embedded Bitmaps'),
-                _('Disable rgba'), _('Smaller than'), _('Larger than'))
+FC_BUTTONORDER = ('Anti-Alias', 'Auto-Hint', 'Hinting', 'LCD Filter',
+                    'Force Spacing', 'Use Global Advance data',
+                    'Use Embedded Bitmaps', 'Disable rgba', 'Smaller than',
+                    'Larger than')
+
+FC_CHECKBUTTONS = {
+                    'Anti-Alias'              :   _('Anti-Alias'),
+                    'Auto-Hint'               :   _('Auto-Hint'),
+                    'Hinting'                 :   _('Hinting'),
+                    'LCD Filter'              :   _('LCD Filter'),
+                    'Force Spacing'           :   _('Force Spacing'),
+                    'Use Global Advance data' :   _('Use Global Advance data'),
+                    'Use Embedded Bitmaps'    :   _('Use Embedded Bitmaps'),
+                    'Disable rgba'            :   _('Disable rgba'),
+                    'Smaller than'            :   _('Smaller than'),
+                    'Larger than'             :   _('Larger than')
+                    }
 
 FC_CONSTS = {
             'hintstyle' :   {
@@ -336,19 +368,19 @@ FC_DEFAULTS = {
             }
 
 FC_WIDGETMAP = {
-            _('Anti-Alias')                 :   'antialias',
-            _('Auto-Hint')                  :   'autohint',
-            _('Hinting')                    :   'hinting',
-            _('LCD Filter')                 :   'lcdfiltering',
-            _('Force Spacing')              :   'forcespacing',
-            _('Use Global Advance data')    :   'globaladvance',
-            _('Use Embedded Bitmaps')       :   'embeddedbitmap',
-            _('Smaller than')               :   'smallerthan',
-            _('Larger than')                :   'largerthan',
-            _('Disable rgba')               :   'disablergba',
-            'HintScale'                     :   'hintstyle',
-            'FilterScale'                   :   'lcdfilter',
-            'SpacingScale'                  :   'spacing'
+            'Anti-Alias'                 :   'antialias',
+            'Auto-Hint'                  :   'autohint',
+            'Hinting'                    :   'hinting',
+            'LCD Filter'                 :   'lcdfiltering',
+            'Force Spacing'              :   'forcespacing',
+            'Use Global Advance data'    :   'globaladvance',
+            'Use Embedded Bitmaps'       :   'embeddedbitmap',
+            'Smaller than'               :   'smallerthan',
+            'Larger than'                :   'largerthan',
+            'Disable rgba'               :   'disablergba',
+            'HintScale'                  :   'hintstyle',
+            'FilterScale'                :   'lcdfilter',
+            'SpacingScale'               :   'spacing'
             }
 
 # These are basically identical between pango and fc
@@ -358,14 +390,13 @@ PSLANT = {
             2   :   'italic'
             }
 
-FC_SKIP = (_('LCD Filter'), _('Force Spacing'),
-            _('Exclude size range'), _('Disable rgba'),
-            _('Smaller than'), _('Larger than'))
+FC_SKIP = ('LCD Filter', 'Force Spacing', 'Exclude size range', 'Disable rgba',
+            'Smaller than', 'Larger than')
 
 FC_SCALES = {
-            _('Hinting')           :   'HintScale',
-            _('LCD Filter')        :   'FilterScale',
-            _('Force Spacing')     :   'SpacingScale'
+            'Hinting'           :   'HintScale',
+            'LCD Filter'        :   'FilterScale',
+            'Force Spacing'     :   'SpacingScale'
             }
 
 FC_SCALE_LABELS = {
@@ -396,10 +427,10 @@ FC_SCALE_SENSITIVITY = {
                     }
 
 FC_SENSITIVITY = {
-                _('Auto-Hint')     :   _('Hinting'),
-                _('Hinting')       :   _('Auto-Hint'),
-                _('Larger than')   :   'max_size',
-                _('Smaller than')  :   'min_size'
+                'Auto-Hint'     :   'Hinting',
+                'Hinting'       :   'Auto-Hint',
+                'Larger than'   :   'max_size',
+                'Smaller than'  :   'min_size'
                 }
 
 # These are basically identical between pango and fc

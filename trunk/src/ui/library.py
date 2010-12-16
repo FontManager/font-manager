@@ -32,7 +32,8 @@ import logging
 from os.path import isdir
 
 from core import database
-from constants import HOME, USER_LIBRARY_DIR, FONT_GLOBS, ARCH_GLOBS
+from constants import HOME, USER_LIBRARY_DIR, FONT_GLOBS, \
+                        ARCH_GLOBS, USER_FONT_DIR
 from utils.common import natural_sort, run_dialog
 
 
@@ -195,7 +196,8 @@ class RemoveFonts(object):
         self.remove_tree.set_model(None)
         self.remove_list.clear()
         fonts = database.Table('Fonts')
-        families = fonts.get('*', 'filepath LIKE "/home%"')
+        families = fonts.get('*',
+                'owner="User" AND filepath LIKE "{0}%"'.format(USER_FONT_DIR))
         fontdirs = tuple(self.objects['Preferences'].fontdirs)
         active = self.objects['FontManager'].list_families()
         for result in families:

@@ -62,9 +62,9 @@ SAMPLE_STRING = ''
 def set_preview_text(use_localized_sample):
     global SAMPLE_STRING
     if use_localized_sample:
-        SAMPLE_STRING = COMPARE_TEXT % LOCALIZED_TEXT
+        SAMPLE_STRING = COMPARE_TEXT.format(LOCALIZED_TEXT)
     else:
-        SAMPLE_STRING = COMPARE_TEXT % STANDARD_TEXT
+        SAMPLE_STRING = COMPARE_TEXT.format(STANDARD_TEXT)
     return
 
 
@@ -94,7 +94,8 @@ class FontJanitor(object):
                                                     'font-janitor.ui'))
         self.window = self.builder.get_object('JanitorWindow')
         self.window.set_transient_for(objects['MainWindow'])
-        self.window.set_title(_('Font Janitor - %s') % self.folder.rstrip(os.sep))
+        self.window.set_title(_('Font Janitor - {0}').format(
+                                                    self.folder.rstrip(os.sep)))
         self.window.set_size_request(700, 400)
         self.window.set_position(gtk.WIN_POS_CENTER_ON_PARENT)
         self.window.set_destroy_with_parent(True)
@@ -132,10 +133,11 @@ class FontJanitor(object):
         self.window.show()
 
     def _add_possible_dupe(self, table, family, style):
-        dupes = table.get('*', 'family="%s" AND style="%s"' % (family, style))
+        dupes = table.get('*',
+                        'family="{0}" AND style="{1}"'.format(family, style))
         paths = [f['filepath'] for f in dupes]
         if len(paths) > 1:
-            self.dupes['%s %s' % (family, style)] = '\n'.join(paths)
+            self.dupes['{0} {1}'.format(family, style)] = '\n'.join(paths)
             self.dupelist = self.dupelist + paths
         return
 
@@ -369,7 +371,7 @@ class FontJanitor(object):
 
     def _populate_treeview(self):
         table = Table('Fonts')
-        query = 'filepath LIKE "%s"' % ('%' + self.folder + '%')
+        query = 'filepath LIKE "{0}"'.format('%' + self.folder + '%')
         db_families = [f[0] for f in set(table.get('family', query))]
         families = self.objects['FontManager'].list_families()
         results = [ f for f in db_families if f in families ]
@@ -412,13 +414,13 @@ class FontJanitor(object):
                     else:
                         bg_color = None
                     self.store.append(parent, [SAMPLE_STRING, fontfile,
-                                    '%s%s' % (ps_name, file_ext),
+                                    '{0}{1}'.format(ps_name, file_ext),
                                     styles[style]['filetype'],
                                     styles[style]['filesize'],
                                     styles[style]['filepath'],
-                                    '%s%s' % (ps_name, file_ext),
-                                    '%s%s' % (pango_name, file_ext),
-                                    '%s%s' % (pango_desc, file_ext),
+                                    '{0}{1}'.format(ps_name, file_ext),
+                                    '{0}{1}'.format(pango_name, file_ext),
+                                    '{0}{1}'.format(pango_desc, file_ext),
                                     font_desc, False, False, bg_color, family])
                     self.recognized.append(styles[style]['filepath'])
         self._show_dupes()
@@ -441,7 +443,7 @@ class FontJanitor(object):
         dupe_tree.append_column(column)
         dupe_tree.set_model(dupe_store)
         for family, files in self.dupes.iteritems():
-            dupe_store.append(['<b>%s</b>' % family, files, self.font_desc])
+            dupe_store.append(['<b>{0}</b>'.format(family), files, self.font_desc])
         column.set_sort_column_id(0)
         column.clicked()
         self.builder.get_object('DupesBox').show_all()
@@ -466,10 +468,10 @@ class FontJanitor(object):
         issue_tree.append_column(column)
         issue_tree.set_model(issue_store)
         for path in unrecognized:
-            issue_store.append(['<b>%s</b>' % WARNING_MESSAGES[UNUSABLE],
+            issue_store.append(['<b>{0}</b>'.format(WARNING_MESSAGES[UNUSABLE]),
                                                     path, self.font_desc])
         for path, err in self.broken.iteritems():
-            issue_store.append(['<b>%s</b>' % WARNING_MESSAGES[err],
+            issue_store.append(['<b>{0}</b>'.format(WARNING_MESSAGES[err]),
                                                     path, self.font_desc])
         column.set_sort_column_id(0)
         column.clicked()
@@ -540,7 +542,7 @@ class FontJanitor(object):
         self._dirty = True
         if len(failed) > 0:
             for font in failed:
-                logging.error('Failed to rename : %s' % font)
+                logging.error('Failed to rename : {0}'.format(font))
         return
 
     def on_quit(self, unused_widget, unused_event):

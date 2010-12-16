@@ -138,13 +138,13 @@ class FontInformation(object):
             self.widgets['NoInfo'].hide()
             self.widgets['InfoBox'].show()
         table = database.Table('Fonts')
-        self.db_row = table.get('*', 'filepath="%s"' % filepath)[0]
+        self.db_row = table.get('*', 'filepath="{0}"'.format(filepath))[0]
         table.close()
         self.filedir = dirname(filepath)
         self.typ = self.db_row['filetype']
         famname = glib.markup_escape_text(self.db_row['family'])
         markup = \
-        '<span font_desc="%s" size="xx-large">%s</span>' % (descr, famname)
+        '<span font_desc="{0}" size="xx-large">{1}</span>'.format(descr, famname)
         self.widgets['FamilyLabel'].set_markup(markup)
         self.widgets['FamilyEntry'].set_text(self.db_row['family'])
         self.widgets['StyleEntry'].set_text(self.db_row['style'])

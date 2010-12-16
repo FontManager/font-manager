@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy project-wide -->
+  <object class="GtkMenu" id="TrayMenu">
+    <property name="visible">True</property>
+    <child>
+      <object class="GtkImageMenuItem" id="TrayInstall">
+        <property name="label" translatable="yes">Install Fonts</property>
+        <property name="visible">True</property>
+        <property name="image">TrayIcon1</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="TrayRemove">
+        <property name="label" translatable="yes">Remove Fonts</property>
+        <property name="visible">True</property>
+        <property name="image">TrayIcon2</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="trayseparator1">
+        <property name="visible">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="TrayFontPreferences">
+        <property name="label" translatable="yes">Font Preferences</property>
+        <property name="visible">True</property>
+        <property name="image">TrayIcon3</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="TrayCharacterMap">
+        <property name="label" translatable="yes">Character Map</property>
+        <property name="visible">True</property>
+        <property name="image">TrayIcon4</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="trayseparator2">
+        <property name="visible">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="TrayPreferences">
+        <property name="label" translatable="yes">Preferences</property>
+        <property name="visible">True</property>
+        <property name="image">TrayIcon5</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="TrayHelp">
+        <property name="label" translatable="yes">Help</property>
+        <property name="visible">True</property>
+        <property name="image">TrayIcon6</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="TrayAbout">
+        <property name="label" translatable="yes">About</property>
+        <property name="visible">True</property>
+        <property name="image">TrayIcon7</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="trayseparator3">
+        <property name="visible">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="TrayQuit">
+        <property name="label" translatable="yes">Quit</property>
+        <property name="visible">True</property>
+        <property name="image">TrayIcon8</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkImage" id="TrayIcon1">
+    <property name="visible">True</property>
+    <property name="stock">gtk-add</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="TrayIcon2">
+    <property name="visible">True</property>
+    <property name="stock">gtk-remove</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="TrayIcon3">
+    <property name="visible">True</property>
+    <property name="stock">gtk-select-font</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="TrayIcon4">
+    <property name="visible">True</property>
+    <property name="icon_name">accessories-character-map</property>
+  </object>
+  <object class="GtkImage" id="TrayIcon5">
+    <property name="visible">True</property>
+    <property name="stock">gtk-preferences</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="TrayIcon6">
+    <property name="visible">True</property>
+    <property name="stock">gtk-help</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="TrayIcon7">
+    <property name="visible">True</property>
+    <property name="stock">gtk-about</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="TrayIcon8">
+    <property name="visible">True</property>
+    <property name="stock">gtk-quit</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkMenu" id="ManageMenu">
+    <property name="visible">True</property>
+    <child>
+      <object class="GtkImageMenuItem" id="ManageInstall">
+        <property name="label" translatable="yes">Install Fonts</property>
+        <property name="visible">True</property>
+        <property name="image">ManageIcon1</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="ManageRemove">
+        <property name="label" translatable="yes">Remove Fonts</property>
+        <property name="visible">True</property>
+        <property name="image">ManageIcon2</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="ManageSeparator1">
+        <property name="visible">True</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="ManageFolder">
+        <property name="label" translatable="yes">Open Fonts Folder</property>
+        <property name="visible">True</property>
+        <property name="image">ManageIcon3</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkImage" id="ManageIcon1">
+    <property name="visible">True</property>
+    <property name="stock">gtk-add</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="ManageIcon2">
+    <property name="visible">True</property>
+    <property name="stock">gtk-remove</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkImage" id="ManageIcon3">
+    <property name="visible">True</property>
+    <property name="stock">gtk-directory</property>
+    <property name="icon-size">1</property>
+  </object>
+  <object class="GtkMenu" id="SettingsMenu">
+    <property name="visible">True</property>
+    <child>
+      <object class="GtkImageMenuItem" id="DesktopSettings">
+        <property name="label" translatable="yes">Desktop Settings</property>
+        <property name="visible">True</property>
+        <property name="image">SettingsIcon1</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="FontConfigSettings">
+        <property name="label" translatable="yes">Advanced Settings</property>
+        <property name="visible">True</property>
+        <property name="image">SettingsIcon2</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImageMenuItem" id="AliasEdit">
+        <property name="label" translatable="yes">Alias Editor</property>
+        <property name="visible">True</property>
+        <property name="image">SettingsIcon3</property>
+        <property name="use_stock">False</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkImage" id="SettingsIcon1">
+    <property name="visible">True</property>
+    <property name="icon_name">preferences-desktop</property>
+  </object>
+  <object class="GtkImage" id="SettingsIcon2">
+    <property name="visible">True</property>
+    <property name="icon_name">preferences-desktop-font</property>
+  </object>
+  <object class="GtkImage" id="SettingsIcon3">
+    <property name="visible">True</property>
+    <property name="icon_name">format-text-strikethrough</property>
+  </object>
+</interface>

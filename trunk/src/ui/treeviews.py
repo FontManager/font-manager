@@ -192,8 +192,8 @@ class Treeviews(object):
 
     def _setup_families(self):
         family_header = gtk.Label()
-        family_header.set_markup('<span size="large" weight="heavy">%s</span>'\
-                                                                % _('Family'))
+        family_header.set_markup(
+            '<span size="large" weight="heavy">{0}</span>'.format(_('Family')))
         family_model = gtk.ListStore(gobject.TYPE_STRING, gobject.TYPE_STRING,
                                                             gobject.TYPE_STRING)
         if self.objects['Preferences'].experimental:
@@ -333,12 +333,12 @@ class Treeviews(object):
             family = self.manager[name].pango_family
             famname = glib.markup_escape_text(name)
             markup = \
-            '\n\t<span weight="heavy" size="large">%s</span>\t\t\n\n' % famname
+    '\n\t<span weight="heavy" size="large">{0}</span>\t\t\n\n'.format(famname)
             for face in family.list_faces():
                 facename = glib.markup_escape_text(face.get_face_name())
                 facedescr = glib.markup_escape_text(face.describe().to_string())
                 subs = (facedescr, facename)
-                markup += '<span font_desc="%s">\t%s\t\t</span>\n' % subs
+                markup += '<span font_desc="{0}">\t{1}\t\t</span>\n'.format(*subs)
             tooltip.set_markup(markup)
             icon = self._get_type_icon(name)
             tooltip.set_icon(icon)
@@ -696,7 +696,7 @@ class Treeviews(object):
         alt = 0
         while new_name in self.manager.list_collections():
             alt += 1
-            new_name =  _('New Collection %s' % alt)
+            new_name =  _('New Collection {0}').format(alt)
         collection = self.manager.create_collection(new_name)
         obj = self.manager.collections[new_name]
         model = self.collection_tree.get_model()
@@ -755,8 +755,9 @@ class Treeviews(object):
                 family_model.append([obj.get_name(), obj.get_label(),
                                                             obj.get_count()])
             except KeyError:
-                logging.error('Could not find %s for user collection %s' %
-                                (family, self.current_collection))
+                logging.error(
+                'Could not find {0} for user collection {1}'.format(family,
+                                                    self.current_collection))
                 logging.info('Skipping...')
                 continue
         self.family_tree.set_model(family_model)
@@ -915,9 +916,9 @@ class TreeviewFilter(object):
         for entry in filters:
             if entry:
                 if query == '':
-                    query = '%s' % entry
+                    query = '{0}'.format(entry)
                 else:
-                    query = '%s AND %s' % (query, entry)
+                    query = '{0} AND {1}'.format(query, entry)
         fonts = Table('Fonts')
         filt = [row[0] for row in set(fonts.get('family', query))]
         fonts.close()
@@ -950,9 +951,9 @@ class TreeviewFilter(object):
         if typ != '':
             active = self.widgets['FiletypeCombo'].get_active()
             if active == 0:
-                query = 'filetype="%s"' % typ
+                query = 'filetype="{0}"'.format(typ)
             elif active == 1:
-                query = 'filetype!="%s"' % typ
+                query = 'filetype!="{0}"'.format(typ)
         else:
             query = False
         return query
@@ -962,9 +963,9 @@ class TreeviewFilter(object):
         if foundry != '':
             active = self.widgets['FoundryCombo'].get_active()
             if active == 0:
-                query = 'foundry="%s"' % foundry
+                query = 'foundry="{0}"'.format(foundry)
             elif active == 1:
-                query = 'foundry!="%s"' % foundry
+                query = 'foundry!="{0}"'.format(foundry)
         else:
             query = False
         return query
@@ -1011,7 +1012,7 @@ class TreeviewFilter(object):
         model1 = gtk.ListStore(gobject.TYPE_STRING)
         model2 = gtk.ListStore(gobject.TYPE_STRING)
         model3 = gtk.ListStore(gobject.TYPE_STRING)
-        for entry in 'contains', 'begins with', 'ends with':
+        for entry in _('contains'), _('begins with'), _('ends with'):
             model1.append([entry])
         for entry in '=', '!=':
             model2.append([entry])
@@ -1063,5 +1064,5 @@ class TreeviewFilter(object):
 
 def get_header(title):
     header = glib.markup_escape_text(title)
-    return '<span size="xx-large" weight="heavy">%s</span>' % header
+    return '<span size="xx-large" weight="heavy">{0}</span>'.format(header)
 

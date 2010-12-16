@@ -79,7 +79,7 @@ def check_libxml2_leak():
     libxml2.cleanupParser()
     leak = libxml2.debugMemory(1)
     if leak > 0:
-        logging.debug("libxml2 --> memory leak %s bytes" % (leak))
+        logging.debug("libxml2 --> memory leak {0} bytes".format(leak))
     return
 
 def get_blacklisted():
@@ -304,7 +304,7 @@ def load_collections(fontmanager):
         comment = node.prop("comment")
         _get_fc_families(node, families)
         fontmanager.create_collection(name, comment, list(set(families)))
-        logging.info('Loaded user collection %s' % name)
+        logging.info('Loaded user collection {0}'.format(name))
         order.append(name)
     doc.freeDoc()
     load_compat_collections(fontmanager, order)
@@ -329,13 +329,13 @@ def load_compat_collections(fontmanager, order):
         name = node.prop("name")
         if name in order:
             continue
-        comment = _('Created on %s' % \
+        comment = _('Created on {0}').format(
                 time.strftime('%A, %B %d, %Y, at %I:%M %p', time.localtime()))
         families = []
         for family in node.xpathEval('family'):
             families.append(family.content)
         fontmanager.create_collection(name, comment, list(set(families)))
-        logging.info('Imported user collection %s' % name)
+        logging.info('Imported user collection {0}'.format(name))
         order.append(name)
     doc.freeDoc()
     return
@@ -396,7 +396,7 @@ def save_compat_collections(objects):
     root = doc.newChild(None, "groups", None)
     try:
         while len(order) != 0:
-            name = order[0]
+            name = order.pop(0)
             if name not in printed:
                 collection = objects['FontManager'].collections[name]
                 node = root.newChild(None, "group", None)
@@ -404,7 +404,6 @@ def save_compat_collections(objects):
                 for family in collection.families:
                     node.newChild(None, 'family', family)
                 printed.append(name)
-            order.pop(0)
     except:
         doc.freeDoc()
         return
@@ -420,7 +419,7 @@ def save_fontconfig_settings(settings):
     root = doc.newChild(None, 'fontconfig', None)
     for style in sorted(settings.faces.iterkeys()):
         dirty = False
-        for setting in FC_CHECKBUTTONS:
+        for setting in FC_CHECKBUTTONS.keys():
             attribute = FC_WIDGETMAP[setting]
             default_val = FC_DEFAULTS[FC_WIDGETMAP[setting]]
             if getattr(settings.faces[style], attribute, default_val):
@@ -429,8 +428,8 @@ def save_fontconfig_settings(settings):
         if not dirty:
             continue
         node = _add_standard_match_targets(doc, root, style, settings)
-        less_eq = FC_WIDGETMAP[_('Smaller than')]
-        more_eq = FC_WIDGETMAP[_('Larger than')]
+        less_eq = FC_WIDGETMAP['Smaller than']
+        more_eq = FC_WIDGETMAP['Larger than']
         less = getattr(settings.faces[style], less_eq, FC_DEFAULTS[less_eq])
         more = getattr(settings.faces[style], more_eq, FC_DEFAULTS[more_eq])
         if less:
@@ -456,14 +455,14 @@ def save_fontconfig_settings(settings):
         if not less and not more:
             _add_assignments(node, style, settings)
     doc.saveFormatFile(join(USER_FONT_CONFIG_DIR,
-                        '25-%s.conf' % settings.family.get_name()), format=1)
+                    '25-{0}.conf'.format(settings.family.get_name()), format=1))
     doc.freeDoc()
     return
 
 def _add_standard_match_targets(doc, root, style, settings):
     escape = glib.markup_escape_text
     comment = (settings.family.get_name(), style)
-    root.addChild(doc.newDocComment(' %s %s ' % comment))
+    root.addChild(doc.newDocComment(' {0} {1} '.format(*comment)))
     node = root.newChild(None, 'match', None)
     node.setProp('target', 'font')
     test = node.newChild(None, 'test', None)
@@ -493,7 +492,7 @@ def _guess_style_values(node, settings, style):
     return
 
 def _add_assignments(node, style, settings):
-    for setting in FC_CHECKBUTTONS:
+    for setting in FC_CHECKBUTTONS.keys():
         attribute = FC_WIDGETMAP[setting]
         default_val = FC_DEFAULTS[FC_WIDGETMAP[setting]]
         val = getattr(settings.faces[style], attribute, default_val)

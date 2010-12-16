@@ -51,11 +51,7 @@ for directory in PACKAGE_DIR, LIB_DIR:
     if not directory in sys.path:
         sys.path.insert(0, directory)
 
-import gettext
-gettext.install('font-manager')
-from constants import LOCALEDIR
-gettext.bindtextdomain('font-manager', LOCALEDIR)
-gettext.textdomain('font-manager')
+import constants
 
 from core import Preferences
 from constants import CACHE_DIR, HOME, PACKAGE_DATA_DIR
@@ -66,7 +62,7 @@ CACHE_FILE  =   join(CACHE_DIR, 'sampler.cache')
 def _exit_with_error(msg, sec_msg = None):
     dialog = gtk.MessageDialog(None, 0, gtk.MESSAGE_WARNING,
                                     gtk.BUTTONS_CLOSE, None)
-    dialog.set_markup('<b>%s</b>' % msg)
+    dialog.set_markup('<b>{0}</b>'.format(msg))
     if sec_msg:
         dialog.format_secondary_text(sec_msg)
     run_dialog(None, dialog, True)
@@ -219,7 +215,7 @@ class FontSampler(UserDict.UserDict):
                 self._show_file_selector(None)
                 return
             if not outfile.endswith('.pdf'):
-                outfile = '%s.pdf' % outfile
+                outfile = '{0}.pdf'.format(outfile)
             self.outfile = outfile
             self.collection = basename(splitext(outfile)[0])
             self.data['OutputButton'].set_label(self.outfile)

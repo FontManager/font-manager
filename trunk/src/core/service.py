@@ -54,11 +54,8 @@ try:
             """
             Add families to an existing collection.
             """
-            valid_list = []
-            for family in families:
-                valid_list.append(str(family))
-            self.manager.add_families_to(str(collection), valid_list)
-            return
+            return self.manager.add_families_to(str(collection),
+                                                    _valid_list(families))
 
         @dbus.service.method('com.fonts.manage', 'ssas')
         def create_collection(self, collection, comment, families):
@@ -69,28 +66,22 @@ try:
             comment -- comment to display in tooltips
             families -- a list of families to add
             """
-            valid_list = []
-            for family in families:
-                valid_list.append(str(family))
-            self.manager.create_collection(str(collection),
-                                            str(comment), valid_list)
-            return
+            return self.manager.create_collection(str(collection),
+                                            str(comment), _valid_list(families))
 
         @dbus.service.method('com.fonts.manage', 's')
         def disable_collection(self, collection):
             """
             Disable collection.
             """
-            self.manager.disable_collection(str(collection))
-            return
+            return self.manager.disable_collection(str(collection))
 
         @dbus.service.method('com.fonts.manage', 's')
         def enable_collection(self, collection):
             """
             Enable collection.
             """
-            self.manager.enable_collection(str(collection))
-            return
+            return self.manager.enable_collection(str(collection))
 
         @dbus.service.method('com.fonts.manage', 's', 'ssas')
         def get_collection_details(self, collection):
@@ -146,42 +137,33 @@ try:
             """
             Remove an existing collection.
             """
-            self.manager.remove_collection(str(collection))
-            return
+            return self.manager.remove_collection(str(collection))
 
         @dbus.service.method('com.fonts.manage', 'sas')
         def remove_families_from(self, collection, families):
             """
             Add families to an existing collection.
             """
-            valid_list = []
-            for family in families:
-                valid_list.append(str(family))
-            self.manager.remove_families_from(str(collection), valid_list)
-            return
+            return self.manager.remove_families_from(str(collection),
+                                                        _valid_list(families))
 
         @dbus.service.method('com.fonts.manage', 'as')
         def set_disabled(self, families):
             """
             Disable a list  of families.
             """
-            valid_list = []
-            for family in families:
-                valid_list.append(str(family))
-            self.manager.set_disabled(valid_list)
-            return
+            return self.manager.set_disabled(_valid_list(families))
 
         @dbus.service.method('com.fonts.manage', 'as')
         def set_enabled(self, families):
             """
             Enable a list of families.
             """
-            valid_list = []
-            for family in families:
-                valid_list.append(str(family))
-            self.manager.set_enabled(valid_list)
-            return
-
+            return self.manager.set_enabled(_valid_list(families))
 
 except ImportError:
     HAVE_DBUS = False
+
+
+def _valid_list(alist):
+    return [str(f) for f in alist]

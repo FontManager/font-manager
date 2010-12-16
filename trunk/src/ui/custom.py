@@ -176,7 +176,7 @@ class CellRendererTotal(gtk.CellRendererText):
         layout = context.create_layout()
         layout.set_font_description(style.font_desc)
         count = self.get_property('count')
-        markup = '<span size="small" weight="heavy">%s</span>' % count
+        markup = '<span size="small" weight="heavy">{0}</span>'.format(count)
         layout.set_markup(markup)
         layout_w, layout_h = layout.get_pixel_size()
         center_h = cell_y + ((cell_h - layout_h) / 2)

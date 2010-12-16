@@ -37,30 +37,30 @@ INIT = """
 CREATE TABLE IF NOT EXISTS Fonts
 (
 uid INTEGER PRIMARY KEY,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT,
-%s TEXT
+{0} TEXT,
+{1} TEXT,
+{2} TEXT,
+{3} TEXT,
+{4} TEXT,
+{5} TEXT,
+{6} TEXT,
+{7} TEXT,
+{8} TEXT,
+{9} TEXT,
+{10} TEXT,
+{11} TEXT,
+{12} TEXT,
+{13} TEXT,
+{14} TEXT,
+{15} TEXT,
+{16} TEXT,
+{17} TEXT,
+{18} TEXT,
+{19} TEXT,
+{20} TEXT,
+{21} TEXT
 );
-""" % FIELDS
+""".format(*FIELDS)
 
 
 class Database(object):
@@ -147,9 +147,9 @@ class Database(object):
         """
         if self.debug:
             if subs is None:
-                print "\nSQL: %s\n" % (sql)
+                print "\nSQL: {0}\n".format(sql)
             else:
-                print "\nSQL: %s (%s)\n" % (sql, subs)
+                print "\nSQL: {0} ({1})\n".format(sql, subs)
         if self.cursor is None:
             self.get_cursor()
         try:
@@ -210,7 +210,8 @@ class Table(object):
         """
         Create a data set, and return an iterator --> "self".
         """
-        sql = 'SELECT * FROM %s %s %s' % (self.name, self._search, self._sort)
+        sql = 'SELECT * FROM {0} {1} {2}'.format(self.name,
+                                                    self._search, self._sort)
         if self.db.query(sql):
             return self
         else:
@@ -220,7 +221,7 @@ class Table(object):
         """
         Return the number of entries in the table.
         """
-        sql = 'SELECT count(*) FROM %s %s' % (self.name, self._search)
+        sql = 'SELECT count(*) FROM {0} {1}'.format(self.name, self._search)
         if self.db.query(sql):
             results = int(self.db.cursor.fetchone()[0])
             return results
@@ -249,8 +250,8 @@ class Table(object):
         """
         self.search(search)
         self.sort(sort)
-        subs = (select, self.name, self._search, self._sort)
-        sql = 'SELECT %s FROM %s %s %s' % subs
+        sql = 'SELECT {0} FROM {1} {2} {3}'.format(select, self.name,
+                                                self._search, self._sort)
         if self.db.query(sql):
             return self.db.cursor.fetchall()
         else:
@@ -267,11 +268,11 @@ class Table(object):
                 placeholder = '(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
             else:
                 placeholder = ('?,' * len(data[0]))[:-1]
-            sql = 'INSERT INTO %s VALUES %s' % (self.name, placeholder)
+            sql = 'INSERT INTO {0} VALUES {1}'.format(self.name, placeholder)
             data = data[0]
         elif isinstance(data[0], str):
             placeholder = ('?,' * len(data))[:-1]
-            sql = 'INSERT INTO %s VALUES (%s)' % (self.name, placeholder)
+            sql = 'INSERT INTO {0} VALUES ({1})'.format(self.name, placeholder)
         else:
             raise ValueError('Incorrect argument type or length')
         if self.db.query(sql, data):
@@ -292,7 +293,7 @@ class Table(object):
         """
         pattern -- expression list after "WHERE" clause
         """
-        sql = 'DELETE FROM %s WHERE %s' % (self.name, pattern)
+        sql = 'DELETE FROM {0} WHERE {1}'.format(self.name, pattern)
         if self.db.query(sql):
             return
         else:
@@ -311,7 +312,7 @@ class Table(object):
                     or None to clear a previous search
         """
         if pattern:
-            self._search = 'WHERE %s' % pattern
+            self._search = 'WHERE {0}'.format(pattern)
         else:
             self._search = ''
         return
@@ -322,7 +323,7 @@ class Table(object):
                     or None to clear a previous sort
         """
         if pattern:
-            self._sort = 'ORDER BY %s' % pattern
+            self._sort = 'ORDER BY {0}'.format(pattern)
         else:
             self._sort = ''
         return

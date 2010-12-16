@@ -44,18 +44,13 @@ for directory in PACKAGE_DIR, LIB_DIR:
     if not directory in sys.path:
         sys.path.insert(0, directory)
 
-import gettext
-gettext.install('font-manager')
-from constants import LOCALEDIR
-gettext.bindtextdomain('font-manager', LOCALEDIR)
-gettext.textdomain('font-manager')
-
+import constants
 
 def _exit_with_error(msg, error):
     """
     Print an error message letting user know which python module is missing
     """
-    sys.stderr.write('Error: %s (%s)\n' % (msg, str(error)))
+    sys.stderr.write('Error: {0} ({1!s})\n'.format(msg, error))
     sys.exit(1)
 
 def main():

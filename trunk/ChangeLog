@@ -1,4 +1,38 @@
 
+  * Update (0.5.7)
+
+        Allow sorting families by right-clicking.
+        http://code.google.com/p/font-manager/issues/detail?id=42
+
+        Address an issue where selecting a collection causes unintended
+        drag and drop effect.
+        http://code.google.com/p/font-manager/issues/detail?id=41
+
+        Add font version field to the font information dialog.
+        http://code.google.com/p/font-manager/issues/detail?id=40
+
+        Allow managing collections while in "Browse" mode.
+        Enable browse mode by default.
+
+        Allow re-ordering while in compare mode.
+
+        Add family type filter to advanced search dialog.
+        This uses Panose values and won't display fonts which don't supply them.
+
+        Use images which are friendlier to dark backgrounds.
+        i.e. Ubuntu's default tooltips
+
+        Add Launchpad translators to the credits dialog.
+        Add Italian, Russian and Slovak translations. 
+        Translations are not enabled by default yet.
+
+        Users wishing/willing to test and provide feedback should do
+
+        ./configure --prefix=/usr --enable-nls
+        make
+        make install
+
+
   * Update (0.5.6)
 
         Address an issue where our window is still displayed at startup even

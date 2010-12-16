@@ -108,7 +108,7 @@ class AppCache(list):
             self.update()
             return
         else:
-            raise TypeError('%s is not a valid directory path' % dirpath)
+            raise TypeError('{0} is not a valid directory path'.format(dirpath))
 
 
 class FontManager(gobject.GObject, UserDict.UserDict):
@@ -219,7 +219,8 @@ class FontManager(gobject.GObject, UserDict.UserDict):
             collection.add(families)
         else:
             raise TypeError\
-            ('Expected str, tuple or list got %s instead' % type(families[0]))
+            ('Expected str, tuple or list got {0!s} instead'.format(
+            type(families[0])))
         self.emit('update-font-groups', self.collections)
         return
 
@@ -238,7 +239,8 @@ class FontManager(gobject.GObject, UserDict.UserDict):
             collection.add(families)
         else:
             raise TypeError\
-            ('Expected str, tuple or list got %s instead' % type(families[0]))
+            ('Expected str, tuple or list got {0!s} instead'.format(
+            type(families[0])))
         self.emit('update-font-groups', self.collections)
         return
 
@@ -309,7 +311,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         if isinstance(comment, str):
             collection.comment = comment
         else:
-            collection.comment = _('Created on %s' % \
+            collection.comment = _('Created on {0}').format(
                 time.strftime('%A, %B %d, %Y, at %I:%M %p', time.localtime()))
         if families:
             self.add_families_to(collection, families)
@@ -338,7 +340,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         elif prop.name == 'accept':
             return self._enabled
         else:
-            raise AttributeError('Unknown property : %s' % prop.name)
+            raise AttributeError('Unknown property : {0}'.format(prop.name))
 
     def _do_set(self, values, state):
         """
@@ -355,9 +357,10 @@ class FontManager(gobject.GObject, UserDict.UserDict):
                     self.data[value].enabled = state
             else:
                 raise TypeError\
-                ('Expected str, tuple or list got %s instead' % type(values[0]))
+                ('Expected str, tuple or list got {0} instead'.format(
+                type(values[0])))
         except KeyError, key:
-            raise ValueError( '%s is not a valid family name' % key)
+            raise ValueError('{0} is not a valid family name'.format(key))
         self._update_selections()
         self.emit('update-font-select', self._disabled)
         return
@@ -371,7 +374,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         elif prop.name == 'disabled':
             self._do_set(value, False)
         else:
-            raise AttributeError('Unknown property : %s' % prop.name)
+            raise AttributeError('Unknown property : {0}'.format(prop.name))
         return
 
     def enable_collection(self, collection):
@@ -517,8 +520,8 @@ class FontManager(gobject.GObject, UserDict.UserDict):
                         self.remove_families_from(collection, family)
         else:
             raise TypeError\
-            ('Expected a string, tuple or list but got %s instead' % \
-            type(families[0]))
+            ('Expected a string, tuple or list but got {0} instead'.format(
+            type(families[0])))
         return
 
     def remove_families_from(self, collection, *families):
@@ -544,17 +547,17 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         table = database.Table('Fonts')
         selected_paths = []
         for family in selected_families:
-            filepaths = table.get('*', 'family="%s"' % family)
+            filepaths = table.get('*', 'family="{0}"'.format(family))
             for row in filepaths:
                 selected_paths.append(row['filepath'])
-            table.remove('family="%s"' % family)
+            table.remove('family="{0}"'.format(family))
         table.close()
         for filepath in selected_paths:
             if exists(filepath):
                 try:
                     os.unlink(filepath)
                 except OSError, error:
-                    logging.error('Error : %s : %s' % (filepath, error))
+                    logging.error('Error : {0} : {1}'.format(filepath, error))
         fonts.do_library_cleanup()
         return
 
@@ -871,7 +874,7 @@ def _relocate_user_config(content):
         logging.info('Backing up existing local.conf')
     with open(USER_FONT_CONFIG_RENDER, 'wb') as conf:
         conf.write(content)
-    logging.info('Previous version saved as %s' % USER_FONT_CONFIG_RENDER)
+    logging.info('Previous version saved as {0}'.format(USER_FONT_CONFIG_RENDER))
     return
 
 # Make sure we have everything we need to run properly
@@ -902,11 +905,11 @@ if exists(USER_FONT_CONFIG):
 else:
     CONFIG_NEEDS_UPDATE = True
 if CONFIG_NEEDS_UPDATE:
-    logging.info('Updating %s' % USER_FONT_CONFIG)
+    logging.info('Updating {0}'.format(USER_FONT_CONFIG))
     not exists(USER_FONT_CONFIG) or _relocate_user_config(CONFIG_CONTENT)
     with open(USER_FONT_CONFIG, 'wb') as conf:
         conf.write(VALID_USER_FONT_CONFIG)
 else:
-    logging.info('Verified %s' % USER_FONT_CONFIG)
+    logging.info('Verified {0}'.format(USER_FONT_CONFIG))
 
 __version__ = '@PACKAGE_VERSION@'

@@ -54,11 +54,11 @@ def set_preview_text(use_localized_sample):
     global PREVIEW_TEXT
     global COMPARE_TEXT
     if use_localized_sample:
-        PREVIEW_TEXT = PREVIEW_TEXT % LOCALIZED_TEXT
-        COMPARE_TEXT = COMPARE_TEXT % LOCALIZED_TEXT
+        PREVIEW_TEXT = PREVIEW_TEXT.format(LOCALIZED_TEXT)
+        COMPARE_TEXT = COMPARE_TEXT.format(LOCALIZED_TEXT)
     else:
-        PREVIEW_TEXT = PREVIEW_TEXT % STANDARD_TEXT
-        COMPARE_TEXT = COMPARE_TEXT % STANDARD_TEXT
+        PREVIEW_TEXT = PREVIEW_TEXT.format(STANDARD_TEXT)
+        COMPARE_TEXT = COMPARE_TEXT.format(STANDARD_TEXT)
     return
 
 
@@ -155,9 +155,9 @@ class Previews(object):
         font = model.get_value(iter, 0)
         win = gtk.Window(gtk.WINDOW_POPUP)
         preview = gtk.Label()
-        preview.set_markup('<span size="x-large"> %s \n\n</span><span \
-                            font_desc="%s" size="xx-large"> %s </span>' % \
-                            (font, font, self.compare_text))
+        preview.set_markup('<span size="x-large"> {0} \n\n</span><span \
+                    font_desc="{1}" size="xx-large"> {2} </span>'.format(
+                    font, font, self.compare_text))
         preview.set_padding(4, 4)
         win.add(preview)
         win.set_title('You should NOT be seeing this window frame!')
@@ -301,7 +301,7 @@ class Previews(object):
 
     def _cell_data_cb(self, column, cell, model, treeiter):
         style = self.compare_tree.get_style()
-        # pango.SCALE is currently 9216
+        # pango.SCALE doesn't work as expected, this does...
         scale = 9216
         font_desc = style.font_desc
         font_desc.set_size(int(scale * 1.2))
@@ -440,9 +440,9 @@ class Previews(object):
         try:
             logging.info("Launching GNOME Character Map")
             font = self.current_style.to_string()
-            subprocess.Popen(['gucharmap', '--font=%s 22' % font])
+            subprocess.Popen(['gucharmap', '--font={0} 22'.format(font)])
         except OSError, error:
-            logging.error("Error: %s" % error)
+            logging.error("Error: {0}".format(error))
         return
 
     def _on_font_changed(self, treeselection):
@@ -480,7 +480,8 @@ class Previews(object):
             return
         style = widget.get_active_text()
         self.current_style_as_string = style
-        valid_styles = 'Bold', 'Bold Italic', 'Italic'
+        valid_styles = ('Bold', 'Bold Italic', 'Italic',
+                        _('Bold'), _('Bold Italic'), _('Italic'))
         if self.current_family.enabled and \
         'gucharmap' in self.objects['AppCache']:
             if style in self.current_family.styles.iterkeys() or \
@@ -509,7 +510,7 @@ class Previews(object):
         style_combo.get_model().clear()
         family = self.current_family.pango_family
         selected_face = None
-        active = -1
+        active = None
         i = 0
         for face in family.list_faces():
             style_combo.append_text(face.get_face_name())
@@ -518,6 +519,8 @@ class Previews(object):
                     selected_face = face
                     active = i
             i += 1
+        if active is None:
+            active = 0
         style_combo.set_active(active)
         if selected_face:
             descr = selected_face.describe()
@@ -548,7 +551,9 @@ class Previews(object):
         size = self.size
         tag = t_buffer.create_tag(None, font_desc=descr, size_points=size,
                                     wrap_mode=gtk.WRAP_WORD)
-        t_buffer.insert(t_buffer.get_end_iter(), descr.to_string() + '\n')
+        t_buffer.insert(t_buffer.get_end_iter(),
+                        '{0} {1}\n'.format(self.current_family.get_name(),
+                                            self.current_style_as_string))
         t_buffer.insert(t_buffer.get_end_iter(), '\n' + self.preview_text)
         t_buffer.apply_tag(tag, t_buffer.get_start_iter(),
                                     t_buffer.get_end_iter())
@@ -561,7 +566,7 @@ class Previews(object):
         else:
             filepath = self.current_family.styles[style]['filepath']
             tooltip = \
-            _('Style provided by %s' % basename(filepath))
+            _('Style provided by {0}'.format(basename(filepath)))
         style_combo.set_tooltip_text(tooltip)
         if self.info_dialog:
             if self.info_dialog.window.get_property('visible'):
@@ -654,19 +659,18 @@ class FontBrowser(object):
 
     def _populate_browse_tree(self):
         # speedup: temporarily disconnect the model
-        model = self.browse_tree.get_model()
         self.browse_tree.set_model(None)
         for family in self.families:
             obj = self.objects['FontManager'][family]
             root_node = self.treestore.append(None,
                 [glib.markup_escape_text(family), None, False, True, family])
             for style in obj.pango_family.list_faces():
-                displaytext = '%s %s' % (glib.markup_escape_text(family),
+                displaytext = '{0} {1}'.format(glib.markup_escape_text(family),
                             glib.markup_escape_text(style.get_face_name()))
                 self.treestore.append(root_node,
                 [displaytext, style.describe(), not obj.enabled, False, family])
         # reconnect the model
-        self.browse_tree.set_model(model)
+        self.browse_tree.set_model(self.treestore)
         self.browse_tree.expand_all()
         return
 

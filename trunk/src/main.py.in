@@ -34,6 +34,7 @@ import gobject
 import logging
 import UserDict
 import subprocess
+import time
 
 from os.path import basename, exists, join
 
@@ -99,10 +100,11 @@ class Main(object):
             self.dbus_service.manager = self.objects['FontManager']
         # Notification
         if self.preferences.minimizeonstart:
-            self.objects.notify_send(_('Finished loading %s families') % \
-                                self.objects['FontManager'].total_families())
-        logging.info(_('Finished loading %s families') % \
-                                self.objects['FontManager'].total_families())
+            self.objects.notify_send(
+                                _('Finished loading {0} families').format(
+                                self.objects['FontManager'].total_families()))
+        logging.info('Finished loading {0} families'.format(
+                                self.objects['FontManager'].total_families()))
         # Main UI elements
         self.objects.load_ui_elements()
         self.previews = self.objects['Previews']
@@ -146,6 +148,8 @@ class Main(object):
             proxy_obj = session_bus.get_object('com.fonts.manage',
                                                 '/com/fonts/manage')
             ui = dbus.Interface(proxy_obj, 'com.fonts.interface')
+            while not ui.is_ready():
+                time.sleep(2.5)
             ui.show()
             sys.exit(0)
         except dbus.DBusException:
@@ -264,7 +268,7 @@ class Main(object):
     def _save_settings(self):
         if not self.preferences.maximized:
             width, height = self.main_window.get_size()
-            self.preferences.windowsize = '%s:%s' % (width, height)
+            self.preferences.windowsize = '{0}:{1}'.format(width, height)
         logging.info("Saving configuration")
         self.preferences.save()
         save_collections(self.objects)
@@ -448,7 +452,7 @@ class ObjectContainer(UserDict.UserDict):
         """
         if self.message is None:
             return
-        notification = self.message(_('Font Manager'), '%s' % message)
+        notification = self.message(_('Font Manager'), '{0}'.format(message))
         if self.icon:
             notification.set_icon_from_pixbuf(self.icon)
         notification.show()
@@ -498,7 +502,7 @@ class ObjectContainer(UserDict.UserDict):
         Update family total displayed in "statusbar".
         """
         return self.data['FamilyTotal'].set_text\
-        (_('Families : %s') % str(self.data['FontManager'].total_families()))
+        (_('Families : {0!s}').format(self.data['FontManager'].total_families()))
 
 
 class PopupMenu(UserDict.UserDict):
@@ -599,7 +603,7 @@ def _on_font_settings(unused_widget):
         logging.info("Launching font preferences dialog")
         subprocess.Popen(['gnome-appearance-properties', '--show-page=fonts'])
     except OSError, error:
-        logging.error("Error: %s" % error)
+        logging.error("Error: {0}".format(error))
     return
 
 def _on_fontconfig_settings(unused_widget, objects):
@@ -617,7 +621,8 @@ def _on_help(unused_widget):
     help_dir = join('@PACKAGEDIR@', 'help')
     help_files = join(help_dir, lang)
     if not exists(help_files):
-        logging.info('No translation exists for %s, using default...' % LANG)
+        logging.info(
+        'No translation exists for {0}, using default...'.format(LANG))
         help_files = join(help_dir, 'C/')
     try:
         subprocess.Popen(['yelp', help_files])

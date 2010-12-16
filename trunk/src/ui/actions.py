@@ -287,7 +287,7 @@ class UserActions(object):
         if args.find('FILEPATH') > 0:
             args = args.replace('FILEPATH', filepath)
         else:
-            args = '%s "%s"' % (args, filepath)
+            args = '{0} "{1}"'.format(args, filepath)
         command = shlex.split(args)
         command.insert(0, exe)
         try:

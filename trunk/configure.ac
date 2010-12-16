@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.65])
-AC_INIT([font-manager], [0.5.6])
+AC_INIT([font-manager], [0.5.7])
 AM_INIT_AUTOMAKE
 
 # Checks for programs.
@@ -11,6 +11,7 @@ AC_PROG_CC
 AC_PROG_INSTALL
 AC_PATH_PROG(PYTHON, python)
 AC_PATH_PROG(STRIP, strip)
+AC_PATH_PROG(FIND, find)
 
 # Checks for libraries.
 
@@ -39,6 +40,16 @@ esac],
 [bytecode=true])
 AM_CONDITIONAL([BYTECODE], [test x$bytecode = xtrue])
 
+AC_ARG_ENABLE([nls],
+[AS_HELP_STRING([--enable-nls], [Include translations])],
+[case "${enableval}" in
+  yes) nls=true ;;
+  no)  nls=false ;;
+  *) AC_MSG_ERROR([bad value ${enableval} for --enable-nls]) ;;
+esac],
+[nls=false])
+AM_CONDITIONAL([NLS], [test x$nls = xtrue])
+
 AC_ARG_ENABLE([debuginfo],
 [AS_HELP_STRING([--enable-debuginfo], [Do not strip libraries])],
 [case "${enableval}" in
@@ -61,9 +72,8 @@ AM_CONDITIONAL([WINLIB], [test x$winlib = xtrue])
 
 # Files that should be created by configure
 
-AC_CONFIG_FILES([
-	Makefile
-])
+AC_CONFIG_FILES([Makefile])
 
 # Required
+
 AC_OUTPUT
