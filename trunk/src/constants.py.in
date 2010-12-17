@@ -50,17 +50,13 @@ import gettext
 
 try:
     locale.setlocale(locale.LC_ALL, '')
+    locale.bindtextdomain(PACKAGE, LOCALEDIR)
 except locale.Error:
     pass
 
 gettext.textdomain(PACKAGE)
 gettext.install(PACKAGE, LOCALEDIR)
 gettext.bindtextdomain(PACKAGE, LOCALEDIR)
-
-try:
-    locale.bindtextdomain(PACKAGE, LOCALEDIR)
-except locale.Error:
-    pass
 
 
 LANG                        =   splitext(os.getenv('LANG', 'en_US'))[0]

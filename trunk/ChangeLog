@@ -22,15 +22,10 @@
         Use images which are friendlier to dark backgrounds.
         i.e. Ubuntu's default tooltips
 
-        Add Launchpad translators to the credits dialog.
-        Add Italian, Russian and Slovak translations. 
-        Translations are not enabled by default yet.
-
-        Users wishing/willing to test and provide feedback should do
-
-        ./configure --prefix=/usr --enable-nls
-        make
-        make install
+        Add Launchpad translators to the credits dialog. Add Italian, Russian
+        and Slovak translations. Translations are not enabled by default yet.
+        Users wishing/willing to test and provide feedback should pass
+        --enable-nls to configure.
 
 
   * Update (0.5.6)
