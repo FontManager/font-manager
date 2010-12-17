@@ -1,4 +1,4 @@
-/* fm-pyfontutils.h
+/* fm-pyfontutils.c
  *
  * Font Manager, a font management application for the GNOME desktop
  *

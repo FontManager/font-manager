@@ -26,9 +26,9 @@ PyInclude = `$(PYTHON) -c 'import $(SYSCONFIG); print "-I%s" % \
 	$(SYSCONFIG).get_python_inc()'`
 PyLibs = `$(PYTHON) -c 'import $(SYSCONFIG); print "-L%s -lpython%s" % \
 	($(SYSCONFIG).get_config_var("LIBPL"), $(SYSCONFIG).get_python_version())'`
-INSTALL_BIN = install -m 755
-INSTALL_FILE = install -m 644
-INSTALL_DIR = install -m 755 -d
+INSTALL_BIN = $(INSTALL) -m 755
+INSTALL_FILE = $(INSTALL) -m 644
+INSTALL_DIR = $(INSTALL_BIN) -d
 REMOVE = @rm -fv
 RECURSIVE_REMOVE = @rm -rfv
 
@@ -90,13 +90,11 @@ fontutils:
 	$(BUILD_LIB)
 	$(STRIP_LIB)
 
-pot:
+compile_po:
 	@cd po && $(SH) ./pogen.sh && cd ..
-
-compile_po: pot
 	for p in `ls po|grep .po|grep -v $(PACKAGE_NAME)`; \
 	do \
-		lang=${p%.po}; \
+		lang=$${p%.po}; \
 		langdir=$$lang/LC_MESSAGES; \
 		$(INSTALL_DIR) po/$$langdir; \
 		msgmerge -o - po/$$p po/$(PACKAGE_NAME).pot | \
@@ -106,9 +104,10 @@ compile_po: pot
 install_mo:
 	for mo in `$(FIND) po -name $(PACKAGE_NAME).mo`; \
 	do \
-		$(INSTALL_DIR) \
-		`echo $$mo | sed "s|^po|$(INST_LOC_DIR)|" | xargs dirname`; \
-		$(INSTALL_FILE) $$mo `echo $$mo | sed "s|^po|$(INST_LOC_DIR)|"` ; \
+		newpath=$${mo/#po\//$(INST_LOC_DIR)\/}; \
+		langdir=$${newpath/%$(PACKAGE_NAME).mo//}; \
+		$(INSTALL_DIR) $$langdir; \
+		$(INSTALL_FILE) $$mo $$langdir; \
 	done
 
 if NLS
@@ -164,11 +163,17 @@ uninstall:
 clean:
 	$(REMOVE)  $(SRC_LIB_DIR)/fontutils.so $(SRC_LIB_DIR)/fontutils.dll
 	@$(FIND) . -type f -name '*.py[co]' -exec rm -f '{}' \;
+	for p in `ls po|grep .po|grep -v $(PACKAGE_NAME)`; \
+	do \
+		langdir=$${p%.po}; \
+		rm -rf po/$$langdir; \
+	done
 
 distclean: clean
 	$(REMOVE) $(SRC_DIR)/$(PACKAGE_NAME) $(SRC_DIR)/$(SAMPLER) \
 		$(SRC_DIR)/constants.py $(SRC_DIR)/main.py $(SRC_CORE_DIR)/__init__.py \
-		$(SRC_UI_DIR)/export.py config.log config.status Makefile
+		$(SRC_UI_DIR)/export.py config.log config.status Makefile \
+		po/$(PACKAGE_NAME).pot po/$(PACKAGE_NAME)-help.pot 
 	$(RECURSIVE_REMOVE) autom4te.cache
 	@$(FIND) . -depth -type d -name '.svn' -exec rm -rf '{}' \;
 
