@@ -2528,8 +2528,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
                 <child>
                   <object class="GtkFileChooserButton" id="ExportFileChooser">
                     <property name="visible">True</property>
-                    <property name="do_overwrite_confirmation">True</property>
                     <property name="action">select-folder</property>
+                    <property name="do_overwrite_confirmation">True</property>
                     <property name="title" translatable="yes">Select A Folder</property>
                   </object>
                   <packing>
@@ -2613,8 +2613,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
     <property name="type_hint">dialog</property>
     <property name="skip_taskbar_hint">True</property>
     <property name="transient_for">MainWindow</property>
-    <property name="select_multiple">True</property>
     <property name="create_folders">False</property>
+    <property name="select_multiple">True</property>
     <signal name="file_activated" handler="gtk_true"/>
     <child internal-child="vbox">
       <object class="GtkVBox" id="dialog-vbox12">
@@ -2955,7 +2955,7 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
                 <property name="label" translatable="yes">Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="receives_default">True</property>
+                <property name="receives_default">False</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -2968,6 +2968,8 @@ Autoscan will not follow symbolic links or add hidden directories. These will ha
                 <property name="label" translatable="yes">OK</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
+                <property name="is_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="has_default">True</property>
                 <property name="receives_default">True</property>

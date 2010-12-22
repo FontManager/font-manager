@@ -9,7 +9,7 @@ cat >> POTFILES.in << EOF
 [type: gettext/glade]src/data/font-janitor.ui
 [type: gettext/glade]src/data/menus.ui
 src/constants.py
-src/font-sampler
+src/font-sampler.py
 src/main.py
 src/core/fonts.py
 src/core/__init__.py
@@ -20,7 +20,6 @@ src/ui/janitor.py
 src/ui/library.py
 src/ui/preferences.py
 src/ui/previews.py
-src/ui/sampler.py
 src/ui/treeviews.py
 src/utils/common.py
 src/utils/xmlutils.py

@@ -455,7 +455,7 @@ def save_fontconfig_settings(settings):
         if not less and not more:
             _add_assignments(node, style, settings)
     doc.saveFormatFile(join(USER_FONT_CONFIG_DIR,
-                    '25-{0}.conf'.format(settings.family.get_name()), format=1))
+                    '25-{0}.conf'.format(settings.family.get_name())), format=1)
     doc.freeDoc()
     return
 

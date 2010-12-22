@@ -22,6 +22,9 @@ This module allows other applications to control Font Manager via DBus.
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
+# Disable warnings related to Class in a try statement
+# pylint: disable-msg=R0923
+
 try:
 
     import dbus

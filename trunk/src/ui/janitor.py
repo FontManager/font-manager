@@ -40,7 +40,7 @@ from constants import COMPARE_TEXT, FONT_EXTS, LOCALIZED_TEXT, \
                         PACKAGE_DATA_DIR, STANDARD_TEXT
 from core.database import Table
 from utils.common import correct_slider_behavior, filename_is_questionable, \
-                            filename_is_illegal, natural_sort, natural_size
+                            filename_is_illegal, natural_sort
 
 ( FAMILY, FILENAME, SUGGESTED_FILENAME, FILETYPE, FILESIZE, FILEPATH,
   PS_NAME, PANGO_NAME, PANGO_DESC, FONT_DESC, ACTIVE, INCONSISTENT,

@@ -22,6 +22,8 @@
         Use images which are friendlier to dark backgrounds.
         i.e. Ubuntu's default tooltips
 
+        Fix some i18n related bugs.
+
         Add Launchpad translators to the credits dialog. Add Italian, Russian
         and Slovak translations. Translations are not enabled by default yet.
         Users wishing/willing to test and provide feedback should pass

@@ -32,13 +32,12 @@ import glib
 import gobject
 import logging
 import subprocess
-import time
 
 from os.path import basename
 
 from constants import COMPARE_TEXT, DEFAULT_STYLES, PREVIEW_TEXT, \
                         STANDARD_TEXT, LOCALIZED_TEXT
-from fontinfo import FontInformation
+from ui.fontinfo import FontInformation
 from utils.common import begin_drag, correct_slider_behavior
 
 TARGET_TYPE_BROWSE_ROW = 30
@@ -151,8 +150,8 @@ class Previews(object):
         return
 
     def _on_begin_drag(self, widget, context):
-        model, iter = self.compare_tree.get_selection().get_selected()
-        font = model.get_value(iter, 0)
+        model, treeiter = self.compare_tree.get_selection().get_selected()
+        font = model.get_value(treeiter, 0)
         win = gtk.Window(gtk.WINDOW_POPUP)
         preview = gtk.Label()
         preview.set_markup('<span size="x-large"> {0} \n\n</span><span \
@@ -557,16 +556,13 @@ class Previews(object):
         t_buffer.insert(t_buffer.get_end_iter(), '\n' + self.preview_text)
         t_buffer.apply_tag(tag, t_buffer.get_start_iter(),
                                     t_buffer.get_end_iter())
-
         style_combo = self.objects['StyleCombo']
         style = style_combo.get_model()[style_combo.get_active()][0]
         if not style in self.current_family.styles.iterkeys():
-            tooltip = \
-            _('Style provided by the rendering library.')
+            tooltip = _('Style provided by the rendering library.')
         else:
             filepath = self.current_family.styles[style]['filepath']
-            tooltip = \
-            _('Style provided by {0}'.format(basename(filepath)))
+            tooltip = _('Style provided by {0}'.format(basename(filepath)))
         style_combo.set_tooltip_text(tooltip)
         if self.info_dialog:
             if self.info_dialog.window.get_property('visible'):
@@ -658,7 +654,7 @@ class FontBrowser(object):
         return
 
     def _populate_browse_tree(self):
-        # speedup: temporarily disconnect the model
+        # temporarily disconnect the model
         self.browse_tree.set_model(None)
         for family in self.families:
             obj = self.objects['FontManager'][family]

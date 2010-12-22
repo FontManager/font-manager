@@ -43,7 +43,7 @@ import fontutils
 
 from core.service import *
 from ui import fontconfig
-from constants import LANG, PACKAGE, PACKAGE_DATA_DIR
+from constants import LANG, PACKAGE_DATA_DIR
 from ui.export import Export
 from ui.janitor import FontJanitor
 from ui.library import InstallFonts, RemoveFonts
@@ -149,6 +149,7 @@ class Main(object):
                                                 '/com/fonts/manage')
             ui = dbus.Interface(proxy_obj, 'com.fonts.interface')
             while not ui.is_ready():
+                logging.info('Waiting for running instance to finish loading...')
                 time.sleep(2.5)
             ui.show()
             sys.exit(0)
@@ -246,7 +247,7 @@ class Main(object):
         return
 
     def reload(self, unused_widget, del_cache = False):
-        if del_cache:
+        if del_cache or self.dirty:
             delete_cache()
             delete_database()
             reset_fontconfig_cache()
@@ -277,8 +278,8 @@ class Main(object):
     def _set_window_state(self, widget, event):
         if not event.type == gtk.gdk.WINDOW_STATE:
             return
-        max = gtk.gdk.WINDOW_STATE_MAXIMIZED
-        self.preferences.maximized = (event.new_window_state == max)
+        maxed = gtk.gdk.WINDOW_STATE_MAXIMIZED
+        self.preferences.maximized = (event.new_window_state == maxed)
         return
 
     def _use_tray_icon(self, unused_cls_instance, minimize = True):

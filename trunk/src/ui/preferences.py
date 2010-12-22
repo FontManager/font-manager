@@ -31,12 +31,12 @@ import os
 import gtk
 import gobject
 
-from os.path import exists, join, isdir
+from os.path import join, isdir
 
 from core import database
 from utils.common import delete_cache, delete_database, match, \
                             natural_sort, search, run_dialog
-from constants import HOME, DATABASE_FILE, CACHE_FILE
+from constants import HOME
 
 
 EXTS = ('.ttf', '.ttc', '.otf', '.pfb', '.pfa', '.pfm', '.afm', '.bdf',

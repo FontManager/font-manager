@@ -43,7 +43,7 @@ import fontutils
 
 from constants import AUTOSTART_DIR, USER_FONT_DIR, HOME, README, CACHE_FILE, \
 DATABASE_FILE, ARCH_EXTS, USER_FONT_CONFIG_DIR, USER_FONT_CONFIG_RENDER
-from xmlutils import load_directories
+from utils.xmlutils import load_directories
 
 AUTOSTART = \
 """[Desktop Entry]

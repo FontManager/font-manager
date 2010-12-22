@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager\n"
-"Report-Msgid-Bugs-To: http://code.google.com/p/font-manager/issues/list \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-12-15 23:11-0500\n"
 "PO-Revision-Date: 2010-11-01 08:28+0000\n"
 "Last-Translator: Jerry Casiano <Unknown>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-11-02 05:09+0000\n"
+"X-Launchpad-Export-Date: 2010-12-17 06:33+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../src/data/actions.ui.h:1
@@ -161,9 +161,8 @@ msgid "Style provided by the rendering library."
 msgstr ""
 
 #: ../src/data/font-information.ui.h:13
-#, fuzzy
 msgid "Version :"
-msgstr "Descrizione:"
+msgstr ""
 
 #: ../src/data/font-manager.ui.h:1
 msgid ""
@@ -858,7 +857,6 @@ msgstr ""
 "\n"
 
 #: ../src/constants.py:142
-#, fuzzy
 msgid ""
 "\n"
 "<!--\n"
@@ -872,19 +870,6 @@ msgid ""
 "    at startup and any settings already in that file will be overwritten.\n"
 "-->\n"
 msgstr ""
-"\n"
-"<!--\n"
-"    Questo file è manutenuto da Font Manager.\n"
-"\n"
-"    Se si desidera apportare le modifiche si consiglia di farlo utilizzando\n"
-"\n"
-"        %s\n"
-"\n"
-"    Tutte le modifiche apportate a questo file verranno automaticamente "
-"trasferite lì \n"
-"    all'avvio e tutte le impostazioni già presenti in quel file verranno "
-"sovrascritte.\n"
-"-->\n"
 
 #: ../src/constants.py:313
 msgid "Anti-Alias"
@@ -967,14 +952,12 @@ msgid "Mono"
 msgstr ""
 
 #: ../src/constants.py:419
-#, fuzzy
 msgid "Charcell"
-msgstr "Cancella"
+msgstr ""
 
 #: ../src/main.py:104
-#, fuzzy
 msgid "Finished loading {0} families"
-msgstr "Terminato il caricamento di %s famiglie"
+msgstr ""
 
 #: ../src/main.py:180 ../src/main.py:414
 msgid "Yelp is required to view help files"
@@ -989,28 +972,24 @@ msgid "Font Manager will restart in a moment"
 msgstr "Font Manager sarà riavviato in un attimo"
 
 #: ../src/main.py:505
-#, fuzzy
 msgid "Families : {0!s}"
-msgstr "Famiglie: %s"
+msgstr ""
 
 #: ../src/main.py:542
 msgid "Folder Cleanup"
 msgstr "Pulizia cartella"
 
 #: ../src/core/fonts.py:187
-#, fuzzy
 msgid "{0} Fonts"
-msgstr "%s Font"
+msgstr ""
 
 #: ../src/core/fonts.py:189
-#, fuzzy
 msgid "{0} Font"
-msgstr "%s Font"
+msgstr ""
 
 #: ../src/core/fonts.py:293
-#, fuzzy
 msgid "Querying installed files..."
-msgstr "Copiando i documenti..."
+msgstr ""
 
 #: ../src/core/fonts.py:401 ../src/core/__init__.py:582
 #: ../src/ui/treeviews.py:262 ../src/ui/treeviews.py:463
@@ -1038,9 +1017,8 @@ msgid "User"
 msgstr "Untente"
 
 #: ../src/core/fonts.py:407
-#, fuzzy
 msgid "Fonts available only to {0}"
-msgstr "Font disponibili solo a %s"
+msgstr ""
 
 #: ../src/core/fonts.py:408 ../src/core/__init__.py:591
 #: ../src/ui/preferences.py:427 ../src/ui/preferences.py:437
@@ -1054,14 +1032,12 @@ msgid "Fonts not present in any collection"
 msgstr "Font non presenti in nessuna collezione"
 
 #: ../src/core/fonts.py:448
-#, fuzzy
 msgid "Loading available fonts..."
-msgstr "Tutti i font disponibili"
+msgstr ""
 
 #: ../src/core/__init__.py:314 ../src/utils/xmlutils.py:332
-#, fuzzy
 msgid "Created on {0}"
-msgstr "Creato il %s"
+msgstr ""
 
 #: ../src/ui/actions.py:188
 msgid "Edit Action"
@@ -1120,9 +1096,8 @@ msgid "Family"
 msgstr "Famiglia"
 
 #: ../src/ui/fontconfig.py:208
-#, fuzzy
 msgid "Substitute"
-msgstr "Aggiungi Sostituto"
+msgstr ""
 
 #: ../src/ui/fontconfig.py:308
 msgid "Full Reset"
@@ -1245,9 +1220,8 @@ msgid "Collection"
 msgstr "Collezione"
 
 #: ../src/ui/treeviews.py:423
-#, fuzzy
 msgid "Add to"
-msgstr "Aggiungi"
+msgstr ""
 
 #: ../src/ui/treeviews.py:444
 msgid "Edit actions..."
@@ -1262,9 +1236,8 @@ msgid "New Collection"
 msgstr "Nuova Collezione"
 
 #: ../src/ui/treeviews.py:699
-#, fuzzy
 msgid "New Collection {0}"
-msgstr "Nuova Collezione"
+msgstr ""
 
 #: ../src/ui/treeviews.py:1015
 msgid "contains"
@@ -1300,6 +1273,35 @@ msgid ""
 "    please file a bug against Font Manager"
 msgstr ""
 
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "<!--\n"
+#~ "    This file is maintained by Font Manager.\n"
+#~ "\n"
+#~ "    If you wish to make any changes it is suggested you do so using\n"
+#~ "\n"
+#~ "        %s\n"
+#~ "\n"
+#~ "    Any changes made to this file will be automatically relocated there\n"
+#~ "    at startup and any settings already in that file will be overwritten.\n"
+#~ "-->\n"
+#~ msgstr ""
+#~ "\n"
+#~ "<!--\n"
+#~ "    Questo file è manutenuto da Font Manager.\n"
+#~ "\n"
+#~ "    Se si desidera apportare le modifiche si consiglia di farlo utilizzando\n"
+#~ "\n"
+#~ "        %s\n"
+#~ "\n"
+#~ "    Tutte le modifiche apportate a questo file verranno automaticamente "
+#~ "trasferite lì \n"
+#~ "    all'avvio e tutte le impostazioni già presenti in quel file verranno "
+#~ "sovrascritte.\n"
+#~ "-->\n"
+
+#, python-format
 #~ msgid ""
 #~ "\n"
 #~ "<!--\n"
@@ -1323,8 +1325,32 @@ msgstr ""
 #~ "      %s\n"
 #~ "-->\n"
 
+#, python-format
+#~ msgid "Families : %s"
+#~ msgstr "Famiglie: %s"
+
+#, python-format
+#~ msgid "Finished loading %s families"
+#~ msgstr "Terminato il caricamento di %s famiglie"
+
 #~ msgid "Exclude size range"
 #~ msgstr "Escludi intervallo dimensioni"
+
+#, python-format
+#~ msgid "Fonts available only to %s"
+#~ msgstr "Font disponibili solo a %s"
+
+#, python-format
+#~ msgid "%s Fonts"
+#~ msgstr "%s Font"
+
+#, python-format
+#~ msgid "%s Font"
+#~ msgstr "%s Font"
+
+#, python-format
+#~ msgid "Created on %s"
+#~ msgstr "Creato il %s"
 
 #~ msgid "File does not contain any embedded license information."
 #~ msgstr "Il file non contiene alcuna informazione di licenza inclusa"
@@ -1333,11 +1359,11 @@ msgstr ""
 #~ msgstr "Abilita Modalità esplorazione"
 
 #~ msgid ""
-#~ "If available a localized sample will be used instead of the default "
-#~ "pangram"
+#~ "If available a localized sample will be used instead of the default pangram"
 #~ msgstr ""
-#~ "Se disponibile, sarà utilizzato un campione localizzato invece del "
-#~ "pangramma predefinito"
+#~ "Se disponibile, sarà utilizzato un campione localizzato invece del pangramma "
+#~ "predefinito"
 
+#, python-format
 #~ msgid "New Collection %s"
 #~ msgstr "Nuova Collezione %s"

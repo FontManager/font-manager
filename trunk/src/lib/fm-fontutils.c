@@ -72,11 +72,8 @@ FcListFiles()
     {
         FcChar8         *file;
 
-        if (FcPatternGetString(fontset->fonts[i],
-                                FC_FILE, 0, &file) == FcResultMatch)
-        {
-            filelist = g_slist_prepend(filelist, g_strdup((const gchar *) file));
-        }
+        FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &file);
+        filelist = g_slist_prepend(filelist, g_strdup((const gchar *) file));
     }
 
     if (objectset)
@@ -283,22 +280,15 @@ _get_base_font_info(FontInfo *fontinfo, const FT_Face face,
     for (i = 0; i < fontset->nfont; i++)
     {
         FcChar8         *family,
-                        *style,
-                        *foundry;
+                        *style;
 
-        if (FcPatternGetString(fontset->fonts[i],
-                                FC_FAMILY, 0, &family) == FcResultMatch)
-        {
-            ADD_PROP(fontinfo->family, family);
-        }
-        if (FcPatternGetString(fontset->fonts[i],
-                                FC_STYLE, 0, &style) == FcResultMatch)
-        {
-            ADD_PROP(fontinfo->style, style);
-        }
+        FcPatternGetString(fontset->fonts[i], FC_FAMILY, 0, &family);
+        FcPatternGetString(fontset->fonts[i], FC_STYLE, 0, &style);
+        ADD_PROP(fontinfo->family, family);
+        ADD_PROP(fontinfo->style, style);
     }
 
-    descr = pango_fc_font_description_from_pattern (pattern, FALSE);
+    descr = pango_fc_font_description_from_pattern(pattern, FALSE);
     ADD_PROP(fontinfo->pdescr, pango_font_description_to_string(descr));
     ADD_PROP(fontinfo->pfamily, (char *) pango_font_description_get_family(descr));
 

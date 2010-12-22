@@ -38,11 +38,11 @@ from os.path import join
 
 import fontutils
 
-from actions import UserActions
+from ui.actions import UserActions
 from core.database import Table
 from constants import PACKAGE_DATA_DIR, FONT_EXTS
-from custom import CellRendererTotal
-from library import InstallFonts
+from ui.custom import CellRendererTotal
+from ui.library import InstallFonts
 from utils.common import begin_drag, match, natural_sort, search, run_dialog
 
 TARGET_TYPE_COLLECTION_ROW = 10
@@ -302,8 +302,8 @@ class Treeviews(object):
             if self.objects['Preferences'].focusondrop:
                 widget.get_selection().select_path(path)
         elif info == TARGET_TYPE_BROWSE_ROW:
-            iter = context.get_source_widget().get_selection().get_selected()[1]
-            family = context.get_source_widget().get_model().get_value(iter, 4)
+            titer = context.get_source_widget().get_selection().get_selected()[1]
+            family = context.get_source_widget().get_model().get_value(titer, 4)
             collection = model.get(model.get_iter(
                                     widget.get_path_at_pos(x,y)[0]), 0, 1)[0]
             self.manager.add_families_to(collection, family)
@@ -891,6 +891,15 @@ class TreeviewFilter(object):
                     'All', 'No Fit', 'Text and Display', 'Script', 'Decorative',
                     'Pictorial'
                     )
+    _query_opts = {
+                    0   :   '{0} LIKE "%{1}%"',
+                    1   :   '{0} LIKE "{1}%"',
+                    2   :   '{0} LIKE "%{1}"',
+                    3   :   '{0}="{1}"',
+                    4   :   '{0}!="{1}"'
+                    }
+    _combos = ('FamilyCombo', 'TypeCombo', 'FoundryCombo', 'FilepathCombo',
+                'FiletypeCombo')
     def __init__(self, objects):
         self.objects = objects
         self.builder = objects.builder
@@ -899,8 +908,6 @@ class TreeviewFilter(object):
             self.widgets[widget] = self.builder.get_object(widget)
         self.widgets['SearchDialog'].connect('delete-event', \
                                 lambda widget, event: widget.response(0))
-        self.combos = ('FamilyCombo', 'TypeCombo', 'FoundryCombo',
-                        'FilepathCombo', 'FiletypeCombo')
         self._types = self._get_types()
         self._foundries = self._get_foundries()
         self._setup_combos()
@@ -925,65 +932,43 @@ class TreeviewFilter(object):
         return natural_sort(filt)
 
     def _get_family(self):
+        active = self.widgets['FamilyCombo'].get_active()
         family = self.widgets['FamilyEntry'].get_text()
         if family != '':
-            active = self.widgets['FamilyCombo'].get_active()
-            like = 'family LIKE "'
-            if active == 0:
-                query = like + '%' + family + '%"'
-            elif active == 1:
-                query = like + family + '%"'
-            elif active == 2:
-                query = like + '%' + family + '"'
+            return self._query_opts[active].format('family', family)
         else:
-            query = False
-        return query
+            return False
 
     def _get_type(self):
         active = self.widgets['TypeCombo'].get_active()
         if active == 0:
             return False
         else:
-            return 'panose LIKE "' + str(active) + ':%"'
+            return 'panose LIKE "{0}:%"'.format(str(active))
 
     def _get_filetype(self):
-        typ = self.widgets['FiletypeComboEntry'].child.get_text()
-        if typ != '':
-            active = self.widgets['FiletypeCombo'].get_active()
-            if active == 0:
-                query = 'filetype="{0}"'.format(typ)
-            elif active == 1:
-                query = 'filetype!="{0}"'.format(typ)
+        active = self.widgets['FiletypeCombo'].get_active()
+        frmat = self.widgets['FiletypeComboEntry'].child.get_text()
+        if frmat != '':
+            return self._query_opts[active + 3].format('filetype', frmat)
         else:
-            query = False
-        return query
+            return False
 
     def _get_foundry(self):
+        active = self.widgets['FiletypeCombo'].get_active()
         foundry = self.widgets['FoundryComboEntry'].child.get_text()
         if foundry != '':
-            active = self.widgets['FoundryCombo'].get_active()
-            if active == 0:
-                query = 'foundry="{0}"'.format(foundry)
-            elif active == 1:
-                query = 'foundry!="{0}"'.format(foundry)
+            return self._query_opts[active + 3].format('foundry', foundry)
         else:
-            query = False
-        return query
+            return False
 
     def _get_filepath(self):
+        active = self.widgets['FilepathCombo'].get_active()
         filepath = self.widgets['FilepathEntry'].get_text()
         if filepath != '':
-            active = self.widgets['FilepathCombo'].get_active()
-            like = 'filepath LIKE "'
-            if active == 0:
-                query = like + '%' + filepath + '%"'
-            elif active == 1:
-                query = like + filepath + '%"'
-            elif active == 2:
-                query = like + '%' + filepath + '"'
+            return self._query_opts[active].format('filepath', filepath)
         else:
-            query = False
-        return query
+            return False
 
     def _get_foundries(self):
         """
@@ -1024,7 +1009,7 @@ class TreeviewFilter(object):
         self.widgets['FilepathCombo'].set_model(model1)
         self.widgets['TypeCombo'].set_model(model3)
         cell = gtk.CellRendererText()
-        for widget in self.combos:
+        for widget in self._combos:
             self.widgets[widget].pack_start(cell, True)
             self.widgets[widget].add_attribute(cell, 'text', 0)
             self.widgets[widget].set_active(0)
@@ -1047,7 +1032,7 @@ class TreeviewFilter(object):
         """
         Display "advanced search" dialog.
         """
-        for widget in self.combos:
+        for widget in self._combos:
             self.widgets[widget].set_active(0)
         for widget in 'FamilyEntry', 'FilepathEntry':
             self.widgets[widget].set_text('')
@@ -1065,4 +1050,3 @@ class TreeviewFilter(object):
 def get_header(title):
     header = glib.markup_escape_text(title)
     return '<span size="xx-large" weight="heavy">{0}</span>'.format(header)
-

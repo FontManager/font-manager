@@ -22,16 +22,10 @@ This module is used to group functions which access the database.
 #    51 Franklin Street, Fifth Floor
 #    Boston, MA 02110-1301, USA.
 
-import logging
 import sqlite3
 
 from constants import DATABASE_FILE
 
-
-FIELDS = ('owner', 'filepath', 'filetype', 'filesize', 'checksum', 'psname',
-'family', 'style', 'foundry', 'copyright', 'version', 'description',
-'license', 'license_url', 'panose', 'face', 'pfamily', 'pstyle', 'pvariant',
-'pweight', 'pstretch', 'pdescr')
 
 INIT = """
 CREATE TABLE IF NOT EXISTS Fonts
@@ -60,7 +54,10 @@ uid INTEGER PRIMARY KEY,
 {20} TEXT,
 {21} TEXT
 );
-""".format(*FIELDS)
+""".format('owner', 'filepath', 'filetype', 'filesize', 'checksum', 'psname',
+'family', 'style', 'foundry', 'copyright', 'version', 'description', 'license',
+'license_url', 'panose', 'face', 'pfamily', 'pstyle', 'pvariant', 'pweight',
+'pstretch', 'pdescr')
 
 
 class Database(object):

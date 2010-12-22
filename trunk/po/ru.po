@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager\n"
-"Report-Msgid-Bugs-To: http://code.google.com/p/font-manager/issues/list \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-12-15 23:11-0500\n"
 "PO-Revision-Date: 2010-10-15 07:29+0000\n"
 "Last-Translator: TheMengzor <The.Mengzor@gmail.com>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-10-16 05:03+0000\n"
+"X-Launchpad-Export-Date: 2010-12-17 06:33+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../src/data/actions.ui.h:1
@@ -151,9 +151,8 @@ msgid "Style provided by the rendering library."
 msgstr "Стиль предоставлен библиотекой рендера"
 
 #: ../src/data/font-information.ui.h:13
-#, fuzzy
 msgid "Version :"
-msgstr "Описание:"
+msgstr ""
 
 #: ../src/data/font-manager.ui.h:1
 msgid ""
@@ -930,14 +929,12 @@ msgid "Mono"
 msgstr ""
 
 #: ../src/constants.py:419
-#, fuzzy
 msgid "Charcell"
-msgstr "Отмена"
+msgstr ""
 
 #: ../src/main.py:104
-#, fuzzy
 msgid "Finished loading {0} families"
-msgstr "Закончена загрузка %s гарнитур"
+msgstr ""
 
 #: ../src/main.py:180 ../src/main.py:414
 msgid "Yelp is required to view help files"
@@ -952,28 +949,24 @@ msgid "Font Manager will restart in a moment"
 msgstr "Менеджер шрифтов будет перезапущен"
 
 #: ../src/main.py:505
-#, fuzzy
 msgid "Families : {0!s}"
-msgstr "Гарнитур: %s"
+msgstr ""
 
 #: ../src/main.py:542
 msgid "Folder Cleanup"
 msgstr "Очистка папки"
 
 #: ../src/core/fonts.py:187
-#, fuzzy
 msgid "{0} Fonts"
-msgstr "%s шрифтов"
+msgstr ""
 
 #: ../src/core/fonts.py:189
-#, fuzzy
 msgid "{0} Font"
-msgstr "%s шрифт"
+msgstr ""
 
 #: ../src/core/fonts.py:293
-#, fuzzy
 msgid "Querying installed files..."
-msgstr "Регистрация шрифтов..."
+msgstr ""
 
 #: ../src/core/fonts.py:401 ../src/core/__init__.py:582
 #: ../src/ui/treeviews.py:262 ../src/ui/treeviews.py:463
@@ -1001,9 +994,8 @@ msgid "User"
 msgstr "Пользовательские"
 
 #: ../src/core/fonts.py:407
-#, fuzzy
 msgid "Fonts available only to {0}"
-msgstr "Шрифты, доступные только для %s"
+msgstr ""
 
 #: ../src/core/fonts.py:408 ../src/core/__init__.py:591
 #: ../src/ui/preferences.py:427 ../src/ui/preferences.py:437
@@ -1017,9 +1009,8 @@ msgid "Fonts not present in any collection"
 msgstr "Шрифты, не внесенные в какую-либо коллекцию"
 
 #: ../src/core/fonts.py:448
-#, fuzzy
 msgid "Loading available fonts..."
-msgstr "Все доступные шрифты"
+msgstr ""
 
 #: ../src/core/__init__.py:314 ../src/utils/xmlutils.py:332
 msgid "Created on {0}"
@@ -1158,9 +1149,8 @@ msgid "Italic"
 msgstr ""
 
 #: ../src/ui/previews.py:569
-#, fuzzy
 msgid "Style provided by {0}"
-msgstr "Стиль предоставлен %s"
+msgstr ""
 
 #: ../src/ui/sampler.py:76
 msgid "Sample of included fonts"
@@ -1207,9 +1197,8 @@ msgid "Collection"
 msgstr "Коллекция"
 
 #: ../src/ui/treeviews.py:423
-#, fuzzy
 msgid "Add to"
-msgstr "Добавить"
+msgstr ""
 
 #: ../src/ui/treeviews.py:444
 msgid "Edit actions..."
@@ -1224,9 +1213,8 @@ msgid "New Collection"
 msgstr "Новая коллекция"
 
 #: ../src/ui/treeviews.py:699
-#, fuzzy
 msgid "New Collection {0}"
-msgstr "Новая коллекция"
+msgstr ""
 
 #: ../src/ui/treeviews.py:1015
 msgid "contains"
@@ -1249,7 +1237,6 @@ msgid "Please install a supported file browser"
 msgstr "Пожалуйста, установите поддерживаемый обозреватель файлов"
 
 #: ../src/utils/common.py:304
-#, fuzzy
 msgid ""
 "    Supported file browsers include :\n"
 "\n"
@@ -1262,17 +1249,43 @@ msgid ""
 "    If a supported file browser is installed,\n"
 "    please file a bug against Font Manager"
 msgstr ""
-"    Поддерживаемые обозреватели файлов:\n"
-"    \n"
-"    - Nautilus\n"
-"    - Thunar\n"
-"    - Dolphin\n"
-"    - Konqueror\n"
-"    - PCManFM\n"
-"    \n"
-"    Если поддерживаемый обозреватель уже установлен,\n"
-"    сообщите о проблеме разработчикам"
 
+#~ msgid "Exclude size range"
+#~ msgstr "Исключить диапазон размеров"
+
+#, python-format
+#~ msgid "Fonts available only to %s"
+#~ msgstr "Шрифты, доступные только для %s"
+
+#~ msgid "File does not contain any embedded license information."
+#~ msgstr "Файл не содержит встроенной информации о лицензии"
+
+#~ msgid "Enable Browse Mode"
+#~ msgstr "Включить режим просмотра"
+
+#~ msgid ""
+#~ "If available a localized sample will be used instead of the default pangram"
+#~ msgstr ""
+#~ "Использовать, если доступен, локализированный пример текста, вместо "
+#~ "встроенного"
+
+#, python-format
+#~ msgid "Families : %s"
+#~ msgstr "Гарнитур: %s"
+
+#, python-format
+#~ msgid "Finished loading %s families"
+#~ msgstr "Закончена загрузка %s гарнитур"
+
+#, python-format
+#~ msgid "%s Fonts"
+#~ msgstr "%s шрифтов"
+
+#, python-format
+#~ msgid "%s Font"
+#~ msgstr "%s шрифт"
+
+#, python-format
 #~ msgid ""
 #~ "\n"
 #~ "<!--\n"
@@ -1296,21 +1309,33 @@ msgstr ""
 #~ "      %s\n"
 #~ "-->\n"
 
-#~ msgid "Exclude size range"
-#~ msgstr "Исключить диапазон размеров"
+#, python-format
+#~ msgid "Style provided by %s"
+#~ msgstr "Стиль предоставлен %s"
 
-#~ msgid "File does not contain any embedded license information."
-#~ msgstr "Файл не содержит встроенной информации о лицензии"
-
-#~ msgid "Enable Browse Mode"
-#~ msgstr "Включить режим просмотра"
-
-#~ msgid ""
-#~ "If available a localized sample will be used instead of the default "
-#~ "pangram"
-#~ msgstr ""
-#~ "Использовать, если доступен, локализированный пример текста, вместо "
-#~ "встроенного"
-
+#, python-format
 #~ msgid "New Collection %s"
 #~ msgstr "Новая коллекция %s"
+
+#~ msgid ""
+#~ "    Supported file browsers include :\n"
+#~ "    \n"
+#~ "    - Nautilus\n"
+#~ "    - Thunar\n"
+#~ "    - Dolphin\n"
+#~ "    - Konqueror\n"
+#~ "    - PCManFM\n"
+#~ "    \n"
+#~ "    If a supported file browser is installed,\n"
+#~ "    please file a bug against Font Manager"
+#~ msgstr ""
+#~ "    Поддерживаемые обозреватели файлов:\n"
+#~ "    \n"
+#~ "    - Nautilus\n"
+#~ "    - Thunar\n"
+#~ "    - Dolphin\n"
+#~ "    - Konqueror\n"
+#~ "    - PCManFM\n"
+#~ "    \n"
+#~ "    Если поддерживаемый обозреватель уже установлен,\n"
+#~ "    сообщите о проблеме разработчикам"

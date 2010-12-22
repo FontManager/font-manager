@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager\n"
-"Report-Msgid-Bugs-To: http://code.google.com/p/font-manager/issues/list \n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2010-12-15 23:11-0500\n"
-"PO-Revision-Date: 2010-11-30 09:49+0000\n"
-"Last-Translator: Jerry Casiano <Unknown>\n"
+"PO-Revision-Date: 2010-12-18 08:17+0000\n"
+"Last-Translator: Stano Kobella <Stano110@azet.sk>\n"
 "Language-Team: Slovak <sk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-12-01 05:19+0000\n"
+"X-Launchpad-Export-Date: 2010-12-19 05:19+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #: ../src/data/actions.ui.h:1
@@ -160,9 +160,8 @@ msgid "Style provided by the rendering library."
 msgstr "Štýl poskytnutý vykresľovacou knižnicou."
 
 #: ../src/data/font-information.ui.h:13
-#, fuzzy
 msgid "Version :"
-msgstr "Popis :"
+msgstr "Verzia :"
 
 #: ../src/data/font-manager.ui.h:1
 msgid ""
@@ -554,6 +553,15 @@ msgid ""
 "and other applications on Launchpad accessible\n"
 "to as many people as possible."
 msgstr ""
+"Prekladatelia v Launchpade.\n"
+"\n"
+"Pre viac informácii prosím pozri\n"
+"\n"
+"\thttp://translations.launchpad.net/\n"
+"\n"
+"Veľká vďaka všetkým tým, ktorí pomohli urobiť túto\n"
+"a ďalšie aplikácie v Launchpage prístupné\n"
+"pre tak mnoho ľudí, ako je to len možné."
 
 #: ../src/data/font-manager.ui.h:119
 msgid "Manage"
@@ -576,6 +584,8 @@ msgid ""
 "Note that this filter relies on PANOSE classification numbers, fonts that do "
 "not provide this information will not be shown."
 msgstr ""
+"Nezabudni že tento filter spočíva na klasifikačných číslach PANOSE, fonty "
+"ktoré neposkytujú túto informáciu nebudú ukázané."
 
 #: ../src/data/font-manager.ui.h:125 ../src/data/menus.ui.h:10
 msgid "Preferences"
@@ -886,13 +896,12 @@ msgstr ""
 "vybrané.\n"
 "\n"
 "\n"
-"Ak si praješ spraviť fonty dostupné každému užívateľovi systému, potom "
-"budú \n"
+"Ak si praješ spraviť fonty dostupné každému užívateľovi systému, potom budú "
+"\n"
 "musieť byť umiestnené v adresári /usr/share/fonts\n"
 "\n"
 
 #: ../src/constants.py:142
-#, fuzzy
 msgid ""
 "\n"
 "<!--\n"
@@ -910,13 +919,12 @@ msgstr ""
 "<!--\n"
 "    Tento súbor je spravovaný Správcom fontov.\n"
 "\n"
-"    Ak si praješ urobiť nejaké zmeny potom sa ti odporúča urobiť to s "
-"použitím\n"
+"    Ak si praješ urobiť nejaké zmeny, skús tak urobiť s použitím\n"
 "\n"
-"        %s\n"
+"        {0}\n"
 "\n"
 "    Akékoľvek zmeny urobené v tomto súbore budú tam automaticky prenesené\n"
-"    pri spúšťaní a akékoľvek nastavenia už prítomné v tamtom súbore budú "
+"    pri štarte a akékoľvek existujúce nastavenia v tamtom súbore budú "
 "prepísané.\n"
 "-->\n"
 
@@ -962,19 +970,19 @@ msgstr "Väčšie než"
 
 #: ../src/constants.py:404 ../src/constants.py:410
 msgid "None"
-msgstr ""
+msgstr "Žiadne"
 
 #: ../src/constants.py:405
 msgid "Slight"
-msgstr ""
+msgstr "Málo"
 
 #: ../src/constants.py:406
 msgid "Medium"
-msgstr ""
+msgstr "Stredný"
 
 #: ../src/constants.py:407
 msgid "Full"
-msgstr ""
+msgstr "Plný"
 
 #: ../src/constants.py:411
 msgid "Default"
@@ -986,7 +994,7 @@ msgstr ""
 
 #: ../src/constants.py:413
 msgid "Legacy"
-msgstr ""
+msgstr "Vyslúžené"
 
 #: ../src/constants.py:416
 msgid "Proportional"
@@ -1001,14 +1009,12 @@ msgid "Mono"
 msgstr ""
 
 #: ../src/constants.py:419
-#, fuzzy
 msgid "Charcell"
-msgstr "Zrušiť"
+msgstr ""
 
 #: ../src/main.py:104
-#, fuzzy
 msgid "Finished loading {0} families"
-msgstr "Dokončené nahrávanie %s rodín"
+msgstr "Dokončené načítania {0} rodín"
 
 #: ../src/main.py:180 ../src/main.py:414
 msgid "Yelp is required to view help files"
@@ -1023,28 +1029,24 @@ msgid "Font Manager will restart in a moment"
 msgstr "Správca fontov sa reštartuje za okamih"
 
 #: ../src/main.py:505
-#, fuzzy
 msgid "Families : {0!s}"
-msgstr "Rodiny : %s"
+msgstr "Rodiny : {0!s}"
 
 #: ../src/main.py:542
 msgid "Folder Cleanup"
 msgstr "Vyčistenie priečinka"
 
 #: ../src/core/fonts.py:187
-#, fuzzy
 msgid "{0} Fonts"
-msgstr "%s fontov"
+msgstr "{0} Fonty"
 
 #: ../src/core/fonts.py:189
-#, fuzzy
 msgid "{0} Font"
-msgstr "%s font"
+msgstr ""
 
 #: ../src/core/fonts.py:293
-#, fuzzy
 msgid "Querying installed files..."
-msgstr "Registrácia fontových súborov..."
+msgstr "Dotazovanie po nainštalovaných súboroch..."
 
 #: ../src/core/fonts.py:401 ../src/core/__init__.py:582
 #: ../src/ui/treeviews.py:262 ../src/ui/treeviews.py:463
@@ -1072,9 +1074,8 @@ msgid "User"
 msgstr "Užívateľ"
 
 #: ../src/core/fonts.py:407
-#, fuzzy
 msgid "Fonts available only to {0}"
-msgstr "Fonty dostupné iba pre %s"
+msgstr "Fonty dostupné iba pre {0}"
 
 #: ../src/core/fonts.py:408 ../src/core/__init__.py:591
 #: ../src/ui/preferences.py:427 ../src/ui/preferences.py:437
@@ -1088,14 +1089,12 @@ msgid "Fonts not present in any collection"
 msgstr "Fonty neprítomné v žiadnej kolekcii"
 
 #: ../src/core/fonts.py:448
-#, fuzzy
 msgid "Loading available fonts..."
-msgstr "Všetky dostupné fonty"
+msgstr "Nahrávanie dostupných fontov..."
 
 #: ../src/core/__init__.py:314 ../src/utils/xmlutils.py:332
-#, fuzzy
 msgid "Created on {0}"
-msgstr "Vytvorené %s"
+msgstr "Vytvorené {0}"
 
 #: ../src/ui/actions.py:188
 msgid "Edit Action"
@@ -1154,9 +1153,8 @@ msgid "Family"
 msgstr "Rodina"
 
 #: ../src/ui/fontconfig.py:208
-#, fuzzy
 msgid "Substitute"
-msgstr "Pridať náhradu"
+msgstr "Náhrada"
 
 #: ../src/ui/fontconfig.py:308
 msgid "Full Reset"
@@ -1195,9 +1193,8 @@ msgid "File not listed by FontConfig"
 msgstr "Súbor nieje v zozname FontConfigu"
 
 #: ../src/ui/janitor.py:97
-#, fuzzy
 msgid "Font Janitor - {0}"
-msgstr "Font Janitor - %s"
+msgstr "Fontový školník - {0}"
 
 #: ../src/ui/janitor.py:291
 msgid "Hide possible issues"
@@ -1232,9 +1229,8 @@ msgid "Italic"
 msgstr ""
 
 #: ../src/ui/previews.py:569
-#, fuzzy
 msgid "Style provided by {0}"
-msgstr "Štýl poskytnutý %s"
+msgstr "Štýl poskytnutý od {0}"
 
 #: ../src/ui/sampler.py:76
 msgid "Sample of included fonts"
@@ -1253,13 +1249,12 @@ msgid "Skipping the following families"
 msgstr "Preskočenie nasledujúcich rodín"
 
 #: ../src/ui/sampler.py:291
-#, fuzzy
 msgid ""
 "Due to the reasons listed above {0!s} out of {1!s} fonts will not be "
 "included in the sample sheet"
 msgstr ""
-"Kvôli horevuedených príčinám %s z %s fontov nebude zahrnutých vo vzorovom "
-"hárku"
+"Kvôli hore uvedeným príčinám {0!s} z {1!s} fontov nebude obsiahnutých vo "
+"vzorkovom hárku"
 
 #: ../src/ui/sampler.py:322
 msgid "Face name unavailable"
@@ -1284,9 +1279,8 @@ msgid "Collection"
 msgstr "Kolekcia"
 
 #: ../src/ui/treeviews.py:423
-#, fuzzy
 msgid "Add to"
-msgstr "Pridať"
+msgstr ""
 
 #: ../src/ui/treeviews.py:444
 msgid "Edit actions..."
@@ -1301,9 +1295,8 @@ msgid "New Collection"
 msgstr "Nová kolekcia"
 
 #: ../src/ui/treeviews.py:699
-#, fuzzy
 msgid "New Collection {0}"
-msgstr "Nová kolekcia"
+msgstr ""
 
 #: ../src/ui/treeviews.py:1015
 msgid "contains"
@@ -1326,7 +1319,6 @@ msgid "Please install a supported file browser"
 msgstr "Prosím nainštaluj podporovaný prehliadač súborov"
 
 #: ../src/utils/common.py:304
-#, fuzzy
 msgid ""
 "    Supported file browsers include :\n"
 "\n"
@@ -1339,17 +1331,46 @@ msgid ""
 "    If a supported file browser is installed,\n"
 "    please file a bug against Font Manager"
 msgstr ""
-"    Podporované prehliadače súboov zahŕňajú :\n"
-"    \n"
+"    Podporované súborové prehliadače zahŕňajú :\n"
+"\n"
 "    - Nautilus\n"
 "    - Thunar\n"
 "    - Dolphin\n"
 "    - Konqueror\n"
 "    - PCManFM\n"
-"    \n"
+"\n"
 "    Ak je nainštalovaný podporovaný prehliadač súborov,\n"
-"    prosím pošli súbor s chybou Správcovi fontov"
+"    prosím zaznamenaj chybu proti Správcovi fontov"
 
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "<!--\n"
+#~ "    This file is maintained by Font Manager.\n"
+#~ "\n"
+#~ "    If you wish to make any changes it is suggested you do so using\n"
+#~ "\n"
+#~ "        %s\n"
+#~ "\n"
+#~ "    Any changes made to this file will be automatically relocated there\n"
+#~ "    at startup and any settings already in that file will be overwritten.\n"
+#~ "-->\n"
+#~ msgstr ""
+#~ "\n"
+#~ "<!--\n"
+#~ "    Tento súbor je spravovaný Správcom fontov.\n"
+#~ "\n"
+#~ "    Ak si praješ urobiť nejaké zmeny potom sa ti odporúča urobiť to s "
+#~ "použitím\n"
+#~ "\n"
+#~ "        %s\n"
+#~ "\n"
+#~ "    Akékoľvek zmeny urobené v tomto súbore budú tam automaticky prenesené\n"
+#~ "    pri spúšťaní a akékoľvek nastavenia už prítomné v tamtom súbore budú "
+#~ "prepísané.\n"
+#~ "-->\n"
+
+#, python-format
 #~ msgid ""
 #~ "\n"
 #~ "<!--\n"
@@ -1373,8 +1394,32 @@ msgstr ""
 #~ "      %s\n"
 #~ "-->\n"
 
+#, python-format
+#~ msgid "Families : %s"
+#~ msgstr "Rodiny : %s"
+
+#, python-format
+#~ msgid "Finished loading %s families"
+#~ msgstr "Dokončené nahrávanie %s rodín"
+
 #~ msgid "Exclude size range"
 #~ msgstr "Vynechať rozsah šírok"
+
+#, python-format
+#~ msgid "Fonts available only to %s"
+#~ msgstr "Fonty dostupné iba pre %s"
+
+#, python-format
+#~ msgid "%s Fonts"
+#~ msgstr "%s fontov"
+
+#, python-format
+#~ msgid "%s Font"
+#~ msgstr "%s font"
+
+#, python-format
+#~ msgid "Created on %s"
+#~ msgstr "Vytvorené %s"
 
 #~ msgid "File does not contain any embedded license information."
 #~ msgstr "Súbor neobsahuje žiadnu vloženú licenčnú informáciu."
@@ -1383,11 +1428,50 @@ msgstr ""
 #~ msgstr "Povoliť prehliadací režim"
 
 #~ msgid ""
-#~ "If available a localized sample will be used instead of the default "
-#~ "pangram"
+#~ "If available a localized sample will be used instead of the default pangram"
 #~ msgstr ""
-#~ "Ak je dostupná lokalizovaná vzorka, potom bude použitá namiesto "
-#~ "predvoleného pangramu"
+#~ "Ak je dostupná lokalizovaná vzorka, potom bude použitá namiesto predvoleného "
+#~ "pangramu"
 
+#, python-format
+#~ msgid "Font Janitor - %s"
+#~ msgstr "Font Janitor - %s"
+
+#, python-format
+#~ msgid ""
+#~ "Due to the reasons listed above %s out of %s fonts will not be included in "
+#~ "the sample sheet"
+#~ msgstr ""
+#~ "Kvôli horevuedených príčinám %s z %s fontov nebude zahrnutých vo vzorovom "
+#~ "hárku"
+
+#, python-format
+#~ msgid "Style provided by %s"
+#~ msgstr "Štýl poskytnutý %s"
+
+#, python-format
 #~ msgid "New Collection %s"
 #~ msgstr "Nová kolekcia %s"
+
+#~ msgid ""
+#~ "    Supported file browsers include :\n"
+#~ "    \n"
+#~ "    - Nautilus\n"
+#~ "    - Thunar\n"
+#~ "    - Dolphin\n"
+#~ "    - Konqueror\n"
+#~ "    - PCManFM\n"
+#~ "    \n"
+#~ "    If a supported file browser is installed,\n"
+#~ "    please file a bug against Font Manager"
+#~ msgstr ""
+#~ "    Podporované prehliadače súboov zahŕňajú :\n"
+#~ "    \n"
+#~ "    - Nautilus\n"
+#~ "    - Thunar\n"
+#~ "    - Dolphin\n"
+#~ "    - Konqueror\n"
+#~ "    - PCManFM\n"
+#~ "    \n"
+#~ "    Ak je nainštalovaný podporovaný prehliadač súborov,\n"
+#~ "    prosím pošli súbor s chybou Správcovi fontov"

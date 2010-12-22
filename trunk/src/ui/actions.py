@@ -103,11 +103,8 @@ class UserActions(object):
         """
         Display edit dialog.
         """
-        model = treeview.get_model()
-        treeiter = model.get_iter(path)
-        val = model.get_value(treeiter, 0)
-        self._edit_action(val)
-        return
+        return self._edit_action(treeview.get_model().get_value(
+                                    treeview.get_model().get_iter(path), 0))
 
     def _activate_row(self, unused_widget):
         """
@@ -117,10 +114,8 @@ class UserActions(object):
         selection = tree.get_selection()
         if selection.count_selected_rows() < 1:
             return
-        column = tree.get_column(0)
         model, treeiter = selection.get_selected()
-        path = model.get_path(treeiter)
-        tree.row_activated(path, column)
+        tree.row_activated(model.get_path(treeiter), tree.get_column(0))
         return
 
     def _add_action(self, unused_widget):
@@ -130,14 +125,12 @@ class UserActions(object):
         action = {}
         action['name'] = self.current_name
         action['executable'] = self.current_bin
-        comment = self.widgets['ActionComment'].get_text()
-        if comment.strip() != '':
-            action['comment'] = comment
+        if self.widgets['ActionComment'].get_text().strip() != '':
+            action['comment'] = self.widgets['ActionComment'].get_text()
         else:
             action['comment'] = 'None'
-        args = self.widgets['ArgumentList'].get_text()
-        if args.strip() != '':
-            action['arguments'] = args
+        if self.widgets['ArgumentList'].get_text().strip() != '':
+            action['arguments'] = self.widgets['ArgumentList'].get_text()
         else:
             action['arguments'] = 'None'
         action['terminal'] = self.widgets['RunInTerminal'].get_active()
@@ -156,11 +149,9 @@ class UserActions(object):
 
     def _bin_changed(self, widget):
         self.current_bin = widget.get_text()
-        if len(self.widgets['ActionName'].get_text()) > 0 \
-        and len(self.current_bin) > 0:
-            self.widgets['AddAction'].set_sensitive(True)
-        else:
-            self.widgets['AddAction'].set_sensitive(False)
+        self.widgets['AddAction'].set_sensitive(
+                            (len(self.widgets['ActionName'].get_text()) > 0 and
+                            len(self.current_bin) > 0))
         return
 
     def _cancel(self, unused_widget):
@@ -200,13 +191,21 @@ class UserActions(object):
         """
         action = self.actions[val]
         self.current_name = val
-        set_widget_text(self.widgets['ActionName'], action['name'])
-        set_widget_text(self.widgets['ExecutablePath'], action['executable'])
-        set_widget_text(self.widgets['ActionComment'], action['comment'])
-        set_widget_text(self.widgets['ArgumentList'], action['arguments'])
-        self.widgets['BlockOnAction'].set_active(action['block'])
-        self.widgets['RestartApp'].set_active(action['restart'])
-        self.widgets['RunInTerminal'].set_active(action['terminal'])
+        _text = {
+                self.widgets['ActionName']        :   action['name'],
+                self.widgets['ExecutablePath']    :   action['executable'],
+                self.widgets['ActionComment']     :   action['comment'],
+                self.widgets['ArgumentList']      :   action['arguments']
+                }
+        _bool = {
+                self.widgets['BlockOnAction']       :   action['block'],
+                self.widgets['RestartApp']          :   action['restart'],
+                self.widgets['RunInTerminal']       :   action['terminal']
+                }
+        for widget, text in _text.iteritems():
+            set_widget_text(widget, text)
+        for widget, state in _bool.iteritems():
+            widget.set_active(state)
         self._create_action(None)
         return
 
@@ -277,8 +276,7 @@ class UserActions(object):
         """
         Run selected action.
         """
-        name = widget.get_name()
-        action = self.actions[name]
+        action = self.actions[widget.get_name()]
         exe = action['executable']
         args = action['arguments'].replace('None', '')
         filepath, family, style = details
@@ -304,8 +302,7 @@ class UserActions(object):
                 self.objects.reload(True)
             return
         except (OSError, ValueError), error:
-            command = '\nCommand was :\n\n' + ' '.join(command)
-            display_warning(error, command)
+            display_warning(error, '\nCommand was :\n\n' + ' '.join(command))
             return
 
     def _select_bin(self, widget):
@@ -314,8 +311,7 @@ class UserActions(object):
         """
         dialog = self.widgets['BinSelector']
         dialog.connect('file-activated', lambda widget: widget.response(1))
-        if os.path.exists('/usr/bin'):
-            dialog.set_current_folder('/usr/bin')
+        dialog.set_current_folder('/usr/bin')
         if run_dialog(dialog = dialog):
             set_widget_text(widget, dialog.get_filename())
         return
@@ -324,18 +320,13 @@ class UserActions(object):
         """
         Enable/Disable remove button depending on whether something is selected.
         """
-        if treeselection.count_selected_rows() > 0:
-            self.widgets['RemoveAction'].set_sensitive(True)
-            self.widgets['EditAction'].set_sensitive(True)
-        else:
-            self.widgets['RemoveAction'].set_sensitive(False)
-            self.widgets['EditAction'].set_sensitive(False)
+        state = (treeselection.count_selected_rows() > 0)
+        self.widgets['RemoveAction'].set_sensitive(state)
+        self.widgets['EditAction'].set_sensitive(state)
         return
 
 
 def set_widget_text(widget, text):
-    if text is not None and text != 'None':
-        widget.set_text(text)
-    else:
-        widget.set_text('')
-    return
+    if text is None or text == 'None':
+        text = ''
+    return widget.set_text(text)

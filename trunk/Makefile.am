@@ -178,7 +178,7 @@ distclean: clean
 	@$(FIND) . -depth -type d -name '.svn' -exec rm -rf '{}' \;
 
 EXTRA_DIST = help $(SRC_CORE_DIR) $(SRC_DATA_DIR) $(SRC_UI_DIR) \
-			$(SRC_UTILS_DIR) $(SRC_DIR)/*.py $(SRC_DIR)/*.c $(SRC_DIR)/*.in \
+			$(SRC_UTILS_DIR) $(SRC_DIR)/*.py $(SRC_LIB_DIR) $(SRC_DIR)/*.in \
 			$(SRC_DIR)/$(DE_FILES) po
 
 .PHONY: default all make-install-dirs install uninstall clean distclean fontutils

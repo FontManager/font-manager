@@ -41,7 +41,7 @@ import subprocess
 
 from os.path import basename, exists, join, splitext
 
-import database
+import core.database
 import fontutils
 
 from constants import ALIAS_FAMILIES, CACHE_FILE, USER, USER_LIBRARY_DIR, \
@@ -291,7 +291,7 @@ class Sort(object):
         self._check_db()
         fontutils.set_progress_callback(progress_callback)
         fontutils.sync_font_database(_('Querying installed files...'))
-        self.table = database.Table('Fonts')
+        self.table = core.database.Table('Fonts')
         # List of all indexed families
         self.indexed = []
         self._get_indexed()
@@ -328,7 +328,7 @@ class Sort(object):
         Delete database if it's in an outdated format.
         """
         try:
-            test = database.Table('Fonts')['pstyle']
+            test = core.database.Table('Fonts')['pstyle']
         except sqlite3.ProgrammingError:
             delete_database()
             self._load_new_cache()

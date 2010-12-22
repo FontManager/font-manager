@@ -42,8 +42,8 @@ import time
 
 from os.path import exists, join, isdir, realpath
 
-import fonts
-import database
+import core.fonts
+import core.database
 
 from constants import *
 from utils.common import natural_sort, autostart
@@ -174,9 +174,9 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         self.initial_collection_order = []
         self.data = {}
         if self.parent:
-            fonts.Sort(self, self.progress, self.parent)
+            core.fonts.Sort(self, self.progress, self.parent)
         else:
-            fonts.Sort(self, self.progress)
+            core.fonts.Sort(self, self.progress)
         self._update_selections()
         self.auto_enable_collections()
         self._loading = False
@@ -186,7 +186,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         """
         Add a category object.
         """
-        if isinstance(category, fonts.Collection):
+        if isinstance(category, core.fonts.Collection):
             self.categories[category.name] = category
         else:
             raise TypeError('Not a valid category object')
@@ -197,7 +197,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         """
         Add a collection object.
         """
-        if isinstance(collection, fonts.Collection):
+        if isinstance(collection, core.fonts.Collection):
             self.collections[collection.name] = collection
         else:
             raise TypeError('Not a valid collection object')
@@ -210,7 +210,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         """
         if isinstance(collection, str):
             collection = self.categories[collection]
-        elif not isinstance(collection, fonts.Collection):
+        elif not isinstance(collection, core.fonts.Collection):
             raise TypeError('Not a valid collection object or family name')
         if isinstance(families[0], str):
             collection.add(families[0])
@@ -230,7 +230,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         """
         if isinstance(collection, str):
             collection = self.collections[collection]
-        elif not isinstance(collection, fonts.Collection):
+        elif not isinstance(collection, core.fonts.Collection):
             raise TypeError('Not a valid collection object or family name')
         if isinstance(families[0], str):
             collection.add(families[0])
@@ -284,7 +284,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         if name in self.categories.iterkeys():
             self._add_families_to(name, families)
             return
-        collection = fonts.Collection(name)
+        collection = core.fonts.Collection(name)
         collection.builtin = True
         if comment and isinstance(comment, str):
             collection.comment = comment
@@ -307,7 +307,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         if name in self.collections.iterkeys():
             self.add_families_to(name, families)
             return
-        collection = fonts.Collection(name)
+        collection = core.fonts.Collection(name)
         if isinstance(comment, str):
             collection.comment = comment
         else:
@@ -432,13 +432,13 @@ class FontManager(gobject.GObject, UserDict.UserDict):
                 continue
             filename = filepath.rsplit('/', 1)[1]
             if filepath.endswith(ARCH_EXTS):
-                fonts.install_font_archive(filepath, library, False)
+                core.fonts.install_font_archive(filepath, library, False)
             elif filepath.endswith(FONT_EXTS):
-                fonts.do_font_install(filepath, library, False)
+                core.fonts.do_font_install(filepath, library, False)
             processed += 1
             if progress_callback is not None:
                 progress_callback(filename, total, processed)
-        fonts.do_library_cleanup()
+        core.fonts.do_library_cleanup()
         self.emit('restart-required')
         if len(missing) > 0:
             return missing
@@ -533,7 +533,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
                 collection = self.collections[collection]
             except KeyError:
                 collection = self.categories[collection]
-        elif not isinstance(collection, fonts.Collection):
+        elif not isinstance(collection, core.fonts.Collection):
             raise TypeError('Not a valid collection object or name')
         collection.remove(families[0])
         self.emit('update-font-groups', self.collections)
@@ -544,7 +544,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
         Remove selected font files.
         """
         self.remove_families(selected_families)
-        table = database.Table('Fonts')
+        table = core.database.Table('Fonts')
         selected_paths = []
         for family in selected_families:
             filepaths = table.get('*', 'family="{0}"'.format(family))
@@ -558,7 +558,7 @@ class FontManager(gobject.GObject, UserDict.UserDict):
                     os.unlink(filepath)
                 except OSError, error:
                     logging.error('Error : {0} : {1}'.format(filepath, error))
-        fonts.do_library_cleanup()
+        core.fonts.do_library_cleanup()
         return
 
     def set_disabled(self, *family):

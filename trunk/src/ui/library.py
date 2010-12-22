@@ -32,8 +32,8 @@ import logging
 from os.path import isdir
 
 from core import database
-from constants import HOME, USER_LIBRARY_DIR, FONT_GLOBS, \
-                        ARCH_GLOBS, USER_FONT_DIR
+from constants import HOME, USER_LIBRARY_DIR, FONT_GLOBS, ARCH_GLOBS, \
+                        USER_FONT_DIR
 from utils.common import natural_sort, run_dialog
 
 

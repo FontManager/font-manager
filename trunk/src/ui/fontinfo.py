@@ -25,7 +25,6 @@ This module provides a dialog which displays font information.
 import os
 import gtk
 import glib
-import pango
 import logging
 import webbrowser
 
@@ -33,7 +32,7 @@ from os.path import basename, dirname, join
 
 from core import database
 from constants import PACKAGE_DATA_DIR
-from utils.common import natural_size, open_folder
+from utils.common import open_folder
 
 
 class FontInformation(object):
@@ -80,7 +79,7 @@ class FontInformation(object):
         # Connect handlers
         self.widgets['FileEntry'].connect('icon-press', self._open_folder)
         self.widgets['TypeEntry'].connect('icon-press',
-                                            self._show_type_description)
+                                                self._show_type_description)
 
     def _on_close(self, unused_widget, possible_event = None):
         """
