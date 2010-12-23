@@ -23,13 +23,16 @@ echo 'Preparing source'
 echo
 ./configure
 make dist-gzip
-rm -rf BUILD
+[ ! -e BUILD ] || rm -rf BUILD
 mkdir BUILD
 mv $PACKAGE-$VERSION.tar.gz BUILD/$PACKAGE\_$VERSION.orig.tar.gz
 cd BUILD
 tar -xvf $PACKAGE\_$VERSION.orig.tar.gz
-cp -R ../debian $PACKAGE-$VERSION/
 cd $PACKAGE-$VERSION
+echo 'Fetching debian folder'
+wget http://font-manager.googlecode.com/svn/resources/buildscripts/debian.tar.gz
+tar -xvf debian.tar.gz
+find . -name '.svn' -print | xargs rm -rf
 chmod +x debian/rules
 echo
 echo 'Building package'
