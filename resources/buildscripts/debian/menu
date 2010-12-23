@@ -1,4 +1,0 @@
-?package(font-manager):needs="X11"\
- section="Applications/Graphics"\
- title="Font Manager"\
- command="/usr/bin/font-manager"

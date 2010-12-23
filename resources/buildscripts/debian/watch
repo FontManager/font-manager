@@ -1,4 +1,0 @@
-version=3
-opts=downloadurlmangle=s#.*(font-manager-(.*)\.tar\.bz2).*#http://font-manager.googlecode.com/files/$1#,filenamemangle=s#.*(font-manager-(.*)\.tar\.bz2).*#$1# \
-	http://code.google.com/p/font-manager/downloads/list \
-		^.*detail?name=font-manager-(.*)\.tar\.bz2.*

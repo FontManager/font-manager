@@ -1,6 +1,0 @@
-#!/usr/bin/make -f
-
-LDFLAGS+=-Wl,--as-needed
-
-%:
-	dh $@ --with autotools_dev 
