@@ -1,5 +1,5 @@
 #summary Possible issues users may encounter while generating font sample sheets
-#labels Featured
+#labels Deprecated
 
 = Crashes within the !ReportLab Toolkit=
 <p>
