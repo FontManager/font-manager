@@ -32,7 +32,6 @@ cd $PACKAGE-$VERSION
 echo 'Fetching debian folder'
 wget http://font-manager.googlecode.com/svn/resources/buildscripts/debian.tar.gz
 tar -xvf debian.tar.gz
-find . -name '.svn' -print | xargs rm -rf
 chmod +x debian/rules
 echo
 echo 'Building package'
