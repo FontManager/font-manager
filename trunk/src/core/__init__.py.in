@@ -437,7 +437,9 @@ class FontManager(gobject.GObject, UserDict.UserDict):
                 core.fonts.do_font_install(filepath, library, False)
             processed += 1
             if progress_callback is not None:
-                progress_callback(filename, total, processed)
+                progress_callback(_('Installing {0} of {1}').format(
+                                    total, processed), total, processed)
+        progress_callback('Finishing installation...', total, processed)
         core.fonts.do_library_cleanup()
         self.emit('restart-required')
         if len(missing) > 0:

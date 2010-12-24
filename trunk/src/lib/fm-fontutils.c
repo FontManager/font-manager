@@ -271,6 +271,11 @@ _get_base_font_info(FontInfo *fontinfo, const FT_Face face,
     FcObjectSet             *os;
     PangoFontDescription    *descr;
 
+    /* Need to add this font to the configuration, it may not be there in the
+     * case where this the font is not installed yet or possibly just installed
+     */
+    FcConfigAppFontAddFile(FcConfigGetCurrent(), filepath);
+
     blanks = FcBlanksCreate();
     os = FcObjectSetBuild(FC_FAMILY, FC_STYLE, NULL);
     pattern = FcFreeTypeQueryFace(face, (const FcChar8 *) fontinfo->filepath,

@@ -263,7 +263,8 @@ class Treeviews(object):
         if self.current_collection not in block:
             families = [ fontutils.FT_Get_File_Info(path)['family'] \
                         for path in filelist]
-            self.manager.add_families_to(self.current_collection, families)
+            if families:
+                self.manager.add_families_to(self.current_collection, families)
         if not self.objects['Main'].installer:
             self.objects['Main'].installer = InstallFonts(self.objects)
         self.objects['Main'].installer.process_install(filelist)
@@ -498,6 +499,7 @@ class Treeviews(object):
             del collections[old_name]
             model.set(treeiter, 0, new_name)
             model.set(treeiter, 1, collections[new_name].get_label())
+        self.current_collection = new_name
         return
 
     # http://code.google.com/p/font-manager/issues/detail?id=41
@@ -758,7 +760,11 @@ class Treeviews(object):
                 logging.error(
                 'Could not find {0} for user collection {1}'.format(family,
                                                     self.current_collection))
-                logging.info('Skipping...')
+                logging.warn(
+                'Removing {0} from user collection {1}'.format(family,
+                                                    self.current_collection))
+                self.manager.remove_families_from(self.current_collection,
+                                                    family)
                 continue
         self.family_tree.set_model(family_model)
         self.family_tree.thaw_child_notify()
