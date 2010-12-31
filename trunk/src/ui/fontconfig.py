@@ -376,9 +376,11 @@ class ConfigEdit(gtk.Window):
         for name in self.cache.iterkeys():
             discard_fontconfig_settings(self.cache[name])
             self.save_settings(None)
-        os.unlink(join(CACHE_DIR, CACHED_SETTINGS))
-        os.unlink(join(USER_FONT_CONFIG_DIR,
-                        '25-{0}.conf'.format(self.selected_family.get_name())))
+        cache = join(CACHE_DIR, CACHED_SETTINGS)
+        not exists(cache) or os.unlink(cache)
+        cache = join(USER_FONT_CONFIG_DIR,
+                        '25-{0}.conf'.format(self.selected_family.get_name()))
+        not exists(cache) or os.unlink(cache)
         return
 
     def save_cache(self):

@@ -72,8 +72,8 @@ FcListFiles()
     {
         FcChar8         *file;
 
-        FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &file);
-        filelist = g_slist_prepend(filelist, g_strdup((const gchar *) file));
+        if (FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &file) == FcResultMatch)
+            filelist = g_slist_prepend(filelist, g_strdup((const gchar *) file));
     }
 
     if (objectset)
@@ -272,7 +272,7 @@ _get_base_font_info(FontInfo *fontinfo, const FT_Face face,
     PangoFontDescription    *descr;
 
     /* Need to add this font to the configuration, it may not be there in the
-     * case where this the font is not installed yet or possibly just installed
+     * case where this font is not installed yet or possibly just installed
      */
     FcConfigAppFontAddFile(FcConfigGetCurrent(), filepath);
 
@@ -287,10 +287,10 @@ _get_base_font_info(FontInfo *fontinfo, const FT_Face face,
         FcChar8         *family,
                         *style;
 
-        FcPatternGetString(fontset->fonts[i], FC_FAMILY, 0, &family);
-        FcPatternGetString(fontset->fonts[i], FC_STYLE, 0, &style);
-        ADD_PROP(fontinfo->family, family);
-        ADD_PROP(fontinfo->style, style);
+        if (FcPatternGetString(fontset->fonts[i], FC_FAMILY, 0, &family) == FcResultMatch)
+            ADD_PROP(fontinfo->family, family);
+        if (FcPatternGetString(fontset->fonts[i], FC_STYLE, 0, &style) == FcResultMatch)
+            ADD_PROP(fontinfo->style, style);
     }
 
     descr = pango_fc_font_description_from_pattern(pattern, FALSE);
@@ -539,7 +539,7 @@ static const struct
 }
 NoticeData[] =
 {
-    {"Bigelow", "B&H"},
+    {"Bigelow", "Bigelow & Holmes"},
     {"Adobe", "Adobe"},
     {"Bitstream", "Bitstream"},
     {"Monotype", "Monotype"},
