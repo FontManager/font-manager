@@ -1,0 +1,46 @@
+{
+    "License" : [
+        {
+            "Name" : "CC-BY-SA",
+            "URL" : "http://creativecommons.org/licenses/by-sa/3.0/",
+            "Keywords" : [
+                "Creative Commons Attribution ShareAlike",
+                "Creative-Commons-Attribution-ShareAlike",
+                "Creative Commons Attribution Share Alike",
+                "Creative-Commons-Attribution-Share-Alike",
+                "Creative Commons BY SA",
+                "Creative-Commons-BY-SA",
+                "CC BY SA",
+                "CC-BY-SA",
+                null
+            ]
+        },
+        {
+            "Name" : "CC-BY",
+            "URL" : "http://creativecommons.org/licenses/by/3.0/",
+            "Keywords" : [
+                "Creative Commons Attribution",
+                "Creative-Commons-Attribution",
+                "CC BY",
+                "CC-BY",
+                null
+            ]
+        },
+        {
+            "Name" : "CC-0",
+            "URL" : "http://creativecommons.org/publicdomain/zero/1.0/",
+            "Keywords" : [
+                "Creative Commons Zero",
+                "Creative-Commons-Zero",
+                "Creative Commons 0",
+                "Creative-Commons-0",
+                "CC Zero",
+                "CC-Zero",
+                "CC 0",
+                "CC-0",
+                null
+            ]
+        }
+    ]
+}
+

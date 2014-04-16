@@ -1,0 +1,13 @@
+{0}
+
+#define MAX_KEYWORD_ENTRIES 25
+
+static const struct
+{{
+    const gchar   *license;
+    const gchar   *license_url;
+    const gchar   *keywords[MAX_KEYWORD_ENTRIES];
+}}
+
+LicenseData[] =
+{{
