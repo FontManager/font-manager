@@ -1,0 +1,22 @@
+{
+    "License" : [
+        {
+            "Name" : "XFree86 License",
+            "URL" : "http://www.xfree86.org/legal/licenses.html",
+            "Keywords" : [
+                "XFree86",
+                null
+            ]
+        },
+        {
+            "Name" : "MIT (X11) License",
+            "URL" : "http://www.opensource.org/licenses/mit-license.php",
+            "Keywords" : [
+                "MIT",
+                "X11",
+                null
+            ]
+        }
+    ]
+}
+

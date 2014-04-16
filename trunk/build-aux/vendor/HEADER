@@ -1,0 +1,36 @@
+#define MAX_VENDOR_ID_LENGTH 5
+#define MAX_VENDOR_LENGTH 100
+
+static const struct
+{
+    const gchar vendor_id[MAX_VENDOR_LENGTH];
+    const gchar vendor[MAX_VENDOR_LENGTH];
+}
+/* Order is significant. */
+NoticeData [] =
+{
+    /* Notice data sourced from fcfreetype.c */
+    {"Bigelow", "Bigelow & Holmes"},
+    {"Adobe", "Adobe"},
+    {"Bitstream", "Bitstream"},
+    {"Monotype", "Monotype Imaging"},
+    {"Linotype", "Linotype GmbH"},
+    {"LINOTYPE-HELL", "Linotype GmbH"},
+    {"IBM", "IBM"},
+    {"URW", "URW"},
+    {"International Typeface Corporation", "ITC"},
+    {"Tiro Typeworks", "Tiro Typeworks"},
+    {"XFree86", "XFree86"},
+    {"Microsoft", "Microsoft Corporation"},
+    {"Omega", "Omega"},
+    {"Font21", "Hwan"},
+    {"HanYang System", "HanYang Information & Communication"}
+};
+
+static const struct
+{
+    const gchar vendor_id[MAX_VENDOR_ID_LENGTH];
+    const gchar vendor[MAX_VENDOR_LENGTH];
+}
+VendorData[] =
+{

@@ -1,8 +1,0 @@
-<br />
-= Main Window =
-<br />
-http://font-manager.googlecode.com/svn/resources/font-manager.googlecode.com/font-manager.png
-<br /> <br />
-= Font Information Dialog =
-<br />
-http://font-manager.googlecode.com/svn/resources/font-manager.googlecode.com/font-information.png

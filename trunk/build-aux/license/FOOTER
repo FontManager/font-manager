@@ -1,0 +1,9 @@
+};
+
+#define LICENSE_ENTRIES G_N_ELEMENTS(LicenseData)
+
+gint get_license_type(const gchar *license, const gchar *copyright, const gchar * url);
+gchar * get_license_name (gint license_type);
+gchar * get_license_url (gint license_type);
+
+
