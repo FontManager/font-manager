@@ -29,10 +29,14 @@ namespace FontManager {
 
         public string name { get; set; }
         public string? icon { get; set; default = null; }
-        public string comment { get; set; default = "Created : %s".printf(get_local_time()); }
+        public string comment { get; set; }
         public Gee.HashSet <string> families { get; set; }
         public int index { get; set; default = 0; }
         public bool active { get; set; default = true; }
+
+        construct {
+            comment = "Created : %s".printf(get_local_time());
+        }
 
         public override bool deserialize_property (string prop_name,
                                             out Value val,

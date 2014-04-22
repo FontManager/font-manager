@@ -232,7 +232,7 @@ namespace FontConfig {
             return;
         }
 
-        void write_match_criteria (XmlWriter writer) requires(font != null) {
+        void write_match_criteria (XmlWriter writer) requires (font != null) {
             writer.start_element("test");
             writer.write_attribute("name", "family");
             writer.write_element("string", font.family);
