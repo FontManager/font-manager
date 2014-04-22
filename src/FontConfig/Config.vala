@@ -101,7 +101,6 @@ namespace FontConfig {
     bool load_user_font_sources () {
         if (!add_app_font_dir(Path.build_filename(Environment.get_user_data_dir(), "fonts")))
             return false;
-
         return true;
     }
 
