@@ -248,6 +248,7 @@ namespace FontManager {
     internal string get_database_file () {
         string dirpath = Path.build_filename(Environment.get_user_cache_dir(), NAME);
         string filepath = Path.build_filename(dirpath, "%s.sqlite".printf(NAME));
+        DirUtils.create_with_parents(dirpath, 0700);
         return filepath;
     }
 
