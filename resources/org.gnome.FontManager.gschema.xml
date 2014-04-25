@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/* Copyright © 2009 - 2014 Jerry Casiano
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Author:
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
+-->
+
+<schemalist>
+
+    <enum id="org.gnome.FontManager.Mode">
+        <value nick="Manage" value="0" />
+        <value nick="Browse" value="1" />
+        <value nick="Organize" value="2" />
+        <value nick="Compare" value="3" />
+        <value nick="Character Map" value="4" />
+        <value nick="Web" value="5" />
+    </enum>
+
+    <enum id="org.gnome.FontManager.SideBarMode">
+        <value nick="Category" value="0" />
+        <value nick="Collection" value="1" />
+    </enum>
+
+    <enum id="org.gnome.FontManager.PreviewMode">
+        <value nick="Preview" value="0" />
+        <value nick="Waterfall" value="1" />
+        <value nick="Body Text" value="2" />
+    </enum>
+
+    <enum id="org.gnome.FontManager.CharacterMap.Mode">
+        <value nick="Script" value="0" />
+        <value nick="Block" value="1" />
+    </enum>
+
+    <schema id="org.gnome.FontManager" path="/org/gnome/font-manager/">
+
+        <key name="mode" enum="org.gnome.FontManager.Mode">
+            <default>"Browse"</default>
+            <summary>Mode</summary>
+            <description>Possible modes are Manage, Browse, Compare, Organize, Character Map, Web.</description>
+
+        </key>
+
+        <key name='window-position' type='(ii)'>
+            <summary>Window position</summary>
+            <description>On screen position of the main window. (x, y)</description>
+            <default>(-1, -1)</default>
+        </key>
+
+        <key name='window-size' type='(ii)'>
+            <summary>Window size</summary>
+            <description>Width and height of the main window.</description>
+            <default>(700, 480)</default>
+        </key>
+
+        <key name="sidebar-size" type="i">
+            <summary>Sidebar size</summary>
+            <description>Size of the sidebar in pixels.</description>
+            <default>200</default>
+        </key>
+
+        <key name="sidebar-mode" enum="org.gnome.FontManager.SideBarMode">
+            <summary>Sidebar Mode</summary>
+            <description>Possible modes are Category and Collection.</description>
+            <default>"Category"</default>
+        </key>
+
+        <key name="content-pane-position" type="i">
+            <summary>Content area size</summary>
+            <description>Position of the content pane.</description>
+            <default>150</default>
+        </key>
+
+        <key name="preview-font-size" type="d">
+            <range min="6.0" max="96.0"/>
+            <summary>Preview font size</summary>
+            <description>Size point to use in the preview area.</description>
+            <default>10.0</default>
+        </key>
+
+        <key name="preview-mode" enum="org.gnome.FontManager.PreviewMode">
+            <summary>Preview Mode</summary>
+            <description>Possible modes are Preview, Waterfall and Body Text.</description>
+            <default>"Preview"</default>
+        </key>
+
+        <key name="browse-font-size" type="d">
+            <range min="6.0" max="96.0"/>
+            <summary>Browser font size</summary>
+            <description>Size point to use in Browse mode.</description>
+            <default>12.0</default>
+        </key>
+
+        <key name="compare-font-size" type="d">
+            <range min="6.0" max="96.0"/>
+            <summary>Compare font size</summary>
+            <description>Size point to use in Compare mode.</description>
+            <default>12.0</default>
+        </key>
+
+        <key name="compare-foreground-color" type="s">
+            <summary>Compare mode foreground color</summary>
+            <description>Color to use for foreground (text color) in RGB format.</description>
+            <default>"rgb(0,0,0)"</default>
+        </key>
+
+        <key name="compare-background-color" type="s">
+            <summary>Compare mode background color</summary>
+            <description>Color to use for background in RGB format</description>
+            <default>"rgb(255,255,255)"</default>
+        </key>
+
+        <key name="compare-list" type="as">
+            <summary>Compare list</summary>
+            <description>Array of string containing font descriptions to compare.</description>
+            <default>[]</default>
+        </key>
+
+        <key name="charmap-font-size" type="d">
+            <range min="6.0" max="96.0"/>
+            <summary>Character Map font size</summary>
+            <description>Size point to use in Character Map Mode.</description>
+            <default>14.0</default>
+        </key>
+
+        <key name="charmap-mode" enum="org.gnome.FontManager.CharacterMap.Mode">
+            <summary>Character Map Mode</summary>
+            <description>Possible modes are Script and Block</description>
+            <default>"Script"</default>
+        </key>
+
+        <key name="selected-script" type="s">
+            <summary>Selected Script</summary>
+            <description>Last selected script in Character Map mode</description>
+            <default>"49"</default>
+        </key>
+
+        <key name="selected-block" type="s">
+            <summary>Selected Unicode Block</summary>
+            <description>Last selected unicode block in Character Map mode</description>
+            <default>"1"</default>
+        </key>
+
+    </schema>
+
+</schemalist>

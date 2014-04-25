@@ -26,11 +26,10 @@ namespace FontManager {
         public Gee.HashMap <string, Collection> entries { get; set; }
 
         public static string get_cache_file () {
-        #if DEBUG
-            return Path.build_filename(Environment.get_current_dir(), "Collections.json");
-        #else
-            return Path.build_filename(Environment.get_user_config_dir(), NAME, "Collections.json");
-        #endif
+            string dirpath =Path.build_filename(Environment.get_user_config_dir(), NAME);
+            string filepath = Path.build_filename(dirpath, "Collections.json");
+            DirUtils.create_with_parents(dirpath ,0700);
+            return filepath;
         }
 
         public Collections () {

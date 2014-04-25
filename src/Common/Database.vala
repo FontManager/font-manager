@@ -246,11 +246,9 @@ namespace FontManager {
     }
 
     internal string get_database_file () {
-    #if DEBUG
-        return Path.build_filename(Environment.get_current_dir(), "%s.sqlite".printf(NAME));
-    #else
-        return Path.build_filename(Environment.get_user_cache_dir(), NAME, "%s.sqlite".printf(NAME));
-    #endif
+        string dirpath = Path.build_filename(Environment.get_user_cache_dir(), NAME);
+        string filepath = Path.build_filename(dirpath, "%s.sqlite".printf(NAME));
+        return filepath;
     }
 
     void sync_fonts_table (Database db,
