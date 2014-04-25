@@ -61,13 +61,8 @@ namespace FontConfig {
     }
 
     string get_config_dir () {
-        string config_dir;
-    #if DEBUG
-        config_dir = Environment.get_current_dir();
-    #else
-        config_dir = Path.build_filename(Environment.get_user_config_dir(), "fontconfig", "conf.d");
+        string config_dir = Path.build_filename(Environment.get_user_config_dir(), "fontconfig", "conf.d");
         DirUtils.create_with_parents(config_dir, 0700);
-    #endif
         return config_dir;
     }
 

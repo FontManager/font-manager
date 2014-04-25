@@ -107,19 +107,12 @@ namespace FontManager {
         }
 
         public static int main (string [] args) {
-        #if DEBUG
-            Log.set_always_fatal(GLib.LogLevelFlags.LEVEL_CRITICAL);
-            //Log.set_always_fatal(GLib.LogLevelFlags.LEVEL_WARNING);
-            Environment.set_variable("GSETTINGS_SCHEMA_DIR", Environment.get_current_dir(), false);
-        #endif
             FontConfig.enable_user_config(false);
             Environment.set_application_name(About.NAME);
-        #if !DEBUG
-            Intl.bindtextdomain(NAME, null);
-            Intl.bind_textdomain_codeset(NAME, null);
-            Intl.textdomain(NAME);
-            Intl.setlocale(LocaleCategory.ALL, null);
-        #endif
+//            Intl.bindtextdomain(NAME, null);
+//            Intl.bind_textdomain_codeset(NAME, null);
+//            Intl.textdomain(NAME);
+//            Intl.setlocale(LocaleCategory.ALL, null);
             return new Main(BUS_ID, ( ApplicationFlags.FLAGS_NONE )).run(args);
         }
 
