@@ -85,6 +85,7 @@ namespace FontManager {
             app_menu.show();
             search.show();
             button_box.show_all();
+            revealer.get_style_context().add_class(Gtk.STYLE_CLASS_TITLEBAR);
             revealer.show();
             connect_signals();
         }
