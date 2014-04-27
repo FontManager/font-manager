@@ -56,6 +56,18 @@ then
 ])
 fi
 
+AC_CHECK_PROG(DESKTOP_FILE_UTILS, desktop-file-install, yes)
+if test "x$DESKTOP_FILE_UTILS" != "xyes";
+then
+    AC_MSG_ERROR([Application requirements (desktop-file-utils) were not met:
+
+    Please install desktop-file-utils and try again.
+
+    http://freedesktop.org/wiki/Software/desktop-file-utils/
+
+])
+fi
+
 dnl Output files
 AC_OUTPUT([
 	Makefile
