@@ -25,8 +25,14 @@ Features that are expected to work at this time:
                font files but also entire directories and archives. The file
                selector unfortunately will not allow selection of directories.
 
+               For now you need to restart the application manually after
+               installing or removing fonts.
+
 
 Features that need to be completed before release:
+
+    Reload in place or restart automatically when fonts are installed / removed.
+        - monitor user font directories for changes
 
     Font removal
 
