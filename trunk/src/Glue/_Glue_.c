@@ -579,6 +579,7 @@ get_file_info(FontManagerFontInfo *fileinfo, const gchar * filepath, gint index)
     gchar * _name = get_license_name(lic_type);
     font_manager_font_info_set_license_type(fileinfo, _name);
     g_free0(_name);
+
     if (!font_manager_font_info_get_license_url(fileinfo)) {
         gchar * _url = get_license_url(lic_type);
         if (_url)
