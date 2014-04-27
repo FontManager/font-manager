@@ -11,3 +11,6 @@ Exec=font-manager
 Terminal=false
 StartupNotify=true
 Categories=Graphics;Viewer;GNOME;GTK;Publishing;
+Name[sk]=Správca fontov
+Comment[sk]=Zobrazenie, porovnanie a správa fontov
+
