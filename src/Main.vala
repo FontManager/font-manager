@@ -117,7 +117,7 @@ namespace FontManager {
             Gtk.init(ref args);
             if (Migration.required()) {
                 if (Migration.approved(null)) {
-                    ensure_ui_update()
+                    ensure_ui_update();
                     Migration.run();
                 } else {
                     return 0;
