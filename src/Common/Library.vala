@@ -101,7 +101,7 @@ namespace FontManager {
                                                     data.fontinfo.vendor,
                                                     data.fontinfo.filetype,
                                                     data.font.family);
-                DirUtils.create_with_parents(dest, 0700);
+                DirUtils.create_with_parents(dest, 0755);
                 string filename = data.font.to_filename();
                 string filepath = Path.build_filename(dest, "%s%s".printf(filename, get_file_extension(data.file.get_path())));
                 var file = File.new_for_path(filepath);

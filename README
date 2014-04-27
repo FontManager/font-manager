@@ -11,6 +11,8 @@ Features that are expected to work at this time:
 
     Migration of fonts and collections from the previous version.
 
+    Font Previews
+
     Enabling / Disabling Fonts
 
     Creating / Deleting / Enabling / Disabling of Font Collections
@@ -28,13 +30,26 @@ Features that need to be completed before release:
 
     Font removal
 
+    Help contents
+
+
+Features that will likely be completed before release:
+
     Font Metadata viewer
 
     Character map details viewer
 
     Database search
 
-    Help contents
 
+Feature parity with previous versions is a high priority but not a blocker
 
-Feature parity with previous versions is a high priority but not a blocker.
+    FontConfig editor
+        - session-wide settings
+        - per font settings
+        - aliases (low priority)
+
+    Exporting Collections
+        - proof sheet
+        - html?
+
