@@ -131,6 +131,7 @@ CYGPATH_W = @CYGPATH_W@
 DATADIRNAME = @DATADIRNAME@
 DEFS = @DEFS@
 DEPDIR = @DEPDIR@
+DESKTOP_FILE_UTILS = @DESKTOP_FILE_UTILS@
 DLLTOOL = @DLLTOOL@
 DSYMUTIL = @DSYMUTIL@
 DUMPBIN = @DUMPBIN@
@@ -282,7 +283,8 @@ top_srcdir = @top_srcdir@
 EXTRA_DIST = \
 	FontManagerGResource.xml \
 	org.gnome.FontManager.gschema.xml \
-	FontManager.css
+	FontManager.css \
+	font-manager.desktop
 
 all: all-am
 
@@ -480,10 +482,12 @@ install-data-local:
 	$(MKDIR_P) $(DESTDIR)$(datadir)/glib-2.0/schemas/
 	$(INSTALL) org.gnome.FontManager.gschema.xml $(DESTDIR)$(datadir)/glib-2.0/schemas/
 	glib-compile-schemas $(DESTDIR)$(datadir)/glib-2.0/schemas/
+	desktop-file-install font-manager.desktop
 
 uninstall-local:
-	-rm $(DESTDIR)$(datadir)/glib-2.0/schemas/org.gnome.FontManager.gschema.xml
-	-rm $(DESTDIR)$(datadir)/glib-2.0/schemas/gschemas.compiled
+	-rm -f $(DESTDIR)$(datadir)/glib-2.0/schemas/org.gnome.FontManager.gschema.xml
+	-rm -f $(DESTDIR)$(datadir)/glib-2.0/schemas/gschemas.compiled
+	-rm -f $(DESTDIR)$(datadir)/applications/font-manager.desktop
 	glib-compile-schemas $(DESTDIR)$(datadir)/glib-2.0/schemas/
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
