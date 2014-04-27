@@ -47,8 +47,8 @@ namespace FontManager {
             try {
                 provider.load_from_file(css_file);
             } catch (Error e) {
-                error("Failed to load Css Provider! Application will not appear as expected.");
-                error(e.message);
+                warning("Failed to load Css Provider! Application will not appear as expected.");
+                warning(e.message);
             }
             Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
@@ -59,6 +59,7 @@ namespace FontManager {
             components.loading = true;
             components.main_window.present();
             ensure_ui_update();
+
             components.core = new Core();
             components.core.progress.connect((m, p, t) => {
                 components.progress = ((float) p /(float) t);
@@ -113,6 +114,15 @@ namespace FontManager {
 //            Intl.bind_textdomain_codeset(NAME, null);
 //            Intl.textdomain(NAME);
 //            Intl.setlocale(LocaleCategory.ALL, null);
+            Gtk.init(ref args);
+            if (Migration.required()) {
+                if (Migration.approved(null)) {
+                    ensure_ui_update()
+                    Migration.run();
+                } else {
+                    return 0;
+                }
+            }
             return new Main(BUS_ID, ( ApplicationFlags.FLAGS_NONE )).run(args);
         }
 

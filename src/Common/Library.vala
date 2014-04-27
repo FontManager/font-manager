@@ -43,6 +43,28 @@ namespace FontManager {
 
             internal string USER_FONT_DIR;
 
+            public Install.from_file_array (File? [] files) {
+                USER_FONT_DIR = Path.build_filename(Environment.get_user_data_dir(), "fonts");
+                var _files = new Gee.ArrayList <File> ();
+                foreach (var file in files) {
+                    if (file == null)
+                        break;
+                    _files.add(file);
+                }
+                process_files(_files);
+            }
+
+            public Install.from_path_array (string [] paths) {
+                USER_FONT_DIR = Path.build_filename(Environment.get_user_data_dir(), "fonts");
+                var files = new Gee.ArrayList <File> ();
+                foreach (var path in paths) {
+                    if (path == null)
+                        break;
+                    files.add(File.new_for_path(path));
+                }
+                process_files(files);
+            }
+
             public Install.from_uri_array (string [] uris) {
                 USER_FONT_DIR = Path.build_filename(Environment.get_user_data_dir(), "fonts");
                 var files = new Gee.ArrayList <File> ();
@@ -148,8 +170,8 @@ namespace FontManager {
                                 if (metrics_file)
                                     continue;
                                 warning("Ignoring font metrics file : %s", dir.get_child(fileinfo.get_name()).get_path());
-                            } else
-                                warning("Ignoring unsupported file : %s", dir.get_child(fileinfo.get_name()).get_path());
+                            }// else
+//                                warning("Ignoring unsupported file : %s", dir.get_child(fileinfo.get_name()).get_path());
                         }
                         processed++;
                         if (progress != null)
@@ -197,8 +219,8 @@ namespace FontManager {
                         process_file(file);
                     } else if (content_type in supported_archives) {
                         process_archive(archive_manager, file);
-                    } else
-                        warning("Ignoring unsupported file : %s", file.get_path());
+                    }// else
+//                        warning("Ignoring unsupported file : %s", file.get_path());
                     processed++;
                     if (progress != null)
                         progress("Processing files...", processed, total);

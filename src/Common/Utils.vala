@@ -89,7 +89,7 @@ void add_action_from_menu_entry (ActionMap map, MenuEntry entry) {
     return;
 }
 
-void remove_directory (File dir, bool recursive = true) {
+bool remove_directory (File dir, bool recursive = true) {
     try {
         if (recursive) {
             FileInfo fileinfo;
@@ -103,8 +103,9 @@ void remove_directory (File dir, bool recursive = true) {
             }
         }
         dir.delete();
+        return true;
     } catch (Error e) {
         warning(e.message);
     }
-    return;
+    return false;
 }

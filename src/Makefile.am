@@ -94,6 +94,7 @@ UX/Controls/FontListControls.vala \
 UX/Controls/PreviewControls.vala \
 UX/Controls/TitleBar.vala \
 UX/Controls/ModeSelector.vala \
+UX/Dialogs/Migration.vala \
 UX/Dialogs/NotImplemented.vala \
 UX/Dialogs/FileSelector.vala \
 UX/Sidebar/SideBar.vala \
@@ -134,3 +135,8 @@ EXTRA_DIST = $(font_manager_VALASOURCES)
 dist-hook:
 	cd $(distdir) && \
 	rm $(font_manager_VALASOURCES:.vala=.c) font_manager_vala.stamp
+
+clean-local:
+	rm -f $(BUILT_SOURCES)
+
+
