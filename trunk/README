@@ -1,14 +1,40 @@
-ALPHA release!
+ALPHA release! This release is a preview intended for testing purposes only!
 
-This release is intended for testing purposes only!
+Please DO file issues regarding features that are already implemented and not
+functioning as intended. However, make sure you are running the latest revision.
 
-Please DO NOT file issues regarding feature enhancements or missing features at this time.
-
-However, do feel free to comment at 
-
-Please DO file issues regarding features that are already implemented and not functioning as intended. However, make sure you are running the latest revision.
+Please DO NOT file issues regarding feature enhancements or missing features at
+this time.
 
 
+Features that are expected to work at this time:
+
+    Migration of fonts and collections from the previous version.
+
+    Enabling / Disabling Fonts
+
+    Creating / Deleting / Enabling / Disabling of Font Collections
+
+    Font Installation
+        - By drag and drop (Preferred method)
+        - By using the file selector that is shown when the add button is pressed
+
+        Note : Drag and drop should allow installation of not only individual
+               font files but also entire directories and archives. The file
+               selector unfortunately will not allow selection of directories.
 
 
+Features that need to be completed before release:
 
+    Font removal
+
+    Font Metadata viewer
+
+    Character map details viewer
+
+    Database search
+
+    Help contents
+
+
+Feature parity with previous versions is a high priority but not a blocker.
