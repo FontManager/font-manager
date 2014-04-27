@@ -134,7 +134,7 @@ EXTRA_DIST = $(font_manager_VALASOURCES)
 
 dist-hook:
 	cd $(distdir) && \
-	rm $(font_manager_VALASOURCES:.vala=.c) font_manager_vala.stamp
+	rm -f $(font_manager_VALASOURCES:.vala=.c) $(BUILT_SOURCES) font_manager_vala.stamp
 
 clean-local:
 	rm -f $(BUILT_SOURCES)
