@@ -12353,11 +12353,11 @@ $as_echo "no" >&6; }
 fi
 
 
-   if test "$VALAC" != valac && test -n ""; then :
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether $VALAC is at least version " >&5
-$as_echo_n "checking whether $VALAC is at least version ... " >&6; }
+   if test "$VALAC" != valac && test -n "0.22"; then :
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether $VALAC is at least version 0.22" >&5
+$as_echo_n "checking whether $VALAC is at least version 0.22... " >&6; }
        am__vala_version=`$VALAC --version | sed 's/Vala  *//'`
-       as_arg_v1=
+       as_arg_v1=0.22
 as_arg_v2="$am__vala_version"
 awk "$as_awk_strverscmp" v1="$as_arg_v1" v2="$as_arg_v2" /dev/null
 case $? in #(
