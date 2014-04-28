@@ -84,8 +84,7 @@ public abstract class CellRendererPill : Gtk.CellRendererText {
         Gdk.RGBA shadow_color;
         Gtk.StyleContext context = widget.get_style_context();
         shadow_color = context.get_border_color(state);
-        bool workaround = (context.get_background_color(Gtk.StateFlags.NORMAL) == context.get_color(Gtk.StateFlags.SELECTED));
-        if (state == Gtk.StateFlags.NORMAL || workaround) {
+        if (state == Gtk.StateFlags.NORMAL) {
             pill_color = context.get_color(state);
             text_color = context.get_background_color(state);
         } else {
