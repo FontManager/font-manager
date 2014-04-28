@@ -104,8 +104,6 @@ namespace FontManager {
             File group_cache = File.new_for_path(cache);
             if (group_cache.query_exists())
                 collections = (Collections) Json.gobject_deserialize(typeof(Collections), load_json_file(cache));
-            else
-                message("No user collections found.");
         } catch (Error e) {
             warning("Failed to load file : %s : %s", cache, e.message);
         }
