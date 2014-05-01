@@ -137,6 +137,7 @@ dist-hook:
 	rm -f $(font_manager_VALASOURCES:.vala=.c) $(BUILT_SOURCES) font_manager_vala.stamp
 
 clean-local:
-	rm -f $(BUILT_SOURCES)
+	rm -f $(font_manager_VALASOURCES:.vala=.c) $(BUILT_SOURCES) font_manager_vala.stamp
+
 
 

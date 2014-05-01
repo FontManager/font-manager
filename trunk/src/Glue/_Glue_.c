@@ -303,7 +303,7 @@ FcListUserDirs(void)
     g_assert(FcInit());
     fdlist = FcConfigGetConfigDirs(NULL);
     while ((directory = FcStrListNext(fdlist)))
-        if (g_access((const gchar *) directory, W_OK) == 0)
+        if (get_file_owner((const gchar *) directory) == 0)
             gee_abstract_collection_add((GeeAbstractCollection *) dirlist, directory);
     FcStrListDone(fdlist);
     return dirlist;

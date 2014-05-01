@@ -25,6 +25,7 @@ namespace FontManager {
 
         public static Gee.HashMap <string, string>? fail = null;
         public static Gee.ArrayList <File>? installed = null;
+        public static Gee.ArrayList <File>? removed = null;
         public static ProgressCallback? progress = null;
 
         public struct InstallData {
@@ -130,7 +131,7 @@ namespace FontManager {
             internal void process_file (File file) {
                 string filepath = file.get_path();
                 foreach (var ext in FONT_METRICS)
-                    if (filepath.has_suffix(ext))
+                    if (filepath.down().has_suffix(ext))
                         return;
                 install_font(InstallData(file));
                 return;
@@ -169,7 +170,7 @@ namespace FontManager {
                                 }
                                 if (metrics_file)
                                     continue;
-                                warning("Ignoring font metrics file : %s", dir.get_child(fileinfo.get_name()).get_path());
+                                warning("Ignoring unsupported file : %s", dir.get_child(fileinfo.get_name()).get_path());
                             }// else
 //                                warning("Ignoring unsupported file : %s", dir.get_child(fileinfo.get_name()).get_path());
                         }
