@@ -67,6 +67,8 @@ namespace FontManager {
         Gtk.TreeViewColumn column;
         Pango.FontDescription _font_desc;
         CompareControls controls;
+        Gdk.RGBA default_fg_color;
+        Gdk.RGBA default_bg_color;
 
         public Compare () {
             base.init();
@@ -76,11 +78,12 @@ namespace FontManager {
             store = new Gtk.ListStore(2, typeof(Pango.FontDescription), typeof(string));
             scroll = new Gtk.ScrolledWindow(null, null);
             controls = new CompareControls();
+            update_default_colors();
             var renderer = new Gtk.CellRendererText();
             column = new Gtk.TreeViewColumn();
             column.pack_start(renderer, true);
             column.set_cell_data_func(renderer, cell_data_func);
-            column.set_attributes(renderer, "font-desc", 0, null);
+            column.set_attributes(renderer, "font-desc", 0, "text", 1, null);
             tree.append_column(column);
             tree.set_model(store);
             tree.set_tooltip_column(1);
@@ -102,10 +105,18 @@ namespace FontManager {
         }
 
         internal void connect_signals() {
+            /* selection, model, path, currently_selected_path */
+            tree.get_selection().set_select_function((s, m, p, csp) => {
+                /* Disallow selection of preview rows */
+                if (p.get_indices()[0] % 2 == 0)
+                    /* Name row */
+                    return true;
+                else
+                    /* Preview row */
+                    return false;
+            });
             controls.add_selected.connect(() => {
-                Gtk.TreeIter iter;
-                store.append(out iter);
-                store.set(iter, 0, font_desc, 1, font_desc.to_string());
+                add_from_string(font_desc.to_string());
                 list_modified();
             });
             controls.remove_selected.connect(() => { on_remove(); });
@@ -117,6 +128,17 @@ namespace FontManager {
                 background_color = rgba;
                 color_set();
             });
+            style_updated.connect(() => {
+                update_default_colors();
+            });
+
+            return;
+        }
+
+        private void update_default_colors () {
+            var ctx = get_style_context();
+            default_fg_color = ctx.get_color(Gtk.StateFlags.NORMAL);
+            default_bg_color = ctx.get_background_color(Gtk.StateFlags.NORMAL);
             return;
         }
 
@@ -128,9 +150,14 @@ namespace FontManager {
 
         public void add_from_string (string font_desc) {
             Gtk.TreeIter iter;
+            Gtk.TreeIter _iter;
+            Pango.FontDescription desc = Pango.FontDescription.from_string("Sans");
             Pango.FontDescription _desc = Pango.FontDescription.from_string(font_desc);
             store.append(out iter);
-            store.set(iter, 0, _desc, 1, _desc.to_string());
+            store.set(iter, 0, desc, 1, _desc.get_family(), -1);
+            store.append(out _iter);
+            store.set(_iter, 0, _desc, 1, _desc.to_string(), -1);
+            list_modified();
             return;
         }
 
@@ -138,12 +165,22 @@ namespace FontManager {
                                Gtk.CellRenderer cell,
                                Gtk.TreeModel model,
                                Gtk.TreeIter treeiter) {
-            cell.set_property("foreground-rgba", foreground_color);
-            cell.set_property("background-rgba", background_color);
-            cell.set_property("text", preview_text);
-            cell.set_property("size-points", _preview_size);
-            cell.set_property("ypad", 4);
-            cell.set_property("scale", 1.1);
+            if (model.get_path(treeiter).get_indices()[0] % 2 == 0) {
+                /* Name row */
+                cell.set_property("foreground-rgba", default_fg_color);
+                cell.set_property("background-rgba", default_bg_color);
+                cell.set_property("size-points", get_desc_size());
+                cell.set_property("ypad", 4);
+                cell.set_property("scale", 1.0);
+            } else {
+                /* Preview row */
+                cell.set_property("foreground-rgba", foreground_color);
+                cell.set_property("background-rgba", background_color);
+                cell.set_property("text", preview_text);
+                cell.set_property("size-points", preview_size);
+                cell.set_property("ypad", 4);
+                cell.set_property("scale", 1.1);
+            }
             return;
         }
 
@@ -152,6 +189,9 @@ namespace FontManager {
             /* (model, path, iter) */
             store.foreach((m, p, i) => {
                 Value val;
+                if (p.get_indices()[0] % 2 == 0)
+                    /* Skip name rows */
+                    return false;
                 m.get_value(i, 1, out val);
                 results += (string) val;
                 val.unset();
@@ -178,6 +218,8 @@ namespace FontManager {
                  * the iter was always being set to null after calling remove.
                  */
                 string iter_as_string = store.get_string_from_iter(iter);
+                store.remove(iter);
+                store.get_iter_from_string(out iter, iter_as_string);
                 bool still_valid = store.remove(iter);
                 /* Set the cursor to a remaining row instead of having the cursor disappear.
                  * This allows for easy deletion of multiple previews by hitting the remove
@@ -189,14 +231,13 @@ namespace FontManager {
                      */
                      store.get_iter_from_string(out iter, iter_as_string);
                      Gtk.TreePath path = model.get_path(iter);
-                     if (path != null && path.get_indices()[0] >= 0) {
+                     if (path != null && path.get_indices()[0] >= 0)
                          tree.set_cursor(path, column, false);
-                     }
                 } else {
                      /* The treeiter is no longer valid. In our case this means the bottom row in
                       * the treeview was deleted. Set the cursor to the new bottom row.
                       */
-                    int n_children = model.iter_n_children(null) - 1;
+                    int n_children = model.iter_n_children(null) - 2;
                     if (n_children >= 0) {
                         Gtk.TreePath path = new Gtk.TreePath.from_string(n_children.to_string());
                         tree.get_selection().select_path(path);
