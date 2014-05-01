@@ -84,7 +84,7 @@ namespace FontConfig {
 /* Defined in _Glue_.c */
 extern long get_face_count (string filepath);
 extern FontConfig.Font? FcGetFontFromFile (string filepath, int index);
-extern Gee.ArrayList <FontConfig.Font> FcListFonts(string? family_name);
+extern Gee.ArrayList <FontConfig.Font> FcListFonts (string? family_name);
 extern Gee.ArrayList <string> FcListFamilies ();
 extern Gee.ArrayList <string> FcListFiles ();
 extern Gee.ArrayList <string> FcListDirs ();
@@ -94,5 +94,5 @@ extern bool FcAddAppFont (string filepath);
 extern bool FcAddAppFontDir (string dir);
 extern void FcClearAppFonts ();
 extern bool FcLoadConfig (string filepath);
-extern int get_file_info(FontManager.FontInfo * fileinfo, string filepath, int index);
+extern int get_file_info (FontManager.FontInfo * fileinfo, string filepath, int index);
 

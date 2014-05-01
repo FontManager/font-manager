@@ -66,6 +66,19 @@ namespace FontManager {
             );
             /* XXX */
             NotImplemented.parent = (Gtk.Window) this;
+
+        }
+
+        public void reload () {
+            components.unset_all_models();
+            components.loading = true;
+            ensure_ui_update();
+            components.core.update();
+            components.model.update();
+            components.loading = false;
+            components.set_all_models();
+            ensure_ui_update();
+            return;
         }
 
         GLib.MenuModel get_main_menu_model () {
@@ -122,6 +135,11 @@ namespace FontManager {
             configure_event.connect((w, /* Gdk.EventConfigure */ e) => {
                 settings.set("window-size", "(ii)", e.width, e.height);
                 settings.set("window-position", "(ii)", e.x, e.y);
+                /* XXX : this doesn't belong here...
+                 * It's purpose is to prevent the window title from being
+                 * truncated even though it would fit. (Gtk.HeaderBar)
+                 */
+                components.titlebar.queue_resize();
                 return false;
                 }
             );

@@ -69,10 +69,7 @@ namespace FontManager {
             components.core.init();
             components.model = new Model(components.core);
             components.set_reject(components.core.fontconfig.reject);
-            components.set_font_model(components.model.fonts);
-            ensure_ui_update();
-            components.set_collection_model(components.model.collections);
-            components.set_category_model(components.model.categories);
+            components.set_all_models();
             ensure_ui_update();
             components.loading = false;
             ensure_ui_update();

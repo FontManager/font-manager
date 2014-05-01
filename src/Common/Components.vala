@@ -104,6 +104,11 @@ namespace FontManager {
             sync_fonts_table(database, FontConfig.list_fonts(), report_progress);
         }
 
+        public void update () {
+            fontconfig.update();
+            sync_fonts_table(database, FontConfig.list_fonts(), report_progress);
+        }
+
         void report_progress (string? message, int processed, int total) {
             progress(progress_message != null ? progress_message : message, processed, total);
             return;
@@ -124,6 +129,12 @@ namespace FontManager {
             this.collections.collections = core.collections; /* Yup */
             fonts = new FontModel();
             fonts.families = core.fontconfig.families;
+        }
+
+        public void update () {
+            categories.update();
+            fonts.update();
+            return;
         }
 
     }
@@ -254,19 +265,33 @@ namespace FontManager {
             return;
         }
 
-        public void set_font_model (FontModel model) {
+        public void unset_all_models () {
+            font_model = null;
+            fontlist.model = null;
+            browser.model = null;
+            return;
+        }
+
+        public void set_all_models () {
+            set_font_model(model.fonts);
+            set_collection_model(model.collections);
+            set_category_model(model.categories);
+            return;
+        }
+
+        public void set_font_model (FontModel? model) {
             font_model = model;
             fontlist.model = model;
             browser.model = model;
             return;
         }
 
-        public void set_collection_model (CollectionModel model) {
+        public void set_collection_model (CollectionModel? model) {
             sidebar.standard.collection_tree.model = model;
             return;
         }
 
-        public void set_category_model (CategoryModel model) {
+        public void set_category_model (CategoryModel? model) {
             sidebar.standard.category_tree.model = model;
             return;
         }
@@ -449,6 +474,13 @@ namespace FontManager {
             fonttree.loading = false;
             fontlist.model = model.fonts;
             ensure_ui_update();
+            /* XXX :
+             * Is this enough time for most machines? Don't know...
+             */
+            Timeout.add_seconds(3, () => {
+                main_window.reload();
+                return false;
+            });
             return;
         }
 

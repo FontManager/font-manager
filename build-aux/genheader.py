@@ -154,7 +154,7 @@ if __name__ == "__main__":
                                "--pkg=json-glib-1.0",
                                "../src/Common/Constants.vala",
                                "../src/Common/FontInfo.vala",
-                               "../src/Common/Miscellaneous.vala",
+                               "../src/Common/Utils.vala",
                                "../src/FontConfig/Font.vala",
                                "../src/FontConfig/Enums.vala",
                                "../src/Glue/Glue.vala",
