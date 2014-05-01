@@ -147,19 +147,6 @@ namespace FontManager {
             return;
         }
 
-        internal double get_desc_size () {
-            if (preview_size <= 10)
-                return preview_size;
-            else if (preview_size <= 20)
-                return preview_size / 1.25;
-            else if (preview_size <= 30)
-                return preview_size / 1.5;
-            else if (preview_size <= 50)
-                return preview_size / 1.75;
-            else
-                return preview_size / 2;
-        }
-
     }
 
 }
