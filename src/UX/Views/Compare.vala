@@ -113,6 +113,11 @@ namespace FontManager {
                     return true;
                 else
                     /* Preview row */
+                    Idle.add(() => {
+                        if (p.prev())
+                            tree.get_selection().select_path(p);
+                        return false;
+                    });
                     return false;
             });
             controls.add_selected.connect(() => {
@@ -154,7 +159,7 @@ namespace FontManager {
             Pango.FontDescription desc = Pango.FontDescription.from_string("Sans");
             Pango.FontDescription _desc = Pango.FontDescription.from_string(font_desc);
             store.append(out iter);
-            store.set(iter, 0, desc, 1, _desc.get_family(), -1);
+            store.set(iter, 0, desc, 1, _desc.to_string(), -1);
             store.append(out _iter);
             store.set(_iter, 0, _desc, 1, _desc.to_string(), -1);
             list_modified();
