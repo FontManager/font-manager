@@ -23,10 +23,11 @@ namespace FontManager {
 
     namespace Library {
 
-        public static Gee.HashMap <string, string>? fail = null;
-        public static Gee.ArrayList <File>? installed = null;
-        public static Gee.ArrayList <File>? removed = null;
         public static ProgressCallback? progress = null;
+
+        internal string get_user_font_dir () {
+            return Path.build_filename(Environment.get_user_data_dir(), "fonts");
+        }
 
         public struct InstallData {
             public File file;
@@ -40,12 +41,13 @@ namespace FontManager {
             }
         }
 
-        public struct Install {
+        [Compact]
+        public class Install {
 
-            internal string USER_FONT_DIR;
+            public static Gee.ArrayList <File>? installed = null;
+            public static Gee.HashMap <string, string>? install_failed = null;
 
-            public Install.from_file_array (File? [] files) {
-                USER_FONT_DIR = Path.build_filename(Environment.get_user_data_dir(), "fonts");
+            public static void from_file_array (File? [] files) {
                 var _files = new Gee.ArrayList <File> ();
                 foreach (var file in files) {
                     if (file == null)
@@ -55,8 +57,7 @@ namespace FontManager {
                 process_files(_files);
             }
 
-            public Install.from_path_array (string [] paths) {
-                USER_FONT_DIR = Path.build_filename(Environment.get_user_data_dir(), "fonts");
+            public static void from_path_array (string? [] paths) {
                 var files = new Gee.ArrayList <File> ();
                 foreach (var path in paths) {
                     if (path == null)
@@ -66,8 +67,7 @@ namespace FontManager {
                 process_files(files);
             }
 
-            public Install.from_uri_array (string [] uris) {
-                USER_FONT_DIR = Path.build_filename(Environment.get_user_data_dir(), "fonts");
+            public static void from_uri_array (string? [] uris) {
                 var files = new Gee.ArrayList <File> ();
                 foreach (var uri in uris) {
                     if (uri == null)
@@ -77,28 +77,28 @@ namespace FontManager {
                 process_files(files);
             }
 
-            internal void try_copy (File original, File copy) {
+            internal static void try_copy (File original, File copy) {
                 try {
                     original.copy(copy, FileCopyFlags.OVERWRITE | FileCopyFlags.ALL_METADATA);
                 } catch (Error e) {
                     string path = original.get_path();
-                    if (fail == null)
-                        fail = new Gee.HashMap <string, string> ();
-                    fail[path] = e.message;
+                    if (install_failed == null)
+                        install_failed = new Gee.HashMap <string, string> ();
+                    install_failed[path] = e.message;
                     warning("%s : %s", e.message, path);
                 }
                 return;
             }
 
-            internal void install_font (InstallData data) {
+            internal static void install_font (InstallData data) {
                 if (data.font == null || data.fontinfo == null) {
-                    if (fail == null)
-                        fail = new Gee.HashMap <string, string> ();
-                    fail[data.file.get_path()] = "Failed to create FontInfo";
+                    if (install_failed == null)
+                        install_failed = new Gee.HashMap <string, string> ();
+                    install_failed[data.file.get_path()] = "Failed to create FontInfo";
                     warning("Failed to create FontInfo :: %s", data.file.get_path());
                     return;
                 }
-                string dest = Path.build_filename(USER_FONT_DIR,
+                string dest = Path.build_filename(get_user_font_dir(),
                                                     data.fontinfo.vendor,
                                                     data.fontinfo.filetype,
                                                     data.font.family);
@@ -128,7 +128,7 @@ namespace FontManager {
                 return;
             }
 
-            internal void process_file (File file) {
+            internal static void process_file (File file) {
                 string filepath = file.get_path();
                 foreach (var ext in FONT_METRICS)
                     if (filepath.down().has_suffix(ext))
@@ -137,7 +137,7 @@ namespace FontManager {
                 return;
             }
 
-            internal void process_directory (File dir) {
+            internal static void process_directory (File dir) {
                 try {
                     FileInfo fileinfo;
                     var archive_manager = new ArchiveManager();
@@ -171,8 +171,7 @@ namespace FontManager {
                                 if (metrics_file)
                                     continue;
                                 warning("Ignoring unsupported file : %s", dir.get_child(fileinfo.get_name()).get_path());
-                            }// else
-//                                warning("Ignoring unsupported file : %s", dir.get_child(fileinfo.get_name()).get_path());
+                            }
                         }
                         processed++;
                         if (progress != null)
@@ -184,12 +183,12 @@ namespace FontManager {
                 return;
             }
 
-            internal void process_archive (ArchiveManager archive_manager, File file) {
+            internal static void process_archive (ArchiveManager archive_manager, File file) {
                 string? _tmpdir = DirUtils.make_tmp(TMPL);
                 if (_tmpdir == null) {
-                    if (fail == null)
-                        fail = new Gee.HashMap <string, string> ();
-                    fail[file.get_path()] = "Failed to create temporary directory";
+                    if (install_failed == null)
+                        install_failed = new Gee.HashMap <string, string> ();
+                    install_failed[file.get_path()] = "Failed to create temporary directory";
                     return;
                 }
                 var tmpdir = File.new_for_path(_tmpdir);
@@ -197,15 +196,15 @@ namespace FontManager {
                     archive_manager.extract(file.get_uri(), tmpdir.get_uri());
                     process_directory(tmpdir);
                 } catch (Error e) {
-                    if (fail == null)
-                        fail = new Gee.HashMap <string, string> ();
-                    fail[file.get_path()] = "Failed to extract archive";
+                    if (install_failed == null)
+                        install_failed = new Gee.HashMap <string, string> ();
+                    install_failed[file.get_path()] = "Failed to extract archive";
                 }
                 remove_directory(tmpdir);
                 return;
             }
 
-            internal void process_files (Gee.ArrayList <File> filelist) {
+            internal static void process_files (Gee.ArrayList <File> filelist) {
                 var archive_manager = new ArchiveManager();
                 var supported_archives = archive_manager.get_supported_types();
                 int total = filelist.size;
@@ -220,14 +219,41 @@ namespace FontManager {
                         process_file(file);
                     } else if (content_type in supported_archives) {
                         process_archive(archive_manager, file);
-                    }// else
-//                        warning("Ignoring unsupported file : %s", file.get_path());
+                    }
                     processed++;
                     if (progress != null)
                         progress("Processing files...", processed, total);
                 }
                 return;
             }
+        }
+
+        [Compact]
+        public class Remove {
+
+            public static Gee.ArrayList <File>? removed = null;
+            public static Gee.HashMap <string, string>? remove_failed = null;
+
+            public static void from_file_array (File? [] files) {
+                int total = files.length;
+                int processed = 0;
+                foreach (var file in files) {
+                    try {
+                        File parent = file.get_parent();
+                        file.delete();
+                        remove_directory_if_empty(parent);
+                        processed++;
+                        if (progress != null)
+                            progress("Removing files...", processed, total);
+                    } catch (Error e) {
+                        if (remove_failed == null)
+                            remove_failed = new Gee.HashMap <string, string> ();
+                        remove_failed[file.get_path()] = e.message;
+                        warning("%s : %s", e.message, file.get_path());
+                    }
+                }
+            }
+
         }
 
     }

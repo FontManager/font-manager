@@ -23,14 +23,14 @@ namespace FontManager {
 
     namespace FileSelector {
 
-        public static string? [] run (Gtk.Window? parent) {
+        public string? [] run_install (Gtk.Window? parent) {
             string? [] arr = { };
             var dialog = new Gtk.FileChooserDialog("Select files to install",
                                                         parent,
                                                         Gtk.FileChooserAction.OPEN,
-                                                        Gtk.Stock.CANCEL,
+                                                        "_Cancel",
                                                         Gtk.ResponseType.CANCEL,
-                                                        Gtk.Stock.OPEN,
+                                                        "_Open",
                                                         Gtk.ResponseType.ACCEPT,
                                                         null);
             var filter = new Gtk.FileFilter();
@@ -51,6 +51,87 @@ namespace FontManager {
             dialog.destroy();
             return arr;
         }
+
+        public File? [] run_removal (Gtk.Window? parent, UserFontModel font_model) {
+            File? [] res = {};
+            var dialog = new Gtk.Dialog.with_buttons("Select fonts to remove",
+                                                    parent,
+                                                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                                    "_Cancel",
+                                                    Gtk.ResponseType.CANCEL,
+                                                    "_Delete",
+                                                    Gtk.ResponseType.ACCEPT,
+                                                    null);
+            var content_area = dialog.get_content_area();
+            var scroll = new Gtk.ScrolledWindow(null, null);
+            var tree = new RemoveTree(font_model);
+            tree.hexpand = tree.vexpand = true;
+            scroll.add(tree);
+            add_separator(content_area, Gtk.Orientation.HORIZONTAL);
+            content_area.pack_start(scroll, true, true, 0);
+            add_separator(content_area, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
+            scroll.show_all();
+            dialog.set_size_request(420, 480);
+            if (dialog.run() == Gtk.ResponseType.ACCEPT) {
+                dialog.hide();
+                ensure_ui_update();
+                foreach (var path in tree.files)
+                    res += File.new_for_path(path);
+            }
+            dialog.destroy();
+            return res;
+        }
+
+        class RemoveTree : Gtk.TreeView {
+
+            public Gee.ArrayList <string?> files { get; private set; }
+
+            Gtk.CellRendererToggle toggle;
+
+            public RemoveTree (UserFontModel model) {
+                set_model(model);
+                headers_visible = false;
+                files = new Gee.ArrayList <string?> ();
+                toggle = new Gtk.CellRendererToggle();
+                var text = new Gtk.CellRendererText();
+                var preview = new Gtk.CellRendererText();
+                insert_column_with_data_func(0, "", toggle, toggle_cell_data_func);
+                insert_column_with_attributes(1, "", text, "text", 1, "font", 1, null);
+                get_column(0).expand = false;
+                get_column(1).expand = true;
+                set_enable_search(true);
+                set_search_column(1);
+                toggle.toggled.connect(on_toggled);
+            }
+
+            void on_toggled (string path) {
+                Gtk.TreeIter iter;
+                Value val;
+                model.get_iter_from_string(out iter, path);
+                model.get_value(iter, 0, out val);
+                var obj = (FontConfig.Font) val.get_object();
+                if (files.contains(obj.filepath))
+                    files.remove(obj.filepath);
+                else
+                    files.add(obj.filepath);
+                val.unset();
+                return;
+            }
+
+            void toggle_cell_data_func (Gtk.CellLayout layout,
+                                        Gtk.CellRenderer cell,
+                                        Gtk.TreeModel model,
+                                        Gtk.TreeIter treeiter) {
+                Value val;
+                model.get_value(treeiter, 0, out val);
+                var obj = (FontConfig.Font) val.get_object();
+                cell.set_property("active", files.contains(obj.filepath));
+                val.unset();
+                return;
+            }
+
+        }
+
     }
 
 }

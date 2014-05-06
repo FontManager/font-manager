@@ -91,22 +91,23 @@ DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am Main.c \
 	FontConfig/Font.c FontConfig/Properties.c FontConfig/Reject.c \
 	FontConfig/Selections.c FontConfig/XmlWriter.c Glue/Glue.c \
 	Json/Cacheable.c Json/JsonWriter.c Models/CategoryModel.c \
-	Models/CollectionModel.c Models/FontModel.c UX/MainWindow.c \
-	UX/CharacterMap.c UX/GtkUtils.c \
-	UX/Controls/CollectionControls.c UX/Controls/CompareControls.c \
-	UX/Controls/FontListControls.c UX/Controls/PreviewControls.c \
-	UX/Controls/TitleBar.c UX/Controls/ModeSelector.c \
-	UX/Dialogs/Migration.c UX/Dialogs/NotImplemented.c \
-	UX/Dialogs/FileSelector.c UX/Sidebar/SideBar.c \
-	UX/Sidebar/MainSideBar.c UX/Sidebar/CharacterMapSideBar.c \
-	UX/Trees/CollectionTree.c UX/Trees/CategoryTree.c \
-	UX/Trees/FontList.c UX/Trees/FontListTree.c \
-	UX/Widgets/FontScale.c UX/Widgets/AdjustablePreview.c \
-	UX/Widgets/CellRendererPill.c UX/Widgets/TextViews.c \
-	UX/Widgets/MultiDNDTreeView.c UX/Widgets/ThinPaned.c \
-	UX/Views/Compare.c UX/Views/FontPreview.c \
-	UX/Views/CharacterTable.c UX/Views/Browse.c \
-	$(top_srcdir)/depcomp $(srcdir)/font_manager_vala.stamp
+	Models/CollectionModel.c Models/FontModel.c \
+	Models/UserFontModel.c UX/MainWindow.c UX/CharacterMap.c \
+	UX/GtkUtils.c UX/Controls/CollectionControls.c \
+	UX/Controls/CompareControls.c UX/Controls/FontListControls.c \
+	UX/Controls/PreviewControls.c UX/Controls/TitleBar.c \
+	UX/Controls/ModeSelector.c UX/Dialogs/Migration.c \
+	UX/Dialogs/NotImplemented.c UX/Dialogs/FileSelector.c \
+	UX/Sidebar/SideBar.c UX/Sidebar/MainSideBar.c \
+	UX/Sidebar/CharacterMapSideBar.c UX/Trees/CollectionTree.c \
+	UX/Trees/CategoryTree.c UX/Trees/FontList.c \
+	UX/Trees/FontListTree.c UX/Widgets/FontScale.c \
+	UX/Widgets/AdjustablePreview.c UX/Widgets/CellRendererPill.c \
+	UX/Widgets/TextViews.c UX/Widgets/MultiDNDTreeView.c \
+	UX/Widgets/ThinPaned.c UX/Views/Compare.c \
+	UX/Views/FontPreview.c UX/Views/CharacterTable.c \
+	UX/Views/Browse.c $(top_srcdir)/depcomp \
+	$(srcdir)/font_manager_vala.stamp
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/intltool.m4 \
 	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/ltoptions.m4 \
@@ -153,6 +154,7 @@ am__objects_1 = font_manager-Main.$(OBJEXT) \
 	Models/font_manager-CategoryModel.$(OBJEXT) \
 	Models/font_manager-CollectionModel.$(OBJEXT) \
 	Models/font_manager-FontModel.$(OBJEXT) \
+	Models/font_manager-UserFontModel.$(OBJEXT) \
 	UX/font_manager-MainWindow.$(OBJEXT) \
 	UX/font_manager-CharacterMap.$(OBJEXT) \
 	UX/font_manager-GtkUtils.$(OBJEXT) \
@@ -524,6 +526,7 @@ Json/JsonWriter.vala \
 Models/CategoryModel.vala \
 Models/CollectionModel.vala \
 Models/FontModel.vala \
+Models/UserFontModel.vala \
 UX/MainWindow.vala \
 UX/CharacterMap.vala \
 UX/GtkUtils.vala \
@@ -749,6 +752,8 @@ Models/font_manager-CollectionModel.$(OBJEXT): Models/$(am__dirstamp) \
 	Models/$(DEPDIR)/$(am__dirstamp)
 Models/font_manager-FontModel.$(OBJEXT): Models/$(am__dirstamp) \
 	Models/$(DEPDIR)/$(am__dirstamp)
+Models/font_manager-UserFontModel.$(OBJEXT): Models/$(am__dirstamp) \
+	Models/$(DEPDIR)/$(am__dirstamp)
 UX/$(am__dirstamp):
 	@$(MKDIR_P) UX
 	@: > UX/$(am__dirstamp)
@@ -926,6 +931,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@Models/$(DEPDIR)/font_manager-CategoryModel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@Models/$(DEPDIR)/font_manager-CollectionModel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@Models/$(DEPDIR)/font_manager-FontModel.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@Models/$(DEPDIR)/font_manager-UserFontModel.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@UX/$(DEPDIR)/font_manager-CharacterMap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@UX/$(DEPDIR)/font_manager-GtkUtils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@UX/$(DEPDIR)/font_manager-MainWindow.Po@am__quote@
@@ -1427,6 +1433,20 @@ Models/font_manager-FontModel.obj: Models/FontModel.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Models/FontModel.c' object='Models/font_manager-FontModel.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(font_manager_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Models/font_manager-FontModel.obj `if test -f 'Models/FontModel.c'; then $(CYGPATH_W) 'Models/FontModel.c'; else $(CYGPATH_W) '$(srcdir)/Models/FontModel.c'; fi`
+
+Models/font_manager-UserFontModel.o: Models/UserFontModel.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(font_manager_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT Models/font_manager-UserFontModel.o -MD -MP -MF Models/$(DEPDIR)/font_manager-UserFontModel.Tpo -c -o Models/font_manager-UserFontModel.o `test -f 'Models/UserFontModel.c' || echo '$(srcdir)/'`Models/UserFontModel.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Models/$(DEPDIR)/font_manager-UserFontModel.Tpo Models/$(DEPDIR)/font_manager-UserFontModel.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Models/UserFontModel.c' object='Models/font_manager-UserFontModel.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(font_manager_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Models/font_manager-UserFontModel.o `test -f 'Models/UserFontModel.c' || echo '$(srcdir)/'`Models/UserFontModel.c
+
+Models/font_manager-UserFontModel.obj: Models/UserFontModel.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(font_manager_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT Models/font_manager-UserFontModel.obj -MD -MP -MF Models/$(DEPDIR)/font_manager-UserFontModel.Tpo -c -o Models/font_manager-UserFontModel.obj `if test -f 'Models/UserFontModel.c'; then $(CYGPATH_W) 'Models/UserFontModel.c'; else $(CYGPATH_W) '$(srcdir)/Models/UserFontModel.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) Models/$(DEPDIR)/font_manager-UserFontModel.Tpo Models/$(DEPDIR)/font_manager-UserFontModel.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='Models/UserFontModel.c' object='Models/font_manager-UserFontModel.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(font_manager_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o Models/font_manager-UserFontModel.obj `if test -f 'Models/UserFontModel.c'; then $(CYGPATH_W) 'Models/UserFontModel.c'; else $(CYGPATH_W) '$(srcdir)/Models/UserFontModel.c'; fi`
 
 UX/font_manager-MainWindow.o: UX/MainWindow.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(font_manager_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT UX/font_manager-MainWindow.o -MD -MP -MF UX/$(DEPDIR)/font_manager-MainWindow.Tpo -c -o UX/font_manager-MainWindow.o `test -f 'UX/MainWindow.c' || echo '$(srcdir)/'`UX/MainWindow.c
@@ -2021,6 +2041,11 @@ $(srcdir)/Models/FontModel.c: $(srcdir)/font_manager_vala.stamp
 	@if test -f $@; then :; else \
 	  $(MAKE) $(AM_MAKEFLAGS) $(srcdir)/font_manager_vala.stamp; \
 	fi
+$(srcdir)/Models/UserFontModel.c: $(srcdir)/font_manager_vala.stamp
+	@if test -f $@; then :; else rm -f $(srcdir)/font_manager_vala.stamp; fi
+	@if test -f $@; then :; else \
+	  $(MAKE) $(AM_MAKEFLAGS) $(srcdir)/font_manager_vala.stamp; \
+	fi
 $(srcdir)/UX/MainWindow.c: $(srcdir)/font_manager_vala.stamp
 	@if test -f $@; then :; else rm -f $(srcdir)/font_manager_vala.stamp; fi
 	@if test -f $@; then :; else \
@@ -2166,9 +2191,9 @@ $(srcdir)/UX/Views/Browse.c: $(srcdir)/font_manager_vala.stamp
 	@if test -f $@; then :; else \
 	  $(MAKE) $(AM_MAKEFLAGS) $(srcdir)/font_manager_vala.stamp; \
 	fi
-$(srcdir)/font_manager_vala.stamp: Main.vala Common/About.vala Common/ArchiveManager.vala Common/Collections.vala Common/Components.vala Common/Constants.vala Common/Database.vala Common/FontInfo.vala Common/Library.vala Common/Utils.vala Filters/Category.vala Filters/Collection.vala Filters/Filter.vala Filters/SearchResult.vala Filters/Unsorted.vala FontConfig/Accept.vala FontConfig/Config.vala FontConfig/Directories.vala FontConfig/Enums.vala FontConfig/Family.vala FontConfig/Families.vala FontConfig/Font.vala FontConfig/Properties.vala FontConfig/Reject.vala FontConfig/Selections.vala FontConfig/XmlWriter.vala Glue/Glue.vala Json/Cacheable.vala Json/JsonWriter.vala Models/CategoryModel.vala Models/CollectionModel.vala Models/FontModel.vala UX/MainWindow.vala UX/CharacterMap.vala UX/GtkUtils.vala UX/Controls/CollectionControls.vala UX/Controls/CompareControls.vala UX/Controls/FontListControls.vala UX/Controls/PreviewControls.vala UX/Controls/TitleBar.vala UX/Controls/ModeSelector.vala UX/Dialogs/Migration.vala UX/Dialogs/NotImplemented.vala UX/Dialogs/FileSelector.vala UX/Sidebar/SideBar.vala UX/Sidebar/MainSideBar.vala UX/Sidebar/CharacterMapSideBar.vala UX/Trees/CollectionTree.vala UX/Trees/CategoryTree.vala UX/Trees/FontList.vala UX/Trees/FontListTree.vala UX/Widgets/FontScale.vala UX/Widgets/AdjustablePreview.vala UX/Widgets/CellRendererPill.vala UX/Widgets/TextViews.vala UX/Widgets/MultiDNDTreeView.vala UX/Widgets/ThinPaned.vala UX/Views/Compare.vala UX/Views/FontPreview.vala UX/Views/CharacterTable.vala UX/Views/Browse.vala
+$(srcdir)/font_manager_vala.stamp: Main.vala Common/About.vala Common/ArchiveManager.vala Common/Collections.vala Common/Components.vala Common/Constants.vala Common/Database.vala Common/FontInfo.vala Common/Library.vala Common/Utils.vala Filters/Category.vala Filters/Collection.vala Filters/Filter.vala Filters/SearchResult.vala Filters/Unsorted.vala FontConfig/Accept.vala FontConfig/Config.vala FontConfig/Directories.vala FontConfig/Enums.vala FontConfig/Family.vala FontConfig/Families.vala FontConfig/Font.vala FontConfig/Properties.vala FontConfig/Reject.vala FontConfig/Selections.vala FontConfig/XmlWriter.vala Glue/Glue.vala Json/Cacheable.vala Json/JsonWriter.vala Models/CategoryModel.vala Models/CollectionModel.vala Models/FontModel.vala Models/UserFontModel.vala UX/MainWindow.vala UX/CharacterMap.vala UX/GtkUtils.vala UX/Controls/CollectionControls.vala UX/Controls/CompareControls.vala UX/Controls/FontListControls.vala UX/Controls/PreviewControls.vala UX/Controls/TitleBar.vala UX/Controls/ModeSelector.vala UX/Dialogs/Migration.vala UX/Dialogs/NotImplemented.vala UX/Dialogs/FileSelector.vala UX/Sidebar/SideBar.vala UX/Sidebar/MainSideBar.vala UX/Sidebar/CharacterMapSideBar.vala UX/Trees/CollectionTree.vala UX/Trees/CategoryTree.vala UX/Trees/FontList.vala UX/Trees/FontListTree.vala UX/Widgets/FontScale.vala UX/Widgets/AdjustablePreview.vala UX/Widgets/CellRendererPill.vala UX/Widgets/TextViews.vala UX/Widgets/MultiDNDTreeView.vala UX/Widgets/ThinPaned.vala UX/Views/Compare.vala UX/Views/FontPreview.vala UX/Views/CharacterTable.vala UX/Views/Browse.vala
 	$(AM_V_at)rm -f $@ && echo stamp > $@-t
-	$(AM_V_VALAC)$(am__cd) $(srcdir) && $(VALAC) $(AM_VALAFLAGS) $(VALAFLAGS) -C Main.vala Common/About.vala Common/ArchiveManager.vala Common/Collections.vala Common/Components.vala Common/Constants.vala Common/Database.vala Common/FontInfo.vala Common/Library.vala Common/Utils.vala Filters/Category.vala Filters/Collection.vala Filters/Filter.vala Filters/SearchResult.vala Filters/Unsorted.vala FontConfig/Accept.vala FontConfig/Config.vala FontConfig/Directories.vala FontConfig/Enums.vala FontConfig/Family.vala FontConfig/Families.vala FontConfig/Font.vala FontConfig/Properties.vala FontConfig/Reject.vala FontConfig/Selections.vala FontConfig/XmlWriter.vala Glue/Glue.vala Json/Cacheable.vala Json/JsonWriter.vala Models/CategoryModel.vala Models/CollectionModel.vala Models/FontModel.vala UX/MainWindow.vala UX/CharacterMap.vala UX/GtkUtils.vala UX/Controls/CollectionControls.vala UX/Controls/CompareControls.vala UX/Controls/FontListControls.vala UX/Controls/PreviewControls.vala UX/Controls/TitleBar.vala UX/Controls/ModeSelector.vala UX/Dialogs/Migration.vala UX/Dialogs/NotImplemented.vala UX/Dialogs/FileSelector.vala UX/Sidebar/SideBar.vala UX/Sidebar/MainSideBar.vala UX/Sidebar/CharacterMapSideBar.vala UX/Trees/CollectionTree.vala UX/Trees/CategoryTree.vala UX/Trees/FontList.vala UX/Trees/FontListTree.vala UX/Widgets/FontScale.vala UX/Widgets/AdjustablePreview.vala UX/Widgets/CellRendererPill.vala UX/Widgets/TextViews.vala UX/Widgets/MultiDNDTreeView.vala UX/Widgets/ThinPaned.vala UX/Views/Compare.vala UX/Views/FontPreview.vala UX/Views/CharacterTable.vala UX/Views/Browse.vala
+	$(AM_V_VALAC)$(am__cd) $(srcdir) && $(VALAC) $(AM_VALAFLAGS) $(VALAFLAGS) -C Main.vala Common/About.vala Common/ArchiveManager.vala Common/Collections.vala Common/Components.vala Common/Constants.vala Common/Database.vala Common/FontInfo.vala Common/Library.vala Common/Utils.vala Filters/Category.vala Filters/Collection.vala Filters/Filter.vala Filters/SearchResult.vala Filters/Unsorted.vala FontConfig/Accept.vala FontConfig/Config.vala FontConfig/Directories.vala FontConfig/Enums.vala FontConfig/Family.vala FontConfig/Families.vala FontConfig/Font.vala FontConfig/Properties.vala FontConfig/Reject.vala FontConfig/Selections.vala FontConfig/XmlWriter.vala Glue/Glue.vala Json/Cacheable.vala Json/JsonWriter.vala Models/CategoryModel.vala Models/CollectionModel.vala Models/FontModel.vala Models/UserFontModel.vala UX/MainWindow.vala UX/CharacterMap.vala UX/GtkUtils.vala UX/Controls/CollectionControls.vala UX/Controls/CompareControls.vala UX/Controls/FontListControls.vala UX/Controls/PreviewControls.vala UX/Controls/TitleBar.vala UX/Controls/ModeSelector.vala UX/Dialogs/Migration.vala UX/Dialogs/NotImplemented.vala UX/Dialogs/FileSelector.vala UX/Sidebar/SideBar.vala UX/Sidebar/MainSideBar.vala UX/Sidebar/CharacterMapSideBar.vala UX/Trees/CollectionTree.vala UX/Trees/CategoryTree.vala UX/Trees/FontList.vala UX/Trees/FontListTree.vala UX/Widgets/FontScale.vala UX/Widgets/AdjustablePreview.vala UX/Widgets/CellRendererPill.vala UX/Widgets/TextViews.vala UX/Widgets/MultiDNDTreeView.vala UX/Widgets/ThinPaned.vala UX/Views/Compare.vala UX/Views/FontPreview.vala UX/Views/CharacterTable.vala UX/Views/Browse.vala
 	$(AM_V_at)mv -f $@-t $@
 
 mostlyclean-libtool:
@@ -2359,6 +2384,7 @@ maintainer-clean-generic:
 	-rm -f $(srcdir)/Models/CategoryModel.c
 	-rm -f $(srcdir)/Models/CollectionModel.c
 	-rm -f $(srcdir)/Models/FontModel.c
+	-rm -f $(srcdir)/Models/UserFontModel.c
 	-rm -f $(srcdir)/UX/CharacterMap.c
 	-rm -f $(srcdir)/UX/Controls/CollectionControls.c
 	-rm -f $(srcdir)/UX/Controls/CompareControls.c
@@ -2421,6 +2447,7 @@ maintainer-clean-generic:
 	-rm -f Models/CategoryModel.c
 	-rm -f Models/CollectionModel.c
 	-rm -f Models/FontModel.c
+	-rm -f Models/UserFontModel.c
 	-rm -f UX/CharacterMap.c
 	-rm -f UX/Controls/CollectionControls.c
 	-rm -f UX/Controls/CompareControls.c
@@ -2550,7 +2577,7 @@ dist-hook:
 	rm -f $(font_manager_VALASOURCES:.vala=.c) $(BUILT_SOURCES) font_manager_vala.stamp
 
 clean-local:
-	rm -f $(BUILT_SOURCES)
+	rm -f $(font_manager_VALASOURCES:.vala=.c) $(BUILT_SOURCES) font_manager_vala.stamp
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

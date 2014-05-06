@@ -85,6 +85,7 @@ Json/JsonWriter.vala \
 Models/CategoryModel.vala \
 Models/CollectionModel.vala \
 Models/FontModel.vala \
+Models/UserFontModel.vala \
 UX/MainWindow.vala \
 UX/CharacterMap.vala \
 UX/GtkUtils.vala \
