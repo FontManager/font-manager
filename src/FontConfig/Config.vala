@@ -66,7 +66,15 @@ namespace FontConfig {
             foreach (var dir in list_dirs()) {
                 File file = File.new_for_path(dir);
                 FileMonitor monitor = file.monitor_directory(FileMonitorFlags.NONE);
-                monitor.changed.connect((f, of, ev) => { changed(f, ev); });
+                monitor.changed.connect((f, of, ev) => {
+                    foreach (var mon in monitors) {
+                        mon.cancel();
+                        mon = null;
+                    }
+                    changed(f, ev);
+                    monitors = {};
+                    monitor_font_dirs();
+                });
                 monitors += monitor;
             }
             return;

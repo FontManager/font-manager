@@ -27,16 +27,15 @@ Features that are expected to work at this time:
                font files but also entire directories and archives. The file
                selector unfortunately will not allow selection of directories.
 
-               For now you need to restart the application manually after
-               installing or removing fonts.
+    Font removal
+
+    Font directory monitoring
+
+        Note : Font Manager should reload itself anytime fonts are installed
+               or removed either through the application or any other method.
 
 
 Features that need to be completed before release:
-
-    Reload in place or restart automatically when fonts are installed / removed.
-        - monitor user font directories for changes
-
-    Font removal
 
     Help contents
 
@@ -64,11 +63,11 @@ Feature parity with previous versions is a high priority but not a blocker
 
 KNOWN ISSUES
 
-	Some desktop environments or window managers, such as the one used in Xfce, do not
-	properly support using GtkHeaderBar as the titlebar yet.
-	This means the application does not look as intended. 
+    Some desktop environments or window managers, such as the one used in Xfce,
+    do not properly support using GtkHeaderBar as the titlebar yet.
+    This means the application does not look as intended.
 
-	Some themes do not render as intended. This is a problem with the theme.
-	Unless the issue also occurs when using Adwaita, or most other themes...
-	
+    Some themes do not render as intended. This is a problem with the theme.
+    Unless the issue also occurs when using Adwaita, or most other themes...
+
 
