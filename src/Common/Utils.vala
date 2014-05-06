@@ -89,6 +89,24 @@ void add_action_from_menu_entry (ActionMap map, MenuEntry entry) {
     return;
 }
 
+bool remove_directory_if_empty (File? dir) {
+    if (dir == null)
+        return false;
+    try {
+        FileInfo fileinfo;
+        var enumerator = dir.enumerate_children(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
+        if (enumerator.next_file() != null)
+            return false;
+        File parent = dir.get_parent();
+        dir.delete();
+        if (parent != null)
+            remove_directory_if_empty(parent);
+    } catch (Error e) {
+        warning(e.message);
+    }
+    return false;
+}
+
 bool remove_directory (File dir, bool recursive = true) {
     try {
         if (recursive) {

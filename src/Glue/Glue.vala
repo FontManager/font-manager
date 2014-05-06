@@ -33,6 +33,10 @@ namespace FreeType {
 
 namespace FontConfig {
 
+    public bool update_cache () {
+        return FcCacheUpdate();
+    }
+
     public Font? get_font_from_file (string filepath, int index = 0) {
         /* Ensure absolute path */
         return FcGetFontFromFile(File.new_for_path(filepath).get_path(), index);
@@ -94,5 +98,6 @@ extern bool FcAddAppFont (string filepath);
 extern bool FcAddAppFontDir (string dir);
 extern void FcClearAppFonts ();
 extern bool FcLoadConfig (string filepath);
+extern bool FcCacheUpdate ();
 extern int get_file_info (FontManager.FontInfo * fileinfo, string filepath, int index);
 

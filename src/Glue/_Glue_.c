@@ -84,6 +84,7 @@ get_font_details_from_pattern (FontConfigFont * font, FcPattern * pattern)
     FcChar8 * family;
     FcChar8 * style;
 
+    g_assert(FcInit());
     g_assert(FcPatternGetString(pattern, FC_FILE, 0, &file) == FcResultMatch);
     font_config_font_set_filepath(font, (const gchar *) file);
     font_config_font_set_owner(font, get_file_owner((const gchar *) file));
@@ -126,6 +127,12 @@ get_font_details_from_pattern (FontConfigFont * font, FcPattern * pattern)
     pango_font_description_free(descr);
 
     return;
+}
+
+gboolean
+FcCacheUpdate () {
+    FcConfigDestroy(FcConfigGetCurrent());
+    return !FcConfigUptoDate(NULL) && FcInitReinitialize();
 }
 
 FontConfigFont *
@@ -312,6 +319,7 @@ FcListUserDirs(void)
 gboolean
 FcEnableUserConfig(gboolean enable)
 {
+    g_assert(FcInit());
     gboolean result = FcConfigEnableHome(enable);
     return result;
 }

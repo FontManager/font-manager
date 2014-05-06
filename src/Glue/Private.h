@@ -80,100 +80,101 @@ typedef struct _FontConfigFontPrivate FontConfigFontPrivate;
 #define FONT_CONFIG_TYPE_WEIGHT (font_config_weight_get_type ())
 
 struct _Cacheable {
-    GObject parent_instance;
-    CacheablePrivate * priv;
+	GObject parent_instance;
+	CacheablePrivate * priv;
 };
 
 struct _CacheableClass {
-    GObjectClass parent_class;
-    gboolean (*deserialize_property) (Cacheable* self, const gchar* prop_name, GValue* val, GParamSpec* pspec, JsonNode* node);
-    JsonNode* (*serialize_property) (Cacheable* self, const gchar* prop_name, GValue* val, GParamSpec* pspec);
+	GObjectClass parent_class;
+	gboolean (*deserialize_property) (Cacheable* self, const gchar* prop_name, GValue* val, GParamSpec* pspec, JsonNode* node);
+	JsonNode* (*serialize_property) (Cacheable* self, const gchar* prop_name, GValue* val, GParamSpec* pspec);
 };
 
 struct _FontManagerFontInfo {
-    Cacheable parent_instance;
-    FontManagerFontInfoPrivate * priv;
-    gint status;
+	Cacheable parent_instance;
+	FontManagerFontInfoPrivate * priv;
+	gint status;
 };
 
 struct _FontManagerFontInfoClass {
-    CacheableClass parent_class;
+	CacheableClass parent_class;
 };
 
+typedef void (*ProgressCallback) (const gchar* message, gint processed, gint total, void* user_data);
 struct _FontConfigFont {
-    Cacheable parent_instance;
-    FontConfigFontPrivate * priv;
+	Cacheable parent_instance;
+	FontConfigFontPrivate * priv;
 };
 
 struct _FontConfigFontClass {
-    CacheableClass parent_class;
+	CacheableClass parent_class;
 };
 
 typedef enum  {
-    FONT_CONFIG_HINT_NONE,
-    FONT_CONFIG_HINT_SLIGHT,
-    FONT_CONFIG_HINT_MEDIUM,
-    FONT_CONFIG_HINT_FULL
+	FONT_CONFIG_HINT_NONE,
+	FONT_CONFIG_HINT_SLIGHT,
+	FONT_CONFIG_HINT_MEDIUM,
+	FONT_CONFIG_HINT_FULL
 } FontConfigHint;
 
 typedef enum  {
-    FONT_CONFIG_LCD_NONE,
-    FONT_CONFIG_LCD_DEFAULT,
-    FONT_CONFIG_LCD_LIGHT,
-    FONT_CONFIG_LCD_LEGACY
+	FONT_CONFIG_LCD_NONE,
+	FONT_CONFIG_LCD_DEFAULT,
+	FONT_CONFIG_LCD_LIGHT,
+	FONT_CONFIG_LCD_LEGACY
 } FontConfigLCD;
 
 typedef enum  {
-    FONT_CONFIG_RGBA_UNKNOWN,
-    FONT_CONFIG_RGBA_RGB,
-    FONT_CONFIG_RGBA_BGR,
-    FONT_CONFIG_RGBA_VRGB,
-    FONT_CONFIG_RGBA_VBGR,
-    FONT_CONFIG_RGBA_NONE
+	FONT_CONFIG_RGBA_UNKNOWN,
+	FONT_CONFIG_RGBA_RGB,
+	FONT_CONFIG_RGBA_BGR,
+	FONT_CONFIG_RGBA_VRGB,
+	FONT_CONFIG_RGBA_VBGR,
+	FONT_CONFIG_RGBA_NONE
 } FontConfigRGBA;
 
 typedef enum  {
-    FONT_CONFIG_SPACING_PROPORTIONAL = 0,
-    FONT_CONFIG_SPACING_DUAL = 90,
-    FONT_CONFIG_SPACING_MONO = 100,
-    FONT_CONFIG_SPACING_CHARCELL = 110
+	FONT_CONFIG_SPACING_PROPORTIONAL = 0,
+	FONT_CONFIG_SPACING_DUAL = 90,
+	FONT_CONFIG_SPACING_MONO = 100,
+	FONT_CONFIG_SPACING_CHARCELL = 110
 } FontConfigSpacing;
 
 typedef enum  {
-    FONT_CONFIG_SLANT_ROMAN = 0,
-    FONT_CONFIG_SLANT_ITALIC = 100,
-    FONT_CONFIG_SLANT_OBLIQUE = 110
+	FONT_CONFIG_SLANT_ROMAN = 0,
+	FONT_CONFIG_SLANT_ITALIC = 100,
+	FONT_CONFIG_SLANT_OBLIQUE = 110
 } FontConfigSlant;
 
 typedef enum  {
-    FONT_CONFIG_WIDTH_ULTRACONDENSED = 50,
-    FONT_CONFIG_WIDTH_EXTRACONDENSED = 63,
-    FONT_CONFIG_WIDTH_CONDENSED = 75,
-    FONT_CONFIG_WIDTH_SEMICONDENSED = 87,
-    FONT_CONFIG_WIDTH_NORMAL = 100,
-    FONT_CONFIG_WIDTH_SEMIEXPANDED = 113,
-    FONT_CONFIG_WIDTH_EXPANDED = 125,
-    FONT_CONFIG_WIDTH_EXTRAEXPANDED = 150,
-    FONT_CONFIG_WIDTH_ULTRAEXPANDED = 200
+	FONT_CONFIG_WIDTH_ULTRACONDENSED = 50,
+	FONT_CONFIG_WIDTH_EXTRACONDENSED = 63,
+	FONT_CONFIG_WIDTH_CONDENSED = 75,
+	FONT_CONFIG_WIDTH_SEMICONDENSED = 87,
+	FONT_CONFIG_WIDTH_NORMAL = 100,
+	FONT_CONFIG_WIDTH_SEMIEXPANDED = 113,
+	FONT_CONFIG_WIDTH_EXPANDED = 125,
+	FONT_CONFIG_WIDTH_EXTRAEXPANDED = 150,
+	FONT_CONFIG_WIDTH_ULTRAEXPANDED = 200
 } FontConfigWidth;
 
 typedef enum  {
-    FONT_CONFIG_WEIGHT_THIN = 0,
-    FONT_CONFIG_WEIGHT_EXTRALIGHT = 40,
-    FONT_CONFIG_WEIGHT_ULTRALIGHT = FONT_CONFIG_WEIGHT_EXTRALIGHT,
-    FONT_CONFIG_WEIGHT_LIGHT = 50,
-    FONT_CONFIG_WEIGHT_BOOK = 75,
-    FONT_CONFIG_WEIGHT_REGULAR = 80,
-    FONT_CONFIG_WEIGHT_NORMAL = FONT_CONFIG_WEIGHT_REGULAR,
-    FONT_CONFIG_WEIGHT_MEDIUM = 100,
-    FONT_CONFIG_WEIGHT_DEMIBOLD = 180,
-    FONT_CONFIG_WEIGHT_SEMIBOLD = FONT_CONFIG_WEIGHT_DEMIBOLD,
-    FONT_CONFIG_WEIGHT_BOLD = 200,
-    FONT_CONFIG_WEIGHT_EXTRABOLD = 205,
-    FONT_CONFIG_WEIGHT_BLACK = 210,
-    FONT_CONFIG_WEIGHT_HEAVY = FONT_CONFIG_WEIGHT_BLACK,
-    FONT_CONFIG_WEIGHT_EXTRABLACK = 215,
-    FONT_CONFIG_WEIGHT_ULTRABLACK = FONT_CONFIG_WEIGHT_EXTRABLACK
+	FONT_CONFIG_WEIGHT_THIN = 0,
+	FONT_CONFIG_WEIGHT_EXTRALIGHT = 40,
+	FONT_CONFIG_WEIGHT_ULTRALIGHT = FONT_CONFIG_WEIGHT_EXTRALIGHT,
+	FONT_CONFIG_WEIGHT_LIGHT = 50,
+	FONT_CONFIG_WEIGHT_BOOK = 75,
+	FONT_CONFIG_WEIGHT_REGULAR = 80,
+	FONT_CONFIG_WEIGHT_NORMAL = FONT_CONFIG_WEIGHT_REGULAR,
+	FONT_CONFIG_WEIGHT_MEDIUM = 100,
+	FONT_CONFIG_WEIGHT_DEMIBOLD = 180,
+	FONT_CONFIG_WEIGHT_SEMIBOLD = FONT_CONFIG_WEIGHT_DEMIBOLD,
+	FONT_CONFIG_WEIGHT_BOLD = 200,
+	FONT_CONFIG_WEIGHT_EXTRABOLD = 205,
+	FONT_CONFIG_WEIGHT_BLACK = 210,
+	FONT_CONFIG_WEIGHT_HEAVY = FONT_CONFIG_WEIGHT_BLACK,
+	FONT_CONFIG_WEIGHT_EXTRABLACK = 215,
+	FONT_CONFIG_WEIGHT_ULTRABLACK = FONT_CONFIG_WEIGHT_EXTRABLACK
 } FontConfigWeight;
 
 
@@ -249,6 +250,7 @@ GType font_config_weight_get_type (void) G_GNUC_CONST;
 gchar* font_config_weight_to_string (FontConfigWeight self);
 gint free_type_num_faces (const gchar* filepath);
 gint free_type_query_file_info (FontManagerFontInfo* fileinfo, const gchar* filepath, gint index);
+gboolean font_config_update_cache (void);
 FontConfigFont* font_config_get_font_from_file (const gchar* filepath, gint index);
 GeeArrayList* font_config_list_fonts (const gchar* family_name);
 GeeArrayList* font_config_list_families (void);
@@ -672,6 +674,7 @@ VendorData[] =
     {"ASSA", "astype"},
     {"ASYM", "Applied Symbols"},
     {"ATEC", "Page Technology Marketing, Inc."},
+    {"ATF", "American Type Founders Collection"},
     {"ATF1", "Australian Type Foundry"},
     {"ATFS", "Andrew Tyler's fonts"},
     {"AURE", "Aure Font Design"},
@@ -730,6 +733,7 @@ VendorData[] =
     {"CTL", "Chaitanya Type Library"},
     {"cwwf", "Computers World Wide/AC Capital Funding"},
     {"CYPE", "Club Type"},
+    {"DADA", "Dada Studio"},
     {"DAMA", "Dalton Maag Limited"},
     {"DB", "Daniel Bruce"},
     {"DBFF", "DesignBase"},

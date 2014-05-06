@@ -296,6 +296,15 @@ namespace FontManager {
             return;
         }
 
+        public void queue_reload () {
+            Timeout.add_seconds(3, () => {
+                FontConfig.update_cache();
+                main_window.reload();
+                return false;
+            });
+            return;
+        }
+
         internal void real_set_mode (Mode mode, bool loading) {
             _mode = mode;
             var settings = mode.settings();
@@ -431,13 +440,13 @@ namespace FontManager {
             });
 
             titlebar.install_selected.connect(() => {
-                var selected = FileSelector.run((Gtk.Window) main_window);
+                var selected = FileSelector.run_install((Gtk.Window) main_window);
                 if (selected.length > 0)
                     install_fonts(selected);
             });
 
             titlebar.remove_selected.connect(() => {
-                NotImplemented.run("Font Removal");
+                remove_fonts();
             });
 
         }
@@ -461,9 +470,30 @@ namespace FontManager {
             return _main_notebook;
         }
 
+        internal void remove_fonts () {
+            var _model = new UserFontModel(core.fontconfig.families, core.database);
+            var arr = FileSelector.run_removal((Gtk.Window) main_window, _model);
+            if (arr.length > 0) {
+                /* Avoid empty boxes and Pango warnings when removing fonts */
+                unset_all_models();
+                set_font_desc(Pango.FontDescription.from_string(DEFAULT_FONT));
+                fonttree.progress.set_fraction((float) 0.0);
+                loading = true;
+                ensure_ui_update();
+                Library.progress = (m, p, t) => {
+                    fonttree.progress.set_fraction((float) p / (float) t);
+                    ensure_ui_update();
+                };
+                Library.Remove.from_file_array(arr);
+                queue_reload();
+            }
+            return;
+        }
+
         internal void install_fonts (string [] arr) {
             fonttree.loading = true;
             fontlist.model = null;
+            fonttree.progress.set_fraction(0.0);
             ensure_ui_update();
             Library.progress = (m, p, t) => {
                 fonttree.progress.set_fraction((float) p / (float) t);
@@ -474,13 +504,7 @@ namespace FontManager {
             fonttree.loading = false;
             fontlist.model = model.fonts;
             ensure_ui_update();
-            /* XXX :
-             * Is this enough time for most machines? Don't know...
-             */
-            Timeout.add_seconds(3, () => {
-                main_window.reload();
-                return false;
-            });
+            queue_reload();
             return;
         }
 

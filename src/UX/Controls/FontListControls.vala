@@ -43,7 +43,7 @@ namespace FontManager {
             _expand.set_tooltip_text("Expand all");
             _remove = new Gtk.Button();
             _remove.set_image(new Gtk.Image.from_icon_name("list-remove-symbolic", Gtk.IconSize.MENU));
-            _remove.set_tooltip_text("Remove selected fonts from collection");
+            _remove.set_tooltip_text("Remove selected fonts");
             entry = new Gtk.SearchEntry();
             box.pack_end(entry, false, false, 0);
             box.pack_start(_expand, false, false, 0);
