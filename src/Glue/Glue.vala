@@ -54,8 +54,8 @@ namespace FontConfig {
         return FcListFiles();
     }
 
-    public Gee.ArrayList <string> list_dirs () {
-        return FcListDirs();
+    public Gee.ArrayList <string> list_dirs (bool recursive = true) {
+        return FcListDirs(recursive);
     }
 
     public Gee.ArrayList <string> list_user_dirs () {
@@ -91,7 +91,7 @@ extern FontConfig.Font? FcGetFontFromFile (string filepath, int index);
 extern Gee.ArrayList <FontConfig.Font> FcListFonts (string? family_name);
 extern Gee.ArrayList <string> FcListFamilies ();
 extern Gee.ArrayList <string> FcListFiles ();
-extern Gee.ArrayList <string> FcListDirs ();
+extern Gee.ArrayList <string> FcListDirs (bool recursive);
 extern Gee.ArrayList <string> FcListUserDirs ();
 extern bool FcEnableUserConfig (bool enable);
 extern bool FcAddAppFont (string filepath);

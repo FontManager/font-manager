@@ -84,6 +84,10 @@ namespace FontManager {
                 return true;
                 }
             );
+
+            components.core.fontconfig.changed.connect((f, e) => {
+                components.queue_reload();
+            });
             return;
         }
 

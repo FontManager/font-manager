@@ -23,6 +23,7 @@ namespace FontConfig {
 
     public class Config : Object {
 
+        public signal void changed (File? file, FileMonitorEvent event);
         public signal void progress (string? message, int processed, int total);
 
         public Accept accept { get; private set; }
@@ -30,6 +31,8 @@ namespace FontConfig {
         public Families families { get; private set; }
         public Properties props { get; private set; }
         public Reject reject { get; private set; }
+
+        FileMonitor? [] monitors = {};
 
         public Config () {
             accept = new Accept();
@@ -55,6 +58,17 @@ namespace FontConfig {
             props.init();
             reject.init();
             this.update();
+            monitor_font_dirs();
+            return;
+        }
+
+        public void monitor_font_dirs () {
+            foreach (var dir in list_dirs()) {
+                File file = File.new_for_path(dir);
+                FileMonitor monitor = file.monitor_directory(FileMonitorFlags.NONE);
+                monitor.changed.connect((f, of, ev) => { changed(f, ev); });
+                monitors += monitor;
+            }
             return;
         }
 

@@ -485,7 +485,6 @@ namespace FontManager {
                     ensure_ui_update();
                 };
                 Library.Remove.from_file_array(arr);
-                queue_reload();
             }
             return;
         }
@@ -504,7 +503,6 @@ namespace FontManager {
             fonttree.loading = false;
             fontlist.model = model.fonts;
             ensure_ui_update();
-            queue_reload();
             return;
         }
 
