@@ -255,7 +255,7 @@ FontConfigFont* font_config_get_font_from_file (const gchar* filepath, gint inde
 GeeArrayList* font_config_list_fonts (const gchar* family_name);
 GeeArrayList* font_config_list_families (void);
 GeeArrayList* font_config_list_files (void);
-GeeArrayList* font_config_list_dirs (void);
+GeeArrayList* font_config_list_dirs (gboolean recursive);
 GeeArrayList* font_config_list_user_dirs (void);
 gboolean font_config_enable_user_config (gboolean enable);
 gboolean font_config_add_app_font (const gchar* filepath);

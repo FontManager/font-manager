@@ -130,7 +130,7 @@ get_font_details_from_pattern (FontConfigFont * font, FcPattern * pattern)
 }
 
 gboolean
-FcCacheUpdate () {
+FcCacheUpdate (void) {
     FcConfigDestroy(FcConfigGetCurrent());
     return !FcConfigUptoDate(NULL) && FcInitReinitialize();
 }
@@ -278,7 +278,7 @@ FcListFiles(void)
 }
 
 GeeArrayList *
-FcListDirs(void)
+FcListDirs(gboolean recursive)
 {
     FcChar8      * directory;
     FcStrList    * fdlist;
@@ -289,7 +289,10 @@ FcListDirs(void)
                                               NULL,
                                               NULL);
     g_assert(FcInit());
-    fdlist = FcConfigGetConfigDirs(NULL);
+    if (recursive)
+        fdlist = FcConfigGetFontDirs(NULL);
+    else
+        fdlist = FcConfigGetConfigDirs(NULL);
     while ((directory = FcStrListNext(fdlist)))
         gee_abstract_collection_add((GeeAbstractCollection *) dirlist, directory);
     FcStrListDone(fdlist);
@@ -341,7 +344,7 @@ FcAddAppFontDir(const gchar * dir)
 }
 
 void
-FcClearAppFonts()
+FcClearAppFonts(void)
 {
     g_assert(FcInit());
     FcConfigAppFontClear(NULL);
