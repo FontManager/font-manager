@@ -31,8 +31,8 @@ namespace FontManager {
                 return components.mode;
             }
             set {
-                components.mode = value;
                 ((SimpleAction) lookup_action("mode")).set_state(value.to_string());
+                components.mode = value;
             }
         }
 
@@ -58,7 +58,6 @@ namespace FontManager {
             add_window(components.main_window);
             components.loading = true;
             components.main_window.present();
-            ensure_ui_update();
 
             components.core = new Core();
             components.core.progress.connect((m, p, t) => {
@@ -70,9 +69,7 @@ namespace FontManager {
             components.model = new Model(components.core);
             components.set_reject(components.core.fontconfig.reject);
             components.set_all_models();
-            ensure_ui_update();
             components.loading = false;
-            ensure_ui_update();
             /* XXX : Workaround timing issue? wrong filter shown at startup */
             if (components.sidebar.standard.mode == MainSideBarMode.COLLECTION) {
                 components.sidebar.standard.mode = MainSideBarMode.CATEGORY;
@@ -118,7 +115,6 @@ namespace FontManager {
             Gtk.init(ref args);
             if (Migration.required()) {
                 if (Migration.approved(null)) {
-                    ensure_ui_update();
                     Migration.run();
                 } else {
                     return 0;

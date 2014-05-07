@@ -44,7 +44,6 @@ namespace FontManager {
             clear();
             foreach (var filter in categories) {
                 filter.update(db);
-                ensure_ui_update();
                 Gtk.TreeIter iter;
                 this.append(out iter, null);
                 if (filter.index < 3)

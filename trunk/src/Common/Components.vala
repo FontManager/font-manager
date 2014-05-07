@@ -194,7 +194,6 @@ namespace FontManager {
                     sidebar.loading = value;
                 browser.loading = value;
                 fonttree.loading = value;
-                ensure_ui_update();
             }
         }
 
@@ -307,20 +306,19 @@ namespace FontManager {
 
         internal void real_set_mode (Mode mode, bool loading) {
             _mode = mode;
+            titlebar.main_menu_label.set_markup("<b>%s</b>".printf(mode.to_translatable_string()));
             var settings = mode.settings();
             main_notebook.set_current_page(settings[0]);
             preview_notebook.set_current_page(settings[1]);
             sidebar.mode = (SideBarView) settings[2];
             sidebar.loading = (mode != Mode.CHARACTER_MAP) ? loading : false;
-            ensure_ui_update();
             sidebar.standard.reveal_controls((mode == Mode.MANAGE));
             titlebar.reveal_controls((mode == Mode.MANAGE));
             reveal_font_list_controls((mode != Mode.BROWSE));
             fontlist.controls.set_remove_sensitivity((mode == Mode.MANAGE && sidebar.standard.mode == MainSideBarMode.COLLECTION));
             fontlist.queue_draw();
-            titlebar.main_menu_label.set_markup("<b>%s</b>".printf(mode.to_translatable_string()));
-            mode_changed(mode);
             ensure_ui_update();
+            mode_changed(mode);
             return;
         }
 
@@ -431,7 +429,6 @@ namespace FontManager {
                 sidebar.standard.collection_tree.queue_draw();
                 fontlist.queue_draw();
                 browser.queue_draw();
-                ensure_ui_update();
                 }
             );
 
@@ -487,7 +484,10 @@ namespace FontManager {
                 core.fontconfig.cancel_monitors();
                 Library.Remove.from_file_array(arr);
                 queue_reload();
-                core.fontconfig.enable_monitors();
+                Timeout.add_seconds(3, () => {
+                    core.fontconfig.enable_monitors();
+                    return false;
+                });
             }
             return;
         }
@@ -496,19 +496,19 @@ namespace FontManager {
             fonttree.loading = true;
             fontlist.model = null;
             fonttree.progress.set_fraction(0.0f);
-            ensure_ui_update();
             Library.progress = (m, p, t) => {
                 fonttree.progress.set_fraction((float) p / (float) t);
                 ensure_ui_update();
             };
-            ensure_ui_update();
             core.fontconfig.cancel_monitors();
             Library.Install.from_uri_array(arr);
             fonttree.loading = false;
             fontlist.model = model.fonts;
-            ensure_ui_update();
             queue_reload();
-            core.fontconfig.enable_monitors();
+            Timeout.add_seconds(3, () => {
+                core.fontconfig.enable_monitors();
+                return false;
+            });
             return;
         }
 
