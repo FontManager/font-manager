@@ -75,7 +75,6 @@ namespace FontManager {
                     spinner.hide();
                     spinner.stop();
                 }
-                ensure_ui_update();
             }
         }
 

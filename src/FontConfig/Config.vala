@@ -75,6 +75,7 @@ namespace FontConfig {
                 File file = File.new_for_path(dir);
                 FileMonitor monitor = file.monitor_directory(FileMonitorFlags.NONE);
                 monitor.changed.connect((f, of, ev) => {
+                    cancel_monitors();
                     changed(f, ev);
                     monitors = {};
                     enable_monitors();

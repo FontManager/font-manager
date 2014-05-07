@@ -49,7 +49,6 @@ namespace FontManager {
                     progress.show();
                 else
                     progress.hide();
-                ensure_ui_update();
             }
         }
 
