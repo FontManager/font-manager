@@ -124,7 +124,7 @@ namespace FontManager {
                 Value val;
                 model.get_value(treeiter, 0, out val);
                 var obj = (FontConfig.Font) val.get_object();
-                cell.set_property("active", files.contains(obj.filepath));
+                cell.set_property("active", files.has_key(obj.filepath));
                 val.unset();
                 return;
             }
