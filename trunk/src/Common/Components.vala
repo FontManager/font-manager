@@ -473,7 +473,7 @@ namespace FontManager {
         internal void remove_fonts () {
             var _model = new UserFontModel(core.fontconfig.families, core.database);
             var arr = FileSelector.run_removal((Gtk.Window) main_window, _model);
-            if (arr.length > 0) {
+            if (arr != null) {
                 /* Avoid empty boxes and Pango warnings when removing fonts */
                 unset_all_models();
                 set_font_desc(Pango.FontDescription.from_string(DEFAULT_FONT));

@@ -53,7 +53,7 @@ namespace FontManager {
         }
 
         public File? [] run_removal (Gtk.Window? parent, UserFontModel font_model) {
-            File? [] res = {};
+            File? [] res = null;
             var dialog = new Gtk.Dialog.with_buttons("Select fonts to remove",
                                                     parent,
                                                     Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
@@ -74,9 +74,8 @@ namespace FontManager {
             dialog.set_size_request(420, 480);
             if (dialog.run() == Gtk.ResponseType.ACCEPT) {
                 dialog.hide();
-                ensure_ui_update();
-                foreach (var path in tree.files)
-                    res += File.new_for_path(path);
+                if (tree.files.size > 0)
+                    res = tree.files.values.to_array();
             }
             dialog.destroy();
             return res;
@@ -84,14 +83,14 @@ namespace FontManager {
 
         class RemoveTree : Gtk.TreeView {
 
-            public Gee.ArrayList <string?> files { get; private set; }
+            public Gee.HashMap <string, File> files { get; private set; }
 
             Gtk.CellRendererToggle toggle;
 
             public RemoveTree (UserFontModel model) {
                 set_model(model);
                 headers_visible = false;
-                files = new Gee.ArrayList <string?> ();
+                files = new Gee.HashMap <string, File> ();
                 toggle = new Gtk.CellRendererToggle();
                 var text = new Gtk.CellRendererText();
                 var preview = new Gtk.CellRendererText();
@@ -110,10 +109,10 @@ namespace FontManager {
                 model.get_iter_from_string(out iter, path);
                 model.get_value(iter, 0, out val);
                 var obj = (FontConfig.Font) val.get_object();
-                if (files.contains(obj.filepath))
-                    files.remove(obj.filepath);
+                if (files.has_key(obj.filepath))
+                    files.unset(obj.filepath);
                 else
-                    files.add(obj.filepath);
+                    files[obj.filepath] = File.new_for_path(obj.filepath);
                 val.unset();
                 return;
             }
