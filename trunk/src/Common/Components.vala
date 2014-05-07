@@ -484,8 +484,10 @@ namespace FontManager {
                     fonttree.progress.set_fraction((float) p / (float) t);
                     ensure_ui_update();
                 };
+                core.fontconfig.cancel_monitors();
                 Library.Remove.from_file_array(arr);
                 queue_reload();
+                core.fontconfig.enable_monitors();
             }
             return;
         }
@@ -500,11 +502,13 @@ namespace FontManager {
                 ensure_ui_update();
             };
             ensure_ui_update();
+            core.fontconfig.cancel_monitors();
             Library.Install.from_uri_array(arr);
             fonttree.loading = false;
             fontlist.model = model.fonts;
             ensure_ui_update();
             queue_reload();
+            core.fontconfig.enable_monitors();
             return;
         }
 

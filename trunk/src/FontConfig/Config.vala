@@ -58,22 +58,26 @@ namespace FontConfig {
             props.init();
             reject.init();
             this.update();
-            monitor_font_dirs();
+            enable_monitors();
             return;
         }
 
-        public void monitor_font_dirs () {
+        public void cancel_monitors () {
+            foreach (var mon in monitors) {
+                mon.cancel();
+                mon = null;
+            }
+            return;
+        }
+
+        public void enable_monitors () {
             foreach (var dir in list_dirs()) {
                 File file = File.new_for_path(dir);
                 FileMonitor monitor = file.monitor_directory(FileMonitorFlags.NONE);
                 monitor.changed.connect((f, of, ev) => {
-                    foreach (var mon in monitors) {
-                        mon.cancel();
-                        mon = null;
-                    }
                     changed(f, ev);
                     monitors = {};
-                    monitor_font_dirs();
+                    enable_monitors();
                 });
                 monitors += monitor;
             }
