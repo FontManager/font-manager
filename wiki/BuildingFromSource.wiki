@@ -1,6 +1,9 @@
 #summary How to install from SVN
 #labels Featured
-== Installing Font Manager from SVN on Ubuntu ==
+= Installing Font Manager from SVN =
+
+== Ubuntu ==
+
 ==== If you already have a previous version of Font Manager installed ====
 {{{
 sudo apt-get remove --purge font-manager
