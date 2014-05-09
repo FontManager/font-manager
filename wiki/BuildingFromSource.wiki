@@ -38,3 +38,4 @@ While inside the font-manager directory
 svn up
 }}}
 If anything is updated, please build and install the application again then verify the issue is still present.
+<br />
