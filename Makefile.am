@@ -1,6 +1,8 @@
 SUBDIRS = \
-	src \
-	resources
+	help \
+	po \
+	resources \
+	src
 
 ACLOCAL_AMFLAGS = -I m4
 
