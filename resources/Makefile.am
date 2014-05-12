@@ -1,7 +1,8 @@
 EXTRA_DIST = \
 	FontManagerGResource.xml \
 	FontManager.css \
-	font-manager.desktop.in
+	font-manager.desktop.in \
+	org.gnome.FontManager.gschema.xml
 
 gsettings_SCHEMAS = org.gnome.FontManager.gschema.xml
 @GSETTINGS_RULES@
