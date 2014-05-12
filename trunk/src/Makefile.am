@@ -1,4 +1,5 @@
 resource_dir = ${abs_top_builddir}/resources
+GLIB_COMPILE_RESOURCES=`$(PKG_CONFIG) --variable=glib_compile_resources gio-2.0`
 
 AM_VALAFLAGS = \
 --pkg gmodule-2.0 \
@@ -118,7 +119,7 @@ UX/Views/Browse.vala
 
 FontManagerGResource.c :
 	cd $(resource_dir) && \
-	glib-compile-resources --generate-source $(resource_dir)/FontManagerGResource.xml --target=$(abs_srcdir)/FontManagerGResource.c && \
+	$(GLIB_COMPILE_RESOURCES) --generate-source $(resource_dir)/FontManagerGResource.xml --target=$(abs_srcdir)/FontManagerGResource.c && \
 	cd $(abs_srcdir)
 
 BUILT_SOURCES = FontManagerGResource.c

@@ -101,17 +101,17 @@ namespace FontManager {
         }
 
         public void on_help () {
-            NotImplemented.run("Help");
+            Gtk.show_uri(null, "help:%s".printf(NAME), Gdk.CURRENT_TIME);
             return;
         }
 
         public static int main (string [] args) {
             FontConfig.enable_user_config(false);
             Environment.set_application_name(About.NAME);
-//            Intl.bindtextdomain(NAME, null);
-//            Intl.bind_textdomain_codeset(NAME, null);
-//            Intl.textdomain(NAME);
-//            Intl.setlocale(LocaleCategory.ALL, null);
+            Intl.bindtextdomain(NAME, null);
+            Intl.bind_textdomain_codeset(NAME, null);
+            Intl.textdomain(NAME);
+            Intl.setlocale(LocaleCategory.ALL, null);
             Gtk.init(ref args);
             if (Migration.required()) {
                 if (Migration.approved(null)) {
@@ -120,7 +120,9 @@ namespace FontManager {
                     return 0;
                 }
             }
-            return new Main(BUS_ID, ( ApplicationFlags.FLAGS_NONE )).run(args);
+            var main = new Main(BUS_ID, (ApplicationFlags.FLAGS_NONE));
+            int res = main.run(args);
+            return res;
         }
 
     }

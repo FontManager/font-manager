@@ -69,18 +69,6 @@ namespace FontManager {
 
         }
 
-        public void reload () {
-            components.unset_all_models();
-            components.loading = true;
-            ensure_ui_update();
-            components.core.update();
-            components.model.update();
-            components.loading = false;
-            components.set_all_models();
-            ensure_ui_update();
-            return;
-        }
-
         GLib.MenuModel get_main_menu_model () {
             var mode_section = new GLib.Menu();
             string [] modes = {"Manage", "Browse", "Compare", "Character Map"};

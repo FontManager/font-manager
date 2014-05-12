@@ -23,13 +23,13 @@ namespace FontManager {
 
     namespace About {
 
-        public const string NAME = "Font Manager";
+        public const string NAME = _("Font Manager");
         public const string ICON = "font-x-generic";
-        public const string COMMENT = "Font management for GTK+";
+        public const string COMMENT = _("Font management for Gtk+ desktop environments");
         public const string VERSION = "0.?";
         public const string HOMEPAGE = "http://code.google.com/p/font-manager/";
-        public const string COPYRIGHT = "Copyright © 2009 - 2014 Jerry Casiano";
-        public const string LICENSE = """
+        public const string COPYRIGHT = _("Copyright © 2009 - 2014 Jerry Casiano");
+        public const string LICENSE = _("""
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -42,7 +42,7 @@ namespace FontManager {
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-    """;
+    """);
 
         public const string [] AUTHORS = {
             AUTHOR,

@@ -295,10 +295,22 @@ namespace FontManager {
             return;
         }
 
+        public void reload () {
+            FontConfig.update_cache();
+            unset_all_models();
+            loading = true;
+            ensure_ui_update();
+            core.update();
+            model.update();
+            loading = false;
+            set_all_models();
+            ensure_ui_update();
+            return;
+        }
+
         public void queue_reload () {
             Timeout.add_seconds(3, () => {
-                FontConfig.update_cache();
-                main_window.reload();
+                reload();
                 return false;
             });
             return;
@@ -474,7 +486,7 @@ namespace FontManager {
                 /* Avoid empty boxes and Pango warnings when removing fonts */
                 unset_all_models();
                 set_font_desc(Pango.FontDescription.from_string(DEFAULT_FONT));
-                fonttree.progress.set_fraction(0.0f);
+                fonttree.progress.set_fraction(0f);
                 loading = true;
                 ensure_ui_update();
                 Library.progress = (m, p, t) => {
@@ -495,7 +507,7 @@ namespace FontManager {
         internal void install_fonts (string [] arr) {
             fonttree.loading = true;
             fontlist.model = null;
-            fonttree.progress.set_fraction(0.0f);
+            fonttree.progress.set_fraction(0f);
             Library.progress = (m, p, t) => {
                 fonttree.progress.set_fraction((float) p / (float) t);
                 ensure_ui_update();
