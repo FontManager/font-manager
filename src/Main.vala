@@ -90,7 +90,6 @@ namespace FontManager {
 
         public void on_quit () {
             components.main_window.hide();
-            ensure_ui_update();
             remove_window(components.main_window);
             quit();
         }

@@ -299,12 +299,10 @@ namespace FontManager {
             FontConfig.update_cache();
             unset_all_models();
             loading = true;
-            ensure_ui_update();
             core.update();
             model.update();
             loading = false;
             set_all_models();
-            ensure_ui_update();
             return;
         }
 
@@ -329,7 +327,6 @@ namespace FontManager {
             reveal_font_list_controls((mode != Mode.BROWSE));
             fontlist.controls.set_remove_sensitivity((mode == Mode.MANAGE && sidebar.standard.mode == MainSideBarMode.COLLECTION));
             fontlist.queue_draw();
-            ensure_ui_update();
             mode_changed(mode);
             return;
         }
@@ -488,7 +485,6 @@ namespace FontManager {
                 set_font_desc(Pango.FontDescription.from_string(DEFAULT_FONT));
                 fonttree.progress.set_fraction(0f);
                 loading = true;
-                ensure_ui_update();
                 Library.progress = (m, p, t) => {
                     fonttree.progress.set_fraction((float) p / (float) t);
                     ensure_ui_update();
