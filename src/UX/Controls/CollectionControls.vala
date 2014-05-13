@@ -34,10 +34,10 @@ namespace FontManager {
             box.border_width = 2;
             add_collection = new Gtk.Button();
             add_collection.set_image(new Gtk.Image.from_icon_name("list-add-symbolic", Gtk.IconSize.MENU));
-            add_collection.set_tooltip_text("Add new collection");
+            add_collection.set_tooltip_text(_("Add new collection"));
             remove_collection = new Gtk.Button();
             remove_collection.set_image(new Gtk.Image.from_icon_name("list-remove-symbolic", Gtk.IconSize.MENU));
-            remove_collection.set_tooltip_text("Remove selected collection");
+            remove_collection.set_tooltip_text(_("Remove selected collection"));
             box.pack_start(add_collection, false, false, 0);
             box.pack_start(remove_collection, false, false, 0);
             set_default_button_relief(box);

@@ -71,8 +71,8 @@ namespace FontManager {
             revealer1.add(_box);
             collection_box.pack_start(revealer1, false, true, 0);
             collection_box.pack_end(collection_tree, true, true, 0);
-            notebook.append_page(category_tree, new Gtk.Label("Categories"));
-            notebook.append_page(collection_box, new Gtk.Label("Collections"));
+            notebook.append_page(category_tree, new Gtk.Label(_("Categories")));
+            notebook.append_page(collection_box, new Gtk.Label(_("Collections")));
             selector.notebook = notebook;
             mode = MainSideBarMode.CATEGORY;
             var blend = new Gtk.EventBox();

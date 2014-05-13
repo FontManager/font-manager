@@ -30,13 +30,13 @@ namespace FontConfig {
         public string to_string () {
             switch (this) {
                 case SLIGHT:
-                    return "Slight";
+                    return _("Slight");
                 case MEDIUM:
-                    return "Medium";
+                    return _("Medium");
                 case FULL:
-                    return "Full";
+                    return _("Full");
                 default:
-                    return "None";
+                    return _("None");
             }
         }
 
@@ -51,13 +51,13 @@ namespace FontConfig {
         public string to_string () {
             switch (this) {
                 case DEFAULT:
-                    return "Default";
+                    return _("Default");
                 case LIGHT:
-                    return "Light";
+                    return _("Light");
                 case LEGACY:
-                    return "Legacy";
+                    return _("Legacy");
                 default:
-                    return "None";
+                    return _("None");
             }
         }
 
@@ -74,17 +74,17 @@ namespace FontConfig {
         public string to_string () {
             switch (this) {
                 case UNKNOWN:
-                    return "Unknown";
+                    return _("Unknown");
                 case RGB:
-                    return "RGB";
+                    return _("RGB");
                 case BGR:
-                    return "BGR";
+                    return _("BGR");
                 case VRGB:
-                    return "VRGB";
+                    return _("VRGB");
                 case VBGR:
-                    return "VBGR";
+                    return _("VBGR");
                 default:
-                    return "None";
+                    return _("None");
             }
         }
 
@@ -99,13 +99,13 @@ namespace FontConfig {
         public string? to_string () {
             switch (this) {
                 case PROPORTIONAL:
-                    return "Proportional";
+                    return _("Proportional");
                 case DUAL:
-                    return "Dual Width";
+                    return _("Dual Width");
                 case MONO:
-                    return "Monospace";
+                    return _("Monospace");
                 case CHARCELL:
-                    return "Charcell";
+                    return _("Charcell");
                 default:
                     return null;
             }
@@ -121,9 +121,9 @@ namespace FontConfig {
         public string? to_string () {
             switch (this) {
                 case ITALIC:
-                    return "Italic";
+                    return _("Italic");
                 case OBLIQUE:
-                    return "Oblique";
+                    return _("Oblique");
                 default:
                     return null;
             }
@@ -145,21 +145,21 @@ namespace FontConfig {
         public string? to_string () {
             switch (this) {
                 case ULTRACONDENSED:
-                    return "Ultra-Condensed";
+                    return _("Ultra-Condensed");
                 case EXTRACONDENSED:
-                    return "Extra-Condensed";
+                    return _("Extra-Condensed");
                 case CONDENSED:
-                    return "Condensed";
+                    return _("Condensed");
                 case SEMICONDENSED:
-                    return "Semi-Condensed";
+                    return _("Semi-Condensed");
                 case SEMIEXPANDED:
-                    return "Semi-Expanded";
+                    return _("Semi-Expanded");
                 case EXPANDED:
-                    return "Expanded";
+                    return _("Expanded");
                 case EXTRAEXPANDED:
-                    return "Extra-Expanded";
+                    return _("Extra-Expanded");
                 case ULTRAEXPANDED:
-                    return "Ultra-Expanded";
+                    return _("Ultra-Expanded");
                 default:
                     return null;
             }
@@ -188,25 +188,25 @@ namespace FontConfig {
         public string? to_string () {
             switch (this) {
                 case THIN:
-                    return "Thin";
+                    return _("Thin");
                 case ULTRALIGHT:
-                    return "Ultra-Light";
+                    return _("Ultra-Light");
                 case LIGHT:
-                    return "Light";
+                    return _("Light");
                 case BOOK:
-                    return "Book";
+                    return _("Book");
                 case MEDIUM:
-                    return "Medium";
+                    return _("Medium");
                 case SEMIBOLD:
-                    return "Semi-Bold";
+                    return _("Semi-Bold");
                 case BOLD:
-                    return "Bold";
+                    return _("Bold");
                 case EXTRABOLD:
-                    return "Ultra-Bold";
+                    return _("Ultra-Bold");
                 case HEAVY:
-                    return "Heavy";
+                    return _("Heavy");
                 case ULTRABLACK:
-                    return "Ultra-Heavy";
+                    return _("Ultra-Heavy");
                 default:
                     return null;
             }

@@ -93,9 +93,9 @@ namespace FontManager {
             selector.set_border_width(6);
             notebook = new Gtk.Notebook();
             selector.notebook = notebook;
-            notebook.append_page(preview, new Gtk.Label("Preview"));
-            notebook.append_page(waterfall, new Gtk.Label("Waterfall"));
-            notebook.append_page(body_text, new Gtk.Label("Body Text"));
+            notebook.append_page(preview, new Gtk.Label(_("Preview")));
+            notebook.append_page(waterfall, new Gtk.Label(_("Waterfall")));
+            notebook.append_page(body_text, new Gtk.Label(_("Body Text")));
             font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
             body_text.buffer.set_text(LOREM_IPSUM);
             preview.buffer.set_text("\n\n" + get_localized_preview_text(), -1);

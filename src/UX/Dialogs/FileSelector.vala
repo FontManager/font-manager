@@ -25,7 +25,7 @@ namespace FontManager {
 
         public string? [] run_install (Gtk.Window? parent) {
             string? [] arr = { };
-            var dialog = new Gtk.FileChooserDialog("Select files to install",
+            var dialog = new Gtk.FileChooserDialog(_("Select files to install"),
                                                         parent,
                                                         Gtk.FileChooserAction.OPEN,
                                                         "_Cancel",
@@ -54,7 +54,7 @@ namespace FontManager {
 
         public File? [] run_removal (Gtk.Window? parent, UserFontModel font_model) {
             File? [] res = null;
-            var dialog = new Gtk.Dialog.with_buttons("Select fonts to remove",
+            var dialog = new Gtk.Dialog.with_buttons(_("Select fonts to remove"),
                                                     parent,
                                                     Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
                                                     "_Cancel",

@@ -35,7 +35,7 @@ namespace FontManager {
         public bool active { get; set; default = true; }
 
         construct {
-            comment = "Created : %s".printf(get_local_time());
+            comment = _("Created : %s").printf(get_local_time());
         }
 
         public override bool deserialize_property (string prop_name,

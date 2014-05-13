@@ -175,7 +175,7 @@ namespace FontManager {
                         }
                         processed++;
                         if (progress != null)
-                            progress("Processing files...", processed, total);
+                            progress(null, processed, total);
                     }
                 } catch (Error e) {
                     warning("%s :: %s", e.message, dir.get_path());
@@ -222,7 +222,7 @@ namespace FontManager {
                     }
                     processed++;
                     if (progress != null)
-                        progress("Processing files...", processed, total);
+                        progress(null, processed, total);
                 }
                 return;
             }
@@ -244,7 +244,7 @@ namespace FontManager {
                         remove_directory_if_empty(parent);
                         processed++;
                         if (progress != null)
-                            progress("Removing files...", processed, total);
+                            progress(null, processed, total);
                     } catch (Error e) {
                         if (remove_failed == null)
                             remove_failed = new Gee.HashMap <string, string> ();

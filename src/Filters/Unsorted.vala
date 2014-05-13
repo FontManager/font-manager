@@ -24,7 +24,7 @@ namespace FontManager {
     public class Unsorted : Category {
 
         public Unsorted () {
-            base("Unsorted", "Fonts not present in any collection", "dialog-question", null);
+            base(_("Unsorted"), _("Fonts not present in any collection"), "dialog-question", null);
         }
 
     }
