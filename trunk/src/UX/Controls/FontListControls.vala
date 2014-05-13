@@ -75,7 +75,6 @@ namespace FontManager {
 
         public void set_remove_sensitivity (bool sensitive) {
             _remove.set_sensitive(sensitive);
-            ensure_ui_update();
             return;
         }
 

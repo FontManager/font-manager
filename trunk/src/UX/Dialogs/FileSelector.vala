@@ -44,7 +44,6 @@ namespace FontManager {
             dialog.set_select_multiple(true);
             if (dialog.run() == Gtk.ResponseType.ACCEPT) {
                 dialog.hide();
-                ensure_ui_update();
                 foreach (var uri in dialog.get_uris())
                     arr += uri;
             }
