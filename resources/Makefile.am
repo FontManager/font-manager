@@ -7,7 +7,7 @@ EXTRA_DIST = \
 gsettings_SCHEMAS = org.gnome.FontManager.gschema.xml
 @GSETTINGS_RULES@
 
-desktopdir = $(DESTDIR)$(datadir)/applications
+desktopdir = $(datadir)/applications
 dist_desktop_in_files = font-manager.desktop.in
 dist_desktop_DATA = $(dist_desktop_in_files:.desktop.in=.desktop)
 @INTLTOOL_DESKTOP_RULE@
