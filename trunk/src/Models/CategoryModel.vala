@@ -63,27 +63,27 @@ namespace FontManager {
 
     Gee.ArrayList <Category> get_default_categories (Database db) {
         var filters = new Gee.HashMap <string, Category> ();
-        filters["All"] = new Category("All", "All Fonts", "format-text-bold", null);
+        filters["All"] = new Category(_("All"), _("All Fonts"), "format-text-bold", null);
         filters["All"].index = 0;
-        filters["System"] = new Category("System", "Fonts available to all users", "computer", "owner!=0");
+        filters["System"] = new Category(_("System"), _("Fonts available to all users"), "computer", "owner!=0");
         filters["System"].index = 1;
-        filters["User"] = new Category("User", "Fonts avalable only to you", "avatar-default", "owner=0");
+        filters["User"] = new Category(_("User"), _("Fonts avalable only to you"), "avatar-default", "owner=0");
         filters["User"].index = 2;
         filters["Panose"] = construct_panose_filter();
         filters["Panose"].index = 3;
-        filters["Spacing"] = construct_filter(db, "Spacing", "Grouped by font spacing", "spacing");
+        filters["Spacing"] = construct_filter(db, _("Spacing"), _("Grouped by font spacing"), "spacing");
         filters["Spacing"].index = 4;
-        filters["Slant"] = construct_filter(db, "Slant", "Grouped by font angle", "slant");
+        filters["Slant"] = construct_filter(db, _("Slant"), _("Grouped by font angle"), "slant");
         filters["Slant"].index = 5;
-        filters["Weight"] = construct_filter(db, "Weight", "Grouped by font weight", "weight");
+        filters["Weight"] = construct_filter(db, _("Weight"), _("Grouped by font weight"), "weight");
         filters["Weight"].index = 6;
-        filters["Width"] = construct_filter(db, "Width", "Grouped by font width", "width");
+        filters["Width"] = construct_filter(db, _("Width"), _("Grouped by font width"), "width");
         filters["Width"].index = 7;
-        filters["Filetype"] = construct_filter(db, "Filetype", "Grouped by filetype", "filetype");
+        filters["Filetype"] = construct_filter(db, _("Filetype"), _("Grouped by filetype"), "filetype");
         filters["Filetype"].index = 8;
-        filters["License"] = construct_filter(db, "License", "Grouped by license type", "license_type");
+        filters["License"] = construct_filter(db, _("License"), _("Grouped by license type"), "license_type");
         filters["License"].index = 9;
-        filters["Vendor"] = construct_filter(db, "Vendor", "Grouped by vendor", "vendor");
+        filters["Vendor"] = construct_filter(db, _("Vendor"), _("Grouped by vendor"), "vendor");
         filters["Vendor"].index = 10;
         filters["Unsorted"] = new Unsorted();
         filters["Unsorted"].index = 11;
@@ -94,13 +94,13 @@ namespace FontManager {
     }
 
     Category construct_panose_filter () {
-        var panose = new Category("Family Kind", "Only fonts which include Panose information will be grouped here.", "folder", "panose IS NOT NULL");
-        panose.children.add(new Category("Any", "Any", "emblem-documents", "panose LIKE \"0:%\""));
-        panose.children.add(new Category("No Fit", "No Fit", "emblem-documents", "panose LIKE \"1:%\""));
-        panose.children.add(new Category("Text and Display", "Text and Display", "emblem-documents", "panose LIKE \"2:%\""));
-        panose.children.add(new Category("Script", "Script", "emblem-documents", "panose LIKE \"3:%\""));
-        panose.children.add(new Category("Decorative", "Decorative", "emblem-documents", "panose LIKE \"4:%\""));
-        panose.children.add(new Category("Pictorial", "Pictorial", "emblem-documents", "panose LIKE \"5:%\""));
+        var panose = new Category(_("Family Kind"), _("Only fonts which include Panose information will be grouped here."), "folder", "panose IS NOT NULL");
+        panose.children.add(new Category(_("Any"), _("Any"), "emblem-documents", "panose LIKE \"0:%\""));
+        panose.children.add(new Category(_("No Fit"), _("No Fit"), "emblem-documents", "panose LIKE \"1:%\""));
+        panose.children.add(new Category(_("Text and Display"), _("Text and Display"), "emblem-documents", "panose LIKE \"2:%\""));
+        panose.children.add(new Category(_("Script"), _("Script"), "emblem-documents", "panose LIKE \"3:%\""));
+        panose.children.add(new Category(_("Decorative"), _("Decorative"), "emblem-documents", "panose LIKE \"4:%\""));
+        panose.children.add(new Category(_("Pictorial"), _("Pictorial"), "emblem-documents", "panose LIKE \"5:%\""));
         return panose;
     }
 
@@ -129,9 +129,9 @@ namespace FontManager {
                     type = ((FontConfig.Spacing) val).to_string();
                 if (type == null)
                     if (keyword == "slant" || keyword == "width")
-                        type = "Normal";
+                        type = _("Normal");
                     else
-                        type = "Regular";
+                        type = _("Regular");
                 filters.add(new Category(type, type, "emblem-documents", "%s='%i'".printf(keyword, val)));
             }
         }

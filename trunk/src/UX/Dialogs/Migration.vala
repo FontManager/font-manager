@@ -1,6 +1,6 @@
 /* Migration.vala
  *
- * Copyright © ? Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,14 +18,6 @@
  * Author:
  *  Jerry Casiano <JerryCasiano@gmail.com>
  */
-
-const string update_notice = """
-Font Manager has detected a previous installation. Some files from previous versions are incompatible with this release. Others have been deprecated or moved.
-
-Font Manager will now attempt to migrate your fonts and collections. Files and settings which are no longer necessary or valid will be deleted. Any configuration files that could cause a conflict will also be deleted.
-
-It is strongly recommended that you back up any important files before proceeding.
-""";
 
 namespace FontManager {
 
@@ -48,7 +40,7 @@ namespace FontManager {
 
         public static bool approved (Gtk.Window? parent) {
             int response = 0;
-            var ni = new Gtk.Dialog.with_buttons("Update Required",
+            var ni = new Gtk.Dialog.with_buttons(_("Update Required"),
                                                     parent,
                                                     (Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT),
                                                     "Cancel",
@@ -180,3 +172,12 @@ namespace FontManager {
     }
 
 }
+
+const string update_notice = _("""
+Font Manager has detected a previous installation. Some files from previous versions are incompatible with this release. Others have been deprecated or moved.
+
+Font Manager will now attempt to migrate your fonts and collections. Files and settings which are no longer necessary or valid will be deleted. Any configuration files that could cause a conflict will also be deleted.
+
+It is strongly recommended that you back up any important files before proceeding.
+""");
+

@@ -25,8 +25,8 @@
 public class CellRendererCount : CellRendererPill {
 
     public int count { get; set; default = -1; }
-    public string? type_name { get; set; default = "Variation "; }
-    public string? type_name_plural { get; set; default = "Variations"; }
+    public string? type_name { get; set; default = _("Variation "); }
+    public string? type_name_plural { get; set; default = _("Variations"); }
 
     protected override string _get_markup () {
         string markup = "<span size=\"small\" weight=\"heavy\">%i  </span>";
@@ -34,8 +34,7 @@ public class CellRendererCount : CellRendererPill {
         if (count == -1)
             return "";
         else if (type_name != null && type_name_plural != null)
-            //return markup_w_type.printf(ngettext(type_name, type_name_plural, (ulong) count), (int) count);
-            return markup_w_type.printf((int) count, count == 1 ? Markup.escape_text(type_name) : Markup.escape_text(type_name_plural));
+            return markup_w_type.printf((int) count, ngettext(type_name, type_name_plural, (ulong) count));
         else
             return markup.printf((int) count);
     }

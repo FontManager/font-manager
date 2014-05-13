@@ -1,3 +1,4 @@
+AM_CPPFLAGS = -DLOCALEDIR=\""$(localedir)"\"
 resource_dir = ${abs_top_builddir}/resources
 GLIB_COMPILE_RESOURCES=`$(PKG_CONFIG) --variable=glib_compile_resources gio-2.0`
 

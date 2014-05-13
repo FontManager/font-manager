@@ -25,7 +25,7 @@ namespace FontManager {
 
         public Gee.ArrayList <Collection> children { get; set; }
 
-        public Collection (string name = "New Collection") {
+        public Collection (string name = _("New Collection")) {
             Object(name: name);
             families = new Gee.HashSet <string> ();
             children = new Gee.ArrayList <Collection> ();

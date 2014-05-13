@@ -40,10 +40,10 @@ namespace FontManager {
             _expand = new Gtk.Button();
             arrow = new Gtk.Arrow(Gtk.ArrowType.RIGHT, Gtk.ShadowType.ETCHED_IN);
             _expand.add(arrow);
-            _expand.set_tooltip_text("Expand all");
+            _expand.set_tooltip_text(_("Expand all"));
             _remove = new Gtk.Button();
             _remove.set_image(new Gtk.Image.from_icon_name("list-remove-symbolic", Gtk.IconSize.MENU));
-            _remove.set_tooltip_text("Remove selected fonts");
+            _remove.set_tooltip_text(_("Remove selected fonts"));
             entry = new Gtk.SearchEntry();
             box.pack_end(entry, false, false, 0);
             box.pack_start(_expand, false, false, 0);
@@ -64,7 +64,7 @@ namespace FontManager {
             _expand.clicked.connect((w) => {
                 expanded = !expanded;
                 expand_all(expanded);
-                _expand.set_tooltip_text(expanded ? "Collapse all" : "Expand all");
+                _expand.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
                 if (expanded)
                     arrow.set(Gtk.ArrowType.DOWN, Gtk.ShadowType.ETCHED_IN);
                 else

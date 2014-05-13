@@ -94,9 +94,9 @@ namespace FontManager {
             var main = components.main;
             MenuEntry [] app_menu_entries = {
                 /* action_name, display_name, detailed_action_name, accelerator, method */
-                MenuEntry("about", "About", "app.about", "<Alt>A", new MenuCallbackWrapper(main.on_about)),
-                MenuEntry("help", "Help", "app.help", "F1", new MenuCallbackWrapper(main.on_help)),
-                MenuEntry("quit", "Quit", "app.quit", "<Ctrl>Q", new MenuCallbackWrapper(main.on_quit))
+                MenuEntry("about", _("About"), "app.about", "<Alt>A", new MenuCallbackWrapper(main.on_about)),
+                MenuEntry("help", _("Help"), "app.help", "F1", new MenuCallbackWrapper(main.on_help)),
+                MenuEntry("quit", _("Quit"), "app.quit", "<Ctrl>Q", new MenuCallbackWrapper(main.on_quit))
             };
             var app_menu = new GLib.Menu();
             foreach (var entry in app_menu_entries) {

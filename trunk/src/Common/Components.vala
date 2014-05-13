@@ -60,13 +60,13 @@ namespace FontManager {
         public string to_translatable_string () {
             switch (this) {
                 case BROWSE:
-                    return "Browse";
+                    return _("Browse");
                 case COMPARE:
-                    return "Compare";
+                    return _("Compare");
                 case CHARACTER_MAP:
-                    return "Character Map";
+                    return _("Character Map");
                 default:
-                    return "Manage";
+                    return _("Manage");
             }
         }
 
@@ -462,9 +462,9 @@ namespace FontManager {
 
         internal Gtk.Notebook get__preview__notebook () {
             var _preview_notebook = new Gtk.Notebook();
-            _preview_notebook.append_page(preview, new Gtk.Label("Preview"));
-            _preview_notebook.append_page(compare, new Gtk.Label("Compare"));
-            _preview_notebook.append_page(character_map.table, new Gtk.Label("Character Map"));
+            _preview_notebook.append_page(preview, new Gtk.Label(_("Preview")));
+            _preview_notebook.append_page(compare, new Gtk.Label(_("Compare")));
+            _preview_notebook.append_page(character_map.table, new Gtk.Label(_("Character Map")));
             _preview_notebook.show_border = false;
             _preview_notebook.show_tabs = false;
             return _preview_notebook;
@@ -472,8 +472,8 @@ namespace FontManager {
 
         internal Gtk.Notebook get__main__notebook () {
             var _main_notebook = new Gtk.Notebook();
-            _main_notebook.append_page(content_pane, new Gtk.Label("Manage"));
-            _main_notebook.append_page(browser, new Gtk.Label("Browse"));
+            _main_notebook.append_page(content_pane, new Gtk.Label(_("Manage")));
+            _main_notebook.append_page(browser, new Gtk.Label(_("Browse")));
             _main_notebook.show_border = false;
             _main_notebook.show_tabs = false;
             return _main_notebook;
