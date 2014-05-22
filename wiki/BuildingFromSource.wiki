@@ -24,7 +24,7 @@ Make sure to read the README file before proceeding.
 ==== Build and install ====
 {{{
 cd font-manager
-./autogen --prefix=/usr
+./autogen.sh --prefix=/usr
 make
 sudo make install
 }}}
