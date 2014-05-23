@@ -14,6 +14,19 @@ sudo apt-get install subversion build-essential gnome-common valac libxml2-dev l
 }}}
 ----
 <br />
+== Fedora ==
+----
+_This assumes sudo is setup for your user, if not just 'su' at the start_
+==== If you already have a previous version of Font Manager installed ====
+{{{
+sudo yum remove font-manager
+}}}
+==== Install requirements ====
+{{{
+sudo yum install subversion gnome-common gcc intltool vala libxml2-devel freetype-devel fontconfig-devel glib2-devel json-glib-devel cairo-devel gtk3-devel pango-devel libgee-devel gucharmap-devel sqlite-devel gobject-introspection-devel file-roller -y
+}}}
+----
+<br />
 == All ==
 
 ==== Checkout the latest revision from SVN ====
@@ -39,3 +52,10 @@ svn up
 }}}
 If anything is updated, please build and install the application again then verify the issue is still present.
 <br />
+===== Notes =====
+Should the program not show up in the Activities overview of Gnome Shell, restart it.
+{{{
+Alt + F2
+type 'r'
+hit Enter
+}}}
