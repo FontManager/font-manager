@@ -53,7 +53,7 @@ svn up
 If anything is updated, please build and install the application again then verify the issue is still present.
 <br />
 ==== Notes ====
-Should the program not show up in the Activities overview of Gnome Shell, restart it.
+Should the program not show up in Gnome Shell, restart it.
 {{{
 Alt + F2
 type 'r'
