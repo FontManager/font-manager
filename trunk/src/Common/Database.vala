@@ -132,7 +132,7 @@ namespace FontManager {
             if (!in_transaction)
                 throw new DatabaseError.ERROR("Not in transaction - nothing to commit.");
             check_result(db.exec("COMMIT"), "commit_transaction");
-            stmt = null;
+            close();
             in_transaction = false;
             return;
         }
@@ -140,6 +140,7 @@ namespace FontManager {
         public void vacuum () throws DatabaseError {
             open();
             check_result(db.exec("VACUUM"), "vacuum");
+            close();
             return;
         }
 
@@ -157,7 +158,7 @@ namespace FontManager {
         public void remove (string condition) throws DatabaseError {
             execute_query("""DELETE FROM %s WHERE %s""".printf(table, condition));
             check_result(stmt.step(), "remove");
-            stmt = null;
+            close();
             return;
         }
 
@@ -168,7 +169,7 @@ namespace FontManager {
                         Sqlite.OK);
             check_result(stmt.step(), "get_row_count");
             int res = stmt.column_int(0);
-            stmt = null;
+            close();
             return res;
         }
 
@@ -180,6 +181,11 @@ namespace FontManager {
                 private Database db;
                 public Iterator (Database db) {
                     this.db = db;
+                }
+
+                ~ Iterator () {
+                    db.close();
+                    db = null;
                 }
 
                 public unowned Sqlite.Statement? next_value () {
@@ -247,7 +253,7 @@ namespace FontManager {
         db.file = get_database_file();
         db.execute_query(CREATE_SQL);
         db.check_result(db.stmt.step(), "Initialize database if needed", Sqlite.DONE);
-        db.stmt = null;
+        db.close();
         return db;
     }
 
@@ -312,7 +318,7 @@ namespace FontManager {
         db.execute_query();
         foreach (var row in db)
             results.add(row.column_text(0));
-        db.stmt = null;
+        db.close();
         return results;
     }
 
@@ -335,7 +341,7 @@ namespace FontManager {
                 descriptions.add(row.column_text(1));
             }
         }
-        db.stmt = null;
+        db.close();
         return;
     }
 

@@ -95,6 +95,10 @@ namespace FontManager {
 
         string? progress_message = null;
 
+        ~ Core () {
+            database.close();
+        }
+
         public void init () {
             collections = load_collections();
             fontconfig = new FontConfig.Config();
