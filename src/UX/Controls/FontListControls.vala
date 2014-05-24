@@ -32,7 +32,6 @@ namespace FontManager {
         Gtk.Button _remove;
         Gtk.Button _expand;
         Gtk.Arrow arrow;
-        Mode _mode;
 
         public FontListControls () {
             var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);

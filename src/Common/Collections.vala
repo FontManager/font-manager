@@ -100,13 +100,9 @@ namespace FontManager {
     Collections load_collections () {
         Collections? collections = null;
         string cache = Collections.get_cache_file();
-        try {
-            File group_cache = File.new_for_path(cache);
-            if (group_cache.query_exists())
-                collections = (Collections) Json.gobject_deserialize(typeof(Collections), load_json_file(cache));
-        } catch (Error e) {
-            warning("Failed to load file : %s : %s", cache, e.message);
-        }
+        File group_cache = File.new_for_path(cache);
+        if (group_cache.query_exists())
+            collections = (Collections) Json.gobject_deserialize(typeof(Collections), load_json_file(cache));
         if (collections != null)
             return collections;
         else

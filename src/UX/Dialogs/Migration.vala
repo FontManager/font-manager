@@ -145,11 +145,11 @@ namespace FontManager {
                 return false;
             }
 
-            Xml.XPath.Context cntx = new Xml.XPath.Context (doc);
-            Xml.XPath.Object* res = cntx.eval_expression ("//fontcollection");
+            Xml.XPath.Context ctx = new Xml.XPath.Context(doc);
+            Xml.XPath.Object * res = ctx.eval_expression("//fontcollection");
 
             for (int i = 0; i < res->nodesetval->length (); i++) {
-                Xml.Node* node = res->nodesetval->item (i);
+                Xml.Node* node = res->nodesetval->item(i);
                 string name = node->get_prop("name");
                 Collection collection = new Collection(name);
                 collections.entries[name] = collection;
@@ -174,7 +174,7 @@ namespace FontManager {
 }
 
 const string update_notice = _("""
-Font Manager has detected a previous installation. Some files from previous versions are incompatible with this release. Others have been deprecated or moved.
+Font Manager has detected files from a previous installation. Some files from previous versions are incompatible with this release. Others have been deprecated or moved.
 
 Font Manager will now attempt to migrate your fonts and collections. Files and settings which are no longer necessary or valid will be deleted. Any configuration files that could cause a conflict will also be deleted.
 

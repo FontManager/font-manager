@@ -180,6 +180,7 @@ if __name__ == "__main__":
         elif line.startswith("G_END_DECLS"):
             print(license_header)
             print(vendor_header)
+            print(line, end='')
         else:
             print(line, end='')
     if os.path.exists("vendor/__pycache__"):

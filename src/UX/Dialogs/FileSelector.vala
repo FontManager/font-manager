@@ -92,7 +92,6 @@ namespace FontManager {
                 files = new Gee.HashMap <string, File> ();
                 toggle = new Gtk.CellRendererToggle();
                 var text = new Gtk.CellRendererText();
-                var preview = new Gtk.CellRendererText();
                 insert_column_with_data_func(0, "", toggle, toggle_cell_data_func);
                 insert_column_with_attributes(1, "", text, "text", 1, "font", 1, null);
                 get_column(0).expand = false;

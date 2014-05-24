@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-12 23:51-0400\n"
+"POT-Creation-Date: 2014-05-17 00:50-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,7 +41,7 @@ msgid "Preview, Compare and Manage Fonts"
 msgstr ""
 
 #: ../src/Common/About.vala:28
-msgid "Font management for Gtk+ desktop environments"
+msgid "Simple font management for Gtk+ desktop environments"
 msgstr ""
 
 #: ../src/Common/About.vala:31
@@ -66,23 +66,23 @@ msgid ""
 "    "
 msgstr ""
 
-#: ../src/Common/Components.vala:63 ../src/Common/Components.vala:476
+#: ../src/Common/Components.vala:63 ../src/Common/Components.vala:473
 msgid "Browse"
 msgstr ""
 
-#: ../src/Common/Components.vala:65 ../src/Common/Components.vala:466
+#: ../src/Common/Components.vala:65 ../src/Common/Components.vala:463
 msgid "Compare"
 msgstr ""
 
-#: ../src/Common/Components.vala:67 ../src/Common/Components.vala:467
+#: ../src/Common/Components.vala:67 ../src/Common/Components.vala:464
 msgid "Character Map"
 msgstr ""
 
-#: ../src/Common/Components.vala:69 ../src/Common/Components.vala:475
+#: ../src/Common/Components.vala:69 ../src/Common/Components.vala:472
 msgid "Manage"
 msgstr ""
 
-#: ../src/Common/Components.vala:465 ../src/UX/Views/FontPreview.vala:96
+#: ../src/Common/Components.vala:462 ../src/UX/Views/FontPreview.vala:96
 msgid "Preview"
 msgstr ""
 
@@ -349,10 +349,6 @@ msgstr ""
 msgid "Script"
 msgstr ""
 
-#: ../src/Models/CategoryModel.vala:101
-msgid "Script)"
-msgstr ""
-
 #: ../src/Models/CategoryModel.vala:102
 msgid "Decorative"
 msgstr ""
@@ -393,16 +389,16 @@ msgstr ""
 msgid "Select background color"
 msgstr ""
 
-#: ../src/UX/Controls/FontListControls.vala:43
-#: ../src/UX/Controls/FontListControls.vala:67
+#: ../src/UX/Controls/FontListControls.vala:42
+#: ../src/UX/Controls/FontListControls.vala:66
 msgid "Expand all"
 msgstr ""
 
-#: ../src/UX/Controls/FontListControls.vala:46
+#: ../src/UX/Controls/FontListControls.vala:45
 msgid "Remove selected fonts"
 msgstr ""
 
-#: ../src/UX/Controls/FontListControls.vala:67
+#: ../src/UX/Controls/FontListControls.vala:66
 msgid "Collapse all"
 msgstr ""
 
@@ -446,7 +442,7 @@ msgstr ""
 msgid "Select files to install"
 msgstr ""
 
-#: ../src/UX/Dialogs/FileSelector.vala:57
+#: ../src/UX/Dialogs/FileSelector.vala:56
 msgid "Select fonts to remove"
 msgstr ""
 
@@ -457,9 +453,9 @@ msgstr ""
 #: ../src/UX/Dialogs/Migration.vala:176
 msgid ""
 "\n"
-"Font Manager has detected a previous installation. Some files from previous "
-"versions are incompatible with this release. Others have been deprecated or "
-"moved.\n"
+"Font Manager has detected files from a previous installation. Some files "
+"from previous versions are incompatible with this release. Others have been "
+"deprecated or moved.\n"
 "\n"
 "Font Manager will now attempt to migrate your fonts and collections. Files "
 "and settings which are no longer necessary or valid will be deleted. Any "
@@ -470,15 +466,15 @@ msgid ""
 msgstr ""
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/UX/MainWindow.vala:97
+#: ../src/UX/MainWindow.vala:96
 msgid "About"
 msgstr ""
 
-#: ../src/UX/MainWindow.vala:98
+#: ../src/UX/MainWindow.vala:97
 msgid "Help"
 msgstr ""
 
-#: ../src/UX/MainWindow.vala:99
+#: ../src/UX/MainWindow.vala:98
 msgid "Quit"
 msgstr ""
 
@@ -486,11 +482,11 @@ msgstr ""
 msgid "Block"
 msgstr ""
 
-#: ../src/UX/Sidebar/MainSideBar.vala:74
+#: ../src/UX/Sidebar/MainSideBar.vala:73
 msgid "Categories"
 msgstr ""
 
-#: ../src/UX/Sidebar/MainSideBar.vala:75
+#: ../src/UX/Sidebar/MainSideBar.vala:74
 msgid "Collections"
 msgstr ""
 

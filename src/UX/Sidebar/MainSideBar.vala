@@ -53,7 +53,6 @@ namespace FontManager {
         ModeSelector selector;
         MainSideBarMode _mode;
         Gtk.Revealer revealer1;
-        Gtk.Revealer revealer2;
 
         public MainSideBar () {
             orientation = Gtk.Orientation.VERTICAL;

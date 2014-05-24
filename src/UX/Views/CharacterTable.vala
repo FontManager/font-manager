@@ -37,7 +37,6 @@ namespace FontManager {
             }
         }
 
-        Gtk.Notebook notebook;
         Pango.FontDescription _font_desc;
 
         public CharacterTable () {

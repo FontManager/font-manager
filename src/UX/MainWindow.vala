@@ -26,7 +26,6 @@ namespace FontManager {
         public Components components { get; private set; }
 
         ThinPaned main_pane;
-        Gtk.Label mode_label;
         GLib.Settings state;
 
         construct {
@@ -188,7 +187,6 @@ namespace FontManager {
                 }
             );
             components.fontlist.controls.set_remove_sensitivity(components.sidebar.standard.mode == MainSideBarMode.COLLECTION);
-            queue_draw();
             return settings;
         }
 
