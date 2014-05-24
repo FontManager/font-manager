@@ -93,7 +93,6 @@ bool remove_directory_if_empty (File? dir) {
     if (dir == null)
         return false;
     try {
-        FileInfo fileinfo;
         var enumerator = dir.enumerate_children(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
         if (enumerator.next_file() != null)
             return false;

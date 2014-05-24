@@ -1120,6 +1120,6 @@ gchar * get_vendor_from_notice(const gchar *notice);
 gchar * get_vendor_from_vendor_id(const gchar vendor[MAX_VENDOR_ID_LENGTH]);
 
 
-
+G_END_DECLS
 
 #endif

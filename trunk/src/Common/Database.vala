@@ -91,6 +91,7 @@ namespace FontManager {
         }
 
         public void close () {
+            stmt = null;
             db = null;
             return;
         }
@@ -131,6 +132,7 @@ namespace FontManager {
             if (!in_transaction)
                 throw new DatabaseError.ERROR("Not in transaction - nothing to commit.");
             check_result(db.exec("COMMIT"), "commit_transaction");
+            stmt = null;
             in_transaction = false;
             return;
         }
@@ -155,6 +157,7 @@ namespace FontManager {
         public void remove (string condition) throws DatabaseError {
             execute_query("""DELETE FROM %s WHERE %s""".printf(table, condition));
             check_result(stmt.step(), "remove");
+            stmt = null;
             return;
         }
 
@@ -164,7 +167,9 @@ namespace FontManager {
                         "get_row_count",
                         Sqlite.OK);
             check_result(stmt.step(), "get_row_count");
-            return stmt.column_int(0);
+            int res = stmt.column_int(0);
+            stmt = null;
+            return res;
         }
 
         public Iterator iterator () {
@@ -242,6 +247,7 @@ namespace FontManager {
         db.file = get_database_file();
         db.execute_query(CREATE_SQL);
         db.check_result(db.stmt.step(), "Initialize database if needed", Sqlite.DONE);
+        db.stmt = null;
         return db;
     }
 
@@ -293,9 +299,7 @@ namespace FontManager {
                 progress(font.to_string(), processed, total);
             db.stmt.reset();
         }
-        db.stmt = null;
         db.commit_transaction();
-
         return;
     }
 
@@ -308,6 +312,7 @@ namespace FontManager {
         db.execute_query();
         foreach (var row in db)
             results.add(row.column_text(0));
+        db.stmt = null;
         return results;
     }
 
@@ -330,6 +335,7 @@ namespace FontManager {
                 descriptions.add(row.column_text(1));
             }
         }
+        db.stmt = null;
         return;
     }
 

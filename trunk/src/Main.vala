@@ -21,7 +21,7 @@
 
 namespace FontManager {
 
-    [DBus (name = "org.gtk.FontManager")]
+    [DBus (name = "org.gnome.FontManager")]
     public class Main: Gtk.Application  {
 
         public Components components;

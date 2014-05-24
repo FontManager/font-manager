@@ -123,9 +123,10 @@ get_font_details_from_pattern (FontConfigFont * font, FcPattern * pattern)
     }
 
     PangoFontDescription * descr = pango_fc_font_description_from_pattern(pattern, FALSE);
-    font_config_font_set_description(font, pango_font_description_to_string(descr));
+    gchar * desc_string = pango_font_description_to_string(descr);
+    font_config_font_set_description(font, desc_string);
     pango_font_description_free(descr);
-
+    g_free0(desc_string);
     return;
 }
 
