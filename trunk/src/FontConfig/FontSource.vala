@@ -79,6 +79,8 @@ namespace FontConfig {
             }
         }
 
+        public bool available = true;
+
         private File? file = null;
         private FileMonitor? monitor = null;
 
@@ -89,12 +91,16 @@ namespace FontConfig {
 
         public FontSource (File file) {
             this.file = file;
-            _uri = file.get_uri();
-            _path = file.get_path();
-            var pattern = "\"%" + "%s".printf(file.get_path()) + "%\"";
-            _condition = "filepath LIKE %s".printf(pattern);
-            FileInfo info = file.query_info(FileAttribute.STANDARD_DISPLAY_NAME, FileQueryInfoFlags.NONE);
-            _name = Markup.escape_text(info.get_display_name());
+            try {
+                _uri = file.get_uri();
+                _path = file.get_path();
+                var pattern = "\"%" + "%s".printf(file.get_path()) + "%\"";
+                _condition = "filepath LIKE %s".printf(pattern);
+                FileInfo info = file.query_info(FileAttribute.STANDARD_DISPLAY_NAME, FileQueryInfoFlags.NONE);
+                _name = Markup.escape_text(info.get_display_name());
+            } catch (Error e) {
+                available = false;
+            }
         }
 
     }

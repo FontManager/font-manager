@@ -110,8 +110,11 @@ namespace FontConfig {
                 content = content.strip();
                 if (content == "")
                     continue;
-                else
-                    this.add(new FontSource(File.new_for_path(content)));
+                else {
+                    var source = new FontSource(File.new_for_path(content));
+                    if (source.available)
+                        this.add(source);
+                }
             }
             return;
         }

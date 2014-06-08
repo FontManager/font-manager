@@ -131,9 +131,11 @@ namespace FontConfig {
         foreach (var dir in dirs)
             if (!add_app_font_dir(dir))
                 return false;
-        sources.remove_all(dirs);
-        foreach (var source in sources)
+        foreach (var source in sources) {
+            if (source.path in dirs)
+                continue;
             add_app_font_dir(source.path);
+        }
         return true;
     }
 
