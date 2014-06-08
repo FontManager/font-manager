@@ -51,15 +51,30 @@ namespace FontManager {
             }
         }
 
-        public Gtk.TreeStore? category_model {
+        public CategoryModel? category_model {
             get {
                 return standard.category_tree.model;
             }
+            set {
+                standard.category_tree.model = value;
+            }
         }
 
-        public Gtk.TreeStore? collection_model {
+        public CollectionModel? collection_model {
             get {
                 return standard.collection_tree.model;
+            }
+            set {
+                standard.collection_tree.model = value;
+            }
+        }
+
+        public UserSourceModel? user_source_model {
+            get {
+                return standard.user_source_tree.model;
+            }
+            set {
+                standard.user_source_tree.model = value;
             }
         }
 

@@ -21,28 +21,17 @@
 
 namespace FontManager {
 
-    public class CompareControls : Gtk.EventBox {
+    public class CompareControls : BaseControls {
 
-        public signal void add_selected ();
-        public signal void remove_selected ();
         public signal void foreground_set (Gdk.RGBA fg_color);
         public signal void background_set (Gdk.RGBA bg_color);
 
         public Gtk.ColorButton fg_color_button { get; set; }
         public Gtk.ColorButton bg_color_button { get; set; }
 
-        Gtk.Button add_compare;
-        Gtk.Button remove_compare;
-
-        construct {
-            var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-            box.border_width = 2;
-            add_compare = new Gtk.Button();
-            add_compare.set_image(new Gtk.Image.from_icon_name("list-add-symbolic", Gtk.IconSize.MENU));
-            add_compare.set_tooltip_text(_("Add selected font to comparison"));
-            remove_compare = new Gtk.Button();
-            remove_compare.set_image(new Gtk.Image.from_icon_name("list-remove-symbolic", Gtk.IconSize.MENU));
-            remove_compare.set_tooltip_text(_("Remove selected font from comparison"));
+        public CompareControls () {
+            add_button.set_tooltip_text(_("Add selected font to comparison"));
+            remove_button.set_tooltip_text(_("Remove selected font from comparison"));
             var context = get_style_context();
             fg_color_button = new Gtk.ColorButton.with_rgba(context.get_color(Gtk.StateFlags.NORMAL));
             bg_color_button = new Gtk.ColorButton.with_rgba(context.get_background_color(Gtk.StateFlags.NORMAL));
@@ -50,19 +39,14 @@ namespace FontManager {
             fg_color_button.set_tooltip_text(_("Select text color"));
             bg_color_button.get_style_context().add_class(Gtk.STYLE_CLASS_ENTRY);
             bg_color_button.set_tooltip_text(_("Select background color"));
-            box.pack_start(add_compare, false, false, 0);
-            box.pack_start(remove_compare, false, false, 0);
             box.pack_end(bg_color_button, false, false, 0);
             box.pack_end(fg_color_button, false, false, 0);
             set_default_button_relief(box);
             box.show_all();
-            add(box);
             connect_signals();
         }
 
-        internal void connect_signals () {
-            add_compare.clicked.connect((w) => { add_selected(); });
-            remove_compare.clicked.connect(() => { remove_selected(); });
+        internal new void connect_signals () {
             fg_color_button.color_set.connect((w) => { foreground_set(w.get_rgba()); });
             bg_color_button.color_set.connect((w) => { background_set(w.get_rgba()); });
             return;

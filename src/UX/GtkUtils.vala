@@ -32,6 +32,21 @@ public const Gtk.TargetEntry [] AppDragTargets = {
 
 public const Gdk.DragAction AppDragActions = Gdk.DragAction.COPY;
 
+
+public void set_application_style () {
+    string css_uri = "resource:///org/gnome/FontManager/FontManager.css";
+    File css_file = File.new_for_uri(css_uri);
+    Gtk.CssProvider provider = new Gtk.CssProvider();
+    try {
+        provider.load_from_file(css_file);
+    } catch (Error e) {
+        warning("Failed to load Css Provider! Application will not appear as expected.");
+        warning(e.message);
+    }
+    Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+    return;
+}
+
 public void ensure_ui_update () {
     while (Gtk.events_pending())
         Gtk.main_iteration();

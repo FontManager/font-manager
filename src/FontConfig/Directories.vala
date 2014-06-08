@@ -23,18 +23,18 @@ namespace FontConfig {
 
     public class Directories : Selections {
 
-        construct {
+        public Directories () {
             target_element = "dir";
             target_file = "09-Directories.conf";
         }
 
-        protected new virtual void parse (Xml.Node * root) {
+        protected override void parse (Xml.Node * root) {
             parse_node(root->children);
         }
 
         protected override void write_node (XmlWriter writer) {
             foreach (string path in this)
-                writer.write_element(target_element, path.strip());
+                writer.write_element(target_element, Markup.escape_text(path.strip()));
             return;
         }
 

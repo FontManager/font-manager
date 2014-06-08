@@ -35,7 +35,7 @@ namespace FontManager {
 
         public signal void selection_changed (Category filter, int category);
 
-        public CategoryModel model {
+        public unowned CategoryModel model {
             get {
                 return _model;
             }
@@ -52,7 +52,7 @@ namespace FontManager {
         public CellRendererCount count_renderer { get; protected set; }
         public Gtk.CellRendererPixbuf pixbuf_renderer { get; protected set; }
 
-        CategoryModel _model;
+        private unowned CategoryModel _model;
 
         public CategoryTree () {
             tree = new Gtk.TreeView();
@@ -92,7 +92,7 @@ namespace FontManager {
         }
 
 
-        void pixbuf_cell_data_func (Gtk.CellLayout layout,
+        internal void pixbuf_cell_data_func (Gtk.CellLayout layout,
                                       Gtk.CellRenderer cell,
                                       Gtk.TreeModel model,
                                       Gtk.TreeIter treeiter) {
@@ -107,7 +107,7 @@ namespace FontManager {
             return;
         }
 
-        void on_selection_changed (Gtk.TreeSelection selection) {
+        internal void on_selection_changed (Gtk.TreeSelection selection) {
             Gtk.TreeIter iter;
             Gtk.TreeModel model;
             GLib.Value val;
@@ -121,6 +121,7 @@ namespace FontManager {
                 tree.collapse_all();
                 tree.expand_to_path(path);
             }
+            val.unset();
             return;
         }
 

@@ -23,7 +23,7 @@ namespace FontConfig {
 
     public class Reject : Selections {
 
-        construct {
+        public Reject () {
             target_element = "rejectfont";
             target_file = "78-Reject.conf";
         }

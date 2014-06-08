@@ -1,4 +1,4 @@
-/* Config.vala
+/* FontConfig.vala
  *
  * Copyright © 2009 - 2014 Jerry Casiano
  *
@@ -21,7 +21,7 @@
 
 namespace FontConfig {
 
-    public class Config : Object {
+    public class Main : Object {
 
         public signal void changed (File? file, FileMonitorEvent event);
         public signal void progress (string? message, int processed, int total);
@@ -31,24 +31,28 @@ namespace FontConfig {
         public Families families { get; private set; }
         public Properties props { get; private set; }
         public Reject reject { get; private set; }
+        public Sources sources { get; private set; }
 
         FileMonitor? [] monitors = {};
 
-        public Config () {
+        public Main () {
             accept = new Accept();
             dirs = new Directories();
             props = new Properties();
             reject = new Reject();
             families = new Families();
+            sources = new Sources();
             families.progress.connect((m, p, t) => { progress(m, p, t); });
         }
 
         public void update () {
             enable_user_config(false);
             load_user_fontconfig_files();
-            if (!load_user_font_sources())
-                critical("Failed to register user font sources with FontConfig! User fonts may be unavailable.");
+            cancel_monitors();
+            if (!load_user_font_sources(dirs, sources))
+                critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
             families.update();
+            enable_monitors();
             return;
         }
 
@@ -57,8 +61,8 @@ namespace FontConfig {
             dirs.init();
             props.init();
             reject.init();
+            sources.init();
             this.update();
-            enable_monitors();
             return;
         }
 
@@ -120,9 +124,16 @@ namespace FontConfig {
         return;
     }
 
-    bool load_user_font_sources () {
+    bool load_user_font_sources (Gee.HashSet <string> dirs, Gee.HashSet <FontSource> sources) {
         if (!add_app_font_dir(Path.build_filename(Environment.get_user_data_dir(), "fonts")))
             return false;
+        /* XXX : https://bugs.freedesktop.org/show_bug.cgi?id=64766 */
+        foreach (var dir in dirs)
+            if (!add_app_font_dir(dir))
+                return false;
+        sources.remove_all(dirs);
+        foreach (var source in sources)
+            add_app_font_dir(source.path);
         return true;
     }
 

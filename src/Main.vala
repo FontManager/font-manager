@@ -21,107 +21,92 @@
 
 namespace FontManager {
 
-    [DBus (name = "org.gnome.FontManager")]
-    public class Main: Gtk.Application  {
+    public class Main : Object {
 
-        public Components components;
-
-        public Mode mode {
+        public static Main instance {
             get {
-                return components.mode;
-            }
-            set {
-                ((SimpleAction) lookup_action("mode")).set_state(value.to_string());
-                components.mode = value;
+                if (_instance == null)
+                    _instance = new Main();
+                return _instance;
             }
         }
 
-        public Main (string app_id, ApplicationFlags app_flags) {
-            Object(application_id : app_id, flags : app_flags);
+        public unowned Application? application { get; set; }
+
+        public signal void progress (string? message, int processed, int total);
+
+        public Database database { get; private set; }
+        public Settings settings { get; private set; }
+        public FontConfig.Main fontconfig { get; private set; }
+        public Collections collections { get; private set; }
+        public CategoryModel category_model { get; set; }
+        public CollectionModel collection_model { get; set; }
+        public FontModel font_model { get; set; }
+        public UserSourceModel user_source_model { get; private set; }
+
+        private static Main? _instance = null;
+        internal bool init_called = false;
+
+        public Main () {
+            database = get_database();
+            fontconfig = new FontConfig.Main();
+            fontconfig.progress.connect((m, p, t) => { progress(m, p, t); });
+            collections = load_collections();
+            category_model = new CategoryModel();
+            collection_model = new CollectionModel();
+            font_model = new FontModel();
+            user_source_model = new UserSourceModel();
+            settings = new GLib.Settings(SCHEMA_ID);
         }
 
-        protected override void activate () {
-            string css_uri = "resource:///org/gnome/FontManager/FontManager.css";
-            File css_file = File.new_for_uri(css_uri);
-            Gtk.CssProvider provider = new Gtk.CssProvider();
-            try {
-                provider.load_from_file(css_file);
-            } catch (Error e) {
-                warning("Failed to load Css Provider! Application will not appear as expected.");
-                warning(e.message);
+        public void init () {
+            if (init_called)
+                return;
+            fontconfig.init();
+            sync_fonts_table(database, FontConfig.list_fonts(), (m, p, t) => { progress(m, p, t); });
+            category_model.database = database;
+            collection_model.collections = collections;
+            font_model.families = fontconfig.families;
+            user_source_model.sources = fontconfig.sources;
+            init_called = true;
+            return;
+        }
+
+        public void update () {
+            if (!init_called) {
+                init();
+                return;
             }
-            Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            fontconfig.update();
+            sync_fonts_table(database, FontConfig.list_fonts(), (m, p, t) => { progress(m, p, t); });
+            category_model.update();
+            font_model.update();
+            return;
+        }
 
-            components = new Components();
-            components.main = this;
-            new MainWindow(components);
-            add_window(components.main_window);
-            components.loading = true;
-            components.main_window.present();
-
-            components.core = new Core();
-            components.core.progress.connect((m, p, t) => {
-                components.progress = ((float) p /(float) t);
+        public void on_activate (Application application) {
+            if (application.main_window != null) {
+                application.main_window.present();
+                return;
+            }
+            this.application = application;
+            application.main_window = new MainWindow();
+            application.add_window(application.main_window);
+            application.main_window.loading = true;
+            application.main_window.restore_state();
+            application.main_window.present();
+            progress.connect((m, p, t) => {
+                application.main_window.progress = ((float) p /(float) t);
                 ensure_ui_update();
                 }
             );
-            components.core.init();
-            components.model = new Model(components.core);
-            components.set_reject(components.core.fontconfig.reject);
-            components.set_all_models();
-            components.loading = false;
-            /* XXX : Workaround timing issue? wrong filter shown at startup */
-            if (components.sidebar.standard.mode == MainSideBarMode.COLLECTION) {
-                components.sidebar.standard.mode = MainSideBarMode.CATEGORY;
-                components.sidebar.standard.mode = MainSideBarMode.COLLECTION;
-            }
-
-            components.main_window.delete_event.connect((w, e) => {
-                on_quit();
-                return true;
-                }
-            );
-
-            components.core.fontconfig.changed.connect((f, e) => {
-                components.queue_reload();
-            });
+            init();
+            application.main_window.reject = fontconfig.reject;
+            application.main_window.set_all_models();
+            application.main_window.loading = false;
+            application.main_window.bind_settings();
+            application.main_window.post_activate();
             return;
-        }
-
-        public void on_quit () {
-            components.main_window.hide();
-            remove_window(components.main_window);
-            quit();
-        }
-
-        public void on_about () {
-            show_about_dialog(components.main_window);
-            return;
-        }
-
-        public void on_help () {
-            Gtk.show_uri(null, "help:%s".printf(NAME), Gdk.CURRENT_TIME);
-            return;
-        }
-
-        public static int main (string [] args) {
-            FontConfig.enable_user_config(false);
-            Environment.set_application_name(About.NAME);
-            Intl.bindtextdomain(NAME, null);
-            Intl.bind_textdomain_codeset(NAME, null);
-            Intl.textdomain(NAME);
-            Intl.setlocale(LocaleCategory.ALL, null);
-            Gtk.init(ref args);
-            if (Migration.required()) {
-                if (Migration.approved(null)) {
-                    Migration.run();
-                } else {
-                    return 0;
-                }
-            }
-            var main = new Main(BUS_ID, (ApplicationFlags.FLAGS_NONE));
-            int res = main.run(args);
-            return res;
         }
 
     }
