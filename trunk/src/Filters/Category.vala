@@ -44,6 +44,32 @@ namespace FontManager {
             return;
         }
 
+        /* Don't cache any results - Categories are dynamic */
+        public override bool deserialize_property (string prop_name,
+                                            out Value val,
+                                            ParamSpec pspec,
+                                            Json.Node node) {
+            if (pspec.value_type == typeof(Gee.HashSet) || pspec.value_type == typeof(Gee.ArrayList)) {
+                val = Value(pspec.value_type);
+                if (pspec.value_type == typeof(Gee.HashSet))
+                    val.set_object(new Gee.HashSet <string> ());
+                else
+                    val.set_object(new Gee.ArrayList <Category> ());
+                return true;
+            } else
+                return base.deserialize_property(prop_name, out val, pspec, node);
+        }
+
+        public override Json.Node serialize_property (string prop_name,
+                                               Value val,
+                                               ParamSpec pspec) {
+            if (pspec.value_type == typeof(Gee.HashSet) || pspec.value_type == typeof(Gee.ArrayList)) {
+                var node = new Json.Node(Json.NodeType.OBJECT);
+                return node;
+            } else
+                return base.serialize_property(prop_name, val, pspec);
+        }
+
     }
 
 }

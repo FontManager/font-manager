@@ -23,21 +23,22 @@ namespace FontManager {
 
     public class CategoryModel : Gtk.TreeStore {
 
-        Gee.ArrayList <Category> categories;
-        Database db;
+        public unowned Database database {
+            get {
+                return db;
+            }
+            set {
+                db = value;
+                categories = get_default_categories(db);
+                update();
+            }
+        }
+
+        internal Gee.ArrayList <Category> categories;
+        internal unowned Database db;
 
         construct {
             set_column_types({typeof(Object), typeof(string), typeof(string), typeof(string), typeof(int), typeof(bool)});
-        }
-
-        public CategoryModel (Database db) {
-            this.db = db;
-            categories = get_default_categories(db);
-        }
-
-        public void init () {
-            update();
-            return;
         }
 
         public void update () {

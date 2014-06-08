@@ -21,6 +21,18 @@
 
 namespace FontManager {
 
+    public bool update_declined () {
+        if (Migration.required()) {
+            if (Migration.approved(null)) {
+                Migration.run();
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    [Compact]
     public class Migration {
 
         static string old_prefs_file;

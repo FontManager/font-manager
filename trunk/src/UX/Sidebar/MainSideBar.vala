@@ -28,7 +28,7 @@ namespace FontManager {
         N_MODES
     }
 
-    public class MainSideBar : Gtk.Box {
+    public class MainSideBar : Gtk.Stack {
 
         public signal void collection_selected (Collection group);
         public signal void category_selected (Category filter, int category);
@@ -49,17 +49,21 @@ namespace FontManager {
 
         public CategoryTree category_tree { get; private set; }
         public CollectionTree collection_tree { get; private set; }
+        public UserSourceTree user_source_tree { get; private set; }
 
         ModeSelector selector;
         MainSideBarMode _mode;
         Gtk.Revealer revealer1;
+        Gtk.Revealer revealer2;
 
         public MainSideBar () {
-            orientation = Gtk.Orientation.VERTICAL;
+            var main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             selector = new ModeSelector();
             var notebook = new Gtk.Notebook();
             category_tree = new CategoryTree();
             collection_tree = new CollectionTree();
+            user_source_tree = new UserSourceTree();
+
             var collection_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             revealer1 = new Gtk.Revealer();
             revealer1.hexpand = true;
@@ -70,6 +74,12 @@ namespace FontManager {
             revealer1.add(_box);
             collection_box.pack_start(revealer1, false, true, 0);
             collection_box.pack_end(collection_tree, true, true, 0);
+
+            var source_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            source_box.pack_start(user_source_tree.controls, false, true, 0);
+            add_separator(source_box, Gtk.Orientation.HORIZONTAL);
+            source_box.pack_end(user_source_tree, true, true, 0);
+
             notebook.append_page(category_tree, new Gtk.Label(_("Categories")));
             notebook.append_page(collection_box, new Gtk.Label(_("Collections")));
             selector.notebook = notebook;
@@ -77,18 +87,26 @@ namespace FontManager {
             var blend = new Gtk.EventBox();
             selector.border_width = 4;
             blend.add(selector);
-            pack_end(blend, false, true, 0);
-            add_separator(this, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
-            pack_start(notebook, true, true, 0);
+
+            main_box.pack_end(blend, false, true, 0);
+            add_separator(main_box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
+            main_box.pack_start(notebook, true, true, 0);
             collection_box.show_all();
             category_tree.show();
             notebook.show();
             selector.show();
             blend.show();
+            main_box.show();
+            user_source_tree.show();
+            source_box.show();
+            add_named(main_box, "Default");
+            add_named(source_box, "Sources");
+            set_visible_child_name("Default");
+            set_transition_type(Gtk.StackTransitionType.CROSSFADE);
             connect_signals();
         }
 
-        public void reveal_controls (bool reveal) {
+        public void reveal_collection_controls (bool reveal) {
             revealer1.set_reveal_child(reveal);
             return;
         }

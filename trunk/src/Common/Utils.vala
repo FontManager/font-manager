@@ -19,7 +19,21 @@
  *  Jerry Casiano <JerryCasiano@gmail.com>
  */
 
+namespace Intl {
+
+    public void setup (string name) {
+        GLib.Intl.bindtextdomain(name, null);
+        GLib.Intl.bind_textdomain_codeset(name, null);
+        GLib.Intl.textdomain(name);
+        GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
+        return;
+    }
+
+}
+
+public delegate void ReloadFunc ();
 public delegate void ProgressCallback (string? message, int processed, int total);
+
 delegate void MenuCallback ();
 
 struct MenuEntry {
@@ -126,3 +140,4 @@ bool remove_directory (File dir, bool recursive = true) {
     }
     return false;
 }
+

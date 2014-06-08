@@ -23,6 +23,26 @@ namespace FontManager {
 
     namespace FileSelector {
 
+        public string? [] source_selection (Gtk.Window? parent) {
+            string? [] arr = { };
+            var dialog = new Gtk.FileChooserDialog(_("Select source folders"),
+                                                        parent,
+                                                        Gtk.FileChooserAction.SELECT_FOLDER,
+                                                        "_Cancel",
+                                                        Gtk.ResponseType.CANCEL,
+                                                        "_Open",
+                                                        Gtk.ResponseType.ACCEPT,
+                                                        null);
+            dialog.set_select_multiple(true);
+            if (dialog.run() == Gtk.ResponseType.ACCEPT) {
+                dialog.hide();
+                foreach (var uri in dialog.get_uris())
+                    arr += uri;
+            }
+            dialog.destroy();
+            return arr;
+        }
+
         public string? [] run_install (Gtk.Window? parent) {
             string? [] arr = { };
             var dialog = new Gtk.FileChooserDialog(_("Select files to install"),

@@ -23,7 +23,7 @@ namespace FontConfig {
 
     public class Accept : Selections {
 
-        construct {
+        public Accept () {
             target_element = "acceptfont";
             target_file = "79-Accept.conf";
         }

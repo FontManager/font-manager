@@ -23,17 +23,16 @@ namespace FontManager {
 
     public class TitleBar : Gtk.HeaderBar {
 
-        public signal void search_selected ();
         public signal void install_selected ();
         public signal void remove_selected ();
+        public signal void manage_sources (bool active);
 
         public Gtk.MenuButton main_menu { get; private set; }
         public Gtk.Label main_menu_label { get; set; }
         public Gtk.MenuButton app_menu { get; private set; }
 
-        Gtk.Button search;
-        Gtk.Button install;
-        Gtk.Button _remove;
+        BaseControls manage_controls;
+        Gtk.ToggleButton source_toggle;
         Gtk.Revealer revealer;
 
         public TitleBar () {
@@ -42,7 +41,7 @@ namespace FontManager {
             ctx.add_class(Gtk.STYLE_CLASS_TITLEBAR);
             ctx.add_class(Gtk.STYLE_CLASS_MENUBAR);
             ctx.set_junction_sides(Gtk.JunctionSides.BOTTOM);
-            //header.show_close_button = true;
+            show_close_button = false;
             main_menu = new Gtk.MenuButton();
             var main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic", Gtk.IconSize.MENU);
             var main_menu_container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 1);
@@ -57,25 +56,21 @@ namespace FontManager {
             app_menu.add(app_menu_icon);
             app_menu.direction = Gtk.ArrowType.DOWN;
             app_menu.relief = Gtk.ReliefStyle.NONE;
-            search = new Gtk.Button.from_icon_name("edit-find-symbolic", Gtk.IconSize.MENU);
-            search.relief = Gtk.ReliefStyle.NONE;
-            search.set_tooltip_text(_("Search Database"));
             revealer = new Gtk.Revealer();
             revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_RIGHT);
-            var button_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
-            install = new Gtk.Button.from_icon_name("list-add-symbolic", Gtk.IconSize.MENU);
-            install.relief = Gtk.ReliefStyle.NONE;
-            install.set_tooltip_text(_("Add Fonts"));
-            _remove = new Gtk.Button.from_icon_name("list-remove-symbolic", Gtk.IconSize.MENU);
-            _remove.relief = Gtk.ReliefStyle.NONE;
-            _remove.set_tooltip_text(_("Remove Fonts"));
-            add_separator(button_box);
-            button_box.pack_start(install, false, false, 1);
-            button_box.pack_end(_remove, false, false, 1);
-            revealer.add(button_box);
+            manage_controls = new BaseControls();
+            manage_controls.add_button.set_tooltip_text(_("Add Fonts"));
+            manage_controls.remove_button.set_tooltip_text(_("Remove Fonts"));
+            add_separator(manage_controls.box);
+            manage_controls.box.reorder_child(manage_controls.box.get_children().nth_data(2), 0);
+            source_toggle = new Gtk.ToggleButton();
+            source_toggle.set_image(new Gtk.Image.from_icon_name("folder-symbolic", Gtk.IconSize.MENU));
+            source_toggle.relief = Gtk.ReliefStyle.NONE;
+            source_toggle.set_tooltip_text(_("Manage Sources"));
+            manage_controls.box.pack_end(source_toggle, false, false, 0);
+            revealer.add(manage_controls);
             pack_start(main_menu);
             pack_start(revealer);
-            pack_end(search);
             pack_end(app_menu);
             main_menu_icon.show();
             main_menu_container.show();
@@ -83,23 +78,77 @@ namespace FontManager {
             main_menu.show();
             app_menu_icon.show();
             app_menu.show();
-            search.show();
-            button_box.show_all();
+            source_toggle.show();
+            manage_controls.show();
             revealer.get_style_context().add_class(Gtk.STYLE_CLASS_TITLEBAR);
             revealer.show();
+            set_menus();
             connect_signals();
         }
 
+        internal void set_menus () {
+            main_menu.set_menu_model(get_main_menu_model());
+            app_menu.set_menu_model(get_app_menu_model());
+            main_menu.get_popup().halign = Gtk.Align.START;
+            app_menu.get_popup().halign = Gtk.Align.END;
+            return;
+        }
+
         internal void connect_signals () {
-            search.clicked.connect((w) => { search_selected(); });
-            install.clicked.connect((w) => { install_selected(); });
-            _remove.clicked.connect((w) => { remove_selected(); });
+            manage_controls.add_button.clicked.connect((w) => { install_selected(); });
+            manage_controls.remove_button.clicked.connect((w) => { remove_selected(); });
+            source_toggle.toggled.connect(() => { manage_sources(source_toggle.get_active()); } );
             return;
         }
 
         public void reveal_controls (bool reveal) {
             revealer.set_reveal_child(reveal);
             return;
+        }
+
+        internal GLib.MenuModel get_main_menu_model () {
+            var application = Main.instance.application;
+            var mode_section = new GLib.Menu();
+            string [] modes = {"Manage", "Browse", "Compare", "Character Map"};
+            var mode_action = new SimpleAction.stateful("mode", VariantType.STRING, "Manage");
+            mode_action.activate.connect((a, s) => {
+                application.main_window.mode = Mode.parse((string) s);
+                }
+            );
+            application.add_action(mode_action);
+            int i = 0;
+            foreach (var mode in modes) {
+                i++;
+                application.add_accelerator("<Alt>%i".printf(i), "app.mode", "%s".printf(mode));
+                GLib.MenuItem item = new MenuItem(mode, "app.mode::%s".printf(mode));
+                item.set_attribute("accel", "s", "<Alt>%i".printf(i));
+                mode_section.append_item(item);
+            }
+            return (GLib.MenuModel) mode_section;
+        }
+
+
+        internal GLib.MenuModel get_app_menu_model () {
+            var application = Main.instance.application;
+            MenuEntry [] app_menu_entries = {
+                /* action_name, display_name, detailed_action_name, accelerator, method */
+                MenuEntry("about", _("About"), "app.about", "<Alt>A", new MenuCallbackWrapper(application.on_about)),
+                MenuEntry("help", _("Help"), "app.help", "F1", new MenuCallbackWrapper(application.on_help)),
+                MenuEntry("quit", _("Quit"), "app.quit", "<Ctrl>Q", new MenuCallbackWrapper(application.on_quit))
+            };
+            var app_menu = new GLib.Menu();
+            foreach (var entry in app_menu_entries) {
+                add_action_from_menu_entry(application, entry);
+                if (entry.accelerator != null) {
+                    application.add_accelerator(entry.accelerator, entry.detailed_action_name, null);
+                    GLib.MenuItem item = new MenuItem(entry.display_name, entry.detailed_action_name);
+                    item.set_attribute("accel", "s", entry.accelerator);
+                    app_menu.append_item(item);
+                } else {
+                    app_menu.append(entry.display_name, entry.detailed_action_name);
+                }
+            }
+            return app_menu;
         }
 
     }

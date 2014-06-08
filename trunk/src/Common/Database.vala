@@ -189,7 +189,9 @@ namespace FontManager {
                 }
 
                 public unowned Sqlite.Statement? next_value () {
-                    return (db.stmt.step() == Sqlite.ROW) ? db.stmt : null;
+                    if (db.stmt.step() != Sqlite.ROW)
+                        db.stmt = null;
+                    return db.stmt;
                 }
 
             }

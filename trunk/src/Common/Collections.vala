@@ -26,7 +26,7 @@ namespace FontManager {
         public Gee.HashMap <string, Collection> entries { get; set; }
 
         public static string get_cache_file () {
-            string dirpath =Path.build_filename(Environment.get_user_config_dir(), NAME);
+            string dirpath = Path.build_filename(Environment.get_user_config_dir(), NAME);
             string filepath = Path.build_filename(dirpath, "Collections.json");
             DirUtils.create_with_parents(dirpath ,0755);
             return filepath;

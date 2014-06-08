@@ -1,4 +1,4 @@
-/* CollectionControls.vala
+/* SourceControls.vala
  *
  * Copyright © 2009 - 2014 Jerry Casiano
  *
@@ -21,11 +21,11 @@
 
 namespace FontManager {
 
-    public class CollectionControls : BaseControls {
+    public class SourceControls : BaseControls {
 
-        public CollectionControls () {
-            add_button.set_tooltip_text(_("Add new collection"));
-            remove_button.set_tooltip_text(_("Remove selected collection"));
+        public SourceControls () {
+            add_button.set_tooltip_text(_("Add new source"));
+            remove_button.set_tooltip_text(_("Remove selected source"));
         }
 
     }

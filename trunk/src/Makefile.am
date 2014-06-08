@@ -16,6 +16,7 @@ AM_VALAFLAGS = \
 --target-glib 2.38 \
 --gresources $(resource_dir)/FontManagerGResource.xml
 
+
 font_manager_CPPFLAGS = \
 $(XML_CFLAGS) \
 $(FREETYPE_CFLAGS) \
@@ -55,11 +56,11 @@ $(JSONGLIB_LIBS) \
 $(SQLITE3_LIBS)
 
 font_manager_VALASOURCES = \
+Application.vala \
 Main.vala \
 Common/About.vala \
 Common/ArchiveManager.vala \
 Common/Collections.vala \
-Common/Components.vala \
 Common/Constants.vala \
 Common/Database.vala \
 Common/FontInfo.vala \
@@ -71,15 +72,17 @@ Filters/Filter.vala \
 Filters/SearchResult.vala \
 Filters/Unsorted.vala \
 FontConfig/Accept.vala \
-FontConfig/Config.vala \
 FontConfig/Directories.vala \
 FontConfig/Enums.vala \
 FontConfig/Family.vala \
 FontConfig/Families.vala \
 FontConfig/Font.vala \
+FontConfig/FontConfig.vala \
+FontConfig/FontSource.vala \
 FontConfig/Properties.vala \
 FontConfig/Reject.vala \
 FontConfig/Selections.vala \
+FontConfig/Sources.vala \
 FontConfig/XmlWriter.vala \
 Glue/Glue.vala \
 Json/Cacheable.vala \
@@ -88,15 +91,18 @@ Models/CategoryModel.vala \
 Models/CollectionModel.vala \
 Models/FontModel.vala \
 Models/UserFontModel.vala \
+Models/UserSourceModel.vala \
 UX/MainWindow.vala \
 UX/CharacterMap.vala \
 UX/GtkUtils.vala \
+UX/Controls/BaseControls.vala \
 UX/Controls/CollectionControls.vala \
 UX/Controls/CompareControls.vala \
 UX/Controls/FontListControls.vala \
 UX/Controls/PreviewControls.vala \
 UX/Controls/TitleBar.vala \
 UX/Controls/ModeSelector.vala \
+UX/Controls/SourceControls.vala \
 UX/Dialogs/Migration.vala \
 UX/Dialogs/NotImplemented.vala \
 UX/Dialogs/FileSelector.vala \
@@ -107,6 +113,7 @@ UX/Trees/CollectionTree.vala \
 UX/Trees/CategoryTree.vala \
 UX/Trees/FontList.vala \
 UX/Trees/FontListTree.vala \
+UX/Trees/UserSourceTree.vala \
 UX/Widgets/FontScale.vala \
 UX/Widgets/AdjustablePreview.vala \
 UX/Widgets/CellRendererPill.vala \

@@ -29,9 +29,9 @@ namespace FontManager {
         public bool expanded { get; private set; }
         public Gtk.SearchEntry entry { get; private set; }
 
-        Gtk.Button _remove;
-        Gtk.Button _expand;
-        Gtk.Arrow arrow;
+        internal Gtk.Button _remove;
+        internal Gtk.Button _expand;
+        internal Gtk.Arrow arrow;
 
         public FontListControls () {
             var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
