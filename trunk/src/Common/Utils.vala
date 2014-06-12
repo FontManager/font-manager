@@ -59,6 +59,10 @@ class MenuCallbackWrapper {
     }
 }
 
+string get_user_font_dir () {
+    return Path.build_filename(Environment.get_user_data_dir(), "fonts");
+}
+
 string get_localized_pangram () {
     return Pango.Language.get_default().get_sample_string();
 }

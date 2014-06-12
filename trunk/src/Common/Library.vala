@@ -25,10 +25,6 @@ namespace FontManager {
 
         public static ProgressCallback? progress = null;
 
-        internal string get_user_font_dir () {
-            return Path.build_filename(Environment.get_user_data_dir(), "fonts");
-        }
-
         public struct InstallData {
             public File file;
             public FontConfig.Font font;

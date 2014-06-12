@@ -37,7 +37,6 @@ namespace FontManager {
             }
         }
 
-        public unowned ReloadFunc reload_func { get; set; }
         public BaseControls controls { get; protected set; }
         public FontConfig.FontSource? selected_filter { get; protected set; default = null; }
         public Gtk.TreeView tree { get; protected set; }
@@ -84,7 +83,7 @@ namespace FontManager {
             var new_sources = FileSelector.source_selection((Gtk.Window) this.get_toplevel());
             foreach (var uri in new_sources)
                 model.add_source_from_uri(uri);
-            reload_func();
+            Main.instance.update();
             return;
         }
 
@@ -93,7 +92,7 @@ namespace FontManager {
             model.sources.remove(selected_filter);
             model.sources.save();
             model.update();
-            reload_func();
+            Main.instance.update();
             return;
         }
 
@@ -108,8 +107,8 @@ namespace FontManager {
             model.get_iter_from_string(out iter, path);
             model.get_value(iter, 0, out val);
             var source = (FontConfig.FontSource) val.get_object();
-            source.active = !source.active;
-            reload_func();
+            if (source.available)
+                source.active = !source.active;
             val.unset();
             return;
         }
@@ -137,7 +136,11 @@ namespace FontManager {
             Value val;
             model.get_value(treeiter, 0, out val);
             var obj = (FontConfig.FontSource) val.get_object();
-            cell.set_property("active", obj.active);
+            if (obj.available) {
+                cell.set_property("inconsistent", false);
+                cell.set_property("active", obj.active);
+            } else
+                cell.set_property("inconsistent", true);
             val.unset();
             return;
         }

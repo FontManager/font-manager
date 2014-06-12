@@ -46,6 +46,8 @@ namespace FontManager {
 
         private static Main? _instance = null;
         internal bool init_called = false;
+        internal bool update_in_progress = false;
+        internal bool queue_update = false;
 
         public Main () {
             database = get_database();
@@ -57,6 +59,7 @@ namespace FontManager {
             font_model = new FontModel();
             user_source_model = new UserSourceModel();
             settings = new GLib.Settings(SCHEMA_ID);
+            fontconfig.changed.connect((f, ev) => { update(); });
         }
 
         public void init () {
@@ -72,15 +75,42 @@ namespace FontManager {
             return;
         }
 
+        internal void end_update () {
+            sync_fonts_table(database, FontConfig.list_fonts(), (m, p, t) => { progress(m, p, t); });
+            category_model.update();
+            font_model.update();
+            application.main_window.loading = false;
+            application.main_window.set_all_models();
+            update_in_progress = false;
+            if (queue_update)
+                update();
+            return;
+        }
+
         public void update () {
             if (!init_called) {
                 init();
                 return;
             }
-            fontconfig.update();
-            sync_fonts_table(database, FontConfig.list_fonts(), (m, p, t) => { progress(m, p, t); });
-            category_model.update();
-            font_model.update();
+            if (update_in_progress) {
+                queue_update = true;
+                return;
+            } else {
+                queue_update = false;
+            }
+            update_in_progress = true;
+            FontConfig.update_cache();
+            fontconfig.update.begin((obj, res) => {
+                try {
+                    application.main_window.unset_all_models();
+                    application.main_window.loading = true;
+                    fontconfig.update.end(res);
+                    end_update();
+                } catch (ThreadError e) {
+                    critical("Thread error : %s", e.message);
+                    end_update();
+                }
+            });
             return;
         }
 

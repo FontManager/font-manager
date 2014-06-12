@@ -30,9 +30,9 @@ namespace FontManager {
         public Gtk.MenuButton main_menu { get; private set; }
         public Gtk.Label main_menu_label { get; set; }
         public Gtk.MenuButton app_menu { get; private set; }
+        public Gtk.ToggleButton source_toggle { get; private set; }
 
         BaseControls manage_controls;
-        Gtk.ToggleButton source_toggle;
         Gtk.Revealer revealer;
 
         public TitleBar () {
