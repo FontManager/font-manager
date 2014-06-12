@@ -37,6 +37,7 @@ namespace FontManager {
             set {
                 _sources = value;
                 this.update();
+                _sources.changed.connect(() => { this.update(); });
             }
         }
 

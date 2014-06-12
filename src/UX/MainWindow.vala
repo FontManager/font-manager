@@ -268,20 +268,10 @@ namespace FontManager {
             return;
         }
 
-        public void reload () {
-            FontConfig.update_cache();
-            unset_all_models();
-            loading = true;
-            Main.instance.update();
-            loading = false;
-            set_all_models();
-            return;
-        }
-
         public void queue_reload () {
             /* Note : There's a 2 second delay built into FontConfig */
             Timeout.add_seconds(3, () => {
-                reload();
+                Main.instance.update();
                 return false;
             });
             return;
@@ -289,6 +279,7 @@ namespace FontManager {
 
         internal void real_set_mode (Mode mode, bool loading) {
             _mode = mode;
+            titlebar.source_toggle.set_active(false);
             titlebar.main_menu_label.set_markup("<b>%s</b>".printf(mode.to_translatable_string()));
             var settings = mode.settings();
             main_notebook.set_current_page(settings[0]);
@@ -634,11 +625,6 @@ namespace FontManager {
         }
 
         public void post_activate () {
-            var fontconfig = Main.instance.fontconfig;
-            sidebar.standard.user_source_tree.reload_func = queue_reload;
-            fontconfig.changed.connect((f, e) => {
-                queue_reload();
-            });
 
             /* XXX : Workaround timing issue? wrong filter shown at startup */
             if (sidebar.standard.mode == MainSideBarMode.COLLECTION) {

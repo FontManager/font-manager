@@ -34,6 +34,7 @@ namespace FontConfig {
         public Sources sources { get; private set; }
 
         FileMonitor? [] monitors = {};
+        VolumeMonitor volume_monitor;
 
         public Main () {
             accept = new Accept();
@@ -43,15 +44,44 @@ namespace FontConfig {
             families = new Families();
             sources = new Sources();
             families.progress.connect((m, p, t) => { progress(m, p, t); });
+            volume_monitor = VolumeMonitor.get();
+            volume_monitor.mount_removed.connect((m) => {
+               if (m.get_default_location().get_path() in sources)
+                    change_detected();
+            });
         }
 
-        public void update () {
+        public async bool update () throws ThreadError {
+            SourceFunc callback = update.callback;
+            bool output = true;
+            ThreadFunc <void*> run = () => {
+                lock(families);
+                lock(sources);
+                start_update();
+                if (!load_user_font_sources(sources.to_array())) {
+                    critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
+                    output = false;
+                }
+                end_update();
+                Idle.add((owned) callback);
+                return null;
+            };
+
+            new Thread <void*> ("FontConfig.async_update", run);
+            yield;
+            return output;
+        }
+
+        public void start_update () {
             enable_user_config(false);
             load_user_fontconfig_files();
             cancel_monitors();
-            if (!load_user_font_sources(dirs, sources))
-                critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
+            return;
+        }
+
+        public void end_update () {
             families.update();
+            sources.update();
             enable_monitors();
             return;
         }
@@ -71,21 +101,36 @@ namespace FontConfig {
                 mon.cancel();
                 mon = null;
             }
+            monitors = {};
             return;
         }
 
         public void enable_monitors () {
-            foreach (var dir in list_dirs()) {
-                File file = File.new_for_path(dir);
-                FileMonitor monitor = file.monitor_directory(FileMonitorFlags.NONE);
-                monitor.changed.connect((f, of, ev) => {
-                    cancel_monitors();
-                    changed(f, ev);
-                    monitors = {};
-                    enable_monitors();
-                });
-                monitors += monitor;
-            }
+            var _dirs = list_dirs();
+            foreach (var dir in _dirs)
+                monitors += get_directory_monitor(dir);
+            foreach (var source in sources)
+                if (source.path in _dirs)
+                    continue;
+                else
+                    monitors += get_directory_monitor(source.path);
+            return;
+        }
+
+        internal FileMonitor get_directory_monitor (string dir) {
+            File file = File.new_for_path(dir);
+            FileMonitor monitor = file.monitor_directory(FileMonitorFlags.NONE);
+            monitor.changed.connect((f, of, ev) => {
+                change_detected(f, of, ev);
+            });
+            return monitor;
+        }
+
+        internal void change_detected (File? file = null,
+                                         File? other_file = null,
+                                         FileMonitorEvent event = FileMonitorEvent.CHANGED) {
+            cancel_monitors();
+            changed(file, event);
             return;
         }
 
@@ -124,18 +169,12 @@ namespace FontConfig {
         return;
     }
 
-    bool load_user_font_sources (Gee.HashSet <string> dirs, Gee.HashSet <FontSource> sources) {
+    bool load_user_font_sources (FontSource [] sources) {
         if (!add_app_font_dir(Path.build_filename(Environment.get_user_data_dir(), "fonts")))
             return false;
-        /* XXX : https://bugs.freedesktop.org/show_bug.cgi?id=64766 */
-        foreach (var dir in dirs)
-            if (!add_app_font_dir(dir))
+        foreach (var source in sources)
+            if (!add_app_font_dir(source.path))
                 return false;
-        foreach (var source in sources) {
-            if (source.path in dirs)
-                continue;
-            add_app_font_dir(source.path);
-        }
         return true;
     }
 

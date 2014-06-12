@@ -23,6 +23,8 @@ namespace FontConfig {
 
     public class Sources : Gee.HashSet <FontSource> {
 
+        public signal void changed ();
+
         public string? target_file {
             get {
                 return _target_file;
@@ -39,6 +41,29 @@ namespace FontConfig {
         public Sources () {
             target_element = "source";
             target_file = "UserSources";
+        }
+
+        public new bool contains (string path) {
+            foreach (var source in this)
+                if (source.path.contains(path))
+                    return true;
+            return false;
+        }
+
+        public void update () {
+            foreach (var source in this)
+                source.update();
+            this.changed();
+            return;
+        }
+
+        public new bool add (FontSource source) {
+            return base.add(source);
+        }
+
+        public new bool remove (FontSource source) {
+            source.available = false;
+            return base.remove(source);
         }
 
         public bool init ()
@@ -112,8 +137,7 @@ namespace FontConfig {
                     continue;
                 else {
                     var source = new FontSource(File.new_for_path(content));
-                    if (source.available)
-                        this.add(source);
+                    this.add(source);
                 }
             }
             return;

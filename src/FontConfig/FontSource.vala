@@ -27,11 +27,7 @@ namespace FontConfig {
 
         public new string name {
             get {
-                try {
-                    return _name;
-                } catch (Error e) {
-                    return path;
-                }
+                return _name != null ? _name : _path;
             }
         }
 
@@ -75,11 +71,18 @@ namespace FontConfig {
 
         public FileType filetype {
             get {
-                return file.query_file_type(FileQueryInfoFlags.NONE);
+                return _filetype;
             }
         }
 
-        public bool available = true;
+        public bool available {
+            get {
+                return _available;
+            }
+            set {
+                _available = value;
+            }
+        }
 
         private File? file = null;
         private FileMonitor? monitor = null;
@@ -88,17 +91,26 @@ namespace FontConfig {
         internal string? _uri = null;
         internal string? _path = null;
         internal string? _condition = null;
+        internal FileType _filetype;
+        internal bool _available = true;
 
         public FontSource (File file) {
             this.file = file;
+            this.update();
+        }
+
+        public void update () {
+            _uri = file.get_uri();
+            _path = file.get_path();
+            var pattern = "\"%" + "%s".printf(file.get_path()) + "%\"";
+            _condition = "filepath LIKE %s".printf(pattern);
             try {
-                _uri = file.get_uri();
-                _path = file.get_path();
-                var pattern = "\"%" + "%s".printf(file.get_path()) + "%\"";
-                _condition = "filepath LIKE %s".printf(pattern);
                 FileInfo info = file.query_info(FileAttribute.STANDARD_DISPLAY_NAME, FileQueryInfoFlags.NONE);
                 _name = Markup.escape_text(info.get_display_name());
+                _filetype = file.query_file_type(FileQueryInfoFlags.NONE);
+                available = true;
             } catch (Error e) {
+                _name = "%s --> Resource unavailable".printf(_path);
                 available = false;
             }
         }

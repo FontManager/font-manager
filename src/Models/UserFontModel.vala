@@ -30,7 +30,7 @@ namespace FontManager {
         public UserFontModel (FontConfig.Families families, Database db) {
             var _families = new Gee.HashSet <string> ();
             var descriptions = new Gee.HashSet <string> ();
-            get_matching_families_and_fonts(db, _families, descriptions, "owner=0");
+            get_matching_families_and_fonts(db, _families, descriptions, "owner=0 AND filepath LIKE \"%s%\"".printf(get_user_font_dir()));
             bool visible = true;
             foreach(var entry in families.list()) {
                 var family = families[entry];
