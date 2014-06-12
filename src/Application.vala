@@ -1,4 +1,4 @@
-/* Main.vala
+/* Application.vala
  *
  * Copyright © 2009 - 2014 Jerry Casiano
  *

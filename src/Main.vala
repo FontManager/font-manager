@@ -100,11 +100,11 @@ namespace FontManager {
             }
             update_in_progress = true;
             FontConfig.update_cache();
-            fontconfig.update.begin((obj, res) => {
+            fontconfig.async_update.begin((obj, res) => {
                 try {
                     application.main_window.unset_all_models();
                     application.main_window.loading = true;
-                    fontconfig.update.end(res);
+                    fontconfig.async_update.end(res);
                     end_update();
                 } catch (ThreadError e) {
                     critical("Thread error : %s", e.message);
