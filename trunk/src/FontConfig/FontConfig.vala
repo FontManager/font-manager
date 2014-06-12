@@ -51,8 +51,29 @@ namespace FontConfig {
             });
         }
 
-        public async bool update () throws ThreadError {
-            SourceFunc callback = update.callback;
+        public void init () {
+            accept.init();
+            dirs.init();
+            props.init();
+            reject.init();
+            sources.init();
+            this.update();
+            return;
+        }
+
+        public void update () {
+            enable_user_config(false);
+            load_user_fontconfig_files();
+            cancel_monitors();
+            if (!load_user_font_sources(sources.to_array()))
+            critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
+            families.update();
+            enable_monitors();
+            return;
+        }
+
+        public async bool async_update () throws ThreadError {
+            SourceFunc callback = async_update.callback;
             bool output = true;
             ThreadFunc <void*> run = () => {
                 lock(families);
@@ -83,16 +104,6 @@ namespace FontConfig {
             families.update();
             sources.update();
             enable_monitors();
-            return;
-        }
-
-        public void init () {
-            accept.init();
-            dirs.init();
-            props.init();
-            reject.init();
-            sources.init();
-            this.update();
             return;
         }
 
