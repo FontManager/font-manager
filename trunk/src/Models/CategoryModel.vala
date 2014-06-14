@@ -68,7 +68,7 @@ namespace FontManager {
         filters["All"].index = 0;
         filters["System"] = new Category(_("System"), _("Fonts available to all users"), "computer", "owner!=0");
         filters["System"].index = 1;
-        filters["User"] = new Category(_("User"), _("Fonts avalable only to you"), "avatar-default", "owner=0");
+        filters["User"] = new Category(_("User"), _("Fonts avalable only to you"), "avatar-default", "owner=0 AND filepath LIKE \"%s%\"".printf(get_user_font_dir()));
         filters["User"].index = 2;
         filters["Panose"] = construct_panose_filter();
         filters["Panose"].index = 3;
