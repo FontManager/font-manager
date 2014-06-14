@@ -107,11 +107,16 @@ namespace FontManager {
 
     Category construct_filter (Database db, string name, string comment, string keyword) {
         var filter = new Category(name, comment, "folder", null);
-        add_children_from_db_results(db, filter.children, keyword);
+        try {
+            add_children_from_db_results(db, filter.children, keyword);
+        } catch (DatabaseError e) {
+            warning("Failed to create child categories for %s", name);
+            error("Database error : %s", e.message);
+        }
         return filter;
     }
 
-    void add_children_from_db_results (Database db, Gee.ArrayList <Category> filters, string keyword) {
+    void add_children_from_db_results (Database db, Gee.ArrayList <Category> filters, string keyword) throws DatabaseError {
         db.execute_query("SELECT DISTINCT %s FROM Fonts ORDER BY %s;".printf(keyword, keyword));
         foreach (var row in db) {
             if (row.column_type(0) == Sqlite.TEXT) {

@@ -109,7 +109,8 @@ namespace FontConfig {
 
         public void cancel_monitors () {
             foreach (var mon in monitors) {
-                mon.cancel();
+                if (mon != null)
+                    mon.cancel();
                 mon = null;
             }
             monitors = {};
@@ -128,12 +129,18 @@ namespace FontConfig {
             return;
         }
 
-        internal FileMonitor get_directory_monitor (string dir) {
+        internal FileMonitor? get_directory_monitor (string dir) {
             File file = File.new_for_path(dir);
-            FileMonitor monitor = file.monitor_directory(FileMonitorFlags.NONE);
-            monitor.changed.connect((f, of, ev) => {
-                change_detected(f, of, ev);
-            });
+            FileMonitor? monitor = null;
+            try {
+                monitor = file.monitor_directory(FileMonitorFlags.NONE);
+                monitor.changed.connect((f, of, ev) => {
+                    change_detected(f, of, ev);
+                });
+            } catch (IOError e) {
+                warning("Failed to create FileMonitor for %s", dir);
+                error("FileMonitor creation failed : %s", e.message);
+            }
             return monitor;
         }
 

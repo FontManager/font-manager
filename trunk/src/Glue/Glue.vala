@@ -33,6 +33,14 @@ namespace FreeType {
 
 namespace FontConfig {
 
+    public string get_version_string () {
+        string raw = FcGetVersion().to_string();
+        if (raw.length == 5)
+            return "%c.%c%c.%s".printf(raw.get(0), raw.get(1), raw.get(2), raw.substring(3));
+        else
+            return raw;
+    }
+
     public bool update_cache () {
         return FcCacheUpdate();
     }
@@ -85,6 +93,8 @@ namespace FontConfig {
 
 }
 
+/* Defined in fontconfig.h */
+extern int FcGetVersion();
 /* Defined in _Glue_.c */
 extern long get_face_count (string filepath);
 extern FontConfig.Font? FcGetFontFromFile (string filepath, int index);

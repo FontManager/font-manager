@@ -68,7 +68,7 @@ namespace FontManager {
         public string select { get; set; default = "*"; }
         public int limit { get; set; default = -1; }
         public bool unique { get; set; default = false; }
-        public bool debug { get; set; default = true; }
+        public bool debug { get; set; default = false; }
         public int result { get; protected set; default = Sqlite.OK; }
 
         private bool in_transaction = false;
@@ -317,9 +317,13 @@ namespace FontManager {
         db.table = "Fonts";
         db.select = "filepath";
         db.unique = true;
-        db.execute_query();
-        foreach (var row in db)
-            results.add(row.column_text(0));
+        try {
+            db.execute_query();
+            foreach (var row in db)
+                results.add(row.column_text(0));
+        } catch (DatabaseError e) {
+            error("Database Error : %s", e.message);
+        }
         db.close();
         return results;
     }

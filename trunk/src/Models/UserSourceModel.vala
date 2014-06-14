@@ -79,6 +79,7 @@ namespace FontManager {
             this.append(out iter, null);
             this.set(iter, 0, source, 1, source.name, -1);
             sources.save();
+            message("Added new font source : %s", source.path);
             return;
         }
 

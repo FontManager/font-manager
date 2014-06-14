@@ -40,8 +40,14 @@ public class ArchiveManager : Object {
     internal DBusService? service = null;
 
     internal void init () {
-        service = Bus.get_proxy_sync(BusType.SESSION, "org.gnome.ArchiveManager1", "/org/gnome/ArchiveManager1");
-        service.progress.connect((p, m) => { progress(m, (int) p, 100); });
+        Logger.verbose("File Roller - Initialize");
+        try {
+            service = Bus.get_proxy_sync(BusType.SESSION, "org.gnome.ArchiveManager1", "/org/gnome/ArchiveManager1");
+            service.progress.connect((p, m) => { progress(m, (int) p, 100); });
+        } catch (IOError e) {
+            warning("Features which depend on Archive Manager will not function correctly");
+            error("Failed to contact Archive Manager service : %s", e.message);
+        }
         return;
     }
 
@@ -52,31 +58,60 @@ public class ArchiveManager : Object {
         }
     }
 
-    public void add_to_archive (string archive, string [] uris, bool use_progress_dialog = true) throws Error {
-        file_roller.add_to_archive(archive, uris, use_progress_dialog);
-        return;
+    public bool add_to_archive (string archive, string [] uris, bool use_progress_dialog = true) {
+        Logger.verbose("File Roller - Add to archive : %s", archive);
+        try {
+            file_roller.add_to_archive(archive, uris, use_progress_dialog);
+            return true;
+        } catch (IOError e) {
+            warning("Failed to contact Archive Manager service : %s", e.message);
+        }
+        return false;
     }
 
-    public void compress (string [] uris, string destination, bool use_progress_dialog = true) throws Error {
-        file_roller.compress(uris, destination, use_progress_dialog);
-        return;
+    public bool compress (string [] uris, string destination, bool use_progress_dialog = true) {
+        Logger.verbose("File Roller - Compress : %s", destination);
+        try {
+            file_roller.compress(uris, destination, use_progress_dialog);
+            return true;
+        } catch (IOError e) {
+            warning("Failed to contact Archive Manager service : %s", e.message);
+        }
+        return false;
     }
 
-    public void extract (string archive, string destination, bool use_progress_dialog = true) throws Error {
-        file_roller.extract(archive, destination, use_progress_dialog);
-        return;
+    public bool extract (string archive, string destination, bool use_progress_dialog = true) {
+        Logger.verbose("File Roller - Extract %s to %s", archive, destination);
+        try {
+            file_roller.extract(archive, destination, use_progress_dialog);
+            return true;
+        } catch (IOError e) {
+            warning("Failed to contact Archive Manager service : %s", e.message);
+        }
+        return false;
     }
 
-    public void extract_here (string archive, bool use_progress_dialog = true) throws Error {
-        file_roller.extract_here(archive, use_progress_dialog);
-        return;
+    public bool extract_here (string archive, bool use_progress_dialog = true) {
+        Logger.verbose("File Roller - Extract here : %s", archive);
+        try {
+            file_roller.extract_here(archive, use_progress_dialog);
+            return true;
+        } catch (IOError e) {
+            warning("Failed to contact Archive Manager service : %s", e.message);
+        }
+        return false;
     }
 
-    public Gee.ArrayList <string> get_supported_types (string action = "extract") throws Error {
-        HashTable <string, string> [] array = file_roller.get_supported_types(action);
+    public Gee.ArrayList <string> get_supported_types (string action = "extract") {
+        Logger.verbose("File Roller - Get supported types");
         var types = new Gee.ArrayList <string> ();
-        foreach (var hashtable in array)
-            types.add(hashtable.get("mime-type"));
+        try {
+            HashTable <string, string> [] array = file_roller.get_supported_types(action);
+            foreach (var hashtable in array)
+                types.add(hashtable.get("mime-type"));
+        } catch (Error e) {
+            warning("Failed to contact Archive Manager service : %s", e.message);
+        }
         return types;
     }
 

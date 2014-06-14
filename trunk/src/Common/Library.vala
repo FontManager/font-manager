@@ -107,14 +107,18 @@ namespace FontManager {
                 if (data.fontinfo.filetype == "Type 1") {
                     foreach (var ext in FONT_METRICS) {
                         string par = data.file.get_parent().get_path();
-                        FileInfo inf = data.file.query_info(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
-                        string name = inf.get_name().split_set(".")[0] + ext;
-                        string poss = Path.build_filename(par, name);
-                        File f = File.new_for_path(poss);
-                        if (f.query_exists()) {
-                            string path = Path.build_filename(dest, filename + ext);
-                            File _f = File.new_for_path(path);
-                            try_copy(f, _f);
+                        try {
+                            FileInfo inf = data.file.query_info(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
+                            string name = inf.get_name().split_set(".")[0] + ext;
+                            string poss = Path.build_filename(par, name);
+                            File f = File.new_for_path(poss);
+                            if (f.query_exists()) {
+                                string path = Path.build_filename(dest, filename + ext);
+                                File _f = File.new_for_path(path);
+                                try_copy(f, _f);
+                            }
+                        } catch (Error e) {
+                            error("Error querying file information : %s", e.message);
                         }
                     }
                 }
@@ -180,7 +184,12 @@ namespace FontManager {
             }
 
             internal static void process_archive (ArchiveManager archive_manager, File file) {
-                string? _tmpdir = DirUtils.make_tmp(TMPL);
+                string? _tmpdir = null;
+                try {
+                    _tmpdir = DirUtils.make_tmp(TMPL);
+                } catch (FileError e) {
+                    error("Error creating temporary working directory : %S", e.message);
+                }
                 if (_tmpdir == null) {
                     if (install_failed == null)
                         install_failed = new Gee.HashMap <string, string> ();
@@ -188,10 +197,9 @@ namespace FontManager {
                     return;
                 }
                 var tmpdir = File.new_for_path(_tmpdir);
-                try {
-                    archive_manager.extract(file.get_uri(), tmpdir.get_uri());
+                if (archive_manager.extract(file.get_uri(), tmpdir.get_uri()))
                     process_directory(tmpdir);
-                } catch (Error e) {
+                else {
                     if (install_failed == null)
                         install_failed = new Gee.HashMap <string, string> ();
                     install_failed[file.get_path()] = "Failed to extract archive";
@@ -207,14 +215,18 @@ namespace FontManager {
                 int processed = 0;
                 foreach (var file in filelist) {
                     var attrs = "%s,%s".printf(FileAttribute.STANDARD_CONTENT_TYPE, FileAttribute.STANDARD_TYPE);
-                    var fileinfo = file.query_info(attrs, FileQueryInfoFlags.NONE, null);
-                    string content_type = fileinfo.get_content_type();
-                    if (fileinfo.get_file_type() == FileType.DIRECTORY) {
-                        process_directory(file);
-                    } else if (content_type.contains("font")) {
-                        process_file(file);
-                    } else if (content_type in supported_archives) {
-                        process_archive(archive_manager, file);
+                    try {
+                        var fileinfo = file.query_info(attrs, FileQueryInfoFlags.NONE, null);
+                        string content_type = fileinfo.get_content_type();
+                        if (fileinfo.get_file_type() == FileType.DIRECTORY) {
+                            process_directory(file);
+                        } else if (content_type.contains("font")) {
+                            process_file(file);
+                        } else if (content_type in supported_archives) {
+                            process_archive(archive_manager, file);
+                        }
+                    } catch (Error e) {
+                        error("Error querying file information : %s", e.message);
                     }
                     processed++;
                     if (progress != null)

@@ -85,7 +85,6 @@ namespace FontConfig {
         }
 
         private File? file = null;
-        private FileMonitor? monitor = null;
 
         internal string? _name = null;
         internal string? _uri = null;
