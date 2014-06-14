@@ -65,6 +65,7 @@ Common/Constants.vala \
 Common/Database.vala \
 Common/FontInfo.vala \
 Common/Library.vala \
+Common/Logger.vala \
 Common/Utils.vala \
 Filters/Category.vala \
 Filters/Collection.vala \

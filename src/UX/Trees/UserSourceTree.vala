@@ -42,7 +42,6 @@ namespace FontManager {
         public Gtk.TreeView tree { get; protected set; }
 
         internal Gtk.CellRendererText renderer;
-        internal CellRendererCount count_renderer;
         internal Gtk.CellRendererPixbuf pixbuf_renderer;
 
         UserSourceModel _model;
@@ -81,13 +80,16 @@ namespace FontManager {
 
         internal void on_add_source () {
             var new_sources = FileSelector.source_selection((Gtk.Window) this.get_toplevel());
-            foreach (var uri in new_sources)
-                model.add_source_from_uri(uri);
-            Main.instance.update();
+            if (new_sources.length > 0) {
+                foreach (var uri in new_sources)
+                    model.add_source_from_uri(uri);
+                Main.instance.update();
+            }
             return;
         }
 
         internal void on_remove_source () {
+            message("Removing font source : %s", selected_filter.path);
             selected_filter.active = false;
             model.sources.remove(selected_filter);
             model.sources.save();

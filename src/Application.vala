@@ -48,13 +48,23 @@ namespace FontManager {
         }
 
         public void on_help () {
-            Gtk.show_uri(null, "help:%s".printf(NAME), Gdk.CURRENT_TIME);
+            try {
+                Gtk.show_uri(null, "help:%s".printf(NAME), Gdk.CURRENT_TIME);
+            } catch (Error e) {
+                error("Error launching uri handler : %s", e.message);
+            }
             return;
         }
 
         public static int main (string [] args) {
             //Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
             Environment.set_application_name(About.NAME);
+            Logger.initialize(About.NAME);
+            Logger.DisplayLevel = LogLevel.INFO;
+            message("%s %s", About.NAME, About.VERSION);
+            message("Using FontConfig %s", FontConfig.get_version_string());
+            message("Using Pango %s", Pango.version_string());
+            message("Using Gtk+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
             Intl.setup(NAME);
             FontConfig.enable_user_config(false);
             Gtk.init(ref args);

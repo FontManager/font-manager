@@ -37,10 +37,15 @@ namespace FontManager {
         public virtual void update (Database db) {
             families.clear();
             descriptions.clear();
-            get_matching_families_and_fonts(db, families, descriptions, condition);
-            if (children != null)
-                foreach (var child in children)
-                   child.update(db);
+            try {
+                get_matching_families_and_fonts(db, families, descriptions, condition);
+                if (children != null)
+                    foreach (var child in children)
+                       child.update(db);
+            } catch (DatabaseError e) {
+                warning ("%s category results invalid", name);
+                error("Database error : %s", e.message);
+            }
             return;
         }
 

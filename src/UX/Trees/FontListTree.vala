@@ -30,7 +30,7 @@ namespace FontManager {
 
         public signal void font_selected (string description);
 
-        public unowned Gtk.TreeStore? model {
+        public new unowned Gtk.TreeStore? model {
             get {
                 return _model;
             }

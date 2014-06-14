@@ -50,7 +50,11 @@ namespace FontManager {
         internal bool queue_update = false;
 
         public Main () {
-            database = get_database();
+            try {
+                database = get_database();
+            } catch (DatabaseError e) {
+                critical("Failed to initialize database : %s", e.message);
+            }
             fontconfig = new FontConfig.Main();
             fontconfig.progress.connect((m, p, t) => { progress(m, p, t); });
             collections = load_collections();
@@ -59,14 +63,21 @@ namespace FontManager {
             font_model = new FontModel();
             user_source_model = new UserSourceModel();
             settings = new GLib.Settings(SCHEMA_ID);
-            fontconfig.changed.connect((f, ev) => { update(); });
+            fontconfig.changed.connect((f, ev) => {
+                message("Filesystem change detected");
+                update();
+            });
         }
 
         public void init () {
             if (init_called)
                 return;
             fontconfig.init();
-            sync_fonts_table(database, FontConfig.list_fonts(), (m, p, t) => { progress(m, p, t); });
+            try {
+                sync_fonts_table(database, FontConfig.list_fonts(), (m, p, t) => { progress(m, p, t); });
+            } catch (DatabaseError e) {
+                critical("Database synchronization failed : %s", e.message);
+            }
             category_model.database = database;
             collection_model.collections = collections;
             font_model.families = fontconfig.families;
@@ -76,7 +87,11 @@ namespace FontManager {
         }
 
         internal void end_update () {
-            sync_fonts_table(database, FontConfig.list_fonts(), (m, p, t) => { progress(m, p, t); });
+            try {
+                sync_fonts_table(database, FontConfig.list_fonts(), (m, p, t) => { progress(m, p, t); });
+            } catch (DatabaseError e) {
+                critical("Database synchronization failed : %s", e.message);
+            }
             category_model.update();
             font_model.update();
             application.main_window.loading = false;
@@ -99,6 +114,7 @@ namespace FontManager {
                 queue_update = false;
             }
             update_in_progress = true;
+            message("Updating font configuration");
             FontConfig.update_cache();
             fontconfig.async_update.begin((obj, res) => {
                 try {
@@ -106,6 +122,7 @@ namespace FontManager {
                     application.main_window.loading = true;
                     fontconfig.async_update.end(res);
                     end_update();
+                    message("Font configuration update complete");
                 } catch (ThreadError e) {
                     critical("Thread error : %s", e.message);
                     end_update();
