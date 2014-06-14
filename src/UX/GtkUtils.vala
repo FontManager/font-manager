@@ -161,12 +161,11 @@ public struct Color
      * @param color the color to use
      * @return new {@link Color} based on the given one
      */
-    public static Color from_gdk_color (Gdk.Color color)
-    {
+    public static Color from_gdk_color (Gdk.Color color) {
         return { (double) color.red / uint16.MAX,
-            (double) color.green / uint16.MAX,
-            (double) color.blue / uint16.MAX,
-            1.0 };
+                  (double) color.green / uint16.MAX,
+                  (double) color.blue / uint16.MAX,
+                  1.0 };
     }
 
     /**
@@ -174,12 +173,11 @@ public struct Color
      *
      * @return new {@link Gdk.Color}
      */
-    public Gdk.Color to_gdk_color ()
-    {
+    public Gdk.Color to_gdk_color () {
         return { 0,
-            (uint16) (R * uint16.MAX),
-            (uint16) (G * uint16.MAX),
-            (uint16) (B * uint16.MAX) };
+                (uint16) (R * uint16.MAX),
+                (uint16) (G * uint16.MAX),
+                (uint16) (B * uint16.MAX) };
     }
 
     /**
@@ -188,8 +186,7 @@ public struct Color
      * @param color the color to use
      * @return new {@link Color} based on the given one
      */
-    public static Color from_gdk_rgba (Gdk.RGBA color)
-    {
+    public static Color from_gdk_rgba (Gdk.RGBA color) {
         return { color.red, color.green, color.blue, color.alpha };
     }
 
@@ -198,8 +195,7 @@ public struct Color
      *
      * @return new {@link Gdk.RGBA}
      */
-    public Gdk.RGBA to_gdk_rgba ()
-    {
+    public Gdk.RGBA to_gdk_rgba () {
         return { R, G, B, A };
     }
 
@@ -208,17 +204,15 @@ public struct Color
      *
      * @return whether the give color equals this color.
      */
-    public bool equal (Color color)
-    {
+    public bool equal (Color color) {
         return (R == color.R && G == color.G && B == color.B && A == color.A);
     }
 
     /**
      * Set HSV color values of this color.
      */
-    public void set_hsv (double h, double s, double v)
-    {
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+    public void set_hsv (double h, double s, double v) {
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     /**
@@ -227,12 +221,11 @@ public struct Color
      * @param hue the new hue for the color
      */
     public void set_hue (double hue)
-        requires (hue >= 0 && hue <= 360)
-    {
+    requires (hue >= 0 && hue <= 360) {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         h = hue;
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     /**
@@ -241,12 +234,11 @@ public struct Color
      * @param sat the new saturation for the color
      */
     public void set_sat (double sat)
-        requires (sat >= 0 && sat <= 1)
-    {
+    requires (sat >= 0 && sat <= 1) {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         s = sat;
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     /**
@@ -255,12 +247,11 @@ public struct Color
      * @param val the new value for the color
      */
     public void set_val (double val)
-        requires (val >= 0 && val <= 1)
-    {
+    requires (val >= 0 && val <= 1) {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         v = val;
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     /**
@@ -269,17 +260,15 @@ public struct Color
      * @param alpha the new alpha for the color
      */
     public void set_alpha (double alpha)
-        requires (alpha >= 0 && alpha <= 1)
-    {
+    requires (alpha >= 0 && alpha <= 1) {
         A = alpha;
     }
 
     /**
      * Get HSV color values of this color.
      */
-    public void get_hsv (out double h, out double s, out double v)
-    {
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+    public void get_hsv (out double h, out double s, out double v) {
+        rgb_to_hsv(R, G, B, out h, out s, out v);
     }
 
     /**
@@ -287,10 +276,9 @@ public struct Color
      *
      * @return the hue for the color
      */
-    public double get_hue ()
-    {
+    public double get_hue () {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         return h;
     }
 
@@ -299,10 +287,9 @@ public struct Color
      *
      * @return the saturation for the color
      */
-    public double get_sat ()
-    {
+    public double get_sat () {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         return s;
     }
 
@@ -311,10 +298,9 @@ public struct Color
      *
      * @return the value for the color
      */
-    public double get_val ()
-    {
+    public double get_val () {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         return v;
     }
 
@@ -323,12 +309,11 @@ public struct Color
      *
      * @param val the amount to add to the hue
      */
-    public void add_hue (double val)
-    {
+    public void add_hue (double val) {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         h = (((h + val) % 360) + 360) % 360;
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     /**
@@ -337,12 +322,11 @@ public struct Color
      * @param sat the minimum saturation allowed
      */
     public void set_min_sat (double sat)
-        requires (sat >= 0 && sat <= 1)
-    {
+    requires (sat >= 0 && sat <= 1) {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         s = double.max (s, sat);
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     /**
@@ -351,12 +335,11 @@ public struct Color
      * @param val the minimum value allowed
      */
     public void set_min_value (double val)
-        requires (val >= 0 && val <= 1)
-    {
+    requires (val >= 0 && val <= 1) {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         v = double.max (v, val);
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     /**
@@ -365,12 +348,11 @@ public struct Color
      * @param sat the maximum saturation allowed
      */
     public void set_max_sat (double sat)
-        requires (sat >= 0 && sat <= 1)
-    {
+    requires (sat >= 0 && sat <= 1) {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         s = double.min (s, sat);
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     /**
@@ -379,12 +361,11 @@ public struct Color
      * @param val the maximum value allowed
      */
     public void set_max_val (double val)
-        requires (val >= 0 && val <= 1)
-    {
+    requires (val >= 0 && val <= 1) {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         v = double.min (v, val);
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     /**
@@ -393,12 +374,11 @@ public struct Color
      * @param amount amount to multiply the saturation by
      */
     public void multiply_sat (double amount)
-        requires (amount >= 0)
-    {
+    requires (amount >= 0) {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         s = double.min (1, s * amount);
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     /**
@@ -407,12 +387,11 @@ public struct Color
      * @param amount percent of the value to brighten by
      */
     public void brighten_val (double amount)
-        requires (amount >= 0 && amount <= 1)
-    {
+    requires (amount >= 0 && amount <= 1) {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         v = double.min (1, v + (1 - v) * amount);
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     /**
@@ -421,12 +400,11 @@ public struct Color
      * @param amount percent of the value to darken by
      */
     public void darken_val (double amount)
-        requires (amount >= 0 && amount <= 1)
-    {
+    requires (amount >= 0 && amount <= 1) {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         v = double.max (0, v - (1 - v) * amount);
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     /**
@@ -435,19 +413,17 @@ public struct Color
      * @param amount percent of the saturation to darken by
      */
     public void darken_by_sat (double amount)
-        requires (amount >= 0 && amount <= 1)
-    {
+    requires (amount >= 0 && amount <= 1) {
         double h, s, v;
-        rgb_to_hsv (R, G, B, out h, out s, out v);
+        rgb_to_hsv(R, G, B, out h, out s, out v);
         v = double.max (0, v - amount * s);
-        hsv_to_rgb (h, s, v, out R, out G, out B);
+        hsv_to_rgb(h, s, v, out R, out G, out B);
     }
 
     static void rgb_to_hsv (double r, double g, double b, out double h, out double s, out double v)
-        requires (r >= 0 && r <= 1)
-        requires (g >= 0 && g <= 1)
-        requires (b >= 0 && b <= 1)
-    {
+    requires (r >= 0 && r <= 1)
+    requires (g >= 0 && g <= 1)
+    requires (b >= 0 && b <= 1) {
         v = double.max (r, double.max (g, b));
         if (v == 0) {
             h = 0;
@@ -460,8 +436,8 @@ public struct Color
         g /= v;
         b /= v;
 
-        var min = double.min (r, double.min (g, b));
-        var max = double.max (r, double.max (g, b));
+        var min = double.min(r, double.min(g, b));
+        var max = double.max(r, double.max(g, b));
 
         var delta = max - min;
         s = delta;
@@ -487,10 +463,9 @@ public struct Color
     }
 
     static void hsv_to_rgb (double h, double s, double v, out double r, out double g, out double b)
-        requires (h >= 0 && h <= 360)
-        requires (s >= 0 && s <= 1)
-        requires (v >= 0 && v <= 1)
-    {
+    requires (h >= 0 && h <= 360)
+    requires (s >= 0 && s <= 1)
+    requires (v >= 0 && v <= 1) {
         r = 0;
         g = 0;
         b = 0;
@@ -500,7 +475,7 @@ public struct Color
             g = v;
             b = v;
         } else {
-            var secNum = (int) Math.floor (h / 60);
+            var secNum = (int) Math.floor(h / 60);
             var fracSec = h / 60.0 - secNum;
 
             var p = v * (1 - s);
@@ -508,36 +483,36 @@ public struct Color
             var t = v * (1 - s * (1 - fracSec));
 
             switch (secNum) {
-            case 0:
-                r = v;
-                g = t;
-                b = p;
-                break;
-            case 1:
-                r = q;
-                g = v;
-                b = p;
-                break;
-            case 2:
-                r = p;
-                g = v;
-                b = t;
-                break;
-            case 3:
-                r = p;
-                g = q;
-                b = v;
-                break;
-            case 4:
-                r = t;
-                g = p;
-                b = v;
-                break;
-            case 5:
-                r = v;
-                g = p;
-                b = q;
-                break;
+                case 0:
+                    r = v;
+                    g = t;
+                    b = p;
+                    break;
+                case 1:
+                    r = q;
+                    g = v;
+                    b = p;
+                    break;
+                case 2:
+                    r = p;
+                    g = v;
+                    b = t;
+                    break;
+                case 3:
+                    r = p;
+                    g = q;
+                    b = v;
+                    break;
+                case 4:
+                    r = t;
+                    g = p;
+                    b = v;
+                    break;
+                case 5:
+                    r = v;
+                    g = p;
+                    b = q;
+                    break;
             }
         }
     }
@@ -548,12 +523,11 @@ public struct Color
      *
      * @return the string representation of this color
      */
-    public string to_string ()
-    {
+    public string to_string () {
         return "%d;;%d;;%d;;%d".printf ((int) (R * uint8.MAX),
-            (int) (G * uint8.MAX),
-            (int) (B * uint8.MAX),
-            (int) (A * uint8.MAX));
+                                         (int) (G * uint8.MAX),
+                                         (int) (B * uint8.MAX),
+                                         (int) (A * uint8.MAX));
     }
 
     /**
@@ -562,18 +536,17 @@ public struct Color
      *
      * @return new {@link Color} based on the given string
      */
-    public static Color from_string (string s)
-    {
+    public static Color from_string (string s) {
         var parts = s.split (";;");
 
         if (parts.length != 4) {
-            critical ("Malformed color string '%s'", s);
+            critical("Malformed color string '%s'", s);
             return {0};
         }
 
-        return { double.min (uint8.MAX, double.max (0, int.parse (parts [0]))) / uint8.MAX,
-            double.min (uint8.MAX, double.max (0, int.parse (parts [1]))) / uint8.MAX,
-            double.min (uint8.MAX, double.max (0, int.parse (parts [2]))) / uint8.MAX,
-            double.min (uint8.MAX, double.max (0, int.parse (parts [3]))) / uint8.MAX };
+        return { double.min(uint8.MAX, double.max(0, int.parse(parts [0]))) / uint8.MAX,
+                  double.min(uint8.MAX, double.max(0, int.parse(parts [1]))) / uint8.MAX,
+                  double.min(uint8.MAX, double.max(0, int.parse(parts [2]))) / uint8.MAX,
+                  double.min(uint8.MAX, double.max(0, int.parse(parts [3]))) / uint8.MAX };
     }
 }
