@@ -107,7 +107,7 @@ namespace FontManager {
         }
 
         internal GLib.MenuModel get_main_menu_model () {
-            var application = Main.instance.application;
+            var application = (Application) GLib.Application.get_default();
             var mode_section = new GLib.Menu();
             string [] modes = {"Manage", "Browse", "Compare", "Character Map"};
             var mode_action = new SimpleAction.stateful("mode", VariantType.STRING, "Manage");
@@ -129,7 +129,7 @@ namespace FontManager {
 
 
         internal GLib.MenuModel get_app_menu_model () {
-            var application = Main.instance.application;
+            var application = (Application) GLib.Application.get_default();
             MenuEntry [] app_menu_entries = {
                 /* action_name, display_name, detailed_action_name, accelerator, method */
                 MenuEntry("about", _("About"), "app.about", "<Alt>A", new MenuCallbackWrapper(application.on_about)),

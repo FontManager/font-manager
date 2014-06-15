@@ -31,12 +31,25 @@ namespace Intl {
 
 }
 
+namespace Logging {
+
+    public void setup () {
+        Logger.initialize(FontManager.About.NAME);
+        Logger.DisplayLevel = LogLevel.INFO;
+        message("%s %s", FontManager.About.NAME, FontManager.About.VERSION);
+        message("Using FontConfig %s", FontConfig.get_version_string());
+        message("Using Pango %s", Pango.version_string());
+        message("Using Gtk+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
+    }
+
+}
+
 public delegate void ReloadFunc ();
 public delegate void ProgressCallback (string? message, int processed, int total);
 
-delegate void MenuCallback ();
+public delegate void MenuCallback ();
 
-struct MenuEntry {
+public struct MenuEntry {
     public string action_name;
     public string display_name;
     public string detailed_action_name;
@@ -52,47 +65,47 @@ struct MenuEntry {
     }
 }
 
-class MenuCallbackWrapper {
+public class MenuCallbackWrapper {
     public MenuCallback run;
     public MenuCallbackWrapper (MenuCallback c) {
         run = () => { c(); };
     }
 }
 
-string get_user_font_dir () {
+public string get_user_font_dir () {
     return Path.build_filename(Environment.get_user_data_dir(), "fonts");
 }
 
-string get_localized_pangram () {
+public string get_localized_pangram () {
     return Pango.Language.get_default().get_sample_string();
 }
 
-string get_localized_preview_text () {
+public string get_localized_preview_text () {
     return FontManager.DEFAULT_PREVIEW_TEXT.printf(get_localized_pangram());
 }
 
-string get_local_time () {
+public string get_local_time () {
     DateTime creation_time = new DateTime.now_local();
     return "%s".printf(creation_time.format("%c"));
 }
 
-int natural_cmp (string a, string b) {
+public int natural_cmp (string a, string b) {
     return strcmp(a.collate_key_for_filename(-1), b.collate_key_for_filename(-1));
 }
 
-string get_file_extension (string path) {
+public string get_file_extension (string path) {
     var arr = path.split_set(".");
     return ".%s".printf(arr[arr.length - 1]);
 }
 
-Gee.ArrayList <string> sorted_list_from_collection (Gee.Collection <string> iter) {
+public Gee.ArrayList <string> sorted_list_from_collection (Gee.Collection <string> iter) {
     var l = new Gee.ArrayList <string> ();
     l.add_all(iter);
     l.sort((CompareDataFunc) natural_cmp);
     return l;
 }
 
-void builder_append (StringBuilder builder, string? val) {
+public void builder_append (StringBuilder builder, string? val) {
     if (val == null)
         return;
     builder.append(" ");
@@ -100,14 +113,14 @@ void builder_append (StringBuilder builder, string? val) {
     return;
 }
 
-void add_action_from_menu_entry (ActionMap map, MenuEntry entry) {
+public void add_action_from_menu_entry (ActionMap map, MenuEntry entry) {
     var action = new SimpleAction(entry.action_name, null);
     action.activate.connect((a, p) => { entry.method.run(); } );
     map.add_action(action);
     return;
 }
 
-bool remove_directory_if_empty (File? dir) {
+public bool remove_directory_if_empty (File? dir) {
     if (dir == null)
         return false;
     try {
@@ -124,7 +137,7 @@ bool remove_directory_if_empty (File? dir) {
     return false;
 }
 
-bool remove_directory (File dir, bool recursive = true) {
+public bool remove_directory (File dir, bool recursive = true) {
     try {
         if (recursive) {
             FileInfo fileinfo;

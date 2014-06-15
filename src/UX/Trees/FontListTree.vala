@@ -30,7 +30,7 @@ namespace FontManager {
 
         public signal void font_selected (string description);
 
-        public new unowned Gtk.TreeStore? model {
+        public new weak Gtk.TreeStore? model {
             get {
                 return _model;
             }
@@ -43,7 +43,7 @@ namespace FontManager {
             }
         }
 
-        public unowned FontConfig.Reject reject {
+        public weak FontConfig.Reject reject {
             get {
                 return _reject;
             }
@@ -56,8 +56,8 @@ namespace FontManager {
         public FontListControls controls { get; protected set; }
 //        public bool activatable { get; set; }
 
-        private unowned FontConfig.Reject _reject;
-        private unowned Gtk.TreeStore? _model = null;
+        private weak FontConfig.Reject _reject;
+        private weak Gtk.TreeStore? _model = null;
         private Gtk.CellRendererToggle toggle;
 
         public FontList () {

@@ -23,7 +23,7 @@ namespace FontManager {
 
     namespace NotImplemented {
 
-        public unowned Gtk.Window? parent;
+        public weak Gtk.Window? parent;
 
         public static void run (string? message) {
             var ni = new Gtk.MessageDialog.with_markup(parent,

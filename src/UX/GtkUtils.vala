@@ -47,6 +47,13 @@ public void set_application_style () {
     return;
 }
 
+public bool Gnome3 () {
+    Gtk.Settings settings = Gtk.Settings.get_default();
+    bool has_app_menu = settings.gtk_shell_shows_app_menu;
+    bool has_menubar = settings.gtk_shell_shows_menubar;
+    return has_app_menu && !has_menubar;
+}
+
 public void ensure_ui_update () {
     while (Gtk.events_pending())
         Gtk.main_iteration();
