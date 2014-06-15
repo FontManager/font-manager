@@ -632,6 +632,7 @@ namespace FontManager {
                 settings.set_strv("compare-list", compare.list());
                 }
             );
+            settings.delay();
             return;
         }
 

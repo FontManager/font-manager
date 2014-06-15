@@ -33,8 +33,16 @@ namespace FontManager {
             Object(application_id : app_id, flags : app_flags);
             startup.connect(() => {
                 builder = new Gtk.Builder();
-                if (Gnome3())
+                if (Gnome3()) {
                     set_gnome_app_menu();
+                    string? version = get_command_line_output("gnome-shell --version");
+                    if (version != null)
+                        message("Running on %s", version);
+                } else {
+                    string? de = Environment.get_variable("XDG_CURRENT_DESKTOP");
+                    if (de != null)
+                        message("Running on %s", de);
+                }
             });
         }
 
@@ -44,6 +52,7 @@ namespace FontManager {
         }
 
         public void on_quit () {
+            Main.instance.settings.apply();
             main_window.hide();
             remove_window(main_window);
             quit();

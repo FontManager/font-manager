@@ -72,6 +72,19 @@ public class MenuCallbackWrapper {
     }
 }
 
+public string? get_command_line_output (string cmd)
+{
+    try {
+        int exit;
+        string std_out;
+        Process.spawn_command_line_sync(cmd, out std_out, null, out exit);
+        return std_out;
+    } catch (Error e) {
+        warning("Execution of %s failed : %s", cmd, e.message);
+        return null;
+    }
+}
+
 public string get_user_font_dir () {
     return Path.build_filename(Environment.get_user_data_dir(), "fonts");
 }
