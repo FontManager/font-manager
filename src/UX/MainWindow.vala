@@ -237,6 +237,7 @@ namespace FontManager {
             main_box.pack_end(main_pane, true, true, 0);
             if (!Gnome3()) {
                 main_box.pack_start(titlebar, false, true, 0);
+                add_separator(main_box, Gtk.Orientation.HORIZONTAL);
                 titlebar.set_title("");
                 titlebar.get_style_context().remove_class("header-bar");
                 titlebar.get_style_context().remove_class("titlebar");
