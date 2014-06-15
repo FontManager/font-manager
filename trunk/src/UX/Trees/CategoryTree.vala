@@ -35,7 +35,7 @@ namespace FontManager {
 
         public signal void selection_changed (Category filter, int category);
 
-        public unowned CategoryModel model {
+        public weak CategoryModel model {
             get {
                 return _model;
             }
@@ -52,7 +52,7 @@ namespace FontManager {
         public CellRendererCount count_renderer { get; protected set; }
         public Gtk.CellRendererPixbuf pixbuf_renderer { get; protected set; }
 
-        private unowned CategoryModel _model;
+        private weak CategoryModel _model;
 
         public CategoryTree () {
             tree = new Gtk.TreeView();

@@ -31,7 +31,7 @@ namespace FontManager {
             }
         }
 
-        public unowned Application? application { get; set; }
+        public weak Application? application { get; set; }
 
         public signal void progress (string? message, int processed, int total);
 
@@ -131,12 +131,12 @@ namespace FontManager {
             return;
         }
 
-        public void on_activate (Application application) {
-            if (application.main_window != null) {
+        public void on_activate () {
+            if (application != null && application.main_window != null) {
                 application.main_window.present();
                 return;
             }
-            this.application = application;
+            application = (Application) GLib.Application.get_default();
             application.main_window = new MainWindow();
             application.add_window(application.main_window);
             application.main_window.loading = true;

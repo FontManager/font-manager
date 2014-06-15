@@ -114,7 +114,7 @@ namespace FontManager {
             }
         }
 
-        public unowned FontModel? font_model {
+        public weak FontModel? font_model {
             get {
                 return (FontModel) fontlist.model;
             }
@@ -123,7 +123,7 @@ namespace FontManager {
             }
         }
 
-        public unowned CollectionModel? collections {
+        public weak CollectionModel? collections {
             get {
                 return sidebar.standard.collection_tree.model;
             }
@@ -132,7 +132,7 @@ namespace FontManager {
             }
         }
 
-        public unowned CategoryModel? categories {
+        public weak CategoryModel? categories {
             get {
                 return sidebar.standard.category_tree.model;
             }
@@ -195,7 +195,8 @@ namespace FontManager {
             init_components();
             pack_components();
             show_components();
-            set_titlebar(titlebar);
+            if (Gnome3())
+                set_titlebar(titlebar);
             add(main_box);
             connect_signals();
         }
@@ -234,6 +235,14 @@ namespace FontManager {
             separator.pack_end(preview_notebook, true, true, 0);
             content_pane.add2(separator);
             main_box.pack_end(main_pane, true, true, 0);
+            if (!Gnome3()) {
+                main_box.pack_start(titlebar, false, true, 0);
+                titlebar.set_title("");
+                titlebar.get_style_context().remove_class("header-bar");
+                titlebar.get_style_context().remove_class("titlebar");
+                titlebar.get_style_context().remove_class("menubar");
+                titlebar.get_style_context().add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR);
+            }
             return;
         }
 
@@ -331,7 +340,8 @@ namespace FontManager {
 
         internal void connect_signals () {
             mode_changed.connect((m) => {
-                var action = ((SimpleAction) Main.instance.application.lookup_action("mode"));
+                var action_map = (Application) GLib.Application.get_default();
+                var action = ((SimpleAction) action_map.lookup_action("mode"));
                 action.set_state(((Mode) m).to_string());
             });
 
@@ -644,7 +654,7 @@ namespace FontManager {
             NotImplemented.parent = (Gtk.Window) this;
 
             delete_event.connect((w, e) => {
-                Main.instance.application.on_quit();
+                ((Application) GLib.Application.get_default()).on_quit();
                 return true;
                 }
             );

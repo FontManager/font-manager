@@ -27,12 +27,19 @@ namespace FontManager {
         [DBus (visible = false)]
         public MainWindow main_window { get; set; }
 
+        internal Gtk.Builder builder;
+
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
+            startup.connect(() => {
+                builder = new Gtk.Builder();
+                if (Gnome3())
+                    set_gnome_app_menu();
+            });
         }
 
         protected override void activate () {
-            Main.instance.on_activate(this);
+            Main.instance.on_activate();
             return;
         }
 
@@ -59,12 +66,7 @@ namespace FontManager {
         public static int main (string [] args) {
             //Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
             Environment.set_application_name(About.NAME);
-            Logger.initialize(About.NAME);
-            Logger.DisplayLevel = LogLevel.INFO;
-            message("%s %s", About.NAME, About.VERSION);
-            message("Using FontConfig %s", FontConfig.get_version_string());
-            message("Using Pango %s", Pango.version_string());
-            message("Using Gtk+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
+            Logging.setup();
             Intl.setup(NAME);
             FontConfig.enable_user_config(false);
             Gtk.init(ref args);
@@ -74,6 +76,16 @@ namespace FontManager {
             var main = new Application(BUS_ID, (ApplicationFlags.FLAGS_NONE));
             int res = main.run(args);
             return res;
+        }
+
+        internal void set_gnome_app_menu () {
+            try {
+                builder.add_from_resource("/org/gnome/FontManager/Menu.ui");
+                app_menu = builder.get_object("AppMenu") as GLib.MenuModel;
+            } catch (Error e) {
+                warning("Failed to set application menu : %s", e.message);
+            }
+            return;
         }
 
     }

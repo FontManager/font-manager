@@ -36,7 +36,7 @@ namespace FontManager {
 
         public Collection? selected_collection { get; protected set; default = null; }
 
-        public unowned CollectionModel model {
+        public weak CollectionModel model {
             get {
                 return _model;
             }
@@ -51,7 +51,7 @@ namespace FontManager {
             }
         }
 
-        public unowned FontConfig.Reject reject {
+        public weak FontConfig.Reject reject {
             get {
                 return _reject;
             }
@@ -67,8 +67,8 @@ namespace FontManager {
         public Gtk.CellRendererPixbuf pixbuf_renderer { get; protected set; }
 
         private Gtk.TreeIter selected_iter;
-        private unowned CollectionModel _model;
-        private unowned FontConfig.Reject _reject;
+        private weak CollectionModel _model;
+        private weak FontConfig.Reject _reject;
 
         public CollectionTree () {
             tree = new Gtk.TreeView();

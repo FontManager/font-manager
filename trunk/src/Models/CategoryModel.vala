@@ -23,7 +23,7 @@ namespace FontManager {
 
     public class CategoryModel : Gtk.TreeStore {
 
-        public unowned Database database {
+        public weak Database database {
             get {
                 return db;
             }
@@ -35,7 +35,7 @@ namespace FontManager {
         }
 
         internal Gee.ArrayList <Category> categories;
-        internal unowned Database db;
+        internal weak Database db;
 
         construct {
             set_column_types({typeof(Object), typeof(string), typeof(string), typeof(string), typeof(int), typeof(bool)});
