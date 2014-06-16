@@ -112,7 +112,6 @@ UX/Sidebar/MainSideBar.vala \
 UX/Sidebar/CharacterMapSideBar.vala \
 UX/Trees/CollectionTree.vala \
 UX/Trees/CategoryTree.vala \
-UX/Trees/FontList.vala \
 UX/Trees/FontListTree.vala \
 UX/Trees/UserSourceTree.vala \
 UX/Widgets/FontScale.vala \
