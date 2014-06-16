@@ -6,9 +6,6 @@ functioning as intended. However, make sure you are running the latest revision.
 Please DO NOT file issues regarding feature enhancements or missing features at
 this time.
 
-Please DO NOT file issues regarding appearance on desktop environments other than
-Gnome at this time.
-
 Features that are expected to work at this time:
 
     Migration of fonts and collections from the previous version.
@@ -33,6 +30,12 @@ Features that are expected to work at this time:
 
         Note : Font Manager should reload itself anytime fonts are installed
                or removed either through the application or any other method.
+
+    Font Sources
+
+        Adding / Removing font folders.
+        Fonts in these folders should be available for preview in the application
+        even if they are not enabled system wide.
 
 
 Features that need to be completed before release:
@@ -62,10 +65,6 @@ Feature parity with previous versions is a high priority but not a blocker
 
 
 KNOWN ISSUES
-
-    Some desktop environments or window managers, such as the one used in Xfce,
-    do not properly support using GtkHeaderBar as the titlebar yet.
-    This means the application does not look as intended.
 
     Some themes do not render as intended. This is a problem with the theme.
     Unless the issue also occurs when using Adwaita, or most other themes...
