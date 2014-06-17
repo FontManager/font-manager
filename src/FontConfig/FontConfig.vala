@@ -66,7 +66,7 @@ namespace FontConfig {
             load_user_fontconfig_files();
             cancel_monitors();
             if (!load_user_font_sources(sources.to_array()))
-            critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
+                critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
             families.update();
             enable_monitors();
             return;

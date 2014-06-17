@@ -26,7 +26,7 @@ namespace FontManager {
         public signal void selection_changed (FontConfig.FontSource filter);
         public signal void add_source ();
 
-        public UserSourceModel model {
+        public weak UserSourceModel model {
             get {
                 return _model;
             }
@@ -44,7 +44,7 @@ namespace FontManager {
         internal Gtk.CellRendererText renderer;
         internal Gtk.CellRendererPixbuf pixbuf_renderer;
 
-        UserSourceModel _model;
+        internal weak UserSourceModel _model;
         Gtk.CellRendererToggle toggle;
 
         public UserSourceTree () {
@@ -109,6 +109,10 @@ namespace FontManager {
             model.get_iter_from_string(out iter, path);
             model.get_value(iter, 0, out val);
             var source = (FontConfig.FontSource) val.get_object();
+            if (source == null) {
+                val.unset();
+                return;
+            }
             if (source.available)
                 source.active = !source.active;
             val.unset();
@@ -122,6 +126,10 @@ namespace FontManager {
             Value val;
             model.get_value(treeiter, 0, out val);
             var obj = val.get_object();
+            if (obj == null) {
+                val.unset();
+                return;
+            }
             var filetype = ((FontConfig.FontSource) obj).filetype;
             if (filetype == FileType.DIRECTORY || filetype == FileType.MOUNTABLE)
                 cell.set_property("icon-name", "folder");
@@ -138,6 +146,10 @@ namespace FontManager {
             Value val;
             model.get_value(treeiter, 0, out val);
             var obj = (FontConfig.FontSource) val.get_object();
+            if (obj == null) {
+                val.unset();
+                return;
+            }
             if (obj.available) {
                 cell.set_property("inconsistent", false);
                 cell.set_property("active", obj.active);
