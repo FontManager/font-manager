@@ -47,14 +47,19 @@ namespace FontManager {
                 filter.update(db);
                 Gtk.TreeIter iter;
                 this.append(out iter, null);
+                /* Comments are used for tooltips. */
+                string comment = Markup.escape_text(filter.comment);
                 if (filter.index < 3)
-                    this.set(iter, 0, filter, 1, filter.icon, 2, filter.name, 3, filter.comment, 4, filter.families.size, -1);
+                    this.set(iter, 0, filter, 1, filter.icon, 2, filter.name, 3, comment, 4, filter.families.size, -1);
                 else
-                    this.set(iter, 0, filter, 1, filter.icon, 2, filter.name, 3, filter.comment, 4, filter.families.size, 5, true, -1);
+                    this.set(iter, 0, filter, 1, filter.icon, 2, filter.name, 3, comment, 4, filter.families.size, 5, true, -1);
+                comment = null;
                 foreach(var child in filter.children) {
+                    string child_comment = Markup.escape_text(child.comment);
                     Gtk.TreeIter _iter;
                     this.append(out _iter, iter);
-                    this.set(_iter, 0, child, 1, child.icon, 2, child.name, 3, child.comment, 4, child.families.size, -1);
+                    this.set(_iter, 0, child, 1, child.icon, 2, child.name, 3, child_comment, 4, child.families.size, -1);
+                    child_comment = null;
                 }
             }
             return;
