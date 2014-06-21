@@ -107,12 +107,11 @@ namespace FontManager {
             spinner = new Gtk.Spinner();
             spinner.halign = Gtk.Align.CENTER;
             spinner.valign = Gtk.Align.CENTER;
-            spinner.set_size_request(36, 36);
+            spinner.set_size_request(48, 48);
             add(box);
             add_overlay(spinner);
             notebook.show();
             box.show();
-            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             spinner.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
         }

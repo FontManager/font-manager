@@ -52,7 +52,8 @@ namespace FontManager {
             }
         }
 
-        public string selected_family { get; private set; }
+        public weak FontConfig.Family? selected_family { get; private set; default = null; }
+        public weak FontConfig.Font? selected_font { get; private set; default = null; }
         public FontListControls controls { get; protected set; }
 //        public bool activatable { get; set; }
 
@@ -137,10 +138,12 @@ namespace FontManager {
             var obj = val.get_object();
             if (obj is FontConfig.Family) {
                 description = ((FontConfig.Family) obj).description;
-                selected_family = ((FontConfig.Family) obj).name;
+                selected_family = (FontConfig.Family) obj;
+                selected_font = null;
             } else {
                 description = ((FontConfig.Font) obj).description;
-                selected_family = ((FontConfig.Font) obj).family;
+                selected_family = null;
+                selected_font = (FontConfig.Font) obj;
             }
             font_selected(description);
             val.unset();
@@ -294,6 +297,7 @@ namespace FontManager {
 
         internal bool _loading;
         internal Gtk.Revealer revealer;
+        internal Gtk.Menu context_menu;
 
         public FontListTree () {
             var scroll = new Gtk.ScrolledWindow(null, null);
@@ -320,6 +324,34 @@ namespace FontManager {
             revealer.show();
             scroll.show();
             fontlist.show();
+//            context_menu = get_context_menu();
+//            connect_signals();
+        }
+
+        internal void connect_signals () {
+            fontlist.menu_request.connect((w, e) => {
+                context_menu.popup(null, null, null, e.button, e.time);
+            });
+            return;
+        }
+
+        internal Gtk.Menu get_context_menu () {
+            MenuEntry [] context_menu_entries = {
+                /* action_name, display_name, detailed_action_name, accelerator, method */
+                MenuEntry("font_details", _("Show Details"), "app.font_details", null, new MenuCallbackWrapper(on_show_details)),
+            };
+            var _menu = new Gtk.Menu();
+            foreach (var entry in context_menu_entries) {
+                var item = new Gtk.MenuItem.with_label(entry.display_name);
+                item.activate.connect(() => { entry.method.run(); });
+                item.show();
+                _menu.append(item);
+            }
+            return _menu;
+        }
+
+        public void on_show_details () {
+            message("%s", fontlist.selected_font != null ? fontlist.selected_font.filepath: fontlist.selected_family.name);
         }
 
     }

@@ -51,11 +51,13 @@ namespace FontManager {
             main_menu.add(main_menu_container);
             main_menu.direction = Gtk.ArrowType.DOWN;
             main_menu.relief = Gtk.ReliefStyle.NONE;
+            main_menu.use_popover = true;
             app_menu = new Gtk.MenuButton();
             var app_menu_icon = new Gtk.Image.from_icon_name(About.ICON, Gtk.IconSize.LARGE_TOOLBAR);
             app_menu.add(app_menu_icon);
             app_menu.direction = Gtk.ArrowType.DOWN;
             app_menu.relief = Gtk.ReliefStyle.NONE;
+            app_menu.use_popover = true;
             revealer = new Gtk.Revealer();
             revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_RIGHT);
             manage_controls = new BaseControls();
