@@ -1,7 +1,15 @@
-ALPHA release! This release is a preview intended for testing purposes only!
+Font Manager
 
-Please DO file issues regarding features that are already implemented and not
-functioning as intended. However, make sure you are running the latest revision.
+A simple font management application for Gtk+ Desktop Environments
+
+Font Manager is intended to provide a way for average users to easily manage desktop fonts, without having to resort to command line tools or editing configuration files by hand. While designed primarily with the Gnome Desktop Environment in mind, it should work well with other Gtk+ desktop environments.
+
+Font Manager is NOT intended to be a professional-grade font management solution. 
+
+
+=== Version 0.7 ===
+
+Initial release of Vala/Gtk+3 version.
 
 Please DO NOT file issues regarding feature enhancements or missing features at
 this time.
@@ -41,21 +49,15 @@ Features that are expected to work at this time:
         even if they are not enabled system wide.
 
 
-Features that need to be completed before release:
+Missing / Planned features :
 
     Help contents
-
-
-Features that will likely be completed before release:
 
     Font Metadata viewer
 
     Character map details viewer
 
     Database search
-
-
-Feature parity with previous versions is a high priority but not a blocker
 
     FontConfig editor
         - session-wide settings

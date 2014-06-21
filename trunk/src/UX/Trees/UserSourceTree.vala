@@ -89,6 +89,8 @@ namespace FontManager {
         }
 
         internal void on_remove_source () {
+            if (selected_filter == null)
+                return;
             message("Removing font source : %s", selected_filter.path);
             selected_filter.active = false;
             model.sources.remove(selected_filter);

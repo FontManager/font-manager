@@ -8,7 +8,7 @@ dnl
 
 dnl Initialize autoconf
 AC_PREREQ([2.69])
-AC_INIT([font-manager], [0.0], [https://code.google.com/p/font-manager/issues/list])
+AC_INIT([font-manager], [0.7], [https://code.google.com/p/font-manager/issues/list])
 AC_CONFIG_MACRO_DIR([m4])
 AC_SUBST([ACLOCAL_AMFLAGS], ["-I $ac_macro_dir \${ACLOCAL_FLAGS}"])
 
@@ -84,22 +84,22 @@ fi
 
 dnl Output files
 AC_CONFIG_FILES([
-	Makefile
-	help/Makefile
-	po/Makefile.in
-	resources/Makefile
-	src/Makefile
+    Makefile
+    help/Makefile
+    po/Makefile.in
+    resources/Makefile
+    src/Makefile
 ])
 
 AC_OUTPUT
 
 
 echo "
-	Font Manager $VERSION
+    Font Manager $VERSION
 
-	C compiler: ${CC}
-	Vala compiler: ${VALAC}
-	Installation prefix: ${prefix}
+    C compiler: ${CC}
+    Vala compiler: ${VALAC}
+    Installation prefix: ${prefix}
 
 "
 
