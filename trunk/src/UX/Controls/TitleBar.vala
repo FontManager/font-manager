@@ -91,8 +91,6 @@ namespace FontManager {
         internal void set_menus () {
             main_menu.set_menu_model(get_main_menu_model());
             app_menu.set_menu_model(get_app_menu_model());
-            main_menu.get_popup().halign = Gtk.Align.START;
-            app_menu.get_popup().halign = Gtk.Align.END;
             return;
         }
 
