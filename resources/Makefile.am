@@ -1,6 +1,7 @@
 EXTRA_DIST = \
 	FontManagerGResource.xml \
 	FontManager.css \
+	ApplicationMenu.ui \
 	font-manager.desktop.in \
 	org.gnome.FontManager.gschema.xml
 

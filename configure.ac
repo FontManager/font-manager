@@ -13,7 +13,7 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_SUBST([ACLOCAL_AMFLAGS], ["-I $ac_macro_dir \${ACLOCAL_FLAGS}"])
 
 dnl Initialize automake
-AM_INIT_AUTOMAKE([1.11 subdir-objects dist-bzip2])
+AM_INIT_AUTOMAKE([1.11 foreign subdir-objects dist-bzip2])
 AM_SILENT_RULES([yes])
 
 dnl Initialize libtool

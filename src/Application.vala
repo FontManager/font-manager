@@ -26,8 +26,8 @@ namespace FontManager {
 
         [DBus (visible = false)]
         public MainWindow main_window { get; set; }
-
-        internal Gtk.Builder builder;
+        [DBus (visible = false)]
+        public Gtk.Builder builder { get; set; }
 
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
@@ -89,8 +89,8 @@ namespace FontManager {
 
         internal void set_gnome_app_menu () {
             try {
-                builder.add_from_resource("/org/gnome/FontManager/Menu.ui");
-                app_menu = builder.get_object("AppMenu") as GLib.MenuModel;
+                builder.add_from_resource("/org/gnome/FontManager/ApplicationMenu.ui");
+                app_menu = builder.get_object("ApplicationMenu") as GLib.MenuModel;
             } catch (Error e) {
                 warning("Failed to set application menu : %s", e.message);
             }

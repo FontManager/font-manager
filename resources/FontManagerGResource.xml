@@ -2,6 +2,6 @@
     <gresources>
         <gresource prefix="/org/gnome/FontManager">
             <file compressed="true">FontManager.css</file>
-            <file compressed="true" preprocess="xml-stripblanks">Menu.ui</file>
+            <file compressed="true" preprocess="xml-stripblanks">ApplicationMenu.ui</file>
     </gresource>
 </gresources>
