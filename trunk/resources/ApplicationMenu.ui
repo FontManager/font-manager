@@ -1,5 +1,5 @@
 <interface>
-    <menu id='AppMenu'>
+    <menu id='ApplicationMenu'>
         <section>
             <item>
                 <attribute name='label' translatable='yes'>_About</attribute>
