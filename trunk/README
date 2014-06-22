@@ -1,25 +1,32 @@
-Font Manager
 
-A simple font management application for Gtk+ Desktop Environments
+         _____           _     __  __
+        |  ___|__  _ __ | |_  |  \/  | __ _ _ __   __ _  __ _  ___ _ __
+        | |_ / _ \| '_ \| __| | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
+        |  _| (_) | | | | |_  | |  | | (_| | | | | (_| | (_| |  __/ |
+        |_|  \___/|_| |_|\__| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
+                                                        |___/
 
-Font Manager is intended to provide a way for average users to easily manage desktop fonts, without having to resort to command line tools or editing configuration files by hand. While designed primarily with the Gnome Desktop Environment in mind, it should work well with other Gtk+ desktop environments.
 
-Font Manager is NOT intended to be a professional-grade font management solution. 
+       A simple font management application for Gtk+ Desktop Environments
 
 
-=== Version 0.7 ===
+|============================== Version 0.7 ===================================|
 
-Initial release of Vala/Gtk+3 version.
+
+                   Initial release of Vala/Gtk+3 version.
+
 
 Please DO NOT file issues regarding feature enhancements or missing features at
 this time.
 
-However feel free to comment at https://code.google.com/p/font-manager/issues/detail?id=85
+However feel free to comment at
+
+    https://code.google.com/p/font-manager/issues/detail?id=85
 
 
 Features that are expected to work at this time:
 
-    Migration of fonts and collections from the previous version.
+    Migration of fonts and collections from the previous version
 
     Font Previews
 
@@ -29,7 +36,7 @@ Features that are expected to work at this time:
 
     Font Installation
         - By drag and drop (Preferred method)
-        - By using the file selector that is shown when the add button is pressed
+        - By using the file selector
 
         Note : Drag and drop should allow installation of not only individual
                font files but also entire directories and archives. The file
@@ -45,8 +52,9 @@ Features that are expected to work at this time:
     Font Sources
 
         Adding / Removing font folders.
-        Fonts in these folders should be available for preview in the application
-        even if they are not enabled system wide.
+
+        Note : Fonts in these folders should be available for preview in the
+               application even if they are not enabled system wide.
 
 
 Missing / Planned features :
