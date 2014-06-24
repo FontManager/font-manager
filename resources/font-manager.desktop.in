@@ -9,4 +9,4 @@ Exec=font-manager
 Terminal=false
 StartupNotify=true
 Categories=Graphics;Viewer;GNOME;GTK;Publishing;
-
+_Keywords=Graphics;Viewer;GNOME;GTK;Publishing;
