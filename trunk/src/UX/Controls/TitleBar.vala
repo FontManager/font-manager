@@ -108,6 +108,19 @@ namespace FontManager {
             return;
         }
 
+        public void use_toolbar_styling () {
+            set_title("");
+            get_style_context().remove_class("header-bar");
+            get_style_context().remove_class("titlebar");
+            get_style_context().remove_class("menubar");
+            get_style_context().add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR);
+            revealer.get_style_context().remove_class(Gtk.STYLE_CLASS_TITLEBAR);
+            revealer.get_style_context().add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR);
+            manage_controls.get_style_context().add_class(Gtk.STYLE_CLASS_TOOLBAR);
+            manage_controls.get_style_context().add_class(Gtk.STYLE_CLASS_PRIMARY_TOOLBAR);
+            return;
+        }
+
         internal GLib.MenuModel get_main_menu_model () {
             var application = (Application) GLib.Application.get_default();
             var mode_section = new GLib.Menu();

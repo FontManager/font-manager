@@ -86,6 +86,8 @@ namespace FontManager {
             var blend = new Gtk.EventBox();
             selector.border_width = 4;
             blend.add(selector);
+            blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            blend.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
 
             main_box.pack_end(blend, false, true, 0);
             add_separator(main_box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
