@@ -28,9 +28,9 @@ namespace FontManager {
             var dialog = new Gtk.FileChooserDialog(_("Select source folders"),
                                                         parent,
                                                         Gtk.FileChooserAction.SELECT_FOLDER,
-                                                        "_Cancel",
+                                                        _("_Cancel"),
                                                         Gtk.ResponseType.CANCEL,
-                                                        "_Open",
+                                                        _("_Open"),
                                                         Gtk.ResponseType.ACCEPT,
                                                         null);
             dialog.set_select_multiple(true);
@@ -48,9 +48,9 @@ namespace FontManager {
             var dialog = new Gtk.FileChooserDialog(_("Select files to install"),
                                                         parent,
                                                         Gtk.FileChooserAction.OPEN,
-                                                        "_Cancel",
+                                                        _("_Cancel"),
                                                         Gtk.ResponseType.CANCEL,
-                                                        "_Open",
+                                                        _("_Open"),
                                                         Gtk.ResponseType.ACCEPT,
                                                         null);
             var filter = new Gtk.FileFilter();
@@ -76,9 +76,9 @@ namespace FontManager {
             var dialog = new Gtk.Dialog.with_buttons(_("Select fonts to remove"),
                                                     parent,
                                                     Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                                    "_Cancel",
+                                                    _("_Cancel"),
                                                     Gtk.ResponseType.CANCEL,
-                                                    "_Delete",
+                                                    _("_Delete"),
                                                     Gtk.ResponseType.ACCEPT,
                                                     null);
             var content_area = dialog.get_content_area();

@@ -135,7 +135,7 @@ namespace FontManager {
             foreach (var mode in modes) {
                 i++;
                 application.add_accelerator("<Alt>%i".printf(i), "app.mode", "%s".printf(mode));
-                GLib.MenuItem item = new MenuItem(mode, "app.mode::%s".printf(mode));
+                GLib.MenuItem item = new MenuItem(Mode.parse(mode).to_translatable_string(), "app.mode::%s".printf(mode));
                 item.set_attribute("accel", "s", "<Alt>%i".printf(i));
                 mode_section.append_item(item);
             }
