@@ -18,3 +18,4 @@ pot:
 
 .PHONY: pot
 
+all: pot
