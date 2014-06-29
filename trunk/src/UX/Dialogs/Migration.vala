@@ -55,9 +55,9 @@ namespace FontManager {
             var ni = new Gtk.Dialog.with_buttons(_("Update Required"),
                                                     parent,
                                                     (Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT),
-                                                    "Cancel",
+                                                    _("Cancel"),
                                                     0,
-                                                    "Continue",
+                                                    _("Continue"),
                                                     1);
             var box = ni.get_content_area();
             box.set_orientation(Gtk.Orientation.VERTICAL);

@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-22 03:04-0400\n"
+"POT-Creation-Date: 2014-06-28 20:11-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -422,20 +422,31 @@ msgid "Manage Sources"
 msgstr ""
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: .././src/UX/Controls/TitleBar.vala:135
+#: .././src/UX/Controls/TitleBar.vala:150
 msgid "About"
 msgstr ""
 
-#: .././src/UX/Controls/TitleBar.vala:136
+#: .././src/UX/Controls/TitleBar.vala:151
 msgid "Help"
 msgstr ""
 
-#: .././src/UX/Controls/TitleBar.vala:137
+#: .././src/UX/Controls/TitleBar.vala:152
 msgid "Quit"
 msgstr ""
 
 #: .././src/UX/Dialogs/FileSelector.vala:28
 msgid "Select source folders"
+msgstr ""
+
+#: .././src/UX/Dialogs/FileSelector.vala:31
+#: .././src/UX/Dialogs/FileSelector.vala:51
+#: .././src/UX/Dialogs/FileSelector.vala:79
+msgid "_Cancel"
+msgstr ""
+
+#: .././src/UX/Dialogs/FileSelector.vala:33
+#: .././src/UX/Dialogs/FileSelector.vala:53
+msgid "_Open"
 msgstr ""
 
 #: .././src/UX/Dialogs/FileSelector.vala:48
@@ -446,8 +457,20 @@ msgstr ""
 msgid "Select fonts to remove"
 msgstr ""
 
+#: .././src/UX/Dialogs/FileSelector.vala:81
+msgid "_Delete"
+msgstr ""
+
 #: .././src/UX/Dialogs/Migration.vala:55
 msgid "Update Required"
+msgstr ""
+
+#: .././src/UX/Dialogs/Migration.vala:58
+msgid "Cancel"
+msgstr ""
+
+#: .././src/UX/Dialogs/Migration.vala:60
+msgid "Continue"
 msgstr ""
 
 #: .././src/UX/Dialogs/Migration.vala:188
@@ -465,23 +488,23 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 
-#: .././src/UX/MainWindow.vala:61 .././src/UX/MainWindow.vala:461
+#: .././src/UX/MainWindow.vala:61 .././src/UX/MainWindow.vala:457
 msgid "Browse"
 msgstr ""
 
-#: .././src/UX/MainWindow.vala:63 .././src/UX/MainWindow.vala:451
+#: .././src/UX/MainWindow.vala:63 .././src/UX/MainWindow.vala:447
 msgid "Compare"
 msgstr ""
 
-#: .././src/UX/MainWindow.vala:65 .././src/UX/MainWindow.vala:452
+#: .././src/UX/MainWindow.vala:65 .././src/UX/MainWindow.vala:448
 msgid "Character Map"
 msgstr ""
 
-#: .././src/UX/MainWindow.vala:67 .././src/UX/MainWindow.vala:460
+#: .././src/UX/MainWindow.vala:67 .././src/UX/MainWindow.vala:456
 msgid "Manage"
 msgstr ""
 
-#: .././src/UX/MainWindow.vala:450 .././src/UX/Views/FontPreview.vala:96
+#: .././src/UX/MainWindow.vala:446 .././src/UX/Views/FontPreview.vala:96
 msgid "Preview"
 msgstr ""
 
@@ -520,4 +543,8 @@ msgstr ""
 
 #: ../resources/font-manager.desktop.in.h:2
 msgid "Preview, Compare and Manage Fonts"
+msgstr ""
+
+#: ../resources/font-manager.desktop.in.h:3
+msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr ""
