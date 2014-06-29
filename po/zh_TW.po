@@ -1,0 +1,562 @@
+# Font Manager - Simple font management for Gtk+ desktop environments
+#
+# Copyright © 2009 - 2014 Jerry Casiano
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Author:
+#  Jerry Casiano <JerryCasiano@gmail.com>
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-06-28 20:11-0400\n"
+"PO-Revision-Date: 2014-05-28 0:00+0800\n"
+"Last-Translator: Zaler <zldream1011@gmail.com>\n"
+"Language-Team: Chinese (China) <@>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# Not translate very good, just for use.
+#: .././src/Common/About.vala:26 ../resources/font-manager.desktop.in.h:1
+msgid "Font Manager"
+msgstr "字体管理器"
+
+#: .././src/Common/About.vala:28
+msgid "Simple font management for Gtk+ desktop environments"
+msgstr "GTK+桌面环境下的简易字体管理器"
+
+#: .././src/Common/About.vala:31
+msgid "Copyright © 2009 - 2014 Jerry Casiano"
+msgstr "版权 © 2009 - 2014 Jerry Casiano"
+
+#: .././src/Common/About.vala:32
+msgid ""
+"\n"
+"    This program is free software: you can redistribute it and/or modify\n"
+"    it under the terms of the GNU General Public License as published by\n"
+"    the Free Software Foundation, either version 3 of the License, or\n"
+"    (at your option) any later version.\n"
+"\n"
+"    This program is distributed in the hope that it will be useful,\n"
+"    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"    GNU General Public License for more details.\n"
+"\n"
+"    You should have received a copy of the GNU General Public License\n"
+"    along with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+"    "
+msgstr ""
+
+#: .././src/Filters/Collection.vala:28
+msgid "New Collection"
+msgstr "新集合"
+
+#: .././src/Filters/Filter.vala:38
+#, c-format
+msgid "Created : %s"
+msgstr "创建: %s"
+
+#: .././src/Filters/Unsorted.vala:27
+msgid "Unsorted"
+msgstr "未分类"
+
+#: .././src/Filters/Unsorted.vala:27
+msgid "Fonts not present in any collection"
+msgstr "字体未在任何集合中"
+
+#: .././src/FontConfig/Enums.vala:33
+msgid "Slight"
+msgstr ""
+
+#: .././src/FontConfig/Enums.vala:35 .././src/FontConfig/Enums.vala:199
+msgid "Medium"
+msgstr "中等(Medium)"
+
+#: .././src/FontConfig/Enums.vala:37
+msgid "Full"
+msgstr ""
+
+#: .././src/FontConfig/Enums.vala:39 .././src/FontConfig/Enums.vala:60
+#: .././src/FontConfig/Enums.vala:87
+msgid "None"
+msgstr "无"
+
+#: .././src/FontConfig/Enums.vala:54
+msgid "Default"
+msgstr "默认"
+
+#: .././src/FontConfig/Enums.vala:56 .././src/FontConfig/Enums.vala:195
+msgid "Light"
+msgstr "轻(Light)"
+
+#: .././src/FontConfig/Enums.vala:58
+msgid "Legacy"
+msgstr ""
+
+#: .././src/FontConfig/Enums.vala:77
+msgid "Unknown"
+msgstr "未知的"
+
+#: .././src/FontConfig/Enums.vala:79
+msgid "RGB"
+msgstr ""
+
+#: .././src/FontConfig/Enums.vala:81
+msgid "BGR"
+msgstr ""
+
+#: .././src/FontConfig/Enums.vala:83
+msgid "VRGB"
+msgstr ""
+
+#: .././src/FontConfig/Enums.vala:85
+msgid "VBGR"
+msgstr ""
+
+#: .././src/FontConfig/Enums.vala:102
+msgid "Proportional"
+msgstr "比例(Proportional)"
+
+#: .././src/FontConfig/Enums.vala:104
+msgid "Dual Width"
+msgstr "双宽(Dual Width)"
+
+#: .././src/FontConfig/Enums.vala:106
+msgid "Monospace"
+msgstr "等宽(Monospace)"
+
+#: .././src/FontConfig/Enums.vala:108
+msgid "Charcell"
+msgstr "字元(Charcell)"
+
+#: .././src/FontConfig/Enums.vala:124
+msgid "Italic"
+msgstr "斜体(Italic)"
+
+#: .././src/FontConfig/Enums.vala:126
+msgid "Oblique"
+msgstr "偏斜体(Oblique)"
+
+#: .././src/FontConfig/Enums.vala:148
+msgid "Ultra-Condensed"
+msgstr "极窄(Ultra-Condensed)"
+
+#: .././src/FontConfig/Enums.vala:150
+msgid "Extra-Condensed"
+msgstr "很窄(Extra-Condensed)"
+
+#: .././src/FontConfig/Enums.vala:152
+msgid "Condensed"
+msgstr "窄(Condensed)"
+
+#: .././src/FontConfig/Enums.vala:154
+msgid "Semi-Condensed"
+msgstr "略窄(Semi-Condensed)"
+
+#: .././src/FontConfig/Enums.vala:156
+msgid "Semi-Expanded"
+msgstr "略宽(Semi-Expanded)"
+
+#: .././src/FontConfig/Enums.vala:158
+msgid "Expanded"
+msgstr "宽(Expanded)"
+
+#: .././src/FontConfig/Enums.vala:160
+msgid "Extra-Expanded"
+msgstr "很宽(Extra-Expanded)"
+
+#: .././src/FontConfig/Enums.vala:162
+msgid "Ultra-Expanded"
+msgstr "极宽(Ultra-Expanded)"
+
+#: .././src/FontConfig/Enums.vala:191
+msgid "Thin"
+msgstr "细(Thin)"
+
+#: .././src/FontConfig/Enums.vala:193
+msgid "Ultra-Light"
+msgstr "极轻(Ultra-Light)"
+
+#: .././src/FontConfig/Enums.vala:197
+msgid "Book"
+msgstr "预设(Book)"
+
+#: .././src/FontConfig/Enums.vala:201
+msgid "Semi-Bold"
+msgstr "略粗(Semi-Bold)"
+
+#: .././src/FontConfig/Enums.vala:203
+msgid "Bold"
+msgstr "加粗(Bold)"
+
+#: .././src/FontConfig/Enums.vala:205
+msgid "Ultra-Bold"
+msgstr "极粗(Ultra-Bold)"
+
+#: .././src/FontConfig/Enums.vala:207
+msgid "Heavy"
+msgstr "加重(Heavy)"
+
+#: .././src/FontConfig/Enums.vala:209
+msgid "Ultra-Heavy"
+msgstr "极重(Ultra-Heavy)"
+
+#: .././src/FontConfig/Sources.vala:108 .././src/FontConfig/XmlWriter.vala:32
+msgid " Generated by Font Manager. Do NOT edit this file. "
+msgstr ""
+
+# Do not to translate this one.
+#: .././src/Models/CategoryModel.vala:72
+msgid "All"
+msgstr "全部"
+
+#: .././src/Models/CategoryModel.vala:72
+msgid "All Fonts"
+msgstr "全部字体"
+
+#: .././src/Models/CategoryModel.vala:74
+msgid "System"
+msgstr "系统"
+
+#: .././src/Models/CategoryModel.vala:74
+msgid "Fonts available to all users"
+msgstr "字体对所有用户可用"
+
+#: .././src/Models/CategoryModel.vala:76
+msgid "User"
+msgstr "用户"
+
+#: .././src/Models/CategoryModel.vala:76
+msgid "Fonts avalable only to you"
+msgstr "字体只有你可用"
+
+#: .././src/Models/CategoryModel.vala:80
+msgid "Spacing"
+msgstr "字距"
+
+#: .././src/Models/CategoryModel.vala:80
+msgid "Grouped by font spacing"
+msgstr "按字距分组"
+
+#: .././src/Models/CategoryModel.vala:82
+msgid "Slant"
+msgstr "倾斜"
+
+# Not good
+#: .././src/Models/CategoryModel.vala:82
+msgid "Grouped by font angle"
+msgstr "按倾斜分组"
+
+#: .././src/Models/CategoryModel.vala:84
+msgid "Weight"
+msgstr "字重"
+
+#: .././src/Models/CategoryModel.vala:84
+msgid "Grouped by font weight"
+msgstr "按字重分组"
+
+#: .././src/Models/CategoryModel.vala:86
+msgid "Width"
+msgstr "字宽"
+
+#: .././src/Models/CategoryModel.vala:86
+msgid "Grouped by font width"
+msgstr "按字宽分组"
+
+#: .././src/Models/CategoryModel.vala:88
+msgid "Filetype"
+msgstr "文件类型"
+
+#: .././src/Models/CategoryModel.vala:88
+msgid "Grouped by filetype"
+msgstr "按文件类型分组"
+
+#: .././src/Models/CategoryModel.vala:90
+msgid "License"
+msgstr "许可证"
+
+#: .././src/Models/CategoryModel.vala:90
+msgid "Grouped by license type"
+msgstr "按许可证分组"
+
+#: .././src/Models/CategoryModel.vala:92
+msgid "Vendor"
+msgstr "供应商"
+
+#: .././src/Models/CategoryModel.vala:92
+msgid "Grouped by vendor"
+msgstr "按供应商分组"
+
+#: .././src/Models/CategoryModel.vala:103
+msgid "Family Kind"
+msgstr "类型"
+
+#: .././src/Models/CategoryModel.vala:103
+msgid "Only fonts which include Panose information will be grouped here."
+msgstr "只有包含Panose信息的字体将被分组"
+
+#: .././src/Models/CategoryModel.vala:104
+msgid "Any"
+msgstr "任意"
+
+#: .././src/Models/CategoryModel.vala:105
+msgid "No Fit"
+msgstr "不符"
+
+#: .././src/Models/CategoryModel.vala:106
+msgid "Text and Display"
+msgstr "文本和显示"
+
+#: .././src/Models/CategoryModel.vala:107
+#: .././src/UX/Sidebar/CharacterMapSideBar.vala:74
+msgid "Script"
+msgstr "脚本"
+
+#: .././src/Models/CategoryModel.vala:108
+msgid "Decorative"
+msgstr "装饰(Decorative)"
+
+#: .././src/Models/CategoryModel.vala:109
+msgid "Pictorial"
+msgstr "图形(Pictorial)"
+
+#: .././src/Models/CategoryModel.vala:143
+msgid "Normal"
+msgstr "标准(Normal)"
+
+#: .././src/Models/CategoryModel.vala:145
+msgid "Regular"
+msgstr "常规(Regular)"
+
+#: .././src/UX/Controls/CollectionControls.vala:27
+msgid "Add new collection"
+msgstr "添加新的集合"
+
+#: .././src/UX/Controls/CollectionControls.vala:28
+msgid "Remove selected collection"
+msgstr "删除选中的集合"
+
+#: .././src/UX/Controls/CompareControls.vala:33
+msgid "Add selected font to comparison"
+msgstr "添加选中的字体进行比较"
+
+#: .././src/UX/Controls/CompareControls.vala:34
+msgid "Remove selected font from comparison"
+msgstr "删除比较组中选中的字体"
+
+#: .././src/UX/Controls/CompareControls.vala:39
+msgid "Select text color"
+msgstr "选择文本颜色"
+
+#: .././src/UX/Controls/CompareControls.vala:41
+msgid "Select background color"
+msgstr "选择背景颜色"
+
+#: .././src/UX/Controls/FontListControls.vala:42
+#: .././src/UX/Controls/FontListControls.vala:66
+msgid "Expand all"
+msgstr "全部展开"
+
+#: .././src/UX/Controls/FontListControls.vala:45
+msgid "Remove selected fonts"
+msgstr "删除选中的字体"
+
+#: .././src/UX/Controls/FontListControls.vala:66
+msgid "Collapse all"
+msgstr "全部折叠"
+
+#: .././src/UX/Controls/PreviewControls.vala:50
+msgid "Left Aligned"
+msgstr "左对齐"
+
+#: .././src/UX/Controls/PreviewControls.vala:52
+msgid "Centered"
+msgstr "居中"
+
+#: .././src/UX/Controls/PreviewControls.vala:54
+msgid "Fill"
+msgstr "两端对齐"
+
+#: .././src/UX/Controls/PreviewControls.vala:56
+msgid "Right Aligned"
+msgstr "右对齐"
+
+#: .././src/UX/Controls/PreviewControls.vala:63
+msgid "Edit preview text"
+msgstr "编辑预览文本"
+
+#: .././src/UX/Controls/PreviewControls.vala:66
+msgid "Undo changes"
+msgstr "撤销更改"
+
+#: .././src/UX/Controls/SourceControls.vala:27
+#, fuzzy
+msgid "Add new source"
+msgstr "添加新的集合"
+
+#: .././src/UX/Controls/SourceControls.vala:28
+#, fuzzy
+msgid "Remove selected source"
+msgstr "删除选中的字体"
+
+#: .././src/UX/Controls/TitleBar.vala:64
+msgid "Add Fonts"
+msgstr "添加字体"
+
+#: .././src/UX/Controls/TitleBar.vala:65
+msgid "Remove Fonts"
+msgstr "删除字体"
+
+#: .././src/UX/Controls/TitleBar.vala:71
+#, fuzzy
+msgid "Manage Sources"
+msgstr "管理"
+
+#. action_name, display_name, detailed_action_name, accelerator, method
+#: .././src/UX/Controls/TitleBar.vala:150
+msgid "About"
+msgstr "关于"
+
+#: .././src/UX/Controls/TitleBar.vala:151
+msgid "Help"
+msgstr "帮助"
+
+#: .././src/UX/Controls/TitleBar.vala:152
+msgid "Quit"
+msgstr "退出"
+
+#: .././src/UX/Dialogs/FileSelector.vala:28
+#, fuzzy
+msgid "Select source folders"
+msgstr "选择文本颜色"
+
+#: .././src/UX/Dialogs/FileSelector.vala:31
+#: .././src/UX/Dialogs/FileSelector.vala:51
+#: .././src/UX/Dialogs/FileSelector.vala:79
+msgid "_Cancel"
+msgstr ""
+
+#: .././src/UX/Dialogs/FileSelector.vala:33
+#: .././src/UX/Dialogs/FileSelector.vala:53
+msgid "_Open"
+msgstr ""
+
+#: .././src/UX/Dialogs/FileSelector.vala:48
+msgid "Select files to install"
+msgstr "选择文件安装"
+
+#: .././src/UX/Dialogs/FileSelector.vala:76
+msgid "Select fonts to remove"
+msgstr "选择字体删除"
+
+#: .././src/UX/Dialogs/FileSelector.vala:81
+msgid "_Delete"
+msgstr ""
+
+#: .././src/UX/Dialogs/Migration.vala:55
+msgid "Update Required"
+msgstr "需要更新"
+
+#: .././src/UX/Dialogs/Migration.vala:58
+msgid "Cancel"
+msgstr ""
+
+#: .././src/UX/Dialogs/Migration.vala:60
+msgid "Continue"
+msgstr ""
+
+#: .././src/UX/Dialogs/Migration.vala:188
+msgid ""
+"\n"
+"Font Manager has detected files from a previous installation. Some files "
+"from previous versions are incompatible with this release. Others have been "
+"deprecated or moved.\n"
+"\n"
+"Font Manager will now attempt to migrate your fonts and collections. Files "
+"and settings which are no longer necessary or valid will be deleted. Any "
+"configuration files that could cause a conflict will also be deleted.\n"
+"\n"
+"It is strongly recommended that you back up any important files before "
+"proceeding.\n"
+msgstr ""
+
+#: .././src/UX/MainWindow.vala:61 .././src/UX/MainWindow.vala:457
+msgid "Browse"
+msgstr "浏览"
+
+#: .././src/UX/MainWindow.vala:63 .././src/UX/MainWindow.vala:447
+msgid "Compare"
+msgstr "比较"
+
+#: .././src/UX/MainWindow.vala:65 .././src/UX/MainWindow.vala:448
+msgid "Character Map"
+msgstr "字符映射"
+
+#: .././src/UX/MainWindow.vala:67 .././src/UX/MainWindow.vala:456
+msgid "Manage"
+msgstr "管理"
+
+#: .././src/UX/MainWindow.vala:446 .././src/UX/Views/FontPreview.vala:96
+msgid "Preview"
+msgstr "预览"
+
+#: .././src/UX/Sidebar/CharacterMapSideBar.vala:75
+msgid "Block"
+msgstr "区块"
+
+#: .././src/UX/Sidebar/MainSideBar.vala:82
+msgid "Categories"
+msgstr "分类"
+
+#: .././src/UX/Sidebar/MainSideBar.vala:83
+msgid "Collections"
+msgstr "集合"
+
+#. action_name, display_name, detailed_action_name, accelerator, method
+#: .././src/UX/Trees/FontListTree.vala:341
+msgid "Show Details"
+msgstr ""
+
+#: .././src/UX/Views/FontPreview.vala:97
+msgid "Waterfall"
+msgstr "瀑布"
+
+# Not fine
+#: .././src/UX/Views/FontPreview.vala:98
+msgid "Body Text"
+msgstr "正文"
+
+#: .././src/UX/Widgets/CellRendererPill.vala:28
+msgid "Variation "
+msgstr "变体"
+
+#: .././src/UX/Widgets/CellRendererPill.vala:29
+msgid "Variations"
+msgstr "变体"
+
+#: ../resources/font-manager.desktop.in.h:2
+msgid "Preview, Compare and Manage Fonts"
+msgstr "预览，比较和管理字体"
+
+#: ../resources/font-manager.desktop.in.h:3
+msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
+msgstr ""
+
+#~ msgid "Search Database"
+#~ msgstr "搜索数据库"
