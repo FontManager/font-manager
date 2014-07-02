@@ -75,7 +75,10 @@ namespace FontManager {
         public static int main (string [] args) {
             //Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
             Environment.set_application_name(About.NAME);
-            /* XXX : Workaround : XDG : FontConfig ignores EnableHome */
+            /* XXX : Workaround : XDG : FontConfig ignores EnableHome
+             * Fixed in master : dab60e4476ada4ad4639599ea24dd012d4a79584
+             * Need FontConfig > 2.11.1
+             */
             Environment.set_variable("XDG_CONFIG_HOME", "", true);
             FontConfig.enable_user_config(false);
             Logging.setup();
