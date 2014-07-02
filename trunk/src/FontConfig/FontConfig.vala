@@ -62,8 +62,6 @@ namespace FontConfig {
         }
 
         public void update () {
-            /* XXX : Workaround : XDG : FontConfig ignores EnableHome */
-            Environment.set_variable("XDG_CONFIG_HOME", "", true);
             enable_user_config(false);
             load_user_fontconfig_files();
             cancel_monitors();
@@ -96,8 +94,6 @@ namespace FontConfig {
         }
 
         public void start_update () {
-            /* XXX : Workaround : XDG : FontConfig ignores EnableHome */
-            Environment.set_variable("XDG_CONFIG_HOME", "", true);
             enable_user_config(false);
             load_user_fontconfig_files();
             cancel_monitors();
