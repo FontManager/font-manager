@@ -28,7 +28,7 @@ namespace FontManager {
     const string TMPL = "font-manager_XXXXXX";
     const string AUTHOR = "Jerry Casiano <JerryCasiano@gmail.com>";
 
-    const string DEFAULT_COLLECTION_NAME = "Enter Collection Name";
+    const string DEFAULT_COLLECTION_NAME = _("Enter Collection Name");
     const string DEFAULT_FONT = "Sans";
 
     const string DEFAULT_PREVIEW_TEXT = """

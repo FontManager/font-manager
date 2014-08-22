@@ -133,7 +133,7 @@ public void add_action_from_menu_entry (ActionMap map, MenuEntry entry) {
     return;
 }
 
-public bool remove_directory_if_empty (File? dir) {
+public bool remove_directory_tree_if_empty (File? dir) {
     if (dir == null)
         return false;
     try {
@@ -143,7 +143,7 @@ public bool remove_directory_if_empty (File? dir) {
         File parent = dir.get_parent();
         dir.delete();
         if (parent != null)
-            remove_directory_if_empty(parent);
+            remove_directory_tree_if_empty(parent);
     } catch (Error e) {
         warning(e.message);
     }
