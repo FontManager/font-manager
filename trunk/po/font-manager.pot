@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-28 20:11-0400\n"
+"POT-Creation-Date: 2014-08-22 18:06-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,6 +59,10 @@ msgid ""
 "    You should have received a copy of the GNU General Public License\n"
 "    along with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
 "    "
+msgstr ""
+
+#: .././src/Common/Constants.vala:31
+msgid "Enter Collection Name"
 msgstr ""
 
 #: .././src/Filters/Collection.vala:28
@@ -512,11 +516,11 @@ msgstr ""
 msgid "Block"
 msgstr ""
 
-#: .././src/UX/Sidebar/MainSideBar.vala:82
+#: .././src/UX/Sidebar/MainSideBar.vala:83
 msgid "Categories"
 msgstr ""
 
-#: .././src/UX/Sidebar/MainSideBar.vala:83
+#: .././src/UX/Sidebar/MainSideBar.vala:84
 msgid "Collections"
 msgstr ""
 
