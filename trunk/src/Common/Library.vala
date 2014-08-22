@@ -249,7 +249,7 @@ namespace FontManager {
                     try {
                         File parent = file.get_parent();
                         file.delete();
-                        remove_directory_if_empty(parent);
+                        remove_directory_tree_if_empty(parent);
                         processed++;
                         if (progress != null)
                             progress(null, processed, total);

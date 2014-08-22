@@ -74,6 +74,7 @@ namespace FontManager {
             collection_box.pack_start(revealer1, false, true, 0);
             collection_box.pack_end(collection_tree, true, true, 0);
 
+            /* XXX : Fixme : This doesn't belong here. Move to main stack */
             var source_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             source_box.pack_start(user_source_tree.controls, false, true, 0);
             add_separator(source_box, Gtk.Orientation.HORIZONTAL);
@@ -90,7 +91,9 @@ namespace FontManager {
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
 
             main_box.pack_end(blend, false, true, 0);
-            add_separator(main_box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
+            var separator = add_separator(main_box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
+            separator.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            separator.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             main_box.pack_start(notebook, true, true, 0);
             collection_box.show_all();
             category_tree.show();

@@ -67,9 +67,10 @@ public bool is_left_to_right (Gtk.Widget widget) {
     return dir == Gtk.TextDirection.LTR;
 }
 
-public void add_separator (Gtk.Box box,
-                            Gtk.Orientation orientation = Gtk.Orientation.VERTICAL,
-                            Gtk.PackType pack_type = Gtk.PackType.START) {
+public Gtk.Separator
+add_separator (Gtk.Box box,
+               Gtk.Orientation orientation = Gtk.Orientation.VERTICAL,
+               Gtk.PackType pack_type = Gtk.PackType.START) {
     var separator = new Gtk.Separator(orientation);
     /* Requesting a pixel seems to be the only way to get some themes
      * to actually render the separator. i.e. Adwaita... */
@@ -90,7 +91,7 @@ public void add_separator (Gtk.Box box,
             break;
     }
     separator.show();
-    return;
+    return separator;
 }
 
 public void set_default_button_relief (Gtk.Container container) {

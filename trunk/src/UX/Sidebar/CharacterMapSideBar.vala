@@ -76,8 +76,12 @@ namespace FontManager {
             var blend = new Gtk.EventBox();
             selector.border_width = 4;
             blend.add(selector);
+            blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            blend.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             pack_end(blend, false, true, 0);
-            add_separator(this, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
+            var separator = add_separator(this, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
+            separator.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            separator.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             var scroll = new Gtk.ScrolledWindow(null, null);
             scroll.add(view);
             pack_start(scroll, true, true, 0);
