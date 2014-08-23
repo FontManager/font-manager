@@ -91,9 +91,7 @@ namespace FontManager {
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
 
             main_box.pack_end(blend, false, true, 0);
-            var separator = add_separator(main_box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
-            separator.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            separator.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
+            add_separator(main_box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
             main_box.pack_start(notebook, true, true, 0);
             collection_box.show_all();
             category_tree.show();
