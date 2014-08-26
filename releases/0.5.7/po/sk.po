@@ -1,0 +1,1477 @@
+# Slovak translation for font-manager
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the font-manager package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: font-manager\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2010-12-15 23:11-0500\n"
+"PO-Revision-Date: 2010-12-18 08:17+0000\n"
+"Last-Translator: Stano Kobella <Stano110@azet.sk>\n"
+"Language-Team: Slovak <sk@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-12-19 05:19+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: ../src/data/actions.ui.h:1
+msgid ""
+"\n"
+"By default the filepath for the selected font will be appended to the end of "
+"the argument list. To control where the filepath is inserted use FILEPATH as "
+"a placeholder.\n"
+"\n"
+"If FAMILY or STYLE are found in the argument list they will also be "
+"replaced.\n"
+"\n"
+"Quotes used in arguments should be escaped with a backslash."
+msgstr ""
+"\n"
+"Cesta ku súboru pre vybraný font bude predvolene pripojená ku koncu zoznamu "
+"argumentov. Pre ovládanie kam je súborová cesta vložená použi FILEPATH ako "
+"vlastníka.\n"
+"\n"
+"Ak sú v zozname argumentov nájdené FAMILY alebo STYLE, potom budú tiež "
+"nahradené.\n"
+"\n"
+"Úvodzovky použité v argumentoch by mali byť zakončené spätným lomítkom."
+
+#: ../src/data/actions.ui.h:7
+msgid "<b>Actions</b>"
+msgstr "<b>Akcie</b>"
+
+#: ../src/data/actions.ui.h:8
+msgid "Add"
+msgstr "Pridať"
+
+#: ../src/data/actions.ui.h:9
+msgid "Arguments :"
+msgstr "Parametre :"
+
+#: ../src/data/actions.ui.h:10 ../src/data/font-manager.ui.h:60
+msgid "Cancel"
+msgstr "Zrušiť"
+
+#: ../src/data/actions.ui.h:11 ../src/data/font-manager.ui.h:63
+msgid "Close"
+msgstr "Zavrieť"
+
+#: ../src/data/actions.ui.h:12
+msgid "Comment :"
+msgstr "Komentár:"
+
+#: ../src/data/actions.ui.h:13
+msgid "Configure Actions"
+msgstr "Konfigurovať akcie"
+
+#: ../src/data/actions.ui.h:14
+msgid "Edit"
+msgstr "Editovať"
+
+#: ../src/data/actions.ui.h:15
+msgid "Executable :"
+msgstr "Spustiteľné :"
+
+#: ../src/data/actions.ui.h:16
+msgid "Name :"
+msgstr "Meno :"
+
+#: ../src/data/actions.ui.h:17
+msgid "New action"
+msgstr "Nová akcia"
+
+#: ../src/data/actions.ui.h:18 ../src/data/font-manager.ui.h:124
+msgid "OK"
+msgstr "OK"
+
+#: ../src/data/actions.ui.h:19
+msgid "Open"
+msgstr "Otvoriť"
+
+#: ../src/data/actions.ui.h:20
+msgid "Remove"
+msgstr "Odstrániť"
+
+#: ../src/data/actions.ui.h:21
+msgid "Restart when done"
+msgstr "Reštartovať po dokončení"
+
+#: ../src/data/actions.ui.h:22
+msgid "Run command in terminal"
+msgstr "Spustiť príkaz v termináli"
+
+#: ../src/data/actions.ui.h:23
+msgid "Select a program..."
+msgstr "Vybrať program..."
+
+#: ../src/data/actions.ui.h:24
+msgid "Wait for action to finish"
+msgstr "Čakaj na skončenie akcie"
+
+#: ../src/data/font-information.ui.h:1
+msgid "<b>Embedded License</b>"
+msgstr "<b>Vložená licencia</b>"
+
+#: ../src/data/font-information.ui.h:2
+msgid "Copyright :"
+msgstr "Copyright :"
+
+#: ../src/data/font-information.ui.h:3
+msgid "Description :"
+msgstr "Popis :"
+
+#: ../src/data/font-information.ui.h:4 ../src/data/font-manager.ui.h:92
+msgid "Family :"
+msgstr "Rodina :"
+
+#: ../src/data/font-information.ui.h:5
+msgid "File Information"
+msgstr "Informácia o súbore"
+
+#: ../src/data/font-information.ui.h:6
+msgid "Filename :"
+msgstr "Meno súboru:"
+
+#: ../src/data/font-information.ui.h:7
+msgid "Filesize :"
+msgstr "Veľkosť súboru :"
+
+#: ../src/data/font-information.ui.h:8 ../src/data/font-manager.ui.h:95
+msgid "Filetype :"
+msgstr "Typ súboru :"
+
+#: ../src/data/font-information.ui.h:9
+msgid "Font Information"
+msgstr "Informácia o písme"
+
+#: ../src/data/font-information.ui.h:10
+msgid "License Information"
+msgstr "Údaje o licencii"
+
+#: ../src/data/font-information.ui.h:11
+msgid "Style :"
+msgstr "Štýl :"
+
+#: ../src/data/font-information.ui.h:12 ../src/ui/previews.py:565
+msgid "Style provided by the rendering library."
+msgstr "Štýl poskytnutý vykresľovacou knižnicou."
+
+#: ../src/data/font-information.ui.h:13
+msgid "Version :"
+msgstr "Verzia :"
+
+#: ../src/data/font-manager.ui.h:1
+msgid ""
+"\n"
+"\n"
+"<b>The following files were not found :</b>"
+msgstr ""
+"\n"
+"\n"
+"<b>Nasledujúce súbory neboli nájdené :</b>"
+
+#: ../src/data/font-manager.ui.h:4
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to:\n"
+"\n"
+"    Free Software Foundation, Inc.\n"
+"    51 Franklin Street, Fifth Floor\n"
+"    Boston, MA 02110-1301, USA.\n"
+msgstr ""
+"\n"
+"Tento program je voľný software; môžeš ho šíriť a/alebo meniť\n"
+"pod podmienkami GNU Všeobecnej verejnej licencie, tak ako ju zverejnila\n"
+"Free Software Foundation; buď verzie 3 Licencie, alebo\n"
+"(podľa tvojej voľby) ľubovoľnej neskoršej verzie.\n"
+"\n"
+"Tento program je šírený s nádejou že bude užitočný,\n"
+"ale BEZ ŽIADNEJ ZÁRUKY; dokonca bez mlčky predpokladanej záruky \n"
+"PREDAJNOSTI alebo spôsobilosti pre konkrétný účel.\n"
+"Viď GNU Všeobecnú verejnú licenciu pre viacej detailov.\n"
+"\n"
+"Mal by si získať kópiu GNU Všeobecnej verejnej licencie\n"
+"spolu s týmto programom; ak nie, napíš na:\n"
+"\n"
+"    Free Software Foundation, Inc.\n"
+"    51 Franklin Street, Fifth Floor\n"
+"    Boston, MA 02110-1301, USA.\n"
+
+#: ../src/data/font-manager.ui.h:22
+msgid "<b>Categories</b>"
+msgstr "<b>Kategórie</b>"
+
+#: ../src/data/font-manager.ui.h:23
+msgid "<b>Collections</b>"
+msgstr "<b>Kolekcie</b>"
+
+#: ../src/data/font-manager.ui.h:24
+msgid "<b>Default font folder</b>"
+msgstr "<b>Predvolený priečinok s fontami</b>"
+
+#: ../src/data/font-manager.ui.h:25
+msgid "<b>Export</b>"
+msgstr "<b>Exportovať</b>"
+
+#: ../src/data/font-manager.ui.h:26
+msgid "<b>Families in database</b>"
+msgstr "<b>Rodiny v databáze</b>"
+
+#: ../src/data/font-manager.ui.h:27
+msgid "<b>Folder to save output in :</b>"
+msgstr "<b>Priečinok pre uloženie výstupu :</b>"
+
+#: ../src/data/font-manager.ui.h:28
+msgid "<b>General</b>"
+msgstr "<b>Všeobecné</b>"
+
+#: ../src/data/font-manager.ui.h:29
+msgid "<b>Installed Fonts</b>"
+msgstr "<b>Nainštalované fonty</b>"
+
+#: ../src/data/font-manager.ui.h:30
+msgid "<b>Select directories to scan for fonts</b>"
+msgstr "<b>Vyber adresáre pre vyhľadanie fontov</b>"
+
+#: ../src/data/font-manager.ui.h:31
+msgid "<b>User Interface</b>"
+msgstr "<b>Užívateľské rozhranie</b>"
+
+#: ../src/data/font-manager.ui.h:32
+msgid ""
+"<i>It is possible these files were modified before they were processed.</i>"
+msgstr ""
+"<i>Je možné, že tieto súbory boli zmenené, predtým ako boli spracované.</i>"
+
+#: ../src/data/font-manager.ui.h:33
+msgid "<small><i>(experimental)</i></small>"
+msgstr "<small><i>(experimentálne)</i></small>"
+
+#: ../src/data/font-manager.ui.h:34
+msgid "<small><i>(requires restart)</i></small>"
+msgstr "<small><i>(vyžaduje reštart)</i></small>"
+
+#: ../src/data/font-manager.ui.h:35
+msgid "About Font Manager"
+msgstr "O programe Správca fontov"
+
+#: ../src/data/font-manager.ui.h:36
+msgid "Add directory"
+msgstr "Pridať adresár"
+
+#: ../src/data/font-manager.ui.h:37
+msgid "Add font to comparison"
+msgstr "Pridať font do porovnania"
+
+#: ../src/data/font-manager.ui.h:38
+msgid "Add new collection"
+msgstr "Pridať novú kolekciu"
+
+#: ../src/data/font-manager.ui.h:39
+msgid "Adding directories to the search path"
+msgstr "Pridanie adresárov ku prehľadávanej ceste"
+
+#: ../src/data/font-manager.ui.h:40
+msgid ""
+"Adding system directories, or directories for which you don't have full "
+"access, is discouraged."
+msgstr ""
+"Pridanie systémových adresárov, alebo adresárov pre ktoré nemáš plný "
+"prístup, je neodporúčané."
+
+#: ../src/data/font-manager.ui.h:41
+msgid "Advanced"
+msgstr "Pokročilé"
+
+#: ../src/data/font-manager.ui.h:42
+msgid "Advanced Search"
+msgstr "Pokročilé hľadanie"
+
+#: ../src/data/font-manager.ui.h:43
+msgid ""
+"Any directories not found during startup of the preferences dialog will be "
+"automatically removed from the list.\n"
+"\n"
+"The autoscan feature will look in your home folder for any folders "
+"containing font files and add them to the list.\n"
+"\n"
+"Please be patient, as this operation can take some time depending on "
+"filesystem size.\n"
+"\n"
+"Autoscan will not follow symbolic links or add hidden directories. These "
+"will have to be added manually, if needed.\n"
+"\n"
+"<i>Autoscan is a new feature and has not been tested extensively, there is "
+"no progress reported and no way to abort for now, do not use it if you have "
+"network shares or extremely slow filesystems in the scanned paths. Instead "
+"add folders manually.</i>\n"
+"\n"
+"\n"
+msgstr ""
+"Adresáre ktoré neboli nájdené počas spúšťania dialógu predvolieb budú "
+"automaticky odstránené zo zoznamu.\n"
+"\n"
+"Funkcia automatického skenu nazrie do tvojho domového adresára pre akékoľvek "
+"priečinky obsahujúci súbory s fontami a pridá ich do zoznamu.\n"
+"\n"
+"Prosím maj trpezlivosť, pretože táto operácia môže trvať určitú dobu v "
+"závislosti na veľkosti súborového systému.\n"
+"\n"
+"Autoscan nenasleduje symbolické linky ani nepridáva skryté adresáre. Tieto "
+"budú musieť byť pridané ručne, ak to treba.\n"
+"\n"
+"<i>Autoscan je nová funkcia a nebola zatiaľ veľmi testovaná, zatiaľ "
+"neoznamuje pokrok a nedá sa prerušiť, nepoužívaj ju ak zdieľaš na sieti "
+"alebo extrémne pomalých súborových systémoch vnútri skenovaných ciest. "
+"Namiesto toho pridaj priečinky manuálne.</i>\n"
+"\n"
+"\n"
+
+#: ../src/data/font-manager.ui.h:55
+msgid "Application"
+msgstr "Aplikácia"
+
+#: ../src/data/font-manager.ui.h:56
+msgid "Autoscan for font directories"
+msgstr "Autoskenovať pre adresáre s fontami"
+
+#: ../src/data/font-manager.ui.h:57
+msgid "Background Color"
+msgstr "Farba pozadia"
+
+#: ../src/data/font-manager.ui.h:58
+msgid "Browse"
+msgstr "Prehľadávať"
+
+#: ../src/data/font-manager.ui.h:59
+msgid "Browse Fonts"
+msgstr "Prechádzať fonty"
+
+#: ../src/data/font-manager.ui.h:61
+msgid "Character Map "
+msgstr "Mapa znakov "
+
+#: ../src/data/font-manager.ui.h:62
+msgid "Clear all"
+msgstr "Vymazať všetko"
+
+#: ../src/data/font-manager.ui.h:64
+msgid "Color Selection"
+msgstr "Výber farby"
+
+#: ../src/data/font-manager.ui.h:65
+msgid "Color selector"
+msgstr "Vyberač farby"
+
+#: ../src/data/font-manager.ui.h:66 ../src/ui/previews.py:249
+msgid "Compare Fonts"
+msgstr "Porovnať fonty"
+
+#: ../src/data/font-manager.ui.h:67
+msgid "Confirm Action"
+msgstr "Potvrdiť akciu"
+
+#: ../src/data/font-manager.ui.h:68
+msgid "Copy Collection"
+msgstr "Kopírovať zbierku"
+
+#: ../src/data/font-manager.ui.h:69
+msgid "Copyright &#xA9; 2009, 2010 Jerry Casiano"
+msgstr "Copyright &#xA9; 2009, 2010 Jerry Casiano"
+
+#: ../src/data/font-manager.ui.h:70
+msgid "Create Sample Sheet"
+msgstr "Vytvoriť vzorkový hárok"
+
+#: ../src/data/font-manager.ui.h:71 ../src/ui/previews.py:422
+msgid "Custom Text"
+msgstr "Vlastný text"
+
+#: ../src/data/font-manager.ui.h:72
+msgid "Database"
+msgstr "Databáza"
+
+#: ../src/data/font-manager.ui.h:73
+msgid "Default archive type"
+msgstr "Predvolený typ archívu"
+
+#: ../src/data/font-manager.ui.h:74
+msgid "Default font size"
+msgstr "Predvolená šírka fontu"
+
+#: ../src/data/font-manager.ui.h:75
+msgid "Delete selected fonts"
+msgstr "Vymazať vybrané fonty"
+
+#: ../src/data/font-manager.ui.h:76
+msgid "Disable selected collection"
+msgstr "Zakázať vybranú kolekciu"
+
+#: ../src/data/font-manager.ui.h:77
+msgid "Disable selected families"
+msgstr "Zakázať vybrané rodiny"
+
+#: ../src/data/font-manager.ui.h:78
+msgid ""
+"Disabling or enabling large amounts of fonts at once can have quite an "
+"impact on the desktop.\n"
+"\n"
+"If you choose to continue, it is suggested that you close all open "
+"applications and be patient should your desktop become unresponsive for a "
+"bit.\n"
+msgstr ""
+"Zakázanie alebo povolenie veľkých množstiev fontov naraz môže mať určitý "
+"vplyv na pracovnú plochu.\n"
+"\n"
+"Ak vyberieš pokračovať, je odporúča sa aby si zavrel všetky otvorené "
+"aplikácie a byť trpezlivý, tvoja plocha by mala prestať na chvíľu reagovať.\n"
+
+#: ../src/data/font-manager.ui.h:82
+msgid "Display collection totals"
+msgstr "Zobraziť súhrny kolekcie"
+
+#: ../src/data/font-manager.ui.h:83
+msgid "Display extra tooltips"
+msgstr "Zobrazovať extra nápovedy"
+
+#: ../src/data/font-manager.ui.h:84
+msgid "Display family totals"
+msgstr "Zobrazovať rodinné súhrny"
+
+#: ../src/data/font-manager.ui.h:85
+msgid "Enable Folder Cleanup"
+msgstr "Povoliť vyčistenie priečinka"
+
+#: ../src/data/font-manager.ui.h:86
+msgid "Enable selected collection"
+msgstr "Povoliť vybranú kolekciu"
+
+#: ../src/data/font-manager.ui.h:87
+msgid "Enable selected families"
+msgstr "Povoliť vybrané rodiny"
+
+#: ../src/data/font-manager.ui.h:88
+msgid "Export Collection"
+msgstr "Exportovať kolekciu"
+
+#: ../src/data/font-manager.ui.h:89
+msgid "Export Collection as an archive"
+msgstr "Exportovať kolekciu ako archív"
+
+#: ../src/data/font-manager.ui.h:90
+msgid "Export collection"
+msgstr "Exportovať kolekciu"
+
+#: ../src/data/font-manager.ui.h:91
+msgid "Families:"
+msgstr "Rodiny:"
+
+#: ../src/data/font-manager.ui.h:93
+msgid "File not found"
+msgstr "Súbor nenájdený"
+
+#: ../src/data/font-manager.ui.h:94
+msgid "Filepath :"
+msgstr "Súborová cesta :"
+
+#: ../src/data/font-manager.ui.h:96
+msgid "Font Directories"
+msgstr "Adresáre s fontami"
+
+#: ../src/data/font-manager.ui.h:97 ../src/main.py:315 ../src/main.py:325
+#: ../src/main.py:455
+msgid "Font Manager"
+msgstr "Správca fontov"
+
+#: ../src/data/font-manager.ui.h:98
+msgid "Font Manager Homepage"
+msgstr "Domovská stránka Správcu fontov"
+
+#: ../src/data/font-manager.ui.h:99
+msgid "Font Manager needs to reload\n"
+msgstr "Správca fontov sa potrebuje znovunačítať\n"
+
+#: ../src/data/font-manager.ui.h:101
+msgid "Font management for the GNOME Desktop"
+msgstr "Správca fontov pre pracovnú plochu GNOME"
+
+#: ../src/data/font-manager.ui.h:102
+msgid "Foreground Color"
+msgstr "Farba popredia"
+
+#: ../src/data/font-manager.ui.h:103
+msgid "Foundry :"
+msgstr "Zlieváreň :"
+
+#: ../src/data/font-manager.ui.h:104 ../src/data/menus.ui.h:7
+msgid "Help"
+msgstr "Pomoc"
+
+#: ../src/data/font-manager.ui.h:105
+msgid "Include all characters in sample sheet"
+msgstr "Obsiahnuť všetky znaky vo vzorovom hárku"
+
+#: ../src/data/font-manager.ui.h:106
+msgid "Include sample sheet in archive"
+msgstr "Obsiahnuť vzorový hárok v archíve"
+
+#: ../src/data/font-manager.ui.h:107
+msgid "Information"
+msgstr "Informácia"
+
+#: ../src/data/font-manager.ui.h:108
+msgid "Interface"
+msgstr "Rozhranie"
+
+#: ../src/data/font-manager.ui.h:109
+msgid "Invalid Selection"
+msgstr "Neplatný výber"
+
+#: ../src/data/font-manager.ui.h:110
+msgid ""
+"Launchpad Translators.\n"
+"\n"
+"For more information please see\n"
+"\n"
+"\thttp://translations.launchpad.net/\n"
+"\n"
+"A big thank you to all those who help make this\n"
+"and other applications on Launchpad accessible\n"
+"to as many people as possible."
+msgstr ""
+"Prekladatelia v Launchpade.\n"
+"\n"
+"Pre viac informácii prosím pozri\n"
+"\n"
+"\thttp://translations.launchpad.net/\n"
+"\n"
+"Veľká vďaka všetkým tým, ktorí pomohli urobiť túto\n"
+"a ďalšie aplikácie v Launchpage prístupné\n"
+"pre tak mnoho ľudí, ako je to len možné."
+
+#: ../src/data/font-manager.ui.h:119
+msgid "Manage"
+msgstr "Spravovať"
+
+#: ../src/data/font-manager.ui.h:120
+msgid "Manage Fonts"
+msgstr "Spravovať fonty"
+
+#: ../src/data/font-manager.ui.h:121
+msgid "Manage fonts"
+msgstr "Spravovať fonty"
+
+#: ../src/data/font-manager.ui.h:122
+msgid "Minimize to tray instead of closing window"
+msgstr "Zmenšiť na lištu namiesto zavretia okna"
+
+#: ../src/data/font-manager.ui.h:123
+msgid ""
+"Note that this filter relies on PANOSE classification numbers, fonts that do "
+"not provide this information will not be shown."
+msgstr ""
+"Nezabudni že tento filter spočíva na klasifikačných číslach PANOSE, fonty "
+"ktoré neposkytujú túto informáciu nebudú ukázané."
+
+#: ../src/data/font-manager.ui.h:125 ../src/data/menus.ui.h:10
+msgid "Preferences"
+msgstr "Predvoľby"
+
+#: ../src/data/font-manager.ui.h:126
+msgid "Reload Later"
+msgstr "Znovunačítať neskôr"
+
+#: ../src/data/font-manager.ui.h:127
+msgid "Reload Now"
+msgstr "Znovunačítať teraz"
+
+#: ../src/data/font-manager.ui.h:128 ../src/data/menus.ui.h:12
+msgid "Remove Fonts"
+msgstr "Odstrániť fonty"
+
+#: ../src/data/font-manager.ui.h:129
+msgid "Remove selected collection"
+msgstr "Odstrániť vybranú kolekciu"
+
+#: ../src/data/font-manager.ui.h:130
+msgid "Remove selected directory"
+msgstr "Odstrániť vybraný adresár"
+
+#: ../src/data/font-manager.ui.h:131
+msgid "Remove selected entry"
+msgstr "Odstrániť vybranú položku"
+
+#: ../src/data/font-manager.ui.h:132
+msgid "Remove selected families from collection"
+msgstr "Odstrániť vybrané rodiny z kolekcie"
+
+#: ../src/data/font-manager.ui.h:133
+msgid "Remove selected font"
+msgstr "Odstrániť vybraný font"
+
+#: ../src/data/font-manager.ui.h:134
+msgid "Reset cache and reload application"
+msgstr "Prenastaviť keš a znovunačítať aplikáciu"
+
+#: ../src/data/font-manager.ui.h:135
+msgid "Reset database"
+msgstr "Prenastaviť databázu"
+
+#: ../src/data/font-manager.ui.h:136 ../src/ui/treeviews.py:643
+msgid "Search Fonts"
+msgstr "Hľadať fonty"
+
+#: ../src/data/font-manager.ui.h:137
+msgid "Select A Folder"
+msgstr "Vybrať priečinok"
+
+#: ../src/data/font-manager.ui.h:138
+msgid "Select Directory"
+msgstr "Vybrať adresár"
+
+#: ../src/data/font-manager.ui.h:139
+msgid "Select Files to Install"
+msgstr "Vybrať súbory na inštaláciu"
+
+#: ../src/data/font-manager.ui.h:140
+msgid "Set application preferences"
+msgstr "Nastaviť predvoľby aplikácie"
+
+#: ../src/data/font-manager.ui.h:141
+msgid "Set font preferences"
+msgstr "Nastaviť predvoľby fontov"
+
+#: ../src/data/font-manager.ui.h:142
+msgid "Show fonts not present in user collections"
+msgstr "Ukázať fonty neprítomné v užívateľských kolekciách"
+
+#: ../src/data/font-manager.ui.h:143
+msgid "Start at login"
+msgstr "Spustiť pri prihlásení"
+
+#: ../src/data/font-manager.ui.h:144
+msgid "Start minimized"
+msgstr "Spustiť minimalizované"
+
+#: ../src/data/font-manager.ui.h:145
+msgid "Switch to collection when adding families"
+msgstr "Prepnúť sa do kolekcie pri pridávaní rodín"
+
+#: ../src/data/font-manager.ui.h:146
+msgid ""
+"The following directories are not allowed:\n"
+"\n"
+"/\n"
+"/usr\n"
+"/bin\n"
+"/boot\n"
+"/dev\n"
+"/lost+found\n"
+"/proc\n"
+"/root\n"
+"/selinux\n"
+"/srv\n"
+"/sys\n"
+"/etc\n"
+"/lib\n"
+"/sbin\n"
+"/tmp\n"
+"/var"
+msgstr ""
+"Nasledujúce adresáre niesú dovolené:\n"
+"\n"
+"/\n"
+"/usr\n"
+"/bin\n"
+"/boot\n"
+"/dev\n"
+"/lost+found\n"
+"/proc\n"
+"/root\n"
+"/selinux\n"
+"/srv\n"
+"/sys\n"
+"/etc\n"
+"/lib\n"
+"/sbin\n"
+"/tmp\n"
+"/var"
+
+#: ../src/data/font-manager.ui.h:164
+msgid "Type :"
+msgstr "Typ :"
+
+#: ../src/data/font-manager.ui.h:165
+msgid ""
+"Until then, recent changes will not be visible and certain features may not "
+"work properly."
+msgstr ""
+"Dovtedy, posledné zmeny nebudú viditeľné a určité funkcie nemusia fungovať "
+"správne."
+
+#: ../src/data/font-manager.ui.h:166
+msgid "Use localized sample string"
+msgstr "Použiť lokalizovaný vzorkový reťazec"
+
+#: ../src/data/font-manager.ui.h:167
+msgid "View font metadata"
+msgstr "Pozrieť metadáta fontu"
+
+#: ../src/data/font-manager.ui.h:168 ../src/data/font-janitor.ui.h:9
+msgid "page 1"
+msgstr "strana 1"
+
+#: ../src/data/font-sampler.ui.h:1
+msgid "<b>Save output file as</b>"
+msgstr "<b>Uložiť výstupný súbor ako</b>"
+
+#: ../src/data/font-sampler.ui.h:2
+msgid "<b>Select a directory containing font files</b>"
+msgstr "<b>Vyber adresár obsahujúci fontové súbory</b>"
+
+#: ../src/data/font-sampler.ui.h:3
+msgid "Author"
+msgstr "Autor"
+
+#: ../src/data/font-sampler.ui.h:4
+msgid "Create PDF sample sheet"
+msgstr "Vytvoriť vzorový PDF hárok"
+
+#: ../src/data/font-sampler.ui.h:5
+msgid "Creating PDF sample sheet"
+msgstr "Vytváranie vzorového PDF hárku"
+
+#: ../src/data/font-sampler.ui.h:6
+msgid "Edit document details"
+msgstr "Editovať detaily dokumentu"
+
+#: ../src/data/font-sampler.ui.h:7
+msgid "Font Sampler"
+msgstr "Vzorkovník fontov"
+
+#: ../src/data/font-sampler.ui.h:8
+msgid "Font Size"
+msgstr "Veľkosť písma"
+
+#: ../src/data/font-sampler.ui.h:9
+msgid "Include all characters"
+msgstr "Obsiahnuť všetky znaky"
+
+#: ../src/data/font-sampler.ui.h:10
+msgid "Save output file as"
+msgstr "Uložiť výstupný súbor ako"
+
+#: ../src/data/font-sampler.ui.h:11
+msgid "Subject"
+msgstr "Predmet"
+
+#: ../src/data/font-janitor.ui.h:1
+msgid ""
+"<b>Possible duplicates</b>    Multiple files claim to provide the same "
+"features"
+msgstr ""
+"<b>Možné duplikáty</b>    Viaceré súbory žiadajú poskytnutie rovnakých "
+"funkcií"
+
+#: ../src/data/font-janitor.ui.h:2
+msgid "<b>Possibly defective</b>    The following files may have issues"
+msgstr "<b>Možné poškodenie</b>    Nasledujúce súbory môžu mať problémy"
+
+#: ../src/data/font-janitor.ui.h:3
+msgid "Delete selected files"
+msgstr "Vymazať vybrané súbory"
+
+#: ../src/data/font-janitor.ui.h:4
+msgid "Rename Selected Files"
+msgstr "Premenovať vybrané súbory"
+
+#: ../src/data/font-janitor.ui.h:5
+msgid "Use Pango description as suggested filename"
+msgstr "Použiť Pangov popis ako navrhovaný názov súboru"
+
+#: ../src/data/font-janitor.ui.h:6
+msgid "Use Pango suggested filename"
+msgstr "Použiť Pangov navrhovaný názov súboru"
+
+#: ../src/data/font-janitor.ui.h:7
+msgid "Use PostScript names as suggested filename"
+msgstr "Použiť mená Postscriptu ako navrhovaný názov súboru"
+
+#: ../src/data/font-janitor.ui.h:8 ../src/ui/janitor.py:298
+msgid "View possible issues"
+msgstr "Zobraziť možné dôsledky"
+
+#: ../src/data/font-janitor.ui.h:10
+msgid "page 2"
+msgstr "strana 2"
+
+#: ../src/data/menus.ui.h:1
+msgid "About"
+msgstr "O programe"
+
+#: ../src/data/menus.ui.h:2 ../src/ui/fontconfig.py:279
+msgid "Advanced Settings"
+msgstr "Pokročilé nastavenia"
+
+#: ../src/data/menus.ui.h:3 ../src/ui/fontconfig.py:67
+msgid "Alias Editor"
+msgstr "Editor aliasov"
+
+#: ../src/data/menus.ui.h:4
+msgid "Character Map"
+msgstr "Mapa znakov"
+
+#: ../src/data/menus.ui.h:5
+msgid "Desktop Settings"
+msgstr "Nastavenie plochy"
+
+#: ../src/data/menus.ui.h:6
+msgid "Font Preferences"
+msgstr "Nastavenie písma"
+
+#: ../src/data/menus.ui.h:8
+msgid "Install Fonts"
+msgstr "Nainštalovať fonty"
+
+#: ../src/data/menus.ui.h:9
+msgid "Open Fonts Folder"
+msgstr "Otvoriť priečinok s fontami"
+
+#: ../src/data/menus.ui.h:11
+msgid "Quit"
+msgstr "Ukončiť"
+
+#: ../src/constants.py:120
+msgid ""
+"* This file was placed here by Font Manager because this directory\n"
+"did not exist, feel free to delete, it will not be generated again.\n"
+"\n"
+"\n"
+"This is a per-user font directory.\n"
+"\n"
+"\n"
+"Any fonts ( or folders containing fonts ) present in this directory are\n"
+"automatically picked up by the system and available, but only to you.\n"
+"\n"
+"\n"
+"Please note that not only can you specify other directories to scan for\n"
+"fonts from the applications preferences dialog, but you can also set the\n"
+"default folder that's opened when 'Open fonts folder' is selected.\n"
+"\n"
+"\n"
+"If you wish to make fonts available to everyone using the system they will\n"
+"need to be placed in /usr/share/fonts\n"
+"\n"
+msgstr ""
+"* Tento súbor bol sem umiestnený Správcom fontov pretože tento adresár\n"
+"neexistoval, teraz ho môžeš slobodne vymazať, nebude už opäť vytvorený.\n"
+"\n"
+"\n"
+"Toto je adresár fontov pripadajúci každému užívateľovi.\n"
+"\n"
+"\n"
+"Ľubovolné fonty ( alebo zložky obsahujúce fonty ) prítomné v tomto adresári "
+"sú\n"
+"automaticky pozbierané systémom a dostupné, ale iba pre teba.\n"
+"\n"
+"\n"
+"Prosím pamätaj, že môžeš nielen špecifikovať ďalšie adresáre pre skenovanie "
+"pre\n"
+"fonty z dialógu predvolieb aplikácie, ale tiež môžeš nastaviť\n"
+"predvolený priečinok ktorý bude otvorený keď 'Otvoriť priečinok fontov' je "
+"vybrané.\n"
+"\n"
+"\n"
+"Ak si praješ spraviť fonty dostupné každému užívateľovi systému, potom budú "
+"\n"
+"musieť byť umiestnené v adresári /usr/share/fonts\n"
+"\n"
+
+#: ../src/constants.py:142
+msgid ""
+"\n"
+"<!--\n"
+"    This file is maintained by Font Manager.\n"
+"\n"
+"    If you wish to make any changes it is suggested you do so using\n"
+"\n"
+"        {0}\n"
+"\n"
+"    Any changes made to this file will be automatically relocated there\n"
+"    at startup and any settings already in that file will be overwritten.\n"
+"-->\n"
+msgstr ""
+"\n"
+"<!--\n"
+"    Tento súbor je spravovaný Správcom fontov.\n"
+"\n"
+"    Ak si praješ urobiť nejaké zmeny, skús tak urobiť s použitím\n"
+"\n"
+"        {0}\n"
+"\n"
+"    Akékoľvek zmeny urobené v tomto súbore budú tam automaticky prenesené\n"
+"    pri štarte a akékoľvek existujúce nastavenia v tamtom súbore budú "
+"prepísané.\n"
+"-->\n"
+
+#: ../src/constants.py:313
+msgid "Anti-Alias"
+msgstr "Anti-Alias"
+
+#: ../src/constants.py:314
+msgid "Auto-Hint"
+msgstr "Automatické vyhladzovanie"
+
+#: ../src/constants.py:315
+msgid "Hinting"
+msgstr "Vyhladzovanie"
+
+#: ../src/constants.py:316
+msgid "LCD Filter"
+msgstr "LCD Filter"
+
+#: ../src/constants.py:317
+msgid "Force Spacing"
+msgstr "Vynútiť medzery"
+
+#: ../src/constants.py:318
+msgid "Use Global Advance data"
+msgstr "Použiť dáta globálneho postupu"
+
+#: ../src/constants.py:319
+msgid "Use Embedded Bitmaps"
+msgstr "Použiť vložené bitmapy"
+
+#: ../src/constants.py:320
+msgid "Disable rgba"
+msgstr "Zakázať rgba"
+
+#: ../src/constants.py:321 ../src/ui/fontconfig.py:605
+msgid "Smaller than"
+msgstr "Menšie než"
+
+#: ../src/constants.py:322 ../src/ui/fontconfig.py:606
+msgid "Larger than"
+msgstr "Väčšie než"
+
+#: ../src/constants.py:404 ../src/constants.py:410
+msgid "None"
+msgstr "Žiadne"
+
+#: ../src/constants.py:405
+msgid "Slight"
+msgstr "Málo"
+
+#: ../src/constants.py:406
+msgid "Medium"
+msgstr "Stredný"
+
+#: ../src/constants.py:407
+msgid "Full"
+msgstr "Plný"
+
+#: ../src/constants.py:411
+msgid "Default"
+msgstr ""
+
+#: ../src/constants.py:412
+msgid "Light"
+msgstr ""
+
+#: ../src/constants.py:413
+msgid "Legacy"
+msgstr "Vyslúžené"
+
+#: ../src/constants.py:416
+msgid "Proportional"
+msgstr ""
+
+#: ../src/constants.py:417
+msgid "Dual"
+msgstr ""
+
+#: ../src/constants.py:418
+msgid "Mono"
+msgstr ""
+
+#: ../src/constants.py:419
+msgid "Charcell"
+msgstr ""
+
+#: ../src/main.py:104
+msgid "Finished loading {0} families"
+msgstr "Dokončené načítania {0} rodín"
+
+#: ../src/main.py:180 ../src/main.py:414
+msgid "Yelp is required to view help files"
+msgstr "Yelp je vyžadovaný pre prezeranie súborov nápovedy"
+
+#: ../src/main.py:185
+msgid "This option requires gnome-appearance-properties"
+msgstr "Táto možnosť vyžaduje gnome-appearance-properties"
+
+#: ../src/main.py:257
+msgid "Font Manager will restart in a moment"
+msgstr "Správca fontov sa reštartuje za okamih"
+
+#: ../src/main.py:505
+msgid "Families : {0!s}"
+msgstr "Rodiny : {0!s}"
+
+#: ../src/main.py:542
+msgid "Folder Cleanup"
+msgstr "Vyčistenie priečinka"
+
+#: ../src/core/fonts.py:187
+msgid "{0} Fonts"
+msgstr "{0} Fonty"
+
+#: ../src/core/fonts.py:189
+msgid "{0} Font"
+msgstr ""
+
+#: ../src/core/fonts.py:293
+msgid "Querying installed files..."
+msgstr "Dotazovanie po nainštalovaných súboroch..."
+
+#: ../src/core/fonts.py:401 ../src/core/__init__.py:582
+#: ../src/ui/treeviews.py:262 ../src/ui/treeviews.py:463
+#: ../src/ui/treeviews.py:670 ../src/ui/treeviews.py:733
+msgid "All"
+msgstr "Všetky"
+
+#: ../src/core/fonts.py:403
+msgid "All available fonts"
+msgstr "Všetky dostupné fonty"
+
+#: ../src/core/fonts.py:404 ../src/ui/treeviews.py:262
+#: ../src/ui/treeviews.py:463 ../src/ui/treeviews.py:670
+msgid "System"
+msgstr "Systém"
+
+#: ../src/core/fonts.py:405
+msgid "Fonts available to all users"
+msgstr "Fonts dostupné pre všetkých užívateľov"
+
+#: ../src/core/fonts.py:406 ../src/ui/treeviews.py:262
+#: ../src/ui/treeviews.py:463 ../src/ui/treeviews.py:679
+#: ../src/ui/treeviews.py:681
+msgid "User"
+msgstr "Užívateľ"
+
+#: ../src/core/fonts.py:407
+msgid "Fonts available only to {0}"
+msgstr "Fonty dostupné iba pre {0}"
+
+#: ../src/core/fonts.py:408 ../src/core/__init__.py:591
+#: ../src/ui/preferences.py:427 ../src/ui/preferences.py:437
+#: ../src/ui/treeviews.py:262 ../src/ui/treeviews.py:469
+#: ../src/ui/treeviews.py:670
+msgid "Orphans"
+msgstr "Siroty"
+
+#: ../src/core/fonts.py:409
+msgid "Fonts not present in any collection"
+msgstr "Fonty neprítomné v žiadnej kolekcii"
+
+#: ../src/core/fonts.py:448
+msgid "Loading available fonts..."
+msgstr "Nahrávanie dostupných fontov..."
+
+#: ../src/core/__init__.py:314 ../src/utils/xmlutils.py:332
+msgid "Created on {0}"
+msgstr "Vytvorené {0}"
+
+#: ../src/ui/actions.py:188
+msgid "Edit Action"
+msgstr "Upraviť akciu"
+
+#: ../src/ui/actions.py:190
+msgid "New Action"
+msgstr "Nová akcia"
+
+#: ../src/ui/export.py:71
+msgid "This feature requires the Report Lab Toolkit"
+msgstr "Táto funkcia vyžaduje Report Lab Toolkit"
+
+#: ../src/ui/export.py:75
+msgid "This feature requires File Roller"
+msgstr "Táto funkcia vyžaduje File Roller"
+
+#: ../src/ui/export.py:109
+msgid "Selected folder must be writeable"
+msgstr "Vybraný priečinok musí byť zapisovateľný"
+
+#: ../src/ui/export.py:177 ../src/ui/export.py:198
+msgid "Copying files..."
+msgstr "Kopírujú sa súbory..."
+
+#: ../src/ui/fontconfig.py:123 ../src/ui/fontconfig.py:130
+#: ../src/ui/fontconfig.py:138
+msgid "Add Alias"
+msgstr "Pridať alias"
+
+#: ../src/ui/fontconfig.py:124 ../src/ui/fontconfig.py:131
+#: ../src/ui/fontconfig.py:138
+msgid "Remove Alias"
+msgstr "Odobrať alias"
+
+#: ../src/ui/fontconfig.py:125 ../src/ui/fontconfig.py:132
+#: ../src/ui/fontconfig.py:138
+msgid "Add Substitute"
+msgstr "Pridať náhradu"
+
+#: ../src/ui/fontconfig.py:126 ../src/ui/fontconfig.py:133
+#: ../src/ui/fontconfig.py:139
+msgid "Remove Substitute"
+msgstr "Odstrániť náhradu"
+
+#: ../src/ui/fontconfig.py:127 ../src/ui/fontconfig.py:134
+#: ../src/ui/fontconfig.py:139 ../src/ui/fontconfig.py:142
+#: ../src/ui/fontconfig.py:312
+msgid "Write configuration"
+msgstr "Zapísať konfiguráciu"
+
+#: ../src/ui/fontconfig.py:195 ../src/ui/janitor.py:51
+#: ../src/ui/treeviews.py:196 ../src/ui/treeviews.py:201
+#: ../src/ui/treeviews.py:208
+msgid "Family"
+msgstr "Rodina"
+
+#: ../src/ui/fontconfig.py:208
+msgid "Substitute"
+msgstr "Náhrada"
+
+#: ../src/ui/fontconfig.py:308
+msgid "Full Reset"
+msgstr "Úplná obnova nastavení"
+
+#: ../src/ui/fontconfig.py:316
+msgid "Discard configuration"
+msgstr "Zrušiť konfiguráciu"
+
+#: ../src/ui/janitor.py:51
+msgid "Filename"
+msgstr "Názov súboru"
+
+#: ../src/ui/janitor.py:51
+msgid "Suggested Filename"
+msgstr "Navrhovaný názov súboru"
+
+#: ../src/ui/janitor.py:52
+msgid "Filetype"
+msgstr "Typ súboru"
+
+#: ../src/ui/janitor.py:52
+msgid "Filesize"
+msgstr "Šírka súboru"
+
+#: ../src/ui/janitor.py:55
+msgid "Missing PostScript Name"
+msgstr "Chýbajúce PostScriptové meno"
+
+#: ../src/ui/janitor.py:56
+msgid "Invalid PostScript Name"
+msgstr "Neplatné PostScriptové meno"
+
+#: ../src/ui/janitor.py:57
+msgid "File not listed by FontConfig"
+msgstr "Súbor nieje v zozname FontConfigu"
+
+#: ../src/ui/janitor.py:97
+msgid "Font Janitor - {0}"
+msgstr "Fontový školník - {0}"
+
+#: ../src/ui/janitor.py:291
+msgid "Hide possible issues"
+msgstr "Skryť možné rozpory"
+
+#: ../src/ui/library.py:51
+msgid "Font Manager supported types"
+msgstr "Podporované typy v Správcovi fontov"
+
+#: ../src/ui/previews.py:104
+msgid "This feature requires Gucharmap"
+msgstr "Táto funkcia vyžaduje Gucharmap"
+
+#: ../src/ui/previews.py:240
+msgid "Preview Fonts"
+msgstr "Prezrieť fonty"
+
+#: ../src/ui/previews.py:419
+msgid "Hide text entry"
+msgstr "Skryť textovú položku"
+
+#: ../src/ui/previews.py:484
+msgid "Bold"
+msgstr ""
+
+#: ../src/ui/previews.py:484
+msgid "Bold Italic"
+msgstr ""
+
+#: ../src/ui/previews.py:484
+msgid "Italic"
+msgstr ""
+
+#: ../src/ui/previews.py:569
+msgid "Style provided by {0}"
+msgstr "Štýl poskytnutý od {0}"
+
+#: ../src/ui/sampler.py:76
+msgid "Sample of included fonts"
+msgstr "Vzorka obsiahnutých fontov"
+
+#: ../src/ui/sampler.py:140
+msgid "Registering font files..."
+msgstr "Registrácia fontových súborov..."
+
+#: ../src/ui/sampler.py:157
+msgid "Rendering PDF file..."
+msgstr "Renderovanie PDF súboru..."
+
+#: ../src/ui/sampler.py:280
+msgid "Skipping the following families"
+msgstr "Preskočenie nasledujúcich rodín"
+
+#: ../src/ui/sampler.py:291
+msgid ""
+"Due to the reasons listed above {0!s} out of {1!s} fonts will not be "
+"included in the sample sheet"
+msgstr ""
+"Kvôli hore uvedeným príčinám {0!s} z {1!s} fontov nebude obsiahnutých vo "
+"vzorkovom hárku"
+
+#: ../src/ui/sampler.py:322
+msgid "Face name unavailable"
+msgstr "Meno tváre nedostupné"
+
+#: ../src/ui/sampler.py:353
+msgid "Font file"
+msgstr "Súbor fontu"
+
+#: ../src/ui/sampler.py:356
+msgid "Problem encountered"
+msgstr "Vyskytol sa problém"
+
+#: ../src/ui/treeviews.py:133 ../src/ui/treeviews.py:139
+#: ../src/ui/treeviews.py:462
+msgid "Category"
+msgstr "Kategória"
+
+#: ../src/ui/treeviews.py:160 ../src/ui/treeviews.py:167
+#: ../src/ui/treeviews.py:478
+msgid "Collection"
+msgstr "Kolekcia"
+
+#: ../src/ui/treeviews.py:423
+msgid "Add to"
+msgstr ""
+
+#: ../src/ui/treeviews.py:444
+msgid "Edit actions..."
+msgstr "Editovať akcie..."
+
+#: ../src/ui/treeviews.py:638
+msgid "Hide search box"
+msgstr "Skyť vyhľadávacie pole"
+
+#: ../src/ui/treeviews.py:695
+msgid "New Collection"
+msgstr "Nová kolekcia"
+
+#: ../src/ui/treeviews.py:699
+msgid "New Collection {0}"
+msgstr ""
+
+#: ../src/ui/treeviews.py:1015
+msgid "contains"
+msgstr ""
+
+#: ../src/ui/treeviews.py:1015
+msgid "begins with"
+msgstr ""
+
+#: ../src/ui/treeviews.py:1015
+msgid "ends with"
+msgstr ""
+
+#: ../src/utils/common.py:220
+msgid "Read Me.txt"
+msgstr "Čítaj ma.txt"
+
+#: ../src/utils/common.py:303
+msgid "Please install a supported file browser"
+msgstr "Prosím nainštaluj podporovaný prehliadač súborov"
+
+#: ../src/utils/common.py:304
+msgid ""
+"    Supported file browsers include :\n"
+"\n"
+"    - Nautilus\n"
+"    - Thunar\n"
+"    - Dolphin\n"
+"    - Konqueror\n"
+"    - PCManFM\n"
+"\n"
+"    If a supported file browser is installed,\n"
+"    please file a bug against Font Manager"
+msgstr ""
+"    Podporované súborové prehliadače zahŕňajú :\n"
+"\n"
+"    - Nautilus\n"
+"    - Thunar\n"
+"    - Dolphin\n"
+"    - Konqueror\n"
+"    - PCManFM\n"
+"\n"
+"    Ak je nainštalovaný podporovaný prehliadač súborov,\n"
+"    prosím zaznamenaj chybu proti Správcovi fontov"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "<!--\n"
+#~ "    This file is maintained by Font Manager.\n"
+#~ "\n"
+#~ "    If you wish to make any changes it is suggested you do so using\n"
+#~ "\n"
+#~ "        %s\n"
+#~ "\n"
+#~ "    Any changes made to this file will be automatically relocated there\n"
+#~ "    at startup and any settings already in that file will be overwritten.\n"
+#~ "-->\n"
+#~ msgstr ""
+#~ "\n"
+#~ "<!--\n"
+#~ "    Tento súbor je spravovaný Správcom fontov.\n"
+#~ "\n"
+#~ "    Ak si praješ urobiť nejaké zmeny potom sa ti odporúča urobiť to s "
+#~ "použitím\n"
+#~ "\n"
+#~ "        %s\n"
+#~ "\n"
+#~ "    Akékoľvek zmeny urobené v tomto súbore budú tam automaticky prenesené\n"
+#~ "    pri spúšťaní a akékoľvek nastavenia už prítomné v tamtom súbore budú "
+#~ "prepísané.\n"
+#~ "-->\n"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "<!--\n"
+#~ "    This file modified by Font Manager.\n"
+#~ "\n"
+#~ "    Do NOT edit this file, it will be replaced on startup.\n"
+#~ "\n"
+#~ "    Should you wish to customize anything please use\n"
+#~ "\n"
+#~ "      %s\n"
+#~ "-->\n"
+#~ msgstr ""
+#~ "\n"
+#~ "<!--\n"
+#~ "    Tento súbor je modifikovaný správcom fontov.\n"
+#~ "\n"
+#~ "    Needituj tento súbor, bude aj tak nahradený pri štarte.\n"
+#~ "\n"
+#~ "    Ak si praješ čokoľvek zmeniť prosím použi\n"
+#~ "\n"
+#~ "      %s\n"
+#~ "-->\n"
+
+#, python-format
+#~ msgid "Families : %s"
+#~ msgstr "Rodiny : %s"
+
+#, python-format
+#~ msgid "Finished loading %s families"
+#~ msgstr "Dokončené nahrávanie %s rodín"
+
+#~ msgid "Exclude size range"
+#~ msgstr "Vynechať rozsah šírok"
+
+#, python-format
+#~ msgid "Fonts available only to %s"
+#~ msgstr "Fonty dostupné iba pre %s"
+
+#, python-format
+#~ msgid "%s Fonts"
+#~ msgstr "%s fontov"
+
+#, python-format
+#~ msgid "%s Font"
+#~ msgstr "%s font"
+
+#, python-format
+#~ msgid "Created on %s"
+#~ msgstr "Vytvorené %s"
+
+#~ msgid "File does not contain any embedded license information."
+#~ msgstr "Súbor neobsahuje žiadnu vloženú licenčnú informáciu."
+
+#~ msgid "Enable Browse Mode"
+#~ msgstr "Povoliť prehliadací režim"
+
+#~ msgid ""
+#~ "If available a localized sample will be used instead of the default pangram"
+#~ msgstr ""
+#~ "Ak je dostupná lokalizovaná vzorka, potom bude použitá namiesto predvoleného "
+#~ "pangramu"
+
+#, python-format
+#~ msgid "Font Janitor - %s"
+#~ msgstr "Font Janitor - %s"
+
+#, python-format
+#~ msgid ""
+#~ "Due to the reasons listed above %s out of %s fonts will not be included in "
+#~ "the sample sheet"
+#~ msgstr ""
+#~ "Kvôli horevuedených príčinám %s z %s fontov nebude zahrnutých vo vzorovom "
+#~ "hárku"
+
+#, python-format
+#~ msgid "Style provided by %s"
+#~ msgstr "Štýl poskytnutý %s"
+
+#, python-format
+#~ msgid "New Collection %s"
+#~ msgstr "Nová kolekcia %s"
+
+#~ msgid ""
+#~ "    Supported file browsers include :\n"
+#~ "    \n"
+#~ "    - Nautilus\n"
+#~ "    - Thunar\n"
+#~ "    - Dolphin\n"
+#~ "    - Konqueror\n"
+#~ "    - PCManFM\n"
+#~ "    \n"
+#~ "    If a supported file browser is installed,\n"
+#~ "    please file a bug against Font Manager"
+#~ msgstr ""
+#~ "    Podporované prehliadače súboov zahŕňajú :\n"
+#~ "    \n"
+#~ "    - Nautilus\n"
+#~ "    - Thunar\n"
+#~ "    - Dolphin\n"
+#~ "    - Konqueror\n"
+#~ "    - PCManFM\n"
+#~ "    \n"
+#~ "    Ak je nainštalovaný podporovaný prehliadač súborov,\n"
+#~ "    prosím pošli súbor s chybou Správcovi fontov"

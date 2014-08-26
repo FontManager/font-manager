@@ -1,0 +1,633 @@
+"""
+Font Manager, a font management application for the GNOME desktop
+"""
+# Font Manager, a font management application for the GNOME desktop
+#
+# Copyright (C) 2009, 2010 Jerry Casiano
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to:
+#
+#    Free Software Foundation, Inc.
+#    51 Franklin Street, Fifth Floor
+#    Boston, MA 02110-1301, USA.
+
+# Disable warnings related to gettext
+# pylint: disable-msg=E0602
+# Disable warnings related to missing docstrings, for now...
+# pylint: disable-msg=C0111
+
+import os
+import sys
+import gtk
+import gobject
+import logging
+import UserDict
+import subprocess
+import time
+
+from os.path import basename, exists, join
+
+import core
+import fontutils
+
+from core.service import *
+from ui import fontconfig
+from constants import LANG, PACKAGE_DATA_DIR
+from ui.export import Export
+from ui.janitor import FontJanitor
+from ui.library import InstallFonts, RemoveFonts
+from ui.treeviews import Treeviews
+from ui.previews import FontBrowser, Previews
+from ui.preferences import PreferencesDialog
+from utils.common import open_folder, delete_cache, delete_database, \
+                            reset_fontconfig_cache, fc_config_load_user_fonts, \
+                            fc_config_reload, run_dialog
+from utils.xmlutils import save_collections
+
+try:
+    import appindicator
+    HAVE_APP_INDICATOR = True
+except ImportError:
+    HAVE_APP_INDICATOR = False
+
+
+class Main(object):
+    """
+    Where everything starts.
+    """
+    dirty = False
+    def __init__(self):
+        self.dbus_service = None
+        self.have_session_bus = False
+        if HAVE_DBUS:
+            self.check_for_running_instance()
+        logging.info("Font Manager is now starting")
+        # Disable user configuration files so that changes to them
+        # do not interfere with our ability to render disabled fonts.
+        fontutils.FcEnableHomeConfig(False)
+        fc_config_load_user_fonts()
+        self.objects = ObjectContainer()
+        self.main_window = self.objects['MainWindow']
+        self.main_window.connect('window-state-event', self._set_window_state)
+        self.preferences = self.objects['Preferences']
+        self.menus = self.objects['PopupMenus']
+        # Showtime
+        self.objects.load_widgets()
+        self._restore_window_state()
+        if self.preferences.minimizeonstart:
+            self.main_window.iconify()
+        else:
+            self.main_window.show()
+        # This is called just to force an update
+        while gtk.events_pending():
+            gtk.main_iteration()
+        # Keep a handle to this connection, so we can change it if requested
+        self.quit_id = self.main_window.connect('delete-event', self.quit)
+        # Load
+        self.objects.load_core()
+        if self.have_session_bus and self.dbus_service:
+            self.dbus_service.manager = self.objects['FontManager']
+        # Notification
+        if self.preferences.minimizeonstart:
+            self.objects.notify_send(
+                                _('Finished loading {0} families').format(
+                                self.objects['FontManager'].total_families()))
+        logging.info('Finished loading {0} families'.format(
+                                self.objects['FontManager'].total_families()))
+        # Main UI elements
+        self.objects.load_ui_elements()
+        self.previews = self.objects['Previews']
+        self.treeviews = self.objects['Treeviews']
+        self.objects['FontBrowser'] = FontBrowser(self.objects)
+        self.objects.connect_callbacks()
+        self._connect_callbacks()
+        # Tray icon
+        self.tray_icon = None
+        if self.preferences.minimizeonclose:
+            self._use_tray_icon(None)
+        if self.preferences.minimizeonclose and self.preferences.minimizeonstart:
+            self.main_window.emit('delete-event', None)
+            while gtk.events_pending():
+                gtk.main_iteration()
+        # Install/Remove/Export functions
+        self.export = None
+        self.installer = None
+        self.remover = None
+        # We disabled user configuration files at the start.
+        # This means any user settings just got dropped so reload them
+        fc_config_reload()
+        # This also happens whenever these signals are emitted...
+        self.main_window.connect_after('style-set', fc_config_reload)
+        self.main_window.connect_after('direction-changed', fc_config_reload)
+        # What the hell, let's put Main into the container... :-D
+        self.objects['Main'] = self
+
+    def check_for_running_instance(self):
+        """
+        Check if there is already a running instance, if there is present it to
+        the user and exit.
+        """
+        try:
+            session_bus = dbus.SessionBus()
+            self.have_session_bus = True
+        except:
+            logging.error("Could not get session bus...")
+            return
+        try:
+            proxy_obj = session_bus.get_object('com.fonts.manage',
+                                                '/com/fonts/manage')
+            ui = dbus.Interface(proxy_obj, 'com.fonts.interface')
+            while not ui.is_ready():
+                logging.info('Waiting for running instance to finish loading...')
+                time.sleep(2.5)
+            ui.show()
+            sys.exit(0)
+        except dbus.DBusException:
+            bus_name = dbus.service.BusName('com.fonts.manage', session_bus)
+            self.dbus_service = core.service.FontService(self, bus_name)
+
+    def _connect_callbacks(self):
+        _activate = {
+                    'ManageFolder'          :   self._on_open_folder,
+                    'ManageInstall'         :   self._on_install_fonts,
+                    'ManageRemove'          :   self._on_remove_fonts,
+                    'TrayInstall'           :   self._on_install_fonts,
+                    'TrayRemove'            :   self._on_remove_fonts,
+                    'TrayFontPreferences'   :   _on_font_settings,
+                    'TrayCharacterMap'      :   self.previews.on_char_map,
+                    'TrayPreferences'       :   self.objects.on_prefs,
+                    'TrayQuit'              :   self.quit,
+                    'TrayHelp'              :   _on_help,
+                    'DesktopSettings'       :   _on_font_settings
+                    }
+        # Menu callbacks
+        for menuitem, func in _activate.iteritems():
+            self.menus[menuitem].connect('activate', func)
+
+        if not 'yelp' in self.objects['AppCache']:
+            self.menus['TrayHelp'].set_sensitive(False)
+            self.menus['TrayHelp'].set_tooltip_text\
+            (_('Yelp is required to view help files'))
+
+        if not 'gnome-appearance-properties' in self.objects['AppCache']:
+            self.menus['DesktopSettings'].set_sensitive(False)
+            self.menus['DesktopSettings'].set_tooltip_text\
+            (_('This option requires gnome-appearance-properties'))
+
+        # Callbacks with arguments
+        self.menus['TrayAbout'].connect('activate', run_dialog,
+                                            self.objects['AboutDialog'])
+        self.menus['FontConfigSettings'].connect('activate',
+                                        _on_fontconfig_settings, self.objects)
+        self.menus['AliasEdit'].connect('activate',
+                                        _on_edit_aliases, self.objects)
+        # Miscellaneous
+        self.objects['Refresh'].connect('clicked', self.reload, True)
+        self.objects['Manage'].connect('button-press-event',
+                                        self.menus.show_manage_menu)
+        self.objects['FontSettings'].connect('button-press-event',
+                                        self.menus.show_settings_menu)
+        self.objects['Export'].connect('clicked', self._on_export)
+        self.preferences.connect('update-tray-icon', self._use_tray_icon)
+        return
+
+    def _on_export(self, unused_widget):
+        if not self.export:
+            self.export = Export(self.objects)
+        return self.export.run()
+
+    def _on_install_fonts(self, unused_widget):
+        if not self.installer:
+            self.installer = InstallFonts(self.objects)
+        return self.installer.run()
+
+    def _on_open_folder(self, unused_widget):
+        return open_folder(self.objects['Preferences'].folder, self.objects)
+
+    def _on_remove_fonts(self, unused_widget):
+        if not self.remover:
+            self.remover = RemoveFonts(self.objects)
+        return self.remover.run()
+
+    def _on_tray_icon_clicked(self, widget):
+        """
+        Show or hide application when tray icon is clicked
+        """
+        if not self.main_window.get_property('visible'):
+            self.main_window.set_skip_taskbar_hint(False)
+            self.main_window.present()
+        else:
+            self.main_window.set_skip_taskbar_hint(True)
+            self.main_window.hide()
+        return
+
+    def _restore_window_state(self):
+        if self.preferences.hpane > 0:
+            pane = self.objects['HorizontalPane']
+            pane.set_position(self.preferences.hpane)
+        if self.preferences.vpane > 0:
+            pane = self.objects['VerticalPane']
+            pane.set_position(self.preferences.vpane)
+        if self.preferences.windowsize != '0:0':
+            width, height = self.preferences.windowsize.split(':')
+            self.main_window.resize(int(width), int(height))
+        if self.preferences.maximized:
+            self.main_window.maximize()
+        return
+
+    def reload(self, unused_widget, del_cache = False):
+        if del_cache or self.dirty:
+            delete_cache()
+            delete_database()
+            reset_fontconfig_cache()
+        if self.main_window.get_property('visible'):
+            if not run_dialog(dialog = self.objects['ReloadDialog']):
+                return
+        else:
+            self.objects.notify_send(_('Font Manager will restart in a moment'))
+        self._save_settings()
+        logging.info("Restarting...")
+        try:
+            font_manager = join('@BINDIR@', 'font-manager')
+            os.execvp(font_manager,
+                        ('--execvp_needs_to_stop_crying="True"',))
+        except OSError, error:
+            logging.error(error)
+        return
+
+    def _save_settings(self):
+        if not self.preferences.maximized:
+            width, height = self.main_window.get_size()
+            self.preferences.windowsize = '{0}:{1}'.format(width, height)
+        logging.info("Saving configuration")
+        self.preferences.save()
+        save_collections(self.objects)
+        return
+
+    def _set_window_state(self, widget, event):
+        if not event.type == gtk.gdk.WINDOW_STATE:
+            return
+        maxed = gtk.gdk.WINDOW_STATE_MAXIMIZED
+        self.preferences.maximized = (event.new_window_state == maxed)
+        return
+
+    def _use_tray_icon(self, unused_cls_instance, minimize = True):
+        self._get_supported_tray_indicator(minimize)
+        self.main_window.disconnect(self.quit_id)
+        if minimize:
+            self.quit_id = \
+            self.main_window.connect('delete-event', _delete_handler)
+        else:
+            self.quit_id = \
+            self.main_window.connect('delete-event', self.quit)
+            if not self.main_window.get_property('visible'):
+                self.main_window.present()
+                self.main_window.set_skip_taskbar_hint(False)
+                while gtk.events_pending():
+                    gtk.main_iteration()
+        return
+
+    def _get_supported_tray_indicator(self, visibility):
+        if self.tray_icon is not None:
+            if not HAVE_APP_INDICATOR:
+                self.tray_icon.set_visible(visibility)
+            elif visibility:
+                self.tray_icon.set_status(appindicator.STATUS_ACTIVE)
+            else:
+                self.tray_icon.set_status(appindicator.STATUS_PASSIVE)
+            return
+        elif HAVE_APP_INDICATOR:
+            self.tray_icon = appindicator.Indicator("font-manager", "fonts",
+                                    appindicator.CATEGORY_APPLICATION_STATUS)
+            self.tray_icon.set_status(appindicator.STATUS_ACTIVE)
+            menu = self.menus['TrayMenu']
+            show = gtk.ImageMenuItem('gtk-select-font')
+            show.get_child().set_text(_('Font Manager'))
+            show.connect('activate', self._on_tray_icon_clicked)
+            menu.insert(show, 0)
+            sep = gtk.SeparatorMenuItem()
+            menu.insert(sep, 1)
+            menu.show_all()
+            self.tray_icon.set_menu(menu)
+        else:
+            self.tray_icon = \
+            gtk.status_icon_new_from_icon_name('preferences-desktop-font')
+            self.tray_icon.set_tooltip(_('Font Manager'))
+            self.tray_icon.connect('activate', self._on_tray_icon_clicked)
+            self.tray_icon.connect('popup-menu', self.menus.show_tray_menu)
+            self.tray_icon.set_visible(visibility)
+        return
+
+    def quit(self, unused_widget = None, possible_event = None):
+        self._save_settings()
+        if self.dirty:
+            delete_cache()
+            delete_database()
+            reset_fontconfig_cache()
+        logging.info("Exiting...")
+        try:
+            gtk.main_quit()
+            sys.exit(0)
+        # This can happen if user quits before we're done loading
+        except RuntimeError:
+            sys.exit(0)
+
+
+class ObjectContainer(UserDict.UserDict):
+    """
+    Provide a convenient way to share objects between classes.
+    """
+    _widgets = (
+        'TopBox', 'MainBox', 'StatusBox', 'HorizontalPane',
+        'CategoryTree', 'CollectionTree', 'NewCollection', 'RemoveCollection',
+        'EnableCollection', 'DisableCollection', 'VerticalPane', 'FamilyScroll',
+        'FamilyTree', 'FamilySearchBox', 'EnableFamily', 'DisableFamily',
+        'RemoveFamily', 'ColorSelect', 'FontInformation', 'CharacterMap',
+        'CompareButtonsBox', 'AddToCompare', 'RemoveFromCompare',
+        'ClearComparison', 'PreviewScroll', 'CompareScroll', 'Export',
+        'ClearComparison', 'FontSizeSpinButton', 'FontPreview', 'CompareTree',
+        'FontSizeSlider', 'CustomTextEntry', 'SearchFonts', 'CompareFonts',
+        'CustomText', 'About', 'Help', 'AppPreferences', 'FontSettings',
+        'Manage', 'FamilyTotal', 'ProgressBar', 'LoadingLabel', 'ProgressLabel',
+        'Throbber', 'Refresh', 'SizeAdjustment', 'FontOptionsBox',
+        'MadFontsWarning', 'ColorSelector', 'CloseColorSelector',
+        'ForegroundColor', 'BackgroundColor', 'AboutDialog', 'AppOptionsBox',
+        'FontInstallDialog', 'FileMissingDialog', 'FileMissingView',
+        'FontRemovalDialog', 'RemoveFontsTree', 'RemoveSearchEntry',
+        'RemoveFontsButton', 'ExportDialog', 'ExportAsArchive', 'ExportAsPDF',
+        'ExportTo', 'ExportFileChooserBox', 'ExportFileChooser',
+        'ExportPermissionsWarning', 'ExportArchiveOptionsBox', 'IncludeSampler',
+        'SearchBox', 'Advanced', 'BrowseFonts', 'MainNotebook', 'BackButton',
+        'BrowseTree', 'BrowseScroll', 'CollectionButtonsFrame', 'SidePaneScroll',
+        'BrowseSizeSlider', 'ReloadDialog'
+        )
+    def __init__(self):
+        UserDict.UserDict.__init__(self)
+        self.data = {}
+        self.prefs_dialog = None
+        self.builder = gtk.Builder()
+        self.builder.set_translation_domain('font-manager')
+        self.builder.add_from_file(join(PACKAGE_DATA_DIR, 'font-manager.ui'))
+        self.data['MainWindow'] = self.builder.get_object('MainWindow')
+        self.data['Preferences'] = core.get_preferences()
+        self.data['AppCache'] = core.get_applist()
+        self.data['PopupMenus'] = PopupMenu(self)
+        self.data['FontBrowser'] = None
+        # Find and set up icon for use throughout app windows
+        try:
+            icon_theme = gtk.icon_theme_get_default()
+            self.icon = icon_theme.load_icon("preferences-desktop-font", 48, 0)
+            gtk.window_set_default_icon_list(self.icon)
+        except gobject.GError, exc:
+            logging.warn("Could not find preferences-desktop-font icon", exc)
+            self.icon = None
+        # Show notifications, if available
+        self.message = None
+        try:
+            import pynotify
+            if pynotify.init('font-manager'):
+                self.message = pynotify.Notification
+        except ImportError:
+            pass
+
+    def connect_callbacks(self):
+        """
+        Connect callbacks to local functions.
+        """
+        self.data['About'].connect('clicked', run_dialog,
+                                            self.data['AboutDialog'])
+        if 'yelp' in self.data['AppCache']:
+            self.data['Help'].connect('clicked', _on_help)
+        else:
+            self.data['Help'].set_sensitive(False)
+            self.data['Help'].set_tooltip_text\
+            (_('Yelp is required to view help files'))
+        self.data['AppPreferences'].connect('clicked', self.on_prefs)
+        return
+
+    def load_core(self):
+        """
+        Load FontManager.
+        """
+        self.set_sensitive(False)
+        core.PROGRESS_CALLBACK = self.progress_callback
+        self.data['FontManager'] = core.get_manager(self.data['MainWindow'])
+        self.set_sensitive(True)
+        return
+
+    def load_ui_elements(self):
+        self.data['Previews'] = Previews(self)
+        self.data['Treeviews'] = Treeviews(self)
+        return
+
+    def load_widgets(self):
+        """
+        Load widgets from .ui file.
+
+        Setup any widgets that are not defined in the .ui file.
+        """
+        for widget in self._widgets:
+            self.data[widget] = self.builder.get_object(widget)
+        # Undefined widgets
+        self.data['StyleCombo'] =  gtk.combo_box_new_text()
+        self.data['StyleCombo'].set_focus_on_click(False)
+        self.data['FontOptionsBox'].pack_end(self.data['StyleCombo'],
+                                                            False, False)
+        self.data['StyleCombo'].show()
+        return
+
+    def notify_send(self, message):
+        """
+        Display a notification bubble.
+        """
+        if self.message is None:
+            return
+        notification = self.message(_('Font Manager'), '{0}'.format(message))
+        if self.icon:
+            notification.set_icon_from_pixbuf(self.icon)
+        notification.show()
+        return
+
+    def on_prefs(self, unused_widget):
+        """
+        Display preferences dialog.
+        """
+        if self.prefs_dialog is None:
+            self.prefs_dialog = PreferencesDialog(self)
+        return self.prefs_dialog.run(self)
+
+    def progress_callback(self, pmsg, total, processed):
+        """
+        Set progressbar text and percentage.
+        """
+        if pmsg is not None:
+            self.data['ProgressBar'].set_text(pmsg)
+        if processed > 0 and processed <= total:
+            self.data['ProgressBar'].set_fraction(float(processed)/float(total))
+        while gtk.events_pending():
+            gtk.main_iteration()
+        return
+
+    def reload(self, del_cache = False):
+        return self.data['Main'].reload(None, del_cache)
+
+    def set_sensitive(self, state = True):
+        self.data['MainBox'].set_sensitive(state)
+        self.data['Refresh'].set_sensitive(state)
+        for widget in self.data['AppOptionsBox'].get_children():
+            widget.set_sensitive(state)
+        if state:
+            self.data['ProgressBar'].hide()
+            self.update_family_total()
+        else:
+            self.data['FamilyTotal'].set_text('')
+            self.data['ProgressBar'].set_text('')
+            self.data['ProgressBar'].show()
+        while gtk.events_pending():
+            gtk.main_iteration()
+        return
+
+    def update_family_total(self):
+        """
+        Update family total displayed in "statusbar".
+        """
+        return self.data['FamilyTotal'].set_text\
+        (_('Families : {0!s}').format(self.data['FontManager'].total_families()))
+
+
+class PopupMenu(UserDict.UserDict):
+    _widgets = (
+        'TrayMenu', 'TrayInstall', 'TrayRemove', 'TrayFontPreferences',
+        'TrayCharacterMap', 'TrayPreferences', 'TrayHelp', 'TrayAbout',
+        'TrayQuit', 'ManageMenu', 'ManageInstall', 'ManageRemove',
+        'ManageFolder', 'SettingsMenu', 'DesktopSettings', 'FontConfigSettings',
+        'AliasEdit'
+        )
+    def __init__(self, objects):
+        UserDict.UserDict.__init__(self)
+        self.data = {}
+        self.objects = objects
+        self.builder = objects.builder
+        self.builder.add_from_file(join(PACKAGE_DATA_DIR, 'menus.ui'))
+        for widget in self._widgets:
+            self.data[widget] = self.builder.get_object(widget)
+        self.tray_menu = self.data['TrayMenu']
+        self.manage_menu = self.data['ManageMenu']
+        self.settings_menu = self.data['SettingsMenu']
+        self.cleanup = None
+
+    def _run_cleanup(self, unused_widget, directory):
+        return FontJanitor(self.objects, directory)
+
+    def show_manage_menu(self, unused_widget, event):
+        """
+        Display "manage fonts' menu.
+        """
+        if event.button != 1:
+            return
+        if self.objects['Preferences'].janitor:
+            user_dirs = self.objects['Preferences'].list_user_font_dirs()
+            if not self.cleanup:
+                self.cleanup = gtk.ImageMenuItem('gtk-clear')
+                self.cleanup.get_child().set_text(_('Folder Cleanup'))
+                self.manage_menu.insert(gtk.SeparatorMenuItem(), 2)
+                self.manage_menu.insert(self.cleanup, 3)
+            submenu = self.cleanup.get_submenu()
+            if submenu is not None:
+                self.cleanup.remove_submenu()
+                submenu.destroy()
+            submenu = gtk.Menu()
+            for directory in user_dirs:
+                item = gtk.MenuItem(basename(directory.rstrip(os.sep)))
+                item.connect('activate', self._run_cleanup, directory)
+                submenu.append(item)
+            self.cleanup.set_submenu(submenu)
+            self.cleanup.set_sensitive(True)
+            if len(user_dirs) == 0:
+                self.cleanup.set_sensitive(False)
+            self.manage_menu.show_all()
+        else:
+            if self.cleanup is not None:
+                self.cleanup.hide()
+                self.manage_menu.get_children()[2].hide()
+        return self.manage_menu.popup(None, None, None, event.button, event.time)
+
+    def show_tray_menu(self, unused_widget, button, event_time):
+        """
+        Display tray menu.
+        """
+        return self.tray_menu.popup(None, None, None, button, event_time)
+
+    def show_settings_menu(self, unused_widget, event):
+        """
+        Display settings menu.
+        """
+        if event.button != 1:
+            return
+        return self.settings_menu.popup(None, None, None, event.button, event.time)
+
+
+def _delete_handler(window, unused_event):
+    """
+    PyGTK destroys the window by default, returning True from this function
+    tells PyGTK that no further action is needed.
+
+    Returning False would tell PyGTK to perform these actions then go ahead
+    and destroy the window.
+    """
+    window.set_skip_taskbar_hint(True)
+    window.hide()
+    return True
+
+def _on_edit_aliases(unused_widget, objects):
+    """
+    Display a dialog so user can tweak font aliases.
+    """
+    return fontconfig.AliasEdit(objects)
+
+def _on_font_settings(unused_widget):
+    """
+    Launch gnome-appearance-properties with the fonts tab active.
+    """
+    try:
+        logging.info("Launching font preferences dialog")
+        subprocess.Popen(['gnome-appearance-properties', '--show-page=fonts'])
+    except OSError, error:
+        logging.error("Error: {0}".format(error))
+    return
+
+def _on_fontconfig_settings(unused_widget, objects):
+    """
+    Display a dialog so user can tweak fontconfig settings for individual fonts.
+    """
+    return fontconfig.ConfigEdit(objects)
+
+def _on_help(unused_widget):
+    """
+    Open help pages in browser.
+    """
+    # The trailing slash is required, otherwise yelp will not find images...
+    lang = LANG + '/'
+    help_dir = join('@PACKAGEDIR@', 'help')
+    help_files = join(help_dir, lang)
+    if not exists(help_files):
+        logging.info(
+        'No translation exists for {0}, using default...'.format(LANG))
+        help_files = join(help_dir, 'C/')
+    try:
+        subprocess.Popen(['yelp', help_files])
+        logging.info("Launching Help browser")
+    except OSError:
+        logging.warn("Could not find any suitable browser")
+    return

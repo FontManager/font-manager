@@ -1,0 +1,61 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="remove">
+
+    <info>
+        <link type="guide" xref="index#manage"/>
+        <link type="seealso" xref="install"/>
+        <desc>Getting rid of unneeded fonts</desc>
+    </info>
+
+    <title>Font Removal</title>
+
+        <p>
+        The only fonts listed in the removal dialog will be those which
+        were installed by <app>Font Manager</app> and those present
+        in your user font folder.
+        </p>
+
+        <list>
+            <item>
+                <title>To remove fonts you no longer need:</title>
+                <steps>
+                    <item>
+                        <p>
+                        Click
+                        <gui>
+                        <media type="image" src="figures/manage.png"/>
+                        </gui>
+                        in the
+                        <link xref="ui#statusbar">Statusbar</link>
+                        </p>
+                    </item>
+                    <item>
+                        <p>
+                        Select "Remove Fonts" from the popup menu
+                        </p>
+                    </item>
+                    <item>
+                        <p>
+                        Select the families you wish to remove from the
+                        list that is displayed
+                        </p>
+                    </item>
+                    <item>
+                        <p>
+                        Click
+                        <gui style="button">Delete Selected Fonts</gui>
+                        </p>
+                    </item>
+                </steps>
+            </item>
+            </list>
+
+        <note style="warning">
+            <p>
+            Files are permanently deleted. Before removing any fonts ensure
+            you have backups if there is a chance you may need them again.
+            </p>
+        </note>
+
+</page>

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=Font Manager
+Name[en_US]=Font Manager
+Comment=Preview, compare and manage fonts
+Type=Application
+Exec=font-manager
+Terminal=false
+StartupNotify=false
+Icon=preferences-desktop-font
+Categories=Graphics;Viewer;GNOME;GTK;Publishing;
