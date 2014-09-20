@@ -18,7 +18,5 @@ appdatadir = $(datarootdir)/appdata
 appdata_in_files = font-manager.appdata.xml.in
 appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 EXTRA_DIST = $(appdata_in_files)
-CLEANFILES = $(appstream_DATA)
+CLEANFILES = $(appdata_DATA)
 
-clean-local:
-	rm -f $(appstream_DATA)
