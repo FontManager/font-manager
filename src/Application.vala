@@ -82,7 +82,7 @@ namespace FontManager {
             Environment.set_variable("XDG_CONFIG_HOME", "", true);
             FontConfig.enable_user_config(false);
             Logging.setup();
-            Intl.setup(NAME);
+            Intl.setup();
             Gtk.init(ref args);
             set_application_style();
             if (update_declined())

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright © 2009 - 2014 Jerry Casiano -->
+<application>
+  <updatecontact>JerryCasiano_at_gmail.com</updatecontact>
+  <id type="desktop">font-manager.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <summary>A simple font management application for Gtk+ Desktop Environments</summary>
+  <description>
+    <p>
+        Font Manager is intended to provide a way for average users to easily manage
+        desktop fonts, without having to resort to command line tools or editing
+        configuration files by hand.
+    </p>
+    <p>
+        While designed primarily with the Gnome Desktop Environment in mind,
+        it should work well with other Gtk+ desktop environments.
+    </p>
+    <p>
+        Font Manager is NOT a professional-grade font management solution.
+    </p>
+  </description>
+  <url type="homepage">http://code.google.com/p/font-manager</url>
+  <screenshots>
+    <screenshot type="default">http://font-manager.googlecode.com/svn/resources/font-manager.googlecode.com/font-manager_default-theme.png</screenshot>
+  </screenshots>
+</application>

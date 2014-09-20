@@ -18,6 +18,11 @@
 
 namespace FontManager {
 
+    /* Most of the presentation and logic in our Compare view is based on
+     * Gnome Specimen by Wouter Bolsterlee.
+     *
+     * https://launchpad.net/gnome-specimen
+     */
     public class Compare : AdjustablePreview {
 
         public signal void list_modified();
