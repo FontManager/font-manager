@@ -19,35 +19,37 @@
  *  Jerry Casiano <JerryCasiano@gmail.com>
  */
 
-namespace Intl {
+namespace FontManager {
 
-    public void setup (string name) {
-        GLib.Intl.bindtextdomain(name, null);
-        GLib.Intl.bind_textdomain_codeset(name, null);
-        GLib.Intl.textdomain(name);
-        GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
-        return;
+    namespace Intl {
+
+        public void setup (string name = NAME) {
+            GLib.Intl.bindtextdomain(name, null);
+            GLib.Intl.bind_textdomain_codeset(name, null);
+            GLib.Intl.textdomain(name);
+            GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
+            return;
+        }
+
     }
 
-}
+    namespace Logging {
 
-namespace Logging {
-
-    public void setup () {
-        Logger.initialize(FontManager.About.NAME);
-        Logger.DisplayLevel = LogLevel.INFO;
-        message("%s %s", FontManager.About.NAME, FontManager.About.VERSION);
-        message("Using FontConfig %s", FontConfig.get_version_string());
-        message("Using Pango %s", Pango.version_string());
-        message("Using Gtk+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
+        public void setup () {
+            Logger.initialize(FontManager.About.NAME);
+            Logger.DisplayLevel = LogLevel.INFO;
+            message("%s %s", FontManager.About.NAME, FontManager.About.VERSION);
+            message("Using FontConfig %s", FontConfig.get_version_string());
+            message("Using Pango %s", Pango.version_string());
+            message("Using Gtk+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
+        }
     }
 
 }
 
 public delegate void ReloadFunc ();
-public delegate void ProgressCallback (string? message, int processed, int total);
-
 public delegate void MenuCallback ();
+public delegate void ProgressCallback (string? message, int processed, int total);
 
 public struct MenuEntry {
     public string action_name;
@@ -72,8 +74,7 @@ public class MenuCallbackWrapper {
     }
 }
 
-public string? get_command_line_output (string cmd)
-{
+public string? get_command_line_output (string cmd) {
     try {
         int exit;
         string std_out;

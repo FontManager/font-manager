@@ -97,8 +97,8 @@ namespace FontManager {
         }
 
         internal void connect_signals () {
-            manage_controls.add_button.clicked.connect((w) => { install_selected(); });
-            manage_controls.remove_button.clicked.connect((w) => { remove_selected(); });
+            manage_controls.add_button.clicked.connect(() => { install_selected(); });
+            manage_controls.remove_button.clicked.connect(() => { remove_selected(); });
             source_toggle.toggled.connect(() => { manage_sources(source_toggle.get_active()); } );
             return;
         }

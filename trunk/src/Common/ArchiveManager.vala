@@ -39,6 +39,10 @@ public class ArchiveManager : Object {
 
     internal DBusService? service = null;
 
+    public void post_error_message (Error e) {
+        error("Failed to contact Archive Manager service : %s", e.message);
+    }
+
     internal void init () {
         Logger.verbose("File Roller - Initialize");
         try {
@@ -46,7 +50,7 @@ public class ArchiveManager : Object {
             service.progress.connect((p, m) => { progress(m, (int) p, 100); });
         } catch (IOError e) {
             warning("Features which depend on Archive Manager will not function correctly");
-            error("Failed to contact Archive Manager service : %s", e.message);
+            post_error_message(e);
         }
         return;
     }
@@ -64,7 +68,7 @@ public class ArchiveManager : Object {
             file_roller.add_to_archive(archive, uris, use_progress_dialog);
             return true;
         } catch (IOError e) {
-            warning("Failed to contact Archive Manager service : %s", e.message);
+            post_error_message(e);
         }
         return false;
     }
@@ -75,7 +79,7 @@ public class ArchiveManager : Object {
             file_roller.compress(uris, destination, use_progress_dialog);
             return true;
         } catch (IOError e) {
-            warning("Failed to contact Archive Manager service : %s", e.message);
+            post_error_message(e);
         }
         return false;
     }
@@ -86,7 +90,7 @@ public class ArchiveManager : Object {
             file_roller.extract(archive, destination, use_progress_dialog);
             return true;
         } catch (IOError e) {
-            warning("Failed to contact Archive Manager service : %s", e.message);
+            post_error_message(e);
         }
         return false;
     }
@@ -97,7 +101,7 @@ public class ArchiveManager : Object {
             file_roller.extract_here(archive, use_progress_dialog);
             return true;
         } catch (IOError e) {
-            warning("Failed to contact Archive Manager service : %s", e.message);
+            post_error_message(e);
         }
         return false;
     }
@@ -110,7 +114,7 @@ public class ArchiveManager : Object {
             foreach (var hashtable in array)
                 types.add(hashtable.get("mime-type"));
         } catch (Error e) {
-            warning("Failed to contact Archive Manager service : %s", e.message);
+            post_error_message(e);
         }
         return types;
     }

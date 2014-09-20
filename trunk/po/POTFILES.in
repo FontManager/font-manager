@@ -18,9 +18,9 @@
 ./src/FontConfig/Enums.vala
 ./src/FontConfig/Families.vala
 ./src/FontConfig/Family.vala
-./src/FontConfig/Font.vala
 ./src/FontConfig/FontConfig.vala
 ./src/FontConfig/FontSource.vala
+./src/FontConfig/Font.vala
 ./src/FontConfig/Properties.vala
 ./src/FontConfig/Reject.vala
 ./src/FontConfig/Selections.vala
@@ -67,3 +67,4 @@
 ./src/UX/Widgets/TextViews.vala
 ./src/UX/Widgets/ThinPaned.vala
 resources/font-manager.desktop.in
+resources/font-manager.appdata.xml.in
