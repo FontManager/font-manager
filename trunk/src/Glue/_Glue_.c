@@ -494,7 +494,7 @@ get_sfnt_info(FontManagerFontInfo * fileinfo, const FT_Face face)
         if (!font_manager_font_info_get_vendor(fileinfo)) {
             gchar * _vendor = get_vendor_from_notice(vendor);
             if (_vendor) {
-                font_manager_font_info_set_vendor(fileinfo, get_vendor_from_notice(vendor));
+                font_manager_font_info_set_vendor(fileinfo, _vendor);
                 g_free0(_vendor);
             }
         }
