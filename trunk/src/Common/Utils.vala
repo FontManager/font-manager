@@ -35,9 +35,9 @@ namespace FontManager {
 
     namespace Logging {
 
-        public void setup () {
+        public void setup (LogLevel level = LogLevel.INFO) {
             Logger.initialize(FontManager.About.NAME);
-            Logger.DisplayLevel = LogLevel.INFO;
+            Logger.DisplayLevel = level;
             message("%s %s", FontManager.About.NAME, FontManager.About.VERSION);
             message("Using FontConfig %s", FontConfig.get_version_string());
             message("Using Pango %s", Pango.version_string());

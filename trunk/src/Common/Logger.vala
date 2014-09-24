@@ -126,8 +126,10 @@ public class Logger : GLib.Object
     static string format_message (string msg) {
         if (re != null && re.match(msg)) {
             var parts = re.split(msg);
-//              return "[%s%s] %s".printf (parts[1], parts[3], parts[4]);
-            return "%s".printf (parts[4]);
+            if (DisplayLevel <= LogLevel.DEBUG)
+                return "[%s%s] %s".printf (parts[1], parts[3], parts[4]);
+            else
+                return "%s".printf (parts[4]);
         }
         return msg;
     }
