@@ -58,8 +58,10 @@ namespace FontManager {
                     if (contents == null)
                         if (filter is Collection)
                             contents = ((Collection) filter).get_full_contents();
-                        else
-                            contents = filter.families;
+                        else {
+                            contents = new Gee.HashSet <string> ();
+                            contents.add_all(filter.families);
+                        }
                     visible = (family.name in contents);
                 }
                 if (visible) {
@@ -79,6 +81,9 @@ namespace FontManager {
                     }
                 }
             }
+            /* Looks pointless, I know. */
+            if (contents != null)
+                contents.clear();
             contents = null;
             return;
         }
