@@ -445,7 +445,7 @@ namespace FontManager {
             var _preview_notebook = new Gtk.Notebook();
             _preview_notebook.append_page(preview, new Gtk.Label(_("Preview")));
             _preview_notebook.append_page(compare, new Gtk.Label(_("Compare")));
-            _preview_notebook.append_page(character_map.table, new Gtk.Label(_("Character Map")));
+            _preview_notebook.append_page(character_map.pane, new Gtk.Label(_("Character Map")));
             _preview_notebook.show_border = false;
             _preview_notebook.show_tabs = false;
             return _preview_notebook;
@@ -612,7 +612,7 @@ namespace FontManager {
             settings.bind("preview-font-size", preview, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("browse-font-size", browser, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("compare-font-size", compare, "preview-size", SettingsBindFlags.DEFAULT);
-            settings.bind("charmap-font-size", character_map.table, "preview-size", SettingsBindFlags.DEFAULT);
+            settings.bind("charmap-font-size", character_map.pane.table, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("selected-block", sidebar.character_map, "selected-block", SettingsBindFlags.DEFAULT);
             settings.bind("selected-script", sidebar.character_map, "selected-script", SettingsBindFlags.DEFAULT);
             sidebar.character_map.mode_set.connect(() => {

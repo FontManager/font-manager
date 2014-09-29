@@ -27,7 +27,13 @@ namespace FontManager {
         public signal void active_character (unichar uc);
 
         public CharacterMapSideBar sidebar { get; private set; }
-        public CharacterTable table { get; private set; }
+        public CharacterMapPane pane { get; private set; }
+
+        public CharacterTable table {
+            get {
+                return pane.table;
+            }
+        }
 
         public double preview_size {
             get {
@@ -49,20 +55,20 @@ namespace FontManager {
 
         construct {
             sidebar = new CharacterMapSideBar();
-            table = new CharacterTable();
+            pane = new CharacterMapPane();
             connect_signals();
         }
 
         internal void connect_signals () {
             sidebar.mode_set.connect((i) => { mode_set((int) i); });
             sidebar.selection_changed.connect((cl) => { table.table.codepoint_list = cl; });
-            table.active_character.connect((uc) => { active_character(uc); });
+            pane.table.active_character.connect((uc) => { active_character(uc); });
             return;
         }
 
         public void show () {
             sidebar.show();
-            table.show();
+            pane.show();
             return;
         }
 
