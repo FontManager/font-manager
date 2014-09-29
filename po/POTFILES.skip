@@ -13,7 +13,7 @@ src/UX/Controls/TitleBar.c
 src/UX/Dialogs/FileSelector.c
 src/UX/Dialogs/Migration.c
 src/UX/MainWindow.c
-src/UX/Sidebar/CharacterMapSideBar.c
+src/UX/CharacterMap/CharacterMapSideBar.c
 src/UX/Sidebar/MainSideBar.c
 src/UX/Trees/FontListTree.c
 src/UX/Views/FontPreview.c
