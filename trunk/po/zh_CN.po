@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-28 20:11-0400\n"
+"POT-Creation-Date: 2014-08-22 18:06-0400\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -73,6 +73,11 @@ msgstr ""
 "    您应该与此程序一道收到了一份 GUN 通用公共许可协议的副本；如果\n"
 "    没有，请查看 <http://www.gnu.org/licenses/>。\n"
 "    "
+
+#: .././src/Common/Constants.vala:31
+#, fuzzy
+msgid "Enter Collection Name"
+msgstr "新字体集"
 
 #: .././src/Filters/Collection.vala:28
 msgid "New Collection"
@@ -337,8 +342,8 @@ msgstr "文本和显示(Text and Display)"
 #: .././src/UX/Sidebar/CharacterMapSideBar.vala:74
 msgid "Script"
 msgstr "Script"
-#msgstr "手写体(Script)"
 
+# msgstr "手写体(Script)"
 #: .././src/Models/CategoryModel.vala:108
 msgid "Decorative"
 msgstr "修饰(Decorative)"
@@ -526,13 +531,13 @@ msgstr "预览"
 #: .././src/UX/Sidebar/CharacterMapSideBar.vala:75
 msgid "Block"
 msgstr "Block"
-#msgstr "区块"
 
-#: .././src/UX/Sidebar/MainSideBar.vala:82
+# msgstr "区块"
+#: .././src/UX/Sidebar/MainSideBar.vala:83
 msgid "Categories"
 msgstr "分类"
 
-#: .././src/UX/Sidebar/MainSideBar.vala:83
+#: .././src/UX/Sidebar/MainSideBar.vala:84
 msgid "Collections"
 msgstr "字体集"
 
