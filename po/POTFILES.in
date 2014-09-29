@@ -35,7 +35,11 @@
 ./src/Models/FontModel.vala
 ./src/Models/UserFontModel.vala
 ./src/Models/UserSourceModel.vala
-./src/UX/CharacterMap.vala
+./src/UX/CharacterMap/CharacterDetails.vala
+./src/UX/CharacterMap/CharacterMapPane.vala
+./src/UX/CharacterMap/CharacterMapSideBar.vala
+./src/UX/CharacterMap/CharacterMap.vala
+./src/UX/CharacterMap/CharacterTable.vala
 ./src/UX/Controls/BaseControls.vala
 ./src/UX/Controls/CollectionControls.vala
 ./src/UX/Controls/CompareControls.vala
@@ -49,7 +53,6 @@
 ./src/UX/Dialogs/NotImplemented.vala
 ./src/UX/GtkUtils.vala
 ./src/UX/MainWindow.vala
-./src/UX/Sidebar/CharacterMapSideBar.vala
 ./src/UX/Sidebar/MainSideBar.vala
 ./src/UX/Sidebar/SideBar.vala
 ./src/UX/Trees/CategoryTree.vala
