@@ -39,7 +39,7 @@ namespace FontManager {
         public CharacterDetails () {
             var box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             label = new Gtk.Label(null);
-            label.margin = 10;
+            label.margin = 7;
             label.opacity = 0.9;
             box.pack_start(label, true, true, 0);
             add(box);
