@@ -94,8 +94,12 @@ Models/FontModel.vala \
 Models/UserFontModel.vala \
 Models/UserSourceModel.vala \
 UX/MainWindow.vala \
-UX/CharacterMap.vala \
 UX/GtkUtils.vala \
+UX/CharacterMap/CharacterMap.vala \
+UX/CharacterMap/CharacterDetails.vala \
+UX/CharacterMap/CharacterMapSideBar.vala \
+UX/CharacterMap/CharacterTable.vala \
+UX/CharacterMap/CharacterMapPane.vala \
 UX/Controls/BaseControls.vala \
 UX/Controls/CollectionControls.vala \
 UX/Controls/CompareControls.vala \
@@ -109,7 +113,6 @@ UX/Dialogs/NotImplemented.vala \
 UX/Dialogs/FileSelector.vala \
 UX/Sidebar/SideBar.vala \
 UX/Sidebar/MainSideBar.vala \
-UX/Sidebar/CharacterMapSideBar.vala \
 UX/Trees/CollectionTree.vala \
 UX/Trees/CategoryTree.vala \
 UX/Trees/FontListTree.vala \
@@ -122,7 +125,6 @@ UX/Widgets/MultiDNDTreeView.vala \
 UX/Widgets/ThinPaned.vala \
 UX/Views/Compare.vala \
 UX/Views/FontPreview.vala \
-UX/Views/CharacterTable.vala \
 UX/Views/Browse.vala
 
 FontManagerGResource.c :

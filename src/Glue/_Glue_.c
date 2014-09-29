@@ -481,7 +481,12 @@ get_sfnt_info(FontManagerFontInfo * fileinfo, const FT_Face face)
                 font_manager_font_info_set_license_url(fileinfo, val);
                 break;
             case TT_NAME_ID_TRADEMARK:
+                if (!vendor)
+                    vendor = UTF16BE_2_UTF8(sname);
+                break;
             case TT_NAME_ID_MANUFACTURER:
+                if (vendor)
+                    g_free0(vendor);
                 vendor = UTF16BE_2_UTF8(sname);
                 break;
             default:

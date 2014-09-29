@@ -90,7 +90,7 @@ namespace FontManager {
             body_text.view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
             body_text.view.justification = Gtk.Justification.FILL;
             selector = new ModeSelector();
-            selector.set_border_width(6);
+            selector.set_border_width(4);
             notebook = new Gtk.Notebook();
             selector.notebook = notebook;
             notebook.append_page(preview, new Gtk.Label(_("Preview")));
