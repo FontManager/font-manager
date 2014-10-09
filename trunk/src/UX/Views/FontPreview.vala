@@ -30,6 +30,7 @@ namespace FontManager {
     public class FontPreview : AdjustablePreview {
 
         public signal void mode_changed (int mode);
+        public signal void preview_changed (string preview_text);
 
         public string pangram {
             get {
@@ -123,13 +124,20 @@ namespace FontManager {
             selector.selection_changed.connect((mode) => { on_mode_changed(mode); });
             preview.buffer.changed.connect((b) => {
                 apply_text_tags();
-                bool sensitive = (get_localized_preview_text() != preview.get_buffer_text());
+                var new_preview = preview.get_buffer_text();
+                bool sensitive = (get_localized_preview_text() != new_preview);
                 controls.clear_is_sensitive = sensitive;
+                preview_changed(new_preview);
             });
             controls.justification_set.connect((j) => { preview.view.set_justification(j); });
             controls.editing.connect((e) => { on_edit_toggled(e); } );
             controls.on_clear_clicked.connect(() => { on_clear(); });
             preview.view.event.connect((w, e) => { return on_textview_event(w, e); });
+            return;
+        }
+
+        public void set_preview_text (string preview_text) {
+            preview.buffer.set_text(preview_text);
             return;
         }
 

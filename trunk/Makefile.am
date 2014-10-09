@@ -17,6 +17,12 @@ pot:
 	cd $(srcdir)/help && sed -f insert-header.sin -i $(PACKAGE_NAME).pot
 	cd $(srcdir)/help && $(MAKE) $(AM_MAKEFLAGS) repo
 
+EXTRA_DIST = \
+	$(srcdir)/po/insert-header.sin \
+	$(srcdir)/po/HEADER \
+	$(srcdir)/help/insert-header.sin \
+	$(srcdir)/help/HEADER
+
 .PHONY: pot
 
 all: pot

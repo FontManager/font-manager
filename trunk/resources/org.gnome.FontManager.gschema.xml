@@ -100,6 +100,12 @@
             <default>"Preview"</default>
         </key>
 
+        <key name="preview-text" type="s">
+            <summary>Preview text</summary>
+            <description>Last preview text used</description>
+            <default>"DEFAULT"</default>
+        </key>
+
         <key name="browse-font-size" type="d">
             <range min="6.0" max="96.0"/>
             <summary>Browser font size</summary>
