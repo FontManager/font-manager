@@ -562,6 +562,10 @@ namespace FontManager {
             preview.preview_size = settings.get_double("preview-font-size");
             browser.preview_size = settings.get_double("browse-font-size");
             compare.preview_size = settings.get_double("compare-font-size");
+            var preview_text = settings.get_string("preview-text");
+            message (preview_text);
+            if (preview_text != "DEFAULT")
+                preview.set_preview_text(preview_text);
             sidebar.character_map.selected_block = settings.get_string("selected-block");
             sidebar.character_map.selected_script = settings.get_string("selected-script");
             sidebar.character_map.mode = (CharacterMapSideBarMode) settings.get_enum("charmap-mode");
@@ -607,6 +611,7 @@ namespace FontManager {
                 }
             );
             preview.mode_changed.connect((m) => { settings.set_enum("preview-mode", m); });
+            preview.preview_changed.connect((p) => { settings.set_string("preview-text", p); });
             settings.bind("sidebar-size", main_pane, "position", SettingsBindFlags.DEFAULT);
             settings.bind("content-pane-position", content_pane, "position", SettingsBindFlags.DEFAULT);
             settings.bind("preview-font-size", preview, "preview-size", SettingsBindFlags.DEFAULT);
