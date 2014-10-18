@@ -563,7 +563,6 @@ namespace FontManager {
             browser.preview_size = settings.get_double("browse-font-size");
             compare.preview_size = settings.get_double("compare-font-size");
             var preview_text = settings.get_string("preview-text");
-            message (preview_text);
             if (preview_text != "DEFAULT")
                 preview.set_preview_text(preview_text);
             sidebar.character_map.selected_block = settings.get_string("selected-block");

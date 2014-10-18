@@ -131,7 +131,6 @@ public class ModeSelector : Gtk.Box {
         if (_notebook != null)
             while (n_modes > 0)
                 remove_mode(0);
-        _notebook = null;
         _notebook = new_notebook;
         set_notebook_event_handlers();
         int n_pages = _notebook.get_n_pages();

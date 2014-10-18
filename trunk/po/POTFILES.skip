@@ -2,6 +2,7 @@ src/Filters/Filter.c
 src/Filters/Unsorted.c
 src/FontConfig/Enums.c
 src/FontConfig/Sources.c
+src/FontConfig/FontSource.c
 src/FontConfig/XmlWriter.c
 src/Models/CategoryModel.c
 src/UX/Controls/CollectionControls.c

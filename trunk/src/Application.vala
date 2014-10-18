@@ -34,14 +34,10 @@ namespace FontManager {
             startup.connect(() => {
                 builder = new Gtk.Builder();
                 if (Gnome3()) {
-                    set_gnome_app_menu();
-                    string? version = get_command_line_output("gnome-shell --version");
-                    if (version != null)
-                        message("Running on %s", version);
+                    set_gnome_app_menu(builder);
+                    message("Running on %s", get_command_line_output("gnome-shell --version"));
                 } else {
-                    string? de = Environment.get_variable("XDG_CURRENT_DESKTOP");
-                    if (de != null)
-                        message("Running on %s", de);
+                    message("Running on %s", Environment.get_variable("XDG_CURRENT_DESKTOP"));
                 }
             });
         }
@@ -64,21 +60,12 @@ namespace FontManager {
         }
 
         public void on_help () {
-            try {
-                Gtk.show_uri(null, "help:%s".printf(NAME), Gdk.CURRENT_TIME);
-            } catch (Error e) {
-                error("Error launching uri handler : %s", e.message);
-            }
+            show_help_dialog();
             return;
         }
 
         public static int main (string [] args) {
-            //Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
             Environment.set_application_name(About.NAME);
-            /* XXX : Workaround : XDG : FontConfig ignores EnableHome
-             * Fixed in master : dab60e4476ada4ad4639599ea24dd012d4a79584
-             * Need FontConfig > 2.11.1
-             */
             Environment.set_variable("XDG_CONFIG_HOME", "", true);
             FontConfig.enable_user_config(false);
             Logging.setup();
@@ -90,16 +77,6 @@ namespace FontManager {
             var main = new Application(BUS_ID, (ApplicationFlags.FLAGS_NONE));
             int res = main.run(args);
             return res;
-        }
-
-        internal void set_gnome_app_menu () {
-            try {
-                builder.add_from_resource("/org/gnome/FontManager/ApplicationMenu.ui");
-                app_menu = builder.get_object("ApplicationMenu") as GLib.MenuModel;
-            } catch (Error e) {
-                warning("Failed to set application menu : %s", e.message);
-            }
-            return;
         }
 
     }

@@ -1,6 +1,17 @@
 {
     "License" : [
         {
+            "Name" : "GPL with font exception",
+            "URL" : "http://www.gnu.org/copyleft/gpl.html",
+            "Keywords" : [
+                "LiberationFontLicense",
+                "with font exception",
+                "Liberation font software",
+                "LIBERATION is a trademark of Red Hat",
+                null
+            ]
+        },
+        {
             "Name" : "GNU General Public License",
             "URL" : "http://www.gnu.org/copyleft/gpl.html",
             "Keywords" : [
@@ -16,17 +27,6 @@
                 "free as in free-speech",
                 "free as in free speech",
                 "languagegeek.com",
-                null
-            ]
-        },
-        {
-            "Name" : "GPL with font exception",
-            "URL" : "http://www.gnu.org/copyleft/gpl.html",
-            "Keywords" : [
-                "LiberationFontLicense",
-                "with font exception",
-                "Liberation font software",
-                "LIBERATION is a trademark of Red Hat",
                 null
             ]
         },
