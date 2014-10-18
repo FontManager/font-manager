@@ -109,7 +109,7 @@ namespace FontConfig {
                 _filetype = file.query_file_type(FileQueryInfoFlags.NONE);
                 available = true;
             } catch (Error e) {
-                _name = "%s --> Resource unavailable".printf(_path);
+                _name = _("%s --> Resource Unavailable").printf(_path);
                 available = false;
             }
         }

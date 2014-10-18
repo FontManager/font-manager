@@ -54,6 +54,16 @@ public bool Gnome3 () {
     return has_app_menu && !has_menubar;
 }
 
+public void set_gnome_app_menu (Gtk.Builder builder) {
+    try {
+        builder.add_from_resource("/org/gnome/FontManager/ApplicationMenu.ui");
+        app_menu = builder.get_object("ApplicationMenu") as GLib.MenuModel;
+    } catch (Error e) {
+        warning("Failed to set application menu : %s", e.message);
+    }
+    return;
+}
+
 public void ensure_ui_update () {
     while (Gtk.events_pending())
         Gtk.main_iteration();

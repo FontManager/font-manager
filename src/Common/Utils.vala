@@ -42,7 +42,17 @@ namespace FontManager {
             message("Using FontConfig %s", FontConfig.get_version_string());
             message("Using Pango %s", Pango.version_string());
             message("Using Gtk+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
+            return;
         }
+    }
+
+    public void show_help_dialog () {
+        try {
+            Gtk.show_uri(null, "help:%s".printf(NAME), Gdk.CURRENT_TIME);
+        } catch (Error e) {
+            error("Error launching uri handler : %s", e.message);
+        }
+        return;
     }
 
 }

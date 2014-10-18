@@ -23,6 +23,15 @@ EXTRA_DIST = \
 	$(srcdir)/help/insert-header.sin \
 	$(srcdir)/help/HEADER
 
+distclean-local:
+	cd $(srcdir)
+	-rm -rf autom4te.cache m4 aclocal.m4 compile config.guess config.sub configure depcomp install-sh ltmain.sh missing
+	@find . -name "Makefile" -exec rm -f '{}' \;
+	@find . -name "Makefile.in*" -exec rm -f '{}' \;
+
+maintainer-clean-local:
+	-rm -rf build-aux
+
 .PHONY: pot
 
 all: pot
