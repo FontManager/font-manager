@@ -19,32 +19,54 @@
  *  Jerry Casiano <JerryCasiano@gmail.com>
  */
 
-public enum DragTargetType {
-    FAMILY,
-    COLLECTION,
-    EXTERNAL
-}
+namespace FontManager {
 
-public const Gtk.TargetEntry [] AppDragTargets = {
-    { "font-family", Gtk.TargetFlags.SAME_APP, DragTargetType.FAMILY },
-    { "text/uri-list", 0, DragTargetType.EXTERNAL }
-};
-
-public const Gdk.DragAction AppDragActions = Gdk.DragAction.COPY;
-
-
-public void set_application_style () {
-    string css_uri = "resource:///org/gnome/FontManager/FontManager.css";
-    File css_file = File.new_for_uri(css_uri);
-    Gtk.CssProvider provider = new Gtk.CssProvider();
-    try {
-        provider.load_from_file(css_file);
-    } catch (Error e) {
-        warning("Failed to load Css Provider! Application will not appear as expected.");
-        warning(e.message);
+    public enum DragTargetType {
+        FAMILY,
+        COLLECTION,
+        EXTERNAL
     }
-    Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-    return;
+
+    public const Gdk.DragAction AppDragActions = Gdk.DragAction.COPY;
+
+    public const Gtk.TargetEntry [] AppDragTargets = {
+        { "font-family", Gtk.TargetFlags.SAME_APP, DragTargetType.FAMILY },
+        { "text/uri-list", 0, DragTargetType.EXTERNAL }
+    };
+
+    public void show_help_dialog () {
+        try {
+            Gtk.show_uri(null, "help:%s".printf(NAME), Gdk.CURRENT_TIME);
+        } catch (Error e) {
+            error("Error launching uri handler : %s", e.message);
+        }
+        return;
+    }
+
+    public void set_gnome_app_menu (Gtk.Application app, Gtk.Builder builder) {
+        try {
+            builder.add_from_resource("/org/gnome/FontManager/ApplicationMenu.ui");
+            app.app_menu = builder.get_object("ApplicationMenu") as GLib.MenuModel;
+        } catch (Error e) {
+            warning("Failed to set application menu : %s", e.message);
+        }
+        return;
+    }
+
+    public void set_application_style () {
+        string css_uri = "resource:///org/gnome/FontManager/FontManager.css";
+        File css_file = File.new_for_uri(css_uri);
+        Gtk.CssProvider provider = new Gtk.CssProvider();
+        try {
+            provider.load_from_file(css_file);
+        } catch (Error e) {
+            warning("Failed to load Css Provider! Application will not appear as expected.");
+            warning(e.message);
+        }
+        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        return;
+    }
+
 }
 
 public bool Gnome3 () {
@@ -52,16 +74,6 @@ public bool Gnome3 () {
     bool has_app_menu = settings.gtk_shell_shows_app_menu;
     bool has_menubar = settings.gtk_shell_shows_menubar;
     return has_app_menu && !has_menubar;
-}
-
-public void set_gnome_app_menu (Gtk.Application app, Gtk.Builder builder) {
-    try {
-        builder.add_from_resource("/org/gnome/FontManager/ApplicationMenu.ui");
-        app.app_menu = builder.get_object("ApplicationMenu") as GLib.MenuModel;
-    } catch (Error e) {
-        warning("Failed to set application menu : %s", e.message);
-    }
-    return;
 }
 
 public void ensure_ui_update () {
@@ -77,10 +89,9 @@ public bool is_left_to_right (Gtk.Widget widget) {
     return dir == Gtk.TextDirection.LTR;
 }
 
-public Gtk.Separator
-add_separator (Gtk.Box box,
-               Gtk.Orientation orientation = Gtk.Orientation.VERTICAL,
-               Gtk.PackType pack_type = Gtk.PackType.START) {
+public Gtk.Separator add_separator (Gtk.Box box,
+                                       Gtk.Orientation orientation = Gtk.Orientation.VERTICAL,
+                                       Gtk.PackType pack_type = Gtk.PackType.START) {
     var separator = new Gtk.Separator(orientation);
     /* Requesting a pixel seems to be the only way to get some themes
      * to actually render the separator. i.e. Adwaita... */

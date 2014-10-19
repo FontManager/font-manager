@@ -195,8 +195,6 @@ namespace FontManager {
             init_components();
             pack_components();
             show_components();
-            if (Gnome3())
-                set_titlebar(titlebar);
             add(main_box);
             connect_signals();
         }
@@ -235,7 +233,9 @@ namespace FontManager {
             separator.pack_end(preview_notebook, true, true, 0);
             content_pane.add2(separator);
             main_box.pack_end(main_pane, true, true, 0);
-            if (!Gnome3()) {
+            if (Gnome3()) {
+                set_titlebar(titlebar);
+            } else {
                 main_box.pack_start(titlebar, false, true, 0);
                 add_separator(main_box, Gtk.Orientation.HORIZONTAL);
                 titlebar.use_toolbar_styling();
@@ -633,6 +633,7 @@ namespace FontManager {
                 }
             );
             settings.delay();
+            /* XXX : Some settings are bound in post due to timing issues... */
             return;
         }
 
@@ -646,6 +647,15 @@ namespace FontManager {
 //                    return titlebar.main_menu.popover.visible;
 //                });
 //            });
+
+            /* XXX */
+            NotImplemented.parent = (Gtk.Window) this;
+
+            delete_event.connect((w, e) => {
+                ((Application) GLib.Application.get_default()).on_quit();
+                return true;
+                }
+            );
 
             /* XXX : Workaround timing issue? wrong filter shown at startup */
             if (sidebar.standard.mode == MainSideBarMode.COLLECTION) {
@@ -661,14 +671,32 @@ namespace FontManager {
                 }
             );
 
-            /* XXX */
-            NotImplemented.parent = (Gtk.Window) this;
-
-            delete_event.connect((w, e) => {
-                ((Application) GLib.Application.get_default()).on_quit();
-                return true;
-                }
-            );
+            /* XXX: Order matters */
+            var settings = Main.instance.settings;
+            var font = new Gtk.TreePath.from_string(settings.get_string("selected-font"));
+            if (sidebar.standard.mode == MainSideBarMode.COLLECTION) {
+                var collection = new Gtk.TreePath.from_string(settings.get_string("selected-collection"));
+                sidebar.standard.collection_tree.tree.expand_to_path(collection);
+                sidebar.standard.collection_tree.tree.scroll_to_cell(collection, null, true, 0.5f, 0.5f);
+                sidebar.standard.collection_tree.tree.get_selection().select_path(collection);
+            } else {
+                var category = new Gtk.TreePath.from_string(settings.get_string("selected-category"));
+                sidebar.standard.category_tree.tree.expand_to_path(category);
+                sidebar.standard.collection_tree.tree.scroll_to_cell(category, null, true, 0.5f, 0.5f);
+                sidebar.standard.category_tree.tree.get_selection().select_path(category);
+            }
+            Idle.add(() => {
+                fontlist.get_selection().unselect_all();
+                if (font.get_depth() > 1)
+                    fontlist.expand_to_path(font);
+                fontlist.scroll_to_cell(font, null, true, 0.5f, 0.5f);
+                browser.treeview.scroll_to_cell(font, null, true, 0.5f, 0.5f);
+                fontlist.get_selection().select_path(font);
+                return false;
+            });
+            settings.bind("selected-category", sidebar.standard.category_tree, "selected-iter", SettingsBindFlags.DEFAULT);
+            settings.bind("selected-collection", sidebar.standard.collection_tree, "selected-iter", SettingsBindFlags.DEFAULT);
+            settings.bind("selected-font", fontlist, "selected-iter", SettingsBindFlags.DEFAULT);
         }
 
     }

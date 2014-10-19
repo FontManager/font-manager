@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gee.h>
+#include <gio/gio.h>
 
 G_BEGIN_DECLS
 
@@ -53,6 +54,20 @@ typedef struct _CacheablePrivate CacheablePrivate;
 typedef struct _FontManagerFontInfo FontManagerFontInfo;
 typedef struct _FontManagerFontInfoClass FontManagerFontInfoClass;
 typedef struct _FontManagerFontInfoPrivate FontManagerFontInfoPrivate;
+
+#define TYPE_MENU_ENTRY (menu_entry_get_type ())
+
+#define TYPE_MENU_CALLBACK_WRAPPER (menu_callback_wrapper_get_type ())
+#define MENU_CALLBACK_WRAPPER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_MENU_CALLBACK_WRAPPER, MenuCallbackWrapper))
+#define MENU_CALLBACK_WRAPPER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_MENU_CALLBACK_WRAPPER, MenuCallbackWrapperClass))
+#define IS_MENU_CALLBACK_WRAPPER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_MENU_CALLBACK_WRAPPER))
+#define IS_MENU_CALLBACK_WRAPPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_MENU_CALLBACK_WRAPPER))
+#define MENU_CALLBACK_WRAPPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_MENU_CALLBACK_WRAPPER, MenuCallbackWrapperClass))
+
+typedef struct _MenuCallbackWrapper MenuCallbackWrapper;
+typedef struct _MenuCallbackWrapperClass MenuCallbackWrapperClass;
+typedef struct _MenuEntry MenuEntry;
+typedef struct _MenuCallbackWrapperPrivate MenuCallbackWrapperPrivate;
 
 #define FONT_CONFIG_TYPE_FONT (font_config_font_get_type ())
 #define FONT_CONFIG_FONT(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), FONT_CONFIG_TYPE_FONT, FontConfigFont))
@@ -100,7 +115,31 @@ struct _FontManagerFontInfoClass {
 	CacheableClass parent_class;
 };
 
+typedef void (*ReloadFunc) (void* user_data);
+typedef void (*MenuCallback) (void* user_data);
 typedef void (*ProgressCallback) (const gchar* message, gint processed, gint total, void* user_data);
+struct _MenuEntry {
+	gchar* action_name;
+	gchar* display_name;
+	gchar* detailed_action_name;
+	gchar* accelerator;
+	MenuCallbackWrapper* method;
+};
+
+struct _MenuCallbackWrapper {
+	GTypeInstance parent_instance;
+	volatile int ref_count;
+	MenuCallbackWrapperPrivate * priv;
+	MenuCallback run;
+	gpointer run_target;
+	GDestroyNotify run_target_destroy_notify;
+};
+
+struct _MenuCallbackWrapperClass {
+	GTypeClass parent_class;
+	void (*finalize) (MenuCallbackWrapper *self);
+};
+
 struct _FontConfigFont {
 	Cacheable parent_instance;
 	FontConfigFontPrivate * priv;
@@ -208,6 +247,33 @@ const gchar* font_manager_font_info_get_license_url (FontManagerFontInfo* self);
 void font_manager_font_info_set_license_url (FontManagerFontInfo* self, const gchar* value);
 const gchar* font_manager_font_info_get_panose (FontManagerFontInfo* self);
 void font_manager_font_info_set_panose (FontManagerFontInfo* self, const gchar* value);
+GType menu_entry_get_type (void) G_GNUC_CONST;
+gpointer menu_callback_wrapper_ref (gpointer instance);
+void menu_callback_wrapper_unref (gpointer instance);
+GParamSpec* param_spec_menu_callback_wrapper (const gchar* name, const gchar* nick, const gchar* blurb, GType object_type, GParamFlags flags);
+void value_set_menu_callback_wrapper (GValue* value, gpointer v_object);
+void value_take_menu_callback_wrapper (GValue* value, gpointer v_object);
+gpointer value_get_menu_callback_wrapper (const GValue* value);
+GType menu_callback_wrapper_get_type (void) G_GNUC_CONST;
+MenuEntry* menu_entry_dup (const MenuEntry* self);
+void menu_entry_free (MenuEntry* self);
+void menu_entry_copy (const MenuEntry* self, MenuEntry* dest);
+void menu_entry_destroy (MenuEntry* self);
+void menu_entry_init (MenuEntry *self, const gchar* name, const gchar* label, const gchar* detailed_signal, const gchar* accel, MenuCallbackWrapper* cbw);
+MenuCallbackWrapper* menu_callback_wrapper_new (MenuCallback c, void* c_target);
+MenuCallbackWrapper* menu_callback_wrapper_construct (GType object_type, MenuCallback c, void* c_target);
+gchar* get_command_line_output (const gchar* cmd);
+gchar* get_user_font_dir (void);
+gchar* get_localized_pangram (void);
+gchar* get_localized_preview_text (void);
+gchar* get_local_time (void);
+gint natural_cmp (const gchar* a, const gchar* b);
+gchar* get_file_extension (const gchar* path);
+GeeArrayList* sorted_list_from_collection (GeeCollection* iter);
+void builder_append (GString* builder, const gchar* val);
+void add_action_from_menu_entry (GActionMap* map, MenuEntry* entry);
+gboolean remove_directory_tree_if_empty (GFile* dir);
+gboolean remove_directory (GFile* dir, gboolean recursive);
 GType font_config_font_get_type (void) G_GNUC_CONST;
 gint font_config_sort_fonts (FontConfigFont* a, FontConfigFont* b);
 gchar* font_config_font_to_filename (FontConfigFont* self);
@@ -250,6 +316,7 @@ GType font_config_weight_get_type (void) G_GNUC_CONST;
 gchar* font_config_weight_to_string (FontConfigWeight self);
 gint free_type_num_faces (const gchar* filepath);
 gint free_type_query_file_info (FontManagerFontInfo* fileinfo, const gchar* filepath, gint index);
+gchar* font_config_get_version_string (void);
 gboolean font_config_update_cache (void);
 FontConfigFont* font_config_get_font_from_file (const gchar* filepath, gint index);
 GeeArrayList* font_config_list_fonts (const gchar* family_name);
@@ -399,6 +466,18 @@ LicenseData[] =
     },
 
     {
+        "GPL with font exception",
+        "http://www.gnu.org/copyleft/gpl.html",
+        {
+            "LiberationFontLicense",
+            "with font exception",
+            "Liberation font software",
+            "LIBERATION is a trademark of Red Hat",
+            NULL
+        }
+    },
+
+    {
         "GNU General Public License",
         "http://www.gnu.org/copyleft/gpl.html",
         {
@@ -414,18 +493,6 @@ LicenseData[] =
             "free as in free-speech",
             "free as in free speech",
             "languagegeek.com",
-            NULL
-        }
-    },
-
-    {
-        "GPL with font exception",
-        "http://www.gnu.org/copyleft/gpl.html",
-        {
-            "LiberationFontLicense",
-            "with font exception",
-            "Liberation font software",
-            "LIBERATION is a trademark of Red Hat",
             NULL
         }
     },
@@ -679,6 +746,7 @@ VendorData[] =
     {"ATFS", "Andrew Tyler's fonts"},
     {"AURE", "Aure Font Design"},
     {"AUTO", "Autodidakt"},
+    {"AVFF", "Agustín Varela Font Factory"},
     {"AVP", "Aviation Partners"},
     {"AZLS", "Azalea Software, Inc."},
     {"B&H;", "Bigelow & Holmes"},
@@ -728,6 +796,7 @@ VendorData[] =
     {"COOL", "Cool Fonts"},
     {"CORD", "corduroy"},
     {"CR8", "CR8 Software Solutions"},
+    {"CRRT", "Carrot Type"},
     {"CT", "CastleType"},
     {"CTDL", "China Type Designs Ltd."},
     {"CTL", "Chaitanya Type Library"},
@@ -827,10 +896,12 @@ VendorData[] =
     {"grro", "grafikk RØren"},
     {"GT", "Graphity!"},
     {"GTYP", "G-Type"},
+    {"H", "Hurme Design"},
     {"H&FJ;", "Hoefler & Frere-Jones"},
     {"HA", "HoboArt"},
     {"HAD", "Hoffmann Angelic Design"},
     {"HAIL", "Hail Design"},
+    {"HanS", "HanStyle"},
     {"HAUS", "TypeHaus"},
     {"HEB", "Sivan Toledo"},
     {"HFJ", "Hoefler & Frere-Jones (replaced by H&FJ;)"},
@@ -881,7 +952,7 @@ VendorData[] =
     {"KOP", "Leo Koppelkamm"},
     {"KORK", "Khork OÜ"},
     {"KOVL", "Koval Type Foundry"},
-    {"KRKO", "Kreative Software"},
+    {"KrKo", "Kreative Software"},
     {"KRND", "Karandash Type & Graphics Foundry"},
     {"KTF", "Kustomtype"},
     {"KUBA", "Kuba Tatarkiewicz"},
@@ -903,6 +974,7 @@ VendorData[] =
     {"LORO", "LoRo Productions"},
     {"LP", "LetterPerfect Fonts"},
     {"LT", "Le Typophage"},
+    {"LTF", "Liberty Type Foundry"},
     {"Ltrm", "Lettermin type and design"},
     {"LTRX", "Lighttracks"},
     {"LTTR", "LettError"},
@@ -940,6 +1012,7 @@ VendorData[] =
     {"MONE", "Meta One Limited"},
     {"MONO", "Monotype Imaging"},
     {"MOON", "Moonlight Type and Technolog"},
+    {"MOTA", "Mota Italic"},
     {"MRSW", "Morisawa & Company, Ltd."},
     {"MRV", "Morovia Corporation"},
     {"MS", "Microsoft Corp."},
@@ -994,6 +1067,7 @@ VendorData[] =
     {"QRAT", "Quadrat Communications"},
     {"READ", "ReadyType"},
     {"REAL", "Underware"},
+    {"RES", "Resultat"},
     {"RJPS", "Reall Graphics"},
     {"RKFN", "R K Fonts"},
     {"RL", "Ruben Holthuijsen"},
@@ -1075,6 +1149,7 @@ VendorData[] =
     {"TTG", "Twardoch Typography"},
     {"TYCU", "TypeCulture"},
     {"TYFR", "typographies.fr"},
+    {"TYME", "type me! Font Foundry"},
     {"TYPA", "Typadelic"},
     {"TYPE", "Type Associates Pty Ltd"},
     {"TYPO", "Typodermic"},

@@ -53,8 +53,8 @@ namespace FontManager {
         }
 
         public Gtk.ProgressBar progress { get; private set;}
+        public Gtk.TreeView treeview { get; private set;}
 
-        Gtk.TreeView treeview;
         Gtk.TreeStore? _model;
         FontConfig.Reject _reject;
         Gtk.Overlay overlay;

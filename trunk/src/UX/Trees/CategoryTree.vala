@@ -46,6 +46,7 @@ namespace FontManager {
             }
         }
 
+        public string selected_iter { get; protected set; default = "0"; }
         public Category? selected_filter { get; protected set; default = null; }
         public Gtk.TreeView tree { get; protected set; }
         public Gtk.CellRendererText renderer { get; protected set; }
@@ -121,6 +122,7 @@ namespace FontManager {
                 tree.collapse_all();
                 tree.expand_to_path(path);
             }
+            selected_iter = model.get_string_from_iter(iter);
             val.unset();
             return;
         }

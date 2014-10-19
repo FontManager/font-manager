@@ -163,6 +163,24 @@
             <default>"1"</default>
         </key>
 
+        <key name="selected-category" type="s">
+            <summary>Selected Category</summary>
+            <description>Last selected category</description>
+            <default>"0"</default>
+        </key>
+
+        <key name="selected-collection" type="s">
+            <summary>Selected Collection</summary>
+            <description>Last selected collection</description>
+            <default>"0"</default>
+        </key>
+
+        <key name="selected-font" type="s">
+            <summary>Selected Font</summary>
+            <description>Last selected Font</description>
+            <default>"0"</default>
+        </key>
+
     </schema>
 
 </schemalist>

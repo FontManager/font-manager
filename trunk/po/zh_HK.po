@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-14 20:34-0400\n"
+"POT-Creation-Date: 2014-10-19 03:12-0400\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -235,7 +235,7 @@ msgstr "超重(Ultra-Heavy)"
 
 #: .././src/FontConfig/FontSource.vala:112
 #, c-format
-msgid "%s  ==>  Resource Unavailable"
+msgid "%s --> Resource Unavailable"
 msgstr ""
 
 #: .././src/FontConfig/Sources.vala:108 .././src/FontConfig/XmlWriter.vala:32
@@ -547,7 +547,7 @@ msgid "Collections"
 msgstr "字体集"
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: .././src/UX/Trees/FontListTree.vala:341
+#: .././src/UX/Trees/FontListTree.vala:343
 msgid "Show Details"
 msgstr "显示详细信息"
 
