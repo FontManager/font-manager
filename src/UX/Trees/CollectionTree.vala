@@ -60,13 +60,14 @@ namespace FontManager {
             }
         }
 
+        public string selected_iter { get; protected set; default = "0"; }
         public CollectionControls controls { get; protected set; }
         public Gtk.TreeView tree { get; protected set; }
         public Gtk.CellRendererText renderer { get; protected set; }
         public CellRendererCount count_renderer { get; protected set; }
         public Gtk.CellRendererPixbuf pixbuf_renderer { get; protected set; }
 
-        private Gtk.TreeIter selected_iter;
+        private Gtk.TreeIter _selected_iter_;
         private weak CollectionModel _model;
         private weak FontConfig.Reject _reject;
 
@@ -142,12 +143,12 @@ namespace FontManager {
         }
 
         public void on_remove_collection () {
-            if (!model.iter_is_valid(selected_iter))
+            if (!model.iter_is_valid(_selected_iter_))
                 return;
             var collections = model.collections.entries;
             if (collections.has_key(selected_collection.name))
                 collections.unset(selected_collection.name);
-            ((Gtk.TreeStore) model).remove(ref selected_iter);
+            ((Gtk.TreeStore) model).remove(ref _selected_iter_);
             return;
         }
 
@@ -209,7 +210,8 @@ namespace FontManager {
             model.get_value(iter, 0, out val);
             selection_changed(((Collection) val));
             selected_collection = ((Collection) val);
-            selected_iter = iter;
+            _selected_iter_ = iter;
+            selected_iter = model.get_string_from_iter(iter);
             val.unset();
             return;
         }

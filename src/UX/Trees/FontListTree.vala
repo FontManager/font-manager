@@ -52,6 +52,7 @@ namespace FontManager {
             }
         }
 
+        public string selected_iter { get; protected set; default = "0"; }
         public weak FontConfig.Family? selected_family { get; private set; default = null; }
         public weak FontConfig.Font? selected_font { get; private set; default = null; }
         public FontListControls controls { get; protected set; }
@@ -146,6 +147,7 @@ namespace FontManager {
                 selected_font = (FontConfig.Font) obj;
             }
             font_selected(description);
+            selected_iter = model.get_string_from_iter(iter);
             val.unset();
             return;
         }

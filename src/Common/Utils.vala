@@ -19,44 +19,6 @@
  *  Jerry Casiano <JerryCasiano@gmail.com>
  */
 
-namespace FontManager {
-
-    namespace Intl {
-
-        public void setup (string name = NAME) {
-            GLib.Intl.bindtextdomain(name, null);
-            GLib.Intl.bind_textdomain_codeset(name, null);
-            GLib.Intl.textdomain(name);
-            GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
-            return;
-        }
-
-    }
-
-    namespace Logging {
-
-        public void setup (LogLevel level = LogLevel.INFO) {
-            Logger.initialize(FontManager.About.NAME);
-            Logger.DisplayLevel = level;
-            message("%s %s", FontManager.About.NAME, FontManager.About.VERSION);
-            message("Using FontConfig %s", FontConfig.get_version_string());
-            message("Using Pango %s", Pango.version_string());
-            message("Using Gtk+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
-            return;
-        }
-    }
-
-    public void show_help_dialog () {
-        try {
-            Gtk.show_uri(null, "help:%s".printf(NAME), Gdk.CURRENT_TIME);
-        } catch (Error e) {
-            error("Error launching uri handler : %s", e.message);
-        }
-        return;
-    }
-
-}
-
 public delegate void ReloadFunc ();
 public delegate void MenuCallback ();
 public delegate void ProgressCallback (string? message, int processed, int total);
