@@ -34,7 +34,7 @@ namespace FontManager {
             startup.connect(() => {
                 builder = new Gtk.Builder();
                 if (Gnome3()) {
-                    set_gnome_app_menu(builder);
+                    set_gnome_app_menu(this, builder);
                     message("Running on %s", get_command_line_output("gnome-shell --version"));
                 } else {
                     message("Running on %s", Environment.get_variable("XDG_CURRENT_DESKTOP"));
