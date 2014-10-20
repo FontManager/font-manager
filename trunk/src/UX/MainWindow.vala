@@ -673,30 +673,43 @@ namespace FontManager {
 
             /* XXX: Order matters */
             var settings = Main.instance.settings;
-            var font = new Gtk.TreePath.from_string(settings.get_string("selected-font"));
+            var font_path = settings.get_string("selected-font");
             if (sidebar.standard.mode == MainSideBarMode.COLLECTION) {
-                var collection = new Gtk.TreePath.from_string(settings.get_string("selected-collection"));
-                sidebar.standard.collection_tree.tree.expand_to_path(collection);
-                sidebar.standard.collection_tree.tree.scroll_to_cell(collection, null, true, 0.5f, 0.5f);
-                sidebar.standard.collection_tree.tree.get_selection().select_path(collection);
+                var tree = sidebar.standard.collection_tree.tree;
+                string path = settings.get_string("selected-collection");
+                restore_last_selected_treepath(tree, path);
             } else {
-                var category = new Gtk.TreePath.from_string(settings.get_string("selected-category"));
-                sidebar.standard.category_tree.tree.expand_to_path(category);
-                sidebar.standard.collection_tree.tree.scroll_to_cell(category, null, true, 0.5f, 0.5f);
-                sidebar.standard.category_tree.tree.get_selection().select_path(category);
+                var tree = sidebar.standard.category_tree.tree;
+                string path = settings.get_string("selected-category");
+                restore_last_selected_treepath(tree, path);
             }
             Idle.add(() => {
-                fontlist.get_selection().unselect_all();
-                if (font.get_depth() > 1)
-                    fontlist.expand_to_path(font);
-                fontlist.scroll_to_cell(font, null, true, 0.5f, 0.5f);
-                browser.treeview.scroll_to_cell(font, null, true, 0.5f, 0.5f);
-                fontlist.get_selection().select_path(font);
+                var treepath = restore_last_selected_treepath(fontlist, font_path);
+                if (treepath != null)
+                    browser.treeview.scroll_to_cell(treepath, null, true, 0.5f, 0.5f);
                 return false;
             });
             settings.bind("selected-category", sidebar.standard.category_tree, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("selected-collection", sidebar.standard.collection_tree, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("selected-font", fontlist, "selected-iter", SettingsBindFlags.DEFAULT);
+        }
+
+        internal Gtk.TreePath? restore_last_selected_treepath (Gtk.TreeView tree, string path) {
+            Gtk.TreeIter iter;
+            var model = (Gtk.TreeStore) tree.get_model();
+            var selection = tree.get_selection();
+            model.get_iter_from_string(out iter, path);
+            if (!model.iter_is_valid(iter)) {
+                selection.select_path(new Gtk.TreePath.first());
+                return null;
+            }
+            var treepath = new Gtk.TreePath.from_string(path);
+            selection.unselect_all();
+            if (treepath.get_depth() > 1)
+                tree.expand_to_path(treepath);
+            tree.scroll_to_cell(treepath, null, true, 0.5f, 0.5f);
+            selection.select_path(treepath);
+            return treepath;
         }
 
     }
