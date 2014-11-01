@@ -81,7 +81,7 @@ public int natural_cmp (string a, string b) {
 
 public string get_file_extension (string path) {
     var arr = path.split_set(".");
-    return ".%s".printf(arr[arr.length - 1]);
+    return "%s".printf(arr[arr.length - 1]);
 }
 
 public Gee.ArrayList <string> sorted_list_from_collection (Gee.Collection <string> iter) {

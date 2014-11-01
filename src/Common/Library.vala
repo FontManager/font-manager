@@ -24,6 +24,8 @@ namespace FontManager {
     namespace Library {
 
         public static ProgressCallback? progress = null;
+        internal static ArchiveManager? archive_manager = null;
+        internal static Gee.ArrayList <string>? supported_archives = null;
 
         public struct InstallData {
             public File file;
@@ -43,7 +45,16 @@ namespace FontManager {
             public static Gee.ArrayList <File>? installed = null;
             public static Gee.HashMap <string, string>? install_failed = null;
 
+            internal static void init () {
+                if (archive_manager != null)
+                    return;
+                archive_manager = new ArchiveManager();
+                supported_archives = archive_manager.get_supported_types();
+                return;
+            }
+
             public static void from_file_array (File? [] files) {
+                init();
                 var _files = new Gee.ArrayList <File> ();
                 foreach (var file in files) {
                     if (file == null)
@@ -54,6 +65,7 @@ namespace FontManager {
             }
 
             public static void from_path_array (string? [] paths) {
+                init();
                 var files = new Gee.ArrayList <File> ();
                 foreach (var path in paths) {
                     if (path == null)
@@ -64,6 +76,7 @@ namespace FontManager {
             }
 
             public static void from_uri_array (string? [] uris) {
+                init();
                 var files = new Gee.ArrayList <File> ();
                 foreach (var uri in uris) {
                     if (uri == null)
@@ -100,7 +113,7 @@ namespace FontManager {
                                                     data.font.family);
                 DirUtils.create_with_parents(dest, 0755);
                 string filename = data.font.to_filename();
-                string filepath = Path.build_filename(dest, "%s%s".printf(filename, get_file_extension(data.file.get_path())));
+                string filepath = Path.build_filename(dest, "%s.%s".printf(filename, get_file_extension(data.file.get_path())));
                 var file = File.new_for_path(filepath);
                 try_copy(data.file, file);
                 /* XXX */
@@ -140,10 +153,8 @@ namespace FontManager {
             internal static void process_directory (File dir) {
                 try {
                     FileInfo fileinfo;
-                    var archive_manager = new ArchiveManager();
                     var attrs = "%s,%s,%s".printf(FileAttribute.STANDARD_NAME, FileAttribute.STANDARD_CONTENT_TYPE, FileAttribute.STANDARD_TYPE);
                     var enumerator = dir.enumerate_children(attrs, FileQueryInfoFlags.NONE);
-                    var supported_archives = archive_manager.get_supported_types();
                     int processed = 0;
                     int total = 0;
                     while ((fileinfo = enumerator.next_file ()) != null)
@@ -159,7 +170,7 @@ namespace FontManager {
                             } else if (content_type in supported_archives) {
                                 if (content_type in ARCHIVE_IGNORE_LIST)
                                     continue;
-                                process_archive(archive_manager, dir.get_child(fileinfo.get_name()));
+                                process_archive(dir.get_child(fileinfo.get_name()));
                             } else if (content_type == "application/octet-stream") {
                                 bool metrics_file = false;
                                 foreach (var ext in FONT_METRICS) {
@@ -183,7 +194,7 @@ namespace FontManager {
                 return;
             }
 
-            internal static void process_archive (ArchiveManager archive_manager, File file) {
+            internal static void process_archive (File file) {
                 string? _tmpdir = null;
                 try {
                     _tmpdir = DirUtils.make_tmp(TMPL);
@@ -197,7 +208,7 @@ namespace FontManager {
                     return;
                 }
                 var tmpdir = File.new_for_path(_tmpdir);
-                if (archive_manager.extract(file.get_uri(), tmpdir.get_uri()))
+                if (archive_manager.extract(file.get_uri(), tmpdir.get_uri(), false))
                     process_directory(tmpdir);
                 else {
                     if (install_failed == null)
@@ -209,8 +220,6 @@ namespace FontManager {
             }
 
             internal static void process_files (Gee.ArrayList <File> filelist) {
-                var archive_manager = new ArchiveManager();
-                var supported_archives = archive_manager.get_supported_types();
                 int total = filelist.size;
                 int processed = 0;
                 foreach (var file in filelist) {
@@ -223,7 +232,7 @@ namespace FontManager {
                         } else if (content_type.contains("font")) {
                             process_file(file);
                         } else if (content_type in supported_archives) {
-                            process_archive(archive_manager, file);
+                            process_archive(file);
                         }
                     } catch (Error e) {
                         error("Error querying file information : %s", e.message);
