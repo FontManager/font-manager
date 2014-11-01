@@ -43,6 +43,7 @@ namespace FontManager {
             ctx.set_junction_sides(Gtk.JunctionSides.BOTTOM);
             show_close_button = false;
             main_menu = new Gtk.MenuButton();
+            main_menu.border_width = 2;
             var main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic", Gtk.IconSize.MENU);
             var main_menu_container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 1);
             main_menu_container.pack_start(main_menu_icon, false, false, 0);
@@ -51,16 +52,18 @@ namespace FontManager {
             main_menu.add(main_menu_container);
             main_menu.direction = Gtk.ArrowType.DOWN;
             main_menu.relief = Gtk.ReliefStyle.NONE;
-            //main_menu.use_popover = true;
+            main_menu.use_popover = false;
             app_menu = new Gtk.MenuButton();
+            app_menu.border_width = 2;
             var app_menu_icon = new Gtk.Image.from_icon_name(About.ICON, Gtk.IconSize.LARGE_TOOLBAR);
             app_menu.add(app_menu_icon);
             app_menu.direction = Gtk.ArrowType.DOWN;
             app_menu.relief = Gtk.ReliefStyle.NONE;
-            //app_menu.use_popover = true;
+            app_menu.use_popover = false;
             revealer = new Gtk.Revealer();
             revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_RIGHT);
             manage_controls = new BaseControls();
+            manage_controls.border_width = 2;
             manage_controls.add_button.set_tooltip_text(_("Add Fonts"));
             manage_controls.remove_button.set_tooltip_text(_("Remove Fonts"));
             add_separator(manage_controls.box);

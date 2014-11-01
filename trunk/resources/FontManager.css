@@ -20,5 +20,5 @@
  */
 
 ThinPaned {
-    -GtkPaned-handle-size: 1px;
+    -GtkPaned-handle-size: 0px;
 }

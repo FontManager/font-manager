@@ -40,16 +40,16 @@ public class ArchiveManager : Object {
     internal DBusService? service = null;
 
     public void post_error_message (Error e) {
-        error("Failed to contact Archive Manager service : %s", e.message);
+        error("Archive Manager : %s", e.message);
     }
 
     internal void init () {
-        Logger.verbose("File Roller - Initialize");
         try {
             service = Bus.get_proxy_sync(BusType.SESSION, "org.gnome.ArchiveManager1", "/org/gnome/ArchiveManager1");
             service.progress.connect((p, m) => { progress(m, (int) p, 100); });
         } catch (IOError e) {
-            warning("Features which depend on Archive Manager will not function correctly");
+            warning("Failed to contact Archive Manager service.");
+            warning("Features which depend on Archive Manager will not function correctly.");
             post_error_message(e);
         }
         return;

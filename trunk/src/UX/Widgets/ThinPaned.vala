@@ -128,7 +128,7 @@ public class ThinPaned : Gtk.Paned {
         style_context.render_background (ctx, 0, 0, width, height);
 
         style_context.save ();
-        //style_context.add_class (StyleClass.THIN_PANE_SEPARATOR);
+        style_context.add_class ("ThinPaned");
         style_context.set_state (state);
 
         // draw thin separator. We don't use render_handle() because we're
