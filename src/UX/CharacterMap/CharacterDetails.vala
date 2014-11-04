@@ -45,7 +45,6 @@ namespace FontManager {
             add(box);
             label.show();
             box.show();
-            get_style_context().add_class(Gtk.STYLE_CLASS_INLINE_TOOLBAR);
         }
 
     }
