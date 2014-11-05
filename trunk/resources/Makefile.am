@@ -11,7 +11,9 @@ appdatadir = $(datarootdir)/appdata
 appdata_in_files = font-manager.appdata.xml.in
 appdata_DATA = $(appdata_in_files:.xml.in=.xml)
 
-CLEANFILES = $(appdata_DATA)
+CLEANFILES = $(appdata_DATA) \
+	$(dist_desktop_DATA)
+
 EXTRA_DIST = \
 	FontManagerGResource.xml \
 	FontManager.css \
