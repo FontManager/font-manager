@@ -640,14 +640,16 @@ namespace FontManager {
         public void post_activate () {
 
             /* Close popover on click */
-            mode_changed.connect((i) => {
-                titlebar.main_menu.active = !titlebar.main_menu.active;
-                Idle.add(() => {
-                    titlebar.main_menu.popover.hide();
-                    return titlebar.main_menu.popover.visible;
+            if (Gtk.MINOR_VERSION >= 14) {
+                mode_changed.connect((i) => {
+                    titlebar.main_menu.active = !titlebar.main_menu.active;
+                    Idle.add(() => {
+                        titlebar.main_menu.popover.hide();
+                        return titlebar.main_menu.popover.visible;
+                    });
                 });
-            });
-
+            }
+            
             /* XXX */
             NotImplemented.parent = (Gtk.Window) this;
 
