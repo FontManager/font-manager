@@ -137,6 +137,7 @@ BUILT_SOURCES = FontManagerGResource.c
 font_manager_SOURCES = \
 	$(font_manager_VALASOURCES) \
 	Glue/_Glue_.c \
+	Glue/_Gtk_.c \
 	Glue/Private.h \
 	$(BUILT_SOURCES)
 
