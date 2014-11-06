@@ -199,7 +199,7 @@ namespace FontManager {
                 try {
                     _tmpdir = DirUtils.make_tmp(TMPL);
                 } catch (FileError e) {
-                    error("Error creating temporary working directory : %S", e.message);
+                    error("Error creating temporary working directory : %s", e.message);
                 }
                 if (_tmpdir == null) {
                     if (install_failed == null)

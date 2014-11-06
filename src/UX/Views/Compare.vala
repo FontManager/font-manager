@@ -30,18 +30,18 @@ namespace FontManager {
 
         public Gdk.RGBA foreground_color {
             get {
-                return controls.fg_color_button.rgba;
+                return ((Gtk.ColorChooser) controls.fg_color_button).rgba;
             }
             set {
-                controls.fg_color_button.rgba = value;
+                ((Gtk.ColorChooser) controls.fg_color_button).rgba = value;
             }
         }
         public Gdk.RGBA background_color {
             get {
-                return controls.bg_color_button.rgba;
+                return ((Gtk.ColorChooser) controls.bg_color_button).rgba;
             }
             set {
-                controls.bg_color_button.rgba = value;
+                ((Gtk.ColorChooser) controls.bg_color_button).rgba = value;
             }
         }
 

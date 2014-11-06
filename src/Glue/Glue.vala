@@ -93,6 +93,14 @@ namespace FontConfig {
 
 }
 
+namespace Gtk {
+    
+    public bool popovers_should_close_on_click (Gtk.MenuButton button) {
+        return _gtk_popovers_should_close_on_click(button);
+    }
+    
+}
+
 /* Defined in fontconfig.h */
 extern int FcGetVersion();
 /* Defined in _Glue_.c */
@@ -110,4 +118,7 @@ extern void FcClearAppFonts ();
 extern bool FcLoadConfig (string filepath);
 extern bool FcCacheUpdate ();
 extern int get_file_info (FontManager.FontInfo * fileinfo, string filepath, int index);
+/* Defined in _Gtk_.c */
+extern bool _gtk_popovers_should_close_on_click (Gtk.MenuButton button);
+
 

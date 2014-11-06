@@ -110,7 +110,7 @@ namespace FontManager {
             return;
         }
 
-        void cell_data_func (Gtk.CellLayout layout,
+        void cell_data_func (Gtk.TreeViewColumn layout,
                                Gtk.CellRenderer cell,
                                Gtk.TreeModel model,
                                Gtk.TreeIter treeiter) {
