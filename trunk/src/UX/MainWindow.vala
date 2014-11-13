@@ -556,7 +556,7 @@ namespace FontManager {
             move(x, y);
             mode = (FontManager.Mode) settings.get_enum("mode");
             sidebar.standard.mode = (MainSideBarMode) settings.get_enum("sidebar-mode");
-            preview.mode = (PreviewMode) settings.get_enum("preview-mode");
+            preview.mode = settings.get_string("preview-mode");
             main_pane.position = settings.get_int("sidebar-size");
             content_pane.position = settings.get_int("content-pane-position");
             preview.preview_size = settings.get_double("preview-font-size");
@@ -609,7 +609,7 @@ namespace FontManager {
                 settings.set_enum("sidebar-mode", (int) m);
                 }
             );
-            preview.mode_changed.connect((m) => { settings.set_enum("preview-mode", m); });
+            preview.mode_changed.connect((m) => { settings.set_string("preview-mode", m); });
             preview.preview_changed.connect((p) => { settings.set_string("preview-text", p); });
             settings.bind("sidebar-size", main_pane, "position", SettingsBindFlags.DEFAULT);
             settings.bind("content-pane-position", content_pane, "position", SettingsBindFlags.DEFAULT);
@@ -646,7 +646,7 @@ namespace FontManager {
                     return Gtk.popovers_should_close_on_click(titlebar.main_menu);
                 });
             });
-            
+
             /* XXX */
             NotImplemented.parent = (Gtk.Window) this;
 

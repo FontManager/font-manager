@@ -19,32 +19,29 @@
  *  Jerry Casiano <JerryCasiano@gmail.com>
  */
 
+namespace Intl {
+
+    public void setup (string name = FontManager.NAME) {
+        GLib.Intl.bindtextdomain(name, null);
+        GLib.Intl.bind_textdomain_codeset(name, null);
+        GLib.Intl.textdomain(name);
+        GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
+        return;
+    }
+
+}
+
+namespace Logging {
+
+    public void setup (LogLevel level = LogLevel.WARN) {
+        Logger.initialize(FontManager.About.NAME);
+        Logger.DisplayLevel = level;
+        return;
+    }
+
+}
+
 namespace FontManager {
-
-    namespace Intl {
-
-        public void setup (string name = NAME) {
-            GLib.Intl.bindtextdomain(name, null);
-            GLib.Intl.bind_textdomain_codeset(name, null);
-            GLib.Intl.textdomain(name);
-            GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
-            return;
-        }
-
-    }
-
-    namespace Logging {
-
-        public void setup (LogLevel level = LogLevel.INFO) {
-            Logger.initialize(FontManager.About.NAME);
-            Logger.DisplayLevel = level;
-            message("%s %s", FontManager.About.NAME, FontManager.About.VERSION);
-            message("Using FontConfig %s", FontConfig.get_version_string());
-            message("Using Pango %s", Pango.version_string());
-            message("Using Gtk+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
-            return;
-        }
-    }
 
     [DBus (name = "org.gnome.FontManager")]
     public class Application: Gtk.Application  {
@@ -54,17 +51,76 @@ namespace FontManager {
         [DBus (visible = false)]
         public Gtk.Builder builder { get; set; }
 
+        const OptionEntry[] options = {
+            { "about", 'a', 0, OptionArg.NONE, ref ABOUT, "About the application", null },
+            { "version", 'V', 0, OptionArg.NONE, ref VERSION, "Show application version", null },
+            { "debug", 'd', 0, OptionArg.NONE, ref DEBUG, "Enable debug logging", null },
+            { "verbose", 'v', 0, OptionArg.NONE, ref VERBOSE, "Enable verbose logging", null },
+            { null }
+        };
+
+        static bool ABOUT = false;
+        static bool VERSION = false;
+        static bool DEBUG = false;
+        static bool VERBOSE = false;
+
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
-            startup.connect(() => {
-                builder = new Gtk.Builder();
-                if (Gnome3()) {
-                    set_gnome_app_menu(this, builder);
-                    message("Running on %s", get_command_line_output("gnome-shell --version"));
-                } else {
-                    message("Running on %s", Environment.get_variable("XDG_CURRENT_DESKTOP"));
-                }
-            });
+        }
+
+        public override void startup () {
+            base.startup ();
+            message("%s %s", FontManager.About.NAME, FontManager.About.VERSION);
+            message("Using FontConfig %s", FontConfig.get_version_string());
+            message("Using Pango %s", Pango.version_string());
+            message("Using GTK+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
+            builder = new Gtk.Builder();
+            if (Gnome3()) {
+                set_gnome_app_menu(this, builder);
+                message("Running on %s", get_command_line_output("gnome-shell --version"));
+            } else {
+                message("Running on %s", Environment.get_variable("XDG_CURRENT_DESKTOP"));
+            }
+            return;
+        }
+
+        public override void open (File [] files, string hint) {
+            return;
+        }
+
+        public override bool local_command_line (ref unowned string[] args, out int exit_status) {
+            bool result = false;
+            exit_status = 0;
+
+            var context = new OptionContext(null);
+            context.add_main_entries(options, NAME);
+            context.add_group(Gtk.get_option_group(false));
+
+            try {
+                unowned string [] _args = args;
+                context.parse(ref _args);
+            } catch (OptionError e) {
+                printerr("%s\n", e.message);
+                exit_status = 1;
+                result = true;
+            }
+
+            if (ABOUT) {
+                show_about();
+                result = true;
+            }
+
+            if (VERSION) {
+                show_version();
+                result = true;
+            }
+
+            if (VERBOSE)
+                Logger.DisplayLevel = LogLevel.VERBOSE;
+            else if (DEBUG)
+                Logger.DisplayLevel = LogLevel.DEBUG;
+
+            return (result ? result : base.local_command_line(ref args, out exit_status));
         }
 
         protected override void activate () {
@@ -99,7 +155,7 @@ namespace FontManager {
             set_application_style();
             if (update_declined())
                 return 0;
-            var main = new Application(BUS_ID, (ApplicationFlags.FLAGS_NONE));
+            var main = new Application(BUS_ID, (ApplicationFlags.HANDLES_OPEN));
             int res = main.run(args);
             return res;
         }

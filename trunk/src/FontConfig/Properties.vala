@@ -34,17 +34,30 @@ namespace FontConfig {
         public bool hinting { get; set; default = false; }
         public bool autohint { get; set; default = false; }
 
+        public string? family {
+            get {
+                return _family;
+            }
+            set {
+                _family = value;
+                _font = null;
+                init();
+            }
+        }
+
         public Font? font {
             get {
                 return _font;
             }
             set {
                 _font = value;
+                _family = null;
                 init();
             }
         }
 
         Font? _font = null;
+        string? _family = null;
 
         public Properties () {
             font = null;
@@ -66,9 +79,10 @@ namespace FontConfig {
             var writer = new XmlWriter(get_config_file());
             writer.start_element("match");
             writer.write_attribute("target", "font");
-            if (font != null) {
+            if (font != null || family != null)
+                write_family_test(writer);
+            if (font != null)
                 write_match_criteria(writer);
-            }
             write_assignments(writer);
             writer.end_element();
             writer.close();
@@ -89,10 +103,13 @@ namespace FontConfig {
         }
 
         string get_config_file () {
-            if (font == null)
+            if (font == null && family == null)
                 return Path.build_filename(get_config_dir(), "28-Properties.conf");
             else
-                return Path.build_filename(get_config_dir(), "29-%s-Properties.conf".printf(font.to_filename()));
+                if (font != null)
+                    return Path.build_filename(get_config_dir(), "29-%s-Properties.conf".printf(font.to_filename()));
+                else
+                    return Path.build_filename(get_config_dir(), "29-%s-Properties.conf".printf(_family));
         }
 
         public bool init () {
@@ -232,12 +249,18 @@ namespace FontConfig {
             return;
         }
 
-        void write_match_criteria (XmlWriter writer) requires (font != null) {
+        void write_family_test (XmlWriter writer) {
             writer.start_element("test");
             writer.write_attribute("name", "family");
-            writer.write_element("string", font.family);
+            if (font == null)
+                writer.write_element("string", _family);
+            else
+                writer.write_element("string", font.family);
             writer.end_element();
+            return;
+        }
 
+        void write_match_criteria (XmlWriter writer) requires (font != null) {
             writer.write_comparison("slant", "eq", "int", font.slant.to_string());
             writer.write_comparison("weight", "eq", "int", font.weight.to_string());
             writer.write_comparison("width", "eq", "int", font.width.to_string());
@@ -246,7 +269,6 @@ namespace FontConfig {
                 writer.write_comparison("size", "less", "double", smaller_than.to_string());
             if (larger_than != 0.0)
                 writer.write_comparison("size", "more", "double", larger_than.to_string());
-
             return;
 
         }

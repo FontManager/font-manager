@@ -37,12 +37,6 @@
         <value nick="Collection" value="1" />
     </enum>
 
-    <enum id="org.gnome.FontManager.PreviewMode">
-        <value nick="Preview" value="0" />
-        <value nick="Waterfall" value="1" />
-        <value nick="Body Text" value="2" />
-    </enum>
-
     <enum id="org.gnome.FontManager.CharacterMap.Mode">
         <value nick="Script" value="0" />
         <value nick="Block" value="1" />
@@ -94,7 +88,7 @@
             <default>10.0</default>
         </key>
 
-        <key name="preview-mode" enum="org.gnome.FontManager.PreviewMode">
+        <key name="preview-mode" type="s">
             <summary>Preview Mode</summary>
             <description>Possible modes are Preview, Waterfall and Body Text.</description>
             <default>"Preview"</default>

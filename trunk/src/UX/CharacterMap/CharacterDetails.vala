@@ -29,22 +29,26 @@ namespace FontManager {
             }
             set {
                 ac = value;
-                label.set_markup(Markup.printf_escaped("<b>%s</b>", Gucharmap.get_unicode_name(ac)));
+                set_details();
             }
         }
 
         private unichar ac;
-        private Gtk.Label label;
+        private Gtk.Label name_label;
 
         public CharacterDetails () {
-            var box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            label = new Gtk.Label(null);
-            label.margin = 7;
-            label.opacity = 0.9;
-            box.pack_start(label, true, true, 0);
+            var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            name_label = new Gtk.Label(null);
+            name_label.margin = 9;
+            name_label.opacity = 0.9;
+            box.pack_start(name_label, true, true, 0);
             add(box);
-            label.show();
+            name_label.show();
             box.show();
+        }
+
+        private void set_details () {
+            name_label.set_markup(Markup.printf_escaped("<b>%s</b>", Gucharmap.get_unicode_name(ac)));
         }
 
     }

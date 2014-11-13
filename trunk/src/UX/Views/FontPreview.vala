@@ -21,24 +21,26 @@
 
 namespace FontManager {
 
-    public enum PreviewMode {
-            PREVIEW,
-            WATERFALL,
-            BODY_TEXT
-    }
+    public class FontPreview : Gtk.Box {
 
-    public class FontPreview : AdjustablePreview {
-
-        public signal void mode_changed (int mode);
+        public signal void mode_changed (string mode);
         public signal void preview_changed (string preview_text);
 
         public string pangram {
             get {
-                return _pangram;
+                return waterfall.pangram;
             }
             set {
-                _pangram = "%s\n".printf(value);
-                update_waterfall();
+                waterfall.pangram = "%s\n".printf(value);
+            }
+        }
+
+        public double preview_size {
+            get {
+                return preview.preview_size;
+            }
+            set {
+                preview.preview_size = body_text.preview_size = value;
             }
         }
 
@@ -47,190 +49,90 @@ namespace FontManager {
                 return _font_desc;
             }
             set {
-                _font_desc = value;
+                _font_desc = preview.font_desc = body_text.font_desc = value;
                 tag_table.lookup("FontDescription").font_desc = _font_desc;
-                apply_text_tags();
-                preview.set_tooltip_text(font_desc.to_string());
             }
         }
 
-        public PreviewMode mode {
+        public string mode {
             get {
-                return (PreviewMode) selector.mode;
+                return stack.get_visible_child_name();
             }
             set {
-                selector.mode = (int) value;
+                stack.set_visible_child_name(value);
             }
         }
 
-        bool editing = false;
-        string _pangram;
-        Gtk.Notebook notebook;
+        Gtk.Stack stack;
+        Gtk.StackSwitcher switcher;
         Pango.FontDescription _font_desc;
-        StandardTextView preview;
-        StaticTextView waterfall;
-        StaticTextView body_text;
-        PreviewControls controls;
-        ModeSelector selector;
+        ActivePreview preview;
+        WaterfallPreview waterfall;
+        TextPreview body_text;
         StandardTextTagTable tag_table;
 
         public FontPreview () {
-            base.init();
             set_orientation(Gtk.Orientation.VERTICAL);
-            fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
-            controls = new PreviewControls();
+            var adjustment = new Gtk.Adjustment(DEFAULT_PREVIEW_SIZE, MIN_FONT_SIZE, MAX_FONT_SIZE, 0.5, 1.0, 0);
             tag_table = new StandardTextTagTable();
-            preview = new StandardTextView(tag_table);
-            preview.view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
-            preview.view.justification = Gtk.Justification.CENTER;
-            waterfall = new StaticTextView(tag_table);
-            waterfall.view.pixels_above_lines = 1;
-            body_text = new StaticTextView(tag_table);
-            body_text.view.left_margin = 12;
-            body_text.view.right_margin = 12;
-            body_text.view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
-            body_text.view.justification = Gtk.Justification.FILL;
-            selector = new ModeSelector();
-            selector.set_border_width(4);
-            notebook = new Gtk.Notebook();
-            selector.notebook = notebook;
-            notebook.append_page(preview, new Gtk.Label(_("Preview")));
-            notebook.append_page(waterfall, new Gtk.Label(_("Waterfall")));
-            notebook.append_page(body_text, new Gtk.Label(_("Body Text")));
+            preview = new ActivePreview(tag_table);
+            preview.adjustment = adjustment;
+            waterfall = new WaterfallPreview(tag_table);
+            body_text = new TextPreview(tag_table);
+            body_text.adjustment = adjustment;
+            stack = new Gtk.Stack();
+            stack.add_titled(preview, "Preview", _("Preview"));
+            stack.add_titled(waterfall, "Waterfall", _("Waterfall"));
+            stack.add_titled(body_text, "Body Text", _("Body Text"));
+            stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
+            switcher = new Gtk.StackSwitcher();
+            switcher.set_stack(stack);
+            switcher.set_border_width(5);
+            switcher.halign = Gtk.Align.CENTER;
+            switcher.valign = Gtk.Align.CENTER;
+            switcher.homogeneous = true;
+            switcher.orientation = Gtk.Orientation.HORIZONTAL;
             font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
-            body_text.buffer.set_text(LOREM_IPSUM);
-            preview.buffer.set_text("\n\n" + get_localized_preview_text(), -1);
-            /* Setting pangram updates the waterfall view */
-            pangram = get_localized_pangram();
             connect_signals();
-            pack_start(selector, false, true, 0);
+            pack_start(switcher, false, true, 0);
             add_separator(this, Gtk.Orientation.HORIZONTAL);
             var box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            box.pack_start(controls, false, true, 0);
-            box.pack_start(notebook, true, true, 0);
-            box.pack_end(fontscale, false, true, 0);
+            box.pack_start(stack, true, true, 0);
             pack_end(box, true, true, 0);
             preview.show();
             waterfall.show();
             body_text.show();
-            selector.show();
-            notebook.show();
-            fontscale.show();
-            controls.show();
+            stack.show();
+            switcher.show();
             box.show();
         }
 
         internal void connect_signals () {
-            selector.selection_changed.connect((mode) => { on_mode_changed(mode); });
-            preview.buffer.changed.connect((b) => {
-                apply_text_tags();
-                var new_preview = preview.get_buffer_text();
-                bool sensitive = (get_localized_preview_text() != new_preview);
-                controls.clear_is_sensitive = sensitive;
-                preview_changed(new_preview);
-            });
-            controls.justification_set.connect((j) => { preview.view.set_justification(j); });
-            controls.editing.connect((e) => { on_edit_toggled(e); } );
-            controls.on_clear_clicked.connect(() => { on_clear(); });
-            preview.view.event.connect((w, e) => { return on_textview_event(w, e); });
+            stack.notify["visible-child-name"].connect(() => { on_mode_changed(); });
+            preview.preview_changed.connect((n) => { this.preview_changed(n); });
+            preview.notify["preview-size"].connect(() => { notify_property("preview-size"); });
             return;
         }
 
         public void set_preview_text (string preview_text) {
-            preview.buffer.set_text(preview_text);
+            preview.set_preview_text(preview_text);
             return;
         }
 
-        protected override void set_preview_size_internal (double new_size) {
-            tag_table.lookup("FontSize").size_points = new_size;
-            apply_text_tags();
-            return;
-        }
-
-        void apply_text_tags () {
-            Gtk.TextView [] views = {preview.view, body_text.view};
-            foreach (var view in views) {
-                Gtk.TextIter start, end;
-                view.buffer.get_bounds(out start, out end);
-                view.buffer.apply_tag(tag_table.lookup("FontDescription"), start, end);
-                view.buffer.apply_tag(tag_table.lookup("FontSize"), start, end);
-            }
-            return;
-        }
-
-        void on_mode_changed (int mode) {
+        void on_mode_changed () {
+            string mode = stack.get_visible_child_name();
             switch (mode) {
-                case PreviewMode.PREVIEW:
-                    controls.show();
-                    fontscale.show();
-                    preview.view.queue_draw();
+                case "Preview":
+                    preview.preview.queue_draw();
                     break;
-                case PreviewMode.WATERFALL:
-                    controls.hide();
-                    fontscale.hide();
+                case "Waterfall":
                     waterfall.view.queue_draw();
                     break;
-                case PreviewMode.BODY_TEXT:
-                    controls.hide();
-                    fontscale.show();
-                    body_text.view.queue_draw();
+                case "Body Text":
+                    body_text.preview.queue_draw();
                     break;
             }
             mode_changed(mode);
-            return;
-        }
-
-        void update_waterfall () {
-            Gtk.TextBuffer buffer = waterfall.buffer;
-            Gtk.TextIter iter;
-            for (int i = (int) MIN_FONT_SIZE; i <= MAX_FONT_SIZE; i++) {
-                var line = i.to_string();
-                string point;
-                if (i < 10)
-                    point = "%spt.   ".printf(line);
-                else
-                    point = "%spt.  ".printf(line);
-                buffer.get_iter_at_line(out iter, i);
-                buffer.insert_with_tags_by_name(iter, point, -1, "SizePoint", null);
-                if (waterfall.tag_table.lookup(line) == null)
-                    buffer.create_tag(line, "size-points", (double) i, null);
-                buffer.get_end_iter(out iter);
-                buffer.insert_with_tags_by_name(iter, pangram, -1, line, "FontDescription", null);
-            }
-            return;
-        }
-
-        bool on_textview_event (Gtk.Widget widget, Gdk.Event event) {
-            if (editing || event.type == Gdk.EventType.SCROLL)
-                return false;
-            else {
-                ((Gtk.TextView) widget).get_window(Gtk.TextWindowType.TEXT).set_cursor(null);
-                return true;
-            }
-        }
-
-        void on_clear () {
-            preview.buffer.set_text("\n\n" + get_localized_preview_text(), -1);
-            controls.clear_is_sensitive = false;
-            return;
-        }
-
-        void on_edit_toggled (bool allow_edit) {
-            editing = allow_edit;
-            preview.view.editable = allow_edit;
-            preview.view.cursor_visible = allow_edit;
-            preview.view.accepts_tab = allow_edit;
-            if (allow_edit) {
-                Gdk.Cursor cursor = new Gdk.Cursor(Gdk.CursorType.XTERM);
-                Gdk.Window text_window = preview.view.get_window(Gtk.TextWindowType.TEXT);
-                text_window.set_cursor(cursor);
-                preview.grab_focus();
-            } else {
-                Gtk.TextIter end;
-                Gtk.TextBuffer buff = preview.buffer;
-                buff.get_end_iter(out end);
-                buff.select_range(end, end);
-            }
             return;
         }
 
