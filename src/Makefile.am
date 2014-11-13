@@ -118,11 +118,14 @@ UX/Trees/CategoryTree.vala \
 UX/Trees/FontListTree.vala \
 UX/Trees/UserSourceTree.vala \
 UX/Widgets/FontScale.vala \
+UX/Widgets/ActivePreview.vala \
 UX/Widgets/AdjustablePreview.vala \
 UX/Widgets/CellRendererPill.vala \
 UX/Widgets/TextViews.vala \
 UX/Widgets/MultiDNDTreeView.vala \
 UX/Widgets/ThinPaned.vala \
+UX/Widgets/TextPreview.vala \
+UX/Widgets/WaterfallPreview.vala \
 UX/Views/Compare.vala \
 UX/Views/FontPreview.vala \
 UX/Views/Browse.vala

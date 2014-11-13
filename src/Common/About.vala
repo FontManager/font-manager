@@ -25,7 +25,7 @@ namespace FontManager {
 
         public const string NAME = _("Font Manager");
         public const string ICON = "font-x-generic";
-        public const string COMMENT = _("Simple font management for Gtk+ desktop environments");
+        public const string COMMENT = _("Simple font management for GTK+ desktop environments");
         public const string VERSION = "0.7";
         public const string HOMEPAGE = "http://code.google.com/p/font-manager/";
         public const string COPYRIGHT = _("Copyright © 2009 - 2014 Jerry Casiano");
@@ -68,7 +68,7 @@ namespace FontManager {
     }
 
     void show_about () {
-        stdout.printf("\n\n\t\t %s - %s\n\n\t\t  %s\n%s\n",
+        stdout.printf("\n    %s - %s\n\n\t\t  %s\n%s\n",
                                     About.NAME,
                                     About.COMMENT,
                                     About.COPYRIGHT,
