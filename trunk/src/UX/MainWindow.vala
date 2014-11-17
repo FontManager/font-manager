@@ -232,7 +232,7 @@ namespace FontManager {
             content_stack = new Gtk.Stack();
             content_stack.add_titled(content_pane, "Default", _("Manage"));
             content_stack.add_titled(browser, "Browse", _("Browse"));
-            content_stack.set_transition_type(Gtk.StackTransitionType.UNDER_RIGHT);
+            content_stack.set_transition_type(Gtk.StackTransitionType.OVER_LEFT);
             content_stack.set_transition_duration(420);
             return;
         }
