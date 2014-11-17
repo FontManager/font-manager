@@ -125,7 +125,7 @@ namespace FontManager {
         internal GLib.MenuModel get_main_menu_model () {
             var application = (Application) GLib.Application.get_default();
             var mode_section = new GLib.Menu();
-            string [] modes = {"Manage", "Browse", "Compare", "Character Map"};
+            string [] modes = {"Default", "Browse", "Compare", "Character Map"};
             var mode_action = new SimpleAction.stateful("mode", VariantType.STRING, "Manage");
             mode_action.activate.connect((a, s) => {
                 application.main_window.mode = Mode.parse((string) s);

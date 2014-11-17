@@ -71,10 +71,10 @@ namespace FontManager {
             view.insert_column_with_data_func(1, "", count, count_cell_data_func);
             view.get_column(0).expand = true;
             view.get_column(1).expand = false;
-            selector.add_mode(new Gtk.Label(_("Script")));
-            selector.add_mode(new Gtk.Label(_("Block")));
+            selector.add_mode(new Gtk.Label(_("Unicode Script")));
+            selector.add_mode(new Gtk.Label(_("Unicode Block")));
             var blend = new Gtk.EventBox();
-            selector.border_width = 4;
+            selector.border_width = 5;
             blend.add(selector);
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);

@@ -35,8 +35,18 @@ namespace FontConfig {
         }
 
         public string? target_element { get; set; default = null; }
+        public bool update_required {
+            get {
+                return _dirty;
+            }
+            set {
+                _dirty = value;
+                this.changed();
+            }
+        }
 
         string? _target_file = null;
+        internal bool _dirty = false;
 
         public Sources () {
             target_element = "source";
@@ -58,11 +68,13 @@ namespace FontConfig {
         }
 
         public new bool add (FontSource source) {
+            source.notify["active"].connect(() => { update_required = true; });
             return base.add(source);
         }
 
         public new bool remove (FontSource source) {
             source.available = false;
+            update_required = true;
             return base.remove(source);
         }
 

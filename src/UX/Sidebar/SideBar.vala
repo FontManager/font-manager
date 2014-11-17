@@ -21,33 +21,26 @@
 
 namespace FontManager {
 
-    public enum SideBarView {
-        STANDARD,
-        CHARACTER_MAP,
-        WEB,
-        N_VIEWS
-    }
-
     public class SideBar : Gtk.Overlay {
 
-        public SideBarView mode {
+        public string mode {
             get {
-                return (SideBarView) notebook.get_current_page();
+                return stack.get_visible_child_name();
             }
             set {
-                notebook.set_current_page((int) value);
+                stack.set_visible_child_name(value);
             }
         }
 
         public MainSideBar? standard {
             get {
-                return (MainSideBar) notebook.get_nth_page((int) SideBarView.STANDARD);
+                return (MainSideBar) stack.get_child_by_name("Default");
             }
         }
 
         public CharacterMapSideBar? character_map {
             get {
-                return (CharacterMapSideBar) notebook.get_nth_page((int) SideBarView.CHARACTER_MAP);
+                return (CharacterMapSideBar) stack.get_child_by_name("Character Map");
             }
         }
 
@@ -69,15 +62,6 @@ namespace FontManager {
             }
         }
 
-        public UserSourceModel? user_source_model {
-            get {
-                return standard.user_source_tree.model;
-            }
-            set {
-                standard.user_source_tree.model = value;
-            }
-        }
-
         public bool loading {
             get {
                 return _loading;
@@ -93,33 +77,39 @@ namespace FontManager {
             }
         }
 
+        protected Gtk.Stack stack;
         private bool _loading = false;
-        protected Gtk.Notebook notebook;
         private Gtk.Spinner spinner;
 
         public SideBar () {
-            notebook = new Gtk.Notebook();
-            notebook.show_tabs = false;
-            notebook.show_border = false;
+            stack = new Gtk.Stack();
+            stack.set_transition_type(Gtk.StackTransitionType.UNDER_LEFT);
+            stack.set_transition_duration(420);
             var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             box.hexpand = box.vexpand = true;
-            box.pack_start(notebook, true, true, 0);
+            box.pack_start(stack, true, true, 0);
             spinner = new Gtk.Spinner();
             spinner.halign = Gtk.Align.CENTER;
             spinner.valign = Gtk.Align.CENTER;
             spinner.set_size_request(48, 48);
             add(box);
             add_overlay(spinner);
-            notebook.show();
+            stack.show();
             box.show();
             get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             spinner.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
+            stack.notify["visible-child-name"].connect(() => {
+                if (stack.get_visible_child_name() == "Default")
+                    stack.set_transition_type(Gtk.StackTransitionType.UNDER_LEFT);
+                else
+                    stack.set_transition_type(Gtk.StackTransitionType.OVER_RIGHT);
+            });
         }
 
-        public int add_view (Gtk.Widget sidebar_view, SideBarView view) {
-            int result = notebook.insert_page(sidebar_view, null, (int) view);
+        public void add_view (Gtk.Widget sidebar_view, string name) {
+            stack.add_named(sidebar_view, name);
             sidebar_view.show();
-            return result;
+            return;
         }
 
     }

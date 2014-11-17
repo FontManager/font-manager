@@ -76,12 +76,14 @@ namespace FontConfig {
             SourceFunc callback = async_update.callback;
             bool output = true;
             ThreadFunc <void*> run = () => {
-                lock(families);
-                lock(sources);
-                start_update();
-                if (!load_user_font_sources(sources.to_array())) {
-                    critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
-                    output = false;
+                lock(families) {
+                    lock(sources) {
+                        start_update();
+                        if (!load_user_font_sources(sources.to_array())) {
+                            critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
+                            output = false;
+                        }
+                    }
                 }
                 end_update();
                 Idle.add((owned) callback);
@@ -188,6 +190,7 @@ namespace FontConfig {
     }
 
     bool load_user_font_sources (FontSource [] sources) {
+        clear_app_fonts();
         if (!add_app_font_dir(Path.build_filename(Environment.get_user_data_dir(), "fonts")))
             return false;
         foreach (var source in sources)

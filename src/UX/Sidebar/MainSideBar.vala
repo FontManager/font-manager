@@ -28,40 +28,42 @@ namespace FontManager {
         N_MODES
     }
 
-    public class MainSideBar : Gtk.Stack {
+    public class MainSideBar : Gtk.Box {
 
         public signal void collection_selected (Collection group);
         public signal void category_selected (Category filter, int category);
-        public signal void mode_selected (MainSideBarMode mode);
+        public signal void mode_selected ();
 
         public Collection? selected_collection { get; protected set; default = null; }
         public Category? selected_category { get; protected set; default = null; }
 
         public MainSideBarMode mode {
             get {
-                return _mode;
+                return (MainSideBarMode) int.parse(stack.get_visible_child_name());
             }
             set {
-                _mode = value;
-                selector.mode = value;
+                stack.set_visible_child_name(((int) value).to_string());
             }
         }
 
         public CategoryTree category_tree { get; private set; }
         public CollectionTree collection_tree { get; private set; }
-        public UserSourceTree user_source_tree { get; private set; }
 
-        ModeSelector selector;
-        MainSideBarMode _mode;
+        Gtk.Stack stack;
+        Gtk.StackSwitcher switcher;
         Gtk.Revealer revealer1;
 
         public MainSideBar () {
             var main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            selector = new ModeSelector();
-            var notebook = new Gtk.Notebook();
+            stack = new Gtk.Stack();
+            stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
+            switcher = new Gtk.StackSwitcher();
+            switcher.set_stack(stack);
+            switcher.set_border_width(5);
+            switcher.halign = Gtk.Align.CENTER;
+            switcher.valign = Gtk.Align.CENTER;
             category_tree = new CategoryTree();
             collection_tree = new CollectionTree();
-            user_source_tree = new UserSourceTree();
 
             var collection_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             revealer1 = new Gtk.Revealer();
@@ -74,37 +76,24 @@ namespace FontManager {
             collection_box.pack_start(revealer1, false, true, 0);
             collection_box.pack_end(collection_tree, true, true, 0);
 
-            /* XXX : Fixme : This doesn't belong here. Move to main stack */
-            var source_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            source_box.pack_start(user_source_tree.controls, false, true, 0);
-            add_separator(source_box, Gtk.Orientation.HORIZONTAL);
-            source_box.pack_end(user_source_tree, true, true, 0);
-
-            notebook.append_page(category_tree, new Gtk.Label(_("Categories")));
-            notebook.append_page(collection_box, new Gtk.Label(_("Collections")));
-            selector.notebook = notebook;
+            stack.add_titled(category_tree, "0", _("Categories"));
+            stack.add_titled(collection_box, "1", _("Collections"));
             mode = MainSideBarMode.CATEGORY;
             var blend = new Gtk.EventBox();
-            selector.border_width = 4;
-            blend.add(selector);
+            blend.add(switcher);
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
 
             main_box.pack_end(blend, false, true, 0);
             add_separator(main_box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
-            main_box.pack_start(notebook, true, true, 0);
+            main_box.pack_start(stack, true, true, 0);
             collection_box.show_all();
             category_tree.show();
-            notebook.show();
-            selector.show();
+            stack.show();
+            switcher.show();
             blend.show();
             main_box.show();
-            user_source_tree.show();
-            source_box.show();
-            add_named(main_box, "Default");
-            add_named(source_box, "Sources");
-            set_visible_child_name("Default");
-            set_transition_type(Gtk.StackTransitionType.CROSSFADE);
+            add(main_box);
             connect_signals();
         }
 
@@ -117,19 +106,17 @@ namespace FontManager {
             category_tree.selection_changed.connect((f, i) => {
                 category_selected(f, i);
                 selected_category = f;
-                }
-            );
+
+            });
             collection_tree.selection_changed.connect((g) => {
                 collection_selected(g);
                 selected_collection = g;
-                }
-            );
+            });
 
-            selector.selection_changed.connect((i) => {
-                mode = (MainSideBarMode) i;
-                mode_selected(mode);
-                }
-            );
+            /* XXX : string? pspec? */
+            stack.notify["visible-child-name"].connect((pspec) => {
+                mode_selected();
+            });
             return;
         }
 
