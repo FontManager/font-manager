@@ -95,6 +95,7 @@ Models/UserFontModel.vala \
 Models/UserSourceModel.vala \
 UX/MainWindow.vala \
 UX/GtkUtils.vala \
+UX/State.vala \
 UX/CharacterMap/CharacterMap.vala \
 UX/CharacterMap/CharacterDetails.vala \
 UX/CharacterMap/CharacterMapSideBar.vala \

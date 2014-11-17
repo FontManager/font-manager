@@ -31,15 +31,16 @@ namespace FontManager {
         N_MODES;
 
         public static Mode parse (string mode) {
-            var _mode_ = mode.down();
-            if (_mode_ == "browse")
-                return Mode.BROWSE;
-            else if (_mode_ == "compare")
-                return Mode.COMPARE;
-            else if (_mode_ == "character map")
-                return Mode.CHARACTER_MAP;
-            else
-                return Mode.MANAGE;
+            switch (mode.down()) {
+                case "browse":
+                    return Mode.BROWSE;
+                case "compare":
+                    return Mode.COMPARE;
+                case "character map":
+                    return Mode.CHARACTER_MAP;
+                default:
+                    return Mode.MANAGE;
+            }
         }
 
         public string to_string () {
@@ -51,7 +52,7 @@ namespace FontManager {
                 case CHARACTER_MAP:
                     return "Character Map";
                 default:
-                    return "Manage";
+                    return "Default";
             }
         }
 
@@ -68,16 +69,16 @@ namespace FontManager {
             }
         }
 
-        public int [] settings () {
+        public string [] settings () {
             switch (this) {
                 case BROWSE:
-                    return { (int) this, (int) MANAGE, (int) SideBarView.STANDARD };
+                    return { "Browse", "Default", "Default" };
                 case COMPARE:
-                    return { (int) MANAGE, (int) this - 2,  (int) SideBarView.STANDARD};
+                    return { "Default", "Compare",  "Default"};
                 case CHARACTER_MAP:
-                    return { (int) MANAGE, (int) this, (int) SideBarView.CHARACTER_MAP};
+                    return { "Default", "Character Map", "Character Map"};
                 default:
-                    return { 0, 0, 0 };
+                    return { "Default", "Default", "Default" };
             }
         }
 
@@ -87,9 +88,9 @@ namespace FontManager {
 
         public signal void mode_changed (int new_mode);
 
-        /* XXX : TODO : Switch to Gtk.Stack */
-        public Gtk.Notebook main_notebook { get; private set; }
-        public Gtk.Notebook preview_notebook { get; private set; }
+        public Gtk.Stack main_stack { get; private set; }
+        public Gtk.Stack content_stack { get; private set; }
+        public Gtk.Stack view_stack { get; private set; }
 
         public Gtk.Box main_box { get; private set; }
         public Gtk.Box content_box { get; private set; }
@@ -104,6 +105,8 @@ namespace FontManager {
         public TitleBar titlebar { get; private set; }
         public FontList fontlist { get; private set; }
         public FontListTree fonttree { get; private set; }
+        public UserSourceTree user_source_tree { get; private set; }
+        public State state { get; private set; }
 
         public Mode mode {
             get {
@@ -184,6 +187,7 @@ namespace FontManager {
         internal bool sidebar_switch = false;
         internal double _progress = 0.0;
         internal Mode _mode;
+        internal Gtk.Box source_box;
 
         construct {
             title = About.NAME;
@@ -197,6 +201,7 @@ namespace FontManager {
             show_components();
             add(main_box);
             connect_signals();
+            state = new State(this, Main.instance.settings);
         }
 
         internal void init_components () {
@@ -209,15 +214,26 @@ namespace FontManager {
             preview = new FontPreview();
             character_map = new CharacterMap();
             sidebar = new SideBar();
-            sidebar.add_view(new MainSideBar(), SideBarView.STANDARD);
-            sidebar.add_view(character_map.sidebar, SideBarView.CHARACTER_MAP);
+            sidebar.add_view(new MainSideBar(), "Default");
+            sidebar.add_view(character_map.sidebar, "Character Map");
             titlebar = new TitleBar();
             fonttree = new FontListTree();
+            user_source_tree = new UserSourceTree();
+            source_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             fontlist = fonttree.fontlist;
-
-            preview_notebook = get__preview__notebook();
-            main_notebook = get__main__notebook();
-
+            main_stack = new Gtk.Stack();
+            main_stack.set_transition_type(Gtk.StackTransitionType.UNDER_UP);
+            main_stack.set_transition_duration(720);
+            view_stack = new Gtk.Stack();
+            view_stack.add_titled(preview, "Default", _("Preview"));
+            view_stack.add_titled(compare, "Compare", _("Compare"));
+            view_stack.add_titled(character_map.pane, "Character Map", _("Character Map"));
+            view_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
+            content_stack = new Gtk.Stack();
+            content_stack.add_titled(content_pane, "Default", _("Manage"));
+            content_stack.add_titled(browser, "Browse", _("Browse"));
+            content_stack.set_transition_type(Gtk.StackTransitionType.UNDER_RIGHT);
+            content_stack.set_transition_duration(420);
             return;
         }
 
@@ -225,14 +241,19 @@ namespace FontManager {
             main_pane.add1(sidebar);
             main_pane.add2(content_box);
             add_separator(content_box, Gtk.Orientation.VERTICAL);
-            content_box.pack_end(main_notebook, true, true, 0);
+            content_box.pack_end(content_stack, true, true, 0);
             content_pane.add1(fonttree);
             var separator = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             add_separator(separator, Gtk.Orientation.HORIZONTAL);
             separator.show();
-            separator.pack_end(preview_notebook, true, true, 0);
+            separator.pack_end(view_stack, true, true, 0);
             content_pane.add2(separator);
-            main_box.pack_end(main_pane, true, true, 0);
+            source_box.pack_start(user_source_tree.controls, false, true, 0);
+            add_separator(source_box, Gtk.Orientation.HORIZONTAL);
+            source_box.pack_end(user_source_tree, true, true, 0);
+            main_stack.add_named(main_pane, "Default");
+            main_stack.add_named(source_box, "Sources");
+            main_box.pack_end(main_stack, true, true, 0);
             if (Gnome3()) {
                 set_titlebar(titlebar);
             } else {
@@ -244,8 +265,8 @@ namespace FontManager {
         }
 
         internal void show_components () {
-            main_notebook.show();
-            preview_notebook.show();
+            content_stack.show();
+            view_stack.show();
             main_box.show();
             content_box.show();
             main_pane.show();
@@ -257,6 +278,9 @@ namespace FontManager {
             sidebar.show();
             titlebar.show();
             fonttree.show();
+            user_source_tree.show();
+            source_box.show();
+            main_stack.show();
             return;
         }
 
@@ -270,7 +294,7 @@ namespace FontManager {
             font_model = Main.instance.font_model;
             collections = Main.instance.collection_model;
             categories = Main.instance.category_model;
-            sidebar.user_source_model = Main.instance.user_source_model;
+            user_source_tree.model = Main.instance.user_source_model;
             return;
         }
 
@@ -288,15 +312,18 @@ namespace FontManager {
             titlebar.source_toggle.set_active(false);
             titlebar.main_menu_label.set_markup("<b>%s</b>".printf(mode.to_translatable_string()));
             var settings = mode.settings();
-            main_notebook.set_current_page(settings[0]);
-            preview_notebook.set_current_page(settings[1]);
-            sidebar.mode = (SideBarView) settings[2];
+            /* XXX */
+            content_stack.set_visible_child_name(settings[0]);
+            view_stack.set_visible_child_name(settings[1]);
+            sidebar.mode = settings[2];
             sidebar.loading = (mode != Mode.CHARACTER_MAP) ? loading : false;
             sidebar.standard.reveal_collection_controls((mode == Mode.MANAGE));
             titlebar.reveal_controls((mode == Mode.MANAGE));
             fonttree.show_controls = (mode != Mode.BROWSE);
             fontlist.controls.set_remove_sensitivity((mode == Mode.MANAGE && sidebar.standard.mode == MainSideBarMode.COLLECTION));
             fontlist.queue_draw();
+            if (mode == Mode.BROWSE)
+                browser.treeview.queue_draw();
             mode_changed(_mode);
             return;
         }
@@ -360,10 +387,11 @@ namespace FontManager {
                 update_font_model(c);
                 }
             );
-            sidebar.standard.mode_selected.connect((m) => {
+            sidebar.standard.mode_selected.connect(() => {
                 /* XXX */
                 if (font_model == null || sidebar_switch)
                     return;
+                var m = sidebar.standard.mode;
                 if (m == MainSideBarMode.CATEGORY)
                     update_font_model(sidebar.standard.selected_category);
                 else
@@ -430,34 +458,31 @@ namespace FontManager {
             });
 
             titlebar.manage_sources.connect((a) => {
-                if (a) {
-                    content_box.hide();
-                    sidebar.standard.set_visible_child_name("Sources");
-                } else {
-                    sidebar.standard.set_visible_child_name("Default");
-                    content_box.show();
+                if (a)
+                    main_stack.set_visible_child_name("Sources");
+                else {
+                    main_stack.set_visible_child_name("Default");
+                    if (Main.instance.fontconfig.sources.update_required) {
+                        Main.instance.fontconfig.sources.update_required = false;
+                        queue_reload();
+                    }
                 }
             });
 
-        }
+            main_stack.notify["visible-child-name"].connect(() => {
+                if (main_stack.get_visible_child_name() == "Default")
+                    main_stack.set_transition_type(Gtk.StackTransitionType.UNDER_UP);
+                else
+                    main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN);
+            });
 
-        internal Gtk.Notebook get__preview__notebook () {
-            var _preview_notebook = new Gtk.Notebook();
-            _preview_notebook.append_page(preview, new Gtk.Label(_("Preview")));
-            _preview_notebook.append_page(compare, new Gtk.Label(_("Compare")));
-            _preview_notebook.append_page(character_map.pane, new Gtk.Label(_("Character Map")));
-            _preview_notebook.show_border = false;
-            _preview_notebook.show_tabs = false;
-            return _preview_notebook;
-        }
+            content_stack.notify["visible-child-name"].connect(() => {
+                if (content_stack.get_visible_child_name() == "Default")
+                    content_stack.set_transition_type(Gtk.StackTransitionType.OVER_LEFT);
+                else
+                    content_stack.set_transition_type(Gtk.StackTransitionType.UNDER_RIGHT);
+            });
 
-        internal Gtk.Notebook get__main__notebook () {
-            var _main_notebook = new Gtk.Notebook();
-            _main_notebook.append_page(content_pane, new Gtk.Label(_("Manage")));
-            _main_notebook.append_page(browser, new Gtk.Label(_("Browse")));
-            _main_notebook.show_border = false;
-            _main_notebook.show_tabs = false;
-            return _main_notebook;
         }
 
         internal void remove_fonts () {
@@ -545,170 +570,6 @@ namespace FontManager {
                 });
             }
             return;
-        }
-
-        public void restore_state () {
-            var settings = Main.instance.settings;
-            int x, y, w, h;
-            settings.get("window-size", "(ii)", out w, out h);
-            settings.get("window-position", "(ii)", out x, out y);
-            set_default_size(w, h);
-            move(x, y);
-            mode = (FontManager.Mode) settings.get_enum("mode");
-            sidebar.standard.mode = (MainSideBarMode) settings.get_enum("sidebar-mode");
-            preview.mode = settings.get_string("preview-mode");
-            main_pane.position = settings.get_int("sidebar-size");
-            content_pane.position = settings.get_int("content-pane-position");
-            preview.preview_size = settings.get_double("preview-font-size");
-            browser.preview_size = settings.get_double("browse-font-size");
-            compare.preview_size = settings.get_double("compare-font-size");
-            var preview_text = settings.get_string("preview-text");
-            if (preview_text != "DEFAULT")
-                preview.set_preview_text(preview_text);
-            sidebar.character_map.selected_block = settings.get_string("selected-block");
-            sidebar.character_map.selected_script = settings.get_string("selected-script");
-            sidebar.character_map.mode = (CharacterMapSideBarMode) settings.get_enum("charmap-mode");
-            sidebar.character_map.set_initial_selection(settings.get_string("selected-script"), settings.get_string("selected-block"));
-            var foreground = Gdk.RGBA();
-            var background = Gdk.RGBA();
-            bool foreground_set = foreground.parse(settings.get_string("compare-foreground-color"));
-            bool background_set = background.parse(settings.get_string("compare-background-color"));
-            if (foreground_set)
-                compare.foreground_color = foreground;
-            if (background_set)
-                compare.background_color = background;
-            var compare_list = settings.get_strv("compare-list");
-            foreach (var entry in compare_list) {
-                if (entry == null)
-                    break;
-                compare.add_from_string(entry);
-            }
-            fontlist.controls.set_remove_sensitivity(sidebar.standard.mode == MainSideBarMode.COLLECTION);
-            return;
-        }
-
-        public void bind_settings () {
-            var settings = Main.instance.settings;
-            configure_event.connect((w, /* Gdk.EventConfigure */ e) => {
-                settings.set("window-size", "(ii)", e.width, e.height);
-                settings.set("window-position", "(ii)", e.x, e.y);
-                /* XXX : this shouldn't be needed...
-                 * It's purpose is to prevent the window title from being
-                 * truncated even though it would fit. (Gtk.HeaderBar)
-                 */
-                titlebar.queue_resize();
-                return false;
-                }
-            );
-            mode_changed.connect((i) => {
-                settings.set_enum("mode", i);
-                }
-            );
-
-            sidebar.standard.mode_selected.connect((m) => {
-                settings.set_enum("sidebar-mode", (int) m);
-                }
-            );
-            preview.mode_changed.connect((m) => { settings.set_string("preview-mode", m); });
-            preview.preview_changed.connect((p) => { settings.set_string("preview-text", p); });
-            settings.bind("sidebar-size", main_pane, "position", SettingsBindFlags.DEFAULT);
-            settings.bind("content-pane-position", content_pane, "position", SettingsBindFlags.DEFAULT);
-            settings.bind("preview-font-size", preview, "preview-size", SettingsBindFlags.DEFAULT);
-            settings.bind("browse-font-size", browser, "preview-size", SettingsBindFlags.DEFAULT);
-            settings.bind("compare-font-size", compare, "preview-size", SettingsBindFlags.DEFAULT);
-            settings.bind("charmap-font-size", character_map.pane.table, "preview-size", SettingsBindFlags.DEFAULT);
-            settings.bind("selected-block", sidebar.character_map, "selected-block", SettingsBindFlags.DEFAULT);
-            settings.bind("selected-script", sidebar.character_map, "selected-script", SettingsBindFlags.DEFAULT);
-            sidebar.character_map.mode_set.connect(() => {
-                settings.set_enum("charmap-mode", (int) sidebar.character_map.mode);
-                }
-            );
-            compare.color_set.connect((p) => {
-                settings.set_string("compare-foreground-color", compare.foreground_color.to_string());
-                settings.set_string("compare-background-color", compare.background_color.to_string());
-                }
-            );
-            compare.list_modified.connect(() => {
-                settings.set_strv("compare-list", compare.list());
-                }
-            );
-            settings.delay();
-            /* XXX : Some settings are bound in post due to timing issues... */
-            return;
-        }
-
-        public void post_activate () {
-
-            /* Close popover on click */
-            mode_changed.connect((i) => {
-                titlebar.main_menu.active = !titlebar.main_menu.active;
-                Idle.add(() => {
-                    return Gtk.popovers_should_close_on_click(titlebar.main_menu);
-                });
-            });
-
-            /* XXX */
-            NotImplemented.parent = (Gtk.Window) this;
-
-            delete_event.connect((w, e) => {
-                ((Application) GLib.Application.get_default()).on_quit();
-                return true;
-                }
-            );
-
-            /* XXX : Workaround timing issue? wrong filter shown at startup */
-            if (sidebar.standard.mode == MainSideBarMode.COLLECTION) {
-                sidebar.standard.mode = MainSideBarMode.CATEGORY;
-                sidebar.standard.mode = MainSideBarMode.COLLECTION;
-            }
-
-            /* Workaround first row height bug? in browse mode */
-            Idle.add(() => {
-                browser.preview_size++;
-                browser.preview_size--;
-                return false;
-                }
-            );
-
-            /* XXX: Order matters */
-            var settings = Main.instance.settings;
-            var font_path = settings.get_string("selected-font");
-            if (sidebar.standard.mode == MainSideBarMode.COLLECTION) {
-                var tree = sidebar.standard.collection_tree.tree;
-                string path = settings.get_string("selected-collection");
-                restore_last_selected_treepath(tree, path);
-            } else {
-                var tree = sidebar.standard.category_tree.tree;
-                string path = settings.get_string("selected-category");
-                restore_last_selected_treepath(tree, path);
-            }
-            Idle.add(() => {
-                var treepath = restore_last_selected_treepath(fontlist, font_path);
-                if (treepath != null)
-                    browser.treeview.scroll_to_cell(treepath, null, true, 0.5f, 0.5f);
-                return false;
-            });
-            settings.bind("selected-category", sidebar.standard.category_tree, "selected-iter", SettingsBindFlags.DEFAULT);
-            settings.bind("selected-collection", sidebar.standard.collection_tree, "selected-iter", SettingsBindFlags.DEFAULT);
-            settings.bind("selected-font", fontlist, "selected-iter", SettingsBindFlags.DEFAULT);
-        }
-
-        internal Gtk.TreePath? restore_last_selected_treepath (Gtk.TreeView tree, string path) {
-            Gtk.TreeIter iter;
-            var model = (Gtk.TreeStore) tree.get_model();
-            var selection = tree.get_selection();
-            model.get_iter_from_string(out iter, path);
-            if (!model.iter_is_valid(iter)) {
-                selection.select_path(new Gtk.TreePath.first());
-                return null;
-            }
-            var treepath = new Gtk.TreePath.from_string(path);
-            selection.unselect_all();
-            if (treepath.get_depth() > 1)
-                tree.expand_to_path(treepath);
-            tree.scroll_to_cell(treepath, null, true, 0.5f, 0.5f);
-            selection.select_path(treepath);
-            return treepath;
         }
 
     }

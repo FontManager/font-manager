@@ -28,6 +28,7 @@ _gtk_popovers_should_close_on_click (GtkMenuButton * button)
     gtk_widget_hide(GTK_WIDGET(gtk_menu_button_get_popover(button)));
     return gtk_widget_is_visible(GTK_WIDGET(gtk_menu_button_get_popover(button)));
 #else
-    return FALSE;
+    gtk_widget_hide(GTK_WIDGET(gtk_menu_button_get_popup(button)));
+    return gtk_widget_is_visible(GTK_WIDGET(gtk_menu_button_get_popup(button)));
 #endif
 }

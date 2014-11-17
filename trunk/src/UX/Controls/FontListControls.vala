@@ -35,7 +35,7 @@ namespace FontManager {
 
         public FontListControls () {
             var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
-            box.border_width = 2;
+            box.border_width = 1;
             _expand = new Gtk.Button();
             arrow = new Gtk.Arrow(Gtk.ArrowType.RIGHT, Gtk.ShadowType.ETCHED_IN);
             _expand.add(arrow);
@@ -44,6 +44,7 @@ namespace FontManager {
             _remove.set_image(new Gtk.Image.from_icon_name("list-remove-symbolic", Gtk.IconSize.MENU));
             _remove.set_tooltip_text(_("Remove selected fonts"));
             entry = new Gtk.SearchEntry();
+            entry.margin_right = 2;
             box.pack_end(entry, false, false, 0);
             box.pack_start(_expand, false, false, 0);
             add_separator(box);

@@ -32,7 +32,7 @@ namespace FontManager {
 
         construct {
             box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
-            box.border_width = 2;
+            box.border_width = 1;
             add_button = new Gtk.Button();
             add_button.set_image(new Gtk.Image.from_icon_name("list-add-symbolic", Gtk.IconSize.MENU));
             remove_button = new Gtk.Button();

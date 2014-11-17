@@ -98,7 +98,7 @@ namespace FontManager {
             application.main_window.set_all_models();
             update_in_progress = false;
             if (queue_update)
-                update();
+                Idle.add(() => { update(); return false; });
             return;
         }
 
@@ -140,7 +140,7 @@ namespace FontManager {
             application.main_window = new MainWindow();
             application.add_window(application.main_window);
             application.main_window.loading = true;
-            application.main_window.restore_state();
+            application.main_window.state.restore();
             application.main_window.present();
             progress.connect((m, p, t) => {
                 application.main_window.progress = ((float) p /(float) t);
@@ -151,8 +151,8 @@ namespace FontManager {
             application.main_window.reject = fontconfig.reject;
             application.main_window.set_all_models();
             application.main_window.loading = false;
-            application.main_window.bind_settings();
-            application.main_window.post_activate();
+            application.main_window.state.bind_settings();
+            application.main_window.state.post_activate();
             return;
         }
 

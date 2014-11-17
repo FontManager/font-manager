@@ -55,6 +55,7 @@
 ./src/UX/MainWindow.vala
 ./src/UX/Sidebar/MainSideBar.vala
 ./src/UX/Sidebar/SideBar.vala
+./src/UX/State.vala
 ./src/UX/Trees/CategoryTree.vala
 ./src/UX/Trees/CollectionTree.vala
 ./src/UX/Trees/FontListTree.vala

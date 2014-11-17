@@ -37,6 +37,7 @@ namespace FontConfig {
             }
         }
 
+        /* XXX : Fix this! */
         public new bool active {
             get {
                 if (filetype == FileType.REGULAR || filetype == FileType.SYMBOLIC_LINK) {

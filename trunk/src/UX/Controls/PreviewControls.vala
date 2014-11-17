@@ -45,7 +45,7 @@ namespace FontManager {
 
         construct {
             var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
-            box.border_width = 2;
+            box.border_width = 1;
             justify_left = new Gtk.RadioButton(null);
             justify_left.set_tooltip_text(_("Left Aligned"));
             justify_center = new Gtk.RadioButton.from_widget(justify_left);
