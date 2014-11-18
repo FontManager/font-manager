@@ -34,13 +34,21 @@ namespace FontManager {
 
         public MainSideBar? standard {
             get {
+            #if GTK_312
                 return (MainSideBar) stack.get_child_by_name("Default");
+            #else
+                return (MainSideBar) stack.get_children().nth_data(0);
+            #endif
             }
         }
 
         public CharacterMapSideBar? character_map {
             get {
+            #if GTK_312
                 return (CharacterMapSideBar) stack.get_child_by_name("Character Map");
+            #else
+                return (MainSideBar) stack.get_children().nth_data(1);
+            #endif
             }
         }
 
