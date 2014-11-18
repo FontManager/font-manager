@@ -3,6 +3,7 @@ resource_dir = ${abs_top_builddir}/resources
 GLIB_COMPILE_RESOURCES=`$(PKG_CONFIG) --variable=glib_compile_resources gio-2.0`
 
 AM_VALAFLAGS = \
+--target-glib 2.38 \
 --pkg gmodule-2.0 \
 --pkg glib-2.0 \
 --pkg gio-2.0 \
@@ -13,7 +14,8 @@ AM_VALAFLAGS = \
 --pkg libxml-2.0 \
 --pkg pango \
 --pkg sqlite3 \
---target-glib 2.38 \
+$(GTK_312) \
+$(GTK_314) \
 --gresources $(resource_dir)/FontManagerGResource.xml
 
 
@@ -141,7 +143,6 @@ BUILT_SOURCES = FontManagerGResource.c
 font_manager_SOURCES = \
 	$(font_manager_VALASOURCES) \
 	Glue/_Glue_.c \
-	Glue/_Gtk_.c \
 	Glue/Private.h \
 	$(BUILT_SOURCES)
 

@@ -124,7 +124,18 @@ namespace FontManager {
             main_window.mode_changed.connect((i) => {
                 main_window.titlebar.main_menu.active = !main_window.titlebar.main_menu.active;
                 Idle.add(() => {
-                    return Gtk.popovers_should_close_on_click(main_window.titlebar.main_menu);
+                #if GTK_312
+                    if (main_window.titlebar.main_menu.use_popover) {
+                        main_window.titlebar.main_menu.popover.hide();
+                        return main_window.titlebar.main_menu.popover.visible;
+                    } else {
+                        main_window.titlebar.main_menu.popup.hide();
+                        return main_window.titlebar.main_menu.popup.visible;
+                    }
+                #else
+                    main_window.titlebar.main_menu.popup.hide();
+                    return main_window.titlebar.main_menu.popup.visible;
+                #endif
                 });
             });
 
