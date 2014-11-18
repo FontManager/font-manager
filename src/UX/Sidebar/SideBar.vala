@@ -47,7 +47,7 @@ namespace FontManager {
             #if GTK_312
                 return (CharacterMapSideBar) stack.get_child_by_name("Character Map");
             #else
-                return (MainSideBar) stack.get_children().nth_data(1);
+                return (CharacterMapSideBar) stack.get_children().nth_data(1);
             #endif
             }
         }
