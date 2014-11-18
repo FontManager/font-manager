@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-16 23:09-0500\n"
+"POT-Creation-Date: 2014-11-17 19:24-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -371,8 +371,9 @@ msgid "Unicode Script"
 msgstr "Script"
 
 #: .././src/UX/CharacterMap/CharacterMapSideBar.vala:75
+#, fuzzy
 msgid "Unicode Block"
-msgstr ""
+msgstr "Script"
 
 #: .././src/UX/Controls/CollectionControls.vala:27
 msgid "Add new collection"
@@ -522,32 +523,32 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 
-#: .././src/UX/MainWindow.vala:62 .././src/UX/MainWindow.vala:234
+#: .././src/UX/MainWindow.vala:62 .././src/UX/MainWindow.vala:239
 msgid "Browse"
 msgstr "浏览"
 
-#: .././src/UX/MainWindow.vala:64 .././src/UX/MainWindow.vala:229
+#: .././src/UX/MainWindow.vala:64 .././src/UX/MainWindow.vala:233
 msgid "Compare"
 msgstr "比较"
 
-#: .././src/UX/MainWindow.vala:66 .././src/UX/MainWindow.vala:230
+#: .././src/UX/MainWindow.vala:66 .././src/UX/MainWindow.vala:234
 msgid "Character Map"
 msgstr "字符映射"
 
-#: .././src/UX/MainWindow.vala:68 .././src/UX/MainWindow.vala:233
+#: .././src/UX/MainWindow.vala:68 .././src/UX/MainWindow.vala:238
 msgid "Manage"
 msgstr "管理"
 
-#: .././src/UX/MainWindow.vala:228 .././src/UX/Views/FontPreview.vala:84
+#: .././src/UX/MainWindow.vala:232 .././src/UX/Views/FontPreview.vala:84
 msgid "Preview"
 msgstr "预览"
 
 # msgstr "区块"
-#: .././src/UX/Sidebar/MainSideBar.vala:80
+#: .././src/UX/Sidebar/MainSideBar.vala:79
 msgid "Categories"
 msgstr "分类"
 
-#: .././src/UX/Sidebar/MainSideBar.vala:81
+#: .././src/UX/Sidebar/MainSideBar.vala:80
 msgid "Collections"
 msgstr "字体集"
 

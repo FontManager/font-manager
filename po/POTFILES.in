@@ -63,7 +63,6 @@
 ./src/UX/Views/Browse.vala
 ./src/UX/Views/Compare.vala
 ./src/UX/Views/FontPreview.vala
-./src/UX/Views/Metadata.vala
 ./src/UX/Widgets/ActivePreview.vala
 ./src/UX/Widgets/AdjustablePreview.vala
 ./src/UX/Widgets/CellRendererPill.vala
