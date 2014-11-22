@@ -82,7 +82,7 @@ public abstract class CellRendererPill : Gtk.CellRendererText {
         Gdk.RGBA pill_color;
         Gdk.RGBA shadow_color;
         Gtk.StyleContext context = widget.get_style_context();
-        shadow_color = context.get_border_color(state);
+        shadow_color = context.get_color(state);
         if (state == Gtk.StateFlags.NORMAL) {
             pill_color = context.get_color(state);
             text_color = context.get_background_color(state);
@@ -133,7 +133,7 @@ public abstract class CellRendererPill : Gtk.CellRendererText {
         int text_y = y + ((cell_area.height - layout_h) / 2) - (int) ypad;
 
         _cr_draw_pill_shape(cr, x, y, h, w);
-        cr_set_source_rgba(cr, darker(shadow_color, 0.75), 0.333);
+        cr_set_source_rgba(cr, darker(shadow_color, 0.50), 0.333);
         cr.move_to(text_x + 0.5, text_y + 0.5);
         Pango.cairo_show_layout(cr, layout);
         cr_set_source_rgba(cr, text_color);

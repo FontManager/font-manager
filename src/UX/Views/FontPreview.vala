@@ -76,9 +76,10 @@ namespace FontManager {
             var adjustment = new Gtk.Adjustment(DEFAULT_PREVIEW_SIZE, MIN_FONT_SIZE, MAX_FONT_SIZE, 0.5, 1.0, 0);
             tag_table = new StandardTextTagTable();
             preview = new ActivePreview(tag_table);
-            preview.adjustment = adjustment;
             waterfall = new WaterfallPreview(tag_table);
             body_text = new TextPreview(tag_table);
+            font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
+            preview.adjustment = adjustment;
             body_text.adjustment = adjustment;
             stack = new Gtk.Stack();
             stack.add_titled(preview, "Preview", _("Preview"));
@@ -92,7 +93,6 @@ namespace FontManager {
             switcher.valign = Gtk.Align.CENTER;
             switcher.homogeneous = true;
             switcher.orientation = Gtk.Orientation.HORIZONTAL;
-            font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
             connect_signals();
             pack_start(switcher, false, true, 0);
             add_separator(this, Gtk.Orientation.HORIZONTAL);

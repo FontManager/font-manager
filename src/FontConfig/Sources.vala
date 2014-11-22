@@ -69,6 +69,7 @@ namespace FontConfig {
 
         public new bool add (FontSource source) {
             source.notify["active"].connect(() => { update_required = true; });
+            update_required = true;
             return base.add(source);
         }
 

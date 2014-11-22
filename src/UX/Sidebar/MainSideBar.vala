@@ -71,7 +71,6 @@ namespace FontManager {
             revealer1.vexpand = false;
             var _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             _box.pack_start(collection_tree.controls, false, true, 0);
-            add_separator(_box, Gtk.Orientation.HORIZONTAL);
             revealer1.add(_box);
             collection_box.pack_start(revealer1, false, true, 0);
             collection_box.pack_end(collection_tree, true, true, 0);

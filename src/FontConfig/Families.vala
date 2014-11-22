@@ -48,6 +48,16 @@ namespace FontConfig {
             return fonts;
         }
 
+        public Gee.HashSet <string> list_font_descriptions () {
+            var l = list_fonts();
+            var descriptions = new Gee.HashSet <string> ();
+            foreach (var font in l) {
+                descriptions.add(font.family);
+                descriptions.add(font.description);
+            }
+            return descriptions;
+        }
+
     }
 
 }

@@ -46,7 +46,6 @@
 ./src/UX/Controls/FontListControls.vala
 ./src/UX/Controls/ModeSelector.vala
 ./src/UX/Controls/PreviewControls.vala
-./src/UX/Controls/SourceControls.vala
 ./src/UX/Controls/TitleBar.vala
 ./src/UX/Dialogs/FileSelector.vala
 ./src/UX/Dialogs/Migration.vala

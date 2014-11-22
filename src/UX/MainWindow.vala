@@ -187,7 +187,6 @@ namespace FontManager {
         internal bool sidebar_switch = false;
         internal double _progress = 0.0;
         internal Mode _mode;
-        internal Gtk.Box source_box;
 
         construct {
             title = About.NAME;
@@ -219,7 +218,6 @@ namespace FontManager {
             titlebar = new TitleBar();
             fonttree = new FontListTree();
             user_source_tree = new UserSourceTree();
-            source_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             fontlist = fonttree.fontlist;
             main_stack = new Gtk.Stack();
             main_stack.set_transition_duration(720);
@@ -256,11 +254,8 @@ namespace FontManager {
             separator.show();
             separator.pack_end(view_stack, true, true, 0);
             content_pane.add2(separator);
-            source_box.pack_start(user_source_tree.controls, false, true, 0);
-            add_separator(source_box, Gtk.Orientation.HORIZONTAL);
-            source_box.pack_end(user_source_tree, true, true, 0);
             main_stack.add_named(main_pane, "Default");
-            main_stack.add_named(source_box, "Sources");
+            main_stack.add_named(user_source_tree, "Sources");
             main_box.pack_end(main_stack, true, true, 0);
             if (Gnome3()) {
                 set_titlebar(titlebar);
@@ -287,7 +282,6 @@ namespace FontManager {
             titlebar.show();
             fonttree.show();
             user_source_tree.show();
-            source_box.show();
             main_stack.show();
             return;
         }
@@ -461,8 +455,15 @@ namespace FontManager {
                     install_fonts(selected);
             });
 
+            titlebar.add_selected.connect(() => {
+                user_source_tree.on_add_source();
+            });
+
             titlebar.remove_selected.connect(() => {
-                remove_fonts();
+                if (titlebar.source_toggle.get_active())
+                    user_source_tree.on_remove_source();
+                else
+                    remove_fonts();
             });
 
             titlebar.manage_sources.connect((a) => {

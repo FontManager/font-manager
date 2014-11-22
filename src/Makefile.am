@@ -110,7 +110,6 @@ UX/Controls/FontListControls.vala \
 UX/Controls/PreviewControls.vala \
 UX/Controls/TitleBar.vala \
 UX/Controls/ModeSelector.vala \
-UX/Controls/SourceControls.vala \
 UX/Dialogs/Migration.vala \
 UX/Dialogs/NotImplemented.vala \
 UX/Dialogs/FileSelector.vala \
