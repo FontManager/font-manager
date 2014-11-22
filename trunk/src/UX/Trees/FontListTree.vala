@@ -314,7 +314,6 @@ namespace FontManager {
             var fontlist_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             var _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             _box.pack_start(fontlist.controls, false, true, 0);
-            add_separator(_box, Gtk.Orientation.HORIZONTAL);
             revealer.add(_box);
             fontlist_box.pack_start(revealer, false, true, 0);
             scroll.add(fontlist);

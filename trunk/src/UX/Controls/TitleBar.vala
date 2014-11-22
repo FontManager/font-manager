@@ -25,6 +25,7 @@ namespace FontManager {
 
         public signal void install_selected ();
         public signal void remove_selected ();
+        public signal void add_selected ();
         public signal void manage_sources (bool active);
 
         public Gtk.MenuButton main_menu { get; private set; }
@@ -39,6 +40,7 @@ namespace FontManager {
             title = About.NAME;
             Gtk.StyleContext ctx = get_style_context();
             ctx.add_class(Gtk.STYLE_CLASS_TITLEBAR);
+            /* Adding menubar class makes the CSD as compact as possible */
             ctx.add_class(Gtk.STYLE_CLASS_MENUBAR);
             ctx.set_junction_sides(Gtk.JunctionSides.BOTTOM);
             show_close_button = false;
@@ -92,15 +94,36 @@ namespace FontManager {
         internal void set_menus () {
             main_menu.set_menu_model(get_main_menu_model());
             app_menu.set_menu_model(get_app_menu_model());
+        #if GTK_314
+            if (!main_menu.use_popover) {
+        #endif
             main_menu.get_popup().halign = Gtk.Align.START;
             app_menu.get_popup().halign = Gtk.Align.END;
+        #if GTK_314
+            }
+        #endif
             return;
         }
 
         internal void connect_signals () {
-            manage_controls.add_button.clicked.connect(() => { install_selected(); });
+            manage_controls.add_button.clicked.connect(() => {
+                if (source_toggle.get_active())
+                    add_selected();
+                else
+                    install_selected();
+            });
             manage_controls.remove_button.clicked.connect(() => { remove_selected(); });
-            source_toggle.toggled.connect(() => { manage_sources(source_toggle.get_active()); } );
+            source_toggle.toggled.connect(() => {
+                var active = source_toggle.get_active();
+                manage_sources(active);
+                if (active) {
+                    manage_controls.add_button.set_tooltip_text(_("Add new source"));
+                    manage_controls.remove_button.set_tooltip_text(_("Remove selected source"));
+                } else {
+                    manage_controls.add_button.set_tooltip_text(_("Add Fonts"));
+                    manage_controls.remove_button.set_tooltip_text(_("Remove Fonts"));
+                }
+            });
             return;
         }
 

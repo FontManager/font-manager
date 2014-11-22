@@ -26,6 +26,9 @@ namespace FontManager {
         public CollectionControls () {
             add_button.set_tooltip_text(_("Add new collection"));
             remove_button.set_tooltip_text(_("Remove selected collection"));
+            var blend = get_style_context();
+            blend.add_class(Gtk.STYLE_CLASS_VIEW);
+            blend.add_class(Gtk.STYLE_CLASS_SIDEBAR);
         }
 
     }

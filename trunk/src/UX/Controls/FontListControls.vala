@@ -47,7 +47,6 @@ namespace FontManager {
             entry.margin_right = 2;
             box.pack_end(entry, false, false, 0);
             box.pack_start(_expand, false, false, 0);
-            add_separator(box);
             box.pack_start(_remove, false, false, 0);
             set_default_button_relief(box);
             entry.show();
@@ -56,6 +55,7 @@ namespace FontManager {
             _expand.show();
             box.show();
             add(box);
+            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             connect_signals();
         }
 
@@ -75,6 +75,7 @@ namespace FontManager {
 
         public void set_remove_sensitivity (bool sensitive) {
             _remove.set_sensitive(sensitive);
+            _remove.set_has_tooltip(sensitive);
             return;
         }
 

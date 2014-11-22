@@ -35,9 +35,7 @@ namespace FontManager {
             var context = get_style_context();
             fg_color_button = new Gtk.ColorButton.with_rgba(context.get_color(Gtk.StateFlags.NORMAL));
             bg_color_button = new Gtk.ColorButton.with_rgba(context.get_background_color(Gtk.StateFlags.NORMAL));
-            fg_color_button.get_style_context().add_class(Gtk.STYLE_CLASS_ENTRY);
             fg_color_button.set_tooltip_text(_("Select text color"));
-            bg_color_button.get_style_context().add_class(Gtk.STYLE_CLASS_ENTRY);
             bg_color_button.set_tooltip_text(_("Select background color"));
             box.pack_end(bg_color_button, false, false, 0);
             box.pack_end(fg_color_button, false, false, 0);

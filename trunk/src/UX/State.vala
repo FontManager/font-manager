@@ -59,12 +59,6 @@ namespace FontManager {
                 main_window.compare.foreground_color = foreground;
             if (background_set)
                 main_window.compare.background_color = background;
-            var compare_list = settings.get_strv("compare-list");
-            foreach (var entry in compare_list) {
-                if (entry == null)
-                    break;
-                main_window.compare.add_from_string(entry);
-            }
             main_window.fontlist.controls.set_remove_sensitivity(main_window.sidebar.standard.mode == MainSideBarMode.COLLECTION);
             return;
         }
@@ -182,6 +176,16 @@ namespace FontManager {
             settings.bind("selected-category", main_window.sidebar.standard.category_tree, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("selected-collection", main_window.sidebar.standard.collection_tree, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("selected-font", main_window.fontlist, "selected-iter", SettingsBindFlags.DEFAULT);
+
+            var compare_list = settings.get_strv("compare-list");
+            /* XXX */
+            var available_fonts = Main.instance.fontconfig.families.list_font_descriptions();
+            foreach (var entry in compare_list) {
+                if (entry == null)
+                    break;
+                if (entry in available_fonts)
+                    main_window.compare.add_from_string(entry);
+            }
         }
 
         internal Gtk.TreePath? restore_last_selected_treepath (Gtk.TreeView tree, string path) {

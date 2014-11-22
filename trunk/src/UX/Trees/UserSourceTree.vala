@@ -24,7 +24,7 @@ namespace FontManager {
     public class UserSourceTree : Gtk.ScrolledWindow {
 
         public signal void selection_changed (FontConfig.FontSource filter);
-        public signal void add_source ();
+        public signal void sources_modified ();
 
         public weak UserSourceModel model {
             get {
@@ -37,7 +37,6 @@ namespace FontManager {
             }
         }
 
-        public BaseControls controls { get; protected set; }
         public FontConfig.FontSource? selected_filter { get; protected set; default = null; }
         public Gtk.TreeView tree { get; protected set; }
 
@@ -65,30 +64,26 @@ namespace FontManager {
             tree.show_expanders = false;
             tree.get_selection().changed.connect(on_selection_changed);
             tree.show();
-            controls = new SourceControls();
-            controls.show();
             add(tree);
             connect_signals();
         }
 
         internal void connect_signals () {
-            controls.add_selected.connect(() => { on_add_source(); });
-            controls.remove_selected.connect(() => { on_remove_source(); });
             toggle.toggled.connect(on_toggled);
             return;
         }
 
-        internal void on_add_source () {
+        public void on_add_source () {
             var new_sources = FileSelector.source_selection((Gtk.Window) this.get_toplevel());
             if (new_sources.length > 0) {
                 foreach (var uri in new_sources)
                     model.add_source_from_uri(uri);
-                Main.instance.update();
+                sources_modified();
             }
             return;
         }
 
-        internal void on_remove_source () {
+        public void on_remove_source () {
             if (selected_filter == null)
                 return;
             message("Removing font source : %s", selected_filter.path);
@@ -96,7 +91,7 @@ namespace FontManager {
             model.sources.remove(selected_filter);
             model.sources.save();
             model.update();
-            Main.instance.update();
+            sources_modified();
             return;
         }
 

@@ -71,6 +71,9 @@ namespace FontManager {
         public override void startup () {
             base.startup ();
             message("%s %s", FontManager.About.NAME, FontManager.About.VERSION);
+            message("Using GLib %u.%u.%u", Version.major, Version.minor, Version.micro);
+            message("Using JSON-GLib %s", Json.VERSION_S);
+            message("Using SQLite %s", Sqlite.VERSION);
             message("Using FontConfig %s", FontConfig.get_version_string());
             message("Using Pango %s", Pango.version_string());
             message("Using GTK+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);

@@ -82,7 +82,8 @@ namespace FontManager {
 
         protected override void set_preview_size_internal (double new_size) {
             preview.tag_table.lookup("FontSize").size_points = new_size;
-            this.update();
+            if (unlikely(_font_desc != null))
+                this.update();
             return;
         }
 
