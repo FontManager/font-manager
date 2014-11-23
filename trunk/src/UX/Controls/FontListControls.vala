@@ -45,6 +45,8 @@ namespace FontManager {
             _remove.set_tooltip_text(_("Remove selected fonts"));
             entry = new Gtk.SearchEntry();
             entry.margin_right = 2;
+            entry.set_size_request(0, 0);
+            entry.placeholder_text = _("Search Families...");
             box.pack_end(entry, false, false, 0);
             box.pack_start(_expand, false, false, 0);
             box.pack_start(_remove, false, false, 0);
