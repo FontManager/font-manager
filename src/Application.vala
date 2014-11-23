@@ -19,28 +19,6 @@
  *  Jerry Casiano <JerryCasiano@gmail.com>
  */
 
-namespace Intl {
-
-    public void setup (string name = FontManager.NAME) {
-        GLib.Intl.bindtextdomain(name, null);
-        GLib.Intl.bind_textdomain_codeset(name, null);
-        GLib.Intl.textdomain(name);
-        GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
-        return;
-    }
-
-}
-
-namespace Logging {
-
-    public void setup (LogLevel level = LogLevel.WARN) {
-        Logger.initialize(FontManager.About.NAME);
-        Logger.DisplayLevel = level;
-        return;
-    }
-
-}
-
 namespace FontManager {
 
     [DBus (name = "org.gnome.FontManager")]
@@ -70,20 +48,10 @@ namespace FontManager {
 
         public override void startup () {
             base.startup ();
-            message("%s %s", FontManager.About.NAME, FontManager.About.VERSION);
-            message("Using GLib %u.%u.%u", Version.major, Version.minor, Version.micro);
-            message("Using JSON-GLib %s", Json.VERSION_S);
-            message("Using SQLite %s", Sqlite.VERSION);
-            message("Using FontConfig %s", FontConfig.get_version_string());
-            message("Using Pango %s", Pango.version_string());
-            message("Using GTK+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
+            Logging.show_version_information();
             builder = new Gtk.Builder();
-            if (Gnome3()) {
+            if (Gnome3())
                 set_gnome_app_menu(this, builder);
-                message("Running on %s", get_command_line_output("gnome-shell --version"));
-            } else {
-                message("Running on %s", Environment.get_variable("XDG_CURRENT_DESKTOP"));
-            }
             return;
         }
 

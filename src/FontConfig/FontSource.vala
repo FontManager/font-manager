@@ -43,7 +43,7 @@ namespace FontConfig {
                 if (filetype == FileType.REGULAR || filetype == FileType.SYMBOLIC_LINK) {
                     return false;
                 } else if (filetype == FileType.DIRECTORY || filetype == FileType.MOUNTABLE) {
-                    return (path in FontManager.Main.instance.fontconfig.dirs);
+                    return (path in list_user_dirs());
                 } else {
                     return false;
                 }

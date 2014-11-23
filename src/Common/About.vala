@@ -28,7 +28,7 @@ namespace FontManager {
         public const string COMMENT = _("Simple font management for GTK+ desktop environments");
         public const string VERSION = "0.7";
         public const string HOMEPAGE = "http://code.google.com/p/font-manager/";
-        public const string COPYRIGHT = _("Copyright © 2009 - 2014 Jerry Casiano");
+        public const string COPYRIGHT = "Copyright © 2009 - 2014 Jerry Casiano";
         public const string LICENSE = _("""
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
