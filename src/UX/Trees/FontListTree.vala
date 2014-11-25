@@ -299,7 +299,7 @@ namespace FontManager {
 
         internal bool _loading;
         internal Gtk.Revealer revealer;
-        internal Gtk.Menu context_menu;
+//        internal Gtk.Menu context_menu;
 
         public FontListTree () {
             var scroll = new Gtk.ScrolledWindow(null, null);
@@ -329,31 +329,31 @@ namespace FontManager {
 //            connect_signals();
         }
 
-        internal void connect_signals () {
-            fontlist.menu_request.connect((w, e) => {
-                context_menu.popup(null, null, null, e.button, e.time);
-            });
-            return;
-        }
+//        internal void connect_signals () {
+//            fontlist.menu_request.connect((w, e) => {
+//                context_menu.popup(null, null, null, e.button, e.time);
+//            });
+//            return;
+//        }
 
-        internal Gtk.Menu get_context_menu () {
-            MenuEntry [] context_menu_entries = {
-                /* action_name, display_name, detailed_action_name, accelerator, method */
-                MenuEntry("font_details", _("Show Details"), "app.font_details", null, new MenuCallbackWrapper(on_show_details)),
-            };
-            var _menu = new Gtk.Menu();
-            foreach (var entry in context_menu_entries) {
-                var item = new Gtk.MenuItem.with_label(entry.display_name);
-                item.activate.connect(() => { entry.method.run(); });
-                item.show();
-                _menu.append(item);
-            }
-            return _menu;
-        }
+//        internal Gtk.Menu get_context_menu () {
+//            MenuEntry [] context_menu_entries = {
+//                /* action_name, display_name, detailed_action_name, accelerator, method */
+//                MenuEntry("font_details", _("Show Details"), "app.font_details", null, new MenuCallbackWrapper(on_show_details)),
+//            };
+//            var _menu = new Gtk.Menu();
+//            foreach (var entry in context_menu_entries) {
+//                var item = new Gtk.MenuItem.with_label(entry.display_name);
+//                item.activate.connect(() => { entry.method.run(); });
+//                item.show();
+//                _menu.append(item);
+//            }
+//            return _menu;
+//        }
 
-        public void on_show_details () {
-            message("%s", fontlist.selected_font != null ? fontlist.selected_font.filepath: fontlist.selected_family.name);
-        }
+//        public void on_show_details () {
+//            message("%s", fontlist.selected_font != null ? fontlist.selected_font.filepath: fontlist.selected_family.name);
+//        }
 
     }
 

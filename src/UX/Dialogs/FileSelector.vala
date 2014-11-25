@@ -73,80 +73,36 @@ namespace FontManager {
 
         public File? [] run_removal (Gtk.Window? parent, UserFontModel font_model) {
             File? [] res = null;
-            var dialog = new Gtk.Dialog.with_buttons(_("Select fonts to remove"),
-                                                    parent,
-                                                    Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                                    _("_Cancel"),
-                                                    Gtk.ResponseType.CANCEL,
-                                                    _("_Delete"),
-                                                    Gtk.ResponseType.ACCEPT,
-                                                    null);
+            var dialog = new Gtk.Dialog();
+            var cancel = new Gtk.Button.with_mnemonic(_("_Cancel"));
+            var remove = new Gtk.Button.with_mnemonic(_("_Delete"));
+            var header = new Gtk.HeaderBar();
+            header.set_title(_("Select fonts to remove"));
+            header.pack_start(cancel);
+            header.pack_end(remove);
+            cancel.clicked.connect(() => { dialog.response(Gtk.ResponseType.CANCEL); });
+            remove.clicked.connect(() => { dialog.response(Gtk.ResponseType.ACCEPT); });
+            dialog.set_titlebar(header);
+            dialog.modal = true;
+            dialog.destroy_with_parent = true;
+            dialog.set_size_request(540, 480);
+            dialog.set_transient_for(parent);
             var content_area = dialog.get_content_area();
             var scroll = new Gtk.ScrolledWindow(null, null);
-            var tree = new RemoveTree(font_model);
+            var tree = new UserFontTree(font_model);
             tree.hexpand = tree.vexpand = true;
             scroll.add(tree);
             add_separator(content_area, Gtk.Orientation.HORIZONTAL);
             content_area.pack_start(scroll, true, true, 0);
             add_separator(content_area, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
             scroll.show_all();
-            dialog.set_size_request(420, 480);
+            header.show_all();
             if (dialog.run() == Gtk.ResponseType.ACCEPT) {
                 dialog.hide();
-                if (tree.files.size > 0)
-                    res = tree.files.values.to_array();
+                res = tree.to_file_array();
             }
             dialog.destroy();
             return res;
-        }
-
-        class RemoveTree : Gtk.TreeView {
-
-            public Gee.HashMap <string, File> files { get; private set; }
-
-            Gtk.CellRendererToggle toggle;
-
-            public RemoveTree (UserFontModel model) {
-                set_model(model);
-                headers_visible = false;
-                files = new Gee.HashMap <string, File> ();
-                toggle = new Gtk.CellRendererToggle();
-                var text = new Gtk.CellRendererText();
-                insert_column_with_data_func(0, "", toggle, toggle_cell_data_func);
-                insert_column_with_attributes(1, "", text, "text", 1, "font", 1, null);
-                get_column(0).expand = false;
-                get_column(1).expand = true;
-                set_enable_search(true);
-                set_search_column(1);
-                toggle.toggled.connect(on_toggled);
-            }
-
-            void on_toggled (string path) {
-                Gtk.TreeIter iter;
-                Value val;
-                model.get_iter_from_string(out iter, path);
-                model.get_value(iter, 0, out val);
-                var obj = (FontConfig.Font) val.get_object();
-                if (files.has_key(obj.filepath))
-                    files.unset(obj.filepath);
-                else
-                    files[obj.filepath] = File.new_for_path(obj.filepath);
-                val.unset();
-                return;
-            }
-
-            void toggle_cell_data_func (Gtk.CellLayout layout,
-                                        Gtk.CellRenderer cell,
-                                        Gtk.TreeModel model,
-                                        Gtk.TreeIter treeiter) {
-                Value val;
-                model.get_value(treeiter, 0, out val);
-                var obj = (FontConfig.Font) val.get_object();
-                cell.set_property("active", files.has_key(obj.filepath));
-                val.unset();
-                return;
-            }
-
         }
 
     }

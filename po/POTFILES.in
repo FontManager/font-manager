@@ -50,7 +50,6 @@
 ./src/UX/Dialogs/FileSelector.vala
 ./src/UX/Dialogs/Migration.vala
 ./src/UX/Dialogs/NotImplemented.vala
-./src/UX/GtkUtils.vala
 ./src/UX/MainWindow.vala
 ./src/UX/Sidebar/MainSideBar.vala
 ./src/UX/Sidebar/SideBar.vala
@@ -58,7 +57,10 @@
 ./src/UX/Trees/CategoryTree.vala
 ./src/UX/Trees/CollectionTree.vala
 ./src/UX/Trees/FontListTree.vala
+./src/UX/Trees/UserFontTree.vala
 ./src/UX/Trees/UserSourceTree.vala
+./src/UX/Utils/Color.vala
+./src/UX/Utils/Utils.vala
 ./src/UX/Views/Browse.vala
 ./src/UX/Views/Compare.vala
 ./src/UX/Views/FontPreview.vala

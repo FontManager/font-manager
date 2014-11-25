@@ -80,7 +80,6 @@ namespace FontManager {
             orientation = Gtk.Orientation.VERTICAL;
             preview_text = default_preview_text = get_localized_pangram();
             tree = new Gtk.TreeView();
-            tree.set_rules_hint(true);
             store = new Gtk.ListStore(2, typeof(Pango.FontDescription), typeof(string));
             scroll = new Gtk.ScrolledWindow(null, null);
             controls = new CompareControls();

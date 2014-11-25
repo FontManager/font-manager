@@ -88,6 +88,15 @@ namespace FontConfig {
         public new bool remove (FontSource source) {
             source.available = false;
             update_required = true;
+            try {
+                FontManager.Database db = FontManager.get_database();
+                db.table = "Fonts";
+                db.remove("filepath LIKE \"%s%\"".printf(source.path));
+                db.vacuum();
+                db.close();
+            } catch (FontManager.DatabaseError e) {
+                warning(e.message);
+            }
             return base.remove(source);
         }
 

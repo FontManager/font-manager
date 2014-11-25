@@ -351,4 +351,19 @@ namespace FontManager {
         return;
     }
 
+    Gee.HashMap <string, string> get_user_filemap (Database db)
+    throws DatabaseError {
+        var res = new Gee.HashMap <string, string> ();
+        db.reset();
+        db.table = "Fonts";
+        db.select = "font_description, filepath";
+        db.search = "owner=0 AND filepath LIKE \"%s%\"".printf(get_user_font_dir());
+        db.unique = true;
+        db.execute_query();
+        foreach (var row in db)
+            res[row.column_text(0)] = row.column_text(1);
+        db.close();
+        return res;
+    }
+
 }
