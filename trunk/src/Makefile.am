@@ -96,7 +96,6 @@ Models/FontModel.vala \
 Models/UserFontModel.vala \
 Models/UserSourceModel.vala \
 UX/MainWindow.vala \
-UX/GtkUtils.vala \
 UX/State.vala \
 UX/CharacterMap/CharacterMap.vala \
 UX/CharacterMap/CharacterDetails.vala \
@@ -118,6 +117,7 @@ UX/Sidebar/MainSideBar.vala \
 UX/Trees/CollectionTree.vala \
 UX/Trees/CategoryTree.vala \
 UX/Trees/FontListTree.vala \
+UX/Trees/UserFontTree.vala \
 UX/Trees/UserSourceTree.vala \
 UX/Widgets/FontScale.vala \
 UX/Widgets/ActivePreview.vala \
@@ -128,6 +128,8 @@ UX/Widgets/MultiDNDTreeView.vala \
 UX/Widgets/ThinPaned.vala \
 UX/Widgets/TextPreview.vala \
 UX/Widgets/WaterfallPreview.vala \
+UX/Utils/Color.vala \
+UX/Utils/Utils.vala \
 UX/Views/Compare.vala \
 UX/Views/FontPreview.vala \
 UX/Views/Browse.vala

@@ -252,11 +252,25 @@ namespace FontManager {
             public static Gee.HashMap <string, string>? remove_failed = null;
 
             public static void from_file_array (File? [] files) {
+                Database? db = null;
+                try {
+                    db = get_database();
+                    db.table = "Fonts";
+                } catch (DatabaseError e) {
+                    warning(e.message);
+                }
                 int total = files.length;
                 int processed = 0;
                 foreach (var file in files) {
                     try {
                         File parent = file.get_parent();
+                        if (db != null) {
+                            try {
+                                db.remove("filepath=\"%s\"".printf(file.get_path()));
+                            } catch (DatabaseError e) {
+                                warning(e.message);
+                            }
+                        }
                         file.delete();
                         remove_directory_tree_if_empty(parent);
                         processed++;
@@ -269,6 +283,8 @@ namespace FontManager {
                         warning("%s : %s", e.message, file.get_path());
                     }
                 }
+                db.vacuum();
+                db.close();
             }
 
         }

@@ -21,38 +21,18 @@
 
 namespace FontManager {
 
-    public class UserFontModel : Gtk.TreeStore {
+    public class UserFontModel : FontModel {
 
-        construct {
-            set_column_types({typeof(Object), typeof(string)});
-        }
+        public weak Database db { get; set; }
+
+        Category user_fonts;
 
         public UserFontModel (FontConfig.Families families, Database db) {
-            var _families = new Gee.HashSet <string> ();
-            var descriptions = new Gee.HashSet <string> ();
-            try {
-                get_matching_families_and_fonts(db, _families, descriptions, "owner=0 AND filepath LIKE \"%s%\"".printf(get_user_font_dir()));
-            } catch (DatabaseError e) {
-                warning("User font results are invalid");
-                error("Database error : %S", e.message);
-            }
-            bool visible = true;
-            foreach(var entry in families.list()) {
-                var family = families[entry];
-                visible = (family.name in _families);
-                if (visible) {
-                    foreach(var face in family.list_faces()) {
-                        visible = true;
-                        if (!(face.description in descriptions))
-                            visible = false;
-                        if (visible) {
-                            Gtk.TreeIter iter;
-                            this.append(out iter, null);
-                            this.set(iter, 0, face, 1, face.description, -1);
-                        }
-                    }
-                }
-            }
+            this.db = db;
+            user_fonts = new Category("", "", "", "owner=0 AND filepath LIKE \"%s%\"".printf(get_user_font_dir()));
+            user_fonts.update(db);
+            this.families = families;
+            this.update(user_fonts);
         }
 
     }

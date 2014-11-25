@@ -83,7 +83,9 @@ namespace FontManager {
         public StaticTextView (StandardTextTagTable? tag_table) {
             base(tag_table);
             this.view.event.connect((e) => { return on_event(e); });
-            Gtk.drag_dest_set_target_list(this.view, null);
+            /* XXX : Silence warning - Vala binding issue? */
+            Gtk.TargetList? list = null;
+            Gtk.drag_dest_set_target_list(this.view, list);
         }
 
         bool on_event (Gdk.Event event) {

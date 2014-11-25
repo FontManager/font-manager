@@ -64,7 +64,6 @@ namespace FontManager {
             switcher.valign = Gtk.Align.CENTER;
             category_tree = new CategoryTree();
             collection_tree = new CollectionTree();
-
             var collection_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             revealer1 = new Gtk.Revealer();
             revealer1.hexpand = true;
@@ -74,7 +73,6 @@ namespace FontManager {
             revealer1.add(_box);
             collection_box.pack_start(revealer1, false, true, 0);
             collection_box.pack_end(collection_tree, true, true, 0);
-
             stack.add_titled(category_tree, "0", _("Categories"));
             stack.add_titled(collection_box, "1", _("Collections"));
             mode = MainSideBarMode.CATEGORY;
@@ -82,7 +80,6 @@ namespace FontManager {
             blend.add(switcher);
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
-
             main_box.pack_end(blend, false, true, 0);
             add_separator(main_box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
             main_box.pack_start(stack, true, true, 0);
