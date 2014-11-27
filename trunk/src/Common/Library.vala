@@ -104,7 +104,7 @@ namespace FontManager {
                     if (install_failed == null)
                         install_failed = new Gee.HashMap <string, string> ();
                     install_failed[data.file.get_path()] = "Failed to create FontInfo";
-                    warning("Failed to create FontInfo :: %s", data.file.get_path());
+                    warning("Failed to create FontInfo : %s", data.file.get_path());
                     return;
                 }
                 string dest = Path.build_filename(get_user_font_dir(),
@@ -283,8 +283,14 @@ namespace FontManager {
                         warning("%s : %s", e.message, file.get_path());
                     }
                 }
-                db.vacuum();
-                db.close();
+                if (db != null) {
+                    try {
+                        db.vacuum();
+                        db.close();
+                    } catch (DatabaseError e) {
+                        warning(e.message);
+                    }
+                }
             }
 
         }

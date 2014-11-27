@@ -92,9 +92,7 @@ namespace FontManager {
             var tree = new UserFontTree(font_model);
             tree.hexpand = tree.vexpand = true;
             scroll.add(tree);
-            add_separator(content_area, Gtk.Orientation.HORIZONTAL);
             content_area.pack_start(scroll, true, true, 0);
-            add_separator(content_area, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
             scroll.show_all();
             header.show_all();
             if (dialog.run() == Gtk.ResponseType.ACCEPT) {
