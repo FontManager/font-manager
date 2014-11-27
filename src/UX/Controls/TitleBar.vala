@@ -158,9 +158,9 @@ namespace FontManager {
             int i = 0;
             foreach (var mode in modes) {
                 i++;
-                application.add_accelerator("<Alt>%i".printf(i), "app.mode", "%s".printf(mode));
+                application.add_accelerator("<Ctrl>%i".printf(i), "app.mode", "%s".printf(mode));
                 GLib.MenuItem item = new MenuItem(Mode.parse(mode).to_translatable_string(), "app.mode::%s".printf(mode));
-                item.set_attribute("accel", "s", "<Alt>%i".printf(i));
+                item.set_attribute("accel", "s", "<Ctrl>%i".printf(i));
                 mode_section.append_item(item);
             }
             return (GLib.MenuModel) mode_section;
@@ -171,7 +171,7 @@ namespace FontManager {
             var application = (Application) GLib.Application.get_default();
             MenuEntry [] app_menu_entries = {
                 /* action_name, display_name, detailed_action_name, accelerator, method */
-                MenuEntry("about", _("About"), "app.about", "<Alt>A", new MenuCallbackWrapper(application.on_about)),
+                MenuEntry("about", _("About"), "app.about", null, new MenuCallbackWrapper(application.on_about)),
                 MenuEntry("help", _("Help"), "app.help", "F1", new MenuCallbackWrapper(application.on_help)),
                 MenuEntry("quit", _("Quit"), "app.quit", "<Ctrl>Q", new MenuCallbackWrapper(application.on_quit))
             };

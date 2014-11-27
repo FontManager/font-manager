@@ -22,3 +22,7 @@
 ThinPaned {
     -GtkPaned-handle-size: 0px;
 }
+
+GtkEntry {
+    padding : 4px;
+}

@@ -59,6 +59,7 @@ namespace FontManager {
             add(box);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             connect_signals();
+            set_size_request(0, 0);
         }
 
         internal void connect_signals () {
