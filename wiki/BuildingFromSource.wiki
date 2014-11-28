@@ -7,6 +7,7 @@
 See https://aur.archlinux.org/packages/font-manager-svn/
 <br />
 Many thanks to biloky who has maintained the Arch package builds from the start.
+----
 <br />
 == Ubuntu ==
 ----
@@ -67,6 +68,8 @@ While inside the font-manager directory
 svn up
 }}}
 If anything is updated, please build and install the application again then verify the issue is still present.
+<br />
+----
 <br />
 ==== Notes ====
 Should the program not show up in Gnome Shell, restart it.
