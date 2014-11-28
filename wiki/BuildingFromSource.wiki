@@ -2,12 +2,28 @@
 #labels Featured
 = Installing Font Manager from SVN =
 <br />
+== Arch ==
+----
+See https://aur.archlinux.org/packages/font-manager-svn/
+<br />
+Many thanks to biloky who has maintained the Arch package builds from the start.
+<br />
 == Ubuntu ==
 ----
 ==== If you already have a previous version of Font Manager installed ====
 {{{
 sudo apt-get remove --purge font-manager
 }}}
+<br />
+Ubuntu and derivative distributions can just use the PPA.
+{{{
+sudo add-apt-repository ppa:font-manager/staging
+sudo apt-get update
+sudo apt-get install font-manager
+}}}
+<br />
+Or if you prefer to do it manually
+
 ==== Install requirements ====
 {{{
 sudo apt-get install subversion build-essential gnome-common valac libxml2-dev libfreetype6-dev libfontconfig1-dev libglib2.0-dev libjson-glib-dev libcairo2-dev libgtk-3-dev libpango1.0-dev libgee-0.8-dev libgucharmap-2-90-dev libsqlite3-dev libgirepository1.0-dev file-roller yelp-tools -y
@@ -27,8 +43,8 @@ sudo yum install subversion gnome-common gcc intltool vala libxml2-devel freetyp
 }}}
 ----
 <br />
-== All ==
-
+== ALL ==
+----
 ==== Checkout the latest revision from SVN ====
 {{{
 svn checkout http://font-manager.googlecode.com/svn/trunk/ font-manager
