@@ -9,6 +9,24 @@ See https://aur.archlinux.org/packages/font-manager-svn/
 Many thanks to biloky who has maintained the Arch package builds from the start.
 ----
 <br />
+== Gentoo ==
+----
+See http://gpo.zugaina.org/media-gfx/font-manager
+----
+<br />
+== Fedora ==
+----
+_This assumes sudo is setup for your user, if not just 'su' at the start_
+==== If you already have a previous version of Font Manager installed ====
+{{{
+sudo yum remove font-manager
+}}}
+==== Install requirements ====
+{{{
+sudo yum install subversion gnome-common gcc intltool vala libxml2-devel freetype-devel fontconfig-devel glib2-devel json-glib-devel cairo-devel gtk3-devel pango-devel libgee-devel gucharmap-devel sqlite-devel gobject-introspection-devel file-roller -y
+}}}
+----
+<br />
 == Ubuntu ==
 ----
 ==== If you already have a previous version of Font Manager installed ====
@@ -28,19 +46,6 @@ Or if you prefer to do it manually
 ==== Install requirements ====
 {{{
 sudo apt-get install subversion build-essential gnome-common valac libxml2-dev libfreetype6-dev libfontconfig1-dev libglib2.0-dev libjson-glib-dev libcairo2-dev libgtk-3-dev libpango1.0-dev libgee-0.8-dev libgucharmap-2-90-dev libsqlite3-dev libgirepository1.0-dev file-roller yelp-tools -y
-}}}
-----
-<br />
-== Fedora ==
-----
-_This assumes sudo is setup for your user, if not just 'su' at the start_
-==== If you already have a previous version of Font Manager installed ====
-{{{
-sudo yum remove font-manager
-}}}
-==== Install requirements ====
-{{{
-sudo yum install subversion gnome-common gcc intltool vala libxml2-devel freetype-devel fontconfig-devel glib2-devel json-glib-devel cairo-devel gtk3-devel pango-devel libgee-devel gucharmap-devel sqlite-devel gobject-introspection-devel file-roller -y
 }}}
 ----
 <br />
