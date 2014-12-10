@@ -62,6 +62,10 @@ namespace FontManager {
             view = new Gtk.TextView();
             view.left_margin = 6;
             view.right_margin = 6;
+            view.editable = false;
+            view.cursor_visible = false;
+            view.accepts_tab = false;
+            view.overwrite = false;
             add(view);
             view.show();
         }

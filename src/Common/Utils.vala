@@ -31,31 +31,6 @@ namespace Intl {
 
 }
 
-namespace Logging {
-
-    public void setup (LogLevel level = LogLevel.WARN) {
-        Logger.initialize(FontManager.About.NAME);
-        Logger.DisplayLevel = level;
-        return;
-    }
-
-    public void show_version_information () {
-        message("%s %s", FontManager.About.NAME, FontManager.About.VERSION);
-        message("Using GLib %u.%u.%u", Version.major, Version.minor, Version.micro);
-        message("Using JSON-GLib %s", Json.VERSION_S);
-        message("Using SQLite %s", Sqlite.VERSION);
-        message("Using FontConfig %s", FontConfig.get_version_string());
-        message("Using Pango %s", Pango.version_string());
-        message("Using GTK+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
-        if (Gnome3())
-            message("Running on %s", get_command_line_output("gnome-shell --version"));
-        else
-            message("Running on %s", Environment.get_variable("XDG_CURRENT_DESKTOP"));
-        return;
-    }
-
-}
-
 public delegate void ReloadFunc ();
 public delegate void MenuCallback ();
 public delegate void ProgressCallback (string? message, int processed, int total);

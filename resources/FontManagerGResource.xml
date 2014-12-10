@@ -3,5 +3,16 @@
         <gresource prefix="/org/gnome/FontManager">
             <file compressed="true">FontManager.css</file>
             <file compressed="true" preprocess="xml-stripblanks">ApplicationMenu.ui</file>
+            <file>icons/mimetype/bdf.png</file>
+            <file>icons/mimetype/blank.png</file>
+            <file>icons/mimetype/bmp.png</file>
+            <file>icons/mimetype/cff.png</file>
+            <file>icons/mimetype/fnt.png</file>
+            <file>icons/mimetype/opentype.png</file>
+            <file>icons/mimetype/pcf.png</file>
+            <file>icons/mimetype/pfr.png</file>
+            <file>icons/mimetype/truetype.png</file>
+            <file>icons/mimetype/type1.png</file>
+            <file>icons/mimetype/type42.png</file>
     </gresource>
 </gresources>

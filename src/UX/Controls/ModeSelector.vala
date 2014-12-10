@@ -73,7 +73,11 @@ public class ModeSelector : Gtk.Box {
         uint begin_n_modes = n_modes;
         Gtk.RadioButton new_mode;
         if (label is Gtk.Label)
+        #if GTK_314
+            label.halign = label.valign = Gtk.Align.CENTER;
+        #else
             ((Gtk.Misc) label).set_alignment(0.5f, 0.5f);
+        #endif
         if (radio_group == null) {
             radio_group = new_mode = new Gtk.RadioButton(null);
             mode = 0;

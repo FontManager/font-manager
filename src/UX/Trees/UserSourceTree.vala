@@ -116,7 +116,7 @@ namespace FontManager {
             return;
         }
 
-        void pixbuf_cell_data_func (Gtk.CellLayout layout,
+        void pixbuf_cell_data_func (Gtk.TreeViewColumn layout,
                                       Gtk.CellRenderer cell,
                                       Gtk.TreeModel model,
                                       Gtk.TreeIter treeiter) {
@@ -136,7 +136,7 @@ namespace FontManager {
             return;
         }
 
-        void toggle_cell_data_func (Gtk.CellLayout layout,
+        void toggle_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {

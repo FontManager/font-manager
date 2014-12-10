@@ -93,11 +93,12 @@ namespace FontManager {
             model.get_value(iter, FontModelColumn.OBJECT, out val);
             var font = val.get_object();
             if (font is FontConfig.Family) {
+                bool inconsistent = (family_state((FontConfig.Family) font) == -1);
                 foreach (var face in ((FontConfig.Family) font).list_faces()) {
                     if (!filemap.has_key(face.description))
                         continue;
                     var _path = filemap[face.description];
-                    if (selected_paths.contains(_path))
+                    if (!inconsistent && selected_paths.contains(_path))
                         selected_paths.remove(_path);
                     else
                         selected_paths.add(_path);
@@ -110,10 +111,11 @@ namespace FontManager {
                     selected_paths.add(_path);
             }
             val.unset();
+            queue_draw();
             return;
         }
 
-        void preview_cell_data_func (Gtk.CellLayout layout,
+        void preview_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
@@ -136,7 +138,7 @@ namespace FontManager {
             return;
         }
 
-        void toggle_cell_data_func (Gtk.CellLayout layout,
+        void toggle_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
@@ -161,7 +163,7 @@ namespace FontManager {
             return;
         }
 
-        void text_cell_data_func (Gtk.CellLayout layout,
+        void text_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
@@ -181,7 +183,7 @@ namespace FontManager {
             return;
         }
 
-        void count_cell_data_func (Gtk.CellLayout layout,
+        void count_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
