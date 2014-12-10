@@ -277,7 +277,7 @@ namespace FontManager {
         db.execute_query("""INSERT OR REPLACE INTO Fonts VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);""");
         foreach (var font in installed_fonts) {
             if (!(font.filepath in known_files)) {
-                var fileinfo = new FontInfo(font.filepath, font.index);
+                var fileinfo = new FontInfo.from_filepath(font.filepath, font.index);
                 db.check_result(db.stmt.bind_text(1, font.family), "bind_*", Sqlite.OK);
                 db.check_result(db.stmt.bind_text(2, font.style), "bind_*", Sqlite.OK);
                 db.check_result(db.stmt.bind_int(3, font.slant), "bind_*", Sqlite.OK);

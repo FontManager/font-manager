@@ -167,7 +167,7 @@ namespace FontManager {
             return;
         }
 
-        void preview_cell_data_func (Gtk.CellLayout layout,
+        void preview_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
@@ -192,7 +192,7 @@ namespace FontManager {
             return;
         }
 
-        void toggle_cell_data_func (Gtk.CellLayout layout,
+        void toggle_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
@@ -215,7 +215,7 @@ namespace FontManager {
             return;
         }
 
-        void text_cell_data_func (Gtk.CellLayout layout,
+        void text_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
@@ -237,7 +237,7 @@ namespace FontManager {
             return;
         }
 
-        void count_cell_data_func (Gtk.CellLayout layout,
+        void count_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {

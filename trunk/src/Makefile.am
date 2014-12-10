@@ -20,6 +20,7 @@ $(GTK_314) \
 
 
 font_manager_CPPFLAGS = \
+-w \
 $(XML_CFLAGS) \
 $(FREETYPE_CFLAGS) \
 $(FONTCONFIG_CFLAGS) \

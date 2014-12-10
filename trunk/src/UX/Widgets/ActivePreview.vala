@@ -122,6 +122,7 @@ namespace FontManager {
             preview.view.editable = allow_edit;
             preview.view.cursor_visible = allow_edit;
             preview.view.accepts_tab = allow_edit;
+            preview.view.overwrite = allow_edit;
             if (allow_edit) {
                 Gdk.Cursor cursor = new Gdk.Cursor(Gdk.CursorType.XTERM);
                 Gdk.Window text_window = preview.view.get_window(Gtk.TextWindowType.TEXT);

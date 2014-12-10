@@ -39,7 +39,7 @@ namespace FontManager {
 
         public int status;
 
-        public FontInfo (string filepath, int index = 0) {
+        public FontInfo.from_filepath (string filepath, int index = 0) {
             status = FreeType.query_file_info(this, filepath, index);
             if (status != 0)
                 warning("Failed to gather information for %s : %i", filepath, status);

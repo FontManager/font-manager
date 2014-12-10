@@ -35,7 +35,7 @@ namespace FontManager {
             public InstallData (File file, string? rmdir = null) {
                 this.file = file;
                 font = FontConfig.get_font_from_file(file.get_path());
-                fontinfo = new FontInfo(file.get_path());
+                fontinfo = new FontInfo.from_filepath(file.get_path());
             }
         }
 

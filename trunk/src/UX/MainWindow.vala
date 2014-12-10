@@ -191,7 +191,6 @@ namespace FontManager {
         construct {
             title = About.NAME;
             type = Gtk.WindowType.TOPLEVEL;
-            has_resize_grip = true;
         }
 
         public MainWindow () {

@@ -28,7 +28,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <gee.h>
-#include <gio/gio.h>
 
 G_BEGIN_DECLS
 
@@ -54,20 +53,6 @@ typedef struct _CacheablePrivate CacheablePrivate;
 typedef struct _FontManagerFontInfo FontManagerFontInfo;
 typedef struct _FontManagerFontInfoClass FontManagerFontInfoClass;
 typedef struct _FontManagerFontInfoPrivate FontManagerFontInfoPrivate;
-
-#define TYPE_MENU_ENTRY (menu_entry_get_type ())
-
-#define TYPE_MENU_CALLBACK_WRAPPER (menu_callback_wrapper_get_type ())
-#define MENU_CALLBACK_WRAPPER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_MENU_CALLBACK_WRAPPER, MenuCallbackWrapper))
-#define MENU_CALLBACK_WRAPPER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_MENU_CALLBACK_WRAPPER, MenuCallbackWrapperClass))
-#define IS_MENU_CALLBACK_WRAPPER(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_MENU_CALLBACK_WRAPPER))
-#define IS_MENU_CALLBACK_WRAPPER_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_MENU_CALLBACK_WRAPPER))
-#define MENU_CALLBACK_WRAPPER_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), TYPE_MENU_CALLBACK_WRAPPER, MenuCallbackWrapperClass))
-
-typedef struct _MenuCallbackWrapper MenuCallbackWrapper;
-typedef struct _MenuCallbackWrapperClass MenuCallbackWrapperClass;
-typedef struct _MenuEntry MenuEntry;
-typedef struct _MenuCallbackWrapperPrivate MenuCallbackWrapperPrivate;
 
 #define FONT_CONFIG_TYPE_FONT (font_config_font_get_type ())
 #define FONT_CONFIG_FONT(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), FONT_CONFIG_TYPE_FONT, FontConfigFont))
@@ -113,31 +98,6 @@ struct _FontManagerFontInfo {
 
 struct _FontManagerFontInfoClass {
 	CacheableClass parent_class;
-};
-
-typedef void (*ReloadFunc) (void* user_data);
-typedef void (*MenuCallback) (void* user_data);
-typedef void (*ProgressCallback) (const gchar* message, gint processed, gint total, void* user_data);
-struct _MenuEntry {
-	gchar* action_name;
-	gchar* display_name;
-	gchar* detailed_action_name;
-	gchar* accelerator;
-	MenuCallbackWrapper* method;
-};
-
-struct _MenuCallbackWrapper {
-	GTypeInstance parent_instance;
-	volatile int ref_count;
-	MenuCallbackWrapperPrivate * priv;
-	MenuCallback run;
-	gpointer run_target;
-	GDestroyNotify run_target_destroy_notify;
-};
-
-struct _MenuCallbackWrapperClass {
-	GTypeClass parent_class;
-	void (*finalize) (MenuCallbackWrapper *self);
 };
 
 struct _FontConfigFont {
@@ -219,8 +179,10 @@ typedef enum  {
 
 GType cacheable_get_type (void) G_GNUC_CONST;
 GType font_manager_font_info_get_type (void) G_GNUC_CONST;
-FontManagerFontInfo* font_manager_font_info_new (const gchar* filepath, gint index);
-FontManagerFontInfo* font_manager_font_info_construct (GType object_type, const gchar* filepath, gint index);
+FontManagerFontInfo* font_manager_font_info_new_from_filepath (const gchar* filepath, gint index);
+FontManagerFontInfo* font_manager_font_info_construct_from_filepath (GType object_type, const gchar* filepath, gint index);
+FontManagerFontInfo* font_manager_font_info_new (void);
+FontManagerFontInfo* font_manager_font_info_construct (GType object_type);
 gint font_manager_font_info_get_owner (FontManagerFontInfo* self);
 void font_manager_font_info_set_owner (FontManagerFontInfo* self, gint value);
 const gchar* font_manager_font_info_get_filetype (FontManagerFontInfo* self);
@@ -247,33 +209,8 @@ const gchar* font_manager_font_info_get_license_url (FontManagerFontInfo* self);
 void font_manager_font_info_set_license_url (FontManagerFontInfo* self, const gchar* value);
 const gchar* font_manager_font_info_get_panose (FontManagerFontInfo* self);
 void font_manager_font_info_set_panose (FontManagerFontInfo* self, const gchar* value);
-GType menu_entry_get_type (void) G_GNUC_CONST;
-gpointer menu_callback_wrapper_ref (gpointer instance);
-void menu_callback_wrapper_unref (gpointer instance);
-GParamSpec* param_spec_menu_callback_wrapper (const gchar* name, const gchar* nick, const gchar* blurb, GType object_type, GParamFlags flags);
-void value_set_menu_callback_wrapper (GValue* value, gpointer v_object);
-void value_take_menu_callback_wrapper (GValue* value, gpointer v_object);
-gpointer value_get_menu_callback_wrapper (const GValue* value);
-GType menu_callback_wrapper_get_type (void) G_GNUC_CONST;
-MenuEntry* menu_entry_dup (const MenuEntry* self);
-void menu_entry_free (MenuEntry* self);
-void menu_entry_copy (const MenuEntry* self, MenuEntry* dest);
-void menu_entry_destroy (MenuEntry* self);
-void menu_entry_init (MenuEntry *self, const gchar* name, const gchar* label, const gchar* detailed_signal, const gchar* accel, MenuCallbackWrapper* cbw);
-MenuCallbackWrapper* menu_callback_wrapper_new (MenuCallback c, void* c_target);
-MenuCallbackWrapper* menu_callback_wrapper_construct (GType object_type, MenuCallback c, void* c_target);
-gchar* get_command_line_output (const gchar* cmd);
-gchar* get_user_font_dir (void);
-gchar* get_localized_pangram (void);
-gchar* get_localized_preview_text (void);
-gchar* get_local_time (void);
 gint natural_cmp (const gchar* a, const gchar* b);
-gchar* get_file_extension (const gchar* path);
-GeeArrayList* sorted_list_from_collection (GeeCollection* iter);
 void builder_append (GString* builder, const gchar* val);
-void add_action_from_menu_entry (GActionMap* map, MenuEntry* entry);
-gboolean remove_directory_tree_if_empty (GFile* dir);
-gboolean remove_directory (GFile* dir, gboolean recursive);
 GType font_config_font_get_type (void) G_GNUC_CONST;
 gint font_config_sort_fonts (FontConfigFont* a, FontConfigFont* b);
 gchar* font_config_font_to_filename (FontConfigFont* self);
@@ -686,13 +623,6 @@ static const struct
 VendorData[] =
 {
 
-    /* Various Sources */
-    {"ACG", "Monotype Imaging"},
-    {"B?", "Bigelow & Holmes"},
-    {"FJ", "Fujitsu"},
-    {"RICO", "Ricoh"},
-
-
     /* Courtesy of Microsoft Typography */
     {"!ETF", "!Exclamachine Type Foundry"},
     {"$pro", "CheapProFonts"},
@@ -713,6 +643,7 @@ VendorData[] =
     {"ABOU", "Aboutype, Inc."},
     {"ACUT", "Acute Type"},
     {"ADBE", "Adobe"},
+    {"ADBO", "Adobe"},
     {"ADG", "Apply Design Group"},
     {"AEF", "Altered Ego Fonts"},
     {"AGFA", "Monotype Imaging (replaced by MONO)"},
@@ -854,6 +785,7 @@ VendorData[] =
     {"FGOD", "FontGod"},
     {"FJTY", "Frank Jonen - Illustration & Typography"},
     {"FMFO", "Fontmill Foundry"},
+    {"FMST", "Formist"},
     {"FNTF", "Fontfoundry"},
     {"FoFa", "FontFabrik"},
     {"FONT", "Font Source"},
@@ -888,6 +820,7 @@ VendorData[] =
     {"GOAT", "Dingbat Dungeon"},
     {"GOGO", "Fonts-A-Go-Go"},
     {"GOHE", "GoHebrew, division of GoME2.com Inc."},
+    {"GOOG", "Google"},
     {"GPI", "Gamma Productions, Inc."},
     {"GRAF", "Grafikarna d.o.o."},
     {"GREY", "Greyletter"},
@@ -914,6 +847,7 @@ VendorData[] =
     {"HOUS", "House Industries"},
     {"HP", "Hewlett-Packard"},
     {"HS", "HermesSOFT Company"},
+    {"HT", "Huerta Tipográfica"},
     {"HTF", "The Hoefler Type Foundry, Inc."},
     {"HXTP", "Hexatype"},
     {"HY", "HanYang Information & Communication"},
@@ -926,6 +860,7 @@ VendorData[] =
     {"IMPR", "Impress"},
     {"INGT", "Ingrimayne Type"},
     {"INRA", "INRAY Inc."},
+    {"INTR", "Interstitial Entertainment"},
     {"INVC", "Invoice Central"},
     {"INVD", "TYPE INVADERS"},
     {"ISE", "ISE-Aditi Info. Pvt . Ltd."},
@@ -1147,6 +1082,7 @@ VendorData[] =
     {"TSTY", "Torleiv Georg Sverdrup"},
     {"TT", "TypeTogether"},
     {"TTG", "Twardoch Typography"},
+    {"TTY", "Tipotype"},
     {"TYCU", "TypeCulture"},
     {"TYFR", "typographies.fr"},
     {"TYME", "type me! Font Foundry"},
@@ -1185,6 +1121,13 @@ VendorData[] =
     {"ZeGr", "Zebra Font Factory"},
     {"zeta", "Tangram Studio"},
     {"ZSFT", "Zsoft"},
+
+
+    /* Various Sources */
+    {"ACG", "Monotype Imaging"},
+    {"B?", "Bigelow & Holmes"},
+    {"FJ", "Fujitsu"},
+    {"RICO", "Ricoh"},
 
 };
 

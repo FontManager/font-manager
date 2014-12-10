@@ -216,10 +216,10 @@ namespace FontManager {
             return;
         }
 
-        internal void text_cell_data_func (Gtk.CellLayout layout,
-                                   Gtk.CellRenderer cell,
-                                   Gtk.TreeModel model,
-                                   Gtk.TreeIter treeiter) {
+        internal void text_cell_data_func (Gtk.TreeViewColumn layout,
+                                               Gtk.CellRenderer cell,
+                                               Gtk.TreeModel model,
+                                               Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, CollectionColumn.OBJECT, out val);
             var obj = (Collection) val.get_object();
@@ -228,10 +228,10 @@ namespace FontManager {
             return;
         }
 
-        internal void toggle_cell_data_func (Gtk.CellLayout layout,
-                                    Gtk.CellRenderer cell,
-                                    Gtk.TreeModel model,
-                                    Gtk.TreeIter treeiter) {
+        internal void toggle_cell_data_func (Gtk.TreeViewColumn layout,
+                                                Gtk.CellRenderer cell,
+                                                Gtk.TreeModel model,
+                                                Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, CollectionColumn.OBJECT, out val);
             var obj = (Collection) val.get_object();
@@ -240,10 +240,10 @@ namespace FontManager {
             return;
         }
 
-        internal void count_cell_data_func (Gtk.CellLayout layout,
-                                    Gtk.CellRenderer cell,
-                                    Gtk.TreeModel model,
-                                    Gtk.TreeIter treeiter) {
+        internal void count_cell_data_func (Gtk.TreeViewColumn layout,
+                                                Gtk.CellRenderer cell,
+                                                Gtk.TreeModel model,
+                                                Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, CollectionColumn.OBJECT, out val);
             var obj = (Collection) val.get_object();
