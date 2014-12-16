@@ -52,6 +52,7 @@ namespace FontManager {
             unicode_label.show();
             name_label.show();
             box.show();
+            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
         }
 
         private void set_details () {

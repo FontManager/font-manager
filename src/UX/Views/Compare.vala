@@ -83,6 +83,7 @@ namespace FontManager {
             store = new Gtk.ListStore(2, typeof(Pango.FontDescription), typeof(string));
             scroll = new Gtk.ScrolledWindow(null, null);
             controls = new CompareControls();
+            controls.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             update_default_colors();
             var renderer = new Gtk.CellRendererText();
             column = new Gtk.TreeViewColumn();

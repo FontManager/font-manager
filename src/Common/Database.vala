@@ -357,12 +357,37 @@ namespace FontManager {
         db.reset();
         db.table = "Fonts";
         db.select = "font_description, filepath";
-        db.search = "owner=0 AND filepath LIKE \"%s%\"".printf(get_user_font_dir());
+        db.search = "owner=\"0\" AND filepath LIKE \"%s%\"".printf(get_user_font_dir());
         db.unique = true;
         db.execute_query();
         foreach (var row in db)
             res[row.column_text(0)] = row.column_text(1);
         db.close();
+        return res;
+    }
+
+    FontInfo? get_fontinfo_from_db_entry (Database db, string filepath) {
+        db.reset();
+        db.table = "Fonts";
+        db.select = "*";
+        db.search = "filepath=\"%s\"".printf(filepath);
+        db.unique = true;
+        db.execute_query();
+        if (db.stmt.step() != Sqlite.ROW)
+            return null;
+        var res = new FontInfo();
+        unowned ObjectClass obj_cls = res.get_class();
+        int cols = db.stmt.column_count ();
+        var val = Value(typeof(string));
+        for (int i = 0; i < cols; i++) {
+            if (db.stmt.column_type(i) != Sqlite.TEXT)
+                continue;
+            string name = db.stmt.column_name(i);
+            val = db.stmt.column_text(i);
+            if (obj_cls.find_property(name) != null)
+                ((Object) res).set_property(name, val);
+        }
+        val.unset();
         return res;
     }
 
