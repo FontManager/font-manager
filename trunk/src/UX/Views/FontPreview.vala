@@ -86,6 +86,7 @@ namespace FontManager {
             stack.add_titled(waterfall, "Waterfall", _("Waterfall"));
             stack.add_titled(body_text, "Body Text", _("Body Text"));
             stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
+            var blend = new Gtk.EventBox();
             switcher = new Gtk.StackSwitcher();
             switcher.set_stack(stack);
             switcher.set_border_width(5);
@@ -93,12 +94,15 @@ namespace FontManager {
             switcher.valign = Gtk.Align.CENTER;
             switcher.homogeneous = true;
             switcher.orientation = Gtk.Orientation.HORIZONTAL;
+            blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            blend.add(switcher);
             connect_signals();
-            pack_start(switcher, false, true, 0);
+            pack_start(blend, false, true, 0);
             add_separator(this, Gtk.Orientation.HORIZONTAL);
             var box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             box.pack_start(stack, true, true, 0);
             pack_end(box, true, true, 0);
+            blend.show();
             preview.show();
             waterfall.show();
             body_text.show();

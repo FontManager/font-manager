@@ -25,6 +25,7 @@ namespace FontManager {
 
         public signal void remove_selected ();
         public signal void expand_all (bool expand);
+        public signal void show_properties (bool show);
 
         public bool expanded { get; private set; }
         public Gtk.SearchEntry entry { get; private set; }
@@ -32,6 +33,7 @@ namespace FontManager {
         internal Gtk.Button _remove;
         internal Gtk.Button _expand;
         internal Gtk.Arrow arrow;
+        internal Gtk.ToggleButton show_props;
 
         public FontListControls () {
             var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
@@ -47,7 +49,11 @@ namespace FontManager {
             entry.margin_right = 2;
             entry.set_size_request(0, 0);
             entry.placeholder_text = _("Search Families...");
+            show_props = new Gtk.ToggleButton();
+            show_props.set_image(new Gtk.Image.from_icon_name("document-properties-symbolic", Gtk.IconSize.MENU));
+            show_props.set_tooltip_text(_("View font information"));
             box.pack_end(entry, false, false, 0);
+            box.pack_end(show_props, false, false, 2);
             box.pack_start(_expand, false, false, 0);
             box.pack_start(_remove, false, false, 0);
             set_default_button_relief(box);
@@ -55,6 +61,7 @@ namespace FontManager {
             _remove.show();
             arrow.show();
             _expand.show();
+            show_props.show();
             box.show();
             add(box);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
@@ -73,12 +80,20 @@ namespace FontManager {
                 else
                     arrow.set(Gtk.ArrowType.RIGHT, Gtk.ShadowType.ETCHED_IN);
             });
+            show_props.toggled.connect(() => { show_properties(show_props.active); });
             return;
         }
 
         public void set_remove_sensitivity (bool sensitive) {
             _remove.set_sensitive(sensitive);
             _remove.set_has_tooltip(sensitive);
+            return;
+        }
+
+        public void set_properties_sensitivity (bool sensitive) {
+            show_props.set_active(false);
+            show_props.set_sensitive(sensitive);
+            show_props.set_has_tooltip(sensitive);
             return;
         }
 

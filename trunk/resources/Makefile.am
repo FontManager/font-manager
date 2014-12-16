@@ -15,6 +15,7 @@ CLEANFILES = $(appdata_DATA) \
 	$(dist_desktop_DATA)
 
 EXTRA_DIST = \
+	icons \
 	FontManagerGResource.xml \
 	FontManager.css \
 	ApplicationMenu.ui \

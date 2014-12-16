@@ -133,7 +133,8 @@ UX/Utils/Color.vala \
 UX/Utils/Utils.vala \
 UX/Views/Compare.vala \
 UX/Views/FontPreview.vala \
-UX/Views/Browse.vala
+UX/Views/Browse.vala \
+UX/Views/Metadata.vala
 
 FontManagerGResource.c :
 	cd $(resource_dir) && \

@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-09 19:42-0500\n"
+"POT-Creation-Date: 2014-12-16 13:31-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -395,21 +395,25 @@ msgstr "选择文本颜色"
 msgid "Select background color"
 msgstr "选择背景颜色"
 
-#: .././src/UX/Controls/FontListControls.vala:42
-#: .././src/UX/Controls/FontListControls.vala:70
+#: .././src/UX/Controls/FontListControls.vala:44
+#: .././src/UX/Controls/FontListControls.vala:77
 msgid "Expand all"
 msgstr "全部展开"
 
-#: .././src/UX/Controls/FontListControls.vala:45
+#: .././src/UX/Controls/FontListControls.vala:47
 msgid "Remove selected fonts"
 msgstr "删除选中的字体"
 
-#: .././src/UX/Controls/FontListControls.vala:49
+#: .././src/UX/Controls/FontListControls.vala:51
 #, fuzzy
 msgid "Search Families..."
 msgstr "搜索数据库"
 
-#: .././src/UX/Controls/FontListControls.vala:70
+#: .././src/UX/Controls/FontListControls.vala:54
+msgid "View font information"
+msgstr ""
+
+#: .././src/UX/Controls/FontListControls.vala:77
 msgid "Collapse all"
 msgstr "全部折叠"
 
@@ -526,23 +530,23 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 
-#: .././src/UX/MainWindow.vala:62 .././src/UX/MainWindow.vala:237
+#: .././src/UX/MainWindow.vala:62 .././src/UX/MainWindow.vala:239
 msgid "Browse"
 msgstr "浏览"
 
-#: .././src/UX/MainWindow.vala:64 .././src/UX/MainWindow.vala:231
+#: .././src/UX/MainWindow.vala:64 .././src/UX/MainWindow.vala:232
 msgid "Compare"
 msgstr "比较"
 
-#: .././src/UX/MainWindow.vala:66 .././src/UX/MainWindow.vala:232
+#: .././src/UX/MainWindow.vala:66 .././src/UX/MainWindow.vala:233
 msgid "Character Map"
 msgstr "字符映射"
 
-#: .././src/UX/MainWindow.vala:68 .././src/UX/MainWindow.vala:236
+#: .././src/UX/MainWindow.vala:68 .././src/UX/MainWindow.vala:238
 msgid "Manage"
 msgstr "管理"
 
-#: .././src/UX/MainWindow.vala:230 .././src/UX/Views/FontPreview.vala:85
+#: .././src/UX/MainWindow.vala:231 .././src/UX/Views/FontPreview.vala:85
 msgid "Preview"
 msgstr "预览"
 
@@ -564,6 +568,18 @@ msgstr "瀑布"
 msgid "Body Text"
 msgstr "正文"
 
+#: .././src/UX/Views/Metadata.vala:45
+msgid "OpenType Font"
+msgstr ""
+
+#: .././src/UX/Views/Metadata.vala:46
+msgid "TrueType Font"
+msgstr ""
+
+#: .././src/UX/Views/Metadata.vala:47
+msgid "PostScript Type 1 Font"
+msgstr ""
+
 #: .././src/UX/Widgets/CellRendererPill.vala:28
 msgid "Variation "
 msgstr "变体"
@@ -579,6 +595,10 @@ msgstr "预览，比较和管理字体"
 #: ../resources/font-manager.desktop.in.h:3
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr "Graphics;Viewer;GNOME;GTK;Publishing;"
+
+#, fuzzy
+#~ msgid "Properties"
+#~ msgstr "比例(Proportional)"
 
 #~ msgid "Show Details"
 #~ msgstr "显示详细信息"

@@ -106,6 +106,7 @@ namespace FontManager {
         public FontList fontlist { get; private set; }
         public FontListTree fonttree { get; private set; }
         public UserSourceTree user_source_tree { get; private set; }
+        public BaseMetadata properties { get; private set; }
         public State state { get; private set; }
 
         public Mode mode {
@@ -217,6 +218,7 @@ namespace FontManager {
             titlebar = new TitleBar();
             fonttree = new FontListTree();
             user_source_tree = new UserSourceTree();
+            properties = new BaseMetadata();
             fontlist = fonttree.fontlist;
             main_stack = new Gtk.Stack();
             main_stack.set_transition_duration(720);
@@ -229,6 +231,7 @@ namespace FontManager {
             view_stack.add_titled(preview, "Default", _("Preview"));
             view_stack.add_titled(compare, "Compare", _("Compare"));
             view_stack.add_titled(character_map.pane, "Character Map", _("Character Map"));
+            view_stack.add_titled(properties, "Properties", "Properties");
             view_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
             content_stack = new Gtk.Stack();
             content_stack.set_transition_duration(420);
@@ -281,6 +284,7 @@ namespace FontManager {
             titlebar.show();
             fonttree.show();
             user_source_tree.show();
+            properties.show();
             main_stack.show();
             return;
         }
@@ -322,6 +326,7 @@ namespace FontManager {
             titlebar.reveal_controls((mode == Mode.MANAGE));
             fonttree.show_controls = (mode != Mode.BROWSE);
             fontlist.controls.set_remove_sensitivity((mode == Mode.MANAGE && sidebar.standard.mode == MainSideBarMode.COLLECTION));
+            fontlist.controls.set_properties_sensitivity((mode == Mode.MANAGE));
             fontlist.queue_draw();
             if (mode == Mode.BROWSE)
                 browser.treeview.queue_draw();
@@ -360,6 +365,17 @@ namespace FontManager {
             var collections = Main.instance.collections;
             unsorted.families.remove_all(collections.get_full_contents());
             val.unset();
+            return;
+        }
+
+        internal void update_font_properties () {
+            FontConfig.Font selected_font;
+            if (fontlist.selected_font != null)
+                selected_font = fontlist.selected_font;
+            else
+                selected_font = fontlist.selected_family.get_default_variant();
+            var fontinfo = get_fontinfo_from_db_entry(Main.instance.database, selected_font.filepath);
+            properties.update(fontinfo, selected_font);
             return;
         }
 
@@ -403,8 +419,9 @@ namespace FontManager {
 
             fontlist.font_selected.connect((string_desc) => {
                 set_font_desc(Pango.FontDescription.from_string(string_desc));
-                }
-            );
+                if (view_stack.get_visible_child_name() == "Properties")
+                    update_font_properties();
+            });
 
             fontlist.controls.remove_selected.connect(() => {
                 sidebar.standard.collection_tree.remove_fonts(fontlist.get_selected_families());
@@ -477,6 +494,11 @@ namespace FontManager {
                 }
             });
 
+            view_stack.notify["visible-child-name"].connect(() => {
+                if (view_stack.get_visible_child_name() == "Properties")
+                    update_font_properties();
+            });
+
             main_stack.notify["visible-child-name"].connect(() => {
             #if GTK_312
                 if (main_stack.get_visible_child_name() == "Default")
@@ -493,6 +515,13 @@ namespace FontManager {
                 else
                     content_stack.set_transition_type(Gtk.StackTransitionType.UNDER_RIGHT);
             #endif
+            });
+
+            fontlist.controls.show_properties.connect((s) => {
+                if (s)
+                    view_stack.set_visible_child_name("Properties");
+                else
+                    view_stack.set_visible_child_name(mode.settings()[1]);
             });
 
         }

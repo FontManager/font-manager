@@ -51,8 +51,8 @@ namespace FontManager {
             var scroll = new Gtk.ScrolledWindow(null, null);
             var table_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             scroll.add(table);
-            table_box.pack_end(fontscale, false, true, 0);
-            table_box.pack_end(scroll, true, true, 0);
+            table_box.pack_end(fontscale, false, true, 1);
+            table_box.pack_end(scroll, true, true, 1);
             pack_end(table_box, true, true, 0);
             table.show();
             table_box.show();
