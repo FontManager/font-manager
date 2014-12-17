@@ -10,10 +10,10 @@
        A simple font management application for Gtk+ Desktop Environments
 
 
-|============================= Version 0.7.1 ==================================|
+|============================= Version 0.7.2 ==================================|
 
 
-                   Initial release of Vala/Gtk+3 version.
+                    Beta release of Vala/Gtk+3 version.
 
 
 Please DO NOT file issues regarding feature enhancements or missing features at

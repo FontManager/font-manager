@@ -374,8 +374,13 @@ namespace FontManager {
                 selected_font = fontlist.selected_font;
             else
                 selected_font = fontlist.selected_family.get_default_variant();
-            var fontinfo = get_fontinfo_from_db_entry(Main.instance.database, selected_font.filepath);
-            properties.update(fontinfo, selected_font);
+            try {
+                var fontinfo = get_fontinfo_from_db_entry(Main.instance.database, selected_font.filepath);
+                properties.update(fontinfo, selected_font);
+            } catch (DatabaseError e) {
+                warning(e.message);
+                properties.update(null, null);
+            }
             return;
         }
 

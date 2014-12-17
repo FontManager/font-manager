@@ -8,7 +8,7 @@ dnl
 
 dnl Initialize autoconf
 AC_PREREQ([2.69])
-AC_INIT([font-manager], [0.7.1], [https://code.google.com/p/font-manager/issues/list])
+AC_INIT([font-manager], [0.7.2], [https://code.google.com/p/font-manager/issues/list])
 AC_CONFIG_MACRO_DIR([m4])
 AC_SUBST([ACLOCAL_AMFLAGS], ["-I $ac_macro_dir \${ACLOCAL_FLAGS}"])
 

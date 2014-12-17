@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <gresources>
-        <gresource prefix="/org/gnome/FontManager">
-            <file compressed="true">FontManager.css</file>
-            <file compressed="true" preprocess="xml-stripblanks">ApplicationMenu.ui</file>
-            <file>icons/null.svg</file>
-            <file>icons/truetype.svg</file>
-            <file>icons/opentype.svg</file>
-            <file>icons/type1.svg</file>
+<gresources>
+    <gresource prefix="/org/gnome/FontManager">
+        <file compressed="true">FontManager.css</file>
+        <file compressed="true" preprocess="xml-stripblanks">ApplicationMenu.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">icons/null.svg</file>
+        <file compressed="true" preprocess="xml-stripblanks">icons/opentype.svg</file>
+        <file compressed="true" preprocess="xml-stripblanks">icons/16x16/actions/stock-eye-symbolic.svg</file>
+        <file compressed="true" preprocess="xml-stripblanks">icons/16x16/actions/stock-eye-symbolic-rtl.svg</file>
+        <file compressed="true" preprocess="xml-stripblanks">icons/truetype.svg</file>
+        <file compressed="true" preprocess="xml-stripblanks">icons/type1.svg</file>
     </gresource>
 </gresources>

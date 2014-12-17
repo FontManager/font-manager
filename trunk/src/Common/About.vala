@@ -26,7 +26,7 @@ namespace FontManager {
         public const string NAME = _("Font Manager");
         public const string ICON = "font-x-generic";
         public const string COMMENT = _("Simple font management for GTK+ desktop environments");
-        public const string VERSION = "0.7.1";
+        public const string VERSION = "0.7.2";
         public const string HOMEPAGE = "http://code.google.com/p/font-manager/";
         public const string COPYRIGHT = "Copyright © 2009 - 2014 Jerry Casiano";
         public const string LICENSE = _("""

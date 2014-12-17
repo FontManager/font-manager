@@ -366,7 +366,8 @@ namespace FontManager {
         return res;
     }
 
-    FontInfo? get_fontinfo_from_db_entry (Database db, string filepath) {
+    FontInfo? get_fontinfo_from_db_entry (Database db, string filepath)
+    throws DatabaseError {
         db.reset();
         db.table = "Fonts";
         db.select = "*";
