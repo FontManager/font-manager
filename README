@@ -13,9 +13,6 @@
 |============================= Version 0.7.2 ==================================|
 
 
-                    Beta release of Vala/Gtk+3 version.
-
-
 Please DO NOT file issues regarding feature enhancements or missing features at
 this time.
 
@@ -60,8 +57,6 @@ Features that are expected to work at this time:
 Missing / Planned features :
 
     Help contents
-
-    Font Metadata viewer
 
     Character map details viewer
 
