@@ -37,7 +37,7 @@ namespace FontManager {
 
         public FontListControls () {
             var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
-            box.border_width = 1;
+            box.border_width = 2;
             _expand = new Gtk.Button();
             arrow = new Gtk.Arrow(Gtk.ArrowType.RIGHT, Gtk.ShadowType.ETCHED_IN);
             _expand.add(arrow);
@@ -50,7 +50,7 @@ namespace FontManager {
             entry.set_size_request(0, 0);
             entry.placeholder_text = _("Search Families...");
             show_props = new Gtk.ToggleButton();
-            show_props.set_image(new Gtk.Image.from_icon_name("document-properties-symbolic", Gtk.IconSize.MENU));
+            show_props.set_image(new Gtk.Image.from_icon_name("stock-eye-symbolic", Gtk.IconSize.MENU));
             show_props.set_tooltip_text(_("View font information"));
             box.pack_end(entry, false, false, 0);
             box.pack_end(show_props, false, false, 2);
