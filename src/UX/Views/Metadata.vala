@@ -48,13 +48,19 @@ namespace FontManager {
         };
 
         construct {
+        #if GTK_314
             var icon_theme = Gtk.IconTheme.get_default();
             icon_theme.add_resource_path("/org/gnome/FontManager/icons");
+        #endif
         }
 
         public void update (Gtk.Image icon, string key) {
             var entry = this[key];
+        #if GTK_314
             icon.set_from_icon_name(entry.name, Gtk.IconSize.DIALOG);
+        #else
+            icon.set_from_resource("/org/gnome/FontManager/icons/%s.svg".printf(entry.name));
+        #endif
             icon.set_tooltip_text(entry.tooltip);
         }
 
