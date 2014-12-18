@@ -6,15 +6,23 @@ SUBDIRS = \
 
 ACLOCAL_AMFLAGS = -I m4
 
-pot:
+POTFILES.readme:
+	@echo "POTFILES.* generated from the top level Makefile" > $(srcdir)/po/POTFILES.readme
+
+POTFILES.in: POTFILES.readme
 	@find $(srcdir)/src/ -name "*.vala" -print | sort > $(srcdir)/po/POTFILES.in ;
 	@echo "resources/$(PACKAGE_NAME).desktop.in" >> $(srcdir)/po/POTFILES.in ;
 	@echo "resources/$(PACKAGE_NAME).appdata.xml.in" >> $(srcdir)/po/POTFILES.in ;
+
+POTFILES.skip: POTFILES.readme POTFILES.in
+	@find $(srcdir)/src/ -name "*.vala" -print | sort | $(SED) 's/.vala/.c/g' > $(srcdir)/po/POTFILES.skip ;
+
+pot: POTFILES.skip
 	cd $(srcdir)/po && $(MAKE) $(AM_MAKEFLAGS) update-po
-	cd $(srcdir)/po && sed -f insert-header.sin -i $(PACKAGE_NAME).pot
+	cd $(srcdir)/po && $(SED) -f insert-header.sin -i $(PACKAGE_NAME).pot
 	cd $(srcdir)/help && rm -f $(PACKAGE_NAME).pot
 	cd $(srcdir)/help && $(MAKE) $(AM_MAKEFLAGS) pot
-	cd $(srcdir)/help && sed -f insert-header.sin -i $(PACKAGE_NAME).pot
+	cd $(srcdir)/help && $(SED) -f insert-header.sin -i $(PACKAGE_NAME).pot
 	cd $(srcdir)/help && $(MAKE) $(AM_MAKEFLAGS) repo
 
 EXTRA_DIST = \
@@ -32,6 +40,6 @@ distclean-local:
 maintainer-clean-local:
 	-rm -rf build-aux
 
-.PHONY: pot
+.PHONY: pot POTFILES.readme POTFILES.in POTFILES.skip
 
 all: pot
