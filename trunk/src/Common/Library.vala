@@ -27,6 +27,13 @@ namespace FontManager {
         internal static ArchiveManager? archive_manager = null;
         internal static Gee.ArrayList <string>? supported_archives = null;
 
+        internal bool is_metrics_file (string name) {
+            foreach (var ext in FONT_METRICS)
+                if (name.has_suffix(ext))
+                    return true;
+            return false;
+        }
+
         public struct InstallData {
             public File file;
             public FontConfig.Font font;
@@ -39,19 +46,92 @@ namespace FontManager {
             }
         }
 
+
+        public class Sorter : Object {
+
+            public Gee.ArrayList <File> files { get; private set; }
+            public Gee.ArrayList <File> archives { get; private set; }
+
+            construct {
+                files = new Gee.ArrayList <File> ();
+                archives  = new Gee.ArrayList <File> ();
+                if (archive_manager == null) {
+                    archive_manager = new ArchiveManager();
+                    supported_archives = archive_manager.get_supported_types();
+                }
+            }
+
+            public void sort (Gee.ArrayList <File> filelist) {
+                files.clear();
+                archives.clear();
+                process_files(filelist);
+                return;
+            }
+
+            internal void process_directory (File dir) {
+                try {
+                    FileInfo fileinfo;
+                    var attrs = "%s,%s,%s".printf(FileAttribute.STANDARD_NAME, FileAttribute.STANDARD_CONTENT_TYPE, FileAttribute.STANDARD_TYPE);
+                    var enumerator = dir.enumerate_children(attrs, FileQueryInfoFlags.NONE);
+                    int processed = 0;
+                    int total = 0;
+                    while ((fileinfo = enumerator.next_file ()) != null)
+                        total++;
+                    enumerator = dir.enumerate_children(attrs, FileQueryInfoFlags.NONE);
+                    while ((fileinfo = enumerator.next_file ()) != null) {
+                        string content_type = fileinfo.get_content_type();
+                        string name = fileinfo.get_name();
+                        if (fileinfo.get_file_type() == FileType.DIRECTORY)
+                            process_directory(dir.get_child(name));
+                        else
+                            if (content_type.contains("font") && !is_metrics_file(name))
+                                files.add(dir.get_child(name));
+                            else if (content_type in supported_archives && !(content_type in ARCHIVE_IGNORE_LIST))
+                                archives.add(dir.get_child(name));
+                        processed++;
+                        if (progress != null)
+                            progress(null, processed, total);
+                    }
+                } catch (Error e) {
+                    warning("%s :: %s", e.message, dir.get_path());
+                }
+                return;
+            }
+
+            internal void process_files (Gee.ArrayList <File> filelist) {
+                int total = filelist.size;
+                int processed = 0;
+                foreach (var file in filelist) {
+                    var attrs = "%s,%s".printf(FileAttribute.STANDARD_CONTENT_TYPE, FileAttribute.STANDARD_TYPE);
+                    try {
+                        var fileinfo = file.query_info(attrs, FileQueryInfoFlags.NONE, null);
+                        string content_type = fileinfo.get_content_type();
+                        if (fileinfo.get_file_type() == FileType.DIRECTORY)
+                            process_directory(file);
+                        else if (content_type.contains("font") && !is_metrics_file(fileinfo.get_name()))
+                            files.add(file);
+                        else if (content_type in supported_archives)
+                            archives.add(file);
+                    } catch (Error e) {
+                        error("Error querying file information : %s", e.message);
+                    }
+                    processed++;
+                    if (progress != null)
+                        progress(null, processed, total);
+                }
+                return;
+            }
+
+        }
+
+
         [Compact]
         public class Install {
 
             public static Gee.ArrayList <File>? installed = null;
             public static Gee.HashMap <string, string>? install_failed = null;
 
-            internal static void init () {
-                if (archive_manager != null)
-                    return;
-                archive_manager = new ArchiveManager();
-                supported_archives = archive_manager.get_supported_types();
-                return;
-            }
+            static File? tmpdir = null;
 
             public static void from_file_array (File? [] files) {
                 init();
@@ -62,6 +142,7 @@ namespace FontManager {
                     _files.add(file);
                 }
                 process_files(_files);
+                fini();
             }
 
             public static void from_path_array (string? [] paths) {
@@ -73,6 +154,7 @@ namespace FontManager {
                     files.add(File.new_for_path(path));
                 }
                 process_files(files);
+                fini();
             }
 
             public static void from_uri_array (string? [] uris) {
@@ -84,6 +166,23 @@ namespace FontManager {
                     files.add(File.new_for_uri(uri));
                 }
                 process_files(files);
+                fini();
+            }
+
+            internal static void init () {
+                if (archive_manager == null) {
+                    archive_manager = new ArchiveManager();
+                    supported_archives = archive_manager.get_supported_types();
+                }
+                return;
+            }
+
+            internal static void fini () {
+                if (tmpdir == null)
+                    return;
+                remove_directory(tmpdir);
+                tmpdir = null;
+                return;
             }
 
             internal static void try_copy (File original, File copy) {
@@ -118,8 +217,8 @@ namespace FontManager {
                 try_copy(data.file, file);
                 /* XXX */
                 if (data.fontinfo.filetype == "Type 1") {
+                    string par = data.file.get_parent().get_path();
                     foreach (var ext in FONT_METRICS) {
-                        string par = data.file.get_parent().get_path();
                         try {
                             FileInfo inf = data.file.query_info(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
                             string name = inf.get_name().split_set(".")[0] + ext;
@@ -141,108 +240,47 @@ namespace FontManager {
                 return;
             }
 
-            internal static void process_file (File file) {
-                string filepath = file.get_path();
-                foreach (var ext in FONT_METRICS)
-                    if (filepath.down().has_suffix(ext))
-                        return;
-                install_font(InstallData(file));
-                return;
-            }
-
-            internal static void process_directory (File dir) {
-                try {
-                    FileInfo fileinfo;
-                    var attrs = "%s,%s,%s".printf(FileAttribute.STANDARD_NAME, FileAttribute.STANDARD_CONTENT_TYPE, FileAttribute.STANDARD_TYPE);
-                    var enumerator = dir.enumerate_children(attrs, FileQueryInfoFlags.NONE);
-                    int processed = 0;
-                    int total = 0;
-                    while ((fileinfo = enumerator.next_file ()) != null)
-                        total++;
-                    enumerator = dir.enumerate_children(attrs, FileQueryInfoFlags.NONE);
-                    while ((fileinfo = enumerator.next_file ()) != null) {
-                        string content_type = fileinfo.get_content_type();
-                        if (fileinfo.get_file_type() == FileType.DIRECTORY) {
-                            process_directory(dir.get_child(fileinfo.get_name()));
-                        } else {
-                            if (content_type.contains("font")) {
-                                process_file(dir.get_child(fileinfo.get_name()));
-                            } else if (content_type in supported_archives) {
-                                if (content_type in ARCHIVE_IGNORE_LIST)
-                                    continue;
-                                process_archive(dir.get_child(fileinfo.get_name()));
-                            } else if (content_type == "application/octet-stream") {
-                                bool metrics_file = false;
-                                foreach (var ext in FONT_METRICS) {
-                                    if (fileinfo.get_name().has_suffix(ext)) {
-                                        metrics_file = true;
-                                        break;
-                                    }
-                                }
-                                if (metrics_file)
-                                    continue;
-                                warning("Ignoring unsupported file : %s", dir.get_child(fileinfo.get_name()).get_path());
-                            }
-                        }
-                        processed++;
-                        if (progress != null)
-                            progress(null, processed, total);
-                    }
-                } catch (Error e) {
-                    warning("%s :: %s", e.message, dir.get_path());
-                }
-                return;
-            }
-
-            internal static void process_archive (File file) {
+            internal static File? get_temp_dir () {
                 string? _tmpdir = null;
                 try {
                     _tmpdir = DirUtils.make_tmp(TMPL);
                 } catch (FileError e) {
                     error("Error creating temporary working directory : %s", e.message);
                 }
-                if (_tmpdir == null) {
-                    if (install_failed == null)
-                        install_failed = new Gee.HashMap <string, string> ();
-                    install_failed[file.get_path()] = "Failed to create temporary directory";
-                    return;
-                }
-                var tmpdir = File.new_for_path(_tmpdir);
-                if (archive_manager.extract(file.get_uri(), tmpdir.get_uri(), false))
-                    process_directory(tmpdir);
-                else {
-                    if (install_failed == null)
-                        install_failed = new Gee.HashMap <string, string> ();
-                    install_failed[file.get_path()] = "Failed to extract archive";
-                }
-                remove_directory(tmpdir);
-                return;
+                return _tmpdir != null ? File.new_for_path(_tmpdir) : null;
             }
 
             internal static void process_files (Gee.ArrayList <File> filelist) {
-                int total = filelist.size;
+                var sorter = new Sorter();
+                sorter.sort(filelist);
                 int processed = 0;
-                foreach (var file in filelist) {
-                    var attrs = "%s,%s".printf(FileAttribute.STANDARD_CONTENT_TYPE, FileAttribute.STANDARD_TYPE);
-                    try {
-                        var fileinfo = file.query_info(attrs, FileQueryInfoFlags.NONE, null);
-                        string content_type = fileinfo.get_content_type();
-                        if (fileinfo.get_file_type() == FileType.DIRECTORY) {
-                            process_directory(file);
-                        } else if (content_type.contains("font")) {
-                            process_file(file);
-                        } else if (content_type in supported_archives) {
-                            process_archive(file);
-                        }
-                    } catch (Error e) {
-                        error("Error querying file information : %s", e.message);
+                int total = sorter.files.size + sorter.archives.size;
+                foreach (var f in sorter.files) {
+                    install_font(InstallData(f));
+                    processed++;
+                    if (progress != null)
+                        progress(null, processed, total);
+                }
+                if (sorter.archives.size == 0)
+                    return;
+                tmpdir = get_temp_dir();
+                var uri = tmpdir.get_uri();
+                foreach (var a in sorter.archives) {
+                    if (!archive_manager.extract(a.get_uri(), uri, false)) {
+                        if (install_failed == null)
+                            install_failed = new Gee.HashMap <string, string> ();
+                        install_failed[a.get_path()] = "Failed to extract archive";
                     }
                     processed++;
                     if (progress != null)
                         progress(null, processed, total);
                 }
+                var l = new Gee.ArrayList <File> ();
+                l.add(tmpdir);
+                process_files(l);
                 return;
             }
+
         }
 
         [Compact]
