@@ -83,10 +83,11 @@ public void ensure_ui_update () {
 }
 
 public bool is_left_to_right (Gtk.Widget widget) {
-    var dir = widget.get_direction ();
-    if (dir == Gtk.TextDirection.NONE)
-        dir = Gtk.Widget.get_default_direction ();
-    return dir == Gtk.TextDirection.LTR;
+    var context = widget.get_style_context();
+    var state = context.get_state();
+    if ((state & Gtk.StateFlags.DIR_LTR) != 0)
+        return true;
+    return false;
 }
 
 public Gtk.Separator add_separator (Gtk.Box box,

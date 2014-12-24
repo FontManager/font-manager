@@ -119,6 +119,11 @@ namespace FontManager {
             var obj = val.get_object();
             string font_desc;
             bool active;
+        #if GTK_316
+            Pango.AttrList attrs = new Pango.AttrList();
+            attrs.insert(Pango.attr_fallback_new(false));
+            cell.set_property("attributes", attrs);
+        #endif
             if (obj is FontConfig.Family) {
                 font_desc = ((FontConfig.Family) obj).description;
                 active = !(((FontConfig.Family) obj).name in reject);

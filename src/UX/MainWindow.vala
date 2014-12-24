@@ -259,6 +259,11 @@ namespace FontManager {
             main_stack.add_named(main_pane, "Default");
             main_stack.add_named(user_source_tree, "Sources");
             main_box.pack_end(main_stack, true, true, 0);
+            /* XXX: Should be true by default? It's not... */
+            main_pane.child_set_property(sidebar, "resize", true);
+            main_pane.child_set_property(content_box, "resize", true);
+            content_pane.child_set_property(fonttree, "resize", true);
+            content_pane.child_set_property(separator, "resize", true);
             if (Gnome3()) {
                 set_titlebar(titlebar);
             } else {
