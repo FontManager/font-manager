@@ -58,6 +58,11 @@ namespace FontManager {
                 buffer.get_end_iter(out iter);
                 buffer.insert_with_tags_by_name(iter, _pangram, -1, line, "FontDescription", null);
             }
+        #if GTK_316
+            Gtk.TextIter start, end;
+            buffer.get_bounds(out start, out end);
+            buffer.apply_tag(this.tag_table.lookup("FontFallback"), start, end);
+        #endif
             return;
         }
 

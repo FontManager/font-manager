@@ -23,7 +23,14 @@ namespace FontManager {
 
     public class StandardTextTagTable : Gtk.TextTagTable {
 
-        string [] defaults = { "FontDescription", "FontSize", "SizePoint" };
+        string [] defaults = {
+            "FontDescription",
+            "FontSize",
+            "SizePoint",
+        #if GTK_316
+            "FontFallback"
+        #endif
+        };
 
         construct {
             foreach (string tag in defaults)
@@ -32,6 +39,10 @@ namespace FontManager {
             sp.family = "Monospace";
             sp.rise = 1250;
             sp.size_points = 6.0;
+        #if GTK_316
+            Gtk.TextTag fb = lookup(defaults[3]);
+            fb.fallback = false;
+        #endif
         }
 
     }

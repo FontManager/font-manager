@@ -115,10 +115,16 @@ public abstract class CellRendererPill : Gtk.CellRendererText {
         var cutoff = radius + ((int) xpad / 3);
         switch (junction_side) {
             case Gtk.JunctionSides.RIGHT:
-                x = (cell_area.x + cell_area.width) - (layout_w + cutoff);
+                if (is_left_to_right(widget))
+                    x = (cell_area.x + cell_area.width) - (layout_w + cutoff);
+                else
+                    x = cell_area.x - cutoff;
                 break;
             case Gtk.JunctionSides.LEFT:
-                x = cell_area.x - cutoff;
+                if (is_left_to_right(widget))
+                    x = cell_area.x - cutoff;
+                else
+                    x = (cell_area.x + cell_area.width) - (layout_w + cutoff);
                 break;
             default:
                 x = cell_area.x + (int) ((cell_area.width - w) * xalign);

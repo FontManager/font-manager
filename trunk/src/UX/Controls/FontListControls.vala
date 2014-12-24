@@ -80,7 +80,14 @@ namespace FontManager {
                 else
                     arrow.set(Gtk.ArrowType.RIGHT, Gtk.ShadowType.ETCHED_IN);
             });
-            show_props.toggled.connect(() => { show_properties(show_props.active); });
+            show_props.toggled.connect(() => {
+                show_properties(show_props.active);
+                if (show_props.active)
+                    show_props.set_tooltip_text(_("Hide font information"));
+                else
+                    show_props.set_tooltip_text(_("View font information"));
+
+            });
             return;
         }
 

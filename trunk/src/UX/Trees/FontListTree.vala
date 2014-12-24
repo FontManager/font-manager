@@ -174,6 +174,11 @@ namespace FontManager {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();
+        #if GTK_316
+            Pango.AttrList attrs = new Pango.AttrList();
+            attrs.insert(Pango.attr_fallback_new(false));
+            cell.set_property("attributes", attrs);
+        #endif
             if (obj is FontConfig.Family) {
                 cell.set_property("text", ((FontConfig.Family) obj).description);
                 cell.set_property("ypad", 0);
