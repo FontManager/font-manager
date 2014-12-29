@@ -256,7 +256,11 @@ namespace FontManager {
             separator.show();
             separator.pack_end(view_stack, true, true, 0);
             content_pane.add2(separator);
-            main_stack.add_named(main_pane, "Default");
+            var _main_pane = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            _main_pane.pack_start(main_pane, true, true, 0);
+            add_separator(_main_pane, Gtk.Orientation.HORIZONTAL);
+            _main_pane.show();
+            main_stack.add_named(_main_pane, "Default");
             main_stack.add_named(user_source_tree, "Sources");
             main_box.pack_end(main_stack, true, true, 0);
             /* XXX: Should be true by default? It's not... */

@@ -19,10 +19,14 @@
  *  Jerry Casiano <JerryCasiano@gmail.com>
  */
 
-ThinPaned {
-    -GtkPaned-handle-size: 0px;
+GtkWidget {
+    -GtkWidget-window-dragging: 1;
 }
 
 GtkEntry {
     padding : 4px;
+}
+
+ThinPaned {
+    -GtkPaned-handle-size: 0px;
 }
