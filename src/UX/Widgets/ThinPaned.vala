@@ -31,7 +31,7 @@ public class ThinPaned : Gtk.Paned {
         install_style_property (new ParamSpecInt (STYLE_PROP_OVERLAY_HANDLE_SIZE,
                                                   "Overlay handle's size",
                                                   "Width of the invisible overlay handle",
-                                                  1, 50, 10,
+                                                  1, 48, 8,
                                                   ParamFlags.READABLE));
     }
 
