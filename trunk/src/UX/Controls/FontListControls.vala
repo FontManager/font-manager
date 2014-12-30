@@ -50,7 +50,7 @@ namespace FontManager {
             entry.set_size_request(0, 0);
             entry.placeholder_text = _("Search Families...");
             show_props = new Gtk.ToggleButton();
-        #if GTK_312
+        #if GTK_314
             show_props.set_image(new Gtk.Image.from_icon_name("stock-eye-symbolic", Gtk.IconSize.MENU));
         #else
             show_props.set_image(new Gtk.Image.from_resource("/org/gnome/FontManager/icons/16x16/actions/stock-eye-symbolic.svg"));
