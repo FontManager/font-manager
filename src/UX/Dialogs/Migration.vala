@@ -51,33 +51,40 @@ namespace FontManager {
         }
 
         public static bool approved (Gtk.Window? parent) {
-            int response = 0;
-            var ni = new Gtk.Dialog.with_buttons(_("Update Required"),
-                                                    parent,
-                                                    (Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT),
-                                                    _("Cancel"),
-                                                    0,
-                                                    _("Continue"),
-                                                    1);
-            var box = ni.get_content_area();
+            Gtk.ResponseType response = Gtk.ResponseType.NONE;
+            var dialog = new Gtk.Dialog.with_buttons(_("Update Required"),
+                                                        parent,
+                                                        (Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT),
+                                                        null);
+            var cancel = new Gtk.Button.with_mnemonic(_("_Cancel"));
+            var accept = new Gtk.Button.with_mnemonic(_("_Continue"));
+            var header = new Gtk.HeaderBar();
+            header.set_title(_("Update Required"));
+            header.pack_start(cancel);
+            header.pack_end(accept);
+            cancel.clicked.connect(() => { dialog.response(Gtk.ResponseType.CANCEL); });
+            accept.clicked.connect(() => { dialog.response(Gtk.ResponseType.ACCEPT); });
+            dialog.set_titlebar(header);
+            dialog.modal = true;
+            dialog.set_size_request(540, 480);
+            var box = dialog.get_content_area();
             box.set_orientation(Gtk.Orientation.VERTICAL);
             var scrolled = new Gtk.ScrolledWindow(null, null);
             var textview = new StaticTextView(null);
             textview.hexpand = textview.vexpand = true;
             textview.view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
-            add_separator(box, Gtk.Orientation.HORIZONTAL);
             scrolled.add(textview);
             box.pack_start(scrolled, true, true, 0);
-            add_separator(box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
             textview.buffer.set_text(update_notice);
+            header.show_all();
             box.show_all();
-            ni.response.connect((i) => { response = i; ni.destroy(); });
-            ni.close.connect(() => { ni.destroy(); });
-            ni.delete_event.connect(() => { ni.destroy(); return false; });
-            ni.set_transient_for(parent);
-            ni.set_size_request(475, 350);
-            ni.run();
-            return (response != 0);
+            dialog.response.connect((i) => { response = (Gtk.ResponseType) i; dialog.destroy(); });
+            dialog.close.connect(() => { dialog.destroy(); });
+            dialog.delete_event.connect(() => { dialog.destroy(); return false; });
+            dialog.set_transient_for(parent);
+            dialog.set_size_request(475, 350);
+            dialog.run();
+            return (response == Gtk.ResponseType.ACCEPT);
         }
 
         public static void run () {
