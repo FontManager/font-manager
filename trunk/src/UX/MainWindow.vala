@@ -476,8 +476,11 @@ namespace FontManager {
                 sidebar.standard.collection_tree.queue_draw();
                 fontlist.queue_draw();
                 browser.queue_draw();
-                }
-            );
+            });
+
+            sidebar.standard.collection_tree.changed.connect(() => {
+                update_unsorted_category();
+            });
 
             titlebar.install_selected.connect(() => {
                 var selected = FileSelector.run_install((Gtk.Window) this);

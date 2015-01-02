@@ -52,25 +52,14 @@ namespace FontManager {
 
         public static bool approved (Gtk.Window? parent) {
             Gtk.ResponseType response = Gtk.ResponseType.NONE;
-            var dialog = new Gtk.Dialog.with_buttons(_("Update Required"),
-                                                        parent,
-                                                        (Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT),
-                                                        null);
+            var dialog = new Gtk.Dialog();
             var cancel = new Gtk.Button.with_mnemonic(_("_Cancel"));
             var accept = new Gtk.Button.with_mnemonic(_("_Continue"));
             var header = new Gtk.HeaderBar();
-            header.set_title(_("Update Required"));
-            header.pack_start(cancel);
-            header.pack_end(accept);
-            cancel.clicked.connect(() => { dialog.response(Gtk.ResponseType.CANCEL); });
-            accept.clicked.connect(() => { dialog.response(Gtk.ResponseType.ACCEPT); });
-            dialog.set_titlebar(header);
-            dialog.modal = true;
-            dialog.set_size_request(540, 480);
             var box = dialog.get_content_area();
-            box.set_orientation(Gtk.Orientation.VERTICAL);
             var scrolled = new Gtk.ScrolledWindow(null, null);
             var textview = new StaticTextView(null);
+            box.set_orientation(Gtk.Orientation.VERTICAL);
             textview.hexpand = textview.vexpand = true;
             textview.view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
             scrolled.add(textview);
@@ -78,11 +67,19 @@ namespace FontManager {
             textview.buffer.set_text(update_notice);
             header.show_all();
             box.show_all();
+            header.set_title(_("Update Required"));
+            header.pack_start(cancel);
+            header.pack_end(accept);
+            dialog.set_titlebar(header);
+            dialog.set_transient_for(parent);
+            dialog.modal = true;
+            dialog.destroy_with_parent = true;
+            dialog.set_size_request(540, 480);
+            cancel.clicked.connect(() => { dialog.response(Gtk.ResponseType.CANCEL); });
+            accept.clicked.connect(() => { dialog.response(Gtk.ResponseType.ACCEPT); });
             dialog.response.connect((i) => { response = (Gtk.ResponseType) i; dialog.destroy(); });
             dialog.close.connect(() => { dialog.destroy(); });
             dialog.delete_event.connect(() => { dialog.destroy(); return false; });
-            dialog.set_transient_for(parent);
-            dialog.set_size_request(475, 350);
             dialog.run();
             return (response == Gtk.ResponseType.ACCEPT);
         }

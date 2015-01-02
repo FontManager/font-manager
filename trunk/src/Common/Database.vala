@@ -21,6 +21,8 @@
 
 namespace FontManager {
 
+    internal static Database? db = null;
+
     /* Error mapping/checking originally from Shotwell code */
     public errordomain DatabaseError {
         ERROR,
@@ -251,7 +253,9 @@ namespace FontManager {
     }
 
     Database get_database() throws DatabaseError {
-        Database db = new Database();
+        if (db != null)
+            return db;
+        db = new Database();
         db.file = get_database_file();
         db.execute_query(CREATE_SQL);
         db.check_result(db.stmt.step(), "Initialize database if needed", Sqlite.DONE);
