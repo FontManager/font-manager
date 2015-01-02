@@ -74,7 +74,9 @@ namespace FontManager {
             dialog.set_transient_for(parent);
             dialog.modal = true;
             dialog.destroy_with_parent = true;
-            dialog.set_size_request(540, 480);
+            dialog.set_size_request(540, 360);
+            header.show_all();
+            box.show_all();
             cancel.clicked.connect(() => { dialog.response(Gtk.ResponseType.CANCEL); });
             accept.clicked.connect(() => { dialog.response(Gtk.ResponseType.ACCEPT); });
             dialog.response.connect((i) => { response = (Gtk.ResponseType) i; dialog.destroy(); });
