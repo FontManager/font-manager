@@ -31,6 +31,7 @@ namespace FontManager {
     public class CollectionTree : Gtk.ScrolledWindow {
 
         public signal void update_ui ();
+        public signal void changed ();
         public signal void selection_changed (Collection group);
         public signal void rename_collection (Collection group, string new_name);
 
@@ -120,6 +121,7 @@ namespace FontManager {
                 return false;
             });
             selected_collection.set_active_from_fonts(reject);
+            this.changed();
             return res;
         }
 
@@ -149,6 +151,7 @@ namespace FontManager {
             if (collections.has_key(selected_collection.name))
                 collections.unset(selected_collection.name);
             ((Gtk.TreeStore) model).remove(ref _selected_iter_);
+            this.changed();
             return;
         }
 

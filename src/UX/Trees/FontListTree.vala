@@ -164,6 +164,7 @@ namespace FontManager {
                 reject.add(family.description);
             reject.save();
             val.unset();
+            queue_draw();
             return;
         }
 
