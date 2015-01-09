@@ -78,8 +78,13 @@ namespace FontManager {
             tree.set_tooltip_column(CategoryColumn.COMMENT);
             tree.test_expand_row.connect((t,i,p) => { t.collapse_all(); return false; });
             tree.get_selection().changed.connect(on_selection_changed);
-            tree.show();
             add(tree);
+        }
+
+        public override void show () {
+            tree.show();
+            base.show();
+            return;
         }
 
         public void select_first_row () {
@@ -93,7 +98,7 @@ namespace FontManager {
         }
 
 
-        internal void pixbuf_cell_data_func (Gtk.CellLayout layout,
+        private void pixbuf_cell_data_func (Gtk.CellLayout layout,
                                       Gtk.CellRenderer cell,
                                       Gtk.TreeModel model,
                                       Gtk.TreeIter treeiter) {
@@ -108,7 +113,7 @@ namespace FontManager {
             return;
         }
 
-        internal void on_selection_changed (Gtk.TreeSelection selection) {
+        private void on_selection_changed (Gtk.TreeSelection selection) {
             Gtk.TreeIter iter;
             Gtk.TreeModel model;
             GLib.Value val;

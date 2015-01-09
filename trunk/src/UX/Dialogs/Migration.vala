@@ -65,8 +65,6 @@ namespace FontManager {
             scrolled.add(textview);
             box.pack_start(scrolled, true, true, 0);
             textview.buffer.set_text(update_notice);
-            header.show_all();
-            box.show_all();
             header.set_title(_("Update Required"));
             header.pack_start(cancel);
             header.pack_end(accept);

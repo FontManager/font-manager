@@ -55,10 +55,13 @@ namespace FontManager {
         public Gtk.ProgressBar progress { get; private set;}
         public Gtk.TreeView treeview { get; private set;}
 
-        Gtk.TreeStore? _model;
-        FontConfig.Reject _reject;
-        Gtk.Overlay overlay;
-        bool _loading = false;
+        private bool _loading = false;
+        private Gtk.Box main_box;
+        private Gtk.Overlay overlay;
+        private Gtk.TreeStore? _model;
+        private Gtk.ScrolledWindow scroll;
+        private FontConfig.Reject _reject;
+        private CellRendererTitle renderer;
 
         public Browse () {
             base.init();
@@ -72,30 +75,35 @@ namespace FontManager {
             overlay = new Gtk.Overlay();
             overlay.add_overlay(progress);
             overlay.get_style_context().add_class(Gtk.STYLE_CLASS_ENTRY);
-            var main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             overlay.add(main_box);
             add(overlay);
-            var scroll = new Gtk.ScrolledWindow(null, null);
+            scroll = new Gtk.ScrolledWindow(null, null);
             scroll.add(treeview);
             scroll.vexpand = true;
             scroll.hexpand = true;
             main_box.pack_start(scroll, true, true, 0);
-            treeview.show();
-            var renderer = new CellRendererTitle();
+            renderer = new CellRendererTitle();
             renderer.xpad = 48;
             renderer.junction_side = Gtk.JunctionSides.LEFT;
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             main_box.pack_end(fontscale, false, true, 0);
-            fontscale.show();
             treeview.set_enable_search(true);
             treeview.set_search_column(FontModelColumn.DESCRIPTION);
             treeview.insert_column_with_data_func(0, "", renderer, cell_data_func);
             treeview.get_selection().set_mode(Gtk.SelectionMode.NONE);
+            expand_all();
+        }
+
+        public override void show () {
+            treeview.show();
+            fontscale.show();
             treeview.show();
             scroll.show();
             main_box.show();
             overlay.show();
-            expand_all();
+            base.show();
+            return;
         }
 
         public void expand_all () {
@@ -110,10 +118,10 @@ namespace FontManager {
             return;
         }
 
-        void cell_data_func (Gtk.TreeViewColumn layout,
-                               Gtk.CellRenderer cell,
-                               Gtk.TreeModel model,
-                               Gtk.TreeIter treeiter) {
+        private void cell_data_func (Gtk.TreeViewColumn layout,
+                                       Gtk.CellRenderer cell,
+                                       Gtk.TreeModel model,
+                                       Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();

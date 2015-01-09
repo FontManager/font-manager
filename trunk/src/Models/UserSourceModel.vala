@@ -41,7 +41,7 @@ namespace FontManager {
             }
         }
 
-        internal FontConfig.Sources _sources;
+        private FontConfig.Sources _sources;
 
         construct {
             set_column_types({typeof(Object), typeof(string)});

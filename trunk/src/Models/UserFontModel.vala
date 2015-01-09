@@ -25,7 +25,7 @@ namespace FontManager {
 
         public weak Database db { get; set; }
 
-        Category user_fonts;
+        private Category user_fonts;
 
         public UserFontModel (FontConfig.Families families, Database db) {
             this.db = db;

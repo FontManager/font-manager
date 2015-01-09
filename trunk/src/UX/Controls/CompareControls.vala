@@ -40,11 +40,17 @@ namespace FontManager {
             box.pack_end(bg_color_button, false, false, 0);
             box.pack_end(fg_color_button, false, false, 0);
             set_default_button_relief(box);
-            box.show_all();
             connect_signals();
         }
 
-        internal new void connect_signals () {
+        public override void show () {
+            fg_color_button.show();
+            bg_color_button.show();
+            base.show();
+            return;
+        }
+
+        private new void connect_signals () {
             fg_color_button.color_set.connect((w) => { foreground_set(w.get_rgba()); });
             bg_color_button.color_set.connect((w) => { background_set(w.get_rgba()); });
             return;

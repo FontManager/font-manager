@@ -23,7 +23,7 @@ namespace FontManager {
 
     public class StandardTextTagTable : Gtk.TextTagTable {
 
-        string [] defaults = {
+        private string [] defaults = {
             "FontDescription",
             "FontSize",
             "SizePoint",
@@ -78,7 +78,12 @@ namespace FontManager {
             view.accepts_tab = false;
             view.overwrite = false;
             add(view);
+        }
+
+        public override void show () {
             view.show();
+            base.show();
+            return;
         }
 
         public StandardTextView (StandardTextTagTable? tag_table) {
@@ -103,7 +108,7 @@ namespace FontManager {
             Gtk.drag_dest_set_target_list(this.view, list);
         }
 
-        bool on_event (Gdk.Event event) {
+        protected bool on_event (Gdk.Event event) {
             if (event.type == Gdk.EventType.SCROLL)
                 return false;
             ((Gtk.TextView) this.view).get_window(Gtk.TextWindowType.TEXT).set_cursor(null);

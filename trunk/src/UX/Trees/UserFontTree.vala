@@ -65,12 +65,12 @@ namespace FontManager {
             return arr;
         }
 
-        internal void connect_signals () {
+        private void connect_signals () {
             toggle.toggled.connect(on_font_toggled);
             return;
         }
 
-        internal int family_state (FontConfig.Family family) {
+        private int family_state (FontConfig.Family family) {
             Gee.ArrayList <FontConfig.Font> faces = family.list_faces();
             int total = faces.size;
             int active = 0;
@@ -86,7 +86,7 @@ namespace FontManager {
                 return 0;
         }
 
-        void on_font_toggled (string path) {
+        private void on_font_toggled (string path) {
             Gtk.TreeIter iter;
             Value val;
             model.get_iter_from_string(out iter, path);
@@ -115,10 +115,10 @@ namespace FontManager {
             return;
         }
 
-        void preview_cell_data_func (Gtk.TreeViewColumn layout,
-                                    Gtk.CellRenderer cell,
-                                    Gtk.TreeModel model,
-                                    Gtk.TreeIter treeiter) {
+        private void preview_cell_data_func (Gtk.TreeViewColumn layout,
+                                                Gtk.CellRenderer cell,
+                                                Gtk.TreeModel model,
+                                                Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();
@@ -138,10 +138,10 @@ namespace FontManager {
             return;
         }
 
-        void toggle_cell_data_func (Gtk.TreeViewColumn layout,
-                                    Gtk.CellRenderer cell,
-                                    Gtk.TreeModel model,
-                                    Gtk.TreeIter treeiter) {
+        private void toggle_cell_data_func (Gtk.TreeViewColumn layout,
+                                                Gtk.CellRenderer cell,
+                                                Gtk.TreeModel model,
+                                                Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();
@@ -163,10 +163,10 @@ namespace FontManager {
             return;
         }
 
-        void text_cell_data_func (Gtk.TreeViewColumn layout,
-                                    Gtk.CellRenderer cell,
-                                    Gtk.TreeModel model,
-                                    Gtk.TreeIter treeiter) {
+        private void text_cell_data_func (Gtk.TreeViewColumn layout,
+                                            Gtk.CellRenderer cell,
+                                            Gtk.TreeModel model,
+                                            Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();
@@ -183,10 +183,10 @@ namespace FontManager {
             return;
         }
 
-        void count_cell_data_func (Gtk.TreeViewColumn layout,
-                                    Gtk.CellRenderer cell,
-                                    Gtk.TreeModel model,
-                                    Gtk.TreeIter treeiter) {
+        private void count_cell_data_func (Gtk.TreeViewColumn layout,
+                                            Gtk.CellRenderer cell,
+                                            Gtk.TreeModel model,
+                                            Gtk.TreeIter treeiter) {
             if (model.iter_has_child(treeiter)) {
                 int count = 0;
                 Gtk.TreeIter child;

@@ -88,6 +88,7 @@ namespace FontManager {
         protected Gtk.Stack stack;
         private bool _loading = false;
         private Gtk.Spinner spinner;
+        private Gtk.Box box;
 
         public SideBar () {
             stack = new Gtk.Stack();
@@ -97,7 +98,7 @@ namespace FontManager {
         #else
             stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
         #endif
-            var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             box.hexpand = box.vexpand = true;
             box.pack_start(stack, true, true, 0);
             spinner = new Gtk.Spinner();
@@ -106,8 +107,6 @@ namespace FontManager {
             spinner.set_size_request(48, 48);
             add(box);
             add_overlay(spinner);
-            stack.show();
-            box.show();
             get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             spinner.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             stack.notify["visible-child-name"].connect(() => {
@@ -118,6 +117,13 @@ namespace FontManager {
                     stack.set_transition_type(Gtk.StackTransitionType.OVER_RIGHT);
             #endif
             });
+        }
+
+        public override void show () {
+            stack.show();
+            box.show();
+            base.show();
+            return;
         }
 
         public void add_view (Gtk.Widget sidebar_view, string name) {

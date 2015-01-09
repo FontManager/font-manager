@@ -21,7 +21,7 @@
 
 namespace FontManager {
 
-    internal static Database? db = null;
+    private static Database? db = null;
 
     /* Error mapping/checking originally from Shotwell code */
     public errordomain DatabaseError {
@@ -263,7 +263,7 @@ namespace FontManager {
         return db;
     }
 
-    internal string get_database_file () {
+    private string get_database_file () {
         string dirpath = Path.build_filename(Environment.get_user_cache_dir(), NAME);
         string filepath = Path.build_filename(dirpath, "%s.sqlite".printf(NAME));
         DirUtils.create_with_parents(dirpath, 0755);
@@ -315,7 +315,7 @@ namespace FontManager {
         return;
     }
 
-    internal Gee.HashSet <string> get_known_files (Database db) {
+    private Gee.HashSet <string> get_known_files (Database db) {
         var results = new Gee.HashSet <string> ();
         db.reset();
         db.table = "Fonts";

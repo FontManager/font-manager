@@ -33,7 +33,7 @@ namespace FontManager {
             }
         }
 
-        Collections groups;
+        private Collections groups;
 
         construct {
             set_column_types({typeof(Object), typeof(string), typeof(string)});
@@ -79,7 +79,7 @@ namespace FontManager {
             });
         }
 
-        Gee.ArrayList <Collection> sort_groups (Gee.Collection <Collection> groups) {
+        private Gee.ArrayList <Collection> sort_groups (Gee.Collection <Collection> groups) {
             var sorted = new Gee.ArrayList <Collection> ();
             sorted.add_all(groups);
             sorted.sort((CompareDataFunc) sort_on_index);
@@ -106,7 +106,7 @@ namespace FontManager {
             return;
         }
 
-        void insert_children (Gee.ArrayList <Filter> groups, Gtk.TreeIter parent) {
+        private void insert_children (Gee.ArrayList <Filter> groups, Gtk.TreeIter parent) {
             var sorted = sort_groups(groups);
             foreach(var child in sorted) {
                 Gtk.TreeIter _iter;

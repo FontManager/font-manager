@@ -42,9 +42,9 @@ namespace FontConfig {
             }
         }
 
-        string? target_file = null;
-        string? target_element = null;
-        internal bool _dirty = false;
+        private string? target_file = null;
+        private string? target_element = null;
+        private bool _dirty = false;
 
         public Sources () {
             string old_path = Path.build_filename(get_config_dir(), "UserSources");

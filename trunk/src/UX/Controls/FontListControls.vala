@@ -30,13 +30,14 @@ namespace FontManager {
         public bool expanded { get; private set; }
         public Gtk.SearchEntry entry { get; private set; }
 
-        internal Gtk.Button _remove;
-        internal Gtk.Button _expand;
-        internal Gtk.Arrow arrow;
-        internal Gtk.ToggleButton show_props;
+        private Gtk.Button _remove;
+        private Gtk.Button _expand;
+        private Gtk.Arrow arrow;
+        private Gtk.Box box;
+        private Gtk.ToggleButton show_props;
 
         public FontListControls () {
-            var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
+            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
             box.border_width = 2;
             _expand = new Gtk.Button();
             arrow = new Gtk.Arrow(Gtk.ArrowType.RIGHT, Gtk.ShadowType.ETCHED_IN);
@@ -61,19 +62,24 @@ namespace FontManager {
             box.pack_start(_expand, false, false, 0);
             box.pack_start(_remove, false, false, 0);
             set_default_button_relief(box);
-            entry.show();
-            _remove.show();
-            arrow.show();
-            _expand.show();
-            show_props.show();
-            box.show();
             add(box);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             connect_signals();
             set_size_request(0, 0);
         }
 
-        internal void connect_signals () {
+        public override void show () {
+            entry.show();
+            _remove.show();
+            arrow.show();
+            _expand.show();
+            show_props.show();
+            box.show();
+            base.show();
+            return;
+        }
+
+        private void connect_signals () {
             _remove.clicked.connect((w) => { remove_selected(); });
             _expand.clicked.connect((w) => {
                 expanded = !expanded;

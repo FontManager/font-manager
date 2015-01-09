@@ -56,8 +56,8 @@ namespace FontConfig {
             }
         }
 
-        Font? _font = null;
-        string? _family = null;
+        private Font? _font = null;
+        private string? _family = null;
 
         public Properties () {
             font = null;
@@ -89,7 +89,7 @@ namespace FontConfig {
             return true;
         }
 
-        void reset_properties () {
+        private void reset_properties () {
             antialias = false;
             hinting = false;
             hintstyle = 0;
@@ -102,7 +102,7 @@ namespace FontConfig {
             larger_than = 0.0;
         }
 
-        string get_config_file () {
+        private string get_config_file () {
             if (font == null && family == null)
                 return Path.build_filename(get_config_dir(), "28-Properties.conf");
             else
@@ -123,7 +123,7 @@ namespace FontConfig {
             return false;
         }
 
-        void load_assignments (string target_file) {
+        private void load_assignments (string target_file) {
             Xml.Parser.init();
 
             Xml.Doc * doc = Xml.Parser.parse_file(target_file);
@@ -154,7 +154,7 @@ namespace FontConfig {
             return;
         }
 
-        void parse_node (Xml.Node * node) {
+        private void parse_node (Xml.Node * node) {
             for (Xml.Node * iter = node->children; iter != null; iter=iter->next) {
                 /* Spaces between tags are also nodes, discard them */
                 if (iter->type != Xml.ElementType.ELEMENT_NODE) {
@@ -237,7 +237,7 @@ namespace FontConfig {
             return;
         }
 
-        void write_assignments (XmlWriter writer) {
+        private void write_assignments (XmlWriter writer) {
             writer.write_assignment("autohint", "bool", autohint.to_string());
             writer.write_assignment("antialias", "bool", antialias.to_string());
             writer.write_assignment("hinting", "bool", hinting.to_string());
@@ -249,7 +249,7 @@ namespace FontConfig {
             return;
         }
 
-        void write_family_test (XmlWriter writer) {
+        private void write_family_test (XmlWriter writer) {
             writer.start_element("test");
             writer.write_attribute("name", "family");
             if (font == null)
@@ -260,7 +260,7 @@ namespace FontConfig {
             return;
         }
 
-        void write_match_criteria (XmlWriter writer) requires (font != null) {
+        private void write_match_criteria (XmlWriter writer) requires (font != null) {
             writer.write_comparison("slant", "eq", "int", font.slant.to_string());
             writer.write_comparison("weight", "eq", "int", font.weight.to_string());
             writer.write_comparison("width", "eq", "int", font.width.to_string());

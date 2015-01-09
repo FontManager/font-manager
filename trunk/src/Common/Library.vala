@@ -24,10 +24,10 @@ namespace FontManager {
     namespace Library {
 
         public static ProgressCallback? progress = null;
-        internal static ArchiveManager? archive_manager = null;
-        internal static Gee.ArrayList <string>? supported_archives = null;
+        private static ArchiveManager? archive_manager = null;
+        private static Gee.ArrayList <string>? supported_archives = null;
 
-        internal bool is_metrics_file (string name) {
+        private bool is_metrics_file (string name) {
             foreach (var ext in FONT_METRICS)
                 if (name.has_suffix(ext))
                     return true;
@@ -68,7 +68,7 @@ namespace FontManager {
                 return;
             }
 
-            internal void process_directory (File dir) {
+            private void process_directory (File dir) {
                 try {
                     FileInfo fileinfo;
                     var attrs = "%s,%s,%s".printf(FileAttribute.STANDARD_NAME, FileAttribute.STANDARD_CONTENT_TYPE, FileAttribute.STANDARD_TYPE);
@@ -98,7 +98,7 @@ namespace FontManager {
                 return;
             }
 
-            internal void process_files (Gee.ArrayList <File> filelist) {
+            private void process_files (Gee.ArrayList <File> filelist) {
                 int total = filelist.size;
                 int processed = 0;
                 foreach (var file in filelist) {
@@ -169,7 +169,7 @@ namespace FontManager {
                 fini();
             }
 
-            internal static void init () {
+            private static void init () {
                 if (archive_manager == null) {
                     archive_manager = new ArchiveManager();
                     supported_archives = archive_manager.get_supported_types();
@@ -177,7 +177,7 @@ namespace FontManager {
                 return;
             }
 
-            internal static void fini () {
+            private static void fini () {
                 if (tmpdir == null)
                     return;
                 remove_directory(tmpdir);
@@ -185,7 +185,7 @@ namespace FontManager {
                 return;
             }
 
-            internal static void try_copy (File original, File copy) {
+            private static void try_copy (File original, File copy) {
                 try {
                     original.copy(copy, FileCopyFlags.OVERWRITE | FileCopyFlags.ALL_METADATA);
                 } catch (Error e) {
@@ -198,7 +198,7 @@ namespace FontManager {
                 return;
             }
 
-            internal static void install_font (InstallData data) {
+            private static void install_font (InstallData data) {
                 if (data.font == null || data.fontinfo == null) {
                     if (install_failed == null)
                         install_failed = new Gee.HashMap <string, string> ();
@@ -240,7 +240,7 @@ namespace FontManager {
                 return;
             }
 
-            internal static File? get_temp_dir () {
+            private static File? get_temp_dir () {
                 string? _tmpdir = null;
                 try {
                     _tmpdir = DirUtils.make_tmp(TMPL);
@@ -250,7 +250,7 @@ namespace FontManager {
                 return _tmpdir != null ? File.new_for_path(_tmpdir) : null;
             }
 
-            internal static void process_files (Gee.ArrayList <File> filelist) {
+            private static void process_files (Gee.ArrayList <File> filelist) {
                 var sorter = new Sorter();
                 sorter.sort(filelist);
                 int processed = 0;

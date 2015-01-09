@@ -34,7 +34,7 @@ namespace FontConfig {
 
         public string? target_element { get; set; default = null; }
 
-        string? _target_file = null;
+        private string? _target_file = null;
 
         public virtual void save ()
         requires (target_file != null && target_element != null) {

@@ -41,14 +41,15 @@ namespace FontManager {
 
         public FontInfo.from_filepath (string filepath, int index = 0) {
             status = FreeType.query_file_info(this, filepath, index);
-            if (status != 0)
-                warning("Failed to gather information for %s : %i", filepath, status);
-            else
-                post(filepath);
+            post(filepath);
             return;
         }
 
         void post (string filepath) {
+            if (status != 0) {
+                warning("Failed to gather information for %s : %i", filepath, status);
+                return;
+            }
             /* Strip commonly found words from version string so that
              * we're left with just a number whenever possible.*/
              if (version == null) {

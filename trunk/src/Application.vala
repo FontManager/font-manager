@@ -28,6 +28,8 @@ namespace FontManager {
         public MainWindow main_window { get; set; }
         [DBus (visible = false)]
         public Gtk.Builder builder { get; set; }
+        [DBus (visible = false)]
+        public static OpenDialog? open_dialog = null;
 
         const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, ref ABOUT, "About the application", null },
@@ -37,10 +39,10 @@ namespace FontManager {
             { null }
         };
 
-        static bool ABOUT = false;
-        static bool VERSION = false;
-        static bool DEBUG = false;
-        static bool VERBOSE = false;
+        private static bool ABOUT = false;
+        private static bool VERSION = false;
+        private static bool DEBUG = false;
+        private static bool VERBOSE = false;
 
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
@@ -56,6 +58,21 @@ namespace FontManager {
         }
 
         public override void open (File [] files, string hint) {
+            if (open_dialog == null) {
+                open_dialog = new OpenDialog();
+                add_window(open_dialog);
+            }
+            open_dialog.file = files[0];
+            open_dialog.delete_event.connect(() => {
+                if (get_windows().length() == 1)
+                    quit();
+                else
+                    return open_dialog.hide_on_delete();
+                /* Silence */
+                return false;
+            });
+            open_dialog.destroy.connect(() => { open_dialog.hide(); });
+            open_dialog.show();
             return;
         }
 
@@ -101,6 +118,10 @@ namespace FontManager {
 
         public void on_quit () {
             Main.instance.settings.apply();
+            if (open_dialog != null) {
+                open_dialog.hide();
+                remove_window(open_dialog);
+            }
             main_window.hide();
             remove_window(main_window);
             quit();
@@ -117,6 +138,7 @@ namespace FontManager {
         }
 
         public static int main (string [] args) {
+            Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
             Environment.set_application_name(About.NAME);
             Environment.set_variable("XDG_CONFIG_HOME", "", true);
             FontConfig.enable_user_config(false);

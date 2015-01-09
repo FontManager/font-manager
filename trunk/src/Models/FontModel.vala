@@ -40,7 +40,7 @@ namespace FontManager {
             }
         }
 
-        internal weak FontConfig.Families _families;
+        private weak FontConfig.Families _families;
 
         construct {
             set_column_types({typeof(Object), typeof(string), typeof(int)});

@@ -34,8 +34,8 @@ namespace FontManager {
             }
         }
 
-        internal Gee.ArrayList <Category> categories;
-        internal weak Database db;
+        private Gee.ArrayList <Category> categories;
+        private weak Database db;
 
         construct {
             set_column_types({typeof(Object), typeof(string), typeof(string), typeof(string), typeof(int), typeof(bool)});
@@ -67,7 +67,7 @@ namespace FontManager {
 
     }
 
-    Gee.ArrayList <Category> get_default_categories (Database db) {
+    private Gee.ArrayList <Category> get_default_categories (Database db) {
         var filters = new Gee.HashMap <string, Category> ();
         filters["All"] = new Category(_("All"), _("All Fonts"), "format-text-bold", null);
         filters["All"].index = 0;
@@ -99,7 +99,7 @@ namespace FontManager {
         return sorted_filters;
     }
 
-    Category construct_panose_filter () {
+    private Category construct_panose_filter () {
         var panose = new Category(_("Family Kind"), _("Only fonts which include Panose information will be grouped here."), "folder", "panose IS NOT NULL");
         panose.children.add(new Category(_("Any"), _("Any"), "emblem-documents", "panose LIKE \"0:%\""));
         panose.children.add(new Category(_("No Fit"), _("No Fit"), "emblem-documents", "panose LIKE \"1:%\""));
@@ -110,7 +110,7 @@ namespace FontManager {
         return panose;
     }
 
-    Category construct_filter (Database db, string name, string comment, string keyword) {
+    private Category construct_filter (Database db, string name, string comment, string keyword) {
         var filter = new Category(name, comment, "folder", null);
         try {
             add_children_from_db_results(db, filter.children, keyword);
@@ -121,7 +121,7 @@ namespace FontManager {
         return filter;
     }
 
-    void add_children_from_db_results (Database db, Gee.ArrayList <Category> filters, string keyword) throws DatabaseError {
+    private void add_children_from_db_results (Database db, Gee.ArrayList <Category> filters, string keyword) throws DatabaseError {
         db.execute_query("SELECT DISTINCT %s FROM Fonts ORDER BY %s;".printf(keyword, keyword));
         foreach (var row in db) {
             if (row.column_type(0) == Sqlite.TEXT) {

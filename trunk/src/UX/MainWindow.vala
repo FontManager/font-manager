@@ -106,7 +106,7 @@ namespace FontManager {
         public FontList fontlist { get; private set; }
         public FontListTree fonttree { get; private set; }
         public UserSourceTree user_source_tree { get; private set; }
-        public BaseMetadata properties { get; private set; }
+        public Metadata.Pane properties { get; private set; }
         public State state { get; private set; }
 
         public Mode mode {
@@ -184,10 +184,12 @@ namespace FontManager {
             }
         }
 
-        internal bool _loading = false;
-        internal bool sidebar_switch = false;
-        internal double _progress = 0.0;
-        internal Mode _mode;
+        private bool _loading = false;
+        private bool sidebar_switch = false;
+        private double _progress = 0.0;
+        private Mode _mode;
+        private Gtk.Box separator;
+        private Gtk.Box _main_pane_;
 
         construct {
             title = About.NAME;
@@ -197,13 +199,12 @@ namespace FontManager {
         public MainWindow () {
             init_components();
             pack_components();
-            show_components();
             add(main_box);
             connect_signals();
             state = new State(this, Main.instance.settings);
         }
 
-        internal void init_components () {
+        private void init_components () {
             main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             content_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             main_pane = new ThinPaned(Gtk.Orientation.HORIZONTAL);
@@ -218,7 +219,7 @@ namespace FontManager {
             titlebar = new TitleBar();
             fonttree = new FontListTree();
             user_source_tree = new UserSourceTree();
-            properties = new BaseMetadata();
+            properties = new Metadata.Pane();
             fontlist = fonttree.fontlist;
             main_stack = new Gtk.Stack();
             main_stack.set_transition_duration(720);
@@ -245,22 +246,20 @@ namespace FontManager {
             return;
         }
 
-        internal void pack_components () {
+        private void pack_components () {
             main_pane.add1(sidebar);
             main_pane.add2(content_box);
             add_separator(content_box, Gtk.Orientation.VERTICAL);
             content_box.pack_end(content_stack, true, true, 0);
             content_pane.add1(fonttree);
-            var separator = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            separator = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             add_separator(separator, Gtk.Orientation.HORIZONTAL);
-            separator.show();
             separator.pack_end(view_stack, true, true, 0);
             content_pane.add2(separator);
-            var _main_pane = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            _main_pane.pack_start(main_pane, true, true, 0);
-            add_separator(_main_pane, Gtk.Orientation.HORIZONTAL);
-            _main_pane.show();
-            main_stack.add_named(_main_pane, "Default");
+            _main_pane_ = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            _main_pane_.pack_start(main_pane, true, true, 0);
+            add_separator(_main_pane_, Gtk.Orientation.HORIZONTAL);
+            main_stack.add_named(_main_pane_, "Default");
             main_stack.add_named(user_source_tree, "Sources");
             main_box.pack_end(main_stack, true, true, 0);
             /* XXX: Should be true by default? It's not... */
@@ -278,7 +277,9 @@ namespace FontManager {
             return;
         }
 
-        internal void show_components () {
+        public override void show () {
+            separator.show();
+            _main_pane_.show();
             content_stack.show();
             view_stack.show();
             main_box.show();
@@ -295,6 +296,8 @@ namespace FontManager {
             user_source_tree.show();
             properties.show();
             main_stack.show();
+            state.restore();
+            base.show();
             return;
         }
 
@@ -321,7 +324,7 @@ namespace FontManager {
             return;
         }
 
-        internal void real_set_mode (Mode mode, bool loading) {
+        private void real_set_mode (Mode mode, bool loading) {
             _mode = mode;
             titlebar.source_toggle.set_active(false);
             titlebar.main_menu_label.set_markup("<b>%s</b>".printf(mode.to_translatable_string()));
@@ -343,7 +346,7 @@ namespace FontManager {
             return;
         }
 
-        internal void update_font_model (Filter? filter) {
+        private void update_font_model (Filter? filter) {
             if (filter == null)
                 return;
             font_model = null;
@@ -354,7 +357,7 @@ namespace FontManager {
             return;
         }
 
-        internal void set_font_desc (Pango.FontDescription font_desc) {
+        private void set_font_desc (Pango.FontDescription font_desc) {
             preview.font_desc = font_desc;
             compare.font_desc = font_desc;
             character_map.font_desc = font_desc;
@@ -364,7 +367,7 @@ namespace FontManager {
             return;
         }
 
-        internal void update_unsorted_category () {
+        private void update_unsorted_category () {
             Value val;
             Gtk.TreeIter iter;
             Main.instance.category_model.get_iter_from_string(out iter, "11");
@@ -377,7 +380,7 @@ namespace FontManager {
             return;
         }
 
-        internal void update_font_properties () {
+        private void update_font_properties () {
             FontConfig.Font selected_font;
             if (fontlist.selected_font != null)
                 selected_font = fontlist.selected_font;
@@ -393,7 +396,7 @@ namespace FontManager {
             return;
         }
 
-        internal void connect_signals () {
+        private void connect_signals () {
             mode_changed.connect((m) => {
                 var action_map = (Application) GLib.Application.get_default();
                 var action = ((SimpleAction) action_map.lookup_action("mode"));
@@ -543,7 +546,7 @@ namespace FontManager {
 
         }
 
-        internal void remove_fonts () {
+        private void remove_fonts () {
             var _model = new UserFontModel(Main.instance.fontconfig.families, Main.instance.database);
             var arr = FileSelector.run_removal((Gtk.Window) this, _model);
             if (arr != null) {
@@ -563,7 +566,7 @@ namespace FontManager {
             return;
         }
 
-        internal void install_fonts (string [] arr) {
+        private void install_fonts (string [] arr) {
             fonttree.loading = true;
             font_model = null;
             fonttree.progress.set_fraction(0f);
@@ -579,7 +582,7 @@ namespace FontManager {
             return;
         }
 
-        void on_drag_data_received (Gtk.Widget widget,
+        private void on_drag_data_received (Gtk.Widget widget,
                                     Gdk.DragContext context,
                                     int x,
                                     int y,
@@ -601,7 +604,7 @@ namespace FontManager {
             return;
         }
 
-        void family_drop_handler (Gtk.Widget widget, int x, int y) {
+        private void family_drop_handler (Gtk.Widget widget, int x, int y) {
             if (!(widget.name == "CollectionsTree"))
                 return;
             Gtk.TreePath path;

@@ -62,12 +62,12 @@ namespace FontManager {
 
     }
 
-    void show_version () {
+    public void show_version () {
         stdout.printf("%s %s\n", About.NAME, About.VERSION);
         return;
     }
 
-    void show_about () {
+    public void show_about () {
         stdout.printf("\n    %s - %s\n\n\t\t  %s\n%s\n",
                                     About.NAME,
                                     About.COMMENT,
@@ -76,7 +76,7 @@ namespace FontManager {
         return;
     }
 
-    void show_about_dialog (Gtk.Window? parent = null) {
+    public void show_about_dialog (Gtk.Window? parent = null) {
         Gtk.show_about_dialog(parent,
                             "program-name", About.NAME,
                             "logo-icon-name", About.ICON,

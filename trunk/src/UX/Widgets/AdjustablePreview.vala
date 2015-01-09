@@ -47,7 +47,6 @@ namespace FontManager {
         }
 
         protected double _preview_size;
-
         protected FontScale fontscale;
 
         protected abstract void set_preview_size_internal (double new_size);

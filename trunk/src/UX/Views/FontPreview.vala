@@ -63,13 +63,15 @@ namespace FontManager {
             }
         }
 
-        Gtk.Stack stack;
-        Gtk.StackSwitcher switcher;
-        Pango.FontDescription _font_desc;
-        ActivePreview preview;
-        WaterfallPreview waterfall;
-        TextPreview body_text;
-        StandardTextTagTable tag_table;
+        private Gtk.Box box;
+        private Gtk.Stack stack;
+        private Gtk.StackSwitcher switcher;
+        private Gtk.EventBox blend;
+        private Pango.FontDescription _font_desc;
+        private ActivePreview preview;
+        private WaterfallPreview waterfall;
+        private TextPreview body_text;
+        private StandardTextTagTable tag_table;
 
         public FontPreview () {
             set_orientation(Gtk.Orientation.VERTICAL);
@@ -86,7 +88,7 @@ namespace FontManager {
             stack.add_titled(waterfall, "Waterfall", _("Waterfall"));
             stack.add_titled(body_text, "Body Text", _("Body Text"));
             stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
-            var blend = new Gtk.EventBox();
+            blend = new Gtk.EventBox();
             switcher = new Gtk.StackSwitcher();
             switcher.set_stack(stack);
             switcher.set_border_width(5);
@@ -99,9 +101,12 @@ namespace FontManager {
             connect_signals();
             pack_start(blend, false, true, 0);
             add_separator(this, Gtk.Orientation.HORIZONTAL);
-            var box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             box.pack_start(stack, true, true, 0);
             pack_end(box, true, true, 0);
+        }
+
+        public override void show () {
             blend.show();
             preview.show();
             waterfall.show();
@@ -109,9 +114,11 @@ namespace FontManager {
             stack.show();
             switcher.show();
             box.show();
+            base.show();
+            return;
         }
 
-        internal void connect_signals () {
+        private void connect_signals () {
             stack.notify["visible-child-name"].connect(() => { on_mode_changed(); });
             preview.preview_changed.connect((n) => { this.preview_changed(n); });
             preview.notify["preview-size"].connect(() => { notify_property("preview-size"); });
@@ -123,7 +130,7 @@ namespace FontManager {
             return;
         }
 
-        void on_mode_changed () {
+        private void on_mode_changed () {
             string mode = stack.get_visible_child_name();
             switch (mode) {
                 case "Preview":

@@ -26,9 +26,9 @@
     <enum id="org.gnome.FontManager.Mode">
         <value nick="Manage" value="0" />
         <value nick="Browse" value="1" />
-        <value nick="Organize" value="2" />
+        <value nick="Character Map" value="2" />
         <value nick="Compare" value="3" />
-        <value nick="Character Map" value="4" />
+        <value nick="Organize" value="4" />
         <value nick="Web" value="5" />
     </enum>
 

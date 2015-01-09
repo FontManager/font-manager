@@ -59,7 +59,7 @@ namespace FontManager {
             connect_signals();
         }
 
-        internal void connect_signals () {
+        private void connect_signals () {
             sidebar.mode_set.connect((i) => { mode_set((int) i); });
             sidebar.selection_changed.connect((cl) => { table.table.codepoint_list = cl; });
             pane.table.active_character.connect((uc) => { active_character(uc); });

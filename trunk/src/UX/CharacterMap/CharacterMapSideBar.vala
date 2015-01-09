@@ -44,11 +44,13 @@ namespace FontManager {
         public string? selected_script { get; set; default = null; }
         public string? selected_block { get; set; default = null; }
 
-        Gtk.TreeView view;
-        ModeSelector selector;
-        Gucharmap.ScriptChaptersModel scripts;
-        Gucharmap.BlockChaptersModel blocks;
-        Gee.HashMap <string, int> num_chars;
+        private Gtk.TreeView view;
+        private Gtk.EventBox blend;
+        private Gtk.ScrolledWindow scroll;
+        private ModeSelector selector;
+        private Gucharmap.ScriptChaptersModel scripts;
+        private Gucharmap.BlockChaptersModel blocks;
+        private Gee.HashMap <string, int> num_chars;
 
         public CharacterMapSideBar () {
             orientation = Gtk.Orientation.VERTICAL;
@@ -73,21 +75,26 @@ namespace FontManager {
             view.get_column(1).expand = false;
             selector.add_mode(new Gtk.Label(_("Unicode Script")));
             selector.add_mode(new Gtk.Label(_("Unicode Block")));
-            var blend = new Gtk.EventBox();
+            blend = new Gtk.EventBox();
             selector.border_width = 5;
             blend.add(selector);
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             pack_end(blend, false, true, 0);
             add_separator(this, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
-            var scroll = new Gtk.ScrolledWindow(null, null);
+            scroll = new Gtk.ScrolledWindow(null, null);
             scroll.add(view);
             pack_start(scroll, true, true, 0);
+            connect_signals();
+        }
+
+        public override void show () {
             view.show();
             scroll.show();
             selector.show();
             blend.show();
-            connect_signals();
+            base.show();
+            return;
         }
 
         public void set_initial_selection (string script_path, string block_path) {
@@ -101,7 +108,7 @@ namespace FontManager {
             return;
         }
 
-        internal void connect_signals () {
+        private void connect_signals () {
             view.get_selection().changed.connect((s) => {
                 Gtk.TreeIter? _iter = null;
                 bool selected = s.get_selected(null, out _iter);
@@ -139,7 +146,7 @@ namespace FontManager {
             return;
         }
 
-        void count_cell_data_func (Gtk.TreeViewColumn layout,
+        private void count_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
