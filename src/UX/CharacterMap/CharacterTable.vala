@@ -37,7 +37,9 @@ namespace FontManager {
             }
         }
 
-        Pango.FontDescription _font_desc;
+        private Gtk.Box table_box;
+        private Gtk.ScrolledWindow scroll;
+        private Pango.FontDescription _font_desc;
 
         public CharacterTable () {
             base.init();
@@ -48,20 +50,25 @@ namespace FontManager {
             table.zoom_enabled = true;
             table.codepoint_list = new Gucharmap.ScriptCodepointList();
             font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
-            var scroll = new Gtk.ScrolledWindow(null, null);
-            var table_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            scroll = new Gtk.ScrolledWindow(null, null);
+            table_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             scroll.add(table);
             table_box.pack_end(fontscale, false, true, 1);
             table_box.pack_end(scroll, true, true, 1);
             pack_end(table_box, true, true, 0);
+            connect_signals();
+        }
+
+        public override void show () {
             table.show();
             table_box.show();
             fontscale.show();
             scroll.show();
-            connect_signals();
+            base.show();
+            return;
         }
 
-        internal void connect_signals () {
+        private void connect_signals () {
             table.notify["active-character"].connect(() => {
                 active_character(table.get_active_character());
             });

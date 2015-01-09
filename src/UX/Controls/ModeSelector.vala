@@ -57,8 +57,8 @@ public class ModeSelector : Gtk.Box {
         }
     }
 
-    Gtk.Notebook _notebook;
-    Gtk.RadioButton radio_group = null;
+    private Gtk.Notebook _notebook;
+    private Gtk.RadioButton radio_group = null;
 
     construct {
         halign = Gtk.Align.CENTER;
@@ -129,7 +129,7 @@ public class ModeSelector : Gtk.Box {
         return;
     }
 
-    void real_set_notebook (Gtk.Notebook? new_notebook) {
+    private void real_set_notebook (Gtk.Notebook? new_notebook) {
         if (_notebook != null)
             while (n_modes > 0)
                 remove_mode(0);
@@ -151,7 +151,7 @@ public class ModeSelector : Gtk.Box {
         return;
     }
 
-    void set_notebook_event_handlers () {
+    private void set_notebook_event_handlers () {
         /* (child, page_num) */
         _notebook.page_added.connect((c, p) => {
             add_mode(new Gtk.Label(_notebook.get_tab_label_text(c)));

@@ -45,9 +45,9 @@ namespace FontManager {
         public UserSourceModel user_source_model { get; private set; }
 
         private static Main? _instance = null;
-        internal bool init_called = false;
-        internal bool update_in_progress = false;
-        internal bool queue_update = false;
+        private bool init_called = false;
+        private bool update_in_progress = false;
+        private bool queue_update = false;
 
         public Main () {
             try {
@@ -86,7 +86,7 @@ namespace FontManager {
             return;
         }
 
-        internal void end_update () {
+        private void end_update () {
             try {
                 sync_fonts_table(database, FontConfig.list_fonts(), (m, p, t) => { progress(m, p, t); });
             } catch (DatabaseError e) {
@@ -140,7 +140,6 @@ namespace FontManager {
             application.main_window = new MainWindow();
             application.add_window(application.main_window);
             application.main_window.loading = true;
-            application.main_window.state.restore();
             application.main_window.present();
             progress.connect((m, p, t) => {
                 application.main_window.progress = ((float) p /(float) t);

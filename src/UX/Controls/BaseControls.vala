@@ -41,12 +41,19 @@ namespace FontManager {
             box.pack_start(add_button, false, false, 0);
             box.pack_start(remove_button, false, false, 0);
             set_default_button_relief(box);
-            box.show_all();
             add(box);
             connect_signals();
         }
 
-        internal void connect_signals () {
+        public override void show () {
+            add_button.show();
+            remove_button.show();
+            box.show();
+            base.show();
+            return;
+        }
+
+        private void connect_signals () {
             add_button.clicked.connect((w) => { add_selected(); });
             remove_button.clicked.connect(() => { remove_selected(); });
             return;

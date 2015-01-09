@@ -86,7 +86,7 @@ namespace FontManager {
             set_search_entry(controls.entry);
         }
 
-        internal void connect_signals () {
+        private void connect_signals () {
             get_selection().changed.connect(on_selection_changed);
             toggle.toggled.connect(on_family_toggled);
             controls.expand_all.connect((e) => {
@@ -126,7 +126,7 @@ namespace FontManager {
             return;
         }
 
-        void on_selection_changed (Gtk.TreeSelection selection) {
+        private void on_selection_changed (Gtk.TreeSelection selection) {
             List <Gtk.TreePath> selected = selection.get_selected_rows(null);
             if (selected == null || selected.length() < 1)
                 return;
@@ -152,7 +152,7 @@ namespace FontManager {
             return;
         }
 
-        void on_family_toggled (string path) {
+        private void on_family_toggled (string path) {
             Gtk.TreeIter iter;
             Value val;
             model.get_iter_from_string(out iter, path);
@@ -168,7 +168,7 @@ namespace FontManager {
             return;
         }
 
-        void preview_cell_data_func (Gtk.TreeViewColumn layout,
+        private void preview_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
@@ -198,7 +198,7 @@ namespace FontManager {
             return;
         }
 
-        void toggle_cell_data_func (Gtk.TreeViewColumn layout,
+        private void toggle_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
@@ -221,7 +221,7 @@ namespace FontManager {
             return;
         }
 
-        void text_cell_data_func (Gtk.TreeViewColumn layout,
+        private void text_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
@@ -243,7 +243,7 @@ namespace FontManager {
             return;
         }
 
-        void count_cell_data_func (Gtk.TreeViewColumn layout,
+        private void count_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
@@ -264,7 +264,7 @@ namespace FontManager {
             return;
         }
 
-        void set_sensitivity(Gtk.CellRenderer cell, Gtk.TreeIter treeiter, string family) {
+        private void set_sensitivity(Gtk.CellRenderer cell, Gtk.TreeIter treeiter, string family) {
             bool inactive = (family in reject);
             cell.set_property("strikethrough" , inactive);
             if (inactive && get_selection().iter_is_selected(treeiter))
@@ -303,12 +303,15 @@ namespace FontManager {
             }
         }
 
-        internal bool _loading;
-        internal Gtk.Revealer revealer;
-//        internal Gtk.Menu context_menu;
+        private bool _loading;
+        private Gtk.Box _box;
+        private Gtk.Box fontlist_box;
+        private Gtk.Revealer revealer;
+        private Gtk.ScrolledWindow scroll;
+//        private Gtk.Menu context_menu;
 
         public FontListTree () {
-            var scroll = new Gtk.ScrolledWindow(null, null);
+            scroll = new Gtk.ScrolledWindow(null, null);
             fontlist = new FontList();
             fontlist.hexpand = fontlist.vexpand = true;
             progress = new Gtk.ProgressBar();
@@ -317,8 +320,8 @@ namespace FontManager {
             revealer = new Gtk.Revealer();
             revealer.hexpand = true;
             revealer.vexpand = false;
-            var fontlist_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            var _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            fontlist_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             _box.pack_start(fontlist.controls, false, true, 0);
             revealer.add(_box);
             fontlist_box.pack_start(revealer, false, true, 0);
@@ -326,23 +329,28 @@ namespace FontManager {
             fontlist_box.pack_end(scroll, true, true, 0);
             add(fontlist_box);
             add_overlay(progress);
+//            context_menu = get_context_menu();
+//            connect_signals();
+        }
+
+        public override void show () {
             _box.show();
             fontlist_box.show();
             revealer.show();
             scroll.show();
             fontlist.show();
-//            context_menu = get_context_menu();
-//            connect_signals();
+            base.show();
+            return;
         }
 
-//        internal void connect_signals () {
+//        private void connect_signals () {
 //            fontlist.menu_request.connect((w, e) => {
 //                context_menu.popup(null, null, null, e.button, e.time);
 //            });
 //            return;
 //        }
 
-//        internal Gtk.Menu get_context_menu () {
+//        private Gtk.Menu get_context_menu () {
 //            MenuEntry [] context_menu_entries = {
 //                /* action_name, display_name, detailed_action_name, accelerator, method */
 //                MenuEntry("font_details", _("Show Details"), "app.font_details", null, new MenuCallbackWrapper(on_show_details)),

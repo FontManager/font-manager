@@ -33,7 +33,7 @@ namespace FontManager {
             }
         }
 
-        string _pangram;
+        private string _pangram;
 
         public WaterfallPreview (StandardTextTagTable tag_table) {
             base(tag_table);

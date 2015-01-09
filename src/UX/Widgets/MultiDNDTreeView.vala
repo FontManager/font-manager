@@ -23,13 +23,13 @@ public class MultiDNDTreeView : Gtk.TreeView {
 
     public signal void menu_request (Gtk.Widget widget, Gdk.EventButton event);
 
-    struct PendingEvent {
+    private struct PendingEvent {
         double x;
         double y;
         bool active;
     }
 
-    PendingEvent pending_event;
+    private PendingEvent pending_event;
 
     public MultiDNDTreeView () {
         get_selection().set_mode(Gtk.SelectionMode.MULTIPLE);
@@ -40,7 +40,7 @@ public class MultiDNDTreeView : Gtk.TreeView {
         drag_begin.connect_after(on_drag_begin);
     }
 
-    bool on_button_press_event (Gtk.Widget widget, Gdk.EventButton event) {
+    private bool on_button_press_event (Gtk.Widget widget, Gdk.EventButton event) {
         if (event.button == 3) {
             menu_request(widget, event);
             return true;
@@ -66,7 +66,7 @@ public class MultiDNDTreeView : Gtk.TreeView {
         return false;
     }
 
-    bool on_button_release_event (Gtk.Widget widget, Gdk.EventButton event) {
+    private bool on_button_release_event (Gtk.Widget widget, Gdk.EventButton event) {
         if (pending_event.active) {
             var _widget = widget as Gtk.TreeView;
             var selection = _widget.get_selection();

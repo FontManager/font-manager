@@ -63,17 +63,18 @@ namespace FontManager {
             }
         }
 
-        string _preview_text;
-        string default_preview_text;
-
-        Gtk.TreeView tree;
-        Gtk.ListStore store;
-        Gtk.ScrolledWindow scroll;
-        Gtk.TreeViewColumn column;
-        Pango.FontDescription _font_desc;
-        CompareControls controls;
-        Gdk.RGBA default_fg_color;
-        Gdk.RGBA default_bg_color;
+        private string _preview_text;
+        private string default_preview_text;
+        private Gtk.Box box;
+        private Gtk.TreeView tree;
+        private Gtk.ListStore store;
+        private Gtk.ScrolledWindow scroll;
+        private Gtk.TreeViewColumn column;
+        private Gtk.CellRendererText renderer;
+        private Pango.FontDescription _font_desc;
+        private CompareControls controls;
+        private Gdk.RGBA default_fg_color;
+        private Gdk.RGBA default_bg_color;
 
         public Compare () {
             base.init();
@@ -85,7 +86,7 @@ namespace FontManager {
             controls = new CompareControls();
             controls.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             update_default_colors();
-            var renderer = new Gtk.CellRendererText();
+            renderer = new Gtk.CellRendererText();
             column = new Gtk.TreeViewColumn();
             column.pack_start(renderer, true);
             column.set_cell_data_func(renderer, cell_data_func);
@@ -96,21 +97,26 @@ namespace FontManager {
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             pack_start(controls, false, false, 0);
             add_separator(this, Gtk.Orientation.HORIZONTAL);
-            var box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             box.pack_end(fontscale, false, false, 0);
             scroll.add(tree);
             box.pack_start(scroll, true, true, 0);
             pack_end(box, true, true, 0);
+            tree.set_headers_visible(false);
+            connect_signals();
+        }
+
+        public override void show () {
             fontscale.show();
             tree.show();
             scroll.show();
             box.show();
             controls.show();
-            tree.set_headers_visible(false);
-            connect_signals();
+            base.show();
+            return;
         }
 
-        internal void connect_signals() {
+        private void connect_signals() {
             /* selection, model, path, currently_selected_path */
             tree.get_selection().set_select_function((s, m, p, csp) => {
                 /* Disallow selection of preview rows */
@@ -172,10 +178,10 @@ namespace FontManager {
             return;
         }
 
-        void cell_data_func (Gtk.CellLayout layout,
-                               Gtk.CellRenderer cell,
-                               Gtk.TreeModel model,
-                               Gtk.TreeIter treeiter) {
+        private void cell_data_func (Gtk.CellLayout layout,
+                                       Gtk.CellRenderer cell,
+                                       Gtk.TreeModel model,
+                                       Gtk.TreeIter treeiter) {
         #if GTK_316
             Pango.AttrList attrs = new Pango.AttrList();
             attrs.insert(Pango.attr_fallback_new(false));
@@ -220,7 +226,7 @@ namespace FontManager {
             return results;
         }
 
-        void on_remove () {
+        private void on_remove () {
             Gtk.TreeModel model;
             Gtk.TreeIter iter;
             tree.get_selection().get_selected(out model, out iter);

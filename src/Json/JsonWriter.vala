@@ -53,7 +53,7 @@ class JsonWriter : Json.Generator {
 
 }
 
-bool write_json_file (Json.Node root,
+private bool write_json_file (Json.Node root,
                         string filepath,
                         bool compress = false,
                         bool backup = false) {
@@ -62,7 +62,7 @@ bool write_json_file (Json.Node root,
     return writer.to_file(filepath, backup);
 }
 
-Json.Node? load_json_file (string filepath, bool compressed = false) {
+private Json.Node? load_json_file (string filepath, bool compressed = false) {
     try {
         var parser = new Json.Parser();
         if (compressed) {

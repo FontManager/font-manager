@@ -93,15 +93,20 @@ namespace FontManager {
             tree.get_column(2).expand = false;
             tree.set_headers_visible(false);
             controls = new CollectionControls();
-            controls.show();
             tree.reorderable = true;
             tree.set_tooltip_column(CollectionColumn.COMMENT);
-            tree.show();
             add(tree);
             connect_signals();
         }
 
-        internal void connect_signals () {
+        public override void show () {
+            controls.show();
+            tree.show();
+            base.show();
+            return;
+        }
+
+        private void connect_signals () {
             tree.get_selection().changed.connect(on_selection_changed);
             renderer.edited.connect(on_edited);
             controls.add_selected.connect(() => { on_add_collection(); });
@@ -160,7 +165,7 @@ namespace FontManager {
             return;
         }
 
-        internal void on_edited (Gtk.CellRendererText renderer, string path, string new_text) {
+        private void on_edited (Gtk.CellRendererText renderer, string path, string new_text) {
             string new_name = new_text.strip();
             if (new_name == selected_collection.name || new_name == "" || model.collections.entries.has_key(new_name)) {
                 return;
@@ -186,7 +191,7 @@ namespace FontManager {
             return;
         }
 
-        internal void on_collection_toggled (string path) {
+        private void on_collection_toggled (string path) {
             Gtk.TreeIter iter;
             Value val;
             model.get_iter_from_string(out iter, path);
@@ -204,7 +209,7 @@ namespace FontManager {
             return;
         }
 
-        internal void on_selection_changed (Gtk.TreeSelection selection) {
+        private void on_selection_changed (Gtk.TreeSelection selection) {
             Gtk.TreeIter iter;
             Gtk.TreeModel model;
             GLib.Value val;
@@ -219,7 +224,7 @@ namespace FontManager {
             return;
         }
 
-        internal void text_cell_data_func (Gtk.TreeViewColumn layout,
+        private void text_cell_data_func (Gtk.TreeViewColumn layout,
                                                Gtk.CellRenderer cell,
                                                Gtk.TreeModel model,
                                                Gtk.TreeIter treeiter) {
@@ -231,7 +236,7 @@ namespace FontManager {
             return;
         }
 
-        internal void toggle_cell_data_func (Gtk.TreeViewColumn layout,
+        private void toggle_cell_data_func (Gtk.TreeViewColumn layout,
                                                 Gtk.CellRenderer cell,
                                                 Gtk.TreeModel model,
                                                 Gtk.TreeIter treeiter) {
@@ -243,7 +248,7 @@ namespace FontManager {
             return;
         }
 
-        internal void count_cell_data_func (Gtk.TreeViewColumn layout,
+        private void count_cell_data_func (Gtk.TreeViewColumn layout,
                                                 Gtk.CellRenderer cell,
                                                 Gtk.TreeModel model,
                                                 Gtk.TreeIter treeiter) {
@@ -255,7 +260,7 @@ namespace FontManager {
             return;
         }
 
-        internal void update_and_cache_collections () {
+        private void update_and_cache_collections () {
             model.update_group_index();
             Idle.add(() => {
                 model.collections.cache();

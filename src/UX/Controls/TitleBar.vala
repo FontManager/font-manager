@@ -33,8 +33,11 @@ namespace FontManager {
         public Gtk.MenuButton app_menu { get; private set; }
         public Gtk.ToggleButton source_toggle { get; private set; }
 
-        BaseControls manage_controls;
-        Gtk.Revealer revealer;
+        private BaseControls manage_controls;
+        private Gtk.Revealer revealer;
+        private Gtk.Image main_menu_icon;
+        private Gtk.Image app_menu_icon;
+        private Gtk.Box main_menu_container;
 
         public TitleBar () {
             title = About.NAME;
@@ -46,8 +49,8 @@ namespace FontManager {
             show_close_button = false;
             main_menu = new Gtk.MenuButton();
             main_menu.border_width = 2;
-            var main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic", Gtk.IconSize.MENU);
-            var main_menu_container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 1);
+            main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic", Gtk.IconSize.MENU);
+            main_menu_container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 1);
             main_menu_container.pack_start(main_menu_icon, false, false, 0);
             main_menu_label = new Gtk.Label(null);
             main_menu_container.pack_end(main_menu_label, false, true, 0);
@@ -56,7 +59,7 @@ namespace FontManager {
             main_menu.relief = Gtk.ReliefStyle.NONE;
             app_menu = new Gtk.MenuButton();
             app_menu.border_width = 2;
-            var app_menu_icon = new Gtk.Image.from_icon_name(About.ICON, Gtk.IconSize.LARGE_TOOLBAR);
+            app_menu_icon = new Gtk.Image.from_icon_name(About.ICON, Gtk.IconSize.LARGE_TOOLBAR);
             app_menu.add(app_menu_icon);
             app_menu.direction = Gtk.ArrowType.DOWN;
             app_menu.relief = Gtk.ReliefStyle.NONE;
@@ -77,6 +80,12 @@ namespace FontManager {
             pack_start(main_menu);
             pack_start(revealer);
             pack_end(app_menu);
+            revealer.get_style_context().add_class(Gtk.STYLE_CLASS_TITLEBAR);
+            set_menus();
+            connect_signals();
+        }
+
+        public override void show () {
             main_menu_icon.show();
             main_menu_container.show();
             main_menu_label.show();
@@ -85,13 +94,12 @@ namespace FontManager {
             app_menu.show();
             source_toggle.show();
             manage_controls.show();
-            revealer.get_style_context().add_class(Gtk.STYLE_CLASS_TITLEBAR);
             revealer.show();
-            set_menus();
-            connect_signals();
+            base.show();
+            return;
         }
 
-        internal void set_menus () {
+        private void set_menus () {
             main_menu.set_menu_model(get_main_menu_model());
             app_menu.set_menu_model(get_app_menu_model());
         #if GTK_314
@@ -105,7 +113,7 @@ namespace FontManager {
             return;
         }
 
-        internal void connect_signals () {
+        private void connect_signals () {
             manage_controls.add_button.clicked.connect(() => {
                 if (source_toggle.get_active())
                     add_selected();
@@ -145,7 +153,7 @@ namespace FontManager {
             return;
         }
 
-        internal GLib.MenuModel get_main_menu_model () {
+        private GLib.MenuModel get_main_menu_model () {
             var application = (Application) GLib.Application.get_default();
             var mode_section = new GLib.Menu();
             string [] modes = {"Default", "Browse", "Compare", "Character Map"};
@@ -167,7 +175,7 @@ namespace FontManager {
         }
 
 
-        internal GLib.MenuModel get_app_menu_model () {
+        private GLib.MenuModel get_app_menu_model () {
             var application = (Application) GLib.Application.get_default();
             MenuEntry [] app_menu_entries = {
                 /* action_name, display_name, detailed_action_name, accelerator, method */

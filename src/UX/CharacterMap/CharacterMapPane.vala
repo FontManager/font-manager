@@ -32,9 +32,14 @@ namespace FontManager {
             details = new CharacterDetails();
             pack_start(details, false, true, 0);
             pack_start(table, true, true, 0);
+            table.active_character.connect((ch) => { details.active_character = ch; });
+        }
+
+        public override void show () {
             table.show();
             details.show();
-            table.active_character.connect((ch) => { details.active_character = ch; });
+            base.show();
+            return;
         }
 
     }

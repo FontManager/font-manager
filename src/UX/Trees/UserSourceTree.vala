@@ -40,11 +40,11 @@ namespace FontManager {
         public FontConfig.FontSource? selected_filter { get; protected set; default = null; }
         public Gtk.TreeView tree { get; protected set; }
 
-        internal Gtk.CellRendererText renderer;
-        internal Gtk.CellRendererPixbuf pixbuf_renderer;
+        private Gtk.CellRendererText renderer;
+        private Gtk.CellRendererPixbuf pixbuf_renderer;
 
-        internal weak UserSourceModel _model;
-        Gtk.CellRendererToggle toggle;
+        private weak UserSourceModel _model;
+        private Gtk.CellRendererToggle toggle;
 
         public UserSourceTree () {
             tree = new Gtk.TreeView();
@@ -63,12 +63,17 @@ namespace FontManager {
             tree.set_headers_visible(false);
             tree.show_expanders = false;
             tree.get_selection().changed.connect(on_selection_changed);
-            tree.show();
             add(tree);
             connect_signals();
         }
 
-        internal void connect_signals () {
+        public override void show () {
+            tree.show();
+            base.show();
+            return;
+        }
+
+        private void connect_signals () {
             toggle.toggled.connect(on_toggled);
             return;
         }
@@ -116,10 +121,10 @@ namespace FontManager {
             return;
         }
 
-        void pixbuf_cell_data_func (Gtk.TreeViewColumn layout,
-                                      Gtk.CellRenderer cell,
-                                      Gtk.TreeModel model,
-                                      Gtk.TreeIter treeiter) {
+        private void pixbuf_cell_data_func (Gtk.TreeViewColumn layout,
+                                              Gtk.CellRenderer cell,
+                                              Gtk.TreeModel model,
+                                              Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, 0, out val);
             var obj = val.get_object();
@@ -136,10 +141,10 @@ namespace FontManager {
             return;
         }
 
-        void toggle_cell_data_func (Gtk.TreeViewColumn layout,
-                                    Gtk.CellRenderer cell,
-                                    Gtk.TreeModel model,
-                                    Gtk.TreeIter treeiter) {
+        private void toggle_cell_data_func (Gtk.TreeViewColumn layout,
+                                                Gtk.CellRenderer cell,
+                                                Gtk.TreeModel model,
+                                                Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, 0, out val);
             var obj = (FontConfig.FontSource) val.get_object();
@@ -156,7 +161,7 @@ namespace FontManager {
             return;
         }
 
-        void on_selection_changed (Gtk.TreeSelection selection) {
+        private void on_selection_changed (Gtk.TreeSelection selection) {
             Gtk.TreeIter iter;
             Gtk.TreeModel model;
             GLib.Value val;

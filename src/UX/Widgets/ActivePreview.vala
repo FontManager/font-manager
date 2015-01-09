@@ -34,13 +34,14 @@ namespace FontManager {
             }
             set {
                 _font_desc = value;
+                preview.tag_table.lookup("FontDescription").font_desc = _font_desc;
                 this.update();
             }
         }
 
-        bool editing = false;
-        PreviewControls controls;
-        Pango.FontDescription _font_desc;
+        private bool editing = false;
+        private PreviewControls controls;
+        private Pango.FontDescription _font_desc;
 
         public class ActivePreview (StandardTextTagTable tag_table) {
             base.init();
@@ -54,10 +55,15 @@ namespace FontManager {
             pack_start(controls, false, true, 0);
             pack_start(preview, true, true, 0);
             pack_end(fontscale, false, true, 0);
+            connect_signals();
+        }
+
+        public override void show () {
             controls.show();
             preview.show();
             fontscale.show();
-            connect_signals();
+            base.show();
+            return;
         }
 
         public string get_buffer_text () {
@@ -90,7 +96,7 @@ namespace FontManager {
             return;
         }
 
-        internal void connect_signals () {
+        private void connect_signals () {
             preview.buffer.changed.connect((b) => {
                 this.update();
                 var new_preview = preview.get_buffer_text();
@@ -105,13 +111,13 @@ namespace FontManager {
             return;
         }
 
-        void on_clear () {
+        private void on_clear () {
             preview.buffer.set_text("\n\n" + get_localized_preview_text(), -1);
             controls.clear_is_sensitive = false;
             return;
         }
 
-        bool on_textview_event (Gtk.Widget widget, Gdk.Event event) {
+        private bool on_textview_event (Gtk.Widget widget, Gdk.Event event) {
             if (editing || event.type == Gdk.EventType.SCROLL)
                 return false;
             else {
@@ -120,7 +126,7 @@ namespace FontManager {
             }
         }
 
-        void on_edit_toggled (bool allow_edit) {
+        private void on_edit_toggled (bool allow_edit) {
             editing = allow_edit;
             preview.view.editable = allow_edit;
             preview.view.cursor_visible = allow_edit;

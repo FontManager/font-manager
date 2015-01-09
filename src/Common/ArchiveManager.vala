@@ -20,7 +20,7 @@
  */
 
 [DBus (name = "org.gnome.ArchiveManager1")]
-internal interface DBusService : Object {
+private interface DBusService : Object {
 
     public signal void progress (double percent, string message);
 
@@ -37,13 +37,13 @@ public class ArchiveManager : Object {
 
     public signal void progress (string? message, int processed, int total);
 
-    internal DBusService? service = null;
+    private DBusService? service = null;
 
     public void post_error_message (Error e) {
         error("Archive Manager : %s", e.message);
     }
 
-    internal void init () {
+    private void init () {
         try {
             service = Bus.get_proxy_sync(BusType.SESSION, "org.gnome.ArchiveManager1", "/org/gnome/ArchiveManager1");
             service.progress.connect((p, m) => { progress(m, (int) p, 100); });
@@ -55,7 +55,7 @@ public class ArchiveManager : Object {
         return;
     }
 
-    internal DBusService file_roller {
+    private DBusService file_roller {
         get {
             init();
             return service;

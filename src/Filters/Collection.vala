@@ -54,7 +54,7 @@ namespace FontManager {
             return;
         }
 
-        void add_child_contents (Collection child, Gee.HashSet <string> full_contents) {
+        private void add_child_contents (Collection child, Gee.HashSet <string> full_contents) {
             full_contents.add_all(child.families);
             foreach(var _child in child.children)
                 add_child_contents(_child, full_contents);

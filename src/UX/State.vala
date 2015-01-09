@@ -189,7 +189,7 @@ namespace FontManager {
             }
         }
 
-        internal Gtk.TreePath? restore_last_selected_treepath (Gtk.TreeView tree, string path) {
+        private Gtk.TreePath? restore_last_selected_treepath (Gtk.TreeView tree, string path) {
             Gtk.TreeIter iter;
             var model = (Gtk.TreeStore) tree.get_model();
             var selection = tree.get_selection();

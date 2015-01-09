@@ -34,11 +34,12 @@ namespace FontManager {
         }
 
         private unichar ac;
+        private Gtk.Box box;
         private Gtk.Label unicode_label;
         private Gtk.Label name_label;
 
         public CharacterDetails () {
-            var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             unicode_label = new Gtk.Label(null);
             unicode_label.halign = Gtk.Align.END;
             unicode_label.selectable = true;
@@ -49,10 +50,15 @@ namespace FontManager {
             box.pack_start(unicode_label, true, true, 2);
             box.pack_end(name_label, true, true, 2);
             add(box);
+            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+        }
+
+        public override void show () {
             unicode_label.show();
             name_label.show();
             box.show();
-            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            base.show();
+            return;
         }
 
         private void set_details () {

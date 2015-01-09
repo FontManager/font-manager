@@ -36,15 +36,16 @@ namespace FontManager {
             }
         }
 
-        Gtk.Button clear;
-        Gtk.ToggleButton edit;
-        Gtk.RadioButton justify_left;
-        Gtk.RadioButton justify_center;
-        Gtk.RadioButton justify_fill;
-        Gtk.RadioButton justify_right;
+        private Gtk.Box box;
+        private Gtk.Button clear;
+        private Gtk.ToggleButton edit;
+        private Gtk.RadioButton justify_left;
+        private Gtk.RadioButton justify_center;
+        private Gtk.RadioButton justify_fill;
+        private Gtk.RadioButton justify_right;
 
         construct {
-            var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
+            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
             box.border_width = 1;
             justify_left = new Gtk.RadioButton(null);
             justify_left.set_tooltip_text(_("Left Aligned"));
@@ -81,10 +82,22 @@ namespace FontManager {
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             add(box);
             connect_signals();
-            box.show_all();
+
         }
 
-        internal void connect_signals () {
+        public override void show () {
+            clear.show();
+            edit.show();
+            justify_left.show();
+            justify_center.show();
+            justify_fill.show();
+            justify_right.show();
+            box.show();
+            base.show();
+            return;
+        }
+
+        private void connect_signals () {
             justify_center.active = true;
             edit.active = false;
             clear.sensitive = false;

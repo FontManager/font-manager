@@ -86,13 +86,12 @@ namespace FontConfig {
         }
 
         private File? file = null;
-
-        internal string? _name = null;
-        internal string? _uri = null;
-        internal string? _path = null;
-        internal string? _condition = null;
-        internal FileType _filetype;
-        internal bool _available = true;
+        private string? _name = null;
+        private string? _uri = null;
+        private string? _path = null;
+        private string? _condition = null;
+        private FileType _filetype;
+        private bool _available = true;
 
         public FontSource (File file) {
             this.file = file;

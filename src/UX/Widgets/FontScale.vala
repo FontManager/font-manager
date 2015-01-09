@@ -33,14 +33,13 @@ namespace FontManager {
             }
         }
 
-        Gtk.Box container;
-        Gtk.EventBox ev_min;
-        Gtk.EventBox ev_max;
-        Gtk.SpinButton spin;
-        Gtk.Scale scale;
-
-        Gdk.RGBA normal;
-        Gdk.RGBA hover;
+        private Gtk.Box container;
+        private Gtk.EventBox ev_min;
+        private Gtk.EventBox ev_max;
+        private Gtk.SpinButton spin;
+        private Gtk.Scale scale;
+        private Gdk.RGBA normal;
+        private Gdk.RGBA hover;
 
         construct {
             Gdk.RGBA normal = Gdk.RGBA();
@@ -66,12 +65,22 @@ namespace FontManager {
             container.pack_end(spin, false, true, 8);
             container.border_width = 5;
             add(container);
-            container.show_all();
             style_updated();
             connect_signals();
         }
 
-        internal void connect_signals () {
+        public override void show () {
+            container.show();
+            ev_min.show();
+            ev_max.show();
+            spin.show();
+            scale.show();
+            container.show();
+            base.show();
+            return;
+        }
+
+        private void connect_signals () {
             ev_min.button_press_event.connect((w, e) => {
                 scale.set_value(MIN_FONT_SIZE);
                 return false;

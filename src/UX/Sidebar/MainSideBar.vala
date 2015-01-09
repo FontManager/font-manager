@@ -49,12 +49,16 @@ namespace FontManager {
         public CategoryTree category_tree { get; private set; }
         public CollectionTree collection_tree { get; private set; }
 
-        Gtk.Stack stack;
-        Gtk.StackSwitcher switcher;
-        Gtk.Revealer revealer1;
+        private Gtk.Stack stack;
+        private Gtk.StackSwitcher switcher;
+        private Gtk.Revealer revealer1;
+        private Gtk.Box collection_box;
+        private Gtk.Box _box;
+        private Gtk.EventBox blend;
+        private Gtk.Box main_box;
 
         public MainSideBar () {
-            var main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             stack = new Gtk.Stack();
             stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
             switcher = new Gtk.StackSwitcher();
@@ -64,11 +68,11 @@ namespace FontManager {
             switcher.valign = Gtk.Align.CENTER;
             category_tree = new CategoryTree();
             collection_tree = new CollectionTree();
-            var collection_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            collection_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             revealer1 = new Gtk.Revealer();
             revealer1.hexpand = true;
             revealer1.vexpand = false;
-            var _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             _box.pack_start(collection_tree.controls, false, true, 0);
             revealer1.add(_box);
             collection_box.pack_start(revealer1, false, true, 0);
@@ -76,21 +80,29 @@ namespace FontManager {
             stack.add_titled(category_tree, "0", _("Categories"));
             stack.add_titled(collection_box, "1", _("Collections"));
             mode = MainSideBarMode.CATEGORY;
-            var blend = new Gtk.EventBox();
+            blend = new Gtk.EventBox();
             blend.add(switcher);
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             main_box.pack_end(blend, false, true, 0);
             add_separator(main_box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
             main_box.pack_start(stack, true, true, 0);
-            collection_box.show_all();
+            add(main_box);
+            connect_signals();
+        }
+
+        public override void show () {
+            _box.show();
+            revealer1.show();
+            collection_tree.show();
+            collection_box.show();
             category_tree.show();
             stack.show();
             switcher.show();
             blend.show();
             main_box.show();
-            add(main_box);
-            connect_signals();
+            base.show();
+            return;
         }
 
         public void reveal_collection_controls (bool reveal) {
@@ -98,7 +110,7 @@ namespace FontManager {
             return;
         }
 
-        internal void connect_signals () {
+        private void connect_signals () {
             category_tree.selection_changed.connect((f, i) => {
                 category_selected(f, i);
                 selected_category = f;

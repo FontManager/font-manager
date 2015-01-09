@@ -36,7 +36,7 @@ namespace FontManager {
             }
         }
 
-        Pango.FontDescription _font_desc;
+        private Pango.FontDescription _font_desc;
 
         public class TextPreview (StandardTextTagTable tag_table) {
             base.init();
@@ -52,8 +52,13 @@ namespace FontManager {
             set_preview_text(LOREM_IPSUM);
             pack_start(preview, true, true, 0);
             pack_end(fontscale, false, true, 0);
+        }
+
+        public override void show () {
             preview.show();
             fontscale.show();
+            base.show();
+            return;
         }
 
         public string get_buffer_text () {

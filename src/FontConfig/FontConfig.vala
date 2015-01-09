@@ -33,8 +33,8 @@ namespace FontConfig {
         public Reject reject { get; private set; }
         public Sources sources { get; private set; }
 
-        FileMonitor? [] monitors = {};
-        VolumeMonitor volume_monitor;
+        private FileMonitor? [] monitors = {};
+        private VolumeMonitor volume_monitor;
 
         public Main () {
             accept = new Accept();
@@ -131,7 +131,7 @@ namespace FontConfig {
             return;
         }
 
-        internal FileMonitor? get_directory_monitor (string dir) {
+        private FileMonitor? get_directory_monitor (string dir) {
             File file = File.new_for_path(dir);
             FileMonitor? monitor = null;
             try {
@@ -146,7 +146,7 @@ namespace FontConfig {
             return monitor;
         }
 
-        internal void change_detected (File? file = null,
+        private void change_detected (File? file = null,
                                          File? other_file = null,
                                          FileMonitorEvent event = FileMonitorEvent.CHANGED) {
             cancel_monitors();
@@ -156,7 +156,7 @@ namespace FontConfig {
 
     }
 
-    string get_config_dir () {
+    private string get_config_dir () {
         string config_dir = Path.build_filename(Environment.get_user_config_dir(), "fontconfig", "conf.d");
         DirUtils.create_with_parents(config_dir, 0755);
         return config_dir;
@@ -166,7 +166,7 @@ namespace FontConfig {
      * This function loads any user configuration files which do not
      * interfere with our ability to render fonts properly.
      */
-    void load_user_fontconfig_files () {
+    private void load_user_fontconfig_files () {
         string [] exclude = {"78-Reject.conf"};
         try {
             string config_dir = get_config_dir();
@@ -189,7 +189,7 @@ namespace FontConfig {
         return;
     }
 
-    bool load_user_font_sources (FontSource [] sources) {
+    private bool load_user_font_sources (FontSource [] sources) {
         clear_app_fonts();
         if (!add_app_font_dir(Path.build_filename(Environment.get_user_data_dir(), "fonts")))
             return false;
