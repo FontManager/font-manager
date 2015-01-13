@@ -109,7 +109,7 @@ namespace FontManager {
         }
 
         public static int main (string [] args) {
-            Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
+            //Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
             Environment.set_application_name(About.NAME);
             Environment.set_variable("XDG_CONFIG_HOME", "", true);
             FontConfig.enable_user_config(false);
