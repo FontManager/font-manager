@@ -313,7 +313,8 @@ namespace FontManager {
         public FontListTree () {
             scroll = new Gtk.ScrolledWindow(null, null);
             fontlist = new FontList();
-            fontlist.hexpand = fontlist.vexpand = true;
+            fontlist.hexpand = true;
+            fontlist.vexpand = true;
             progress = new Gtk.ProgressBar();
             progress.halign = progress.valign = Gtk.Align.CENTER;
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);

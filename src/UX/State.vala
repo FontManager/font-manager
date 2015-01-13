@@ -138,7 +138,7 @@ namespace FontManager {
             NotImplemented.parent = main_window;
 
             main_window.delete_event.connect((w, e) => {
-                ((Application) GLib.Application.get_default()).on_quit();
+                ((Application) GLib.Application.get_default()).quit();
                 return true;
                 }
             );

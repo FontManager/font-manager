@@ -106,7 +106,7 @@ namespace FontManager {
         public FontList fontlist { get; private set; }
         public FontListTree fonttree { get; private set; }
         public UserSourceTree user_source_tree { get; private set; }
-        public Metadata.Pane properties { get; private set; }
+        public Metadata.Pane metadata { get; private set; }
         public State state { get; private set; }
 
         public Mode mode {
@@ -219,7 +219,7 @@ namespace FontManager {
             titlebar = new TitleBar();
             fonttree = new FontListTree();
             user_source_tree = new UserSourceTree();
-            properties = new Metadata.Pane();
+            metadata = new Metadata.Pane();
             fontlist = fonttree.fontlist;
             main_stack = new Gtk.Stack();
             main_stack.set_transition_duration(720);
@@ -232,7 +232,7 @@ namespace FontManager {
             view_stack.add_titled(preview, "Default", _("Preview"));
             view_stack.add_titled(compare, "Compare", _("Compare"));
             view_stack.add_titled(character_map.pane, "Character Map", _("Character Map"));
-            view_stack.add_titled(properties, "Properties", "Properties");
+            view_stack.add_titled(metadata, "Metadata", "Metadata");
             view_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
             content_stack = new Gtk.Stack();
             content_stack.set_transition_duration(420);
@@ -294,7 +294,7 @@ namespace FontManager {
             titlebar.show();
             fonttree.show();
             user_source_tree.show();
-            properties.show();
+            metadata.show();
             main_stack.show();
             state.restore();
             base.show();
@@ -388,10 +388,15 @@ namespace FontManager {
                 selected_font = fontlist.selected_family.get_default_variant();
             try {
                 var fontinfo = get_fontinfo_from_db_entry(Main.instance.database, selected_font.filepath);
-                properties.update(fontinfo, selected_font);
+                FontData fontdata = {
+                    File.new_for_path(selected_font.filepath),
+                    selected_font,
+                    fontinfo
+                };
+                metadata.update(fontdata);
             } catch (DatabaseError e) {
                 warning(e.message);
-                properties.update(null, null);
+                metadata.update(null);
             }
             return;
         }
@@ -436,7 +441,7 @@ namespace FontManager {
 
             fontlist.font_selected.connect((string_desc) => {
                 set_font_desc(Pango.FontDescription.from_string(string_desc));
-                if (view_stack.get_visible_child_name() == "Properties")
+                if (view_stack.get_visible_child_name() == "Metadata")
                     update_font_properties();
             });
 
@@ -515,7 +520,7 @@ namespace FontManager {
             });
 
             view_stack.notify["visible-child-name"].connect(() => {
-                if (view_stack.get_visible_child_name() == "Properties")
+                if (view_stack.get_visible_child_name() == "Metadata")
                     update_font_properties();
             });
 
@@ -539,7 +544,7 @@ namespace FontManager {
 
             fontlist.controls.show_properties.connect((s) => {
                 if (s)
-                    view_stack.set_visible_child_name("Properties");
+                    view_stack.set_visible_child_name("Metadata");
                 else
                     view_stack.set_visible_child_name(mode.settings()[1]);
             });

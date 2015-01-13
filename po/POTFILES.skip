@@ -7,6 +7,7 @@
 ./src/Common/FontInfo.c
 ./src/Common/Library.c
 ./src/Common/Logger.c
+./src/Common/Main.c
 ./src/Common/Utils.c
 ./src/Filters/Category.c
 ./src/Filters/Collection.c
@@ -29,7 +30,6 @@
 ./src/Glue/Glue.c
 ./src/Json/Cacheable.c
 ./src/Json/JsonWriter.c
-./src/Main.c
 ./src/Models/CategoryModel.c
 ./src/Models/CollectionModel.c
 ./src/Models/FontModel.c
@@ -61,6 +61,7 @@
 ./src/UX/Trees/UserSourceTree.c
 ./src/UX/Utils/Color.c
 ./src/UX/Utils/Utils.c
+./src/UX/Viewer.c
 ./src/UX/Views/Browse.c
 ./src/UX/Views/Compare.c
 ./src/UX/Views/FontPreview.c

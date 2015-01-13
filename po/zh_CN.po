@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-17 19:20-0500\n"
+"POT-Creation-Date: 2015-01-12 23:31-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -33,7 +33,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 # Not translate very good, just for use.
-#: .././src/Common/About.vala:26 ../resources/font-manager.desktop.in.h:1
+#: .././src/Common/About.vala:26
+#: ../resources/org.gnome.FontManager.desktop.in.h:1
 msgid "Font Manager"
 msgstr "字体管理器"
 
@@ -230,7 +231,7 @@ msgstr "重(Heavy)"
 msgid "Ultra-Heavy"
 msgstr "超重(Ultra-Heavy)"
 
-#: .././src/FontConfig/FontSource.vala:113
+#: .././src/FontConfig/FontSource.vala:112
 #, c-format
 msgid "%s --> Resource Unavailable"
 msgstr ""
@@ -264,7 +265,7 @@ msgstr "用户"
 msgid "Fonts avalable only to you"
 msgstr "字体只有你可见"
 
-#: .././src/Models/CategoryModel.vala:80
+#: .././src/Models/CategoryModel.vala:80 .././src/UX/Views/Metadata.vala:178
 msgid "Spacing"
 msgstr "字距"
 
@@ -272,7 +273,7 @@ msgstr "字距"
 msgid "Grouped by font spacing"
 msgstr "按字距分组"
 
-#: .././src/Models/CategoryModel.vala:82
+#: .././src/Models/CategoryModel.vala:82 .././src/UX/Views/Metadata.vala:176
 msgid "Slant"
 msgstr "倾斜"
 
@@ -280,7 +281,7 @@ msgstr "倾斜"
 msgid "Grouped by font angle"
 msgstr "按倾斜分组"
 
-#: .././src/Models/CategoryModel.vala:84
+#: .././src/Models/CategoryModel.vala:84 .././src/UX/Views/Metadata.vala:175
 msgid "Weight"
 msgstr "字重"
 
@@ -288,7 +289,7 @@ msgstr "字重"
 msgid "Grouped by font weight"
 msgstr "按字重分组"
 
-#: .././src/Models/CategoryModel.vala:86
+#: .././src/Models/CategoryModel.vala:86 .././src/UX/Views/Metadata.vala:177
 msgid "Width"
 msgstr "字宽"
 
@@ -312,7 +313,7 @@ msgstr "许可证"
 msgid "Grouped by license type"
 msgstr "按许可证分组"
 
-#: .././src/Models/CategoryModel.vala:92
+#: .././src/Models/CategoryModel.vala:92 .././src/UX/Views/Metadata.vala:180
 msgid "Vendor"
 msgstr "供应商"
 
@@ -361,12 +362,12 @@ msgstr "正常(Normal)"
 msgid "Regular"
 msgstr "常规(Regular)"
 
-#: .././src/UX/CharacterMap/CharacterMapSideBar.vala:74
+#: .././src/UX/CharacterMap/CharacterMapSideBar.vala:76
 #, fuzzy
 msgid "Unicode Script"
 msgstr "Script"
 
-#: .././src/UX/CharacterMap/CharacterMapSideBar.vala:75
+#: .././src/UX/CharacterMap/CharacterMapSideBar.vala:77
 #, fuzzy
 msgid "Unicode Block"
 msgstr "Script"
@@ -395,84 +396,89 @@ msgstr "选择文本颜色"
 msgid "Select background color"
 msgstr "选择背景颜色"
 
-#: .././src/UX/Controls/FontListControls.vala:44
-#: .././src/UX/Controls/FontListControls.vala:77
+#: .././src/UX/Controls/FontListControls.vala:45
+#: .././src/UX/Controls/FontListControls.vala:87
 msgid "Expand all"
 msgstr "全部展开"
 
-#: .././src/UX/Controls/FontListControls.vala:47
+#: .././src/UX/Controls/FontListControls.vala:48
 msgid "Remove selected fonts"
 msgstr "删除选中的字体"
 
-#: .././src/UX/Controls/FontListControls.vala:51
+#: .././src/UX/Controls/FontListControls.vala:52
 #, fuzzy
 msgid "Search Families..."
 msgstr "搜索数据库"
 
-#: .././src/UX/Controls/FontListControls.vala:54
+#: .././src/UX/Controls/FontListControls.vala:59
+#: .././src/UX/Controls/FontListControls.vala:98
 msgid "View font information"
 msgstr ""
 
-#: .././src/UX/Controls/FontListControls.vala:77
+#: .././src/UX/Controls/FontListControls.vala:87
 msgid "Collapse all"
 msgstr "全部折叠"
 
-#: .././src/UX/Controls/PreviewControls.vala:50
+#: .././src/UX/Controls/FontListControls.vala:96
+msgid "Hide font information"
+msgstr ""
+
+#: .././src/UX/Controls/PreviewControls.vala:51
 msgid "Left Aligned"
 msgstr "左对齐"
 
-#: .././src/UX/Controls/PreviewControls.vala:52
+#: .././src/UX/Controls/PreviewControls.vala:53
 msgid "Centered"
 msgstr "居中"
 
-#: .././src/UX/Controls/PreviewControls.vala:54
+#: .././src/UX/Controls/PreviewControls.vala:55
 msgid "Fill"
 msgstr "两端对齐"
 
-#: .././src/UX/Controls/PreviewControls.vala:56
+#: .././src/UX/Controls/PreviewControls.vala:57
 msgid "Right Aligned"
 msgstr "右对齐"
 
-#: .././src/UX/Controls/PreviewControls.vala:63
+#: .././src/UX/Controls/PreviewControls.vala:64
 msgid "Edit preview text"
 msgstr "编辑预览文本"
 
-#: .././src/UX/Controls/PreviewControls.vala:66
+#: .././src/UX/Controls/PreviewControls.vala:67
 msgid "Undo changes"
 msgstr "撤销更改"
 
-#: .././src/UX/Controls/TitleBar.vala:67
-#: .././src/UX/Controls/TitleBar.vala:123
+#: .././src/UX/Controls/TitleBar.vala:70
+#: .././src/UX/Controls/TitleBar.vala:131
 msgid "Add Fonts"
 msgstr "添加字体"
 
-#: .././src/UX/Controls/TitleBar.vala:68
-#: .././src/UX/Controls/TitleBar.vala:124
+#: .././src/UX/Controls/TitleBar.vala:71
+#: .././src/UX/Controls/TitleBar.vala:132
 msgid "Remove Fonts"
 msgstr "删除字体"
 
-#: .././src/UX/Controls/TitleBar.vala:74
+#: .././src/UX/Controls/TitleBar.vala:77
 msgid "Manage Sources"
 msgstr "管理字体源"
 
-#: .././src/UX/Controls/TitleBar.vala:120
+#: .././src/UX/Controls/TitleBar.vala:128
 msgid "Add new source"
 msgstr "添加新的字体源"
 
-#: .././src/UX/Controls/TitleBar.vala:121
+#: .././src/UX/Controls/TitleBar.vala:129
 msgid "Remove selected source"
 msgstr "删除选中的字体源"
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: .././src/UX/Controls/TitleBar.vala:174
-msgid "About"
-msgstr "关于"
-
-#: .././src/UX/Controls/TitleBar.vala:175
+#: .././src/UX/Controls/TitleBar.vala:182
 msgid "Help"
 msgstr "帮助"
 
-#: .././src/UX/Controls/TitleBar.vala:176
+#: .././src/UX/Controls/TitleBar.vala:183
+msgid "About"
+msgstr "关于"
+
+#: .././src/UX/Controls/TitleBar.vala:184
 msgid "Quit"
 msgstr "退出"
 
@@ -483,6 +489,7 @@ msgstr "选择字体源文件夹"
 #: .././src/UX/Dialogs/FileSelector.vala:31
 #: .././src/UX/Dialogs/FileSelector.vala:51
 #: .././src/UX/Dialogs/FileSelector.vala:77
+#: .././src/UX/Dialogs/Migration.vala:56
 msgid "_Cancel"
 msgstr "取消(_C)"
 
@@ -499,23 +506,20 @@ msgstr "选择文件安装"
 msgid "_Delete"
 msgstr "删除(_D)"
 
-#: .././src/UX/Dialogs/FileSelector.vala:80
+#: .././src/UX/Dialogs/FileSelector.vala:83
 msgid "Select fonts to remove"
 msgstr "选择字体删除"
 
-#: .././src/UX/Dialogs/Migration.vala:55
+#: .././src/UX/Dialogs/Migration.vala:57
+#, fuzzy
+msgid "_Continue"
+msgstr "继续"
+
+#: .././src/UX/Dialogs/Migration.vala:66
 msgid "Update Required"
 msgstr "需要更新"
 
-#: .././src/UX/Dialogs/Migration.vala:58
-msgid "Cancel"
-msgstr "取消"
-
-#: .././src/UX/Dialogs/Migration.vala:60
-msgid "Continue"
-msgstr "继续"
-
-#: .././src/UX/Dialogs/Migration.vala:188
+#: .././src/UX/Dialogs/Migration.vala:190
 msgid ""
 "\n"
 "Font Manager has detected files from a previous installation. Some files "
@@ -530,54 +534,97 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 
-#: .././src/UX/MainWindow.vala:62 .././src/UX/MainWindow.vala:239
+#: .././src/UX/MainWindow.vala:62 .././src/UX/MainWindow.vala:240
 msgid "Browse"
 msgstr "浏览"
 
-#: .././src/UX/MainWindow.vala:64 .././src/UX/MainWindow.vala:232
+#: .././src/UX/MainWindow.vala:64 .././src/UX/MainWindow.vala:233
 msgid "Compare"
 msgstr "比较"
 
-#: .././src/UX/MainWindow.vala:66 .././src/UX/MainWindow.vala:233
+#: .././src/UX/MainWindow.vala:66 .././src/UX/MainWindow.vala:234
 msgid "Character Map"
 msgstr "字符映射"
 
-#: .././src/UX/MainWindow.vala:68 .././src/UX/MainWindow.vala:238
+#: .././src/UX/MainWindow.vala:68 .././src/UX/MainWindow.vala:239
 msgid "Manage"
 msgstr "管理"
 
-#: .././src/UX/MainWindow.vala:231 .././src/UX/Views/FontPreview.vala:85
+#: .././src/UX/MainWindow.vala:232 .././src/UX/Viewer.vala:54
+#: .././src/UX/Views/FontPreview.vala:87
 msgid "Preview"
 msgstr "预览"
 
 # msgstr "区块"
-#: .././src/UX/Sidebar/MainSideBar.vala:76
+#: .././src/UX/Sidebar/MainSideBar.vala:80
 msgid "Categories"
 msgstr "分类"
 
-#: .././src/UX/Sidebar/MainSideBar.vala:77
+#: .././src/UX/Sidebar/MainSideBar.vala:81
 msgid "Collections"
 msgstr "字体集"
 
-#: .././src/UX/Views/FontPreview.vala:86
+# Not translate very good, just for use.
+#: .././src/UX/Viewer.vala:46
+#, fuzzy
+msgid "Font Viewer"
+msgstr "字体管理器"
+
+#: .././src/UX/Viewer.vala:56 .././src/UX/Viewer.vala:127
+#, fuzzy
+msgid "Install Font"
+msgstr "全部字体"
+
+#: .././src/UX/Viewer.vala:118
+msgid "Newer version already installed"
+msgstr ""
+
+#: .././src/UX/Viewer.vala:123
+#, fuzzy
+msgid "Installed"
+msgstr "全部字体"
+
+#: .././src/UX/Views/FontPreview.vala:88
 msgid "Waterfall"
 msgstr "瀑布"
 
 # Not fine
-#: .././src/UX/Views/FontPreview.vala:87
+#: .././src/UX/Views/FontPreview.vala:89
 msgid "Body Text"
 msgstr "正文"
 
-#: .././src/UX/Views/Metadata.vala:45
+#: .././src/UX/Views/Metadata.vala:46
 msgid "OpenType Font"
 msgstr ""
 
-#: .././src/UX/Views/Metadata.vala:46
+#: .././src/UX/Views/Metadata.vala:47
 msgid "TrueType Font"
 msgstr ""
 
-#: .././src/UX/Views/Metadata.vala:47
+#: .././src/UX/Views/Metadata.vala:48
 msgid "PostScript Type 1 Font"
+msgstr ""
+
+#: .././src/UX/Views/Metadata.vala:90
+#, fuzzy
+msgid "Details"
+msgstr "显示详细信息"
+
+#: .././src/UX/Views/Metadata.vala:91
+#, fuzzy
+msgid "Legal"
+msgstr "传统(Legacy)"
+
+#: .././src/UX/Views/Metadata.vala:174
+msgid "PostScript Name"
+msgstr ""
+
+#: .././src/UX/Views/Metadata.vala:179
+msgid "Version"
+msgstr ""
+
+#: .././src/UX/Views/Metadata.vala:328
+msgid "File does not contain license description."
 msgstr ""
 
 #: .././src/UX/Widgets/CellRendererPill.vala:28
@@ -588,11 +635,12 @@ msgstr "变体"
 msgid "Variations"
 msgstr "变体"
 
-#: ../resources/font-manager.desktop.in.h:2
+#: ../resources/org.gnome.FontManager.desktop.in.h:2
 msgid "Preview, Compare and Manage Fonts"
 msgstr "预览，比较和管理字体"
 
-#: ../resources/font-manager.desktop.in.h:3
+#: ../resources/org.gnome.FontManager.desktop.in.h:3
+#, fuzzy
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr "Graphics;Viewer;GNOME;GTK;Publishing;"
 
@@ -600,8 +648,8 @@ msgstr "Graphics;Viewer;GNOME;GTK;Publishing;"
 #~ msgid "Properties"
 #~ msgstr "比例(Proportional)"
 
-#~ msgid "Show Details"
-#~ msgstr "显示详细信息"
+#~ msgid "Cancel"
+#~ msgstr "取消"
 
 #~ msgid "Copyright © 2009 - 2014 Jerry Casiano"
 #~ msgstr "版权 © 2009 - 2014 Jerry Casiano"

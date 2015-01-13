@@ -58,10 +58,6 @@ namespace FontManager {
             fontconfig = new FontConfig.Main();
             fontconfig.progress.connect((m, p, t) => { progress(m, p, t); });
             collections = load_collections();
-            category_model = new CategoryModel();
-            collection_model = new CollectionModel();
-            font_model = new FontModel();
-            user_source_model = new UserSourceModel();
             settings = new GLib.Settings(SCHEMA_ID);
             fontconfig.changed.connect((f, ev) => {
                 message("Filesystem change detected");
@@ -78,11 +74,21 @@ namespace FontManager {
             } catch (DatabaseError e) {
                 critical("Database synchronization failed : %s", e.message);
             }
+            init_called = true;
+            return;
+        }
+
+        public void init_ui () {
+            if (!init_called)
+                init();
+            category_model = new CategoryModel();
+            collection_model = new CollectionModel();
+            font_model = new FontModel();
+            user_source_model = new UserSourceModel();
             category_model.database = database;
             collection_model.collections = collections;
             font_model.families = fontconfig.families;
             user_source_model.sources = fontconfig.sources;
-            init_called = true;
             return;
         }
 
@@ -146,7 +152,7 @@ namespace FontManager {
                 ensure_ui_update();
                 }
             );
-            init();
+            init_ui();
             application.main_window.reject = fontconfig.reject;
             application.main_window.set_all_models();
             application.main_window.loading = false;

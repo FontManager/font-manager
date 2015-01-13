@@ -21,11 +21,52 @@
 
 namespace FontManager {
 
+    public struct FontData {
+        public File file;
+        public FontConfig.Font font;
+        public FontInfo fontinfo;
+
+        public FontData (File file, string? rmdir = null) {
+            this.file = file;
+            font = FontConfig.get_font_from_file(file.get_path());
+            fontinfo = new FontInfo.from_filepath(file.get_path());
+        }
+    }
+
     namespace Library {
 
         public static ProgressCallback? progress = null;
         private static ArchiveManager? archive_manager = null;
         private static Gee.ArrayList <string>? supported_archives = null;
+
+        public static bool is_installed (FontData fontdata) {
+            var filelist = FontConfig.list_files();
+            if (fontdata.font.filepath in filelist)
+                return true;
+            var _filelist = db_match_checksum(fontdata.fontinfo.checksum);
+            foreach (var f in _filelist)
+                if (filelist.contains(f))
+                    return true;
+            if (_filelist.contains(fontdata.font.filepath))
+                return true;
+            return false;
+        }
+
+        /*
+         * Prevent an older version from being installed.
+         *
+         * XXX:
+         * Todo:
+         * Extend to catch crappy fonts... would need notification/resolution
+         */
+        public static int conflicts (FontData fontdata) {
+            var unique = db_match_unique_names(fontdata);
+            var filelist = FontConfig.list_files();
+            foreach (var f in unique.keys)
+                if (filelist.contains(f))
+                    return natural_cmp(unique[f], fontdata.fontinfo.version);
+            return -1;
+        }
 
         private bool is_metrics_file (string name) {
             foreach (var ext in FONT_METRICS)
@@ -34,18 +75,45 @@ namespace FontManager {
             return false;
         }
 
-        public struct InstallData {
-            public File file;
-            public FontConfig.Font font;
-            public FontInfo fontinfo;
-
-            public InstallData (File file, string? rmdir = null) {
-                this.file = file;
-                font = FontConfig.get_font_from_file(file.get_path());
-                fontinfo = new FontInfo.from_filepath(file.get_path());
+        private static Gee.ArrayList <string> db_match_checksum (string checksum) {
+            var results = new Gee.ArrayList <string> ();
+            Database? db;
+            try {
+                db = get_database();
+                db.reset();
+                db.table = "Fonts";
+                db.select = "filepath";
+                db.search = "checksum=\"%s\"".printf(checksum);
+                db.execute_query();
+                foreach (var row in db)
+                    results.add(row.column_text(0));
+            } catch (DatabaseError e) {
+                error("Database Error : %s", e.message);
             }
+            if (db != null)
+                db.close();
+            return results;
         }
 
+        private static Gee.HashMap <string, string> db_match_unique_names (FontData fontdata) {
+            var results = new Gee.HashMap <string, string> ();
+            Database? db;
+            try {
+                db = get_database();
+                db.reset();
+                db.table = "Fonts";
+                db.select = "filepath, version";
+                db.search = "psname=\"%s\" OR font_description=\"%s\"".printf(fontdata.fontinfo.psname, fontdata.font.description);
+                db.execute_query();
+                foreach (var row in db)
+                    results[row.column_text(0)] = row.column_text(1);
+            } catch (DatabaseError e) {
+                error("Database Error : %s", e.message);
+            }
+            if (db != null)
+                db.close();
+            return results;
+        }
 
         public class Sorter : Object {
 
@@ -198,13 +266,13 @@ namespace FontManager {
                 return;
             }
 
-            private static void install_font (InstallData data) {
+            public static bool install_font (FontData data) {
                 if (data.font == null || data.fontinfo == null) {
                     if (install_failed == null)
                         install_failed = new Gee.HashMap <string, string> ();
                     install_failed[data.file.get_path()] = "Failed to create FontInfo";
                     warning("Failed to create FontInfo : %s", data.file.get_path());
-                    return;
+                    return false;
                 }
                 string dest = Path.build_filename(get_user_font_dir(),
                                                     data.fontinfo.vendor,
@@ -237,7 +305,7 @@ namespace FontManager {
                 if (installed == null)
                     installed = new Gee.ArrayList <File> ();
                 installed.add(data.file);
-                return;
+                return true;
             }
 
             private static File? get_temp_dir () {
@@ -256,7 +324,9 @@ namespace FontManager {
                 int processed = 0;
                 int total = sorter.files.size + sorter.archives.size;
                 foreach (var f in sorter.files) {
-                    install_font(InstallData(f));
+                    var data = FontData(f);
+                    if (!is_installed(data) && (conflicts(data) < 0))
+                        install_font(data);
                     processed++;
                     if (progress != null)
                         progress(null, processed, total);

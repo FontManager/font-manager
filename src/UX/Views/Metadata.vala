@@ -19,26 +19,25 @@
  *  Jerry Casiano <JerryCasiano@gmail.com>
  */
 
-private const string font_desc_templ = "<span size=\"xx-large\" weight=\"bold\">%s</span>    <span size=\"large\" weight=\"bold\">%s</span>";
-
-
-private struct FontTypeEntry {
-
-    public string name;
-    public string tooltip;
-    public string url;
-
-    public FontTypeEntry (string name, string tooltip, string url) {
-        this.name = name;
-        this.tooltip = tooltip;
-        this.url = url;
-    }
-
-}
-
 namespace FontManager {
 
     namespace Metadata {
+
+        private const string font_desc_templ = "<span size=\"xx-large\" weight=\"bold\">%s</span>    <span size=\"large\" weight=\"bold\">%s</span>";
+
+        private struct FontTypeEntry {
+
+            public string name;
+            public string tooltip;
+            public string url;
+
+            public FontTypeEntry (string name, string tooltip, string url) {
+                this.name = name;
+                this.tooltip = tooltip;
+                this.url = url;
+            }
+
+        }
 
         private class TypeInfoCache : Object {
 
@@ -78,21 +77,33 @@ namespace FontManager {
 
         public class Pane : Title {
 
-            private General general;
+            public Gtk.Notebook notebook { get; private set; }
+
+            private Details details;
+            private Legal legal;
 
             public Pane () {
-                general = new General();
-                attach(general, 0, 1, 2, 1);
+                notebook = new Gtk.Notebook();
+                notebook.show_border = false;
+                details = new Details();
+                legal = new Legal();
+                notebook.append_page(details, new Gtk.Label(_("Details")));
+                notebook.append_page(legal, new Gtk.Label(_("Legal")));
+                notebook.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+                attach(notebook, 0, 1, 2, 2);
             }
 
-            public override void update (FontInfo? fontinfo, FontConfig.Font? fcfont) {
-                general.update(fontinfo);
-                base.update(fontinfo, fcfont);
+            public override void update (FontData? fontdata) {
+                details.update(fontdata);
+                legal.update(fontdata);
+                base.update(fontdata);
                 return;
             }
 
             public override void show () {
-                general.show();
+                details.show();
+                legal.show();
+                notebook.show();
                 base.show();
                 return;
             }
@@ -110,11 +121,11 @@ namespace FontManager {
                 font.hexpand = true;
                 font.halign = Gtk.Align.START;
                 font.xpad = 12;
-                font.ypad = 12;
+                font.ypad = 6;
                 type_info_cache = new TypeInfoCache();
                 type_icon = new Gtk.Image.from_icon_name("null", Gtk.IconSize.DIALOG);
                 type_icon.xpad = 12;
-                type_icon.ypad = 12;
+                type_icon.ypad = 6;
                 attach(font, 0, 0, 1, 1);
                 attach(type_icon, 1, 0, 1, 1);
                 get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
@@ -130,54 +141,250 @@ namespace FontManager {
             private void reset () {
                 font.set_text("");
                 type_info_cache.update(type_icon, "null");
+                return;
             }
 
-            public virtual void update (FontInfo? fontinfo, FontConfig.Font? fcfont) {
+            public virtual void update (FontData? fontdata) {
                 this.reset();
-                if (fontinfo == null || font == null)
+                if (fontdata == null)
                     return;
+                var fontinfo = fontdata.fontinfo;
+                var fcfont = fontdata.font;
                 var font_desc = font_desc_templ.printf(fcfont.family, fcfont.style);
                 font.set_markup(font_desc);
                 type_info_cache.update(type_icon, fontinfo.filetype);
                 return;
             }
 
+        }
+
+        public class Details : Gtk.Grid {
+
+            private Gtk.Label psname;
+            private Gtk.Label weight;
+            private Gtk.Label slant;
+            private Gtk.Label width;
+            private Gtk.Label spacing;
+            private Gtk.Label version;
+            private Gtk.Label vendor;
+            private Gtk.Separator separator;
+            private Description description;
+
+            private string [] labels = {
+                _("PostScript Name"),
+                _("Weight"),
+                _("Slant"),
+                _("Width"),
+                _("Spacing"),
+                _("Version"),
+                _("Vendor")
+            };
+
+            construct {
+                hexpand = true;
+                vexpand = true;
+                column_homogeneous = false;
+                row_homogeneous = true;
+                psname = new Gtk.Label("psname");
+                weight = new Gtk.Label("weight");
+                slant = new Gtk.Label("slant");
+                width = new Gtk.Label("width");
+                spacing = new Gtk.Label("spacing");
+                version = new Gtk.Label("version");
+                vendor = new Gtk.Label("vendor");
+                Gtk.Label [] values = {
+                    psname,
+                    weight,
+                    slant,
+                    width,
+                    spacing,
+                    version,
+                    vendor
+                };
+                for (int i = 0; i < labels.length; i++) {
+                    var widget = new Gtk.Label(labels[i]);
+                    widget.sensitive = false;
+                    attach(widget, 0, i, 1, 1);
+                    widget.halign = Gtk.Align.END;
+                    widget.margin_left = 12;
+                    widget.margin_right = 12;
+                    widget.vexpand = true;
+                    attach(values[i], 1, i, 1, 1);
+                    values[i].halign = Gtk.Align.START;
+                    values[i].margin_left = 12;
+                    values[i].margin_right = 12;
+                    if (i == 0) {
+                        widget.margin_top = 12;
+                        values[i].margin_top = 12;
+                    } else if (i == labels.length - 1) {
+                        widget.margin_bottom = 12;
+                        values[i].margin_bottom = 12;
+                    }
+                    widget.show();
+                    values[i].show();
+                }
+            }
+
+            public Details () {
+                description = new Description();
+                separator = new Gtk.Separator(Gtk.Orientation.VERTICAL);
+                separator.set_size_request(1, -1);
+                separator.margin = 6;
+                separator.margin_top = 12;
+                separator.margin_bottom = 12;
+                separator.opacity = 0.90;
+                attach(separator, 2, 0, 1, 7);
+                attach(description, 3, 0, 1, 7);
+            }
+
+            public override void show () {
+                separator.show();
+                description.show();
+                base.show();
+                return;
+            }
+
+            public void update (FontData fontdata) {
+                var fontinfo = fontdata.fontinfo;
+                var fcfont = fontdata.font;
+                psname.set_text(fontinfo.psname);
+                string? _weight = ((FontConfig.Weight) fcfont.weight).to_string();
+                if (_weight == null)
+                    _weight = "Regular";
+                weight.set_text(_weight);
+                string? _slant = ((FontConfig.Slant) fcfont.slant).to_string();
+                if (_slant == null)
+                    _slant = "Normal";
+                slant.set_text(_slant);
+                string? _width = ((FontConfig.Width) fcfont.width).to_string();
+                if (_width == null)
+                    _width = "Normal";
+                width.set_text(_width);
+                string? _spacing = ((FontConfig.Spacing) fcfont.spacing).to_string();
+                if (_spacing == null)
+                    _spacing = "Proportional";
+                spacing.set_text(_spacing);
+                version.set_text(fontinfo.version);
+                vendor.set_text(fontinfo.vendor);
+                if (fontinfo.vendor == "Unknown Vendor") {
+                    get_child_at(0, 6).hide();
+                    vendor.hide();
+                } else {
+                    vendor.show();
+                    get_child_at(0, 6).show();
+                }
+                description.update(fontdata);
+                return;
+            }
 
         }
 
-        public class General : StandardTextView {
+        public class Description : StaticTextView {
 
-            public General () {
+            public Description () {
                 base(null);
-                view.left_margin = 12;
-                view.right_margin = 12;
-                view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
+                view.margin = 12;
                 view.justification = Gtk.Justification.LEFT;
                 view.pixels_above_lines = 1;
-                hexpand = true;
-                vexpand = true;
-                margin_top = 3;
                 set_size_request(0, 0);
                 get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+                hexpand = true;
+                vexpand = true;
             }
 
             private void reset () {
                 buffer.set_text("");
+                return;
             }
 
-            public void update (FontInfo? fontinfo) {
+            public void update (FontData? fontdata) {
                 this.reset();
-                if (fontinfo == null)
+                if (fontdata == null)
                     return;
-                var version_text = "Version %s".printf(fontinfo.version);
-                view.buffer.set_text(version_text);
-                if (fontinfo.vendor != "Unknown Vendor")
-                    view.buffer.set_text("%s\n%s".printf(get_buffer_text(), fontinfo.vendor));
+                var fontinfo = fontdata.fontinfo;
                 if (fontinfo.copyright != null)
-                    view.buffer.set_text("%s\n\n%s".printf(get_buffer_text(), fontinfo.copyright));
+                    view.buffer.set_text("%s".printf(fontinfo.copyright));
                 if (fontinfo.description != null && fontinfo.description.length > 10)
                     view.buffer.set_text("%s\n\n%s".printf(get_buffer_text(), fontinfo.description));
-                view.buffer.set_text("%s\n".printf(get_buffer_text()));
+                return;
+            }
+
+        }
+
+        public class Legal : Gtk.Overlay {
+
+            private Gtk.Grid grid;
+            private Gtk.EventBox blend;
+            private Gtk.Label label;
+            private Gtk.LinkButton link;
+            private StaticTextView view;
+
+            public Legal () {
+                grid = new Gtk.Grid();
+                view = new StaticTextView(null);
+                view.view.left_margin = 12;
+                view.view.right_margin = 12;
+                view.view.pixels_above_lines = 1;
+                label = new Gtk.Label(_("File does not contain license description."));
+                label.sensitive = false;
+                link = new Gtk.LinkButton("https://code.google.com/p/font-manager/");
+                link.set_label("");
+                link.halign = Gtk.Align.CENTER;
+                link.valign = Gtk.Align.CENTER;
+                blend = new Gtk.EventBox();
+                blend.add(link);
+                blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+                view.hexpand = true;
+                view.vexpand = true;
+                grid.attach(view, 0, 0, 1, 3);
+                grid.attach(blend, 0, 3, 1 ,1);
+                add(grid);
+                add_overlay(label);
+            }
+
+            public override void show () {
+                link.show();
+                view.show();
+                label.show();
+                grid.show();
+                blend.show();
+                base.show();
+                this.reset();
+                return;
+            }
+
+            private void reset () {
+                view.buffer.set_text("");
+                link.set_uri("https://code.google.com/p/font-manager/");
+                link.set_label("");
+                blend.hide();
+                view.hide();
+                label.show();
+                return;
+            }
+
+            public void update (FontData? fontdata) {
+                this.reset();
+                if (fontdata == null)
+                    return;
+                var fontinfo = fontdata.fontinfo;
+                if (fontinfo.license_data == null && fontinfo.license_url == null)
+                    return;
+                if (fontinfo.license_url != null) {
+                    link.set_uri(fontinfo.license_url);
+                    link.set_label(fontinfo.license_url);
+                    blend.show();
+                }
+                bool license_data = (fontinfo.license_data != null);
+                if (license_data)
+                    view.buffer.set_text("\n%s\n".printf(fontinfo.license_data));
+                view.visible = license_data;
+                link.hexpand = !license_data;
+                link.vexpand = !license_data;
+                if (!license_data && fontinfo.license_url == null)
+                    label.show();
+                else
+                    label.hide();
                 return;
             }
 

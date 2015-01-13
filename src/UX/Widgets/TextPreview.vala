@@ -43,11 +43,8 @@ namespace FontManager {
             set_orientation(Gtk.Orientation.VERTICAL);
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             preview = new StaticTextView(tag_table);
-            preview.view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
-            preview.view.justification = Gtk.Justification.CENTER;
             preview.view.left_margin = 12;
             preview.view.right_margin = 12;
-            preview.view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
             preview.view.justification = Gtk.Justification.FILL;
             set_preview_text(LOREM_IPSUM);
             pack_start(preview, true, true, 0);
