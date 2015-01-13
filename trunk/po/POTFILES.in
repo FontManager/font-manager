@@ -7,6 +7,7 @@
 ./src/Common/FontInfo.vala
 ./src/Common/Library.vala
 ./src/Common/Logger.vala
+./src/Common/Main.vala
 ./src/Common/Utils.vala
 ./src/Filters/Category.vala
 ./src/Filters/Collection.vala
@@ -29,7 +30,6 @@
 ./src/Glue/Glue.vala
 ./src/Json/Cacheable.vala
 ./src/Json/JsonWriter.vala
-./src/Main.vala
 ./src/Models/CategoryModel.vala
 ./src/Models/CollectionModel.vala
 ./src/Models/FontModel.vala
@@ -61,6 +61,7 @@
 ./src/UX/Trees/UserSourceTree.vala
 ./src/UX/Utils/Color.vala
 ./src/UX/Utils/Utils.vala
+./src/UX/Viewer.vala
 ./src/UX/Views/Browse.vala
 ./src/UX/Views/Compare.vala
 ./src/UX/Views/FontPreview.vala
@@ -74,5 +75,5 @@
 ./src/UX/Widgets/TextViews.vala
 ./src/UX/Widgets/ThinPaned.vala
 ./src/UX/Widgets/WaterfallPreview.vala
-resources/font-manager.desktop.in
+resources/org.gnome.FontManager.desktop.in
 resources/font-manager.appdata.xml.in

@@ -60,7 +60,7 @@ $(SQLITE3_LIBS)
 
 font_manager_VALASOURCES = \
 Application.vala \
-Main.vala \
+Common/Main.vala \
 Common/About.vala \
 Common/ArchiveManager.vala \
 Common/Collections.vala \
@@ -96,6 +96,7 @@ Models/CollectionModel.vala \
 Models/FontModel.vala \
 Models/UserFontModel.vala \
 Models/UserSourceModel.vala \
+UX/Viewer.vala \
 UX/MainWindow.vala \
 UX/State.vala \
 UX/CharacterMap/CharacterMap.vala \

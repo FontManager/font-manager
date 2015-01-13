@@ -77,6 +77,9 @@ namespace FontManager {
             view.cursor_visible = false;
             view.accepts_tab = false;
             view.overwrite = false;
+            view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
+            hexpand = true;
+            vexpand = true;
             add(view);
         }
 

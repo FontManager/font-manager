@@ -43,7 +43,7 @@ namespace FontManager {
         return;
     }
 
-    public void set_gnome_app_menu (Gtk.Application app, Gtk.Builder builder) {
+    public void set_g_app_menu (Gtk.Application app, Gtk.Builder builder) {
         try {
             builder.add_from_resource("/org/gnome/FontManager/ApplicationMenu.ui");
             app.app_menu = builder.get_object("ApplicationMenu") as GLib.MenuModel;

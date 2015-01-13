@@ -48,9 +48,9 @@ namespace FontManager {
             set_orientation(Gtk.Orientation.VERTICAL);
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             preview = new StandardTextView(tag_table);
-            preview.view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
             preview.view.justification = Gtk.Justification.CENTER;
             set_preview_text("\n\n" + get_localized_preview_text());
+            preview_size = DEFAULT_PREVIEW_SIZE;
             controls = new PreviewControls();
             pack_start(controls, false, true, 0);
             pack_start(preview, true, true, 0);

@@ -28,95 +28,88 @@ namespace FontManager {
         public MainWindow main_window { get; set; }
         [DBus (visible = false)]
         public Gtk.Builder builder { get; set; }
+        [DBus (visible = false)]
+        public Viewer? font_viewer { get; private set; default = null; }
 
-        const OptionEntry[] options = {
+        private const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, ref ABOUT, "About the application", null },
-            { "version", 'V', 0, OptionArg.NONE, ref VERSION, "Show application version", null },
+            { "version", 'v', 0, OptionArg.NONE, ref VERSION, "Show application version", null },
             { "debug", 'd', 0, OptionArg.NONE, ref DEBUG, "Enable debug logging", null },
-            { "verbose", 'v', 0, OptionArg.NONE, ref VERBOSE, "Enable verbose logging", null },
             { null }
         };
 
-        static bool ABOUT = false;
-        static bool VERSION = false;
-        static bool DEBUG = false;
-        static bool VERBOSE = false;
+        private static bool ABOUT = false;
+        private static bool VERSION = false;
+        private static bool DEBUG = false;
 
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
+            add_main_option_entries(options);
         }
 
         public override void startup () {
-            base.startup ();
+            base.startup();
             Logging.show_version_information();
-            builder = new Gtk.Builder();
-            if (Gnome3())
-                set_gnome_app_menu(this, builder);
             return;
         }
 
         public override void open (File [] files, string hint) {
+            if (font_viewer == null)
+                font_viewer = new Viewer();
+            font_viewer.font_data = FontData(files[0]);
+            font_viewer.show();
             return;
         }
 
-        public override bool local_command_line (ref unowned string[] args, out int exit_status) {
-            bool result = false;
-            exit_status = 0;
+        public override int handle_local_options (VariantDict options) {
+            int exit_status = -1;
 
-            var context = new OptionContext(null);
-            context.add_main_entries(options, NAME);
-            context.add_group(Gtk.get_option_group(false));
-
-            try {
-                unowned string [] _args = args;
-                context.parse(ref _args);
-            } catch (OptionError e) {
-                printerr("%s\n", e.message);
-                exit_status = 1;
-                result = true;
-            }
-
-            if (ABOUT) {
+            if (ABOUT)
                 show_about();
-                result = true;
-            }
 
-            if (VERSION) {
+            if (VERSION)
                 show_version();
-                result = true;
-            }
 
-            if (VERBOSE)
+            if (DEBUG)
                 Logger.DisplayLevel = LogLevel.VERBOSE;
-            else if (DEBUG)
-                Logger.DisplayLevel = LogLevel.DEBUG;
 
-            return (result ? result : base.local_command_line(ref args, out exit_status));
+            if (ABOUT || VERSION)
+                exit_status = 0;
+
+            return exit_status;
         }
 
         protected override void activate () {
+            builder = new Gtk.Builder();
+        #if GTK_314
+            if (prefers_app_menu())
+        #else
+            if (Gnome3())
+        #endif
+                set_g_app_menu(this, builder);
             Main.instance.on_activate();
             return;
         }
 
-        public void on_quit () {
+        public new void quit () {
             Main.instance.settings.apply();
             main_window.hide();
             remove_window(main_window);
-            quit();
+            base.quit();
         }
 
-        public void on_about () {
+        public void about () {
             show_about_dialog(main_window);
             return;
         }
 
-        public void on_help () {
+        public void help () {
             show_help_dialog();
             return;
         }
 
         public static int main (string [] args) {
+            Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
             Environment.set_application_name(About.NAME);
             Environment.set_variable("XDG_CONFIG_HOME", "", true);
             FontConfig.enable_user_config(false);

@@ -19,10 +19,6 @@
  *  Jerry Casiano <JerryCasiano@gmail.com>
  */
 
-GtkWidget {
-    -GtkWidget-window-dragging: 1;
-}
-
 GtkEntry {
     padding : 4px;
 }

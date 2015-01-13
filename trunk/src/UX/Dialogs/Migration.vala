@@ -60,8 +60,6 @@ namespace FontManager {
             var scrolled = new Gtk.ScrolledWindow(null, null);
             var textview = new StaticTextView(null);
             box.set_orientation(Gtk.Orientation.VERTICAL);
-            textview.hexpand = textview.vexpand = true;
-            textview.view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
             scrolled.add(textview);
             box.pack_start(scrolled, true, true, 0);
             textview.buffer.set_text(update_notice);

@@ -81,6 +81,21 @@ namespace FontManager {
             close();
         }
 
+        public int get_version () throws DatabaseError {
+            execute_query("PRAGMA user_version;");
+            if (stmt.step() == Sqlite.ROW)
+                return stmt.column_int(0);
+            return 0;
+        }
+
+        public void set_version (int version) throws DatabaseError {
+            string sql = "PRAGMA user_version = %i;".printf(version);
+            execute_query(sql);
+            check_result(stmt.step(), "set version", Sqlite.DONE);
+            return;
+        }
+
+
         public void open () throws DatabaseError ensures (db != null) {
             if (db != null)
                 return;
@@ -252,7 +267,7 @@ namespace FontManager {
 
     }
 
-    Database get_database() throws DatabaseError {
+    private Database get_database() throws DatabaseError {
         if (db != null)
             return db;
         db = new Database();
@@ -270,9 +285,9 @@ namespace FontManager {
         return filepath;
     }
 
-    void sync_fonts_table (Database db,
-                           Gee.ArrayList <FontConfig.Font> installed_fonts,
-                           ProgressCallback? progress = null)
+    private void sync_fonts_table (Database db,
+                                    Gee.ArrayList <FontConfig.Font> installed_fonts,
+                                    ProgressCallback? progress = null)
     throws DatabaseError {
         int processed = 0;
         int total = installed_fonts.size;
@@ -333,10 +348,10 @@ namespace FontManager {
     }
 
 
-    void get_matching_families_and_fonts (Database db,
-                                            Gee.HashSet <string> families,
-                                            Gee.HashSet <string> descriptions,
-                                            string? search = null)
+    private void get_matching_families_and_fonts (Database db,
+                                                    Gee.HashSet <string> families,
+                                                    Gee.HashSet <string> descriptions,
+                                                    string? search = null)
     throws DatabaseError {
         db.reset();
         db.table = "Fonts";
@@ -355,7 +370,7 @@ namespace FontManager {
         return;
     }
 
-    Gee.HashMap <string, string> get_user_filemap (Database db)
+    private Gee.HashMap <string, string> get_user_filemap (Database db)
     throws DatabaseError {
         var res = new Gee.HashMap <string, string> ();
         db.reset();
@@ -370,7 +385,7 @@ namespace FontManager {
         return res;
     }
 
-    FontInfo? get_fontinfo_from_db_entry (Database db, string filepath)
+    private FontInfo? get_fontinfo_from_db_entry (Database db, string filepath)
     throws DatabaseError {
         db.reset();
         db.table = "Fonts";
@@ -395,5 +410,7 @@ namespace FontManager {
         val.unset();
         return res;
     }
+
+
 
 }
