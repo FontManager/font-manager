@@ -10,9 +10,11 @@ POTFILES.readme:
 	@echo "POTFILES.* generated from the top level Makefile" > $(srcdir)/po/POTFILES.readme
 
 POTFILES.in:
-	@find $(srcdir)/src/ -name "*.vala" -print | sort > $(srcdir)/po/POTFILES.in ;
-	@echo "resources/org.gnome.FontManager.desktop.in" >> $(srcdir)/po/POTFILES.in ;
+	@find src/ -name "*.vala" -print | sort > $(srcdir)/po/POTFILES.in ;
+	@echo "[type: gettext/glade]resources/ApplicationMenu.ui" >> $(srcdir)/po/POTFILES.in ;
 	@echo "resources/$(PACKAGE_NAME).appdata.xml.in" >> $(srcdir)/po/POTFILES.in ;
+	@echo "resources/org.gnome.FontManager.desktop.in" >> $(srcdir)/po/POTFILES.in ;
+	@echo "" >> $(srcdir)/po/POTFILES.in ;
 
 POTFILES.skip:
 	@find $(srcdir)/src/ -name "*.vala" -print | sort | $(SED) 's/.vala/.c/g' > $(srcdir)/po/POTFILES.skip ;

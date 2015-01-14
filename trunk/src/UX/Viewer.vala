@@ -44,6 +44,7 @@ namespace FontManager {
         public Viewer () {
             _parent_ = ((Application) GLib.Application.get_default());
             title = _("Font Viewer");
+            set_icon_name(About.ICON);
             _installed = new Gee.ArrayList <string> ();
             metadata = new Metadata.Pane();
             box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);

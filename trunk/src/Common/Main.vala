@@ -144,6 +144,7 @@ namespace FontManager {
             }
             application = (Application) GLib.Application.get_default();
             application.main_window = new MainWindow();
+            application.main_window.set_icon_name(About.ICON);
             application.add_window(application.main_window);
             application.main_window.loading = true;
             application.main_window.present();
