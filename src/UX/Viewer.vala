@@ -93,8 +93,8 @@ namespace FontManager {
 
         public void update () {
             update_button_state();
-            FontConfig.add_app_font(fontdata.file.get_path());
             if (fontdata != null) {
+                FontConfig.add_app_font(fontdata.file.get_path());
                 metadata.update(fontdata);
                 preview.font_desc = Pango.FontDescription.from_string(fontdata.font.description);
             } else {
