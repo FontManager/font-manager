@@ -41,14 +41,18 @@ namespace FontManager {
 
         public static bool is_installed (FontData fontdata) {
             var filelist = FontConfig.list_files();
-            if (fontdata.font.filepath in filelist)
+            if (fontdata.font.filepath in filelist) {
+                message("Font already installed : path match");
                 return true;
+            }
             var _filelist = db_match_checksum(fontdata.fontinfo.checksum);
             foreach (var f in _filelist)
-                if (filelist.contains(f))
+                if (filelist.contains(f)) {
+                    message("Font already installed : checksum match");
                     return true;
-            if (_filelist.contains(fontdata.font.filepath))
-                return true;
+                }
+//            if (_filelist.contains(fontdata.font.filepath))
+//                return true;
             return false;
         }
 
@@ -63,8 +67,10 @@ namespace FontManager {
             var unique = db_match_unique_names(fontdata);
             var filelist = FontConfig.list_files();
             foreach (var f in unique.keys)
-                if (filelist.contains(f))
+                if (filelist.contains(f)) {
+                    message("%s conflicts with %s", fontdata.font.filepath, f);
                     return natural_cmp(unique[f], fontdata.fontinfo.version);
+                }
             return -1;
         }
 

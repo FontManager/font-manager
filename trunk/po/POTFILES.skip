@@ -58,7 +58,7 @@
 ./src/UX/Trees/CollectionTree.c
 ./src/UX/Trees/FontListTree.c
 ./src/UX/Trees/UserFontTree.c
-./src/UX/Trees/UserSourceTree.c
+./src/UX/Trees/UserSourceList.c
 ./src/UX/Utils/Color.c
 ./src/UX/Utils/Utils.c
 ./src/UX/Viewer.c

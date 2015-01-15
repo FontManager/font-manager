@@ -105,7 +105,7 @@ namespace FontManager {
         public TitleBar titlebar { get; private set; }
         public FontList fontlist { get; private set; }
         public FontListTree fonttree { get; private set; }
-        public UserSourceTree user_source_tree { get; private set; }
+        public UserSourceList user_source_list { get; private set; }
         public Metadata.Pane metadata { get; private set; }
         public State state { get; private set; }
 
@@ -218,7 +218,7 @@ namespace FontManager {
             sidebar.add_view(character_map.sidebar, "Character Map");
             titlebar = new TitleBar();
             fonttree = new FontListTree();
-            user_source_tree = new UserSourceTree();
+            user_source_list = new UserSourceList();
             metadata = new Metadata.Pane();
             fontlist = fonttree.fontlist;
             main_stack = new Gtk.Stack();
@@ -260,7 +260,7 @@ namespace FontManager {
             _main_pane_.pack_start(main_pane, true, true, 0);
             add_separator(_main_pane_, Gtk.Orientation.HORIZONTAL);
             main_stack.add_named(_main_pane_, "Default");
-            main_stack.add_named(user_source_tree, "Sources");
+            main_stack.add_named(user_source_list, "Sources");
             main_box.pack_end(main_stack, true, true, 0);
             /* XXX: Should be true by default? It's not... */
             main_pane.child_set_property(sidebar, "resize", true);
@@ -293,7 +293,7 @@ namespace FontManager {
             sidebar.show();
             titlebar.show();
             fonttree.show();
-            user_source_tree.show();
+            user_source_list.show();
             metadata.show();
             main_stack.show();
             state.restore();
@@ -311,16 +311,7 @@ namespace FontManager {
             font_model = Main.instance.font_model;
             collections = Main.instance.collection_model;
             categories = Main.instance.category_model;
-            user_source_tree.model = Main.instance.user_source_model;
-            return;
-        }
-
-        public void queue_reload () {
-            /* Note : There's a 2 second delay built into FontConfig */
-            Timeout.add_seconds(3, () => {
-                Main.instance.update();
-                return false;
-            });
+            user_source_list.sources = Main.instance.fontconfig.sources;
             return;
         }
 
@@ -497,12 +488,12 @@ namespace FontManager {
             });
 
             titlebar.add_selected.connect(() => {
-                user_source_tree.on_add_source();
+                user_source_list.on_add_source();
             });
 
             titlebar.remove_selected.connect(() => {
                 if (titlebar.source_toggle.get_active())
-                    user_source_tree.on_remove_source();
+                    user_source_list.on_remove_source();
                 else
                     remove_fonts();
             });
@@ -510,13 +501,8 @@ namespace FontManager {
             titlebar.manage_sources.connect((a) => {
                 if (a)
                     main_stack.set_visible_child_name("Sources");
-                else {
+                else
                     main_stack.set_visible_child_name("Default");
-                    if (Main.instance.fontconfig.sources.update_required) {
-                        Main.instance.fontconfig.sources.update_required = false;
-                        queue_reload();
-                    }
-                }
             });
 
             view_stack.notify["visible-child-name"].connect(() => {

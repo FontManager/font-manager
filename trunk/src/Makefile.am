@@ -95,7 +95,6 @@ Models/CategoryModel.vala \
 Models/CollectionModel.vala \
 Models/FontModel.vala \
 Models/UserFontModel.vala \
-Models/UserSourceModel.vala \
 UX/Viewer.vala \
 UX/MainWindow.vala \
 UX/State.vala \
@@ -120,7 +119,7 @@ UX/Trees/CollectionTree.vala \
 UX/Trees/CategoryTree.vala \
 UX/Trees/FontListTree.vala \
 UX/Trees/UserFontTree.vala \
-UX/Trees/UserSourceTree.vala \
+UX/Trees/UserSourceList.vala \
 UX/Widgets/FontScale.vala \
 UX/Widgets/ActivePreview.vala \
 UX/Widgets/AdjustablePreview.vala \

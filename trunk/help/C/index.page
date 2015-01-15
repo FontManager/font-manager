@@ -1,40 +1,27 @@
-<page xmlns="http://projectmallard.org/1.0/"
-    xmlns:e="http://projectmallard.org/experimental/"
-    type="guide" id="index">
-
+<page xmlns="http://projectmallard.org/1.0/" type="guide" id="index">
     <info>
-        <title type="link">Font Manager</title>
+        <revision status="stub" />
         <title type="text">Font Manager</title>
-<!--
-        <credit type="author">
+        <desc>Simple font management for GTK+ desktop environments</desc>
+        <credit type="copyright">
             <name>Jerry Casiano</name>
             <email>JerryCasiano@gmail.com</email>
             <years>2009-2014</years>
         </credit>
--->
         <license>
-            <p>GNU General Public License Version 3</p>
+            <p>
+                <link href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU General Public License Version 3</link>
+            </p>
         </license>
     </info>
-
     <title>
-    <media type="image" mime="image/png" src="media/logo.png">
-    Font Manager logo
-    </media>
-    Font Manager
+        <media type="image" mime="image/png" src="media/logo.png">Font Manager logo</media>
+        Font Manager
     </title>
-<!--
-    <section id="manage" style="2column">
-        <title>Managing Your Fonts</title>
-    </section>
-
-    <section id="explore" style="2column">
-        <title>Getting to Know Your Fonts</title>
-    </section>
-
-    <section id="additional" style="2column">
-        <title>Additional Features</title>
-    </section>
--->
+    <note style="important">
+        <p> Help has not been implemented yet.</p>
+        <p> If you would like to help this project by providing help documentation please see <link href="http://projectmallard.org"> Project Mallard </link> for more information.</p>
+        <p> If you do decide to help, please file an issue at <link href="https://code.google.com/p/font-manager/">https://code.google.com/p/font-manager/</link> detailing what you intend to work on.</p>
+        <p>Thank you.</p>
+    </note>
 </page>
-

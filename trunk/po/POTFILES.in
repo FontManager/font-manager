@@ -58,7 +58,7 @@ src/UX/Trees/CategoryTree.vala
 src/UX/Trees/CollectionTree.vala
 src/UX/Trees/FontListTree.vala
 src/UX/Trees/UserFontTree.vala
-src/UX/Trees/UserSourceTree.vala
+src/UX/Trees/UserSourceList.vala
 src/UX/Utils/Color.vala
 src/UX/Utils/Utils.vala
 src/UX/Viewer.vala

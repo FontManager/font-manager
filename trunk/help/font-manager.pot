@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-01-13 20:40-0500\n"
+"POT-Creation-Date: 2015-01-14 23:43-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,20 +35,29 @@ msgid "translator-credits"
 msgstr ""
 
 #. (itstool) path: info/title
-#: C/index.page:6
-msgctxt "link"
-msgid "Font Manager"
-msgstr ""
-
-#. (itstool) path: info/title
-#: C/index.page:7
+#: C/index.page:4
 msgctxt "text"
 msgid "Font Manager"
 msgstr ""
 
+#. (itstool) path: info/desc
+#: C/index.page:5
+msgid "Simple font management for GTK+ desktop environments"
+msgstr ""
+
+#. (itstool) path: credit/name
+#: C/index.page:7
+msgid "Jerry Casiano"
+msgstr ""
+
+#. (itstool) path: credit/years
+#: C/index.page:9
+msgid "2009-2014"
+msgstr ""
+
 #. (itstool) path: license/p
-#: C/index.page:16
-msgid "GNU General Public License Version 3"
+#: C/index.page:12
+msgid "<link href=\"http://www.gnu.org/licenses/gpl-3.0-standalone.html\">GNU General Public License Version 3</link>"
 msgstr ""
 
 #. (itstool) path: title/media
@@ -56,13 +65,33 @@ msgstr ""
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/index.page:21
+#: C/index.page:18
 msgctxt "_"
 msgid "external ref='media/logo.png' md5='9f2f97653d18778001fcf0c180dcf12d'"
 msgstr ""
 
 #. (itstool) path: page/title
-#: C/index.page:20
-msgid "<media type=\"image\" mime=\"image/png\" src=\"media/logo.png\"> Font Manager logo </media> Font Manager"
+#: C/index.page:17
+msgid "<media type=\"image\" mime=\"image/png\" src=\"media/logo.png\">Font Manager logo</media> Font Manager"
+msgstr ""
+
+#. (itstool) path: note/p
+#: C/index.page:22
+msgid "Help has not been implemented yet."
+msgstr ""
+
+#. (itstool) path: note/p
+#: C/index.page:23
+msgid "If you would like to help this project by providing help documentation please see <link href=\"http://projectmallard.org\"> Project Mallard </link> for more information."
+msgstr ""
+
+#. (itstool) path: note/p
+#: C/index.page:24
+msgid "If you do decide to help, please file an issue at <link href=\"https://code.google.com/p/font-manager/\">https://code.google.com/p/font-manager/</link> detailing what you intend to work on."
+msgstr ""
+
+#. (itstool) path: note/p
+#: C/index.page:25
+msgid "Thank you."
 msgstr ""
 
