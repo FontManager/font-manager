@@ -129,6 +129,8 @@ namespace FontManager {
 
         public void on_remove_source () {
             var selected_row = list.get_selected_row();
+            if (selected_row == null)
+                return;
             var selected_source = ((SourceRow) selected_row.get_child()).source;
             _sources.remove(selected_source);
             _sources.save();
