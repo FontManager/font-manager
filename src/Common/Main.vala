@@ -19,6 +19,15 @@
  *  Jerry Casiano <JerryCasiano@gmail.com>
  */
 
+void queue_reload () {
+    /* Note : There's a 2 second delay built into FontConfig */
+    Timeout.add_seconds(3, () => {
+        FontManager.Main.instance.update();
+        return false;
+    });
+    return;
+}
+
 namespace FontManager {
 
     public class Main : Object {
@@ -42,7 +51,6 @@ namespace FontManager {
         public CategoryModel category_model { get; set; }
         public CollectionModel collection_model { get; set; }
         public FontModel font_model { get; set; }
-        public UserSourceModel user_source_model { get; private set; }
 
         private static Main? _instance = null;
         private bool init_called = false;
@@ -84,11 +92,9 @@ namespace FontManager {
             category_model = new CategoryModel();
             collection_model = new CollectionModel();
             font_model = new FontModel();
-            user_source_model = new UserSourceModel();
             category_model.database = database;
             collection_model.collections = collections;
             font_model.families = fontconfig.families;
-            user_source_model.sources = fontconfig.sources;
             return;
         }
 

@@ -23,7 +23,7 @@ namespace FontConfig {
 
     public class FontSource : Object {
 
-        public signal void changed (File file, File? new_file, FileMonitorEvent event_type);
+        public signal void update_complete ();
 
         public new string name {
             get {
@@ -112,6 +112,8 @@ namespace FontConfig {
                 _name = _("%s --> Resource Unavailable").printf(_path);
                 available = false;
             }
+            update_complete();
+            return;
         }
 
     }

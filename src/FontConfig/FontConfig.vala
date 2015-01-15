@@ -35,6 +35,7 @@ namespace FontConfig {
 
         private FileMonitor? [] monitors = {};
         private VolumeMonitor volume_monitor;
+        private bool init_called = false;
 
         public Main () {
             accept = new Accept();
@@ -52,12 +53,15 @@ namespace FontConfig {
         }
 
         public void init () {
+            if (init_called)
+                return;
             accept.init();
             dirs.init();
             props.init();
             reject.init();
             sources.init();
             this.update();
+            init_called = true;
             return;
         }
 

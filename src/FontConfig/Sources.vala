@@ -30,21 +30,8 @@ namespace FontConfig {
             return filepath;
         }
 
-        public signal void changed ();
-
-        public bool update_required {
-            get {
-                return _dirty;
-            }
-            set {
-                _dirty = value;
-                this.changed();
-            }
-        }
-
         private string? target_file = null;
         private string? target_element = null;
-        private bool _dirty = false;
 
         public Sources () {
             string old_path = Path.build_filename(get_config_dir(), "UserSources");
@@ -75,19 +62,18 @@ namespace FontConfig {
         public void update () {
             foreach (var source in this)
                 source.update();
-            this.changed();
             return;
         }
 
         public new bool add (FontSource source) {
-            source.notify["active"].connect(() => { update_required = true; });
-            update_required = true;
+            source.notify["active"].connect(() => { queue_reload(); });
+            queue_reload();
             return base.add(source);
         }
 
         public new bool remove (FontSource source) {
             source.available = false;
-            update_required = true;
+            queue_reload();
             try {
                 FontManager.Database db = FontManager.get_database();
                 db.table = "Fonts";
@@ -171,7 +157,8 @@ namespace FontConfig {
                     continue;
                 else {
                     var source = new FontSource(File.new_for_path(content));
-                    this.add(source);
+                    source.notify["active"].connect(() => { queue_reload(); });
+                    base.add(source);
                 }
             }
             return;
