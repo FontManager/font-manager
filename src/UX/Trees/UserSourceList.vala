@@ -24,7 +24,7 @@ namespace FontManager {
     private const string welcome_message = "<span size=\"xx-large\" weight=\"bold\">Font Sources</span>\n<span size=\"large\">Folders containing font files that you can preview within the application and enable or disable as needed.\nEasily add or preview fonts without actually installing them.\n</span>\n\n\n<span size=\"x-large\">To add a new source simply drag a folder onto this area or click the add button in the toolbar to open a file selection dialog.</span>";
 
 
-    public class SourceRow : Gtk.Grid {
+    public class FontSourceRow : Gtk.Grid {
 
         public weak FontConfig.FontSource source { get; set; }
 
@@ -32,7 +32,7 @@ namespace FontManager {
         private Gtk.Switch _switch;
         private Gtk.Image _icon;
 
-        public SourceRow (FontConfig.FontSource source) {
+        public FontSourceRow (FontConfig.FontSource source) {
             Object(source: source);
             _label = new Gtk.Label(null);
             _label.hexpand = true;
@@ -88,7 +88,7 @@ namespace FontManager {
                 _sources = value;
                 if (initial_call) {
                     foreach (var s in _sources) {
-                        var w = new SourceRow(s);
+                        var w = new FontSourceRow(s);
                         w.show();
                         list.add(w);
                     }
@@ -155,7 +155,7 @@ namespace FontManager {
             var source = new FontConfig.FontSource(file);
             _sources.add(source);
             _sources.save();
-            var row = new SourceRow(source);
+            var row = new FontSourceRow(source);
             list.add(row);
             row.show();
             message("Added new font source : %s", source.path);
@@ -168,7 +168,7 @@ namespace FontManager {
             var selected_row = list.get_selected_row();
             if (selected_row == null)
                 return;
-            var selected_source = ((SourceRow) selected_row.get_child()).source;
+            var selected_source = ((FontSourceRow) selected_row.get_child()).source;
             _sources.remove(selected_source);
             _sources.save();
             list.remove(selected_row);
