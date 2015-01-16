@@ -574,12 +574,12 @@ namespace FontManager {
         }
 
         private void on_drag_data_received (Gtk.Widget widget,
-                                    Gdk.DragContext context,
-                                    int x,
-                                    int y,
-                                    Gtk.SelectionData selection_data,
-                                    uint info,
-                                    uint time)
+                                            Gdk.DragContext context,
+                                            int x,
+                                            int y,
+                                            Gtk.SelectionData selection_data,
+                                            uint info,
+                                            uint time)
         {
             switch (info) {
                 case DragTargetType.FAMILY:
