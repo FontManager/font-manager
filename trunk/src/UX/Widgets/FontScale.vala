@@ -40,6 +40,8 @@ namespace FontManager {
         private Gtk.Scale scale;
         private Gdk.RGBA normal;
         private Gdk.RGBA hover;
+        private Gtk.Label min;
+        private Gtk.Label max;
 
         construct {
             Gdk.RGBA normal = Gdk.RGBA();
@@ -52,8 +54,8 @@ namespace FontManager {
             scale.set_increments(0.5, 1.0);
             spin = new Gtk.SpinButton.with_range(MIN_FONT_SIZE, MAX_FONT_SIZE, 0.5);
             spin.set_adjustment(adjustment);
-            var min = new Gtk.Label(null);
-            var max = new Gtk.Label(null);
+            min = new Gtk.Label(null);
+            max = new Gtk.Label(null);
             min.set_markup("<span font=\"Serif Italic Bold\" size=\"small\"> A </span>");
             max.set_markup("<span font=\"Serif Italic Bold\" size=\"large\"> A </span>");
             ev_min.add(min);
@@ -71,6 +73,8 @@ namespace FontManager {
 
         public override void show () {
             container.show();
+            min.show();
+            max.show();
             ev_min.show();
             ev_max.show();
             spin.show();
