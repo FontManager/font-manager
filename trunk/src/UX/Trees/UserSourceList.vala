@@ -21,6 +21,9 @@
 
 namespace FontManager {
 
+    private const string welcome_message = "<span size=\"xx-large\" weight=\"bold\">Font Sources</span>\n<span size=\"large\">Folders containing font files that you can preview within the application and enable or disable as needed.\nEasily add or preview fonts without actually installing them.\n</span>\n\n\n<span size=\"x-large\">To add a new source simply drag a folder onto this area or click the add button in the toolbar to open a file selection dialog.</span>";
+
+
     public class SourceRow : Gtk.Grid {
 
         public weak FontConfig.FontSource source { get; set; }
@@ -75,7 +78,7 @@ namespace FontManager {
 
     }
 
-    public class UserSourceList : Gtk.ScrolledWindow {
+    public class UserSourceList : Gtk.Overlay {
 
         public weak FontConfig.Sources sources {
             get {
@@ -89,8 +92,10 @@ namespace FontManager {
                         w.show();
                         list.add(w);
                     }
-                    if (list.get_row_at_index(0) != null)
+                    if (list.get_row_at_index(0) != null) {
                         list.select_row(list.get_row_at_index(0));
+                        welcome.hide();
+                    }
                 }
                 initial_call = false;
             }
@@ -98,14 +103,34 @@ namespace FontManager {
 
         private bool initial_call = true;
         private Gtk.ListBox list;
+        private Gtk.Label welcome;
+        private Gtk.ScrolledWindow scroll;
         private weak FontConfig.Sources _sources;
 
         construct {
+            scroll = new Gtk.ScrolledWindow(null, null);
+            welcome = new Gtk.Label(null);
+            welcome.wrap = true;
+            welcome.hexpand = true;
+            welcome.valign = Gtk.Align.START;
+            welcome.halign = Gtk.Align.FILL;
+            welcome.justify = Gtk.Justification.CENTER;
+            welcome.margin = 48;
+            welcome.margin_top = 96;
+            welcome.set_markup(welcome_message);
+            welcome.set_sensitive(false);
+            welcome.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             list = new Gtk.ListBox();
-            add(list);
+            list.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            scroll.add(list);
+            add(scroll);
+            add_overlay(welcome);
+            Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
         }
 
         public override void show () {
+            welcome.show();
+            scroll.show();
             list.show();
             base.show();
             return;
@@ -115,15 +140,27 @@ namespace FontManager {
             var new_sources = FileSelector.source_selection((Gtk.Window) this.get_toplevel());
             if (new_sources.length < 1)
                 return;
-            foreach (var uri in new_sources) {
-                var source = new FontConfig.FontSource(File.new_for_uri(uri));
-                _sources.add(source);
-                _sources.save();
-                var row = new SourceRow(source);
-                list.add(row);
-                row.show();
-                message("Added new font source : %s", source.path);
+            foreach (var uri in new_sources)
+                add_source_from_uri(uri);
+            return;
+        }
+
+        private void add_source_from_uri (string uri) {
+            var file = File.new_for_uri(uri);
+            var filetype = file.query_file_type(FileQueryInfoFlags.NONE);
+            if (filetype != FileType.DIRECTORY && filetype != FileType.MOUNTABLE) {
+                warning("Adding individual font files is not supported");
+                return;
             }
+            var source = new FontConfig.FontSource(file);
+            _sources.add(source);
+            _sources.save();
+            var row = new SourceRow(source);
+            list.add(row);
+            row.show();
+            message("Added new font source : %s", source.path);
+            if (welcome.visible)
+                welcome.hide();
             return;
         }
 
@@ -136,6 +173,34 @@ namespace FontManager {
             _sources.save();
             list.remove(selected_row);
             message("Removed font source : %s", selected_source.path);
+            if (list.get_row_at_index(0) != null)
+                welcome.hide();
+            else
+                welcome.show();
+            return;
+        }
+
+        public override void drag_data_received (Gdk.DragContext context,
+                                                    int x,
+                                                    int y,
+                                                    Gtk.SelectionData selection_data,
+                                                    uint info,
+                                                    uint time)
+        {
+            switch (info) {
+                case DragTargetType.EXTERNAL:
+                    add_sources(selection_data.get_uris());
+                    break;
+                default:
+                    warning("Unsupported drag target.");
+                    return;
+            }
+            return;
+        }
+
+        private void add_sources(string [] arr) {
+            foreach (var uri in arr)
+                add_source_from_uri(uri);
             return;
         }
 

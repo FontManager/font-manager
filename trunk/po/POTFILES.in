@@ -34,7 +34,6 @@ src/Models/CategoryModel.vala
 src/Models/CollectionModel.vala
 src/Models/FontModel.vala
 src/Models/UserFontModel.vala
-src/Models/UserSourceModel.vala
 src/UX/CharacterMap/CharacterDetails.vala
 src/UX/CharacterMap/CharacterMapPane.vala
 src/UX/CharacterMap/CharacterMapSideBar.vala

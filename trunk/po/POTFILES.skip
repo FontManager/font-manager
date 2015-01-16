@@ -34,7 +34,6 @@
 ./src/Models/CollectionModel.c
 ./src/Models/FontModel.c
 ./src/Models/UserFontModel.c
-./src/Models/UserSourceModel.c
 ./src/UX/CharacterMap/CharacterDetails.c
 ./src/UX/CharacterMap/CharacterMapPane.c
 ./src/UX/CharacterMap/CharacterMapSideBar.c

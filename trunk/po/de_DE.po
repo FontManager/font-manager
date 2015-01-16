@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-14 23:43-0500\n"
+"POT-Creation-Date: 2015-01-15 21:14-0500\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -586,8 +586,9 @@ msgid "Newer version already installed"
 msgstr ""
 
 #: ../src/UX/Viewer.vala:124
+#, fuzzy
 msgid "Installed"
-msgstr ""
+msgstr "Alle Schriften"
 
 #: ../src/UX/Views/FontPreview.vala:88
 msgid "Waterfall"
