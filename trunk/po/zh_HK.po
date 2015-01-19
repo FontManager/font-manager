@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-15 21:14-0500\n"
+"POT-Creation-Date: 2015-01-18 19:33-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -531,23 +531,23 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 
-#: ../src/UX/MainWindow.vala:62 ../src/UX/MainWindow.vala:240
+#: ../src/UX/MainWindow.vala:62 ../src/UX/MainWindow.vala:236
 msgid "Browse"
 msgstr "浏览"
 
-#: ../src/UX/MainWindow.vala:64 ../src/UX/MainWindow.vala:233
+#: ../src/UX/MainWindow.vala:64 ../src/UX/MainWindow.vala:229
 msgid "Compare"
 msgstr "比较"
 
-#: ../src/UX/MainWindow.vala:66 ../src/UX/MainWindow.vala:234
+#: ../src/UX/MainWindow.vala:66 ../src/UX/MainWindow.vala:230
 msgid "Character Map"
 msgstr "字符映射"
 
-#: ../src/UX/MainWindow.vala:68 ../src/UX/MainWindow.vala:239
+#: ../src/UX/MainWindow.vala:68 ../src/UX/MainWindow.vala:235
 msgid "Manage"
 msgstr "管理"
 
-#: ../src/UX/MainWindow.vala:232 ../src/UX/Viewer.vala:55
+#: ../src/UX/MainWindow.vala:228 ../src/UX/Viewer.vala:55
 #: ../src/UX/Views/FontPreview.vala:87
 msgid "Preview"
 msgstr "预览"
@@ -560,6 +560,20 @@ msgstr "分类"
 #: ../src/UX/Sidebar/MainSideBar.vala:81
 msgid "Collections"
 msgstr "字体集"
+
+#: ../src/UX/Trees/UserSourceList.vala:24
+msgid ""
+"<span size=\"xx-large\" weight=\"bold\">Font Sources</span>\n"
+"<span size=\"large\">Folders containing font files that you can preview "
+"within the application and enable or disable as needed.\n"
+"Easily add or preview fonts without actually installing them.\n"
+"</span>\n"
+"\n"
+"\n"
+"<span size=\"x-large\">To add a new source simply drag a folder onto this "
+"area or click the add button in the toolbar to open a file selection dialog."
+"</span>"
+msgstr ""
 
 # Not translate very good, just for use.
 #: ../src/UX/Viewer.vala:46

@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-15 21:14-0500\n"
+"POT-Creation-Date: 2015-01-18 19:33-0500\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -542,23 +542,23 @@ msgstr ""
 "Es wird dringend empfohlen, alle wichtigen Dateien zu sichern bevor Sie "
 "fortfahren.\n"
 
-#: ../src/UX/MainWindow.vala:62 ../src/UX/MainWindow.vala:240
+#: ../src/UX/MainWindow.vala:62 ../src/UX/MainWindow.vala:236
 msgid "Browse"
 msgstr "Stöbern"
 
-#: ../src/UX/MainWindow.vala:64 ../src/UX/MainWindow.vala:233
+#: ../src/UX/MainWindow.vala:64 ../src/UX/MainWindow.vala:229
 msgid "Compare"
 msgstr "Vergleiche"
 
-#: ../src/UX/MainWindow.vala:66 ../src/UX/MainWindow.vala:234
+#: ../src/UX/MainWindow.vala:66 ../src/UX/MainWindow.vala:230
 msgid "Character Map"
 msgstr "Zeichentabelle"
 
-#: ../src/UX/MainWindow.vala:68 ../src/UX/MainWindow.vala:239
+#: ../src/UX/MainWindow.vala:68 ../src/UX/MainWindow.vala:235
 msgid "Manage"
 msgstr "Verwalte"
 
-#: ../src/UX/MainWindow.vala:232 ../src/UX/Viewer.vala:55
+#: ../src/UX/MainWindow.vala:228 ../src/UX/Viewer.vala:55
 #: ../src/UX/Views/FontPreview.vala:87
 msgid "Preview"
 msgstr "Vorschau"
@@ -570,6 +570,20 @@ msgstr "Kategorien"
 #: ../src/UX/Sidebar/MainSideBar.vala:81
 msgid "Collections"
 msgstr "Kollektionen"
+
+#: ../src/UX/Trees/UserSourceList.vala:24
+msgid ""
+"<span size=\"xx-large\" weight=\"bold\">Font Sources</span>\n"
+"<span size=\"large\">Folders containing font files that you can preview "
+"within the application and enable or disable as needed.\n"
+"Easily add or preview fonts without actually installing them.\n"
+"</span>\n"
+"\n"
+"\n"
+"<span size=\"x-large\">To add a new source simply drag a folder onto this "
+"area or click the add button in the toolbar to open a file selection dialog."
+"</span>"
+msgstr ""
 
 #: ../src/UX/Viewer.vala:46
 #, fuzzy

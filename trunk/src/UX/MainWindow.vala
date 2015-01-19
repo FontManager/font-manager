@@ -223,11 +223,7 @@ namespace FontManager {
             fontlist = fonttree.fontlist;
             main_stack = new Gtk.Stack();
             main_stack.set_transition_duration(720);
-        #if GTK_312
             main_stack.set_transition_type(Gtk.StackTransitionType.UNDER_UP);
-        #else
-            main_stack.set_transition_type(Gtk.StackTransitionType.SLIDE_UP_DOWN);
-        #endif
             view_stack = new Gtk.Stack();
             view_stack.add_titled(preview, "Default", _("Preview"));
             view_stack.add_titled(compare, "Compare", _("Compare"));
@@ -238,11 +234,7 @@ namespace FontManager {
             content_stack.set_transition_duration(420);
             content_stack.add_titled(content_pane, "Default", _("Manage"));
             content_stack.add_titled(browser, "Browse", _("Browse"));
-        #if GTK_312
             content_stack.set_transition_type(Gtk.StackTransitionType.OVER_LEFT);
-        #else
-            content_stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
-        #endif
             return;
         }
 
@@ -511,21 +503,17 @@ namespace FontManager {
             });
 
             main_stack.notify["visible-child-name"].connect(() => {
-            #if GTK_312
                 if (main_stack.get_visible_child_name() == "Default")
                     main_stack.set_transition_type(Gtk.StackTransitionType.UNDER_UP);
                 else
                     main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN);
-            #endif
             });
 
             content_stack.notify["visible-child-name"].connect(() => {
-            #if GTK_312
                 if (content_stack.get_visible_child_name() == "Default")
                     content_stack.set_transition_type(Gtk.StackTransitionType.OVER_LEFT);
                 else
                     content_stack.set_transition_type(Gtk.StackTransitionType.UNDER_RIGHT);
-            #endif
             });
 
             fontlist.controls.show_properties.connect((s) => {

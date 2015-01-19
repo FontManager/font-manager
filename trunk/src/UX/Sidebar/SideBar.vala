@@ -34,21 +34,13 @@ namespace FontManager {
 
         public MainSideBar? standard {
             get {
-            #if GTK_312
                 return (MainSideBar) stack.get_child_by_name("Default");
-            #else
-                return (MainSideBar) stack.get_children().nth_data(0);
-            #endif
             }
         }
 
         public CharacterMapSideBar? character_map {
             get {
-            #if GTK_312
                 return (CharacterMapSideBar) stack.get_child_by_name("Character Map");
-            #else
-                return (CharacterMapSideBar) stack.get_children().nth_data(1);
-            #endif
             }
         }
 
@@ -93,11 +85,7 @@ namespace FontManager {
         public SideBar () {
             stack = new Gtk.Stack();
             stack.set_transition_duration(420);
-        #if GTK_312
             stack.set_transition_type(Gtk.StackTransitionType.UNDER_LEFT);
-        #else
-            stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
-        #endif
             box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             box.hexpand = box.vexpand = true;
             box.pack_start(stack, true, true, 0);
@@ -110,12 +98,10 @@ namespace FontManager {
             get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             spinner.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             stack.notify["visible-child-name"].connect(() => {
-            #if GTK_312
                 if (stack.get_visible_child_name() == "Default")
                     stack.set_transition_type(Gtk.StackTransitionType.UNDER_LEFT);
                 else
                     stack.set_transition_type(Gtk.StackTransitionType.OVER_RIGHT);
-            #endif
             });
         }
 
