@@ -21,7 +21,7 @@
 
 namespace FontManager {
 
-    private const string welcome_message = "<span size=\"xx-large\" weight=\"bold\">Font Sources</span>\n<span size=\"large\">Folders containing font files that you can preview within the application and enable or disable as needed.\nEasily add or preview fonts without actually installing them.\n</span>\n\n\n<span size=\"x-large\">To add a new source simply drag a folder onto this area or click the add button in the toolbar to open a file selection dialog.</span>";
+    private const string welcome_message = _("<span size=\"xx-large\" weight=\"bold\">Font Sources</span>\n<span size=\"large\">Folders containing font files that you can preview within the application and enable or disable as needed.\nEasily add or preview fonts without actually installing them.\n</span>\n\n\n<span size=\"x-large\">To add a new source simply drag a folder onto this area or click the add button in the toolbar to open a file selection dialog.</span>");
 
 
     public class FontSourceRow : Gtk.Grid {

@@ -20,10 +20,13 @@ org.gnome.FontManager.service: Makefile
 	echo 'Exec=${bindir}/font-manager --gapplication-service') > $@.tmp && \
 	mv $@.tmp $@
 
-
-CLEANFILES = $(appdata_DATA) \
+CLEANFILES = \
+	$(appdata_DATA) \
 	$(dist_desktop_DATA) \
 	$(dbusservice_DATA)
+
+dist-hook:
+	cd $(distdir) && rm -f $(appdata_DATA) $(dist_desktop_DATA) $(dbusservice_DATA)
 
 EXTRA_DIST = \
 	icons \
