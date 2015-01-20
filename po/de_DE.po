@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 23:19-0500\n"
+"POT-Creation-Date: 2015-01-19 23:33-0500\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -572,17 +572,18 @@ msgid "Collections"
 msgstr "Kollektionen"
 
 #: ../src/UX/Trees/UserSourceList.vala:24
+#, fuzzy
+msgid "Font Sources"
+msgstr "Verwalte Quellen"
+
+#: ../src/UX/Trees/UserSourceList.vala:25
+msgid "Easily add or preview fonts without actually installing them."
+msgstr ""
+
+#: ../src/UX/Trees/UserSourceList.vala:26
 msgid ""
-"<span size=\"xx-large\" weight=\"bold\">Font Sources</span>\n"
-"<span size=\"large\">Folders containing font files that you can preview "
-"within the application and enable or disable as needed.\n"
-"Easily add or preview fonts without actually installing them.\n"
-"</span>\n"
-"\n"
-"\n"
-"<span size=\"x-large\">To add a new source simply drag a folder onto this "
-"area or click the add button in the toolbar to open a file selection dialog."
-"</span>"
+"To add a new source simply drag a folder onto this area or click the add "
+"button in the toolbar."
 msgstr ""
 
 #: ../src/UX/Viewer.vala:46

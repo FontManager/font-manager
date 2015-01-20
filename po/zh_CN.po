@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 23:19-0500\n"
+"POT-Creation-Date: 2015-01-19 23:33-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -562,17 +562,18 @@ msgid "Collections"
 msgstr "字体集"
 
 #: ../src/UX/Trees/UserSourceList.vala:24
+#, fuzzy
+msgid "Font Sources"
+msgstr "管理字体源"
+
+#: ../src/UX/Trees/UserSourceList.vala:25
+msgid "Easily add or preview fonts without actually installing them."
+msgstr ""
+
+#: ../src/UX/Trees/UserSourceList.vala:26
 msgid ""
-"<span size=\"xx-large\" weight=\"bold\">Font Sources</span>\n"
-"<span size=\"large\">Folders containing font files that you can preview "
-"within the application and enable or disable as needed.\n"
-"Easily add or preview fonts without actually installing them.\n"
-"</span>\n"
-"\n"
-"\n"
-"<span size=\"x-large\">To add a new source simply drag a folder onto this "
-"area or click the add button in the toolbar to open a file selection dialog."
-"</span>"
+"To add a new source simply drag a folder onto this area or click the add "
+"button in the toolbar."
 msgstr ""
 
 # Not translate very good, just for use.

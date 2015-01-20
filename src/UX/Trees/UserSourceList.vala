@@ -21,7 +21,10 @@
 
 namespace FontManager {
 
-    private const string welcome_message = _("<span size=\"xx-large\" weight=\"bold\">Font Sources</span>\n<span size=\"large\">Folders containing font files that you can preview within the application and enable or disable as needed.\nEasily add or preview fonts without actually installing them.\n</span>\n\n\n<span size=\"x-large\">To add a new source simply drag a folder onto this area or click the add button in the toolbar to open a file selection dialog.</span>");
+    private const string w1 = _("Font Sources");
+    private const string w2 = _("Easily add or preview fonts without actually installing them.");
+    private const string w3 = _("To add a new source simply drag a folder onto this area or click the add button in the toolbar.");
+    private const string welcome_tmpl = "<span size=\"xx-large\" weight=\"bold\">%s</span>\n<span size=\"large\">\n\n%s\n</span>\n\n\n<span size=\"x-large\">%s</span>";
 
 
     public class FontSourceRow : Gtk.Grid {
@@ -117,6 +120,7 @@ namespace FontManager {
             welcome.justify = Gtk.Justification.CENTER;
             welcome.margin = 48;
             welcome.margin_top = 96;
+            string welcome_message = welcome_tmpl.printf(w1, w2, w3);
             welcome.set_markup(welcome_message);
             welcome.set_sensitive(false);
             welcome.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
