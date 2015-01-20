@@ -67,6 +67,7 @@ namespace FontManager {
             add(box);
             _parent_.add_window(this);
             set_default_size(600, 400);
+            Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
         }
 
         public override void show () {
@@ -100,6 +101,26 @@ namespace FontManager {
             } else {
                 metadata.update(null);
                 preview.font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
+            }
+            return;
+        }
+
+        public override void drag_data_received (Gdk.DragContext context,
+                                                    int x,
+                                                    int y,
+                                                    Gtk.SelectionData selection_data,
+                                                    uint info,
+                                                    uint time)
+        {
+            switch (info) {
+                case DragTargetType.EXTERNAL:
+                    var file = File.new_for_uri(selection_data.get_uris()[0]);
+                    if (file.query_exists())
+                        font_data = FontData(file);
+                    break;
+                default:
+                    warning("Unsupported drag target.");
+                    return;
             }
             return;
         }
