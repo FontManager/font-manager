@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-18 19:33-0500\n"
+"POT-Creation-Date: 2015-01-19 23:19-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -557,15 +557,15 @@ msgstr ""
 msgid "Font Viewer"
 msgstr ""
 
-#: ../src/UX/Viewer.vala:57 ../src/UX/Viewer.vala:128
+#: ../src/UX/Viewer.vala:57 ../src/UX/Viewer.vala:149
 msgid "Install Font"
 msgstr ""
 
-#: ../src/UX/Viewer.vala:119
+#: ../src/UX/Viewer.vala:140
 msgid "Newer version already installed"
 msgstr ""
 
-#: ../src/UX/Viewer.vala:124
+#: ../src/UX/Viewer.vala:145
 msgid "Installed"
 msgstr ""
 
