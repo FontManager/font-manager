@@ -11,6 +11,7 @@
 ./src/Common/Utils.c
 ./src/Filters/Category.c
 ./src/Filters/Collection.c
+./src/Filters/Disabled.c
 ./src/Filters/Filter.c
 ./src/Filters/SearchResult.c
 ./src/Filters/Unsorted.c

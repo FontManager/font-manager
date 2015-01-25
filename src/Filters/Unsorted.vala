@@ -27,6 +27,12 @@ namespace FontManager {
             base(_("Unsorted"), _("Fonts not present in any collection"), "dialog-question", null);
         }
 
+        public new void update (Database db, Gee.HashSet <string> sorted) {
+            base.update(db);
+            families.remove_all(sorted);
+            return;
+        }
+
     }
 
 }

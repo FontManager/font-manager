@@ -72,6 +72,7 @@ Common/Logger.vala \
 Common/Utils.vala \
 Filters/Category.vala \
 Filters/Collection.vala \
+Filters/Disabled.vala \
 Filters/Filter.vala \
 Filters/SearchResult.vala \
 Filters/Unsorted.vala \

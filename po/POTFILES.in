@@ -11,6 +11,7 @@ src/Common/Main.vala
 src/Common/Utils.vala
 src/Filters/Category.vala
 src/Filters/Collection.vala
+src/Filters/Disabled.vala
 src/Filters/Filter.vala
 src/Filters/SearchResult.vala
 src/Filters/Unsorted.vala

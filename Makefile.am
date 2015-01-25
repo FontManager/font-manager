@@ -36,7 +36,7 @@ EXTRA_DIST = \
 
 distclean-local:
 	cd $(srcdir)
-	-rm -rf autom4te.cache m4 aclocal.m4 compile config.guess config.sub configure depcomp install-sh ltmain.sh missing
+	-rm -rf autom4te.cache m4 aclocal.m4 compile config.guess config.sub configure depcomp install-sh ltmain.sh missing py-compile
 	@find . -name "Makefile" -exec rm -f '{}' \;
 	@find . -name "Makefile.in*" -exec rm -f '{}' \;
 

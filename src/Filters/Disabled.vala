@@ -1,4 +1,4 @@
-/* Reject.vala
+/* Disabled.vala
  *
  * Copyright © 2009 - 2014 Jerry Casiano
  *
@@ -19,20 +19,17 @@
  *  Jerry Casiano <JerryCasiano@gmail.com>
  */
 
-namespace FontConfig {
+namespace FontManager {
 
-    public class Reject : Selections {
+    public class Disabled : Category {
 
-        public signal void changed ();
-
-        public Reject () {
-            target_element = "rejectfont";
-            target_file = "78-Reject.conf";
+        public Disabled () {
+            base(_("Disabled"), _("Fonts which have been disabled"), "list-remove", null);
         }
 
-        public override void save () {
-            base.save();
-            changed();
+        public override void update (Database db) {
+            base.update(db);
+            families.retain_all(Main.instance.fontconfig.reject);
             return;
         }
 
