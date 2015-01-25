@@ -1,0 +1,13 @@
+
+Nautilus:
+
+    /usr/share/nautilus-python/extensions/
+
+Thunar:
+
+    /usr/lib/thunarx-2/python/
+
+Nemo:
+
+    /usr/share/nemo-python/extensions/
+
