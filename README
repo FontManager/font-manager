@@ -53,6 +53,13 @@ Features that are expected to work at this time:
         Note : Fonts in these folders should be available for preview in the
                application even if they are not enabled system wide.
 
+    Opening Font Files
+
+        The application can now be set as the default handler for font files.
+        When called with the path to a font file it will launch as a font viewer.
+        The font viewer is very simple and is only intended for previewing
+        and installing individual font files.
+
     Nautilus extension
 
         When the font viewer is running you should be able to preview font files
@@ -63,6 +70,7 @@ Features that are expected to work at this time:
         Extensions for Thunar and Nemo are also included, however they have not
         been tested. Use --with-thunar or --with-nemo.
         Feedback on those is appreciated.
+
 
 Missing / Planned features :
 
