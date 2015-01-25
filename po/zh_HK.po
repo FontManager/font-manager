@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 23:33-0500\n"
+"POT-Creation-Date: 2015-01-24 09:02-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -447,11 +447,11 @@ msgstr "编辑预览文本"
 msgid "Undo changes"
 msgstr "撤销更改"
 
-#: ../src/UX/Controls/TitleBar.vala:70 ../src/UX/Controls/TitleBar.vala:131
+#: ../src/UX/Controls/TitleBar.vala:70 ../src/UX/Controls/TitleBar.vala:123
 msgid "Add Fonts"
 msgstr "添加字体"
 
-#: ../src/UX/Controls/TitleBar.vala:71 ../src/UX/Controls/TitleBar.vala:132
+#: ../src/UX/Controls/TitleBar.vala:71 ../src/UX/Controls/TitleBar.vala:124
 msgid "Remove Fonts"
 msgstr "删除字体"
 
@@ -459,24 +459,24 @@ msgstr "删除字体"
 msgid "Manage Sources"
 msgstr "管理字体源"
 
-#: ../src/UX/Controls/TitleBar.vala:128
+#: ../src/UX/Controls/TitleBar.vala:120
 msgid "Add new source"
 msgstr "添加新的字体源"
 
-#: ../src/UX/Controls/TitleBar.vala:129
+#: ../src/UX/Controls/TitleBar.vala:121
 msgid "Remove selected source"
 msgstr "删除选中的字体源"
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/UX/Controls/TitleBar.vala:182
+#: ../src/UX/Controls/TitleBar.vala:174
 msgid "Help"
 msgstr "帮助"
 
-#: ../src/UX/Controls/TitleBar.vala:183
+#: ../src/UX/Controls/TitleBar.vala:175
 msgid "About"
 msgstr "关于"
 
-#: ../src/UX/Controls/TitleBar.vala:184
+#: ../src/UX/Controls/TitleBar.vala:176
 msgid "Quit"
 msgstr "退出"
 
@@ -547,7 +547,7 @@ msgstr "字符映射"
 msgid "Manage"
 msgstr "管理"
 
-#: ../src/UX/MainWindow.vala:228 ../src/UX/Viewer.vala:55
+#: ../src/UX/MainWindow.vala:228 ../src/UX/Viewer.vala:58
 #: ../src/UX/Views/FontPreview.vala:87
 msgid "Preview"
 msgstr "预览"
@@ -577,21 +577,21 @@ msgid ""
 msgstr ""
 
 # Not translate very good, just for use.
-#: ../src/UX/Viewer.vala:46
+#: ../src/UX/Viewer.vala:49
 #, fuzzy
 msgid "Font Viewer"
 msgstr "字体管理器"
 
-#: ../src/UX/Viewer.vala:57 ../src/UX/Viewer.vala:149
+#: ../src/UX/Viewer.vala:60 ../src/UX/Viewer.vala:160
 #, fuzzy
 msgid "Install Font"
 msgstr "全部字体"
 
-#: ../src/UX/Viewer.vala:140
+#: ../src/UX/Viewer.vala:151
 msgid "Newer version already installed"
 msgstr ""
 
-#: ../src/UX/Viewer.vala:145
+#: ../src/UX/Viewer.vala:156
 #, fuzzy
 msgid "Installed"
 msgstr "全部字体"
@@ -635,7 +635,7 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
-#: ../src/UX/Views/Metadata.vala:328
+#: ../src/UX/Views/Metadata.vala:326
 msgid "File does not contain license description."
 msgstr ""
 

@@ -21,19 +21,21 @@
 
 namespace FontManager {
 
+    [DBus (name = "org.gnome.FontManager.FontViewer")]
     public class Viewer : Gtk.Window {
 
-        public FontData? font_data {
+        [DBus (visible = false)]
+        public FontData? fontdata {
             get {
-                return fontdata;
+                return _fontdata;
             }
             set {
-                fontdata = value;
+                _fontdata = value;
                 update();
             }
         }
 
-        private FontData? fontdata = null;
+        private FontData? _fontdata = null;
         private Gtk.Box box;
         private Metadata.Pane metadata;
         private ActivePreview preview;
@@ -42,6 +44,7 @@ namespace FontManager {
         private Gee.ArrayList <string> _installed;
 
         public Viewer () {
+            Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
             _parent_ = ((Application) GLib.Application.get_default());
             title = _("Font Viewer");
             set_icon_name(About.ICON);
@@ -65,9 +68,18 @@ namespace FontManager {
             update_button_state();
             metadata.notebook.set_action_widget(button, Gtk.PackType.END);
             add(box);
-            _parent_.add_window(this);
             set_default_size(600, 400);
-            Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
+        }
+
+        public void show_uri (string uri)  {
+            var file = File.new_for_uri(uri);
+            if (file.query_exists())
+                fontdata = FontData(file);
+            return;
+        }
+
+        public bool ready () {
+            return this.visible;
         }
 
         public override void show () {
@@ -75,6 +87,8 @@ namespace FontManager {
             metadata.show();
             preview.show();
             box.show();
+            /* Prevent Application from closing. */
+            _parent_.add_window(this);
             base.show();
             return;
         }
@@ -88,7 +102,6 @@ namespace FontManager {
         public void quit () {
             hide();
             _parent_.remove_window(this);
-            _parent_.quit();
             return;
         }
 
@@ -114,9 +127,7 @@ namespace FontManager {
         {
             switch (info) {
                 case DragTargetType.EXTERNAL:
-                    var file = File.new_for_uri(selection_data.get_uris()[0]);
-                    if (file.query_exists())
-                        font_data = FontData(file);
+                    show_uri(selection_data.get_uris()[0]);
                     break;
                 default:
                     warning("Unsupported drag target.");
@@ -139,16 +150,16 @@ namespace FontManager {
             if (Library.conflicts(fontdata) > 0) {
                 button.set_label(_("Newer version already installed"));
                 button.sensitive = false;
-                button.opacity = 0.675;
+                button.relief = Gtk.ReliefStyle.NONE;
                 return;
             } else if (installed) {
                 button.set_label(_("Installed"));
                 button.sensitive = false;
-                button.opacity = 0.675;
+                button.relief = Gtk.ReliefStyle.NONE;
             } else {
                 button.set_label(_("Install Font"));
                 button.sensitive = true;
-                button.opacity = 0.725;
+                button.relief = Gtk.ReliefStyle.NORMAL;
             }
             return;
         }

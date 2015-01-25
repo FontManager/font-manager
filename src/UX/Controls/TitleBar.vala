@@ -102,14 +102,6 @@ namespace FontManager {
         private void set_menus () {
             main_menu.set_menu_model(get_main_menu_model());
             app_menu.set_menu_model(get_app_menu_model());
-        #if GTK_314
-            if (!main_menu.use_popover) {
-        #endif
-            main_menu.get_popup().halign = Gtk.Align.START;
-            app_menu.get_popup().halign = Gtk.Align.END;
-        #if GTK_314
-            }
-        #endif
             return;
         }
 

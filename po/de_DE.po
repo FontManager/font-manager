@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 23:33-0500\n"
+"POT-Creation-Date: 2015-01-24 09:02-0500\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -446,11 +446,11 @@ msgstr "Vorschautext bearbeiten"
 msgid "Undo changes"
 msgstr "Änderungen rückgängig machen"
 
-#: ../src/UX/Controls/TitleBar.vala:70 ../src/UX/Controls/TitleBar.vala:131
+#: ../src/UX/Controls/TitleBar.vala:70 ../src/UX/Controls/TitleBar.vala:123
 msgid "Add Fonts"
 msgstr "Schriften hinzufügen"
 
-#: ../src/UX/Controls/TitleBar.vala:71 ../src/UX/Controls/TitleBar.vala:132
+#: ../src/UX/Controls/TitleBar.vala:71 ../src/UX/Controls/TitleBar.vala:124
 msgid "Remove Fonts"
 msgstr "Schriften entfernen"
 
@@ -458,24 +458,24 @@ msgstr "Schriften entfernen"
 msgid "Manage Sources"
 msgstr "Verwalte Quellen"
 
-#: ../src/UX/Controls/TitleBar.vala:128
+#: ../src/UX/Controls/TitleBar.vala:120
 msgid "Add new source"
 msgstr "Füge eine neue Quelle hinzu"
 
-#: ../src/UX/Controls/TitleBar.vala:129
+#: ../src/UX/Controls/TitleBar.vala:121
 msgid "Remove selected source"
 msgstr "Entferne ausgewählte Quelle"
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/UX/Controls/TitleBar.vala:182
+#: ../src/UX/Controls/TitleBar.vala:174
 msgid "Help"
 msgstr "Hilfe"
 
-#: ../src/UX/Controls/TitleBar.vala:183
+#: ../src/UX/Controls/TitleBar.vala:175
 msgid "About"
 msgstr "Über"
 
-#: ../src/UX/Controls/TitleBar.vala:184
+#: ../src/UX/Controls/TitleBar.vala:176
 msgid "Quit"
 msgstr "Beenden"
 
@@ -558,7 +558,7 @@ msgstr "Zeichentabelle"
 msgid "Manage"
 msgstr "Verwalte"
 
-#: ../src/UX/MainWindow.vala:228 ../src/UX/Viewer.vala:55
+#: ../src/UX/MainWindow.vala:228 ../src/UX/Viewer.vala:58
 #: ../src/UX/Views/FontPreview.vala:87
 msgid "Preview"
 msgstr "Vorschau"
@@ -586,21 +586,21 @@ msgid ""
 "button in the toolbar."
 msgstr ""
 
-#: ../src/UX/Viewer.vala:46
+#: ../src/UX/Viewer.vala:49
 #, fuzzy
 msgid "Font Viewer"
 msgstr "Schriften Verwalter"
 
-#: ../src/UX/Viewer.vala:57 ../src/UX/Viewer.vala:149
+#: ../src/UX/Viewer.vala:60 ../src/UX/Viewer.vala:160
 #, fuzzy
 msgid "Install Font"
 msgstr "Alle Schriften"
 
-#: ../src/UX/Viewer.vala:140
+#: ../src/UX/Viewer.vala:151
 msgid "Newer version already installed"
 msgstr ""
 
-#: ../src/UX/Viewer.vala:145
+#: ../src/UX/Viewer.vala:156
 #, fuzzy
 msgid "Installed"
 msgstr "Alle Schriften"
@@ -643,7 +643,7 @@ msgstr "PostScript Type 1 Schrift"
 msgid "Version"
 msgstr ""
 
-#: ../src/UX/Views/Metadata.vala:328
+#: ../src/UX/Views/Metadata.vala:326
 msgid "File does not contain license description."
 msgstr ""
 
