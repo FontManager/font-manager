@@ -129,6 +129,7 @@ namespace FontManager {
             scroll.add(list);
             add(scroll);
             add_overlay(welcome);
+            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
         }
 

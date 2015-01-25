@@ -181,8 +181,7 @@ namespace FontManager {
             };
 
             construct {
-                hexpand = true;
-                vexpand = true;
+                expand = true;
                 column_homogeneous = false;
                 row_homogeneous = true;
                 psname = new Gtk.Label("psname");
@@ -288,8 +287,7 @@ namespace FontManager {
                 view.pixels_above_lines = 1;
                 set_size_request(0, 0);
                 get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-                hexpand = true;
-                vexpand = true;
+                expand = true;
             }
 
             private void reset () {
@@ -334,8 +332,7 @@ namespace FontManager {
                 blend = new Gtk.EventBox();
                 blend.add(link);
                 blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-                view.hexpand = true;
-                view.vexpand = true;
+                view.expand = true;
                 grid.attach(view, 0, 0, 1, 3);
                 grid.attach(blend, 0, 3, 1 ,1);
                 add(grid);
@@ -379,8 +376,7 @@ namespace FontManager {
                 if (license_data)
                     view.buffer.set_text("\n%s\n".printf(fontinfo.license_data));
                 view.visible = license_data;
-                link.hexpand = !license_data;
-                link.vexpand = !license_data;
+                link.expand = !license_data;
                 if (!license_data && fontinfo.license_url == null)
                     label.show();
                 else

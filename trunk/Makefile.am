@@ -1,4 +1,5 @@
 SUBDIRS = \
+	extensions \
 	help \
 	po \
 	resources \

@@ -29,18 +29,27 @@ namespace FontManager {
         [DBus (visible = false)]
         public Gtk.Builder builder { get; set; }
         [DBus (visible = false)]
-        public Viewer? font_viewer { get; private set; default = null; }
+        public Viewer? font_viewer {
+            get {
+                if (fontviewer == null)
+                    fontviewer = new Viewer();
+                return fontviewer;
+            }
+        }
 
         private const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, ref ABOUT, "About the application", null },
             { "version", 'v', 0, OptionArg.NONE, ref VERSION, "Show application version", null },
-            { "debug", 'd', 0, OptionArg.NONE, ref DEBUG, "Enable debug logging", null },
+            { "debug", 'd', 0, OptionArg.NONE, ref DEBUG, "Useful for debugging. Verbose logging. Fatal errors.", null },
             { null }
         };
 
         private static bool ABOUT = false;
         private static bool VERSION = false;
         private static bool DEBUG = false;
+
+        private uint fv_dbus_id = 0;
+        private Viewer? fontviewer = null;
 
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
@@ -54,9 +63,7 @@ namespace FontManager {
         }
 
         public override void open (File [] files, string hint) {
-            if (font_viewer == null)
-                font_viewer = new Viewer();
-            font_viewer.font_data = FontData(files[0]);
+            font_viewer.fontdata = FontData(files[0]);
             font_viewer.show();
             return;
         }
@@ -70,13 +77,30 @@ namespace FontManager {
             if (VERSION)
                 show_version();
 
-            if (DEBUG)
+            if (DEBUG) {
                 Logger.DisplayLevel = LogLevel.VERBOSE;
+                Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
+            }
 
             if (ABOUT || VERSION)
                 exit_status = 0;
 
             return exit_status;
+        }
+
+        public override bool dbus_register (DBusConnection conn, string path) throws Error {
+            base.dbus_register(conn, path);
+            fv_dbus_id = conn.register_object ("/org/gnome/FontManager/FontViewer", font_viewer);
+            if (fv_dbus_id == 0)
+                critical("Could not register Font Viewer service ");
+            return true;
+        }
+
+        public override void dbus_unregister (DBusConnection conn, string path) {
+            if (fv_dbus_id != 0)
+                if (!conn.unregister_object(fv_dbus_id))
+                    warning("Failed to unregister Font Viewer");
+            base.dbus_unregister(conn, path);
         }
 
         protected override void activate () {
@@ -109,7 +133,6 @@ namespace FontManager {
         }
 
         public static int main (string [] args) {
-            //Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
             Environment.set_application_name(About.NAME);
             Environment.set_variable("XDG_CONFIG_HOME", "", true);
             FontConfig.enable_user_config(false);
