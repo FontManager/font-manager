@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-24 09:02-0500\n"
+"POT-Creation-Date: 2015-01-25 01:35-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,6 +64,14 @@ msgstr ""
 
 #: ../src/Filters/Collection.vala:28
 msgid "New Collection"
+msgstr ""
+
+#: ../src/Filters/Disabled.vala:27
+msgid "Disabled"
+msgstr ""
+
+#: ../src/Filters/Disabled.vala:27
+msgid "Fonts which have been disabled"
 msgstr ""
 
 #: ../src/Filters/Filter.vala:38
@@ -305,43 +313,43 @@ msgstr ""
 msgid "Grouped by vendor"
 msgstr ""
 
-#: ../src/Models/CategoryModel.vala:103
+#: ../src/Models/CategoryModel.vala:105
 msgid "Family Kind"
 msgstr ""
 
-#: ../src/Models/CategoryModel.vala:103
+#: ../src/Models/CategoryModel.vala:105
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
 
-#: ../src/Models/CategoryModel.vala:104
+#: ../src/Models/CategoryModel.vala:106
 msgid "Any"
 msgstr ""
 
-#: ../src/Models/CategoryModel.vala:105
+#: ../src/Models/CategoryModel.vala:107
 msgid "No Fit"
 msgstr ""
 
-#: ../src/Models/CategoryModel.vala:106
+#: ../src/Models/CategoryModel.vala:108
 msgid "Text and Display"
 msgstr ""
 
-#: ../src/Models/CategoryModel.vala:107
+#: ../src/Models/CategoryModel.vala:109
 msgid "Script"
 msgstr ""
 
-#: ../src/Models/CategoryModel.vala:108
+#: ../src/Models/CategoryModel.vala:110
 msgid "Decorative"
 msgstr ""
 
-#: ../src/Models/CategoryModel.vala:109
+#: ../src/Models/CategoryModel.vala:111
 msgid "Pictorial"
 msgstr ""
 
-#: ../src/Models/CategoryModel.vala:143
+#: ../src/Models/CategoryModel.vala:145
 msgid "Normal"
 msgstr ""
 
-#: ../src/Models/CategoryModel.vala:145
+#: ../src/Models/CategoryModel.vala:147
 msgid "Regular"
 msgstr ""
 
@@ -510,23 +518,23 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 
-#: ../src/UX/MainWindow.vala:62 ../src/UX/MainWindow.vala:236
+#: ../src/UX/MainWindow.vala:62 ../src/UX/MainWindow.vala:238
 msgid "Browse"
 msgstr ""
 
-#: ../src/UX/MainWindow.vala:64 ../src/UX/MainWindow.vala:229
+#: ../src/UX/MainWindow.vala:64 ../src/UX/MainWindow.vala:231
 msgid "Compare"
 msgstr ""
 
-#: ../src/UX/MainWindow.vala:66 ../src/UX/MainWindow.vala:230
+#: ../src/UX/MainWindow.vala:66 ../src/UX/MainWindow.vala:232
 msgid "Character Map"
 msgstr ""
 
-#: ../src/UX/MainWindow.vala:68 ../src/UX/MainWindow.vala:235
+#: ../src/UX/MainWindow.vala:68 ../src/UX/MainWindow.vala:237
 msgid "Manage"
 msgstr ""
 
-#: ../src/UX/MainWindow.vala:228 ../src/UX/Viewer.vala:58
+#: ../src/UX/MainWindow.vala:230 ../src/UX/Viewer.vala:58
 #: ../src/UX/Views/FontPreview.vala:87
 msgid "Preview"
 msgstr ""

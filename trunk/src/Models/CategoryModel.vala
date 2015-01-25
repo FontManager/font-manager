@@ -93,6 +93,8 @@ namespace FontManager {
         filters["Vendor"].index = 10;
         filters["Unsorted"] = new Unsorted();
         filters["Unsorted"].index = 11;
+        filters["Disabled"] = new Disabled();
+        filters["Disabled"].index = 12;
         var sorted_filters = new Gee.ArrayList <Category> ();
         sorted_filters.add_all(filters.values);
         sorted_filters.sort((CompareDataFunc) sort_on_index);

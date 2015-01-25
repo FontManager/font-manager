@@ -190,6 +190,8 @@ namespace FontManager {
         private Mode _mode;
         private Gtk.Box separator;
         private Gtk.Box _main_pane_;
+        private Unsorted? unsorted = null;
+        private Disabled? disabled = null;
 
         construct {
             title = About.NAME;
@@ -350,16 +352,28 @@ namespace FontManager {
             return;
         }
 
-        private void update_unsorted_category () {
+        private Category get_category_by_index (int index) {
             Value val;
             Gtk.TreeIter iter;
-            Main.instance.category_model.get_iter_from_string(out iter, "11");
+            Main.instance.category_model.get_iter_from_string(out iter, index.to_string());
             Main.instance.category_model.get_value(iter, 0, out val);
-            var unsorted = (Unsorted) val.get_object();
-            unsorted.update(Main.instance.database);
-            var collections = Main.instance.collections;
-            unsorted.families.remove_all(collections.get_full_contents());
+            var result = (Category) val.get_object();
             val.unset();
+            return result;
+        }
+
+        private void update_unsorted_category () {
+            if (unsorted == null)
+                unsorted = (Unsorted) get_category_by_index(11);
+            var collections = Main.instance.collections;
+            unsorted.update(Main.instance.database, collections.get_full_contents());
+            return;
+        }
+
+        private void update_disabled_category () {
+            if (disabled == null)
+                disabled = (Disabled) get_category_by_index(12);
+            disabled.update(Main.instance.database);
             return;
         }
 
@@ -400,6 +414,8 @@ namespace FontManager {
                     return;
                 if (c is Unsorted)
                     update_unsorted_category();
+                else if (c is Disabled)
+                    update_disabled_category();
                 update_font_model(c);
                 }
             );
@@ -521,6 +537,12 @@ namespace FontManager {
                     view_stack.set_visible_child_name("Metadata");
                 else
                     view_stack.set_visible_child_name(mode.settings()[1]);
+            });
+
+            Main.instance.fontconfig.reject.changed.connect(() => {
+                update_disabled_category();
+                if (sidebar.standard.category_tree.selected_filter is Disabled)
+                    update_font_model(sidebar.standard.category_tree.selected_filter);
             });
 
         }

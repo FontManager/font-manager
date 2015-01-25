@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-24 09:02-0500\n"
+"POT-Creation-Date: 2015-01-25 01:35-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -80,6 +80,14 @@ msgstr "新字体集"
 #: ../src/Filters/Collection.vala:28
 msgid "New Collection"
 msgstr "新字体集"
+
+#: ../src/Filters/Disabled.vala:27
+msgid "Disabled"
+msgstr ""
+
+#: ../src/Filters/Disabled.vala:27
+msgid "Fonts which have been disabled"
+msgstr ""
 
 #: ../src/Filters/Filter.vala:38
 #, c-format
@@ -321,44 +329,44 @@ msgstr "供应商"
 msgid "Grouped by vendor"
 msgstr "按供应商分组"
 
-#: ../src/Models/CategoryModel.vala:103
+#: ../src/Models/CategoryModel.vala:105
 msgid "Family Kind"
 msgstr "类型"
 
-#: ../src/Models/CategoryModel.vala:103
+#: ../src/Models/CategoryModel.vala:105
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr "只有包含Panose信息的字体将被分组到这里"
 
-#: ../src/Models/CategoryModel.vala:104
+#: ../src/Models/CategoryModel.vala:106
 msgid "Any"
 msgstr "任意(Any)"
 
-#: ../src/Models/CategoryModel.vala:105
+#: ../src/Models/CategoryModel.vala:107
 msgid "No Fit"
 msgstr "无匹配(No Fit)"
 
-#: ../src/Models/CategoryModel.vala:106
+#: ../src/Models/CategoryModel.vala:108
 msgid "Text and Display"
 msgstr "文本和显示(Text and Display)"
 
-#: ../src/Models/CategoryModel.vala:107
+#: ../src/Models/CategoryModel.vala:109
 msgid "Script"
 msgstr "Script"
 
 # msgstr "手写体(Script)"
-#: ../src/Models/CategoryModel.vala:108
+#: ../src/Models/CategoryModel.vala:110
 msgid "Decorative"
 msgstr "修饰(Decorative)"
 
-#: ../src/Models/CategoryModel.vala:109
+#: ../src/Models/CategoryModel.vala:111
 msgid "Pictorial"
 msgstr "图形(Pictorial)"
 
-#: ../src/Models/CategoryModel.vala:143
+#: ../src/Models/CategoryModel.vala:145
 msgid "Normal"
 msgstr "正常(Normal)"
 
-#: ../src/Models/CategoryModel.vala:145
+#: ../src/Models/CategoryModel.vala:147
 msgid "Regular"
 msgstr "常规(Regular)"
 
@@ -531,23 +539,23 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 
-#: ../src/UX/MainWindow.vala:62 ../src/UX/MainWindow.vala:236
+#: ../src/UX/MainWindow.vala:62 ../src/UX/MainWindow.vala:238
 msgid "Browse"
 msgstr "浏览"
 
-#: ../src/UX/MainWindow.vala:64 ../src/UX/MainWindow.vala:229
+#: ../src/UX/MainWindow.vala:64 ../src/UX/MainWindow.vala:231
 msgid "Compare"
 msgstr "比较"
 
-#: ../src/UX/MainWindow.vala:66 ../src/UX/MainWindow.vala:230
+#: ../src/UX/MainWindow.vala:66 ../src/UX/MainWindow.vala:232
 msgid "Character Map"
 msgstr "字符映射"
 
-#: ../src/UX/MainWindow.vala:68 ../src/UX/MainWindow.vala:235
+#: ../src/UX/MainWindow.vala:68 ../src/UX/MainWindow.vala:237
 msgid "Manage"
 msgstr "管理"
 
-#: ../src/UX/MainWindow.vala:228 ../src/UX/Viewer.vala:58
+#: ../src/UX/MainWindow.vala:230 ../src/UX/Viewer.vala:58
 #: ../src/UX/Views/FontPreview.vala:87
 msgid "Preview"
 msgstr "预览"
