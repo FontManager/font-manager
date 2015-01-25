@@ -90,7 +90,6 @@ fi
 
 dnl Optional Extensions
 
-AM_PATH_PYTHON(,, [:])
 AM_CONDITIONAL(INSTALL_NAUTILUS_EXTENSION, [test ''])
 AM_CONDITIONAL(INSTALL_NEMO_EXTENSION, [test ''])
 
