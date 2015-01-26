@@ -90,17 +90,30 @@ fi
 
 dnl Optional Extensions
 
+AM_CONDITIONAL(COMPILE_PYTHON_EXTENSIONS, [test ''])
 AM_CONDITIONAL(INSTALL_NAUTILUS_EXTENSION, [test ''])
 AM_CONDITIONAL(INSTALL_NEMO_EXTENSION, [test ''])
+
+dnl Debian policy discourages shipping compiled python files.
+dnl Red Hat policy encourages shipping compiled python files.
+dnl Others, who knows?
+
+AC_ARG_ENABLE([pycompile], AS_HELP_STRING([--enable-pycompile], [Enable compilation of Python extensions]))
+AS_IF([test "x$enable_pycompile" = "xyes"], [
+  AM_PATH_PYTHON
+  AM_CONDITIONAL([COMPILE_PYTHON_EXTENSIONS], [test "x$enable_pycompile" = "xyes"])
+])
 
 AC_ARG_WITH([nautilus], AS_HELP_STRING([--with-nautilus], [Install Nautilus extension]))
 AS_IF([test "x$with_nautilus" = "xyes"], [
     PKG_CHECK_MODULES(NAUTILUS_PYTHON, nautilus-python, [AM_CONDITIONAL([INSTALL_NAUTILUS_EXTENSION],[test "x$with_nautilus" = "xyes"])])
 ])
+
 AC_ARG_WITH([nemo], AS_HELP_STRING([--with-nemo], [Install Nemo extension]))
 AS_IF([test "x$with_nemo" = "xyes"], [
     PKG_CHECK_MODULES(NEMO_PYTHON, nemo-python, [AM_CONDITIONAL([INSTALL_NEMO_EXTENSION],[test "x$with_nemo" = "xyes"])])
 ])
+
 # Doesn't install pc file. For now just install if requested.
 # TODO : Check if thunarx-python is actually installed.
 AC_ARG_WITH([thunar], AS_HELP_STRING([--with-thunar], [Install Thunar extension]))

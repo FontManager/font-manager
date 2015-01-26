@@ -60,16 +60,16 @@ Features that are expected to work at this time:
         The font viewer is very simple and is only intended for previewing
         and installing individual font files.
 
-    Nautilus extension
+    File Manager Extensions
 
         When the font viewer is running you should be able to preview font files
-        by simply selecting them in Nautilus.
+        by simply selecting them in the file manager.
 
-        To enable the extension pass --with-nautilus to configure.
+        To enable an extension pass --enable-pycompile --with-nautilus,
+        --with-thunar or --with-nemo to configure.
 
-        Extensions for Thunar and Nemo are also included, however they have not
-        been tested. Use --with-thunar or --with-nemo.
-        Feedback on those is appreciated.
+        For details on how to install the extensions manually see the README file
+        in the extensions directory.
 
 
 Missing / Planned features :
