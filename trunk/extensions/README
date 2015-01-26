@@ -1,13 +1,27 @@
+Copy the extension to one of the following directories.
+You may need to create the directory if it doesn't exist.
 
 Nautilus:
 
     /usr/share/nautilus-python/extensions/
+    ~/.local/share/nautilus-python/extensions/
 
 Thunar:
 
-    /usr/lib/thunarx-2/python/
+    /usr/share/thunarx-python/extensions/
+    ~/.local/share/nautilus-python/extensions/
 
 Nemo:
 
     /usr/share/nemo-python/extensions/
+    ~/.local/share/nautilus-python/extensions/
+
+
+If you installed the extension to a system directory, compile the extension
+
+For example:
+
+    python -m compileall /usr/share/nautilus-python/extensions/
+    python -O -m compileall /usr/share/nautilus-python/extensions/
+
 
