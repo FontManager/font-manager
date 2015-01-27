@@ -30,7 +30,7 @@ endif
 
 EXTRA_DIST = \
 	Nautilus \
-  Nemo \
+	Nemo \
 	Thunar \
-  README
+	README
 
