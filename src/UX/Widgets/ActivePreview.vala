@@ -49,7 +49,7 @@ namespace FontManager {
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             preview = new StandardTextView(tag_table);
             preview.view.justification = Gtk.Justification.CENTER;
-            set_preview_text("\n\n" + get_localized_preview_text());
+            set_preview_text(get_localized_preview_text());
             preview_size = DEFAULT_PREVIEW_SIZE;
             controls = new PreviewControls();
             pack_start(controls, false, true, 0);
@@ -112,7 +112,7 @@ namespace FontManager {
         }
 
         private void on_clear () {
-            preview.buffer.set_text("\n\n" + get_localized_preview_text(), -1);
+            preview.buffer.set_text(get_localized_preview_text(), -1);
             controls.clear_is_sensitive = false;
             return;
         }
