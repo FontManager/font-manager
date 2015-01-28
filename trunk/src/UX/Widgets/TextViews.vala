@@ -73,11 +73,13 @@ namespace FontManager {
             view = new Gtk.TextView();
             view.left_margin = 6;
             view.right_margin = 6;
+            view.margin_top = 24;
             view.editable = false;
             view.cursor_visible = false;
             view.accepts_tab = false;
             view.overwrite = false;
             view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
+            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             hexpand = true;
             vexpand = true;
             add(view);

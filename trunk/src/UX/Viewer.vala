@@ -109,8 +109,11 @@ namespace FontManager {
             update_button_state();
             if (fontdata != null) {
                 FontConfig.add_app_font(fontdata.file.get_path());
-                metadata.update(fontdata);
-                preview.font_desc = Pango.FontDescription.from_string(fontdata.font.description);
+                Idle.add(() => {
+                    metadata.update(fontdata);
+                    preview.font_desc = Pango.FontDescription.from_string(fontdata.font.description);
+                    return false;
+                });
             } else {
                 metadata.update(null);
                 preview.font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
