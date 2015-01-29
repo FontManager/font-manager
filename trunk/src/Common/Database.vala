@@ -70,7 +70,6 @@ namespace FontManager {
         public string select { get; set; default = "*"; }
         public int limit { get; set; default = -1; }
         public bool unique { get; set; default = false; }
-        public bool debug { get; set; default = false; }
         public int result { get; protected set; default = Sqlite.OK; }
 
         private bool in_transaction = false;
@@ -166,8 +165,7 @@ namespace FontManager {
             string? sql = query;
             if (sql == null)
                 sql = build_select_query();
-            if (debug)
-                GLib.debug("SQLite : %s", sql);
+            Logger.verbose("SQLite : %s", sql);
             check_result(db.prepare_v2(sql, -1, out stmt), "prepare_v2", Sqlite.OK);
             return;
         }
@@ -289,6 +287,7 @@ namespace FontManager {
                                     Gee.ArrayList <FontConfig.Font> installed_fonts,
                                     ProgressCallback? progress = null)
     throws DatabaseError {
+        Logger.verbose("Starting database synchronization : Font table");
         int processed = 0;
         int total = installed_fonts.size;
         var known_files = get_known_files(db);
@@ -327,6 +326,7 @@ namespace FontManager {
             db.stmt.reset();
         }
         db.commit_transaction();
+        Logger.verbose("Database synchronization complete : Font table");
         return;
     }
 
@@ -341,7 +341,7 @@ namespace FontManager {
             foreach (var row in db)
                 results.add(row.column_text(0));
         } catch (DatabaseError e) {
-            error("Database Error : %s", e.message);
+            critical("Database Error : %s", e.message);
         }
         db.close();
         return results;

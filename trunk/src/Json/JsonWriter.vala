@@ -74,7 +74,7 @@ private Json.Node? load_json_file (string filepath, bool compressed = false) {
             parser.load_from_file(filepath);
         return parser.get_root();
     } catch (Error e) {
-        message("\nFailed to load cache file : %s\n%s : skipping...", filepath, e.message);
+        warning("\nFailed to load cache file : %s\n%s : skipping...", filepath, e.message);
     }
     return null;
 }

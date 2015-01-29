@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-27 19:19-0500\n"
+"POT-Creation-Date: 2015-01-28 00:29-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -524,7 +524,7 @@ msgstr "继续"
 msgid "Update Required"
 msgstr "需要更新"
 
-#: ../src/UX/Dialogs/Migration.vala:190
+#: ../src/UX/Dialogs/Migration.vala:198
 msgid ""
 "\n"
 "Font Manager has detected files from a previous installation. Some files "

@@ -145,7 +145,7 @@ namespace FontConfig {
                 });
             } catch (IOError e) {
                 warning("Failed to create FileMonitor for %s", dir);
-                error("FileMonitor creation failed : %s", e.message);
+                critical("FileMonitor creation failed : %s", e.message);
             }
             return monitor;
         }

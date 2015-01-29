@@ -163,7 +163,7 @@ namespace FontManager {
             var row = new FontSourceRow(source);
             list.add(row);
             row.show();
-            message("Added new font source : %s", source.path);
+            debug("Added new font source : %s", source.path);
             if (welcome.visible)
                 welcome.hide();
             return;
@@ -177,7 +177,7 @@ namespace FontManager {
             _sources.remove(selected_source);
             _sources.save();
             list.remove(selected_row);
-            message("Removed font source : %s", selected_source.path);
+            debug("Removed font source : %s", selected_source.path);
             if (list.get_row_at_index(0) != null)
                 welcome.hide();
             else

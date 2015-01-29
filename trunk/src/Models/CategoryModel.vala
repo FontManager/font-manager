@@ -118,7 +118,7 @@ namespace FontManager {
             add_children_from_db_results(db, filter.children, keyword);
         } catch (DatabaseError e) {
             warning("Failed to create child categories for %s", name);
-            error("Database error : %s", e.message);
+            critical("Database error : %s", e.message);
         }
         return filter;
     }
