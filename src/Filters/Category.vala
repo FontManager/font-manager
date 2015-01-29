@@ -44,7 +44,7 @@ namespace FontManager {
                        child.update(db);
             } catch (DatabaseError e) {
                 warning ("%s category results invalid", name);
-                error("Database error : %s", e.message);
+                critical("Database error : %s", e.message);
             }
             return;
         }

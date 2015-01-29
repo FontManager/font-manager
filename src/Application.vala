@@ -40,13 +40,15 @@ namespace FontManager {
         private const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, ref ABOUT, "About the application", null },
             { "version", 'v', 0, OptionArg.NONE, ref VERSION, "Show application version", null },
-            { "debug", 'd', 0, OptionArg.NONE, ref DEBUG, "Useful for debugging. Verbose logging. Fatal errors.", null },
+            { "debug", 'd', 0, OptionArg.NONE, ref DEBUG, "Enable logging. Fatal errors.", null },
+            { "verbose", 'V', 0, OptionArg.NONE, ref VERBOSE, "Verbose logging. Lots of output.", null },
             { null }
         };
 
         private static bool ABOUT = false;
         private static bool VERSION = false;
         private static bool DEBUG = false;
+        private static bool VERBOSE = false;
 
         private uint fv_dbus_id = 0;
         private Viewer? fontviewer = null;
@@ -78,9 +80,12 @@ namespace FontManager {
                 show_version();
 
             if (DEBUG) {
-                Logger.DisplayLevel = LogLevel.VERBOSE;
+                Logger.DisplayLevel = LogLevel.DEBUG;
                 Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
             }
+
+            if (VERBOSE)
+                Logger.DisplayLevel = LogLevel.VERBOSE;
 
             if (ABOUT || VERSION)
                 exit_status = 0;

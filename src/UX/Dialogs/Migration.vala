@@ -84,13 +84,21 @@ namespace FontManager {
 
         public static void run () {
             /* XXX : progress? */
+            debug("Importing fonts");
             import_fonts();
+            debug("Importing collections");
             import_collections();
+            debug("Purging old cache files");
             purge_cache();
+            debug("Purging old configuration files");
             purge_config();
+            debug("Purging old FontConfig configuration files");
             purge_fontconfig_config();
+            debug("Purging outdated data");
             purge_data();
+            debug("Purging obsolete files");
             purge_obsolete();
+            debug("Saving imported collections");
             collections.cache();
            return;
         }

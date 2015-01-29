@@ -42,13 +42,13 @@ namespace FontManager {
         public static bool is_installed (FontData fontdata) {
             var filelist = FontConfig.list_files();
             if (fontdata.font.filepath in filelist) {
-                message("Font already installed : path match");
+                debug("Font already installed : Filepath match");
                 return true;
             }
             var _filelist = db_match_checksum(fontdata.fontinfo.checksum);
             foreach (var f in _filelist)
                 if (filelist.contains(f)) {
-                    message("Font already installed : checksum match");
+                    debug("Font already installed : Checksum match");
                     return true;
                 }
 //            if (_filelist.contains(fontdata.font.filepath))
@@ -68,7 +68,7 @@ namespace FontManager {
             var filelist = FontConfig.list_files();
             foreach (var f in unique.keys)
                 if (filelist.contains(f)) {
-                    message("%s conflicts with %s", fontdata.font.filepath, f);
+                    debug("%s conflicts with %s", fontdata.font.filepath, f);
                     return natural_cmp(unique[f], fontdata.fontinfo.version);
                 }
             return -1;
@@ -83,7 +83,7 @@ namespace FontManager {
 
         private static Gee.ArrayList <string> db_match_checksum (string checksum) {
             var results = new Gee.ArrayList <string> ();
-            Database? db;
+            Database? db = null;
             try {
                 db = get_database();
                 db.reset();
@@ -94,7 +94,7 @@ namespace FontManager {
                 foreach (var row in db)
                     results.add(row.column_text(0));
             } catch (DatabaseError e) {
-                error("Database Error : %s", e.message);
+                critical("Database Error : %s", e.message);
             }
             if (db != null)
                 db.close();
@@ -103,7 +103,7 @@ namespace FontManager {
 
         private static Gee.HashMap <string, string> db_match_unique_names (FontData fontdata) {
             var results = new Gee.HashMap <string, string> ();
-            Database? db;
+            Database? db = null;
             try {
                 db = get_database();
                 db.reset();
@@ -114,7 +114,7 @@ namespace FontManager {
                 foreach (var row in db)
                     results[row.column_text(0)] = row.column_text(1);
             } catch (DatabaseError e) {
-                error("Database Error : %s", e.message);
+                critical("Database Error : %s", e.message);
             }
             if (db != null)
                 db.close();
@@ -176,18 +176,19 @@ namespace FontManager {
                 int total = filelist.size;
                 int processed = 0;
                 foreach (var file in filelist) {
-                    var attrs = "%s,%s".printf(FileAttribute.STANDARD_CONTENT_TYPE, FileAttribute.STANDARD_TYPE);
+                    var attrs = "%s,%s,%s".printf(FileAttribute.STANDARD_CONTENT_TYPE, FileAttribute.STANDARD_TYPE, FileAttribute.STANDARD_NAME);
                     try {
                         var fileinfo = file.query_info(attrs, FileQueryInfoFlags.NONE, null);
+                        string name = fileinfo.get_name();
                         string content_type = fileinfo.get_content_type();
                         if (fileinfo.get_file_type() == FileType.DIRECTORY)
                             process_directory(file);
-                        else if (content_type.contains("font") && !is_metrics_file(fileinfo.get_name()))
+                        else if (content_type.contains("font") && !is_metrics_file(name))
                             files.add(file);
                         else if (content_type in supported_archives)
                             archives.add(file);
                     } catch (Error e) {
-                        error("Error querying file information : %s", e.message);
+                        critical("Error querying file information : %s", e.message);
                     }
                     processed++;
                     if (progress != null)
@@ -262,6 +263,7 @@ namespace FontManager {
             private static void try_copy (File original, File copy) {
                 try {
                     original.copy(copy, FileCopyFlags.OVERWRITE | FileCopyFlags.ALL_METADATA);
+                    debug("Successfully copied %s to %s", original.get_path(), copy.get_path());
                 } catch (Error e) {
                     string path = original.get_path();
                     if (install_failed == null)
@@ -304,7 +306,7 @@ namespace FontManager {
                                 try_copy(f, _f);
                             }
                         } catch (Error e) {
-                            error("Error querying file information : %s", e.message);
+                            critical("Error querying file information : %s", e.message);
                         }
                     }
                 }
@@ -319,7 +321,7 @@ namespace FontManager {
                 try {
                     _tmpdir = DirUtils.make_tmp(TMPL);
                 } catch (FileError e) {
-                    error("Error creating temporary working directory : %s", e.message);
+                    critical("Error creating temporary working directory : %s", e.message);
                 }
                 return _tmpdir != null ? File.new_for_path(_tmpdir) : null;
             }
@@ -378,14 +380,17 @@ namespace FontManager {
                 foreach (var file in files) {
                     try {
                         File parent = file.get_parent();
+                        string path = file.get_path();
+                        file.delete();
+                        debug("Successfully removed %s", path);
                         if (db != null) {
                             try {
-                                db.remove("filepath=\"%s\"".printf(file.get_path()));
+                                db.remove("filepath=\"%s\"".printf(path));
+                                debug("Successfully removed entry for %s from database", path);
                             } catch (DatabaseError e) {
                                 warning(e.message);
                             }
                         }
-                        file.delete();
                         remove_directory_tree_if_empty(parent);
                         processed++;
                         if (progress != null)

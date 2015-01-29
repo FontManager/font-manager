@@ -38,7 +38,7 @@ namespace FontManager {
         try {
             Gtk.show_uri(null, "help:%s".printf(NAME), Gdk.CURRENT_TIME);
         } catch (Error e) {
-            error("Error launching uri handler : %s", e.message);
+            critical("Error launching uri handler : %s", e.message);
         }
         return;
     }

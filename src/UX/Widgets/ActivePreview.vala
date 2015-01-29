@@ -49,6 +49,7 @@ namespace FontManager {
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             preview = new StandardTextView(tag_table);
             preview.view.justification = Gtk.Justification.CENTER;
+            preview.view.margin_top = 24;
             set_preview_text(get_localized_preview_text());
             preview_size = DEFAULT_PREVIEW_SIZE;
             controls = new PreviewControls();

@@ -68,7 +68,7 @@ namespace FontManager {
             collections = load_collections();
             settings = new GLib.Settings(SCHEMA_ID);
             fontconfig.changed.connect((f, ev) => {
-                message("Filesystem change detected");
+                debug("Filesystem change detected");
                 update();
             });
         }
@@ -104,10 +104,12 @@ namespace FontManager {
             } catch (DatabaseError e) {
                 critical("Database synchronization failed : %s", e.message);
             }
-            category_model.update();
-            font_model.update();
-            application.main_window.loading = false;
-            application.main_window.set_all_models();
+            if (application != null && application.main_window != null) {
+                category_model.update();
+                font_model.update();
+                application.main_window.loading = false;
+                application.main_window.set_all_models();
+            }
             update_in_progress = false;
             if (queue_update)
                 Idle.add(() => { update(); return false; });
@@ -126,15 +128,17 @@ namespace FontManager {
                 queue_update = false;
             }
             update_in_progress = true;
-            message("Updating font configuration");
+            debug("Updating font configuration");
             FontConfig.update_cache();
             fontconfig.async_update.begin((obj, res) => {
                 try {
-                    application.main_window.unset_all_models();
-                    application.main_window.loading = true;
+                    if (application != null && application.main_window != null) {
+                        application.main_window.unset_all_models();
+                        application.main_window.loading = true;
+                    }
                     fontconfig.async_update.end(res);
                     end_update();
-                    message("Font configuration update complete");
+                    debug("Font configuration update complete");
                 } catch (ThreadError e) {
                     critical("Thread error : %s", e.message);
                     end_update();

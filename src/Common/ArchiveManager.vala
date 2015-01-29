@@ -40,7 +40,7 @@ public class ArchiveManager : Object {
     private DBusService? service = null;
 
     public void post_error_message (Error e) {
-        error("Archive Manager : %s", e.message);
+        critical("Archive Manager : %s", e.message);
     }
 
     private void init () {
