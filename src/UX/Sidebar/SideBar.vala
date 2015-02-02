@@ -87,7 +87,7 @@ namespace FontManager {
             stack.set_transition_duration(420);
             stack.set_transition_type(Gtk.StackTransitionType.UNDER_LEFT);
             box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-            box.hexpand = box.vexpand = true;
+            box.expand = true;
             box.pack_start(stack, true, true, 0);
             spinner = new Gtk.Spinner();
             spinner.halign = Gtk.Align.CENTER;

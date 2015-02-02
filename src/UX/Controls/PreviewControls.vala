@@ -48,17 +48,9 @@ namespace FontManager {
             box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
             box.border_width = 1;
             justify_left = new Gtk.RadioButton(null);
-            justify_left.set_tooltip_text(_("Left Aligned"));
             justify_center = new Gtk.RadioButton.from_widget(justify_left);
-            justify_center.set_tooltip_text(_("Centered"));
             justify_fill = new Gtk.RadioButton.from_widget(justify_left);
-            justify_fill.set_tooltip_text(_("Fill"));
             justify_right = new Gtk.RadioButton.from_widget(justify_left);
-            justify_right.set_tooltip_text(_("Right Aligned"));
-            justify_left.set_image(new Gtk.Image.from_icon_name("format-justify-left-symbolic", Gtk.IconSize.MENU));
-            justify_center.set_image(new Gtk.Image.from_icon_name("format-justify-center-symbolic", Gtk.IconSize.MENU));
-            justify_fill.set_image(new Gtk.Image.from_icon_name("format-justify-fill-symbolic", Gtk.IconSize.MENU));
-            justify_right.set_image(new Gtk.Image.from_icon_name("format-justify-right-symbolic", Gtk.IconSize.MENU));
             edit = new Gtk.ToggleButton();
             edit.set_image(new Gtk.Image.from_icon_name("insert-text-symbolic", Gtk.IconSize.MENU));
             edit.set_tooltip_text(_("Edit preview text"));
@@ -67,16 +59,18 @@ namespace FontManager {
             clear.set_tooltip_text(_("Undo changes"));
             edit.relief = Gtk.ReliefStyle.NONE;
             clear.relief = Gtk.ReliefStyle.NONE;
-            Gtk.RadioButton [] buttons = {justify_left, justify_center, justify_fill, justify_right};
-            foreach (var button in buttons) {
+            Gtk.RadioButton [] buttons = { justify_left, justify_center, justify_fill, justify_right };
+            string [] icons = { "format-justify-left-symbolic", "format-justify-center-symbolic", "format-justify-fill-symbolic", "format-justify-right-symbolic" };
+            string [] tooltips = { _("Left Aligned"), _("Centered"), _("Fill"), _("Right Aligned") };
+            for (int i = 0; i < buttons.length; i++) {
+                var button = buttons[i];
                 button.relief = Gtk.ReliefStyle.NONE;
                 ((Gtk.ToggleButton) button).draw_indicator = false;
                 button.get_style_context().add_class(Gtk.STYLE_CLASS_LINKED);
+                button.set_image(new Gtk.Image.from_icon_name(icons[i], Gtk.IconSize.MENU));
+                button.set_tooltip_text(tooltips[i]);
+                box.pack_start(button, false, false, 0);
             }
-            box.pack_start(justify_left, false, false, 0);
-            box.pack_start(justify_center, false, false, 0);
-            box.pack_start(justify_fill, false, false, 0);
-            box.pack_start(justify_right, false, false, 0);
             box.pack_end(clear, false, false, 0);
             box.pack_end(edit, false, false, 0);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);

@@ -80,8 +80,7 @@ namespace FontManager {
             view.overwrite = false;
             view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            hexpand = true;
-            vexpand = true;
+            expand = true;
             add(view);
         }
 

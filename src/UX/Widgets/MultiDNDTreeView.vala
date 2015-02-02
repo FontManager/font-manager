@@ -35,22 +35,18 @@ public class MultiDNDTreeView : Gtk.TreeView {
         get_selection().set_mode(Gtk.SelectionMode.MULTIPLE);
         rubber_banding = true;
         pending_event = PendingEvent();
-        button_press_event.connect(on_button_press_event);
-        button_release_event.connect(on_button_release_event);
-        drag_begin.connect_after(on_drag_begin);
     }
 
-    private bool on_button_press_event (Gtk.Widget widget, Gdk.EventButton event) {
+    public override bool button_press_event (Gdk.EventButton event) {
         if (event.button == 3) {
-            menu_request(widget, event);
+            menu_request(this, event);
             return true;
         }
-        var _widget = widget as Gtk.TreeView;
         Gtk.TreePath path;
-        _widget.get_path_at_pos((int) event.x, (int) event.y, out path, null, null, null);
+        get_path_at_pos((int) event.x, (int) event.y, out path, null, null, null);
         if (path == null)
             return true;
-        var selection = _widget.get_selection();
+        var selection = get_selection();
         if (selection.path_is_selected(path) && (event.state & (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK)) == 0) {
             pending_event.x = event.x;
             pending_event.y = event.y;
@@ -63,25 +59,24 @@ public class MultiDNDTreeView : Gtk.TreeView {
             selection.set_select_function((s, m, p, b) => { return true; });
         }
         path = null;
-        return false;
+        return base.button_press_event(event);
     }
 
-    private bool on_button_release_event (Gtk.Widget widget, Gdk.EventButton event) {
+    public override bool button_release_event (Gdk.EventButton event) {
         if (pending_event.active) {
-            var _widget = widget as Gtk.TreeView;
-            var selection = _widget.get_selection();
+            var selection = get_selection();
             selection.set_select_function((s, m, p, b) => { return true; });
             pending_event.active = false;
             if (pending_event.x != event.x || pending_event.y != event.y)
                 return true;
             Gtk.TreePath path;
-            if (_widget.get_path_at_pos((int) event.x, (int) event.y, out path, null, null, null))
-                _widget.set_cursor(path, null, false);
+            if (get_path_at_pos((int) event.x, (int) event.y, out path, null, null, null))
+                set_cursor(path, null, false);
         }
-        return false;
+        return base.button_release_event(event);
     }
 
-    protected virtual void on_drag_begin (Gtk.Widget widget, Gdk.DragContext context) {
+    public override void drag_begin (Gdk.DragContext context) {
         return;
     }
 

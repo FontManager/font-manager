@@ -80,8 +80,7 @@ namespace FontManager {
             add(overlay);
             scroll = new Gtk.ScrolledWindow(null, null);
             scroll.add(treeview);
-            scroll.vexpand = true;
-            scroll.hexpand = true;
+            scroll.expand = true;
             main_box.pack_start(scroll, true, true, 0);
             renderer = new CellRendererTitle();
             renderer.xpad = 48;

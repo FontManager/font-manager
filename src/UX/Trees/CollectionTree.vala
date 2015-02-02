@@ -73,6 +73,7 @@ namespace FontManager {
         private weak FontConfig.Reject _reject;
 
         public CollectionTree () {
+            expand = true;
             tree = new Gtk.TreeView();
             tree.name = "CollectionsTree";
             renderer = new Gtk.CellRendererText();
