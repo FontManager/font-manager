@@ -91,7 +91,7 @@ namespace FontManager {
             blend = new Gtk.EventBox();
             switcher = new Gtk.StackSwitcher();
             switcher.set_stack(stack);
-            switcher.set_border_width(5);
+            switcher.set_border_width(6);
             switcher.halign = Gtk.Align.CENTER;
             switcher.valign = Gtk.Align.CENTER;
             switcher.homogeneous = true;

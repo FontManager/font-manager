@@ -88,8 +88,7 @@ namespace FontManager {
             dialog.destroy_with_parent = true;
             dialog.set_size_request(540, 480);
             dialog.set_transient_for(parent);
-            tree.hexpand = true;
-            tree.vexpand = true;
+            tree.expand = true;
             scroll.add(tree);
             content_area.pack_start(scroll, true, true, 0);
             scroll.show_all();

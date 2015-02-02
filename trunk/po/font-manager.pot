@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-28 00:29-0500\n"
+"POT-Creation-Date: 2015-02-02 02:13-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -353,11 +353,11 @@ msgstr ""
 msgid "Regular"
 msgstr ""
 
-#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:76
+#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:93
 msgid "Unicode Script"
 msgstr ""
 
-#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:77
+#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:94
 msgid "Unicode Block"
 msgstr ""
 
@@ -411,28 +411,28 @@ msgstr ""
 msgid "Hide font information"
 msgstr ""
 
-#: ../src/UX/Controls/PreviewControls.vala:51
-msgid "Left Aligned"
-msgstr ""
-
-#: ../src/UX/Controls/PreviewControls.vala:53
-msgid "Centered"
-msgstr ""
-
-#: ../src/UX/Controls/PreviewControls.vala:55
-msgid "Fill"
-msgstr ""
-
-#: ../src/UX/Controls/PreviewControls.vala:57
-msgid "Right Aligned"
-msgstr ""
-
-#: ../src/UX/Controls/PreviewControls.vala:64
+#: ../src/UX/Controls/PreviewControls.vala:56
 msgid "Edit preview text"
 msgstr ""
 
-#: ../src/UX/Controls/PreviewControls.vala:67
+#: ../src/UX/Controls/PreviewControls.vala:59
 msgid "Undo changes"
+msgstr ""
+
+#: ../src/UX/Controls/PreviewControls.vala:64
+msgid "Left Aligned"
+msgstr ""
+
+#: ../src/UX/Controls/PreviewControls.vala:64
+msgid "Centered"
+msgstr ""
+
+#: ../src/UX/Controls/PreviewControls.vala:64
+msgid "Fill"
+msgstr ""
+
+#: ../src/UX/Controls/PreviewControls.vala:64
+msgid "Right Aligned"
 msgstr ""
 
 #: ../src/UX/Controls/TitleBar.vala:70 ../src/UX/Controls/TitleBar.vala:123
@@ -539,11 +539,11 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: ../src/UX/Sidebar/MainSideBar.vala:80
+#: ../src/UX/Sidebar/MainSideBar.vala:79
 msgid "Categories"
 msgstr ""
 
-#: ../src/UX/Sidebar/MainSideBar.vala:81
+#: ../src/UX/Sidebar/MainSideBar.vala:80
 msgid "Collections"
 msgstr ""
 

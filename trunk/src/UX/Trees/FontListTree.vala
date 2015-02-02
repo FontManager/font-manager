@@ -121,7 +121,7 @@ namespace FontManager {
             return selected;
         }
 
-        protected override void on_drag_begin (Gtk.Widget _widget, Gdk.DragContext context) {
+        public override void drag_begin (Gdk.DragContext context) {
             Gtk.drag_set_icon_name(context, About.ICON, 0, 0);
             return;
         }
@@ -311,16 +311,15 @@ namespace FontManager {
 //        private Gtk.Menu context_menu;
 
         public FontListTree () {
+            expand = true;
             scroll = new Gtk.ScrolledWindow(null, null);
             fontlist = new FontList();
-            fontlist.hexpand = true;
-            fontlist.vexpand = true;
+            fontlist.expand = true;
             progress = new Gtk.ProgressBar();
             progress.halign = progress.valign = Gtk.Align.CENTER;
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             revealer = new Gtk.Revealer();
-            revealer.hexpand = true;
-            revealer.vexpand = false;
+            revealer.expand = false;
             fontlist_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             _box.pack_start(fontlist.controls, false, true, 0);

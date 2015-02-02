@@ -56,6 +56,7 @@ namespace FontManager {
         private weak CategoryModel _model;
 
         public CategoryTree () {
+            expand = true;
             tree = new Gtk.TreeView();
             tree.level_indentation = 12;
             renderer = new Gtk.CellRendererText();

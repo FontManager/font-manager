@@ -44,7 +44,6 @@
 ./src/UX/Controls/CollectionControls.c
 ./src/UX/Controls/CompareControls.c
 ./src/UX/Controls/FontListControls.c
-./src/UX/Controls/ModeSelector.c
 ./src/UX/Controls/PreviewControls.c
 ./src/UX/Controls/TitleBar.c
 ./src/UX/Dialogs/FileSelector.c
@@ -71,6 +70,7 @@
 ./src/UX/Widgets/CellRendererPill.c
 ./src/UX/Widgets/FontScale.c
 ./src/UX/Widgets/MultiDNDTreeView.c
+./src/UX/Widgets/ReactiveLabel.c
 ./src/UX/Widgets/TextPreview.c
 ./src/UX/Widgets/TextViews.c
 ./src/UX/Widgets/ThinPaned.c

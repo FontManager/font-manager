@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-28 00:29-0500\n"
+"POT-Creation-Date: 2015-02-02 02:13-0500\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -371,11 +371,11 @@ msgstr "Normal"
 msgid "Regular"
 msgstr "Normal"
 
-#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:76
+#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:93
 msgid "Unicode Script"
 msgstr "Unicode Skript"
 
-#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:77
+#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:94
 msgid "Unicode Block"
 msgstr "Unicode Block"
 
@@ -430,29 +430,29 @@ msgstr "Alle einklappen"
 msgid "Hide font information"
 msgstr "Zeige Schriftinformationen"
 
-#: ../src/UX/Controls/PreviewControls.vala:51
-msgid "Left Aligned"
-msgstr "Links ausgerichtet"
-
-#: ../src/UX/Controls/PreviewControls.vala:53
-msgid "Centered"
-msgstr "Zentriert"
-
-#: ../src/UX/Controls/PreviewControls.vala:55
-msgid "Fill"
-msgstr "Füllen"
-
-#: ../src/UX/Controls/PreviewControls.vala:57
-msgid "Right Aligned"
-msgstr "Rechts ausgerichtet"
-
-#: ../src/UX/Controls/PreviewControls.vala:64
+#: ../src/UX/Controls/PreviewControls.vala:56
 msgid "Edit preview text"
 msgstr "Vorschautext bearbeiten"
 
-#: ../src/UX/Controls/PreviewControls.vala:67
+#: ../src/UX/Controls/PreviewControls.vala:59
 msgid "Undo changes"
 msgstr "Änderungen rückgängig machen"
+
+#: ../src/UX/Controls/PreviewControls.vala:64
+msgid "Left Aligned"
+msgstr "Links ausgerichtet"
+
+#: ../src/UX/Controls/PreviewControls.vala:64
+msgid "Centered"
+msgstr "Zentriert"
+
+#: ../src/UX/Controls/PreviewControls.vala:64
+msgid "Fill"
+msgstr "Füllen"
+
+#: ../src/UX/Controls/PreviewControls.vala:64
+msgid "Right Aligned"
+msgstr "Rechts ausgerichtet"
 
 #: ../src/UX/Controls/TitleBar.vala:70 ../src/UX/Controls/TitleBar.vala:123
 msgid "Add Fonts"
@@ -571,11 +571,11 @@ msgstr "Verwalte"
 msgid "Preview"
 msgstr "Vorschau"
 
-#: ../src/UX/Sidebar/MainSideBar.vala:80
+#: ../src/UX/Sidebar/MainSideBar.vala:79
 msgid "Categories"
 msgstr "Kategorien"
 
-#: ../src/UX/Sidebar/MainSideBar.vala:81
+#: ../src/UX/Sidebar/MainSideBar.vala:80
 msgid "Collections"
 msgstr "Kollektionen"
 

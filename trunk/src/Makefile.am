@@ -110,7 +110,6 @@ UX/Controls/CompareControls.vala \
 UX/Controls/FontListControls.vala \
 UX/Controls/PreviewControls.vala \
 UX/Controls/TitleBar.vala \
-UX/Controls/ModeSelector.vala \
 UX/Dialogs/Migration.vala \
 UX/Dialogs/NotImplemented.vala \
 UX/Dialogs/FileSelector.vala \
@@ -125,6 +124,7 @@ UX/Widgets/FontScale.vala \
 UX/Widgets/ActivePreview.vala \
 UX/Widgets/AdjustablePreview.vala \
 UX/Widgets/CellRendererPill.vala \
+UX/Widgets/ReactiveLabel.vala \
 UX/Widgets/TextViews.vala \
 UX/Widgets/MultiDNDTreeView.vala \
 UX/Widgets/ThinPaned.vala \

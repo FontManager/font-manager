@@ -63,15 +63,14 @@ namespace FontManager {
             stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
             switcher = new Gtk.StackSwitcher();
             switcher.set_stack(stack);
-            switcher.set_border_width(5);
+            switcher.set_border_width(6);
             switcher.halign = Gtk.Align.CENTER;
             switcher.valign = Gtk.Align.CENTER;
             category_tree = new CategoryTree();
             collection_tree = new CollectionTree();
             collection_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             revealer1 = new Gtk.Revealer();
-            revealer1.hexpand = true;
-            revealer1.vexpand = false;
+            revealer1.expand = false;
             _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             _box.pack_start(collection_tree.controls, false, true, 0);
             revealer1.add(_box);

@@ -47,9 +47,9 @@ namespace FontManager {
             var preview_text = settings.get_string("preview-text");
             if (preview_text != "DEFAULT")
                 main_window.preview.set_preview_text(preview_text);
+            main_window.sidebar.character_map.mode = (CharacterMapSideBarMode) settings.get_enum("charmap-mode");
             main_window.sidebar.character_map.selected_block = settings.get_string("selected-block");
             main_window.sidebar.character_map.selected_script = settings.get_string("selected-script");
-            main_window.sidebar.character_map.mode = (CharacterMapSideBarMode) settings.get_enum("charmap-mode");
             main_window.sidebar.character_map.set_initial_selection(settings.get_string("selected-script"), settings.get_string("selected-block"));
             var foreground = Gdk.RGBA();
             var background = Gdk.RGBA();

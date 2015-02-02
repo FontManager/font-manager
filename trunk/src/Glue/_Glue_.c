@@ -145,6 +145,8 @@ FcGetFontFromFile (gchar * filepath, int index) {
     FcPattern * pattern = FcFreeTypeQuery((const FcChar8 *) filepath, index, blanks, &count);
     if (!pattern) {
         g_warning("Failed to create FontConfig pattern for file : %s", filepath);
+        if (font)
+            g_object_unref(font);
         if (blanks)
             FcBlanksDestroy(blanks);
         return NULL;

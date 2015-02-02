@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-28 00:29-0500\n"
+"POT-Creation-Date: 2015-02-02 02:13-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -370,12 +370,12 @@ msgstr "正常(Normal)"
 msgid "Regular"
 msgstr "常规(Regular)"
 
-#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:76
+#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:93
 #, fuzzy
 msgid "Unicode Script"
 msgstr "Script"
 
-#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:77
+#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:94
 #, fuzzy
 msgid "Unicode Block"
 msgstr "Script"
@@ -431,29 +431,29 @@ msgstr "全部折叠"
 msgid "Hide font information"
 msgstr ""
 
-#: ../src/UX/Controls/PreviewControls.vala:51
-msgid "Left Aligned"
-msgstr "左对齐"
-
-#: ../src/UX/Controls/PreviewControls.vala:53
-msgid "Centered"
-msgstr "居中"
-
-#: ../src/UX/Controls/PreviewControls.vala:55
-msgid "Fill"
-msgstr "两端对齐"
-
-#: ../src/UX/Controls/PreviewControls.vala:57
-msgid "Right Aligned"
-msgstr "右对齐"
-
-#: ../src/UX/Controls/PreviewControls.vala:64
+#: ../src/UX/Controls/PreviewControls.vala:56
 msgid "Edit preview text"
 msgstr "编辑预览文本"
 
-#: ../src/UX/Controls/PreviewControls.vala:67
+#: ../src/UX/Controls/PreviewControls.vala:59
 msgid "Undo changes"
 msgstr "撤销更改"
+
+#: ../src/UX/Controls/PreviewControls.vala:64
+msgid "Left Aligned"
+msgstr "左对齐"
+
+#: ../src/UX/Controls/PreviewControls.vala:64
+msgid "Centered"
+msgstr "居中"
+
+#: ../src/UX/Controls/PreviewControls.vala:64
+msgid "Fill"
+msgstr "两端对齐"
+
+#: ../src/UX/Controls/PreviewControls.vala:64
+msgid "Right Aligned"
+msgstr "右对齐"
 
 #: ../src/UX/Controls/TitleBar.vala:70 ../src/UX/Controls/TitleBar.vala:123
 msgid "Add Fonts"
@@ -561,11 +561,11 @@ msgid "Preview"
 msgstr "预览"
 
 # msgstr "区块"
-#: ../src/UX/Sidebar/MainSideBar.vala:80
+#: ../src/UX/Sidebar/MainSideBar.vala:79
 msgid "Categories"
 msgstr "分类"
 
-#: ../src/UX/Sidebar/MainSideBar.vala:81
+#: ../src/UX/Sidebar/MainSideBar.vala:80
 msgid "Collections"
 msgstr "字体集"
 
