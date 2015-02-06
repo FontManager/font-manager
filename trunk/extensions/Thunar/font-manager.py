@@ -46,6 +46,8 @@ class FontViewer (thunarx.MenuProvider):
         if FontViewer.Active and len(files) == 1:
             selected_file = files[0]
             if is_font_file(selected_file):
+                if (selected_file.get_location().get_path() is None):
+                    return
                 try:
                     proxy = self.bus.get_object('org.gnome.FontManager', '/org/gnome/FontManager/FontViewer')
                     ready = proxy.get_dbus_method('Ready', 'org.gnome.FontManager.FontViewer')

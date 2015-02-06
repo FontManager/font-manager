@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-02 02:13-0500\n"
+"POT-Creation-Date: 2015-02-05 20:24-0500\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -599,16 +599,16 @@ msgstr ""
 msgid "Font Viewer"
 msgstr "Schriften Verwalter"
 
-#: ../src/UX/Viewer.vala:60 ../src/UX/Viewer.vala:163
+#: ../src/UX/Viewer.vala:60 ../src/UX/Viewer.vala:165
 #, fuzzy
 msgid "Install Font"
 msgstr "Alle Schriften"
 
-#: ../src/UX/Viewer.vala:154
+#: ../src/UX/Viewer.vala:156
 msgid "Newer version already installed"
 msgstr ""
 
-#: ../src/UX/Viewer.vala:159
+#: ../src/UX/Viewer.vala:161
 #, fuzzy
 msgid "Installed"
 msgstr "Alle Schriften"
