@@ -51,7 +51,7 @@ class FontViewer (GObject.GObject, Nemo.MenuProvider):
                     ready = proxy.get_dbus_method('Ready', 'org.gnome.FontManager.FontViewer')
                     if ready():
                         show_uri = proxy.get_dbus_method('ShowUri', 'org.gnome.FontManager.FontViewer')
-                        show_uri('{0}'.format(selected_file.get_uri()))
+                        show_uri('{0}'.format(selected_file.get_activation_uri()))
                 except:
                     pass
         return
