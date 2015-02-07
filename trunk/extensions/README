@@ -9,12 +9,12 @@ Nautilus:
 Thunar:
 
     /usr/share/thunarx-python/extensions/
-    ~/.local/share/nautilus-python/extensions/
+    ~/.local/share/thunarx-python/extensions/
 
 Nemo:
 
     /usr/share/nemo-python/extensions/
-    ~/.local/share/nautilus-python/extensions/
+    ~/.local/share/nemo-python/extensions/
 
 
 If you installed the extension to a system directory, compile the extension
@@ -34,15 +34,7 @@ For Thunar python bindings
 
     http://goodies.xfce.org/projects/bindings/thunarx-python
 
-KNOWN ISSUES
-
     Ubuntu/Debian users can find thunarx-python in the RabbitVCS PPA.
-
-    Ubuntu/Debian users *may* need to create a symbolic link to prevent Thunar from crashing.
-
-        sudo ln -sf /usr/lib/i386-linux-gnu/libpython2.7.so.1 /usr/lib/libpython2.7.so.1.0
-
-    This is not an issue specific to this extension. 
 
 
 For Nemo python bindings 
@@ -50,4 +42,11 @@ For Nemo python bindings
     https://github.com/linuxmint/nemo-extensions/tree/master/nemo-python
 
 
+KNOWN ISSUES
+
+    Ubuntu/Debian users *may* need to create a symbolic link to prevent Thunar from crashing.
+
+        sudo ln -sf /usr/lib/i386-linux-gnu/libpython2.7.so.1 /usr/lib/libpython2.7.so.1.0
+
+    This is not an issue specific to this extension. 
 `
