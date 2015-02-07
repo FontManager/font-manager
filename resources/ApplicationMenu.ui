@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-Copyright (C) 2009 - 2014
+Copyright (C) 2009 - 2015 Jerry Casiano
 
 This file is part of Font Manager.
 
@@ -18,7 +18,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
 
-Author: Jerry Casiano
+Author:
+        Jerry Casiano <JerryCasiano@gmail.com>
 
 -->
 <interface domain="font-manager">
