@@ -71,6 +71,12 @@ namespace FontManager {
 
 }
 
+public Pango.FontDescription get_font (Gtk.Widget widget, Gtk.StateFlags flags = Gtk.StateFlags.NORMAL) {
+    Pango.FontDescription desc;
+    widget.get_style_context().get(flags, "font", out desc, null);
+    return desc.copy();
+}
+
 public bool Gnome3 () {
     Gtk.Settings settings = Gtk.Settings.get_default();
     bool has_app_menu = settings.gtk_shell_shows_app_menu;

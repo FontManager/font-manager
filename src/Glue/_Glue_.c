@@ -632,3 +632,12 @@ get_file_info(FontManagerFontInfo *fileinfo, const gchar * filepath, gint index)
     return error;
 }
 
+const GValue *
+pspec_get_default (GParamSpec * pspec)
+{
+    GValue * val;
+    g_value_unset(val);
+    g_value_init(&val, G_PARAM_SPEC_TYPE(pspec));
+    g_value_copy(g_param_spec_get_default_value(pspec), val);
+    return val;
+}

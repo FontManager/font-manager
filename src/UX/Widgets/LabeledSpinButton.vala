@@ -1,4 +1,4 @@
-/* CharacterMapPane.vala
+/* LabeledSpinButton.vala
  *
  * Copyright (C) 2009 - 2015 Jerry Casiano
  *
@@ -21,29 +21,29 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
-namespace FontManager {
+public class LabeledSpinButton : Gtk.Grid {
 
-    public class CharacterMapPane : Gtk.Box {
+    public double @value { get; set; default = 0.0; }
 
-        public CharacterTable table { get; private set; }
-        public CharacterDetails details { get; private set; }
+    private Gtk.Label label;
+    private Gtk.SpinButton spin;
 
-        public CharacterMapPane () {
-            orientation = Gtk.Orientation.VERTICAL;
-            table = new CharacterTable();
-            details = new CharacterDetails();
-            pack_start(details, false, true, 0);
-            pack_start(table, true, true, 0);
-            table.bind_property("active-character", details, "active-character", BindingFlags.SYNC_CREATE);
-        }
+    public LabeledSpinButton (string label = "", double min, double max, double step) {
+        margin = 12;
+        this.label = new Gtk.Label(label);
+        this.label.hexpand = true;
+        this.label.halign = Gtk.Align.START;
+        spin = new Gtk.SpinButton.with_range(min, max, step);
+        attach(this.label, 0, 0, 2, 1);
+        attach(spin, 2, 0, 1, 1);
+        bind_property("value", spin, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+    }
 
-        public override void show () {
-            table.show();
-            details.show();
-            base.show();
-            return;
-        }
-
+    public override void show () {
+        label.show();
+        spin.show();
+        base.show();
+        return;
     }
 
 }

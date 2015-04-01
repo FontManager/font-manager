@@ -31,7 +31,6 @@ namespace FontConfig {
         public Accept accept { get; private set; }
         public Directories dirs { get; private set; }
         public Families families { get; private set; }
-        public Properties props { get; private set; }
         public Reject reject { get; private set; }
         public Sources sources { get; private set; }
 
@@ -42,7 +41,6 @@ namespace FontConfig {
         public Main () {
             accept = new Accept();
             dirs = new Directories();
-            props = new Properties();
             reject = new Reject();
             families = new Families();
             sources = new Sources();
@@ -59,7 +57,6 @@ namespace FontConfig {
                 return;
             accept.init();
             dirs.init();
-            props.init();
             reject.init();
             sources.init();
             this.update();
@@ -197,12 +194,13 @@ namespace FontConfig {
 
     private bool load_user_font_sources (FontSource [] sources) {
         clear_app_fonts();
+        bool res = true;
         if (!add_app_font_dir(Path.build_filename(Environment.get_user_data_dir(), "fonts")))
-            return false;
+            res = false;
         foreach (var source in sources)
             if (!add_app_font_dir(source.path))
-                return false;
-        return true;
+                res = false;
+        return res;
     }
 
 }

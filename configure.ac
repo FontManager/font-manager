@@ -134,7 +134,7 @@ AC_OUTPUT
 
 
 echo "
-    Font Manager $VERSION
+    Font Manager $PACKAGE_VERSION
 
     C compiler: ${CC}
     Vala compiler: ${VALAC}

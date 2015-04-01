@@ -27,9 +27,9 @@ namespace FontManager {
     public class Application: Gtk.Application  {
 
         [DBus (visible = false)]
-        public MainWindow main_window { get; set; }
+        public MainWindow? main_window { get; set; default = null; }
         [DBus (visible = false)]
-        public Gtk.Builder builder { get; set; }
+        public Gtk.Builder? builder { get; set; default = null; }
         [DBus (visible = false)]
         public Viewer? font_viewer {
             get {
@@ -40,17 +40,14 @@ namespace FontManager {
         }
 
         private const OptionEntry[] options = {
-            { "about", 'a', 0, OptionArg.NONE, ref ABOUT, "About the application", null },
-            { "version", 'v', 0, OptionArg.NONE, ref VERSION, "Show application version", null },
-            { "debug", 'd', 0, OptionArg.NONE, ref DEBUG, "Enable logging. Fatal errors.", null },
-            { "verbose", 'V', 0, OptionArg.NONE, ref VERBOSE, "Verbose logging. Lots of output.", null },
+            { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
+            { "version", 'v', 0, OptionArg.NONE, null, "Show application version", null },
+            { "install", 'i', 0, OptionArg.NONE, null, "Space separated list of files to install.", null },
+            { "debug", 'd', 0, OptionArg.NONE, null, "Enable logging. Fatal errors.", null },
+            { "verbose", 'V', 0, OptionArg.NONE, null, "Verbose logging. Lots of output.", null },
+            { "", 0, 0, OptionArg.FILENAME_ARRAY, null, null, null },
             { null }
         };
-
-        private static bool ABOUT = false;
-        private static bool VERSION = false;
-        private static bool DEBUG = false;
-        private static bool VERBOSE = false;
 
         private uint fv_dbus_id = 0;
         private Viewer? fontviewer = null;
@@ -72,25 +69,69 @@ namespace FontManager {
             return;
         }
 
+        [DBus (visible = false)]
+        public void install (File [] files) {
+            Library.Install.from_file_array(files);
+            return;
+        }
+
+        private File []? get_command_line_files (ApplicationCommandLine cl) {
+            VariantDict options = cl.get_options_dict();
+            Variant argv = options.lookup_value("", VariantType.BYTESTRING_ARRAY);
+            if (argv == null)
+                return null;
+            string* [] filelist = argv.get_bytestring_array();
+            if (filelist.length == 0)
+                return null;
+            File [] files = null;
+            foreach (var file in filelist)
+                files += cl.create_file_for_arg(file);
+            return files;
+        }
+
+        public override int command_line (ApplicationCommandLine cl) {
+            hold();
+            VariantDict options = cl.get_options_dict();
+            File []? filelist = get_command_line_files(cl);
+            if (filelist == null) {
+                release();
+                activate();
+                return 0;
+            } else if (options.contains("install")) {
+                install(filelist);
+            } else {
+                try {
+                    register();
+                } catch (Error e) {
+                    critical(e.message);
+                }
+                open(filelist, "");
+            }
+            release();
+            return 0;
+        }
+
+
         public override int handle_local_options (VariantDict options) {
             int exit_status = -1;
 
-            if (ABOUT)
+            if (options.contains("about")) {
                 show_about();
+                exit_status = 0;
+            }
 
-            if (VERSION)
+            if (options.contains("version")) {
                 show_version();
+                exit_status = 0;
+            }
 
-            if (DEBUG) {
+            if (options.contains("debug")) {
                 Logger.DisplayLevel = LogLevel.DEBUG;
                 Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
             }
 
-            if (VERBOSE)
+            if (options.contains("verbose"))
                 Logger.DisplayLevel = LogLevel.VERBOSE;
-
-            if (ABOUT || VERSION)
-                exit_status = 0;
 
             return exit_status;
         }
@@ -105,8 +146,7 @@ namespace FontManager {
 
         public override void dbus_unregister (DBusConnection conn, string path) {
             if (fv_dbus_id != 0)
-                if (!conn.unregister_object(fv_dbus_id))
-                    warning("Failed to unregister Font Viewer");
+                conn.unregister_object(fv_dbus_id);
             base.dbus_unregister(conn, path);
         }
 
@@ -149,7 +189,7 @@ namespace FontManager {
             set_application_style();
             if (update_declined())
                 return 0;
-            var main = new Application(BUS_ID, (ApplicationFlags.HANDLES_OPEN));
+            var main = new Application(BUS_ID, (ApplicationFlags.HANDLES_OPEN | ApplicationFlags.HANDLES_COMMAND_LINE));
             int res = main.run(args);
             return res;
         }

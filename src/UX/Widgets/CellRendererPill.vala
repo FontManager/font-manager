@@ -103,7 +103,7 @@ public abstract class CellRendererPill : Gtk.CellRendererText {
         if (font_desc != null)
             layout.set_font_description(font_desc);
         else
-            layout.set_font_description(context.get_font(state));
+            layout.set_font_description(get_font(widget, state));
         layout.get_pixel_size(out layout_w, out layout_h);
 
         if (state == Gtk.StateFlags.NORMAL)
@@ -168,7 +168,6 @@ public abstract class CellRendererPill : Gtk.CellRendererText {
         int layout_w, layout_h;
         if (xpad < 12) xpad = 12;
         if (ypad < 2) ypad = 2;
-        Gtk.StyleContext context = widget.get_style_context();
         Pango.Layout layout = widget.create_pango_layout(null);
         layout.set_markup(_get_markup(), -1);
         Pango.FontDescription font_desc;
@@ -176,7 +175,7 @@ public abstract class CellRendererPill : Gtk.CellRendererText {
         if (font_desc != null)
             layout.set_font_description(font_desc);
         else
-            layout.set_font_description(context.get_font(Gtk.StateFlags.NORMAL));
+            layout.set_font_description(get_font(widget));
         layout.get_pixel_size(out layout_w, out layout_h);
         w = layout_w + ((int) xpad * 2);
         h = layout_h + ((int) ypad * 2);

@@ -27,7 +27,7 @@ namespace FontManager {
 
         public signal void remove_selected ();
         public signal void expand_all (bool expand);
-        public signal void show_properties (bool show);
+        public signal void show_metadata (bool show);
 
         public bool expanded { get; private set; }
         public Gtk.SearchEntry entry { get; private set; }
@@ -36,7 +36,7 @@ namespace FontManager {
         private Gtk.Button _expand;
         private Gtk.Arrow arrow;
         private Gtk.Box box;
-        private Gtk.ToggleButton show_props;
+        private Gtk.ToggleButton _show_metadata;
 
         public FontListControls () {
             box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
@@ -49,18 +49,18 @@ namespace FontManager {
             _remove.set_image(new Gtk.Image.from_icon_name("list-remove-symbolic", Gtk.IconSize.MENU));
             _remove.set_tooltip_text(_("Remove selected fonts"));
             entry = new Gtk.SearchEntry();
-            entry.margin_right = 2;
+            entry.margin_end = 2;
             entry.set_size_request(0, 0);
             entry.placeholder_text = _("Search Families...");
-            show_props = new Gtk.ToggleButton();
+            _show_metadata = new Gtk.ToggleButton();
         #if GTK_314
-            show_props.set_image(new Gtk.Image.from_icon_name("stock-eye-symbolic", Gtk.IconSize.MENU));
+            _show_metadata.set_image(new Gtk.Image.from_icon_name("stock-eye-symbolic", Gtk.IconSize.MENU));
         #else
-            show_props.set_image(new Gtk.Image.from_resource("/org/gnome/FontManager/icons/16x16/actions/stock-eye-symbolic.svg"));
+            _show_metadata.set_image(new Gtk.Image.from_resource("/org/gnome/FontManager/icons/16x16/actions/stock-eye-symbolic.svg"));
         #endif
-            show_props.set_tooltip_text(_("View font information"));
+            _show_metadata.set_tooltip_text(_("View font information"));
             box.pack_end(entry, false, false, 0);
-            box.pack_end(show_props, false, false, 2);
+            box.pack_end(_show_metadata, false, false, 2);
             box.pack_start(_expand, false, false, 0);
             box.pack_start(_remove, false, false, 0);
             set_default_button_relief(box);
@@ -75,7 +75,7 @@ namespace FontManager {
             _remove.show();
             arrow.show();
             _expand.show();
-            show_props.show();
+            _show_metadata.show();
             box.show();
             base.show();
             return;
@@ -92,12 +92,12 @@ namespace FontManager {
                 else
                     arrow.set(Gtk.ArrowType.RIGHT, Gtk.ShadowType.ETCHED_IN);
             });
-            show_props.toggled.connect(() => {
-                show_properties(show_props.active);
-                if (show_props.active)
-                    show_props.set_tooltip_text(_("Hide font information"));
+            _show_metadata.toggled.connect(() => {
+                show_metadata(_show_metadata.active);
+                if (_show_metadata.active)
+                    _show_metadata.set_tooltip_text(_("Hide font information"));
                 else
-                    show_props.set_tooltip_text(_("View font information"));
+                    _show_metadata.set_tooltip_text(_("View font information"));
 
             });
             return;
@@ -109,10 +109,10 @@ namespace FontManager {
             return;
         }
 
-        public void set_properties_sensitivity (bool sensitive) {
-            show_props.set_active(false);
-            show_props.set_sensitive(sensitive);
-            show_props.set_has_tooltip(sensitive);
+        public void set_metadata_sensitivity (bool sensitive) {
+            _show_metadata.set_active(false);
+            _show_metadata.set_sensitive(sensitive);
+            _show_metadata.set_has_tooltip(sensitive);
             return;
         }
 

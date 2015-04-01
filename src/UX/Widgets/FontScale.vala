@@ -75,12 +75,8 @@ namespace FontManager {
         }
 
         private void connect_signals () {
-            min.clicked.connect(() => {
-                scale.set_value(MIN_FONT_SIZE);
-            });
-            max.clicked.connect(() => {
-                scale.set_value(MAX_FONT_SIZE);
-            });
+            min.clicked.connect(() => { scale.set_value(MIN_FONT_SIZE); });
+            max.clicked.connect(() => { scale.set_value(MAX_FONT_SIZE); });
         }
 
         public void add_style_class (string gtk_style_class) {

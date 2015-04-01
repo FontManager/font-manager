@@ -1,146 +1,16 @@
-AM_CPPFLAGS = -DLOCALEDIR=\""$(localedir)"\"
+include Flags.mk
+include ValaSources.mk
+
 resource_dir = ${abs_top_builddir}/resources
-GLIB_COMPILE_RESOURCES=`$(PKG_CONFIG) --variable=glib_compile_resources gio-2.0`
-
-AM_VALAFLAGS = \
---target-glib 2.38 \
---pkg gmodule-2.0 \
---pkg glib-2.0 \
---pkg gio-2.0 \
---pkg gtk+-3.0 \
---pkg gee-0.8 \
---pkg json-glib-1.0 \
---pkg Gucharmap-2.90 \
---pkg libxml-2.0 \
---pkg pango \
---pkg sqlite3 \
-$(GTK_312) \
-$(GTK_314) \
---gresources $(resource_dir)/FontManagerGResource.xml
-
-
-font_manager_CPPFLAGS = \
--w \
-$(XML_CFLAGS) \
-$(FREETYPE_CFLAGS) \
-$(FONTCONFIG_CFLAGS) \
-$(GOBJECT_CFLAGS) \
-$(GLIB_CFLAGS) \
-$(GMODULE_CFLAGS) \
-$(GIO_CFLAGS) \
-$(CAIRO_CFLAGS) \
-$(GTK_CFLAGS) \
-$(PANGO_CFLAGS) \
-$(PANGOCAIRO_CFLAGS) \
-$(PANGOFT2_CFLAGS) \
-$(GEE_CFLAGS) \
-$(GUCHARMAP_CFLAGS) \
-$(JSONGLIB_CFLAGS) \
-$(SQLITE3_CFLAGS)
-
-font_manager_LDADD = \
--lm \
--lpthread \
-$(XML_LIBS) \
-$(FREETYPE_LIBS) \
-$(FONTCONFIG_LIBS) \
-$(GOBJECT_LIBS) \
-$(GLIB_LIBS) \
-$(GMODULE_LIBS) \
-$(GIO_LIBS) \
-$(CAIRO_LIBS) \
-$(GTK_LIBS) \
-$(PANGO_LIBS) \
-$(PANGOCAIRO_LIBS) \
-$(PANGOFT2_LIBS) \
-$(GEE_LIBS) \
-$(GUCHARMAP_LIBS) \
-$(JSONGLIB_LIBS) \
-$(SQLITE3_LIBS)
-
-font_manager_VALASOURCES = \
-Application.vala \
-Common/Main.vala \
-Common/About.vala \
-Common/ArchiveManager.vala \
-Common/Collections.vala \
-Common/Constants.vala \
-Common/Database.vala \
-Common/FontInfo.vala \
-Common/Library.vala \
-Common/Logger.vala \
-Common/Utils.vala \
-Filters/Category.vala \
-Filters/Collection.vala \
-Filters/Disabled.vala \
-Filters/Filter.vala \
-Filters/SearchResult.vala \
-Filters/Unsorted.vala \
-FontConfig/Accept.vala \
-FontConfig/Directories.vala \
-FontConfig/Enums.vala \
-FontConfig/Family.vala \
-FontConfig/Families.vala \
-FontConfig/Font.vala \
-FontConfig/FontConfig.vala \
-FontConfig/FontSource.vala \
-FontConfig/Properties.vala \
-FontConfig/Reject.vala \
-FontConfig/Selections.vala \
-FontConfig/Sources.vala \
-FontConfig/XmlWriter.vala \
-Glue/Glue.vala \
-Json/Cacheable.vala \
-Json/JsonWriter.vala \
-Models/CategoryModel.vala \
-Models/CollectionModel.vala \
-Models/FontModel.vala \
-Models/UserFontModel.vala \
-UX/Viewer.vala \
-UX/MainWindow.vala \
-UX/State.vala \
-UX/CharacterMap/CharacterMap.vala \
-UX/CharacterMap/CharacterDetails.vala \
-UX/CharacterMap/CharacterMapSideBar.vala \
-UX/CharacterMap/CharacterTable.vala \
-UX/CharacterMap/CharacterMapPane.vala \
-UX/Controls/BaseControls.vala \
-UX/Controls/CollectionControls.vala \
-UX/Controls/CompareControls.vala \
-UX/Controls/FontListControls.vala \
-UX/Controls/PreviewControls.vala \
-UX/Controls/TitleBar.vala \
-UX/Dialogs/Migration.vala \
-UX/Dialogs/NotImplemented.vala \
-UX/Dialogs/FileSelector.vala \
-UX/Sidebar/SideBar.vala \
-UX/Sidebar/MainSideBar.vala \
-UX/Trees/CollectionTree.vala \
-UX/Trees/CategoryTree.vala \
-UX/Trees/FontListTree.vala \
-UX/Trees/UserFontTree.vala \
-UX/Trees/UserSourceList.vala \
-UX/Widgets/FontScale.vala \
-UX/Widgets/ActivePreview.vala \
-UX/Widgets/AdjustablePreview.vala \
-UX/Widgets/CellRendererPill.vala \
-UX/Widgets/ReactiveLabel.vala \
-UX/Widgets/TextViews.vala \
-UX/Widgets/MultiDNDTreeView.vala \
-UX/Widgets/ThinPaned.vala \
-UX/Widgets/TextPreview.vala \
-UX/Widgets/WaterfallPreview.vala \
-UX/Utils/Color.vala \
-UX/Utils/Utils.vala \
-UX/Views/Compare.vala \
-UX/Views/FontPreview.vala \
-UX/Views/Browse.vala \
-UX/Views/Metadata.vala
+GLIB_COMPILE_RESOURCES = \
+`$(PKG_CONFIG) --variable=glib_compile_resources gio-2.0`
 
 FontManagerGResource.c :
-	cd $(resource_dir) && \
-	$(GLIB_COMPILE_RESOURCES) --generate-source $(resource_dir)/FontManagerGResource.xml --target=$(abs_srcdir)/FontManagerGResource.c && \
-	cd $(abs_srcdir)
+	$(GLIB_COMPILE_RESOURCES) \
+	--sourcedir=$(resource_dir) \
+	--generate-source \
+	--target=$@ \
+	$(resource_dir)/FontManagerGResource.xml
 
 BUILT_SOURCES = FontManagerGResource.c
 
@@ -156,10 +26,11 @@ EXTRA_DIST = $(font_manager_VALASOURCES)
 
 dist-hook:
 	cd $(distdir) && \
-	rm -f $(font_manager_VALASOURCES:.vala=.c) $(BUILT_SOURCES) font_manager_vala.stamp
+	rm -f $(font_manager_VALASOURCES:.vala=.c) \
+	$(BUILT_SOURCES) \
+	font_manager_vala.stamp
 
 clean-local:
-	rm -f $(font_manager_VALASOURCES:.vala=.c) $(BUILT_SOURCES) font_manager_vala.stamp
-
-
-
+	rm -f $(font_manager_VALASOURCES:.vala=.c) \
+	$(BUILT_SOURCES) \
+	font_manager_vala.stamp

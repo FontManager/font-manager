@@ -26,7 +26,7 @@ namespace FontManager {
 
     public class CharacterTable : AdjustablePreview {
 
-        public signal void active_character (unichar uc);
+        public unichar active_character { get; set; }
 
         public Gucharmap.Chartable table { get; private set; }
 
@@ -58,7 +58,7 @@ namespace FontManager {
             table_box.pack_end(fontscale, false, true, 1);
             table_box.pack_end(scroll, true, true, 1);
             pack_end(table_box, true, true, 0);
-            connect_signals();
+            table.bind_property("active-character", this, "active-character", BindingFlags.SYNC_CREATE);
         }
 
         public override void show () {
@@ -67,13 +67,6 @@ namespace FontManager {
             fontscale.show();
             scroll.show();
             base.show();
-            return;
-        }
-
-        private void connect_signals () {
-            table.notify["active-character"].connect(() => {
-                active_character(table.get_active_character());
-            });
             return;
         }
 

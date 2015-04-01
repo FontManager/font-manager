@@ -40,9 +40,6 @@ distclean-local:
 	@find . -name "Makefile" -exec rm -f '{}' \;
 	@find . -name "Makefile.in*" -exec rm -f '{}' \;
 
-maintainer-clean-local:
-	-rm -rf build-aux
-
 .PHONY: pot POTFILES.readme POTFILES.in POTFILES.skip
 
 all: pot

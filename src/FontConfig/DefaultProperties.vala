@@ -1,4 +1,4 @@
-/* CharacterMapPane.vala
+/* DefaultProperties.vala
  *
  * Copyright (C) 2009 - 2015 Jerry Casiano
  *
@@ -21,29 +21,33 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
-namespace FontManager {
+namespace FontConfig {
 
-    public class CharacterMapPane : Gtk.Box {
+    public class DefaultProperties : Properties {
 
-        public CharacterTable table { get; private set; }
-        public CharacterDetails details { get; private set; }
+        public int hintstyle { get; set; default = 1; }
+        public bool antialias { get; set; default = true; }
+        public bool hinting { get; set; default = true; }
+        public bool autohint { get; set; default = false; }
+        public bool embeddedbitmap { get; set; default = false; }
 
-        public CharacterMapPane () {
-            orientation = Gtk.Orientation.VERTICAL;
-            table = new CharacterTable();
-            details = new CharacterDetails();
-            pack_start(details, false, true, 0);
-            pack_start(table, true, true, 0);
-            table.bind_property("active-character", details, "active-character", BindingFlags.SYNC_CREATE);
+        public DefaultProperties () {
+            skip_property_assignment.add("family");
+            skip_property_assignment.add("font");
+            target_file = Path.build_filename(get_config_dir(), "19-DefaultProperties.conf");
+            load();
         }
 
-        public override void show () {
-            table.show();
-            details.show();
-            base.show();
+        public override void reset_properties () {
+            hintstyle = 1;
+            antialias = true;
+            hinting = true;
+            autohint = false;
+            embeddedbitmap = false;
             return;
         }
 
     }
 
 }
+

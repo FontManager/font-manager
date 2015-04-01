@@ -64,7 +64,9 @@ namespace FontManager {
         private void connect_signals () {
             sidebar.mode_set.connect((i) => { mode_set((int) i); });
             sidebar.selection_changed.connect((cl) => { table.table.codepoint_list = cl; });
-            pane.table.active_character.connect((uc) => { active_character(uc); });
+            pane.table.notify["active-character"].connect((pspec) => {
+                active_character(pane.table.active_character);
+            });
             return;
         }
 

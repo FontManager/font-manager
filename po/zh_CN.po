@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 20:14-0500\n"
+"POT-Creation-Date: 2015-03-31 21:33-0400\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -77,17 +77,38 @@ msgstr ""
 msgid "Enter Collection Name"
 msgstr "新字体集"
 
+#: ../src/Common/Library.vala:169
+msgid "Processing directories"
+msgstr ""
+
+#: ../src/Common/Library.vala:197
+msgid "Processing files"
+msgstr ""
+
+#: ../src/Common/Library.vala:345
+#, fuzzy
+msgid "Installing files"
+msgstr "全部字体"
+
+#: ../src/Common/Library.vala:362
+msgid "Preparing Archives"
+msgstr ""
+
+#: ../src/Common/Library.vala:405
+msgid "Removing files"
+msgstr ""
+
 #: ../src/Filters/Collection.vala:30
 msgid "New Collection"
 msgstr "新字体集"
 
 #: ../src/Filters/Disabled.vala:29
 msgid "Disabled"
-msgstr ""
+msgstr "禁用"
 
 #: ../src/Filters/Disabled.vala:29
 msgid "Fonts which have been disabled"
-msgstr ""
+msgstr "禁用字体"
 
 #: ../src/Filters/Filter.vala:40
 #, c-format
@@ -102,147 +123,152 @@ msgstr "未分类"
 msgid "Fonts not present in any collection"
 msgstr "字体未在任何字体集中"
 
-#: ../src/FontConfig/Enums.vala:35
-msgid "Slight"
-msgstr "少量(Slight)"
-
-#: ../src/FontConfig/Enums.vala:37 ../src/FontConfig/Enums.vala:201
-msgid "Medium"
-msgstr "中等(Medium)"
-
-#: ../src/FontConfig/Enums.vala:39
-msgid "Full"
-msgstr "全部(Full)"
-
-#: ../src/FontConfig/Enums.vala:41 ../src/FontConfig/Enums.vala:62
-#: ../src/FontConfig/Enums.vala:89
-msgid "None"
-msgstr "无(None)"
-
-#: ../src/FontConfig/Enums.vala:56
-msgid "Default"
-msgstr "默认(Default)"
-
-#: ../src/FontConfig/Enums.vala:58 ../src/FontConfig/Enums.vala:197
-msgid "Light"
-msgstr "细(Light)"
-
-#: ../src/FontConfig/Enums.vala:60
-msgid "Legacy"
-msgstr "传统(Legacy)"
-
-#: ../src/FontConfig/Enums.vala:79
-msgid "Unknown"
-msgstr "未知(Unknown)"
-
-#: ../src/FontConfig/Enums.vala:81
-msgid "RGB"
-msgstr "RGB"
-
-#: ../src/FontConfig/Enums.vala:83
-msgid "BGR"
-msgstr "BGR"
-
-#: ../src/FontConfig/Enums.vala:85
-msgid "VRGB"
-msgstr "VRGB"
-
-#: ../src/FontConfig/Enums.vala:87
-msgid "VBGR"
-msgstr "VBGR"
-
-#: ../src/FontConfig/Enums.vala:104
-msgid "Proportional"
-msgstr "比例(Proportional)"
-
-#: ../src/FontConfig/Enums.vala:106
-msgid "Dual Width"
-msgstr "双宽(Dual Width)"
-
-#: ../src/FontConfig/Enums.vala:108
-msgid "Monospace"
-msgstr "等宽(Monospace)"
-
-#: ../src/FontConfig/Enums.vala:110
-msgid "Charcell"
-msgstr "等宽等高(Charcell)"
-
-#: ../src/FontConfig/Enums.vala:126
-msgid "Italic"
-msgstr "斜体(Italic)"
-
-#: ../src/FontConfig/Enums.vala:128
-msgid "Oblique"
-msgstr "倾斜体(Oblique)"
-
-#: ../src/FontConfig/Enums.vala:150
-msgid "Ultra-Condensed"
-msgstr "超窄(Ultra-Condensed)"
-
-#: ../src/FontConfig/Enums.vala:152
-msgid "Extra-Condensed"
-msgstr "特窄(Extra-Condensed)"
-
-#: ../src/FontConfig/Enums.vala:154
-msgid "Condensed"
-msgstr "窄(Condensed)"
-
-#: ../src/FontConfig/Enums.vala:156
-msgid "Semi-Condensed"
-msgstr "半窄(Semi-Condensed)"
-
-#: ../src/FontConfig/Enums.vala:158
-msgid "Semi-Expanded"
-msgstr "半宽(Semi-Expanded)"
-
-#: ../src/FontConfig/Enums.vala:160
-msgid "Expanded"
-msgstr "宽(Expanded)"
-
-#: ../src/FontConfig/Enums.vala:162
-msgid "Extra-Expanded"
-msgstr "特宽(Extra-Expanded)"
-
-#: ../src/FontConfig/Enums.vala:164
-msgid "Ultra-Expanded"
-msgstr "超宽(Ultra-Expanded)"
-
-#: ../src/FontConfig/Enums.vala:193
+#: ../src/FontConfig/Enums.vala:47
 msgid "Thin"
 msgstr "轻(Thin)"
 
-#: ../src/FontConfig/Enums.vala:195
+#: ../src/FontConfig/Enums.vala:49
 msgid "Ultra-Light"
 msgstr "超细(Ultra-Light)"
 
-#: ../src/FontConfig/Enums.vala:199
+#: ../src/FontConfig/Enums.vala:51 ../src/FontConfig/Enums.vala:209
+msgid "Light"
+msgstr "细(Light)"
+
+#: ../src/FontConfig/Enums.vala:53
 msgid "Book"
 msgstr "预设(Book)"
 
-#: ../src/FontConfig/Enums.vala:203
+#: ../src/FontConfig/Enums.vala:55 ../src/FontConfig/Enums.vala:188
+msgid "Medium"
+msgstr "中等(Medium)"
+
+#: ../src/FontConfig/Enums.vala:57
 msgid "Semi-Bold"
 msgstr "半粗(Semi-Bold)"
 
-#: ../src/FontConfig/Enums.vala:205
+#: ../src/FontConfig/Enums.vala:59
 msgid "Bold"
 msgstr "粗(Bold)"
 
-#: ../src/FontConfig/Enums.vala:207
+#: ../src/FontConfig/Enums.vala:61
 msgid "Ultra-Bold"
 msgstr "超粗(Ultra-Bold)"
 
-#: ../src/FontConfig/Enums.vala:209
+#: ../src/FontConfig/Enums.vala:63
 msgid "Heavy"
 msgstr "重(Heavy)"
 
-#: ../src/FontConfig/Enums.vala:211
+#: ../src/FontConfig/Enums.vala:65
 msgid "Ultra-Heavy"
 msgstr "超重(Ultra-Heavy)"
 
-#: ../src/FontConfig/FontSource.vala:114
+#: ../src/FontConfig/Enums.vala:81
+msgid "Italic"
+msgstr "斜体(Italic)"
+
+#: ../src/FontConfig/Enums.vala:83
+msgid "Oblique"
+msgstr "倾斜体(Oblique)"
+
+#: ../src/FontConfig/Enums.vala:105
+msgid "Ultra-Condensed"
+msgstr "超窄(Ultra-Condensed)"
+
+#: ../src/FontConfig/Enums.vala:107
+msgid "Extra-Condensed"
+msgstr "特窄(Extra-Condensed)"
+
+#: ../src/FontConfig/Enums.vala:109
+msgid "Condensed"
+msgstr "窄(Condensed)"
+
+#: ../src/FontConfig/Enums.vala:111
+msgid "Semi-Condensed"
+msgstr "半窄(Semi-Condensed)"
+
+#: ../src/FontConfig/Enums.vala:113
+msgid "Semi-Expanded"
+msgstr "半宽(Semi-Expanded)"
+
+#: ../src/FontConfig/Enums.vala:115
+msgid "Expanded"
+msgstr "宽(Expanded)"
+
+#: ../src/FontConfig/Enums.vala:117
+msgid "Extra-Expanded"
+msgstr "特宽(Extra-Expanded)"
+
+#: ../src/FontConfig/Enums.vala:119
+msgid "Ultra-Expanded"
+msgstr "超宽(Ultra-Expanded)"
+
+#: ../src/FontConfig/Enums.vala:136
+msgid "Proportional"
+msgstr "比例(Proportional)"
+
+#: ../src/FontConfig/Enums.vala:138
+msgid "Dual Width"
+msgstr "双宽(Dual Width)"
+
+#: ../src/FontConfig/Enums.vala:140
+msgid "Monospace"
+msgstr "等宽(Monospace)"
+
+#: ../src/FontConfig/Enums.vala:142
+msgid "Charcell"
+msgstr "等宽等高(Charcell)"
+
+#: ../src/FontConfig/Enums.vala:161
+msgid "Unknown"
+msgstr "未知(Unknown)"
+
+#: ../src/FontConfig/Enums.vala:163
+msgid "RGB"
+msgstr "RGB"
+
+#: ../src/FontConfig/Enums.vala:165
+msgid "BGR"
+msgstr "BGR"
+
+#: ../src/FontConfig/Enums.vala:167
+msgid "VRGB"
+msgstr "VRGB"
+
+#: ../src/FontConfig/Enums.vala:169
+msgid "VBGR"
+msgstr "VBGR"
+
+#: ../src/FontConfig/Enums.vala:171 ../src/FontConfig/Enums.vala:192
+#: ../src/FontConfig/Enums.vala:213
+msgid "None"
+msgstr "无(None)"
+
+#: ../src/FontConfig/Enums.vala:186
+msgid "Slight"
+msgstr "少量(Slight)"
+
+#: ../src/FontConfig/Enums.vala:190
+msgid "Full"
+msgstr "全部(Full)"
+
+#: ../src/FontConfig/Enums.vala:207
+msgid "Default"
+msgstr "默认(Default)"
+
+#: ../src/FontConfig/Enums.vala:211
+msgid "Legacy"
+msgstr "传统(Legacy)"
+
+#: ../src/FontConfig/Families.vala:38
+#, fuzzy
+msgid "Loading available font families"
+msgstr "字体对所有用户可见"
+
+#: ../src/FontConfig/FontSource.vala:124
 #, c-format
 msgid "%s --> Resource Unavailable"
-msgstr ""
+msgstr "%s --> 资源不存在"
 
 #: ../src/FontConfig/Sources.vala:130 ../src/FontConfig/XmlWriter.vala:34
 msgid " Generated by Font Manager. Do NOT edit this file. "
@@ -351,7 +377,7 @@ msgstr "文本和显示(Text and Display)"
 
 #: ../src/Models/CategoryModel.vala:111
 msgid "Script"
-msgstr "Script"
+msgstr "脚本(Script)"
 
 # msgstr "手写体(Script)"
 #: ../src/Models/CategoryModel.vala:112
@@ -373,12 +399,12 @@ msgstr "常规(Regular)"
 #: ../src/UX/CharacterMap/CharacterMapSideBar.vala:95
 #, fuzzy
 msgid "Unicode Script"
-msgstr "Script"
+msgstr "Unicode 脚本"
 
 #: ../src/UX/CharacterMap/CharacterMapSideBar.vala:96
 #, fuzzy
 msgid "Unicode Block"
-msgstr "Script"
+msgstr "Unicode 区块"
 
 #: ../src/UX/Controls/CollectionControls.vala:29
 msgid "Add new collection"
@@ -421,7 +447,7 @@ msgstr "搜索数据库"
 #: ../src/UX/Controls/FontListControls.vala:61
 #: ../src/UX/Controls/FontListControls.vala:100
 msgid "View font information"
-msgstr ""
+msgstr "查看字体信息"
 
 #: ../src/UX/Controls/FontListControls.vala:89
 msgid "Collapse all"
@@ -429,7 +455,7 @@ msgstr "全部折叠"
 
 #: ../src/UX/Controls/FontListControls.vala:98
 msgid "Hide font information"
-msgstr ""
+msgstr "隐藏字体信息"
 
 #: ../src/UX/Controls/PreviewControls.vala:58
 msgid "Edit preview text"
@@ -539,6 +565,77 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 
+#: ../src/UX/FontConfig/DisplayPropertiesPane.vala:40
+msgid "Target DPI"
+msgstr ""
+
+#: ../src/UX/FontConfig/DisplayPropertiesPane.vala:41
+msgid "Scale factor"
+msgstr ""
+
+#: ../src/UX/FontConfig/DisplayPropertiesPane.vala:45
+msgid "LCD Filter"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:46
+msgid "Antialias"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:47
+msgid "Hinting"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:48
+msgid "Enable Autohinter"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:61
+msgid "Hinting Style"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:62
+msgid "Use Embedded Bitmaps"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:64
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:72
+msgid " Size Limits "
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:70
+msgid " Apply settings to point sizes "
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:141
+msgid "Smaller than"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:142
+msgid "Larger than"
+msgstr ""
+
+#: ../src/UX/FontConfig/PropertiesEditor.vala:47
+msgid "General"
+msgstr ""
+
+#: ../src/UX/FontConfig/PropertiesEditor.vala:48
+#, fuzzy
+msgid "Display"
+msgstr "文本和显示(Text and Display)"
+
+#: ../src/UX/FontConfig/PropertiesEditor.vala:53
+#, fuzzy
+msgid "FontConfig Properties"
+msgstr "比例(Proportional)"
+
+#: ../src/UX/FontConfig/PropertiesEditor.vala:57
+msgid "Discard configuration"
+msgstr ""
+
+#: ../src/UX/FontConfig/SubpixelGeometry.vala:48
+msgid "Subpixel Geometry"
+msgstr ""
+
 #: ../src/UX/MainWindow.vala:64 ../src/UX/MainWindow.vala:240
 msgid "Browse"
 msgstr "浏览"
@@ -576,13 +673,13 @@ msgstr "管理字体源"
 
 #: ../src/UX/Trees/UserSourceList.vala:27
 msgid "Easily add or preview fonts without actually installing them."
-msgstr ""
+msgstr "快速添加或预览字体"
 
 #: ../src/UX/Trees/UserSourceList.vala:28
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
-msgstr ""
+msgstr "通过拖放到此区域或单击工具栏上的按钮来添加新的字体源。"
 
 # Not translate very good, just for use.
 #: ../src/UX/Viewer.vala:51
@@ -597,7 +694,7 @@ msgstr "全部字体"
 
 #: ../src/UX/Viewer.vala:158
 msgid "Newer version already installed"
-msgstr ""
+msgstr "新版本已安装"
 
 #: ../src/UX/Viewer.vala:163
 #, fuzzy
@@ -615,15 +712,15 @@ msgstr "正文"
 
 #: ../src/UX/Views/Metadata.vala:48
 msgid "OpenType Font"
-msgstr ""
+msgstr "OpenType 字体"
 
 #: ../src/UX/Views/Metadata.vala:49
 msgid "TrueType Font"
-msgstr ""
+msgstr "TrueType 字体"
 
 #: ../src/UX/Views/Metadata.vala:50
 msgid "PostScript Type 1 Font"
-msgstr ""
+msgstr "PostScript Type 1 字体"
 
 #: ../src/UX/Views/Metadata.vala:92
 #, fuzzy
@@ -637,15 +734,15 @@ msgstr "传统(Legacy)"
 
 #: ../src/UX/Views/Metadata.vala:176
 msgid "PostScript Name"
-msgstr ""
+msgstr "PostScript 名称"
 
 #: ../src/UX/Views/Metadata.vala:181
 msgid "Version"
-msgstr ""
+msgstr "版本"
 
-#: ../src/UX/Views/Metadata.vala:328
+#: ../src/UX/Views/Metadata.vala:341
 msgid "File does not contain license description."
-msgstr ""
+msgstr "文件未包含协议描述。"
 
 #: ../src/UX/Widgets/CellRendererPill.vala:30
 msgid "Variation "
@@ -666,10 +763,6 @@ msgstr "Graphics;Viewer;GNOME;GTK;Publishing;"
 
 #~ msgid "Cancel"
 #~ msgstr "取消"
-
-#, fuzzy
-#~ msgid "Properties"
-#~ msgstr "比例(Proportional)"
 
 #~ msgid "Copyright © 2009 - 2014 Jerry Casiano"
 #~ msgstr "版权 © 2009 - 2014 Jerry Casiano"

@@ -16,11 +16,14 @@
 ./src/Filters/SearchResult.c
 ./src/Filters/Unsorted.c
 ./src/FontConfig/Accept.c
+./src/FontConfig/DefaultProperties.c
 ./src/FontConfig/Directories.c
+./src/FontConfig/DisplayProperties.c
 ./src/FontConfig/Enums.c
 ./src/FontConfig/Families.c
 ./src/FontConfig/Family.c
 ./src/FontConfig/FontConfig.c
+./src/FontConfig/FontProperties.c
 ./src/FontConfig/FontSource.c
 ./src/FontConfig/Font.c
 ./src/FontConfig/Properties.c
@@ -49,6 +52,10 @@
 ./src/UX/Dialogs/FileSelector.c
 ./src/UX/Dialogs/Migration.c
 ./src/UX/Dialogs/NotImplemented.c
+./src/UX/FontConfig/DisplayPropertiesPane.c
+./src/UX/FontConfig/FontPropertiesPane.c
+./src/UX/FontConfig/PropertiesEditor.c
+./src/UX/FontConfig/SubpixelGeometry.c
 ./src/UX/MainWindow.c
 ./src/UX/Sidebar/MainSideBar.c
 ./src/UX/Sidebar/SideBar.c
@@ -69,7 +76,10 @@
 ./src/UX/Widgets/AdjustablePreview.c
 ./src/UX/Widgets/CellRendererPill.c
 ./src/UX/Widgets/FontScale.c
+./src/UX/Widgets/LabeledSpinButton.c
+./src/UX/Widgets/LabeledSwitch.c
 ./src/UX/Widgets/MultiDNDTreeView.c
+./src/UX/Widgets/OptionScale.c
 ./src/UX/Widgets/ReactiveLabel.c
 ./src/UX/Widgets/TextPreview.c
 ./src/UX/Widgets/TextViews.c
