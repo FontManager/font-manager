@@ -16,11 +16,14 @@ src/Filters/Filter.vala
 src/Filters/SearchResult.vala
 src/Filters/Unsorted.vala
 src/FontConfig/Accept.vala
+src/FontConfig/DefaultProperties.vala
 src/FontConfig/Directories.vala
+src/FontConfig/DisplayProperties.vala
 src/FontConfig/Enums.vala
 src/FontConfig/Families.vala
 src/FontConfig/Family.vala
 src/FontConfig/FontConfig.vala
+src/FontConfig/FontProperties.vala
 src/FontConfig/FontSource.vala
 src/FontConfig/Font.vala
 src/FontConfig/Properties.vala
@@ -49,6 +52,10 @@ src/UX/Controls/TitleBar.vala
 src/UX/Dialogs/FileSelector.vala
 src/UX/Dialogs/Migration.vala
 src/UX/Dialogs/NotImplemented.vala
+src/UX/FontConfig/DisplayPropertiesPane.vala
+src/UX/FontConfig/FontPropertiesPane.vala
+src/UX/FontConfig/PropertiesEditor.vala
+src/UX/FontConfig/SubpixelGeometry.vala
 src/UX/MainWindow.vala
 src/UX/Sidebar/MainSideBar.vala
 src/UX/Sidebar/SideBar.vala
@@ -69,7 +76,10 @@ src/UX/Widgets/ActivePreview.vala
 src/UX/Widgets/AdjustablePreview.vala
 src/UX/Widgets/CellRendererPill.vala
 src/UX/Widgets/FontScale.vala
+src/UX/Widgets/LabeledSpinButton.vala
+src/UX/Widgets/LabeledSwitch.vala
 src/UX/Widgets/MultiDNDTreeView.vala
+src/UX/Widgets/OptionScale.vala
 src/UX/Widgets/ReactiveLabel.vala
 src/UX/Widgets/TextPreview.vala
 src/UX/Widgets/TextViews.vala

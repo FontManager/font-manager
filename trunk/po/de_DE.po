@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-06 20:14-0500\n"
+"POT-Creation-Date: 2015-03-31 21:33-0400\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -79,6 +79,27 @@ msgstr ""
 msgid "Enter Collection Name"
 msgstr "Geben Sie einen Kollektionsnamen an"
 
+#: ../src/Common/Library.vala:169
+msgid "Processing directories"
+msgstr ""
+
+#: ../src/Common/Library.vala:197
+msgid "Processing files"
+msgstr ""
+
+#: ../src/Common/Library.vala:345
+#, fuzzy
+msgid "Installing files"
+msgstr "Alle Schriften"
+
+#: ../src/Common/Library.vala:362
+msgid "Preparing Archives"
+msgstr ""
+
+#: ../src/Common/Library.vala:405
+msgid "Removing files"
+msgstr ""
+
 #: ../src/Filters/Collection.vala:30
 msgid "New Collection"
 msgstr "Neue Kollektion"
@@ -104,144 +125,149 @@ msgstr "Unsortiert"
 msgid "Fonts not present in any collection"
 msgstr "Schriften ohne Kollektionszugehörigkeit"
 
-#: ../src/FontConfig/Enums.vala:35
-msgid "Slight"
-msgstr "Schlank (Slight)"
-
-#: ../src/FontConfig/Enums.vala:37 ../src/FontConfig/Enums.vala:201
-msgid "Medium"
-msgstr "Mittel (Medium)"
-
-#: ../src/FontConfig/Enums.vala:39
-msgid "Full"
-msgstr "Voll (Full)"
-
-#: ../src/FontConfig/Enums.vala:41 ../src/FontConfig/Enums.vala:62
-#: ../src/FontConfig/Enums.vala:89
-msgid "None"
-msgstr "Keine (None)"
-
-#: ../src/FontConfig/Enums.vala:56
-msgid "Default"
-msgstr "Normal"
-
-#: ../src/FontConfig/Enums.vala:58 ../src/FontConfig/Enums.vala:197
-msgid "Light"
-msgstr "Leicht (Light)"
-
-#: ../src/FontConfig/Enums.vala:60
-msgid "Legacy"
-msgstr "Veraltet (Legacy)"
-
-#: ../src/FontConfig/Enums.vala:79
-msgid "Unknown"
-msgstr "Unbekannt"
-
-#: ../src/FontConfig/Enums.vala:81
-msgid "RGB"
-msgstr "RGB (Rot-Grün-Blau Teilbildpunktwiedergabe)"
-
-#: ../src/FontConfig/Enums.vala:83
-msgid "BGR"
-msgstr "BGR (Blau-Grün-Rot Teilbildpunktwiedergabe)"
-
-#: ../src/FontConfig/Enums.vala:85
-msgid "VRGB"
-msgstr "VRGB (Vertikale Rot-Grün-Blau Teilbildpunktwiedergabe)"
-
-#: ../src/FontConfig/Enums.vala:87
-msgid "VBGR"
-msgstr "VBGR (Vertikale Blau-Grün-Rot Teilbildpunktwiedergabe)"
-
-#: ../src/FontConfig/Enums.vala:104
-msgid "Proportional"
-msgstr "Proportional"
-
-#: ../src/FontConfig/Enums.vala:106
-msgid "Dual Width"
-msgstr "Doppelte Größe"
-
-#: ../src/FontConfig/Enums.vala:108
-msgid "Monospace"
-msgstr "Dicktengleich"
-
-#: ../src/FontConfig/Enums.vala:110
-msgid "Charcell"
-msgstr "Feste Breite"
-
-#: ../src/FontConfig/Enums.vala:126
-msgid "Italic"
-msgstr "Kursiv (Italic)"
-
-#: ../src/FontConfig/Enums.vala:128
-msgid "Oblique"
-msgstr "Schräg (Oblique)"
-
-#: ../src/FontConfig/Enums.vala:150
-msgid "Ultra-Condensed"
-msgstr "Sehr stark gestaucht"
-
-#: ../src/FontConfig/Enums.vala:152
-msgid "Extra-Condensed"
-msgstr "Stark gestaucht"
-
-#: ../src/FontConfig/Enums.vala:154
-msgid "Condensed"
-msgstr "Gestaucht"
-
-#: ../src/FontConfig/Enums.vala:156
-msgid "Semi-Condensed"
-msgstr "Etwas gestaucht"
-
-#: ../src/FontConfig/Enums.vala:158
-msgid "Semi-Expanded"
-msgstr "Etwas gestreckt"
-
-#: ../src/FontConfig/Enums.vala:160
-msgid "Expanded"
-msgstr "Gestreckt"
-
-#: ../src/FontConfig/Enums.vala:162
-msgid "Extra-Expanded"
-msgstr "Stark gestreckt"
-
-#: ../src/FontConfig/Enums.vala:164
-msgid "Ultra-Expanded"
-msgstr "Sehr stark gestreckt"
-
-#: ../src/FontConfig/Enums.vala:193
+#: ../src/FontConfig/Enums.vala:47
 msgid "Thin"
 msgstr "Dünn"
 
-#: ../src/FontConfig/Enums.vala:195
+#: ../src/FontConfig/Enums.vala:49
 msgid "Ultra-Light"
 msgstr "Sehr dünn"
 
-#: ../src/FontConfig/Enums.vala:199
+#: ../src/FontConfig/Enums.vala:51 ../src/FontConfig/Enums.vala:209
+msgid "Light"
+msgstr "Leicht (Light)"
+
+#: ../src/FontConfig/Enums.vala:53
 msgid "Book"
 msgstr "Normal"
 
-#: ../src/FontConfig/Enums.vala:203
+#: ../src/FontConfig/Enums.vala:55 ../src/FontConfig/Enums.vala:188
+msgid "Medium"
+msgstr "Mittel (Medium)"
+
+#: ../src/FontConfig/Enums.vala:57
 msgid "Semi-Bold"
 msgstr "Etwas dicker"
 
-#: ../src/FontConfig/Enums.vala:205
+#: ../src/FontConfig/Enums.vala:59
 msgid "Bold"
 msgstr "Dick"
 
-#: ../src/FontConfig/Enums.vala:207
+#: ../src/FontConfig/Enums.vala:61
 msgid "Ultra-Bold"
 msgstr "Sehr Dick"
 
-#: ../src/FontConfig/Enums.vala:209
+#: ../src/FontConfig/Enums.vala:63
 msgid "Heavy"
 msgstr "Fett"
 
-#: ../src/FontConfig/Enums.vala:211
+#: ../src/FontConfig/Enums.vala:65
 msgid "Ultra-Heavy"
 msgstr "Sehr Fett"
 
-#: ../src/FontConfig/FontSource.vala:114
+#: ../src/FontConfig/Enums.vala:81
+msgid "Italic"
+msgstr "Kursiv (Italic)"
+
+#: ../src/FontConfig/Enums.vala:83
+msgid "Oblique"
+msgstr "Schräg (Oblique)"
+
+#: ../src/FontConfig/Enums.vala:105
+msgid "Ultra-Condensed"
+msgstr "Sehr stark gestaucht"
+
+#: ../src/FontConfig/Enums.vala:107
+msgid "Extra-Condensed"
+msgstr "Stark gestaucht"
+
+#: ../src/FontConfig/Enums.vala:109
+msgid "Condensed"
+msgstr "Gestaucht"
+
+#: ../src/FontConfig/Enums.vala:111
+msgid "Semi-Condensed"
+msgstr "Etwas gestaucht"
+
+#: ../src/FontConfig/Enums.vala:113
+msgid "Semi-Expanded"
+msgstr "Etwas gestreckt"
+
+#: ../src/FontConfig/Enums.vala:115
+msgid "Expanded"
+msgstr "Gestreckt"
+
+#: ../src/FontConfig/Enums.vala:117
+msgid "Extra-Expanded"
+msgstr "Stark gestreckt"
+
+#: ../src/FontConfig/Enums.vala:119
+msgid "Ultra-Expanded"
+msgstr "Sehr stark gestreckt"
+
+#: ../src/FontConfig/Enums.vala:136
+msgid "Proportional"
+msgstr "Proportional"
+
+#: ../src/FontConfig/Enums.vala:138
+msgid "Dual Width"
+msgstr "Doppelte Größe"
+
+#: ../src/FontConfig/Enums.vala:140
+msgid "Monospace"
+msgstr "Dicktengleich"
+
+#: ../src/FontConfig/Enums.vala:142
+msgid "Charcell"
+msgstr "Feste Breite"
+
+#: ../src/FontConfig/Enums.vala:161
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: ../src/FontConfig/Enums.vala:163
+msgid "RGB"
+msgstr "RGB (Rot-Grün-Blau Teilbildpunktwiedergabe)"
+
+#: ../src/FontConfig/Enums.vala:165
+msgid "BGR"
+msgstr "BGR (Blau-Grün-Rot Teilbildpunktwiedergabe)"
+
+#: ../src/FontConfig/Enums.vala:167
+msgid "VRGB"
+msgstr "VRGB (Vertikale Rot-Grün-Blau Teilbildpunktwiedergabe)"
+
+#: ../src/FontConfig/Enums.vala:169
+msgid "VBGR"
+msgstr "VBGR (Vertikale Blau-Grün-Rot Teilbildpunktwiedergabe)"
+
+#: ../src/FontConfig/Enums.vala:171 ../src/FontConfig/Enums.vala:192
+#: ../src/FontConfig/Enums.vala:213
+msgid "None"
+msgstr "Keine (None)"
+
+#: ../src/FontConfig/Enums.vala:186
+msgid "Slight"
+msgstr "Schlank (Slight)"
+
+#: ../src/FontConfig/Enums.vala:190
+msgid "Full"
+msgstr "Voll (Full)"
+
+#: ../src/FontConfig/Enums.vala:207
+msgid "Default"
+msgstr "Normal"
+
+#: ../src/FontConfig/Enums.vala:211
+msgid "Legacy"
+msgstr "Veraltet (Legacy)"
+
+#: ../src/FontConfig/Families.vala:38
+#, fuzzy
+msgid "Loading available font families"
+msgstr "Für alle Benutzer verfügbare Schriften"
+
+#: ../src/FontConfig/FontSource.vala:124
 #, c-format
 msgid "%s --> Resource Unavailable"
 msgstr "%s --> Quelle nicht verfügbar"
@@ -550,6 +576,76 @@ msgstr ""
 "Es wird dringend empfohlen, alle wichtigen Dateien zu sichern bevor Sie "
 "fortfahren.\n"
 
+#: ../src/UX/FontConfig/DisplayPropertiesPane.vala:40
+msgid "Target DPI"
+msgstr ""
+
+#: ../src/UX/FontConfig/DisplayPropertiesPane.vala:41
+msgid "Scale factor"
+msgstr ""
+
+#: ../src/UX/FontConfig/DisplayPropertiesPane.vala:45
+msgid "LCD Filter"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:46
+msgid "Antialias"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:47
+msgid "Hinting"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:48
+msgid "Enable Autohinter"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:61
+msgid "Hinting Style"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:62
+msgid "Use Embedded Bitmaps"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:64
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:72
+msgid " Size Limits "
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:70
+msgid " Apply settings to point sizes "
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:141
+msgid "Smaller than"
+msgstr ""
+
+#: ../src/UX/FontConfig/FontPropertiesPane.vala:142
+msgid "Larger than"
+msgstr ""
+
+#: ../src/UX/FontConfig/PropertiesEditor.vala:47
+msgid "General"
+msgstr ""
+
+#: ../src/UX/FontConfig/PropertiesEditor.vala:48
+#, fuzzy
+msgid "Display"
+msgstr "Text und Bildschirm"
+
+#: ../src/UX/FontConfig/PropertiesEditor.vala:53
+msgid "FontConfig Properties"
+msgstr ""
+
+#: ../src/UX/FontConfig/PropertiesEditor.vala:57
+msgid "Discard configuration"
+msgstr ""
+
+#: ../src/UX/FontConfig/SubpixelGeometry.vala:48
+msgid "Subpixel Geometry"
+msgstr ""
+
 #: ../src/UX/MainWindow.vala:64 ../src/UX/MainWindow.vala:240
 msgid "Browse"
 msgstr "Stöbern"
@@ -651,7 +747,7 @@ msgstr "PostScript Type 1 Schrift"
 msgid "Version"
 msgstr ""
 
-#: ../src/UX/Views/Metadata.vala:328
+#: ../src/UX/Views/Metadata.vala:341
 msgid "File does not contain license description."
 msgstr ""
 

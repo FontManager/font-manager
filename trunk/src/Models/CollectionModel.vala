@@ -64,6 +64,7 @@ namespace FontManager {
                     /* In case this wasn't a root node before, make it a root node */
                     if (!(groups.entries.has_key(((Collection) child).name)))
                         groups.entries[((Collection) child).name] = ((Collection) child);
+                    child.unset();
                     return false;
                 }
                 /* Have a child node, need to add it to its parent */

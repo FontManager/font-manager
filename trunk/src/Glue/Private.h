@@ -85,19 +85,19 @@ typedef struct _FontConfigFont FontConfigFont;
 typedef struct _FontConfigFontClass FontConfigFontClass;
 typedef struct _FontConfigFontPrivate FontConfigFontPrivate;
 
-#define FONT_CONFIG_TYPE_HINT (font_config_hint_get_type ())
-
-#define FONT_CONFIG_TYPE_LCD (font_config_lcd_get_type ())
-
-#define FONT_CONFIG_TYPE_RGBA (font_config_rgba_get_type ())
-
-#define FONT_CONFIG_TYPE_SPACING (font_config_spacing_get_type ())
+#define FONT_CONFIG_TYPE_WEIGHT (font_config_weight_get_type ())
 
 #define FONT_CONFIG_TYPE_SLANT (font_config_slant_get_type ())
 
 #define FONT_CONFIG_TYPE_WIDTH (font_config_width_get_type ())
 
-#define FONT_CONFIG_TYPE_WEIGHT (font_config_weight_get_type ())
+#define FONT_CONFIG_TYPE_SPACING (font_config_spacing_get_type ())
+
+#define FONT_CONFIG_TYPE_SUBPIXEL_ORDER (font_config_subpixel_order_get_type ())
+
+#define FONT_CONFIG_TYPE_HINT_STYLE (font_config_hint_style_get_type ())
+
+#define FONT_CONFIG_TYPE_LCD_FILTER (font_config_lcd_filter_get_type ())
 
 struct _Cacheable {
 	GObject parent_instance;
@@ -155,34 +155,23 @@ struct _FontConfigFontClass {
 };
 
 typedef enum  {
-	FONT_CONFIG_HINT_NONE,
-	FONT_CONFIG_HINT_SLIGHT,
-	FONT_CONFIG_HINT_MEDIUM,
-	FONT_CONFIG_HINT_FULL
-} FontConfigHint;
-
-typedef enum  {
-	FONT_CONFIG_LCD_NONE,
-	FONT_CONFIG_LCD_DEFAULT,
-	FONT_CONFIG_LCD_LIGHT,
-	FONT_CONFIG_LCD_LEGACY
-} FontConfigLCD;
-
-typedef enum  {
-	FONT_CONFIG_RGBA_UNKNOWN,
-	FONT_CONFIG_RGBA_RGB,
-	FONT_CONFIG_RGBA_BGR,
-	FONT_CONFIG_RGBA_VRGB,
-	FONT_CONFIG_RGBA_VBGR,
-	FONT_CONFIG_RGBA_NONE
-} FontConfigRGBA;
-
-typedef enum  {
-	FONT_CONFIG_SPACING_PROPORTIONAL = 0,
-	FONT_CONFIG_SPACING_DUAL = 90,
-	FONT_CONFIG_SPACING_MONO = 100,
-	FONT_CONFIG_SPACING_CHARCELL = 110
-} FontConfigSpacing;
+	FONT_CONFIG_WEIGHT_THIN = 0,
+	FONT_CONFIG_WEIGHT_EXTRALIGHT = 40,
+	FONT_CONFIG_WEIGHT_ULTRALIGHT = FONT_CONFIG_WEIGHT_EXTRALIGHT,
+	FONT_CONFIG_WEIGHT_LIGHT = 50,
+	FONT_CONFIG_WEIGHT_BOOK = 75,
+	FONT_CONFIG_WEIGHT_REGULAR = 80,
+	FONT_CONFIG_WEIGHT_NORMAL = FONT_CONFIG_WEIGHT_REGULAR,
+	FONT_CONFIG_WEIGHT_MEDIUM = 100,
+	FONT_CONFIG_WEIGHT_DEMIBOLD = 180,
+	FONT_CONFIG_WEIGHT_SEMIBOLD = FONT_CONFIG_WEIGHT_DEMIBOLD,
+	FONT_CONFIG_WEIGHT_BOLD = 200,
+	FONT_CONFIG_WEIGHT_EXTRABOLD = 205,
+	FONT_CONFIG_WEIGHT_BLACK = 210,
+	FONT_CONFIG_WEIGHT_HEAVY = FONT_CONFIG_WEIGHT_BLACK,
+	FONT_CONFIG_WEIGHT_EXTRABLACK = 215,
+	FONT_CONFIG_WEIGHT_ULTRABLACK = FONT_CONFIG_WEIGHT_EXTRABLACK
+} FontConfigWeight;
 
 typedef enum  {
 	FONT_CONFIG_SLANT_ROMAN = 0,
@@ -203,23 +192,34 @@ typedef enum  {
 } FontConfigWidth;
 
 typedef enum  {
-	FONT_CONFIG_WEIGHT_THIN = 0,
-	FONT_CONFIG_WEIGHT_EXTRALIGHT = 40,
-	FONT_CONFIG_WEIGHT_ULTRALIGHT = FONT_CONFIG_WEIGHT_EXTRALIGHT,
-	FONT_CONFIG_WEIGHT_LIGHT = 50,
-	FONT_CONFIG_WEIGHT_BOOK = 75,
-	FONT_CONFIG_WEIGHT_REGULAR = 80,
-	FONT_CONFIG_WEIGHT_NORMAL = FONT_CONFIG_WEIGHT_REGULAR,
-	FONT_CONFIG_WEIGHT_MEDIUM = 100,
-	FONT_CONFIG_WEIGHT_DEMIBOLD = 180,
-	FONT_CONFIG_WEIGHT_SEMIBOLD = FONT_CONFIG_WEIGHT_DEMIBOLD,
-	FONT_CONFIG_WEIGHT_BOLD = 200,
-	FONT_CONFIG_WEIGHT_EXTRABOLD = 205,
-	FONT_CONFIG_WEIGHT_BLACK = 210,
-	FONT_CONFIG_WEIGHT_HEAVY = FONT_CONFIG_WEIGHT_BLACK,
-	FONT_CONFIG_WEIGHT_EXTRABLACK = 215,
-	FONT_CONFIG_WEIGHT_ULTRABLACK = FONT_CONFIG_WEIGHT_EXTRABLACK
-} FontConfigWeight;
+	FONT_CONFIG_SPACING_PROPORTIONAL = 0,
+	FONT_CONFIG_SPACING_DUAL = 90,
+	FONT_CONFIG_SPACING_MONO = 100,
+	FONT_CONFIG_SPACING_CHARCELL = 110
+} FontConfigSpacing;
+
+typedef enum  {
+	FONT_CONFIG_SUBPIXEL_ORDER_UNKNOWN,
+	FONT_CONFIG_SUBPIXEL_ORDER_RGB,
+	FONT_CONFIG_SUBPIXEL_ORDER_BGR,
+	FONT_CONFIG_SUBPIXEL_ORDER_VRGB,
+	FONT_CONFIG_SUBPIXEL_ORDER_VBGR,
+	FONT_CONFIG_SUBPIXEL_ORDER_NONE
+} FontConfigSubpixelOrder;
+
+typedef enum  {
+	FONT_CONFIG_HINT_STYLE_NONE,
+	FONT_CONFIG_HINT_STYLE_SLIGHT,
+	FONT_CONFIG_HINT_STYLE_MEDIUM,
+	FONT_CONFIG_HINT_STYLE_FULL
+} FontConfigHintStyle;
+
+typedef enum  {
+	FONT_CONFIG_LCD_FILTER_NONE,
+	FONT_CONFIG_LCD_FILTER_DEFAULT,
+	FONT_CONFIG_LCD_FILTER_LIGHT,
+	FONT_CONFIG_LCD_FILTER_LEGACY
+} FontConfigLCDFilter;
 
 
 GType cacheable_get_type (void) G_GNUC_CONST;
@@ -308,20 +308,20 @@ gint font_config_font_get_owner (FontConfigFont* self);
 void font_config_font_set_owner (FontConfigFont* self, gint value);
 const gchar* font_config_font_get_description (FontConfigFont* self);
 void font_config_font_set_description (FontConfigFont* self, const gchar* value);
-GType font_config_hint_get_type (void) G_GNUC_CONST;
-gchar* font_config_hint_to_string (FontConfigHint self);
-GType font_config_lcd_get_type (void) G_GNUC_CONST;
-gchar* font_config_lcd_to_string (FontConfigLCD self);
-GType font_config_rgba_get_type (void) G_GNUC_CONST;
-gchar* font_config_rgba_to_string (FontConfigRGBA self);
-GType font_config_spacing_get_type (void) G_GNUC_CONST;
-gchar* font_config_spacing_to_string (FontConfigSpacing self);
+GType font_config_weight_get_type (void) G_GNUC_CONST;
+gchar* font_config_weight_to_string (FontConfigWeight self);
 GType font_config_slant_get_type (void) G_GNUC_CONST;
 gchar* font_config_slant_to_string (FontConfigSlant self);
 GType font_config_width_get_type (void) G_GNUC_CONST;
 gchar* font_config_width_to_string (FontConfigWidth self);
-GType font_config_weight_get_type (void) G_GNUC_CONST;
-gchar* font_config_weight_to_string (FontConfigWeight self);
+GType font_config_spacing_get_type (void) G_GNUC_CONST;
+gchar* font_config_spacing_to_string (FontConfigSpacing self);
+GType font_config_subpixel_order_get_type (void) G_GNUC_CONST;
+gchar* font_config_subpixel_order_to_string (FontConfigSubpixelOrder self);
+GType font_config_hint_style_get_type (void) G_GNUC_CONST;
+gchar* font_config_hint_style_to_string (FontConfigHintStyle self);
+GType font_config_lcd_filter_get_type (void) G_GNUC_CONST;
+gchar* font_config_lcd_filter_to_string (FontConfigLCDFilter self);
 gint free_type_num_faces (const gchar* filepath);
 gint free_type_query_file_info (FontManagerFontInfo* fileinfo, const gchar* filepath, gint index);
 gchar* font_config_get_version_string (void);

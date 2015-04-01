@@ -1,4 +1,4 @@
-/* CharacterMapPane.vala
+/* DisplayProperties.vala
  *
  * Copyright (C) 2009 - 2015 Jerry Casiano
  *
@@ -21,26 +21,25 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
-namespace FontManager {
+namespace FontConfig {
 
-    public class CharacterMapPane : Gtk.Box {
+    public class DisplayProperties : Properties {
 
-        public CharacterTable table { get; private set; }
-        public CharacterDetails details { get; private set; }
+        public int rgba { get; set; default = 1; }
+        public int lcdfilter { get; set; default = 1; }
+        public double scale { get; set; default = 1.00; }
+        public double dpi { get; set; default = 96; }
 
-        public CharacterMapPane () {
-            orientation = Gtk.Orientation.VERTICAL;
-            table = new CharacterTable();
-            details = new CharacterDetails();
-            pack_start(details, false, true, 0);
-            pack_start(table, true, true, 0);
-            table.bind_property("active-character", details, "active-character", BindingFlags.SYNC_CREATE);
+        public DisplayProperties () {
+            target_file = Path.build_filename(get_config_dir(), "19-DisplayProperties.conf");
+            load();
         }
 
-        public override void show () {
-            table.show();
-            details.show();
-            base.show();
+        public override void reset_properties () {
+            rgba = 1;
+            lcdfilter = 1;
+            scale = 1.00;
+            dpi = 96;
             return;
         }
 

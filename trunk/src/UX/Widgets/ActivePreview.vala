@@ -110,7 +110,7 @@ namespace FontManager {
             controls.justification_set.connect((j) => { preview.view.set_justification(j); });
             controls.editing.connect((e) => { on_edit_toggled(e); } );
             controls.on_clear_clicked.connect(() => { on_clear(); });
-            preview.view.event.connect((w, e) => { return on_textview_event(w, e); });
+            preview.view.event.connect(on_textview_event);
             return;
         }
 

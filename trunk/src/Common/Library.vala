@@ -166,7 +166,7 @@ namespace FontManager {
                                 archives.add(dir.get_child(name));
                         processed++;
                         if (progress != null)
-                            progress(null, processed, total);
+                            progress(_("Processing directories"), processed, total);
                     }
                 } catch (Error e) {
                     warning("%s :: %s", e.message, dir.get_path());
@@ -194,7 +194,7 @@ namespace FontManager {
                     }
                     processed++;
                     if (progress != null)
-                        progress(null, processed, total);
+                        progress(_("Processing files"), processed, total);
                 }
                 return;
             }
@@ -257,6 +257,7 @@ namespace FontManager {
             private static void fini () {
                 if (tmpdir == null)
                     return;
+                debug("Removing temporary directory used during installation");
                 remove_directory(tmpdir);
                 tmpdir = null;
                 return;
@@ -277,6 +278,7 @@ namespace FontManager {
             }
 
             public static bool install_font (FontData data) {
+                debug("Preparing to install %s", data.file.get_path());
                 if (data.font == null || data.fontinfo == null) {
                     if (install_failed == null)
                         install_failed = new Gee.HashMap <string, string> ();
@@ -329,6 +331,7 @@ namespace FontManager {
             }
 
             private static void process_files (Gee.ArrayList <File> filelist) {
+                debug("Processing files for installation");
                 var sorter = new Sorter();
                 sorter.sort(filelist);
                 int processed = 0;
@@ -339,21 +342,24 @@ namespace FontManager {
                         install_font(data);
                     processed++;
                     if (progress != null)
-                        progress(null, processed, total);
+                        progress(_("Installing files"), processed, total);
                 }
                 if (sorter.archives.size == 0)
                     return;
                 tmpdir = get_temp_dir();
                 var uri = tmpdir.get_uri();
+                debug("Preparing Archives");
                 foreach (var a in sorter.archives) {
                     if (!archive_manager.extract(a.get_uri(), uri, false)) {
                         if (install_failed == null)
                             install_failed = new Gee.HashMap <string, string> ();
                         install_failed[a.get_path()] = "Failed to extract archive";
+                    } else {
+                        debug("Successfully extracted the contents of %s", a.get_basename());
                     }
                     processed++;
                     if (progress != null)
-                        progress(null, processed, total);
+                        progress(_("Preparing Archives"), processed, total);
                 }
                 var l = new Gee.ArrayList <File> ();
                 l.add(tmpdir);
@@ -396,7 +402,7 @@ namespace FontManager {
                         remove_directory_tree_if_empty(parent);
                         processed++;
                         if (progress != null)
-                            progress(null, processed, total);
+                            progress(_("Removing files"), processed, total);
                     } catch (Error e) {
                         if (remove_failed == null)
                             remove_failed = new Gee.HashMap <string, string> ();

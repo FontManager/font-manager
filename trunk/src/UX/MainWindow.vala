@@ -325,7 +325,7 @@ namespace FontManager {
             titlebar.reveal_controls((mode == Mode.MANAGE));
             fonttree.show_controls = (mode != Mode.BROWSE);
             fontlist.controls.set_remove_sensitivity((mode == Mode.MANAGE && sidebar.standard.mode == MainSideBarMode.COLLECTION));
-            fontlist.controls.set_properties_sensitivity((mode == Mode.MANAGE));
+            fontlist.controls.set_metadata_sensitivity((mode == Mode.MANAGE));
             fontlist.queue_draw();
             if (mode == Mode.BROWSE)
                 browser.treeview.queue_draw();
@@ -379,27 +379,6 @@ namespace FontManager {
             return;
         }
 
-        private void update_font_properties () {
-            FontConfig.Font selected_font;
-            if (fontlist.selected_font != null)
-                selected_font = fontlist.selected_font;
-            else
-                selected_font = fontlist.selected_family.get_default_variant();
-            try {
-                var fontinfo = get_fontinfo_from_db_entry(Main.instance.database, selected_font.filepath);
-                FontData fontdata = {
-                    File.new_for_path(selected_font.filepath),
-                    selected_font,
-                    fontinfo
-                };
-                metadata.update(fontdata);
-            } catch (DatabaseError e) {
-                warning(e.message);
-                metadata.update(null);
-            }
-            return;
-        }
-
         private void connect_signals () {
             mode_changed.connect((m) => {
                 var action_map = (Application) GLib.Application.get_default();
@@ -443,7 +422,7 @@ namespace FontManager {
             fontlist.font_selected.connect((string_desc) => {
                 set_font_desc(Pango.FontDescription.from_string(string_desc));
                 if (view_stack.get_visible_child_name() == "Metadata")
-                    update_font_properties();
+                    metadata.update(fontlist.fontdata);
             });
 
             fontlist.controls.remove_selected.connect(() => {
@@ -517,7 +496,7 @@ namespace FontManager {
 
             view_stack.notify["visible-child-name"].connect(() => {
                 if (view_stack.get_visible_child_name() == "Metadata")
-                    update_font_properties();
+                    metadata.update(fontlist.fontdata);
             });
 
             main_stack.notify["visible-child-name"].connect(() => {
@@ -534,7 +513,7 @@ namespace FontManager {
                     content_stack.set_transition_type(Gtk.StackTransitionType.UNDER_RIGHT);
             });
 
-            fontlist.controls.show_properties.connect((s) => {
+            fontlist.controls.show_metadata.connect((s) => {
                 if (s)
                     view_stack.set_visible_child_name("Metadata");
                 else

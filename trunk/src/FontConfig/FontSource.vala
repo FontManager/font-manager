@@ -25,11 +25,20 @@ namespace FontConfig {
 
     public class FontSource : Object {
 
-        public signal void update_complete ();
+        public signal void changed ();
 
         public new string name {
             get {
                 return _name != null ? _name : _path;
+            }
+        }
+
+        public string icon_name {
+            get {
+                if (filetype == FileType.DIRECTORY || filetype == FileType.MOUNTABLE)
+                    return "folder-symbolic";
+                else
+                    return "font-x-generic";
             }
         }
 
@@ -52,6 +61,7 @@ namespace FontConfig {
             }
             set {
                 var main = FontManager.Main.instance;
+                main.fontconfig.init();
                 if (value)
                     main.fontconfig.dirs.add(path);
                 else
@@ -114,7 +124,7 @@ namespace FontConfig {
                 _name = _("%s --> Resource Unavailable").printf(_path);
                 available = false;
             }
-            update_complete();
+            changed();
             return;
         }
 

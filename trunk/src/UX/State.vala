@@ -62,7 +62,7 @@ namespace FontManager {
             if (background_set)
                 main_window.compare.background_color = background;
             main_window.fontlist.controls.set_remove_sensitivity(main_window.sidebar.standard.mode == MainSideBarMode.COLLECTION);
-            main_window.fontlist.controls.set_properties_sensitivity(main_window.mode == Mode.MANAGE);
+            main_window.fontlist.controls.set_metadata_sensitivity(main_window.mode == Mode.MANAGE);
             return;
         }
 

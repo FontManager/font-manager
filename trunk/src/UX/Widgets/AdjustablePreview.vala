@@ -31,20 +31,17 @@ namespace FontManager {
             }
             set {
                 _preview_size = value.clamp(MIN_FONT_SIZE, MAX_FONT_SIZE);
-                fontscale.adjustment.value = _preview_size;
                 set_preview_size_internal(_preview_size);
             }
         }
 
-        public Gtk.Adjustment adjustment {
+        public weak Gtk.Adjustment adjustment {
             get {
                 return fontscale.adjustment;
             }
             set {
                 fontscale.adjustment = value;
-                fontscale.adjustment.value_changed.connect((adj) => {
-                    preview_size = adj.get_value();
-                });
+                fontscale.adjustment.bind_property("value", this, "preview-size", BindingFlags.BIDIRECTIONAL);
             }
         }
 
@@ -55,9 +52,7 @@ namespace FontManager {
 
         protected virtual void init () {
             fontscale = new FontScale();
-            fontscale.adjustment.value_changed.connect((adj) => {
-                preview_size = adj.get_value();
-            });
+            adjustment = fontscale.adjustment;
             return;
         }
 

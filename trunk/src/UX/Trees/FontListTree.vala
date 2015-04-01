@@ -58,10 +58,10 @@ namespace FontManager {
         }
 
         public string selected_iter { get; protected set; default = "0"; }
+        public FontData? fontdata { get; protected set; default = null; }
         public weak FontConfig.Family? selected_family { get; private set; default = null; }
         public weak FontConfig.Font? selected_font { get; private set; default = null; }
         public FontListControls controls { get; protected set; }
-//        public bool activatable { get; set; }
 
         private weak FontConfig.Reject _reject;
         private weak Gtk.TreeStore? _model = null;
@@ -151,6 +151,27 @@ namespace FontManager {
                 selected_family = null;
                 selected_font = (FontConfig.Font) obj;
             }
+            try {
+                if (selected_font != null) {
+                    var fontinfo = get_fontinfo_from_db_entry(Main.instance.database, selected_font.filepath);
+                    fontdata = {
+                        File.new_for_path(selected_font.filepath),
+                        selected_font,
+                        fontinfo
+                    };
+                } else {
+                    var target = selected_family.get_default_variant();
+                    var fontinfo = get_fontinfo_from_db_entry(Main.instance.database, target.filepath);
+                    fontdata = {
+                        File.new_for_path(target.filepath),
+                        target,
+                        fontinfo
+                    };
+                }
+            } catch (DatabaseError e) {
+                warning(e.message);
+                fontdata = null;
+            }
             font_selected(description);
             selected_iter = model.get_string_from_iter(iter);
             val.unset();
@@ -207,12 +228,6 @@ namespace FontManager {
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
-//            if (!activatable) {
-//                cell.set_property("visible", false);
-//                this.queue_resize();
-//                return;
-//            } else
-//                cell.set_property("visible", true);
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();

@@ -207,13 +207,13 @@ namespace FontManager {
                     widget.sensitive = false;
                     attach(widget, 0, i, 1, 1);
                     widget.halign = Gtk.Align.END;
-                    widget.margin_left = 12;
-                    widget.margin_right = 12;
+                    widget.margin_start = 12;
+                    widget.margin_end = 12;
                     widget.vexpand = true;
                     attach(values[i], 1, i, 1, 1);
                     values[i].halign = Gtk.Align.START;
-                    values[i].margin_left = 12;
-                    values[i].margin_right = 12;
+                    values[i].margin_start = 12;
+                    values[i].margin_end = 12;
                     if (i == 0) {
                         widget.margin_top = 12;
                         values[i].margin_top = 12;
@@ -245,7 +245,21 @@ namespace FontManager {
                 return;
             }
 
-            public void update (FontData fontdata) {
+            private void reset () {
+                weight.set_text("");
+                slant.set_text("");
+                width.set_text("");
+                spacing.set_text("");
+                version.set_text("");
+                vendor.set_text("");
+                return;
+            }
+
+            public void update (FontData? fontdata) {
+                description.update(fontdata);
+                this.reset();
+                if (fontdata == null)
+                    return;
                 var fontinfo = fontdata.fontinfo;
                 var fcfont = fontdata.font;
                 psname.set_text(fontinfo.psname);
@@ -274,7 +288,6 @@ namespace FontManager {
                     vendor.show();
                     get_child_at(0, 6).show();
                 }
-                description.update(fontdata);
                 return;
             }
 

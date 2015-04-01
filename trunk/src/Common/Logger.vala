@@ -101,6 +101,7 @@ public enum LogLevel {
     public string to_string () {
         switch (this) {
             case DEBUG:
+            case VERBOSE:
                 return "DEBUG";
             case WARN:
                 return "WARNING";
@@ -114,7 +115,7 @@ public enum LogLevel {
     }
 }
 
-enum ConsoleColor
+public enum ConsoleColor
 {
     BLACK,
     RED,
@@ -129,15 +130,15 @@ enum ConsoleColor
 /**
  * A logging class to display all console messages in a nice colored format.
  */
-public class Logger : GLib.Object
+public class Logger : Object
 {
-    class LogMessage : GLib.Object {
+    class LogMessage : Object {
 
         public LogLevel level { get; construct; }
         public string message { get; construct; }
 
         public LogMessage (LogLevel level, string message) {
-            GLib.Object (level : level, message : message);
+            Object (level : level, message : message);
         }
     }
 
@@ -268,15 +269,15 @@ public class Logger : GLib.Object
         }
     }
 
-    static void reset_color () {
+    public static void reset_color () {
         stdout.printf ("\x001b[0m");
     }
 
-    static void set_foreground (ConsoleColor color) {
+    public static void set_foreground (ConsoleColor color) {
         set_color (color, true);
     }
 
-    static void set_background (ConsoleColor color) {
+    public static void set_background (ConsoleColor color) {
         set_color (color, false);
     }
 

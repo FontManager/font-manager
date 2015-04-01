@@ -35,7 +35,7 @@ namespace FontConfig {
             foreach (var family in families) {
                 this[family] = new Family(family);
                 processed++;
-                progress(null, processed, total);
+                progress(_("Loading available font families"), processed, total);
             }
         }
 

@@ -74,7 +74,10 @@ def generate_vendor_header () :
                 h_file.write("\n    /* {} */\n".format(module.CREDIT))
             else:
                 h_file.write("\n")
-            vendor_list = list(module.list_vendors())
+            try:
+                vendor_list = list(module.list_vendors())
+            except:
+                vendor_list = []
             if len(vendor_list) == 0:
                 print("{} failed to list vendor information - checking for cache".format(name))
                 with open(os.path.join(vendor_dir, "{}.cache".format(name))) as cache:

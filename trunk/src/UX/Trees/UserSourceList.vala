@@ -29,56 +29,16 @@ namespace FontManager {
     private const string welcome_tmpl = "<span size=\"xx-large\" weight=\"bold\">%s</span>\n<span size=\"large\">\n\n%s\n</span>\n\n\n<span size=\"x-large\">%s</span>";
 
 
-    public class FontSourceRow : Gtk.Grid {
+    public class FontSourceRow : LabeledSwitch {
 
         public weak FontConfig.FontSource source { get; set; }
 
-        private Gtk.Label _label;
-        private Gtk.Switch _switch;
-        private Gtk.Image _icon;
-
         public FontSourceRow (FontConfig.FontSource source) {
             Object(source: source);
-            _label = new Gtk.Label(null);
-            _label.hexpand = true;
-            _label.halign = Gtk.Align.START;
-            _label.margin = 12;
-            _switch = new Gtk.Switch();
-            _switch.margin = 12;
-            _switch.expand = false;
-            _icon = new Gtk.Image.from_icon_name("folder-symbolic", Gtk.IconSize.MENU);
-            _icon.margin = 12;
-            _icon.expand = false;
-            attach(_icon, 0, 0, 1, 1);
-            attach(_label, 1, 0, 1, 1);
-            attach(_switch, 2, 0, 1, 1);
-            source.notify["available"].connect(() => {
-                _switch.set_sensitive(source.available);
-            });
-            _switch.notify["active"].connect(() => {
-                source.active = _switch.get_active();
-            });
-            source.update_complete.connect(() => { update(); });
-            update();
-        }
-
-        public override void show () {
-            _icon.show();
-            _label.show();
-            _switch.show();
-            base.show();
-            return;
-        }
-
-        private void update () {
-            _label.set_markup("<b>%s</b>".printf(source.name));
-            _switch.set_active(source.active);
-            _switch.set_sensitive(source.available);
-            if (source.filetype == FileType.DIRECTORY || source.filetype == FileType.MOUNTABLE)
-                _icon.set_from_icon_name("folder-symbolic", Gtk.IconSize.MENU);
-            else
-                _icon.set_from_icon_name("font-x-generic", Gtk.IconSize.MENU);
-            return;
+            source.bind_property("active", toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            source.bind_property("available", toggle, "sensitive", BindingFlags.SYNC_CREATE);
+            source.bind_property("icon-name", image, "icon-name", BindingFlags.SYNC_CREATE);
+            source.bind_property("name", label, "label", BindingFlags.SYNC_CREATE);
         }
 
     }

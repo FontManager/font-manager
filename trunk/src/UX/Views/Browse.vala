@@ -139,7 +139,7 @@ namespace FontManager {
                 active = !(((FontConfig.Font) obj).family in reject);
             }
             cell.set_property("text", font_desc);
-            var default_desc = treeview.get_style_context().get_font(Gtk.StateFlags.NORMAL);
+            var default_desc = get_font(treeview);
             default_desc.set_size((int) ((get_desc_size()) * Pango.SCALE));
             cell.set_property("font-desc" , default_desc);
             cell.set_property("sensitive" , active);
