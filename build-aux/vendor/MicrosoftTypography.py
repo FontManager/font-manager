@@ -37,14 +37,17 @@ URL = "http://www.microsoft.com/typography/links/vendorlist.aspx"
 
 
 def list_vendors () :
-    data, head = urllib.request.urlretrieve(URL)
-    raw_html = open(data).read()
+    req = urllib.request.Request(URL)
+    req.remove_header("User-agent")
+    req.add_header("User-agent", "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:36.0) Gecko/20100101 Firefox/36.0")
+    with urllib.request.urlopen(req) as raw_data:
+        raw_html = raw_data.read()
     vendor_list = SoupStrainer(id = "VendorList")
     # Certain versions of the default parser (lxml) choke here...
-    vendor_table = BeautifulSoup(raw_html, "html.parser", parse_only = vendor_list, from_encoding = "ISO-8859-1")
-    for anchor in vendor_table.findAll("a"):
+    vendor_table = BeautifulSoup(raw_html, "html.parser", parse_only = vendor_list, from_encoding = "utf-8")
+    for anchor in vendor_table("a"):
         anchor.replaceWith("")
-    for row in vendor_table.findAll("tr"):
+    for row in vendor_table("tr"):
         entry = row.find("td")
         vendor_id = entry.get_text(strip = True).encode("utf-8")
         vendor = entry.find_next("td").get_text(strip = True).encode("utf-8")

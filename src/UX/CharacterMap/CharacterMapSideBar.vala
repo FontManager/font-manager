@@ -96,8 +96,8 @@ namespace FontManager {
             stack.add_titled(block_scroll, "Blocks", _("Unicode Block"));
             switcher = new Gtk.StackSwitcher();
             switcher.set_stack(stack);
+            stack.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             switcher.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            switcher.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             switcher.set_border_width(6);
             switcher.halign = Gtk.Align.CENTER;
             switcher.valign = Gtk.Align.CENTER;
