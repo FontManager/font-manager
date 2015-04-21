@@ -12,8 +12,9 @@ AM_VALAFLAGS = \
 --pkg libxml-2.0 \
 --pkg pango \
 --pkg sqlite3 \
-$(GTK_314) \
-$(GTK_316) \
+$(GTK_314_OR_LATER) \
+$(GTK_316_OR_LATER) \
+$(VALA_0271_OR_LATER) \
 --gresources $(resource_dir)/FontManagerGResource.xml
 
 font_manager_CPPFLAGS = \

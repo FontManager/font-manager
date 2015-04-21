@@ -55,13 +55,21 @@ namespace FontManager {
                 else
                     point = "%spt.  ".printf(line);
                 buffer.get_iter_at_line(out iter, i);
+        #if VALA_0271_OR_LATER
+                buffer.insert_with_tags_by_name(ref iter, point, -1, "SizePoint", null);
+        #else
                 buffer.insert_with_tags_by_name(iter, point, -1, "SizePoint", null);
+        #endif
                 if (tag_table.lookup(line) == null)
                     buffer.create_tag(line, "size-points", (double) i, null);
                 buffer.get_end_iter(out iter);
+        #if VALA_0271_OR_LATER
+                buffer.insert_with_tags_by_name(ref iter, _pangram, -1, line, "FontDescription", null);
+        #else
                 buffer.insert_with_tags_by_name(iter, _pangram, -1, line, "FontDescription", null);
+        #endif
             }
-        #if GTK_316
+        #if GTK_316_OR_LATER
             Gtk.TextIter start, end;
             buffer.get_bounds(out start, out end);
             buffer.apply_tag(this.tag_table.lookup("FontFallback"), start, end);

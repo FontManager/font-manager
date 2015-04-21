@@ -50,16 +50,9 @@ namespace FontManager {
                 FontTypeEntry("type1", _("PostScript Type 1 Font"), "http://wikipedia.org/wiki/Type_1_Font#Type_1"),
             };
 
-            construct {
-            #if GTK_314
-                var icon_theme = Gtk.IconTheme.get_default();
-                icon_theme.add_resource_path("/org/gnome/FontManager/icons");
-            #endif
-            }
-
             public void update (Gtk.Image icon, string key) {
                 var entry = this[key];
-            #if GTK_314
+            #if GTK_314_OR_LATER
                 icon.set_from_icon_name(entry.name, Gtk.IconSize.DIALOG);
             #else
                 icon.set_from_resource("/org/gnome/FontManager/icons/%s.svg".printf(entry.name));

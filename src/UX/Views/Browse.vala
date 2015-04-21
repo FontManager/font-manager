@@ -53,7 +53,7 @@ namespace FontManager {
         }
 
         public Gtk.ProgressBar progress { get; private set;}
-        public Gtk.TreeView treeview { get; private set;}
+        public BaseTreeView treeview { get; private set;}
 
         private bool _loading = false;
         private Gtk.Box main_box;
@@ -66,7 +66,8 @@ namespace FontManager {
         public Browse () {
             base.init();
             orientation = Gtk.Orientation.VERTICAL;
-            treeview = new Gtk.TreeView();
+            treeview = new BaseTreeView();
+            treeview.name = "FontManagerBrowseView";
             treeview.headers_visible = false;
             treeview.show_expanders = false;
             progress = new Gtk.ProgressBar();
@@ -126,7 +127,7 @@ namespace FontManager {
             var obj = val.get_object();
             string font_desc;
             bool active;
-        #if GTK_316
+        #if GTK_316_OR_LATER
             Pango.AttrList attrs = new Pango.AttrList();
             attrs.insert(Pango.attr_fallback_new(false));
             cell.set_property("attributes", attrs);

@@ -34,8 +34,6 @@ namespace FontConfig {
         public Reject reject { get; private set; }
         public Sources sources { get; private set; }
 
-        private FileMonitor? [] monitors = {};
-        private VolumeMonitor volume_monitor;
         private bool init_called = false;
 
         public Main () {
@@ -45,11 +43,7 @@ namespace FontConfig {
             families = new Families();
             sources = new Sources();
             families.progress.connect((m, p, t) => { progress(m, p, t); });
-            volume_monitor = VolumeMonitor.get();
-            volume_monitor.mount_removed.connect((m) => {
-               if (m.get_default_location().get_path() in sources)
-                    change_detected();
-            });
+            sources.changed.connect((f, e) => { changed(f, e); });
         }
 
         public void init () {
@@ -67,11 +61,11 @@ namespace FontConfig {
         public void update () {
             enable_user_config(false);
             load_user_fontconfig_files();
-            cancel_monitors();
+            sources.cancel_monitors();
             if (!load_user_font_sources(sources.to_array()))
                 critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
             families.update();
-            enable_monitors();
+            sources.enable_monitors();
             return;
         }
 
@@ -101,59 +95,14 @@ namespace FontConfig {
         public void start_update () {
             enable_user_config(false);
             load_user_fontconfig_files();
-            cancel_monitors();
+            sources.cancel_monitors();
             return;
         }
 
         public void end_update () {
             families.update();
             sources.update();
-            enable_monitors();
-            return;
-        }
-
-        public void cancel_monitors () {
-            foreach (var mon in monitors) {
-                if (mon != null)
-                    mon.cancel();
-                mon = null;
-            }
-            monitors = {};
-            return;
-        }
-
-        public void enable_monitors () {
-            var _dirs = list_dirs();
-            foreach (var dir in _dirs)
-                monitors += get_directory_monitor(dir);
-            foreach (var source in sources)
-                if (source.path in _dirs)
-                    continue;
-                else
-                    monitors += get_directory_monitor(source.path);
-            return;
-        }
-
-        private FileMonitor? get_directory_monitor (string dir) {
-            File file = File.new_for_path(dir);
-            FileMonitor? monitor = null;
-            try {
-                monitor = file.monitor_directory(FileMonitorFlags.NONE);
-                monitor.changed.connect((f, of, ev) => {
-                    change_detected(f, of, ev);
-                });
-            } catch (IOError e) {
-                warning("Failed to create FileMonitor for %s", dir);
-                critical("FileMonitor creation failed : %s", e.message);
-            }
-            return monitor;
-        }
-
-        private void change_detected (File? file = null,
-                                         File? other_file = null,
-                                         FileMonitorEvent event = FileMonitorEvent.CHANGED) {
-            cancel_monitors();
-            changed(file, event);
+            sources.enable_monitors();
             return;
         }
 

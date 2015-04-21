@@ -29,9 +29,9 @@ namespace FontManager {
             base(_("Disabled"), _("Fonts which have been disabled"), "list-remove", null);
         }
 
-        public override void update (Database db) {
+        public new void update (Database db, FontConfig.Reject reject) {
             base.update(db);
-            families.retain_all(Main.instance.fontconfig.reject);
+            families.retain_all(reject);
             return;
         }
 

@@ -25,6 +25,8 @@ namespace FontConfig {
 
     public class Sources : Gee.HashSet <FontSource> {
 
+        public signal void changed (File? file, FileMonitorEvent event);
+
         public static string get_cache_file () {
             string dirpath = Path.build_filename(Environment.get_user_config_dir(), FontManager.NAME);
             string filepath = Path.build_filename(dirpath, "Sources.xml");
@@ -34,6 +36,8 @@ namespace FontConfig {
 
         private string? target_file = null;
         private string? target_element = null;
+        private FileMonitor? [] monitors = {};
+        private VolumeMonitor volume_monitor;
 
         public Sources () {
             string old_path = Path.build_filename(get_config_dir(), "UserSources");
@@ -52,6 +56,11 @@ namespace FontConfig {
             }
             target_element = "source";
             target_file = new_path;
+            volume_monitor = VolumeMonitor.get();
+            volume_monitor.mount_removed.connect((m) => {
+               if (this.contains(m.get_default_location().get_path()))
+                    change_detected();
+            });
         }
 
         public new bool contains (string path) {
@@ -68,14 +77,13 @@ namespace FontConfig {
         }
 
         public new bool add (FontSource source) {
-            source.notify["active"].connect(() => { queue_reload(); });
-            queue_reload();
+            source.notify["active"].connect(() => { change_detected(); });
+            change_detected();
             return base.add(source);
         }
 
         public new bool remove (FontSource source) {
             source.available = false;
-            queue_reload();
             try {
                 FontManager.Database db = FontManager.get_database();
                 db.table = "Fonts";
@@ -85,7 +93,56 @@ namespace FontConfig {
             } catch (FontManager.DatabaseError e) {
                 warning(e.message);
             }
-            return base.remove(source);
+            if (base.remove(source)) {
+                change_detected();
+                return true;
+            }
+            return false;
+        }
+
+        public void cancel_monitors () {
+            foreach (var mon in monitors) {
+                if (mon != null)
+                    mon.cancel();
+                mon = null;
+            }
+            monitors = {};
+            return;
+        }
+
+        public void enable_monitors () {
+            var _dirs = list_dirs();
+            foreach (var dir in _dirs)
+                monitors += get_directory_monitor(dir);
+            foreach (var source in this)
+                if (source.path in _dirs)
+                    continue;
+                else
+                    monitors += get_directory_monitor(source.path);
+            return;
+        }
+
+        private void change_detected (File? file = null,
+                                         File? other_file = null,
+                                         FileMonitorEvent event = FileMonitorEvent.CHANGED) {
+            cancel_monitors();
+            changed(file, event);
+            return;
+        }
+
+        private FileMonitor? get_directory_monitor (string dir) {
+            File file = File.new_for_path(dir);
+            FileMonitor? monitor = null;
+            try {
+                monitor = file.monitor_directory(FileMonitorFlags.NONE);
+                monitor.changed.connect((f, of, ev) => {
+                    change_detected(f, of, ev);
+                });
+            } catch (IOError e) {
+                warning("Failed to create FileMonitor for %s", dir);
+                critical("FileMonitor creation failed : %s", e.message);
+            }
+            return monitor;
         }
 
         public bool init ()
@@ -159,7 +216,7 @@ namespace FontConfig {
                     continue;
                 else {
                     var source = new FontSource(File.new_for_path(content));
-                    source.notify["active"].connect(() => { queue_reload(); });
+                    source.notify["active"].connect(() => { change_detected(); });
                     base.add(source);
                 }
             }

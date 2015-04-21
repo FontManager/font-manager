@@ -71,7 +71,7 @@ namespace FontManager {
         private string _preview_text;
         private string default_preview_text;
         private Gtk.Box box;
-        private Gtk.TreeView tree;
+        private BaseTreeView tree;
         private Gtk.ListStore store;
         private Gtk.ScrolledWindow scroll;
         private Gtk.TreeViewColumn column;
@@ -85,7 +85,8 @@ namespace FontManager {
             base.init();
             orientation = Gtk.Orientation.VERTICAL;
             preview_text = default_preview_text = get_localized_pangram();
-            tree = new Gtk.TreeView();
+            tree = new BaseTreeView();
+            tree.name = "FontManagerCompareView";
             store = new Gtk.ListStore(2, typeof(Pango.FontDescription), typeof(string));
             scroll = new Gtk.ScrolledWindow(null, null);
             controls = new CompareControls();
@@ -187,7 +188,7 @@ namespace FontManager {
                                        Gtk.CellRenderer cell,
                                        Gtk.TreeModel model,
                                        Gtk.TreeIter treeiter) {
-        #if GTK_316
+        #if GTK_316_OR_LATER
             Pango.AttrList attrs = new Pango.AttrList();
             attrs.insert(Pango.attr_fallback_new(false));
             cell.set_property("attributes", attrs);
