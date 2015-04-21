@@ -50,6 +50,7 @@ namespace FontManager {
             set_orientation(Gtk.Orientation.VERTICAL);
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             preview = new StandardTextView(tag_table);
+            preview.name = "FontManagerActivePreview";
             preview.view.justification = Gtk.Justification.CENTER;
             preview.view.margin_top = 24;
             set_preview_text(get_localized_preview_text());
@@ -84,7 +85,7 @@ namespace FontManager {
             buffer.get_bounds(out start, out end);
             buffer.apply_tag(preview.tag_table.lookup("FontDescription"), start, end);
             buffer.apply_tag(preview.tag_table.lookup("FontSize"), start, end);
-        #if GTK_316
+        #if GTK_316_OR_LATER
             buffer.apply_tag(preview.tag_table.lookup("FontFallback"), start, end);
         #endif
             preview.view.set_tooltip_text(_font_desc.to_string());
@@ -123,6 +124,8 @@ namespace FontManager {
         private bool on_textview_event (Gtk.Widget widget, Gdk.Event event) {
             if (editing || event.type == Gdk.EventType.SCROLL)
                 return false;
+            else if (event.type == Gdk.EventType.BUTTON_PRESS && event.button.button == 3)
+                return preview.on_event(event);
             else {
                 ((Gtk.TextView) widget).get_window(Gtk.TextWindowType.TEXT).set_cursor(null);
                 return true;

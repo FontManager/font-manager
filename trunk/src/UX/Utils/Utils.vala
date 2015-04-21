@@ -56,6 +56,7 @@ namespace FontManager {
     }
 
     public void set_application_style () {
+        Gtk.IconTheme.get_default().add_resource_path("/org/gnome/FontManager/icons");
         string css_uri = "resource:///org/gnome/FontManager/FontManager.css";
         File css_file = File.new_for_uri(css_uri);
         Gtk.CssProvider provider = new Gtk.CssProvider();

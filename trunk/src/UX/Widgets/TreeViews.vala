@@ -1,4 +1,4 @@
-/* MultiDNDTreeView.vala
+/* TreeViews.vala
  *
  * Copyright (C) 2009 - 2015 Jerry Casiano
  *
@@ -21,9 +21,22 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
-public class MultiDNDTreeView : Gtk.TreeView {
+public class BaseTreeView : Gtk.TreeView {
 
     public signal void menu_request (Gtk.Widget widget, Gdk.EventButton event);
+
+    public override bool button_press_event (Gdk.EventButton event) {
+        if (event.button == 3) {
+            menu_request(this, event);
+            debug("Context menu request - %s", this.name);
+            return true;
+        }
+        return base.button_press_event(event);
+    }
+
+}
+
+public class MultiDNDTreeView : BaseTreeView {
 
     private struct PendingEvent {
         double x;
@@ -40,10 +53,8 @@ public class MultiDNDTreeView : Gtk.TreeView {
     }
 
     public override bool button_press_event (Gdk.EventButton event) {
-        if (event.button == 3) {
-            menu_request(this, event);
-            return true;
-        }
+        if (event.button == 3)
+            return base.button_press_event(event);
         Gtk.TreePath path;
         get_path_at_pos((int) event.x, (int) event.y, out path, null, null, null);
         if (path == null)

@@ -78,10 +78,10 @@
 ./src/UX/Widgets/FontScale.c
 ./src/UX/Widgets/LabeledSpinButton.c
 ./src/UX/Widgets/LabeledSwitch.c
-./src/UX/Widgets/MultiDNDTreeView.c
 ./src/UX/Widgets/OptionScale.c
 ./src/UX/Widgets/ReactiveLabel.c
 ./src/UX/Widgets/TextPreview.c
 ./src/UX/Widgets/TextViews.c
 ./src/UX/Widgets/ThinPaned.c
+./src/UX/Widgets/TreeViews.c
 ./src/UX/Widgets/WaterfallPreview.c

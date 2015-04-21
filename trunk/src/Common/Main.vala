@@ -21,24 +21,22 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
-void queue_reload () {
-    /* Note : There's a 2 second delay built into FontConfig */
-    Timeout.add_seconds(3, () => {
-        FontManager.Main.instance.update();
-        return false;
-    });
-    return;
-}
-
 namespace FontManager {
+
+    void queue_reload () {
+        /* Note : There's a 2 second delay built into FontConfig */
+        Timeout.add_seconds(3, () => {
+            Main.instance.update();
+            return false;
+        });
+        return;
+    }
 
     public class Main : Object {
 
-        public static Main instance {
+        public static unowned Main instance {
             get {
-                if (_instance == null)
-                    _instance = new Main();
-                return _instance;
+                return _instance.once (() => { return new Main (); });
             }
         }
 
@@ -54,7 +52,7 @@ namespace FontManager {
         public CollectionModel collection_model { get; set; }
         public FontModel font_model { get; set; }
 
-        private static Main? _instance = null;
+        private static GLib.Once <Main> _instance;
         private bool init_called = false;
         private bool update_in_progress = false;
         private bool queue_update = false;
@@ -70,7 +68,7 @@ namespace FontManager {
             collections = load_collections();
             settings = new GLib.Settings(SCHEMA_ID);
             fontconfig.changed.connect((f, ev) => {
-                debug("Filesystem change detected");
+                debug("Change detected");
                 update();
             });
         }
@@ -97,6 +95,14 @@ namespace FontManager {
             category_model.database = database;
             collection_model.collections = collections;
             font_model.families = fontconfig.families;
+            return;
+        }
+
+        private void start_update () {
+            if (application != null && application.main_window != null) {
+                application.main_window.unset_all_models();
+                application.main_window.loading = true;
+            }
             return;
         }
 
@@ -134,10 +140,7 @@ namespace FontManager {
             FontConfig.update_cache();
             fontconfig.async_update.begin((obj, res) => {
                 try {
-                    if (application != null && application.main_window != null) {
-                        application.main_window.unset_all_models();
-                        application.main_window.loading = true;
-                    }
+                    start_update();
                     fontconfig.async_update.end(res);
                     end_update();
                     debug("Font configuration update complete");

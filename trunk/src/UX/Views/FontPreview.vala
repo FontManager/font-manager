@@ -82,6 +82,7 @@ namespace FontManager {
             preview = new ActivePreview(tag_table);
             waterfall = new WaterfallPreview(tag_table);
             body_text = new TextPreview(tag_table);
+            body_text.preview.name = "FontManagerBodyTextPreview";
             font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
             preview.adjustment = adjustment;
             body_text.adjustment = adjustment;

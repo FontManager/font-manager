@@ -21,8 +21,14 @@ LT_INIT()
 
 dnl Check for basics
 AC_PROG_CC()
-AM_PROG_VALAC([0.24])
-AC_PROG_INSTALL()
+AM_PROG_VALAC(
+    [0.27.1],
+    dnl Gtk.TextBuffer API break
+    [AC_SUBST(VALA_0271_OR_LATER, [" -D VALA_0271_OR_LATER"])],
+    dnl Minimum supported version
+    [AM_PROG_VALAC([0.24])]
+)
+C_PROG_INSTALL()
 AC_PROG_MKDIR_P()
 AC_PROG_SED()
 
@@ -43,9 +49,26 @@ PKG_CHECK_MODULES(JSONGLIB, json-glib-1.0 >= 0.15)
 PKG_CHECK_MODULES(GMODULE, gmodule-2.0 >= 2.4)
 PKG_CHECK_MODULES(GIO, gio-2.0 >= 2.4)
 PKG_CHECK_MODULES(CAIRO, cairo >= 1.1)
-PKG_CHECK_MODULES(GTK_312, gtk+-3.0 >= 3.12)
-PKG_CHECK_MODULES(GTK_314, gtk+-3.0 >= 3.14, [AC_SUBST(GTK_314, [" -D GTK_314"])], [:])
-PKG_CHECK_MODULES(GTK_316, gtk+-3.0 >= 3.16, [AC_SUBST(GTK_316, [" -D GTK_316"])], [:])
+PKG_CHECK_MODULES(
+    GTK_312,
+    gtk+-3.0 >= 3.12,
+    [
+        PKG_CHECK_MODULES(
+            GTK_314,
+            gtk+-3.0 >= 3.14,
+            [
+                AC_SUBST(GTK_314_OR_LATER, [" -D GTK_314_OR_LATER"])
+                PKG_CHECK_MODULES(
+                    GTK_316,
+                    gtk+-3.0 >= 3.16,
+                    [AC_SUBST(GTK_316_OR_LATER, [" -D GTK_316_OR_LATER"])],
+                    [:]
+                )
+            ],
+            [:]
+        )
+    ]
+)
 PKG_CHECK_MODULES(PANGO, pango >= 1.3)
 PKG_CHECK_MODULES(PANGOCAIRO, pangocairo >= 1.3)
 PKG_CHECK_MODULES(PANGOFT2, pangoft2 >= 1.3)

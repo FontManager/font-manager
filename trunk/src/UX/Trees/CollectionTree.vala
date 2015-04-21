@@ -65,7 +65,7 @@ namespace FontManager {
 
         public string selected_iter { get; protected set; default = "0"; }
         public CollectionControls controls { get; protected set; }
-        public Gtk.TreeView tree { get; protected set; }
+        public BaseTreeView tree { get; protected set; }
         public Gtk.CellRendererText renderer { get; protected set; }
         public CellRendererCount count_renderer { get; protected set; }
         public Gtk.CellRendererPixbuf pixbuf_renderer { get; protected set; }
@@ -76,8 +76,8 @@ namespace FontManager {
 
         public CollectionTree () {
             expand = true;
-            tree = new Gtk.TreeView();
-            tree.name = "CollectionsTree";
+            tree = new BaseTreeView();
+            tree.name = "FontManagerCollectionTree";
             renderer = new Gtk.CellRendererText();
             count_renderer = new CellRendererCount();
             var toggle = new Gtk.CellRendererToggle();

@@ -375,7 +375,7 @@ namespace FontManager {
         private void update_disabled_category () {
             if (disabled == null)
                 disabled = (Disabled) get_category_by_index(12);
-            disabled.update(Main.instance.database);
+            disabled.update(Main.instance.database, Main.instance.fontconfig.reject);
             return;
         }
 
@@ -541,7 +541,7 @@ namespace FontManager {
                     fonttree.progress.set_fraction((float) p / (float) t);
                     ensure_ui_update();
                 };
-                Main.instance.fontconfig.cancel_monitors();
+                Main.instance.fontconfig.sources.cancel_monitors();
                 Library.Remove.from_file_array(arr);
                 queue_reload();
             }
@@ -556,7 +556,7 @@ namespace FontManager {
                 fonttree.progress.set_fraction((float) p / (float) t);
                 ensure_ui_update();
             };
-            Main.instance.fontconfig.cancel_monitors();
+            Main.instance.fontconfig.sources.cancel_monitors();
             Library.Install.from_uri_array(arr);
             fonttree.loading = false;
             font_model = Main.instance.font_model;
@@ -587,7 +587,7 @@ namespace FontManager {
         }
 
         private void family_drop_handler (Gtk.Widget widget, int x, int y) {
-            if (!(widget.name == "CollectionsTree"))
+            if (!(widget.name == "FontManagerCollectionTree"))
                 return;
             Gtk.TreePath path;
             var tree = widget as Gtk.TreeView;

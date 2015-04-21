@@ -29,7 +29,7 @@ namespace FontManager {
             "FontDescription",
             "FontSize",
             "SizePoint",
-        #if GTK_316
+        #if GTK_316_OR_LATER
             "FontFallback"
         #endif
         };
@@ -41,7 +41,7 @@ namespace FontManager {
             sp.family = "Monospace";
             sp.rise = 1250;
             sp.size_points = 6.0;
-        #if GTK_316
+        #if GTK_316_OR_LATER
             Gtk.TextTag fb = lookup(defaults[3]);
             fb.fallback = false;
         #endif
@@ -50,6 +50,8 @@ namespace FontManager {
     }
 
     public class StandardTextView : Gtk.ScrolledWindow {
+
+        public signal void menu_request (Gtk.Widget widget, Gdk.EventButton event);
 
         public Gtk.TextView view { get; private set; }
 
@@ -102,6 +104,15 @@ namespace FontManager {
             return view.get_buffer().get_text(start, end, false);
         }
 
+        public virtual bool on_event (Gdk.Event event) {
+            if (event.type == Gdk.EventType.BUTTON_PRESS && event.button.button == 3) {
+                 menu_request (this, event.button);
+                 debug("Context menu request - %s", this.name);
+                 return true;
+             }
+            return false;
+        }
+
     }
 
     public class StaticTextView : StandardTextView {
@@ -114,9 +125,11 @@ namespace FontManager {
             Gtk.drag_dest_set_target_list(this.view, list);
         }
 
-        protected bool on_event (Gdk.Event event) {
+        public override bool on_event (Gdk.Event event) {
             if (event.type == Gdk.EventType.SCROLL)
                 return false;
+            if (event.type == Gdk.EventType.BUTTON_PRESS && event.button.button == 3)
+                return base.on_event(event);
             ((Gtk.TextView) this.view).get_window(Gtk.TextWindowType.TEXT).set_cursor(null);
             return true;
         }

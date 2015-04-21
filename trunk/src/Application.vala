@@ -33,9 +33,9 @@ namespace FontManager {
         [DBus (visible = false)]
         public Viewer? font_viewer {
             get {
-                if (fontviewer == null)
-                    fontviewer = new Viewer();
-                return fontviewer;
+                if (fv == null)
+                    fv = new Viewer();
+                return fv;
             }
         }
 
@@ -50,7 +50,7 @@ namespace FontManager {
         };
 
         private uint fv_dbus_id = 0;
-        private Viewer? fontviewer = null;
+        private Viewer? fv = null;
 
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
@@ -152,7 +152,7 @@ namespace FontManager {
 
         protected override void activate () {
             builder = new Gtk.Builder();
-        #if GTK_314
+        #if GTK_314_OR_LATER
             if (prefers_app_menu())
         #else
             if (Gnome3())

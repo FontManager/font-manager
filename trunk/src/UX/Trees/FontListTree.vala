@@ -201,7 +201,7 @@ namespace FontManager {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();
-        #if GTK_316
+        #if GTK_316_OR_LATER
             Pango.AttrList attrs = new Pango.AttrList();
             attrs.insert(Pango.attr_fallback_new(false));
             cell.set_property("attributes", attrs);

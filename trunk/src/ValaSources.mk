@@ -79,10 +79,10 @@ font_manager_VALASOURCES = \
 ./UX/Widgets/FontScale.vala \
 ./UX/Widgets/LabeledSpinButton.vala \
 ./UX/Widgets/LabeledSwitch.vala \
-./UX/Widgets/MultiDNDTreeView.vala \
 ./UX/Widgets/OptionScale.vala \
 ./UX/Widgets/ReactiveLabel.vala \
 ./UX/Widgets/TextPreview.vala \
 ./UX/Widgets/TextViews.vala \
 ./UX/Widgets/ThinPaned.vala \
+./UX/Widgets/TreeViews.vala \
 ./UX/Widgets/WaterfallPreview.vala 
