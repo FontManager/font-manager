@@ -40,22 +40,8 @@ namespace FontConfig {
         private VolumeMonitor volume_monitor;
 
         public Sources () {
-            string old_path = Path.build_filename(get_config_dir(), "UserSources");
-            string new_path = get_cache_file();
-            {
-                File old_file = File.new_for_path(old_path);
-                File new_file = File.new_for_path(new_path);
-                if (old_file.query_exists()) {
-                    try {
-                        old_file.move(new_file, FileCopyFlags.NONE);
-                    } catch (Error e) {
-                        warning("Failed to update file location : %s", e.message);
-                        warning("Manually move %s to %s", old_path, new_path);
-                    }
-                }
-            }
             target_element = "source";
-            target_file = new_path;
+            target_file = get_cache_file();
             volume_monitor = VolumeMonitor.get();
             volume_monitor.mount_removed.connect((m) => {
                if (this.contains(m.get_default_location().get_path()))

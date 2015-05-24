@@ -85,13 +85,11 @@ namespace FontManager {
             string welcome_message = welcome_tmpl.printf(w1, w2, w3);
             welcome.set_markup(welcome_message);
             welcome.set_sensitive(false);
-            welcome.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             list = new Gtk.ListBox();
             list.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             scroll.add(list);
             add(scroll);
             add_overlay(welcome);
-            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
         }
 

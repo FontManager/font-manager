@@ -57,30 +57,31 @@ namespace FontManager {
         private bool update_in_progress = false;
         private bool queue_update = false;
 
-        public Main () {
-            try {
-                database = get_database();
-            } catch (DatabaseError e) {
-                critical("Failed to initialize database : %s", e.message);
-            }
-            fontconfig = new FontConfig.Main();
-            fontconfig.progress.connect((m, p, t) => { progress(m, p, t); });
-            collections = load_collections();
-            settings = new GLib.Settings(SCHEMA_ID);
-            fontconfig.changed.connect((f, ev) => {
-                debug("Change detected");
-                update();
-            });
-        }
+        public Main () {}
 
         public void init () {
             if (init_called)
                 return;
+            settings = new GLib.Settings(SCHEMA_ID);
+            try {
+                database = get_database();
+            } catch (DatabaseError e) {
+                critical("Failed to initialize database : %s", e.message);
+                show_error_message(_("There was an error accessing the database"), e);
+            }
+            collections = load_collections();
+            fontconfig = new FontConfig.Main();
+            fontconfig.progress.connect((m, p, t) => { progress(m, p, t); });
+            fontconfig.changed.connect((f, ev) => {
+                debug("Change detected");
+                update();
+            });
             fontconfig.init();
             try {
                 sync_fonts_table(database, FontConfig.list_fonts(), (m, p, t) => { progress(m, p, t); });
             } catch (DatabaseError e) {
                 critical("Database synchronization failed : %s", e.message);
+                show_error_message(_("There was an error accessing the database"), e);
             }
             init_called = true;
             return;
@@ -111,6 +112,7 @@ namespace FontManager {
                 sync_fonts_table(database, FontConfig.list_fonts(), (m, p, t) => { progress(m, p, t); });
             } catch (DatabaseError e) {
                 critical("Database synchronization failed : %s", e.message);
+                show_error_message(_("There was an error accessing the database"), e);
             }
             if (application != null && application.main_window != null) {
                 category_model.update();
@@ -147,6 +149,7 @@ namespace FontManager {
                 } catch (ThreadError e) {
                     critical("Thread error : %s", e.message);
                     end_update();
+                    show_error_message(_("Try restarting the application\nThere was an error updating font information"), e);
                 }
             });
             return;
@@ -157,6 +160,7 @@ namespace FontManager {
                 application.main_window.present();
                 return;
             }
+            init();
             application = (Application) GLib.Application.get_default();
             application.main_window = new MainWindow();
             application.main_window.set_icon_name(About.ICON);
