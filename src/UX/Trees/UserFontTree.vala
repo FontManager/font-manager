@@ -35,6 +35,7 @@ namespace FontManager {
                 filemap = get_user_filemap(get_database());
             } catch (DatabaseError e) {
                 critical(e.message);
+                show_error_message(_("There was an error accessing the database"), e);
             }
         }
 

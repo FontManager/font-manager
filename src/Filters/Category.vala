@@ -47,6 +47,7 @@ namespace FontManager {
             } catch (DatabaseError e) {
                 warning ("%s category results invalid", name);
                 critical("Database error : %s", e.message);
+                show_error_message(_("There was an error accessing the database"), e);
             }
             return;
         }

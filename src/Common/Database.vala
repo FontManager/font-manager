@@ -344,6 +344,7 @@ namespace FontManager {
                 results.add(row.column_text(0));
         } catch (DatabaseError e) {
             critical("Database Error : %s", e.message);
+            show_error_message(_("There was an error accessing the database"), e);
         }
         db.close();
         return results;

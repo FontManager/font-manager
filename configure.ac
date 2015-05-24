@@ -22,11 +22,22 @@ LT_INIT()
 dnl Check for basics
 AC_PROG_CC()
 AM_PROG_VALAC(
-    [0.27.1],
+    [0.24],
     dnl Gtk.TextBuffer API break
-    [AC_SUBST(VALA_0271_OR_LATER, [" -D VALA_0271_OR_LATER"])],
-    dnl Minimum supported version
-    [AM_PROG_VALAC([0.24])]
+    [AM_PROG_VALAC(
+        [0.27.1],
+        [AC_SUBST(VALA_0271_OR_LATER, [" -D VALA_0271_OR_LATER"])],
+        [:]
+    )],
+    AC_MSG_ERROR([
+
+    Build requirements (valac) were not met:
+
+    Please install Vala >= 0.24 and try again.
+
+    https://wiki.gnome.org/Projects/Vala
+
+    ])
 )
 C_PROG_INSTALL()
 AC_PROG_MKDIR_P()
@@ -67,7 +78,14 @@ PKG_CHECK_MODULES(
             ],
             [:]
         )
-    ]
+    ],
+    AC_MSG_ERROR([Build requirements (GTK+) were not met:
+
+    Please install GTK+ >= 3.12 and try again.
+
+    http://www.gtk.org/
+
+    ])
 )
 PKG_CHECK_MODULES(PANGO, pango >= 1.3)
 PKG_CHECK_MODULES(PANGOCAIRO, pangocairo >= 1.3)
@@ -86,7 +104,9 @@ dnl Check for yelp-tools
 AC_CHECK_PROG(YELP_TOOLS, "yelp-build", yes)
 if test "x$YELP_TOOLS" != "xyes";
 then
-    AC_MSG_ERROR([Application requirements (yelp-tools) were not met:
+    AC_MSG_ERROR([
+
+    Application requirements (yelp-tools) were not met:
 
     Please install yelp-tools and try again.
 
@@ -102,7 +122,9 @@ dnl Check for supporting applications
 AC_CHECK_PROG(HAVE_FILE_ROLLER, file-roller, yes)
 if test "x$HAVE_FILE_ROLLER" != "xyes";
 then
-    AC_MSG_ERROR([Application requirements (file-roller) were not met:
+    AC_MSG_ERROR([
+
+    Application requirements (file-roller) were not met:
 
     Please install File Roller and try again.
 

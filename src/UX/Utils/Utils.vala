@@ -41,7 +41,24 @@ namespace FontManager {
             Gtk.show_uri(null, "help:%s".printf(NAME), Gdk.CURRENT_TIME);
         } catch (Error e) {
             critical("Error launching uri handler : %s", e.message);
+            show_error_message(_("There was an error displaying help contents"), e);
         }
+        return;
+    }
+
+    public void show_error_message (string message,
+                                      Error e,
+                                      Gtk.Window? parent = null) {
+        if (parent == null && Main.instance.application != null)
+            parent = Main.instance.application.main_window;
+        var dialog = new Gtk.MessageDialog(parent,
+                                               Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+                                               Gtk.MessageType.ERROR,
+                                               Gtk.ButtonsType.OK,
+                                               "<b>%s</b>\n\n%s".printf(message, e.message));
+        dialog.use_markup = true;
+        dialog.run();
+        dialog.destroy();
         return;
     }
 

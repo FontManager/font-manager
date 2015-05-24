@@ -97,6 +97,7 @@ namespace FontManager {
                     results.add(row.column_text(0));
             } catch (DatabaseError e) {
                 critical("Database Error : %s", e.message);
+                show_error_message(_("There was an error accessing the database"), e);
             }
             if (db != null)
                 db.close();
@@ -117,6 +118,7 @@ namespace FontManager {
                     results[row.column_text(0)] = row.column_text(1);
             } catch (DatabaseError e) {
                 critical("Database Error : %s", e.message);
+                show_error_message(_("There was an error accessing the database"), e);
             }
             if (db != null)
                 db.close();
@@ -191,6 +193,7 @@ namespace FontManager {
                             archives.add(file);
                     } catch (Error e) {
                         critical("Error querying file information : %s", e.message);
+                        show_error_message(_("Error querying file information"), e);
                     }
                     processed++;
                     if (progress != null)
@@ -311,6 +314,7 @@ namespace FontManager {
                             }
                         } catch (Error e) {
                             critical("Error querying file information : %s", e.message);
+                            show_error_message(_("Error querying file information"), e);
                         }
                     }
                 }
@@ -326,6 +330,7 @@ namespace FontManager {
                     _tmpdir = DirUtils.make_tmp(TMPL);
                 } catch (FileError e) {
                     critical("Error creating temporary working directory : %s", e.message);
+                    show_error_message(_("Error creating temporary working directory"), e);
                 }
                 return _tmpdir != null ? File.new_for_path(_tmpdir) : null;
             }
