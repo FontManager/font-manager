@@ -1,0 +1,27 @@
+<page xmlns="http://projectmallard.org/1.0/" type="guide" id="index">
+    <info>
+        <revision status="stub" />
+        <title type="text">Font Manager</title>
+        <desc>Simple font management for GTK+ desktop environments</desc>
+        <credit type="copyright">
+            <name>Jerry Casiano</name>
+            <email>JerryCasiano@gmail.com</email>
+            <years>2009-2014</years>
+        </credit>
+        <license>
+            <p>
+                <link href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU General Public License Version 3</link>
+            </p>
+        </license>
+    </info>
+    <title>
+        <media type="image" mime="image/png" src="media/logo.png">Font Manager logo</media>
+        Font Manager
+    </title>
+    <note style="important">
+        <p> Help has not been implemented yet.</p>
+        <p> If you would like to help this project by providing help documentation please see <link href="http://projectmallard.org"> Project Mallard </link> for more information.</p>
+        <p> If you do decide to help, please file an issue at <link href="https://code.google.com/p/font-manager/">https://code.google.com/p/font-manager/</link> detailing what you intend to work on.</p>
+        <p>Thank you.</p>
+    </note>
+</page>

@@ -1,0 +1,97 @@
+         _____           _     __  __
+        |  ___|__  _ __ | |_  |  \/  | __ _ _ __   __ _  __ _  ___ _ __
+        | |_ / _ \| '_ \| __| | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
+        |  _| (_) | | | | |_  | |  | | (_| | | | | (_| | (_| |  __/ |
+        |_|  \___/|_| |_|\__| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
+                                                        |___/
+
+
+       A simple font management application for Gtk+ Desktop Environments
+
+
+|============================= Version 0.7.2 ==================================|
+
+
+Please DO NOT file issues regarding feature enhancements or missing features at
+this time.
+
+However feel free to comment at
+
+    https://code.google.com/p/font-manager/issues/detail?id=85
+
+
+Features that are expected to work at this time:
+
+    Migration of fonts and collections from the previous version
+
+    Font Previews
+
+    Enabling / Disabling Fonts
+
+    Creating / Deleting / Enabling / Disabling of Font Collections
+
+    Font Installation
+        - By drag and drop (Preferred method)
+        - By using the file selector
+
+        Note : Drag and drop should allow installation of not only individual
+               font files but also entire directories and archives. The file
+               selector unfortunately will not allow selection of directories.
+
+    Font removal
+
+    Font directory monitoring
+
+        Note : Font Manager should reload itself anytime fonts are installed
+               or removed either through the application or any other method.
+
+    Font Sources
+
+        Adding / Removing font folders.
+
+        Note : Fonts in these folders should be available for preview in the
+               application even if they are not enabled system wide.
+
+    Opening Font Files
+
+        The application can now be set as the default handler for font files.
+        When called with the path to a font file it will launch as a font viewer.
+        The font viewer is very simple and is only intended for previewing
+        and installing individual font files.
+
+    File Manager Extensions
+
+        When the font viewer is running you should be able to preview font files
+        by simply selecting them in the file manager.
+
+        To enable an extension pass --enable-pycompile --with-nautilus,
+        --with-thunar or --with-nemo to configure.
+
+        For more details and known issues see the README file in the extensions
+        directory.
+
+
+Missing / Planned features :
+
+    Help contents
+
+    Character map details viewer
+
+    Database search
+
+    FontConfig editor
+        - session-wide settings
+        - per font settings
+        - aliases (low priority)
+
+    Exporting Collections
+        - proof sheet
+        - html?
+
+
+KNOWN ISSUES
+
+    Some themes do not render as intended. This is a problem with the theme.
+    Unless the issue also occurs when using Adwaita, or most other themes...
+
+
