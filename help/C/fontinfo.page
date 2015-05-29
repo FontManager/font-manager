@@ -1,0 +1,25 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="fontinfo">
+
+    <info>
+        <link type="guide" xref="index#explore"/>
+        <desc>View data embedded in your font files</desc>
+    </info>
+
+    <title>Font Information</title>
+
+        <p>
+        Clicking
+        <gui>
+        <media type="image" src="figures/fontinfo.png"/>
+        </gui>
+        will display information embedded in the currently selected font.
+        </p>
+
+        <figure>
+            <title>Font Information Dialog</title>
+            <media type="image" src="figures/fontinfo-dialog.png"/>
+        </figure>
+
+</page>

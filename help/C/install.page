@@ -1,0 +1,91 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="install">
+
+    <info>
+        <link type="guide" xref="index#manage"/>
+        <desc>Adding fonts for your use</desc>
+    </info>
+
+    <title>Font Installation</title>
+
+        <p>
+        <app>Font Manager</app> supports the most common
+        <link xref="#supported-formats">font formats</link>.
+        </p>
+
+        <list>
+            <item>
+                <title>First Method</title>
+                    <steps>
+                        <item>
+                            <p>
+                            Drag your font files to the family column in the
+                            <link xref="ui#family-pane">Family Pane</link>
+                            </p>
+                            <p>
+                            If a collection is selected, the new fonts will
+                            automatically be added to it.
+                            </p>
+                        </item>
+                    </steps>
+            </item>
+            <item>
+                <title>Second Method</title>
+                    <steps>
+                        <item>
+                            <p>
+                            Click
+                            <gui>
+                            <media type="image" src="figures/manage.png"/>
+                            </gui>
+                            in the
+                            <link xref="ui#statusbar">Statusbar</link>
+                            </p>
+                        </item>
+                        <item>
+                            <p>
+                            Select "Install Fonts" from the popup menu
+                            </p>
+                        </item>
+                        <item>
+                            <p>
+                            Select the files you wish to install from the
+                            file selector dialog that is displayed and click
+                            <gui style="button">OK</gui>
+                            </p>
+                        </item>
+                    </steps>
+            </item>
+        </list>
+
+        <note style="tip">
+            <p>
+            The only advantage of the second method is that it also supports
+            installing fonts from any archive supported by
+            <link href="ghelp:file-roller">Archive Manager</link>.
+            </p>
+        </note>
+
+    <note style="important">
+        <p>
+        <app>Font Manager</app> will restart anytime changes require it.
+        </p>
+    </note>
+
+    <section id="supported-formats">
+        <title>Supported Font Formats</title>
+        <list>
+            <item>
+                <title>TrueType</title>
+            </item>
+            <item>
+                <title>OpenType</title>
+            </item>
+            <item>
+                <title>PostScript Type 1</title>
+            </item>
+        </list>
+    </section>
+
+</page>
