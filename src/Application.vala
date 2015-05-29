@@ -166,7 +166,9 @@ namespace FontManager {
             Main.instance.settings.apply();
             main_window.hide();
             remove_window(main_window);
-            base.quit();
+            main_window = null;
+            if (get_windows().length() == 0)
+                base.quit();
         }
 
         public void about () {

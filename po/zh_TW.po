@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 20:20-0400\n"
+"POT-Creation-Date: 2015-05-28 20:37-0400\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -680,11 +680,11 @@ msgid "Preview"
 msgstr "预览"
 
 # msgstr "区块"
-#: ../src/UX/Sidebar/MainSideBar.vala:83
+#: ../src/UX/Sidebar/MainSideBar.vala:81
 msgid "Categories"
 msgstr "分类"
 
-#: ../src/UX/Sidebar/MainSideBar.vala:84
+#: ../src/UX/Sidebar/MainSideBar.vala:82
 msgid "Collections"
 msgstr "字体集"
 
