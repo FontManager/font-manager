@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-06 20:20-0400\n"
+"POT-Creation-Date: 2015-05-28 20:37-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -654,11 +654,11 @@ msgstr ""
 msgid "Preview"
 msgstr ""
 
-#: ../src/UX/Sidebar/MainSideBar.vala:83
+#: ../src/UX/Sidebar/MainSideBar.vala:81
 msgid "Categories"
 msgstr ""
 
-#: ../src/UX/Sidebar/MainSideBar.vala:84
+#: ../src/UX/Sidebar/MainSideBar.vala:82
 msgid "Collections"
 msgstr ""
 

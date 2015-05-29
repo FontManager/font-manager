@@ -39,6 +39,7 @@ distclean-local:
 	-rm -rf autom4te.cache m4 aclocal.m4 compile config.guess config.sub configure depcomp install-sh ltmain.sh missing py-compile
 	@find . -name "Makefile" -exec rm -f '{}' \;
 	@find . -name "Makefile.in*" -exec rm -f '{}' \;
+	rm -f font-manager-*.tar.*
 
 .PHONY: pot POTFILES.readme POTFILES.in POTFILES.skip
 
