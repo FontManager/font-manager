@@ -1,0 +1,256 @@
+#!@PYTHON@
+"""
+If called directly this script generates a pdf sample page from a directory
+of fonts. It supports Truetype and Type 1 fonts.
+"""
+# Font Manager, a font management application for the GNOME desktop
+#
+# Copyright (C) 2009, 2010 Jerry Casiano
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 3
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to:
+#
+# Free Software Foundation, Inc.
+# 51 Franklin Street, Fifth Floor
+# Boston, MA  02110-1301, USA.
+
+import os
+import gtk
+import cPickle
+import shelve
+import sys
+import time
+import UserDict
+
+from os.path import abspath, dirname, basename, exists, join, splitext
+
+# Allow running without installation
+desktop_file = join(dirname(__file__), 'font-manager.desktop')
+if exists(desktop_file):
+    PACKAGE_DIR = dirname(abspath(__file__))
+    LIB_DIR = dirname(abspath(__file__))
+else:
+    PACKAGE_DIR = join('@prefix@', 'share/font-manager')
+    LIB_DIR = join('@prefix@', 'lib/font-manager')
+
+for directory in PACKAGE_DIR, LIB_DIR:
+    if not directory in sys.path:
+        sys.path.insert(0, directory)
+
+import gettext
+gettext.install('font-manager')
+from constants import LOCALEDIR
+gettext.bindtextdomain('font-manager', LOCALEDIR)
+gettext.textdomain('font-manager')
+
+from core import Preferences
+from constants import CACHE_DIR, HOME, PACKAGE_DATA_DIR
+
+CACHE_FILE  =   join(CACHE_DIR, 'sampler.cache')
+
+def _exit_with_error(msg):
+    dialog = gtk.MessageDialog(None, 0, gtk.MESSAGE_WARNING,
+                                    gtk.BUTTONS_CLOSE, None)
+    dialog.set_markup('<b>%s</b>' % msg)
+    dialog.format_secondary_text(
+_('On most distributions this is available as python-reportlab.'))
+    dialog.run()
+    dialog.destroy()
+    sys.exit(1)
+
+try:
+    from ui.sampler import BuildSample, Config
+except ImportError:
+    _exit_with_error(_('This program requires the ReportLab Toolit'))
+
+
+class FontSampler(UserDict.UserDict):
+    _widgets = (
+                'MainWindow', 'FileChooserButton', 'OutputButton', 'Pangram',
+                'CreateButton', 'Expander', 'ProgressWindow', 'ProgressBar',
+                'ProgressLabel', 'Table', 'Author', 'Subject', 'FontSize'
+                )
+    def __init__(self):
+        UserDict.UserDict.__init__(self)
+        self.data = {}
+        self.fontlist = None
+        self.outfile = join(HOME, 'Sample Sheet.pdf')
+        self.collection = basename(splitext(self.outfile)[0])
+        self.builder = gtk.Builder()
+        self.builder.set_translation_domain('font-manager')
+        self.builder.add_from_file(os.path.join(PACKAGE_DATA_DIR,
+                                                        'font-sampler.ui'))
+        for widget in self._widgets:
+            self.data[widget] = self.builder.get_object(widget)
+        self.data['FileSelector'] = None
+        self.data['Preferences'] = Preferences()
+        self.data['Config'] = Config()
+        self.data['ProgressWindow'].connect('delete-event', self._quit)
+        self._load_config()
+
+    def build_pdf(self, unused_widget, exit_on_success = False):
+        if self.data['MainWindow'].get_property('visible'):
+            self.data['MainWindow'].hide()
+        self.data['ProgressWindow'].show()
+        while gtk.events_pending():
+            gtk.main_iteration()
+        buildsample = BuildSample(self, self.data['Config'],
+                                self.collection, self.fontlist, self.outfile)
+        time.sleep(1)
+        if buildsample.basic():
+            self.data['ProgressWindow'].hide()
+            if exit_on_success:
+                sys.exit(0)
+            else:
+                self.data['MainWindow'].show()
+        else:
+            sys.exit(1)
+        return
+
+    def connect_callbacks(self):
+        self.data['MainWindow'].connect('delete-event', gtk.main_quit)
+        self.data['Author'].connect('changed', self._set_author)
+        self.data['Subject'].connect('changed', self._set_subject)
+        self.data['FontSize'].connect('value-changed', self._set_fontsize)
+        self.data['Pangram'].connect('toggled', self._set_pangram)
+        self.data['Expander'].connect('activate', self._set_window_size)
+        self.data['Expander'].remove(self.data['Table'])
+        self.data['Author'].set_text(self.data['Config'].author)
+        self.data['Subject'].set_text(self.data['Config'].subject)
+        self.data['FontSize'].set_value(self.data['Preferences'].fontsize)
+        self.data['Pangram'].set_active(self.data['Preferences'].pangram)
+        self.data['OutputButton'].set_label(self.outfile)
+        self.data['FileChooserButton'].connect('selection-changed',
+                                                        self._folder_selected)
+        self.data['FileChooserButton'].set_current_folder(HOME)
+        self.data['OutputButton'].connect('clicked', self._show_file_selector)
+        self.data['CreateButton'].connect('clicked', self.build_pdf)
+        self.data['FileSelector'] = self._create_file_selector()
+        return
+
+    def _create_file_selector(self):
+        fileselector = gtk.FileChooserDialog(_('Save as...'),
+                                        self.data['MainWindow'],
+                                        gtk.FILE_CHOOSER_ACTION_SAVE,
+                                        (gtk.STOCK_CANCEL, gtk.RESPONSE_REJECT,
+                                            gtk.STOCK_OK, gtk.RESPONSE_ACCEPT))
+        fileselector.set_local_only(True)
+        fileselector.set_do_overwrite_confirmation(True)
+        return fileselector
+
+    def _folder_selected(self, widget):
+        self.fontlist = widget.get_filename()
+        return
+
+    def _load_config(self):
+        config = self.data['Config']
+        config.fontsize = self.data['Preferences'].fontsize
+        config.pangram = self.data['Preferences'].pangram
+        return
+
+    def progress_callback(self, family, total, processed):
+        """
+        Set progressbar text and percentage.
+        """
+        if family is not None:
+            self.data['ProgressBar'].set_text(family)
+        if processed > 0 and processed <= total:
+            self.data['ProgressBar'].set_fraction(float(processed)/float(total))
+        while gtk.events_pending():
+            gtk.main_iteration()
+        return
+
+    def _write_warning(self):
+        dialog = gtk.MessageDialog(None, 0, gtk.MESSAGE_WARNING,
+                                        gtk.BUTTONS_OK, None)
+        dialog.set_markup(_('<b>Selected folder must be writeable</b>'))
+        dialog.run()
+        dialog.destroy()
+        return
+
+    def _set_author(self, widget):
+        self.data['Config'].author = widget.get_text()
+        return
+
+    def _set_subject(self, widget):
+        self.data['Config'].subject = widget.get_text()
+        return
+
+    def _set_fontsize(self, widget):
+        self.data['Config'].fontsize = widget.get_value()
+        return
+
+    def _set_pangram(self, widget):
+        self.data['Config'].pangram = widget.get_active()
+        return
+
+    def _set_window_size(self, unused_widget):
+        if self.data['Expander'].get_expanded():
+            self.data['Expander'].remove(self.data['Table'])
+        else:
+            self.data['Expander'].add(self.data['Table'])
+        self.data['Expander'].resize_children()
+        self.data['MainWindow'].resize(1, 1)
+        self.data['MainWindow'].queue_draw()
+        while gtk.events_pending():
+            gtk.main_iteration()
+        return
+
+    def _show_file_selector(self, widget):
+        fileselector = self.data['FileSelector']
+        if self.outfile:
+            fileselector.set_current_name(basename(self.outfile))
+        fileselector.show()
+        response = fileselector.run()
+        if response == gtk.RESPONSE_ACCEPT:
+            outfile = fileselector.get_filename()
+            # Make sure we have write access before we go any further
+            new_folder = dirname(outfile)
+            if not os.access(new_folder, os.W_OK):
+                self._write_warning()
+                self._show_file_selector(None)
+                return
+            if not outfile.endswith('.pdf'):
+                outfile = '%s.pdf' % outfile
+            self.outfile = outfile
+            self.collection = basename(splitext(outfile)[0])
+            self.data['OutputButton'].set_label(self.outfile)
+        fileselector.hide()
+        while gtk.events_pending():
+            gtk.main_iteration()
+        return
+
+    def _quit(self, *args):
+        gtk.main_quit()
+        sys.exit(0)
+
+
+if __name__ == '__main__':
+    if not exists(CACHE_FILE):
+        objects = FontSampler()
+        objects.connect_callbacks()
+        objects['MainWindow'].show()
+    else:
+        cache = shelve.open(CACHE_FILE, protocol=cPickle.HIGHEST_PROTOCOL)
+        objects = FontSampler()
+        objects.collection = cache['collection']
+        objects.fontlist = cache['fontlist']
+        objects.outfile = cache['outfile']
+        cache.close()
+        os.unlink(CACHE_FILE)
+        objects.build_pdf(None, True)
+    try:
+        gtk.main()
+    except (KeyboardInterrupt):
+        sys.exit(0)
+

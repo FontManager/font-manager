@@ -1,97 +1,57 @@
-         _____           _     __  __
-        |  ___|__  _ __ | |_  |  \/  | __ _ _ __   __ _  __ _  ___ _ __
-        | |_ / _ \| '_ \| __| | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
-        |  _| (_) | | | | |_  | |  | | (_| | | | | (_| | (_| |  __/ |
-        |_|  \___/|_| |_|\__| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
-                                                        |___/
+Font Manager
+
+A font management application for the GNOME desktop
+
+Font Manager is an application that allows users to easily manage fonts on their system.
+
+Font Manager is not intended to be a professional-grade font management solution,
+but rather a simple application suitable for the needs of most desktop users,
+and even graphics designers who may need to manage just a few thousand font files.
+
+Although designed with the GNOME desktop environment in mind,
+it should work well with most major desktop environments such as XFCE, Enlightenment,
+and even KDE.
 
 
-       A simple font management application for Gtk+ Desktop Environments
+Font Manager currently allows the user to:
+
+    * Preview installed fonts
+    
+    * Compare fonts
+    
+    * Install and remove fonts
+
+    * Easily activate and de-activate installed fonts
+
+    * Specify different directories to search for fonts
+
+    * Group fonts into "Collections", and easily activate or de-activate groups of fonts
+
+    * Export "Collections" to an archive for easy backup, sharing, etc.
+
+    * Provides quick access to the users font folder, GNOME font settings, Character Map, etc.
 
 
-|============================= Version 0.7.2 ==================================|
+In the future Font Manager intends to allow the user to:
 
+    * Export "Collections" to a PDF "fontbook" (partially implemented)
 
-Please DO NOT file issues regarding feature enhancements or missing features at
-this time.
+    * Edit font metadata
 
-However feel free to comment at
+    * Convert fonts to a different format
 
-    https://code.google.com/p/font-manager/issues/detail?id=85
+Requirements:
 
+    * Python      2.x  >= 2.6   http://www.python.org/
+    * PyGTK       2.xx          http://www.pygtk.org/
+    * PyGobject   2.xx          http://www.pygtk.org/
+    * libxml2-python            http://xmlsoft.org/python.html
+    * fontconfig                http://www.fontconfig.org/wiki/
+    * freetype2                 http://www.freetype.org/
 
-Features that are expected to work at this time:
+Recommended:
 
-    Migration of fonts and collections from the previous version
-
-    Font Previews
-
-    Enabling / Disabling Fonts
-
-    Creating / Deleting / Enabling / Disabling of Font Collections
-
-    Font Installation
-        - By drag and drop (Preferred method)
-        - By using the file selector
-
-        Note : Drag and drop should allow installation of not only individual
-               font files but also entire directories and archives. The file
-               selector unfortunately will not allow selection of directories.
-
-    Font removal
-
-    Font directory monitoring
-
-        Note : Font Manager should reload itself anytime fonts are installed
-               or removed either through the application or any other method.
-
-    Font Sources
-
-        Adding / Removing font folders.
-
-        Note : Fonts in these folders should be available for preview in the
-               application even if they are not enabled system wide.
-
-    Opening Font Files
-
-        The application can now be set as the default handler for font files.
-        When called with the path to a font file it will launch as a font viewer.
-        The font viewer is very simple and is only intended for previewing
-        and installing individual font files.
-
-    File Manager Extensions
-
-        When the font viewer is running you should be able to preview font files
-        by simply selecting them in the file manager.
-
-        To enable an extension pass --enable-pycompile --with-nautilus,
-        --with-thunar or --with-nemo to configure.
-
-        For more details and known issues see the README file in the extensions
-        directory.
-
-
-Missing / Planned features :
-
-    Help contents
-
-    Character map details viewer
-
-    Database search
-
-    FontConfig editor
-        - session-wide settings
-        - per font settings
-        - aliases (low priority)
-
-    Exporting Collections
-        - proof sheet
-        - html?
-
-
-KNOWN ISSUES
-
-    Some themes do not render as intended. This is a problem with the theme.
-    Unless the issue also occurs when using Adwaita, or most other themes...
-
+    * file-roller               http://fileroller.sourceforge.net/
+    * gucharmap                 http://live.gnome.org/Gucharmap
+    * ReportLab Toolkit         http://www.reportlab.org/
 
