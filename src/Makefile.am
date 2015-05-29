@@ -1,36 +1,53 @@
-include Flags.mk
-include ValaSources.mk
 
-resource_dir = ${abs_top_builddir}/resources
-GLIB_COMPILE_RESOURCES = \
-`$(PKG_CONFIG) --variable=glib_compile_resources gio-2.0`
+font-manager: font-manager.in
+	@sed \
+		-e 's|@prefix[@]|$(prefix)|g'\
+		< $< \
+		> $@
 
-FontManagerGResource.c :
-	$(GLIB_COMPILE_RESOURCES) \
-	--sourcedir=$(resource_dir) \
-	--generate-source \
-	--target=$@ \
-	$(resource_dir)/FontManagerGResource.xml
+rmconf:
+	@rm -f config.py
+	
+config.py: config.py.in
+	@sed \
+		-e 's|@PACKAGE_NAME[@]|$(PACKAGE_NAME)|g' \
+		-e 's|@PACKAGE_VERSION[@]|$(PACKAGE_VERSION)|g' \
+		-e 's|@LOCALEDIR[@]|$(datadir)/locale|g' \
+		< $< \
+		> $@
 
-BUILT_SOURCES = FontManagerGResource.c
+all: rmconf config.py font-manager
+	@if [ -e FontManager.py ]; then mv 'FontManager.py' 'Font Manager'; fi
+	@python -m compileall .
+	@python -OO -m compileall .
+	@rm -f static.py[co]
 
-font_manager_SOURCES = \
-	$(font_manager_VALASOURCES) \
-	Glue/_Glue_.c \
-	Glue/Private.h \
-	$(BUILT_SOURCES)
+install: make-install-dirs
+	install -m 644 'Font Manager' $(DESTDIR)$(prefix)/share/font-manager/
+	install -m 644 *.py[co] $(DESTDIR)$(prefix)/share/font-manager/
+	install -m 644 ui/*.ui $(DESTDIR)$(prefix)/share/font-manager/ui/
+	install -m 755 font-manager.desktop $(DESTDIR)$(prefix)/share/applications/
+	install -m 755 font-manager $(DESTDIR)$(prefix)/bin/
 
-bin_PROGRAMS = font-manager
+make-install-dirs:
+	@mkdir -p $(DESTDIR)$(prefix)/share/applications
+	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager
+	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager/ui
+	@mkdir -p $(DESTDIR)$(prefix)/bin
 
-EXTRA_DIST = $(font_manager_VALASOURCES)
+uninstall:
+	@rm -rfv $(DESTDIR)$(prefix)/share/font-manager
+	@rm -fv $(DESTDIR)$(prefix)/share/applications/font-manager.desktop
+	@rm -fv $(DESTDIR)$(prefix)/bin/font-manager
 
-dist-hook:
-	cd $(distdir) && \
-	rm -f $(font_manager_VALASOURCES:.vala=.c) \
-	$(BUILT_SOURCES) \
-	font_manager_vala.stamp
+clean:
+	@if [ -e 'Font Manager' ]; then mv 'Font Manager' 'FontManager.py'; fi
+	@rm -f *.py[co] config.py font-manager
+	@if [ -e 'static.py' ]; then cp -f 'static.py' 'config.py'; fi
 
-clean-local:
-	rm -f $(font_manager_VALASOURCES:.vala=.c) \
-	$(BUILT_SOURCES) \
-	font_manager_vala.stamp
+distclean: clean
+	@rm -f Makefile config.py.in font-manager.in
+
+
+
+
