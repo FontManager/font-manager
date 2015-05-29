@@ -1,36 +1,40 @@
-include Flags.mk
-include ValaSources.mk
 
-resource_dir = ${abs_top_builddir}/resources
-GLIB_COMPILE_RESOURCES = \
-`$(PKG_CONFIG) --variable=glib_compile_resources gio-2.0`
+config.py: config.py.in
+	@sed \
+		-e 's|@PACKAGE_NAME[@]|$(PACKAGE_NAME)|g' \
+		-e 's|@PACKAGE_VERSION[@]|$(PACKAGE_VERSION)|g' \
+		-e 's|@LOCALEDIR[@]|$(datadir)/locale|g' \
+		< $< \
+		> $@
 
-FontManagerGResource.c :
-	$(GLIB_COMPILE_RESOURCES) \
-	--sourcedir=$(resource_dir) \
-	--generate-source \
-	--target=$@ \
-	$(resource_dir)/FontManagerGResource.xml
+all: config.py
+	@python -m compileall .
+	@python -OO -m compileall .
 
-BUILT_SOURCES = FontManagerGResource.c
+install: make-install-dirs
+	install -m 644 *.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/
+	install -m 644 ui/*.ui $(DESTDIR)$(prefix)/share/font-manager/ui/
+	install -m 644 ui/Throbber* $(DESTDIR)$(prefix)/share/font-manager/ui/
+	install -m 644 font-manager.desktop $(DESTDIR)$(prefix)/share/applications/
+	install -m 755 font-manager $(DESTDIR)$(prefix)/bin/
+	
+make-install-dirs:
+	@mkdir -p $(DESTDIR)$(prefix)/share/applications
+	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager
+	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager/ui
+	@mkdir -p $(DESTDIR)$(prefix)/bin
 
-font_manager_SOURCES = \
-	$(font_manager_VALASOURCES) \
-	Glue/_Glue_.c \
-	Glue/Private.h \
-	$(BUILT_SOURCES)
+uninstall:
+	@rm -rfv $(DESTDIR)$(prefix)/share/font-manager
+	@rm -fv $(DESTDIR)$(prefix)/share/applications/font-manager.desktop
+	@rm -fv $(DESTDIR)$(prefix)/bin/font-manager
 
-bin_PROGRAMS = font-manager
+clean:
+	@rm -f *.py[co] font-manager
 
-EXTRA_DIST = $(font_manager_VALASOURCES)
+distclean: clean
+	@rm -f Makefile config.py.in
 
-dist-hook:
-	cd $(distdir) && \
-	rm -f $(font_manager_VALASOURCES:.vala=.c) \
-	$(BUILT_SOURCES) \
-	font_manager_vala.stamp
 
-clean-local:
-	rm -f $(font_manager_VALASOURCES:.vala=.c) \
-	$(BUILT_SOURCES) \
-	font_manager_vala.stamp
+
+
