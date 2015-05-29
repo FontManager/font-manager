@@ -1,25 +1,20 @@
 /* Compare.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 namespace FontManager {
 
@@ -68,31 +63,28 @@ namespace FontManager {
             }
         }
 
-        private string _preview_text;
-        private string default_preview_text;
-        private Gtk.Box box;
-        private BaseTreeView tree;
-        private Gtk.ListStore store;
-        private Gtk.ScrolledWindow scroll;
-        private Gtk.TreeViewColumn column;
-        private Gtk.CellRendererText renderer;
-        private Pango.FontDescription _font_desc;
-        private CompareControls controls;
-        private Gdk.RGBA default_fg_color;
-        private Gdk.RGBA default_bg_color;
+        string _preview_text;
+        string default_preview_text;
+
+        Gtk.TreeView tree;
+        Gtk.ListStore store;
+        Gtk.ScrolledWindow scroll;
+        Gtk.TreeViewColumn column;
+        Pango.FontDescription _font_desc;
+        CompareControls controls;
+        Gdk.RGBA default_fg_color;
+        Gdk.RGBA default_bg_color;
 
         public Compare () {
             base.init();
             orientation = Gtk.Orientation.VERTICAL;
             preview_text = default_preview_text = get_localized_pangram();
-            tree = new BaseTreeView();
-            tree.name = "FontManagerCompareView";
+            tree = new Gtk.TreeView();
             store = new Gtk.ListStore(2, typeof(Pango.FontDescription), typeof(string));
             scroll = new Gtk.ScrolledWindow(null, null);
             controls = new CompareControls();
-            controls.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             update_default_colors();
-            renderer = new Gtk.CellRendererText();
+            var renderer = new Gtk.CellRendererText();
             column = new Gtk.TreeViewColumn();
             column.pack_start(renderer, true);
             column.set_cell_data_func(renderer, cell_data_func);
@@ -103,26 +95,21 @@ namespace FontManager {
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             pack_start(controls, false, false, 0);
             add_separator(this, Gtk.Orientation.HORIZONTAL);
-            box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            var box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             box.pack_end(fontscale, false, false, 0);
             scroll.add(tree);
             box.pack_start(scroll, true, true, 0);
             pack_end(box, true, true, 0);
-            tree.set_headers_visible(false);
-            connect_signals();
-        }
-
-        public override void show () {
             fontscale.show();
             tree.show();
             scroll.show();
             box.show();
             controls.show();
-            base.show();
-            return;
+            tree.set_headers_visible(false);
+            connect_signals();
         }
 
-        private void connect_signals() {
+        internal void connect_signals() {
             /* selection, model, path, currently_selected_path */
             tree.get_selection().set_select_function((s, m, p, csp) => {
                 /* Disallow selection of preview rows */
@@ -184,15 +171,10 @@ namespace FontManager {
             return;
         }
 
-        private void cell_data_func (Gtk.CellLayout layout,
-                                       Gtk.CellRenderer cell,
-                                       Gtk.TreeModel model,
-                                       Gtk.TreeIter treeiter) {
-        #if GTK_316_OR_LATER
-            Pango.AttrList attrs = new Pango.AttrList();
-            attrs.insert(Pango.attr_fallback_new(false));
-            cell.set_property("attributes", attrs);
-        #endif
+        void cell_data_func (Gtk.CellLayout layout,
+                               Gtk.CellRenderer cell,
+                               Gtk.TreeModel model,
+                               Gtk.TreeIter treeiter) {
             if (model.get_path(treeiter).get_indices()[0] % 2 == 0) {
                 /* Name row */
                 cell.set_property("foreground-rgba", default_fg_color);
@@ -232,7 +214,7 @@ namespace FontManager {
             return results;
         }
 
-        private void on_remove () {
+        void on_remove () {
             Gtk.TreeModel model;
             Gtk.TreeIter iter;
             tree.get_selection().get_selected(out model, out iter);

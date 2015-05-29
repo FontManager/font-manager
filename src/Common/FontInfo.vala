@@ -1,25 +1,23 @@
 /* FontInfo.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -41,17 +39,16 @@ namespace FontManager {
 
         public int status;
 
-        public FontInfo.from_filepath (string filepath, int index = 0) {
+        public FontInfo (string filepath, int index = 0) {
             status = FreeType.query_file_info(this, filepath, index);
-            post(filepath);
+            if (status != 0)
+                warning("Failed to gather information for %s : %i", filepath, status);
+            else
+                post(filepath);
             return;
         }
 
         void post (string filepath) {
-            if (status != 0) {
-                warning("Failed to gather information for %s : %i", filepath, status);
-                return;
-            }
             /* Strip commonly found words from version string so that
              * we're left with just a number whenever possible.*/
              if (version == null) {

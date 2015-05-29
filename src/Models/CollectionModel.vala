@@ -1,25 +1,23 @@
 /* CollectionModel.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -35,7 +33,7 @@ namespace FontManager {
             }
         }
 
-        private Collections groups;
+        Collections groups;
 
         construct {
             set_column_types({typeof(Object), typeof(string), typeof(string)});
@@ -64,7 +62,6 @@ namespace FontManager {
                     /* In case this wasn't a root node before, make it a root node */
                     if (!(groups.entries.has_key(((Collection) child).name)))
                         groups.entries[((Collection) child).name] = ((Collection) child);
-                    child.unset();
                     return false;
                 }
                 /* Have a child node, need to add it to its parent */
@@ -82,7 +79,7 @@ namespace FontManager {
             });
         }
 
-        private Gee.ArrayList <Collection> sort_groups (Gee.Collection <Collection> groups) {
+        Gee.ArrayList <Collection> sort_groups (Gee.Collection <Collection> groups) {
             var sorted = new Gee.ArrayList <Collection> ();
             sorted.add_all(groups);
             sorted.sort((CompareDataFunc) sort_on_index);
@@ -109,7 +106,7 @@ namespace FontManager {
             return;
         }
 
-        private void insert_children (Gee.ArrayList <Filter> groups, Gtk.TreeIter parent) {
+        void insert_children (Gee.ArrayList <Filter> groups, Gtk.TreeIter parent) {
             var sorted = sort_groups(groups);
             foreach(var child in sorted) {
                 Gtk.TreeIter _iter;

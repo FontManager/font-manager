@@ -1,25 +1,23 @@
 /* Utils.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -40,29 +38,12 @@ namespace FontManager {
         try {
             Gtk.show_uri(null, "help:%s".printf(NAME), Gdk.CURRENT_TIME);
         } catch (Error e) {
-            critical("Error launching uri handler : %s", e.message);
-            show_error_message(_("There was an error displaying help contents"), e);
+            error("Error launching uri handler : %s", e.message);
         }
         return;
     }
 
-    public void show_error_message (string message,
-                                      Error e,
-                                      Gtk.Window? parent = null) {
-        if (parent == null && Main.instance.application != null)
-            parent = Main.instance.application.main_window;
-        var dialog = new Gtk.MessageDialog(parent,
-                                               Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                               Gtk.MessageType.ERROR,
-                                               Gtk.ButtonsType.OK,
-                                               "<b>%s</b>\n\n%s".printf(message, e.message));
-        dialog.use_markup = true;
-        dialog.run();
-        dialog.destroy();
-        return;
-    }
-
-    public void set_g_app_menu (Gtk.Application app, Gtk.Builder builder) {
+    public void set_gnome_app_menu (Gtk.Application app, Gtk.Builder builder) {
         try {
             builder.add_from_resource("/org/gnome/FontManager/ApplicationMenu.ui");
             app.app_menu = builder.get_object("ApplicationMenu") as GLib.MenuModel;
@@ -73,9 +54,6 @@ namespace FontManager {
     }
 
     public void set_application_style () {
-    #if GTK_314_OR_LATER
-        Gtk.IconTheme.get_default().add_resource_path("/org/gnome/FontManager/icons");
-    #endif
         string css_uri = "resource:///org/gnome/FontManager/FontManager.css";
         File css_file = File.new_for_uri(css_uri);
         Gtk.CssProvider provider = new Gtk.CssProvider();
@@ -89,12 +67,6 @@ namespace FontManager {
         return;
     }
 
-}
-
-public Pango.FontDescription get_font (Gtk.Widget widget, Gtk.StateFlags flags = Gtk.StateFlags.NORMAL) {
-    Pango.FontDescription desc;
-    widget.get_style_context().get(flags, "font", out desc, null);
-    return desc.copy();
 }
 
 public bool Gnome3 () {
@@ -111,11 +83,10 @@ public void ensure_ui_update () {
 }
 
 public bool is_left_to_right (Gtk.Widget widget) {
-    var context = widget.get_style_context();
-    var state = context.get_state();
-    if ((state & Gtk.StateFlags.DIR_LTR) != 0)
-        return true;
-    return false;
+    var dir = widget.get_direction ();
+    if (dir == Gtk.TextDirection.NONE)
+        dir = Gtk.Widget.get_default_direction ();
+    return dir == Gtk.TextDirection.LTR;
 }
 
 public Gtk.Separator add_separator (Gtk.Box box,

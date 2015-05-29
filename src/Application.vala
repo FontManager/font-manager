@@ -1,25 +1,23 @@
 /* Application.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -27,156 +25,93 @@ namespace FontManager {
     public class Application: Gtk.Application  {
 
         [DBus (visible = false)]
-        public MainWindow? main_window { get; set; default = null; }
+        public MainWindow main_window { get; set; }
         [DBus (visible = false)]
-        public Gtk.Builder? builder { get; set; default = null; }
-        [DBus (visible = false)]
-        public Viewer? font_viewer {
-            get {
-                if (fv == null)
-                    fv = new Viewer();
-                return fv;
-            }
-        }
+        public Gtk.Builder builder { get; set; }
 
-        private const OptionEntry[] options = {
-            { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
-            { "version", 'v', 0, OptionArg.NONE, null, "Show application version", null },
-            { "install", 'i', 0, OptionArg.NONE, null, "Space separated list of files to install.", null },
-            { "debug", 'd', 0, OptionArg.NONE, null, "Enable logging. Fatal errors.", null },
-            { "verbose", 'V', 0, OptionArg.NONE, null, "Verbose logging. Lots of output.", null },
-            { "", 0, 0, OptionArg.FILENAME_ARRAY, null, null, null },
+        const OptionEntry[] options = {
+            { "about", 'a', 0, OptionArg.NONE, ref ABOUT, "About the application", null },
+            { "version", 'V', 0, OptionArg.NONE, ref VERSION, "Show application version", null },
+            { "debug", 'd', 0, OptionArg.NONE, ref DEBUG, "Enable debug logging", null },
+            { "verbose", 'v', 0, OptionArg.NONE, ref VERBOSE, "Enable verbose logging", null },
             { null }
         };
 
-        private uint fv_dbus_id = 0;
-        private Viewer? fv = null;
+        static bool ABOUT = false;
+        static bool VERSION = false;
+        static bool DEBUG = false;
+        static bool VERBOSE = false;
 
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
-            add_main_option_entries(options);
         }
 
         public override void startup () {
-            base.startup();
+            base.startup ();
             Logging.show_version_information();
+            builder = new Gtk.Builder();
+            if (Gnome3())
+                set_gnome_app_menu(this, builder);
             return;
         }
 
         public override void open (File [] files, string hint) {
-            font_viewer.fontdata = FontData(files[0]);
-            font_viewer.show();
             return;
         }
 
-        [DBus (visible = false)]
-        public void install (File [] files) {
-            Library.Install.from_file_array(files);
-            return;
-        }
+        public override bool local_command_line (ref unowned string[] args, out int exit_status) {
+            bool result = false;
+            exit_status = 0;
 
-        private File []? get_command_line_files (ApplicationCommandLine cl) {
-            VariantDict options = cl.get_options_dict();
-            Variant argv = options.lookup_value("", VariantType.BYTESTRING_ARRAY);
-            if (argv == null)
-                return null;
-            string* [] filelist = argv.get_bytestring_array();
-            if (filelist.length == 0)
-                return null;
-            File [] files = null;
-            foreach (var file in filelist)
-                files += cl.create_file_for_arg(file);
-            return files;
-        }
+            var context = new OptionContext(null);
+            context.add_main_entries(options, NAME);
+            context.add_group(Gtk.get_option_group(false));
 
-        public override int command_line (ApplicationCommandLine cl) {
-            hold();
-            VariantDict options = cl.get_options_dict();
-            File []? filelist = get_command_line_files(cl);
-            if (filelist == null) {
-                release();
-                activate();
-                return 0;
-            } else if (options.contains("install")) {
-                install(filelist);
-            } else {
-                try {
-                    register();
-                } catch (Error e) {
-                    critical(e.message);
-                }
-                open(filelist, "");
+            try {
+                unowned string [] _args = args;
+                context.parse(ref _args);
+            } catch (OptionError e) {
+                printerr("%s\n", e.message);
+                exit_status = 1;
+                result = true;
             }
-            release();
-            return 0;
-        }
 
-
-        public override int handle_local_options (VariantDict options) {
-            int exit_status = -1;
-
-            if (options.contains("about")) {
+            if (ABOUT) {
                 show_about();
-                exit_status = 0;
+                result = true;
             }
 
-            if (options.contains("version")) {
+            if (VERSION) {
                 show_version();
-                exit_status = 0;
+                result = true;
             }
 
-            if (options.contains("debug")) {
-                Logger.DisplayLevel = LogLevel.DEBUG;
-                Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
-            }
-
-            if (options.contains("verbose"))
+            if (VERBOSE)
                 Logger.DisplayLevel = LogLevel.VERBOSE;
+            else if (DEBUG)
+                Logger.DisplayLevel = LogLevel.DEBUG;
 
-            return exit_status;
-        }
-
-        public override bool dbus_register (DBusConnection conn, string path) throws Error {
-            base.dbus_register(conn, path);
-            fv_dbus_id = conn.register_object ("/org/gnome/FontManager/FontViewer", font_viewer);
-            if (fv_dbus_id == 0)
-                critical("Could not register Font Viewer service ");
-            return true;
-        }
-
-        public override void dbus_unregister (DBusConnection conn, string path) {
-            if (fv_dbus_id != 0)
-                conn.unregister_object(fv_dbus_id);
-            base.dbus_unregister(conn, path);
+            return (result ? result : base.local_command_line(ref args, out exit_status));
         }
 
         protected override void activate () {
-            builder = new Gtk.Builder();
-        #if GTK_314_OR_LATER
-            if (prefers_app_menu())
-        #else
-            if (Gnome3())
-        #endif
-                set_g_app_menu(this, builder);
             Main.instance.on_activate();
             return;
         }
 
-        public new void quit () {
+        public void on_quit () {
             Main.instance.settings.apply();
             main_window.hide();
             remove_window(main_window);
-            main_window = null;
-            if (get_windows().length() == 0)
-                base.quit();
+            quit();
         }
 
-        public void about () {
+        public void on_about () {
             show_about_dialog(main_window);
             return;
         }
 
-        public void help () {
+        public void on_help () {
             show_help_dialog();
             return;
         }
@@ -191,7 +126,7 @@ namespace FontManager {
             set_application_style();
             if (update_declined())
                 return 0;
-            var main = new Application(BUS_ID, (ApplicationFlags.HANDLES_OPEN | ApplicationFlags.HANDLES_COMMAND_LINE));
+            var main = new Application(BUS_ID, (ApplicationFlags.HANDLES_OPEN));
             int res = main.run(args);
             return res;
         }

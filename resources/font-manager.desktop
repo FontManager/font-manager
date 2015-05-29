@@ -1,0 +1,24 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Font Manager
+Name[zh_CN]=字体管理器
+Name[zh_HK]=字体管理器
+Name[zh_TW]=字体管理器
+GenericName=Font Manager
+GenericName[zh_CN]=字体管理器
+GenericName[zh_HK]=字体管理器
+GenericName[zh_TW]=字体管理器
+Comment=Preview, Compare and Manage Fonts
+Comment[zh_CN]=预览，比较和管理字体
+Comment[zh_HK]=预览，比较和管理字体
+Comment[zh_TW]=预览，比较和管理字体
+Icon=preferences-desktop-font
+Exec=font-manager
+Terminal=false
+StartupNotify=true
+Categories=Graphics;Viewer;GNOME;GTK;Publishing;
+Keywords=Graphics;Viewer;GNOME;GTK;Publishing;
+Keywords[zh_CN]=Graphics;Viewer;GNOME;GTK;Publishing;
+Keywords[zh_HK]=Graphics;Viewer;GNOME;GTK;Publishing;
+Keywords[zh_TW]=Graphics;Viewer;GNOME;GTK;Publishing;

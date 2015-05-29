@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-Copyright (C) 2009 - 2015 Jerry Casiano
+Copyright (C) 2009 - 2014
 
 This file is part of Font Manager.
 
@@ -18,8 +18,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
 
-Author:
-        Jerry Casiano <JerryCasiano@gmail.com>
+Author: Jerry Casiano
 
 -->
 <interface domain="font-manager">
@@ -39,13 +38,13 @@ Author:
         </section>
         <section>
             <item>
+                <attribute name='label' translatable='yes'>_About</attribute>
+                <attribute name='action'>app.about</attribute>
+            </item>
+            <item>
                 <attribute name='label' translatable='yes'>_Help</attribute>
                 <attribute name='action'>app.help</attribute>
                 <attribute name='accel'>F1</attribute>
-            </item>
-            <item>
-                <attribute name='label' translatable='yes'>_About</attribute>
-                <attribute name='action'>app.about</attribute>
             </item>
             <item>
                 <attribute name='label' translatable='yes'>_Quit</attribute>

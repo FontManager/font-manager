@@ -1,25 +1,23 @@
 /* FontPreview.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -65,15 +63,13 @@ namespace FontManager {
             }
         }
 
-        private Gtk.Box box;
-        private Gtk.Stack stack;
-        private Gtk.StackSwitcher switcher;
-        private Gtk.EventBox blend;
-        private Pango.FontDescription _font_desc;
-        private ActivePreview preview;
-        private WaterfallPreview waterfall;
-        private TextPreview body_text;
-        private StandardTextTagTable tag_table;
+        Gtk.Stack stack;
+        Gtk.StackSwitcher switcher;
+        Pango.FontDescription _font_desc;
+        ActivePreview preview;
+        WaterfallPreview waterfall;
+        TextPreview body_text;
+        StandardTextTagTable tag_table;
 
         public FontPreview () {
             set_orientation(Gtk.Orientation.VERTICAL);
@@ -82,7 +78,6 @@ namespace FontManager {
             preview = new ActivePreview(tag_table);
             waterfall = new WaterfallPreview(tag_table);
             body_text = new TextPreview(tag_table);
-            body_text.preview.name = "FontManagerBodyTextPreview";
             font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
             preview.adjustment = adjustment;
             body_text.adjustment = adjustment;
@@ -91,37 +86,28 @@ namespace FontManager {
             stack.add_titled(waterfall, "Waterfall", _("Waterfall"));
             stack.add_titled(body_text, "Body Text", _("Body Text"));
             stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
-            blend = new Gtk.EventBox();
             switcher = new Gtk.StackSwitcher();
             switcher.set_stack(stack);
-            switcher.set_border_width(6);
+            switcher.set_border_width(5);
             switcher.halign = Gtk.Align.CENTER;
             switcher.valign = Gtk.Align.CENTER;
             switcher.homogeneous = true;
             switcher.orientation = Gtk.Orientation.HORIZONTAL;
-            blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            blend.add(switcher);
             connect_signals();
-            pack_start(blend, false, true, 0);
+            pack_start(switcher, false, true, 0);
             add_separator(this, Gtk.Orientation.HORIZONTAL);
-            box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            var box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             box.pack_start(stack, true, true, 0);
             pack_end(box, true, true, 0);
-        }
-
-        public override void show () {
-            blend.show();
             preview.show();
             waterfall.show();
             body_text.show();
             stack.show();
             switcher.show();
             box.show();
-            base.show();
-            return;
         }
 
-        private void connect_signals () {
+        internal void connect_signals () {
             stack.notify["visible-child-name"].connect(() => { on_mode_changed(); });
             preview.preview_changed.connect((n) => { this.preview_changed(n); });
             preview.notify["preview-size"].connect(() => { notify_property("preview-size"); });
@@ -133,7 +119,7 @@ namespace FontManager {
             return;
         }
 
-        private void on_mode_changed () {
+        void on_mode_changed () {
             string mode = stack.get_visible_child_name();
             switch (mode) {
                 case "Preview":

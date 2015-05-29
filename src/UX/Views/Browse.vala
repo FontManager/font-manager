@@ -53,21 +53,17 @@ namespace FontManager {
         }
 
         public Gtk.ProgressBar progress { get; private set;}
-        public BaseTreeView treeview { get; private set;}
+        public Gtk.TreeView treeview { get; private set;}
 
-        private bool _loading = false;
-        private Gtk.Box main_box;
-        private Gtk.Overlay overlay;
-        private Gtk.TreeStore? _model;
-        private Gtk.ScrolledWindow scroll;
-        private FontConfig.Reject _reject;
-        private CellRendererTitle renderer;
+        Gtk.TreeStore? _model;
+        FontConfig.Reject _reject;
+        Gtk.Overlay overlay;
+        bool _loading = false;
 
         public Browse () {
             base.init();
             orientation = Gtk.Orientation.VERTICAL;
-            treeview = new BaseTreeView();
-            treeview.name = "FontManagerBrowseView";
+            treeview = new Gtk.TreeView();
             treeview.headers_visible = false;
             treeview.show_expanders = false;
             progress = new Gtk.ProgressBar();
@@ -76,34 +72,30 @@ namespace FontManager {
             overlay = new Gtk.Overlay();
             overlay.add_overlay(progress);
             overlay.get_style_context().add_class(Gtk.STYLE_CLASS_ENTRY);
-            main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            var main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             overlay.add(main_box);
             add(overlay);
-            scroll = new Gtk.ScrolledWindow(null, null);
+            var scroll = new Gtk.ScrolledWindow(null, null);
             scroll.add(treeview);
-            scroll.expand = true;
+            scroll.vexpand = true;
+            scroll.hexpand = true;
             main_box.pack_start(scroll, true, true, 0);
-            renderer = new CellRendererTitle();
+            treeview.show();
+            var renderer = new CellRendererTitle();
             renderer.xpad = 48;
             renderer.junction_side = Gtk.JunctionSides.LEFT;
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             main_box.pack_end(fontscale, false, true, 0);
+            fontscale.show();
             treeview.set_enable_search(true);
             treeview.set_search_column(FontModelColumn.DESCRIPTION);
             treeview.insert_column_with_data_func(0, "", renderer, cell_data_func);
             treeview.get_selection().set_mode(Gtk.SelectionMode.NONE);
-            expand_all();
-        }
-
-        public override void show () {
-            treeview.show();
-            fontscale.show();
             treeview.show();
             scroll.show();
             main_box.show();
             overlay.show();
-            base.show();
-            return;
+            expand_all();
         }
 
         public void expand_all () {
@@ -118,20 +110,15 @@ namespace FontManager {
             return;
         }
 
-        private void cell_data_func (Gtk.TreeViewColumn layout,
-                                       Gtk.CellRenderer cell,
-                                       Gtk.TreeModel model,
-                                       Gtk.TreeIter treeiter) {
+        void cell_data_func (Gtk.TreeViewColumn layout,
+                               Gtk.CellRenderer cell,
+                               Gtk.TreeModel model,
+                               Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();
             string font_desc;
             bool active;
-        #if GTK_316_OR_LATER
-            Pango.AttrList attrs = new Pango.AttrList();
-            attrs.insert(Pango.attr_fallback_new(false));
-            cell.set_property("attributes", attrs);
-        #endif
             if (obj is FontConfig.Family) {
                 font_desc = ((FontConfig.Family) obj).description;
                 active = !(((FontConfig.Family) obj).name in reject);
@@ -140,7 +127,7 @@ namespace FontManager {
                 active = !(((FontConfig.Font) obj).family in reject);
             }
             cell.set_property("text", font_desc);
-            var default_desc = get_font(treeview);
+            var default_desc = treeview.get_style_context().get_font(Gtk.StateFlags.NORMAL);
             default_desc.set_size((int) ((get_desc_size()) * Pango.SCALE));
             cell.set_property("font-desc" , default_desc);
             cell.set_property("sensitive" , active);

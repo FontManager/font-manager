@@ -1,44 +1,33 @@
 /* FontSource.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontConfig {
 
     public class FontSource : Object {
 
-        public signal void changed ();
+        public signal void changed (File file, File? new_file, FileMonitorEvent event_type);
 
         public new string name {
             get {
                 return _name != null ? _name : _path;
-            }
-        }
-
-        public string icon_name {
-            get {
-                if (filetype == FileType.DIRECTORY || filetype == FileType.MOUNTABLE)
-                    return "folder-symbolic";
-                else
-                    return "font-x-generic";
             }
         }
 
@@ -61,7 +50,6 @@ namespace FontConfig {
             }
             set {
                 var main = FontManager.Main.instance;
-                main.fontconfig.init();
                 if (value)
                     main.fontconfig.dirs.add(path);
                 else
@@ -98,12 +86,13 @@ namespace FontConfig {
         }
 
         private File? file = null;
-        private string? _name = null;
-        private string? _uri = null;
-        private string? _path = null;
-        private string? _condition = null;
-        private FileType _filetype;
-        private bool _available = true;
+
+        internal string? _name = null;
+        internal string? _uri = null;
+        internal string? _path = null;
+        internal string? _condition = null;
+        internal FileType _filetype;
+        internal bool _available = true;
 
         public FontSource (File file) {
             this.file = file;
@@ -124,8 +113,6 @@ namespace FontConfig {
                 _name = _("%s --> Resource Unavailable").printf(_path);
                 available = false;
             }
-            changed();
-            return;
         }
 
     }

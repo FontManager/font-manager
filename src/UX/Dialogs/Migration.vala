@@ -1,25 +1,23 @@
 /* Migration.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -53,54 +51,44 @@ namespace FontManager {
         }
 
         public static bool approved (Gtk.Window? parent) {
-            Gtk.ResponseType response = Gtk.ResponseType.NONE;
-            var dialog = new Gtk.Dialog();
-            var cancel = new Gtk.Button.with_mnemonic(_("_Cancel"));
-            var accept = new Gtk.Button.with_mnemonic(_("_Continue"));
-            var header = new Gtk.HeaderBar();
-            var box = dialog.get_content_area();
+            int response = 0;
+            var ni = new Gtk.Dialog.with_buttons(_("Update Required"),
+                                                    parent,
+                                                    (Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT),
+                                                    _("Cancel"),
+                                                    0,
+                                                    _("Continue"),
+                                                    1);
+            var box = ni.get_content_area();
+            box.set_orientation(Gtk.Orientation.VERTICAL);
             var scrolled = new Gtk.ScrolledWindow(null, null);
             var textview = new StaticTextView(null);
-            box.set_orientation(Gtk.Orientation.VERTICAL);
+            textview.hexpand = textview.vexpand = true;
+            textview.view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
+            add_separator(box, Gtk.Orientation.HORIZONTAL);
             scrolled.add(textview);
             box.pack_start(scrolled, true, true, 0);
+            add_separator(box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
             textview.buffer.set_text(update_notice);
-            header.set_title(_("Update Required"));
-            header.pack_start(cancel);
-            header.pack_end(accept);
-            dialog.set_titlebar(header);
-            dialog.set_transient_for(parent);
-            dialog.modal = true;
-            dialog.destroy_with_parent = true;
-            dialog.set_size_request(540, 360);
-            header.show_all();
             box.show_all();
-            cancel.clicked.connect(() => { dialog.response(Gtk.ResponseType.CANCEL); });
-            accept.clicked.connect(() => { dialog.response(Gtk.ResponseType.ACCEPT); });
-            dialog.response.connect((i) => { response = (Gtk.ResponseType) i; dialog.destroy(); });
-            dialog.close.connect(() => { dialog.destroy(); });
-            dialog.delete_event.connect(() => { dialog.destroy(); return false; });
-            dialog.run();
-            return (response == Gtk.ResponseType.ACCEPT);
+            ni.response.connect((i) => { response = i; ni.destroy(); });
+            ni.close.connect(() => { ni.destroy(); });
+            ni.delete_event.connect(() => { ni.destroy(); return false; });
+            ni.set_transient_for(parent);
+            ni.set_size_request(475, 350);
+            ni.run();
+            return (response != 0);
         }
 
         public static void run () {
             /* XXX : progress? */
-            debug("Importing fonts");
             import_fonts();
-            debug("Importing collections");
             import_collections();
-            debug("Purging old cache files");
             purge_cache();
-            debug("Purging old configuration files");
             purge_config();
-            debug("Purging old FontConfig configuration files");
             purge_fontconfig_config();
-            debug("Purging outdated data");
             purge_data();
-            debug("Purging obsolete files");
             purge_obsolete();
-            debug("Saving imported collections");
             collections.cache();
            return;
         }

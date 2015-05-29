@@ -1,25 +1,23 @@
 /* JsonWriter.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 class JsonWriter : Json.Generator {
 
@@ -55,7 +53,7 @@ class JsonWriter : Json.Generator {
 
 }
 
-private bool write_json_file (Json.Node root,
+bool write_json_file (Json.Node root,
                         string filepath,
                         bool compress = false,
                         bool backup = false) {
@@ -64,7 +62,7 @@ private bool write_json_file (Json.Node root,
     return writer.to_file(filepath, backup);
 }
 
-private Json.Node? load_json_file (string filepath, bool compressed = false) {
+Json.Node? load_json_file (string filepath, bool compressed = false) {
     try {
         var parser = new Json.Parser();
         if (compressed) {
@@ -76,7 +74,7 @@ private Json.Node? load_json_file (string filepath, bool compressed = false) {
             parser.load_from_file(filepath);
         return parser.get_root();
     } catch (Error e) {
-        warning("\nFailed to load cache file : %s\n%s : skipping...", filepath, e.message);
+        message("\nFailed to load cache file : %s\n%s : skipping...", filepath, e.message);
     }
     return null;
 }

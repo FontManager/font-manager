@@ -1,25 +1,23 @@
 /* UserFontTree.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 
 namespace FontManager {
@@ -35,7 +33,6 @@ namespace FontManager {
                 filemap = get_user_filemap(get_database());
             } catch (DatabaseError e) {
                 critical(e.message);
-                show_error_message(_("There was an error accessing the database"), e);
             }
         }
 
@@ -68,12 +65,12 @@ namespace FontManager {
             return arr;
         }
 
-        private void connect_signals () {
+        internal void connect_signals () {
             toggle.toggled.connect(on_font_toggled);
             return;
         }
 
-        private int family_state (FontConfig.Family family) {
+        internal int family_state (FontConfig.Family family) {
             Gee.ArrayList <FontConfig.Font> faces = family.list_faces();
             int total = faces.size;
             int active = 0;
@@ -89,19 +86,18 @@ namespace FontManager {
                 return 0;
         }
 
-        private void on_font_toggled (string path) {
+        void on_font_toggled (string path) {
             Gtk.TreeIter iter;
             Value val;
             model.get_iter_from_string(out iter, path);
             model.get_value(iter, FontModelColumn.OBJECT, out val);
             var font = val.get_object();
             if (font is FontConfig.Family) {
-                bool inconsistent = (family_state((FontConfig.Family) font) == -1);
                 foreach (var face in ((FontConfig.Family) font).list_faces()) {
                     if (!filemap.has_key(face.description))
                         continue;
                     var _path = filemap[face.description];
-                    if (!inconsistent && selected_paths.contains(_path))
+                    if (selected_paths.contains(_path))
                         selected_paths.remove(_path);
                     else
                         selected_paths.add(_path);
@@ -114,14 +110,13 @@ namespace FontManager {
                     selected_paths.add(_path);
             }
             val.unset();
-            queue_draw();
             return;
         }
 
-        private void preview_cell_data_func (Gtk.TreeViewColumn layout,
-                                                Gtk.CellRenderer cell,
-                                                Gtk.TreeModel model,
-                                                Gtk.TreeIter treeiter) {
+        void preview_cell_data_func (Gtk.TreeViewColumn layout,
+                                    Gtk.CellRenderer cell,
+                                    Gtk.TreeModel model,
+                                    Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();
@@ -141,10 +136,10 @@ namespace FontManager {
             return;
         }
 
-        private void toggle_cell_data_func (Gtk.TreeViewColumn layout,
-                                                Gtk.CellRenderer cell,
-                                                Gtk.TreeModel model,
-                                                Gtk.TreeIter treeiter) {
+        void toggle_cell_data_func (Gtk.TreeViewColumn layout,
+                                    Gtk.CellRenderer cell,
+                                    Gtk.TreeModel model,
+                                    Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();
@@ -166,10 +161,10 @@ namespace FontManager {
             return;
         }
 
-        private void text_cell_data_func (Gtk.TreeViewColumn layout,
-                                            Gtk.CellRenderer cell,
-                                            Gtk.TreeModel model,
-                                            Gtk.TreeIter treeiter) {
+        void text_cell_data_func (Gtk.TreeViewColumn layout,
+                                    Gtk.CellRenderer cell,
+                                    Gtk.TreeModel model,
+                                    Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();
@@ -186,10 +181,10 @@ namespace FontManager {
             return;
         }
 
-        private void count_cell_data_func (Gtk.TreeViewColumn layout,
-                                            Gtk.CellRenderer cell,
-                                            Gtk.TreeModel model,
-                                            Gtk.TreeIter treeiter) {
+        void count_cell_data_func (Gtk.TreeViewColumn layout,
+                                    Gtk.CellRenderer cell,
+                                    Gtk.TreeModel model,
+                                    Gtk.TreeIter treeiter) {
             if (model.iter_has_child(treeiter)) {
                 int count = 0;
                 Gtk.TreeIter child;

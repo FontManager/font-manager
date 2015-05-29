@@ -1,25 +1,23 @@
 /* CellRendererPill.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 /* XXX : This shit here needs work... */
 
@@ -103,7 +101,7 @@ public abstract class CellRendererPill : Gtk.CellRendererText {
         if (font_desc != null)
             layout.set_font_description(font_desc);
         else
-            layout.set_font_description(get_font(widget, state));
+            layout.set_font_description(context.get_font(state));
         layout.get_pixel_size(out layout_w, out layout_h);
 
         if (state == Gtk.StateFlags.NORMAL)
@@ -117,16 +115,10 @@ public abstract class CellRendererPill : Gtk.CellRendererText {
         var cutoff = radius + ((int) xpad / 3);
         switch (junction_side) {
             case Gtk.JunctionSides.RIGHT:
-                if (is_left_to_right(widget))
-                    x = (cell_area.x + cell_area.width) - (w - cutoff);
-                else
-                    x = cell_area.x - cutoff;
+                x = (cell_area.x + cell_area.width) - (layout_w + cutoff);
                 break;
             case Gtk.JunctionSides.LEFT:
-                if (is_left_to_right(widget))
-                    x = cell_area.x - cutoff;
-                else
-                    x = (cell_area.x + cell_area.width) - (w - cutoff);
+                x = cell_area.x - cutoff;
                 break;
             default:
                 x = cell_area.x + (int) ((cell_area.width - w) * xalign);
@@ -168,6 +160,7 @@ public abstract class CellRendererPill : Gtk.CellRendererText {
         int layout_w, layout_h;
         if (xpad < 12) xpad = 12;
         if (ypad < 2) ypad = 2;
+        Gtk.StyleContext context = widget.get_style_context();
         Pango.Layout layout = widget.create_pango_layout(null);
         layout.set_markup(_get_markup(), -1);
         Pango.FontDescription font_desc;
@@ -175,7 +168,7 @@ public abstract class CellRendererPill : Gtk.CellRendererText {
         if (font_desc != null)
             layout.set_font_description(font_desc);
         else
-            layout.set_font_description(get_font(widget));
+            layout.set_font_description(context.get_font(Gtk.StateFlags.NORMAL));
         layout.get_pixel_size(out layout_w, out layout_h);
         w = layout_w + ((int) xpad * 2);
         h = layout_h + ((int) ypad * 2);

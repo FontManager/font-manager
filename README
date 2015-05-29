@@ -1,3 +1,4 @@
+
          _____           _     __  __
         |  ___|__  _ __ | |_  |  \/  | __ _ _ __   __ _  __ _  ___ _ __
         | |_ / _ \| '_ \| __| | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
@@ -9,7 +10,10 @@
        A simple font management application for Gtk+ Desktop Environments
 
 
-|============================= Version 0.7.2 ==================================|
+|============================= Version 0.7.1 ==================================|
+
+
+                   Initial release of Vala/Gtk+3 version.
 
 
 Please DO NOT file issues regarding feature enhancements or missing features at
@@ -52,28 +56,12 @@ Features that are expected to work at this time:
         Note : Fonts in these folders should be available for preview in the
                application even if they are not enabled system wide.
 
-    Opening Font Files
-
-        The application can now be set as the default handler for font files.
-        When called with the path to a font file it will launch as a font viewer.
-        The font viewer is very simple and is only intended for previewing
-        and installing individual font files.
-
-    File Manager Extensions
-
-        When the font viewer is running you should be able to preview font files
-        by simply selecting them in the file manager.
-
-        To enable an extension pass --enable-pycompile --with-nautilus,
-        --with-thunar or --with-nemo to configure.
-
-        For more details and known issues see the README file in the extensions
-        directory.
-
 
 Missing / Planned features :
 
     Help contents
+
+    Font Metadata viewer
 
     Character map details viewer
 

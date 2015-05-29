@@ -1,25 +1,23 @@
 /* FileSelector.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -79,24 +77,24 @@ namespace FontManager {
             var cancel = new Gtk.Button.with_mnemonic(_("_Cancel"));
             var remove = new Gtk.Button.with_mnemonic(_("_Delete"));
             var header = new Gtk.HeaderBar();
-            var content_area = dialog.get_content_area();
-            var scroll = new Gtk.ScrolledWindow(null, null);
-            var tree = new UserFontTree(font_model);
             header.set_title(_("Select fonts to remove"));
             header.pack_start(cancel);
             header.pack_end(remove);
+            cancel.clicked.connect(() => { dialog.response(Gtk.ResponseType.CANCEL); });
+            remove.clicked.connect(() => { dialog.response(Gtk.ResponseType.ACCEPT); });
             dialog.set_titlebar(header);
             dialog.modal = true;
             dialog.destroy_with_parent = true;
             dialog.set_size_request(540, 480);
             dialog.set_transient_for(parent);
-            tree.expand = true;
+            var content_area = dialog.get_content_area();
+            var scroll = new Gtk.ScrolledWindow(null, null);
+            var tree = new UserFontTree(font_model);
+            tree.hexpand = tree.vexpand = true;
             scroll.add(tree);
             content_area.pack_start(scroll, true, true, 0);
             scroll.show_all();
             header.show_all();
-            cancel.clicked.connect(() => { dialog.response(Gtk.ResponseType.CANCEL); });
-            remove.clicked.connect(() => { dialog.response(Gtk.ResponseType.ACCEPT); });
             if (dialog.run() == Gtk.ResponseType.ACCEPT) {
                 dialog.hide();
                 res = tree.to_file_array();

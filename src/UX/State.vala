@@ -1,25 +1,23 @@
 /* State.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -49,9 +47,9 @@ namespace FontManager {
             var preview_text = settings.get_string("preview-text");
             if (preview_text != "DEFAULT")
                 main_window.preview.set_preview_text(preview_text);
-            main_window.sidebar.character_map.mode = (CharacterMapSideBarMode) settings.get_enum("charmap-mode");
             main_window.sidebar.character_map.selected_block = settings.get_string("selected-block");
             main_window.sidebar.character_map.selected_script = settings.get_string("selected-script");
+            main_window.sidebar.character_map.mode = (CharacterMapSideBarMode) settings.get_enum("charmap-mode");
             main_window.sidebar.character_map.set_initial_selection(settings.get_string("selected-script"), settings.get_string("selected-block"));
             var foreground = Gdk.RGBA();
             var background = Gdk.RGBA();
@@ -62,7 +60,6 @@ namespace FontManager {
             if (background_set)
                 main_window.compare.background_color = background;
             main_window.fontlist.controls.set_remove_sensitivity(main_window.sidebar.standard.mode == MainSideBarMode.COLLECTION);
-            main_window.fontlist.controls.set_metadata_sensitivity(main_window.mode == Mode.MANAGE);
             return;
         }
 
@@ -121,6 +118,7 @@ namespace FontManager {
             main_window.mode_changed.connect((i) => {
                 main_window.titlebar.main_menu.active = !main_window.titlebar.main_menu.active;
                 Idle.add(() => {
+                #if GTK_312
                     if (main_window.titlebar.main_menu.use_popover) {
                         main_window.titlebar.main_menu.popover.hide();
                         return main_window.titlebar.main_menu.popover.visible;
@@ -128,6 +126,10 @@ namespace FontManager {
                         main_window.titlebar.main_menu.popup.hide();
                         return main_window.titlebar.main_menu.popup.visible;
                     }
+                #else
+                    main_window.titlebar.main_menu.popup.hide();
+                    return main_window.titlebar.main_menu.popup.visible;
+                #endif
                 });
             });
 
@@ -135,7 +137,7 @@ namespace FontManager {
             NotImplemented.parent = main_window;
 
             main_window.delete_event.connect((w, e) => {
-                ((Application) GLib.Application.get_default()).quit();
+                ((Application) GLib.Application.get_default()).on_quit();
                 return true;
                 }
             );
@@ -186,7 +188,7 @@ namespace FontManager {
             }
         }
 
-        private Gtk.TreePath? restore_last_selected_treepath (Gtk.TreeView tree, string path) {
+        internal Gtk.TreePath? restore_last_selected_treepath (Gtk.TreeView tree, string path) {
             Gtk.TreeIter iter;
             var model = (Gtk.TreeStore) tree.get_model();
             var selection = tree.get_selection();

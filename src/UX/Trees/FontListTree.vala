@@ -1,25 +1,20 @@
 /* FontListTree.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 namespace FontManager {
 
@@ -58,10 +53,10 @@ namespace FontManager {
         }
 
         public string selected_iter { get; protected set; default = "0"; }
-        public FontData? fontdata { get; protected set; default = null; }
         public weak FontConfig.Family? selected_family { get; private set; default = null; }
         public weak FontConfig.Font? selected_font { get; private set; default = null; }
         public FontListControls controls { get; protected set; }
+//        public bool activatable { get; set; }
 
         private weak FontConfig.Reject _reject;
         private weak Gtk.TreeStore? _model = null;
@@ -91,7 +86,7 @@ namespace FontManager {
             set_search_entry(controls.entry);
         }
 
-        private void connect_signals () {
+        internal void connect_signals () {
             get_selection().changed.connect(on_selection_changed);
             toggle.toggled.connect(on_family_toggled);
             controls.expand_all.connect((e) => {
@@ -126,12 +121,12 @@ namespace FontManager {
             return selected;
         }
 
-        public override void drag_begin (Gdk.DragContext context) {
+        protected override void on_drag_begin (Gtk.Widget _widget, Gdk.DragContext context) {
             Gtk.drag_set_icon_name(context, About.ICON, 0, 0);
             return;
         }
 
-        private void on_selection_changed (Gtk.TreeSelection selection) {
+        void on_selection_changed (Gtk.TreeSelection selection) {
             List <Gtk.TreePath> selected = selection.get_selected_rows(null);
             if (selected == null || selected.length() < 1)
                 return;
@@ -151,34 +146,13 @@ namespace FontManager {
                 selected_family = null;
                 selected_font = (FontConfig.Font) obj;
             }
-            try {
-                if (selected_font != null) {
-                    var fontinfo = get_fontinfo_from_db_entry(Main.instance.database, selected_font.filepath);
-                    fontdata = {
-                        File.new_for_path(selected_font.filepath),
-                        selected_font,
-                        fontinfo
-                    };
-                } else {
-                    var target = selected_family.get_default_variant();
-                    var fontinfo = get_fontinfo_from_db_entry(Main.instance.database, target.filepath);
-                    fontdata = {
-                        File.new_for_path(target.filepath),
-                        target,
-                        fontinfo
-                    };
-                }
-            } catch (DatabaseError e) {
-                warning(e.message);
-                fontdata = null;
-            }
             font_selected(description);
             selected_iter = model.get_string_from_iter(iter);
             val.unset();
             return;
         }
 
-        private void on_family_toggled (string path) {
+        void on_family_toggled (string path) {
             Gtk.TreeIter iter;
             Value val;
             model.get_iter_from_string(out iter, path);
@@ -190,22 +164,16 @@ namespace FontManager {
                 reject.add(family.description);
             reject.save();
             val.unset();
-            queue_draw();
             return;
         }
 
-        private void preview_cell_data_func (Gtk.TreeViewColumn layout,
+        void preview_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();
-        #if GTK_316_OR_LATER
-            Pango.AttrList attrs = new Pango.AttrList();
-            attrs.insert(Pango.attr_fallback_new(false));
-            cell.set_property("attributes", attrs);
-        #endif
             if (obj is FontConfig.Family) {
                 cell.set_property("text", ((FontConfig.Family) obj).description);
                 cell.set_property("ypad", 0);
@@ -224,10 +192,16 @@ namespace FontManager {
             return;
         }
 
-        private void toggle_cell_data_func (Gtk.TreeViewColumn layout,
+        void toggle_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
+//            if (!activatable) {
+//                cell.set_property("visible", false);
+//                this.queue_resize();
+//                return;
+//            } else
+//                cell.set_property("visible", true);
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();
@@ -241,7 +215,7 @@ namespace FontManager {
             return;
         }
 
-        private void text_cell_data_func (Gtk.TreeViewColumn layout,
+        void text_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
@@ -263,7 +237,7 @@ namespace FontManager {
             return;
         }
 
-        private void count_cell_data_func (Gtk.TreeViewColumn layout,
+        void count_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
@@ -284,7 +258,7 @@ namespace FontManager {
             return;
         }
 
-        private void set_sensitivity(Gtk.CellRenderer cell, Gtk.TreeIter treeiter, string family) {
+        void set_sensitivity(Gtk.CellRenderer cell, Gtk.TreeIter treeiter, string family) {
             bool inactive = (family in reject);
             cell.set_property("strikethrough" , inactive);
             if (inactive && get_selection().iter_is_selected(treeiter))
@@ -323,25 +297,22 @@ namespace FontManager {
             }
         }
 
-        private bool _loading;
-        private Gtk.Box _box;
-        private Gtk.Box fontlist_box;
-        private Gtk.Revealer revealer;
-        private Gtk.ScrolledWindow scroll;
-//        private Gtk.Menu context_menu;
+        internal bool _loading;
+        internal Gtk.Revealer revealer;
+//        internal Gtk.Menu context_menu;
 
         public FontListTree () {
-            expand = true;
-            scroll = new Gtk.ScrolledWindow(null, null);
+            var scroll = new Gtk.ScrolledWindow(null, null);
             fontlist = new FontList();
-            fontlist.expand = true;
+            fontlist.hexpand = fontlist.vexpand = true;
             progress = new Gtk.ProgressBar();
             progress.halign = progress.valign = Gtk.Align.CENTER;
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             revealer = new Gtk.Revealer();
-            revealer.expand = false;
-            fontlist_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            revealer.hexpand = true;
+            revealer.vexpand = false;
+            var fontlist_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            var _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             _box.pack_start(fontlist.controls, false, true, 0);
             revealer.add(_box);
             fontlist_box.pack_start(revealer, false, true, 0);
@@ -349,28 +320,23 @@ namespace FontManager {
             fontlist_box.pack_end(scroll, true, true, 0);
             add(fontlist_box);
             add_overlay(progress);
-//            context_menu = get_context_menu();
-//            connect_signals();
-        }
-
-        public override void show () {
             _box.show();
             fontlist_box.show();
             revealer.show();
             scroll.show();
             fontlist.show();
-            base.show();
-            return;
+//            context_menu = get_context_menu();
+//            connect_signals();
         }
 
-//        private void connect_signals () {
+//        internal void connect_signals () {
 //            fontlist.menu_request.connect((w, e) => {
 //                context_menu.popup(null, null, null, e.button, e.time);
 //            });
 //            return;
 //        }
 
-//        private Gtk.Menu get_context_menu () {
+//        internal Gtk.Menu get_context_menu () {
 //            MenuEntry [] context_menu_entries = {
 //                /* action_name, display_name, detailed_action_name, accelerator, method */
 //                MenuEntry("font_details", _("Show Details"), "app.font_details", null, new MenuCallbackWrapper(on_show_details)),

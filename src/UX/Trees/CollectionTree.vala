@@ -1,25 +1,23 @@
 /* CollectionTree.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -33,7 +31,6 @@ namespace FontManager {
     public class CollectionTree : Gtk.ScrolledWindow {
 
         public signal void update_ui ();
-        public signal void changed ();
         public signal void selection_changed (Collection group);
         public signal void rename_collection (Collection group, string new_name);
 
@@ -65,7 +62,7 @@ namespace FontManager {
 
         public string selected_iter { get; protected set; default = "0"; }
         public CollectionControls controls { get; protected set; }
-        public BaseTreeView tree { get; protected set; }
+        public Gtk.TreeView tree { get; protected set; }
         public Gtk.CellRendererText renderer { get; protected set; }
         public CellRendererCount count_renderer { get; protected set; }
         public Gtk.CellRendererPixbuf pixbuf_renderer { get; protected set; }
@@ -75,9 +72,8 @@ namespace FontManager {
         private weak FontConfig.Reject _reject;
 
         public CollectionTree () {
-            expand = true;
-            tree = new BaseTreeView();
-            tree.name = "FontManagerCollectionTree";
+            tree = new Gtk.TreeView();
+            tree.name = "CollectionsTree";
             renderer = new Gtk.CellRendererText();
             count_renderer = new CellRendererCount();
             var toggle = new Gtk.CellRendererToggle();
@@ -96,20 +92,15 @@ namespace FontManager {
             tree.get_column(2).expand = false;
             tree.set_headers_visible(false);
             controls = new CollectionControls();
+            controls.show();
             tree.reorderable = true;
             tree.set_tooltip_column(CollectionColumn.COMMENT);
+            tree.show();
             add(tree);
             connect_signals();
         }
 
-        public override void show () {
-            controls.show();
-            tree.show();
-            base.show();
-            return;
-        }
-
-        private void connect_signals () {
+        internal void connect_signals () {
             tree.get_selection().changed.connect(on_selection_changed);
             renderer.edited.connect(on_edited);
             controls.add_selected.connect(() => { on_add_collection(); });
@@ -129,7 +120,6 @@ namespace FontManager {
                 return false;
             });
             selected_collection.set_active_from_fonts(reject);
-            this.changed();
             return res;
         }
 
@@ -159,7 +149,6 @@ namespace FontManager {
             if (collections.has_key(selected_collection.name))
                 collections.unset(selected_collection.name);
             ((Gtk.TreeStore) model).remove(ref _selected_iter_);
-            this.changed();
             return;
         }
 
@@ -168,7 +157,7 @@ namespace FontManager {
             return;
         }
 
-        private void on_edited (Gtk.CellRendererText renderer, string path, string new_text) {
+        internal void on_edited (Gtk.CellRendererText renderer, string path, string new_text) {
             string new_name = new_text.strip();
             if (new_name == selected_collection.name || new_name == "" || model.collections.entries.has_key(new_name)) {
                 return;
@@ -194,7 +183,7 @@ namespace FontManager {
             return;
         }
 
-        private void on_collection_toggled (string path) {
+        internal void on_collection_toggled (string path) {
             Gtk.TreeIter iter;
             Value val;
             model.get_iter_from_string(out iter, path);
@@ -212,7 +201,7 @@ namespace FontManager {
             return;
         }
 
-        private void on_selection_changed (Gtk.TreeSelection selection) {
+        internal void on_selection_changed (Gtk.TreeSelection selection) {
             Gtk.TreeIter iter;
             Gtk.TreeModel model;
             GLib.Value val;
@@ -227,7 +216,7 @@ namespace FontManager {
             return;
         }
 
-        private void text_cell_data_func (Gtk.TreeViewColumn layout,
+        internal void text_cell_data_func (Gtk.TreeViewColumn layout,
                                                Gtk.CellRenderer cell,
                                                Gtk.TreeModel model,
                                                Gtk.TreeIter treeiter) {
@@ -239,7 +228,7 @@ namespace FontManager {
             return;
         }
 
-        private void toggle_cell_data_func (Gtk.TreeViewColumn layout,
+        internal void toggle_cell_data_func (Gtk.TreeViewColumn layout,
                                                 Gtk.CellRenderer cell,
                                                 Gtk.TreeModel model,
                                                 Gtk.TreeIter treeiter) {
@@ -251,7 +240,7 @@ namespace FontManager {
             return;
         }
 
-        private void count_cell_data_func (Gtk.TreeViewColumn layout,
+        internal void count_cell_data_func (Gtk.TreeViewColumn layout,
                                                 Gtk.CellRenderer cell,
                                                 Gtk.TreeModel model,
                                                 Gtk.TreeIter treeiter) {
@@ -263,7 +252,7 @@ namespace FontManager {
             return;
         }
 
-        private void update_and_cache_collections () {
+        internal void update_and_cache_collections () {
             model.update_group_index();
             Idle.add(() => {
                 model.collections.cache();

@@ -1,25 +1,23 @@
 /* CategoryModel.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -36,8 +34,8 @@ namespace FontManager {
             }
         }
 
-        private Gee.ArrayList <Category> categories;
-        private weak Database db;
+        internal Gee.ArrayList <Category> categories;
+        internal weak Database db;
 
         construct {
             set_column_types({typeof(Object), typeof(string), typeof(string), typeof(string), typeof(int), typeof(bool)});
@@ -69,13 +67,13 @@ namespace FontManager {
 
     }
 
-    private Gee.ArrayList <Category> get_default_categories (Database db) {
+    Gee.ArrayList <Category> get_default_categories (Database db) {
         var filters = new Gee.HashMap <string, Category> ();
         filters["All"] = new Category(_("All"), _("All Fonts"), "format-text-bold", null);
         filters["All"].index = 0;
         filters["System"] = new Category(_("System"), _("Fonts available to all users"), "computer", "owner!=0");
         filters["System"].index = 1;
-        filters["User"] = new Category(_("User"), _("Fonts avalable only to you"), "avatar-default", "owner=0 AND filepath LIKE \"%s%\"".printf(get_user_font_dir()));
+        filters["User"] = new Category(_("User"), _("Fonts avalable only to you"), "avatar-default", "owner=0 AND filepath LIKE \"%s%%\"".printf(get_user_font_dir()));
         filters["User"].index = 2;
         filters["Panose"] = construct_panose_filter();
         filters["Panose"].index = 3;
@@ -95,15 +93,13 @@ namespace FontManager {
         filters["Vendor"].index = 10;
         filters["Unsorted"] = new Unsorted();
         filters["Unsorted"].index = 11;
-        filters["Disabled"] = new Disabled();
-        filters["Disabled"].index = 12;
         var sorted_filters = new Gee.ArrayList <Category> ();
         sorted_filters.add_all(filters.values);
         sorted_filters.sort((CompareDataFunc) sort_on_index);
         return sorted_filters;
     }
 
-    private Category construct_panose_filter () {
+    Category construct_panose_filter () {
         var panose = new Category(_("Family Kind"), _("Only fonts which include Panose information will be grouped here."), "folder", "panose IS NOT NULL");
         panose.children.add(new Category(_("Any"), _("Any"), "emblem-documents", "panose LIKE \"0:%\""));
         panose.children.add(new Category(_("No Fit"), _("No Fit"), "emblem-documents", "panose LIKE \"1:%\""));
@@ -114,19 +110,18 @@ namespace FontManager {
         return panose;
     }
 
-    private Category construct_filter (Database db, string name, string comment, string keyword) {
+    Category construct_filter (Database db, string name, string comment, string keyword) {
         var filter = new Category(name, comment, "folder", null);
         try {
             add_children_from_db_results(db, filter.children, keyword);
         } catch (DatabaseError e) {
             warning("Failed to create child categories for %s", name);
-            critical("Database error : %s", e.message);
-            show_error_message(_("There was an error accessing the database"), e);
+            error("Database error : %s", e.message);
         }
         return filter;
     }
 
-    private void add_children_from_db_results (Database db, Gee.ArrayList <Category> filters, string keyword) throws DatabaseError {
+    void add_children_from_db_results (Database db, Gee.ArrayList <Category> filters, string keyword) throws DatabaseError {
         db.execute_query("SELECT DISTINCT %s FROM Fonts ORDER BY %s;".printf(keyword, keyword));
         foreach (var row in db) {
             if (row.column_type(0) == Sqlite.TEXT) {

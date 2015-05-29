@@ -1,25 +1,20 @@
 /* Private.h
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
- *
- * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 
 
@@ -85,19 +80,19 @@ typedef struct _FontConfigFont FontConfigFont;
 typedef struct _FontConfigFontClass FontConfigFontClass;
 typedef struct _FontConfigFontPrivate FontConfigFontPrivate;
 
-#define FONT_CONFIG_TYPE_WEIGHT (font_config_weight_get_type ())
+#define FONT_CONFIG_TYPE_HINT (font_config_hint_get_type ())
+
+#define FONT_CONFIG_TYPE_LCD (font_config_lcd_get_type ())
+
+#define FONT_CONFIG_TYPE_RGBA (font_config_rgba_get_type ())
+
+#define FONT_CONFIG_TYPE_SPACING (font_config_spacing_get_type ())
 
 #define FONT_CONFIG_TYPE_SLANT (font_config_slant_get_type ())
 
 #define FONT_CONFIG_TYPE_WIDTH (font_config_width_get_type ())
 
-#define FONT_CONFIG_TYPE_SPACING (font_config_spacing_get_type ())
-
-#define FONT_CONFIG_TYPE_SUBPIXEL_ORDER (font_config_subpixel_order_get_type ())
-
-#define FONT_CONFIG_TYPE_HINT_STYLE (font_config_hint_style_get_type ())
-
-#define FONT_CONFIG_TYPE_LCD_FILTER (font_config_lcd_filter_get_type ())
+#define FONT_CONFIG_TYPE_WEIGHT (font_config_weight_get_type ())
 
 struct _Cacheable {
 	GObject parent_instance;
@@ -155,23 +150,34 @@ struct _FontConfigFontClass {
 };
 
 typedef enum  {
-	FONT_CONFIG_WEIGHT_THIN = 0,
-	FONT_CONFIG_WEIGHT_EXTRALIGHT = 40,
-	FONT_CONFIG_WEIGHT_ULTRALIGHT = FONT_CONFIG_WEIGHT_EXTRALIGHT,
-	FONT_CONFIG_WEIGHT_LIGHT = 50,
-	FONT_CONFIG_WEIGHT_BOOK = 75,
-	FONT_CONFIG_WEIGHT_REGULAR = 80,
-	FONT_CONFIG_WEIGHT_NORMAL = FONT_CONFIG_WEIGHT_REGULAR,
-	FONT_CONFIG_WEIGHT_MEDIUM = 100,
-	FONT_CONFIG_WEIGHT_DEMIBOLD = 180,
-	FONT_CONFIG_WEIGHT_SEMIBOLD = FONT_CONFIG_WEIGHT_DEMIBOLD,
-	FONT_CONFIG_WEIGHT_BOLD = 200,
-	FONT_CONFIG_WEIGHT_EXTRABOLD = 205,
-	FONT_CONFIG_WEIGHT_BLACK = 210,
-	FONT_CONFIG_WEIGHT_HEAVY = FONT_CONFIG_WEIGHT_BLACK,
-	FONT_CONFIG_WEIGHT_EXTRABLACK = 215,
-	FONT_CONFIG_WEIGHT_ULTRABLACK = FONT_CONFIG_WEIGHT_EXTRABLACK
-} FontConfigWeight;
+	FONT_CONFIG_HINT_NONE,
+	FONT_CONFIG_HINT_SLIGHT,
+	FONT_CONFIG_HINT_MEDIUM,
+	FONT_CONFIG_HINT_FULL
+} FontConfigHint;
+
+typedef enum  {
+	FONT_CONFIG_LCD_NONE,
+	FONT_CONFIG_LCD_DEFAULT,
+	FONT_CONFIG_LCD_LIGHT,
+	FONT_CONFIG_LCD_LEGACY
+} FontConfigLCD;
+
+typedef enum  {
+	FONT_CONFIG_RGBA_UNKNOWN,
+	FONT_CONFIG_RGBA_RGB,
+	FONT_CONFIG_RGBA_BGR,
+	FONT_CONFIG_RGBA_VRGB,
+	FONT_CONFIG_RGBA_VBGR,
+	FONT_CONFIG_RGBA_NONE
+} FontConfigRGBA;
+
+typedef enum  {
+	FONT_CONFIG_SPACING_PROPORTIONAL = 0,
+	FONT_CONFIG_SPACING_DUAL = 90,
+	FONT_CONFIG_SPACING_MONO = 100,
+	FONT_CONFIG_SPACING_CHARCELL = 110
+} FontConfigSpacing;
 
 typedef enum  {
 	FONT_CONFIG_SLANT_ROMAN = 0,
@@ -192,42 +198,29 @@ typedef enum  {
 } FontConfigWidth;
 
 typedef enum  {
-	FONT_CONFIG_SPACING_PROPORTIONAL = 0,
-	FONT_CONFIG_SPACING_DUAL = 90,
-	FONT_CONFIG_SPACING_MONO = 100,
-	FONT_CONFIG_SPACING_CHARCELL = 110
-} FontConfigSpacing;
-
-typedef enum  {
-	FONT_CONFIG_SUBPIXEL_ORDER_UNKNOWN,
-	FONT_CONFIG_SUBPIXEL_ORDER_RGB,
-	FONT_CONFIG_SUBPIXEL_ORDER_BGR,
-	FONT_CONFIG_SUBPIXEL_ORDER_VRGB,
-	FONT_CONFIG_SUBPIXEL_ORDER_VBGR,
-	FONT_CONFIG_SUBPIXEL_ORDER_NONE
-} FontConfigSubpixelOrder;
-
-typedef enum  {
-	FONT_CONFIG_HINT_STYLE_NONE,
-	FONT_CONFIG_HINT_STYLE_SLIGHT,
-	FONT_CONFIG_HINT_STYLE_MEDIUM,
-	FONT_CONFIG_HINT_STYLE_FULL
-} FontConfigHintStyle;
-
-typedef enum  {
-	FONT_CONFIG_LCD_FILTER_NONE,
-	FONT_CONFIG_LCD_FILTER_DEFAULT,
-	FONT_CONFIG_LCD_FILTER_LIGHT,
-	FONT_CONFIG_LCD_FILTER_LEGACY
-} FontConfigLCDFilter;
+	FONT_CONFIG_WEIGHT_THIN = 0,
+	FONT_CONFIG_WEIGHT_EXTRALIGHT = 40,
+	FONT_CONFIG_WEIGHT_ULTRALIGHT = FONT_CONFIG_WEIGHT_EXTRALIGHT,
+	FONT_CONFIG_WEIGHT_LIGHT = 50,
+	FONT_CONFIG_WEIGHT_BOOK = 75,
+	FONT_CONFIG_WEIGHT_REGULAR = 80,
+	FONT_CONFIG_WEIGHT_NORMAL = FONT_CONFIG_WEIGHT_REGULAR,
+	FONT_CONFIG_WEIGHT_MEDIUM = 100,
+	FONT_CONFIG_WEIGHT_DEMIBOLD = 180,
+	FONT_CONFIG_WEIGHT_SEMIBOLD = FONT_CONFIG_WEIGHT_DEMIBOLD,
+	FONT_CONFIG_WEIGHT_BOLD = 200,
+	FONT_CONFIG_WEIGHT_EXTRABOLD = 205,
+	FONT_CONFIG_WEIGHT_BLACK = 210,
+	FONT_CONFIG_WEIGHT_HEAVY = FONT_CONFIG_WEIGHT_BLACK,
+	FONT_CONFIG_WEIGHT_EXTRABLACK = 215,
+	FONT_CONFIG_WEIGHT_ULTRABLACK = FONT_CONFIG_WEIGHT_EXTRABLACK
+} FontConfigWeight;
 
 
 GType cacheable_get_type (void) G_GNUC_CONST;
 GType font_manager_font_info_get_type (void) G_GNUC_CONST;
-FontManagerFontInfo* font_manager_font_info_new_from_filepath (const gchar* filepath, gint index);
-FontManagerFontInfo* font_manager_font_info_construct_from_filepath (GType object_type, const gchar* filepath, gint index);
-FontManagerFontInfo* font_manager_font_info_new (void);
-FontManagerFontInfo* font_manager_font_info_construct (GType object_type);
+FontManagerFontInfo* font_manager_font_info_new (const gchar* filepath, gint index);
+FontManagerFontInfo* font_manager_font_info_construct (GType object_type, const gchar* filepath, gint index);
 gint font_manager_font_info_get_owner (FontManagerFontInfo* self);
 void font_manager_font_info_set_owner (FontManagerFontInfo* self, gint value);
 const gchar* font_manager_font_info_get_filetype (FontManagerFontInfo* self);
@@ -254,7 +247,6 @@ const gchar* font_manager_font_info_get_license_url (FontManagerFontInfo* self);
 void font_manager_font_info_set_license_url (FontManagerFontInfo* self, const gchar* value);
 const gchar* font_manager_font_info_get_panose (FontManagerFontInfo* self);
 void font_manager_font_info_set_panose (FontManagerFontInfo* self, const gchar* value);
-void intl_setup (const gchar* name);
 GType menu_entry_get_type (void) G_GNUC_CONST;
 gpointer menu_callback_wrapper_ref (gpointer instance);
 void menu_callback_wrapper_unref (gpointer instance);
@@ -308,20 +300,20 @@ gint font_config_font_get_owner (FontConfigFont* self);
 void font_config_font_set_owner (FontConfigFont* self, gint value);
 const gchar* font_config_font_get_description (FontConfigFont* self);
 void font_config_font_set_description (FontConfigFont* self, const gchar* value);
-GType font_config_weight_get_type (void) G_GNUC_CONST;
-gchar* font_config_weight_to_string (FontConfigWeight self);
+GType font_config_hint_get_type (void) G_GNUC_CONST;
+gchar* font_config_hint_to_string (FontConfigHint self);
+GType font_config_lcd_get_type (void) G_GNUC_CONST;
+gchar* font_config_lcd_to_string (FontConfigLCD self);
+GType font_config_rgba_get_type (void) G_GNUC_CONST;
+gchar* font_config_rgba_to_string (FontConfigRGBA self);
+GType font_config_spacing_get_type (void) G_GNUC_CONST;
+gchar* font_config_spacing_to_string (FontConfigSpacing self);
 GType font_config_slant_get_type (void) G_GNUC_CONST;
 gchar* font_config_slant_to_string (FontConfigSlant self);
 GType font_config_width_get_type (void) G_GNUC_CONST;
 gchar* font_config_width_to_string (FontConfigWidth self);
-GType font_config_spacing_get_type (void) G_GNUC_CONST;
-gchar* font_config_spacing_to_string (FontConfigSpacing self);
-GType font_config_subpixel_order_get_type (void) G_GNUC_CONST;
-gchar* font_config_subpixel_order_to_string (FontConfigSubpixelOrder self);
-GType font_config_hint_style_get_type (void) G_GNUC_CONST;
-gchar* font_config_hint_style_to_string (FontConfigHintStyle self);
-GType font_config_lcd_filter_get_type (void) G_GNUC_CONST;
-gchar* font_config_lcd_filter_to_string (FontConfigLCDFilter self);
+GType font_config_weight_get_type (void) G_GNUC_CONST;
+gchar* font_config_weight_to_string (FontConfigWeight self);
 gint free_type_num_faces (const gchar* filepath);
 gint free_type_query_file_info (FontManagerFontInfo* fileinfo, const gchar* filepath, gint index);
 gchar* font_config_get_version_string (void);
@@ -481,7 +473,6 @@ LicenseData[] =
             "with font exception",
             "Liberation font software",
             "LIBERATION is a trademark of Red Hat",
-            "this font does not by itself cause the resulting document to be covered by the GNU",
             NULL
         }
     },
@@ -695,6 +686,13 @@ static const struct
 VendorData[] =
 {
 
+    /* Various Sources */
+    {"ACG", "Monotype Imaging"},
+    {"B?", "Bigelow & Holmes"},
+    {"FJ", "Fujitsu"},
+    {"RICO", "Ricoh"},
+
+
     /* Courtesy of Microsoft Typography */
     {"!ETF", "!Exclamachine Type Foundry"},
     {"$pro", "CheapProFonts"},
@@ -715,9 +713,7 @@ VendorData[] =
     {"ABOU", "Aboutype, Inc."},
     {"ACUT", "Acute Type"},
     {"ADBE", "Adobe"},
-    {"ADBO", "Adobe"},
     {"ADG", "Apply Design Group"},
-    {"AE", "AE Type"},
     {"AEF", "Altered Ego Fonts"},
     {"AGFA", "Monotype Imaging (replaced by MONO)"},
     {"AID", "Artistic Imposter Design"},
@@ -738,7 +734,6 @@ VendorData[] =
     {"APPL", "Apple"},
     {"ARBX", "Arabetics"},
     {"ARCH", "Architext"},
-    {"ARIN", "Aring Typeface AB"},
     {"ARPH", "Arphic Technology Co."},
     {"ARS", "EN ARS Ltd."},
     {"ArTy", "Archive Type"},
@@ -767,7 +762,6 @@ VendorData[] =
     {"BLAB", "BaseLab"},
     {"BLAH", "Mister Bla's Fontworx"},
     {"BLI", "Blissym Language Institute"},
-    {"BLV", "Bladvulling"},
     {"BOLD", "Bold Monday"},
     {"BORW", "em2 Solutions"},
     {"BOYB", "BoyBeaver Fonts"},
@@ -835,7 +829,6 @@ VendorData[] =
     {"dtpT", "dtpTypes Limited"},
     {"DUXB", "Duxbury Systems, Inc."},
     {"DYNA", "DynaComware"},
-    {"ECAL", "ECAL Typefaces"},
     {"EDBI", "edilbiStudio"},
     {"EDGE", "Rivers Edge Corp."},
     {"EF", "Elsner+Flake"},
@@ -861,7 +854,6 @@ VendorData[] =
     {"FGOD", "FontGod"},
     {"FJTY", "Frank Jonen - Illustration & Typography"},
     {"FMFO", "Fontmill Foundry"},
-    {"FMST", "Formist"},
     {"FNTF", "Fontfoundry"},
     {"FoFa", "FontFabrik"},
     {"FONT", "Font Source"},
@@ -896,7 +888,6 @@ VendorData[] =
     {"GOAT", "Dingbat Dungeon"},
     {"GOGO", "Fonts-A-Go-Go"},
     {"GOHE", "GoHebrew, division of GoME2.com Inc."},
-    {"GOOG", "Google"},
     {"GPI", "Gamma Productions, Inc."},
     {"GRAF", "Grafikarna d.o.o."},
     {"GREY", "Greyletter"},
@@ -923,7 +914,6 @@ VendorData[] =
     {"HOUS", "House Industries"},
     {"HP", "Hewlett-Packard"},
     {"HS", "HermesSOFT Company"},
-    {"HT", "Huerta Tipográfica"},
     {"HTF", "The Hoefler Type Foundry, Inc."},
     {"HXTP", "Hexatype"},
     {"HY", "HanYang Information & Communication"},
@@ -931,13 +921,11 @@ VendorData[] =
     {"IDAU", "IDAutomation.com, Inc."},
     {"IDEE", "IDEE TYPOGRAFICA"},
     {"IDF", "International Digital Fonts"},
-    {"IFF", "Indian Font Factory"},
     {"IKOF", "IKOffice GmbH"},
     {"ILP", "Indigenous Languages Project"},
     {"IMPR", "Impress"},
     {"INGT", "Ingrimayne Type"},
     {"INRA", "INRAY Inc."},
-    {"INTR", "Interstitial Entertainment"},
     {"INVC", "Invoice Central"},
     {"INVD", "TYPE INVADERS"},
     {"ISE", "ISE-Aditi Info. Pvt . Ltd."},
@@ -953,7 +941,6 @@ VendorData[] =
     {"JHA", "Jan Henrik Arnold"},
     {"JHF", "JH Fonts"},
     {"JPTT", "Jeremy Tankard Typography Ltd"},
-    {"JWTM", "Type Matters"},
     {"JY", "JIYUKOBO Ltd."},
     {"KATF", "Kingsley/ATF"},
     {"KBNT", "Kombinat-Typefounders"},
@@ -979,7 +966,6 @@ VendorData[] =
     {"LFS", "Letters from Sweden"},
     {"LGX", "Logix Research Institute, Inc."},
     {"LHF", "Letterhead Fonts"},
-    {"LIND", "Lindenberg Software LLC"},
     {"LING", "Linguist's Software"},
     {"LINO", "Linotype GmbH"},
     {"LIVE", "Livedesign"},
@@ -998,7 +984,6 @@ VendorData[] =
     {"LUV", "iLUVfonts"},
     {"MACR", "Macromedia / Made with Fontographer"},
     {"MADT", "MADType"},
-    {"MANS", "Aring Typeface AB"},
     {"MAPS", "Tom Mouat's Map Symbol Fonts"},
     {"MATS", "Match Fonts"},
     {"MC", "Cerajewski Computer Consulting"},
@@ -1039,12 +1024,10 @@ VendorData[] =
     {"MTY", "Motoya Co. ,LTD."},
     {"MUTF", "Murasu Systems Sdn. Bhd"},
     {"MVB", "MVB Fonts"},
-    {"MVTP", "Mauve Type"},
     {"MVty", "MV Typo"},
     {"MYFO", "MyFonts.com"},
     {"NB", "No Bodoni Typography"},
     {"ncnd", "&cond;"},
-    {"NDCT", "Neufville Digital Corporatype"},
     {"NDTC", "Neufville Digital"},
     {"NEC", "NEC Corporation"},
     {"NEWL", "Newlyn"},
@@ -1053,14 +1036,12 @@ VendorData[] =
     {"NORF", "Norfok Incredible Font Design"},
     {"NOVA", "NOVATYPE"},
     {"NP", "Nipponia"},
-    {"ODSR", "Oddsorts"},
     {"OHG", "Our House Graphic Design"},
     {"OKAY", "Okay Type Foundry"},
     {"OPTM", "Optimo"},
     {"OPTO", "Opto"},
     {"ORBI", "Orbit Enterprises, Inc."},
     {"ORK1", "Ork1"},
-    {"OSFC", "Out Of Step Font Company"},
     {"OURT", "Ourtype"},
     {"P22", "P22 Inc."},
     {"PARA", "ParaType Inc."},
@@ -1094,7 +1075,6 @@ VendorData[] =
     {"RMU", "RMU TypeDesign"},
     {"robo", "Buro Petr van Blokland"},
     {"RRT", "Red Rooster Collection (ITF, Inc.)"},
-    {"RSJ", "RSJ Software"},
     {"RST", "Rosetta"},
     {"RUDY", "RudynFluffy"},
     {"RYOB", "Ryobi Limited"},
@@ -1161,14 +1141,12 @@ VendorData[] =
     {"TPTC", "Test Pilot Collective"},
     {"TPTQ", "Typotheque"},
     {"TR", "Type Revivals"},
-    {"TRAF", "Traffictype"},
     {"TREE", "Treeflow"},
     {"TS", "TamilSoft Corporation"},
     {"TSPC", "Typespec Ltd"},
     {"TSTY", "Torleiv Georg Sverdrup"},
     {"TT", "TypeTogether"},
     {"TTG", "Twardoch Typography"},
-    {"TTY", "Tipotype"},
     {"TYCU", "TypeCulture"},
     {"TYFR", "typographies.fr"},
     {"TYME", "type me! Font Foundry"},
@@ -1207,13 +1185,6 @@ VendorData[] =
     {"ZeGr", "Zebra Font Factory"},
     {"zeta", "Tangram Studio"},
     {"ZSFT", "Zsoft"},
-
-
-    /* Various Sources */
-    {"ACG", "Monotype Imaging"},
-    {"B?", "Bigelow & Holmes"},
-    {"FJ", "Fujitsu"},
-    {"RICO", "Ricoh"},
 
 };
 

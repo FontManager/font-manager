@@ -1,25 +1,23 @@
 /* CharacterMapSideBar.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -36,158 +34,112 @@ namespace FontManager {
 
         public CharacterMapSideBarMode mode {
             get {
-                if (stack.get_visible_child_name() == "Scripts")
-                    return CharacterMapSideBarMode.SCRIPT;
-                else
-                    return CharacterMapSideBarMode.BLOCK;
+                return (CharacterMapSideBarMode) selector.mode;
             }
             set {
-                if (value == CharacterMapSideBarMode.SCRIPT)
-                    stack.set_visible_child_name("Scripts");
-                else
-                    stack.set_visible_child_name("Blocks");
+                selector.mode = (int) value;
             }
         }
 
-        public string? selected_script { get; set; default = "49"; }
-        public string? selected_block { get; set; default = "1"; }
+        public string? selected_script { get; set; default = null; }
+        public string? selected_block { get; set; default = null; }
 
-        private Gtk.TreeView script_view;
-        private Gtk.TreeView block_view;
-        private Gtk.Stack stack;
-        private Gtk.StackSwitcher switcher;
-        private Gtk.ScrolledWindow script_scroll;
-        private Gtk.ScrolledWindow block_scroll;
-        private Gucharmap.ScriptChaptersModel scripts;
-        private Gucharmap.BlockChaptersModel blocks;
-        private Gee.HashMap <string, int> num_chars;
+        Gtk.TreeView view;
+        ModeSelector selector;
+        Gucharmap.ScriptChaptersModel scripts;
+        Gucharmap.BlockChaptersModel blocks;
+        Gee.HashMap <string, int> num_chars;
 
         public CharacterMapSideBar () {
             orientation = Gtk.Orientation.VERTICAL;
             num_chars = new Gee.HashMap <string, int> ();
-            stack = new Gtk.Stack();
+            selector = new ModeSelector();
             scripts = new Gucharmap.ScriptChaptersModel();
             blocks = new Gucharmap.BlockChaptersModel();
-            script_view = new Gtk.TreeView();
-            block_view = new Gtk.TreeView();
-            script_view.set_model(scripts);
-            block_view.set_model(blocks);
-            Gtk.TreeView [] views = { script_view, block_view };
-            foreach (var view in views) {
-                view.headers_visible = false;
-                var render = new Gtk.CellRendererText();
-                render.ellipsize = Pango.EllipsizeMode.END;
-                var count = new CellRendererCount();
-                count.type_name = null;
-                count.type_name_plural = null;
-                count.xalign = 1.0f;
-                Gtk.TreeSelection selection = view.get_selection();
-                selection.set_mode(Gtk.SelectionMode.SINGLE);
-                view.insert_column_with_attributes(0, null, render, "text", 0, null);
-                view.insert_column_with_data_func(1, "", count, count_cell_data_func);
-                view.get_column(0).expand = true;
-                view.get_column(1).expand = false;
-            }
-            script_scroll = new Gtk.ScrolledWindow(null, null);
-            script_scroll.add(script_view);
-            block_scroll = new Gtk.ScrolledWindow(null, null);
-            block_scroll.add(block_view);
-            stack.add_titled(script_scroll, "Scripts", _("Unicode Script"));
-            stack.add_titled(block_scroll, "Blocks", _("Unicode Block"));
-            switcher = new Gtk.StackSwitcher();
-            switcher.set_stack(stack);
-            stack.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            switcher.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            switcher.set_border_width(6);
-            switcher.halign = Gtk.Align.CENTER;
-            switcher.valign = Gtk.Align.CENTER;
-            pack_end(switcher, false, true, 0);
+            view = new Gtk.TreeView();
+            view.set_model(scripts);
+            view.headers_visible = false;
+            Gtk.TreeSelection selection = view.get_selection();
+            selection.set_mode(Gtk.SelectionMode.SINGLE);
+            var render = new Gtk.CellRendererText();
+            var count = new CellRendererCount();
+            count.type_name = null;
+            count.type_name_plural = null;
+            count.xalign = 1.0f;
+            render.ellipsize = Pango.EllipsizeMode.END;
+            view.insert_column_with_attributes(0, null, render, "text", 0, null);
+            view.insert_column_with_data_func(1, "", count, count_cell_data_func);
+            view.get_column(0).expand = true;
+            view.get_column(1).expand = false;
+            selector.add_mode(new Gtk.Label(_("Unicode Script")));
+            selector.add_mode(new Gtk.Label(_("Unicode Block")));
+            var blend = new Gtk.EventBox();
+            selector.border_width = 5;
+            blend.add(selector);
+            blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            blend.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
+            pack_end(blend, false, true, 0);
             add_separator(this, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
-            pack_start(stack, true, true, 0);
+            var scroll = new Gtk.ScrolledWindow(null, null);
+            scroll.add(view);
+            pack_start(scroll, true, true, 0);
+            view.show();
+            scroll.show();
+            selector.show();
+            blend.show();
             connect_signals();
         }
 
-        public override void show () {
-            script_view.show();
-            block_view.show();
-            stack.show();
-            switcher.show();
-            script_scroll.show();
-            block_scroll.show();
-            base.show();
-            return;
-        }
-
         public void set_initial_selection (string script_path, string block_path) {
-            if (mode == CharacterMapSideBarMode.SCRIPT) {
-                select_block_path(block_path);
-                select_script_path(script_path);
-            } else {
-                select_script_path(script_path);
-                select_block_path(block_path);
-            }
-            return;
-        }
-
-        private void select_script_path (string script_path) {
             Gtk.TreeIter _iter;
-            scripts.get_iter_from_string(out _iter, script_path);
-            script_view.get_selection().select_iter(_iter);
-            script_view.scroll_to_cell(script_view.get_model().get_path(_iter), null, true, 0.5f, 0.5f);
+            if (mode == CharacterMapSideBarMode.SCRIPT)
+                scripts.get_iter_from_string(out _iter, script_path);
+            else
+                blocks.get_iter_from_string(out _iter, block_path);
+            view.get_selection().select_iter(_iter);
+            view.scroll_to_cell(view.get_model().get_path(_iter), null, true, 0.5f, 0.5f);
             return;
         }
 
-        private void select_block_path (string block_path) {
-            Gtk.TreeIter _iter;
-            blocks.get_iter_from_string(out _iter, block_path);
-            block_view.get_selection().select_iter(_iter);
-            block_view.scroll_to_cell(block_view.get_model().get_path(_iter), null, true, 0.5f, 0.5f);
-            return;
-        }
-
-        private void connect_signals () {
-
-            script_view.get_selection().changed.connect((s) => {
+        internal void connect_signals () {
+            view.get_selection().changed.connect((s) => {
                 Gtk.TreeIter? _iter = null;
                 bool selected = s.get_selected(null, out _iter);
-                var model = (Gucharmap.ChaptersModel) script_view.get_model();
+                var model = (Gucharmap.ChaptersModel) view.get_model();
                 if (selected) {
                     selection_changed(model.get_codepoint_list(_iter));
-                    selected_script = ((Gtk.TreeModel) model).get_string_from_iter(_iter);
+                    if (mode == CharacterMapSideBarMode.SCRIPT)
+                        selected_script = ((Gtk.TreeModel) model).get_string_from_iter(_iter);
+                    else
+                        selected_block = ((Gtk.TreeModel) model).get_string_from_iter(_iter);
                 }
             });
 
-            block_view.get_selection().changed.connect((s) => {
-                Gtk.TreeIter? _iter = null;
-                bool selected = s.get_selected(null, out _iter);
-                var model = (Gucharmap.ChaptersModel) block_view.get_model();
-                if (selected) {
-                    selection_changed(model.get_codepoint_list(_iter));
-                    selected_block = ((Gtk.TreeModel) model).get_string_from_iter(_iter);
-                }
-            });
-
-            stack.notify["visible-child-name"].connect(() => {
-                Gtk.TreeIter? iter = null;
-                Gucharmap.ChaptersModel model;
-                if (stack.get_visible_child_name() == "Scripts") {
+            selector.selection_changed.connect((i) => {
+                Gtk.TreeIter? _iter_ = null;
+                if ((CharacterMapSideBarMode) i == CharacterMapSideBarMode.SCRIPT) {
+                    view.set_model(scripts);
+                    if (selected_script == null)
+                        scripts.id_to_iter("Latin", out _iter_);
+                    else
+                        scripts.get_iter_from_string(out _iter_, selected_script);
                     mode = CharacterMapSideBarMode.SCRIPT;
-                    model = (Gucharmap.ChaptersModel) script_view.get_model();
-                    model.get_iter_from_string(out iter, selected_script);
                 } else {
+                    view.set_model(blocks);
+                    if (selected_block == null)
+                        blocks.id_to_iter("Basic Latin", out _iter_);
+                    else
+                        blocks.get_iter_from_string(out _iter_, selected_block);
                     mode = CharacterMapSideBarMode.BLOCK;
-                    model = (Gucharmap.ChaptersModel) block_view.get_model();
-                    model.get_iter_from_string(out iter, selected_block);
                 }
-                if (iter != null)
-                    selection_changed(model.get_codepoint_list(iter));
+                view.get_selection().select_iter(_iter_);
+                view.scroll_to_cell(view.get_model().get_path(_iter_), null, true, 0.5f, 0.5f);
                 mode_set(mode);
             });
-
             return;
         }
 
-        private void count_cell_data_func (Gtk.TreeViewColumn layout,
+        void count_cell_data_func (Gtk.TreeViewColumn layout,
                                     Gtk.CellRenderer cell,
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {

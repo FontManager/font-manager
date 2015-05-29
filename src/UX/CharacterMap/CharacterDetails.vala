@@ -1,25 +1,23 @@
 /* CharacterDetails.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -36,12 +34,11 @@ namespace FontManager {
         }
 
         private unichar ac;
-        private Gtk.Box box;
         private Gtk.Label unicode_label;
         private Gtk.Label name_label;
 
         public CharacterDetails () {
-            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             unicode_label = new Gtk.Label(null);
             unicode_label.halign = Gtk.Align.END;
             unicode_label.selectable = true;
@@ -52,15 +49,9 @@ namespace FontManager {
             box.pack_start(unicode_label, true, true, 2);
             box.pack_end(name_label, true, true, 2);
             add(box);
-            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-        }
-
-        public override void show () {
             unicode_label.show();
             name_label.show();
             box.show();
-            base.show();
-            return;
         }
 
         private void set_details () {

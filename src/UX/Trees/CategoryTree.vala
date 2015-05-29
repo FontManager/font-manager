@@ -1,25 +1,23 @@
 /* CategoryTree.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -50,7 +48,7 @@ namespace FontManager {
 
         public string selected_iter { get; protected set; default = "0"; }
         public Category? selected_filter { get; protected set; default = null; }
-        public BaseTreeView tree { get; protected set; }
+        public Gtk.TreeView tree { get; protected set; }
         public Gtk.CellRendererText renderer { get; protected set; }
         public CellRendererCount count_renderer { get; protected set; }
         public Gtk.CellRendererPixbuf pixbuf_renderer { get; protected set; }
@@ -58,9 +56,7 @@ namespace FontManager {
         private weak CategoryModel _model;
 
         public CategoryTree () {
-            expand = true;
-            tree = new BaseTreeView();
-            tree.name = "FontManagerCategoryTree";
+            tree = new Gtk.TreeView();
             tree.level_indentation = 12;
             renderer = new Gtk.CellRendererText();
             count_renderer = new CellRendererCount();
@@ -82,13 +78,8 @@ namespace FontManager {
             tree.set_tooltip_column(CategoryColumn.COMMENT);
             tree.test_expand_row.connect((t,i,p) => { t.collapse_all(); return false; });
             tree.get_selection().changed.connect(on_selection_changed);
-            add(tree);
-        }
-
-        public override void show () {
             tree.show();
-            base.show();
-            return;
+            add(tree);
         }
 
         public void select_first_row () {
@@ -102,10 +93,10 @@ namespace FontManager {
         }
 
 
-        private void pixbuf_cell_data_func (Gtk.TreeViewColumn layout,
-                                              Gtk.CellRenderer cell,
-                                              Gtk.TreeModel model,
-                                              Gtk.TreeIter treeiter) {
+        internal void pixbuf_cell_data_func (Gtk.CellLayout layout,
+                                      Gtk.CellRenderer cell,
+                                      Gtk.TreeModel model,
+                                      Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, 0, out val);
             var obj = val.get_object();
@@ -117,7 +108,7 @@ namespace FontManager {
             return;
         }
 
-        private void on_selection_changed (Gtk.TreeSelection selection) {
+        internal void on_selection_changed (Gtk.TreeSelection selection) {
             Gtk.TreeIter iter;
             Gtk.TreeModel model;
             GLib.Value val;

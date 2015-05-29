@@ -1,25 +1,23 @@
 /* TitleBar.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -35,11 +33,8 @@ namespace FontManager {
         public Gtk.MenuButton app_menu { get; private set; }
         public Gtk.ToggleButton source_toggle { get; private set; }
 
-        private BaseControls manage_controls;
-        private Gtk.Revealer revealer;
-        private Gtk.Image main_menu_icon;
-        private Gtk.Image app_menu_icon;
-        private Gtk.Box main_menu_container;
+        BaseControls manage_controls;
+        Gtk.Revealer revealer;
 
         public TitleBar () {
             title = About.NAME;
@@ -51,8 +46,8 @@ namespace FontManager {
             show_close_button = false;
             main_menu = new Gtk.MenuButton();
             main_menu.border_width = 2;
-            main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic", Gtk.IconSize.MENU);
-            main_menu_container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 1);
+            var main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic", Gtk.IconSize.MENU);
+            var main_menu_container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 1);
             main_menu_container.pack_start(main_menu_icon, false, false, 0);
             main_menu_label = new Gtk.Label(null);
             main_menu_container.pack_end(main_menu_label, false, true, 0);
@@ -61,7 +56,7 @@ namespace FontManager {
             main_menu.relief = Gtk.ReliefStyle.NONE;
             app_menu = new Gtk.MenuButton();
             app_menu.border_width = 2;
-            app_menu_icon = new Gtk.Image.from_icon_name(About.ICON, Gtk.IconSize.LARGE_TOOLBAR);
+            var app_menu_icon = new Gtk.Image.from_icon_name(About.ICON, Gtk.IconSize.LARGE_TOOLBAR);
             app_menu.add(app_menu_icon);
             app_menu.direction = Gtk.ArrowType.DOWN;
             app_menu.relief = Gtk.ReliefStyle.NONE;
@@ -82,12 +77,6 @@ namespace FontManager {
             pack_start(main_menu);
             pack_start(revealer);
             pack_end(app_menu);
-            revealer.get_style_context().add_class(Gtk.STYLE_CLASS_TITLEBAR);
-            set_menus();
-            connect_signals();
-        }
-
-        public override void show () {
             main_menu_icon.show();
             main_menu_container.show();
             main_menu_label.show();
@@ -96,18 +85,27 @@ namespace FontManager {
             app_menu.show();
             source_toggle.show();
             manage_controls.show();
+            revealer.get_style_context().add_class(Gtk.STYLE_CLASS_TITLEBAR);
             revealer.show();
-            base.show();
-            return;
+            set_menus();
+            connect_signals();
         }
 
-        private void set_menus () {
+        internal void set_menus () {
             main_menu.set_menu_model(get_main_menu_model());
             app_menu.set_menu_model(get_app_menu_model());
+        #if GTK_314
+            if (!main_menu.use_popover) {
+        #endif
+            main_menu.get_popup().halign = Gtk.Align.START;
+            app_menu.get_popup().halign = Gtk.Align.END;
+        #if GTK_314
+            }
+        #endif
             return;
         }
 
-        private void connect_signals () {
+        internal void connect_signals () {
             manage_controls.add_button.clicked.connect(() => {
                 if (source_toggle.get_active())
                     add_selected();
@@ -147,7 +145,7 @@ namespace FontManager {
             return;
         }
 
-        private GLib.MenuModel get_main_menu_model () {
+        internal GLib.MenuModel get_main_menu_model () {
             var application = (Application) GLib.Application.get_default();
             var mode_section = new GLib.Menu();
             string [] modes = {"Default", "Browse", "Compare", "Character Map"};
@@ -160,7 +158,12 @@ namespace FontManager {
             int i = 0;
             foreach (var mode in modes) {
                 i++;
-                application.add_accelerator("<Ctrl>%i".printf(i), "app.mode", "%s".printf(mode));
+//                #if GTK_314
+//                    string [] accels = {"<Ctrl>%i".printf(i)};
+//                    application.set_accels_for_action("app.mode::%s".printf(mode), accels);
+//                #else
+                    application.add_accelerator("<Ctrl>%i".printf(i), "app.mode", "%s".printf(mode));
+//                #endif
                 GLib.MenuItem item = new MenuItem(Mode.parse(mode).to_translatable_string(), "app.mode::%s".printf(mode));
                 item.set_attribute("accel", "s", "<Ctrl>%i".printf(i));
                 mode_section.append_item(item);
@@ -169,19 +172,24 @@ namespace FontManager {
         }
 
 
-        private GLib.MenuModel get_app_menu_model () {
+        internal GLib.MenuModel get_app_menu_model () {
             var application = (Application) GLib.Application.get_default();
             MenuEntry [] app_menu_entries = {
                 /* action_name, display_name, detailed_action_name, accelerator, method */
-                MenuEntry("help", _("Help"), "app.help", "F1", new MenuCallbackWrapper(application.help)),
-                MenuEntry("about", _("About"), "app.about", null, new MenuCallbackWrapper(application.about)),
-                MenuEntry("quit", _("Quit"), "app.quit", "<Ctrl>Q", new MenuCallbackWrapper(application.quit))
+                MenuEntry("about", _("About"), "app.about", null, new MenuCallbackWrapper(application.on_about)),
+                MenuEntry("help", _("Help"), "app.help", "F1", new MenuCallbackWrapper(application.on_help)),
+                MenuEntry("quit", _("Quit"), "app.quit", "<Ctrl>Q", new MenuCallbackWrapper(application.on_quit))
             };
             var app_menu = new GLib.Menu();
             foreach (var entry in app_menu_entries) {
                 add_action_from_menu_entry(application, entry);
                 if (entry.accelerator != null) {
+//                #if GTK_314
+//                    string [] accels = {entry.accelerator};
+//                    application.set_accels_for_action(entry.detailed_action_name, accels);
+//                #else
                     application.add_accelerator(entry.accelerator, entry.detailed_action_name, null);
+//                #endif
                     GLib.MenuItem item = new MenuItem(entry.display_name, entry.detailed_action_name);
                     item.set_attribute("accel", "s", entry.accelerator);
                     app_menu.append_item(item);

@@ -1,25 +1,23 @@
 /* CompareControls.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -42,17 +40,11 @@ namespace FontManager {
             box.pack_end(bg_color_button, false, false, 0);
             box.pack_end(fg_color_button, false, false, 0);
             set_default_button_relief(box);
+            box.show_all();
             connect_signals();
         }
 
-        public override void show () {
-            fg_color_button.show();
-            bg_color_button.show();
-            base.show();
-            return;
-        }
-
-        private new void connect_signals () {
+        internal new void connect_signals () {
             fg_color_button.color_set.connect((w) => { foreground_set(w.get_rgba()); });
             bg_color_button.color_set.connect((w) => { background_set(w.get_rgba()); });
             return;

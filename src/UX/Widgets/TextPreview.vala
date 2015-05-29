@@ -1,25 +1,23 @@
 /* TextPreview.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -38,26 +36,24 @@ namespace FontManager {
             }
         }
 
-        private Pango.FontDescription _font_desc;
+        Pango.FontDescription _font_desc;
 
         public class TextPreview (StandardTextTagTable tag_table) {
             base.init();
             set_orientation(Gtk.Orientation.VERTICAL);
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             preview = new StaticTextView(tag_table);
+            preview.view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
+            preview.view.justification = Gtk.Justification.CENTER;
             preview.view.left_margin = 12;
             preview.view.right_margin = 12;
+            preview.view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
             preview.view.justification = Gtk.Justification.FILL;
             set_preview_text(LOREM_IPSUM);
             pack_start(preview, true, true, 0);
             pack_end(fontscale, false, true, 0);
-        }
-
-        public override void show () {
             preview.show();
             fontscale.show();
-            base.show();
-            return;
         }
 
         public string get_buffer_text () {
@@ -75,9 +71,6 @@ namespace FontManager {
             buffer.get_bounds(out start, out end);
             buffer.apply_tag(preview.tag_table.lookup("FontDescription"), start, end);
             buffer.apply_tag(preview.tag_table.lookup("FontSize"), start, end);
-        #if GTK_316_OR_LATER
-            buffer.apply_tag(preview.tag_table.lookup("FontFallback"), start, end);
-        #endif
             preview.view.set_tooltip_text(_font_desc.to_string());
             preview.queue_draw();
             return;

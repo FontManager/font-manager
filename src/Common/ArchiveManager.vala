@@ -1,28 +1,26 @@
 /* ArchiveManager.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 [DBus (name = "org.gnome.ArchiveManager1")]
-private interface DBusService : Object {
+internal interface DBusService : Object {
 
     public signal void progress (double percent, string message);
 
@@ -39,13 +37,13 @@ public class ArchiveManager : Object {
 
     public signal void progress (string? message, int processed, int total);
 
-    private DBusService? service = null;
+    internal DBusService? service = null;
 
     public void post_error_message (Error e) {
-        critical("Archive Manager : %s", e.message);
+        error("Archive Manager : %s", e.message);
     }
 
-    private void init () {
+    internal void init () {
         try {
             service = Bus.get_proxy_sync(BusType.SESSION, "org.gnome.ArchiveManager1", "/org/gnome/ArchiveManager1");
             service.progress.connect((p, m) => { progress(m, (int) p, 100); });
@@ -57,7 +55,7 @@ public class ArchiveManager : Object {
         return;
     }
 
-    private DBusService file_roller {
+    internal DBusService file_roller {
         get {
             init();
             return service;

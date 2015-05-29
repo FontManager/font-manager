@@ -1,25 +1,23 @@
 /* MainWindow.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
 
@@ -107,8 +105,7 @@ namespace FontManager {
         public TitleBar titlebar { get; private set; }
         public FontList fontlist { get; private set; }
         public FontListTree fonttree { get; private set; }
-        public UserSourceList user_source_list { get; private set; }
-        public Metadata.Pane metadata { get; private set; }
+        public UserSourceTree user_source_tree { get; private set; }
         public State state { get; private set; }
 
         public Mode mode {
@@ -186,14 +183,10 @@ namespace FontManager {
             }
         }
 
-        private bool _loading = false;
-        private bool sidebar_switch = false;
-        private double _progress = 0.0;
-        private Mode _mode;
-        private Gtk.Box separator;
-        private Gtk.Box _main_pane_;
-        private Unsorted? unsorted = null;
-        private Disabled? disabled = null;
+        internal bool _loading = false;
+        internal bool sidebar_switch = false;
+        internal double _progress = 0.0;
+        internal Mode _mode;
 
         construct {
             title = About.NAME;
@@ -203,12 +196,13 @@ namespace FontManager {
         public MainWindow () {
             init_components();
             pack_components();
+            show_components();
             add(main_box);
             connect_signals();
             state = new State(this, Main.instance.settings);
         }
 
-        private void init_components () {
+        internal void init_components () {
             main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             content_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             main_pane = new ThinPaned(Gtk.Orientation.HORIZONTAL);
@@ -222,47 +216,46 @@ namespace FontManager {
             sidebar.add_view(character_map.sidebar, "Character Map");
             titlebar = new TitleBar();
             fonttree = new FontListTree();
-            user_source_list = new UserSourceList();
-            metadata = new Metadata.Pane();
+            user_source_tree = new UserSourceTree();
             fontlist = fonttree.fontlist;
             main_stack = new Gtk.Stack();
             main_stack.set_transition_duration(720);
+        #if GTK_312
             main_stack.set_transition_type(Gtk.StackTransitionType.UNDER_UP);
+        #else
+            main_stack.set_transition_type(Gtk.StackTransitionType.SLIDE_UP_DOWN);
+        #endif
             view_stack = new Gtk.Stack();
             view_stack.add_titled(preview, "Default", _("Preview"));
             view_stack.add_titled(compare, "Compare", _("Compare"));
             view_stack.add_titled(character_map.pane, "Character Map", _("Character Map"));
-            view_stack.add_titled(metadata, "Metadata", "Metadata");
             view_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
             content_stack = new Gtk.Stack();
             content_stack.set_transition_duration(420);
             content_stack.add_titled(content_pane, "Default", _("Manage"));
             content_stack.add_titled(browser, "Browse", _("Browse"));
+        #if GTK_312
             content_stack.set_transition_type(Gtk.StackTransitionType.OVER_LEFT);
+        #else
+            content_stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
+        #endif
             return;
         }
 
-        private void pack_components () {
+        internal void pack_components () {
             main_pane.add1(sidebar);
             main_pane.add2(content_box);
             add_separator(content_box, Gtk.Orientation.VERTICAL);
             content_box.pack_end(content_stack, true, true, 0);
             content_pane.add1(fonttree);
-            separator = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            var separator = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             add_separator(separator, Gtk.Orientation.HORIZONTAL);
+            separator.show();
             separator.pack_end(view_stack, true, true, 0);
             content_pane.add2(separator);
-            _main_pane_ = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            _main_pane_.pack_start(main_pane, true, true, 0);
-            add_separator(_main_pane_, Gtk.Orientation.HORIZONTAL);
-            main_stack.add_named(_main_pane_, "Default");
-            main_stack.add_named(user_source_list, "Sources");
+            main_stack.add_named(main_pane, "Default");
+            main_stack.add_named(user_source_tree, "Sources");
             main_box.pack_end(main_stack, true, true, 0);
-            /* XXX: Should be true by default? It's not... */
-            main_pane.child_set_property(sidebar, "resize", true);
-            main_pane.child_set_property(content_box, "resize", true);
-            content_pane.child_set_property(fonttree, "resize", true);
-            content_pane.child_set_property(separator, "resize", true);
             if (Gnome3()) {
                 set_titlebar(titlebar);
             } else {
@@ -273,9 +266,7 @@ namespace FontManager {
             return;
         }
 
-        public override void show () {
-            separator.show();
-            _main_pane_.show();
+        internal void show_components () {
             content_stack.show();
             view_stack.show();
             main_box.show();
@@ -289,11 +280,8 @@ namespace FontManager {
             sidebar.show();
             titlebar.show();
             fonttree.show();
-            user_source_list.show();
-            metadata.show();
+            user_source_tree.show();
             main_stack.show();
-            state.restore();
-            base.show();
             return;
         }
 
@@ -307,11 +295,20 @@ namespace FontManager {
             font_model = Main.instance.font_model;
             collections = Main.instance.collection_model;
             categories = Main.instance.category_model;
-            user_source_list.sources = Main.instance.fontconfig.sources;
+            user_source_tree.model = Main.instance.user_source_model;
             return;
         }
 
-        private void real_set_mode (Mode mode, bool loading) {
+        public void queue_reload () {
+            /* Note : There's a 2 second delay built into FontConfig */
+            Timeout.add_seconds(3, () => {
+                Main.instance.update();
+                return false;
+            });
+            return;
+        }
+
+        internal void real_set_mode (Mode mode, bool loading) {
             _mode = mode;
             titlebar.source_toggle.set_active(false);
             titlebar.main_menu_label.set_markup("<b>%s</b>".printf(mode.to_translatable_string()));
@@ -325,7 +322,6 @@ namespace FontManager {
             titlebar.reveal_controls((mode == Mode.MANAGE));
             fonttree.show_controls = (mode != Mode.BROWSE);
             fontlist.controls.set_remove_sensitivity((mode == Mode.MANAGE && sidebar.standard.mode == MainSideBarMode.COLLECTION));
-            fontlist.controls.set_metadata_sensitivity((mode == Mode.MANAGE));
             fontlist.queue_draw();
             if (mode == Mode.BROWSE)
                 browser.treeview.queue_draw();
@@ -333,7 +329,7 @@ namespace FontManager {
             return;
         }
 
-        private void update_font_model (Filter? filter) {
+        internal void update_font_model (Filter? filter) {
             if (filter == null)
                 return;
             font_model = null;
@@ -344,7 +340,7 @@ namespace FontManager {
             return;
         }
 
-        private void set_font_desc (Pango.FontDescription font_desc) {
+        internal void set_font_desc (Pango.FontDescription font_desc) {
             preview.font_desc = font_desc;
             compare.font_desc = font_desc;
             character_map.font_desc = font_desc;
@@ -354,32 +350,20 @@ namespace FontManager {
             return;
         }
 
-        private Category get_category_by_index (int index) {
+        internal void update_unsorted_category () {
             Value val;
             Gtk.TreeIter iter;
-            Main.instance.category_model.get_iter_from_string(out iter, index.to_string());
+            Main.instance.category_model.get_iter_from_string(out iter, "11");
             Main.instance.category_model.get_value(iter, 0, out val);
-            var result = (Category) val.get_object();
-            val.unset();
-            return result;
-        }
-
-        private void update_unsorted_category () {
-            if (unsorted == null)
-                unsorted = (Unsorted) get_category_by_index(11);
+            var unsorted = (Unsorted) val.get_object();
+            unsorted.update(Main.instance.database);
             var collections = Main.instance.collections;
-            unsorted.update(Main.instance.database, collections.get_full_contents());
+            unsorted.families.remove_all(collections.get_full_contents());
+            val.unset();
             return;
         }
 
-        private void update_disabled_category () {
-            if (disabled == null)
-                disabled = (Disabled) get_category_by_index(12);
-            disabled.update(Main.instance.database, Main.instance.fontconfig.reject);
-            return;
-        }
-
-        private void connect_signals () {
+        internal void connect_signals () {
             mode_changed.connect((m) => {
                 var action_map = (Application) GLib.Application.get_default();
                 var action = ((SimpleAction) action_map.lookup_action("mode"));
@@ -395,8 +379,6 @@ namespace FontManager {
                     return;
                 if (c is Unsorted)
                     update_unsorted_category();
-                else if (c is Disabled)
-                    update_disabled_category();
                 update_font_model(c);
                 }
             );
@@ -421,9 +403,8 @@ namespace FontManager {
 
             fontlist.font_selected.connect((string_desc) => {
                 set_font_desc(Pango.FontDescription.from_string(string_desc));
-                if (view_stack.get_visible_child_name() == "Metadata")
-                    metadata.update(fontlist.fontdata);
-            });
+                }
+            );
 
             fontlist.controls.remove_selected.connect(() => {
                 sidebar.standard.collection_tree.remove_fonts(fontlist.get_selected_families());
@@ -464,11 +445,8 @@ namespace FontManager {
                 sidebar.standard.collection_tree.queue_draw();
                 fontlist.queue_draw();
                 browser.queue_draw();
-            });
-
-            sidebar.standard.collection_tree.changed.connect(() => {
-                update_unsorted_category();
-            });
+                }
+            );
 
             titlebar.install_selected.connect(() => {
                 var selected = FileSelector.run_install((Gtk.Window) this);
@@ -477,12 +455,12 @@ namespace FontManager {
             });
 
             titlebar.add_selected.connect(() => {
-                user_source_list.on_add_source();
+                user_source_tree.on_add_source();
             });
 
             titlebar.remove_selected.connect(() => {
                 if (titlebar.source_toggle.get_active())
-                    user_source_list.on_remove_source();
+                    user_source_tree.on_remove_source();
                 else
                     remove_fonts();
             });
@@ -490,45 +468,36 @@ namespace FontManager {
             titlebar.manage_sources.connect((a) => {
                 if (a)
                     main_stack.set_visible_child_name("Sources");
-                else
+                else {
                     main_stack.set_visible_child_name("Default");
-            });
-
-            view_stack.notify["visible-child-name"].connect(() => {
-                if (view_stack.get_visible_child_name() == "Metadata")
-                    metadata.update(fontlist.fontdata);
+                    if (Main.instance.fontconfig.sources.update_required) {
+                        Main.instance.fontconfig.sources.update_required = false;
+                        queue_reload();
+                    }
+                }
             });
 
             main_stack.notify["visible-child-name"].connect(() => {
+            #if GTK_312
                 if (main_stack.get_visible_child_name() == "Default")
                     main_stack.set_transition_type(Gtk.StackTransitionType.UNDER_UP);
                 else
                     main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN);
+            #endif
             });
 
             content_stack.notify["visible-child-name"].connect(() => {
+            #if GTK_312
                 if (content_stack.get_visible_child_name() == "Default")
                     content_stack.set_transition_type(Gtk.StackTransitionType.OVER_LEFT);
                 else
                     content_stack.set_transition_type(Gtk.StackTransitionType.UNDER_RIGHT);
-            });
-
-            fontlist.controls.show_metadata.connect((s) => {
-                if (s)
-                    view_stack.set_visible_child_name("Metadata");
-                else
-                    view_stack.set_visible_child_name(mode.settings()[1]);
-            });
-
-            Main.instance.fontconfig.reject.changed.connect(() => {
-                update_disabled_category();
-                if (sidebar.standard.category_tree.selected_filter is Disabled)
-                    update_font_model(sidebar.standard.category_tree.selected_filter);
+            #endif
             });
 
         }
 
-        private void remove_fonts () {
+        internal void remove_fonts () {
             var _model = new UserFontModel(Main.instance.fontconfig.families, Main.instance.database);
             var arr = FileSelector.run_removal((Gtk.Window) this, _model);
             if (arr != null) {
@@ -541,14 +510,14 @@ namespace FontManager {
                     fonttree.progress.set_fraction((float) p / (float) t);
                     ensure_ui_update();
                 };
-                Main.instance.fontconfig.sources.cancel_monitors();
+                Main.instance.fontconfig.cancel_monitors();
                 Library.Remove.from_file_array(arr);
                 queue_reload();
             }
             return;
         }
 
-        private void install_fonts (string [] arr) {
+        internal void install_fonts (string [] arr) {
             fonttree.loading = true;
             font_model = null;
             fonttree.progress.set_fraction(0f);
@@ -556,7 +525,7 @@ namespace FontManager {
                 fonttree.progress.set_fraction((float) p / (float) t);
                 ensure_ui_update();
             };
-            Main.instance.fontconfig.sources.cancel_monitors();
+            Main.instance.fontconfig.cancel_monitors();
             Library.Install.from_uri_array(arr);
             fonttree.loading = false;
             font_model = Main.instance.font_model;
@@ -564,13 +533,13 @@ namespace FontManager {
             return;
         }
 
-        private void on_drag_data_received (Gtk.Widget widget,
-                                            Gdk.DragContext context,
-                                            int x,
-                                            int y,
-                                            Gtk.SelectionData selection_data,
-                                            uint info,
-                                            uint time)
+        void on_drag_data_received (Gtk.Widget widget,
+                                    Gdk.DragContext context,
+                                    int x,
+                                    int y,
+                                    Gtk.SelectionData selection_data,
+                                    uint info,
+                                    uint time)
         {
             switch (info) {
                 case DragTargetType.FAMILY:
@@ -586,8 +555,8 @@ namespace FontManager {
             return;
         }
 
-        private void family_drop_handler (Gtk.Widget widget, int x, int y) {
-            if (!(widget.name == "FontManagerCollectionTree"))
+        void family_drop_handler (Gtk.Widget widget, int x, int y) {
+            if (!(widget.name == "CollectionsTree"))
                 return;
             Gtk.TreePath path;
             var tree = widget as Gtk.TreeView;

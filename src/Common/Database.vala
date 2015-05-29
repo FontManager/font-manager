@@ -1,29 +1,25 @@
 /* Database.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 namespace FontManager {
-
-    private static Database? db = null;
 
     /* Error mapping/checking originally from Shotwell code */
     public errordomain DatabaseError {
@@ -72,6 +68,7 @@ namespace FontManager {
         public string select { get; set; default = "*"; }
         public int limit { get; set; default = -1; }
         public bool unique { get; set; default = false; }
+        public bool debug { get; set; default = false; }
         public int result { get; protected set; default = Sqlite.OK; }
 
         private bool in_transaction = false;
@@ -81,21 +78,6 @@ namespace FontManager {
         ~ Database () {
             close();
         }
-
-        public int get_version () throws DatabaseError {
-            execute_query("PRAGMA user_version;");
-            if (stmt.step() == Sqlite.ROW)
-                return stmt.column_int(0);
-            return 0;
-        }
-
-        public void set_version (int version) throws DatabaseError {
-            string sql = "PRAGMA user_version = %i;".printf(version);
-            execute_query(sql);
-            check_result(stmt.step(), "set version", Sqlite.DONE);
-            return;
-        }
-
 
         public void open () throws DatabaseError ensures (db != null) {
             if (db != null)
@@ -167,7 +149,8 @@ namespace FontManager {
             string? sql = query;
             if (sql == null)
                 sql = build_select_query();
-            Logger.verbose("SQLite : %s", sql);
+            if (debug)
+                GLib.debug("SQLite : %s", sql);
             check_result(db.prepare_v2(sql, -1, out stmt), "prepare_v2", Sqlite.OK);
             return;
         }
@@ -267,10 +250,8 @@ namespace FontManager {
 
     }
 
-    private Database get_database() throws DatabaseError {
-        if (db != null)
-            return db;
-        db = new Database();
+    Database get_database() throws DatabaseError {
+        Database db = new Database();
         db.file = get_database_file();
         db.execute_query(CREATE_SQL);
         db.check_result(db.stmt.step(), "Initialize database if needed", Sqlite.DONE);
@@ -278,18 +259,17 @@ namespace FontManager {
         return db;
     }
 
-    private string get_database_file () {
+    internal string get_database_file () {
         string dirpath = Path.build_filename(Environment.get_user_cache_dir(), NAME);
         string filepath = Path.build_filename(dirpath, "%s.sqlite".printf(NAME));
         DirUtils.create_with_parents(dirpath, 0755);
         return filepath;
     }
 
-    private void sync_fonts_table (Database db,
-                                    Gee.ArrayList <FontConfig.Font> installed_fonts,
-                                    ProgressCallback? progress = null)
+    void sync_fonts_table (Database db,
+                           Gee.ArrayList <FontConfig.Font> installed_fonts,
+                           ProgressCallback? progress = null)
     throws DatabaseError {
-        Logger.verbose("Starting database synchronization : Font table");
         int processed = 0;
         int total = installed_fonts.size;
         var known_files = get_known_files(db);
@@ -297,7 +277,7 @@ namespace FontManager {
         db.execute_query("""INSERT OR REPLACE INTO Fonts VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);""");
         foreach (var font in installed_fonts) {
             if (!(font.filepath in known_files)) {
-                var fileinfo = new FontInfo.from_filepath(font.filepath, font.index);
+                var fileinfo = new FontInfo(font.filepath, font.index);
                 db.check_result(db.stmt.bind_text(1, font.family), "bind_*", Sqlite.OK);
                 db.check_result(db.stmt.bind_text(2, font.style), "bind_*", Sqlite.OK);
                 db.check_result(db.stmt.bind_int(3, font.slant), "bind_*", Sqlite.OK);
@@ -328,11 +308,10 @@ namespace FontManager {
             db.stmt.reset();
         }
         db.commit_transaction();
-        Logger.verbose("Database synchronization complete : Font table");
         return;
     }
 
-    private Gee.HashSet <string> get_known_files (Database db) {
+    internal Gee.HashSet <string> get_known_files (Database db) {
         var results = new Gee.HashSet <string> ();
         db.reset();
         db.table = "Fonts";
@@ -343,18 +322,17 @@ namespace FontManager {
             foreach (var row in db)
                 results.add(row.column_text(0));
         } catch (DatabaseError e) {
-            critical("Database Error : %s", e.message);
-            show_error_message(_("There was an error accessing the database"), e);
+            error("Database Error : %s", e.message);
         }
         db.close();
         return results;
     }
 
 
-    private void get_matching_families_and_fonts (Database db,
-                                                    Gee.HashSet <string> families,
-                                                    Gee.HashSet <string> descriptions,
-                                                    string? search = null)
+    void get_matching_families_and_fonts (Database db,
+                                            Gee.HashSet <string> families,
+                                            Gee.HashSet <string> descriptions,
+                                            string? search = null)
     throws DatabaseError {
         db.reset();
         db.table = "Fonts";
@@ -373,13 +351,13 @@ namespace FontManager {
         return;
     }
 
-    private Gee.HashMap <string, string> get_user_filemap (Database db)
+    Gee.HashMap <string, string> get_user_filemap (Database db)
     throws DatabaseError {
         var res = new Gee.HashMap <string, string> ();
         db.reset();
         db.table = "Fonts";
         db.select = "font_description, filepath";
-        db.search = "owner=\"0\" AND filepath LIKE \"%s%\"".printf(get_user_font_dir());
+        db.search = "owner=0 AND filepath LIKE \"%s%\"".printf(get_user_font_dir());
         db.unique = true;
         db.execute_query();
         foreach (var row in db)
@@ -387,33 +365,5 @@ namespace FontManager {
         db.close();
         return res;
     }
-
-    private FontInfo? get_fontinfo_from_db_entry (Database db, string filepath)
-    throws DatabaseError {
-        db.reset();
-        db.table = "Fonts";
-        db.select = "*";
-        db.search = "filepath=\"%s\"".printf(filepath);
-        db.unique = true;
-        db.execute_query();
-        if (db.stmt.step() != Sqlite.ROW)
-            return null;
-        var res = new FontInfo();
-        unowned ObjectClass obj_cls = res.get_class();
-        int cols = db.stmt.column_count ();
-        var val = Value(typeof(string));
-        for (int i = 0; i < cols; i++) {
-            if (db.stmt.column_type(i) != Sqlite.TEXT)
-                continue;
-            string name = db.stmt.column_name(i);
-            val = db.stmt.column_text(i);
-            if (obj_cls.find_property(name) != null)
-                ((Object) res).set_property(name, val);
-        }
-        val.unset();
-        return res;
-    }
-
-
 
 }

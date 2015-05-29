@@ -1,25 +1,23 @@
 /* MainSideBar.vala
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright © 2009 - 2014 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
-*/
+ *  Jerry Casiano <JerryCasiano@gmail.com>
+ */
 
 
 namespace FontManager {
@@ -51,29 +49,26 @@ namespace FontManager {
         public CategoryTree category_tree { get; private set; }
         public CollectionTree collection_tree { get; private set; }
 
-        private Gtk.Stack stack;
-        private Gtk.StackSwitcher switcher;
-        private Gtk.Revealer revealer1;
-        private Gtk.Box collection_box;
-        private Gtk.Box _box;
-        private Gtk.EventBox blend;
-        private Gtk.Box main_box;
+        Gtk.Stack stack;
+        Gtk.StackSwitcher switcher;
+        Gtk.Revealer revealer1;
 
         public MainSideBar () {
-            main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            var main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             stack = new Gtk.Stack();
             stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
             switcher = new Gtk.StackSwitcher();
             switcher.set_stack(stack);
-            switcher.set_border_width(6);
+            switcher.set_border_width(5);
             switcher.halign = Gtk.Align.CENTER;
             switcher.valign = Gtk.Align.CENTER;
             category_tree = new CategoryTree();
             collection_tree = new CollectionTree();
-            collection_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            var collection_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             revealer1 = new Gtk.Revealer();
-            revealer1.expand = false;
-            _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            revealer1.hexpand = true;
+            revealer1.vexpand = false;
+            var _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             _box.pack_start(collection_tree.controls, false, true, 0);
             revealer1.add(_box);
             collection_box.pack_start(revealer1, false, true, 0);
@@ -81,28 +76,21 @@ namespace FontManager {
             stack.add_titled(category_tree, "0", _("Categories"));
             stack.add_titled(collection_box, "1", _("Collections"));
             mode = MainSideBarMode.CATEGORY;
-            blend = new Gtk.EventBox();
+            var blend = new Gtk.EventBox();
             blend.add(switcher);
             blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            blend.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
             main_box.pack_end(blend, false, true, 0);
             add_separator(main_box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
             main_box.pack_start(stack, true, true, 0);
-            add(main_box);
-            connect_signals();
-        }
-
-        public override void show () {
-            _box.show();
-            revealer1.show();
-            collection_tree.show();
-            collection_box.show();
+            collection_box.show_all();
             category_tree.show();
             stack.show();
             switcher.show();
             blend.show();
             main_box.show();
-            base.show();
-            return;
+            add(main_box);
+            connect_signals();
         }
 
         public void reveal_collection_controls (bool reveal) {
@@ -110,7 +98,7 @@ namespace FontManager {
             return;
         }
 
-        private void connect_signals () {
+        internal void connect_signals () {
             category_tree.selection_changed.connect((f, i) => {
                 category_selected(f, i);
                 selected_category = f;
