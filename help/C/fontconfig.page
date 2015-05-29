@@ -1,0 +1,53 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="fontconfig">
+
+    <info>
+        <link type="guide" xref="index#additional"/>
+        <link type="seealso" xref="alias"/>
+        <desc>Edit Font Rendering Settings</desc>
+    </info>
+
+    <title>Advanced Settings</title>
+
+        <p>
+        The advanced settings dialog allows you to edit fontconfig settings for
+        individual families and styles.
+        </p>
+
+        <steps>
+            <item>
+                <p>
+                Click on
+                <gui>
+                    <media type="image" src="figures/font-preferences.png"/>
+                </gui>
+                in the
+                <link xref="ui#statusbar">Statusbar</link>
+                </p>
+            </item>
+            <item>
+                <p>
+                Select
+                <gui style="button">
+                Advanced Settings
+                </gui>
+                from the popup menu that is displayed
+                </p>
+            </item>
+        </steps>
+
+        <p>
+        The options displayed in the dialog apply to the currently selected
+        family and style, no changes are made until you click
+        <gui style="button">Write Configuration</gui>.
+        At that point the configuration file will be written which will include
+        settings for any styles in the selected family which have modifications.
+        </p>
+
+        <p>
+        Available options are documented at
+        <link href="http://www.fontconfig.org/fontconfig-user.html">www.fontconfig.org</link>
+        </p>
+
+</page>
