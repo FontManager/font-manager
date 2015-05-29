@@ -1,36 +1,62 @@
-include Flags.mk
-include ValaSources.mk
 
-resource_dir = ${abs_top_builddir}/resources
-GLIB_COMPILE_RESOURCES = \
-`$(PKG_CONFIG) --variable=glib_compile_resources gio-2.0`
+CC = @CC@
+FLAGS = -fPIC -shared -D_REENTRANT
+LIBS = $(fontconfig_LIBS)$(freetype2_LIBS)$(glib_LIBS)
+INCLUDES = $(fontconfig_CFLAGS)$(freetype2_CFLAGS)$(glib_CFLAGS)
+PyInclude = -I`python -c 'import distutils.sysconfig; print "%s" % distutils.sysconfig.get_python_inc()'`
 
-FontManagerGResource.c :
-	$(GLIB_COMPILE_RESOURCES) \
-	--sourcedir=$(resource_dir) \
-	--generate-source \
-	--target=$@ \
-	$(resource_dir)/FontManagerGResource.xml
+default: all
 
-BUILT_SOURCES = FontManagerGResource.c
+fontutils:
+	$(CC) _fontutils.c $(FLAGS) $(PyInclude) $(INCLUDES)$(LIBS)-o _fontutils.so
+	$(STRIP) --strip-unneeded _fontutils.so
 
-font_manager_SOURCES = \
-	$(font_manager_VALASOURCES) \
-	Glue/_Glue_.c \
-	Glue/Private.h \
-	$(BUILT_SOURCES)
+constants.py: constants.py.in
+	@sed \
+		-e 's|@PACKAGE_NAME[@]|$(PACKAGE_NAME)|g' \
+		-e 's|@PACKAGE_VERSION[@]|$(PACKAGE_VERSION)|g' \
+		-e 's|@LOCALEDIR[@]|$(datadir)/locale|g' \
+		< $< \
+		> $@
 
-bin_PROGRAMS = font-manager
+all: constants.py fontutils
+	@python -m compileall .
+	@python -O -m compileall .
 
-EXTRA_DIST = $(font_manager_VALASOURCES)
+make-install-dirs:
+	@mkdir -p $(DESTDIR)$(prefix)/bin
+	@mkdir -p $(DESTDIR)$(prefix)/lib/font-manager
+	@mkdir -p $(DESTDIR)$(prefix)/share/applications
+	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager
+	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager/core
+	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager/data
+	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager/ui
+	@mkdir -p $(DESTDIR)$(prefix)/share/font-manager/utils
 
-dist-hook:
-	cd $(distdir) && \
-	rm -f $(font_manager_VALASOURCES:.vala=.c) \
-	$(BUILT_SOURCES) \
-	font_manager_vala.stamp
+install: all make-install-dirs
+	install -m 755 font-manager $(DESTDIR)$(prefix)/bin/
+	install -m 755 font-sampler $(DESTDIR)$(prefix)/bin/
+	install -m 644 *.so $(DESTDIR)$(prefix)/lib/font-manager/
+	install -m 644 *.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/
+	install -m 644 core/*.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/core/
+	install -m 644 data/* $(DESTDIR)$(prefix)/share/font-manager/data/
+	install -m 644 ui/*.py{,c,o} $(DESTDIR)$(prefix)/share/font-manager/ui/
+	install -m 644 utils/* $(DESTDIR)$(prefix)/share/font-manager/utils/
+	install -m 644 *.desktop $(DESTDIR)$(prefix)/share/applications/
 
-clean-local:
-	rm -f $(font_manager_VALASOURCES:.vala=.c) \
-	$(BUILT_SOURCES) \
-	font_manager_vala.stamp
+uninstall:
+	@rm -fv $(DESTDIR)$(prefix)/bin/font-manager
+	@rm -rfv $(DESTDIR)$(prefix)/lib/font-manager
+	@rm -rfv $(DESTDIR)$(prefix)/share/font-manager
+	@rm -fv $(DESTDIR)$(prefix)/share/applications/font-manager.desktop
+
+clean:
+	@rm -f font-manager font-sampler _fontutils.so
+	@find . -type f -name '*.py[co]' -exec rm -f '{}' \;
+
+distclean: clean
+	@rm -f font-manager _fontutils.so
+	@rm -f constants.py constants.py.in
+	@rm -f main.py
+	@rm -f core/__init__.py
+	@rm -f Makefile
