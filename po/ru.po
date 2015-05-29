@@ -1,0 +1,1341 @@
+# Russian translation for font-manager
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the font-manager package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: font-manager\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2010-12-15 23:11-0500\n"
+"PO-Revision-Date: 2010-10-15 07:29+0000\n"
+"Last-Translator: TheMengzor <The.Mengzor@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2010-12-17 06:33+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#: ../src/data/actions.ui.h:1
+msgid ""
+"\n"
+"By default the filepath for the selected font will be appended to the end of "
+"the argument list. To control where the filepath is inserted use FILEPATH as "
+"a placeholder.\n"
+"\n"
+"If FAMILY or STYLE are found in the argument list they will also be "
+"replaced.\n"
+"\n"
+"Quotes used in arguments should be escaped with a backslash."
+msgstr ""
+
+#: ../src/data/actions.ui.h:7
+msgid "<b>Actions</b>"
+msgstr "<b>Действия</b>"
+
+#: ../src/data/actions.ui.h:8
+msgid "Add"
+msgstr "Добавить"
+
+#: ../src/data/actions.ui.h:9
+msgid "Arguments :"
+msgstr "Параметры:"
+
+#: ../src/data/actions.ui.h:10 ../src/data/font-manager.ui.h:60
+msgid "Cancel"
+msgstr "Отмена"
+
+#: ../src/data/actions.ui.h:11 ../src/data/font-manager.ui.h:63
+msgid "Close"
+msgstr "Закрыть"
+
+#: ../src/data/actions.ui.h:12
+msgid "Comment :"
+msgstr "Комментарий :"
+
+#: ../src/data/actions.ui.h:13
+msgid "Configure Actions"
+msgstr "Настройки действий"
+
+#: ../src/data/actions.ui.h:14
+msgid "Edit"
+msgstr "Изменить"
+
+#: ../src/data/actions.ui.h:15
+msgid "Executable :"
+msgstr "Приложение:"
+
+#: ../src/data/actions.ui.h:16
+msgid "Name :"
+msgstr "Имя:"
+
+#: ../src/data/actions.ui.h:17
+msgid "New action"
+msgstr "Новое действие"
+
+#: ../src/data/actions.ui.h:18 ../src/data/font-manager.ui.h:124
+msgid "OK"
+msgstr "OK"
+
+#: ../src/data/actions.ui.h:19
+msgid "Open"
+msgstr "Открыть"
+
+#: ../src/data/actions.ui.h:20
+msgid "Remove"
+msgstr "Удалить"
+
+#: ../src/data/actions.ui.h:21
+msgid "Restart when done"
+msgstr "Перезапустить после выполнения"
+
+#: ../src/data/actions.ui.h:22
+msgid "Run command in terminal"
+msgstr "Выполнить команду в терминале"
+
+#: ../src/data/actions.ui.h:23
+msgid "Select a program..."
+msgstr "Выберите программу"
+
+#: ../src/data/actions.ui.h:24
+msgid "Wait for action to finish"
+msgstr "Ожидать действия для завершения"
+
+#: ../src/data/font-information.ui.h:1
+msgid "<b>Embedded License</b>"
+msgstr "<b>Встроенная лицензия</b>"
+
+#: ../src/data/font-information.ui.h:2
+msgid "Copyright :"
+msgstr "Copyright:"
+
+#: ../src/data/font-information.ui.h:3
+msgid "Description :"
+msgstr "Описание:"
+
+#: ../src/data/font-information.ui.h:4 ../src/data/font-manager.ui.h:92
+msgid "Family :"
+msgstr "Гарнитура:"
+
+#: ../src/data/font-information.ui.h:5
+msgid "File Information"
+msgstr "Информация о файле"
+
+#: ../src/data/font-information.ui.h:6
+msgid "Filename :"
+msgstr "Имя файла :"
+
+#: ../src/data/font-information.ui.h:7
+msgid "Filesize :"
+msgstr "Размер файла:"
+
+#: ../src/data/font-information.ui.h:8 ../src/data/font-manager.ui.h:95
+msgid "Filetype :"
+msgstr "Тип файла:"
+
+#: ../src/data/font-information.ui.h:9
+msgid "Font Information"
+msgstr "Информация о шрифте"
+
+#: ../src/data/font-information.ui.h:10
+msgid "License Information"
+msgstr "Информация о лицензии"
+
+#: ../src/data/font-information.ui.h:11
+msgid "Style :"
+msgstr "Стиль:"
+
+#: ../src/data/font-information.ui.h:12 ../src/ui/previews.py:565
+msgid "Style provided by the rendering library."
+msgstr "Стиль предоставлен библиотекой рендера"
+
+#: ../src/data/font-information.ui.h:13
+msgid "Version :"
+msgstr ""
+
+#: ../src/data/font-manager.ui.h:1
+msgid ""
+"\n"
+"\n"
+"<b>The following files were not found :</b>"
+msgstr ""
+"\n"
+"\n"
+"<b>Следующие файлы не найдены:</b>"
+
+#: ../src/data/font-manager.ui.h:4
+msgid ""
+"\n"
+"This program is free software; you can redistribute it and/or modify\n"
+"it under the terms of the GNU General Public License as published by\n"
+"the Free Software Foundation; either version 3 of the License, or\n"
+"(at your option) any later version.\n"
+"\n"
+"This program is distributed in the hope that it will be useful,\n"
+"but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License\n"
+"along with this program; if not, write to:\n"
+"\n"
+"    Free Software Foundation, Inc.\n"
+"    51 Franklin Street, Fifth Floor\n"
+"    Boston, MA 02110-1301, USA.\n"
+msgstr ""
+
+#: ../src/data/font-manager.ui.h:22
+msgid "<b>Categories</b>"
+msgstr "<b>Категории</b>"
+
+#: ../src/data/font-manager.ui.h:23
+msgid "<b>Collections</b>"
+msgstr "<b>Коллекции</b>"
+
+#: ../src/data/font-manager.ui.h:24
+msgid "<b>Default font folder</b>"
+msgstr "<b>Папка шрифтов по-умолчанию</b>"
+
+#: ../src/data/font-manager.ui.h:25
+msgid "<b>Export</b>"
+msgstr "<b>Экспорт</b>"
+
+#: ../src/data/font-manager.ui.h:26
+msgid "<b>Families in database</b>"
+msgstr "<b>Гарнитуры в базе данных</b>"
+
+#: ../src/data/font-manager.ui.h:27
+msgid "<b>Folder to save output in :</b>"
+msgstr "<b>Папка для сохранения:</b>"
+
+#: ../src/data/font-manager.ui.h:28
+msgid "<b>General</b>"
+msgstr "<b>Общие</b>"
+
+#: ../src/data/font-manager.ui.h:29
+msgid "<b>Installed Fonts</b>"
+msgstr "<b>Установленные шрифты</b>"
+
+#: ../src/data/font-manager.ui.h:30
+msgid "<b>Select directories to scan for fonts</b>"
+msgstr "<b>Выберите папки для сканирования</b>"
+
+#: ../src/data/font-manager.ui.h:31
+msgid "<b>User Interface</b>"
+msgstr "<b>Пользовательский интерфейс</b>"
+
+#: ../src/data/font-manager.ui.h:32
+msgid ""
+"<i>It is possible these files were modified before they were processed.</i>"
+msgstr "<i>Возможно, эти файлы были изменены перед обработкой.</i>"
+
+#: ../src/data/font-manager.ui.h:33
+msgid "<small><i>(experimental)</i></small>"
+msgstr "<small><i>(эксперимент.)</i></small>"
+
+#: ../src/data/font-manager.ui.h:34
+msgid "<small><i>(requires restart)</i></small>"
+msgstr "<small><i>(требуется перезапуск)</i></small>"
+
+#: ../src/data/font-manager.ui.h:35
+msgid "About Font Manager"
+msgstr "О Менеджере шрифтов"
+
+#: ../src/data/font-manager.ui.h:36
+msgid "Add directory"
+msgstr "Добавить папку"
+
+#: ../src/data/font-manager.ui.h:37
+msgid "Add font to comparison"
+msgstr "Добавить шрифт для сравнения"
+
+#: ../src/data/font-manager.ui.h:38
+msgid "Add new collection"
+msgstr "Добавить новую коллекцию"
+
+#: ../src/data/font-manager.ui.h:39
+msgid "Adding directories to the search path"
+msgstr "Добавление папок в путь поиска"
+
+#: ../src/data/font-manager.ui.h:40
+msgid ""
+"Adding system directories, or directories for which you don't have full "
+"access, is discouraged."
+msgstr ""
+"Добавление системных папок или папок, к которым вы не имеете полного "
+"доступа, не рекомендуется."
+
+#: ../src/data/font-manager.ui.h:41
+msgid "Advanced"
+msgstr "Дополнительно"
+
+#: ../src/data/font-manager.ui.h:42
+msgid "Advanced Search"
+msgstr "Расширенный поиск"
+
+#: ../src/data/font-manager.ui.h:43
+msgid ""
+"Any directories not found during startup of the preferences dialog will be "
+"automatically removed from the list.\n"
+"\n"
+"The autoscan feature will look in your home folder for any folders "
+"containing font files and add them to the list.\n"
+"\n"
+"Please be patient, as this operation can take some time depending on "
+"filesystem size.\n"
+"\n"
+"Autoscan will not follow symbolic links or add hidden directories. These "
+"will have to be added manually, if needed.\n"
+"\n"
+"<i>Autoscan is a new feature and has not been tested extensively, there is "
+"no progress reported and no way to abort for now, do not use it if you have "
+"network shares or extremely slow filesystems in the scanned paths. Instead "
+"add folders manually.</i>\n"
+"\n"
+"\n"
+msgstr ""
+"Папки, не найденные при открытии окна настроек, будут удалены из списка.\n"
+"\n"
+"Функция автоматического сканирования просканирует домашнюю папку на предмет "
+"папок, содержащих шрифты, и добавит их в список.\n"
+"\n"
+"Обратите внимание, что эта операция может занять много времени, в "
+"зависимости от объема домашней папки.\n"
+"\n"
+"Автоматическое сканирование не переходит по символическим ссылкам и скрытым "
+"папкам. Если необходимо, добавьте их вручную.\n"
+"\n"
+"<i>Автоматическое сканирование пока новая функция и еще не была хорошо "
+"протестирована, поэтому пока не отображается прогресс сканирования и нет "
+"способа отменить этот процесс. Не используйте эту функцию, если у вас "
+"подключены сетевые ресурсы в домашней папке или она имеет большой объем, а "
+"добавьте нужные папки вручную.</i>\n"
+"\n"
+"\n"
+
+#: ../src/data/font-manager.ui.h:55
+msgid "Application"
+msgstr "Приложение"
+
+#: ../src/data/font-manager.ui.h:56
+msgid "Autoscan for font directories"
+msgstr "Автопоиск папок со шрифтами"
+
+#: ../src/data/font-manager.ui.h:57
+msgid "Background Color"
+msgstr "Цвет фона"
+
+#: ../src/data/font-manager.ui.h:58
+msgid "Browse"
+msgstr "Обзор"
+
+#: ../src/data/font-manager.ui.h:59
+msgid "Browse Fonts"
+msgstr "Обзор шрифтов"
+
+#: ../src/data/font-manager.ui.h:61
+msgid "Character Map "
+msgstr "Таблица символов "
+
+#: ../src/data/font-manager.ui.h:62
+msgid "Clear all"
+msgstr "Очистить все"
+
+#: ../src/data/font-manager.ui.h:64
+msgid "Color Selection"
+msgstr "Выбор цвета"
+
+#: ../src/data/font-manager.ui.h:65
+msgid "Color selector"
+msgstr "Выбрать цвет"
+
+#: ../src/data/font-manager.ui.h:66 ../src/ui/previews.py:249
+msgid "Compare Fonts"
+msgstr "Сравнить шрифты"
+
+#: ../src/data/font-manager.ui.h:67
+msgid "Confirm Action"
+msgstr "Подтвердить действие"
+
+#: ../src/data/font-manager.ui.h:68
+msgid "Copy Collection"
+msgstr "Скопировать коллекцию"
+
+#: ../src/data/font-manager.ui.h:69
+msgid "Copyright &#xA9; 2009, 2010 Jerry Casiano"
+msgstr "Copyright &#xA9; 2009, 2010 Jerry Casiano"
+
+#: ../src/data/font-manager.ui.h:70
+msgid "Create Sample Sheet"
+msgstr "Создать таблицу примера"
+
+#: ../src/data/font-manager.ui.h:71 ../src/ui/previews.py:422
+msgid "Custom Text"
+msgstr "Другой текст"
+
+#: ../src/data/font-manager.ui.h:72
+msgid "Database"
+msgstr "База данных"
+
+#: ../src/data/font-manager.ui.h:73
+msgid "Default archive type"
+msgstr "Тип архива по-умолчанию"
+
+#: ../src/data/font-manager.ui.h:74
+msgid "Default font size"
+msgstr "Размер шрифта по-умолчанию"
+
+#: ../src/data/font-manager.ui.h:75
+msgid "Delete selected fonts"
+msgstr "Удалить выбранные шрифты"
+
+#: ../src/data/font-manager.ui.h:76
+msgid "Disable selected collection"
+msgstr "Отключить выбранную коллекцию"
+
+#: ../src/data/font-manager.ui.h:77
+msgid "Disable selected families"
+msgstr "Отключить выбранные коллекции"
+
+#: ../src/data/font-manager.ui.h:78
+msgid ""
+"Disabling or enabling large amounts of fonts at once can have quite an "
+"impact on the desktop.\n"
+"\n"
+"If you choose to continue, it is suggested that you close all open "
+"applications and be patient should your desktop become unresponsive for a "
+"bit.\n"
+msgstr ""
+
+#: ../src/data/font-manager.ui.h:82
+msgid "Display collection totals"
+msgstr "Отображать количество шрифтов в коллекции"
+
+#: ../src/data/font-manager.ui.h:83
+msgid "Display extra tooltips"
+msgstr "Показывать большие подсказки"
+
+#: ../src/data/font-manager.ui.h:84
+msgid "Display family totals"
+msgstr "Показывать количество гарнитур"
+
+#: ../src/data/font-manager.ui.h:85
+msgid "Enable Folder Cleanup"
+msgstr "Включить очистку папок"
+
+#: ../src/data/font-manager.ui.h:86
+msgid "Enable selected collection"
+msgstr "Включить выбранную коллекцию"
+
+#: ../src/data/font-manager.ui.h:87
+msgid "Enable selected families"
+msgstr "Включить выбранные гарнитуры"
+
+#: ../src/data/font-manager.ui.h:88
+msgid "Export Collection"
+msgstr "Экспорт коллеции"
+
+#: ../src/data/font-manager.ui.h:89
+msgid "Export Collection as an archive"
+msgstr "Экспорт коллекции в архив"
+
+#: ../src/data/font-manager.ui.h:90
+msgid "Export collection"
+msgstr "Экспорт коллекции"
+
+#: ../src/data/font-manager.ui.h:91
+msgid "Families:"
+msgstr "Гарнитуры:"
+
+#: ../src/data/font-manager.ui.h:93
+msgid "File not found"
+msgstr "Файл не найден"
+
+#: ../src/data/font-manager.ui.h:94
+msgid "Filepath :"
+msgstr "Путь к файлу:"
+
+#: ../src/data/font-manager.ui.h:96
+msgid "Font Directories"
+msgstr "Папки со шрифтами"
+
+#: ../src/data/font-manager.ui.h:97 ../src/main.py:315 ../src/main.py:325
+#: ../src/main.py:455
+msgid "Font Manager"
+msgstr "Менеджер шрифтов"
+
+#: ../src/data/font-manager.ui.h:98
+msgid "Font Manager Homepage"
+msgstr "Домашняя страница Менеджера шрифтов"
+
+#: ../src/data/font-manager.ui.h:99
+msgid "Font Manager needs to reload\n"
+msgstr "Менеджер шрифтов нужно перезапустить\n"
+
+#: ../src/data/font-manager.ui.h:101
+msgid "Font management for the GNOME Desktop"
+msgstr "Управление шрифтами для рабочего стола GNOME"
+
+#: ../src/data/font-manager.ui.h:102
+msgid "Foreground Color"
+msgstr "Цвет текста"
+
+#: ../src/data/font-manager.ui.h:103
+msgid "Foundry :"
+msgstr ""
+
+#: ../src/data/font-manager.ui.h:104 ../src/data/menus.ui.h:7
+msgid "Help"
+msgstr "Справка"
+
+#: ../src/data/font-manager.ui.h:105
+msgid "Include all characters in sample sheet"
+msgstr "Показывать все символы в примере"
+
+#: ../src/data/font-manager.ui.h:106
+msgid "Include sample sheet in archive"
+msgstr "Вкладывать пример в архив"
+
+#: ../src/data/font-manager.ui.h:107
+msgid "Information"
+msgstr "Сведения"
+
+#: ../src/data/font-manager.ui.h:108
+msgid "Interface"
+msgstr "Интерфейс"
+
+#: ../src/data/font-manager.ui.h:109
+msgid "Invalid Selection"
+msgstr "Неправильное выделение"
+
+#: ../src/data/font-manager.ui.h:110
+msgid ""
+"Launchpad Translators.\n"
+"\n"
+"For more information please see\n"
+"\n"
+"\thttp://translations.launchpad.net/\n"
+"\n"
+"A big thank you to all those who help make this\n"
+"and other applications on Launchpad accessible\n"
+"to as many people as possible."
+msgstr ""
+
+#: ../src/data/font-manager.ui.h:119
+msgid "Manage"
+msgstr "Управление"
+
+#: ../src/data/font-manager.ui.h:120
+msgid "Manage Fonts"
+msgstr "Управление шрифтами"
+
+#: ../src/data/font-manager.ui.h:121
+msgid "Manage fonts"
+msgstr "Управление шрифтами"
+
+#: ../src/data/font-manager.ui.h:122
+msgid "Minimize to tray instead of closing window"
+msgstr "Сворачивать в область уведомлений, вместо закрытия"
+
+#: ../src/data/font-manager.ui.h:123
+msgid ""
+"Note that this filter relies on PANOSE classification numbers, fonts that do "
+"not provide this information will not be shown."
+msgstr ""
+
+#: ../src/data/font-manager.ui.h:125 ../src/data/menus.ui.h:10
+msgid "Preferences"
+msgstr "Настройки"
+
+#: ../src/data/font-manager.ui.h:126
+msgid "Reload Later"
+msgstr "Перезапустить позже"
+
+#: ../src/data/font-manager.ui.h:127
+msgid "Reload Now"
+msgstr "Перезапустить сейчас"
+
+#: ../src/data/font-manager.ui.h:128 ../src/data/menus.ui.h:12
+msgid "Remove Fonts"
+msgstr "Удалить шрифт"
+
+#: ../src/data/font-manager.ui.h:129
+msgid "Remove selected collection"
+msgstr "Удалить выбранную коллекцию"
+
+#: ../src/data/font-manager.ui.h:130
+msgid "Remove selected directory"
+msgstr "Удалить выбранную папку"
+
+#: ../src/data/font-manager.ui.h:131
+msgid "Remove selected entry"
+msgstr "Удалить выбранный элемент"
+
+#: ../src/data/font-manager.ui.h:132
+msgid "Remove selected families from collection"
+msgstr "Удалить выбранные семейства из коллекции"
+
+#: ../src/data/font-manager.ui.h:133
+msgid "Remove selected font"
+msgstr "Удалить выбранный шрифт"
+
+#: ../src/data/font-manager.ui.h:134
+msgid "Reset cache and reload application"
+msgstr "Сбросить кэш и перезагрузить приложение"
+
+#: ../src/data/font-manager.ui.h:135
+msgid "Reset database"
+msgstr "Сброс базы данных"
+
+#: ../src/data/font-manager.ui.h:136 ../src/ui/treeviews.py:643
+msgid "Search Fonts"
+msgstr "Поиск шрифтов"
+
+#: ../src/data/font-manager.ui.h:137
+msgid "Select A Folder"
+msgstr "Выберите папку"
+
+#: ../src/data/font-manager.ui.h:138
+msgid "Select Directory"
+msgstr "Выберите папку"
+
+#: ../src/data/font-manager.ui.h:139
+msgid "Select Files to Install"
+msgstr "Выберите файлы для установки"
+
+#: ../src/data/font-manager.ui.h:140
+msgid "Set application preferences"
+msgstr "Настройки приложения"
+
+#: ../src/data/font-manager.ui.h:141
+msgid "Set font preferences"
+msgstr "Настройки шрифтов"
+
+#: ../src/data/font-manager.ui.h:142
+msgid "Show fonts not present in user collections"
+msgstr "Показать шрифты, которых нет в пользовательской коллекции"
+
+#: ../src/data/font-manager.ui.h:143
+msgid "Start at login"
+msgstr "Запускать при входе в систему"
+
+#: ../src/data/font-manager.ui.h:144
+msgid "Start minimized"
+msgstr "Минимизировать при запуске"
+
+#: ../src/data/font-manager.ui.h:145
+msgid "Switch to collection when adding families"
+msgstr "Переключаться в коллекцию при добавлении семейств"
+
+#: ../src/data/font-manager.ui.h:146
+msgid ""
+"The following directories are not allowed:\n"
+"\n"
+"/\n"
+"/usr\n"
+"/bin\n"
+"/boot\n"
+"/dev\n"
+"/lost+found\n"
+"/proc\n"
+"/root\n"
+"/selinux\n"
+"/srv\n"
+"/sys\n"
+"/etc\n"
+"/lib\n"
+"/sbin\n"
+"/tmp\n"
+"/var"
+msgstr ""
+"Следующие папки недопустимы:\n"
+"\n"
+"/\n"
+"/usr\n"
+"/bin\n"
+"/boot\n"
+"/dev\n"
+"/lost+found\n"
+"/proc\n"
+"/root\n"
+"/selinux\n"
+"/srv\n"
+"/sys\n"
+"/etc\n"
+"/lib\n"
+"/sbin\n"
+"/tmp\n"
+"/var"
+
+#: ../src/data/font-manager.ui.h:164
+msgid "Type :"
+msgstr "Тип:"
+
+#: ../src/data/font-manager.ui.h:165
+msgid ""
+"Until then, recent changes will not be visible and certain features may not "
+"work properly."
+msgstr ""
+
+#: ../src/data/font-manager.ui.h:166
+msgid "Use localized sample string"
+msgstr "Использовать локилизированный пример"
+
+#: ../src/data/font-manager.ui.h:167
+msgid "View font metadata"
+msgstr "Просмотр метаданных шрифта"
+
+#: ../src/data/font-manager.ui.h:168 ../src/data/font-janitor.ui.h:9
+msgid "page 1"
+msgstr "страница 1"
+
+#: ../src/data/font-sampler.ui.h:1
+msgid "<b>Save output file as</b>"
+msgstr "<b>Сохранить файл как</b>"
+
+#: ../src/data/font-sampler.ui.h:2
+msgid "<b>Select a directory containing font files</b>"
+msgstr "<b>Выберите папку со шрифтами</b>"
+
+#: ../src/data/font-sampler.ui.h:3
+msgid "Author"
+msgstr "Автор"
+
+#: ../src/data/font-sampler.ui.h:4
+msgid "Create PDF sample sheet"
+msgstr "Создать пример в PDF"
+
+#: ../src/data/font-sampler.ui.h:5
+msgid "Creating PDF sample sheet"
+msgstr "Создание примера в PDF"
+
+#: ../src/data/font-sampler.ui.h:6
+msgid "Edit document details"
+msgstr "Изменить детали документа"
+
+#: ../src/data/font-sampler.ui.h:7
+msgid "Font Sampler"
+msgstr "Образец шрифта"
+
+#: ../src/data/font-sampler.ui.h:8
+msgid "Font Size"
+msgstr "Размер шрифта"
+
+#: ../src/data/font-sampler.ui.h:9
+msgid "Include all characters"
+msgstr "Включить все символы"
+
+#: ../src/data/font-sampler.ui.h:10
+msgid "Save output file as"
+msgstr "Сохранить файл как"
+
+#: ../src/data/font-sampler.ui.h:11
+msgid "Subject"
+msgstr "Тема"
+
+#: ../src/data/font-janitor.ui.h:1
+msgid ""
+"<b>Possible duplicates</b>    Multiple files claim to provide the same "
+"features"
+msgstr ""
+"<b>Возможные дубликаты</b>    Несколько файлов могут предоставлять "
+"одинаковый функционал"
+
+#: ../src/data/font-janitor.ui.h:2
+msgid "<b>Possibly defective</b>    The following files may have issues"
+msgstr "<b>Возможные дефекты</b>    Следующие файлы могут быть повреждены"
+
+#: ../src/data/font-janitor.ui.h:3
+msgid "Delete selected files"
+msgstr "Удалить выбранные файлы"
+
+#: ../src/data/font-janitor.ui.h:4
+msgid "Rename Selected Files"
+msgstr "Переименовать выбранные файлы"
+
+#: ../src/data/font-janitor.ui.h:5
+msgid "Use Pango description as suggested filename"
+msgstr "Предлагать описание Pango в качестве имени файла"
+
+#: ../src/data/font-janitor.ui.h:6
+msgid "Use Pango suggested filename"
+msgstr "Предлагать Pango в качестве имени файла"
+
+#: ../src/data/font-janitor.ui.h:7
+msgid "Use PostScript names as suggested filename"
+msgstr "Предлагать имена PostScript в качестве имени файла"
+
+#: ../src/data/font-janitor.ui.h:8 ../src/ui/janitor.py:298
+msgid "View possible issues"
+msgstr "Просмотреть возможные проблемы"
+
+#: ../src/data/font-janitor.ui.h:10
+msgid "page 2"
+msgstr "страница 2"
+
+#: ../src/data/menus.ui.h:1
+msgid "About"
+msgstr "О программе"
+
+#: ../src/data/menus.ui.h:2 ../src/ui/fontconfig.py:279
+msgid "Advanced Settings"
+msgstr "Дополнительные настройки"
+
+#: ../src/data/menus.ui.h:3 ../src/ui/fontconfig.py:67
+msgid "Alias Editor"
+msgstr "Редактор псевдонимов"
+
+#: ../src/data/menus.ui.h:4
+msgid "Character Map"
+msgstr "Таблица символов"
+
+#: ../src/data/menus.ui.h:5
+msgid "Desktop Settings"
+msgstr "Параметры рабочего стола"
+
+#: ../src/data/menus.ui.h:6
+msgid "Font Preferences"
+msgstr "Параметры шрифтов"
+
+#: ../src/data/menus.ui.h:8
+msgid "Install Fonts"
+msgstr "Установить шрифты"
+
+#: ../src/data/menus.ui.h:9
+msgid "Open Fonts Folder"
+msgstr "Открыть папку шрифтов"
+
+#: ../src/data/menus.ui.h:11
+msgid "Quit"
+msgstr "Выход"
+
+#: ../src/constants.py:120
+msgid ""
+"* This file was placed here by Font Manager because this directory\n"
+"did not exist, feel free to delete, it will not be generated again.\n"
+"\n"
+"\n"
+"This is a per-user font directory.\n"
+"\n"
+"\n"
+"Any fonts ( or folders containing fonts ) present in this directory are\n"
+"automatically picked up by the system and available, but only to you.\n"
+"\n"
+"\n"
+"Please note that not only can you specify other directories to scan for\n"
+"fonts from the applications preferences dialog, but you can also set the\n"
+"default folder that's opened when 'Open fonts folder' is selected.\n"
+"\n"
+"\n"
+"If you wish to make fonts available to everyone using the system they will\n"
+"need to be placed in /usr/share/fonts\n"
+"\n"
+msgstr ""
+
+#: ../src/constants.py:142
+msgid ""
+"\n"
+"<!--\n"
+"    This file is maintained by Font Manager.\n"
+"\n"
+"    If you wish to make any changes it is suggested you do so using\n"
+"\n"
+"        {0}\n"
+"\n"
+"    Any changes made to this file will be automatically relocated there\n"
+"    at startup and any settings already in that file will be overwritten.\n"
+"-->\n"
+msgstr ""
+
+#: ../src/constants.py:313
+msgid "Anti-Alias"
+msgstr "Сглаживание"
+
+#: ../src/constants.py:314
+msgid "Auto-Hint"
+msgstr "Авто-уточнение"
+
+#: ../src/constants.py:315
+msgid "Hinting"
+msgstr "Уточнение"
+
+#: ../src/constants.py:316
+msgid "LCD Filter"
+msgstr "Фильтр LCD"
+
+#: ../src/constants.py:317
+msgid "Force Spacing"
+msgstr ""
+
+#: ../src/constants.py:318
+msgid "Use Global Advance data"
+msgstr ""
+
+#: ../src/constants.py:319
+msgid "Use Embedded Bitmaps"
+msgstr ""
+
+#: ../src/constants.py:320
+msgid "Disable rgba"
+msgstr "Отключить RGBA"
+
+#: ../src/constants.py:321 ../src/ui/fontconfig.py:605
+msgid "Smaller than"
+msgstr "Меньше чем"
+
+#: ../src/constants.py:322 ../src/ui/fontconfig.py:606
+msgid "Larger than"
+msgstr "Больше чем"
+
+#: ../src/constants.py:404 ../src/constants.py:410
+msgid "None"
+msgstr ""
+
+#: ../src/constants.py:405
+msgid "Slight"
+msgstr ""
+
+#: ../src/constants.py:406
+msgid "Medium"
+msgstr ""
+
+#: ../src/constants.py:407
+msgid "Full"
+msgstr ""
+
+#: ../src/constants.py:411
+msgid "Default"
+msgstr ""
+
+#: ../src/constants.py:412
+msgid "Light"
+msgstr ""
+
+#: ../src/constants.py:413
+msgid "Legacy"
+msgstr ""
+
+#: ../src/constants.py:416
+msgid "Proportional"
+msgstr ""
+
+#: ../src/constants.py:417
+msgid "Dual"
+msgstr ""
+
+#: ../src/constants.py:418
+msgid "Mono"
+msgstr ""
+
+#: ../src/constants.py:419
+msgid "Charcell"
+msgstr ""
+
+#: ../src/main.py:104
+msgid "Finished loading {0} families"
+msgstr ""
+
+#: ../src/main.py:180 ../src/main.py:414
+msgid "Yelp is required to view help files"
+msgstr "Для просмотра справочных материалов необходим Yelp"
+
+#: ../src/main.py:185
+msgid "This option requires gnome-appearance-properties"
+msgstr "Эта опция требует gnome-appearance-properties"
+
+#: ../src/main.py:257
+msgid "Font Manager will restart in a moment"
+msgstr "Менеджер шрифтов будет перезапущен"
+
+#: ../src/main.py:505
+msgid "Families : {0!s}"
+msgstr ""
+
+#: ../src/main.py:542
+msgid "Folder Cleanup"
+msgstr "Очистка папки"
+
+#: ../src/core/fonts.py:187
+msgid "{0} Fonts"
+msgstr ""
+
+#: ../src/core/fonts.py:189
+msgid "{0} Font"
+msgstr ""
+
+#: ../src/core/fonts.py:293
+msgid "Querying installed files..."
+msgstr ""
+
+#: ../src/core/fonts.py:401 ../src/core/__init__.py:582
+#: ../src/ui/treeviews.py:262 ../src/ui/treeviews.py:463
+#: ../src/ui/treeviews.py:670 ../src/ui/treeviews.py:733
+msgid "All"
+msgstr "Все"
+
+#: ../src/core/fonts.py:403
+msgid "All available fonts"
+msgstr "Все доступные шрифты"
+
+#: ../src/core/fonts.py:404 ../src/ui/treeviews.py:262
+#: ../src/ui/treeviews.py:463 ../src/ui/treeviews.py:670
+msgid "System"
+msgstr "Системные"
+
+#: ../src/core/fonts.py:405
+msgid "Fonts available to all users"
+msgstr "Шрифты, доступные всем пользователям"
+
+#: ../src/core/fonts.py:406 ../src/ui/treeviews.py:262
+#: ../src/ui/treeviews.py:463 ../src/ui/treeviews.py:679
+#: ../src/ui/treeviews.py:681
+msgid "User"
+msgstr "Пользовательские"
+
+#: ../src/core/fonts.py:407
+msgid "Fonts available only to {0}"
+msgstr ""
+
+#: ../src/core/fonts.py:408 ../src/core/__init__.py:591
+#: ../src/ui/preferences.py:427 ../src/ui/preferences.py:437
+#: ../src/ui/treeviews.py:262 ../src/ui/treeviews.py:469
+#: ../src/ui/treeviews.py:670
+msgid "Orphans"
+msgstr ""
+
+#: ../src/core/fonts.py:409
+msgid "Fonts not present in any collection"
+msgstr "Шрифты, не внесенные в какую-либо коллекцию"
+
+#: ../src/core/fonts.py:448
+msgid "Loading available fonts..."
+msgstr ""
+
+#: ../src/core/__init__.py:314 ../src/utils/xmlutils.py:332
+msgid "Created on {0}"
+msgstr ""
+
+#: ../src/ui/actions.py:188
+msgid "Edit Action"
+msgstr "Изменить действие"
+
+#: ../src/ui/actions.py:190
+msgid "New Action"
+msgstr "Новое действие"
+
+#: ../src/ui/export.py:71
+msgid "This feature requires the Report Lab Toolkit"
+msgstr "Эта опция требует Report Lab Toolkit"
+
+#: ../src/ui/export.py:75
+msgid "This feature requires File Roller"
+msgstr "Эта опция требует File Roller"
+
+#: ../src/ui/export.py:109
+msgid "Selected folder must be writeable"
+msgstr "Выбранная папка должна быть доступна для записи"
+
+#: ../src/ui/export.py:177 ../src/ui/export.py:198
+msgid "Copying files..."
+msgstr "Копирование файлов…"
+
+#: ../src/ui/fontconfig.py:123 ../src/ui/fontconfig.py:130
+#: ../src/ui/fontconfig.py:138
+msgid "Add Alias"
+msgstr "Добавить псевдоним"
+
+#: ../src/ui/fontconfig.py:124 ../src/ui/fontconfig.py:131
+#: ../src/ui/fontconfig.py:138
+msgid "Remove Alias"
+msgstr "Удалить псевдоним"
+
+#: ../src/ui/fontconfig.py:125 ../src/ui/fontconfig.py:132
+#: ../src/ui/fontconfig.py:138
+msgid "Add Substitute"
+msgstr ""
+
+#: ../src/ui/fontconfig.py:126 ../src/ui/fontconfig.py:133
+#: ../src/ui/fontconfig.py:139
+msgid "Remove Substitute"
+msgstr ""
+
+#: ../src/ui/fontconfig.py:127 ../src/ui/fontconfig.py:134
+#: ../src/ui/fontconfig.py:139 ../src/ui/fontconfig.py:142
+#: ../src/ui/fontconfig.py:312
+msgid "Write configuration"
+msgstr "Записать настройки"
+
+#: ../src/ui/fontconfig.py:195 ../src/ui/janitor.py:51
+#: ../src/ui/treeviews.py:196 ../src/ui/treeviews.py:201
+#: ../src/ui/treeviews.py:208
+msgid "Family"
+msgstr "Гарнитура"
+
+#: ../src/ui/fontconfig.py:208
+msgid "Substitute"
+msgstr ""
+
+#: ../src/ui/fontconfig.py:308
+msgid "Full Reset"
+msgstr "Полный сброс"
+
+#: ../src/ui/fontconfig.py:316
+msgid "Discard configuration"
+msgstr "Отменить настройки"
+
+#: ../src/ui/janitor.py:51
+msgid "Filename"
+msgstr "Имя файла"
+
+#: ../src/ui/janitor.py:51
+msgid "Suggested Filename"
+msgstr "Предлагаемое имя файла"
+
+#: ../src/ui/janitor.py:52
+msgid "Filetype"
+msgstr "Тип файла"
+
+#: ../src/ui/janitor.py:52
+msgid "Filesize"
+msgstr "Размер файла"
+
+#: ../src/ui/janitor.py:55
+msgid "Missing PostScript Name"
+msgstr "Не найдено имя PostScript"
+
+#: ../src/ui/janitor.py:56
+msgid "Invalid PostScript Name"
+msgstr "Неправильное имя PostScript"
+
+#: ../src/ui/janitor.py:57
+msgid "File not listed by FontConfig"
+msgstr ""
+
+#: ../src/ui/janitor.py:97
+msgid "Font Janitor - {0}"
+msgstr ""
+
+#: ../src/ui/janitor.py:291
+msgid "Hide possible issues"
+msgstr "Скрыть возможные проблемы"
+
+#: ../src/ui/library.py:51
+msgid "Font Manager supported types"
+msgstr "Типы, поддерживаемые менеджером шрифтов"
+
+#: ../src/ui/previews.py:104
+msgid "This feature requires Gucharmap"
+msgstr "Эта опция требует Gucharmap"
+
+#: ../src/ui/previews.py:240
+msgid "Preview Fonts"
+msgstr "Просмотр шрифта"
+
+#: ../src/ui/previews.py:419
+msgid "Hide text entry"
+msgstr ""
+
+#: ../src/ui/previews.py:484
+msgid "Bold"
+msgstr ""
+
+#: ../src/ui/previews.py:484
+msgid "Bold Italic"
+msgstr ""
+
+#: ../src/ui/previews.py:484
+msgid "Italic"
+msgstr ""
+
+#: ../src/ui/previews.py:569
+msgid "Style provided by {0}"
+msgstr ""
+
+#: ../src/ui/sampler.py:76
+msgid "Sample of included fonts"
+msgstr "Пример выбранных шрифтов"
+
+#: ../src/ui/sampler.py:140
+msgid "Registering font files..."
+msgstr "Регистрация шрифтов..."
+
+#: ../src/ui/sampler.py:157
+msgid "Rendering PDF file..."
+msgstr "Создание PDF файла..."
+
+#: ../src/ui/sampler.py:280
+msgid "Skipping the following families"
+msgstr "Пропускать следующие гарнитуры"
+
+#: ../src/ui/sampler.py:291
+msgid ""
+"Due to the reasons listed above {0!s} out of {1!s} fonts will not be "
+"included in the sample sheet"
+msgstr ""
+
+#: ../src/ui/sampler.py:322
+msgid "Face name unavailable"
+msgstr ""
+
+#: ../src/ui/sampler.py:353
+msgid "Font file"
+msgstr "Файл шрифта"
+
+#: ../src/ui/sampler.py:356
+msgid "Problem encountered"
+msgstr ""
+
+#: ../src/ui/treeviews.py:133 ../src/ui/treeviews.py:139
+#: ../src/ui/treeviews.py:462
+msgid "Category"
+msgstr "Категория"
+
+#: ../src/ui/treeviews.py:160 ../src/ui/treeviews.py:167
+#: ../src/ui/treeviews.py:478
+msgid "Collection"
+msgstr "Коллекция"
+
+#: ../src/ui/treeviews.py:423
+msgid "Add to"
+msgstr ""
+
+#: ../src/ui/treeviews.py:444
+msgid "Edit actions..."
+msgstr "Изменить действия..."
+
+#: ../src/ui/treeviews.py:638
+msgid "Hide search box"
+msgstr "Скрыть строку поиска"
+
+#: ../src/ui/treeviews.py:695
+msgid "New Collection"
+msgstr "Новая коллекция"
+
+#: ../src/ui/treeviews.py:699
+msgid "New Collection {0}"
+msgstr ""
+
+#: ../src/ui/treeviews.py:1015
+msgid "contains"
+msgstr ""
+
+#: ../src/ui/treeviews.py:1015
+msgid "begins with"
+msgstr ""
+
+#: ../src/ui/treeviews.py:1015
+msgid "ends with"
+msgstr ""
+
+#: ../src/utils/common.py:220
+msgid "Read Me.txt"
+msgstr "Read Me.txt"
+
+#: ../src/utils/common.py:303
+msgid "Please install a supported file browser"
+msgstr "Пожалуйста, установите поддерживаемый обозреватель файлов"
+
+#: ../src/utils/common.py:304
+msgid ""
+"    Supported file browsers include :\n"
+"\n"
+"    - Nautilus\n"
+"    - Thunar\n"
+"    - Dolphin\n"
+"    - Konqueror\n"
+"    - PCManFM\n"
+"\n"
+"    If a supported file browser is installed,\n"
+"    please file a bug against Font Manager"
+msgstr ""
+
+#~ msgid "Exclude size range"
+#~ msgstr "Исключить диапазон размеров"
+
+#, python-format
+#~ msgid "Fonts available only to %s"
+#~ msgstr "Шрифты, доступные только для %s"
+
+#~ msgid "File does not contain any embedded license information."
+#~ msgstr "Файл не содержит встроенной информации о лицензии"
+
+#~ msgid "Enable Browse Mode"
+#~ msgstr "Включить режим просмотра"
+
+#~ msgid ""
+#~ "If available a localized sample will be used instead of the default pangram"
+#~ msgstr ""
+#~ "Использовать, если доступен, локализированный пример текста, вместо "
+#~ "встроенного"
+
+#, python-format
+#~ msgid "Families : %s"
+#~ msgstr "Гарнитур: %s"
+
+#, python-format
+#~ msgid "Finished loading %s families"
+#~ msgstr "Закончена загрузка %s гарнитур"
+
+#, python-format
+#~ msgid "%s Fonts"
+#~ msgstr "%s шрифтов"
+
+#, python-format
+#~ msgid "%s Font"
+#~ msgstr "%s шрифт"
+
+#, python-format
+#~ msgid ""
+#~ "\n"
+#~ "<!--\n"
+#~ "    This file modified by Font Manager.\n"
+#~ "\n"
+#~ "    Do NOT edit this file, it will be replaced on startup.\n"
+#~ "\n"
+#~ "    Should you wish to customize anything please use\n"
+#~ "\n"
+#~ "      %s\n"
+#~ "-->\n"
+#~ msgstr ""
+#~ "\n"
+#~ "<!--\n"
+#~ "    Этот файлы был изменен Менеджером шрифтов.\n"
+#~ "\n"
+#~ "    НЕ редактируйте этот файл, он будет заменен при загрузке.\n"
+#~ "\n"
+#~ "    Если хотите что-то изменить, используйте\n"
+#~ "\n"
+#~ "      %s\n"
+#~ "-->\n"
+
+#, python-format
+#~ msgid "Style provided by %s"
+#~ msgstr "Стиль предоставлен %s"
+
+#, python-format
+#~ msgid "New Collection %s"
+#~ msgstr "Новая коллекция %s"
+
+#~ msgid ""
+#~ "    Supported file browsers include :\n"
+#~ "    \n"
+#~ "    - Nautilus\n"
+#~ "    - Thunar\n"
+#~ "    - Dolphin\n"
+#~ "    - Konqueror\n"
+#~ "    - PCManFM\n"
+#~ "    \n"
+#~ "    If a supported file browser is installed,\n"
+#~ "    please file a bug against Font Manager"
+#~ msgstr ""
+#~ "    Поддерживаемые обозреватели файлов:\n"
+#~ "    \n"
+#~ "    - Nautilus\n"
+#~ "    - Thunar\n"
+#~ "    - Dolphin\n"
+#~ "    - Konqueror\n"
+#~ "    - PCManFM\n"
+#~ "    \n"
+#~ "    Если поддерживаемый обозреватель уже установлен,\n"
+#~ "    сообщите о проблеме разработчикам"

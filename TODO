@@ -1,0 +1,8 @@
+
+- Finish up on font-viewer
+
+- Possibly enable system-wide font installation and removal.
+  This would require PolicyKit, and using an application specific "Library" in 
+  /usr/local/share/fonts, so that's there's no chance that we ever modify anything
+  installed through the distributions package manager.
+
