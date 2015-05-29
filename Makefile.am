@@ -1,46 +1,53 @@
-SUBDIRS = \
-	extensions \
-	help \
-	po \
-	resources \
-	src
 
-ACLOCAL_AMFLAGS = -I m4
+PKGNAME = @PACKAGE_NAME@
+VERSION = @PACKAGE_VERSION@
 
-POTFILES.readme:
-	@echo "POTFILES.* generated from the top level Makefile" > $(srcdir)/po/POTFILES.readme
+all: default
 
-POTFILES.in:
-	@find src/ -name "*.vala" -print | sort > $(srcdir)/po/POTFILES.in ;
-	@echo "[type: gettext/glade]resources/ApplicationMenu.ui" >> $(srcdir)/po/POTFILES.in ;
-	@echo "resources/$(PACKAGE_NAME).appdata.xml.in" >> $(srcdir)/po/POTFILES.in ;
-	@echo "resources/org.gnome.FontManager.desktop.in" >> $(srcdir)/po/POTFILES.in ;
-	@echo "" >> $(srcdir)/po/POTFILES.in ;
+default:
+	$(MAKE) -C src
 
-POTFILES.skip:
-	@find $(srcdir)/src/ -name "*.vala" -print | sort | $(SED) 's/.vala/.c/g' > $(srcdir)/po/POTFILES.skip ;
+clean:
+	$(MAKE) -C src clean
+#	find po -maxdepth 1 -regextype posix-basic -regex "po/[^.]*" -type d -exec rm -rf {} \;
 
-pot: POTFILES.readme POTFILES.in POTFILES.skip
-	cd $(srcdir)/po && $(MAKE) $(AM_MAKEFLAGS) update-po
-	cd $(srcdir)/po && $(SED) -f insert-header.sin -i $(PACKAGE_NAME).pot
-	cd $(srcdir)/help && rm -f $(PACKAGE_NAME).pot
-	cd $(srcdir)/help && $(MAKE) $(AM_MAKEFLAGS) pot
-	cd $(srcdir)/help && $(SED) -f insert-header.sin -i $(PACKAGE_NAME).pot
-	cd $(srcdir)/help && $(MAKE) $(AM_MAKEFLAGS) repo
+compile_translations:
+#	@cp -f src/data/font-manager.ui src/data/font-manager.glade
+#	@cp -f src/data/font-information.ui src/data/font-information.glade
+#	@cp -f src/data/menus.ui src/data/menus.glade
+#	python po/compile_translations.py
+#	-rm -f src/data/*.glade
 
-EXTRA_DIST = \
-	$(srcdir)/po/insert-header.sin \
-	$(srcdir)/po/HEADER \
-	$(srcdir)/help/insert-header.sin \
-	$(srcdir)/help/HEADER
+distclean: clean
+	$(MAKE) -C src distclean
+	-rm -f config.log config.status Makefile
 
-distclean-local:
-	cd $(srcdir)
-	-rm -rf autom4te.cache m4 aclocal.m4 compile config.guess config.sub configure depcomp install-sh ltmain.sh missing py-compile
-	@find . -name "Makefile" -exec rm -f '{}' \;
-	@find . -name "Makefile.in*" -exec rm -f '{}' \;
-	rm -f font-manager-*.tar.*
+install:
+	$(MAKE) -C src install
+#	for f in `find po -name font-manager.mo` ; do \
+#	  install -d -m 755 \
+#		`echo $$f | sed "s|^po|$(DESTDIR)$(prefix)/share/locale|" | \
+#		  xargs dirname` && \
+#	  install -m 644 $$f \
+#		`echo $$f | sed "s|^po|$(DESTDIR)$(prefix)/share/locale|"` ; \
+#	  done
 
-.PHONY: pot POTFILES.readme POTFILES.in POTFILES.skip
+uninstall:
+	$(MAKE) -C src uninstall
+#	find $(DESTDIR)$(prefix)/share/locale -name font-manager.mo -exec rm -f {} \;
 
-all: pot
+EXTRA_DIST = src/core src/data src/doc src/ui src/utils src/*.py src/*.c \
+src/*.in src/font-manager.in src/font-manager.desktop src/Makefile.in \
+src/Makefile.am po
+
+dist-hook: 
+	-find $(distdir) -name '.svn' -exec rm -rf '{}' \;
+	@find $(distdir) -name '.svn' -exec rm -rf '{}' \;
+	@rm -f $(distdir)/src/font-manager $(distdir)/src/_fontutils.so
+	@rm -f $(distdir)/src/constants.py $(distdir)/src/constants.py.in
+	@rm -f $(distdir)/src/main.py
+	@rm -f $(distdir)/src/core/__init__.py
+#	-rm -f po/messages.pot
+#	find po -maxdepth 1 -regextype posix-basic -regex "po/[^.]*" -type d -exec rm -rf {} \;
+
+.PHONY: check clean install uninstall
