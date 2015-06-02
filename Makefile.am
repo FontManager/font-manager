@@ -13,7 +13,7 @@ POTFILES.readme:
 POTFILES.in:
 	@find src/ -name "*.vala" -print | sort > $(srcdir)/po/POTFILES.in ;
 	@echo "[type: gettext/glade]resources/ApplicationMenu.ui" >> $(srcdir)/po/POTFILES.in ;
-	@echo "resources/$(PACKAGE_NAME).appdata.xml.in" >> $(srcdir)/po/POTFILES.in ;
+	@echo "resources/org.gnome.FontManager.appdata.xml.in" >> $(srcdir)/po/POTFILES.in ;
 	@echo "resources/org.gnome.FontManager.desktop.in" >> $(srcdir)/po/POTFILES.in ;
 	@echo "" >> $(srcdir)/po/POTFILES.in ;
 

@@ -21,7 +21,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-04-01 12:55-0400\n"
+"POT-Creation-Date: 2015-06-02 01:57-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,7 +87,7 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/index.page:24
-msgid "If you do decide to help, please file an issue at <link href=\"https://code.google.com/p/font-manager/\">https://code.google.com/p/font-manager/</link> detailing what you intend to work on."
+msgid "If you do decide to help, please file an issue at <link href=\"https://github.com/FontManager/master/issues\">https://github.com/FontManager/master/issues</link> detailing what you intend to work on."
 msgstr ""
 
 #. (itstool) path: note/p

@@ -86,6 +86,6 @@ src/UX/Widgets/ThinPaned.vala
 src/UX/Widgets/TreeViews.vala
 src/UX/Widgets/WaterfallPreview.vala
 [type: gettext/glade]resources/ApplicationMenu.ui
-resources/font-manager.appdata.xml.in
+resources/org.gnome.FontManager.appdata.xml.in
 resources/org.gnome.FontManager.desktop.in
 
