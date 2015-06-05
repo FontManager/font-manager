@@ -333,7 +333,7 @@ namespace FontManager {
                 view.view.pixels_above_lines = 1;
                 label = new Gtk.Label(_("File does not contain license description."));
                 label.sensitive = false;
-                link = new Gtk.LinkButton("https://github.com/FontManager/");
+                link = new Gtk.LinkButton("http://fontmanager.github.io/");
                 link.set_label("");
                 link.halign = Gtk.Align.CENTER;
                 link.valign = Gtk.Align.CENTER;

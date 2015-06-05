@@ -29,7 +29,7 @@ namespace FontManager {
         public const string ICON = "font-x-generic";
         public const string COMMENT = _("Simple font management for GTK+ desktop environments");
         public const string VERSION = "0.7.2";
-        public const string HOMEPAGE = "https://github.com/FontManager/";
+        public const string HOMEPAGE = "http://fontmanager.github.io/";
         public const string COPYRIGHT = "Copyright © 2009 - 2015 Jerry Casiano";
         public const string LICENSE = _("""
     This program is free software: you can redistribute it and/or modify
