@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-02 01:57-0400\n"
+"POT-Creation-Date: 2015-06-04 21:19-0400\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -453,7 +453,7 @@ msgid "Select background color"
 msgstr "选择背景颜色"
 
 #: ../src/UX/Controls/FontListControls.vala:47
-#: ../src/UX/Controls/FontListControls.vala:89
+#: ../src/UX/Controls/FontListControls.vala:90
 msgid "Expand all"
 msgstr "全部展开"
 
@@ -466,18 +466,23 @@ msgstr "删除选中的字体"
 msgid "Search Families..."
 msgstr "搜索数据库"
 
-#: ../src/UX/Controls/FontListControls.vala:61
-#: ../src/UX/Controls/FontListControls.vala:100
+#: ../src/UX/Controls/FontListControls.vala:62
 msgid "View font information"
 msgstr "查看字体信息"
 
-#: ../src/UX/Controls/FontListControls.vala:89
+#: ../src/UX/Controls/FontListControls.vala:90
 msgid "Collapse all"
 msgstr "全部折叠"
 
-#: ../src/UX/Controls/FontListControls.vala:98
-msgid "Hide font information"
-msgstr "隐藏字体信息"
+#: ../src/UX/Controls/FontListControls.vala:106
+#, fuzzy
+msgid "Preview Fonts"
+msgstr "删除字体"
+
+#: ../src/UX/Controls/FontListControls.vala:115
+#, fuzzy
+msgid "View Information"
+msgstr "查看字体信息"
 
 #: ../src/UX/Controls/PreviewControls.vala:58
 msgid "Edit preview text"
@@ -805,6 +810,9 @@ msgstr "预览，比较和管理字体"
 #, fuzzy
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr "Graphics;Viewer;GNOME;GTK;Publishing;"
+
+#~ msgid "Hide font information"
+#~ msgstr "隐藏字体信息"
 
 #~ msgid "Cancel"
 #~ msgstr "取消"

@@ -330,6 +330,7 @@ namespace FontManager {
             if (mode == Mode.BROWSE)
                 browser.treeview.queue_draw();
             mode_changed(_mode);
+            debug("Mode changed : %s", mode.to_string());
             return;
         }
 

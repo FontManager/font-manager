@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-02 01:57-0400\n"
+"POT-Creation-Date: 2015-06-04 21:19-0400\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -452,7 +452,7 @@ msgid "Select background color"
 msgstr "Wähle Hintergrundfarbe"
 
 #: ../src/UX/Controls/FontListControls.vala:47
-#: ../src/UX/Controls/FontListControls.vala:89
+#: ../src/UX/Controls/FontListControls.vala:90
 msgid "Expand all"
 msgstr "Alle ausklappen"
 
@@ -464,18 +464,22 @@ msgstr "Entferne ausgewählte Schrift"
 msgid "Search Families..."
 msgstr "Durchsuche Familien"
 
-#: ../src/UX/Controls/FontListControls.vala:61
-#: ../src/UX/Controls/FontListControls.vala:100
+#: ../src/UX/Controls/FontListControls.vala:62
 msgid "View font information"
 msgstr "Zeige Schriftinformationen"
 
-#: ../src/UX/Controls/FontListControls.vala:89
+#: ../src/UX/Controls/FontListControls.vala:90
 msgid "Collapse all"
 msgstr "Alle einklappen"
 
-#: ../src/UX/Controls/FontListControls.vala:98
+#: ../src/UX/Controls/FontListControls.vala:106
 #, fuzzy
-msgid "Hide font information"
+msgid "Preview Fonts"
+msgstr "Schriften entfernen"
+
+#: ../src/UX/Controls/FontListControls.vala:115
+#, fuzzy
+msgid "View Information"
 msgstr "Zeige Schriftinformationen"
 
 #: ../src/UX/Controls/PreviewControls.vala:58
@@ -811,6 +815,10 @@ msgstr "Betrachte, vergleiche und verwalte Schriften"
 #: ../resources/org.gnome.FontManager.desktop.in.h:3
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr "Graphics;Viewer;GNOME;GTK;Publishing;"
+
+#, fuzzy
+#~ msgid "Hide font information"
+#~ msgstr "Zeige Schriftinformationen"
 
 #~ msgid "Cancel"
 #~ msgstr "Abbrechen"

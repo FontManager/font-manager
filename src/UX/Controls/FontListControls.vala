@@ -53,8 +53,9 @@ namespace FontManager {
             entry.set_size_request(0, 0);
             entry.placeholder_text = _("Search Families...");
             _show_metadata = new Gtk.ToggleButton();
+            _show_metadata.opacity = 0.75;
         #if GTK_314_OR_LATER
-            _show_metadata.set_image(new Gtk.Image.from_icon_name("stock-eye-symbolic", Gtk.IconSize.MENU));
+            _show_metadata.set_image(new Gtk.Image.from_icon_name("info-symbolic", Gtk.IconSize.MENU));
         #else
             _show_metadata.set_image(new Gtk.Image.from_resource("/org/gnome/FontManager/icons/16x16/actions/stock-eye-symbolic.svg"));
         #endif
@@ -94,10 +95,25 @@ namespace FontManager {
             });
             _show_metadata.toggled.connect(() => {
                 show_metadata(_show_metadata.active);
-                if (_show_metadata.active)
-                    _show_metadata.set_tooltip_text(_("Hide font information"));
-                else
-                    _show_metadata.set_tooltip_text(_("View font information"));
+                if (_show_metadata.active) {
+
+                #if GTK_314_OR_LATER
+                    _show_metadata.set_image(new Gtk.Image.from_icon_name("stock-eye-symbolic", Gtk.IconSize.MENU));
+                #else
+                    _show_metadata.set_image(new Gtk.Image.from_resource("/org/gnome/FontManager/icons/16x16/actions/stock-eye-symbolic.svg"));
+                #endif
+
+                    _show_metadata.set_tooltip_text(_("Preview Fonts"));
+                } else {
+
+                #if GTK_314_OR_LATER
+                    _show_metadata.set_image(new Gtk.Image.from_icon_name("info-symbolic", Gtk.IconSize.MENU));
+                #else
+                    _show_metadata.set_image(new Gtk.Image.from_resource("/org/gnome/FontManager/icons/16x16/actions/info-symbolic.svg"));
+                #endif
+
+                    _show_metadata.set_tooltip_text(_("View Information"));
+                }
 
             });
             return;

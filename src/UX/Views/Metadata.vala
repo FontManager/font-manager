@@ -360,7 +360,7 @@ namespace FontManager {
 
             private void reset () {
                 view.buffer.set_text("");
-                link.set_uri("https://github.com/FontManager/");
+                link.set_uri("http://fontmanager.github.io/");
                 link.set_label("");
                 blend.hide();
                 view.hide();
