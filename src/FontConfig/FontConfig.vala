@@ -144,11 +144,23 @@ namespace FontConfig {
     private bool load_user_font_sources (FontSource [] sources) {
         clear_app_fonts();
         bool res = true;
-        if (!add_app_font_dir(Path.build_filename(Environment.get_user_data_dir(), "fonts")))
-            res = false;
         foreach (var source in sources)
             if (!add_app_font_dir(source.path))
                 res = false;
+        string default_user_font_dir_path = Path.build_filename(Environment.get_user_data_dir(), "fonts");
+        {
+            File default_user_font_dir = File.new_for_path(default_user_font_dir_path);
+            if (!default_user_font_dir.query_exists())
+                /* Means the user does not have a default font directory yet, create it */
+                try {
+                    default_user_font_dir.make_directory_with_parents();
+                } catch (Error e) {
+                    warning("Attempt to create default font directory failed : %s", default_user_font_dir_path);
+                    critical(e.message);
+                }
+        }
+        if (!add_app_font_dir(default_user_font_dir_path))
+            res = false;
         return res;
     }
 

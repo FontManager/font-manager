@@ -93,7 +93,7 @@ namespace FontManager {
 
 public Pango.FontDescription get_font (Gtk.Widget widget, Gtk.StateFlags flags = Gtk.StateFlags.NORMAL) {
     Pango.FontDescription desc;
-    widget.get_style_context().get(flags, "font", out desc, null);
+    widget.get_style_context().get(flags, "font", out desc);
     return desc.copy();
 }
 

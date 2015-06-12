@@ -427,6 +427,8 @@ namespace FontManager {
             });
 
             fontlist.controls.remove_selected.connect(() => {
+                if (sidebar.standard.collection_tree.selected_collection == null)
+                    return;
                 sidebar.standard.collection_tree.remove_fonts(fontlist.get_selected_families());
                 update_font_model(sidebar.standard.collection_tree.selected_collection);
             });

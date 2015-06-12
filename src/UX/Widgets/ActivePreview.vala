@@ -139,7 +139,7 @@ namespace FontManager {
             preview.view.accepts_tab = allow_edit;
             preview.view.overwrite = allow_edit;
             if (allow_edit) {
-                Gdk.Cursor cursor = new Gdk.Cursor(Gdk.CursorType.XTERM);
+                Gdk.Cursor cursor = new Gdk.Cursor.for_display(Gdk.Display.get_default(), Gdk.CursorType.XTERM);
                 Gdk.Window text_window = preview.view.get_window(Gtk.TextWindowType.TEXT);
                 text_window.set_cursor(cursor);
                 preview.grab_focus();

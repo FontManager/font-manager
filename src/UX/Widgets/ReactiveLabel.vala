@@ -27,13 +27,10 @@ public class ReactiveLabel : Gtk.EventBox {
 
     public Gtk.Label label { get; private set; }
 
-    private Gdk.RGBA normal;
-    private Gdk.RGBA hover;
-
     public ReactiveLabel (string? str) {
         label = new Gtk.Label(str);
+        label.opacity = 0.65;
         add(label);
-        style_updated();
     }
 
     public override void show () {
@@ -48,20 +45,13 @@ public class ReactiveLabel : Gtk.EventBox {
     }
 
     public override bool enter_notify_event (Gdk.EventCrossing event) {
-        label.override_color(Gtk.StateFlags.NORMAL, hover);
+        label.opacity = 0.95;
         return false;
     }
 
     public override bool leave_notify_event (Gdk.EventCrossing event) {
-        label.override_color(Gtk.StateFlags.NORMAL, normal);
+        label.opacity = 0.65;
         return false;
-    }
-
-    public override void style_updated () {
-        normal = hover = get_style_context().get_color(Gtk.StateFlags.NORMAL);
-        normal.alpha = 0.65;
-        label.override_color(Gtk.StateFlags.NORMAL, normal);
-        return;
     }
 
     public override bool button_press_event (Gdk.EventButton event) {

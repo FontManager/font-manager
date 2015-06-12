@@ -167,7 +167,7 @@ namespace FontManager {
             main_window.hide();
             remove_window(main_window);
             main_window = null;
-            if (get_windows().length() == 0)
+            if (!fv.ready() || get_windows().length() == 0)
                 base.quit();
         }
 
