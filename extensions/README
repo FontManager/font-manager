@@ -1,4 +1,9 @@
-Copy the extension to one of the following directories.
+These file manager extensions are intended to provide integration
+with popular GTK+ file managers and the font-viewer component
+of font-manager. While the font-viewer is open you should be able
+to preview font files simply by selecting them.
+
+To install, copy the extension to one of the following directories.
 You may need to create the directory if it doesn't exist.
 
 Nautilus:
