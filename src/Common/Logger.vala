@@ -37,6 +37,8 @@ namespace Logging {
         message("Using FontConfig %s", FontConfig.get_version_string());
         message("Using Pango %s", Pango.version_string());
         message("Using GTK+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
+        if (Gdk.Screen.get_default().is_composited())
+            message("Screen is composited. Client side decorations enabled.");
         if (Gnome3())
             message("Running on %s", get_command_line_output("gnome-shell --version"));
         else

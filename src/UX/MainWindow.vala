@@ -263,7 +263,7 @@ namespace FontManager {
             main_pane.child_set_property(content_box, "resize", true);
             content_pane.child_set_property(fonttree, "resize", true);
             content_pane.child_set_property(separator, "resize", true);
-            if (Gnome3()) {
+            if (Gdk.Screen.get_default().is_composited()) {
                 set_titlebar(titlebar);
             } else {
                 main_box.pack_start(titlebar, false, true, 0);
