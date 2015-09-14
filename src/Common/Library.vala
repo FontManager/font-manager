@@ -38,8 +38,9 @@ namespace FontManager {
     namespace Library {
 
         public static ProgressCallback? progress = null;
+    #if HAVE_FILE_ROLLER
         private static ArchiveManager? archive_manager = null;
-        private static Gee.ArrayList <string>? supported_archives = null;
+    #endif
 
         public static bool is_installed (FontData fontdata) {
             var filelist = FontConfig.list_files();
@@ -125,7 +126,7 @@ namespace FontManager {
             return results;
         }
 
-        public class Sorter : Object {
+        internal class Sorter : Object {
 
             public Gee.ArrayList <File> files { get; private set; }
             public Gee.ArrayList <File> archives { get; private set; }
@@ -133,10 +134,6 @@ namespace FontManager {
             construct {
                 files = new Gee.ArrayList <File> ();
                 archives  = new Gee.ArrayList <File> ();
-                if (archive_manager == null) {
-                    archive_manager = new ArchiveManager();
-                    supported_archives = archive_manager.get_supported_types();
-                }
             }
 
             public void sort (Gee.ArrayList <File> filelist) {
@@ -164,8 +161,12 @@ namespace FontManager {
                         else
                             if (content_type.contains("font") && !is_metrics_file(name))
                                 files.add(dir.get_child(name));
-                            else if (content_type in supported_archives && !(content_type in ARCHIVE_IGNORE_LIST))
+                        #if HAVE_FILE_ROLLER
+                            else if (content_type in archive_manager.get_supported_types() && !(content_type in ARCHIVE_IGNORE_LIST))
                                 archives.add(dir.get_child(name));
+                        #endif
+                            else
+                                message("Skipping unsupported filetype : %s", name);
                         processed++;
                         if (progress != null)
                             progress(_("Processing directories"), processed, total);
@@ -189,8 +190,12 @@ namespace FontManager {
                             process_directory(file);
                         else if (content_type.contains("font") && !is_metrics_file(name))
                             files.add(file);
-                        else if (content_type in supported_archives)
+                    #if HAVE_FILE_ROLLER
+                        else if (content_type in archive_manager.get_supported_types())
                             archives.add(file);
+                    #endif
+                        else
+                            message("Skipping unsupported filetype : %s", name);
                     } catch (Error e) {
                         critical("Error querying file information : %s", e.message);
                         show_error_message(_("Error querying file information"), e);
@@ -216,11 +221,8 @@ namespace FontManager {
             public static void from_file_array (File? [] files) {
                 init();
                 var _files = new Gee.ArrayList <File> ();
-                foreach (var file in files) {
-                    if (file == null)
-                        break;
+                foreach (var file in files)
                     _files.add(file);
-                }
                 process_files(_files);
                 fini();
             }
@@ -228,11 +230,8 @@ namespace FontManager {
             public static void from_path_array (string? [] paths) {
                 init();
                 var files = new Gee.ArrayList <File> ();
-                foreach (var path in paths) {
-                    if (path == null)
-                        break;
+                foreach (var path in paths)
                     files.add(File.new_for_path(path));
-                }
                 process_files(files);
                 fini();
             }
@@ -240,20 +239,19 @@ namespace FontManager {
             public static void from_uri_array (string? [] uris) {
                 init();
                 var files = new Gee.ArrayList <File> ();
-                foreach (var uri in uris) {
-                    if (uri == null)
-                        break;
+                foreach (var uri in uris)
                     files.add(File.new_for_uri(uri));
-                }
                 process_files(files);
                 fini();
             }
 
             private static void init () {
-                if (archive_manager == null) {
+                installed = new Gee.ArrayList <File> ();
+                install_failed = new Gee.HashMap <string, string> ();
+            #if HAVE_FILE_ROLLER
+                if (archive_manager == null)
                     archive_manager = new ArchiveManager();
-                    supported_archives = archive_manager.get_supported_types();
-                }
+            #endif
                 return;
             }
 
@@ -324,6 +322,7 @@ namespace FontManager {
                 return true;
             }
 
+        #if HAVE_FILE_ROLLER
             private static File? get_temp_dir () {
                 string? _tmpdir = null;
                 try {
@@ -334,6 +333,7 @@ namespace FontManager {
                 }
                 return _tmpdir != null ? File.new_for_path(_tmpdir) : null;
             }
+        #endif
 
             private static void process_files (Gee.ArrayList <File> filelist) {
                 debug("Processing files for installation");
@@ -349,6 +349,7 @@ namespace FontManager {
                     if (progress != null)
                         progress(_("Installing files"), processed, total);
                 }
+            #if HAVE_FILE_ROLLER
                 if (sorter.archives.size == 0)
                     return;
                 tmpdir = get_temp_dir();
@@ -369,6 +370,7 @@ namespace FontManager {
                 var l = new Gee.ArrayList <File> ();
                 l.add(tmpdir);
                 process_files(l);
+            #endif
                 return;
             }
 

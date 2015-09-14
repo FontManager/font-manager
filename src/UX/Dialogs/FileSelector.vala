@@ -78,6 +78,7 @@ namespace FontManager {
             var dialog = new Gtk.Dialog();
             var cancel = new Gtk.Button.with_mnemonic(_("_Cancel"));
             var remove = new Gtk.Button.with_mnemonic(_("_Delete"));
+            remove.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
             var header = new Gtk.HeaderBar();
             var content_area = dialog.get_content_area();
             var scroll = new Gtk.ScrolledWindow(null, null);

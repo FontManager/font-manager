@@ -563,7 +563,8 @@ namespace FontManager {
             Library.Install.from_uri_array(arr);
             fonttree.loading = false;
             font_model = Main.instance.font_model;
-            queue_reload();
+            if(Library.Install.installed.size > 0)
+                queue_reload();
             return;
         }
 

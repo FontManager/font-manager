@@ -119,19 +119,10 @@ dnl Initialize yelp support
 YELP_HELP_INIT()
 
 dnl Check for supporting applications
-AC_CHECK_PROG(HAVE_FILE_ROLLER, file-roller, yes)
-if test "x$HAVE_FILE_ROLLER" != "xyes";
-then
-    AC_MSG_ERROR([
-
-    Application requirements (file-roller) were not met:
-
-    Please install File Roller and try again.
-
-    https://wiki.gnome.org/Apps/FileRoller
-
+AC_CHECK_PROG(FILE_ROLLER, file-roller, yes)
+AS_IF([test "x$FILE_ROLLER" = "xyes"], [
+  AC_SUBST(HAVE_FILE_ROLLER, [" -D HAVE_FILE_ROLLER"])
 ])
-fi
 
 dnl Optional Extensions
 
@@ -184,6 +175,7 @@ echo "
     C compiler: ${CC}
     Vala compiler: ${VALAC}
     Installation prefix: ${prefix}
+    Archive Support: $FILE_ROLLER
 
 "
 

@@ -40,6 +40,7 @@ public class ArchiveManager : Object {
     public signal void progress (string? message, int processed, int total);
 
     private DBusService? service = null;
+    private Gee.ArrayList <string>? _supported_types = null;
 
     public void post_error_message (Error e) {
         critical("Archive Manager : %s", e.message);
@@ -49,6 +50,12 @@ public class ArchiveManager : Object {
         try {
             service = Bus.get_proxy_sync(BusType.SESSION, "org.gnome.ArchiveManager1", "/org/gnome/ArchiveManager1");
             service.progress.connect((p, m) => { progress(m, (int) p, 100); });
+            message("Success contacting Archive Manager service.");
+            var builder = new StringBuilder();
+            foreach (var t in get_supported_types())
+                builder.append(t + ", ");
+            if (!(builder.str.strip() == ""))
+                message("Supported archive types : %s", builder.str);
         } catch (IOError e) {
             warning("Failed to contact Archive Manager service.");
             warning("Features which depend on Archive Manager will not function correctly.");
@@ -65,7 +72,7 @@ public class ArchiveManager : Object {
     }
 
     public bool add_to_archive (string archive, string [] uris, bool use_progress_dialog = true) {
-        Logger.verbose("File Roller - Add to archive : %s", archive);
+        Logger.verbose("Archive Manager - Add to archive : %s", archive);
         try {
             file_roller.add_to_archive(archive, uris, use_progress_dialog);
             return true;
@@ -76,7 +83,7 @@ public class ArchiveManager : Object {
     }
 
     public bool compress (string [] uris, string destination, bool use_progress_dialog = true) {
-        Logger.verbose("File Roller - Compress : %s", destination);
+        Logger.verbose("Archive Manager - Compress : %s", destination);
         try {
             file_roller.compress(uris, destination, use_progress_dialog);
             return true;
@@ -87,7 +94,7 @@ public class ArchiveManager : Object {
     }
 
     public bool extract (string archive, string destination, bool use_progress_dialog = true) {
-        Logger.verbose("File Roller - Extract %s to %s", archive, destination);
+        Logger.verbose("Archive Manager - Extract %s to %s", archive, destination);
         try {
             file_roller.extract(archive, destination, use_progress_dialog);
             return true;
@@ -98,7 +105,7 @@ public class ArchiveManager : Object {
     }
 
     public bool extract_here (string archive, bool use_progress_dialog = true) {
-        Logger.verbose("File Roller - Extract here : %s", archive);
+        Logger.verbose("Archive Manager - Extract here : %s", archive);
         try {
             file_roller.extract_here(archive, use_progress_dialog);
             return true;
@@ -109,16 +116,18 @@ public class ArchiveManager : Object {
     }
 
     public Gee.ArrayList <string> get_supported_types (string action = "extract") {
-        Logger.verbose("File Roller - Get supported types");
-        var types = new Gee.ArrayList <string> ();
+        Logger.verbose("Archive Manager - Get supported types");
+        if (_supported_types != null)
+            return _supported_types;
+        _supported_types = new Gee.ArrayList <string> ();
         try {
             HashTable <string, string> [] array = file_roller.get_supported_types(action);
             foreach (var hashtable in array)
-                types.add(hashtable.get("mime-type"));
+                _supported_types.add(hashtable.get("mime-type"));
         } catch (Error e) {
             post_error_message(e);
         }
-        return types;
+        return _supported_types;
     }
 
 }

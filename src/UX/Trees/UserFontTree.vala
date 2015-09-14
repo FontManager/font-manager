@@ -28,16 +28,6 @@ namespace FontManager {
 
         private Gtk.CellRendererToggle toggle;
         private Gee.HashSet <string> selected_paths;
-        private Gee.HashMap <string, string> filemap;
-
-        construct {
-            try {
-                filemap = get_user_filemap(get_database());
-            } catch (DatabaseError e) {
-                critical(e.message);
-                show_error_message(_("There was an error accessing the database"), e);
-            }
-        }
 
         public UserFontTree (UserFontModel model) {
             this.model = model;
@@ -78,15 +68,52 @@ namespace FontManager {
             int total = faces.size;
             int active = 0;
             foreach (var face in faces)
-                if (filemap.has_key(face.description))
-                    if (selected_paths.contains(filemap[face.description]))
-                        active++;
+                if (selected_paths.contains(face.filepath))
+                    active++;
             if (active != 0 && active < total)
                 return -1;
             else if (active == total)
                 return 1;
             else
                 return 0;
+        }
+        
+        private string get_actual_filepath (FontConfig.Font font) {
+            if (font.filepath.contains(get_user_font_dir()))
+                return font.filepath;
+            debug("Font file %s is not owned by user, querying database for duplicates...", font.filepath);
+            string path = font.filepath;
+            try {
+                var db = get_database();
+                db.reset();
+                db.table = "Fonts";
+                db.select = "filepath";
+                db.search = "family=\"%s\" AND style=\"%s\"".printf(font.family, font.style);
+                db.unique = true;
+                db.execute_query();
+                foreach (var row in db)
+                    if (row.column_text(0).contains(get_user_font_dir())) {
+                        path = row.column_text(0);
+                        debug("Found matching font file belonging to user %s", path);
+                        break;
+                    }
+                db.close();
+            } catch (DatabaseError e) {
+                critical("Failed to query database : %s", db.db.errmsg());
+            }
+            return path;
+        }
+        
+        private void toggle_selected_path (FontConfig.Font font) {
+            string path = get_actual_filepath(font);
+            if (selected_paths.contains(path)) {
+                selected_paths.remove(path);
+                debug("Deselected %s", path);
+            } else {
+                selected_paths.add(path);
+                debug("Selected %s", path);
+            }
+            return;
         }
 
         private void on_font_toggled (string path) {
@@ -97,22 +124,11 @@ namespace FontManager {
             var font = val.get_object();
             if (font is FontConfig.Family) {
                 bool inconsistent = (family_state((FontConfig.Family) font) == -1);
-                foreach (var face in ((FontConfig.Family) font).list_faces()) {
-                    if (!filemap.has_key(face.description))
-                        continue;
-                    var _path = filemap[face.description];
-                    if (!inconsistent && selected_paths.contains(_path))
-                        selected_paths.remove(_path);
-                    else
-                        selected_paths.add(_path);
-                }
-            } else {
-                var _path = filemap[((FontConfig.Font) font).description];
-                if (selected_paths.contains(_path))
-                    selected_paths.remove(_path);
-                else
-                    selected_paths.add(_path);
-            }
+                foreach (var face in ((FontConfig.Family) font).list_faces())
+                    if (!inconsistent)
+                        toggle_selected_path(face);
+            } else
+                toggle_selected_path((FontConfig.Font) font);
             val.unset();
             queue_draw();
             return;
@@ -159,8 +175,8 @@ namespace FontManager {
                 } else
                     cell.set_property("active", active);
             } else {
-                var _path = filemap[((FontConfig.Font) obj).description];
-                cell.set_property("active", selected_paths.contains(_path));
+                string path = get_actual_filepath((FontConfig.Font) obj);
+                cell.set_property("active", selected_paths.contains(path));
             }
             val.unset();
             return;
