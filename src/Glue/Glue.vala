@@ -61,7 +61,7 @@ namespace FontConfig {
         return FcListFiles();
     }
 
-    public Gee.ArrayList <string> list_dirs (bool recursive = true) {
+    public Gee.ArrayList <string> list_dirs (bool recursive = false) {
         return FcListDirs(recursive);
     }
 
