@@ -21,6 +21,8 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
+#if HAVE_FILE_ROLLER
+
 [DBus (name = "org.gnome.ArchiveManager1")]
 private interface DBusService : Object {
 
@@ -132,3 +134,4 @@ public class ArchiveManager : Object {
 
 }
 
+#endif /* HAVE_FILE_ROLLER */
