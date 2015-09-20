@@ -2,7 +2,7 @@
 <!-- Copyright © 2009 - 2015 Jerry Casiano -->
 <application>
   <updatecontact>JerryCasiano_at_gmail.com</updatecontact>
-  <id type="desktop">font-manager.desktop</id>
+  <id type="desktop">org.gnome.FontManager.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
   <summary>A simple font management application for Gtk+ Desktop Environments</summary>
