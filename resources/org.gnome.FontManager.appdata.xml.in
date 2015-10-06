@@ -19,6 +19,18 @@
     <p>
         Font Manager is NOT a professional-grade font management solution.
     </p>
+    <p xml:lang="es">
+        El propósito de Font Manager es permitir que los usuarios de a pie gestionen
+        con facilidad los tipos de letra de sus equipos, sin necesidad de recurrir a
+        herramientas de consola ni a editar archivos de configuración a mano.
+    </p>
+    <p xml:lang="es">
+        Aunque el diseño de la aplicación se basó en el entorno de escritorio de Gnome,
+        esta debe funcionar correctamente en otras plataformas que utilicen Gtk+.
+    </p>
+    <p xml:lang="es">
+        Font Manager NO es una aplicación de gestión tipográfica de nivel profesional.
+    </p>
   </description>
   <url type="homepage">http://fontmanager.github.io/</url>
   <screenshots>
