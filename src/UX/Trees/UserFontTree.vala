@@ -78,6 +78,14 @@ namespace FontManager {
                 return 0;
         }
         
+        
+        /* XXX:
+         * 
+         * This is a workaround to allow for removal of conflicting fonts.
+         * At this point we don't really check before installation, except in the viewer.
+         * 
+         * This can and should go once that is done.
+         */
         private string get_actual_filepath (FontConfig.Font font) {
             if (font.filepath.contains(get_user_font_dir()))
                 return font.filepath;

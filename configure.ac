@@ -22,22 +22,21 @@ LT_INIT()
 dnl Check for basics
 AC_PROG_CC()
 AM_PROG_VALAC(
-    [0.24],
-    dnl Gtk.TextBuffer API break
+    [0.27.1],
+    [AC_SUBST(VALA_0271_OR_LATER, [" -D VALA_0271_OR_LATER"])],
     [AM_PROG_VALAC(
-        [0.27.1],
-        [AC_SUBST(VALA_0271_OR_LATER, [" -D VALA_0271_OR_LATER"])],
-        [:]
-    )],
-    AC_MSG_ERROR([
+        [0.24],
+        [:],
+        AC_MSG_ERROR([
 
-    Build requirements (valac) were not met:
+        Build requirements (valac) were not met:
 
-    Please install Vala >= 0.24 and try again.
+        Please install Vala >= 0.24 and try again.
 
-    https://wiki.gnome.org/Projects/Vala
+        https://wiki.gnome.org/Projects/Vala
 
-    ])
+        ])
+    )]
 )
 C_PROG_INSTALL()
 AC_PROG_MKDIR_P()
