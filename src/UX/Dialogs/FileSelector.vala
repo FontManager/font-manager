@@ -56,10 +56,12 @@ namespace FontManager {
                                                         Gtk.ResponseType.ACCEPT,
                                                         null);
             var filter = new Gtk.FileFilter();
+      #if HAVE_FILE_ROLLER
             var archive_manager = new ArchiveManager();
             foreach (var mimetype in archive_manager.get_supported_types())
                 if (!(mimetype in ARCHIVE_IGNORE_LIST))
                     filter.add_mime_type(mimetype);
+      #endif
             foreach (var mimetype in FONT_MIMETYPES)
                 filter.add_mime_type(mimetype);
             dialog.set_filter(filter);
