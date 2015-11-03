@@ -42,7 +42,7 @@ class FontViewer (thunarx.MenuProvider):
     def __init__ (self):
         DBusGMainLoop(set_as_default=True)
         self.bus = dbus.SessionBus()
-        self.bus.watch_name_owner('org.gnome.FontManager', FontViewer.set_state)
+        self.bus.watch_name_owner('org.gnome.FontViewer', FontViewer.set_state)
 
     def get_file_actions (self, window, files):
         if FontViewer.Active and len(files) == 1:
@@ -51,10 +51,10 @@ class FontViewer (thunarx.MenuProvider):
                 if (selected_file.get_location().get_path() is None):
                     return
                 try:
-                    proxy = self.bus.get_object('org.gnome.FontManager', '/org/gnome/FontManager/FontViewer')
-                    ready = proxy.get_dbus_method('Ready', 'org.gnome.FontManager.FontViewer')
+                    proxy = self.bus.get_object('org.gnome.FontViewer', '/org/gnome/FontViewer')
+                    ready = proxy.get_dbus_method('Ready', 'org.gnome.FontViewer')
                     if ready():
-                        show_uri = proxy.get_dbus_method('ShowUri', 'org.gnome.FontManager.FontViewer')
+                        show_uri = proxy.get_dbus_method('ShowUri', 'org.gnome.FontViewer')
                         show_uri('{0}'.format(selected_file.get_uri()))
                 except:
                     pass

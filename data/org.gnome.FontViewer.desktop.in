@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Font Viewer
+GenericName=Font Viewer
+Comment=Full featured font file preview application
+Icon=preferences-desktop-font
+DBusActivatable=true
+Exec=@PKGLIBEXECDIR@/font-viewer %u
+Terminal=false
+MimeType=application/x-font-ttf;application/x-font-type1;application/x-font-otf;
+Categories=GTK;GNOME;Utility;Graphics;Viewer;Publishing;
+Keywords=Graphics;Viewer;GNOME;GTK;Publishing;
+StartupNotify=true
+
+

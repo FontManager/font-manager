@@ -27,10 +27,11 @@ extension_thunar__DATA = Thunar/$(extension_name)
 endif
 endif
 
-
 EXTRA_DIST = \
 	Nautilus \
 	Nemo \
 	Thunar \
 	README
 
+MAINTAINERCLEANFILES = \
+	./Makefile.in

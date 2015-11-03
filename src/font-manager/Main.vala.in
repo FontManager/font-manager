@@ -1,0 +1,300 @@
+/* Main.vala
+ *
+ * Copyright (C) 2009 - 2015 Jerry Casiano
+ *
+ * This file is part of Font Manager.
+ *
+ * Font Manager is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Font Manager is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Author:
+ *        Jerry Casiano <JerryCasiano@gmail.com>
+*/
+
+namespace FontManager {
+
+    void queue_reload () {
+        /* Note : There's a 2 second delay built into FontConfig */
+        Timeout.add_seconds(3, () => {
+            Main.instance.update();
+            return false;
+        });
+        return;
+    }
+
+    public class Main : Object {
+
+        public static unowned Main instance {
+            get {
+                return _instance.once (() => { return new Main (); });
+            }
+        }
+
+        static GLib.Once <Main> _instance;
+
+        public signal void progress (string? message, int processed, int total);
+
+        public Database database { get; private set; }
+        public FontConfig.Sources sources { get; private set; }
+        public FontConfig.Families families { get; private set; }
+        public FontConfig.Reject reject { get; private set; }
+        public MainWindow main_window { get; private set; }
+        public FontModel font_model { get; private set; }
+
+        weak Application application;
+        bool update_in_progress = false;
+        bool queue_update = false;
+        State? state = null;
+
+        public Main () {
+            application = ((Application) GLib.Application.get_default());
+            Logging.show_version_information();
+        }
+
+        public void handle_open (File file) {
+            try {
+                DBusConnection conn = Bus.get_sync(BusType.SESSION);
+                conn.call_sync("org.gnome.FontViewer",
+                                "/org/gnome/FontViewer",
+                                "org.gnome.FontViewer",
+                                "ShowUri",
+                                new Variant("(s)", file.get_uri()),
+                                null,
+                                DBusCallFlags.NONE,
+                                -1,
+                                null);
+            } catch (Error e) {
+                critical("Method call to org.gnome.FontViewer failed : %s", e.message);
+            }
+            return;
+        }
+
+        public int handle_command_line (ApplicationCommandLine cl) {
+            application.hold();
+            VariantDict options = cl.get_options_dict();
+            File []? filelist = get_command_line_files(cl);
+            if (filelist == null) {
+                application.activate();
+            } else if (options.contains("install")) {
+                Library.Install.from_file_array(filelist);
+            } else {
+                handle_open(filelist[0]);
+            }
+            application.release();
+            return 0;
+        }
+
+        public int handle_options (VariantDict options) {
+            int exit_status = -1;
+
+            if (options.contains("version")) {
+                show_version();
+                exit_status = 0;
+            }
+
+            if (options.contains("about")) {
+                show_about();
+                exit_status = 0;
+            }
+
+            if (options.contains("debug"))
+                Logger.DisplayLevel = LogLevel.DEBUG;
+
+            if (options.contains("fatal"))
+                Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
+
+            if (options.contains("disable-headerbar"))
+                application.use_headerbar = false;
+
+            if (options.contains("list")) {
+                if (families == null) {
+                    families = new FontConfig.Families();
+                    families.update();
+                }
+                stdout.printf("\n%s\n\n", families.to_data());
+                exit_status = 0;
+            }
+
+            if (options.contains("list-full")) {
+                if (families == null) {
+                    families = new FontConfig.Families();
+                    sources = new FontConfig.Sources();
+                    sources.init();
+                    FontConfig.enable_user_config(false);
+                    FontConfig.load_user_fontconfig_files();
+                    if (!FontConfig.load_user_font_sources(sources.to_array()))
+                        critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
+                    sources.update();
+                    families.update();
+                }
+                stdout.printf("\n%s\n\n", families.to_data());
+                exit_status = 0;
+            }
+
+            return exit_status;
+        }
+
+        public void at_startup () {
+            try {
+                database = get_database();
+            } catch (Error e) {
+                error("Failed to initialize database : %s", e.message);
+            }
+            families = new FontConfig.Families();
+            families.progress.connect((m, p, t) => { progress(m, p, t); });
+            font_model = new FontModel(families);
+            reject = new FontConfig.Reject();
+            sources = new FontConfig.Sources();
+        }
+
+        public void on_activate () {
+
+            if (main_window != null) {
+                main_window.present();
+                return;
+            }
+
+            main_window = new MainWindow();
+            state = new State(main_window, BUS_ID);
+            application.add_window(main_window);
+            main_window.realize.connect(() => {
+                state.restore();
+            });
+            progress.connect((m, p, t) => {
+                main_window.progress = ((float) p /(float) t);
+                ensure_ui_update();
+            });
+        #if GTK_314_OR_LATER
+            if (prefers_app_menu())
+        #else
+            if (Gnome3())
+        #endif
+                set_g_app_menu(application, new Gtk.Builder(), "@PACKAGE_NAME@");
+            reject.init();
+            sources.init();
+            main_window.present();
+            do_initial_update();
+            Idle.add(() => {
+                state.bind_settings();
+                state.post_activate();
+                return false;
+            });
+            return;
+        }
+
+        public void on_quit () {
+            state.save();
+            return;
+        }
+
+        public void update () {
+
+            if (update_in_progress) {
+                queue_update = true;
+                return;
+            } else {
+                queue_update = false;
+            }
+
+            update_in_progress = true;
+            debug("Updating font configuration");
+            FontConfig.update_cache();
+            async_update.begin((obj, res) => {
+                main_window.font_model = null;
+                main_window.loading = true;
+                main_window.sidebar.category_model.clear();
+                ensure_ui_update();
+                try {
+                    async_update.end(res);
+                    debug("Font configuration update complete");
+                } catch (ThreadError e) {
+                    warning("Thread error : %s", e.message);
+                    critical(_("Try restarting the application\nThere was an error updating font information.\n Error : %s"), e.message);
+                }
+                sync_database();
+                families.update();
+                main_window.loading = false;
+                main_window.set_models();
+                ensure_ui_update();
+                main_window.reset_selections();
+                main_window.sidebar.category_model.update.begin((obj, res) => {
+                    main_window.sidebar.category_model.update.end(res);
+                    main_window.reset_selections();
+                });
+                update_in_progress = false;
+                if (queue_update)
+                    Idle.add(() => { update(); return false; });
+            });
+            return;
+        }
+
+        void do_initial_update () {
+            main_window.font_model = null;
+            main_window.loading = true;
+            ensure_ui_update();
+            FontConfig.enable_user_config(false);
+            FontConfig.load_user_fontconfig_files();
+            if (!FontConfig.load_user_font_sources(sources.to_array()))
+                critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
+            sources.update();
+            sources.enable_monitors();
+            font_model.update();
+            sync_database();
+            families.update();
+            main_window.loading = false;
+            main_window.set_models();
+            main_window.sidebar.category_model.update.begin((obj, res) => {
+                main_window.sidebar.category_model.update.end(res);
+                state.restore_selections();
+            });
+            return;
+        }
+
+        async bool async_update () throws ThreadError {
+            SourceFunc callback = async_update.callback;
+            bool output = true;
+            ThreadFunc <void*> run = () => {
+                lock(families) {
+                    lock(sources) {
+                        sources.cancel_monitors();
+                        FontConfig.enable_user_config(false);
+                        FontConfig.load_user_fontconfig_files();
+                        if (!FontConfig.load_user_font_sources(sources.to_array())) {
+                            critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
+                            output = false;
+                        }
+                    }
+                }
+                sources.update();
+                sources.enable_monitors();
+                Idle.add((owned) callback);
+                return null;
+            };
+
+            new Thread <void*> ("async_update", run);
+            yield;
+            return output;
+        }
+
+        void sync_database () {
+            try {
+                sync_fonts_table(database, FontConfig.list_fonts(), (m, p, t) => { Main.instance.progress(m, p, t); });
+            } catch (DatabaseError e) {
+                critical("Database synchronization failed : %s", e.message);
+            }
+            return;
+        }
+
+    }
+
+}

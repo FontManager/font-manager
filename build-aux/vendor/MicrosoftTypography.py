@@ -34,12 +34,13 @@ except ImportError:
 
 CREDIT = """Courtesy of Microsoft Typography"""
 URL = "http://www.microsoft.com/typography/links/vendorlist.aspx"
+USER_AGENT = "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:40.0) Gecko/20100101 Firefox/40.0"
 
 
 def list_vendors () :
     req = urllib.request.Request(URL)
     req.remove_header("User-agent")
-    req.add_header("User-agent", "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:36.0) Gecko/20100101 Firefox/36.0")
+    req.add_header("User-agent", USER_AGENT)
     with urllib.request.urlopen(req) as raw_data:
         raw_html = raw_data.read()
     vendor_list = SoupStrainer(id = "VendorList")

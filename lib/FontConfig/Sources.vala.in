@@ -1,0 +1,273 @@
+/* Sources.vala
+ *
+ * Copyright (C) 2009 - 2015 Jerry Casiano
+ *
+ * This file is part of Font Manager.
+ *
+ * Font Manager is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Font Manager is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Author:
+ *        Jerry Casiano <JerryCasiano@gmail.com>
+*/
+
+namespace FontConfig {
+
+    public bool load_user_font_sources (Source [] sources) {
+        clear_app_fonts();
+        bool res = true;
+        foreach (var source in sources) {
+            if (source.available && !add_app_font_dir(source.path)) {
+                res = false;
+                warning("Failed to register user font source! : %s", source.path);
+            }
+        }
+        string default_user_font_dir_path = Path.build_filename(Environment.get_user_data_dir(), "fonts");
+        {
+            File default_user_font_dir = File.new_for_path(default_user_font_dir_path);
+            if (!default_user_font_dir.query_exists())
+                /* Means the user does not have a default font directory yet, create it */
+                try {
+                    default_user_font_dir.make_directory_with_parents();
+                } catch (Error e) {
+                    warning("Attempt to create default font directory failed : %s", default_user_font_dir_path);
+                    critical(e.message);
+                }
+        }
+        if (!add_app_font_dir(default_user_font_dir_path)) {
+            res = false;
+            warning("Failed to register user font source! : %s", default_user_font_dir_path);
+        }
+        return res;
+    }
+
+    public class Sources : Gee.HashSet <Source> {
+
+        public signal void changed (File? file, FileMonitorEvent? event);
+
+        public static string get_cache_file () {
+            string dirpath = Path.build_filename(Environment.get_user_config_dir(), "@PACKAGE_NAME@");
+            string filepath = Path.build_filename(dirpath, "Sources.xml");
+            DirUtils.create_with_parents(dirpath ,0755);
+            return filepath;
+        }
+
+        public Directories active_directories { get; private set;}
+
+        string? target_file = null;
+        string? target_element = null;
+        FileMonitor? [] monitors = {};
+        VolumeMonitor volume_monitor;
+
+        public Sources () {
+            target_element = "source";
+            target_file = get_cache_file();
+            active_directories = new Directories();
+            active_directories.init();
+            volume_monitor = VolumeMonitor.get();
+            volume_monitor.mount_removed.connect((m) => {
+               if (this.contains(m.get_default_location().get_path()))
+                    this.changed(m.get_root(), FileMonitorEvent.UNMOUNTED);
+            });
+            add_sources_from_directories();
+        }
+
+        /* Overkill */
+        void add_sources_from_directories () {
+            foreach (var path in active_directories) {
+                bool found = false;
+                foreach (var source in this)
+                    if (source.path == path)
+                        found = true;
+                if (found)
+                    continue;
+                var source = new Source(File.new_for_path(path));
+                source.active = true;
+                source.notify["active"].connect(() => { source_activated(source); });
+                base.add(source);
+            }
+        }
+
+        public new bool contains (string path) {
+            foreach (var source in this)
+                if (source.path.contains(path))
+                    return true;
+            return false;
+        }
+
+        public void update () {
+            foreach (var source in this)
+                source.update();
+            return;
+        }
+
+        public new bool add (Source source) {
+            source.notify["active"].connect(() => { source_activated(source); });
+            this.changed(null, null);
+            return base.add(source);
+        }
+
+        public new bool remove (Source source) {
+            source.available = false;
+            if (active_directories.contains(source.path)) {
+                active_directories.remove(source.path);
+                active_directories.save();
+            }
+            try {
+                FontManager.Database db = FontManager.get_database();
+                db.table = "Fonts";
+                db.remove("filepath LIKE \"%s%\"".printf(source.path));
+                db.vacuum();
+                db.close();
+            } catch (FontManager.DatabaseError e) {
+                warning(e.message);
+            }
+            if (base.remove(source)) {
+                this.changed(null, null);
+                return true;
+            }
+            return false;
+        }
+
+        public void cancel_monitors () {
+            foreach (var mon in monitors) {
+                if (mon != null)
+                    mon.cancel();
+                mon = null;
+            }
+            monitors = {};
+            return;
+        }
+
+        public void enable_monitors () {
+            var _dirs = list_dirs();
+            foreach (var dir in _dirs)
+                monitors += get_directory_monitor(dir);
+            foreach (var source in this)
+                if (source.path in _dirs)
+                    continue;
+                else
+                    monitors += get_directory_monitor(source.path);
+            return;
+        }
+
+        void source_activated (Source source) {
+            if (source.active)
+                active_directories.add(source.path);
+            else
+                active_directories.remove(source.path);
+            active_directories.save();
+            this.changed(null, null);
+        }
+
+        FileMonitor? get_directory_monitor (string dir) {
+            File file = File.new_for_path(dir);
+            FileMonitor? monitor = null;
+            try {
+                monitor = file.monitor_directory(FileMonitorFlags.NONE);
+                monitor.changed.connect((f, of, ev) => {
+                    this.changed(f, ev);
+                });
+            } catch (IOError e) {
+                warning("Failed to create FileMonitor for %s", dir);
+                critical("FileMonitor creation failed : %s", e.message);
+            }
+            return monitor;
+        }
+
+        public bool init ()
+        requires (target_file != null && target_element != null) {
+
+            {
+                File file = File.new_for_path(target_file);
+                if (!file.query_exists())
+                    return false;
+            }
+
+            Xml.Parser.init();
+            debug("Xml.Parser : Opening : %s", target_file);
+            Xml.Doc * doc = Xml.Parser.parse_file(target_file);
+            if (doc == null) {
+                /* File not found */
+                Xml.Parser.cleanup();
+                return false;
+            }
+
+            Xml.Node * root = doc->get_root_element();
+            if (root == null) {
+                /* Empty doc */
+                delete doc;
+                Xml.Parser.cleanup();
+                return false;
+            }
+
+            parse(root);
+
+            debug("Xml.Parser : Closing : %s", target_file);
+
+            delete doc;
+            Xml.Parser.cleanup();
+            return true;
+        }
+
+        public void save ()
+        requires (target_file != null && target_element != null) {
+            var writer = new Xml.TextWriter.filename(target_file);
+            writer.set_indent(true);
+            writer.set_indent_string("  ");
+            writer.start_document();
+            writer.write_comment(_(" Generated by Font Manager. Do NOT edit this file. "));
+            writer.start_element("Sources");
+            write_node(writer);
+            writer.end_element();
+            writer.end_document();
+            writer.flush();
+            return;
+        }
+
+        protected void parse (Xml.Node * root) {
+            parse_node(root->children);
+        }
+
+        protected void write_node (Xml.TextWriter writer) {
+            foreach (var source in this)
+                writer.write_element(target_element, Markup.escape_text(source.path.strip()));
+            return;
+        }
+
+        protected void parse_node (Xml.Node * node) {
+            for (Xml.Node * iter = node; iter != null; iter = iter->next) {
+                /* Spaces between tags are also nodes, discard them */
+                if (iter->type != Xml.ElementType.ELEMENT_NODE)
+                    continue;
+                string content = iter->get_content();
+                if (content == null)
+                    continue;
+                content = content.strip();
+                if (content == "")
+                    continue;
+                else {
+                    var source = new Source(File.new_for_path(content));
+                    debug("Loading source : %s", source.name);
+                    if (source.path in active_directories)
+                        source.active = true;
+                    source.notify["active"].connect(() => { source_activated(source); });
+                    base.add(source);
+                }
+            }
+            return;
+        }
+
+    }
+
+}
