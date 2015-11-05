@@ -30,6 +30,11 @@ namespace FontManager {
 
         construct {
             set_column_types({typeof(Object), typeof(string), typeof(string), typeof(string), typeof(int), typeof(bool)});
+        }
+
+        void init_categories () {
+            if (categories != null)
+                return;
             try {
                 db = get_database();
                 categories = get_default_categories(db);
@@ -37,6 +42,7 @@ namespace FontManager {
                 critical("Failed to initialize database!");
                 critical("Failed to update categories!");
             }
+            return;
         }
 
         void append_category (Category filter) {
@@ -62,6 +68,7 @@ namespace FontManager {
 
         public async void update () {
             clear();
+            init_categories();
             foreach (var filter in categories) {
                 append_category((Category) filter);
                 Idle.add(update.callback);
@@ -72,6 +79,7 @@ namespace FontManager {
 
         public void update_sync () {
             clear();
+            init_categories();
             foreach (var filter in categories)
                 append_category((Category) filter);
             return;

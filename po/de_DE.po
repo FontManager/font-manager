@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2015-11-03 00:44-0500\n"
+"POT-Creation-Date: 2015-11-05 13:49-0500\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -372,22 +372,22 @@ msgid "PostScript Name"
 msgstr "PostScript Type 1 Schrift"
 
 #: ../lib/UX/Metadata/Properties.vala:43
-#: ../lib/UX/Models/CategoryModel.vala:96
+#: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Weight"
 msgstr "Stärke"
 
 #: ../lib/UX/Metadata/Properties.vala:44
-#: ../lib/UX/Models/CategoryModel.vala:94
+#: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Slant"
 msgstr "Schriftstil"
 
 #: ../lib/UX/Metadata/Properties.vala:45
-#: ../lib/UX/Models/CategoryModel.vala:98
+#: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Width"
 msgstr "Breite"
 
 #: ../lib/UX/Metadata/Properties.vala:46
-#: ../lib/UX/Models/CategoryModel.vala:92
+#: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Spacing"
 msgstr "Abstände"
 
@@ -396,7 +396,7 @@ msgid "Version"
 msgstr ""
 
 #: ../lib/UX/Metadata/Properties.vala:48
-#: ../lib/UX/Models/CategoryModel.vala:104
+#: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Vendor"
 msgstr "Herausgeber"
 
@@ -421,106 +421,106 @@ msgstr ""
 msgid "Or unsupported filetype."
 msgstr "Geordnet nach Dateityp"
 
-#: ../lib/UX/Models/CategoryModel.vala:84
+#: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All"
 msgstr "Alle"
 
-#: ../lib/UX/Models/CategoryModel.vala:84
+#: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All Fonts"
 msgstr "Alle Schriften"
 
-#: ../lib/UX/Models/CategoryModel.vala:86
+#: ../lib/UX/Models/CategoryModel.vala:94
 msgid "System"
 msgstr "System"
 
-#: ../lib/UX/Models/CategoryModel.vala:86
+#: ../lib/UX/Models/CategoryModel.vala:94
 msgid "Fonts available to all users"
 msgstr "Für alle Benutzer verfügbare Schriften"
 
-#: ../lib/UX/Models/CategoryModel.vala:88
+#: ../lib/UX/Models/CategoryModel.vala:96
 msgid "User"
 msgstr "Benutzer"
 
-#: ../lib/UX/Models/CategoryModel.vala:88
+#: ../lib/UX/Models/CategoryModel.vala:96
 #, fuzzy
 msgid "Fonts available only to you"
 msgstr "Nur für Sie verfügbare Schriften"
 
-#: ../lib/UX/Models/CategoryModel.vala:92
+#: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Grouped by font spacing"
 msgstr "Geordnet nach Abständen"
 
-#: ../lib/UX/Models/CategoryModel.vala:94
+#: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Grouped by font angle"
 msgstr "Geordnet nach Schriftwinkel / Schriftstil"
 
-#: ../lib/UX/Models/CategoryModel.vala:96
+#: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Grouped by font weight"
 msgstr "Geordnet nach Schriftstärke"
 
-#: ../lib/UX/Models/CategoryModel.vala:98
+#: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Grouped by font width"
 msgstr "Geordnet nach Schriftbreite"
 
-#: ../lib/UX/Models/CategoryModel.vala:100
+#: ../lib/UX/Models/CategoryModel.vala:108
 msgid "Filetype"
 msgstr "Dateityp"
 
-#: ../lib/UX/Models/CategoryModel.vala:100
+#: ../lib/UX/Models/CategoryModel.vala:108
 msgid "Grouped by filetype"
 msgstr "Geordnet nach Dateityp"
 
-#: ../lib/UX/Models/CategoryModel.vala:102
+#: ../lib/UX/Models/CategoryModel.vala:110
 #: ../lib/UX/Views/FontPreviewPane.vala:131
 msgid "License"
 msgstr "Lizenz"
 
-#: ../lib/UX/Models/CategoryModel.vala:102
+#: ../lib/UX/Models/CategoryModel.vala:110
 msgid "Grouped by license type"
 msgstr "Geordnet nach Lizenz"
 
-#: ../lib/UX/Models/CategoryModel.vala:104
+#: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Grouped by vendor"
 msgstr "Geordnet nach Herausgeber"
 
-#: ../lib/UX/Models/CategoryModel.vala:117
+#: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Family Kind"
 msgstr "Familienzugehörigkeit"
 
-#: ../lib/UX/Models/CategoryModel.vala:117
+#: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
 "Nur Schriften welche Panose Informationen enthalten werde hier gruppiert."
 
-#: ../lib/UX/Models/CategoryModel.vala:118
+#: ../lib/UX/Models/CategoryModel.vala:126
 msgid "Any"
 msgstr "Alle"
 
-#: ../lib/UX/Models/CategoryModel.vala:119
+#: ../lib/UX/Models/CategoryModel.vala:127
 msgid "No Fit"
 msgstr "Keine Übereinstimmung"
 
-#: ../lib/UX/Models/CategoryModel.vala:120
+#: ../lib/UX/Models/CategoryModel.vala:128
 msgid "Text and Display"
 msgstr "Text und Bildschirm"
 
-#: ../lib/UX/Models/CategoryModel.vala:121
+#: ../lib/UX/Models/CategoryModel.vala:129
 msgid "Script"
 msgstr "Skript"
 
-#: ../lib/UX/Models/CategoryModel.vala:122
+#: ../lib/UX/Models/CategoryModel.vala:130
 msgid "Decorative"
 msgstr "Dekorativ"
 
-#: ../lib/UX/Models/CategoryModel.vala:123
+#: ../lib/UX/Models/CategoryModel.vala:131
 msgid "Pictorial"
 msgstr "Bildhaft"
 
-#: ../lib/UX/Models/CategoryModel.vala:157
+#: ../lib/UX/Models/CategoryModel.vala:165
 msgid "Normal"
 msgstr "Normal"
 
-#: ../lib/UX/Models/CategoryModel.vala:162
+#: ../lib/UX/Models/CategoryModel.vala:170
 msgid "Regular"
 msgstr "Normal"
 

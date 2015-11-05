@@ -3,7 +3,7 @@ SUBDIRS = \
 	lib \
 	src \
 	extensions \
-	help
+	help \
 	po
 
 ACLOCAL_AMFLAGS = -I m4

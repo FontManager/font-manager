@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2015-11-03 00:44-0500\n"
+"POT-Creation-Date: 2015-11-05 13:52-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -367,22 +367,22 @@ msgid "PostScript Name"
 msgstr ""
 
 #: ../lib/UX/Metadata/Properties.vala:43
-#: ../lib/UX/Models/CategoryModel.vala:96
+#: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Weight"
 msgstr ""
 
 #: ../lib/UX/Metadata/Properties.vala:44
-#: ../lib/UX/Models/CategoryModel.vala:94
+#: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Slant"
 msgstr ""
 
 #: ../lib/UX/Metadata/Properties.vala:45
-#: ../lib/UX/Models/CategoryModel.vala:98
+#: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Width"
 msgstr ""
 
 #: ../lib/UX/Metadata/Properties.vala:46
-#: ../lib/UX/Models/CategoryModel.vala:92
+#: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Spacing"
 msgstr ""
 
@@ -391,7 +391,7 @@ msgid "Version"
 msgstr ""
 
 #: ../lib/UX/Metadata/Properties.vala:48
-#: ../lib/UX/Models/CategoryModel.vala:104
+#: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Vendor"
 msgstr ""
 
@@ -415,104 +415,104 @@ msgstr ""
 msgid "Or unsupported filetype."
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:84
+#: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:84
+#: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All Fonts"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:86
+#: ../lib/UX/Models/CategoryModel.vala:94
 msgid "System"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:86
+#: ../lib/UX/Models/CategoryModel.vala:94
 msgid "Fonts available to all users"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:88
+#: ../lib/UX/Models/CategoryModel.vala:96
 msgid "User"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:88
+#: ../lib/UX/Models/CategoryModel.vala:96
 msgid "Fonts available only to you"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:92
+#: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Grouped by font spacing"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:94
+#: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Grouped by font angle"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:96
+#: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Grouped by font weight"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:98
+#: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Grouped by font width"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:100
+#: ../lib/UX/Models/CategoryModel.vala:108
 msgid "Filetype"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:100
+#: ../lib/UX/Models/CategoryModel.vala:108
 msgid "Grouped by filetype"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:102
+#: ../lib/UX/Models/CategoryModel.vala:110
 #: ../lib/UX/Views/FontPreviewPane.vala:131
 msgid "License"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:102
+#: ../lib/UX/Models/CategoryModel.vala:110
 msgid "Grouped by license type"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:104
+#: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Grouped by vendor"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:117
+#: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Family Kind"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:117
+#: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:118
+#: ../lib/UX/Models/CategoryModel.vala:126
 msgid "Any"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:119
+#: ../lib/UX/Models/CategoryModel.vala:127
 msgid "No Fit"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:120
+#: ../lib/UX/Models/CategoryModel.vala:128
 msgid "Text and Display"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:121
+#: ../lib/UX/Models/CategoryModel.vala:129
 msgid "Script"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:122
+#: ../lib/UX/Models/CategoryModel.vala:130
 msgid "Decorative"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:123
+#: ../lib/UX/Models/CategoryModel.vala:131
 msgid "Pictorial"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:157
+#: ../lib/UX/Models/CategoryModel.vala:165
 msgid "Normal"
 msgstr ""
 
-#: ../lib/UX/Models/CategoryModel.vala:162
+#: ../lib/UX/Models/CategoryModel.vala:170
 msgid "Regular"
 msgstr ""
 

@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2015-11-03 00:44-0500\n"
+"POT-Creation-Date: 2015-11-05 13:49-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -377,22 +377,22 @@ msgid "PostScript Name"
 msgstr "PostScript 名称"
 
 #: ../lib/UX/Metadata/Properties.vala:43
-#: ../lib/UX/Models/CategoryModel.vala:96
+#: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Weight"
 msgstr "字重"
 
 #: ../lib/UX/Metadata/Properties.vala:44
-#: ../lib/UX/Models/CategoryModel.vala:94
+#: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Slant"
 msgstr "倾斜"
 
 #: ../lib/UX/Metadata/Properties.vala:45
-#: ../lib/UX/Models/CategoryModel.vala:98
+#: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Width"
 msgstr "字宽"
 
 #: ../lib/UX/Metadata/Properties.vala:46
-#: ../lib/UX/Models/CategoryModel.vala:92
+#: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Spacing"
 msgstr "字距"
 
@@ -401,7 +401,7 @@ msgid "Version"
 msgstr "版本"
 
 #: ../lib/UX/Metadata/Properties.vala:48
-#: ../lib/UX/Models/CategoryModel.vala:104
+#: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Vendor"
 msgstr "供应商"
 
@@ -427,106 +427,106 @@ msgid "Or unsupported filetype."
 msgstr "按文件类型分组"
 
 # Do not to translate this one.
-#: ../lib/UX/Models/CategoryModel.vala:84
+#: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All"
 msgstr "全部"
 
-#: ../lib/UX/Models/CategoryModel.vala:84
+#: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All Fonts"
 msgstr "全部字体"
 
-#: ../lib/UX/Models/CategoryModel.vala:86
+#: ../lib/UX/Models/CategoryModel.vala:94
 msgid "System"
 msgstr "系统"
 
-#: ../lib/UX/Models/CategoryModel.vala:86
+#: ../lib/UX/Models/CategoryModel.vala:94
 msgid "Fonts available to all users"
 msgstr "字体对所有用户可见"
 
-#: ../lib/UX/Models/CategoryModel.vala:88
+#: ../lib/UX/Models/CategoryModel.vala:96
 msgid "User"
 msgstr "用户"
 
-#: ../lib/UX/Models/CategoryModel.vala:88
+#: ../lib/UX/Models/CategoryModel.vala:96
 #, fuzzy
 msgid "Fonts available only to you"
 msgstr "字体只有你可见"
 
-#: ../lib/UX/Models/CategoryModel.vala:92
+#: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Grouped by font spacing"
 msgstr "按字距分组"
 
-#: ../lib/UX/Models/CategoryModel.vala:94
+#: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Grouped by font angle"
 msgstr "按倾斜分组"
 
-#: ../lib/UX/Models/CategoryModel.vala:96
+#: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Grouped by font weight"
 msgstr "按字重分组"
 
-#: ../lib/UX/Models/CategoryModel.vala:98
+#: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Grouped by font width"
 msgstr "按字宽分组"
 
-#: ../lib/UX/Models/CategoryModel.vala:100
+#: ../lib/UX/Models/CategoryModel.vala:108
 msgid "Filetype"
 msgstr "文件类型"
 
-#: ../lib/UX/Models/CategoryModel.vala:100
+#: ../lib/UX/Models/CategoryModel.vala:108
 msgid "Grouped by filetype"
 msgstr "按文件类型分组"
 
-#: ../lib/UX/Models/CategoryModel.vala:102
+#: ../lib/UX/Models/CategoryModel.vala:110
 #: ../lib/UX/Views/FontPreviewPane.vala:131
 msgid "License"
 msgstr "许可证"
 
-#: ../lib/UX/Models/CategoryModel.vala:102
+#: ../lib/UX/Models/CategoryModel.vala:110
 msgid "Grouped by license type"
 msgstr "按许可证分组"
 
-#: ../lib/UX/Models/CategoryModel.vala:104
+#: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Grouped by vendor"
 msgstr "按供应商分组"
 
-#: ../lib/UX/Models/CategoryModel.vala:117
+#: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Family Kind"
 msgstr "类型"
 
-#: ../lib/UX/Models/CategoryModel.vala:117
+#: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr "只有包含Panose信息的字体将被分组到这里"
 
-#: ../lib/UX/Models/CategoryModel.vala:118
+#: ../lib/UX/Models/CategoryModel.vala:126
 msgid "Any"
 msgstr "任意(Any)"
 
-#: ../lib/UX/Models/CategoryModel.vala:119
+#: ../lib/UX/Models/CategoryModel.vala:127
 msgid "No Fit"
 msgstr "无匹配(No Fit)"
 
-#: ../lib/UX/Models/CategoryModel.vala:120
+#: ../lib/UX/Models/CategoryModel.vala:128
 msgid "Text and Display"
 msgstr "文本和显示(Text and Display)"
 
-#: ../lib/UX/Models/CategoryModel.vala:121
+#: ../lib/UX/Models/CategoryModel.vala:129
 msgid "Script"
 msgstr "脚本(Script)"
 
 # msgstr "手写体(Script)"
-#: ../lib/UX/Models/CategoryModel.vala:122
+#: ../lib/UX/Models/CategoryModel.vala:130
 msgid "Decorative"
 msgstr "修饰(Decorative)"
 
-#: ../lib/UX/Models/CategoryModel.vala:123
+#: ../lib/UX/Models/CategoryModel.vala:131
 msgid "Pictorial"
 msgstr "图形(Pictorial)"
 
-#: ../lib/UX/Models/CategoryModel.vala:157
+#: ../lib/UX/Models/CategoryModel.vala:165
 msgid "Normal"
 msgstr "正常(Normal)"
 
-#: ../lib/UX/Models/CategoryModel.vala:162
+#: ../lib/UX/Models/CategoryModel.vala:170
 msgid "Regular"
 msgstr "常规(Regular)"
 

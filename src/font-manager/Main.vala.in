@@ -248,9 +248,9 @@ namespace FontManager {
                 critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
             sources.update();
             sources.enable_monitors();
-            font_model.update();
             sync_database();
             families.update();
+            font_model.update();
             main_window.loading = false;
             main_window.set_models();
             main_window.sidebar.category_model.update.begin((obj, res) => {
