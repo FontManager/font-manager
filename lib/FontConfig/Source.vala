@@ -30,13 +30,13 @@ namespace FontConfig {
 
         public new string? name {
             get {
-                return _name != null ? _name : _path;
+                return _name != null ? _name : path;
             }
         }
 
         public string icon_name {
             get {
-                if (_available)
+                if (available)
                     return "folder-symbolic";
                 else
                     return "action-unavailable-symbolic";
@@ -61,10 +61,7 @@ namespace FontConfig {
 
         public bool available {
             get {
-                return _available;
-            }
-            set {
-                _available = value;
+                return file.query_exists();
             }
         }
 
@@ -72,7 +69,6 @@ namespace FontConfig {
         File? file = null;
         string? _name = null;
         string? _path = null;
-        bool _available = true;
 
         public Source (File file) {
             this.file = file;
@@ -80,15 +76,12 @@ namespace FontConfig {
         }
 
         public void update () {
-            _path = file.get_path();
-            _available = false;
+             _path = file.get_path();
             try {
                 FileInfo info = file.query_info(FileAttribute.STANDARD_DISPLAY_NAME, FileQueryInfoFlags.NONE);
                 _name = Markup.escape_text(info.get_display_name());
-                if (file.query_exists())
-                    _available = true;
             } catch (Error e) {
-                _name = _("%s --> Resource Unavailable").printf(_path);
+                _name = _("%s --> Resource Unavailable").printf(path);
             }
             return;
         }

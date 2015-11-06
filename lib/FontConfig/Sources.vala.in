@@ -118,7 +118,6 @@ namespace FontConfig {
         }
 
         public new bool remove (Source source) {
-            source.available = false;
             if (active_directories.contains(source.path)) {
                 active_directories.remove(source.path);
                 active_directories.save();
@@ -174,8 +173,10 @@ namespace FontConfig {
             File file = File.new_for_path(dir);
             FileMonitor? monitor = null;
             try {
-                monitor = file.monitor_directory(FileMonitorFlags.NONE);
+                monitor = file.monitor_directory(FileMonitorFlags.WATCH_MOUNTS);
                 monitor.changed.connect((f, of, ev) => {
+                    debug("Filesystem change detected : %s", f.get_path());
+                    this.update();
                     this.changed(f, ev);
                 });
             } catch (IOError e) {
