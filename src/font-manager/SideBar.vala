@@ -80,9 +80,9 @@ namespace FontManager {
         }
 
         protected Gtk.Stack stack;
-        private bool _loading = false;
-        private Gtk.Spinner spinner;
-        private Gtk.Box box;
+        bool _loading = false;
+        Gtk.Spinner spinner;
+        Gtk.Box box;
 
         public SideBar () {
             stack = new Gtk.Stack();
@@ -149,13 +149,13 @@ namespace FontManager {
         public CategoryTree category_tree { get; private set; }
         public CollectionTree collection_tree { get; private set; }
 
-        private Gtk.Stack stack;
-        private Gtk.StackSwitcher switcher;
-        private Gtk.Revealer revealer1;
-        private Gtk.Box collection_box;
-        private Gtk.Box _box;
-        private Gtk.EventBox blend;
-        private Gtk.Box main_box;
+        Gtk.Stack stack;
+        Gtk.StackSwitcher switcher;
+        Gtk.Revealer revealer1;
+        Gtk.Box collection_box;
+        Gtk.Box _box;
+        Gtk.EventBox blend;
+        Gtk.Box main_box;
 
         public StandardSideBar () {
             main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
@@ -208,7 +208,7 @@ namespace FontManager {
             return;
         }
 
-        private void connect_signals () {
+        void connect_signals () {
             category_tree.selection_changed.connect((f, i) => {
                 category_selected(f, i);
                 selected_category = f;

@@ -35,11 +35,11 @@ namespace FontManager {
         public Gtk.MenuButton app_menu { get; private set; }
         public Gtk.ToggleButton source_toggle { get; private set; }
 
-        private BaseControls manage_controls;
-        private Gtk.Revealer revealer;
-        private Gtk.Image main_menu_icon;
-        private Gtk.Image app_menu_icon;
-        private Gtk.Box main_menu_container;
+        BaseControls manage_controls;
+        Gtk.Revealer revealer;
+        Gtk.Image main_menu_icon;
+        Gtk.Image app_menu_icon;
+        Gtk.Box main_menu_container;
 
         public TitleBar () {
             title = About.NAME;
@@ -101,13 +101,13 @@ namespace FontManager {
             return;
         }
 
-        private void set_menus () {
+        void set_menus () {
             main_menu.set_menu_model(get_main_menu_model());
             app_menu.set_menu_model(get_app_menu_model());
             return;
         }
 
-        private void connect_signals () {
+        void connect_signals () {
             manage_controls.add_button.clicked.connect(() => {
                 if (source_toggle.get_active())
                     add_selected();
@@ -147,7 +147,7 @@ namespace FontManager {
             return;
         }
 
-        private GLib.MenuModel get_main_menu_model () {
+        GLib.MenuModel get_main_menu_model () {
             var application = (Application) GLib.Application.get_default();
             var mode_section = new GLib.Menu();
             string [] modes = {"Default", "Browse", "Compare"};
@@ -170,7 +170,7 @@ namespace FontManager {
         }
 
 
-        private GLib.MenuModel get_app_menu_model () {
+        GLib.MenuModel get_app_menu_model () {
             var application = (Application) GLib.Application.get_default();
             /* action_name, display_name, detailed_action_name, accelerator, method */
             MenuEntry [] app_menu_entries = {

@@ -52,7 +52,7 @@ namespace FontManager {
             return;
         }
 
-        private new void connect_signals () {
+        new void connect_signals () {
             fg_color_button.color_set.connect((w) => {
                 Idle.add(() => {
                     fg_color_button.queue_draw();
@@ -96,16 +96,16 @@ namespace FontManager {
             }
         }
 
-        private string _preview_text;
-        private string default_preview_text;
-        private Gtk.Box box;
-        private BaseTreeView tree;
-        private Gtk.ListStore store;
-        private Gtk.ScrolledWindow scroll;
-        private Gtk.TreeViewColumn column;
-        private Gtk.CellRendererText renderer;
-        private Gdk.RGBA default_fg_color;
-        private Gdk.RGBA default_bg_color;
+        string _preview_text;
+        string default_preview_text;
+        Gtk.Box box;
+        BaseTreeView tree;
+        Gtk.ListStore store;
+        Gtk.ScrolledWindow scroll;
+        Gtk.TreeViewColumn column;
+        Gtk.CellRendererText renderer;
+        Gdk.RGBA default_fg_color;
+        Gdk.RGBA default_bg_color;
 
         public Compare () {
             orientation = Gtk.Orientation.VERTICAL;
@@ -154,7 +154,7 @@ namespace FontManager {
             return;
         }
 
-        private void connect_signals() {
+        void connect_signals() {
             /* selection, model, path, currently_selected_path */
             tree.get_selection().set_select_function((s, m, p, csp) => {
                 /* Disallow selection of preview rows */
@@ -194,7 +194,7 @@ namespace FontManager {
             return;
         }
 
-        private void update_default_colors () {
+        void update_default_colors () {
             var ctx = get_style_context();
             default_fg_color = ctx.get_color(Gtk.StateFlags.NORMAL);
             default_bg_color = ctx.get_background_color(Gtk.StateFlags.NORMAL);
@@ -220,10 +220,10 @@ namespace FontManager {
             return;
         }
 
-        private void cell_data_func (Gtk.CellLayout layout,
-                                       Gtk.CellRenderer cell,
-                                       Gtk.TreeModel model,
-                                       Gtk.TreeIter treeiter) {
+        void cell_data_func (Gtk.CellLayout layout,
+                             Gtk.CellRenderer cell,
+                             Gtk.TreeModel model,
+                             Gtk.TreeIter treeiter) {
         #if GTK_316_OR_LATER
             Pango.AttrList attrs = new Pango.AttrList();
             attrs.insert(Pango.attr_fallback_new(false));
@@ -266,7 +266,7 @@ namespace FontManager {
             return results.to_array();
         }
 
-        private void on_remove () {
+        void on_remove () {
             Gtk.TreeModel model;
             Gtk.TreeIter iter;
             tree.get_selection().get_selected(out model, out iter);

@@ -58,6 +58,7 @@ namespace FontManager {
             Metadata.Title titlebar;
 
             public MainWindow () {
+                /* Note: Type hint used to prevent notification on every selection */
                 Object(title: _("Font Viewer"), icon_name: About.ICON, type_hint: Gdk.WindowTypeHint.UTILITY);
                 Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
                 installed = new Gee.ArrayList <string> ();

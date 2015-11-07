@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2015-11-05 13:52-0500\n"
+"POT-Creation-Date: 2015-11-07 10:23-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -199,11 +199,11 @@ msgstr ""
 msgid "Legacy"
 msgstr ""
 
-#: ../lib/FontConfig/Families.vala:54
+#: ../lib/FontConfig/Families.vala:45
 msgid "Loading available font families"
 msgstr ""
 
-#: ../lib/FontConfig/Source.vala:91
+#: ../lib/FontConfig/Source.vala:84
 #, c-format
 msgid "%s --> Resource Unavailable"
 msgstr ""
@@ -664,7 +664,8 @@ msgstr ""
 msgid "Quit"
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:61
+#. Note: Type hint used to prevent notification on every selection
+#: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:62
 msgid "Font Viewer"
 msgstr ""
 
@@ -676,16 +677,16 @@ msgstr ""
 msgid "To preview a font simply drag it onto this area."
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:66
-#: ../src/font-viewer/MainWindow.vala:172
+#: ../src/font-viewer/MainWindow.vala:67
+#: ../src/font-viewer/MainWindow.vala:173
 msgid "Install Font"
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:163
+#: ../src/font-viewer/MainWindow.vala:164
 msgid "Newer version already installed"
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:168
+#: ../src/font-viewer/MainWindow.vala:169
 msgid "Installed"
 msgstr ""
 

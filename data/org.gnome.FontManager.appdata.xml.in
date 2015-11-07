@@ -23,5 +23,6 @@
   <url type="homepage">@PACKAGE_URL@</url>
   <screenshots>
     <screenshot type="default">http://raw.githubusercontent.com/FontManager/resources/master/font-manager_default-theme.png</screenshot>
+    <screenshot type="default">http://raw.githubusercontent.com/FontManager/resources/master/font-manager.png</screenshot>
   </screenshots>
 </application>

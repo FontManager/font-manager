@@ -51,19 +51,25 @@ namespace FontManager {
             }
             set {
                 _sources = value;
-                while (list.get_row_at_index(0) != null)
-                    ((Gtk.Widget) list.get_row_at_index(0)).destroy();
+                while (first_row != null)
+                    ((Gtk.Widget) first_row).destroy();
                 foreach (var s in _sources) {
                     var w = new FontSourceRow(s);
                     w.show();
                     list.add(w);
                 }
-                if (list.get_row_at_index(0) != null) {
-                    list.select_row(list.get_row_at_index(0));
+                if (first_row != null) {
+                    list.select_row(first_row);
                     welcome.hide();
                 } else {
                     welcome.show();
                 }
+            }
+        }
+
+        Gtk.ListBoxRow first_row {
+            get {
+                return list.get_row_at_index(0);
             }
         }
 
@@ -94,7 +100,7 @@ namespace FontManager {
         }
 
         public override void show () {
-            if (list.get_row_at_index(0) == null)
+            if (first_row == null)
                 welcome.show();
             scroll.show();
             list.show();
@@ -140,10 +146,12 @@ namespace FontManager {
             _sources.save();
             list.remove(selected_row);
             debug("Removed font source : %s", selected_source.path);
-            if (list.get_row_at_index(0) != null)
+            if (first_row != null) {
+                list.select_row(first_row);
                 welcome.hide();
-            else
+            } else {
                 welcome.show();
+            }
             return;
         }
 

@@ -40,11 +40,11 @@ namespace FontManager {
         public Gtk.ProgressBar progress { get; private set;}
         public BaseTreeView treeview { get; private set;}
 
-        private bool _loading = false;
-        private Gtk.Box main_box;
-        private Gtk.Overlay overlay;
-        private Gtk.ScrolledWindow scroll;
-        private CellRendererTitle renderer;
+        bool _loading = false;
+        Gtk.Box main_box;
+        Gtk.Overlay overlay;
+        Gtk.ScrolledWindow scroll;
+        CellRendererTitle renderer;
 
         public Browse () {
             orientation = Gtk.Orientation.VERTICAL;
@@ -101,10 +101,10 @@ namespace FontManager {
             return;
         }
 
-        private void cell_data_func (Gtk.TreeViewColumn layout,
-                                       Gtk.CellRenderer cell,
-                                       Gtk.TreeModel model,
-                                       Gtk.TreeIter treeiter) {
+        void cell_data_func (Gtk.TreeViewColumn layout,
+                             Gtk.CellRenderer cell,
+                             Gtk.TreeModel model,
+                             Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             var obj = val.get_object();

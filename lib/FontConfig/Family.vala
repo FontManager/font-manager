@@ -23,6 +23,15 @@
 
 namespace FontConfig {
 
+    /* Most common font styles, we try to select one of these if possible */
+    public const string [] DEFAULT_VARIANTS = {
+        "Regular",
+        "Roman",
+        "Medium",
+        "Normal",
+        "Book"
+    };
+
     public int sort_families (Family a, Family b) {
         return natural_cmp(a.name, b.name);
     }

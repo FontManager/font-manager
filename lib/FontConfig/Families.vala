@@ -23,15 +23,6 @@
 
 namespace FontConfig {
 
-    /* Most common font styles, we try to select one of these if possible */
-    public const string [] DEFAULT_VARIANTS = {
-        "Regular",
-        "Roman",
-        "Medium",
-        "Normal",
-        "Book"
-    };
-
     internal Gee.ArrayList <string> sorted_list_from_collection (Gee.Collection <string> iter) {
         var l = new Gee.ArrayList <string> ();
         l.add_all(iter);
