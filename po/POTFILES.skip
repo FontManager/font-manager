@@ -1,10 +1,14 @@
+lib/Common/About.c
 lib/Common/ArchiveManager.c
 lib/Common/Cacheable.c
+lib/Common/Collections.c
 lib/Common/Constants.c
+lib/Common/Database.c
 lib/Common/FontData.c
 lib/Common/FontInfo.c
 lib/Common/JsonWriter.c
 lib/Common/Logger.c
+lib/Common/Settings.c
 lib/Common/Utils.c
 lib/Filters/Category.c
 lib/Filters/Collection.c
@@ -25,6 +29,7 @@ lib/FontConfig/Font.c
 lib/FontConfig/Properties.c
 lib/FontConfig/Reject.c
 lib/FontConfig/Selections.c
+lib/FontConfig/Sources.c
 lib/FontConfig/Source.c
 lib/FontConfig/XmlWriter.c
 lib/Glue/Glue.c
@@ -38,6 +43,7 @@ lib/UX/CharacterMap/CharacterMapSideBar.c
 lib/UX/CharacterMap/CharacterTable.c
 lib/UX/Controls/BaseControls.c
 lib/UX/Controls/CollectionControls.c
+lib/UX/Controls/FontConfigControls.c
 lib/UX/Controls/FontListControls.c
 lib/UX/Controls/PreviewControls.c
 lib/UX/FontConfig/DisplayPropertiesPane.c
@@ -58,6 +64,7 @@ lib/UX/Trees/FontListTree.c
 lib/UX/Trees/UserFontTree.c
 lib/UX/Trees/UserSourceList.c
 lib/UX/Utils/Color.c
+lib/UX/Utils/Utils.c
 lib/UX/Views/FontPreviewPane.c
 lib/UX/Widgets/ActivePreview.c
 lib/UX/Widgets/AdjustablePreview.c
@@ -74,11 +81,16 @@ lib/UX/Widgets/TextViews.c
 lib/UX/Widgets/TreeViews.c
 lib/UX/Widgets/WaterfallPreview.c
 lib/UX/Widgets/WelcomeLabel.c
+src/font-manager/Application.c
 src/font-manager/Browse.c
 src/font-manager/Compare.c
+src/font-manager/Main.c
 src/font-manager/MainWindow.c
+src/font-manager/Migration.c
+src/font-manager/RenderingOptions.c
 src/font-manager/SideBar.c
 src/font-manager/State.c
 src/font-manager/TitleBar.c
+src/font-viewer/Application.c
 src/font-viewer/MainWindow.c
 src/font-viewer/State.c

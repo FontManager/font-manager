@@ -24,7 +24,11 @@
 namespace FontManager {
 
     void queue_reload () {
-        /* Note : There's a 2 second delay built into FontConfig */
+        /* Note :
+         * There used to be a two second delay built into gnome-settings-daemon.
+         * Not sure why...
+         * It was removed at some point, but still seems like a good idea to me.
+         */
         Timeout.add_seconds(3, () => {
             Main.instance.update();
             return false;

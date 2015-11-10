@@ -233,6 +233,16 @@ LicenseData[] =
     },
 
     {
+        "MIT License",
+        "http://www.opensource.org/licenses/mit-license.php",
+        {
+            "M.I.T.",
+            "Software without restriction,",
+            NULL
+        }
+    },
+
+    {
         "Magenta Open License",
         "http://www.ellak.gr/pub/fonts/mgopen/index.en.html#license",
         {
@@ -312,16 +322,7 @@ LicenseData[] =
         "http://www.xfree86.org/legal/licenses.html",
         {
             "XFree86",
-            NULL
-        }
-    },
-
-    {
-        "MIT (X11) License",
-        "http://www.opensource.org/licenses/mit-license.php",
-        {
-            "MIT",
-            "X11",
+            "X Consortium",
             NULL
         }
     },

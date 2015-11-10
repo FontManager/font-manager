@@ -47,6 +47,7 @@ libfontmanager_la_VALASOURCES = \
 ./UX/CharacterMap/CharacterTable.vala \
 ./UX/Controls/BaseControls.vala \
 ./UX/Controls/CollectionControls.vala \
+./UX/Controls/FontConfigControls.vala \
 ./UX/Controls/FontListControls.vala \
 ./UX/Controls/PreviewControls.vala \
 ./UX/FontConfig/DisplayPropertiesPane.vala \

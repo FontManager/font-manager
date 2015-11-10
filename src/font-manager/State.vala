@@ -41,8 +41,10 @@ namespace FontManager {
 
         public void restore () {
 
-            if (settings == null)
+            if (settings == null) {
+                ensure_sane_defaults();
                 return;
+            }
 
             int x, y, w, h;
             settings.get("window-size", "(ii)", out w, out h);
@@ -180,6 +182,22 @@ namespace FontManager {
             var treepath = restore_last_selected_treepath(main_window.fontlist, font_path);
             if (treepath != null)
                 main_window.browser.treeview.scroll_to_cell(treepath, null, true, 0.5f, 0.5f);
+            return;
+        }
+
+        /* These should match the schema */
+        void ensure_sane_defaults () {
+            main_window.set_default_size(700, 480);
+            main_window.mode = FontManager.Mode.BROWSE;
+            main_window.sidebar.standard.mode = StandardSideBarMode.CATEGORY;
+            main_window.preview.mode = FontManager.FontPreviewMode.PREVIEW;
+            main_window.main_pane.position = 200;
+            main_window.content_pane.position = 150;
+            main_window.preview.preview_size = 10.0;
+            main_window.browser.preview_size = 12.0;
+            main_window.compare.preview_size = 12.0;
+            main_window.preview.notebook.page = 0;
+            main_window.fontlist.controls.set_remove_sensitivity(main_window.sidebar.standard.mode == StandardSideBarMode.COLLECTION);
             return;
         }
 

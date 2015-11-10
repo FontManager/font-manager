@@ -31,33 +31,16 @@ namespace FontManager {
             }
         }
 
-//        public Gtk.ToggleButton toggle { get; private set; }
-
         Gtk.Box box;
-        Gtk.Label note;
-        Gtk.ActionBar action_bar;
         Gtk.HeaderBar header_bar;
-        Gtk.Button save;
-        Gtk.Button discard;
         FontConfig.FontPropertiesPane pane;
+        FontConfig.Controls controls;
 
         public RenderingOptions () {
             box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             pane = new FontConfig.FontPropertiesPane();
-            action_bar = new Gtk.ActionBar();
+            controls = new FontConfig.Controls();
             header_bar = new Gtk.HeaderBar();
-            save = new Gtk.Button.with_label(_("Save"));
-            discard = new Gtk.Button.with_label(_("Discard"));
-            action_bar.pack_end(save);
-            action_bar.pack_start(discard);
-            discard.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
-            save.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-            note = new Gtk.Label(_("Running applications may require a restart to reflect any changes."));
-            note.opacity = 0.75;
-            note.margin_start = note.margin_end = 6;
-            note.wrap = true;
-            note.justify = Gtk.Justification.CENTER;
-            action_bar.set_center_widget(note);
             if (((Application) GLib.Application.get_default()).use_headerbar) {
                 set_titlebar(header_bar);
                 header_bar.show_close_button = true;
@@ -65,28 +48,26 @@ namespace FontManager {
                 box.pack_start(header_bar, true, true, 0);
             }
             box.pack_start(pane, true, true, 0);
-            box.pack_end(action_bar, false, false, 0);
+            box.pack_end(controls, false, false, 0);
             add(box);
-//            toggle = new Gtk.ToggleButton();
-//            toggle.relief = Gtk.ReliefStyle.NONE;
-//            toggle.can_focus = false;
-//            toggle.margin = 2;
-//            toggle.set_tooltip_text(_("Adjust rendering options"));
-//            var icon = new Gtk.Image.from_icon_name("preferences-system-symbolic", Gtk.IconSize.MENU);
-//            toggle.add(icon);
-//            icon.show();
-//            toggle.show();
-//            toggle.toggled.connect(() => {
-//                if (toggle.active)
-//                    this.show();
-//                else
-//                    this.hide();
-//            });
-            save.clicked.connect(() => {
+            connect_signals();
+        }
+
+        public override void show () {
+            pane.show();
+            controls.show();
+            header_bar.show();
+            box.show();
+            base.show();
+            return;
+        }
+
+        void connect_signals () {
+            controls.save_selected.connect(() => {
                 properties.save();
                 this.hide();
             });
-            discard.clicked.connect(() => {
+            controls.discard_selected.connect(() => {
                 properties.discard();
                 this.hide();
             });
@@ -100,17 +81,6 @@ namespace FontManager {
                 else
                     header_bar.set_subtitle(null);
             });
-        }
-
-        public override void show () {
-            pane.show();
-            note.show();
-            action_bar.show();
-            header_bar.show();
-            save.show();
-            discard.show();
-            box.show();
-            base.show();
             return;
         }
 

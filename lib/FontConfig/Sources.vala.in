@@ -79,7 +79,6 @@ namespace FontConfig {
                if (this.contains(m.get_default_location().get_path()))
                     this.changed(m.get_root(), FileMonitorEvent.UNMOUNTED);
             });
-            add_sources_from_directories();
         }
 
         /* Overkill */
@@ -218,6 +217,7 @@ namespace FontConfig {
 
             delete doc;
             Xml.Parser.cleanup();
+            add_sources_from_directories();
             return true;
         }
 

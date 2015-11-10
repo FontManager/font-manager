@@ -8,22 +8,22 @@ SRCDIR=../src/
 TOPDIR=../
 
 all: update
-.PHONY: update
+.PHONY: update headers
 
 POTFILES.readme:
-	@echo "POTFILES.* automatically generated. Do not edit. See build-aux directory" > ${PODIR}/POTFILES.readme
+	echo "POTFILES.* automatically generated. Do not edit. See build-aux directory" > ${PODIR}POTFILES.readme
 
 POTFILES.in:
-	@find ${TOPDIR} -name "*.vala" -print | sort > ${PODIR}/POTFILES.in ;
-	@echo "[type: gettext/glade]data/ApplicationMenu.ui" >> ${PODIR}/POTFILES.in ;
-	@echo "data/org.gnome.FontManager.appdata.xml.in" >> ${PODIR}/POTFILES.in ;
-	@echo "data/org.gnome.FontManager.desktop.in" >> ${PODIR}/POTFILES.in ;
-	@echo "" >> ${PODIR}/POTFILES.in ;
-	@$(SED) -i 's|\.\./||g' ${PODIR}/POTFILES.in ;
+	find ${TOPDIR} -name "*.vala" -print | sort > ${PODIR}POTFILES.in ;
+	echo "[type: gettext/glade]data/ApplicationMenu.ui" >> ${PODIR}POTFILES.in ;
+	echo "data/org.gnome.FontManager.appdata.xml.in" >> ${PODIR}POTFILES.in ;
+	echo "data/org.gnome.FontManager.desktop.in" >> ${PODIR}POTFILES.in ;
+	echo "" >> ${PODIR}POTFILES.in ;
+	$(SED) -i 's|\.\./||g' ${PODIR}POTFILES.in ;
 
 POTFILES.skip:
-	@find ${TOPDIR} -name "*.vala" -print | sort | $(SED) 's/.vala/.c/g' > ${PODIR}/POTFILES.skip ;
-	@$(SED) -i 's|\.\./||g' ${PODIR}/POTFILES.skip ;
+	find ${TOPDIR} -name "*.vala" -print | sort | $(SED) 's/.vala/.c/g' > ${PODIR}POTFILES.skip ;
+	$(SED) -i 's|\.\./||g' ${PODIR}POTFILES.skip ;
 
 potfiles: POTFILES.readme POTFILES.in POTFILES.skip
 
@@ -54,6 +54,8 @@ update_sources:
 	cd ../${DATADIR}
 
 update: update_sources potfiles
+
+headers:
 	license/genheader.py
 	vendor/genheader.py
 

@@ -1,10 +1,14 @@
+lib/Common/About.vala
 lib/Common/ArchiveManager.vala
 lib/Common/Cacheable.vala
+lib/Common/Collections.vala
 lib/Common/Constants.vala
+lib/Common/Database.vala
 lib/Common/FontData.vala
 lib/Common/FontInfo.vala
 lib/Common/JsonWriter.vala
 lib/Common/Logger.vala
+lib/Common/Settings.vala
 lib/Common/Utils.vala
 lib/Filters/Category.vala
 lib/Filters/Collection.vala
@@ -25,6 +29,7 @@ lib/FontConfig/Font.vala
 lib/FontConfig/Properties.vala
 lib/FontConfig/Reject.vala
 lib/FontConfig/Selections.vala
+lib/FontConfig/Sources.vala
 lib/FontConfig/Source.vala
 lib/FontConfig/XmlWriter.vala
 lib/Glue/Glue.vala
@@ -38,6 +43,7 @@ lib/UX/CharacterMap/CharacterMapSideBar.vala
 lib/UX/CharacterMap/CharacterTable.vala
 lib/UX/Controls/BaseControls.vala
 lib/UX/Controls/CollectionControls.vala
+lib/UX/Controls/FontConfigControls.vala
 lib/UX/Controls/FontListControls.vala
 lib/UX/Controls/PreviewControls.vala
 lib/UX/FontConfig/DisplayPropertiesPane.vala
@@ -58,6 +64,7 @@ lib/UX/Trees/FontListTree.vala
 lib/UX/Trees/UserFontTree.vala
 lib/UX/Trees/UserSourceList.vala
 lib/UX/Utils/Color.vala
+lib/UX/Utils/Utils.vala
 lib/UX/Views/FontPreviewPane.vala
 lib/UX/Widgets/ActivePreview.vala
 lib/UX/Widgets/AdjustablePreview.vala
@@ -74,12 +81,17 @@ lib/UX/Widgets/TextViews.vala
 lib/UX/Widgets/TreeViews.vala
 lib/UX/Widgets/WaterfallPreview.vala
 lib/UX/Widgets/WelcomeLabel.vala
+src/font-manager/Application.vala
 src/font-manager/Browse.vala
 src/font-manager/Compare.vala
+src/font-manager/Main.vala
 src/font-manager/MainWindow.vala
+src/font-manager/Migration.vala
+src/font-manager/RenderingOptions.vala
 src/font-manager/SideBar.vala
 src/font-manager/State.vala
 src/font-manager/TitleBar.vala
+src/font-viewer/Application.vala
 src/font-viewer/MainWindow.vala
 src/font-viewer/State.vala
 [type: gettext/glade]data/ApplicationMenu.ui

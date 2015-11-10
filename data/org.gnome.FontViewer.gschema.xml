@@ -35,7 +35,6 @@
             <default>"Preview"</default>
             <summary>Preview Mode</summary>
             <description>Possible modes are Preview, Waterfall and Body Text.</description>
-
         </key>
 
         <key name='window-position' type='(ii)'>
