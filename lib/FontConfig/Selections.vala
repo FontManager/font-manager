@@ -25,9 +25,13 @@ namespace FontConfig {
 
     public abstract class Selections : Gee.HashSet <string> {
 
+        public signal void changed ();
+
         public string? target_file { get; set; default = null; }
         public string? target_dir { get; set; default = null; }
         public string? target_element { get; set; default = null; }
+
+        FileMonitor? monitor = null;
 
         construct {
             target_dir = Path.build_filename(Environment.get_user_config_dir(), "fontconfig", "conf.d");
@@ -55,13 +59,15 @@ namespace FontConfig {
         public virtual bool init ()
         requires (target_dir != null && target_file != null && target_element != null) {
 
+            clear();
+            if (monitor != null)
+                monitor = null;
+
             string path = Path.build_filename(target_dir, target_file);
 
-            {
-                File file = File.new_for_path(path);
-                if (!file.query_exists())
-                    return false;
-            }
+            File file = File.new_for_path(path);
+            if (!file.query_exists())
+                return false;
 
             Xml.Parser.init();
             debug("Xml.Parser : Opening : %s", path);
@@ -86,6 +92,23 @@ namespace FontConfig {
 
             delete doc;
             Xml.Parser.cleanup();
+
+            debug("Adding file monitor for : %s", path);
+            try {
+                monitor = file.monitor_file(FileMonitorFlags.NONE);
+                monitor.changed.connect((f, of, ev) => {
+                    debug("Filesystem change detected : %s", path);
+                    monitor.cancel();
+                    Idle.add(() => {
+                        this.changed();
+                        return false;
+                    });
+                });
+            } catch (IOError e) {
+                warning("Failed to create FileMonitor for %s", path);
+                critical("FileMonitor creation failed : %s", e.message);
+            }
+
             return true;
         }
 

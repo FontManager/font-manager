@@ -25,18 +25,9 @@ namespace FontConfig {
 
     public class Reject : Selections {
 
-        /* XXX: Only used to update Disabled category */
-        public signal void changed ();
-
         public Reject () {
             target_element = "rejectfont";
             target_file = "78-Reject.conf";
-        }
-
-        public override void save () {
-            base.save();
-            changed();
-            return;
         }
 
     }

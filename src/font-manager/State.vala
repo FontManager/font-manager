@@ -52,6 +52,7 @@ namespace FontManager {
             main_window.set_default_size(w, h);
             main_window.move(x, y);
             main_window.mode = (FontManager.Mode) settings.get_enum("mode");
+            main_window.titlebar.main_menu.active = false;
             main_window.sidebar.standard.mode = (StandardSideBarMode) settings.get_enum("sidebar-mode");
             main_window.preview.mode = FontManager.FontPreviewMode.parse(settings.get_string("preview-mode"));
             main_window.main_pane.position = settings.get_int("sidebar-size");

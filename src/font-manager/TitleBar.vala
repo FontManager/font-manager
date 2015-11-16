@@ -154,13 +154,12 @@ namespace FontManager {
             var mode_action = new SimpleAction.stateful("mode", VariantType.STRING, "Manage");
             mode_action.activate.connect((a, s) => {
                 application._main_.main_window.mode = Mode.parse((string) s);
-                }
-            );
+            });
             application.add_action(mode_action);
             int i = 0;
             foreach (var mode in modes) {
                 i++;
-                string accels [] = {"<Ctrl>%i".printf(i)};
+                string? accels [] = {"<Ctrl>%i".printf(i), null };
                 application.set_accels_for_action("app.mode::%s".printf(mode), accels);
                 GLib.MenuItem item = new MenuItem(Mode.parse(mode).to_translatable_string(), "app.mode::%s".printf(mode));
                 item.set_attribute("accel", "s", "<Ctrl>%i".printf(i));
@@ -182,7 +181,7 @@ namespace FontManager {
             foreach (var entry in app_menu_entries) {
                 add_action_from_menu_entry(application, entry);
                 if (entry.accelerator != null) {
-                    string accels [] = {entry.accelerator};
+                    string? accels [] = {entry.accelerator, null };
                     application.set_accels_for_action(entry.detailed_action_name, accels);
                     GLib.MenuItem item = new MenuItem(entry.display_name, entry.detailed_action_name);
                     item.set_attribute("accel", "s", entry.accelerator);

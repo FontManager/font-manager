@@ -38,10 +38,12 @@ namespace FontManager {
             { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
             { "version", 'v', 0, OptionArg.NONE, null, "Show application version", null },
             { "install", 'i', 0, OptionArg.NONE, null, "Space separated list of files to install.", null },
+            { "enable", 'e', 0, OptionArg.STRING_ARRAY, null, "Enable specified font family", null },
+            { "disable", 'd', 0, OptionArg.STRING_ARRAY, null, "Disable specified font family", null },
             { "list", 0, 0, OptionArg.NONE, null, "List available fonts. (JSON format)", null },
-            { "list-full", 0, 0, OptionArg.NONE, null, "List available fonts. Include disabled fonts and sources. (JSON format)", null },
+            { "list-full", 0, 0, OptionArg.NONE, null, "Include disabled fonts and sources.", null },
             { "disable-headerbar", 0, 0, OptionArg.NONE, null, "Disable use of header bar.", null },
-            { "debug", 'd', 0, OptionArg.NONE, null, "Enable debugging messages.", null },
+            { "debug", 'D', 0, OptionArg.NONE, null, "Enable debugging messages.", null },
             { "fatal", 'F', 0, OptionArg.NONE, null, "Fatal errors", null },
             { "", 0, 0, OptionArg.FILENAME_ARRAY, null, null, null },
             { null }
@@ -55,9 +57,38 @@ namespace FontManager {
             _main_ = Main.instance;
         }
 
-        public string list_families () {
+        public void install (string [] paths) {
+            File [] filelist = null;
+            foreach (var path in paths)
+                filelist += new File.for_path(path);
+            Library.install_from_file_array(filelist);
+            return;
+        }
+
+        public string list () {
+            var families = new FontConfig.Families();
+            families.update();
+            _main_.reject.init();
+            foreach (var family in _main_.reject)
+                families.unset(family);
+            return families.to_data();
+        }
+
+        public string list_full () {
             _main_.families.update();
             return _main_.families.to_data();
+        }
+
+        public void enable (string [] families) {
+            _main_.reject.remove_all_array(families);
+            _main_.reject.save();
+            return;
+        }
+
+        public void disable (string [] families) {
+            _main_.reject.add_all_array(families);
+            _main_.reject.save();
+            return;
         }
 
         public override void startup () {

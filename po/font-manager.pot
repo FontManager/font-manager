@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2015-11-09 19:43-0500\n"
+"POT-Creation-Date: 2015-11-15 21:38-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -610,8 +610,7 @@ msgstr ""
 
 #: ../lib/UX/Widgets/FileSelector.vala:49
 #: ../lib/UX/Widgets/FileSelector.vala:69
-#: ../lib/UX/Widgets/FileSelector.vala:97
-#: ../src/font-manager/Migration.vala:58
+#: ../lib/UX/Widgets/FileSelector.vala:97 ../src/font-manager/Migration.vala:58
 msgid "_Cancel"
 msgstr ""
 
@@ -648,7 +647,7 @@ msgstr ""
 msgid "Select background color"
 msgstr ""
 
-#: ../src/font-manager/Main.vala:229
+#: ../src/font-manager/Main.vala:253
 #, c-format
 msgid ""
 "Try restarting the application\n"
@@ -722,15 +721,15 @@ msgstr ""
 msgid "Remove selected source"
 msgstr ""
 
-#: ../src/font-manager/TitleBar.vala:177
+#: ../src/font-manager/TitleBar.vala:176
 msgid "Help"
 msgstr ""
 
-#: ../src/font-manager/TitleBar.vala:178
+#: ../src/font-manager/TitleBar.vala:177
 msgid "About"
 msgstr ""
 
-#: ../src/font-manager/TitleBar.vala:179
+#: ../src/font-manager/TitleBar.vala:178
 msgid "Quit"
 msgstr ""
 
@@ -748,8 +747,7 @@ msgstr ""
 msgid "To preview a font simply drag it onto this area."
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:67
-#: ../src/font-viewer/MainWindow.vala:173
+#: ../src/font-viewer/MainWindow.vala:67 ../src/font-viewer/MainWindow.vala:173
 msgid "Install Font"
 msgstr ""
 

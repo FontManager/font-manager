@@ -460,6 +460,11 @@ namespace FontManager {
                 disabled.update(Main.instance.database, Main.instance.reject);
                 if (sidebar.standard.category_tree.selected_filter is Disabled)
                     update_font_model(sidebar.standard.category_tree.selected_filter);
+                Idle.add(() => {
+                    reject.init();
+                    fontlist.queue_draw();
+                    return false;
+                });
             });
 
             preview.notebook.switch_page.connect((p, p_num) => {

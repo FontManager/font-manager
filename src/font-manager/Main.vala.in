@@ -120,6 +120,30 @@ namespace FontManager {
             if (options.contains("disable-headerbar"))
                 application.use_headerbar = false;
 
+            if (options.contains("enable")) {
+                if (reject == null) {
+                    reject = new FontConfig.Reject();
+                    reject.init();
+                }
+                Variant v = options.lookup_value("enable", VariantType.STRING_ARRAY);
+                string [] accept = v.get_strv();
+                reject.remove_all_array(accept);
+                reject.save();
+                exit_status = 0;
+            }
+
+            if (options.contains("disable")) {
+                if (reject == null) {
+                    reject = new FontConfig.Reject();
+                    reject.init();
+                }
+                Variant v = options.lookup_value("disable", VariantType.STRING_ARRAY);
+                string [] rejects = v.get_strv();
+                reject.add_all_array(rejects);
+                reject.save();
+                exit_status = 0;
+            }
+
             if (options.contains("list")) {
                 if (families == null) {
                     families = new FontConfig.Families();
