@@ -149,7 +149,8 @@ namespace FontManager {
                     families = new FontConfig.Families();
                     families.update();
                 }
-                stdout.printf("\n%s\n\n", families.to_data());
+                foreach (string family in families.list())
+                    stdout.printf("%s\n", family);
                 exit_status = 0;
             }
 

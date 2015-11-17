@@ -51,8 +51,6 @@ namespace FontManager {
             settings.get("window-position", "(ii)", out x, out y);
             main_window.set_default_size(w, h);
             main_window.move(x, y);
-            main_window.mode = (FontManager.Mode) settings.get_enum("mode");
-            main_window.titlebar.main_menu.active = false;
             main_window.sidebar.standard.mode = (StandardSideBarMode) settings.get_enum("sidebar-mode");
             main_window.preview.mode = FontManager.FontPreviewMode.parse(settings.get_string("preview-mode"));
             main_window.main_pane.position = settings.get_int("sidebar-size");
@@ -69,6 +67,8 @@ namespace FontManager {
             main_window.sidebar.character_map.selected_script = settings.get_string("selected-script");
             main_window.sidebar.character_map.set_initial_selection(settings.get_string("selected-script"), settings.get_string("selected-block"));
             main_window.fontlist.controls.set_remove_sensitivity(main_window.sidebar.standard.mode == StandardSideBarMode.COLLECTION);
+            main_window.mode = (FontManager.Mode) settings.get_enum("mode");
+            main_window.titlebar.main_menu.active = false;
             return;
         }
 

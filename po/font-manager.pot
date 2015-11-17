@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2015-11-15 21:38-0500\n"
+"POT-Creation-Date: 2015-11-16 19:39-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -238,11 +238,11 @@ msgstr ""
 msgid "%s --> Resource Unavailable"
 msgstr ""
 
-#: ../lib/Library/Install.vala:163
+#: ../lib/Library/Install.vala:164
 msgid "Installing files"
 msgstr ""
 
-#: ../lib/Library/Install.vala:184
+#: ../lib/Library/Install.vala:185
 msgid "Preparing Archives"
 msgstr ""
 
@@ -610,7 +610,8 @@ msgstr ""
 
 #: ../lib/UX/Widgets/FileSelector.vala:49
 #: ../lib/UX/Widgets/FileSelector.vala:69
-#: ../lib/UX/Widgets/FileSelector.vala:97 ../src/font-manager/Migration.vala:58
+#: ../lib/UX/Widgets/FileSelector.vala:97
+#: ../src/font-manager/Migration.vala:58
 msgid "_Cancel"
 msgstr ""
 
@@ -647,7 +648,7 @@ msgstr ""
 msgid "Select background color"
 msgstr ""
 
-#: ../src/font-manager/Main.vala:253
+#: ../src/font-manager/Main.vala:254
 #, c-format
 msgid ""
 "Try restarting the application\n"
@@ -747,7 +748,8 @@ msgstr ""
 msgid "To preview a font simply drag it onto this area."
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:67 ../src/font-viewer/MainWindow.vala:173
+#: ../src/font-viewer/MainWindow.vala:67
+#: ../src/font-viewer/MainWindow.vala:173
 msgid "Install Font"
 msgstr ""
 

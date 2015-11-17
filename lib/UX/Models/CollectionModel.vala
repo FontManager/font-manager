@@ -42,7 +42,6 @@ namespace FontManager {
             collections = load_collections();
         }
 
-        /* XXX */
         public void update () {
             clear();
             if (groups == null || groups.entries.values == null)

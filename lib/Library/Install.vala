@@ -156,6 +156,7 @@ namespace FontManager {
                 int processed = 0;
                 foreach (var f in sorter.files) {
                     var data = FontData(f);
+                    /* XXX: FIXME : notify */
                     if (!is_installed(data) && (conflicts(data) < 0))
                         install_font(data);
                     processed++;
@@ -167,7 +168,7 @@ namespace FontManager {
                     return;
                 tmpdir = get_temp_dir();
                 if (tmpdir == null)
-                    /* XXX : FIXME */
+                    /* XXX : FIXME : notify */
                     return;
                 var uri = tmpdir.get_uri();
                 debug("Preparing Archives");

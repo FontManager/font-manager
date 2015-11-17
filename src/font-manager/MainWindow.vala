@@ -351,7 +351,6 @@ namespace FontManager {
                 }
             );
             sidebar.standard.mode_selected.connect(() => {
-                /* XXX */
                 if (font_model == null || sidebar_switch)
                     return;
                 var m = sidebar.standard.mode;

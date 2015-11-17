@@ -40,8 +40,8 @@ namespace FontManager {
             { "install", 'i', 0, OptionArg.NONE, null, "Space separated list of files to install.", null },
             { "enable", 'e', 0, OptionArg.STRING_ARRAY, null, "Enable specified font family", null },
             { "disable", 'd', 0, OptionArg.STRING_ARRAY, null, "Disable specified font family", null },
-            { "list", 0, 0, OptionArg.NONE, null, "List available fonts. (JSON format)", null },
-            { "list-full", 0, 0, OptionArg.NONE, null, "Include disabled fonts and sources.", null },
+            { "list", 0, 0, OptionArg.NONE, null, "List available fonts.", null },
+            { "list-full", 0, 0, OptionArg.NONE, null, "Full listing including face information. (JSON)", null },
             { "disable-headerbar", 0, 0, OptionArg.NONE, null, "Disable use of header bar.", null },
             { "debug", 'D', 0, OptionArg.NONE, null, "Enable debugging messages.", null },
             { "fatal", 'F', 0, OptionArg.NONE, null, "Fatal errors", null },
@@ -60,18 +60,21 @@ namespace FontManager {
         public void install (string [] paths) {
             File [] filelist = null;
             foreach (var path in paths)
-                filelist += new File.for_path(path);
-            Library.install_from_file_array(filelist);
+                filelist += File.new_for_path(path);
+            Library.Install.from_file_array(filelist);
             return;
         }
 
-        public string list () {
+        public string [] list () {
             var families = new FontConfig.Families();
             families.update();
             _main_.reject.init();
             foreach (var family in _main_.reject)
                 families.unset(family);
-            return families.to_data();
+            string []? result = null;
+            foreach (var family in families.list())
+                result += family;
+            return result;
         }
 
         public string list_full () {

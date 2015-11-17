@@ -37,7 +37,7 @@ namespace FontManager {
                 return _font_desc;
             }
             /* XXX : Bug?
-             * Workaround broken rendering by temporariy changing size.
+             * Workaround broken rendering by temporarily changing size.
              * This does cause visual glitches.
              * But without it rendering at current size may fail when font changes.
              */
