@@ -72,11 +72,21 @@ public File []? get_command_line_files (ApplicationCommandLine cl) {
     return files;
 }
 
+public int get_command_line_status (string cmd) {
+    try {
+        int exit_status;
+        Process.spawn_command_line_sync(cmd, null, null, out exit_status);
+        return exit_status;
+    } catch (Error e) {
+        warning("Execution of %s failed : %s", cmd, e.message);
+        return null;
+    }
+}
+
 public string? get_command_line_output (string cmd) {
     try {
-        int exit;
         string std_out;
-        Process.spawn_command_line_sync(cmd, out std_out, null, out exit);
+        Process.spawn_command_line_sync(cmd, out std_out);
         return std_out;
     } catch (Error e) {
         warning("Execution of %s failed : %s", cmd, e.message);
