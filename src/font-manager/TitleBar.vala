@@ -43,11 +43,7 @@ namespace FontManager {
 
         public TitleBar () {
             title = About.NAME;
-            Gtk.StyleContext ctx = get_style_context();
-            ctx.add_class(Gtk.STYLE_CLASS_TITLEBAR);
-            /* Adding menubar class makes the CSD as compact as possible */
-            ctx.add_class(Gtk.STYLE_CLASS_MENUBAR);
-            ctx.set_junction_sides(Gtk.JunctionSides.BOTTOM);
+            has_subtitle = false;
             show_close_button = false;
             main_menu = new Gtk.MenuButton();
             main_menu.border_width = 2;

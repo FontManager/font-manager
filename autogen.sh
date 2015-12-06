@@ -2,11 +2,8 @@
 srcdir=`dirname $0`
 [ -z "$srcdir" ] && srcdir=.
 
-PKG_NAME=font-manager
-REQUIRED_AUTOMAKE_VERSION=1.1
-
 if [ ! -f "$srcdir/configure.ac" ]; then
-    echo "$srcdir doesn't look like source directory for $PKG_NAME" >&2
+    echo "$srcdir doesn't look like source directory for Font Manager" >&2
     exit 1
 fi
 

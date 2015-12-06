@@ -21,10 +21,27 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
+* {
+    -GtkPaned-handle-size: 0px;
+}
+
 GtkEntry {
     padding : 4px;
 }
 
-GtkPaned {
-    -GtkPaned-handle-size: 0px;
+.header-bar,
+#FontManagerFontListControls {
+    padding: 3px;
 }
+
+.header-bar *,
+#FontManagerFontListControls * {
+    padding: 2px;
+    margin: 0px;
+}
+
+.header-bar GtkButton {
+    padding: 3px;
+}
+
+
