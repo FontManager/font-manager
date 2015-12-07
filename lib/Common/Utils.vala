@@ -79,7 +79,7 @@ public int get_command_line_status (string cmd) {
         return exit_status;
     } catch (Error e) {
         warning("Execution of %s failed : %s", cmd, e.message);
-        return null;
+        return -1;
     }
 }
 

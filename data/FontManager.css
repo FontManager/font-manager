@@ -29,18 +29,18 @@ GtkEntry {
     padding : 4px;
 }
 
-.header-bar,
+#FontManagerHeaderBar,
 #FontManagerFontListControls {
     padding: 3px;
 }
 
-.header-bar *,
+#FontManagerHeaderBar *,
 #FontManagerFontListControls * {
     padding: 2px;
     margin: 0px;
 }
 
-.header-bar GtkButton {
+#FontManagerHeaderBar GtkButton {
     padding: 3px;
 }
 

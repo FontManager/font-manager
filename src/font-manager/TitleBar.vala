@@ -42,6 +42,7 @@ namespace FontManager {
         Gtk.Box main_menu_container;
 
         public TitleBar () {
+            name = "FontManagerHeaderBar";
             title = About.NAME;
             has_subtitle = false;
             show_close_button = false;

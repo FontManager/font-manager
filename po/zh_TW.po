@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2015-11-16 19:39-0500\n"
+"POT-Creation-Date: 2015-12-06 20:15-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -643,8 +643,7 @@ msgstr "选择字体源文件夹"
 
 #: ../lib/UX/Widgets/FileSelector.vala:49
 #: ../lib/UX/Widgets/FileSelector.vala:69
-#: ../lib/UX/Widgets/FileSelector.vala:97
-#: ../src/font-manager/Migration.vala:58
+#: ../lib/UX/Widgets/FileSelector.vala:97 ../src/font-manager/Migration.vala:58
 msgid "_Cancel"
 msgstr "取消(_C)"
 
@@ -737,35 +736,35 @@ msgstr "分类"
 msgid "Collections"
 msgstr "字体集"
 
-#: ../src/font-manager/TitleBar.vala:72 ../src/font-manager/TitleBar.vala:125
+#: ../src/font-manager/TitleBar.vala:69 ../src/font-manager/TitleBar.vala:122
 msgid "Add Fonts"
 msgstr "添加字体"
 
-#: ../src/font-manager/TitleBar.vala:73 ../src/font-manager/TitleBar.vala:126
+#: ../src/font-manager/TitleBar.vala:70 ../src/font-manager/TitleBar.vala:123
 msgid "Remove Fonts"
 msgstr "删除字体"
 
-#: ../src/font-manager/TitleBar.vala:79
+#: ../src/font-manager/TitleBar.vala:76
 msgid "Manage Sources"
 msgstr "管理字体源"
 
-#: ../src/font-manager/TitleBar.vala:122
+#: ../src/font-manager/TitleBar.vala:119
 msgid "Add new source"
 msgstr "添加新的字体源"
 
-#: ../src/font-manager/TitleBar.vala:123
+#: ../src/font-manager/TitleBar.vala:120
 msgid "Remove selected source"
 msgstr "删除选中的字体源"
 
-#: ../src/font-manager/TitleBar.vala:176
+#: ../src/font-manager/TitleBar.vala:173
 msgid "Help"
 msgstr "帮助"
 
-#: ../src/font-manager/TitleBar.vala:177
+#: ../src/font-manager/TitleBar.vala:174
 msgid "About"
 msgstr "关于"
 
-#: ../src/font-manager/TitleBar.vala:178
+#: ../src/font-manager/TitleBar.vala:175
 msgid "Quit"
 msgstr "退出"
 
@@ -786,8 +785,7 @@ msgstr "快速添加或预览字体"
 msgid "To preview a font simply drag it onto this area."
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:67
-#: ../src/font-viewer/MainWindow.vala:173
+#: ../src/font-viewer/MainWindow.vala:67 ../src/font-viewer/MainWindow.vala:173
 #, fuzzy
 msgid "Install Font"
 msgstr "全部字体"
