@@ -27,6 +27,9 @@ namespace FontManager {
 
         public class State : Object {
 
+            internal static const int DEFAULT_WIDTH = 600;
+            internal static const int DEFAULT_HEIGHT = 400;
+
             public Settings? settings { get; set; default = null; }
             public weak MainWindow? main_window { get; set; default = null; }
 
@@ -60,6 +63,9 @@ namespace FontManager {
                 if (settings == null)
                     return;
                 main_window.configure_event.connect((w, e) => {
+                    /* Avoid tiny windows on Wayland */
+                    if (e.width < DEFAULT_WIDTH || e.height < DEFAULT_HEIGHT)
+                        return false;
                     settings.set("window-size", "(ii)", e.width, e.height);
                     settings.set("window-position", "(ii)", e.x, e.y);
                     return false;
