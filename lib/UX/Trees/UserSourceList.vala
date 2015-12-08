@@ -39,6 +39,7 @@ namespace FontManager {
             source.bind_property("available", toggle, "sensitive", BindingFlags.SYNC_CREATE);
             source.bind_property("icon-name", image, "icon-name", BindingFlags.SYNC_CREATE);
             source.bind_property("name", label, "label", BindingFlags.SYNC_CREATE);
+            source.bind_property("path", dim_label, "label", BindingFlags.SYNC_CREATE);
         }
 
     }

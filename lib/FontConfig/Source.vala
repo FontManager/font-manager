@@ -81,7 +81,7 @@ namespace FontConfig {
                 FileInfo info = file.query_info(FileAttribute.STANDARD_DISPLAY_NAME, FileQueryInfoFlags.NONE);
                 _name = Markup.escape_text(info.get_display_name());
             } catch (Error e) {
-                _name = _("%s --> Resource Unavailable").printf(path);
+                _name = _("Source Unavailable");
             }
             return;
         }
