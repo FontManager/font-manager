@@ -100,13 +100,6 @@ namespace FontManager {
             }
         }
 
-        /* XXX: bind_property doesn't see nullable properties? */
-        public FontData bind_font_data {
-            set {
-                font_data = value;
-            }
-        }
-
         Gtk.Label preview_tab_label;
         Gtk.MenuButton menu_button;
         FontData? _font_data = null;

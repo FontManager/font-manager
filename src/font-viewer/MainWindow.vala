@@ -37,19 +37,6 @@ namespace FontManager {
             public FontPreviewMode mode { get; set; }
             public FontPreviewPane preview { get; private set; }
 
-            public FontData? font_data {
-                get {
-                    return preview.font_data;
-                }
-                set {
-                    preview.font_data = value;
-                    Idle.add(() => {
-                        update();
-                        return false;
-                    });
-                }
-            }
-
             Gtk.Box box;
             Gtk.Overlay overlay;
             WelcomeLabel welcome;
@@ -68,8 +55,8 @@ namespace FontManager {
                 install_button.margin = 2;
                 install_button.opacity = 0.725;
                 install_button.clicked.connect(() => {
-                    if (Library.Install.install_font(font_data))
-                        installed.add(font_data.fontinfo.checksum);
+                    if (Library.Install.install_font(preview.font_data))
+                        installed.add(preview.font_data.fontinfo.checksum);
                     update_install_button_state();
                 });
                 preview.notebook.set_action_widget(install_button, Gtk.PackType.END);
@@ -99,6 +86,7 @@ namespace FontManager {
                 });
                 bind_property("mode", preview, "mode", BindingFlags.BIDIRECTIONAL);
                 preview.preview_mode_changed.connect((m) => { mode_changed(m); });
+                preview.updated.connect(() => { this.update(); });
             }
 
             public override void show () {
@@ -131,15 +119,14 @@ namespace FontManager {
             }
 
             public void update () {
-                preview.update();
                 update_install_button_state();
-                if (font_data == null)
+                if (preview.font_data == null)
                     titlebar.update(null, null, "");
                 else
-                    titlebar.update(font_data.font.family,
-                                    font_data.font.style,
-                                    font_data.fontinfo.filetype);
-                if (font_data != null) {
+                    titlebar.update(preview.font_data.font.family,
+                                    preview.font_data.font.style,
+                                    preview.font_data.fontinfo.filetype);
+                if (preview.font_data != null) {
                     welcome.hide();
                     box.show();
                 } else {
@@ -150,17 +137,17 @@ namespace FontManager {
             }
 
             void update_install_button_state () {
-                if (font_data == null) {
+                if (preview.font_data == null) {
                     install_button.hide();
                     return;
                 } else {
                     install_button.show();
                 }
                 FontConfig.clear_app_fonts();
-                bool _installed = Library.is_installed(font_data);
-                if (installed.contains(font_data.fontinfo.checksum))
+                bool _installed = Library.is_installed(preview.font_data);
+                if (installed.contains(preview.font_data.fontinfo.checksum))
                     _installed = true;
-                if (Library.conflicts(font_data) > 0) {
+                if (Library.conflicts(preview.font_data) > 0) {
                     install_button.set_label(_("Newer version already installed"));
                     install_button.sensitive = false;
                     install_button.relief = Gtk.ReliefStyle.NONE;
@@ -173,6 +160,23 @@ namespace FontManager {
                     install_button.set_label(_("Install Font"));
                     install_button.sensitive = true;
                     install_button.relief = Gtk.ReliefStyle.NORMAL;
+                }
+                return;
+            }
+
+            public override void drag_data_received (Gdk.DragContext context,
+                                                     int x,
+                                                     int y,
+                                                     Gtk.SelectionData selection_data,
+                                                     uint info,
+                                                     uint time) {
+                switch (info) {
+                    case DragTargetType.EXTERNAL:
+                        this.open(selection_data.get_uris()[0]);
+                        break;
+                    default:
+                        warning("Unsupported drag target.");
+                        return;
                 }
                 return;
             }

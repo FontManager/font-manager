@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2015-12-07 22:57-0500\n"
+"POT-Creation-Date: 2015-12-08 22:07-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -528,7 +528,7 @@ msgid "Grouped by filetype"
 msgstr "按文件类型分组"
 
 #: ../lib/UX/Models/CategoryModel.vala:110
-#: ../lib/UX/Views/FontPreviewPane.vala:131
+#: ../lib/UX/Views/FontPreviewPane.vala:124
 msgid "License"
 msgstr "许可证"
 
@@ -614,17 +614,17 @@ msgstr "正文"
 msgid "Preview"
 msgstr "预览"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:130
+#: ../lib/UX/Views/FontPreviewPane.vala:123
 #, fuzzy
 msgid "Properties"
 msgstr "比例(Proportional)"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:132
+#: ../lib/UX/Views/FontPreviewPane.vala:125
 #, fuzzy
 msgid "Characters"
 msgstr "字符映射"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:255
+#: ../lib/UX/Views/FontPreviewPane.vala:248
 #, fuzzy
 msgid "Select preview type"
 msgstr "编辑预览文本"
@@ -771,7 +771,7 @@ msgstr "退出"
 # Not translate very good, just for use.
 #. Note: Type hint used to prevent notification on every selection
 #: ../src/font-viewer/Application.vala:121
-#: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:62
+#: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:49
 #, fuzzy
 msgid "Font Viewer"
 msgstr "字体管理器"
@@ -785,16 +785,16 @@ msgstr "快速添加或预览字体"
 msgid "To preview a font simply drag it onto this area."
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:67 ../src/font-viewer/MainWindow.vala:173
+#: ../src/font-viewer/MainWindow.vala:54 ../src/font-viewer/MainWindow.vala:160
 #, fuzzy
 msgid "Install Font"
 msgstr "全部字体"
 
-#: ../src/font-viewer/MainWindow.vala:164
+#: ../src/font-viewer/MainWindow.vala:151
 msgid "Newer version already installed"
 msgstr "新版本已安装"
 
-#: ../src/font-viewer/MainWindow.vala:169
+#: ../src/font-viewer/MainWindow.vala:156
 #, fuzzy
 msgid "Installed"
 msgstr "全部字体"

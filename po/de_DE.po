@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2015-12-07 22:57-0500\n"
+"POT-Creation-Date: 2015-12-08 22:07-0500\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -526,7 +526,7 @@ msgid "Grouped by filetype"
 msgstr "Geordnet nach Dateityp"
 
 #: ../lib/UX/Models/CategoryModel.vala:110
-#: ../lib/UX/Views/FontPreviewPane.vala:131
+#: ../lib/UX/Views/FontPreviewPane.vala:124
 msgid "License"
 msgstr "Lizenz"
 
@@ -610,17 +610,17 @@ msgstr "Beispiel Text"
 msgid "Preview"
 msgstr "Vorschau"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:130
+#: ../lib/UX/Views/FontPreviewPane.vala:123
 #, fuzzy
 msgid "Properties"
 msgstr "Proportional"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:132
+#: ../lib/UX/Views/FontPreviewPane.vala:125
 #, fuzzy
 msgid "Characters"
 msgstr "Zeichentabelle"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:255
+#: ../lib/UX/Views/FontPreviewPane.vala:248
 #, fuzzy
 msgid "Select preview type"
 msgstr "Vorschautext bearbeiten"
@@ -777,7 +777,7 @@ msgstr "Beenden"
 
 #. Note: Type hint used to prevent notification on every selection
 #: ../src/font-viewer/Application.vala:121
-#: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:62
+#: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:49
 #, fuzzy
 msgid "Font Viewer"
 msgstr "Schriften Verwalter"
@@ -790,16 +790,16 @@ msgstr ""
 msgid "To preview a font simply drag it onto this area."
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:67 ../src/font-viewer/MainWindow.vala:173
+#: ../src/font-viewer/MainWindow.vala:54 ../src/font-viewer/MainWindow.vala:160
 #, fuzzy
 msgid "Install Font"
 msgstr "Alle Schriften"
 
-#: ../src/font-viewer/MainWindow.vala:164
+#: ../src/font-viewer/MainWindow.vala:151
 msgid "Newer version already installed"
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:169
+#: ../src/font-viewer/MainWindow.vala:156
 #, fuzzy
 msgid "Installed"
 msgstr "Alle Schriften"
