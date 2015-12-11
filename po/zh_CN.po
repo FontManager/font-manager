@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2015-12-08 22:07-0500\n"
+"POT-Creation-Date: 2015-12-11 13:17-0500\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -610,7 +610,7 @@ msgstr "正文"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:61
 #: ../lib/UX/Widgets/FontPreview.vala:87
-#: ../src/font-manager/MainWindow.vala:202
+#: ../src/font-manager/MainWindow.vala:211
 msgid "Preview"
 msgstr "预览"
 
@@ -689,17 +689,17 @@ msgid ""
 msgstr ""
 
 #: ../src/font-manager/MainWindow.vala:57
-#: ../src/font-manager/MainWindow.vala:208
+#: ../src/font-manager/MainWindow.vala:217
 msgid "Browse"
 msgstr "浏览"
 
 #: ../src/font-manager/MainWindow.vala:59
-#: ../src/font-manager/MainWindow.vala:203
+#: ../src/font-manager/MainWindow.vala:212
 msgid "Compare"
 msgstr "比较"
 
 #: ../src/font-manager/MainWindow.vala:61
-#: ../src/font-manager/MainWindow.vala:207
+#: ../src/font-manager/MainWindow.vala:216
 msgid "Manage"
 msgstr "管理"
 

@@ -80,7 +80,6 @@ namespace FontManager {
         public signal void mode_changed (int new_mode);
 
         public string selected_font { get; set; default = DEFAULT_FONT; }
-        public FontData font_data { get; set; }
         public FontModel? font_model { get; set; default = null; }
         public FontConfig.Reject reject { get; set; }
         public FontConfig.Sources sources { get; set; }
@@ -139,6 +138,15 @@ namespace FontManager {
             }
         }
 
+        public FontData font_data {
+            get {
+                return preview.font_data;
+            }
+            set {
+                preview.font_data = value;
+            }
+        }
+
         bool _loading = false;
         bool sidebar_switch = false;
         bool charmap_visible = false;
@@ -172,7 +180,6 @@ namespace FontManager {
             bind_property("reject", sidebar.standard.collection_tree, "reject", BindingFlags.SYNC_CREATE);
             bind_property("selected-font", fontlist, "selected-font-desc", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             bind_property("font-data", fontlist, "font-data", BindingFlags.BIDIRECTIONAL);
-            bind_property("font-data", preview, "bind-font-data", BindingFlags.SYNC_CREATE);
             bind_property("selected-font", compare, "font-desc", BindingFlags.SYNC_CREATE);
             bind_property("sources", user_source_list, "sources", BindingFlags.DEFAULT);
             return;
