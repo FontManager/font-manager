@@ -71,7 +71,11 @@ namespace FontManager {
             main_window.sidebar.character_map.set_initial_selection(settings.get_string("selected-script"), settings.get_string("selected-block"));
             main_window.fontlist.controls.set_remove_sensitivity(main_window.sidebar.standard.mode == StandardSideBarMode.COLLECTION);
             main_window.mode = (FontManager.Mode) settings.get_enum("mode");
-            main_window.titlebar.main_menu.active = false;
+            var menu_button = main_window.titlebar.main_menu;
+            if (menu_button.use_popover)
+                menu_button.popover.hide();
+            else
+                menu_button.popup.hide();
             return;
         }
 
