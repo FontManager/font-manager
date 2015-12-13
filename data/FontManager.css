@@ -21,10 +21,6 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
-* {
-    -GtkPaned-handle-size: 0px;
-}
-
 GtkEntry {
     padding : 4px;
 }
@@ -43,5 +39,4 @@ GtkEntry {
 #FontManagerHeaderBar GtkButton {
     padding: 3px;
 }
-
 
