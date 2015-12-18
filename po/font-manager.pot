@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2015-12-11 13:17-0500\n"
+"POT-Creation-Date: 2015-12-17 23:06-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -237,15 +237,15 @@ msgstr ""
 msgid "Source Unavailable"
 msgstr ""
 
-#: ../lib/Library/Install.vala:164
+#: ../lib/Library/Install.vala:139
 msgid "Installing files"
 msgstr ""
 
-#: ../lib/Library/Install.vala:185
+#: ../lib/Library/Install.vala:162
 msgid "Preparing Archives"
 msgstr ""
 
-#: ../lib/Library/Remove.vala:112
+#: ../lib/Library/Remove.vala:81
 msgid "Removing files"
 msgstr ""
 
@@ -253,7 +253,7 @@ msgstr ""
 msgid "Processing directories"
 msgstr ""
 
-#: ../lib/Library/Sorter.vala:120
+#: ../lib/Library/Sorter.vala:119
 msgid "Processing files"
 msgstr ""
 
@@ -579,7 +579,7 @@ msgstr ""
 
 #: ../lib/UX/Views/FontPreviewPane.vala:61
 #: ../lib/UX/Widgets/FontPreview.vala:87
-#: ../src/font-manager/MainWindow.vala:211
+#: ../src/font-manager/MainWindow.vala:207
 msgid "Preview"
 msgstr ""
 
@@ -638,11 +638,11 @@ msgstr ""
 msgid "Remove selected font from comparison"
 msgstr ""
 
-#: ../src/font-manager/Compare.vala:40
+#: ../src/font-manager/Compare.vala:41
 msgid "Select text color"
 msgstr ""
 
-#: ../src/font-manager/Compare.vala:41
+#: ../src/font-manager/Compare.vala:42
 msgid "Select background color"
 msgstr ""
 
@@ -655,17 +655,17 @@ msgid ""
 msgstr ""
 
 #: ../src/font-manager/MainWindow.vala:57
-#: ../src/font-manager/MainWindow.vala:217
+#: ../src/font-manager/MainWindow.vala:213
 msgid "Browse"
 msgstr ""
 
 #: ../src/font-manager/MainWindow.vala:59
-#: ../src/font-manager/MainWindow.vala:212
+#: ../src/font-manager/MainWindow.vala:208
 msgid "Compare"
 msgstr ""
 
 #: ../src/font-manager/MainWindow.vala:61
-#: ../src/font-manager/MainWindow.vala:216
+#: ../src/font-manager/MainWindow.vala:212
 msgid "Manage"
 msgstr ""
 

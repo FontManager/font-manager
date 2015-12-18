@@ -97,12 +97,6 @@ namespace FontManager {
             return;
         }
 
-        public void on_export_category () {
-//            NotImplemented.run("Exporting categories");
-            return;
-        }
-
-
         void pixbuf_cell_data_func (Gtk.TreeViewColumn layout,
                                               Gtk.CellRenderer cell,
                                               Gtk.TreeModel model,

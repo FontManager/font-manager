@@ -23,6 +23,9 @@
 
 #if HAVE_FILE_ROLLER
 
+/* Defined in ../Glue/FileRoller.h */
+extern string fr_get_extension_from_mimetype (string mimetype);
+
 [DBus (name = "org.gnome.ArchiveManager1")]
 interface DBusService : Object {
 
@@ -42,7 +45,10 @@ public class ArchiveManager : Object {
     public signal void progress (string? message, int processed, int total);
 
     DBusService? service = null;
-    Gee.ArrayList <string>? _supported_types = null;
+
+    public static string get_extension_from_mimetype (string mimetype) {
+        return fr_get_extension_from_mimetype(mimetype);
+    }
 
     public void post_error_message (Error e) {
         critical("Archive Manager : %s", e.message);
@@ -53,11 +59,6 @@ public class ArchiveManager : Object {
             service = Bus.get_proxy_sync(BusType.SESSION, "org.gnome.ArchiveManager1", "/org/gnome/ArchiveManager1");
             service.progress.connect((p, m) => { progress(m, (int) p, 100); });
             message("Success contacting Archive Manager service.");
-            var builder = new StringBuilder();
-            foreach (var t in get_supported_types())
-                builder.append(t + ", ");
-            if (!(builder.str.strip() == ""))
-                message("Supported archive types : %s", builder.str);
         } catch (IOError e) {
             warning("Failed to contact Archive Manager service.");
             warning("Features which depend on Archive Manager will not function correctly.");
@@ -119,9 +120,7 @@ public class ArchiveManager : Object {
 
     public Gee.ArrayList <string> get_supported_types (string action = "extract") {
         debug("Archive Manager - Get supported types");
-        if (_supported_types != null)
-            return _supported_types;
-        _supported_types = new Gee.ArrayList <string> ();
+        var _supported_types = new Gee.ArrayList <string> ();
         try {
             HashTable <string, string> [] array = file_roller.get_supported_types(action);
             foreach (var hashtable in array)
@@ -130,6 +129,14 @@ public class ArchiveManager : Object {
             post_error_message(e);
         }
         return _supported_types;
+    }
+
+    public Gee.ArrayList <string> get_supported_file_types () {
+        debug("Archive Manager - Get supported file types");
+        var res = new Gee.HashSet <string> ();
+        foreach (var mime in get_supported_types("create_single_file"))
+            res.add(get_extension_from_mimetype(mime));
+        return sorted_list_from_collection(res);
     }
 
 }

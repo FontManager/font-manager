@@ -35,6 +35,7 @@ namespace FontManager {
             add_button.set_tooltip_text(_("Add selected font to comparison"));
             remove_button.set_tooltip_text(_("Remove selected font from comparison"));
             var context = get_style_context();
+            context.add_class(Gtk.STYLE_CLASS_TOOLBAR);
             fg_color_button = new Gtk.ColorButton.with_rgba(context.get_color(Gtk.StateFlags.NORMAL));
             bg_color_button = new Gtk.ColorButton.with_rgba(context.get_background_color(Gtk.StateFlags.NORMAL));
             fg_color_button.set_tooltip_text(_("Select text color"));

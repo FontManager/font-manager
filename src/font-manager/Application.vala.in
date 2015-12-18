@@ -30,8 +30,6 @@ namespace FontManager {
     public class Application: Gtk.Application  {
 
         [DBus (visible = false)]
-        public Main _main_ { get; private set; }
-        [DBus (visible = false)]
         public bool use_headerbar { get; set; default = true; }
 
         const OptionEntry[] options = {
@@ -54,7 +52,6 @@ namespace FontManager {
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
             add_main_option_entries(options);
-            _main_ = Main.instance;
         }
 
         public void install (string [] paths) {
@@ -65,68 +62,51 @@ namespace FontManager {
             return;
         }
 
-        public string [] list () {
-            var families = new FontConfig.Families();
-            families.update();
-            _main_.reject.init();
-            foreach (var family in _main_.reject)
-                families.unset(family);
-            string []? result = null;
-            foreach (var family in families.list())
-                result += family;
-            return result;
-        }
-
-        public string list_full () {
-            _main_.families.update();
-            return _main_.families.to_data();
-        }
-
         public void enable (string [] families) {
-            _main_.reject.remove_all_array(families);
-            _main_.reject.save();
+            Main.instance.reject.remove_all_array(families);
+            Main.instance.reject.save();
             return;
         }
 
         public void disable (string [] families) {
-            _main_.reject.add_all_array(families);
-            _main_.reject.save();
+            Main.instance.reject.add_all_array(families);
+            Main.instance.reject.save();
             return;
         }
 
         public override void startup () {
             base.startup();
-            _main_.at_startup();
+            Main.instance.at_startup();
             return;
         }
 
         public override void open (File [] files, string hint) {
-            _main_.handle_open(files[0]);
+            Main.instance.handle_open(files[0]);
             return;
         }
 
         public override int command_line (ApplicationCommandLine cl) {
-            return _main_.handle_command_line(cl);
+            return Main.instance.handle_command_line(cl);
         }
 
 
         public override int handle_local_options (VariantDict options) {
-            return _main_.handle_options(options);
+            return Main.instance.handle_options(options);
         }
 
         protected override void activate () {
-            _main_.on_activate();
+            Main.instance.on_activate();
             return;
         }
 
         public new void quit () {
-            _main_.on_quit();
+            Main.instance.on_quit();
             base.quit();
             return;
         }
 
         public void about () {
-            show_about_dialog(_main_.main_window);
+            show_about_dialog(Main.instance.main_window);
             return;
         }
 

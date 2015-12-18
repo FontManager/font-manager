@@ -55,8 +55,8 @@ namespace FontManager {
                 install_button.margin = 2;
                 install_button.opacity = 0.725;
                 install_button.clicked.connect(() => {
-                    if (Library.Install.install_font(preview.font_data))
-                        installed.add(preview.font_data.fontinfo.checksum);
+                    Library.Install.from_font_data(preview.font_data);
+                    installed.add(preview.font_data.fontinfo.checksum);
                     update_install_button_state();
                 });
                 preview.notebook.set_action_widget(install_button, Gtk.PackType.END);

@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2015-12-11 13:17-0500\n"
+"POT-Creation-Date: 2015-12-17 23:06-0500\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -254,16 +254,16 @@ msgstr "Estellt von Font Manager. Editieren Sie diese Datei nicht!"
 msgid "Source Unavailable"
 msgstr "%s --> Quelle nicht verfügbar"
 
-#: ../lib/Library/Install.vala:164
+#: ../lib/Library/Install.vala:139
 #, fuzzy
 msgid "Installing files"
 msgstr "Alle Schriften"
 
-#: ../lib/Library/Install.vala:185
+#: ../lib/Library/Install.vala:162
 msgid "Preparing Archives"
 msgstr ""
 
-#: ../lib/Library/Remove.vala:112
+#: ../lib/Library/Remove.vala:81
 #, fuzzy
 msgid "Removing files"
 msgstr "Alle Schriften"
@@ -272,7 +272,7 @@ msgstr "Alle Schriften"
 msgid "Processing directories"
 msgstr ""
 
-#: ../lib/Library/Sorter.vala:120
+#: ../lib/Library/Sorter.vala:119
 #, fuzzy
 msgid "Processing files"
 msgstr "Alle Schriften"
@@ -606,7 +606,7 @@ msgstr "Beispiel Text"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:61
 #: ../lib/UX/Widgets/FontPreview.vala:87
-#: ../src/font-manager/MainWindow.vala:211
+#: ../src/font-manager/MainWindow.vala:207
 msgid "Preview"
 msgstr "Vorschau"
 
@@ -668,11 +668,11 @@ msgstr "Füge ausgewählte Schrift dem Vergleich hinzu"
 msgid "Remove selected font from comparison"
 msgstr "Entferne ausgewählte Schrift vom Vergleich"
 
-#: ../src/font-manager/Compare.vala:40
+#: ../src/font-manager/Compare.vala:41
 msgid "Select text color"
 msgstr "Wähle Textfarbe"
 
-#: ../src/font-manager/Compare.vala:41
+#: ../src/font-manager/Compare.vala:42
 msgid "Select background color"
 msgstr "Wähle Hintergrundfarbe"
 
@@ -685,17 +685,17 @@ msgid ""
 msgstr ""
 
 #: ../src/font-manager/MainWindow.vala:57
-#: ../src/font-manager/MainWindow.vala:217
+#: ../src/font-manager/MainWindow.vala:213
 msgid "Browse"
 msgstr "Stöbern"
 
 #: ../src/font-manager/MainWindow.vala:59
-#: ../src/font-manager/MainWindow.vala:212
+#: ../src/font-manager/MainWindow.vala:208
 msgid "Compare"
 msgstr "Vergleiche"
 
 #: ../src/font-manager/MainWindow.vala:61
-#: ../src/font-manager/MainWindow.vala:216
+#: ../src/font-manager/MainWindow.vala:212
 msgid "Manage"
 msgstr "Verwalte"
 
@@ -822,6 +822,10 @@ msgstr "Über"
 #, fuzzy
 msgid "_Quit"
 msgstr "Beenden"
+
+#, fuzzy
+#~ msgid "Export selected collection"
+#~ msgstr "Entferne ausgewählte Kollektion"
 
 #~ msgid "Character Map"
 #~ msgstr "Zeichentabelle"

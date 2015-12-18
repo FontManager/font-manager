@@ -113,7 +113,6 @@ namespace FontManager {
                     #endif
                     } catch (Error e) {
                         critical("Error querying file information : %s", e.message);
-                        //show_error_message(_("Error querying file information"), e);
                     }
                     processed++;
                     if (progress != null)

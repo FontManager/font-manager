@@ -25,12 +25,23 @@ namespace FontManager {
 
     namespace Library {
 
+        [Compact]
         public class Install {
 
             public static Gee.ArrayList <File>? installed = null;
             public static Gee.HashMap <string, string>? install_failed = null;
 
             static File? tmpdir = null;
+
+            public static void clear () {
+                if (installed != null)
+                    installed.clear();
+                installed = null;
+                if (install_failed != null)
+                    install_failed.clear();
+                install_failed = null;
+                return;
+            }
 
             public static void from_file_array (File? [] files) {
                 init();
@@ -57,6 +68,104 @@ namespace FontManager {
                     files.add(File.new_for_uri(uri));
                 process_files(files);
                 fini();
+            }
+
+            public static bool from_font_data (FontData data) {
+                init();
+                debug("Preparing to install %s", data.file.get_path());
+                if (data.font == null || data.fontinfo == null) {
+                    if (install_failed == null)
+                        install_failed = new Gee.HashMap <string, string> ();
+                    install_failed[data.file.get_path()] = "Failed to create FontInfo";
+                    warning("Failed to create FontInfo : %s", data.file.get_path());
+                    return false;
+                }
+                string dest = Path.build_filename(get_user_font_dir(),
+                                                   data.fontinfo.vendor,
+                                                   data.fontinfo.filetype,
+                                                   data.font.family);
+                DirUtils.create_with_parents(dest, 0755);
+                string filename = data.font.to_filename();
+                string filepath = Path.build_filename(dest, "%s.%s".printf(filename, get_file_extension(data.file.get_path())));
+                var file = File.new_for_path(filepath);
+                try_copy(data.file, file);
+                /* XXX */
+                if (data.fontinfo.filetype == "Type 1") {
+                    string par = data.file.get_parent().get_path();
+                    try {
+                        FileInfo inf = data.file.query_info(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
+                        string name = inf.get_name().split_set(".")[0];
+                        foreach (var ext in TYPE1_METRICS) {
+                            string poss = Path.build_filename(par, name + ext);
+                            File f = File.new_for_path(poss);
+                            if (f.query_exists()) {
+                                string path = Path.build_filename(dest, filename + ext);
+                                File _f = File.new_for_path(path);
+                                try_copy(f, _f);
+                            }
+                        }
+                    } catch (Error e) {
+                        critical("Error querying file information : %s", e.message);
+                    }
+                }
+                fini();
+                return true;
+            }
+
+        #if HAVE_FILE_ROLLER
+            static File? get_temp_dir () {
+                string? _tmpdir = null;
+                try {
+                    _tmpdir = DirUtils.make_tmp(TMP_TMPL);
+                } catch (FileError e) {
+                    critical("Error creating temporary working directory : %s", e.message);
+                }
+                return _tmpdir != null ? File.new_for_path(_tmpdir) : null;
+            }
+        #endif
+
+            static void process_files (Gee.ArrayList <File> filelist) {
+                debug("Processing files for installation");
+                var sorter = new Sorter();
+                sorter.sort(filelist);
+                int processed = 0;
+                foreach (var f in sorter.files) {
+                    var data = FontData(f);
+                    /* XXX: FIXME : notify */
+                    if (!is_installed(data) && (conflicts(data) < 0))
+                        from_font_data(data);
+                    processed++;
+                    if (progress != null)
+                        progress(_("Installing files"), processed, sorter.total);
+                }
+            #if HAVE_FILE_ROLLER
+                if (sorter.archives.size == 0)
+                    return;
+                tmpdir = get_temp_dir();
+                if (tmpdir == null) {
+                    /* XXX : FIXME : notify */
+                    critical("Failed to create temporary working directory!");
+                    return;
+                }
+                var uri = tmpdir.get_uri();
+                debug("Preparing Archives");
+                foreach (var a in sorter.archives) {
+                    if (!archive_manager.extract(a.get_uri(), uri, false)) {
+                        if (install_failed == null)
+                            install_failed = new Gee.HashMap <string, string> ();
+                        install_failed[a.get_path()] = "Failed to extract archive";
+                    } else {
+                        debug("Successfully extracted the contents of %s", a.get_basename());
+                    }
+                    processed++;
+                    if (progress != null)
+                        progress(_("Preparing Archives"), processed, sorter.total);
+                }
+                var l = new Gee.ArrayList <File> ();
+                l.add(tmpdir);
+                process_files(l);
+            #endif
+                return;
             }
 
             static void init () {
@@ -92,102 +201,6 @@ namespace FontManager {
                     install_failed[path] = e.message;
                     warning("%s : %s", e.message, path);
                 }
-                return;
-            }
-
-            public static bool install_font (FontData data) {
-                debug("Preparing to install %s", data.file.get_path());
-                if (data.font == null || data.fontinfo == null) {
-                    if (install_failed == null)
-                        install_failed = new Gee.HashMap <string, string> ();
-                    install_failed[data.file.get_path()] = "Failed to create FontInfo";
-                    warning("Failed to create FontInfo : %s", data.file.get_path());
-                    return false;
-                }
-                string dest = Path.build_filename(get_user_font_dir(),
-                                                   data.fontinfo.vendor,
-                                                   data.fontinfo.filetype,
-                                                   data.font.family);
-                DirUtils.create_with_parents(dest, 0755);
-                string filename = data.font.to_filename();
-                string filepath = Path.build_filename(dest, "%s.%s".printf(filename, get_file_extension(data.file.get_path())));
-                var file = File.new_for_path(filepath);
-                try_copy(data.file, file);
-                /* XXX */
-                if (data.fontinfo.filetype == "Type 1") {
-                    string par = data.file.get_parent().get_path();
-                    try {
-                        FileInfo inf = data.file.query_info(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
-                        string name = inf.get_name().split_set(".")[0];
-                        foreach (var ext in TYPE1_METRICS) {
-                            string poss = Path.build_filename(par, name + ext);
-                            File f = File.new_for_path(poss);
-                            if (f.query_exists()) {
-                                string path = Path.build_filename(dest, filename + ext);
-                                File _f = File.new_for_path(path);
-                                try_copy(f, _f);
-                            }
-                        }
-                    } catch (Error e) {
-                        critical("Error querying file information : %s", e.message);
-                        //show_error_message(_("Error querying file information"), e);
-                    }
-                }
-                return true;
-            }
-
-        #if HAVE_FILE_ROLLER
-            static File? get_temp_dir () {
-                string? _tmpdir = null;
-                try {
-                    _tmpdir = DirUtils.make_tmp(TMP_TMPL);
-                } catch (FileError e) {
-                    critical("Error creating temporary working directory : %s", e.message);
-                    //show_error_message(_("Error creating temporary working directory"), e);
-                }
-                return _tmpdir != null ? File.new_for_path(_tmpdir) : null;
-            }
-        #endif
-
-            static void process_files (Gee.ArrayList <File> filelist) {
-                debug("Processing files for installation");
-                var sorter = new Sorter();
-                sorter.sort(filelist);
-                int processed = 0;
-                foreach (var f in sorter.files) {
-                    var data = FontData(f);
-                    /* XXX: FIXME : notify */
-                    if (!is_installed(data) && (conflicts(data) < 0))
-                        install_font(data);
-                    processed++;
-                    if (progress != null)
-                        progress(_("Installing files"), processed, sorter.total);
-                }
-            #if HAVE_FILE_ROLLER
-                if (sorter.archives.size == 0)
-                    return;
-                tmpdir = get_temp_dir();
-                if (tmpdir == null)
-                    /* XXX : FIXME : notify */
-                    return;
-                var uri = tmpdir.get_uri();
-                debug("Preparing Archives");
-                foreach (var a in sorter.archives) {
-                    if (!archive_manager.extract(a.get_uri(), uri, false)) {
-                        if (install_failed == null)
-                            install_failed = new Gee.HashMap <string, string> ();
-                        install_failed[a.get_path()] = "Failed to extract archive";
-                    } else {
-                        debug("Successfully extracted the contents of %s", a.get_basename());
-                    }
-                    processed++;
-                    if (progress != null)
-                        progress(_("Preparing Archives"), processed, sorter.total);
-                }
-                var l = new Gee.ArrayList <File> ();
-                l.add(tmpdir);
-                process_files(l);
-            #endif
                 return;
             }
 

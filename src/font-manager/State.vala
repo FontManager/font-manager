@@ -181,15 +181,12 @@ namespace FontManager {
 
             /* XXX: Order matters */
             var font_path = settings.get_string("selected-font");
-            if (main_window.sidebar.standard.mode == StandardSideBarMode.COLLECTION) {
-                var tree = main_window.sidebar.standard.collection_tree.tree;
-                string path = settings.get_string("selected-collection");
-                restore_last_selected_treepath(tree, path);
-            } else {
-                var tree = main_window.sidebar.standard.category_tree.tree;
-                string path = settings.get_string("selected-category");
-                restore_last_selected_treepath(tree, path);
-            }
+            var tree = main_window.sidebar.standard.collection_tree.tree;
+            string path = settings.get_string("selected-collection");
+            restore_last_selected_treepath(tree, path);
+            tree = main_window.sidebar.standard.category_tree.tree;
+            path = settings.get_string("selected-category");
+            restore_last_selected_treepath(tree, path);
             var treepath = restore_last_selected_treepath(main_window.fontlist, font_path);
             if (treepath != null)
                 main_window.browser.treeview.scroll_to_cell(treepath, null, true, 0.5f, 0.5f);

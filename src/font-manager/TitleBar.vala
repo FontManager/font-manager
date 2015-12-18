@@ -150,7 +150,7 @@ namespace FontManager {
             string [] modes = {"Default", "Browse", "Compare"};
             var mode_action = new SimpleAction.stateful("mode", VariantType.STRING, "Manage");
             mode_action.activate.connect((a, s) => {
-                application._main_.main_window.mode = Mode.parse((string) s);
+                Main.instance.main_window.mode = Mode.parse((string) s);
             });
             application.add_action(mode_action);
             int i = 0;

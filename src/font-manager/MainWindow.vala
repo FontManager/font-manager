@@ -158,12 +158,10 @@ namespace FontManager {
         Disabled? disabled = null;
         CharacterMapSideBar charmap_sidebar;
         RenderingOptions render_opts;
-        weak Main main;
 
         public MainWindow () {
             Object(title: About.NAME, icon_name: About.ICON, type: Gtk.WindowType.TOPLEVEL);
             application = ((Application) GLib.Application.get_default());
-            main = ((Application) application)._main_;
             init_components();
             pack_components();
             add(main_box);
@@ -270,20 +268,19 @@ namespace FontManager {
         }
 
         public void set_models () {
-            font_model = main.font_model;
-            reject = main.reject;
-            sources = main.sources;
+            font_model = Main.instance.font_model;
+            reject = Main.instance.reject;
+            sources = Main.instance.sources;
             return;
         }
 
         public void reset_selections () {
-            if (sidebar.standard.mode == StandardSideBarMode.CATEGORY) {
-                sidebar.standard.category_tree.select_first_row();
+            sidebar.standard.category_tree.select_first_row();
+            sidebar.standard.collection_tree.select_first_row();
+            if (sidebar.standard.mode == StandardSideBarMode.CATEGORY)
                 update_font_model(sidebar.standard.selected_category);
-            } else {
-                sidebar.standard.collection_tree.select_first_row();
+            else
                 update_font_model(sidebar.standard.selected_collection);
-            }
             return;
         }
 
@@ -317,8 +314,8 @@ namespace FontManager {
             if (filter == null)
                 return;
             font_model = null;
-            main.font_model.update(filter);
-            font_model = main.font_model;
+            Main.instance.font_model.update(filter);
+            font_model = Main.instance.font_model;
             fonttree.fontlist.select_first_row();
             browser.expand_all();
             return;

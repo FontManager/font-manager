@@ -45,41 +45,10 @@ namespace FontManager {
             return false;
         }
 
+        [Compact]
         public class Remove {
 
             public static Gee.HashMap <string, string>? remove_failed = null;
-
-            static void log_failure (string path, string message) {
-                if (remove_failed == null)
-                    remove_failed = new Gee.HashMap <string, string> ();
-                remove_failed[path] = message;
-                warning("%s : %s", message, path);
-                return;
-            }
-
-            static void purge_type1_files (string dir, string filename) {
-                try {
-                    string name = filename.split_set(".")[0];
-                    foreach (var ext in TYPE1_METRICS) {
-                        File metrics = File.new_for_path(Path.build_filename(dir, name + ext));
-                        if (metrics.query_exists())
-                            metrics.delete();
-                    }
-                } catch (Error e) {
-                    log_failure(Path.build_filename(dir, filename), e.message);
-                }
-                return;
-            }
-
-            static void purge_database_entry (Database db, string path) {
-                try {
-                    db.remove("filepath=\"%s\"".printf(path));
-                    debug("Successfully removed entry for %s from database", path);
-                } catch (DatabaseError e) {
-                    warning(e.message);
-                }
-                return;
-            }
 
             public static bool from_file_array (File? [] files, Database? db = null) {
                 remove_failed = null;
@@ -116,6 +85,38 @@ namespace FontManager {
                     }
                 }
                 return res;
+            }
+
+            static void log_failure (string path, string message) {
+                if (remove_failed == null)
+                    remove_failed = new Gee.HashMap <string, string> ();
+                remove_failed[path] = message;
+                warning("%s : %s", message, path);
+                return;
+            }
+
+            static void purge_type1_files (string dir, string filename) {
+                try {
+                    string name = filename.split_set(".")[0];
+                    foreach (var ext in TYPE1_METRICS) {
+                        File metrics = File.new_for_path(Path.build_filename(dir, name + ext));
+                        if (metrics.query_exists())
+                            metrics.delete();
+                    }
+                } catch (Error e) {
+                    log_failure(Path.build_filename(dir, filename), e.message);
+                }
+                return;
+            }
+
+            static void purge_database_entry (Database db, string path) {
+                try {
+                    db.remove("filepath=\"%s\"".printf(path));
+                    debug("Successfully removed entry for %s from database", path);
+                } catch (DatabaseError e) {
+                    warning(e.message);
+                }
+                return;
             }
 
         }
