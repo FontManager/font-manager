@@ -3,6 +3,7 @@ include ${abs_top_builddir}/Flags.mk
 
 font_manager_VALAFLAGS = \
 	${AM_VALAFLAGS} \
+	$(HAVE_FILE_ROLLER) \
 	${abs_top_builddir}/lib/fontmanager.vapi
 
 font_manager_CPPFLAGS = \

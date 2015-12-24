@@ -21,18 +21,22 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
+* {
+    -GtkPaned-handle-size: 0;
+}
+
 /*  Fix giant header bar - Fedora release 23
 
     These tweaks match header bar size to Nautilus 3.18
     Default GTK+ theme (Adwaita)
-    
+
     This issue seems to only apply to the default theme?
     Vertex and Arc didn't seem to have any issue before
     or after.
-    
+
     https://github.com/FontManager/master/issues/6
 */
-    
+
 #FontManagerHeaderBar,
 #FontManagerFontListControls {
     padding: 3px;

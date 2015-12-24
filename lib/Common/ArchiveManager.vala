@@ -23,8 +23,8 @@
 
 #if HAVE_FILE_ROLLER
 
-/* Defined in ../Glue/FileRoller.h */
-extern string fr_get_extension_from_mimetype (string mimetype);
+///* Defined in ../Glue/FileRoller.h */
+//extern string fr_get_extension_from_mimetype (string mimetype);
 
 [DBus (name = "org.gnome.ArchiveManager1")]
 interface DBusService : Object {
@@ -46,9 +46,9 @@ public class ArchiveManager : Object {
 
     DBusService? service = null;
 
-    public static string get_extension_from_mimetype (string mimetype) {
-        return fr_get_extension_from_mimetype(mimetype);
-    }
+//    public static string get_extension_from_mimetype (string mimetype) {
+//        return fr_get_extension_from_mimetype(mimetype);
+//    }
 
     public void post_error_message (Error e) {
         critical("Archive Manager : %s", e.message);
@@ -131,13 +131,13 @@ public class ArchiveManager : Object {
         return _supported_types;
     }
 
-    public Gee.ArrayList <string> get_supported_file_types () {
-        debug("Archive Manager - Get supported file types");
-        var res = new Gee.HashSet <string> ();
-        foreach (var mime in get_supported_types("create_single_file"))
-            res.add(get_extension_from_mimetype(mime));
-        return sorted_list_from_collection(res);
-    }
+//    public Gee.ArrayList <string> get_supported_file_types () {
+//        debug("Archive Manager - Get supported file types");
+//        var res = new Gee.HashSet <string> ();
+//        foreach (var mime in get_supported_types("create_single_file"))
+//            res.add(get_extension_from_mimetype(mime));
+//        return sorted_list_from_collection(res);
+//    }
 
 }
 

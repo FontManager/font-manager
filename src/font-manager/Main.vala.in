@@ -62,7 +62,6 @@ namespace FontManager {
 
         public Main () {
             application = ((Application) GLib.Application.get_default());
-            Logging.show_version_information();
         }
 
         public void handle_open (File file) {
@@ -174,6 +173,7 @@ namespace FontManager {
         }
 
         public void at_startup () {
+            Logging.show_version_information();
             try {
                 database = get_database();
             } catch (Error e) {
@@ -213,11 +213,6 @@ namespace FontManager {
             sources.init();
             main_window.present();
             do_initial_update();
-            Idle.add(() => {
-                state.bind_settings();
-                state.post_activate();
-                return false;
-            });
             sources.changed.connect((f, ev) => {
                 queue_reload();
             });
@@ -286,7 +281,12 @@ namespace FontManager {
             main_window.set_models();
             main_window.sidebar.category_model.update.begin((obj, res) => {
                 main_window.sidebar.category_model.update.end(res);
-                state.restore_selections();
+                Idle.add(() => {
+                    state.restore_selections();
+                    state.post_activate();
+                    state.bind_settings();
+                    return false;
+                });
             });
             return;
         }

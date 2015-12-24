@@ -84,6 +84,8 @@ namespace FontManager {
             if (settings == null)
                 return;
 
+            settings.delay();
+
             main_window.configure_event.connect((w, /* Gdk.EventConfigure */ e) => {
                 /* Avoid tiny windows on Wayland */
                 if (e.width < DEFAULT_WIDTH || e.height < DEFAULT_HEIGHT)
@@ -134,7 +136,6 @@ namespace FontManager {
                 settings.set_strv("compare-list", main_window.compare.list());
                 }
             );
-            settings.delay();
             return;
         }
 
@@ -142,12 +143,6 @@ namespace FontManager {
 
             if (settings == null)
                 return;
-
-            /* XXX : Workaround timing issue? wrong filter shown at startup */
-            if (main_window.sidebar.standard.mode == StandardSideBarMode.COLLECTION) {
-                main_window.sidebar.standard.mode = StandardSideBarMode.CATEGORY;
-                main_window.sidebar.standard.mode = StandardSideBarMode.COLLECTION;
-            }
 
             /* Workaround first row height bug? in browse mode */
             main_window.browser.preview_size++;
@@ -181,15 +176,23 @@ namespace FontManager {
 
             /* XXX: Order matters */
             var font_path = settings.get_string("selected-font");
-            var tree = main_window.sidebar.standard.collection_tree.tree;
-            string path = settings.get_string("selected-collection");
-            restore_last_selected_treepath(tree, path);
-            tree = main_window.sidebar.standard.category_tree.tree;
-            path = settings.get_string("selected-category");
-            restore_last_selected_treepath(tree, path);
-            var treepath = restore_last_selected_treepath(main_window.fontlist, font_path);
-            if (treepath != null)
-                main_window.browser.treeview.scroll_to_cell(treepath, null, true, 0.5f, 0.5f);
+            var collection_path = settings.get_string("selected-collection");
+            var category_path = settings.get_string("selected-category");
+            var collection_tree = main_window.sidebar.standard.collection_tree.tree;
+            var category_tree = main_window.sidebar.standard.category_tree.tree;
+            if (main_window.sidebar.standard.mode == StandardSideBarMode.CATEGORY){
+                restore_last_selected_treepath(collection_tree, collection_path);
+                restore_last_selected_treepath(category_tree, category_path);
+            } else if (main_window.sidebar.standard.mode == StandardSideBarMode.COLLECTION) {
+                restore_last_selected_treepath(category_tree, category_path);
+                restore_last_selected_treepath(collection_tree, collection_path);
+            }
+            Idle.add(() => {
+                var treepath = restore_last_selected_treepath(main_window.fontlist, font_path);
+                if (treepath != null)
+                    main_window.browser.treeview.scroll_to_cell(treepath, null, true, 0.5f, 0.5f);
+                return false;
+            });
             return;
         }
 
@@ -214,7 +217,9 @@ namespace FontManager {
             var model = (Gtk.TreeStore) tree.get_model();
             var selection = tree.get_selection();
             model.get_iter_from_string(out iter, path);
+            debug("Restoring previous selection for %s :: %s", tree.name, path);
             if (!model.iter_is_valid(iter)) {
+                debug("Ignoring non-existent path : %s", path);
                 selection.select_path(new Gtk.TreePath.first());
                 return null;
             }

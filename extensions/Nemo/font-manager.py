@@ -40,6 +40,7 @@ class FontViewer (GObject.GObject, Nemo.MenuProvider):
     Active = False
 
     def __init__ (self):
+        print("Initializing nemo-font-manager extension")
         DBusGMainLoop(set_as_default=True)
         self.bus = dbus.SessionBus()
         self.bus.watch_name_owner('org.gnome.FontViewer', FontViewer.set_state)

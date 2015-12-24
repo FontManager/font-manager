@@ -334,7 +334,7 @@ namespace FontManager {
             string? sql = query;
             if (sql == null)
                 sql = build_select_query();
-            debug("SQLite : %s".printf(sql));
+            Logger.verbose("SQLite : %s".printf(sql));
             check_result(db.prepare_v2(sql, -1, out stmt), "prepare_v2", Sqlite.OK);
             return;
         }

@@ -1,4 +1,4 @@
-/* Viewer.vala
+/* MainWindow.vala
  *
  * Copyright (C) 2009 - 2015 Jerry Casiano
  *

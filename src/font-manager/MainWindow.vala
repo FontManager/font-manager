@@ -419,6 +419,7 @@ namespace FontManager {
                     sidebar_switch = false;
                 }
                 collections_tree.set_reorderable(true);
+                unsorted.update(Main.instance.database, sidebar.collection_model.collections.get_full_contents());
             });
             collections_tree.drag_data_received.connect(on_drag_data_received);
 
