@@ -29,23 +29,6 @@ namespace Logging {
         return;
     }
 
-    public void show_version_information () {
-        debug("%s %s", FontManager.About.NAME, FontManager.About.VERSION);
-        debug("Using GLib %u.%u.%u", Version.major, Version.minor, Version.micro);
-        debug("Using JSON-GLib %s", Json.VERSION_S);
-        debug("Using SQLite %s", Sqlite.VERSION);
-        debug("Using FontConfig %s", FontConfig.get_version_string());
-        debug("Using Pango %s", Pango.version_string());
-        debug("Using GTK+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
-        if (Gdk.Screen.get_default().is_composited())
-            debug("Screen is composited. Client side decorations enabled.");
-        if (Gnome3())
-            debug("Running on %s", get_command_line_output("gnome-shell --version"));
-        else
-            debug("Running on %s", Environment.get_variable("XDG_CURRENT_DESKTOP"));
-        return;
-    }
-
 }
 
 /* Originally from libplank. */

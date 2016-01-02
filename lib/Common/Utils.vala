@@ -127,7 +127,9 @@ public Gee.ArrayList <string> sorted_list_from_collection (Gee.Collection <strin
     return l;
 }
 
-public bool remove_directory (File dir, bool recursive = true) {
+public bool remove_directory (File? dir, bool recursive = true) {
+    if (dir == null)
+        return false;
     try {
         if (recursive) {
             FileInfo fileinfo;

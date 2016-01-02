@@ -36,6 +36,23 @@ namespace FontManager {
         return;
     }
 
+    void show_version_information () {
+        debug("%s %s", About.NAME, About.VERSION);
+        debug("Using GLib %u.%u.%u", Version.major, Version.minor, Version.micro);
+        debug("Using JSON-GLib %s", Json.VERSION_S);
+        debug("Using SQLite %s", Sqlite.VERSION);
+        debug("Using FontConfig %s", FontConfig.get_version_string());
+        debug("Using Pango %s", Pango.version_string());
+        debug("Using GTK+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
+        if (Gdk.Screen.get_default().is_composited())
+            debug("Screen is composited. Client side decorations enabled.");
+        if (Gnome3())
+            debug("Running on %s", get_command_line_output("gnome-shell --version"));
+        else
+            debug("Running on %s", Environment.get_variable("XDG_CURRENT_DESKTOP"));
+        return;
+    }
+
     public class Main : Object {
 
         public static unowned Main instance {
@@ -173,7 +190,7 @@ namespace FontManager {
         }
 
         public void at_startup () {
-            Logging.show_version_information();
+            show_version_information();
             try {
                 database = get_database();
             } catch (Error e) {
@@ -279,6 +296,7 @@ namespace FontManager {
             font_model.update();
             main_window.loading = false;
             main_window.set_models();
+            /* Unset the browse model, allow categories to load, before render */
             main_window.browser.model = null;
             main_window.sidebar.category_model.update.begin((obj, res) => {
                 main_window.sidebar.category_model.update.end(res);

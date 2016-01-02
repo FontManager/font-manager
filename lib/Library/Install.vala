@@ -33,22 +33,12 @@ namespace FontManager {
 
             static File? tmpdir = null;
 
-            public static void clear () {
-                if (installed != null)
-                    installed.clear();
-                installed = null;
-                if (install_failed != null)
-                    install_failed.clear();
-                install_failed = null;
-                return;
-            }
-
             public static void from_file_array (File? [] files) {
                 init();
                 var _files = new Gee.ArrayList <File> ();
                 foreach (var file in files)
                     _files.add(file);
-                process_files(_files);
+                process_filelist(_files);
                 fini();
             }
 
@@ -57,7 +47,7 @@ namespace FontManager {
                 var files = new Gee.ArrayList <File> ();
                 foreach (var path in paths)
                     files.add(File.new_for_path(path));
-                process_files(files);
+                process_filelist(files);
                 fini();
             }
 
@@ -66,7 +56,7 @@ namespace FontManager {
                 var files = new Gee.ArrayList <File> ();
                 foreach (var uri in uris)
                     files.add(File.new_for_uri(uri));
-                process_files(files);
+                process_filelist(files);
                 fini();
             }
 
@@ -74,8 +64,6 @@ namespace FontManager {
                 init();
                 debug("Preparing to install %s", data.file.get_path());
                 if (data.font == null || data.fontinfo == null) {
-                    if (install_failed == null)
-                        install_failed = new Gee.HashMap <string, string> ();
                     install_failed[data.file.get_path()] = "Failed to create FontInfo";
                     warning("Failed to create FontInfo : %s", data.file.get_path());
                     return false;
@@ -108,62 +96,85 @@ namespace FontManager {
                         critical("Error querying file information : %s", e.message);
                     }
                 }
-                fini();
                 return true;
             }
 
         #if HAVE_FILE_ROLLER
             static File? get_temp_dir () {
+                if (tmpdir != null)
+                    return tmpdir;
                 string? _tmpdir = null;
                 try {
                     _tmpdir = DirUtils.make_tmp(TMP_TMPL);
                 } catch (FileError e) {
                     critical("Error creating temporary working directory : %s", e.message);
                 }
-                return _tmpdir != null ? File.new_for_path(_tmpdir) : null;
+                tmpdir = _tmpdir != null ? File.new_for_path(_tmpdir) : null;
+                return tmpdir;
             }
         #endif
 
-            static void process_files (Gee.ArrayList <File> filelist) {
-                debug("Processing files for installation");
+            static void process_filelist (Gee.ArrayList <File> filelist) {
                 var sorter = new Sorter();
                 sorter.sort(filelist);
+                if (sorter.archives.size > 0)
+                    process_archives(sorter.archives);
+                process_files(sorter.files);
+                return;
+            }
+
+            static void process_files (Gee.ArrayList <File> filelist) {
+                debug("Processing files for installation");
                 int processed = 0;
-                foreach (var f in sorter.files) {
+                foreach (var f in filelist) {
                     var data = FontData(f);
                     /* XXX: FIXME : notify */
                     if (!is_installed(data) && (conflicts(data) < 0))
                         from_font_data(data);
                     processed++;
                     if (progress != null)
-                        progress(_("Installing files"), processed, sorter.total);
+                        progress(_("Installing files"), processed, filelist.size);
                 }
-            #if HAVE_FILE_ROLLER
-                if (sorter.archives.size == 0)
+            }
+
+            static void process_archives (Gee.ArrayList <File> filelist) {
+                if (filelist.size == 0)
                     return;
-                tmpdir = get_temp_dir();
+            #if HAVE_FILE_ROLLER
+                int processed = 0;
+                get_temp_dir();
                 if (tmpdir == null) {
                     /* XXX : FIXME : notify */
                     critical("Failed to create temporary working directory!");
                     return;
                 }
-                var uri = tmpdir.get_uri();
                 debug("Preparing Archives");
-                foreach (var a in sorter.archives) {
-                    if (!archive_manager.extract(a.get_uri(), uri, false)) {
-                        if (install_failed == null)
-                            install_failed = new Gee.HashMap <string, string> ();
+                foreach (var a in filelist) {
+                    if (!archive_manager.extract(a.get_uri(), tmpdir.get_uri(), false))
                         install_failed[a.get_path()] = "Failed to extract archive";
-                    } else {
+                    else
                         debug("Successfully extracted the contents of %s", a.get_basename());
-                    }
+                    if (a.get_uri().contains(tmpdir.get_uri()))
+                        try {
+                            a.delete();
+                        } catch (Error e) {
+                            warning("Failed to delete temporary file : %s", e.message);
+                            warning("Aborting installation...");
+                            fini();
+                            return;
+                        }
                     processed++;
                     if (progress != null)
-                        progress(_("Preparing Archives"), processed, sorter.total);
+                        progress(_("Preparing Archives"), processed, filelist.size);
                 }
+                var sorter = new Sorter();
                 var l = new Gee.ArrayList <File> ();
                 l.add(tmpdir);
-                process_files(l);
+                sorter.sort(l);
+                if (sorter.archives.size > 0)
+                    process_archives(sorter.archives);
+                else
+                    process_files(sorter.files);
             #endif
                 return;
             }
@@ -196,8 +207,6 @@ namespace FontManager {
                     installed.add(original);
                 } catch (Error e) {
                     string path = original.get_path();
-                    if (install_failed == null)
-                        install_failed = new Gee.HashMap <string, string> ();
                     install_failed[path] = e.message;
                     warning("%s : %s", e.message, path);
                 }

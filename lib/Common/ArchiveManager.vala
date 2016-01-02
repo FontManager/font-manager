@@ -23,8 +23,17 @@
 
 #if HAVE_FILE_ROLLER
 
-///* Defined in ../Glue/FileRoller.h */
-//extern string fr_get_extension_from_mimetype (string mimetype);
+/* Mimetypes that are likely to cause an error, unlikely to contain usable fonts.
+ * i.e.
+ * Windows .FON files are classified as "application/x-ms-dos-executable"
+ * but file-roller is unlikely to extract one successfully.
+ * */
+const string [] ARCHIVE_IGNORE_LIST = {
+    "application/x-ms-dos-executable"
+};
+
+/* Defined in ../Glue/FileRoller.h */
+extern string fr_get_extension_from_mimetype (string mimetype);
 
 [DBus (name = "org.gnome.ArchiveManager1")]
 interface DBusService : Object {
@@ -46,9 +55,9 @@ public class ArchiveManager : Object {
 
     DBusService? service = null;
 
-//    public static string get_extension_from_mimetype (string mimetype) {
-//        return fr_get_extension_from_mimetype(mimetype);
-//    }
+    public static string get_extension_from_mimetype (string mimetype) {
+        return fr_get_extension_from_mimetype(mimetype);
+    }
 
     public void post_error_message (Error e) {
         critical("Archive Manager : %s", e.message);
@@ -123,21 +132,27 @@ public class ArchiveManager : Object {
         var _supported_types = new Gee.ArrayList <string> ();
         try {
             HashTable <string, string> [] array = file_roller.get_supported_types(action);
-            foreach (var hashtable in array)
+            foreach (var hashtable in array) {
+                if (hashtable.get("mime-type") in ARCHIVE_IGNORE_LIST)
+                    continue;
                 _supported_types.add(hashtable.get("mime-type"));
+            }
         } catch (Error e) {
             post_error_message(e);
         }
         return _supported_types;
     }
 
-//    public Gee.ArrayList <string> get_supported_file_types () {
-//        debug("Archive Manager - Get supported file types");
-//        var res = new Gee.HashSet <string> ();
-//        foreach (var mime in get_supported_types("create_single_file"))
-//            res.add(get_extension_from_mimetype(mime));
-//        return sorted_list_from_collection(res);
-//    }
+    public Gee.ArrayList <string> get_supported_file_types () {
+        debug("Archive Manager - Get supported file types");
+        var res = new Gee.HashSet <string> ();
+        foreach (var mime in get_supported_types("create_single_file")) {
+            if (mime in ARCHIVE_IGNORE_LIST)
+                continue;
+            res.add(get_extension_from_mimetype(mime));
+        }
+        return sorted_list_from_collection(res);
+    }
 
 }
 

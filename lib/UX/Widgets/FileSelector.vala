@@ -32,15 +32,6 @@ namespace FontManager {
             "application/x-font-type1"
         };
 
-        /* Mimetypes that are likely to cause an error, unlikely to contain usable fonts.
-         * i.e.
-         * Windows .FON files are classified as "application/x-ms-dos-executable"
-         * but file-roller is unlikely to extract one successfully.
-         * */
-        const string [] ARCHIVE_IGNORE_LIST = {
-            "application/x-ms-dos-executable"
-        };
-
         public string? [] source_selection (Gtk.Window? parent) {
             string? [] arr = { };
             var dialog = new Gtk.FileChooserDialog(_("Select source folders"),
@@ -75,8 +66,7 @@ namespace FontManager {
       #if HAVE_FILE_ROLLER
             var archive_manager = new ArchiveManager();
             foreach (var mimetype in archive_manager.get_supported_types())
-                if (!(mimetype in ARCHIVE_IGNORE_LIST))
-                    filter.add_mime_type(mimetype);
+                filter.add_mime_type(mimetype);
       #endif
             foreach (var mimetype in FONT_MIMETYPES)
                 filter.add_mime_type(mimetype);
