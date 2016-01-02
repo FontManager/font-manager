@@ -127,7 +127,7 @@ namespace FontConfig {
         protected virtual void write_node (XmlWriter writer) {
             writer.start_selection(target_element);
             foreach (string font in this)
-                writer.write_family_patelt(Markup.escape_text(font.strip()));
+                writer.write_family_patelt(font.strip());
             writer.end_selection();
             return;
         }
