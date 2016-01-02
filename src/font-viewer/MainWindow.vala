@@ -123,7 +123,7 @@ namespace FontManager {
                 if (preview.font_data == null)
                     titlebar.update(null, null, "");
                 else
-                    titlebar.update(preview.font_data.font.family,
+                    titlebar.update(Markup.escape_text(preview.font_data.font.family),
                                     preview.font_data.font.style,
                                     preview.font_data.fontinfo.filetype);
                 if (preview.font_data != null) {
@@ -143,7 +143,6 @@ namespace FontManager {
                 } else {
                     install_button.show();
                 }
-                FontConfig.clear_app_fonts();
                 bool _installed = Library.is_installed(preview.font_data);
                 if (installed.contains(preview.font_data.fontinfo.checksum))
                     _installed = true;
