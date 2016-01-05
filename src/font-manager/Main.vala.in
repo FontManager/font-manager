@@ -130,6 +130,9 @@ namespace FontManager {
             if (options.contains("debug"))
                 Logger.DisplayLevel = LogLevel.DEBUG;
 
+            if (options.contains("verbose"))
+                Logger.DisplayLevel = LogLevel.VERBOSE;
+
             if (options.contains("fatal"))
                 Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
 

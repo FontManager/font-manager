@@ -37,6 +37,7 @@ namespace FontManager {
             set {
                 _font_desc = value;
                 preview.tag_table.lookup("FontDescription").font_desc = _font_desc;
+                verbose("Font descripiton set to %s", _font_desc.to_string());
                 this.update();
             }
         }

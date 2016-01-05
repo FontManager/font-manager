@@ -15,7 +15,6 @@ EXTRA_DIST = \
 	$(srcdir)/po/POTFILES.in \
 	$(srcdir)/po/POTFILES.readme \
 	$(srcdir)/po/POTFILES.skip \
-	$(srcdir)/po/$(PACKAGE_NAME).pot \
 	$(srcdir)/help/insert-header.sin \
 	$(srcdir)/help/HEADER \
 	$(srcdir)/help/$(PACKAGE_NAME).pot \
@@ -43,18 +42,20 @@ MAINTAINERCLEANFILES = \
 	po/POTFILES \
 	po/*stamp*
 
-pot:
-	cd $(srcdir)/po && rm -f $(PACKAGE_NAME).pot
-	cd $(srcdir)/po && $(MAKE) $(AM_MAKEFLAGS) update-po
-	cd $(srcdir)/po && $(SED) -f insert-header.sin -i $(PACKAGE_NAME).pot
-	cd $(srcdir)/help && rm -f $(PACKAGE_NAME).pot
-	cd $(srcdir)/help && $(MAKE) $(AM_MAKEFLAGS) pot
-	cd $(srcdir)/help && $(SED) -f insert-header.sin -i $(PACKAGE_NAME).pot
-	cd $(srcdir)/help && $(MAKE) $(AM_MAKEFLAGS) repo
+update-po:
+	cd $(srcdir)/po && \
+	rm -f $(PACKAGE_NAME).pot && \
+	$(MAKE) update-po && \
+	$(SED) -f insert-header.sin -i $(PACKAGE_NAME).pot &&\
+	cd $(srcdir)/help && \
+	rm -f $(PACKAGE_NAME).pot && \
+	$(MAKE) pot && \
+	$(SED) -f insert-header.sin -i $(PACKAGE_NAME).pot && \
+	$(MAKE) repo && \
 	cd $(srcdir)
 
 maintainer-clean-local:
-	-rm -rf m4 autom4te.cache
+	-rm -rf m4 autom4te.cache $(PACKAGE_NAME)-$(PACKAGE_VERSION)*
 	find . -name .libs -exec rm -rf {} \;
 	find . -name .deps -exec rm -rf {} \;
 

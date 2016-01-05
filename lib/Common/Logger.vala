@@ -38,6 +38,18 @@ namespace Logging {
 //
 
 /**
+ * Displays a verbose log message to the console.
+ *
+ * @param msg the log message to display
+ */
+public void verbose (string msg, ...) {
+    // NOTE using a local var is needed for valac 0.12/0.14 to avoid invalid c-code
+    var vargs = va_list ();
+    Logger.write(LogLevel.VERBOSE, Logger.format_message(msg.vprintf(vargs)));
+    return;
+}
+
+/**
  * Controls what messages show in the console log.
  */
 public enum LogLevel {
@@ -145,7 +157,7 @@ public class Logger : Object
         Log.set_default_handler (glib_log_func);
     }
 
-    static string format_message (string msg) {
+    public static string format_message (string msg) {
         if (re != null && re.match(msg)) {
             var parts = re.split(msg);
             if (DisplayLevel <= LogLevel.DEBUG)
@@ -167,23 +179,12 @@ public class Logger : Object
         write(LogLevel.NOTIFY, format_message (msg));
     }
 
-    /**
-     * Displays a verbose log message to the console.
-     *
-     * @param msg the log message to display
-     */
-    public static void verbose (string msg, ...) {
-        // NOTE using a local var is needed for valac 0.12/0.14 to avoid invalid c-code
-        var vargs = va_list ();
-        write(LogLevel.VERBOSE, format_message (msg.vprintf (vargs)));
-    }
-
     static string get_time () {
         var now = new DateTime.now_local ();
         return "%.2d:%.2d:%.2d".printf(now.get_hour (), now.get_minute (), now.get_second ());
     }
 
-    static void write (LogLevel level, string msg) {
+    public static void write (LogLevel level, string msg) {
         if (level < DisplayLevel)
             return;
 
