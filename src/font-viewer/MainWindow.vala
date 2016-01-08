@@ -143,14 +143,15 @@ namespace FontManager {
                 } else {
                     install_button.show();
                 }
+                FontConfig.clear_app_fonts();
                 bool _installed = Library.is_installed(preview.font_data);
+                FontConfig.add_app_font(preview.font_data.font.filepath);
                 if (installed.contains(preview.font_data.fontinfo.checksum))
                     _installed = true;
                 if (Library.conflicts(preview.font_data) > 0) {
                     install_button.set_label(_("Newer version already installed"));
                     install_button.sensitive = false;
                     install_button.relief = Gtk.ReliefStyle.NONE;
-                    return;
                 } else if (_installed) {
                     install_button.set_label(_("Installed"));
                     install_button.sensitive = false;
