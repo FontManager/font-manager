@@ -1,6 +1,6 @@
 /* _Common_.c
  *
- * Copyright (C) 2009 - 2015 Jerry Casiano
+ * Copyright (C) 2009 - 2016 Jerry Casiano
  *
  * This file is part of Font Manager.
  *

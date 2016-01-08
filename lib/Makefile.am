@@ -68,6 +68,4 @@ MAINTAINERCLEANFILES = \
 
 dist-hook:
 	cd $(distdir) && \
-	rm -f $(libfontmanager_la_VALASOURCES:.vala=.c) \
-	$(BUILT_SOURCES) \
-	*.stamp*
+	rm -f $(libfontmanager_la_VALASOURCES:.vala=.c) $(BUILT_SOURCES) *.stamp*

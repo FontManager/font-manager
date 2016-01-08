@@ -6,7 +6,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    2
+Release:    3
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -123,6 +123,8 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 %{_datadir}/nemo-python/extensions/%{name}.py*
 
 %changelog
+* Wed Jan 06 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-3
+- Update to latest git to include bug fixes.
 * Wed Dec 23 2015 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-2
 - Leigh Scott enabled nemo extension for actual Fedora package
 - Must *work* on Cinnamon...

@@ -17,7 +17,6 @@ EXTRA_DIST = \
 	$(srcdir)/po/POTFILES.skip \
 	$(srcdir)/help/insert-header.sin \
 	$(srcdir)/help/HEADER \
-	$(srcdir)/help/$(PACKAGE_NAME).pot \
 	Flags.mk
 
 DISTCLEANFILES = \

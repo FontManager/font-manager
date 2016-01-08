@@ -28,5 +28,4 @@ MAINTAINERCLEANFILES = \
 
 dist-hook:
 	cd $(distdir) && \
-	rm -f $(font_viewer_SOURCES:.vala=.c) \
-	*.stamp*
+	rm -f $(font_viewer_SOURCES:.vala=.c) *.stamp*

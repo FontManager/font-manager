@@ -3,7 +3,7 @@ dnl Font Manager
 dnl
 dnl Simple font management for Gtk+ desktops
 dnl
-dnl Copyright © 2009 - 2015 Jerry Casiano
+dnl Copyright (C) 2009 - 2016 Jerry Casiano
 dnl
 dnl
 dnl Initialize autoconf

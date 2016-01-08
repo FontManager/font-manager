@@ -32,6 +32,11 @@ Features that are expected to work at this time:
 
     Font removal
 
+        Note : Font Manager only allows for removal of fonts owned by the user
+               and installed in the default user font directory.
+               Removal of fonts owned by others is not supported.
+               Removal of fonts installed elsewhere is not supported.
+
     Font directory monitoring
 
         Note : Font Manager should reload itself anytime fonts are installed
@@ -46,7 +51,7 @@ Features that are expected to work at this time:
 
     Opening Font Files
 
-        The application can now be set as the default handler for font files.
+        The application can be set as the default handler for font files.
         When called with the path to a font file it will launch as a font viewer.
         The font viewer is very simple and is only intended for previewing
         and installing individual font files.
@@ -79,7 +84,6 @@ Missing / Planned features :
     Exporting Collections
         - proof sheet
         - html?
-
 
 KNOWN ISSUES
 
