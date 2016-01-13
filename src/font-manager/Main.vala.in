@@ -76,9 +76,13 @@ namespace FontManager {
         bool update_in_progress = false;
         bool queue_update = false;
         State? state = null;
+        Settings? settings = null;
 
         public Main () {
             application = ((Application) GLib.Application.get_default());
+            settings = get_settings(BUS_ID);
+            if (settings != null)
+                application.use_headerbar = settings.get_boolean("use-headerbar");
         }
 
         public void handle_open (File file) {
@@ -101,8 +105,19 @@ namespace FontManager {
 
         public int handle_command_line (ApplicationCommandLine cl) {
             application.hold();
+
             VariantDict options = cl.get_options_dict();
             File []? filelist = get_command_line_files(cl);
+
+            if (options.contains("debug"))
+                Logger.DisplayLevel = LogLevel.DEBUG;
+
+            if (options.contains("verbose"))
+                Logger.DisplayLevel = LogLevel.VERBOSE;
+
+            if (options.contains("fatal"))
+                Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
+
             if (filelist == null) {
                 application.activate();
             } else if (options.contains("install")) {
@@ -110,11 +125,13 @@ namespace FontManager {
             } else {
                 handle_open(filelist[0]);
             }
+
             application.release();
             return 0;
         }
 
-        public int handle_options (VariantDict options) {
+        public int handle_local_options (VariantDict options) {
+
             int exit_status = -1;
 
             if (options.contains("version")) {
@@ -127,17 +144,25 @@ namespace FontManager {
                 exit_status = 0;
             }
 
-            if (options.contains("debug"))
-                Logger.DisplayLevel = LogLevel.DEBUG;
-
-            if (options.contains("verbose"))
-                Logger.DisplayLevel = LogLevel.VERBOSE;
-
-            if (options.contains("fatal"))
-                Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
-
-            if (options.contains("disable-headerbar"))
+            if (options.contains("disable-headerbar")) {
                 application.use_headerbar = false;
+                if (settings != null)
+                    settings.set_boolean("use-headerbar", false);
+            }
+
+            if (options.contains("enable-headerbar")) {
+                application.use_headerbar = true;
+                if (settings != null)
+                    settings.set_boolean("use-headerbar", true);
+            }
+
+            if (options.contains("layout")) {
+                Variant l = options.lookup_value("layout", VariantType.STRING);
+                if (settings == null)
+                    warning("Unable to store requested setting : layout = %s", l.get_string());
+                else
+                    settings.set_boolean("wide-layout", (l.get_string() == "wide"));
+            }
 
             if (options.contains("enable")) {
                 if (reject == null) {

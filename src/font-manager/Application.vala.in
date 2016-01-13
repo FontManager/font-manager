@@ -41,6 +41,8 @@ namespace FontManager {
             { "list", 0, 0, OptionArg.NONE, null, "List available fonts.", null },
             { "list-full", 0, 0, OptionArg.NONE, null, "Full listing including face information. (JSON)", null },
             { "disable-headerbar", 0, 0, OptionArg.NONE, null, "Disable use of header bar.", null },
+            { "enable-headerbar", 0, 0, OptionArg.NONE, null, "Enable use of header bar. (Default)", null },
+            { "layout", 0, 0, OptionArg.STRING, null, "\"normal\" for default or \"wide\" for 3 column.", null },
             { "debug", 'D', 0, OptionArg.NONE, null, "Enable debugging messages.", null },
             { "verbose", 'V', 0, OptionArg.NONE, null, "Verbose logging. Lots of output.", null },
             { "fatal", 'F', 0, OptionArg.NONE, null, "Fatal errors", null },
@@ -92,7 +94,7 @@ namespace FontManager {
 
 
         public override int handle_local_options (VariantDict options) {
-            return Main.instance.handle_options(options);
+            return Main.instance.handle_local_options(options);
         }
 
         protected override void activate () {

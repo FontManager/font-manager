@@ -79,6 +79,8 @@ namespace FontManager {
 
         public signal void mode_changed (int new_mode);
 
+        public bool wide_layout { get; set; default = false; }
+        public bool use_headerbar { get; set; default = true; }
         public string selected_font { get; set; default = DEFAULT_FONT; }
         public FontModel? font_model { get; set; default = null; }
         public FontConfig.Reject reject { get; set; }
@@ -152,8 +154,9 @@ namespace FontManager {
         bool charmap_visible = false;
         double _progress = 0.0;
         Mode _mode;
-        Gtk.Box separator;
+        Gtk.Box content_view;
         Gtk.Box _main_pane_;
+        Gtk.Separator content_separator;
         Unsorted? unsorted = null;
         Disabled? disabled = null;
         CharacterMapSideBar charmap_sidebar;
@@ -162,10 +165,11 @@ namespace FontManager {
         public MainWindow () {
             Object(title: About.NAME, icon_name: About.ICON, type: Gtk.WindowType.TOPLEVEL);
             application = ((Application) GLib.Application.get_default());
+            use_headerbar = ((Application) application).use_headerbar;
             init_components();
+            bind_properties();
             pack_components();
             add(main_box);
-            bind_properties();
             set_models();
             connect_signals();
         }
@@ -180,6 +184,7 @@ namespace FontManager {
             bind_property("font-data", fontlist, "font-data", BindingFlags.BIDIRECTIONAL);
             bind_property("selected-font", compare, "font-desc", BindingFlags.SYNC_CREATE);
             bind_property("sources", user_source_list, "sources", BindingFlags.DEFAULT);
+            bind_property("use-headerbar", ((Application) application), "use-headerbar", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;
         }
 
@@ -187,7 +192,7 @@ namespace FontManager {
             main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             content_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             main_pane = new Gtk.Paned(Gtk.Orientation.HORIZONTAL);
-            content_pane = new Gtk.Paned(Gtk.Orientation.VERTICAL);
+            content_pane = new Gtk.Paned(wide_layout ? Gtk.Orientation.HORIZONTAL : Gtk.Orientation.VERTICAL);
             browser = new Browse();
             compare = new Compare();
             preview = new FontPreviewPane();
@@ -225,17 +230,17 @@ namespace FontManager {
             add_separator(content_box, Gtk.Orientation.VERTICAL);
             content_box.pack_end(content_stack, true, true, 0);
             content_pane.add1(fonttree);
-            separator = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            add_separator(separator, Gtk.Orientation.HORIZONTAL);
-            separator.pack_end(view_stack, true, true, 0);
-            content_pane.add2(separator);
+            content_view = new Gtk.Box(wide_layout ? Gtk.Orientation.HORIZONTAL : Gtk.Orientation.VERTICAL, 0);
+            content_separator = add_separator(content_view, wide_layout ? Gtk.Orientation.VERTICAL : Gtk.Orientation.HORIZONTAL);
+            content_view.pack_end(view_stack, true, true, 0);
+            content_pane.add2(content_view);
             _main_pane_ = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             _main_pane_.pack_start(main_pane, true, true, 0);
             add_separator(_main_pane_, Gtk.Orientation.HORIZONTAL);
             main_stack.add_named(_main_pane_, "Default");
             main_stack.add_named(user_source_list, "Sources");
             main_box.pack_end(main_stack, true, true, 0);
-            if (Gdk.Screen.get_default().is_composited() && ((Application) application).use_headerbar) {
+            if (Gdk.Screen.get_default().is_composited() && use_headerbar) {
                 set_titlebar(titlebar);
             } else {
                 main_box.pack_start(titlebar, false, true, 0);
@@ -245,8 +250,15 @@ namespace FontManager {
             return;
         }
 
+        private void wide_layout_toggled () {
+            content_pane.set_orientation(wide_layout ? Gtk.Orientation.HORIZONTAL : Gtk.Orientation.VERTICAL);
+            content_view.set_orientation(wide_layout ? Gtk.Orientation.HORIZONTAL : Gtk.Orientation.VERTICAL);
+            content_separator.set_orientation(wide_layout ? Gtk.Orientation.VERTICAL : Gtk.Orientation.HORIZONTAL);
+            return;
+        }
+
         public override void show () {
-            separator.show();
+            content_view.show();
             _main_pane_.show();
             content_stack.show();
             view_stack.show();
@@ -328,6 +340,10 @@ namespace FontManager {
                 return true;
                 }
             );
+
+            notify["wide-layout"].connect(() => {
+                wide_layout_toggled();
+            });
 
             mode_changed.connect((m) => {
                 var action = ((SimpleAction) application.lookup_action("mode"));

@@ -370,8 +370,7 @@ if test x$NOCONFIGURE = x; then
     fi
 
     printbold Running $srcdir/configure $conf_flags "$@" ...
-    $srcdir/configure $conf_flags "$@" \
-    && echo Now type \`make\' to compile $PKG_NAME || exit 1
+    $srcdir/configure $conf_flags "$@" || exit 1
 else
     echo Skipping configure process.
 fi

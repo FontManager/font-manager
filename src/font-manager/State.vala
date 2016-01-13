@@ -52,6 +52,7 @@ namespace FontManager {
             int x, y, w, h;
             settings.get("window-size", "(ii)", out w, out h);
             settings.get("window-position", "(ii)", out x, out y);
+            main_window.wide_layout = settings.get_boolean("wide-layout");
             main_window.set_default_size(w, h);
             main_window.move(x, y);
             main_window.sidebar.standard.mode = (StandardSideBarMode) settings.get_enum("sidebar-mode");
@@ -123,6 +124,8 @@ namespace FontManager {
             settings.bind("selected-collection", main_window.sidebar.standard.collection_tree, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("selected-font", main_window.fontlist, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("preview-page", main_window.preview.notebook, "page", SettingsBindFlags.DEFAULT);
+            settings.bind("wide-layout", main_window, "wide-layout", SettingsBindFlags.DEFAULT);
+            settings.bind("use-headerbar", main_window, "use-headerbar", SettingsBindFlags.DEFAULT);
             main_window.sidebar.character_map.mode_set.connect(() => {
                 settings.set_enum("charmap-mode", (int) main_window.sidebar.character_map.mode);
                 }

@@ -45,7 +45,18 @@
             <default>"Browse"</default>
             <summary>Mode</summary>
             <description>Possible modes are Manage, Browse and Compare.</description>
+        </key>
 
+        <key name="wide-layout" type="b">
+            <default>false</default>
+            <summary>Layout type</summary>
+            <description>false for default layout, true for 3 column layout</description>
+        </key>
+
+        <key name="use-headerbar" type="b">
+            <default>true</default>
+            <summary>Use headerbar</summary>
+            <description>false to disable GtkHeaderBar use</description>
         </key>
 
         <key name="window-position" type="(ii)">
