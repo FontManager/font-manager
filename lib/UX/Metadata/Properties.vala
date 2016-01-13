@@ -35,6 +35,7 @@ namespace FontManager {
             Gtk.Label spacing;
             Gtk.Label version;
             Gtk.Label vendor;
+            Gtk.Grid prop_grid;
             Gtk.Separator separator;
             Description description;
 
@@ -48,52 +49,8 @@ namespace FontManager {
                 _("Vendor")
             };
 
-            construct {
-                expand = true;
-                column_homogeneous = false;
-                row_homogeneous = true;
-                psname = new Gtk.Label("psname");
-                weight = new Gtk.Label("weight");
-                slant = new Gtk.Label("slant");
-                width = new Gtk.Label("width");
-                spacing = new Gtk.Label("spacing");
-                version = new Gtk.Label("version");
-                vendor = new Gtk.Label("vendor");
-                Gtk.Label [] values = {
-                    psname,
-                    weight,
-                    slant,
-                    width,
-                    spacing,
-                    version,
-                    vendor
-                };
-                for (int i = 0; i < labels.length; i++) {
-                    var widget = new Gtk.Label(labels[i]);
-                    widget.sensitive = false;
-                    attach(widget, 0, i, 1, 1);
-                    widget.halign = Gtk.Align.END;
-                    widget.margin_start = 12;
-                    widget.margin_end = 12;
-                    widget.hexpand = false;
-                    attach(values[i], 1, i, 1, 1);
-                    values[i].halign = Gtk.Align.START;
-                    values[i].hexpand = false;
-                    values[i].margin_start = 12;
-                    values[i].margin_end = 12;
-                    if (i == 0) {
-                        widget.margin_top = 12;
-                        values[i].margin_top = 12;
-                    } else if (i == labels.length - 1) {
-                        widget.margin_bottom = 12;
-                        values[i].margin_bottom = 12;
-                    }
-                    widget.show();
-                    values[i].show();
-                }
-            }
-
             public Properties () {
+                expand = true;
                 description = new Description();
                 separator = new Gtk.Separator(Gtk.Orientation.VERTICAL);
                 separator.set_size_request(1, -1);
@@ -101,11 +58,21 @@ namespace FontManager {
                 separator.margin_top = 12;
                 separator.margin_bottom = 12;
                 separator.opacity = 0.90;
+                psname = new Gtk.Label("psname");
+                weight = new Gtk.Label("weight");
+                slant = new Gtk.Label("slant");
+                width = new Gtk.Label("width");
+                spacing = new Gtk.Label("spacing");
+                version = new Gtk.Label("version");
+                vendor = new Gtk.Label("vendor");
+                prop_grid = create_prop_grid();
+                attach(prop_grid, 0, 0, 1, 1);
                 attach(separator, 2, 0, 1, 7);
                 attach(description, 3, 0, 3, 7);
             }
 
             public override void show () {
+                prop_grid.show();
                 separator.show();
                 description.show();
                 base.show();
@@ -147,13 +114,49 @@ namespace FontManager {
                 version.set_text(fontinfo.version);
                 vendor.set_text(fontinfo.vendor);
                 if (fontinfo.vendor == "Unknown Vendor") {
-                    get_child_at(0, 6).hide();
+                    prop_grid.get_child_at(0, 6).hide();
                     vendor.hide();
                 } else {
                     vendor.show();
-                    get_child_at(0, 6).show();
+                    prop_grid.get_child_at(0, 6).show();
                 }
                 return;
+            }
+
+            Gtk.Grid create_prop_grid () {
+                var grid = new Gtk.Grid();
+                grid.expand = false;
+                Gtk.Label [] values = {
+                    psname,
+                    weight,
+                    slant,
+                    width,
+                    spacing,
+                    version,
+                    vendor
+                };
+                for (int i = 0; i < labels.length; i++) {
+                    var widget = new Gtk.Label(labels[i]);
+                    widget.sensitive = false;
+                    grid.attach(widget, 0, i, 1, 1);
+                    widget.halign = Gtk.Align.END;
+                    widget.margin = 12;
+                    widget.expand = false;
+                    grid.attach(values[i], 1, i, 1, 1);
+                    values[i].halign = Gtk.Align.START;
+                    values[i].expand = false;
+                    values[i].margin = 12;
+                    if (i == 0) {
+                        widget.margin_top = 24;
+                        values[i].margin_top = 24;
+                    } else if (i == labels.length - 1) {
+                        widget.margin_bottom = 24;
+                        values[i].margin_bottom = 24;
+                    }
+                    widget.show();
+                    values[i].show();
+                }
+                return grid;
             }
 
         }
