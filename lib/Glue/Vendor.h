@@ -65,11 +65,19 @@ static const struct
 VendorData[] =
 {
 
+    /* Various Sources */
+    {"ACG", "Monotype Imaging"},
+    {"B?", "Bigelow & Holmes"},
+    {"FJ", "Fujitsu"},
+    {"RICO", "Ricoh"},
+
+
     /* Courtesy of Microsoft Typography */
     {"!ETF", "!Exclamachine Type Foundry"},
     {"$pro", "CheapProFonts"},
     {"1ASC", "Ascender Corporation"},
     {"1BOU", "Boutros International"},
+    {"1KTF", "Kief Type Foundry"},
     {"2DLT", "2D Typo"},
     {"2REB", "2Rebels"},
     {"39BC", "Finley's Barcode Fonts"},
@@ -134,6 +142,7 @@ VendorData[] =
     {"BITM", "Bitmap Software"},
     {"BITS", "Bitstream"},
     {"bizf", "Bizfonts.com"},
+    {"BL", "Binnenland"},
     {"BLAB", "BaseLab"},
     {"BLAH", "Mister Bla's Fontworx"},
     {"BLI", "Blissym Language Institute"},
@@ -307,6 +316,7 @@ VendorData[] =
     {"HY", "HanYang Information & Communication"},
     {"IBM", "IBM"},
     {"IDAU", "IDAutomation.com, Inc."},
+    {"IDEA", "Glenn Campbell t/a Idea Studio"},
     {"IDEE", "IDEE TYPOGRAFICA"},
     {"IDF", "International Digital Fonts"},
     {"IFF", "Indian Font Factory"},
@@ -337,11 +347,12 @@ VendorData[] =
     {"JY", "JIYUKOBO Ltd."},
     {"KATF", "Kingsley/ATF"},
     {"KBNT", "Kombinat-Typefounders"},
-    {"KDW", "Kataoka Design Works"},
+    {"KDW", "Kinuta Font Factory"},
     {"KF", "Karakta Fonthome"},
     {"KLIM", "Klim Typographic Design"},
     {"KLTF", "Karsten Luecke"},
     {"KNST", "Konst.ru"},
+    {"KNTR", "Kontour"},
     {"KOP", "Leo Koppelkamm"},
     {"KORK", "Khork OÜ"},
     {"KOVL", "Koval Type Foundry"},
@@ -439,7 +450,7 @@ VendorData[] =
     {"ODSR", "Oddsorts"},
     {"OHG", "Our House Graphic Design"},
     {"OHNO", "OH no Type Company"},
-    {"OKAY", "Okay Type Foundry"},
+    {"OKAY", "Okay Type"},
     {"OPTM", "Optimo"},
     {"OPTO", "Opto"},
     {"ORBI", "Orbit Enterprises, Inc."},
@@ -479,6 +490,7 @@ VendorData[] =
     {"RMU", "RMU TypeDesign"},
     {"robo", "Buro Petr van Blokland"},
     {"ROBU", "SC ROBU DESIGN S.R.L."},
+    {"ROHH", "ROHH studio"},
     {"RRT", "Red Rooster Collection (ITF, Inc.)"},
     {"RSJ", "RSJ Software"},
     {"RST", "Rosetta"},
@@ -599,13 +611,6 @@ VendorData[] =
     {"ZeGr", "Zebra Font Factory"},
     {"zeta", "Tangram Studio"},
     {"ZSFT", "Zsoft"},
-
-
-    /* Various Sources */
-    {"ACG", "Monotype Imaging"},
-    {"B?", "Bigelow & Holmes"},
-    {"FJ", "Fujitsu"},
-    {"RICO", "Ricoh"},
 
 };
 
