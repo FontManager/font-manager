@@ -64,18 +64,44 @@ namespace FontManager {
                 warning("Failed to gather information for %s : %i", filepath, status);
                 return;
             }
-            /* Strip commonly found words from version string so that
-             * we're left with just a number whenever possible.*/
-             if (version == null) {
-                version = "1.0";
-                return;
-            }
-            foreach (var e in VERSION_STRING_EXCLUDES)
-                version = version.replace(e, "");
-            version = version.strip();
+            /* A lot of font files have garbage in their version string so ... */
+            do_version_mangling();
             /* CFF doesn't really mean much... */
             if (filetype == "CFF" && (filepath.has_suffix(".otf") || filepath.has_suffix(".ttf")))
                 filetype = "OpenType";
+            return;
+        }
+
+        void do_version_mangling () {
+            if (version == null) {
+                version = "1.0";
+                return;
+            }
+            /*
+             * Strip commonly found words from version string so that
+             * we're left with just a number whenever possible.
+             */
+            foreach (var e in VERSION_STRING_EXCLUDES)
+                version = version.replace(e, "");
+            version = version.strip();
+            /*
+             * If version contains ; or : it's likely to contain other info
+             * Try to grab just the version number
+             */
+            if (version.contains(";")) {
+                string [] v_array = version.split(";");
+                version = v_array[0];
+                if (!version.contains("."))
+                    foreach (string s in v_array)
+                        if (s.contains(".") && !(s.get_char().isalpha()))
+                            version = s;
+            } else if (version.contains(":")) {
+                string [] v_array = version.split(" ");
+                version = "1.0";
+                foreach (string s in v_array)
+                    if (s.contains(".") && !(s.get_char().isalpha()))
+                        version = s;
+            }
             return;
         }
 
