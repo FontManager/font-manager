@@ -218,7 +218,6 @@ namespace FontManager {
         }
 
         public void at_startup () {
-            show_version_information();
             try {
                 database = get_database();
             } catch (Error e) {
@@ -232,6 +231,8 @@ namespace FontManager {
         }
 
         public void on_activate () {
+
+            show_version_information();
 
             if (main_window != null) {
                 main_window.present();
