@@ -82,7 +82,7 @@ namespace FontManager {
             application = ((Application) GLib.Application.get_default());
             settings = get_settings(BUS_ID);
             if (settings != null)
-                application.use_headerbar = settings.get_boolean("use-headerbar");
+                application.use_csd = settings.get_boolean("use-csd");
         }
 
         public void handle_open (File file) {
@@ -144,16 +144,16 @@ namespace FontManager {
                 exit_status = 0;
             }
 
-            if (options.contains("disable-headerbar")) {
-                application.use_headerbar = false;
+            if (options.contains("disable-csd")) {
+                application.use_csd = false;
                 if (settings != null)
-                    settings.set_boolean("use-headerbar", false);
+                    settings.set_boolean("use-csd", false);
             }
 
-            if (options.contains("enable-headerbar")) {
-                application.use_headerbar = true;
+            if (options.contains("enable-csd")) {
+                application.use_csd = true;
                 if (settings != null)
-                    settings.set_boolean("use-headerbar", true);
+                    settings.set_boolean("use-csd", true);
             }
 
             if (options.contains("layout")) {

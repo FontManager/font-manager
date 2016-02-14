@@ -60,7 +60,7 @@ public class ArchiveManager : Object {
         try {
             service = Bus.get_proxy_sync(BusType.SESSION, "org.gnome.ArchiveManager1", "/org/gnome/ArchiveManager1");
             service.progress.connect((p, m) => { progress(m, (int) p, 100); });
-            message("Success contacting Archive Manager service.");
+            debug("Success contacting Archive Manager service.");
         } catch (IOError e) {
             warning("Failed to contact Archive Manager service.");
             warning("Features which depend on Archive Manager will not function correctly.");

@@ -30,7 +30,7 @@ namespace FontManager {
     public class Application: Gtk.Application  {
 
         [DBus (visible = false)]
-        public bool use_headerbar { get; set; default = true; }
+        public bool use_csd { get; set; default = true; }
 
         const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
@@ -40,8 +40,8 @@ namespace FontManager {
             { "disable", 'd', 0, OptionArg.STRING_ARRAY, null, "Disable specified font family", null },
             { "list", 0, 0, OptionArg.NONE, null, "List available fonts.", null },
             { "list-full", 0, 0, OptionArg.NONE, null, "Full listing including face information. (JSON)", null },
-            { "disable-headerbar", 0, 0, OptionArg.NONE, null, "Disable use of header bar.", null },
-            { "enable-headerbar", 0, 0, OptionArg.NONE, null, "Enable use of header bar. (Default)", null },
+            { "disable-csd", 0, 0, OptionArg.NONE, null, "Disable use of CSD.", null },
+            { "enable-csd", 0, 0, OptionArg.NONE, null, "Enable use of CSD. (Default)", null },
             { "layout", 0, 0, OptionArg.STRING, null, "\"normal\" for default or \"wide\" for 3 column.", null },
             { "debug", 'D', 0, OptionArg.NONE, null, "Enable debugging messages.", null },
             { "verbose", 'V', 0, OptionArg.NONE, null, "Verbose logging. Lots of output.", null },

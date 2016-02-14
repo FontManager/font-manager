@@ -221,7 +221,7 @@ namespace FontManager {
             model.get_value(iter, 0, out val);
             selection_changed(((Collection) val));
             selected_collection = ((Collection) val);
-            debug("Selected collection: %s", ((Collection) val).name);
+            debug("Selected collection : %s", ((Collection) val).name);
             _selected_iter_ = iter;
             selected_iter = model.get_string_from_iter(iter);
             val.unset();

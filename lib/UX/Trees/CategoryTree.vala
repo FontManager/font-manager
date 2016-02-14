@@ -122,7 +122,7 @@ namespace FontManager {
             var path = model.get_path(iter);
             selection_changed(((Category) val), path.get_indices()[0]);
             selected_filter = ((Category) val);
-            debug("Selected category: %s", ((Category) val).name);
+            debug("Selected category : %s", ((Category) val).name);
             if (path.get_depth() < 2) {
                 tree.collapse_all();
                 tree.expand_to_path(path);

@@ -71,10 +71,10 @@ namespace FontManager {
 
     public void show_about () {
         stdout.printf("\n    %s - %s\n\n\t\t  %s\n%s\n",
-                                    About.NAME,
-                                    About.COMMENT,
-                                    About.COPYRIGHT,
-                                    About.LICENSE);
+                                            About.NAME,
+                                            About.COMMENT,
+                                            About.COPYRIGHT,
+                                            About.LICENSE);
         return;
     }
 

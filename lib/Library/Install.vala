@@ -68,7 +68,7 @@ namespace FontManager {
                     warning("Failed to create FontInfo : %s", data.file.get_path());
                     return false;
                 }
-                string dest = Path.build_filename(get_user_font_dir(),
+                string dest = Path.build_filename(install_dir,
                                                    data.fontinfo.vendor,
                                                    data.fontinfo.filetype,
                                                    data.font.family);
@@ -182,6 +182,8 @@ namespace FontManager {
             static void init () {
                 installed = new Gee.ArrayList <File> ();
                 install_failed = new Gee.HashMap <string, string> ();
+                if (install_dir == null)
+                    install_dir = get_user_font_dir();
             #if HAVE_FILE_ROLLER
                 if (archive_manager == null) {
                     archive_manager = new ArchiveManager();
@@ -197,6 +199,7 @@ namespace FontManager {
                 debug("Removing temporary directory used during installation");
                 remove_directory(tmpdir);
                 tmpdir = null;
+                install_dir = null;
                 return;
             }
 

@@ -80,7 +80,7 @@ namespace FontManager {
         public signal void mode_changed (int new_mode);
 
         public bool wide_layout { get; set; default = false; }
-        public bool use_headerbar { get; set; default = true; }
+        public bool use_csd { get; set; default = true; }
         public string selected_font { get; set; default = DEFAULT_FONT; }
         public FontModel? font_model { get; set; default = null; }
         public FontConfig.Reject reject { get; set; }
@@ -165,7 +165,7 @@ namespace FontManager {
         public MainWindow () {
             Object(title: About.NAME, icon_name: About.ICON, type: Gtk.WindowType.TOPLEVEL);
             application = ((Application) GLib.Application.get_default());
-            use_headerbar = ((Application) application).use_headerbar;
+            use_csd = ((Application) application).use_csd;
             init_components();
             bind_properties();
             pack_components();
@@ -184,7 +184,7 @@ namespace FontManager {
             bind_property("font-data", fontlist, "font-data", BindingFlags.BIDIRECTIONAL);
             bind_property("selected-font", compare, "font-desc", BindingFlags.SYNC_CREATE);
             bind_property("sources", user_source_list, "sources", BindingFlags.DEFAULT);
-            bind_property("use-headerbar", ((Application) application), "use-headerbar", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            bind_property("use-csd", ((Application) application), "use-csd", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;
         }
 
@@ -240,7 +240,7 @@ namespace FontManager {
             main_stack.add_named(_main_pane_, "Default");
             main_stack.add_named(user_source_list, "Sources");
             main_box.pack_end(main_stack, true, true, 0);
-            if (Gdk.Screen.get_default().is_composited() && use_headerbar) {
+            if (Gdk.Screen.get_default().is_composited() && use_csd) {
                 set_titlebar(titlebar);
             } else {
                 main_box.pack_start(titlebar, false, true, 0);

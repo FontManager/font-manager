@@ -41,7 +41,7 @@ namespace FontManager {
             pane = new FontConfig.FontPropertiesPane();
             controls = new FontConfig.Controls();
             header_bar = new Gtk.HeaderBar();
-            if (((Application) GLib.Application.get_default()).use_headerbar) {
+            if (((Application) GLib.Application.get_default()).use_csd) {
                 set_titlebar(header_bar);
                 header_bar.show_close_button = true;
             } else {

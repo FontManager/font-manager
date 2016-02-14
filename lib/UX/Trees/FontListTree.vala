@@ -165,6 +165,7 @@ namespace FontManager {
                 warning(e.message);
             }
             selected_font_desc = description;
+            debug("Selected font : %s", selected_font_desc);
             selected_iter = model.get_string_from_iter(iter);
             val.unset();
             selection_changed();

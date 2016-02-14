@@ -38,6 +38,7 @@ namespace FontManager {
         public void save () {
             if (settings == null)
                 return;
+            settings.set_strv("compare-list", main_window.compare.list());
             settings.apply();
             return;
         }
@@ -125,7 +126,7 @@ namespace FontManager {
             settings.bind("selected-font", main_window.fontlist, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("preview-page", main_window.preview.notebook, "page", SettingsBindFlags.DEFAULT);
             settings.bind("wide-layout", main_window, "wide-layout", SettingsBindFlags.DEFAULT);
-            settings.bind("use-headerbar", main_window, "use-headerbar", SettingsBindFlags.DEFAULT);
+            settings.bind("use-csd", main_window, "use-csd", SettingsBindFlags.DEFAULT);
             main_window.sidebar.character_map.mode_set.connect(() => {
                 settings.set_enum("charmap-mode", (int) main_window.sidebar.character_map.mode);
                 }
@@ -133,10 +134,6 @@ namespace FontManager {
             main_window.compare.color_set.connect((p) => {
                 settings.set_string("compare-foreground-color", main_window.compare.foreground_color.to_string());
                 settings.set_string("compare-background-color", main_window.compare.background_color.to_string());
-                }
-            );
-            main_window.compare.list_modified.connect(() => {
-                settings.set_strv("compare-list", main_window.compare.list());
                 }
             );
             return;

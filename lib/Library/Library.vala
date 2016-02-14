@@ -31,6 +31,8 @@ namespace FontManager {
         static Gee.ArrayList <string>? supported_archives = null;
     #endif
 
+        public static string? install_dir = null;
+
         public const string [] TYPE1_METRICS = {
             ".afm",
             ".pfa",
