@@ -81,17 +81,9 @@ namespace FontManager {
 
         construct {
             scroll = new Gtk.ScrolledWindow(null, null);
-            welcome = new Gtk.Label(null);
-            welcome.wrap = true;
-            welcome.hexpand = true;
-            welcome.valign = Gtk.Align.START;
-            welcome.halign = Gtk.Align.FILL;
-            welcome.justify = Gtk.Justification.CENTER;
-            welcome.margin = 48;
-            welcome.margin_top = 96;
             string welcome_message = welcome_tmpl.printf(w1, w2, w3);
-            welcome.set_markup(welcome_message);
-            welcome.set_sensitive(false);
+            welcome = new WelcomeLabel(welcome_message);
+            welcome.margin_top = 96;
             list = new Gtk.ListBox();
             list.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             scroll.add(list);
