@@ -102,6 +102,7 @@ namespace FontManager {
         public FontList fontlist { get; private set; }
         public FontListTree fonttree { get; private set; }
         public UserSourceList user_source_list { get; private set; }
+        public PreferencePane preference_pane { get; private set; }
 
         public Mode mode {
             get {
@@ -185,6 +186,9 @@ namespace FontManager {
             bind_property("selected-font", compare, "font-desc", BindingFlags.SYNC_CREATE);
             bind_property("sources", user_source_list, "sources", BindingFlags.DEFAULT);
             bind_property("use-csd", ((Application) application), "use-csd", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            var ui_prefs = (InterfacePreferences) preference_pane.get_page("UI");
+            bind_property("wide-layout", ui_prefs.wide_layout.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            application.bind_property("use-csd", ui_prefs.use_csd.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;
         }
 
@@ -220,6 +224,7 @@ namespace FontManager {
             unsorted = new Unsorted();
             disabled = new Disabled();
             render_opts = new RenderingOptions();
+            preference_pane = construct_preference_pane();
             return;
         }
 
@@ -239,6 +244,7 @@ namespace FontManager {
             add_separator(_main_pane_, Gtk.Orientation.HORIZONTAL);
             main_stack.add_named(_main_pane_, "Default");
             main_stack.add_named(user_source_list, "Sources");
+            main_stack.add_named(preference_pane, "Preferences");
             main_box.pack_end(main_stack, true, true, 0);
             if (Gdk.Screen.get_default().is_composited() && use_csd) {
                 set_titlebar(titlebar);
@@ -274,6 +280,7 @@ namespace FontManager {
             titlebar.show();
             fonttree.show();
             user_source_list.show();
+            preference_pane.show();
             main_stack.show();
             base.show();
             return;
@@ -458,6 +465,13 @@ namespace FontManager {
             titlebar.manage_sources.connect((a) => {
                 if (a)
                     main_stack.set_visible_child_name("Sources");
+                else
+                    main_stack.set_visible_child_name("Default");
+            });
+
+            titlebar.preferences_selected.connect((a) => {
+                if (a)
+                    main_stack.set_visible_child_name("Preferences");
                 else
                     main_stack.set_visible_child_name("Default");
             });

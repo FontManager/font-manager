@@ -40,8 +40,8 @@ namespace FontManager {
             add_button.set_image(new Gtk.Image.from_icon_name("list-add-symbolic", Gtk.IconSize.MENU));
             remove_button = new Gtk.Button();
             remove_button.set_image(new Gtk.Image.from_icon_name("list-remove-symbolic", Gtk.IconSize.MENU));
-            box.pack_start(add_button, false, false, 0);
-            box.pack_start(remove_button, false, false, 0);
+            box.pack_start(add_button, false, false, 1);
+            box.pack_start(remove_button, false, false, 1);
             set_default_button_relief(box);
             add(box);
             connect_signals();

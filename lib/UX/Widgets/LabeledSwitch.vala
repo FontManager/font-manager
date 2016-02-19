@@ -31,11 +31,11 @@ public class LabeledSwitch : Gtk.Grid {
     construct {
         margin = 12;
         label = new Gtk.Label(null);
-        label.hexpand = true;
+        label.hexpand = false;
         label.halign = Gtk.Align.START;
         dim_label = new Gtk.Label(null);
         dim_label.hexpand = true;
-        dim_label.halign = Gtk.Align.START;
+        dim_label.halign = Gtk.Align.CENTER;
         dim_label.get_style_context().add_class(Gtk.STYLE_CLASS_DIM_LABEL);
         toggle = new Gtk.Switch();
         toggle.expand = false;
@@ -45,8 +45,8 @@ public class LabeledSwitch : Gtk.Grid {
         image.margin_end = 12;
         attach(image, 0, 0, 1, 1);
         attach(label, 1, 0, 1, 1);
-        attach(dim_label, 3, 0, 1, 1);
-        attach(toggle, 4, 0, 1, 1);
+        attach(dim_label, 2, 0, 1, 1);
+        attach(toggle, 3, 0, 1, 1);
     }
 
     public LabeledSwitch (string label = "") {

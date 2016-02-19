@@ -28,7 +28,7 @@ public class BaseTreeView : Gtk.TreeView {
     public override bool button_press_event (Gdk.EventButton event) {
         if (event.button == 3) {
             menu_request(this, event);
-            debug("Context menu request - %s", this.name);
+            verbose("Context menu request - %s", this.name);
             return true;
         }
         return base.button_press_event(event);

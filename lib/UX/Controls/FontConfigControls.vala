@@ -21,7 +21,6 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
-
 namespace FontConfig {
 
     public class Controls : Gtk.ActionBar {

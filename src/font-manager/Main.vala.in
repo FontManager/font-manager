@@ -144,26 +144,6 @@ namespace FontManager {
                 exit_status = 0;
             }
 
-            if (options.contains("disable-csd")) {
-                application.use_csd = false;
-                if (settings != null)
-                    settings.set_boolean("use-csd", false);
-            }
-
-            if (options.contains("enable-csd")) {
-                application.use_csd = true;
-                if (settings != null)
-                    settings.set_boolean("use-csd", true);
-            }
-
-            if (options.contains("layout")) {
-                Variant l = options.lookup_value("layout", VariantType.STRING);
-                if (settings == null)
-                    warning("Unable to store requested setting : layout = %s", l.get_string());
-                else
-                    settings.set_boolean("wide-layout", (l.get_string() == "wide"));
-            }
-
             if (options.contains("enable")) {
                 if (reject == null) {
                     reject = new FontConfig.Reject();
@@ -241,6 +221,10 @@ namespace FontManager {
 
             main_window = new MainWindow();
             state = new State(main_window, BUS_ID);
+            if (settings != null)
+                application.notify["use-csd"].connect(() => {
+                    state.save();
+                });
             application.add_window(main_window);
             main_window.realize.connect(() => {
                 state.restore();
