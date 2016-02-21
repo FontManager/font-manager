@@ -80,76 +80,66 @@ namespace FontConfig {
             return;
         }
 
-        class SubpixelGeometryIcon : Gtk.Box {
+    }
 
-            int _size;
-            Gtk.Label c1 = new Gtk.Label(null);
-            Gtk.Label c2 = new Gtk.Label(null);
-            Gtk.Label c3 = new Gtk.Label(null);
-            Gtk.Label [] labels;
-            Gdk.RGBA r = Gdk.RGBA();
-            Gdk.RGBA g = Gdk.RGBA();
-            Gdk.RGBA b = Gdk.RGBA();
-            Gdk.RGBA n = Gdk.RGBA();
+    public class SubpixelGeometryIcon : Gtk.Box {
 
-            construct {
-                homogeneous = true;
-                halign = valign = Gtk.Align.CENTER;
-                orientation = Gtk.Orientation.HORIZONTAL;
-                labels = { c1, c2, c3 };
-                r.parse("Red");
-                g.parse("Green");
-                b.parse("Blue");
-                n.parse("Gray");
+        int _size;
+        Gtk.Label c1 = new Gtk.Label(null);
+        Gtk.Label c2 = new Gtk.Label(null);
+        Gtk.Label c3 = new Gtk.Label(null);
+        Gtk.Label [] labels;
+
+        construct {
+            homogeneous = true;
+            halign = valign = Gtk.Align.CENTER;
+            orientation = Gtk.Orientation.HORIZONTAL;
+            labels = { c1, c2, c3 };
+        }
+
+        public SubpixelGeometryIcon (FontConfig.SubpixelOrder rgba, int size = 36) {
+            _size = size;
+            string []? color = null;
+            if (rgba == FontConfig.SubpixelOrder.RGB || rgba == FontConfig.SubpixelOrder.VRGB)
+                color = { "red", "green", "blue" };
+            else if (rgba == FontConfig.SubpixelOrder.BGR || rgba == FontConfig.SubpixelOrder.VBGR)
+                color = { "blue", "green", "red" };
+            else
+                color = { "gray", "gray", "gray" };
+            if (rgba == FontConfig.SubpixelOrder.VRGB || rgba == FontConfig.SubpixelOrder.VBGR)
+                orientation = Gtk.Orientation.VERTICAL;
+            for (int i = 0; i < labels.length; i++) {
+                pack_start(labels[i], true, true, 0);
+                labels[i].get_style_context().add_class(color[i]);
             }
+        }
 
-            public SubpixelGeometryIcon (FontConfig.SubpixelOrder rgba, int size = 36) {
-                _size = size;
-                Gdk.RGBA []? order = null;
-                if (rgba == FontConfig.SubpixelOrder.RGB || rgba == FontConfig.SubpixelOrder.VRGB)
-                    order = {r, g, b};
-                else if (rgba == FontConfig.SubpixelOrder.BGR || rgba == FontConfig.SubpixelOrder.VBGR)
-                    order = {b, g, r};
-                else
-                    order = {n, n, n};
-                if (rgba == FontConfig.SubpixelOrder.VRGB || rgba == FontConfig.SubpixelOrder.VBGR)
-                    orientation = Gtk.Orientation.VERTICAL;
-                for (int i = 0; i < labels.length; i++) {
-                    labels[i].override_background_color(Gtk.StateFlags.NORMAL, order[i]);
-                    pack_start(labels[i], true, true, 0);
-                }
-            }
+        public override void show () {
+            foreach (var label in labels)
+                label.show();
+            base.show();
+        }
 
-            public override void show () {
-                foreach (var label in labels)
-                    label.show();
-                base.show();
-            }
+        public override void get_preferred_width (out int minimum_size, out int natural_size) {
+            minimum_size = natural_size = _size;
+            return;
+        }
 
-            public override void get_preferred_width (out int minimum_size, out int natural_size) {
-                minimum_size = natural_size = _size;
-                return;
-            }
+        public override void get_preferred_height (out int minimum_size, out int natural_size) {
+            minimum_size = natural_size = _size;
+            return;
+        }
 
-            public override void get_preferred_height (out int minimum_size, out int natural_size) {
-                minimum_size = natural_size = _size;
-                return;
-            }
+        public override void get_preferred_height_for_width (int width, out int minimum_height, out int natural_height) {
+            minimum_height = natural_height = width;
+            return;
+        }
 
-            public override void get_preferred_height_for_width (int width, out int minimum_height, out int natural_height) {
-                minimum_height = natural_height = width;
-                return;
-            }
-
-            public override void get_preferred_width_for_height (int height, out int minimum_width, out int natural_width) {
-                minimum_width = natural_width = height;
-                return;
-            }
-
+        public override void get_preferred_width_for_height (int height, out int minimum_width, out int natural_width) {
+            minimum_width = natural_width = height;
+            return;
         }
 
     }
-
-
 
 }

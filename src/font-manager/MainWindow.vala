@@ -186,7 +186,7 @@ namespace FontManager {
             bind_property("selected-font", compare, "font-desc", BindingFlags.SYNC_CREATE);
             bind_property("sources", user_source_list, "sources", BindingFlags.DEFAULT);
             bind_property("use-csd", ((Application) application), "use-csd", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            var ui_prefs = (InterfacePreferences) preference_pane.get_page("UI");
+            var ui_prefs = (InterfacePreferences) preference_pane.get_page("Interface");
             bind_property("wide-layout", ui_prefs.wide_layout.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             application.bind_property("use-csd", ui_prefs.use_csd.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;

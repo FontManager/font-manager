@@ -54,5 +54,18 @@
 
 /* END Fix giant header bar - Fedora release 23 */
 
+.red {
+    background-color: #ff0000;
+}
 
+.green {
+    background-color: #0000ff;
+}
 
+.blue {
+    background-color: #008000;
+}
+
+.gray {
+    background-color: #808080;
+}
