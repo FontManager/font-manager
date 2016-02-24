@@ -102,7 +102,7 @@ namespace FontManager {
         public FontList fontlist { get; private set; }
         public FontListTree fonttree { get; private set; }
         public UserSourceList user_source_list { get; private set; }
-        public PreferencePane preference_pane { get; private set; }
+        public Preferences.Pane preference_pane { get; private set; }
 
         public Mode mode {
             get {
@@ -186,7 +186,7 @@ namespace FontManager {
             bind_property("selected-font", compare, "font-desc", BindingFlags.SYNC_CREATE);
             bind_property("sources", user_source_list, "sources", BindingFlags.DEFAULT);
             bind_property("use-csd", ((Application) application), "use-csd", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            var ui_prefs = (InterfacePreferences) preference_pane.get_page("Interface");
+            var ui_prefs = (Preferences.Interface) preference_pane.get_page("Interface");
             bind_property("wide-layout", ui_prefs.wide_layout.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             application.bind_property("use-csd", ui_prefs.use_csd.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;

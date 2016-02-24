@@ -8,7 +8,10 @@ font_manager_VALASOURCES = \
 ./Main.vala \
 ./MainWindow.vala \
 ./Migration.vala \
-./Preferences.vala \
+./Preferences/Display.vala \
+./Preferences/Interface.vala \
+./Preferences/Preferences.vala \
+./Preferences/Rendering.vala \
 ./RenderingOptions.vala \
 ./SideBar.vala \
 ./State.vala \
