@@ -107,21 +107,32 @@ namespace FontManager {
 
     public class RenderingPreferences : Gtk.Box {
 
-        FontConfig.FontPropertiesPane properties;
+        FontConfig.FontPropertiesPane pane;
         FontConfig.Controls controls;
 
         construct {
             orientation = Gtk.Orientation.VERTICAL;
-            properties = new FontConfig.FontPropertiesPane();
+            pane = new FontConfig.FontPropertiesPane();
             controls = new FontConfig.Controls();
-            pack_start(properties, true, true, 0);
+            pack_start(pane, true, true, 0);
             pack_end(controls, false, false, 0);
+            connect_signals();
         }
 
         public override void show () {
-            properties.show();
+            pane.show();
             controls.show();
             base.show();
+            return;
+        }
+
+        void connect_signals () {
+            controls.save_selected.connect(() => {
+                pane.properties.save();
+            });
+            controls.discard_selected.connect(() => {
+                pane.properties.discard();
+            });
             return;
         }
 
@@ -129,21 +140,32 @@ namespace FontManager {
 
     public class DisplayPreferences : Gtk.Box {
 
-        FontConfig.DisplayPropertiesPane properties;
+        FontConfig.DisplayPropertiesPane pane;
         FontConfig.Controls controls;
 
         construct {
             orientation = Gtk.Orientation.VERTICAL;
-            properties = new FontConfig.DisplayPropertiesPane();
+            pane = new FontConfig.DisplayPropertiesPane();
             controls = new FontConfig.Controls();
-            pack_start(properties, true, true, 0);
+            pack_start(pane, true, true, 0);
             pack_end(controls, false, false, 0);
+            connect_signals();
         }
 
         public override void show () {
-            properties.show();
+            pane.show();
             controls.show();
             base.show();
+            return;
+        }
+
+        void connect_signals () {
+            controls.save_selected.connect(() => {
+                pane.properties.save();
+            });
+            controls.discard_selected.connect(() => {
+                pane.properties.discard();
+            });
             return;
         }
 

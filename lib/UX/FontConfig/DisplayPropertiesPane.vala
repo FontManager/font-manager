@@ -38,7 +38,7 @@ namespace FontConfig {
             grid.margin = 24;
             properties = new DisplayProperties();
             dpi = new LabeledSpinButton(_("Target DPI"), 0, 1000, 1);
-            scale = new LabeledSpinButton(_("Scale factor"), 0, 1000, 1);
+            scale = new LabeledSpinButton(_("Scale factor"), 0, 1000, 0.1);
             string [] filters = {};
             for (int i = 0; i < 4; i++)
                 filters += ((LCDFilter) i).to_string();

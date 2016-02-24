@@ -178,7 +178,7 @@ namespace FontConfig {
                 case "string":
                     return ((string) val);
                 case "double":
-                    return ((double) val).to_string();
+                    return "%.1f".printf((double) val);
                 default:
                     return null;
             }
