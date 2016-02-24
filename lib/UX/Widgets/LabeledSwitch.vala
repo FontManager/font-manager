@@ -30,6 +30,7 @@ public class LabeledSwitch : Gtk.Grid {
 
     construct {
         margin = 12;
+        margin_start = margin_end = 24;
         label = new Gtk.Label(null);
         label.hexpand = false;
         label.halign = Gtk.Align.START;
@@ -41,7 +42,6 @@ public class LabeledSwitch : Gtk.Grid {
         toggle.expand = false;
         image = new Gtk.Image();
         image.expand = false;
-        image.margin_start = 6;
         image.margin_end = 12;
         attach(image, 0, 0, 1, 1);
         attach(label, 1, 0, 1, 1);

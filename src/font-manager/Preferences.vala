@@ -87,12 +87,12 @@ namespace FontManager {
         public LabeledSwitch use_csd { get; private set; }
 
         construct {
+            margin_top = margin_right = 24;
             wide_layout = new LabeledSwitch();
-            wide_layout.label.set_markup("<b>%s</b>".printf(_("Wide Layout")));
+            wide_layout.label.set_markup(_("Wide Layout"));
             attach(wide_layout, 0, 0, 3, 1);
             use_csd = new LabeledSwitch();
-            use_csd.label.set_markup("<b>%s</b>".printf(_("Client Side Decorations")));
-            use_csd.dim_label.set_text(_("Restart required"));
+            use_csd.label.set_markup(_("Client Side Decorations"));
             attach(use_csd, 0, 1, 3, 1);
         }
 

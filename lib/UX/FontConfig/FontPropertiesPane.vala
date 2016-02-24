@@ -41,20 +41,16 @@ namespace FontConfig {
         public FontPropertiesPane () {
             grid = new Gtk.Grid();
             grid.margin = 6;
-            grid.margin_top = 24;
+            grid.margin_top = margin_right = 24;
             properties = new FontProperties();
             antialias = new LabeledSwitch(_("Antialias"));
             hinting = new LabeledSwitch(_("Hinting"));
             autohint = new Gtk.CheckButton.with_label(_("Enable Autohinter"));
-            autohint.margin_top = 12;
-            autohint.margin_bottom = 6;
-            autohint.margin_start = 24;
-            autohint.margin_end = 24;
+            autohint.margin = 12;
             hinting_options = new Gtk.Revealer();
             hinting_options_grid = new Gtk.Grid();
-            hinting_options_grid.margin_start = 24;
-            hinting_options_grid.margin_end = 24;
-            hinting_options_grid.margin_bottom = 12;
+            hinting_options_grid.margin = 24;
+            hinting_options_grid.margin_start = 48;
             string [] hintstyles = {};
             for (int i = 0; i < 4; i++)
                 hintstyles += ((HintStyle) i).to_string();

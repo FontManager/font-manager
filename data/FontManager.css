@@ -25,6 +25,22 @@
     -GtkPaned-handle-size: 0;
 }
 
+.red {
+    background-color: #ff0000;
+}
+
+.green {
+    background-color: #008000;
+}
+
+.blue {
+    background-color: #0000ff;
+}
+
+.gray {
+    background-color: #808080;
+}
+
 /*  Fix giant header bar - Fedora release 23
 
     These tweaks match header bar size to Nautilus 3.18
@@ -53,19 +69,3 @@
 }
 
 /* END Fix giant header bar - Fedora release 23 */
-
-.red {
-    background-color: #ff0000;
-}
-
-.green {
-    background-color: #0000ff;
-}
-
-.blue {
-    background-color: #008000;
-}
-
-.gray {
-    background-color: #808080;
-}

@@ -29,13 +29,14 @@ public class LabeledSpinButton : Gtk.Grid {
     Gtk.SpinButton spin;
 
     public LabeledSpinButton (string label = "", double min, double max, double step) {
-        margin = 12;
+        margin = 24;
+        margin_top = margin_bottom = 10;
         this.label = new Gtk.Label(label);
         this.label.hexpand = true;
         this.label.halign = Gtk.Align.START;
         spin = new Gtk.SpinButton.with_range(min, max, step);
-        attach(this.label, 0, 0, 2, 1);
-        attach(spin, 2, 0, 1, 1);
+        attach(this.label, 0, 0, 1, 1);
+        attach(spin, 1, 0, 1, 1);
         bind_property("value", spin, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
     }
 
