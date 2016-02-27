@@ -47,6 +47,8 @@ namespace FontConfig {
             hinting = new LabeledSwitch(_("Hinting"));
             autohint = new Gtk.CheckButton.with_label(_("Enable Autohinter"));
             autohint.margin = 12;
+            autohint.margin_start = 30;
+            autohint.margin_end = 30;
             hinting_options = new Gtk.Revealer();
             hinting_options_grid = new Gtk.Grid();
             hinting_options_grid.margin = 24;

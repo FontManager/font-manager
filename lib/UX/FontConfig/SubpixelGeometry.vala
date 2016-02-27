@@ -43,14 +43,17 @@ namespace FontConfig {
         Gee.ArrayList <Gtk.RadioButton> options;
 
         public SubpixelGeometry () {
+            opacity = 0.75;
             margin_top = 12;
             orientation = Gtk.Orientation.VERTICAL;
+            get_style_context().add_class(Gtk.STYLE_CLASS_ENTRY);
             label = new Gtk.Label(_("Subpixel Geometry"));
             label.halign = Gtk.Align.CENTER;
             label.margin = 12;
             pack_start(label, false, true, 6);
             options = new Gee.ArrayList <Gtk.RadioButton> ();
             box = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
+            box.margin = 24;
             for (int i = 0; i < 5; i++) {
                 if (i == 0)
                     options.add(new Gtk.RadioButton(null));
@@ -91,6 +94,7 @@ namespace FontConfig {
         Gtk.Label [] labels;
 
         construct {
+            opacity = 1.0;
             homogeneous = true;
             halign = valign = Gtk.Align.CENTER;
             orientation = Gtk.Orientation.HORIZONTAL;

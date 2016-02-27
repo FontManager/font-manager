@@ -34,8 +34,10 @@ namespace FontConfig {
 
         public Controls () {
             save = new Gtk.Button.with_label(_("Save"));
+            save.margin = 3;
             save.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             discard = new Gtk.Button.with_label(_("Discard"));
+            discard.margin = 3;
             discard.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
             note = new Gtk.Label(_("Running applications may require a restart to reflect any changes."));
             note.opacity = 0.75;
