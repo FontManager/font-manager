@@ -25,12 +25,10 @@ namespace FontManager {
 
     public Preferences.Pane construct_preference_pane () {
         Preferences.Pane pane = new Preferences.Pane();
-        Preferences.Interface ui = new Preferences.Interface();
-        Preferences.Rendering render = new Preferences.Rendering();
-        Preferences.Display display = new Preferences.Display();
-        pane.add_page(ui, "Interface", _("Interface"));
-        pane.add_page(render, "Rendering", _("Rendering"));
-        pane.add_page(display, "Display", _("Display"));
+        pane.add_page(new Preferences.Sources(), "Sources", _("Sources"));
+        pane.add_page(new Preferences.Rendering(), "Rendering", _("Rendering"));
+        pane.add_page(new Preferences.Display(), "Display", _("Display"));
+        pane.add_page(new Preferences.Interface(), "Interface", _("Interface"));
         return pane;
     }
 
@@ -38,6 +36,10 @@ namespace FontManager {
 
         public class Pane : Gtk.Paned {
 
+            public Gtk.Widget visible_child { get; set; }
+            public string visible_child_name { get; set; }
+
+            Gtk.Box box;
             Gtk.Stack stack;
             Gtk.StackSidebar sidebar;
 
@@ -46,19 +48,35 @@ namespace FontManager {
                 expand = true;
                 position = 275;
                 stack = new Gtk.Stack();
-                var box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+                stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
+                box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
                 sidebar = new Gtk.StackSidebar();
                 sidebar.set_stack(stack);
                 sidebar.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
                 box.pack_start(sidebar, true, true, 0);
                 add_separator(box);
-                box.show();
-                stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
                 add1(box);
                 add2(stack);
+                bind_properties();
+                connect_signals();
+            }
+
+            void bind_properties () {
+                stack.bind_property("visible-child", this, "visible-child");
+                stack.bind_property("visible-child-name", this, "visible-child-name");
+            }
+
+            void connect_signals () {
+                notify["visible-child"].connect(() => {
+                    debug("Visible child : %s", stack.visible_child_name);
+                    if (stack.visible_child_name == "Sources")
+                        ((Sources) get_page("Sources")).user_source_list.update();
+                });
+                return;
             }
 
             public override void show () {
+                box.show();
                 stack.show();
                 sidebar.show();
                 base.show();
@@ -78,7 +96,8 @@ namespace FontManager {
             public Gtk.Widget get_page (string name) {
                 var scroll = ((Gtk.Container) stack.get_child_by_name(name));
                 var viewport = scroll.get_children().nth_data(0);
-                return ((Gtk.Container) viewport).get_children().nth_data(0);
+                var widget = ((Gtk.Container) viewport).get_children().nth_data(0);
+                return widget;
             }
 
         }

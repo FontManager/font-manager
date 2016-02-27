@@ -71,18 +71,22 @@ namespace FontManager {
         public FontConfig.Reject reject { get; private set; }
         public MainWindow main_window { get; private set; }
         public FontModel font_model { get; private set; }
+        public Settings? settings { get; private set; default = null; }
+        public State? state { get; private set; default = null; }
 
         weak Application application;
         bool update_in_progress = false;
         bool queue_update = false;
-        State? state = null;
-        Settings? settings = null;
 
         public Main () {
             application = ((Application) GLib.Application.get_default());
             settings = get_settings(BUS_ID);
             if (settings != null)
                 application.use_csd = settings.get_boolean("use-csd");
+            families = new FontConfig.Families();
+            font_model = new FontModel(families);
+            reject = new FontConfig.Reject();
+            sources = new FontConfig.Sources();
         }
 
         public void handle_open (File file) {
@@ -203,11 +207,7 @@ namespace FontManager {
             } catch (Error e) {
                 error("Failed to initialize database : %s", e.message);
             }
-            families = new FontConfig.Families();
             families.progress.connect((m, p, t) => { progress(m, p, t); });
-            font_model = new FontModel(families);
-            reject = new FontConfig.Reject();
-            sources = new FontConfig.Sources();
         }
 
         public void on_activate () {

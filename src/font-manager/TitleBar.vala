@@ -28,13 +28,11 @@ namespace FontManager {
         public signal void install_selected ();
         public signal void remove_selected ();
         public signal void add_selected ();
-        public signal void manage_sources (bool active);
         public signal void preferences_selected (bool active);
 
         public Gtk.MenuButton main_menu { get; private set; }
         public Gtk.Label main_menu_label { get; set; }
         public Gtk.MenuButton app_menu { get; private set; }
-        public Gtk.ToggleButton source_toggle { get; private set; }
         public Gtk.ToggleButton prefs_toggle { get; private set; }
 
         BaseControls manage_controls;
@@ -72,16 +70,11 @@ namespace FontManager {
             manage_controls.remove_button.set_tooltip_text(_("Remove Fonts"));
             add_separator(manage_controls.box);
             manage_controls.box.reorder_child(manage_controls.box.get_children().nth_data(2), 0);
-            source_toggle = new Gtk.ToggleButton();
-            source_toggle.set_image(new Gtk.Image.from_icon_name("folder-symbolic", Gtk.IconSize.MENU));
-            source_toggle.relief = Gtk.ReliefStyle.NONE;
-            source_toggle.set_tooltip_text(_("Manage Sources"));
             prefs_toggle = new Gtk.ToggleButton();
             prefs_toggle.set_image(new Gtk.Image.from_icon_name("preferences-system-symbolic", Gtk.IconSize.MENU));
             prefs_toggle.relief = Gtk.ReliefStyle.NONE;
             prefs_toggle.set_tooltip_text(_("Preferences"));
             manage_controls.box.pack_end(prefs_toggle, false, false, 1);
-            manage_controls.box.pack_end(source_toggle, false, false, 1);
             revealer.add(manage_controls);
             pack_start(main_menu);
             pack_start(revealer);
@@ -98,7 +91,6 @@ namespace FontManager {
             main_menu.show();
             app_menu_icon.show();
             app_menu.show();
-            source_toggle.show();
             prefs_toggle.show();
             manage_controls.show();
             revealer.show();
@@ -114,30 +106,11 @@ namespace FontManager {
 
         void connect_signals () {
             manage_controls.add_button.clicked.connect(() => {
-                if (source_toggle.get_active())
-                    add_selected();
-                else
-                    install_selected();
+                install_selected();
             });
             manage_controls.remove_button.clicked.connect(() => { remove_selected(); });
-            source_toggle.toggled.connect(() => {
-                var active = source_toggle.get_active();
-                if (prefs_toggle.get_active())
-                    prefs_toggle.set_active(false);
-                source_toggle.set_active(active);
-                manage_sources(active);
-                if (active) {
-                    manage_controls.add_button.set_tooltip_text(_("Add new source"));
-                    manage_controls.remove_button.set_tooltip_text(_("Remove selected source"));
-                } else {
-                    manage_controls.add_button.set_tooltip_text(_("Add Fonts"));
-                    manage_controls.remove_button.set_tooltip_text(_("Remove Fonts"));
-                }
-            });
             prefs_toggle.toggled.connect(() => {
                 var active = prefs_toggle.get_active();
-                if (source_toggle.get_active())
-                    source_toggle.set_active(false);
                 prefs_toggle.set_active(active);
                 preferences_selected(prefs_toggle.get_active());
             });

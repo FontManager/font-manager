@@ -12,6 +12,7 @@ font_manager_VALASOURCES = \
 ./Preferences/Interface.vala \
 ./Preferences/Preferences.vala \
 ./Preferences/Rendering.vala \
+./Preferences/Sources.vala \
 ./RenderingOptions.vala \
 ./SideBar.vala \
 ./State.vala \

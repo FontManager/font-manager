@@ -84,7 +84,6 @@ namespace FontManager {
         public string selected_font { get; set; default = DEFAULT_FONT; }
         public FontModel? font_model { get; set; default = null; }
         public FontConfig.Reject reject { get; set; }
-        public FontConfig.Sources sources { get; set; }
 
         public Gtk.Stack main_stack { get; private set; }
         public Gtk.Stack content_stack { get; private set; }
@@ -101,7 +100,6 @@ namespace FontManager {
         public TitleBar titlebar { get; private set; }
         public FontList fontlist { get; private set; }
         public FontListTree fonttree { get; private set; }
-        public UserSourceList user_source_list { get; private set; }
         public Preferences.Pane preference_pane { get; private set; }
 
         public Mode mode {
@@ -153,6 +151,7 @@ namespace FontManager {
         bool _loading = false;
         bool sidebar_switch = false;
         bool charmap_visible = false;
+        bool is_horizontal = false;
         double _progress = 0.0;
         Mode _mode;
         Gtk.Box content_view;
@@ -184,7 +183,6 @@ namespace FontManager {
             bind_property("selected-font", fontlist, "selected-font-desc", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             bind_property("font-data", fontlist, "font-data", BindingFlags.BIDIRECTIONAL);
             bind_property("selected-font", compare, "font-desc", BindingFlags.SYNC_CREATE);
-            bind_property("sources", user_source_list, "sources", BindingFlags.DEFAULT);
             bind_property("use-csd", ((Application) application), "use-csd", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             var ui_prefs = (Preferences.Interface) preference_pane.get_page("Interface");
             bind_property("wide-layout", ui_prefs.wide_layout.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
@@ -207,7 +205,6 @@ namespace FontManager {
             sidebar.add_view(charmap_sidebar, "Character Map");
             titlebar = new TitleBar();
             fonttree = new FontListTree();
-            user_source_list = new UserSourceList();
             fontlist = fonttree.fontlist;
             main_stack = new Gtk.Stack();
             main_stack.set_transition_duration(720);
@@ -229,7 +226,6 @@ namespace FontManager {
         }
 
         void pack_components () {
-//            preview.notebook.set_action_widget(render_opts.toggle, Gtk.PackType.END);
             main_pane.add1(sidebar);
             main_pane.add2(content_box);
             add_separator(content_box, Gtk.Orientation.VERTICAL);
@@ -243,7 +239,6 @@ namespace FontManager {
             _main_pane_.pack_start(main_pane, true, true, 0);
             add_separator(_main_pane_, Gtk.Orientation.HORIZONTAL);
             main_stack.add_named(_main_pane_, "Default");
-            main_stack.add_named(user_source_list, "Sources");
             main_stack.add_named(preference_pane, "Preferences");
             main_box.pack_end(main_stack, true, true, 0);
             if (Gdk.Screen.get_default().is_composited() && use_csd) {
@@ -256,10 +251,40 @@ namespace FontManager {
             return;
         }
 
-        private void wide_layout_toggled () {
-            content_pane.set_orientation(wide_layout ? Gtk.Orientation.HORIZONTAL : Gtk.Orientation.VERTICAL);
-            content_view.set_orientation(wide_layout ? Gtk.Orientation.HORIZONTAL : Gtk.Orientation.VERTICAL);
-            content_separator.set_orientation(wide_layout ? Gtk.Orientation.VERTICAL : Gtk.Orientation.HORIZONTAL);
+        public void set_horizontal_layout () {
+            var settings = Main.instance.settings;
+            if (settings != null) {
+                if (!is_horizontal) {
+                    settings.set_int("last-vertical-content-pane-position", content_pane.position);
+                }
+                Idle.add(() => {
+                    content_pane.set_position(settings.get_int("last-horizontal-content-pane-position"));
+                    return false;
+                });
+            }
+            content_pane.set_orientation(Gtk.Orientation.HORIZONTAL);
+            content_view.set_orientation(Gtk.Orientation.HORIZONTAL);
+            content_separator.set_orientation(Gtk.Orientation.VERTICAL);
+            is_horizontal = true;
+            return;
+        }
+
+        public void unset_horizontal_layout () {
+            var settings = Main.instance.settings;
+            if (settings != null) {
+                if (is_horizontal) {
+                    settings.set_int("last-horizontal-content-pane-position", content_pane.position);
+                }
+                Idle.add(() => {
+                    if (settings.get_boolean("wide-layout-on-maximize") && !is_maximized)
+                        content_pane.set_position(settings.get_int("last-vertical-content-pane-position"));
+                    return false;
+                });
+            }
+            content_pane.set_orientation(Gtk.Orientation.VERTICAL);
+            content_view.set_orientation(Gtk.Orientation.VERTICAL);
+            content_separator.set_orientation(Gtk.Orientation.HORIZONTAL);
+            is_horizontal = false;
             return;
         }
 
@@ -279,7 +304,6 @@ namespace FontManager {
             charmap_sidebar.show();
             titlebar.show();
             fonttree.show();
-            user_source_list.show();
             preference_pane.show();
             main_stack.show();
             base.show();
@@ -289,7 +313,6 @@ namespace FontManager {
         public void set_models () {
             font_model = Main.instance.font_model;
             reject = Main.instance.reject;
-            sources = Main.instance.sources;
             return;
         }
 
@@ -305,7 +328,6 @@ namespace FontManager {
 
         void real_set_mode (Mode mode, bool loading) {
             _mode = mode;
-            titlebar.source_toggle.set_active(false);
             titlebar.main_menu_label.set_markup("<b>%s</b>".printf(mode.to_translatable_string()));
             var settings = mode.settings();
             /* XXX */
@@ -348,9 +370,67 @@ namespace FontManager {
                 }
             );
 
+            var settings = Main.instance.settings;
+
             notify["wide-layout"].connect(() => {
-                wide_layout_toggled();
+                Idle.add(() => {
+                    if (wide_layout && (!(settings.get_boolean("wide-layout-on-maximize")) || is_maximized)) {
+                        set_horizontal_layout();
+                    } else if (settings != null && wide_layout && settings.get_boolean("wide-layout-on-maximize") && !(is_maximized)) {
+                        if (is_horizontal) {
+                            unset_horizontal_layout();
+                        }
+                    } else {
+                        unset_horizontal_layout();
+                    }
+                    return false;
+                });
             });
+
+            notify["is-maximized"].connect(() => {
+                Idle.add(() => {
+                    if (settings != null) {
+                        if (wide_layout) {
+                            if (settings.get_boolean("wide-layout-on-maximize")) {
+                                Idle.add(() => {
+                                    if (this.is_maximized) {
+                                        set_horizontal_layout();
+                                    } else {
+                                        unset_horizontal_layout();
+                                    }
+                                    return false;
+                                });
+                            }
+                        } else {
+                            Idle.add(() => {
+                                unset_horizontal_layout();
+                                return false;
+                            });
+                        }
+                    }
+                    return false;
+                });
+            });
+
+            if (settings != null) {
+                settings.changed.connect((key) => {
+                    if (key == "wide-layout-on-maximize") {
+                        Idle.add(() => {
+                            if (settings.get_boolean("wide-layout-on-maximize")) {
+                                if (!is_maximized && is_horizontal) {
+                                    unset_horizontal_layout();
+                                }
+                            } else {
+                                if (wide_layout)
+                                    set_horizontal_layout();
+                                else
+                                    unset_horizontal_layout();
+                            }
+                            return false;
+                        });
+                    }
+                });
+            }
 
             mode_changed.connect((m) => {
                 var action = ((SimpleAction) application.lookup_action("mode"));
@@ -451,22 +531,9 @@ namespace FontManager {
                 if (selected.length > 0)
                     install_fonts(selected);
             });
-            titlebar.add_selected.connect(() => {
-                user_source_list.on_add_source();
-                queue_reload();
-            });
+
             titlebar.remove_selected.connect(() => {
-                if (titlebar.source_toggle.get_active()) {
-                    user_source_list.on_remove_source();
-                    queue_reload();
-                } else
-                    remove_fonts();
-            });
-            titlebar.manage_sources.connect((a) => {
-                if (a)
-                    main_stack.set_visible_child_name("Sources");
-                else
-                    main_stack.set_visible_child_name("Default");
+                remove_fonts();
             });
 
             titlebar.preferences_selected.connect((a) => {

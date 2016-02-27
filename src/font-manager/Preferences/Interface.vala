@@ -30,20 +30,48 @@ namespace FontManager {
             public LabeledSwitch wide_layout { get; private set; }
             public LabeledSwitch use_csd { get; private set; }
 
+            Gtk.Revealer wide_layout_options;
+            Gtk.CheckButton on_maximize;
+
             construct {
                 margin_top = margin_right = 24;
                 wide_layout = new LabeledSwitch();
                 wide_layout.label.set_markup(_("Wide Layout"));
-                attach(wide_layout, 0, 0, 3, 1);
+                wide_layout_options = new Gtk.Revealer();
+                on_maximize = new Gtk.CheckButton.with_label(_("Only when maximized"));
+                on_maximize.margin = 12;
+                wide_layout_options.margin_start = wide_layout_options.margin_end = 32;
+                on_maximize.margin_start = on_maximize.margin_end = 48;
+                wide_layout_options.add(on_maximize);
                 use_csd = new LabeledSwitch();
                 use_csd.label.set_markup(_("Client Side Decorations"));
-                attach(use_csd, 0, 1, 3, 1);
+                attach(wide_layout, 0, 0, 1, 1);
+                attach(wide_layout_options, 0, 1, 1, 1);
+                attach(use_csd, 0, 2, 1, 1);
+                connect_signals();
+                bind_properties();
             }
 
             public override void show () {
                 wide_layout.show();
+                on_maximize.show();
+                wide_layout_options.show();
                 use_csd.show();
                 base.show();
+                return;
+            }
+
+            void bind_properties () {
+                if (Main.instance.settings == null)
+                    return;
+                Main.instance.settings.bind("wide-layout-on-maximize", on_maximize, "active", SettingsBindFlags.DEFAULT);
+                return;
+            }
+
+            void connect_signals () {
+                wide_layout.toggle.notify["active"].connect(() => {
+                    wide_layout_options.set_reveal_child(wide_layout.toggle.get_active());
+                });
                 return;
             }
 

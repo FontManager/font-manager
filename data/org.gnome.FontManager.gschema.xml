@@ -53,6 +53,12 @@
             <description>false for default layout, true for 3 column layout</description>
         </key>
 
+        <key name="wide-layout-on-maximize" type="b">
+            <default>false</default>
+            <summary>Layout type</summary>
+            <description>Switch to wide layout when window is maximized</description>
+        </key>
+
         <key name="use-csd" type="b">
             <default>true</default>
             <summary>Use CSD</summary>
@@ -84,6 +90,18 @@
         </key>
 
         <key name="content-pane-position" type="i">
+            <summary>Content area size</summary>
+            <description>Position of the content pane.</description>
+            <default>150</default>
+        </key>
+
+        <key name="last-vertical-content-pane-position" type="i">
+            <summary>Content area size</summary>
+            <description>Position of the content pane.</description>
+            <default>150</default>
+        </key>
+
+        <key name="last-horizontal-content-pane-position" type="i">
             <summary>Content area size</summary>
             <description>Position of the content pane.</description>
             <default>150</default>
