@@ -39,12 +39,15 @@ namespace FontManager {
             source.bind_property("available", toggle, "sensitive", BindingFlags.SYNC_CREATE);
             source.bind_property("icon-name", image, "icon-name", BindingFlags.SYNC_CREATE);
             source.bind_property("name", label, "label", BindingFlags.SYNC_CREATE);
-            source.bind_property("path", dim_label, "label", BindingFlags.SYNC_CREATE);
+            dim_label.set_text(source.get_dirname());
         }
 
     }
 
     public class UserSourceList : Gtk.Overlay {
+
+        public signal void changed ();
+        public signal void row_selected (Gtk.ListBoxRow? row);
 
         public FontConfig.Sources sources {
             get {
@@ -52,19 +55,9 @@ namespace FontManager {
             }
             set {
                 _sources = value;
-                while (first_row != null)
-                    ((Gtk.Widget) first_row).destroy();
-                foreach (var s in _sources) {
-                    var w = new FontSourceRow(s);
-                    w.show();
-                    list.add(w);
-                }
-                if (first_row != null) {
-                    list.select_row(first_row);
-                    welcome.hide();
-                } else {
-                    welcome.show();
-                }
+                _sources.changed.connect(() => { changed(); });
+                changed.connect(() => { update(); });
+                update();
             }
         }
 
@@ -85,18 +78,38 @@ namespace FontManager {
             welcome = new WelcomeLabel(welcome_message);
             welcome.margin_top = 96;
             list = new Gtk.ListBox();
-            list.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             scroll.add(list);
             add(scroll);
             add_overlay(welcome);
+            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            list.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
+            list.row_selected.connect((r) => {
+                row_selected(r);
+            });
+        }
+
+        public void update () {
+            while (first_row != null)
+                ((Gtk.Widget) first_row).destroy();
+            foreach (var s in _sources) {
+                var w = new FontSourceRow(s);
+                list.add(w);
+                w.show();
+            }
+            if (first_row != null)
+                welcome.hide();
+            else
+                welcome.show();
+            queue_draw();
+            return;
         }
 
         public override void show () {
-            if (first_row == null)
-                welcome.show();
+            welcome.show();
             scroll.show();
             list.show();
+            update();
             base.show();
             return;
         }
@@ -120,12 +133,8 @@ namespace FontManager {
             var source = new FontConfig.Source(file);
             _sources.add(source);
             _sources.save();
-            var row = new FontSourceRow(source);
-            list.add(row);
-            row.show();
             debug("Added new font source : %s", source.path);
-            if (welcome.visible)
-                welcome.hide();
+            changed();
             return;
         }
 
@@ -137,14 +146,8 @@ namespace FontManager {
             if (!_sources.remove(selected_source))
                 return;
             _sources.save();
-            list.remove(selected_row);
             debug("Removed font source : %s", selected_source.path);
-            if (first_row != null) {
-                list.select_row(first_row);
-                welcome.hide();
-            } else {
-                welcome.show();
-            }
+            changed();
             return;
         }
 
