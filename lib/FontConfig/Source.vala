@@ -75,6 +75,10 @@ namespace FontConfig {
             this.update();
         }
 
+        public string? get_dirname () {
+            return _path != null ? Path.get_dirname(_path) : _path;
+        }
+
         public void update () {
              _path = file.get_path();
             try {

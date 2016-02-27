@@ -111,6 +111,9 @@ namespace FontConfig {
         }
 
         public new bool add (Source source) {
+            foreach (var _source in this)
+                if (_source.path == source.path)
+                    return false;
             source.notify["active"].connect(() => { source_activated(source); });
             this.changed(null, null);
             return base.add(source);
@@ -218,6 +221,7 @@ namespace FontConfig {
             delete doc;
             Xml.Parser.cleanup();
             add_sources_from_directories();
+            changed(null, null);
             return true;
         }
 
