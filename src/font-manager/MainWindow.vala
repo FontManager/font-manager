@@ -344,6 +344,8 @@ namespace FontManager {
             fontlist.controls.set_remove_sensitivity((mode == Mode.MANAGE && sidebar.standard.mode == StandardSideBarMode.COLLECTION));
             fontlist.queue_draw();
             render_opts.visible = (render_opts.visible && mode == Mode.MANAGE);
+            if (titlebar.prefs_toggle.active && mode != Mode.MANAGE)
+                titlebar.prefs_toggle.active = false;
             if (mode == Mode.BROWSE)
                 browser.treeview.queue_draw();
             mode_changed(_mode);

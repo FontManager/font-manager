@@ -30,6 +30,7 @@ namespace FontManager {
             public LabeledSwitch wide_layout { get; private set; }
             public LabeledSwitch use_csd { get; private set; }
 
+            Gtk.Box box;
             Gtk.Revealer wide_layout_options;
             Gtk.CheckButton on_maximize;
 
@@ -42,9 +43,18 @@ namespace FontManager {
                 on_maximize.margin = 12;
                 wide_layout_options.margin_start = wide_layout_options.margin_end = 32;
                 on_maximize.margin_start = on_maximize.margin_end = 48;
-                wide_layout_options.add(on_maximize);
                 use_csd = new LabeledSwitch();
                 use_csd.label.set_markup(_("Client Side Decorations"));
+                box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+                box.margin = 6;
+                var separator = add_separator(box, Gtk.Orientation.HORIZONTAL);
+                separator.margin_start = separator.margin_end = 48;
+                separator.opacity = 0.333;
+                separator = add_separator(box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
+                separator.margin_start = separator.margin_end = 48;
+                separator.opacity = 0.333;
+                box.pack_start(on_maximize, true, false, 0);
+                wide_layout_options.add(box);
                 attach(wide_layout, 0, 0, 1, 1);
                 attach(wide_layout_options, 0, 1, 1, 1);
                 attach(use_csd, 0, 2, 1, 1);
@@ -53,6 +63,7 @@ namespace FontManager {
             }
 
             public override void show () {
+                box.show();
                 wide_layout.show();
                 on_maximize.show();
                 wide_layout_options.show();
