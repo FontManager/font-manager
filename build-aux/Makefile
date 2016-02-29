@@ -23,6 +23,7 @@ POTFILES.in:
 POTFILES.skip:
 	find ${TOPDIR} -name "*.vala*" -print | sed 's/\.in//g' | sort | uniq | sed 's/.vala/.c/g' > ${PODIR}POTFILES.skip ;
 	sed -i 's|\.\./||g' ${PODIR}POTFILES.skip ;
+	echo "lib/Glue/Enums.c" >> ${PODIR}POTFILES.skip ;
 
 potfiles: POTFILES.readme POTFILES.in POTFILES.skip
 

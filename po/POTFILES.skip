@@ -98,3 +98,4 @@ src/font-manager/TitleBar.c
 src/font-viewer/Application.c
 src/font-viewer/MainWindow.c
 src/font-viewer/State.c
+lib/Glue/Enums.c
