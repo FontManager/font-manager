@@ -27,7 +27,7 @@ Author:
   <!-- interface-license-type gplv3 -->
   <!-- interface-name Font Manager -->
   <!-- interface-description Simple font management for Gtk+ desktop environments -->
-  <!-- interface-copyright 2009 - 2015 -->
+  <!-- interface-copyright 2009 - 2016 -->
   <!-- interface-authors Jerry Casiano -->
     <menu id='font-manager'>
         <section>
