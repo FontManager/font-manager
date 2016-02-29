@@ -9,6 +9,7 @@ Build-Depends:
  autoconf (>= 2.69),
  autotools-dev,
  valac (>= 0.24),
+ intltool,
  libxml2-dev,
  libfreetype6-dev,
  libfontconfig1-dev,
