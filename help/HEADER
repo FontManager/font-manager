@@ -1,6 +1,8 @@
 # Font Manager - Simple font management for Gtk+ desktop environments
 #
-# Copyright © 2009 - 2015 Jerry Casiano
+# Copyright (C) 2009 - 2016 Jerry Casiano
+#
+# This file is part of Font Manager.
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

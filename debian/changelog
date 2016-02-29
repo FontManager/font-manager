@@ -1,0 +1,17 @@
+font-manager (0.7.3-1ubuntu1) UNRELEASED; urgency=medium
+
+  [ Jerry Casiano ]
+
+  * Update to 0.7.3
+
+  * Migrate to Github. Fix build failure due to renamed file
+
+  * Add Nautilus extension. Split package.
+
+  * Drop support for GTK+ < 3.12.
+
+  * Update vala version requirement.
+
+  * Initial release.
+
+ -- JerryCasiano <JerryCasiano@gmail.com>  Thu, 10 Dec 2015 19:24:14 -0500

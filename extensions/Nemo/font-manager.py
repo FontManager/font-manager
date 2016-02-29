@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2009 - 2015 Jerry Casiano
+# Copyright (C) 2009 - 2016 Jerry Casiano
 #
 # This file is part of Font Manager.
 #
@@ -40,19 +40,20 @@ class FontViewer (GObject.GObject, Nemo.MenuProvider):
     Active = False
 
     def __init__ (self):
+        print("Initializing nemo-font-manager extension")
         DBusGMainLoop(set_as_default=True)
         self.bus = dbus.SessionBus()
-        self.bus.watch_name_owner('org.gnome.FontManager', FontViewer.set_state)
+        self.bus.watch_name_owner('org.gnome.FontViewer', FontViewer.set_state)
 
     def get_file_items (self, window, files):
         if FontViewer.Active and len(files) == 1:
             selected_file = files[0]
             if is_font_file(selected_file):
                 try:
-                    proxy = self.bus.get_object('org.gnome.FontManager', '/org/gnome/FontManager/FontViewer')
-                    ready = proxy.get_dbus_method('Ready', 'org.gnome.FontManager.FontViewer')
+                    proxy = self.bus.get_object('org.gnome.FontViewer', '/org/gnome/FontViewer')
+                    ready = proxy.get_dbus_method('Ready', 'org.gnome.FontViewer')
                     if ready():
-                        show_uri = proxy.get_dbus_method('ShowUri', 'org.gnome.FontManager.FontViewer')
+                        show_uri = proxy.get_dbus_method('ShowUri', 'org.gnome.FontViewer')
                         show_uri('{0}'.format(selected_file.get_activation_uri()))
                 except:
                     pass

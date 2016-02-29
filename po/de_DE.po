@@ -1,6 +1,6 @@
 # Font Manager - Simple font management for Gtk+ desktop environments
 #
-# Copyright Â© 2009 - 2014 Jerry Casiano
+# Copyright Â© 2009 - 2016 Jerry Casiano
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,8 +20,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-04 21:19-0400\n"
+"Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
+"POT-Creation-Date: 2015-12-17 23:06-0500\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -31,16 +31,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.6.10\n"
 
-#: ../src/Common/About.vala:28
-#: ../resources/org.gnome.FontManager.desktop.in.h:1
+#: ../lib/Common/About.vala:28
 msgid "Font Manager"
 msgstr "Schriften Verwalter"
 
-#: ../src/Common/About.vala:30
+#: ../lib/Common/About.vala:30
 msgid "Simple font management for GTK+ desktop environments"
 msgstr "Einfache Schriftenverwaltung für GTK+ Arbeitsumgebungen"
 
-#: ../src/Common/About.vala:34
+#: ../lib/Common/About.vala:34
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -75,507 +74,641 @@ msgstr ""
 "    Falls nicht, siehe <http://www.gnu.org/licenses/>.\n"
 "."
 
-#: ../src/Common/Constants.vala:33
+#: ../lib/Common/Constants.vala:31
 msgid "Enter Collection Name"
 msgstr "Geben Sie einen Kollektionsnamen an"
 
-#: ../src/Common/Database.vala:347 ../src/Common/Library.vala:100
-#: ../src/Common/Library.vala:121 ../src/Common/Main.vala:70
-#: ../src/Common/Main.vala:84 ../src/Common/Main.vala:115
-#: ../src/Filters/Category.vala:50 ../src/Models/CategoryModel.vala:124
-#: ../src/UX/Trees/UserFontTree.vala:38
-msgid "There was an error accessing the database"
-msgstr ""
-
-#: ../src/Common/Library.vala:171
-msgid "Processing directories"
-msgstr ""
-
-#: ../src/Common/Library.vala:196 ../src/Common/Library.vala:317
-msgid "Error querying file information"
-msgstr ""
-
-#: ../src/Common/Library.vala:200
-msgid "Processing files"
-msgstr ""
-
-#: ../src/Common/Library.vala:333
-msgid "Error creating temporary working directory"
-msgstr ""
-
-#: ../src/Common/Library.vala:350
-#, fuzzy
-msgid "Installing files"
-msgstr "Alle Schriften"
-
-#: ../src/Common/Library.vala:367
-msgid "Preparing Archives"
-msgstr ""
-
-#: ../src/Common/Library.vala:410
-msgid "Removing files"
-msgstr ""
-
-#: ../src/Common/Main.vala:152
-msgid ""
-"Try restarting the application\n"
-"There was an error updating font information"
-msgstr ""
-
-#: ../src/Filters/Collection.vala:30
+#: ../lib/Filters/Collection.vala:36
 msgid "New Collection"
 msgstr "Neue Kollektion"
 
-#: ../src/Filters/Disabled.vala:29
+#: ../lib/Filters/Disabled.vala:29
 msgid "Disabled"
 msgstr ""
 
-#: ../src/Filters/Disabled.vala:29
+#: ../lib/Filters/Disabled.vala:29
 msgid "Fonts which have been disabled"
 msgstr ""
 
-#: ../src/Filters/Filter.vala:40
+#: ../lib/Filters/Filter.vala:40
 #, c-format
 msgid "Created : %s"
 msgstr "Erstellt : %s"
 
-#: ../src/Filters/Unsorted.vala:29
+#: ../lib/Filters/Unsorted.vala:29
 msgid "Unsorted"
 msgstr "Unsortiert"
 
-#: ../src/Filters/Unsorted.vala:29
+#: ../lib/Filters/Unsorted.vala:29
 msgid "Fonts not present in any collection"
 msgstr "Schriften ohne Kollektionszugehörigkeit"
 
-#: ../src/FontConfig/Enums.vala:47
+#: ../lib/FontConfig/Enums.vala:70
 msgid "Thin"
 msgstr "Dünn"
 
-#: ../src/FontConfig/Enums.vala:49
+#: ../lib/FontConfig/Enums.vala:72
 msgid "Ultra-Light"
 msgstr "Sehr dünn"
 
-#: ../src/FontConfig/Enums.vala:51 ../src/FontConfig/Enums.vala:209
+#: ../lib/FontConfig/Enums.vala:74 ../lib/FontConfig/Enums.vala:232
 msgid "Light"
 msgstr "Leicht (Light)"
 
-#: ../src/FontConfig/Enums.vala:53
+#: ../lib/FontConfig/Enums.vala:76
 msgid "Book"
 msgstr "Normal"
 
-#: ../src/FontConfig/Enums.vala:55 ../src/FontConfig/Enums.vala:188
+#: ../lib/FontConfig/Enums.vala:78 ../lib/FontConfig/Enums.vala:211
 msgid "Medium"
 msgstr "Mittel (Medium)"
 
-#: ../src/FontConfig/Enums.vala:57
+#: ../lib/FontConfig/Enums.vala:80
 msgid "Semi-Bold"
 msgstr "Etwas dicker"
 
-#: ../src/FontConfig/Enums.vala:59
+#: ../lib/FontConfig/Enums.vala:82
 msgid "Bold"
 msgstr "Dick"
 
-#: ../src/FontConfig/Enums.vala:61
+#: ../lib/FontConfig/Enums.vala:84
 msgid "Ultra-Bold"
 msgstr "Sehr Dick"
 
-#: ../src/FontConfig/Enums.vala:63
+#: ../lib/FontConfig/Enums.vala:86
 msgid "Heavy"
 msgstr "Fett"
 
-#: ../src/FontConfig/Enums.vala:65
+#: ../lib/FontConfig/Enums.vala:88
 msgid "Ultra-Heavy"
 msgstr "Sehr Fett"
 
-#: ../src/FontConfig/Enums.vala:81
+#: ../lib/FontConfig/Enums.vala:104
 msgid "Italic"
 msgstr "Kursiv (Italic)"
 
-#: ../src/FontConfig/Enums.vala:83
+#: ../lib/FontConfig/Enums.vala:106
 msgid "Oblique"
 msgstr "Schräg (Oblique)"
 
-#: ../src/FontConfig/Enums.vala:105
+#: ../lib/FontConfig/Enums.vala:128
 msgid "Ultra-Condensed"
 msgstr "Sehr stark gestaucht"
 
-#: ../src/FontConfig/Enums.vala:107
+#: ../lib/FontConfig/Enums.vala:130
 msgid "Extra-Condensed"
 msgstr "Stark gestaucht"
 
-#: ../src/FontConfig/Enums.vala:109
+#: ../lib/FontConfig/Enums.vala:132
 msgid "Condensed"
 msgstr "Gestaucht"
 
-#: ../src/FontConfig/Enums.vala:111
+#: ../lib/FontConfig/Enums.vala:134
 msgid "Semi-Condensed"
 msgstr "Etwas gestaucht"
 
-#: ../src/FontConfig/Enums.vala:113
+#: ../lib/FontConfig/Enums.vala:136
 msgid "Semi-Expanded"
 msgstr "Etwas gestreckt"
 
-#: ../src/FontConfig/Enums.vala:115
+#: ../lib/FontConfig/Enums.vala:138
 msgid "Expanded"
 msgstr "Gestreckt"
 
-#: ../src/FontConfig/Enums.vala:117
+#: ../lib/FontConfig/Enums.vala:140
 msgid "Extra-Expanded"
 msgstr "Stark gestreckt"
 
-#: ../src/FontConfig/Enums.vala:119
+#: ../lib/FontConfig/Enums.vala:142
 msgid "Ultra-Expanded"
 msgstr "Sehr stark gestreckt"
 
-#: ../src/FontConfig/Enums.vala:136
+#: ../lib/FontConfig/Enums.vala:159
 msgid "Proportional"
 msgstr "Proportional"
 
-#: ../src/FontConfig/Enums.vala:138
+#: ../lib/FontConfig/Enums.vala:161
 msgid "Dual Width"
 msgstr "Doppelte Größe"
 
-#: ../src/FontConfig/Enums.vala:140
+#: ../lib/FontConfig/Enums.vala:163
 msgid "Monospace"
 msgstr "Dicktengleich"
 
-#: ../src/FontConfig/Enums.vala:142
+#: ../lib/FontConfig/Enums.vala:165
 msgid "Charcell"
 msgstr "Feste Breite"
 
-#: ../src/FontConfig/Enums.vala:161
+#: ../lib/FontConfig/Enums.vala:184
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: ../src/FontConfig/Enums.vala:163
+#: ../lib/FontConfig/Enums.vala:186
 msgid "RGB"
 msgstr "RGB (Rot-Grün-Blau Teilbildpunktwiedergabe)"
 
-#: ../src/FontConfig/Enums.vala:165
+#: ../lib/FontConfig/Enums.vala:188
 msgid "BGR"
 msgstr "BGR (Blau-Grün-Rot Teilbildpunktwiedergabe)"
 
-#: ../src/FontConfig/Enums.vala:167
+#: ../lib/FontConfig/Enums.vala:190
 msgid "VRGB"
 msgstr "VRGB (Vertikale Rot-Grün-Blau Teilbildpunktwiedergabe)"
 
-#: ../src/FontConfig/Enums.vala:169
+#: ../lib/FontConfig/Enums.vala:192
 msgid "VBGR"
 msgstr "VBGR (Vertikale Blau-Grün-Rot Teilbildpunktwiedergabe)"
 
-#: ../src/FontConfig/Enums.vala:171 ../src/FontConfig/Enums.vala:192
-#: ../src/FontConfig/Enums.vala:213
+#: ../lib/FontConfig/Enums.vala:194 ../lib/FontConfig/Enums.vala:215
+#: ../lib/FontConfig/Enums.vala:236
 msgid "None"
 msgstr "Keine (None)"
 
-#: ../src/FontConfig/Enums.vala:186
+#: ../lib/FontConfig/Enums.vala:209
 msgid "Slight"
 msgstr "Schlank (Slight)"
 
-#: ../src/FontConfig/Enums.vala:190
+#: ../lib/FontConfig/Enums.vala:213
 msgid "Full"
 msgstr "Voll (Full)"
 
-#: ../src/FontConfig/Enums.vala:207
+#: ../lib/FontConfig/Enums.vala:230
 msgid "Default"
 msgstr "Normal"
 
-#: ../src/FontConfig/Enums.vala:211
+#: ../lib/FontConfig/Enums.vala:234
 msgid "Legacy"
 msgstr "Veraltet (Legacy)"
 
-#: ../src/FontConfig/Families.vala:38
+#: ../lib/FontConfig/Families.vala:45
 #, fuzzy
 msgid "Loading available font families"
 msgstr "Für alle Benutzer verfügbare Schriften"
 
-#: ../src/FontConfig/FontSource.vala:124
-#, c-format
-msgid "%s --> Resource Unavailable"
-msgstr "%s --> Quelle nicht verfügbar"
-
-#: ../src/FontConfig/Sources.vala:173 ../src/FontConfig/XmlWriter.vala:34
+#: ../lib/FontConfig/Sources.vala:230 ../lib/FontConfig/XmlWriter.vala:34
 msgid " Generated by Font Manager. Do NOT edit this file. "
 msgstr "Estellt von Font Manager. Editieren Sie diese Datei nicht!"
 
-#: ../src/Models/CategoryModel.vala:74
-msgid "All"
-msgstr "Alle"
+#: ../lib/FontConfig/Source.vala:84
+#, fuzzy
+msgid "Source Unavailable"
+msgstr "%s --> Quelle nicht verfügbar"
 
-#: ../src/Models/CategoryModel.vala:74
-msgid "All Fonts"
+#: ../lib/Library/Install.vala:139
+#, fuzzy
+msgid "Installing files"
 msgstr "Alle Schriften"
 
-#: ../src/Models/CategoryModel.vala:76
-msgid "System"
-msgstr "System"
+#: ../lib/Library/Install.vala:162
+msgid "Preparing Archives"
+msgstr ""
 
-#: ../src/Models/CategoryModel.vala:76
-msgid "Fonts available to all users"
-msgstr "Für alle Benutzer verfügbare Schriften"
+#: ../lib/Library/Remove.vala:81
+#, fuzzy
+msgid "Removing files"
+msgstr "Alle Schriften"
 
-#: ../src/Models/CategoryModel.vala:78
-msgid "User"
-msgstr "Benutzer"
+#: ../lib/Library/Sorter.vala:89
+msgid "Processing directories"
+msgstr ""
 
-#: ../src/Models/CategoryModel.vala:78
-msgid "Fonts avalable only to you"
-msgstr "Nur für Sie verfügbare Schriften"
+#: ../lib/Library/Sorter.vala:119
+#, fuzzy
+msgid "Processing files"
+msgstr "Alle Schriften"
 
-#: ../src/Models/CategoryModel.vala:82 ../src/UX/Views/Metadata.vala:173
-msgid "Spacing"
-msgstr "Abstände"
+#: ../lib/UX/CharacterMap/CharacterMapSideBar.vala:96
+msgid "Unicode Script"
+msgstr "Unicode Skript"
 
-#: ../src/Models/CategoryModel.vala:82
-msgid "Grouped by font spacing"
-msgstr "Geordnet nach Abständen"
+#: ../lib/UX/CharacterMap/CharacterMapSideBar.vala:97
+msgid "Unicode Block"
+msgstr "Unicode Block"
 
-#: ../src/Models/CategoryModel.vala:84 ../src/UX/Views/Metadata.vala:171
-msgid "Slant"
-msgstr "Schriftstil"
+#: ../lib/UX/Controls/CollectionControls.vala:29
+msgid "Add new collection"
+msgstr "Füge eine neue Kollektion hinzu"
 
-#: ../src/Models/CategoryModel.vala:84
-msgid "Grouped by font angle"
-msgstr "Geordnet nach Schriftwinkel / Schriftstil"
+#: ../lib/UX/Controls/CollectionControls.vala:30
+msgid "Remove selected collection"
+msgstr "Entferne ausgewählte Kollektion"
 
-#: ../src/Models/CategoryModel.vala:86 ../src/UX/Views/Metadata.vala:170
+#: ../lib/UX/Controls/FontConfigControls.vala:37
+msgid "Save"
+msgstr ""
+
+#: ../lib/UX/Controls/FontConfigControls.vala:39
+msgid "Discard"
+msgstr ""
+
+#: ../lib/UX/Controls/FontConfigControls.vala:41
+msgid "Running applications may require a restart to reflect any changes."
+msgstr ""
+
+#: ../lib/UX/Controls/FontListControls.vala:45
+#: ../lib/UX/Controls/FontListControls.vala:78
+msgid "Expand all"
+msgstr "Alle ausklappen"
+
+#: ../lib/UX/Controls/FontListControls.vala:48
+msgid "Remove selected fonts"
+msgstr "Entferne ausgewählte Schrift"
+
+#: ../lib/UX/Controls/FontListControls.vala:52
+msgid "Search Families..."
+msgstr "Durchsuche Familien"
+
+#: ../lib/UX/Controls/FontListControls.vala:78
+msgid "Collapse all"
+msgstr "Alle einklappen"
+
+#: ../lib/UX/Controls/PreviewControls.vala:58
+msgid "Edit preview text"
+msgstr "Vorschautext bearbeiten"
+
+#: ../lib/UX/Controls/PreviewControls.vala:61
+msgid "Undo changes"
+msgstr "Änderungen rückgängig machen"
+
+#: ../lib/UX/Controls/PreviewControls.vala:66
+msgid "Left Aligned"
+msgstr "Links ausgerichtet"
+
+#: ../lib/UX/Controls/PreviewControls.vala:66
+msgid "Centered"
+msgstr "Zentriert"
+
+#: ../lib/UX/Controls/PreviewControls.vala:66
+msgid "Fill"
+msgstr "Füllen"
+
+#: ../lib/UX/Controls/PreviewControls.vala:66
+msgid "Right Aligned"
+msgstr "Rechts ausgerichtet"
+
+#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:40
+msgid "Target DPI"
+msgstr ""
+
+#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:41
+msgid "Scale factor"
+msgstr ""
+
+#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:45
+msgid "LCD Filter"
+msgstr ""
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:46
+msgid "Antialias"
+msgstr ""
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:47
+msgid "Hinting"
+msgstr ""
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:48
+msgid "Enable Autohinter"
+msgstr ""
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:61
+msgid "Hinting Style"
+msgstr ""
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:62
+msgid "Use Embedded Bitmaps"
+msgstr ""
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:64
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:72
+msgid " Size Restrictions "
+msgstr ""
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:70
+msgid " Apply settings to point sizes "
+msgstr ""
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:141
+msgid "Smaller than"
+msgstr ""
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:142
+msgid "Larger than"
+msgstr ""
+
+#: ../lib/UX/FontConfig/PropertiesEditor.vala:47
+msgid "General"
+msgstr ""
+
+#: ../lib/UX/FontConfig/PropertiesEditor.vala:48
+#, fuzzy
+msgid "Display"
+msgstr "Text und Bildschirm"
+
+#: ../lib/UX/FontConfig/PropertiesEditor.vala:53
+msgid "FontConfig Properties"
+msgstr ""
+
+#: ../lib/UX/FontConfig/PropertiesEditor.vala:57
+msgid "Discard configuration"
+msgstr ""
+
+#: ../lib/UX/FontConfig/SubpixelGeometry.vala:48
+msgid "Subpixel Geometry"
+msgstr ""
+
+#: ../lib/UX/Metadata/License.vala:42
+#, fuzzy
+msgid "File does not contain license information."
+msgstr "Zeige Schriftinformationen"
+
+#: ../lib/UX/Metadata/Properties.vala:42
+#, fuzzy
+msgid "PostScript Name"
+msgstr "PostScript Type 1 Schrift"
+
+#: ../lib/UX/Metadata/Properties.vala:43
+#: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Weight"
 msgstr "Stärke"
 
-#: ../src/Models/CategoryModel.vala:86
-msgid "Grouped by font weight"
-msgstr "Geordnet nach Schriftstärke"
+#: ../lib/UX/Metadata/Properties.vala:44
+#: ../lib/UX/Models/CategoryModel.vala:102
+msgid "Slant"
+msgstr "Schriftstil"
 
-#: ../src/Models/CategoryModel.vala:88 ../src/UX/Views/Metadata.vala:172
+#: ../lib/UX/Metadata/Properties.vala:45
+#: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Width"
 msgstr "Breite"
 
-#: ../src/Models/CategoryModel.vala:88
-msgid "Grouped by font width"
-msgstr "Geordnet nach Schriftbreite"
+#: ../lib/UX/Metadata/Properties.vala:46
+#: ../lib/UX/Models/CategoryModel.vala:100
+msgid "Spacing"
+msgstr "Abstände"
 
-#: ../src/Models/CategoryModel.vala:90
-msgid "Filetype"
-msgstr "Dateityp"
+#: ../lib/UX/Metadata/Properties.vala:47
+msgid "Version"
+msgstr ""
 
-#: ../src/Models/CategoryModel.vala:90
-msgid "Grouped by filetype"
-msgstr "Geordnet nach Dateityp"
-
-#: ../src/Models/CategoryModel.vala:92
-msgid "License"
-msgstr "Lizenz"
-
-#: ../src/Models/CategoryModel.vala:92
-msgid "Grouped by license type"
-msgstr "Geordnet nach Lizenz"
-
-#: ../src/Models/CategoryModel.vala:94 ../src/UX/Views/Metadata.vala:175
+#: ../lib/UX/Metadata/Properties.vala:48
+#: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Vendor"
 msgstr "Herausgeber"
 
-#: ../src/Models/CategoryModel.vala:94
+#: ../lib/UX/Metadata/Title.vala:49
+msgid "OpenType Font"
+msgstr "OpenType Schrift"
+
+#: ../lib/UX/Metadata/Title.vala:50
+msgid "TrueType Font"
+msgstr "TrueType Schrift"
+
+#: ../lib/UX/Metadata/Title.vala:51
+msgid "PostScript Type 1 Font"
+msgstr "PostScript Type 1 Schrift"
+
+#: ../lib/UX/Metadata/Title.vala:111
+msgid "No file selected"
+msgstr ""
+
+#: ../lib/UX/Metadata/Title.vala:111
+#, fuzzy
+msgid "Or unsupported filetype."
+msgstr "Geordnet nach Dateityp"
+
+#: ../lib/UX/Models/CategoryModel.vala:92
+msgid "All"
+msgstr "Alle"
+
+#: ../lib/UX/Models/CategoryModel.vala:92
+msgid "All Fonts"
+msgstr "Alle Schriften"
+
+#: ../lib/UX/Models/CategoryModel.vala:94
+msgid "System"
+msgstr "System"
+
+#: ../lib/UX/Models/CategoryModel.vala:94
+msgid "Fonts available to all users"
+msgstr "Für alle Benutzer verfügbare Schriften"
+
+#: ../lib/UX/Models/CategoryModel.vala:96
+msgid "User"
+msgstr "Benutzer"
+
+#: ../lib/UX/Models/CategoryModel.vala:96
+#, fuzzy
+msgid "Fonts available only to you"
+msgstr "Nur für Sie verfügbare Schriften"
+
+#: ../lib/UX/Models/CategoryModel.vala:100
+msgid "Grouped by font spacing"
+msgstr "Geordnet nach Abständen"
+
+#: ../lib/UX/Models/CategoryModel.vala:102
+msgid "Grouped by font angle"
+msgstr "Geordnet nach Schriftwinkel / Schriftstil"
+
+#: ../lib/UX/Models/CategoryModel.vala:104
+msgid "Grouped by font weight"
+msgstr "Geordnet nach Schriftstärke"
+
+#: ../lib/UX/Models/CategoryModel.vala:106
+msgid "Grouped by font width"
+msgstr "Geordnet nach Schriftbreite"
+
+#: ../lib/UX/Models/CategoryModel.vala:108
+msgid "Filetype"
+msgstr "Dateityp"
+
+#: ../lib/UX/Models/CategoryModel.vala:108
+msgid "Grouped by filetype"
+msgstr "Geordnet nach Dateityp"
+
+#: ../lib/UX/Models/CategoryModel.vala:110
+#: ../lib/UX/Views/FontPreviewPane.vala:124
+msgid "License"
+msgstr "Lizenz"
+
+#: ../lib/UX/Models/CategoryModel.vala:110
+msgid "Grouped by license type"
+msgstr "Geordnet nach Lizenz"
+
+#: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Grouped by vendor"
 msgstr "Geordnet nach Herausgeber"
 
-#: ../src/Models/CategoryModel.vala:107
+#: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Family Kind"
 msgstr "Familienzugehörigkeit"
 
-#: ../src/Models/CategoryModel.vala:107
+#: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
 "Nur Schriften welche Panose Informationen enthalten werde hier gruppiert."
 
-#: ../src/Models/CategoryModel.vala:108
+#: ../lib/UX/Models/CategoryModel.vala:126
 msgid "Any"
 msgstr "Alle"
 
-#: ../src/Models/CategoryModel.vala:109
+#: ../lib/UX/Models/CategoryModel.vala:127
 msgid "No Fit"
 msgstr "Keine Übereinstimmung"
 
-#: ../src/Models/CategoryModel.vala:110
+#: ../lib/UX/Models/CategoryModel.vala:128
 msgid "Text and Display"
 msgstr "Text und Bildschirm"
 
-#: ../src/Models/CategoryModel.vala:111
+#: ../lib/UX/Models/CategoryModel.vala:129
 msgid "Script"
 msgstr "Skript"
 
-#: ../src/Models/CategoryModel.vala:112
+#: ../lib/UX/Models/CategoryModel.vala:130
 msgid "Decorative"
 msgstr "Dekorativ"
 
-#: ../src/Models/CategoryModel.vala:113
+#: ../lib/UX/Models/CategoryModel.vala:131
 msgid "Pictorial"
 msgstr "Bildhaft"
 
-#: ../src/Models/CategoryModel.vala:148
+#: ../lib/UX/Models/CategoryModel.vala:165
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/Models/CategoryModel.vala:150
+#: ../lib/UX/Models/CategoryModel.vala:170
 msgid "Regular"
 msgstr "Normal"
 
-#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:95
-msgid "Unicode Script"
-msgstr "Unicode Skript"
-
-#: ../src/UX/CharacterMap/CharacterMapSideBar.vala:96
-msgid "Unicode Block"
-msgstr "Unicode Block"
-
-#: ../src/UX/Controls/CollectionControls.vala:29
-msgid "Add new collection"
-msgstr "Füge eine neue Kollektion hinzu"
-
-#: ../src/UX/Controls/CollectionControls.vala:30
-msgid "Remove selected collection"
-msgstr "Entferne ausgewählte Kollektion"
-
-#: ../src/UX/Controls/CompareControls.vala:35
-msgid "Add selected font to comparison"
-msgstr "Füge ausgewählte Schrift dem Vergleich hinzu"
-
-#: ../src/UX/Controls/CompareControls.vala:36
-msgid "Remove selected font from comparison"
-msgstr "Entferne ausgewählte Schrift vom Vergleich"
-
-#: ../src/UX/Controls/CompareControls.vala:40
-msgid "Select text color"
-msgstr "Wähle Textfarbe"
-
-#: ../src/UX/Controls/CompareControls.vala:41
-msgid "Select background color"
-msgstr "Wähle Hintergrundfarbe"
-
-#: ../src/UX/Controls/FontListControls.vala:47
-#: ../src/UX/Controls/FontListControls.vala:90
-msgid "Expand all"
-msgstr "Alle ausklappen"
-
-#: ../src/UX/Controls/FontListControls.vala:50
-msgid "Remove selected fonts"
-msgstr "Entferne ausgewählte Schrift"
-
-#: ../src/UX/Controls/FontListControls.vala:54
-msgid "Search Families..."
-msgstr "Durchsuche Familien"
-
-#: ../src/UX/Controls/FontListControls.vala:62
-msgid "View font information"
-msgstr "Zeige Schriftinformationen"
-
-#: ../src/UX/Controls/FontListControls.vala:90
-msgid "Collapse all"
-msgstr "Alle einklappen"
-
-#: ../src/UX/Controls/FontListControls.vala:106
+#: ../lib/UX/Trees/UserSourceList.vala:26
 #, fuzzy
-msgid "Preview Fonts"
-msgstr "Schriften entfernen"
-
-#: ../src/UX/Controls/FontListControls.vala:115
-#, fuzzy
-msgid "View Information"
-msgstr "Zeige Schriftinformationen"
-
-#: ../src/UX/Controls/PreviewControls.vala:58
-msgid "Edit preview text"
-msgstr "Vorschautext bearbeiten"
-
-#: ../src/UX/Controls/PreviewControls.vala:61
-msgid "Undo changes"
-msgstr "Änderungen rückgängig machen"
-
-#: ../src/UX/Controls/PreviewControls.vala:66
-msgid "Left Aligned"
-msgstr "Links ausgerichtet"
-
-#: ../src/UX/Controls/PreviewControls.vala:66
-msgid "Centered"
-msgstr "Zentriert"
-
-#: ../src/UX/Controls/PreviewControls.vala:66
-msgid "Fill"
-msgstr "Füllen"
-
-#: ../src/UX/Controls/PreviewControls.vala:66
-msgid "Right Aligned"
-msgstr "Rechts ausgerichtet"
-
-#: ../src/UX/Controls/TitleBar.vala:72 ../src/UX/Controls/TitleBar.vala:125
-msgid "Add Fonts"
-msgstr "Schriften hinzufügen"
-
-#: ../src/UX/Controls/TitleBar.vala:73 ../src/UX/Controls/TitleBar.vala:126
-msgid "Remove Fonts"
-msgstr "Schriften entfernen"
-
-#: ../src/UX/Controls/TitleBar.vala:79
-msgid "Manage Sources"
+msgid "Font Sources"
 msgstr "Verwalte Quellen"
 
-#: ../src/UX/Controls/TitleBar.vala:122
-msgid "Add new source"
-msgstr "Füge eine neue Quelle hinzu"
+#: ../lib/UX/Trees/UserSourceList.vala:27
+msgid "Easily add or preview fonts without actually installing them."
+msgstr ""
 
-#: ../src/UX/Controls/TitleBar.vala:123
-msgid "Remove selected source"
-msgstr "Entferne ausgewählte Quelle"
+#: ../lib/UX/Trees/UserSourceList.vala:28
+msgid ""
+"To add a new source simply drag a folder onto this area or click the add "
+"button in the toolbar."
+msgstr ""
 
-#. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/UX/Controls/TitleBar.vala:176
-msgid "Help"
-msgstr "Hilfe"
+#: ../lib/UX/Views/FontPreviewPane.vala:57
+#: ../lib/UX/Widgets/FontPreview.vala:88
+msgid "Waterfall"
+msgstr "Wasserfall"
 
-#: ../src/UX/Controls/TitleBar.vala:177
-msgid "About"
-msgstr "Über"
+#: ../lib/UX/Views/FontPreviewPane.vala:59
+#: ../lib/UX/Widgets/FontPreview.vala:89
+msgid "Body Text"
+msgstr "Beispiel Text"
 
-#: ../src/UX/Controls/TitleBar.vala:178
-msgid "Quit"
-msgstr "Beenden"
+#: ../lib/UX/Views/FontPreviewPane.vala:61
+#: ../lib/UX/Widgets/FontPreview.vala:87
+#: ../src/font-manager/MainWindow.vala:207
+msgid "Preview"
+msgstr "Vorschau"
 
-#: ../src/UX/Dialogs/FileSelector.vala:30
+#: ../lib/UX/Views/FontPreviewPane.vala:123
+#, fuzzy
+msgid "Properties"
+msgstr "Proportional"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:125
+#, fuzzy
+msgid "Characters"
+msgstr "Zeichentabelle"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:248
+#, fuzzy
+msgid "Select preview type"
+msgstr "Vorschautext bearbeiten"
+
+#: ../lib/UX/Widgets/CellRendererPill.vala:30
+msgid "Variation "
+msgstr "Variation"
+
+#: ../lib/UX/Widgets/CellRendererPill.vala:31
+msgid "Variations"
+msgstr "Variationen"
+
+#: ../lib/UX/Widgets/FileSelector.vala:46
 msgid "Select source folders"
 msgstr "Wähle Quellverzeichnisse aus"
 
-#: ../src/UX/Dialogs/FileSelector.vala:33
-#: ../src/UX/Dialogs/FileSelector.vala:53
-#: ../src/UX/Dialogs/FileSelector.vala:79 ../src/UX/Dialogs/Migration.vala:58
+#: ../lib/UX/Widgets/FileSelector.vala:49
+#: ../lib/UX/Widgets/FileSelector.vala:69
+#: ../lib/UX/Widgets/FileSelector.vala:97 ../src/font-manager/Migration.vala:58
 msgid "_Cancel"
 msgstr "_Abbrechen"
 
-#: ../src/UX/Dialogs/FileSelector.vala:35
-#: ../src/UX/Dialogs/FileSelector.vala:55
+#: ../lib/UX/Widgets/FileSelector.vala:51
+#: ../lib/UX/Widgets/FileSelector.vala:71
 msgid "_Open"
 msgstr "_Öffnen"
 
-#: ../src/UX/Dialogs/FileSelector.vala:50
+#: ../lib/UX/Widgets/FileSelector.vala:66
 msgid "Select files to install"
 msgstr "Wähle Dateien zum installieren aus"
 
-#: ../src/UX/Dialogs/FileSelector.vala:80
+#: ../lib/UX/Widgets/FileSelector.vala:98
 msgid "_Delete"
 msgstr "_Entfernen"
 
-#: ../src/UX/Dialogs/FileSelector.vala:85
+#: ../lib/UX/Widgets/FileSelector.vala:105
 msgid "Select fonts to remove"
 msgstr "Wähle Schriften zum entfernen aus"
 
-#: ../src/UX/Dialogs/Migration.vala:59
+#: ../src/font-manager/Compare.vala:35
+msgid "Add selected font to comparison"
+msgstr "Füge ausgewählte Schrift dem Vergleich hinzu"
+
+#: ../src/font-manager/Compare.vala:36
+msgid "Remove selected font from comparison"
+msgstr "Entferne ausgewählte Schrift vom Vergleich"
+
+#: ../src/font-manager/Compare.vala:41
+msgid "Select text color"
+msgstr "Wähle Textfarbe"
+
+#: ../src/font-manager/Compare.vala:42
+msgid "Select background color"
+msgstr "Wähle Hintergrundfarbe"
+
+#: ../src/font-manager/Main.vala:254
+#, c-format
+msgid ""
+"Try restarting the application\n"
+"There was an error updating font information.\n"
+" Error : %s"
+msgstr ""
+
+#: ../src/font-manager/MainWindow.vala:57
+#: ../src/font-manager/MainWindow.vala:213
+msgid "Browse"
+msgstr "Stöbern"
+
+#: ../src/font-manager/MainWindow.vala:59
+#: ../src/font-manager/MainWindow.vala:208
+msgid "Compare"
+msgstr "Vergleiche"
+
+#: ../src/font-manager/MainWindow.vala:61
+#: ../src/font-manager/MainWindow.vala:212
+msgid "Manage"
+msgstr "Verwalte"
+
+#: ../src/font-manager/Migration.vala:59
 #, fuzzy
 msgid "_Continue"
 msgstr "Weiter"
 
-#: ../src/UX/Dialogs/Migration.vala:68
+#: ../src/font-manager/Migration.vala:69
 msgid "Update Required"
 msgstr "Aktualisierung benötigt"
 
-#: ../src/UX/Dialogs/Migration.vala:200
+#: ../src/font-manager/Migration.vala:206
 msgid ""
 "\n"
 "Font Manager has detected files from a previous installation. Some files "
@@ -602,223 +735,121 @@ msgstr ""
 "Es wird dringend empfohlen, alle wichtigen Dateien zu sichern bevor Sie "
 "fortfahren.\n"
 
-#: ../src/UX/FontConfig/DisplayPropertiesPane.vala:40
-msgid "Target DPI"
-msgstr ""
-
-#: ../src/UX/FontConfig/DisplayPropertiesPane.vala:41
-msgid "Scale factor"
-msgstr ""
-
-#: ../src/UX/FontConfig/DisplayPropertiesPane.vala:45
-msgid "LCD Filter"
-msgstr ""
-
-#: ../src/UX/FontConfig/FontPropertiesPane.vala:46
-msgid "Antialias"
-msgstr ""
-
-#: ../src/UX/FontConfig/FontPropertiesPane.vala:47
-msgid "Hinting"
-msgstr ""
-
-#: ../src/UX/FontConfig/FontPropertiesPane.vala:48
-msgid "Enable Autohinter"
-msgstr ""
-
-#: ../src/UX/FontConfig/FontPropertiesPane.vala:61
-msgid "Hinting Style"
-msgstr ""
-
-#: ../src/UX/FontConfig/FontPropertiesPane.vala:62
-msgid "Use Embedded Bitmaps"
-msgstr ""
-
-#: ../src/UX/FontConfig/FontPropertiesPane.vala:64
-#: ../src/UX/FontConfig/FontPropertiesPane.vala:72
-msgid " Size Limits "
-msgstr ""
-
-#: ../src/UX/FontConfig/FontPropertiesPane.vala:70
-msgid " Apply settings to point sizes "
-msgstr ""
-
-#: ../src/UX/FontConfig/FontPropertiesPane.vala:141
-msgid "Smaller than"
-msgstr ""
-
-#: ../src/UX/FontConfig/FontPropertiesPane.vala:142
-msgid "Larger than"
-msgstr ""
-
-#: ../src/UX/FontConfig/PropertiesEditor.vala:47
-msgid "General"
-msgstr ""
-
-#: ../src/UX/FontConfig/PropertiesEditor.vala:48
-#, fuzzy
-msgid "Display"
-msgstr "Text und Bildschirm"
-
-#: ../src/UX/FontConfig/PropertiesEditor.vala:53
-msgid "FontConfig Properties"
-msgstr ""
-
-#: ../src/UX/FontConfig/PropertiesEditor.vala:57
-msgid "Discard configuration"
-msgstr ""
-
-#: ../src/UX/FontConfig/SubpixelGeometry.vala:48
-msgid "Subpixel Geometry"
-msgstr ""
-
-#: ../src/UX/MainWindow.vala:64 ../src/UX/MainWindow.vala:240
-msgid "Browse"
-msgstr "Stöbern"
-
-#: ../src/UX/MainWindow.vala:66 ../src/UX/MainWindow.vala:233
-msgid "Compare"
-msgstr "Vergleiche"
-
-#: ../src/UX/MainWindow.vala:68 ../src/UX/MainWindow.vala:234
-msgid "Character Map"
-msgstr "Zeichentabelle"
-
-#: ../src/UX/MainWindow.vala:70 ../src/UX/MainWindow.vala:239
-msgid "Manage"
-msgstr "Verwalte"
-
-#: ../src/UX/MainWindow.vala:232 ../src/UX/Viewer.vala:60
-#: ../src/UX/Views/FontPreview.vala:90
-msgid "Preview"
-msgstr "Vorschau"
-
-#: ../src/UX/Sidebar/MainSideBar.vala:81
+#: ../src/font-manager/SideBar.vala:179
 msgid "Categories"
 msgstr "Kategorien"
 
-#: ../src/UX/Sidebar/MainSideBar.vala:82
+#: ../src/font-manager/SideBar.vala:180
 msgid "Collections"
 msgstr "Kollektionen"
 
-#: ../src/UX/Trees/UserSourceList.vala:26
-#, fuzzy
-msgid "Font Sources"
+#: ../src/font-manager/TitleBar.vala:69 ../src/font-manager/TitleBar.vala:122
+msgid "Add Fonts"
+msgstr "Schriften hinzufügen"
+
+#: ../src/font-manager/TitleBar.vala:70 ../src/font-manager/TitleBar.vala:123
+msgid "Remove Fonts"
+msgstr "Schriften entfernen"
+
+#: ../src/font-manager/TitleBar.vala:76
+msgid "Manage Sources"
 msgstr "Verwalte Quellen"
 
-#: ../src/UX/Trees/UserSourceList.vala:27
-msgid "Easily add or preview fonts without actually installing them."
-msgstr ""
+#: ../src/font-manager/TitleBar.vala:119
+msgid "Add new source"
+msgstr "Füge eine neue Quelle hinzu"
 
-#: ../src/UX/Trees/UserSourceList.vala:28
-msgid ""
-"To add a new source simply drag a folder onto this area or click the add "
-"button in the toolbar."
-msgstr ""
+#: ../src/font-manager/TitleBar.vala:120
+msgid "Remove selected source"
+msgstr "Entferne ausgewählte Quelle"
 
-#: ../src/UX/Utils/Utils.vala:44
-msgid "There was an error displaying help contents"
-msgstr ""
+#: ../src/font-manager/TitleBar.vala:173
+msgid "Help"
+msgstr "Hilfe"
 
-#: ../src/UX/Viewer.vala:51
+#: ../src/font-manager/TitleBar.vala:174
+msgid "About"
+msgstr "Über"
+
+#: ../src/font-manager/TitleBar.vala:175
+msgid "Quit"
+msgstr "Beenden"
+
+#. Note: Type hint used to prevent notification on every selection
+#: ../src/font-viewer/Application.vala:121
+#: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:49
 #, fuzzy
 msgid "Font Viewer"
 msgstr "Schriften Verwalter"
 
-#: ../src/UX/Viewer.vala:62 ../src/UX/Viewer.vala:167
+#: ../src/font-viewer/MainWindow.vala:29
+msgid "Preview font files before installing them."
+msgstr ""
+
+#: ../src/font-viewer/MainWindow.vala:30
+msgid "To preview a font simply drag it onto this area."
+msgstr ""
+
+#: ../src/font-viewer/MainWindow.vala:54 ../src/font-viewer/MainWindow.vala:160
 #, fuzzy
 msgid "Install Font"
 msgstr "Alle Schriften"
 
-#: ../src/UX/Viewer.vala:158
+#: ../src/font-viewer/MainWindow.vala:151
 msgid "Newer version already installed"
 msgstr ""
 
-#: ../src/UX/Viewer.vala:163
+#: ../src/font-viewer/MainWindow.vala:156
 #, fuzzy
 msgid "Installed"
 msgstr "Alle Schriften"
 
-#: ../src/UX/Views/FontPreview.vala:91
-msgid "Waterfall"
-msgstr "Wasserfall"
-
-#: ../src/UX/Views/FontPreview.vala:92
-msgid "Body Text"
-msgstr "Beispiel Text"
-
-#: ../src/UX/Views/Metadata.vala:48
-msgid "OpenType Font"
-msgstr "OpenType Schrift"
-
-#: ../src/UX/Views/Metadata.vala:49
-msgid "TrueType Font"
-msgstr "TrueType Schrift"
-
-#: ../src/UX/Views/Metadata.vala:50
-msgid "PostScript Type 1 Font"
-msgstr "PostScript Type 1 Schrift"
-
-#: ../src/UX/Views/Metadata.vala:85
-msgid "Details"
-msgstr ""
-
-#: ../src/UX/Views/Metadata.vala:86
-#, fuzzy
-msgid "Legal"
-msgstr "Veraltet (Legacy)"
-
-#: ../src/UX/Views/Metadata.vala:169
-#, fuzzy
-msgid "PostScript Name"
-msgstr "PostScript Type 1 Schrift"
-
-#: ../src/UX/Views/Metadata.vala:174
-msgid "Version"
-msgstr ""
-
-#: ../src/UX/Views/Metadata.vala:334
-msgid "File does not contain license description."
-msgstr ""
-
-#: ../src/UX/Widgets/CellRendererPill.vala:30
-msgid "Variation "
-msgstr "Variation"
-
-#: ../src/UX/Widgets/CellRendererPill.vala:31
-msgid "Variations"
-msgstr "Variationen"
-
-#: ../resources/ApplicationMenu.ui.h:1
+#: ../data/ApplicationMenu.ui.h:1
 msgid "_Preferences"
 msgstr ""
 
-#: ../resources/ApplicationMenu.ui.h:2
+#: ../data/ApplicationMenu.ui.h:2
 #, fuzzy
 msgid "_Help"
 msgstr "Hilfe"
 
-#: ../resources/ApplicationMenu.ui.h:3
+#: ../data/ApplicationMenu.ui.h:3
 #, fuzzy
 msgid "_About"
 msgstr "Über"
 
-#: ../resources/ApplicationMenu.ui.h:4
+#: ../data/ApplicationMenu.ui.h:4
 #, fuzzy
 msgid "_Quit"
 msgstr "Beenden"
 
-#: ../resources/org.gnome.FontManager.desktop.in.h:2
-msgid "Preview, Compare and Manage Fonts"
-msgstr "Betrachte, vergleiche und verwalte Schriften"
+#, fuzzy
+#~ msgid "Export selected collection"
+#~ msgstr "Entferne ausgewählte Kollektion"
 
-#: ../resources/org.gnome.FontManager.desktop.in.h:3
-msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr "Graphics;Viewer;GNOME;GTK;Publishing;"
+#~ msgid "Character Map"
+#~ msgstr "Zeichentabelle"
 
 #, fuzzy
-#~ msgid "Hide font information"
+#~ msgid "Legal"
+#~ msgstr "Veraltet (Legacy)"
+
+#~ msgid "View font information"
 #~ msgstr "Zeige Schriftinformationen"
+
+#, fuzzy
+#~ msgid "Preview Fonts"
+#~ msgstr "Schriften entfernen"
+
+#, fuzzy
+#~ msgid "View Information"
+#~ msgstr "Zeige Schriftinformationen"
+
+#~ msgid "Preview, Compare and Manage Fonts"
+#~ msgstr "Betrachte, vergleiche und verwalte Schriften"
+
+#~ msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
+#~ msgstr "Graphics;Viewer;GNOME;GTK;Publishing;"
 
 #~ msgid "Cancel"
 #~ msgstr "Abbrechen"

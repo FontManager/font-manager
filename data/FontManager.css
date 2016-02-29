@@ -1,0 +1,71 @@
+/* FontManager.css
+ *
+ * Copyright (C) 2009 - 2016 Jerry Casiano
+ *
+ * This file is part of Font Manager.
+ *
+ * Font Manager is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Font Manager is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Author:
+ *        Jerry Casiano <JerryCasiano@gmail.com>
+*/
+
+* {
+    -GtkPaned-handle-size: 0;
+}
+
+.red {
+    background-color: #ff0000;
+}
+
+.green {
+    background-color: #008000;
+}
+
+.blue {
+    background-color: #0000ff;
+}
+
+.gray {
+    background-color: #808080;
+}
+
+/*  Fix giant header bar - Fedora release 23
+
+    These tweaks match header bar size to Nautilus 3.18
+    Default GTK+ theme (Adwaita)
+
+    This issue seems to only apply to the default theme?
+    Vertex and Arc didn't seem to have any issue before
+    or after.
+
+    https://github.com/FontManager/master/issues/6
+*/
+
+#FontManagerHeaderBar,
+#FontManagerFontListControls {
+    padding: 3px;
+}
+
+#FontManagerHeaderBar *,
+#FontManagerFontListControls * {
+    padding: 2px;
+    margin: 0px;
+}
+
+#FontManagerHeaderBar GtkButton {
+    padding: 3px;
+}
+
+/* END Fix giant header bar - Fedora release 23 */

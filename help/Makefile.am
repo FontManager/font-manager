@@ -1,6 +1,6 @@
 @YELP_HELP_RULES@
 
-HELP_ID = font-manager
+HELP_ID = $(PACKAGE_NAME)
 
 HELP_FILES = \
 	index.page
@@ -10,4 +10,5 @@ HELP_MEDIA = \
 
 HELP_LINGUAS =
 
-
+MAINTAINERCLEANFILES = \
+	./Makefile.in
