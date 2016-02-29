@@ -48,7 +48,6 @@ lib/UX/Controls/FontListControls.vala
 lib/UX/Controls/PreviewControls.vala
 lib/UX/FontConfig/DisplayPropertiesPane.vala
 lib/UX/FontConfig/FontPropertiesPane.vala
-lib/UX/FontConfig/PropertiesEditor.vala
 lib/UX/FontConfig/SubpixelGeometry.vala
 lib/UX/Metadata/Description.vala
 lib/UX/Metadata/License.vala
@@ -87,6 +86,11 @@ src/font-manager/Compare.vala
 src/font-manager/Main.vala
 src/font-manager/MainWindow.vala
 src/font-manager/Migration.vala
+src/font-manager/Preferences/Display.vala
+src/font-manager/Preferences/Interface.vala
+src/font-manager/Preferences/Preferences.vala
+src/font-manager/Preferences/Rendering.vala
+src/font-manager/Preferences/Sources.vala
 src/font-manager/RenderingOptions.vala
 src/font-manager/SideBar.vala
 src/font-manager/State.vala

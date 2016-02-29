@@ -48,7 +48,6 @@ lib/UX/Controls/FontListControls.c
 lib/UX/Controls/PreviewControls.c
 lib/UX/FontConfig/DisplayPropertiesPane.c
 lib/UX/FontConfig/FontPropertiesPane.c
-lib/UX/FontConfig/PropertiesEditor.c
 lib/UX/FontConfig/SubpixelGeometry.c
 lib/UX/Metadata/Description.c
 lib/UX/Metadata/License.c
@@ -87,6 +86,11 @@ src/font-manager/Compare.c
 src/font-manager/Main.c
 src/font-manager/MainWindow.c
 src/font-manager/Migration.c
+src/font-manager/Preferences/Display.c
+src/font-manager/Preferences/Interface.c
+src/font-manager/Preferences/Preferences.c
+src/font-manager/Preferences/Rendering.c
+src/font-manager/Preferences/Sources.c
 src/font-manager/RenderingOptions.c
 src/font-manager/SideBar.c
 src/font-manager/State.c
