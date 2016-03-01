@@ -74,9 +74,7 @@ namespace FontManager {
             buffer.get_bounds(out start, out end);
             buffer.apply_tag(preview.tag_table.lookup("FontDescription"), start, end);
             buffer.apply_tag(preview.tag_table.lookup("FontSize"), start, end);
-        #if GTK_316_OR_LATER
             buffer.apply_tag(preview.tag_table.lookup("FontFallback"), start, end);
-        #endif
             Idle.add(() => {
                 preview.queue_draw();
                 return false;

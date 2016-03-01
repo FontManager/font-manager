@@ -29,9 +29,7 @@ namespace FontManager {
             "FontDescription",
             "FontSize",
             "SizePoint",
-        #if GTK_316_OR_LATER
             "FontFallback"
-        #endif
         };
 
         construct {
@@ -41,10 +39,8 @@ namespace FontManager {
             sp.family = "Monospace";
             sp.rise = 1250;
             sp.size_points = 6.0;
-        #if GTK_316_OR_LATER
             Gtk.TextTag fb = lookup(defaults[3]);
             fb.fallback = false;
-        #endif
         }
 
     }

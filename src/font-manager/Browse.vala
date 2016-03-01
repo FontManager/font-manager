@@ -116,11 +116,9 @@ namespace FontManager {
             var obj = val.get_object();
             string font_desc;
             bool active;
-        #if GTK_316_OR_LATER
             Pango.AttrList attrs = new Pango.AttrList();
             attrs.insert(Pango.attr_fallback_new(false));
             cell.set_property("attributes", attrs);
-        #endif
             var default_desc = get_font(treeview);
             default_desc.set_size((int) ((get_desc_size()) * Pango.SCALE));
             cell.set_property("font-desc" , default_desc);

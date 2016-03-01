@@ -34,9 +34,6 @@ libfontmanager_la_LDFLAGS = \
 
 libfontmanager_la_VALAFLAGS = \
 	$(AM_VALAFLAGS) \
-	$(GTK_314_OR_LATER) \
-	$(GTK_316_OR_LATER) \
-	$(VALA_0271_OR_LATER) \
 	$(HAVE_FILE_ROLLER) \
 	--gresources $(data_dir)/FontManagerGResource.xml \
 	--library fontmanager \

@@ -53,11 +53,7 @@ namespace FontManager {
 
             public void update (Gtk.Image icon, string key) {
                 var entry = this[key];
-            #if GTK_314_OR_LATER
                 icon.set_from_icon_name(entry.name, Gtk.IconSize.DIALOG);
-            #else
-                icon.set_from_resource("/org/gnome/FontManager/icons/%s.svg".printf(entry.name));
-            #endif
                 icon.set_tooltip_text(entry.tooltip);
             }
 

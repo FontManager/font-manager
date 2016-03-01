@@ -225,11 +225,9 @@ namespace FontManager {
                              Gtk.CellRenderer cell,
                              Gtk.TreeModel model,
                              Gtk.TreeIter treeiter) {
-        #if GTK_316_OR_LATER
             Pango.AttrList attrs = new Pango.AttrList();
             attrs.insert(Pango.attr_fallback_new(false));
             cell.set_property("attributes", attrs);
-        #endif
             if (model.get_path(treeiter).get_indices()[0] % 2 == 0) {
                 /* Name row */
                 cell.set_property("foreground-rgba", default_fg_color);

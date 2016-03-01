@@ -26,23 +26,7 @@ dnl Check for basics
     AC_PROG_CC()
     AM_PROG_LIBTOOL
     dnl Gtk.TextBuffer API break
-    AM_PROG_VALAC(
-        [0.27.1],
-        [AC_SUBST(VALA_0271_OR_LATER, [" -D VALA_0271_OR_LATER"])],
-        [AM_PROG_VALAC(
-            [0.24],
-            [:],
-            AC_MSG_ERROR([
-
-            Build requirements (valac) were not met:
-
-            Please install Vala >= 0.24 and try again.
-
-            https://wiki.gnome.org/Projects/Vala
-
-            ])
-        )]
-    )
+    AM_PROG_VALAC([0.28])
     C_PROG_INSTALL()
     AC_PROG_MKDIR_P()
     AC_PROG_SED()
@@ -71,33 +55,7 @@ dnl Check for libraries.
     PKG_CHECK_MODULES(GMODULE, gmodule-2.0 >= 2.4)
     PKG_CHECK_MODULES(GIO, gio-2.0 >= 2.4)
     PKG_CHECK_MODULES(CAIRO, cairo >= 1.1)
-    PKG_CHECK_MODULES(
-        GTK_312,
-        gtk+-3.0 >= 3.12,
-        [
-            PKG_CHECK_MODULES(
-                GTK_314,
-                gtk+-3.0 >= 3.14,
-                [
-                    AC_SUBST(GTK_314_OR_LATER, [" -D GTK_314_OR_LATER"])
-                    PKG_CHECK_MODULES(
-                        GTK_316,
-                        gtk+-3.0 >= 3.16,
-                        [AC_SUBST(GTK_316_OR_LATER, [" -D GTK_316_OR_LATER"])],
-                        [:]
-                    )
-                ],
-                [:]
-            )
-        ],
-        AC_MSG_ERROR([Build requirements (GTK+) were not met:
-
-        Please install GTK+ >= 3.12 and try again.
-
-        http://www.gtk.org/
-
-        ])
-    )
+    PKG_CHECK_MODULES(GTK_316, gtk+-3.0 >= 3.16)
     PKG_CHECK_MODULES(PANGO, pango >= 1.3)
     PKG_CHECK_MODULES(PANGOCAIRO, pangocairo >= 1.3)
     PKG_CHECK_MODULES(PANGOFT2, pangoft2 >= 1.3)

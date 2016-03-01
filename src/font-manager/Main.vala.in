@@ -233,11 +233,7 @@ namespace FontManager {
                 main_window.progress = ((float) p /(float) t);
                 ensure_ui_update();
             });
-        #if GTK_314_OR_LATER
-            if (prefers_app_menu())
-        #else
-            if (Gnome3())
-        #endif
+            if (application.prefers_app_menu())
                 set_g_app_menu(application, new Gtk.Builder(), "@PACKAGE_NAME@");
             reject.init();
             sources.init();
