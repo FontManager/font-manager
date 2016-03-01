@@ -100,6 +100,7 @@ namespace FontManager {
             }
         }
 
+        SimpleAction mode_action;
         Gtk.Label preview_tab_label;
         Gtk.MenuButton menu_button;
         FontData? _font_data = null;
@@ -135,8 +136,11 @@ namespace FontManager {
             });
             preview.mode_changed.connect((m) => {
                 preview_tab_label.set_text(mode.to_translatable_string());
+                mode_action.set_state(mode.to_string());
+                /* Requires 3.16
                 var actions = ((SimpleActionGroup) get_action_group("preview"));
                 actions.lookup_action("mode").change_state(mode.to_string());
+                */
                 Idle.add(() => {
                     if (menu_button.use_popover) {
                         menu_button.popover.hide();
@@ -230,7 +234,7 @@ namespace FontManager {
             var action_group = new SimpleActionGroup();
             var mode_section = new GLib.Menu();
             string [] modes = { "Preview", "Waterfall", "Body Text" };
-            var mode_action = new SimpleAction.stateful("mode", VariantType.STRING, "Preview");
+            mode_action = new SimpleAction.stateful("mode", VariantType.STRING, "Preview");
             mode_action.activate.connect((a, s) => {
                 mode = FontPreviewMode.parse((string) s);
             });
