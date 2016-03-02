@@ -25,23 +25,18 @@ namespace FontManager {
 
     namespace Preferences {
 
-        public class Rendering : Gtk.Box {
+        public class Rendering : FontConfig.PreferencePane {
 
             FontConfig.FontPropertiesPane pane;
-            FontConfig.Controls controls;
 
-            construct {
-                orientation = Gtk.Orientation.VERTICAL;
+            public Rendering () {
                 pane = new FontConfig.FontPropertiesPane();
-                controls = new FontConfig.Controls();
                 pack_start(pane, true, true, 0);
-                pack_end(controls, false, false, 0);
                 connect_signals();
             }
 
             public override void show () {
                 pane.show();
-                controls.show();
                 base.show();
                 return;
             }
@@ -49,9 +44,11 @@ namespace FontManager {
             void connect_signals () {
                 controls.save_selected.connect(() => {
                     pane.properties.save();
+                    show_message(_("Settings saved to file."));
                 });
                 controls.discard_selected.connect(() => {
                     pane.properties.discard();
+                    show_message(_("Removed configuration file."));
                 });
                 return;
             }

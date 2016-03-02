@@ -48,6 +48,7 @@ lib/UX/Controls/FontListControls.vala
 lib/UX/Controls/PreviewControls.vala
 lib/UX/FontConfig/DisplayPropertiesPane.vala
 lib/UX/FontConfig/FontPropertiesPane.vala
+lib/UX/FontConfig/PreferencePane.vala
 lib/UX/FontConfig/SubpixelGeometry.vala
 lib/UX/Metadata/Description.vala
 lib/UX/Metadata/License.vala

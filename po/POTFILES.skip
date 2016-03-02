@@ -48,6 +48,7 @@ lib/UX/Controls/FontListControls.c
 lib/UX/Controls/PreviewControls.c
 lib/UX/FontConfig/DisplayPropertiesPane.c
 lib/UX/FontConfig/FontPropertiesPane.c
+lib/UX/FontConfig/PreferencePane.c
 lib/UX/FontConfig/SubpixelGeometry.c
 lib/UX/Metadata/Description.c
 lib/UX/Metadata/License.c

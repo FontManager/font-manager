@@ -52,6 +52,7 @@ libfontmanager_la_VALASOURCES = \
 ./UX/Controls/PreviewControls.vala \
 ./UX/FontConfig/DisplayPropertiesPane.vala \
 ./UX/FontConfig/FontPropertiesPane.vala \
+./UX/FontConfig/PreferencePane.vala \
 ./UX/FontConfig/SubpixelGeometry.vala \
 ./UX/Metadata/Description.vala \
 ./UX/Metadata/License.vala \
