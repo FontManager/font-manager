@@ -33,7 +33,6 @@ namespace FontConfig {
             orientation = Gtk.Orientation.VERTICAL;
             controls = new FontConfig.Controls();
             infobar = new Gtk.InfoBar();
-            infobar.show_close_button = true;
             infobar.message_type = Gtk.MessageType.INFO;
             message = new Gtk.Label(null);
             infobar.get_content_area().add(message);

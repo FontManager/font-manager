@@ -25,17 +25,20 @@ namespace FontManager {
 
     namespace Preferences {
 
-        public class Interface : Gtk.Grid {
+        public class Interface : Gtk.Box {
 
             public LabeledSwitch wide_layout { get; private set; }
             public LabeledSwitch use_csd { get; private set; }
 
             Gtk.Box box;
+            Gtk.Grid grid;
+            Gtk.Label message;
+            Gtk.InfoBar infobar;
             Gtk.Revealer wide_layout_options;
             Gtk.CheckButton on_maximize;
 
             construct {
-                margin_top = margin_right = 24;
+                orientation = Gtk.Orientation.VERTICAL;
                 wide_layout = new LabeledSwitch();
                 wide_layout.label.set_markup(_("Wide Layout"));
                 wide_layout_options = new Gtk.Revealer();
@@ -54,15 +57,28 @@ namespace FontManager {
                 separator.margin_start = separator.margin_end = 48;
                 separator.opacity = 0.333;
                 box.pack_start(on_maximize, true, false, 0);
+                message = new Gtk.Label(null);
+                infobar = new Gtk.InfoBar();
+                infobar.get_content_area().add(message);
+                infobar.response.connect((id) => {
+                    if (id == Gtk.ResponseType.CLOSE)
+                        infobar.hide();
+                });
                 wide_layout_options.add(box);
-                attach(wide_layout, 0, 0, 1, 1);
-                attach(wide_layout_options, 0, 1, 1, 1);
-                attach(use_csd, 0, 2, 1, 1);
+                grid = new Gtk.Grid();
+                grid.margin_top = grid.margin_right = 24;
+                grid.attach(wide_layout, 0, 0, 1, 1);
+                grid.attach(wide_layout_options, 0, 1, 1, 1);
+                grid.attach(use_csd, 0, 2, 1, 1);
+                pack_start(infobar, false, false, 0);
+                pack_end(grid, true, true, 0);
                 connect_signals();
                 bind_properties();
             }
 
             public override void show () {
+                grid.show();
+                message.show();
                 box.show();
                 wide_layout.show();
                 on_maximize.show();
@@ -79,11 +95,30 @@ namespace FontManager {
                 return;
             }
 
+            void show_message (string m) {
+                message.set_markup("<b>%s</b>".printf(m));
+                infobar.show();
+                Timeout.add_seconds(3, () => {
+                    infobar.hide();
+                    return false;
+                });
+                return;
+            }
+
             void connect_signals () {
                 wide_layout.toggle.notify["active"].connect(() => {
                     wide_layout_options.set_reveal_child(wide_layout.toggle.get_active());
                 });
+                use_csd.toggle.notify["active"].connect(() => {
+                    if (use_csd.toggle.active)
+                        show_message(_("CSD enabled. Change will take effect next time the application is started."));
+                    else
+                        show_message(_("CSD disabled. Change will take effect next time the application is started."));
+                });
+                /* XXX : Shouldn't need this... but do. */
+                this.realize.connect(() => { infobar.hide(); });
                 return;
+
             }
 
         }
