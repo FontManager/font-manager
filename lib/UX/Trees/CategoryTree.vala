@@ -61,7 +61,7 @@ namespace FontManager {
             expand = true;
             tree = new BaseTreeView();
             model = new CategoryModel();
-            tree.name = "FontManagerCategoryTree";
+            tree.name = "CategoryTree";
             tree.level_indentation = 12;
             renderer = new Gtk.CellRendererText();
             count_renderer = new CellRendererCount();

@@ -482,11 +482,13 @@ namespace FontManager {
             fontlist.selection_changed.connect(() => {
                 Gtk.TreeIter iter;
                 fontlist.model.get_iter_from_string(out iter, fontlist.selected_iter);
-                if (fontlist.model.iter_has_child(iter)) {
-                    render_opts.properties.font = null;
-                    render_opts.properties.family = fontlist.selected_family.name;
-                } else {
-                    render_opts.properties.font = fontlist.selected_font;
+                if (render_opts.visible) {
+                    if (fontlist.model.iter_has_child(iter)) {
+                        render_opts.properties.font = null;
+                        render_opts.properties.family = fontlist.selected_family.name;
+                    } else {
+                        render_opts.properties.font = fontlist.selected_font;
+                    }
                 }
             });
 
@@ -564,7 +566,7 @@ namespace FontManager {
                 if (sidebar.standard.category_tree.selected_filter is Disabled)
                     update_font_model(sidebar.standard.category_tree.selected_filter);
                 Idle.add(() => {
-                    reject.init();
+                    reject.load();
                     fontlist.queue_draw();
                     return false;
                 });
@@ -596,8 +598,14 @@ namespace FontManager {
                     Main.instance.main_window.fonttree.progress.set_fraction((float) p / (float) t);
                     ensure_ui_update();
                 };
-                Main.instance.sources.cancel_monitors();
                 Library.Remove.from_file_array(arr, Main.instance.database);
+                foreach (var file in arr) {
+                    try {
+                        prune_path_from_database(Main.instance.database, file.get_path());
+                    } catch (DatabaseError e) {
+                        warning("Failed to remove entries from database : %s", e.message);
+                    }
+                }
                 queue_reload();
             }
             return;
@@ -611,7 +619,6 @@ namespace FontManager {
                 Main.instance.main_window.fonttree.progress.set_fraction((float) p / (float) t);
                 ensure_ui_update();
             };
-            Main.instance.sources.cancel_monitors();
             Library.Install.from_uri_array(arr);
             fonttree.loading = false;
             font_model = Main.instance.font_model;

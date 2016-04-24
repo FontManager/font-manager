@@ -28,7 +28,7 @@ namespace FontManager {
         public FontConfig.Font font;
         public FontInfo fontinfo;
 
-        public FontData (File file, string? rmdir = null) {
+        public FontData (File file) {
             this.file = file;
             font = FontConfig.get_font_from_file(file.get_path());
             fontinfo = new FontInfo.from_filepath(file.get_path());

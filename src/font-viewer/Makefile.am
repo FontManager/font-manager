@@ -1,17 +1,17 @@
 
-include ${abs_top_builddir}/Flags.mk
+include $(top_srcdir)/Flags.mk
 
 font_viewer_VALAFLAGS = \
 	${AM_VALAFLAGS} \
-	${abs_top_builddir}/lib/fontmanager.vapi
+	$(top_srcdir)/lib/fontmanager.vapi
 
-font_viewer_CPPFLAGS = \
-	${AM_CPPFLAGS} \
-	-I${abs_top_builddir}/lib/
+font_viewer_CFLAGS = \
+	${AM_CFLAGS} \
+	-I$(top_srcdir)/lib/
 
 font_viewer_LDADD = \
 	${AM_LDADD} \
-	${abs_top_builddir}/lib/libfontmanager.la
+	$(top_srcdir)/lib/libfontmanager.la
 
 font_viewer_SOURCES = \
 	Application.vala \
@@ -24,8 +24,7 @@ CLEANFILES = \
 	*.stamp*
 
 MAINTAINERCLEANFILES = \
-	./Makefile.in
+	Makefile.in
 
 dist-hook:
-	cd $(distdir) && \
-	rm -f $(font_viewer_SOURCES:.vala=.c) *.stamp*
+	cd $(distdir) && rm -f $(font_viewer_SOURCES:.vala=.c) $(CLEANFILES)

@@ -41,11 +41,9 @@ namespace FontManager {
         Pango.FontDescription _font_desc;
 
         public class TextPreview (StandardTextTagTable tag_table) {
-            set_orientation(Gtk.Orientation.VERTICAL);
+            Object(name: "TextPreview", orientation: Gtk.Orientation.VERTICAL);
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             preview = new StaticTextView(tag_table);
-            preview.view.left_margin = 12;
-            preview.view.right_margin = 12;
             preview.view.justification = Gtk.Justification.FILL;
             set_preview_text(LOREM_IPSUM);
             pack_start(preview, true, true, 0);

@@ -77,7 +77,7 @@ namespace FontManager {
             expand = true;
             tree = new BaseTreeView();
             model = new CollectionModel();
-            tree.name = "FontManagerCollectionTree";
+            tree.name = "CollectionTree";
             renderer = new Gtk.CellRendererText();
             count_renderer = new CellRendererCount();
             var toggle = new Gtk.CellRendererToggle();

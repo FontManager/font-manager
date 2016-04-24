@@ -30,7 +30,6 @@ namespace FontManager {
             public LabeledSwitch wide_layout { get; private set; }
             public LabeledSwitch use_csd { get; private set; }
 
-            Gtk.Box box;
             Gtk.Grid grid;
             Gtk.Label message;
             Gtk.InfoBar infobar;
@@ -43,20 +42,10 @@ namespace FontManager {
                 wide_layout.label.set_markup(_("Wide Layout"));
                 wide_layout_options = new Gtk.Revealer();
                 on_maximize = new Gtk.CheckButton.with_label(_("Only when maximized"));
-                on_maximize.margin = 12;
-                wide_layout_options.margin_start = wide_layout_options.margin_end = 32;
+                on_maximize.margin = 6;
                 on_maximize.margin_start = on_maximize.margin_end = 48;
                 use_csd = new LabeledSwitch();
                 use_csd.label.set_markup(_("Client Side Decorations"));
-                box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-                box.margin = 6;
-                var separator = add_separator(box, Gtk.Orientation.HORIZONTAL);
-                separator.margin_start = separator.margin_end = 48;
-                separator.opacity = 0.333;
-                separator = add_separator(box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
-                separator.margin_start = separator.margin_end = 48;
-                separator.opacity = 0.333;
-                box.pack_start(on_maximize, true, false, 0);
                 message = new Gtk.Label(null);
                 infobar = new Gtk.InfoBar();
                 infobar.get_content_area().add(message);
@@ -64,9 +53,8 @@ namespace FontManager {
                     if (id == Gtk.ResponseType.CLOSE)
                         infobar.hide();
                 });
-                wide_layout_options.add(box);
+                wide_layout_options.add(on_maximize);
                 grid = new Gtk.Grid();
-                grid.margin_top = grid.margin_right = 24;
                 grid.attach(wide_layout, 0, 0, 1, 1);
                 grid.attach(wide_layout_options, 0, 1, 1, 1);
                 grid.attach(use_csd, 0, 2, 1, 1);
@@ -79,7 +67,7 @@ namespace FontManager {
             public override void show () {
                 grid.show();
                 message.show();
-                box.show();
+//                box.show();
                 wide_layout.show();
                 on_maximize.show();
                 wide_layout_options.show();

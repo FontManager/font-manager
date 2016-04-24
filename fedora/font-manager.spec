@@ -2,11 +2,12 @@
 %define MinorVersion 7
 %define MicroVersion 3
 %define DBusName org.gnome.FontManager
+%define DBusName2 org.gnome.FontViewer
 %define DownloadURL https://github.com/FontManager/master/releases/download
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    3
+Release:    5
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -25,8 +26,6 @@ BuildRequires: json-glib-devel
 BuildRequires: libappstream-glib
 BuildRequires: libgee-devel
 BuildRequires: libxml2-devel
-BuildRequires: nautilus-python-devel
-BuildRequires: nemo-python-devel
 BuildRequires: pango-devel
 BuildRequires: sqlite-devel
 BuildRequires: vala >= 0.24
@@ -61,15 +60,15 @@ These files are required by font-manager and font-viewer.
 
 %package -n font-viewer
 Summary: Full featured font file preview application for GTK+ Desktop Environments
-Requires: font-manager-common >= %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
+Requires: font-manager-common >= %{version}
 %description -n font-viewer
 This package contains the font-viewer component of font-manager.
 
 %package -n nautilus-font-manager
 BuildArch: noarch
 Summary: Nautilus extension for font-manager
-Requires: font-viewer >= %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Requires: font-manager-common >= %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
+Requires: font-viewer >= %{version}
+Requires: font-manager-common >= %{version}
 Requires: nautilus-python
 %description -n nautilus-font-manager
 This package provides integration with the Nautilus file manager.
@@ -77,15 +76,26 @@ This package provides integration with the Nautilus file manager.
 %package -n nemo-font-manager
 BuildArch: noarch
 Summary: Nemo extension for Font Manager
-Requires: font-manager nemo-python
+Requires: font-viewer >= %{version}
+Requires: font-manager-common >= %{version}
+Requires: nemo-python
 %description -n nemo-font-manager
 This package provides integration with the Nemo file manager.
+
+%package -n thunarx-font-manager
+BuildArch: noarch
+Summary: Thunar extension for Font Manager
+Requires: font-viewer >= %{version}
+Requires: font-manager-common >= %{version}
+Requires: thunarx-python
+%description -n thunarx-font-manager
+This package provides integration with the Thunar file manager.
 
 %prep
 %setup -q
 
 %build
-%configure --disable-schemas-compile --with-nautilus --with-nemo
+%configure --disable-schemas-compile --with-nautilus --with-nemo --with-thunar
 make
 
 %check
@@ -112,9 +122,9 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 
 %files -n font-viewer
 %{_libexecdir}/%{name}/font-viewer
-%{_datadir}/applications/org.gnome.FontViewer.desktop
-%{_datadir}/dbus-1/services/org.gnome.FontViewer.service
-%{_datadir}/glib-2.0/schemas/org.gnome.FontViewer.gschema.xml
+%{_datadir}/applications/%{DBusName2}.desktop
+%{_datadir}/dbus-1/services/%{DBusName2}.service
+%{_datadir}/glib-2.0/schemas/%{DBusName2}.gschema.xml
 
 %files -n nautilus-font-manager
 %{_datadir}/nautilus-python/extensions/%{name}.py*
@@ -122,7 +132,17 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 %files -n nemo-font-manager
 %{_datadir}/nemo-python/extensions/%{name}.py*
 
+%files -n thunarx-font-manager
+%{_datadir}/thunarx-python/extensions/%{name}.py*
+
 %changelog
+* Thu Apr 21 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-5
+- Drop build deps for python extensions
+- Enable all extensions
+- Update to latest git
+* Sat Mar 5 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-4
+- Update to latest git to include new features.
+- Added preference pane.
 * Wed Jan 06 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-3
 - Update to latest git to include bug fixes.
 * Wed Dec 23 2015 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-2

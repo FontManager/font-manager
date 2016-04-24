@@ -363,10 +363,13 @@ if test x$NOCONFIGURE = x; then
 
     if [ "$#" = 0 ]; then
         printerr
-        printerr "**Warning**: I am going to run \`configure' with no arguments."
-        printerr "If you wish to pass any to it, please specify them on the"
-        printerr \`$0\'" command line."
+        printbold "** Warning **"
         printerr
+        printerr "    Running \`configure' with no arguments."
+        printerr "    If you wish to pass any to it, please specify them on the"
+        printerr "    "\`$0\'" command line."
+        printerr
+        sleep 3
     fi
 
     printbold Running $srcdir/configure $conf_flags "$@" ...

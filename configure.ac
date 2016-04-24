@@ -7,6 +7,7 @@ dnl Copyright (C) 2009 - 2016 Jerry Casiano
 dnl
 dnl
 dnl Initialize autoconf
+dnl
     AC_PREREQ([2.69])
     AC_INIT(
         [font-manager],
@@ -19,10 +20,12 @@ dnl Initialize autoconf
     AC_SUBST([ACLOCAL_AMFLAGS], ["-I $ac_macro_dir \${ACLOCAL_FLAGS}"])
 dnl
 dnl Initialize automake
+dnl
     AM_INIT_AUTOMAKE([1.11 foreign subdir-objects dist-bzip2])
     AM_SILENT_RULES([yes])
 dnl
 dnl Check for basics
+dnl
     AC_PROG_CC()
     AM_PROG_LIBTOOL
     dnl Gtk.TextBuffer API break
@@ -39,12 +42,15 @@ dnl
     AC_DEFINE_UNQUOTED(GETTEXT_PACKAGE,"$GETTEXT_PACKAGE",[The name of the gettext domain])
 dnl
 dnl Call to intltoolize chokes on indentation
+dnl
 IT_PROG_INTLTOOL()
 dnl
 dnl Initialize libtool
+dnl
     LT_INIT()
 dnl
 dnl Check for libraries.
+dnl
     PKG_PROG_PKG_CONFIG()
     PKG_CHECK_MODULES(XML, libxml-2.0 >= 2.9)
     PKG_CHECK_MODULES(FREETYPE, freetype2 >= 2.5)
@@ -64,9 +70,11 @@ dnl Check for libraries.
     PKG_CHECK_MODULES(SQLITE3, sqlite3 >= 3.8)
 dnl
 dnl GSettings support
+dnl
     GLIB_GSETTINGS()
 dnl
 dnl Check for yelp-tools
+dnl
     AC_CHECK_PROG(YELP_TOOLS, "yelp-build", yes)
     if test "x$YELP_TOOLS" != "xyes";
         then
@@ -82,9 +90,11 @@ dnl Check for yelp-tools
     fi
 dnl
 dnl Initialize yelp support
+dnl
     YELP_HELP_INIT()
 dnl
 dnl Check for supporting applications
+dnl
     AC_CHECK_PROG(FILE_ROLLER, file-roller, yes)
     AS_IF([test "x$FILE_ROLLER" = "xyes"], [
       AC_SUBST(HAVE_FILE_ROLLER, [" -D HAVE_FILE_ROLLER"])
@@ -92,43 +102,35 @@ dnl Check for supporting applications
 dnl
 dnl Optional Extensions
 dnl
+    # Don't check for extension requirements to avoid build deps.
+    AC_ARG_WITH([nautilus], AS_HELP_STRING([--with-nautilus], [Install Nautilus extension]))
+    AC_ARG_WITH([nemo], AS_HELP_STRING([--with-nemo], [Install Nemo extension]))
+    AC_ARG_WITH([thunarx], AS_HELP_STRING([--with-thunarx], [Install Thunar extension]))
     AM_CONDITIONAL(COMPILE_PYTHON_EXTENSIONS, [test ''])
     AM_CONDITIONAL(INSTALL_NAUTILUS_EXTENSION, [test ''])
     AM_CONDITIONAL(INSTALL_NEMO_EXTENSION, [test ''])
     AM_CONDITIONAL(INSTALL_THUNAR_EXTENSION, [test ''])
     file_browser_support="no"
+    AS_IF(
+      [test "x$with_nautilus" = "xyes" -o "x$with_nemo" = "xyes" -o "x$with_thunarx" = "xyes"],
+      [file_browser_support="yes"]
+    )
 dnl
 dnl Debian policy discourages shipping compiled python files.
 dnl Red Hat policy encourages shipping compiled python files.
 dnl Others, who knows?
 dnl
     AC_ARG_ENABLE([pycompile], AS_HELP_STRING([--disable-pycompile], [Disable compilation of Python extensions]))
-    AS_IF([test "x$enable_pycompile" != "xno"], [
+    AS_IF([test "x$file_browser_support" != "xno" -a "x$enable_pycompile" != "xno"], [
       AM_PATH_PYTHON
       AM_CONDITIONAL([COMPILE_PYTHON_EXTENSIONS], [test "x$enable_pycompile" != "xno"])
     ])
-dnl
-    AC_ARG_WITH([nautilus], AS_HELP_STRING([--with-nautilus], [Install Nautilus extension]))
-    AS_IF([test "x$with_nautilus" = "xyes"], [
-        file_browser_support="yes"
-        PKG_CHECK_MODULES(NAUTILUS_PYTHON, nautilus-python, [AM_CONDITIONAL([INSTALL_NAUTILUS_EXTENSION],[test "x$with_nautilus" = "xyes"])])
-    ])
-dnl
-    AC_ARG_WITH([nemo], AS_HELP_STRING([--with-nemo], [Install Nemo extension]))
-    AS_IF([test "x$with_nemo" = "xyes"], [
-        file_browser_support="yes"
-        PKG_CHECK_MODULES(NEMO_PYTHON, nemo-python, [AM_CONDITIONAL([INSTALL_NEMO_EXTENSION],[test "x$with_nemo" = "xyes"])])
-    ])
-dnl
-# Doesn't install pc file. For now just install if requested.
-# TODO : Check if thunarx-python is actually installed.
-    AC_ARG_WITH([thunar], AS_HELP_STRING([--with-thunar], [Install Thunar extension]))
-    AS_IF([test "x$with_thunar" = "xyes"], [
-        file_browser_support="yes"
-        AM_CONDITIONAL([INSTALL_THUNAR_EXTENSION], [test "x$with_thunar" = "xyes"])
-    ])
+    AM_CONDITIONAL([INSTALL_NAUTILUS_EXTENSION],[test "x$with_nautilus" = "xyes"])
+    AM_CONDITIONAL([INSTALL_NEMO_EXTENSION],[test "x$with_nemo" = "xyes"])
+    AM_CONDITIONAL([INSTALL_THUNAR_EXTENSION], [test "x$with_thunarx" = "xyes"])
 dnl
 dnl Output files
+dnl
     AC_CONFIG_FILES([
         Makefile
         extensions/Makefile
@@ -136,6 +138,7 @@ dnl Output files
         lib/Makefile
         lib/Common/About.vala
         lib/Common/Collections.vala
+        lib/Common/Constants.vala
         lib/Common/Database.vala
         lib/Common/Settings.vala
         lib/FontConfig/Sources.vala
@@ -153,12 +156,14 @@ dnl Output files
         src/font-manager/Migration.vala
         src/font-viewer/Makefile
         src/font-viewer/Application.vala
+        tests/Makefile
     ])
-dnl Process input files
     AC_OUTPUT
 dnl
 dnl Useful? information
+dnl
     echo "
+
         Font Manager $PACKAGE_VERSION
 
         C compiler:             ${CC}
@@ -167,4 +172,35 @@ dnl Useful? information
         Archive Support:        ${FILE_ROLLER}
         File Browser Support:   $file_browser_support
     "
-dnl
+    AS_IF([test "x$with_nautilus" = "xyes"], [
+        echo "
+
+        The Nautilus file manager extension requires nautilus-python
+
+        Nautilus python bindings are available on most distributions.
+
+            https://wiki.gnome.org/Projects/NautilusPython
+
+        "
+    ])
+    AS_IF([test "x$with_nemo" = "xyes"], [
+        echo "
+
+        The Nemo file manager extension requires nemo-python
+
+        https://github.com/linuxmint/nemo-extensions/tree/master/nemo-python
+
+        "
+    ])
+    AS_IF([test "x$with_thunarx" = "xyes"], [
+        echo "
+
+        The Thunar file manager extension requires nemo-python
+
+        http://goodies.xfce.org/projects/bindings/thunarx-python
+
+
+        Ubuntu/Debian users should see README file in extensions/
+
+        "
+    ])

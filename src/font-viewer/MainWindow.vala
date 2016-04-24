@@ -45,14 +45,17 @@ namespace FontManager {
             Metadata.Title titlebar;
 
             public MainWindow () {
-                /* Note: Type hint used to prevent notification on every selection */
+                /* Type hint used to prevent notification on every selection.
+                 * Happens in gnome-shell and I assume other environments if
+                 * one of the file manager extensions are in use.
+                 */
                 Object(title: _("Font Viewer"), icon_name: About.ICON, type_hint: Gdk.WindowTypeHint.UTILITY);
                 Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
                 installed = new Gee.ArrayList <string> ();
                 preview = new FontPreviewPane();
                 install_button = new Gtk.Button();
-                install_button.set_label(_("Install Font"));
                 install_button.margin = 2;
+                install_button.set_label(_("Install Font"));
                 install_button.opacity = 0.725;
                 install_button.clicked.connect(() => {
                     Library.Install.from_font_data(preview.font_data);

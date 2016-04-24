@@ -38,7 +38,7 @@ namespace FontManager {
         string _pangram;
 
         public WaterfallPreview (StandardTextTagTable tag_table) {
-            base(tag_table);
+            Object(name: "WaterfallPreview", tag_table: tag_table);
             view.pixels_above_lines = 1;
             view.wrap_mode = Gtk.WrapMode.NONE;
             pangram = get_localized_pangram();

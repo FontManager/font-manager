@@ -64,6 +64,15 @@ namespace FontManager {
         return db;
     }
 
+    public void prune_path_from_database (Database db, string path) throws DatabaseError {
+        db.reset();
+        db.table = "Fonts";
+        db.remove("filepath LIKE \"%s%\"".printf(path));
+        db.vacuum();
+        db.close();
+        return;
+    }
+
     public void sync_fonts_table (Database db,
                                    Gee.ArrayList <FontConfig.Font> installed_fonts,
                                    ProgressCallback? progress = null)

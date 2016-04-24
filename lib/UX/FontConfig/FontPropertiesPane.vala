@@ -40,19 +40,13 @@ namespace FontConfig {
 
         public FontPropertiesPane () {
             grid = new Gtk.Grid();
-            grid.margin = 6;
-            grid.margin_top = margin_right = 24;
             properties = new FontProperties();
             antialias = new LabeledSwitch(_("Antialias"));
             hinting = new LabeledSwitch(_("Hinting"));
             autohint = new Gtk.CheckButton.with_label(_("Enable Autohinter"));
-            autohint.margin = 12;
-            autohint.margin_start = 30;
-            autohint.margin_end = 30;
             hinting_options = new Gtk.Revealer();
             hinting_options_grid = new Gtk.Grid();
-            hinting_options_grid.margin = 24;
-            hinting_options_grid.margin_start = 48;
+            hinting_options_grid.margin = 36;
             string [] hintstyles = {};
             for (int i = 0; i < 4; i++)
                 hintstyles += ((HintStyle) i).to_string();
@@ -60,9 +54,6 @@ namespace FontConfig {
             embeddedbitmap = new LabeledSwitch(_("Use Embedded Bitmaps"));
             size_options = new SizeOptions();
             expander = new Gtk.Expander(_(" Size Restrictions "));
-            expander.margin = 12;
-            expander.margin_start = 30;
-            expander.margin_end = 30;
             expander.notify["expanded"].connect(() => {
                 if (expander.expanded)
                     expander.set_label(_(" Apply settings to point sizes "));
@@ -135,7 +126,6 @@ namespace FontConfig {
             public LabeledSpinButton more { get; private set; }
 
             public SizeOptions () {
-                margin = 12;
                 less = new LabeledSpinButton(_("Smaller than"), 0, 96, 0.5);
                 more = new LabeledSpinButton(_("Larger than"), 0, 96, 0.5);
                 attach(less, 0, 0, 1, 1);

@@ -12,7 +12,7 @@ AM_VALAFLAGS = \
 	--pkg pango \
 	--pkg sqlite3
 
-AM_CPPFLAGS = \
+AM_CFLAGS = \
 	-w \
 	-DLOCALEDIR=\""$(localedir)"\" \
 	$(XML_CFLAGS) \

@@ -110,7 +110,6 @@ namespace FontManager {
             notebook = new Gtk.Notebook();
             notebook.show_border = false;
             preview = new FontPreview();
-            preview.margin_top = 4;
             preview_tab_label = new Gtk.Label(FontPreviewMode.PREVIEW.to_translatable_string());
             notebook.insert_page(preview, preview_tab_label, 0);
             properties = new Metadata.Properties();
@@ -220,8 +219,7 @@ namespace FontManager {
 
         void construct_menu_button () {
             menu_button = new Gtk.MenuButton();
-            menu_button.border_width = 2;
-            menu_button.margin_start = 6;
+            menu_button.margin = 2;
             menu_button.direction = Gtk.ArrowType.DOWN;
             menu_button.relief = Gtk.ReliefStyle.NONE;
             menu_button.can_focus = false;

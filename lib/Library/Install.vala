@@ -34,6 +34,7 @@ namespace FontManager {
             static File? tmpdir = null;
 
             public static void from_file_array (File? [] files) {
+                debug("Processing files for installation");
                 init();
                 var _files = new Gee.ArrayList <File> ();
                 foreach (var file in files)
@@ -43,6 +44,7 @@ namespace FontManager {
             }
 
             public static void from_path_array (string? [] paths) {
+                debug("Processing files for installation");
                 init();
                 var files = new Gee.ArrayList <File> ();
                 foreach (var path in paths)
@@ -52,6 +54,7 @@ namespace FontManager {
             }
 
             public static void from_uri_array (string? [] uris) {
+                debug("Processing files for installation");
                 init();
                 var files = new Gee.ArrayList <File> ();
                 foreach (var uri in uris)
@@ -124,7 +127,6 @@ namespace FontManager {
             }
 
             static void process_files (Gee.ArrayList <File> filelist) {
-                debug("Processing files for installation");
                 int processed = 0;
                 foreach (var f in filelist) {
                     var data = FontData(f);

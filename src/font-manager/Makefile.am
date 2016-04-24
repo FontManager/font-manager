@@ -1,18 +1,19 @@
+
+include $(top_srcdir)/Flags.mk
 include ValaSources.mk
-include ${abs_top_builddir}/Flags.mk
 
 font_manager_VALAFLAGS = \
 	${AM_VALAFLAGS} \
 	$(HAVE_FILE_ROLLER) \
-	${abs_top_builddir}/lib/fontmanager.vapi
+	$(top_srcdir)/lib/fontmanager.vapi
 
-font_manager_CPPFLAGS = \
-	${AM_CPPFLAGS} \
-	-I${abs_top_builddir}/lib/
+font_manager_CFLAGS = \
+	${AM_CFLAGS} \
+	-I$(top_srcdir)/lib/
 
 font_manager_LDADD = \
 	${AM_LDADD} \
-	${abs_top_builddir}/lib/libfontmanager.la
+	$(top_srcdir)/lib/libfontmanager.la
 
 font_manager_SOURCES = \
 	$(font_manager_VALASOURCES)
@@ -26,8 +27,7 @@ CLEANFILES = \
 	*.stamp*
 
 MAINTAINERCLEANFILES = \
-	./Makefile.in
+	Makefile.in
 
 dist-hook:
-	cd $(distdir) && \
-	rm -f $(font_manager_VALASOURCES:.vala=.c) *.stamp*
+	cd $(distdir) && rm -f $(font_manager_VALASOURCES:.vala=.c) $(CLEANFILES)

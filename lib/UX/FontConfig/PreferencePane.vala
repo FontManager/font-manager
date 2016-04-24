@@ -51,7 +51,7 @@ namespace FontConfig {
             return;
         }
 
-        protected void show_message (string m) {
+        protected virtual void show_message (string m) {
             message.set_markup("<b>%s</b>".printf(m));
             infobar.show();
             Timeout.add_seconds(3, () => {

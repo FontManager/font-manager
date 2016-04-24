@@ -129,6 +129,18 @@ namespace FontConfig {
             return;
         }
 
+        void write_comparison (XmlWriter writer,
+                                     string name,
+                                     string test,
+                                     string type,
+                                     string val) {
+            writer.start_element("test");
+            writer.write_attribute("name", name);
+            writer.write_attribute("compare", test);
+            writer.write_element(type, val);
+            writer.end_element();
+            return;
+        }
 
         protected override void write_match_criteria (XmlWriter writer) {
             if (family == null && font == null)
@@ -138,14 +150,14 @@ namespace FontConfig {
             writer.write_element("string", family);
             writer.end_element();
             if (less != 0.0)
-                writer.write_comparison("size", "less", "double", less.to_string());
+                write_comparison(writer, "size", "less", "double", less.to_string());
             if (more != 0.0)
-                writer.write_comparison("size", "more", "double", more.to_string());
+                write_comparison(writer, "size", "more", "double", more.to_string());
             if (font == null)
                 return;
-            writer.write_comparison("slant", "eq", "int", font.slant.to_string());
-            writer.write_comparison("weight", "eq", "int", font.weight.to_string());
-            writer.write_comparison("width", "eq", "int", font.width.to_string());
+            write_comparison(writer, "slant", "eq", "int", font.slant.to_string());
+            write_comparison(writer, "weight", "eq", "int", font.weight.to_string());
+            write_comparison(writer, "width", "eq", "int", font.width.to_string());
             return;
         }
 

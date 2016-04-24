@@ -1,22 +1,37 @@
+
 SUBDIRS = \
 	data \
 	lib \
 	src \
+	tests \
 	extensions \
 	help \
 	po
 
 ACLOCAL_AMFLAGS = -I m4
 
+CONFIG_STATUS_DEPENDENCIES = \
+	lib/UX/Utils/Utils.vala.in \
+	lib/FontConfig/Sources.vala.in \
+	lib/Common/About.vala.in \
+	lib/Common/Settings.vala.in \
+	lib/Common/Constants.vala.in \
+	lib/Common/Database.vala.in \
+	lib/Common/Collections.vala.in \
+	src/font-manager/Migration.vala.in \
+	src/font-manager/Application.vala.in \
+	src/font-manager/Main.vala.in \
+	src/font-viewer/Application.vala.in
+
 EXTRA_DIST = \
-	$(srcdir)/po/insert-header.sin \
-	$(srcdir)/po/Makefile.in.in \
-	$(srcdir)/po/HEADER \
-	$(srcdir)/po/POTFILES.in \
-	$(srcdir)/po/POTFILES.readme \
-	$(srcdir)/po/POTFILES.skip \
-	$(srcdir)/help/insert-header.sin \
-	$(srcdir)/help/HEADER \
+	po/insert-header.sin \
+	po/Makefile.in.in \
+	po/HEADER \
+	po/POTFILES.in \
+	po/POTFILES.readme \
+	po/POTFILES.skip \
+	help/insert-header.sin \
+	help/HEADER \
 	Flags.mk
 
 DISTCLEANFILES = \
@@ -41,22 +56,8 @@ MAINTAINERCLEANFILES = \
 	po/POTFILES \
 	po/*stamp*
 
-update-po:
-	cd $(srcdir)/po && \
-	rm -f $(PACKAGE_NAME).pot && \
-	$(MAKE) update-po && \
-	$(SED) -f insert-header.sin -i $(PACKAGE_NAME).pot &&\
-	cd $(srcdir)/help && \
-	rm -f $(PACKAGE_NAME).pot && \
-	$(MAKE) pot && \
-	$(SED) -f insert-header.sin -i $(PACKAGE_NAME).pot && \
-	$(MAKE) repo && \
-	cd $(srcdir)
-
 maintainer-clean-local:
 	-rm -rf m4 autom4te.cache $(PACKAGE_NAME)-$(PACKAGE_VERSION)*
 	find . -name .libs -exec rm -rf {} \;
 	find . -name .deps -exec rm -rf {} \;
 
-all: pot
-.PHONY: pot

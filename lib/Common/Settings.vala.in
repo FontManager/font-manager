@@ -21,6 +21,11 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
+const string [] POSSIBLE_SCHEMA_DIRS = {
+    "@prefix@/share/glib-2.0/schemas",
+    "@abs_top_srcdir@/data"
+};
+
 public Settings? get_settings (string schema_id) {
 
     SettingsSchema? schema;
@@ -34,8 +39,8 @@ public Settings? get_settings (string schema_id) {
         string user_data_dir = Environment.get_user_data_dir();
         string user_schema_dir = Path.build_filename(user_data_dir, "glib-2.0", "schemas");
         possible_schema_dirs.append_val(user_schema_dir);
-        possible_schema_dirs.append_val("@prefix@/share/glib-2.0/schemas");
-        possible_schema_dirs.append_val("@abs_top_builddir@/data");
+        foreach (var dir in POSSIBLE_SCHEMA_DIRS)
+            possible_schema_dirs.append_val(dir);
 
         for (int i = 0; i < possible_schema_dirs.length; i++) {
             string dir = possible_schema_dirs.index(i);

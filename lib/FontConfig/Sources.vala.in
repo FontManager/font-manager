@@ -23,78 +23,129 @@
 
 namespace FontConfig {
 
-    public bool load_user_font_sources (Source [] sources) {
-        clear_app_fonts();
-        bool res = true;
-        foreach (var source in sources) {
-            if (source.available && !add_app_font_dir(source.path)) {
-                res = false;
-                warning("Failed to register user font source! : %s", source.path);
+    /**
+     * Source - Represents a font directory
+     *
+     * @active      true if source is enabled for other applications
+     * @name        suitable for display
+     * @path        full path to directory
+     * @available   whether source actually exists
+     * icon_name    icon name representing source state
+     *
+     * Their purpose is to allow an application to track font directories
+     * configured by the user, so that their contents can be previewed in
+     * the application even when disabled for others.
+     *
+     * Sources are disabled by default.
+     */
+    public class Source : Object {
+
+        public new string name { get; private set; }
+        public new bool active { get; set; default = false; }
+        public string? path { get; private set; default = null; }
+
+        File? _file = null;
+        public File? file {
+            get {
+                return _file;
+            }
+            set {
+                _file = value;
+                update();
             }
         }
-        string default_user_font_dir_path = Path.build_filename(Environment.get_user_data_dir(), "fonts");
-        {
-            File default_user_font_dir = File.new_for_path(default_user_font_dir_path);
-            if (!default_user_font_dir.query_exists())
-                /* Means the user does not have a default font directory yet, create it */
-                try {
-                    default_user_font_dir.make_directory_with_parents();
-                } catch (Error e) {
-                    warning("Attempt to create default font directory failed : %s", default_user_font_dir_path);
-                    critical(e.message);
-                }
+
+        public bool available {
+            get {
+                if (file == null)
+                    return false;
+                return file.query_exists();
+            }
         }
-        if (!add_app_font_dir(default_user_font_dir_path)) {
-            res = false;
-            warning("Failed to register user font source! : %s", default_user_font_dir_path);
+
+        public string icon_name {
+            get {
+                if (available)
+                    return "folder-symbolic";
+                else
+                    return "action-unavailable-symbolic";
+            }
         }
-        return res;
+
+        public Source (File? f = null) {
+            Object(file: f);
+        }
+
+        /**
+         * Returns the path to source parent directory or "Source Unavailable"
+         */
+        public string get_dirname () {
+            return path != null ? Path.get_dirname(path) : _("Source Unavailable");
+        }
+
+        public void update () {
+            name = "FontConfigSource";
+            path = null;
+            active = false;
+            if (file == null)
+                return;
+            path = file.get_path();
+            try {
+                FileInfo info = file.query_info(FileAttribute.STANDARD_DISPLAY_NAME, FileQueryInfoFlags.NONE);
+                name = Markup.escape_text(info.get_display_name());
+            } catch (Error e) {
+                name = _("Source Unavailable");
+            }
+            return;
+        }
+
     }
 
+    /**
+     * Sources - Represents an application specific configuration file
+     *
+     * @config_dir      directory to store configuration file
+     * @target_file     filename
+     *
+     * <source> elements contain the full path to a directory containing
+     * font files which should be available for preview within the application
+     * and easily enabled for others.
+     *
+     * Is actually a #Gee.HashSet holding directory paths.
+     * Provides methods to save() / load() configuration files.
+     *
+     * @seealso     load_user_font_sources ()
+     */
     public class Sources : Gee.HashSet <Source> {
 
         public signal void changed (File? file, FileMonitorEvent? event);
+        public signal void removed (string path);
 
-        public static string get_cache_file () {
-            string dirpath = Path.build_filename(Environment.get_user_config_dir(), "@PACKAGE_NAME@");
-            string filepath = Path.build_filename(dirpath, "Sources.xml");
-            DirUtils.create_with_parents(dirpath ,0755);
-            return filepath;
-        }
+        public string config_dir { get; set; default = get_package_config_dir(); }
+        public string target_file { get; set; default = "Sources.xml"; }
+        public string target_element { get; set; default = "source"; }
 
-        public Directories active_directories { get; private set;}
+        /**
+         * Sources:active:
+         *
+         * Internal copy of #Directories, kept in order to update FontConfig
+         * directory configuration whenever a #Source is activated.
+         */
+        public Directories active { get; private set;}
 
-        string? target_file = null;
-        string? target_element = null;
-        FileMonitor? [] monitors = {};
-        VolumeMonitor volume_monitor;
+        MonitoredFiles monitors;
 
         public Sources () {
-            target_element = "source";
-            target_file = get_cache_file();
-            active_directories = new Directories();
-            active_directories.init();
-            volume_monitor = VolumeMonitor.get();
-            volume_monitor.mount_removed.connect((m) => {
-               if (this.contains(m.get_default_location().get_path()))
-                    this.changed(m.get_root(), FileMonitorEvent.UNMOUNTED);
+            active = new Directories();
+            monitors = new MonitoredFiles();
+            monitors.changed.connect((f, of, ev) => {
+                this.update();
+                this.changed(f, ev);
             });
         }
 
-        /* Overkill */
-        void add_sources_from_directories () {
-            foreach (var path in active_directories) {
-                bool found = false;
-                foreach (var source in this)
-                    if (source.path == path)
-                        found = true;
-                if (found)
-                    continue;
-                var source = new Source(File.new_for_path(path));
-                source.active = true;
-                source.notify["active"].connect(() => { source_activated(source); });
-                base.add(source);
-            }
+        public string get_filepath () {
+            return Path.build_filename(config_dir, target_file);
         }
 
         public new bool contains (string path) {
@@ -105,107 +156,68 @@ namespace FontConfig {
         }
 
         public void update () {
-            foreach (var source in this)
+            foreach (var source in this) {
                 source.update();
+                source.active = (source.path in active);
+            }
             return;
         }
 
+        public bool add_from_path (string dirpath) {
+            return add(new Source(File.new_for_path(dirpath)));
+        }
+
         public new bool add (Source source) {
-            foreach (var _source in this)
-                if (_source.path == source.path)
-                    return false;
+            if (this.contains(source.path))
+                return true;
+            if (source.path in active)
+                source.active = true;
             source.notify["active"].connect(() => { source_activated(source); });
-            this.changed(null, null);
+            monitors.add(source.path);
+            this.changed(source.file, FileMonitorEvent.CREATED);
             return base.add(source);
         }
 
         public new bool remove (Source source) {
-            if (active_directories.contains(source.path)) {
-                active_directories.remove(source.path);
-                active_directories.save();
+            if (active.contains(source.path)) {
+                active.remove(source.path);
+                active.save();
             }
-            try {
-                FontManager.Database db = FontManager.get_database();
-                db.table = "Fonts";
-                db.remove("filepath LIKE \"%s%\"".printf(source.path));
-                db.vacuum();
-                db.close();
-            } catch (FontManager.DatabaseError e) {
-                warning(e.message);
-            }
-            if (base.remove(source)) {
-                this.changed(null, null);
-                return true;
-            }
-            return false;
-        }
-
-        public void cancel_monitors () {
-            foreach (var mon in monitors) {
-                if (mon != null)
-                    mon.cancel();
-                mon = null;
-            }
-            monitors = {};
-            return;
-        }
-
-        public void enable_monitors () {
-            var _dirs = list_dirs();
-            foreach (var dir in _dirs)
-                monitors += get_directory_monitor(dir);
-            foreach (var source in this)
-                if (source.path in _dirs)
-                    continue;
-                else
-                    monitors += get_directory_monitor(source.path);
-            return;
+            this.removed(source.path);
+            this.changed(source.file, FileMonitorEvent.DELETED);
+            return (monitors.remove(source.path) && base.remove(source));
         }
 
         void source_activated (Source source) {
             if (source.active)
-                active_directories.add(source.path);
-            else
-                active_directories.remove(source.path);
-            active_directories.save();
-            this.changed(null, null);
+                active.add(source.path);
+            else if (source.path in active)
+                active.remove(source.path);
+            active.save();
+            return;
         }
 
-        FileMonitor? get_directory_monitor (string dir) {
-            File file = File.new_for_path(dir);
-            FileMonitor? monitor = null;
-            try {
-                monitor = file.monitor_directory(FileMonitorFlags.WATCH_MOUNTS);
-                monitor.changed.connect((f, of, ev) => {
-                    debug("Filesystem change detected : %s", f.get_path());
-                    this.update();
-                    this.changed(f, ev);
-                });
-            } catch (IOError e) {
-                warning("Failed to create FileMonitor for %s", dir);
-                critical("FileMonitor creation failed : %s", e.message);
-            }
-            return monitor;
+        void add_sources_from_directories () {
+            foreach (var path in active)
+                add_from_path(path);
+            return;
         }
 
-        public bool init ()
-        requires (target_file != null && target_element != null) {
-
+        public bool load () {
+            string target = get_filepath();
             {
-                File file = File.new_for_path(target_file);
+                File file = File.new_for_path(target);
                 if (!file.query_exists())
                     return false;
             }
-
             Xml.Parser.init();
-            debug("Xml.Parser : Opening : %s", target_file);
-            Xml.Doc * doc = Xml.Parser.parse_file(target_file);
+            verbose("Xml.Parser : Opening : %s", target);
+            Xml.Doc * doc = Xml.Parser.parse_file(target);
             if (doc == null) {
                 /* File not found */
                 Xml.Parser.cleanup();
                 return false;
             }
-
             Xml.Node * root = doc->get_root_element();
             if (root == null) {
                 /* Empty doc */
@@ -213,35 +225,28 @@ namespace FontConfig {
                 Xml.Parser.cleanup();
                 return false;
             }
-
-            parse(root);
-
-            debug("Xml.Parser : Closing : %s", target_file);
-
+            parse_node(root->children);
+            verbose("Xml.Parser : Closing : %s", target);
             delete doc;
             Xml.Parser.cleanup();
+            active.load();
             add_sources_from_directories();
-            changed(null, null);
             return true;
         }
 
-        public void save ()
-        requires (target_file != null && target_element != null) {
-            var writer = new Xml.TextWriter.filename(target_file);
+        public bool save () {
+            /* XmlWriter not used here because this is application specific */
+            var writer = new Xml.TextWriter.filename(get_filepath());
             writer.set_indent(true);
             writer.set_indent_string("  ");
             writer.start_document();
+            writer.write_string("<!DOCTYPE Sources SYSTEM \"sources.dtd\">\n");
             writer.write_comment(_(" Generated by Font Manager. Do NOT edit this file. "));
             writer.start_element("Sources");
             write_node(writer);
             writer.end_element();
             writer.end_document();
-            writer.flush();
-            return;
-        }
-
-        protected void parse (Xml.Node * root) {
-            parse_node(root->children);
+            return (writer.flush() >= 0);
         }
 
         protected void write_node (Xml.TextWriter writer) {
@@ -255,20 +260,11 @@ namespace FontConfig {
                 /* Spaces between tags are also nodes, discard them */
                 if (iter->type != Xml.ElementType.ELEMENT_NODE)
                     continue;
-                string content = iter->get_content();
-                if (content == null)
-                    continue;
-                content = content.strip();
+                string content = iter->get_content().strip();
                 if (content == "")
                     continue;
-                else {
-                    var source = new Source(File.new_for_path(content));
-                    debug("Loading source : %s", source.name);
-                    if (source.path in active_directories)
-                        source.active = true;
-                    source.notify["active"].connect(() => { source_activated(source); });
-                    base.add(source);
-                }
+                debug("Loading source : %s", content);
+                add_from_path(content);
             }
             return;
         }

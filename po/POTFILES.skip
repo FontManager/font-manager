@@ -16,7 +16,7 @@ lib/Filters/Disabled.c
 lib/Filters/Filter.c
 lib/Filters/SearchResult.c
 lib/Filters/Unsorted.c
-lib/FontConfig/Accept.c
+lib/FontConfig/Alias.c
 lib/FontConfig/Common.c
 lib/FontConfig/DefaultProperties.c
 lib/FontConfig/Directories.c
@@ -26,11 +26,10 @@ lib/FontConfig/Families.c
 lib/FontConfig/Family.c
 lib/FontConfig/FontProperties.c
 lib/FontConfig/Font.c
+lib/FontConfig/MonitoredFiles.c
 lib/FontConfig/Properties.c
-lib/FontConfig/Reject.c
 lib/FontConfig/Selections.c
 lib/FontConfig/Sources.c
-lib/FontConfig/Source.c
 lib/FontConfig/XmlWriter.c
 lib/Glue/Glue.c
 lib/Library/Install.c
@@ -50,6 +49,7 @@ lib/UX/FontConfig/DisplayPropertiesPane.c
 lib/UX/FontConfig/FontPropertiesPane.c
 lib/UX/FontConfig/PreferencePane.c
 lib/UX/FontConfig/SubpixelGeometry.c
+lib/UX/FontConfig/UserSourceList.c
 lib/UX/Metadata/Description.c
 lib/UX/Metadata/License.c
 lib/UX/Metadata/Properties.c
@@ -62,7 +62,6 @@ lib/UX/Trees/CategoryTree.c
 lib/UX/Trees/CollectionTree.c
 lib/UX/Trees/FontListTree.c
 lib/UX/Trees/UserFontTree.c
-lib/UX/Trees/UserSourceList.c
 lib/UX/Utils/Color.c
 lib/UX/Utils/Utils.c
 lib/UX/Views/FontPreviewPane.c
@@ -99,4 +98,8 @@ src/font-manager/TitleBar.c
 src/font-viewer/Application.c
 src/font-viewer/MainWindow.c
 src/font-viewer/State.c
+tests/TestCase.c
+tests/TestFontConfig.c
+tests/TestMain.c
+tests/TestUtils.c
 lib/Glue/Enums.c

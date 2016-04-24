@@ -31,9 +31,8 @@ namespace FontManager {
         Gee.HashSet <FontConfig.Font> selected_fonts;
 
         public UserFontTree (UserFontModel model) {
-            this.model = model;
+            Object(name: "UserFontTree", model: model, headers_visible: false);
             get_selection().set_mode(Gtk.SelectionMode.SINGLE);
-            headers_visible = false;
             toggle = new Gtk.CellRendererToggle();
             var text = new Gtk.CellRendererText();
             var preview = new Gtk.CellRendererText();

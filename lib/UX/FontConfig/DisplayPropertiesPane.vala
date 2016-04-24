@@ -35,8 +35,6 @@ namespace FontConfig {
 
         public DisplayPropertiesPane () {
             grid = new Gtk.Grid();
-            grid.margin = 36;
-            grid.margin_top = 24;
             properties = new DisplayProperties();
             dpi = new LabeledSpinButton(_("Target DPI"), 0, 1000, 1);
             scale = new LabeledSpinButton(_("Scale factor"), 0, 1000, 0.1);
@@ -45,7 +43,6 @@ namespace FontConfig {
                 filters += ((LCDFilter) i).to_string();
             lcdfilter = new OptionScale(_("LCD Filter"), filters);
             spg = new SubpixelGeometry();
-            spg.margin = 24;
             pack_components();
             bind_properties();
             grid.foreach((w) => { w.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW); });

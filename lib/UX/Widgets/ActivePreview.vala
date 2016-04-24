@@ -46,12 +46,10 @@ namespace FontManager {
         weak Pango.FontDescription _font_desc;
 
         public class ActivePreview (StandardTextTagTable tag_table) {
-            set_orientation(Gtk.Orientation.VERTICAL);
+            Object(name: "ActivePreview", orientation: Gtk.Orientation.VERTICAL);
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             preview = new StandardTextView(tag_table);
-            preview.name = "FontManagerActivePreview";
             preview.view.justification = Gtk.Justification.CENTER;
-            preview.view.margin_top = 36;
             set_preview_text(get_localized_preview_text());
             preview_size = DEFAULT_PREVIEW_SIZE;
             controls = new PreviewControls();

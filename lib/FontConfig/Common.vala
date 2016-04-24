@@ -40,7 +40,7 @@ namespace FontConfig {
      * interfere with our ability to render fonts properly.
      */
     public void load_user_fontconfig_files () {
-        string [] exclude = {"78-Reject.conf"};
+        string [] exclude = { "39-Alias.conf", "78-Reject.conf" };
         try {
             string config_dir = get_config_dir();
             File directory = File.new_for_path(config_dir);
@@ -60,6 +60,44 @@ namespace FontConfig {
             critical(e.message);
         }
         return;
+    }
+
+    /*
+     * This function adds user configured font sources (directories)
+     * to our FcConfig so that we can render fonts which are not
+     * actually "installed". It also ensures the default font directory
+     * is included.
+     */
+    public bool load_user_font_sources (Source [] sources) {
+        clear_app_fonts();
+        bool res = true;
+        foreach (var source in sources) {
+            if (source.available && !add_app_font_dir(source.path)) {
+                res = false;
+                warning("Failed to register user font source! : %s", source.path);
+            } else {
+                verbose("Added source to configuration : %s", source.path);
+            }
+        }
+        string default_user_font_dir_path = Path.build_filename(Environment.get_user_data_dir(), "fonts");
+        {
+            File default_user_font_dir = File.new_for_path(default_user_font_dir_path);
+            if (!default_user_font_dir.query_exists())
+                /* Means the user does not have a default font directory yet, create it */
+                try {
+                    default_user_font_dir.make_directory_with_parents();
+                } catch (Error e) {
+                    warning("Attempt to create default font directory failed : %s", default_user_font_dir_path);
+                    critical(e.message);
+                }
+        }
+        if (!add_app_font_dir(default_user_font_dir_path)) {
+            res = false;
+            warning("Failed to register user font source! : %s", default_user_font_dir_path);
+        } else {
+            verbose("Added default user font directory to configuration");
+        }
+        return res;
     }
 
     public bool update_cache () {

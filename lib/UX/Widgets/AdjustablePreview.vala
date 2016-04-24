@@ -56,7 +56,10 @@ namespace FontManager {
         construct {
             fontscale = new FontScale();
             adjustment = fontscale.adjustment;
-            return;
+        }
+
+        public class AdjustablePreview () {
+            Object(name: "AdjustablePreview");
         }
 
         protected double get_desc_size () {

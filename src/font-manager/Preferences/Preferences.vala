@@ -52,7 +52,8 @@ namespace FontManager {
                 box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
                 sidebar = new Gtk.StackSidebar();
                 sidebar.set_stack(stack);
-                sidebar.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
+                sidebar.get_style_context().remove_class(Gtk.STYLE_CLASS_SIDEBAR);
+                sidebar.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
                 box.pack_start(sidebar, true, true, 0);
                 add_separator(box);
                 add1(box);
@@ -67,8 +68,11 @@ namespace FontManager {
             }
 
             void connect_signals () {
-                notify["visible-child"].connect(() => {
-                    debug("Visible child : %s", stack.visible_child_name);
+                stack.notify["visible"].connect(() => {
+                    if (stack.visible_child_name == "Sources")
+                        ((Sources) get_page("Sources")).user_source_list.update();
+                });
+                stack.notify["visible-child"].connect(() => {
                     if (stack.visible_child_name == "Sources")
                         ((Sources) get_page("Sources")).user_source_list.update();
                 });

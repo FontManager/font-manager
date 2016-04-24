@@ -73,13 +73,13 @@ namespace FontManager {
         protected StandardTextTagTable tag_table;
 
         public FontPreview () {
-            set_orientation(Gtk.Orientation.VERTICAL);
+            Object(name: "FontPreview", orientation: Gtk.Orientation.VERTICAL);
             var adjustment = new Gtk.Adjustment(DEFAULT_PREVIEW_SIZE, MIN_FONT_SIZE, MAX_FONT_SIZE, 0.5, 1.0, 0);
             tag_table = new StandardTextTagTable();
             preview = new ActivePreview(tag_table);
             waterfall = new WaterfallPreview(tag_table);
             body_text = new TextPreview(tag_table);
-            body_text.preview.name = "FontManagerBodyTextPreview";
+            body_text.preview.name = "BodyTextPreview";
             font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
             preview.adjustment = adjustment;
             body_text.adjustment = adjustment;

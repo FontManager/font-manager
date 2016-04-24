@@ -28,6 +28,7 @@ public class ReactiveLabel : Gtk.EventBox {
     public Gtk.Label label { get; private set; }
 
     public ReactiveLabel (string? str) {
+        Object(name: "ReactiveLabel");
         label = new Gtk.Label(str);
         label.opacity = 0.65;
         add(label);

@@ -47,8 +47,8 @@ public class MultiDNDTreeView : BaseTreeView {
     PendingEvent pending_event;
 
     public MultiDNDTreeView () {
+        Object(name: "MultiDNDTreeView", rubber_banding: true);
         get_selection().set_mode(Gtk.SelectionMode.MULTIPLE);
-        rubber_banding = true;
         pending_event = PendingEvent();
     }
 

@@ -42,12 +42,8 @@ namespace FontManager {
         Gtk.Box main_menu_container;
 
         public TitleBar () {
-            name = "FontManagerHeaderBar";
-            title = About.NAME;
-            has_subtitle = false;
-            show_close_button = false;
+            Object(name: "TitleBar", title: About.NAME, has_subtitle: false, show_close_button: false, margin: 0);
             main_menu = new Gtk.MenuButton();
-            main_menu.border_width = 2;
             main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic", Gtk.IconSize.MENU);
             main_menu_container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 1);
             main_menu_container.pack_start(main_menu_icon, false, false, 0);
@@ -56,19 +52,20 @@ namespace FontManager {
             main_menu.add(main_menu_container);
             main_menu.direction = Gtk.ArrowType.DOWN;
             main_menu.relief = Gtk.ReliefStyle.NONE;
+            main_menu.margin = 2;
             app_menu = new Gtk.MenuButton();
-            app_menu.border_width = 2;
             app_menu_icon = new Gtk.Image.from_icon_name(About.ICON, Gtk.IconSize.LARGE_TOOLBAR);
             app_menu.add(app_menu_icon);
             app_menu.direction = Gtk.ArrowType.DOWN;
             app_menu.relief = Gtk.ReliefStyle.NONE;
+            app_menu.margin = 2;
             revealer = new Gtk.Revealer();
             revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_RIGHT);
             manage_controls = new BaseControls();
-            manage_controls.border_width = 2;
             manage_controls.add_button.set_tooltip_text(_("Add Fonts"));
             manage_controls.remove_button.set_tooltip_text(_("Remove Fonts"));
-            add_separator(manage_controls.box);
+            var separator = add_separator(manage_controls.box);
+            separator.get_style_context().add_class("separator");
             manage_controls.box.reorder_child(manage_controls.box.get_children().nth_data(2), 0);
             prefs_toggle = new Gtk.ToggleButton();
             prefs_toggle.set_image(new Gtk.Image.from_icon_name("preferences-system-symbolic", Gtk.IconSize.MENU));
@@ -80,6 +77,7 @@ namespace FontManager {
             pack_start(revealer);
             pack_end(app_menu);
             revealer.get_style_context().add_class(Gtk.STYLE_CLASS_TITLEBAR);
+            get_style_context().add_class(name);
             set_menus();
             connect_signals();
         }

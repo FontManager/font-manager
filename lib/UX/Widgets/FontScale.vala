@@ -63,6 +63,10 @@ namespace FontManager {
             connect_signals();
         }
 
+        public FontScale () {
+            Object(name: "FontScale");
+        }
+
         public override void show () {
             container.show();
             min.show();

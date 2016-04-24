@@ -77,12 +77,8 @@ namespace FontManager {
                 font = new Gtk.Label(null);
                 font.hexpand = true;
                 font.halign = Gtk.Align.START;
-                font.margin_start = font.margin_end = 12;
-                font.margin_top = font.margin_bottom = 6;
                 type_info_cache = new TypeInfoCache();
                 type_icon = new Gtk.Image.from_icon_name("null", Gtk.IconSize.DIALOG);
-                type_icon.margin_start = type_icon.margin_end = 12;
-                type_icon.margin_top = type_icon.margin_bottom = 6;
                 attach(font, 0, 0, 1, 1);
                 attach(type_icon, 1, 0, 1, 1);
                 get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);

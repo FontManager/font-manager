@@ -43,9 +43,7 @@ namespace FontConfig {
         Gee.ArrayList <Gtk.RadioButton> options;
 
         public SubpixelGeometry () {
-            opacity = 0.75;
-            margin_top = 12;
-            orientation = Gtk.Orientation.VERTICAL;
+            Object(name: "SubpixelGeometry", margin: 24, opacity: 0.75, orientation: Gtk.Orientation.VERTICAL);
             get_style_context().add_class(Gtk.STYLE_CLASS_ENTRY);
             label = new Gtk.Label(_("Subpixel Geometry"));
             label.halign = Gtk.Align.CENTER;
@@ -53,7 +51,6 @@ namespace FontConfig {
             pack_start(label, false, true, 6);
             options = new Gee.ArrayList <Gtk.RadioButton> ();
             box = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
-            box.margin = 24;
             for (int i = 0; i < 5; i++) {
                 if (i == 0)
                     options.add(new Gtk.RadioButton(null));
@@ -71,6 +68,8 @@ namespace FontConfig {
                 });
                 box.pack_start(button, true, true, 0);
             }
+            foreach (var widget in options)
+                widget.margin = 6;
             pack_start(box, true, true, 6);
         }
 
@@ -94,14 +93,13 @@ namespace FontConfig {
         Gtk.Label [] labels;
 
         construct {
-            opacity = 1.0;
-            homogeneous = true;
-            halign = valign = Gtk.Align.CENTER;
-            orientation = Gtk.Orientation.HORIZONTAL;
             labels = { c1, c2, c3 };
         }
 
         public SubpixelGeometryIcon (FontConfig.SubpixelOrder rgba, int size = 36) {
+            Object(name: "SubpixelGeometryIcon", margin: 6, opacity: 1.0,
+                    homogeneous: true, orientation: Gtk.Orientation.HORIZONTAL,
+                    halign: Gtk.Align.CENTER, valign: Gtk.Align.CENTER);
             _size = size;
             string []? color = null;
             if (rgba == FontConfig.SubpixelOrder.RGB || rgba == FontConfig.SubpixelOrder.VRGB)

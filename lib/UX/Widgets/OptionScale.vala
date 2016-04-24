@@ -28,10 +28,8 @@ public class OptionScale : Gtk.Grid {
     public string [] options { get; private set; }
 
     public OptionScale (string? heading = null, string [] options) {
+        Object(name: "OptionScale", margin: 24);
         hexpand = true;
-        margin = 12;
-        margin_start = 24;
-        margin_end = 24;
         this.options = options;
         scale = new Gtk.Scale.with_range(Gtk.Orientation.HORIZONTAL, 0, options.length, 1);
         scale.hexpand = true;
@@ -49,7 +47,6 @@ public class OptionScale : Gtk.Grid {
         });
         label = new Gtk.Label(null);
         label.hexpand = true;
-        label.margin = 12;
         if (heading != null)
             label.set_text(heading);
         attach(label, 0, 0, options.length, 1);

@@ -3,4 +3,4 @@ SUBDIRS = \
 	font-viewer
 
 MAINTAINERCLEANFILES = \
-	./Makefile.in
+	Makefile.in

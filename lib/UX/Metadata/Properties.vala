@@ -57,7 +57,7 @@ namespace FontManager {
                 separator.margin = 6;
                 separator.margin_top = 12;
                 separator.margin_bottom = 12;
-                separator.opacity = 0.90;
+                separator.opacity = 0.75;
                 psname = new Gtk.Label("psname");
                 weight = new Gtk.Label("weight");
                 slant = new Gtk.Label("slant");

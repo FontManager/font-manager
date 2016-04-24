@@ -29,8 +29,7 @@ public class LabeledSpinButton : Gtk.Grid {
     Gtk.SpinButton spin;
 
     public LabeledSpinButton (string label = "", double min, double max, double step) {
-        margin = 24;
-        margin_top = margin_bottom = 10;
+        Object(name: "LabeledspinButton", margin: 24);
         this.label = new Gtk.Label(label);
         this.label.hexpand = true;
         this.label.halign = Gtk.Align.START;

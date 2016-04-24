@@ -43,9 +43,7 @@ namespace Logging {
  * @param msg the log message to display
  */
 public void verbose (string msg, ...) {
-    // NOTE using a local var is needed for valac 0.12/0.14 to avoid invalid c-code
-    var vargs = va_list ();
-    Logger.write(LogLevel.VERBOSE, Logger.format_message(msg.vprintf(vargs)));
+    Logger.write(LogLevel.VERBOSE, Logger.format_message(msg.vprintf(va_list())));
     return;
 }
 

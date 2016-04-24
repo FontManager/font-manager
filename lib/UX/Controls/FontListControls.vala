@@ -37,8 +37,8 @@ namespace FontManager {
         Gtk.Box box;
 
         public FontListControls () {
+            Object(name: "FontListControls", margin: 1);
             box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
-            box.border_width = 2;
             _expand = new Gtk.Button();
             arrow = new Gtk.Arrow(Gtk.ArrowType.RIGHT, Gtk.ShadowType.ETCHED_IN);
             _expand.add(arrow);
@@ -47,8 +47,8 @@ namespace FontManager {
             _remove.set_image(new Gtk.Image.from_icon_name("list-remove-symbolic", Gtk.IconSize.MENU));
             _remove.set_tooltip_text(_("Remove selected fonts"));
             entry = new Gtk.SearchEntry();
-            entry.margin_end = 2;
             entry.set_size_request(0, 0);
+            entry.margin_end = 2;
             entry.placeholder_text = _("Search Families...");
             box.pack_end(entry, false, false, 0);
             box.pack_start(_expand, false, false, 0);
@@ -56,6 +56,7 @@ namespace FontManager {
             set_default_button_relief(box);
             add(box);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            get_style_context().add_class(name);
             connect_signals();
             set_size_request(0, 0);
         }

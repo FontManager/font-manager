@@ -61,7 +61,7 @@ namespace FontManager {
         Gtk.CellRendererToggle toggle;
 
         public FontList () {
-            headers_visible = false;
+            Object(name: "FontList", headers_visible: false);
             controls = new FontListControls();
             toggle = new Gtk.CellRendererToggle();
             var text = new Gtk.CellRendererText();

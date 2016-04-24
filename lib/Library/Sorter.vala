@@ -84,6 +84,8 @@ namespace FontManager {
                             else if (content_type in supported_archives)
                                 archives.add(dir.get_child(name));
                         #endif
+                            else
+                                warning("Skipping unsupported file : %s : %s", name, content_type);
                         processed++;
                         if (progress != null)
                             progress(_("Processing directories"), processed, total);
@@ -111,6 +113,8 @@ namespace FontManager {
                         else if (content_type in supported_archives)
                             archives.add(file);
                     #endif
+                        else
+                            warning("Skipping unsupported file : %s : %s", name, content_type);
                     } catch (Error e) {
                         critical("Error querying file information : %s", e.message);
                     }

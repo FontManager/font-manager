@@ -29,17 +29,32 @@ namespace FontManager {
     const string welcome_tmpl = "<span size=\"xx-large\" weight=\"bold\">%s</span>\n<span size=\"large\">\n\n%s\n</span>\n\n\n<span size=\"x-large\">%s</span>";
 
 
-    public class FontSourceRow : LabeledSwitch {
+    public class FontSourceRow : Gtk.Box {
 
         public weak FontConfig.Source source { get; set; }
+        public Gtk.Image image { get; private set; }
+        public LabeledSwitch toggle { get; private set; }
 
         public FontSourceRow (FontConfig.Source source) {
-            Object(source: source);
-            source.bind_property("active", toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            source.bind_property("available", toggle, "sensitive", BindingFlags.SYNC_CREATE);
+            Object(name: "FontManagerFontSourceRow", source: source, orientation: Gtk.Orientation.HORIZONTAL);
+            image = new Gtk.Image();
+            image.expand = false;
+            image.margin = 6;
+            toggle = new LabeledSwitch();
+            source.bind_property("active", toggle.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            source.bind_property("available", toggle.toggle, "sensitive", BindingFlags.SYNC_CREATE);
             source.bind_property("icon-name", image, "icon-name", BindingFlags.SYNC_CREATE);
-            source.bind_property("name", label, "label", BindingFlags.SYNC_CREATE);
-            dim_label.set_text(source.get_dirname());
+            source.bind_property("name", toggle.label, "label", BindingFlags.SYNC_CREATE);
+            toggle.dim_label.set_text(source.get_dirname());
+            pack_start(image, false, false, 6);
+            pack_end(toggle, true, true, 6);
+        }
+
+        public override void show () {
+            image.show();
+            toggle.show();
+            base.show();
+            return;
         }
 
     }
@@ -76,7 +91,6 @@ namespace FontManager {
             scroll = new Gtk.ScrolledWindow(null, null);
             string welcome_message = welcome_tmpl.printf(w1, w2, w3);
             welcome = new WelcomeLabel(welcome_message);
-            welcome.margin_top = 96;
             list = new Gtk.ListBox();
             scroll.add(list);
             add(scroll);
@@ -84,9 +98,7 @@ namespace FontManager {
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             list.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
-            list.row_selected.connect((r) => {
-                row_selected(r);
-            });
+            list.row_selected.connect((r) => { row_selected(r); });
         }
 
         public void update () {
@@ -97,10 +109,7 @@ namespace FontManager {
                 list.add(w);
                 w.show();
             }
-            if (first_row != null)
-                welcome.hide();
-            else
-                welcome.show();
+            welcome.set_visible((first_row == null));
             queue_draw();
             return;
         }
@@ -130,10 +139,10 @@ namespace FontManager {
                 warning("Adding individual font files is not supported");
                 return;
             }
-            var source = new FontConfig.Source(file);
-            _sources.add(source);
+            var path = file.get_path();
+            _sources.add_from_path(path);
             _sources.save();
-            debug("Added new font source : %s", source.path);
+            debug("Added new font source : %s", path);
             changed();
             return;
         }

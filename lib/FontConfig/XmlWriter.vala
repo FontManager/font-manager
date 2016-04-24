@@ -23,6 +23,10 @@
 
 namespace FontConfig {
 
+    /**
+     * Convenience wrapper for Xml.TextWriter
+     * Sets default options, document type string and comment.
+     */
     public class XmlWriter : Xml.TextWriter {
 
         public XmlWriter (string filepath) {
@@ -35,56 +39,18 @@ namespace FontConfig {
             start_element("fontconfig");
         }
 
-        public void write_assignment (string name, string type, string val) {
-            start_element("edit");
-            write_attribute("name", name);
-            write_attribute("mode", "assign");
-            write_element(type, val);
-            end_element();
-            return;
+        ~ XmlWriter () {
+            this.close();
         }
 
-        public void write_comparison (string name, string test, string type, string val) {
-            start_element("test");
-            write_attribute("name", name);
-            write_attribute("compare", test);
-            write_element(type, val);
-            end_element();
-            return;
-        }
-
-        public void write_family_patelt (string family) {
-            write_patelt("family", "string", family);
-            return;
-        }
-
-        public void write_patelt (string name, string element_type, string val) {
-            start_element("pattern");
-            start_element("patelt");
-            write_attribute("name", name);
-            write_element(element_type, val);
-            end_element();
-            end_element();
-            return;
-        }
-
-        public void start_selection (string selection_type) {
-            start_element("selectfont");
-            start_element(selection_type);
-            return;
-        }
-
-        public void end_selection () {
-            end_element();
-            end_element();
-            return;
-        }
-
-        public void close () {
+        /**
+         * Returns the bytes written (may be 0 because of buffering)
+         *  or -1 in case of error
+         */
+        public int close () {
             end_element();
             end_document();
-            flush();
-            return;
+            return flush();
         }
 
     }

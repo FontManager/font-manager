@@ -23,20 +23,12 @@
 
 public class WelcomeLabel : Gtk.Label {
 
-    construct {
-        wrap = true;
-        wrap_mode = Pango.WrapMode.WORD_CHAR;
-        hexpand = true;
-        valign = Gtk.Align.START;
-        halign = Gtk.Align.FILL;
-        justify = Gtk.Justification.CENTER;
-        margin = 64;
-        use_markup = true;
-        sensitive = false;
-    }
-
     public WelcomeLabel (string? str) {
-        Object(label: str);
+        Object(name: "WelcomeLabel", label: str, margin: 64, use_markup: true,
+                sensitive: false, hexpand: true, wrap: true,
+                wrap_mode: Pango.WrapMode.WORD_CHAR,
+                valign: Gtk.Align.START, halign: Gtk.Align.FILL,
+                justify: Gtk.Justification.CENTER);
     }
 
 }

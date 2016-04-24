@@ -66,8 +66,7 @@ namespace FontConfig {
             write_match_criteria(writer);
             write_assignments(writer);
             writer.end_element();
-            writer.close();
-            return true;
+            return (writer.close() >= 0);
         }
 
         public virtual bool discard () {
@@ -80,7 +79,7 @@ namespace FontConfig {
 
         protected virtual void load_assignments (string target_file) {
             Xml.Parser.init();
-            debug("Xml.Parser : Opening : %s", target_file);
+            verbose("Xml.Parser : Opening : %s", target_file);
             Xml.Doc * doc = Xml.Parser.parse_file(target_file);
             if (doc == null) {
                 /* File not found */
@@ -102,7 +101,7 @@ namespace FontConfig {
                     break;
                 }
 
-            debug("Xml.Parser : Closing : %s", target_file);
+            verbose("Xml.Parser : Closing : %s", target_file);
 
             delete doc;
             Xml.Parser.cleanup();
@@ -184,6 +183,18 @@ namespace FontConfig {
             }
         }
 
+        void write_assignment (XmlWriter writer,
+                                     string name,
+                                     string type,
+                                     string val) {
+            writer.start_element("edit");
+            writer.write_attribute("name", name);
+            writer.write_attribute("mode", "assign");
+            writer.write_element(type, val);
+            writer.end_element();
+            return;
+        }
+
         protected virtual void write_assignments (XmlWriter writer) {
             foreach (var pspec in this.get_class().list_properties()) {
                 if (pspec.name in skip_property_assignment)
@@ -195,7 +206,7 @@ namespace FontConfig {
                 this.get_property(pspec.name, ref val);
                 string? res = value_to_string(type, val);
                 if (res != null)
-                    writer.write_assignment(pspec.name, type, res);
+                    write_assignment(writer, pspec.name, type, res);
                 val.unset();
             }
             return;

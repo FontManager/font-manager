@@ -23,14 +23,11 @@
 
 public class LabeledSwitch : Gtk.Grid {
 
-    public Gtk.Image image { get; private set; }
     public Gtk.Label label { get; private set; }
     public Gtk.Label dim_label { get; private set; }
     public Gtk.Switch toggle { get; private set; }
 
     construct {
-        margin = 12;
-        margin_start = margin_end = 24;
         label = new Gtk.Label(null);
         label.hexpand = false;
         label.halign = Gtk.Align.START;
@@ -40,21 +37,17 @@ public class LabeledSwitch : Gtk.Grid {
         dim_label.get_style_context().add_class(Gtk.STYLE_CLASS_DIM_LABEL);
         toggle = new Gtk.Switch();
         toggle.expand = false;
-        image = new Gtk.Image();
-        image.expand = false;
-        image.margin_end = 12;
-        attach(image, 0, 0, 1, 1);
-        attach(label, 1, 0, 1, 1);
-        attach(dim_label, 2, 0, 1, 1);
-        attach(toggle, 3, 0, 1, 1);
+        attach(label, 0, 0, 1, 1);
+        attach(dim_label, 1, 0, 1, 1);
+        attach(toggle, 2, 0, 1, 1);
     }
 
     public LabeledSwitch (string label = "") {
+        Object(name: "LabeledSwitch", margin: 24);
         this.label.set_text(label);
     }
 
     public override void show () {
-        image.show();
         label.show();
         dim_label.show();
         toggle.show();

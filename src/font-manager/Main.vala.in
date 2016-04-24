@@ -36,23 +36,6 @@ namespace FontManager {
         return;
     }
 
-    void show_version_information () {
-        debug("%s %s", About.NAME, About.VERSION);
-        debug("Using GLib %u.%u.%u", Version.major, Version.minor, Version.micro);
-        debug("Using JSON-GLib %s", Json.VERSION_S);
-        debug("Using SQLite %s", Sqlite.VERSION);
-        debug("Using FontConfig %s", FontConfig.get_version_string());
-        debug("Using Pango %s", Pango.version_string());
-        debug("Using GTK+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
-        if (Gdk.Screen.get_default().is_composited())
-            debug("Screen is composited. Client side decorations enabled.");
-        if (Gnome3())
-            debug("Running on %s", get_command_line_output("gnome-shell --version"));
-        else
-            debug("Running on %s", Environment.get_variable("XDG_CURRENT_DESKTOP"));
-        return;
-    }
-
     public class Main : Object {
 
         public static unowned Main instance {
@@ -149,10 +132,7 @@ namespace FontManager {
             }
 
             if (options.contains("enable")) {
-                if (reject == null) {
-                    reject = new FontConfig.Reject();
-                    reject.init();
-                }
+                reject.load();
                 Variant v = options.lookup_value("enable", VariantType.STRING_ARRAY);
                 string [] accept = v.get_strv();
                 reject.remove_all_array(accept);
@@ -161,10 +141,7 @@ namespace FontManager {
             }
 
             if (options.contains("disable")) {
-                if (reject == null) {
-                    reject = new FontConfig.Reject();
-                    reject.init();
-                }
+                reject.load();
                 Variant v = options.lookup_value("disable", VariantType.STRING_ARRAY);
                 string [] rejects = v.get_strv();
                 reject.add_all_array(rejects);
@@ -173,27 +150,21 @@ namespace FontManager {
             }
 
             if (options.contains("list")) {
-                if (families == null) {
-                    families = new FontConfig.Families();
-                    families.update();
-                }
+                families.update();
+                assert(families.size > 0);
                 foreach (string family in families.list())
                     stdout.printf("%s\n", family);
                 exit_status = 0;
             }
 
             if (options.contains("list-full")) {
-                if (families == null) {
-                    families = new FontConfig.Families();
-                    sources = new FontConfig.Sources();
-                    sources.init();
-                    FontConfig.enable_user_config(false);
-                    FontConfig.load_user_fontconfig_files();
-                    if (!FontConfig.load_user_font_sources(sources.to_array()))
-                        critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
-                    sources.update();
-                    families.update();
-                }
+                sources.load();
+                FontConfig.enable_user_config(false);
+                FontConfig.load_user_fontconfig_files();
+                if (!FontConfig.load_user_font_sources(sources.to_array()))
+                    critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
+                sources.update();
+                families.update();
                 stdout.printf("\n%s\n\n", families.to_data());
                 exit_status = 0;
             }
@@ -221,10 +192,6 @@ namespace FontManager {
 
             main_window = new MainWindow();
             state = new State(main_window, BUS_ID);
-            if (settings != null)
-                application.notify["use-csd"].connect(() => {
-                    state.save();
-                });
             application.add_window(main_window);
             main_window.realize.connect(() => {
                 state.restore();
@@ -235,10 +202,17 @@ namespace FontManager {
             });
             if (application.prefers_app_menu())
                 set_g_app_menu(application, new Gtk.Builder(), "@PACKAGE_NAME@");
-            reject.init();
-            sources.init();
+            reject.load();
+            sources.load();
             main_window.present();
             do_initial_update();
+            sources.removed.connect((p) => {
+                try {
+                    prune_path_from_database(database, p);
+                } catch (FontManager.DatabaseError e) {
+                    warning(e.message);
+                }
+            });
             sources.changed.connect((f, ev) => {
                 queue_reload();
             });
@@ -262,31 +236,25 @@ namespace FontManager {
             update_in_progress = true;
             debug("Updating font configuration");
             FontConfig.update_cache();
-            async_update.begin((obj, res) => {
-                main_window.font_model = null;
-                main_window.loading = true;
-                main_window.sidebar.category_model.clear();
-                ensure_ui_update();
-                try {
-                    async_update.end(res);
-                    debug("Font configuration update complete");
-                } catch (ThreadError e) {
-                    warning("Thread error : %s", e.message);
-                    critical(_("Try restarting the application\nThere was an error updating font information.\n Error : %s"), e.message);
-                }
-                sync_database();
-                families.update();
-                main_window.loading = false;
-                main_window.set_models();
-                ensure_ui_update();
-                main_window.sidebar.category_model.update.begin((obj, res) => {
-                    main_window.sidebar.category_model.update.end(res);
-                    main_window.reset_selections();
-                });
-                update_in_progress = false;
-                if (queue_update)
-                    Idle.add(() => { update(); return false; });
+            main_window.font_model = null;
+            main_window.loading = true;
+            main_window.sidebar.category_model.clear();
+            ensure_ui_update();
+            FontConfig.enable_user_config(false);
+            FontConfig.load_user_fontconfig_files();
+            FontConfig.load_user_font_sources(sources.to_array());
+            sync_database();
+            families.update();
+            main_window.loading = false;
+            main_window.set_models();
+            ensure_ui_update();
+            main_window.sidebar.category_model.update.begin((obj, res) => {
+                main_window.sidebar.category_model.update.end(res);
+                main_window.reset_selections();
             });
+            update_in_progress = false;
+            if (queue_update)
+                Idle.add(() => { update(); return false; });
             return;
         }
 
@@ -296,10 +264,7 @@ namespace FontManager {
             ensure_ui_update();
             FontConfig.enable_user_config(false);
             FontConfig.load_user_fontconfig_files();
-            if (!FontConfig.load_user_font_sources(sources.to_array()))
-                critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
-            sources.update();
-            sources.enable_monitors();
+            FontConfig.load_user_font_sources(sources.to_array());
             sync_database();
             families.update();
             font_model.update();
@@ -314,36 +279,13 @@ namespace FontManager {
                     state.restore_selections();
                     state.post_activate();
                     state.bind_settings();
+                    application.notify["use-csd"].connect(() => {
+                        state.save();
+                    });
                     return false;
                 });
             });
             return;
-        }
-
-        async bool async_update () throws ThreadError {
-            SourceFunc callback = async_update.callback;
-            bool output = true;
-            ThreadFunc <void*> run = () => {
-                lock(families) {
-                    lock(sources) {
-                        sources.cancel_monitors();
-                        FontConfig.enable_user_config(false);
-                        FontConfig.load_user_fontconfig_files();
-                        if (!FontConfig.load_user_font_sources(sources.to_array())) {
-                            critical("Failed to register user font sources with FontConfig! User fonts may be unavailable for preview.");
-                            output = false;
-                        }
-                    }
-                }
-                sources.update();
-                sources.enable_monitors();
-                Idle.add((owned) callback);
-                return null;
-            };
-
-            new Thread <void*> ("async_update", run);
-            yield;
-            return output;
         }
 
         void sync_database () {
@@ -352,6 +294,23 @@ namespace FontManager {
             } catch (DatabaseError e) {
                 critical("Database synchronization failed : %s", e.message);
             }
+            return;
+        }
+
+        void show_version_information () {
+            debug("Font Manager %s", About.VERSION);
+            debug("Using GLib %u.%u.%u", Version.major, Version.minor, Version.micro);
+            debug("Using JSON-GLib %s", Json.VERSION_S);
+            debug("Using SQLite %s", Sqlite.VERSION);
+            debug("Using FontConfig %s", FontConfig.get_version_string());
+            debug("Using Pango %s", Pango.version_string());
+            debug("Using GTK+ %i.%i.%i", Gtk.MAJOR_VERSION, Gtk.MINOR_VERSION, Gtk.MICRO_VERSION);
+            if (Gdk.Screen.get_default().is_composited())
+                debug("Screen is composited. Client side decorations enabled.");
+            if (Gnome3())
+                debug("Running on %s", get_command_line_output("gnome-shell --version"));
+            else
+                debug("Running on %s", Environment.get_variable("XDG_CURRENT_DESKTOP"));
             return;
         }
 

@@ -71,27 +71,24 @@ namespace FontManager {
 
         construct {
             view = new Gtk.TextView();
-            view.left_margin = 6;
-            view.right_margin = 6;
-            view.margin_top = 6;
+            view.margin = 12;
             view.editable = false;
             view.cursor_visible = false;
             view.accepts_tab = false;
             view.overwrite = false;
             view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
-            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            expand = true;
             add(view);
+        }
+
+        public StandardTextView (StandardTextTagTable? tag_table) {
+            Object(name: "StandardTextView", tag_table: tag_table, expand: true);
+            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
         }
 
         public override void show () {
             view.show();
             base.show();
             return;
-        }
-
-        public StandardTextView (StandardTextTagTable? tag_table) {
-            this.tag_table = tag_table;
         }
 
         public string get_buffer_text () {
@@ -114,7 +111,7 @@ namespace FontManager {
     public class StaticTextView : StandardTextView {
 
         public StaticTextView (StandardTextTagTable? tag_table) {
-            base(tag_table);
+            Object(name: "StaticTextView", tag_table: tag_table);
             this.view.event.connect(on_event);
             /* XXX : Silence warning - Vala binding issue? */
             Gtk.TargetList? list = null;

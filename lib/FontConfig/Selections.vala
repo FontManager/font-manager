@@ -23,54 +23,135 @@
 
 namespace FontConfig {
 
+    /**
+     * {@inheritDoc}
+     */
+    public class Accept : Selections {
+
+        public Accept () {
+            target_element = "acceptfont";
+            target_file = "79-Accept.conf";
+        }
+
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public class Reject : Selections {
+
+        public Reject () {
+            target_element = "rejectfont";
+            target_file = "78-Reject.conf";
+        }
+
+    }
+
+    /**
+     * Selections - Represents a Fontconfig configuration file.
+     *
+     * @config_dir      directory to store configuration file
+     * @target_file     filename following the form [7][0-9]*.conf
+     * @target_element  <acceptfont> or <rejectfont>
+     *
+     * The selectfont element is used to black/white list fonts from being
+     * listed or matched against. It holds acceptfont and rejectfont elements.
+     *
+     * Fonts matched by an acceptfont element are "whitelisted";
+     * such fonts are explicitly included in the set of fonts used to
+     * resolve list and match requests; including them in this list protects
+     * them from being "blacklisted" by a rejectfont element.
+     * Acceptfont elements include glob and pattern elements which are used
+     * to match fonts.
+     *
+     * Fonts matched by an rejectfont element are "blacklisted";
+     * such fonts are excluded from the set of fonts used to resolve list
+     * and match requests as if they didn't exist in the system.
+     * Rejectfont elements include glob and pattern elements which are
+     * used to match fonts.
+     *
+     * <selectfont>
+     *     <rejectfont>
+     *         <!-- FONT_PATTERN_ELEMENT_HERE -->
+     *     </rejectfont>
+     * </selectfont>
+     * <selectfont>
+     *     <acceptfont>
+     *         <!-- FONT_PATTERN_ELEMENT_HERE -->
+     *     </acceptfont>
+     * </selectfont>
+     *
+     * Is actually a #Gee.HashSet holding family names.
+     * Provides methods to save() / load() configuration files.
+     *
+     * <glob> elements are unsupported.
+     */
     public abstract class Selections : Gee.HashSet <string> {
 
         public signal void changed ();
 
-        public string? target_file { get; set; default = null; }
-        public string? target_dir { get; set; default = null; }
-        public string? target_element { get; set; default = null; }
+        /**
+         * Selections:target_file:
+         *
+         * Should be set to a filename in the form [7][0-9]*.conf
+         *
+         * Default value :  "70-Selections.conf"
+         */
+        public string target_file { get; set; default = "70-Selections.conf"; }
+
+        /**
+         * Selections:config_dir:
+         *
+         * Should be set to one of the directories monitored by Fontconfig
+         * for configuration files.
+         *
+         * Default value :   current working directory
+         */
+        public string config_dir { get; set; default = get_config_dir(); }
+
+        /**
+         * Selections:target_element;
+         *
+         * Valid values:    <acceptfont> or <rejectfont>
+         */
+        public string target_element { get; set; default = "<selectfont>"; }
 
         FileMonitor? monitor = null;
 
-        construct {
-            target_dir = Path.build_filename(Environment.get_user_config_dir(), "fontconfig", "conf.d");
-        }
-
         public override bool add (string key) {
-            debug("Add selection : %s", key);
+            debug("Add selection : %s : %s", target_element, key);
             return base.add(key);
         }
 
         public override bool remove (string key) {
-            debug("Remove selection : %s", key);
+            debug("Remove selection : %s : %s", target_element, key);
             return base.remove(key);
         }
 
-        public virtual void save ()
-        requires (target_dir != null && target_file != null && target_element != null) {
-            string path = Path.build_filename(target_dir, target_file);
-            var writer = new XmlWriter(path);
-            write_node(writer);
-            writer.close();
-            return;
+        public string get_filepath () {
+            return Path.build_filename(config_dir, target_file);
         }
 
-        public virtual bool init ()
-        requires (target_dir != null && target_file != null && target_element != null) {
+        public virtual bool save () {
+            var writer = new XmlWriter(get_filepath());
+            write_node(writer);
+            return (writer.close() >= 0);
+        }
+
+        public virtual bool load () {
 
             clear();
             if (monitor != null)
                 monitor = null;
 
-            string path = Path.build_filename(target_dir, target_file);
+            string path = get_filepath();
 
             File file = File.new_for_path(path);
             if (!file.query_exists())
                 return false;
 
             Xml.Parser.init();
-            debug("Xml.Parser : Opening : %s", path);
+            verbose("Xml.Parser : Opening : %s", path);
             Xml.Doc * doc = Xml.Parser.parse_file(path);
             if (doc == null) {
                 /* File not found */
@@ -88,12 +169,12 @@ namespace FontConfig {
 
             parse(root);
 
-            debug("Xml.Parser : Closing : %s", path);
+            verbose("Xml.Parser : Closing : %s", path);
 
             delete doc;
             Xml.Parser.cleanup();
 
-            debug("Adding file monitor for : %s", path);
+            verbose("Adding file monitor for : %s", path);
             try {
                 monitor = file.monitor_file(FileMonitorFlags.NONE);
                 monitor.changed.connect((f, of, ev) => {
@@ -124,11 +205,26 @@ namespace FontConfig {
             }
         }
 
+        void write_patelt (XmlWriter writer,
+                                 string name,
+                                 string element_type,
+                                 string val) {
+            writer.start_element("pattern");
+            writer.start_element("patelt");
+            writer.write_attribute("name", name);
+            writer.write_element(element_type, val);
+            writer.end_element();
+            writer.end_element();
+            return;
+        }
+
         protected virtual void write_node (XmlWriter writer) {
-            writer.start_selection(target_element);
+            writer.start_element("selectfont");
+            writer.start_element(target_element);
             foreach (string font in this)
-                writer.write_family_patelt(font.strip());
-            writer.end_selection();
+                write_patelt(writer, "family", "string", font.strip());
+            writer.end_element();
+            writer.end_element();
             return;
         }
 
@@ -137,10 +233,7 @@ namespace FontConfig {
                 /* Spaces between tags are also nodes, discard them */
                 if (iter->type != Xml.ElementType.ELEMENT_NODE)
                     continue;
-                string content = iter->get_content();
-                if (content == null)
-                    continue;
-                content = content.strip();
+                string content = iter->get_content().strip();
                 if (content == "")
                     continue;
                 else

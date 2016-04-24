@@ -28,6 +28,13 @@ namespace FontManager {
 
 }
 
+string get_package_config_dir () {
+    string config_dir = Path.build_filename(Environment.get_user_config_dir(), "@PACKAGE_NAME@");
+    if (DirUtils.create_with_parents(config_dir, 0755) != 0)
+        critical("Failed to create %s!".printf(config_dir));
+    return config_dir;
+}
+
 public const string DEFAULT_COLLECTION_NAME = _("Enter Collection Name");
 public const string DEFAULT_FONT = "Sans";
 
@@ -43,15 +50,6 @@ abcdefghijklmnopqrstuvwxyz
 public const double DEFAULT_PREVIEW_SIZE = 10;
 public const double MIN_FONT_SIZE = 6.0;
 public const double MAX_FONT_SIZE = 96.0;
-
-/* Standard Aliases, exclude these */
-public const string [] DEFAULT_ALIASES = {
-    "Monospace",
-    "Sans",
-    "Serif"
-};
-
-
 
 public const string LOREM_IPSUM = """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed tristique nunc. Sed augue dolor, posuere a auctor quis, dignissim sed est. Aliquam convallis, orci nec posuere lacinia, risus libero mattis velit, a consectetur orci felis venenatis neque. Praesent id lacinia massa. Nam risus diam, faucibus vitae pulvinar eget, scelerisque nec nisl. Integer dolor ligula, placerat id elementum id, venenatis sed massa. Vestibulum at convallis libero. Curabitur at molestie justo.

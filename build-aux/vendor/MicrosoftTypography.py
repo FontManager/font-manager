@@ -31,11 +31,11 @@ except ImportError:
     print("    http://www.crummy.com/software/BeautifulSoup/\n")
     exit(1)
 
-
-CREDIT = """Courtesy of Microsoft Typography"""
+# Microsoft Vendor Listing
+# Excellent, only?!, source of font foundry information
 URL = "http://www.microsoft.com/typography/links/vendorlist.aspx"
-USER_AGENT = "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:40.0) Gecko/20100101 Firefox/40.0"
-
+CREDIT = "Courtesy of Microsoft Typography - {}".format(URL)
+USER_AGENT = "Mozilla/5.0 (X11; Fedora; Linux x86_64; rv:45.0) Gecko/20100101 Firefox/45.0"
 
 def list_vendors () :
     req = urllib.request.Request(URL)

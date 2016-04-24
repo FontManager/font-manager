@@ -36,8 +36,7 @@ namespace FontManager {
             public License () {
                 grid = new Gtk.Grid();
                 view = new StaticTextView(null);
-                view.view.left_margin = 12;
-                view.view.right_margin = 12;
+                view.view.margin = 12;
                 view.view.pixels_above_lines = 1;
                 label = new Gtk.Label(_("File does not contain license information."));
                 label.sensitive = false;

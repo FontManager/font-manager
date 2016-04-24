@@ -23,6 +23,18 @@
 
 namespace FontConfig {
 
+    /**
+     * Directories - Represents a Fontconfig configuration file
+     *
+     * @config_dir      directory to store configuration file
+     * @target_file     filename following the form [0][0-9]*.conf
+     *
+     * <dir> elements contain a directory name which will be scanned
+     * for font files to include in the set of available fonts.
+     *
+     * Is actually a #Gee.HashSet holding directory paths.
+     * Provides methods to save() / load() configuration files.
+     */
     public class Directories : Selections {
 
         public Directories () {
