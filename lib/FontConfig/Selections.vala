@@ -105,7 +105,7 @@ namespace FontConfig {
          * Should be set to one of the directories monitored by Fontconfig
          * for configuration files.
          *
-         * Default value :   current working directory
+         * Default value :   #get_config_dir()
          */
         public string config_dir { get; set; default = get_config_dir(); }
 

@@ -21,77 +21,92 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
-public class BaseTreeView : Gtk.TreeView {
+namespace FontManager {
 
-    public signal void menu_request (Gtk.Widget widget, Gdk.EventButton event);
+    public class BaseTreeView : Gtk.TreeView {
 
-    public override bool button_press_event (Gdk.EventButton event) {
-        if (event.button == 3) {
-            menu_request(this, event);
-            verbose("Context menu request - %s", this.name);
-            return true;
-        }
-        return base.button_press_event(event);
-    }
+        /**
+         * BaseTreeView::menu_request:
+         *
+         * Emitted on right click
+         */
+        public signal void menu_request (Gtk.Widget widget, Gdk.EventButton event);
 
-}
-
-public class MultiDNDTreeView : BaseTreeView {
-
-    struct PendingEvent {
-        double x;
-        double y;
-        bool active;
-    }
-
-    PendingEvent pending_event;
-
-    public MultiDNDTreeView () {
-        Object(name: "MultiDNDTreeView", rubber_banding: true);
-        get_selection().set_mode(Gtk.SelectionMode.MULTIPLE);
-        pending_event = PendingEvent();
-    }
-
-    public override bool button_press_event (Gdk.EventButton event) {
-        if (event.button == 3)
-            return base.button_press_event(event);
-        Gtk.TreePath path;
-        get_path_at_pos((int) event.x, (int) event.y, out path, null, null, null);
-        if (path == null)
-            return true;
-        var selection = get_selection();
-        if (selection.path_is_selected(path) && (event.state & (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK)) == 0) {
-            pending_event.x = event.x;
-            pending_event.y = event.y;
-            pending_event.active = true;
-            selection.set_select_function((s, m, p, b) => { return false; });
-        } else {
-            pending_event.x = 0.0;
-            pending_event.y = 0.0;
-            pending_event.active = false;
-            selection.set_select_function((s, m, p, b) => { return true; });
-        }
-        path = null;
-        return base.button_press_event(event);
-    }
-
-    public override bool button_release_event (Gdk.EventButton event) {
-        if (pending_event.active) {
-            var selection = get_selection();
-            selection.set_select_function((s, m, p, b) => { return true; });
-            pending_event.active = false;
-            if (pending_event.x != event.x || pending_event.y != event.y)
+        public override bool button_press_event (Gdk.EventButton event) {
+            if (event.button == 3) {
+                menu_request(this, event);
+                verbose("Context menu request - %s", this.name);
                 return true;
-            Gtk.TreePath path;
-            if (get_path_at_pos((int) event.x, (int) event.y, out path, null, null, null))
-                set_cursor(path, null, false);
+            }
+            return base.button_press_event(event);
         }
-        return base.button_release_event(event);
+
     }
 
-    public override void drag_begin (Gdk.DragContext context) {
-        return;
+    /**
+     * MultiDNDTreeView:
+     *
+     * #Gtk.TreeView which supports drag and drop for multiple selections.
+     */
+    /* Was this originally from Quod Libet? Think it was. Thanks. */
+    public class MultiDNDTreeView : BaseTreeView {
+
+        struct PendingEvent {
+            double x;
+            double y;
+            bool active;
+        }
+
+        PendingEvent pending_event;
+
+        construct {
+            name = "MultiDNDTreeView";
+            rubber_banding = true;
+            get_selection().set_mode(Gtk.SelectionMode.MULTIPLE);
+            pending_event = PendingEvent();
+        }
+
+        public override bool button_press_event (Gdk.EventButton event) {
+            if (event.button == 3)
+                return base.button_press_event(event);
+            Gtk.TreePath path;
+            get_path_at_pos((int) event.x, (int) event.y, out path, null, null, null);
+            if (path == null)
+                return true;
+            var selection = get_selection();
+            if (selection.path_is_selected(path) && (event.state & (Gdk.ModifierType.CONTROL_MASK | Gdk.ModifierType.SHIFT_MASK)) == 0) {
+                pending_event.x = event.x;
+                pending_event.y = event.y;
+                pending_event.active = true;
+                selection.set_select_function((s, m, p, b) => { return false; });
+            } else {
+                pending_event.x = 0.0;
+                pending_event.y = 0.0;
+                pending_event.active = false;
+                selection.set_select_function((s, m, p, b) => { return true; });
+            }
+            path = null;
+            return base.button_press_event(event);
+        }
+
+        public override bool button_release_event (Gdk.EventButton event) {
+            if (pending_event.active) {
+                var selection = get_selection();
+                selection.set_select_function((s, m, p, b) => { return true; });
+                pending_event.active = false;
+                if (pending_event.x != event.x || pending_event.y != event.y)
+                    return true;
+                Gtk.TreePath path;
+                if (get_path_at_pos((int) event.x, (int) event.y, out path, null, null, null))
+                    set_cursor(path, null, false);
+            }
+            return base.button_release_event(event);
+        }
+
+        public override void drag_begin (Gdk.DragContext context) {
+            return;
+        }
+
     }
 
 }
-

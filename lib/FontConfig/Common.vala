@@ -23,11 +23,17 @@
 
 namespace FontConfig {
 
+    /**
+     * @return      version number of Fontconfig library
+     */
     public string get_version_string () {
         string raw = FcGetVersion().to_string();
         return "%c.%c%c.%s".printf(raw.get(0), raw.get(1), raw.get(2), raw.substring(3));
     }
 
+    /**
+     * @return      the current users fontconfig configuration directory
+     */
     public string get_config_dir () {
         string config_dir = Path.build_filename(Environment.get_user_config_dir(), "fontconfig", "conf.d");
         if (DirUtils.create_with_parents(config_dir, 0755) != 0)

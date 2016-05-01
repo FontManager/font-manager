@@ -38,7 +38,7 @@ namespace FontConfig {
     };
 
     /**
-     * Represents a Fontconfig <alias> element.
+     * AliasElement - Represents a Fontconfig <alias> element.
      *
      * Alias elements provide a shorthand notation for the set of common
      * match operations needed to substitute one font family for another.
@@ -101,7 +101,7 @@ namespace FontConfig {
          * Should be set to one of the directories monitored by Fontconfig for
          * configuration files.
          *
-         * Default value :   current working directory
+         * Default value :   #get_package_config_dir()
          */
         public string config_dir { get; set; default = get_package_config_dir(); }
 

@@ -1,4 +1,4 @@
-/* FontConfigControls.vala
+/* Controls.vala
  *
  * Copyright (C) 2009 - 2016 Jerry Casiano
  *
@@ -23,14 +23,37 @@
 
 namespace FontConfig {
 
+    /**
+     * Controls:
+     *
+     * #Gtk.Actionbar containing a save and discard button along with a notice
+     * informing the user that changes may not take effect immediately.
+     * Intended for use in dialogs which generate Fontconfig configuration files.
+     */
     public class Controls : Gtk.ActionBar {
 
+        /**
+         * Controls::save_selected:
+         *
+         * Emitted when the user clicks Save
+         */
         public signal void save_selected ();
+        /**
+         * Controls::discard_selected:
+         *
+         * Emitted when the user clicks Discard
+         */
         public signal void discard_selected ();
+
+        /**
+         * Controls:note:
+         *
+         * Informational notice displayed between discard and save buttons.
+         */
+        public Gtk.Label note { get; private set; }
 
         Gtk.Button save;
         Gtk.Button discard;
-        Gtk.Label note;
 
         public Controls () {
             save = new Gtk.Button.with_label(_("Save"));

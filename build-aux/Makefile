@@ -21,16 +21,9 @@ POTFILES.skip:
 	$(SED) -i 's|\.\./||g' $(abs_top_srcdir)/po/$@ ;
 	echo "lib/Glue/Enums.c" >> $(abs_top_srcdir)/po/$@ ;
 
-$(PACKAGE_NAME).pot: POTFILES.readme POTFILES.in POTFILES.skip
-	cd $(abs_top_srcdir)/po/ && \
-	rm -f $@  && \
-	$(MAKE) update-po && \
-	$(SED) -f insert-header.sin -i $@  &&\
-	cd $(abs_top_srcdir)/help && \
-	rm -f $@  && \
-	$(MAKE) pot && \
-	$(SED) -f insert-header.sin -i $@  && \
-	$(MAKE) repo && \
+POT:
+	cd $(abs_top_srcdir) && \
+	make font-manager.pot && \
 	cd $(abs_srcdir)
 
 write_sources = \
@@ -60,7 +53,7 @@ Vendor.h:
 	vendor/genheader.py $(abs_top_srcdir)/lib/Glue
 
 update-headers: License.h Vendor.h
-update-po: $(PACKAGE_NAME).pot
+update-po: POTFILES.readme POTFILES.in POTFILES.skip POT
 update-sources: ValaSources.mk
 update: update-headers update-po update-sources
 

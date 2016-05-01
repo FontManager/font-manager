@@ -23,6 +23,11 @@
 
 namespace FontConfig {
 
+    /**
+     * DisplayPropertiesPane:
+     *
+     * Preference pane allowing configuration of display related Fontconfig properties
+     */
     public class DisplayPropertiesPane : Gtk.ScrolledWindow {
 
         public DisplayProperties properties { get; private set; }

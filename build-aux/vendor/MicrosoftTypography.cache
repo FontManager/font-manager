@@ -335,6 +335,7 @@
  (b'MF', b'Magic Fonts'),
  (b'MFNT', b'Masterfont'),
  (b'MG', b'Milieu Grotesque'),
+ (b'MGD', b'Matt Grey Design'),
  (b'MILL', b'Millan'),
  (b'MJ', b'Majus Corporation'),
  (b'MJR', b'Majur Inc.'),

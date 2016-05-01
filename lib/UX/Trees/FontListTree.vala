@@ -61,7 +61,7 @@ namespace FontManager {
         Gtk.CellRendererToggle toggle;
 
         public FontList () {
-            Object(name: "FontList", headers_visible: false);
+            Object(name: "FontList", headers_visible: false, rubber_banding: true, expand: true);
             controls = new FontListControls();
             toggle = new Gtk.CellRendererToggle();
             var text = new Gtk.CellRendererText();
@@ -331,7 +331,6 @@ namespace FontManager {
             expand = true;
             scroll = new Gtk.ScrolledWindow(null, null);
             fontlist = new FontList();
-            fontlist.expand = true;
             progress = new Gtk.ProgressBar();
             progress.halign = progress.valign = Gtk.Align.CENTER;
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);

@@ -21,13 +21,10 @@ libfontmanager_la_VALASOURCES = \
 	Filters/Unsorted.vala \
 	FontConfig/Alias.vala \
 	FontConfig/Common.vala \
-	FontConfig/DefaultProperties.vala \
 	FontConfig/Directories.vala \
-	FontConfig/DisplayProperties.vala \
 	FontConfig/Enums.vala \
 	FontConfig/Families.vala \
 	FontConfig/Family.vala \
-	FontConfig/FontProperties.vala \
 	FontConfig/Font.vala \
 	FontConfig/MonitoredFiles.vala \
 	FontConfig/Properties.vala \
@@ -45,14 +42,15 @@ libfontmanager_la_VALASOURCES = \
 	UX/CharacterMap/CharacterTable.vala \
 	UX/Controls/BaseControls.vala \
 	UX/Controls/CollectionControls.vala \
-	UX/Controls/FontConfigControls.vala \
 	UX/Controls/FontListControls.vala \
 	UX/Controls/PreviewControls.vala \
+	UX/FontConfig/Controls.vala \
 	UX/FontConfig/DisplayPropertiesPane.vala \
 	UX/FontConfig/FontPropertiesPane.vala \
+	UX/FontConfig/FontSourceList.vala \
 	UX/FontConfig/PreferencePane.vala \
 	UX/FontConfig/SubpixelGeometry.vala \
-	UX/FontConfig/UserSourceList.vala \
+	UX/FontConfig/Substitute.vala \
 	UX/Metadata/Description.vala \
 	UX/Metadata/License.vala \
 	UX/Metadata/Properties.vala \
@@ -66,20 +64,11 @@ libfontmanager_la_VALASOURCES = \
 	UX/Trees/FontListTree.vala \
 	UX/Trees/UserFontTree.vala \
 	UX/Utils/Color.vala \
+	UX/Utils/FileSelector.vala \
 	UX/Utils/Utils.vala \
 	UX/Views/FontPreviewPane.vala \
-	UX/Widgets/ActivePreview.vala \
-	UX/Widgets/AdjustablePreview.vala \
 	UX/Widgets/CellRendererPill.vala \
-	UX/Widgets/FileSelector.vala \
-	UX/Widgets/FontPreview.vala \
-	UX/Widgets/FontScale.vala \
-	UX/Widgets/LabeledSpinButton.vala \
-	UX/Widgets/LabeledSwitch.vala \
-	UX/Widgets/OptionScale.vala \
-	UX/Widgets/ReactiveLabel.vala \
-	UX/Widgets/TextPreview.vala \
+	UX/Widgets/Controls.vala \
+	UX/Widgets/Labels.vala \
 	UX/Widgets/TextViews.vala \
-	UX/Widgets/TreeViews.vala \
-	UX/Widgets/WaterfallPreview.vala \
-	UX/Widgets/WelcomeLabel.vala 
+	UX/Widgets/TreeViews.vala 

@@ -130,7 +130,6 @@ namespace FontManager {
             pack_start(controls, false, false, 0);
             add_separator(this, Gtk.Orientation.HORIZONTAL);
             box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            box.pack_end(fontscale, false, false, 0);
             scroll.add(tree);
             box.pack_start(scroll, true, true, 0);
             pack_end(box, true, true, 0);
@@ -140,7 +139,6 @@ namespace FontManager {
         }
 
         public override void show () {
-            fontscale.show();
             tree.show();
             scroll.show();
             box.show();

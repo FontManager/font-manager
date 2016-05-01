@@ -52,7 +52,6 @@ namespace FontManager {
             }
         }
 
-        Gtk.Box table_box;
         Gtk.ScrolledWindow scroll;
         Pango.FontDescription _font_desc;
 
@@ -65,13 +64,10 @@ namespace FontManager {
             table.codepoint_list = new Gucharmap.ScriptCodepointList();
             font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
             scroll = new Gtk.ScrolledWindow(null, null);
-            table_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             details = new CharacterDetails();
             scroll.add(table);
-            table_box.pack_start(details, false, true, 0);
-            table_box.pack_start(scroll, true, true, 1);
-            table_box.pack_end(fontscale, false, true, 1);
-            pack_end(table_box, true, true, 0);
+            pack_start(details, false, true, 0);
+            pack_start(scroll, true, true, 1);
             table.bind_property("active-character", this, "active-character", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
             table.bind_property("active-character", details, "active-character", BindingFlags.SYNC_CREATE);
             notify["show-details"].connect(() => {
@@ -84,8 +80,6 @@ namespace FontManager {
 
         public override void show () {
             table.show();
-            table_box.show();
-            fontscale.show();
             scroll.show();
             if (show_details)
                 details.show();

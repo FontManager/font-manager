@@ -23,6 +23,9 @@
 
 namespace FontManager {
 
+    /**
+     * {@inheritDoc}
+     */
     public class CollectionControls : BaseControls {
 
         public CollectionControls () {

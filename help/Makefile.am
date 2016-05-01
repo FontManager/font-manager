@@ -11,4 +11,5 @@ HELP_MEDIA = \
 HELP_LINGUAS =
 
 MAINTAINERCLEANFILES = \
+	$(PACKAGE_NAME).pot \
 	./Makefile.in

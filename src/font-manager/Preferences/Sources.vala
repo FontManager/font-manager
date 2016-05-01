@@ -27,41 +27,41 @@ namespace FontManager {
 
         public class Sources : Gtk.Box {
 
-            public UserSourceList user_source_list { get; private set; }
+            public FontSourceList source_list { get; private set; }
 
             BaseControls controls;
 
             public Sources () {
                 orientation = Gtk.Orientation.VERTICAL;
-                user_source_list = new UserSourceList();
-                user_source_list.expand = true;
-                user_source_list.sources = Main.instance.sources;
+                source_list = new FontSourceList();
+                source_list.expand = true;
+                source_list.sources = Main.instance.sources;
                 controls = new BaseControls();
                 controls.add_button.set_tooltip_text(_("Add source"));
                 controls.remove_button.set_tooltip_text(_("Remove selected source"));
                 controls.remove_button.sensitive = false;
                 pack_start(controls, false, false, 1);
                 add_separator(this, Gtk.Orientation.HORIZONTAL);
-                pack_end(user_source_list, true, true, 1);
+                pack_end(source_list, true, true, 1);
                 connect_signals();
             }
 
             public override void show () {
                 controls.show();
                 controls.remove_button.hide();
-                user_source_list.show();
+                source_list.show();
                 base.show();
                 return;
             }
 
             void connect_signals () {
                 controls.add_selected.connect(() => {
-                    user_source_list.on_add_source();
+                    source_list.on_add_source();
                 });
                 controls.remove_selected.connect(() => {
-                    user_source_list.on_remove_source();
+                    source_list.on_remove_source();
                 });
-                user_source_list.row_selected.connect((r) => {
+                source_list.row_selected.connect((r) => {
                     if (r != null)
                         controls.remove_button.show();
                     else

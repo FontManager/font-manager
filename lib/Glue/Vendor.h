@@ -388,6 +388,7 @@ VendorData[] =
     {"MF", "Magic Fonts"},
     {"MFNT", "Masterfont"},
     {"MG", "Milieu Grotesque"},
+    {"MGD", "Matt Grey Design"},
     {"MILL", "Millan"},
     {"MJ", "Majus Corporation"},
     {"MJR", "Majur Inc."},

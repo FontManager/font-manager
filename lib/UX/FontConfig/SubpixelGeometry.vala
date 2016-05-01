@@ -23,6 +23,11 @@
 
 namespace FontConfig {
 
+    /**
+     * SubpixelGeometry:
+     *
+     * https://en.wikipedia.org/wiki/Subpixel_rendering
+     */
     public class SubpixelGeometry : Gtk.Box {
 
         public int rgba {
@@ -84,6 +89,11 @@ namespace FontConfig {
 
     }
 
+    /**
+     * SubpixelGeometryIcon:
+     *
+     * Icon representing subpixel layout.
+     */
     public class SubpixelGeometryIcon : Gtk.Box {
 
         int _size;

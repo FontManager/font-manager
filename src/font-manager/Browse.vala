@@ -75,7 +75,6 @@ namespace FontManager {
             renderer.xpad = 48;
             renderer.junction_side = Gtk.JunctionSides.LEFT;
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
-            main_box.pack_end(fontscale, false, true, 0);
             treeview.set_enable_search(true);
             treeview.set_search_column(FontModelColumn.DESCRIPTION);
             treeview.insert_column_with_data_func(0, "", renderer, cell_data_func);
@@ -86,7 +85,6 @@ namespace FontManager {
 
         public override void show () {
             treeview.show();
-            fontscale.show();
             treeview.show();
             scroll.show();
             main_box.show();

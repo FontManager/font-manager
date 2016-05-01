@@ -24,7 +24,7 @@
 
 namespace FontManager {
 
-    public class UserFontTree : Gtk.TreeView {
+    public class UserFontTree : BaseTreeView {
 
         Gtk.CellRendererToggle toggle;
         Gee.HashSet <FontConfig.Family> selected_families;

@@ -1,4 +1,4 @@
-/* UserSourceList.vala
+/* FontSourceList.vala
  *
  * Copyright (C) 2009 - 2016 Jerry Casiano
  *
@@ -29,6 +29,12 @@ namespace FontManager {
     const string welcome_tmpl = "<span size=\"xx-large\" weight=\"bold\">%s</span>\n<span size=\"large\">\n\n%s\n</span>\n\n\n<span size=\"x-large\">%s</span>";
 
 
+    /**
+     * FontSourceRow:
+     *
+     * Widget representing a #FontConfig.Source and its current status.
+     * Intended for use in a #Gtk.Listbox
+     */
     public class FontSourceRow : Gtk.Box {
 
         public weak FontConfig.Source source { get; set; }
@@ -59,11 +65,24 @@ namespace FontManager {
 
     }
 
-    public class UserSourceList : Gtk.Overlay {
+    /**
+     * FontSourceList:
+     */
+    public class FontSourceList : Gtk.ScrolledWindow {
 
+        /**
+         * FontSourceList::changed:
+         *
+         * Emitted when a row has been added or removed
+         */
         public signal void changed ();
         public signal void row_selected (Gtk.ListBoxRow? row);
 
+        /**
+         * FontSourceList:sources:
+         *
+         * #FontConfig.Sources to display
+         */
         public FontConfig.Sources sources {
             get {
                 return _sources;
@@ -84,21 +103,22 @@ namespace FontManager {
 
         Gtk.ListBox list;
         Gtk.Label welcome;
-        Gtk.ScrolledWindow scroll;
         FontConfig.Sources _sources;
 
         construct {
-            scroll = new Gtk.ScrolledWindow(null, null);
             string welcome_message = welcome_tmpl.printf(w1, w2, w3);
             welcome = new WelcomeLabel(welcome_message);
             list = new Gtk.ListBox();
-            scroll.add(list);
-            add(scroll);
-            add_overlay(welcome);
+            list.set_placeholder(welcome);
+            add(list);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             list.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
             list.row_selected.connect((r) => { row_selected(r); });
+        }
+
+        public FontSourceList () {
+            Object(name: "FontSourceList");
         }
 
         public void update () {
@@ -109,14 +129,12 @@ namespace FontManager {
                 list.add(w);
                 w.show();
             }
-            welcome.set_visible((first_row == null));
             queue_draw();
             return;
         }
 
         public override void show () {
             welcome.show();
-            scroll.show();
             list.show();
             update();
             base.show();

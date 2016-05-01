@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-04-19 01:18-0400\n"
+"POT-Creation-Date: 2016-04-30 21:43-0400\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -285,41 +285,30 @@ msgstr "Unicode 脚本"
 msgid "Unicode Block"
 msgstr "Unicode 区块"
 
-#: ../lib/UX/Controls/CollectionControls.vala:29
+#: ../lib/UX/Controls/CollectionControls.vala:32
 msgid "Add new collection"
 msgstr "添加新的字体集"
 
-#: ../lib/UX/Controls/CollectionControls.vala:30
+#: ../lib/UX/Controls/CollectionControls.vala:33
 msgid "Remove selected collection"
 msgstr "删除选中的字体集"
 
-#: ../lib/UX/Controls/FontConfigControls.vala:36
-msgid "Save"
-msgstr ""
+#: ../lib/UX/Controls/FontListControls.vala:46
+#, fuzzy
+msgid "Remove selected font from collection"
+msgstr "删除比较组中选中的字体"
 
-#: ../lib/UX/Controls/FontConfigControls.vala:39
-msgid "Discard"
-msgstr ""
-
-#: ../lib/UX/Controls/FontConfigControls.vala:42
-msgid "Running applications may require a restart to reflect any changes."
-msgstr ""
-
-#: ../lib/UX/Controls/FontListControls.vala:45
-#: ../lib/UX/Controls/FontListControls.vala:78
+#: ../lib/UX/Controls/FontListControls.vala:50
+#: ../lib/UX/Controls/FontListControls.vala:65
 msgid "Expand all"
 msgstr "全部展开"
 
-#: ../lib/UX/Controls/FontListControls.vala:48
-msgid "Remove selected fonts"
-msgstr "删除选中的字体"
-
-#: ../lib/UX/Controls/FontListControls.vala:52
+#: ../lib/UX/Controls/FontListControls.vala:54
 #, fuzzy
 msgid "Search Families..."
 msgstr "搜索数据库"
 
-#: ../lib/UX/Controls/FontListControls.vala:78
+#: ../lib/UX/Controls/FontListControls.vala:65
 msgid "Collapse all"
 msgstr "全部折叠"
 
@@ -347,76 +336,101 @@ msgstr "两端对齐"
 msgid "Right Aligned"
 msgstr "右对齐"
 
-#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:41
+#: ../lib/UX/FontConfig/Controls.vala:59
+msgid "Save"
+msgstr ""
+
+#: ../lib/UX/FontConfig/Controls.vala:61
+msgid "Discard"
+msgstr ""
+
+#: ../lib/UX/FontConfig/Controls.vala:63
+msgid "Running applications may require a restart to reflect any changes."
+msgstr ""
+
+#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:44
 msgid "Target DPI"
 msgstr ""
 
-#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:42
+#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:45
 msgid "Scale factor"
 msgstr ""
 
-#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:46
+#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:49
 msgid "LCD Filter"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:46
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:49
 msgid "Antialias"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:47
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:50
 msgid "Hinting"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:48
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:51
 msgid "Enable Autohinter"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:59
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:58
 msgid "Hinting Style"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:60
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:59
 msgid "Use Embedded Bitmaps"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:62
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:70
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:61
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:66
 msgid " Size Restrictions "
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:68
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:64
 msgid " Apply settings to point sizes "
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:139
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:134
 msgid "Smaller than"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:140
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:135
 msgid "Larger than"
 msgstr ""
 
-#: ../lib/UX/FontConfig/SubpixelGeometry.vala:50
-msgid "Subpixel Geometry"
-msgstr ""
-
-#: ../lib/UX/FontConfig/UserSourceList.vala:26
+#: ../lib/UX/FontConfig/FontSourceList.vala:26
 #, fuzzy
 msgid "Font Sources"
 msgstr "管理字体源"
 
-#: ../lib/UX/FontConfig/UserSourceList.vala:27
+#: ../lib/UX/FontConfig/FontSourceList.vala:27
 #, fuzzy
 msgid "Easily add or preview fonts without actually installing them."
 msgstr "快速添加或预览字体"
 
-#: ../lib/UX/FontConfig/UserSourceList.vala:28
+#: ../lib/UX/FontConfig/FontSourceList.vala:28
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr "通过拖放到此区域或单击工具栏上的按钮来添加新的字体源。"
 
-#: ../lib/UX/Metadata/License.vala:42
+#: ../lib/UX/FontConfig/SubpixelGeometry.vala:53
+msgid "Subpixel Geometry"
+msgstr ""
+
+#: ../lib/UX/FontConfig/Substitute.vala:78
+msgid "prefer"
+msgstr ""
+
+#: ../lib/UX/FontConfig/Substitute.vala:79
+msgid "accept"
+msgstr ""
+
+#: ../lib/UX/FontConfig/Substitute.vala:80
+#, fuzzy
+msgid "default"
+msgstr "默认(Default)"
+
+#: ../lib/UX/Metadata/License.vala:41
 #, fuzzy
 msgid "File does not contain license information."
 msgstr "文件未包含协议描述。"
@@ -466,11 +480,11 @@ msgstr "TrueType 字体"
 msgid "PostScript Type 1 Font"
 msgstr "PostScript Type 1 字体"
 
-#: ../lib/UX/Metadata/Title.vala:107
+#: ../lib/UX/Metadata/Title.vala:103
 msgid "No file selected"
 msgstr ""
 
-#: ../lib/UX/Metadata/Title.vala:107
+#: ../lib/UX/Metadata/Title.vala:103
 #, fuzzy
 msgid "Or unsupported filetype."
 msgstr "按文件类型分组"
@@ -526,7 +540,7 @@ msgid "Grouped by filetype"
 msgstr "按文件类型分组"
 
 #: ../lib/UX/Models/CategoryModel.vala:110
-#: ../lib/UX/Views/FontPreviewPane.vala:124
+#: ../lib/UX/Views/FontPreviewPane.vala:123
 msgid "License"
 msgstr "许可证"
 
@@ -579,34 +593,57 @@ msgstr "正常(Normal)"
 msgid "Regular"
 msgstr "常规(Regular)"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:57
-#: ../lib/UX/Widgets/FontPreview.vala:88
+#: ../lib/UX/Utils/FileSelector.vala:37
+msgid "Select source folders"
+msgstr "选择字体源文件夹"
+
+#: ../lib/UX/Utils/FileSelector.vala:40 ../lib/UX/Utils/FileSelector.vala:60
+#: ../lib/UX/Utils/FileSelector.vala:87 ../src/font-manager/Migration.vala:58
+msgid "_Cancel"
+msgstr "取消(_C)"
+
+#: ../lib/UX/Utils/FileSelector.vala:42 ../lib/UX/Utils/FileSelector.vala:62
+msgid "_Open"
+msgstr "打开(_O)"
+
+#: ../lib/UX/Utils/FileSelector.vala:57
+msgid "Select files to install"
+msgstr "选择文件安装"
+
+#: ../lib/UX/Utils/FileSelector.vala:88
+msgid "_Delete"
+msgstr "删除(_D)"
+
+#: ../lib/UX/Utils/FileSelector.vala:95
+msgid "Select fonts to remove"
+msgstr "选择字体删除"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:57 ../lib/UX/Widgets/TextViews.vala:123
 msgid "Waterfall"
 msgstr "瀑布"
 
 # Not fine
-#: ../lib/UX/Views/FontPreviewPane.vala:59
-#: ../lib/UX/Widgets/FontPreview.vala:89
+#: ../lib/UX/Views/FontPreviewPane.vala:59 ../lib/UX/Widgets/TextViews.vala:124
 msgid "Body Text"
 msgstr "正文"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:61
-#: ../lib/UX/Widgets/FontPreview.vala:87
+#. stack = new Gtk.Stack();
+#: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:122
 #: ../src/font-manager/MainWindow.vala:213
 msgid "Preview"
 msgstr "预览"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:123
+#: ../lib/UX/Views/FontPreviewPane.vala:122
 #, fuzzy
 msgid "Properties"
 msgstr "比例(Proportional)"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:125
+#: ../lib/UX/Views/FontPreviewPane.vala:124
 #, fuzzy
 msgid "Characters"
 msgstr "字符映射"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:248
+#: ../lib/UX/Views/FontPreviewPane.vala:246
 #, fuzzy
 msgid "Select preview type"
 msgstr "编辑预览文本"
@@ -618,33 +655,6 @@ msgstr "变体"
 #: ../lib/UX/Widgets/CellRendererPill.vala:31
 msgid "Variations"
 msgstr "变体"
-
-#: ../lib/UX/Widgets/FileSelector.vala:37
-msgid "Select source folders"
-msgstr "选择字体源文件夹"
-
-#: ../lib/UX/Widgets/FileSelector.vala:40
-#: ../lib/UX/Widgets/FileSelector.vala:60
-#: ../lib/UX/Widgets/FileSelector.vala:87 ../src/font-manager/Migration.vala:58
-msgid "_Cancel"
-msgstr "取消(_C)"
-
-#: ../lib/UX/Widgets/FileSelector.vala:42
-#: ../lib/UX/Widgets/FileSelector.vala:62
-msgid "_Open"
-msgstr "打开(_O)"
-
-#: ../lib/UX/Widgets/FileSelector.vala:57
-msgid "Select files to install"
-msgstr "选择文件安装"
-
-#: ../lib/UX/Widgets/FileSelector.vala:88
-msgid "_Delete"
-msgstr "删除(_D)"
-
-#: ../lib/UX/Widgets/FileSelector.vala:95
-msgid "Select fonts to remove"
-msgstr "选择字体删除"
 
 #: ../src/font-manager/Compare.vala:35
 msgid "Add selected font to comparison"
@@ -711,24 +721,24 @@ msgstr ""
 msgid "Removed configuration file."
 msgstr ""
 
-#: ../src/font-manager/Preferences/Interface.vala:43
+#: ../src/font-manager/Preferences/Interface.vala:42
 msgid "Wide Layout"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Interface.vala:45
+#: ../src/font-manager/Preferences/Interface.vala:44
 msgid "Only when maximized"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Interface.vala:50
+#: ../src/font-manager/Preferences/Interface.vala:48
 msgid "Client Side Decorations"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Interface.vala:114
+#: ../src/font-manager/Preferences/Interface.vala:101
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
 
-#: ../src/font-manager/Preferences/Interface.vala:116
+#: ../src/font-manager/Preferences/Interface.vala:103
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
@@ -769,34 +779,37 @@ msgstr "分类"
 msgid "Collections"
 msgstr "字体集"
 
-#: ../src/font-manager/TitleBar.vala:69
+#: ../src/font-manager/TitleBar.vala:65
 msgid "Add Fonts"
 msgstr "添加字体"
 
-#: ../src/font-manager/TitleBar.vala:70
+#: ../src/font-manager/TitleBar.vala:66
 msgid "Remove Fonts"
 msgstr "删除字体"
 
-#: ../src/font-manager/TitleBar.vala:76
+#: ../src/font-manager/TitleBar.vala:73
 msgid "Preferences"
 msgstr ""
 
-#: ../src/font-manager/TitleBar.vala:164
+#: ../src/font-manager/TitleBar.vala:162
 msgid "Help"
 msgstr "帮助"
 
-#: ../src/font-manager/TitleBar.vala:165
+#: ../src/font-manager/TitleBar.vala:163
 msgid "About"
 msgstr "关于"
 
-#: ../src/font-manager/TitleBar.vala:166
+#: ../src/font-manager/TitleBar.vala:164
 msgid "Quit"
 msgstr "退出"
 
 # Not translate very good, just for use.
-#. Note: Type hint used to prevent notification on every selection
+#. Type hint used to prevent notification on every selection.
+#. * Happens in gnome-shell and I assume other environments if
+#. * one of the file manager extensions are in use.
+#.
 #: ../src/font-viewer/Application.vala:121
-#: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:49
+#: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:52
 #, fuzzy
 msgid "Font Viewer"
 msgstr "字体管理器"
@@ -810,16 +823,16 @@ msgstr "快速添加或预览字体"
 msgid "To preview a font simply drag it onto this area."
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:54 ../src/font-viewer/MainWindow.vala:160
+#: ../src/font-viewer/MainWindow.vala:58 ../src/font-viewer/MainWindow.vala:163
 #, fuzzy
 msgid "Install Font"
 msgstr "全部字体"
 
-#: ../src/font-viewer/MainWindow.vala:152
+#: ../src/font-viewer/MainWindow.vala:155
 msgid "Newer version already installed"
 msgstr "新版本已安装"
 
-#: ../src/font-viewer/MainWindow.vala:156
+#: ../src/font-viewer/MainWindow.vala:159
 #, fuzzy
 msgid "Installed"
 msgstr "全部字体"
@@ -838,6 +851,9 @@ msgstr "关于"
 #, fuzzy
 msgid "_Quit"
 msgstr "退出"
+
+#~ msgid "Remove selected fonts"
+#~ msgstr "删除选中的字体"
 
 #, fuzzy
 #~ msgid "FontConfig Properties"

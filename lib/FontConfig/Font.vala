@@ -41,6 +41,9 @@ namespace FontConfig {
             return 0;
     }
 
+    /**
+     * Font:
+     */
     public class Font : Cacheable {
 
         public string? filepath { get; set; default = null; }

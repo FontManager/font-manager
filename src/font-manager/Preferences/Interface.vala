@@ -67,7 +67,6 @@ namespace FontManager {
             public override void show () {
                 grid.show();
                 message.show();
-//                box.show();
                 wide_layout.show();
                 on_maximize.show();
                 wide_layout_options.show();

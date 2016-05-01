@@ -36,9 +36,17 @@ namespace FontConfig {
         return natural_cmp(a.name, b.name);
     }
 
+    /**
+     * Family:
+     */
     public class Family : Cacheable {
 
         public string name { get; protected set; }
+        /**
+         * Family:description:
+         *
+         * A valid #Pango.FontDescription string for this
+         */
         public string description { get; protected set; }
         public bool has_bold { get; private set; default = false; }
         public bool has_italic { get; private set; default = false; }
@@ -61,6 +69,11 @@ namespace FontConfig {
             return;
         }
 
+        /**
+         * list_faces:
+         *
+         * @return      sorted #Gee.ArrayList of #FontConfig.Font in this
+         */
         public Gee.ArrayList <Font> list_faces () {
             var fontlist = new Gee.ArrayList <Font> ();
             fontlist.add_all(faces.values);
@@ -68,6 +81,11 @@ namespace FontConfig {
             return fontlist;
         }
 
+        /**
+         * get_default_variant:
+         *
+         * @return      the default #FontConfig.Font for this
+         */
         public Font get_default_variant () {
             var fontlist = list_faces();
             /* Try to find default variant */

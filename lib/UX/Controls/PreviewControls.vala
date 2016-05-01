@@ -77,6 +77,9 @@ namespace FontManager {
             box.pack_end(edit, false, false, 0);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             add(box);
+            justify_center.active = true;
+            edit.active = false;
+            clear.sensitive = false;
             connect_signals();
 
         }
@@ -94,9 +97,6 @@ namespace FontManager {
         }
 
         void connect_signals () {
-            justify_center.active = true;
-            edit.active = false;
-            clear.sensitive = false;
             justify_left.toggled.connect(() => { justification_set(Gtk.Justification.LEFT); });
             justify_center.toggled.connect(() => { justification_set(Gtk.Justification.CENTER); });
             justify_fill.toggled.connect(() => { justification_set(Gtk.Justification.FILL); });

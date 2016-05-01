@@ -23,9 +23,29 @@
 
 namespace FontManager {
 
+    /**
+     * BaseControls:
+     *
+     * Base class for controls. By default includes add/remove buttons packed
+     * at start of @box
+     *
+     * Is actually a #Gtk.Eventbox, applying to styles to #Gtk.Box and it's
+     * contents does not actually work at this point
+     * We use add_class(Gtk.STYLE_CLASS_VIEW) to blend these in a lot of places
+     */
     public class BaseControls : Gtk.EventBox {
 
+        /**
+         * BaseControls::add_selected:
+         *
+         * Emitted when @add_button has been clicked
+         */
         public signal void add_selected ();
+        /**
+         * BaseControls::remove_selected:
+         *
+         * Emitted when @remove_button is clicked
+         */
         public signal void remove_selected ();
 
         public Gtk.Box box { get; protected set; }
@@ -44,7 +64,8 @@ namespace FontManager {
             box.pack_start(remove_button, false, false, 1);
             set_default_button_relief(box);
             add(box);
-            connect_signals();
+            add_button.clicked.connect((w) => { add_selected(); });
+            remove_button.clicked.connect(() => { remove_selected(); });
         }
 
         public override void show () {
@@ -52,12 +73,6 @@ namespace FontManager {
             remove_button.show();
             box.show();
             base.show();
-            return;
-        }
-
-        void connect_signals () {
-            add_button.clicked.connect((w) => { add_selected(); });
-            remove_button.clicked.connect(() => { remove_selected(); });
             return;
         }
 

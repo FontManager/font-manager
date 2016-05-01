@@ -23,6 +23,14 @@
 
 namespace FontConfig {
 
+    /**
+     * PreferencePane:
+     *
+     * Base class for dialogs which generate Fontconfig configuration files.
+     * It features #Controls at the bottom which allow the user to save or
+     * discard the current configuration and a #Gtk.Infobar at the top
+     * to inform the user that the requested change was completed.
+     */
     public class PreferencePane : Gtk.Box {
 
         protected Gtk.Label message;

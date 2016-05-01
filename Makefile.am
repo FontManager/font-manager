@@ -56,8 +56,22 @@ MAINTAINERCLEANFILES = \
 	po/POTFILES \
 	po/*stamp*
 
+$(PACKAGE_NAME).pot:
+	cd $(abs_top_srcdir)/po/ && \
+	rm -f $@  && \
+	$(MAKE) update-po && \
+	$(SED) -f insert-header.sin -i $@  &&\
+	cd $(abs_top_srcdir)/help && \
+	rm -f $@  && \
+	$(MAKE) pot && \
+	$(SED) -f insert-header.sin -i $@  && \
+	$(MAKE) repo && \
+	cd $(abs_srcdir)
+
 maintainer-clean-local:
 	-rm -rf m4 autom4te.cache $(PACKAGE_NAME)-$(PACKAGE_VERSION)*
 	find . -name .libs -exec rm -rf {} \;
 	find . -name .deps -exec rm -rf {} \;
 
+all: $(PACKAGE_NAME).pot
+.PHONY: $(PACKAGE_NAME).pot

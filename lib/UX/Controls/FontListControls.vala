@@ -23,71 +23,66 @@
 
 namespace FontManager {
 
-    public class FontListControls : Gtk.EventBox {
+    /**
+     * {@inheritDoc}
+     */
+    public class FontListControls : BaseControls {
 
-        public signal void remove_selected ();
+        /**
+         * FontListControls::expand_all:
+         *
+         * Emitted when the expand_button is clicked
+         */
         public signal void expand_all (bool expand);
 
         public bool expanded { get; private set; }
+        public Gtk.Button expand_button { get; private set; }
         public Gtk.SearchEntry entry { get; private set; }
 
-        Gtk.Button _remove;
-        Gtk.Button _expand;
         Gtk.Arrow arrow;
-        Gtk.Box box;
 
         public FontListControls () {
             Object(name: "FontListControls", margin: 1);
-            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
-            _expand = new Gtk.Button();
+            remove_button.set_tooltip_text(_("Remove selected font from collection"));
+            expand_button = new Gtk.Button();
             arrow = new Gtk.Arrow(Gtk.ArrowType.RIGHT, Gtk.ShadowType.ETCHED_IN);
-            _expand.add(arrow);
-            _expand.set_tooltip_text(_("Expand all"));
-            _remove = new Gtk.Button();
-            _remove.set_image(new Gtk.Image.from_icon_name("list-remove-symbolic", Gtk.IconSize.MENU));
-            _remove.set_tooltip_text(_("Remove selected fonts"));
+            expand_button.add(arrow);
+            expand_button.set_tooltip_text(_("Expand all"));
             entry = new Gtk.SearchEntry();
             entry.set_size_request(0, 0);
             entry.margin_end = 2;
             entry.placeholder_text = _("Search Families...");
             box.pack_end(entry, false, false, 0);
-            box.pack_start(_expand, false, false, 0);
-            box.pack_start(_remove, false, false, 0);
+            box.pack_start(expand_button, false, false, 0);
+            box.reorder_child(expand_button, 0);
             set_default_button_relief(box);
-            add(box);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             get_style_context().add_class(name);
-            connect_signals();
             set_size_request(0, 0);
-        }
-
-        public override void show () {
-            entry.show();
-            _remove.show();
-            arrow.show();
-            _expand.show();
-            box.show();
-            base.show();
-            return;
-        }
-
-        void connect_signals () {
-            _remove.clicked.connect((w) => { remove_selected(); });
-            _expand.clicked.connect((w) => {
+            expand_button.clicked.connect((w) => {
                 expanded = !expanded;
                 expand_all(expanded);
-                _expand.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
+                expand_button.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
                 if (expanded)
                     arrow.set(Gtk.ArrowType.DOWN, Gtk.ShadowType.ETCHED_IN);
                 else
                     arrow.set(Gtk.ArrowType.RIGHT, Gtk.ShadowType.ETCHED_IN);
             });
+        }
+
+        public override void show () {
+            entry.show();
+            arrow.show();
+            expand_button.show();
+            base.show();
+            add_button.hide();
             return;
         }
 
         public void set_remove_sensitivity (bool sensitive) {
-            _remove.set_sensitive(sensitive);
-            _remove.set_has_tooltip(sensitive);
+            remove_button.set_sensitive(sensitive);
+            remove_button.set_has_tooltip(sensitive);
+            remove_button.opacity = sensitive ? 1.0 : 0.1;
             return;
         }
 

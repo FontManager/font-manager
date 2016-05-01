@@ -650,8 +650,10 @@ namespace FontManager {
         }
 
         void family_drop_handler (Gtk.Widget widget, int x, int y) {
-            if (!(widget.name == "FontManagerCollectionTree"))
+            if (!(widget.name == "CollectionTree")) {
+                debug("Unsupported drag target : %s ", widget.name);
                 return;
+            }
             Gtk.TreePath path;
             var tree = widget as Gtk.TreeView;
             tree.get_path_at_pos(x, y, out path, null, null, null);

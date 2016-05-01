@@ -1,4 +1,4 @@
-/* ReactiveLabel.vala
+/* Labels.vala
  *
  * Copyright (C) 2009 - 2016 Jerry Casiano
  *
@@ -21,10 +21,45 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
+/**
+ * WelcomeLabel:
+ *
+ * It's intended use is as a placeholder, providing helpful information
+ * about an empty area which the user may not yet be familiar with.
+ */
+public class WelcomeLabel : Gtk.Label {
+
+    public WelcomeLabel (string? str) {
+        Object(name: "WelcomeLabel", label: str, margin: 64, use_markup: true,
+                sensitive: false, expand: true, wrap: true,
+                wrap_mode: Pango.WrapMode.WORD_CHAR,
+                valign: Gtk.Align.START, halign: Gtk.Align.FILL,
+                justify: Gtk.Justification.CENTER);
+    }
+
+}
+
+/**
+ * ReactiveLabel:
+ *
+ * Label which reacts to mouseover and click events.
+ * Is actually a #Gtk.EventBox containing a #Gtk.Label since
+ * events can not be added to widgets that have no window.
+ */
 public class ReactiveLabel : Gtk.EventBox {
 
+    /**
+     * ReactiveLabel::clicked:
+     *
+     * Emitted when the label is clicked
+     */
     public signal void clicked ();
 
+    /**
+     * Reactivelabel:label:
+     *
+     * The actual #Gtk.Label
+     */
     public Gtk.Label label { get; private set; }
 
     public ReactiveLabel (string? str) {
@@ -37,11 +72,6 @@ public class ReactiveLabel : Gtk.EventBox {
     public override void show () {
         label.show();
         base.show();
-        return;
-    }
-
-    public void set_markup (string str) {
-        label.set_markup(str);
         return;
     }
 
