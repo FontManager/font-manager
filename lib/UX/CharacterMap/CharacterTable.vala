@@ -62,6 +62,7 @@ namespace FontManager {
             table.font_fallback = false;
             table.zoom_enabled = false;
             table.codepoint_list = new Gucharmap.ScriptCodepointList();
+            table.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
             scroll = new Gtk.ScrolledWindow(null, null);
             details = new CharacterDetails();
