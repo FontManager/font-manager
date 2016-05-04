@@ -31,7 +31,7 @@ namespace FontManager {
             public Description () {
                 base(null);
                 hexpand = true;
-                view.margin = 12;
+                view.margin = 24;
                 view.justification = Gtk.Justification.LEFT;
                 view.pixels_above_lines = 1;
                 set_size_request(0, 0);

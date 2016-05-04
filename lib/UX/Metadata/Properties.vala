@@ -57,7 +57,7 @@ namespace FontManager {
                 separator.margin = 6;
                 separator.margin_top = 12;
                 separator.margin_bottom = 12;
-                separator.opacity = 0.75;
+                separator.opacity = 0.5;
                 psname = new Gtk.Label("psname");
                 weight = new Gtk.Label("weight");
                 slant = new Gtk.Label("slant");
@@ -69,6 +69,7 @@ namespace FontManager {
                 attach(prop_grid, 0, 0, 1, 1);
                 attach(separator, 2, 0, 1, 7);
                 attach(description, 3, 0, 3, 7);
+                get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             }
 
             public override void show () {
@@ -138,14 +139,17 @@ namespace FontManager {
                 for (int i = 0; i < labels.length; i++) {
                     var widget = new Gtk.Label(labels[i]);
                     widget.sensitive = false;
+                    widget.opacity = 0.75;
                     grid.attach(widget, 0, i, 1, 1);
                     widget.halign = Gtk.Align.END;
                     widget.margin = 12;
+                    widget.margin_start = 24;
                     widget.expand = false;
                     grid.attach(values[i], 1, i, 1, 1);
                     values[i].halign = Gtk.Align.START;
                     values[i].expand = false;
                     values[i].margin = 12;
+                    values[i].margin_end = 24;
                     if (i == 0) {
                         widget.margin_top = 24;
                         values[i].margin_top = 24;

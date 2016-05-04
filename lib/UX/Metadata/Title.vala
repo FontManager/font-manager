@@ -1,4 +1,4 @@
-/* Title.vala
+/* Metadata.vala
  *
  * Copyright (C) 2009 - 2016 Jerry Casiano
  *
@@ -21,53 +21,53 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
+const string font_desc_templ =
+"<span size=\"xx-large\" weight=\"bold\">%s</span>    <span size=\"large\" weight=\"bold\">%s</span>";
 
 namespace FontManager {
 
     namespace Metadata {
 
-        const string font_desc_templ = "<span size=\"xx-large\" weight=\"bold\">%s</span>    <span size=\"large\" weight=\"bold\">%s</span>";
-
-        struct FontTypeEntry {
-
-            public string name;
-            public string tooltip;
-            public string url;
-
-            public FontTypeEntry (string name, string tooltip, string url) {
-                this.name = name;
-                this.tooltip = tooltip;
-                this.url = url;
-            }
-
-        }
-
-        class TypeInfoCache : Object {
-
-            FontTypeEntry [] types = {
-                FontTypeEntry("null", "", ""),
-                FontTypeEntry("opentype", _("OpenType Font"), "http://wikipedia.org/wiki/OpenType"),
-                FontTypeEntry("truetype", _("TrueType Font"), "http://wikipedia.org/wiki/TrueType"),
-                FontTypeEntry("type1", _("PostScript Type 1 Font"), "http://wikipedia.org/wiki/Type_1_Font#Type_1"),
-            };
-
-            public void update (Gtk.Image icon, string key) {
-                var entry = this[key];
-                icon.set_from_icon_name(entry.name, Gtk.IconSize.DIALOG);
-                icon.set_tooltip_text(entry.tooltip);
-            }
-
-            public new FontTypeEntry get (string key) {
-                var _key = key.down().replace(" ", "");
-                foreach (var entry in types)
-                    if (entry.name == _key)
-                        return entry;
-                return types[0];
-            }
-
-        }
-
         public class Title : Gtk.Grid {
+
+            struct FontTypeEntry {
+
+                public string name;
+                public string tooltip;
+                public string url;
+
+                public FontTypeEntry (string name, string tooltip, string url) {
+                    this.name = name;
+                    this.tooltip = tooltip;
+                    this.url = url;
+                }
+
+            }
+
+            class TypeInfoCache : Object {
+
+                FontTypeEntry [] types = {
+                    FontTypeEntry("null", "", ""),
+                    FontTypeEntry("opentype", _("OpenType Font"), "http://wikipedia.org/wiki/OpenType"),
+                    FontTypeEntry("truetype", _("TrueType Font"), "http://wikipedia.org/wiki/TrueType"),
+                    FontTypeEntry("type1", _("PostScript Type 1 Font"), "http://wikipedia.org/wiki/Type_1_Font#Type_1"),
+                };
+
+                public new FontTypeEntry get (string key) {
+                    var _key = key.down().replace(" ", "");
+                    foreach (var entry in types)
+                        if (entry.name == _key)
+                            return entry;
+                    return types[0];
+                }
+
+                public void update (Gtk.Image icon, string key) {
+                    var entry = this[key];
+                    icon.set_from_icon_name(entry.name, Gtk.IconSize.DIALOG);
+                    icon.set_tooltip_text(entry.tooltip);
+                }
+
+            }
 
             Gtk.Label font;
             Gtk.Image type_icon;
@@ -78,7 +78,8 @@ namespace FontManager {
                 font.hexpand = true;
                 font.halign = Gtk.Align.START;
                 type_info_cache = new TypeInfoCache();
-                type_icon = new Gtk.Image.from_icon_name("null", Gtk.IconSize.DIALOG);
+                type_icon = new Gtk.Image();
+                reset();
                 attach(font, 0, 0, 1, 1);
                 attach(type_icon, 1, 0, 1, 1);
                 get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);

@@ -275,6 +275,7 @@ namespace FontManager {
 
         public StaticTextView (StandardTextTagTable? tag_table) {
             Object(name: "StaticTextView", tag_table: tag_table);
+            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             this.view.event.connect(on_event);
             /* XXX : Silence warning - Vala binding issue? */
             Gtk.TargetList? list = null;
@@ -332,6 +333,7 @@ namespace FontManager {
             fontscale = new FontScale();
             adjustment = fontscale.adjustment;
             pack_end(fontscale, false, true, 0);
+            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
         }
 
         public override void show () {

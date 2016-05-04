@@ -21,7 +21,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-04-30 21:43-0400\n"
+"POT-Creation-Date: 2016-05-04 13:47-0400\n"
 "PO-Revision-Date: 2015-01-13 14:06+0100\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -428,7 +428,7 @@ msgstr ""
 msgid "default"
 msgstr "Normal"
 
-#: ../lib/UX/Metadata/License.vala:41
+#: ../lib/UX/Metadata/License.vala:42
 #, fuzzy
 msgid "File does not contain license information."
 msgstr "Zeige Schriftinformationen"
@@ -467,23 +467,23 @@ msgstr ""
 msgid "Vendor"
 msgstr "Herausgeber"
 
-#: ../lib/UX/Metadata/Title.vala:49
+#: ../lib/UX/Metadata/Title.vala:51
 msgid "OpenType Font"
 msgstr "OpenType Schrift"
 
-#: ../lib/UX/Metadata/Title.vala:50
+#: ../lib/UX/Metadata/Title.vala:52
 msgid "TrueType Font"
 msgstr "TrueType Schrift"
 
-#: ../lib/UX/Metadata/Title.vala:51
+#: ../lib/UX/Metadata/Title.vala:53
 msgid "PostScript Type 1 Font"
 msgstr "PostScript Type 1 Schrift"
 
-#: ../lib/UX/Metadata/Title.vala:103
+#: ../lib/UX/Metadata/Title.vala:104
 msgid "No file selected"
 msgstr ""
 
-#: ../lib/UX/Metadata/Title.vala:103
+#: ../lib/UX/Metadata/Title.vala:104
 #, fuzzy
 msgid "Or unsupported filetype."
 msgstr "Geordnet nach Dateityp"
@@ -616,16 +616,18 @@ msgstr "_Entfernen"
 msgid "Select fonts to remove"
 msgstr "Wähle Schriften zum entfernen aus"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:57 ../lib/UX/Widgets/TextViews.vala:123
+#: ../lib/UX/Views/FontPreviewPane.vala:57
+#: ../lib/UX/Widgets/TextViews.vala:119
 msgid "Waterfall"
 msgstr "Wasserfall"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:59 ../lib/UX/Widgets/TextViews.vala:124
+#: ../lib/UX/Views/FontPreviewPane.vala:59
+#: ../lib/UX/Widgets/TextViews.vala:120
 msgid "Body Text"
 msgstr "Beispiel Text"
 
-#. stack = new Gtk.Stack();
-#: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:122
+#: ../lib/UX/Views/FontPreviewPane.vala:61
+#: ../lib/UX/Widgets/TextViews.vala:118
 #: ../src/font-manager/MainWindow.vala:213
 msgid "Preview"
 msgstr "Vorschau"
@@ -829,7 +831,8 @@ msgstr ""
 msgid "To preview a font simply drag it onto this area."
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:58 ../src/font-viewer/MainWindow.vala:163
+#: ../src/font-viewer/MainWindow.vala:58
+#: ../src/font-viewer/MainWindow.vala:163
 #, fuzzy
 msgid "Install Font"
 msgstr "Alle Schriften"

@@ -29,18 +29,20 @@ namespace FontManager {
 
             Gtk.Grid grid;
             Gtk.EventBox blend;
-            Gtk.Label label;
             Gtk.LinkButton link;
             StaticTextView view;
+            WelcomeLabel notice;
 
             public License () {
                 grid = new Gtk.Grid();
                 view = new StaticTextView(null);
-                view.view.margin = 12;
+                view.view.margin = 24;
                 view.view.pixels_above_lines = 1;
-                label = new Gtk.Label(_("File does not contain license information."));
-                label.sensitive = false;
+                var tmpl = "<b><big>%s</big></b>";
+                notice = new WelcomeLabel(tmpl.printf(_("File does not contain license information.")));
+                notice.opacity = 0.5;
                 link = new Gtk.LinkButton("");
+                link.margin = 6;
                 link.set_label("");
                 link.halign = Gtk.Align.CENTER;
                 link.valign = Gtk.Align.CENTER;
@@ -50,14 +52,15 @@ namespace FontManager {
                 view.expand = true;
                 grid.attach(view, 0, 0, 1, 3);
                 grid.attach(blend, 0, 3, 1 ,1);
+                grid.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
                 add(grid);
-                add_overlay(label);
+                add_overlay(notice);
             }
 
             public override void show () {
                 link.show();
                 view.show();
-                label.show();
+                notice.show();
                 grid.show();
                 blend.show();
                 base.show();
@@ -71,7 +74,7 @@ namespace FontManager {
                 link.set_label("");
                 blend.hide();
                 view.hide();
-                label.show();
+                notice.show();
                 return;
             }
 
@@ -93,9 +96,9 @@ namespace FontManager {
                 view.visible = license_data;
                 link.expand = !license_data;
                 if (!license_data && fontinfo.license_url == null)
-                    label.show();
+                    notice.show();
                 else
-                    label.hide();
+                    notice.hide();
                 return;
             }
 

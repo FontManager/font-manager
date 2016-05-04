@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-04-30 21:43-0400\n"
+"POT-Creation-Date: 2016-05-04 13:47-0400\n"
 "PO-Revision-Date: 2014-07-10 21:28+0800\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -430,7 +430,7 @@ msgstr ""
 msgid "default"
 msgstr "默认(Default)"
 
-#: ../lib/UX/Metadata/License.vala:41
+#: ../lib/UX/Metadata/License.vala:42
 #, fuzzy
 msgid "File does not contain license information."
 msgstr "文件未包含协议描述。"
@@ -468,23 +468,23 @@ msgstr "版本"
 msgid "Vendor"
 msgstr "供应商"
 
-#: ../lib/UX/Metadata/Title.vala:49
+#: ../lib/UX/Metadata/Title.vala:51
 msgid "OpenType Font"
 msgstr "OpenType 字体"
 
-#: ../lib/UX/Metadata/Title.vala:50
+#: ../lib/UX/Metadata/Title.vala:52
 msgid "TrueType Font"
 msgstr "TrueType 字体"
 
-#: ../lib/UX/Metadata/Title.vala:51
+#: ../lib/UX/Metadata/Title.vala:53
 msgid "PostScript Type 1 Font"
 msgstr "PostScript Type 1 字体"
 
-#: ../lib/UX/Metadata/Title.vala:103
+#: ../lib/UX/Metadata/Title.vala:104
 msgid "No file selected"
 msgstr ""
 
-#: ../lib/UX/Metadata/Title.vala:103
+#: ../lib/UX/Metadata/Title.vala:104
 #, fuzzy
 msgid "Or unsupported filetype."
 msgstr "按文件类型分组"
@@ -618,17 +618,19 @@ msgstr "删除(_D)"
 msgid "Select fonts to remove"
 msgstr "选择字体删除"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:57 ../lib/UX/Widgets/TextViews.vala:123
+#: ../lib/UX/Views/FontPreviewPane.vala:57
+#: ../lib/UX/Widgets/TextViews.vala:119
 msgid "Waterfall"
 msgstr "瀑布"
 
 # Not fine
-#: ../lib/UX/Views/FontPreviewPane.vala:59 ../lib/UX/Widgets/TextViews.vala:124
+#: ../lib/UX/Views/FontPreviewPane.vala:59
+#: ../lib/UX/Widgets/TextViews.vala:120
 msgid "Body Text"
 msgstr "正文"
 
-#. stack = new Gtk.Stack();
-#: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:122
+#: ../lib/UX/Views/FontPreviewPane.vala:61
+#: ../lib/UX/Widgets/TextViews.vala:118
 #: ../src/font-manager/MainWindow.vala:213
 msgid "Preview"
 msgstr "预览"
@@ -823,7 +825,8 @@ msgstr "快速添加或预览字体"
 msgid "To preview a font simply drag it onto this area."
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:58 ../src/font-viewer/MainWindow.vala:163
+#: ../src/font-viewer/MainWindow.vala:58
+#: ../src/font-viewer/MainWindow.vala:163
 #, fuzzy
 msgid "Install Font"
 msgstr "全部字体"

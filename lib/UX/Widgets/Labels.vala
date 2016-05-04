@@ -30,7 +30,7 @@
 public class WelcomeLabel : Gtk.Label {
 
     public WelcomeLabel (string? str) {
-        Object(name: "WelcomeLabel", label: str, margin: 64, use_markup: true,
+        Object(name: "WelcomeLabel", use_markup: true, label: str, margin: 64,
                 sensitive: false, expand: true, wrap: true,
                 wrap_mode: Pango.WrapMode.WORD_CHAR,
                 valign: Gtk.Align.START, halign: Gtk.Align.FILL,
