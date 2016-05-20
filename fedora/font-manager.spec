@@ -95,7 +95,7 @@ This package provides integration with the Thunar file manager.
 %setup -q
 
 %build
-%configure --disable-schemas-compile --with-nautilus --with-nemo --with-thunar
+%configure --disable-schemas-compile --with-nautilus --with-nemo --with-thunarx
 make
 
 %check

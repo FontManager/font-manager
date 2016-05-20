@@ -34,7 +34,7 @@ public Settings? get_settings (string schema_id) {
     schema = schema_source.lookup(schema_id, true);
 
     if (schema == null) {
-        warning("No valid schema in default source. Checking for fallbacks");
+        debug("No valid schema in default source. Checking for fallbacks");
         var possible_schema_dirs = new Array <string> ();
         string user_data_dir = Environment.get_user_data_dir();
         string user_schema_dir = Path.build_filename(user_data_dir, "glib-2.0", "schemas");
@@ -44,19 +44,23 @@ public Settings? get_settings (string schema_id) {
 
         for (int i = 0; i < possible_schema_dirs.length; i++) {
             string dir = possible_schema_dirs.index(i);
+
             {
                 File d = File.new_for_path(dir);
                 if (!d.query_exists())
                     continue;
             }
+
             try {
+                debug("Checking for schema in %s", dir);
                 schema_source = new SettingsSchemaSource.from_directory(dir, null, false);
             } catch (Error e) {
-                warning("Failed to create schema source for %s : %s", dir, e.message);
+                debug("Failed to create schema source for %s : %s", dir, e.message);
+                continue;
             }
             schema = schema_source.lookup(schema_id, true);
             if (schema != null) {
-                info("Loading schema with id %s from %s", schema_id, dir);
+                debug("Loading schema with id %s from %s", schema_id, dir);
                 break;
             }
         }

@@ -65,6 +65,7 @@ rpm-prep:
 	rpmdev-setuptree && \
 	cp *.bz2 ~/rpmbuild/SOURCES/ && \
 	cp fedora/font-manager.spec ~/rpmbuild/SPECS/ && \
+	rm -f ~/rpmbuild/SRPMS/$(PACKAGE_NAME)*.src.rpm && \
 	cd $(abs_srcdir)
 
 rpm: rpm-prep
@@ -75,4 +76,4 @@ srpm: rpm-prep
 	rpmbuild -bs ~/rpmbuild/SPECS/font-manager.spec
 
 copr-build: srpm
-	copr-cli build --nowait jerrycasiano/FontManager ~/rpmbuild/SRPMS/font-manager*rpm
+	copr-cli build --nowait jerrycasiano/FontManager ~/rpmbuild/SRPMS/$(PACKAGE_NAME)*.src.rpm

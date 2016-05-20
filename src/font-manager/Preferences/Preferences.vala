@@ -68,6 +68,10 @@ namespace FontManager {
             }
 
             void connect_signals () {
+                stack.notify["visible"].connect(() => {
+                    if (stack.visible_child_name == "Sources")
+                        ((Sources) get_page("Sources")).source_list.update();
+                });
                 stack.notify["visible-child"].connect(() => {
                     if (stack.visible_child_name == "Sources")
                         ((Sources) get_page("Sources")).source_list.update();
