@@ -1,0 +1,44 @@
+.TH @PACKAGE_NAME@ 1 "@PACKAGE_VERSION@" "@PACKAGE_NAME@(1)" "@PACKAGE_VERSION@"
+.SH NAME
+\fB@PACKAGE_NAME@\fP - Simple font management for GTK+ desktop environments
+.SH SYNOPSIS
+\fB@PACKAGE_NAME@\fP
+[\fB\-a\fP|\fB-v\fP|\fB\-\-list\fP|\fB\-\-list\-full\fP]
+[\fB\-e|\fB\-d\fP \fIfamily\fP]
+[\fB\-i\fP ...]
+.SH DESCRIPTION
+\fB@PACKAGE_NAME@\fP is intended to provide a way for average users to easily
+manage desktop fonts, without having to resort to command line tools
+or editing configuration files by hand. While designed primarily with
+the Gnome Desktop Environment in mind, it should work well with other
+Gtk+ desktop environments.
+.SH OPTIONS
+.TP
+.BR \-a ", " \-\-about
+About the application
+.TP
+.BR \-v ", " \-\-version
+Show application version
+.TP
+.BR \-\-list
+List available font families
+.TP
+.BR \-\-list\-full
+Full listing including face information (JSON)
+.TP
+.BR \-e ", " \-\-enable " " \fIfamily\fP
+Enable specified font family
+.TP
+.BR \-d ", " \-\-disable " " \fIfamily\fP
+Disable specified font family
+.TP
+.BR \-i ", " \-\-install " " \fIfilepath\fP
+Space separated list of files to install
+.SH LIMITATIONS
+\fB@PACKAGE_NAME@\fP is a user level application, it will not allow installation
+or removal of fonts from anywhere other than the default user font directory.
+However, the application does allow users to disable system fonts and
+also makes it easy to add font directories.
+.SH AUTHOR
+Jerry Casiano <JerryCasiano@gmail.com>
+

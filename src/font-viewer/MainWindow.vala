@@ -44,11 +44,11 @@ namespace FontManager {
             Gee.ArrayList <string> installed;
             Metadata.Title titlebar;
 
+            /* Type hint used to prevent notification on every selection.
+             * Happens in gnome-shell and I assume other environments if
+             * one of the file manager extensions are in use.
+             */
             public MainWindow () {
-                /* Type hint used to prevent notification on every selection.
-                 * Happens in gnome-shell and I assume other environments if
-                 * one of the file manager extensions are in use.
-                 */
                 Object(title: _("Font Viewer"), icon_name: About.ICON, type_hint: Gdk.WindowTypeHint.UTILITY);
                 Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
                 installed = new Gee.ArrayList <string> ();

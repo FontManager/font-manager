@@ -7,7 +7,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    5
+Release:    6
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -114,6 +114,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 %{_datadir}/applications/%{DBusName}.desktop
 %{_datadir}/dbus-1/services/%{DBusName}.service
 %{_datadir}/glib-2.0/schemas/%{DBusName}.gschema.xml
+%{_mandir}/man1/%{name}.*
 
 %files -n %{name}-common -f %{name}.lang
 %doc README
@@ -136,6 +137,8 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Thu May 26 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-6
+- Add manual page
 * Thu Apr 21 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-5
 - Drop build deps for python extensions
 - Enable all extensions

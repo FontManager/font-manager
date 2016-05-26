@@ -149,6 +149,7 @@ dnl
         data/org.gnome.FontManager.appdata.xml
         data/org.gnome.FontManager.desktop
         data/org.gnome.FontViewer.desktop
+        help/font-manager.1
         src/Makefile
         src/font-manager/Makefile
         src/font-manager/Application.vala

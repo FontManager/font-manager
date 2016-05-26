@@ -56,15 +56,20 @@ MAINTAINERCLEANFILES = \
 	po/POTFILES \
 	po/*stamp*
 
+update_pot_header = \
+	$(SED) -f insert-header.sin -i $1 && \
+	$(SED) -i 's/PACKAGE/${PACKAGE_NAME}/g' $1 && \
+	$(SED) -i 's/VERSION/${PACKAGE_VERSION}/g' $1
+
 $(PACKAGE_NAME).pot:
 	cd $(abs_top_srcdir)/po/ && \
 	rm -f $@  && \
 	$(MAKE) update-po && \
-	$(SED) -f insert-header.sin -i $@  &&\
+	$(call update_pot_header,$@) && \
 	cd $(abs_top_srcdir)/help && \
 	rm -f $@  && \
 	$(MAKE) pot && \
-	$(SED) -f insert-header.sin -i $@  && \
+	$(call update_pot_header,$@) && \
 	$(MAKE) repo && \
 	cd $(abs_srcdir)
 

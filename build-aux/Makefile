@@ -1,9 +1,14 @@
-# Project must be configured or some of these targets will fail
 
 abs_top_srcdir = $(shell realpath ../)
 abs_srcdir = $(shell realpath .)
 SED = $(shell which sed)
 PACKAGE_NAME = font-manager
+
+# Project must be configured or some of these targets will fail
+configure:
+	cd $(abs_top_srcdir) && \
+	test -e Makefile || ./autogen.sh && \
+	cd $(abs_srcdir)
 
 POTFILES.readme:
 	echo "Do not edit POTFILES.* directly. See build-aux directory" > $(abs_top_srcdir)/po/$@
@@ -21,7 +26,7 @@ POTFILES.skip:
 	$(SED) -i 's|\.\./||g' $(abs_top_srcdir)/po/$@ ;
 	echo "lib/Glue/Enums.c" >> $(abs_top_srcdir)/po/$@ ;
 
-POT:
+POT: configure
 	cd $(abs_top_srcdir) && \
 	make font-manager.pot && \
 	cd $(abs_srcdir)
@@ -59,7 +64,7 @@ update: update-headers update-po update-sources
 
 # Fedora RPM packaging
 
-rpm-prep:
+rpm-prep: configure
 	cd $(abs_top_srcdir) && \
 	make dist-bzip2 && \
 	rpmdev-setuptree && \
