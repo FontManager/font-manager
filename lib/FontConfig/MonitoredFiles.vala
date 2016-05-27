@@ -55,7 +55,7 @@ public class MonitoredFiles :  Object {
         if (path == null || monitors.size < 1)
             return;
         foreach (var s in monitors.keys) {
-            if (path.contains((string) s)) {
+            if (s.contains(path)) {
                 changed(mount.get_root(), null, FileMonitorEvent.CHANGED);
             }
         }
@@ -73,6 +73,9 @@ public class MonitoredFiles :  Object {
         });
         volume_monitor.mount_removed.connect((m) => {
             notify_on_mount_event(m);
+        });
+        changed.connect((f, of, ev) => {
+                debug("FileMonitor Event : %s", f.get_path());
         });
     }
 
