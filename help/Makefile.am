@@ -12,7 +12,8 @@ HELP_FILES = \
 HELP_MEDIA = \
 	media/logo.png
 
-HELP_LINGUAS =
+HELP_LINGUAS = \
+	pl
 
 @YELP_HELP_RULES@
 
