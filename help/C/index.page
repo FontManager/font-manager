@@ -19,9 +19,14 @@
         Font Manager
     </title>
     <note style="important">
-        <p> Help has not been implemented yet.</p>
+        <title> Help has not been implemented yet.</title>
         <p> If you would like to help this project by providing help documentation please see <link href="http://projectmallard.org"> Project Mallard </link> for more information.</p>
         <p> If you do decide to help, please file an issue at <link href="https://github.com/FontManager/master/issues">https://github.com/FontManager/master/issues</link> detailing what you intend to work on.</p>
         <p>Thank you.</p>
+    </note>
+    <note style="bug">
+    <title>Localization</title>
+        <p> If you would like to help this application reach more users in their native language please see <link href="https://translate.zanata.org/project/view/font-manager"> Zanata </link> for more information.</p>
+        <p> You can also file an issue at <link href="https://github.com/FontManager/master/issues">https://github.com/FontManager/master/issues</link> and attach any translated files there.</p>
     </note>
 </page>

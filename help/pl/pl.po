@@ -1,0 +1,102 @@
+# Piotr Strebski <strebski@gmail.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: font-manager 0.7.3\n"
+"POT-Creation-Date: 2016-05-25 23:47-0400\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-05-27 12:27-0400\n"
+"Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
+"Language-Team: Polish\n"
+"Language: pl\n"
+"X-Generator: Zanata 3.8.4\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2)\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Piotr Strębski <strebski@o2.pl>, 2016"
+
+#. (itstool) path: info/title
+#: C/index.page:4
+msgctxt "text"
+msgid "Font Manager"
+msgstr "Zarządzanie czcionkami"
+
+#. (itstool) path: info/desc
+#: C/index.page:5
+msgid "Simple font management for GTK+ desktop environments"
+msgstr "Proste zarządzanie czcionkami dla środowisk pulpitowych GTK+"
+
+#. (itstool) path: credit/name
+#: C/index.page:7
+msgid "Jerry Casiano"
+msgstr "Jerry Casiano"
+
+#. (itstool) path: credit/years
+#: C/index.page:9
+msgid "2009-2016"
+msgstr "2009-2016"
+
+#. (itstool) path: license/p
+#: C/index.page:12
+msgid ""
+"<link href=\"http://www.gnu.org/licenses/gpl-3.0-standalone.html\">GNU "
+"General Public License Version 3</link>"
+msgstr ""
+"<link href=\"http://www.gnu.org/licenses/gpl-3.0-standalone.html\">Ogólna "
+"Licencja Publiczna GNU, wersja 3</link>"
+
+#. (itstool) path: title/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/index.page:18
+msgctxt "_"
+msgid "external ref='media/logo.png' md5='9f2f97653d18778001fcf0c180dcf12d'"
+msgstr "external ref='media/logo.png' md5='9f2f97653d18778001fcf0c180dcf12d'"
+
+#. (itstool) path: page/title
+#: C/index.page:17
+msgid ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/logo.png\">Font Manager "
+"logo</media> Font Manager"
+msgstr ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/logo.png\">Logo "
+"Zarządzania czcionkami</media> Zarządzanie czcionkami"
+
+#. (itstool) path: note/p
+#: C/index.page:22
+msgid "Help has not been implemented yet."
+msgstr "Pomoc nie została jeszcze zaimplementowana."
+
+#. (itstool) path: note/p
+#: C/index.page:23
+msgid ""
+"If you would like to help this project by providing help documentation "
+"please see <link href=\"http://projectmallard.org\"> Project Mallard </link> "
+"for more information."
+msgstr ""
+"Jeśli masz ochotę pomóc temu projektowi poprzez dostarczenie dokumentacji "
+"pomocowej, prosimy odwiedzić stronę <link href=\"http://projectmallard."
+"org\"> Projektu Mallard </link> po więcej informacji."
+
+#. (itstool) path: note/p
+#: C/index.page:24
+msgid ""
+"If you do decide to help, please file an issue at <link href=\"https://"
+"github.com/FontManager/master/issues\">https://github.com/FontManager/master/"
+"issues</link> detailing what you intend to work on."
+msgstr ""
+"Jeśli zdecydowałeś się pomóc, prosimy o wypełnienie zgłoszenia na <link href="
+"\"https://github.com/FontManager/master/issues\">https://github.com/"
+"FontManager/master/issues</link> szczegółowo podając czym zamierzasz się "
+"zająć."
+
+#. (itstool) path: note/p
+#: C/index.page:25
+msgid "Thank you."
+msgstr "Dziękujemy."

@@ -18,8 +18,7 @@
         </hook>
         <hook command="push">
             <!-- Allow push even if project has not been configured -->
-            <before>./autogen.sh</before>
-            <before>make font-manager.pot</before>
+            <before>make update-po</before>
             <after>rm -rf .zanata-cache</after>
         </hook>
     </hooks>

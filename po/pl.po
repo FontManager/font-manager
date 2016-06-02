@@ -1,47 +1,27 @@
-# Font Manager - Simple font management for Gtk+ desktop environments
-#
-# Copyright © 2009 - 2016 Jerry Casiano
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-# Author:
-#  Jerry Casiano <JerryCasiano@gmail.com>
-# Jerry Casiano <JerryCasiano@gmail.com>, 2016. #zanata
+# Piotr Strebski <strebski@gmail.com>, 2016. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-05-31 00:34-0400\n"
-"PO-Revision-Date: 2014-07-10 09:28-0400\n"
-"Last-Translator: Zaler <zldream1011@gmail.com>\n"
-"Language-Team: Chinese (China) <@>\n"
-"Language: zh-CN\n"
+"POT-Creation-Date: 2016-05-25 23:47-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-05-27 02:36-0400\n"
+"Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
+"Language-Team: Polish\n"
+"Language: pl\n"
 "X-Generator: Zanata 3.8.4\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2)\n"
 
-# Not translate very good, just for use.
 #: ../lib/Common/About.vala:28
 msgid "Font Manager"
-msgstr "字体管理器"
+msgstr "Zarządzanie czcionkami"
 
 #: ../lib/Common/About.vala:30
-#, fuzzy
 msgid "Simple font management for GTK+ desktop environments"
-msgstr "GTK+桌面环境下的简易字体管理器"
+msgstr "Proste zarządzanie czcionkami dla środowisk pulpitowych GTK+"
 
 #: ../lib/Common/About.vala:34
 msgid ""
@@ -61,146 +41,154 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"    此程序是自由软件；您可以以自由软件基金会发布的 GNU通用公共许可\n"
-"    协议第三版或(您可以选择)更高版方式重新发布它和/或修改它。\n"
+"    Niniejszy program jest wolnym oprogramowaniem – możesz go "
+"rozpowszechniać dalej\n"
+"    i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU "
+"wydanej przez\n"
+"    Fundację Wolnego Oprogramowania, według wersji 3 tej Licencji lub\n"
+"    (wedle Twojej woli) dowolnej z późniejszych wersji.\n"
 "\n"
-"    此程序是希望其会有用而发布，但没有任何担保；没有甚至是暗含的适\n"
-"    宜销售或特定目的适用性方面的担保。详情参看GNU 通用公共许可协\n"
-"    议。\n"
+"    Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on "
+"użyteczny –\n"
+"    jednak BEZ ŻADNEJ GWARANCJI, nawet domyślnej gwarancji\n"
+"    PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH ZASTOSOWAŃ.\n"
+"    Bliższe informacje na ten temat można uzyskać z Powszechnej Licencji "
+"Publicznej GNU.\n"
 "\n"
-"    您应该与此程序一道收到了一份 GUN 通用公共许可协议的副本；如果\n"
-"    没有，请查看 <http://www.gnu.org/licenses/>。\n"
+"    Kopia Powszechnej Licencji Publicznej GNU powinna zostać ci dostarczona "
+"razem\n"
+"    z tym programem. Jeżeli nie została dostarczona, odwiedź <http://www.gnu."
+"org/licenses/>.\n"
 "    "
 
 #: ../lib/Common/Constants.vala:38
-#, fuzzy
 msgid "Enter Collection Name"
-msgstr "新字体集"
+msgstr "Podaj nazwę kolekcji"
 
 #: ../lib/Filters/Collection.vala:36
 msgid "New Collection"
-msgstr "新字体集"
+msgstr "Nowa kolekcja"
 
 #: ../lib/Filters/Disabled.vala:29
 msgid "Disabled"
-msgstr "禁用"
+msgstr "Wyłączone"
 
 #: ../lib/Filters/Disabled.vala:29
 msgid "Fonts which have been disabled"
-msgstr "禁用字体"
+msgstr "Czcionki, które zostały wyłączone"
 
 #: ../lib/Filters/Filter.vala:40
 #, c-format
 msgid "Created : %s"
-msgstr "创建: %s"
+msgstr "Utworzone: %s"
 
 #: ../lib/Filters/Unsorted.vala:29
 msgid "Unsorted"
-msgstr "未分类"
+msgstr "Nieposortowane"
 
 #: ../lib/Filters/Unsorted.vala:29
 msgid "Fonts not present in any collection"
-msgstr "字体未在任何字体集中"
+msgstr "Czcionki niedostępne w żadnej kolekcji"
 
 #: ../lib/FontConfig/Enums.vala:70
 msgid "Thin"
-msgstr "轻(Thin)"
+msgstr "Cienkie"
 
 #: ../lib/FontConfig/Enums.vala:72
 msgid "Ultra-Light"
-msgstr "超细(Ultra-Light)"
+msgstr "Bardzo lekkie"
 
 #: ../lib/FontConfig/Enums.vala:74 ../lib/FontConfig/Enums.vala:232
 msgid "Light"
-msgstr "细(Light)"
+msgstr "Lekkie"
 
 #: ../lib/FontConfig/Enums.vala:76
 msgid "Book"
-msgstr "预设(Book)"
+msgstr "Książka"
 
 #: ../lib/FontConfig/Enums.vala:78 ../lib/FontConfig/Enums.vala:211
 msgid "Medium"
-msgstr "中等(Medium)"
+msgstr "Średnie"
 
 #: ../lib/FontConfig/Enums.vala:80
 msgid "Semi-Bold"
-msgstr "半粗(Semi-Bold)"
+msgstr "Połowa pogrubienia"
 
 #: ../lib/FontConfig/Enums.vala:82
 msgid "Bold"
-msgstr "粗(Bold)"
+msgstr "Pogrubione"
 
 #: ../lib/FontConfig/Enums.vala:84
 msgid "Ultra-Bold"
-msgstr "超粗(Ultra-Bold)"
+msgstr "Bardzo pogrubione"
 
 #: ../lib/FontConfig/Enums.vala:86
 msgid "Heavy"
-msgstr "重(Heavy)"
+msgstr "Ciężkie"
 
 #: ../lib/FontConfig/Enums.vala:88
 msgid "Ultra-Heavy"
-msgstr "超重(Ultra-Heavy)"
+msgstr "Bardzo ciężkie"
 
 #: ../lib/FontConfig/Enums.vala:104
 msgid "Italic"
-msgstr "斜体(Italic)"
+msgstr "Kursywa"
 
 #: ../lib/FontConfig/Enums.vala:106
 msgid "Oblique"
-msgstr "倾斜体(Oblique)"
+msgstr "Nachylone"
 
 #: ../lib/FontConfig/Enums.vala:128
 msgid "Ultra-Condensed"
-msgstr "超窄(Ultra-Condensed)"
+msgstr "Bardzo zagęszczone"
 
 #: ../lib/FontConfig/Enums.vala:130
 msgid "Extra-Condensed"
-msgstr "特窄(Extra-Condensed)"
+msgstr "Ekstra zagęszczone"
 
 #: ../lib/FontConfig/Enums.vala:132
 msgid "Condensed"
-msgstr "窄(Condensed)"
+msgstr "Zagęszczone"
 
 #: ../lib/FontConfig/Enums.vala:134
 msgid "Semi-Condensed"
-msgstr "半窄(Semi-Condensed)"
+msgstr "Połowa zagęszczenia"
 
 #: ../lib/FontConfig/Enums.vala:136
 msgid "Semi-Expanded"
-msgstr "半宽(Semi-Expanded)"
+msgstr "Połowa rozszerzenia"
 
 #: ../lib/FontConfig/Enums.vala:138
 msgid "Expanded"
-msgstr "宽(Expanded)"
+msgstr "Rozszerzone"
 
 #: ../lib/FontConfig/Enums.vala:140
 msgid "Extra-Expanded"
-msgstr "特宽(Extra-Expanded)"
+msgstr "Ekstra rozszerzone"
 
 #: ../lib/FontConfig/Enums.vala:142
 msgid "Ultra-Expanded"
-msgstr "超宽(Ultra-Expanded)"
+msgstr "Bardzo rozszerzone"
 
 #: ../lib/FontConfig/Enums.vala:159
 msgid "Proportional"
-msgstr "比例(Proportional)"
+msgstr "Proporcjonalne"
 
 #: ../lib/FontConfig/Enums.vala:161
 msgid "Dual Width"
-msgstr "双宽(Dual Width)"
+msgstr "Podwójna szerokość"
 
 #: ../lib/FontConfig/Enums.vala:163
 msgid "Monospace"
-msgstr "等宽(Monospace)"
+msgstr "Stała szerokość"
 
 #: ../lib/FontConfig/Enums.vala:165
 msgid "Charcell"
-msgstr "等宽等高(Charcell)"
+msgstr ""
 
 #: ../lib/FontConfig/Enums.vala:184
 msgid "Unknown"
-msgstr "未知(Unknown)"
+msgstr "Nieznane"
 
 #: ../lib/FontConfig/Enums.vala:186
 msgid "RGB"
@@ -221,480 +209,463 @@ msgstr "VBGR"
 #: ../lib/FontConfig/Enums.vala:194 ../lib/FontConfig/Enums.vala:215
 #: ../lib/FontConfig/Enums.vala:236
 msgid "None"
-msgstr "无(None)"
+msgstr "Brak"
 
 #: ../lib/FontConfig/Enums.vala:209
 msgid "Slight"
-msgstr "少量(Slight)"
+msgstr "Drobne"
 
 #: ../lib/FontConfig/Enums.vala:213
 msgid "Full"
-msgstr "全部(Full)"
+msgstr "Pełne"
 
 #: ../lib/FontConfig/Enums.vala:230
 msgid "Default"
-msgstr "默认(Default)"
+msgstr "Domyślne"
 
 #: ../lib/FontConfig/Enums.vala:234
 msgid "Legacy"
-msgstr "传统(Legacy)"
+msgstr "Przestarzałe"
 
 #: ../lib/FontConfig/Families.vala:45
-#, fuzzy
 msgid "Loading available font families"
-msgstr "字体对所有用户可见"
+msgstr "Wczytywanie dostępnych rodzin czcionek"
 
 #: ../lib/FontConfig/Sources.vala:83 ../lib/FontConfig/Sources.vala:97
-#, fuzzy
 msgid "Source Unavailable"
-msgstr "%s --> 资源不存在"
+msgstr "Źródło niedostępne"
 
 #: ../lib/FontConfig/Sources.vala:244 ../lib/FontConfig/XmlWriter.vala:38
 msgid " Generated by Font Manager. Do NOT edit this file. "
-msgstr " Generated by Font Manager. Do NOT edit this file. "
+msgstr "Utworzone przez Zarządzanie czcionkami. NIE modyfikuj tego pliku."
 
 #: ../lib/Library/Install.vala:138
-#, fuzzy
 msgid "Installing files"
-msgstr "全部字体"
+msgstr "Instalowanie plików"
 
 #: ../lib/Library/Install.vala:170
 msgid "Preparing Archives"
-msgstr ""
+msgstr "Przygotowywanie archiwów"
 
 #: ../lib/Library/Remove.vala:81
-#, fuzzy
 msgid "Removing files"
-msgstr "全部字体"
+msgstr "Usuwanie plików"
 
 #: ../lib/Library/Sorter.vala:91
 msgid "Processing directories"
-msgstr ""
+msgstr "Przetwarzanie katalogów"
 
 #: ../lib/Library/Sorter.vala:123
-#, fuzzy
 msgid "Processing files"
-msgstr "全部字体"
+msgstr "Przetwarzanie plików"
 
 #: ../lib/UX/CharacterMap/CharacterMapSideBar.vala:96
-#, fuzzy
 msgid "Unicode Script"
-msgstr "Unicode 脚本"
+msgstr "Skrypt Unikodu"
 
 #: ../lib/UX/CharacterMap/CharacterMapSideBar.vala:97
-#, fuzzy
 msgid "Unicode Block"
-msgstr "Unicode 区块"
+msgstr "Blok Unikodu"
 
 #: ../lib/UX/Controls/CollectionControls.vala:32
 msgid "Add new collection"
-msgstr "添加新的字体集"
+msgstr "Dodaj nową kolekcję"
 
 #: ../lib/UX/Controls/CollectionControls.vala:33
 msgid "Remove selected collection"
-msgstr "删除选中的字体集"
+msgstr "Usuń wybraną kolekcję"
 
 #: ../lib/UX/Controls/FontListControls.vala:46
-#, fuzzy
 msgid "Remove selected font from collection"
-msgstr "删除比较组中选中的字体"
+msgstr "Usuń wybraną czcionkę z kolekcji"
 
 #: ../lib/UX/Controls/FontListControls.vala:50
 #: ../lib/UX/Controls/FontListControls.vala:65
 msgid "Expand all"
-msgstr "全部展开"
+msgstr "Rozwiń wszystkie"
 
 #: ../lib/UX/Controls/FontListControls.vala:54
-#, fuzzy
 msgid "Search Families..."
-msgstr "搜索数据库"
+msgstr "Szukaj rodzin..."
 
 #: ../lib/UX/Controls/FontListControls.vala:65
 msgid "Collapse all"
-msgstr "全部折叠"
+msgstr "Zwiń wszystkie"
 
 #: ../lib/UX/Controls/PreviewControls.vala:58
 msgid "Edit preview text"
-msgstr "编辑预览文本"
+msgstr "Edycja tekstu podglądu"
 
 #: ../lib/UX/Controls/PreviewControls.vala:61
 msgid "Undo changes"
-msgstr "撤销更改"
+msgstr "Wycofaj zmiany"
 
 #: ../lib/UX/Controls/PreviewControls.vala:66
 msgid "Left Aligned"
-msgstr "左对齐"
+msgstr "Wyrównane do lewej"
 
 #: ../lib/UX/Controls/PreviewControls.vala:66
 msgid "Centered"
-msgstr "居中"
+msgstr "Wyśrodkowane"
 
 #: ../lib/UX/Controls/PreviewControls.vala:66
 msgid "Fill"
-msgstr "两端对齐"
+msgstr "Wypełnij"
 
 #: ../lib/UX/Controls/PreviewControls.vala:66
 msgid "Right Aligned"
-msgstr "右对齐"
+msgstr "Wyrównane do prawej"
 
 #: ../lib/UX/FontConfig/Controls.vala:59
 msgid "Save"
-msgstr ""
+msgstr "Zapisz"
 
 #: ../lib/UX/FontConfig/Controls.vala:61
 msgid "Discard"
-msgstr ""
+msgstr "Odrzuć"
 
 #: ../lib/UX/FontConfig/Controls.vala:63
 msgid "Running applications may require a restart to reflect any changes."
 msgstr ""
+"Aby odzwierciedlić poczynione zmiany, działające programy mogą wymagać "
+"ponownego uruchomienia."
 
 #: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:44
 msgid "Target DPI"
-msgstr ""
+msgstr "Docelowe DPI"
 
 #: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:45
 msgid "Scale factor"
-msgstr ""
+msgstr "Czynnik skali"
 
 #: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:49
 msgid "LCD Filter"
-msgstr ""
+msgstr "Filtr LCD"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:49
 msgid "Antialias"
-msgstr ""
+msgstr "Antyalias"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:50
 msgid "Hinting"
-msgstr ""
+msgstr "Hinting"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:51
 msgid "Enable Autohinter"
-msgstr ""
+msgstr "Włącz automatyczny hinting"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:58
 msgid "Hinting Style"
-msgstr ""
+msgstr "Styl hintingu"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:59
 msgid "Use Embedded Bitmaps"
-msgstr ""
+msgstr "Użyj osadzonych bitmap"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:61
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:66
 msgid " Size Restrictions "
-msgstr ""
+msgstr "Ograniczenia rozmiaru"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:64
 msgid " Apply settings to point sizes "
-msgstr ""
+msgstr "Zastosuj ustawienia do rozmiarów punktu"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:134
 msgid "Smaller than"
-msgstr ""
+msgstr "Mniejsze niż"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:135
 msgid "Larger than"
-msgstr ""
+msgstr "Większe niż"
 
 #: ../lib/UX/FontConfig/FontSourceList.vala:26
-#, fuzzy
 msgid "Font Sources"
-msgstr "管理字体源"
+msgstr "Źródła czcionek"
 
 #: ../lib/UX/FontConfig/FontSourceList.vala:27
-#, fuzzy
 msgid "Easily add or preview fonts without actually installing them."
-msgstr "快速添加或预览字体"
+msgstr "Łatwo dodaj lub podejrzyj czcionki bez ich instalowania."
 
 #: ../lib/UX/FontConfig/FontSourceList.vala:28
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
-msgstr "通过拖放到此区域或单击工具栏上的按钮来添加新的字体源。"
+msgstr ""
+"Aby dodać nowe źródło po prostu przeciągnij katalog na ten obszar lub "
+"kliknij przycisk dodawania na pasku narzędzi."
 
 #: ../lib/UX/FontConfig/SubpixelGeometry.vala:53
 msgid "Subpixel Geometry"
-msgstr ""
+msgstr "Geometria podpikselowa"
 
 #: ../lib/UX/FontConfig/Substitute.vala:78
 msgid "prefer"
-msgstr ""
+msgstr "preferuj"
 
 #: ../lib/UX/FontConfig/Substitute.vala:79
 msgid "accept"
-msgstr ""
+msgstr "akceptuj"
 
 #: ../lib/UX/FontConfig/Substitute.vala:80
-#, fuzzy
 msgid "default"
-msgstr "默认(Default)"
+msgstr "domyślne"
 
 #: ../lib/UX/Metadata/License.vala:42
-#, fuzzy
 msgid "File does not contain license information."
-msgstr "文件未包含协议描述。"
+msgstr "Plik nie zawiera informacji licencyjnych."
 
 #: ../lib/UX/Metadata/Properties.vala:43
 msgid "PostScript Name"
-msgstr "PostScript 名称"
+msgstr "Nazwa PostScript"
 
 #: ../lib/UX/Metadata/Properties.vala:44
 #: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Weight"
-msgstr "字重"
+msgstr "Grubość"
 
 #: ../lib/UX/Metadata/Properties.vala:45
 #: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Slant"
-msgstr "倾斜"
+msgstr "Pochylenie"
 
 #: ../lib/UX/Metadata/Properties.vala:46
 #: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Width"
-msgstr "字宽"
+msgstr "Szerokość"
 
 #: ../lib/UX/Metadata/Properties.vala:47
 #: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Spacing"
-msgstr "字距"
+msgstr "Odstęp"
 
 #: ../lib/UX/Metadata/Properties.vala:48
 msgid "Version"
-msgstr "版本"
+msgstr "Wersja"
 
 #: ../lib/UX/Metadata/Properties.vala:49
 #: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Vendor"
-msgstr "供应商"
+msgstr "Dostawca"
 
 #: ../lib/UX/Metadata/Title.vala:51
 msgid "OpenType Font"
-msgstr "OpenType 字体"
+msgstr "Czcionka OpenType"
 
 #: ../lib/UX/Metadata/Title.vala:52
 msgid "TrueType Font"
-msgstr "TrueType 字体"
+msgstr "Czcionka TrueType"
 
 #: ../lib/UX/Metadata/Title.vala:53
 msgid "PostScript Type 1 Font"
-msgstr "PostScript Type 1 字体"
+msgstr "Czcionka PostScript Type 1"
 
 #: ../lib/UX/Metadata/Title.vala:104
 msgid "No file selected"
-msgstr ""
+msgstr "Nie wybrano pliku"
 
 #: ../lib/UX/Metadata/Title.vala:104
-#, fuzzy
 msgid "Or unsupported filetype."
-msgstr "按文件类型分组"
+msgstr "Lub nieobsługiwany rodzaj pliku."
 
-# Do not to translate this one.
 #: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All"
-msgstr "全部"
+msgstr "Wszystkie"
 
 #: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All Fonts"
-msgstr "全部字体"
+msgstr "Wszystkie czcionki"
 
 #: ../lib/UX/Models/CategoryModel.vala:94
 msgid "System"
-msgstr "系统"
+msgstr "System"
 
 #: ../lib/UX/Models/CategoryModel.vala:94
 msgid "Fonts available to all users"
-msgstr "字体对所有用户可见"
+msgstr "Czcionki dostępne dla wszystkich użytkowników"
 
 #: ../lib/UX/Models/CategoryModel.vala:96
 msgid "User"
-msgstr "用户"
+msgstr "Użytkownik"
 
 #: ../lib/UX/Models/CategoryModel.vala:96
-#, fuzzy
 msgid "Fonts available only to you"
-msgstr "字体只有你可见"
+msgstr "Czcionki dostępne tylko dla Ciebie"
 
 #: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Grouped by font spacing"
-msgstr "按字距分组"
+msgstr "Pogrupowane według odstępu czcionek"
 
 #: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Grouped by font angle"
-msgstr "按倾斜分组"
+msgstr "Pogrupowane według kąta czcionek"
 
 #: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Grouped by font weight"
-msgstr "按字重分组"
+msgstr "Pogrupowane według grubości czcionek"
 
 #: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Grouped by font width"
-msgstr "按字宽分组"
+msgstr "Pogrupowane według szerokości czcionek"
 
 #: ../lib/UX/Models/CategoryModel.vala:108
 msgid "Filetype"
-msgstr "文件类型"
+msgstr "Rodzaj pliku"
 
 #: ../lib/UX/Models/CategoryModel.vala:108
 msgid "Grouped by filetype"
-msgstr "按文件类型分组"
+msgstr "Pogrupowane według rodzaju pliku"
 
 #: ../lib/UX/Models/CategoryModel.vala:110
 #: ../lib/UX/Views/FontPreviewPane.vala:123
 msgid "License"
-msgstr "许可证"
+msgstr "Licencja"
 
 #: ../lib/UX/Models/CategoryModel.vala:110
 msgid "Grouped by license type"
-msgstr "按许可证分组"
+msgstr "Pogrupowane według rodzaju licencji"
 
 #: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Grouped by vendor"
-msgstr "按供应商分组"
+msgstr "Pogrupowane według dostawcy"
 
 #: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Family Kind"
-msgstr "类型"
+msgstr "Rodzaj rodziny"
 
 #: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Only fonts which include Panose information will be grouped here."
-msgstr "只有包含Panose信息的字体将被分组到这里"
+msgstr ""
+"Tutaj pogrupowane są tylko czcionki, które posiadają informację Panose."
 
 #: ../lib/UX/Models/CategoryModel.vala:126
 msgid "Any"
-msgstr "任意(Any)"
+msgstr "Dowolne"
 
 #: ../lib/UX/Models/CategoryModel.vala:127
 msgid "No Fit"
-msgstr "无匹配(No Fit)"
+msgstr "Brak pasujących"
 
 #: ../lib/UX/Models/CategoryModel.vala:128
 msgid "Text and Display"
-msgstr "文本和显示(Text and Display)"
+msgstr "Tekst i wyświetlanie"
 
 #: ../lib/UX/Models/CategoryModel.vala:129
 msgid "Script"
-msgstr "脚本(Script)"
+msgstr "Skrypt"
 
-# msgstr "手写体(Script)"
 #: ../lib/UX/Models/CategoryModel.vala:130
 msgid "Decorative"
-msgstr "修饰(Decorative)"
+msgstr "Dekoracyjne"
 
 #: ../lib/UX/Models/CategoryModel.vala:131
 msgid "Pictorial"
-msgstr "图形(Pictorial)"
+msgstr "Obrazkowe"
 
 #: ../lib/UX/Models/CategoryModel.vala:165
 msgid "Normal"
-msgstr "正常(Normal)"
+msgstr "Normalne"
 
 #: ../lib/UX/Models/CategoryModel.vala:170
 msgid "Regular"
-msgstr "常规(Regular)"
+msgstr "Regularne"
 
 #: ../lib/UX/Utils/FileSelector.vala:37
 msgid "Select source folders"
-msgstr "选择字体源文件夹"
+msgstr "Wybierz katalogi źródeł"
 
 #: ../lib/UX/Utils/FileSelector.vala:40 ../lib/UX/Utils/FileSelector.vala:60
 #: ../lib/UX/Utils/FileSelector.vala:87 ../src/font-manager/Migration.vala:58
 msgid "_Cancel"
-msgstr "取消(_C)"
+msgstr "_Anuluj"
 
 #: ../lib/UX/Utils/FileSelector.vala:42 ../lib/UX/Utils/FileSelector.vala:62
 msgid "_Open"
-msgstr "打开(_O)"
+msgstr "_Otwórz"
 
 #: ../lib/UX/Utils/FileSelector.vala:57
 msgid "Select files to install"
-msgstr "选择文件安装"
+msgstr "Wybierz pliki do zainstalowania"
 
 #: ../lib/UX/Utils/FileSelector.vala:88
 msgid "_Delete"
-msgstr "删除(_D)"
+msgstr "_Skasuj"
 
 #: ../lib/UX/Utils/FileSelector.vala:95
 msgid "Select fonts to remove"
-msgstr "选择字体删除"
+msgstr "Wybierz czcionki do usunięcia"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:57 ../lib/UX/Widgets/TextViews.vala:119
 msgid "Waterfall"
-msgstr "瀑布"
+msgstr "Wodospad"
 
-# Not fine
 #: ../lib/UX/Views/FontPreviewPane.vala:59 ../lib/UX/Widgets/TextViews.vala:120
 msgid "Body Text"
-msgstr "正文"
+msgstr "Tekst główny"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:118
 #: ../src/font-manager/MainWindow.vala:213
 msgid "Preview"
-msgstr "预览"
+msgstr "Podgląd"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:122
-#, fuzzy
 msgid "Properties"
-msgstr "比例(Proportional)"
+msgstr "Właściwości"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:124
-#, fuzzy
 msgid "Characters"
-msgstr "字符映射"
+msgstr "Znaki"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:246
-#, fuzzy
 msgid "Select preview type"
-msgstr "编辑预览文本"
+msgstr "Wybierz rodzaj podglądu"
 
 #: ../lib/UX/Widgets/CellRendererPill.vala:30
 msgid "Variation "
-msgstr "变体"
+msgstr "odmiana"
 
 #: ../lib/UX/Widgets/CellRendererPill.vala:31
 msgid "Variations"
-msgstr "变体"
+msgstr "odmiany"
 
 #: ../src/font-manager/Compare.vala:35
 msgid "Add selected font to comparison"
-msgstr "添加选中的字体进行比较"
+msgstr "Dodaj wybraną czcionkę do porównania"
 
 #: ../src/font-manager/Compare.vala:36
 msgid "Remove selected font from comparison"
-msgstr "删除比较组中选中的字体"
+msgstr "Usuń wybraną czcionkę z porównania"
 
 #: ../src/font-manager/Compare.vala:41
 msgid "Select text color"
-msgstr "选择文本颜色"
+msgstr "Wybierz kolor tekstu"
 
 #: ../src/font-manager/Compare.vala:42
 msgid "Select background color"
-msgstr "选择背景颜色"
+msgstr "Wybierz kolor tła"
 
 #: ../src/font-manager/MainWindow.vala:57
 #: ../src/font-manager/MainWindow.vala:219
 msgid "Browse"
-msgstr "浏览"
+msgstr "Przeglądaj"
 
 #: ../src/font-manager/MainWindow.vala:59
 #: ../src/font-manager/MainWindow.vala:214
 msgid "Compare"
-msgstr "比较"
+msgstr "Porównaj"
 
 #: ../src/font-manager/MainWindow.vala:61
 #: ../src/font-manager/MainWindow.vala:218
 msgid "Manage"
-msgstr "管理"
+msgstr "Zarządzaj"
 
 #: ../src/font-manager/Migration.vala:59
-#, fuzzy
 msgid "_Continue"
-msgstr "继续"
+msgstr "_Kontynuuj"
 
 #: ../src/font-manager/Migration.vala:69
 msgid "Update Required"
-msgstr "需要更新"
+msgstr "Wymagana aktualizacja"
 
 #: ../src/font-manager/Migration.vala:206
 msgid ""
@@ -710,140 +681,144 @@ msgid ""
 "It is strongly recommended that you back up any important files before "
 "proceeding.\n"
 msgstr ""
+"\n"
+"Zarządzanie czcionkami wykryło pliki z poprzedniej instalacji. Niektóre "
+"pliki z poprzednich wersji są niezgodne z obecną wersją. Inne zostały "
+"zdezaktualizowane lub przeniesione.\n"
+"\n"
+"Zarządzanie czcionkami dokona teraz próby migracji Twoich czcionek i "
+"kolekcji. Pliki i ustawienia, które nie są już więcej potrzebne lub są "
+"nieważne, zostaną usunięte. Wszystkie pliki konfiguracyjne, które mogą "
+"powodować konflikty, również zostaną usunięte.\n"
+"\n"
+"Zdecydowanie zaleca się wykonanie kopii zapasowej ważnych plików przed "
+"kontynuacją.\n"
 
 #: ../src/font-manager/Preferences/Display.vala:48
 #: ../src/font-manager/Preferences/Rendering.vala:47
 msgid "Settings saved to file."
-msgstr ""
+msgstr "Ustawienia zostały zapisane do pliku."
 
 #: ../src/font-manager/Preferences/Display.vala:52
 #: ../src/font-manager/Preferences/Rendering.vala:51
 msgid "Removed configuration file."
-msgstr ""
+msgstr "Usunięty plik konfiguracyjny."
 
 #: ../src/font-manager/Preferences/Interface.vala:42
 msgid "Wide Layout"
-msgstr ""
+msgstr "Układ szeroki"
 
 #: ../src/font-manager/Preferences/Interface.vala:44
 msgid "Only when maximized"
-msgstr ""
+msgstr "Tylko gdy zmaksymalizowane"
 
 #: ../src/font-manager/Preferences/Interface.vala:48
 msgid "Client Side Decorations"
-msgstr ""
+msgstr "Dekoracje po stronie klienta"
 
 #: ../src/font-manager/Preferences/Interface.vala:101
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
+"CSD zostało włączone. Zmiany zostaną zastosowane przy następnym uruchomieniu "
+"programu."
 
 #: ../src/font-manager/Preferences/Interface.vala:103
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
+"CSD zostało wyłączone. Zmiany zostaną zastosowane przy następnym "
+"uruchomieniu programu."
 
 #: ../src/font-manager/Preferences/Preferences.vala:28
-#, fuzzy
 msgid "Sources"
-msgstr "管理字体源"
+msgstr "Źródła"
 
 #: ../src/font-manager/Preferences/Preferences.vala:29
 msgid "Rendering"
-msgstr ""
+msgstr "Renderowanie"
 
 #: ../src/font-manager/Preferences/Preferences.vala:30
-#, fuzzy
 msgid "Display"
-msgstr "文本和显示(Text and Display)"
+msgstr "Wyświetlanie"
 
 #: ../src/font-manager/Preferences/Preferences.vala:31
 msgid "Interface"
-msgstr ""
+msgstr "Interfejs"
 
 #: ../src/font-manager/Preferences/Sources.vala:40
-#, fuzzy
 msgid "Add source"
-msgstr "添加新的字体源"
+msgstr "Dodaj źródła"
 
 #: ../src/font-manager/Preferences/Sources.vala:41
 msgid "Remove selected source"
-msgstr "删除选中的字体源"
+msgstr "Usuń wybrane źródła"
 
-# msgstr "区块"
 #: ../src/font-manager/SideBar.vala:179
 msgid "Categories"
-msgstr "分类"
+msgstr "Kategorie"
 
 #: ../src/font-manager/SideBar.vala:180
 msgid "Collections"
-msgstr "字体集"
+msgstr "Kolekcje"
 
 #: ../src/font-manager/TitleBar.vala:65
 msgid "Add Fonts"
-msgstr "添加字体"
+msgstr "Dodaj czcionki"
 
 #: ../src/font-manager/TitleBar.vala:66
 msgid "Remove Fonts"
-msgstr "删除字体"
+msgstr "Usuń czcionki"
 
 #: ../src/font-manager/TitleBar.vala:73
 msgid "Preferences"
-msgstr ""
+msgstr "Preferencje"
 
 #: ../src/font-manager/TitleBar.vala:162
 msgid "Help"
-msgstr "帮助"
+msgstr "Pomoc"
 
 #: ../src/font-manager/TitleBar.vala:163
 msgid "About"
-msgstr "关于"
+msgstr "O programie"
 
 #: ../src/font-manager/TitleBar.vala:164
 msgid "Quit"
-msgstr "退出"
+msgstr "Zakończ"
 
-# Not translate very good, just for use.
 #: ../src/font-viewer/Application.vala:121
 #: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:52
-#, fuzzy
 msgid "Font Viewer"
-msgstr "字体管理器"
+msgstr "Przeglądarka czcionek"
 
 #: ../src/font-viewer/MainWindow.vala:29
-#, fuzzy
 msgid "Preview font files before installing them."
-msgstr "快速添加或预览字体"
+msgstr "Podejrzyj pliki czcionek przed ich zainstalowaniem."
 
 #: ../src/font-viewer/MainWindow.vala:30
 msgid "To preview a font simply drag it onto this area."
-msgstr ""
+msgstr "Aby dokonać podglądu czcionki po prostu przeciągnij ją na ten obszar."
 
 #: ../src/font-viewer/MainWindow.vala:58 ../src/font-viewer/MainWindow.vala:163
-#, fuzzy
 msgid "Install Font"
-msgstr "全部字体"
+msgstr "Zainstaluj czcionkę"
 
 #: ../src/font-viewer/MainWindow.vala:155
 msgid "Newer version already installed"
-msgstr "新版本已安装"
+msgstr "Zainstalowana jest nowsza wersja"
 
 #: ../src/font-viewer/MainWindow.vala:159
-#, fuzzy
 msgid "Installed"
-msgstr "全部字体"
+msgstr "Zainstalowane"
 
 #: ../data/ApplicationMenu.ui.h:1
-#, fuzzy
 msgid "_Help"
-msgstr "帮助"
+msgstr "_Pomoc"
 
 #: ../data/ApplicationMenu.ui.h:2
-#, fuzzy
 msgid "_About"
-msgstr "关于"
+msgstr "_O programie"
 
 #: ../data/ApplicationMenu.ui.h:3
-#, fuzzy
 msgid "_Quit"
-msgstr "退出"
+msgstr "_Zakończ"
