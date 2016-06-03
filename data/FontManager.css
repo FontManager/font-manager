@@ -42,7 +42,9 @@
 }
 
 .TitleBar,
-.TitleBar * {
+.TitleBar *,
+.MetadataTitle,
+.MetadataTitle * {
     padding: 2px;
     margin: 0px;
 }

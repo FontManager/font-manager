@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-02 22:11-0400\n"
+"POT-Creation-Date: 2016-06-03 14:01-0400\n"
 "PO-Revision-Date: 2016-05-27 02:36-0400\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish\n"
@@ -460,11 +460,11 @@ msgstr "Czcionka TrueType"
 msgid "PostScript Type 1 Font"
 msgstr "Czcionka PostScript Type 1"
 
-#: ../lib/UX/Metadata/Title.vala:104
+#: ../lib/UX/Metadata/Title.vala:105
 msgid "No file selected"
 msgstr "Nie wybrano pliku"
 
-#: ../lib/UX/Metadata/Title.vala:104
+#: ../lib/UX/Metadata/Title.vala:105
 msgid "Or unsupported filetype."
 msgstr "Lub nieobsługiwany rodzaj pliku."
 

@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-02 22:11-0400\n"
+"POT-Creation-Date: 2016-06-03 14:01-0400\n"
 "PO-Revision-Date: 2014-07-10 09:28-0400\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -481,11 +481,11 @@ msgstr "TrueType 字体"
 msgid "PostScript Type 1 Font"
 msgstr "PostScript Type 1 字体"
 
-#: ../lib/UX/Metadata/Title.vala:104
+#: ../lib/UX/Metadata/Title.vala:105
 msgid "No file selected"
 msgstr ""
 
-#: ../lib/UX/Metadata/Title.vala:104
+#: ../lib/UX/Metadata/Title.vala:105
 #, fuzzy
 msgid "Or unsupported filetype."
 msgstr "按文件类型分组"

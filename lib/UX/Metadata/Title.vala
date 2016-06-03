@@ -83,6 +83,7 @@ namespace FontManager {
                 attach(font, 0, 0, 1, 1);
                 attach(type_icon, 1, 0, 1, 1);
                 get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+                get_style_context().add_class("MetadataTitle");
             }
 
             public override void show () {
