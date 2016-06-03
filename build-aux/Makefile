@@ -28,7 +28,7 @@ POTFILES.skip:
 
 POT: configure
 	cd $(abs_top_srcdir) && \
-	make font-manager.pot && \
+	make $(PACKAGE_NAME).pot && \
 	cd $(abs_srcdir)
 
 write_sources = \
@@ -44,7 +44,7 @@ ValaSources.mk:
 	echo "" >> $@ && \
 	echo "libfontmanager_la_VALASOURCES = \\" >> $@  && \
 	$(call write_sources,$@) && \
-	cd $(abs_top_srcdir)/src/font-manager && \
+	cd $(abs_top_srcdir)/src/$(PACKAGE_NAME) && \
 	echo "# Do not edit directly. See build-aux directory" > $@  && \
 	echo "" >> $@ && \
 	echo "font_manager_VALASOURCES = \\" >> $@  && \
@@ -69,16 +69,16 @@ rpm-prep: configure
 	make dist-bzip2 && \
 	rpmdev-setuptree && \
 	cp *.bz2 ~/rpmbuild/SOURCES/ && \
-	cp fedora/font-manager.spec ~/rpmbuild/SPECS/ && \
+	cp fedora/$(PACKAGE_NAME).spec ~/rpmbuild/SPECS/ && \
 	rm -f ~/rpmbuild/SRPMS/$(PACKAGE_NAME)*.src.rpm && \
 	cd $(abs_srcdir)
 
 rpm: rpm-prep
-	pkexec dnf builddep ~/rpmbuild/SPECS/font-manager.spec
-	rpmbuild -bb ~/rpmbuild/SPECS/font-manager.spec
+	pkexec dnf builddep ~/rpmbuild/SPECS/$(PACKAGE_NAME).spec
+	rpmbuild -bb ~/rpmbuild/SPECS/$(PACKAGE_NAME).spec
 
 srpm: rpm-prep
-	rpmbuild -bs ~/rpmbuild/SPECS/font-manager.spec
+	rpmbuild -bs ~/rpmbuild/SPECS/$(PACKAGE_NAME).spec
 
 copr-build: srpm
 	copr-cli build --nowait jerrycasiano/FontManager ~/rpmbuild/SRPMS/$(PACKAGE_NAME)*.src.rpm

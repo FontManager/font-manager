@@ -119,7 +119,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 %files -n %{name}-common -f %{name}.lang
 %doc README
 %{_libdir}/%{name}
-%{_datadir}/help/C/%{name}
+%{_datadir}/help/*/%{name}
 
 %files -n font-viewer
 %{_libexecdir}/%{name}/font-viewer
