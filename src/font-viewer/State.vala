@@ -66,7 +66,10 @@ namespace FontManager {
                     /* Avoid tiny windows on Wayland */
                     if (e.width < DEFAULT_WIDTH || e.height < DEFAULT_HEIGHT)
                         return false;
-                    settings.set("window-size", "(ii)", e.width, e.height);
+                    /* Size provided by event is not usable on Gtk+ > 3.18 */
+                    int actual_window_width, actual_window_height;
+                    main_window.get_size(out actual_window_width, out actual_window_height);
+                    settings.set("window-size", "(ii)", actual_window_width, actual_window_height);
                     settings.set("window-position", "(ii)", e.x, e.y);
                     return false;
                 });

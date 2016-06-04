@@ -57,7 +57,6 @@ namespace FontManager {
 
         public CharacterTable () {
             orientation = Gtk.Orientation.VERTICAL;
-            fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             table = new Gucharmap.Chartable();
             table.font_fallback = false;
             table.zoom_enabled = false;

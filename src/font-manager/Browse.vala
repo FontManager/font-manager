@@ -74,7 +74,6 @@ namespace FontManager {
             renderer = new CellRendererTitle();
             renderer.xpad = 48;
             renderer.junction_side = Gtk.JunctionSides.LEFT;
-            fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             treeview.set_enable_search(true);
             treeview.set_search_column(FontModelColumn.DESCRIPTION);
             treeview.insert_column_with_data_func(0, "", renderer, cell_data_func);

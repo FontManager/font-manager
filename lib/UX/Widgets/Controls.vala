@@ -160,7 +160,6 @@ public class FontScale : Gtk.EventBox {
         container.pack_end(spin, false, true, 8);
         container.border_width = 5;
         add(container);
-        style_updated();
         connect_signals();
     }
 

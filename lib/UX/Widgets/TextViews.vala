@@ -334,6 +334,7 @@ namespace FontManager {
             adjustment = fontscale.adjustment;
             pack_end(fontscale, false, true, 0);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
         }
 
         public override void show () {
@@ -390,7 +391,6 @@ namespace FontManager {
         }
 
         public class ActivePreview (StandardTextTagTable tag_table) {
-            fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             preview = new StandardTextView(tag_table);
             preview.view.justification = Gtk.Justification.CENTER;
             set_preview_text(get_localized_preview_text());
@@ -514,7 +514,6 @@ namespace FontManager {
 
         public class TextPreview (StandardTextTagTable tag_table) {
             Object(name: "TextPreview", orientation: Gtk.Orientation.VERTICAL);
-            fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             preview = new StaticTextView(tag_table);
             preview.view.justification = Gtk.Justification.FILL;
             set_preview_text(LOREM_IPSUM);

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-03 14:01-0400\n"
+"POT-Creation-Date: 2016-06-04 19:32-0400\n"
 "PO-Revision-Date: 2016-05-27 02:36-0400\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish\n"
@@ -636,11 +636,11 @@ msgstr "Dodaj wybraną czcionkę do porównania"
 msgid "Remove selected font from comparison"
 msgstr "Usuń wybraną czcionkę z porównania"
 
-#: ../src/font-manager/Compare.vala:41
+#: ../src/font-manager/Compare.vala:43
 msgid "Select text color"
 msgstr "Wybierz kolor tekstu"
 
-#: ../src/font-manager/Compare.vala:42
+#: ../src/font-manager/Compare.vala:44
 msgid "Select background color"
 msgstr "Wybierz kolor tła"
 

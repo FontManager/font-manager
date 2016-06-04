@@ -36,8 +36,10 @@ namespace FontManager {
             remove_button.set_tooltip_text(_("Remove selected font from comparison"));
             var context = get_style_context();
             context.add_class(Gtk.STYLE_CLASS_TOOLBAR);
+            context.save();
             fg_color_button = new Gtk.ColorButton.with_rgba(context.get_color(Gtk.StateFlags.NORMAL));
             bg_color_button = new Gtk.ColorButton.with_rgba(context.get_background_color(Gtk.StateFlags.NORMAL));
+            context.restore();
             fg_color_button.set_tooltip_text(_("Select text color"));
             bg_color_button.set_tooltip_text(_("Select background color"));
             box.pack_end(bg_color_button, false, false, 0);
@@ -126,7 +128,6 @@ namespace FontManager {
             tree.append_column(column);
             tree.set_model(store);
             tree.set_tooltip_column(1);
-            fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
             pack_start(controls, false, false, 0);
             add_separator(this, Gtk.Orientation.HORIZONTAL);
             box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
@@ -195,8 +196,10 @@ namespace FontManager {
 
         void update_default_colors () {
             var ctx = get_style_context();
+            ctx.save();
             default_fg_color = ctx.get_color(Gtk.StateFlags.NORMAL);
             default_bg_color = ctx.get_background_color(Gtk.StateFlags.NORMAL);
+            ctx.restore();
             return;
         }
 

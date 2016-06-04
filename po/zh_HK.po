@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-03 14:01-0400\n"
+"POT-Creation-Date: 2016-06-04 19:32-0400\n"
 "PO-Revision-Date: 2014-07-10 09:28-0400\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -664,11 +664,11 @@ msgstr "添加选中的字体进行比较"
 msgid "Remove selected font from comparison"
 msgstr "删除比较组中选中的字体"
 
-#: ../src/font-manager/Compare.vala:41
+#: ../src/font-manager/Compare.vala:43
 msgid "Select text color"
 msgstr "选择文本颜色"
 
-#: ../src/font-manager/Compare.vala:42
+#: ../src/font-manager/Compare.vala:44
 msgid "Select background color"
 msgstr "选择背景颜色"
 

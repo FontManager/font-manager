@@ -192,10 +192,8 @@ namespace FontManager {
 
             main_window = new MainWindow();
             state = new State(main_window, BUS_ID);
+            main_window.realize.connect(state.restore);
             application.add_window(main_window);
-            main_window.realize.connect(() => {
-                state.restore();
-            });
             progress.connect((m, p, t) => {
                 main_window.progress = ((float) p /(float) t);
                 ensure_ui_update();
