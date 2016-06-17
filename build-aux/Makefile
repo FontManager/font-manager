@@ -1,9 +1,15 @@
 
+PACKAGE_NAME = font-manager
+PACKAGE_VERSION = 0.7.3
+
 abs_top_srcdir = $(shell realpath ../)
 abs_srcdir = $(shell realpath .)
 SED = $(shell which sed)
+<<<<<<< HEAD
+=======
 PACKAGE_NAME = font-manager
 PACKAGE_VERSION = 0.7.3
+>>>>>>> e1bc33ac385a7cbfa86a886f2a08ad939043a6bb
 
 # Project must be configured or some of these targets will fail
 configure:
@@ -97,6 +103,19 @@ deb: configure
 	cd BUILD && \
 	tar -xvf $(PACKAGE_NAME)_$(PACKAGE_VERSION).orig.tar.bz2 && \
 	cp -Rpf ../debian $(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
+<<<<<<< HEAD
+	cp -pf ../autogen.sh $(PACKAGE_NAME)-$(PACKAGE_VERSION);
+	echo "\nNeed to ensure build dependencies are installed\n";
+	cd $(abs_top_srcdir)/BUILD/$(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
+	sudo apt-get install devscripts && \
+	mk-build-deps debian/control && \
+	sudo dpkg -i *.deb && rm *.deb;
+	cd $(abs_top_srcdir)/BUILD/$(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
+	debuild -us -uc
+
+
+
+=======
 	cd $(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
 	sudo apt-get install devscripts && \
 	mk-build-deps debian/control && \
@@ -105,3 +124,4 @@ deb: configure
 	debuild -us -uc
 
 
+>>>>>>> e1bc33ac385a7cbfa86a886f2a08ad939043a6bb
