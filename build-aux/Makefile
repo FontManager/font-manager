@@ -3,6 +3,7 @@ abs_top_srcdir = $(shell realpath ../)
 abs_srcdir = $(shell realpath .)
 SED = $(shell which sed)
 PACKAGE_NAME = font-manager
+PACKAGE_VERSION = 0.7.3
 
 # Project must be configured or some of these targets will fail
 configure:
@@ -82,3 +83,25 @@ srpm: rpm-prep
 
 copr-build: srpm
 	copr-cli build --nowait jerrycasiano/FontManager ~/rpmbuild/SRPMS/$(PACKAGE_NAME)*.src.rpm
+
+# Debian? packaging
+# Tested on Ubuntu
+
+deb: configure
+	cd $(abs_top_srcdir) && \
+	make dist-bzip2 && \
+	rm -rf BUILD && \
+	mkdir BUILD && \
+	mv $(PACKAGE_NAME)-$(PACKAGE_VERSION).tar.bz2 \
+	BUILD/$(PACKAGE_NAME)_$(PACKAGE_VERSION).orig.tar.bz2 && \
+	cd BUILD && \
+	tar -xvf $(PACKAGE_NAME)_$(PACKAGE_VERSION).orig.tar.bz2 && \
+	cp -Rpf ../debian $(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
+	cd $(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
+	sudo apt-get install devscripts && \
+	mk-build-deps debian/control && \
+	sudo dpkg -i *.deb && rm *.deb &&\
+	cp -pf ../../autogen.sh . && \
+	debuild -us -uc
+
+
