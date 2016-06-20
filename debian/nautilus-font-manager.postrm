@@ -1,5 +1,5 @@
 #!/bin/sh
-# postrm script for font-manager
+# postrm script for nautilus-font-manager
 #
 # see: dh_installdeb(1)
 

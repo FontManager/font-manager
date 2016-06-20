@@ -67,6 +67,8 @@ update: update-headers update-po update-sources
 # Fedora RPM packaging
 
 rpm-prep: configure
+	@echo "\n**** Need to ensure rpmdevtools are installed\n";
+	pkexec dnf install rpmdevtools
 	cd $(abs_top_srcdir) && \
 	make dist-bzip2 && \
 	rpmdev-setuptree && \
@@ -76,6 +78,7 @@ rpm-prep: configure
 	cd $(abs_srcdir)
 
 rpm: rpm-prep
+	@echo "\n**** Need to ensure build dependencies are installed\n";
 	pkexec dnf builddep ~/rpmbuild/SPECS/$(PACKAGE_NAME).spec
 	rpmbuild -bb ~/rpmbuild/SPECS/$(PACKAGE_NAME).spec
 
@@ -99,7 +102,7 @@ deb: configure
 	tar -xvf $(PACKAGE_NAME)_$(PACKAGE_VERSION).orig.tar.bz2 && \
 	cp -Rpf ../debian $(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
 	cp -pf ../autogen.sh $(PACKAGE_NAME)-$(PACKAGE_VERSION);
-	echo "\nNeed to ensure build dependencies are installed\n";
+	@echo "\n**** Need to ensure build dependencies are installed\n";
 	cd $(abs_top_srcdir)/BUILD/$(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
 	sudo apt-get install devscripts && \
 	mk-build-deps debian/control && \
