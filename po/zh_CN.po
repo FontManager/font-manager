@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-21 21:43-0400\n"
+"POT-Creation-Date: 2016-06-21 23:19-0400\n"
 "PO-Revision-Date: 2014-07-10 09:28-0400\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -414,6 +414,21 @@ msgid ""
 "button in the toolbar."
 msgstr "通过拖放到此区域或单击工具栏上的按钮来添加新的字体源。"
 
+#: ../lib/UX/FontConfig/FontSourceList.vala:184
+msgid "Select source folders"
+msgstr "选择字体源文件夹"
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:187
+#: ../lib/UX/Utils/FileSelector.vala:40 ../lib/UX/Utils/FileSelector.vala:67
+#: ../src/font-manager/Migration.vala:58
+msgid "_Cancel"
+msgstr "取消(_C)"
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:189
+#: ../lib/UX/Utils/FileSelector.vala:42
+msgid "_Open"
+msgstr "打开(_O)"
+
 #: ../lib/UX/FontConfig/SubpixelGeometry.vala:55
 msgid "Subpixel Geometry"
 msgstr ""
@@ -574,27 +589,14 @@ msgid "Regular"
 msgstr "常规(Regular)"
 
 #: ../lib/UX/Utils/FileSelector.vala:37
-msgid "Select source folders"
-msgstr "选择字体源文件夹"
-
-#: ../lib/UX/Utils/FileSelector.vala:40 ../lib/UX/Utils/FileSelector.vala:60
-#: ../lib/UX/Utils/FileSelector.vala:87 ../src/font-manager/Migration.vala:58
-msgid "_Cancel"
-msgstr "取消(_C)"
-
-#: ../lib/UX/Utils/FileSelector.vala:42 ../lib/UX/Utils/FileSelector.vala:62
-msgid "_Open"
-msgstr "打开(_O)"
-
-#: ../lib/UX/Utils/FileSelector.vala:57
 msgid "Select files to install"
 msgstr "选择文件安装"
 
-#: ../lib/UX/Utils/FileSelector.vala:88
+#: ../lib/UX/Utils/FileSelector.vala:68
 msgid "_Delete"
 msgstr "删除(_D)"
 
-#: ../lib/UX/Utils/FileSelector.vala:95
+#: ../lib/UX/Utils/FileSelector.vala:75
 msgid "Select fonts to remove"
 msgstr "选择字体删除"
 
@@ -608,7 +610,7 @@ msgid "Body Text"
 msgstr "正文"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:118
-#: ../src/font-manager/MainWindow.vala:216
+#: ../src/font-manager/MainWindow.vala:213
 msgid "Preview"
 msgstr "预览"
 
@@ -651,18 +653,18 @@ msgstr "选择文本颜色"
 msgid "Select background color"
 msgstr "选择背景颜色"
 
-#: ../src/font-manager/MainWindow.vala:60
-#: ../src/font-manager/MainWindow.vala:222
+#: ../src/font-manager/MainWindow.vala:57
+#: ../src/font-manager/MainWindow.vala:219
 msgid "Browse"
 msgstr "浏览"
 
-#: ../src/font-manager/MainWindow.vala:62
-#: ../src/font-manager/MainWindow.vala:217
+#: ../src/font-manager/MainWindow.vala:59
+#: ../src/font-manager/MainWindow.vala:214
 msgid "Compare"
 msgstr "比较"
 
-#: ../src/font-manager/MainWindow.vala:64
-#: ../src/font-manager/MainWindow.vala:221
+#: ../src/font-manager/MainWindow.vala:61
+#: ../src/font-manager/MainWindow.vala:218
 msgid "Manage"
 msgstr "管理"
 

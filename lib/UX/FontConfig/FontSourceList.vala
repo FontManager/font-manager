@@ -141,7 +141,7 @@ namespace FontManager {
                 list.add(w);
                 w.show();
             }
-            queue_draw();
+            list.queue_draw();
             return;
         }
 

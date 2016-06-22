@@ -98,7 +98,7 @@ namespace FontManager {
             add(box);
             add_overlay(spinner);
             get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
-            spinner.get_style_context().add_class(Gtk.STYLE_CLASS_SIDEBAR);
+            spinner.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             stack.notify["visible-child-name"].connect(() => {
                 if (stack.get_visible_child_name() == "Default")
                     stack.set_transition_type(Gtk.StackTransitionType.UNDER_LEFT);

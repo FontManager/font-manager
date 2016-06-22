@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
-"POT-Creation-Date: 2016-06-21 21:43-0400\n"
+"POT-Creation-Date: 2016-06-21 23:19-0400\n"
 "PO-Revision-Date: 2016-05-27 12:27-0400\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish\n"
