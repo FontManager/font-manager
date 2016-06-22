@@ -38,7 +38,7 @@ namespace FontManager {
                 view = new StaticTextView(null);
                 view.view.margin = 24;
                 view.view.pixels_above_lines = 1;
-                var tmpl = "<b><big>%s</big></b>";
+                var tmpl = "<big>%s</big>";
                 notice = new WelcomeLabel(tmpl.printf(_("File does not contain license information.")));
                 notice.opacity = 0.5;
                 link = new Gtk.LinkButton("");

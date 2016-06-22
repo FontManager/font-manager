@@ -41,14 +41,6 @@
     background-color: #808080;
 }
 
-.TitleBar,
-.TitleBar *,
-.MetadataTitle,
-.MetadataTitle * {
-    padding: 2px;
-    margin: 0px;
-}
-
 .separator {
     padding: 0px;
 }

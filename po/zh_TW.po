@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-04 19:32-0400\n"
+"POT-Creation-Date: 2016-06-21 21:43-0400\n"
 "PO-Revision-Date: 2014-07-10 09:28-0400\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -414,7 +414,7 @@ msgid ""
 "button in the toolbar."
 msgstr "通过拖放到此区域或单击工具栏上的按钮来添加新的字体源。"
 
-#: ../lib/UX/FontConfig/SubpixelGeometry.vala:53
+#: ../lib/UX/FontConfig/SubpixelGeometry.vala:55
 msgid "Subpixel Geometry"
 msgstr ""
 
@@ -468,27 +468,6 @@ msgstr "版本"
 #: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Vendor"
 msgstr "供应商"
-
-#: ../lib/UX/Metadata/Title.vala:51
-msgid "OpenType Font"
-msgstr "OpenType 字体"
-
-#: ../lib/UX/Metadata/Title.vala:52
-msgid "TrueType Font"
-msgstr "TrueType 字体"
-
-#: ../lib/UX/Metadata/Title.vala:53
-msgid "PostScript Type 1 Font"
-msgstr "PostScript Type 1 字体"
-
-#: ../lib/UX/Metadata/Title.vala:105
-msgid "No file selected"
-msgstr ""
-
-#: ../lib/UX/Metadata/Title.vala:105
-#, fuzzy
-msgid "Or unsupported filetype."
-msgstr "按文件类型分组"
 
 # Do not to translate this one.
 #: ../lib/UX/Models/CategoryModel.vala:92
@@ -629,7 +608,7 @@ msgid "Body Text"
 msgstr "正文"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:118
-#: ../src/font-manager/MainWindow.vala:213
+#: ../src/font-manager/MainWindow.vala:216
 msgid "Preview"
 msgstr "预览"
 
@@ -672,18 +651,18 @@ msgstr "选择文本颜色"
 msgid "Select background color"
 msgstr "选择背景颜色"
 
-#: ../src/font-manager/MainWindow.vala:57
-#: ../src/font-manager/MainWindow.vala:219
+#: ../src/font-manager/MainWindow.vala:60
+#: ../src/font-manager/MainWindow.vala:222
 msgid "Browse"
 msgstr "浏览"
 
-#: ../src/font-manager/MainWindow.vala:59
-#: ../src/font-manager/MainWindow.vala:214
+#: ../src/font-manager/MainWindow.vala:62
+#: ../src/font-manager/MainWindow.vala:217
 msgid "Compare"
 msgstr "比较"
 
-#: ../src/font-manager/MainWindow.vala:61
-#: ../src/font-manager/MainWindow.vala:218
+#: ../src/font-manager/MainWindow.vala:64
+#: ../src/font-manager/MainWindow.vala:221
 msgid "Manage"
 msgstr "管理"
 
@@ -779,27 +758,27 @@ msgstr "分类"
 msgid "Collections"
 msgstr "字体集"
 
-#: ../src/font-manager/TitleBar.vala:65
+#: ../src/font-manager/TitleBar.vala:63
 msgid "Add Fonts"
 msgstr "添加字体"
 
-#: ../src/font-manager/TitleBar.vala:66
+#: ../src/font-manager/TitleBar.vala:64
 msgid "Remove Fonts"
 msgstr "删除字体"
 
-#: ../src/font-manager/TitleBar.vala:73
+#: ../src/font-manager/TitleBar.vala:71
 msgid "Preferences"
 msgstr ""
 
-#: ../src/font-manager/TitleBar.vala:162
+#: ../src/font-manager/TitleBar.vala:160
 msgid "Help"
 msgstr "帮助"
 
-#: ../src/font-manager/TitleBar.vala:163
+#: ../src/font-manager/TitleBar.vala:161
 msgid "About"
 msgstr "关于"
 
-#: ../src/font-manager/TitleBar.vala:164
+#: ../src/font-manager/TitleBar.vala:162
 msgid "Quit"
 msgstr "退出"
 
@@ -832,6 +811,27 @@ msgstr "新版本已安装"
 #, fuzzy
 msgid "Installed"
 msgstr "全部字体"
+
+#: ../src/font-viewer/Title.vala:49
+msgid "OpenType Font"
+msgstr "OpenType 字体"
+
+#: ../src/font-viewer/Title.vala:50
+msgid "TrueType Font"
+msgstr "TrueType 字体"
+
+#: ../src/font-viewer/Title.vala:51
+msgid "PostScript Type 1 Font"
+msgstr "PostScript Type 1 字体"
+
+#: ../src/font-viewer/Title.vala:99
+msgid "No file selected"
+msgstr ""
+
+#: ../src/font-viewer/Title.vala:100
+#, fuzzy
+msgid "Or unsupported filetype."
+msgstr "按文件类型分组"
 
 #: ../data/ApplicationMenu.ui.h:1
 #, fuzzy

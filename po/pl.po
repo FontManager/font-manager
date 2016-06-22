@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-04 19:32-0400\n"
+"POT-Creation-Date: 2016-06-21 21:43-0400\n"
 "PO-Revision-Date: 2016-05-27 02:36-0400\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish\n"
@@ -395,7 +395,7 @@ msgstr ""
 "Aby dodać nowe źródło po prostu przeciągnij katalog na ten obszar lub "
 "kliknij przycisk dodawania na pasku narzędzi."
 
-#: ../lib/UX/FontConfig/SubpixelGeometry.vala:53
+#: ../lib/UX/FontConfig/SubpixelGeometry.vala:55
 msgid "Subpixel Geometry"
 msgstr "Geometria podpikselowa"
 
@@ -447,26 +447,6 @@ msgstr "Wersja"
 #: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Vendor"
 msgstr "Dostawca"
-
-#: ../lib/UX/Metadata/Title.vala:51
-msgid "OpenType Font"
-msgstr "Czcionka OpenType"
-
-#: ../lib/UX/Metadata/Title.vala:52
-msgid "TrueType Font"
-msgstr "Czcionka TrueType"
-
-#: ../lib/UX/Metadata/Title.vala:53
-msgid "PostScript Type 1 Font"
-msgstr "Czcionka PostScript Type 1"
-
-#: ../lib/UX/Metadata/Title.vala:105
-msgid "No file selected"
-msgstr "Nie wybrano pliku"
-
-#: ../lib/UX/Metadata/Title.vala:105
-msgid "Or unsupported filetype."
-msgstr "Lub nieobsługiwany rodzaj pliku."
 
 #: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All"
@@ -604,7 +584,7 @@ msgid "Body Text"
 msgstr "Tekst główny"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:118
-#: ../src/font-manager/MainWindow.vala:213
+#: ../src/font-manager/MainWindow.vala:216
 msgid "Preview"
 msgstr "Podgląd"
 
@@ -644,18 +624,18 @@ msgstr "Wybierz kolor tekstu"
 msgid "Select background color"
 msgstr "Wybierz kolor tła"
 
-#: ../src/font-manager/MainWindow.vala:57
-#: ../src/font-manager/MainWindow.vala:219
+#: ../src/font-manager/MainWindow.vala:60
+#: ../src/font-manager/MainWindow.vala:222
 msgid "Browse"
 msgstr "Przeglądaj"
 
-#: ../src/font-manager/MainWindow.vala:59
-#: ../src/font-manager/MainWindow.vala:214
+#: ../src/font-manager/MainWindow.vala:62
+#: ../src/font-manager/MainWindow.vala:217
 msgid "Compare"
 msgstr "Porównaj"
 
-#: ../src/font-manager/MainWindow.vala:61
-#: ../src/font-manager/MainWindow.vala:218
+#: ../src/font-manager/MainWindow.vala:64
+#: ../src/font-manager/MainWindow.vala:221
 msgid "Manage"
 msgstr "Zarządzaj"
 
@@ -762,27 +742,27 @@ msgstr "Kategorie"
 msgid "Collections"
 msgstr "Kolekcje"
 
-#: ../src/font-manager/TitleBar.vala:65
+#: ../src/font-manager/TitleBar.vala:63
 msgid "Add Fonts"
 msgstr "Dodaj czcionki"
 
-#: ../src/font-manager/TitleBar.vala:66
+#: ../src/font-manager/TitleBar.vala:64
 msgid "Remove Fonts"
 msgstr "Usuń czcionki"
 
-#: ../src/font-manager/TitleBar.vala:73
+#: ../src/font-manager/TitleBar.vala:71
 msgid "Preferences"
 msgstr "Preferencje"
 
-#: ../src/font-manager/TitleBar.vala:162
+#: ../src/font-manager/TitleBar.vala:160
 msgid "Help"
 msgstr "Pomoc"
 
-#: ../src/font-manager/TitleBar.vala:163
+#: ../src/font-manager/TitleBar.vala:161
 msgid "About"
 msgstr "O programie"
 
-#: ../src/font-manager/TitleBar.vala:164
+#: ../src/font-manager/TitleBar.vala:162
 msgid "Quit"
 msgstr "Zakończ"
 
@@ -810,6 +790,26 @@ msgstr "Zainstalowana jest nowsza wersja"
 #: ../src/font-viewer/MainWindow.vala:159
 msgid "Installed"
 msgstr "Zainstalowane"
+
+#: ../src/font-viewer/Title.vala:49
+msgid "OpenType Font"
+msgstr "Czcionka OpenType"
+
+#: ../src/font-viewer/Title.vala:50
+msgid "TrueType Font"
+msgstr "Czcionka TrueType"
+
+#: ../src/font-viewer/Title.vala:51
+msgid "PostScript Type 1 Font"
+msgstr "Czcionka PostScript Type 1"
+
+#: ../src/font-viewer/Title.vala:99
+msgid "No file selected"
+msgstr "Nie wybrano pliku"
+
+#: ../src/font-viewer/Title.vala:100
+msgid "Or unsupported filetype."
+msgstr "Lub nieobsługiwany rodzaj pliku."
 
 #: ../data/ApplicationMenu.ui.h:1
 msgid "_Help"

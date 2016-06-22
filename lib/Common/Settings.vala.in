@@ -26,7 +26,7 @@ const string [] POSSIBLE_SCHEMA_DIRS = {
     "@abs_top_srcdir@/data"
 };
 
-public Settings? get_settings (string schema_id) {
+public Settings? get_gsettings (string schema_id) {
 
     SettingsSchema? schema;
     SettingsSchemaSource schema_source = SettingsSchemaSource.get_default();

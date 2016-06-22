@@ -63,7 +63,7 @@ namespace FontManager {
 
         public Main () {
             application = ((Application) GLib.Application.get_default());
-            settings = get_settings(BUS_ID);
+            settings = get_gsettings(BUS_ID);
             if (settings != null)
                 application.use_csd = settings.get_boolean("use-csd");
             families = new FontConfig.Families();

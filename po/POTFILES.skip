@@ -51,7 +51,6 @@ lib/UX/FontConfig/Substitute.c
 lib/UX/Metadata/Description.c
 lib/UX/Metadata/License.c
 lib/UX/Metadata/Properties.c
-lib/UX/Metadata/Title.c
 lib/UX/Models/CategoryModel.c
 lib/UX/Models/CollectionModel.c
 lib/UX/Models/FontModel.c
@@ -87,6 +86,7 @@ src/font-manager/TitleBar.c
 src/font-viewer/Application.c
 src/font-viewer/MainWindow.c
 src/font-viewer/State.c
+src/font-viewer/Title.c
 tests/TestCase.c
 tests/TestFontConfig.c
 tests/TestMain.c

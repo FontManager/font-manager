@@ -42,7 +42,7 @@ namespace FontManager {
         Gtk.Box main_menu_container;
 
         public TitleBar () {
-            Object(name: "TitleBar", title: About.NAME, has_subtitle: false, show_close_button: false, margin: 0);
+            Object(name: "TitleBar", title: About.NAME, has_subtitle: false, margin: 0);
             main_menu = new Gtk.MenuButton();
             main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic", Gtk.IconSize.MENU);
             main_menu_container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 1);
@@ -52,13 +52,11 @@ namespace FontManager {
             main_menu.add(main_menu_container);
             main_menu.direction = Gtk.ArrowType.DOWN;
             main_menu.relief = Gtk.ReliefStyle.NONE;
-            main_menu.margin = 2;
             app_menu = new Gtk.MenuButton();
             app_menu_icon = new Gtk.Image.from_icon_name(About.ICON, Gtk.IconSize.LARGE_TOOLBAR);
             app_menu.add(app_menu_icon);
             app_menu.direction = Gtk.ArrowType.DOWN;
             app_menu.relief = Gtk.ReliefStyle.NONE;
-            app_menu.margin = 2;
             revealer = new Gtk.Revealer();
             revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_RIGHT);
             manage_controls = new BaseControls();

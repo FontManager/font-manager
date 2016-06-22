@@ -34,7 +34,7 @@ namespace FontManager {
             public weak MainWindow? main_window { get; set; default = null; }
 
             public State (MainWindow main_window, string schema_id) {
-                Object(main_window: main_window, settings: get_settings(schema_id));
+                Object(main_window: main_window, settings: get_gsettings(schema_id));
             }
 
             public void save () {

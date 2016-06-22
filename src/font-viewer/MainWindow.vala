@@ -42,7 +42,7 @@ namespace FontManager {
             WelcomeLabel welcome;
             Gtk.Button install_button;
             Gee.ArrayList <string> installed;
-            Metadata.Title titlebar;
+            Metadata.TitleBar titlebar;
 
             /* Type hint used to prevent notification on every selection.
              * Happens in gnome-shell and I assume other environments if
@@ -65,10 +65,10 @@ namespace FontManager {
                 preview.notebook.set_action_widget(install_button, Gtk.PackType.END);
                 welcome = new WelcomeLabel(welcome_tmpl.printf(w1, w2, w3));
                 box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-                titlebar = new Metadata.Title();
+                titlebar = new Metadata.TitleBar();
                 add_separator(box, Gtk.Orientation.HORIZONTAL);
                 box.pack_end(preview, true, true, 0);
-                box.pack_start(titlebar, false, true, 0);
+                set_titlebar(titlebar);
                 overlay = new Gtk.Overlay();
                 /* XXX : Bug? */
                 var force_label_resizing_in_an_overlay = new Gtk.ScrolledWindow(null, null);

@@ -76,6 +76,12 @@ namespace FontManager {
          * Emitted when a row has been added or removed
          */
         public signal void changed ();
+
+        /**
+         * FontSourceList::row_selected:
+         *
+         * Emitted when a row has been selected
+         */
         public signal void row_selected (Gtk.ListBoxRow? row);
 
         /**
@@ -90,7 +96,6 @@ namespace FontManager {
             set {
                 _sources = value;
                 _sources.changed.connect(() => { changed(); });
-                changed.connect(() => { update(); });
                 update();
             }
         }
@@ -115,13 +120,20 @@ namespace FontManager {
             list.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
             list.row_selected.connect((r) => { row_selected(r); });
+            changed.connect(() => { update(); });
         }
 
         public FontSourceList () {
             Object(name: "FontSourceList");
         }
 
+        /**
+         * update:
+         *
+         * Updates list to match sources
+         */
         public void update () {
+            /* Simply destroy current list, it should never be long enough to be an issue */
             while (first_row != null)
                 ((Gtk.Widget) first_row).destroy();
             foreach (var s in _sources) {
@@ -141,15 +153,6 @@ namespace FontManager {
             return;
         }
 
-        public void on_add_source () {
-            var new_sources = FileSelector.source_selection((Gtk.Window) this.get_toplevel());
-            if (new_sources.length < 1)
-                return;
-            foreach (var uri in new_sources)
-                add_source_from_uri(uri);
-            return;
-        }
-
         void add_source_from_uri (string uri) {
             var file = File.new_for_uri(uri);
             var filetype = file.query_file_type(FileQueryInfoFlags.NONE);
@@ -165,6 +168,44 @@ namespace FontManager {
             return;
         }
 
+        void add_sources(string [] arr) {
+            foreach (var uri in arr)
+                add_source_from_uri(uri);
+            return;
+        }
+
+        /**
+         * on_add_source:
+         *
+         * Displays a file selection dialog where source folders can be added
+         */
+        public void on_add_source () {
+            string? [] arr = { };
+            var dialog = new Gtk.FileChooserDialog(_("Select source folders"),
+                                                        (Gtk.Window) this.get_toplevel(),
+                                                        Gtk.FileChooserAction.SELECT_FOLDER,
+                                                        _("_Cancel"),
+                                                        Gtk.ResponseType.CANCEL,
+                                                        _("_Open"),
+                                                        Gtk.ResponseType.ACCEPT,
+                                                        null);
+            dialog.set_select_multiple(true);
+            if (dialog.run() == Gtk.ResponseType.ACCEPT) {
+                dialog.hide();
+                foreach (var uri in dialog.get_uris())
+                    arr += uri;
+            }
+            dialog.destroy();
+            if (arr.length > 0)
+                add_sources(arr);
+            return;
+        }
+
+        /**
+         * on_remove_source:
+         *
+         * Removes currently selected source
+         */
         public void on_remove_source () {
             var selected_row = list.get_selected_row();
             if (selected_row == null)
@@ -183,8 +224,7 @@ namespace FontManager {
                                                     int y,
                                                     Gtk.SelectionData selection_data,
                                                     uint info,
-                                                    uint time)
-        {
+                                                    uint time) {
             switch (info) {
                 case DragTargetType.EXTERNAL:
                     add_sources(selection_data.get_uris());
@@ -193,12 +233,6 @@ namespace FontManager {
                     warning("Unsupported drag target.");
                     return;
             }
-            return;
-        }
-
-        void add_sources(string [] arr) {
-            foreach (var uri in arr)
-                add_source_from_uri(uri);
             return;
         }
 

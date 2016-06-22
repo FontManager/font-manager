@@ -32,26 +32,6 @@ namespace FontManager {
             "application/x-font-type1"
         };
 
-        public string? [] source_selection (Gtk.Window? parent) {
-            string? [] arr = { };
-            var dialog = new Gtk.FileChooserDialog(_("Select source folders"),
-                                                        parent,
-                                                        Gtk.FileChooserAction.SELECT_FOLDER,
-                                                        _("_Cancel"),
-                                                        Gtk.ResponseType.CANCEL,
-                                                        _("_Open"),
-                                                        Gtk.ResponseType.ACCEPT,
-                                                        null);
-            dialog.set_select_multiple(true);
-            if (dialog.run() == Gtk.ResponseType.ACCEPT) {
-                dialog.hide();
-                foreach (var uri in dialog.get_uris())
-                    arr += uri;
-            }
-            dialog.destroy();
-            return arr;
-        }
-
         public string? [] run_install (Gtk.Window? parent) {
             string? [] arr = { };
             var dialog = new Gtk.FileChooserDialog(_("Select files to install"),
@@ -86,7 +66,7 @@ namespace FontManager {
             var dialog = new Gtk.Dialog();
             var cancel = new Gtk.Button.with_mnemonic(_("_Cancel"));
             var remove = new Gtk.Button.with_mnemonic(_("_Delete"));
-            cancel.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            //cancel.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             remove.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
             var header = new Gtk.HeaderBar();
             var content_area = dialog.get_content_area();

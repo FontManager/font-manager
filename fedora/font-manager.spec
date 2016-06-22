@@ -7,7 +7,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    7
+Release:    8
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -137,6 +137,8 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Sat Jun 4 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-8
+- Fix initial window size issue on Gtk+ > 3.18
 * Wed Jun 1 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-7
 - Add Polish translation provided by Piotr Strębski
 * Thu May 26 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-6
