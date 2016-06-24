@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -50,7 +50,7 @@ namespace FontManager {
             expand_button.set_tooltip_text(_("Expand all"));
             entry = new Gtk.SearchEntry();
             entry.set_size_request(0, 0);
-            entry.margin_end = 2;
+            entry.margin_end = MINIMUM_MARGIN_SIZE;
             entry.placeholder_text = _("Search Families...");
             box.pack_end(entry, false, false, 0);
             box.pack_start(expand_button, false, false, 0);

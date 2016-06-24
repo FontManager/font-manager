@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -49,7 +49,7 @@ namespace FontManager {
             name_label = new Gtk.Label(null);
             name_label.halign = Gtk.Align.START;
             name_label.opacity = unicode_label.opacity = 0.9;
-            unicode_label.margin = name_label.margin = 6;
+            unicode_label.margin = name_label.margin = DEFAULT_MARGIN_SIZE / 4;
             box.pack_start(unicode_label, true, true, 2);
             box.pack_end(name_label, true, true, 2);
             add(box);

@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-21 23:19-0400\n"
+"POT-Creation-Date: 2016-06-23 22:46-0400\n"
 "PO-Revision-Date: 2014-07-10 09:28-0400\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -44,6 +44,7 @@ msgid "Simple font management for GTK+ desktop environments"
 msgstr "GTK+桌面环境下的简易字体管理器"
 
 #: ../lib/Common/About.vala:34
+#, fuzzy
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -57,7 +58,8 @@ msgid ""
 "    GNU General Public License for more details.\n"
 "\n"
 "    You should have received a copy of the GNU General Public License\n"
-"    along with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+"    along with this program.  If not, see <http://www.gnu.org/licenses/"
+"gpl-3.0.txt>.\n"
 "    "
 msgstr ""
 "\n"
@@ -373,28 +375,28 @@ msgstr ""
 msgid "Enable Autohinter"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:58
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:59
 msgid "Hinting Style"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:59
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:60
 msgid "Use Embedded Bitmaps"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:61
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:66
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:62
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:67
 msgid " Size Restrictions "
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:64
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:65
 msgid " Apply settings to point sizes "
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:134
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:135
 msgid "Smaller than"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:135
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:136
 msgid "Larger than"
 msgstr ""
 
@@ -414,17 +416,17 @@ msgid ""
 "button in the toolbar."
 msgstr "通过拖放到此区域或单击工具栏上的按钮来添加新的字体源。"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:184
+#: ../lib/UX/FontConfig/FontSourceList.vala:185
 msgid "Select source folders"
 msgstr "选择字体源文件夹"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:187
+#: ../lib/UX/FontConfig/FontSourceList.vala:188
 #: ../lib/UX/Utils/FileSelector.vala:40 ../lib/UX/Utils/FileSelector.vala:67
 #: ../src/font-manager/Migration.vala:58
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:189
+#: ../lib/UX/FontConfig/FontSourceList.vala:190
 #: ../lib/UX/Utils/FileSelector.vala:42
 msgid "_Open"
 msgstr "打开(_O)"

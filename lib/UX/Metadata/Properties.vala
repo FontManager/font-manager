@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -54,9 +54,8 @@ namespace FontManager {
                 description = new Description();
                 separator = new Gtk.Separator(Gtk.Orientation.VERTICAL);
                 separator.set_size_request(1, -1);
-                separator.margin = 6;
-                separator.margin_top = 12;
-                separator.margin_bottom = 12;
+                separator.margin = DEFAULT_MARGIN_SIZE / 4;
+                separator.margin_top = separator.margin_bottom = DEFAULT_MARGIN_SIZE / 2;
                 separator.opacity = 0.5;
                 psname = new Gtk.Label("psname");
                 weight = new Gtk.Label("weight");
@@ -142,20 +141,20 @@ namespace FontManager {
                     widget.opacity = 0.75;
                     grid.attach(widget, 0, i, 1, 1);
                     widget.halign = Gtk.Align.END;
-                    widget.margin = 12;
-                    widget.margin_start = 24;
+                    widget.margin = DEFAULT_MARGIN_SIZE / 2;
+                    widget.margin_start = DEFAULT_MARGIN_SIZE;
                     widget.expand = false;
                     grid.attach(values[i], 1, i, 1, 1);
                     values[i].halign = Gtk.Align.START;
                     values[i].expand = false;
-                    values[i].margin = 12;
-                    values[i].margin_end = 24;
+                    values[i].margin = DEFAULT_MARGIN_SIZE / 2;
+                    values[i].margin_end = DEFAULT_MARGIN_SIZE;
                     if (i == 0) {
-                        widget.margin_top = 24;
-                        values[i].margin_top = 24;
+                        widget.margin_top = DEFAULT_MARGIN_SIZE;
+                        values[i].margin_top = DEFAULT_MARGIN_SIZE;
                     } else if (i == labels.length - 1) {
-                        widget.margin_bottom = 24;
-                        values[i].margin_bottom = 24;
+                        widget.margin_bottom = DEFAULT_MARGIN_SIZE;
+                        values[i].margin_bottom = DEFAULT_MARGIN_SIZE;
                     }
                     widget.show();
                     values[i].show();

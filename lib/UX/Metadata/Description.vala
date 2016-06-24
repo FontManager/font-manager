@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -31,7 +31,7 @@ namespace FontManager {
             public Description () {
                 base(null);
                 hexpand = true;
-                view.margin = 24;
+                view.margin = DEFAULT_MARGIN_SIZE / 2;
                 view.justification = Gtk.Justification.LEFT;
                 view.pixels_above_lines = 1;
                 set_size_request(0, 0);

@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -45,7 +45,8 @@ namespace FontManager {
             Object(name: "FontManagerFontSourceRow", source: source, orientation: Gtk.Orientation.HORIZONTAL);
             image = new Gtk.Image();
             image.expand = false;
-            image.margin = 6;
+            image.margin = DEFAULT_MARGIN_SIZE / 4;
+            image.margin_start = DEFAULT_MARGIN_SIZE;
             toggle = new LabeledSwitch();
             source.bind_property("active", toggle.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             source.bind_property("available", toggle.toggle, "sensitive", BindingFlags.SYNC_CREATE);

@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -49,9 +49,10 @@ namespace FontConfig {
             antialias = new LabeledSwitch(_("Antialias"));
             hinting = new LabeledSwitch(_("Hinting"));
             autohint = new Gtk.CheckButton.with_label(_("Enable Autohinter"));
+            autohint.margin = DEFAULT_MARGIN_SIZE;
             hinting_options = new Gtk.Revealer();
             hinting_options_grid = new Gtk.Grid();
-            hinting_options_grid.margin = 36;
+            hinting_options_grid.margin = DEFAULT_MARGIN_SIZE + (DEFAULT_MARGIN_SIZE / 2);
             string [] hintstyles = {};
             for (int i = 0; i < 4; i++)
                 hintstyles += ((HintStyle) i).to_string();

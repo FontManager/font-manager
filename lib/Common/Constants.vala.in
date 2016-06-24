@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -38,6 +38,8 @@ string get_package_config_dir () {
 public const string DEFAULT_COLLECTION_NAME = _("Enter Collection Name");
 public const string DEFAULT_FONT = "Sans";
 
+/* XXX: Probably most of this file belongs elsewhere */
+
 public const string DEFAULT_PREVIEW_TEXT = """
 %s
 
@@ -46,6 +48,10 @@ abcdefghijklmnopqrstuvwxyz
 1234567890.:,;(*!?')
 
 """;
+
+/* Any margins or padding set in code should be adjustable from one spot */
+public const int MINIMUM_MARGIN_SIZE = 2;
+public const int DEFAULT_MARGIN_SIZE = 24;
 
 public const double DEFAULT_PREVIEW_SIZE = 10;
 public const double MIN_FONT_SIZE = 6.0;

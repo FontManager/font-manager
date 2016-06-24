@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-21 23:19-0400\n"
+"POT-Creation-Date: 2016-06-23 22:46-0400\n"
 "PO-Revision-Date: 2016-05-27 02:36-0400\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish\n"
@@ -24,6 +24,7 @@ msgid "Simple font management for GTK+ desktop environments"
 msgstr "Proste zarządzanie czcionkami dla środowisk pulpitowych GTK+"
 
 #: ../lib/Common/About.vala:34
+#, fuzzy
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -37,7 +38,8 @@ msgid ""
 "    GNU General Public License for more details.\n"
 "\n"
 "    You should have received a copy of the GNU General Public License\n"
-"    along with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+"    along with this program.  If not, see <http://www.gnu.org/licenses/"
+"gpl-3.0.txt>.\n"
 "    "
 msgstr ""
 "\n"
@@ -354,28 +356,28 @@ msgstr "Hinting"
 msgid "Enable Autohinter"
 msgstr "Włącz automatyczny hinting"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:58
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:59
 msgid "Hinting Style"
 msgstr "Styl hintingu"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:59
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:60
 msgid "Use Embedded Bitmaps"
 msgstr "Użyj osadzonych bitmap"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:61
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:66
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:62
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:67
 msgid " Size Restrictions "
 msgstr "Ograniczenia rozmiaru"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:64
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:65
 msgid " Apply settings to point sizes "
 msgstr "Zastosuj ustawienia do rozmiarów punktu"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:134
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:135
 msgid "Smaller than"
 msgstr "Mniejsze niż"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:135
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:136
 msgid "Larger than"
 msgstr "Większe niż"
 
@@ -395,17 +397,17 @@ msgstr ""
 "Aby dodać nowe źródło po prostu przeciągnij katalog na ten obszar lub "
 "kliknij przycisk dodawania na pasku narzędzi."
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:184
+#: ../lib/UX/FontConfig/FontSourceList.vala:185
 msgid "Select source folders"
 msgstr "Wybierz katalogi źródeł"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:187
+#: ../lib/UX/FontConfig/FontSourceList.vala:188
 #: ../lib/UX/Utils/FileSelector.vala:40 ../lib/UX/Utils/FileSelector.vala:67
 #: ../src/font-manager/Migration.vala:58
 msgid "_Cancel"
 msgstr "_Anuluj"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:189
+#: ../lib/UX/FontConfig/FontSourceList.vala:190
 #: ../lib/UX/Utils/FileSelector.vala:42
 msgid "_Open"
 msgstr "_Otwórz"

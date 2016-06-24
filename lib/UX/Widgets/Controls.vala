@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -43,7 +43,7 @@ public class LabeledSwitch : Gtk.Box {
     }
 
     public LabeledSwitch (string label = "") {
-        Object(name: "LabeledSwitch", margin: 24);
+        Object(name: "LabeledSwitch", margin: DEFAULT_MARGIN_SIZE);
         this.label.set_text(label);
     }
 
@@ -64,7 +64,7 @@ public class LabeledSpinButton : Gtk.Grid {
     Gtk.SpinButton spin;
 
     public LabeledSpinButton (string label = "", double min, double max, double step) {
-        Object(name: "LabeledspinButton", margin: 24);
+        Object(name: "LabeledspinButton", margin: DEFAULT_MARGIN_SIZE);
         this.label = new Gtk.Label(label);
         this.label.hexpand = true;
         this.label.halign = Gtk.Align.START;
@@ -90,7 +90,7 @@ public class OptionScale : Gtk.Grid {
     public string [] options { get; private set; }
 
     public OptionScale (string? heading = null, string [] options) {
-        Object(name: "OptionScale", margin: 24);
+        Object(name: "OptionScale", margin: DEFAULT_MARGIN_SIZE);
         hexpand = true;
         this.options = options;
         scale = new Gtk.Scale.with_range(Gtk.Orientation.HORIZONTAL, 0, options.length, 1);

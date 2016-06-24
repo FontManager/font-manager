@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -219,7 +219,7 @@ namespace FontManager {
 
         void construct_menu_button () {
             menu_button = new Gtk.MenuButton();
-            menu_button.margin = 2;
+            menu_button.margin = MINIMUM_MARGIN_SIZE;
             menu_button.direction = Gtk.ArrowType.DOWN;
             menu_button.relief = Gtk.ReliefStyle.NONE;
             menu_button.can_focus = false;

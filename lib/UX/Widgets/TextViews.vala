@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -226,7 +226,7 @@ namespace FontManager {
 
         construct {
             view = new Gtk.TextView();
-            view.margin = 12;
+            view.margin = DEFAULT_MARGIN_SIZE / 2;
             view.editable = false;
             view.cursor_visible = false;
             view.accepts_tab = false;

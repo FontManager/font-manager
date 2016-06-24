@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -50,11 +50,11 @@ namespace FontConfig {
         Gee.ArrayList <Gtk.RadioButton> options;
 
         public SubpixelGeometry () {
-            Object(name: "SubpixelGeometry", margin: 24, opacity: 0.75, orientation: Gtk.Orientation.VERTICAL);
+            Object(name: "SubpixelGeometry", margin: DEFAULT_MARGIN_SIZE, opacity: 0.75, orientation: Gtk.Orientation.VERTICAL);
             get_style_context().add_class(Gtk.STYLE_CLASS_ENTRY);
             label = new Gtk.Label(_("Subpixel Geometry"));
             label.halign = Gtk.Align.CENTER;
-            label.margin = 12;
+            label.margin = DEFAULT_MARGIN_SIZE / 2;
             pack_start(label, false, true, 6);
             options = new Gee.ArrayList <Gtk.RadioButton> ();
             box = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
@@ -76,7 +76,7 @@ namespace FontConfig {
                 box.pack_start(button, true, true, 0);
             }
             foreach (var widget in options)
-                widget.margin = 6;
+                widget.margin = DEFAULT_MARGIN_SIZE / 4;
             pack_start(box, true, true, 6);
         }
 

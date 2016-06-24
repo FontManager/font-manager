@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -42,8 +42,8 @@ namespace FontManager {
                 wide_layout.label.set_markup(_("Wide Layout"));
                 wide_layout_options = new Gtk.Revealer();
                 on_maximize = new Gtk.CheckButton.with_label(_("Only when maximized"));
-                on_maximize.margin = 6;
-                on_maximize.margin_start = on_maximize.margin_end = 48;
+                on_maximize.margin = DEFAULT_MARGIN_SIZE / 2;
+                on_maximize.margin_start = on_maximize.margin_end = DEFAULT_MARGIN_SIZE * 2;
                 use_csd = new LabeledSwitch();
                 use_csd.label.set_markup(_("Client Side Decorations"));
                 message = new Gtk.Label(null);

@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -54,7 +54,7 @@ namespace FontManager {
                 installed = new Gee.ArrayList <string> ();
                 preview = new FontPreviewPane();
                 install_button = new Gtk.Button();
-                install_button.margin = 2;
+                install_button.margin = MINIMUM_MARGIN_SIZE;
                 install_button.set_label(_("Install Font"));
                 install_button.opacity = 0.725;
                 install_button.clicked.connect(() => {

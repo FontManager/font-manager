@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -47,8 +47,9 @@ namespace FontManager {
      * MultiDNDTreeView:
      *
      * #Gtk.TreeView which supports drag and drop for multiple selections.
+     *
+     * Was this originally from Quod Libet? Think it was. Thanks.
      */
-    /* Was this originally from Quod Libet? Think it was. Thanks. */
     public class MultiDNDTreeView : BaseTreeView {
 
         struct PendingEvent {
