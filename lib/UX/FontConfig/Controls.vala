@@ -38,6 +38,7 @@ namespace FontConfig {
          * Emitted when the user clicks Save
          */
         public signal void save_selected ();
+
         /**
          * Controls::discard_selected:
          *
@@ -70,6 +71,9 @@ namespace FontConfig {
             connect_signals();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             save.show();
             discard.show();

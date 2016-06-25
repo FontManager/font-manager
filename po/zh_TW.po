@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-25 00:35-0400\n"
+"POT-Creation-Date: 2016-06-25 16:12-0400\n"
 "PO-Revision-Date: 2014-07-10 09:28-0400\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -339,15 +339,15 @@ msgstr "两端对齐"
 msgid "Right Aligned"
 msgstr "右对齐"
 
-#: ../lib/UX/FontConfig/Controls.vala:59
+#: ../lib/UX/FontConfig/Controls.vala:60
 msgid "Save"
 msgstr ""
 
-#: ../lib/UX/FontConfig/Controls.vala:61
+#: ../lib/UX/FontConfig/Controls.vala:62
 msgid "Discard"
 msgstr ""
 
-#: ../lib/UX/FontConfig/Controls.vala:63
+#: ../lib/UX/FontConfig/Controls.vala:64
 msgid "Running applications may require a restart to reflect any changes."
 msgstr ""
 

@@ -137,12 +137,13 @@ public class FontScale : Gtk.EventBox {
     }
 
     Gtk.Box container;
-    Gtk.SpinButton spin;
     Gtk.Scale scale;
+    Gtk.SpinButton spin;
     ReactiveLabel min;
     ReactiveLabel max;
 
-    construct {
+    public FontScale () {
+        Object(name: "FontScale");
         scale = new Gtk.Scale.with_range(Gtk.Orientation.HORIZONTAL, MIN_FONT_SIZE, MAX_FONT_SIZE, 0.5);
         scale.draw_value = false;
         scale.set_range(MIN_FONT_SIZE, MAX_FONT_SIZE);
@@ -160,25 +161,6 @@ public class FontScale : Gtk.EventBox {
         container.pack_end(spin, false, true, 8);
         container.border_width = 5;
         add(container);
-        connect_signals();
-    }
-
-    public FontScale () {
-        Object(name: "FontScale");
-    }
-
-    public override void show () {
-        container.show();
-        min.show();
-        max.show();
-        spin.show();
-        scale.show();
-        container.show();
-        base.show();
-        return;
-    }
-
-    void connect_signals () {
         min.clicked.connect(() => { scale.set_value(MIN_FONT_SIZE); });
         max.clicked.connect(() => { scale.set_value(MAX_FONT_SIZE); });
     }
@@ -190,6 +172,16 @@ public class FontScale : Gtk.EventBox {
             w.get_style_context().add_class(gtk_style_class);
         });
         get_style_context().add_class(gtk_style_class);
+        return;
+    }
+
+    public override void show () {
+        container.show();
+        min.show();
+        max.show();
+        spin.show();
+        scale.show();
+        base.show();
         return;
     }
 
