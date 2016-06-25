@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-23 22:46-0400\n"
+"POT-Creation-Date: 2016-06-25 00:35-0400\n"
 "PO-Revision-Date: 2014-07-10 09:28-0400\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -754,11 +754,11 @@ msgid "Remove selected source"
 msgstr "删除选中的字体源"
 
 # msgstr "区块"
-#: ../src/font-manager/SideBar.vala:179
+#: ../src/font-manager/SideBar.vala:172
 msgid "Categories"
 msgstr "分类"
 
-#: ../src/font-manager/SideBar.vala:180
+#: ../src/font-manager/SideBar.vala:173
 msgid "Collections"
 msgstr "字体集"
 

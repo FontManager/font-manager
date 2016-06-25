@@ -151,9 +151,7 @@ namespace FontManager {
 
         Gtk.Stack stack;
         Gtk.StackSwitcher switcher;
-        Gtk.Revealer revealer1;
         Gtk.Box collection_box;
-        Gtk.Box _box;
         Gtk.EventBox blend;
         Gtk.Box main_box;
 
@@ -169,12 +167,7 @@ namespace FontManager {
             category_tree = new CategoryTree();
             collection_tree = new CollectionTree();
             collection_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            revealer1 = new Gtk.Revealer();
-            revealer1.expand = false;
-            _box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            _box.pack_start(collection_tree.controls, false, true, 0);
-            revealer1.add(_box);
-            collection_box.pack_start(revealer1, false, true, 0);
+            collection_box.pack_start(collection_tree.controls, false, true, 0);
             collection_box.pack_end(collection_tree, true, true, 0);
             stack.add_titled(category_tree, "0", _("Categories"));
             stack.add_titled(collection_box, "1", _("Collections"));
@@ -190,8 +183,7 @@ namespace FontManager {
         }
 
         public override void show () {
-            _box.show();
-            revealer1.show();
+            collection_tree.controls.show();
             collection_tree.show();
             collection_box.show();
             category_tree.show();
@@ -200,11 +192,6 @@ namespace FontManager {
             blend.show();
             main_box.show();
             base.show();
-            return;
-        }
-
-        public void reveal_collection_controls (bool reveal) {
-            revealer1.set_reveal_child(reveal);
             return;
         }
 

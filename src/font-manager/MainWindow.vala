@@ -338,7 +338,6 @@ namespace FontManager {
             else
                 sidebar.mode = "Default";
             sidebar.loading = loading;
-            sidebar.standard.reveal_collection_controls((mode == Mode.MANAGE));
             titlebar.reveal_controls((mode == Mode.MANAGE));
             fonttree.show_controls = (mode != Mode.BROWSE);
             fontlist.controls.set_remove_sensitivity((mode == Mode.MANAGE && sidebar.standard.mode == StandardSideBarMode.COLLECTION));

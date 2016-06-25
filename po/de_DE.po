@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-23 22:46-0400\n"
+"POT-Creation-Date: 2016-06-25 00:35-0400\n"
 "PO-Revision-Date: 2015-01-13 08:06-0500\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -763,11 +763,11 @@ msgstr "Füge eine neue Quelle hinzu"
 msgid "Remove selected source"
 msgstr "Entferne ausgewählte Quelle"
 
-#: ../src/font-manager/SideBar.vala:179
+#: ../src/font-manager/SideBar.vala:172
 msgid "Categories"
 msgstr "Kategorien"
 
-#: ../src/font-manager/SideBar.vala:180
+#: ../src/font-manager/SideBar.vala:173
 msgid "Collections"
 msgstr "Kollektionen"
 
