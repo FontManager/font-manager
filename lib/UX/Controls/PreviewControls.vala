@@ -23,12 +23,45 @@
 
 namespace FontManager {
 
+    /**
+     * PreviewControls:
+     *
+     * Toolbar providing controls to justify, edit and reset preview text.
+     *
+     * -------------------------------------------------------------------
+     * |                                                                 |
+     * | justify controls                                   edit  reset  |
+     * |                                                                 |
+     * -------------------------------------------------------------------
+     */
     public class PreviewControls : Gtk.EventBox {
 
+        /**
+         * PreviewControls::justification_set:
+         *
+         * Emitted when the user toggles justification
+         */
         public signal void justification_set (Gtk.Justification justification);
+
+        /**
+         * PreviewControls::editing:
+         *
+         * Emitted when editing mode has changed.
+         */
         public signal void editing (bool enabled);
+
+        /**
+         * PreviewControls::on_clear_clicked:
+         *
+         * Emitted when user has requested text be reset to default
+         */
         public signal void on_clear_clicked ();
 
+        /**
+         * PreviewControls:clear_is_sensitive:
+         *
+         * Whether reset function is available.
+         */
         public bool clear_is_sensitive {
             get {
                 return clear.get_sensitive();
@@ -81,9 +114,11 @@ namespace FontManager {
             edit.active = false;
             clear.sensitive = false;
             connect_signals();
-
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             clear.show();
             edit.show();

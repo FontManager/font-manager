@@ -80,6 +80,9 @@ namespace FontConfig {
             pack_start(box, true, true, 6);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             foreach (var widget in options)
                 widget.show();
@@ -129,11 +132,16 @@ namespace FontConfig {
             }
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             foreach (var label in labels)
                 label.show();
             base.show();
         }
+
+        /* Used to force square widget */
 
         public override void get_preferred_width (out int minimum_size, out int natural_size) {
             minimum_size = natural_size = _size;

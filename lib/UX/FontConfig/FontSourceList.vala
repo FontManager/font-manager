@@ -57,6 +57,9 @@ namespace FontManager {
             pack_end(toggle, true, true, 6);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             image.show();
             toggle.show();
@@ -101,6 +104,9 @@ namespace FontManager {
             }
         }
 
+        /**
+         * FontSourceList:first_row:
+         */
         Gtk.ListBoxRow first_row {
             get {
                 return list.get_row_at_index(0);
@@ -146,6 +152,9 @@ namespace FontManager {
             return;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             welcome.show();
             list.show();

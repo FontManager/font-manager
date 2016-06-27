@@ -26,12 +26,16 @@ namespace FontManager {
     /**
      * BaseControls:
      *
-     * Base class for controls. By default includes add/remove buttons packed
-     * at start of @box
+     * Base class for controls that allow adding or removing.
+     * By default includes add/remove buttons packed at start of @box
      *
-     * Is actually a #Gtk.Eventbox, applying to styles to #Gtk.Box and it's
+     * Is actually a #Gtk.Eventbox, because applying styles to #Gtk.Box and its
      * contents does not actually work at this point
-     * We use add_class(Gtk.STYLE_CLASS_VIEW) to blend these in a lot of places
+     * Use get_style_context().add_class() to blend these in a lot of places
+     *
+     * ----------------------------------------------------------------------
+     * |  +  -                                                              |
+     * ----------------------------------------------------------------------
      */
     public class BaseControls : Gtk.EventBox {
 
@@ -41,6 +45,7 @@ namespace FontManager {
          * Emitted when @add_button has been clicked
          */
         public signal void add_selected ();
+
         /**
          * BaseControls::remove_selected:
          *
@@ -48,8 +53,25 @@ namespace FontManager {
          */
         public signal void remove_selected ();
 
+        /**
+         * BaseControls:box:
+         *
+         * #Gtk.Box
+         */
         public Gtk.Box box { get; protected set; }
+
+        /**
+         * BaseControls:add_button:
+         *
+         * #Gtk.Button
+         */
         public Gtk.Button add_button { get; protected set; }
+
+        /**
+         * BaseControls:remove_button:
+         *
+         * #Gtk.Button
+         */
         public Gtk.Button remove_button { get; protected set; }
 
         construct {
@@ -68,6 +90,9 @@ namespace FontManager {
             remove_button.clicked.connect(() => { remove_selected(); });
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             add_button.show();
             remove_button.show();

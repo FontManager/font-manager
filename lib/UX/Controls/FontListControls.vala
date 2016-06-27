@@ -70,6 +70,9 @@ namespace FontManager {
             });
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             entry.show();
             arrow.show();
@@ -79,6 +82,11 @@ namespace FontManager {
             return;
         }
 
+        /**
+         * set_remove_sensitivity:
+         *
+         * @sensitive       #bool indicating whether remove function is available
+         */
         public void set_remove_sensitivity (bool sensitive) {
             remove_button.set_sensitive(sensitive);
             remove_button.set_has_tooltip(sensitive);

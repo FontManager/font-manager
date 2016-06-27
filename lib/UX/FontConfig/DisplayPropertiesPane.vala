@@ -56,6 +56,9 @@ namespace FontConfig {
             set_size_request(480, 420);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             dpi.show();
             scale.show();

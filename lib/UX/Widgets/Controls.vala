@@ -21,10 +21,42 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
+/**
+ * LabeledSwitch:
+ *
+ * Row like widget containing two #Gtk.Label and a #Gtk.Switch.
+ * Use #Gtk.Label.set_text() / #Gtk.Label.set_markup()
+ * @label is intended to display main option name
+ * @dim_label is intended to display additional information
+ * @toggle is #Gtk.Switch connect to its active signal to monitor changes
+ *
+ * ------------------------------------------------------------
+ * |                                                          |
+ * | label                 dim_label                switch    |
+ * |                                                          |
+ * ------------------------------------------------------------
+ */
 public class LabeledSwitch : Gtk.Box {
 
+    /**
+     * LabeledSwitch:label:
+     *
+     * #Gtk.Label
+     */
     public Gtk.Label label { get; private set; }
+
+    /**
+     * LabeledSwitch:dim_label:
+     *
+     * Centered #Gtk.Label with dim-label style class
+     */
     public Gtk.Label dim_label { get; private set; }
+
+    /**
+     * LabeledSwitch:toggle:
+     *
+     * #Gtk.Switch
+     */
     public Gtk.Switch toggle { get; private set; }
 
     construct {
@@ -47,6 +79,9 @@ public class LabeledSwitch : Gtk.Box {
         this.label.set_text(label);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public override void show () {
         label.show();
         dim_label.show();
@@ -56,8 +91,26 @@ public class LabeledSwitch : Gtk.Box {
     }
 }
 
+/**
+ * LabeledSpinButton:
+ *
+ * @value       current value
+ *
+ * Row like widget containing a #Gtk.Label and a #Gtk.SpinButton.
+ *
+ * ------------------------------------------------------------
+ * |                                                          |
+ * | label                                       spinbutton   |
+ * |                                                          |
+ * ------------------------------------------------------------
+ */
 public class LabeledSpinButton : Gtk.Grid {
 
+    /**
+     * LabeledSpinButton:value:
+     *
+     * Current value.
+     */
     public double @value { get; set; default = 0.0; }
 
     Gtk.Label label;
@@ -74,6 +127,9 @@ public class LabeledSpinButton : Gtk.Grid {
         bind_property("value", spin, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public override void show () {
         label.show();
         spin.show();
@@ -83,11 +139,49 @@ public class LabeledSpinButton : Gtk.Grid {
 
 }
 
+/**
+ * OptionScale:
+ *
+ * @heading     string to display centered above scale
+ * @options     string [] of options to create marks for
+ *
+ * Row like widget containing a #Gtk.Label displayed centered
+ * above the scale.
+ *
+ * ---------------------------------------------------------------
+ * |                          heading                            |
+ * |                                                             |
+ * |   options[0] ---------- options[1] ----------- options[2]   |
+ * |                                                             |
+ * ---------------------------------------------------------------
+ */
 public class OptionScale : Gtk.Grid {
 
-    public Gtk.Label label { get; private set; }
-    public Gtk.Scale scale { get; private set; }
+    /**
+     * OptionScale:value:
+     *
+     * Current value.
+     */
+    public double @value { get; set; default = 0.0; }
+
+    /**
+     * FontScale:adjustment:
+     *
+     * #Gtk.Adjustment in use
+     */
+    public Gtk.Adjustment adjustment {
+        get {
+            return scale.get_adjustment();
+        }
+    }
+
+    /**
+     * OptionScale:options:
+     */
     public string [] options { get; private set; }
+
+    Gtk.Label label;
+    Gtk.Scale scale;
 
     public OptionScale (string? heading = null, string [] options) {
         Object(name: "OptionScale", margin: DEFAULT_MARGIN_SIZE);
@@ -113,8 +207,12 @@ public class OptionScale : Gtk.Grid {
             label.set_text(heading);
         attach(label, 0, 0, options.length, 1);
         attach(scale, 0, 1, options.length, 1);
+        bind_property("value", scale.adjustment, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public override void show () {
         label.show();
         scale.show();
@@ -124,8 +222,32 @@ public class OptionScale : Gtk.Grid {
 
 }
 
+/**
+ * FontScale:
+ *
+ * Row like widget which displays a #Gtk.Scale and a #Gtk.SpinButton
+ * for adjusting font display size.
+ *
+ * ------------------------------------------------------------------
+ * |                                                                |
+ * |  a |------------------------------------------| A     [  +/-]  |
+ * |                                                                |
+ * ------------------------------------------------------------------
+ */
 public class FontScale : Gtk.EventBox {
 
+    /**
+     * FontScale:value:
+     *
+     * Current value.
+     */
+    public double @value { get; set; default = 0.0; }
+
+    /**
+     * FontScale:adjustment:
+     *
+     * #Gtk.Adjustment in use
+     */
     public Gtk.Adjustment adjustment {
         get {
             return scale.get_adjustment();
@@ -163,8 +285,14 @@ public class FontScale : Gtk.EventBox {
         add(container);
         min.clicked.connect(() => { scale.set_value(MIN_FONT_SIZE); });
         max.clicked.connect(() => { scale.set_value(MAX_FONT_SIZE); });
+        bind_property("value", spin, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
     }
 
+    /**
+     * add_style_class:
+     *
+     * Convenience function which applies given style_class.
+     */
     public void add_style_class (string gtk_style_class) {
         container.forall((w) => {
             if ((w is Gtk.SpinButton) || (w is Gtk.Scale))
@@ -175,6 +303,9 @@ public class FontScale : Gtk.EventBox {
         return;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public override void show () {
         container.show();
         min.show();
