@@ -168,7 +168,7 @@ LicenseData[] =
 
     {
         "GNU Lesser General Public License",
-        "http://www.gnu.org/licenses/lgpl.html",
+        "http://www.gnu.org/licenses/gpl-3.0.txtlgpl.html",
         {
             "LGPL",
             "GNU Lesser General Public License",
