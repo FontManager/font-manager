@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+ * along with Font Manager.  If not, see <https://opensource.org/licenses/GPL-3.0>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -80,7 +80,7 @@ namespace FontConfig {
         void bind_properties () {
             properties.bind_property("dpi", dpi, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             properties.bind_property("scale", scale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            properties.bind_property("lcdfilter", lcdfilter.scale.adjustment, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            properties.bind_property("lcdfilter", lcdfilter, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             properties.bind_property("rgba", spg, "rgba", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;
         }

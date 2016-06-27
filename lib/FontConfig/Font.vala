@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+ * along with Font Manager.  If not, see <https://opensource.org/licenses/GPL-3.0>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -23,7 +23,7 @@
 
 namespace FontConfig {
 
-    /* This function re-defined here to avoid pulling in other files when generating ../Glue/_Glue_.h */
+    /* XXX : This function re-defined here to avoid pulling in other files when generating ../Glue/_Glue_.h */
     internal int natural_cmp (string a, string b) {
         return strcmp(a.collate_key_for_filename(-1), b.collate_key_for_filename(-1));
     }

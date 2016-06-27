@@ -15,7 +15,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+ * along with Font Manager.  If not, see <https://opensource.org/licenses/GPL-3.0>.
  *
  * Author:
  *        Jerry Casiano <JerryCasiano@gmail.com>
@@ -41,9 +41,11 @@ namespace FontConfig {
         return config_dir;
     }
 
-    /*
-     * This function loads any user configuration files which do not
-     * interfere with our ability to render fonts properly.
+    /**
+     * load_user_fontconfig_files:
+     *
+     * Load any user configuration files which do not interfere with our
+     * ability to render fonts properly.
      */
     public void load_user_fontconfig_files () {
         string [] exclude = { "39-Alias.conf", "78-Reject.conf" };
@@ -68,11 +70,12 @@ namespace FontConfig {
         return;
     }
 
-    /*
-     * This function adds user configured font sources (directories)
-     * to our FcConfig so that we can render fonts which are not
-     * actually "installed". It also ensures the default font directory
-     * is included.
+    /**
+     * load_user_font_sources:
+     *
+     * Adds user configured font sources (directories) to our FcConfig so that
+     * we can render fonts which are not actually "installed".
+     * It also ensures the default font directory is included.
      */
     public bool load_user_font_sources (Source [] sources) {
         clear_app_fonts();
@@ -106,43 +109,92 @@ namespace FontConfig {
         return res;
     }
 
+    /**
+     * Update Fontconfig font caches
+     */
     public bool update_cache () {
         return FcCacheUpdate();
     }
 
+    /**
+     * list_families:
+     *
+     * @return      #Gee.ArrayList <string> of available font families
+     */
     public Gee.ArrayList <string> list_families () {
         return FcListFamilies();
     }
 
+    /**
+     * list_files:
+     *
+     * @return      #Gee.ArrayList <string> of available font files
+     */
     public Gee.ArrayList <string> list_files () {
         return FcListFiles();
     }
 
+    /**
+     * list_dirs:
+     *
+     * @return      #Gee.ArrayList <string> of available font directories
+     */
     public Gee.ArrayList <string> list_dirs (bool recursive = false) {
         return FcListDirs(recursive);
     }
 
+    /**
+     * list_user_dirs:
+     *
+     * @return      #Gee.ArrayList <string> of available font directories owned by user
+     */
     public Gee.ArrayList <string> list_user_dirs () {
         return FcListUserDirs();
     }
 
+    /**
+     * enable_user_config:
+     *
+     * Whether to load Fontconfig configuration files from users home directory
+     */
     public bool enable_user_config (bool enable = true) {
         return FcEnableUserConfig(enable);
     }
 
+    /**
+     * add_app_font:
+     *
+     * Adds filepath to application specific FcConfig.
+     */
     public bool add_app_font (string filepath) {
         return FcAddAppFont(filepath);
     }
 
+    /**
+     * add_app_font_dir:
+     *
+     * Adds dir to application specific FcConfig.
+     */
     public bool add_app_font_dir (string dir) {
         return FcAddAppFontDir(dir);
     }
 
+    /**
+     * clear_app_fonts:
+     *
+     * Remove any fonts added using add_app_font / add_app_font_dir
+     */
     public void clear_app_fonts () {
         FcClearAppFonts();
         return;
     }
 
+    /**
+     * load_config:
+     *
+     * Parse and load given filepath.
+     * Should be valid Fonconfig configuration file.
+     */
     public bool load_config (string filepath) {
         return FcLoadConfig(filepath);
     }
