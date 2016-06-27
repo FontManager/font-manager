@@ -13,7 +13,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <https://opensource.org/licenses/GPL-3.0>.
+# along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 #
 # Author:
 #  Jerry Casiano <JerryCasiano@gmail.com>
@@ -58,7 +58,7 @@ msgid ""
 "    GNU General Public License for more details.\n"
 "\n"
 "    You should have received a copy of the GNU General Public License\n"
-"    along with this program.  If not, see <https://opensource.org/licenses/GPL-3.0"
+"    along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt"
 "gpl-3.0.txt>.\n"
 "    "
 msgstr ""
@@ -71,7 +71,7 @@ msgstr ""
 "    议。\n"
 "\n"
 "    您应该与此程序一道收到了一份 GUN 通用公共许可协议的副本；如果\n"
-"    没有，请查看 <https://opensource.org/licenses/GPL-3.0>。\n"
+"    没有，请查看 <http://www.gnu.org/licenses/gpl-3.0.txt>。\n"
 "    "
 
 #: ../lib/Common/Constants.vala:38

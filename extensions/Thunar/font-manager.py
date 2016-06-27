@@ -15,7 +15,7 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with Font Manager.  If not, see <https://opensource.org/licenses/GPL-3.0>.
+# along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 #
 # Author:
 #        Jerry Casiano <JerryCasiano@gmail.com>
