@@ -194,7 +194,7 @@ namespace FontManager {
             return;
         }
 
-        /* These should match the schema */
+        /* XXX : These should match the schema */
         void ensure_sane_defaults () {
             main_window.set_default_size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
             main_window.mode = FontManager.Mode.BROWSE;

@@ -56,6 +56,9 @@ namespace FontConfig {
             set_size_request(480, 420);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             dpi.show();
             scale.show();
@@ -77,7 +80,7 @@ namespace FontConfig {
         void bind_properties () {
             properties.bind_property("dpi", dpi, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             properties.bind_property("scale", scale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            properties.bind_property("lcdfilter", lcdfilter.scale.adjustment, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            properties.bind_property("lcdfilter", lcdfilter, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             properties.bind_property("rgba", spg, "rgba", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;
         }

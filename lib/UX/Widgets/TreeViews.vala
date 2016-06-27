@@ -21,6 +21,11 @@
  *        Jerry Casiano <JerryCasiano@gmail.com>
 */
 
+/**
+ * BaseTreeView:
+ *
+ * Convenience class that signals on right click.
+ */
 public class BaseTreeView : Gtk.TreeView {
 
     /**

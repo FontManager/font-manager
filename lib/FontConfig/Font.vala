@@ -23,7 +23,7 @@
 
 namespace FontConfig {
 
-    /* This function re-defined here to avoid pulling in other files when generating ../Glue/_Glue_.h */
+    /* XXX : This function re-defined here to avoid pulling in other files when generating ../Glue/_Glue_.h */
     internal int natural_cmp (string a, string b) {
         return strcmp(a.collate_key_for_filename(-1), b.collate_key_for_filename(-1));
     }

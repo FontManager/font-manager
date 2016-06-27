@@ -26,8 +26,11 @@ namespace FontManager {
     /**
      * FontPreview - Full featured font preview widget
      *
-     * | #ActivePreview | #WaterfallPreview | #TextPreview |
-     *
+     * -----------------------------------------------------------------
+     * |                    |                       |                  |
+     * |   #ActivePreview   |   #WaterfallPreview   |   #TextPreview   |
+     * |                    |                       |                  |
+     * -----------------------------------------------------------------
      */
     public class FontPreview : Gtk.Stack {
 
@@ -149,9 +152,10 @@ namespace FontManager {
     }
 
     /**
-     * StandardTagTable:
+     * StandardTextTagTable:
      *
-     * Convenience class for setting attributes related to rendering in #Gtk.TextView
+     * Convenience class for setting attributes related to font rendering
+     * in a #Gtk.TextView
      */
     public class StandardTextTagTable : Gtk.TextTagTable {
 
@@ -559,6 +563,12 @@ namespace FontManager {
 
     /**
      * WaterfallPreview:
+     *
+     * @tag_table       #StandardTextTagTable
+     *
+     * #Gtk.TextView which will render the given pangram in waterfall style
+     * from MIN_FONT_SIZE to MAX_FONT_SIZE with the attributes specified
+     * in @tag_table
      */
     public class WaterfallPreview : StaticTextView {
 

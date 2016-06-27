@@ -30,6 +30,11 @@ namespace FontConfig {
      */
     public class FontPropertiesPane : Gtk.ScrolledWindow {
 
+        /**
+         * FontPropertiesPane:properties:
+         *
+         * #FontConfig.FontProperties in use
+         */
         public FontProperties properties { get; private set; }
 
         Gtk.Grid grid;
@@ -74,6 +79,9 @@ namespace FontConfig {
             set_size_request(450, 450);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             antialias.show();
             hinting.show();
@@ -108,7 +116,7 @@ namespace FontConfig {
             properties.bind_property("antialias", antialias.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             properties.bind_property("hinting", hinting.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             properties.bind_property("autohint", autohint, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            properties.bind_property("hintstyle", hintstyle.scale.adjustment, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            properties.bind_property("hintstyle", hintstyle.adjustment, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             properties.bind_property("embeddedbitmap", embeddedbitmap.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             properties.bind_property("less", size_options.less, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             properties.bind_property("more", size_options.more, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);

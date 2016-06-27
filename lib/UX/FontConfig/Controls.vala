@@ -29,6 +29,12 @@ namespace FontConfig {
      * #Gtk.Actionbar containing a save and discard button along with a notice
      * informing the user that changes may not take effect immediately.
      * Intended for use in dialogs which generate Fontconfig configuration files.
+     *
+     * -----------------------------------------------------------------------
+     * |                                                                     |
+     * |  Discard                     note                           Save    |
+     * |                                                                     |
+     * -----------------------------------------------------------------------
      */
     public class Controls : Gtk.ActionBar {
 

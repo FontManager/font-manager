@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-25 16:12-0400\n"
+"POT-Creation-Date: 2016-06-26 20:47-0400\n"
 "PO-Revision-Date: 2015-01-13 08:06-0500\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -315,39 +315,39 @@ msgstr "Durchsuche Familien"
 msgid "Collapse all"
 msgstr "Alle einklappen"
 
-#: ../lib/UX/Controls/PreviewControls.vala:58
+#: ../lib/UX/Controls/PreviewControls.vala:91
 msgid "Edit preview text"
 msgstr "Vorschautext bearbeiten"
 
-#: ../lib/UX/Controls/PreviewControls.vala:61
+#: ../lib/UX/Controls/PreviewControls.vala:94
 msgid "Undo changes"
 msgstr "Änderungen rückgängig machen"
 
-#: ../lib/UX/Controls/PreviewControls.vala:66
+#: ../lib/UX/Controls/PreviewControls.vala:99
 msgid "Left Aligned"
 msgstr "Links ausgerichtet"
 
-#: ../lib/UX/Controls/PreviewControls.vala:66
+#: ../lib/UX/Controls/PreviewControls.vala:99
 msgid "Centered"
 msgstr "Zentriert"
 
-#: ../lib/UX/Controls/PreviewControls.vala:66
+#: ../lib/UX/Controls/PreviewControls.vala:99
 msgid "Fill"
 msgstr "Füllen"
 
-#: ../lib/UX/Controls/PreviewControls.vala:66
+#: ../lib/UX/Controls/PreviewControls.vala:99
 msgid "Right Aligned"
 msgstr "Rechts ausgerichtet"
 
-#: ../lib/UX/FontConfig/Controls.vala:60
+#: ../lib/UX/FontConfig/Controls.vala:66
 msgid "Save"
 msgstr ""
 
-#: ../lib/UX/FontConfig/Controls.vala:62
+#: ../lib/UX/FontConfig/Controls.vala:68
 msgid "Discard"
 msgstr ""
 
-#: ../lib/UX/FontConfig/Controls.vala:64
+#: ../lib/UX/FontConfig/Controls.vala:70
 msgid "Running applications may require a restart to reflect any changes."
 msgstr ""
 
@@ -363,40 +363,40 @@ msgstr ""
 msgid "LCD Filter"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:49
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:54
 msgid "Antialias"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:50
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:55
 msgid "Hinting"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:51
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:56
 msgid "Enable Autohinter"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:59
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:64
 msgid "Hinting Style"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:60
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:65
 msgid "Use Embedded Bitmaps"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:62
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:67
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:72
 msgid " Size Restrictions "
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:65
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:70
 msgid " Apply settings to point sizes "
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:135
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:143
 msgid "Smaller than"
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:136
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:144
 msgid "Larger than"
 msgstr ""
 
@@ -415,17 +415,17 @@ msgid ""
 "button in the toolbar."
 msgstr ""
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:185
+#: ../lib/UX/FontConfig/FontSourceList.vala:194
 msgid "Select source folders"
 msgstr "Wähle Quellverzeichnisse aus"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:188
+#: ../lib/UX/FontConfig/FontSourceList.vala:197
 #: ../lib/UX/Utils/FileSelector.vala:40 ../lib/UX/Utils/FileSelector.vala:67
 #: ../src/font-manager/Migration.vala:58
 msgid "_Cancel"
 msgstr "_Abbrechen"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:190
+#: ../lib/UX/FontConfig/FontSourceList.vala:199
 #: ../lib/UX/Utils/FileSelector.vala:42
 msgid "_Open"
 msgstr "_Öffnen"
@@ -601,15 +601,15 @@ msgstr "_Entfernen"
 msgid "Select fonts to remove"
 msgstr "Wähle Schriften zum entfernen aus"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:57 ../lib/UX/Widgets/TextViews.vala:119
+#: ../lib/UX/Views/FontPreviewPane.vala:57 ../lib/UX/Widgets/TextViews.vala:122
 msgid "Waterfall"
 msgstr "Wasserfall"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:59 ../lib/UX/Widgets/TextViews.vala:120
+#: ../lib/UX/Views/FontPreviewPane.vala:59 ../lib/UX/Widgets/TextViews.vala:123
 msgid "Body Text"
 msgstr "Beispiel Text"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:118
+#: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:121
 #: ../src/font-manager/MainWindow.vala:213
 msgid "Preview"
 msgstr "Vorschau"
