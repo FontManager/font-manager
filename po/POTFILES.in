@@ -51,6 +51,7 @@ lib/UX/FontConfig/Substitute.vala
 lib/UX/Metadata/Description.vala
 lib/UX/Metadata/License.vala
 lib/UX/Metadata/Properties.vala
+lib/UX/Metadata/Title.vala
 lib/UX/Models/CategoryModel.vala
 lib/UX/Models/CollectionModel.vala
 lib/UX/Models/FontModel.vala
@@ -86,7 +87,7 @@ src/font-manager/TitleBar.vala
 src/font-viewer/Application.vala
 src/font-viewer/MainWindow.vala
 src/font-viewer/State.vala
-src/font-viewer/Title.vala
+src/font-viewer/TitleBar.vala
 tests/TestCase.vala
 tests/TestFontConfig.vala
 tests/TestMain.vala

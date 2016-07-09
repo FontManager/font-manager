@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-26 20:47-0400\n"
+"POT-Creation-Date: 2016-07-09 12:53-0400\n"
 "PO-Revision-Date: 2014-07-10 09:28-0400\n"
 "Last-Translator: Zaler <zldream1011@gmail.com>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -58,7 +58,7 @@ msgid ""
 "    GNU General Public License for more details.\n"
 "\n"
 "    You should have received a copy of the GNU General Public License\n"
-"    along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt"
+"    along with this program.  If not, see <http://www.gnu.org/licenses/"
 "gpl-3.0.txt>.\n"
 "    "
 msgstr ""
@@ -486,6 +486,27 @@ msgstr "版本"
 msgid "Vendor"
 msgstr "供应商"
 
+#: ../lib/UX/Metadata/Title.vala:51 ../src/font-viewer/TitleBar.vala:49
+msgid "OpenType Font"
+msgstr "OpenType 字体"
+
+#: ../lib/UX/Metadata/Title.vala:52 ../src/font-viewer/TitleBar.vala:50
+msgid "TrueType Font"
+msgstr "TrueType 字体"
+
+#: ../lib/UX/Metadata/Title.vala:53 ../src/font-viewer/TitleBar.vala:51
+msgid "PostScript Type 1 Font"
+msgstr "PostScript Type 1 字体"
+
+#: ../lib/UX/Metadata/Title.vala:105 ../src/font-viewer/TitleBar.vala:99
+msgid "No file selected"
+msgstr ""
+
+#: ../lib/UX/Metadata/Title.vala:105 ../src/font-viewer/TitleBar.vala:100
+#, fuzzy
+msgid "Or unsupported filetype."
+msgstr "按文件类型分组"
+
 # Do not to translate this one.
 #: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All"
@@ -815,27 +836,6 @@ msgstr "新版本已安装"
 #, fuzzy
 msgid "Installed"
 msgstr "全部字体"
-
-#: ../src/font-viewer/Title.vala:49
-msgid "OpenType Font"
-msgstr "OpenType 字体"
-
-#: ../src/font-viewer/Title.vala:50
-msgid "TrueType Font"
-msgstr "TrueType 字体"
-
-#: ../src/font-viewer/Title.vala:51
-msgid "PostScript Type 1 Font"
-msgstr "PostScript Type 1 字体"
-
-#: ../src/font-viewer/Title.vala:99
-msgid "No file selected"
-msgstr ""
-
-#: ../src/font-viewer/Title.vala:100
-#, fuzzy
-msgid "Or unsupported filetype."
-msgstr "按文件类型分组"
 
 #: ../data/ApplicationMenu.ui.h:1
 #, fuzzy

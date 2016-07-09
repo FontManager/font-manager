@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-06-26 20:47-0400\n"
+"POT-Creation-Date: 2016-07-09 12:53-0400\n"
 "PO-Revision-Date: 2015-01-13 08:06-0500\n"
 "Last-Translator: punx\n"
 "Language-Team: none <@>\n"
@@ -56,7 +56,7 @@ msgid ""
 "    GNU General Public License for more details.\n"
 "\n"
 "    You should have received a copy of the GNU General Public License\n"
-"    along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt"
+"    along with this program.  If not, see <http://www.gnu.org/licenses/"
 "gpl-3.0.txt>.\n"
 "    "
 msgstr ""
@@ -486,6 +486,27 @@ msgstr ""
 msgid "Vendor"
 msgstr "Herausgeber"
 
+#: ../lib/UX/Metadata/Title.vala:51 ../src/font-viewer/TitleBar.vala:49
+msgid "OpenType Font"
+msgstr "OpenType Schrift"
+
+#: ../lib/UX/Metadata/Title.vala:52 ../src/font-viewer/TitleBar.vala:50
+msgid "TrueType Font"
+msgstr "TrueType Schrift"
+
+#: ../lib/UX/Metadata/Title.vala:53 ../src/font-viewer/TitleBar.vala:51
+msgid "PostScript Type 1 Font"
+msgstr "PostScript Type 1 Schrift"
+
+#: ../lib/UX/Metadata/Title.vala:105 ../src/font-viewer/TitleBar.vala:99
+msgid "No file selected"
+msgstr ""
+
+#: ../lib/UX/Metadata/Title.vala:105 ../src/font-viewer/TitleBar.vala:100
+#, fuzzy
+msgid "Or unsupported filetype."
+msgstr "Geordnet nach Dateityp"
+
 #: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All"
 msgstr "Alle"
@@ -822,27 +843,6 @@ msgstr ""
 #, fuzzy
 msgid "Installed"
 msgstr "Alle Schriften"
-
-#: ../src/font-viewer/Title.vala:49
-msgid "OpenType Font"
-msgstr "OpenType Schrift"
-
-#: ../src/font-viewer/Title.vala:50
-msgid "TrueType Font"
-msgstr "TrueType Schrift"
-
-#: ../src/font-viewer/Title.vala:51
-msgid "PostScript Type 1 Font"
-msgstr "PostScript Type 1 Schrift"
-
-#: ../src/font-viewer/Title.vala:99
-msgid "No file selected"
-msgstr ""
-
-#: ../src/font-viewer/Title.vala:100
-#, fuzzy
-msgid "Or unsupported filetype."
-msgstr "Geordnet nach Dateityp"
 
 #: ../data/ApplicationMenu.ui.h:1
 #, fuzzy

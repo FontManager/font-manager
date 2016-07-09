@@ -102,7 +102,8 @@ namespace FontManager {
                 }
                 set_title(family);
                 set_subtitle(style);
-                set_tooltip_markup("<big><b>%s</b> </big><b>%s</b>".printf(family, style));
+                const string tt_tmpl = "<big><b>%s</b> </big><b>%s</b>";
+                set_tooltip_markup(tt_tmpl.printf(Markup.escape_text(family), style));
                 type_info_cache.update(type_icon, filetype);
                 return;
             }

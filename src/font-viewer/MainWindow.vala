@@ -126,7 +126,7 @@ namespace FontManager {
                 if (preview.font_data == null)
                     titlebar.update(null, null, "");
                 else
-                    titlebar.update(Markup.escape_text(preview.font_data.font.family),
+                    titlebar.update(preview.font_data.font.family,//Markup.escape_text(preview.font_data.font.family),
                                     preview.font_data.font.style,
                                     preview.font_data.fontinfo.filetype);
                 if (preview.font_data != null) {

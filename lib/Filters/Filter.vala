@@ -27,7 +27,7 @@ namespace FontManager {
         return (a.index - b.index);
     }
 
-    public class Filter : Cacheable {
+    public abstract class Filter : Cacheable {
 
         public string? name { get; set; }
         public string? icon { get; set; default = null; }

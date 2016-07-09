@@ -54,6 +54,7 @@ libfontmanager_la_VALASOURCES = \
 	UX/Metadata/Description.vala \
 	UX/Metadata/License.vala \
 	UX/Metadata/Properties.vala \
+	UX/Metadata/Title.vala \
 	UX/Models/CategoryModel.vala \
 	UX/Models/CollectionModel.vala \
 	UX/Models/FontModel.vala \
