@@ -6,11 +6,6 @@ abs_top_srcdir = $(shell realpath ../)
 abs_srcdir = $(shell realpath .)
 SED = $(shell which sed)
 
-# Project must be configured or some of these targets will fail
-configure:
-	cd $(abs_top_srcdir) && \
-	test -e Makefile || ./autogen.sh && \
-	cd $(abs_srcdir)
 
 POTFILES.readme:
 	echo "Do not edit POTFILES.* directly. See build-aux directory" > $(abs_top_srcdir)/po/$@
@@ -28,8 +23,9 @@ POTFILES.skip:
 	$(SED) -i 's|\.\./||g' $(abs_top_srcdir)/po/$@ ;
 	echo "lib/Glue/Enums.c" >> $(abs_top_srcdir)/po/$@ ;
 
-POT: configure
+POT:
 	cd $(abs_top_srcdir) && \
+	test -e Makefile || ./autogen.sh && \
 	make $(PACKAGE_NAME).pot && \
 	cd $(abs_srcdir)
 
@@ -42,14 +38,14 @@ write_sources = \
 
 ValaSources.mk:
 	cd $(abs_top_srcdir)/lib && \
-	echo "# Do not edit directly. See build-aux directory" > $@  && \
+	echo "# Do not edit directly. See build-aux directory" > $@ && \
 	echo "" >> $@ && \
-	echo "libfontmanager_la_VALASOURCES = \\" >> $@  && \
+	echo "libfontmanager_la_VALASOURCES = \\" >> $@ && \
 	$(call write_sources,$@) && \
 	cd $(abs_top_srcdir)/src/$(PACKAGE_NAME) && \
-	echo "# Do not edit directly. See build-aux directory" > $@  && \
+	echo "# Do not edit directly. See build-aux directory" > $@ && \
 	echo "" >> $@ && \
-	echo "font_manager_VALASOURCES = \\" >> $@  && \
+	echo "font_manager_VALASOURCES = \\" >> $@ && \
 	$(call write_sources,$@) && \
 	cd $(abs_srcdir)
 
@@ -66,20 +62,21 @@ update: update-headers update-po update-sources
 
 # Fedora RPM packaging
 
-rpm-prep: configure
-	@echo "\n**** Need to ensure rpmdevtools are installed\n";
+rpm-prep:
+	@echo -e "\n**** Need to ensure rpmdevtools are installed\n";
 	pkexec dnf install rpmdevtools
+	@echo -e "\n**** Need to ensure build dependencies are installed\n";
+	pkexec dnf builddep $(abs_top_srcdir)/fedora/$(PACKAGE_NAME).spec
 	cd $(abs_top_srcdir) && \
+	test -e Makefile || ./autogen.sh && \
 	make dist-bzip2 && \
 	rpmdev-setuptree && \
 	cp *.bz2 ~/rpmbuild/SOURCES/ && \
 	cp fedora/$(PACKAGE_NAME).spec ~/rpmbuild/SPECS/ && \
-	rm -f ~/rpmbuild/SRPMS/$(PACKAGE_NAME)*.src.rpm && \
 	cd $(abs_srcdir)
+	rm -f ~/rpmbuild/SRPMS/$(PACKAGE_NAME)*.src.rpm
 
 rpm: rpm-prep
-	@echo "\n**** Need to ensure build dependencies are installed\n";
-	pkexec dnf builddep ~/rpmbuild/SPECS/$(PACKAGE_NAME).spec
 	rpmbuild -bb ~/rpmbuild/SPECS/$(PACKAGE_NAME).spec
 
 srpm: rpm-prep
@@ -91,22 +88,22 @@ copr-build: srpm
 # Debian? packaging
 # Tested on Ubuntu
 
-deb: configure
+deb:
+	@echo "\n**** Need to ensure build dependencies are installed\n";
+	sudo apt-get install devscripts equivs
 	cd $(abs_top_srcdir) && \
+	mk-build-deps $(abs_top_srcdir)/debian/control && \
+	sudo dpkg -i $(abs_top_srcdir)/*.deb && rm $(abs_top_srcdir)/*.deb && \
+	test -e Makefile || ./autogen.sh && \
 	make dist-bzip2 && \
 	rm -rf BUILD && \
 	mkdir BUILD && \
-	mv $(PACKAGE_NAME)-$(PACKAGE_VERSION).tar.bz2 \
-	BUILD/$(PACKAGE_NAME)_$(PACKAGE_VERSION).orig.tar.bz2 && \
+	mv $(PACKAGE_NAME)-$(PACKAGE_VERSION).tar.bz2 BUILD/$(PACKAGE_NAME)_$(PACKAGE_VERSION).orig.tar.bz2 && \
 	cd BUILD && \
 	tar -xvf $(PACKAGE_NAME)_$(PACKAGE_VERSION).orig.tar.bz2 && \
 	cp -Rpf ../debian $(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
-	cp -pf ../autogen.sh $(PACKAGE_NAME)-$(PACKAGE_VERSION);
-	@echo "\n**** Need to ensure build dependencies are installed\n";
+	cp -pf ../autogen.sh $(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
 	cd $(abs_top_srcdir)/BUILD/$(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
-	sudo apt-get install devscripts && \
-	mk-build-deps debian/control && \
-	sudo dpkg -i *.deb && rm *.deb;
-	cd $(abs_top_srcdir)/BUILD/$(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
-	debuild -us -uc
+	debuild -us -uc && \
+	cd $(abs_srcdir)
 

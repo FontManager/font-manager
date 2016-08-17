@@ -141,6 +141,9 @@ namespace FontManager {
             return;
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             preview.show();
             waterfall.show();
@@ -244,6 +247,9 @@ namespace FontManager {
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             view.show();
             base.show();
@@ -341,6 +347,9 @@ namespace FontManager {
             fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             fontscale.show();
             base.show();
@@ -405,6 +414,9 @@ namespace FontManager {
             connect_signals();
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             controls.show();
             preview.show();
@@ -524,6 +536,9 @@ namespace FontManager {
             pack_start(preview, true, true, 0);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             preview.show();
             base.show();

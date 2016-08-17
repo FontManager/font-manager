@@ -196,7 +196,7 @@ dnl
     AS_IF([test "x$with_thunarx" = "xyes"], [
         echo "
 
-        The Thunar file manager extension requires nemo-python
+        The Thunar file manager extension requires thunarx-python
 
         http://goodies.xfce.org/projects/bindings/thunarx-python
 

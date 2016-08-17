@@ -74,7 +74,7 @@ $(PACKAGE_NAME).pot:
 	cd $(abs_srcdir)
 
 maintainer-clean-local:
-	-rm -rf m4 autom4te.cache $(PACKAGE_NAME)-$(PACKAGE_VERSION)*
+	-rm -rf m4 autom4te.cache $(PACKAGE_NAME)-$(PACKAGE_VERSION)* BUILD
 	find . -name .libs -exec rm -rf {} \;
 	find . -name .deps -exec rm -rf {} \;
 

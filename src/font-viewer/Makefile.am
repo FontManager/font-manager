@@ -16,7 +16,7 @@ font_viewer_LDADD = \
 font_viewer_SOURCES = \
 	Application.vala \
 	MainWindow.vala \
-	Title.vala \
+	TitleBar.vala \
 	State.vala
 
 pkglibexec_PROGRAMS = font-viewer

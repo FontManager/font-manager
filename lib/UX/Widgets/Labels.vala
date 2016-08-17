@@ -69,6 +69,9 @@ public class ReactiveLabel : Gtk.EventBox {
         add(label);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public override void show () {
         label.show();
         base.show();

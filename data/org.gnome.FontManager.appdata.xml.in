@@ -5,6 +5,7 @@
   <id type="desktop">org.gnome.FontManager.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
+  <name>Font Manager</name>
   <summary>A simple font management application for Gtk+ Desktop Environments</summary>
   <description>
     <p>

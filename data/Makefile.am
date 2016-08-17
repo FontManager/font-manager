@@ -12,6 +12,9 @@ dist_desktop_DATA = $(dist_desktop_in_files:.desktop.in=.desktop)
 appdatadir = $(datarootdir)/appdata
 appdata_in_files = org.gnome.FontManager.appdata.xml.in
 appdata_DATA = $(appdata_in_files:.xml.in=.xml)
+# Without an icon the application is vetoed by appstream
+appicondir = $(datadir)/font-manager/icons
+dist_appicon_DATA = preferences-desktop-font.svg
 
 @GSETTINGS_RULES@
 @INTLTOOL_DESKTOP_RULE@

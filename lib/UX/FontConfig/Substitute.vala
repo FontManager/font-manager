@@ -99,6 +99,9 @@ namespace FontConfig {
                 target.append_text(family);
         }
 
+        /**
+         * {@inheritDoc}
+         */
         public override void show () {
             type.show();
             target.show();
