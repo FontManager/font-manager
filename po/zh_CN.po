@@ -1,20 +1,20 @@
 # Font Manager - Simple font management for Gtk+ desktop environments
-#
+# 
 # Copyright © 2009 - 2016 Jerry Casiano
-#
+# 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-#
+# 
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-#
+# 
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
-#
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# 
 # Author:
 #  Jerry Casiano <JerryCasiano@gmail.com>
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016. #zanata
@@ -22,15 +22,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-08-15 21:57-0400\n"
-"PO-Revision-Date: 2014-07-10 09:28-0400\n"
-"Last-Translator: Zaler <zldream1011@gmail.com>\n"
-"Language-Team: Chinese (China) <@>\n"
-"Language: zh-CN\n"
+"POT-Creation-Date: 2016-08-17 13:40-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.8.4\n"
+"PO-Revision-Date: 2016-05-25 11:48-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: Chinese (China) <@>\n"
+"Language: zh-CN\n"
+"X-Generator: Zanata 3.9.3\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 # Not translate very good, just for use.
@@ -44,7 +44,6 @@ msgid "Simple font management for GTK+ desktop environments"
 msgstr "GTK+桌面环境下的简易字体管理器"
 
 #: ../lib/Common/About.vala:34
-#, fuzzy
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -58,21 +57,10 @@ msgid ""
 "    GNU General Public License for more details.\n"
 "\n"
 "    You should have received a copy of the GNU General Public License\n"
-"    along with this program.  If not, see <http://www.gnu.org/licenses/"
-"gpl-3.0.txt>.\n"
+"    along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3."
+"0.txt>.\n"
 "    "
 msgstr ""
-"\n"
-"    此程序是自由软件；您可以以自由软件基金会发布的 GNU通用公共许可\n"
-"    协议第三版或(您可以选择)更高版方式重新发布它和/或修改它。\n"
-"\n"
-"    此程序是希望其会有用而发布，但没有任何担保；没有甚至是暗含的适\n"
-"    宜销售或特定目的适用性方面的担保。详情参看GNU 通用公共许可协\n"
-"    议。\n"
-"\n"
-"    您应该与此程序一道收到了一份 GUN 通用公共许可协议的副本；如果\n"
-"    没有，请查看 <http://www.gnu.org/licenses/gpl-3.0.txt>。\n"
-"    "
 
 #: ../lib/Common/Constants.vala:38
 #, fuzzy

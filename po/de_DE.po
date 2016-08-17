@@ -1,20 +1,20 @@
 # Font Manager - Simple font management for Gtk+ desktop environments
-#
+# 
 # Copyright Â© 2009 - 2016 Jerry Casiano
-#
+# 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-#
+# 
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-#
+# 
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
-#
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# 
 # Author:
 #  Jerry Casiano <JerryCasiano@gmail.com>
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016. #zanata
@@ -22,15 +22,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-08-15 21:57-0400\n"
-"PO-Revision-Date: 2015-01-13 08:06-0500\n"
-"Last-Translator: punx\n"
-"Language-Team: none <@>\n"
-"Language: de-DE\n"
+"POT-Creation-Date: 2016-08-17 13:40-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.8.4\n"
+"PO-Revision-Date: 2016-05-25 11:48-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: none <@>\n"
+"Language: de-DE\n"
+"X-Generator: Zanata 3.9.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: ../lib/Common/About.vala:28
@@ -42,7 +42,6 @@ msgid "Simple font management for GTK+ desktop environments"
 msgstr "Einfache Schriftenverwaltung für GTK+ Arbeitsumgebungen"
 
 #: ../lib/Common/About.vala:34
-#, fuzzy
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -56,27 +55,10 @@ msgid ""
 "    GNU General Public License for more details.\n"
 "\n"
 "    You should have received a copy of the GNU General Public License\n"
-"    along with this program.  If not, see <http://www.gnu.org/licenses/"
-"gpl-3.0.txt>.\n"
+"    along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3."
+"0.txt>.\n"
 "    "
 msgstr ""
-"\n"
-"    Dieses Programm ist freie Software. Sie können es unter den\n"
-"    Bedingungen der GNU General Public License, wie von der\n"
-"    Free Software Foundation veröffentlicht, weitergeben und/oder \n"
-"    modifizieren, entweder gemäß Version 3 der Lizenz\n"
-"    oder (nach Ihrer Option) jeder späteren Version.\n"
-"\n"
-"    Die Veröffentlichung dieses Programms erfolgt in der Hoffnung,\n"
-"    daß es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE,\n"
-"    sogar ohne die implizite Garantie der MARKTREIFE oder der\n"
-"    VERWENDBARKEIT FÜR EINEN BESTIMMTEN ZWECK.\n"
-"    Details finden Sie in der GNU General Public License.\n"
-"\n"
-"    Sie sollten ein Exemplar der GNU General Public License\n"
-"    zusammen mit diesem Programm erhalten haben.\n"
-"    Falls nicht, siehe <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
-"."
 
 #: ../lib/Common/Constants.vala:38
 msgid "Enter Collection Name"
@@ -717,10 +699,9 @@ msgstr ""
 "Dateien von früheren Versionen sind inkompatibel mit dieser Version, andere "
 "sind veraltet oder wurden verschoben.\n"
 "\n"
-"Font Manager wird nun versuchen Ihre Schriften und Kollektionen zu "
-"migrieren. Dateien welche nicht länger nötig oder korrekt sind werden "
-"entfernt. Alle Einstellungen welche einen Konflikt hervorufen könnten werden "
-"entfernt.\n"
+"Font Manager wird nun versuchen Ihre Schriften und Kollektionen zu migrieren."
+" Dateien welche nicht länger nötig oder korrekt sind werden entfernt. Alle "
+"Einstellungen welche einen Konflikt hervorufen könnten werden entfernt.\n"
 "\n"
 "Es wird dringend empfohlen, alle wichtigen Dateien zu sichern bevor Sie "
 "fortfahren.\n"
