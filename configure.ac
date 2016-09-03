@@ -95,8 +95,8 @@ dnl
 dnl
 dnl Check for supporting applications
 dnl
-    AC_CHECK_PROG(FILE_ROLLER, file-roller, yes)
-    AS_IF([test "x$FILE_ROLLER" = "xyes"], [
+    AC_ARG_WITH([file-roller], AS_HELP_STRING([--with-file-roller], [file-roller support]))
+    AS_IF([test "x$with_file_roller" = "xyes"], [
       AC_SUBST(HAVE_FILE_ROLLER, [" -D HAVE_FILE_ROLLER"])
     ])
 dnl
