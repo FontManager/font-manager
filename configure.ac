@@ -112,9 +112,11 @@ dnl
 dnl
 dnl Check for supporting applications
 dnl
+    file_roller_support="no"
     AC_ARG_WITH([file-roller], AS_HELP_STRING([--with-file-roller], [file-roller support]))
     AS_IF([test "x$with_file_roller" = "xyes"], [
-      AC_SUBST(HAVE_FILE_ROLLER, [" -D HAVE_FILE_ROLLER"])
+      AC_SUBST(HAVE_FILE_ROLLER, [" -D HAVE_FILE_ROLLER"]),
+      file_roller_support="yes"
     ])
 dnl
 dnl Optional Extensions
@@ -187,7 +189,7 @@ dnl
         C compiler:             ${CC}
         Vala compiler:          ${VALAC}
         Installation prefix:    ${prefix}
-        Archive Support:        ${FILE_ROLLER}
+        Archive Support:        $file_roller_support
         File Browser Support:   $file_browser_support
     "
     AS_IF([test "x$with_nautilus" = "xyes"], [

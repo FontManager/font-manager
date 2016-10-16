@@ -117,6 +117,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 %{_datadir}/applications/%{DBusName}.desktop
 %{_datadir}/dbus-1/services/%{DBusName}.service
 %{_datadir}/glib-2.0/schemas/%{DBusName}.gschema.xml
+%{_datadir}/%{name}/icons/preferences-desktop-font.svg
 %{_mandir}/man1/%{name}.*
 
 %files -n %{name}-common -f %{name}.lang

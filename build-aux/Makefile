@@ -83,6 +83,8 @@ srpm: rpm-prep
 	rpmbuild -bs ~/rpmbuild/SPECS/$(PACKAGE_NAME).spec
 
 copr-build: srpm
+	@echo -e "\n**** Need to ensure copr-cli is installed\n";
+	pkexec dnf install copr-cli
 	copr-cli build --nowait jerrycasiano/FontManager ~/rpmbuild/SRPMS/$(PACKAGE_NAME)*.src.rpm
 
 # Debian? packaging
