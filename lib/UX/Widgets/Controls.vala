@@ -208,6 +208,7 @@ public class OptionScale : Gtk.Grid {
         });
         label = new Gtk.Label(null);
         label.hexpand = true;
+        label.margin = margin / 2;
         if (heading != null)
             label.set_text(heading);
         attach(label, 0, 0, options.length, 1);

@@ -4,6 +4,8 @@ man1_MANS = \
 EXTRA_DIST = \
 	$(PACKAGE_NAME).1.in
 
+@YELP_HELP_RULES@
+
 HELP_ID = $(PACKAGE_NAME)
 
 HELP_FILES = \
@@ -13,10 +15,13 @@ HELP_MEDIA = \
 	media/logo.png
 
 HELP_LINGUAS = \
+	ar \
 	pl
-
-@YELP_HELP_RULES@
 
 MAINTAINERCLEANFILES = \
 	$(PACKAGE_NAME).pot \
 	./Makefile.in
+
+dist-hook:
+	cd $(distdir) && find . -name *.stamp* -exec rm -f {} \;
+

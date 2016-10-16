@@ -26,6 +26,21 @@ namespace FontManager {
     const string BUS_ID = "org.gnome.FontManager";
     const string BUS_PATH = "/org/gnome/FontManager";
 
+    void set_application_style () {
+        Gtk.IconTheme.get_default().add_resource_path("/org/gnome/FontManager/icons");
+        string css_uri = "resource:///org/gnome/FontManager/FontManager.css";
+        File css_file = File.new_for_uri(css_uri);
+        Gtk.CssProvider provider = new Gtk.CssProvider();
+        try {
+            provider.load_from_file(css_file);
+        } catch (Error e) {
+            warning("Failed to load Css Provider! Application will not appear as expected.");
+            warning(e.message);
+        }
+        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        return;
+    }
+
     [DBus (name = "org.gnome.FontManager")]
     public class Application: Gtk.Application  {
 
@@ -106,12 +121,27 @@ namespace FontManager {
         }
 
         public void about () {
-            show_about_dialog(Main.instance.main_window);
+            Gtk.show_about_dialog(Main.instance.main_window,
+                                "program-name", About.NAME,
+                                "logo-icon-name", About.ICON,
+                                "version", About.VERSION,
+                                "copyright", About.COPYRIGHT,
+                                "comments", About.COMMENT,
+                                "website", About.HOMEPAGE,
+                                "authors", About.AUTHORS,
+                                "license", About.LICENSE,
+                                //"artists", About.ARTISTS,
+                                "translator-credits", About.TRANSLATORS,
+                                null);
             return;
         }
 
         public void help () {
-            show_help_dialog();
+            try {
+                Gtk.show_uri(null, "help:%s".printf("@PACKAGE_NAME@"), Gdk.CURRENT_TIME);
+            } catch (Error e) {
+                critical("There was an error displaying help contents : %s", e.message);
+            }
             return;
         }
 
@@ -130,7 +160,7 @@ namespace FontManager {
         }
 
         public static int main (string [] args) {
-            Logging.setup();
+            Logging.setup(About.NAME);
             GLib.Intl.bindtextdomain("@PACKAGE_NAME@", null);
             GLib.Intl.bind_textdomain_codeset("@PACKAGE_NAME@", null);
             GLib.Intl.textdomain("@PACKAGE_NAME@");

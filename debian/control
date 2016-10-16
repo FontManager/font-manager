@@ -80,6 +80,7 @@ Depends:
  font-viewer,
  nautilus (>= 3.0),
  python-gobject,
+ python-dbus,
  python-nautilus (>= 1.0),
  ${misc:Depends}
 Description: Nautilus extension for Font Manager

@@ -120,7 +120,7 @@ namespace FontManager {
         }
 
         public override void drag_begin (Gdk.DragContext context) {
-            Gtk.drag_set_icon_name(context, About.ICON, 0, 0);
+            Gtk.drag_set_icon_name(context, "font-x-generic", 0, 0);
             return;
         }
 

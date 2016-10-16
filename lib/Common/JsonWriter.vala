@@ -26,7 +26,7 @@ class JsonWriter : Json.Generator {
     public bool compress { get; set; default = false; }
 
     public JsonWriter (Json.Node root) {
-        Object( indent: 4, pretty: true, root: root);
+        Object(root: root);
     }
 
     public new bool to_file (string filepath, bool use_backup = false) {
@@ -41,11 +41,16 @@ class JsonWriter : Json.Generator {
             if (!parent.query_exists())
                 parent.make_directory_with_parents();
             if (compress) {
+                indent = 0;
+                pretty = false;
                 var compressor = new ZlibCompressor(ZlibCompressorFormat.ZLIB);
                 var compressed_stream = new ConverterOutputStream (stream, compressor);
                 to_stream(compressed_stream, null);
-            } else
+            } else {
+                indent = 4;
+                pretty = true;
                 to_stream(stream, null);
+            }
             return true;
         } catch (Error e) {
             warning(e.message);
@@ -55,15 +60,22 @@ class JsonWriter : Json.Generator {
 
 }
 
+/**
+ * Convenience function.
+ * Equivalent to #Json.Writer.to_file()
+ */
 public bool write_json_file (Json.Node root,
-                        string filepath,
-                        bool compress = false,
-                        bool backup = false) {
+                              string filepath,
+                              bool compress = false,
+                              bool backup = false) {
     var writer = new JsonWriter(root);
     writer.compress = compress;
     return writer.to_file(filepath, backup);
 }
 
+/**
+ * @return      #Json.Node or #null if file failed to load
+ */
 public Json.Node? load_json_file (string filepath, bool compressed = false) {
     try {
         var parser = new Json.Parser();

@@ -42,19 +42,19 @@
     <schema id="org.gnome.FontManager" path="/org/gnome/font-manager/">
 
         <key name="mode" enum="org.gnome.FontManager.Mode">
-            <default>"Browse"</default>
+            <default>"Manage"</default>
             <summary>Mode</summary>
             <description>Possible modes are Manage, Browse and Compare.</description>
         </key>
 
         <key name="wide-layout" type="b">
-            <default>false</default>
+            <default>true</default>
             <summary>Layout type</summary>
             <description>false for default layout, true for 3 column layout</description>
         </key>
 
         <key name="wide-layout-on-maximize" type="b">
-            <default>false</default>
+            <default>true</default>
             <summary>Layout type</summary>
             <description>Switch to wide layout when window is maximized</description>
         </key>
@@ -117,7 +117,7 @@
         <key name="preview-mode" type="s">
             <summary>Preview Mode</summary>
             <description>Possible modes are Preview, Waterfall and Body Text.</description>
-            <default>"Preview"</default>
+            <default>"Waterfall"</default>
         </key>
 
         <key name="preview-page" type="i">

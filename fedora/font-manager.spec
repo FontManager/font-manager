@@ -7,7 +7,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    8
+Release:    9
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -70,6 +70,7 @@ Summary: Nautilus extension for font-manager
 Requires: font-viewer >= %{version}
 Requires: font-manager-common >= %{version}
 Requires: nautilus-python
+Requires: dbus-python
 %description -n nautilus-font-manager
 This package provides integration with the Nautilus file manager.
 
@@ -79,6 +80,7 @@ Summary: Nemo extension for Font Manager
 Requires: font-viewer >= %{version}
 Requires: font-manager-common >= %{version}
 Requires: nemo-python
+Requires: dbus-python
 %description -n nemo-font-manager
 This package provides integration with the Nemo file manager.
 
@@ -88,6 +90,7 @@ Summary: Thunar extension for Font Manager
 Requires: font-viewer >= %{version}
 Requires: font-manager-common >= %{version}
 Requires: thunarx-python
+Requires: dbus-python
 %description -n thunarx-font-manager
 This package provides integration with the Thunar file manager.
 
@@ -95,7 +98,7 @@ This package provides integration with the Thunar file manager.
 %setup -q
 
 %build
-%configure --disable-schemas-compile --with-nautilus --with-nemo --with-thunarx
+%configure --disable-schemas-compile --with-file-roller --with-nautilus --with-nemo --with-thunarx
 make
 
 %check
@@ -137,6 +140,8 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Sun Oct 16 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-9
+- Fix extension requirements
 * Sat Jun 4 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-8
 - Fix initial window size issue on Gtk+ > 3.18
 * Wed Jun 1 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-7

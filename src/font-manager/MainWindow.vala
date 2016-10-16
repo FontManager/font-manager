@@ -656,13 +656,13 @@ namespace FontManager {
             Gtk.TreePath path;
             var tree = widget as Gtk.TreeView;
             tree.get_path_at_pos(x, y, out path, null, null, null);
-            if (path == null) {
+            /* Invalid drop, non-existent path */
+            if (path == null)
                 return;
-            }
             Gtk.TreeIter iter;
             var model = tree.get_model();
+            /* Invalid drop, non-existent path */
             if (!model.get_iter(out iter, path))
-                /* Invalid drop, non-existent path */
                 return;
             Value val;
             model.get_value(iter, CollectionColumn.OBJECT, out val);

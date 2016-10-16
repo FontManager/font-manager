@@ -7,7 +7,7 @@ DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 	dh $@ --with autoreconf
 
 override_dh_autoreconf:
-	dh_autoreconf --as-needed ./autogen.sh -- --with-nautilus
+	dh_autoreconf --as-needed ./autogen.sh -- --with-nautilus --with-file-roller
 
 override_dh_auto_configure:
-	dh_auto_configure -- --with-nautilus
+	dh_auto_configure -- --with-nautilus --with-file-roller

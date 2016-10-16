@@ -32,7 +32,7 @@
     <schema id="org.gnome.FontViewer" path="/org/gnome/font-manager/font-viewer/">
 
         <key name="mode" enum="org.gnome.FontViewer.Mode">
-            <default>"Preview"</default>
+            <default>"Waterfall"</default>
             <summary>Preview Mode</summary>
             <description>Possible modes are Preview, Waterfall and Body Text.</description>
         </key>

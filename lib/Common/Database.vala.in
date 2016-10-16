@@ -53,6 +53,21 @@ namespace FontManager {
 
     static Database? db = null;
 
+    internal string get_database_file () {
+        string dirpath = Path.build_filename(Environment.get_user_cache_dir(), "font-manager");
+        string filepath = Path.build_filename(dirpath, "%s.sqlite".printf("font-manager"));
+        DirUtils.create_with_parents(dirpath, 0755);
+        return filepath;
+    }
+
+    internal void builder_append (StringBuilder builder, string? val) {
+        if (val == null)
+            return;
+        builder.append(" ");
+        builder.append(val);
+        return;
+    }
+
     public Database get_database() throws DatabaseError {
         if (db != null)
             return db;
@@ -81,10 +96,11 @@ namespace FontManager {
         int processed = 0;
         int total = installed_fonts.size;
         var known_files = get_known_files(db);
+        bool empty = (known_files.size == 0);
         db.begin_transaction();
         db.execute_query("""INSERT OR REPLACE INTO Fonts VALUES (NULL,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);""");
         foreach (var font in installed_fonts) {
-            if (!(font.filepath in known_files)) {
+            if (empty || !(font.filepath in known_files)) {
                 var fileinfo = new FontInfo.from_filepath(font.filepath, font.index);
                 db.check_result(db.stmt.bind_text(1, font.family), "bind_*", Sqlite.OK);
                 db.check_result(db.stmt.bind_text(2, font.style), "bind_*", Sqlite.OK);
@@ -184,21 +200,6 @@ namespace FontManager {
         }
         val.unset();
         return res;
-    }
-
-    internal string get_database_file () {
-        string dirpath = Path.build_filename(Environment.get_user_cache_dir(), "font-manager");
-        string filepath = Path.build_filename(dirpath, "%s.sqlite".printf("font-manager"));
-        DirUtils.create_with_parents(dirpath, 0755);
-        return filepath;
-    }
-
-    internal void builder_append (StringBuilder builder, string? val) {
-        if (val == null)
-            return;
-        builder.append(" ");
-        builder.append(val);
-        return;
     }
 
     /* Error mapping/checking originally from Shotwell code */

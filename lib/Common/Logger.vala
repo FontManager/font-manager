@@ -23,8 +23,8 @@
 
 namespace Logging {
 
-    public void setup (LogLevel level = LogLevel.WARN) {
-        Logger.initialize(FontManager.About.NAME);
+    public void setup (string domain, LogLevel level = LogLevel.WARN) {
+        Logger.initialize(domain);
         Logger.DisplayLevel = level;
         return;
     }

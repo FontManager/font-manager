@@ -122,14 +122,23 @@ namespace FontConfig {
             return;
         }
 
+        /**
+         * Remove an alias element by name.
+         */
         public bool remove (string family_name) {
             return base.unset(family_name);
         }
 
+        /**
+         * @return      returns the filepath used to store aliases
+         */
         public string get_filepath () {
             return Path.build_filename(config_dir, target_file);
         }
 
+        /**
+         * Saves current configuration to file.
+         */
         public bool save () {
             var writer = new XmlWriter(get_filepath());
             foreach (var entry in this.entries)
@@ -137,6 +146,9 @@ namespace FontConfig {
             return (writer.close() >= 0);
         }
 
+        /**
+         * Load saved configuration from file.
+         */
         public void load () {
             clear();
             string filepath = get_filepath();
@@ -175,7 +187,7 @@ namespace FontConfig {
                         unowned ObjectClass obj_cls = ((Object) ae).get_class();
                         ParamSpec? pspec = obj_cls.find_property(iter->name);
                         if (pspec != null && pspec.name in AE_PROPS) {
-                            Gee.HashSet <string> l = new Gee.HashSet <string> ();
+                            var l = new Gee.HashSet <string> ();
                             /* Object.get (name, out value ...); */
                             ((Object) ae).get(pspec.name, out l);
                             for (Xml.Node * _iter = iter->children; _iter != null; _iter = _iter->next) {

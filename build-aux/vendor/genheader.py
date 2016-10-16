@@ -47,21 +47,30 @@ static const struct
 NoticeData [] =
 {
     /* Notice data sourced from fcfreetype.c - http://www.freetype.org/ */
-    {"Bigelow", "Bigelow & Holmes"},
+    {"Adobe", "adobe"},
     {"Adobe", "Adobe"},
+    {"Bigelow", "b&h"},
+    {"Bigelow", "Bigelow & Holmes"},
     {"Bitstream", "Bitstream"},
-    {"Monotype", "Monotype Imaging"},
-    {"Linotype", "Linotype GmbH"},
-    {"LINOTYPE-HELL", "Linotype GmbH"},
-    {"IBM", "IBM"},
-    {"URW", "URW"},
-    {"International Typeface Corporation", "ITC"},
-    {"Tiro Typeworks", "Tiro Typeworks"},
-    {"XFree86", "XFree86"},
-    {"Microsoft", "Microsoft Corporation"},
-    {"Omega", "Omega"},
+    {"Font21", "hwan"},
     {"Font21", "Hwan"},
-    {"HanYang System", "HanYang Information & Communication"}
+    {"Gnat", "culmus"},
+    {"HanYang System", "hanyang"},
+    {"HanYang System", "HanYang Information & Communication"},
+    {"IBM", "IBM"},
+    {"International Typeface Corporation", "itc"},
+    {"International Typeface Corporation", "ITC"},
+    {"Linotype", "linotype"},
+    {"Linotype", "Linotype GmbH"},
+    {"Microsoft", "microsoft"},
+    {"Microsoft", "Microsoft Corporation"},
+    {"Monotype", "Monotype Imaging"},
+    {"Omega", "omega"},
+    {"Omega", "Omega"},
+    {"Tiro Typeworks", "Tiro Typeworks"},
+    {"URW", "URW"},
+    {"XFree86", "XFree86"},
+    {"Xorg", "xorg"}
 };
 
 static const struct

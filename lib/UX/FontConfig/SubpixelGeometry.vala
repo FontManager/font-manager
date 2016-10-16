@@ -127,7 +127,7 @@ namespace FontConfig {
                 orientation = Gtk.Orientation.VERTICAL;
             for (int i = 0; i < labels.length; i++) {
                 pack_start(labels[i], true, true, 0);
-                /* @background-color: defined in data/FontManager.css */
+                /* @color: defined in data/FontManager.css */
                 labels[i].get_style_context().add_class(color[i]);
             }
         }

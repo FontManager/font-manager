@@ -28,6 +28,23 @@ public delegate void ProgressCallback (string? message, int processed, int total
 [CCode (has_target = false)]
 public delegate void ErrorCallback (string message);
 
+namespace FontManager {
+
+    public enum DragTargetType {
+        FAMILY,
+        COLLECTION,
+        EXTERNAL
+    }
+
+    public const Gdk.DragAction AppDragActions = Gdk.DragAction.COPY;
+
+    public const Gtk.TargetEntry [] AppDragTargets = {
+        { "font-family", Gtk.TargetFlags.SAME_APP, DragTargetType.FAMILY },
+        { "text/uri-list", 0, DragTargetType.EXTERNAL }
+    };
+
+}
+
 public struct MenuEntry {
     public string action_name;
     public string display_name;

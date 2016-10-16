@@ -36,6 +36,16 @@ namespace FontManager {
         return;
     }
 
+    void set_g_app_menu (Gtk.Application app, Gtk.Builder builder, string menu_id) {
+        try {
+            builder.add_from_resource("/org/gnome/FontManager/ApplicationMenu.ui");
+            app.app_menu = builder.get_object(menu_id) as GLib.MenuModel;
+        } catch (Error e) {
+            warning("Failed to set application menu : %s : %s", menu_id, e.message);
+        }
+        return;
+    }
+
     public class Main : Object {
 
         public static unowned Main instance {

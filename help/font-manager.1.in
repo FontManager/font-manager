@@ -36,7 +36,7 @@ Disable specified font family
 Space separated list of files to install
 .SH LIMITATIONS
 \fB@PACKAGE_NAME@\fP is a user level application, it will not allow installation
-or removal of fonts from anywhere other than the default user font directory.
+to, or removal of fonts from, anywhere other than the default user font directory.
 However, the application does allow users to disable system fonts and
 also makes it easy to add font directories.
 .SH AUTHOR
