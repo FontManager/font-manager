@@ -28,8 +28,25 @@ dnl Check for basics
 dnl
     AC_PROG_CC()
     AM_PROG_LIBTOOL
-    dnl Gtk.TextBuffer API break
-    AM_PROG_VALAC([0.28])
+    dnl 0.34 -> incompatible changes in json-glib vapi
+    dnl 0.28 -> incompatible changes in Gtk.TextBuffer API
+    AM_PROG_VALAC(
+        [0.34],
+        [AC_SUBST(VALA_034_OR_LATER, [" -D VALA_034_OR_LATER"])],
+        [AM_PROG_VALAC(
+            [0.28],
+            [:],
+            AC_MSG_ERROR([
+
+            Build requirements (valac) were not met:
+
+            Please install Vala >= 0.28 and try again.
+
+            https://wiki.gnome.org/Projects/Vala
+
+            ])
+        )]
+    )
     C_PROG_INSTALL()
     AC_PROG_MKDIR_P()
     AC_PROG_SED()

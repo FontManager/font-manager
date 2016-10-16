@@ -34,7 +34,11 @@ public class Cacheable : Object, Json.Serializable {
         return true;
     }
 
+#if VALA_034_OR_LATER
+    public unowned ParamSpec? find_property (string name) {
+#else
     public unowned ParamSpec find_property (string name) {
+#endif
         return this.get_class().find_property(name);
     }
 
