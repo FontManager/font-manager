@@ -1,0 +1,816 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: font-manager 0.7.3\n"
+"Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
+"POT-Creation-Date: 2016-08-17 13:40-0400\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language-Team: Svenska Språkfiler <https://svenskasprakfiler.se>\n"
+"Language: sv\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ../lib/Common/About.vala:28
+msgid "Font Manager"
+msgstr "Font Manager"
+
+#: ../lib/Common/About.vala:30
+msgid "Simple font management for GTK+ desktop environments"
+msgstr "Enkel teckensnittshantering för GTK+ skrivbordsmiljöer"
+
+#: ../lib/Common/About.vala:34
+msgid ""
+"\n"
+"    This program is free software: you can redistribute it and/or modify\n"
+"    it under the terms of the GNU General Public License as published by\n"
+"    the Free Software Foundation, either version 3 of the License, or\n"
+"    (at your option) any later version.\n"
+"\n"
+"    This program is distributed in the hope that it will be useful,\n"
+"    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"    GNU General Public License for more details.\n"
+"\n"
+"    You should have received a copy of the GNU General Public License\n"
+"    along with this program.  If not, see <http://www.gnu.org/licenses/"
+"gpl-3.0.txt>.\n"
+"    "
+msgstr ""
+"\n"
+"    Detta program är fri mjukvara! Du kan återdistribuera det och/eller\n"
+"    modifiera det, under villkoren för GNU General Public License som\n"
+"    den publiceras av Free Software Foundation. Antingen version 3 av\n"
+"    licensen, eller valfri senare version.\n"
+"\n"
+"    Programmet distribueras i hopp om att det skall vara användbart,\n"
+"    men UTAN NÅGRA GARANTIER. Utan ens underförstådd garanti om\n"
+"    SÄLJBARHET eller LÄMPLIGHET FÖR ETT VISST ÄNDAMÅL. \n"
+"    See GNU General Public License för mer detaljerad info.\n"
+"\n"
+"    Du bör ha fått en kopia av GNU General Public License\n"
+"    tillsammans med det här programmet. \n"
+"    Om inte, se <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+"    "
+
+#: ../lib/Common/Constants.vala:38
+msgid "Enter Collection Name"
+msgstr "Ange kollektionsnamn"
+
+#: ../lib/Filters/Collection.vala:36
+msgid "New Collection"
+msgstr "Ny kollektion"
+
+#: ../lib/Filters/Disabled.vala:29
+msgid "Disabled"
+msgstr "Inaktiverat"
+
+#: ../lib/Filters/Disabled.vala:29
+msgid "Fonts which have been disabled"
+msgstr "Teckensnitt som har inaktiverats"
+
+#: ../lib/Filters/Filter.vala:40
+#, c-format
+msgid "Created : %s"
+msgstr "Skapad: %s"
+
+#: ../lib/Filters/Unsorted.vala:29
+msgid "Unsorted"
+msgstr "Osorterat"
+
+#: ../lib/Filters/Unsorted.vala:29
+msgid "Fonts not present in any collection"
+msgstr "Teckensnitt som inte finns i någon kollektion"
+
+#: ../lib/FontConfig/Enums.vala:70
+msgid "Thin"
+msgstr "Tunn"
+
+#: ../lib/FontConfig/Enums.vala:72
+msgid "Ultra-Light"
+msgstr "Ultralätt"
+
+#: ../lib/FontConfig/Enums.vala:74 ../lib/FontConfig/Enums.vala:232
+msgid "Light"
+msgstr "Lätt"
+
+#: ../lib/FontConfig/Enums.vala:76
+msgid "Book"
+msgstr "Bok"
+
+#: ../lib/FontConfig/Enums.vala:78 ../lib/FontConfig/Enums.vala:211
+msgid "Medium"
+msgstr "Medium"
+
+#: ../lib/FontConfig/Enums.vala:80
+msgid "Semi-Bold"
+msgstr "Semifet"
+
+#: ../lib/FontConfig/Enums.vala:82
+msgid "Bold"
+msgstr "Fet"
+
+#: ../lib/FontConfig/Enums.vala:84
+msgid "Ultra-Bold"
+msgstr "Ultrafet"
+
+#: ../lib/FontConfig/Enums.vala:86
+msgid "Heavy"
+msgstr "Tung"
+
+#: ../lib/FontConfig/Enums.vala:88
+msgid "Ultra-Heavy"
+msgstr "Ultratung"
+
+#: ../lib/FontConfig/Enums.vala:104
+msgid "Italic"
+msgstr "Kursiv"
+
+#: ../lib/FontConfig/Enums.vala:106
+msgid "Oblique"
+msgstr "Sned"
+
+#: ../lib/FontConfig/Enums.vala:128
+msgid "Ultra-Condensed"
+msgstr "Ultrakomprimerad"
+
+#: ../lib/FontConfig/Enums.vala:130
+msgid "Extra-Condensed"
+msgstr "Extra komprimerad"
+
+#: ../lib/FontConfig/Enums.vala:132
+msgid "Condensed"
+msgstr "Komprimerad"
+
+#: ../lib/FontConfig/Enums.vala:134
+msgid "Semi-Condensed"
+msgstr "Semikomprimerad"
+
+#: ../lib/FontConfig/Enums.vala:136
+msgid "Semi-Expanded"
+msgstr "Semiexpanderad"
+
+#: ../lib/FontConfig/Enums.vala:138
+msgid "Expanded"
+msgstr "Expanderad"
+
+#: ../lib/FontConfig/Enums.vala:140
+msgid "Extra-Expanded"
+msgstr "Extra expanderad"
+
+#: ../lib/FontConfig/Enums.vala:142
+msgid "Ultra-Expanded"
+msgstr "Ultraexpanderad"
+
+#: ../lib/FontConfig/Enums.vala:159
+msgid "Proportional"
+msgstr "Proportionerlig"
+
+#: ../lib/FontConfig/Enums.vala:161
+msgid "Dual Width"
+msgstr "Dubbel bredd"
+
+#: ../lib/FontConfig/Enums.vala:163
+msgid "Monospace"
+msgstr "Fast bredd"
+
+#: ../lib/FontConfig/Enums.vala:165
+msgid "Charcell"
+msgstr "Teckencell"
+
+#: ../lib/FontConfig/Enums.vala:184
+msgid "Unknown"
+msgstr "Okänt"
+
+#: ../lib/FontConfig/Enums.vala:186
+msgid "RGB"
+msgstr "RGB"
+
+#: ../lib/FontConfig/Enums.vala:188
+msgid "BGR"
+msgstr "BGR"
+
+#: ../lib/FontConfig/Enums.vala:190
+msgid "VRGB"
+msgstr "VRGB"
+
+#: ../lib/FontConfig/Enums.vala:192
+msgid "VBGR"
+msgstr "VBGR"
+
+#: ../lib/FontConfig/Enums.vala:194 ../lib/FontConfig/Enums.vala:215
+#: ../lib/FontConfig/Enums.vala:236
+msgid "None"
+msgstr "Ingen"
+
+#: ../lib/FontConfig/Enums.vala:209
+msgid "Slight"
+msgstr "Liten"
+
+#: ../lib/FontConfig/Enums.vala:213
+msgid "Full"
+msgstr "Full"
+
+#: ../lib/FontConfig/Enums.vala:230
+msgid "Default"
+msgstr "Standard"
+
+#: ../lib/FontConfig/Enums.vala:234
+msgid "Legacy"
+msgstr "Äldre"
+
+#: ../lib/FontConfig/Families.vala:45
+msgid "Loading available font families"
+msgstr "Läser in tillgängliga teckensnitt"
+
+#: ../lib/FontConfig/Sources.vala:83 ../lib/FontConfig/Sources.vala:97
+msgid "Source Unavailable"
+msgstr "Källa ej tillgänglig"
+
+#: ../lib/FontConfig/Sources.vala:244 ../lib/FontConfig/XmlWriter.vala:38
+msgid " Generated by Font Manager. Do NOT edit this file. "
+msgstr "Genererad av Font Manager. Redigera INTE denna fil. "
+
+#: ../lib/Library/Install.vala:138
+msgid "Installing files"
+msgstr "Installerar filer"
+
+#: ../lib/Library/Install.vala:170
+msgid "Preparing Archives"
+msgstr "Förbereder arkiv"
+
+#: ../lib/Library/Remove.vala:81
+msgid "Removing files"
+msgstr "Tar bort filer"
+
+#: ../lib/Library/Sorter.vala:91
+msgid "Processing directories"
+msgstr "Bearbetar mappar"
+
+#: ../lib/Library/Sorter.vala:123
+msgid "Processing files"
+msgstr "Bearbetar filer"
+
+#: ../lib/UX/CharacterMap/CharacterMapSideBar.vala:96
+msgid "Unicode Script"
+msgstr "Unicode-skript"
+
+#: ../lib/UX/CharacterMap/CharacterMapSideBar.vala:97
+msgid "Unicode Block"
+msgstr "Unicode-block"
+
+#: ../lib/UX/Controls/CollectionControls.vala:32
+msgid "Add new collection"
+msgstr "Lägg till ny kollektion"
+
+#: ../lib/UX/Controls/CollectionControls.vala:33
+msgid "Remove selected collection"
+msgstr "Ta bort markerad kollektion"
+
+#: ../lib/UX/Controls/FontListControls.vala:46
+msgid "Remove selected font from collection"
+msgstr "Ta bort markerat teckensnitt från kollektionen"
+
+#: ../lib/UX/Controls/FontListControls.vala:50
+#: ../lib/UX/Controls/FontListControls.vala:65
+msgid "Expand all"
+msgstr "Expandera alla"
+
+#: ../lib/UX/Controls/FontListControls.vala:54
+msgid "Search Families..."
+msgstr "Söker teckensnitt ..."
+
+#: ../lib/UX/Controls/FontListControls.vala:65
+msgid "Collapse all"
+msgstr "Komprimera alla"
+
+#: ../lib/UX/Controls/PreviewControls.vala:91
+msgid "Edit preview text"
+msgstr "Redigera exempeltext"
+
+#: ../lib/UX/Controls/PreviewControls.vala:94
+msgid "Undo changes"
+msgstr "Ångra ändringar"
+
+#: ../lib/UX/Controls/PreviewControls.vala:99
+msgid "Left Aligned"
+msgstr "Vänsterjusterat"
+
+#: ../lib/UX/Controls/PreviewControls.vala:99
+msgid "Centered"
+msgstr "Centrerat"
+
+#: ../lib/UX/Controls/PreviewControls.vala:99
+msgid "Fill"
+msgstr "Fyll"
+
+#: ../lib/UX/Controls/PreviewControls.vala:99
+msgid "Right Aligned"
+msgstr "Högerjusterat"
+
+#: ../lib/UX/FontConfig/Controls.vala:66
+msgid "Save"
+msgstr "Spara"
+
+#: ../lib/UX/FontConfig/Controls.vala:68
+msgid "Discard"
+msgstr "Ignorera"
+
+#: ../lib/UX/FontConfig/Controls.vala:70
+msgid "Running applications may require a restart to reflect any changes."
+msgstr "Program som körs, kanske måste startas om för att tillämpa ändringar."
+
+#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:44
+msgid "Target DPI"
+msgstr "Mål-DPI"
+
+#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:45
+msgid "Scale factor"
+msgstr "Skalningsfaktor"
+
+#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:49
+msgid "LCD Filter"
+msgstr "LCD-filter"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:54
+msgid "Antialias"
+msgstr "Kantutjämning"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:55
+msgid "Hinting"
+msgstr "Hintning"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:56
+msgid "Enable Autohinter"
+msgstr "Aktivera automatisk hintning"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:64
+msgid "Hinting Style"
+msgstr "Hintningsstil"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:65
+msgid "Use Embedded Bitmaps"
+msgstr "Använd inbäddade bitmappar"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:67
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:72
+msgid " Size Restrictions "
+msgstr "Storleksbegränsning "
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:70
+msgid " Apply settings to point sizes "
+msgstr "Tillämpa inställningar för punktstorlekar"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:143
+msgid "Smaller than"
+msgstr "Mindre än"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:144
+msgid "Larger than"
+msgstr "Större än"
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:26
+msgid "Font Sources"
+msgstr "Teckensnittskällor"
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:27
+msgid "Easily add or preview fonts without actually installing them."
+msgstr "Lägg till eller förhandsgranska teckensnitt utan att installera dem."
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:28
+msgid ""
+"To add a new source simply drag a folder onto this area or click the add "
+"button in the toolbar."
+msgstr ""
+"Dra en mapp till det här fältet eller klicka på \"Lägg till\" i "
+"verktygsfältet, för att lägga till en ny källa."
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:194
+msgid "Select source folders"
+msgstr "Välj källmappar"
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:197
+#: ../lib/UX/Utils/FileSelector.vala:40 ../lib/UX/Utils/FileSelector.vala:67
+#: ../src/font-manager/Migration.vala:58
+msgid "_Cancel"
+msgstr "_Avbryt"
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:199
+#: ../lib/UX/Utils/FileSelector.vala:42
+msgid "_Open"
+msgstr "_Öppna"
+
+#: ../lib/UX/FontConfig/SubpixelGeometry.vala:55
+msgid "Subpixel Geometry"
+msgstr "Subpixel-geometri"
+
+#: ../lib/UX/FontConfig/Substitute.vala:78
+msgid "prefer"
+msgstr "föredra"
+
+#: ../lib/UX/FontConfig/Substitute.vala:79
+msgid "accept"
+msgstr "acceptera"
+
+#: ../lib/UX/FontConfig/Substitute.vala:80
+msgid "default"
+msgstr "standard"
+
+#: ../lib/UX/Metadata/License.vala:42
+msgid "File does not contain license information."
+msgstr "Filen innehåller ingen licensinformation."
+
+#: ../lib/UX/Metadata/Properties.vala:43
+msgid "PostScript Name"
+msgstr "PostScript-namn"
+
+#: ../lib/UX/Metadata/Properties.vala:44
+#: ../lib/UX/Models/CategoryModel.vala:104
+msgid "Weight"
+msgstr "Vikt"
+
+#: ../lib/UX/Metadata/Properties.vala:45
+#: ../lib/UX/Models/CategoryModel.vala:102
+msgid "Slant"
+msgstr "Lutning"
+
+#: ../lib/UX/Metadata/Properties.vala:46
+#: ../lib/UX/Models/CategoryModel.vala:106
+msgid "Width"
+msgstr "Bredd"
+
+#: ../lib/UX/Metadata/Properties.vala:47
+#: ../lib/UX/Models/CategoryModel.vala:100
+msgid "Spacing"
+msgstr "Avstånd"
+
+#: ../lib/UX/Metadata/Properties.vala:48
+msgid "Version"
+msgstr "Version"
+
+#: ../lib/UX/Metadata/Properties.vala:49
+#: ../lib/UX/Models/CategoryModel.vala:112
+msgid "Vendor"
+msgstr "Leverantör"
+
+#: ../lib/UX/Metadata/Title.vala:51 ../src/font-viewer/TitleBar.vala:49
+msgid "OpenType Font"
+msgstr "OpenType teckensnitt"
+
+#: ../lib/UX/Metadata/Title.vala:52 ../src/font-viewer/TitleBar.vala:50
+msgid "TrueType Font"
+msgstr "TrueType teckensnitt"
+
+#: ../lib/UX/Metadata/Title.vala:53 ../src/font-viewer/TitleBar.vala:51
+msgid "PostScript Type 1 Font"
+msgstr "PostScript Typ 1 teckensnitt"
+
+#: ../lib/UX/Metadata/Title.vala:105 ../src/font-viewer/TitleBar.vala:99
+msgid "No file selected"
+msgstr "Ingen fil vald"
+
+#: ../lib/UX/Metadata/Title.vala:105 ../src/font-viewer/TitleBar.vala:100
+msgid "Or unsupported filetype."
+msgstr "Eller filtyp utan stöd."
+
+#: ../lib/UX/Models/CategoryModel.vala:92
+msgid "All"
+msgstr "Alla"
+
+#: ../lib/UX/Models/CategoryModel.vala:92
+msgid "All Fonts"
+msgstr "Alla teckensnitt"
+
+#: ../lib/UX/Models/CategoryModel.vala:94
+msgid "System"
+msgstr "System"
+
+#: ../lib/UX/Models/CategoryModel.vala:94
+msgid "Fonts available to all users"
+msgstr "Teckensnitt tillgängliga för alla användare"
+
+#: ../lib/UX/Models/CategoryModel.vala:96
+msgid "User"
+msgstr "Användare"
+
+#: ../lib/UX/Models/CategoryModel.vala:96
+msgid "Fonts available only to you"
+msgstr "Teckensnitt tillgängliga endast för dig"
+
+#: ../lib/UX/Models/CategoryModel.vala:100
+msgid "Grouped by font spacing"
+msgstr "Grupperad efter teckenavstånd"
+
+#: ../lib/UX/Models/CategoryModel.vala:102
+msgid "Grouped by font angle"
+msgstr "Grupperad efter teckenvinkel"
+
+#: ../lib/UX/Models/CategoryModel.vala:104
+msgid "Grouped by font weight"
+msgstr "Grupperad efter teckenvikt"
+
+#: ../lib/UX/Models/CategoryModel.vala:106
+msgid "Grouped by font width"
+msgstr "Grupperad efter teckenbredd"
+
+#: ../lib/UX/Models/CategoryModel.vala:108
+msgid "Filetype"
+msgstr "Filtyp"
+
+#: ../lib/UX/Models/CategoryModel.vala:108
+msgid "Grouped by filetype"
+msgstr "Grupperad efter filtyp"
+
+#: ../lib/UX/Models/CategoryModel.vala:110
+#: ../lib/UX/Views/FontPreviewPane.vala:123
+msgid "License"
+msgstr "Licens"
+
+#: ../lib/UX/Models/CategoryModel.vala:110
+msgid "Grouped by license type"
+msgstr "Grupperad efter licenstyp"
+
+#: ../lib/UX/Models/CategoryModel.vala:112
+msgid "Grouped by vendor"
+msgstr "Grupperad efter leverantör"
+
+#: ../lib/UX/Models/CategoryModel.vala:125
+msgid "Family Kind"
+msgstr "Familj"
+
+#: ../lib/UX/Models/CategoryModel.vala:125
+msgid "Only fonts which include Panose information will be grouped here."
+msgstr ""
+"Endast teckensnitt som inkluderar Panose-information, kommer att grupperas "
+"här."
+
+#: ../lib/UX/Models/CategoryModel.vala:126
+msgid "Any"
+msgstr "Alla"
+
+#: ../lib/UX/Models/CategoryModel.vala:127
+msgid "No Fit"
+msgstr "Ingen passning"
+
+#: ../lib/UX/Models/CategoryModel.vala:128
+msgid "Text and Display"
+msgstr "Text och visning"
+
+#: ../lib/UX/Models/CategoryModel.vala:129
+msgid "Script"
+msgstr "Skript"
+
+#: ../lib/UX/Models/CategoryModel.vala:130
+msgid "Decorative"
+msgstr "Dekorativ"
+
+#: ../lib/UX/Models/CategoryModel.vala:131
+msgid "Pictorial"
+msgstr "Bildmässigt"
+
+#: ../lib/UX/Models/CategoryModel.vala:165
+msgid "Normal"
+msgstr "Normal"
+
+#: ../lib/UX/Models/CategoryModel.vala:170
+msgid "Regular"
+msgstr "Normal"
+
+#: ../lib/UX/Utils/FileSelector.vala:37
+msgid "Select files to install"
+msgstr "Välj filer att installera"
+
+#: ../lib/UX/Utils/FileSelector.vala:68
+msgid "_Delete"
+msgstr "_Ta bort"
+
+#: ../lib/UX/Utils/FileSelector.vala:75
+msgid "Select fonts to remove"
+msgstr "Välj teckensnitt att ta bort"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:57 ../lib/UX/Widgets/TextViews.vala:122
+msgid "Waterfall"
+msgstr "Kaskad"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:59 ../lib/UX/Widgets/TextViews.vala:123
+msgid "Body Text"
+msgstr "Brödtext"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:121
+#: ../src/font-manager/MainWindow.vala:213
+msgid "Preview"
+msgstr "Förhandsgranskning"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:122
+msgid "Properties"
+msgstr "Egenskaper"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:124
+msgid "Characters"
+msgstr "Tecken"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:246
+msgid "Select preview type"
+msgstr "Välj förhandsgranskningstyp"
+
+#: ../lib/UX/Widgets/CellRendererPill.vala:30
+msgid "Variation "
+msgstr "Variant"
+
+#: ../lib/UX/Widgets/CellRendererPill.vala:31
+msgid "Variations"
+msgstr "Varianter"
+
+#: ../src/font-manager/Compare.vala:35
+msgid "Add selected font to comparison"
+msgstr "Lägg till markerat teckensnitt för jämförelse"
+
+#: ../src/font-manager/Compare.vala:36
+msgid "Remove selected font from comparison"
+msgstr "Ta bort markerat teckensnitt från jämförelsen"
+
+#: ../src/font-manager/Compare.vala:43
+msgid "Select text color"
+msgstr "Välj textfärg"
+
+#: ../src/font-manager/Compare.vala:44
+msgid "Select background color"
+msgstr "Välj bakgrundsfärg"
+
+#: ../src/font-manager/MainWindow.vala:57
+#: ../src/font-manager/MainWindow.vala:219
+msgid "Browse"
+msgstr "Bläddra"
+
+#: ../src/font-manager/MainWindow.vala:59
+#: ../src/font-manager/MainWindow.vala:214
+msgid "Compare"
+msgstr "Jämför"
+
+#: ../src/font-manager/MainWindow.vala:61
+#: ../src/font-manager/MainWindow.vala:218
+msgid "Manage"
+msgstr "Hantera"
+
+#: ../src/font-manager/Migration.vala:59
+msgid "_Continue"
+msgstr "_Fortsätt"
+
+#: ../src/font-manager/Migration.vala:69
+msgid "Update Required"
+msgstr "Uppdatering krävs"
+
+#: ../src/font-manager/Migration.vala:206
+msgid ""
+"\n"
+"Font Manager has detected files from a previous installation. Some files "
+"from previous versions are incompatible with this release. Others have been "
+"deprecated or moved.\n"
+"\n"
+"Font Manager will now attempt to migrate your fonts and collections. Files "
+"and settings which are no longer necessary or valid will be deleted. Any "
+"configuration files that could cause a conflict will also be deleted.\n"
+"\n"
+"It is strongly recommended that you back up any important files before "
+"proceeding.\n"
+msgstr ""
+"\n"
+"Font Manager har hittat filer från en tidigare installation. Vissa filer "
+"från tidigare versioner är inkompatibla med denna version. Andra är "
+"föråldrade eller har flyttats.\n"
+"\n"
+"\n"
+"Font Manager kommer nu att försöka migrera dina teckensnitt och "
+"kollektioner. Filer och inställningar som inte längre är nödvändiga eller "
+"giltiga, kommer att tas bort. Konfigurationsfiler som kan skapa konflikter, "
+"kommer också att tas bort.\n"
+"\n"
+"Du rekommenderas att säkerhetskopiera viktiga filer, innan du fortsätter.\n"
+
+#: ../src/font-manager/Preferences/Display.vala:48
+#: ../src/font-manager/Preferences/Rendering.vala:47
+msgid "Settings saved to file."
+msgstr "Inställningar sparade till fil."
+
+#: ../src/font-manager/Preferences/Display.vala:52
+#: ../src/font-manager/Preferences/Rendering.vala:51
+msgid "Removed configuration file."
+msgstr "Tog bort konfigurationsfil."
+
+#: ../src/font-manager/Preferences/Interface.vala:42
+msgid "Wide Layout"
+msgstr "Bred layout"
+
+#: ../src/font-manager/Preferences/Interface.vala:44
+msgid "Only when maximized"
+msgstr "Endast vid maximerad"
+
+#: ../src/font-manager/Preferences/Interface.vala:48
+msgid "Client Side Decorations"
+msgstr "Dekorationer på klientsidan"
+
+#: ../src/font-manager/Preferences/Interface.vala:101
+msgid ""
+"CSD enabled. Change will take effect next time the application is started."
+msgstr "CSD är aktiverat. Ändring tillämpas nästa gång programmet startas."
+
+#: ../src/font-manager/Preferences/Interface.vala:103
+msgid ""
+"CSD disabled. Change will take effect next time the application is started."
+msgstr "CSD är inaktiverat. Ändring tillämpas nästa gång programmet startas."
+
+#: ../src/font-manager/Preferences/Preferences.vala:28
+msgid "Sources"
+msgstr "Källor"
+
+#: ../src/font-manager/Preferences/Preferences.vala:29
+msgid "Rendering"
+msgstr "Rendering"
+
+#: ../src/font-manager/Preferences/Preferences.vala:30
+msgid "Display"
+msgstr "Visning"
+
+#: ../src/font-manager/Preferences/Preferences.vala:31
+msgid "Interface"
+msgstr "Gränssnitt"
+
+#: ../src/font-manager/Preferences/Sources.vala:40
+msgid "Add source"
+msgstr "Lägg till källa"
+
+#: ../src/font-manager/Preferences/Sources.vala:41
+msgid "Remove selected source"
+msgstr "Ta bort markerad källa"
+
+#: ../src/font-manager/SideBar.vala:172
+msgid "Categories"
+msgstr "Kategorier"
+
+#: ../src/font-manager/SideBar.vala:173
+msgid "Collections"
+msgstr "Kollektioner"
+
+#: ../src/font-manager/TitleBar.vala:63
+msgid "Add Fonts"
+msgstr "Lägg till teckensnitt"
+
+#: ../src/font-manager/TitleBar.vala:64
+msgid "Remove Fonts"
+msgstr "Ta bort teckensnitt"
+
+#: ../src/font-manager/TitleBar.vala:71
+msgid "Preferences"
+msgstr "Inställningar"
+
+#: ../src/font-manager/TitleBar.vala:160
+msgid "Help"
+msgstr "Hjälp"
+
+#: ../src/font-manager/TitleBar.vala:161
+msgid "About"
+msgstr "Om"
+
+#: ../src/font-manager/TitleBar.vala:162
+msgid "Quit"
+msgstr "Avsluta"
+
+#: ../src/font-viewer/Application.vala:121
+#: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:52
+msgid "Font Viewer"
+msgstr "Teckensnittsvisare"
+
+#: ../src/font-viewer/MainWindow.vala:29
+msgid "Preview font files before installing them."
+msgstr "Förhandsgranska teckensnitt före installation."
+
+#: ../src/font-viewer/MainWindow.vala:30
+msgid "To preview a font simply drag it onto this area."
+msgstr "Dra ett teckensnitt till det här området, för att förhandsgranska."
+
+#: ../src/font-viewer/MainWindow.vala:58 ../src/font-viewer/MainWindow.vala:163
+msgid "Install Font"
+msgstr "Installera teckensnitt"
+
+#: ../src/font-viewer/MainWindow.vala:155
+msgid "Newer version already installed"
+msgstr "Nyare version är redan installerad"
+
+#: ../src/font-viewer/MainWindow.vala:159
+msgid "Installed"
+msgstr "Installerad"
+
+#: ../data/ApplicationMenu.ui.h:1
+msgid "_Help"
+msgstr "_Hjälp"
+
+#: ../data/ApplicationMenu.ui.h:2
+msgid "_About"
+msgstr "_Om"
+
+#: ../data/ApplicationMenu.ui.h:3
+msgid "_Quit"
+msgstr "_Avsluta"
