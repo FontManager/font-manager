@@ -706,10 +706,10 @@ msgstr ""
 "Font Manager 已發現上次安裝的檔案，然而這些檔案中部份與此次版本並不相容；"
 "有些則已被棄用或者移動。\n"
 "\n"
-"Font Manager 現在將嘗試遷移你的字體和字體庫，而其中不再需要的檔案或或無效的設定將隨之刪除。"
-"另外，可能引起衝突的配置檔也將會被一併刪除。\n"
+"Font Manager 現在將嘗試遷移你的字體和字體庫，而其中不再需要的檔案、"
+"無效的設定與可能引起衝突的配置檔將隨之刪除。\n"
 "\n"
-"因此在此強烈建議：請先備份好重要檔案。\n"
+"因此在此強烈建議先備份好重要檔案。\n"
 
 #: ../src/font-manager/Preferences/Display.vala:48
 #: ../src/font-manager/Preferences/Rendering.vala:47
