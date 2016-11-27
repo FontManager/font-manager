@@ -179,7 +179,6 @@ namespace FontConfig {
                 monitor = file.monitor_file(FileMonitorFlags.NONE);
                 monitor.changed.connect((f, of, ev) => {
                     debug("Filesystem change detected : %s", path);
-                    monitor.cancel();
                     Idle.add(() => {
                         this.changed();
                         return false;

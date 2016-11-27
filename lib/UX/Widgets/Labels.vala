@@ -78,16 +78,25 @@ public class ReactiveLabel : Gtk.EventBox {
         return;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public override bool enter_notify_event (Gdk.EventCrossing event) {
         label.opacity = 0.95;
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public override bool leave_notify_event (Gdk.EventCrossing event) {
         label.opacity = 0.65;
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public override bool button_press_event (Gdk.EventButton event) {
         this.clicked();
         return false;

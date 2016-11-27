@@ -3,15 +3,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-10-16 12:57-0400\n"
-"PO-Revision-Date: 2016-08-05 07:54-0400\n"
-"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
-"Language-Team: Arabic\n"
-"Language: ar\n"
+"POT-Creation-Date: 2016-08-17 13:40-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.3\n"
+"PO-Revision-Date: 2016-10-08 06:49-0400\n"
+"Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"X-Generator: Zanata 3.9.6\n"
 "Plural-Forms: nplurals=6; plural= n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 
@@ -37,10 +37,25 @@ msgid ""
 "    GNU General Public License for more details.\n"
 "\n"
 "    You should have received a copy of the GNU General Public License\n"
-"    along with this program.  If not, see <http://www.gnu.org/licenses/"
-"gpl-3.0.txt>.\n"
+"    along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3."
+"0.txt>.\n"
 "    "
 msgstr ""
+"\n"
+"    هذا البرنامج حر: بإمكانك إعادة توزيعه و/أو تعديله تحت شروط الرخصة "
+"العمومية\n"
+"    العامة لجنو والتي نشرتها منظمة البرمجيات الحرة؛ سواء الإصدارة 3 من "
+"الرخصة أو\n"
+"    أي إصدارة بعدها حسب رغبتك.\n"
+"\n"
+"    يوزّع البرنامج على أمل أن يكون مفيدًا لمن يستخدمه دون أدنى مسؤولية؛ ولا "
+"حتى\n"
+"    أي ضمان يضمن صلاحية العرض في السوق أو توافقه مع أي استخدام محدد. يمكنك\n"
+"    مراجعة الرخصة العمومية العامة لجنو لمزيد من التفاصيل.\n"
+"\n"
+"    لابد من أن تكون قد استلمت نسخة من رخصة جنو العامة مع هذا البرنامج. في "
+"حال\n"
+"    عدم استلامك لذلك، انظر: <http://www.gnu.org/licenses/gpl-3.0.txt>.    "
 
 #: ../lib/Common/Constants.vala:38
 msgid "Enter Collection Name"
@@ -165,7 +180,7 @@ msgstr "ثابت العرض"
 
 #: ../lib/FontConfig/Enums.vala:165
 msgid "Charcell"
-msgstr ""
+msgstr "خلية الحرف"
 
 #: ../lib/FontConfig/Enums.vala:184
 msgid "Unknown"
@@ -311,7 +326,7 @@ msgstr "تحتاج إعادة تشغيل البرامج المفتوحة لتط�
 
 #: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:44
 msgid "Target DPI"
-msgstr ""
+msgstr "الميز المستهدف"
 
 #: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:45
 msgid "Scale factor"
@@ -391,7 +406,7 @@ msgstr "ا_فتح"
 
 #: ../lib/UX/FontConfig/SubpixelGeometry.vala:55
 msgid "Subpixel Geometry"
-msgstr ""
+msgstr "الترتيب التحت بكسلي"
 
 #: ../lib/UX/FontConfig/Substitute.vala:78
 msgid "prefer"
@@ -545,7 +560,7 @@ msgstr "النص و العناوين"
 
 #: ../lib/UX/Models/CategoryModel.vala:129
 msgid "Script"
-msgstr ""
+msgstr "نظام الكتابة"
 
 #: ../lib/UX/Models/CategoryModel.vala:130
 msgid "Decorative"
@@ -602,11 +617,11 @@ msgstr "اختر نوع المعاينة"
 
 #: ../lib/UX/Widgets/CellRendererPill.vala:30
 msgid "Variation "
-msgstr "تحوير"
+msgstr "تنويعة"
 
 #: ../lib/UX/Widgets/CellRendererPill.vala:31
 msgid "Variations"
-msgstr "تحويرات"
+msgstr "تنويعات"
 
 #: ../src/font-manager/Compare.vala:35
 msgid "Add selected font to comparison"
@@ -690,17 +705,21 @@ msgstr "أثناء التكبير فقط"
 
 #: ../src/font-manager/Preferences/Interface.vala:48
 msgid "Client Side Decorations"
-msgstr ""
+msgstr "أطر النوافذ التي يرسمها العميل"
 
 #: ../src/font-manager/Preferences/Interface.vala:101
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
+"فُعّلت أطر النوافذ التي يرسمها العميل. سيُطب التغيير في المرة القادمة التي "
+"تشغل فيها البرنامج."
 
 #: ../src/font-manager/Preferences/Interface.vala:103
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
+"عُطّلت أطر النوافذ التي يرسمها العميل. سيُطب التغيير في المرة القادمة التي "
+"تشغل فيها البرنامج."
 
 #: ../src/font-manager/Preferences/Preferences.vala:28
 msgid "Sources"
