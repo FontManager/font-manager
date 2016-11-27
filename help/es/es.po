@@ -1,0 +1,128 @@
+# Adolfo Jayme <fitoschido@gmail.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: font-manager 0.7.3\n"
+"POT-Creation-Date: 2016-08-17 13:40-0400\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-09-25 04:45-0400\n"
+"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2016."
+
+#. (itstool) path: info/title
+#: C/index.page:4
+msgctxt "text"
+msgid "Font Manager"
+msgstr "Font Manager"
+
+#. (itstool) path: info/desc
+#: C/index.page:5
+msgid "Simple font management for GTK+ desktop environments"
+msgstr "Gestión de tipos de letra simple para entornos de escritorio Gtk+"
+
+#. (itstool) path: credit/name
+#: C/index.page:7
+msgid "Jerry Casiano"
+msgstr "Jerry Casiano"
+
+#. (itstool) path: credit/years
+#: C/index.page:9
+msgid "2009-2016"
+msgstr "2009–2016"
+
+#. (itstool) path: license/p
+#: C/index.page:12
+msgid ""
+"<link href=\"http://www.gnu.org/licenses/gpl-3.0-standalone.html\">GNU "
+"General Public License Version 3</link>"
+msgstr ""
+"<link href=\"http://www.gnu.org/licenses/gpl-3.0-standalone.html\">Licencia "
+"Pública General de GNU, versión 3</link>"
+
+#. (itstool) path: title/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/index.page:18
+msgctxt "_"
+msgid "external ref='media/logo.png' md5='9f2f97653d18778001fcf0c180dcf12d'"
+msgstr "external ref='media/logo.png' md5='9f2f97653d18778001fcf0c180dcf12d'"
+
+#. (itstool) path: page/title
+#: C/index.page:17
+msgid ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/logo.png\">Font Manager "
+"logo</media> Font Manager"
+msgstr ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/logo.png\">Logo de Font "
+"Manager</media> Font Manager"
+
+#. (itstool) path: note/title
+#: C/index.page:22
+msgid "Help has not been implemented yet."
+msgstr "Todavía no se ha creado el contenido de ayuda."
+
+#. (itstool) path: note/p
+#: C/index.page:23
+msgid ""
+"If you would like to help this project by providing help documentation "
+"please see <link href=\"http://projectmallard.org\"> Project Mallard </link> "
+"for more information."
+msgstr ""
+"Si desea ayudar a este proyecto mediante el suministro de documentación, "
+"consulte el <link href=\"http://projectmallard.org\">proyecto Mallard </"
+"link> para obtener más información sobre cómo hacerlo."
+
+#. (itstool) path: note/p
+#: C/index.page:24
+msgid ""
+"If you do decide to help, please file an issue at <link href=\"https://"
+"github.com/FontManager/master/issues\">https://github.com/FontManager/master/"
+"issues</link> detailing what you intend to work on."
+msgstr ""
+"Si se decide a colaborar, registre una solicitud nueva en <link href=\"https:"
+"//github.com/FontManager/master/issues\">https://github.com/FontManager/"
+"master/issues</link> (en inglés) donde detalle en qué área pretende trabajar."
+""
+
+#. (itstool) path: note/p
+#: C/index.page:25
+msgid "Thank you."
+msgstr "Gracias."
+
+#. (itstool) path: note/title
+#: C/index.page:28
+msgid "Localization"
+msgstr "Traducción y regionalización"
+
+#. (itstool) path: note/p
+#: C/index.page:29
+msgid ""
+"If you would like to help this application reach more users in their native "
+"language please see <link href=\"https://translate.zanata.org/project/view/"
+"font-manager\"> Zanata </link> for more information."
+msgstr ""
+"Si quiere ayudar a que esta aplicación esté disponible para personas "
+"hablantes de otros idiomas, visite <link href=\"https://translate.zanata.org/"
+"project/view/font-manager\">Zanata</link> para conocer más detalles."
+
+#. (itstool) path: note/p
+#: C/index.page:30
+msgid ""
+"You can also file an issue at <link href=\"https://github.com/FontManager/"
+"master/issues\">https://github.com/FontManager/master/issues</link> and "
+"attach any translated files there."
+msgstr ""
+"Asimismo, puede registrar una solicitud nueva en <link href=\"https://github."
+"com/FontManager/master/issues\">https://github.com/FontManager/master/"
+"issues</link> y adjuntar en ella archivos traducidos."
