@@ -27,8 +27,8 @@ namespace FontManager {
 
         public class State : Object {
 
-            internal static const int DEFAULT_WIDTH = 600;
-            internal static const int DEFAULT_HEIGHT = 400;
+            internal const int DEFAULT_WIDTH = 600;
+            internal const int DEFAULT_HEIGHT = 400;
 
             public Settings? settings { get; set; default = null; }
             public weak MainWindow? main_window { get; set; default = null; }
