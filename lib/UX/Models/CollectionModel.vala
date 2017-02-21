@@ -104,7 +104,7 @@ namespace FontManager {
             return sorted;
         }
 
-        void insert_children (Gee.ArrayList <Filter> groups, Gtk.TreeIter parent) {
+        void insert_children (Gee.ArrayList <Collection> groups, Gtk.TreeIter parent) {
             var sorted = sort_groups(groups);
             foreach(var child in sorted) {
                 Gtk.TreeIter _iter;
