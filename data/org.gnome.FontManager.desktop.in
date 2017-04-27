@@ -2,8 +2,11 @@
 Type=Application
 Version=1.0
 Name=Font Manager
+Name[ru]=Менеджер шрифтов
 GenericName=Font Manager
+GenericName[ru]=Менеджер шрифтов
 Comment=Preview, Compare and Manage Fonts
+Comment[ru]=Просмотр, сравнение и управление шрифтами
 Icon=preferences-desktop-font
 DBusActivatable=true
 Exec=@PACKAGE_NAME@ %u
@@ -12,5 +15,3 @@ MimeType=application/x-font-ttf;application/x-font-type1;application/x-font-otf;
 Categories=GTK;GNOME;Utility;Graphics;Viewer;Publishing;
 Keywords=Graphics;Viewer;GNOME;GTK;Publishing;
 StartupNotify=true
-
-
