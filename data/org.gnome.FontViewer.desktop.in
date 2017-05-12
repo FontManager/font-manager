@@ -2,8 +2,11 @@
 Type=Application
 Version=1.0
 Name=Font Viewer
+Name[ru]=Просмотрщик шрифтов
 GenericName=Font Viewer
+GenericName[ru]=Просмотрщик шрифтов
 Comment=Full featured font file preview application
+Comment[ru]=Полнофункциональная программа для просмотра файлов шрифтов
 Icon=preferences-desktop-font
 DBusActivatable=true
 Exec=@PKGLIBEXECDIR@/font-viewer %u
@@ -12,5 +15,3 @@ MimeType=application/x-font-ttf;application/x-font-type1;application/x-font-otf;
 Categories=GTK;GNOME;Utility;Graphics;Viewer;Publishing;
 Keywords=Graphics;Viewer;GNOME;GTK;Publishing;
 StartupNotify=true
-
-
