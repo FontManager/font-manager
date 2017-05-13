@@ -1,0 +1,823 @@
+# Font Manager - Simple font management for Gtk+ desktop environments
+#
+# Copyright Â© 2009 - 2016 Jerry Casiano
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Author:
+#  Jerry Casiano <JerryCasiano@gmail.com>
+# Jerry Casiano <JerryCasiano@gmail.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: font-manager 0.7.3\n"
+"Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
+"POT-Creation-Date: 2016-11-27 16:56-0500\n"
+"PO-Revision-Date: 2016-05-25 11:48-0400\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"Language-Team: none <@>\n"
+"Language: ru-RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Zanata 3.9.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: ../lib/Common/About.vala:28
+msgid "Font Manager"
+msgstr "Менеджер шрифтов"
+
+#: ../lib/Common/About.vala:30
+msgid "Simple font management for GTK+ desktop environments"
+msgstr "Простой менеджер шрифтов для сред рабочего стола на основе GTK+"
+
+#: ../lib/Common/About.vala:34
+msgid ""
+"\n"
+"    This program is free software: you can redistribute it and/or modify\n"
+"    it under the terms of the GNU General Public License as published by\n"
+"    the Free Software Foundation, either version 3 of the License, or\n"
+"    (at your option) any later version.\n"
+"\n"
+"    This program is distributed in the hope that it will be useful,\n"
+"    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"    GNU General Public License for more details.\n"
+"\n"
+"    You should have received a copy of the GNU General Public License\n"
+"    along with this program.  If not, see <http://www.gnu.org/licenses/"
+"gpl-3.0.txt>.\n"
+"    "
+msgstr ""
+
+#: ../lib/Common/Constants.vala:38
+msgid "Enter Collection Name"
+msgstr "Введите название коллекции"
+
+#: ../lib/Filters/Collection.vala:36
+msgid "New Collection"
+msgstr "Новая коллекция"
+
+#: ../lib/Filters/Disabled.vala:29
+msgid "Disabled"
+msgstr "Отключено"
+
+#: ../lib/Filters/Disabled.vala:29
+msgid "Fonts which have been disabled"
+msgstr "Отключенные шрифты"
+
+#: ../lib/Filters/Filter.vala:40
+#, c-format
+msgid "Created : %s"
+msgstr "Создан : %s"
+
+#: ../lib/Filters/Unsorted.vala:29
+msgid "Unsorted"
+msgstr "Неотсортированные"
+
+#: ../lib/Filters/Unsorted.vala:29
+msgid "Fonts not present in any collection"
+msgstr "Шрифты, не входящие ни в одну коллекцию"
+
+#: ../lib/FontConfig/Enums.vala:70
+msgid "Thin"
+msgstr "Тонкий"
+
+#: ../lib/FontConfig/Enums.vala:72
+msgid "Ultra-Light"
+msgstr "Ультралегкий"
+
+#: ../lib/FontConfig/Enums.vala:74 ../lib/FontConfig/Enums.vala:232
+msgid "Light"
+msgstr "Легкий (Light)"
+
+#: ../lib/FontConfig/Enums.vala:76
+msgid "Book"
+msgstr "Обычный"
+
+#: ../lib/FontConfig/Enums.vala:78 ../lib/FontConfig/Enums.vala:211
+msgid "Medium"
+msgstr "Средний (Medium)"
+
+#: ../lib/FontConfig/Enums.vala:80
+msgid "Semi-Bold"
+msgstr "Полужирный"
+
+#: ../lib/FontConfig/Enums.vala:82
+msgid "Bold"
+msgstr "Жирный"
+
+#: ../lib/FontConfig/Enums.vala:84
+msgid "Ultra-Bold"
+msgstr "Ультражирный"
+
+#: ../lib/FontConfig/Enums.vala:86
+msgid "Heavy"
+msgstr "Тяжелый"
+
+#: ../lib/FontConfig/Enums.vala:88
+msgid "Ultra-Heavy"
+msgstr "Ультратяжелый"
+
+#: ../lib/FontConfig/Enums.vala:104
+msgid "Italic"
+msgstr "Курсив (Italic)"
+
+#: ../lib/FontConfig/Enums.vala:106
+msgid "Oblique"
+msgstr "Наклонный (Oblique)"
+
+#: ../lib/FontConfig/Enums.vala:128
+msgid "Ultra-Condensed"
+msgstr "Ультраконденсированный"
+
+#: ../lib/FontConfig/Enums.vala:130
+msgid "Extra-Condensed"
+msgstr "Экстраконденсированный"
+
+#: ../lib/FontConfig/Enums.vala:132
+msgid "Condensed"
+msgstr "Конденсированный"
+
+#: ../lib/FontConfig/Enums.vala:134
+msgid "Semi-Condensed"
+msgstr "Полуконденсированный"
+
+#: ../lib/FontConfig/Enums.vala:136
+msgid "Semi-Expanded"
+msgstr "Полурасширенный"
+
+#: ../lib/FontConfig/Enums.vala:138
+msgid "Expanded"
+msgstr "Расширенный"
+
+#: ../lib/FontConfig/Enums.vala:140
+msgid "Extra-Expanded"
+msgstr "Экстрарасширенный"
+
+#: ../lib/FontConfig/Enums.vala:142
+msgid "Ultra-Expanded"
+msgstr "Ультрарасширенный"
+
+#: ../lib/FontConfig/Enums.vala:159
+msgid "Proportional"
+msgstr "Пропорциональный"
+
+#: ../lib/FontConfig/Enums.vala:161
+msgid "Dual Width"
+msgstr "Двойная ширина"
+
+#: ../lib/FontConfig/Enums.vala:163
+msgid "Monospace"
+msgstr "Моноширинный"
+
+#: ../lib/FontConfig/Enums.vala:165
+msgid "Charcell"
+msgstr "Фиксированный"
+
+#: ../lib/FontConfig/Enums.vala:184
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: ../lib/FontConfig/Enums.vala:186
+msgid "RGB"
+msgstr "RGB (красно-зелено-синий)"
+
+#: ../lib/FontConfig/Enums.vala:188
+msgid "BGR"
+msgstr "BGR (сине-зелено-красный)"
+
+#: ../lib/FontConfig/Enums.vala:190
+msgid "VRGB"
+msgstr "VRGB (вертикальный красно-зелено-синий)"
+
+#: ../lib/FontConfig/Enums.vala:192
+msgid "VBGR"
+msgstr "VBGR (вертикальный сине-зелено-красный)"
+
+#: ../lib/FontConfig/Enums.vala:194 ../lib/FontConfig/Enums.vala:215
+#: ../lib/FontConfig/Enums.vala:236
+msgid "None"
+msgstr "Отсутствует (None)"
+
+#: ../lib/FontConfig/Enums.vala:209
+msgid "Slight"
+msgstr "Стройный (Slight)"
+
+#: ../lib/FontConfig/Enums.vala:213
+msgid "Full"
+msgstr "Полный (Full)"
+
+#: ../lib/FontConfig/Enums.vala:230
+msgid "Default"
+msgstr "Нормальный"
+
+#: ../lib/FontConfig/Enums.vala:234
+msgid "Legacy"
+msgstr "Устаревший (Legacy)"
+
+#: ../lib/FontConfig/Families.vala:45
+msgid "Loading available font families"
+msgstr "Загрузка доступных семейств шрифтов"
+
+#: ../lib/FontConfig/Sources.vala:83 ../lib/FontConfig/Sources.vala:97
+msgid "Source Unavailable"
+msgstr "Источник недоступен"
+
+#: ../lib/FontConfig/Sources.vala:244 ../lib/FontConfig/XmlWriter.vala:38
+msgid " Generated by Font Manager. Do NOT edit this file. "
+msgstr "Данный файл создан програмой Менеджер шрифтов. НЕ изменяйте его!"
+
+#: ../lib/Library/Install.vala:138
+msgid "Installing files"
+msgstr "Установка файлов"
+
+#: ../lib/Library/Install.vala:170
+msgid "Preparing Archives"
+msgstr "Подготовка архивов"
+
+#: ../lib/Library/Remove.vala:81
+msgid "Removing files"
+msgstr "Удаление файлов"
+
+#: ../lib/Library/Sorter.vala:91
+msgid "Processing directories"
+msgstr "Обработка папок"
+
+#: ../lib/Library/Sorter.vala:123
+msgid "Processing files"
+msgstr "Обработка файлов"
+
+#: ../lib/UX/CharacterMap/CharacterMapSideBar.vala:96
+msgid "Unicode Script"
+msgstr "Скрипт Unicode"
+
+#: ../lib/UX/CharacterMap/CharacterMapSideBar.vala:97
+msgid "Unicode Block"
+msgstr "Блок Unicode"
+
+#: ../lib/UX/Controls/CollectionControls.vala:32
+msgid "Add new collection"
+msgstr "Добавить новую коллекцию"
+
+#: ../lib/UX/Controls/CollectionControls.vala:33
+msgid "Remove selected collection"
+msgstr "Удалить выбранную коллекцию"
+
+#: ../lib/UX/Controls/FontListControls.vala:46
+msgid "Remove selected font from collection"
+msgstr "Удалить выбранный шрифт из коллекции"
+
+#: ../lib/UX/Controls/FontListControls.vala:50
+#: ../lib/UX/Controls/FontListControls.vala:65
+msgid "Expand all"
+msgstr "Показать все"
+
+#: ../lib/UX/Controls/FontListControls.vala:54
+msgid "Search Families..."
+msgstr "Найти семейство..."
+
+#: ../lib/UX/Controls/FontListControls.vala:65
+msgid "Collapse all"
+msgstr "Свернуть все"
+
+#: ../lib/UX/Controls/PreviewControls.vala:91
+msgid "Edit preview text"
+msgstr "Изменить текст предварительного просмотра"
+
+#: ../lib/UX/Controls/PreviewControls.vala:94
+msgid "Undo changes"
+msgstr "Отменить изменения"
+
+#: ../lib/UX/Controls/PreviewControls.vala:99
+msgid "Left Aligned"
+msgstr "Выравнивание по левому краю"
+
+#: ../lib/UX/Controls/PreviewControls.vala:99
+msgid "Centered"
+msgstr "Выравнивание по центру"
+
+#: ../lib/UX/Controls/PreviewControls.vala:99
+msgid "Fill"
+msgstr "Выравнивание по ширине"
+
+#: ../lib/UX/Controls/PreviewControls.vala:99
+msgid "Right Aligned"
+msgstr "Выравнивание по правому краю"
+
+#: ../lib/UX/FontConfig/Controls.vala:66
+msgid "Save"
+msgstr "Сохранить"
+
+#: ../lib/UX/FontConfig/Controls.vala:68
+msgid "Discard"
+msgstr "Отменить"
+
+#: ../lib/UX/FontConfig/Controls.vala:70
+msgid "Running applications may require a restart to reflect any changes."
+msgstr "Для применения изменений может потребоваться перезапуск программы."
+
+#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:44
+msgid "Target DPI"
+msgstr "Требуемая разрешающая способность экрана (DPI)"
+
+#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:45
+msgid "Scale factor"
+msgstr "Масштаб"
+
+#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:49
+msgid "LCD Filter"
+msgstr "Фильтр LCD"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:54
+msgid "Antialias"
+msgstr "Сглаживание"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:55
+msgid "Hinting"
+msgstr "Хинтинг"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:56
+msgid "Enable Autohinter"
+msgstr "Включить автохинтинг"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:64
+msgid "Hinting Style"
+msgstr "Стиль хинтинга"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:65
+msgid "Use Embedded Bitmaps"
+msgstr "Использовать встроенные битовые карты"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:67
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:72
+msgid " Size Restrictions "
+msgstr " Ограничения по размеру "
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:70
+msgid " Apply settings to point sizes "
+msgstr " Применить настройки к размеру "
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:143
+msgid "Smaller than"
+msgstr "Меньше чем"
+
+#: ../lib/UX/FontConfig/FontPropertiesPane.vala:144
+msgid "Larger than"
+msgstr "Больше чем"
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:26
+msgid "Font Sources"
+msgstr "Источники шрифтов"
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:27
+msgid "Easily add or preview fonts without actually installing them."
+msgstr ""
+"Легкое добавление или предварительный просмотр шрифтов без их установки."
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:28
+msgid ""
+"To add a new source simply drag a folder onto this area or click the add "
+"button in the toolbar."
+msgstr ""
+"Для добавления нового источника просто перетащите папку в данную область "
+"или нажмите на кнопку \"Добавить\" на панели инструментов."
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:194
+msgid "Select source folders"
+msgstr "Выберите папки источников"
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:197
+#: ../lib/UX/Utils/FileSelector.vala:40 ../lib/UX/Utils/FileSelector.vala:67
+#: ../src/font-manager/Migration.vala:58
+msgid "_Cancel"
+msgstr "_Отменить"
+
+#: ../lib/UX/FontConfig/FontSourceList.vala:199
+#: ../lib/UX/Utils/FileSelector.vala:42
+msgid "_Open"
+msgstr "_Открыть"
+
+#: ../lib/UX/FontConfig/SubpixelGeometry.vala:55
+msgid "Subpixel Geometry"
+msgstr "Субпиксельная геометрия"
+
+#: ../lib/UX/FontConfig/Substitute.vala:78
+msgid "prefer"
+msgstr "предпочитать"
+
+#: ../lib/UX/FontConfig/Substitute.vala:79
+msgid "accept"
+msgstr "принимать"
+
+#: ../lib/UX/FontConfig/Substitute.vala:80
+msgid "default"
+msgstr "нормальный"
+
+#: ../lib/UX/Metadata/License.vala:42
+msgid "File does not contain license information."
+msgstr "Файл не содержит информацию о лицензии."
+
+#: ../lib/UX/Metadata/Properties.vala:43
+msgid "PostScript Name"
+msgstr "Название PostScript"
+
+#: ../lib/UX/Metadata/Properties.vala:44
+#: ../lib/UX/Models/CategoryModel.vala:104
+msgid "Weight"
+msgstr "Вес"
+
+#: ../lib/UX/Metadata/Properties.vala:45
+#: ../lib/UX/Models/CategoryModel.vala:102
+msgid "Slant"
+msgstr "Скос"
+
+#: ../lib/UX/Metadata/Properties.vala:46
+#: ../lib/UX/Models/CategoryModel.vala:106
+msgid "Width"
+msgstr "Ширина"
+
+#: ../lib/UX/Metadata/Properties.vala:47
+#: ../lib/UX/Models/CategoryModel.vala:100
+msgid "Spacing"
+msgstr "Отступ"
+
+#: ../lib/UX/Metadata/Properties.vala:48
+msgid "Version"
+msgstr "Версия"
+
+#: ../lib/UX/Metadata/Properties.vala:49
+#: ../lib/UX/Models/CategoryModel.vala:112
+msgid "Vendor"
+msgstr "Поставщик"
+
+#: ../lib/UX/Metadata/Title.vala:51 ../src/font-viewer/TitleBar.vala:49
+msgid "OpenType Font"
+msgstr "Шрифт OpenType"
+
+#: ../lib/UX/Metadata/Title.vala:52 ../src/font-viewer/TitleBar.vala:50
+msgid "TrueType Font"
+msgstr "Шрифт TrueType"
+
+#: ../lib/UX/Metadata/Title.vala:53 ../src/font-viewer/TitleBar.vala:51
+msgid "PostScript Type 1 Font"
+msgstr "Шрифт PostScript Type 1"
+
+#: ../lib/UX/Metadata/Title.vala:105 ../src/font-viewer/TitleBar.vala:99
+msgid "No file selected"
+msgstr "Файл не выбран"
+
+#: ../lib/UX/Metadata/Title.vala:105 ../src/font-viewer/TitleBar.vala:100
+msgid "Or unsupported filetype."
+msgstr "или формат файла не поддерживается."
+
+#: ../lib/UX/Models/CategoryModel.vala:92
+msgid "All"
+msgstr "Все"
+
+#: ../lib/UX/Models/CategoryModel.vala:92
+msgid "All Fonts"
+msgstr "Все шрифты"
+
+#: ../lib/UX/Models/CategoryModel.vala:94
+msgid "System"
+msgstr "Системные"
+
+#: ../lib/UX/Models/CategoryModel.vala:94
+msgid "Fonts available to all users"
+msgstr "Шрифты, доступные всем пользователям"
+
+#: ../lib/UX/Models/CategoryModel.vala:96
+msgid "User"
+msgstr "Пользовательские"
+
+#: ../lib/UX/Models/CategoryModel.vala:96
+msgid "Fonts available only to you"
+msgstr "Шрифты, доступные только вам"
+
+#: ../lib/UX/Models/CategoryModel.vala:100
+msgid "Grouped by font spacing"
+msgstr "Сгруппированные по отступу"
+
+#: ../lib/UX/Models/CategoryModel.vala:102
+msgid "Grouped by font angle"
+msgstr "Сгруппированные по углу"
+
+#: ../lib/UX/Models/CategoryModel.vala:104
+msgid "Grouped by font weight"
+msgstr "Сгруппированные по весу"
+
+#: ../lib/UX/Models/CategoryModel.vala:106
+msgid "Grouped by font width"
+msgstr "Сгруппированные по ширине"
+
+#: ../lib/UX/Models/CategoryModel.vala:108
+msgid "Filetype"
+msgstr "Тип файла"
+
+#: ../lib/UX/Models/CategoryModel.vala:108
+msgid "Grouped by filetype"
+msgstr "Сгруппированные по типу файла"
+
+#: ../lib/UX/Models/CategoryModel.vala:110
+#: ../lib/UX/Views/FontPreviewPane.vala:123
+msgid "License"
+msgstr "Лицензия"
+
+#: ../lib/UX/Models/CategoryModel.vala:110
+msgid "Grouped by license type"
+msgstr "Сгруппированные по лицензии"
+
+#: ../lib/UX/Models/CategoryModel.vala:112
+msgid "Grouped by vendor"
+msgstr "Сгруппированные по поставщику"
+
+#: ../lib/UX/Models/CategoryModel.vala:125
+msgid "Family Kind"
+msgstr "Семейство"
+
+#: ../lib/UX/Models/CategoryModel.vala:125
+msgid "Only fonts which include Panose information will be grouped here."
+msgstr ""
+"Здесь сгруппированы только шрифты, имеющие информацию PANOSE."
+
+#: ../lib/UX/Models/CategoryModel.vala:126
+msgid "Any"
+msgstr "Любой"
+
+#: ../lib/UX/Models/CategoryModel.vala:127
+msgid "No Fit"
+msgstr "Нет соответствующих"
+
+#: ../lib/UX/Models/CategoryModel.vala:128
+msgid "Text and Display"
+msgstr "Текст и экран"
+
+#: ../lib/UX/Models/CategoryModel.vala:129
+msgid "Script"
+msgstr "Скрипт"
+
+#: ../lib/UX/Models/CategoryModel.vala:130
+msgid "Decorative"
+msgstr "Декортивные"
+
+#: ../lib/UX/Models/CategoryModel.vala:131
+msgid "Pictorial"
+msgstr "Изобразительные"
+
+#: ../lib/UX/Models/CategoryModel.vala:165
+msgid "Normal"
+msgstr "Нормальный"
+
+#: ../lib/UX/Models/CategoryModel.vala:170
+msgid "Regular"
+msgstr "Обычный"
+
+#: ../lib/UX/Utils/FileSelector.vala:37
+msgid "Select files to install"
+msgstr "Выберите файлы для установки"
+
+#: ../lib/UX/Utils/FileSelector.vala:68
+msgid "_Delete"
+msgstr "_Удалить"
+
+#: ../lib/UX/Utils/FileSelector.vala:75
+msgid "Select fonts to remove"
+msgstr "Выберите файлы для удаления"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:57 ../lib/UX/Widgets/TextViews.vala:122
+msgid "Waterfall"
+msgstr "Водопад"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:59 ../lib/UX/Widgets/TextViews.vala:123
+msgid "Body Text"
+msgstr "Основной текст"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:121
+#: ../src/font-manager/MainWindow.vala:213
+msgid "Preview"
+msgstr "Предварительный просмотр"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:122
+msgid "Properties"
+msgstr "Свойства"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:124
+msgid "Characters"
+msgstr "Символы"
+
+#: ../lib/UX/Views/FontPreviewPane.vala:246
+msgid "Select preview type"
+msgstr "Выберите тип предварительного просмотра"
+
+#: ../lib/UX/Widgets/CellRendererPill.vala:30
+msgid "Variation "
+msgstr "Вариация"
+
+#: ../lib/UX/Widgets/CellRendererPill.vala:31
+msgid "Variations"
+msgstr "Вариаций"
+
+#: ../src/font-manager/Compare.vala:35
+msgid "Add selected font to comparison"
+msgstr "Добавить выбранный шрифт в поле сравнения"
+
+#: ../src/font-manager/Compare.vala:36
+msgid "Remove selected font from comparison"
+msgstr "Удалить выбранный шрифт из поля сравнения"
+
+#: ../src/font-manager/Compare.vala:43
+msgid "Select text color"
+msgstr "Выбрать цвет текста"
+
+#: ../src/font-manager/Compare.vala:44
+msgid "Select background color"
+msgstr "Выбрать цвет фона"
+
+#: ../src/font-manager/MainWindow.vala:57
+#: ../src/font-manager/MainWindow.vala:219
+msgid "Browse"
+msgstr "Просмотр"
+
+#: ../src/font-manager/MainWindow.vala:59
+#: ../src/font-manager/MainWindow.vala:214
+msgid "Compare"
+msgstr "Сравнение"
+
+#: ../src/font-manager/MainWindow.vala:61
+#: ../src/font-manager/MainWindow.vala:218
+msgid "Manage"
+msgstr "Управление"
+
+#: ../src/font-manager/Migration.vala:59
+msgid "_Continue"
+msgstr "_Продолжить"
+
+#: ../src/font-manager/Migration.vala:69
+msgid "Update Required"
+msgstr "Требуется обновление"
+
+#: ../src/font-manager/Migration.vala:206
+msgid ""
+"\n"
+"Font Manager has detected files from a previous installation. Some files "
+"from previous versions are incompatible with this release. Others have been "
+"deprecated or moved.\n"
+"\n"
+"Font Manager will now attempt to migrate your fonts and collections. Files "
+"and settings which are no longer necessary or valid will be deleted. Any "
+"configuration files that could cause a conflict will also be deleted.\n"
+"\n"
+"It is strongly recommended that you back up any important files before "
+"proceeding.\n"
+msgstr ""
+"\n"
+"Менеджер шрифтов обнаружил файлы предыдущей установки. Некоторые файлы "
+"предыдущих версий несовместимы с данной версией. Остальные файлы были "
+"объявлены устаревшими или удалены.\n"
+"\n"
+"Менеджер шрифтов попробует перенести ваши шрифты и их коллекции. Файлы "
+"и настройки, которые больше не требуются, будут удалены. Также будут "
+"удалены файлы настроек, конфликтующие с данной версией программы.\n"
+"\n"
+"Перед продолжением строго рекомендуется сделать резервную копию всех "
+"важных файлов.\n"
+
+#: ../src/font-manager/Preferences/Display.vala:48
+#: ../src/font-manager/Preferences/Rendering.vala:47
+msgid "Settings saved to file."
+msgstr "Настройки сохранены в файл."
+
+#: ../src/font-manager/Preferences/Display.vala:52
+#: ../src/font-manager/Preferences/Rendering.vala:51
+msgid "Removed configuration file."
+msgstr "Файл настроек удален."
+
+#: ../src/font-manager/Preferences/Interface.vala:42
+msgid "Wide Layout"
+msgstr "Широкое расположение"
+
+#: ../src/font-manager/Preferences/Interface.vala:44
+msgid "Only when maximized"
+msgstr "Только если окно развернуто на весь экран"
+
+#: ../src/font-manager/Preferences/Interface.vala:48
+msgid "Client Side Decorations"
+msgstr "Отрисовка на стороне клиента (CSD)"
+
+#: ../src/font-manager/Preferences/Interface.vala:101
+msgid ""
+"CSD enabled. Change will take effect next time the application is started."
+msgstr ""
+"Отрисовка на стороне клиента (CSD) включена. Изменения вступят в силу "
+"после перезапуска программы."
+
+#: ../src/font-manager/Preferences/Interface.vala:103
+msgid ""
+"CSD disabled. Change will take effect next time the application is started."
+msgstr ""
+"Отрисовка на стороне клиента (CSD) отключена. Изменения вступят в силу "
+"после перезапуска программы."
+
+#: ../src/font-manager/Preferences/Preferences.vala:28
+msgid "Sources"
+msgstr "Источники"
+
+#: ../src/font-manager/Preferences/Preferences.vala:29
+msgid "Rendering"
+msgstr "Рендеринг"
+
+#: ../src/font-manager/Preferences/Preferences.vala:30
+msgid "Display"
+msgstr "Текст и экран"
+
+#: ../src/font-manager/Preferences/Preferences.vala:31
+msgid "Interface"
+msgstr "Интерфейс"
+
+#: ../src/font-manager/Preferences/Sources.vala:40
+msgid "Add source"
+msgstr "Добавить источник"
+
+#: ../src/font-manager/Preferences/Sources.vala:41
+msgid "Remove selected source"
+msgstr "Удалить выбранный источник"
+
+#: ../src/font-manager/SideBar.vala:172
+msgid "Categories"
+msgstr "Категории"
+
+#: ../src/font-manager/SideBar.vala:173
+msgid "Collections"
+msgstr "Коллекции"
+
+#: ../src/font-manager/TitleBar.vala:63
+msgid "Add Fonts"
+msgstr "Добавить шрифты"
+
+#: ../src/font-manager/TitleBar.vala:64
+msgid "Remove Fonts"
+msgstr "Удалить шрифты"
+
+#: ../src/font-manager/TitleBar.vala:71
+msgid "Preferences"
+msgstr "Настройки"
+
+#: ../src/font-manager/TitleBar.vala:160
+msgid "Help"
+msgstr "Помощь"
+
+#: ../src/font-manager/TitleBar.vala:161
+msgid "About"
+msgstr "О программе"
+
+#: ../src/font-manager/TitleBar.vala:162
+msgid "Quit"
+msgstr "Выйти"
+
+#: ../src/font-viewer/Application.vala:121
+#: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:52
+msgid "Font Viewer"
+msgstr "Просмотрщик шрифтов"
+
+#: ../src/font-viewer/MainWindow.vala:29
+msgid "Preview font files before installing them."
+msgstr "Просмотр файлов шрифтов перед их установкой."
+
+#: ../src/font-viewer/MainWindow.vala:30
+msgid "To preview a font simply drag it onto this area."
+msgstr "Перетащите файл шрифта в эту область, чтобы просмотреть его."
+
+#: ../src/font-viewer/MainWindow.vala:58 ../src/font-viewer/MainWindow.vala:163
+msgid "Install Font"
+msgstr "Установить шрифт"
+
+#: ../src/font-viewer/MainWindow.vala:155
+msgid "Newer version already installed"
+msgstr "Последняя версия программы уже установлена."
+
+#: ../src/font-viewer/MainWindow.vala:159
+msgid "Installed"
+msgstr "Установленные"
+
+#: ../data/ApplicationMenu.ui.h:1
+msgid "_Help"
+msgstr "_Помощь"
+
+#: ../data/ApplicationMenu.ui.h:2
+msgid "_About"
+msgstr "_О программе"
+
+#: ../data/ApplicationMenu.ui.h:3
+msgid "_Quit"
+msgstr "_Выйти"
