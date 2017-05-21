@@ -1,27 +1,26 @@
-# Piotr Strebski <strebski@gmail.com>, 2016. #zanata
+# Toni Estevez <toni.estevez@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2017-05-20 22:44-0400\n"
-"PO-Revision-Date: 2016-05-27 02:36-0400\n"
-"Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
-"Language-Team: Polish\n"
-"Language: pl\n"
+"PO-Revision-Date: 2017-03-05 04:50-0500\n"
+"Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
+"Language-Team: Catalan\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 3.9.6\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../lib/Common/About.vala:28
 msgid "Font Manager"
-msgstr "Zarządzanie czcionkami"
+msgstr "Gestor de tipus de lletra"
 
 #: ../lib/Common/About.vala:30
 msgid "Simple font management for GTK+ desktop environments"
-msgstr "Proste zarządzanie czcionkami dla środowisk pulpitowych GTK+"
+msgstr "Gestió de tipus de lletra per a entorns d'escriptori GTK+"
 
 #: ../lib/Common/About.vala:34
 msgid ""
@@ -41,156 +40,171 @@ msgid ""
 "gpl-3.0.txt>.\n"
 "    "
 msgstr ""
+"\n"
+"    Aquest programa és programari lliure: el podeu redistribuir i/o\n"
+"    modificar sota els termes de la Llicència Pública General de\n"
+"    GNU publicada per la Free Software Foundation, ja sigui la versió 3\n"
+"    de la Llicència o (a la vostra elecció) qualsevol versió posterior.\n"
+"\n"
+"    Aquest programa es distribueix amb l'esperança que sigui útil,\n"
+"    però SENSE CAP GARANTIA; ni tan sols la garantia implícita de\n"
+"    COMERCIALITZACIÓ o d'APTITUD PER A UN OBJECTIU PARTICULAR.\n"
+"    Consulteu la Llicència Pública General de GNU per a més detalls.\n"
+"\n"
+"    Hauríeu d'haver rebut una còpia de la Llicència Pública General de GNU\n"
+"    amb aquest programa. Si no, visiteu <http://www.gnu.org/licenses/gpl-3.0."
+"txt>.\n"
+"    "
 
 #: ../lib/Common/Constants.vala:38
 msgid "Enter Collection Name"
-msgstr "Podaj nazwę kolekcji"
+msgstr "Introduïu el nom"
 
 #: ../lib/Filters/Collection.vala:36
 msgid "New Collection"
-msgstr "Nowa kolekcja"
+msgstr "Col·lecció nova"
 
 #: ../lib/Filters/Disabled.vala:29
 msgid "Disabled"
-msgstr "Wyłączone"
+msgstr "Desactivats"
 
 #: ../lib/Filters/Disabled.vala:29
 msgid "Fonts which have been disabled"
-msgstr "Czcionki, które zostały wyłączone"
+msgstr "Tipus que han estat desactivats"
 
 #: ../lib/Filters/Filter.vala:40
 #, c-format
 msgid "Created : %s"
-msgstr "Utworzone: %s"
+msgstr "Data de creació: %s"
 
 #: ../lib/Filters/Unsorted.vala:29
 msgid "Unsorted"
-msgstr "Nieposortowane"
+msgstr "Sense classificar"
 
 #: ../lib/Filters/Unsorted.vala:29
 msgid "Fonts not present in any collection"
-msgstr "Czcionki niedostępne w żadnej kolekcji"
+msgstr "Tipus de lletra no presents a cap col·lecció"
 
 #: ../lib/FontConfig/Enums.vala:41
 msgid "Ultra-Condensed"
-msgstr "Bardzo zagęszczone"
+msgstr "Ultracondensada"
 
 #: ../lib/FontConfig/Enums.vala:43
 msgid "Extra-Condensed"
-msgstr "Ekstra zagęszczone"
+msgstr "Extracondensada"
 
 #: ../lib/FontConfig/Enums.vala:45
 msgid "Condensed"
-msgstr "Zagęszczone"
+msgstr "Condensada"
 
 #: ../lib/FontConfig/Enums.vala:47
 msgid "Semi-Condensed"
-msgstr "Połowa zagęszczenia"
+msgstr "Semicondensada"
 
 #: ../lib/FontConfig/Enums.vala:49
 msgid "Semi-Expanded"
-msgstr "Połowa rozszerzenia"
+msgstr "Semiexpandida"
 
 #: ../lib/FontConfig/Enums.vala:51
 msgid "Expanded"
-msgstr "Rozszerzone"
+msgstr "Expandida"
 
 #: ../lib/FontConfig/Enums.vala:53
 msgid "Extra-Expanded"
-msgstr "Ekstra rozszerzone"
+msgstr "Extraexpandida"
 
 #: ../lib/FontConfig/Enums.vala:55
 msgid "Ultra-Expanded"
-msgstr "Bardzo rozszerzone"
+msgstr "Ultraexpandida"
 
 #: ../lib/FontConfig/Enums.vala:73
 msgid "Italic"
-msgstr "Kursywa"
+msgstr "Itàlica"
 
 #: ../lib/FontConfig/Enums.vala:75
 msgid "Oblique"
-msgstr "Nachylone"
+msgstr "Oblíqua"
 
 #: ../lib/FontConfig/Enums.vala:128
 msgid "Thin"
-msgstr "Cienkie"
+msgstr "Fina"
 
 #: ../lib/FontConfig/Enums.vala:130
 msgid "Ultra-Light"
-msgstr "Bardzo lekkie"
+msgstr "Ultralleugera"
 
 #: ../lib/FontConfig/Enums.vala:132 ../lib/FontConfig/Enums.vala:212
 msgid "Light"
-msgstr "Lekkie"
+msgstr "Lleugera"
 
 #: ../lib/FontConfig/Enums.vala:134
 msgid "Book"
-msgstr "Książka"
+msgstr "Llibre"
 
 #: ../lib/FontConfig/Enums.vala:136 ../lib/FontConfig/Enums.vala:190
 msgid "Medium"
-msgstr "Średnie"
+msgstr "Mitjà"
 
 #: ../lib/FontConfig/Enums.vala:138
 msgid "Semi-Bold"
-msgstr "Połowa pogrubienia"
+msgstr "Seminegreta"
 
 #: ../lib/FontConfig/Enums.vala:140
 msgid "Bold"
-msgstr "Pogrubione"
+msgstr "Negreta"
 
 #: ../lib/FontConfig/Enums.vala:142
 msgid "Ultra-Bold"
-msgstr "Bardzo pogrubione"
+msgstr "Ultranegreta"
 
 #: ../lib/FontConfig/Enums.vala:144
 msgid "Heavy"
-msgstr "Ciężkie"
+msgstr "Pesada"
 
 #: ../lib/FontConfig/Enums.vala:146
 msgid "Ultra-Heavy"
-msgstr "Bardzo ciężkie"
+msgstr "Ultrapesada"
 
 #: ../lib/FontConfig/Enums.vala:164
 msgid "Proportional"
-msgstr "Proporcjonalne"
+msgstr "Proporcional"
 
 #: ../lib/FontConfig/Enums.vala:166
 msgid "Dual Width"
-msgstr "Podwójna szerokość"
+msgstr "Amplada doble"
 
 #: ../lib/FontConfig/Enums.vala:168
 msgid "Monospace"
-msgstr "Stała szerokość"
+msgstr "Monoespaiada"
 
 #: ../lib/FontConfig/Enums.vala:170
 msgid "Charcell"
-msgstr ""
+msgstr "Constant"
 
 #: ../lib/FontConfig/Enums.vala:188
 msgid "Slight"
-msgstr "Drobne"
+msgstr "Lleuger"
 
 #: ../lib/FontConfig/Enums.vala:192
 msgid "Full"
-msgstr "Pełne"
+msgstr "Complet"
 
 #: ../lib/FontConfig/Enums.vala:194 ../lib/FontConfig/Enums.vala:216
 #: ../lib/FontConfig/Enums.vala:244
 msgid "None"
-msgstr "Brak"
+msgstr "Cap"
 
 #: ../lib/FontConfig/Enums.vala:210
 msgid "Default"
-msgstr "Domyślne"
+msgstr "Predeterminat"
 
 #: ../lib/FontConfig/Enums.vala:214
 msgid "Legacy"
-msgstr "Przestarzałe"
+msgstr "Llegat"
 
 #: ../lib/FontConfig/Enums.vala:234
 msgid "Unknown"
-msgstr "Nieznane"
+msgstr "Desconegut"
 
 #: ../lib/FontConfig/Enums.vala:236
 msgid "RGB"
@@ -210,445 +224,446 @@ msgstr "VBGR"
 
 #: ../lib/FontConfig/Families.vala:45
 msgid "Loading available font families"
-msgstr "Wczytywanie dostępnych rodzin czcionek"
+msgstr "Càrrega de les famílies tipogràfiques disponibles"
 
 #: ../lib/FontConfig/Sources.vala:83 ../lib/FontConfig/Sources.vala:97
 msgid "Source Unavailable"
-msgstr "Źródło niedostępne"
+msgstr "Origen no disponible"
 
 #: ../lib/FontConfig/Sources.vala:244 ../lib/FontConfig/XmlWriter.vala:38
 msgid " Generated by Font Manager. Do NOT edit this file. "
-msgstr "Utworzone przez Zarządzanie czcionkami. NIE modyfikuj tego pliku."
+msgstr " Generated by Font Manager. Do NOT edit this file. "
 
 #: ../lib/Library/Install.vala:138
 msgid "Installing files"
-msgstr "Instalowanie plików"
+msgstr "Instal·lació de fitxers"
 
 #: ../lib/Library/Install.vala:170
 msgid "Preparing Archives"
-msgstr "Przygotowywanie archiwów"
+msgstr "Preparació de fitxers"
 
 #: ../lib/Library/Remove.vala:81
 msgid "Removing files"
-msgstr "Usuwanie plików"
+msgstr "Supressió de fitxers"
 
 #: ../lib/Library/Sorter.vala:91
 msgid "Processing directories"
-msgstr "Przetwarzanie katalogów"
+msgstr "Processament de carpetes"
 
 #: ../lib/Library/Sorter.vala:123
 msgid "Processing files"
-msgstr "Przetwarzanie plików"
+msgstr "Processament de fitxers"
 
 #: ../lib/UX/CharacterMap/CharacterMapSideBar.vala:96
 msgid "Unicode Script"
-msgstr "Skrypt Unikodu"
+msgstr "Escriptura Unicode"
 
 #: ../lib/UX/CharacterMap/CharacterMapSideBar.vala:97
 msgid "Unicode Block"
-msgstr "Blok Unikodu"
+msgstr "Bloc Unicode"
 
 #: ../lib/UX/Controls/CollectionControls.vala:32
 msgid "Add new collection"
-msgstr "Dodaj nową kolekcję"
+msgstr "Afegeix una col·lecció nova"
 
 #: ../lib/UX/Controls/CollectionControls.vala:33
 msgid "Remove selected collection"
-msgstr "Usuń wybraną kolekcję"
+msgstr "Suprimeix la col·lecció seleccionada"
 
 #: ../lib/UX/Controls/FontListControls.vala:46
 msgid "Remove selected font from collection"
-msgstr "Usuń wybraną czcionkę z kolekcji"
+msgstr "Suprimeix els tipus de lletra seleccionats de la col·lecció"
 
 #: ../lib/UX/Controls/FontListControls.vala:50
 #: ../lib/UX/Controls/FontListControls.vala:65
 msgid "Expand all"
-msgstr "Rozwiń wszystkie"
+msgstr "Expandeix-ho tot"
 
 #: ../lib/UX/Controls/FontListControls.vala:54
 msgid "Search Families..."
-msgstr "Szukaj rodzin..."
+msgstr "Cerca famílies..."
 
 #: ../lib/UX/Controls/FontListControls.vala:65
 msgid "Collapse all"
-msgstr "Zwiń wszystkie"
+msgstr "Redueix-ho tot"
 
 #: ../lib/UX/Controls/PreviewControls.vala:91
 msgid "Edit preview text"
-msgstr "Edycja tekstu podglądu"
+msgstr "Edita el text de la vista prèvia"
 
 #: ../lib/UX/Controls/PreviewControls.vala:94
 msgid "Undo changes"
-msgstr "Wycofaj zmiany"
+msgstr "Desfés els canvis"
 
 #: ../lib/UX/Controls/PreviewControls.vala:99
 msgid "Left Aligned"
-msgstr "Wyrównane do lewej"
+msgstr "Alineat a l'esquerra"
 
 #: ../lib/UX/Controls/PreviewControls.vala:99
 msgid "Centered"
-msgstr "Wyśrodkowane"
+msgstr "Centrat"
 
 #: ../lib/UX/Controls/PreviewControls.vala:99
 msgid "Fill"
-msgstr "Wypełnij"
+msgstr "Justificat"
 
 #: ../lib/UX/Controls/PreviewControls.vala:99
 msgid "Right Aligned"
-msgstr "Wyrównane do prawej"
+msgstr "Alineat a la dreta"
 
 #: ../lib/UX/FontConfig/Controls.vala:66
 msgid "Save"
-msgstr "Zapisz"
+msgstr "Desa"
 
 #: ../lib/UX/FontConfig/Controls.vala:68
 msgid "Discard"
-msgstr "Odrzuć"
+msgstr "Descarta"
 
 #: ../lib/UX/FontConfig/Controls.vala:70
 msgid "Running applications may require a restart to reflect any changes."
 msgstr ""
-"Aby odzwierciedlić poczynione zmiany, działające programy mogą wymagać "
-"ponownego uruchomienia."
+"Les aplicacions en execució poden requerir un reinici per reflectir els "
+"canvis"
 
 #: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:44
 msgid "Target DPI"
-msgstr "Docelowe DPI"
+msgstr "Punts per polzada (DPI)"
 
 #: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:45
 msgid "Scale factor"
-msgstr "Czynnik skali"
+msgstr "Factor d'escala"
 
 #: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:49
 msgid "LCD Filter"
-msgstr "Filtr LCD"
+msgstr "Filtre LCD"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:54
 msgid "Antialias"
-msgstr "Antyalias"
+msgstr "Suavitzat"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:55
 msgid "Hinting"
-msgstr "Hinting"
+msgstr "Millora del contorn"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:56
 msgid "Enable Autohinter"
-msgstr "Włącz automatyczny hinting"
+msgstr "Millora del contorn automàtica"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:64
 msgid "Hinting Style"
-msgstr "Styl hintingu"
+msgstr "Estil de millora del contorn"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:65
 msgid "Use Embedded Bitmaps"
-msgstr "Użyj osadzonych bitmap"
+msgstr "Mapes de bits incrustats"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:67
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:72
 msgid " Size Restrictions "
-msgstr "Ograniczenia rozmiaru"
+msgstr " Restriccions de mida "
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:70
 msgid " Apply settings to point sizes "
-msgstr "Zastosuj ustawienia do rozmiarów punktu"
+msgstr " Aplica la configuració a les mides de punts "
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:143
 msgid "Smaller than"
-msgstr "Mniejsze niż"
+msgstr "Més petit que"
 
 #: ../lib/UX/FontConfig/FontPropertiesPane.vala:144
 msgid "Larger than"
-msgstr "Większe niż"
+msgstr "Més gran que"
 
 #: ../lib/UX/FontConfig/FontSourceList.vala:26
 msgid "Font Sources"
-msgstr "Źródła czcionek"
+msgstr "Orígens dels tipus de lletra"
 
 #: ../lib/UX/FontConfig/FontSourceList.vala:27
 msgid "Easily add or preview fonts without actually installing them."
-msgstr "Łatwo dodaj lub podejrzyj czcionki bez ich instalowania."
+msgstr ""
+"Afegeix tipus de lletra per previsualitzar-los sense haver de instal·lar-los"
 
 #: ../lib/UX/FontConfig/FontSourceList.vala:28
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr ""
-"Aby dodać nowe źródło po prostu przeciągnij katalog na ten obszar lub "
-"kliknij przycisk dodawania na pasku narzędzi."
+"Per afegir un origen nou, arrossegueu una carpeta aquí o feu clic al botó "
+"d'afegir de la barra d'eines"
 
 #: ../lib/UX/FontConfig/FontSourceList.vala:194
 msgid "Select source folders"
-msgstr "Wybierz katalogi źródeł"
+msgstr "Selecciona carpetes d'origen"
 
 #: ../lib/UX/FontConfig/FontSourceList.vala:197
 #: ../lib/UX/Utils/FileSelector.vala:40 ../lib/UX/Utils/FileSelector.vala:67
 #: ../src/font-manager/Migration.vala:58
 msgid "_Cancel"
-msgstr "_Anuluj"
+msgstr "_Cancel·la"
 
 #: ../lib/UX/FontConfig/FontSourceList.vala:199
 #: ../lib/UX/Utils/FileSelector.vala:42
 msgid "_Open"
-msgstr "_Otwórz"
+msgstr "_Obre"
 
 #: ../lib/UX/FontConfig/SubpixelGeometry.vala:55
 msgid "Subpixel Geometry"
-msgstr "Geometria podpikselowa"
+msgstr "Geometria dels subpíxels"
 
 #: ../lib/UX/FontConfig/Substitute.vala:78
 msgid "prefer"
-msgstr "preferuj"
+msgstr "prefereix"
 
 #: ../lib/UX/FontConfig/Substitute.vala:79
 msgid "accept"
-msgstr "akceptuj"
+msgstr "accepta"
 
 #: ../lib/UX/FontConfig/Substitute.vala:80
 msgid "default"
-msgstr "domyślne"
+msgstr "per defecte"
 
 #: ../lib/UX/Metadata/License.vala:42
 msgid "File does not contain license information."
-msgstr "Plik nie zawiera informacji licencyjnych."
+msgstr "El fitxer no conté informació sobre la llicència"
 
 #: ../lib/UX/Metadata/Properties.vala:37
 msgid "PostScript Name"
-msgstr "Nazwa PostScript"
+msgstr "Nom PostScript"
 
 #: ../lib/UX/Metadata/Properties.vala:38
 #: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Weight"
-msgstr "Grubość"
+msgstr "Pes"
 
 #: ../lib/UX/Metadata/Properties.vala:39
 #: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Slant"
-msgstr "Pochylenie"
+msgstr "Inclinació"
 
 #: ../lib/UX/Metadata/Properties.vala:40
 #: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Width"
-msgstr "Szerokość"
+msgstr "Amplada"
 
 #: ../lib/UX/Metadata/Properties.vala:41
 #: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Spacing"
-msgstr "Odstęp"
+msgstr "Espaiat"
 
 #: ../lib/UX/Metadata/Properties.vala:42
 msgid "Version"
-msgstr "Wersja"
+msgstr "Versió"
 
 #: ../lib/UX/Metadata/Properties.vala:43
 #: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Vendor"
-msgstr "Dostawca"
+msgstr "Proveïdor"
 
 #: ../lib/UX/Metadata/Title.vala:51 ../src/font-viewer/TitleBar.vala:49
 msgid "OpenType Font"
-msgstr "Czcionka OpenType"
+msgstr "Tipus de lletra OpenType"
 
 #: ../lib/UX/Metadata/Title.vala:52 ../src/font-viewer/TitleBar.vala:50
 msgid "TrueType Font"
-msgstr "Czcionka TrueType"
+msgstr "Tipus de lletra TrueType"
 
 #: ../lib/UX/Metadata/Title.vala:53 ../src/font-viewer/TitleBar.vala:51
 msgid "PostScript Type 1 Font"
-msgstr "Czcionka PostScript Type 1"
+msgstr "Tipus de lletra PostScript Type 1"
 
 #: ../lib/UX/Metadata/Title.vala:105 ../src/font-viewer/TitleBar.vala:99
 msgid "No file selected"
-msgstr "Nie wybrano pliku"
+msgstr "No s'ha seleccionat cap fitxer"
 
 #: ../lib/UX/Metadata/Title.vala:105 ../src/font-viewer/TitleBar.vala:100
 msgid "Or unsupported filetype."
-msgstr "Lub nieobsługiwany rodzaj pliku."
+msgstr "O el tipus de fitxer no és compatible"
 
 #: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All"
-msgstr "Wszystkie"
+msgstr "Tots"
 
 #: ../lib/UX/Models/CategoryModel.vala:92
 msgid "All Fonts"
-msgstr "Wszystkie czcionki"
+msgstr "Tots els tipus de lletra"
 
 #: ../lib/UX/Models/CategoryModel.vala:94
 msgid "System"
-msgstr "System"
+msgstr "Sistema"
 
 #: ../lib/UX/Models/CategoryModel.vala:94
 msgid "Fonts available to all users"
-msgstr "Czcionki dostępne dla wszystkich użytkowników"
+msgstr "Tipus de lletra disponibles per a tots els usuaris"
 
 #: ../lib/UX/Models/CategoryModel.vala:96
 msgid "User"
-msgstr "Użytkownik"
+msgstr "Usuari"
 
 #: ../lib/UX/Models/CategoryModel.vala:96
 msgid "Fonts available only to you"
-msgstr "Czcionki dostępne tylko dla Ciebie"
+msgstr "Tipus de lletra disponibles només per a l'usuari actual"
 
 #: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Grouped by font spacing"
-msgstr "Pogrupowane według odstępu czcionek"
+msgstr "Agrupats per l'espaiat dels tipus lletra"
 
 #: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Grouped by font angle"
-msgstr "Pogrupowane według kąta czcionek"
+msgstr "Agrupats per la inclinació dels tipus de lletra"
 
 #: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Grouped by font weight"
-msgstr "Pogrupowane według grubości czcionek"
+msgstr "Agrupats pel pes dels tipus de lletra"
 
 #: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Grouped by font width"
-msgstr "Pogrupowane według szerokości czcionek"
+msgstr "Agrupats per l'amplada dels tipus de lletra"
 
 #: ../lib/UX/Models/CategoryModel.vala:108
 msgid "Filetype"
-msgstr "Rodzaj pliku"
+msgstr "Tipus de fitxer"
 
 #: ../lib/UX/Models/CategoryModel.vala:108
 msgid "Grouped by filetype"
-msgstr "Pogrupowane według rodzaju pliku"
+msgstr "Agrupats pel tipus de fitxer"
 
 #: ../lib/UX/Models/CategoryModel.vala:110
 #: ../lib/UX/Views/FontPreviewPane.vala:123
 msgid "License"
-msgstr "Licencja"
+msgstr "Licència"
 
 #: ../lib/UX/Models/CategoryModel.vala:110
 msgid "Grouped by license type"
-msgstr "Pogrupowane według rodzaju licencji"
+msgstr "Agrupats pel tipus de llicència"
 
 #: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Grouped by vendor"
-msgstr "Pogrupowane według dostawcy"
+msgstr "Agrupats pel proveïdor"
 
 #: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Family Kind"
-msgstr "Rodzaj rodziny"
+msgstr "Classes de famílies"
 
 #: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
-"Tutaj pogrupowane są tylko czcionki, które posiadają informację Panose."
+"Només s'inclouen aquí els tipus de lletra que inclouen informació PANOSE"
 
 #: ../lib/UX/Models/CategoryModel.vala:126
 msgid "Any"
-msgstr "Dowolne"
+msgstr "Cap"
 
 #: ../lib/UX/Models/CategoryModel.vala:127
 msgid "No Fit"
-msgstr "Brak pasujących"
+msgstr "Sense ajust"
 
 #: ../lib/UX/Models/CategoryModel.vala:128
 msgid "Text and Display"
-msgstr "Tekst i wyświetlanie"
+msgstr "Text i pantalla"
 
 #: ../lib/UX/Models/CategoryModel.vala:129
 msgid "Script"
-msgstr "Skrypt"
+msgstr "Manuscrita"
 
 #: ../lib/UX/Models/CategoryModel.vala:130
 msgid "Decorative"
-msgstr "Dekoracyjne"
+msgstr "Decorativa"
 
 #: ../lib/UX/Models/CategoryModel.vala:131
 msgid "Pictorial"
-msgstr "Obrazkowe"
+msgstr "Pictòrica"
 
 #: ../lib/UX/Models/CategoryModel.vala:165
 msgid "Normal"
-msgstr "Normalne"
+msgstr "Normal"
 
 #: ../lib/UX/Models/CategoryModel.vala:170
 msgid "Regular"
-msgstr "Regularne"
+msgstr "Regular"
 
 #: ../lib/UX/Utils/FileSelector.vala:37
 msgid "Select files to install"
-msgstr "Wybierz pliki do zainstalowania"
+msgstr "Selecciona fitxers per instal·lar"
 
 #: ../lib/UX/Utils/FileSelector.vala:68
 msgid "_Delete"
-msgstr "_Skasuj"
+msgstr "_Suprimeix"
 
 #: ../lib/UX/Utils/FileSelector.vala:75
 msgid "Select fonts to remove"
-msgstr "Wybierz czcionki do usunięcia"
+msgstr "Selecciona tipus per suprimir"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:57 ../lib/UX/Widgets/TextViews.vala:122
 msgid "Waterfall"
-msgstr "Wodospad"
+msgstr "Cascada"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:59 ../lib/UX/Widgets/TextViews.vala:123
 msgid "Body Text"
-msgstr "Tekst główny"
+msgstr "Cos de text"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:121
 #: ../src/font-manager/MainWindow.vala:213
 msgid "Preview"
-msgstr "Podgląd"
+msgstr "Vista prèvia"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:122
 msgid "Properties"
-msgstr "Właściwości"
+msgstr "Propietats"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:124
 msgid "Characters"
-msgstr "Znaki"
+msgstr "Caràcters"
 
 #: ../lib/UX/Views/FontPreviewPane.vala:246
 msgid "Select preview type"
-msgstr "Wybierz rodzaj podglądu"
+msgstr "Selecciona el tipus de vista prèvia"
 
 #: ../lib/UX/Widgets/CellRendererPill.vala:30
 msgid "Variation "
-msgstr "odmiana"
+msgstr "tipus "
 
 #: ../lib/UX/Widgets/CellRendererPill.vala:31
 msgid "Variations"
-msgstr "odmiany"
+msgstr "tipus"
 
 #: ../src/font-manager/Compare.vala:35
 msgid "Add selected font to comparison"
-msgstr "Dodaj wybraną czcionkę do porównania"
+msgstr "Afegeix el tipus de lletra seleccionat a la comparació"
 
 #: ../src/font-manager/Compare.vala:36
 msgid "Remove selected font from comparison"
-msgstr "Usuń wybraną czcionkę z porównania"
+msgstr "Suprimeix el tipus de lletra seleccionat de la comparació"
 
 #: ../src/font-manager/Compare.vala:43
 msgid "Select text color"
-msgstr "Wybierz kolor tekstu"
+msgstr "Selecciona el color del text"
 
 #: ../src/font-manager/Compare.vala:44
 msgid "Select background color"
-msgstr "Wybierz kolor tła"
+msgstr "Selecciona el color del fons"
 
 #: ../src/font-manager/MainWindow.vala:57
 #: ../src/font-manager/MainWindow.vala:219
 msgid "Browse"
-msgstr "Przeglądaj"
+msgstr "Examina"
 
 #: ../src/font-manager/MainWindow.vala:59
 #: ../src/font-manager/MainWindow.vala:214
 msgid "Compare"
-msgstr "Porównaj"
+msgstr "Compara"
 
 #: ../src/font-manager/MainWindow.vala:61
 #: ../src/font-manager/MainWindow.vala:218
 msgid "Manage"
-msgstr "Zarządzaj"
+msgstr "Gestiona"
 
 #: ../src/font-manager/Migration.vala:59
 msgid "_Continue"
-msgstr "_Kontynuuj"
+msgstr "_Continua"
 
 #: ../src/font-manager/Migration.vala:69
 msgid "Update Required"
-msgstr "Wymagana aktualizacja"
+msgstr "Cal una actualització"
 
 #: ../src/font-manager/Migration.vala:206
 msgid ""
@@ -665,143 +680,143 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 "\n"
-"Zarządzanie czcionkami wykryło pliki z poprzedniej instalacji. Niektóre "
-"pliki z poprzednich wersji są niezgodne z obecną wersją. Inne zostały "
-"zdezaktualizowane lub przeniesione.\n"
+"El Gestor de tipus de lletra ha detectat fitxers d'una instal·lació "
+"anterior. Alguns fitxers de versions anteriors no són compatibles amb "
+"aquesta versió. D'altres han quedat en desús o han canviat de lloc.\n"
 "\n"
-"Zarządzanie czcionkami dokona teraz próby migracji Twoich czcionek i "
-"kolekcji. Pliki i ustawienia, które nie są już więcej potrzebne lub są "
-"nieważne, zostaną usunięte. Wszystkie pliki konfiguracyjne, które mogą "
-"powodować konflikty, również zostaną usunięte.\n"
+"El Gestor de tipus de lletra intentarà ara migrar els tipus i les "
+"col·leccions existents. Se suprimiran els fitxers i configuracions que ja no "
+"són vàlids o necessaris. També se suprimiran els fitxers de configuració que "
+"poden provocar un conflicte.\n"
 "\n"
-"Zdecydowanie zaleca się wykonanie kopii zapasowej ważnych plików przed "
-"kontynuacją.\n"
+"És molt recomanable que feu una còpia de seguretat dels fitxers importants "
+"abans de continuar.\n"
 
 #: ../src/font-manager/Preferences/Display.vala:48
 #: ../src/font-manager/Preferences/Rendering.vala:47
 msgid "Settings saved to file."
-msgstr "Ustawienia zostały zapisane do pliku."
+msgstr "S'ha desat la configuració al fitxer"
 
 #: ../src/font-manager/Preferences/Display.vala:52
 #: ../src/font-manager/Preferences/Rendering.vala:51
 msgid "Removed configuration file."
-msgstr "Usunięty plik konfiguracyjny."
+msgstr "S'ha suprimit el fitxer de configuració"
 
 #: ../src/font-manager/Preferences/Interface.vala:42
 msgid "Wide Layout"
-msgstr "Układ szeroki"
+msgstr "Disposició ampla"
 
 #: ../src/font-manager/Preferences/Interface.vala:44
 msgid "Only when maximized"
-msgstr "Tylko gdy zmaksymalizowane"
+msgstr "Només quan la finestra està maximitzada"
 
 #: ../src/font-manager/Preferences/Interface.vala:48
 msgid "Client Side Decorations"
-msgstr "Dekoracje po stronie klienta"
+msgstr "Decoracions del costat del client"
 
 #: ../src/font-manager/Preferences/Interface.vala:101
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
-"CSD zostało włączone. Zmiany zostaną zastosowane przy następnym uruchomieniu "
-"programu."
+"Decoracions activades: el canvi tindrà efecte la propera vegada que s'iniciï "
+"l'aplicació"
 
 #: ../src/font-manager/Preferences/Interface.vala:103
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
-"CSD zostało wyłączone. Zmiany zostaną zastosowane przy następnym "
-"uruchomieniu programu."
+"Decoracions desactivades: el canvi tindrà efecte la propera vegada que "
+"s'iniciï l'aplicació"
 
 #: ../src/font-manager/Preferences/Preferences.vala:28
 msgid "Sources"
-msgstr "Źródła"
+msgstr "Orígens"
 
 #: ../src/font-manager/Preferences/Preferences.vala:29
 msgid "Rendering"
-msgstr "Renderowanie"
+msgstr "Representació"
 
 #: ../src/font-manager/Preferences/Preferences.vala:30
 msgid "Display"
-msgstr "Wyświetlanie"
+msgstr "Visualització"
 
 #: ../src/font-manager/Preferences/Preferences.vala:31
 msgid "Interface"
-msgstr "Interfejs"
+msgstr "Interfície "
 
 #: ../src/font-manager/Preferences/Sources.vala:40
 msgid "Add source"
-msgstr "Dodaj źródła"
+msgstr "Afegeix un origen"
 
 #: ../src/font-manager/Preferences/Sources.vala:41
 msgid "Remove selected source"
-msgstr "Usuń wybrane źródła"
+msgstr "Elimina l'origen seleccionat"
 
 #: ../src/font-manager/SideBar.vala:172
 msgid "Categories"
-msgstr "Kategorie"
+msgstr "Categories"
 
 #: ../src/font-manager/SideBar.vala:173
 msgid "Collections"
-msgstr "Kolekcje"
+msgstr "Col·leccions"
 
 #: ../src/font-manager/TitleBar.vala:63
 msgid "Add Fonts"
-msgstr "Dodaj czcionki"
+msgstr "Instal·la tipus de lletra"
 
 #: ../src/font-manager/TitleBar.vala:64
 msgid "Remove Fonts"
-msgstr "Usuń czcionki"
+msgstr "Desinstal·la tipus de lletra"
 
 #: ../src/font-manager/TitleBar.vala:71
 msgid "Preferences"
-msgstr "Preferencje"
+msgstr "Preferències"
 
 #: ../src/font-manager/TitleBar.vala:160
 msgid "Help"
-msgstr "Pomoc"
+msgstr "Ajuda"
 
 #: ../src/font-manager/TitleBar.vala:161
 msgid "About"
-msgstr "O programie"
+msgstr "Quant a"
 
 #: ../src/font-manager/TitleBar.vala:162
 msgid "Quit"
-msgstr "Zakończ"
+msgstr "Surt"
 
 #: ../src/font-viewer/Application.vala:121
 #: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:52
 msgid "Font Viewer"
-msgstr "Przeglądarka czcionek"
+msgstr "Visualitzador de tipus de lletra"
 
 #: ../src/font-viewer/MainWindow.vala:29
 msgid "Preview font files before installing them."
-msgstr "Podejrzyj pliki czcionek przed ich zainstalowaniem."
+msgstr "Previsualitzeu els fitxers de tipus de lletra abans d'instal·lar-los"
 
 #: ../src/font-viewer/MainWindow.vala:30
 msgid "To preview a font simply drag it onto this area."
-msgstr "Aby dokonać podglądu czcionki po prostu przeciągnij ją na ten obszar."
+msgstr "Per previsualitzar un tipus de lletra, arrossegueu-lo aquí"
 
 #: ../src/font-viewer/MainWindow.vala:58 ../src/font-viewer/MainWindow.vala:163
 msgid "Install Font"
-msgstr "Zainstaluj czcionkę"
+msgstr "Instal·la"
 
 #: ../src/font-viewer/MainWindow.vala:155
 msgid "Newer version already installed"
-msgstr "Zainstalowana jest nowsza wersja"
+msgstr "Una versió més recent ja està instal·lada"
 
 #: ../src/font-viewer/MainWindow.vala:159
 msgid "Installed"
-msgstr "Zainstalowane"
+msgstr "Instal·lat"
 
 #: ../data/ApplicationMenu.ui.h:1
 msgid "_Help"
-msgstr "_Pomoc"
+msgstr "Aj_uda"
 
 #: ../data/ApplicationMenu.ui.h:2
 msgid "_About"
-msgstr "_O programie"
+msgstr "Quant _a"
 
 #: ../data/ApplicationMenu.ui.h:3
 msgid "_Quit"
-msgstr "_Zakończ"
+msgstr "_Surt"

@@ -122,6 +122,7 @@ namespace FontManager {
                 Environment.set_variable("XDG_CONFIG_HOME", "", true);
                 FontConfig.enable_user_config(false);
                 Gtk.init(ref args);
+                Gtk.IconTheme.get_default().add_resource_path("/org/gnome/FontManager/icons");
                 return new Application(BUS_ID, (ApplicationFlags.HANDLES_OPEN)).run(args);
             }
 

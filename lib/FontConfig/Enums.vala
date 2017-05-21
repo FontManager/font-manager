@@ -23,7 +23,65 @@
 
 namespace FontConfig {
 
+    public enum Width {
+
+        ULTRACONDENSED = 50,
+        EXTRACONDENSED = 63,
+        CONDENSED = 75,
+        SEMICONDENSED = 87,
+        NORMAL = 100,
+        SEMIEXPANDED = 113,
+        EXPANDED = 125,
+        EXTRAEXPANDED = 150,
+        ULTRAEXPANDED = 200;
+
+        public string? to_string () {
+            switch (this) {
+                case ULTRACONDENSED:
+                    return _("Ultra-Condensed");
+                case EXTRACONDENSED:
+                    return _("Extra-Condensed");
+                case CONDENSED:
+                    return _("Condensed");
+                case SEMICONDENSED:
+                    return _("Semi-Condensed");
+                case SEMIEXPANDED:
+                    return _("Semi-Expanded");
+                case EXPANDED:
+                    return _("Expanded");
+                case EXTRAEXPANDED:
+                    return _("Extra-Expanded");
+                case ULTRAEXPANDED:
+                    return _("Ultra-Expanded");
+                default:
+                    return null;
+            }
+        }
+
+    }
+
+
+    public enum Slant {
+
+        ROMAN = 0,
+        ITALIC = 100,
+        OBLIQUE = 110;
+
+        public string? to_string () {
+            switch (this) {
+                case ITALIC:
+                    return _("Italic");
+                case OBLIQUE:
+                    return _("Oblique");
+                default:
+                    return null;
+            }
+        }
+
+    }
+
     public enum Weight {
+
         THIN = 0,
         EXTRALIGHT = 40,
         ULTRALIGHT = 40,
@@ -93,61 +151,8 @@ namespace FontConfig {
 
     }
 
-    public enum Slant {
-        ROMAN = 0,
-        ITALIC = 100,
-        OBLIQUE = 110;
-
-        public string? to_string () {
-            switch (this) {
-                case ITALIC:
-                    return _("Italic");
-                case OBLIQUE:
-                    return _("Oblique");
-                default:
-                    return null;
-            }
-        }
-
-    }
-
-    public enum Width {
-        ULTRACONDENSED = 50,
-        EXTRACONDENSED = 63,
-        CONDENSED = 75,
-        SEMICONDENSED = 87,
-        NORMAL = 100,
-        SEMIEXPANDED = 113,
-        EXPANDED = 125,
-        EXTRAEXPANDED = 150,
-        ULTRAEXPANDED = 200;
-
-        public string? to_string () {
-            switch (this) {
-                case ULTRACONDENSED:
-                    return _("Ultra-Condensed");
-                case EXTRACONDENSED:
-                    return _("Extra-Condensed");
-                case CONDENSED:
-                    return _("Condensed");
-                case SEMICONDENSED:
-                    return _("Semi-Condensed");
-                case SEMIEXPANDED:
-                    return _("Semi-Expanded");
-                case EXPANDED:
-                    return _("Expanded");
-                case EXTRAEXPANDED:
-                    return _("Extra-Expanded");
-                case ULTRAEXPANDED:
-                    return _("Ultra-Expanded");
-                default:
-                    return null;
-            }
-        }
-
-    }
-
     public enum Spacing {
+
         PROPORTIONAL = 0,
         DUAL = 90,
         MONO = 100,
@@ -170,34 +175,8 @@ namespace FontConfig {
 
     }
 
-    public enum SubpixelOrder {
-        UNKNOWN,
-        RGB,
-        BGR,
-        VRGB,
-        VBGR,
-        NONE;
-
-        public string to_string () {
-            switch (this) {
-                case UNKNOWN:
-                    return _("Unknown");
-                case RGB:
-                    return _("RGB");
-                case BGR:
-                    return _("BGR");
-                case VRGB:
-                    return _("VRGB");
-                case VBGR:
-                    return _("VBGR");
-                default:
-                    return _("None");
-            }
-        }
-
-    }
-
     public enum HintStyle {
+
         NONE,
         SLIGHT,
         MEDIUM,
@@ -219,6 +198,7 @@ namespace FontConfig {
     }
 
     public enum LCDFilter {
+
         NONE,
         DEFAULT,
         LIGHT,
@@ -232,6 +212,34 @@ namespace FontConfig {
                     return _("Light");
                 case LEGACY:
                     return _("Legacy");
+                default:
+                    return _("None");
+            }
+        }
+
+    }
+
+    public enum SubpixelOrder {
+
+        UNKNOWN,
+        RGB,
+        BGR,
+        VRGB,
+        VBGR,
+        NONE;
+
+        public string to_string () {
+            switch (this) {
+                case UNKNOWN:
+                    return _("Unknown");
+                case RGB:
+                    return _("RGB");
+                case BGR:
+                    return _("BGR");
+                case VRGB:
+                    return _("VRGB");
+                case VBGR:
+                    return _("VBGR");
                 default:
                     return _("None");
             }

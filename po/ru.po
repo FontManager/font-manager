@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-11-27 16:56-0500\n"
+"POT-Creation-Date: 2017-05-20 22:44-0400\n"
 "PO-Revision-Date: 2016-05-25 11:48-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: none <@>\n"
@@ -89,142 +89,142 @@ msgstr "Неотсортированные"
 msgid "Fonts not present in any collection"
 msgstr "Шрифты, не входящие ни в одну коллекцию"
 
-#: ../lib/FontConfig/Enums.vala:70
-msgid "Thin"
-msgstr "Тонкий"
+#: ../lib/FontConfig/Enums.vala:41
+msgid "Ultra-Condensed"
+msgstr "Ультраконденсированный"
 
-#: ../lib/FontConfig/Enums.vala:72
-msgid "Ultra-Light"
-msgstr "Ультралегкий"
+#: ../lib/FontConfig/Enums.vala:43
+msgid "Extra-Condensed"
+msgstr "Экстраконденсированный"
 
-#: ../lib/FontConfig/Enums.vala:74 ../lib/FontConfig/Enums.vala:232
-msgid "Light"
-msgstr "Легкий (Light)"
+#: ../lib/FontConfig/Enums.vala:45
+msgid "Condensed"
+msgstr "Конденсированный"
 
-#: ../lib/FontConfig/Enums.vala:76
-msgid "Book"
-msgstr "Обычный"
+#: ../lib/FontConfig/Enums.vala:47
+msgid "Semi-Condensed"
+msgstr "Полуконденсированный"
 
-#: ../lib/FontConfig/Enums.vala:78 ../lib/FontConfig/Enums.vala:211
-msgid "Medium"
-msgstr "Средний (Medium)"
+#: ../lib/FontConfig/Enums.vala:49
+msgid "Semi-Expanded"
+msgstr "Полурасширенный"
 
-#: ../lib/FontConfig/Enums.vala:80
-msgid "Semi-Bold"
-msgstr "Полужирный"
+#: ../lib/FontConfig/Enums.vala:51
+msgid "Expanded"
+msgstr "Расширенный"
 
-#: ../lib/FontConfig/Enums.vala:82
-msgid "Bold"
-msgstr "Жирный"
+#: ../lib/FontConfig/Enums.vala:53
+msgid "Extra-Expanded"
+msgstr "Экстрарасширенный"
 
-#: ../lib/FontConfig/Enums.vala:84
-msgid "Ultra-Bold"
-msgstr "Ультражирный"
+#: ../lib/FontConfig/Enums.vala:55
+msgid "Ultra-Expanded"
+msgstr "Ультрарасширенный"
 
-#: ../lib/FontConfig/Enums.vala:86
-msgid "Heavy"
-msgstr "Тяжелый"
-
-#: ../lib/FontConfig/Enums.vala:88
-msgid "Ultra-Heavy"
-msgstr "Ультратяжелый"
-
-#: ../lib/FontConfig/Enums.vala:104
+#: ../lib/FontConfig/Enums.vala:73
 msgid "Italic"
 msgstr "Курсив (Italic)"
 
-#: ../lib/FontConfig/Enums.vala:106
+#: ../lib/FontConfig/Enums.vala:75
 msgid "Oblique"
 msgstr "Наклонный (Oblique)"
 
 #: ../lib/FontConfig/Enums.vala:128
-msgid "Ultra-Condensed"
-msgstr "Ультраконденсированный"
+msgid "Thin"
+msgstr "Тонкий"
 
 #: ../lib/FontConfig/Enums.vala:130
-msgid "Extra-Condensed"
-msgstr "Экстраконденсированный"
+msgid "Ultra-Light"
+msgstr "Ультралегкий"
 
-#: ../lib/FontConfig/Enums.vala:132
-msgid "Condensed"
-msgstr "Конденсированный"
+#: ../lib/FontConfig/Enums.vala:132 ../lib/FontConfig/Enums.vala:212
+msgid "Light"
+msgstr "Легкий (Light)"
 
 #: ../lib/FontConfig/Enums.vala:134
-msgid "Semi-Condensed"
-msgstr "Полуконденсированный"
+msgid "Book"
+msgstr "Обычный"
 
-#: ../lib/FontConfig/Enums.vala:136
-msgid "Semi-Expanded"
-msgstr "Полурасширенный"
+#: ../lib/FontConfig/Enums.vala:136 ../lib/FontConfig/Enums.vala:190
+msgid "Medium"
+msgstr "Средний (Medium)"
 
 #: ../lib/FontConfig/Enums.vala:138
-msgid "Expanded"
-msgstr "Расширенный"
+msgid "Semi-Bold"
+msgstr "Полужирный"
 
 #: ../lib/FontConfig/Enums.vala:140
-msgid "Extra-Expanded"
-msgstr "Экстрарасширенный"
+msgid "Bold"
+msgstr "Жирный"
 
 #: ../lib/FontConfig/Enums.vala:142
-msgid "Ultra-Expanded"
-msgstr "Ультрарасширенный"
+msgid "Ultra-Bold"
+msgstr "Ультражирный"
 
-#: ../lib/FontConfig/Enums.vala:159
+#: ../lib/FontConfig/Enums.vala:144
+msgid "Heavy"
+msgstr "Тяжелый"
+
+#: ../lib/FontConfig/Enums.vala:146
+msgid "Ultra-Heavy"
+msgstr "Ультратяжелый"
+
+#: ../lib/FontConfig/Enums.vala:164
 msgid "Proportional"
 msgstr "Пропорциональный"
 
-#: ../lib/FontConfig/Enums.vala:161
+#: ../lib/FontConfig/Enums.vala:166
 msgid "Dual Width"
 msgstr "Двойная ширина"
 
-#: ../lib/FontConfig/Enums.vala:163
+#: ../lib/FontConfig/Enums.vala:168
 msgid "Monospace"
 msgstr "Моноширинный"
 
-#: ../lib/FontConfig/Enums.vala:165
+#: ../lib/FontConfig/Enums.vala:170
 msgid "Charcell"
 msgstr "Фиксированный"
 
-#: ../lib/FontConfig/Enums.vala:184
-msgid "Unknown"
-msgstr "Неизвестно"
-
-#: ../lib/FontConfig/Enums.vala:186
-msgid "RGB"
-msgstr "RGB (красно-зелено-синий)"
-
 #: ../lib/FontConfig/Enums.vala:188
-msgid "BGR"
-msgstr "BGR (сине-зелено-красный)"
-
-#: ../lib/FontConfig/Enums.vala:190
-msgid "VRGB"
-msgstr "VRGB (вертикальный красно-зелено-синий)"
-
-#: ../lib/FontConfig/Enums.vala:192
-msgid "VBGR"
-msgstr "VBGR (вертикальный сине-зелено-красный)"
-
-#: ../lib/FontConfig/Enums.vala:194 ../lib/FontConfig/Enums.vala:215
-#: ../lib/FontConfig/Enums.vala:236
-msgid "None"
-msgstr "Отсутствует (None)"
-
-#: ../lib/FontConfig/Enums.vala:209
 msgid "Slight"
 msgstr "Стройный (Slight)"
 
-#: ../lib/FontConfig/Enums.vala:213
+#: ../lib/FontConfig/Enums.vala:192
 msgid "Full"
 msgstr "Полный (Full)"
 
-#: ../lib/FontConfig/Enums.vala:230
+#: ../lib/FontConfig/Enums.vala:194 ../lib/FontConfig/Enums.vala:216
+#: ../lib/FontConfig/Enums.vala:244
+msgid "None"
+msgstr "Отсутствует (None)"
+
+#: ../lib/FontConfig/Enums.vala:210
 msgid "Default"
 msgstr "Нормальный"
 
-#: ../lib/FontConfig/Enums.vala:234
+#: ../lib/FontConfig/Enums.vala:214
 msgid "Legacy"
 msgstr "Устаревший (Legacy)"
+
+#: ../lib/FontConfig/Enums.vala:234
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: ../lib/FontConfig/Enums.vala:236
+msgid "RGB"
+msgstr "RGB (красно-зелено-синий)"
+
+#: ../lib/FontConfig/Enums.vala:238
+msgid "BGR"
+msgstr "BGR (сине-зелено-красный)"
+
+#: ../lib/FontConfig/Enums.vala:240
+msgid "VRGB"
+msgstr "VRGB (вертикальный красно-зелено-синий)"
+
+#: ../lib/FontConfig/Enums.vala:242
+msgid "VBGR"
+msgstr "VBGR (вертикальный сине-зелено-красный)"
 
 #: ../lib/FontConfig/Families.vala:45
 msgid "Loading available font families"
@@ -390,8 +390,8 @@ msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr ""
-"Для добавления нового источника просто перетащите папку в данную область "
-"или нажмите на кнопку \"Добавить\" на панели инструментов."
+"Для добавления нового источника просто перетащите папку в данную область или "
+"нажмите на кнопку \"Добавить\" на панели инструментов."
 
 #: ../lib/UX/FontConfig/FontSourceList.vala:194
 msgid "Select source folders"
@@ -428,35 +428,35 @@ msgstr "нормальный"
 msgid "File does not contain license information."
 msgstr "Файл не содержит информацию о лицензии."
 
-#: ../lib/UX/Metadata/Properties.vala:43
+#: ../lib/UX/Metadata/Properties.vala:37
 msgid "PostScript Name"
 msgstr "Название PostScript"
 
-#: ../lib/UX/Metadata/Properties.vala:44
+#: ../lib/UX/Metadata/Properties.vala:38
 #: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Weight"
 msgstr "Вес"
 
-#: ../lib/UX/Metadata/Properties.vala:45
+#: ../lib/UX/Metadata/Properties.vala:39
 #: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Slant"
 msgstr "Скос"
 
-#: ../lib/UX/Metadata/Properties.vala:46
+#: ../lib/UX/Metadata/Properties.vala:40
 #: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Width"
 msgstr "Ширина"
 
-#: ../lib/UX/Metadata/Properties.vala:47
+#: ../lib/UX/Metadata/Properties.vala:41
 #: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Spacing"
 msgstr "Отступ"
 
-#: ../lib/UX/Metadata/Properties.vala:48
+#: ../lib/UX/Metadata/Properties.vala:42
 msgid "Version"
 msgstr "Версия"
 
-#: ../lib/UX/Metadata/Properties.vala:49
+#: ../lib/UX/Metadata/Properties.vala:43
 #: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Vendor"
 msgstr "Поставщик"
@@ -548,8 +548,7 @@ msgstr "Семейство"
 
 #: ../lib/UX/Models/CategoryModel.vala:125
 msgid "Only fonts which include Panose information will be grouped here."
-msgstr ""
-"Здесь сгруппированы только шрифты, имеющие информацию PANOSE."
+msgstr "Здесь сгруппированы только шрифты, имеющие информацию PANOSE."
 
 #: ../lib/UX/Models/CategoryModel.vala:126
 msgid "Any"
@@ -686,12 +685,12 @@ msgstr ""
 "предыдущих версий несовместимы с данной версией. Остальные файлы были "
 "объявлены устаревшими или удалены.\n"
 "\n"
-"Менеджер шрифтов попробует перенести ваши шрифты и их коллекции. Файлы "
-"и настройки, которые больше не требуются, будут удалены. Также будут "
-"удалены файлы настроек, конфликтующие с данной версией программы.\n"
+"Менеджер шрифтов попробует перенести ваши шрифты и их коллекции. Файлы и "
+"настройки, которые больше не требуются, будут удалены. Также будут удалены "
+"файлы настроек, конфликтующие с данной версией программы.\n"
 "\n"
-"Перед продолжением строго рекомендуется сделать резервную копию всех "
-"важных файлов.\n"
+"Перед продолжением строго рекомендуется сделать резервную копию всех важных "
+"файлов.\n"
 
 #: ../src/font-manager/Preferences/Display.vala:48
 #: ../src/font-manager/Preferences/Rendering.vala:47
@@ -719,15 +718,15 @@ msgstr "Отрисовка на стороне клиента (CSD)"
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
-"Отрисовка на стороне клиента (CSD) включена. Изменения вступят в силу "
-"после перезапуска программы."
+"Отрисовка на стороне клиента (CSD) включена. Изменения вступят в силу после "
+"перезапуска программы."
 
 #: ../src/font-manager/Preferences/Interface.vala:103
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
-"Отрисовка на стороне клиента (CSD) отключена. Изменения вступят в силу "
-"после перезапуска программы."
+"Отрисовка на стороне клиента (CSD) отключена. Изменения вступят в силу после "
+"перезапуска программы."
 
 #: ../src/font-manager/Preferences/Preferences.vala:28
 msgid "Sources"

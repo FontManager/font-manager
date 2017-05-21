@@ -28,15 +28,8 @@ namespace FontManager {
 
     void set_application_style () {
         Gtk.IconTheme.get_default().add_resource_path("/org/gnome/FontManager/icons");
-        string css_uri = "resource:///org/gnome/FontManager/FontManager.css";
-        File css_file = File.new_for_uri(css_uri);
         Gtk.CssProvider provider = new Gtk.CssProvider();
-        try {
-            provider.load_from_file(css_file);
-        } catch (Error e) {
-            warning("Failed to load Css Provider! Application will not appear as expected.");
-            warning(e.message);
-        }
+        provider.load_from_resource("/org/gnome/FontManager/FontManager.css");
         Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         return;
     }

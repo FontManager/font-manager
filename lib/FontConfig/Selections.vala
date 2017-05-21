@@ -74,8 +74,6 @@ namespace FontConfig {
      *     <rejectfont>
      *         <!-- FONT_PATTERN_ELEMENT_HERE -->
      *     </rejectfont>
-     * </selectfont>
-     * <selectfont>
      *     <acceptfont>
      *         <!-- FONT_PATTERN_ELEMENT_HERE -->
      *     </acceptfont>

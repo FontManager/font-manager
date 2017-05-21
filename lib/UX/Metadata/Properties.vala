@@ -28,18 +28,12 @@ namespace FontManager {
 
         public class Properties : Gtk.Grid {
 
-            Gtk.Label psname;
-            Gtk.Label weight;
-            Gtk.Label slant;
-            Gtk.Label width;
-            Gtk.Label spacing;
-            Gtk.Label version;
-            Gtk.Label vendor;
+            Gtk.Label [] labels;
             Gtk.Grid prop_grid;
             Gtk.Separator separator;
             Description description;
 
-            string [] labels = {
+            string [] props = {
                 _("PostScript Name"),
                 _("Weight"),
                 _("Slant"),
@@ -57,14 +51,34 @@ namespace FontManager {
                 separator.margin = DEFAULT_MARGIN_SIZE / 4;
                 separator.margin_top = separator.margin_bottom = DEFAULT_MARGIN_SIZE / 2;
                 separator.opacity = 0.5;
-                psname = new Gtk.Label("psname");
-                weight = new Gtk.Label("weight");
-                slant = new Gtk.Label("slant");
-                width = new Gtk.Label("width");
-                spacing = new Gtk.Label("spacing");
-                version = new Gtk.Label("version");
-                vendor = new Gtk.Label("vendor");
-                prop_grid = create_prop_grid();
+                foreach (string prop in props)
+                    labels += new Gtk.Label("");
+                prop_grid = new Gtk.Grid();
+                prop_grid.expand = false;
+                for (int i = 0; i < labels.length; i++) {
+                    var widget = new Gtk.Label(props[i]);
+                    widget.sensitive = false;
+                    widget.opacity = 0.75;
+                    widget.halign = Gtk.Align.END;
+                    widget.margin = DEFAULT_MARGIN_SIZE / 2;
+                    widget.margin_start = DEFAULT_MARGIN_SIZE;
+                    widget.expand = false;
+                    labels[i].halign = Gtk.Align.START;
+                    labels[i].expand = false;
+                    labels[i].margin = DEFAULT_MARGIN_SIZE / 2;
+                    labels[i].margin_end = DEFAULT_MARGIN_SIZE;
+                    if (i == 0) {
+                        widget.margin_top = DEFAULT_MARGIN_SIZE;
+                        labels[i].margin_top = DEFAULT_MARGIN_SIZE;
+                    } else if (i == labels.length - 1) {
+                        widget.margin_bottom = DEFAULT_MARGIN_SIZE;
+                        labels[i].margin_bottom = DEFAULT_MARGIN_SIZE;
+                    }
+                    prop_grid.attach(widget, 0, i, 1, 1);
+                    prop_grid.attach(labels[i], 1, i, 1, 1);
+                    widget.show();
+                    labels[i].show();
+                }
                 attach(prop_grid, 0, 0, 1, 1);
                 attach(separator, 2, 0, 1, 7);
                 attach(description, 3, 0, 3, 7);
@@ -80,12 +94,8 @@ namespace FontManager {
             }
 
             void reset () {
-                weight.set_text("");
-                slant.set_text("");
-                width.set_text("");
-                spacing.set_text("");
-                version.set_text("");
-                vendor.set_text("");
+                foreach (Gtk.Label label in labels)
+                    label.set_text("");
                 return;
             }
 
@@ -96,70 +106,25 @@ namespace FontManager {
                     return;
                 var fontinfo = font_data.fontinfo;
                 var fcfont = font_data.font;
-                psname.set_text(fontinfo.psname);
+                labels[0].set_text(fontinfo.psname);
                 string? _weight = ((FontConfig.Weight) fcfont.weight).to_string();
-                weight.set_text(_weight == null ? "Regular" : _weight);
+                labels[1].set_text(_weight == null ? "Regular" : _weight);
                 string? _slant = ((FontConfig.Slant) fcfont.slant).to_string();
-                if (_slant == null)
-                    _slant = "Normal";
-                slant.set_text(_slant);
+                labels[2].set_text(_slant == null ? "Normal" : _slant);
                 string? _width = ((FontConfig.Width) fcfont.width).to_string();
-                if (_width == null)
-                    _width = "Normal";
-                width.set_text(_width);
+                labels[3].set_text(_width == null ? "Normal" : _width);
                 string? _spacing = ((FontConfig.Spacing) fcfont.spacing).to_string();
-                if (_spacing == null)
-                    _spacing = "Proportional";
-                spacing.set_text(_spacing);
-                version.set_text(fontinfo.version);
-                vendor.set_text(fontinfo.vendor);
+                labels[4].set_text(_spacing == null ? "Proportional" : _spacing);
+                labels[5].set_text(fontinfo.version);
+                labels[6].set_text(fontinfo.vendor);
                 if (fontinfo.vendor == "Unknown Vendor") {
                     prop_grid.get_child_at(0, 6).hide();
-                    vendor.hide();
+                    labels[6].hide();
                 } else {
-                    vendor.show();
+                    labels[6].show();
                     prop_grid.get_child_at(0, 6).show();
                 }
                 return;
-            }
-
-            Gtk.Grid create_prop_grid () {
-                var grid = new Gtk.Grid();
-                grid.expand = false;
-                Gtk.Label [] values = {
-                    psname,
-                    weight,
-                    slant,
-                    width,
-                    spacing,
-                    version,
-                    vendor
-                };
-                for (int i = 0; i < labels.length; i++) {
-                    var widget = new Gtk.Label(labels[i]);
-                    widget.sensitive = false;
-                    widget.opacity = 0.75;
-                    grid.attach(widget, 0, i, 1, 1);
-                    widget.halign = Gtk.Align.END;
-                    widget.margin = DEFAULT_MARGIN_SIZE / 2;
-                    widget.margin_start = DEFAULT_MARGIN_SIZE;
-                    widget.expand = false;
-                    grid.attach(values[i], 1, i, 1, 1);
-                    values[i].halign = Gtk.Align.START;
-                    values[i].expand = false;
-                    values[i].margin = DEFAULT_MARGIN_SIZE / 2;
-                    values[i].margin_end = DEFAULT_MARGIN_SIZE;
-                    if (i == 0) {
-                        widget.margin_top = DEFAULT_MARGIN_SIZE;
-                        values[i].margin_top = DEFAULT_MARGIN_SIZE;
-                    } else if (i == labels.length - 1) {
-                        widget.margin_bottom = DEFAULT_MARGIN_SIZE;
-                        values[i].margin_bottom = DEFAULT_MARGIN_SIZE;
-                    }
-                    widget.show();
-                    values[i].show();
-                }
-                return grid;
             }
 
         }

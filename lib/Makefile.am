@@ -36,7 +36,6 @@ libfontmanager_la_LDFLAGS = \
 libfontmanager_la_VALAFLAGS = \
 	$(AM_VALAFLAGS) \
 	$(HAVE_FILE_ROLLER) \
-	$(VALA_034_OR_LATER) \
 	--gresources $(DATA_DIR)/FontManagerGResource.xml \
 	--library fontmanager \
 	-H fontmanager.h

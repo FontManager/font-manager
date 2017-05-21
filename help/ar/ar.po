@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
-"POT-Creation-Date: 2016-11-27 16:56-0500\n"
+"POT-Creation-Date: 2017-05-20 22:44-0400\n"
 "PO-Revision-Date: 2016-10-08 06:52-0400\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic\n"

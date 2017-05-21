@@ -23,11 +23,20 @@
 
 namespace FontConfig {
 
+    [CCode (cheader_filename = "fontconfig/fontconfig.h", cname = "FcInit")]
+    public extern bool init ();
+
+    [CCode (cheader_filename = "fontconfig/fontconfig.h", cname = "FcFini")]
+    public extern bool fini ();
+
+    [CCode (cheader_filename = "fontconfig/fontconfig.h", cname = "FcGetVersion")]
+    public extern int get_version ();
+
     /**
      * @return      version number of Fontconfig library
      */
     public string get_version_string () {
-        string raw = FcGetVersion().to_string();
+        string raw = get_version().to_string();
         return "%c.%c%c.%s".printf(raw.get(0), raw.get(1), raw.get(2), raw.substring(3));
     }
 
@@ -201,8 +210,6 @@ namespace FontConfig {
 
 }
 
-/* Defined in fontconfig.h */
-extern int FcGetVersion();
 /* Defined in _Common_.c */
 extern Gee.ArrayList <string> FcListFamilies ();
 extern Gee.ArrayList <string> FcListFiles ();

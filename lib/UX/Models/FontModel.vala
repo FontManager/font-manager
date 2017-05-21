@@ -47,26 +47,23 @@ namespace FontManager {
             this.clear();
             if (families == null)
                 return;
-            bool visible = true;
             Gee.HashSet <string> contents = null;
+            if (filter != null) {
+                if (filter is Collection)
+                    contents = ((Collection) filter).get_full_contents();
+                else {
+                    contents = new Gee.HashSet <string> ();
+                    contents.add_all(filter.families);
+                }
+            }
             foreach(var entry in families.list()) {
                 var family = families[entry];
-                if (filter != null) {
-                    if (contents == null)
-                        if (filter is Collection)
-                            contents = ((Collection) filter).get_full_contents();
-                        else {
-                            contents = new Gee.HashSet <string> ();
-                            contents.add_all(filter.families);
-                        }
-                    visible = (family.name in contents);
-                }
-                if (visible) {
+                if (filter == null || (family.name in contents)) {
                     Gtk.TreeIter iter;
                     this.append(out iter, null);
                     this.set(iter, 0, family, 1, family.description, 2, family.faces.size,  -1);
                     foreach(var face in family.list_faces()) {
-                        visible = true;
+                        bool visible = true;
                         if (filter != null && filter is Category)
                             if (!(face.description in ((Category) filter).descriptions))
                                 visible = false;

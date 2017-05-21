@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-11-27 16:56-0500\n"
+"POT-Creation-Date: 2017-05-20 22:44-0400\n"
 "PO-Revision-Date: 2016-10-08 06:49-0400\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic\n"
@@ -86,142 +86,142 @@ msgstr "غير مرتبة"
 msgid "Fonts not present in any collection"
 msgstr "الخطوط غير الموجودة في مجموعتي"
 
-#: ../lib/FontConfig/Enums.vala:70
-msgid "Thin"
-msgstr "رفيع"
+#: ../lib/FontConfig/Enums.vala:41
+msgid "Ultra-Condensed"
+msgstr "مضغوط جدا"
 
-#: ../lib/FontConfig/Enums.vala:72
-msgid "Ultra-Light"
-msgstr "خفيف جدا"
+#: ../lib/FontConfig/Enums.vala:43
+msgid "Extra-Condensed"
+msgstr "مضغوط أكثر"
 
-#: ../lib/FontConfig/Enums.vala:74 ../lib/FontConfig/Enums.vala:232
-msgid "Light"
-msgstr "خفيف"
+#: ../lib/FontConfig/Enums.vala:45
+msgid "Condensed"
+msgstr "مضغوط"
 
-#: ../lib/FontConfig/Enums.vala:76
-msgid "Book"
-msgstr "كتاب"
+#: ../lib/FontConfig/Enums.vala:47
+msgid "Semi-Condensed"
+msgstr "شبه مضغوط"
 
-#: ../lib/FontConfig/Enums.vala:78 ../lib/FontConfig/Enums.vala:211
-msgid "Medium"
-msgstr "وسط"
+#: ../lib/FontConfig/Enums.vala:49
+msgid "Semi-Expanded"
+msgstr "شبه ممدد"
 
-#: ../lib/FontConfig/Enums.vala:80
-msgid "Semi-Bold"
-msgstr "شبه ثخين"
+#: ../lib/FontConfig/Enums.vala:51
+msgid "Expanded"
+msgstr "ممدد"
 
-#: ../lib/FontConfig/Enums.vala:82
-msgid "Bold"
-msgstr "ثخين"
+#: ../lib/FontConfig/Enums.vala:53
+msgid "Extra-Expanded"
+msgstr "ممدد كثيرا"
 
-#: ../lib/FontConfig/Enums.vala:84
-msgid "Ultra-Bold"
-msgstr "ثخين جدا"
+#: ../lib/FontConfig/Enums.vala:55
+msgid "Ultra-Expanded"
+msgstr "ممدد جدا"
 
-#: ../lib/FontConfig/Enums.vala:86
-msgid "Heavy"
-msgstr "ثقيل"
-
-#: ../lib/FontConfig/Enums.vala:88
-msgid "Ultra-Heavy"
-msgstr "ثقيل جدا"
-
-#: ../lib/FontConfig/Enums.vala:104
+#: ../lib/FontConfig/Enums.vala:73
 msgid "Italic"
 msgstr "مائل"
 
-#: ../lib/FontConfig/Enums.vala:106
+#: ../lib/FontConfig/Enums.vala:75
 msgid "Oblique"
 msgstr "مائل"
 
 #: ../lib/FontConfig/Enums.vala:128
-msgid "Ultra-Condensed"
-msgstr "مضغوط جدا"
+msgid "Thin"
+msgstr "رفيع"
 
 #: ../lib/FontConfig/Enums.vala:130
-msgid "Extra-Condensed"
-msgstr "مضغوط أكثر"
+msgid "Ultra-Light"
+msgstr "خفيف جدا"
 
-#: ../lib/FontConfig/Enums.vala:132
-msgid "Condensed"
-msgstr "مضغوط"
+#: ../lib/FontConfig/Enums.vala:132 ../lib/FontConfig/Enums.vala:212
+msgid "Light"
+msgstr "خفيف"
 
 #: ../lib/FontConfig/Enums.vala:134
-msgid "Semi-Condensed"
-msgstr "شبه مضغوط"
+msgid "Book"
+msgstr "كتاب"
 
-#: ../lib/FontConfig/Enums.vala:136
-msgid "Semi-Expanded"
-msgstr "شبه ممدد"
+#: ../lib/FontConfig/Enums.vala:136 ../lib/FontConfig/Enums.vala:190
+msgid "Medium"
+msgstr "وسط"
 
 #: ../lib/FontConfig/Enums.vala:138
-msgid "Expanded"
-msgstr "ممدد"
+msgid "Semi-Bold"
+msgstr "شبه ثخين"
 
 #: ../lib/FontConfig/Enums.vala:140
-msgid "Extra-Expanded"
-msgstr "ممدد كثيرا"
+msgid "Bold"
+msgstr "ثخين"
 
 #: ../lib/FontConfig/Enums.vala:142
-msgid "Ultra-Expanded"
-msgstr "ممدد جدا"
+msgid "Ultra-Bold"
+msgstr "ثخين جدا"
 
-#: ../lib/FontConfig/Enums.vala:159
+#: ../lib/FontConfig/Enums.vala:144
+msgid "Heavy"
+msgstr "ثقيل"
+
+#: ../lib/FontConfig/Enums.vala:146
+msgid "Ultra-Heavy"
+msgstr "ثقيل جدا"
+
+#: ../lib/FontConfig/Enums.vala:164
 msgid "Proportional"
 msgstr "متناسب"
 
-#: ../lib/FontConfig/Enums.vala:161
+#: ../lib/FontConfig/Enums.vala:166
 msgid "Dual Width"
 msgstr "مزدوج العرض"
 
-#: ../lib/FontConfig/Enums.vala:163
+#: ../lib/FontConfig/Enums.vala:168
 msgid "Monospace"
 msgstr "ثابت العرض"
 
-#: ../lib/FontConfig/Enums.vala:165
+#: ../lib/FontConfig/Enums.vala:170
 msgid "Charcell"
 msgstr "خلية الحرف"
 
-#: ../lib/FontConfig/Enums.vala:184
-msgid "Unknown"
-msgstr "غير معروف"
-
-#: ../lib/FontConfig/Enums.vala:186
-msgid "RGB"
-msgstr "RGB"
-
 #: ../lib/FontConfig/Enums.vala:188
-msgid "BGR"
-msgstr "BGR"
-
-#: ../lib/FontConfig/Enums.vala:190
-msgid "VRGB"
-msgstr "VRGB"
-
-#: ../lib/FontConfig/Enums.vala:192
-msgid "VBGR"
-msgstr "VBGR"
-
-#: ../lib/FontConfig/Enums.vala:194 ../lib/FontConfig/Enums.vala:215
-#: ../lib/FontConfig/Enums.vala:236
-msgid "None"
-msgstr "لا شيء"
-
-#: ../lib/FontConfig/Enums.vala:209
 msgid "Slight"
 msgstr "خفيف"
 
-#: ../lib/FontConfig/Enums.vala:213
+#: ../lib/FontConfig/Enums.vala:192
 msgid "Full"
 msgstr "كامل"
 
-#: ../lib/FontConfig/Enums.vala:230
+#: ../lib/FontConfig/Enums.vala:194 ../lib/FontConfig/Enums.vala:216
+#: ../lib/FontConfig/Enums.vala:244
+msgid "None"
+msgstr "لا شيء"
+
+#: ../lib/FontConfig/Enums.vala:210
 msgid "Default"
 msgstr "المبدئي"
 
-#: ../lib/FontConfig/Enums.vala:234
+#: ../lib/FontConfig/Enums.vala:214
 msgid "Legacy"
 msgstr "عتيق"
+
+#: ../lib/FontConfig/Enums.vala:234
+msgid "Unknown"
+msgstr "غير معروف"
+
+#: ../lib/FontConfig/Enums.vala:236
+msgid "RGB"
+msgstr "RGB"
+
+#: ../lib/FontConfig/Enums.vala:238
+msgid "BGR"
+msgstr "BGR"
+
+#: ../lib/FontConfig/Enums.vala:240
+msgid "VRGB"
+msgstr "VRGB"
+
+#: ../lib/FontConfig/Enums.vala:242
+msgid "VBGR"
+msgstr "VBGR"
 
 #: ../lib/FontConfig/Families.vala:45
 msgid "Loading available font families"
@@ -424,35 +424,35 @@ msgstr "المبدئي"
 msgid "File does not contain license information."
 msgstr "لا يحتوي الملف على معلومات الترخيص."
 
-#: ../lib/UX/Metadata/Properties.vala:43
+#: ../lib/UX/Metadata/Properties.vala:37
 msgid "PostScript Name"
 msgstr "اسم بوستسكربت"
 
-#: ../lib/UX/Metadata/Properties.vala:44
+#: ../lib/UX/Metadata/Properties.vala:38
 #: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Weight"
 msgstr "الوزن"
 
-#: ../lib/UX/Metadata/Properties.vala:45
+#: ../lib/UX/Metadata/Properties.vala:39
 #: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Slant"
 msgstr "الميلان"
 
-#: ../lib/UX/Metadata/Properties.vala:46
+#: ../lib/UX/Metadata/Properties.vala:40
 #: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Width"
 msgstr "العرض"
 
-#: ../lib/UX/Metadata/Properties.vala:47
+#: ../lib/UX/Metadata/Properties.vala:41
 #: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Spacing"
 msgstr "التوسع"
 
-#: ../lib/UX/Metadata/Properties.vala:48
+#: ../lib/UX/Metadata/Properties.vala:42
 msgid "Version"
 msgstr "الإصدارة"
 
-#: ../lib/UX/Metadata/Properties.vala:49
+#: ../lib/UX/Metadata/Properties.vala:43
 #: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Vendor"
 msgstr "البائع"

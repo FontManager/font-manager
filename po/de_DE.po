@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2016-11-27 16:56-0500\n"
+"POT-Creation-Date: 2017-05-20 22:44-0400\n"
 "PO-Revision-Date: 2016-05-25 11:48-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: none <@>\n"
@@ -89,142 +89,142 @@ msgstr "Unsortiert"
 msgid "Fonts not present in any collection"
 msgstr "Schriften ohne Kollektionszugehörigkeit"
 
-#: ../lib/FontConfig/Enums.vala:70
-msgid "Thin"
-msgstr "Dünn"
+#: ../lib/FontConfig/Enums.vala:41
+msgid "Ultra-Condensed"
+msgstr "Sehr stark gestaucht"
 
-#: ../lib/FontConfig/Enums.vala:72
-msgid "Ultra-Light"
-msgstr "Sehr dünn"
+#: ../lib/FontConfig/Enums.vala:43
+msgid "Extra-Condensed"
+msgstr "Stark gestaucht"
 
-#: ../lib/FontConfig/Enums.vala:74 ../lib/FontConfig/Enums.vala:232
-msgid "Light"
-msgstr "Leicht (Light)"
+#: ../lib/FontConfig/Enums.vala:45
+msgid "Condensed"
+msgstr "Gestaucht"
 
-#: ../lib/FontConfig/Enums.vala:76
-msgid "Book"
-msgstr "Normal"
+#: ../lib/FontConfig/Enums.vala:47
+msgid "Semi-Condensed"
+msgstr "Etwas gestaucht"
 
-#: ../lib/FontConfig/Enums.vala:78 ../lib/FontConfig/Enums.vala:211
-msgid "Medium"
-msgstr "Mittel (Medium)"
+#: ../lib/FontConfig/Enums.vala:49
+msgid "Semi-Expanded"
+msgstr "Etwas gestreckt"
 
-#: ../lib/FontConfig/Enums.vala:80
-msgid "Semi-Bold"
-msgstr "Etwas dicker"
+#: ../lib/FontConfig/Enums.vala:51
+msgid "Expanded"
+msgstr "Gestreckt"
 
-#: ../lib/FontConfig/Enums.vala:82
-msgid "Bold"
-msgstr "Dick"
+#: ../lib/FontConfig/Enums.vala:53
+msgid "Extra-Expanded"
+msgstr "Stark gestreckt"
 
-#: ../lib/FontConfig/Enums.vala:84
-msgid "Ultra-Bold"
-msgstr "Sehr Dick"
+#: ../lib/FontConfig/Enums.vala:55
+msgid "Ultra-Expanded"
+msgstr "Sehr stark gestreckt"
 
-#: ../lib/FontConfig/Enums.vala:86
-msgid "Heavy"
-msgstr "Fett"
-
-#: ../lib/FontConfig/Enums.vala:88
-msgid "Ultra-Heavy"
-msgstr "Sehr Fett"
-
-#: ../lib/FontConfig/Enums.vala:104
+#: ../lib/FontConfig/Enums.vala:73
 msgid "Italic"
 msgstr "Kursiv (Italic)"
 
-#: ../lib/FontConfig/Enums.vala:106
+#: ../lib/FontConfig/Enums.vala:75
 msgid "Oblique"
 msgstr "Schräg (Oblique)"
 
 #: ../lib/FontConfig/Enums.vala:128
-msgid "Ultra-Condensed"
-msgstr "Sehr stark gestaucht"
+msgid "Thin"
+msgstr "Dünn"
 
 #: ../lib/FontConfig/Enums.vala:130
-msgid "Extra-Condensed"
-msgstr "Stark gestaucht"
+msgid "Ultra-Light"
+msgstr "Sehr dünn"
 
-#: ../lib/FontConfig/Enums.vala:132
-msgid "Condensed"
-msgstr "Gestaucht"
+#: ../lib/FontConfig/Enums.vala:132 ../lib/FontConfig/Enums.vala:212
+msgid "Light"
+msgstr "Leicht (Light)"
 
 #: ../lib/FontConfig/Enums.vala:134
-msgid "Semi-Condensed"
-msgstr "Etwas gestaucht"
+msgid "Book"
+msgstr "Normal"
 
-#: ../lib/FontConfig/Enums.vala:136
-msgid "Semi-Expanded"
-msgstr "Etwas gestreckt"
+#: ../lib/FontConfig/Enums.vala:136 ../lib/FontConfig/Enums.vala:190
+msgid "Medium"
+msgstr "Mittel (Medium)"
 
 #: ../lib/FontConfig/Enums.vala:138
-msgid "Expanded"
-msgstr "Gestreckt"
+msgid "Semi-Bold"
+msgstr "Etwas dicker"
 
 #: ../lib/FontConfig/Enums.vala:140
-msgid "Extra-Expanded"
-msgstr "Stark gestreckt"
+msgid "Bold"
+msgstr "Dick"
 
 #: ../lib/FontConfig/Enums.vala:142
-msgid "Ultra-Expanded"
-msgstr "Sehr stark gestreckt"
+msgid "Ultra-Bold"
+msgstr "Sehr Dick"
 
-#: ../lib/FontConfig/Enums.vala:159
+#: ../lib/FontConfig/Enums.vala:144
+msgid "Heavy"
+msgstr "Fett"
+
+#: ../lib/FontConfig/Enums.vala:146
+msgid "Ultra-Heavy"
+msgstr "Sehr Fett"
+
+#: ../lib/FontConfig/Enums.vala:164
 msgid "Proportional"
 msgstr "Proportional"
 
-#: ../lib/FontConfig/Enums.vala:161
+#: ../lib/FontConfig/Enums.vala:166
 msgid "Dual Width"
 msgstr "Doppelte Größe"
 
-#: ../lib/FontConfig/Enums.vala:163
+#: ../lib/FontConfig/Enums.vala:168
 msgid "Monospace"
 msgstr "Dicktengleich"
 
-#: ../lib/FontConfig/Enums.vala:165
+#: ../lib/FontConfig/Enums.vala:170
 msgid "Charcell"
 msgstr "Feste Breite"
 
-#: ../lib/FontConfig/Enums.vala:184
-msgid "Unknown"
-msgstr "Unbekannt"
-
-#: ../lib/FontConfig/Enums.vala:186
-msgid "RGB"
-msgstr "RGB (Rot-Grün-Blau Teilbildpunktwiedergabe)"
-
 #: ../lib/FontConfig/Enums.vala:188
-msgid "BGR"
-msgstr "BGR (Blau-Grün-Rot Teilbildpunktwiedergabe)"
-
-#: ../lib/FontConfig/Enums.vala:190
-msgid "VRGB"
-msgstr "VRGB (Vertikale Rot-Grün-Blau Teilbildpunktwiedergabe)"
-
-#: ../lib/FontConfig/Enums.vala:192
-msgid "VBGR"
-msgstr "VBGR (Vertikale Blau-Grün-Rot Teilbildpunktwiedergabe)"
-
-#: ../lib/FontConfig/Enums.vala:194 ../lib/FontConfig/Enums.vala:215
-#: ../lib/FontConfig/Enums.vala:236
-msgid "None"
-msgstr "Keine (None)"
-
-#: ../lib/FontConfig/Enums.vala:209
 msgid "Slight"
 msgstr "Schlank (Slight)"
 
-#: ../lib/FontConfig/Enums.vala:213
+#: ../lib/FontConfig/Enums.vala:192
 msgid "Full"
 msgstr "Voll (Full)"
 
-#: ../lib/FontConfig/Enums.vala:230
+#: ../lib/FontConfig/Enums.vala:194 ../lib/FontConfig/Enums.vala:216
+#: ../lib/FontConfig/Enums.vala:244
+msgid "None"
+msgstr "Keine (None)"
+
+#: ../lib/FontConfig/Enums.vala:210
 msgid "Default"
 msgstr "Normal"
 
-#: ../lib/FontConfig/Enums.vala:234
+#: ../lib/FontConfig/Enums.vala:214
 msgid "Legacy"
 msgstr "Veraltet (Legacy)"
+
+#: ../lib/FontConfig/Enums.vala:234
+msgid "Unknown"
+msgstr "Unbekannt"
+
+#: ../lib/FontConfig/Enums.vala:236
+msgid "RGB"
+msgstr "RGB (Rot-Grün-Blau Teilbildpunktwiedergabe)"
+
+#: ../lib/FontConfig/Enums.vala:238
+msgid "BGR"
+msgstr "BGR (Blau-Grün-Rot Teilbildpunktwiedergabe)"
+
+#: ../lib/FontConfig/Enums.vala:240
+msgid "VRGB"
+msgstr "VRGB (Vertikale Rot-Grün-Blau Teilbildpunktwiedergabe)"
+
+#: ../lib/FontConfig/Enums.vala:242
+msgid "VBGR"
+msgstr "VBGR (Vertikale Blau-Grün-Rot Teilbildpunktwiedergabe)"
 
 #: ../lib/FontConfig/Families.vala:45
 #, fuzzy
@@ -434,36 +434,36 @@ msgstr "Normal"
 msgid "File does not contain license information."
 msgstr "Zeige Schriftinformationen"
 
-#: ../lib/UX/Metadata/Properties.vala:43
+#: ../lib/UX/Metadata/Properties.vala:37
 #, fuzzy
 msgid "PostScript Name"
 msgstr "PostScript Type 1 Schrift"
 
-#: ../lib/UX/Metadata/Properties.vala:44
+#: ../lib/UX/Metadata/Properties.vala:38
 #: ../lib/UX/Models/CategoryModel.vala:104
 msgid "Weight"
 msgstr "Stärke"
 
-#: ../lib/UX/Metadata/Properties.vala:45
+#: ../lib/UX/Metadata/Properties.vala:39
 #: ../lib/UX/Models/CategoryModel.vala:102
 msgid "Slant"
 msgstr "Schriftstil"
 
-#: ../lib/UX/Metadata/Properties.vala:46
+#: ../lib/UX/Metadata/Properties.vala:40
 #: ../lib/UX/Models/CategoryModel.vala:106
 msgid "Width"
 msgstr "Breite"
 
-#: ../lib/UX/Metadata/Properties.vala:47
+#: ../lib/UX/Metadata/Properties.vala:41
 #: ../lib/UX/Models/CategoryModel.vala:100
 msgid "Spacing"
 msgstr "Abstände"
 
-#: ../lib/UX/Metadata/Properties.vala:48
+#: ../lib/UX/Metadata/Properties.vala:42
 msgid "Version"
 msgstr ""
 
-#: ../lib/UX/Metadata/Properties.vala:49
+#: ../lib/UX/Metadata/Properties.vala:43
 #: ../lib/UX/Models/CategoryModel.vala:112
 msgid "Vendor"
 msgstr "Herausgeber"
