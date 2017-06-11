@@ -33,7 +33,6 @@ namespace FontConfig {
      *
      * If only family is set, configuration will apply to all variations.
      * If font is set, configuration will apply only to that specific variation.
-     *
      */
     public class FontProperties : DefaultProperties {
 

@@ -171,10 +171,11 @@ namespace FontManager {
                 return;
             }
             var path = file.get_path();
-            _sources.add_from_path(path);
-            _sources.save();
-            debug("Added new font source : %s", path);
-            changed();
+            if (_sources.add_from_path(path)) {
+                _sources.save();
+                debug("Added new font source : %s", path);
+                changed();
+            }
             return;
         }
 

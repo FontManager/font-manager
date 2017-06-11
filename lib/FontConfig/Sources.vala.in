@@ -168,8 +168,12 @@ namespace FontConfig {
         }
 
         public new bool add (Source source) {
-            if (this.contains(source.path))
-                return true;
+            foreach (var _source in this) {
+                if (_source.path == source.path) {
+                    warning("Attempted to add duplicate source : %s", source.path);
+                    return false;
+                }
+            }
             if (source.path in active)
                 source.active = true;
             source.notify["active"].connect(() => { source_activated(source); });
