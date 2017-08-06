@@ -30,10 +30,16 @@
 public class WelcomeLabel : Gtk.Label {
 
     public WelcomeLabel (string? str) {
-        Object(name: "WelcomeLabel", use_markup: true, label: str, margin: 64,
-                sensitive: false, expand: true, wrap: true,
+        Object(name: "WelcomeLabel",
+                use_markup: true,
+                label: str,
+                margin: 64,
+                sensitive: false,
+                expand: true,
+                wrap: true,
                 wrap_mode: Pango.WrapMode.WORD_CHAR,
-                valign: Gtk.Align.START, halign: Gtk.Align.FILL,
+                valign: Gtk.Align.START,
+                halign: Gtk.Align.FILL,
                 justify: Gtk.Justification.CENTER);
     }
 
@@ -43,7 +49,7 @@ public class WelcomeLabel : Gtk.Label {
  * ReactiveLabel:
  *
  * Label which reacts to mouseover and click events.
- * Is actually a #Gtk.EventBox containing a #Gtk.Label since
+ * Is actually a #GtkEventBox containing a #GtkLabel since
  * events can not be added to widgets that have no window.
  */
 public class ReactiveLabel : Gtk.EventBox {
@@ -58,7 +64,7 @@ public class ReactiveLabel : Gtk.EventBox {
     /**
      * Reactivelabel:label:
      *
-     * The actual #Gtk.Label
+     * The actual #GtkLabel
      */
     public Gtk.Label label { get; private set; }
 

@@ -203,9 +203,9 @@ namespace FontConfig {
         }
 
         void write_patelt (XmlWriter writer,
-                                 string name,
-                                 string element_type,
-                                 string val) {
+                             string name,
+                             string element_type,
+                             string val) {
             writer.start_element("pattern");
             writer.start_element("patelt");
             writer.write_attribute("name", name);

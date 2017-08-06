@@ -15,8 +15,7 @@ FontManagerTestSuite_VALAFLAGS = \
 	$(top_srcdir)/lib/fontmanager.vapi
 
 FontManagerTestSuite_CFLAGS = \
-	${AM_CFLAGS} \
-	-I$(top_srcdir)/lib/
+	${AM_CFLAGS}
 
 FontManagerTestSuite_LDADD = \
 	${AM_LDADD} \

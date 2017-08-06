@@ -6,8 +6,7 @@ font_viewer_VALAFLAGS = \
 	$(top_srcdir)/lib/fontmanager.vapi
 
 font_viewer_CFLAGS = \
-	${AM_CFLAGS} \
-	-I$(top_srcdir)/lib/
+	${AM_CFLAGS}
 
 font_viewer_LDADD = \
 	${AM_LDADD} \

@@ -262,8 +262,12 @@ public class Logger : Object
 
     static void glib_log_func (string? d, LogLevelFlags flags, string msg) {
         var domain = "";
-        if (d != null)
+        if (d != null) {
+            /* Avoid this spam */
+            if (d == "GdkPixbuf")
+                return;
             domain = "[%s] ".printf(d ?? "");
+        }
 
         var message = msg.replace("\n", "").replace("\r", "");
         message = "%s%s".printf(domain, message);

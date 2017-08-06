@@ -90,7 +90,7 @@ PKG_CHECK_MODULES(JSONGLIB, json-glib-1.0 >= 0.15)
 PKG_CHECK_MODULES(GMODULE, gmodule-2.0 >= 2.4)
 PKG_CHECK_MODULES(GIO, gio-2.0 >= 2.4)
 PKG_CHECK_MODULES(CAIRO, cairo >= 1.1)
-PKG_CHECK_MODULES(GTK_316, gtk+-3.0 >= 3.16)
+PKG_CHECK_MODULES(GTK, gtk+-3.0 >= 3.16)
 PKG_CHECK_MODULES(PANGO, pango >= 1.3)
 PKG_CHECK_MODULES(PANGOCAIRO, pangocairo >= 1.3)
 PKG_CHECK_MODULES(PANGOFT2, pangoft2 >= 1.3)
@@ -185,6 +185,15 @@ dnl ***********************************************************************
 dnl Output files
 dnl ***********************************************************************
 
+AM_CONDITIONAL(HAVE_INTROSPECTION, [test ''])
+AM_CONDITIONAL(ENABLE_VAPIGEN, [test ''])
+AC_ARG_ENABLE([vapigen], AS_HELP_STRING([--enable-vapigen], [Build vapi files (default: disabled)]))
+AS_IF([test "x$enable_vapigen" = "xyes"], [
+    GOBJECT_INTROSPECTION_CHECK([0.9.0])
+    VAPIGEN_CHECK([0.16])
+    AC_SUBST([GTK_API_VERSION], [3.0])
+])
+
 AC_CONFIG_FILES([
     Makefile
     extensions/Makefile
@@ -198,6 +207,8 @@ AC_CONFIG_FILES([
     lib/FontConfig/Sources.vala
     lib/Glue/Makefile
     lib/UX/Utils/Utils.vala
+    lib/Unicode/Makefile
+    lib/Unicode/unicode.h
     po/Makefile.in
     data/Makefile
     data/org.gnome.FontManager.appdata.xml

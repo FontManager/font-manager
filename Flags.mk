@@ -7,13 +7,16 @@ AM_VALAFLAGS = \
 	--pkg gtk+-3.0 \
 	--pkg gee-0.8 \
 	--pkg json-glib-1.0 \
-	--pkg Gucharmap-2.90 \
 	--pkg libxml-2.0 \
 	--pkg pango \
-	--pkg sqlite3
+	--pkg sqlite3 \
+	--vapidir=$(top_srcdir)/vapi \
+	--pkg Unicode
 
 AM_CFLAGS = \
 	-w \
+	-I$(top_srcdir)/lib/ \
+	-I$(top_srcdir)/lib/Unicode \
 	-DLOCALEDIR=\""$(localedir)"\" \
 	$(XML_CFLAGS) \
 	$(FREETYPE_CFLAGS) \

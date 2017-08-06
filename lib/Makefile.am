@@ -3,7 +3,8 @@ include $(top_srcdir)/Flags.mk
 include ValaSources.mk
 
 SUBDIRS = \
-	Glue
+	Glue \
+	Unicode
 
 DATA_DIR = $(top_srcdir)/data
 
@@ -27,7 +28,8 @@ libfontmanager_la_CFLAGS = \
 	-shared
 
 libfontmanager_la_LIBADD = \
-	$(AM_LDADD)
+	$(AM_LDADD) \
+	Unicode/libunicode.la
 
 libfontmanager_la_LDFLAGS = \
 	-shared \

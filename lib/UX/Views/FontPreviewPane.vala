@@ -115,7 +115,7 @@ namespace FontManager {
             properties = new Metadata.Properties();
             license = new Metadata.License();
             charmap = new CharacterTable();
-            var block_model = new Gucharmap.BlockChaptersModel();
+            var block_model = new Unicode.BlockModel();
             Gtk.TreeIter iter;
             block_model.get_iter_from_string(out iter, "0");
             charmap.table.codepoint_list = block_model.get_codepoint_list(iter);

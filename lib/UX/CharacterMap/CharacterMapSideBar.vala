@@ -32,7 +32,7 @@ namespace FontManager {
     public class CharacterMapSideBar : Gtk.Box {
 
         public signal void mode_set (CharacterMapSideBarMode mode);
-        public signal void selection_changed (Gucharmap.CodepointList codepoint_list);
+        public signal void selection_changed (Unicode.CodepointList codepoint_list);
 
         public CharacterMapSideBarMode mode {
             get {
@@ -58,8 +58,8 @@ namespace FontManager {
         Gtk.StackSwitcher switcher;
         Gtk.ScrolledWindow script_scroll;
         Gtk.ScrolledWindow block_scroll;
-        Gucharmap.ScriptChaptersModel scripts;
-        Gucharmap.BlockChaptersModel blocks;
+        Unicode.ScriptModel scripts;
+        Unicode.BlockModel blocks;
         Gee.HashMap <string, int> num_chars;
         Gtk.EventBox blend;
 
@@ -67,8 +67,8 @@ namespace FontManager {
             orientation = Gtk.Orientation.VERTICAL;
             num_chars = new Gee.HashMap <string, int> ();
             stack = new Gtk.Stack();
-            scripts = new Gucharmap.ScriptChaptersModel();
-            blocks = new Gucharmap.BlockChaptersModel();
+            scripts = new Unicode.ScriptModel();
+            blocks = new Unicode.BlockModel();
             script_view = new Gtk.TreeView();
             block_view = new Gtk.TreeView();
             script_view.set_model(scripts);
@@ -155,7 +155,7 @@ namespace FontManager {
             script_view.get_selection().changed.connect((s) => {
                 Gtk.TreeIter? _iter = null;
                 bool selected = s.get_selected(null, out _iter);
-                var model = (Gucharmap.ChaptersModel) script_view.get_model();
+                var model = (Unicode.ChaptersModel) script_view.get_model();
                 if (selected) {
                     selection_changed(model.get_codepoint_list(_iter));
                     selected_script = ((Gtk.TreeModel) model).get_string_from_iter(_iter);
@@ -165,7 +165,7 @@ namespace FontManager {
             block_view.get_selection().changed.connect((s) => {
                 Gtk.TreeIter? _iter = null;
                 bool selected = s.get_selected(null, out _iter);
-                var model = (Gucharmap.ChaptersModel) block_view.get_model();
+                var model = (Unicode.ChaptersModel) block_view.get_model();
                 if (selected) {
                     selection_changed(model.get_codepoint_list(_iter));
                     selected_block = ((Gtk.TreeModel) model).get_string_from_iter(_iter);
@@ -174,18 +174,18 @@ namespace FontManager {
 
             stack.notify["visible-child-name"].connect(() => {
                 Gtk.TreeIter? iter = null;
-                Gucharmap.ChaptersModel model;
+                Gtk.TreeModel model;
                 if (stack.get_visible_child_name() == "Scripts") {
                     mode = CharacterMapSideBarMode.SCRIPT;
-                    model = (Gucharmap.ChaptersModel) script_view.get_model();
+                    model = (Gtk.TreeModel) script_view.get_model();
                     model.get_iter_from_string(out iter, selected_script);
                 } else {
                     mode = CharacterMapSideBarMode.BLOCK;
-                    model = (Gucharmap.ChaptersModel) block_view.get_model();
+                    model = (Gtk.TreeModel) block_view.get_model();
                     model.get_iter_from_string(out iter, selected_block);
                 }
                 if (iter != null)
-                    selection_changed(model.get_codepoint_list(iter));
+                    selection_changed(((Unicode.ChaptersModel) model).get_codepoint_list(iter));
                 mode_set(mode);
             });
 
@@ -200,7 +200,7 @@ namespace FontManager {
             model.get_value(treeiter, 0, out val);
             var name = (string) val;
             if (!num_chars.has_key(name))
-                num_chars[name] = ((Gucharmap.ChaptersModel) model).get_codepoint_list(treeiter).get_last_index();
+                num_chars[name] = ((Unicode.ChaptersModel) model).get_codepoint_list(treeiter).get_last_index();
             cell.set_property("count", num_chars[name]);
             val.unset();
             return;

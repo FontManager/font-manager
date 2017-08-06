@@ -66,7 +66,7 @@ namespace FontManager {
 
         void set_details () {
             unicode_label.set_markup(Markup.printf_escaped("<b>U+%4.4X</b>", ac));
-            name_label.set_markup(Markup.printf_escaped("<b>%s</b>", Gucharmap.get_unicode_name(ac)));
+            name_label.set_markup(Markup.printf_escaped("<b>%s</b>", Unicode.get_codepoint_name(ac)));
             return;
         }
 

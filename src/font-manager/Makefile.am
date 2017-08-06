@@ -8,8 +8,7 @@ font_manager_VALAFLAGS = \
 	$(top_srcdir)/lib/fontmanager.vapi
 
 font_manager_CFLAGS = \
-	${AM_CFLAGS} \
-	-I$(top_srcdir)/lib/
+	${AM_CFLAGS}
 
 font_manager_LDADD = \
 	${AM_LDADD} \

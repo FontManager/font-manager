@@ -36,11 +36,15 @@ namespace FontManager {
 
         /**
          * FontPreview::mode_changed:
+         *
+         * Emmitted when a different mode is selected by user
          */
         public signal void mode_changed (string mode);
 
         /**
          * FontPreview::preview_text_changed:
+         *
+         * Emitted when the preview text has changed
          */
         public signal void preview_text_changed (string preview_text);
 

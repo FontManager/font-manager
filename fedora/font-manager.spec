@@ -7,7 +7,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    9
+Release:    10
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -20,7 +20,6 @@ BuildRequires: freetype-devel
 BuildRequires: glib2-devel
 BuildRequires: gobject-introspection-devel
 BuildRequires: gtk3-devel >= 3.12
-BuildRequires: gucharmap-devel
 BuildRequires: intltool
 BuildRequires: json-glib-devel
 BuildRequires: libappstream-glib
@@ -37,7 +36,6 @@ Requires: font-manager-common
 Requires: font-viewer
 Requires: freetype
 Requires: gtk3 >= 3.12
-Requires: gucharmap-libs
 Requires: json-glib
 Requires: libgee
 Requires: sqlite
@@ -141,6 +139,14 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Sun Aug 6 2017 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-11
+- Drop dependence on Gucharmap
+* Sun Jun 11 2017 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-10
+- Fix build failure with Vala 0.36 due to vapi changes
+- Fix an issue where sources fail to add if a child directory has
+  already been added.
+- Add Russian translation provided by TotalCaesar659
+- Sync translations from Zanata
 * Sun Oct 16 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-9
 - Fix extension requirements
 * Sat Jun 4 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-8

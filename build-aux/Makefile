@@ -1,11 +1,51 @@
 
 PACKAGE_NAME = font-manager
-PACKAGE_VERSION = 0.7.3
+PACKAGE_VERSION = 0.7.4
 
 abs_top_srcdir = $(shell realpath ../)
 abs_srcdir = $(shell realpath .)
-SED = $(shell which sed)
+unicode_data_dir = $(abs_srcdir)/unicode/
 
+UNICODE_VERSION = 10.0.0
+SED = $(shell which sed)
+WGET = $(shell which wget)
+WGETFLAGS = -np -nd -rc -P $(unicode_data_dir)
+UNZIP = $(shell which unzip)
+
+UNICODE_FILES = \
+	Blocks.txt \
+	DerivedAge.txt \
+	NamesList.txt \
+	Scripts.txt \
+	UnicodeData.txt \
+	Unihan.zip \
+	$(NULL)
+
+UNICODE_SOURCES = \
+	unicode-blocks.h \
+	unicode-categories.h \
+	unicode-i18n.h \
+	unicode-names.h \
+	unicode-nameslist.h \
+	unicode-scripts.h \
+	unicode-unihan.h \
+	unicode-versions.h \
+	$(NULL)
+
+download-unicode-data:
+	for f in $(UNICODE_FILES); \
+	do \
+		[ -e $(unicode_data_dir)$${f} ] || \
+		$(WGET) $(WGETFLAGS) "http://www.unicode.org/Public/$(UNICODE_VERSION)/ucd/$${f}"; \
+	done
+
+unicode-headers: download-unicode-data
+	PROG_UNZIP=$(UNZIP) ./gen-unicode-headers.pl $(UNICODE_VERSION) $(unicode_data_dir) && \
+	./gen-unicode-headers.pl $(UNICODE_VERSION) $(unicode_data_dir) --i18n && \
+	for f in $(UNICODE_SOURCES); \
+	do \
+		mv $${f} $(abs_top_srcdir)/lib/Unicode/; \
+	done
 
 POTFILES.readme:
 	echo "Do not edit POTFILES.* directly. See build-aux directory" > $(abs_top_srcdir)/po/$@
@@ -55,7 +95,7 @@ License.h:
 Vendor.h:
 	vendor/genheader.py $(abs_top_srcdir)/lib/Glue
 
-update-headers: License.h Vendor.h
+update-headers: License.h Vendor.h unicode-headers
 update-po: POTFILES.readme POTFILES.in POTFILES.skip POT
 update-sources: ValaSources.mk
 update: update-headers update-po update-sources

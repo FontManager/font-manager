@@ -29,7 +29,7 @@ namespace FontManager {
         public unichar active_character { get; set; }
         public bool show_details { get; set; default = false; }
 
-        public Gucharmap.Chartable table { get; private set; }
+        public Unicode.CharacterMap table { get; private set; }
         public CharacterDetails details { get; private set; }
 
         public Pango.FontDescription font_desc {
@@ -57,10 +57,8 @@ namespace FontManager {
 
         public CharacterTable () {
             orientation = Gtk.Orientation.VERTICAL;
-            table = new Gucharmap.Chartable();
-            table.font_fallback = false;
-            table.zoom_enabled = false;
-            table.codepoint_list = new Gucharmap.ScriptCodepointList();
+            table = new Unicode.CharacterMap();
+            table.codepoint_list = new Unicode.ScriptCodepointList();
             table.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             font_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
             scroll = new Gtk.ScrolledWindow(null, null);
