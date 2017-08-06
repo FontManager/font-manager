@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2017-08-05 21:53-0400\n"
+"POT-Creation-Date: 2017-08-06 10:58-0400\n"
 "PO-Revision-Date: 2017-03-05 05:07-0500\n"
 "Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -808,6 +808,1184 @@ msgstr "Ya se ha instalado una versión más reciente"
 #: ../src/font-viewer/MainWindow.vala:159
 msgid "Installed"
 msgstr "Instalado"
+
+#: ../lib/Unicode/unicode-i18n.h:6
+msgid "Basic Latin"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:7
+msgid "Latin-1 Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:8
+msgid "Latin Extended-A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:9
+msgid "Latin Extended-B"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:10
+msgid "IPA Extensions"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:11
+msgid "Spacing Modifier Letters"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:12
+msgid "Combining Diacritical Marks"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:13
+msgid "Greek and Coptic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:14 ../lib/Unicode/unicode-i18n.h:314
+msgid "Cyrillic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:15
+msgid "Cyrillic Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:16 ../lib/Unicode/unicode-i18n.h:291
+msgid "Armenian"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:17 ../lib/Unicode/unicode-i18n.h:332
+msgid "Hebrew"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:18 ../lib/Unicode/unicode-i18n.h:290
+msgid "Arabic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:19 ../lib/Unicode/unicode-i18n.h:408
+msgid "Syriac"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:20
+msgid "Arabic Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:21 ../lib/Unicode/unicode-i18n.h:418
+msgid "Thaana"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:22 ../lib/Unicode/unicode-i18n.h:372
+msgid "N'Ko"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:23 ../lib/Unicode/unicode-i18n.h:397
+msgid "Samaritan"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:24 ../lib/Unicode/unicode-i18n.h:358
+msgid "Mandaic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:25
+msgid "Syriac Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:26
+msgid "Arabic Extended-A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:27 ../lib/Unicode/unicode-i18n.h:316
+msgid "Devanagari"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:28 ../lib/Unicode/unicode-i18n.h:297
+msgid "Bengali"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:29 ../lib/Unicode/unicode-i18n.h:327
+msgid "Gurmukhi"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:30 ../lib/Unicode/unicode-i18n.h:326
+msgid "Gujarati"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:31 ../lib/Unicode/unicode-i18n.h:386
+msgid "Oriya"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:32 ../lib/Unicode/unicode-i18n.h:415
+msgid "Tamil"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:33 ../lib/Unicode/unicode-i18n.h:417
+msgid "Telugu"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:34 ../lib/Unicode/unicode-i18n.h:340
+msgid "Kannada"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:35 ../lib/Unicode/unicode-i18n.h:357
+msgid "Malayalam"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:36 ../lib/Unicode/unicode-i18n.h:403
+msgid "Sinhala"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:37 ../lib/Unicode/unicode-i18n.h:419
+msgid "Thai"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:38 ../lib/Unicode/unicode-i18n.h:347
+msgid "Lao"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:39 ../lib/Unicode/unicode-i18n.h:420
+msgid "Tibetan"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:40 ../lib/Unicode/unicode-i18n.h:371
+msgid "Myanmar"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:41 ../lib/Unicode/unicode-i18n.h:321
+msgid "Georgian"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:42
+msgid "Hangul Jamo"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:43 ../lib/Unicode/unicode-i18n.h:320
+msgid "Ethiopic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:44
+msgid "Ethiopic Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:45 ../lib/Unicode/unicode-i18n.h:309
+msgid "Cherokee"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:46
+msgid "Unified Canadian Aboriginal Syllabics"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:47 ../lib/Unicode/unicode-i18n.h:377
+msgid "Ogham"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:48 ../lib/Unicode/unicode-i18n.h:396
+msgid "Runic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:49 ../lib/Unicode/unicode-i18n.h:409
+msgid "Tagalog"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:50 ../lib/Unicode/unicode-i18n.h:330
+msgid "Hanunoo"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:51 ../lib/Unicode/unicode-i18n.h:303
+msgid "Buhid"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:52 ../lib/Unicode/unicode-i18n.h:410
+msgid "Tagbanwa"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:53 ../lib/Unicode/unicode-i18n.h:344
+msgid "Khmer"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:54 ../lib/Unicode/unicode-i18n.h:368
+msgid "Mongolian"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:55
+msgid "Unified Canadian Aboriginal Syllabics Extended"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:56 ../lib/Unicode/unicode-i18n.h:350
+msgid "Limbu"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:57 ../lib/Unicode/unicode-i18n.h:411
+msgid "Tai Le"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:58 ../lib/Unicode/unicode-i18n.h:374
+msgid "New Tai Lue"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:59
+msgid "Khmer Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:60 ../lib/Unicode/unicode-i18n.h:302
+msgid "Buginese"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:61 ../lib/Unicode/unicode-i18n.h:412
+msgid "Tai Tham"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:62
+msgid "Combining Diacritical Marks Extended"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:63 ../lib/Unicode/unicode-i18n.h:293
+msgid "Balinese"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:64 ../lib/Unicode/unicode-i18n.h:406
+msgid "Sundanese"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:65 ../lib/Unicode/unicode-i18n.h:296
+msgid "Batak"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:66 ../lib/Unicode/unicode-i18n.h:349
+msgid "Lepcha"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:67 ../lib/Unicode/unicode-i18n.h:378
+msgid "Ol Chiki"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:68
+msgid "Cyrillic Extended-C"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:69
+msgid "Sundanese Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:70
+msgid "Vedic Extensions"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:71
+msgid "Phonetic Extensions"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:72
+msgid "Phonetic Extensions Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:73
+msgid "Combining Diacritical Marks Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:74
+msgid "Latin Extended Additional"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:75
+msgid "Greek Extended"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:76
+msgid "General Punctuation"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:77
+msgid "Superscripts and Subscripts"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:78
+msgid "Currency Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:79
+msgid "Combining Diacritical Marks for Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:80
+msgid "Letterlike Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:81
+msgid "Number Forms"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:82
+#, fuzzy
+msgid "Arrows"
+msgstr "Examinar"
+
+#: ../lib/Unicode/unicode-i18n.h:83
+msgid "Mathematical Operators"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:84
+msgid "Miscellaneous Technical"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:85
+msgid "Control Pictures"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:86
+msgid "Optical Character Recognition"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:87
+msgid "Enclosed Alphanumerics"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:88
+msgid "Box Drawing"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:89
+msgid "Block Elements"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:90
+msgid "Geometric Shapes"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:91
+msgid "Miscellaneous Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:92
+msgid "Dingbats"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:93
+msgid "Miscellaneous Mathematical Symbols-A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:94
+msgid "Supplemental Arrows-A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:95
+msgid "Braille Patterns"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:96
+msgid "Supplemental Arrows-B"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:97
+msgid "Miscellaneous Mathematical Symbols-B"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:98
+msgid "Supplemental Mathematical Operators"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:99
+msgid "Miscellaneous Symbols and Arrows"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:100 ../lib/Unicode/unicode-i18n.h:322
+msgid "Glagolitic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:101
+msgid "Latin Extended-C"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:102 ../lib/Unicode/unicode-i18n.h:311
+msgid "Coptic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:103
+msgid "Georgian Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:104 ../lib/Unicode/unicode-i18n.h:421
+msgid "Tifinagh"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:105
+msgid "Ethiopic Extended"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:106
+msgid "Cyrillic Extended-A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:107
+msgid "Supplemental Punctuation"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:108
+msgid "CJK Radicals Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:109
+msgid "Kangxi Radicals"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:110
+msgid "Ideographic Description Characters"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:111
+msgid "CJK Symbols and Punctuation"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:112 ../lib/Unicode/unicode-i18n.h:333
+msgid "Hiragana"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:113 ../lib/Unicode/unicode-i18n.h:341
+msgid "Katakana"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:114 ../lib/Unicode/unicode-i18n.h:299
+msgid "Bopomofo"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:115
+msgid "Hangul Compatibility Jamo"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:116
+msgid "Kanbun"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:117
+msgid "Bopomofo Extended"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:118
+msgid "CJK Strokes"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:119
+msgid "Katakana Phonetic Extensions"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:120
+msgid "Enclosed CJK Letters and Months"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:121
+msgid "CJK Compatibility"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:122
+msgid "CJK Unified Ideographs Extension A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:123
+msgid "Yijing Hexagram Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:124
+msgid "CJK Unified Ideographs"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:125
+msgid "Yi Syllables"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:126
+msgid "Yi Radicals"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:127 ../lib/Unicode/unicode-i18n.h:353
+msgid "Lisu"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:128 ../lib/Unicode/unicode-i18n.h:424
+msgid "Vai"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:129
+msgid "Cyrillic Extended-B"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:130 ../lib/Unicode/unicode-i18n.h:294
+msgid "Bamum"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:131
+msgid "Modifier Tone Letters"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:132
+msgid "Latin Extended-D"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:133 ../lib/Unicode/unicode-i18n.h:407
+msgid "Syloti Nagri"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:134
+msgid "Common Indic Number Forms"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:135
+msgid "Phags-pa"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:136 ../lib/Unicode/unicode-i18n.h:398
+msgid "Saurashtra"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:137
+msgid "Devanagari Extended"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:138 ../lib/Unicode/unicode-i18n.h:342
+msgid "Kayah Li"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:139 ../lib/Unicode/unicode-i18n.h:395
+msgid "Rejang"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:140
+msgid "Hangul Jamo Extended-A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:141 ../lib/Unicode/unicode-i18n.h:338
+msgid "Javanese"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:142
+msgid "Myanmar Extended-B"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:143 ../lib/Unicode/unicode-i18n.h:308
+msgid "Cham"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:144
+msgid "Myanmar Extended-A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:145 ../lib/Unicode/unicode-i18n.h:413
+msgid "Tai Viet"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:146
+msgid "Meetei Mayek Extensions"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:147
+msgid "Ethiopic Extended-A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:148
+msgid "Latin Extended-E"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:149
+msgid "Cherokee Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:150 ../lib/Unicode/unicode-i18n.h:362
+msgid "Meetei Mayek"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:151
+msgid "Hangul Syllables"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:152
+msgid "Hangul Jamo Extended-B"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:153
+msgid "High Surrogates"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:154
+msgid "High Private Use Surrogates"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:155
+msgid "Low Surrogates"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:156
+msgid "Private Use Area"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:157
+msgid "CJK Compatibility Ideographs"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:158
+msgid "Alphabetic Presentation Forms"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:159
+msgid "Arabic Presentation Forms-A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:160
+#, fuzzy
+msgid "Variation Selectors"
+msgstr "tipo"
+
+#: ../lib/Unicode/unicode-i18n.h:161
+msgid "Vertical Forms"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:162
+msgid "Combining Half Marks"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:163
+msgid "CJK Compatibility Forms"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:164
+msgid "Small Form Variants"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:165
+msgid "Arabic Presentation Forms-B"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:166
+msgid "Halfwidth and Fullwidth Forms"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:167
+msgid "Specials"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:168
+msgid "Linear B Syllabary"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:169
+msgid "Linear B Ideograms"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:170
+msgid "Aegean Numbers"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:171
+msgid "Ancient Greek Numbers"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:172
+msgid "Ancient Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:173
+msgid "Phaistos Disc"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:174 ../lib/Unicode/unicode-i18n.h:354
+msgid "Lycian"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:175 ../lib/Unicode/unicode-i18n.h:305
+#, fuzzy
+msgid "Carian"
+msgstr "tipo"
+
+#: ../lib/Unicode/unicode-i18n.h:176
+msgid "Coptic Epact Numbers"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:177 ../lib/Unicode/unicode-i18n.h:380
+#, fuzzy
+msgid "Old Italic"
+msgstr "Itálica"
+
+#: ../lib/Unicode/unicode-i18n.h:178 ../lib/Unicode/unicode-i18n.h:323
+msgid "Gothic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:179 ../lib/Unicode/unicode-i18n.h:382
+msgid "Old Permic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:180 ../lib/Unicode/unicode-i18n.h:423
+msgid "Ugaritic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:181 ../lib/Unicode/unicode-i18n.h:383
+msgid "Old Persian"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:182 ../lib/Unicode/unicode-i18n.h:315
+msgid "Deseret"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:183 ../lib/Unicode/unicode-i18n.h:400
+msgid "Shavian"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:184 ../lib/Unicode/unicode-i18n.h:388
+msgid "Osmanya"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:185 ../lib/Unicode/unicode-i18n.h:387
+msgid "Osage"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:186 ../lib/Unicode/unicode-i18n.h:319
+msgid "Elbasan"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:187 ../lib/Unicode/unicode-i18n.h:306
+msgid "Caucasian Albanian"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:188 ../lib/Unicode/unicode-i18n.h:351
+msgid "Linear A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:189
+msgid "Cypriot Syllabary"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:190 ../lib/Unicode/unicode-i18n.h:334
+msgid "Imperial Aramaic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:191 ../lib/Unicode/unicode-i18n.h:390
+msgid "Palmyrene"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:192 ../lib/Unicode/unicode-i18n.h:373
+msgid "Nabataean"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:193 ../lib/Unicode/unicode-i18n.h:331
+msgid "Hatran"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:194 ../lib/Unicode/unicode-i18n.h:393
+msgid "Phoenician"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:195 ../lib/Unicode/unicode-i18n.h:355
+msgid "Lydian"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:196 ../lib/Unicode/unicode-i18n.h:365
+msgid "Meroitic Hieroglyphs"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:197 ../lib/Unicode/unicode-i18n.h:364
+msgid "Meroitic Cursive"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:198 ../lib/Unicode/unicode-i18n.h:343
+msgid "Kharoshthi"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:199 ../lib/Unicode/unicode-i18n.h:384
+msgid "Old South Arabian"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:200 ../lib/Unicode/unicode-i18n.h:381
+msgid "Old North Arabian"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:201 ../lib/Unicode/unicode-i18n.h:359
+msgid "Manichaean"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:202 ../lib/Unicode/unicode-i18n.h:292
+msgid "Avestan"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:203 ../lib/Unicode/unicode-i18n.h:337
+msgid "Inscriptional Parthian"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:204 ../lib/Unicode/unicode-i18n.h:336
+msgid "Inscriptional Pahlavi"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:205 ../lib/Unicode/unicode-i18n.h:394
+msgid "Psalter Pahlavi"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:206 ../lib/Unicode/unicode-i18n.h:385
+msgid "Old Turkic"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:207 ../lib/Unicode/unicode-i18n.h:379
+msgid "Old Hungarian"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:208
+msgid "Rumi Numeral Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:209 ../lib/Unicode/unicode-i18n.h:300
+msgid "Brahmi"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:210 ../lib/Unicode/unicode-i18n.h:339
+msgid "Kaithi"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:211 ../lib/Unicode/unicode-i18n.h:404
+msgid "Sora Sompeng"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:212 ../lib/Unicode/unicode-i18n.h:307
+msgid "Chakma"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:213 ../lib/Unicode/unicode-i18n.h:356
+msgid "Mahajani"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:214 ../lib/Unicode/unicode-i18n.h:399
+msgid "Sharada"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:215
+msgid "Sinhala Archaic Numbers"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:216 ../lib/Unicode/unicode-i18n.h:345
+msgid "Khojki"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:217 ../lib/Unicode/unicode-i18n.h:370
+msgid "Multani"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:218 ../lib/Unicode/unicode-i18n.h:346
+msgid "Khudawadi"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:219 ../lib/Unicode/unicode-i18n.h:324
+msgid "Grantha"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:220 ../lib/Unicode/unicode-i18n.h:375
+msgid "Newa"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:221 ../lib/Unicode/unicode-i18n.h:422
+msgid "Tirhuta"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:222 ../lib/Unicode/unicode-i18n.h:401
+msgid "Siddham"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:223 ../lib/Unicode/unicode-i18n.h:367
+msgid "Modi"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:224
+msgid "Mongolian Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:225 ../lib/Unicode/unicode-i18n.h:414
+msgid "Takri"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:226 ../lib/Unicode/unicode-i18n.h:288
+msgid "Ahom"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:227 ../lib/Unicode/unicode-i18n.h:425
+msgid "Warang Citi"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:228 ../lib/Unicode/unicode-i18n.h:427
+msgid "Zanabazar Square"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:229 ../lib/Unicode/unicode-i18n.h:405
+msgid "Soyombo"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:230 ../lib/Unicode/unicode-i18n.h:391
+msgid "Pau Cin Hau"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:231 ../lib/Unicode/unicode-i18n.h:298
+msgid "Bhaiksuki"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:232 ../lib/Unicode/unicode-i18n.h:360
+msgid "Marchen"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:233 ../lib/Unicode/unicode-i18n.h:361
+msgid "Masaram Gondi"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:234 ../lib/Unicode/unicode-i18n.h:312
+msgid "Cuneiform"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:235
+msgid "Cuneiform Numbers and Punctuation"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:236
+msgid "Early Dynastic Cuneiform"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:237 ../lib/Unicode/unicode-i18n.h:318
+msgid "Egyptian Hieroglyphs"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:238 ../lib/Unicode/unicode-i18n.h:289
+msgid "Anatolian Hieroglyphs"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:239
+msgid "Bamum Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:240 ../lib/Unicode/unicode-i18n.h:369
+msgid "Mro"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:241 ../lib/Unicode/unicode-i18n.h:295
+msgid "Bassa Vah"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:242 ../lib/Unicode/unicode-i18n.h:389
+msgid "Pahawh Hmong"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:243 ../lib/Unicode/unicode-i18n.h:366
+msgid "Miao"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:244
+msgid "Ideographic Symbols and Punctuation"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:245 ../lib/Unicode/unicode-i18n.h:416
+msgid "Tangut"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:246
+msgid "Tangut Components"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:247
+msgid "Kana Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:248
+msgid "Kana Extended-A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:249 ../lib/Unicode/unicode-i18n.h:376
+msgid "Nushu"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:250 ../lib/Unicode/unicode-i18n.h:317
+msgid "Duployan"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:251
+msgid "Shorthand Format Controls"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:252
+msgid "Byzantine Musical Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:253
+msgid "Musical Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:254
+msgid "Ancient Greek Musical Notation"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:255
+msgid "Tai Xuan Jing Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:256
+msgid "Counting Rod Numerals"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:257
+msgid "Mathematical Alphanumeric Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:258
+msgid "Sutton SignWriting"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:259
+msgid "Glagolitic Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:260 ../lib/Unicode/unicode-i18n.h:363
+msgid "Mende Kikakui"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:261 ../lib/Unicode/unicode-i18n.h:287
+msgid "Adlam"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:262
+msgid "Arabic Mathematical Alphabetic Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:263
+msgid "Mahjong Tiles"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:264
+#, fuzzy
+msgid "Domino Tiles"
+msgstr "Eliminación de archivos"
+
+#: ../lib/Unicode/unicode-i18n.h:265
+msgid "Playing Cards"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:266
+msgid "Enclosed Alphanumeric Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:267
+msgid "Enclosed Ideographic Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:268
+msgid "Miscellaneous Symbols and Pictographs"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:269
+msgid "Emoticons"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:270
+msgid "Ornamental Dingbats"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:271
+msgid "Transport and Map Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:272
+msgid "Alchemical Symbols"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:273
+msgid "Geometric Shapes Extended"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:274
+msgid "Supplemental Arrows-C"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:275
+msgid "Supplemental Symbols and Pictographs"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:276
+msgid "CJK Unified Ideographs Extension B"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:277
+msgid "CJK Unified Ideographs Extension C"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:278
+msgid "CJK Unified Ideographs Extension D"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:279
+msgid "CJK Unified Ideographs Extension E"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:280
+msgid "CJK Unified Ideographs Extension F"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:281
+msgid "CJK Compatibility Ideographs Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:282
+msgid "Tags"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:283
+msgid "Variation Selectors Supplement"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:284
+msgid "Supplementary Private Use Area-A"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:285
+msgid "Supplementary Private Use Area-B"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:301
+msgid "Braille"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:304
+msgid "Canadian Aboriginal"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:310
+msgid "Common"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:313
+msgid "Cypriot"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:325
+msgid "Greek"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:328
+msgid "Han"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:329
+msgid "Hangul"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:335
+msgid "Inherited"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:348
+msgid "Latin"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:352
+msgid "Linear B"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:392
+msgid "Phags Pa"
+msgstr ""
+
+#: ../lib/Unicode/unicode-i18n.h:402
+#, fuzzy
+msgid "Signwriting"
+msgstr "Mejora del contorno"
+
+#: ../lib/Unicode/unicode-i18n.h:426
+msgid "Yi"
+msgstr ""
 
 #: ../data/ApplicationMenu.ui.h:1
 msgid "_Help"

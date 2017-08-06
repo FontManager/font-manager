@@ -92,6 +92,7 @@ tests/TestCase.vala
 tests/TestFontConfig.vala
 tests/TestMain.vala
 tests/TestUtils.vala
+lib/Unicode/unicode-i18n.h
 [type: gettext/glade]data/ApplicationMenu.ui
 data/org.gnome.FontManager.appdata.xml.in
 data/org.gnome.FontManager.desktop.in

@@ -52,6 +52,7 @@ POTFILES.readme:
 
 POTFILES.in:
 	find $(abs_top_srcdir) -name "*.vala*" -print | $(SED) -e 's|$(abs_top_srcdir)/||g' -e 's/\.in//g' | sort | uniq > $(abs_top_srcdir)/po/$@ ;
+	find $(abs_top_srcdir) -name "*i18n.h" -print | $(SED) -e 's|$(abs_top_srcdir)/||g' >> $(abs_top_srcdir)/po/$@ ;
 	echo "[type: gettext/glade]data/ApplicationMenu.ui" >> $(abs_top_srcdir)/po/$@ ;
 	echo "data/org.gnome.FontManager.appdata.xml.in" >> $(abs_top_srcdir)/po/$@ ;
 	echo "data/org.gnome.FontManager.desktop.in" >> $(abs_top_srcdir)/po/$@ ;
