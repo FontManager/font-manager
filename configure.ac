@@ -95,7 +95,6 @@ PKG_CHECK_MODULES(PANGO, pango >= 1.3)
 PKG_CHECK_MODULES(PANGOCAIRO, pangocairo >= 1.3)
 PKG_CHECK_MODULES(PANGOFT2, pangoft2 >= 1.3)
 PKG_CHECK_MODULES(GEE, gee-0.8 >= 0.14)
-PKG_CHECK_MODULES(GUCHARMAP, gucharmap-2.90 >= 3.12)
 PKG_CHECK_MODULES(SQLITE3, sqlite3 >= 3.8)
 
 dnl ***********************************************************************
