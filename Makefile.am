@@ -80,4 +80,4 @@ maintainer-clean-local:
 	find . -name .deps -exec rm -rf {} \;
 
 all: $(PACKAGE_NAME).pot
-.PHONY: $(PACKAGE_NAME).pot vapi/Unicode.vapi
+.PHONY: $(PACKAGE_NAME).pot
