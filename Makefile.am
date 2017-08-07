@@ -32,6 +32,7 @@ EXTRA_DIST = \
 	po/POTFILES.skip \
 	help/insert-header.sin \
 	help/HEADER \
+	vapi/Unicode.vapi \
 	Flags.mk
 
 DISTCLEANFILES = \
@@ -79,4 +80,4 @@ maintainer-clean-local:
 	find . -name .deps -exec rm -rf {} \;
 
 all: $(PACKAGE_NAME).pot
-.PHONY: $(PACKAGE_NAME).pot
+.PHONY: $(PACKAGE_NAME).pot vapi/Unicode.vapi
