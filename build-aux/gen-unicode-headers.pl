@@ -1055,19 +1055,21 @@ sub process_versions_txt
     print $out "#ifndef UNICODE_VERSIONS_H\n";
     print $out "#define UNICODE_VERSIONS_H\n\n";
 
-    print $out "#include <glib.h>\n";
+    print $out "#include <glib.h>\n\n";
 
-    print $out "typedef struct {\n";
+    print $out "typedef struct\n";
+    print $out "{\n";
     print $out "  gunichar start;\n";
     print $out "  gunichar end;\n";
-    print $out "  GucharmapUnicodeVersion version;\n";
-    print $out "} UnicodeVersion;\n\n";
+    print $out "  UnicodeStandard version;\n";
+    print $out "}\n";
+    print $out "UnicodeVersion;\n\n";
 
     print $out "static const UnicodeVersion unicode_versions[] =\n";
     print $out "{\n";
     for my $start (sort { $a <=> $b } keys %version_hash)
     {
-        printf $out (qq/  { 0x%04X, 0x%04X, GUCHARMAP_UNICODE_VERSION_\%s },\n/,
+        printf $out (qq/  { 0x%04X, 0x%04X, UNICODE_VERSION_\%s },\n/,
                      $start, $version_hash{$start}->{'end'}, $version_hash{$start}->{'version'});
     }
     print $out "};\n\n";

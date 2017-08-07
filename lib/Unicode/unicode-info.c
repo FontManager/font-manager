@@ -1,4 +1,10 @@
-/*
+/* unicode-info.c
+ *
+ * Originally a part of Gucharmap
+ *
+ * Copyright © 2017 Jerry Casiano
+ *
+ *
  * Copyright © 2004 Noah Levitt
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -285,14 +291,14 @@ unicode_get_codepoint_data_name_count (void)
 }
 
 
-GucharmapUnicodeVersion
+UnicodeStandard
 unicode_get_version (gunichar uc)
 {
     /* does a binary search on unicode_versions */
     gint min = 0, mid, max = G_N_ELEMENTS (unicode_versions) - 1;
 
     if (uc < unicode_versions[0].start || uc > unicode_versions[max].end)
-        return GUCHARMAP_UNICODE_VERSION_UNASSIGNED;
+        return UNICODE_VERSION_UNASSIGNED;
 
     while (max >= min)
     {
@@ -306,16 +312,16 @@ unicode_get_version (gunichar uc)
             return unicode_versions[mid].version;
     }
 
-    return GUCHARMAP_UNICODE_VERSION_UNASSIGNED;
+    return UNICODE_VERSION_UNASSIGNED;
 }
 
 const gchar *
-unicode_version_to_string (GucharmapUnicodeVersion version)
+unicode_version_to_string (UnicodeStandard version)
 {
-    g_return_val_if_fail(version >= GUCHARMAP_UNICODE_VERSION_UNASSIGNED, NULL);
-    g_return_val_if_fail(version <= GUCHARMAP_UNICODE_VERSION_LATEST, NULL);
+    g_return_val_if_fail(version >= UNICODE_VERSION_UNASSIGNED, NULL);
+    g_return_val_if_fail(version <= UNICODE_VERSION_LATEST, NULL);
 
-    if G_UNLIKELY(version == GUCHARMAP_UNICODE_VERSION_UNASSIGNED)
+    if G_UNLIKELY(version == UNICODE_VERSION_UNASSIGNED)
         return NULL;
 
     return unicode_version_strings + unicode_version_string_offsets[version - 1];
@@ -694,43 +700,3 @@ unicode_get_script_for_char (gunichar wc)
     * specifically listed in Scripts.txt */
     return N_("Common");
 }
-
-/*
- * This is a really cool way to achieve this. Though it wasn't actually used.
- * Unfortunately GtkStockItem is now deprecated :-/
- * Need another way. Not seeing one yet...
- * Will probably just use Fontconfig orth info.
- */
-
-//static gunichar
-//get_first_non_underscore_char (const char *str)
-//{
-    //if (!str)
-        //return 0;
-
-    //for (const char *p = str; p && *p; p = g_utf8_find_next_char(p, NULL)) {
-        //gunichar ch = g_utf8_get_char(p);
-        //if (g_unichar_isalpha(ch))
-            //return ch;
-    //}
-
-    //return 0;
-//}
-
-//**
- //* unicode_get_locale_character:
- //*
- //* Determines a character that's commonly used in the current
- //* locale's script.
- //*
- //* Returns: a unicode character
- //*/
-//gunichar
-//unicode_get_locale_character (void)
-//{
-  //GtkStockItem item;
-  //if (!gtk_stock_lookup (GTK_STOCK_FIND, &item))
-    //return 0;
-
-  //return get_first_non_underscore_char (item.label);
-//}
