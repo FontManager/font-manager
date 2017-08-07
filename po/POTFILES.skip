@@ -93,3 +93,7 @@ tests/TestFontConfig.c
 tests/TestMain.c
 tests/TestUtils.c
 lib/Glue/Enums.c
+lib/Unicode/unicode-block-model.c
+lib/Unicode/unicode-character-map.c
+lib/Unicode/unicode-info.c
+lib/Unicode/unicode-script-model.c

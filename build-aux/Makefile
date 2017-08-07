@@ -63,6 +63,10 @@ POTFILES.skip:
 	find $(abs_top_srcdir) -name "*.vala*" -print | $(SED) -e 's|$(abs_top_srcdir)/||g' -e 's/\.in//g' | sort | uniq | $(SED) 's/.vala/.c/g' > $(abs_top_srcdir)/po/$@ ;
 	$(SED) -i 's|\.\./||g' $(abs_top_srcdir)/po/$@ ;
 	echo "lib/Glue/Enums.c" >> $(abs_top_srcdir)/po/$@ ;
+	echo "lib/Unicode/unicode-block-model.c" >> $(abs_top_srcdir)/po/$@ ;
+	echo "lib/Unicode/unicode-character-map.c" >> $(abs_top_srcdir)/po/$@ ;
+	echo "lib/Unicode/unicode-info.c" >> $(abs_top_srcdir)/po/$@ ;
+	echo "lib/Unicode/unicode-script-model.c" >> $(abs_top_srcdir)/po/$@ ;
 
 POT:
 	cd $(abs_top_srcdir) && \
