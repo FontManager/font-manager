@@ -16,7 +16,8 @@ HELP_MEDIA = \
 
 HELP_LINGUAS = \
 	ar \
-	pl
+	pl \
+	de
 
 MAINTAINERCLEANFILES = \
 	$(PACKAGE_NAME).pot \
