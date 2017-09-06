@@ -3,7 +3,7 @@
     type="topic" 
     id="font-manager-fontlist">
     <info>
-        <revision status="stub" />
+        <revision status="draft" pkgversion="0.7.5" date="2017-09-06"/>
         <title type="text">Main font list</title>
         <title type="link">Main font list</title>
         <link type="guide" xref="index"/>
@@ -26,7 +26,7 @@
     </title>
 
 
-<p>The font list pane shows a list of all font families in a given <link xref="font-manager-category">Category</link> or <link xref="font-manager-collection">Collection</link>. Each font family can be expanded to display all font styles by pressing the little › toggle. In addition, all families can be toggled with the ++expand all++ button. </p>
+<p>The font list pane shows a list of all font families in a given <link xref="font-manager-category">Category</link> or <link xref="font-manager-collection">Collection</link>. Each font family can be expanded to display all font styles by pressing the little <gui>›</gui> toggle. In addition, all families can be toggled with the <gui>expand all</gui> button. </p>
 
 <p>The search bar in the font list can be used to find a font family by its name. Currently, this only supports matching with the beginning of a font’s name. A more detailed <link xref="font-manager-search">search function</link> will be implemented. </p>
 </page>

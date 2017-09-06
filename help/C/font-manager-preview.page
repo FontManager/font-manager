@@ -3,7 +3,7 @@
     type="topic" 
     id="font-manager-preview">
     <info>
-        <revision status="stub" />
+        <revision status="draft" pkgversion="0.7.5" date="2017-09-06"/>
         <title type="text">Preview</title>
         <title type="link">Preview</title>
         <link type="guide" xref="index"/>
@@ -31,13 +31,13 @@
 <p>Preview offers a range of preview styles: </p>
 
 <list>
-<item><p>Preview. Preview displays the selected fonts. By default, it displays a pangram in the system’s language. Paragraph alignment can be switched to left-aligned, centered, fill/justified and right-aligned.</p>
-<p>The preview pane can be adapted by toggling the "edit preview text" button.</p></item>
-<item><p>Waterfall. Waterfall shows the selected font in different sizes from 6pt to 96pt.</p></item>
-<item><p>Body text. The body text preview style gives a justified paragraph of blind text.</p></item>
+<item><p><gui>Preview</gui>. Preview displays the selected fonts. By default, it displays a pangram in the system’s language. Paragraph alignment can be switched to <gui>left-aligned</gui>, <gui>centered</gui>, <gui>fill/justified</gui> and <gui>right-aligned</gui>.</p>
+<p>The preview pane can be adapted by toggling the <gui>edit preview text</gui> button.</p></item>
+<item><p><gui>Waterfall</gui>. Waterfall shows the selected font in different sizes from 6pt to 96pt.</p></item>
+<item><p><gui>Body text</gui>. The body text preview style gives a justified paragraph of blind text.</p></item>
 </list>
 
-<p>Those can be activated in the "select preview type" menu item. </p>
+<p>Those can be activated in the <gui>select preview type</gui> menu item. </p>
 </section>
 
 <section id="font-manager-preview-fontdetails">
@@ -46,8 +46,8 @@
 <p>Within all preview styles, additional tabs offer information on the font files: </p>
 
 <list>
-<item><p>The ++Properties++ tab shows the font info from the font file; these metadata are also used to populate the font <link xref="font-manager-category">categories</link> in the ++Manage++ view.</p></item> 
-<item><p>The same is true for the font <link xref="font-manager-fontlicenses">License</link> tab that shows the license under which a given font family can be used.</p></item> 
+<item><p>The <gui>Properties</gui> tab shows the font info from the font file; these metadata are also used to populate the font <link xref="font-manager-category">categories</link> in the <gui>Manage</gui> view.</p></item> 
+<item><p>The same is true for the font <gui>License</gui> tab that shows the license under which a given font family can be used.</p></item> 
 </list>
 </section>
 </page>

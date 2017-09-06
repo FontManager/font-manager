@@ -3,10 +3,9 @@
     type="guide" 
     id="index">
     <info>
-        <revision status="stub" />
         <title type="text">Font Manager Documentation Start Page</title>
         <title type="link">Font Manager Documentation Start Page</title>
-        <desc>Documentation for Font Manager - Simple font management for GTK+ desktop environments</desc>
+        <desc>Documentation for Font Manager</desc>
         <credit type="author">
             <name>Stephan Kurz</name>
             <email its:translate="no">skurz@gmx.at</email>
@@ -17,6 +16,7 @@
                 <link href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU General Public License Version 3</link>
             </p>
         </license>
+        <revision status="draft" pkgversion="0.7.5" date="2017-09-06"/>
     </info>
 
 

@@ -3,7 +3,7 @@
     type="topic" 
     id="category">
     <info>
-        <revision status="stub" />
+        <revision status="draft" pkgversion="0.7.5" date="2017-09-06"/>
         <title type="text">Categories</title>
         <title type="link">Categories</title>
         <link type="guide" xref="index"/>
@@ -39,6 +39,6 @@
 <item><p>Vendor</p></item>
 </list>
 
-<p>Additionally, this view distinguishes by fonts installed system-wide and versus installed by the current user. {needs more info? i did not find out how this is done and what is the real impact - (using a one-user system)}</p>
+<p>Additionally, this view distinguishes by fonts installed system-wide and versus installed by the current user. <!--needs more info? i did not find out how this is done and what is the real impact - (using a one-user system)}--></p>
 
 </page>

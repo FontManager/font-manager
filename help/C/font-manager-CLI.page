@@ -3,7 +3,7 @@
     type="topic" 
     id="font-manager-CLI">
     <info>
-        <revision status="stub" />
+        <revision status="draft" pkgversion="0.7.5" date="2017-09-06"/>
         <title type="text">Usage from the command line</title>
         <title type="link">Usage from the command line</title>
         <link type="guide" xref="index"/>
@@ -32,6 +32,7 @@ Usage from the command line </title>
 <item><p>-d disable a font family</p></item>
 <item><p>--list list font families</p></item>
 <item><p>--list-full list font families and all faces (JSON output)</p></item>
+<item><p>-V verbose (debugging mode, undocumented)</p></item>
 </list>
 
 

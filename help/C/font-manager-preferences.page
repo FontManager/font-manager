@@ -3,7 +3,7 @@
     type="topic" 
     id="font-manager-preferences">
     <info>
-        <revision status="stub" />
+        <revision status="draft" pkgversion="0.7.5" date="2017-09-06"/>
         <title type="text">Preferences</title>
         <title type="link">Preferences</title>
         <link type="guide" xref="index"/>
@@ -32,9 +32,9 @@
   </item>
   <item>
     <title>Rendering</title>
-	<p>Rendering offers settings with regard to anti aliasing, hinting and the use of embedded bitmaps from the font files</p>
+	<p>Rendering offers settings with regard to <gui>anti aliasing</gui>, <gui>hinting</gui> and the use of <gui>embedded bitmaps</gui> from the font files</p>
   </item>
-  <item><title>Display</title><p>offers various settings for dealing with different types of display to optimize the font display on given displays</p></item>
+  <item><title>Display</title><p>offers various settings for dealing with different types of display to optimize the font display on given displays.</p></item>
 </terms>
 
 </page>

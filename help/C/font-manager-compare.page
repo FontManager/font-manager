@@ -3,7 +3,7 @@
     type="topic" 
     id="compare">
     <info>
-        <revision status="stub" />
+        <revision status="draft" pkgversion="0.7.5" date="2017-09-06"/>
         <title type="text">Compare</title>
         <title type="link">Compare</title>
         <link type="guide" xref="index"/>
@@ -29,7 +29,7 @@
 
 <p>The compare view gives a preview of selected fonts (useful for comparison of e.g. a number of fonts for a project).</p>
 
-<p>Add fonts to your comparison by selecting fonts from the main font list and pressing the + button. </p>
+<p>Add fonts to your comparison by selecting fonts from the main <link xref="font-manager-fontlist">font list</link> and pressing the <gui>+</gui> button. </p>
 
-<p>Change background and foreground colors with the color pickers in the upper-right corner. </p>
+<p>Change background and foreground colors with the <gui>color pickers</gui> in the upper-right corner. </p>
 </page>

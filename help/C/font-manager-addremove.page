@@ -1,11 +1,14 @@
 <page xmlns="http://projectmallard.org/1.0/" 
     xmlns:its="http://www.w3.org/2005/11/its" 
-    type="topic" id="font-manager-addremove">
+    type="topic" 
+    style="task"
+    id="font-manager-addremove">
     <info>
-        <revision status="stub" />
+        <revision status="draft" pkgversion="0.7.5" date="2017-09-06"/>
         <title type="text">Adding/Removing fonts</title>
         <title type="link">Adding/Removing fonts</title>
 <link type="guide" xref="index"/>
+<link type="guide" xref="index#font-manager-tasks" />
         <credit type="author">
             <name>Stephan Kurz</name>
             <email its:translate="no">skurz@gmx.at</email>
@@ -32,7 +35,7 @@
 <p>Adding fonts to the collection can be done via </p>
 
 <list>
-  <item><p>Menu item "+" in the ++title bar++</p></item>
+  <item><p>Menu item <gui>+</gui> in the <gui>title bar</gui></p></item>
   <item><p>Drag and Drop to the <link xref="font-manager-fontlist">font list</link></p></item>
 </list>
 
@@ -40,7 +43,7 @@
 <section id="font-manager-remove">
 <title>Removing fonts</title>
 
-<p>Removing fonts is currently broken {file bug report, the "Delete" button only offers a window to remove fonts selected in a previous action to move a font to an existing Collection}</p>
+<p>Removing fonts is currently broken as of version 0.7.3. <!--file bug report, the "Delete" button only offers a window to remove fonts selected in a previous action to move a font to an existing Collection}--></p>
 </section>
 
 </page>

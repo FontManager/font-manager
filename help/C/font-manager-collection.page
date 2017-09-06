@@ -3,7 +3,7 @@
     type="topic" 
     id="collection">
     <info>
-        <revision status="stub" />
+        <revision status="draft" pkgversion="0.7.5" date="2017-09-06"/>
         <title type="text">Collections</title>
         <title type="link">Collections</title>
         <link type="guide" xref="index"/>
@@ -35,7 +35,7 @@
 
 <p>Within the collections view, you can add a font family to other collections by dragging from one collection’s font list to another collection in the collection list.</p> 
 
-<p>To remove font families from a collection, press the - symbol in the collection’s font list. </p>
+<p>To remove font families from a collection, press the <gui>-</gui> symbol in the collection’s font list. </p>
 
 <p>Collection data are kept in a JSON file (<code>~/.config/font-manager/Collections.json</code>), Syntax is self-explanatory. Keep your backups if you edit by hand.</p>
 </page>
