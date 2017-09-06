@@ -7,7 +7,6 @@
         <title type="text">Activating/Deactivating fonts</title>
         <title type="link">Activating/Deactivating fonts</title>
         <link type="guide" xref="index"/>
-        <desc>Documentation for Font Manager - Simple font management for GTK+ desktop environments</desc>
         <credit type="author">
             <name>Stephan Kurz</name>
             <email its:translate="no">skurz@gmx.at</email>

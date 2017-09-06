@@ -7,7 +7,6 @@
         <title type="text">Character map</title>
         <title type="link">Character map</title>
         <link type="guide" xref="index"/>
-        <desc>Documentation for Font Manager - Simple font management for GTK+ desktop environments</desc>
         <credit type="author">
             <name>Stephan Kurz</name>
             <email its:translate="no">skurz@gmx.at</email>

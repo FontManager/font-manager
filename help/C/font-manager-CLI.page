@@ -7,7 +7,6 @@
         <title type="text">Usage from the command line</title>
         <title type="link">Usage from the command line</title>
         <link type="guide" xref="index"/>
-        <desc>Documentation for Font Manager - Simple font management for GTK+ desktop environments</desc>
         <credit type="author">
             <name>Stephan Kurz</name>
             <email its:translate="no">skurz@gmx.at</email>

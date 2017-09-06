@@ -1,12 +1,16 @@
-<page xmlns="http://projectmallard.org/1.0/" type="guide" id="index">
+<page xmlns="http://projectmallard.org/1.0/" 
+    xmlns:its="http://www.w3.org/2005/11/its" 
+    type="guide" 
+    id="index">
     <info>
         <revision status="stub" />
-        <title type="text">Font Manager</title>
-        <desc>Simple font management for GTK+ desktop environments</desc>
-        <credit type="copyright">
-            <name>Jerry Casiano</name>
-            <email>JerryCasiano@gmail.com</email>
-            <years>2009-2016</years>
+        <title type="text">Font Manager Documentation Start Page</title>
+        <title type="link">Font Manager Documentation Start Page</title>
+        <desc>Documentation for Font Manager - Simple font management for GTK+ desktop environments</desc>
+        <credit type="author">
+            <name>Stephan Kurz</name>
+            <email its:translate="no">skurz@gmx.at</email>
+            <years>2017</years>
         </credit>
         <license>
             <p>
@@ -14,12 +18,25 @@
             </p>
         </license>
     </info>
+
+
     <title>
         <media type="image" mime="image/png" src="media/logo.png">Font Manager logo</media>
         Font Manager
     </title>
+
+<p>Welcome to the <app>Font Manager</app> documentation. </p>
+<p><app>Font Manager</app> is intended to provide a way for average users to easily manage desktop fonts, without having to resort to command line tools or editing configuration files by hand. While designed primarily with the Gnome Desktop Environment in mind, it should work well with other Gtk+ desktop environments.</p>
+
+  <section id="font-manager-tasks">
+    <title>Tasks</title>
+    <links type="topic" xref=""/>
+  </section>
+
+<section id="font-manager-notes">
+<title>Notes</title>
     <note style="important">
-        <title> Help has not been implemented yet.</title>
+        <title> Help is under construction.</title>
         <p> If you would like to help this project by providing help documentation please see <link href="http://projectmallard.org"> Project Mallard </link> for more information.</p>
         <p> If you do decide to help, please file an issue at <link href="https://github.com/FontManager/master/issues">https://github.com/FontManager/master/issues</link> detailing what you intend to work on.</p>
         <p>Thank you.</p>
@@ -29,4 +46,5 @@
         <p> If you would like to help this application reach more users in their native language please see <link href="https://translate.zanata.org/project/view/font-manager"> Zanata </link> for more information.</p>
         <p> You can also file an issue at <link href="https://github.com/FontManager/master/issues">https://github.com/FontManager/master/issues</link> and attach any translated files there.</p>
     </note>
+</section>
 </page>

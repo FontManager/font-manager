@@ -7,7 +7,7 @@
         <title type="text">Categories</title>
         <title type="link">Categories</title>
         <link type="guide" xref="index"/>
-        <desc>Documentation for Font Manager - Simple font management for GTK+ desktop environments</desc>
+        <link type="topic" xref="font-manager-collection"/>
         <credit type="author">
             <name>Stephan Kurz</name>
             <email its:translate="no">skurz@gmx.at</email>
