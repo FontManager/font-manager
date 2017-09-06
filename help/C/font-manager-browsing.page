@@ -1,0 +1,34 @@
+<page xmlns="http://projectmallard.org/1.0/" 
+    xmlns:its="http://www.w3.org/2005/11/its" 
+    type="topic" 
+    id="font-manager-browsing">
+    <info>
+        <revision status="stub" />
+        <title type="text">Browsing and filtering</title>
+        <title type="link">Browsing and filtering</title>
+        <link type="guide" xref="index"/>
+        <desc>Documentation for Font Manager - Simple font management for GTK+ desktop environments</desc>
+        <credit type="author">
+            <name>Stephan Kurz</name>
+            <email its:translate="no">skurz@gmx.at</email>
+            <years>2017</years>
+        </credit>
+        <license>
+            <p>
+                <link href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU General Public License Version 3</link>
+            </p>
+        </license>
+    </info>
+
+
+    <title>
+        <media type="image" mime="image/png" src="media/logo.png">Font Manager logo</media>
+        Browsing and filtering
+    </title>
+
+
+
+<p>Currently, font files can be viewed by using <link xref="font-manager-category">Categories</link> (based on font metadata) and <link xref="font-manager-collection">Collections</link> (based on user-created sets).</p> 
+
+<p>A more detailed <link xref="font-manager-search">search function</link> will be implemented. {more info needed}</p>
+</page>

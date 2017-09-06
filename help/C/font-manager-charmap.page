@@ -1,0 +1,32 @@
+<page xmlns="http://projectmallard.org/1.0/" 
+    xmlns:its="http://www.w3.org/2005/11/its" 
+    type="topic" 
+    id="font-manager-charmap">
+    <info>
+        <revision status="stub" />
+        <title type="text">Character map</title>
+        <title type="link">Character map</title>
+        <link type="guide" xref="index"/>
+        <desc>Documentation for Font Manager - Simple font management for GTK+ desktop environments</desc>
+        <credit type="author">
+            <name>Stephan Kurz</name>
+            <email its:translate="no">skurz@gmx.at</email>
+            <years>2017</years>
+        </credit>
+        <license>
+            <p>
+                <link href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU General Public License Version 3</link>
+            </p>
+        </license>
+    </info>
+
+
+    <title>
+        <media type="image" mime="image/png" src="media/logo.png">Font Manager logo</media>
+Characters (Character map)
+    </title>
+
+<p>A character map of all glyphs present in a given font family can be displayed within the <link xref="font-manager-preview">preview</link> pane, using <app>gucharmap</app>. The left pane of this view can be used to select a Unicode block to display.</p> 
+
+<p>A more useful version of the character map pane is under development. </p>
+</page>

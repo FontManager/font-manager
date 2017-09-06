@@ -1,0 +1,47 @@
+<page xmlns="http://projectmallard.org/1.0/" 
+    xmlns:its="http://www.w3.org/2005/11/its" 
+    type="topic" id="font-manager-addremove">
+    <info>
+        <revision status="stub" />
+        <title type="text">Adding/Removing fonts</title>
+        <title type="link">Adding/Removing fonts</title>
+<link type="guide" xref="index"/>
+        <desc>Documentation for Font Manager - Simple font management for GTK+ desktop environments</desc>
+        <credit type="author">
+            <name>Stephan Kurz</name>
+            <email its:translate="no">skurz@gmx.at</email>
+            <years>2017</years>
+        </credit>
+        <license>
+            <p>
+                <link href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU General Public License Version 3</link>
+            </p>
+        </license>
+    </info>
+
+
+    <title>
+        <media type="image" mime="image/png" src="media/logo.png">Font Manager logo</media>
+        Adding/Removing fonts
+    </title>
+
+<section id="font-manager-add">
+<title>Adding fonts</title>
+
+<p>Once you start up <app>Font Manager</app>, you can use it to manage your font collection. The default font directory is <code>~/fonts/</code>. More source directories can be added in the <link xref="font-manager-preferences">Preferences Pane</link></p>
+
+<p>Adding fonts to the collection can be done via </p>
+
+<list>
+  <item><p>Menu item "+" in the ++title bar++</p></item>
+  <item><p>Drag and Drop to the <link xref="font-manager-fontlist">font list</link></p></item>
+</list>
+
+</section>
+<section id="font-manager-remove">
+<title>Removing fonts</title>
+
+<p>Removing fonts is currently broken {file bug report, the "Delete" button only offers a window to remove fonts selected in a previous action to move a font to an existing Collection}</p>
+</section>
+
+</page>

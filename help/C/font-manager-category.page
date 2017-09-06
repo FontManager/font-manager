@@ -1,0 +1,44 @@
+<page xmlns="http://projectmallard.org/1.0/" 
+    xmlns:its="http://www.w3.org/2005/11/its" 
+    type="topic" 
+    id="category">
+    <info>
+        <revision status="stub" />
+        <title type="text">Categories</title>
+        <title type="link">Categories</title>
+        <link type="guide" xref="index"/>
+        <desc>Documentation for Font Manager - Simple font management for GTK+ desktop environments</desc>
+        <credit type="author">
+            <name>Stephan Kurz</name>
+            <email its:translate="no">skurz@gmx.at</email>
+            <years>2017</years>
+        </credit>
+        <license>
+            <p>
+                <link href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU General Public License Version 3</link>
+            </p>
+        </license>
+    </info>
+
+
+    <title>
+        <media type="image" mime="image/png" src="media/logo.png">Font Manager logo</media>
+        Categories
+    </title>
+
+<p>Categories are automatically filled from the PANOSE metadata in the font files. These filter all font files by </p>
+
+<list>
+<item><p>Family Kind</p></item>
+<item><p>Spacing</p></item>
+<item><p>Slant</p></item>
+<item><p>Weight</p></item>
+<item><p>Width</p></item>
+<item><p>Filetype</p></item>
+<item><p>License</p></item>
+<item><p>Vendor</p></item>
+</list>
+
+<p>Additionally, this view distinguishes by fonts installed system-wide and versus installed by the current user. {needs more info? i did not find out how this is done and what is the real impact - (using a one-user system)}</p>
+
+</page>

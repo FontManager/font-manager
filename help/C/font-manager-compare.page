@@ -1,0 +1,36 @@
+<page xmlns="http://projectmallard.org/1.0/" 
+    xmlns:its="http://www.w3.org/2005/11/its" 
+    type="topic" 
+    id="compare">
+    <info>
+        <revision status="stub" />
+        <title type="text">Compare</title>
+        <title type="link">Compare</title>
+        <link type="guide" xref="index"/>
+        <desc>Documentation for Font Manager - Simple font management for GTK+ desktop environments</desc>
+        <credit type="author">
+            <name>Stephan Kurz</name>
+            <email its:translate="no">skurz@gmx.at</email>
+            <years>2017</years>
+        </credit>
+        <license>
+            <p>
+                <link href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU General Public License Version 3</link>
+            </p>
+        </license>
+    </info>
+
+
+    <title>
+        <media type="image" mime="image/png" src="media/logo.png">Font Manager logo</media>
+        Compare
+    </title>
+
+
+
+<p>The compare view gives a preview of selected fonts (useful for comparison of e.g. a number of fonts for a project).</p>
+
+<p>Add fonts to your comparison by selecting fonts from the main font list and pressing the + button. </p>
+
+<p>Change background and foreground colors with the color pickers in the upper-right corner. </p>
+</page>
