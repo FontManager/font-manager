@@ -1,0 +1,35 @@
+<page xmlns="http://projectmallard.org/1.0/" 
+    xmlns:its="http://www.w3.org/2005/11/its" 
+    type="topic" 
+    style="task"
+    id="search">
+    <info>
+        <revision status="draft" pkgversion="0.7.5" date="2017-09-06"/>
+        <title type="text">Searching</title>
+        <title type="link">Searching</title>
+        <link type="guide" xref="index"/>
+        <link type="guide" xref="index#font-manager-tasks" />
+        <credit type="author">
+            <name>Stephan Kurz</name>
+            <email its:translate="no">skurz@gmx.at</email>
+            <years>2017</years>
+        </credit>
+        <license>
+            <p>
+                <link href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU General Public License Version 3</link>
+            </p>
+        </license>
+    </info>
+
+
+    <title>
+        <media type="image" mime="image/png" src="media/logo.png">Font Manager logo</media>
+        Searching
+    </title>
+
+
+
+<p>Searching is currently possible only in the <link xref="font-manager-fontlist">font list</link>, and you have to know the starting string in the font name you are looking for.</p>
+<p>More to come.</p>
+
+</page>

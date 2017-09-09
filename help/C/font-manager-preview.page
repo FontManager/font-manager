@@ -1,0 +1,53 @@
+<page xmlns="http://projectmallard.org/1.0/" 
+    xmlns:its="http://www.w3.org/2005/11/its" 
+    type="topic" 
+    id="font-manager-preview">
+    <info>
+        <revision status="draft" pkgversion="0.7.5" date="2017-09-06"/>
+        <title type="text">Preview</title>
+        <title type="link">Preview</title>
+        <link type="guide" xref="index"/>
+        <credit type="author">
+            <name>Stephan Kurz</name>
+            <email its:translate="no">skurz@gmx.at</email>
+            <years>2017</years>
+        </credit>
+        <license>
+            <p>
+                <link href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU General Public License Version 3</link>
+            </p>
+        </license>
+    </info>
+
+
+    <title>
+        <media type="image" mime="image/png" src="media/logo.png">Font Manager logo</media>
+        Preview
+    </title>
+
+<section id="font-manager-preview-views">
+<title>Preview views</title>
+
+<p>Preview offers a range of preview styles: </p>
+
+<list>
+<item><p><gui>Preview</gui>. Preview displays the selected fonts. By default, it displays a pangram in the system’s language. Paragraph alignment can be switched to <gui>left-aligned</gui>, <gui>centered</gui>, <gui>fill/justified</gui> and <gui>right-aligned</gui>.</p>
+<p>The preview pane can be adapted by toggling the <gui>edit preview text</gui> button.</p></item>
+<item><p><gui>Waterfall</gui>. Waterfall shows the selected font in different sizes from 6pt to 96pt.</p></item>
+<item><p><gui>Body text</gui>. The body text preview style gives a justified paragraph of blind text.</p></item>
+</list>
+
+<p>Those can be activated in the <gui>select preview type</gui> menu item. </p>
+</section>
+
+<section id="font-manager-preview-fontdetails">
+<title>Font details</title>
+
+<p>Within all preview styles, additional tabs offer information on the font files: </p>
+
+<list>
+<item><p>The <gui>Properties</gui> tab shows the font info from the font file; these metadata are also used to populate the font <link xref="font-manager-category">categories</link> in the <gui>Manage</gui> view.</p></item> 
+<item><p>The same is true for the font <gui>License</gui> tab that shows the license under which a given font family can be used.</p></item> 
+</list>
+</section>
+</page>

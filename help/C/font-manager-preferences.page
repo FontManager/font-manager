@@ -1,0 +1,40 @@
+<page xmlns="http://projectmallard.org/1.0/" 
+    xmlns:its="http://www.w3.org/2005/11/its" 
+    type="topic" 
+    id="font-manager-preferences">
+    <info>
+        <revision status="draft" pkgversion="0.7.5" date="2017-09-06"/>
+        <title type="text">Preferences</title>
+        <title type="link">Preferences</title>
+        <link type="guide" xref="index"/>
+        <credit type="author">
+            <name>Stephan Kurz</name>
+            <email its:translate="no">skurz@gmx.at</email>
+            <years>2017</years>
+        </credit>
+        <license>
+            <p>
+                <link href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU General Public License Version 3</link>
+            </p>
+        </license>
+    </info>
+
+
+    <title>
+        <media type="image" mime="image/png" src="media/logo.png">Font Manager logo</media>
+        Preferences
+    </title>
+
+<terms>
+  <item>
+    <title>Sources</title>
+	<p>allows to add more font source folders, which can be switched on or off, offering another way of dealing with <link xref="font-manager-activating">de/activating</link> a number of font families</p>
+  </item>
+  <item>
+    <title>Rendering</title>
+	<p>Rendering offers settings with regard to <gui>anti aliasing</gui>, <gui>hinting</gui> and the use of <gui>embedded bitmaps</gui> from the font files</p>
+  </item>
+  <item><title>Display</title><p>offers various settings for dealing with different types of display to optimize the font display on given displays.</p></item>
+</terms>
+
+</page>
