@@ -22,6 +22,8 @@
 
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
+import gi
+gi.require_version('Nautilus', '3.0')
 from gi.repository import GObject, Nautilus
 
 SupportedMimeTypes = [
@@ -32,7 +34,8 @@ SupportedMimeTypes = [
 ]
 
 def is_font_file (f):
-    return f.get_mime_type() in SupportedMimeTypes
+    mimetype = f.get_mime_type()
+    return mimetype.startswith("font") or mimetype in SupportedMimeTypes
 
 
 class FontViewer (GObject.GObject, Nautilus.MenuProvider):
@@ -55,8 +58,9 @@ class FontViewer (GObject.GObject, Nautilus.MenuProvider):
                     if ready():
                         show_uri = proxy.get_dbus_method('ShowUri', 'org.gnome.FontViewer')
                         show_uri('{0}'.format(selected_file.get_activation_uri()))
+                        print(selected_file.get_activation_uri())
                 except:
-                    pass
+                    print ("nautilus-font-manager: Call to ShowUri method failed")
         return
 
     def get_background_items (self, window, folder):

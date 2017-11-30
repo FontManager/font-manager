@@ -32,7 +32,8 @@ SupportedMimeTypes = [
 ]
 
 def is_font_file (f):
-    return f.get_mime_type() in SupportedMimeTypes
+    mimetype = f.get_mime_type()
+    return mimetype.startswith("font") or mimetype in SupportedMimeTypes
 
 
 class FontViewer (thunarx.MenuProvider):
