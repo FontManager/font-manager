@@ -58,7 +58,6 @@ class FontViewer (GObject.GObject, Nautilus.MenuProvider):
                     if ready():
                         show_uri = proxy.get_dbus_method('ShowUri', 'org.gnome.FontViewer')
                         show_uri('{0}'.format(selected_file.get_activation_uri()))
-                        print(selected_file.get_activation_uri())
                 except:
                     print ("nautilus-font-manager: Call to ShowUri method failed")
         return
