@@ -2,9 +2,9 @@
 include ValaSources.mk
 include $(top_srcdir)/Flags.mk
 
-noinst_PROGRAMS = $(TEST_PROGS)
+noinst_PROGRAMS = FontManagerTestSuite
 
-TEST_PROGS = FontManagerTestSuite
+#TEST_PROGS = $(noinst_PROGRAMS)
 
 FontManagerTestSuite_SOURCES = \
 	$(FontManagerTestSuite_VALASOURCES)
@@ -33,10 +33,10 @@ CLEANFILES = \
 MAINTAINERCLEANFILES = \
 	Makefile.in
 
-check-local:
-	@echo
-	@gtester -o results.xml --verbose FontManagerTestSuite
-	@echo
+#check-local:
+#	@echo
+#	@gtester -o results.xml --verbose FontManagerTestSuite
+#	@echo
 
 dist-hook:
 	cd $(distdir) && rm -f $(FontManagerTestSuite_SOURCES:.vala=.c) $(CLEANFILES)
