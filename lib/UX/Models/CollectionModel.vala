@@ -97,14 +97,14 @@ namespace FontManager {
             });
         }
 
-        Gee.ArrayList <Collection> sort_groups (Gee.Collection <Collection> groups) {
-            var sorted = new Gee.ArrayList <Collection> ();
+        Gee.ArrayList <FontManager.Collection> sort_groups (Gee.Collection <FontManager.Collection> groups) {
+            var sorted = new Gee.ArrayList <FontManager.Collection> ();
             sorted.add_all(groups);
             sorted.sort((CompareDataFunc) sort_on_index);
             return sorted;
         }
 
-        void insert_children (Gee.ArrayList <Collection> groups, Gtk.TreeIter parent) {
+        void insert_children (Gee.ArrayList <FontManager.Collection> groups, Gtk.TreeIter parent) {
             var sorted = sort_groups(groups);
             foreach(var child in sorted) {
                 Gtk.TreeIter _iter;
