@@ -9,12 +9,11 @@ dist_desktop_in_files = \
 	org.gnome.FontViewer.desktop.in
 dist_desktop_DATA = $(dist_desktop_in_files:.desktop.in=.desktop)
 
-appdatadir = $(datarootdir)/appdata
-appdata_in_files = org.gnome.FontManager.appdata.xml.in
+appdatadir = $(datadir)/metainfo
+appdata_in_files = \
+	org.gnome.FontManager.appdata.xml.in \
+	org.gnome.FontViewer.appdata.xml.in
 appdata_DATA = $(appdata_in_files:.xml.in=.xml)
-# Without an icon the application is vetoed by appstream
-appicondir = $(datadir)/font-manager/icons
-dist_appicon_DATA = preferences-desktop-font.svg
 
 @GSETTINGS_RULES@
 @INTLTOOL_DESKTOP_RULE@
@@ -52,7 +51,6 @@ EXTRA_DIST = \
 	icons \
 	FontManagerGResource.xml \
 	FontManager.css \
-	ApplicationMenu.ui \
 	$(gsettings_SCHEMAS) \
 	$(dist_desktop_in_files) \
 	$(appdata_in_files)

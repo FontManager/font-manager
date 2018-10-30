@@ -1,0 +1,36 @@
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="supported-formats">
+
+    <info>
+        <link type="guide" xref="index"/>
+        <desc>
+            Font formats supported by <app>Font Manager</app>.
+        </desc>
+    </info>
+
+    <title>Supported File Formats</title>
+
+    <list>
+        <item>
+            <title>
+                <link href="http://wikipedia.org/wiki/TrueType">
+                    TrueType
+                </link>
+            </title>
+        </item>
+        <item>
+            <title>
+                <link href="http://wikipedia.org/wiki/OpenType">
+                    OpenType
+                </link>
+            </title>
+        </item>
+        <item>
+            <title>
+                <link href="http://wikipedia.org/wiki/Type_1_Font#Type_1">
+                    PostScript Type 1
+                </link>
+            </title>
+        </item>
+    </list>
+
+</page>

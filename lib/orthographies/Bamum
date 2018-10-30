@@ -1,0 +1,16 @@
+{
+    "Bamum",
+    "ꚠꚡꚢꚣ",
+    0xa6a0,
+    "ꚠꚡꚢꚣ",
+    { 
+        "ꚠꚡꚢꚣ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0xa6a0, 0xa6f7,
+        END_OF_DATA
+    }
+},
+

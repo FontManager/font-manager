@@ -1,0 +1,16 @@
+{
+    "Mathematical Numerals",
+    "Mathematical Numerals",
+    0x1d7d1,
+    "",
+    { 
+        "", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x1d7ce, 0x1d7ff,
+        END_OF_DATA
+    }
+},
+

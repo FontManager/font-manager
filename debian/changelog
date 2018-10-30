@@ -1,5 +1,5 @@
-font-manager (0.7.3-1ubuntu1) UNRELEASED; urgency=medium
+font-manager (0.7.4-1ubuntu1) UNRELEASED; urgency=medium
 
   * Refer to https://github.com/FontManager/master/commits/master.
 
- -- JerryCasiano <JerryCasiano@gmail.com>  Sun, 19 Jun 2016 19:46:39 -0400
+ -- JerryCasiano <JerryCasiano@gmail.com>  Mon, 29 Oct 2018 19:46:39 -0400

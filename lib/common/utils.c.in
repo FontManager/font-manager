@@ -1,0 +1,337 @@
+/* utils.c
+ *
+ * Copyright (C) 2009 - 2018 Jerry Casiano
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.
+ *
+ * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+*/
+
+#include <unistd.h>
+#include <glib/gprintf.h>
+#include <glib/gstdio.h>
+
+#include "utils.h"
+
+static const gchar *POSSIBLE_SCHEMA_DIRS[] = {
+    "@prefix@/share/glib-2.0/schemas",
+    "@abs_top_srcdir@/data"
+};
+
+static GSList *
+get_possible_schema_dirs (void)
+{
+    GSList *slist = NULL;
+    gchar *user_schema_dir = g_build_filename(g_get_user_data_dir(), "glib-2.0", "schemas", NULL);
+    for (gint i = 0; i < (gint) G_N_ELEMENTS(POSSIBLE_SCHEMA_DIRS); i++)
+        slist = g_slist_append(slist, g_strdup(POSSIBLE_SCHEMA_DIRS[i]));
+    slist = g_slist_prepend(slist, user_schema_dir);
+    slist = g_slist_append(slist, g_get_current_dir());
+    return slist;
+}
+
+/**
+ * get_progress_data: (skip)
+ */
+ProgressData *
+get_progress_data (const gchar *message, guint processed, guint total)
+{
+    ProgressData *data = g_new0(ProgressData, 1);
+    data->processed = processed;
+    data->total = total;
+    data->message = g_strdup(message);
+    return data;
+}
+
+/**
+ * free_progress_data: (skip)
+ */
+void
+free_progress_data (gpointer data)
+{
+    ProgressData *_data = data;
+    g_free(_data->message);
+    g_free(_data);
+    _data = NULL;
+    return;
+}
+
+/**
+ * is_dir:
+ *
+ * Returns:             #TRUE if path is a directory
+ */
+gboolean
+is_dir (const gchar *filepath)
+{
+    return g_file_test(filepath, G_FILE_TEST_IS_DIR);
+}
+
+/**
+ * exists:
+ *
+ * Returns:             #TRUE if path exists
+ */
+gboolean
+exists (const gchar *filepath)
+{
+    return g_file_test(filepath, G_FILE_TEST_EXISTS);
+}
+
+static gboolean
+ensure_dir_exists (const gchar *dir)
+{
+    return (G_LIKELY(exists(dir)) || (g_mkdir_with_parents(dir, 0755) == 0));
+}
+
+/**
+ * natural_sort:
+ *
+ * Returns:             an integer less than, equal to, or greater than zero,
+ *                      if str1 is <, == or > than str2 .
+ */
+gint
+natural_sort (const gchar *str1, const gchar *str2)
+{
+    g_return_val_if_fail((str1 != NULL && str2 != NULL), 0);
+    gchar *s1 = g_utf8_collate_key_for_filename(str1, -1);
+    gchar *s2 = g_utf8_collate_key_for_filename(str2, -1);
+    gint result = g_strcmp0(s1, s2);
+    g_free(s1);
+    g_free(s2);
+    return result;
+}
+
+/**
+ * get_file_owner:
+ * @filepath:   full path to file
+ *
+ * Returns:     0 if current user has read/write permissions, -1 otherwise
+ */
+gint
+get_file_owner (const gchar *filepath)
+{
+    return g_access(filepath, R_OK | W_OK);
+}
+
+/**
+ * get_file_extension:
+ *
+ * The returned string should be freed using #g_free().
+ *
+ * Returns: (transfer full) (nullable): a newly allocated string or %NULL
+ */
+gchar *
+get_file_extension (const gchar *filepath)
+{
+    g_return_val_if_fail(filepath != NULL, NULL);
+    g_return_val_if_fail(g_strrstr(filepath, ".") != NULL, NULL);
+    gchar ** str_arr = g_strsplit(filepath, ".", -1);
+    gint arr_len = 0;
+    while (str_arr[arr_len])
+        arr_len++;
+    gchar *result = g_strdup(str_arr[arr_len - 1]);
+    g_strfreev(str_arr);
+    return result;
+}
+
+/**
+ * get_local_time:
+ *
+ * The returned string should be freed using #g_free().
+ *
+ * Returns: (transfer full) (nullable): a newly allocated string formatted to the
+ *                                requested format or %NULL if there was an error.
+ */
+gchar *
+get_local_time (void)
+{
+    GDateTime *local_time = g_date_time_new_now_local();
+    gchar *result = g_date_time_format(local_time, "%c");
+    g_date_time_unref(local_time);
+    return result;
+}
+
+/**
+ * get_user_font_directory:
+ *
+ * This function attempts to create the directory if it doesn't already exist
+ * and returns the filepath as a string if successful.
+ *
+ * Returns: (nullable): a newly allocated string or %NULL
+ */
+gchar *
+get_user_font_directory (void)
+{
+    gchar *font_dir = g_build_filename(g_get_user_data_dir(), "fonts", NULL);
+    if (ensure_dir_exists(font_dir))
+        return font_dir;
+    g_free(font_dir);
+    return NULL;
+}
+
+/**
+ * get_package_cache_directory:
+ *
+ * This function attempts to create the directory if it doesn't already exist
+ * and returns the filepath as a string if successful.
+ *
+ * Returns: (nullable): a newly allocated string or %NULL
+ */
+gchar *
+get_package_cache_directory (void)
+{
+    gchar *cache_dir = g_build_filename(g_get_user_cache_dir(), "@PACKAGE_NAME@", NULL);
+    if (ensure_dir_exists(cache_dir))
+        return cache_dir;
+    g_free(cache_dir);
+    return NULL;
+}
+
+/**
+ * get_package_config_directory:
+ *
+ * This function attempts to create the directory if it doesn't already exist
+ * and returns the filepath as a string if successful.
+ *
+ * Returns:  (nullable): a newly allocated string or %NULL
+ */
+gchar *
+get_package_config_directory (void)
+{
+    gchar *config_dir = g_build_filename(g_get_user_config_dir(), "@PACKAGE_NAME@", NULL);
+    if (ensure_dir_exists(config_dir))
+        return config_dir;
+    g_free(config_dir);
+    return NULL;
+}
+
+/**
+ * get_user_fontconfig_directory:
+ *
+ * This function attempts to create the directory if it doesn't already exist
+ * and returns the filepath as a string if successful.
+ *
+ * Returns: (nullable): a newly allocated string or %NULL
+ */
+gchar *
+get_user_fontconfig_directory (void)
+{
+    gchar *config_dir = g_build_filename(g_get_user_config_dir(), "fontconfig", "conf.d", NULL);
+    if (ensure_dir_exists(config_dir))
+        return config_dir;
+    g_free(config_dir);
+    return NULL;
+}
+
+/**
+ * str_replace: (skip)
+ * @str:                a nul-terminated string
+ * @target:             the nul-terminated string to search for
+ * @replacement:        the nul-terminated string to replace target with
+ *
+ * Returns: (nullable): a newly-allocated string or %NULL
+ */
+gchar *
+str_replace (const gchar *str, const gchar *target, const gchar *replacement)
+{
+    g_return_val_if_fail((str != NULL && target != NULL && replacement != NULL), NULL);
+    GError *error = NULL;
+    gchar *result = NULL;
+    gchar *escaped_str = g_regex_escape_string(target, -1);
+    GRegex *regex = g_regex_new(escaped_str, 0, 0, &error);
+    if (error == NULL) {
+        result = g_regex_replace_literal(regex, str, -1, 0, replacement, 0, &error);
+        g_regex_unref(regex);
+    }
+    g_free(escaped_str);
+    g_return_val_if_fail(error == NULL, NULL);
+    return result;
+}
+
+/**
+ * to_filename:
+ * @str:                a nul-terminated string
+ *
+ * Replaces spaces and dashes with an underscore.
+ *
+ * Returns: (nullable): a newly-allocated string or %NULL
+ */
+gchar *
+to_filename (const gchar *str)
+{
+    g_return_val_if_fail(str != NULL, NULL);
+    gchar *tmp = str_replace(str, " ", "_");
+    gchar *result = str_replace(tmp, "-", "_");
+    g_free(tmp);
+    return result;
+}
+
+/**
+ * get_gsettings:
+ * @schema_id:      the id of the schema
+ *
+ * This function allows applications to find their settings whether they are
+ * installed or not. If the requested schema_id is not found in the default
+ * source it will look in any directories listed in #POSSIBLE_SCHEMA_DIRS
+ *
+ * Returns: (transfer full) (nullable):
+ * a newly created #GSettings instance or %NULL if schema_id could not be found
+ */
+GSettings *
+get_gsettings (const gchar *schema_id)
+{
+    GSettingsSchemaSource *schema_source = g_settings_schema_source_get_default();
+    g_return_val_if_fail(schema_source != NULL, NULL);
+    GSettingsSchema *schema = g_settings_schema_source_lookup(schema_source, schema_id, TRUE);
+    if (schema != NULL) {
+        g_debug("Using schema with id %s from default source", schema_id);
+    } else {
+        g_debug("No schema with id %s in default source", schema_id);
+        g_debug("Checking fallback directories");
+        GSList *slist = get_possible_schema_dirs();
+        GSList *iter;
+        for (iter = slist; iter != NULL; iter = iter->next) {
+            const gchar *dir = iter->data;
+            if (!g_file_test(dir, G_FILE_TEST_IS_DIR)) {
+                g_debug("Skipping invalid or non-existent directory path %s", dir);
+                continue;
+            }
+            GSettingsSchemaSource *source;
+            source = g_settings_schema_source_new_from_directory(dir, schema_source, FALSE, NULL);
+            if (source == NULL) {
+                g_debug("Failed to create schema source for %s", dir);
+                continue;
+            }
+            g_debug("Checking for schema with id %s in %s", schema_id, dir);
+            schema = g_settings_schema_source_lookup(source, schema_id, TRUE);
+            if (schema != NULL) {
+                g_debug("Using schema with id %s from %s", schema_id, dir);
+                g_settings_schema_source_unref(source);
+                break;
+            }
+            g_settings_schema_source_unref(source);
+        }
+        g_slist_free_full(slist, g_free);
+        if (schema == NULL) {
+            g_warning("Failed to locate schema for id %s", schema_id);
+            g_warning("Settings will not persist");
+            return NULL;
+        }
+    }
+    GSettings *result = g_settings_new_full(schema, NULL, NULL);
+    g_settings_schema_unref(schema);
+    return result;
+}
+

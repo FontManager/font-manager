@@ -27,3 +27,13 @@ bool is_valid_xml (string filepath) {
     return (get_command_line_status(cmd) == 0);
 }
 
+public int get_command_line_status (string cmd) {
+    try {
+        int exit_status;
+        Process.spawn_command_line_sync(cmd, null, null, out exit_status);
+        return exit_status;
+    } catch (Error e) {
+        warning("Execution of %s failed : %s", cmd, e.message);
+        return -1;
+    }
+}

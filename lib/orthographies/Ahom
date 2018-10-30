@@ -1,0 +1,20 @@
+{
+    "Ahom",
+    "Ahom",
+    0x11700,
+    "",
+    { 
+        "", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x11700, 0x11719,
+        START_RANGE_PAIR,
+        0x1171d, 0x1172b,
+        START_RANGE_PAIR,
+        0x11730, 0x1173f,
+        END_OF_DATA
+    }
+},
+

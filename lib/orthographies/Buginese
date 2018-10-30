@@ -1,0 +1,18 @@
+{
+    "Buginese",
+    "",
+    0x1a00,
+    "ᨀᨁᨂᨃᨄᨅᨆᨇᨈᨉ",
+    { 
+        "ᨀᨁᨂᨃᨄᨅᨆᨇᨈᨉ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x1a00, 0x1a1b,
+        START_RANGE_PAIR,
+        0x1a1e, 0x1a1f,
+        END_OF_DATA
+    }
+},
+

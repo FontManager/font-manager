@@ -1,0 +1,31 @@
+{
+    "Kharoshthi",
+    "",
+    0x101a10,
+    "𐨐𐨑𐨒𐨓",
+    { 
+        "𐨐𐨑𐨒𐨓", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x10a00, 0x10a03,
+        0x10a05,
+        0x10a06,
+        START_RANGE_PAIR,
+        0x10a0c, 0x10a13,
+        START_RANGE_PAIR,
+        0x10a15, 0x10a17,
+        START_RANGE_PAIR,
+        0x10a19, 0x10a33,
+        START_RANGE_PAIR,
+        0x10a38, 0x10a3a,
+        0x10a3f,
+        START_RANGE_PAIR,
+        0x10a40, 0x10a47,
+        START_RANGE_PAIR,
+        0x10a50, 0x10a58,
+        END_OF_DATA
+    }
+},
+

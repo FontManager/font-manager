@@ -1,2 +1,0 @@
-<!ELEMENT Sources (source)*>
-<!ELEMENT source (#PCDATA)>

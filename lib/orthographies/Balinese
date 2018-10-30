@@ -1,0 +1,18 @@
+{
+    "Balinese",
+    "",
+    0x1b05,
+    "ᬅᬆᬇᬈᬉᬊᬋᬌ",
+    { 
+        "ᬅᬆᬇᬈᬉᬊᬋᬌ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x1b00, 0x1b4b,
+        START_RANGE_PAIR,
+        0x1b50, 0x1b7c,
+        END_OF_DATA
+    }
+},
+

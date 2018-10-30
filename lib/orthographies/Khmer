@@ -1,0 +1,18 @@
+{
+    "Khmer",
+    "អក្សរខ្មែរ",
+    0x1780,
+    "កខគឃងចឆជ",
+    { 
+        "ជំរាបសួរស្ដី", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x1780, 0x17dc,
+        START_RANGE_PAIR,
+        0x17e0, 0x17e9,
+        END_OF_DATA
+    }
+},
+

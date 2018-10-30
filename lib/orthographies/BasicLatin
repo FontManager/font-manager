@@ -1,0 +1,24 @@
+{
+    "Basic Latin",
+    "Basic Latin",
+    0x41,
+    "AaBbCcGgQqRrSsZz",
+    { 
+        "How quickly daft jumping zebras vex.", 
+        "iPhone fanboys love quirky gadgets with just about zero functionality, maximum.", 
+        "The quick brown fox jumps over the lazy dog.", 
+        "Bright vixens jump; dozy fowl quack.", 
+        "Big fjords vex quick waltz nymph.", 
+        "Portez ce vieux whisky au juge blond qui fume .", 
+        "Sic surgens, dux, zelotypos quam karus haberis.", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x41, 0x5a,
+        START_RANGE_PAIR,
+        0x61, 0x7a,
+        END_OF_DATA
+    }
+},
+

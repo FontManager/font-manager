@@ -1,0 +1,75 @@
+Major changes between 0.7.3 to 0.7.4
+
+- Drop dependency on gucharmap library.
+
+    Gucharmap is no longer in active development, and while the developers
+    were receptive to changes, our changes are so invasive that they wouldn't
+    make much sense upstream.
+
+- Drop dependency on Gee library
+
+- Determine whether file-roller is available at runtime.
+
+    --with-file-roller flag dropped.
+
+- Closes Issue #12
+
+    Added font substitution preference pane.
+
+- Closes Issue #40
+
+- Closes Issue #42 - Also related to Issue #48
+
+    Added "Copy Location" and "Show in Folder" entries to the font list context menu.
+
+- Partially addresses Issue #48
+
+    Added "Copy to.." and "Compress..." entries to the collection list context menu.
+
+- Closes Issue #16
+
+    Character map now only displays those codepoints which are present in selected font.
+    For fonts which do not support Latin, use a preview string based on best supported
+    orthography or generate a random preview based on available glyphs.
+
+- Addresses Issue #31
+
+    Make headerbar area more consistent with other Gtk+ applications.
+
+- Closes Issue #57
+
+    No longer applies to current design.
+
+- Addresses Issue #50
+
+    Force sidebar content to stay in place rather than slide out of view.
+
+- Closes Issue #51
+
+    Hide non-matching search results.
+
+- Closes Issue #52
+
+    Enable "next-match", "previous-match" and "activate" signals for search.
+
+- Closes Issue #53
+
+    Match search term anywhere in family name.
+
+- Closes Issue #64
+
+    Ensure "C" locale is used when saving double values to configuration files.
+
+- Closes Issue #14
+
+    Added some help documentation.
+
+- Fixed a crash that occurred when non font files were dropped onto preview areas.
+
+- Added filetype to property pane
+
+- Added designer/designer url to property pane
+
+- Add orthography recognition based on the work done for Fontaine by Edward H. Trager
+
+

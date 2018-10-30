@@ -1,0 +1,65 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="install">
+
+    <info>
+        <link type="guide" xref="index#manage"/>
+        <desc>Adding fonts for your use</desc>
+    </info>
+
+    <title>Installation</title>
+
+    <p>
+    <app>Font Manager</app> supports the most common
+    <link xref="supported-formats">font formats</link>.
+    </p>
+
+    <steps>
+        <item>
+            <p>
+                While in <gui style="button">Manage</gui> mode
+            </p>
+            <p>
+                Click
+                <gui style="button">
+                <media type="image" src="media/list-add-symbolic.svg"/>
+                </gui>
+                at the top of the window
+            </p>
+        </item>
+        <item>
+            <p>
+                Select the files you wish to install from the
+                file selector dialog that is displayed and click
+                <gui style="button">Open</gui>
+            </p>
+        </item>
+    </steps>
+
+    <note style="advanced">
+        <p>
+            Drag and drop is also supported.
+            Simply drag files onto the font list to install them.
+        </p>
+        <p>
+            You can drag any supported filetype onto the font list.
+            This includes font files, directories and archives.
+        </p>
+    </note>
+
+    <note style="tip">
+        <p>
+            Install
+            <link action="install:file-roller" href="https://wiki.gnome.org/Apps/FileRoller">Archive Manager</link>.
+            to enable support for compressed files.
+        </p>
+    </note>
+
+    <note style="important">
+        <p>
+        <app>Font Manager</app> will reload anytime changes require it.
+        This may take a moment depending on number of changes.
+        </p>
+    </note>
+
+</page>

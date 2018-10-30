@@ -1,0 +1,173 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="organize">
+
+    <info>
+        <link type="guide" xref="index#manage"/>
+        <desc>Organizing Your Fonts</desc>
+    </info>
+
+    <title>Collections</title>
+
+    <p>
+    <app>Font Manager</app>
+    allows you to define your own collections.
+    </p>
+
+    <p>
+    Collections allow you to organize your fonts in a way that makes
+    sense to you and also make it easier to enable or disable
+    many families at once.
+    </p>
+
+    <note style="info">
+        <p>
+            Collections do not modify your files in any way.
+        </p>
+        <p>
+            Feel free to create or delete as many as you like.
+        </p>
+    </note>
+
+    <list>
+        <item>
+            <p>
+                Select the Collection view at the bottom of the sidebar.
+            </p>
+        </item>
+        <item>
+            <title>To create a new collection:</title>
+                <steps>
+                    <item>
+                        <p>
+                            Click
+                            <gui>
+                            <media type="image" src="media/list-add-symbolic.svg"/>
+                            </gui>
+                            at the top of the Collection view.
+                        </p>
+                    </item>
+                    <item>
+                        <p>
+                            Enter a name for your new collection
+                        </p>
+                    </item>
+                    <item>
+                        <p>
+                            Switch back to Category view.
+                        </p>
+                    </item>
+                    <item>
+                        <p>
+                            Add fonts by dragging them from the font list
+                            to your new collection.
+                        </p>
+                        <p>
+                            Note : The sidebar will automatically switch to
+                            collections from categories while dragging fonts.
+                        </p>
+                    </item>
+                </steps>
+        </item>
+        <item>
+            <title>To delete a collection:</title>
+                <steps>
+                    <item>
+                        <p>
+                            Select the collection
+                        </p>
+                    </item>
+                    <item>
+                        <p>
+                            Click
+                            <gui>
+                            <media type="image" src="media/list-remove-symbolic.svg"/>
+                            </gui>
+                            at the top of the Collection view.
+                        </p>
+                    </item>
+                </steps>
+        </item>
+        <item>
+            <title>To enable a collection:</title>
+                <steps>
+                    <item>
+                        <p>
+                        Select the collection
+                        </p>
+                    </item>
+                    <item>
+                        <p>
+                            Click the
+                            <gui style="checkbox">
+                            checkbox
+                            </gui>
+                        </p>
+                    </item>
+                </steps>
+        </item>
+        <item>
+            <title>To disable a collection:</title>
+                <steps>
+                    <item>
+                        <p>
+                        Select the collection
+                        </p>
+                    </item>
+                    <item>
+                        <p>
+                            Click the
+                            <gui style="checkbox">
+                            checkbox
+                            </gui>
+                        </p>
+                    </item>
+                </steps>
+        </item>
+        <item>
+            <title>To remove families from a collection:</title>
+            <steps>
+                <item>
+                    <p>
+                        Select the collection
+                    </p>
+                </item>
+                <item>
+                    <p>
+                        Select the family or families you wish to remove
+                    </p>
+                </item>
+                <item>
+                    <p>
+                        Click the
+                        <gui>
+                        <media type="image" src="media/list-remove-symbolic.svg"/>
+                        </gui>
+                        at the top of the font list.
+                    </p>
+                </item>
+            </steps>
+        </item>
+        <item>
+            <title>To rename a collection:</title>
+            <steps>
+                <item>
+                    <p>
+                        Select a collection, click it again
+                    </p>
+                </item>
+                <item>
+                    <p>
+                        Enter a new name
+                    </p>
+                </item>
+                <item>
+                    <p>
+                        Hit <gui style="button">Enter</gui>
+                    </p>
+                </item>
+            </steps>
+        </item>
+    </list>
+
+</page>

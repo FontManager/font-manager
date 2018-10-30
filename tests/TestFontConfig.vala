@@ -1,4 +1,4 @@
-using FontConfig;
+using FontManager;
 
 public class TestAccept : FontManager.TestCase {
 
@@ -73,9 +73,9 @@ public class TestAliasElement : FontManager.TestCase {
         assert(ae is AliasElement);
         ae.family = "Test";
         assert(ae.family != null);
-        assert(ae.prefer is Gee.HashSet);
-        assert(ae.accept is Gee.HashSet);
-        assert(ae.default is Gee.HashSet);
+        assert(ae.prefer is StringHashset);
+        assert(ae.accept is StringHashset);
+        assert(ae.default is StringHashset);
         return;
     }
 
@@ -102,6 +102,7 @@ public class TestAliases : FontManager.TestCase {
     public override void set_up () {
         aliases = new Aliases();
         aliases.config_dir = Environment.get_current_dir();
+        aliases.target_file = "39-Aliases.conf";
         filepath = aliases.get_filepath();
         return;
     }
@@ -131,7 +132,7 @@ public class TestAliases : FontManager.TestCase {
 
     public void test_load () {
         aliases.load();
-        assert(aliases.has_key("Test"));
+        assert("Test" in aliases);
         AliasElement ae = aliases["Test"];
         assert(ae.family == "Test");
         assert(ae.prefer.contains("SomeFont"));
@@ -203,40 +204,6 @@ public class TestDirectories : FontManager.TestCase {
 
 }
 
-public class TestFamilies : FontManager.TestCase {
-
-    Families families;
-
-    public TestFamilies () {
-        base("FontConfig");
-        add_test("Families::create ", test_create);
-        add_test("Families::update ", test_update);
-    }
-
-    public override void set_up () {
-        families = new Families();
-        return;
-    }
-
-    public void test_create () {
-        assert(families is Families);
-        return;
-    }
-
-    public void test_update () {
-        assert(families.size == 0);
-        families.update();
-        assert(families.size > 0);
-        return;
-    }
-
-    public override void tear_down () {
-        families = null;
-        return;
-    }
-
-}
-
 public class TestReject : FontManager.TestCase {
 
     string? filepath = null;
@@ -303,16 +270,16 @@ public class TestSource : FontManager.TestCase {
     }
 
     public void test_create () {
-        var source = new FontConfig.Source(file);
-        assert(source is FontConfig.Source);
+        var source = new FontManager.Source(file);
+        assert(source is FontManager.Source);
         return;
     }
 
     public void test_availability () {
-        var source = new FontConfig.Source(file);
+        var source = new FontManager.Source(file);
         assert(source.available);
         source = null;
-        source = new FontConfig.Source(File.new_for_path("/not/available/"));
+        source = new FontManager.Source(File.new_for_path("/not/available/"));
         assert(!(source.available));
         return;
     }
@@ -330,7 +297,6 @@ public class TestSources : FontManager.TestCase {
         base("FontConfig");
         add_test("Sources::create ", test_create);
         add_test("Sources::save ", test_save);
-        add_test("Sources::validate ", test_valid_xml);
         add_test("Sources::load ", test_load);
     }
 
@@ -355,16 +321,11 @@ public class TestSources : FontManager.TestCase {
         assert_exists(filepath);
     }
 
-    public void test_valid_xml () {
-        assert(is_valid_xml(filepath));
-        return;
-    }
-
     public void test_load () {
         assert(sources.size == 0);
         sources.load();
         assert(sources.size == test_paths.length);
-        foreach (var s in sources)
+        foreach (var s in sources.list_objects())
             assert(s.path in test_paths);
         try_delete(filepath);
         return;

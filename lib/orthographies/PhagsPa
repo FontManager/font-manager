@@ -1,0 +1,16 @@
+{
+    "Phags Pa",
+    "",
+    0xa840,
+    "ꡀ ꡁ ꡂ ᡃ ꡄ ꡅ ꡆ ꡇ",
+    { 
+        "ꡀ ꡁ ꡂ ᡃ ꡄ ꡅ ꡆ ꡇ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0xa840, 0xa877,
+        END_OF_DATA
+    }
+},
+

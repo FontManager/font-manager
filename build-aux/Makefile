@@ -2,15 +2,21 @@
 PACKAGE_NAME = font-manager
 PACKAGE_VERSION = 0.7.4
 
-abs_top_srcdir = $(shell realpath ../)
-abs_srcdir = $(shell realpath .)
-unicode_data_dir = $(abs_srcdir)/unicode/
+ABS_TOP_SRCDIR = $(shell realpath ../)
+ABS_SRCDIR = $(shell realpath .)
+UNICODE_DATA_DIR = $(ABS_SRCDIR)/unicode/
+PKG_DATA_DIR = $(ABS_TOP_SRCDIR)/data
+PKG_LIB_DIR = $(ABS_TOP_SRCDIR)/lib
 
-UNICODE_VERSION = 10.0.0
+UNICODE_URL = http://www.unicode.org/Public
+UNICODE_VERSION = 11.0.0
 SED = $(shell which sed)
 WGET = $(shell which wget)
-WGETFLAGS = -np -nd -rc -P $(unicode_data_dir)
+GREP = $(shell which grep)
+WGETFLAGS = -np -nd -rc -P $(UNICODE_DATA_DIR)
 UNZIP = $(shell which unzip)
+PKG_CONFIG = $(shell which pkg-config)
+GLIB_COMPILE_RESOURCES=`$(PKG_CONFIG) --variable=glib_compile_resources gio-2.0`
 
 UNICODE_FILES = \
 	Blocks.txt \
@@ -35,44 +41,61 @@ UNICODE_SOURCES = \
 download-unicode-data:
 	for f in $(UNICODE_FILES); \
 	do \
-		[ -e $(unicode_data_dir)$${f} ] || \
-		$(WGET) $(WGETFLAGS) "http://www.unicode.org/Public/$(UNICODE_VERSION)/ucd/$${f}"; \
+		[ -e $(UNICODE_DATA_DIR)$${f} ] || \
+		$(WGET) $(WGETFLAGS) "$(UNICODE_URL)/$(UNICODE_VERSION)/ucd/$${f}"; \
 	done
 
 unicode-headers: download-unicode-data
-	PROG_UNZIP=$(UNZIP) ./gen-unicode-headers.pl $(UNICODE_VERSION) $(unicode_data_dir) && \
-	./gen-unicode-headers.pl $(UNICODE_VERSION) $(unicode_data_dir) --i18n && \
+	PROG_UNZIP=$(UNZIP) ./gen-unicode-headers.pl $(UNICODE_VERSION) $(UNICODE_DATA_DIR) && \
+	./gen-unicode-headers.pl $(UNICODE_VERSION) $(UNICODE_DATA_DIR) --i18n && \
 	for f in $(UNICODE_SOURCES); \
 	do \
-		mv $${f} $(abs_top_srcdir)/lib/Unicode/; \
+		mv $${f} $(PKG_LIB_DIR)/unicode/; \
 	done
 
 POTFILES.readme:
-	echo "Do not edit POTFILES.* directly. See build-aux directory" > $(abs_top_srcdir)/po/$@
+	echo "Do not edit POTFILES.* directly. See build-aux directory" > $(ABS_TOP_SRCDIR)/po/$@
 
 POTFILES.in:
-	find $(abs_top_srcdir) -name "*.vala*" -print | $(SED) -e 's|$(abs_top_srcdir)/||g' -e 's/\.in//g' | sort | uniq > $(abs_top_srcdir)/po/$@ ;
-	find $(abs_top_srcdir) -name "*i18n.h" -print | $(SED) -e 's|$(abs_top_srcdir)/||g' >> $(abs_top_srcdir)/po/$@ ;
-	echo "[type: gettext/glade]data/ApplicationMenu.ui" >> $(abs_top_srcdir)/po/$@ ;
-	echo "data/org.gnome.FontManager.appdata.xml.in" >> $(abs_top_srcdir)/po/$@ ;
-	echo "data/org.gnome.FontManager.desktop.in" >> $(abs_top_srcdir)/po/$@ ;
-	echo "" >> $(abs_top_srcdir)/po/$@ ;
-	$(SED) -i 's|\.\./||g' $(abs_top_srcdir)/po/$@ ;
+	find $(ABS_TOP_SRCDIR) -name "*.vala*" -print | $(SED) -e 's|$(ABS_TOP_SRCDIR)/||g' -e 's/\.in//g' | sort | uniq > $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "lib/common/font-manager-source.c" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "lib/unicode/unicode-character-map.c" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "data/org.gnome.FontManager.appdata.xml.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "data/org.gnome.FontManager.desktop.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "data/org.gnome.FontViewer.appdata.xml.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "data/org.gnome.FontViewer.desktop.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	$(SED) -i '/.*-custom.vala/d' $(ABS_TOP_SRCDIR)/po/$@ ;
+	$(SED) -i 's|\.\./||g' $(ABS_TOP_SRCDIR)/po/$@ ;
+#find $(ABS_TOP_SRCDIR) -name "*i18n.h" -print | $(SED) -e 's|$(ABS_TOP_SRCDIR)/||g' >> $(ABS_TOP_SRCDIR)/po/$@ ;
+#echo "lib/unicode/unicode-info.c" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 
 POTFILES.skip:
-	find $(abs_top_srcdir) -name "*.vala*" -print | $(SED) -e 's|$(abs_top_srcdir)/||g' -e 's/\.in//g' | sort | uniq | $(SED) 's/.vala/.c/g' > $(abs_top_srcdir)/po/$@ ;
-	$(SED) -i 's|\.\./||g' $(abs_top_srcdir)/po/$@ ;
-	echo "lib/Glue/Enums.c" >> $(abs_top_srcdir)/po/$@ ;
-	echo "lib/Unicode/unicode-block-model.c" >> $(abs_top_srcdir)/po/$@ ;
-	echo "lib/Unicode/unicode-character-map.c" >> $(abs_top_srcdir)/po/$@ ;
-	echo "lib/Unicode/unicode-info.c" >> $(abs_top_srcdir)/po/$@ ;
-	echo "lib/Unicode/unicode-script-model.c" >> $(abs_top_srcdir)/po/$@ ;
+	find $(ABS_TOP_SRCDIR) -name "*.vala*" -print | $(SED) -e 's|$(ABS_TOP_SRCDIR)/||g' -e 's/\.in//g' | sort | uniq | $(SED) 's/\.vala/.c/g' > $(ABS_TOP_SRCDIR)/po/$@ ;
+	$(SED) -i '/.*-custom.c/d' $(ABS_TOP_SRCDIR)/po/$@ ;
+	$(SED) -i 's|\.\./||g' $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "data/org.gnome.FontManager.appdata.xml" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "data/org.gnome.FontViewer.appdata.xml" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "lib/unicode/unicode-info.c" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 
-POT:
-	cd $(abs_top_srcdir) && \
+update_pot_header = \
+	$(SED) -f $(ABS_TOP_SRCDIR)/$2/insert-header.sin -i $1 && \
+	$(SED) -i 's/PACKAGE/${PACKAGE_NAME}/g' $1 && \
+	$(SED) -i 's/VERSION/${PACKAGE_VERSION}/g' $1
+
+$(PACKAGE_NAME).pot:
+	cd $(ABS_TOP_SRCDIR)  && \
 	test -e Makefile || ./autogen.sh && \
-	make $(PACKAGE_NAME).pot && \
-	cd $(abs_srcdir)
+	cd $(ABS_TOP_SRCDIR)/po/ && \
+	rm -f $@  && \
+	$(MAKE) update-po && \
+	$(call update_pot_header,$@,po) && \
+	cd $(ABS_TOP_SRCDIR)/help && \
+	rm -f $@  && \
+	$(MAKE) pot && \
+	$(call update_pot_header,$@,help) && \
+	$(MAKE) repo && \
+	cd $(ABS_SRCDIR)
 
 write_sources = \
 	for i in `find . -type f -name '*.vala*' -print | $(SED) 's/\.in//g' | sort | uniq`; \
@@ -82,27 +105,34 @@ write_sources = \
 	$(SED) -i -e 's/^\.\//	/g' -e '$$ s/\\//' $1
 
 ValaSources.mk:
-	cd $(abs_top_srcdir)/lib && \
+	cd $(ABS_TOP_SRCDIR)/lib/vala && \
 	echo "# Do not edit directly. See build-aux directory" > $@ && \
 	echo "" >> $@ && \
 	echo "libfontmanager_la_VALASOURCES = \\" >> $@ && \
 	$(call write_sources,$@) && \
-	cd $(abs_top_srcdir)/src/$(PACKAGE_NAME) && \
+	cd $(ABS_TOP_SRCDIR)/src/$(PACKAGE_NAME) && \
 	echo "# Do not edit directly. See build-aux directory" > $@ && \
 	echo "" >> $@ && \
 	echo "font_manager_VALASOURCES = \\" >> $@ && \
 	$(call write_sources,$@) && \
-	cd $(abs_srcdir)
+	cd $(ABS_SRCDIR)
 
-License.h:
-	license/genheader.py $(abs_top_srcdir)/lib/Glue
+license.h:
+	license/genheader.py $(PKG_LIB_DIR)/common
 
-Vendor.h:
-	vendor/genheader.py $(abs_top_srcdir)/lib/Glue
+vendor.h:
+	vendor/genheader.py $(PKG_LIB_DIR)/common
 
-update-headers: License.h Vendor.h unicode-headers
-update-po: POTFILES.readme POTFILES.in POTFILES.skip POT
-update-sources: ValaSources.mk
+font-manager-gresource.c :
+	$(GLIB_COMPILE_RESOURCES) \
+	--sourcedir=$(PKG_DATA_DIR) \
+	--generate-source \
+	--target=$(PKG_LIB_DIR)/common/$@ \
+	$(PKG_DATA_DIR)/FontManagerGResource.xml
+
+update-headers: license.h vendor.h unicode-headers
+update-po: POTFILES.readme POTFILES.in POTFILES.skip $(PACKAGE_NAME).pot
+update-sources: ValaSources.mk font-manager-gresource.c
 update: update-headers update-po update-sources
 
 # Fedora RPM packaging
@@ -111,14 +141,14 @@ rpm-prep:
 	@echo -e "\n**** Need to ensure rpmdevtools are installed\n";
 	pkexec dnf install rpmdevtools
 	@echo -e "\n**** Need to ensure build dependencies are installed\n";
-	pkexec dnf builddep $(abs_top_srcdir)/fedora/$(PACKAGE_NAME).spec
-	cd $(abs_top_srcdir) && \
+	pkexec dnf builddep $(ABS_TOP_SRCDIR)/fedora/$(PACKAGE_NAME).spec
+	cd $(ABS_TOP_SRCDIR) && \
 	test -e Makefile || ./autogen.sh && \
 	make dist-bzip2 && \
 	rpmdev-setuptree && \
 	cp *.bz2 ~/rpmbuild/SOURCES/ && \
 	cp fedora/$(PACKAGE_NAME).spec ~/rpmbuild/SPECS/ && \
-	cd $(abs_srcdir)
+	cd $(ABS_SRCDIR)
 	rm -f ~/rpmbuild/SRPMS/$(PACKAGE_NAME)*.src.rpm
 
 rpm: rpm-prep
@@ -138,9 +168,9 @@ copr-build: srpm
 deb:
 	@echo "\n**** Need to ensure build dependencies are installed\n";
 	sudo apt-get install devscripts equivs
-	cd $(abs_top_srcdir) && \
-	mk-build-deps $(abs_top_srcdir)/debian/control && \
-	sudo dpkg -i $(abs_top_srcdir)/*.deb && rm $(abs_top_srcdir)/*.deb && \
+	cd $(ABS_TOP_SRCDIR) && \
+	mk-build-deps $(ABS_TOP_SRCDIR)/debian/control && \
+	sudo dpkg -i $(ABS_TOP_SRCDIR)/*.deb && rm $(ABS_TOP_SRCDIR)/*.deb && \
 	test -e Makefile || ./autogen.sh && \
 	make dist-bzip2 && \
 	rm -rf BUILD && \
@@ -150,7 +180,7 @@ deb:
 	tar -xvf $(PACKAGE_NAME)_$(PACKAGE_VERSION).orig.tar.bz2 && \
 	cp -Rpf ../debian $(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
 	cp -pf ../autogen.sh $(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
-	cd $(abs_top_srcdir)/BUILD/$(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
+	cd $(ABS_TOP_SRCDIR)/BUILD/$(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
 	debuild -us -uc && \
-	cd $(abs_srcdir)
+	cd $(ABS_SRCDIR)
 

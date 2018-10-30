@@ -1,0 +1,16 @@
+{
+    "Vedic Extensions",
+    "",
+    0x1cd0,
+    "᳐᳑᳒",
+    { 
+        "᳐᳑᳒", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x1cd0, 0x1cf2,
+        END_OF_DATA
+    }
+},
+

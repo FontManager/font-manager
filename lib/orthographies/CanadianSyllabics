@@ -1,0 +1,16 @@
+{
+    "Unified Canadian Aboriginal Syllabics",
+    "Unified Canadian Aboriginal Syllabics",
+    0x1433,
+    "ᐁᐂᐃᐄ ᑌᑍᑎᑏ ᓀᓁᓂᓃ ᕿᖀᖁᖂ",
+    { 
+        "ᐅᒪ ᐊᑕᓗᑫᐎᓐ ᐊᓕᒧᒪᑲᓋᓐ ᓇᐯᐤ ᐎᓴᑫᒐᒃ ᐁ ᐃᔑᓂᑲᓱᑦ᙮ ᑭᒋ ᐌᔅᑲᒡ ᒪᑲ, ᑭ ᐃᑕᑯᐸᓐ ᓇᐯᐤ ᐎᓴᑫᒐᒃ ᐁ ᐃᔑᓂᑲᓱᑦ᙮", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x1401, 0x1676,
+        END_OF_DATA
+    }
+},
+

@@ -1,0 +1,16 @@
+{
+    "Kayah Li",
+    "",
+    0xa90a,
+    "ꤊꤋꤌꤍꤎꤏꤐꤑꤒ",
+    { 
+        "ꤊꤋꤌꤍꤎꤏꤐꤑꤒ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0xa900, 0xa92f,
+        END_OF_DATA
+    }
+},
+

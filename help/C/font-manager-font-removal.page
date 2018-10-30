@@ -1,0 +1,75 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="remove">
+
+    <info>
+        <link type="guide" xref="index#manage"/>
+        <link type="seealso" xref="install"/>
+        <desc>Getting rid of unwanted fonts</desc>
+    </info>
+
+    <title>Removal</title>
+
+        <note style="advanced">
+            <p>
+                The only fonts listed in the removal dialog will be those
+                installed in your default font directory.
+            </p>
+            <p>
+                Font files installed system wide are typically installed as part
+                of the operating system, as packages or by the system administrator.
+
+                <app>Font Manager</app> does not provide for removal of such files
+                at this time.
+            </p>
+        </note>
+
+        <list>
+            <item>
+                <title>To remove fonts you no longer need:</title>
+                <steps>
+                    <item>
+                        <p>
+                        While in <gui style="button">Manage</gui> mode
+                        </p>
+                        <p>
+                        Click
+                        <gui style="button">
+                        <media type="image" src="media/list-remove-symbolic.svg"/>
+                        </gui>
+                        at the top of the window
+                        </p>
+                    </item>
+                    <item>
+                        <p>
+                        Select the families or individual styles you wish to
+                        remove from the list that is displayed
+                        </p>
+                    </item>
+                    <item>
+                        <p>
+                        Click
+                        <gui style="button">Delete</gui>
+                        </p>
+                    </item>
+                </steps>
+            </item>
+            </list>
+
+        <note style="tip">
+            <p>
+                <app>Font Manager</app> organizes and stores installed fonts in the default user font directory.
+            </p>
+            <p>
+                Current default user font directory is located at  <code><file>~/.local/share/fonts</file></code>
+            </p>
+        </note>
+
+        <note style="warning">
+            <p>
+                Files are permanently deleted. Before removing any fonts ensure
+                you have backups if there is a chance you may need them again.
+            </p>
+        </note>
+
+</page>

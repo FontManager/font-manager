@@ -1,0 +1,16 @@
+{
+    "Meroitic Hieroglyphs",
+    "Meroitic Hieroglyphs",
+    0x10980,
+    "𐦀𐦁𐦂𐦃𐦄𐦅",
+    { 
+        "", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x10980, 0x1099f,
+        END_OF_DATA
+    }
+},
+

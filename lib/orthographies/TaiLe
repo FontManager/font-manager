@@ -1,0 +1,18 @@
+{
+    "Tai Le",
+    "",
+    0x1950,
+    "ᥐᥑᥒᥓ ᥣᥤᥥᥦ",
+    { 
+        "ᥐᥑᥒᥓ ᥣᥤᥥᥦ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x1950, 0x196d,
+        START_RANGE_PAIR,
+        0x1970, 0x1974,
+        END_OF_DATA
+    }
+},
+

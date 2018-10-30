@@ -1,0 +1,28 @@
+{
+    "Devanagari",
+    "देवनागरी",
+    0x915,
+    "क ख ग घ ङ च छ ज झ ञ ट",
+    { 
+        "आप भला तो सब भला ।", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x905, 0x914,
+        START_RANGE_PAIR,
+        0x915, 0x939,
+        START_RANGE_PAIR,
+        0x93f, 0x94c,
+        0x94d,
+        START_RANGE_PAIR,
+        0x958, 0x95f,
+        START_RANGE_PAIR,
+        0x960, 0x965,
+        START_RANGE_PAIR,
+        0x966, 0x96f,
+        0x970,
+        END_OF_DATA
+    }
+},
+

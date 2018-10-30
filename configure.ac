@@ -15,12 +15,13 @@ dnl ***********************************************************************
 AC_PREREQ([2.69])
 AC_INIT(
     [font-manager],
-    [0.7.3],
+    [0.7.4],
     [https://github.com/FontManager/master/issues],
     [font-manager],
     [http://fontmanager.github.io/],
 )
 AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_HEADER(config.h)
 AC_SUBST([ACLOCAL_AMFLAGS], ["-I $ac_macro_dir \${ACLOCAL_FLAGS}"])
 
 dnl ***********************************************************************
@@ -36,6 +37,11 @@ dnl ***********************************************************************
 
 AC_PROG_CC()
 AM_PROG_LIBTOOL
+AC_PROG_INSTALL()
+AC_PROG_MKDIR_P()
+AC_PROG_SED()
+AC_PATH_PROG([GLIB_COMPILE_RESOURCES],[glib-compile-resources])
+
 dnl 0.36 -> incompatible changes in Gtk.ListStore remove method
 dnl 0.34 -> incompatible changes in json-glib vapi
 dnl 0.28 -> incompatible changes in Gtk.TextBuffer API
@@ -52,15 +58,11 @@ AM_PROG_VALAC(
 
     ])
 )
-C_PROG_INSTALL()
-AC_PROG_MKDIR_P()
-AC_PROG_SED()
 
 dnl ***********************************************************************
 dnl i18n
 dnl ***********************************************************************
 
-AM_GLIB_GNU_GETTEXT()
 GETTEXT_PACKAGE=AC_PACKAGE_NAME
 AC_SUBST([GETTEXT_PACKAGE])
 AC_DEFINE_UNQUOTED(
@@ -68,12 +70,14 @@ AC_DEFINE_UNQUOTED(
     "$GETTEXT_PACKAGE",
     [The name of the gettext domain]
 )
+AM_GLIB_GNU_GETTEXT()
 IT_PROG_INTLTOOL()
 
 dnl ***********************************************************************
 dnl Initialize libtool
 dnl ***********************************************************************
 
+LT_PREREQ([2.2])
 LT_INIT()
 
 dnl ***********************************************************************
@@ -90,11 +94,11 @@ PKG_CHECK_MODULES(JSONGLIB, json-glib-1.0 >= 0.15)
 PKG_CHECK_MODULES(GMODULE, gmodule-2.0 >= 2.4)
 PKG_CHECK_MODULES(GIO, gio-2.0 >= 2.4)
 PKG_CHECK_MODULES(CAIRO, cairo >= 1.1)
+dnl gdk_display_get_monitor_at_window introduced in 3.22
 PKG_CHECK_MODULES(GTK, gtk+-3.0 >= 3.22)
 PKG_CHECK_MODULES(PANGO, pango >= 1.3)
 PKG_CHECK_MODULES(PANGOCAIRO, pangocairo >= 1.3)
 PKG_CHECK_MODULES(PANGOFT2, pangoft2 >= 1.3)
-PKG_CHECK_MODULES(GEE, gee-0.8 >= 0.14)
 PKG_CHECK_MODULES(SQLITE3, sqlite3 >= 3.8)
 
 dnl ***********************************************************************
@@ -131,15 +135,7 @@ dnl ***********************************************************************
 dnl Check for supporting applications
 dnl ***********************************************************************
 
-file_roller_support="no"
-AC_ARG_WITH(
-    [file-roller],
-    AS_HELP_STRING([--with-file-roller], [file-roller support])
-)
-AS_IF([test "x$with_file_roller" = "xyes"], [
-  AC_SUBST(HAVE_FILE_ROLLER, [" -D HAVE_FILE_ROLLER"]),
-  file_roller_support="yes"
-])
+
 
 dnl ***********************************************************************
 dnl Optional Extensions
@@ -197,30 +193,22 @@ AC_CONFIG_FILES([
     Makefile
     extensions/Makefile
     help/Makefile
-    lib/Makefile
-    lib/Common/About.vala
-    lib/Common/Collections.vala
-    lib/Common/Constants.vala
-    lib/Common/Database.vala
-    lib/Common/Settings.vala
-    lib/FontConfig/Sources.vala
-    lib/Glue/Makefile
-    lib/UX/Utils/Utils.vala
-    lib/Unicode/Makefile
-    lib/Unicode/unicode.h
     po/Makefile.in
     data/Makefile
     data/org.gnome.FontManager.appdata.xml
+    data/org.gnome.FontViewer.appdata.xml
     data/org.gnome.FontManager.desktop
     data/org.gnome.FontViewer.desktop
     help/font-manager.1
+    lib/Makefile
+    lib/common/Makefile
+    lib/common/utils.c
+    lib/orthographies/Makefile
+    lib/unicode/Makefile
+    lib/vala/Makefile
     src/Makefile
     src/font-manager/Makefile
-    src/font-manager/Application.vala
-    src/font-manager/Main.vala
-    src/font-manager/Migration.vala
     src/font-viewer/Makefile
-    src/font-viewer/Application.vala
     tests/Makefile
 ])
 AC_OUTPUT
@@ -236,7 +224,6 @@ echo "
     C compiler:             ${CC}
     Vala compiler:          ${VALAC}
     Installation prefix:    ${prefix}
-    Archive Support:        $file_roller_support
     File Browser Support:   $file_browser_support
 "
 AS_IF([test "x$with_nautilus" = "xyes"], [

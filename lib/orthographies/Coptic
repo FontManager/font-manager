@@ -1,0 +1,29 @@
+{
+    "Coptic",
+    "Ⲙⲉⲧⲣⲉⲙ̀ⲛⲭⲏⲙⲓ",
+    0x3e2,
+    "ϢϣⲀⲁⲲⲳⳜⳝⳤ⳥",
+    { 
+        "Ϯⲉⲕ'ⲕⲗⲏⲥⲓⲁ 'ⲛⲣⲉⲙ'ⲛⲭⲏⲙⲓ 'ⲛⲟⲣⲑⲟⲇⲟⲝⲟⲥ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x3e2, 0x3ef,
+        START_RANGE_PAIR,
+        0x2c80, 0x2cb1,
+        START_RANGE_PAIR,
+        0x2cb2, 0x2cdb,
+        START_RANGE_PAIR,
+        0x2cdc, 0x2ce3,
+        START_RANGE_PAIR,
+        0x2ce4, 0x2cea,
+        START_RANGE_PAIR,
+        0x2cf9, 0x2cfc,
+        0x2cfd,
+        0x2cfe,
+        0x2cff,
+        END_OF_DATA
+    }
+},
+

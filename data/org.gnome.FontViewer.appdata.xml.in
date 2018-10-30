@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (C) 2009 - 2018 Jerry Casiano -->
+<component type="desktop-application">
+
+    <id>org.gnome.FontViewer</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0+</project_license>
+    <update_contact>JerryCasiano_AT_gmail.com</update_contact>
+    <_name>Font Viewer</_name>
+    <_summary>A font viewer application for Gtk+ Desktop Environments</_summary>
+
+    <_description>
+        <p>
+            Font Viewer allows previewing font files prior to installation.
+            It features several ways to preview font files along with a
+            character map and displays font properties and license details.
+        </p>
+    </_description>
+
+    <kudos>
+        <kudo>ModernToolkit</kudo>
+    </kudos>
+
+    <!--
+    XXX : Specification conflicts with validation ?
+    <icon type="stock">preferences-desktop-font</icon>
+    -->
+
+    <launchable type="desktop-id">org.gnome.FontViewer.desktop</launchable>
+
+    <categories>
+        <category>Utility</category>
+        <category>Graphics</category>
+        <category>GTK</category>
+    </categories>
+
+    <provides>
+        <binary>font-viewer</binary>
+        <dbus>org.gnome.FontViewer</dbus>
+    </provides>
+
+    <screenshots>
+        <screenshot type="default">
+            <image type="source">
+                http://raw.githubusercontent.com/FontManager/resources/master/font_viewer_main.png
+            </image>
+        </screenshot>
+        <screenshot>
+            <image type="source">
+                http://raw.githubusercontent.com/FontManager/resources/master/font_viewer_character_map.png
+            </image>
+        </screenshot>
+        <screenshot>
+            <image type="source">
+                http://raw.githubusercontent.com/FontManager/resources/master/font_viewer_properties.png
+            </image>
+        </screenshot>
+        <screenshot>
+            <image type="source">
+                http://raw.githubusercontent.com/FontManager/resources/master/font_viewer_license.png
+            </image>
+        </screenshot>
+    </screenshots>
+
+    <!--
+    XXX : Validation fails due to missing timestamp but timestamps are deprecated...
+    <releases>
+        <release version="@PACKAGE_VERSION@" />
+    </releases>
+    -->
+
+    <translation type="gettext">@PACKAGE_NAME@</translation>
+
+    <url type="homepage">@PACKAGE_URL@</url>
+    <url type="bugtracker">@PACKAGE_BUGREPORT@</url>
+    <url type="translate">https://translate.zanata.org/project/view/@PACKAGE_NAME@</url>
+
+</component>

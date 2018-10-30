@@ -1,0 +1,77 @@
+<page xmlns="http://projectmallard.org/1.0/" type="topic" id="introduction">
+
+    <info>
+        <link type="guide" xref="index"/>
+        <desc>
+            Introduction to <app>Font Manager</app>.
+        </desc>
+    </info>
+
+    <p> <app>Font Manager</app> is an application for managing user font files, it allows you to : </p>
+
+    <title>Introduction</title>
+
+    <list>
+        <title>
+        </title>
+        <item>
+            <p>
+            Preview font files in various ways
+            </p>
+        </item>
+        <item>
+            <p>
+            View available font metadata
+            </p>
+        </item>
+        <item>
+            <p>
+            Install or remove fonts for your use
+            </p>
+        </item>
+        <item>
+            <p>
+            Group fonts into "Collections"
+            </p>
+        </item>
+        <item>
+            <p>
+            Enable or disable individual font families or entire collections
+            </p>
+        </item>
+        <item>
+            <p>
+            Specify different directories to use for fonts
+            </p>
+        </item>
+        <item>
+            <p>
+            Perform font substitution
+            </p>
+        </item>
+    </list>
+
+    <figure id="main-window">
+        <title><app>Font Manager</app></title>
+        <media type="image" mime="image/png"
+        src="media/main-window.png"/>
+    </figure>
+
+    <note>
+        <p>
+            For more information about <app>Font Manager</app>, please visit the
+            <link href="http://fontmanager.github.io/">
+            Homepage
+            </link>
+        </p>
+        <p>
+            To report a bug or make a suggestion regarding the
+            <app>Font Manager</app> application
+            or this manual, please use the projects
+            <link href="https://github.com/FontManager/master/issues">
+            Issue Tracker
+            </link>
+        </p>
+    </note>
+
+</page>

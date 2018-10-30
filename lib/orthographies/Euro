@@ -1,0 +1,15 @@
+{
+    "Euro",
+    "Euro",
+    0x20ac,
+    "€",
+    { 
+        "The euro “€” is the official currency of 15 member states of the European Union.", 
+        END_OF_DATA
+    },
+    { 
+        0x20ac,
+        END_OF_DATA
+    }
+},
+

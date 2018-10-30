@@ -1,0 +1,65 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="manage">
+
+    <info>
+        <link type="guide" xref="index#manage"/>
+        <link type="seealso" xref="organize"/>
+        <desc>Activating and De-activating font families</desc>
+    </info>
+
+    <title>Activation</title>
+
+        <p>
+        <app>Font Manager</app>
+        allows you to activate and de-activate font families.
+        </p>
+
+        <p>
+        If you have a large number of fonts installed, font selection dialogs
+        and lists in many applications can get very long and become uncomfortable
+        to use, disabling fonts you do not use very often or do not need at the
+        moment helps keep these at a reasonable size.
+        </p>
+
+        <list>
+            <item>
+                <title>To enable or disable a font family:</title>
+                    <steps>
+                        <item>
+                            <p>
+                            Select the family you wish to enable/disable in the font list
+                            </p>
+                        </item>
+                        <item>
+                            <p>
+                            Click the
+                            <gui style="checkbox">
+                            checbox
+                            </gui>
+                            </p>
+                        </item>
+                    </steps>
+            </item>
+        </list>
+
+    <note style="tip">
+        <p>
+        You can also double-click or press
+        <gui style="button">Enter</gui> to toggle the selected font.
+        </p>
+        <p>
+        <link xref="organize#user-collections">Collections</link>
+        make it easy to enable or disable multiple families at once.
+        </p>
+    </note>
+
+    <note style="warning">
+        <p>
+        While any changes made using <app>Font Manager</app> are applied
+        immediately, open applications may need to be restarted in order
+        to reflect those changes.
+        </p>
+    </note>
+
+</page>

@@ -1,0 +1,21 @@
+{
+    "Emoticons",
+    "Emoticons",
+    0x263a,
+    "",
+    { 
+        "", 
+        "", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x2639, 0x263b,
+        START_RANGE_PAIR,
+        0x1f600, 0x1f640,
+        START_RANGE_PAIR,
+        0x1f645, 0x1f64f,
+        END_OF_DATA
+    }
+},
+

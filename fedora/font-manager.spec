@@ -1,29 +1,26 @@
 %define MajorVersion 0
 %define MinorVersion 7
-%define MicroVersion 3
+%define MicroVersion 4
 %define DBusName org.gnome.FontManager
 %define DBusName2 org.gnome.FontViewer
 %define DownloadURL https://github.com/FontManager/master/releases/download
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    11
+Release:    1
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
 Source0:    %{DownloadURL}/%{version}/%{name}-%{version}.tar.bz2
 
-BuildRequires: cairo-devel
-BuildRequires: file-roller
 BuildRequires: fontconfig-devel
 BuildRequires: freetype-devel
 BuildRequires: glib2-devel
 BuildRequires: gobject-introspection-devel
-BuildRequires: gtk3-devel >= 3.12
+BuildRequires: gtk3-devel >= 3.22
 BuildRequires: intltool
 BuildRequires: json-glib-devel
 BuildRequires: libappstream-glib
-BuildRequires: libgee-devel
 BuildRequires: libxml2-devel
 BuildRequires: pango-devel
 BuildRequires: sqlite-devel
@@ -31,13 +28,11 @@ BuildRequires: vala >= 0.24
 BuildRequires: yelp-tools
 
 Requires: fontconfig
-Requires: file-roller
 Requires: font-manager-common
 Requires: font-viewer
 Requires: freetype
-Requires: gtk3 >= 3.12
+Requires: gtk3 >= 3.22
 Requires: json-glib
-Requires: libgee
 Requires: sqlite
 Requires: yelp
 
@@ -96,11 +91,11 @@ This package provides integration with the Thunar file manager.
 %setup -q
 
 %build
-%configure --disable-schemas-compile --with-file-roller --with-nautilus --with-nemo --with-thunarx
+%configure --disable-schemas-compile --with-nautilus --with-nemo --with-thunarx
 make
 
 %check
-appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata.xml
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdata.xml
 
 %install
 %make_install
@@ -111,11 +106,10 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 
 %files
 %{_bindir}/%{name}
-%{_datadir}/appdata/%{DBusName}.appdata.xml
+%{_datadir}/metainfo/%{DBusName}.appdata.xml
 %{_datadir}/applications/%{DBusName}.desktop
 %{_datadir}/dbus-1/services/%{DBusName}.service
 %{_datadir}/glib-2.0/schemas/%{DBusName}.gschema.xml
-%{_datadir}/%{name}/icons/preferences-desktop-font.svg
 %{_mandir}/man1/%{name}.*
 
 %files -n %{name}-common -f %{name}.lang
@@ -125,6 +119,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 
 %files -n font-viewer
 %{_libexecdir}/%{name}/font-viewer
+%{_datadir}/metainfo/%{DBusName2}.appdata.xml
 %{_datadir}/applications/%{DBusName2}.desktop
 %{_datadir}/dbus-1/services/%{DBusName2}.service
 %{_datadir}/glib-2.0/schemas/%{DBusName2}.gschema.xml
@@ -139,6 +134,8 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/appdata/*.appdata
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Sun Oct 28 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-1
+- Too many changes to list here. See CHANGELOG for details
 * Sun Aug 6 2017 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-11
 - Drop dependence on Gucharmap
 * Sun Jun 11 2017 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-10

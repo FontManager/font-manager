@@ -1,0 +1,17 @@
+{
+    "Rejang",
+    "",
+    0xa930,
+    "ꤰꤱꤲꤳᤴꤵꤶꤷꤸꤹ",
+    { 
+        "ꤰꤱꤲꤳᤴꤵꤶꤷꤸꤹ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0xa930, 0xa953,
+        0xa95f,
+        END_OF_DATA
+    }
+},
+

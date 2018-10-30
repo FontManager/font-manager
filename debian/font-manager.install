@@ -1,9 +1,8 @@
 usr/bin/font-manager
-usr/share/appdata/org.gnome.FontManager.appdata.xml
-usr/share/glib-2.0/schemas/org.gnome.FontManager.gschema.xml
+usr/share/metainfo/org.gnome.FontManager.appdata.xml
 usr/share/applications/org.gnome.FontManager.desktop
 usr/share/dbus-1/services/org.gnome.FontManager.service
-usr/share/font-manager/icons/preferences-desktop-font.svg
+usr/share/glib-2.0/schemas/org.gnome.FontManager.gschema.xml
 
 
 

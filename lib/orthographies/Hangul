@@ -1,0 +1,16 @@
+{
+    "Korean Hangul",
+    "한글 / 조선글",
+    0xac00,
+    "",
+    { 
+        "", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0xac00, 0xd7a3,
+        END_OF_DATA
+    }
+},
+

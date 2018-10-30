@@ -1,70 +1,27 @@
 
-include $(top_srcdir)/Flags.mk
-include ValaSources.mk
-
 SUBDIRS = \
-	Glue \
-	Unicode
+	unicode \
+	common \
+	orthographies \
+	vala
 
-DATA_DIR = $(top_srcdir)/data
+libfontmanager_la_SOURCES =
 
-GLIB_COMPILE_RESOURCES = \
-`$(PKG_CONFIG) --variable=glib_compile_resources gio-2.0`
-
-FontManagerGResource.c :
-	$(GLIB_COMPILE_RESOURCES) \
-	--sourcedir=$(DATA_DIR) \
-	--generate-source \
-	--target=$@ \
-	$(DATA_DIR)/FontManagerGResource.xml
-
-BUILT_SOURCES = \
-	FontManagerGResource.c \
-	fontmanager.h
-
-libfontmanager_la_CFLAGS = \
-	$(AM_CFLAGS) \
-	-fPIC \
-	-shared
-
-libfontmanager_la_LIBADD = \
-	$(AM_LDADD) \
-	Unicode/libunicode.la
+libfontmanager_la_CFLAGS = $(AM_CFLAGS)
 
 libfontmanager_la_LDFLAGS = \
+	$(AM_LDADD) \
 	-shared \
 	-release @PACKAGE_VERSION@
 
-libfontmanager_la_VALAFLAGS = \
-	$(AM_VALAFLAGS) \
-	$(HAVE_FILE_ROLLER) \
-	--gresources $(DATA_DIR)/FontManagerGResource.xml \
-	--library fontmanager \
-	-H fontmanager.h
-
-libfontmanager_la_SOURCES = \
-	$(libfontmanager_la_VALASOURCES) \
-	$(BUILT_SOURCES) \
-	FontConfig/_Common_.c \
-	Glue/_Glue_.c \
-	Glue/_Glue_.h \
-	Glue/License.c \
-	Glue/License.h \
-	Glue/Vendor.c \
-	Glue/Vendor.h
+libfontmanager_la_LIBADD = \
+	$(AM_LDADD) \
+	common/libfmcommon-@PACKAGE_VERSION@.la \
+	unicode/libfmunicode-@PACKAGE_VERSION@.la \
+	vala/libfmvala-@PACKAGE_VERSION@.la
 
 pkglib_LTLIBRARIES = libfontmanager.la
 
-EXTRA_DIST = \
-	ValaSources.mk
+MAINTAINERCLEANFILES = Makefile.in
 
-CLEANFILES = \
-	$(BUILT_SOURCES) \
-	*.stamp* \
-	fontmanager.vapi
 
-MAINTAINERCLEANFILES = \
-	Makefile.in
-
-dist-hook:
-	cd $(distdir) && rm -f $(libfontmanager_la_VALASOURCES:.vala=.c) $(CLEANFILES)

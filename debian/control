@@ -18,15 +18,13 @@ Build-Depends:
  libcairo2-dev,
  libgtk-3-dev (>= 3.12),
  libpango1.0-dev,
- libgee-0.8-dev,
  libsqlite3-dev,
  libgirepository1.0-dev,
- file-roller,
  yelp-tools,
  python,
  python-gobject,
  python-nautilus (>= 1.0)
-Standards-Version: 3.9.6
+Standards-Version: 4.1.2
 Section: graphics
 Homepage: http://fontmanager.github.io/
 

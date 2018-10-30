@@ -1,0 +1,23 @@
+{
+    "Limbu",
+    "",
+    0x1901,
+    "ᤁᤂᤃ",
+    { 
+        "ᤁᤂᤃ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x1900, 0x191c,
+        START_RANGE_PAIR,
+        0x1920, 0x192b,
+        START_RANGE_PAIR,
+        0x1930, 0x193b,
+        0x1940,
+        START_RANGE_PAIR,
+        0x1944, 0x194f,
+        END_OF_DATA
+    }
+},
+

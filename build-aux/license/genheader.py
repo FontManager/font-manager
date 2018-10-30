@@ -14,54 +14,32 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+# along with this program.
 #
-# Author:
-#  Jerry Casiano <JerryCasiano@gmail.com>
+# If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 
 import io
 import os
 import json
 import sys
 
-NOTICE = """/*
-*
-* Do not edit directly. See build-aux directory
-*"""
-
-CREDITS = """
-*
-* Open source license information courtesy of
-*
-*  //
-*  // The Fontaine Font Analysis Project
-*  //
-*  // Copyright (c) 2009 by Edward H. Trager
-*  // All Rights Reserved
-*  //
-*  // Released under the GNU GPL version 2.0 or later.
-*  //
-*
-* See http://www.unifont.org/fontaine/ for more information.
-*
-* Special thanks to Edward H. Trager, and of course everyone
-* involved with the Open Font Library for all their efforts. :-)
-*
-* http://www.openfontlibrary.org/
-*
-*/
-"""
+NOTICE = """/* Do not edit directly. See build-aux directory */"""
 
 HEADER = """
+#ifndef __LICENSE_H__
+#define __LICENSE_H__
+
+#include <glib.h>
+
 G_BEGIN_DECLS
 
 #define MAX_KEYWORD_ENTRIES 25
 
 static const struct
 {
-    const gchar   *license;
-    const gchar   *license_url;
-    const gchar   *keywords[MAX_KEYWORD_ENTRIES];
+    const gchar *license;
+    const gchar *license_url;
+    const gchar *keywords[MAX_KEYWORD_ENTRIES];
 }
 LicenseData[] =
 {
@@ -72,11 +50,10 @@ FOOTER = """
 
 #define LICENSE_ENTRIES G_N_ELEMENTS(LicenseData)
 
-gint get_license_type(const gchar *license, const gchar *copyright, const gchar * url);
-gchar * get_license_name (gint license_type);
-gchar * get_license_url (gint license_type);
-
 G_END_DECLS
+
+#endif /* __LICENSE_H__ */
+
 """
 
 
@@ -119,9 +96,8 @@ def get_license_entries () :
 
 
 if __name__ == "__main__":
-    with open(os.path.join(sys.argv[1], "License.h"), "w") as header_file:
+    with open(os.path.join(sys.argv[1], "license.h"), "w") as header_file:
         header_file.write(NOTICE)
-        header_file.write(CREDITS)
         header_file.write(HEADER)
         header_file.write(get_license_entries())
         header_file.write(FOOTER)

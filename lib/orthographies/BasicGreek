@@ -1,0 +1,33 @@
+{
+    "Basic Greek",
+    "Ελληνικό αλφάβητο",
+    0x3a9,
+    "ΑαΒβΓγΔδΕεΞξΩω",
+    { 
+        "Γαζίες καὶ μυρτιὲς δὲν θὰ βρῶ πιὰ στὸ χρυσαφὶ ξέφωτο.", 
+        "Ξεσκεπάζω τὴν ψυχοφθόρα βδελυγμία. ", 
+        END_OF_DATA
+    },
+    { 
+        0x386,
+        0x388,
+        0x389,
+        0x38a,
+        0x38c,
+        0x38e,
+        0x38f,
+        0x390,
+        START_RANGE_PAIR,
+        0x391, 0x3a1,
+        START_RANGE_PAIR,
+        0x3a3, 0x3a9,
+        START_RANGE_PAIR,
+        0x3aa, 0x3b0,
+        START_RANGE_PAIR,
+        0x3b1, 0x3c9,
+        START_RANGE_PAIR,
+        0x3ca, 0x3ce,
+        END_OF_DATA
+    }
+},
+

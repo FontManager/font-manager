@@ -1,24 +1,21 @@
 /* Browse.vala
  *
- * Copyright (C) 2009 - 2016 Jerry Casiano
+ * Copyright (C) 2009 - 2018 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+ * along with this program.
  *
- * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
+ * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
 
@@ -26,29 +23,11 @@ namespace FontManager {
 
     public class Browse : AdjustablePreview {
 
-        public Gtk.TreeStore? model { get; set; }
-
-        public FontConfig.Reject reject { get; set;}
-
-        public bool loading {
-            get {
-                return _loading;
-            }
-            set {
-                _loading = value;
-                if (_loading)
-                    progress.show();
-                else
-                    progress.hide();
-            }
-        }
-
-        public Gtk.ProgressBar progress { get; private set;}
+        public Gtk.TreeModel? model { get; set; }
+        public Json.Object? samples { get; set; default = null; }
         public BaseTreeView treeview { get; private set;}
 
-        bool _loading = false;
         Gtk.Box main_box;
-        Gtk.Overlay overlay;
         Gtk.ScrolledWindow scroll;
         CellRendererTitle renderer;
 
@@ -58,15 +37,7 @@ namespace FontManager {
             treeview.name = "FontManagerBrowseView";
             treeview.headers_visible = false;
             treeview.show_expanders = false;
-            progress = new Gtk.ProgressBar();
-            progress.halign = Gtk.Align.CENTER;
-            progress.valign = Gtk.Align.CENTER;
-            overlay = new Gtk.Overlay();
-            overlay.add_overlay(progress);
-            overlay.get_style_context().add_class(Gtk.STYLE_CLASS_ENTRY);
             main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            overlay.add(main_box);
-            add(overlay);
             scroll = new Gtk.ScrolledWindow(null, null);
             scroll.add(treeview);
             scroll.expand = true;
@@ -78,16 +49,19 @@ namespace FontManager {
             treeview.set_search_column(FontModelColumn.DESCRIPTION);
             treeview.insert_column_with_data_func(0, "", renderer, cell_data_func);
             treeview.get_selection().set_mode(Gtk.SelectionMode.NONE);
-            bind_property("model", treeview, "model", BindingFlags.DEFAULT);
+            bind_property("model", treeview, "model", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             notify["model"].connect(() => { expand_all(); });
+            adjustment.value_changed.connect(() => {
+                treeview.get_column(0).queue_resize();
+                treeview.queue_draw();
+            });
+            add(main_box);
         }
 
         public override void show () {
             treeview.show();
-            treeview.show();
             scroll.show();
             main_box.show();
-            overlay.show();
             base.show();
             return;
         }
@@ -95,11 +69,6 @@ namespace FontManager {
         public void expand_all () {
             treeview.expand_all();
             /* Workaround first row height bug? */
-            treeview.get_column(0).queue_resize();
-            return;
-        }
-
-        protected override void set_preview_size_internal (double new_size) {
             treeview.get_column(0).queue_resize();
             return;
         }
@@ -119,25 +88,43 @@ namespace FontManager {
             var default_desc = get_font(treeview);
             default_desc.set_size((int) ((get_desc_size()) * Pango.SCALE));
             cell.set_property("font-desc" , default_desc);
-            if (obj is FontConfig.Family) {
-                font_desc = ((FontConfig.Family) obj).description;
-                active = !(((FontConfig.Family) obj).name in reject);
+            if (obj is Family) {
+                font_desc = ((Family) obj).description;
+                active = !(((Family) obj).family in reject);
                 cell.set_property("title" , font_desc);
+                cell.set_property("text", font_desc);
                 cell.set_property("fallthrough" , false);
             } else {
-                font_desc = ((FontConfig.Font) obj).description;
-                active = !(((FontConfig.Font) obj).family in reject);
+                font_desc = ((Font) obj).description;
+                active = !(((Font) obj).family in reject);
                 Pango.FontDescription desc = Pango.FontDescription.from_string(font_desc);
                 desc.set_size((int) (preview_size * Pango.SCALE));
                 cell.set_property("font-desc" , desc);
                 cell.set_property("ypad" , 5);
                 cell.set_property("fallthrough" , true);
+                if (samples != null && samples.has_member(font_desc))
+                    cell.set_property("text", samples.get_string_member(font_desc));
+                else
+                    cell.set_property("text", font_desc);
             }
-            cell.set_property("text", font_desc);
             cell.set_property("sensitive" , active);
             cell.set_property("strikethrough", !active);
             val.unset();
             return;
+        }
+
+        double get_desc_size () {
+            double desc_size = preview_size;
+            if (desc_size <= 10)
+                return desc_size;
+            else if (desc_size <= 20)
+                return desc_size / 1.25;
+            else if (desc_size <= 30)
+                return desc_size / 1.5;
+            else if (desc_size <= 50)
+                return desc_size / 1.75;
+            else
+                return desc_size / 2;
         }
 
     }

@@ -1,0 +1,16 @@
+{
+    "Chinese Zhuyin Fuhao",
+    "注音符號",
+    0x3105,
+    "ㄅㄆㄇㄈㄉㄊㄋㄌ",
+    { 
+        "ㄅㄆㄇㄈ ㄉㄊㄋㄌ ㄍㄎㄏ ㄐㄑㄒ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x3105, 0x312c,
+        END_OF_DATA
+    }
+},
+

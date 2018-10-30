@@ -1,0 +1,124 @@
+{
+    "CJK Unified",
+    "",
+    0x4e00,
+    "",
+    { 
+        "", 
+        END_OF_DATA
+    },
+    {
+        START_RANGE_PAIR,
+        0x4e00, 0x9fff,
+        END_OF_DATA
+    }
+},
+{
+    "CJK Unified Extension A",
+    "",
+    0x3400,
+    "",
+    {
+        "",
+        END_OF_DATA
+    },
+    {
+        START_RANGE_PAIR,
+        0x3400, 0x4dbf,
+        END_OF_DATA
+    },
+},
+{
+    "CJK Unified Extension B",
+    "",
+    0x20000,
+    "",
+    {
+        "",
+        END_OF_DATA
+    },
+    {
+        START_RANGE_PAIR,
+        0X20000, 0X2a6df,
+        END_OF_DATA
+    },
+},
+{
+    "CJK Unified Extension C",
+    "",
+    0x2a700,
+    "",
+    {
+        "",
+        END_OF_DATA
+    },
+    {
+        START_RANGE_PAIR,
+        0X2a700, 0x2b73f,
+        END_OF_DATA
+    },
+},
+{
+    "CJK Unified Extension D",
+    "",
+    0x2b740,
+    "",
+    {
+        "",
+        END_OF_DATA
+    },
+    {
+        START_RANGE_PAIR,
+        0x2b740, 0x2b81f,
+        END_OF_DATA
+    },
+},
+{
+    "CJK Unified Extension E",
+    "",
+    0x2b820,
+    "",
+    {
+        "",
+        END_OF_DATA
+    },
+    {
+        START_RANGE_PAIR,
+        0x2b820, 0x2ceaf,
+        END_OF_DATA
+    },
+},
+{
+    "CJK Compatibility Ideographs",
+    "",
+    0xf900,
+    "",
+    {
+        "",
+        END_OF_DATA
+    },
+    {
+        START_RANGE_PAIR,
+        0xf900, 0xfaff,
+        END_OF_DATA
+    },
+},
+{
+    "CJK Compatibility Ideographs Supplement",
+    "",
+    0x2f800,
+    "",
+    {
+        "",
+        END_OF_DATA
+    },
+    {
+        START_RANGE_PAIR,
+        0x2f800, 0x2fa1f,
+        END_OF_DATA
+    },
+},
+
+
+
+

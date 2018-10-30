@@ -22,28 +22,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2017-08-07 10:17-0400\n"
-"PO-Revision-Date: 2016-05-25 11:48-0400\n"
+"POT-Creation-Date: 2018-10-29 19:39-0400\n"
+"PO-Revision-Date: 2016-05-25 11:48+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Chinese (China) <@>\n"
-"Language: zh-TW\n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 3.9.6\n"
+"X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
 # Not translate very good, just for use.
-#: ../lib/Common/About.vala:28
+#: ../lib/vala/About.vala:27 ../data/org.gnome.FontManager.appdata.xml.in.h:1
+#: ../data/org.gnome.FontManager.desktop.in.h:1
 msgid "Font Manager"
 msgstr "字体管理器"
 
-#: ../lib/Common/About.vala:30
+#: ../lib/vala/About.vala:29
 #, fuzzy
 msgid "Simple font management for GTK+ desktop environments"
 msgstr "GTK+桌面环境下的简易字体管理器"
 
-#: ../lib/Common/About.vala:34
+#: ../lib/vala/About.vala:35
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -57,638 +58,555 @@ msgid ""
 "    GNU General Public License for more details.\n"
 "\n"
 "    You should have received a copy of the GNU General Public License\n"
-"    along with this program.  If not, see <http://www.gnu.org/licenses/"
-"gpl-3.0.txt>.\n"
+"    along with this program.\n"
+"\n"
+"    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 "    "
 msgstr ""
 
-#: ../lib/Common/Constants.vala:38
-#, fuzzy
-msgid "Enter Collection Name"
-msgstr "新字体集"
-
-#: ../lib/Filters/Collection.vala:36
-msgid "New Collection"
-msgstr "新字体集"
-
-#: ../lib/Filters/Disabled.vala:29
-msgid "Disabled"
-msgstr "禁用"
-
-#: ../lib/Filters/Disabled.vala:29
-msgid "Fonts which have been disabled"
-msgstr "禁用字体"
-
-#: ../lib/Filters/Filter.vala:40
-#, c-format
-msgid "Created : %s"
-msgstr "创建: %s"
-
-#: ../lib/Filters/Unsorted.vala:29
-msgid "Unsorted"
-msgstr "未分类"
-
-#: ../lib/Filters/Unsorted.vala:29
-msgid "Fonts not present in any collection"
-msgstr "字体未在任何字体集中"
-
-#: ../lib/FontConfig/Enums.vala:41
-msgid "Ultra-Condensed"
-msgstr "超窄(Ultra-Condensed)"
-
-#: ../lib/FontConfig/Enums.vala:43
-msgid "Extra-Condensed"
-msgstr "特窄(Extra-Condensed)"
-
-#: ../lib/FontConfig/Enums.vala:45
-msgid "Condensed"
-msgstr "窄(Condensed)"
-
-#: ../lib/FontConfig/Enums.vala:47
-msgid "Semi-Condensed"
-msgstr "半窄(Semi-Condensed)"
-
-#: ../lib/FontConfig/Enums.vala:49
-msgid "Semi-Expanded"
-msgstr "半宽(Semi-Expanded)"
-
-#: ../lib/FontConfig/Enums.vala:51
-msgid "Expanded"
-msgstr "宽(Expanded)"
-
-#: ../lib/FontConfig/Enums.vala:53
-msgid "Extra-Expanded"
-msgstr "特宽(Extra-Expanded)"
-
-#: ../lib/FontConfig/Enums.vala:55
-msgid "Ultra-Expanded"
-msgstr "超宽(Ultra-Expanded)"
-
-#: ../lib/FontConfig/Enums.vala:73
-msgid "Italic"
-msgstr "斜体(Italic)"
-
-#: ../lib/FontConfig/Enums.vala:75
-msgid "Oblique"
-msgstr "倾斜体(Oblique)"
-
-#: ../lib/FontConfig/Enums.vala:128
-msgid "Thin"
-msgstr "轻(Thin)"
-
-#: ../lib/FontConfig/Enums.vala:130
-msgid "Ultra-Light"
-msgstr "超细(Ultra-Light)"
-
-#: ../lib/FontConfig/Enums.vala:132 ../lib/FontConfig/Enums.vala:212
-msgid "Light"
-msgstr "细(Light)"
-
-#: ../lib/FontConfig/Enums.vala:134
-msgid "Book"
-msgstr "预设(Book)"
-
-#: ../lib/FontConfig/Enums.vala:136 ../lib/FontConfig/Enums.vala:190
-msgid "Medium"
-msgstr "中等(Medium)"
-
-#: ../lib/FontConfig/Enums.vala:138
-msgid "Semi-Bold"
-msgstr "半粗(Semi-Bold)"
-
-#: ../lib/FontConfig/Enums.vala:140
-msgid "Bold"
-msgstr "粗(Bold)"
-
-#: ../lib/FontConfig/Enums.vala:142
-msgid "Ultra-Bold"
-msgstr "超粗(Ultra-Bold)"
-
-#: ../lib/FontConfig/Enums.vala:144
-msgid "Heavy"
-msgstr "重(Heavy)"
-
-#: ../lib/FontConfig/Enums.vala:146
-msgid "Ultra-Heavy"
-msgstr "超重(Ultra-Heavy)"
-
-#: ../lib/FontConfig/Enums.vala:164
-msgid "Proportional"
-msgstr "比例(Proportional)"
-
-#: ../lib/FontConfig/Enums.vala:166
-msgid "Dual Width"
-msgstr "双宽(Dual Width)"
-
-#: ../lib/FontConfig/Enums.vala:168
-msgid "Monospace"
-msgstr "等宽(Monospace)"
-
-#: ../lib/FontConfig/Enums.vala:170
-msgid "Charcell"
-msgstr "等宽等高(Charcell)"
-
-#: ../lib/FontConfig/Enums.vala:188
-msgid "Slight"
-msgstr "少量(Slight)"
-
-#: ../lib/FontConfig/Enums.vala:192
-msgid "Full"
-msgstr "全部(Full)"
-
-#: ../lib/FontConfig/Enums.vala:194 ../lib/FontConfig/Enums.vala:216
-#: ../lib/FontConfig/Enums.vala:244
-msgid "None"
-msgstr "无(None)"
-
-#: ../lib/FontConfig/Enums.vala:210
-msgid "Default"
-msgstr "默认(Default)"
-
-#: ../lib/FontConfig/Enums.vala:214
-msgid "Legacy"
-msgstr "传统(Legacy)"
-
-#: ../lib/FontConfig/Enums.vala:234
-msgid "Unknown"
-msgstr "未知(Unknown)"
-
-#: ../lib/FontConfig/Enums.vala:236
-msgid "RGB"
-msgstr "RGB"
-
-#: ../lib/FontConfig/Enums.vala:238
-msgid "BGR"
-msgstr "BGR"
-
-#: ../lib/FontConfig/Enums.vala:240
-msgid "VRGB"
-msgstr "VRGB"
-
-#: ../lib/FontConfig/Enums.vala:242
-msgid "VBGR"
-msgstr "VBGR"
-
-#: ../lib/FontConfig/Families.vala:45
-#, fuzzy
-msgid "Loading available font families"
-msgstr "字体对所有用户可见"
-
-#: ../lib/FontConfig/Sources.vala:83 ../lib/FontConfig/Sources.vala:97
-#, fuzzy
-msgid "Source Unavailable"
-msgstr "%s --> 资源不存在"
-
-#: ../lib/FontConfig/Sources.vala:248 ../lib/FontConfig/XmlWriter.vala:38
-msgid " Generated by Font Manager. Do NOT edit this file. "
-msgstr " Generated by Font Manager. Do NOT edit this file. "
-
-#: ../lib/Library/Install.vala:138
-#, fuzzy
-msgid "Installing files"
-msgstr "全部字体"
-
-#: ../lib/Library/Install.vala:170
-msgid "Preparing Archives"
+#: ../lib/vala/About.vala:66
+msgid "translator-credits"
 msgstr ""
 
-#: ../lib/Library/Remove.vala:81
-#, fuzzy
-msgid "Removing files"
-msgstr "全部字体"
-
-#: ../lib/Library/Sorter.vala:91
-msgid "Processing directories"
-msgstr ""
-
-#: ../lib/Library/Sorter.vala:123
-#, fuzzy
-msgid "Processing files"
-msgstr "全部字体"
-
-#: ../lib/UX/CharacterMap/CharacterMapSideBar.vala:96
-#, fuzzy
-msgid "Unicode Script"
-msgstr "Unicode 脚本"
-
-#: ../lib/UX/CharacterMap/CharacterMapSideBar.vala:97
-#, fuzzy
-msgid "Unicode Block"
-msgstr "Unicode 区块"
-
-#: ../lib/UX/Controls/CollectionControls.vala:32
-msgid "Add new collection"
-msgstr "添加新的字体集"
-
-#: ../lib/UX/Controls/CollectionControls.vala:33
-msgid "Remove selected collection"
-msgstr "删除选中的字体集"
-
-#: ../lib/UX/Controls/FontListControls.vala:46
-#, fuzzy
-msgid "Remove selected font from collection"
-msgstr "删除比较组中选中的字体"
-
-#: ../lib/UX/Controls/FontListControls.vala:50
-#: ../lib/UX/Controls/FontListControls.vala:65
-msgid "Expand all"
-msgstr "全部展开"
-
-#: ../lib/UX/Controls/FontListControls.vala:54
-#, fuzzy
-msgid "Search Families..."
-msgstr "搜索数据库"
-
-#: ../lib/UX/Controls/FontListControls.vala:65
-msgid "Collapse all"
-msgstr "全部折叠"
-
-#: ../lib/UX/Controls/PreviewControls.vala:91
+#: ../lib/vala/Controls.vala:392
 msgid "Edit preview text"
 msgstr "编辑预览文本"
 
-#: ../lib/UX/Controls/PreviewControls.vala:94
+#: ../lib/vala/Controls.vala:396
 msgid "Undo changes"
 msgstr "撤销更改"
 
-#: ../lib/UX/Controls/PreviewControls.vala:99
+#: ../lib/vala/Controls.vala:401
 msgid "Left Aligned"
 msgstr "左对齐"
 
-#: ../lib/UX/Controls/PreviewControls.vala:99
+#: ../lib/vala/Controls.vala:401
 msgid "Centered"
 msgstr "居中"
 
-#: ../lib/UX/Controls/PreviewControls.vala:99
+#: ../lib/vala/Controls.vala:401
 msgid "Fill"
 msgstr "两端对齐"
 
-#: ../lib/UX/Controls/PreviewControls.vala:99
+#: ../lib/vala/Controls.vala:401
 msgid "Right Aligned"
 msgstr "右对齐"
 
-#: ../lib/UX/FontConfig/Controls.vala:66
-msgid "Save"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:38
+msgid "Ultra-Condensed"
+msgstr "超窄(Ultra-Condensed)"
 
-#: ../lib/UX/FontConfig/Controls.vala:68
-msgid "Discard"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:40
+msgid "Extra-Condensed"
+msgstr "特窄(Extra-Condensed)"
 
-#: ../lib/UX/FontConfig/Controls.vala:70
-msgid "Running applications may require a restart to reflect any changes."
-msgstr ""
+#: ../lib/vala/FontConfig.vala:42
+msgid "Condensed"
+msgstr "窄(Condensed)"
 
-#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:44
-msgid "Target DPI"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:44
+msgid "Semi-Condensed"
+msgstr "半窄(Semi-Condensed)"
 
-#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:45
-msgid "Scale factor"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:46
+msgid "Semi-Expanded"
+msgstr "半宽(Semi-Expanded)"
 
-#: ../lib/UX/FontConfig/DisplayPropertiesPane.vala:49
-msgid "LCD Filter"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:48
+msgid "Expanded"
+msgstr "宽(Expanded)"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:54
-msgid "Antialias"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:50
+msgid "Extra-Expanded"
+msgstr "特宽(Extra-Expanded)"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:55
-msgid "Hinting"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:52
+msgid "Ultra-Expanded"
+msgstr "超宽(Ultra-Expanded)"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:56
-msgid "Enable Autohinter"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:69
+msgid "Italic"
+msgstr "斜体(Italic)"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:64
-msgid "Hinting Style"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:71
+msgid "Oblique"
+msgstr "倾斜体(Oblique)"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:65
-msgid "Use Embedded Bitmaps"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:124
+msgid "Thin"
+msgstr "轻(Thin)"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:67
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:72
-msgid " Size Restrictions "
-msgstr ""
+#: ../lib/vala/FontConfig.vala:126
+msgid "Ultra-Light"
+msgstr "超细(Ultra-Light)"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:70
-msgid " Apply settings to point sizes "
-msgstr ""
+#: ../lib/vala/FontConfig.vala:128 ../lib/vala/FontConfig.vala:208
+msgid "Light"
+msgstr "细(Light)"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:143
-msgid "Smaller than"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:130
+msgid "Book"
+msgstr "预设(Book)"
 
-#: ../lib/UX/FontConfig/FontPropertiesPane.vala:144
-msgid "Larger than"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:132 ../lib/vala/FontConfig.vala:186
+msgid "Medium"
+msgstr "中等(Medium)"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:26
-#, fuzzy
-msgid "Font Sources"
-msgstr "管理字体源"
+#: ../lib/vala/FontConfig.vala:134
+msgid "Semi-Bold"
+msgstr "半粗(Semi-Bold)"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:27
-#, fuzzy
-msgid "Easily add or preview fonts without actually installing them."
-msgstr "快速添加或预览字体"
+#: ../lib/vala/FontConfig.vala:136
+msgid "Bold"
+msgstr "粗(Bold)"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:28
-msgid ""
-"To add a new source simply drag a folder onto this area or click the add "
-"button in the toolbar."
-msgstr "通过拖放到此区域或单击工具栏上的按钮来添加新的字体源。"
+#: ../lib/vala/FontConfig.vala:138
+msgid "Ultra-Bold"
+msgstr "超粗(Ultra-Bold)"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:195
-msgid "Select source folders"
-msgstr "选择字体源文件夹"
+#: ../lib/vala/FontConfig.vala:140
+msgid "Heavy"
+msgstr "重(Heavy)"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:198
-#: ../lib/UX/Utils/FileSelector.vala:40 ../lib/UX/Utils/FileSelector.vala:67
-#: ../src/font-manager/Migration.vala:58
-msgid "_Cancel"
-msgstr "取消(_C)"
+#: ../lib/vala/FontConfig.vala:142
+msgid "Ultra-Heavy"
+msgstr "超重(Ultra-Heavy)"
 
-#: ../lib/UX/FontConfig/FontSourceList.vala:200
-#: ../lib/UX/Utils/FileSelector.vala:42
-msgid "_Open"
-msgstr "打开(_O)"
+#: ../lib/vala/FontConfig.vala:160
+msgid "Proportional"
+msgstr "比例(Proportional)"
 
-#: ../lib/UX/FontConfig/SubpixelGeometry.vala:55
-msgid "Subpixel Geometry"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:162
+msgid "Dual Width"
+msgstr "双宽(Dual Width)"
 
-#: ../lib/UX/FontConfig/Substitute.vala:78
-msgid "prefer"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:164
+msgid "Monospace"
+msgstr "等宽(Monospace)"
 
-#: ../lib/UX/FontConfig/Substitute.vala:79
-msgid "accept"
-msgstr ""
+#: ../lib/vala/FontConfig.vala:166
+msgid "Charcell"
+msgstr "等宽等高(Charcell)"
 
-#: ../lib/UX/FontConfig/Substitute.vala:80
-#, fuzzy
-msgid "default"
+#: ../lib/vala/FontConfig.vala:184
+msgid "Slight"
+msgstr "少量(Slight)"
+
+#: ../lib/vala/FontConfig.vala:188
+msgid "Full"
+msgstr "全部(Full)"
+
+#: ../lib/vala/FontConfig.vala:190 ../lib/vala/FontConfig.vala:212
+#: ../lib/vala/FontConfig.vala:240
+msgid "None"
+msgstr "无(None)"
+
+#: ../lib/vala/FontConfig.vala:206
+msgid "Default"
 msgstr "默认(Default)"
 
-#: ../lib/UX/Metadata/License.vala:42
-#, fuzzy
-msgid "File does not contain license information."
-msgstr "文件未包含协议描述。"
+#: ../lib/vala/FontConfig.vala:210
+msgid "Legacy"
+msgstr "传统(Legacy)"
 
-#: ../lib/UX/Metadata/Properties.vala:37
-msgid "PostScript Name"
-msgstr "PostScript 名称"
+#: ../lib/vala/FontConfig.vala:230
+msgid "Unknown"
+msgstr "未知(Unknown)"
 
-#: ../lib/UX/Metadata/Properties.vala:38
-#: ../lib/UX/Models/CategoryModel.vala:104
-msgid "Weight"
-msgstr "字重"
+#: ../lib/vala/FontConfig.vala:232
+msgid "RGB"
+msgstr "RGB"
 
-#: ../lib/UX/Metadata/Properties.vala:39
-#: ../lib/UX/Models/CategoryModel.vala:102
-msgid "Slant"
-msgstr "倾斜"
+#: ../lib/vala/FontConfig.vala:234
+msgid "BGR"
+msgstr "BGR"
 
-#: ../lib/UX/Metadata/Properties.vala:40
-#: ../lib/UX/Models/CategoryModel.vala:106
-msgid "Width"
-msgstr "字宽"
+#: ../lib/vala/FontConfig.vala:236
+msgid "VRGB"
+msgstr "VRGB"
 
-#: ../lib/UX/Metadata/Properties.vala:41
-#: ../lib/UX/Models/CategoryModel.vala:100
-msgid "Spacing"
-msgstr "字距"
+#: ../lib/vala/FontConfig.vala:238
+msgid "VBGR"
+msgstr "VBGR"
 
-#: ../lib/UX/Metadata/Properties.vala:42
-msgid "Version"
-msgstr "版本"
+#: ../lib/vala/FontPreviewPane.vala:117 ../lib/vala/FontPreviewPane.vala:214
+#: ../src/font-manager/MainWindow.vala:147
+msgid "Preview"
+msgstr "预览"
 
-#: ../lib/UX/Metadata/Properties.vala:43
-#: ../lib/UX/Models/CategoryModel.vala:112
-msgid "Vendor"
-msgstr "供应商"
-
-#: ../lib/UX/Metadata/Title.vala:51 ../src/font-viewer/TitleBar.vala:49
-msgid "OpenType Font"
-msgstr "OpenType 字体"
-
-#: ../lib/UX/Metadata/Title.vala:52 ../src/font-viewer/TitleBar.vala:50
-msgid "TrueType Font"
-msgstr "TrueType 字体"
-
-#: ../lib/UX/Metadata/Title.vala:53 ../src/font-viewer/TitleBar.vala:51
-msgid "PostScript Type 1 Font"
-msgstr "PostScript Type 1 字体"
-
-#: ../lib/UX/Metadata/Title.vala:105 ../src/font-viewer/TitleBar.vala:99
-msgid "No file selected"
-msgstr ""
-
-#: ../lib/UX/Metadata/Title.vala:105 ../src/font-viewer/TitleBar.vala:100
-#, fuzzy
-msgid "Or unsupported filetype."
-msgstr "按文件类型分组"
-
-# Do not to translate this one.
-#: ../lib/UX/Models/CategoryModel.vala:92
-msgid "All"
-msgstr "全部"
-
-#: ../lib/UX/Models/CategoryModel.vala:92
-msgid "All Fonts"
-msgstr "全部字体"
-
-#: ../lib/UX/Models/CategoryModel.vala:94
-msgid "System"
-msgstr "系统"
-
-#: ../lib/UX/Models/CategoryModel.vala:94
-msgid "Fonts available to all users"
-msgstr "字体对所有用户可见"
-
-#: ../lib/UX/Models/CategoryModel.vala:96
-msgid "User"
-msgstr "用户"
-
-#: ../lib/UX/Models/CategoryModel.vala:96
-#, fuzzy
-msgid "Fonts available only to you"
-msgstr "字体只有你可见"
-
-#: ../lib/UX/Models/CategoryModel.vala:100
-msgid "Grouped by font spacing"
-msgstr "按字距分组"
-
-#: ../lib/UX/Models/CategoryModel.vala:102
-msgid "Grouped by font angle"
-msgstr "按倾斜分组"
-
-#: ../lib/UX/Models/CategoryModel.vala:104
-msgid "Grouped by font weight"
-msgstr "按字重分组"
-
-#: ../lib/UX/Models/CategoryModel.vala:106
-msgid "Grouped by font width"
-msgstr "按字宽分组"
-
-#: ../lib/UX/Models/CategoryModel.vala:108
-msgid "Filetype"
-msgstr "文件类型"
-
-#: ../lib/UX/Models/CategoryModel.vala:108
-msgid "Grouped by filetype"
-msgstr "按文件类型分组"
-
-#: ../lib/UX/Models/CategoryModel.vala:110
-#: ../lib/UX/Views/FontPreviewPane.vala:123
-msgid "License"
-msgstr "许可证"
-
-#: ../lib/UX/Models/CategoryModel.vala:110
-msgid "Grouped by license type"
-msgstr "按许可证分组"
-
-#: ../lib/UX/Models/CategoryModel.vala:112
-msgid "Grouped by vendor"
-msgstr "按供应商分组"
-
-#: ../lib/UX/Models/CategoryModel.vala:125
-msgid "Family Kind"
-msgstr "类型"
-
-#: ../lib/UX/Models/CategoryModel.vala:125
-msgid "Only fonts which include Panose information will be grouped here."
-msgstr "只有包含Panose信息的字体将被分组到这里"
-
-#: ../lib/UX/Models/CategoryModel.vala:126
-msgid "Any"
-msgstr "任意(Any)"
-
-#: ../lib/UX/Models/CategoryModel.vala:127
-msgid "No Fit"
-msgstr "无匹配(No Fit)"
-
-#: ../lib/UX/Models/CategoryModel.vala:128
-msgid "Text and Display"
-msgstr "文本和显示(Text and Display)"
-
-#: ../lib/UX/Models/CategoryModel.vala:129
-msgid "Script"
-msgstr "脚本(Script)"
-
-# msgstr "手写体(Script)"
-#: ../lib/UX/Models/CategoryModel.vala:130
-msgid "Decorative"
-msgstr "修饰(Decorative)"
-
-#: ../lib/UX/Models/CategoryModel.vala:131
-msgid "Pictorial"
-msgstr "图形(Pictorial)"
-
-#: ../lib/UX/Models/CategoryModel.vala:165
-msgid "Normal"
-msgstr "正常(Normal)"
-
-#: ../lib/UX/Models/CategoryModel.vala:170
-msgid "Regular"
-msgstr "常规(Regular)"
-
-#: ../lib/UX/Utils/FileSelector.vala:37
-msgid "Select files to install"
-msgstr "选择文件安装"
-
-#: ../lib/UX/Utils/FileSelector.vala:68
-msgid "_Delete"
-msgstr "删除(_D)"
-
-#: ../lib/UX/Utils/FileSelector.vala:75
-msgid "Select fonts to remove"
-msgstr "选择字体删除"
-
-#: ../lib/UX/Views/FontPreviewPane.vala:57 ../lib/UX/Widgets/TextViews.vala:126
+#: ../lib/vala/FontPreviewPane.vala:118 ../lib/vala/FontPreviewPane.vala:210
 msgid "Waterfall"
 msgstr "瀑布"
 
 # Not fine
-#: ../lib/UX/Views/FontPreviewPane.vala:59 ../lib/UX/Widgets/TextViews.vala:127
+#: ../lib/vala/FontPreviewPane.vala:119 ../lib/vala/FontPreviewPane.vala:212
 msgid "Body Text"
 msgstr "正文"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:61 ../lib/UX/Widgets/TextViews.vala:125
-#: ../src/font-manager/MainWindow.vala:213
-msgid "Preview"
-msgstr "预览"
-
-#: ../lib/UX/Views/FontPreviewPane.vala:122
-#, fuzzy
-msgid "Properties"
-msgstr "比例(Proportional)"
-
-#: ../lib/UX/Views/FontPreviewPane.vala:124
+#: ../lib/vala/FontPreviewPane.vala:257
 #, fuzzy
 msgid "Characters"
 msgstr "字符映射"
 
-#: ../lib/UX/Views/FontPreviewPane.vala:246
+#: ../lib/vala/FontPreviewPane.vala:258
+#, fuzzy
+msgid "Properties"
+msgstr "比例(Proportional)"
+
+#: ../lib/vala/FontPreviewPane.vala:259 ../src/font-manager/Categories.vala:300
+msgid "License"
+msgstr "许可证"
+
+#: ../lib/vala/FontPreviewPane.vala:389
 #, fuzzy
 msgid "Select preview type"
 msgstr "编辑预览文本"
 
-#: ../lib/UX/Widgets/CellRendererPill.vala:30
+#: ../lib/vala/Metadata.vala:123
+#, fuzzy
+msgid "File does not contain license information."
+msgstr "文件未包含协议描述。"
+
+#: ../lib/vala/Metadata.vala:196
+msgid "PostScript Name"
+msgstr "PostScript 名称"
+
+#: ../lib/vala/Metadata.vala:197 ../src/font-manager/Categories.vala:292
+msgid "Width"
+msgstr "字宽"
+
+#: ../lib/vala/Metadata.vala:198 ../src/font-manager/Categories.vala:296
+msgid "Slant"
+msgstr "倾斜"
+
+#: ../lib/vala/Metadata.vala:199 ../src/font-manager/Categories.vala:294
+msgid "Weight"
+msgstr "字重"
+
+#: ../lib/vala/Metadata.vala:200 ../src/font-manager/Categories.vala:298
+msgid "Spacing"
+msgstr "字距"
+
+#: ../lib/vala/Metadata.vala:201
+msgid "Version"
+msgstr "版本"
+
+#: ../lib/vala/Metadata.vala:202 ../src/font-manager/Categories.vala:302
+msgid "Vendor"
+msgstr "供应商"
+
+#: ../lib/vala/Metadata.vala:203
+#, fuzzy
+msgid "FileType"
+msgstr "文件类型"
+
+#: ../lib/vala/Metadata.vala:204
+#, fuzzy
+msgid "Filesize"
+msgstr "文件类型"
+
+#: ../lib/vala/Orthography.vala:111
+#, fuzzy
+msgid "Update in progress"
+msgstr "需要更新"
+
+#: ../lib/vala/Orthography.vala:230
+msgid "Coverage"
+msgstr ""
+
+#: ../lib/vala/Orthography.vala:273
+msgid "Supported Orthographies"
+msgstr ""
+
+#: ../lib/vala/Orthography.vala:281
+msgid "Clear selected filter"
+msgstr ""
+
+#: ../src/font-manager/Categories.vala:275
+msgid "User"
+msgstr "用户"
+
+#: ../src/font-manager/Categories.vala:275
+#, fuzzy
+msgid "Fonts available only to you"
+msgstr "字体只有你可见"
+
+# Do not to translate this one.
+#: ../src/font-manager/Categories.vala:284
+msgid "All"
+msgstr "全部"
+
+#: ../src/font-manager/Categories.vala:284
+msgid "All Fonts"
+msgstr "全部字体"
+
+#: ../src/font-manager/Categories.vala:286
+msgid "System"
+msgstr "系统"
+
+#: ../src/font-manager/Categories.vala:286
+msgid "Fonts available to all users"
+msgstr "字体对所有用户可见"
+
+#: ../src/font-manager/Categories.vala:292
+msgid "Grouped by font width"
+msgstr "按字宽分组"
+
+#: ../src/font-manager/Categories.vala:294
+msgid "Grouped by font weight"
+msgstr "按字重分组"
+
+#: ../src/font-manager/Categories.vala:296
+msgid "Grouped by font angle"
+msgstr "按倾斜分组"
+
+#: ../src/font-manager/Categories.vala:298
+msgid "Grouped by font spacing"
+msgstr "按字距分组"
+
+#: ../src/font-manager/Categories.vala:300
+msgid "Grouped by license type"
+msgstr "按许可证分组"
+
+#: ../src/font-manager/Categories.vala:302
+msgid "Grouped by vendor"
+msgstr "按供应商分组"
+
+#: ../src/font-manager/Categories.vala:304
+msgid "Filetype"
+msgstr "文件类型"
+
+#: ../src/font-manager/Categories.vala:304
+msgid "Grouped by filetype"
+msgstr "按文件类型分组"
+
+#: ../src/font-manager/Categories.vala:318
+msgid "Family Kind"
+msgstr "类型"
+
+#: ../src/font-manager/Categories.vala:318
+msgid "Only fonts which include Panose information will be grouped here."
+msgstr "只有包含Panose信息的字体将被分组到这里"
+
+#: ../src/font-manager/Categories.vala:319
+msgid "Any"
+msgstr "任意(Any)"
+
+#: ../src/font-manager/Categories.vala:319
+msgid "No Fit"
+msgstr "无匹配(No Fit)"
+
+#: ../src/font-manager/Categories.vala:319
+msgid "Text and Display"
+msgstr "文本和显示(Text and Display)"
+
+#: ../src/font-manager/Categories.vala:319
+msgid "Script"
+msgstr "脚本(Script)"
+
+# msgstr "手写体(Script)"
+#: ../src/font-manager/Categories.vala:319
+msgid "Decorative"
+msgstr "修饰(Decorative)"
+
+#: ../src/font-manager/Categories.vala:319
+msgid "Pictorial"
+msgstr "图形(Pictorial)"
+
+#: ../src/font-manager/Categories.vala:343
+msgid "Normal"
+msgstr "正常(Normal)"
+
+#: ../src/font-manager/Categories.vala:348
+msgid "Regular"
+msgstr "常规(Regular)"
+
+#: ../src/font-manager/CellRendererPill.vala:39
 msgid "Variation "
 msgstr "变体"
 
-#: ../lib/UX/Widgets/CellRendererPill.vala:31
+#: ../src/font-manager/CellRendererPill.vala:40
 msgid "Variations"
 msgstr "变体"
 
-#: ../src/font-manager/Compare.vala:35
+#. Collections.vala
+#. *
+#. * Copyright (C) 2009 - 2018 Jerry Casiano
+#. *
+#. * This program is free software: you can redistribute it and/or modify
+#. * it under the terms of the GNU General Public License as published by
+#. * the Free Software Foundation, either version 3 of the License, or
+#. * (at your option) any later version.
+#. *
+#. * This program is distributed in the hope that it will be useful,
+#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
+#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#. * GNU General Public License for more details.
+#. *
+#. * You should have received a copy of the GNU General Public License
+#. * along with this program.
+#. *
+#. * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+#.
+#: ../src/font-manager/Collections.vala:21
+#, fuzzy
+msgid "Enter Collection Name"
+msgstr "新字体集"
+
+#: ../src/font-manager/Collections.vala:118
+msgid "Add new collection"
+msgstr "添加新的字体集"
+
+#: ../src/font-manager/Collections.vala:119
+msgid "Remove selected collection"
+msgstr "删除选中的字体集"
+
+#. action_name, display_name, detailed_action_name, accelerator, method
+#: ../src/font-manager/Collections.vala:483
+msgid "Copy to..."
+msgstr ""
+
+#: ../src/font-manager/Collections.vala:484
+#, fuzzy
+msgid "Compress..."
+msgstr "比较"
+
+#: ../src/font-manager/Compare.vala:33
 msgid "Add selected font to comparison"
 msgstr "添加选中的字体进行比较"
 
-#: ../src/font-manager/Compare.vala:36
+#: ../src/font-manager/Compare.vala:34
 msgid "Remove selected font from comparison"
 msgstr "删除比较组中选中的字体"
 
-#: ../src/font-manager/Compare.vala:43
+#: ../src/font-manager/Compare.vala:37 ../src/font-manager/Compare.vala:39
 msgid "Select text color"
 msgstr "选择文本颜色"
 
-#: ../src/font-manager/Compare.vala:44
+#: ../src/font-manager/Compare.vala:38 ../src/font-manager/Compare.vala:40
 msgid "Select background color"
 msgstr "选择背景颜色"
 
-#: ../src/font-manager/MainWindow.vala:57
-#: ../src/font-manager/MainWindow.vala:219
+#: ../src/font-manager/FileSelector.vala:26
+#, fuzzy
+msgid "Select Destination"
+msgstr "选择文件安装"
+
+#: ../src/font-manager/FileSelector.vala:29
+#: ../src/font-manager/FileSelector.vala:49
+#: ../src/font-manager/FileSelector.vala:95
+#: ../src/font-manager/Migration.vala:55
+#: ../src/font-manager/Preferences/Sources.vala:190
+msgid "_Cancel"
+msgstr "取消(_C)"
+
+#: ../src/font-manager/FileSelector.vala:31
+msgid "_Select"
+msgstr ""
+
+#: ../src/font-manager/FileSelector.vala:46
+msgid "Select files to install"
+msgstr "选择文件安装"
+
+#: ../src/font-manager/FileSelector.vala:51
+#: ../src/font-manager/Preferences/Sources.vala:192
+msgid "_Open"
+msgstr "打开(_O)"
+
+#: ../src/font-manager/FileSelector.vala:96
+msgid "_Delete"
+msgstr "删除(_D)"
+
+#: ../src/font-manager/FileSelector.vala:101
+msgid "Select fonts to remove"
+msgstr "选择字体删除"
+
+#: ../src/font-manager/FileSelector.vala:112
+msgid "Fonts installed in your home directory will appear here."
+msgstr ""
+
+#: ../src/font-manager/Filters/Collection.vala:49
+msgid "New Collection"
+msgstr "新字体集"
+
+#: ../src/font-manager/Filters/Collection.vala:51
+#, c-format
+msgid "Created : %s"
+msgstr "创建: %s"
+
+#: ../src/font-manager/Filters/Disabled.vala:26
+msgid "Disabled"
+msgstr "禁用"
+
+#: ../src/font-manager/Filters/Disabled.vala:26
+msgid "Fonts which have been disabled"
+msgstr "禁用字体"
+
+#: ../src/font-manager/Filters/Unsorted.vala:26
+msgid "Unsorted"
+msgstr "未分类"
+
+#: ../src/font-manager/Filters/Unsorted.vala:26
+msgid "Fonts not present in any collection"
+msgstr "字体未在任何字体集中"
+
+#: ../src/font-manager/FontList.vala:170
+#, fuzzy
+msgid "Remove selected font from collection"
+msgstr "删除比较组中选中的字体"
+
+#: ../src/font-manager/FontList.vala:175 ../src/font-manager/FontList.vala:190
+msgid "Expand all"
+msgstr "全部展开"
+
+#: ../src/font-manager/FontList.vala:179
+#, fuzzy
+msgid "Search Families..."
+msgstr "搜索数据库"
+
+#: ../src/font-manager/FontList.vala:190
+msgid "Collapse all"
+msgstr "全部折叠"
+
+#. action_name, display_name, detailed_action_name, accelerator, method
+#: ../src/font-manager/FontList.vala:516
+#, fuzzy
+msgid "Install"
+msgstr "全部字体"
+
+#: ../src/font-manager/FontList.vala:517
+msgid "Copy Location"
+msgstr ""
+
+#: ../src/font-manager/FontList.vala:518
+msgid "Show in Folder"
+msgstr ""
+
+#: ../src/font-manager/MainWindow.vala:54
+#: ../src/font-manager/MainWindow.vala:153
 msgid "Browse"
 msgstr "浏览"
 
-#: ../src/font-manager/MainWindow.vala:59
-#: ../src/font-manager/MainWindow.vala:214
+#: ../src/font-manager/MainWindow.vala:56
+#: ../src/font-manager/MainWindow.vala:148
 msgid "Compare"
 msgstr "比较"
 
-#: ../src/font-manager/MainWindow.vala:61
-#: ../src/font-manager/MainWindow.vala:218
+#: ../src/font-manager/MainWindow.vala:58
+#: ../src/font-manager/MainWindow.vala:152
 msgid "Manage"
 msgstr "管理"
 
-#: ../src/font-manager/Migration.vala:59
+#: ../src/font-manager/Migration.vala:56
 #, fuzzy
 msgid "_Continue"
 msgstr "继续"
 
-#: ../src/font-manager/Migration.vala:69
+#: ../src/font-manager/Migration.vala:66
 msgid "Update Required"
 msgstr "需要更新"
 
-#: ../src/font-manager/Migration.vala:206
+#: ../src/font-manager/Migration.vala:209
 msgid ""
 "\n"
 "Font Manager has detected files from a previous installation. Some files "
@@ -703,36 +621,45 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Display.vala:48
-#: ../src/font-manager/Preferences/Rendering.vala:47
+#: ../src/font-manager/Preferences/Display.vala:42
+#: ../src/font-manager/Preferences/Rendering.vala:42
+#: ../src/font-manager/Preferences/Substitutions.vala:68
 msgid "Settings saved to file."
 msgstr ""
 
-#: ../src/font-manager/Preferences/Display.vala:52
-#: ../src/font-manager/Preferences/Rendering.vala:51
+#: ../src/font-manager/Preferences/Display.vala:46
+#: ../src/font-manager/Preferences/Rendering.vala:46
+#: ../src/font-manager/Preferences/Substitutions.vala:72
 msgid "Removed configuration file."
 msgstr ""
 
-#: ../src/font-manager/Preferences/Interface.vala:42
-msgid "Wide Layout"
+#: ../src/font-manager/Preferences/Display.vala:75
+msgid "Target DPI"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Interface.vala:44
-msgid "Only when maximized"
+#: ../src/font-manager/Preferences/Display.vala:76
+msgid "Scale factor"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Interface.vala:48
-msgid "Client Side Decorations"
+#: ../src/font-manager/Preferences/Display.vala:80
+msgid "LCD Filter"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Interface.vala:101
-msgid ""
-"CSD enabled. Change will take effect next time the application is started."
+#: ../src/font-manager/Preferences/Display.vala:147
+msgid "Subpixel Geometry"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Interface.vala:103
-msgid ""
-"CSD disabled. Change will take effect next time the application is started."
+#: ../src/font-manager/Preferences/Preferences.vala:25
+msgid "Interface"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Preferences.vala:26
+#, fuzzy
+msgid "Display"
+msgstr "文本和显示(Text and Display)"
+
+#: ../src/font-manager/Preferences/Preferences.vala:27
+msgid "Rendering"
 msgstr ""
 
 #: ../src/font-manager/Preferences/Preferences.vala:28
@@ -741,1278 +668,356 @@ msgid "Sources"
 msgstr "管理字体源"
 
 #: ../src/font-manager/Preferences/Preferences.vala:29
-msgid "Rendering"
+msgid "Substitutions"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Preferences.vala:30
-#, fuzzy
-msgid "Display"
-msgstr "文本和显示(Text and Display)"
-
-#: ../src/font-manager/Preferences/Preferences.vala:31
-msgid "Interface"
+#: ../src/font-manager/Preferences/Preferences.vala:174
+msgid "Save"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Sources.vala:40
+#: ../src/font-manager/Preferences/Preferences.vala:176
+msgid "Discard"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Preferences.vala:178
+msgid "Running applications may require a restart to reflect any changes."
+msgstr ""
+
+#: ../src/font-manager/Preferences/Rendering.vala:85
+msgid "Antialias"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Rendering.vala:86
+msgid "Hinting"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Rendering.vala:87
+msgid "Enable Autohinter"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Rendering.vala:95
+msgid "Hinting Style"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Rendering.vala:96
+msgid "Use Embedded Bitmaps"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Rendering.vala:98
+#: ../src/font-manager/Preferences/Rendering.vala:103
+msgid " Size Restrictions "
+msgstr ""
+
+#: ../src/font-manager/Preferences/Rendering.vala:101
+msgid " Apply settings to point sizes "
+msgstr ""
+
+#: ../src/font-manager/Preferences/Rendering.vala:168
+msgid "Smaller than"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Rendering.vala:169
+msgid "Larger than"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Sources.vala:35
 #, fuzzy
 msgid "Add source"
 msgstr "添加新的字体源"
 
-#: ../src/font-manager/Preferences/Sources.vala:41
+#: ../src/font-manager/Preferences/Sources.vala:37
 msgid "Remove selected source"
 msgstr "删除选中的字体源"
 
+#: ../src/font-manager/Preferences/Sources.vala:108
+#, fuzzy
+msgid "Font Sources"
+msgstr "管理字体源"
+
+#: ../src/font-manager/Preferences/Sources.vala:109
+#, fuzzy
+msgid "Easily add or preview fonts without actually installing them."
+msgstr "快速添加或预览字体"
+
+#: ../src/font-manager/Preferences/Sources.vala:110
+msgid ""
+"To add a new source simply drag a folder onto this area or click the add "
+"button in the toolbar."
+msgstr "通过拖放到此区域或单击工具栏上的按钮来添加新的字体源。"
+
+#: ../src/font-manager/Preferences/Sources.vala:187
+msgid "Select source folders"
+msgstr "选择字体源文件夹"
+
+#: ../src/font-manager/Preferences/Substitutions.vala:33
+msgid "Add alias"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Substitutions.vala:34
+#, fuzzy
+msgid "Remove selected alias"
+msgstr "删除选中的字体源"
+
+#: ../src/font-manager/Preferences/Substitutions.vala:88
+msgid "Font Substitutions"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Substitutions.vala:89
+msgid "Easily substitute one font family for another."
+msgstr ""
+
+#: ../src/font-manager/Preferences/Substitutions.vala:90
+#, fuzzy
+msgid "To add a new substitute click the add button in the toolbar."
+msgstr "通过拖放到此区域或单击工具栏上的按钮来添加新的字体源。"
+
+#: ../src/font-manager/Preferences/Substitutions.vala:224
+msgid "Enter target family"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Substitutions.vala:226
+msgid "Add substitute"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Substitutions.vala:350
+msgid "prefer"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Substitutions.vala:351
+msgid "accept"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Substitutions.vala:352
+#, fuzzy
+msgid "default"
+msgstr "默认(Default)"
+
+#: ../src/font-manager/Preferences/Substitutions.vala:357
+msgid "Enter substitute family"
+msgstr ""
+
+#: ../src/font-manager/Preferences/Substitutions.vala:363
+msgid "Remove substitute"
+msgstr ""
+
+#: ../src/font-manager/Preferences/UserInterface.vala:35
+msgid "Wide Layout"
+msgstr ""
+
+#: ../src/font-manager/Preferences/UserInterface.vala:37
+msgid "Only when maximized"
+msgstr ""
+
+#: ../src/font-manager/Preferences/UserInterface.vala:41
+msgid "Client Side Decorations"
+msgstr ""
+
+#: ../src/font-manager/Preferences/UserInterface.vala:77
+msgid ""
+"CSD enabled. Change will take effect next time the application is started."
+msgstr ""
+
+#: ../src/font-manager/Preferences/UserInterface.vala:79
+msgid ""
+"CSD disabled. Change will take effect next time the application is started."
+msgstr ""
+
 # msgstr "区块"
-#: ../src/font-manager/SideBar.vala:172
+#: ../src/font-manager/SideBar.vala:136
 msgid "Categories"
 msgstr "分类"
 
-#: ../src/font-manager/SideBar.vala:173
+#: ../src/font-manager/SideBar.vala:137
 msgid "Collections"
 msgstr "字体集"
 
-#: ../src/font-manager/TitleBar.vala:63
-msgid "Add Fonts"
-msgstr "添加字体"
-
-#: ../src/font-manager/TitleBar.vala:64
-msgid "Remove Fonts"
-msgstr "删除字体"
-
-#: ../src/font-manager/TitleBar.vala:71
-msgid "Preferences"
-msgstr ""
-
-#: ../src/font-manager/TitleBar.vala:160
+#: ../src/font-manager/TitleBar.vala:52
 msgid "Help"
 msgstr "帮助"
 
-#: ../src/font-manager/TitleBar.vala:161
+#: ../src/font-manager/TitleBar.vala:53
 msgid "About"
 msgstr "关于"
 
-#: ../src/font-manager/TitleBar.vala:162
-msgid "Quit"
-msgstr "退出"
+#: ../src/font-manager/TitleBar.vala:140
+msgid "Add Fonts"
+msgstr "添加字体"
+
+#: ../src/font-manager/TitleBar.vala:141
+msgid "Remove Fonts"
+msgstr "删除字体"
+
+#: ../src/font-manager/TitleBar.vala:150
+msgid "Preferences"
+msgstr ""
 
 # Not translate very good, just for use.
-#: ../src/font-viewer/Application.vala:121
-#: ../src/font-viewer/MainWindow.vala:28 ../src/font-viewer/MainWindow.vala:52
+#: ../src/font-viewer/Application.vala:71
+#: ../src/font-viewer/Application.vala:104
+#: ../src/font-viewer/MainWindow.vala:25 ../src/font-viewer/MainWindow.vala:136
+#: ../data/org.gnome.FontViewer.appdata.xml.in.h:1
+#: ../data/org.gnome.FontViewer.desktop.in.h:1
 #, fuzzy
 msgid "Font Viewer"
 msgstr "字体管理器"
 
-#: ../src/font-viewer/MainWindow.vala:29
+#: ../src/font-viewer/MainWindow.vala:26
 #, fuzzy
 msgid "Preview font files before installing them."
 msgstr "快速添加或预览字体"
 
-#: ../src/font-viewer/MainWindow.vala:30
+#: ../src/font-viewer/MainWindow.vala:27
 msgid "To preview a font simply drag it onto this area."
 msgstr ""
 
-#: ../src/font-viewer/MainWindow.vala:58 ../src/font-viewer/MainWindow.vala:163
+#: ../src/font-viewer/MainWindow.vala:51
+msgid "OpenType Font"
+msgstr "OpenType 字体"
+
+#: ../src/font-viewer/MainWindow.vala:52
+msgid "TrueType Font"
+msgstr "TrueType 字体"
+
+#: ../src/font-viewer/MainWindow.vala:53
+msgid "PostScript Type 1 Font"
+msgstr "PostScript Type 1 字体"
+
+#: ../src/font-viewer/MainWindow.vala:102
+msgid "No file selected"
+msgstr ""
+
+#: ../src/font-viewer/MainWindow.vala:103
+#, fuzzy
+msgid "Or unsupported filetype."
+msgstr "按文件类型分组"
+
+#: ../src/font-viewer/MainWindow.vala:143
+#: ../src/font-viewer/MainWindow.vala:252
 #, fuzzy
 msgid "Install Font"
 msgstr "全部字体"
 
-#: ../src/font-viewer/MainWindow.vala:155
-msgid "Newer version already installed"
-msgstr "新版本已安装"
-
-#: ../src/font-viewer/MainWindow.vala:159
+#: ../src/font-viewer/MainWindow.vala:248
 #, fuzzy
 msgid "Installed"
 msgstr "全部字体"
 
-#: ../lib/Unicode/unicode-i18n.h:6
-msgid "Basic Latin"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:7
-msgid "Latin-1 Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:8
-msgid "Latin Extended-A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:9
-msgid "Latin Extended-B"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:10
-msgid "IPA Extensions"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:11
-msgid "Spacing Modifier Letters"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:12
-msgid "Combining Diacritical Marks"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:13
-msgid "Greek and Coptic"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:14 ../lib/Unicode/unicode-i18n.h:314
-msgid "Cyrillic"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:15
-msgid "Cyrillic Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:16 ../lib/Unicode/unicode-i18n.h:291
-msgid "Armenian"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:17 ../lib/Unicode/unicode-i18n.h:332
-msgid "Hebrew"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:18 ../lib/Unicode/unicode-i18n.h:290
-msgid "Arabic"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:19 ../lib/Unicode/unicode-i18n.h:408
-msgid "Syriac"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:20
-msgid "Arabic Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:21 ../lib/Unicode/unicode-i18n.h:418
-msgid "Thaana"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:22 ../lib/Unicode/unicode-i18n.h:372
-msgid "N'Ko"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:23 ../lib/Unicode/unicode-i18n.h:397
-msgid "Samaritan"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:24 ../lib/Unicode/unicode-i18n.h:358
-msgid "Mandaic"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:25
-msgid "Syriac Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:26
-msgid "Arabic Extended-A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:27 ../lib/Unicode/unicode-i18n.h:316
-msgid "Devanagari"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:28 ../lib/Unicode/unicode-i18n.h:297
-msgid "Bengali"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:29 ../lib/Unicode/unicode-i18n.h:327
-msgid "Gurmukhi"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:30 ../lib/Unicode/unicode-i18n.h:326
-msgid "Gujarati"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:31 ../lib/Unicode/unicode-i18n.h:386
-msgid "Oriya"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:32 ../lib/Unicode/unicode-i18n.h:415
-msgid "Tamil"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:33 ../lib/Unicode/unicode-i18n.h:417
-msgid "Telugu"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:34 ../lib/Unicode/unicode-i18n.h:340
-msgid "Kannada"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:35 ../lib/Unicode/unicode-i18n.h:357
-msgid "Malayalam"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:36 ../lib/Unicode/unicode-i18n.h:403
-msgid "Sinhala"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:37 ../lib/Unicode/unicode-i18n.h:419
-msgid "Thai"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:38 ../lib/Unicode/unicode-i18n.h:347
-msgid "Lao"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:39 ../lib/Unicode/unicode-i18n.h:420
-msgid "Tibetan"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:40 ../lib/Unicode/unicode-i18n.h:371
-msgid "Myanmar"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:41 ../lib/Unicode/unicode-i18n.h:321
-msgid "Georgian"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:42
-msgid "Hangul Jamo"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:43 ../lib/Unicode/unicode-i18n.h:320
-msgid "Ethiopic"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:44
-msgid "Ethiopic Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:45 ../lib/Unicode/unicode-i18n.h:309
-msgid "Cherokee"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:46
-msgid "Unified Canadian Aboriginal Syllabics"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:47 ../lib/Unicode/unicode-i18n.h:377
-msgid "Ogham"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:48 ../lib/Unicode/unicode-i18n.h:396
-msgid "Runic"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:49 ../lib/Unicode/unicode-i18n.h:409
-msgid "Tagalog"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:50 ../lib/Unicode/unicode-i18n.h:330
-msgid "Hanunoo"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:51 ../lib/Unicode/unicode-i18n.h:303
-msgid "Buhid"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:52 ../lib/Unicode/unicode-i18n.h:410
-msgid "Tagbanwa"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:53 ../lib/Unicode/unicode-i18n.h:344
-msgid "Khmer"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:54 ../lib/Unicode/unicode-i18n.h:368
-msgid "Mongolian"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:55
-msgid "Unified Canadian Aboriginal Syllabics Extended"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:56 ../lib/Unicode/unicode-i18n.h:350
-msgid "Limbu"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:57 ../lib/Unicode/unicode-i18n.h:411
-msgid "Tai Le"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:58 ../lib/Unicode/unicode-i18n.h:374
-msgid "New Tai Lue"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:59
-msgid "Khmer Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:60 ../lib/Unicode/unicode-i18n.h:302
-msgid "Buginese"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:61 ../lib/Unicode/unicode-i18n.h:412
-msgid "Tai Tham"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:62
-msgid "Combining Diacritical Marks Extended"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:63 ../lib/Unicode/unicode-i18n.h:293
-msgid "Balinese"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:64 ../lib/Unicode/unicode-i18n.h:406
-msgid "Sundanese"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:65 ../lib/Unicode/unicode-i18n.h:296
-msgid "Batak"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:66 ../lib/Unicode/unicode-i18n.h:349
-msgid "Lepcha"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:67 ../lib/Unicode/unicode-i18n.h:378
-msgid "Ol Chiki"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:68
-msgid "Cyrillic Extended-C"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:69
-msgid "Sundanese Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:70
-msgid "Vedic Extensions"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:71
-msgid "Phonetic Extensions"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:72
-msgid "Phonetic Extensions Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:73
-msgid "Combining Diacritical Marks Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:74
-msgid "Latin Extended Additional"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:75
-msgid "Greek Extended"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:76
-msgid "General Punctuation"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:77
-msgid "Superscripts and Subscripts"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:78
-msgid "Currency Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:79
-msgid "Combining Diacritical Marks for Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:80
-msgid "Letterlike Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:81
-msgid "Number Forms"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:82
+#: ../lib/common/font-manager-source.c:224
+#: ../lib/common/font-manager-source.c:239
 #, fuzzy
-msgid "Arrows"
-msgstr "浏览"
+msgid "Source Unavailable"
+msgstr "%s --> 资源不存在"
 
-#: ../lib/Unicode/unicode-i18n.h:83
-msgid "Mathematical Operators"
+#: ../lib/unicode/unicode-character-map.c:643
+msgid "Unknown character, unable to identify."
 msgstr ""
 
-#: ../lib/Unicode/unicode-i18n.h:84
-msgid "Miscellaneous Technical"
+#: ../lib/unicode/unicode-character-map.c:645
+msgid "Not found."
 msgstr ""
 
-#: ../lib/Unicode/unicode-i18n.h:85
-msgid "Control Pictures"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:86
-msgid "Optical Character Recognition"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:87
-msgid "Enclosed Alphanumerics"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:88
-msgid "Box Drawing"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:89
-msgid "Block Elements"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:90
-msgid "Geometric Shapes"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:91
-msgid "Miscellaneous Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:92
-msgid "Dingbats"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:93
-msgid "Miscellaneous Mathematical Symbols-A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:94
-msgid "Supplemental Arrows-A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:95
-msgid "Braille Patterns"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:96
-msgid "Supplemental Arrows-B"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:97
-msgid "Miscellaneous Mathematical Symbols-B"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:98
-msgid "Supplemental Mathematical Operators"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:99
-msgid "Miscellaneous Symbols and Arrows"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:100 ../lib/Unicode/unicode-i18n.h:322
-msgid "Glagolitic"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:101
-msgid "Latin Extended-C"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:102 ../lib/Unicode/unicode-i18n.h:311
-msgid "Coptic"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:103
-msgid "Georgian Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:104 ../lib/Unicode/unicode-i18n.h:421
-msgid "Tifinagh"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:105
-msgid "Ethiopic Extended"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:106
-msgid "Cyrillic Extended-A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:107
-msgid "Supplemental Punctuation"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:108
-msgid "CJK Radicals Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:109
-msgid "Kangxi Radicals"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:110
-msgid "Ideographic Description Characters"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:111
-msgid "CJK Symbols and Punctuation"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:112 ../lib/Unicode/unicode-i18n.h:333
-msgid "Hiragana"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:113 ../lib/Unicode/unicode-i18n.h:341
-msgid "Katakana"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:114 ../lib/Unicode/unicode-i18n.h:299
-msgid "Bopomofo"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:115
-msgid "Hangul Compatibility Jamo"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:116
-msgid "Kanbun"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:117
-msgid "Bopomofo Extended"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:118
-msgid "CJK Strokes"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:119
-msgid "Katakana Phonetic Extensions"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:120
-msgid "Enclosed CJK Letters and Months"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:121
-msgid "CJK Compatibility"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:122
-msgid "CJK Unified Ideographs Extension A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:123
-msgid "Yijing Hexagram Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:124
-msgid "CJK Unified Ideographs"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:125
-msgid "Yi Syllables"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:126
-msgid "Yi Radicals"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:127 ../lib/Unicode/unicode-i18n.h:353
-msgid "Lisu"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:128 ../lib/Unicode/unicode-i18n.h:424
-msgid "Vai"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:129
-msgid "Cyrillic Extended-B"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:130 ../lib/Unicode/unicode-i18n.h:294
-msgid "Bamum"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:131
-msgid "Modifier Tone Letters"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:132
-msgid "Latin Extended-D"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:133 ../lib/Unicode/unicode-i18n.h:407
-msgid "Syloti Nagri"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:134
-msgid "Common Indic Number Forms"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:135
-msgid "Phags-pa"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:136 ../lib/Unicode/unicode-i18n.h:398
-msgid "Saurashtra"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:137
-msgid "Devanagari Extended"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:138 ../lib/Unicode/unicode-i18n.h:342
-msgid "Kayah Li"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:139 ../lib/Unicode/unicode-i18n.h:395
-msgid "Rejang"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:140
-msgid "Hangul Jamo Extended-A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:141 ../lib/Unicode/unicode-i18n.h:338
-msgid "Javanese"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:142
-msgid "Myanmar Extended-B"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:143 ../lib/Unicode/unicode-i18n.h:308
-msgid "Cham"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:144
-msgid "Myanmar Extended-A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:145 ../lib/Unicode/unicode-i18n.h:413
-msgid "Tai Viet"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:146
-msgid "Meetei Mayek Extensions"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:147
-msgid "Ethiopic Extended-A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:148
-msgid "Latin Extended-E"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:149
-msgid "Cherokee Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:150 ../lib/Unicode/unicode-i18n.h:362
-msgid "Meetei Mayek"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:151
-msgid "Hangul Syllables"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:152
-msgid "Hangul Jamo Extended-B"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:153
-msgid "High Surrogates"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:154
-msgid "High Private Use Surrogates"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:155
-msgid "Low Surrogates"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:156
-msgid "Private Use Area"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:157
-msgid "CJK Compatibility Ideographs"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:158
-msgid "Alphabetic Presentation Forms"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:159
-msgid "Arabic Presentation Forms-A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:160
+#: ../lib/unicode/unicode-character-map.c:647
 #, fuzzy
-msgid "Variation Selectors"
-msgstr "变体"
+msgid "Character found."
+msgstr "字符映射"
 
-#: ../lib/Unicode/unicode-i18n.h:161
-msgid "Vertical Forms"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:162
-msgid "Combining Half Marks"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:163
-msgid "CJK Compatibility Forms"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:164
-msgid "Small Form Variants"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:165
-msgid "Arabic Presentation Forms-B"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:166
-msgid "Halfwidth and Fullwidth Forms"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:167
-msgid "Specials"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:168
-msgid "Linear B Syllabary"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:169
-msgid "Linear B Ideograms"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:170
-msgid "Aegean Numbers"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:171
-msgid "Ancient Greek Numbers"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:172
-msgid "Ancient Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:173
-msgid "Phaistos Disc"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:174 ../lib/Unicode/unicode-i18n.h:354
-msgid "Lycian"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:175 ../lib/Unicode/unicode-i18n.h:305
+#: ../data/org.gnome.FontManager.appdata.xml.in.h:2
 #, fuzzy
-msgid "Carian"
-msgstr "变体"
+msgid "A simple font management application for Gtk+ Desktop Environments"
+msgstr "GTK+桌面环境下的简易字体管理器"
 
-#: ../lib/Unicode/unicode-i18n.h:176
-msgid "Coptic Epact Numbers"
+#: ../data/org.gnome.FontManager.appdata.xml.in.h:3
+msgid ""
+"<p> Font Manager is intended to provide a way for average users to easily "
+"manage desktop fonts, without having to resort to command line tools or "
+"editing configuration files by hand. </p> <p> While designed primarily with "
+"the Gnome Desktop Environment in mind, it should work well with other Gtk+ "
+"desktop environments. </p> <p> Font Manager is NOT a professional-grade font "
+"management solution. </p>"
 msgstr ""
 
-#: ../lib/Unicode/unicode-i18n.h:177 ../lib/Unicode/unicode-i18n.h:380
+#: ../data/org.gnome.FontManager.desktop.in.h:2
+msgid "Preview, Compare and Manage Fonts"
+msgstr ""
+
+#: ../data/org.gnome.FontManager.desktop.in.h:3
+#: ../data/org.gnome.FontViewer.desktop.in.h:3
+msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
+msgstr ""
+
+#: ../data/org.gnome.FontViewer.appdata.xml.in.h:2
 #, fuzzy
-msgid "Old Italic"
-msgstr "斜体(Italic)"
+msgid "A font viewer application for Gtk+ Desktop Environments"
+msgstr "GTK+桌面环境下的简易字体管理器"
 
-#: ../lib/Unicode/unicode-i18n.h:178 ../lib/Unicode/unicode-i18n.h:323
-msgid "Gothic"
+#: ../data/org.gnome.FontViewer.appdata.xml.in.h:3
+msgid ""
+"<p> Font Viewer allows previewing font files prior to installation. It "
+"features several ways to preview font files along with a character map and "
+"displays font properties and license details. </p>"
 msgstr ""
 
-#: ../lib/Unicode/unicode-i18n.h:179 ../lib/Unicode/unicode-i18n.h:382
-msgid "Old Permic"
+#: ../data/org.gnome.FontViewer.desktop.in.h:2
+msgid "Full featured font file preview application"
 msgstr ""
 
-#: ../lib/Unicode/unicode-i18n.h:180 ../lib/Unicode/unicode-i18n.h:423
-msgid "Ugaritic"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:181 ../lib/Unicode/unicode-i18n.h:383
-msgid "Old Persian"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:182 ../lib/Unicode/unicode-i18n.h:315
-msgid "Deseret"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:183 ../lib/Unicode/unicode-i18n.h:400
-msgid "Shavian"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:184 ../lib/Unicode/unicode-i18n.h:388
-msgid "Osmanya"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:185 ../lib/Unicode/unicode-i18n.h:387
-msgid "Osage"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:186 ../lib/Unicode/unicode-i18n.h:319
-msgid "Elbasan"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:187 ../lib/Unicode/unicode-i18n.h:306
-msgid "Caucasian Albanian"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:188 ../lib/Unicode/unicode-i18n.h:351
-msgid "Linear A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:189
-msgid "Cypriot Syllabary"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:190 ../lib/Unicode/unicode-i18n.h:334
-msgid "Imperial Aramaic"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:191 ../lib/Unicode/unicode-i18n.h:390
-msgid "Palmyrene"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:192 ../lib/Unicode/unicode-i18n.h:373
-msgid "Nabataean"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:193 ../lib/Unicode/unicode-i18n.h:331
-msgid "Hatran"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:194 ../lib/Unicode/unicode-i18n.h:393
-msgid "Phoenician"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:195 ../lib/Unicode/unicode-i18n.h:355
-msgid "Lydian"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:196 ../lib/Unicode/unicode-i18n.h:365
-msgid "Meroitic Hieroglyphs"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:197 ../lib/Unicode/unicode-i18n.h:364
-msgid "Meroitic Cursive"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:198 ../lib/Unicode/unicode-i18n.h:343
-msgid "Kharoshthi"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:199 ../lib/Unicode/unicode-i18n.h:384
-msgid "Old South Arabian"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:200 ../lib/Unicode/unicode-i18n.h:381
-msgid "Old North Arabian"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:201 ../lib/Unicode/unicode-i18n.h:359
-msgid "Manichaean"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:202 ../lib/Unicode/unicode-i18n.h:292
-msgid "Avestan"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:203 ../lib/Unicode/unicode-i18n.h:337
-msgid "Inscriptional Parthian"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:204 ../lib/Unicode/unicode-i18n.h:336
-msgid "Inscriptional Pahlavi"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:205 ../lib/Unicode/unicode-i18n.h:394
-msgid "Psalter Pahlavi"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:206 ../lib/Unicode/unicode-i18n.h:385
-msgid "Old Turkic"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:207 ../lib/Unicode/unicode-i18n.h:379
-msgid "Old Hungarian"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:208
-msgid "Rumi Numeral Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:209 ../lib/Unicode/unicode-i18n.h:300
-msgid "Brahmi"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:210 ../lib/Unicode/unicode-i18n.h:339
-msgid "Kaithi"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:211 ../lib/Unicode/unicode-i18n.h:404
-msgid "Sora Sompeng"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:212 ../lib/Unicode/unicode-i18n.h:307
-msgid "Chakma"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:213 ../lib/Unicode/unicode-i18n.h:356
-msgid "Mahajani"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:214 ../lib/Unicode/unicode-i18n.h:399
-msgid "Sharada"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:215
-msgid "Sinhala Archaic Numbers"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:216 ../lib/Unicode/unicode-i18n.h:345
-msgid "Khojki"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:217 ../lib/Unicode/unicode-i18n.h:370
-msgid "Multani"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:218 ../lib/Unicode/unicode-i18n.h:346
-msgid "Khudawadi"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:219 ../lib/Unicode/unicode-i18n.h:324
-msgid "Grantha"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:220 ../lib/Unicode/unicode-i18n.h:375
-msgid "Newa"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:221 ../lib/Unicode/unicode-i18n.h:422
-msgid "Tirhuta"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:222 ../lib/Unicode/unicode-i18n.h:401
-msgid "Siddham"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:223 ../lib/Unicode/unicode-i18n.h:367
-msgid "Modi"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:224
-msgid "Mongolian Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:225 ../lib/Unicode/unicode-i18n.h:414
-msgid "Takri"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:226 ../lib/Unicode/unicode-i18n.h:288
-msgid "Ahom"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:227 ../lib/Unicode/unicode-i18n.h:425
-msgid "Warang Citi"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:228 ../lib/Unicode/unicode-i18n.h:427
-msgid "Zanabazar Square"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:229 ../lib/Unicode/unicode-i18n.h:405
-msgid "Soyombo"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:230 ../lib/Unicode/unicode-i18n.h:391
-msgid "Pau Cin Hau"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:231 ../lib/Unicode/unicode-i18n.h:298
-msgid "Bhaiksuki"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:232 ../lib/Unicode/unicode-i18n.h:360
-msgid "Marchen"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:233 ../lib/Unicode/unicode-i18n.h:361
-msgid "Masaram Gondi"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:234 ../lib/Unicode/unicode-i18n.h:312
-msgid "Cuneiform"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:235
-msgid "Cuneiform Numbers and Punctuation"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:236
-msgid "Early Dynastic Cuneiform"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:237 ../lib/Unicode/unicode-i18n.h:318
-msgid "Egyptian Hieroglyphs"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:238 ../lib/Unicode/unicode-i18n.h:289
-msgid "Anatolian Hieroglyphs"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:239
-msgid "Bamum Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:240 ../lib/Unicode/unicode-i18n.h:369
-msgid "Mro"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:241 ../lib/Unicode/unicode-i18n.h:295
-msgid "Bassa Vah"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:242 ../lib/Unicode/unicode-i18n.h:389
-msgid "Pahawh Hmong"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:243 ../lib/Unicode/unicode-i18n.h:366
-msgid "Miao"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:244
-msgid "Ideographic Symbols and Punctuation"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:245 ../lib/Unicode/unicode-i18n.h:416
-msgid "Tangut"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:246
-msgid "Tangut Components"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:247
-msgid "Kana Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:248
-msgid "Kana Extended-A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:249 ../lib/Unicode/unicode-i18n.h:376
-msgid "Nushu"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:250 ../lib/Unicode/unicode-i18n.h:317
-msgid "Duployan"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:251
-msgid "Shorthand Format Controls"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:252
-msgid "Byzantine Musical Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:253
-msgid "Musical Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:254
-msgid "Ancient Greek Musical Notation"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:255
-msgid "Tai Xuan Jing Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:256
-msgid "Counting Rod Numerals"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:257
-msgid "Mathematical Alphanumeric Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:258
-msgid "Sutton SignWriting"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:259
-msgid "Glagolitic Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:260 ../lib/Unicode/unicode-i18n.h:363
-msgid "Mende Kikakui"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:261 ../lib/Unicode/unicode-i18n.h:287
-msgid "Adlam"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:262
-msgid "Arabic Mathematical Alphabetic Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:263
-msgid "Mahjong Tiles"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:264
 #, fuzzy
-msgid "Domino Tiles"
-msgstr "全部字体"
+#~ msgid "Arrows"
+#~ msgstr "浏览"
 
-#: ../lib/Unicode/unicode-i18n.h:265
-msgid "Playing Cards"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:266
-msgid "Enclosed Alphanumeric Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:267
-msgid "Enclosed Ideographic Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:268
-msgid "Miscellaneous Symbols and Pictographs"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:269
-msgid "Emoticons"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:270
-msgid "Ornamental Dingbats"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:271
-msgid "Transport and Map Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:272
-msgid "Alchemical Symbols"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:273
-msgid "Geometric Shapes Extended"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:274
-msgid "Supplemental Arrows-C"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:275
-msgid "Supplemental Symbols and Pictographs"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:276
-msgid "CJK Unified Ideographs Extension B"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:277
-msgid "CJK Unified Ideographs Extension C"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:278
-msgid "CJK Unified Ideographs Extension D"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:279
-msgid "CJK Unified Ideographs Extension E"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:280
-msgid "CJK Unified Ideographs Extension F"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:281
-msgid "CJK Compatibility Ideographs Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:282
-msgid "Tags"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:283
-msgid "Variation Selectors Supplement"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:284
-msgid "Supplementary Private Use Area-A"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:285
-msgid "Supplementary Private Use Area-B"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:301
-msgid "Braille"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:304
-msgid "Canadian Aboriginal"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:310
-msgid "Common"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:313
-msgid "Cypriot"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:325
-msgid "Greek"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:328
-msgid "Han"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:329
-msgid "Hangul"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:335
-msgid "Inherited"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:348
-msgid "Latin"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:352
-msgid "Linear B"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:392
-msgid "Phags Pa"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:402
-msgid "Signwriting"
-msgstr ""
-
-#: ../lib/Unicode/unicode-i18n.h:426
-msgid "Yi"
-msgstr ""
-
-#: ../data/ApplicationMenu.ui.h:1
 #, fuzzy
-msgid "_Help"
-msgstr "帮助"
+#~ msgid "Variation Selectors"
+#~ msgstr "变体"
 
-#: ../data/ApplicationMenu.ui.h:2
 #, fuzzy
-msgid "_About"
-msgstr "关于"
+#~ msgid "Carian"
+#~ msgstr "变体"
 
-#: ../data/ApplicationMenu.ui.h:3
 #, fuzzy
-msgid "_Quit"
-msgstr "退出"
+#~ msgid "Old Italic"
+#~ msgstr "斜体(Italic)"
+
+#, fuzzy
+#~ msgid "Domino Tiles"
+#~ msgstr "全部字体"
+
+#, fuzzy
+#~ msgid "Loading available font families"
+#~ msgstr "字体对所有用户可见"
+
+#~ msgid " Generated by Font Manager. Do NOT edit this file. "
+#~ msgstr " Generated by Font Manager. Do NOT edit this file. "
+
+#, fuzzy
+#~ msgid "Installing files"
+#~ msgstr "全部字体"
+
+#, fuzzy
+#~ msgid "Processing files"
+#~ msgstr "全部字体"
+
+#, fuzzy
+#~ msgid "Unicode Script"
+#~ msgstr "Unicode 脚本"
+
+#, fuzzy
+#~ msgid "Unicode Block"
+#~ msgstr "Unicode 区块"
+
+#~ msgid "Quit"
+#~ msgstr "退出"
+
+#~ msgid "Newer version already installed"
+#~ msgstr "新版本已安装"
+
+#, fuzzy
+#~ msgid "_Help"
+#~ msgstr "帮助"
+
+#, fuzzy
+#~ msgid "_About"
+#~ msgstr "关于"
+
+#, fuzzy
+#~ msgid "_Quit"
+#~ msgstr "退出"

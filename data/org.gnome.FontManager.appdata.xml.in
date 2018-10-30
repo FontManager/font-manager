@@ -1,40 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright (C) 2009 - 2016 Jerry Casiano -->
-<application>
-  <updatecontact>JerryCasiano_at_gmail.com</updatecontact>
-  <id type="desktop">org.gnome.FontManager.desktop</id>
-  <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-3.0+</project_license>
-  <name>Font Manager</name>
-  <summary>A simple font management application for Gtk+ Desktop Environments</summary>
-  <description>
-    <p>
-        Font Manager is intended to provide a way for average users to easily manage
-        desktop fonts, without having to resort to command line tools or editing
-        configuration files by hand.
-    </p>
-    <p>
-        While designed primarily with the Gnome Desktop Environment in mind,
-        it should work well with other Gtk+ desktop environments.
-    </p>
-    <p>
-        Font Manager is NOT a professional-grade font management solution.
-    </p>
-    <p xml:lang="es">
-        El propósito de Font Manager es permitir que los usuarios de a pie gestionen
-        con facilidad los tipos de letra de sus equipos, sin necesidad de recurrir a
-        herramientas de consola ni a editar archivos de configuración a mano.
-    </p>
-    <p xml:lang="es">
-        Aunque el diseño de la aplicación se basó en el entorno de escritorio de Gnome,
-        esta debe funcionar correctamente en otras plataformas que utilicen Gtk+.
-    </p>
-    <p xml:lang="es">
-        Font Manager NO es una aplicación de gestión tipográfica de nivel profesional.
-    </p>
-  </description>
-  <url type="homepage">@PACKAGE_URL@</url>
-  <screenshots>
-    <screenshot type="default">http://raw.githubusercontent.com/FontManager/resources/master/font-manager_default-theme.png</screenshot>
-  </screenshots>
-</application>
+<!-- Copyright (C) 2009 - 2018 Jerry Casiano -->
+<component type="desktop-application">
+
+    <id>org.gnome.FontManager</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0+</project_license>
+    <update_contact>JerryCasiano_AT_gmail.com</update_contact>
+    <_name>Font Manager</_name>
+    <_summary>A simple font management application for Gtk+ Desktop Environments</_summary>
+
+    <_description>
+        <p>
+            Font Manager is intended to provide a way for average users to easily manage
+            desktop fonts, without having to resort to command line tools or editing
+            configuration files by hand.
+        </p>
+        <p>
+            While designed primarily with the Gnome Desktop Environment in mind,
+            it should work well with other Gtk+ desktop environments.
+        </p>
+        <p>
+            Font Manager is NOT a professional-grade font management solution.
+        </p>
+    </_description>
+
+    <kudos>
+        <kudo>ModernToolkit</kudo>
+    </kudos>
+
+    <!--
+    XXX : Specification conflicts with validation ?
+    <icon type="stock">preferences-desktop-font</icon>
+    -->
+
+    <launchable type="desktop-id">org.gnome.FontManager.desktop</launchable>
+
+    <categories>
+        <category>Utility</category>
+        <category>Graphics</category>
+        <category>GTK</category>
+    </categories>
+
+    <provides>
+        <binary>font-manager</binary>
+        <dbus>org.gnome.FontManager</dbus>
+    </provides>
+
+    <screenshots>
+        <screenshot type="default">
+            <image type="source">
+                http://raw.githubusercontent.com/FontManager/resources/master/main_window.png
+            </image>
+        </screenshot>
+        <screenshot>
+            <image type="source">
+                http://raw.githubusercontent.com/FontManager/resources/master/character_map.png
+            </image>
+        </screenshot>
+        <screenshot>
+            <image type="source">
+                http://raw.githubusercontent.com/FontManager/resources/master/browse_mode.png
+            </image>
+        </screenshot>
+        <screenshot>
+            <image type="source">
+                http://raw.githubusercontent.com/FontManager/resources/master/compare_mode.png
+            </image>
+        </screenshot>
+    </screenshots>
+
+    <!--
+    XXX : Validation fails due to missing timestamp but timestamps are deprecated...
+    <releases>
+        <release version="@PACKAGE_VERSION@" />
+    </releases>
+    -->
+
+    <translation type="gettext">@PACKAGE_NAME@</translation>
+
+    <url type="homepage">@PACKAGE_URL@</url>
+    <url type="bugtracker">@PACKAGE_BUGREPORT@</url>
+    <url type="translate">https://translate.zanata.org/project/view/@PACKAGE_NAME@</url>
+
+</component>

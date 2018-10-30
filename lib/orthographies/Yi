@@ -1,0 +1,16 @@
+{
+    "Yi",
+    "ꆈꌠꁱꂷ",
+    0xa000,
+    "ꀀꀁꀂꀃꀄꀅꀆꀇ",
+    { 
+        "ꀀꀁꀂꀃꀄꀅꀆꀇ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0xa000, 0xa48c,
+        END_OF_DATA
+    }
+},
+

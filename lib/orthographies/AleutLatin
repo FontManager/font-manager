@@ -1,0 +1,33 @@
+{
+    "Aleut Latin",
+    "Unangan",
+    0x41,
+    "AaBbFfGgXxRrSsZz",
+    { 
+        "", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x41, 0x44,
+        START_RANGE_PAIR,
+        0x46, 0x49,
+        START_RANGE_PAIR,
+        0x4b, 0x4f,
+        START_RANGE_PAIR,
+        0x51, 0x5a,
+        START_RANGE_PAIR,
+        0x61, 0x64,
+        START_RANGE_PAIR,
+        0x66, 0x69,
+        START_RANGE_PAIR,
+        0x6b, 0x6f,
+        START_RANGE_PAIR,
+        0x71, 0x7a,
+        0x11c,
+        0x11d,
+        0x302,
+        END_OF_DATA
+    }
+},
+

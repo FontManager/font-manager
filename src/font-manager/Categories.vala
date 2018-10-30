@@ -1,0 +1,370 @@
+/* Categories.vala
+ *
+ * Copyright (C) 2009 - 2018 Jerry Casiano
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.
+ *
+ * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+*/
+
+namespace FontManager {
+
+    public enum CategoryIndex {
+        ALL,
+        SYSTEM,
+        USER,
+        N_CORE,
+        PANOSE,
+        WIDTH,
+        WEIGHT,
+        SLANT,
+        SPACING,
+        LICENSE,
+        VENDOR,
+        FILETYPE,
+        N_GENERATED,
+        UNSORTED,
+        DISABLED,
+        N_DEFAULT_CATEGORIES
+    }
+
+    public class CategoryModel : Gtk.TreeStore {
+
+        public signal void update_begin ();
+        public signal void update_complete ();
+
+        Database db;
+        GLib.List <Category> categories;
+
+        construct {
+            set_column_types({typeof(Object), typeof(string), typeof(string), typeof(string) });
+        }
+
+        void init_categories () {
+            categories = null;
+            try {
+                db = get_database(DatabaseType.BASE);
+                categories = get_default_categories(db);
+            } catch (DatabaseError e) {
+                critical(e.message);
+            }
+            return;
+        }
+
+        void append_category (Category filter) {
+            if (filter.index < CategoryIndex.N_CORE) {
+                filter.update(db);
+                filter.requires_update = false;
+            }
+            Gtk.TreeIter iter;
+            this.append(out iter, null);
+            /* Comments are used for tooltips. */
+            string comment = Markup.escape_text(filter.comment);
+            this.set(iter, 0, filter, 1, filter.icon, 2, filter.name, 3, comment, -1);
+            comment = null;
+            foreach(var child in filter.children) {
+                string child_comment = Markup.escape_text(child.comment);
+                Gtk.TreeIter _iter;
+                this.append(out _iter, iter);
+                this.set(_iter, 0, child, 1, child.icon, 2, child.name, 3, child_comment, -1);
+                child_comment = null;
+            }
+            return;
+        }
+
+        public void update () {
+            update_begin();
+            clear();
+            init_categories();
+            foreach (var filter in categories)
+                append_category((Category) filter);
+            update_complete();
+            return;
+        }
+
+    }
+
+    public enum CategoryColumn {
+        OBJECT,
+        ICON,
+        NAME,
+        COMMENT,
+        N_COLUMNS
+    }
+
+    public class CategoryTree : Gtk.ScrolledWindow {
+
+        public signal void selection_changed (Category filter, int category);
+
+        public bool update_in_progress { get; set; default = false; }
+
+        public CategoryModel model {
+            get {
+                return _model;
+            }
+            set {
+                _model = value;
+                tree.set_model(_model);
+                select_first_row();
+                _model.update_begin.connect(() => {
+                    spinner.show();
+                    spinner.start();
+                    queue_draw();
+                    update_in_progress = true;
+                });
+                _model.update_complete.connect(() => {
+                    spinner.stop();
+                    spinner.hide();
+                    queue_draw();
+                    update_in_progress = false;
+                });
+            }
+        }
+
+        public string selected_iter { get; protected set; default = "0"; }
+        public Category? selected_filter { get; protected set; default = null; }
+
+        public BaseTreeView tree { get; protected set; }
+        public Gtk.CellRendererText renderer { get; protected set; }
+        public CellRendererCount count_renderer { get; protected set; }
+        public Gtk.CellRendererPixbuf pixbuf_renderer { get; protected set; }
+
+        Gtk.Overlay overlay;
+        Gtk.Spinner spinner;
+
+        CategoryModel _model;
+
+        public CategoryTree () {
+            expand = true;
+            overlay = new Gtk.Overlay();
+            spinner = new Gtk.Spinner();
+            spinner.set("halign", Gtk.Align.CENTER, "valign", Gtk.Align.CENTER, null);
+            spinner.set_size_request(96, 96);
+            tree = new BaseTreeView();
+            model = new CategoryModel();
+            tree.name = "CategoryTree";
+            tree.level_indentation = 12;
+            renderer = new Gtk.CellRendererText();
+            count_renderer = new CellRendererCount();
+            count_renderer.type_name = null;
+            count_renderer.type_name_plural = null;
+            pixbuf_renderer = new Gtk.CellRendererPixbuf();
+            pixbuf_renderer.set_property("xpad", 6);
+            count_renderer.xalign = 1.0f;
+            renderer.set_property("ellipsize", Pango.EllipsizeMode.END);
+            renderer.set_property("ellipsize-set", true);
+            tree.insert_column_with_data_func(0, "", pixbuf_renderer, pixbuf_cell_data_func);
+            tree.insert_column_with_attributes(1, "", renderer, "text", CategoryColumn.NAME, null);
+            tree.insert_column_with_data_func(2, "", count_renderer, count_cell_data_func);
+            for (int i = 0; i < 3; i++)
+                tree.get_column(i).expand = (i == 1);
+            tree.set_headers_visible(false);
+            tree.show_expanders = false;
+            tree.set_tooltip_column(CategoryColumn.COMMENT);
+            tree.test_expand_row.connect((t,i,p) => { t.collapse_all(); return false; });
+            tree.get_selection().changed.connect(on_selection_changed);
+            overlay.add_overlay(spinner);
+            overlay.add(tree);
+            add(overlay);
+        }
+
+        public override void show () {
+            tree.show();
+            spinner.show();
+            spinner.start();
+            overlay.show();
+            base.show();
+            return;
+        }
+
+        public void select_first_row () {
+            tree.get_selection().select_path(new Gtk.TreePath.first());
+            return;
+        }
+
+        void count_cell_data_func (Gtk.TreeViewColumn layout,
+                                    Gtk.CellRenderer cell,
+                                    Gtk.TreeModel model,
+                                    Gtk.TreeIter treeiter) {
+            /* Don't show count for folders */
+            cell.set_property("visible", false);
+            if (model.iter_has_child(treeiter))
+                return;
+            Value val;
+            model.get_value(treeiter, CategoryColumn.OBJECT, out val);
+            var obj = (Category) val.get_object();
+            /* Or dynamic categories */
+            if (obj.index < CategoryIndex.N_GENERATED) {
+                cell.set_property("count", obj.size);
+                cell.set_property("visible", true);
+            }
+            val.unset();
+            return;
+        }
+
+        void pixbuf_cell_data_func (Gtk.TreeViewColumn layout,
+                                        Gtk.CellRenderer cell,
+                                        Gtk.TreeModel model,
+                                        Gtk.TreeIter treeiter) {
+            Value val;
+            model.get_value(treeiter, 0, out val);
+            var obj = val.get_object();
+            if (tree.is_row_expanded(model.get_path(treeiter)))
+                cell.set_property("icon-name", "folder-open");
+            else
+                cell.set_property("icon-name", ((Category) obj).icon);
+            val.unset();
+            return;
+        }
+
+        void on_selection_changed (Gtk.TreeSelection selection) {
+            Gtk.TreeIter iter;
+            Gtk.TreeModel model;
+            GLib.Value val;
+            if (!selection.get_selected(out model, out iter))
+                return;
+            model.get_value(iter, 0, out val);
+            var path = model.get_path(iter);
+            selected_filter = ((Category) val);
+            /* NOTE :
+             * Category updates are delayed till actual selection
+             * Depending on size it may take a moment for the category to load
+             * Using an idle source to prevent input lag
+             */
+            Idle.add(() => {
+                if (selected_filter.index < CategoryIndex.N_GENERATED
+                    && selected_filter.requires_update) {
+                    try {
+                        Database db = get_database(DatabaseType.BASE);
+                        selected_filter.update(db);
+                        selected_filter.requires_update = false;
+                    } catch (DatabaseError e) {}
+                }
+                /* Need to refresh counts */
+                tree.queue_draw();
+                return false;
+            });
+            selection_changed(((Category) val), path.get_indices()[0]);
+            if (path.get_depth() < 2) {
+                tree.collapse_all();
+                tree.expand_to_path(path);
+            }
+            selected_iter = model.get_string_from_iter(iter);
+            val.unset();
+            return;
+        }
+
+    }
+
+    public class UserFonts : Category {
+
+        public UserFonts () {
+            string user_font_dir = get_user_font_directory();
+            string sql = "%s filepath LIKE \"%s%\";".printf(SELECT_FROM_METADATA_WHERE, user_font_dir);
+            base(_("User"), _("Fonts available only to you"), "avatar-default", sql);
+        }
+
+    }
+
+    /*  WARNING : Long lines ahead... */
+
+    GLib.List <Category> get_default_categories (Database db) {
+        var filters = new GLib.HashTable <string, Category> (str_hash, str_equal);
+        filters["All"] = new Category(_("All"), _("All Fonts"), "format-text-bold", "%s;".printf(SELECT_FROM_FONTS));
+        filters["All"].index = CategoryIndex.ALL;
+        filters["System"] = new Category(_("System"), _("Fonts available to all users"), "computer", "%s owner!=0;".printf(SELECT_FROM_METADATA_WHERE));
+        filters["System"].index = CategoryIndex.SYSTEM;
+        filters["User"] = new UserFonts();
+        filters["User"].index = CategoryIndex.USER;
+        filters["Panose"] = construct_panose_filter();
+        filters["Panose"].index = CategoryIndex.PANOSE;
+        filters["Width"] = construct_attribute_filter(db, _("Width"), _("Grouped by font width"), "width");
+        filters["Width"].index = CategoryIndex.WIDTH;
+        filters["Weight"] = construct_attribute_filter(db, _("Weight"), _("Grouped by font weight"), "weight");
+        filters["Weight"].index = CategoryIndex.WEIGHT;
+        filters["Slant"] = construct_attribute_filter(db, _("Slant"), _("Grouped by font angle"), "slant");
+        filters["Slant"].index = CategoryIndex.SLANT;
+        filters["Spacing"] = construct_attribute_filter(db, _("Spacing"), _("Grouped by font spacing"), "spacing");
+        filters["Spacing"].index = CategoryIndex.SPACING;
+        filters["License"] = construct_info_filter(db, _("License"), _("Grouped by license type"), "license-type");
+        filters["License"].index = CategoryIndex.LICENSE;
+        filters["Vendor"] = construct_info_filter(db, _("Vendor"), _("Grouped by vendor"), "vendor");
+        filters["Vendor"].index = CategoryIndex.VENDOR;
+        filters["Filetype"] = construct_info_filter(db, _("Filetype"), _("Grouped by filetype"), "filetype");
+        filters["Filetype"].index = CategoryIndex.FILETYPE;
+        filters["Unsorted"] = new Unsorted();
+        filters["Unsorted"].index = CategoryIndex.UNSORTED;
+        filters["Disabled"] = new Disabled();
+        filters["Disabled"].index = CategoryIndex.DISABLED;
+        var sorted_filters = new GLib.List <Category> ();
+        foreach (Category category in filters.get_values())
+            sorted_filters.prepend(category);
+        sorted_filters.sort_with_data((CompareDataFunc) filter_sort);
+        return sorted_filters;
+    }
+
+    Category construct_panose_filter () {
+        var panose = new Category(_("Family Kind"), _("Only fonts which include Panose information will be grouped here."), "folder", "%s P0 IS NOT NULL;".printf(SELECT_FROM_PANOSE_WHERE));
+        string [] kind = { _("Any"), _("No Fit"), _("Text and Display"), _("Script"), _("Decorative"), _("Pictorial") };
+        for (int i = 0; i < kind.length; i++)
+            panose.children.prepend(new Category(kind[i], kind[i], "emblem-documents", "%s P0 = '%i';".printf(SELECT_FROM_PANOSE_WHERE, i)));
+        panose.children.reverse();
+        return panose;
+    }
+
+    Category construct_attribute_filter (Database db, string name, string comment, string keyword) {
+        var filter = new Category(name, comment, "folder", "%s;".printf(SELECT_FROM_FONTS));
+        try {
+            db.execute_query("SELECT DISTINCT %s FROM Fonts ORDER BY %s;".printf(keyword, keyword));
+            foreach (unowned Sqlite.Statement row in db) {
+                int val = row.column_int(0);
+                string? type = null;
+                if (keyword == "slant")
+                    type = ((Slant) val).to_string();
+                else if (keyword == "spacing")
+                    type = ((Spacing) val).to_string();
+                else if (keyword == "weight")
+                    type = ((Weight) val).to_string();
+                else if (keyword == "width")
+                    type = ((Width) val).to_string();
+                if (type == null)
+                    if (keyword == "slant" || keyword == "width")
+                        type = _("Normal");
+                    /* Ignore random weights */
+                    else if (keyword == "weight" && !((Weight) val).defined())
+                        continue;
+                    else
+                        type = _("Regular");
+                filter.children.prepend(new Category(type, type, "emblem-documents", "%s WHERE %s=\"%i\";".printf(SELECT_FROM_FONTS, keyword, val)));
+            }
+            filter.children.reverse();
+        } catch (DatabaseError e) { }
+        return filter;
+    }
+
+    Category construct_info_filter (Database db, string name, string comment, string _keyword) {
+        string keyword = _keyword.replace("\"", "\\\"").replace("'", "\'");
+        var filter = new Category(name, comment, "folder", "%s [%s] IS NOT NULL;".printf(SELECT_FROM_METADATA_WHERE, keyword));
+        try {
+            db.execute_query("SELECT DISTINCT [%s] FROM Metadata ORDER BY [%s];".printf(keyword, keyword));
+            foreach (unowned Sqlite.Statement row in db) {
+                string type = row.column_text(0);
+                filter.children.prepend(new Category(type, type, "emblem-documents", "%s [%s]=\"%s\";".printf(SELECT_FROM_METADATA_WHERE, keyword, type)));
+            }
+            filter.children.reverse();
+        } catch (DatabaseError e) { }
+        return filter;
+    }
+
+}

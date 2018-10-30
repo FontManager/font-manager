@@ -1,0 +1,32 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="license">
+
+    <info>
+        <link type="guide" xref="index#explore"/>
+        <desc>View license information contained in font files</desc>
+    </info>
+
+    <title>Licensing</title>
+
+    <p>
+        While in "Manage" mode the preview pane contains a tab labeled "License".
+    </p>
+
+    <p>
+        Selecting this tab allows viewing any licensing information contained in
+        the currently selected font.
+    </p>
+
+    <figure>
+        <title><app>Font License tab</app></title>
+        <media type="image" src="media/license.png"/>
+    </figure>
+
+    <note>
+        <p>
+            Not all font files contain licensing information.
+        </p>
+    </note>
+
+</page>

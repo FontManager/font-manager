@@ -9,7 +9,7 @@
        A simple font management application for GTK+ Desktop Environments
 
 
-|============================= Version 0.7.3 ==================================|
+|============================= Version 0.7.4 ==================================|
 
 
 Features that are expected to work at this time:
@@ -69,8 +69,6 @@ Features that are expected to work at this time:
 
 
 Missing / Planned features :
-
-    Help contents
 
     Character map details viewer
 

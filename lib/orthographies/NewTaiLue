@@ -1,0 +1,22 @@
+{
+    "New Tai Lue",
+    "",
+    0x1980,
+    "ᦀᦁᦂᦃ ᦖᦰ ᦖᦱ ᦖᦲ ᦖᦳ",
+    { 
+        "ᦀᦁᦂᦃ ᦖᦰ ᦖᦱ ᦖᦲ ᦖᦳ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x1980, 0x19a9,
+        START_RANGE_PAIR,
+        0x19b0, 0x19c9,
+        START_RANGE_PAIR,
+        0x19d0, 0x19d9,
+        START_RANGE_PAIR,
+        0x19de, 0x19df,
+        END_OF_DATA
+    }
+},
+

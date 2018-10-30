@@ -1,0 +1,18 @@
+{
+    "Chakma",
+    "",
+    0x11107,
+    "",
+    { 
+        "", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x11100, 0x11134,
+        START_RANGE_PAIR,
+        0x11136, 0x11143,
+        END_OF_DATA
+    }
+},
+

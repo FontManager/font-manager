@@ -1,20 +1,20 @@
 <!-- This is the Document Type Definition for font configuration files -->
-<!ELEMENT fontconfig (dir | 
-		      cache | 
-		      cachedir |
-		      include | 
-		      config |
-		      selectfont |
-		      match | 
-		      alias)* >
+<!ELEMENT fontconfig (dir |
+              cache |
+              cachedir |
+              include |
+              config |
+              selectfont |
+              match |
+              alias)* >
 
-<!-- 
+<!--
     Add a directory that provides fonts
 -->
 <!ELEMENT dir (#PCDATA)>
 <!ATTLIST dir
-	  prefix    CDATA       "default"
-	  xml:space (default|preserve) 'preserve'>
+      prefix    CDATA       "default"
+      xml:space (default|preserve) 'preserve'>
 
 <!--
     Define the per-user file that holds cache font information.
@@ -36,8 +36,8 @@
 -->
 <!ELEMENT cachedir (#PCDATA)>
 <!ATTLIST cachedir
-	  prefix    CDATA      "default"
-	  xml:space (default|preserve) 'preserve'>
+      prefix    CDATA      "default"
+      xml:space (default|preserve) 'preserve'>
 
 <!--
     Reference another configuration file; note that this
@@ -51,10 +51,10 @@
 -->
 <!ELEMENT include (#PCDATA)>
 <!ATTLIST include
-	  ignore_missing    (no|yes)		"no"
-	  prefix	    CDATA               "default"
-	  deprecated	    (yes|no)		"no"
-	  xml:space	    (default|preserve)	"preserve">
+      ignore_missing    (no|yes)        "no"
+      prefix        CDATA               "default"
+      deprecated        (yes|no)        "no"
+      xml:space     (default|preserve)  "preserve">
 
 <!--
     Global library configuration data
@@ -77,21 +77,21 @@
     They are syntactically equivalent to:
 
     <match>
-	<test name="family">
-	    <string value=[family]/>
-	</test>
-	<edit name="family" mode="prepend">
-	    <string value=[prefer]/>
-	    ...
-	</edit>
-	<edit name="family" mode="append">
-	    <string value=[accept]/>
-	    ...
-	</edit>
-	<edit name="family" mode="append_last">
-	    <string value=[default]/>
-	    ...
-	</edit>
+    <test name="family">
+        <string value=[family]/>
+    </test>
+    <edit name="family" mode="prepend">
+        <string value=[prefer]/>
+        ...
+    </edit>
+    <edit name="family" mode="append">
+        <string value=[accept]/>
+        ...
+    </edit>
+    <edit name="family" mode="append_last">
+        <string value=[default]/>
+        ...
+    </edit>
     </match>
 -->
 <!--
@@ -117,11 +117,11 @@
 
 <!ELEMENT patelt (%constant;)*>
 <!ATTLIST patelt
-	  name CDATA	#REQUIRED>
+      name CDATA    #REQUIRED>
 
 <!ELEMENT alias (test?, family*, prefer?, accept?, default?)>
 <!ATTLIST alias
-	  binding (weak|strong|same) "weak">
+      binding (weak|strong|same) "weak">
 <!ELEMENT prefer (family)*>
 <!ELEMENT accept (family)*>
 <!ELEMENT default (family)*>
@@ -129,9 +129,9 @@
 <!ATTLIST family xml:space (default|preserve) 'preserve'>
 
 <!ENTITY % expr 'int|double|string|matrix|bool|charset|langset
-		|name|const
-		|or|and|eq|not_eq|less|less_eq|more|more_eq|contains|not_contains
-		|plus|minus|times|divide|not|if|floor|ceil|round|trunc'>
+        |name|const
+        |or|and|eq|not_eq|less|less_eq|more|more_eq|contains|not_contains
+        |plus|minus|times|divide|not|if|floor|ceil|round|trunc'>
 
 <!--
     Match and edit patterns.
@@ -142,7 +142,7 @@
 -->
 <!ELEMENT match (test|edit)+>
 <!ATTLIST match
-	  target (pattern|font|scan) "pattern">
+      target (pattern|font|scan) "pattern">
 
 <!--
     Match a field in a pattern
@@ -151,7 +151,7 @@
     if 'qual' is 'all', then the match succeeds only if all values match.
     if 'qual' is 'first', then the match succeeds only if the first value matches.
     if 'qual' is 'not_first', then the match succeeds only if any value other than
-    	the first matches.
+        the first matches.
     For match elements with target=font, if test 'target' is 'pattern',
     then the test is applied to the pattern used in matching rather than
     to the resulting font.
@@ -161,12 +161,12 @@
     what the fontconfig database contains.
 -->
 <!ELEMENT test (%expr;)*>
-<!ATTLIST test 
-	  qual (any|all|first|not_first)    "any"
-	  name CDATA	    #REQUIRED
-	  target (pattern|font|default)		"default"
-	  ignore-blanks (true|false)	"false"
-	  compare (eq|not_eq|less|less_eq|more|more_eq|contains|not_contains)	"eq">
+<!ATTLIST test
+      qual (any|all|first|not_first)    "any"
+      name CDATA        #REQUIRED
+      target (pattern|font|default)     "default"
+      ignore-blanks (true|false)    "false"
+      compare (eq|not_eq|less|less_eq|more|more_eq|contains|not_contains)   "eq">
 
 <!--
     Edit a field in a pattern
@@ -175,22 +175,22 @@
     associated with 'name'.
 
     If 'name' matches one of those used in a test element for this match element:
-	if 'mode' is 'assign', replace the matched value.
-	if 'mode' is 'assign_replace', replace all of the values
-	if 'mode' is 'prepend', insert before the matched value
-	if 'mode' is 'append', insert after the matched value
-	if 'mode' is 'prepend_first', insert before all of the values
-	if 'mode' is 'append_last', insert after all of the values
+    if 'mode' is 'assign', replace the matched value.
+    if 'mode' is 'assign_replace', replace all of the values
+    if 'mode' is 'prepend', insert before the matched value
+    if 'mode' is 'append', insert after the matched value
+    if 'mode' is 'prepend_first', insert before all of the values
+    if 'mode' is 'append_last', insert after all of the values
     If 'name' doesn't match any of those used in a test element:
-	if 'mode' is 'assign' or 'assign_replace, replace all of the values
-	if 'mode' is 'prepend' or 'prepend_first', insert before all of the values
-	if 'mode' is 'append' or 'append_last', insert after all of the values
+    if 'mode' is 'assign' or 'assign_replace, replace all of the values
+    if 'mode' is 'prepend' or 'prepend_first', insert before all of the values
+    if 'mode' is 'append' or 'append_last', insert after all of the values
 -->
 <!ELEMENT edit (%expr;)*>
 <!ATTLIST edit
-	  name CDATA	    #REQUIRED
-	  mode (assign|assign_replace|prepend|append|prepend_first|append_last|delete|delete_all) "assign"
-	  binding (weak|strong|same) "weak">
+      name CDATA        #REQUIRED
+      mode (assign|assign_replace|prepend|append|prepend_first|append_last|delete|delete_all) "assign"
+      binding (weak|strong|same) "weak">
 
 <!--
     Elements of expressions follow
@@ -208,7 +208,7 @@
 <!ELEMENT langset (string)*>
 <!ELEMENT name (#PCDATA)>
 <!ATTLIST name xml:space (default|preserve) 'preserve'
-	  target (default|font|pattern) 'default'>
+      target (default|font|pattern) 'default'>
 <!ELEMENT const (#PCDATA)>
 <!ATTLIST const xml:space (default|preserve) 'preserve'>
 <!ELEMENT or (%expr;)*>

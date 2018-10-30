@@ -14,10 +14,9 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+# along with this program.
 #
-# Author:
-#  Jerry Casiano <JerryCasiano@gmail.com>
+# If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 
 import io
 import os
@@ -25,14 +24,14 @@ import sys
 
 from pprint import pprint
 
-NOTICE = """/*
-*
-* Do not edit directly. See build-aux directory
-*
-*/
-"""
+NOTICE = """/* Do not edit directly. See build-aux directory */"""
 
 HEADER = """
+#ifndef __VENDOR_H__
+#define __VENDOR_H__
+
+#include <glib.h>
+
 G_BEGIN_DECLS
 
 #define MAX_VENDOR_ID_LENGTH 5
@@ -40,8 +39,8 @@ G_BEGIN_DECLS
 
 static const struct
 {
-    const gchar vendor_id[MAX_VENDOR_LENGTH];
     const gchar vendor[MAX_VENDOR_LENGTH];
+    const gchar vendor_id[MAX_VENDOR_LENGTH];
 }
 /* Order is significant. */
 NoticeData [] =
@@ -49,8 +48,8 @@ NoticeData [] =
     /* Notice data sourced from fcfreetype.c - http://www.freetype.org/ */
     {"Adobe", "adobe"},
     {"Adobe", "Adobe"},
-    {"Bigelow", "b&h"},
-    {"Bigelow", "Bigelow & Holmes"},
+    {"Bigelow & Holmes", "b&h"},
+    {"Bigelow & Holmes", "Bigelow & Holmes"},
     {"Bitstream", "Bitstream"},
     {"Font21", "hwan"},
     {"Font21", "Hwan"},
@@ -58,13 +57,18 @@ NoticeData [] =
     {"HanYang System", "hanyang"},
     {"HanYang System", "HanYang Information & Communication"},
     {"IBM", "IBM"},
-    {"International Typeface Corporation", "itc"},
-    {"International Typeface Corporation", "ITC"},
+    {"ITC", "itc"},
+    {"ITC", "ITC"},
+    {"ITC", "International Typeface Corporation"},
+    {"Larabiefonts", "Larabie"},
     {"Linotype", "linotype"},
     {"Linotype", "Linotype GmbH"},
+    {"Linotype", "LINOTYPE-HELL"},
     {"Microsoft", "microsoft"},
     {"Microsoft", "Microsoft Corporation"},
     {"Monotype", "Monotype Imaging"},
+    {"Monotype", "Monotype Corporation"},
+    {"Monotype", "Monotype Typography"},
     {"Omega", "omega"},
     {"Omega", "Omega"},
     {"Tiro Typeworks", "Tiro Typeworks"},
@@ -87,10 +91,9 @@ FOOTER = """};
 #define NOTICE_ENTRIES G_N_ELEMENTS(NoticeData)
 #define VENDOR_ENTRIES G_N_ELEMENTS(VendorData)
 
-gchar * get_vendor_from_notice(const gchar *notice);
-gchar * get_vendor_from_vendor_id(const gchar vendor[MAX_VENDOR_ID_LENGTH]);
-
 G_END_DECLS
+
+#endif /* __VENDOR_H__ */
 
 """
 
@@ -135,7 +138,7 @@ def get_vendor_entries () :
 
 
 if __name__ == "__main__":
-    with open(os.path.join(sys.argv[1], "Vendor.h"), "w") as header_file:
+    with open(os.path.join(sys.argv[1], "vendor.h"), "w") as header_file:
         header_file.write(NOTICE)
         header_file.write(HEADER)
         header_file.write(get_vendor_entries())

@@ -1,0 +1,24 @@
+{
+    "Mongolian",
+    "",
+    0x1820,
+    "ᠠᠡᠢᠣᠤᠥᠦᠧ",
+    { 
+        "ᠠᠡᠢᠣᠤᠥᠦᠧ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x1800, 0x180a,
+        START_RANGE_PAIR,
+        0x180b, 0x180e,
+        START_RANGE_PAIR,
+        0x1810, 0x1819,
+        START_RANGE_PAIR,
+        0x1820, 0x1877,
+        START_RANGE_PAIR,
+        0x1880, 0x18aa,
+        END_OF_DATA
+    }
+},
+

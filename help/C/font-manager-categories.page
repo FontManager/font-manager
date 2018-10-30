@@ -1,0 +1,98 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="categories">
+
+    <info>
+        <link type="guide" xref="index#manage"/>
+        <desc>Automatically generated categories</desc>
+    </info>
+
+    <title>Categories</title>
+
+    <p>
+    <app>Font Manager</app> automatically categorizes your fonts based on
+    various properties.
+    </p>
+
+    <terms>
+        <item>
+            <title>All</title>
+            <p>
+                All available fonts.
+            </p>
+        </item>
+        <item>
+            <title>System</title>
+            <p>
+                Fonts available to all users.
+            </p>
+        </item>
+        <item>
+            <title>User</title>
+            <p>
+                Fonts available only to you.
+            </p>
+        </item>
+        <item>
+            <title>Family Kind</title>
+            <p>
+                Sorted by Family Kind - Reuires Panose information to be present in font metadata.
+            </p>
+        </item>
+        <item>
+            <title>Width</title>
+            <p>
+                Sorted by font width property.
+            </p>
+        </item>
+        <item>
+            <title>Weight</title>
+            <p>
+                Sorted by font weight property.
+            </p>
+        </item>
+        <item>
+            <title>Slant</title>
+            <p>
+                Sorted by font slant property.
+            </p>
+        </item>
+        <item>
+            <title>Spacing</title>
+            <p>
+                Sorted by font spacing property.
+            </p>
+        </item>
+        <item>
+            <title>License</title>
+            <p>
+                Sorted by font license - Requires license information to be present in font metadata.
+            </p>
+        </item>
+        <item>
+            <title>Vendor</title>
+            <p>
+                Sorted by font vendor - Requires vendor information to be present in font metadata.
+            </p>
+        </item>
+        <item>
+            <title>Filetype</title>
+            <p>
+                Sorted by file format.
+            </p>
+        </item>
+        <item>
+            <title>Unsorted</title>
+            <p>
+                Fonts not present in any of your collections.
+            </p>
+        </item>
+        <item>
+            <title>Disabled</title>
+            <p>
+                Currrently disabled font families.
+            </p>
+        </item>
+    </terms>
+
+</page>

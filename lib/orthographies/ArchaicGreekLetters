@@ -1,0 +1,26 @@
+{
+    "Archaic Greek Letters",
+    "Archaic Greek Letters",
+    0x3e0,
+    "ϘϙϚϛϜϞϟϠϡ",
+    { 
+        "ϘϙϚϛϜϞϟϠϡ", 
+        END_OF_DATA
+    },
+    { 
+        0x370,
+        0x371,
+        0x372,
+        0x373,
+        0x376,
+        0x377,
+        START_RANGE_PAIR,
+        0x3d8, 0x3e1,
+        0x3f7,
+        0x3f8,
+        0x3fa,
+        0x3fb,
+        END_OF_DATA
+    }
+},
+

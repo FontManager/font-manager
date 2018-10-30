@@ -1,0 +1,16 @@
+{
+    "Syloti Nagri",
+    "",
+    0xa800,
+    "ꠀꠁꠂ",
+    { 
+        "ꠀꠁꠂ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0xa800, 0xa82b,
+        END_OF_DATA
+    }
+},
+

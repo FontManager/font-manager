@@ -1,28 +1,25 @@
 /* FontManager.css
  *
- * Copyright (C) 2009 - 2016 Jerry Casiano
+ * Copyright (C) 2009 - 2018 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+ * along with this program.
  *
- * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
+ * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-* {
-    -GtkPaned-handle-size: 0;
+#SubstituteList {
+    border-radius: 0.25em;
 }
 
 .red {
@@ -39,8 +36,4 @@
 
 .gray {
     background-color: #808080;
-}
-
-.separator {
-    padding: 0px;
 }

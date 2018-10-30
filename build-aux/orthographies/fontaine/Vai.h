@@ -1,0 +1,359 @@
+//
+// Vai.h
+//
+
+#ifndef ORTHOGRAPHY_DATA
+#include "../OrthographyData.h"
+#endif
+
+#ifndef VAI
+#define VAI
+
+namespace Vai{
+
+//
+// Unicode values 
+//
+UINT32 values[]={
+	// Vai - Syllables in -ee
+	0xA500, // ( ꔀ ) VAI SYLLABLE EE
+	0xA501, // ( ꔁ ) VAI SYLLABLE EEN
+	0xA502, // ( ꔂ ) VAI SYLLABLE HEE
+	0xA503, // ( ꔃ ) VAI SYLLABLE WEE
+	0xA504, // ( ꔄ ) VAI SYLLABLE WEEN
+	0xA505, // ( ꔅ ) VAI SYLLABLE PEE
+	0xA506, // ( ꔆ ) VAI SYLLABLE BHEE
+	0xA507, // ( ꔇ ) VAI SYLLABLE BEE
+	0xA508, // ( ꔈ ) VAI SYLLABLE MBEE
+	0xA509, // ( ꔉ ) VAI SYLLABLE KPEE
+	0xA50A, // ( ꔊ ) VAI SYLLABLE MGBEE
+	0xA50B, // ( ꔋ ) VAI SYLLABLE GBEE
+	0xA50C, // ( ꔌ ) VAI SYLLABLE FEE
+	0xA50D, // ( ꔍ ) VAI SYLLABLE VEE
+	0xA50E, // ( ꔎ ) VAI SYLLABLE TEE
+	0xA50F, // ( ꔏ ) VAI SYLLABLE THEE
+	0xA510, // ( ꔐ ) VAI SYLLABLE DHEE
+	0xA511, // ( ꔑ ) VAI SYLLABLE DHHEE
+	0xA512, // ( ꔒ ) VAI SYLLABLE LEE
+	0xA513, // ( ꔓ ) VAI SYLLABLE REE
+	0xA514, // ( ꔔ ) VAI SYLLABLE DEE
+	// Vai - Syllables in -i
+	0xA515, // ( ꔕ ) VAI SYLLABLE NDEE
+	0xA516, // ( ꔖ ) VAI SYLLABLE SEE
+	0xA517, // ( ꔗ ) VAI SYLLABLE SHEE
+	0xA518, // ( ꔘ ) VAI SYLLABLE ZEE
+	0xA519, // ( ꔙ ) VAI SYLLABLE ZHEE
+	0xA51A, // ( ꔚ ) VAI SYLLABLE CEE
+	0xA51B, // ( ꔛ ) VAI SYLLABLE JEE
+	0xA51C, // ( ꔜ ) VAI SYLLABLE NJEE
+	0xA51D, // ( ꔝ ) VAI SYLLABLE YEE
+	0xA51E, // ( ꔞ ) VAI SYLLABLE KEE
+	0xA51F, // ( ꔟ ) VAI SYLLABLE NGGEE
+	0xA520, // ( ꔠ ) VAI SYLLABLE GEE
+	0xA521, // ( ꔡ ) VAI SYLLABLE MEE
+	0xA522, // ( ꔢ ) VAI SYLLABLE NEE
+	0xA523, // ( ꔣ ) VAI SYLLABLE NYEE
+	0xA524, // ( ꔤ ) VAI SYLLABLE I
+	0xA525, // ( ꔥ ) VAI SYLLABLE IN
+	0xA526, // ( ꔦ ) VAI SYLLABLE HI
+	0xA527, // ( ꔧ ) VAI SYLLABLE HIN
+	0xA528, // ( ꔨ ) VAI SYLLABLE WI
+	0xA529, // ( ꔩ ) VAI SYLLABLE WIN
+	0xA52A, // ( ꔪ ) VAI SYLLABLE PI
+	0xA52B, // ( ꔫ ) VAI SYLLABLE BHI
+	0xA52C, // ( ꔬ ) VAI SYLLABLE BI
+	0xA52D, // ( ꔭ ) VAI SYLLABLE MBI
+	0xA52E, // ( ꔮ ) VAI SYLLABLE KPI
+	0xA52F, // ( ꔯ ) VAI SYLLABLE MGBI
+	0xA530, // ( ꔰ ) VAI SYLLABLE GBI
+	0xA531, // ( ꔱ ) VAI SYLLABLE FI
+	0xA532, // ( ꔲ ) VAI SYLLABLE VI
+	0xA533, // ( ꔳ ) VAI SYLLABLE TI
+	0xA534, // ( ꔴ ) VAI SYLLABLE THI
+	0xA535, // ( ꔵ ) VAI SYLLABLE DHI
+	0xA536, // ( ꔶ ) VAI SYLLABLE DHHI
+	0xA537, // ( ꔷ ) VAI SYLLABLE LI
+	0xA538, // ( ꔸ ) VAI SYLLABLE RI
+	0xA539, // ( ꔹ ) VAI SYLLABLE DI
+	0xA53A, // ( ꔺ ) VAI SYLLABLE NDI
+	0xA53B, // ( ꔻ ) VAI SYLLABLE SI
+	0xA53C, // ( ꔼ ) VAI SYLLABLE SHI
+	0xA53D, // ( ꔽ ) VAI SYLLABLE ZI
+	0xA53E, // ( ꔾ ) VAI SYLLABLE ZHI
+	0xA53F, // ( ꔿ ) VAI SYLLABLE CI
+	0xA540, // ( ꕀ ) VAI SYLLABLE JI
+	0xA541, // ( ꕁ ) VAI SYLLABLE NJI
+	0xA542, // ( ꕂ ) VAI SYLLABLE YI
+	0xA543, // ( ꕃ ) VAI SYLLABLE KI
+	0xA544, // ( ꕄ ) VAI SYLLABLE NGGI
+	0xA545, // ( ꕅ ) VAI SYLLABLE GI
+	0xA546, // ( ꕆ ) VAI SYLLABLE MI
+	0xA547, // ( ꕇ ) VAI SYLLABLE NI
+	0xA548, // ( ꕈ ) VAI SYLLABLE NYI
+	// Vai - Syllables in -a
+	0xA549, // ( ꕉ ) VAI SYLLABLE A
+	0xA54A, // ( ꕊ ) VAI SYLLABLE AN
+	0xA54B, // ( ꕋ ) VAI SYLLABLE NGAN
+	0xA54C, // ( ꕌ ) VAI SYLLABLE HA
+	0xA54D, // ( ꕍ ) VAI SYLLABLE HAN
+	0xA54E, // ( ꕎ ) VAI SYLLABLE WA
+	0xA54F, // ( ꕏ ) VAI SYLLABLE WAN
+	0xA550, // ( ꕐ ) VAI SYLLABLE PA
+	0xA551, // ( ꕑ ) VAI SYLLABLE BHA
+	0xA552, // ( ꕒ ) VAI SYLLABLE BA
+	0xA553, // ( ꕓ ) VAI SYLLABLE MBA
+	0xA554, // ( ꕔ ) VAI SYLLABLE KPA
+	0xA555, // ( ꕕ ) VAI SYLLABLE KPAN
+	0xA556, // ( ꕖ ) VAI SYLLABLE MGBA
+	0xA557, // ( ꕗ ) VAI SYLLABLE GBA
+	0xA558, // ( ꕘ ) VAI SYLLABLE FA
+	0xA559, // ( ꕙ ) VAI SYLLABLE VA
+	0xA55A, // ( ꕚ ) VAI SYLLABLE TA
+	0xA55B, // ( ꕛ ) VAI SYLLABLE THA
+	0xA55C, // ( ꕜ ) VAI SYLLABLE DHA
+	0xA55D, // ( ꕝ ) VAI SYLLABLE DHHA
+	0xA55E, // ( ꕞ ) VAI SYLLABLE LA
+	0xA55F, // ( ꕟ ) VAI SYLLABLE RA
+	0xA560, // ( ꕠ ) VAI SYLLABLE DA
+	0xA561, // ( ꕡ ) VAI SYLLABLE NDA
+	0xA562, // ( ꕢ ) VAI SYLLABLE SA
+	0xA563, // ( ꕣ ) VAI SYLLABLE SHA
+	0xA564, // ( ꕤ ) VAI SYLLABLE ZA
+	0xA565, // ( ꕥ ) VAI SYLLABLE ZHA
+	0xA566, // ( ꕦ ) VAI SYLLABLE CA
+	0xA567, // ( ꕧ ) VAI SYLLABLE JA
+	0xA568, // ( ꕨ ) VAI SYLLABLE NJA
+	0xA569, // ( ꕩ ) VAI SYLLABLE YA
+	0xA56A, // ( ꕪ ) VAI SYLLABLE KA
+	0xA56B, // ( ꕫ ) VAI SYLLABLE KAN
+	0xA56C, // ( ꕬ ) VAI SYLLABLE NGGA
+	0xA56D, // ( ꕭ ) VAI SYLLABLE GA
+	0xA56E, // ( ꕮ ) VAI SYLLABLE MA
+	0xA56F, // ( ꕯ ) VAI SYLLABLE NA
+	0xA570, // ( ꕰ ) VAI SYLLABLE NYA
+	// Vai - Syllables in -oo
+	0xA571, // ( ꕱ ) VAI SYLLABLE OO
+	0xA572, // ( ꕲ ) VAI SYLLABLE OON
+	0xA573, // ( ꕳ ) VAI SYLLABLE HOO
+	0xA574, // ( ꕴ ) VAI SYLLABLE WOO
+	0xA575, // ( ꕵ ) VAI SYLLABLE WOON
+	0xA576, // ( ꕶ ) VAI SYLLABLE POO
+	0xA577, // ( ꕷ ) VAI SYLLABLE BHOO
+	0xA578, // ( ꕸ ) VAI SYLLABLE BOO
+	0xA579, // ( ꕹ ) VAI SYLLABLE MBOO
+	0xA57A, // ( ꕺ ) VAI SYLLABLE KPOO
+	0xA57B, // ( ꕻ ) VAI SYLLABLE MGBOO
+	0xA57C, // ( ꕼ ) VAI SYLLABLE GBOO
+	0xA57D, // ( ꕽ ) VAI SYLLABLE FOO
+	0xA57E, // ( ꕾ ) VAI SYLLABLE VOO
+	0xA57F, // ( ꕿ ) VAI SYLLABLE TOO
+	0xA580, // ( ꖀ ) VAI SYLLABLE THOO
+	0xA581, // ( ꖁ ) VAI SYLLABLE DHOO
+	0xA582, // ( ꖂ ) VAI SYLLABLE DHHOO
+	0xA583, // ( ꖃ ) VAI SYLLABLE LOO
+	0xA584, // ( ꖄ ) VAI SYLLABLE ROO
+	0xA585, // ( ꖅ ) VAI SYLLABLE DOO
+	0xA586, // ( ꖆ ) VAI SYLLABLE NDOO
+	0xA587, // ( ꖇ ) VAI SYLLABLE SOO
+	0xA588, // ( ꖈ ) VAI SYLLABLE SHOO
+	0xA589, // ( ꖉ ) VAI SYLLABLE ZOO
+	0xA58A, // ( ꖊ ) VAI SYLLABLE ZHOO
+	0xA58B, // ( ꖋ ) VAI SYLLABLE COO
+	0xA58C, // ( ꖌ ) VAI SYLLABLE JOO
+	0xA58D, // ( ꖍ ) VAI SYLLABLE NJOO
+	0xA58E, // ( ꖎ ) VAI SYLLABLE YOO
+	0xA58F, // ( ꖏ ) VAI SYLLABLE KOO
+	0xA590, // ( ꖐ ) VAI SYLLABLE NGGOO
+	0xA591, // ( ꖑ ) VAI SYLLABLE GOO
+	0xA592, // ( ꖒ ) VAI SYLLABLE MOO
+	0xA593, // ( ꖓ ) VAI SYLLABLE NOO
+	0xA594, // ( ꖔ ) VAI SYLLABLE NYOO
+	// Vai - Syllables in -u
+	0xA595, // ( ꖕ ) VAI SYLLABLE U
+	0xA596, // ( ꖖ ) VAI SYLLABLE UN
+	0xA597, // ( ꖗ ) VAI SYLLABLE HU
+	0xA598, // ( ꖘ ) VAI SYLLABLE HUN
+	0xA599, // ( ꖙ ) VAI SYLLABLE WU
+	0xA59A, // ( ꖚ ) VAI SYLLABLE WUN
+	0xA59B, // ( ꖛ ) VAI SYLLABLE PU
+	0xA59C, // ( ꖜ ) VAI SYLLABLE BHU
+	0xA59D, // ( ꖝ ) VAI SYLLABLE BU
+	0xA59E, // ( ꖞ ) VAI SYLLABLE MBU
+	0xA59F, // ( ꖟ ) VAI SYLLABLE KPU
+	0xA5A0, // ( ꖠ ) VAI SYLLABLE MGBU
+	0xA5A1, // ( ꖡ ) VAI SYLLABLE GBU
+	0xA5A2, // ( ꖢ ) VAI SYLLABLE FU
+	0xA5A3, // ( ꖣ ) VAI SYLLABLE VU
+	0xA5A4, // ( ꖤ ) VAI SYLLABLE TU
+	0xA5A5, // ( ꖥ ) VAI SYLLABLE THU
+	0xA5A6, // ( ꖦ ) VAI SYLLABLE DHU
+	0xA5A7, // ( ꖧ ) VAI SYLLABLE DHHU
+	0xA5A8, // ( ꖨ ) VAI SYLLABLE LU
+	0xA5A9, // ( ꖩ ) VAI SYLLABLE RU
+	0xA5AA, // ( ꖪ ) VAI SYLLABLE DU
+	0xA5AB, // ( ꖫ ) VAI SYLLABLE NDU
+	0xA5AC, // ( ꖬ ) VAI SYLLABLE SU
+	0xA5AD, // ( ꖭ ) VAI SYLLABLE SHU
+	0xA5AE, // ( ꖮ ) VAI SYLLABLE ZU
+	0xA5AF, // ( ꖯ ) VAI SYLLABLE ZHU
+	0xA5B0, // ( ꖰ ) VAI SYLLABLE CU
+	0xA5B1, // ( ꖱ ) VAI SYLLABLE JU
+	0xA5B2, // ( ꖲ ) VAI SYLLABLE NJU
+	0xA5B3, // ( ꖳ ) VAI SYLLABLE YU
+	0xA5B4, // ( ꖴ ) VAI SYLLABLE KU
+	0xA5B5, // ( ꖵ ) VAI SYLLABLE NGGU
+	0xA5B6, // ( ꖶ ) VAI SYLLABLE GU
+	0xA5B7, // ( ꖷ ) VAI SYLLABLE MU
+	0xA5B8, // ( ꖸ ) VAI SYLLABLE NU
+	0xA5B9, // ( ꖹ ) VAI SYLLABLE NYU
+	// Vai - Syllables in -o
+	0xA5BA, // ( ꖺ ) VAI SYLLABLE O
+	0xA5BB, // ( ꖻ ) VAI SYLLABLE ON
+	0xA5BC, // ( ꖼ ) VAI SYLLABLE NGON
+	0xA5BD, // ( ꖽ ) VAI SYLLABLE HO
+	0xA5BE, // ( ꖾ ) VAI SYLLABLE HON
+	0xA5BF, // ( ꖿ ) VAI SYLLABLE WO
+	0xA5C0, // ( ꗀ ) VAI SYLLABLE WON
+	0xA5C1, // ( ꗁ ) VAI SYLLABLE PO
+	0xA5C2, // ( ꗂ ) VAI SYLLABLE BHO
+	0xA5C3, // ( ꗃ ) VAI SYLLABLE BO
+	0xA5C4, // ( ꗄ ) VAI SYLLABLE MBO
+	0xA5C5, // ( ꗅ ) VAI SYLLABLE KPO
+	0xA5C6, // ( ꗆ ) VAI SYLLABLE MGBO
+	0xA5C7, // ( ꗇ ) VAI SYLLABLE GBO
+	0xA5C8, // ( ꗈ ) VAI SYLLABLE GBON
+	0xA5C9, // ( ꗉ ) VAI SYLLABLE FO
+	0xA5CA, // ( ꗊ ) VAI SYLLABLE VO
+	0xA5CB, // ( ꗋ ) VAI SYLLABLE TO
+	0xA5CC, // ( ꗌ ) VAI SYLLABLE THO
+	0xA5CD, // ( ꗍ ) VAI SYLLABLE DHO
+	0xA5CE, // ( ꗎ ) VAI SYLLABLE DHHO
+	0xA5CF, // ( ꗏ ) VAI SYLLABLE LO
+	0xA5D0, // ( ꗐ ) VAI SYLLABLE RO
+	0xA5D1, // ( ꗑ ) VAI SYLLABLE DO
+	0xA5D2, // ( ꗒ ) VAI SYLLABLE NDO
+	0xA5D3, // ( ꗓ ) VAI SYLLABLE SO
+	0xA5D4, // ( ꗔ ) VAI SYLLABLE SHO
+	0xA5D5, // ( ꗕ ) VAI SYLLABLE ZO
+	0xA5D6, // ( ꗖ ) VAI SYLLABLE ZHO
+	0xA5D7, // ( ꗗ ) VAI SYLLABLE CO
+	0xA5D8, // ( ꗘ ) VAI SYLLABLE JO
+	0xA5D9, // ( ꗙ ) VAI SYLLABLE NJO
+	0xA5DA, // ( ꗚ ) VAI SYLLABLE YO
+	0xA5DB, // ( ꗛ ) VAI SYLLABLE KO
+	0xA5DC, // ( ꗜ ) VAI SYLLABLE NGGO
+	0xA5DD, // ( ꗝ ) VAI SYLLABLE GO
+	0xA5DE, // ( ꗞ ) VAI SYLLABLE MO
+	0xA5DF, // ( ꗟ ) VAI SYLLABLE NO
+	0xA5E0, // ( ꗠ ) VAI SYLLABLE NYO
+	// Vai - Syllables in -e
+	0xA5E1, // ( ꗡ ) VAI SYLLABLE E
+	0xA5E2, // ( ꗢ ) VAI SYLLABLE EN
+	0xA5E3, // ( ꗣ ) VAI SYLLABLE NGEN
+	0xA5E4, // ( ꗤ ) VAI SYLLABLE HE
+	0xA5E5, // ( ꗥ ) VAI SYLLABLE HEN
+	0xA5E6, // ( ꗦ ) VAI SYLLABLE WE
+	0xA5E7, // ( ꗧ ) VAI SYLLABLE WEN
+	0xA5E8, // ( ꗨ ) VAI SYLLABLE PE
+	0xA5E9, // ( ꗩ ) VAI SYLLABLE BHE
+	0xA5EA, // ( ꗪ ) VAI SYLLABLE BE
+	0xA5EB, // ( ꗫ ) VAI SYLLABLE MBE
+	0xA5EC, // ( ꗬ ) VAI SYLLABLE KPE
+	0xA5ED, // ( ꗭ ) VAI SYLLABLE KPEN
+	0xA5EE, // ( ꗮ ) VAI SYLLABLE MGBE
+	0xA5EF, // ( ꗯ ) VAI SYLLABLE GBE
+	0xA5F0, // ( ꗰ ) VAI SYLLABLE GBEN
+	0xA5F1, // ( ꗱ ) VAI SYLLABLE FE
+	0xA5F2, // ( ꗲ ) VAI SYLLABLE VE
+	0xA5F3, // ( ꗳ ) VAI SYLLABLE TE
+	0xA5F4, // ( ꗴ ) VAI SYLLABLE THE
+	0xA5F5, // ( ꗵ ) VAI SYLLABLE DHE
+	0xA5F6, // ( ꗶ ) VAI SYLLABLE DHHE
+	0xA5F7, // ( ꗷ ) VAI SYLLABLE LE
+	0xA5F8, // ( ꗸ ) VAI SYLLABLE RE
+	0xA5F9, // ( ꗹ ) VAI SYLLABLE DE
+	0xA5FA, // ( ꗺ ) VAI SYLLABLE NDE
+	0xA5FB, // ( ꗻ ) VAI SYLLABLE SE
+	0xA5FC, // ( ꗼ ) VAI SYLLABLE SHE
+	0xA5FD, // ( ꗽ ) VAI SYLLABLE ZE
+	0xA5FE, // ( ꗾ ) VAI SYLLABLE ZHE
+	0xA5FF, // ( ꗿ ) VAI SYLLABLE CE
+	0xA600, // ( ꘀ ) VAI SYLLABLE JE
+	0xA601, // ( ꘁ ) VAI SYLLABLE NJE
+	0xA602, // ( ꘂ ) VAI SYLLABLE YE
+	0xA603, // ( ꘃ ) VAI SYLLABLE KE
+	0xA604, // ( ꘄ ) VAI SYLLABLE NGGE
+	0xA605, // ( ꘅ ) VAI SYLLABLE NGGEN
+	0xA606, // ( ꘆ ) VAI SYLLABLE GE
+	0xA607, // ( ꘇ ) VAI SYLLABLE GEN
+	0xA608, // ( ꘈ ) VAI SYLLABLE ME
+	0xA609, // ( ꘉ ) VAI SYLLABLE NE
+	0xA60A, // ( ꘊ ) VAI SYLLABLE NYE
+	// Vai - Syllable finals
+	0xA60B, // ( ꘋ ) VAI SYLLABLE NG
+	0xA60C, // ( ꘌ ) VAI SYLLABLE LENGTHENER
+	// Vai - Punctuation
+	0xA60D, // ( ꘍ ) VAI COMMA
+	0xA60E, // ( ꘎ ) VAI FULL STOP
+	0xA60F, // ( ꘏ ) VAI QUESTION MARK
+	// Vai - Historic syllables
+	0xA610, // ( ꘐ ) VAI SYLLABLE NDOLE FA
+	0xA611, // ( ꘑ ) VAI SYLLABLE NDOLE KA
+	0xA612, // ( ꘒ ) VAI SYLLABLE NDOLE SOO
+	// Vai - Logograms
+	0xA613, // ( ꘓ ) VAI SYMBOL FEENG
+	0xA614, // ( ꘔ ) VAI SYMBOL KEENG
+	0xA615, // ( ꘕ ) VAI SYMBOL TING
+	0xA616, // ( ꘖ ) VAI SYMBOL NII
+	0xA617, // ( ꘗ ) VAI SYMBOL BANG
+	0xA618, // ( ꘘ ) VAI SYMBOL FAA
+	0xA619, // ( ꘙ ) VAI SYMBOL TAA
+	0xA61A, // ( ꘚ ) VAI SYMBOL DANG
+	0xA61B, // ( ꘛ ) VAI SYMBOL DOONG
+	0xA61C, // ( ꘜ ) VAI SYMBOL KUNG
+	0xA61D, // ( ꘝ ) VAI SYMBOL TONG
+	0xA61E, // ( ꘞ ) VAI SYMBOL DO-O
+	0xA61F, // ( ꘟ ) VAI SYMBOL JONG
+	// Vai - Digits
+	0xA620, // ( ꘠ ) VAI DIGIT ZERO
+	0xA621, // ( ꘡ ) VAI DIGIT ONE
+	0xA622, // ( ꘢ ) VAI DIGIT TWO
+	0xA623, // ( ꘣ ) VAI DIGIT THREE
+	0xA624, // ( ꘤ ) VAI DIGIT FOUR
+	0xA625, // ( ꘥ ) VAI DIGIT FIVE
+	0xA626, // ( ꘦ ) VAI DIGIT SIX
+	0xA627, // ( ꘧ ) VAI DIGIT SEVEN
+	0xA628, // ( ꘨ ) VAI DIGIT EIGHT
+	0xA629, // ( ꘩ ) VAI DIGIT NINE
+	// Vai - Historic syllables
+	0xA62A, // ( ꘪ ) VAI SYLLABLE NDOLE MA
+	0xA62B, // ( ꘫ ) VAI SYLLABLE NDOLE DO
+	END_OF_DATA
+};
+
+//
+// Sample sentences
+// 
+const char *sentences[]={
+	"ꔀ ꔁ ꔂ ꔃ ꔄ ꔅ ꔆ ꔇ",
+	END_OF_DATA
+};
+
+
+//
+// 
+//
+OrthographyData data={
+	"Vai", // Common name
+	"", // Native name
+	0xA500, // key
+	values,
+	"ꔀ ꔁ ꔂ ꔃ ꔄ ꔅ ꔆ ꔇ", // Sample characters
+	sentences
+};
+
+const OrthographyData *pData = &data;
+
+}; // end of namespace
+
+#endif

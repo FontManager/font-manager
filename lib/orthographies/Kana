@@ -1,0 +1,20 @@
+{
+    "Japanese Kana",
+    "仮名",
+    0x3042,
+    "いろはにほへと",
+    { 
+        "いろはにほへと ちりぬるを わかよたれそ つねならむ うゐのおくやま けふこえて あさきゆめみし ゑひもせす", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x3041, 0x3094,
+        START_RANGE_PAIR,
+        0x3099, 0x309e,
+        START_RANGE_PAIR,
+        0x30a1, 0x30fe,
+        END_OF_DATA
+    }
+},
+

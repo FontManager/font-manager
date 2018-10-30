@@ -1,0 +1,18 @@
+{
+    "Glagolitic",
+    "hlaholika",
+    0x2c00,
+    " ⰰⰴⱏⰻⰽⱁ",
+    { 
+        " ⰰⰴⱏⰻⰽⱁ  ⱍ̅ⰽ҃ⱏ  ⱄⰻ  ⱈⱁⱋⰵⱅⱏ  ⱃⰰⰸ[ⱁⱃⰻⱅ] ", 
+        END_OF_DATA
+    },
+    { 
+        START_RANGE_PAIR,
+        0x2c00, 0x2c2e,
+        START_RANGE_PAIR,
+        0x2c30, 0x2c5e,
+        END_OF_DATA
+    }
+},
+

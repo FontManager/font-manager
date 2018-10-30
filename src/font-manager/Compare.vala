@@ -1,32 +1,30 @@
 /* Compare.vala
  *
- * Copyright (C) 2009 - 2016 Jerry Casiano
+ * Copyright (C) 2009 - 2018 Jerry Casiano
  *
- * This file is part of Font Manager.
- *
- * Font Manager is free software: you can redistribute it and/or modify
+ * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Font Manager is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with Font Manager.  If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+ * along with this program.
  *
- * Author:
- *        Jerry Casiano <JerryCasiano@gmail.com>
+ * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
+
+/* TODO : Move to Gtk.ListBox */
 
 namespace FontManager {
 
     public class CompareControls : BaseControls {
 
-        public signal void foreground_set (Gdk.RGBA fg_color);
-        public signal void background_set (Gdk.RGBA bg_color);
+        public signal void color_set ();
 
         public Gtk.ColorButton fg_color_button { get; set; }
         public Gtk.ColorButton bg_color_button { get; set; }
@@ -34,42 +32,29 @@ namespace FontManager {
         public CompareControls () {
             add_button.set_tooltip_text(_("Add selected font to comparison"));
             remove_button.set_tooltip_text(_("Remove selected font from comparison"));
-            var context = get_style_context();
-            context.add_class(Gtk.STYLE_CLASS_TOOLBAR);
-            context.save();
-            fg_color_button = new Gtk.ColorButton.with_rgba(context.get_color(Gtk.StateFlags.NORMAL));
-            bg_color_button = new Gtk.ColorButton.with_rgba(context.get_background_color(Gtk.StateFlags.NORMAL));
-            context.restore();
+            fg_color_button = new Gtk.ColorButton();
+            bg_color_button = new Gtk.ColorButton();
             fg_color_button.set_tooltip_text(_("Select text color"));
             bg_color_button.set_tooltip_text(_("Select background color"));
+            fg_color_button.set_title(_("Select text color"));
+            bg_color_button.set_title(_("Select background color"));
             box.pack_end(bg_color_button, false, false, 0);
             box.pack_end(fg_color_button, false, false, 0);
             set_default_button_relief(box);
-            connect_signals();
+            fg_color_button.color_set.connect(() => { color_set(); });
+            bg_color_button.color_set.connect(() => { color_set(); });
         }
 
         public override void show () {
             fg_color_button.show();
             bg_color_button.show();
+            var fg = Gdk.RGBA();
+            fg.parse("black");
+            var bg = Gdk.RGBA();
+            bg.parse("white");
+            fg_color_button.set_rgba(fg);
+            bg_color_button.set_rgba(bg);
             base.show();
-            return;
-        }
-
-        new void connect_signals () {
-            fg_color_button.color_set.connect((w) => {
-                Idle.add(() => {
-                    fg_color_button.queue_draw();
-                    foreground_set(w.get_rgba());
-                    return false;
-                });
-            });
-            bg_color_button.color_set.connect((w) => {
-                Idle.add(() => {
-                    bg_color_button.queue_draw();
-                    background_set(w.get_rgba());
-                    return false;
-                });
-            });
             return;
         }
 
@@ -82,12 +67,12 @@ namespace FontManager {
      */
     public class Compare : AdjustablePreview {
 
-        public signal void list_modified();
-        public signal void color_set();
+        public signal void color_set ();
 
         public Gdk.RGBA foreground_color { get; set; }
         public Gdk.RGBA background_color { get; set; }
-        public string font_desc { get; set; default = DEFAULT_FONT; }
+        public Json.Object? samples { get; set; default = null; }
+        public Font? selected_font { get; set; default = null; }
         public CompareControls controls { get; private set; }
 
         public string? preview_text {
@@ -102,24 +87,24 @@ namespace FontManager {
         string _preview_text;
         string default_preview_text;
         Gtk.Box box;
-        BaseTreeView tree;
+        Gtk.TreeView tree;
         Gtk.ListStore store;
         Gtk.ScrolledWindow scroll;
         Gtk.TreeViewColumn column;
         Gtk.CellRendererText renderer;
         Gdk.RGBA default_fg_color;
         Gdk.RGBA default_bg_color;
+        Pango.FontDescription default_desc;
 
         public Compare () {
             orientation = Gtk.Orientation.VERTICAL;
             preview_text = default_preview_text = get_localized_pangram();
-            tree = new BaseTreeView();
-            tree.name = "FontManagerCompareView";
+            default_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
+            tree = new Gtk.TreeView();
             store = new Gtk.ListStore(2, typeof(Pango.FontDescription), typeof(string));
             scroll = new Gtk.ScrolledWindow(null, null);
             controls = new CompareControls();
             controls.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            update_default_colors();
             renderer = new Gtk.CellRendererText();
             column = new Gtk.TreeViewColumn();
             column.pack_start(renderer, true);
@@ -158,35 +143,28 @@ namespace FontManager {
             /* selection, model, path, currently_selected_path */
             tree.get_selection().set_select_function((s, m, p, csp) => {
                 /* Disallow selection of preview rows */
-                if (p.get_indices()[0] % 2 == 0)
+                if (p.get_indices()[0] % 2 == 0) {
                     /* Name row */
                     return true;
-                else
+                } else {
                     /* Preview row */
                     Idle.add(() => {
                         if (p.prev())
-                            tree.get_selection().select_path(p);
+                            s.select_path(p);
                         return false;
                     });
                     return false;
+                }
             });
             controls.add_selected.connect(() => {
-                debug("Add selected font to a comparison : %s", font_desc);
-                add_from_string(font_desc);
-                list_modified();
+                add_from_string(selected_font.description);
             });
             controls.remove_selected.connect(() => {
-                debug("Remove selected font from comparison : %s", font_desc);
                 on_remove();
             });
-            controls.foreground_set.connect((rgba) => {
-                foreground_color = rgba;
-                color_set();
-            });
-            controls.background_set.connect((rgba) => {
-                background_color = rgba;
-                color_set();
-            });
+            controls.color_set.connect(() => { color_set(); });
+            notify["preview-size"].connect(() => { tree.get_column(0).queue_resize(); });
+
             style_updated.connect(() => {
                 update_default_colors();
             });
@@ -194,31 +172,24 @@ namespace FontManager {
             return;
         }
 
+        /* XXX : get_background_color is deprecated since 3.16 :-/ */
         void update_default_colors () {
-            var ctx = get_style_context();
-            ctx.save();
+            Gtk.StyleContext ctx = get_style_context();
             default_fg_color = ctx.get_color(Gtk.StateFlags.NORMAL);
             default_bg_color = ctx.get_background_color(Gtk.StateFlags.NORMAL);
-            ctx.restore();
             return;
         }
 
-        protected override void set_preview_size_internal (double new_size) {
-            if (column != null)
-                column.queue_resize();
-            return;
-        }
-
-        public void add_from_string (string pango_font_description) {
+        public void add_from_string (string description, GLib.List <string>? checklist = null) {
             Gtk.TreeIter iter;
             Gtk.TreeIter _iter;
-            Pango.FontDescription desc = Pango.FontDescription.from_string(DEFAULT_FONT);
-            Pango.FontDescription _desc = Pango.FontDescription.from_string(pango_font_description);
-            store.append(out iter);
-            store.set(iter, 0, desc, 1, _desc.to_string(), -1);
-            store.append(out _iter);
-            store.set(_iter, 0, _desc, 1, _desc.to_string(), -1);
-            list_modified();
+            Pango.FontDescription _desc = Pango.FontDescription.from_string(description);
+            if (checklist == null || checklist.find_custom(_desc.get_family(), strcmp) != null) {
+                store.append(out iter);
+                store.set(iter, 0, default_desc, 1, description, -1);
+                store.append(out _iter);
+                store.set(_iter, 0, _desc, 1, description, -1);
+            }
             return;
         }
 
@@ -229,27 +200,31 @@ namespace FontManager {
             Pango.AttrList attrs = new Pango.AttrList();
             attrs.insert(Pango.attr_fallback_new(false));
             cell.set_property("attributes", attrs);
+            cell.set_property("ypad", 4);
+            Value val;
+            model.get_value(treeiter, 1, out val);
+            string description = (string) val;
             if (model.get_path(treeiter).get_indices()[0] % 2 == 0) {
                 /* Name row */
                 cell.set_property("foreground-rgba", default_fg_color);
                 cell.set_property("background-rgba", default_bg_color);
                 cell.set_property("size-points", get_desc_size());
-                cell.set_property("ypad", 4);
-                cell.set_property("scale", 1.0);
+                cell.set_property("weight", 100);
             } else {
                 /* Preview row */
                 cell.set_property("foreground-rgba", foreground_color);
                 cell.set_property("background-rgba", background_color);
-                cell.set_property("text", preview_text);
+                if (samples != null && samples.has_member(description))
+                    cell.set_property("text", samples.get_string_member(description));
+                else
+                    cell.set_property("text", preview_text);
                 cell.set_property("size-points", preview_size);
-                cell.set_property("ypad", 4);
-                cell.set_property("scale", 1.1);
             }
             return;
         }
 
         public string [] list () {
-            Gee.HashSet <string> results = new Gee.HashSet <string> ();
+            string [] results = {};
             /* (model, path, iter) */
             store.foreach((m, p, i) => {
                 Value val;
@@ -257,27 +232,29 @@ namespace FontManager {
                     /* Skip name rows */
                     return false;
                 m.get_value(i, 1, out val);
-                results.add((string) val);
+                results += (string) val;
                 val.unset();
                 /* Keep going */
                 return false;
                 }
             );
-            return results.to_array();
+            return results;
         }
 
         void on_remove () {
             Gtk.TreeModel model;
             Gtk.TreeIter iter;
             tree.get_selection().get_selected(out model, out iter);
-            /* Note: There is a warning attached to this function (iter_is_valid) about it being
-             * slow and only intended for debugging purposes.
+            /* NOTE:
+             * There is a warning attached to this function (iter_is_valid)
+             * about it being slow and only intended for debugging purposes.
              *
              * This particular tree should never grow to the point where this could become an issue.
              */
             if (store.iter_is_valid(iter)) {
-                /* Note: Saving a string and using it to reset the iter became necessary since
-                 * the iter was always being set to null after calling remove.
+                /* NOTE:
+                 * Saving a string and using it to reset the iter became necessary
+                 * since the iter was always being set to null after calling remove.
                  */
                 string iter_as_string = store.get_string_from_iter(iter);
 #if VALA_0_36
@@ -314,8 +291,21 @@ namespace FontManager {
                     }
                 }
             }
-            list_modified();
             return;
+        }
+
+        double get_desc_size () {
+            double desc_size = preview_size;
+            if (desc_size <= 10)
+                return desc_size;
+            else if (desc_size <= 20)
+                return desc_size / 1.75;
+            else if (desc_size <= 30)
+                return desc_size / 2;
+            else if (desc_size <= 50)
+                return desc_size / 2.25;
+            else
+                return desc_size / 2.5;
         }
 
     }

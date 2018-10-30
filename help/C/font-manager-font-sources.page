@@ -1,0 +1,137 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="sources">
+
+    <info>
+        <link type="guide" xref="index#manage"/>
+        <desc>Adding and removing font directories</desc>
+    </info>
+
+    <title>Sources</title>
+
+    <p>
+    <app>Font Manager</app>
+    allows you to add or remove directories to scan for font files.
+    Added directories are scanned recursively.
+    </p>
+    <p>
+    This allows keeping font files somewhere other than your home
+    directory or temporarily "installing" a directory of fonts.
+    </p>
+    <p>
+    It also allows you to organize your font files anyway you like.
+    </p>
+
+    <list>
+        <item>
+            <title>To add a source:</title>
+            <steps>
+                <item>
+                    <p>
+                    Open the <app>Font Manager</app> preferences dialog
+                    by clicking
+                    <gui>
+                    <media type="image" src="media/preferences-system-symbolic.svg"/>
+                    </gui>
+                    at the top of the window.
+                    </p>
+                </item>
+                <item>
+                    <p>Select "Sources" from the sidebar</p>
+                </item>
+                <item>
+                    <p>
+                    Click
+                    <gui>
+                    <media type="image" src="media/list-add-symbolic.svg"/>
+                    </gui>
+                    </p>
+                </item>
+                <item>
+                    <p>
+                    Select the directory you wish to add from the file
+                    selector that is displayed
+                    </p>
+                </item>
+            </steps>
+        </item>
+        <item>
+            <title>To remove a source:</title>
+            <steps>
+                <item>
+                    <p>
+                    Open the <app>Font Manager</app> preferences dialog
+                    by clicking
+                    <gui>
+                    <media type="image" src="media/preferences-system-symbolic.svg"/>
+                    </gui>
+                    at the top of the window.
+                    </p>
+                </item>
+                <item>
+                    <p>Select "Sources" from the sidebar</p>
+                </item>
+                <item>
+                    <p>
+                    Select the directory you wish to remove from the list
+                    that is displayed
+                    </p>
+                </item>
+                <item>
+                    <p>
+                    Click
+                    <gui>
+                    <media type="image" src="media/list-add-symbolic.svg"/>
+                    </gui>
+                    </p>
+                </item>
+            </steps>
+        </item>
+        <item>
+            <title>To enable or disable a source:</title>
+            <steps>
+                <item>
+                    <p>
+                    Open the <app>Font Manager</app> preferences dialog
+                    by clicking
+                    <gui>
+                    <media type="image" src="media/preferences-system-symbolic.svg"/>
+                    </gui>
+                    at the top of the window.
+                    </p>
+                </item>
+                <item>
+                    <p>Select "Sources" from the sidebar</p>
+                </item>
+                <item>
+                    <p>
+                    Select the source you want to enable or disable
+                    </p>
+                </item>
+                <item>
+                    <p>
+                    Click the
+                    <gui>
+                    toggle switch
+                    </gui>
+                    </p>
+                </item>
+            </steps>
+        </item>
+    </list>
+
+    <note style="important">
+        <p>
+        While sources are always available within the application they are not
+        available to other applications until they are enabled.
+        </p>
+    </note>
+
+    <note style="tip">
+        <p>
+        You can avoid having multiple copies of the same files by adding
+        directories from other filesystems.
+        </p>
+    </note>
+
+</page>
