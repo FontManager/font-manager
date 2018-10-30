@@ -5,6 +5,10 @@
 %define DBusName2 org.gnome.FontViewer
 %define DownloadURL https://github.com/FontManager/master/releases/download
 
+# Disable automatic compilation of Python files in extra directories
+%undefine __brp_python_bytecompile
+%global _python_bytecompile_extra 0
+
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
 Release:    1
@@ -26,6 +30,8 @@ BuildRequires: pango-devel
 BuildRequires: sqlite-devel
 BuildRequires: vala >= 0.24
 BuildRequires: yelp-tools
+BuildRequires: /usr/bin/python
+BuildRequires: python2-devel python3-devel
 
 Requires: fontconfig
 Requires: font-manager-common
@@ -91,7 +97,7 @@ This package provides integration with the Thunar file manager.
 %setup -q
 
 %build
-%configure --disable-schemas-compile --with-nautilus --with-nemo --with-thunarx
+%configure --disable-schemas-compile --disable-pycompile --with-nautilus --with-nemo --with-thunarx
 make
 
 %check
@@ -99,6 +105,9 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 
 %install
 %make_install
+%py_byte_compile %{__python} %{buildroot}%{_datadir}/nautilus-python/extensions/
+%py_byte_compile %{__python} %{buildroot}%{_datadir}/nemo-python/extensions/
+%py_byte_compile %{__python} %{buildroot}%{_datadir}/thunarx-python/extensions/
 %find_lang %name
 
 %posttrans
