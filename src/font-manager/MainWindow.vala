@@ -347,25 +347,23 @@ namespace FontManager {
 
             sidebar.standard.category_selected.connect((c, i) => {
                 try {
-                    Database db = get_database(DatabaseType.BASE);
-                    if (c is Disabled) {
+                    if (c is Disabled && disabled == null)
                         disabled = (c as Disabled);
-                        disabled.update(db, reject);
-                    } else if (c is Unsorted) {
+                    if (c is Unsorted && unsorted == null) {
                         unsorted = (c as Unsorted);
                         var collected = sidebar.collection_model.collections.get_full_contents();
-                        unsorted.update(db, collected);
+                        unsorted.update(get_database(DatabaseType.BASE), collected);
                     }
                 } catch (Error e) {
                     warning("Failed to retrieve results from database.");
                 }
+                fontpane.refilter();
             });
 
-            sidebar.standard.mode_selected.connect(() => {
+            sidebar.standard.mode_selected.connect((m) => {
                 /* NOTE : This indicates a drag & drop operation is in progress. */
                 if (sidebar_switch)
                     return;
-                var m = sidebar.standard.mode;
                 if (m == StandardSideBarMode.CATEGORY)
                     fontpane.filter = sidebar.standard.selected_category;
                 else
@@ -461,21 +459,21 @@ namespace FontManager {
             });
 
             reject.changed.connect(() => {
+                load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
                 if (disabled == null)
                     return;
-                if (sidebar.standard.selected_category.index == CategoryIndex.DISABLED) {
-                    try {
-                        disabled.update(get_database(DatabaseType.BASE), reject);
-                    } catch (Error e) {
-                        warning("Failed to retrieve results from database.");
-                    }
+
+                try {
+                    disabled.update(get_database(DatabaseType.BASE), reject);
+                } catch (Error e) {
+                    warning("Failed to retrieve results from database.");
+                }
+                if (sidebar.standard.selected_category.index == CategoryIndex.DISABLED)
                     Idle.add(() => {
                         fontpane.refilter();
                         return false;
                     });
-                } else {
-                    disabled.requires_update = true;
-                }
+
             });
 
             preview_pane.notebook.switch_page.connect((p, p_num) => {
@@ -583,17 +581,8 @@ namespace FontManager {
                 sidebar.collection_model.collections.save();
                 if (unsorted != null) {
                     try {
-                        Database db = get_database(DatabaseType.BASE);
-                        if (sidebar.standard.selected_category is Unsorted) {
-                            var collected = sidebar.collection_model.collections.get_full_contents();
-                            unsorted.update(db, collected);
-                        } else {
-                            Idle.add(() => {
-                                var collected = sidebar.collection_model.collections.get_full_contents();
-                                unsorted.update(db, collected);
-                                return false;
-                            });
-                        }
+                        var collected = sidebar.collection_model.collections.get_full_contents();
+                        unsorted.update(get_database(DatabaseType.BASE), collected);
                     } catch (Error e) {
                         warning("Failed to retrieve results from database.");
                     }
@@ -740,10 +729,13 @@ namespace FontManager {
             /* XXX : The timeout here needs to exceed the one used in our fontlist */
             /* XXX : Also, this is so fragile it may not even be worth bothering */
             Timeout.add(420, () => {
-                if (sidebar.standard.mode == StandardSideBarMode.CATEGORY)
-                    restore_last_selected_treepath(sidebar.standard.category_tree.tree, category_path);
-                else if (sidebar.standard.mode == StandardSideBarMode.COLLECTION)
+                if (sidebar.standard.mode == StandardSideBarMode.CATEGORY) {
                     restore_last_selected_treepath(sidebar.standard.collection_tree, collection_path);
+                    restore_last_selected_treepath(sidebar.standard.category_tree.tree, category_path);
+                } else if (sidebar.standard.mode == StandardSideBarMode.COLLECTION) {
+                    restore_last_selected_treepath(sidebar.standard.category_tree.tree, category_path);
+                    restore_last_selected_treepath(sidebar.standard.collection_tree, collection_path);
+                }
                 Timeout.add(333, () => {
                     restore_last_selected_treepath(fontpane.fontlist, font_path);
                     return false;

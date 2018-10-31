@@ -320,6 +320,7 @@ namespace FontManager {
             return exit_status;
         }
 
+        [DBus (visible = false)]
         public void refresh () requires (main_window != null) {
             if (update_in_progress)
                 return;
@@ -350,6 +351,7 @@ namespace FontManager {
             return;
         }
 
+        [DBus (visible = false)]
         public new void quit () {
             /* Prevent noise during memcheck */
             {
@@ -367,6 +369,7 @@ namespace FontManager {
             return;
         }
 
+        [DBus (visible = false)]
         public void about () {
             Gtk.show_about_dialog(main_window,
                                 "program-name", About.DISPLAY_NAME,
@@ -382,6 +385,7 @@ namespace FontManager {
             return;
         }
 
+        [DBus (visible = false)]
         public void help () {
             try {
                 Gtk.show_uri(null, "help:%s".printf(Config.PACKAGE_NAME), Gdk.CURRENT_TIME);

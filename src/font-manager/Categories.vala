@@ -243,13 +243,18 @@ namespace FontManager {
              * Using an idle source to prevent input lag
              */
             Idle.add(() => {
-                if (selected_filter.index < CategoryIndex.N_GENERATED
-                    && selected_filter.requires_update) {
+                if (selected_filter.requires_update) {
                     try {
                         Database db = get_database(DatabaseType.BASE);
-                        selected_filter.update(db);
+                        if (selected_filter.index < CategoryIndex.N_GENERATED)
+                            selected_filter.update(db);
+                        else if (selected_filter.index == CategoryIndex.DISABLED)
+                            if (reject != null)
+                                ((Disabled) selected_filter).update(db, reject);
                         selected_filter.requires_update = false;
-                    } catch (DatabaseError e) {}
+                    } catch (DatabaseError e) {
+                        warning(e.message);
+                    }
                 }
                 /* Need to refresh counts */
                 tree.queue_draw();

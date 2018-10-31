@@ -23,7 +23,7 @@ namespace FontManager {
     public class Disabled : Category {
 
         public Disabled () {
-            base(_("Disabled"), _("Fonts which have been disabled"), "list-remove", SELECT_FROM_FONTS);
+            base(_("Disabled"), _("Fonts which have been disabled"), "list-remove", "%s;".printf(SELECT_FROM_FONTS));
         }
 
         public new void update (Database db, StringHashset reject) {

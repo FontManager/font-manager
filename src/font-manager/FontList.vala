@@ -499,10 +499,7 @@ namespace FontManager {
         }
 
         protected override bool show_context_menu (Gdk.EventButton e) {
-            if (e != null)
-                context_menu.popup(null, null, null, e.button, e.time);
-            else
-                context_menu.popup(null, null, null, 0, Gtk.get_current_event_time());
+            context_menu.popup_at_pointer(null);
             return true;
         }
 

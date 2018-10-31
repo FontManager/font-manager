@@ -253,7 +253,6 @@ namespace FontManager {
 
         public CollectionTree () {
             expand = true;
-            model = new CollectionModel();
             controls = new CollectionControls();
             name = "CollectionTree";
             renderer = new Gtk.CellRendererText();
@@ -276,6 +275,7 @@ namespace FontManager {
             set_tooltip_column(CollectionColumn.COMMENT);
             context_menu = get_context_menu();
             connect_signals();
+            model = new CollectionModel();
         }
 
         void connect_signals () {
@@ -308,6 +308,7 @@ namespace FontManager {
         }
 
         public void select_first_row () {
+            get_selection().unselect_all();
             get_selection().select_path(new Gtk.TreePath.first());
             return;
         }
@@ -356,10 +357,7 @@ namespace FontManager {
         }
 
         protected override bool show_context_menu (Gdk.EventButton e) {
-            if (e != null)
-                context_menu.popup(null, null, null, e.button, e.time);
-            else
-                context_menu.popup(null, null, null, 0, Gtk.get_current_event_time());
+            context_menu.popup_at_pointer(null);
             return true;
         }
 

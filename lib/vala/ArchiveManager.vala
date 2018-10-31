@@ -23,12 +23,12 @@ interface FileRollerDBusService : Object {
 
     public signal void progress (double percent, string message);
 
-    public abstract void add_to_archive (string archive, [CCode (array_null_terminated = true)] string? [] uris, bool use_progress_dialog) throws IOError;
-    public abstract void compress ([CCode (array_null_terminated = true)] string? [] uris, string destination, bool use_progress_dialog) throws IOError;
-    public abstract void extract (string archive, string destination, bool use_progress_dialog) throws IOError;
-    public abstract void extract_here (string archive, bool use_progress_dialog) throws IOError;
+    public abstract void add_to_archive (string archive, [CCode (array_null_terminated = true)] string? [] uris, bool use_progress_dialog) throws DBusError, IOError;
+    public abstract void compress ([CCode (array_null_terminated = true)] string? [] uris, string destination, bool use_progress_dialog) throws DBusError, IOError;
+    public abstract void extract (string archive, string destination, bool use_progress_dialog) throws DBusError, IOError;
+    public abstract void extract_here (string archive, bool use_progress_dialog) throws DBusError, IOError;
     /* Valid actions -> "create", "create_single_file", "extract" */
-    public abstract HashTable <string, string> [] get_supported_types (string action) throws IOError;
+    public abstract HashTable <string, string> [] get_supported_types (string action) throws DBusError, IOError;
 
 }
 

@@ -42,8 +42,6 @@ namespace FontManager {
         }
 
         public new void update (Database db) {
-            if (!requires_update)
-                return;
             descriptions.clear();
             families.clear();
             try {
@@ -51,7 +49,9 @@ namespace FontManager {
                     get_matching_families_and_fonts(db, families, descriptions, sql);
                 foreach (Category child in children)
                     child.update(db);
-            } catch (DatabaseError error) {}
+            } catch (DatabaseError error) {
+                warning(error.message);
+            }
             return;
         }
 

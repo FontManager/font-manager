@@ -92,7 +92,7 @@ namespace FontManager {
 
         public signal void collection_selected (Collection group);
         public signal void category_selected (Category filter, int category);
-        public signal void mode_selected ();
+        public signal void mode_selected (StandardSideBarMode mode);
 
         public Collection? selected_collection { get; protected set; default = null; }
         public Category? selected_category { get; protected set; default = null; }
@@ -168,7 +168,7 @@ namespace FontManager {
 
             /* XXX : string? pspec? */
             stack.notify["visible-child-name"].connect((pspec) => {
-                mode_selected();
+                mode_selected(mode);
             });
             return;
         }
