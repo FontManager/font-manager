@@ -1,6 +1,6 @@
 %define MajorVersion 0
 %define MinorVersion 7
-%define MicroVersion 3
+%define MicroVersion 4
 %define DBusName org.gnome.FontManager
 %define DBusName2 org.gnome.FontViewer
 %define Master https://github.com/FontManager/master
