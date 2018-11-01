@@ -1,9 +1,10 @@
 %define MajorVersion 0
 %define MinorVersion 7
-%define MicroVersion 4
+%define MicroVersion 3
 %define DBusName org.gnome.FontManager
 %define DBusName2 org.gnome.FontViewer
-%define DownloadURL https://github.com/FontManager/master/releases/download
+%define Master https://github.com/FontManager/master
+%define Releases %{Master}/releases/download
 
 # Disable automatic compilation of Python files in extra directories
 %undefine __brp_python_bytecompile
@@ -15,7 +16,7 @@ Release:    1
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
-Source0:    %{DownloadURL}/%{version}/%{name}-%{version}.tar.bz2
+Source0:    %{Releases}/%{version}/%{name}-%{version}.tar.bz2
 
 BuildRequires: fontconfig-devel
 BuildRequires: freetype-devel

@@ -373,17 +373,14 @@ namespace FontManager {
                 fontpane.refilter();
             });
 
-            sidebar.standard.collection_tree.changed.connect(() => {
-                fontlist.queue_draw();
-                browser.treeview.queue_draw();
-            });
-
             fontpane.controls.remove_selected.connect(() => {
                 if (sidebar.standard.selected_collection == null)
                     return;
                 sidebar.standard.collection_tree.remove_fonts(fontlist.get_selected_families().list());
                 sidebar.standard.collection_tree.queue_draw();
-                fontpane.refilter();
+            });
+
+            sidebar.standard.collection_tree.changed.connect(() => {
                 if (unsorted != null) {
                     Idle.add(() => {
                         var collected = sidebar.collection_model.collections.get_full_contents();
@@ -395,6 +392,9 @@ namespace FontManager {
                         return false;
                     });
                 }
+                fontpane.refilter();
+                fontlist.queue_draw();
+                browser.treeview.queue_draw();
             });
 
             Gtk.drag_dest_set(fontpane, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);

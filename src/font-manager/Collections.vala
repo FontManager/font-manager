@@ -341,7 +341,7 @@ namespace FontManager {
             if (collections.contains(selected_filter.name))
                 collections.remove(selected_filter.name);
             ((Gtk.TreeStore) model).remove(ref _selected_iter_);
-            this.changed();
+            changed();
             return;
         }
 
