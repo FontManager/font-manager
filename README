@@ -85,5 +85,17 @@ KNOWN ISSUES
 
     Some themes do not render as intended. This is a problem with the theme.
     Unless the issue also occurs when using Adwaita, or most other themes...
+    
+|============================= Compiling ==================================|
+# Dependencies :
+Debian, Ubuntu, Raspbian and other debian-based distributions
+`sudo apt-get install libgtk-3-dev libpango1.0-dev libsqlite3-dev libgirepository1.0-dev python-nautilus libcairo2-dev libjson-glib-dev libfontconfig1-dev libxml2-dev valac yelp-tools libglib2.0-dev intltool`
 
+`./autogen.sh`
+
+`./configure`
+
+`make -jX` X is the number of your processor cores
+
+`make install`
 
