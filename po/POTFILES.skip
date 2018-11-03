@@ -17,7 +17,6 @@ src/font-manager/Browse.c
 src/font-manager/Categories.c
 src/font-manager/CellRendererPill.c
 src/font-manager/Collections.c
-src/font-manager/Color.c
 src/font-manager/Compare.c
 src/font-manager/FileSelector.c
 src/font-manager/Filters/Cacheable.c

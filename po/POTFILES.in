@@ -17,7 +17,6 @@ src/font-manager/Browse.vala
 src/font-manager/Categories.vala
 src/font-manager/CellRendererPill.vala
 src/font-manager/Collections.vala
-src/font-manager/Color.vala
 src/font-manager/Compare.vala
 src/font-manager/FileSelector.vala
 src/font-manager/Filters/Cacheable.vala

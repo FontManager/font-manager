@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-10-29 19:39-0400\n"
+"POT-Creation-Date: 2018-11-03 02:14-0400\n"
 "PO-Revision-Date: 2016-05-25 11:48+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: none <@>\n"
@@ -34,7 +34,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: ../lib/vala/About.vala:27 ../data/org.gnome.FontManager.appdata.xml.in.h:1
-#: ../data/org.gnome.FontManager.desktop.in.h:1
 msgid "Font Manager"
 msgstr "Schriften Verwalter"
 
@@ -250,7 +249,7 @@ msgstr "Zeichentabelle"
 msgid "Properties"
 msgstr "Proportional"
 
-#: ../lib/vala/FontPreviewPane.vala:259 ../src/font-manager/Categories.vala:300
+#: ../lib/vala/FontPreviewPane.vala:259 ../src/font-manager/Categories.vala:301
 msgid "License"
 msgstr "Lizenz"
 
@@ -269,19 +268,19 @@ msgstr "Zeige Schriftinformationen"
 msgid "PostScript Name"
 msgstr "PostScript Type 1 Schrift"
 
-#: ../lib/vala/Metadata.vala:197 ../src/font-manager/Categories.vala:292
+#: ../lib/vala/Metadata.vala:197 ../src/font-manager/Categories.vala:293
 msgid "Width"
 msgstr "Breite"
 
-#: ../lib/vala/Metadata.vala:198 ../src/font-manager/Categories.vala:296
+#: ../lib/vala/Metadata.vala:198 ../src/font-manager/Categories.vala:297
 msgid "Slant"
 msgstr "Schriftstil"
 
-#: ../lib/vala/Metadata.vala:199 ../src/font-manager/Categories.vala:294
+#: ../lib/vala/Metadata.vala:199 ../src/font-manager/Categories.vala:295
 msgid "Weight"
 msgstr "Stärke"
 
-#: ../lib/vala/Metadata.vala:200 ../src/font-manager/Categories.vala:298
+#: ../lib/vala/Metadata.vala:200 ../src/font-manager/Categories.vala:299
 msgid "Spacing"
 msgstr "Abstände"
 
@@ -289,7 +288,7 @@ msgstr "Abstände"
 msgid "Version"
 msgstr ""
 
-#: ../lib/vala/Metadata.vala:202 ../src/font-manager/Categories.vala:302
+#: ../lib/vala/Metadata.vala:202 ../src/font-manager/Categories.vala:303
 msgid "Vendor"
 msgstr "Herausgeber"
 
@@ -320,109 +319,109 @@ msgstr ""
 msgid "Clear selected filter"
 msgstr ""
 
-#: ../src/font-manager/Categories.vala:275
+#: ../src/font-manager/Categories.vala:276
 msgid "User"
 msgstr "Benutzer"
 
-#: ../src/font-manager/Categories.vala:275
+#: ../src/font-manager/Categories.vala:276
 #, fuzzy
 msgid "Fonts available only to you"
 msgstr "Nur für Sie verfügbare Schriften"
 
-#: ../src/font-manager/Categories.vala:284
+#: ../src/font-manager/Categories.vala:285
 msgid "All"
 msgstr "Alle"
 
-#: ../src/font-manager/Categories.vala:284
+#: ../src/font-manager/Categories.vala:285
 msgid "All Fonts"
 msgstr "Alle Schriften"
 
-#: ../src/font-manager/Categories.vala:286
+#: ../src/font-manager/Categories.vala:287
 msgid "System"
 msgstr "System"
 
-#: ../src/font-manager/Categories.vala:286
+#: ../src/font-manager/Categories.vala:287
 msgid "Fonts available to all users"
 msgstr "Für alle Benutzer verfügbare Schriften"
 
-#: ../src/font-manager/Categories.vala:292
+#: ../src/font-manager/Categories.vala:293
 msgid "Grouped by font width"
 msgstr "Geordnet nach Schriftbreite"
 
-#: ../src/font-manager/Categories.vala:294
+#: ../src/font-manager/Categories.vala:295
 msgid "Grouped by font weight"
 msgstr "Geordnet nach Schriftstärke"
 
-#: ../src/font-manager/Categories.vala:296
+#: ../src/font-manager/Categories.vala:297
 msgid "Grouped by font angle"
 msgstr "Geordnet nach Schriftwinkel / Schriftstil"
 
-#: ../src/font-manager/Categories.vala:298
+#: ../src/font-manager/Categories.vala:299
 msgid "Grouped by font spacing"
 msgstr "Geordnet nach Abständen"
 
-#: ../src/font-manager/Categories.vala:300
+#: ../src/font-manager/Categories.vala:301
 msgid "Grouped by license type"
 msgstr "Geordnet nach Lizenz"
 
-#: ../src/font-manager/Categories.vala:302
+#: ../src/font-manager/Categories.vala:303
 msgid "Grouped by vendor"
 msgstr "Geordnet nach Herausgeber"
 
-#: ../src/font-manager/Categories.vala:304
+#: ../src/font-manager/Categories.vala:305
 msgid "Filetype"
 msgstr "Dateityp"
 
-#: ../src/font-manager/Categories.vala:304
+#: ../src/font-manager/Categories.vala:305
 msgid "Grouped by filetype"
 msgstr "Geordnet nach Dateityp"
 
-#: ../src/font-manager/Categories.vala:318
+#: ../src/font-manager/Categories.vala:319
 msgid "Family Kind"
 msgstr "Familienzugehörigkeit"
 
-#: ../src/font-manager/Categories.vala:318
+#: ../src/font-manager/Categories.vala:319
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
 "Nur Schriften welche Panose Informationen enthalten werde hier gruppiert."
 
-#: ../src/font-manager/Categories.vala:319
+#: ../src/font-manager/Categories.vala:320
 msgid "Any"
 msgstr "Alle"
 
-#: ../src/font-manager/Categories.vala:319
+#: ../src/font-manager/Categories.vala:320
 msgid "No Fit"
 msgstr "Keine Übereinstimmung"
 
-#: ../src/font-manager/Categories.vala:319
+#: ../src/font-manager/Categories.vala:320
 msgid "Text and Display"
 msgstr "Text und Bildschirm"
 
-#: ../src/font-manager/Categories.vala:319
+#: ../src/font-manager/Categories.vala:320
 msgid "Script"
 msgstr "Skript"
 
-#: ../src/font-manager/Categories.vala:319
+#: ../src/font-manager/Categories.vala:320
 msgid "Decorative"
 msgstr "Dekorativ"
 
-#: ../src/font-manager/Categories.vala:319
+#: ../src/font-manager/Categories.vala:320
 msgid "Pictorial"
 msgstr "Bildhaft"
 
-#: ../src/font-manager/Categories.vala:343
+#: ../src/font-manager/Categories.vala:344
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/font-manager/Categories.vala:348
+#: ../src/font-manager/Categories.vala:349
 msgid "Regular"
 msgstr "Normal"
 
-#: ../src/font-manager/CellRendererPill.vala:39
+#: ../src/font-manager/CellRendererPill.vala:58
 msgid "Variation "
 msgstr "Variation"
 
-#: ../src/font-manager/CellRendererPill.vala:40
+#: ../src/font-manager/CellRendererPill.vala:58
 msgid "Variations"
 msgstr "Variationen"
 
@@ -458,11 +457,11 @@ msgid "Remove selected collection"
 msgstr "Entferne ausgewählte Kollektion"
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/font-manager/Collections.vala:483
+#: ../src/font-manager/Collections.vala:478
 msgid "Copy to..."
 msgstr ""
 
-#: ../src/font-manager/Collections.vala:484
+#: ../src/font-manager/Collections.vala:479
 #, fuzzy
 msgid "Compress..."
 msgstr "Vergleiche"
@@ -564,16 +563,16 @@ msgid "Collapse all"
 msgstr "Alle einklappen"
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/font-manager/FontList.vala:516
+#: ../src/font-manager/FontList.vala:508
 #, fuzzy
 msgid "Install"
 msgstr "Alle Schriften"
 
-#: ../src/font-manager/FontList.vala:517
+#: ../src/font-manager/FontList.vala:509
 msgid "Copy Location"
 msgstr ""
 
-#: ../src/font-manager/FontList.vala:518
+#: ../src/font-manager/FontList.vala:510
 msgid "Show in Folder"
 msgstr ""
 
@@ -851,15 +850,14 @@ msgstr "Schriften hinzufügen"
 msgid "Remove Fonts"
 msgstr "Schriften entfernen"
 
-#: ../src/font-manager/TitleBar.vala:150
+#: ../src/font-manager/TitleBar.vala:149
 msgid "Preferences"
 msgstr ""
 
 #: ../src/font-viewer/Application.vala:71
-#: ../src/font-viewer/Application.vala:104
+#: ../src/font-viewer/Application.vala:103
 #: ../src/font-viewer/MainWindow.vala:25 ../src/font-viewer/MainWindow.vala:136
 #: ../data/org.gnome.FontViewer.appdata.xml.in.h:1
-#: ../data/org.gnome.FontViewer.desktop.in.h:1
 #, fuzzy
 msgid "Font Viewer"
 msgstr "Schriften Verwalter"
@@ -938,15 +936,6 @@ msgid ""
 "management solution. </p>"
 msgstr ""
 
-#: ../data/org.gnome.FontManager.desktop.in.h:2
-msgid "Preview, Compare and Manage Fonts"
-msgstr ""
-
-#: ../data/org.gnome.FontManager.desktop.in.h:3
-#: ../data/org.gnome.FontViewer.desktop.in.h:3
-msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
-
 #: ../data/org.gnome.FontViewer.appdata.xml.in.h:2
 #, fuzzy
 msgid "A font viewer application for Gtk+ Desktop Environments"
@@ -957,10 +946,6 @@ msgid ""
 "<p> Font Viewer allows previewing font files prior to installation. It "
 "features several ways to preview font files along with a character map and "
 "displays font properties and license details. </p>"
-msgstr ""
-
-#: ../data/org.gnome.FontViewer.desktop.in.h:2
-msgid "Full featured font file preview application"
 msgstr ""
 
 #, fuzzy
