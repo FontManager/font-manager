@@ -163,14 +163,14 @@ namespace FontManager {
         public Gtk.Button expand_button { get; private set; }
         public Gtk.SearchEntry entry { get; private set; }
 
-        Gtk.Arrow arrow;
+        Gtk.Image arrow;
 
         public FontListControls () {
             Object(name: "FontListControls", margin: 1);
             remove_button.set_tooltip_text(_("Remove selected font from collection"));
             add_button.destroy();
             expand_button = new Gtk.Button();
-            arrow = new Gtk.Arrow(Gtk.ArrowType.RIGHT, Gtk.ShadowType.ETCHED_IN);
+            arrow = new Gtk.Image.from_icon_name("go-next-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             expand_button.add(arrow);
             expand_button.set_tooltip_text(_("Expand all"));
             entry = new Gtk.SearchEntry();
@@ -189,9 +189,9 @@ namespace FontManager {
                 expand_all(expanded);
                 expand_button.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
                 if (expanded)
-                    arrow.set(Gtk.ArrowType.DOWN, Gtk.ShadowType.ETCHED_IN);
+                    arrow.set_from_icon_name("go-down-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
                 else
-                    arrow.set(Gtk.ArrowType.RIGHT, Gtk.ShadowType.ETCHED_IN);
+                    arrow.set_from_icon_name("go-next-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             });
         }
 
@@ -257,10 +257,9 @@ namespace FontManager {
             get_selection().set_mode(Gtk.SelectionMode.MULTIPLE);
             toggle = new Gtk.CellRendererToggle();
             var text = new Gtk.CellRendererText();
-            var count = new CellRendererCount();
+            var count = new CellRendererStyleCount();
             var preview = new Gtk.CellRendererText();
             preview.ellipsize = Pango.EllipsizeMode.END;
-            count.junction_side = Gtk.JunctionSides.RIGHT;
             insert_column_with_data_func(FontListColumn.TOGGLE, "", toggle, toggle_cell_data_func);
             insert_column_with_data_func(FontListColumn.TEXT, "", text, text_cell_data_func);
             insert_column_with_data_func(FontListColumn.PREVIEW, "", preview, preview_cell_data_func);
@@ -413,8 +412,6 @@ namespace FontManager {
                 else
                     cell.set_property("text", description);
                 cell.set_property("font", description);
-                cell.set_property("ypad", 3);
-                cell.set_property("xpad", 6);
                 cell.set_property("visible", true);
                 set_sensitivity(cell, treeiter, ((Font) obj).family);
             }
@@ -449,14 +446,12 @@ namespace FontManager {
             string family = get_family_from_object(obj);
             if (obj is Family) {
                 cell.set_property("text", family);
-                cell.set_property("ypad", 0);
-                cell.set_property("xpad", 0);
                 set_sensitivity(cell, treeiter, family);
+                cell.set_padding(0, 0);
             } else {
                 cell.set_property("text", ((Font) obj).style);
-                cell.set_property("ypad", 3);
-                cell.set_property("xpad", 6);
                 set_sensitivity(cell, treeiter, family);
+                cell.set_padding(8, 0);
             }
             val.unset();
             return;
@@ -706,8 +701,7 @@ namespace FontManager {
             var text = new Gtk.CellRendererText();
             var preview = new Gtk.CellRendererText();
             preview.ellipsize = Pango.EllipsizeMode.END;
-            var count = new CellRendererCount();
-            count.junction_side = Gtk.JunctionSides.RIGHT;
+            var count = new CellRendererStyleCount();
             insert_column_with_data_func(FontListColumn.TOGGLE, "", toggle, toggle_cell_data_func);
             insert_column_with_data_func(FontListColumn.TEXT, "", text, text_cell_data_func);
             insert_column_with_data_func(FontListColumn.PREVIEW, "", preview, preview_cell_data_func);
@@ -815,13 +809,9 @@ namespace FontManager {
             var obj = val.get_object();
             if (obj is Family) {
                 cell.set_property("text", ((Family) obj).description);
-                cell.set_property("ypad", 0);
-                cell.set_property("xpad", 0);
                 cell.set_property("visible", false);
             } else {
                 cell.set_property("text", ((Font) obj).description);
-                cell.set_property("ypad", 3);
-                cell.set_property("xpad", 6);
                 cell.set_property("visible", true);
                 cell.set_property("font", ((Font) obj).description);
             }
@@ -858,12 +848,10 @@ namespace FontManager {
             var obj = val.get_object();
             if (obj is Family) {
                 cell.set_property("text", ((Family) obj).family);
-                cell.set_property("ypad", 0);
-                cell.set_property("xpad", 0);
+                cell.set_padding(0, 0);
             } else {
                 cell.set_property("text", ((Font) obj).style);
-                cell.set_property("ypad", 3);
-                cell.set_property("xpad", 6);
+                cell.set_padding(8, 0);
             }
             val.unset();
             return;

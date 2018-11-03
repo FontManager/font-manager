@@ -19,7 +19,6 @@
 */
 
 #include "font-manager-codepoint-list.h"
-#include "font-manager-database.h"
 #include "font-manager-fontconfig.h"
 
 

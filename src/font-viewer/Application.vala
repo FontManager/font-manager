@@ -76,7 +76,6 @@ namespace FontManager {
                                      "website", About.HOMEPAGE,
                                      "authors", About.AUTHORS,
                                      "license", About.LICENSE,
-                                     //"artists", About.ARTISTS,
                                      "translator-credits", About.TRANSLATORS,
                                      null);
                 return;

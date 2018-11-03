@@ -259,9 +259,6 @@ namespace FontManager {
             var count_renderer = new CellRendererCount();
             var toggle = new Gtk.CellRendererToggle();
             toggle.toggled.connect(on_collection_toggled);
-            count_renderer.type_name = null;
-            count_renderer.type_name_plural = null;
-            count_renderer.xalign = 1.0f;
             renderer.set_property("ellipsize", Pango.EllipsizeMode.END);
             renderer.set_property("ellipsize-set", true);
             renderer.editable = true;

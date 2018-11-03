@@ -157,11 +157,7 @@ namespace FontManager {
             tree.level_indentation = 12;
             renderer = new Gtk.CellRendererText();
             count_renderer = new CellRendererCount();
-            count_renderer.type_name = null;
-            count_renderer.type_name_plural = null;
             pixbuf_renderer = new Gtk.CellRendererPixbuf();
-            pixbuf_renderer.set_property("xpad", 6);
-            count_renderer.xalign = 1.0f;
             renderer.set_property("ellipsize", Pango.EllipsizeMode.END);
             renderer.set_property("ellipsize-set", true);
             tree.insert_column_with_data_func(0, "", pixbuf_renderer, pixbuf_cell_data_func);

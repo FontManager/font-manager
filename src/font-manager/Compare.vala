@@ -84,6 +84,7 @@ namespace FontManager {
             }
         }
 
+        bool have_default_colors = false;
         string _preview_text;
         string default_preview_text;
         Gtk.Box box;
@@ -172,11 +173,11 @@ namespace FontManager {
             return;
         }
 
-        /* XXX : get_background_color is deprecated since 3.16 :-/ */
         void update_default_colors () {
             Gtk.StyleContext ctx = get_style_context();
-            default_fg_color = ctx.get_color(Gtk.StateFlags.NORMAL);
-            default_bg_color = ctx.get_background_color(Gtk.StateFlags.NORMAL);
+            bool have_fg = ctx.lookup_color("theme_text_color", out default_fg_color);
+            bool have_bg = ctx.lookup_color("theme_base_color", out default_bg_color);
+            have_default_colors = (have_fg && have_bg);
             return;
         }
 
@@ -206,8 +207,10 @@ namespace FontManager {
             string description = (string) val;
             if (model.get_path(treeiter).get_indices()[0] % 2 == 0) {
                 /* Name row */
-                cell.set_property("foreground-rgba", default_fg_color);
-                cell.set_property("background-rgba", default_bg_color);
+                if (have_default_colors) {
+                    cell.set_property("foreground-rgba", default_fg_color);
+                    cell.set_property("background-rgba", default_bg_color);
+                }
                 cell.set_property("size-points", get_desc_size());
                 cell.set_property("weight", 100);
             } else {

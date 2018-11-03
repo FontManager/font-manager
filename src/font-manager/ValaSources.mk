@@ -7,7 +7,6 @@ font_manager_VALASOURCES = \
 	Categories.vala \
 	CellRendererPill.vala \
 	Collections.vala \
-	Color.vala \
 	Compare.vala \
 	FileSelector.vala \
 	Filters/Cacheable.vala \

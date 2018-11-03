@@ -12,7 +12,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    1
+Release:    3
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -144,6 +144,12 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Sat Nov 03 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-3
+- Disable deprecated Gdk and Gtk symbols.
+- Remove unused code.
+* Thu Nov 01 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-2
+- Ensure that collections are selected on first switch.
+- Ensure that Unsorted/Disabled categories update as needed.
 * Sun Oct 28 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-1
 - Too many changes to list here. See CHANGELOG for details
 * Sun Aug 6 2017 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-11

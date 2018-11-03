@@ -18,10 +18,6 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#SubstituteList {
-    border-radius: 0.25em;
-}
-
 .red {
     background-color: #ff0000;
 }
@@ -36,4 +32,44 @@
 
 .gray {
     background-color: #808080;
+}
+
+treeview {
+    padding: 0px 6px 0px 6px;
+}
+
+#FontManagerBrowseView {
+    padding: 0px;
+}
+
+.CellRendererPill {
+    margin: 1px;
+    border-width: 1px;
+    border-style: groove;
+    border-radius: 0.75em;
+    text-shadow: 1px 1px shade(@theme_selected_background_color, 0.5);
+    color: darker(@insensitive_fg_color);
+    border-color: alpha(darker(@insensitive_bg_color), 0.25);
+    background-color: alpha(@insensitive_bg_color, 0.5);
+}
+
+.CellRendererPill:selected {
+    color: @theme_selected_fg_color;
+    border-color: alpha(lighter(@theme_selected_bg_color), 0.333);
+    background-color: darker(@theme_selected_bg_color);
+}
+
+.CellRendererTitle {
+    margin: 1px;
+    border-radius: 0em 1em 1em 0em;
+    border-width: 1px;
+    border-style: groove;
+    text-shadow: 1px 1px shade(@theme_selected_background_color, 0.5);
+    color: darker(@insensitive_fg_color);
+    border-color: alpha(darker(@insensitive_bg_color), 0.25);
+    background-color: alpha(@insensitive_bg_color, 0.5);
+}
+
+#SubstituteList {
+    border-radius: 0.25em;
 }

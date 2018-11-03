@@ -43,8 +43,6 @@ namespace FontManager {
             scroll.expand = true;
             main_box.pack_start(scroll, true, true, 0);
             renderer = new CellRendererTitle();
-            renderer.xpad = 48;
-            renderer.junction_side = Gtk.JunctionSides.LEFT;
             treeview.set_enable_search(true);
             treeview.set_search_column(FontModelColumn.DESCRIPTION);
             treeview.insert_column_with_data_func(0, "", renderer, cell_data_func);
@@ -92,16 +90,16 @@ namespace FontManager {
                 font_desc = ((Family) obj).description;
                 active = !(((Family) obj).family in reject);
                 cell.set_property("title" , font_desc);
-                cell.set_property("text", font_desc);
-                cell.set_property("fallthrough" , false);
+                cell.set_padding(24, 8);
+                ((CellRendererPill) cell).render_background = true;
             } else {
+                ((CellRendererPill) cell).render_background = false;
                 font_desc = ((Font) obj).description;
                 active = !(((Font) obj).family in reject);
                 Pango.FontDescription desc = Pango.FontDescription.from_string(font_desc);
                 desc.set_size((int) (preview_size * Pango.SCALE));
                 cell.set_property("font-desc" , desc);
-                cell.set_property("ypad" , 5);
-                cell.set_property("fallthrough" , true);
+                cell.set_padding(32, 10);
                 if (samples != null && samples.has_member(font_desc))
                     cell.set_property("text", samples.get_string_member(font_desc));
                 else

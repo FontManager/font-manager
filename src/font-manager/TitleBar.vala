@@ -130,7 +130,7 @@ namespace FontManager {
             main_menu_container.pack_start(main_menu_icon, false, false, 0);
             main_menu_label = new Gtk.Label(null);
             main_menu_label.set_markup("<b>%s</b>".printf(Mode.parse("Default").to_translatable_string()));
-            main_menu_label.set("margin", 0, "xpad", 0, "ypad", 0, null);
+            main_menu_label.set("margin", 0, null);
             main_menu_container.pack_end(main_menu_label, false, false, 0);
             main_menu.add(main_menu_container);
             main_menu.set("relief", Gtk.ReliefStyle.NONE, "margin", 0, null);
@@ -141,7 +141,6 @@ namespace FontManager {
             manage_controls.remove_button.set_tooltip_text(_("Remove Fonts"));
             var separator = add_separator(manage_controls.box);
             separator.get_style_context().add_class("separator");
-            separator.set("margin-left", 0, "margin-right", 6, null);
             manage_controls.box.reorder_child(manage_controls.box.get_children().nth_data(2), 0);
             manage_controls.box.set("margin", 0, "border-width", 0, null);
             prefs_toggle = new Gtk.ToggleButton();

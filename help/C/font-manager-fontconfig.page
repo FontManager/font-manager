@@ -7,11 +7,11 @@
         <desc>Generate fontconfig configuration files</desc>
     </info>
 
-    <title>Display and Rendering</title>
+    <title>Display and Rendering Preferences</title>
 
     <p>
-        The "Display" and "Rendering" panes generate valid fontconfig configuration
-        files for the exposed properties.
+        The "Display" and "Rendering" panes in the preferences dialog generate
+        valid fontconfig configuration files for the exposed properties.
     </p>
 
     <p>

@@ -61,7 +61,7 @@ public class LabeledSwitch : Gtk.Box {
         label = new Gtk.Label(null);
         label.set("hexpand", false, "halign", Gtk.Align.START, null);
         dim_label = new Gtk.Label(null);
-        dim_label.set("hexpand", true, "halign", Gtk.Align.CENTER, "xalign", 0, null);
+        dim_label.set("hexpand", true, "halign", Gtk.Align.CENTER, null);
         dim_label.get_style_context().add_class(Gtk.STYLE_CLASS_DIM_LABEL);
         toggle = new Gtk.Switch();
         toggle.expand = false;
