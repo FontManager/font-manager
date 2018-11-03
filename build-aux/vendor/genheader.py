@@ -101,7 +101,8 @@ vendor_dir = os.path.dirname(os.path.realpath(__file__))
 
 def get_vendor_entries () :
     sys.path.append(vendor_dir)
-    module_names = [os.path.splitext(p)[0] for p in os.listdir(vendor_dir) if p.endswith(".py") and p != "genheader.py"]
+    module_names = [os.path.splitext(p)[0] for p in os.listdir(vendor_dir)
+                             if p.endswith(".py") and p != "genheader.py"]
     resources = map(__import__, module_names)
     tmp = io.StringIO()
     for module in resources:
@@ -122,7 +123,7 @@ def get_vendor_entries () :
             for vendor_id, vendor in iter(vendor_list):
                 if len(vendor) > 50:
                     vendor = "{}...".format(vendor[:47])
-                tmp.write("    {{\"{0}\", \"{1}\"}},\n".format(vendor_id.decode("utf-8", "strict"), vendor.decode("utf-8", "strict")))
+                tmp.write("    {{\"{0}\", \"{1}\"}},\n".format(vendor_id, vendor))
             tmp.write("\n")
             if name != "Example":
                 try:

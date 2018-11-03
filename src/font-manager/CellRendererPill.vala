@@ -108,7 +108,6 @@ public class CellRendererPill : Gtk.CellRendererText {
             Gtk.StyleContext ctx = widget.get_style_context();
             Gtk.StateFlags state = ctx.get_state();
             Gtk.Border m = ctx.get_margin(state);
-
             a.x += is_left_to_right(widget) ? m.left : m.right;
             a.y += m.top;
             a.width -= m.left + m.right;

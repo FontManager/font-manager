@@ -44,11 +44,11 @@ namespace FontManager {
                 return;
             }
 
-            public bool ready () {
+            public bool ready () throws DBusError, IOError {
                 return main_window.ready();
             }
 
-            public void show_uri (string uri) {
+            public void show_uri (string uri) throws DBusError, IOError {
                 main_window.show_uri(uri);
                 activate();
                 return;
@@ -66,6 +66,7 @@ namespace FontManager {
                 return;
             }
 
+            [DBus (visible = "false")]
             public void about () {
                 Gtk.show_about_dialog(main_window,
                                      "program-name", _("Font Viewer"),

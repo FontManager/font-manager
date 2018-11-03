@@ -261,7 +261,6 @@ namespace FontManager {
             return 0;
         }
 
-
         public override int handle_local_options (VariantDict options) {
 
             int exit_status = -1;

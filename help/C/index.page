@@ -3,6 +3,10 @@
     type="guide" id="index" style="2column">
 
     <info>
+        <desc>Getting started with Font Manager.</desc>
+        <title type='link' role="trail">
+            <media type="image" src="media/preferences-desktop-font-16.png"/>
+        </title>
         <title type="link">Font Manager</title>
         <title type="text">Font Manager</title>
 

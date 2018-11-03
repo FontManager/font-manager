@@ -9,7 +9,7 @@ PKG_DATA_DIR = $(ABS_TOP_SRCDIR)/data
 PKG_LIB_DIR = $(ABS_TOP_SRCDIR)/lib
 
 UNICODE_URL = http://www.unicode.org/Public
-UNICODE_VERSION = 11.0.0
+UNICODE_VERSION = 12.0.0
 SED = $(shell which sed)
 WGET = $(shell which wget)
 GREP = $(shell which grep)

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-03 02:14-0400\n"
+"POT-Creation-Date: 2018-11-03 18:33-0400\n"
 "PO-Revision-Date: 2017-05-13 03:54+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Svenska Språkfiler <https://svenskasprakfiler.se>\n"
@@ -845,8 +845,8 @@ msgstr "Ta bort teckensnitt"
 msgid "Preferences"
 msgstr "Inställningar"
 
-#: ../src/font-viewer/Application.vala:71
-#: ../src/font-viewer/Application.vala:103
+#: ../src/font-viewer/Application.vala:72
+#: ../src/font-viewer/Application.vala:104
 #: ../src/font-viewer/MainWindow.vala:25 ../src/font-viewer/MainWindow.vala:136
 #: ../data/org.gnome.FontViewer.appdata.xml.in.h:1
 msgid "Font Viewer"
