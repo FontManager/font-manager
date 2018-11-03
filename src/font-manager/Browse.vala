@@ -87,7 +87,7 @@ namespace FontManager {
             default_desc.set_size((int) ((get_desc_size()) * Pango.SCALE));
             cell.set_property("font-desc" , default_desc);
             if (obj is Family) {
-                font_desc = ((Family) obj).description;
+                font_desc = ((Family) obj).family;
                 active = !(((Family) obj).family in reject);
                 cell.set_property("title" , font_desc);
                 cell.set_padding(24, 8);
