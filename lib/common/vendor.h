@@ -57,6 +57,13 @@ static const struct
 VendorData[] =
 {
 
+    /* Various Sources */
+    {"ACG", "Monotype Imaging"},
+    {"B?", "Bigelow & Holmes"},
+    {"FJ", "Fujitsu"},
+    {"RICO", "Ricoh"},
+
+
     /* Courtesy of Microsoft Typography - https://docs.microsoft.com/en-us/typography/vendors/ */
     {"!ETF", "!Exclamachine Type Foundry"},
     {"$pro", "CheapProFonts"},
@@ -743,13 +750,6 @@ VendorData[] =
     {"ZeGr", "Zebra Font Factory"},
     {"zeta", "Tangram Studio"},
     {"ZSFT", "Zsoft"},
-
-
-    /* Various Sources */
-    {"b'ACG'", "b'Monotype Imaging'"},
-    {"b'B?'", "b'Bigelow & Holmes'"},
-    {"b'FJ'", "b'Fujitsu'"},
-    {"b'RICO'", "b'Ricoh'"},
 
 };
 

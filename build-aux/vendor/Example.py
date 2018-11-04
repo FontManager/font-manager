@@ -9,8 +9,8 @@ CREDIT = "Various Sources"
 # name is the full vendor name
 def list_vendors () :
     return [
-    (b"ACG", b"Monotype Imaging"),
-    (b"B?", b"Bigelow & Holmes"),
-    (b"FJ", b"Fujitsu"),
-    (b"RICO", b"Ricoh")
+    ("ACG", "Monotype Imaging"),
+    ("B?", "Bigelow & Holmes"),
+    ("FJ", "Fujitsu"),
+    ("RICO", "Ricoh")
     ]
