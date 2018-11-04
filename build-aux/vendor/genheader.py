@@ -123,7 +123,7 @@ def get_vendor_entries () :
             for vendor_id, vendor in iter(vendor_list):
                 if len(vendor) > 50:
                     vendor = "{}...".format(vendor[:47])
-                tmp.write("    {{\"{0}\", \"{1}\"}},\n".format(vendor_id, vendor))
+                tmp.write("    {{\"{0}\", \"{1}\"}},\n".format(vendor_id.replace('"', "'"), vendor.replace('"', "'")))
             tmp.write("\n")
             if name != "Example":
                 try:

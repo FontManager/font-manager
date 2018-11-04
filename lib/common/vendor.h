@@ -625,7 +625,7 @@ VendorData[] =
     {"SHRP", "Sharp Type"},
     {"SHS", "Shahab Siavash Studio"},
     {"SHUB", "The Software Hub"},
-    {"sic", "Skill Information"S" Co., Ltd."},
+    {"sic", "Skill Information'S' Co., Ltd."},
     {"SIG", "vLetter, Inc"},
     {"SIL", "SIL International (SIL)"},
     {"SIT", "Summit Information Technologies Pvt.Ltd,"},

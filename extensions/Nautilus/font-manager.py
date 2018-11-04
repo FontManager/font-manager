@@ -23,6 +23,9 @@ import gi
 gi.require_version('Nautilus', '3.0')
 from gi.repository import GObject, Nautilus
 
+DBUS_ID = 'org.gnome.FontViewer'
+DBUS_PATH = '/org/gnome/FontViewer'
+
 SupportedMimeTypes = [
     "application/x-font-ttf",
     "application/x-font-ttc",
@@ -43,17 +46,17 @@ class FontViewer (GObject.GObject, Nautilus.MenuProvider):
         print("Initializing nautilus-font-manager extension")
         DBusGMainLoop(set_as_default=True)
         self.bus = dbus.SessionBus()
-        self.bus.watch_name_owner('org.gnome.FontViewer', FontViewer.set_state)
+        self.bus.watch_name_owner(DBUS_ID, FontViewer.set_state)
 
     def get_file_items (self, window, files):
         if FontViewer.Active and len(files) == 1:
             selected_file = files[0]
             if is_font_file(selected_file):
                 try:
-                    proxy = self.bus.get_object('org.gnome.FontViewer', '/org/gnome/FontViewer')
-                    ready = proxy.get_dbus_method('Ready', 'org.gnome.FontViewer')
+                    proxy = self.bus.get_object(DBUS_ID, DBUS_PATH)
+                    ready = proxy.get_dbus_method('Ready', DBUS_ID)
                     if ready():
-                        show_uri = proxy.get_dbus_method('ShowUri', 'org.gnome.FontViewer')
+                        show_uri = proxy.get_dbus_method('ShowUri', DBUS_ID)
                         show_uri('{0}'.format(selected_file.get_activation_uri()))
                 except:
                     print ("nautilus-font-manager: Call to ShowUri method failed")
