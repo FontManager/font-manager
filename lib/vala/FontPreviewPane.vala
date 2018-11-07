@@ -281,20 +281,15 @@ namespace FontManager {
             preview.preview_text_changed.connect((p) => {
                 preview_text_changed(p);
             });
-            notify["selected-font"].connect_after(() => {
-                Idle.add(() => {
-                    changed();
-                    return false;
-                    });
-            });
+            notify["selected-font"].connect_after(() => { changed(); });
             return;
         }
 
         void bind_properties () {
+            bind_property("preview-size", preview, "preview-size", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             bind_property("selected-font", charmap, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             bind_property("selected-font", metadata, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             bind_property("selected-font", preview, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
-            bind_property("preview-size", preview, "preview-size", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
         }
 
         public override void show () {

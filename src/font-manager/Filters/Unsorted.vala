@@ -26,9 +26,14 @@ namespace FontManager {
             base(_("Unsorted"), _("Fonts not present in any collection"), "dialog-question", "%s;".printf(SELECT_FROM_FONTS));
         }
 
-        public new void update (Database db, StringHashset sorted) {
-            base.update(db);
-            families.remove_all(sorted.list());
+        public new async void update (StringHashset sorted) {
+            SourceFunc callback = update.callback;
+            base.update.begin((obj, res) => {
+                base.update.end(res);
+                families.remove_all(sorted.list());
+                Idle.add((owned) callback);
+            });
+            yield;
             return;
         }
 

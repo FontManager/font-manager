@@ -81,14 +81,7 @@ namespace FontManager {
             var header = new Gtk.HeaderBar();
             var content_area = dialog.get_content_area();
             var filter = new UserFonts();
-
-            try {
-                Database db = get_database(DatabaseType.BASE);
-                ((Category) filter).update(db);
-            } catch (Error e) {
-                critical(e.message);
-                return selections;
-            }
+            filter.update();
 
             if (filter.size > 0) {
                 var scroll = new Gtk.ScrolledWindow(null, null);

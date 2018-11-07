@@ -1175,7 +1175,6 @@ font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
     g_return_if_fail(sql != NULL);
     font_manager_database_execute_query(db, sql, error);
     g_return_if_fail(error == NULL || *error == NULL);
-    GList *active = list_available_font_families();
     FontManagerDatabaseIterator *iter = font_manager_database_iterator(db);
     while (font_manager_database_iterator_next(iter)) {
         sqlite3_stmt *stmt = font_manager_database_iterator_get(iter);
@@ -1184,13 +1183,10 @@ font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
         const gchar *font = (const gchar *) sqlite3_column_text(stmt, 1);
         if (family == NULL || font == NULL)
             continue;
-        if (g_list_find_custom(active, family, (GCompareFunc) g_strcmp0) == NULL)
-            continue;
         string_hashset_add(families, family);
         string_hashset_add(fonts, font);
     }
     g_object_unref(iter);
-    g_list_free_full(active, g_free);
     return;
 }
 

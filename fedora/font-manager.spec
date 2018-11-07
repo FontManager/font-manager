@@ -12,7 +12,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    3
+Release:    5
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -144,6 +144,13 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Tue Nov 06 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-5
+- Use Pango generated font descriptions - bump database version.
+- Disable user fontconfig files to prevent rendering glitches.
+* Sat Nov 03 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-4
+- Update vendor list
+- Update Unicode version
+- Fix Browse mode titles to display family name rather than default description
 * Sat Nov 03 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-3
 - Disable deprecated Gdk and Gtk symbols.
 - Remove unused code.

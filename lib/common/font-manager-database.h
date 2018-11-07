@@ -32,7 +32,7 @@
 
 G_BEGIN_DECLS
 
-#define FONT_MANAGER_CURRENT_DATABASE_VERSION 1
+#define FONT_MANAGER_CURRENT_DATABASE_VERSION 2
 
 #define FONT_MANAGER_TYPE_DATABASE (font_manager_database_get_type ())
 G_DECLARE_FINAL_TYPE(FontManagerDatabase, font_manager_database, FONT_MANAGER, DATABASE, GObject)

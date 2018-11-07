@@ -252,14 +252,18 @@ namespace FontManager {
     public bool load_user_font_resources (StringHashset files, GLib.List <weak Source> sources) {
         clear_application_fonts();
         bool res = true;
-        foreach (string path in files)
-            add_application_font(path);
+        if (!add_application_font_directory(get_user_font_directory())) {
+            res = false;
+            critical("Failed to add default user font directory to configuration!");
+        }
         foreach (Source source in sources) {
             if (source.available && !add_application_font_directory(source.path)) {
                 res = false;
                 warning("Failed to register user font source! : %s", source.path);
             }
         }
+        foreach (string path in files)
+            add_application_font(path);
         return res;
     }
 

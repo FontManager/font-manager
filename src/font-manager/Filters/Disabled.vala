@@ -26,9 +26,14 @@ namespace FontManager {
             base(_("Disabled"), _("Fonts which have been disabled"), "list-remove", "%s;".printf(SELECT_FROM_FONTS));
         }
 
-        public new void update (Database db, StringHashset reject) {
-            base.update(db);
-            families.retain_all(reject.list());
+        public new async void update (StringHashset reject) {
+            SourceFunc callback = update.callback;
+            base.update.begin((obj, res) => {
+                base.update.end(res);
+                families.retain_all(reject.list());
+                Idle.add((owned) callback);
+            });
+            yield;
             return;
         }
 

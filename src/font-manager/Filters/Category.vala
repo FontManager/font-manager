@@ -25,6 +25,7 @@ namespace FontManager {
         public string? sql { get; set; default = null; }
         public StringHashset descriptions { get; set; }
         public StringHashset families { get; set; }
+        public DatabaseType db_type { get; set; default = DatabaseType.BASE; }
 
         public GLib.List <Category> children;
 
@@ -41,17 +42,25 @@ namespace FontManager {
             children = new GLib.List <Category> ();
         }
 
-        public new void update (Database db) {
+        public new async void update () {
             descriptions.clear();
             families.clear();
             try {
+                Database db = get_database(db_type);
                 if (sql != null)
                     get_matching_families_and_fonts(db, families, descriptions, sql);
-                foreach (Category child in children)
-                    child.update(db);
+                foreach (Category child in children) {
+                    child.update.begin((obj, res) => {
+                        child.update.end(res);
+                    });
+                    Idle.add(update.callback);
+                    yield;
+                }
             } catch (DatabaseError error) {
                 warning(error.message);
             }
+            var application = ((FontManager.Application) GLib.Application.get_default());
+            families.retain_all(application.available_font_families.list());
             return;
         }
 

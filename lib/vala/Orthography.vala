@@ -151,15 +151,21 @@ namespace FontManager {
                     if (db.stmt.step() == Sqlite.ROW)
                         parse_json_result(db.stmt.column_text(0));
                 }
-                if (current_placeholder == updating) {
-                    parent.placeholder = unavailable;
-                    current_placeholder = unavailable;
-                }
+                Idle.add(() => {
+                    if (current_placeholder == updating) {
+                        parent.placeholder = unavailable;
+                        current_placeholder = unavailable;
+                    }
+                    return false;
+                });
             } catch (DatabaseError e) {
-                if (current_placeholder != updating) {
-                    parent.placeholder = updating;
-                    current_placeholder = updating;
-                }
+                Idle.add(() => {
+                    if (current_placeholder != updating) {
+                        parent.placeholder = updating;
+                        current_placeholder = updating;
+                    }
+                    return false;
+                });
             }
             update_entries();
             if (orthography == null)

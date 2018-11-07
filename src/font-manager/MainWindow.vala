@@ -341,21 +341,19 @@ namespace FontManager {
                 });
             }
 
-            sidebar.standard.category_tree.selection_changed.connect((filter, index) => { fontpane.filter = filter; });
-            sidebar.standard.collection_tree.selection_changed.connect((filter) => { fontpane.filter = filter; });
+            sidebar.standard.category_selected.connect((filter, index) => { fontpane.filter = filter; });
+            sidebar.standard.collection_selected.connect((filter) => { fontpane.filter = filter; });
             sidebar.orthographies.orthography_selected.connect((o) => { preview_pane.charmap.set_filter(o); });
 
             sidebar.standard.category_selected.connect((c, i) => {
-                try {
-                    if (c is Disabled && disabled == null)
-                        disabled = (c as Disabled);
-                    if (c is Unsorted && unsorted == null) {
-                        unsorted = (c as Unsorted);
-                        var collected = sidebar.collection_model.collections.get_full_contents();
-                        unsorted.update(get_database(DatabaseType.BASE), collected);
-                    }
-                } catch (Error e) {
-                    warning("Failed to retrieve results from database.");
+                if (c is Disabled && disabled == null)
+                    disabled = (c as Disabled);
+                if (c is Unsorted && unsorted == null) {
+                    unsorted = (c as Unsorted);
+                    var collected = sidebar.collection_model.collections.get_full_contents();
+                    unsorted.update.begin(collected, (obj, res) => {
+                        unsorted.update.end(res);
+                    });
                 }
                 fontpane.refilter();
             });
@@ -384,11 +382,9 @@ namespace FontManager {
                 if (unsorted != null) {
                     Idle.add(() => {
                         var collected = sidebar.collection_model.collections.get_full_contents();
-                        try {
-                            unsorted.update(get_database(DatabaseType.BASE), collected);
-                        } catch (Error e) {
-                            warning("Failed to retrieve results from database.");
-                        }
+                        unsorted.update.begin(collected, (obj, res) => {
+                            unsorted.update.end(res);
+                        });
                         return false;
                     });
                 }
@@ -459,20 +455,17 @@ namespace FontManager {
             });
 
             reject.changed.connect(() => {
-                load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+                /* Fontlist.on_family_toggled adds any newly rejected files  */
+                //load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+
                 if (disabled == null)
                     return;
 
-                try {
-                    disabled.update(get_database(DatabaseType.BASE), reject);
-                } catch (Error e) {
-                    warning("Failed to retrieve results from database.");
-                }
-                if (sidebar.standard.selected_category.index == CategoryIndex.DISABLED)
-                    Idle.add(() => {
+                disabled.update.begin(reject, (obj,res) => {
+                    disabled.update.end(res);
+                    if (sidebar.standard.selected_category.index == CategoryIndex.DISABLED)
                         fontpane.refilter();
-                        return false;
-                    });
+                });
 
             });
 
@@ -486,7 +479,7 @@ namespace FontManager {
                 }
             });
 
-            ((SourcePreferences) preference_pane.get_page("Sources")).changed.connect(() => {
+            sources.changed.connect(() => {
                 Timeout.add_seconds(3, () => {
                     ((FontManager.Application) GLib.Application.get_default()).refresh();
                     return false;
@@ -522,7 +515,7 @@ namespace FontManager {
                     Library.remove.end(res);
                     Idle.add(() => {
                         ((FontManager.Application) GLib.Application.get_default()).refresh();
-                        Timeout.add_seconds(1, () => {
+                        Idle.add(() => {
                             titlebar.removing_files = false;
                             return false;
                         });
@@ -580,12 +573,10 @@ namespace FontManager {
                 group.set_active_from_fonts(reject);
                 sidebar.collection_model.collections.save();
                 if (unsorted != null) {
-                    try {
-                        var collected = sidebar.collection_model.collections.get_full_contents();
-                        unsorted.update(get_database(DatabaseType.BASE), collected);
-                    } catch (Error e) {
-                        warning("Failed to retrieve results from database.");
-                    }
+                    var collected = sidebar.collection_model.collections.get_full_contents();
+                    unsorted.update.begin(collected, (obj, res) => {
+                        unsorted.update.end(res);
+                    });
                 }
             }
             return;
@@ -726,17 +717,20 @@ namespace FontManager {
                                         string category_path,
                                         string collection_path) {
             return_if_fail(settings != null);
-            /* XXX : The timeout here needs to exceed the one used in our fontlist */
-            /* XXX : Also, this is so fragile it may not even be worth bothering */
-            Timeout.add(420, () => {
+            Idle.add(() => {
+                BaseTreeView? tree = null;
+                string? path = null;
                 if (sidebar.standard.mode == StandardSideBarMode.CATEGORY) {
                     restore_last_selected_treepath(sidebar.standard.collection_tree, collection_path);
-                    restore_last_selected_treepath(sidebar.standard.category_tree.tree, category_path);
+                    tree = sidebar.standard.category_tree.tree;
+                    path = category_path;
                 } else if (sidebar.standard.mode == StandardSideBarMode.COLLECTION) {
                     restore_last_selected_treepath(sidebar.standard.category_tree.tree, category_path);
-                    restore_last_selected_treepath(sidebar.standard.collection_tree, collection_path);
+                    tree = sidebar.standard.collection_tree;
+                    path = collection_path;
                 }
-                Timeout.add(333, () => {
+                restore_last_selected_treepath(tree, path);
+                Idle.add(() => {
                     restore_last_selected_treepath(fontpane.fontlist, font_path);
                     return false;
                 });
@@ -763,7 +757,8 @@ namespace FontManager {
             return;
         }
 
-        Gtk.TreePath? restore_last_selected_treepath (Gtk.TreeView tree, string path) {
+        Gtk.TreePath? restore_last_selected_treepath (Gtk.TreeView? tree, string? path) {
+            return_if_fail(tree != null && path != null);
             Gtk.TreeIter? iter = null;
             if (!tree.model.get_iter_first(out iter))
                 return null;

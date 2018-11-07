@@ -15,6 +15,7 @@ font_manager_VALASOURCES = \
 	Filters/Disabled.vala \
 	Filters/FontListFilter.vala \
 	Filters/Unsorted.vala \
+	Filters/UserFonts.vala \
 	FontList.vala \
 	MainWindow.vala \
 	Migration.vala \

@@ -149,11 +149,8 @@ namespace FontManager {
                     return true;
                 } else {
                     /* Preview row */
-                    Idle.add(() => {
-                        if (p.prev())
-                            s.select_path(p);
-                        return false;
-                    });
+                    if (p.prev())
+                        s.select_path(p);
                     return false;
                 }
             });

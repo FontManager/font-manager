@@ -44,8 +44,7 @@ namespace FontManager {
         public signal void update_begin ();
         public signal void update_complete ();
 
-        Database db;
-        GLib.List <Category> categories;
+        GLib.List <Category>? categories = null;
 
         construct {
             set_column_types({typeof(Object), typeof(string), typeof(string), typeof(string) });
@@ -54,7 +53,7 @@ namespace FontManager {
         void init_categories () {
             categories = null;
             try {
-                db = get_database(DatabaseType.BASE);
+                Database db = get_database(DatabaseType.BASE);
                 categories = get_default_categories(db);
             } catch (DatabaseError e) {
                 critical(e.message);
@@ -64,8 +63,11 @@ namespace FontManager {
 
         void append_category (Category filter) {
             if (filter.index < CategoryIndex.N_CORE) {
-                filter.update(db);
-                filter.requires_update = false;
+                filter.update.begin((obj, res) => {
+                    filter.update.end(res);
+                    filter.requires_update = false;
+                });
+
             }
             Gtk.TreeIter iter;
             this.append(out iter, null);
@@ -86,9 +88,12 @@ namespace FontManager {
         public void update () {
             update_begin();
             clear();
-            init_categories();
-            foreach (var filter in categories)
+            if (categories == null)
+                init_categories();
+            foreach (var filter in categories) {
+                filter.requires_update = true;
                 append_category((Category) filter);
+            }
             update_complete();
             return;
         }
@@ -114,19 +119,21 @@ namespace FontManager {
                 return _model;
             }
             set {
+                update_in_progress = true;
                 _model = value;
                 tree.set_model(_model);
                 select_first_row();
                 _model.update_begin.connect(() => {
                     spinner.show();
                     spinner.start();
-                    queue_draw();
-                    update_in_progress = true;
+                    Timeout.add(50, () => {
+                        queue_draw();
+                        return update_in_progress;
+                    });
                 });
                 _model.update_complete.connect(() => {
                     spinner.stop();
                     spinner.hide();
-                    queue_draw();
                     update_in_progress = false;
                 });
             }
@@ -236,26 +243,28 @@ namespace FontManager {
             /* NOTE :
              * Category updates are delayed till actual selection
              * Depending on size it may take a moment for the category to load
-             * Using an idle source to prevent input lag
              */
-            Idle.add(() => {
-                if (selected_filter.requires_update) {
-                    try {
-                        Database db = get_database(DatabaseType.BASE);
-                        if (selected_filter.index < CategoryIndex.N_GENERATED)
-                            selected_filter.update(db);
-                        else if (selected_filter.index == CategoryIndex.DISABLED)
-                            if (reject != null)
-                                ((Disabled) selected_filter).update(db, reject);
+            if (selected_filter.requires_update) {
+                Idle.add(() => {
+                    if (!selected_filter.requires_update)
+                        tree.queue_draw();
+                    return selected_filter.requires_update;
+                });
+                if (selected_filter.index < CategoryIndex.N_GENERATED)
+                    selected_filter.update.begin((obj, res) => {
+                        selected_filter.update.end(res);
                         selected_filter.requires_update = false;
-                    } catch (DatabaseError e) {
-                        warning(e.message);
+                    });
+                else if (selected_filter.index == CategoryIndex.DISABLED)
+                    if (reject != null) {
+                        var filter = ((Disabled) selected_filter);
+                        filter.update.begin(reject, (obj, res) => {
+                            filter.update.end(res);
+                            selected_filter.requires_update = false;
+                        });
+
                     }
-                }
-                /* Need to refresh counts */
-                tree.queue_draw();
-                return false;
-            });
+            }
             selection_changed(((Category) val), path.get_indices()[0]);
             if (path.get_depth() < 2) {
                 tree.collapse_all();
@@ -264,16 +273,6 @@ namespace FontManager {
             selected_iter = model.get_string_from_iter(iter);
             val.unset();
             return;
-        }
-
-    }
-
-    public class UserFonts : Category {
-
-        public UserFonts () {
-            string user_font_dir = get_user_font_directory();
-            string sql = "%s filepath LIKE \"%s%\";".printf(SELECT_FROM_METADATA_WHERE, user_font_dir);
-            base(_("User"), _("Fonts available only to you"), "avatar-default", sql);
         }
 
     }

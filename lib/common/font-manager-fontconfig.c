@@ -25,6 +25,9 @@
 #include <fontconfig/fontconfig.h>
 #include <fontconfig/fcfreetype.h>
 #include <json-glib/json-glib.h>
+#include <pango/pango-font.h>
+#include <pango/pangofc-font.h>
+#include <pango/pangofc-fontmap.h>
 
 #include "font-manager-fontconfig.h"
 #include "json.h"
@@ -34,7 +37,6 @@
 
 static GList * list_charset (const FcCharSet *charset);
 static void process_fontset (const FcFontSet *fontset, JsonObject *json_obj);
-static gchar * get_description_from_font_object (JsonObject *font_obj);
 
 static const gchar *DEFAULT_VARIANTS[5] = {
     "Regular",
@@ -51,7 +53,7 @@ static const gchar *DEFAULT_VARIANTS[5] = {
  */
 gboolean
 update_font_configuration (void) {
-    return (FcConfigDestroy(FcConfigGetCurrent()), !FcConfigUptoDate(NULL) && FcInitReinitialize());
+    return (FcConfigDestroy(FcConfigGetCurrent()), FcInitReinitialize());
 }
 
 /**
@@ -78,7 +80,7 @@ enable_user_font_configuration (gboolean enable)
 gboolean
 add_application_font (const gchar *filepath)
 {
-    return FcConfigAppFontAddFile(NULL, (FcChar8 *) filepath);
+    return FcConfigAppFontAddFile(FcConfigGetCurrent(), (FcChar8 *) filepath);
 }
 
 /**
@@ -92,7 +94,7 @@ add_application_font (const gchar *filepath)
 gboolean
 add_application_font_directory (const gchar *dir)
 {
-    return FcConfigAppFontAddDir(NULL, (FcChar8 *) dir);
+    return FcConfigAppFontAddDir(FcConfigGetCurrent(), (FcChar8 *) dir);
 }
 
 /**
@@ -103,7 +105,7 @@ add_application_font_directory (const gchar *dir)
 void
 clear_application_fonts (void)
 {
-    FcConfigAppFontClear(NULL);
+    FcConfigAppFontClear(FcConfigGetCurrent());
     return;
 }
 
@@ -165,9 +167,9 @@ list_font_directories (gboolean recursive)
     GList *result = NULL;
 
     if (recursive)
-        fdlist = FcConfigGetFontDirs(NULL);
+        fdlist = FcConfigGetFontDirs(FcConfigGetCurrent());
     else
-        fdlist = FcConfigGetConfigDirs(NULL);
+        fdlist = FcConfigGetConfigDirs(FcConfigGetCurrent());
     while ((directory = FcStrListNext(fdlist)))
         result = g_list_prepend(result, g_strdup_printf("%s", directory));
 
@@ -192,7 +194,7 @@ list_user_font_directories (void)
     FcStrList *fdlist = NULL;
     GList *result = NULL;
 
-    fdlist = FcConfigGetConfigDirs(NULL);
+    fdlist = FcConfigGetConfigDirs(FcConfigGetCurrent());
     while ((directory = FcStrListNext(fdlist)))
         if (get_file_owner((const gchar *) directory) == 0)
             result = g_list_prepend(result, g_strdup_printf("%s", directory));
@@ -454,20 +456,9 @@ get_attributes_from_fontconfig_pattern (FcPattern *pattern)
         }
     }
 
-    //if (G_UNLIKELY(g_getenv("DEBUG"))) {
-        //FcChar8 *pattern_string = FcNameUnparse(pattern);
-        //g_debug("%s :: %s", file, pattern_string);
-        //json_object_set_string_member(json_obj, "pattern", (gchar *) pattern_string);
-        //FcStrFree(pattern_string);
-    //}
-
-#ifdef HAVE_PANGO
     PangoFontDescription *descr = pango_fc_font_description_from_pattern(pattern, FALSE);
     gchar *font_desc = pango_font_description_to_string(descr);
     pango_font_description_free(descr);
-#else
-    gchar *font_desc = get_description_from_font_object(json_obj);
-#endif /* HAVE_PANGO */
     json_object_set_string_member(json_obj, "description", font_desc);
     g_free(font_desc);
 
@@ -660,117 +651,6 @@ sort_json_font_listing (JsonObject *json_obj)
     g_list_free(members);
     return result;
 }
-
-
-#ifdef HAVE_PANGO
-
-#include <pango/pango-font.h>
-#include <pango/pangofc-font.h>
-#include <pango/pangofc-fontmap.h>
-
-#else
-
-static const gchar *
-fc_width_to_str (int fc_stretch)
-{
-    switch (fc_stretch) {
-        case FC_WIDTH_ULTRACONDENSED:
-            return "Ultra-Condensed";
-        case FC_WIDTH_EXTRACONDENSED:
-            return "Extra-Condensed";
-        case FC_WIDTH_CONDENSED:
-            return "Condensed";
-        case FC_WIDTH_SEMICONDENSED:
-            return "Semi-Condensed";
-        case FC_WIDTH_SEMIEXPANDED:
-            return "Semi-Expanded";
-        case FC_WIDTH_EXPANDED:
-            return "Expanded";
-        case FC_WIDTH_EXTRAEXPANDED:
-            return "Extra-Expanded";
-        case FC_WIDTH_ULTRAEXPANDED:
-            return "Ultra-Expanded";
-        default:
-            return NULL;
-    }
-}
-
-#define THIN ((FC_WEIGHT_THIN + FC_WEIGHT_EXTRALIGHT) / 2)
-#define ULTRALIGHT ((FC_WEIGHT_EXTRALIGHT + FC_WEIGHT_LIGHT) / 2)
-#define LIGHT ((FC_WEIGHT_LIGHT + FC_WEIGHT_DEMILIGHT) / 2)
-#define SEMILIGHT ((FC_WEIGHT_DEMILIGHT + FC_WEIGHT_BOOK) / 2)
-#define BOOK ((FC_WEIGHT_BOOK + FC_WEIGHT_REGULAR) / 2)
-#define REGULAR ((FC_WEIGHT_REGULAR + FC_WEIGHT_MEDIUM) / 2)
-#define MEDIUM ((FC_WEIGHT_MEDIUM + FC_WEIGHT_DEMIBOLD) / 2)
-#define SEMIBOLD ((FC_WEIGHT_DEMIBOLD + FC_WEIGHT_BOLD) / 2)
-#define BOLD ((FC_WEIGHT_BOLD + FC_WEIGHT_EXTRABOLD) / 2)
-#define ULTRABOLD ((FC_WEIGHT_EXTRABOLD + FC_WEIGHT_BLACK) / 2)
-#define HEAVY ((FC_WEIGHT_BLACK + FC_WEIGHT_EXTRABLACK) / 2)
-
-static const gchar *
-fc_weight_to_str (int fc_weight)
-{
-    if (fc_weight <= THIN)
-        return "Thin";
-    else if (fc_weight <= ULTRALIGHT)
-        return "Ultra-Light";
-    else if (fc_weight <= LIGHT)
-        return "Light";
-    else if (fc_weight <= SEMILIGHT)
-        return "Semi-Light";
-    else if (fc_weight <= BOOK)
-        return "Book";
-    else if (fc_weight <= REGULAR)
-        return NULL;
-    else if (fc_weight <= MEDIUM)
-        return "Medium";
-    else if (fc_weight <= SEMIBOLD)
-        return "Semi-Bold";
-    else if (fc_weight <= BOLD)
-        return "Bold";
-    else if (fc_weight <= ULTRABOLD)
-        return "Ultra-Bold";
-    else if (fc_weight <= HEAVY)
-        return "Heavy";
-    else
-        return "Ultra-Heavy";
-}
-
-static const gchar *
-fc_slant_to_str (int fc_style)
-{
-    switch (fc_style) {
-        case FC_SLANT_ITALIC:
-            return "Italic";
-        case FC_SLANT_OBLIQUE:
-            return "Oblique";
-        default:
-            return NULL;
-    }
-}
-
-static gchar *
-get_description_from_font_object (JsonObject *font_obj)
-{
-    GString *font_desc = g_string_new(NULL);
-    const gchar *family = json_object_get_string_member(font_obj, "family");
-    const gchar *style = json_object_get_string_member(font_obj, "style");
-    const gchar *width = fc_width_to_str(json_object_get_int_member(font_obj, "width"));
-    const gchar *weight = fc_weight_to_str(json_object_get_int_member(font_obj, "weight"));
-    const gchar *slant = fc_slant_to_str(json_object_get_int_member(font_obj, "slant"));
-    g_string_append(font_desc, family);
-    if (width)
-        g_string_append_printf(font_desc, " %s", width);
-    if (weight)
-        g_string_append_printf(font_desc, " %s", weight);
-    if (slant)
-        g_string_append_printf(font_desc, " %s", slant);
-    if (g_strcmp0(g_strstrip(font_desc->str), family) == 0)
-        g_string_append_printf(font_desc, " %s", style);
-    return g_string_free(font_desc, FALSE);
-}
-
-#endif /* HAVE_PANGO */
 
 /* From pangofc-fontmap.c */
 static GList *

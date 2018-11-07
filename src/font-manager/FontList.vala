@@ -231,8 +231,6 @@ namespace FontManager {
 
     public class FontList : BaseTreeView {
 
-        public signal void selection_changed ();
-
         public new Gtk.TreeModel? model {
             get {
                 return base.get_model();
@@ -353,15 +351,17 @@ namespace FontManager {
             Object object = val.get_object();
             if (object is Family) {
                 selected_font.source_object = ((Family) object).get_default_variant();
-                Idle.add(() => { notify_property("selected-font"); return false; });
+                notify_property("selected-font");
             } else {
                 selected_font = ((Font) object);
             }
             selected_family = selected_font.family;
             selected_iter = model.get_string_from_iter(iter);
             val.unset();
-            selection_changed();
-            installable.set_visible(selection_is_sourced());
+            Idle.add(() => {
+                installable.set_visible(selection_is_sourced());
+                return false;
+            });
             return;
         }
 
@@ -793,10 +793,7 @@ namespace FontManager {
                     selected_fonts.add(font.description);
             }
             val.unset();
-            Idle.add(() => {
-                queue_draw();
-                return false;
-            });
+            queue_draw();
             return;
         }
 

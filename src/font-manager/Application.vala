@@ -114,7 +114,11 @@ namespace FontManager {
     [DBus (name = "org.gnome.FontManager")]
     public class Application: Gtk.Application  {
 
-        bool update_in_progress = false;
+        [DBus (visible = false)]
+        public bool update_in_progress { get; private set; default = false; }
+        [DBus (visible = false)]
+        public StringHashset? available_font_families { get; set; default = null; }
+
         MainWindow? main_window = null;
         StringHashset? attached = null;
 
@@ -212,6 +216,7 @@ namespace FontManager {
             string? accels [] = {"<Ctrl>q", null };
             set_accels_for_action("app.quit", accels);
             settings = get_gsettings(BUS_ID);
+            available_font_families = new StringHashset();
             sources = new Sources();
             reject = new Reject();
             reject.load();
@@ -327,10 +332,13 @@ namespace FontManager {
             update_font_configuration();
             load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
             Json.Object available_fonts = get_available_fonts(null);
+            available_font_families.clear();
             Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
-            var model = new FontModel();
+            FontModel model = new FontModel();
             model.source_array = sorted_fonts;
             main_window.model = model;
+            foreach (string family in available_fonts.get_members())
+                available_font_families.add(family);
             update_database_tables();
             return;
         }
@@ -356,7 +364,6 @@ namespace FontManager {
             {
                 try {
                     Database main_db = get_database(DatabaseType.BASE);
-                    main_db.unref();
                     main_db.unref();
                     main_db = null;
                     settings = null;
@@ -414,6 +421,7 @@ namespace FontManager {
             GLib.Intl.textdomain(Config.PACKAGE_NAME);
             GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
             Environment.set_application_name(About.DISPLAY_NAME);
+            enable_user_font_configuration(false);
             Gtk.init(ref args);
             if (update_declined())
                 return 0;

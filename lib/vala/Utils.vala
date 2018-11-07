@@ -90,14 +90,6 @@ public Pango.FontDescription get_font (Gtk.Widget widget, Gtk.StateFlags flags =
     return desc.copy();
 }
 
-public bool is_left_to_right (Gtk.Widget widget) {
-    var context = widget.get_style_context();
-    var state = context.get_state();
-    if ((state & Gtk.StateFlags.DIR_LTR) != 0)
-        return true;
-    return false;
-}
-
 public Gtk.Separator add_separator (Gtk.Box box,
                                     Gtk.Orientation orientation = Gtk.Orientation.VERTICAL,
                                     Gtk.PackType pack_type = Gtk.PackType.START) {

@@ -282,16 +282,10 @@ namespace FontManager {
                 get_column(0).queue_resize();
             });
             controls.add_selected.connect(() => {
-                Idle.add(() => {
-                    on_add_collection();
-                    return false;
-                });
+                on_add_collection();
             });
             controls.remove_selected.connect(() => {
-                Idle.add(() => {
-                    on_remove_collection();
-                    return false;
-                });
+                on_remove_collection();
             });
             get_selection().changed.connect(on_selection_changed);
             renderer.edited.connect(on_edited);
