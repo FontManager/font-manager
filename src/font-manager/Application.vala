@@ -119,6 +119,7 @@ namespace FontManager {
         [DBus (visible = false)]
         public StringHashset? available_font_families { get; set; default = null; }
 
+        bool category_update_required = false;
         MainWindow? main_window = null;
         StringHashset? attached = null;
 
@@ -154,7 +155,9 @@ namespace FontManager {
         void update_interface_on_db_change () {
             if (main_window == null)
                 return;
-            if (attached.contains("Fonts") && attached.contains("Metadata")) {
+            if (category_update_required &&
+                attached.contains("Fonts") &&
+                attached.contains("Metadata")) {
                 /* Re-select category after an update to prevent blank list */
                 if (main_window.sidebar.standard.selected_category != null) {
                     int index = main_window.sidebar.standard.selected_category.index;
@@ -164,23 +167,21 @@ namespace FontManager {
                     selection.unselect_all();
                     main_window.sidebar.category_model.update();
                     selection.select_path(path);
-                    main_window.fontpane.refilter();
                 } else {
                     main_window.sidebar.category_model.update();
                     main_window.sidebar.standard.category_tree.select_first_row();
                 }
                 main_window.fontlist.queue_draw();
                 main_window.browser.treeview.queue_draw();
+                category_update_required = false;
             }
             if (attached.contains("Fonts") &&
                 attached.contains("Metadata") &&
                 attached.contains("Orthography")) {
                 update_in_progress = false;
-                Timeout.add(250, () => {
-                    var samples = get_non_latin_samples();
-                    main_window.fontlist.samples = samples;
-                    return main_window.fontlist.samples == null;
-                });
+                main_window.fontlist.samples = get_non_latin_samples();
+                if (main_window.fontlist.samples == null)
+                    warning("Failed to generate previews for fonts which do not support Basic Latin");
             }
             return;
         }
@@ -329,6 +330,7 @@ namespace FontManager {
             if (update_in_progress)
                 return;
             update_in_progress = true;
+            category_update_required = true;
             update_font_configuration();
             load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
             Json.Object available_fonts = get_available_fonts(null);

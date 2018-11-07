@@ -102,7 +102,7 @@ namespace FontManager {
         }
 
         /* Add slight delay to avoid filtering while search is still changing */
-        void queue_refilter () {
+        public void queue_refilter () {
             if (search_timeout != null)
                 GLib.Source.remove(search_timeout);
             search_timeout = Timeout.add(333, refilter);
@@ -110,7 +110,7 @@ namespace FontManager {
         }
 
         void connect_signals () {
-            notify["filter"].connect(() => { queue_refilter(); });
+            notify["filter"].connect(() => { refilter(); });
             controls.entry.search_changed.connect(() => { queue_refilter(); });
             controls.expand_all.connect((e) => {
                 if (e)

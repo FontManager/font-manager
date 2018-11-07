@@ -45,8 +45,8 @@
 
     <note style="tip">
         <p>
-        You can also double-click or press
-        <gui style="button">Enter</gui> to toggle the selected font.
+        You can also double-click, press <gui style="button">Space</gui> or
+        press <gui style="button">Enter</gui> to toggle the selected font.
         </p>
         <p>
         <link xref="organize#user-collections">Collections</link>

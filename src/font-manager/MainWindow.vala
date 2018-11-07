@@ -368,7 +368,6 @@ namespace FontManager {
                     fontpane.filter = sidebar.standard.selected_collection;
                 bool sensitive = (mode == Mode.MANAGE && m == StandardSideBarMode.COLLECTION);
                 fontpane.controls.set_remove_sensitivity(sensitive);
-                fontpane.refilter();
             });
 
             fontpane.controls.remove_selected.connect(() => {
@@ -388,7 +387,6 @@ namespace FontManager {
                         return false;
                     });
                 }
-                fontpane.refilter();
                 fontlist.queue_draw();
                 browser.treeview.queue_draw();
             });
@@ -758,7 +756,7 @@ namespace FontManager {
         }
 
         Gtk.TreePath? restore_last_selected_treepath (Gtk.TreeView? tree, string? path) {
-            return_if_fail(tree != null && path != null);
+            return_val_if_fail(tree != null && tree.model != null && path != null, null);
             Gtk.TreeIter? iter = null;
             if (!tree.model.get_iter_first(out iter))
                 return null;
