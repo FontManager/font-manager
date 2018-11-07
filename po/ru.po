@@ -20,9 +20,9 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: font-manager 0.7.3\n"
+"Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-03 18:33-0400\n"
+"POT-Creation-Date: 2018-11-06 20:24-0500\n"
 "PO-Revision-Date: 2017-05-13 03:54+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: none <@>\n"
@@ -247,11 +247,11 @@ msgstr "Символы"
 msgid "Properties"
 msgstr "Свойства"
 
-#: ../lib/vala/FontPreviewPane.vala:259 ../src/font-manager/Categories.vala:301
+#: ../lib/vala/FontPreviewPane.vala:259 ../src/font-manager/Categories.vala:300
 msgid "License"
 msgstr "Лицензия"
 
-#: ../lib/vala/FontPreviewPane.vala:389
+#: ../lib/vala/FontPreviewPane.vala:384
 msgid "Select preview type"
 msgstr "Выберите тип предварительного просмотра"
 
@@ -263,19 +263,19 @@ msgstr "Файл не содержит информацию о лицензии.
 msgid "PostScript Name"
 msgstr "Название PostScript"
 
-#: ../lib/vala/Metadata.vala:197 ../src/font-manager/Categories.vala:293
+#: ../lib/vala/Metadata.vala:197 ../src/font-manager/Categories.vala:292
 msgid "Width"
 msgstr "Ширина"
 
-#: ../lib/vala/Metadata.vala:198 ../src/font-manager/Categories.vala:297
+#: ../lib/vala/Metadata.vala:198 ../src/font-manager/Categories.vala:296
 msgid "Slant"
 msgstr "Скос"
 
-#: ../lib/vala/Metadata.vala:199 ../src/font-manager/Categories.vala:295
+#: ../lib/vala/Metadata.vala:199 ../src/font-manager/Categories.vala:294
 msgid "Weight"
 msgstr "Вес"
 
-#: ../lib/vala/Metadata.vala:200 ../src/font-manager/Categories.vala:299
+#: ../lib/vala/Metadata.vala:200 ../src/font-manager/Categories.vala:298
 msgid "Spacing"
 msgstr "Отступ"
 
@@ -283,130 +283,119 @@ msgstr "Отступ"
 msgid "Version"
 msgstr "Версия"
 
-#: ../lib/vala/Metadata.vala:202 ../src/font-manager/Categories.vala:303
+#: ../lib/vala/Metadata.vala:202 ../src/font-manager/Categories.vala:302
 msgid "Vendor"
 msgstr "Поставщик"
 
 #: ../lib/vala/Metadata.vala:203
-#, fuzzy
 msgid "FileType"
-msgstr "Тип файла"
+msgstr ""
 
 #: ../lib/vala/Metadata.vala:204
-#, fuzzy
 msgid "Filesize"
-msgstr "Тип файла"
+msgstr ""
 
 #: ../lib/vala/Orthography.vala:111
-#, fuzzy
 msgid "Update in progress"
-msgstr "Требуется обновление"
+msgstr ""
 
-#: ../lib/vala/Orthography.vala:230
+#: ../lib/vala/Orthography.vala:236
 msgid "Coverage"
 msgstr ""
 
-#: ../lib/vala/Orthography.vala:273
+#: ../lib/vala/Orthography.vala:279
 msgid "Supported Orthographies"
 msgstr ""
 
-#: ../lib/vala/Orthography.vala:281
+#: ../lib/vala/Orthography.vala:287
 msgid "Clear selected filter"
 msgstr ""
 
-#: ../src/font-manager/Categories.vala:276
-msgid "User"
-msgstr "Пользовательские"
-
-#: ../src/font-manager/Categories.vala:276
-msgid "Fonts available only to you"
-msgstr "Шрифты, доступные только вам"
-
-#: ../src/font-manager/Categories.vala:285
+#: ../src/font-manager/Categories.vala:284
 msgid "All"
 msgstr "Все"
 
-#: ../src/font-manager/Categories.vala:285
+#: ../src/font-manager/Categories.vala:284
 msgid "All Fonts"
 msgstr "Все шрифты"
 
-#: ../src/font-manager/Categories.vala:287
+#: ../src/font-manager/Categories.vala:286
 msgid "System"
 msgstr "Системные"
 
-#: ../src/font-manager/Categories.vala:287
+#: ../src/font-manager/Categories.vala:286
 msgid "Fonts available to all users"
 msgstr "Шрифты, доступные всем пользователям"
 
-#: ../src/font-manager/Categories.vala:293
+#: ../src/font-manager/Categories.vala:292
 msgid "Grouped by font width"
 msgstr "Сгруппированные по ширине"
 
-#: ../src/font-manager/Categories.vala:295
+#: ../src/font-manager/Categories.vala:294
 msgid "Grouped by font weight"
 msgstr "Сгруппированные по весу"
 
-#: ../src/font-manager/Categories.vala:297
+#: ../src/font-manager/Categories.vala:296
 msgid "Grouped by font angle"
 msgstr "Сгруппированные по углу"
 
-#: ../src/font-manager/Categories.vala:299
+#: ../src/font-manager/Categories.vala:298
 msgid "Grouped by font spacing"
 msgstr "Сгруппированные по отступу"
 
-#: ../src/font-manager/Categories.vala:301
+#: ../src/font-manager/Categories.vala:300
 msgid "Grouped by license type"
 msgstr "Сгруппированные по лицензии"
 
-#: ../src/font-manager/Categories.vala:303
+#: ../src/font-manager/Categories.vala:302
 msgid "Grouped by vendor"
 msgstr "Сгруппированные по поставщику"
 
-#: ../src/font-manager/Categories.vala:305
+#: ../src/font-manager/Categories.vala:304
 msgid "Filetype"
 msgstr "Тип файла"
 
-#: ../src/font-manager/Categories.vala:305
+#: ../src/font-manager/Categories.vala:304
 msgid "Grouped by filetype"
 msgstr "Сгруппированные по типу файла"
 
-#: ../src/font-manager/Categories.vala:319
+#: ../src/font-manager/Categories.vala:318
 msgid "Family Kind"
 msgstr "Семейство"
 
-#: ../src/font-manager/Categories.vala:319
+#: ../src/font-manager/Categories.vala:318
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr "Здесь сгруппированы только шрифты, имеющие информацию PANOSE."
 
-#: ../src/font-manager/Categories.vala:320
+#: ../src/font-manager/Categories.vala:319
 msgid "Any"
 msgstr "Любой"
 
-#: ../src/font-manager/Categories.vala:320
+#: ../src/font-manager/Categories.vala:319
 msgid "No Fit"
 msgstr "Нет соответствующих"
 
-#: ../src/font-manager/Categories.vala:320
+#: ../src/font-manager/Categories.vala:319
 msgid "Text and Display"
 msgstr "Текст и экран"
 
-#: ../src/font-manager/Categories.vala:320
+#: ../src/font-manager/Categories.vala:319
 msgid "Script"
 msgstr "Скрипт"
 
-#: ../src/font-manager/Categories.vala:320
+#: ../src/font-manager/Categories.vala:319
 msgid "Decorative"
 msgstr "Декортивные"
 
-#: ../src/font-manager/Categories.vala:320
+#: ../src/font-manager/Categories.vala:319
 msgid "Pictorial"
 msgstr "Изобразительные"
 
-#: ../src/font-manager/Categories.vala:344
+#: ../src/font-manager/Categories.vala:343
 msgid "Normal"
 msgstr "Нормальный"
 
-#: ../src/font-manager/Categories.vala:349
+#: ../src/font-manager/Categories.vala:348
 msgid "Regular"
 msgstr "Обычный"
 
@@ -450,14 +439,13 @@ msgid "Remove selected collection"
 msgstr "Удалить выбранную коллекцию"
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/font-manager/Collections.vala:478
+#: ../src/font-manager/Collections.vala:472
 msgid "Copy to..."
 msgstr ""
 
-#: ../src/font-manager/Collections.vala:479
-#, fuzzy
+#: ../src/font-manager/Collections.vala:473
 msgid "Compress..."
-msgstr "Сравнение"
+msgstr ""
 
 #: ../src/font-manager/Compare.vala:33
 msgid "Add selected font to comparison"
@@ -476,13 +464,12 @@ msgid "Select background color"
 msgstr "Выбрать цвет фона"
 
 #: ../src/font-manager/FileSelector.vala:26
-#, fuzzy
 msgid "Select Destination"
-msgstr "Выберите файлы для установки"
+msgstr ""
 
 #: ../src/font-manager/FileSelector.vala:29
 #: ../src/font-manager/FileSelector.vala:49
-#: ../src/font-manager/FileSelector.vala:95
+#: ../src/font-manager/FileSelector.vala:88
 #: ../src/font-manager/Migration.vala:55
 #: ../src/font-manager/Preferences/Sources.vala:190
 msgid "_Cancel"
@@ -501,15 +488,15 @@ msgstr "Выберите файлы для установки"
 msgid "_Open"
 msgstr "_Открыть"
 
-#: ../src/font-manager/FileSelector.vala:96
+#: ../src/font-manager/FileSelector.vala:89
 msgid "_Delete"
 msgstr "_Удалить"
 
-#: ../src/font-manager/FileSelector.vala:101
+#: ../src/font-manager/FileSelector.vala:94
 msgid "Select fonts to remove"
 msgstr "Выберите файлы для удаления"
 
-#: ../src/font-manager/FileSelector.vala:112
+#: ../src/font-manager/FileSelector.vala:105
 msgid "Fonts installed in your home directory will appear here."
 msgstr ""
 
@@ -538,6 +525,14 @@ msgstr "Неотсортированные"
 msgid "Fonts not present in any collection"
 msgstr "Шрифты, не входящие ни в одну коллекцию"
 
+#: ../src/font-manager/Filters/UserFonts.vala:28
+msgid "User"
+msgstr "Пользовательские"
+
+#: ../src/font-manager/Filters/UserFonts.vala:28
+msgid "Fonts available only to you"
+msgstr "Шрифты, доступные только вам"
+
 #: ../src/font-manager/FontList.vala:170
 msgid "Remove selected font from collection"
 msgstr "Удалить выбранный шрифт из коллекции"
@@ -556,9 +551,8 @@ msgstr "Свернуть все"
 
 #. action_name, display_name, detailed_action_name, accelerator, method
 #: ../src/font-manager/FontList.vala:508
-#, fuzzy
 msgid "Install"
-msgstr "Установленные"
+msgstr ""
 
 #: ../src/font-manager/FontList.vala:509
 msgid "Copy Location"
@@ -744,14 +738,12 @@ msgid "Select source folders"
 msgstr "Выберите папки источников"
 
 #: ../src/font-manager/Preferences/Substitutions.vala:33
-#, fuzzy
 msgid "Add alias"
-msgstr "Сглаживание"
+msgstr ""
 
 #: ../src/font-manager/Preferences/Substitutions.vala:34
-#, fuzzy
 msgid "Remove selected alias"
-msgstr "Удалить выбранный источник"
+msgstr ""
 
 #: ../src/font-manager/Preferences/Substitutions.vala:88
 msgid "Font Substitutions"
@@ -762,11 +754,8 @@ msgid "Easily substitute one font family for another."
 msgstr ""
 
 #: ../src/font-manager/Preferences/Substitutions.vala:90
-#, fuzzy
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr ""
-"Для добавления нового источника просто перетащите папку в данную область или "
-"нажмите на кнопку \"Добавить\" на панели инструментов."
 
 #: ../src/font-manager/Preferences/Substitutions.vala:224
 msgid "Enter target family"
@@ -908,14 +897,12 @@ msgid "Not found."
 msgstr ""
 
 #: ../lib/unicode/unicode-character-map.c:647
-#, fuzzy
 msgid "Character found."
-msgstr "Символы"
+msgstr ""
 
 #: ../data/org.gnome.FontManager.appdata.xml.in.h:2
-#, fuzzy
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr "Простой менеджер шрифтов для сред рабочего стола на основе GTK+"
+msgstr ""
 
 #: ../data/org.gnome.FontManager.appdata.xml.in.h:3
 msgid ""
@@ -928,9 +915,8 @@ msgid ""
 msgstr ""
 
 #: ../data/org.gnome.FontViewer.appdata.xml.in.h:2
-#, fuzzy
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr "Простой менеджер шрифтов для сред рабочего стола на основе GTK+"
+msgstr ""
 
 #: ../data/org.gnome.FontViewer.appdata.xml.in.h:3
 msgid ""
@@ -938,66 +924,3 @@ msgid ""
 "features several ways to preview font files along with a character map and "
 "displays font properties and license details. </p>"
 msgstr ""
-
-#, fuzzy
-#~ msgid "Arrows"
-#~ msgstr "Просмотр"
-
-#, fuzzy
-#~ msgid "Variation Selectors"
-#~ msgstr "Вариация"
-
-#, fuzzy
-#~ msgid "Carian"
-#~ msgstr "Вариация"
-
-#, fuzzy
-#~ msgid "Old Italic"
-#~ msgstr "Курсив (Italic)"
-
-#, fuzzy
-#~ msgid "Domino Tiles"
-#~ msgstr "Удаление файлов"
-
-#, fuzzy
-#~ msgid "Signwriting"
-#~ msgstr "Хинтинг"
-
-#~ msgid "Loading available font families"
-#~ msgstr "Загрузка доступных семейств шрифтов"
-
-#~ msgid " Generated by Font Manager. Do NOT edit this file. "
-#~ msgstr "Данный файл создан програмой Менеджер шрифтов. НЕ изменяйте его!"
-
-#~ msgid "Installing files"
-#~ msgstr "Установка файлов"
-
-#~ msgid "Preparing Archives"
-#~ msgstr "Подготовка архивов"
-
-#~ msgid "Processing directories"
-#~ msgstr "Обработка папок"
-
-#~ msgid "Processing files"
-#~ msgstr "Обработка файлов"
-
-#~ msgid "Unicode Script"
-#~ msgstr "Скрипт Unicode"
-
-#~ msgid "Unicode Block"
-#~ msgstr "Блок Unicode"
-
-#~ msgid "Quit"
-#~ msgstr "Выйти"
-
-#~ msgid "Newer version already installed"
-#~ msgstr "Последняя версия программы уже установлена."
-
-#~ msgid "_Help"
-#~ msgstr "_Помощь"
-
-#~ msgid "_About"
-#~ msgstr "_О программе"
-
-#~ msgid "_Quit"
-#~ msgstr "_Выйти"

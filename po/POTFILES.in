@@ -25,6 +25,7 @@ src/font-manager/Filters/Collection.vala
 src/font-manager/Filters/Disabled.vala
 src/font-manager/Filters/FontListFilter.vala
 src/font-manager/Filters/Unsorted.vala
+src/font-manager/Filters/UserFonts.vala
 src/font-manager/FontList.vala
 src/font-manager/MainWindow.vala
 src/font-manager/Migration.vala

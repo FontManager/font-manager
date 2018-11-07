@@ -25,6 +25,7 @@ src/font-manager/Filters/Collection.c
 src/font-manager/Filters/Disabled.c
 src/font-manager/Filters/FontListFilter.c
 src/font-manager/Filters/Unsorted.c
+src/font-manager/Filters/UserFonts.c
 src/font-manager/FontList.c
 src/font-manager/MainWindow.c
 src/font-manager/Migration.c

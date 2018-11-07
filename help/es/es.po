@@ -2,8 +2,8 @@
 # Toni Estevez <toni.estevez@gmail.com>, 2017. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: font-manager 0.7.3\n"
-"POT-Creation-Date: 2018-11-03 18:33-0400\n"
+"Project-Id-Version: font-manager 0.7.4\n"
+"POT-Creation-Date: 2018-11-06 20:24-0500\n"
 "PO-Revision-Date: 2017-03-05 11:11+0000\n"
 "Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -40,10 +40,9 @@ msgstr ""
 
 #. (itstool) path: info/title
 #: C/index.page:10
-#, fuzzy
 msgctxt "link"
 msgid "Font Manager"
-msgstr "Gestor de tipografías"
+msgstr ""
 
 #. (itstool) path: info/title
 #: C/index.page:11
@@ -58,9 +57,8 @@ msgstr "Jerry Casiano"
 
 #. (itstool) path: credit/years
 #: C/index.page:16
-#, fuzzy
 msgid "2009-2018"
-msgstr "2009–2016"
+msgstr ""
 
 #. (itstool) path: credit/name
 #: C/index.page:20
@@ -86,13 +84,10 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/index.page:29
-#, fuzzy
 msgid ""
 "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
 "font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
-"<media type=\"image\" mime=\"image/png\" src=\"media/logo.png\">Logo de Font "
-"Manager</media> Gestor de tipografías"
 
 #. (itstool) path: section/title
 #: C/index.page:37
@@ -482,9 +477,8 @@ msgstr ""
 
 #. (itstool) path: page/title
 #: C/font-manager-font-activation.page:11
-#, fuzzy
 msgid "Activation"
-msgstr "Localización"
+msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:13
@@ -874,9 +868,8 @@ msgstr ""
 
 #. (itstool) path: figure/title
 #: C/font-manager-introduction.page:55
-#, fuzzy
 msgid "<app>Font Manager</app>"
-msgstr "Gestor de tipografías"
+msgstr ""
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -884,11 +877,10 @@ msgstr "Gestor de tipografías"
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-introduction.page:57
-#, fuzzy
 msgctxt "_"
 msgid ""
 "external ref='media/main-window.png' md5='d506a2c07ded6116e4bcfc1bc3c465a6'"
-msgstr "external ref='media/logo.png' md5='9f2f97653d18778001fcf0c180dcf12d'"
+msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:61
@@ -939,286 +931,6 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-license.page:23
-#, fuzzy
 msgctxt "_"
 msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
-msgstr "external ref='media/logo.png' md5='9f2f97653d18778001fcf0c180dcf12d'"
-
-#. (itstool) path: note/p
-#: C/font-manager-license.page:27
-msgid "Not all font files contain licensing information."
 msgstr ""
-
-#. (itstool) path: info/desc
-#: C/font-manager-metadata.page:7
-msgid "View metadata embedded in your font files"
-msgstr ""
-
-#. (itstool) path: page/title
-#: C/font-manager-metadata.page:10
-msgid "Metadata"
-msgstr ""
-
-#. (itstool) path: page/p
-#: C/font-manager-metadata.page:12
-msgid ""
-"While in \"Manage\" mode the preview pane contains a tab labeled \"Properties"
-"\"."
-msgstr ""
-
-#. (itstool) path: page/p
-#: C/font-manager-metadata.page:16
-msgid ""
-"Selecting this tab allows viewing metadata contained in the currently "
-"selected font."
-msgstr ""
-
-#. (itstool) path: figure/title
-#: C/font-manager-metadata.page:22
-#, fuzzy
-msgid "<app>Font Properties tab</app>"
-msgstr "Gestor de tipografías"
-
-#. (itstool) path: figure/media
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/font-manager-metadata.page:23
-#, fuzzy
-msgctxt "_"
-msgid ""
-"external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
-msgstr "external ref='media/logo.png' md5='9f2f97653d18778001fcf0c180dcf12d'"
-
-#. (itstool) path: note/p
-#: C/font-manager-metadata.page:27
-msgid "Some properties are optional and may not be present in all font files."
-msgstr ""
-
-#. (itstool) path: info/desc
-#: C/font-manager-orthographies.page:8
-msgid "View languages supported and their coverage"
-msgstr ""
-
-#. (itstool) path: page/title
-#: C/font-manager-orthographies.page:11
-msgid "Language Support"
-msgstr ""
-
-#. (itstool) path: page/p
-#: C/font-manager-orthographies.page:13
-msgid ""
-"While the character map is in use the sidebar will switch to displaying the "
-"orthographies supported by the currently selected font."
-msgstr ""
-
-#. (itstool) path: page/p
-#: C/font-manager-orthographies.page:18
-msgid ""
-"Selecting an orthography from the list will filter the character map so that "
-"it only displays relevant characters"
-msgstr ""
-
-#. (itstool) path: figure/title
-#: C/font-manager-orthographies.page:28
-msgid "<app>Supported Orthographies</app>"
-msgstr ""
-
-#. (itstool) path: figure/media
-#. This is a reference to an external file such as an image or video. When
-#. the file changes, the md5 hash will change to let you know you need to
-#. update your localized copy. The msgstr is not used at all. Set it to
-#. whatever you like once you have updated your copy of the file.
-#: C/font-manager-orthographies.page:29
-#, fuzzy
-msgctxt "_"
-msgid ""
-"external ref='media/orthographies.png' md5='03e57aabb0162f6db3d40dd0fb1987ee'"
-msgstr "external ref='media/logo.png' md5='9f2f97653d18778001fcf0c180dcf12d'"
-
-#. (itstool) path: info/desc
-#: C/font-manager-substitutions.page:7
-msgid "Substitute one font family for another"
-msgstr ""
-
-#. (itstool) path: page/title
-#: C/font-manager-substitutions.page:10
-msgid "Substitution"
-msgstr ""
-
-#. (itstool) path: page/p
-#: C/font-manager-substitutions.page:12
-msgid ""
-"<app>Font Manager</app> allows you to substitute one font family for another."
-msgstr ""
-
-#. (itstool) path: item/title
-#: C/font-manager-substitutions.page:18
-msgid "To add a substitute:"
-msgstr ""
-
-#. (itstool) path: item/p
-#: C/font-manager-substitutions.page:31 C/font-manager-substitutions.page:88
-#: C/font-manager-substitutions.page:126
-msgid "Select \"Substitutions\" from the sidebar"
-msgstr ""
-
-#. (itstool) path: item/p
-#: C/font-manager-substitutions.page:34
-msgid ""
-"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
-"gui> in the substitutions pane."
-msgstr ""
-
-#. (itstool) path: item/p
-#: C/font-manager-substitutions.page:43
-msgid "Enter the name of the font family you wish to set up a substitute for."
-msgstr ""
-
-#. (itstool) path: item/p
-#: C/font-manager-substitutions.page:48
-msgid ""
-"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
-"gui> on the right."
-msgstr ""
-
-#. (itstool) path: item/p
-#: C/font-manager-substitutions.page:57
-msgid "Enter the name of the substitute family and select the priority level."
-msgstr ""
-
-#. (itstool) path: item/p
-#: C/font-manager-substitutions.page:62
-msgid "Repeat steps 3 - 6 as needed."
-msgstr ""
-
-#. (itstool) path: item/p
-#: C/font-manager-substitutions.page:67 C/font-manager-substitutions.page:105
-msgid ""
-"Click <gui style=\"button\">Save</gui> to write the configuration file when "
-"done."
-msgstr ""
-
-#. (itstool) path: item/title
-#: C/font-manager-substitutions.page:75
-msgid "To remove a substitute:"
-msgstr ""
-
-#. (itstool) path: item/p
-#: C/font-manager-substitutions.page:91
-msgid "Select the entry you wish to remove from the list."
-msgstr ""
-
-#. (itstool) path: item/p
-#: C/font-manager-substitutions.page:96
-msgid ""
-"Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
-"gui> in the substitutions pane."
-msgstr ""
-
-#. (itstool) path: item/title
-#: C/font-manager-substitutions.page:113
-msgid "To remove all substitutes:"
-msgstr ""
-
-#. (itstool) path: item/p
-#: C/font-manager-substitutions.page:129
-msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
-msgstr ""
-
-#. (itstool) path: note/p
-#: C/font-manager-substitutions.page:142
-msgid ""
-"Fonts matching the target family are edited to prepend the list of preferred "
-"families before the matching family, append the acceptable families after "
-"the matching family and append the default families to the end of the family "
-"list."
-msgstr ""
-
-#. (itstool) path: note/p
-#: C/font-manager-substitutions.page:148
-msgid ""
-"While changes are applied immediately open applications may need to be "
-"restarted."
-msgstr ""
-
-#. (itstool) path: info/desc
-#: C/font-manager-supported-formats.page:5
-#, fuzzy
-msgid "Font formats supported by <app>Font Manager</app>."
-msgstr "Gestor de tipografías"
-
-#. (itstool) path: page/title
-#: C/font-manager-supported-formats.page:10
-msgid "Supported File Formats"
-msgstr ""
-
-#. (itstool) path: item/title
-#: C/font-manager-supported-formats.page:14
-msgid "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
-msgstr ""
-
-#. (itstool) path: item/title
-#: C/font-manager-supported-formats.page:21
-msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
-msgstr ""
-
-#. (itstool) path: item/title
-#: C/font-manager-supported-formats.page:28
-msgid ""
-"<link href=\"http://wikipedia.org/wiki/Type_1_Font#Type_1\"> PostScript Type "
-"1 </link>"
-msgstr ""
-
-#~ msgid "Simple font management for GTK+ desktop environments"
-#~ msgstr "Gestión de tipos de letra para entornos de escritorio Gtk+"
-
-#~ msgid ""
-#~ "<link href=\"http://www.gnu.org/licenses/gpl-3.0-standalone.html\">GNU "
-#~ "General Public License Version 3</link>"
-#~ msgstr ""
-#~ "<link href=\"http://www.gnu.org/licenses/gpl-3.0-standalone.html"
-#~ "\">Licencia Pública General de GNU, versión 3</link>"
-
-#~ msgid "Help has not been implemented yet."
-#~ msgstr "La ayuda todavía no se ha implementado."
-
-#~ msgid ""
-#~ "If you would like to help this project by providing help documentation "
-#~ "please see <link href=\"http://projectmallard.org\"> Project Mallard </"
-#~ "link> for more information."
-#~ msgstr ""
-#~ "Si quiere ayudar a este proyecto proporcionando documentación de ayuda, "
-#~ "visite el  <link href=\"http://projectmallard.org\">Proyecto Mallard </"
-#~ "link> para obtener información sobre cómo hacerlo."
-
-#~ msgid ""
-#~ "If you do decide to help, please file an issue at <link href=\"https://"
-#~ "github.com/FontManager/master/issues\">https://github.com/FontManager/"
-#~ "master/issues</link> detailing what you intend to work on."
-#~ msgstr ""
-#~ "Si se decide a ayudar, registre una solicitud nueva en <link href="
-#~ "\"https://github.com/FontManager/master/issues\">https://github.com/"
-#~ "FontManager/master/issues</link>  detallando en qué piensa trabajar."
-
-#~ msgid "Thank you."
-#~ msgstr "Gracias."
-
-#~ msgid ""
-#~ "If you would like to help this application reach more users in their "
-#~ "native language please see <link href=\"https://translate.zanata.org/"
-#~ "project/view/font-manager\"> Zanata </link> for more information."
-#~ msgstr ""
-#~ "Si quiere ayudar a que esta aplicación esté disponible para los usuarios "
-#~ "en su idioma nativo, visite <link href=\"https://translate.zanata.org/"
-#~ "project/view/font-manager\">Zanata</link> ."
-
-#~ msgid ""
-#~ "You can also file an issue at <link href=\"https://github.com/FontManager/"
-#~ "master/issues\">https://github.com/FontManager/master/issues</link> and "
-#~ "attach any translated files there."
-#~ msgstr ""
-#~ "También puede registrar una solicitud nueva en <link href=\"https://"
-#~ "github.com/FontManager/master/issues\">https://github.com/FontManager/"
-#~ "master/issues</link> y adjuntar en ella los archivos traducidos."
