@@ -35,6 +35,7 @@ HELP_MEDIA = \
 	media/metadata.png \
 	media/orthographies.png \
 	media/preferences-desktop-font.png \
+	media/preferences-desktop-font-16.png \
 	media/preferences-system-symbolic.svg
 
 HELP_LINGUAS = \

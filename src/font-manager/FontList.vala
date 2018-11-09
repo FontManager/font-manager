@@ -131,18 +131,23 @@ namespace FontManager {
         }
 
         bool visible_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
+            bool search_match = true;
             if (controls.entry.get_text_length() > 0) {
                 Value val;
                 model.get_value(iter, FontModelColumn.OBJECT, out val);
-                string family = get_family_from_object(val.get_object()).casefold();
+                Object object = val.get_object();
                 string needle = controls.entry.get_text().casefold();
-                val.unset();
-                if (!family.contains(needle))
-                    return false;
+                if (needle.has_prefix("/")) {
+                    string filepath = get_filepath_from_object(object).casefold();
+                    search_match = filepath.contains(needle);
+                } else {
+                    string family = get_family_from_object(object).casefold();
+                    search_match = family.contains(needle);
+                }
             }
             if (filter != null)
-                return filter.visible_func(model, iter);
-            return true;
+                return search_match && filter.visible_func(model, iter);
+            return search_match;
         }
 
     }
@@ -880,6 +885,13 @@ namespace FontManager {
     internal string get_family_from_object (Object object)
     requires (object is Family || object is Font) {
         return (object is Family) ? ((Family) object).family : ((Font) object).family;
+    }
+
+    internal string get_filepath_from_object (Object object)
+    requires (object is Family || object is Font) {
+        return (object is Family) ?
+               ((Family) object).get_default_variant().get_string_member("filepath") :
+               ((Font) object).filepath;
     }
 
 }
