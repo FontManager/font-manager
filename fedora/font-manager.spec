@@ -12,7 +12,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    6
+Release:    7
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -144,6 +144,11 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Sun Nov 11 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-7
+- Search filepath if search term starts with /
+- Update help documents.
+- Fix category count updates.
+- Fix rendering issue with some themes by setting style class on preview stack.
 * Thu Nov 08 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-6
 - Remove some unnecessary updates to font list and categories.
 * Tue Nov 06 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-5

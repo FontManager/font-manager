@@ -1,20 +1,20 @@
 # Font Manager - Simple font management for Gtk+ desktop environments
-# 
+#
 # Copyright © 2009 - 2016 Jerry Casiano
-# 
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-# 
+#
 # Author:
 #  Jerry Casiano <JerryCasiano@gmail.com>
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016. #zanata
@@ -22,14 +22,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-07 20:49-0500\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2018-11-11 16:07-0500\n"
 "PO-Revision-Date: 2016-05-25 11:48+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Chinese (China) <@>\n"
 "Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
@@ -67,27 +67,27 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 
-#: ../lib/vala/Controls.vala:392
+#: ../lib/vala/Controls.vala:394
 msgid "Edit preview text"
 msgstr "编辑预览文本"
 
-#: ../lib/vala/Controls.vala:396
+#: ../lib/vala/Controls.vala:398
 msgid "Undo changes"
 msgstr "撤销更改"
 
-#: ../lib/vala/Controls.vala:401
+#: ../lib/vala/Controls.vala:403
 msgid "Left Aligned"
 msgstr "左对齐"
 
-#: ../lib/vala/Controls.vala:401
+#: ../lib/vala/Controls.vala:403
 msgid "Centered"
 msgstr "居中"
 
-#: ../lib/vala/Controls.vala:401
+#: ../lib/vala/Controls.vala:403
 msgid "Fill"
 msgstr "两端对齐"
 
-#: ../lib/vala/Controls.vala:401
+#: ../lib/vala/Controls.vala:403
 msgid "Right Aligned"
 msgstr "右对齐"
 
@@ -228,35 +228,35 @@ msgstr "VRGB"
 msgid "VBGR"
 msgstr "VBGR"
 
-#: ../lib/vala/FontPreviewPane.vala:117 ../lib/vala/FontPreviewPane.vala:214
+#: ../lib/vala/FontPreviewPane.vala:117 ../lib/vala/FontPreviewPane.vala:215
 #: ../src/font-manager/MainWindow.vala:147
 msgid "Preview"
 msgstr "预览"
 
-#: ../lib/vala/FontPreviewPane.vala:118 ../lib/vala/FontPreviewPane.vala:210
+#: ../lib/vala/FontPreviewPane.vala:118 ../lib/vala/FontPreviewPane.vala:211
 msgid "Waterfall"
 msgstr "瀑布"
 
 # Not fine
-#: ../lib/vala/FontPreviewPane.vala:119 ../lib/vala/FontPreviewPane.vala:212
+#: ../lib/vala/FontPreviewPane.vala:119 ../lib/vala/FontPreviewPane.vala:213
 msgid "Body Text"
 msgstr "正文"
 
-#: ../lib/vala/FontPreviewPane.vala:257
+#: ../lib/vala/FontPreviewPane.vala:258
 #, fuzzy
 msgid "Characters"
 msgstr "字符映射"
 
-#: ../lib/vala/FontPreviewPane.vala:258
+#: ../lib/vala/FontPreviewPane.vala:259
 #, fuzzy
 msgid "Properties"
 msgstr "比例(Proportional)"
 
-#: ../lib/vala/FontPreviewPane.vala:259 ../src/font-manager/Categories.vala:300
+#: ../lib/vala/FontPreviewPane.vala:260 ../src/font-manager/Categories.vala:300
 msgid "License"
 msgstr "许可证"
 
-#: ../lib/vala/FontPreviewPane.vala:384
+#: ../lib/vala/FontPreviewPane.vala:385
 #, fuzzy
 msgid "Select preview type"
 msgstr "编辑预览文本"
@@ -434,7 +434,7 @@ msgstr "变体"
 #. * along with this program.
 #. *
 #. * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
-#. 
+#.
 #: ../src/font-manager/Collections.vala:21
 #, fuzzy
 msgid "Enter Collection Name"
@@ -544,34 +544,34 @@ msgstr "用户"
 msgid "Fonts available only to you"
 msgstr "字体只有你可见"
 
-#: ../src/font-manager/FontList.vala:170
+#: ../src/font-manager/FontList.vala:43
 #, fuzzy
 msgid "Remove selected font from collection"
 msgstr "删除比较组中选中的字体"
 
-#: ../src/font-manager/FontList.vala:175 ../src/font-manager/FontList.vala:190
+#: ../src/font-manager/FontList.vala:48 ../src/font-manager/FontList.vala:63
 msgid "Expand all"
 msgstr "全部展开"
 
-#: ../src/font-manager/FontList.vala:179
+#: ../src/font-manager/FontList.vala:52
 #, fuzzy
 msgid "Search Families..."
 msgstr "搜索数据库"
 
-#: ../src/font-manager/FontList.vala:190
+#: ../src/font-manager/FontList.vala:63
 msgid "Collapse all"
 msgstr "全部折叠"
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/font-manager/FontList.vala:508
+#: ../src/font-manager/FontList.vala:414
 msgid "Install"
 msgstr ""
 
-#: ../src/font-manager/FontList.vala:509
+#: ../src/font-manager/FontList.vala:415
 msgid "Copy Location"
 msgstr ""
 
-#: ../src/font-manager/FontList.vala:510
+#: ../src/font-manager/FontList.vala:416
 msgid "Show in Folder"
 msgstr ""
 
@@ -664,15 +664,15 @@ msgstr "管理字体源"
 msgid "Substitutions"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Preferences.vala:174
+#: ../src/font-manager/Preferences/Preferences.vala:179
 msgid "Save"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Preferences.vala:176
+#: ../src/font-manager/Preferences/Preferences.vala:181
 msgid "Discard"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Preferences.vala:178
+#: ../src/font-manager/Preferences/Preferences.vala:183
 msgid "Running applications may require a restart to reflect any changes."
 msgstr ""
 

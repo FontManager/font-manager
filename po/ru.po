@@ -1,20 +1,20 @@
 # Font Manager - Simple font management for Gtk+ desktop environments
-# 
+#
 # Copyright Â© 2009 - 2016 Jerry Casiano
-# 
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-# 
+#
 # Author:
 #  Jerry Casiano <JerryCasiano@gmail.com>
 # Jerry Casiano <JerryCasiano@gmail.com>, 2017. #zanata
@@ -22,14 +22,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-07 20:49-0500\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2018-11-11 16:07-0500\n"
 "PO-Revision-Date: 2017-05-13 03:54+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: none <@>\n"
 "Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
@@ -65,27 +65,27 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 
-#: ../lib/vala/Controls.vala:392
+#: ../lib/vala/Controls.vala:394
 msgid "Edit preview text"
 msgstr "Изменить текст предварительного просмотра"
 
-#: ../lib/vala/Controls.vala:396
+#: ../lib/vala/Controls.vala:398
 msgid "Undo changes"
 msgstr "Отменить изменения"
 
-#: ../lib/vala/Controls.vala:401
+#: ../lib/vala/Controls.vala:403
 msgid "Left Aligned"
 msgstr "Выравнивание по левому краю"
 
-#: ../lib/vala/Controls.vala:401
+#: ../lib/vala/Controls.vala:403
 msgid "Centered"
 msgstr "Выравнивание по центру"
 
-#: ../lib/vala/Controls.vala:401
+#: ../lib/vala/Controls.vala:403
 msgid "Fill"
 msgstr "Выравнивание по ширине"
 
-#: ../lib/vala/Controls.vala:401
+#: ../lib/vala/Controls.vala:403
 msgid "Right Aligned"
 msgstr "Выравнивание по правому краю"
 
@@ -226,32 +226,32 @@ msgstr "VRGB (вертикальный красно-зелено-синий)"
 msgid "VBGR"
 msgstr "VBGR (вертикальный сине-зелено-красный)"
 
-#: ../lib/vala/FontPreviewPane.vala:117 ../lib/vala/FontPreviewPane.vala:214
+#: ../lib/vala/FontPreviewPane.vala:117 ../lib/vala/FontPreviewPane.vala:215
 #: ../src/font-manager/MainWindow.vala:147
 msgid "Preview"
 msgstr "Предварительный просмотр"
 
-#: ../lib/vala/FontPreviewPane.vala:118 ../lib/vala/FontPreviewPane.vala:210
+#: ../lib/vala/FontPreviewPane.vala:118 ../lib/vala/FontPreviewPane.vala:211
 msgid "Waterfall"
 msgstr "Водопад"
 
-#: ../lib/vala/FontPreviewPane.vala:119 ../lib/vala/FontPreviewPane.vala:212
+#: ../lib/vala/FontPreviewPane.vala:119 ../lib/vala/FontPreviewPane.vala:213
 msgid "Body Text"
 msgstr "Основной текст"
 
-#: ../lib/vala/FontPreviewPane.vala:257
+#: ../lib/vala/FontPreviewPane.vala:258
 msgid "Characters"
 msgstr "Символы"
 
-#: ../lib/vala/FontPreviewPane.vala:258
+#: ../lib/vala/FontPreviewPane.vala:259
 msgid "Properties"
 msgstr "Свойства"
 
-#: ../lib/vala/FontPreviewPane.vala:259 ../src/font-manager/Categories.vala:300
+#: ../lib/vala/FontPreviewPane.vala:260 ../src/font-manager/Categories.vala:300
 msgid "License"
 msgstr "Лицензия"
 
-#: ../lib/vala/FontPreviewPane.vala:384
+#: ../lib/vala/FontPreviewPane.vala:385
 msgid "Select preview type"
 msgstr "Выберите тип предварительного просмотра"
 
@@ -425,7 +425,7 @@ msgstr "Вариаций"
 #. * along with this program.
 #. *
 #. * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
-#. 
+#.
 #: ../src/font-manager/Collections.vala:21
 msgid "Enter Collection Name"
 msgstr "Введите название коллекции"
@@ -533,32 +533,32 @@ msgstr "Пользовательские"
 msgid "Fonts available only to you"
 msgstr "Шрифты, доступные только вам"
 
-#: ../src/font-manager/FontList.vala:170
+#: ../src/font-manager/FontList.vala:43
 msgid "Remove selected font from collection"
 msgstr "Удалить выбранный шрифт из коллекции"
 
-#: ../src/font-manager/FontList.vala:175 ../src/font-manager/FontList.vala:190
+#: ../src/font-manager/FontList.vala:48 ../src/font-manager/FontList.vala:63
 msgid "Expand all"
 msgstr "Показать все"
 
-#: ../src/font-manager/FontList.vala:179
+#: ../src/font-manager/FontList.vala:52
 msgid "Search Families..."
 msgstr "Найти семейство..."
 
-#: ../src/font-manager/FontList.vala:190
+#: ../src/font-manager/FontList.vala:63
 msgid "Collapse all"
 msgstr "Свернуть все"
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/font-manager/FontList.vala:508
+#: ../src/font-manager/FontList.vala:414
 msgid "Install"
 msgstr ""
 
-#: ../src/font-manager/FontList.vala:509
+#: ../src/font-manager/FontList.vala:415
 msgid "Copy Location"
 msgstr ""
 
-#: ../src/font-manager/FontList.vala:510
+#: ../src/font-manager/FontList.vala:416
 msgid "Show in Folder"
 msgstr ""
 
@@ -659,15 +659,15 @@ msgstr "Источники"
 msgid "Substitutions"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Preferences.vala:174
+#: ../src/font-manager/Preferences/Preferences.vala:179
 msgid "Save"
 msgstr "Сохранить"
 
-#: ../src/font-manager/Preferences/Preferences.vala:176
+#: ../src/font-manager/Preferences/Preferences.vala:181
 msgid "Discard"
 msgstr "Отменить"
 
-#: ../src/font-manager/Preferences/Preferences.vala:178
+#: ../src/font-manager/Preferences/Preferences.vala:183
 msgid "Running applications may require a restart to reflect any changes."
 msgstr "Для применения изменений может потребоваться перезапуск программы."
 
