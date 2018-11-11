@@ -22,6 +22,8 @@ libfontmanager_la_LIBADD = \
 
 pkglib_LTLIBRARIES = libfontmanager.la
 
+CONFIG_STATUS_DEPENDENCIES = common/utils.c.in
+
 MAINTAINERCLEANFILES = Makefile.in
 
 

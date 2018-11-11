@@ -36,6 +36,10 @@ dbusservice_DATA = \
 	org.gnome.FontManager.service \
 	org.gnome.FontViewer.service
 
+CONFIG_STATUS_DEPENDENCIES = \
+	$(dist_desktop_in_files)  \
+	$(appdata_in_files)
+
 CLEANFILES = \
 	$(appdata_DATA) \
 	$(dist_desktop_DATA) \

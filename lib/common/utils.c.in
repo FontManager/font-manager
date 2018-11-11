@@ -334,4 +334,3 @@ get_gsettings (const gchar *schema_id)
     g_settings_schema_unref(schema);
     return result;
 }
-

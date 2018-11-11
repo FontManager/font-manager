@@ -10,8 +10,6 @@ SUBDIRS = \
 	po \
 	tests
 
-CONFIG_STATUS_DEPENDENCIES = lib/common/utils.c.in
-
 EXTRA_DIST = \
 	config.vapi \
 	po/insert-header.sin \
@@ -51,4 +49,3 @@ maintainer-clean-local:
 	-rm -rf m4 autom4te.cache $(PACKAGE_NAME)-$(PACKAGE_VERSION)* BUILD TEST
 	-find . -name .libs -exec rm -rf {} \;
 	-find . -name .deps -exec rm -rf {} \;
-

@@ -70,92 +70,92 @@ namespace FontManager {
         return;
     }
 
-}
-
-public string get_localized_pangram () {
-    return Pango.Language.get_default().get_sample_string();
-}
-
-public string get_localized_preview_text () {
-    return DEFAULT_PREVIEW_TEXT.printf(get_localized_pangram());
-}
-
-public Pango.FontDescription get_font (Gtk.Widget widget, Gtk.StateFlags flags = Gtk.StateFlags.NORMAL) {
-    Pango.FontDescription desc;
-    var ctx = widget.get_style_context();
-    ctx.save();
-    ctx.set_state(flags);
-    ctx.get(flags, "font", out desc);
-    ctx.restore();
-    return desc.copy();
-}
-
-public Gtk.Separator add_separator (Gtk.Box box,
-                                    Gtk.Orientation orientation = Gtk.Orientation.VERTICAL,
-                                    Gtk.PackType pack_type = Gtk.PackType.START) {
-    var separator = new Gtk.Separator(orientation);
-    switch (pack_type) {
-        case Gtk.PackType.END:
-            box.pack_end(separator, false, true, 0);
-            break;
-        default:
-            box.pack_start(separator, false, true, 0);
-            break;
+    public string get_localized_pangram () {
+        return Pango.Language.get_default().get_sample_string();
     }
-    separator.show();
-    separator.get_style_context().add_class("thin-separator");
-    return separator;
-}
 
-public void set_default_button_relief (Gtk.Container container) {
-    foreach (Gtk.Widget widget in container.get_children())
-        if (widget is Gtk.Button)
-            ((Gtk.Button) widget).relief = Gtk.ReliefStyle.NONE;
-    return;
-}
-
-public void cr_set_source_rgba (Cairo.Context cr, Gdk.RGBA color, double? alpha = null) {
-    if (alpha == null)
-        cr.set_source_rgba(color.red, color.green, color.blue, color.alpha);
-    else
-        cr.set_source_rgba(color.red, color.green, color.blue, alpha);
-    return;
-}
-
-public bool remove_directory_tree_if_empty (File dir) {
-    try {
-        var enumerator = dir.enumerate_children(FileAttribute.STANDARD_NAME,
-                                                FileQueryInfoFlags.NONE);
-        if (enumerator.next_file() != null)
-            return false;
-        File parent = dir.get_parent();
-        dir.delete();
-        if (parent != null)
-            remove_directory_tree_if_empty(parent);
-        return true;
-    } catch (Error e) {
-        warning(e.message);
+    public string get_localized_preview_text () {
+        return DEFAULT_PREVIEW_TEXT.printf(get_localized_pangram());
     }
-    return false;
-}
 
-public bool remove_directory (File dir, bool recursive = true) {
-    try {
-        if (recursive) {
-            FileInfo fileinfo;
-            var enumerator = dir.enumerate_children(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
-            while ((fileinfo = enumerator.next_file ()) != null) {
-                try {
-                    dir.get_child(fileinfo.get_name()).delete();
-                } catch (Error e) {
-                    remove_directory(dir.get_child(fileinfo.get_name()), recursive);
+    public Pango.FontDescription get_font (Gtk.Widget widget, Gtk.StateFlags flags = Gtk.StateFlags.NORMAL) {
+        Pango.FontDescription desc;
+        var ctx = widget.get_style_context();
+        ctx.save();
+        ctx.set_state(flags);
+        ctx.get(flags, "font", out desc);
+        ctx.restore();
+        return desc.copy();
+    }
+
+    public Gtk.Separator add_separator (Gtk.Box box,
+                                        Gtk.Orientation orientation = Gtk.Orientation.VERTICAL,
+                                        Gtk.PackType pack_type = Gtk.PackType.START) {
+        var separator = new Gtk.Separator(orientation);
+        switch (pack_type) {
+            case Gtk.PackType.END:
+                box.pack_end(separator, false, true, 0);
+                break;
+            default:
+                box.pack_start(separator, false, true, 0);
+                break;
+        }
+        separator.show();
+        separator.get_style_context().add_class("thin-separator");
+        return separator;
+    }
+
+    public void set_default_button_relief (Gtk.Container container) {
+        foreach (Gtk.Widget widget in container.get_children())
+            if (widget is Gtk.Button)
+                ((Gtk.Button) widget).relief = Gtk.ReliefStyle.NONE;
+        return;
+    }
+
+    public void cr_set_source_rgba (Cairo.Context cr, Gdk.RGBA color, double? alpha = null) {
+        if (alpha == null)
+            cr.set_source_rgba(color.red, color.green, color.blue, color.alpha);
+        else
+            cr.set_source_rgba(color.red, color.green, color.blue, alpha);
+        return;
+    }
+
+    public bool remove_directory_tree_if_empty (File dir) {
+        try {
+            var enumerator = dir.enumerate_children(FileAttribute.STANDARD_NAME,
+                                                    FileQueryInfoFlags.NONE);
+            if (enumerator.next_file() != null)
+                return false;
+            File parent = dir.get_parent();
+            dir.delete();
+            if (parent != null)
+                remove_directory_tree_if_empty(parent);
+            return true;
+        } catch (Error e) {
+            warning(e.message);
+        }
+        return false;
+    }
+
+    public bool remove_directory (File dir, bool recursive = true) {
+        try {
+            if (recursive) {
+                FileInfo fileinfo;
+                var enumerator = dir.enumerate_children(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
+                while ((fileinfo = enumerator.next_file ()) != null) {
+                    try {
+                        dir.get_child(fileinfo.get_name()).delete();
+                    } catch (Error e) {
+                        remove_directory(dir.get_child(fileinfo.get_name()), recursive);
+                    }
                 }
             }
+            dir.delete();
+            return true;
+        } catch (Error e) {
+            warning(e.message);
         }
-        dir.delete();
-        return true;
-    } catch (Error e) {
-        warning(e.message);
+        return false;
     }
-    return false;
+
 }

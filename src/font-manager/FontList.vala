@@ -18,6 +18,8 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
+/* XXX : DRY - Fix copy and paste done to quickly get removal working. */
+
 namespace FontManager {
 
     public class FontListPane : Gtk.Box {
@@ -137,7 +139,7 @@ namespace FontManager {
                 model.get_value(iter, FontModelColumn.OBJECT, out val);
                 Object object = val.get_object();
                 string needle = controls.entry.get_text().casefold();
-                if (needle.has_prefix("/")) {
+                if (needle.has_prefix(Path.DIR_SEPARATOR_S)) {
                     string filepath = get_filepath_from_object(object).casefold();
                     search_match = filepath.contains(needle);
                 } else {

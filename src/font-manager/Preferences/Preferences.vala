@@ -92,6 +92,11 @@ namespace FontManager {
 
     }
 
+    /**
+     * SettingsPage:
+     *
+     * Base class for preference panes.
+     */
     public class SettingsPage : Gtk.Box {
 
         protected Gtk.Label message;
@@ -203,9 +208,9 @@ namespace FontManager {
     }
 
     /**
-     * SettingsPage:
+     * FontConfigSettingsPage:
      *
-     * Base class for pages which generate Fontconfig configuration files.
+     * Base class for panes which generate Fontconfig configuration files.
      */
     public class FontConfigSettingsPage : SettingsPage {
 

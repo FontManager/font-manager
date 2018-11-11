@@ -134,4 +134,11 @@
         </p>
     </note>
 
+    <note style="important">
+        <p>
+        <app>Font Manager</app> will reload anytime changes require it.
+        This may take a moment depending on number of changes.
+        </p>
+    </note>
+
 </page>
