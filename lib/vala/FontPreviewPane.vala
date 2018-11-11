@@ -118,6 +118,7 @@ namespace FontManager {
             add_titled(waterfall, "Waterfall", _("Waterfall"));
             add_titled(body_text, "Body Text", _("Body Text"));
             set_transition_type(Gtk.StackTransitionType.CROSSFADE);
+            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             connect_signals();
         }
 
