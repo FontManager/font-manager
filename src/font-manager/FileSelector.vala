@@ -75,7 +75,7 @@ namespace FontManager {
 
         public StringHashset get_selections (Gtk.Window? parent, Gtk.TreeModel model) {
             var selections = new StringHashset();
-            UserFontListPane? tree = null;
+            FontListPane? tree = null;
             var dialog = new Gtk.Dialog();
             dialog.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             var header = new Gtk.HeaderBar();
@@ -94,7 +94,7 @@ namespace FontManager {
                 header.set_title(_("Select fonts to remove"));
                 header.pack_start(cancel);
                 header.pack_end(remove);
-                tree = new UserFontListPane();
+                tree = new FontListPane(new UserFontList());
                 tree.set("model", model, "filter", filter, "expand", true, null);
                 scroll.add(tree);
                 content_area.add(scroll);
@@ -117,7 +117,7 @@ namespace FontManager {
             header.show_all();
             if (dialog.run() == Gtk.ResponseType.ACCEPT) {
                 dialog.hide();
-                selections = tree.fontlist.get_selections();
+                selections = ((UserFontList) tree.fontlist).get_selections();
             }
             dialog.destroy();
             return selections;

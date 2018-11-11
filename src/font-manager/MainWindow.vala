@@ -138,8 +138,8 @@ namespace FontManager {
             preview_pane = new FontPreviewPane();
             sidebar = new SideBar();
             titlebar = new TitleBar();
-            fontpane = new FontListPane();
-            fontlist = fontpane.fontlist;
+            fontlist = new FontList();
+            fontpane = new FontListPane(fontlist);
             main_stack = new Gtk.Stack();
             main_stack.set_transition_duration(720);
             main_stack.set_transition_type(Gtk.StackTransitionType.UNDER_UP);

@@ -52,8 +52,8 @@ namespace FontManager {
                 foreach (Category child in children) {
                     child.update.begin((obj, res) => {
                         child.update.end(res);
+                        Idle.add(update.callback);
                     });
-                    Idle.add(update.callback);
                     yield;
                 }
             } catch (DatabaseError error) {
