@@ -368,7 +368,7 @@ namespace FontManager {
             uint total = filelist.size;
             uint processed = 0;
             var progress_dialog = new ProgressDialog(parent, _("Copying files..."));
-            progress_dialog.show();
+            progress_dialog.show_now();
             while (Gtk.events_pending())
                 Gtk.main_iteration();
             foreach (string filepath in filelist) {

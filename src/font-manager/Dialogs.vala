@@ -36,7 +36,6 @@ namespace FontManager {
             if (!progress_bar.is_visible())
                 progress_bar.show();
             progress_bar.set_fraction((double) progress.processed/progress.total);
-            progress_bar.queue_draw();
             return;
         }
 
