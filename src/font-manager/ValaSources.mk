@@ -8,7 +8,7 @@ font_manager_VALASOURCES = \
 	CellRendererPill.vala \
 	Collections.vala \
 	Compare.vala \
-	FileSelector.vala \
+	Dialogs.vala \
 	Filters/Cacheable.vala \
 	Filters/Category.vala \
 	Filters/Collection.vala \

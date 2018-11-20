@@ -358,12 +358,29 @@ namespace FontManager {
             if (target_dir == null)
                 return;
             string destination = Path.build_filename(target_dir, selected_filter.name);
+            /* XXX : BUG? : Using return_if_fail in a method marked as async generates incorrect C code */
+            if (DirUtils.create_with_parents(destination, 0755) != 0) {
+                critical("Failed to create temporary directory : %s", destination);
+                return;
+            }
             File tmp = File.new_for_path(destination);
-            return_if_fail(DirUtils.create_with_parents(destination, 0755) == 0);
             StringHashset filelist = selected_filter.get_filelist();
+            uint total = filelist.size;
+            uint processed = 0;
+            var progress_dialog = new ProgressDialog(parent, _("Copying files..."));
+            progress_dialog.show();
+            while (Gtk.events_pending())
+                Gtk.main_iteration();
             foreach (string filepath in filelist) {
                 File original = File.new_for_path(filepath);
                 string filename = original.get_basename();
+                {
+                    var progress = ProgressData();
+                    progress.message = filename;
+                    progress.processed = ++processed;
+                    progress.total = total;
+                    progress_dialog.set_progress(progress);
+                }
                 string path = Path.build_filename(destination, filename);
                 File copy = File.new_for_path(path);
                 try {
@@ -380,6 +397,7 @@ namespace FontManager {
                 Idle.add(_copy_to.callback);
                 yield;
             }
+            progress_dialog.destroy();
             return;
         }
 

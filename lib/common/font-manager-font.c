@@ -31,13 +31,8 @@ struct _FontManagerFont
     JsonObject *source_object;
 };
 
-static void iface_init (G_GNUC_UNUSED FontManagerJsonProxyInterface *iface)
-{
-    return;
-}
-
 G_DEFINE_TYPE_WITH_CODE(FontManagerFont, font_manager_font, G_TYPE_OBJECT,
-                        G_IMPLEMENT_INTERFACE(FONT_MANAGER_TYPE_JSON_PROXY, iface_init))
+                        G_IMPLEMENT_INTERFACE(FONT_MANAGER_TYPE_JSON_PROXY, NULL))
 
 #define PROPERTIES FontProperties
 #define N_PROPERTIES G_N_ELEMENTS(PROPERTIES)

@@ -50,6 +50,7 @@ namespace FontManager {
             entry.set_size_request(0, 0);
             entry.margin_end = MINIMUM_MARGIN_SIZE;
             entry.placeholder_text = _("Search Families...");
+            entry.set_tooltip_text(_("Case insensitive search of family names.\n\nStart search using %s to filter based on filepath."). printf(Path.DIR_SEPARATOR_S));
             box.pack_end(entry, false, false, 0);
             box.pack_start(expand_button, false, false, 0);
             box.reorder_child(expand_button, 0);
@@ -179,10 +180,8 @@ namespace FontManager {
             return;
         }
 
-        void set_sensitivity(Gtk.CellRenderer cell, Gtk.TreeIter treeiter, string family) {
-            if (reject == null)
-                return;
-            bool inactive = (family in reject);
+        void set_sensitivity(Gtk.CellRenderer cell, Gtk.TreeIter treeiter, string? family) {
+            bool inactive = (reject != null && family != null ? family in reject : false);
             cell.set_property("strikethrough" , inactive);
             if (inactive && get_selection().iter_is_selected(treeiter))
                 cell.set_property("sensitive" , true);
@@ -378,6 +377,7 @@ namespace FontManager {
             }
             reject.save();
             val.unset();
+            queue_draw();
             return;
         }
 
@@ -385,9 +385,7 @@ namespace FontManager {
                                                        Gtk.CellRenderer cell,
                                                        Gtk.TreeModel model,
                                                        Gtk.TreeIter treeiter) {
-            if (reject == null)
-                return;
-            if (model.iter_has_child(treeiter)) {
+            if (reject != null && model.iter_has_child(treeiter)) {
                 Value val;
                 model.get_value(treeiter, FontModelColumn.NAME, out val);
                 cell.set_property("visible", true);

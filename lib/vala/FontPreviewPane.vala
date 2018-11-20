@@ -103,6 +103,8 @@ namespace FontManager {
         protected StandardTextTagTable tag_table;
         protected Gtk.Adjustment adjustment;
 
+        bool _visible_ = false;
+
         public FontPreview () {
             Object(name: "FontPreview");
             tag_table = new StandardTextTagTable();
@@ -128,6 +130,8 @@ namespace FontManager {
             notify["visible-child-name"].connect(() => { mode_changed(mode); });
             notify["selected-font"].connect(() => { update_text_tag(); });
             adjustment.value_changed.connect(() => { update_text_tag(); });
+            map.connect(() => { _visible_ = true; update_text_tag(); });
+            unmap.connect(() => { _visible_ = false; });
         }
 
         /**
@@ -151,6 +155,8 @@ namespace FontManager {
         }
 
         void update_text_tag () {
+            if (!_visible_)
+                return;
             string description = is_valid_source(selected_font) ? selected_font.description : "";
             Gtk.TextTag tag = tag_table.lookup("FontDescription");
             tag.set("font-desc", Pango.FontDescription.from_string(description),

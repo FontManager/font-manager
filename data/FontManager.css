@@ -66,8 +66,15 @@ treeview {
     border-style: groove;
     text-shadow: 1px 1px shade(@theme_selected_background_color, 0.5);
     color: darker(@insensitive_fg_color);
-    border-color: alpha(darker(@insensitive_bg_color), 0.25);
+    border-color: alpha(darker(@insensitive_bg_color), 0.5);
     background-color: alpha(@insensitive_bg_color, 0.5);
+}
+
+#SubpixelGeometryIcon {
+    border-style: solid;
+    border-width: 0.1em;
+    border-radius: 0.1em;
+    border-color: darker(@borders);
 }
 
 #SubstituteList {

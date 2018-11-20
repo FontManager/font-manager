@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-11 16:07-0500\n"
+"POT-Creation-Date: 2018-11-20 01:00-0500\n"
 "PO-Revision-Date: 2016-05-25 11:48+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Chinese (China) <@>\n"
@@ -228,35 +228,35 @@ msgstr "VRGB"
 msgid "VBGR"
 msgstr "VBGR"
 
-#: ../lib/vala/FontPreviewPane.vala:117 ../lib/vala/FontPreviewPane.vala:215
+#: ../lib/vala/FontPreviewPane.vala:119 ../lib/vala/FontPreviewPane.vala:221
 #: ../src/font-manager/MainWindow.vala:147
 msgid "Preview"
 msgstr "预览"
 
-#: ../lib/vala/FontPreviewPane.vala:118 ../lib/vala/FontPreviewPane.vala:211
+#: ../lib/vala/FontPreviewPane.vala:120 ../lib/vala/FontPreviewPane.vala:217
 msgid "Waterfall"
 msgstr "瀑布"
 
 # Not fine
-#: ../lib/vala/FontPreviewPane.vala:119 ../lib/vala/FontPreviewPane.vala:213
+#: ../lib/vala/FontPreviewPane.vala:121 ../lib/vala/FontPreviewPane.vala:219
 msgid "Body Text"
 msgstr "正文"
 
-#: ../lib/vala/FontPreviewPane.vala:258
+#: ../lib/vala/FontPreviewPane.vala:264
 #, fuzzy
 msgid "Characters"
 msgstr "字符映射"
 
-#: ../lib/vala/FontPreviewPane.vala:259
+#: ../lib/vala/FontPreviewPane.vala:265
 #, fuzzy
 msgid "Properties"
 msgstr "比例(Proportional)"
 
-#: ../lib/vala/FontPreviewPane.vala:260 ../src/font-manager/Categories.vala:300
+#: ../lib/vala/FontPreviewPane.vala:266 ../src/font-manager/Categories.vala:300
 msgid "License"
 msgstr "许可证"
 
-#: ../lib/vala/FontPreviewPane.vala:385
+#: ../lib/vala/FontPreviewPane.vala:391
 #, fuzzy
 msgid "Select preview type"
 msgstr "编辑预览文本"
@@ -448,12 +448,16 @@ msgstr "添加新的字体集"
 msgid "Remove selected collection"
 msgstr "删除选中的字体集"
 
+#: ../src/font-manager/Collections.vala:370
+msgid "Copying files..."
+msgstr ""
+
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/font-manager/Collections.vala:472
+#: ../src/font-manager/Collections.vala:490
 msgid "Copy to..."
 msgstr ""
 
-#: ../src/font-manager/Collections.vala:473
+#: ../src/font-manager/Collections.vala:491
 msgid "Compress..."
 msgstr ""
 
@@ -473,40 +477,38 @@ msgstr "选择文本颜色"
 msgid "Select background color"
 msgstr "选择背景颜色"
 
-#: ../src/font-manager/FileSelector.vala:26
+#: ../src/font-manager/Dialogs.vala:48
 msgid "Select Destination"
 msgstr ""
 
-#: ../src/font-manager/FileSelector.vala:29
-#: ../src/font-manager/FileSelector.vala:49
-#: ../src/font-manager/FileSelector.vala:88
-#: ../src/font-manager/Migration.vala:55
+#: ../src/font-manager/Dialogs.vala:51 ../src/font-manager/Dialogs.vala:71
+#: ../src/font-manager/Dialogs.vala:110 ../src/font-manager/Migration.vala:55
 #: ../src/font-manager/Preferences/Sources.vala:190
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: ../src/font-manager/FileSelector.vala:31
+#: ../src/font-manager/Dialogs.vala:53
 msgid "_Select"
 msgstr ""
 
-#: ../src/font-manager/FileSelector.vala:46
+#: ../src/font-manager/Dialogs.vala:68
 msgid "Select files to install"
 msgstr "选择文件安装"
 
-#: ../src/font-manager/FileSelector.vala:51
+#: ../src/font-manager/Dialogs.vala:73
 #: ../src/font-manager/Preferences/Sources.vala:192
 msgid "_Open"
 msgstr "打开(_O)"
 
-#: ../src/font-manager/FileSelector.vala:89
+#: ../src/font-manager/Dialogs.vala:111
 msgid "_Delete"
 msgstr "删除(_D)"
 
-#: ../src/font-manager/FileSelector.vala:94
+#: ../src/font-manager/Dialogs.vala:116
 msgid "Select fonts to remove"
 msgstr "选择字体删除"
 
-#: ../src/font-manager/FileSelector.vala:105
+#: ../src/font-manager/Dialogs.vala:127
 msgid "Fonts installed in your home directory will appear here."
 msgstr ""
 
@@ -549,7 +551,7 @@ msgstr "字体只有你可见"
 msgid "Remove selected font from collection"
 msgstr "删除比较组中选中的字体"
 
-#: ../src/font-manager/FontList.vala:48 ../src/font-manager/FontList.vala:63
+#: ../src/font-manager/FontList.vala:48 ../src/font-manager/FontList.vala:64
 msgid "Expand all"
 msgstr "全部展开"
 
@@ -558,20 +560,28 @@ msgstr "全部展开"
 msgid "Search Families..."
 msgstr "搜索数据库"
 
-#: ../src/font-manager/FontList.vala:63
+#: ../src/font-manager/FontList.vala:53
+#, c-format
+msgid ""
+"Case insensitive search of family names.\n"
+"\n"
+"Start search using %s to filter based on filepath."
+msgstr ""
+
+#: ../src/font-manager/FontList.vala:64
 msgid "Collapse all"
 msgstr "全部折叠"
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/font-manager/FontList.vala:414
+#: ../src/font-manager/FontList.vala:412
 msgid "Install"
 msgstr ""
 
-#: ../src/font-manager/FontList.vala:415
+#: ../src/font-manager/FontList.vala:413
 msgid "Copy Location"
 msgstr ""
 
-#: ../src/font-manager/FontList.vala:416
+#: ../src/font-manager/FontList.vala:414
 msgid "Show in Folder"
 msgstr ""
 

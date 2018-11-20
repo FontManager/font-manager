@@ -152,7 +152,7 @@ string_hashset_add_all (StringHashset *self, GList *add)
 gboolean
 string_hashset_contains (StringHashset *self, const gchar *str)
 {
-    g_return_val_if_fail(self != NULL, FALSE);
+    g_return_val_if_fail(self != NULL && str != NULL, FALSE);
     StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
     return g_hash_table_contains(priv->hashset, str);
 }

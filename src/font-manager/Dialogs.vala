@@ -1,4 +1,4 @@
-/* FileSelector.vala
+/* Dialogs.vala
  *
  * Copyright (C) 2009 - 2018 Jerry Casiano
  *
@@ -19,6 +19,28 @@
 */
 
 namespace FontManager {
+
+    public class ProgressDialog : Gtk.MessageDialog {
+
+        Gtk.ProgressBar progress_bar;
+
+        public ProgressDialog (Gtk.Window? parent, string? title) {
+            Object(transient_for: parent, text: title);
+            progress_bar = new Gtk.ProgressBar();
+            ((Gtk.Box) get_message_area()).pack_end(progress_bar);
+            set_default_size(475, 125);
+        }
+
+        public void set_progress (ProgressData progress) {
+            secondary_text = progress.message;
+            if (!progress_bar.is_visible())
+                progress_bar.show();
+            progress_bar.set_fraction((double) progress.processed/progress.total);
+            progress_bar.queue_draw();
+            return;
+        }
+
+    }
 
     namespace FileSelector {
 

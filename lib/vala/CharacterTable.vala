@@ -136,8 +136,6 @@ namespace FontManager {
 
         void update_if_needed () {
             if (_visible_ && update_pending) {
-                if (selected_font == null || selected_font.source_object == null)
-                    return;
                 table.codepoint_list = null;
                 string description =  is_valid_source(selected_font) ?
                                       selected_font.description :

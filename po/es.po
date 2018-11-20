@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-11 16:07-0500\n"
+"POT-Creation-Date: 2018-11-20 01:00-0500\n"
 "PO-Revision-Date: 2017-03-05 10:07+0000\n"
 "Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -208,32 +208,32 @@ msgstr "VRGB"
 msgid "VBGR"
 msgstr "VBGR"
 
-#: ../lib/vala/FontPreviewPane.vala:117 ../lib/vala/FontPreviewPane.vala:215
+#: ../lib/vala/FontPreviewPane.vala:119 ../lib/vala/FontPreviewPane.vala:221
 #: ../src/font-manager/MainWindow.vala:147
 msgid "Preview"
 msgstr "Vista previa"
 
-#: ../lib/vala/FontPreviewPane.vala:118 ../lib/vala/FontPreviewPane.vala:211
+#: ../lib/vala/FontPreviewPane.vala:120 ../lib/vala/FontPreviewPane.vala:217
 msgid "Waterfall"
 msgstr "Cascada"
 
-#: ../lib/vala/FontPreviewPane.vala:119 ../lib/vala/FontPreviewPane.vala:213
+#: ../lib/vala/FontPreviewPane.vala:121 ../lib/vala/FontPreviewPane.vala:219
 msgid "Body Text"
 msgstr "Cuerpo de texto"
 
-#: ../lib/vala/FontPreviewPane.vala:258
+#: ../lib/vala/FontPreviewPane.vala:264
 msgid "Characters"
 msgstr "Caracteres"
 
-#: ../lib/vala/FontPreviewPane.vala:259
+#: ../lib/vala/FontPreviewPane.vala:265
 msgid "Properties"
 msgstr "Propiedades"
 
-#: ../lib/vala/FontPreviewPane.vala:260 ../src/font-manager/Categories.vala:300
+#: ../lib/vala/FontPreviewPane.vala:266 ../src/font-manager/Categories.vala:300
 msgid "License"
 msgstr "Licencia"
 
-#: ../lib/vala/FontPreviewPane.vala:385
+#: ../lib/vala/FontPreviewPane.vala:391
 msgid "Select preview type"
 msgstr "Selecciona el tipo de vista previa"
 
@@ -421,12 +421,16 @@ msgstr "Añadir una colección nueva"
 msgid "Remove selected collection"
 msgstr "Eliminar la colección seleccionada"
 
+#: ../src/font-manager/Collections.vala:370
+msgid "Copying files..."
+msgstr ""
+
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/font-manager/Collections.vala:472
+#: ../src/font-manager/Collections.vala:490
 msgid "Copy to..."
 msgstr ""
 
-#: ../src/font-manager/Collections.vala:473
+#: ../src/font-manager/Collections.vala:491
 msgid "Compress..."
 msgstr ""
 
@@ -446,40 +450,38 @@ msgstr "Seleccionar el color del texto"
 msgid "Select background color"
 msgstr "Seleccionar el color del fondo"
 
-#: ../src/font-manager/FileSelector.vala:26
+#: ../src/font-manager/Dialogs.vala:48
 msgid "Select Destination"
 msgstr ""
 
-#: ../src/font-manager/FileSelector.vala:29
-#: ../src/font-manager/FileSelector.vala:49
-#: ../src/font-manager/FileSelector.vala:88
-#: ../src/font-manager/Migration.vala:55
+#: ../src/font-manager/Dialogs.vala:51 ../src/font-manager/Dialogs.vala:71
+#: ../src/font-manager/Dialogs.vala:110 ../src/font-manager/Migration.vala:55
 #: ../src/font-manager/Preferences/Sources.vala:190
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: ../src/font-manager/FileSelector.vala:31
+#: ../src/font-manager/Dialogs.vala:53
 msgid "_Select"
 msgstr ""
 
-#: ../src/font-manager/FileSelector.vala:46
+#: ../src/font-manager/Dialogs.vala:68
 msgid "Select files to install"
 msgstr "Seleccionar archivos para instalar"
 
-#: ../src/font-manager/FileSelector.vala:51
+#: ../src/font-manager/Dialogs.vala:73
 #: ../src/font-manager/Preferences/Sources.vala:192
 msgid "_Open"
 msgstr "_Abrir"
 
-#: ../src/font-manager/FileSelector.vala:89
+#: ../src/font-manager/Dialogs.vala:111
 msgid "_Delete"
 msgstr "_Eliminar"
 
-#: ../src/font-manager/FileSelector.vala:94
+#: ../src/font-manager/Dialogs.vala:116
 msgid "Select fonts to remove"
 msgstr "Seleccionar tipos para eliminar"
 
-#: ../src/font-manager/FileSelector.vala:105
+#: ../src/font-manager/Dialogs.vala:127
 msgid "Fonts installed in your home directory will appear here."
 msgstr ""
 
@@ -520,7 +522,7 @@ msgstr "Tipos de letra disponibles solo para el usuario actual"
 msgid "Remove selected font from collection"
 msgstr "Eliminar los tipos de letra seleccionados de la colección"
 
-#: ../src/font-manager/FontList.vala:48 ../src/font-manager/FontList.vala:63
+#: ../src/font-manager/FontList.vala:48 ../src/font-manager/FontList.vala:64
 msgid "Expand all"
 msgstr "Expandir todo"
 
@@ -528,20 +530,28 @@ msgstr "Expandir todo"
 msgid "Search Families..."
 msgstr "Buscar familias..."
 
-#: ../src/font-manager/FontList.vala:63
+#: ../src/font-manager/FontList.vala:53
+#, c-format
+msgid ""
+"Case insensitive search of family names.\n"
+"\n"
+"Start search using %s to filter based on filepath."
+msgstr ""
+
+#: ../src/font-manager/FontList.vala:64
 msgid "Collapse all"
 msgstr "Contraer todo"
 
 #. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/font-manager/FontList.vala:414
+#: ../src/font-manager/FontList.vala:412
 msgid "Install"
 msgstr ""
 
-#: ../src/font-manager/FontList.vala:415
+#: ../src/font-manager/FontList.vala:413
 msgid "Copy Location"
 msgstr ""
 
-#: ../src/font-manager/FontList.vala:416
+#: ../src/font-manager/FontList.vala:414
 msgid "Show in Folder"
 msgstr ""
 

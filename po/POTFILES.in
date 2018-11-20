@@ -18,7 +18,7 @@ src/font-manager/Categories.vala
 src/font-manager/CellRendererPill.vala
 src/font-manager/Collections.vala
 src/font-manager/Compare.vala
-src/font-manager/FileSelector.vala
+src/font-manager/Dialogs.vala
 src/font-manager/Filters/Cacheable.vala
 src/font-manager/Filters/Category.vala
 src/font-manager/Filters/Collection.vala

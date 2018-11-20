@@ -143,7 +143,7 @@ namespace FontManager {
             add_main_option_entries(options);
         }
 
-        public static Gtk.Window get_current_window () {
+        public static Gtk.Window? get_current_window () {
             Gtk.Application application = GLib.Application.get_default() as Gtk.Application;
             unowned GLib.List <weak Gtk.Window> windows = application.get_windows();
             Gtk.Window? most_recent = null;

@@ -489,7 +489,7 @@ namespace FontManager {
         public Gtk.Button remove_button { get; protected set; }
 
         construct {
-            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
+            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 4);
             box.border_width = 2;
             set_size_request(0, 0);
             add_button = new Gtk.Button();

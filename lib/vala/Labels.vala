@@ -133,7 +133,7 @@ namespace FontManager {
         public SubpixelGeometryIcon (SubpixelOrder rgba) {
 
             Object(name: "SubpixelGeometryIcon",
-                    margin: MINIMUM_MARGIN_SIZE * 3,
+                    //margin: MINIMUM_MARGIN_SIZE * 3,
                     opacity: 1.0,
                     homogeneous: true,
                     halign: Gtk.Align.CENTER,

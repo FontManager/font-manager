@@ -46,6 +46,7 @@ namespace FontManager {
     public class ArchiveManager : Object {
 
         int SERVICE_UNKNOWN_ERROR = 2;
+        int SERVICE_TIMED_OUT = 24;
         static bool SERVICE_UNKNOWN = false;
 
         public signal void progress (double percent, string message);
@@ -56,8 +57,8 @@ namespace FontManager {
             if (e.code == SERVICE_UNKNOWN_ERROR) {
                 SERVICE_UNKNOWN = true;
                 message("Install file-roller to enable archive support");
-            } else {
-                //critical("%i :: %s", e.code, e.message);
+            } else if (e.code != SERVICE_TIMED_OUT) {
+                critical("%i : %s", e.code, e.message);
             }
             return;
         }
