@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-20 01:00-0500\n"
+"POT-Creation-Date: 2018-11-20 23:25-0500\n"
 "PO-Revision-Date: 2017-05-13 03:54+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: none <@>\n"
@@ -467,38 +467,38 @@ msgstr "Выбрать цвет текста"
 msgid "Select background color"
 msgstr "Выбрать цвет фона"
 
-#: ../src/font-manager/Dialogs.vala:48
+#: ../src/font-manager/Dialogs.vala:47
 msgid "Select Destination"
 msgstr ""
 
-#: ../src/font-manager/Dialogs.vala:51 ../src/font-manager/Dialogs.vala:71
-#: ../src/font-manager/Dialogs.vala:110 ../src/font-manager/Migration.vala:55
+#: ../src/font-manager/Dialogs.vala:50 ../src/font-manager/Dialogs.vala:70
+#: ../src/font-manager/Dialogs.vala:109 ../src/font-manager/Migration.vala:55
 #: ../src/font-manager/Preferences/Sources.vala:190
 msgid "_Cancel"
 msgstr "_Отменить"
 
-#: ../src/font-manager/Dialogs.vala:53
+#: ../src/font-manager/Dialogs.vala:52
 msgid "_Select"
 msgstr ""
 
-#: ../src/font-manager/Dialogs.vala:68
+#: ../src/font-manager/Dialogs.vala:67
 msgid "Select files to install"
 msgstr "Выберите файлы для установки"
 
-#: ../src/font-manager/Dialogs.vala:73
+#: ../src/font-manager/Dialogs.vala:72
 #: ../src/font-manager/Preferences/Sources.vala:192
 msgid "_Open"
 msgstr "_Открыть"
 
-#: ../src/font-manager/Dialogs.vala:111
+#: ../src/font-manager/Dialogs.vala:110
 msgid "_Delete"
 msgstr "_Удалить"
 
-#: ../src/font-manager/Dialogs.vala:116
+#: ../src/font-manager/Dialogs.vala:115
 msgid "Select fonts to remove"
 msgstr "Выберите файлы для удаления"
 
-#: ../src/font-manager/Dialogs.vala:127
+#: ../src/font-manager/Dialogs.vala:126
 msgid "Fonts installed in your home directory will appear here."
 msgstr ""
 

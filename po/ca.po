@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-20 01:00-0500\n"
+"POT-Creation-Date: 2018-11-20 23:25-0500\n"
 "PO-Revision-Date: 2017-03-05 09:50+0000\n"
 "Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
 "Language-Team: Catalan\n"
@@ -449,38 +449,38 @@ msgstr "Selecciona el color del text"
 msgid "Select background color"
 msgstr "Selecciona el color del fons"
 
-#: ../src/font-manager/Dialogs.vala:48
+#: ../src/font-manager/Dialogs.vala:47
 msgid "Select Destination"
 msgstr ""
 
-#: ../src/font-manager/Dialogs.vala:51 ../src/font-manager/Dialogs.vala:71
-#: ../src/font-manager/Dialogs.vala:110 ../src/font-manager/Migration.vala:55
+#: ../src/font-manager/Dialogs.vala:50 ../src/font-manager/Dialogs.vala:70
+#: ../src/font-manager/Dialogs.vala:109 ../src/font-manager/Migration.vala:55
 #: ../src/font-manager/Preferences/Sources.vala:190
 msgid "_Cancel"
 msgstr "_Cancel·la"
 
-#: ../src/font-manager/Dialogs.vala:53
+#: ../src/font-manager/Dialogs.vala:52
 msgid "_Select"
 msgstr ""
 
-#: ../src/font-manager/Dialogs.vala:68
+#: ../src/font-manager/Dialogs.vala:67
 msgid "Select files to install"
 msgstr "Selecciona fitxers per instal·lar"
 
-#: ../src/font-manager/Dialogs.vala:73
+#: ../src/font-manager/Dialogs.vala:72
 #: ../src/font-manager/Preferences/Sources.vala:192
 msgid "_Open"
 msgstr "_Obre"
 
-#: ../src/font-manager/Dialogs.vala:111
+#: ../src/font-manager/Dialogs.vala:110
 msgid "_Delete"
 msgstr "_Suprimeix"
 
-#: ../src/font-manager/Dialogs.vala:116
+#: ../src/font-manager/Dialogs.vala:115
 msgid "Select fonts to remove"
 msgstr "Selecciona tipus per suprimir"
 
-#: ../src/font-manager/Dialogs.vala:127
+#: ../src/font-manager/Dialogs.vala:126
 msgid "Fonts installed in your home directory will appear here."
 msgstr ""
 
