@@ -118,7 +118,7 @@ namespace FontManager {
             list.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
             list.row_selected.connect((r) => { row_selected(r); });
-            changed.connect(() => { update(); });
+            changed.connect(() => { Idle.add(() => { update(); return false; }); });
             sources.changed.connect(() => { changed(); });
             update();
         }

@@ -232,7 +232,7 @@ namespace FontManager {
                 string? accels [] = {"<Ctrl>%i".printf(i), null };
                 application.set_accels_for_action("app.mode::%s".printf(mode), accels);
                 GLib.MenuItem item = new MenuItem(Mode.parse(mode).to_translatable_string(), "app.mode::%s".printf(mode));
-                item.set_attribute("accel", "s", "<Ctrl>%i".printf(i));
+                item.set_attribute("accel", "s", accels[0]);
                 mode_section.append_item(item);
             }
             return (GLib.MenuModel) mode_section;
