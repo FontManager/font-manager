@@ -78,6 +78,19 @@ namespace FontManager {
         return DEFAULT_PREVIEW_TEXT.printf(get_localized_pangram());
     }
 
+    public void add_keyboard_shortcut (Gtk.Widget widget,
+                                       SimpleAction action,
+                                       string action_name,
+                                       string? [] accels) {
+        var application = (Gtk.Application) GLib.Application.get_default();
+        SimpleActionGroup? actions = widget.get_action_group("default") as SimpleActionGroup;
+        return_if_fail(actions != null);
+        application.add_action(action);
+        actions.add_action(action);
+        application.set_accels_for_action("app.%s".printf(action_name), accels);
+        return;
+    }
+
     public Pango.FontDescription get_font (Gtk.Widget widget, Gtk.StateFlags flags = Gtk.StateFlags.NORMAL) {
         Pango.FontDescription desc;
         var ctx = widget.get_style_context();

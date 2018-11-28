@@ -12,7 +12,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    8
+Release:    9
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -23,7 +23,6 @@ BuildRequires: freetype-devel
 BuildRequires: glib2-devel
 BuildRequires: gobject-introspection-devel
 BuildRequires: gtk3-devel >= 3.22
-BuildRequires: intltool
 BuildRequires: json-glib-devel
 BuildRequires: libappstream-glib
 BuildRequires: libxml2-devel
@@ -144,6 +143,12 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Tue Nov 27 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-9
+- Add preference pane for Gnome desktop settings.
+- Add GtkShortcutsWindow.
+- Remove Intltool.
+- Fix functions which list font directories.
+- Fix typos in help documents.
 * Tue Nov 20 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-8
 - Show progress when exporting collections.
 - Avoid unnecessary updates to previews.
@@ -180,7 +185,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 * Sun Oct 16 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-9
 - Fix extension requirements
 * Sat Jun 4 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-8
-- Fix initial window size issue on Gtk+ > 3.18
+- Fix initial window sie issue on Gtk+ > 3.18
 * Wed Jun 1 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-7
 - Add Polish translation provided by Piotr Strębski
 * Thu May 26 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-6

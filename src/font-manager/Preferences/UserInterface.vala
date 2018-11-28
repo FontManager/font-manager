@@ -34,6 +34,7 @@ namespace FontManager {
             wide_layout = new LabeledSwitch();
             wide_layout.label.set_markup(_("Wide Layout"));
             wide_layout_options = new Gtk.Revealer();
+            wide_layout_options.set_transition_duration(450);
             on_maximize = new Gtk.CheckButton.with_label(_("Only when maximized"));
             on_maximize.margin = DEFAULT_MARGIN_SIZE / 2;
             on_maximize.margin_start = on_maximize.margin_end = DEFAULT_MARGIN_SIZE * 2;

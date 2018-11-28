@@ -183,6 +183,24 @@ namespace FontManager {
                 preview.preview_mode_changed.connect((m) => { mode_changed(m); });
                 stack.drag_data_received.connect(_drag_data_recieved);
                 preview.changed.connect(() => { this.update(); });
+
+                insert_action_group("default", new SimpleActionGroup());
+
+                var action = new SimpleAction("zoom_in", null);
+                action.activate.connect((a, v) => { preview.preview_size += 0.5; });
+                string? [] accels = { "<Ctrl>plus", "<Ctrl>equal", null };
+                add_keyboard_shortcut(this, action, "zoom_in", accels);
+
+                action = new SimpleAction("zoom_out", null);
+                action.activate.connect((a, v) => { preview.preview_size -= 0.5; });
+                accels = { "<Ctrl>minus", null };
+                add_keyboard_shortcut(this, action, "zoom_out", accels);
+
+                action = new SimpleAction("zoom_default", null);
+                action.activate.connect((a, v) => { preview.preview_size = DEFAULT_PREVIEW_SIZE; });
+                accels = { "<Ctrl>0", null };
+                add_keyboard_shortcut(this, action, "zoom_default", accels);
+
             }
 
             public override void show () {

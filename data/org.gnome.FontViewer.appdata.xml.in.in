@@ -6,16 +6,16 @@
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0+</project_license>
     <update_contact>JerryCasiano_AT_gmail.com</update_contact>
-    <_name>Font Viewer</_name>
-    <_summary>A font viewer application for Gtk+ Desktop Environments</_summary>
+    <name>Font Viewer</name>
+    <summary>A font viewer application for Gtk+ Desktop Environments</summary>
 
-    <_description>
+    <description>
         <p>
             Font Viewer allows previewing font files prior to installation.
             It features several ways to preview font files along with a
             character map and displays font properties and license details.
         </p>
-    </_description>
+    </description>
 
     <kudos>
         <kudo>ModernToolkit</kudo>

@@ -258,7 +258,7 @@ namespace FontManager {
                 source.bind_property("available", toggle.toggle, "sensitive", BindingFlags.SYNC_CREATE);
                 source.bind_property("icon-name", image, "icon-name", BindingFlags.SYNC_CREATE);
                 source.bind_property("name", toggle.label, "label", BindingFlags.SYNC_CREATE);
-                toggle.dim_label.set_text(source.get_status_message());
+                toggle.description.set_text(source.get_status_message());
                 pack_start(image, false, false, 6);
                 pack_end(toggle, true, true, 6);
             }

@@ -64,6 +64,7 @@ POTFILES.in:
 	echo "data/org.gnome.FontManager.desktop.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	echo "data/org.gnome.FontViewer.appdata.xml.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	echo "data/org.gnome.FontViewer.desktop.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "data/ui/shortcuts.ui" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	echo "" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	$(SED) -i '/.*-custom.vala/d' $(ABS_TOP_SRCDIR)/po/$@ ;
 	$(SED) -i 's|\.\./||g' $(ABS_TOP_SRCDIR)/po/$@ ;
@@ -89,6 +90,7 @@ $(PACKAGE_NAME).pot:
 	cd $(ABS_TOP_SRCDIR)/po/ && \
 	rm -f $@  && \
 	$(MAKE) update-po && \
+	$(SED) '1,6 d' -i $@ && \
 	$(call update_pot_header,$@,po) && \
 	cd $(ABS_TOP_SRCDIR)/help && \
 	rm -f $@  && \

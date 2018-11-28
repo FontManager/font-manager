@@ -867,6 +867,7 @@ sync_metadata_table (FontManagerDatabase *db, JsonObject *face, gpointer data)
 static void
 sync_panose_table (FontManagerDatabase *db,
                    JsonArray *panose,
+                   GCancellable *cancellable,
                    GError **error)
 {
     g_return_if_fail(FONT_MANAGER_IS_DATABASE(db));
@@ -880,6 +881,8 @@ sync_panose_table (FontManagerDatabase *db,
     font_manager_database_execute_query(db, INSERT_PANOSE_ROW, error);
     g_return_if_fail(error == NULL || *error == NULL);
     for (guint processed = 0; processed < total; processed++) {
+        if (g_cancellable_is_cancelled(cancellable))
+            break;
         int val;
         JsonObject *obj = json_array_get_object_element(panose, processed);
         JsonArray *_panose = json_object_get_array_member(obj, "panose");
@@ -1035,6 +1038,9 @@ sync_database (FontManagerDatabase *db,
     JsonArray *panose = NULL;
     const gchar *table = font_manager_database_get_type_name(type);
 
+    if (g_cancellable_is_cancelled(cancellable))
+        return FALSE;
+
     if (type == FONT_MANAGER_DATABASE_TYPE_FONT) {
 
         font_manager_database_execute_query(db, DROP_FONT_MATCH_INDEX, NULL);
@@ -1062,7 +1068,7 @@ sync_database (FontManagerDatabase *db,
         if (error != NULL && *error != NULL)
             goto cleanup;
 
-        sync_panose_table(db, panose, error);
+        sync_panose_table(db, panose, cancellable, error);
         if (error != NULL && *error != NULL)
             goto cleanup;
 

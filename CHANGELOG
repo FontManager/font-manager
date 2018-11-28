@@ -8,6 +8,8 @@ Major changes between 0.7.3 to 0.7.4
 
 - Drop dependency on Gee library
 
+- Drop Intltool
+
 - Determine whether file-roller is available at runtime.
 
     --with-file-roller flag dropped.
@@ -71,5 +73,15 @@ Major changes between 0.7.3 to 0.7.4
 - Added designer/designer url to property pane
 
 - Add orthography recognition based on the work done for Fontaine by Edward H. Trager
+
+- Searches starting with / will filter based on filepath
+
+- Add preference pane for Gnome desktop settings
+
+- Add GtkShortcutsWindow
+
+- Update vendor list
+
+
 
 

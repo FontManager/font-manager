@@ -325,8 +325,8 @@ get_gsettings (const gchar *schema_id)
         }
         g_slist_free_full(slist, g_free);
         if (schema == NULL) {
-            g_warning("Failed to locate schema for id %s", schema_id);
-            g_warning("Settings will not persist");
+            g_debug("Failed to locate schema for id %s", schema_id);
+            g_debug("Settings will not persist");
             return NULL;
         }
     }

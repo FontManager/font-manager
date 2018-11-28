@@ -128,6 +128,30 @@ namespace FontManager {
             connect_signals();
         }
 
+        void zoom_in () {
+            preview_pane.preview_size += 0.5;
+            browser.preview_size += 0.5;
+            compare.preview_size += 0.5;
+            preview_pane.charmap.preview_size += 0.5;
+            return;
+        }
+
+        void zoom_out () {
+            preview_pane.preview_size -= 0.5;
+            browser.preview_size -= 0.5;
+            compare.preview_size -= 0.5;
+            preview_pane.charmap.preview_size -= 0.5;
+            return;
+        }
+
+        void reset_zoom () {
+            preview_pane.preview_size = 10.0;
+            browser.preview_size = 12.0;
+            compare.preview_size = 12.0;
+            preview_pane.charmap.preview_size = 18;
+            return;
+        }
+
         void init_components () {
             main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
             content_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
@@ -157,6 +181,31 @@ namespace FontManager {
             lock_child_position = new Gtk.Paned(Gtk.Orientation.HORIZONTAL);
             /* Prevent Gtk warning due to missing size allocation */
             lock_child_position.set_size_request(1, -1);
+
+            insert_action_group("default", new SimpleActionGroup());
+
+            var action = new SimpleAction("zoom_in", null);
+            action.activate.connect((a, v) => { zoom_in(); });
+            string? [] accels = { "<Ctrl>plus", "<Ctrl>equal", null };
+            add_keyboard_shortcut(this, action, "zoom_in", accels);
+
+            action = new SimpleAction("zoom_out", null);
+            action.activate.connect((a, v) => { zoom_out(); });
+            accels = { "<Ctrl>minus", null };
+            add_keyboard_shortcut(this, action, "zoom_out", accels);
+
+            action = new SimpleAction("zoom_default", null);
+            action.activate.connect((a, v) => { reset_zoom(); });
+            accels = { "<Ctrl>0", null };
+            add_keyboard_shortcut(this, action, "zoom_default", accels);
+
+            action = new SimpleAction("reload", null);
+            action.activate.connect((a, v) => {
+                ((FontManager.Application) application).refresh();
+            });
+            accels = { "<Ctrl>r", null };
+            add_keyboard_shortcut(this, action, "reload", accels);
+
             return;
         }
 
@@ -479,7 +528,7 @@ namespace FontManager {
 
             sources.changed.connect(() => {
                 Timeout.add_seconds(3, () => {
-                    ((FontManager.Application) GLib.Application.get_default()).refresh();
+                    ((FontManager.Application) application).refresh();
                     return false;
                 });
             });
@@ -493,7 +542,7 @@ namespace FontManager {
                 installer.process.begin(selections, (obj, res) => {
                     installer.process.end(res);
                     Timeout.add_seconds(3, () => {
-                        ((FontManager.Application) GLib.Application.get_default()).refresh();
+                        ((FontManager.Application) application).refresh();
                         Timeout.add_seconds(3, () => {
                          titlebar.installing_files = false;
                          return false;
@@ -512,7 +561,7 @@ namespace FontManager {
                 Library.remove.begin(selections, (obj, res) => {
                     Library.remove.end(res);
                     Idle.add(() => {
-                        ((FontManager.Application) GLib.Application.get_default()).refresh();
+                        ((FontManager.Application) application).refresh();
                         Idle.add(() => {
                             titlebar.removing_files = false;
                             return false;
@@ -689,7 +738,7 @@ namespace FontManager {
                     ((Gtk.ColorChooser) compare.controls.fg_color_button).set_rgba(foreground);
                 if (background_set)
                     ((Gtk.ColorChooser) compare.controls.bg_color_button).set_rgba(background);
-                var checklist = list_available_font_families();
+                var checklist = ((FontManager.Application) application).available_font_families.list();
                 foreach (var entry in settings.get_strv("compare-list"))
                     compare.add_from_string(entry, checklist);
                 return false;

@@ -5,19 +5,29 @@ gsettings_SCHEMAS = \
 
 desktopdir = $(datadir)/applications
 dist_desktop_in_files = \
-	org.gnome.FontManager.desktop.in \
-	org.gnome.FontViewer.desktop.in
-dist_desktop_DATA = $(dist_desktop_in_files:.desktop.in=.desktop)
+	org.gnome.FontManager.desktop.in.in \
+	org.gnome.FontViewer.desktop.in.in
+dist_desktop_DATA = $(dist_desktop_in_files:.desktop.in.in=.desktop)
+
+org.gnome.FontManager.desktop: org.gnome.FontManager.desktop.in
+	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
+
+org.gnome.FontViewer.desktop: org.gnome.FontViewer.desktop.in
+	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 appdatadir = $(datadir)/metainfo
 appdata_in_files = \
-	org.gnome.FontManager.appdata.xml.in \
-	org.gnome.FontViewer.appdata.xml.in
-appdata_DATA = $(appdata_in_files:.xml.in=.xml)
+	org.gnome.FontManager.appdata.xml.in.in \
+	org.gnome.FontViewer.appdata.xml.in.in
+appdata_DATA = $(appdata_in_files:.xml.in.in=.xml)
+
+org.gnome.FontManager.appdata.xml: org.gnome.FontManager.appdata.xml.in
+	$(AM_V_GEN)$(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
+
+org.gnome.FontViewer.appdata.xml: org.gnome.FontViewer.appdata.xml.in
+	$(AM_V_GEN)$(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
 
 @GSETTINGS_RULES@
-@INTLTOOL_DESKTOP_RULE@
-@INTLTOOL_XML_RULE@
 
 org.gnome.FontManager.service:
 	$(AM_V_GEN) (echo '[D-BUS Service]'; \
@@ -53,6 +63,7 @@ DISTCLEANFILES = \
 
 EXTRA_DIST = \
 	icons \
+	ui/shortcuts.ui \
 	FontManagerGResource.xml \
 	FontManager.css \
 	$(gsettings_SCHEMAS) \

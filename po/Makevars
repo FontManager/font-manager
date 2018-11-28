@@ -1,14 +1,14 @@
 # Makefile variables for PO directory in any package using GNU gettext.
 
 # Usually the message domain is the same as the package name.
-DOMAIN = $(PACKAGE_NAME)
+DOMAIN = font-manager
 
 # These two variables depend on the location of this directory.
 subdir = po
 top_builddir = ..
 
 # These options get passed to xgettext.
-XGETTEXT_OPTIONS = --keyword=_ --keyword=N_
+XGETTEXT_OPTIONS = --from-code=UTF-8 --keyword=_ --keyword=N_
 
 # This is the copyright holder that gets inserted into the header of the
 # $(DOMAIN).pot file.  Set this to the copyright holder of the surrounding
@@ -25,7 +25,7 @@ COPYRIGHT_HOLDER = Free Software Foundation, Inc.
 # Possible values are "yes", "no", or empty.  If it is empty, try to
 # detect it automatically by scanning the files in $(top_srcdir) for
 # "GNU packagename" string.
-PACKAGE_GNU =
+PACKAGE_GNU = no
 
 # This is the email address or URL to which the translators shall report
 # bugs in the untranslated strings:

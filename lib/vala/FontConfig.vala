@@ -249,7 +249,7 @@ namespace FontManager {
      * Adds user configured font sources (directories) and rejected fonts to our
      * FcConfig so that we can render fonts which are not actually "installed".
      */
-    public bool load_user_font_resources (StringHashset files, GLib.List <weak Source> sources) {
+    public bool load_user_font_resources (StringHashset? files, GLib.List <weak Source> sources) {
         clear_application_fonts();
         bool res = true;
         if (!add_application_font_directory(get_user_font_directory())) {
@@ -262,8 +262,9 @@ namespace FontManager {
                 warning("Failed to register user font source! : %s", source.path);
             }
         }
-        foreach (string path in files)
-            add_application_font(path);
+        if (files != null)
+            foreach (string path in files)
+                add_application_font(path);
         return res;
     }
 
@@ -552,7 +553,8 @@ namespace FontManager {
                     yield;
                 }
             } catch (DatabaseError e) {
-                warning(e.message);
+                if (e.code != 1)
+                    warning(e.message);
             }
             return;
         }

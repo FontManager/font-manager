@@ -283,7 +283,7 @@ namespace FontManager {
         var filters = new GLib.HashTable <string, Category> (str_hash, str_equal);
         filters["All"] = new Category(_("All"), _("All Fonts"), "format-text-bold", "%s;".printf(SELECT_FROM_FONTS));
         filters["All"].index = CategoryIndex.ALL;
-        filters["System"] = new Category(_("System"), _("Fonts available to all users"), "computer", "%s owner!=0;".printf(SELECT_FROM_METADATA_WHERE));
+        filters["System"] = new Category(_("System"), _("Fonts available to all users"), "computer", "%s owner!=0 AND filepath LIKE '/usr%';".printf(SELECT_FROM_METADATA_WHERE));
         filters["System"].index = CategoryIndex.SYSTEM;
         filters["User"] = new UserFonts();
         filters["User"].index = CategoryIndex.USER;

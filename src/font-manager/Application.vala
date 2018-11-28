@@ -38,15 +38,17 @@ namespace FontManager {
         return;
     }
 
-    void update_database (DatabaseType type) {
+    void update_database (DatabaseType type,
+                          ProgressCallback? progress = null,
+                          Cancellable? cancellable = null) {
         try {
             var main = get_database(DatabaseType.BASE);
             var child = get_database(type);
             sync_database.begin(
                 child,
                 type,
-                null,
-                null,
+                progress,
+                cancellable,
                 (obj, res) => {
                     try {
                         bool success = sync_database.end(res);
@@ -67,7 +69,8 @@ namespace FontManager {
         return;
     }
 
-    void update_database_tables () {
+    void update_database_tables (ProgressCallback? progress = null,
+                                 Cancellable? cancellable = null) {
         try {
             var db = get_database(DatabaseType.BASE);
             DatabaseType [] types = { DatabaseType.FONT,
@@ -78,9 +81,9 @@ namespace FontManager {
         } catch (Error e) {
             critical(e.message);
         }
-        update_database(DatabaseType.FONT);
-        update_database(DatabaseType.METADATA);
-        update_database(DatabaseType.ORTHOGRAPHY);
+        update_database(DatabaseType.FONT, progress, cancellable);
+        update_database(DatabaseType.METADATA, progress, cancellable);
+        update_database(DatabaseType.ORTHOGRAPHY, progress, cancellable);
         return;
     }
 
@@ -179,6 +182,7 @@ namespace FontManager {
                 attached.contains("Metadata") &&
                 attached.contains("Orthography")) {
                 update_in_progress = false;
+                enable_user_font_configuration(true);
                 main_window.fontlist.samples = get_non_latin_samples();
                 if (main_window.fontlist.samples == null)
                     warning("Failed to generate previews for fonts which do not support Basic Latin");
@@ -286,6 +290,11 @@ namespace FontManager {
                 reject.load();
             }
 
+            if (("list" in options || "list-full" in options) && sources == null) {
+                sources = new Sources();
+                sources.load();
+            }
+
             if (options.contains("enable")) {
                 var accept = get_command_line_input(options);
                 return_val_if_fail(accept != null, -1);
@@ -306,6 +315,7 @@ namespace FontManager {
             }
 
             if (options.contains("list")) {
+                load_user_font_resources(null, sources.list_objects());
                 GLib.List <string> families = list_available_font_families();
                 assert(families.length() > 0);
                 foreach (string family in families)
@@ -331,6 +341,7 @@ namespace FontManager {
                 return;
             update_in_progress = true;
             category_update_required = true;
+            enable_user_font_configuration(false);
             update_font_configuration();
             load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
             Json.Object available_fonts = get_available_fonts(null);
@@ -403,6 +414,20 @@ namespace FontManager {
             return;
         }
 
+        [DBus (visible = false)]
+        public void shortcuts () {
+            string ui = Path.build_path("/", BUS_PATH, "shortcuts.ui");
+            var builder = new Gtk.Builder.from_resource(ui);
+            var shortcuts_window = builder.get_object("shortcuts-window") as Gtk.Window;
+            shortcuts_window.delete_event.connect(() => {
+                shortcuts_window.destroy();
+                return true;
+            });
+            shortcuts_window.set_transient_for(main_window);
+            shortcuts_window.present();
+            return;
+        }
+
         public override bool dbus_register (DBusConnection conn, string path) throws Error {
             base.dbus_register(conn, path);
             dbus_id = conn.register_object (BUS_PATH, this);
@@ -423,7 +448,7 @@ namespace FontManager {
             GLib.Intl.textdomain(Config.PACKAGE_NAME);
             GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
             Environment.set_application_name(About.DISPLAY_NAME);
-            enable_user_font_configuration(false);
+            //enable_user_font_configuration(false);
             Gtk.init(ref args);
             if (update_declined())
                 return 0;

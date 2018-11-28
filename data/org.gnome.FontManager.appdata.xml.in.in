@@ -6,10 +6,10 @@
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0+</project_license>
     <update_contact>JerryCasiano_AT_gmail.com</update_contact>
-    <_name>Font Manager</_name>
-    <_summary>A simple font management application for Gtk+ Desktop Environments</_summary>
+    <name>Font Manager</name>
+    <summary>A simple font management application for Gtk+ Desktop Environments</summary>
 
-    <_description>
+    <description>
         <p>
             Font Manager is intended to provide a way for average users to easily manage
             desktop fonts, without having to resort to command line tools or editing
@@ -22,7 +22,7 @@
         <p>
             Font Manager is NOT a professional-grade font management solution.
         </p>
-    </_description>
+    </description>
 
     <kudos>
         <kudo>ModernToolkit</kudo>

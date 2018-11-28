@@ -459,7 +459,7 @@ namespace FontManager {
 	[CCode (cheader_filename = "font-manager-fontconfig.h", cname = "list_font_directories")]
 	public static GLib.List<string>? list_font_directories (bool recursive);
 	[CCode (cheader_filename = "font-manager-fontconfig.h", cname = "list_user_font_directories")]
-	public static GLib.List<string>? list_user_font_directories ();
+	public static GLib.List<string>? list_user_font_directories (bool recursive);
 	[CCode (cheader_filename = "font-manager-fontconfig.h", cname = "load_font_configuration_file")]
 	public static bool load_font_configuration_file (string filepath);
 	[CCode (cheader_filename = "json.h", cname = "load_json_file")]

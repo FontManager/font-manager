@@ -70,8 +70,8 @@ AC_DEFINE_UNQUOTED(
     "$GETTEXT_PACKAGE",
     [The name of the gettext domain]
 )
-AM_GLIB_GNU_GETTEXT()
-IT_PROG_INTLTOOL()
+AM_GNU_GETTEXT([external])
+AM_GNU_GETTEXT_VERSION([0.19.8])
 
 dnl ***********************************************************************
 dnl Initialize libtool
@@ -195,10 +195,10 @@ AC_CONFIG_FILES([
     help/Makefile
     po/Makefile.in
     data/Makefile
-    data/org.gnome.FontManager.appdata.xml
-    data/org.gnome.FontViewer.appdata.xml
-    data/org.gnome.FontManager.desktop
-    data/org.gnome.FontViewer.desktop
+    data/org.gnome.FontManager.appdata.xml.in
+    data/org.gnome.FontViewer.appdata.xml.in
+    data/org.gnome.FontManager.desktop.in
+    data/org.gnome.FontViewer.desktop.in
     help/font-manager.1
     lib/Makefile
     lib/common/Makefile

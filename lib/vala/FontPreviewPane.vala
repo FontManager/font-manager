@@ -254,6 +254,7 @@ namespace FontManager {
         public FontPreviewPane () {
             Object(name: "FontManagerFontPreviewPane", orientation: Gtk.Orientation.VERTICAL, spacing: 0);
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
+            insert_action_group("default", new SimpleActionGroup());
             notebook = new Gtk.Notebook();
             notebook.show_border = false;
             preview = new FontPreview();
@@ -277,8 +278,8 @@ namespace FontManager {
             });
             preview.mode_changed.connect((m) => {
                 preview_tab_label.set_text(mode.to_translatable_string());
-                var actions = ((SimpleActionGroup) get_action_group("preview"));
-                actions.lookup_action("mode").change_state(mode.to_string());
+                var actions = ((SimpleActionGroup) get_action_group("default"));
+                actions.lookup_action("preview_mode").change_state(mode.to_string());
                 if (menu_button.use_popover)
                     menu_button.popover.hide();
                 else
@@ -362,6 +363,7 @@ namespace FontManager {
         }
 
         Gtk.MenuButton construct_menu_button () {
+            var application = (Gtk.Application) GLib.Application.get_default();
             var mb = new Gtk.MenuButton();
             mb.margin = MINIMUM_MARGIN_SIZE;
             mb.direction = Gtk.ArrowType.DOWN;
@@ -369,24 +371,28 @@ namespace FontManager {
             mb.can_focus = false;
             var mb_icon = new Gtk.Image.from_icon_name("view-more-symbolic", Gtk.IconSize.MENU);
             mb.add(mb_icon);
-            var action_group = new SimpleActionGroup();
+            var actions = ((SimpleActionGroup) get_action_group("default"));
             var mode_section = new GLib.Menu();
             string [] modes = { "Preview", "Waterfall", "Body Text" };
-            var mode_action = new SimpleAction.stateful("mode", VariantType.STRING, "Preview");
+            var mode_action = new SimpleAction.stateful("preview_mode", VariantType.STRING, "Preview");
+            mode_action.set_state(modes[0]);
+            application.add_action(mode_action);
+            actions.add_action(mode_action);
             mode_action.activate.connect((a, s) => {
-                mode = FontPreviewMode.parse((string) s);
+                this.mode = FontPreviewMode.parse((string) s);
+                a.set_state((string) s);
             });
-            action_group.add_action(mode_action);
-            mode_action.set_state("Preview");
             int i = 0;
             foreach (string mode in modes) {
                 i++;
+                string? accels [] = {"<Alt>%i".printf(i), null };
+                string action_name = "app.preview_mode::%s".printf(mode);
+                application.set_accels_for_action(action_name, accels);
                 string display_name = FontPreviewMode.parse(mode).to_translatable_string();
-                GLib.MenuItem item = new MenuItem(display_name, "preview.mode::%s".printf(mode));
-                item.set_attribute("accel", "s", "<Ctrl>%i".printf(i));
+                GLib.MenuItem item = new MenuItem(display_name, action_name);
+                item.set_attribute("accel", "s", accels[0]);
                 mode_section.append_item(item);
             }
-            insert_action_group("preview", action_group);
             mb.set_menu_model((GLib.MenuModel) mode_section);
             mb.set_tooltip_text(_("Select preview type"));
             mb.show_all();

@@ -3,26 +3,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-20 23:25-0500\n"
+"POT-Creation-Date: 2018-11-27 23:14-0500\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2017-03-05 09:50+0000\n"
 "Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../lib/vala/About.vala:27 ../data/org.gnome.FontManager.appdata.xml.in.h:1
+#: lib/vala/About.vala:27 data/org.gnome.FontManager.appdata.xml.in:9
+#: data/org.gnome.FontManager.desktop.in:5
+#: data/org.gnome.FontManager.desktop.in:6
 msgid "Font Manager"
 msgstr "Gestor de tipus de lletra"
 
-#: ../lib/vala/About.vala:29
+#: lib/vala/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
 msgstr "Gestió de tipus de lletra per a entorns d'escriptori GTK+"
 
-#: ../lib/vala/About.vala:35
+#: lib/vala/About.vala:35
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -42,494 +44,478 @@ msgid ""
 "    "
 msgstr ""
 
-#: ../lib/vala/About.vala:66
+#: lib/vala/About.vala:66
 msgid "translator-credits"
 msgstr ""
 
-#: ../lib/vala/Controls.vala:394
+#: lib/vala/Controls.vala:450
 msgid "Edit preview text"
 msgstr "Edita el text de la vista prèvia"
 
-#: ../lib/vala/Controls.vala:398
+#: lib/vala/Controls.vala:454
 msgid "Undo changes"
 msgstr "Desfés els canvis"
 
-#: ../lib/vala/Controls.vala:403
+#: lib/vala/Controls.vala:459
 msgid "Left Aligned"
 msgstr "Alineat a l'esquerra"
 
-#: ../lib/vala/Controls.vala:403
+#: lib/vala/Controls.vala:459
 msgid "Centered"
 msgstr "Centrat"
 
-#: ../lib/vala/Controls.vala:403
+#: lib/vala/Controls.vala:459
 msgid "Fill"
 msgstr "Justificat"
 
-#: ../lib/vala/Controls.vala:403
+#: lib/vala/Controls.vala:459
 msgid "Right Aligned"
 msgstr "Alineat a la dreta"
 
-#: ../lib/vala/FontConfig.vala:38
+#: lib/vala/Controls.vala:610
+msgid "Subpixel Geometry"
+msgstr "Geometria dels subpíxels"
+
+#: lib/vala/FontConfig.vala:38
 msgid "Ultra-Condensed"
 msgstr "Ultracondensada"
 
-#: ../lib/vala/FontConfig.vala:40
+#: lib/vala/FontConfig.vala:40
 msgid "Extra-Condensed"
 msgstr "Extracondensada"
 
-#: ../lib/vala/FontConfig.vala:42
+#: lib/vala/FontConfig.vala:42
 msgid "Condensed"
 msgstr "Condensada"
 
-#: ../lib/vala/FontConfig.vala:44
+#: lib/vala/FontConfig.vala:44
 msgid "Semi-Condensed"
 msgstr "Semicondensada"
 
-#: ../lib/vala/FontConfig.vala:46
+#: lib/vala/FontConfig.vala:46
 msgid "Semi-Expanded"
 msgstr "Semiexpandida"
 
-#: ../lib/vala/FontConfig.vala:48
+#: lib/vala/FontConfig.vala:48
 msgid "Expanded"
 msgstr "Expandida"
 
-#: ../lib/vala/FontConfig.vala:50
+#: lib/vala/FontConfig.vala:50
 msgid "Extra-Expanded"
 msgstr "Extraexpandida"
 
-#: ../lib/vala/FontConfig.vala:52
+#: lib/vala/FontConfig.vala:52
 msgid "Ultra-Expanded"
 msgstr "Ultraexpandida"
 
-#: ../lib/vala/FontConfig.vala:69
+#: lib/vala/FontConfig.vala:69
 msgid "Italic"
 msgstr "Itàlica"
 
-#: ../lib/vala/FontConfig.vala:71
+#: lib/vala/FontConfig.vala:71
 msgid "Oblique"
 msgstr "Oblíqua"
 
-#: ../lib/vala/FontConfig.vala:124
+#: lib/vala/FontConfig.vala:124
 msgid "Thin"
 msgstr "Fina"
 
-#: ../lib/vala/FontConfig.vala:126
+#: lib/vala/FontConfig.vala:126
 msgid "Ultra-Light"
 msgstr "Ultralleugera"
 
-#: ../lib/vala/FontConfig.vala:128 ../lib/vala/FontConfig.vala:208
+#: lib/vala/FontConfig.vala:128 lib/vala/FontConfig.vala:208
 msgid "Light"
 msgstr "Lleugera"
 
-#: ../lib/vala/FontConfig.vala:130
+#: lib/vala/FontConfig.vala:130
 msgid "Book"
 msgstr "Llibre"
 
-#: ../lib/vala/FontConfig.vala:132 ../lib/vala/FontConfig.vala:186
+#: lib/vala/FontConfig.vala:132 lib/vala/FontConfig.vala:186
 msgid "Medium"
 msgstr "Mitjà"
 
-#: ../lib/vala/FontConfig.vala:134
+#: lib/vala/FontConfig.vala:134
 msgid "Semi-Bold"
 msgstr "Seminegreta"
 
-#: ../lib/vala/FontConfig.vala:136
+#: lib/vala/FontConfig.vala:136
 msgid "Bold"
 msgstr "Negreta"
 
-#: ../lib/vala/FontConfig.vala:138
+#: lib/vala/FontConfig.vala:138
 msgid "Ultra-Bold"
 msgstr "Ultranegreta"
 
-#: ../lib/vala/FontConfig.vala:140
+#: lib/vala/FontConfig.vala:140
 msgid "Heavy"
 msgstr "Pesada"
 
-#: ../lib/vala/FontConfig.vala:142
+#: lib/vala/FontConfig.vala:142
 msgid "Ultra-Heavy"
 msgstr "Ultrapesada"
 
-#: ../lib/vala/FontConfig.vala:160
+#: lib/vala/FontConfig.vala:160
 msgid "Proportional"
 msgstr "Proporcional"
 
-#: ../lib/vala/FontConfig.vala:162
+#: lib/vala/FontConfig.vala:162
 msgid "Dual Width"
 msgstr "Amplada doble"
 
-#: ../lib/vala/FontConfig.vala:164
+#: lib/vala/FontConfig.vala:164
 msgid "Monospace"
 msgstr "Monoespaiada"
 
-#: ../lib/vala/FontConfig.vala:166
+#: lib/vala/FontConfig.vala:166
 msgid "Charcell"
 msgstr "Constant"
 
-#: ../lib/vala/FontConfig.vala:184
+#: lib/vala/FontConfig.vala:184
 msgid "Slight"
 msgstr "Lleuger"
 
-#: ../lib/vala/FontConfig.vala:188
+#: lib/vala/FontConfig.vala:188
 msgid "Full"
 msgstr "Complet"
 
-#: ../lib/vala/FontConfig.vala:190 ../lib/vala/FontConfig.vala:212
-#: ../lib/vala/FontConfig.vala:240
+#: lib/vala/FontConfig.vala:190 lib/vala/FontConfig.vala:212
+#: lib/vala/FontConfig.vala:240
 msgid "None"
 msgstr "Cap"
 
-#: ../lib/vala/FontConfig.vala:206
+#: lib/vala/FontConfig.vala:206
 msgid "Default"
 msgstr "Predeterminat"
 
-#: ../lib/vala/FontConfig.vala:210
+#: lib/vala/FontConfig.vala:210
 msgid "Legacy"
 msgstr "Llegat"
 
-#: ../lib/vala/FontConfig.vala:230
+#: lib/vala/FontConfig.vala:230
 msgid "Unknown"
 msgstr "Desconegut"
 
-#: ../lib/vala/FontConfig.vala:232
+#: lib/vala/FontConfig.vala:232
 msgid "RGB"
 msgstr "RGB"
 
-#: ../lib/vala/FontConfig.vala:234
+#: lib/vala/FontConfig.vala:234
 msgid "BGR"
 msgstr "BGR"
 
-#: ../lib/vala/FontConfig.vala:236
+#: lib/vala/FontConfig.vala:236
 msgid "VRGB"
 msgstr "VRGB"
 
-#: ../lib/vala/FontConfig.vala:238
+#: lib/vala/FontConfig.vala:238
 msgid "VBGR"
 msgstr "VBGR"
 
-#: ../lib/vala/FontPreviewPane.vala:119 ../lib/vala/FontPreviewPane.vala:221
-#: ../src/font-manager/MainWindow.vala:147
+#: lib/vala/FontPreviewPane.vala:119 lib/vala/FontPreviewPane.vala:221
+#: src/font-manager/MainWindow.vala:171
 msgid "Preview"
 msgstr "Vista prèvia"
 
-#: ../lib/vala/FontPreviewPane.vala:120 ../lib/vala/FontPreviewPane.vala:217
+#: lib/vala/FontPreviewPane.vala:120 lib/vala/FontPreviewPane.vala:217
 msgid "Waterfall"
 msgstr "Cascada"
 
-#: ../lib/vala/FontPreviewPane.vala:121 ../lib/vala/FontPreviewPane.vala:219
+#: lib/vala/FontPreviewPane.vala:121 lib/vala/FontPreviewPane.vala:219
 msgid "Body Text"
 msgstr "Cos de text"
 
-#: ../lib/vala/FontPreviewPane.vala:264
+#: lib/vala/FontPreviewPane.vala:265
 msgid "Characters"
 msgstr "Caràcters"
 
-#: ../lib/vala/FontPreviewPane.vala:265
+#: lib/vala/FontPreviewPane.vala:266
 msgid "Properties"
 msgstr "Propietats"
 
-#: ../lib/vala/FontPreviewPane.vala:266 ../src/font-manager/Categories.vala:300
+#: lib/vala/FontPreviewPane.vala:267 src/font-manager/Categories.vala:300
 msgid "License"
 msgstr "Licència"
 
-#: ../lib/vala/FontPreviewPane.vala:391
+#: lib/vala/FontPreviewPane.vala:397
 msgid "Select preview type"
 msgstr "Selecciona el tipus de vista prèvia"
 
-#: ../lib/vala/Metadata.vala:123
+#: lib/vala/Metadata.vala:123
 msgid "File does not contain license information."
 msgstr "El fitxer no conté informació sobre la llicència"
 
-#: ../lib/vala/Metadata.vala:196
+#: lib/vala/Metadata.vala:196
 msgid "PostScript Name"
 msgstr "Nom PostScript"
 
-#: ../lib/vala/Metadata.vala:197 ../src/font-manager/Categories.vala:292
+#: lib/vala/Metadata.vala:197 src/font-manager/Categories.vala:292
 msgid "Width"
 msgstr "Amplada"
 
-#: ../lib/vala/Metadata.vala:198 ../src/font-manager/Categories.vala:296
+#: lib/vala/Metadata.vala:198 src/font-manager/Categories.vala:296
 msgid "Slant"
 msgstr "Inclinació"
 
-#: ../lib/vala/Metadata.vala:199 ../src/font-manager/Categories.vala:294
+#: lib/vala/Metadata.vala:199 src/font-manager/Categories.vala:294
 msgid "Weight"
 msgstr "Pes"
 
-#: ../lib/vala/Metadata.vala:200 ../src/font-manager/Categories.vala:298
+#: lib/vala/Metadata.vala:200 src/font-manager/Categories.vala:298
 msgid "Spacing"
 msgstr "Espaiat"
 
-#: ../lib/vala/Metadata.vala:201
+#: lib/vala/Metadata.vala:201
 msgid "Version"
 msgstr "Versió"
 
-#: ../lib/vala/Metadata.vala:202 ../src/font-manager/Categories.vala:302
+#: lib/vala/Metadata.vala:202 src/font-manager/Categories.vala:302
 msgid "Vendor"
 msgstr "Proveïdor"
 
-#: ../lib/vala/Metadata.vala:203
+#: lib/vala/Metadata.vala:203
 msgid "FileType"
 msgstr ""
 
-#: ../lib/vala/Metadata.vala:204
+#: lib/vala/Metadata.vala:204
 msgid "Filesize"
 msgstr ""
 
-#: ../lib/vala/Orthography.vala:111
+#: lib/vala/Orthography.vala:111
 msgid "Update in progress"
 msgstr ""
 
-#: ../lib/vala/Orthography.vala:236
+#: lib/vala/Orthography.vala:236
 msgid "Coverage"
 msgstr ""
 
-#: ../lib/vala/Orthography.vala:279
+#: lib/vala/Orthography.vala:279
 msgid "Supported Orthographies"
 msgstr ""
 
-#: ../lib/vala/Orthography.vala:287
+#: lib/vala/Orthography.vala:287
 msgid "Clear selected filter"
 msgstr ""
 
-#: ../src/font-manager/Categories.vala:284
+#: src/font-manager/Categories.vala:284
 msgid "All"
 msgstr "Tots"
 
-#: ../src/font-manager/Categories.vala:284
+#: src/font-manager/Categories.vala:284
 msgid "All Fonts"
 msgstr "Tots els tipus de lletra"
 
-#: ../src/font-manager/Categories.vala:286
+#: src/font-manager/Categories.vala:286
 msgid "System"
 msgstr "Sistema"
 
-#: ../src/font-manager/Categories.vala:286
+#: src/font-manager/Categories.vala:286
 msgid "Fonts available to all users"
 msgstr "Tipus de lletra disponibles per a tots els usuaris"
 
-#: ../src/font-manager/Categories.vala:292
+#: src/font-manager/Categories.vala:292
 msgid "Grouped by font width"
 msgstr "Agrupats per l'amplada dels tipus de lletra"
 
-#: ../src/font-manager/Categories.vala:294
+#: src/font-manager/Categories.vala:294
 msgid "Grouped by font weight"
 msgstr "Agrupats pel pes dels tipus de lletra"
 
-#: ../src/font-manager/Categories.vala:296
+#: src/font-manager/Categories.vala:296
 msgid "Grouped by font angle"
 msgstr "Agrupats per la inclinació dels tipus de lletra"
 
-#: ../src/font-manager/Categories.vala:298
+#: src/font-manager/Categories.vala:298
 msgid "Grouped by font spacing"
 msgstr "Agrupats per l'espaiat dels tipus lletra"
 
-#: ../src/font-manager/Categories.vala:300
+#: src/font-manager/Categories.vala:300
 msgid "Grouped by license type"
 msgstr "Agrupats pel tipus de llicència"
 
-#: ../src/font-manager/Categories.vala:302
+#: src/font-manager/Categories.vala:302
 msgid "Grouped by vendor"
 msgstr "Agrupats pel proveïdor"
 
-#: ../src/font-manager/Categories.vala:304
+#: src/font-manager/Categories.vala:304
 msgid "Filetype"
 msgstr "Tipus de fitxer"
 
-#: ../src/font-manager/Categories.vala:304
+#: src/font-manager/Categories.vala:304
 msgid "Grouped by filetype"
 msgstr "Agrupats pel tipus de fitxer"
 
-#: ../src/font-manager/Categories.vala:318
+#: src/font-manager/Categories.vala:318
 msgid "Family Kind"
 msgstr "Classes de famílies"
 
-#: ../src/font-manager/Categories.vala:318
+#: src/font-manager/Categories.vala:318
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
 "Només s'inclouen aquí els tipus de lletra que inclouen informació PANOSE"
 
-#: ../src/font-manager/Categories.vala:319
+#: src/font-manager/Categories.vala:319
 msgid "Any"
 msgstr "Cap"
 
-#: ../src/font-manager/Categories.vala:319
+#: src/font-manager/Categories.vala:319
 msgid "No Fit"
 msgstr "Sense ajust"
 
-#: ../src/font-manager/Categories.vala:319
+#: src/font-manager/Categories.vala:319
 msgid "Text and Display"
 msgstr "Text i pantalla"
 
-#: ../src/font-manager/Categories.vala:319
+#: src/font-manager/Categories.vala:319
 msgid "Script"
 msgstr "Manuscrita"
 
-#: ../src/font-manager/Categories.vala:319
+#: src/font-manager/Categories.vala:319
 msgid "Decorative"
 msgstr "Decorativa"
 
-#: ../src/font-manager/Categories.vala:319
+#: src/font-manager/Categories.vala:319
 msgid "Pictorial"
 msgstr "Pictòrica"
 
-#: ../src/font-manager/Categories.vala:343
+#: src/font-manager/Categories.vala:343
 msgid "Normal"
 msgstr "Normal"
 
-#: ../src/font-manager/Categories.vala:348
+#: src/font-manager/Categories.vala:348
 msgid "Regular"
 msgstr "Regular"
 
-#: ../src/font-manager/CellRendererPill.vala:58
+#: src/font-manager/CellRendererPill.vala:58
 msgid "Variation "
 msgstr "tipus "
 
-#: ../src/font-manager/CellRendererPill.vala:58
+#: src/font-manager/CellRendererPill.vala:58
 msgid "Variations"
 msgstr "tipus"
 
-#. Collections.vala
-#. *
-#. * Copyright (C) 2009 - 2018 Jerry Casiano
-#. *
-#. * This program is free software: you can redistribute it and/or modify
-#. * it under the terms of the GNU General Public License as published by
-#. * the Free Software Foundation, either version 3 of the License, or
-#. * (at your option) any later version.
-#. *
-#. * This program is distributed in the hope that it will be useful,
-#. * but WITHOUT ANY WARRANTY; without even the implied warranty of
-#. * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#. * GNU General Public License for more details.
-#. *
-#. * You should have received a copy of the GNU General Public License
-#. * along with this program.
-#. *
-#. * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
-#.
-#: ../src/font-manager/Collections.vala:21
+#: src/font-manager/Collections.vala:21
 msgid "Enter Collection Name"
 msgstr "Introduïu el nom"
 
-#: ../src/font-manager/Collections.vala:118
+#: src/font-manager/Collections.vala:118
 msgid "Add new collection"
 msgstr "Afegeix una col·lecció nova"
 
-#: ../src/font-manager/Collections.vala:119
+#: src/font-manager/Collections.vala:119
 msgid "Remove selected collection"
 msgstr "Suprimeix la col·lecció seleccionada"
 
-#: ../src/font-manager/Collections.vala:370
+#: src/font-manager/Collections.vala:370
 msgid "Copying files..."
 msgstr ""
 
-#. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/font-manager/Collections.vala:490
+#: src/font-manager/Collections.vala:490
 msgid "Copy to..."
 msgstr ""
 
-#: ../src/font-manager/Collections.vala:491
+#: src/font-manager/Collections.vala:491
 msgid "Compress..."
 msgstr ""
 
-#: ../src/font-manager/Compare.vala:33
+#: src/font-manager/Compare.vala:33
 msgid "Add selected font to comparison"
 msgstr "Afegeix el tipus de lletra seleccionat a la comparació"
 
-#: ../src/font-manager/Compare.vala:34
+#: src/font-manager/Compare.vala:34
 msgid "Remove selected font from comparison"
 msgstr "Suprimeix el tipus de lletra seleccionat de la comparació"
 
-#: ../src/font-manager/Compare.vala:37 ../src/font-manager/Compare.vala:39
+#: src/font-manager/Compare.vala:37 src/font-manager/Compare.vala:39
 msgid "Select text color"
 msgstr "Selecciona el color del text"
 
-#: ../src/font-manager/Compare.vala:38 ../src/font-manager/Compare.vala:40
+#: src/font-manager/Compare.vala:38 src/font-manager/Compare.vala:40
 msgid "Select background color"
 msgstr "Selecciona el color del fons"
 
-#: ../src/font-manager/Dialogs.vala:47
+#: src/font-manager/Dialogs.vala:47
 msgid "Select Destination"
 msgstr ""
 
-#: ../src/font-manager/Dialogs.vala:50 ../src/font-manager/Dialogs.vala:70
-#: ../src/font-manager/Dialogs.vala:109 ../src/font-manager/Migration.vala:55
-#: ../src/font-manager/Preferences/Sources.vala:190
+#: src/font-manager/Dialogs.vala:50 src/font-manager/Dialogs.vala:70
+#: src/font-manager/Dialogs.vala:109 src/font-manager/Migration.vala:55
+#: src/font-manager/Preferences/Sources.vala:190
 msgid "_Cancel"
 msgstr "_Cancel·la"
 
-#: ../src/font-manager/Dialogs.vala:52
+#: src/font-manager/Dialogs.vala:52
 msgid "_Select"
 msgstr ""
 
-#: ../src/font-manager/Dialogs.vala:67
+#: src/font-manager/Dialogs.vala:67
 msgid "Select files to install"
 msgstr "Selecciona fitxers per instal·lar"
 
-#: ../src/font-manager/Dialogs.vala:72
-#: ../src/font-manager/Preferences/Sources.vala:192
+#: src/font-manager/Dialogs.vala:72
+#: src/font-manager/Preferences/Sources.vala:192
 msgid "_Open"
 msgstr "_Obre"
 
-#: ../src/font-manager/Dialogs.vala:110
+#: src/font-manager/Dialogs.vala:110
 msgid "_Delete"
 msgstr "_Suprimeix"
 
-#: ../src/font-manager/Dialogs.vala:115
+#: src/font-manager/Dialogs.vala:115
 msgid "Select fonts to remove"
 msgstr "Selecciona tipus per suprimir"
 
-#: ../src/font-manager/Dialogs.vala:126
+#: src/font-manager/Dialogs.vala:126
 msgid "Fonts installed in your home directory will appear here."
 msgstr ""
 
-#: ../src/font-manager/Filters/Collection.vala:49
+#: src/font-manager/Filters/Collection.vala:49
 msgid "New Collection"
 msgstr "Col·lecció nova"
 
-#: ../src/font-manager/Filters/Collection.vala:51
+#: src/font-manager/Filters/Collection.vala:51
 #, c-format
 msgid "Created : %s"
 msgstr "Data de creació: %s"
 
-#: ../src/font-manager/Filters/Disabled.vala:26
+#: src/font-manager/Filters/Disabled.vala:26
 msgid "Disabled"
 msgstr "Desactivats"
 
-#: ../src/font-manager/Filters/Disabled.vala:26
+#: src/font-manager/Filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
 msgstr "Tipus que han estat desactivats"
 
-#: ../src/font-manager/Filters/Unsorted.vala:26
+#: src/font-manager/Filters/Unsorted.vala:26
 msgid "Unsorted"
 msgstr "Sense classificar"
 
-#: ../src/font-manager/Filters/Unsorted.vala:26
+#: src/font-manager/Filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
 msgstr "Tipus de lletra no presents a cap col·lecció"
 
-#: ../src/font-manager/Filters/UserFonts.vala:28
+#: src/font-manager/Filters/UserFonts.vala:28
 msgid "User"
 msgstr "Usuari"
 
-#: ../src/font-manager/Filters/UserFonts.vala:28
+#: src/font-manager/Filters/UserFonts.vala:28
 msgid "Fonts available only to you"
 msgstr "Tipus de lletra disponibles només per a l'usuari actual"
 
-#: ../src/font-manager/FontList.vala:43
+#: src/font-manager/FontList.vala:43
 msgid "Remove selected font from collection"
 msgstr "Suprimeix els tipus de lletra seleccionats de la col·lecció"
 
-#: ../src/font-manager/FontList.vala:48 ../src/font-manager/FontList.vala:64
+#: src/font-manager/FontList.vala:48 src/font-manager/FontList.vala:64
 msgid "Expand all"
 msgstr "Expandeix-ho tot"
 
-#: ../src/font-manager/FontList.vala:52
+#: src/font-manager/FontList.vala:52
 msgid "Search Families..."
 msgstr "Cerca famílies..."
 
-#: ../src/font-manager/FontList.vala:53
+#: src/font-manager/FontList.vala:53
 #, c-format
 msgid ""
 "Case insensitive search of family names.\n"
@@ -537,47 +523,43 @@ msgid ""
 "Start search using %s to filter based on filepath."
 msgstr ""
 
-#: ../src/font-manager/FontList.vala:64
+#: src/font-manager/FontList.vala:64
 msgid "Collapse all"
 msgstr "Redueix-ho tot"
 
-#. action_name, display_name, detailed_action_name, accelerator, method
-#: ../src/font-manager/FontList.vala:412
+#: src/font-manager/FontList.vala:412
 msgid "Install"
 msgstr ""
 
-#: ../src/font-manager/FontList.vala:413
+#: src/font-manager/FontList.vala:413
 msgid "Copy Location"
 msgstr ""
 
-#: ../src/font-manager/FontList.vala:414
+#: src/font-manager/FontList.vala:414
 msgid "Show in Folder"
 msgstr ""
 
-#: ../src/font-manager/MainWindow.vala:54
-#: ../src/font-manager/MainWindow.vala:153
+#: src/font-manager/MainWindow.vala:54 src/font-manager/MainWindow.vala:177
 msgid "Browse"
 msgstr "Examina"
 
-#: ../src/font-manager/MainWindow.vala:56
-#: ../src/font-manager/MainWindow.vala:148
+#: src/font-manager/MainWindow.vala:56 src/font-manager/MainWindow.vala:172
 msgid "Compare"
 msgstr "Compara"
 
-#: ../src/font-manager/MainWindow.vala:58
-#: ../src/font-manager/MainWindow.vala:152
+#: src/font-manager/MainWindow.vala:58 src/font-manager/MainWindow.vala:176
 msgid "Manage"
 msgstr "Gestiona"
 
-#: ../src/font-manager/Migration.vala:56
+#: src/font-manager/Migration.vala:56
 msgid "_Continue"
 msgstr "_Continua"
 
-#: ../src/font-manager/Migration.vala:66
+#: src/font-manager/Migration.vala:66
 msgid "Update Required"
 msgstr "Cal una actualització"
 
-#: ../src/font-manager/Migration.vala:209
+#: src/font-manager/Migration.vala:209
 msgid ""
 "\n"
 "Font Manager has detected files from a previous installation. Some files "
@@ -592,9 +574,9 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 "\n"
-"El Gestor de tipus de lletra ha detectat fitxers d'una instal·lació "
-"anterior. Alguns fitxers de versions anteriors no són compatibles amb "
-"aquesta versió. D'altres han quedat en desús o han canviat de lloc.\n"
+"El Gestor de tipus de lletra ha detectat fitxers d'una instal·lació anterior."
+" Alguns fitxers de versions anteriors no són compatibles amb aquesta versió. "
+"D'altres han quedat en desús o han canviat de lloc.\n"
 "\n"
 "El Gestor de tipus de lletra intentarà ara migrar els tipus i les "
 "col·leccions existents. Se suprimiran els fitxers i configuracions que ja no "
@@ -604,123 +586,183 @@ msgstr ""
 "És molt recomanable que feu una còpia de seguretat dels fitxers importants "
 "abans de continuar.\n"
 
-#: ../src/font-manager/Preferences/Display.vala:42
-#: ../src/font-manager/Preferences/Rendering.vala:42
-#: ../src/font-manager/Preferences/Substitutions.vala:68
+#: src/font-manager/Preferences/Desktop.vala:37
+msgid "Interface Font"
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:38
+msgid "Font used throughout interface."
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:43
+msgid "Document Font"
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:44
+msgid "Font used for reading documents."
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:49
+msgid "Monospace Font"
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:50
+msgid "Monospaced (fixed-width) font for use in locations such as terminals."
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:55
+msgid "Text Scaling Factor"
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:56
+msgid ""
+"Factor used to enlarge or reduce text display, without changing font size"
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:61
+msgid "Antialiasing"
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:62
+msgid "The type of antialiasing to use when rendering fonts."
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:67
+msgid "RGBA order"
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:68
+msgid ""
+"The order of subpixel elements on an LCD screen; only used when antialiasing "
+"is set to rgba."
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:73
+#: src/font-manager/Preferences/Rendering.vala:86
+msgid "Hinting"
+msgstr "Millora del contorn"
+
+#: src/font-manager/Preferences/Desktop.vala:74
+msgid "The type of hinting to use when rendering fonts."
+msgstr ""
+
+#: src/font-manager/Preferences/Desktop.vala:100
+msgid "Desktop settings schema not found."
+msgstr ""
+
+#: src/font-manager/Preferences/Display.vala:42
+#: src/font-manager/Preferences/Rendering.vala:42
+#: src/font-manager/Preferences/Substitutions.vala:68
 msgid "Settings saved to file."
 msgstr "S'ha desat la configuració al fitxer"
 
-#: ../src/font-manager/Preferences/Display.vala:46
-#: ../src/font-manager/Preferences/Rendering.vala:46
-#: ../src/font-manager/Preferences/Substitutions.vala:72
+#: src/font-manager/Preferences/Display.vala:46
+#: src/font-manager/Preferences/Rendering.vala:46
+#: src/font-manager/Preferences/Substitutions.vala:72
 msgid "Removed configuration file."
 msgstr "S'ha suprimit el fitxer de configuració"
 
-#: ../src/font-manager/Preferences/Display.vala:75
+#: src/font-manager/Preferences/Display.vala:75
 msgid "Target DPI"
 msgstr "Punts per polzada (DPI)"
 
-#: ../src/font-manager/Preferences/Display.vala:76
+#: src/font-manager/Preferences/Display.vala:76
 msgid "Scale factor"
 msgstr "Factor d'escala"
 
-#: ../src/font-manager/Preferences/Display.vala:80
+#: src/font-manager/Preferences/Display.vala:80
 msgid "LCD Filter"
 msgstr "Filtre LCD"
 
-#: ../src/font-manager/Preferences/Display.vala:147
-msgid "Subpixel Geometry"
-msgstr "Geometria dels subpíxels"
-
-#: ../src/font-manager/Preferences/Preferences.vala:25
+#: src/font-manager/Preferences/Preferences.vala:25
 msgid "Interface"
 msgstr "Interfície "
 
-#: ../src/font-manager/Preferences/Preferences.vala:26
-msgid "Display"
-msgstr "Visualització"
-
-#: ../src/font-manager/Preferences/Preferences.vala:27
-msgid "Rendering"
-msgstr "Representació"
-
-#: ../src/font-manager/Preferences/Preferences.vala:28
+#: src/font-manager/Preferences/Preferences.vala:26
 msgid "Sources"
 msgstr "Orígens"
 
-#: ../src/font-manager/Preferences/Preferences.vala:29
+#: src/font-manager/Preferences/Preferences.vala:27
 msgid "Substitutions"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Preferences.vala:179
+#: src/font-manager/Preferences/Preferences.vala:28
+msgid "Desktop"
+msgstr ""
+
+#: src/font-manager/Preferences/Preferences.vala:29
+msgid "Display"
+msgstr "Visualització"
+
+#: src/font-manager/Preferences/Preferences.vala:30
+msgid "Rendering"
+msgstr "Representació"
+
+#: src/font-manager/Preferences/Preferences.vala:180
 msgid "Save"
 msgstr "Desa"
 
-#: ../src/font-manager/Preferences/Preferences.vala:181
+#: src/font-manager/Preferences/Preferences.vala:182
 msgid "Discard"
 msgstr "Descarta"
 
-#: ../src/font-manager/Preferences/Preferences.vala:183
+#: src/font-manager/Preferences/Preferences.vala:184
 msgid "Running applications may require a restart to reflect any changes."
 msgstr ""
 "Les aplicacions en execució poden requerir un reinici per reflectir els "
 "canvis"
 
-#: ../src/font-manager/Preferences/Rendering.vala:85
+#: src/font-manager/Preferences/Rendering.vala:85
 msgid "Antialias"
 msgstr "Suavitzat"
 
-#: ../src/font-manager/Preferences/Rendering.vala:86
-msgid "Hinting"
-msgstr "Millora del contorn"
-
-#: ../src/font-manager/Preferences/Rendering.vala:87
+#: src/font-manager/Preferences/Rendering.vala:87
 msgid "Enable Autohinter"
 msgstr "Millora del contorn automàtica"
 
-#: ../src/font-manager/Preferences/Rendering.vala:95
+#: src/font-manager/Preferences/Rendering.vala:96
 msgid "Hinting Style"
 msgstr "Estil de millora del contorn"
 
-#: ../src/font-manager/Preferences/Rendering.vala:96
+#: src/font-manager/Preferences/Rendering.vala:97
 msgid "Use Embedded Bitmaps"
 msgstr "Mapes de bits incrustats"
 
-#: ../src/font-manager/Preferences/Rendering.vala:98
-#: ../src/font-manager/Preferences/Rendering.vala:103
+#: src/font-manager/Preferences/Rendering.vala:99
+#: src/font-manager/Preferences/Rendering.vala:104
 msgid " Size Restrictions "
 msgstr " Restriccions de mida "
 
-#: ../src/font-manager/Preferences/Rendering.vala:101
+#: src/font-manager/Preferences/Rendering.vala:102
 msgid " Apply settings to point sizes "
 msgstr " Aplica la configuració a les mides de punts "
 
-#: ../src/font-manager/Preferences/Rendering.vala:168
+#: src/font-manager/Preferences/Rendering.vala:169
 msgid "Smaller than"
 msgstr "Més petit que"
 
-#: ../src/font-manager/Preferences/Rendering.vala:169
+#: src/font-manager/Preferences/Rendering.vala:170
 msgid "Larger than"
 msgstr "Més gran que"
 
-#: ../src/font-manager/Preferences/Sources.vala:35
+#: src/font-manager/Preferences/Sources.vala:35
 msgid "Add source"
 msgstr "Afegeix un origen"
 
-#: ../src/font-manager/Preferences/Sources.vala:37
+#: src/font-manager/Preferences/Sources.vala:37
 msgid "Remove selected source"
 msgstr "Elimina l'origen seleccionat"
 
-#: ../src/font-manager/Preferences/Sources.vala:108
+#: src/font-manager/Preferences/Sources.vala:108
 msgid "Font Sources"
 msgstr "Orígens dels tipus de lletra"
 
-#: ../src/font-manager/Preferences/Sources.vala:109
+#: src/font-manager/Preferences/Sources.vala:109
 msgid "Easily add or preview fonts without actually installing them."
 msgstr ""
 "Afegeix tipus de lletra per previsualitzar-los sense haver de instal·lar-los"
 
-#: ../src/font-manager/Preferences/Sources.vala:110
+#: src/font-manager/Preferences/Sources.vala:110
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
@@ -728,194 +770,278 @@ msgstr ""
 "Per afegir un origen nou, arrossegueu una carpeta aquí o feu clic al botó "
 "d'afegir de la barra d'eines"
 
-#: ../src/font-manager/Preferences/Sources.vala:187
+#: src/font-manager/Preferences/Sources.vala:187
 msgid "Select source folders"
 msgstr "Selecciona carpetes d'origen"
 
-#: ../src/font-manager/Preferences/Substitutions.vala:33
+#: src/font-manager/Preferences/Substitutions.vala:33
 msgid "Add alias"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Substitutions.vala:34
+#: src/font-manager/Preferences/Substitutions.vala:34
 msgid "Remove selected alias"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Substitutions.vala:88
+#: src/font-manager/Preferences/Substitutions.vala:88
 msgid "Font Substitutions"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Substitutions.vala:89
+#: src/font-manager/Preferences/Substitutions.vala:89
 msgid "Easily substitute one font family for another."
 msgstr ""
 
-#: ../src/font-manager/Preferences/Substitutions.vala:90
+#: src/font-manager/Preferences/Substitutions.vala:90
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr ""
 
-#: ../src/font-manager/Preferences/Substitutions.vala:224
+#: src/font-manager/Preferences/Substitutions.vala:224
 msgid "Enter target family"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Substitutions.vala:226
+#: src/font-manager/Preferences/Substitutions.vala:226
 msgid "Add substitute"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Substitutions.vala:350
+#: src/font-manager/Preferences/Substitutions.vala:350
 msgid "prefer"
 msgstr "prefereix"
 
-#: ../src/font-manager/Preferences/Substitutions.vala:351
+#: src/font-manager/Preferences/Substitutions.vala:351
 msgid "accept"
 msgstr "accepta"
 
-#: ../src/font-manager/Preferences/Substitutions.vala:352
+#: src/font-manager/Preferences/Substitutions.vala:352
 msgid "default"
 msgstr "per defecte"
 
-#: ../src/font-manager/Preferences/Substitutions.vala:357
+#: src/font-manager/Preferences/Substitutions.vala:357
 msgid "Enter substitute family"
 msgstr ""
 
-#: ../src/font-manager/Preferences/Substitutions.vala:363
+#: src/font-manager/Preferences/Substitutions.vala:363
 msgid "Remove substitute"
 msgstr ""
 
-#: ../src/font-manager/Preferences/UserInterface.vala:35
+#: src/font-manager/Preferences/UserInterface.vala:35
 msgid "Wide Layout"
 msgstr "Disposició ampla"
 
-#: ../src/font-manager/Preferences/UserInterface.vala:37
+#: src/font-manager/Preferences/UserInterface.vala:38
 msgid "Only when maximized"
 msgstr "Només quan la finestra està maximitzada"
 
-#: ../src/font-manager/Preferences/UserInterface.vala:41
+#: src/font-manager/Preferences/UserInterface.vala:42
 msgid "Client Side Decorations"
 msgstr "Decoracions del costat del client"
 
-#: ../src/font-manager/Preferences/UserInterface.vala:77
+#: src/font-manager/Preferences/UserInterface.vala:78
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
 "Decoracions activades: el canvi tindrà efecte la propera vegada que s'iniciï "
 "l'aplicació"
 
-#: ../src/font-manager/Preferences/UserInterface.vala:79
+#: src/font-manager/Preferences/UserInterface.vala:80
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
 "Decoracions desactivades: el canvi tindrà efecte la propera vegada que "
 "s'iniciï l'aplicació"
 
-#: ../src/font-manager/SideBar.vala:136
+#: src/font-manager/SideBar.vala:136
 msgid "Categories"
 msgstr "Categories"
 
-#: ../src/font-manager/SideBar.vala:137
+#: src/font-manager/SideBar.vala:137
 msgid "Collections"
 msgstr "Col·leccions"
 
-#: ../src/font-manager/TitleBar.vala:52
+#: src/font-manager/TitleBar.vala:52
+msgid "Keyboard Shortcuts"
+msgstr ""
+
+#: src/font-manager/TitleBar.vala:53 data/ui/shortcuts.ui:20
 msgid "Help"
 msgstr "Ajuda"
 
-#: ../src/font-manager/TitleBar.vala:53
+#: src/font-manager/TitleBar.vala:54
 msgid "About"
 msgstr "Quant a"
 
-#: ../src/font-manager/TitleBar.vala:140
+#: src/font-manager/TitleBar.vala:141
 msgid "Add Fonts"
 msgstr "Instal·la tipus de lletra"
 
-#: ../src/font-manager/TitleBar.vala:141
+#: src/font-manager/TitleBar.vala:142
 msgid "Remove Fonts"
 msgstr "Desinstal·la tipus de lletra"
 
-#: ../src/font-manager/TitleBar.vala:149
+#: src/font-manager/TitleBar.vala:150
 msgid "Preferences"
 msgstr "Preferències"
 
-#: ../src/font-viewer/Application.vala:72
-#: ../src/font-viewer/Application.vala:104
-#: ../src/font-viewer/MainWindow.vala:25 ../src/font-viewer/MainWindow.vala:136
-#: ../data/org.gnome.FontViewer.appdata.xml.in.h:1
+#: src/font-viewer/Application.vala:72 src/font-viewer/Application.vala:104
+#: src/font-viewer/MainWindow.vala:25 src/font-viewer/MainWindow.vala:136
+#: data/org.gnome.FontViewer.appdata.xml.in:9
+#: data/org.gnome.FontViewer.desktop.in:5
+#: data/org.gnome.FontViewer.desktop.in:6
 msgid "Font Viewer"
 msgstr "Visualitzador de tipus de lletra"
 
-#: ../src/font-viewer/MainWindow.vala:26
+#: src/font-viewer/MainWindow.vala:26
 msgid "Preview font files before installing them."
 msgstr "Previsualitzeu els fitxers de tipus de lletra abans d'instal·lar-los"
 
-#: ../src/font-viewer/MainWindow.vala:27
+#: src/font-viewer/MainWindow.vala:27
 msgid "To preview a font simply drag it onto this area."
 msgstr "Per previsualitzar un tipus de lletra, arrossegueu-lo aquí"
 
-#: ../src/font-viewer/MainWindow.vala:51
+#: src/font-viewer/MainWindow.vala:51
 msgid "OpenType Font"
 msgstr "Tipus de lletra OpenType"
 
-#: ../src/font-viewer/MainWindow.vala:52
+#: src/font-viewer/MainWindow.vala:52
 msgid "TrueType Font"
 msgstr "Tipus de lletra TrueType"
 
-#: ../src/font-viewer/MainWindow.vala:53
+#: src/font-viewer/MainWindow.vala:53
 msgid "PostScript Type 1 Font"
 msgstr "Tipus de lletra PostScript Type 1"
 
-#: ../src/font-viewer/MainWindow.vala:102
+#: src/font-viewer/MainWindow.vala:102
 msgid "No file selected"
 msgstr "No s'ha seleccionat cap fitxer"
 
-#: ../src/font-viewer/MainWindow.vala:103
+#: src/font-viewer/MainWindow.vala:103
 msgid "Or unsupported filetype."
 msgstr "O el tipus de fitxer no és compatible"
 
-#: ../src/font-viewer/MainWindow.vala:143
-#: ../src/font-viewer/MainWindow.vala:252
+#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:270
 msgid "Install Font"
 msgstr "Instal·la"
 
-#: ../src/font-viewer/MainWindow.vala:248
+#: src/font-viewer/MainWindow.vala:266
 msgid "Installed"
 msgstr "Instal·lat"
 
-#: ../lib/common/font-manager-source.c:224
-#: ../lib/common/font-manager-source.c:239
+#: lib/common/font-manager-source.c:224 lib/common/font-manager-source.c:239
 msgid "Source Unavailable"
 msgstr "Origen no disponible"
 
-#: ../lib/unicode/unicode-character-map.c:643
+#: lib/unicode/unicode-character-map.c:643
 msgid "Unknown character, unable to identify."
 msgstr ""
 
-#: ../lib/unicode/unicode-character-map.c:645
+#: lib/unicode/unicode-character-map.c:645
 msgid "Not found."
 msgstr ""
 
-#: ../lib/unicode/unicode-character-map.c:647
+#: lib/unicode/unicode-character-map.c:647
 msgid "Character found."
 msgstr ""
 
-#: ../data/org.gnome.FontManager.appdata.xml.in.h:2
+#: data/org.gnome.FontManager.appdata.xml.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
 msgstr ""
 
-#: ../data/org.gnome.FontManager.appdata.xml.in.h:3
+#: data/org.gnome.FontManager.appdata.xml.in:13
 msgid ""
-"<p> Font Manager is intended to provide a way for average users to easily "
-"manage desktop fonts, without having to resort to command line tools or "
-"editing configuration files by hand. </p> <p> While designed primarily with "
-"the Gnome Desktop Environment in mind, it should work well with other Gtk+ "
-"desktop environments. </p> <p> Font Manager is NOT a professional-grade font "
-"management solution. </p>"
+"Font Manager is intended to provide a way for average users to easily manage "
+"desktop fonts, without having to resort to command line tools or editing "
+"configuration files by hand."
 msgstr ""
 
-#: ../data/org.gnome.FontViewer.appdata.xml.in.h:2
+#: data/org.gnome.FontManager.appdata.xml.in:18
+msgid ""
+"While designed primarily with the Gnome Desktop Environment in mind, it "
+"should work well with other Gtk+ desktop environments."
+msgstr ""
+
+#: data/org.gnome.FontManager.appdata.xml.in:22
+msgid "Font Manager is NOT a professional-grade font management solution."
+msgstr ""
+
+#: data/org.gnome.FontManager.desktop.in:7
+msgid "Preview, Compare and Manage Fonts"
+msgstr ""
+
+#: data/org.gnome.FontManager.desktop.in:8
+#: data/org.gnome.FontViewer.desktop.in:8
+msgid "preferences-desktop-font"
+msgstr ""
+
+#: data/org.gnome.FontManager.desktop.in:14
+#: data/org.gnome.FontViewer.desktop.in:14
+msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
+msgstr ""
+
+#: data/org.gnome.FontViewer.appdata.xml.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
 msgstr ""
 
-#: ../data/org.gnome.FontViewer.appdata.xml.in.h:3
+#: data/org.gnome.FontViewer.appdata.xml.in:13
 msgid ""
-"<p> Font Viewer allows previewing font files prior to installation. It "
-"features several ways to preview font files along with a character map and "
-"displays font properties and license details. </p>"
+"Font Viewer allows previewing font files prior to installation. It features "
+"several ways to preview font files along with a character map and displays "
+"font properties and license details."
+msgstr ""
+
+#: data/org.gnome.FontViewer.desktop.in:7
+msgid "Full featured font file preview application"
+msgstr ""
+
+#: data/ui/shortcuts.ui:14
+msgid "General"
+msgstr ""
+
+#: data/ui/shortcuts.ui:27
+msgid "Increase preview size"
+msgstr ""
+
+#: data/ui/shortcuts.ui:34
+msgid "Decrease preview size"
+msgstr ""
+
+#: data/ui/shortcuts.ui:41
+msgid "Reset preview size to default"
+msgstr ""
+
+#: data/ui/shortcuts.ui:48
+msgid "Reload"
+msgstr ""
+
+#: data/ui/shortcuts.ui:55
+msgid "Quit the application"
+msgstr ""
+
+#: data/ui/shortcuts.ui:63
+msgid "Mode"
+msgstr ""
+
+#: data/ui/shortcuts.ui:69
+msgid "Switch to Manage mode"
+msgstr ""
+
+#: data/ui/shortcuts.ui:76
+msgid "Switch to Browse mode"
+msgstr ""
+
+#: data/ui/shortcuts.ui:83
+msgid "Switch to Compare mode"
+msgstr ""
+
+#: data/ui/shortcuts.ui:91
+msgid "Preview Mode"
+msgstr ""
+
+#: data/ui/shortcuts.ui:97
+msgid "Switch to Standard preview"
+msgstr ""
+
+#: data/ui/shortcuts.ui:104
+msgid "Switch to Waterfall preview"
+msgstr ""
+
+#: data/ui/shortcuts.ui:111
+msgid "Switch to Body Text preview"
 msgstr ""

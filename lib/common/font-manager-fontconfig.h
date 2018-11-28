@@ -37,7 +37,7 @@ gboolean update_font_configuration (void);
 GList * list_available_font_files (void);
 GList * list_available_font_families (void);
 GList * list_font_directories (gboolean recursive);
-GList * list_user_font_directories (void);
+GList * list_user_font_directories (gboolean recursive);
 GList * get_charset_from_font_object (JsonObject *font_object);
 GList * get_charset_from_filepath (const gchar *filepath, int index);
 GList * get_charset_from_fontconfig_pattern (FcPattern *pattern);

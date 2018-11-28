@@ -135,7 +135,7 @@ list_available_font_files (void)
 {
     FcPattern *pattern = FcPatternBuild(NULL,NULL);
     FcObjectSet *objectset = FcObjectSetBuild (FC_FILE, NULL);
-    FcFontSet *fontset = FcFontList(NULL, pattern, objectset);
+    FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
     GList *result = NULL;
 
     for (int i = 0; i < fontset->nfont; i++) {
@@ -166,12 +166,21 @@ list_font_directories (gboolean recursive)
     FcStrList *fdlist = NULL;
     GList *result = NULL;
 
-    if (recursive)
-        fdlist = FcConfigGetFontDirs(FcConfigGetCurrent());
-    else
-        fdlist = FcConfigGetConfigDirs(FcConfigGetCurrent());
-    while ((directory = FcStrListNext(fdlist)))
-        result = g_list_prepend(result, g_strdup_printf("%s", directory));
+    fdlist = FcConfigGetFontDirs(FcConfigGetCurrent());
+
+    while ((directory = FcStrListNext(fdlist))) {
+        gboolean subdir = FALSE;
+        if (!recursive) {
+            for (GList *iter = result; iter != NULL; iter = iter->next) {
+                if (g_strrstr((const gchar *) directory, iter->data)) {
+                    subdir = TRUE;
+                    break;
+                }
+            }
+        }
+        if (!subdir)
+            result = g_list_prepend(result, g_strdup_printf("%s", directory));
+    }
 
     FcStrListDone(fdlist);
     result = g_list_sort(result, (GCompareFunc) natural_sort);
@@ -188,16 +197,29 @@ list_font_directories (gboolean recursive)
  * Free the returned list using #g_slist_free_full(list, g_free);
  */
 GList *
-list_user_font_directories (void)
+list_user_font_directories (gboolean recursive)
 {
     FcChar8 *directory = NULL;
     FcStrList *fdlist = NULL;
     GList *result = NULL;
 
-    fdlist = FcConfigGetConfigDirs(FcConfigGetCurrent());
-    while ((directory = FcStrListNext(fdlist)))
-        if (get_file_owner((const gchar *) directory) == 0)
-            result = g_list_prepend(result, g_strdup_printf("%s", directory));
+    fdlist = FcConfigGetFontDirs(FcConfigGetCurrent());
+
+    while ((directory = FcStrListNext(fdlist))) {
+        if (get_file_owner((const gchar *) directory) == 0) {
+            gboolean subdir = FALSE;
+            if (!recursive) {
+                for (GList *iter = result; iter != NULL; iter = iter->next) {
+                    if (g_strrstr((const gchar *) directory, iter->data)) {
+                        subdir = TRUE;
+                        break;
+                    }
+                }
+            }
+            if (!subdir)
+                result = g_list_prepend(result, g_strdup_printf("%s", directory));
+        }
+    }
 
     FcStrListDone(fdlist);
     result = g_list_sort(result, (GCompareFunc) natural_sort);
@@ -217,7 +239,7 @@ list_available_font_families (void)
     GList *result = NULL;
     FcPattern *pattern = FcPatternBuild(NULL,NULL);
     FcObjectSet *objectset = FcObjectSetBuild(FC_FAMILY, NULL);
-    FcFontSet *fontset = FcFontList(NULL, pattern, objectset);
+    FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
 
     for (int i = 0; i < fontset->nfont; i++) {
         FcChar8 *family;
@@ -264,7 +286,7 @@ get_available_fonts (const gchar *family_name)
                                               FC_LANG,
                                               NULL);
 
-    FcFontSet *fontset = FcFontList(NULL, pattern, objectset);
+    FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
     JsonObject *result = json_object_new();
     process_fontset(fontset, result);
     FcObjectSetDestroy(objectset);
@@ -301,7 +323,7 @@ get_available_fonts_for_lang (const gchar *lang_id)
                                               FC_LANG,
                                               NULL);
 
-    FcFontSet *fontset = FcFontList(NULL, pattern, objectset);
+    FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
     JsonObject *result = json_object_new();
     process_fontset(fontset, result);
     FcStrFree(language);
@@ -343,7 +365,7 @@ get_available_fonts_for_chars (const gchar *chars)
         FcCharSet *charset = FcCharSetCreate();
         g_assert(FcCharSetAddChar(charset, wc));
         g_assert(FcPatternAddCharSet(pattern, FC_CHARSET, charset));
-        FcFontSet *fontset = FcFontList(NULL, pattern, objectset);
+        FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
         process_fontset(fontset, result);
         FcFontSetDestroy(fontset);
         FcCharSetDestroy(charset);
@@ -537,7 +559,7 @@ get_charset_from_font_object (JsonObject *font_object)
                                          FC_INDEX, FcTypeInteger, index,
                                          NULL);
     FcObjectSet *objectset = FcObjectSetBuild(FC_CHARSET, NULL);
-    FcFontSet *fontset = FcFontList(NULL, pattern, objectset);
+    FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
     GList *result = NULL;
     if (fontset->nfont > 0)
         result = get_charset_from_fontconfig_pattern(fontset->fonts[0]);

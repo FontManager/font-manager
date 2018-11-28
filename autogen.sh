@@ -10,7 +10,6 @@ srcdir=`dirname $0`
 test "$REQUIRED_AUTOMAKE_VERSION" || REQUIRED_AUTOMAKE_VERSION=1.11.2
 test "$REQUIRED_AUTORECONF_VERSION" || REQUIRED_AUTORECONF_VERSION=2.53
 test "$REQUIRED_GLIB_GETTEXT_VERSION" || REQUIRED_GLIB_GETTEXT_VERSION=2.2.0
-test "$REQUIRED_INTLTOOL_VERSION" || REQUIRED_INTLTOOL_VERSION=0.25
 test "$REQUIRED_PKG_CONFIG_VERSION" || REQUIRED_PKG_CONFIG_VERSION=0.14.0
 test "$REQUIRED_GTK_DOC_VERSION" || REQUIRED_GTK_DOC_VERSION=1.0
 
@@ -216,7 +215,6 @@ check_m4macros() {
 }
 
 want_glib_gettext=false
-want_intltool=false
 want_pkg_config=false
 want_gtk_doc=false
 want_maintainer_mode=false
@@ -253,10 +251,6 @@ for configure_ac in $configure_files; do
     if grep "^AM_GLIB_GNU_GETTEXT" $configure_ac >/dev/null; then
         want_glib_gettext=true
     fi
-    if grep "^AC_PROG_INTLTOOL" $configure_ac >/dev/null ||
-       grep "^IT_PROG_INTLTOOL" $configure_ac >/dev/null; then
-        want_intltool=true
-    fi
     if grep "^PKG_CHECK_MODULES" $configure_ac >/dev/null; then
         want_pkg_config=true
     fi
@@ -287,12 +281,6 @@ if $want_glib_gettext; then
     version_check glib-gettext GLIB_GETTEXTIZE glib-gettextize $REQUIRED_GLIB_GETTEXT_VERSION \
         "ftp://ftp.gtk.org/pub/gtk/v2.2/glib-$REQUIRED_GLIB_GETTEXT_VERSION.tar.gz"
     require_m4macro glib-gettext.m4
-fi
-
-if $want_intltool; then
-    version_check intltool INTLTOOLIZE intltoolize $REQUIRED_INTLTOOL_VERSION \
-        "http://ftp.gnome.org/pub/GNOME/sources/intltool/"
-    require_m4macro intltool.m4
 fi
 
 if $want_pkg_config; then
@@ -337,12 +325,6 @@ for configure_ac in $configure_files; do
     if grep "^GTK_DOC_CHECK" $basename >/dev/null; then
         printbold "Running $GTKDOCIZE..."
         $GTKDOCIZE --copy || exit 1
-    fi
-
-    if grep "^AC_PROG_INTLTOOL" $basename >/dev/null ||
-           grep "^IT_PROG_INTLTOOL" $basename >/dev/null; then
-        printbold "Running $INTLTOOLIZE..."
-        $INTLTOOLIZE --force --copy --automake || exit 1
     fi
 
     # Now that all the macros are sorted, run autoreconf ...

@@ -29,6 +29,7 @@ src/font-manager/Filters/UserFonts.c
 src/font-manager/FontList.c
 src/font-manager/MainWindow.c
 src/font-manager/Migration.c
+src/font-manager/Preferences/Desktop.c
 src/font-manager/Preferences/Display.c
 src/font-manager/Preferences/Preferences.c
 src/font-manager/Preferences/Rendering.c

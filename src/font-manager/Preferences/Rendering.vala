@@ -87,6 +87,7 @@ namespace FontManager {
             autohint = new Gtk.CheckButton.with_label(_("Enable Autohinter"));
             autohint.margin = DEFAULT_MARGIN_SIZE;
             hinting_options = new Gtk.Revealer();
+            hinting_options.set_transition_duration(450);
             hinting_options_grid = new Gtk.Grid();
             hinting_options_grid.margin = DEFAULT_MARGIN_SIZE + (DEFAULT_MARGIN_SIZE / 2);
             string [] hintstyles = {};

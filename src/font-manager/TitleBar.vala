@@ -49,6 +49,7 @@ namespace FontManager {
         var application = (FontManager.Application) GLib.Application.get_default();
         /* action_name, display_name, detailed_action_name, accelerator, method */
         MenuEntry [] app_menu_entries = {
+            MenuEntry("shortcuts", _("Keyboard Shortcuts"), "app.shortcuts", null, new MenuCallbackWrapper(application.shortcuts)),
             MenuEntry("help", _("Help"), "app.help", "F1", new MenuCallbackWrapper(application.help)),
             MenuEntry("about", _("About"), "app.about", null, new MenuCallbackWrapper(application.about)),
         };

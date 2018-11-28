@@ -20,6 +20,45 @@
 
 namespace FontManager {
 
+    public class LabeledControl : Gtk.Box {
+
+        /**
+         * LabeledControl:label:
+         *
+         * #GtkLabel
+         */
+        public Gtk.Label label { get; private set; }
+
+        /**
+         * LabeledControl:description:
+         *
+         * Centered #GtkLabel with dim-label style class
+         */
+        public Gtk.Label description { get; private set; }
+
+        construct {
+            margin = MINIMUM_MARGIN_SIZE * 8;
+            label = new Gtk.Label(null);
+            label.set("hexpand", false, "halign", Gtk.Align.START, null);
+            description = new Gtk.Label(null);
+            description.set("hexpand", true, "halign", Gtk.Align.CENTER, null);
+            description.get_style_context().add_class(Gtk.STYLE_CLASS_DIM_LABEL);
+            pack_start(label, false, false, 0);
+            set_center_widget(description);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public override void show () {
+            label.show();
+            description.show();
+            base.show();
+            return;
+        }
+
+    }
+
     /**
      * LabeledSwitch:
      * @label:      text to display in label or %NULL
@@ -27,30 +66,16 @@ namespace FontManager {
      * Row like widget containing two #GtkLabel and a #GtkSwitch.
      * Use #GtkLabel.set_text() / #GtkLabel.set_markup()
      * @label is intended to display main option name
-     * @dim_label is intended to display additional information
+     * @description is intended to display additional information
      * @toggle is #GtkSwitch connect to its active signal to monitor changes
      *
      * ------------------------------------------------------------
      * |                                                          |
-     * | label                 dim_label                switch    |
+     * | label                 description                switch  |
      * |                                                          |
      * ------------------------------------------------------------
      */
-    public class LabeledSwitch : Gtk.Box {
-
-        /**
-         * LabeledSwitch:label:
-         *
-         * #GtkLabel
-         */
-        public Gtk.Label label { get; private set; }
-
-        /**
-         * LabeledSwitch:dim_label:
-         *
-         * Centered #GtkLabel with dim-label style class
-         */
-        public Gtk.Label dim_label { get; private set; }
+    public class LabeledSwitch : LabeledControl {
 
         /**
          * LabeledSwitch:toggle:
@@ -59,30 +84,18 @@ namespace FontManager {
          */
         public Gtk.Switch toggle { get; private set; }
 
-        construct {
-            label = new Gtk.Label(null);
-            label.set("hexpand", false, "halign", Gtk.Align.START, null);
-            dim_label = new Gtk.Label(null);
-            dim_label.set("hexpand", true, "halign", Gtk.Align.CENTER, null);
-            dim_label.get_style_context().add_class(Gtk.STYLE_CLASS_DIM_LABEL);
+        public LabeledSwitch (string? label = null) {
+            Object(name: "LabeledSwitch");
+            this.label.set_text(label != null ? label : "");
             toggle = new Gtk.Switch();
             toggle.expand = false;
-            pack_start(label, false, false, 0);
-            set_center_widget(dim_label);
             pack_end(toggle, false, false, 0);
-        }
-
-        public LabeledSwitch (string? label = null) {
-            Object(name: "LabeledSwitch", margin: DEFAULT_MARGIN_SIZE);
-            this.label.set_text(label != null ? label : "");
         }
 
         /**
          * {@inheritDoc}
          */
         public override void show () {
-            label.show();
-            dim_label.show();
             toggle.show();
             base.show();
             return;
@@ -106,7 +119,7 @@ namespace FontManager {
      * |                                                          |
      * ------------------------------------------------------------
      */
-    public class LabeledSpinButton : Gtk.Grid {
+    public class LabeledSpinButton : LabeledControl {
 
         /**
          * LabeledSpinButton:value:
@@ -115,25 +128,68 @@ namespace FontManager {
          */
         public double @value { get; set; default = 0.0; }
 
-        Gtk.Label label;
         Gtk.SpinButton spin;
 
         public LabeledSpinButton (string? label, double min, double max, double step) {
-            Object(name: "LabeledSpinButton", margin: DEFAULT_MARGIN_SIZE);
-            this.label = new Gtk.Label(label);
-            this.label.set("hexpand", true, "halign", Gtk.Align.START, null);
+            Object(name: "LabeledSpinButton");
+            this.label.set_text(label != null ? label : "");
             spin = new Gtk.SpinButton.with_range(min, max, step);
-            attach(this.label, 0, 0, 1, 1);
-            attach(spin, 1, 0, 1, 1);
             bind_property("value", spin, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            pack_end(spin, false, false, 0);
         }
 
         /**
          * {@inheritDoc}
          */
         public override void show () {
-            label.show();
             spin.show();
+            base.show();
+            return;
+        }
+
+    }
+
+    /**
+     * LabeledFontButton:
+     * @label:      text to display in label or %NULL
+     *
+     * Row like widget containing two #GtkLabel and a #GtkSwitch.
+     * Use #GtkLabel.set_text() / #GtkLabel.set_markup()
+     * @label is intended to display main option name
+     * @description is intended to display additional information
+     * @button is #GtkFontButton
+     *
+     * ------------------------------------------------------------
+     * |                                                          |
+     * | label                 description                button  |
+     * |                                                          |
+     * ------------------------------------------------------------
+     */
+    public class LabeledFontButton : LabeledControl {
+
+        /**
+         * LabeledFontButton:button:
+         *
+         * #GtkFontButton
+         */
+        public Gtk.FontButton button { get; private set; }
+
+        public string font { get; set; default = DEFAULT_FONT; }
+
+        public LabeledFontButton (string? label = null, string? font = null) {
+            Object(name: "LabeledFontButton");
+            this.label.set_text(label != null ? label : "");
+            button = new Gtk.FontButton();
+            button.set_use_font(true);
+            pack_end(button, false, false, 0);
+            bind_property("font", button, "font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public override void show () {
+            button.show();
             base.show();
             return;
         }
@@ -317,7 +373,7 @@ namespace FontManager {
      *
      * -------------------------------------------------------------------
      * |                                                                 |
-     * | justify controls           dim_label               edit  reset  |
+     * | justify controls           description             edit  reset  |
      * |                                                                 |
      * -------------------------------------------------------------------
      */
@@ -360,15 +416,15 @@ namespace FontManager {
 
         public string title {
             get {
-                return dim_label.get_text();
+                return description.get_text();
             }
             set {
-                dim_label.set_text(value);
+                description.set_text(value);
             }
         }
 
         Gtk.Box box;
-        Gtk.Label dim_label;
+        Gtk.Label description;
         Gtk.Button clear;
         Gtk.ToggleButton edit;
         Gtk.RadioButton justify_left;
@@ -380,10 +436,10 @@ namespace FontManager {
         construct {
             box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
             box.border_width = 1;
-            dim_label = new Gtk.Label(null);
-            dim_label.set("sensitive", false, "halign", Gtk.Align.CENTER,
+            description = new Gtk.Label(null);
+            description.set("sensitive", false, "halign", Gtk.Align.CENTER,
                           "hexpand", true, "vexpand", false, null);
-    //        dim_label.get_style_context().add_class(Gtk.STYLE_CLASS_DIM_LABEL);
+    //        description.get_style_context().add_class(Gtk.STYLE_CLASS_DIM_LABEL);
             justify_left = new Gtk.RadioButton(null);
             justify_center = new Gtk.RadioButton.from_widget(justify_left);
             justify_fill = new Gtk.RadioButton.from_widget(justify_left);
@@ -412,11 +468,11 @@ namespace FontManager {
             }
             box.pack_end(clear, false, false, 0);
             box.pack_end(edit, false, false, 0);
-            box.set_center_widget(dim_label);
+            box.set_center_widget(description);
             add(box);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             connect_signals();
-            widgets = { box, dim_label, clear, edit, justify_left, justify_center, justify_fill, justify_right };
+            widgets = { box, description, clear, edit, justify_left, justify_center, justify_fill, justify_right };
         }
 
         /**
@@ -510,6 +566,79 @@ namespace FontManager {
         public override void show () {
             add_button.show();
             remove_button.show();
+            box.show();
+            base.show();
+            return;
+        }
+
+    }
+
+    /**
+     * SubpixelGeometry:
+     *
+     * https://en.wikipedia.org/wiki/Subpixel_rendering
+     *
+     * Widget allowing user to select pixel layout.
+     */
+    public class SubpixelGeometry : Gtk.Box {
+
+        public int rgba {
+            get {
+                return _rgba;
+            }
+            set {
+                if (value < 0 || value >= ((int) options.length()))
+                    return;
+                _rgba = value;
+                options.nth_data(_rgba).active = true;
+            }
+        }
+
+        public GLib.List <Gtk.RadioButton> options;
+
+        int _rgba;
+        Gtk.Label label;
+        Gtk.ButtonBox box;
+
+        public SubpixelGeometry () {
+
+            Object(name: "SubpixelGeometry",
+                    margin: DEFAULT_MARGIN_SIZE,
+                    opacity: 0.75,
+                    orientation: Gtk.Orientation.VERTICAL);
+
+            label = new Gtk.Label(_("Subpixel Geometry"));
+            label.set("halign", Gtk.Align.CENTER, "margin", DEFAULT_MARGIN_SIZE / 2, null);
+            pack_start(label, false, true, 6);
+            options = new GLib.List <Gtk.RadioButton> ();
+            box = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
+            for (int i = 0; i < SubpixelOrder.NONE; i++) {
+                if (i == 0)
+                    options.append(new Gtk.RadioButton(null));
+                else
+                    options.append(new Gtk.RadioButton.from_widget(options.nth_data(0)));
+                Gtk.RadioButton button = options.nth_data(i);
+                var val = (SubpixelOrder) i;
+                var icon = new SubpixelGeometryIcon(val);
+                button.add(icon);
+                icon.show();
+                button.set_tooltip_text(val.to_string());
+                button.toggled.connect(() => {
+                    if (button.active)
+                        rgba = (int) val;
+                });
+                box.pack_start(button);
+            }
+            pack_start(box, true, true, 6);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public override void show () {
+            foreach (var widget in options)
+                widget.show();
+            label.show();
             box.show();
             base.show();
             return;
