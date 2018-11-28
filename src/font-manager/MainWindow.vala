@@ -395,16 +395,21 @@ namespace FontManager {
             sidebar.orthographies.orthography_selected.connect((o) => { preview_pane.charmap.set_filter(o); });
 
             sidebar.standard.category_selected.connect((c, i) => {
-                if (c is Disabled && disabled == null)
+                if (c is Disabled && disabled == null) {
                     disabled = (c as Disabled);
+                    disabled.update.begin(reject, (obj,res) => {
+                        disabled.update.end(res);
+                        fontpane.refilter();
+                    });
+                }
                 if (c is Unsorted && unsorted == null) {
                     unsorted = (c as Unsorted);
                     var collected = sidebar.collection_model.collections.get_full_contents();
                     unsorted.update.begin(collected, (obj, res) => {
                         unsorted.update.end(res);
+                        fontpane.refilter();
                     });
                 }
-                fontpane.refilter();
             });
 
             sidebar.standard.mode_selected.connect((m) => {

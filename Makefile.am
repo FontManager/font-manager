@@ -14,6 +14,7 @@ EXTRA_DIST = \
 	config.rpath \
 	config.vapi \
 	po/HEADER \
+	po/Makevars.in \
 	po/POTFILES.readme \
 	po/POTFILES.skip \
 	help/insert-header.sin \
@@ -23,6 +24,7 @@ EXTRA_DIST = \
 DISTCLEANFILES = \
 	po/Makefile \
 	po/Makefile.in \
+	po/Makevars \
 	po/$(PACKAGE_NAME).pot \
 	po/POTFILES \
 	po/*stamp*
@@ -43,6 +45,7 @@ MAINTAINERCLEANFILES = \
 	py-compile \
 	Makefile.in \
 	po/Makefile* \
+	po/Makevars \
 	po/POTFILES \
 	po/*stamp* \
 	po/.pot \

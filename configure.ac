@@ -193,6 +193,7 @@ AC_CONFIG_FILES([
     Makefile
     extensions/Makefile
     help/Makefile
+    po/Makevars
     po/Makefile.in
     data/Makefile
     data/org.gnome.FontManager.appdata.xml.in

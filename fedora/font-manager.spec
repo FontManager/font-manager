@@ -185,7 +185,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 * Sun Oct 16 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-9
 - Fix extension requirements
 * Sat Jun 4 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-8
-- Fix initial window sie issue on Gtk+ > 3.18
+- Fix initial window size issue on Gtk+ > 3.18
 * Wed Jun 1 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-7
 - Add Polish translation provided by Piotr Strębski
 * Thu May 26 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-6

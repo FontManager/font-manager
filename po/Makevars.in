@@ -1,7 +1,7 @@
 # Makefile variables for PO directory in any package using GNU gettext.
 
 # Usually the message domain is the same as the package name.
-DOMAIN = font-manager
+DOMAIN = @PACKAGE_NAME@
 
 # These two variables depend on the location of this directory.
 subdir = po
@@ -18,7 +18,7 @@ XGETTEXT_OPTIONS = --from-code=UTF-8 --keyword=_ --keyword=N_
 # or entity, or to disclaim their copyright.  The empty string stands for
 # the public domain; in this case the translators are expected to disclaim
 # their copyright.
-COPYRIGHT_HOLDER = Free Software Foundation, Inc.
+COPYRIGHT_HOLDER = Jerry Casiano
 
 # This tells whether or not to prepend "GNU " prefix to the package
 # name that gets inserted into the header of the $(DOMAIN).pot file.
@@ -57,7 +57,7 @@ USE_MSGCTXT = no
 # Useful options are in particular:
 #   --previous            to keep previous msgids of translated messages,
 #   --quiet               to reduce the verbosity.
-MSGMERGE_OPTIONS =
+MSGMERGE_OPTIONS = --quiet
 
 # These options get passed to msginit.
 # If you want to disable line wrapping when writing PO files, add
