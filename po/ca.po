@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-27 23:14-0500\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2018-11-29 01:14-0500\n"
 "PO-Revision-Date: 2017-03-05 09:50+0000\n"
 "Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -574,9 +574,9 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 "\n"
-"El Gestor de tipus de lletra ha detectat fitxers d'una instal·lació anterior."
-" Alguns fitxers de versions anteriors no són compatibles amb aquesta versió. "
-"D'altres han quedat en desús o han canviat de lloc.\n"
+"El Gestor de tipus de lletra ha detectat fitxers d'una instal·lació "
+"anterior. Alguns fitxers de versions anteriors no són compatibles amb "
+"aquesta versió. D'altres han quedat en desús o han canviat de lloc.\n"
 "\n"
 "El Gestor de tipus de lletra intentarà ara migrar els tipus i les "
 "col·leccions existents. Se suprimiran els fitxers i configuracions que ja no "
@@ -916,11 +916,15 @@ msgstr "No s'ha seleccionat cap fitxer"
 msgid "Or unsupported filetype."
 msgstr "O el tipus de fitxer no és compatible"
 
-#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:270
+#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:274
 msgid "Install Font"
 msgstr "Instal·la"
 
-#: src/font-viewer/MainWindow.vala:266
+#: src/font-viewer/MainWindow.vala:269
+msgid "Newer version already installed"
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:271
 msgid "Installed"
 msgstr "Instal·lat"
 

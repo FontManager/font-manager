@@ -52,6 +52,17 @@ namespace FontManager {
         }
     }
 
+    public void set_application_style () {
+        string css = Path.build_path("/", "/org/gnome/FontManager", "FontManager.css");
+        string icons = Path.build_path("/", "/org/gnome/FontManager", "icons");
+        Gdk.Screen screen = Gdk.Screen.get_default();
+        Gtk.IconTheme.get_default().add_resource_path(icons);
+        Gtk.CssProvider provider = new Gtk.CssProvider();
+        provider.load_from_resource(css);
+        Gtk.StyleContext.add_provider_for_screen(screen, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+        return;
+    }
+
     public bool is_valid_source (JsonProxy? object) {
         return (object != null && object.source_object != null);
     }
@@ -131,6 +142,25 @@ namespace FontManager {
         else
             cr.set_source_rgba(color.red, color.green, color.blue, alpha);
         return;
+    }
+
+    public int timecmp (string old, string proposed) {
+        TimeVal? old_time = get_modification_time(old);
+        TimeVal? new_time = get_modification_time(proposed);
+        return_val_if_fail(old_time != null & new_time != null, 0);
+        return old_time.tv_sec == new_time.tv_sec ? 0 :
+               old_time.tv_sec < new_time.tv_sec ? -1 : 1;
+    }
+
+    public TimeVal? get_modification_time (string path) {
+        try {
+            var file = File.new_for_path(path);
+            var fileinfo = file.query_info(FileAttribute.TIME_MODIFIED, FileQueryInfoFlags.NONE, null);
+            return fileinfo.get_modification_time();
+        } catch (Error e) {
+            critical(e.message);
+        }
+        return null;
     }
 
     public bool remove_directory_tree_if_empty (File dir) {

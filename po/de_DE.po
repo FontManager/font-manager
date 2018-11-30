@@ -1,20 +1,20 @@
 # Font Manager - Simple font management for Gtk+ desktop environments
-# 
+#
 # Copyright Â© 2009 - 2016 Jerry Casiano
-# 
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-# 
+#
 # Author:
 #  Jerry Casiano <JerryCasiano@gmail.com>
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016. #zanata
@@ -22,14 +22,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-27 23:14-0500\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2018-11-29 01:14-0500\n"
 "PO-Revision-Date: 2016-05-25 11:48+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: none <@>\n"
 "Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
@@ -605,9 +605,10 @@ msgstr ""
 "Dateien von früheren Versionen sind inkompatibel mit dieser Version, andere "
 "sind veraltet oder wurden verschoben.\n"
 "\n"
-"Font Manager wird nun versuchen Ihre Schriften und Kollektionen zu migrieren."
-" Dateien welche nicht länger nötig oder korrekt sind werden entfernt. Alle "
-"Einstellungen welche einen Konflikt hervorufen könnten werden entfernt.\n"
+"Font Manager wird nun versuchen Ihre Schriften und Kollektionen zu "
+"migrieren. Dateien welche nicht länger nötig oder korrekt sind werden "
+"entfernt. Alle Einstellungen welche einen Konflikt hervorufen könnten werden "
+"entfernt.\n"
 "\n"
 "Es wird dringend empfohlen, alle wichtigen Dateien zu sichern bevor Sie "
 "fortfahren.\n"
@@ -940,12 +941,16 @@ msgstr ""
 msgid "Or unsupported filetype."
 msgstr "Geordnet nach Dateityp"
 
-#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:270
+#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:274
 #, fuzzy
 msgid "Install Font"
 msgstr "Alle Schriften"
 
-#: src/font-viewer/MainWindow.vala:266
+#: src/font-viewer/MainWindow.vala:269
+msgid "Newer version already installed"
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:271
 #, fuzzy
 msgid "Installed"
 msgstr "Alle Schriften"

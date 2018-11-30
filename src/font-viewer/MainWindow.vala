@@ -256,17 +256,21 @@ namespace FontManager {
                 if (!have_valid_source)
                     return;
                 clear_application_fonts();
-                return_if_fail(preview.metadata.info != null);
+                return_if_fail(is_valid_source(preview.metadata.info));
                 bool _installed = Library.is_installed(preview.metadata.info);
+                string? conflict = Library.conflicts(preview.selected_font);
                 add_application_font(preview.metadata.info.filepath);
                 if (!_installed && installed.contains(preview.metadata.info.checksum))
                     _installed = true;
-                /* XXX : Check for conflicts */
-                if (_installed) {
+                install_button.sensitive = false;
+                install_button.relief = Gtk.ReliefStyle.NONE;
+                install_button.get_style_context().add_class("InsensitiveButton");
+                if (conflict != null && timecmp(conflict, preview.selected_font.filepath) > 0) {
+                    install_button.set_label(_("Newer version already installed"));
+                } else if (_installed) {
                     install_button.set_label(_("Installed"));
-                    install_button.sensitive = false;
-                    install_button.relief = Gtk.ReliefStyle.NONE;
                 } else {
+                    install_button.get_style_context().remove_class("InsensitiveButton");
                     install_button.set_label(_("Install Font"));
                     install_button.sensitive = true;
                     install_button.relief = Gtk.ReliefStyle.NORMAL;

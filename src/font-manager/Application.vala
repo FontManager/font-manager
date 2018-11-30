@@ -27,17 +27,6 @@ namespace FontManager {
     public static FontManager.Reject? reject = null;
     public static FontManager.Sources? sources = null;
 
-    void set_application_style () {
-        string css = Path.build_path("/", BUS_PATH, "FontManager.css");
-        string icons = Path.build_path("/", BUS_PATH, "icons");
-        Gdk.Screen screen = Gdk.Screen.get_default();
-        Gtk.IconTheme.get_default().add_resource_path(icons);
-        Gtk.CssProvider provider = new Gtk.CssProvider();
-        provider.load_from_resource(css);
-        Gtk.StyleContext.add_provider_for_screen(screen, provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
-        return;
-    }
-
     void update_database (DatabaseType type,
                           ProgressCallback? progress = null,
                           Cancellable? cancellable = null) {

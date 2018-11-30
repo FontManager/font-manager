@@ -47,7 +47,7 @@ treeview {
     border-width: 1px;
     border-style: groove;
     border-radius: 0.75em;
-    text-shadow: 1px 1px shade(@theme_selected_background_color, 0.5);
+    text-shadow: 1px 1px shade(@theme_selected_bg_color, 0.5);
     color: darker(@insensitive_fg_color);
     border-color: alpha(darker(@insensitive_bg_color), 0.25);
     background-color: alpha(@insensitive_bg_color, 0.5);
@@ -64,7 +64,7 @@ treeview {
     border-radius: 0em 1em 1em 0em;
     border-width: 1px;
     border-style: groove;
-    text-shadow: 1px 1px shade(@theme_selected_background_color, 0.5);
+    text-shadow: 1px 1px shade(@theme_selected_bg_color, 0.5);
     color: darker(@insensitive_fg_color);
     border-color: alpha(darker(@insensitive_bg_color), 0.5);
     background-color: alpha(@insensitive_bg_color, 0.5);
@@ -79,4 +79,9 @@ treeview {
 
 #SubstituteList {
     border-radius: 0.25em;
+}
+
+.InsensitiveButton > label {
+    text-shadow: 1px 1px darker(@selected_theme_bg_color);
+    color: @theme_selected_bg_color;
 }

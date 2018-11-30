@@ -3,14 +3,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
-"POT-Creation-Date: 2018-11-27 23:14-0500\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2018-11-29 01:14-0500\n"
 "PO-Revision-Date: 2017-03-05 11:11+0000\n"
 "Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
@@ -34,8 +34,8 @@ msgstr ""
 #: C/index.page:8
 msgctxt "_"
 msgid ""
-"external ref='media/preferences-desktop-font-16.png' md5="
-"'4903102ad113c096aa95ef8a5ccaf0c2'"
+"external ref='media/preferences-desktop-font-16.png' "
+"md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 msgstr ""
 
 #. (itstool) path: info/title
@@ -78,8 +78,8 @@ msgstr ""
 #: C/index.page:30
 msgctxt "_"
 msgid ""
-"external ref='media/preferences-desktop-font.png' md5="
-"'f9108efe15fb60827b402b9a3a936589'"
+"external ref='media/preferences-desktop-font.png' "
+"md5='f9108efe15fb60827b402b9a3a936589'"
 msgstr ""
 
 #. (itstool) path: page/title
@@ -270,8 +270,8 @@ msgstr ""
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
 msgid ""
-"While in \"Manage\" mode the preview pane contains a tab labeled "
-"\"Characters\"."
+"While in \"Manage\" mode the preview pane contains a tab labeled \"Characters"
+"\"."
 msgstr ""
 
 #. (itstool) path: page/p
@@ -294,8 +294,7 @@ msgstr ""
 #: C/font-manager-character-map.page:24
 msgctxt "_"
 msgid ""
-"external ref='media/character-map.png' md5="
-"'a1ada8b4b96568f37c86137fe1fc6565'"
+"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
 
 #. (itstool) path: note/p
@@ -350,16 +349,13 @@ msgstr ""
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/font-manager-collections.page:45
-#: C/font-manager-font-installation.page:25
-#: C/font-manager-font-sources.page:46
-#: C/font-manager-font-sources.page:84
-#: C/font-manager-substitutions.page:37
-#: C/font-manager-substitutions.page:51
+#: C/font-manager-collections.page:45 C/font-manager-font-installation.page:25
+#: C/font-manager-font-sources.page:46 C/font-manager-font-sources.page:84
+#: C/font-manager-substitutions.page:37 C/font-manager-substitutions.page:51
 msgctxt "_"
 msgid ""
-"external ref='media/list-add-symbolic.svg' md5="
-"'6fdfd8f68e525f86d3eb943ee14fed32'"
+"external ref='media/list-add-symbolic.svg' "
+"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 msgstr ""
 
 #. (itstool) path: item/p
@@ -397,10 +393,8 @@ msgid "To delete a collection:"
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:76
-#: C/font-manager-collections.page:95
-#: C/font-manager-collections.page:113
-#: C/font-manager-collections.page:131
+#: C/font-manager-collections.page:76 C/font-manager-collections.page:95
+#: C/font-manager-collections.page:113 C/font-manager-collections.page:131
 msgid "Select the collection"
 msgstr ""
 
@@ -409,14 +403,12 @@ msgstr ""
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/font-manager-collections.page:84
-#: C/font-manager-collections.page:144
-#: C/font-manager-font-removal.page:38
-#: C/font-manager-substitutions.page:99
+#: C/font-manager-collections.page:84 C/font-manager-collections.page:144
+#: C/font-manager-font-removal.page:38 C/font-manager-substitutions.page:99
 msgctxt "_"
 msgid ""
-"external ref='media/list-remove-symbolic.svg' md5="
-"'19b0f1ea55aaa9af1cc99e749fef2a25'"
+"external ref='media/list-remove-symbolic.svg' "
+"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 msgstr ""
 
 #. (itstool) path: item/p
@@ -432,8 +424,7 @@ msgid "To enable a collection:"
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:100
-#: C/font-manager-collections.page:118
+#: C/font-manager-collections.page:100 C/font-manager-collections.page:118
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
 msgstr ""
@@ -494,7 +485,6 @@ msgstr ""
 #: C/font-manager-font-activation.page:13
 msgid ""
 "<app>Font Manager</app> allows you to activate and de-activate font families."
-""
 msgstr ""
 
 #. (itstool) path: page/p
@@ -587,8 +577,7 @@ msgid ""
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-font-installation.page:19
-#: C/font-manager-font-removal.page:32
+#: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
 msgid "While in <gui style=\"button\">Manage</gui> mode"
 msgstr ""
 
@@ -629,8 +618,7 @@ msgid ""
 msgstr ""
 
 #. (itstool) path: note/p
-#: C/font-manager-font-installation.page:59
-#: C/font-manager-font-removal.page:76
+#: C/font-manager-font-installation.page:59 C/font-manager-font-removal.page:76
 #: C/font-manager-font-sources.page:138
 msgid ""
 "<app>Font Manager</app> will reload anytime changes require it. This may "
@@ -746,25 +734,19 @@ msgstr ""
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/font-manager-font-sources.page:34
-#: C/font-manager-font-sources.page:66
-#: C/font-manager-font-sources.page:98
-#: C/font-manager-substitutions.page:25
-#: C/font-manager-substitutions.page:82
-#: C/font-manager-substitutions.page:120
+#: C/font-manager-font-sources.page:34 C/font-manager-font-sources.page:66
+#: C/font-manager-font-sources.page:98 C/font-manager-substitutions.page:25
+#: C/font-manager-substitutions.page:82 C/font-manager-substitutions.page:120
 msgctxt "_"
 msgid ""
-"external ref='media/preferences-system-symbolic.svg' md5="
-"'63ed081f78639fc6ec234a9351cf52e6'"
+"external ref='media/preferences-system-symbolic.svg' "
+"md5='63ed081f78639fc6ec234a9351cf52e6'"
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-font-sources.page:30
-#: C/font-manager-font-sources.page:62
-#: C/font-manager-font-sources.page:94
-#: C/font-manager-substitutions.page:21
-#: C/font-manager-substitutions.page:78
-#: C/font-manager-substitutions.page:116
+#: C/font-manager-font-sources.page:30 C/font-manager-font-sources.page:62
+#: C/font-manager-font-sources.page:94 C/font-manager-substitutions.page:21
+#: C/font-manager-substitutions.page:78 C/font-manager-substitutions.page:116
 msgid ""
 "Open the <app>Font Manager</app> preferences dialog by clicking <gui> <media "
 "type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the "
@@ -772,15 +754,13 @@ msgid ""
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-font-sources.page:40
-#: C/font-manager-font-sources.page:72
+#: C/font-manager-font-sources.page:40 C/font-manager-font-sources.page:72
 #: C/font-manager-font-sources.page:104
 msgid "Select \"Sources\" from the sidebar"
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-font-sources.page:43
-#: C/font-manager-font-sources.page:81
+#: C/font-manager-font-sources.page:43 C/font-manager-font-sources.page:81
 msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui>"
@@ -789,8 +769,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:51
 msgid ""
-"Select the directory you wish to add from the file selector that is "
-"displayed"
+"Select the directory you wish to add from the file selector that is displayed"
 msgstr ""
 
 #. (itstool) path: item/title
@@ -800,8 +779,7 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:75
-msgid ""
-"Select the directory you wish to remove from the list that is displayed"
+msgid "Select the directory you wish to remove from the list that is displayed"
 msgstr ""
 
 #. (itstool) path: item/title
@@ -928,7 +906,6 @@ msgstr ""
 #: C/font-manager-license.page:12
 msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
-""
 msgstr ""
 
 #. (itstool) path: page/p
@@ -950,6 +927,5 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-license.page:23
 msgctxt "_"
-msgid ""
-"external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
+msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
 msgstr ""

@@ -22,6 +22,18 @@ namespace FontManager {
 
     namespace Library {
 
+        public string? conflicts (Font font) {
+            try {
+                Database db = get_database(DatabaseType.FONT);
+                db.execute_query("SELECT DISTINCT filepath FROM Fonts WHERE description = \"%s\"".printf(font.description));
+                if (db.stmt.step() == Sqlite.ROW)
+                    return db.stmt.column_text(0);
+            } catch (Error e) {
+                warning(e.message);
+            }
+            return null;
+        }
+
         public bool is_installed (FontInfo info) {
             GLib.List <string> filelist = list_available_font_files();
             if (filelist.find_custom(info.filepath, strcmp) != null)

@@ -103,7 +103,7 @@ namespace FontManager {
                 GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
                 Environment.set_application_name(_("Font Viewer"));
                 Gtk.init(ref args);
-                Gtk.IconTheme.get_default().add_resource_path("/org/gnome/FontManager/icons");
+                set_application_style();
                 return new Application(BUS_ID, (ApplicationFlags.HANDLES_OPEN)).run(args);
             }
 

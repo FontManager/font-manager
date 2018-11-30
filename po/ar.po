@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-27 23:14-0500\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2018-11-29 01:14-0500\n"
 "PO-Revision-Date: 2016-10-08 10:49+0000\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic\n"
 "Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=6; plural= n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
@@ -831,15 +831,15 @@ msgstr "أطر النوافذ التي يرسمها العميل"
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
-"فُعّلت أطر النوافذ التي يرسمها العميل. سيُطب التغيير في المرة القادمة التي "
-"تشغل فيها البرنامج."
+"فُعّلت أطر النوافذ التي يرسمها العميل. سيُطب التغيير في المرة القادمة التي تشغل "
+"فيها البرنامج."
 
 #: src/font-manager/Preferences/UserInterface.vala:80
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
-"عُطّلت أطر النوافذ التي يرسمها العميل. سيُطب التغيير في المرة القادمة التي "
-"تشغل فيها البرنامج."
+"عُطّلت أطر النوافذ التي يرسمها العميل. سيُطب التغيير في المرة القادمة التي تشغل "
+"فيها البرنامج."
 
 #: src/font-manager/SideBar.vala:136
 msgid "Categories"
@@ -909,11 +909,15 @@ msgstr "لا ملفات محددة"
 msgid "Or unsupported filetype."
 msgstr "أو نوع الملف غير مدعوم."
 
-#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:270
+#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:274
 msgid "Install Font"
 msgstr "نصِّب الخط"
 
-#: src/font-viewer/MainWindow.vala:266
+#: src/font-viewer/MainWindow.vala:269
+msgid "Newer version already installed"
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:271
 msgid "Installed"
 msgstr "المنصبة"
 

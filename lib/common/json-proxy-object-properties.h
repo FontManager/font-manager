@@ -140,10 +140,8 @@ get_json_source_property (JsonObject *source_object,
 
     GType val_type  = G_PARAM_SPEC_VALUE_TYPE(pspec);
 
-    if (json_object_get_member(source_object, pspec->name) == NULL && val_type != JSON_TYPE_OBJECT) {
-        g_critical("Source object does not have a member named %s", pspec->name);
+    if (json_object_get_member(source_object, pspec->name) == NULL && val_type != JSON_TYPE_OBJECT)
         return;
-    }
 
     if (val_type == G_TYPE_STRING) {
         g_value_set_string(value, json_object_get_string_member(source_object, pspec->name));
