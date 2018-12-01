@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-11-29 01:14-0500\n"
+"POT-Creation-Date: 2018-12-01 00:31-0500\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2016-05-27 02:36+0000\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish\n"
 "Language: pl\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2)\n"
@@ -648,7 +648,7 @@ msgid "The type of hinting to use when rendering fonts."
 msgstr ""
 
 #: src/font-manager/Preferences/Desktop.vala:100
-msgid "Desktop settings schema not found."
+msgid "GNOME desktop settings schema not found."
 msgstr ""
 
 #: src/font-manager/Preferences/Display.vala:42
@@ -860,7 +860,7 @@ msgstr "Kolekcje"
 msgid "Keyboard Shortcuts"
 msgstr ""
 
-#: src/font-manager/TitleBar.vala:53 data/ui/shortcuts.ui:20
+#: src/font-manager/TitleBar.vala:53 data/ui/shortcuts.ui:19
 msgid "Help"
 msgstr "Pomoc"
 
@@ -922,7 +922,7 @@ msgstr "Zainstaluj czcionkę"
 
 #: src/font-viewer/MainWindow.vala:269
 msgid "Newer version already installed"
-msgstr ""
+msgstr "Zainstalowana jest nowsza wersja"
 
 #: src/font-viewer/MainWindow.vala:271
 msgid "Installed"
@@ -998,54 +998,54 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: data/ui/shortcuts.ui:27
+#: data/ui/shortcuts.ui:26
 msgid "Increase preview size"
 msgstr ""
 
-#: data/ui/shortcuts.ui:34
+#: data/ui/shortcuts.ui:33
 msgid "Decrease preview size"
 msgstr ""
 
-#: data/ui/shortcuts.ui:41
+#: data/ui/shortcuts.ui:40
 msgid "Reset preview size to default"
 msgstr ""
 
-#: data/ui/shortcuts.ui:48
+#: data/ui/shortcuts.ui:47
 msgid "Reload"
 msgstr ""
 
-#: data/ui/shortcuts.ui:55
+#: data/ui/shortcuts.ui:54
 msgid "Quit the application"
 msgstr ""
 
-#: data/ui/shortcuts.ui:63
+#: data/ui/shortcuts.ui:62
 msgid "Mode"
 msgstr ""
 
-#: data/ui/shortcuts.ui:69
+#: data/ui/shortcuts.ui:67
 msgid "Switch to Manage mode"
 msgstr ""
 
-#: data/ui/shortcuts.ui:76
+#: data/ui/shortcuts.ui:74
 msgid "Switch to Browse mode"
 msgstr ""
 
-#: data/ui/shortcuts.ui:83
+#: data/ui/shortcuts.ui:81
 msgid "Switch to Compare mode"
 msgstr ""
 
-#: data/ui/shortcuts.ui:91
+#: data/ui/shortcuts.ui:89
 msgid "Preview Mode"
 msgstr ""
 
-#: data/ui/shortcuts.ui:97
+#: data/ui/shortcuts.ui:94
 msgid "Switch to Standard preview"
 msgstr ""
 
-#: data/ui/shortcuts.ui:104
+#: data/ui/shortcuts.ui:101
 msgid "Switch to Waterfall preview"
 msgstr ""
 
-#: data/ui/shortcuts.ui:111
+#: data/ui/shortcuts.ui:108
 msgid "Switch to Body Text preview"
 msgstr ""

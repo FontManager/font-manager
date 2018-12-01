@@ -12,7 +12,6 @@
      <object class="GtkShortcutsGroup">
       <property name="visible">1</property>
       <property name="title" translatable="yes">General</property>
-      <property name="view">overview</property>
       <child>
        <object class="GtkShortcutsShortcut">
         <property name="visible">1</property>
@@ -44,7 +43,7 @@
       <child>
        <object class="GtkShortcutsShortcut">
         <property name="visible">1</property>
-        <property name="accelerator">&lt;Ctrl&gt;r</property>
+        <property name="accelerator">&lt;Ctrl&gt;r F5</property>
         <property name="title" translatable="yes">Reload</property>
        </object>
       </child>
@@ -61,7 +60,6 @@
      <object class="GtkShortcutsGroup">
       <property name="visible">1</property>
       <property name="title" translatable="yes">Mode</property>
-      <property name="view">wizard</property>
       <child>
        <object class="GtkShortcutsShortcut">
         <property name="visible">1</property>
@@ -89,7 +87,6 @@
      <object class="GtkShortcutsGroup">
       <property name="visible">1</property>
       <property name="title" translatable="yes">Preview Mode</property>
-      <property name="view">display</property>
       <child>
        <object class="GtkShortcutsShortcut">
         <property name="visible">1</property>

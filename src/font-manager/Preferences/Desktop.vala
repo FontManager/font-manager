@@ -97,7 +97,7 @@ namespace FontManager {
             if (DesktopPreferences.available())
                 grid = generate_options_grid(interface_settings, x_settings);
             else
-                grid = new PlaceHolder(_("Desktop settings schema not found."), "dialog-warning-symbolic");
+                grid = new PlaceHolder(_("GNOME desktop settings schema not found."), "dialog-warning-symbolic");
             add(grid);
         }
 
@@ -170,7 +170,7 @@ namespace FontManager {
                 widget.set_tooltip_text(dgettext(null, setting.description));
                 widget.show();
             }
-            return_if_fail(antialias != null);
+            return_val_if_fail(antialias != null, grid);
             spg_revealer.set_reveal_child(antialias.value == 2);
             antialias.notify["value"].connect(() => {
                 spg_revealer.set_reveal_child(antialias.value == 2);

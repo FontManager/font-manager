@@ -203,7 +203,7 @@ namespace FontManager {
             action.activate.connect((a, v) => {
                 ((FontManager.Application) application).refresh();
             });
-            accels = { "<Ctrl>r", null };
+            accels = { "<Ctrl>r", "F5", null };
             add_keyboard_shortcut(this, action, "reload", accels);
 
             return;

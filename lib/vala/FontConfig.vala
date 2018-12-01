@@ -466,23 +466,6 @@ namespace FontManager {
      */
     public class Sources : Directories {
 
-        /* XXX : Only used in one place to update DB! */
-        /**
-         * Sources:removed:
-         *
-         * Emitted whenever a source is removed.
-         */
-        public signal void removed (string path);
-
-        /* XXX : Only used in one place! */
-        /**
-         * Sources:source_changed:
-         *
-         * Emitted when a source has changed.
-         * i.e. filesystem was unmounted, directory was deleted, etc.
-         */
-        public signal void source_changed (File? file, FileMonitorEvent? event);
-
         /**
          * Sources:active:
          *
@@ -491,7 +474,6 @@ namespace FontManager {
          */
         public Directories active { get; set;}
 
-        FileMonitors monitors;
         HashTable <string, Source> sources;
 
         public Sources () {
@@ -499,10 +481,10 @@ namespace FontManager {
             target_element = "source";
             target_file = "Sources.xml";
             active = new Directories();
-            monitors = new FileMonitors();
             sources = new HashTable <string, Source> (str_hash, str_equal);
-            monitors.changed.connect((f, of, ev) => { update(); source_changed(f, ev); });
+            changed.connect(update);
             notify["active"].connect((s, p) => { update(); });
+            active.changed.connect(() => { changed(); });
         }
 
         public List <weak Source> list_objects () {
@@ -530,7 +512,6 @@ namespace FontManager {
             if (source.path in active)
                 source.active = true;
             source.notify["active"].connect(() => { source_activated(source); });
-            monitors.add(source.path);
             base.add(source.path);
             return true;
         }
@@ -567,9 +548,7 @@ namespace FontManager {
                 active.remove(source.path);
                 active.save();
             }
-            monitors.remove(source.path);
             base.remove(source.path);
-            removed(source.path);
             purge_entries.begin(source.path, (obj, res) => { purge_entries.end(res); });
             return true;
         }
@@ -596,76 +575,7 @@ namespace FontManager {
             return true;
         }
 
-        internal class FileMonitors :  Object {
-
-            /* GLib.FileMonitor:changed: for details */
-            public signal void changed (File file, File? other_file, FileMonitorEvent event_type);
-
-            public uint size {
-                get {
-                    return monitors.size();
-                }
-            }
-
-            VolumeMonitor volume_monitor;
-            HashTable <string, FileMonitor> monitors;
-
-            /* Only notifies if the mounts default path is interesting */
-            void notify_on_mount_event (Mount mount) {
-                string? path = mount.get_default_location().get_path();
-                if (path == null || this.size < 1)
-                    return;
-                foreach (var s in monitors.get_keys()) {
-                    if (s.contains(path)) {
-                        changed(mount.get_root(), null, FileMonitorEvent.CHANGED);
-                    }
-                }
-                return;
-            }
-
-            construct {
-                monitors = new HashTable <string, FileMonitor> (str_hash, str_equal);
-                volume_monitor = VolumeMonitor.get();
-                volume_monitor.mount_added.connect((m) => {
-                    notify_on_mount_event(m);
-                });
-                volume_monitor.mount_changed.connect((m) => {
-                    notify_on_mount_event(m);
-                });
-                volume_monitor.mount_removed.connect((m) => {
-                    notify_on_mount_event(m);
-                });
-            }
-
-            public bool add (string path) {
-                if (monitors.contains(path))
-                    return true;
-                try {
-                    File file = File.new_for_path(path);
-                    FileMonitor monitor = file.monitor(FileMonitorFlags.WATCH_MOUNTS);
-                    assert(monitor != null);
-                    monitors.insert(path, monitor);
-                    assert(monitors.lookup(path) != null);
-                    monitor.changed.connect((f, of, ev) => { changed(f, of, ev); });
-                    monitor.set_rate_limit(3000);
-                } catch (Error e) {
-                    warning("Failed to create FileMonitor for %s : %s", path, e.message);
-                    return false;
-                }
-                if (!(monitors.contains(path)))
-                    return false;
-                return true;
-            }
-
-            public bool remove (string path) {
-                FileMonitor? monitor = monitors.lookup(path);
-                if (monitor != null)
-                    monitor.cancel();
-                return monitors.remove(path);
-            }
-
-        }
-
     }
 
 }
+

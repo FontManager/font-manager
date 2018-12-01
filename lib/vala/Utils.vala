@@ -147,7 +147,7 @@ namespace FontManager {
     public int timecmp (string old, string proposed) {
         TimeVal? old_time = get_modification_time(old);
         TimeVal? new_time = get_modification_time(proposed);
-        return_val_if_fail(old_time != null & new_time != null, 0);
+        return_val_if_fail(old_time != null && new_time != null, 0);
         return old_time.tv_sec == new_time.tv_sec ? 0 :
                old_time.tv_sec < new_time.tv_sec ? -1 : 1;
     }
