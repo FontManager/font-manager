@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-12-01 00:31-0500\n"
+"POT-Creation-Date: 2018-12-02 18:23-0500\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -664,7 +664,7 @@ msgid "The type of hinting to use when rendering fonts."
 msgstr ""
 
 #: src/font-manager/Preferences/Desktop.vala:100
-msgid "GNOME desktop settings schema not found."
+msgid "GNOME desktop settings schema not found"
 msgstr ""
 
 #: src/font-manager/Preferences/Display.vala:42
@@ -684,8 +684,8 @@ msgid "Target DPI"
 msgstr "Требуемая разрешающая способность экрана (DPI)"
 
 #: src/font-manager/Preferences/Display.vala:76
-msgid "Scale factor"
-msgstr "Масштаб"
+msgid "Scale Factor"
+msgstr ""
 
 #: src/font-manager/Preferences/Display.vala:80
 msgid "LCD Filter"
@@ -837,26 +837,34 @@ msgstr ""
 msgid "Remove substitute"
 msgstr ""
 
-#: src/font-manager/Preferences/UserInterface.vala:35
+#: src/font-manager/Preferences/UserInterface.vala:38
 msgid "Wide Layout"
 msgstr "Широкое расположение"
 
-#: src/font-manager/Preferences/UserInterface.vala:38
-msgid "Only when maximized"
-msgstr "Только если окно развернуто на весь экран"
+#: src/font-manager/Preferences/UserInterface.vala:41
+msgid "Only When Maximized"
+msgstr ""
 
-#: src/font-manager/Preferences/UserInterface.vala:42
+#: src/font-manager/Preferences/UserInterface.vala:44
 msgid "Client Side Decorations"
 msgstr "Отрисовка на стороне клиента (CSD)"
 
-#: src/font-manager/Preferences/UserInterface.vala:78
+#: src/font-manager/Preferences/UserInterface.vala:46
+msgid "Enable Animations"
+msgstr ""
+
+#: src/font-manager/Preferences/UserInterface.vala:47
+msgid "Prefer Dark Theme"
+msgstr ""
+
+#: src/font-manager/Preferences/UserInterface.vala:86
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
 "Отрисовка на стороне клиента (CSD) включена. Изменения вступят в силу после "
 "перезапуска программы."
 
-#: src/font-manager/Preferences/UserInterface.vala:80
+#: src/font-manager/Preferences/UserInterface.vala:88
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
@@ -895,7 +903,7 @@ msgstr "Удалить шрифты"
 msgid "Preferences"
 msgstr "Настройки"
 
-#: src/font-viewer/Application.vala:72 src/font-viewer/Application.vala:104
+#: src/font-viewer/Application.vala:69 src/font-viewer/Application.vala:101
 #: src/font-viewer/MainWindow.vala:25 src/font-viewer/MainWindow.vala:136
 #: data/org.gnome.FontViewer.appdata.xml.in:9
 #: data/org.gnome.FontViewer.desktop.in:5

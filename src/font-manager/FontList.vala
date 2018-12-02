@@ -426,7 +426,6 @@ namespace FontManager {
             popup_menu.realize.connect(() => {
                 Gdk.Window child = popup_menu.get_window();
                 child.set_type_hint(Gdk.WindowTypeHint.POPUP_MENU);
-                child.set_transient_for(this.get_window());
             });
             return popup_menu;
         }

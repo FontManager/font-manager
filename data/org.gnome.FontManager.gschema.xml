@@ -59,6 +59,18 @@
             <description>false to disable Client Side Decorations</description>
         </key>
 
+        <key name="enable-animations" type="b">
+            <default>true</default>
+            <summary>Enable Animations</summary>
+            <description>false to disable GTK+ animations</description>
+        </key>
+
+        <key name="prefer-dark-theme" type="b">
+            <default>false</default>
+            <summary>Use dark theme variant if available</summary>
+            <description>Whether the application prefers to use a dark theme</description>
+        </key>
+
         <key name="window-position" type="(ii)">
             <summary>Window position</summary>
             <description>On screen position of the main window. (x, y)</description>

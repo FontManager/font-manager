@@ -52,9 +52,9 @@ namespace FontManager {
         }
     }
 
-    public void set_application_style () {
-        string css = Path.build_path("/", "/org/gnome/FontManager", "FontManager.css");
-        string icons = Path.build_path("/", "/org/gnome/FontManager", "icons");
+    public void set_application_style (string prefix) {
+        string css = Path.build_path("/", prefix, "FontManager.css");
+        string icons = Path.build_path("/", prefix, "icons");
         Gdk.Screen screen = Gdk.Screen.get_default();
         Gtk.IconTheme.get_default().add_resource_path(icons);
         Gtk.CssProvider provider = new Gtk.CssProvider();

@@ -12,7 +12,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    9
+Release:    10
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -143,6 +143,10 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Tue Nov 27 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-10
+- Add option to disable toolkit animations
+- Add option to use dark theme if available
+- Fix capitalization in preference dialogs
 * Tue Nov 27 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-9
 - Add preference pane for Gnome desktop settings.
 - Add GtkShortcutsWindow.

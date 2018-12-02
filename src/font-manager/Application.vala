@@ -20,9 +20,6 @@
 
 namespace FontManager {
 
-    const string BUS_ID = "org.gnome.FontManager";
-    const string BUS_PATH = "/org/gnome/FontManager";
-
     public static GLib.Settings? settings = null;
     public static FontManager.Reject? reject = null;
     public static FontManager.Sources? sources = null;
@@ -222,9 +219,9 @@ namespace FontManager {
         public override void open (File [] files, string hint) {
             try {
                 DBusConnection conn = Bus.get_sync(BusType.SESSION);
-                conn.call_sync("org.gnome.FontViewer",
-                                "/org/gnome/FontViewer",
-                                "org.gnome.FontViewer",
+                conn.call_sync(FontViewer.BUS_ID,
+                                FontViewer.BUS_PATH,
+                                FontViewer.BUS_ID,
                                 "ShowUri",
                                 new Variant("(s)", files[0].get_uri()),
                                 null,
@@ -232,7 +229,7 @@ namespace FontManager {
                                 -1,
                                 null);
             } catch (Error e) {
-                critical("Method call to org.gnome.FontViewer failed : %s", e.message);
+                critical("Method call to %s failed : %s", FontViewer.BUS_ID, e.message);
             }
             return;
         }
@@ -441,7 +438,7 @@ namespace FontManager {
             Gtk.init(ref args);
             if (update_declined())
                 return 0;
-            set_application_style();
+            set_application_style(BUS_PATH);
             ApplicationFlags FLAGS = (ApplicationFlags.HANDLES_OPEN |
                                       ApplicationFlags.HANDLES_COMMAND_LINE);
             return new Application(BUS_ID, FLAGS).run(args);

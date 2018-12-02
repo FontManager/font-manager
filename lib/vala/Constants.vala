@@ -18,6 +18,16 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
+namespace FontManager {
+    public const string BUS_ID = "org.gnome.FontManager";
+    public const string BUS_PATH = "/org/gnome/FontManager";
+}
+
+namespace FontViewer {
+    public const string BUS_ID = "org.gnome.FontViewer";
+    public const string BUS_PATH = "/org/gnome/FontViewer";
+}
+
 public const int MINIMUM_MARGIN_SIZE = 2;
 public const int DEFAULT_MARGIN_SIZE = 24;
 
@@ -73,4 +83,3 @@ public const string [] FONT_MIMETYPES = {
     "font/type1",
     "font/collection"
 };
-

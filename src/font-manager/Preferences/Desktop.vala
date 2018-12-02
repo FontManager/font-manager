@@ -97,7 +97,7 @@ namespace FontManager {
             if (DesktopPreferences.available())
                 grid = generate_options_grid(interface_settings, x_settings);
             else
-                grid = new PlaceHolder(_("GNOME desktop settings schema not found."), "dialog-warning-symbolic");
+                grid = new PlaceHolder(_("GNOME desktop settings schema not found"), "dialog-warning-symbolic");
             add(grid);
         }
 
@@ -108,7 +108,7 @@ namespace FontManager {
         }
 
         Gtk.Grid generate_options_grid (Settings? interface_settings,
-                                                 Settings? x_settings) {
+                                        Settings? x_settings) {
             var grid = new Gtk.Grid();
             int left = 0, top = 0, width = 1, height = 1;
             Gtk.Revealer spg_revealer = new Gtk.Revealer();

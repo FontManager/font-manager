@@ -699,6 +699,10 @@ namespace FontManager {
                 return;
             }
 
+            Gtk.Settings gtk = Gtk.Settings.get_default();
+            gtk.gtk_application_prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
+            gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
+
             int x, y, w, h;
             settings.get("window-size", "(ii)", out w, out h);
             settings.get("window-position", "(ii)", out x, out y);

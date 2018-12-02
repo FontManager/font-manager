@@ -24,38 +24,44 @@ namespace FontManager {
 
         public LabeledSwitch wide_layout { get; private set; }
         public LabeledSwitch use_csd { get; private set; }
+        public LabeledSwitch enable_animations { get; private set; }
+        public LabeledSwitch prefer_dark_theme { get; private set; }
 
+        Gtk.Settings default_gtk_settings;
         Gtk.Grid grid;
         Gtk.Revealer wide_layout_options;
         Gtk.CheckButton on_maximize;
+        Gtk.Widget [] widgets;
 
         public UserInterfacePreferences () {
             orientation = Gtk.Orientation.VERTICAL;
-            wide_layout = new LabeledSwitch();
-            wide_layout.label.set_markup(_("Wide Layout"));
+            wide_layout = new LabeledSwitch(_("Wide Layout"));
             wide_layout_options = new Gtk.Revealer();
             wide_layout_options.set_transition_duration(450);
-            on_maximize = new Gtk.CheckButton.with_label(_("Only when maximized"));
+            on_maximize = new Gtk.CheckButton.with_label(_("Only When Maximized"));
             on_maximize.margin = DEFAULT_MARGIN_SIZE / 2;
             on_maximize.margin_start = on_maximize.margin_end = DEFAULT_MARGIN_SIZE * 2;
-            use_csd = new LabeledSwitch();
-            use_csd.label.set_markup(_("Client Side Decorations"));
+            use_csd = new LabeledSwitch(_("Client Side Decorations"));
             wide_layout_options.add(on_maximize);
+            enable_animations = new LabeledSwitch(_("Enable Animations"));
+            prefer_dark_theme = new LabeledSwitch(_("Prefer Dark Theme"));
             grid = new Gtk.Grid();
             grid.attach(wide_layout, 0, 0, 1, 1);
             grid.attach(wide_layout_options, 0, 1, 1, 1);
             grid.attach(use_csd, 0, 2, 1, 1);
+            grid.attach(enable_animations, 0, 3, 1, 1);
+            grid.attach(prefer_dark_theme, 0, 4, 1, 1);
             pack_end(grid, true, true, 0);
+            default_gtk_settings = Gtk.Settings.get_default();
             connect_signals();
             bind_properties();
+            widgets = { wide_layout, use_csd, enable_animations, prefer_dark_theme,
+                        wide_layout_options, on_maximize, grid };
         }
 
         public override void show () {
-            grid.show();
-            wide_layout.show();
-            on_maximize.show();
-            wide_layout_options.show();
-            use_csd.show();
+            foreach (var widget in widgets)
+                widget.show();
             base.show();
             return;
         }
@@ -65,6 +71,8 @@ namespace FontManager {
             settings.bind("use-csd", use_csd.toggle, "active", SettingsBindFlags.DEFAULT);
             settings.bind("wide-layout", wide_layout.toggle, "active", SettingsBindFlags.DEFAULT);
             settings.bind("wide-layout-on-maximize", on_maximize, "active", SettingsBindFlags.DEFAULT);
+            settings.bind("enable-animations", enable_animations.toggle, "active", SettingsBindFlags.DEFAULT);
+            settings.bind("prefer-dark-theme", prefer_dark_theme.toggle, "active", SettingsBindFlags.DEFAULT);
             return;
         }
 
@@ -78,6 +86,14 @@ namespace FontManager {
                     show_message(_("CSD enabled. Change will take effect next time the application is started."));
                 else
                     show_message(_("CSD disabled. Change will take effect next time the application is started."));
+                return false;
+            });
+            enable_animations.toggle.state_set.connect((active) => {
+                default_gtk_settings.gtk_enable_animations = active;
+                return false;
+            });
+            prefer_dark_theme.toggle.state_set.connect((active) => {
+                default_gtk_settings.gtk_application_prefer_dark_theme = active;
                 return false;
             });
             return;

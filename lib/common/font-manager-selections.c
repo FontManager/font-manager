@@ -250,11 +250,10 @@ static void
 font_manager_selections_emit_changed (G_GNUC_UNUSED GFileMonitor *monitor,
                                       G_GNUC_UNUSED GFile *file,
                                       G_GNUC_UNUSED GFile *other_file,
-                                      GFileMonitorEvent  event_type,
+                                      G_GNUC_UNUSED GFileMonitorEvent  event_type,
                                       G_GNUC_UNUSED gpointer user_data)
 {
-    if (event_type == G_FILE_MONITOR_EVENT_CHANGED)
-        g_signal_emit(FONT_MANAGER_SELECTIONS(user_data), signals[CHANGED], 0);
+    g_signal_emit(FONT_MANAGER_SELECTIONS(user_data), signals[CHANGED], 0);
     return;
 }
 
@@ -281,6 +280,13 @@ font_manager_selections_load (FontManagerSelections *self)
         return FALSE;
 
     GFile *file = g_file_new_for_path(filepath);
+
+    priv->monitor = g_file_monitor(file, G_FILE_MONITOR_NONE, NULL, NULL);
+    if (priv->monitor != NULL)
+        g_signal_connect(priv->monitor, "changed", G_CALLBACK(font_manager_selections_emit_changed), self);
+    else
+        g_critical(G_STRLOC ": Failed to create file monitor for %s", filepath);
+
     if (!g_file_query_exists(file, NULL)) {
         g_object_unref(file);
         g_free(filepath);
@@ -301,12 +307,6 @@ font_manager_selections_load (FontManagerSelections *self)
     xmlNode *selections = FONT_MANAGER_SELECTIONS_GET_CLASS(self)->get_selections(self, doc);
     if (selections != NULL)
         FONT_MANAGER_SELECTIONS_GET_CLASS(self)->parse_selections(self, selections);
-
-    priv->monitor = g_file_monitor(file, G_FILE_MONITOR_NONE, NULL, NULL);
-    if (priv->monitor != NULL)
-        g_signal_connect(priv->monitor, "changed", G_CALLBACK(font_manager_selections_emit_changed), self);
-    else
-        g_critical(G_STRLOC ": Failed to create file monitor for %s", filepath);
 
     xmlFreeDoc(doc);
     xmlCleanupParser();

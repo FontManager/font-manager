@@ -22,9 +22,6 @@ namespace FontManager {
 
     namespace FontViewer {
 
-        const string BUS_ID = "org.gnome.FontViewer";
-        const string BUS_PATH = "/org/gnome/FontViewer";
-
         [DBus (name = "org.gnome.FontViewer")]
         public class Application : Gtk.Application {
 
@@ -103,7 +100,7 @@ namespace FontManager {
                 GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
                 Environment.set_application_name(_("Font Viewer"));
                 Gtk.init(ref args);
-                set_application_style();
+                set_application_style(FontManager.BUS_PATH);
                 return new Application(BUS_ID, (ApplicationFlags.HANDLES_OPEN)).run(args);
             }
 

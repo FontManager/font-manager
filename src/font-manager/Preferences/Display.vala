@@ -73,7 +73,7 @@ namespace FontManager {
             properties.config_dir = FontManager.get_user_fontconfig_directory();
             properties.load();
             dpi = new LabeledSpinButton(_("Target DPI"), 0, 1000, 1);
-            scale = new LabeledSpinButton(_("Scale factor"), 0, 1000, 0.1);
+            scale = new LabeledSpinButton(_("Scale Factor"), 0, 1000, 0.1);
             string [] filters = {};
             for (int i = 0; i <= LCDFilter.LEGACY; i++)
                 filters += ((LCDFilter) i).to_string();
