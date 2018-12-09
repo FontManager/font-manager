@@ -3,17 +3,13 @@ gsettings_SCHEMAS = \
 	org.gnome.FontManager.gschema.xml \
 	org.gnome.FontViewer.gschema.xml
 
+@GSETTINGS_RULES@
+
 desktopdir = $(datadir)/applications
 dist_desktop_in_files = \
 	org.gnome.FontManager.desktop.in.in \
 	org.gnome.FontViewer.desktop.in.in
 dist_desktop_DATA = $(dist_desktop_in_files:.desktop.in.in=.desktop)
-
-org.gnome.FontManager.desktop: org.gnome.FontManager.desktop.in
-	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
-
-org.gnome.FontViewer.desktop: org.gnome.FontViewer.desktop.in
-	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
 appdatadir = $(datadir)/metainfo
 appdata_in_files = \
@@ -21,13 +17,17 @@ appdata_in_files = \
 	org.gnome.FontViewer.appdata.xml.in.in
 appdata_DATA = $(appdata_in_files:.xml.in.in=.xml)
 
+org.gnome.FontManager.desktop: org.gnome.FontManager.desktop.in
+	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
+
+org.gnome.FontViewer.desktop: org.gnome.FontViewer.desktop.in
+	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
+
 org.gnome.FontManager.appdata.xml: org.gnome.FontManager.appdata.xml.in
 	$(AM_V_GEN)$(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
 
 org.gnome.FontViewer.appdata.xml: org.gnome.FontViewer.appdata.xml.in
 	$(AM_V_GEN)$(MSGFMT) --xml --template $< -d $(top_srcdir)/po -o $@
-
-@GSETTINGS_RULES@
 
 org.gnome.FontManager.service:
 	$(AM_V_GEN) (echo '[D-BUS Service]'; \

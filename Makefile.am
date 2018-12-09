@@ -11,6 +11,7 @@ SUBDIRS = \
 	tests
 
 EXTRA_DIST = \
+	CHANGELOG \
 	config.rpath \
 	config.vapi \
 	po/HEADER \

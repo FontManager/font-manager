@@ -438,8 +438,7 @@ namespace FontManager {
             box.border_width = 1;
             description = new Gtk.Label(null);
             description.set("sensitive", false, "halign", Gtk.Align.CENTER,
-                          "hexpand", true, "vexpand", false, null);
-    //        description.get_style_context().add_class(Gtk.STYLE_CLASS_DIM_LABEL);
+                            "hexpand", true, "vexpand", false, null);
             justify_left = new Gtk.RadioButton(null);
             justify_center = new Gtk.RadioButton.from_widget(justify_left);
             justify_fill = new Gtk.RadioButton.from_widget(justify_left);

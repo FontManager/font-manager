@@ -161,7 +161,6 @@ namespace FontManager {
             compare = new Compare();
             preview_pane = new FontPreviewPane();
             sidebar = new SideBar();
-            titlebar = new TitleBar();
             fontlist = new FontList();
             fontpane = new FontListPane(fontlist);
             main_stack = new Gtk.Stack();
@@ -226,10 +225,12 @@ namespace FontManager {
             main_box.pack_end(main_stack, true, true, 0);
             use_csd = settings.get_boolean("use-csd");
             if (Gdk.Screen.get_default().is_composited() && use_csd) {
+                titlebar = new ClientSideDecorations();
                 set_titlebar(titlebar);
             } else {
+                titlebar = new ServerSideDecorations();
                 main_box.pack_start(titlebar, false, true, 0);
-                titlebar.use_toolbar_styling();
+                add_separator(main_box, Gtk.Orientation.HORIZONTAL);
             }
             add(main_box);
             return;

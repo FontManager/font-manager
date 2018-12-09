@@ -1,5 +1,6 @@
 Major changes between 0.7.3 to 0.7.4
 
+
 - Drop dependency on gucharmap library.
 
     Gucharmap is no longer in active development, and while the developers
@@ -14,19 +15,35 @@ Major changes between 0.7.3 to 0.7.4
 
     --with-file-roller flag dropped.
 
+
+- Fixed a crash that occurred when non font files were dropped onto preview areas.
+
+- Added filetype to property pane
+
+- Added designer/designer url to property pane
+
+- Added orthography recognition based on the work done for Fontaine by Edward H. Trager
+
+- Searches starting with / will filter based on filepath
+
+- Added preference pane for Gnome desktop settings
+
+- Added GtkShortcutsWindow
+
+- Updated vendor list
+
+- Added option to enable/disable GTK+ animations
+
+- Added option to prefer dark theme variant if available
+
+
 - Closes Issue #12
 
     Added font substitution preference pane.
 
-- Closes Issue #40
+- Closes Issue #14
 
-- Closes Issue #42 - Also related to Issue #48
-
-    Added "Copy Location" and "Show in Folder" entries to the font list context menu.
-
-- Partially addresses Issue #48
-
-    Added "Copy to.." and "Compress..." entries to the collection list context menu.
+    Added some help documentation.
 
 - Closes Issue #16
 
@@ -38,9 +55,15 @@ Major changes between 0.7.3 to 0.7.4
 
     Make headerbar area more consistent with other Gtk+ applications.
 
-- Closes Issue #57
+- Closes Issue #40
 
-    No longer applies to current design.
+- Closes Issue #42 - Partially addresses Issue #48
+
+    Added "Copy Location" and "Show in Folder" entries to the font list context menu.
+
+- Partially addresses Issue #48
+
+    Added "Copy to.." and "Compress..." entries to the collection list context menu.
 
 - Addresses Issue #50
 
@@ -58,30 +81,11 @@ Major changes between 0.7.3 to 0.7.4
 
     Match search term anywhere in family name.
 
+- Closes Issue #57
+
+    No longer applies to current design.
+
 - Closes Issue #64
 
     Ensure "C" locale is used when saving double values to configuration files.
-
-- Closes Issue #14
-
-    Added some help documentation.
-
-- Fixed a crash that occurred when non font files were dropped onto preview areas.
-
-- Added filetype to property pane
-
-- Added designer/designer url to property pane
-
-- Add orthography recognition based on the work done for Fontaine by Edward H. Trager
-
-- Searches starting with / will filter based on filepath
-
-- Add preference pane for Gnome desktop settings
-
-- Add GtkShortcutsWindow
-
-- Update vendor list
-
-
-
 
