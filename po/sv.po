@@ -1,4 +1,5 @@
-# Jerry Casiano <JerryCasiano@gmail.com>, 2017. #zanata
+# Åke Engelbrektson <eson@svenskasprakfiler.se. 2018
+
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
@@ -7,11 +8,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-05-13 03:54+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"PO-Revision-Date: 2018-12-04 17:51+0100\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Svenska Språkfiler <https://svenskasprakfiler.se>\n"
 "Language: sv\n"
-"X-Generator: Zanata 4.6.2\n"
+"X-Generator: Poedit 2.0.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: lib/vala/About.vala:27 data/org.gnome.FontManager.appdata.xml.in:9
@@ -43,10 +44,26 @@ msgid ""
 "    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 "    "
 msgstr ""
+"\n"
+"    Detta program är fri mjukvara! Du kan återdistribuera det och/eller\n"
+"    modifiera det, under villkoren för GNU General Public License som\n"
+"    den publiceras av Free Software Foundation. Antingen version 3 av\n"
+"    licensen, eller valfri senare version.\n"
+"\n"
+"    Programmet distribueras i hopp om att det skall vara användbart,\n"
+"    men UTAN NÅGRA GARANTIER. Utan ens underförstådd garanti om\n"
+"    SÄLJBARHET eller LÄMPLIGHET FÖR ETT VISST ÄNDAMÅL. \n"
+"    See GNU General Public License för mer detaljerad info.\n"
+"\n"
+"    Du bör ha fått en kopia av GNU General Public License\n"
+"    tillsammans med det här programmet. \n"
+"\n"
+"    Om inte, se <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+"    "
 
 #: lib/vala/About.vala:66
 msgid "translator-credits"
-msgstr ""
+msgstr "Åke Engelbrektson"
 
 #: lib/vala/Controls.vala:450
 msgid "Edit preview text"
@@ -260,7 +277,7 @@ msgstr "Lutning"
 
 #: lib/vala/Metadata.vala:199 src/font-manager/Categories.vala:294
 msgid "Weight"
-msgstr "Vikt"
+msgstr "Tjocklek"
 
 #: lib/vala/Metadata.vala:200 src/font-manager/Categories.vala:298
 msgid "Spacing"
@@ -276,27 +293,27 @@ msgstr "Leverantör"
 
 #: lib/vala/Metadata.vala:203
 msgid "FileType"
-msgstr ""
+msgstr "Filtyp"
 
 #: lib/vala/Metadata.vala:204
 msgid "Filesize"
-msgstr ""
+msgstr "Filstorlek"
 
 #: lib/vala/Orthography.vala:111
 msgid "Update in progress"
-msgstr ""
+msgstr "Uppdatering pågår"
 
 #: lib/vala/Orthography.vala:236
 msgid "Coverage"
-msgstr ""
+msgstr "Täckning"
 
 #: lib/vala/Orthography.vala:279
 msgid "Supported Orthographies"
-msgstr ""
+msgstr "Ortografier som stöds"
 
 #: lib/vala/Orthography.vala:287
 msgid "Clear selected filter"
-msgstr ""
+msgstr "Rensa valt filter"
 
 #: src/font-manager/Categories.vala:284
 msgid "All"
@@ -390,7 +407,7 @@ msgstr "Normal"
 
 #: src/font-manager/CellRendererPill.vala:58
 msgid "Variation "
-msgstr "Variant"
+msgstr "Variant "
 
 #: src/font-manager/CellRendererPill.vala:58
 msgid "Variations"
@@ -410,15 +427,15 @@ msgstr "Ta bort markerad kollektion"
 
 #: src/font-manager/Collections.vala:370
 msgid "Copying files..."
-msgstr ""
+msgstr "Kopierar filer..."
 
 #: src/font-manager/Collections.vala:490
 msgid "Copy to..."
-msgstr ""
+msgstr "Kopiera till..."
 
 #: src/font-manager/Collections.vala:491
 msgid "Compress..."
-msgstr ""
+msgstr "Komprimera..."
 
 #: src/font-manager/Compare.vala:33
 msgid "Add selected font to comparison"
@@ -438,7 +455,7 @@ msgstr "Välj bakgrundsfärg"
 
 #: src/font-manager/Dialogs.vala:47
 msgid "Select Destination"
-msgstr ""
+msgstr "Välj målmapp"
 
 #: src/font-manager/Dialogs.vala:50 src/font-manager/Dialogs.vala:70
 #: src/font-manager/Dialogs.vala:109 src/font-manager/Migration.vala:55
@@ -448,7 +465,7 @@ msgstr "_Avbryt"
 
 #: src/font-manager/Dialogs.vala:52
 msgid "_Select"
-msgstr ""
+msgstr "_Välj"
 
 #: src/font-manager/Dialogs.vala:67
 msgid "Select files to install"
@@ -469,7 +486,7 @@ msgstr "Välj teckensnitt att ta bort"
 
 #: src/font-manager/Dialogs.vala:126
 msgid "Fonts installed in your home directory will appear here."
-msgstr ""
+msgstr "Teckensnitt installerade i din hemkatalog visas här."
 
 #: src/font-manager/Filters/Collection.vala:49
 msgid "New Collection"
@@ -523,6 +540,9 @@ msgid ""
 "\n"
 "Start search using %s to filter based on filepath."
 msgstr ""
+"Skiftlägesokänslig sökning efter teckensnittsnamn.\n"
+"\n"
+"Starta sökning med %s för att filtrera baserat på filsökväg."
 
 #: src/font-manager/FontList.vala:64
 msgid "Collapse all"
@@ -530,15 +550,15 @@ msgstr "Komprimera alla"
 
 #: src/font-manager/FontList.vala:412
 msgid "Install"
-msgstr ""
+msgstr "Installera"
 
 #: src/font-manager/FontList.vala:413
 msgid "Copy Location"
-msgstr ""
+msgstr "Kopiera plats"
 
 #: src/font-manager/FontList.vala:414
 msgid "Show in Folder"
-msgstr ""
+msgstr "Visa i mapp"
 
 #: src/font-manager/MainWindow.vala:54 src/font-manager/MainWindow.vala:177
 msgid "Browse"
@@ -580,63 +600,69 @@ msgstr ""
 "föråldrade eller har flyttats.\n"
 "\n"
 "\n"
-"Font Manager kommer nu att försöka migrera dina teckensnitt och kollektioner."
-" Filer och inställningar som inte längre är nödvändiga eller giltiga, kommer "
-"att tas bort. Konfigurationsfiler som kan skapa konflikter, kommer också att "
-"tas bort.\n"
+"Font Manager kommer nu att försöka migrera dina teckensnitt och "
+"kollektioner. Filer och inställningar som inte längre är nödvändiga eller "
+"giltiga, kommer att tas bort. Konfigurationsfiler som kan skapa konflikter, "
+"kommer också att tas bort.\n"
 "\n"
 "Du rekommenderas att säkerhetskopiera viktiga filer, innan du fortsätter.\n"
 
 #: src/font-manager/Preferences/Desktop.vala:37
 msgid "Interface Font"
-msgstr ""
+msgstr "Teckensnitt för gränssnitt"
 
 #: src/font-manager/Preferences/Desktop.vala:38
 msgid "Font used throughout interface."
-msgstr ""
+msgstr "Teckensnitt som används i hela gränssnittet."
 
 #: src/font-manager/Preferences/Desktop.vala:43
 msgid "Document Font"
-msgstr ""
+msgstr "Dokumentteckensnitt"
 
 #: src/font-manager/Preferences/Desktop.vala:44
 msgid "Font used for reading documents."
-msgstr ""
+msgstr "Teckensnitt för att läsa dokument."
 
 #: src/font-manager/Preferences/Desktop.vala:49
 msgid "Monospace Font"
-msgstr ""
+msgstr "Monospace teckensnitt"
 
 #: src/font-manager/Preferences/Desktop.vala:50
 msgid "Monospaced (fixed-width) font for use in locations such as terminals."
 msgstr ""
+"Monospace (fixerad bredd) teckensnitt för användning på platser såsom "
+"terminal."
 
 #: src/font-manager/Preferences/Desktop.vala:55
 msgid "Text Scaling Factor"
-msgstr ""
+msgstr "Textskalningsfaktor"
 
 #: src/font-manager/Preferences/Desktop.vala:56
 msgid ""
 "Factor used to enlarge or reduce text display, without changing font size"
 msgstr ""
+"Faktor för att förstora eller minska textvisning, utan att ändra "
+"teckenstorlek."
 
 #: src/font-manager/Preferences/Desktop.vala:61
 msgid "Antialiasing"
-msgstr ""
+msgstr "Kantutjämning"
 
 #: src/font-manager/Preferences/Desktop.vala:62
 msgid "The type of antialiasing to use when rendering fonts."
-msgstr ""
+msgstr "Typ av kantutjämning vid rendering av teckensnitt."
 
 #: src/font-manager/Preferences/Desktop.vala:67
 msgid "RGBA order"
-msgstr ""
+msgstr "RGBA-ordning"
 
 #: src/font-manager/Preferences/Desktop.vala:68
 msgid ""
 "The order of subpixel elements on an LCD screen; only used when antialiasing "
 "is set to rgba."
 msgstr ""
+"Ordningen för subpixel-objekt på en LCD-skärm. Används endast när "
+"kantutjämningen är satt till RGBA."
 
 #: src/font-manager/Preferences/Desktop.vala:73
 #: src/font-manager/Preferences/Rendering.vala:86
@@ -645,11 +671,11 @@ msgstr "Hintning"
 
 #: src/font-manager/Preferences/Desktop.vala:74
 msgid "The type of hinting to use when rendering fonts."
-msgstr ""
+msgstr "Typ av hintning vid rendering av teckensnitt."
 
 #: src/font-manager/Preferences/Desktop.vala:100
 msgid "GNOME desktop settings schema not found"
-msgstr ""
+msgstr "Skrivbordsinställningsschema för GNOME hittades inte"
 
 #: src/font-manager/Preferences/Display.vala:42
 #: src/font-manager/Preferences/Rendering.vala:42
@@ -669,7 +695,7 @@ msgstr "Mål-DPI"
 
 #: src/font-manager/Preferences/Display.vala:76
 msgid "Scale Factor"
-msgstr ""
+msgstr "Skalningsfaktor"
 
 #: src/font-manager/Preferences/Display.vala:80
 msgid "LCD Filter"
@@ -685,11 +711,11 @@ msgstr "Källor"
 
 #: src/font-manager/Preferences/Preferences.vala:27
 msgid "Substitutions"
-msgstr ""
+msgstr "Ersättningar"
 
 #: src/font-manager/Preferences/Preferences.vala:28
 msgid "Desktop"
-msgstr ""
+msgstr "Skrivbord"
 
 #: src/font-manager/Preferences/Preferences.vala:29
 msgid "Display"
@@ -730,11 +756,11 @@ msgstr "Använd inbäddade bitmappar"
 #: src/font-manager/Preferences/Rendering.vala:99
 #: src/font-manager/Preferences/Rendering.vala:104
 msgid " Size Restrictions "
-msgstr "Storleksbegränsning "
+msgstr " Storleksbegränsning "
 
 #: src/font-manager/Preferences/Rendering.vala:102
 msgid " Apply settings to point sizes "
-msgstr "Tillämpa inställningar för punktstorlekar"
+msgstr " Tillämpa inställningar för punktstorlekar "
 
 #: src/font-manager/Preferences/Rendering.vala:169
 msgid "Smaller than"
@@ -774,31 +800,32 @@ msgstr "Välj källmappar"
 
 #: src/font-manager/Preferences/Substitutions.vala:33
 msgid "Add alias"
-msgstr ""
+msgstr "Lägg till alias"
 
 #: src/font-manager/Preferences/Substitutions.vala:34
 msgid "Remove selected alias"
-msgstr ""
+msgstr "Ta bort valda alias"
 
 #: src/font-manager/Preferences/Substitutions.vala:88
 msgid "Font Substitutions"
-msgstr ""
+msgstr "Teckensnittsersättningar"
 
 #: src/font-manager/Preferences/Substitutions.vala:89
 msgid "Easily substitute one font family for another."
-msgstr ""
+msgstr "Ersätt enkelt ett teckensnitt med ett annat."
 
 #: src/font-manager/Preferences/Substitutions.vala:90
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr ""
+"Klicka på \"Lägg till\" i verktygsfältet, för att lägga till en ny ersättare."
 
 #: src/font-manager/Preferences/Substitutions.vala:224
 msgid "Enter target family"
-msgstr ""
+msgstr "Ange målteckensnitt"
 
 #: src/font-manager/Preferences/Substitutions.vala:226
 msgid "Add substitute"
-msgstr ""
+msgstr "Lägg till ersättare"
 
 #: src/font-manager/Preferences/Substitutions.vala:350
 msgid "prefer"
@@ -814,11 +841,11 @@ msgstr "standard"
 
 #: src/font-manager/Preferences/Substitutions.vala:357
 msgid "Enter substitute family"
-msgstr ""
+msgstr "Ange ersättningsteckensnitt"
 
 #: src/font-manager/Preferences/Substitutions.vala:363
 msgid "Remove substitute"
-msgstr ""
+msgstr "Ta bort ersättare"
 
 #: src/font-manager/Preferences/UserInterface.vala:38
 msgid "Wide Layout"
@@ -826,7 +853,7 @@ msgstr "Bred layout"
 
 #: src/font-manager/Preferences/UserInterface.vala:41
 msgid "Only When Maximized"
-msgstr ""
+msgstr "Endast vid maximerad"
 
 #: src/font-manager/Preferences/UserInterface.vala:44
 msgid "Client Side Decorations"
@@ -834,11 +861,11 @@ msgstr "Dekorationer på klientsidan"
 
 #: src/font-manager/Preferences/UserInterface.vala:46
 msgid "Enable Animations"
-msgstr ""
+msgstr "Aktivera animationer"
 
 #: src/font-manager/Preferences/UserInterface.vala:47
 msgid "Prefer Dark Theme"
-msgstr ""
+msgstr "Föredra mörkt tema"
 
 #: src/font-manager/Preferences/UserInterface.vala:86
 msgid ""
@@ -860,7 +887,7 @@ msgstr "Kollektioner"
 
 #: src/font-manager/TitleBar.vala:52
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Tangenbordsgenvägar"
 
 #: src/font-manager/TitleBar.vala:53 data/ui/shortcuts.ui:19
 msgid "Help"
@@ -936,19 +963,19 @@ msgstr "Källa ej tillgänglig"
 
 #: lib/unicode/unicode-character-map.c:643
 msgid "Unknown character, unable to identify."
-msgstr ""
+msgstr "Okänt tecken, kan inte identifieras."
 
 #: lib/unicode/unicode-character-map.c:645
 msgid "Not found."
-msgstr ""
+msgstr "Hittades inte."
 
 #: lib/unicode/unicode-character-map.c:647
 msgid "Character found."
-msgstr ""
+msgstr "Tecken hittat."
 
 #: data/org.gnome.FontManager.appdata.xml.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "En enkel teckensnittshanterare för GTK+ skrivbordsmiljöer"
 
 #: data/org.gnome.FontManager.appdata.xml.in:13
 msgid ""
@@ -956,34 +983,40 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
+"Font Manager är avsett att tillhandahålla ett sätt för den genomsnittlige "
+"användaren att hantera teckensnitt på skrivbordet, utan att behöva använda "
+"kommandoradsverktyg eller redigera konfigurationsfiler för hand."
 
 #: data/org.gnome.FontManager.appdata.xml.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr ""
+"Även om den är utformad främst med GNOME skrivbordsmiljö i åtanke, bör den "
+"fungera bra med andra GTK+ skrivbordsmiljöer."
 
 #: data/org.gnome.FontManager.appdata.xml.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
 msgstr ""
+"Font Manager är INTE en lösning för professionell teckensnittshantering."
 
 #: data/org.gnome.FontManager.desktop.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr ""
+msgstr "Förhandsgranska, jämför och hantera teckensnitt"
 
 #: data/org.gnome.FontManager.desktop.in:8
 #: data/org.gnome.FontViewer.desktop.in:8
 msgid "preferences-desktop-font"
-msgstr ""
+msgstr "Inställnings-/skrivbordsteckensnitt"
 
 #: data/org.gnome.FontManager.desktop.in:14
 #: data/org.gnome.FontViewer.desktop.in:14
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
+msgstr "Grafik;Visare;GNOME;GTK;Publicering;"
 
 #: data/org.gnome.FontViewer.appdata.xml.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "En teckensnittsvisare för GTK+ skrivbordsmiljöer"
 
 #: data/org.gnome.FontViewer.appdata.xml.in:13
 msgid ""
@@ -991,63 +1024,66 @@ msgid ""
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
 msgstr ""
+"Font Viewer kan förhandsvisa teckensnittsfiler före installation. Det finns "
+"flera sätt att förhandsgranska teckensnittsfiler tillsammans med en "
+"teckenuppsättning och den visar teckensnittsegenskaper och licensinformation."
 
 #: data/org.gnome.FontViewer.desktop.in:7
 msgid "Full featured font file preview application"
-msgstr ""
+msgstr "Program för förhandsvisning av teckensnitt"
 
 #: data/ui/shortcuts.ui:14
 msgid "General"
-msgstr ""
+msgstr "Allmänt"
 
 #: data/ui/shortcuts.ui:26
 msgid "Increase preview size"
-msgstr ""
+msgstr "Minska förhandsgranskningsstorlek"
 
 #: data/ui/shortcuts.ui:33
 msgid "Decrease preview size"
-msgstr ""
+msgstr "Öka förhandsvisningsstorlek"
 
 #: data/ui/shortcuts.ui:40
 msgid "Reset preview size to default"
-msgstr ""
+msgstr "Återställ granskningsstorleken till standard"
 
 #: data/ui/shortcuts.ui:47
 msgid "Reload"
-msgstr ""
+msgstr "Uppdatera"
 
 #: data/ui/shortcuts.ui:54
 msgid "Quit the application"
-msgstr ""
+msgstr "Avsluta programmet"
 
 #: data/ui/shortcuts.ui:62
 msgid "Mode"
-msgstr ""
+msgstr "Läge"
 
 #: data/ui/shortcuts.ui:67
 msgid "Switch to Manage mode"
-msgstr ""
+msgstr "Växla till hanteringsläge"
 
 #: data/ui/shortcuts.ui:74
 msgid "Switch to Browse mode"
-msgstr ""
+msgstr "Växla till bläddringsläge"
 
 #: data/ui/shortcuts.ui:81
 msgid "Switch to Compare mode"
-msgstr ""
+msgstr "Växla till jämförelseläge"
 
 #: data/ui/shortcuts.ui:89
 msgid "Preview Mode"
-msgstr ""
+msgstr "Förhandsgranskningsläge"
 
 #: data/ui/shortcuts.ui:94
 msgid "Switch to Standard preview"
-msgstr ""
+msgstr "Växla till standardgranskningsläge"
 
 #: data/ui/shortcuts.ui:101
 msgid "Switch to Waterfall preview"
-msgstr ""
+msgstr "Växla vattenfallsgranskning"
 
 #: data/ui/shortcuts.ui:108
 msgid "Switch to Body Text preview"
-msgstr ""
+msgstr "Växla till brödtextgranskning"
