@@ -682,6 +682,7 @@ namespace FontManager {
             settings.bind("content-pane-position", content_pane, "position", SettingsBindFlags.DEFAULT);
             settings.bind("preview-font-size", preview_pane, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("browse-font-size", browser, "preview-size", SettingsBindFlags.DEFAULT);
+            settings.bind("browse-preview-text", browser.entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("compare-font-size", compare, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("charmap-font-size", preview_pane.charmap, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("selected-category", sidebar.standard.category_tree, "selected-iter", SettingsBindFlags.DEFAULT);
@@ -723,6 +724,7 @@ namespace FontManager {
             /* Workaround first row height bug? in browse mode */
             browser.preview_size++;
             browser.preview_size--;
+            browser.entry.text = settings.get_string("browse-preview-text");
             compare.preview_size = settings.get_double("compare-font-size");
 
             var preview_text = settings.get_string("preview-text");

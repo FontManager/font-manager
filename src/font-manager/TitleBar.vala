@@ -45,12 +45,78 @@ namespace FontManager {
 
     }
 
+    GLib.MenuModel get_app_menu_model () {
+        var application = (FontManager.Application) GLib.Application.get_default();
+        /* action_name, display_name, detailed_action_name, accelerator, method */
+        MenuEntry [] app_menu_entries = {
+            MenuEntry("shortcuts", _("Keyboard Shortcuts"), "app.shortcuts", null, new MenuCallbackWrapper(application.shortcuts)),
+            MenuEntry("help", _("Help"), "app.help", "F1", new MenuCallbackWrapper(application.help)),
+            MenuEntry("about", _("About"), "app.about", null, new MenuCallbackWrapper(application.about)),
+        };
+        var app_menu = new GLib.Menu();
+        foreach (var entry in app_menu_entries) {
+            add_action_from_menu_entry(application, entry);
+            if (entry.accelerator != null) {
+                string? accels [] = {entry.accelerator, null };
+                application.set_accels_for_action(entry.detailed_action_name, accels);
+                GLib.MenuItem item = new MenuItem(entry.display_name, entry.detailed_action_name);
+                item.set_attribute("accel", "s", entry.accelerator);
+                app_menu.append_item(item);
+            } else {
+                app_menu.append(entry.display_name, entry.detailed_action_name);
+            }
+        }
+        return app_menu;
+    }
+
+    GLib.MenuModel get_main_menu_model (Gtk.MenuButton parent) {
+        var application = (Gtk.Application) GLib.Application.get_default();
+        var mode_section = new GLib.Menu();
+        string [] modes = {"Default", "Browse", "Compare"};
+        var mode_action = new SimpleAction.stateful("mode", VariantType.STRING, "Manage");
+        mode_action.set_state(modes[0]);
+        application.add_action(mode_action);
+        mode_action.activate.connect((a, s) => {
+            foreach (var window in application.get_windows())
+                if (window is MainWindow) {
+                    ((MainWindow) window).mode = Mode.parse((string) s);
+                    a.set_state((string) s);
+                    parent.active = !parent.active;
+                    break;
+                }
+        });
+        int i = 0;
+        foreach (var mode in modes) {
+            i++;
+            string? accels [] = {"<Ctrl>%i".printf(i), null };
+            application.set_accels_for_action("app.mode::%s".printf(mode), accels);
+            GLib.MenuItem item = new MenuItem(Mode.parse(mode).to_translatable_string(), "app.mode::%s".printf(mode));
+            item.set_attribute("accel", "s", accels[0]);
+            mode_section.append_item(item);
+        }
+        return (GLib.MenuModel) mode_section;
+    }
+
+    void toggle_spinner (Gtk.Spinner spinner, Gtk.Button button, string? icon_name = null) {
+        if (icon_name == null) {
+            spinner.start();
+            button.set_image(spinner);
+            button.sensitive = false;
+        } else {
+            spinner.stop();
+            var icon = new Gtk.Image.from_icon_name(icon_name, Gtk.IconSize.MENU);
+            button.set_image(icon);
+            button.sensitive = true;
+        }
+        return;
+    }
+
     public interface TitleBar : Gtk.Widget {
 
-        public abstract signal void install_selected ();
-        public abstract signal void remove_selected ();
-        public abstract signal void add_selected ();
-        public abstract signal void preferences_selected (bool active);
+        public signal void install_selected ();
+        public signal void remove_selected ();
+        public signal void add_selected ();
+        public signal void preferences_selected (bool active);
 
         public abstract Gtk.MenuButton main_menu { get; protected set; }
         public abstract Gtk.MenuButton app_menu { get; protected set; }
@@ -134,72 +200,6 @@ namespace FontManager {
 
     }
 
-    GLib.MenuModel get_app_menu_model () {
-        var application = (FontManager.Application) GLib.Application.get_default();
-        /* action_name, display_name, detailed_action_name, accelerator, method */
-        MenuEntry [] app_menu_entries = {
-            MenuEntry("shortcuts", _("Keyboard Shortcuts"), "app.shortcuts", null, new MenuCallbackWrapper(application.shortcuts)),
-            MenuEntry("help", _("Help"), "app.help", "F1", new MenuCallbackWrapper(application.help)),
-            MenuEntry("about", _("About"), "app.about", null, new MenuCallbackWrapper(application.about)),
-        };
-        var app_menu = new GLib.Menu();
-        foreach (var entry in app_menu_entries) {
-            add_action_from_menu_entry(application, entry);
-            if (entry.accelerator != null) {
-                string? accels [] = {entry.accelerator, null };
-                application.set_accels_for_action(entry.detailed_action_name, accels);
-                GLib.MenuItem item = new MenuItem(entry.display_name, entry.detailed_action_name);
-                item.set_attribute("accel", "s", entry.accelerator);
-                app_menu.append_item(item);
-            } else {
-                app_menu.append(entry.display_name, entry.detailed_action_name);
-            }
-        }
-        return app_menu;
-    }
-
-    GLib.MenuModel get_main_menu_model (Gtk.MenuButton parent) {
-        var application = (Gtk.Application) GLib.Application.get_default();
-        var mode_section = new GLib.Menu();
-        string [] modes = {"Default", "Browse", "Compare"};
-        var mode_action = new SimpleAction.stateful("mode", VariantType.STRING, "Manage");
-        mode_action.set_state(modes[0]);
-        application.add_action(mode_action);
-        mode_action.activate.connect((a, s) => {
-            foreach (var window in application.get_windows())
-                if (window is MainWindow) {
-                    ((MainWindow) window).mode = Mode.parse((string) s);
-                    a.set_state((string) s);
-                    parent.active = !parent.active;
-                    break;
-                }
-        });
-        int i = 0;
-        foreach (var mode in modes) {
-            i++;
-            string? accels [] = {"<Ctrl>%i".printf(i), null };
-            application.set_accels_for_action("app.mode::%s".printf(mode), accels);
-            GLib.MenuItem item = new MenuItem(Mode.parse(mode).to_translatable_string(), "app.mode::%s".printf(mode));
-            item.set_attribute("accel", "s", accels[0]);
-            mode_section.append_item(item);
-        }
-        return (GLib.MenuModel) mode_section;
-    }
-
-    void toggle_spinner (Gtk.Spinner spinner, Gtk.Button button, string? icon_name = null) {
-        if (icon_name == null) {
-            spinner.start();
-            button.set_image(spinner);
-            button.sensitive = false;
-        } else {
-            spinner.stop();
-            var icon = new Gtk.Image.from_icon_name(icon_name, Gtk.IconSize.MENU);
-            button.set_image(icon);
-            button.sensitive = true;
-        }
-        return;
-    }
-
     public class ClientSideDecorations : Gtk.HeaderBar, TitleBar {
 
         public Gtk.MenuButton main_menu { get; protected set; }
@@ -217,7 +217,7 @@ namespace FontManager {
         protected Gtk.Widget [] widgets;
 
         public ClientSideDecorations () {
-            Object(name: "TitleBar", title: About.DISPLAY_NAME, has_subtitle: false,
+            Object(name: "titlebar", title: About.DISPLAY_NAME, has_subtitle: false,
                    show_close_button: true, margin: 0);
             init_components();
             pack_components();
@@ -261,7 +261,7 @@ namespace FontManager {
         protected Gtk.Widget [] widgets;
 
         public ServerSideDecorations () {
-            Object(name: "TitleBar", margin: 0);
+            Object(name: "menubar", margin: 0);
             init_components();
             pack_components();
             connect_signals();

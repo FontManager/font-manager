@@ -25,9 +25,10 @@ namespace FontManager {
 
         public Gtk.TreeModel? model { get; set; }
         public Json.Object? samples { get; set; default = null; }
-        public BaseTreeView treeview { get; private set;}
+        public BaseTreeView treeview { get; private set; }
+        public CustomPreviewEntry entry { get; private set; }
 
-        Gtk.Box main_box;
+        Gtk.EventBox blend;
         Gtk.ScrolledWindow scroll;
         CellRendererTitle renderer;
 
@@ -37,14 +38,19 @@ namespace FontManager {
             treeview.name = "FontManagerBrowseView";
             treeview.headers_visible = false;
             treeview.show_expanders = false;
-            main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            blend = new Gtk.EventBox();
+            entry = new CustomPreviewEntry();
+            entry.changed.connect(() => { treeview.queue_draw(); });
+            blend.add(entry);
+            blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            add(blend);
             scroll = new Gtk.ScrolledWindow(null, null);
             scroll.add(treeview);
             scroll.expand = true;
-            main_box.pack_start(scroll, true, true, 0);
             renderer = new CellRendererTitle();
             treeview.set_enable_search(true);
             treeview.set_search_column(FontModelColumn.DESCRIPTION);
+            treeview.set_tooltip_column(FontModelColumn.DESCRIPTION);
             treeview.insert_column_with_data_func(0, "", renderer, cell_data_func);
             treeview.get_selection().set_mode(Gtk.SelectionMode.NONE);
             bind_property("model", treeview, "model", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
@@ -53,13 +59,14 @@ namespace FontManager {
                 treeview.get_column(0).queue_resize();
                 treeview.queue_draw();
             });
-            add(main_box);
+            add(scroll);
         }
 
         public override void show () {
             treeview.show();
             scroll.show();
-            main_box.show();
+            blend.show();
+            entry.show();
             base.show();
             return;
         }
@@ -100,7 +107,9 @@ namespace FontManager {
                 desc.set_size((int) (preview_size * Pango.SCALE));
                 cell.set_property("font-desc" , desc);
                 cell.set_padding(32, 10);
-                if (samples != null && samples.has_member(font_desc))
+                if (entry.text_length > 0)
+                    cell.set_property("text", entry.text);
+                else if (samples != null && samples.has_member(font_desc))
                     cell.set_property("text", samples.get_string_member(font_desc));
                 else
                     cell.set_property("text", font_desc);

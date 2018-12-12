@@ -90,7 +90,7 @@ namespace FontManager {
             string w3 = _("To add a new substitute click the add button in the toolbar.");
             string welcome_tmpl = "<span size=\"xx-large\" weight=\"bold\">%s</span>\n<span size=\"large\">\n\n%s\n</span>\n\n\n<span size=\"x-large\">%s</span>";
             string welcome_message = welcome_tmpl.printf(w1, w2, w3);
-            welcome = new PlaceHolder(welcome_message, "edit-copy-symbolic");
+            welcome = new PlaceHolder(welcome_message, "edit-find-replace-symbolic");
             list = new Gtk.ListBox();
             list.set_placeholder(welcome);
             list.expand = true;

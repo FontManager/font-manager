@@ -18,6 +18,7 @@ src/font-manager/Categories.c
 src/font-manager/CellRendererPill.c
 src/font-manager/Collections.c
 src/font-manager/Compare.c
+src/font-manager/CustomPreviewEntry.c
 src/font-manager/Dialogs.c
 src/font-manager/Filters/Cacheable.c
 src/font-manager/Filters/Category.c

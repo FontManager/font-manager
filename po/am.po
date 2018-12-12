@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-12-02 18:23-0500\n"
+"POT-Creation-Date: 2018-12-11 22:16-0500\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,31 +48,31 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 
-#: lib/vala/Controls.vala:450
+#: lib/vala/Controls.vala:449
 msgid "Edit preview text"
 msgstr ""
 
-#: lib/vala/Controls.vala:454
+#: lib/vala/Controls.vala:453
 msgid "Undo changes"
 msgstr ""
 
-#: lib/vala/Controls.vala:459
+#: lib/vala/Controls.vala:458
 msgid "Left Aligned"
 msgstr ""
 
-#: lib/vala/Controls.vala:459
+#: lib/vala/Controls.vala:458
 msgid "Centered"
 msgstr ""
 
-#: lib/vala/Controls.vala:459
+#: lib/vala/Controls.vala:458
 msgid "Fill"
 msgstr ""
 
-#: lib/vala/Controls.vala:459
+#: lib/vala/Controls.vala:458
 msgid "Right Aligned"
 msgstr ""
 
-#: lib/vala/Controls.vala:610
+#: lib/vala/Controls.vala:609
 msgid "Subpixel Geometry"
 msgstr ""
 
@@ -214,7 +214,7 @@ msgid "VBGR"
 msgstr ""
 
 #: lib/vala/FontPreviewPane.vala:119 lib/vala/FontPreviewPane.vala:221
-#: src/font-manager/MainWindow.vala:171
+#: src/font-manager/MainWindow.vala:170
 msgid "Preview"
 msgstr ""
 
@@ -538,15 +538,15 @@ msgstr ""
 msgid "Show in Folder"
 msgstr ""
 
-#: src/font-manager/MainWindow.vala:54 src/font-manager/MainWindow.vala:177
+#: src/font-manager/MainWindow.vala:54 src/font-manager/MainWindow.vala:176
 msgid "Browse"
 msgstr ""
 
-#: src/font-manager/MainWindow.vala:56 src/font-manager/MainWindow.vala:172
+#: src/font-manager/MainWindow.vala:56 src/font-manager/MainWindow.vala:171
 msgid "Compare"
 msgstr ""
 
-#: src/font-manager/MainWindow.vala:58 src/font-manager/MainWindow.vala:176
+#: src/font-manager/MainWindow.vala:58 src/font-manager/MainWindow.vala:175
 msgid "Manage"
 msgstr ""
 
@@ -854,15 +854,15 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: src/font-manager/TitleBar.vala:141
+#: src/font-manager/TitleBar.vala:180
 msgid "Add Fonts"
 msgstr ""
 
-#: src/font-manager/TitleBar.vala:142
+#: src/font-manager/TitleBar.vala:181
 msgid "Remove Fonts"
 msgstr ""
 
-#: src/font-manager/TitleBar.vala:150
+#: src/font-manager/TitleBar.vala:189
 msgid "Preferences"
 msgstr ""
 
