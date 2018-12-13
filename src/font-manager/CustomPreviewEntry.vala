@@ -29,6 +29,7 @@ namespace FontManager {
                 if (pos == Gtk.EntryIconPosition.SECONDARY)
                     set_text("");
             });
+            update();
         }
 
         void update () {
@@ -36,7 +37,8 @@ namespace FontManager {
                 set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, "edit-clear-symbolic");
                 set_icon_activatable(Gtk.EntryIconPosition.SECONDARY, true);
             } else {
-                set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, null);
+                set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, "document-edit-symbolic");
+                set_icon_activatable(Gtk.EntryIconPosition.SECONDARY, false);
             }
             return;
         }
