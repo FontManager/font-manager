@@ -36,6 +36,10 @@ Major changes between 0.7.3 to 0.7.4
 
 - Added option to prefer dark theme variant if available
 
+- Added custom preview entry to Browse mode
+
+- Added custom preview entry to Compare mode
+
 
 - Closes Issue #12
 

@@ -684,6 +684,7 @@ namespace FontManager {
             settings.bind("browse-font-size", browser, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("browse-preview-text", browser.entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("compare-font-size", compare, "preview-size", SettingsBindFlags.DEFAULT);
+            settings.bind("compare-preview-text", compare.controls.entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("charmap-font-size", preview_pane.charmap, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("selected-category", sidebar.standard.category_tree, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("selected-collection", sidebar.standard.collection_tree, "selected-iter", SettingsBindFlags.DEFAULT);
@@ -726,6 +727,7 @@ namespace FontManager {
             browser.preview_size--;
             browser.entry.text = settings.get_string("browse-preview-text");
             compare.preview_size = settings.get_double("compare-font-size");
+            compare.controls.entry.text = settings.get_string("compare-preview-text");
 
             var preview_text = settings.get_string("preview-text");
             if (preview_text != "DEFAULT")

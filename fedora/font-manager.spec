@@ -12,7 +12,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    10
+Release:    11
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -143,6 +143,9 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Thu Dec 13 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-11
+- Improve appearance when client side decorations are disabled
+- Add custom preview entry to browse and compare modes
 * Tue Nov 27 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-10
 - Add option to disable toolkit animations
 - Add option to use dark theme if available

@@ -28,16 +28,20 @@ namespace FontManager {
 
         public Gtk.ColorButton fg_color_button { get; set; }
         public Gtk.ColorButton bg_color_button { get; set; }
+        public CustomPreviewEntry entry { get; private set; }
 
         public CompareControls () {
             add_button.set_tooltip_text(_("Add selected font to comparison"));
             remove_button.set_tooltip_text(_("Remove selected font from comparison"));
             fg_color_button = new Gtk.ColorButton();
             bg_color_button = new Gtk.ColorButton();
+            entry = new CustomPreviewEntry();
+            entry.margin = 2;
             fg_color_button.set_tooltip_text(_("Select text color"));
             bg_color_button.set_tooltip_text(_("Select background color"));
             fg_color_button.set_title(_("Select text color"));
             bg_color_button.set_title(_("Select background color"));
+            box.pack_start(entry, true, true, 0);
             box.pack_end(bg_color_button, false, false, 0);
             box.pack_end(fg_color_button, false, false, 0);
             set_default_button_relief(box);
@@ -54,6 +58,7 @@ namespace FontManager {
             bg.parse("white");
             fg_color_button.set_rgba(fg);
             bg_color_button.set_rgba(bg);
+            entry.show();
             base.show();
             return;
         }
@@ -167,6 +172,8 @@ namespace FontManager {
                 update_default_colors();
             });
 
+            controls.entry.changed.connect(() => { tree.queue_draw(); });
+
             return;
         }
 
@@ -209,12 +216,14 @@ namespace FontManager {
                     cell.set_property("background-rgba", default_bg_color);
                 }
                 cell.set_property("size-points", get_desc_size());
-                cell.set_property("weight", 100);
+                cell.set_property("weight", 350);
             } else {
                 /* Preview row */
                 cell.set_property("foreground-rgba", foreground_color);
                 cell.set_property("background-rgba", background_color);
-                if (samples != null && samples.has_member(description))
+                if (controls.entry.text_length > 0)
+                    cell.set_property("text", controls.entry.text);
+                else if (samples != null && samples.has_member(description))
                     cell.set_property("text", samples.get_string_member(description));
                 else
                     cell.set_property("text", preview_text);
