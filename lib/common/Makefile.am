@@ -55,7 +55,7 @@ FontManager_gir_NAMESPACE = FontManager
 FontManager_gir_INCLUDES = Json-1.0 libxml2-2.0 Gdk-$(GTK_API_VERSION) Gtk-$(GTK_API_VERSION)
 FontManager_gir_LIBS = $(noinst_LTLIBRARIES) ../unicode/libfmunicode-@PACKAGE_VERSION@.la
 FontManager_gir_FILES = $(_SOURCES_) $(_HEADERS_)
-FontManager_gir_SCANNERFLAGS = --c-include "common.h" --nsversion @PACKAGE_VERSION@
+FontManager_gir_SCANNERFLAGS = --nsversion @PACKAGE_VERSION@
 
 girdir = $(DESTDIR)$(datadir)/gir-1.0
 typelibdir = $(DESTDIR)$(libdir)/girepository-1.0

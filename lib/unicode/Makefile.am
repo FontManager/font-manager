@@ -40,7 +40,7 @@ INTROSPECTION_COMPILER_ARGS = --includedir=$(srcdir)
 
 Unicode.gir: $(noinst_LTLIBRARIES)
 Unicode_gir_INCLUDES = Pango-1.0 Gdk-$(GTK_API_VERSION) Gtk-$(GTK_API_VERSION)
-Unicode_gir_SCANNERFLAGS = --c-include "unicode-info.h"
+Unicode_gir_SCANNERFLAGS = --c-include "unicode-info.h" --nsversion @PACKAGE_VERSION@
 Unicode_gir_LIBS = $(noinst_LTLIBRARIES)
 Unicode_gir_FILES = $(libfmunicode_@PACKAGE_VERSION@_la_SOURCES)
 Unicode_gir_NAMESPACE = Unicode

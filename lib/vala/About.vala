@@ -30,7 +30,7 @@ namespace FontManager {
         public const string NAME = Config.PACKAGE_NAME;
         public const string VERSION = Config.PACKAGE_VERSION;
         public const string HOMEPAGE = Config.PACKAGE_URL;
-        public const string BUG_TRACKER = Config.PACKAGE_BUG_REPORT;
+        public const string BUG_TRACKER = Config.PACKAGE_BUGREPORT;
         public const string COPYRIGHT = "Copyright © 2009 - 2018 Jerry Casiano";
         public const string LICENSE = _("""
     This program is free software: you can redistribute it and/or modify

@@ -1,22 +1,4 @@
 
-gsettings_SCHEMAS = \
-	org.gnome.FontManager.gschema.xml \
-	org.gnome.FontViewer.gschema.xml
-
-@GSETTINGS_RULES@
-
-desktopdir = $(datadir)/applications
-dist_desktop_in_files = \
-	org.gnome.FontManager.desktop.in.in \
-	org.gnome.FontViewer.desktop.in.in
-dist_desktop_DATA = $(dist_desktop_in_files:.desktop.in.in=.desktop)
-
-appdatadir = $(datadir)/metainfo
-appdata_in_files = \
-	org.gnome.FontManager.appdata.xml.in.in \
-	org.gnome.FontViewer.appdata.xml.in.in
-appdata_DATA = $(appdata_in_files:.xml.in.in=.xml)
-
 org.gnome.FontManager.desktop: org.gnome.FontManager.desktop.in
 	$(AM_V_GEN)$(MSGFMT) --desktop --template $< -d $(top_srcdir)/po -o $@
 
@@ -40,6 +22,24 @@ org.gnome.FontViewer.service:
 	echo 'Name=org.gnome.FontViewer'; \
 	echo 'Exec=${pkglibexecdir}/font-viewer --gapplication-service') > $@.tmp && \
 	mv $@.tmp $@
+
+gsettings_SCHEMAS = \
+	org.gnome.FontManager.gschema.xml \
+	org.gnome.FontViewer.gschema.xml
+
+@GSETTINGS_RULES@
+
+desktopdir = $(datadir)/applications
+dist_desktop_in_files = \
+	org.gnome.FontManager.desktop.in.in \
+	org.gnome.FontViewer.desktop.in.in
+dist_desktop_DATA = $(dist_desktop_in_files:.desktop.in.in=.desktop)
+
+appdatadir = $(datadir)/metainfo
+appdata_in_files = \
+	org.gnome.FontManager.appdata.xml.in.in \
+	org.gnome.FontViewer.appdata.xml.in.in
+appdata_DATA = $(appdata_in_files:.xml.in.in=.xml)
 
 dbusservicedir = $(datadir)/dbus-1/services
 dbusservice_DATA = \
@@ -77,7 +77,7 @@ MAINTAINERCLEANFILES = \
 compile-gsettings-schemas:
 	$(GLIB_COMPILE_SCHEMAS) ./
 
-all: compile-gsettings-schemas org.gnome.FontManager.service org.gnome.FontViewer.service
+all: compile-gsettings-schemas org.gnome.FontManager.service org.gnome.FontViewer.service org.gnome.FontManager.appdata.xml org.gnome.FontViewer.appdata.xml
 	$(SED) -i 's|\@PKGLIBEXECDIR\@|${pkglibexecdir}|g' org.gnome.FontViewer.desktop
 
 .PHONY: compile-gsettings-schemas

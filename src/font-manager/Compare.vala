@@ -110,6 +110,7 @@ namespace FontManager {
             store = new Gtk.ListStore(2, typeof(Pango.FontDescription), typeof(string));
             scroll = new Gtk.ScrolledWindow(null, null);
             controls = new CompareControls();
+            controls.entry.set_placeholder_text(preview_text);
             controls.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             renderer = new Gtk.CellRendererText();
             column = new Gtk.TreeViewColumn();
@@ -173,7 +174,9 @@ namespace FontManager {
             });
 
             controls.entry.changed.connect(() => { tree.queue_draw(); });
-
+            notify["preview-text"].connect(() => {
+                controls.entry.set_placeholder_text(preview_text);
+            });
             return;
         }
 
