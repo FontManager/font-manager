@@ -536,7 +536,9 @@ correct_filetype (JsonObject *json_obj)
     /* Compact Font Format doesn't really mean much. */
     if (g_strcmp0(filetype, "CFF") == 0) {
         const gchar *filepath = json_object_get_string_member(json_obj, "filepath");
-        if (g_str_has_suffix(filepath, ".otf") || g_str_has_suffix(filepath, ".ttf")) {
+        if (g_str_has_suffix(filepath, ".otf")
+            || g_str_has_suffix(filepath, ".ttf")
+            || g_str_has_suffix(filepath, ".ttc")) {
             json_object_set_string_member(json_obj, "filetype", "OpenType");
         }
     }

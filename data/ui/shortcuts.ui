@@ -37,7 +37,7 @@
        <object class="GtkShortcutsShortcut">
         <property name="visible">1</property>
         <property name="accelerator">&lt;Ctrl&gt;0</property>
-        <property name="title" translatable="yes">Reset preview size to default</property>
+        <property name="title" translatable="yes">Reset preview size</property>
        </object>
       </child>
       <child>

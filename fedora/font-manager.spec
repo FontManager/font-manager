@@ -12,7 +12,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    11
+Release:    12
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -143,6 +143,9 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Thu Dec 20 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-12
+- (Font Viewer) Fix dbus path
+- Classify ttc as Opentype instead of CFF
 * Thu Dec 13 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-11
 - Improve appearance when client side decorations are disabled
 - Add custom preview entry to browse and compare modes

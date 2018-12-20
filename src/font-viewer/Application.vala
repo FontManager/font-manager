@@ -18,95 +18,92 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-namespace FontManager {
+using FontManager;
 
-    namespace FontViewer {
+namespace FontViewer {
 
-        [DBus (name = "org.gnome.FontViewer")]
-        public class Application : Gtk.Application {
+    [DBus (name = "org.gnome.FontViewer")]
+    public class Application : Gtk.Application {
 
-            [DBus (visible = false)]
-            public MainWindow? main_window { get; private set; default = null; }
+        [DBus (visible = false)]
+        public MainWindow? main_window { get; private set; default = null; }
 
-            uint dbus_id = 0;
+        uint dbus_id = 0;
 
-            public Application (string app_id, ApplicationFlags app_flags) {
-                Object(application_id : app_id, flags : app_flags);
-            }
+        public Application (string app_id, ApplicationFlags app_flags) {
+            Object(application_id : app_id, flags : app_flags);
+        }
 
-            public override void startup () {
-                base.startup();
-                main_window = new MainWindow();
-                add_window(main_window);
-                return;
-            }
+        public override void startup () {
+            base.startup();
+            main_window = new MainWindow();
+            add_window(main_window);
+            return;
+        }
 
-            public bool ready () throws DBusError, IOError {
-                return main_window.ready();
-            }
+        public bool ready () throws DBusError, IOError {
+            return main_window.ready();
+        }
 
-            public void show_uri (string uri) throws DBusError, IOError {
-                main_window.show_uri(uri);
-                activate();
-                return;
-            }
+        public void show_uri (string uri) throws DBusError, IOError {
+            main_window.show_uri(uri);
+            activate();
+            return;
+        }
 
-            public override void open (File [] files, string hint) {
-                main_window.open(files[0].get_path());
-                activate();
-                return;
-            }
+        public override void open (File [] files, string hint) {
+            main_window.open(files[0].get_path());
+            activate();
+            return;
+        }
 
-            protected override void activate () {
-                main_window.present();
-                main_window.update();
-                return;
-            }
+        protected override void activate () {
+            main_window.present();
+            main_window.update();
+            return;
+        }
 
-            [DBus (visible = "false")]
-            public void about () {
-                Gtk.show_about_dialog(main_window,
-                                     "program-name", _("Font Viewer"),
-                                     "logo-icon-name", About.ICON,
-                                     "version", About.VERSION,
-                                     "copyright", About.COPYRIGHT,
-                                     "comments", About.COMMENT,
-                                     "website", About.HOMEPAGE,
-                                     "authors", About.AUTHORS,
-                                     "license", About.LICENSE,
-                                     "translator-credits", About.TRANSLATORS,
-                                     null);
-                return;
-            }
+        [DBus (visible = "false")]
+        public void about () {
+            Gtk.show_about_dialog(main_window,
+                                 "program-name", _("Font Viewer"),
+                                 "logo-icon-name", About.ICON,
+                                 "version", About.VERSION,
+                                 "copyright", About.COPYRIGHT,
+                                 "comments", About.COMMENT,
+                                 "website", About.HOMEPAGE,
+                                 "authors", About.AUTHORS,
+                                 "license", About.LICENSE,
+                                 "translator-credits", About.TRANSLATORS,
+                                 null);
+            return;
+        }
 
-            public override bool dbus_register (DBusConnection conn, string path) throws Error {
-                base.dbus_register(conn, path);
-                dbus_id = conn.register_object (BUS_PATH, this);
-                if (dbus_id == 0)
-                    critical("Could not register Font Viewer service ");
-                return true;
-            }
+        public override bool dbus_register (DBusConnection conn, string path) throws Error {
+            base.dbus_register(conn, path);
+            dbus_id = conn.register_object (BUS_PATH, this);
+            if (dbus_id == 0)
+                critical("Could not register Font Viewer service ");
+            return true;
+        }
 
-            public override void dbus_unregister (DBusConnection conn, string path) {
-                if (dbus_id != 0)
-                    conn.unregister_object(dbus_id);
-                base.dbus_unregister(conn, path);
-            }
+        public override void dbus_unregister (DBusConnection conn, string path) {
+            if (dbus_id != 0)
+                conn.unregister_object(dbus_id);
+            base.dbus_unregister(conn, path);
+        }
 
-            public static int main (string [] args) {
-                GLib.Intl.bindtextdomain(Config.PACKAGE_NAME, null);
-                GLib.Intl.bind_textdomain_codeset(Config.PACKAGE_NAME, null);
-                GLib.Intl.textdomain(Config.PACKAGE_NAME);
-                GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
-                Environment.set_application_name(_("Font Viewer"));
-                Gtk.init(ref args);
-                set_application_style(FontManager.BUS_PATH);
-                return new Application(BUS_ID, (ApplicationFlags.HANDLES_OPEN)).run(args);
-            }
-
+        public static int main (string [] args) {
+            GLib.Intl.bindtextdomain(Config.PACKAGE_NAME, null);
+            GLib.Intl.bind_textdomain_codeset(Config.PACKAGE_NAME, null);
+            GLib.Intl.textdomain(Config.PACKAGE_NAME);
+            GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
+            Environment.set_application_name(_("Font Viewer"));
+            Gtk.init(ref args);
+            set_application_style(FontManager.BUS_PATH);
+            return new Application(FontViewer.BUS_ID, (ApplicationFlags.HANDLES_OPEN)).run(args);
         }
 
     }
 
 }
-

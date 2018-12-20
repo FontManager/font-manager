@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-12-11 22:16-0500\n"
+"POT-Creation-Date: 2018-12-20 00:23-0500\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -420,19 +420,19 @@ msgstr ""
 msgid "Compress..."
 msgstr ""
 
-#: src/font-manager/Compare.vala:33
+#: src/font-manager/Compare.vala:34
 msgid "Add selected font to comparison"
 msgstr "Dodaj wybraną czcionkę do porównania"
 
-#: src/font-manager/Compare.vala:34
+#: src/font-manager/Compare.vala:35
 msgid "Remove selected font from comparison"
 msgstr "Usuń wybraną czcionkę z porównania"
 
-#: src/font-manager/Compare.vala:37 src/font-manager/Compare.vala:39
+#: src/font-manager/Compare.vala:40 src/font-manager/Compare.vala:42
 msgid "Select text color"
 msgstr "Wybierz kolor tekstu"
 
-#: src/font-manager/Compare.vala:38 src/font-manager/Compare.vala:40
+#: src/font-manager/Compare.vala:41 src/font-manager/Compare.vala:43
 msgid "Select background color"
 msgstr "Wybierz kolor tła"
 
@@ -1015,7 +1015,7 @@ msgid "Decrease preview size"
 msgstr ""
 
 #: data/ui/shortcuts.ui:40
-msgid "Reset preview size to default"
+msgid "Reset preview size"
 msgstr ""
 
 #: data/ui/shortcuts.ui:47
