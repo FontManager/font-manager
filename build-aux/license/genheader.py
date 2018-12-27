@@ -23,6 +23,8 @@ import os
 import json
 import sys
 
+from glob import glob
+
 NOTICE = """/* Do not edit directly. See build-aux directory */"""
 
 HEADER = """
@@ -68,9 +70,7 @@ def get_license_entries () :
     tmp = io.StringIO()
     filelist = os.listdir(license_dir)
     filelist.sort()
-    for filename in filelist:
-        if not filename.endswith(".json"):
-            continue
+    for filename in glob("*.json"):
         filepath = os.path.join(license_dir, filename)
         try:
             with open(filepath) as raw:

@@ -1,5 +1,17 @@
 include $(top_srcdir)/Flags.mk
 
+PKG_CONFIG = $(shell which pkg-config)
+GLIB_COMPILE_RESOURCES=`$(PKG_CONFIG) --variable=glib_compile_resources gio-2.0`
+
+font-manager-gresource.c :
+	$(GLIB_COMPILE_RESOURCES) \
+	--sourcedir=$(abs_top_srcdir)/data \
+	--generate-source \
+	--target=$@ \
+	$(abs_top_srcdir)/data/FontManagerGResource.xml
+
+BUILT_SOURCES = font-manager-gresource.c
+
 _SOURCES_ = \
 	font-manager-fontconfig.c \
 	font-manager-alias.c \

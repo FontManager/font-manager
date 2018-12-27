@@ -85,14 +85,14 @@ static const JsonProxyObjectProperties InfoProperties [] =
     { "panose", G_TYPE_BOXED }
 };
 
-#define JSON_OBJECT_PARAM_FLAGS (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS)
-#define JSON_SOURCE_PARAM_FLAGS (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS)
-
 G_GNUC_UNUSED static void
 generate_class_properties (GParamSpec *pspec[],
                            const JsonProxyObjectProperties *properties,
                            gint num_properties)
 {
+    GParamFlags OBJECT_PARAM_FLAGS = (G_PARAM_READABLE | G_PARAM_STATIC_STRINGS);
+    GParamFlags SOURCE_PARAM_FLAGS = (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
+
     gint i;
     for (i = 0; i < num_properties; i++) {
         const gchar *prop_name = properties[i].name;
@@ -101,22 +101,22 @@ generate_class_properties (GParamSpec *pspec[],
                 pspec[i] = g_param_spec_int(prop_name,
                                             NULL, NULL,
                                             G_MININT, G_MAXINT, G_MININT,
-                                            JSON_OBJECT_PARAM_FLAGS);
+                                            OBJECT_PARAM_FLAGS);
                 break;
             case G_TYPE_STRING:
                 pspec[i] = g_param_spec_string(prop_name,
                                                NULL, NULL, NULL,
-                                               JSON_OBJECT_PARAM_FLAGS);
+                                               OBJECT_PARAM_FLAGS);
                 break;
             case G_TYPE_BOXED:
                 pspec[i] = g_param_spec_boxed(prop_name, NULL, NULL,
                                               JSON_TYPE_ARRAY,
-                                              JSON_OBJECT_PARAM_FLAGS);
+                                              OBJECT_PARAM_FLAGS);
                 break;
             case G_TYPE_RESERVED_USER_FIRST:
                 pspec[i] = g_param_spec_boxed(prop_name, NULL, NULL,
                                               JSON_TYPE_OBJECT,
-                                              JSON_SOURCE_PARAM_FLAGS);
+                                              SOURCE_PARAM_FLAGS);
                 break;
             case G_TYPE_RESERVED_GLIB_FIRST:
                 pspec[i] = NULL;

@@ -20,6 +20,7 @@ font_manager_VALASOURCES = \
 	FontList.vala \
 	MainWindow.vala \
 	Migration.vala \
+	Orthography.vala \
 	Preferences/Desktop.vala \
 	Preferences/Display.vala \
 	Preferences/Preferences.vala \

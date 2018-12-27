@@ -22,6 +22,7 @@ import io
 import os
 import sys
 
+from glob import glob
 from pprint import pprint
 
 NOTICE = """/* Do not edit directly. See build-aux directory */"""
@@ -101,8 +102,7 @@ vendor_dir = os.path.dirname(os.path.realpath(__file__))
 
 def get_vendor_entries () :
     sys.path.append(vendor_dir)
-    module_names = [os.path.splitext(p)[0] for p in os.listdir(vendor_dir)
-                             if p.endswith(".py") and p != "genheader.py"]
+    module_names = [os.path.splitext(p)[0] for p in glob("*.py") and p != "genheader.py"]
     resources = map(__import__, module_names)
     tmp = io.StringIO()
     for module in resources:
@@ -148,6 +148,5 @@ if __name__ == "__main__":
     if os.path.exists(build_cache):
         import shutil
         shutil.rmtree(build_cache)
-    import glob
-    for f in glob.glob("*.pyc"):
+    for f in glob("*.pyc"):
         os.remove(f)

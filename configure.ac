@@ -210,7 +210,6 @@ AC_CONFIG_FILES([
     src/Makefile
     src/font-manager/Makefile
     src/font-viewer/Makefile
-    tests/Makefile
 ])
 AC_OUTPUT
 

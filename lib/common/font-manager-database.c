@@ -429,7 +429,7 @@ font_manager_database_vacuum (FontManagerDatabase *self, GError **error)
  * @type:   #FontManagerDatabaseType
  * @error: (nullable): #GError or %NULL to ignore errors
  *
- * Attaches speficied database.
+ * Detaches speficied database.
  */
 void
 font_manager_database_detach (FontManagerDatabase *self,

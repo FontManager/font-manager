@@ -5,7 +5,6 @@ PACKAGE_VERSION = 0.7.4
 ABS_TOP_SRCDIR = $(shell realpath ../)
 ABS_SRCDIR = $(shell realpath .)
 UNICODE_DATA_DIR = $(ABS_SRCDIR)/unicode/
-PKG_DATA_DIR = $(ABS_TOP_SRCDIR)/data
 PKG_LIB_DIR = $(ABS_TOP_SRCDIR)/lib
 
 UNICODE_URL = http://www.unicode.org/Public
@@ -15,8 +14,6 @@ WGET = $(shell which wget)
 GREP = $(shell which grep)
 WGETFLAGS = -np -nd -rc -P $(UNICODE_DATA_DIR)
 UNZIP = $(shell which unzip)
-PKG_CONFIG = $(shell which pkg-config)
-GLIB_COMPILE_RESOURCES=`$(PKG_CONFIG) --variable=glib_compile_resources gio-2.0`
 
 UNICODE_FILES = \
 	Blocks.txt \
@@ -125,16 +122,9 @@ license.h:
 vendor.h:
 	vendor/genheader.py $(PKG_LIB_DIR)/common
 
-font-manager-gresource.c :
-	$(GLIB_COMPILE_RESOURCES) \
-	--sourcedir=$(PKG_DATA_DIR) \
-	--generate-source \
-	--target=$(PKG_LIB_DIR)/common/$@ \
-	$(PKG_DATA_DIR)/FontManagerGResource.xml
-
 update-headers: license.h vendor.h unicode-headers
 update-po: POTFILES.readme POTFILES.in POTFILES.skip $(PACKAGE_NAME).pot
-update-sources: ValaSources.mk font-manager-gresource.c
+update-sources: ValaSources.mk
 update: update-headers update-po update-sources
 
 # Fedora RPM packaging

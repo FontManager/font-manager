@@ -7,8 +7,7 @@ SUBDIRS = \
 	help \
 	lib \
 	src \
-	po \
-	tests
+	po
 
 EXTRA_DIST = \
 	CHANGELOG \
@@ -34,7 +33,7 @@ MAINTAINERCLEANFILES = \
 	ABOUT-NLS \
 	aclocal.m4 \
 	compile \
-	config.h.* \
+	config.h.in* \
 	config.guess \
 	config.rpath \
 	config.sub \
