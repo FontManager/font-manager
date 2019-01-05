@@ -30,6 +30,7 @@ src/font-manager/Filters/UserFonts.vala
 src/font-manager/FontList.vala
 src/font-manager/MainWindow.vala
 src/font-manager/Migration.vala
+src/font-manager/Orthography.vala
 src/font-manager/Preferences/Desktop.vala
 src/font-manager/Preferences/Display.vala
 src/font-manager/Preferences/Preferences.vala

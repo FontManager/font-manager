@@ -4,11 +4,13 @@ Version=1.0
 Name=Font Manager
 GenericName=Font Manager
 Comment=Preview, Compare and Manage Fonts
+# Translators: Do NOT translate or transliterate this text (this is an icon file name)!
 Icon=preferences-desktop-font
 DBusActivatable=true
 Exec=@PACKAGE_NAME@ %u
 Terminal=false
 MimeType=application/x-font-ttf;application/x-font-type1;application/x-font-otf;
 Categories=GTK;GNOME;Utility;Graphics;Viewer;Publishing;
+# Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 Keywords=Graphics;Viewer;GNOME;GTK;Publishing;
 StartupNotify=true

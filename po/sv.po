@@ -5,14 +5,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2018-12-20 00:23-0500\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-01-04 21:24-0500\n"
 "PO-Revision-Date: 2018-12-12 03:16+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Svenska Språkfiler <https://svenskasprakfiler.se>\n"
 "Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -300,22 +300,6 @@ msgstr "Filtyp"
 msgid "Filesize"
 msgstr "Filstorlek"
 
-#: lib/vala/Orthography.vala:111
-msgid "Update in progress"
-msgstr "Uppdatering pågår"
-
-#: lib/vala/Orthography.vala:236
-msgid "Coverage"
-msgstr "Täckning"
-
-#: lib/vala/Orthography.vala:279
-msgid "Supported Orthographies"
-msgstr "Ortografier som stöds"
-
-#: lib/vala/Orthography.vala:287
-msgid "Clear selected filter"
-msgstr "Rensa valt filter"
-
 #: src/font-manager/Categories.vala:284
 msgid "All"
 msgstr "Alla"
@@ -601,12 +585,28 @@ msgstr ""
 "föråldrade eller har flyttats.\n"
 "\n"
 "\n"
-"Font Manager kommer nu att försöka migrera dina teckensnitt och kollektioner."
-" Filer och inställningar som inte längre är nödvändiga eller giltiga, kommer "
-"att tas bort. Konfigurationsfiler som kan skapa konflikter, kommer också att "
-"tas bort.\n"
+"Font Manager kommer nu att försöka migrera dina teckensnitt och "
+"kollektioner. Filer och inställningar som inte längre är nödvändiga eller "
+"giltiga, kommer att tas bort. Konfigurationsfiler som kan skapa konflikter, "
+"kommer också att tas bort.\n"
 "\n"
 "Du rekommenderas att säkerhetskopiera viktiga filer, innan du fortsätter.\n"
+
+#: src/font-manager/Orthography.vala:228
+msgid "Update in progress"
+msgstr "Uppdatering pågår"
+
+#: src/font-manager/Orthography.vala:353
+msgid "Coverage"
+msgstr "Täckning"
+
+#: src/font-manager/Orthography.vala:396
+msgid "Supported Orthographies"
+msgstr "Ortografier som stöds"
+
+#: src/font-manager/Orthography.vala:404
+msgid "Clear selected filter"
+msgstr "Rensa valt filter"
 
 #: src/font-manager/Preferences/Desktop.vala:37
 msgid "Interface Font"
@@ -819,7 +819,6 @@ msgstr "Ersätt enkelt ett teckensnitt med ett annat."
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr ""
 "Klicka på \"Lägg till\" i verktygsfältet, för att lägga till en ny ersättare."
-""
 
 #: src/font-manager/Preferences/Substitutions.vala:224
 msgid "Enter target family"
@@ -1009,7 +1008,7 @@ msgstr "Förhandsgranska, jämför och hantera teckensnitt"
 #: data/org.gnome.FontManager.desktop.in:8
 #: data/org.gnome.FontViewer.desktop.in:8
 msgid "preferences-desktop-font"
-msgstr "Inställnings-/skrivbordsteckensnitt"
+msgstr "preferences-desktop-font"
 
 #: data/org.gnome.FontManager.desktop.in:14
 #: data/org.gnome.FontViewer.desktop.in:14
@@ -1029,7 +1028,6 @@ msgstr ""
 "Font Viewer kan förhandsvisa teckensnittsfiler före installation. Det finns "
 "flera sätt att förhandsgranska teckensnittsfiler tillsammans med en "
 "teckenuppsättning och den visar teckensnittsegenskaper och licensinformation."
-""
 
 #: data/org.gnome.FontViewer.desktop.in:7
 msgid "Full featured font file preview application"

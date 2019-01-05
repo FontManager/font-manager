@@ -1,10 +1,10 @@
-%define MajorVersion 0
-%define MinorVersion 7
-%define MicroVersion 4
-%define DBusName org.gnome.FontManager
-%define DBusName2 org.gnome.FontViewer
-%define Master https://github.com/FontManager/master
-%define Releases %{Master}/releases/download
+%global MajorVersion 0
+%global MinorVersion 7
+%global MicroVersion 4
+%global DBusName org.gnome.FontManager
+%global DBusName2 org.gnome.FontViewer
+%global Master https://github.com/FontManager/master
+%global Releases %{Master}/releases/download
 
 # Disable automatic compilation of Python files in extra directories
 %undefine __brp_python_bytecompile
@@ -38,7 +38,6 @@ Requires: font-manager-common
 Requires: font-viewer
 Requires: freetype
 Requires: gtk3 >= 3.22
-Requires: json-glib
 Requires: sqlite
 Requires: yelp
 
@@ -54,8 +53,9 @@ Font Manager is NOT a professional-grade font management solution.
 %package -n %{name}-common
 Summary: Common files used by font-manager
 %description -n %{name}-common
-This package contains common files such as libraries, help files, translations, etc.
-These files are required by font-manager and font-viewer.
+This package contains common files such as libraries, help files,
+ translations, etc.
+ These files are required by font-manager and font-viewer.
 
 %package -n font-viewer
 Summary: Full featured font file preview application for GTK+ Desktop Environments
@@ -98,7 +98,7 @@ This package provides integration with the Thunar file manager.
 
 %build
 %configure --disable-schemas-compile --disable-pycompile --with-nautilus --with-nemo --with-thunarx
-make
+%make_build
 
 %check
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdata.xml

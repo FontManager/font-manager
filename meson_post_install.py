@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 
-import os
-import subprocess
+from os import environ, path
+from subprocess import call
 
-schema_dir = os.path.join(os.environ['MESON_INSTALL_PREFIX'], 'share', 'glib-2.0', 'schemas')
+prefix = environ['MESON_INSTALL_PREFIX']
+data_dir = path.join(prefix, 'share')
+schema_dir = path.join(data_dir, 'glib-2.0', 'schemas')
 
-if not os.environ.get('DESTDIR'):
+if not environ['DESTDIR']:
     print('Compiling gsettings schemas...')
-    subprocess.call(['glib-compile-schemas', schema_dir])
+    call(['glib-compile-schemas', schema_dir])
+    print('Updating desktop database...')
+    call(['update-desktop-database', '-q', path.join(data_dir, 'applications')])
 
