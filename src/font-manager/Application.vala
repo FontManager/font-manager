@@ -120,7 +120,6 @@ namespace FontManager {
             { "disable", 'd', 0, OptionArg.NONE, null, "Disable specified font families", null },
             { "list", 0, 0, OptionArg.NONE, null, "List available font families.", null },
             { "list-full", 0, 0, OptionArg.NONE, null, "Full listing including face information. (JSON)", null },
-            { "fatal", 'F', 0, OptionArg.NONE, null, "Fatal errors", null },
             { "", 0, 0, OptionArg.FILENAME_ARRAY, null, null, null },
             { null }
         };
@@ -239,9 +238,6 @@ namespace FontManager {
 
             VariantDict options = cl.get_options_dict();
             StringHashset? filelist = get_command_line_files(cl);
-
-            if (options.contains("fatal"))
-                Log.set_always_fatal(LogLevelFlags.LEVEL_CRITICAL);
 
             if (filelist == null) {
                 activate();
