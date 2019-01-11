@@ -472,7 +472,7 @@ namespace FontManager {
          * #Directories instance, required in order to update FontConfig
          * directory configuration whenever a #Source is activated/deactivated.
          */
-        public Directories active { get; set;}
+        public Directories active { get; private set;}
 
         FileMonitors monitors;
         HashTable <string, Source> sources;
@@ -485,8 +485,8 @@ namespace FontManager {
             monitors = new FileMonitors();
             sources = new HashTable <string, Source> (str_hash, str_equal);
             monitors.changed.connect((f, of, ev) => { update(); });
-            notify["active"].connect((s, p) => { update(); });
-            active.changed.connect(() => { update(); changed(); });
+            //notify["active"].connect((s, p) => { update(); });
+            //active.changed.connect(() => { update(); changed(); });
         }
 
         public List <weak Source> list_objects () {
