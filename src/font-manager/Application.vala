@@ -116,9 +116,9 @@ namespace FontManager {
             { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
             { "version", 'v', 0, OptionArg.NONE, null, "Show application version", null },
             { "install", 'i', 0, OptionArg.NONE, null, "Space separated list of files to install.", null },
-            { "enable", 'e', 0, OptionArg.NONE, null, "Enable specified font families", null },
-            { "disable", 'd', 0, OptionArg.NONE, null, "Disable specified font families", null },
-            { "list", 0, 0, OptionArg.NONE, null, "List available font families.", null },
+            { "enable", 'e', 0, OptionArg.NONE, null, "Space separated list of font families to enable", null },
+            { "disable", 'd', 0, OptionArg.NONE, null, "Space separated list of font families to disable", null },
+            { "list", 'l', 0, OptionArg.NONE, null, "List available font families.", null },
             { "list-full", 0, 0, OptionArg.NONE, null, "Full listing including face information. (JSON)", null },
             { "", 0, 0, OptionArg.FILENAME_ARRAY, null, null, null },
             { null }
@@ -267,12 +267,12 @@ namespace FontManager {
                 exit_status = 0;
             }
 
-            if (("enable" in options || "disable" in options) && reject == null) {
+            if (reject == null && exit_status != 0) {
                 reject = new Reject();
                 reject.load();
             }
 
-            if (("list" in options || "list-full" in options) && sources == null) {
+            if (sources == null && exit_status != 0) {
                 sources = new Sources();
                 sources.load();
             }
