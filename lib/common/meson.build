@@ -17,10 +17,9 @@ result = run_command(python, '-c', list_headers)
 common_headers = []
 
 foreach h: result.stdout().strip().split('\n')
-    if (h.startswith('json-proxy'))
-        continue
+    if (not h.startswith('json-proxy'))
+        common_headers += h
     endif
-    common_headers += h
 endforeach
 
 libcommon = both_libraries('common',
