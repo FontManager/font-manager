@@ -246,7 +246,8 @@ namespace FontManager {
             this.options = options;
             scale = new Gtk.Scale.with_range(Gtk.Orientation.HORIZONTAL, 0, options.length - 1, 1.0);
             scale.set("hexpand", true, "draw-value", false, "round-digits", 1, "show-fill-level", false, null);
-            scale.adjustment.set("lower", 0, "page-increment", 1, "step-increment", 1, "upper", options.length - 1, null);
+            double upper = ((double) options.length - 1);
+            scale.adjustment.set("lower", 0.0, "page-increment", 1.0, "step-increment", 1.0, "upper", upper, null);
             for (int i = 0; i < options.length; i++)
                 scale.add_mark(i, Gtk.PositionType.BOTTOM, options[i]);
             scale.value_changed.connect(() => {

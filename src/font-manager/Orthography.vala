@@ -343,9 +343,10 @@ namespace FontManager {
             string _native = have_native_name ? orth.native_name : orth.name;
             native_name = new Gtk.Label("<big>%s</big>".printf(_native));
             native_name.set("use-markup", true, "hexpand", true, "vexpand", false,
-                            "margin", DEFAULT_MARGIN_SIZE / 2.5, null);
+                            "margin", DEFAULT_MARGIN_SIZE / 2 - 4, null);
             coverage = new Gtk.LevelBar();
-            coverage.set("hexpand", true, "vexpand", false, "value", orth.coverage / 100,
+            double cov_val = ((double) orth.coverage / 100);
+            coverage.set("hexpand", true, "vexpand", false, "value", cov_val,
                           "margin", DEFAULT_MARGIN_SIZE / 4, null);
             attach(_name, 0, 0, 1, 1);
             attach(native_name, 0, 1, 1, 2);
