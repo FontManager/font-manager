@@ -20,6 +20,7 @@
 
 #include <fontconfig/fontconfig.h>
 #include <fontconfig/fcfreetype.h>
+#include <pango/pango-language.h>
 
 #include "font-manager-orthography.h"
 #include "unicode-info.h"
@@ -28,7 +29,7 @@
 #define LEN_CHARSET(o) json_array_get_length(json_object_get_array_member(json_node_get_object((JsonNode *) o), "filter"));
 
 static GList *
-list_charset (const FcCharSet *charset)
+charset_to_list (const FcCharSet *charset)
 {
     GList *result = NULL;
     FcChar32  ucs4, pos;
@@ -56,6 +57,37 @@ list_charset (const FcCharSet *charset)
     }
 
     return g_list_reverse(result);
+}
+
+static JsonArray *
+charset_to_json_array (const FcCharSet *charset)
+{
+    JsonArray *result = json_array_new();
+    FcChar32  ucs4, pos;
+    FcChar32  map[FC_CHARSET_MAP_SIZE];
+
+    for (ucs4 = FcCharSetFirstPage (charset, map, &pos);
+         ucs4 != FC_CHARSET_DONE;
+         ucs4 = FcCharSetNextPage (charset, map, &pos)) {
+
+        for (int i = 0; i < FC_CHARSET_MAP_SIZE; i++) {
+            int b = 0;
+            FcChar32 bits = map[i];
+            FcChar32 base = ucs4 + i * 32;
+            while (bits) {
+                if (bits & 1) {
+                    gunichar ch = (base + b);
+                    if (unicode_unichar_isgraph(ch))
+                        json_array_add_int_element(result, ch);
+                }
+                bits >>= 1;
+                b++;
+            }
+        }
+
+    }
+
+    return result;
 }
 
 static FcCharSet *
@@ -130,16 +162,25 @@ sort_by_coverage (gconstpointer a, gconstpointer b)
 }
 
 static gchar *
-get_sample_from_chars (GList *chars)
+get_sample_from_charlist (GList *charset)
 {
     GString *res = g_string_new(NULL);
-    guint length = g_list_length(chars);
+    guint length = g_list_length(charset);
     if (length > 0)
         for (int i = 0; i < 24; i++) {
             int rand = g_random_int_range(0, length);
-            g_string_append_unichar(res, (gunichar) GPOINTER_TO_INT(g_list_nth_data(chars, rand)));
+            g_string_append_unichar(res, (gunichar) GPOINTER_TO_INT(g_list_nth_data(charset, rand)));
         }
     return g_string_free(res, FALSE);
+}
+
+static gchar *
+get_sample_from_charset (FcCharSet *charset)
+{
+    GList *charlist = charset_to_list(charset);
+    gchar *res = get_sample_from_charlist(charlist);
+    g_list_free(charlist);
+    return res;
 }
 
 static JsonObject *
@@ -220,6 +261,32 @@ check_orthography (JsonObject *results, FcCharSet *charset, const OrthographyDat
     return TRUE;
 }
 
+static gboolean
+charlist_contains_sample_string (GList *charlist, const char *sample)
+{
+    const char *p = sample;
+    while (*p) {
+        gunichar ch = g_utf8_get_char(p);
+        if (!g_list_find(charlist, GINT_TO_POINTER(ch)))
+            return FALSE;
+        p = g_utf8_next_char(p);
+    }
+    return TRUE;
+}
+
+static gboolean
+charset_contains_sample_string (const FcCharSet *charset, const char *sample)
+{
+    const char *p = sample;
+    while (*p) {
+        gunichar ch = g_utf8_get_char(p);
+        if (!FcCharSetHasChar(charset, ch))
+            return FALSE;
+        p = g_utf8_next_char(p);
+    }
+    return TRUE;
+}
+
 static void
 check_orthographies (JsonObject *results, FcCharSet *charset, const OrthographyData orth[], int len)
 {
@@ -228,31 +295,16 @@ check_orthographies (JsonObject *results, FcCharSet *charset, const OrthographyD
     return;
 }
 
-/* TODO :
- * Default to Basic Latin throughout the interface.
- * Provide for selection of preferred orthographies
- * Base sample strings on selected orthographies.
- */
-/**
- * font_manager_get_sample_string_for_orthography:
- * @orthography: #JsonObject
- * @charset: (nullable) (transfer none) (element-type uint): GList of unichar
- *
- * Returns: (nullable) (transfer full): a sample string for the given orhtography/charset
- *                                      or %NULL if Basic Latin is supported
- */
-gchar *
-font_manager_get_sample_string_for_orthography (JsonObject *orthography, GList *charset)
+static gchar *
+get_default_sample_string_for_orthography (JsonObject *orthography)
 {
-    double basic_coverage = 0;
-
     if (json_object_has_member(orthography, "Basic Latin")) {
         JsonObject *latin = json_object_get_object_member(orthography, "Basic Latin");
-        basic_coverage = json_object_get_double_member(latin, "coverage");
+        if (json_object_get_double_member(latin, "coverage") > 90) {
+            PangoLanguage *xx = pango_language_from_string("xx");
+            return g_strdup(pango_language_get_sample_string(xx));
+        }
     }
-
-    if (basic_coverage > 90)
-        return NULL;
 
     if (json_object_get_size(orthography) > 0) {
         JsonObject *def = get_default_orthography(orthography);
@@ -264,8 +316,36 @@ font_manager_get_sample_string_for_orthography (JsonObject *orthography, GList *
                 return g_strdup(sample);
         }
     }
-    /* Return some nonsense composed from available characters */
-    return get_sample_from_chars(charset);
+
+    return NULL;
+}
+
+static gchar *
+font_manager_get_sample_string (JsonObject *orthography, FcCharSet *charset)
+{
+    const char *local_sample = pango_language_get_sample_string(NULL);
+    if (charset_contains_sample_string(charset, local_sample))
+        return NULL;
+    gchar *sample = get_default_sample_string_for_orthography(orthography);
+    return sample ? sample : get_sample_from_charset(charset);
+}
+
+/**
+ * font_manager_get_sample_string_for_orthography:
+ * @orthography: #JsonObject
+ * @charset: (nullable) (transfer none) (element-type uint): GList of unichar
+ *
+ * Returns: (nullable) (transfer full): a sample string for the given orhtography/charset
+ *                                      or %NULL if Basic Latin is supported
+ */
+gchar *
+font_manager_get_sample_string_for_orthography (JsonObject *orthography, GList *charset)
+{
+    const char *local_sample = pango_language_get_sample_string(NULL);
+    if (charlist_contains_sample_string(charset, local_sample))
+        return NULL;
+    gchar *sample = get_default_sample_string_for_orthography(orthography);
+    return sample ? sample : get_sample_from_charlist(charset);
 }
 
 /**
@@ -299,17 +379,25 @@ font_manager_get_orthography_results (JsonObject *font)
         check_orthographies(results, charset, UncategorizedOrthographies, N_MISC);
     }
 
-    if (charset && json_object_get_size(results) == 0 && FcCharSetCount(charset) > 0) {
-        JsonObject *uncategorized = json_object_new();
-        json_object_set_string_member(uncategorized, "name", "Uncategorized");
-        json_object_set_double_member(uncategorized, "coverage", 100);
-        JsonArray *filter = json_array_new();
-        json_object_set_array_member(uncategorized, "filter", filter);
-        GList *_charset = list_charset(charset);
-        for (GList *iter = _charset; iter != NULL; iter = iter->next)
-            json_array_add_int_element(filter, GPOINTER_TO_INT(iter->data));
-        json_object_set_object_member(results, "Uncategorized", uncategorized);
-        g_list_free(_charset);
+    if (charset && FcCharSetCount(charset) > 0) {
+
+        if (json_object_get_size(results) == 0) {
+            JsonObject *uncategorized = json_object_new();
+            JsonArray *char_array = charset_to_json_array(charset);
+            json_object_set_string_member(uncategorized, "name", "Uncategorized");
+            json_object_set_double_member(uncategorized, "coverage", 100);
+            json_object_set_array_member(uncategorized, "filter", char_array);
+            json_object_set_object_member(results, "Uncategorized", uncategorized);
+        }
+
+        gchar *sample = font_manager_get_sample_string(results, charset);
+        json_object_set_string_member(results, "sample", sample);
+        g_free(sample);
+
+    } else {
+
+        json_object_set_string_member(results, "sample", NULL);
+
     }
 
     return results;

@@ -307,18 +307,20 @@ namespace FontManager {
         void update_entries () {
             if (orthography == null)
                 return;
+            /* Remove anything which isn't an object representing an orthography */
+            if (orthography.has_member("sample"))
+                orthography.remove_member("sample");
             GLib.List <unowned Json.Node>? _entries = orthography.get_values();
             /* Basic Latin is always present but can be empty */
             foreach (var entry in _entries)
                 if (GET_COVERAGE(entry.get_object()) > 0)
                     entries.prepend(entry);
             entries.sort((a, b) => {
-                int result;
                 Json.Object orth_a = a.get_object();
                 Json.Object orth_b = b.get_object();
-                result = (int) GET_COVERAGE(orth_b) - (int) GET_COVERAGE(orth_a);
+                int result = (int) GET_COVERAGE(orth_b) - (int) GET_COVERAGE(orth_a);
                 if (result == 0)
-                    result =  natural_sort(GET_NAME(orth_a), GET_NAME(orth_b));
+                    result = natural_sort(GET_NAME(orth_a), GET_NAME(orth_b));
                 return result;
             });
             return;

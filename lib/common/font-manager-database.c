@@ -915,7 +915,6 @@ sync_orth_table (FontManagerDatabase *db, JsonObject *face, G_GNUC_UNUSED gpoint
     int index = json_object_get_int_member(face, "findex");
     const gchar *filepath = json_object_get_string_member(face, "filepath");
     const gchar *family = json_object_get_string_member(face, "family");
-    GList *charset = NULL;
     gboolean blank_font = FALSE;
     for (int i = 0; FONT_MANAGER_SKIP_ORTH_SCAN[i] != NULL; i++) {
         if (g_strcmp0(family, FONT_MANAGER_SKIP_ORTH_SCAN[i]) != 0)
@@ -923,16 +922,9 @@ sync_orth_table (FontManagerDatabase *db, JsonObject *face, G_GNUC_UNUSED gpoint
         blank_font = TRUE;
         break;
     }
-
-    JsonObject *orth = NULL;
-    if (!blank_font) {
-        charset = get_charset_from_font_object(face);
-        orth = font_manager_get_orthography_results(face);
-    } else {
-        orth = font_manager_get_orthography_results(NULL);
-    }
+    JsonObject *orth = font_manager_get_orthography_results(blank_font ? NULL : face);
     gchar *json_obj = print_json_object(orth, FALSE);
-    gchar *sample = font_manager_get_sample_string_for_orthography(orth, charset);
+    const gchar *sample = json_object_get_string_member(orth, "sample");
     g_assert(sqlite3_bind_text(db->stmt, 1, filepath, -1, SQLITE_STATIC) == SQLITE_OK);
     g_assert(sqlite3_bind_int(db->stmt, 2, index) == SQLITE_OK);
     g_assert(sqlite3_bind_text(db->stmt, 3, json_obj, -1, SQLITE_STATIC) == SQLITE_OK);
@@ -940,11 +932,8 @@ sync_orth_table (FontManagerDatabase *db, JsonObject *face, G_GNUC_UNUSED gpoint
     g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
     sqlite3_clear_bindings(db->stmt);
     sqlite3_reset(db->stmt);
-    g_list_free(charset);
-    charset = NULL;
     json_object_unref(orth);
     g_free(json_obj);
-    g_free(sample);
     return;
 }
 

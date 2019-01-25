@@ -109,6 +109,9 @@ namespace FontManager {
 
         protected Gtk.CellRendererToggle toggle;
 
+        string default_sample;
+        string local_sample;
+
         public BaseFontList () {
             Object(name: "BaseFontList", headers_visible: false, expand: true);
             toggle = new Gtk.CellRendererToggle();
@@ -123,6 +126,8 @@ namespace FontManager {
             for (int i = 0; i < FontListColumn.N_COLUMNS; i++)
                 get_column(i).expand = (i == FontListColumn.PREVIEW);
             connect_signals();
+            default_sample = Pango.Language.from_string("xx").get_sample_string();
+            local_sample = get_localized_pangram();
         }
 
         protected virtual void on_selection_changed (Gtk.TreeSelection selection) {
@@ -205,9 +210,13 @@ namespace FontManager {
                 cell.set_property("visible", false);
             } else {
                 string description = ((Font) obj).description;
-                if (samples != null && samples.has_member(description))
-                    cell.set_property("text", samples.get_string_member(description));
-                else
+                if (samples != null && samples.has_member(description)) {
+                    string? sample = samples.get_string_member(description);
+                    if (sample != null && sample != default_sample && sample != local_sample)
+                        cell.set_property("text", sample);
+                    else
+                        cell.set_property("text", description);
+                } else
                     cell.set_property("text", description);
                 cell.set_property("font", description);
                 cell.set_property("visible", true);
