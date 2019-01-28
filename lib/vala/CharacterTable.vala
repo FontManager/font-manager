@@ -51,11 +51,13 @@ namespace FontManager {
             name_label.halign = Gtk.Align.START;
             name_label.opacity = unicode_label.opacity = 0.9;
             unicode_label.margin = name_label.margin = DEFAULT_MARGIN_SIZE / 4;
-            count_label = new Gtk.Label("   %i   ".printf(count));
+            count_label = new Gtk.Label(null);
             count_label.set_sensitive(false);
             count_label.margin = DEFAULT_MARGIN_SIZE / 8;
             count_label.get_style_context().add_class("CellRendererPill");
-            notify["count"].connect(() => { count_label.set_text("   %i   ".printf(count)); });
+            notify["count"].connect(() => {
+                count_label.set_text(count >= 0 ? "   %i   ".printf(count) : "   0   ");
+            });
             box.pack_start(unicode_label, true, true, 2);
             box.pack_end(count_label, false, true, 2);
             box.pack_end(name_label, true, true, 2);
