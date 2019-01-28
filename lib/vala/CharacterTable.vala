@@ -37,12 +37,14 @@ namespace FontManager {
 
         unichar ac;
         Gtk.Box box;
+        Gtk.Box center_box;
         Gtk.Label unicode_label;
         Gtk.Label name_label;
         Gtk.Label count_label;
 
         public CharacterDetails () {
             box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            center_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             unicode_label = new Gtk.Label(null);
             unicode_label.halign = Gtk.Align.END;
             unicode_label.selectable = true;
@@ -58,9 +60,10 @@ namespace FontManager {
             notify["count"].connect(() => {
                 count_label.set_text(count >= 0 ? "   %i   ".printf(count) : "   0   ");
             });
-            box.pack_start(unicode_label, true, true, 2);
+            center_box.pack_start(unicode_label, true, true, 2);
+            center_box.pack_end(name_label, true, true, 2);
+            box.set_center_widget(center_box);
             box.pack_end(count_label, false, true, 2);
-            box.pack_end(name_label, true, true, 2);
             add(box);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
         }
@@ -69,6 +72,7 @@ namespace FontManager {
             unicode_label.show();
             name_label.show();
             count_label.show();
+            center_box.show();
             box.show();
             base.show();
             return;
