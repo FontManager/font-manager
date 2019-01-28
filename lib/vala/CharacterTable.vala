@@ -33,10 +33,13 @@ namespace FontManager {
             }
         }
 
+        public int count { get; set; default = 0; }
+
         unichar ac;
         Gtk.Box box;
         Gtk.Label unicode_label;
         Gtk.Label name_label;
+        Gtk.Label count_label;
 
         public CharacterDetails () {
             box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
@@ -48,7 +51,13 @@ namespace FontManager {
             name_label.halign = Gtk.Align.START;
             name_label.opacity = unicode_label.opacity = 0.9;
             unicode_label.margin = name_label.margin = DEFAULT_MARGIN_SIZE / 4;
+            count_label = new Gtk.Label("   %i   ".printf(count));
+            count_label.set_sensitive(false);
+            count_label.margin = DEFAULT_MARGIN_SIZE / 8;
+            count_label.get_style_context().add_class("CellRendererPill");
+            notify["count"].connect(() => { count_label.set_text("   %i   ".printf(count)); });
             box.pack_start(unicode_label, true, true, 2);
+            box.pack_end(count_label, false, true, 2);
             box.pack_end(name_label, true, true, 2);
             add(box);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
@@ -57,6 +66,7 @@ namespace FontManager {
         public override void show () {
             unicode_label.show();
             name_label.show();
+            count_label.show();
             box.show();
             base.show();
             return;
@@ -86,6 +96,7 @@ namespace FontManager {
             else
                 codepoint_list.filter = null;
             table.codepoint_list = codepoint_list;
+            details.count = codepoint_list.get_last_index();
             return;
         }
 
@@ -119,7 +130,6 @@ namespace FontManager {
             return;
         }
 
-
         void connect_signals () {
             notify["show-details"].connect(() => { details.set_visible(show_details); });
             notify["selected-font"].connect(() => { update_pending = true; update_if_needed(); });
@@ -145,6 +155,7 @@ namespace FontManager {
                                       null;
                 table.font_desc = Pango.FontDescription.from_string(description);
                 table.codepoint_list = codepoint_list;
+                details.count = codepoint_list.get_last_index();
                 update_pending = false;
             }
             return;
