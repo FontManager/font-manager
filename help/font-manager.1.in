@@ -47,19 +47,19 @@ Space separated list of files to install
 \fI\|\\$1\|\fP
 ..
 .TP
-.FN $XDG_DATA_DIR/fonts
+.FN $XDG_DATA_HOME/fonts
 Default user font directory.
 .TP
-.FN $XDG_CACHE_DIR/@PACKAGE_NAME@
+.FN $XDG_CACHE_HOME/@PACKAGE_NAME@
 Application data which can safely be deleted.
 .TP
-.FN $XDG_CONFIG_DIR/@PACKAGE_NAME@
+.FN $XDG_CONFIG_HOME/@PACKAGE_NAME@
 Application specific configuration files.
 .TP
-.FN $XDG_CONFIG_DIR/fontconfig/conf.d
+.FN $XDG_CONFIG_HOME/fontconfig/conf.d
 Generated fontconfig configuration files.
 .TP
-.FN $XDG_CONFIG_DIR/dconf/user
+.FN $XDG_CONFIG_HOME/dconf/user
 User interface preferences.
 .SH LIMITATIONS
 .B @PACKAGE_NAME@
