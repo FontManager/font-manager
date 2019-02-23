@@ -78,7 +78,7 @@ namespace FontManager {
 
     public class DesktopPreferences : SettingsPage {
 
-        Gtk.Widget grid;
+        Gtk.Widget list;
 
         static Settings? interface_settings = null;
         static Settings? x_settings = null;
@@ -95,22 +95,22 @@ namespace FontManager {
 
         public DesktopPreferences () {
             if (DesktopPreferences.available())
-                grid = generate_options_grid(interface_settings, x_settings);
+                list = generate_options_list(interface_settings, x_settings);
             else
-                grid = new PlaceHolder(_("GNOME desktop settings schema not found"), "dialog-warning-symbolic");
-            add(grid);
+                list = new PlaceHolder(_("GNOME desktop settings schema not found"), "dialog-warning-symbolic");
+            add(list);
         }
 
         public override void show () {
-            grid.show();
+            list.show();
             base.show();
             return;
         }
 
-        Gtk.Grid generate_options_grid (Settings? interface_settings,
-                                        Settings? x_settings) {
-            var grid = new Gtk.Grid();
-            int left = 0, top = 0, width = 1, height = 1;
+        Gtk.ListBox generate_options_list (Settings? interface_settings,
+                                            Settings? x_settings) {
+            var list = new Gtk.ListBox();
+            list.set_selection_mode(Gtk.SelectionMode.NONE);
             Gtk.Revealer spg_revealer = new Gtk.Revealer();
             OptionScale? antialias = null;
             foreach (var setting in DesktopSettings) {
@@ -166,16 +166,21 @@ namespace FontManager {
                 }
                 if (widget == null)
                     continue;
-                grid.attach(widget, left, top++, width, height);
+                var row = new Gtk.ListBoxRow();
+                row.add(widget);
+                /* Prevents highlight on hover */
+                row.set_activatable(false);
+                list.insert(row, -1);
                 widget.set_tooltip_text(dgettext(null, setting.description));
                 widget.show();
+                row.show();
             }
-            return_val_if_fail(antialias != null, grid);
+            return_val_if_fail(antialias != null, list);
             spg_revealer.set_reveal_child(antialias.value == 2);
             antialias.notify["value"].connect(() => {
                 spg_revealer.set_reveal_child(antialias.value == 2);
             });
-            return grid;
+            return list;
         }
 
     }
