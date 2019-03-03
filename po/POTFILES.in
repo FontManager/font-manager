@@ -52,5 +52,5 @@ data/org.gnome.FontManager.appdata.xml.in
 data/org.gnome.FontManager.desktop.in
 data/org.gnome.FontViewer.appdata.xml.in
 data/org.gnome.FontViewer.desktop.in
-data/ui/shortcuts.ui
+data/ui/font-manager-shortcuts-window.ui
 

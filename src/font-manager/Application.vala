@@ -398,7 +398,7 @@ namespace FontManager {
 
         [DBus (visible = false)]
         public void shortcuts () {
-            string ui = Path.build_path("/", BUS_PATH, "ui", "shortcuts.ui");
+            string ui = Path.build_path("/", BUS_PATH, "ui", "font-manager-shortcuts-window.ui");
             var builder = new Gtk.Builder.from_resource(ui);
             var shortcuts_window = builder.get_object("shortcuts-window") as Gtk.Window;
             shortcuts_window.delete_event.connect(() => {

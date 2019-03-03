@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<interface>
- <!-- interface-requires gtk+ 3.17 -->
- <object class="GtkShortcutsWindow" id="shortcuts-window">
+<!-- Generated with glade 3.22.1 
+
+Copyright (C) 2009 - 2019 Jerry Casiano
+
+This file is part of Font Manager.
+
+Font Manager is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Font Manager is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Font Manager.  If not, see <http://www.gnu.org/licenses/>.
+
+Author: Jerry Casiano
+
+-->
+<interface domain="font-manager">
+  <requires lib="gtk+" version="3.17"/>
+  <!-- interface-license-type gplv3 -->
+  <!-- interface-name Font Manager -->
+  <!-- interface-description Simple font management for GTK+ desktop environments -->
+  <!-- interface-copyright 2009 - 2019 Jerry Casiano -->
+  <!-- interface-authors Jerry Casiano -->
+  <object class="GtkShortcutsWindow" id="shortcuts-window">
   <property name="modal">1</property>
   <child>
    <object class="GtkShortcutsSection">

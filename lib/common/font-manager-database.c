@@ -916,12 +916,8 @@ sync_orth_table (FontManagerDatabase *db, JsonObject *face, G_GNUC_UNUSED gpoint
     const gchar *filepath = json_object_get_string_member(face, "filepath");
     const gchar *family = json_object_get_string_member(face, "family");
     gboolean blank_font = FALSE;
-    for (int i = 0; FONT_MANAGER_SKIP_ORTH_SCAN[i] != NULL; i++) {
-        if (g_strcmp0(family, FONT_MANAGER_SKIP_ORTH_SCAN[i]) != 0)
-            continue;
+    if (g_strv_contains(FONT_MANAGER_SKIP_ORTH_SCAN, family))
         blank_font = TRUE;
-        break;
-    }
     JsonObject *orth = font_manager_get_orthography_results(blank_font ? NULL : face);
     gchar *json_obj = print_json_object(orth, FALSE);
     const gchar *sample = json_object_get_string_member(orth, "sample");

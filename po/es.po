@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2019-01-04 21:24-0500\n"
+"POT-Creation-Date: 2019-03-03 13:05-0500\n"
 "PO-Revision-Date: 2017-03-05 10:07+0000\n"
 "Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -49,31 +49,31 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 
-#: lib/vala/Controls.vala:449
+#: lib/vala/Controls.vala:450
 msgid "Edit preview text"
 msgstr "Editar texto de la vista previa"
 
-#: lib/vala/Controls.vala:453
+#: lib/vala/Controls.vala:454
 msgid "Undo changes"
 msgstr "Deshacer los cambios"
 
-#: lib/vala/Controls.vala:458
+#: lib/vala/Controls.vala:459
 msgid "Left Aligned"
 msgstr "Alineado a la izquierda"
 
-#: lib/vala/Controls.vala:458
+#: lib/vala/Controls.vala:459
 msgid "Centered"
 msgstr "Centrado"
 
-#: lib/vala/Controls.vala:458
+#: lib/vala/Controls.vala:459
 msgid "Fill"
 msgstr "Justificado"
 
-#: lib/vala/Controls.vala:458
+#: lib/vala/Controls.vala:459
 msgid "Right Aligned"
 msgstr "Alineado a la derecha"
 
-#: lib/vala/Controls.vala:609
+#: lib/vala/Controls.vala:610
 msgid "Subpixel Geometry"
 msgstr "Geometría de los subpíxeles"
 
@@ -243,43 +243,43 @@ msgstr "Licencia"
 msgid "Select preview type"
 msgstr "Selecciona el tipo de vista previa"
 
-#: lib/vala/Metadata.vala:123
+#: lib/vala/Metadata.vala:141
 msgid "File does not contain license information."
 msgstr "El archivo no contiene información sobre la licencia"
 
-#: lib/vala/Metadata.vala:196
+#: lib/vala/Metadata.vala:214
 msgid "PostScript Name"
 msgstr "Nombre PostScript"
 
-#: lib/vala/Metadata.vala:197 src/font-manager/Categories.vala:292
+#: lib/vala/Metadata.vala:215 src/font-manager/Categories.vala:292
 msgid "Width"
 msgstr "Anchura"
 
-#: lib/vala/Metadata.vala:198 src/font-manager/Categories.vala:296
+#: lib/vala/Metadata.vala:216 src/font-manager/Categories.vala:296
 msgid "Slant"
 msgstr "Inclinación"
 
-#: lib/vala/Metadata.vala:199 src/font-manager/Categories.vala:294
+#: lib/vala/Metadata.vala:217 src/font-manager/Categories.vala:294
 msgid "Weight"
 msgstr "Peso"
 
-#: lib/vala/Metadata.vala:200 src/font-manager/Categories.vala:298
+#: lib/vala/Metadata.vala:218 src/font-manager/Categories.vala:298
 msgid "Spacing"
 msgstr "Espaciado"
 
-#: lib/vala/Metadata.vala:201
+#: lib/vala/Metadata.vala:219
 msgid "Version"
 msgstr "Versión"
 
-#: lib/vala/Metadata.vala:202 src/font-manager/Categories.vala:302
+#: lib/vala/Metadata.vala:220 src/font-manager/Categories.vala:302
 msgid "Vendor"
 msgstr "Proveedor"
 
-#: lib/vala/Metadata.vala:203
+#: lib/vala/Metadata.vala:221
 msgid "FileType"
 msgstr ""
 
-#: lib/vala/Metadata.vala:204
+#: lib/vala/Metadata.vala:222
 msgid "Filesize"
 msgstr ""
 
@@ -512,15 +512,15 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Contraer todo"
 
-#: src/font-manager/FontList.vala:412
+#: src/font-manager/FontList.vala:421
 msgid "Install"
 msgstr ""
 
-#: src/font-manager/FontList.vala:413
+#: src/font-manager/FontList.vala:422
 msgid "Copy Location"
 msgstr ""
 
-#: src/font-manager/FontList.vala:414
+#: src/font-manager/FontList.vala:423
 msgid "Show in Folder"
 msgstr ""
 
@@ -575,15 +575,15 @@ msgstr ""
 msgid "Update in progress"
 msgstr ""
 
-#: src/font-manager/Orthography.vala:353
+#: src/font-manager/Orthography.vala:356
 msgid "Coverage"
 msgstr ""
 
-#: src/font-manager/Orthography.vala:396
+#: src/font-manager/Orthography.vala:399
 msgid "Supported Orthographies"
 msgstr ""
 
-#: src/font-manager/Orthography.vala:404
+#: src/font-manager/Orthography.vala:407
 msgid "Clear selected filter"
 msgstr ""
 
@@ -868,7 +868,8 @@ msgstr "Colecciones"
 msgid "Keyboard Shortcuts"
 msgstr ""
 
-#: src/font-manager/TitleBar.vala:53 data/ui/shortcuts.ui:19
+#: src/font-manager/TitleBar.vala:53
+#: data/ui/font-manager-shortcuts-window.ui:46
 msgid "Help"
 msgstr "Ayuda"
 
@@ -977,13 +978,13 @@ msgstr ""
 msgid "Preview, Compare and Manage Fonts"
 msgstr ""
 
-#: data/org.gnome.FontManager.desktop.in:8
-#: data/org.gnome.FontViewer.desktop.in:8
+#: data/org.gnome.FontManager.desktop.in:9
+#: data/org.gnome.FontViewer.desktop.in:9
 msgid "preferences-desktop-font"
 msgstr ""
 
-#: data/org.gnome.FontManager.desktop.in:14
-#: data/org.gnome.FontViewer.desktop.in:14
+#: data/org.gnome.FontManager.desktop.in:16
+#: data/org.gnome.FontViewer.desktop.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr ""
 
@@ -1002,58 +1003,58 @@ msgstr ""
 msgid "Full featured font file preview application"
 msgstr ""
 
-#: data/ui/shortcuts.ui:14
+#: data/ui/font-manager-shortcuts-window.ui:41
 msgid "General"
 msgstr ""
 
-#: data/ui/shortcuts.ui:26
+#: data/ui/font-manager-shortcuts-window.ui:53
 msgid "Increase preview size"
 msgstr ""
 
-#: data/ui/shortcuts.ui:33
+#: data/ui/font-manager-shortcuts-window.ui:60
 msgid "Decrease preview size"
 msgstr ""
 
-#: data/ui/shortcuts.ui:40
+#: data/ui/font-manager-shortcuts-window.ui:67
 msgid "Reset preview size"
 msgstr ""
 
-#: data/ui/shortcuts.ui:47
+#: data/ui/font-manager-shortcuts-window.ui:74
 msgid "Reload"
 msgstr ""
 
-#: data/ui/shortcuts.ui:54
+#: data/ui/font-manager-shortcuts-window.ui:81
 msgid "Quit the application"
 msgstr ""
 
-#: data/ui/shortcuts.ui:62
+#: data/ui/font-manager-shortcuts-window.ui:89
 msgid "Mode"
 msgstr ""
 
-#: data/ui/shortcuts.ui:67
+#: data/ui/font-manager-shortcuts-window.ui:94
 msgid "Switch to Manage mode"
 msgstr ""
 
-#: data/ui/shortcuts.ui:74
+#: data/ui/font-manager-shortcuts-window.ui:101
 msgid "Switch to Browse mode"
 msgstr ""
 
-#: data/ui/shortcuts.ui:81
+#: data/ui/font-manager-shortcuts-window.ui:108
 msgid "Switch to Compare mode"
 msgstr ""
 
-#: data/ui/shortcuts.ui:89
+#: data/ui/font-manager-shortcuts-window.ui:116
 msgid "Preview Mode"
 msgstr ""
 
-#: data/ui/shortcuts.ui:94
+#: data/ui/font-manager-shortcuts-window.ui:121
 msgid "Switch to Standard preview"
 msgstr ""
 
-#: data/ui/shortcuts.ui:101
+#: data/ui/font-manager-shortcuts-window.ui:128
 msgid "Switch to Waterfall preview"
 msgstr ""
 
-#: data/ui/shortcuts.ui:108
+#: data/ui/font-manager-shortcuts-window.ui:135
 msgid "Switch to Body Text preview"
 msgstr ""

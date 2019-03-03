@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2019-01-04 21:24-0500\n"
+"POT-Creation-Date: 2019-03-03 13:05-0500\n"
 "PO-Revision-Date: 2018-12-12 03:16+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Svenska Språkfiler <https://svenskasprakfiler.se>\n"
@@ -66,31 +66,31 @@ msgstr ""
 msgid "translator-credits"
 msgstr "Åke Engelbrektson"
 
-#: lib/vala/Controls.vala:449
+#: lib/vala/Controls.vala:450
 msgid "Edit preview text"
 msgstr "Redigera exempeltext"
 
-#: lib/vala/Controls.vala:453
+#: lib/vala/Controls.vala:454
 msgid "Undo changes"
 msgstr "Ångra ändringar"
 
-#: lib/vala/Controls.vala:458
+#: lib/vala/Controls.vala:459
 msgid "Left Aligned"
 msgstr "Vänsterjusterat"
 
-#: lib/vala/Controls.vala:458
+#: lib/vala/Controls.vala:459
 msgid "Centered"
 msgstr "Centrerat"
 
-#: lib/vala/Controls.vala:458
+#: lib/vala/Controls.vala:459
 msgid "Fill"
 msgstr "Fyll"
 
-#: lib/vala/Controls.vala:458
+#: lib/vala/Controls.vala:459
 msgid "Right Aligned"
 msgstr "Högerjusterat"
 
-#: lib/vala/Controls.vala:609
+#: lib/vala/Controls.vala:610
 msgid "Subpixel Geometry"
 msgstr "Subpixel-geometri"
 
@@ -260,43 +260,43 @@ msgstr "Licens"
 msgid "Select preview type"
 msgstr "Välj förhandsgranskningstyp"
 
-#: lib/vala/Metadata.vala:123
+#: lib/vala/Metadata.vala:141
 msgid "File does not contain license information."
 msgstr "Filen innehåller ingen licensinformation."
 
-#: lib/vala/Metadata.vala:196
+#: lib/vala/Metadata.vala:214
 msgid "PostScript Name"
 msgstr "PostScript-namn"
 
-#: lib/vala/Metadata.vala:197 src/font-manager/Categories.vala:292
+#: lib/vala/Metadata.vala:215 src/font-manager/Categories.vala:292
 msgid "Width"
 msgstr "Bredd"
 
-#: lib/vala/Metadata.vala:198 src/font-manager/Categories.vala:296
+#: lib/vala/Metadata.vala:216 src/font-manager/Categories.vala:296
 msgid "Slant"
 msgstr "Lutning"
 
-#: lib/vala/Metadata.vala:199 src/font-manager/Categories.vala:294
+#: lib/vala/Metadata.vala:217 src/font-manager/Categories.vala:294
 msgid "Weight"
 msgstr "Tjocklek"
 
-#: lib/vala/Metadata.vala:200 src/font-manager/Categories.vala:298
+#: lib/vala/Metadata.vala:218 src/font-manager/Categories.vala:298
 msgid "Spacing"
 msgstr "Avstånd"
 
-#: lib/vala/Metadata.vala:201
+#: lib/vala/Metadata.vala:219
 msgid "Version"
 msgstr "Version"
 
-#: lib/vala/Metadata.vala:202 src/font-manager/Categories.vala:302
+#: lib/vala/Metadata.vala:220 src/font-manager/Categories.vala:302
 msgid "Vendor"
 msgstr "Leverantör"
 
-#: lib/vala/Metadata.vala:203
+#: lib/vala/Metadata.vala:221
 msgid "FileType"
 msgstr "Filtyp"
 
-#: lib/vala/Metadata.vala:204
+#: lib/vala/Metadata.vala:222
 msgid "Filesize"
 msgstr "Filstorlek"
 
@@ -533,15 +533,15 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Komprimera alla"
 
-#: src/font-manager/FontList.vala:412
+#: src/font-manager/FontList.vala:421
 msgid "Install"
 msgstr "Installera"
 
-#: src/font-manager/FontList.vala:413
+#: src/font-manager/FontList.vala:422
 msgid "Copy Location"
 msgstr "Kopiera plats"
 
-#: src/font-manager/FontList.vala:414
+#: src/font-manager/FontList.vala:423
 msgid "Show in Folder"
 msgstr "Visa i mapp"
 
@@ -596,15 +596,15 @@ msgstr ""
 msgid "Update in progress"
 msgstr "Uppdatering pågår"
 
-#: src/font-manager/Orthography.vala:353
+#: src/font-manager/Orthography.vala:356
 msgid "Coverage"
 msgstr "Täckning"
 
-#: src/font-manager/Orthography.vala:396
+#: src/font-manager/Orthography.vala:399
 msgid "Supported Orthographies"
 msgstr "Ortografier som stöds"
 
-#: src/font-manager/Orthography.vala:404
+#: src/font-manager/Orthography.vala:407
 msgid "Clear selected filter"
 msgstr "Rensa valt filter"
 
@@ -890,7 +890,8 @@ msgstr "Kollektioner"
 msgid "Keyboard Shortcuts"
 msgstr "Tangenbordsgenvägar"
 
-#: src/font-manager/TitleBar.vala:53 data/ui/shortcuts.ui:19
+#: src/font-manager/TitleBar.vala:53
+#: data/ui/font-manager-shortcuts-window.ui:46
 msgid "Help"
 msgstr "Hjälp"
 
@@ -1005,13 +1006,13 @@ msgstr ""
 msgid "Preview, Compare and Manage Fonts"
 msgstr "Förhandsgranska, jämför och hantera teckensnitt"
 
-#: data/org.gnome.FontManager.desktop.in:8
-#: data/org.gnome.FontViewer.desktop.in:8
+#: data/org.gnome.FontManager.desktop.in:9
+#: data/org.gnome.FontViewer.desktop.in:9
 msgid "preferences-desktop-font"
 msgstr "preferences-desktop-font"
 
-#: data/org.gnome.FontManager.desktop.in:14
-#: data/org.gnome.FontViewer.desktop.in:14
+#: data/org.gnome.FontManager.desktop.in:16
+#: data/org.gnome.FontViewer.desktop.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr "Grafik;Visare;GNOME;GTK;Publicering;"
 
@@ -1033,58 +1034,58 @@ msgstr ""
 msgid "Full featured font file preview application"
 msgstr "Program för förhandsvisning av teckensnitt"
 
-#: data/ui/shortcuts.ui:14
+#: data/ui/font-manager-shortcuts-window.ui:41
 msgid "General"
 msgstr "Allmänt"
 
-#: data/ui/shortcuts.ui:26
+#: data/ui/font-manager-shortcuts-window.ui:53
 msgid "Increase preview size"
 msgstr "Minska förhandsgranskningsstorlek"
 
-#: data/ui/shortcuts.ui:33
+#: data/ui/font-manager-shortcuts-window.ui:60
 msgid "Decrease preview size"
 msgstr "Öka förhandsvisningsstorlek"
 
-#: data/ui/shortcuts.ui:40
+#: data/ui/font-manager-shortcuts-window.ui:67
 msgid "Reset preview size"
 msgstr ""
 
-#: data/ui/shortcuts.ui:47
+#: data/ui/font-manager-shortcuts-window.ui:74
 msgid "Reload"
 msgstr "Uppdatera"
 
-#: data/ui/shortcuts.ui:54
+#: data/ui/font-manager-shortcuts-window.ui:81
 msgid "Quit the application"
 msgstr "Avsluta programmet"
 
-#: data/ui/shortcuts.ui:62
+#: data/ui/font-manager-shortcuts-window.ui:89
 msgid "Mode"
 msgstr "Läge"
 
-#: data/ui/shortcuts.ui:67
+#: data/ui/font-manager-shortcuts-window.ui:94
 msgid "Switch to Manage mode"
 msgstr "Växla till hanteringsläge"
 
-#: data/ui/shortcuts.ui:74
+#: data/ui/font-manager-shortcuts-window.ui:101
 msgid "Switch to Browse mode"
 msgstr "Växla till bläddringsläge"
 
-#: data/ui/shortcuts.ui:81
+#: data/ui/font-manager-shortcuts-window.ui:108
 msgid "Switch to Compare mode"
 msgstr "Växla till jämförelseläge"
 
-#: data/ui/shortcuts.ui:89
+#: data/ui/font-manager-shortcuts-window.ui:116
 msgid "Preview Mode"
 msgstr "Förhandsgranskningsläge"
 
-#: data/ui/shortcuts.ui:94
+#: data/ui/font-manager-shortcuts-window.ui:121
 msgid "Switch to Standard preview"
 msgstr "Växla till standardgranskningsläge"
 
-#: data/ui/shortcuts.ui:101
+#: data/ui/font-manager-shortcuts-window.ui:128
 msgid "Switch to Waterfall preview"
 msgstr "Växla vattenfallsgranskning"
 
-#: data/ui/shortcuts.ui:108
+#: data/ui/font-manager-shortcuts-window.ui:135
 msgid "Switch to Body Text preview"
 msgstr "Växla till brödtextgranskning"

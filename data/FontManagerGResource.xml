@@ -2,10 +2,10 @@
 <gresources>
     <gresource prefix="/org/gnome/FontManager">
         <file compressed="true">FontManager.css</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/shortcuts.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">icons/null.svg</file>
         <file compressed="true" preprocess="xml-stripblanks">icons/opentype.svg</file>
         <file compressed="true" preprocess="xml-stripblanks">icons/truetype.svg</file>
         <file compressed="true" preprocess="xml-stripblanks">icons/type1.svg</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-shortcuts-window.ui</file>
     </gresource>
 </gresources>
