@@ -2,7 +2,7 @@
  *
  * Originally a part of Gucharmap
  *
- * Copyright © 2017 Jerry Casiano
+ * Copyright (C) 2017 - 2019 Jerry Casiano
  *
  *
  * Copyright © 2004 Noah Levitt

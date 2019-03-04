@@ -12,7 +12,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    15
+Release:    16
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -143,6 +143,8 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Sat Feb 09 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-16
+- Add glyph count to Character Map details
 * Fri Jan 25 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-15
 - Fall back to default sample string for fonts which do not support localized preview.
 * Fri Jan 18 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-14

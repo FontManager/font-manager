@@ -1,6 +1,6 @@
 /* CharacterTable.vala
  *
- * Copyright (C) 2009 - 2018 Jerry Casiano
+ * Copyright (C) 2009 - 2019 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -86,12 +86,24 @@ namespace FontManager {
 
     }
 
+    public class CharacterMap : Unicode.CharacterMap {
+
+//        Gtk.Menu context_menu;
+
+        public override bool button_press_event (Gdk.EventButton event) {
+//            if (event.triggers_context_menu() && event.type == Gdk.EventType.BUTTON_PRESS)
+//                message("U+%4.4X", active_character);
+            return base.button_press_event(event);
+        }
+
+    }
+
     public class CharacterTable : AdjustablePreview {
 
         public unichar active_character { get; set; }
         public bool show_details { get; set; default = true; }
 
-        public Unicode.CharacterMap table { get; private set; }
+        public CharacterMap table { get; private set; }
         public CharacterDetails details { get; private set; }
         public Font? selected_font { get; set; default = null; }
 
@@ -114,7 +126,7 @@ namespace FontManager {
         public CharacterTable () {
             orientation = Gtk.Orientation.VERTICAL;
             codepoint_list = new CodepointList();
-            table = new Unicode.CharacterMap();
+            table = new CharacterMap();
             table.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             table.codepoint_list = codepoint_list;
             scroll = new Gtk.ScrolledWindow(null, null);
