@@ -23,4 +23,5 @@ MAINTAINERCLEANFILES = Makefile.in *.stamp
 
 EXTRA_DIST = \
 	FontManagerVala.h \
-	FontManagerVala.vapi
+	FontManagerVala.vapi \
+	ui

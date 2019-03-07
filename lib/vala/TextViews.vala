@@ -83,7 +83,7 @@ namespace FontManager {
 
         construct {
             view = new Gtk.TextView();
-            view.set("margin", DEFAULT_MARGIN_SIZE / 2, "editable", false,
+            view.set("margin", DEFAULT_MARGIN_SIZE, "editable", false,
                      "cursor-visible", false, "accepts-tab", false,
                      "overwrite", false, "wrap-mode", Gtk.WrapMode.WORD_CHAR, null);
             add(view);
@@ -196,7 +196,6 @@ namespace FontManager {
             fontscale = new FontScale();
             adjustment = fontscale.adjustment;
             pack_end(fontscale, false, true, 0);
-            fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
         }
 
         /**

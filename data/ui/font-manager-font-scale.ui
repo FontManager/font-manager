@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="font-manager">
+  <requires lib="gtk+" version="3.20"/>
+  <template class="FontManagerFontScale" parent="GtkEventBox">
+    <property name="name">FontManagerFontScale</property>
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="valign">end</property>
+    <property name="hexpand">True</property>
+    <property name="vexpand">False</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="border_width">6</property>
+        <property name="spacing">6</property>
+        <child>
+          <object class="FontManagerReactiveLabel" id="min">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="padding">2</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkScale" id="scale">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="hexpand">True</property>
+            <property name="draw_value">False</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="FontManagerReactiveLabel" id="max">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="padding">2</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkSpinButton" id="spin">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="text" translatable="no">6.0</property>
+            <property name="input_purpose">digits</property>
+            <property name="digits">1</property>
+            <property name="update_policy">if-valid</property>
+            <property name="value">6</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="padding">6</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <style>
+      <class name="view"/>
+    </style>
+  </template>
+</interface>

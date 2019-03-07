@@ -7,10 +7,10 @@ libfontmanager_la_VALASOURCES = \
 	Constants.vala \
 	Controls.vala \
 	FontConfig.vala \
-	FontPreviewPane.vala \
 	Labels.vala \
 	Library.vala \
 	Metadata.vala \
 	Orthography.vala \
+	PreviewPane.vala \
 	TextViews.vala \
 	Utils.vala 

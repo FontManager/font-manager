@@ -603,7 +603,7 @@ font_manager_properties_reset (FontManagerProperties *self)
     priv->autohint = FALSE;
     priv->embeddedbitmap = FALSE;
     /* Default is none but we don't expose that in the UI, so this is set to unknown */
-    priv->rgba = 0;
+    priv->rgba = FC_RGBA_UNKNOWN;
     priv->lcdfilter = 0;
     priv->scale = 1.0;
     priv->dpi = 96.0;
@@ -636,8 +636,10 @@ font_manager_properties_reset (FontManagerProperties *self)
             if (FcPatternGetInteger(system, FC_HINT_STYLE, 0, &hintstyle) == FcResultMatch)
                 priv->hintstyle = hintstyle;
 
-            if (FcPatternGetInteger(system, FC_RGBA, 0, &rgba) == FcResultMatch)
-                priv->rgba = rgba;
+            if (FcPatternGetInteger(system, FC_RGBA, 0, &rgba) == FcResultMatch) {
+                if (rgba != FC_RGBA_NONE)
+                    priv->rgba = rgba;
+            }
 
             if (FcPatternGetInteger(system, FC_LCD_FILTER, 0, &lcdfilter) == FcResultMatch)
                 priv->lcdfilter = lcdfilter;

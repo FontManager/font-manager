@@ -76,6 +76,146 @@ namespace FontManager {
 
     }
 
+    internal Gtk.Widget? get_bin_child (Gtk.Widget? row) {
+        if (row == null)
+            return null;
+        return ((Gtk.Bin) row).get_child();
+    }
+
+    /**
+     * Substitute:
+     *
+     * Single line widget representing a substitute font family
+     * in a Fontconfig <alias> entry.
+     */
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-substitute.ui")]
+    class Substitute : Gtk.Grid {
+
+        /**
+         * Substitute:priority:
+         *
+         * prefer, accept, or default
+         */
+        public string priority {
+            owned get {
+                return type.get_active_text();
+            }
+            set {
+                var e = get_bin_child(type) as Gtk.Entry;
+                e.set_text(value);
+            }
+        }
+
+        /**
+         * Substitute:family:
+         *
+         * Name of replacement family
+         */
+        public string? family {
+            owned get {
+                return target.get_text();
+            }
+            set {
+                target.set_text(value);
+            }
+        }
+
+        public Gtk.ListStore? completion_model {
+            set {
+                Gtk.EntryCompletion completion = target.get_completion();
+                completion.set_model(value);
+                completion.set_text_column(0);
+            }
+        }
+
+        [GtkChild] Gtk.Button close;
+        [GtkChild] Gtk.ComboBoxText type;
+        [GtkChild] Gtk.Entry target;
+
+        public override void constructed () {
+            target.set_completion(new Gtk.EntryCompletion());
+            close.clicked.connect(() => {
+                this.destroy();
+                return;
+            });
+            base.constructed();
+            return;
+        }
+
+    }
+
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-alias-row.ui")]
+    class AliasRow : Gtk.Box {
+
+        public string family {
+            owned get {
+                return entry.get_text();
+            }
+            set {
+                entry.set_text(value);
+            }
+        }
+
+        public Gtk.ListStore? completion_model {
+            set {
+                Gtk.EntryCompletion completion = entry.get_completion();
+                completion.set_model(value);
+                completion.set_text_column(0);
+            }
+            get {
+                return entry.get_completion().get_model() as Gtk.ListStore;
+            }
+        }
+
+        [GtkChild] Gtk.Entry entry;
+        [GtkChild] Gtk.ListBox list;
+        [GtkChild] Gtk.Button add_button;
+
+        public override void constructed () {
+            entry.set_completion(new Gtk.EntryCompletion());
+            add_button.clicked.connect(() => {
+                var sub = new Substitute();
+                sub.completion_model = completion_model;
+                list.insert(sub, -1);
+                sub.show();
+            });
+            entry.changed.connect(() => {
+                add_button.sensitive = (entry.get_text() != null);
+            });
+            base.constructed();
+            return;
+        }
+
+        public AliasRow.from_element (AliasElement alias) {
+            family = alias.family;
+            string [] priorities = { "default", "accept", "prefer" };
+            for (int i = 0; i < priorities.length; i++) {
+                foreach (string family in alias[priorities[i]].list()) {
+                    Substitute sub = new Substitute();
+                    sub.completion_model = completion_model;
+                    sub.family = family;
+                    sub.priority = priorities[i];
+                    list.insert(sub, -1);
+                    sub.show();
+                }
+            }
+        }
+
+        public AliasElement to_element () {
+            var res = new AliasElement(entry.get_text());
+            int i = 0;
+            var sub = get_bin_child(list.get_row_at_index(i)) as Substitute;
+            while (sub != null) {
+                if (sub.family != null && sub.family != "")
+                    res[sub.priority].add(sub.family);
+                i++;
+                sub = get_bin_child(list.get_row_at_index(i)) as Substitute;
+            }
+            return res;
+        }
+
+    }
+
     class SubstituteList : Gtk.ScrolledWindow {
 
         public signal void row_selected(Gtk.ListBoxRow? selected_row);
@@ -85,6 +225,7 @@ namespace FontManager {
         PlaceHolder welcome;
 
         construct {
+            name = "FontManagerAliasList";
             string w1 = _("Font Substitutions");
             string w2 = _("Easily substitute one font family for another.");
             string w3 = _("To add a new substitute click the add button in the toolbar.");
@@ -180,205 +321,6 @@ namespace FontManager {
             }
             bool res = aliases.save();
             return res;
-        }
-
-        internal static Gtk.Widget? get_bin_child (Gtk.Widget? row) {
-            if (row == null)
-                return null;
-            return ((Gtk.Bin) row).get_child();
-        }
-
-        class AliasRow : Gtk.Box {
-
-            public string family {
-                owned get {
-                    return entry.get_text();
-                }
-                set {
-                    entry.set_text(value);
-                }
-            }
-
-            public Gtk.ListStore? completion_model {
-                set {
-                    Gtk.EntryCompletion completion = entry.get_completion();
-                    completion.set_model(value);
-                    completion.set_text_column(0);
-                }
-                get {
-                    return entry.get_completion().get_model() as Gtk.ListStore;
-                }
-            }
-
-            Gtk.Button add_button;
-            Gtk.ButtonBox button_box;
-            Gtk.Entry entry;
-            Gtk.ListBox list;
-            Gtk.Widget [] widgets;
-
-            construct {
-                orientation = Gtk.Orientation.VERTICAL;
-                button_box = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
-                entry = new Gtk.Entry();
-                entry.set_completion(new Gtk.EntryCompletion());
-                entry.set_placeholder_text(_("Enter target family"));
-                add_button = new Gtk.Button.from_icon_name("list-add-symbolic", Gtk.IconSize.BUTTON);
-                add_button.set_tooltip_text(_("Add substitute"));
-                add_button.expand = add_button.sensitive = false;
-                list = new Gtk.ListBox();
-                list.name = "SubstituteList";
-                list.expand = true;
-                list.set_selection_mode(Gtk.SelectionMode.NONE);
-                list.margin = entry.margin = add_button.margin = MINIMUM_MARGIN_SIZE * 3;
-                button_box.pack_start(entry);
-                button_box.pack_end(add_button);
-                pack_start(button_box, false, false, 0);
-                add_separator(this, Gtk.Orientation.VERTICAL, Gtk.PackType.END);
-                pack_end(list, true, false, 0);
-                widgets = { add_button, button_box, entry, list };
-            }
-
-            /**
-             * @families    List <string> of available font family names
-             */
-            public AliasRow () {
-                Object(name: "AliasRow");
-                connect_signals();
-            }
-
-            public AliasRow.from_element (AliasElement alias) {
-                connect_signals();
-                family = alias.family;
-                string [] priorities = { "default", "accept", "prefer" };
-                for (int i = 0; i < priorities.length; i++) {
-                    foreach (string family in alias[priorities[i]].list()) {
-                        Substitute sub = new Substitute();
-                        sub.completion_model = completion_model;
-                        sub.family = family;
-                        sub.priority = priorities[i];
-                        list.insert(sub, -1);
-                        sub.show();
-                    }
-                }
-            }
-
-            public AliasElement to_element () {
-                var res = new AliasElement(entry.get_text());
-                int i = 0;
-                var sub = get_bin_child(list.get_row_at_index(i)) as Substitute;
-                while (sub != null) {
-                    if (sub.family != null && sub.family != "")
-                        res[sub.priority].add(sub.family);
-                    i++;
-                    sub = get_bin_child(list.get_row_at_index(i)) as Substitute;
-                }
-                return res;
-            }
-
-            public override void show () {
-                foreach (var widget in widgets)
-                    widget.show();
-                base.show();
-                return;
-            }
-
-            void connect_signals () {
-                add_button.clicked.connect(() => {
-                    var sub = new Substitute();
-                    sub.completion_model = completion_model;
-                    list.insert(sub, -1);
-                    sub.show();
-                });
-                entry.changed.connect(() => {
-                    add_button.sensitive = (entry.get_text() != null);
-                });
-                return;
-            }
-
-            /**
-             * Substitute:
-             *
-             * Single line widget representing a substitute font family
-             * in a Fontconfig <alias> entry.
-             */
-            class Substitute : Gtk.Grid {
-
-                /**
-                 * Substitute:priority:
-                 *
-                 * prefer, accept, or default
-                 */
-                public string priority {
-                    owned get {
-                        return type.get_active_text();
-                    }
-                    set {
-                        var e = get_bin_child(type) as Gtk.Entry;
-                        e.set_text(value);
-                    }
-                }
-
-                /**
-                 * Substitute:family:
-                 *
-                 * Name of replacement family
-                 */
-                public string? family {
-                    owned get {
-                        return target.get_text();
-                    }
-                    set {
-                        target.set_text(value);
-                    }
-                }
-
-                public Gtk.ListStore? completion_model {
-                    set {
-                        Gtk.EntryCompletion completion = target.get_completion();
-                        completion.set_model(value);
-                        completion.set_text_column(0);
-                    }
-                }
-
-                Gtk.Button close;
-                Gtk.ComboBoxText type;
-                Gtk.Entry target;
-
-                public Substitute () {
-                    Object(name: "Substitute", hexpand: true, halign: Gtk.Align.CENTER);
-                    type = new Gtk.ComboBoxText.with_entry();
-                    type.append_text(_("prefer"));
-                    type.append_text(_("accept"));
-                    type.append_text(_("default"));
-                    type.set("active", 0, "expand", false, "halign", Gtk.Align.START,
-                              "margin", MINIMUM_MARGIN_SIZE * 3, null);
-                    target = new Gtk.Entry();
-                    target.set_completion(new Gtk.EntryCompletion());
-                    target.set_placeholder_text(_("Enter substitute family"));
-                    target.set("expand", false, "halign", Gtk.Align.CENTER,
-                              "margin", MINIMUM_MARGIN_SIZE * 3, null);
-                    close = new Gtk.Button();
-                    close.set_image(new Gtk.Image.from_icon_name("window-close-symbolic", Gtk.IconSize.MENU));
-                    close.set("expand", false, "halign", Gtk.Align.END, "margin", MINIMUM_MARGIN_SIZE * 3, null);
-                    close.set_tooltip_text(_("Remove substitute"));
-                    attach(type, 0, 0, 2, 1);
-                    attach(target, 2, 0, 2, 1);
-                    attach(close, 4, 0, 1, 1);
-                    close.clicked.connect(() => {
-                        this.destroy();
-                        return;
-                    });
-                }
-
-                public override void show () {
-                    type.show();
-                    target.show();
-                    close.show();
-                    base.show();
-                }
-
-            }
-
         }
 
     }

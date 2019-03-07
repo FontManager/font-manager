@@ -18,28 +18,32 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-.red {
-    background-color: #ff0000;
-}
-
-.green {
-    background-color: #008000;
-}
-
-.blue {
-    background-color: #0000ff;
-}
-
-.gray {
-    background-color: #808080;
-}
-
 treeview {
     padding: 0px 6px 0px 6px;
 }
 
-#FontManagerBrowseView {
-    padding: 0px;
+.red {
+    margin: 0;
+    padding: 0;
+    background-color: #ff0000;
+}
+
+.green {
+    margin: 0;
+    padding: 0;
+    background-color: #008000;
+}
+
+.blue {
+    margin: 0;
+    padding: 0;
+    background-color: #0000ff;
+}
+
+.gray {
+    margin: 0;
+    padding: 0;
+    background-color: #808080;
 }
 
 .CellRendererPill {
@@ -64,22 +68,53 @@ treeview {
     border-width: 1px;
     border-style: groove;
     color: darker(@insensitive_fg_color);
-    border-color: alpha(darker(@insensitive_bg_color), 0.5);
+    border-color: alpha(darker(@borders), 0.333);
     background-color: alpha(@insensitive_bg_color, 0.5);
 }
 
-#SubpixelGeometryIcon {
+.InsensitiveButton > label {
+    text-shadow: 1px 1px darker(@selected_theme_bg_color);
+    color: @theme_selected_bg_color;
+}
+
+#FontManagerSubpixelGeometryIcon {
     border-style: solid;
     border-width: 0.1em;
     border-radius: 0.1em;
     border-color: darker(@borders);
 }
 
-#SubstituteList {
+#FontManagerBrowseTreeView {
+    padding: 4px;
+}
+
+#FontManagerCompareTree:selected {
+    border-top-left-radius: 0.333em;
+    border-top-right-radius: 0.333em;
+}
+
+#FontManagerSubstituteList {
     border-radius: 0.25em;
 }
 
-.InsensitiveButton > label {
-    text-shadow: 1px 1px darker(@selected_theme_bg_color);
-    color: @theme_selected_bg_color;
+#FontManagerSubstituteList button {
+    border-color: alpha(@borders, 0.75);
+}
+
+#FontManagerAliasList row {
+    border-radius: 0.25em;
+}
+
+#FontManagerAliasList row:selected {
+    background-color: alpha(@theme_selected_bg_color, 0.85);
+    border-radius: 0.25em;
+}
+
+#FontManagerAliasList row:selected button {
+    background-color: @theme_bg_color;
+    border-radius: 0.25em;
+}
+
+#FontManagerAliasRow list row:hover {
+    background-color: transparent;
 }

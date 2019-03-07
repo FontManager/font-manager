@@ -20,58 +20,32 @@
 
 namespace FontManager {
 
-    public Preferences construct_preference_pane () {
-        Preferences pane = new Preferences();
+//    public Preferences construct_preference_pane () {
+    public void initialize_preference_pane (Preferences pane) {
+//        Preferences pane = new Preferences();
         pane.add_page(new UserInterfacePreferences(), "Interface", _("Interface"));
         pane.add_page(new SourcePreferences(), "Sources", _("Sources"));
         pane.add_page(new SubstitutionPreferences(), "Substitutions", _("Substitutions"));
         pane.add_page(new DesktopPreferences(), "Desktop", _("Desktop"));
         pane.add_page(new DisplayPreferences(), "Display", _("Display"));
         pane.add_page(new RenderingPreferences(), "Rendering", _("Rendering"));
-        return pane;
+        return;// pane;
     }
 
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-preferences.ui")]
     public class Preferences : Gtk.Paned {
 
         public Gtk.Widget visible_child { get; set; }
         public string visible_child_name { get; set; }
 
-        Gtk.Box box;
-        Gtk.Stack stack;
-        Gtk.StackSidebar sidebar;
+        [GtkChild] Gtk.Stack stack;
+        [GtkChild] Gtk.StackSidebar sidebar;
 
-        public Preferences () {
-            Object(name: "Preferences",
-                    orientation: Gtk.Orientation.HORIZONTAL,
-                    expand: true, position: 275);
-            stack = new Gtk.Stack();
-            stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
-            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-            sidebar = new Gtk.StackSidebar();
-            sidebar.set_stack(stack);
+        public override void constructed () {
             sidebar.get_style_context().remove_class(Gtk.STYLE_CLASS_SIDEBAR);
-            sidebar.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            box.pack_start(sidebar, true, true, 0);
-            add1(box);
-            add2(stack);
-            bind_properties();
-            connect_signals();
-        }
-
-        void bind_properties () {
             stack.bind_property("visible-child", this, "visible-child");
             stack.bind_property("visible-child-name", this, "visible-child-name");
-        }
-
-        void connect_signals () {
-            return;
-        }
-
-        public override void show () {
-            box.show();
-            stack.show();
-            sidebar.show();
-            base.show();
+            base.constructed();
             return;
         }
 
@@ -150,6 +124,7 @@ namespace FontManager {
      * |                                                                     |
      * -----------------------------------------------------------------------
      */
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-font-config-controls.ui")]
     public class FontConfigControls : Gtk.ActionBar {
 
         /**
@@ -173,36 +148,13 @@ namespace FontManager {
          */
         public Gtk.Label note { get; private set; }
 
-        Gtk.Button save;
-        Gtk.Button discard;
+        [GtkChild] Gtk.Button save_button;
+        [GtkChild] Gtk.Button discard_button;
 
-        public FontConfigControls () {
-            save = new Gtk.Button.with_label(_("Save"));
-            save.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-            discard = new Gtk.Button.with_label(_("Discard"));
-            discard.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
-            note = new Gtk.Label(_("Running applications may require a restart to reflect any changes."));
-            note.set("opacity", 0.75, "wrap", true, "justify", Gtk.Justification.CENTER, null);
-            pack_end(save);
-            pack_start(discard);
-            set_center_widget(note);
-            connect_signals();
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            save.show();
-            discard.show();
-            note.show();
-            base.show();
-            return;
-        }
-
-        void connect_signals () {
-            save.clicked.connect(() => { save_selected(); });
-            discard.clicked.connect(() => { discard_selected(); });
+        public override void constructed () {
+            save_button.clicked.connect(() => { save_selected(); });
+            discard_button.clicked.connect(() => { discard_selected(); });
+            base.constructed();
             return;
         }
 

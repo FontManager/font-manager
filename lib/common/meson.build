@@ -1,15 +1,13 @@
 
 result = run_command(python, '-c', list_sources)
 
-common_sources = result.stdout().strip().split('\n') + [
+common_sources = result.stdout().strip().split('\n')
+common_sources += [
     configure_file(
         input: 'utils.c.in',
         output: 'utils.c',
         configuration: config
-    ),
-    gnome.compile_resources('font-manager-gresource',
-                            gresource_xml_file,
-                            source_dir: join_paths(meson.source_root(), 'data'))
+    )
 ]
 
 result = run_command(python, '-c', list_headers)

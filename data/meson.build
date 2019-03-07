@@ -1,6 +1,18 @@
 
 gresource_xml_file = files('FontManagerGResource.xml')
 
+gresources = gnome.compile_resources('gresources', gresource_xml_file)
+
+add_global_arguments(
+    [
+        '--gresources',
+        join_paths(meson.current_source_dir(), 'FontManagerGResource.xml'),
+        '--gresourcesdir',
+        join_paths(meson.current_source_dir(), 'data')
+    ],
+    language: 'vala'
+)
+
 service = ['org.gnome.FontManager', 'org.gnome.FontViewer']
 
 appdata_dir = join_paths(datadir, 'metainfo')

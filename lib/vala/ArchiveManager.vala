@@ -38,7 +38,7 @@ namespace FontManager {
      * i.e.
      * Windows .FON files are classified as "application/x-ms-dos-executable"
      * but file-roller is unlikely to extract one successfully.
-     * */
+     */
     const string [] MIMETYPE_IGNORE_LIST = {
         "application/x-ms-dos-executable"
     };

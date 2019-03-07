@@ -104,7 +104,8 @@ namespace FontManager {
         Gtk.ListBox list;
         PlaceHolder welcome;
 
-        construct {
+        public FontSourceList () {
+            Object(name: "FontSourceList");
             string w1 = _("Font Sources");
             string w2 = _("Easily add or preview fonts without actually installing them.");
             string w3 = _("To add a new source simply drag a folder onto this area or click the add button in the toolbar.");
@@ -121,10 +122,6 @@ namespace FontManager {
             changed.connect(() => { Idle.add(() => { update(); return false; }); });
             sources.changed.connect(() => { changed(); });
             update();
-        }
-
-        public FontSourceList () {
-            Object(name: "FontSourceList");
         }
 
         /**

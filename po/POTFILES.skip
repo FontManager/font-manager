@@ -4,11 +4,11 @@ lib/vala/CharacterTable.c
 lib/vala/Constants.c
 lib/vala/Controls.c
 lib/vala/FontConfig.c
-lib/vala/FontPreviewPane.c
 lib/vala/Labels.c
 lib/vala/Library.c
 lib/vala/Metadata.c
 lib/vala/Orthography.c
+lib/vala/PreviewPane.c
 lib/vala/TextViews.c
 lib/vala/Utils.c
 src/font-manager/Application.c
@@ -18,7 +18,6 @@ src/font-manager/Categories.c
 src/font-manager/CellRendererPill.c
 src/font-manager/Collections.c
 src/font-manager/Compare.c
-src/font-manager/CustomPreviewEntry.c
 src/font-manager/Dialogs.c
 src/font-manager/Filters/Cacheable.c
 src/font-manager/Filters/Category.c

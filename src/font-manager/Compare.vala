@@ -22,63 +22,27 @@
 
 namespace FontManager {
 
-    public class CompareControls : BaseControls {
-
-        public signal void color_set ();
-
-        public Gtk.ColorButton fg_color_button { get; set; }
-        public Gtk.ColorButton bg_color_button { get; set; }
-        public CustomPreviewEntry entry { get; private set; }
-
-        public CompareControls () {
-            add_button.set_tooltip_text(_("Add selected font to comparison"));
-            remove_button.set_tooltip_text(_("Remove selected font from comparison"));
-            fg_color_button = new Gtk.ColorButton();
-            bg_color_button = new Gtk.ColorButton();
-            entry = new CustomPreviewEntry();
-            entry.margin = 2;
-            fg_color_button.set_tooltip_text(_("Select text color"));
-            bg_color_button.set_tooltip_text(_("Select background color"));
-            fg_color_button.set_title(_("Select text color"));
-            bg_color_button.set_title(_("Select background color"));
-            box.pack_start(entry, true, true, 0);
-            box.pack_end(bg_color_button, false, false, 0);
-            box.pack_end(fg_color_button, false, false, 0);
-            set_default_button_relief(box);
-            fg_color_button.color_set.connect(() => { color_set(); });
-            bg_color_button.color_set.connect(() => { color_set(); });
-        }
-
-        public override void show () {
-            fg_color_button.show();
-            bg_color_button.show();
-            var fg = Gdk.RGBA();
-            fg.parse("black");
-            var bg = Gdk.RGBA();
-            bg.parse("white");
-            fg_color_button.set_rgba(fg);
-            bg_color_button.set_rgba(bg);
-            entry.show();
-            base.show();
-            return;
-        }
-
-    }
-
     /* Most of the presentation and logic in our Compare view is based on
      * Gnome Specimen by Wouter Bolsterlee.
      *
      * https://launchpad.net/gnome-specimen
      */
-    public class Compare : AdjustablePreview {
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-compare-view.ui")]
+    public class Compare : Gtk.Box {
 
         public signal void color_set ();
 
+        public double preview_size { get; set; }
         public Gdk.RGBA foreground_color { get; set; }
         public Gdk.RGBA background_color { get; set; }
+        public Gtk.Adjustment adjustment { get; set; }
         public Json.Object? samples { get; set; default = null; }
         public Font? selected_font { get; set; default = null; }
-        public CompareControls controls { get; private set; }
+
+        [GtkChild] public PreviewEntry entry { get; }
+        [GtkChild] public FontScale fontscale { get; }
+        [GtkChild] public Gtk.ColorButton bg_color_button { get; }
+        [GtkChild] public Gtk.ColorButton fg_color_button { get; }
 
         public string? preview_text {
             get {
@@ -89,66 +53,51 @@ namespace FontManager {
             }
         }
 
+        [GtkChild] Gtk.Box controls;
+        [GtkChild] Gtk.Button add_button;
+        [GtkChild] Gtk.Button remove_button;
+        [GtkChild] Gtk.TreeView treeview;
+
         bool have_default_colors = false;
         string _preview_text;
         string default_preview_text;
-        Gtk.Box box;
-        Gtk.TreeView tree;
         Gtk.ListStore store;
-        Gtk.ScrolledWindow scroll;
         Gtk.TreeViewColumn column;
         Gtk.CellRendererText renderer;
         Gdk.RGBA default_fg_color;
         Gdk.RGBA default_bg_color;
         Pango.FontDescription default_desc;
 
-        public Compare () {
-            orientation = Gtk.Orientation.VERTICAL;
+        public override void constructed () {
             preview_text = default_preview_text = get_localized_pangram();
             default_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
-            tree = new Gtk.TreeView();
             store = new Gtk.ListStore(2, typeof(Pango.FontDescription), typeof(string));
-            scroll = new Gtk.ScrolledWindow(null, null);
-            controls = new CompareControls();
-            controls.entry.set_placeholder_text(preview_text);
-            controls.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            entry.set_placeholder_text(preview_text);
             renderer = new Gtk.CellRendererText();
             column = new Gtk.TreeViewColumn();
             column.pack_start(renderer, true);
             column.set_cell_data_func(renderer, cell_data_func);
             column.set_attributes(renderer, "font-desc", 0, "text", 1, null);
-            tree.append_column(column);
-            tree.set_model(store);
-            tree.set_tooltip_column(1);
-            pack_start(controls, false, false, 0);
-            add_separator(this, Gtk.Orientation.HORIZONTAL);
-            box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            scroll.add(tree);
-            box.pack_start(scroll, true, true, 0);
-            pack_end(box, true, true, 0);
-            tree.set_headers_visible(false);
+            treeview.append_column(column);
+            treeview.set_model(store);
+            set_default_button_relief(controls);
             bind_properties();
             connect_signals();
-        }
-
-        public override void show () {
-            tree.show();
-            scroll.show();
-            box.show();
-            controls.show();
-            base.show();
+            base.constructed();
             return;
         }
 
         void bind_properties () {
-            bind_property("foreground_color", controls.fg_color_button, "rgba", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
-            bind_property("background_color", controls.bg_color_button, "rgba", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
+            bind_property("foreground_color", fg_color_button, "rgba", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
+            bind_property("background_color", bg_color_button, "rgba", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
+            bind_property("preview-size", fontscale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            fontscale.bind_property("adjustment", this, "adjustment", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;
         }
 
         void connect_signals() {
             /* selection, model, path, currently_selected_path */
-            tree.get_selection().set_select_function((s, m, p, csp) => {
+            treeview.get_selection().set_select_function((s, m, p, csp) => {
                 /* Disallow selection of preview rows */
                 if (p.get_indices()[0] % 2 == 0) {
                     /* Name row */
@@ -160,22 +109,23 @@ namespace FontManager {
                     return false;
                 }
             });
-            controls.add_selected.connect(() => {
+            add_button.clicked.connect(() => {
                 add_from_string(selected_font.description);
             });
-            controls.remove_selected.connect(() => {
+            remove_button.clicked.connect(() => {
                 on_remove();
             });
-            controls.color_set.connect(() => { color_set(); });
-            notify["preview-size"].connect(() => { tree.get_column(0).queue_resize(); });
+            bg_color_button.color_set.connect(() => { color_set(); });
+            fg_color_button.color_set.connect(() => { color_set(); });
+            notify["preview-size"].connect(() => { treeview.get_column(0).queue_resize(); });
 
             style_updated.connect(() => {
                 update_default_colors();
             });
 
-            controls.entry.changed.connect(() => { tree.queue_draw(); });
+            entry.changed.connect(() => { treeview.queue_draw(); });
             notify["preview-text"].connect(() => {
-                controls.entry.set_placeholder_text(preview_text);
+                entry.set_placeholder_text(preview_text);
             });
             return;
         }
@@ -219,13 +169,13 @@ namespace FontManager {
                     cell.set_property("background-rgba", default_bg_color);
                 }
                 cell.set_property("size-points", get_desc_size());
-                cell.set_property("weight", 350);
+                cell.set_property("weight", 400);
             } else {
                 /* Preview row */
                 cell.set_property("foreground-rgba", foreground_color);
                 cell.set_property("background-rgba", background_color);
-                if (controls.entry.text_length > 0)
-                    cell.set_property("text", controls.entry.text);
+                if (entry.text_length > 0)
+                    cell.set_property("text", entry.text);
                 else if (samples != null && samples.has_member(description))
                     cell.set_property("text", samples.get_string_member(description));
                 else
@@ -256,7 +206,7 @@ namespace FontManager {
         void on_remove () {
             Gtk.TreeModel model;
             Gtk.TreeIter iter;
-            tree.get_selection().get_selected(out model, out iter);
+            treeview.get_selection().get_selected(out model, out iter);
             /* NOTE:
              * There is a warning attached to this function (iter_is_valid)
              * about it being slow and only intended for debugging purposes.
@@ -291,7 +241,7 @@ namespace FontManager {
                      store.get_iter_from_string(out iter, iter_as_string);
                      Gtk.TreePath path = model.get_path(iter);
                      if (path != null && path.get_indices()[0] >= 0)
-                         tree.set_cursor(path, column, false);
+                         treeview.set_cursor(path, column, false);
                 } else {
                      /* The treeiter is no longer valid. In our case this means the bottom row in
                       * the treeview was deleted. Set the cursor to the new bottom row.
@@ -299,7 +249,7 @@ namespace FontManager {
                     int n_children = model.iter_n_children(null) - 2;
                     if (n_children >= 0) {
                         Gtk.TreePath path = new Gtk.TreePath.from_string(n_children.to_string());
-                        tree.get_selection().select_path(path);
+                        treeview.get_selection().select_path(path);
                     }
                 }
             }
@@ -323,4 +273,3 @@ namespace FontManager {
     }
 
 }
-

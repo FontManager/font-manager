@@ -144,6 +144,16 @@ namespace FontManager {
         return;
     }
 
+    /**
+     * timecmp:
+     * @old:        filepath
+     * @proposed:   filepath
+     *
+     * Compare two files based on modification time.
+     *
+     * Returns:     an integer less than, equal to, or greater than zero,
+     *              if old is <, == or > than proposed.
+     */
     public int timecmp (string old, string proposed) {
         TimeVal? old_time = get_modification_time(old);
         TimeVal? new_time = get_modification_time(proposed);

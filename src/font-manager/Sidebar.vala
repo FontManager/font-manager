@@ -1,4 +1,4 @@
-/* SideBar.vala
+/* Sidebar.vala
  *
  * Copyright (C) 2009 - 2019 Jerry Casiano
  *
@@ -20,7 +20,8 @@
 
 namespace FontManager {
 
-    public class SideBar : Gtk.Stack {
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-sidebar.ui")]
+    public class Sidebar : Gtk.Stack {
 
         public string mode {
             get {
@@ -31,9 +32,9 @@ namespace FontManager {
             }
         }
 
-        public StandardSideBar? standard {
+        public StandardSidebar? standard {
             get {
-                return (StandardSideBar) get_child_by_name("Standard");
+                return (StandardSidebar) get_child_by_name("Standard");
             }
         }
 
@@ -61,10 +62,8 @@ namespace FontManager {
             }
         }
 
-        public SideBar () {
-            set_transition_duration(420);
-            set_transition_type(Gtk.StackTransitionType.UNDER_LEFT);
-            add_view(new FontManager.StandardSideBar(), "Standard");
+        public override void constructed () {
+            add_view(new FontManager.StandardSidebar(), "Standard");
             add_view(new FontManager.OrthographyList(), "Orthographies");
             notify["visible-child-name"].connect(() => {
                 if (get_visible_child_name() == "Standard")
@@ -72,6 +71,8 @@ namespace FontManager {
                 else
                     set_transition_type(Gtk.StackTransitionType.OVER_RIGHT);
             });
+            base.constructed();
+            return;
         }
 
         void add_view (Gtk.Widget sidebar_view, string name) {
@@ -82,80 +83,48 @@ namespace FontManager {
 
     }
 
-    public enum StandardSideBarMode {
+    public enum StandardSidebarMode {
         CATEGORY,
         COLLECTION,
         N_MODES
     }
 
-    public class StandardSideBar : Gtk.Box {
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-standard-sidebar.ui")]
+    public class StandardSidebar : Gtk.Box {
 
         public signal void collection_selected (Collection group);
         public signal void category_selected (Category filter, int category);
-        public signal void mode_selected (StandardSideBarMode mode);
+        public signal void mode_selected (StandardSidebarMode mode);
 
         public Collection? selected_collection { get; protected set; default = null; }
         public Category? selected_category { get; protected set; default = null; }
 
-        public StandardSideBarMode mode {
+        public StandardSidebarMode mode {
             get {
-                return (StandardSideBarMode) int.parse(stack.get_visible_child_name());
+                return (StandardSidebarMode) int.parse(sidebar_stack.get_visible_child_name());
             }
             set {
-                stack.set_visible_child_name(((int) value).to_string());
+                sidebar_stack.set_visible_child_name(((int) value).to_string());
             }
         }
 
         public CategoryTree category_tree { get; private set; }
         public CollectionTree collection_tree { get; private set; }
 
-        Gtk.Stack stack;
-        Gtk.StackSwitcher switcher;
-        Gtk.Box collection_box;
-        Gtk.EventBox blend;
-        Gtk.ScrolledWindow collection_scroll;
-        Gtk.Box main_box;
-        Gtk.Widget [] widgets;
+        [GtkChild] Gtk.Stack sidebar_stack;
+        [GtkChild] Gtk.Box categories;
+        [GtkChild] Gtk.Box collections;
+        [GtkChild] Gtk.ScrolledWindow collection_scroll;
 
-        public StandardSideBar () {
-            main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            stack = new Gtk.Stack();
-            stack.set_transition_type(Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
-            switcher = new Gtk.StackSwitcher();
-            switcher.set_stack(stack);
-            switcher.set_border_width(DEFAULT_MARGIN_SIZE / 4);
-            switcher.halign = switcher.valign = Gtk.Align.CENTER;
+        public override void constructed () {
             category_tree = new CategoryTree();
+            categories.add(category_tree);
+            category_tree.show();
             collection_tree = new CollectionTree();
-            collection_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            collection_box.pack_start(collection_tree.controls, false, true, 0);
-            add_separator(collection_box);
-            collection_scroll = new Gtk.ScrolledWindow(null, null);
+            collections.pack_start(collection_tree.controls, false, true, 0);
             collection_scroll.add(collection_tree);
-            collection_box.pack_end(collection_scroll, true, true, 0);
-            stack.add_titled(category_tree, "0", _("Categories"));
-            stack.add_titled(collection_box, "1", _("Collections"));
-            blend = new Gtk.EventBox();
-            blend.add(switcher);
-            blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            main_box.pack_end(blend, false, true, 0);
-            add_separator(main_box, Gtk.Orientation.HORIZONTAL, Gtk.PackType.END);
-            main_box.pack_start(stack, true, true, 0);
-            add(main_box);
-            connect_signals();
-            mode = StandardSideBarMode.CATEGORY;
-            widgets = { category_tree, collection_tree, collection_box, stack,
-                        switcher, blend, main_box, collection_scroll};
-        }
+            collection_tree.show();
 
-        public override void show () {
-            foreach (var widget in widgets)
-                widget.show();
-            base.show();
-            return;
-        }
-
-        void connect_signals () {
             category_tree.selection_changed.connect((f, i) => {
                 category_selected(f, i);
                 selected_category = f;
@@ -167,9 +136,12 @@ namespace FontManager {
             });
 
             /* XXX : string? pspec? */
-            stack.notify["visible-child-name"].connect((pspec) => {
+            sidebar_stack.notify["visible-child-name"].connect((pspec) => {
                 mode_selected(mode);
             });
+
+            mode = StandardSidebarMode.CATEGORY;
+            base.constructed();
             return;
         }
 

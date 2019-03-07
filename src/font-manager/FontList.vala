@@ -565,11 +565,24 @@ namespace FontManager {
 
     }
 
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-font-list-pane.ui")]
     public class FontListPane : Gtk.Box {
 
-        public BaseFontList fontlist { get; construct set; }
         public FontListControls controls { get; protected set; }
         public FontListFilter? filter { get; set; default = null; }
+
+        public BaseFontList fontlist {
+            get {
+                return ((BaseFontList) scrolled_window.get_child());
+            }
+            set {
+                Gtk.Widget? current_child = scrolled_window.get_child();
+                if (current_child != null)
+                    scrolled_window.remove(current_child);
+                scrolled_window.add(value);
+                value.show();
+            }
+        }
 
         public Gtk.TreeModel? model {
             get {
@@ -590,33 +603,19 @@ namespace FontManager {
         }
 
         uint? search_timeout;
-        Gtk.Revealer revealer;
-        Gtk.ScrolledWindow scroll;
+        uint16 text_length = 0;
         Gtk.TreeModel? real_model = null;
         Gtk.TreeModelFilter? search_filter = null;
+        [GtkChild] Gtk.Revealer revealer;
+        [GtkChild] Gtk.ScrolledWindow scrolled_window;
 
-        public FontListPane (BaseFontList fontlist) {
-            Object(fontlist: fontlist);
-            orientation = Gtk.Orientation.VERTICAL;
+        public override void constructed () {
             controls = new FontListControls();
             controls.set_remove_sensitivity(false);
-            revealer = new Gtk.Revealer();
-            revealer.expand = false;
             revealer.add(controls);
-            scroll = new Gtk.ScrolledWindow(null, null);
-            scroll.add(fontlist);
-            pack_start(revealer, false, true, 0);
-            pack_end(scroll, true, true, 0);
             connect_signals();
-        }
-
-        public override void show () {
             controls.show();
-            revealer.show();
-            show_controls = true;
-            fontlist.show();
-            scroll.show();
-            base.show();
+            base.constructed();
             return;
         }
 
@@ -656,7 +655,10 @@ namespace FontManager {
 
         void connect_signals () {
             notify["filter"].connect(() => { refilter(); });
-            controls.entry.search_changed.connect(() => { queue_refilter(); });
+            controls.entry.search_changed.connect(() => {
+                queue_refilter();
+                text_length = controls.entry.get_text_length();
+            });
             controls.expand_all.connect((e) => {
                 if (e)
                     fontlist.expand_all();
@@ -677,7 +679,7 @@ namespace FontManager {
 
         bool visible_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
             bool search_match = true;
-            if (controls.entry.get_text_length() > 0) {
+            if (text_length > 0) {
                 Value val;
                 model.get_value(iter, FontModelColumn.OBJECT, out val);
                 Object object = val.get_object();

@@ -4,11 +4,11 @@ lib/vala/CharacterTable.vala
 lib/vala/Constants.vala
 lib/vala/Controls.vala
 lib/vala/FontConfig.vala
-lib/vala/FontPreviewPane.vala
 lib/vala/Labels.vala
 lib/vala/Library.vala
 lib/vala/Metadata.vala
 lib/vala/Orthography.vala
+lib/vala/PreviewPane.vala
 lib/vala/TextViews.vala
 lib/vala/Utils.vala
 src/font-manager/Application.vala
@@ -18,7 +18,6 @@ src/font-manager/Categories.vala
 src/font-manager/CellRendererPill.vala
 src/font-manager/Collections.vala
 src/font-manager/Compare.vala
-src/font-manager/CustomPreviewEntry.vala
 src/font-manager/Dialogs.vala
 src/font-manager/Filters/Cacheable.vala
 src/font-manager/Filters/Category.vala
@@ -52,5 +51,21 @@ data/org.gnome.FontManager.appdata.xml.in
 data/org.gnome.FontManager.desktop.in
 data/org.gnome.FontViewer.appdata.xml.in
 data/org.gnome.FontViewer.desktop.in
+data/ui/font-manager-character-map.ui
+data/ui/font-manager-font-scale.ui
+data/ui/font-manager-labeled-font-button.ui
+data/ui/font-manager-labeled-spin-button.ui
+data/ui/font-manager-labeled-switch.ui
+data/ui/font-manager-license-pane.ui
+data/ui/font-manager-option-scale.ui
+data/ui/font-manager-place-holder.ui
+data/ui/font-manager-preview-controls.ui
+data/ui/font-manager-preview-entry.ui
+data/ui/font-manager-preview-pane.ui
+data/ui/font-manager-properties-pane.ui
+data/ui/font-manager-reactive-label.ui
 data/ui/font-manager-shortcuts-window.ui
+data/ui/font-manager-subpixel-geometry-icon.ui
+data/ui/font-manager-subpixel-geometry.ui
+data/ui/font-viewer-main-window.ui
 

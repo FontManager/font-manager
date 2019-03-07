@@ -3,7 +3,7 @@ result = run_command(python, '-c', list_vala_sources)
 libvala_sources = result.stdout().strip().split('\n')
 
 libvala = static_library('FontManagerVala',
-                            [libvala_sources, config_vapi_file],
+                            [libvala_sources, config_vapi_file, gresources],
                             dependencies: [
                                 common_vapi, unicode_vapi, m_dep, json, gio,
                                 glib, gobject, gtk, pango, sqlite, xml

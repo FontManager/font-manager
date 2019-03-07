@@ -20,45 +20,6 @@
 
 namespace FontManager {
 
-    public class LabeledControl : Gtk.Box {
-
-        /**
-         * LabeledControl:label:
-         *
-         * #GtkLabel
-         */
-        public Gtk.Label label { get; private set; }
-
-        /**
-         * LabeledControl:description:
-         *
-         * Centered #GtkLabel with dim-label style class
-         */
-        public Gtk.Label description { get; private set; }
-
-        construct {
-            margin = MINIMUM_MARGIN_SIZE * 8;
-            label = new Gtk.Label(null);
-            label.set("hexpand", false, "halign", Gtk.Align.START, null);
-            description = new Gtk.Label(null);
-            description.set("hexpand", true, "halign", Gtk.Align.CENTER, null);
-            description.get_style_context().add_class(Gtk.STYLE_CLASS_DIM_LABEL);
-            pack_start(label, false, false, 0);
-            set_center_widget(description);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            label.show();
-            description.show();
-            base.show();
-            return;
-        }
-
-    }
-
     /**
      * LabeledSwitch:
      * @label:      text to display in label or %NULL
@@ -75,30 +36,32 @@ namespace FontManager {
      * |                                                          |
      * ------------------------------------------------------------
      */
-    public class LabeledSwitch : LabeledControl {
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-labeled-switch.ui")]
+    public class LabeledSwitch : Gtk.Box {
+
+        /**
+         * LabeledControl:label:
+         *
+         * #GtkLabel
+         */
+        [GtkChild] public Gtk.Label label { get; }
+
+        /**
+         * LabeledControl:description:
+         *
+         * Centered #GtkLabel with dim-label style class
+         */
+        [GtkChild] public Gtk.Label description { get; }
 
         /**
          * LabeledSwitch:toggle:
          *
          * #GtkSwitch
          */
-        public Gtk.Switch toggle { get; private set; }
+        [GtkChild] public Gtk.Switch toggle { get; }
 
         public LabeledSwitch (string? label = null) {
-            Object(name: "LabeledSwitch");
             this.label.set_text(label != null ? label : "");
-            toggle = new Gtk.Switch();
-            toggle.expand = false;
-            pack_end(toggle, false, false, 0);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            toggle.show();
-            base.show();
-            return;
         }
 
     }
@@ -119,7 +82,22 @@ namespace FontManager {
      * |                                                          |
      * ------------------------------------------------------------
      */
-    public class LabeledSpinButton : LabeledControl {
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-labeled-spin-button.ui")]
+    public class LabeledSpinButton : Gtk.Box {
+
+        /**
+         * LabeledControl:label:
+         *
+         * #GtkLabel
+         */
+        [GtkChild] public Gtk.Label label { get; }
+
+        /**
+         * LabeledControl:description:
+         *
+         * Centered #GtkLabel with dim-label style class
+         */
+        [GtkChild] public Gtk.Label description { get; }
 
         /**
          * LabeledSpinButton:value:
@@ -128,23 +106,12 @@ namespace FontManager {
          */
         public double @value { get; set; default = 0.0; }
 
-        Gtk.SpinButton spin;
+        [GtkChild] Gtk.SpinButton spin;
 
         public LabeledSpinButton (string? label, double min, double max, double step) {
-            Object(name: "LabeledSpinButton");
             this.label.set_text(label != null ? label : "");
-            spin = new Gtk.SpinButton.with_range(min, max, step);
+            spin.set_adjustment(new Gtk.Adjustment(0, min, max, step, 0, 0));
             bind_property("value", spin, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            pack_end(spin, false, false, 0);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            spin.show();
-            base.show();
-            return;
         }
 
     }
@@ -165,33 +132,35 @@ namespace FontManager {
      * |                                                          |
      * ------------------------------------------------------------
      */
-    public class LabeledFontButton : LabeledControl {
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-labeled-font-button.ui")]
+    public class LabeledFontButton : Gtk.Box {
+
+        /**
+         * LabeledControl:label:
+         *
+         * #GtkLabel
+         */
+        [GtkChild] public Gtk.Label label { get; }
+
+        /**
+         * LabeledControl:description:
+         *
+         * Centered #GtkLabel with dim-label style class
+         */
+        [GtkChild] public Gtk.Label description { get; }
 
         /**
          * LabeledFontButton:button:
          *
          * #GtkFontButton
          */
-        public Gtk.FontButton button { get; private set; }
+        [GtkChild] public Gtk.FontButton button { get; private set; }
 
         public string font { get; set; default = DEFAULT_FONT; }
 
-        public LabeledFontButton (string? label = null, string? font = null) {
-            Object(name: "LabeledFontButton");
+        public LabeledFontButton (string? label = null) {
             this.label.set_text(label != null ? label : "");
-            button = new Gtk.FontButton();
-            button.set_use_font(true);
-            pack_end(button, false, false, 0);
             bind_property("font", button, "font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            button.show();
-            base.show();
-            return;
         }
 
     }
@@ -212,7 +181,8 @@ namespace FontManager {
      * |                                                             |
      * ---------------------------------------------------------------
      */
-    public class OptionScale : Gtk.Grid {
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-option-scale.ui")]
+    public class OptionScale : Gtk.Box {
 
         /**
          * OptionScale:value:
@@ -235,39 +205,21 @@ namespace FontManager {
         /**
          * OptionScale:options:
          */
-        public string [] options { get; private set; }
+        public string [] options { get; construct set;}
 
-        Gtk.Label label;
-        Gtk.Scale scale;
+        [GtkChild] Gtk.Label label;
+        [GtkChild] Gtk.Scale scale;
 
         public OptionScale (string? heading, string [] options) {
-            Object(name: "OptionScale", hexpand: true, margin: DEFAULT_MARGIN_SIZE);
-            /* private setter */
             this.options = options;
-            scale = new Gtk.Scale.with_range(Gtk.Orientation.HORIZONTAL, 0, options.length - 1, 1.0);
-            scale.set("hexpand", true, "draw-value", false, "round-digits", 1, "show-fill-level", false, null);
-            double upper = ((double) options.length - 1);
-            scale.adjustment.set("lower", 0.0, "page-increment", 1.0, "step-increment", 1.0, "upper", upper, null);
+            label.set_text(heading);
+            scale.set_adjustment(new Gtk.Adjustment(0.0, 0.0, ((double) options.length - 1), 1.0, 1.0, 0.0));
             for (int i = 0; i < options.length; i++)
                 scale.add_mark(i, Gtk.PositionType.BOTTOM, options[i]);
             scale.value_changed.connect(() => {
                 scale.set_value(Math.round(scale.adjustment.get_value()));
             });
-            label = new Gtk.Label(heading);
-            label.set("hexpand", true, "margin", margin / 2, null);
-            attach(label, 0, 0, options.length, 1);
-            attach(scale, 0, 1, options.length, 1);
             bind_property("value", scale.adjustment, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            label.show();
-            scale.show();
-            base.show();
-            return;
         }
 
     }
@@ -284,6 +236,7 @@ namespace FontManager {
      * |                                                                |
      * ------------------------------------------------------------------
      */
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-font-scale.ui")]
     public class FontScale : Gtk.EventBox {
 
         /**
@@ -308,60 +261,19 @@ namespace FontManager {
             }
         }
 
-        Gtk.Box container;
-        Gtk.Scale scale;
-        Gtk.SpinButton spin;
-        ReactiveLabel min;
-        ReactiveLabel max;
-        Gtk.Widget [] widgets;
+        [GtkChild] Gtk.Scale scale;
+        [GtkChild] Gtk.SpinButton spin;
+        [GtkChild] ReactiveLabel min;
+        [GtkChild] ReactiveLabel max;
 
-        public FontScale () {
-            Object(name: "FontScale");
-            scale = new Gtk.Scale.with_range(Gtk.Orientation.HORIZONTAL, MIN_FONT_SIZE, MAX_FONT_SIZE, 0.5);
-            scale.draw_value = false;
-            scale.set_range(MIN_FONT_SIZE, MAX_FONT_SIZE);
-            scale.set_increments(0.5, 1.0);
-            spin = new Gtk.SpinButton.with_range(MIN_FONT_SIZE, MAX_FONT_SIZE, 0.5);
-            spin.set_adjustment(adjustment);
-            min = new ReactiveLabel(null);
-            max = new ReactiveLabel(null);
+        public override void constructed () {
+            adjustment = new Gtk.Adjustment(DEFAULT_PREVIEW_SIZE, MIN_FONT_SIZE, MAX_FONT_SIZE, 0.5, 1.0, 0);
             min.label.set_markup("<span font=\"Serif Italic Bold\" size=\"small\"> A </span>");
             max.label.set_markup("<span font=\"Serif Italic Bold\" size=\"large\"> A </span>");
-            container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 5);
-            container.pack_start(min, false, true, 2);
-            container.pack_start(scale, true, true, 0);
-            container.pack_start(max, false, true, 2);
-            container.pack_end(spin, false, true, 6);
-            container.border_width = 5;
-            add(container);
             min.clicked.connect(() => { scale.set_value(MIN_FONT_SIZE); });
             max.clicked.connect(() => { scale.set_value(MAX_FONT_SIZE); });
             bind_property("value", spin, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            widgets = { container, scale, spin, min, max };
-        }
-
-        /**
-         * add_style_class:
-         *
-         * Convenience function which applies given style_class.
-         */
-        public void add_style_class (string gtk_style_class) {
-            container.forall((w) => {
-                if ((w is Gtk.SpinButton) || (w is Gtk.Scale))
-                    return;
-                w.get_style_context().add_class(gtk_style_class);
-            });
-            get_style_context().add_class(gtk_style_class);
-            return;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            foreach (var widget in widgets)
-                widget.show();
-            base.show();
+            base.constructed();
             return;
         }
 
@@ -378,6 +290,7 @@ namespace FontManager {
      * |                                                                 |
      * -------------------------------------------------------------------
      */
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-preview-controls.ui")]
     public class PreviewControls : Gtk.EventBox {
 
         /**
@@ -424,74 +337,49 @@ namespace FontManager {
             }
         }
 
-        Gtk.Box box;
-        Gtk.Label description;
-        Gtk.Button clear;
-        Gtk.ToggleButton edit;
-        Gtk.RadioButton justify_left;
-        Gtk.RadioButton justify_center;
-        Gtk.RadioButton justify_fill;
-        Gtk.RadioButton justify_right;
-        Gtk.Widget [] widgets;
+        [GtkChild] Gtk.Label description;
+        [GtkChild] Gtk.Button clear;
+        [GtkChild] Gtk.ToggleButton edit;
+        [GtkChild] Gtk.RadioButton justify_left;
+        [GtkChild] Gtk.RadioButton justify_center;
+        [GtkChild] Gtk.RadioButton justify_fill;
+        [GtkChild] Gtk.RadioButton justify_right;
 
-        construct {
-            box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 2);
-            box.border_width = 1;
-            description = new Gtk.Label(null);
-            description.set("sensitive", false, "halign", Gtk.Align.CENTER,
-                            "hexpand", true, "vexpand", false, null);
-            justify_left = new Gtk.RadioButton(null);
-            justify_center = new Gtk.RadioButton.from_widget(justify_left);
-            justify_fill = new Gtk.RadioButton.from_widget(justify_left);
-            justify_right = new Gtk.RadioButton.from_widget(justify_left);
-            justify_center.active = true;
-            edit = new Gtk.ToggleButton();
-            edit.set_image(new Gtk.Image.from_icon_name("insert-text-symbolic", Gtk.IconSize.MENU));
-            edit.set_tooltip_text(_("Edit preview text"));
-            edit.set("active", false, "relief", Gtk.ReliefStyle.NONE, null);
-            clear = new Gtk.Button();
-            clear.set_image(new Gtk.Image.from_icon_name("edit-undo-symbolic", Gtk.IconSize.MENU));
-            clear.set_tooltip_text(_("Undo changes"));
-            clear.set("sensitive", false, "relief", Gtk.ReliefStyle.NONE, null);
-            Gtk.RadioButton [] buttons = { justify_left, justify_center, justify_fill, justify_right };
-            string [] icons = { "format-justify-left-symbolic", "format-justify-center-symbolic",
-                                 "format-justify-fill-symbolic", "format-justify-right-symbolic" };
-            string [] tooltips = { _("Left Aligned"), _("Centered"), _("Fill"), _("Right Aligned") };
-            for (int i = 0; i < buttons.length; i++) {
-                var button = buttons[i];
-                button.relief = Gtk.ReliefStyle.NONE;
-                ((Gtk.ToggleButton) button).draw_indicator = false;
-                button.get_style_context().add_class(Gtk.STYLE_CLASS_LINKED);
-                button.set_image(new Gtk.Image.from_icon_name(icons[i], Gtk.IconSize.MENU));
-                button.set_tooltip_text(tooltips[i]);
-                box.pack_start(button, false, false, 0);
-            }
-            box.pack_end(clear, false, false, 0);
-            box.pack_end(edit, false, false, 0);
-            box.set_center_widget(description);
-            add(box);
-            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            connect_signals();
-            widgets = { box, description, clear, edit, justify_left, justify_center, justify_fill, justify_right };
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            foreach (var widget in widgets)
-                widget.show();
-            base.show();
-            return;
-        }
-
-        void connect_signals () {
+        public override void constructed () {
+            justify_center.set_active(true);
             justify_left.toggled.connect(() => { justification_set(Gtk.Justification.LEFT); });
             justify_center.toggled.connect(() => { justification_set(Gtk.Justification.CENTER); });
             justify_fill.toggled.connect(() => { justification_set(Gtk.Justification.FILL); });
             justify_right.toggled.connect(() => { justification_set(Gtk.Justification.RIGHT); });
             clear.clicked.connect(() => { on_clear_clicked(); });
             edit.toggled.connect(() => { editing(edit.get_active()); });
+            base.constructed();
+            return;
+        }
+
+    }
+
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-preview-entry.ui")]
+    public class PreviewEntry : Gtk.Entry {
+
+        public override void constructed () {
+            on_changed_event();
+            base.constructed();
+            return;
+        }
+
+        [GtkCallback]
+        public void on_icon_press_event (Gtk.EntryIconPosition position, Gdk.Event event) {
+            if (position == Gtk.EntryIconPosition.SECONDARY)
+                set_text("");
+            return;
+        }
+
+        [GtkCallback]
+        public void on_changed_event () {
+            string icon_name = (text_length > 0) ? "edit-clear-symbolic" : "document-edit-symbolic";
+            set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, icon_name);
+            set_icon_activatable(Gtk.EntryIconPosition.SECONDARY, (text_length > 0));
             return;
         }
 
@@ -580,6 +468,7 @@ namespace FontManager {
      *
      * Widget allowing user to select pixel layout.
      */
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-subpixel-geometry.ui")]
     public class SubpixelGeometry : Gtk.Box {
 
         public int rgba {
@@ -597,21 +486,11 @@ namespace FontManager {
         public GLib.List <Gtk.RadioButton> options;
 
         int _rgba;
-        Gtk.Label label;
-        Gtk.ButtonBox box;
+
+        [GtkChild] Gtk.ButtonBox button_box;
 
         public SubpixelGeometry () {
-
-            Object(name: "SubpixelGeometry",
-                    margin: DEFAULT_MARGIN_SIZE,
-                    opacity: 0.75,
-                    orientation: Gtk.Orientation.VERTICAL);
-
-            label = new Gtk.Label(_("Subpixel Geometry"));
-            label.set("halign", Gtk.Align.CENTER, "margin", DEFAULT_MARGIN_SIZE / 2, null);
-            pack_start(label, false, true, 6);
             options = new GLib.List <Gtk.RadioButton> ();
-            box = new Gtk.ButtonBox(Gtk.Orientation.HORIZONTAL);
             for (int i = 0; i < SubpixelOrder.NONE; i++) {
                 if (i == 0)
                     options.append(new Gtk.RadioButton(null));
@@ -625,23 +504,11 @@ namespace FontManager {
                 button.set_tooltip_text(val.to_string());
                 button.toggled.connect(() => {
                     if (button.active)
-                        rgba = (int) val;
+                        rgba = i;
                 });
-                box.pack_start(button);
+                button_box.pack_start(button);
+                button.show();
             }
-            pack_start(box, true, true, 6);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            foreach (var widget in options)
-                widget.show();
-            label.show();
-            box.show();
-            base.show();
-            return;
         }
 
     }

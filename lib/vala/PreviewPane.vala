@@ -1,4 +1,4 @@
-/* FontPreviewPane.vala
+/* PreviewPane.vala
  *
  * Copyright (C) 2009 - 2019 Jerry Casiano
  *
@@ -224,19 +224,28 @@ namespace FontManager {
 
     }
 
-    public class FontPreviewPane : Gtk.Box {
+    public enum PreviewPanePage {
+        PREVIEW,
+        CHARACTER_MAP,
+        PROPERTIES,
+        LICENSE
+    }
+
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-preview-pane.ui")]
+    public class PreviewPane : Gtk.Box {
 
         public signal void changed ();
         public signal void preview_mode_changed (FontPreviewMode mode);
         public signal void preview_text_changed (string preview_text);
 
-        public Gtk.Notebook notebook { get; private set; }
-        public FontPreview preview { get; private set; }
-        public CharacterTable charmap { get; private set; }
-
         public double preview_size { get; set; }
 
         public Font? selected_font { get; set; default = null; }
+
+        [GtkChild] public Gtk.Notebook notebook { get; }
+
+        public FontPreview preview { get; private set; }
+        public CharacterMap charmap { get; private set; }
         public Metadata? metadata { get; set; default = null; }
 
         public FontPreviewMode mode {
@@ -248,34 +257,40 @@ namespace FontManager {
             }
         }
 
-        Gtk.Label preview_tab_label;
-        Gtk.MenuButton menu_button;
+        [GtkChild] Gtk.Label preview_tab_label;
+        [GtkChild] Gtk.MenuButton menu_button;
 
-        public FontPreviewPane () {
-            Object(name: "FontManagerFontPreviewPane", orientation: Gtk.Orientation.VERTICAL, spacing: 0);
+        [GtkCallback]
+        public void on_notebook_switch_page (Gtk.Widget page, uint page_num) {
+            menu_button.sensitive = ((FontPreviewMode) page_num == FontPreviewMode.PREVIEW);
+            return;
+        }
+
+        Gtk.Container get_container (int page_index) {
+            return ((Gtk.Container) notebook.get_nth_page(page_index));
+        }
+
+        public override void constructed () {
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
             insert_action_group("default", new SimpleActionGroup());
-            notebook = new Gtk.Notebook();
-            notebook.show_border = false;
             preview = new FontPreview();
-            preview_tab_label = new Gtk.Label(FontPreviewMode.PREVIEW.to_translatable_string());
-            notebook.append_page(preview, preview_tab_label);
             metadata = new Metadata();
-            charmap = new CharacterTable();
-            notebook.append_page(charmap, new Gtk.Label(_("Characters")));
-            notebook.append_page(metadata.properties, new Gtk.Label(_("Properties")));
-            notebook.append_page(metadata.license, new Gtk.Label(_("License")));
-            menu_button = construct_menu_button();
-            notebook.set_action_widget(menu_button, Gtk.PackType.START);
-            pack_end(notebook, true, true, 0);
+            charmap = new CharacterMap();
+            preview_tab_label.set_text(FontPreviewMode.PREVIEW.to_translatable_string());
+            get_container(PreviewPanePage.PREVIEW).add(preview);
+            get_container(PreviewPanePage.CHARACTER_MAP).add(charmap);
+            get_container(PreviewPanePage.PROPERTIES).add(metadata.properties);
+            get_container(PreviewPanePage.LICENSE).add(metadata.license);
+            construct_menu();
             connect_signals();
             bind_properties();
+            preview.show();
+            charmap.show();
+            metadata.show();
+            return;
         }
 
         void connect_signals () {
-            notebook.switch_page.connect((p, n) => {
-                menu_button.sensitive = ((FontPreviewMode) n == FontPreviewMode.PREVIEW);
-            });
             preview.mode_changed.connect((m) => {
                 preview_tab_label.set_text(mode.to_translatable_string());
                 var actions = ((SimpleActionGroup) get_action_group("default"));
@@ -300,17 +315,9 @@ namespace FontManager {
             bind_property("selected-font", preview, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
         }
 
-        public override void show () {
-            notebook.show();
-            preview.show();
-            charmap.show();
-            metadata.show();
-            base.show();
-            return;
-        }
-
         public virtual void show_uri (string uri) {
             File file = File.new_for_commandline_arg(uri);
+            return_if_fail(file.is_native());
             try {
                 FileInfo info = file.query_info(FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE);
                 if (!info.get_content_type().contains("font")) {
@@ -362,15 +369,8 @@ namespace FontManager {
             return;
         }
 
-        Gtk.MenuButton construct_menu_button () {
+        void construct_menu () {
             var application = (Gtk.Application) GLib.Application.get_default();
-            var mb = new Gtk.MenuButton();
-            mb.margin = MINIMUM_MARGIN_SIZE;
-            mb.direction = Gtk.ArrowType.DOWN;
-            mb.relief = Gtk.ReliefStyle.NONE;
-            mb.can_focus = false;
-            var mb_icon = new Gtk.Image.from_icon_name("view-more-symbolic", Gtk.IconSize.MENU);
-            mb.add(mb_icon);
             var actions = ((SimpleActionGroup) get_action_group("default"));
             var mode_section = new GLib.Menu();
             string [] modes = { "Preview", "Waterfall", "Body Text" };
@@ -393,10 +393,8 @@ namespace FontManager {
                 item.set_attribute("accel", "s", accels[0]);
                 mode_section.append_item(item);
             }
-            mb.set_menu_model((GLib.MenuModel) mode_section);
-            mb.set_tooltip_text(_("Select preview type"));
-            mb.show_all();
-            return mb;
+            menu_button.set_menu_model((GLib.MenuModel) mode_section);
+            return;
         }
 
     }

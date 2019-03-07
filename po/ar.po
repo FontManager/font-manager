@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2019-03-03 13:05-0500\n"
+"POT-Creation-Date: 2019-03-10 15:15-0400\n"
 "PO-Revision-Date: 2016-10-08 10:49+0000\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic\n"
@@ -48,34 +48,6 @@ msgstr ""
 #: lib/vala/About.vala:66
 msgid "translator-credits"
 msgstr ""
-
-#: lib/vala/Controls.vala:450
-msgid "Edit preview text"
-msgstr "حرّر نص المعاينة"
-
-#: lib/vala/Controls.vala:454
-msgid "Undo changes"
-msgstr "تراجع عن التغييرات"
-
-#: lib/vala/Controls.vala:459
-msgid "Left Aligned"
-msgstr "محاذى إلى اليسار"
-
-#: lib/vala/Controls.vala:459
-msgid "Centered"
-msgstr "مُوسّط"
-
-#: lib/vala/Controls.vala:459
-msgid "Fill"
-msgstr "مُساوى"
-
-#: lib/vala/Controls.vala:459
-msgid "Right Aligned"
-msgstr "محاذى إلى اليمين"
-
-#: lib/vala/Controls.vala:610
-msgid "Subpixel Geometry"
-msgstr "الترتيب التحت بكسلي"
 
 #: lib/vala/FontConfig.vala:38
 msgid "Ultra-Condensed"
@@ -214,74 +186,22 @@ msgstr "VRGB"
 msgid "VBGR"
 msgstr "VBGR"
 
-#: lib/vala/FontPreviewPane.vala:119 lib/vala/FontPreviewPane.vala:221
-#: src/font-manager/MainWindow.vala:170
-msgid "Preview"
-msgstr "عاين"
-
-#: lib/vala/FontPreviewPane.vala:120 lib/vala/FontPreviewPane.vala:217
-msgid "Waterfall"
-msgstr "شلال"
-
-#: lib/vala/FontPreviewPane.vala:121 lib/vala/FontPreviewPane.vala:219
-msgid "Body Text"
-msgstr "متن"
-
-#: lib/vala/FontPreviewPane.vala:265
-msgid "Characters"
-msgstr "المحارف"
-
-#: lib/vala/FontPreviewPane.vala:266
-msgid "Properties"
-msgstr "الخصائص"
-
-#: lib/vala/FontPreviewPane.vala:267 src/font-manager/Categories.vala:300
-msgid "License"
-msgstr "الترخيص"
-
-#: lib/vala/FontPreviewPane.vala:397
-msgid "Select preview type"
-msgstr "اختر نوع المعاينة"
-
-#: lib/vala/Metadata.vala:141
+#: lib/vala/Metadata.vala:95
 msgid "File does not contain license information."
 msgstr "لا يحتوي الملف على معلومات الترخيص."
 
-#: lib/vala/Metadata.vala:214
-msgid "PostScript Name"
-msgstr "اسم بوستسكربت"
+#: lib/vala/PreviewPane.vala:119 lib/vala/PreviewPane.vala:221
+#: src/font-manager/MainWindow.vala:176
+msgid "Preview"
+msgstr "عاين"
 
-#: lib/vala/Metadata.vala:215 src/font-manager/Categories.vala:292
-msgid "Width"
-msgstr "العرض"
+#: lib/vala/PreviewPane.vala:120 lib/vala/PreviewPane.vala:217
+msgid "Waterfall"
+msgstr "شلال"
 
-#: lib/vala/Metadata.vala:216 src/font-manager/Categories.vala:296
-msgid "Slant"
-msgstr "الميلان"
-
-#: lib/vala/Metadata.vala:217 src/font-manager/Categories.vala:294
-msgid "Weight"
-msgstr "الوزن"
-
-#: lib/vala/Metadata.vala:218 src/font-manager/Categories.vala:298
-msgid "Spacing"
-msgstr "التوسع"
-
-#: lib/vala/Metadata.vala:219
-msgid "Version"
-msgstr "الإصدارة"
-
-#: lib/vala/Metadata.vala:220 src/font-manager/Categories.vala:302
-msgid "Vendor"
-msgstr "البائع"
-
-#: lib/vala/Metadata.vala:221
-msgid "FileType"
-msgstr ""
-
-#: lib/vala/Metadata.vala:222
-msgid "Filesize"
-msgstr ""
+#: lib/vala/PreviewPane.vala:121 lib/vala/PreviewPane.vala:219
+msgid "Body Text"
+msgstr "متن"
 
 #: src/font-manager/Categories.vala:284
 msgid "All"
@@ -300,24 +220,54 @@ msgid "Fonts available to all users"
 msgstr "الخطوط المتاحة لكل المستخدمين"
 
 #: src/font-manager/Categories.vala:292
+#: data/ui/font-manager-properties-pane.ui:170
+msgid "Width"
+msgstr "العرض"
+
+#: src/font-manager/Categories.vala:292
 msgid "Grouped by font width"
 msgstr "مجمّعة حسب عرض الخط"
+
+#: src/font-manager/Categories.vala:294
+#: data/ui/font-manager-properties-pane.ui:206
+msgid "Weight"
+msgstr "الوزن"
 
 #: src/font-manager/Categories.vala:294
 msgid "Grouped by font weight"
 msgstr "مجمّعة حسب وزن الخط"
 
 #: src/font-manager/Categories.vala:296
+#: data/ui/font-manager-properties-pane.ui:188
+msgid "Slant"
+msgstr "الميلان"
+
+#: src/font-manager/Categories.vala:296
 msgid "Grouped by font angle"
 msgstr "مجمّعة حسب زاوية الخط"
+
+#: src/font-manager/Categories.vala:298
+#: data/ui/font-manager-properties-pane.ui:224
+msgid "Spacing"
+msgstr "التوسع"
 
 #: src/font-manager/Categories.vala:298
 msgid "Grouped by font spacing"
 msgstr "مجمّعة حسب توسع الخط"
 
 #: src/font-manager/Categories.vala:300
+#: data/ui/font-manager-preview-pane.ui:106
+msgid "License"
+msgstr "الترخيص"
+
+#: src/font-manager/Categories.vala:300
 msgid "Grouped by license type"
 msgstr "مجمّعة حسب نوع الترخيص"
+
+#: src/font-manager/Categories.vala:302
+#: data/ui/font-manager-properties-pane.ui:260
+msgid "Vendor"
+msgstr "البائع"
 
 #: src/font-manager/Categories.vala:302
 msgid "Grouped by vendor"
@@ -523,15 +473,15 @@ msgstr ""
 msgid "Show in Folder"
 msgstr ""
 
-#: src/font-manager/MainWindow.vala:54 src/font-manager/MainWindow.vala:176
+#: src/font-manager/MainWindow.vala:54 src/font-manager/MainWindow.vala:182
 msgid "Browse"
 msgstr "تصفح"
 
-#: src/font-manager/MainWindow.vala:56 src/font-manager/MainWindow.vala:171
+#: src/font-manager/MainWindow.vala:56 src/font-manager/MainWindow.vala:177
 msgid "Compare"
 msgstr "قارن"
 
-#: src/font-manager/MainWindow.vala:58 src/font-manager/MainWindow.vala:175
+#: src/font-manager/MainWindow.vala:58 src/font-manager/MainWindow.vala:181
 msgid "Manage"
 msgstr "أدر"
 
@@ -883,10 +833,10 @@ msgid "Preferences"
 msgstr "التفضيلات"
 
 #: src/font-viewer/Application.vala:69 src/font-viewer/Application.vala:101
-#: src/font-viewer/MainWindow.vala:25 src/font-viewer/MainWindow.vala:136
+#: src/font-viewer/MainWindow.vala:25
 #: data/org.gnome.FontViewer.appdata.xml.in:9
 #: data/org.gnome.FontViewer.desktop.in:5
-#: data/org.gnome.FontViewer.desktop.in:6
+#: data/org.gnome.FontViewer.desktop.in:6 data/ui/font-viewer-main-window.ui:18
 msgid "Font Viewer"
 msgstr "عارض الخطوط"
 
@@ -910,23 +860,23 @@ msgstr "خط ترو تيب"
 msgid "PostScript Type 1 Font"
 msgstr "خط بوستسكربت تيب ١"
 
-#: src/font-viewer/MainWindow.vala:102
-msgid "No file selected"
-msgstr "لا ملفات محددة"
-
-#: src/font-viewer/MainWindow.vala:103
-msgid "Or unsupported filetype."
-msgstr "أو نوع الملف غير مدعوم."
-
-#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:274
+#: src/font-viewer/MainWindow.vala:100 src/font-viewer/MainWindow.vala:229
 msgid "Install Font"
 msgstr "نصِّب الخط"
 
-#: src/font-viewer/MainWindow.vala:269
+#: src/font-viewer/MainWindow.vala:185
+msgid "No file selected"
+msgstr "لا ملفات محددة"
+
+#: src/font-viewer/MainWindow.vala:186
+msgid "Or unsupported filetype."
+msgstr "أو نوع الملف غير مدعوم."
+
+#: src/font-viewer/MainWindow.vala:224
 msgid "Newer version already installed"
 msgstr "هناك إصدارة أحدث منصّبة"
 
-#: src/font-viewer/MainWindow.vala:271
+#: src/font-viewer/MainWindow.vala:226
 msgid "Installed"
 msgstr "المنصبة"
 
@@ -996,6 +946,58 @@ msgstr ""
 msgid "Full featured font file preview application"
 msgstr ""
 
+#: data/ui/font-manager-preview-controls.ui:19
+msgid "Undo changes"
+msgstr "تراجع عن التغييرات"
+
+#: data/ui/font-manager-preview-controls.ui:41
+msgid "Left Aligned"
+msgstr "محاذى إلى اليسار"
+
+#: data/ui/font-manager-preview-controls.ui:66
+msgid "Edit preview text"
+msgstr "حرّر نص المعاينة"
+
+#: data/ui/font-manager-preview-controls.ui:88
+msgid "Centered"
+msgstr "مُوسّط"
+
+#: data/ui/font-manager-preview-controls.ui:115
+msgid "Fill"
+msgstr "مُساوى"
+
+#: data/ui/font-manager-preview-controls.ui:141
+msgid "Right Aligned"
+msgstr "محاذى إلى اليمين"
+
+#: data/ui/font-manager-preview-pane.ui:54
+msgid "Characters"
+msgstr "المحارف"
+
+#: data/ui/font-manager-preview-pane.ui:80
+msgid "Properties"
+msgstr "الخصائص"
+
+#: data/ui/font-manager-preview-pane.ui:119
+msgid "Select preview type"
+msgstr "اختر نوع المعاينة"
+
+#: data/ui/font-manager-properties-pane.ui:136
+msgid "PostScript Name"
+msgstr "اسم بوستسكربت"
+
+#: data/ui/font-manager-properties-pane.ui:242
+msgid "Version"
+msgstr "الإصدارة"
+
+#: data/ui/font-manager-properties-pane.ui:278
+msgid "FileType"
+msgstr ""
+
+#: data/ui/font-manager-properties-pane.ui:296
+msgid "Filesize"
+msgstr ""
+
 #: data/ui/font-manager-shortcuts-window.ui:41
 msgid "General"
 msgstr ""
@@ -1051,3 +1053,7 @@ msgstr ""
 #: data/ui/font-manager-shortcuts-window.ui:135
 msgid "Switch to Body Text preview"
 msgstr ""
+
+#: data/ui/font-manager-subpixel-geometry.ui:71
+msgid "Subpixel Geometry"
+msgstr "الترتيب التحت بكسلي"

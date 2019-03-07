@@ -63,7 +63,7 @@ DISTCLEANFILES = \
 
 EXTRA_DIST = \
 	icons \
-	ui/shortcuts.ui \
+	ui \
 	FontManagerGResource.xml \
 	FontManager.css \
 	$(gsettings_SCHEMAS) \

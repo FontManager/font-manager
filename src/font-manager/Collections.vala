@@ -254,7 +254,7 @@ namespace FontManager {
         public CollectionTree () {
             expand = true;
             controls = new CollectionControls();
-            name = "CollectionTree";
+            name = "FontManagerCollectionTree";
             renderer = new Gtk.CellRendererText();
             var count_renderer = new CellRendererCount();
             var toggle = new Gtk.CellRendererToggle();

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2019-03-03 13:05-0500\n"
+"POT-Creation-Date: 2019-03-10 15:15-0400\n"
 "PO-Revision-Date: 2018-12-12 03:16+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Svenska Språkfiler <https://svenskasprakfiler.se>\n"
@@ -65,34 +65,6 @@ msgstr ""
 #: lib/vala/About.vala:66
 msgid "translator-credits"
 msgstr "Åke Engelbrektson"
-
-#: lib/vala/Controls.vala:450
-msgid "Edit preview text"
-msgstr "Redigera exempeltext"
-
-#: lib/vala/Controls.vala:454
-msgid "Undo changes"
-msgstr "Ångra ändringar"
-
-#: lib/vala/Controls.vala:459
-msgid "Left Aligned"
-msgstr "Vänsterjusterat"
-
-#: lib/vala/Controls.vala:459
-msgid "Centered"
-msgstr "Centrerat"
-
-#: lib/vala/Controls.vala:459
-msgid "Fill"
-msgstr "Fyll"
-
-#: lib/vala/Controls.vala:459
-msgid "Right Aligned"
-msgstr "Högerjusterat"
-
-#: lib/vala/Controls.vala:610
-msgid "Subpixel Geometry"
-msgstr "Subpixel-geometri"
 
 #: lib/vala/FontConfig.vala:38
 msgid "Ultra-Condensed"
@@ -231,74 +203,22 @@ msgstr "VRGB"
 msgid "VBGR"
 msgstr "VBGR"
 
-#: lib/vala/FontPreviewPane.vala:119 lib/vala/FontPreviewPane.vala:221
-#: src/font-manager/MainWindow.vala:170
-msgid "Preview"
-msgstr "Förhandsgranskning"
-
-#: lib/vala/FontPreviewPane.vala:120 lib/vala/FontPreviewPane.vala:217
-msgid "Waterfall"
-msgstr "Kaskad"
-
-#: lib/vala/FontPreviewPane.vala:121 lib/vala/FontPreviewPane.vala:219
-msgid "Body Text"
-msgstr "Brödtext"
-
-#: lib/vala/FontPreviewPane.vala:265
-msgid "Characters"
-msgstr "Tecken"
-
-#: lib/vala/FontPreviewPane.vala:266
-msgid "Properties"
-msgstr "Egenskaper"
-
-#: lib/vala/FontPreviewPane.vala:267 src/font-manager/Categories.vala:300
-msgid "License"
-msgstr "Licens"
-
-#: lib/vala/FontPreviewPane.vala:397
-msgid "Select preview type"
-msgstr "Välj förhandsgranskningstyp"
-
-#: lib/vala/Metadata.vala:141
+#: lib/vala/Metadata.vala:95
 msgid "File does not contain license information."
 msgstr "Filen innehåller ingen licensinformation."
 
-#: lib/vala/Metadata.vala:214
-msgid "PostScript Name"
-msgstr "PostScript-namn"
+#: lib/vala/PreviewPane.vala:119 lib/vala/PreviewPane.vala:221
+#: src/font-manager/MainWindow.vala:176
+msgid "Preview"
+msgstr "Förhandsgranskning"
 
-#: lib/vala/Metadata.vala:215 src/font-manager/Categories.vala:292
-msgid "Width"
-msgstr "Bredd"
+#: lib/vala/PreviewPane.vala:120 lib/vala/PreviewPane.vala:217
+msgid "Waterfall"
+msgstr "Kaskad"
 
-#: lib/vala/Metadata.vala:216 src/font-manager/Categories.vala:296
-msgid "Slant"
-msgstr "Lutning"
-
-#: lib/vala/Metadata.vala:217 src/font-manager/Categories.vala:294
-msgid "Weight"
-msgstr "Tjocklek"
-
-#: lib/vala/Metadata.vala:218 src/font-manager/Categories.vala:298
-msgid "Spacing"
-msgstr "Avstånd"
-
-#: lib/vala/Metadata.vala:219
-msgid "Version"
-msgstr "Version"
-
-#: lib/vala/Metadata.vala:220 src/font-manager/Categories.vala:302
-msgid "Vendor"
-msgstr "Leverantör"
-
-#: lib/vala/Metadata.vala:221
-msgid "FileType"
-msgstr "Filtyp"
-
-#: lib/vala/Metadata.vala:222
-msgid "Filesize"
-msgstr "Filstorlek"
+#: lib/vala/PreviewPane.vala:121 lib/vala/PreviewPane.vala:219
+msgid "Body Text"
+msgstr "Brödtext"
 
 #: src/font-manager/Categories.vala:284
 msgid "All"
@@ -317,24 +237,54 @@ msgid "Fonts available to all users"
 msgstr "Teckensnitt tillgängliga för alla användare"
 
 #: src/font-manager/Categories.vala:292
+#: data/ui/font-manager-properties-pane.ui:170
+msgid "Width"
+msgstr "Bredd"
+
+#: src/font-manager/Categories.vala:292
 msgid "Grouped by font width"
 msgstr "Grupperad efter teckenbredd"
+
+#: src/font-manager/Categories.vala:294
+#: data/ui/font-manager-properties-pane.ui:206
+msgid "Weight"
+msgstr "Tjocklek"
 
 #: src/font-manager/Categories.vala:294
 msgid "Grouped by font weight"
 msgstr "Grupperad efter teckenvikt"
 
 #: src/font-manager/Categories.vala:296
+#: data/ui/font-manager-properties-pane.ui:188
+msgid "Slant"
+msgstr "Lutning"
+
+#: src/font-manager/Categories.vala:296
 msgid "Grouped by font angle"
 msgstr "Grupperad efter teckenvinkel"
+
+#: src/font-manager/Categories.vala:298
+#: data/ui/font-manager-properties-pane.ui:224
+msgid "Spacing"
+msgstr "Avstånd"
 
 #: src/font-manager/Categories.vala:298
 msgid "Grouped by font spacing"
 msgstr "Grupperad efter teckenavstånd"
 
 #: src/font-manager/Categories.vala:300
+#: data/ui/font-manager-preview-pane.ui:106
+msgid "License"
+msgstr "Licens"
+
+#: src/font-manager/Categories.vala:300
 msgid "Grouped by license type"
 msgstr "Grupperad efter licenstyp"
+
+#: src/font-manager/Categories.vala:302
+#: data/ui/font-manager-properties-pane.ui:260
+msgid "Vendor"
+msgstr "Leverantör"
 
 #: src/font-manager/Categories.vala:302
 msgid "Grouped by vendor"
@@ -545,15 +495,15 @@ msgstr "Kopiera plats"
 msgid "Show in Folder"
 msgstr "Visa i mapp"
 
-#: src/font-manager/MainWindow.vala:54 src/font-manager/MainWindow.vala:176
+#: src/font-manager/MainWindow.vala:54 src/font-manager/MainWindow.vala:182
 msgid "Browse"
 msgstr "Bläddra"
 
-#: src/font-manager/MainWindow.vala:56 src/font-manager/MainWindow.vala:171
+#: src/font-manager/MainWindow.vala:56 src/font-manager/MainWindow.vala:177
 msgid "Compare"
 msgstr "Jämför"
 
-#: src/font-manager/MainWindow.vala:58 src/font-manager/MainWindow.vala:175
+#: src/font-manager/MainWindow.vala:58 src/font-manager/MainWindow.vala:181
 msgid "Manage"
 msgstr "Hantera"
 
@@ -912,10 +862,10 @@ msgid "Preferences"
 msgstr "Inställningar"
 
 #: src/font-viewer/Application.vala:69 src/font-viewer/Application.vala:101
-#: src/font-viewer/MainWindow.vala:25 src/font-viewer/MainWindow.vala:136
+#: src/font-viewer/MainWindow.vala:25
 #: data/org.gnome.FontViewer.appdata.xml.in:9
 #: data/org.gnome.FontViewer.desktop.in:5
-#: data/org.gnome.FontViewer.desktop.in:6
+#: data/org.gnome.FontViewer.desktop.in:6 data/ui/font-viewer-main-window.ui:18
 msgid "Font Viewer"
 msgstr "Teckensnittsvisare"
 
@@ -939,23 +889,23 @@ msgstr "TrueType teckensnitt"
 msgid "PostScript Type 1 Font"
 msgstr "PostScript Typ 1 teckensnitt"
 
-#: src/font-viewer/MainWindow.vala:102
-msgid "No file selected"
-msgstr "Ingen fil vald"
-
-#: src/font-viewer/MainWindow.vala:103
-msgid "Or unsupported filetype."
-msgstr "Eller filtyp utan stöd."
-
-#: src/font-viewer/MainWindow.vala:143 src/font-viewer/MainWindow.vala:274
+#: src/font-viewer/MainWindow.vala:100 src/font-viewer/MainWindow.vala:229
 msgid "Install Font"
 msgstr "Installera teckensnitt"
 
-#: src/font-viewer/MainWindow.vala:269
+#: src/font-viewer/MainWindow.vala:185
+msgid "No file selected"
+msgstr "Ingen fil vald"
+
+#: src/font-viewer/MainWindow.vala:186
+msgid "Or unsupported filetype."
+msgstr "Eller filtyp utan stöd."
+
+#: src/font-viewer/MainWindow.vala:224
 msgid "Newer version already installed"
 msgstr "Nyare version är redan installerad"
 
-#: src/font-viewer/MainWindow.vala:271
+#: src/font-viewer/MainWindow.vala:226
 msgid "Installed"
 msgstr "Installerad"
 
@@ -1034,6 +984,58 @@ msgstr ""
 msgid "Full featured font file preview application"
 msgstr "Program för förhandsvisning av teckensnitt"
 
+#: data/ui/font-manager-preview-controls.ui:19
+msgid "Undo changes"
+msgstr "Ångra ändringar"
+
+#: data/ui/font-manager-preview-controls.ui:41
+msgid "Left Aligned"
+msgstr "Vänsterjusterat"
+
+#: data/ui/font-manager-preview-controls.ui:66
+msgid "Edit preview text"
+msgstr "Redigera exempeltext"
+
+#: data/ui/font-manager-preview-controls.ui:88
+msgid "Centered"
+msgstr "Centrerat"
+
+#: data/ui/font-manager-preview-controls.ui:115
+msgid "Fill"
+msgstr "Fyll"
+
+#: data/ui/font-manager-preview-controls.ui:141
+msgid "Right Aligned"
+msgstr "Högerjusterat"
+
+#: data/ui/font-manager-preview-pane.ui:54
+msgid "Characters"
+msgstr "Tecken"
+
+#: data/ui/font-manager-preview-pane.ui:80
+msgid "Properties"
+msgstr "Egenskaper"
+
+#: data/ui/font-manager-preview-pane.ui:119
+msgid "Select preview type"
+msgstr "Välj förhandsgranskningstyp"
+
+#: data/ui/font-manager-properties-pane.ui:136
+msgid "PostScript Name"
+msgstr "PostScript-namn"
+
+#: data/ui/font-manager-properties-pane.ui:242
+msgid "Version"
+msgstr "Version"
+
+#: data/ui/font-manager-properties-pane.ui:278
+msgid "FileType"
+msgstr "Filtyp"
+
+#: data/ui/font-manager-properties-pane.ui:296
+msgid "Filesize"
+msgstr "Filstorlek"
+
 #: data/ui/font-manager-shortcuts-window.ui:41
 msgid "General"
 msgstr "Allmänt"
@@ -1089,3 +1091,7 @@ msgstr "Växla vattenfallsgranskning"
 #: data/ui/font-manager-shortcuts-window.ui:135
 msgid "Switch to Body Text preview"
 msgstr "Växla till brödtextgranskning"
+
+#: data/ui/font-manager-subpixel-geometry.ui:71
+msgid "Subpixel Geometry"
+msgstr "Subpixel-geometri"
