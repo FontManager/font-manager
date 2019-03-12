@@ -15,7 +15,7 @@ dnl ***********************************************************************
 AC_PREREQ([2.69])
 AC_INIT(
     [font-manager],
-    [0.7.4],
+    [0.7.4.3],
     [https://github.com/FontManager/master/issues],
     [font-manager],
     [http://fontmanager.github.io/],
