@@ -104,6 +104,7 @@ namespace FontManager {
         protected Gtk.Adjustment adjustment;
 
         bool _visible_ = false;
+        string? waterfall_default = "%s\n".printf(get_localized_pangram());
 
         public FontPreview () {
             Object(name: "FontPreview");
@@ -128,9 +129,15 @@ namespace FontManager {
             preview.preview_text_changed.connect((n) => { preview_text_changed(n); });
             preview.notify["preview-size"].connect(() => { notify_property("preview-size"); });
             notify["visible-child-name"].connect(() => { mode_changed(mode); });
-            notify["selected-font"].connect(() => { update_text_tag(); });
+            notify["selected-font"].connect(() => {
+                update_text_tag();
+                update_sample_string();
+            });
             adjustment.value_changed.connect(() => { update_text_tag(); });
-            map.connect(() => { _visible_ = true; update_text_tag(); });
+            map.connect(() => { _visible_ = true;
+                update_text_tag();
+                update_sample_string();
+            });
             unmap.connect(() => { _visible_ = false; });
         }
 
@@ -154,6 +161,26 @@ namespace FontManager {
             return;
         }
 
+        void update_sample_string () {
+            string description = is_valid_source(selected_font) ? selected_font.description : "";
+            /* Prevent tofu if possible */
+            if (samples != null && samples.has_member(description)) {
+                string sample = samples.get_string_member(description);
+                waterfall.pangram = sample;
+                if (restore_default_preview || preview.get_preview_text() == get_localized_preview_text()) {
+                    restore_default_preview = true;
+                    preview.set_preview_text(sample);
+                }
+            } else if (waterfall.pangram != waterfall_default) {
+                waterfall.pangram = null;
+                if (restore_default_preview) {
+                    restore_default_preview = false;
+                    preview.set_preview_text(get_localized_preview_text());
+                }
+            }
+            return;
+        }
+
         void update_text_tag () {
             if (!_visible_)
                 return;
@@ -163,21 +190,6 @@ namespace FontManager {
                      "size-points", preview_size,
                      "fallback", false, null);
             preview.controls.title = description;
-            /* Prevent tofu if possible */
-            if (samples != null && samples.has_member(description)) {
-                string sample = samples.get_string_member(description);
-                waterfall.pangram = sample;
-                if (restore_default_preview || preview.get_preview_text() == get_localized_preview_text()) {
-                    restore_default_preview = true;
-                    preview.set_preview_text(sample);
-                }
-            } else if (waterfall.pangram != get_localized_pangram()) {
-                waterfall.pangram = null;
-                if (restore_default_preview) {
-                    restore_default_preview = false;
-                    preview.set_preview_text(get_localized_preview_text());
-                }
-            }
             return;
         }
 
