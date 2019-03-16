@@ -115,7 +115,8 @@ namespace FontManager {
                 header.set_title(_("Select fonts to remove"));
                 header.pack_start(cancel);
                 header.pack_end(remove);
-                tree = new FontListPane(new UserFontList());
+                tree = new FontListPane();
+                tree.fontlist = new UserFontList();
                 tree.set("model", model, "filter", filter, "expand", true, null);
                 scroll.add(tree);
                 content_area.add(scroll);

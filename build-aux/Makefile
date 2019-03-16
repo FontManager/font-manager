@@ -61,7 +61,7 @@ POTFILES.in:
 	echo "data/org.gnome.FontManager.desktop.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	echo "data/org.gnome.FontViewer.appdata.xml.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	echo "data/org.gnome.FontViewer.desktop.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "data/ui/font-manager-shortcuts-window.ui" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	find $(ABS_TOP_SRCDIR)/data -name "*.ui" -print | $(SED) -e 's|$(ABS_TOP_SRCDIR)/||g' | sort | uniq >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	echo "" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	$(SED) -i '/.*-custom.vala/d' $(ABS_TOP_SRCDIR)/po/$@ ;
 	$(SED) -i 's|\.\./||g' $(ABS_TOP_SRCDIR)/po/$@ ;
@@ -117,10 +117,14 @@ ValaSources.mk:
 	cd $(ABS_SRCDIR)
 
 license.h:
-	license/genheader.py $(PKG_LIB_DIR)/common
+	cd license && \
+	./genheader.py $(PKG_LIB_DIR)/common && \
+	cd ..
 
 vendor.h:
-	vendor/genheader.py $(PKG_LIB_DIR)/common
+	cd vendor && \
+	./genheader.py $(PKG_LIB_DIR)/common && \
+	cd ..
 
 update-headers: license.h vendor.h unicode-headers
 update-po: POTFILES.readme POTFILES.in POTFILES.skip $(PACKAGE_NAME).pot

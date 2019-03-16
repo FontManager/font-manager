@@ -8,7 +8,6 @@ font_manager_VALASOURCES = \
 	CellRendererPill.vala \
 	Collections.vala \
 	Compare.vala \
-	CustomPreviewEntry.vala \
 	Dialogs.vala \
 	Filters/Cacheable.vala \
 	Filters/Category.vala \
@@ -28,5 +27,5 @@ font_manager_VALASOURCES = \
 	Preferences/Sources.vala \
 	Preferences/Substitutions.vala \
 	Preferences/UserInterface.vala \
-	SideBar.vala \
+	Sidebar.vala \
 	TitleBar.vala 

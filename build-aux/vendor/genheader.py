@@ -102,7 +102,7 @@ vendor_dir = os.path.dirname(os.path.realpath(__file__))
 
 def get_vendor_entries () :
     sys.path.append(vendor_dir)
-    module_names = [os.path.splitext(p)[0] for p in glob("*.py") and p != "genheader.py"]
+    module_names = [os.path.splitext(p)[0] for p in glob("*.py") if p != "genheader.py"]
     resources = map(__import__, module_names)
     tmp = io.StringIO()
     for module in resources:

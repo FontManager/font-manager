@@ -22,6 +22,13 @@ namespace FontManager {
 
     public class Orthography : Object {
 
+        unowned string? _get_ (string member_name) {
+            return_val_if_fail(source_object != null, null);
+            return source_object.has_member(member_name) ?
+                   source_object.get_string_member(member_name) :
+                   null;
+        }
+
         public string? name { get { return _get_("name"); } }
         public string? native_name { get { return _get_("native"); } }
         public string? sample { get { return _get_("sample"); } }
@@ -30,7 +37,8 @@ namespace FontManager {
 
         public double coverage {
             get {
-                return source_object != null && source_object.has_member("coverage") ?
+                return source_object != null &&
+                        source_object.has_member("coverage") ?
                         source_object.get_double_member("coverage") : 0;
             }
         }
@@ -47,13 +55,6 @@ namespace FontManager {
                     charlist.prepend(((unichar) array.get_int_element(i)));
                 charlist.reverse();
             }
-        }
-
-        unowned string? _get_ (string member_name) {
-            return_val_if_fail(source_object != null, null);
-            return source_object.has_member(member_name) ?
-                   source_object.get_string_member(member_name) :
-                   null;
         }
 
     }

@@ -46,7 +46,9 @@ AM_VALAFLAGS = \
 	--pkg json-glib-1.0 \
 	--pkg libxml-2.0 \
 	--pkg pango \
-	--pkg sqlite3
+	--pkg sqlite3 \
+	--gresources $(top_srcdir)/data/FontManagerGResource.xml \
+	--gresourcesdir $(top_srcdir)/data
 
 AM_LDADD = \
 	-lm \

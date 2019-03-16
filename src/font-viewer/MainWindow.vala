@@ -69,120 +69,53 @@ namespace FontViewer {
 
     }
 
-    public class TitleBar : Gtk.HeaderBar {
-
-        Gtk.Image type_icon;
-        TypeInfoCache type_info_cache;
-
-        construct {
-            show_close_button = true;
-            spacing = 6;
-            type_info_cache = new TypeInfoCache();
-            type_icon = new Gtk.Image();
-            reset();
-            pack_start(type_icon);
-        }
-
-        public override void show () {
-            type_icon.show();
-            base.show();
-            return;
-        }
-
-        void reset () {
-            set_title(null);
-            set_subtitle(null);
-            type_info_cache.update(type_icon, "null");
-            return;
-        }
-
-        public virtual void update (string? family, string? style, string? filetype) {
-            this.reset();
-            if (family == null && style == null) {
-                set_title(_("No file selected"));
-                set_subtitle(_("Or unsupported filetype."));
-                return;
-            }
-            set_title(family);
-            set_subtitle(style);
-            const string tt_tmpl = "<big><b>%s</b> </big><b>%s</b>";
-            set_tooltip_markup(tt_tmpl.printf(Markup.escape_text(family), style));
-            type_info_cache.update(type_icon, filetype);
-            return;
-        }
-
-    }
-
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-viewer-main-window.ui")]
     public class MainWindow : Gtk.ApplicationWindow {
 
         public signal void mode_changed (FontPreviewMode mode);
 
         public FontPreviewMode mode { get; set; }
-        public FontPreviewPane preview { get; private set; }
+        public PreviewPane preview { get; private set; }
         public Settings? settings { get; set; default = null; }
 
-        Gtk.Stack stack;
-        Gtk.EventBox blend;
-        Gtk.Button install_button;
-        PlaceHolder welcome;
-        TitleBar titlebar;
-        StringHashset installed;
+        [GtkChild] Gtk.Stack stack;
+        [GtkChild] Gtk.Box preview_page;
+        [GtkChild] Gtk.Box welcome_page;
+        [GtkChild] Gtk.Image type_icon;
+        [GtkChild] Gtk.HeaderBar titlebar;
 
-        /* Type hint used to prevent notification on every selection.
-         * Happens in gnome-shell and I assume other environments if
-         * one of the file manager extensions are in use.
-         */
-        public MainWindow () {
-            Object(title: _("Font Viewer"), icon_name: "font-x-generic",
-                   type_hint: Gdk.WindowTypeHint.UTILITY,
-                   settings: get_gsettings(FontViewer.BUS_ID));
+        Gtk.Button install_button;
+
+        PlaceHolder welcome;
+        StringHashset installed;
+        TypeInfoCache type_info_cache;
+
+        public override void constructed () {
+            settings = get_gsettings(FontViewer.BUS_ID);
+            type_info_cache = new TypeInfoCache();
             installed = new StringHashset();
-            preview = new FontPreviewPane();
+            preview = new PreviewPane();
             install_button = new Gtk.Button();
             install_button.margin = MINIMUM_MARGIN_SIZE;
             install_button.set_label(_("Install Font"));
             install_button.opacity = 0.725;
-            install_button.clicked.connect(() => {
-                var filelist = new StringHashset();
-                filelist.add(preview.selected_font.filepath);
-                var installer = new Library.Installer();
-                installer.process.begin(filelist, (obj, res) => {
-                    installer.process.end(res);
-                    installed.add(preview.metadata.info.checksum);
-                    update_install_button_state();
-                });
-            });
+            install_button.clicked.connect(on_install_clicked);
+            update_install_button_state();
             preview.notebook.set_action_widget(install_button, Gtk.PackType.END);
             welcome = new PlaceHolder(welcome_tmpl.printf(w1, w2, w3), "font-x-generic-symbolic");
-            titlebar = new TitleBar();
-            set_titlebar(titlebar);
-            stack = new Gtk.Stack();
-            blend = new Gtk.EventBox();
-            blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            blend.expand = true;
-            blend.add(welcome);
-            stack.add_named(preview, "Preview");
-            stack.add_named(blend, "Placeholder");
-            stack.set_visible_child_name("Placeholder");
-            add(stack);
-            set_default_size(600, 400);
-            update_install_button_state();
+            preview_page.add(preview);
+            welcome_page.add(welcome);
+            stack.set_visible_child_name("Welcome");
+            preview.show();
+            welcome.show();
+            install_button.show();
+
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
             Gtk.drag_dest_set(stack, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
-            connect_signals();
-        }
 
-        void connect_signals () {
-            realize.connect(() => { on_realize(); });
-            delete_event.connect((w, e) => {
-                settings.apply();
-                ((Application) GLib.Application.get_default()).quit();
-                return true;
-            });
             bind_property("mode", preview, "mode", BindingFlags.BIDIRECTIONAL);
             preview.preview_mode_changed.connect((m) => { mode_changed(m); });
-            stack.drag_data_received.connect(_drag_data_recieved);
-            preview.changed.connect(() => { this.update(); });
+            preview.changed.connect(this.update);
 
             insert_action_group("default", new SimpleActionGroup());
 
@@ -201,16 +134,7 @@ namespace FontViewer {
             accels = { "<Ctrl>0", null };
             add_keyboard_shortcut(this, action, "zoom_default", accels);
 
-        }
-
-        public override void show () {
-            titlebar.show();
-            install_button.show();
-            preview.show();
-            welcome.show();
-            blend.show();
-            stack.show();
-            base.show();
+            base.constructed();
             return;
         }
 
@@ -238,15 +162,49 @@ namespace FontViewer {
             bool have_valid_source = is_valid_source(preview.selected_font);
             if (have_valid_source) {
                 preview.metadata.update();
-                titlebar.update(preview.selected_font.family,
+                update_titlebar(preview.selected_font.family,
                                 preview.selected_font.style,
                                 preview.metadata.info.filetype);
             } else {
-                titlebar.update(null, null, "");
+                update_titlebar(null, null, "");
             }
-            stack.set_visible_child_name(have_valid_source ? "Preview" : "Placeholder");
+            stack.set_visible_child_name(have_valid_source ? "Preview" : "Welcome");
             update_install_button_state();
             queue_draw();
+            return;
+        }
+
+        void reset_titlebar () {
+            titlebar.set_title(null);
+            titlebar.set_subtitle(null);
+            type_info_cache.update(type_icon, "null");
+            return;
+        }
+
+        void update_titlebar (string? family, string? style, string? filetype) {
+            reset_titlebar();
+            if (family == null && style == null) {
+                titlebar.set_title(_("No file selected"));
+                titlebar.set_subtitle(_("Or unsupported filetype."));
+                return;
+            }
+            titlebar.set_title(family);
+            titlebar.set_subtitle(style);
+            const string tt_tmpl = "<big><b>%s</b> </big><b>%s</b>";
+            titlebar.set_tooltip_markup(tt_tmpl.printf(Markup.escape_text(family), style));
+            type_info_cache.update(type_icon, filetype);
+            return;
+        }
+
+        void on_install_clicked () {
+            var filelist = new StringHashset();
+            filelist.add(preview.selected_font.filepath);
+            var installer = new Library.Installer();
+            installer.process.begin(filelist, (obj, res) => {
+                installer.process.end(res);
+                installed.add(preview.metadata.info.checksum);
+                update_install_button_state();
+            });
             return;
         }
 
@@ -263,7 +221,6 @@ namespace FontViewer {
             if (!_installed && installed.contains(preview.metadata.info.checksum))
                 _installed = true;
             install_button.sensitive = false;
-            install_button.relief = Gtk.ReliefStyle.NONE;
             install_button.get_style_context().add_class("InsensitiveButton");
             if (conflict != null && timecmp(conflict, preview.selected_font.filepath) > 0) {
                 install_button.set_label(_("Newer version already installed"));
@@ -273,12 +230,11 @@ namespace FontViewer {
                 install_button.get_style_context().remove_class("InsensitiveButton");
                 install_button.set_label(_("Install Font"));
                 install_button.sensitive = true;
-                install_button.relief = Gtk.ReliefStyle.NORMAL;
             }
             return;
         }
 
-        public void bind_settings () {
+        void bind_settings () {
             if (settings == null)
                 return;
             configure_event.connect((w, e) => {
@@ -302,7 +258,15 @@ namespace FontViewer {
             return;
         }
 
-        public void on_realize () {
+        [GtkCallback]
+        public bool on_delete_event (Gtk.Widget widget, Gdk.Event event) {
+            settings.apply();
+            ((Application) GLib.Application.get_default()).quit();
+            return true;
+        }
+
+        [GtkCallback]
+        public void on_realize (Gtk.Widget widget) {
             if (settings == null)
                 return;
             int x, y, w, h;
@@ -330,20 +294,9 @@ namespace FontViewer {
                     this.open(selection_data.get_uris()[0]);
                     break;
                 default:
-                    warning("Unsupported drag target.");
                     return;
             }
             return;
-        }
-
-        void _drag_data_recieved (Gtk.Widget widget,
-                                  Gdk.DragContext context,
-                                  int x,
-                                  int y,
-                                  Gtk.SelectionData selection_data,
-                                  uint info,
-                                  uint time) {
-            drag_data_received(context, x, y, selection_data, info, time);
         }
 
     }

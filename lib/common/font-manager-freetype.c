@@ -441,6 +441,8 @@ get_license_info (JsonObject *json_obj)
         license_data = json_object_get_string_member(json_obj, "license-data");
     if (json_object_has_member(json_obj, "copyright"))
         copyright = json_object_get_string_member(json_obj, "copyright");
+    if (json_object_has_member(json_obj, "license-url"))
+        license_url = json_object_get_string_member(json_obj, "license-url");
 
     gint license_type = get_license_type(license_data, copyright, license_url);
     const gchar *license_name = get_license_name(license_type);

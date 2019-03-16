@@ -1,4 +1,4 @@
-usr/lib/*/font-manager/libfontmanager-0.7.4.so
+usr/lib/*/font-manager/libfontmanager-0.7.4*.so
 usr/lib/*/font-manager/libfontmanager.so
 usr/share/help/*/font-manager/*
 usr/share/locale/*/LC_MESSAGES/font-manager.mo

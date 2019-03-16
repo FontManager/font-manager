@@ -18,56 +18,38 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-
 namespace FontManager {
 
-    public class Browse : AdjustablePreview {
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-browse-view.ui")]
+    public class Browse : Gtk.Box {
 
+        public double preview_size { get; set; }
         public Gtk.TreeModel? model { get; set; }
         public Json.Object? samples { get; set; default = null; }
-        public BaseTreeView treeview { get; private set; }
-        public CustomPreviewEntry entry { get; private set; }
+        public Gtk.Adjustment adjustment { get; set; }
 
-        Gtk.EventBox blend;
-        Gtk.ScrolledWindow scroll;
-        CellRendererTitle renderer;
+        [GtkChild] public Gtk.TreeView treeview { get; }
+        [GtkChild] public PreviewEntry entry { get; private set; }
 
-        public Browse () {
-            orientation = Gtk.Orientation.VERTICAL;
-            treeview = new BaseTreeView();
-            treeview.name = "FontManagerBrowseView";
-            treeview.headers_visible = false;
-            treeview.show_expanders = false;
-            blend = new Gtk.EventBox();
-            entry = new CustomPreviewEntry();
-            entry.changed.connect(() => { treeview.queue_draw(); });
-            blend.add(entry);
-            blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            add(blend);
-            scroll = new Gtk.ScrolledWindow(null, null);
-            scroll.add(treeview);
-            scroll.expand = true;
-            renderer = new CellRendererTitle();
-            treeview.set_enable_search(true);
-            treeview.set_search_column(FontModelColumn.DESCRIPTION);
-            treeview.set_tooltip_column(FontModelColumn.DESCRIPTION);
+        [GtkChild] FontScale fontscale;
+
+        public override void constructed () {
+            var renderer = new CellRendererTitle();
             treeview.insert_column_with_data_func(0, "", renderer, cell_data_func);
             treeview.get_selection().set_mode(Gtk.SelectionMode.NONE);
             bind_property("model", treeview, "model", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             notify["model"].connect(() => { expand_all(); });
+            bind_property("preview-size", fontscale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            fontscale.bind_property("adjustment", this, "adjustment", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            entry.changed.connect(() => {
+                treeview.get_column(0).queue_resize();
+                treeview.queue_draw();
+            });
             adjustment.value_changed.connect(() => {
                 treeview.get_column(0).queue_resize();
                 treeview.queue_draw();
             });
-            add(scroll);
-        }
-
-        public override void show () {
-            treeview.show();
-            scroll.show();
-            blend.show();
-            entry.show();
-            base.show();
+            base.constructed();
             return;
         }
 
@@ -84,13 +66,13 @@ namespace FontManager {
                              Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
-            var obj = val.get_object();
+            Object obj = val.get_object();
             string font_desc;
             bool active;
             Pango.AttrList attrs = new Pango.AttrList();
             attrs.insert(Pango.attr_fallback_new(false));
             cell.set_property("attributes", attrs);
-            var default_desc = get_font(treeview);
+            Pango.FontDescription default_desc = get_font(treeview);
             default_desc.set_size((int) ((get_desc_size()) * Pango.SCALE));
             cell.set_property("font-desc" , default_desc);
             if (obj is Family) {
@@ -137,4 +119,3 @@ namespace FontManager {
     }
 
 }
-

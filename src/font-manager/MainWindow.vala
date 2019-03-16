@@ -72,6 +72,7 @@ namespace FontManager {
 
     }
 
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-main-window.ui")]
     public class MainWindow : Gtk.ApplicationWindow {
 
         public signal void mode_changed (int new_mode);
@@ -79,23 +80,24 @@ namespace FontManager {
         public bool wide_layout { get; set; default = false; }
         public bool use_csd { get; set; default = false; }
 
-        public Gtk.Stack main_stack { get; private set; }
-        public Gtk.Stack content_stack { get; private set; }
-        public Gtk.Stack view_stack { get; private set; }
-        public Gtk.Box main_box { get; private set; }
-        public Gtk.Box content_box { get; private set; }
-        public Gtk.Paned main_pane { get; private set; }
-        public Gtk.Paned content_pane { get; private set; }
+        [GtkChild] public Gtk.Stack main_stack { get; }
+        [GtkChild] public Gtk.Stack content_stack { get; }
+        [GtkChild] public Gtk.Stack view_stack { get; }
+        [GtkChild] public Gtk.Box main_box { get; }
+        [GtkChild] public Gtk.Paned main_pane { get; }
+        [GtkChild] public Gtk.Paned content_pane { get; }
 
-        public Browse browser { get; private set; }
-        public Compare compare { get; private set; }
+        [GtkChild] public Browse browser { get; }
+        [GtkChild] public Compare compare { get; }
+        [GtkChild] public PreviewPane preview_pane { get; }
+        [GtkChild] public Preferences preference_pane { get; }
+        [GtkChild] public Sidebar sidebar { get; private set; }
+        [GtkChild] public FontListPane fontlist_pane { get; private set; }
+
         public FontModel? model { get; set; default = null; }
-        public FontPreviewPane preview_pane { get; private set; }
-        public SideBar sidebar { get; private set; }
         public TitleBar titlebar { get; private set; }
-        public FontList fontlist { get; private set; }
-        public FontListPane fontpane { get; private set; }
-        public Preferences preference_pane { get; private set; }
+
+        public FontList fontlist { get { return ((FontList) fontlist_pane.fontlist); } }
 
         public Mode mode {
             get {
@@ -106,24 +108,38 @@ namespace FontManager {
             }
         }
 
+        private bool charmap_visible {
+            get {
+                int current_page = preview_pane.notebook.get_current_page();
+                return current_page == PreviewPanePage.CHARACTER_MAP;
+            }
+        }
+
         bool sidebar_switch = false;
-        bool charmap_visible = false;
         bool is_horizontal = false;
-        Mode _mode;
-        Gtk.Box content_view;
-        Gtk.Box _main_pane_;
-        Gtk.Paned lock_child_position;
-
-        Disabled? disabled = null;
-        Unsorted? unsorted = null;
-
         const int DEFAULT_WIDTH = 900;
         const int DEFAULT_HEIGHT = 600;
 
+        Mode _mode;
+        Disabled? disabled = null;
+        Unsorted? unsorted = null;
+
         public MainWindow () {
             Object(title: About.DISPLAY_NAME, icon_name: About.ICON);
-            init_components();
-            pack_components();
+            fontlist_pane.fontlist = new FontList();
+            initialize_preference_pane(preference_pane);
+            add_actions();
+            use_csd = settings.get_boolean("use-csd");
+            if (Gdk.Screen.get_default().is_composited() && use_csd) {
+                titlebar = new ClientSideDecorations();
+                set_titlebar(titlebar);
+            } else {
+                titlebar = new ServerSideDecorations();
+                main_box.pack_start(titlebar, false, true, 0);
+                add_separator(main_box, Gtk.Orientation.HORIZONTAL);
+            }
+            main_stack.set_visible_child_name("Default");
+            titlebar.show();
             bind_properties();
             connect_signals();
         }
@@ -152,34 +168,7 @@ namespace FontManager {
             return;
         }
 
-        void init_components () {
-            main_box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            content_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-            main_pane = new Gtk.Paned(Gtk.Orientation.HORIZONTAL);
-            content_pane = new Gtk.Paned(wide_layout ? Gtk.Orientation.HORIZONTAL : Gtk.Orientation.VERTICAL);
-            browser = new Browse();
-            compare = new Compare();
-            preview_pane = new FontPreviewPane();
-            sidebar = new SideBar();
-            fontlist = new FontList();
-            fontpane = new FontListPane(fontlist);
-            main_stack = new Gtk.Stack();
-            main_stack.set_transition_duration(720);
-            main_stack.set_transition_type(Gtk.StackTransitionType.UNDER_UP);
-            view_stack = new Gtk.Stack();
-            view_stack.add_titled(preview_pane, "Default", _("Preview"));
-            view_stack.add_titled(compare, "Compare", _("Compare"));
-            view_stack.set_transition_type(Gtk.StackTransitionType.CROSSFADE);
-            content_stack = new Gtk.Stack();
-            content_stack.set_transition_duration(420);
-            content_stack.add_titled(content_pane, "Default", _("Manage"));
-            content_stack.add_titled(browser, "Browse", _("Browse"));
-            content_stack.set_transition_type(Gtk.StackTransitionType.OVER_LEFT);
-            preference_pane = construct_preference_pane();
-            /* XXX : See https://github.com/FontManager/master/issues/50 */
-            lock_child_position = new Gtk.Paned(Gtk.Orientation.HORIZONTAL);
-            /* Prevent Gtk warning due to missing size allocation */
-            lock_child_position.set_size_request(1, -1);
+        void add_actions () {
 
             insert_action_group("default", new SimpleActionGroup());
 
@@ -208,36 +197,8 @@ namespace FontManager {
             return;
         }
 
-        void pack_components () {
-            lock_child_position.add1(sidebar);
-            main_pane.add1(lock_child_position);
-            main_pane.add2(content_box);
-            main_pane.set_position(275);
-            content_box.pack_end(content_stack, true, true, 0);
-            content_pane.add1(fontpane);
-            content_view = new Gtk.Box(wide_layout ? Gtk.Orientation.HORIZONTAL : Gtk.Orientation.VERTICAL, 0);
-            content_view.pack_end(view_stack, true, true, 0);
-            content_pane.add2(content_view);
-            _main_pane_ = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            _main_pane_.pack_start(main_pane, true, true, 0);
-            main_stack.add_named(_main_pane_, "Default");
-            main_stack.add_named(preference_pane, "Preferences");
-            main_box.pack_end(main_stack, true, true, 0);
-            use_csd = settings.get_boolean("use-csd");
-            if (Gdk.Screen.get_default().is_composited() && use_csd) {
-                titlebar = new ClientSideDecorations();
-                set_titlebar(titlebar);
-            } else {
-                titlebar = new ServerSideDecorations();
-                main_box.pack_start(titlebar, false, true, 0);
-                add_separator(main_box, Gtk.Orientation.HORIZONTAL);
-            }
-            add(main_box);
-            return;
-        }
-
         void bind_properties () {
-            bind_property("model", fontpane, "model", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+            bind_property("model", fontlist_pane, "model", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("selected-font", preview_pane, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("selected-font", sidebar.orthographies, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("selected-font", compare, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
@@ -270,30 +231,7 @@ namespace FontManager {
                 }
             }
             content_pane.set_orientation(orientation);
-            content_view.set_orientation(orientation);
             is_horizontal = (orientation == Gtk.Orientation.HORIZONTAL);
-            return;
-        }
-
-        public override void show () {
-            content_view.show();
-            _main_pane_.show();
-            content_stack.show();
-            view_stack.show();
-            main_box.show();
-            content_box.show();
-            main_pane.show();
-            content_pane.show();
-            browser.show();
-            preview_pane.show();
-            compare.show();
-            lock_child_position.show();
-            sidebar.show();
-            titlebar.show();
-            fontpane.show();
-            preference_pane.show();
-            main_stack.show();
-            base.show();
             return;
         }
 
@@ -308,8 +246,8 @@ namespace FontManager {
             else
                 sidebar.mode = "Standard";
             titlebar.reveal_controls((mode == Mode.MANAGE));
-            fontpane.show_controls = (mode != Mode.BROWSE);
-            fontpane.controls.set_remove_sensitivity((mode == Mode.MANAGE && sidebar.standard.mode == StandardSideBarMode.COLLECTION));
+            fontlist_pane.show_controls = (mode != Mode.BROWSE);
+            fontlist_pane.controls.set_remove_sensitivity((mode == Mode.MANAGE && sidebar.standard.mode == StandardSidebarMode.COLLECTION));
             fontlist.queue_draw();
             if (titlebar.prefs_toggle.active && mode != Mode.MANAGE)
                 titlebar.prefs_toggle.active = false;
@@ -320,14 +258,6 @@ namespace FontManager {
         }
 
         void connect_signals () {
-
-            realize.connect(() => { on_realize(); });
-
-            delete_event.connect((w, e) => {
-                save_state();
-                ((FontManager.Application) application).quit();
-                return true;
-            });
 
             notify["wide-layout"].connect(() => {
                 Idle.add(() => {
@@ -391,8 +321,8 @@ namespace FontManager {
                 });
             }
 
-            sidebar.standard.category_selected.connect((filter, index) => { fontpane.filter = filter; });
-            sidebar.standard.collection_selected.connect((filter) => { fontpane.filter = filter; });
+            sidebar.standard.category_selected.connect((filter, index) => { fontlist_pane.filter = filter; });
+            sidebar.standard.collection_selected.connect((filter) => { fontlist_pane.filter = filter; });
             sidebar.orthographies.orthography_selected.connect((o) => { preview_pane.charmap.set_filter(o); });
 
             sidebar.standard.category_selected.connect((c, i) => {
@@ -400,7 +330,7 @@ namespace FontManager {
                     disabled = (c as Disabled);
                     disabled.update.begin(reject, (obj,res) => {
                         disabled.update.end(res);
-                        fontpane.refilter();
+                        fontlist_pane.refilter();
                     });
                 }
                 if (c is Unsorted && unsorted == null) {
@@ -408,7 +338,7 @@ namespace FontManager {
                     var collected = sidebar.collection_model.collections.get_full_contents();
                     unsorted.update.begin(collected, (obj, res) => {
                         unsorted.update.end(res);
-                        fontpane.refilter();
+                        fontlist_pane.refilter();
                     });
                 }
             });
@@ -417,15 +347,15 @@ namespace FontManager {
                 /* NOTE : This indicates a drag & drop operation is in progress. */
                 if (sidebar_switch)
                     return;
-                if (m == StandardSideBarMode.CATEGORY)
-                    fontpane.filter = sidebar.standard.selected_category;
+                if (m == StandardSidebarMode.CATEGORY)
+                    fontlist_pane.filter = sidebar.standard.selected_category;
                 else
-                    fontpane.filter = sidebar.standard.selected_collection;
-                bool sensitive = (mode == Mode.MANAGE && m == StandardSideBarMode.COLLECTION);
-                fontpane.controls.set_remove_sensitivity(sensitive);
+                    fontlist_pane.filter = sidebar.standard.selected_collection;
+                bool sensitive = (mode == Mode.MANAGE && m == StandardSidebarMode.COLLECTION);
+                fontlist_pane.controls.set_remove_sensitivity(sensitive);
             });
 
-            fontpane.controls.remove_selected.connect(() => {
+            fontlist_pane.controls.remove_selected.connect(() => {
                 if (sidebar.standard.selected_collection == null)
                     return;
                 sidebar.standard.collection_tree.remove_fonts(fontlist.get_selected_families().list());
@@ -446,7 +376,7 @@ namespace FontManager {
                 browser.treeview.queue_draw();
             });
 
-            Gtk.drag_dest_set(fontpane, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
+            Gtk.drag_dest_set(fontlist_pane, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
             //fontlist.enable_model_drag_dest(AppDragTargets, AppDragActions);
             fontlist.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK | Gdk.ModifierType.RELEASE_MASK, AppDragTargets, AppDragActions);
             var collections_tree = sidebar.standard.collection_tree;
@@ -454,22 +384,22 @@ namespace FontManager {
             collections_tree.set_reorderable(true);
 
             fontlist.drag_data_received.connect(on_drag_data_received);
-            fontpane.drag_data_received.connect(on_drag_data_received);
+            fontlist_pane.drag_data_received.connect(on_drag_data_received);
             fontlist.drag_begin.connect((w, c) => {
                 /* When reorderable is set no other drag and drop is possible.
                  * Temporarily disable it and set the treeview up as a drag destination.
                  */
                 collections_tree.set_reorderable(false);
                 collections_tree.enable_model_drag_dest(AppDragTargets, AppDragActions);
-                if (sidebar.standard.mode == StandardSideBarMode.CATEGORY) {
+                if (sidebar.standard.mode == StandardSidebarMode.CATEGORY) {
                     sidebar_switch = true;
-                    sidebar.standard.mode = StandardSideBarMode.COLLECTION;
+                    sidebar.standard.mode = StandardSidebarMode.COLLECTION;
                 }
             });
             fontlist.drag_end.connect((w, c) => {
                 if (sidebar_switch) {
                     Idle.add(() => {
-                        sidebar.standard.mode = StandardSideBarMode.CATEGORY;
+                        sidebar.standard.mode = StandardSidebarMode.CATEGORY;
                         return false;
                     });
                     sidebar_switch = false;
@@ -517,19 +447,16 @@ namespace FontManager {
                 disabled.update.begin(reject, (obj,res) => {
                     disabled.update.end(res);
                     if (sidebar.standard.selected_category.index == CategoryIndex.DISABLED)
-                        fontpane.refilter();
+                        fontlist_pane.refilter();
                 });
 
             });
 
-            preview_pane.notebook.switch_page.connect((p, p_num) => {
-                if (p is CharacterTable) {
-                    charmap_visible = true;
+            preview_pane.notebook.switch_page.connect((page, page_num) => {
+                if (page_num == PreviewPanePage.CHARACTER_MAP)
                     sidebar.mode = "Orthographies";
-                } else {
-                    charmap_visible = false;
+                else
                     sidebar.mode = "Standard";
-                }
             });
 
             sources.changed.connect(() => {
@@ -684,7 +611,7 @@ namespace FontManager {
             settings.bind("browse-font-size", browser, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("browse-preview-text", browser.entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("compare-font-size", compare, "preview-size", SettingsBindFlags.DEFAULT);
-            settings.bind("compare-preview-text", compare.controls.entry, "text", SettingsBindFlags.DEFAULT);
+            settings.bind("compare-preview-text", compare.entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("charmap-font-size", preview_pane.charmap, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("selected-category", sidebar.standard.category_tree, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("selected-collection", sidebar.standard.collection_tree, "selected-iter", SettingsBindFlags.DEFAULT);
@@ -695,7 +622,15 @@ namespace FontManager {
             return;
         }
 
-        public void on_realize () {
+        public override bool delete_event (Gdk.EventAny event) {
+            save_state();
+            ((FontManager.Application) application).quit();
+            return false;
+        }
+
+        public override void realize () {
+
+            base.realize();
 
             if (settings == null) {
                 ensure_sane_defaults();
@@ -712,9 +647,9 @@ namespace FontManager {
             wide_layout = settings.get_boolean("wide-layout");
             set_default_size(w, h);
             move(x, y);
+            sidebar.standard.mode = (StandardSidebarMode) settings.get_enum("sidebar-mode");
             preview_pane.mode = FontManager.FontPreviewMode.parse(settings.get_string("preview-mode"));
             preview_pane.notebook.page = settings.get_int("preview-page");
-            sidebar.standard.mode = (StandardSideBarMode) settings.get_enum("sidebar-mode");
 
             main_pane.position = settings.get_int("sidebar-size");
             content_pane.position = settings.get_int("content-pane-position");
@@ -727,12 +662,12 @@ namespace FontManager {
             browser.preview_size--;
             browser.entry.text = settings.get_string("browse-preview-text");
             compare.preview_size = settings.get_double("compare-font-size");
-            compare.controls.entry.text = settings.get_string("compare-preview-text");
+            compare.entry.text = settings.get_string("compare-preview-text");
 
             var preview_text = settings.get_string("preview-text");
             if (preview_text != "DEFAULT")
                 preview_pane.set_preview_text(preview_text);
-            fontpane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSideBarMode.COLLECTION);
+            fontlist_pane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSidebarMode.COLLECTION);
 
             mode = (FontManager.Mode) settings.get_enum("mode");
             var action = application.lookup_action("mode") as SimpleAction;
@@ -749,9 +684,9 @@ namespace FontManager {
                 bool foreground_set = foreground.parse(settings.get_string("compare-foreground-color"));
                 bool background_set = background.parse(settings.get_string("compare-background-color"));
                 if (foreground_set)
-                    ((Gtk.ColorChooser) compare.controls.fg_color_button).set_rgba(foreground);
+                    ((Gtk.ColorChooser) compare.fg_color_button).set_rgba(foreground);
                 if (background_set)
-                    ((Gtk.ColorChooser) compare.controls.bg_color_button).set_rgba(background);
+                    ((Gtk.ColorChooser) compare.bg_color_button).set_rgba(background);
                 var checklist = ((FontManager.Application) application).available_font_families.list();
                 foreach (var entry in settings.get_strv("compare-list"))
                     compare.add_from_string(entry, checklist);
@@ -781,18 +716,18 @@ namespace FontManager {
             Idle.add(() => {
                 BaseTreeView? tree = null;
                 string? path = null;
-                if (sidebar.standard.mode == StandardSideBarMode.CATEGORY) {
+                if (sidebar.standard.mode == StandardSidebarMode.CATEGORY) {
                     restore_last_selected_treepath(sidebar.standard.collection_tree, collection_path);
                     tree = sidebar.standard.category_tree.tree;
                     path = category_path;
-                } else if (sidebar.standard.mode == StandardSideBarMode.COLLECTION) {
+                } else if (sidebar.standard.mode == StandardSidebarMode.COLLECTION) {
                     restore_last_selected_treepath(sidebar.standard.category_tree.tree, category_path);
                     tree = sidebar.standard.collection_tree;
                     path = collection_path;
                 }
                 restore_last_selected_treepath(tree, path);
                 Idle.add(() => {
-                    restore_last_selected_treepath(fontpane.fontlist, font_path);
+                    restore_last_selected_treepath(fontlist_pane.fontlist, font_path);
                     return false;
                 });
                 return false;
@@ -805,7 +740,7 @@ namespace FontManager {
         void ensure_sane_defaults () {
             set_default_size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
             mode = FontManager.Mode.MANAGE;
-            sidebar.standard.mode = StandardSideBarMode.CATEGORY;
+            sidebar.standard.mode = StandardSidebarMode.CATEGORY;
             preview_pane.mode = FontManager.FontPreviewMode.WATERFALL;
             main_pane.position = 275;
             content_pane.position = 200;
@@ -814,7 +749,7 @@ namespace FontManager {
             compare.preview_size = 12.0;
             preview_pane.charmap.preview_size = 18;
             preview_pane.notebook.page = 0;
-            fontpane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSideBarMode.COLLECTION);
+            fontlist_pane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSidebarMode.COLLECTION);
             return;
         }
 
@@ -831,7 +766,6 @@ namespace FontManager {
             tree.scroll_to_cell(treepath, null, true, 0.25f, 0.25f);
             return treepath;
         }
-
 
     }
 

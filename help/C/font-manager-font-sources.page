@@ -81,7 +81,7 @@
                     <p>
                     Click
                     <gui>
-                    <media type="image" src="media/list-add-symbolic.svg"/>
+                    <media type="image" src="media/list-remove-symbolic.svg"/>
                     </gui>
                     </p>
                 </item>
@@ -94,7 +94,7 @@
                     <p>
                     Open the <app>Font Manager</app> preferences dialog
                     by clicking
-                    <gui>
+                    <gui style="button">
                     <media type="image" src="media/preferences-system-symbolic.svg"/>
                     </gui>
                     at the top of the window.

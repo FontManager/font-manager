@@ -83,7 +83,7 @@ namespace FontManager {
 
         construct {
             view = new Gtk.TextView();
-            view.set("margin", DEFAULT_MARGIN_SIZE / 2, "editable", false,
+            view.set("margin", DEFAULT_MARGIN_SIZE, "editable", false,
                      "cursor-visible", false, "accepts-tab", false,
                      "overwrite", false, "wrap-mode", Gtk.WrapMode.WORD_CHAR, null);
             add(view);
@@ -196,7 +196,6 @@ namespace FontManager {
             fontscale = new FontScale();
             adjustment = fontscale.adjustment;
             pack_end(fontscale, false, true, 0);
-            fontscale.add_style_class(Gtk.STYLE_CLASS_VIEW);
         }
 
         /**
@@ -223,7 +222,8 @@ namespace FontManager {
         public PreviewControls controls { get; private set; }
 
         bool editing = false;
-        bool _visible_ = false;
+        bool initialized = false;
+        bool update_required = true;
 
         public class ActivePreview (StandardTextTagTable tag_table) {
             Object(name: "ActivePreview", orientation: Gtk.Orientation.VERTICAL);
@@ -263,23 +263,25 @@ namespace FontManager {
          */
         public void set_preview_text (string preview_text) {
             preview.buffer.set_text(preview_text, -1);
+            update_required = true;
             update();
             return;
         }
 
         public void update () {
-            if (!_visible_)
+            if (initialized && !update_required)
                 return;
             Gtk.TextBuffer buffer = preview.buffer;
             Gtk.TextIter start, end;
             buffer.get_bounds(out start, out end);
             buffer.apply_tag(preview.tag_table.lookup("FontDescription"), start, end);
+            initialized = true;
+            update_required = false;
             return;
         }
 
         void connect_signals () {
-            unmap.connect(() => { _visible_ = false; });
-            map.connect(() => { _visible_ = true; update(); });
+            map.connect(() => { update(); });
             preview.buffer.changed.connect((b) => {
                 update();
                 string new_preview = preview.get_buffer_text();
@@ -339,7 +341,8 @@ namespace FontManager {
 
         public StaticTextView preview { get; private set; }
 
-        bool _visible_ = false;
+        bool initialized = false;
+        bool update_required = true;
 
         public class TextPreview (StandardTextTagTable tag_table) {
             Object(name: "TextPreview", orientation: Gtk.Orientation.VERTICAL);
@@ -347,8 +350,7 @@ namespace FontManager {
             preview.view.justification = Gtk.Justification.FILL;
             set_preview_text(LOREM_IPSUM);
             pack_start(preview, true, true, 0);
-            unmap.connect(() => { _visible_ = false; });
-            map.connect(() => { _visible_ = true; update(); });
+            map.connect(() => { update(); });
         }
 
         /**
@@ -376,17 +378,20 @@ namespace FontManager {
          */
         public void set_preview_text (string preview_text) {
             preview.buffer.set_text(preview_text, -1);
+            update_required = true;
             update();
             return;
         }
 
         public void update () {
-            if (!_visible_)
+            if (initialized && !update_required)
                 return;
             Gtk.TextBuffer buffer = preview.buffer;
             Gtk.TextIter start, end;
             buffer.get_bounds(out start, out end);
             buffer.apply_tag(preview.tag_table.lookup("FontDescription"), start, end);
+            initialized = true;
+            update_required = false;
             return;
         }
 
@@ -411,13 +416,13 @@ namespace FontManager {
                     _pangram = "%s\n".printf(value);
                 else
                     _pangram = "%s\n".printf(get_localized_pangram());
-                _update_required_ = true;
+                update_required = true;
                 update();
             }
         }
 
-        bool _visible_ = false;
-        bool _update_required_ = false;
+        bool initialized = false;
+        bool update_required = true;
         string _pangram;
 
         public WaterfallPreview (StandardTextTagTable tag_table) {
@@ -425,12 +430,10 @@ namespace FontManager {
             name = "WaterfallPreview";
             view.set("pixels-above-lines", 1, "wrap-mode", Gtk.WrapMode.NONE, null);
             pangram = get_localized_pangram();
-            unmap.connect(() => { _visible_ = false; });
-            map.connect(() => { _visible_ = true; update(); });
         }
 
         void update () {
-            if (!_visible_ || !_update_required_)
+            if (initialized && !update_required)
                 return;
             buffer.set_text("", -1);
             Gtk.TextIter iter;
@@ -444,8 +447,8 @@ namespace FontManager {
                 buffer.get_end_iter(out iter);
                 buffer.insert_with_tags_by_name(ref iter, _pangram, -1, line, "FontDescription", null);
             }
-            Gtk.TextIter start, end;
-            buffer.get_bounds(out start, out end);
+            initialized = true;
+            update_required = false;
             return;
         }
 

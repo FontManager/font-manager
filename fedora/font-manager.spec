@@ -12,7 +12,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    16
+Release:    17
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -143,6 +143,8 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Fri Mar 15 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-17
+- Add glyph count to Character Map details
 * Sat Feb 09 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-16
 - Add glyph count to Character Map details
 * Fri Jan 25 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-15

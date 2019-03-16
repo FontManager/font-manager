@@ -328,45 +328,30 @@ namespace FontManager {
 
     }
 
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-orthography-list-box-row.ui")]
     public class OrthographyListBoxRow : Gtk.Grid {
 
-        public Orthography orthography;
+        public Orthography orthography { get; private set; }
 
-        Gtk.Label _name;
-        Gtk.Label native_name;
-        Gtk.LevelBar coverage;
+        [GtkChild] Gtk.Label C_name;
+        [GtkChild] Gtk.Label native_name;
+        [GtkChild] Gtk.LevelBar coverage;
 
         public OrthographyListBoxRow (Orthography orth) {
             orthography = orth;
-            _name = new Gtk.Label(orth.name);
-            _name.set("sensitive", false, "hexpand", true, "vexpand", false,
-                       "margin", DEFAULT_MARGIN_SIZE / 4, null);
+            C_name.set_text(orth.name);
             bool have_native_name = orth.native_name != null && orth.native_name != "";
             string _native = have_native_name ? orth.native_name : orth.name;
-            native_name = new Gtk.Label("<big>%s</big>".printf(_native));
-            native_name.set("use-markup", true, "hexpand", true, "vexpand", false,
-                            "margin", DEFAULT_MARGIN_SIZE / 2 - 4, null);
-            coverage = new Gtk.LevelBar();
+            native_name.set_markup("<big>%s</big>".printf(_native));
             double cov_val = ((double) orth.coverage / 100);
-            coverage.set("hexpand", true, "vexpand", false, "value", cov_val,
-                          "margin", DEFAULT_MARGIN_SIZE / 4, null);
-            attach(_name, 0, 0, 1, 1);
-            attach(native_name, 0, 1, 1, 2);
-            attach(coverage, 0, 3, 1, 1);
+            coverage.set_value(cov_val);
             string tooltip = _("Coverage");
             set_tooltip_text("%s : %0.f%%".printf(tooltip, orth.coverage));
         }
 
-        public override void show () {
-            _name.show();
-            native_name.show();
-            coverage.show();
-            base.show();
-            return;
-        }
-
     }
 
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-orthography-list.ui")]
     public class OrthographyList : Gtk.Box {
 
         public signal void orthography_selected (Orthography? orth);
@@ -381,51 +366,32 @@ namespace FontManager {
 
         bool _visible_ = false;
         bool update_pending = false;
-        Gtk.Label header;
-        Gtk.ListBox list;
-        Gtk.EventBox blend;
-        Gtk.EventBox blend1;
-        Gtk.Button clear;
-        Gtk.ScrolledWindow scroll;
-        Gtk.Widget [] widgets;
+
+        [GtkChild] Gtk.Label header;
+        [GtkChild] Gtk.ListBox list;
+        [GtkChild] Gtk.Button clear;
+
         OrthographyListModel model;
 
         public OrthographyList () {
-            Object(name: "OrthographyList", orientation: Gtk.Orientation.VERTICAL);
-            list = new Gtk.ListBox();
             model = new OrthographyListModel();
             model.parent = this;
             var tmpl = "<b><big>%s</big></b>";
-            header = new Gtk.Label(tmpl.printf(_("Supported Orthographies")));
-            header.set("use-markup", true, "opacity", 0.5,
-                        "margin", (DEFAULT_MARGIN_SIZE / 3) + 2,  null);
-            blend = new Gtk.EventBox();
-            blend.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            scroll = new Gtk.ScrolledWindow(null, null);
-            blend1 = new Gtk.EventBox();
-            blend1.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            clear = new Gtk.Button.with_label(_("Clear selected filter"));
-            clear.set("margin", DEFAULT_MARGIN_SIZE / 4, "expand", false,
-                      "relief", Gtk.ReliefStyle.NONE, "sensitive", false, null);
-            blend.add(header);
-            pack_start(blend, false, false, 0);
-            add_separator(this);
-            scroll.add(list);
-            pack_start(scroll);
-            add_separator(this);
-            blend1.add(clear);
-            pack_end(blend1, false, false, 0);
-            bind_property("selected-font", model, "font",
-                          BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
-            connect_signals();
-            widgets = { list, clear, scroll, blend, header, blend1 };
-        }
-
-        public override void show () {
-            foreach (var widget in widgets)
-                widget.show();
-            base.show();
-            return;
+            header.set_markup(tmpl.printf(_("Supported Orthographies")));
+            bind_property("selected-font", model, "font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+            clear.clicked.connect(() => { list.unselect_all(); });
+            map.connect(() => { _visible_ = true; update_if_needed(); });
+            unmap.connect(() => { _visible_ = false; });
+            notify["selected-font"].connect(() => { update_pending = true; update_if_needed(); });
+            list.row_selected.connect((r) => {
+                clear.sensitive = (r != null);
+                if (r == null) {
+                    orthography_selected(null);
+                    return;
+                }
+                var row = ((Gtk.Bin) r).get_child() as OrthographyListBoxRow;
+                orthography_selected(row.orthography);
+            });
         }
 
         void update_if_needed () {
@@ -443,23 +409,6 @@ namespace FontManager {
                 });
                 update_pending = false;
             }
-            return;
-        }
-
-        void connect_signals () {
-            clear.clicked.connect(() => { list.unselect_all(); });
-            map.connect(() => { _visible_ = true; update_if_needed(); });
-            unmap.connect(() => { _visible_ = false; });
-            notify["selected-font"].connect(() => { update_pending = true; update_if_needed(); });
-            list.row_selected.connect((r) => {
-                clear.sensitive = (r != null);
-                if (r == null) {
-                    orthography_selected(null);
-                    return;
-                }
-                var row = ((Gtk.Bin) r).get_child() as OrthographyListBoxRow;
-                orthography_selected(row.orthography);
-            });
             return;
         }
 

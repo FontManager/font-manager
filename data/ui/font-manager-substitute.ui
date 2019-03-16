@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="font-manager">
+  <requires lib="gtk+" version="3.20"/>
+  <template class="FontManagerSubstitute" parent="GtkGrid">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="halign">center</property>
+    <property name="margin_left">6</property>
+    <property name="margin_right">6</property>
+    <property name="margin_top">6</property>
+    <property name="margin_bottom">6</property>
+    <property name="hexpand">True</property>
+    <property name="column_spacing">12</property>
+    <child>
+      <object class="GtkButton" id="close">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="focus_on_click">False</property>
+        <property name="receives_default">True</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <child>
+          <object class="GtkImage">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="icon_name">window-close-symbolic</property>
+            <property name="icon_size">1</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="left_attach">4</property>
+        <property name="top_attach">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkEntry" id="target">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="primary_icon_tooltip_text" translatable="yes">Remove substitute</property>
+        <property name="placeholder_text" translatable="yes">Enter substitute family</property>
+      </object>
+      <packing>
+        <property name="left_attach">2</property>
+        <property name="top_attach">0</property>
+        <property name="width">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkComboBoxText" id="type">
+        <property name="visible">True</property>
+        <property name="can_focus">True</property>
+        <property name="focus_on_click">False</property>
+        <property name="active">0</property>
+        <property name="has_entry">True</property>
+        <property name="active_id">0</property>
+        <items>
+          <item id="0" translatable="yes">prefer</item>
+          <item id="1" translatable="yes">accept</item>
+          <item id="2" translatable="yes">default</item>
+        </items>
+        <child internal-child="entry">
+          <object class="GtkEntry">
+            <property name="can_focus">False</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="left_attach">0</property>
+        <property name="top_attach">0</property>
+        <property name="width">2</property>
+      </packing>
+    </child>
+  </template>
+</interface>

@@ -18,21 +18,11 @@ LicenseData[] =
 {
 
     {
-        "Aladdin Free Public License",
-        "http://pages.cs.wisc.edu/~ghost/doc/AFPL/6.01/Public.htm",
+        "Ubuntu Font License 1.0",
+        "http://font.ubuntu.com/ufl/ubuntu-font-licence-1.0.txt",
         {
-            "Aladdin",
-            NULL
-        }
-    },
-
-    {
-        "Apache 2.0",
-        "http://www.apache.org/licenses/LICENSE-2.0",
-        {
-            "Apache",
-            "Apache License",
-            "Apache 2 License",
+            "Ubuntu Font Licence 1.0",
+            "UBUNTU FONT LICENCE Version 1.0",
             NULL
         }
     },
@@ -50,12 +40,70 @@ LicenseData[] =
     },
 
     {
-        "Bitstream Vera License",
-        "http://www-old.gnome.org/fonts/#Final_Bitstream_Vera_Fonts",
+        "Apache 2.0",
+        "http://www.apache.org/licenses/LICENSE-2.0",
         {
-            "Bitstream",
-            "Vera",
-            "DejaVu",
+            "Apache",
+            "Apache License",
+            "Apache 2 License",
+            NULL
+        }
+    },
+
+    {
+        "Magenta Open License",
+        "http://www.ellak.gr/pub/fonts/mgopen/index.en.html#license",
+        {
+            "MgOpen",
+            NULL
+        }
+    },
+
+    {
+        "M+ Fonts Project License",
+        "http://mplus-fonts.sourceforge.jp/webfonts/#license",
+        {
+            "M+ FONTS PROJECT",
+            NULL
+        }
+    },
+
+    {
+        "IPA",
+        "http://opensource.org/licenses/ipafont.html",
+        {
+            "IPA License",
+            "Information-technology Promotion Agency",
+            "(IPA)",
+            " IPA ",
+            NULL
+        }
+    },
+
+    {
+        "Freeware",
+        "http://en.wikipedia.org/wiki/Freeware",
+        {
+            "freeware",
+            "free ware",
+            NULL
+        }
+    },
+
+    {
+        "SIL Open Font License",
+        "http://scripts.sil.org/OFL",
+        {
+            "OFL",
+            "OPEN FONT LICENSE",
+            "Open Font License",
+            "open font license",
+            "scripts.sil.org/OFL",
+            "openfont",
+            "open font",
+            "NHN Corporation",
+            "American Mathematical Society",
+            "http://www.ams.org",
             NULL
         }
     },
@@ -105,11 +153,69 @@ LicenseData[] =
     },
 
     {
-        "Freeware",
-        "http://en.wikipedia.org/wiki/Freeware",
+        "STIX Font License",
+        "http://www.aip.org/stixfonts/user_license.html",
         {
-            "freeware",
-            "free ware",
+            "2007 by the STI Pub Companies",
+            "the derivative work will carry a different name",
+            NULL
+        }
+    },
+
+    {
+        "License to TeX Users Group for the Utopia Typeface",
+        "http://tug.org/fonts/utopia/LICENSE-utopia.txt",
+        {
+            "The Utopia fonts are freely available; see http://tug.org/fonts/utopia",
+            NULL
+        }
+    },
+
+    {
+        "Bitstream Vera License",
+        "http://www-old.gnome.org/fonts/#Final_Bitstream_Vera_Fonts",
+        {
+            "Bitstream",
+            "Vera",
+            "DejaVu",
+            NULL
+        }
+    },
+
+    {
+        "Monotype Imaging EULA",
+        "http://www.fonts.com/info/legal/eula/monotype-imaging",
+        {
+            "valuable asset of Monotype",
+            "Monotype Typography",
+            "www.monotype.com",
+            NULL
+        }
+    },
+
+    {
+        "Unknown License",
+        NULL,
+        {
+            NULL
+        }
+    },
+
+    {
+        "Aladdin Free Public License",
+        "http://pages.cs.wisc.edu/~ghost/doc/AFPL/6.01/Public.htm",
+        {
+            "Aladdin",
+            NULL
+        }
+    },
+
+    {
+        "MIT License",
+        "http://www.opensource.org/licenses/mit-license.php",
+        {
+            "M.I.T.",
+            "Software without restriction,",
             NULL
         }
     },
@@ -159,118 +265,11 @@ LicenseData[] =
     },
 
     {
-        "GUST Font License",
-        "http://tug.org/fonts/licenses/GUST-FONT-LICENSE.txt",
-        {
-            "GUST",
-            NULL
-        }
-    },
-
-    {
-        "IPA",
-        "http://opensource.org/licenses/ipafont.html",
-        {
-            "IPA License",
-            "Information-technology Promotion Agency",
-            "(IPA)",
-            " IPA ",
-            NULL
-        }
-    },
-
-    {
-        "M+ Fonts Project License",
-        "http://mplus-fonts.sourceforge.jp/webfonts/#license",
-        {
-            "M+ FONTS PROJECT",
-            NULL
-        }
-    },
-
-    {
-        "MIT License",
-        "http://www.opensource.org/licenses/mit-license.php",
-        {
-            "M.I.T.",
-            "Software without restriction,",
-            NULL
-        }
-    },
-
-    {
-        "Magenta Open License",
-        "http://www.ellak.gr/pub/fonts/mgopen/index.en.html#license",
-        {
-            "MgOpen",
-            NULL
-        }
-    },
-
-    {
-        "Monotype Imaging EULA",
-        "http://www.fonts.com/info/legal/eula/monotype-imaging",
-        {
-            "valuable asset of Monotype",
-            "Monotype Typography",
-            "www.monotype.com",
-            NULL
-        }
-    },
-
-    {
-        "SIL Open Font License",
-        "http://scripts.sil.org/OFL",
-        {
-            "OFL",
-            "OPEN FONT LICENSE",
-            "Open Font License",
-            "open font license",
-            "scripts.sil.org/OFL",
-            "openfont",
-            "open font",
-            "NHN Corporation",
-            "American Mathematical Society",
-            "http://www.ams.org",
-            NULL
-        }
-    },
-
-    {
         "Public Domain (not a license)",
         "http://en.wikipedia.org/wiki/Public_domain",
         {
             "public domain",
             "Public Domain",
-            NULL
-        }
-    },
-
-    {
-        "STIX Font License",
-        "http://www.aip.org/stixfonts/user_license.html",
-        {
-            "2007 by the STI Pub Companies",
-            "the derivative work will carry a different name",
-            NULL
-        }
-    },
-
-    {
-        "Ubuntu Font License 1.0",
-        "http://font.ubuntu.com/ufl/ubuntu-font-licence-1.0.txt",
-        {
-            "Ubuntu Font Licence 1.0",
-            "UBUNTU FONT LICENCE Version 1.0",
-            NULL
-        }
-    },
-
-    {
-        "License to TeX Users Group for the Utopia Typeface",
-        "http://tug.org/fonts/utopia/LICENSE-utopia.txt",
-        {
-            "The Utopia fonts are freely available; see http://tug.org/fonts/utopia",
             NULL
         }
     },
@@ -286,9 +285,10 @@ LicenseData[] =
     },
 
     {
-        "Unknown License",
-        NULL,
+        "GUST Font License",
+        "http://tug.org/fonts/licenses/GUST-FONT-LICENSE.txt",
         {
+            "GUST",
             NULL
         }
     },

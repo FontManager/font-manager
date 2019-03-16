@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="font-manager">
+  <requires lib="gtk+" version="3.20"/>
+  <template class="FontManagerMainWindow" parent="GtkApplicationWindow">
+    <property name="can_focus">False</property>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkBox" id="main_box">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkStack" id="main_stack">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="transition_duration">720</property>
+            <property name="transition_type">under-up</property>
+            <child>
+              <object class="GtkPaned" id="main_pane">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+                <property name="position">275</property>
+                <child>
+                  <object class="GtkPaned" id="lock_child_position">
+                    <property name="width_request">1</property>
+                    <property name="height_request">-1</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <child>
+                      <object class="FontManagerSidebar" id="sidebar">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="transition_duration">420</property>
+                        <property name="transition_type">under-left</property>
+                        <child>
+                          <placeholder/>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="resize">False</property>
+                        <property name="shrink">True</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">False</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkStack" id="content_stack">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand">True</property>
+                    <property name="transition_duration">420</property>
+                    <property name="transition_type">over-left</property>
+                    <child>
+                      <object class="GtkPaned" id="content_pane">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <property name="position">200</property>
+                        <child>
+                          <object class="FontManagerFontListPane" id="fontlist_pane">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="orientation">vertical</property>
+                            <child>
+                              <placeholder/>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="resize">False</property>
+                            <property name="shrink">True</property>
+                          </packing>
+                        </child>
+                        <child>
+                          <object class="GtkStack" id="view_stack">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="transition_type">crossfade</property>
+                            <child>
+                              <object class="FontManagerPreviewPane" id="preview_pane">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="name">Default</property>
+                                <property name="title" translatable="yes">Preview</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="FontManagerCompare" id="compare">
+                                <property name="visible">True</property>
+                                <property name="can_focus">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="name">Compare</property>
+                                <property name="title" translatable="yes">Compare</property>
+                                <property name="position">1</property>
+                              </packing>
+                            </child>
+                          </object>
+                          <packing>
+                            <property name="resize">True</property>
+                            <property name="shrink">True</property>
+                          </packing>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="name">Default</property>
+                        <property name="title" translatable="yes">Manage</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="FontManagerBrowse" id="browser">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
+                        <property name="vexpand">True</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <placeholder/>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="name">Browse</property>
+                        <property name="title" translatable="yes">Browse</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="resize">True</property>
+                    <property name="shrink">True</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="name">Default</property>
+                <property name="title" translatable="yes">Default</property>
+              </packing>
+            </child>
+            <child>
+              <object class="FontManagerPreferences" id="preference_pane">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="position">275</property>
+                <child>
+                  <placeholder/>
+                </child>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="name">Preferences</property>
+                <property name="title" translatable="yes">Preferences</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">True</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

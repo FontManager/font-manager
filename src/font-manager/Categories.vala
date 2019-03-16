@@ -217,9 +217,9 @@ namespace FontManager {
         }
 
         void pixbuf_cell_data_func (Gtk.TreeViewColumn layout,
-                                        Gtk.CellRenderer cell,
-                                        Gtk.TreeModel model,
-                                        Gtk.TreeIter treeiter) {
+                                    Gtk.CellRenderer cell,
+                                    Gtk.TreeModel model,
+                                    Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, 0, out val);
             var obj = val.get_object();

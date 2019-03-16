@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
-"POT-Creation-Date: 2019-03-03 13:05-0500\n"
+"POT-Creation-Date: 2019-03-15 23:27-0400\n"
 "PO-Revision-Date: 2016-10-08 10:52+0000\n"
 "Last-Translator: Khaled Hosny <khaledhosny@eglug.org>\n"
 "Language-Team: Arabic\n"
@@ -348,8 +348,8 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-collections.page:45 C/font-manager-font-installation.page:25
-#: C/font-manager-font-sources.page:46 C/font-manager-font-sources.page:84
-#: C/font-manager-substitutions.page:37 C/font-manager-substitutions.page:51
+#: C/font-manager-font-sources.page:46 C/font-manager-substitutions.page:37
+#: C/font-manager-substitutions.page:51
 msgctxt "_"
 msgid ""
 "external ref='media/list-add-symbolic.svg' "
@@ -402,7 +402,8 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-collections.page:84 C/font-manager-collections.page:144
-#: C/font-manager-font-removal.page:38 C/font-manager-substitutions.page:99
+#: C/font-manager-font-removal.page:38 C/font-manager-font-sources.page:84
+#: C/font-manager-substitutions.page:99
 msgctxt "_"
 msgid ""
 "external ref='media/list-remove-symbolic.svg' "
@@ -743,8 +744,8 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:30 C/font-manager-font-sources.page:62
-#: C/font-manager-font-sources.page:94 C/font-manager-substitutions.page:21
-#: C/font-manager-substitutions.page:78 C/font-manager-substitutions.page:116
+#: C/font-manager-substitutions.page:21 C/font-manager-substitutions.page:78
+#: C/font-manager-substitutions.page:116
 msgid ""
 "Open the <app>Font Manager</app> preferences dialog by clicking <gui> <media "
 "type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the "
@@ -758,7 +759,7 @@ msgid "Select \"Sources\" from the sidebar"
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-font-sources.page:43 C/font-manager-font-sources.page:81
+#: C/font-manager-font-sources.page:43
 msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui>"
@@ -780,9 +781,24 @@ msgstr ""
 msgid "Select the directory you wish to remove from the list that is displayed"
 msgstr ""
 
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:81
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui>"
+msgstr ""
+
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:91
 msgid "To enable or disable a source:"
+msgstr ""
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:94
+msgid ""
+"Open the <app>Font Manager</app> preferences dialog by clicking <gui style="
+"\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg"
+"\"/> </gui> at the top of the window."
 msgstr ""
 
 #. (itstool) path: item/p
