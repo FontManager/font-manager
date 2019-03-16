@@ -133,7 +133,7 @@ namespace FontManager {
 
         public static Gtk.Window? get_current_window () {
             Gtk.Application application = GLib.Application.get_default() as Gtk.Application;
-            unowned GLib.List <weak Gtk.Window> windows = application.get_windows();
+            unowned GLib.List <Gtk.Window> windows = application.get_windows();
             Gtk.Window? most_recent = null;
             if (windows != null)
                 most_recent = windows.nth_data(0);
@@ -341,7 +341,7 @@ namespace FontManager {
         protected override void activate () {
             main_window = new MainWindow();
             add_window(main_window);
-            main_window.present();
+            main_window.show();
             attached = new StringHashset();
             try {
                 Database main = get_database(DatabaseType.BASE);
@@ -406,7 +406,7 @@ namespace FontManager {
                 return true;
             });
             shortcuts_window.set_transient_for(main_window);
-            shortcuts_window.present();
+            shortcuts_window.show();
             return;
         }
 

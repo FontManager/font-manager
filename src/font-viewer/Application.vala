@@ -58,7 +58,7 @@ namespace FontViewer {
         }
 
         protected override void activate () {
-            main_window.present();
+            main_window.show();
             main_window.update();
             return;
         }

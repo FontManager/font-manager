@@ -76,7 +76,7 @@ namespace FontManager {
                 Idle.add((owned) callback);
                 return null;
             };
-            new Thread <Object?> ("remove", _remove);
+            new Thread <Object?> ("remove", (owned) _remove);
             yield;
             return;
         }
@@ -112,7 +112,7 @@ namespace FontManager {
                     Idle.add((owned) callback);
                     return null;
                 };
-                new Thread <Object?> ("Install -> process", install);
+                new Thread <Object?> ("Install -> process", (owned) install);
                 yield;
                 return;
             }

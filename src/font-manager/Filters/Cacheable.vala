@@ -20,6 +20,17 @@
 
 public class Cacheable : Object, Json.Serializable {
 
+    public new Value get_property (ParamSpec pspec) {
+        Value val = Value(pspec.value_type);
+        base.get_property(pspec.name, ref val);
+        return val;
+    }
+
+    public new void set_property (ParamSpec pspec, Value val) {
+        base.set_property(pspec.name, val);
+        return;
+    }
+
     public virtual bool deserialize_property (string prop_name,
                                                  out Value val,
                                                  ParamSpec pspec,

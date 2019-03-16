@@ -360,6 +360,7 @@ namespace FontManager {
                     return;
                 sidebar.standard.collection_tree.remove_fonts(fontlist.get_selected_families().list());
                 sidebar.standard.collection_tree.queue_draw();
+                fontlist_pane.refilter();
             });
 
             sidebar.standard.collection_tree.changed.connect(() => {
@@ -532,7 +533,7 @@ namespace FontManager {
         }
 
         void family_drop_handler (Gtk.Widget widget, int x, int y) {
-            if (widget.name != "CollectionTree")
+            if (widget.name != "FontManagerCollectionTree")
                 return;
             Gtk.TreePath path;
             var tree = widget as Gtk.TreeView;

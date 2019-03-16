@@ -110,7 +110,7 @@ namespace FontManager {
         public new void update (Reject? reject) {
             if (reject == null)
                 return;
-            GLib.List <weak string> _families = families.list();
+            GLib.List <string> _families = families.list();
             if (active)
                 reject.remove_all(_families);
             else

@@ -1,2 +1,1 @@
-font-manager-common binary: postinst-has-useless-call-to-ldconfig
-font-manager-common binary: postrm-has-useless-call-to-ldconfig
+font-manager-common binary: package-has-unnecessary-activation-of-ldconfig-trigger
