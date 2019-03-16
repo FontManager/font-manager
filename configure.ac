@@ -42,17 +42,14 @@ AC_PROG_MKDIR_P()
 AC_PROG_SED()
 AC_PATH_PROG([GLIB_COMPILE_RESOURCES],[glib-compile-resources])
 
-dnl 0.36 -> incompatible changes in Gtk.ListStore remove method
-dnl 0.34 -> incompatible changes in json-glib vapi
-dnl 0.28 -> incompatible changes in Gtk.TextBuffer API
 AM_PROG_VALAC(
-    [0.28],
+    [0.42],
     [:],
     AC_MSG_ERROR([
 
     Build requirements (valac) were not met:
 
-    Please install Vala >= 0.28 and try again.
+    Please install Vala >= 0.42 and try again.
 
     https://wiki.gnome.org/Projects/Vala
 

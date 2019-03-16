@@ -219,17 +219,9 @@ namespace FontManager {
                  * since the iter was always being set to null after calling remove.
                  */
                 string iter_as_string = store.get_string_from_iter(iter);
-#if VALA_0_36
                 store.remove(ref iter);
-#else
-                store.remove(iter);
-#endif
                 store.get_iter_from_string(out iter, iter_as_string);
-#if VALA_0_36
                 bool still_valid = store.remove(ref iter);
-#else
-                bool still_valid = store.remove(iter);
-#endif
                 /* Set the cursor to a remaining row instead of having the cursor disappear.
                  * This allows for easy deletion of multiple previews by hitting the remove
                  * button repeatedly.
