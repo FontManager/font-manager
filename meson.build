@@ -17,6 +17,10 @@ add_global_arguments(
 default_includes = include_directories( '.', 'lib/common', 'lib/orthographies', 'lib/unicode')
 
 cc = meson.get_compiler('c')
+# There has to be a better way to require a specific vala version, right?
+valac = meson.get_compiler('vala')
+have_required_vala_version = valac.version().version_compare('>= 0.42')
+assert(have_required_vala_version, 'valac version 0.42 or higher required.')
 m_dep = cc.find_library('m', required: false)
 fontconfig = dependency('fontconfig', version: '>= 2.1')
 freetype = dependency('freetype2', version: '>= 2.5')
