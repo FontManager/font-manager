@@ -259,7 +259,7 @@ namespace FontViewer {
         }
 
         [GtkCallback]
-        public bool on_delete_event (Gtk.Widget widget, Gdk.Event event) {
+        public bool on_delete_event (Gtk.Widget widget, Gdk.EventAny event) {
             settings.apply();
             ((Application) GLib.Application.get_default()).quit();
             return true;

@@ -20,6 +20,14 @@
 
 public class Cacheable : Object, Json.Serializable {
 
+    public unowned ParamSpec? find_property (string name) {
+        return this.get_class().find_property(name);
+    }
+
+    public ParamSpec [] list_properties () {
+        return this.get_class().list_properties();
+    }
+
     public new Value get_property (ParamSpec pspec) {
         Value val = Value(pspec.value_type);
         base.get_property(pspec.name, ref val);
@@ -40,14 +48,6 @@ public class Cacheable : Object, Json.Serializable {
             return true;
         val = node.get_value();
         return true;
-    }
-
-    public unowned ParamSpec? find_property (string name) {
-        return this.get_class().find_property(name);
-    }
-
-    public ParamSpec [] list_properties () {
-        return this.get_class().list_properties();
     }
 
     public virtual Json.Node serialize_property (string prop_name,

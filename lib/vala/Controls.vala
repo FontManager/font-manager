@@ -369,7 +369,7 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        public void on_icon_press_event (Gtk.EntryIconPosition position, Gdk.Event event) {
+        public void on_icon_press_event (Gtk.EntryIconPosition position, Gdk.EventButton event) {
             if (position == Gtk.EntryIconPosition.SECONDARY)
                 set_text("");
             return;

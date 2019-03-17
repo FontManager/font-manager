@@ -389,7 +389,7 @@ namespace FontManager {
         [DBus (visible = false)]
         public void help () {
             try {
-                Gtk.show_uri(null, "help:%s".printf(Config.PACKAGE_NAME), Gdk.CURRENT_TIME);
+                Gtk.show_uri_on_window(main_window, "help:%s".printf(Config.PACKAGE_NAME), Gdk.CURRENT_TIME);
             } catch (Error e) {
                 critical("There was an error displaying help contents : %s", e.message);
             }

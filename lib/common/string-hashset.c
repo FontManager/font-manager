@@ -261,8 +261,7 @@ string_hashset_size (StringHashset *self)
  * @self:           a #StringHashset
  *
  * Returns: (element-type utf8) (transfer full): a #GList containing
- * the contents of #StringHashset. The content of the list is owned by the
- * #StringHashset and should not be modified or freed.
+ * the contents of #StringHashset.
  * Use g_list_free_full() when done using the list.
  */
 GList *
@@ -271,7 +270,8 @@ string_hashset_list (StringHashset *self)
     g_return_val_if_fail(self != NULL, NULL);
     StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
     GList *result = NULL;
-    for (GList *iter = g_hash_table_get_values(priv->hashset); iter != NULL; iter = iter->next)
+    GList *iter = NULL;
+    for (iter = g_hash_table_get_values(priv->hashset); iter != NULL; iter = iter->next)
         result = g_list_prepend(result, g_strdup(iter->data));
     result = g_list_reverse(result);
     return result;
