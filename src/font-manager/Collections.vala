@@ -18,9 +18,9 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-const string DEFAULT_COLLECTION_NAME = _("Enter Collection Name");
-
 namespace FontManager {
+
+    const string DEFAULT_COLLECTION_NAME = _("Enter Collection Name");
 
     public class Collections : Cacheable {
 

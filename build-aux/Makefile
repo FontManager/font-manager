@@ -57,10 +57,10 @@ POTFILES.in:
 	find $(ABS_TOP_SRCDIR) -name "*.vala*" -print | $(SED) -e 's|$(ABS_TOP_SRCDIR)/||g' -e 's/\.in//g' | sort | uniq > $(ABS_TOP_SRCDIR)/po/$@ ;
 	echo "lib/common/font-manager-source.c" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	echo "lib/unicode/unicode-character-map.c" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "data/org.gnome.FontManager.appdata.xml.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "data/org.gnome.FontManager.desktop.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "data/org.gnome.FontViewer.appdata.xml.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "data/org.gnome.FontViewer.desktop.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "data/org.gnome.FontManager.appdata.xml.in.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "data/org.gnome.FontManager.desktop.in.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "data/org.gnome.FontViewer.appdata.xml.in.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
+	echo "data/org.gnome.FontViewer.desktop.in.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	find $(ABS_TOP_SRCDIR)/data -name "*.ui" -print | $(SED) -e 's|$(ABS_TOP_SRCDIR)/||g' | sort | uniq >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	echo "" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	$(SED) -i '/.*-custom.vala/d' $(ABS_TOP_SRCDIR)/po/$@ ;

@@ -47,10 +47,10 @@ tests/TestMain.vala
 tests/TestUtils.vala
 lib/common/font-manager-source.c
 lib/unicode/unicode-character-map.c
-data/org.gnome.FontManager.appdata.xml.in
-data/org.gnome.FontManager.desktop.in
-data/org.gnome.FontViewer.appdata.xml.in
-data/org.gnome.FontViewer.desktop.in
+data/org.gnome.FontManager.appdata.xml.in.in
+data/org.gnome.FontManager.desktop.in.in
+data/org.gnome.FontViewer.appdata.xml.in.in
+data/org.gnome.FontViewer.desktop.in.in
 data/ui/font-manager-alias-row.ui
 data/ui/font-manager-browse-view.ui
 data/ui/font-manager-character-map.ui

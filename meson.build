@@ -69,3 +69,5 @@ subdir('src')
 subdir('po')
 
 meson.add_install_script('meson_post_install.py')
+meson.add_dist_script('meson_dist.py')
+
