@@ -198,8 +198,7 @@ namespace FontManager {
                 val.unset();
                 /* Keep going */
                 return false;
-                }
-            );
+            });
             return results;
         }
 
