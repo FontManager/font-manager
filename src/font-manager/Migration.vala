@@ -177,7 +177,7 @@ namespace FontManager {
             }
 
             Xml.XPath.Context ctx = new Xml.XPath.Context(doc);
-            Xml.XPath.Object * res = ctx.eval_expression("//fontcollection");
+            Xml.XPath.Object * res = ctx.eval_expression("""//fontcollection""");
 
             for (int i = 0; i < res->nodesetval->length (); i++) {
                 Xml.Node* node = res->nodesetval->item(i);

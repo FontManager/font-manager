@@ -20,16 +20,14 @@
 
 namespace FontManager {
 
-//    public Preferences construct_preference_pane () {
     public void initialize_preference_pane (Preferences pane) {
-//        Preferences pane = new Preferences();
         pane.add_page(new UserInterfacePreferences(), "Interface", _("Interface"));
         pane.add_page(new SourcePreferences(), "Sources", _("Sources"));
         pane.add_page(new SubstitutionPreferences(), "Substitutions", _("Substitutions"));
         pane.add_page(new DesktopPreferences(), "Desktop", _("Desktop"));
         pane.add_page(new DisplayPreferences(), "Display", _("Display"));
         pane.add_page(new RenderingPreferences(), "Rendering", _("Rendering"));
-        return;// pane;
+        return;
     }
 
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-preferences.ui")]

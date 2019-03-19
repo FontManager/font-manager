@@ -76,24 +76,11 @@ POTFILES.skip:
 	echo "data/org.gnome.FontViewer.appdata.xml" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 	echo "lib/unicode/unicode-info.c" >> $(ABS_TOP_SRCDIR)/po/$@ ;
 
-update_pot_header = \
-	$(SED) -f $(ABS_TOP_SRCDIR)/$2/insert-header.sin -i $1 && \
-	$(SED) -i 's/PACKAGE/${PACKAGE_NAME}/g' $1 && \
-	$(SED) -i 's/VERSION/${PACKAGE_VERSION}/g' $1
-
 $(PACKAGE_NAME).pot:
 	cd $(ABS_TOP_SRCDIR)  && \
-	test -e Makefile || ./autogen.sh && \
-	cd $(ABS_TOP_SRCDIR)/po/ && \
-	rm -f $@  && \
-	$(MAKE) update-po && \
-	$(SED) '1,6 d' -i $@ && \
-	$(call update_pot_header,$@,po) && \
-	cd $(ABS_TOP_SRCDIR)/help && \
-	rm -f $@  && \
-	$(MAKE) pot && \
-	$(call update_pot_header,$@,help) && \
-	$(MAKE) repo && \
+	meson build && \
+	ninja -C build font-manager-pot && \
+	ninja -C build help-font-manager-pot && \
 	cd $(ABS_SRCDIR)
 
 write_sources = \

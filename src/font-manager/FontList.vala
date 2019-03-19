@@ -416,8 +416,8 @@ namespace FontManager {
          * they're easy to modify/extend in one place.
          */
         Gtk.Menu get_context_menu () {
+            /* action_name, display_name, detailed_action_name, accelerator, method */
             MenuEntry [] context_menu_entries = {
-                /* action_name, display_name, detailed_action_name, accelerator, method */
                 MenuEntry("install", _("Install"), "app.install", null, new MenuCallbackWrapper(install)),
                 MenuEntry("copy_location", _("Copy Location"), "app.copy_location", null, new MenuCallbackWrapper(copy_location)),
                 MenuEntry("show_in_folder", _("Show in Folder"), "app.show_in_folder", null, new MenuCallbackWrapper(show_in_folder)),

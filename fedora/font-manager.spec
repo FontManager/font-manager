@@ -1,6 +1,6 @@
 %global MajorVersion 0
 %global MinorVersion 7
-%global MicroVersion 4
+%global MicroVersion 4.3
 %global DBusName org.gnome.FontManager
 %global DBusName2 org.gnome.FontViewer
 %global Master https://github.com/FontManager/master
@@ -12,7 +12,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
-Release:    17
+Release:    1
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -28,7 +28,7 @@ BuildRequires: libappstream-glib
 BuildRequires: libxml2-devel
 BuildRequires: pango-devel
 BuildRequires: sqlite-devel
-BuildRequires: vala >= 0.24
+BuildRequires: vala >= 0.42
 BuildRequires: yelp-tools
 BuildRequires: /usr/bin/python
 BuildRequires: python2-devel python3-devel
@@ -143,8 +143,14 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
+* Sat Mar 16 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4.3-1
+- Force COPR to pick up newer source.
+* Sat Mar 16 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-18
+- Actually require Vala >= 0.42 ...
+* Sat Mar 16 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-18
+- Require Vala >= 0.42
 * Fri Mar 15 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-17
-- Add glyph count to Character Map details
+- Merge changes from master
 * Sat Feb 09 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-16
 - Add glyph count to Character Map details
 * Fri Jan 25 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-15

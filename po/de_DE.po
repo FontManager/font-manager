@@ -1,20 +1,20 @@
 # Font Manager - Simple font management for Gtk+ desktop environments
-#
+# 
 # Copyright Â© 2009 - 2016 Jerry Casiano
-#
+# 
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-#
+# 
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-#
+# 
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+# 
 # Author:
 #  Jerry Casiano <JerryCasiano@gmail.com>
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016. #zanata
@@ -22,20 +22,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2019-03-16 03:29-0400\n"
+"POT-Creation-Date: 2019-03-18 21:23-0400\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2016-05-25 11:48+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: none <@>\n"
 "Language: de_DE\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: lib/vala/About.vala:27 data/org.gnome.FontManager.appdata.xml.in:9
-#: data/org.gnome.FontManager.desktop.in:5
-#: data/org.gnome.FontManager.desktop.in:6
+#: lib/vala/About.vala:27 data/org.gnome.FontManager.appdata.xml.in.in:9
+#: data/org.gnome.FontManager.desktop.in.in:5
+#: data/org.gnome.FontManager.desktop.in.in:6
 msgid "Font Manager"
 msgstr "Schriften Verwalter"
 
@@ -239,7 +239,7 @@ msgid "Fonts available to all users"
 msgstr "Für alle Benutzer verfügbare Schriften"
 
 #: src/font-manager/Categories.vala:292
-#: data/ui/font-manager-properties-pane.ui:168
+#: data/ui/font-manager-properties-pane.ui:173
 msgid "Width"
 msgstr "Breite"
 
@@ -248,7 +248,7 @@ msgid "Grouped by font width"
 msgstr "Geordnet nach Schriftbreite"
 
 #: src/font-manager/Categories.vala:294
-#: data/ui/font-manager-properties-pane.ui:204
+#: data/ui/font-manager-properties-pane.ui:209
 msgid "Weight"
 msgstr "Stärke"
 
@@ -257,7 +257,7 @@ msgid "Grouped by font weight"
 msgstr "Geordnet nach Schriftstärke"
 
 #: src/font-manager/Categories.vala:296
-#: data/ui/font-manager-properties-pane.ui:186
+#: data/ui/font-manager-properties-pane.ui:191
 msgid "Slant"
 msgstr "Schriftstil"
 
@@ -266,7 +266,7 @@ msgid "Grouped by font angle"
 msgstr "Geordnet nach Schriftwinkel / Schriftstil"
 
 #: src/font-manager/Categories.vala:298
-#: data/ui/font-manager-properties-pane.ui:222
+#: data/ui/font-manager-properties-pane.ui:227
 msgid "Spacing"
 msgstr "Abstände"
 
@@ -284,7 +284,7 @@ msgid "Grouped by license type"
 msgstr "Geordnet nach Lizenz"
 
 #: src/font-manager/Categories.vala:302
-#: data/ui/font-manager-properties-pane.ui:258
+#: data/ui/font-manager-properties-pane.ui:263
 msgid "Vendor"
 msgstr "Herausgeber"
 
@@ -349,7 +349,7 @@ msgstr "Variation"
 msgid "Variations"
 msgstr "Variationen"
 
-#: src/font-manager/Collections.vala:21
+#: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
 msgstr "Geben Sie einen Kollektionsnamen an"
 
@@ -519,10 +519,9 @@ msgstr ""
 "Dateien von früheren Versionen sind inkompatibel mit dieser Version, andere "
 "sind veraltet oder wurden verschoben.\n"
 "\n"
-"Font Manager wird nun versuchen Ihre Schriften und Kollektionen zu "
-"migrieren. Dateien welche nicht länger nötig oder korrekt sind werden "
-"entfernt. Alle Einstellungen welche einen Konflikt hervorufen könnten werden "
-"entfernt.\n"
+"Font Manager wird nun versuchen Ihre Schriften und Kollektionen zu migrieren."
+" Dateien welche nicht länger nötig oder korrekt sind werden entfernt. Alle "
+"Einstellungen welche einen Konflikt hervorufen könnten werden entfernt.\n"
 "\n"
 "Es wird dringend empfohlen, alle wichtigen Dateien zu sichern bevor Sie "
 "fortfahren.\n"
@@ -627,29 +626,29 @@ msgstr ""
 msgid "LCD Filter"
 msgstr ""
 
-#: src/font-manager/Preferences/Preferences.vala:26
+#: src/font-manager/Preferences/Preferences.vala:24
 msgid "Interface"
 msgstr ""
 
-#: src/font-manager/Preferences/Preferences.vala:27
+#: src/font-manager/Preferences/Preferences.vala:25
 #, fuzzy
 msgid "Sources"
 msgstr "Verwalte Quellen"
 
-#: src/font-manager/Preferences/Preferences.vala:28
+#: src/font-manager/Preferences/Preferences.vala:26
 msgid "Substitutions"
 msgstr ""
 
-#: src/font-manager/Preferences/Preferences.vala:29
+#: src/font-manager/Preferences/Preferences.vala:27
 msgid "Desktop"
 msgstr ""
 
-#: src/font-manager/Preferences/Preferences.vala:30
+#: src/font-manager/Preferences/Preferences.vala:28
 #, fuzzy
 msgid "Display"
 msgstr "Text und Bildschirm"
 
-#: src/font-manager/Preferences/Preferences.vala:31
+#: src/font-manager/Preferences/Preferences.vala:29
 msgid "Rendering"
 msgstr ""
 
@@ -791,9 +790,10 @@ msgstr ""
 
 #: src/font-viewer/Application.vala:69 src/font-viewer/Application.vala:101
 #: src/font-viewer/MainWindow.vala:25
-#: data/org.gnome.FontViewer.appdata.xml.in:9
-#: data/org.gnome.FontViewer.desktop.in:5
-#: data/org.gnome.FontViewer.desktop.in:6 data/ui/font-viewer-main-window.ui:17
+#: data/org.gnome.FontViewer.appdata.xml.in.in:9
+#: data/org.gnome.FontViewer.desktop.in.in:5
+#: data/org.gnome.FontViewer.desktop.in.in:6
+#: data/ui/font-viewer-main-window.ui:17
 #, fuzzy
 msgid "Font Viewer"
 msgstr "Schriften Verwalter"
@@ -858,53 +858,55 @@ msgstr ""
 msgid "Character found."
 msgstr ""
 
-#: data/org.gnome.FontManager.appdata.xml.in:10
+#: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
 msgstr ""
 
-#: data/org.gnome.FontManager.appdata.xml.in:13
+#: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
 "Font Manager is intended to provide a way for average users to easily manage "
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
 
-#: data/org.gnome.FontManager.appdata.xml.in:18
+#: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr ""
 
-#: data/org.gnome.FontManager.appdata.xml.in:22
+#: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
 msgstr ""
 
-#: data/org.gnome.FontManager.desktop.in:7
+#: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
 msgstr ""
 
-#: data/org.gnome.FontManager.desktop.in:9
-#: data/org.gnome.FontViewer.desktop.in:9
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.FontManager.desktop.in.in:9
+#: data/org.gnome.FontViewer.desktop.in.in:9
 msgid "preferences-desktop-font"
 msgstr ""
 
-#: data/org.gnome.FontManager.desktop.in:16
-#: data/org.gnome.FontViewer.desktop.in:16
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.FontManager.desktop.in.in:16
+#: data/org.gnome.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
 msgstr ""
 
-#: data/org.gnome.FontViewer.appdata.xml.in:10
+#: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
 msgstr ""
 
-#: data/org.gnome.FontViewer.appdata.xml.in:13
+#: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
 "Font Viewer allows previewing font files prior to installation. It features "
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
 msgstr ""
 
-#: data/org.gnome.FontViewer.desktop.in:7
+#: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
 msgstr ""
 
@@ -931,9 +933,8 @@ msgstr "Wähle Hintergrundfarbe"
 
 #: data/ui/font-manager-compare-view.ui:121
 #: data/ui/font-manager-compare-view.ui:123
-#, fuzzy
 msgid "Select text  color"
-msgstr "Wähle Textfarbe"
+msgstr ""
 
 #: data/ui/font-manager-font-config-controls.ui:12
 msgid "Discard"
@@ -990,20 +991,20 @@ msgstr "Proportional"
 msgid "Select preview type"
 msgstr "Vorschautext bearbeiten"
 
-#: data/ui/font-manager-properties-pane.ui:134
+#: data/ui/font-manager-properties-pane.ui:139
 #, fuzzy
 msgid "PostScript Name"
 msgstr "PostScript Type 1 Schrift"
 
-#: data/ui/font-manager-properties-pane.ui:240
+#: data/ui/font-manager-properties-pane.ui:245
 msgid "Version"
 msgstr ""
 
-#: data/ui/font-manager-properties-pane.ui:276
+#: data/ui/font-manager-properties-pane.ui:281
 msgid "FileType"
 msgstr ""
 
-#: data/ui/font-manager-properties-pane.ui:294
+#: data/ui/font-manager-properties-pane.ui:299
 msgid "Filesize"
 msgstr ""
 
