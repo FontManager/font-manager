@@ -1,23 +1,25 @@
 %global MajorVersion 0
 %global MinorVersion 7
-%global MicroVersion 4.3
+%global MicroVersion 4
 %global DBusName org.gnome.FontManager
 %global DBusName2 org.gnome.FontViewer
-%global Master https://github.com/FontManager/master
-%global Releases %{Master}/releases/download
+%global git_archive https://github.com/FontManager/font-manager/archive/master.tar.gz
 
 # Disable automatic compilation of Python files in extra directories
 %undefine __brp_python_bytecompile
 %global _python_bytecompile_extra 0
 
+%define build_timestamp %{lua: print(os.date("%Y%m%d"))}
+
 Name:       font-manager
-Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}
+Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}.%{build_timestamp}
 Release:    1
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
-Source0:    %{Releases}/%{version}/%{name}-%{version}.tar.bz2
+Source0:    %{git_archive}
 
+BuildRequires: meson
 BuildRequires: fontconfig-devel
 BuildRequires: freetype-devel
 BuildRequires: glib2-devel
@@ -94,21 +96,21 @@ Requires: dbus-python
 This package provides integration with the Thunar file manager.
 
 %prep
-%setup -q
+%autosetup -n %{name}-master -S git
 
 %build
-%configure --disable-schemas-compile --disable-pycompile --with-nautilus --with-nemo --with-thunarx
-%make_build
-
-%check
-appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdata.xml
+%meson --buildtype=debugoptimized -Ddisable_pycompile=True -Dnautilus=True -Dnemo=True -Dthunarx=True
+%meson_build
 
 %install
-%make_install
+%meson_install
 %py_byte_compile %{__python} %{buildroot}%{_datadir}/nautilus-python/extensions/
 %py_byte_compile %{__python} %{buildroot}%{_datadir}/nemo-python/extensions/
 %py_byte_compile %{__python} %{buildroot}%{_datadir}/thunarx-python/extensions/
 %find_lang %name
+
+%check
+appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdata.xml
 
 %posttrans
 /usr/bin/glib-compile-schemas %{_datadir}/glib-2.0/schemas &> /dev/null || :
@@ -143,104 +145,6 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
-* Sat Mar 16 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4.3-1
-- Force COPR to pick up newer source.
-* Sat Mar 16 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-18
-- Actually require Vala >= 0.42 ...
-* Sat Mar 16 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-18
-- Require Vala >= 0.42
-* Fri Mar 15 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-17
-- Merge changes from master
-* Sat Feb 09 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-16
-- Add glyph count to Character Map details
-* Fri Jan 25 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-15
-- Fall back to default sample string for fonts which do not support localized preview.
-* Fri Jan 18 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-14
-- Fix crashes reported on 32 bit systems
-* Thu Jan 10 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-13
-- Prevent hang when font sources are enabled/disabled
-* Thu Dec 20 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-12
-- (Font Viewer) Fix dbus path
-- Classify ttc as Opentype instead of CFF
-* Thu Dec 13 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-11
-- Improve appearance when client side decorations are disabled
-- Add custom preview entry to browse and compare modes
-* Tue Nov 27 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-10
-- Add option to disable toolkit animations
-- Add option to use dark theme if available
-- Fix capitalization in preference dialogs
-* Tue Nov 27 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-9
-- Add preference pane for Gnome desktop settings.
-- Add GtkShortcutsWindow.
-- Remove Intltool.
-- Fix functions which list font directories.
-- Fix typos in help documents.
-* Tue Nov 20 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-8
-- Show progress when exporting collections.
-- Avoid unnecessary updates to previews.
-* Sun Nov 11 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-7
-- Search filepath if search term starts with /
-- Update help documents.
-- Fix category count updates.
-- Fix rendering issue with some themes by setting style class on preview stack.
-* Thu Nov 08 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-6
-- Remove some unnecessary updates to font list and categories.
-* Tue Nov 06 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-5
-- Use Pango generated font descriptions - bump database version.
-- Disable user fontconfig files to prevent rendering glitches.
-* Sat Nov 03 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-4
-- Update vendor list
-- Update Unicode version
-- Fix Browse mode titles to display family name rather than default description
-* Sat Nov 03 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-3
-- Disable deprecated Gdk and Gtk symbols.
-- Remove unused code.
-* Thu Nov 01 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-2
-- Ensure that collections are selected on first switch.
-- Ensure that Unsorted/Disabled categories update as needed.
-* Sun Oct 28 2018 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-1
-- Too many changes to list here. See CHANGELOG for details
-* Sun Aug 6 2017 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-11
-- Drop dependence on Gucharmap
-* Sun Jun 11 2017 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-10
-- Fix build failure with Vala 0.36 due to vapi changes
-- Fix an issue where sources fail to add if a child directory has
-  already been added.
-- Add Russian translation provided by TotalCaesar659
-- Sync translations from Zanata
-* Sun Oct 16 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-9
-- Fix extension requirements
-* Sat Jun 4 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-8
-- Fix initial window size issue on Gtk+ > 3.18
-* Wed Jun 1 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-7
-- Add Polish translation provided by Piotr Strębski
-* Thu May 26 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-6
-- Add manual page
-* Thu Apr 21 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-5
-- Drop build deps for python extensions
-- Enable all extensions
-- Update to latest git
-* Sat Mar 5 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-4
-- Update to latest git to include new features.
-- Added preference pane.
-* Wed Jan 06 2016 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-3
-- Update to latest git to include bug fixes.
-* Wed Dec 23 2015 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-2
-- Leigh Scott enabled nemo extension for actual Fedora package
-- Must *work* on Cinnamon...
-* Tue Dec 8 2015 JerryCasiano <JerryCasiano@gmail.com> 0.7.3-1
-- Update to testing branch 0.7.3
-* Sat Jun 06 2015 JerryCasiano <JerryCasiano@gmail.com> 0.7.2-5
-- Add missing Requires for Nautilus extension.
-* Sat Jun 06 2015 JerryCasiano <JerryCasiano@gmail.com> 0.7.2-4
-- Add missing BuildRequires for file-roller. Fails to mock.
-* Tue Jun 02 2015 JerryCasiano <JerryCasiano@gmail.com> 0.7.2-3
-- Adhere to https://fedoraproject.org/wiki/Packaging:AppData
-* Thu May 28 2015 JerryCasiano <JerryCasiano@gmail.com> 0.7.2-2
-- Add missing Requires
-* Sun Jan 25 2015 JerryCasiano <JerryCasiano@gmail.com> 0.7.2-1
-- Update to 0.7.2
-* Sat Dec 13 2014 JerryCasiano <JerryCasiano@gmail.com> 0.7.1-1
-- Initial build.
-
+* Mon Mar 18 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-1
+- Refer to https://github.com/FontManager/master/commits/master for changes.
 

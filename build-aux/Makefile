@@ -118,33 +118,6 @@ update-po: POTFILES.readme POTFILES.in POTFILES.skip $(PACKAGE_NAME).pot
 update-sources: ValaSources.mk
 update: update-headers update-po update-sources
 
-# Fedora RPM packaging
-
-rpm-prep:
-	@echo -e "\n**** Need to ensure rpmdevtools are installed\n";
-	pkexec dnf install rpmdevtools
-	@echo -e "\n**** Need to ensure build dependencies are installed\n";
-	pkexec dnf builddep $(ABS_TOP_SRCDIR)/fedora/$(PACKAGE_NAME).spec
-	cd $(ABS_TOP_SRCDIR) && \
-	test -e Makefile || ./autogen.sh && \
-	make dist-bzip2 && \
-	rpmdev-setuptree && \
-	cp *.bz2 ~/rpmbuild/SOURCES/ && \
-	cp fedora/$(PACKAGE_NAME).spec ~/rpmbuild/SPECS/ && \
-	cd $(ABS_SRCDIR)
-	rm -f ~/rpmbuild/SRPMS/$(PACKAGE_NAME)*.src.rpm
-
-rpm: rpm-prep
-	rpmbuild -bb ~/rpmbuild/SPECS/$(PACKAGE_NAME).spec
-
-srpm: rpm-prep
-	rpmbuild -bs ~/rpmbuild/SPECS/$(PACKAGE_NAME).spec
-
-copr-build: srpm
-	@echo -e "\n**** Need to ensure copr-cli is installed\n";
-	pkexec dnf install copr-cli
-	copr-cli build --nowait jerrycasiano/FontManager ~/rpmbuild/SRPMS/$(PACKAGE_NAME)*.src.rpm
-
 # Debian? packaging
 # Tested on Ubuntu
 
