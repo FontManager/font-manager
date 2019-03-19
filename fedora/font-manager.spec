@@ -96,7 +96,7 @@ Requires: dbus-python
 This package provides integration with the Thunar file manager.
 
 %prep
-%autosetup -n %{name}-master -S git
+%autosetup -n %{name}-master
 
 %build
 %meson --buildtype=debugoptimized -Ddisable_pycompile=True -Dnautilus=True -Dnemo=True -Dthunarx=True
