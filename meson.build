@@ -53,7 +53,7 @@ configure_file(input: 'config.h.meson', output: 'config.h', configuration: confi
 
 file_list_template = '''
 from glob import glob
-for f in glob('**/*.@0@', recursive=True):
+for f in sorted(glob('**/*.@0@', recursive=True)):
     print(f)
 '''
 

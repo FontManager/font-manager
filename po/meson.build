@@ -1,8 +1,41 @@
 
+POTFILES = '''
+from glob import glob
+
+data = [
+    'data/org.gnome.FontManager.appdata.xml.in.in',
+    'data/org.gnome.FontManager.desktop.in.in',
+    'data/org.gnome.FontViewer.appdata.xml.in.in',
+    'data/org.gnome.FontViewer.desktop.in.in'
+]
+
+def filelist (ext):
+    for f in sorted(glob('@0@/**/*.{}*'.format(ext), recursive=True)):
+        yield f
+
+with open('@1@/POTFILES', 'w') as POTFILES:
+    for f in data:
+        POTFILES.write('{}\n'.format(f))
+    for ext in [ 'c', 'vala', 'ui' ]:
+        for f in filelist(ext):
+            f = f.replace('@2@/', '')
+            skip = False
+            for d in [ 'build', 'tests' ]:
+                if f.startswith(d):
+                    skip = True
+                    break
+            if skip:
+                continue
+            if f.endswith('.in'):
+                f = f.replace('.in', '')
+            if not f.endswith(ext):
+                continue
+            POTFILES.write('{}\n'.format(f))
+'''.format(meson.source_root(), meson.current_build_dir(), meson.source_root())
+
 configure_file(
-    input: 'POTFILES.in',
-    output: 'POTFILES',
-    copy: true
+    command: [python, '-c', POTFILES],
+    output: 'POTFILES'
 )
 
 gettext_args = [

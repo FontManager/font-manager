@@ -1,6 +1,7 @@
 %global MajorVersion 0
 %global MinorVersion 7
-%global MicroVersion 4
+%global PatchVersion 4
+%global build_timestamp %{lua: print(os.date("%Y%m%d"))}
 %global DBusName org.gnome.FontManager
 %global DBusName2 org.gnome.FontViewer
 %global git_archive https://github.com/FontManager/font-manager/archive/master.tar.gz
@@ -9,10 +10,8 @@
 %undefine __brp_python_bytecompile
 %global _python_bytecompile_extra 0
 
-%define build_timestamp %{lua: print(os.date("%Y%m%d"))}
-
 Name:       font-manager
-Version:    %{MajorVersion}.%{MinorVersion}.%{MicroVersion}.%{build_timestamp}
+Version:    %{MajorVersion}.%{MinorVersion}.%{PatchVersion}.%{build_timestamp}
 Release:    1
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
@@ -146,5 +145,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 
 %changelog
 * Mon Mar 18 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-1
-- Refer to https://github.com/FontManager/master/commits/master for changes.
+- Refer to https://github.com/FontManager/font-manager/commits/master for changes.
 
