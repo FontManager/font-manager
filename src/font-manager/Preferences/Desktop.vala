@@ -94,6 +94,7 @@ namespace FontManager {
         }
 
         public DesktopPreferences () {
+            Object(name: "FontManagerDesktopPreferences");
             if (DesktopPreferences.available())
                 list = generate_options_list(interface_settings, x_settings);
             else
@@ -168,8 +169,8 @@ namespace FontManager {
                     continue;
                 var row = new Gtk.ListBoxRow();
                 row.add(widget);
-                /* Prevents highlight on hover */
                 row.set_activatable(false);
+                row.set_selectable(false);
                 list.insert(row, -1);
                 widget.set_tooltip_text(dgettext(null, setting.description));
                 widget.show();

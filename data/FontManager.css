@@ -115,6 +115,7 @@ treeview {
     border-radius: 0.25em;
 }
 
-#FontManagerAliasRow list row:hover {
+#FontManagerAliasRow list row:hover,
+#FontManagerDesktopPreferences list row:hover {
     background-color: transparent;
 }
