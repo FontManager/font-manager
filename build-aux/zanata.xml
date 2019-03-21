@@ -18,7 +18,7 @@
         </hook>
         <hook command="push">
             <!-- Allow push even if project has not been configured -->
-            <before>make update-po</before>
+            <before>make font-manager.pot</before>
             <after>rm -rf .zanata-cache</after>
         </hook>
     </hooks>

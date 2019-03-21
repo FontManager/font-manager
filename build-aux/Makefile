@@ -1,6 +1,6 @@
 
 PACKAGE_NAME = font-manager
-PACKAGE_VERSION = 0.7.4.3
+PACKAGE_VERSION = 0.7.4
 
 ABS_TOP_SRCDIR = $(shell realpath ../)
 ABS_SRCDIR = $(shell realpath .)
@@ -9,9 +9,7 @@ PKG_LIB_DIR = $(ABS_TOP_SRCDIR)/lib
 
 UNICODE_URL = http://www.unicode.org/Public
 UNICODE_VERSION = 12.0.0
-SED = $(shell which sed)
 WGET = $(shell which wget)
-GREP = $(shell which grep)
 WGETFLAGS = -np -nd -rc -P $(UNICODE_DATA_DIR)
 UNZIP = $(shell which unzip)
 
@@ -50,57 +48,11 @@ unicode-headers: download-unicode-data
 		mv $${f} $(PKG_LIB_DIR)/unicode/; \
 	done
 
-POTFILES.readme:
-	echo "Do not edit POTFILES.* directly. See build-aux directory" > $(ABS_TOP_SRCDIR)/po/$@
-
-POTFILES.in:
-	find $(ABS_TOP_SRCDIR) -name "*.vala*" -print | $(SED) -e 's|$(ABS_TOP_SRCDIR)/||g' -e 's/\.in//g' | sort | uniq > $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "lib/common/font-manager-source.c" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "lib/unicode/unicode-character-map.c" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "data/org.gnome.FontManager.appdata.xml.in.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "data/org.gnome.FontManager.desktop.in.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "data/org.gnome.FontViewer.appdata.xml.in.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "data/org.gnome.FontViewer.desktop.in.in" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	find $(ABS_TOP_SRCDIR)/data -name "*.ui" -print | $(SED) -e 's|$(ABS_TOP_SRCDIR)/||g' | sort | uniq >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	$(SED) -i '/.*-custom.vala/d' $(ABS_TOP_SRCDIR)/po/$@ ;
-	$(SED) -i 's|\.\./||g' $(ABS_TOP_SRCDIR)/po/$@ ;
-#find $(ABS_TOP_SRCDIR) -name "*i18n.h" -print | $(SED) -e 's|$(ABS_TOP_SRCDIR)/||g' >> $(ABS_TOP_SRCDIR)/po/$@ ;
-#echo "lib/unicode/unicode-info.c" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-
-POTFILES.skip:
-	find $(ABS_TOP_SRCDIR) -name "*.vala*" -print | $(SED) -e 's|$(ABS_TOP_SRCDIR)/||g' -e 's/\.in//g' | sort | uniq | $(SED) 's/\.vala/.c/g' > $(ABS_TOP_SRCDIR)/po/$@ ;
-	$(SED) -i '/.*-custom.c/d' $(ABS_TOP_SRCDIR)/po/$@ ;
-	$(SED) -i 's|\.\./||g' $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "data/org.gnome.FontManager.appdata.xml" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "data/org.gnome.FontViewer.appdata.xml" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-	echo "lib/unicode/unicode-info.c" >> $(ABS_TOP_SRCDIR)/po/$@ ;
-
 $(PACKAGE_NAME).pot:
 	cd $(ABS_TOP_SRCDIR)  && \
 	meson build && \
 	ninja -C build font-manager-pot && \
 	ninja -C build help-font-manager-pot && \
-	cd $(ABS_SRCDIR)
-
-write_sources = \
-	for i in `find . -type f -name '*.vala*' -print | $(SED) 's/\.in//g' | sort | uniq`; \
-	do \
-		echo "$$i \\" >> $1  ; \
-	done && \
-	$(SED) -i -e 's/^\.\//	/g' -e '$$ s/\\//' $1
-
-ValaSources.mk:
-	cd $(ABS_TOP_SRCDIR)/lib/vala && \
-	echo "# Do not edit directly. See build-aux directory" > $@ && \
-	echo "" >> $@ && \
-	echo "libfontmanager_la_VALASOURCES = \\" >> $@ && \
-	$(call write_sources,$@) && \
-	cd $(ABS_TOP_SRCDIR)/src/$(PACKAGE_NAME) && \
-	echo "# Do not edit directly. See build-aux directory" > $@ && \
-	echo "" >> $@ && \
-	echo "font_manager_VALASOURCES = \\" >> $@ && \
-	$(call write_sources,$@) && \
 	cd $(ABS_SRCDIR)
 
 license.h:
@@ -114,29 +66,5 @@ vendor.h:
 	cd ..
 
 update-headers: license.h vendor.h unicode-headers
-update-po: POTFILES.readme POTFILES.in POTFILES.skip $(PACKAGE_NAME).pot
-update-sources: ValaSources.mk
-update: update-headers update-po update-sources
-
-# Debian? packaging
-# Tested on Ubuntu
-
-deb:
-	@echo "\n**** Need to ensure build dependencies are installed\n";
-	sudo apt-get install devscripts equivs
-	cd $(ABS_TOP_SRCDIR) && \
-	mk-build-deps $(ABS_TOP_SRCDIR)/debian/control && \
-	sudo dpkg -i $(ABS_TOP_SRCDIR)/*.deb && rm $(ABS_TOP_SRCDIR)/*.deb && \
-	test -e Makefile || ./autogen.sh && \
-	make dist-bzip2 && \
-	rm -rf BUILD && \
-	mkdir BUILD && \
-	mv $(PACKAGE_NAME)-$(PACKAGE_VERSION).tar.bz2 BUILD/$(PACKAGE_NAME)_$(PACKAGE_VERSION).orig.tar.bz2 && \
-	cd BUILD && \
-	tar -xvf $(PACKAGE_NAME)_$(PACKAGE_VERSION).orig.tar.bz2 && \
-	cp -Rpf ../debian $(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
-	cp -pf ../autogen.sh $(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
-	cd $(ABS_TOP_SRCDIR)/BUILD/$(PACKAGE_NAME)-$(PACKAGE_VERSION) && \
-	debuild -us -uc && \
-	cd $(ABS_SRCDIR)
+update: update-headers $(PACKAGE_NAME).pot
 
