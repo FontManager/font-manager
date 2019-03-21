@@ -1,4 +1,4 @@
-usr/lib/*/font-manager/font-viewer
+usr/libexec/font-manager/font-viewer
 usr/share/metainfo/org.gnome.FontViewer.appdata.xml
 usr/share/applications/org.gnome.FontViewer.desktop
 usr/share/dbus-1/services/org.gnome.FontViewer.service

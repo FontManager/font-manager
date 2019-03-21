@@ -1,2 +1,0 @@
-# Do not generate diff for changes in autogen.sh
-extend-diff-ignore = "autogen.sh"
