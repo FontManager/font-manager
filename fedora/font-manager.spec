@@ -35,7 +35,7 @@ BuildRequires: /usr/bin/python
 BuildRequires: python2-devel python3-devel
 
 Requires: fontconfig
-Requires: font-manager-common
+Requires: %{name}-common
 Requires: font-viewer
 Requires: freetype
 Requires: gtk3 >= 3.22
@@ -60,38 +60,38 @@ This package contains common files such as libraries, help files,
 
 %package -n font-viewer
 Summary: Full featured font file preview application for GTK+ Desktop Environments
-Requires: font-manager-common >= %{version}
+Requires: %{name}-common >= %{version}
 %description -n font-viewer
 This package contains the font-viewer component of font-manager.
 
-%package -n nautilus-font-manager
+%package -n nautilus-%{name}
 BuildArch: noarch
-Summary: Nautilus extension for font-manager
+Summary: Nautilus extension for Font Manager
 Requires: font-viewer >= %{version}
-Requires: font-manager-common >= %{version}
+Requires: %{name}-common >= %{version}
 Requires: nautilus-python
 Requires: dbus-python
-%description -n nautilus-font-manager
+%description -n nautilus-%{name}
 This package provides integration with the Nautilus file manager.
 
-%package -n nemo-font-manager
+%package -n nemo-%{name}
 BuildArch: noarch
 Summary: Nemo extension for Font Manager
 Requires: font-viewer >= %{version}
-Requires: font-manager-common >= %{version}
+Requires: %{name}-common >= %{version}
 Requires: nemo-python
 Requires: dbus-python
-%description -n nemo-font-manager
+%description -n nemo-%{name}
 This package provides integration with the Nemo file manager.
 
-%package -n thunarx-font-manager
+%package -n thunarx-%{name}
 BuildArch: noarch
 Summary: Thunar extension for Font Manager
 Requires: font-viewer >= %{version}
-Requires: font-manager-common >= %{version}
+Requires: %{name}-common >= %{version}
 Requires: thunarx-python
 Requires: dbus-python
-%description -n thunarx-font-manager
+%description -n thunarx-%{name}
 This package provides integration with the Thunar file manager.
 
 %prep
@@ -134,13 +134,13 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/dbus-1/services/%{DBusName2}.service
 %{_datadir}/glib-2.0/schemas/%{DBusName2}.gschema.xml
 
-%files -n nautilus-font-manager
+%files -n nautilus-%{name}
 %{_datadir}/nautilus-python/extensions/%{name}.py*
 
-%files -n nemo-font-manager
+%files -n nemo-%{name}
 %{_datadir}/nemo-python/extensions/%{name}.py*
 
-%files -n thunarx-font-manager
+%files -n thunarx-%{name}
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog

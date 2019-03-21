@@ -1,21 +1,6 @@
 
 project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.7.4')
 
-i18n = import('i18n')
-gnome= import('gnome')
-python = import('python').find_installation('python3')
-
-add_global_arguments(
-    '-DG_LOG_DOMAIN="[@0@]"'.format(meson.project_name()),
-    '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
-    '-DGDK_DISABLE_DEPRECATED',
-    '-DGTK_DISABLE_DEPRECATED',
-    '-Wall', '-Wextra', '-Werror=format-security',
-    language: 'c'
-)
-
-default_includes = include_directories( '.', 'lib/common', 'lib/orthographies', 'lib/unicode')
-
 cc = meson.get_compiler('c')
 # There has to be a better way to require a specific vala version, right?
 valac = meson.get_compiler('vala')
@@ -33,6 +18,21 @@ pango = dependency('pango', version: '>= 1.4')
 pangoft2 = dependency('pangoft2', version: '>= 1.4')
 sqlite = dependency('sqlite3', version: '>= 3.8')
 xml = dependency('libxml-2.0', version: '>= 2.9')
+
+i18n = import('i18n')
+gnome= import('gnome')
+python = import('python').find_installation('python3')
+
+add_global_arguments(
+    '-DG_LOG_DOMAIN="[@0@]"'.format(meson.project_name()),
+    '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
+    '-DGDK_DISABLE_DEPRECATED',
+    '-DGTK_DISABLE_DEPRECATED',
+    '-Wall', '-Wextra', '-Werror=format-security',
+    language: 'c'
+)
+
+default_includes = include_directories( '.', 'lib/common', 'lib/orthographies', 'lib/unicode')
 
 config_vapi_file = files('config.vapi')
 prefix = get_option('prefix')
