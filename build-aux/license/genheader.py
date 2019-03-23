@@ -68,9 +68,7 @@ def write_license_entry (tmp, val) :
 def get_license_entries () :
     license_dir = os.path.dirname(os.path.realpath(__file__))
     tmp = io.StringIO()
-    filelist = os.listdir(license_dir)
-    filelist.sort()
-    for filename in glob("*.json"):
+    for filename in sorted(glob("*.json")):
         filepath = os.path.join(license_dir, filename)
         try:
             with open(filepath) as raw:
