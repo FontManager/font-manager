@@ -160,7 +160,7 @@ namespace FontManager {
 
         public LabeledFontButton (string? label = null) {
             this.label.set_text(label != null ? label : "");
-            bind_property("font", button, "font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+            bind_property("font", button, "font", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
         }
 
     }
