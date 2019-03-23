@@ -18,12 +18,12 @@
 #
 # If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 
-import io
-import os
 import json
 import sys
 
 from glob import glob
+from io import StringIO
+from os import path
 
 NOTICE = """/* Do not edit directly. See build-aux directory */"""
 
@@ -66,10 +66,10 @@ def write_license_entry (tmp, val) :
         tmp.write("        \"{0}\",\n".format(val))
 
 def get_license_entries () :
-    license_dir = os.path.dirname(os.path.realpath(__file__))
-    tmp = io.StringIO()
+    license_dir = path.dirname(path.realpath(__file__))
+    tmp = StringIO()
     for filename in sorted(glob("*.json")):
-        filepath = os.path.join(license_dir, filename)
+        filepath = path.join(license_dir, filename)
         try:
             with open(filepath) as raw:
                 obj = json.load(raw)
@@ -94,7 +94,7 @@ def get_license_entries () :
 
 
 if __name__ == "__main__":
-    with open(os.path.join(sys.argv[1], "license.h"), "w") as header_file:
+    with open(path.join(sys.argv[1], "license.h"), "w") as header_file:
         header_file.write(NOTICE)
         header_file.write(HEADER)
         header_file.write(get_license_entries())

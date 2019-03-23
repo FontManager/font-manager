@@ -57,13 +57,6 @@ static const struct
 VendorData[] =
 {
 
-    /* Various Sources */
-    {"ACG", "Monotype Imaging"},
-    {"B?", "Bigelow & Holmes"},
-    {"FJ", "Fujitsu"},
-    {"RICO", "Ricoh"},
-
-
     /* Courtesy of Microsoft Typography - https://docs.microsoft.com/en-us/typography/vendors/ */
     {"!ETF", "!Exclamachine Type Foundry"},
     {"$pro", "CheapProFonts"},
@@ -539,6 +532,7 @@ VendorData[] =
     {"MT", "Monotype Imaging (replaced by MONO)"},
     {"MTF", "Miss Tiina Fonts"},
     {"MTFO", "Music Type Foundry"},
+    {"MTNT", "Mutant Standard"},
     {"MTY", "Motoya Co. ,LTD."},
     {"MUTF", "Murasu Systems Sdn. Bhd"},
     {"MVB", "MVB Fonts"},
@@ -639,6 +633,7 @@ VendorData[] =
     {"RSJ", "RSJ Software"},
     {"RST", "Rosetta"},
     {"RUDY", "RudynFluffy"},
+    {"RXBN", "Roxaboxen"},
     {"RYOB", "Ryobi Limited"},
     {"RYT", "Ra'ey Type"},
     {"S4TF", "Sed4-Type Foundry"},
@@ -793,6 +788,13 @@ VendorData[] =
     {"ZeGr", "Zebra Font Factory"},
     {"zeta", "Tangram Studio"},
     {"ZSFT", "Zsoft"},
+
+
+    /* Various Sources */
+    {"ACG", "Monotype Imaging"},
+    {"B?", "Bigelow & Holmes"},
+    {"FJ", "Fujitsu"},
+    {"RICO", "Ricoh"},
 
 };
 

@@ -18,11 +18,11 @@
 #
 # If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 
-import io
-import os
 import sys
 
 from glob import glob
+from io import StringIO
+from os import path, remove
 from pprint import pprint
 
 NOTICE = """/* Do not edit directly. See build-aux directory */"""
@@ -98,13 +98,13 @@ G_END_DECLS
 
 """
 
-vendor_dir = os.path.dirname(os.path.realpath(__file__))
+vendor_dir = path.dirname(path.realpath(__file__))
 
 def get_vendor_entries () :
     sys.path.append(vendor_dir)
-    module_names = [os.path.splitext(p)[0] for p in glob("*.py") if p != "genheader.py"]
+    module_names = [path.splitext(p)[0] for p in glob("*.py") if p != "genheader.py"]
     resources = map(__import__, module_names)
-    tmp = io.StringIO()
+    tmp = StringIO()
     for module in resources:
         name = module.__name__
         try:
@@ -117,7 +117,7 @@ def get_vendor_entries () :
             except:
                 vendor_list = []
             if len(vendor_list) == 0:
-                with open(os.path.join(vendor_dir, "{}.cache".format(name))) as cache:
+                with open(path.join(vendor_dir, "{}.cache".format(name))) as cache:
                     vendor_list = eval(cache.read())
                     print("Using cached vendor information for {}".format(name))
             for vendor_id, vendor in iter(vendor_list):
@@ -127,7 +127,7 @@ def get_vendor_entries () :
             tmp.write("\n")
             if name != "Example":
                 try:
-                    with open(os.path.join(vendor_dir, "{}.cache".format(name)), "w") as cache:
+                    with open(path.join(vendor_dir, "{}.cache".format(name)), "w") as cache:
                         pprint(list(vendor_list), cache)
                 except:
                     pass
@@ -139,14 +139,14 @@ def get_vendor_entries () :
 
 
 if __name__ == "__main__":
-    with open(os.path.join(sys.argv[1], "vendor.h"), "w") as header_file:
+    with open(path.join(sys.argv[1], "vendor.h"), "w") as header_file:
         header_file.write(NOTICE)
         header_file.write(HEADER)
         header_file.write(get_vendor_entries())
         header_file.write(FOOTER)
-    build_cache = os.path.join(vendor_dir, "__pycache__")
-    if os.path.exists(build_cache):
+    build_cache = path.join(vendor_dir, "__pycache__")
+    if path.exists(build_cache):
         import shutil
         shutil.rmtree(build_cache)
     for f in glob("*.pyc"):
-        os.remove(f)
+        remove(f)
