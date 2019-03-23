@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-import os
-import shutil
+from os import chdir, environ
+from shutil import rmtree
 
-os.chdir(os.environ['MESON_DIST_ROOT'])
+chdir(environ['MESON_DIST_ROOT'])
 
 excluded_dirs = {
     'build-aux',
@@ -13,4 +13,4 @@ excluded_dirs = {
 }
 
 for d in excluded_dirs:
-    shutil.rmtree(d)
+    rmtree(d)

@@ -68,3 +68,39 @@ vendor.h:
 update-headers: license.h vendor.h unicode-headers
 update: update-headers $(PACKAGE_NAME).pot
 
+BUILD_DEPENDS = \
+	build-essential \
+	debhelper \
+	valac \
+	meson \
+	libxml2-dev \
+	libfreetype6-dev \
+	libfontconfig1-dev \
+	libglib2.0-dev \
+	libjson-glib-dev \
+	libcairo2-dev \
+	libgtk-3-dev \
+	libpango1.0-dev \
+	libsqlite3-dev \
+	libgirepository1.0-dev \
+	yelp-tools \
+	python \
+	python-gobject \
+	python-nautilus
+
+deb:
+	@echo -e '\n*** Need to ensure build dependencies are installed ***\n\n'
+	pkexec apt install $(BUILD_DEPENDS)
+	cd $(ABS_TOP_SRCDIR) || exit && \
+	meson build && \
+	ninja -C build dist && \
+	cd build/meson-dist/ || exit && \
+	tar -xvf $(PACKAGE_NAME)-$(PACKAGE_VERSION).tar.xz && \
+	mv $(PACKAGE_NAME)-$(PACKAGE_VERSION).tar.xz \
+	./$(PACKAGE_NAME)_$(PACKAGE_VERSION).orig.tar.xz && \
+	cd $(PACKAGE_NAME)-$(PACKAGE_VERSION) || exit && \
+	cp -R ../../../debian . && \
+	dpkg-buildpackage -us -uc && \
+	cd $(ABS_SRCDIR) || exit && \
+	xdg-open ../build/meson-dist/
+

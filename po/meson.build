@@ -18,6 +18,10 @@ with open('@1@/POTFILES', 'w') as POTFILES:
         POTFILES.write('{}\n'.format(f))
     for ext in [ 'c', 'vala', 'ui' ]:
         for f in filelist(ext):
+            if f.endswith('.in'):
+                f = f.replace('.in', '')
+            if not f.endswith(ext):
+                continue
             f = f.replace('@2@/', '')
             skip = False
             for d in [ 'build', 'tests' ]:
@@ -25,10 +29,6 @@ with open('@1@/POTFILES', 'w') as POTFILES:
                     skip = True
                     break
             if skip:
-                continue
-            if f.endswith('.in'):
-                f = f.replace('.in', '')
-            if not f.endswith(ext):
                 continue
             POTFILES.write('{}\n'.format(f))
 '''.format(meson.source_root(), meson.current_build_dir(), meson.source_root())
