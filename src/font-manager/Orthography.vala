@@ -45,7 +45,7 @@ public struct BaseOrthographyData
     public string native;
 }
 
-internal const BaseOrthographyData [] Orthographies =
+const BaseOrthographyData [] Orthographies =
 {
     { "Afrikaans", "Afrikaans" },
     { "Ahom", "Ahom" },

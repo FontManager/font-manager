@@ -36,6 +36,7 @@ namespace FontManager {
         N_GENERATED,
         UNSORTED,
         DISABLED,
+        LANGUAGE,
         N_DEFAULT_CATEGORIES
     }
 
@@ -151,6 +152,7 @@ namespace FontManager {
         Gtk.Spinner spinner;
 
         CategoryModel _model;
+        LanguageFilter? language_filter = null;
 
         public CategoryTree () {
             expand = true;
@@ -235,6 +237,13 @@ namespace FontManager {
             model.get_value(iter, 0, out val);
             var path = model.get_path(iter);
             selected_filter = ((Category) val);
+            bool is_language_filter = selected_filter.index == CategoryIndex.LANGUAGE;
+            if (is_language_filter && language_filter == null) {
+                language_filter = selected_filter as LanguageFilter;
+                overlay.add_overlay(language_filter.settings);
+            }
+            if (language_filter != null)
+                language_filter.settings.set_visible(is_language_filter);
             /* NOTE :
              * Category updates are delayed till actual selection
              * Depending on size it may take a moment for the category to load
@@ -302,6 +311,8 @@ namespace FontManager {
         filters["Unsorted"].index = CategoryIndex.UNSORTED;
         filters["Disabled"] = new Disabled();
         filters["Disabled"].index = CategoryIndex.DISABLED;
+        filters["Language"] = new LanguageFilter();
+        filters["Language"].index = CategoryIndex.LANGUAGE;
         var sorted_filters = new GLib.List <Category> ();
         foreach (Category category in filters.get_values())
             sorted_filters.prepend(category);

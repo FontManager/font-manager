@@ -17,6 +17,8 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-labeled-font-button.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-labeled-switch.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-labeled-spin-button.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-language-filter-settings.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-language-popover.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-license-pane.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-option-scale.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list.ui</file>

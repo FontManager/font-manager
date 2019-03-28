@@ -341,6 +341,11 @@ namespace FontManager {
                         fontlist_pane.refilter();
                     });
                 }
+                if (c is LanguageFilter) {
+                    ((LanguageFilter) c).selections_changed.connect(() => {
+                        fontlist_pane.refilter();
+                    });
+                }
             });
 
             sidebar.standard.mode_selected.connect((m) => {
