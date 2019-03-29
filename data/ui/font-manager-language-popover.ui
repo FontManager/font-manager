@@ -21,9 +21,10 @@
         <property name="spacing">6</property>
         <child>
           <object class="GtkSearchEntry" id="search_entry">
-            <property name="sensitive">False</property>
+            <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="primary_icon_name">edit-find-symbolic</property>
+            <property name="secondary_icon_name">edit-clear-symbolic</property>
             <property name="primary_icon_activatable">False</property>
           </object>
           <packing>

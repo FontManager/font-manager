@@ -241,6 +241,20 @@ namespace FontManager {
             if (is_language_filter && language_filter == null) {
                 language_filter = selected_filter as LanguageFilter;
                 overlay.add_overlay(language_filter.settings);
+                /* XXX : This should probably use the native name. */
+                language_filter.selections_changed.connect(() => {
+                    Gtk.TreeIter lang_iter;
+                    var store = (Gtk.TreeStore) model;
+                    model.iter_nth_child(out lang_iter, null, model.iter_n_children(null) - 1);
+                    if (language_filter.selected.size == 0) {
+                        store.set(lang_iter, CategoryColumn.COMMENT, DEFAULT_LANGUAGE_FILTER_COMMENT, -1);
+                        return;
+                    }
+                    StringBuilder builder = new StringBuilder("\n");
+                    foreach (var language in language_filter.selected)
+                        builder.append("    %s    \n".printf(language));
+                    store.set(lang_iter, CategoryColumn.COMMENT, builder.str, -1);
+                });
             }
             if (language_filter != null)
                 language_filter.settings.set_visible(is_language_filter);

@@ -25,6 +25,8 @@ JOIN Orthography USING (filepath, findex)
 WHERE json_tree.key = 'coverage' AND json_tree.value > %f;
 """;
 
+const string DEFAULT_LANGUAGE_FILTER_COMMENT = _("Filter based on language support");
+
 namespace FontManager {
 
     public class LanguageFilter : Category {
@@ -43,7 +45,7 @@ namespace FontManager {
         }
 
         public LanguageFilter () {
-            base(_("Language"),  _("Filter based on language support"),
+            base(_("Language"),  DEFAULT_LANGUAGE_FILTER_COMMENT,
                  "preferences-desktop-locale", SELECT_ON_LANGUAGE);
             selected = new StringHashset();
             settings = new LanguageFilterSettings();
@@ -90,18 +92,23 @@ namespace FontManager {
         [GtkChild] Gtk.SearchEntry search_entry;
         [GtkChild] Gtk.TreeView treeview;
 
-        Gtk.ListStore liststore;
+        uint? search_timeout;
+        uint16 text_length = 0;
+        Gtk.ListStore real_model;
+        Gtk.TreeModelFilter? search_filter = null;
 
         public override void constructed () {
             set_modal(true);
             selected = new StringHashset();
             bind_property("coverage", coverage_spin, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            liststore = new Gtk.ListStore(2, typeof(string), typeof(string));
-            treeview.set_model(liststore);
+            real_model = new Gtk.ListStore(2, typeof(string), typeof(string));
+            search_filter = new Gtk.TreeModelFilter(real_model, null);
+            search_filter.set_visible_func((m, i) => { return visible_func(m, i); });
+            treeview.set_model(search_filter);
             Gtk.TreeIter iter;
             foreach (var entry in Orthographies) {
-                liststore.append(out iter);
-                liststore.set(iter, 0, entry.name, 1, entry.native, -1);
+                real_model.append(out iter);
+                real_model.set(iter, 0, entry.name, 1, entry.native, -1);
             }
             var text = new Gtk.CellRendererText();
             var _text = new Gtk.CellRendererText();
@@ -113,7 +120,23 @@ namespace FontManager {
             treeview.insert_column_with_attributes(-1, "", text, "text", 1, null);
             treeview.insert_column_with_attributes(-1, "", _text, "text", 0, null);
             treeview.set_search_entry(search_entry);
+            search_entry.search_changed.connect(() => {
+                queue_refilter();
+                text_length = search_entry.get_text_length();
+            });
+            closed.connect(() => { search_entry.set_text(""); });
+            /* XXX : Remove placeholder icon set in ui file to avoid Gtk warning */
+            search_entry.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, null);
             base.constructed();
+        }
+
+        bool refilter () {
+            /* Unset the model to prevent expensive updates while filtering */
+            treeview.set_model(null);
+            search_filter.refilter();
+            treeview.set_model(search_filter);
+            search_timeout = null;
+            return false;
         }
 
         [GtkCallback]
@@ -127,8 +150,8 @@ namespace FontManager {
         void on_toggled (string path) {
             Gtk.TreeIter iter;
             Value val;
-            liststore.get_iter_from_string(out iter, path);
-            liststore.get_value(iter, 0, out val);
+            search_filter.get_iter_from_string(out iter, path);
+            search_filter.get_value(iter, 0, out val);
             var lang = (string) val;
             if (lang in selected)
                 selected.remove(lang);
@@ -149,6 +172,31 @@ namespace FontManager {
             cell.set_property("active", (selected.contains((string) val)));
             val.unset();
             return;
+        }
+
+        /* Add slight delay to avoid filtering while search is still changing */
+        void queue_refilter () {
+            if (search_timeout != null)
+                GLib.Source.remove(search_timeout);
+            search_timeout = Timeout.add(333, refilter);
+            return;
+        }
+
+        bool visible_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
+            bool search_match = true;
+            if (text_length > 0) {
+                string needle = search_entry.get_text().casefold();
+                for (int i = 0; i <= 1; i++) {
+                    Value val;
+                    model.get_value(iter, i, out val);
+                    var haystack = (string) val;
+                    search_match = haystack.casefold().contains(needle);
+                    if (search_match)
+                        break;
+                }
+
+            }
+            return search_match;
         }
 
     }
