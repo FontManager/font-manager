@@ -207,6 +207,12 @@
             <default>"0"</default>
         </key>
 
+        <key name="language-filter-list" type="as">
+            <summary>Language Filter list</summary>
+            <description>Array of string containing language selections.</description>
+            <default>[]</default>
+        </key>
+
     </schema>
 
 </schemalist>

@@ -142,7 +142,7 @@ namespace FontManager {
 
         public string selected_iter { get; protected set; default = "0"; }
         public Category? selected_filter { get; protected set; default = null; }
-
+        public LanguageFilter? language_filter { get; set; default = null; }
         public BaseTreeView tree { get; protected set; }
         public Gtk.CellRendererText renderer { get; protected set; }
         public CellRendererCount count_renderer { get; protected set; }
@@ -152,7 +152,6 @@ namespace FontManager {
         Gtk.Spinner spinner;
 
         CategoryModel _model;
-        LanguageFilter? language_filter = null;
 
         public CategoryTree () {
             expand = true;
@@ -228,6 +227,29 @@ namespace FontManager {
             return;
         }
 
+        void update_language_filter_tooltip () {
+            Gtk.TreeIter lang_iter;
+            var store = (Gtk.TreeStore) model;
+            model.iter_nth_child(out lang_iter, null, model.iter_n_children(null) - 1);
+            if (language_filter.selected.size == 0) {
+                store.set(lang_iter, CategoryColumn.COMMENT, DEFAULT_LANGUAGE_FILTER_COMMENT, -1);
+                return;
+            }
+            StringBuilder builder = new StringBuilder("\n");
+            foreach (var lang in language_filter.selected) {
+                string language = lang;
+                foreach (var orth in Orthographies) {
+                    if (orth.name == lang) {
+                        language = orth.native;
+                        break;
+                    }
+                }
+                builder.append("    %s    \n".printf(language));
+            }
+            store.set(lang_iter, CategoryColumn.COMMENT, builder.str, -1);
+            return;
+        }
+
         void on_selection_changed (Gtk.TreeSelection selection) {
             Gtk.TreeIter iter;
             Gtk.TreeModel model;
@@ -237,24 +259,17 @@ namespace FontManager {
             model.get_value(iter, 0, out val);
             var path = model.get_path(iter);
             selected_filter = ((Category) val);
-            bool is_language_filter = selected_filter.index == CategoryIndex.LANGUAGE;
+            bool is_language_filter = (selected_filter.index == CategoryIndex.LANGUAGE);
             if (is_language_filter && language_filter == null) {
                 language_filter = selected_filter as LanguageFilter;
                 overlay.add_overlay(language_filter.settings);
-                /* XXX : This should probably use the native name. */
                 language_filter.selections_changed.connect(() => {
-                    Gtk.TreeIter lang_iter;
-                    var store = (Gtk.TreeStore) model;
-                    model.iter_nth_child(out lang_iter, null, model.iter_n_children(null) - 1);
-                    if (language_filter.selected.size == 0) {
-                        store.set(lang_iter, CategoryColumn.COMMENT, DEFAULT_LANGUAGE_FILTER_COMMENT, -1);
-                        return;
-                    }
-                    StringBuilder builder = new StringBuilder("\n");
-                    foreach (var language in language_filter.selected)
-                        builder.append("    %s    \n".printf(language));
-                    store.set(lang_iter, CategoryColumn.COMMENT, builder.str, -1);
+                    update_language_filter_tooltip();
                 });
+                if (settings != null) {
+                    foreach (var entry in settings.get_strv("language-filter-list"))
+                        language_filter.add(entry);
+                }
             }
             if (language_filter != null)
                 language_filter.settings.set_visible(is_language_filter);

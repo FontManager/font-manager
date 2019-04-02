@@ -45,8 +45,7 @@ namespace FontManager {
         }
 
         public LanguageFilter () {
-            base(_("Language"),  DEFAULT_LANGUAGE_FILTER_COMMENT,
-                 "preferences-desktop-locale", SELECT_ON_LANGUAGE);
+            base(_("Language"),  DEFAULT_LANGUAGE_FILTER_COMMENT, "preferences-desktop-locale", SELECT_ON_LANGUAGE);
             selected = new StringHashset();
             settings = new LanguageFilterSettings();
             bind_property("selected", settings, "selected", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
@@ -57,6 +56,22 @@ namespace FontManager {
                     selections_changed();
                 });
             });
+        }
+
+        public void add (string language) {
+            selected.add(language);
+            update.begin((obj, res) => {
+                update.end(res);
+                selections_changed();
+            });
+            return;
+        }
+
+        public string [] list () {
+            string [] result = {};
+            foreach (var language in selected)
+                result += language;
+            return result;
         }
 
         public new async void update () {
@@ -111,14 +126,11 @@ namespace FontManager {
                 real_model.set(iter, 0, entry.name, 1, entry.native, -1);
             }
             var text = new Gtk.CellRendererText();
-            var _text = new Gtk.CellRendererText();
-            _text.sensitive = false;
             var toggle = new Gtk.CellRendererToggle();
             toggle.toggled.connect(on_toggled);
             treeview.row_activated.connect((path, col) => { on_toggled(path.to_string()); });
             treeview.insert_column_with_data_func(FontListColumn.TOGGLE, "", toggle, toggle_cell_data_func);
             treeview.insert_column_with_attributes(-1, "", text, "text", 1, null);
-            treeview.insert_column_with_attributes(-1, "", _text, "text", 0, null);
             treeview.set_search_entry(search_entry);
             search_entry.search_changed.connect(() => {
                 queue_refilter();
@@ -144,6 +156,7 @@ namespace FontManager {
             selected.clear();
             treeview.queue_draw();
             selections_changed();
+            popdown();
             return;
         }
 
@@ -222,7 +235,5 @@ namespace FontManager {
         }
 
     }
-
-
 
 }
