@@ -68,6 +68,16 @@ vendor.h:
 update-headers: license.h vendor.h unicode-headers
 update: update-headers $(PACKAGE_NAME).pot
 
+rpm:
+	@echo -e "\n**** Need to ensure build dependencies are installed\n";
+	pkexec dnf install rpmdevtools
+	pkexec dnf builddep $(ABS_TOP_SRCDIR)/fedora/$(PACKAGE_NAME).spec
+	rpmdev-setuptree
+	cp $(ABS_TOP_SRCDIR)/fedora/$(PACKAGE_NAME).spec ~/rpmbuild/SPECS/
+	cd ~/rpmbuild/SPECS/ || exit && \
+	spectool -g -R $(PACKAGE_NAME).spec && \
+	rpmbuild -ba $(PACKAGE_NAME).spec
+
 BUILD_DEPENDS = \
 	build-essential \
 	debhelper \
