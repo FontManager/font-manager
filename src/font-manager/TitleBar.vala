@@ -35,12 +35,8 @@ namespace FontManager {
         public void update (string message, uint processed, uint total) {
             title.set_text(message);
             progress.set_fraction(processed/total * 100);
-        }
-
-        public override void show () {
             title.show();
             progress.show();
-            base.show();
         }
 
     }
@@ -225,13 +221,8 @@ namespace FontManager {
             widgets = { main_menu_icon, main_menu_container, main_menu_label,
                         main_menu, prefs_toggle, manage_controls, revealer,
                         app_menu, app_menu_icon, spinner };
-        }
-
-        public override void show () {
             foreach (var widget in widgets)
                 widget.show();
-            base.show();
-            return;
         }
 
         void pack_components () {
@@ -268,13 +259,8 @@ namespace FontManager {
             widgets = { main_menu_icon, main_menu_container, main_menu_label,
                         main_menu, prefs_toggle, manage_controls, revealer,
                         app_menu, app_menu_icon, spinner };
-        }
-
-        public override void show () {
             foreach (var widget in widgets)
                 widget.show();
-            base.show();
-            return;
         }
 
         void pack_components () {

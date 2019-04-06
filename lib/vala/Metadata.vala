@@ -35,12 +35,8 @@ namespace FontManager {
             license = new LicensePane();
             info = new FontInfo();
             connect_signals();
-        }
-
-        public void show () {
             properties.show();
             license.show();
-            return;
         }
 
         void connect_signals () {

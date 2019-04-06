@@ -485,8 +485,6 @@ namespace FontManager {
             monitors = new FileMonitors();
             sources = new HashTable <string, Source> (str_hash, str_equal);
             monitors.changed.connect((f, of, ev) => { update(); });
-            //notify["active"].connect((s, p) => { update(); });
-            //active.changed.connect(() => { update(); changed(); });
         }
 
         public List <weak Source> list_objects () {

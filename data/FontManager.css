@@ -105,7 +105,8 @@ treeview {
     border-radius: 0.25em;
 }
 
-#FontManagerAliasList row:selected {
+#FontManagerAliasList row:selected,
+#FontManagerFontSourceList row:selected {
     background-color: alpha(@theme_selected_bg_color, 0.85);
     border-radius: 0.25em;
 }

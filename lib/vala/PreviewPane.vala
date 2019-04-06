@@ -123,6 +123,9 @@ namespace FontManager {
             set_transition_type(Gtk.StackTransitionType.CROSSFADE);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             connect_signals();
+            preview.show();
+            waterfall.show();
+            body_text.show();
         }
 
         void connect_signals () {
@@ -147,17 +150,6 @@ namespace FontManager {
          */
         public void set_preview_text (string preview_text) {
             preview.set_preview_text(preview_text);
-            return;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            preview.show();
-            waterfall.show();
-            body_text.show();
-            base.show();
             return;
         }
 
@@ -298,7 +290,6 @@ namespace FontManager {
             bind_properties();
             preview.show();
             charmap.show();
-            metadata.show();
             return;
         }
 
@@ -365,11 +356,11 @@ namespace FontManager {
         }
 
         public override void drag_data_received (Gdk.DragContext context,
-                                                     int x,
-                                                     int y,
-                                                     Gtk.SelectionData selection_data,
-                                                     uint info,
-                                                     uint time) {
+                                                 int x,
+                                                 int y,
+                                                 Gtk.SelectionData selection_data,
+                                                 uint info,
+                                                 uint time) {
             switch (info) {
                 case DragTargetType.EXTERNAL:
                     show_uri(selection_data.get_uris()[0]);

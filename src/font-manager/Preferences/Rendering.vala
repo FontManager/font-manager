@@ -28,12 +28,7 @@ namespace FontManager {
             pane = new FontPropertiesPane();
             pack_start(pane, true, true, 0);
             connect_signals();
-        }
-
-        public override void show () {
             pane.show();
-            base.show();
-            return;
         }
 
         void connect_signals () {
@@ -108,23 +103,16 @@ namespace FontManager {
             widgets = { antialias, hinting, hinting_options, embeddedbitmap, expander,
                         hinting_options_grid, autohint, hintstyle, size_options, grid };
 
+            foreach (var widget in widgets)
+                widget.show();
+
             bind_properties();
             pack_components();
 
             grid.foreach((w) => { w.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW); });
             grid.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            foreach (var widget in widgets)
-                widget.show();
-            base.show();
             update_sensitivity();
-            return;
         }
 
         void pack_components () {
@@ -160,7 +148,7 @@ namespace FontManager {
             return;
         }
 
-        class SizeOptions : Gtk.Grid {
+        internal class SizeOptions : Gtk.Grid {
 
             public LabeledSpinButton less { get; private set; }
             public LabeledSpinButton more { get; private set; }
@@ -170,12 +158,8 @@ namespace FontManager {
                 more = new LabeledSpinButton(_("Larger than"), 0, 96, 0.5);
                 attach(less, 0, 0, 1, 1);
                 attach(more, 1, 0, 1, 1);
-            }
-
-            public override void show () {
                 less.show();
                 more.show();
-                base.show();
             }
 
         }

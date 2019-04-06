@@ -100,12 +100,7 @@ namespace FontManager {
             else
                 list = new PlaceHolder(_("GNOME desktop settings schema not found"), "dialog-warning-symbolic");
             add(list);
-        }
-
-        public override void show () {
             list.show();
-            base.show();
-            return;
         }
 
         Gtk.ListBox generate_options_list (Settings? interface_settings,

@@ -87,20 +87,12 @@ namespace FontManager {
                      "cursor-visible", false, "accepts-tab", false,
                      "overwrite", false, "wrap-mode", Gtk.WrapMode.WORD_CHAR, null);
             add(view);
+            view.show();
         }
 
         public StandardTextView (StandardTextTagTable? tag_table) {
             Object(name: "StandardTextView", tag_table: tag_table, expand: true);
             Gtk.drag_dest_unset(view);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            view.show();
-            base.show();
-            return;
         }
 
         /**
@@ -196,15 +188,7 @@ namespace FontManager {
             fontscale = new FontScale();
             adjustment = fontscale.adjustment;
             pack_end(fontscale, false, true, 0);
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
             fontscale.show();
-            base.show();
-            return;
         }
 
     }
@@ -235,16 +219,8 @@ namespace FontManager {
             pack_start(controls, false, true, 0);
             pack_start(preview, true, true, 0);
             connect_signals();
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
             controls.show();
             preview.show();
-            base.show();
-            return;
         }
 
         /**
@@ -351,15 +327,7 @@ namespace FontManager {
             set_preview_text(LOREM_IPSUM);
             pack_start(preview, true, true, 0);
             map.connect(() => { update(); });
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
             preview.show();
-            base.show();
-            return;
         }
 
         /**

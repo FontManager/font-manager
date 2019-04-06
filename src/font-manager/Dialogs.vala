@@ -90,6 +90,26 @@ namespace FontManager {
             return selections;
         }
 
+        public string? [] get_selected_sources (Gtk.Window? parent) {
+            string? [] arr = { };
+            var dialog = new Gtk.FileChooserDialog(_("Select source folders"),
+                                                    parent,
+                                                    Gtk.FileChooserAction.SELECT_FOLDER,
+                                                    _("_Cancel"),
+                                                    Gtk.ResponseType.CANCEL,
+                                                    _("_Open"),
+                                                    Gtk.ResponseType.ACCEPT,
+                                                    null);
+            dialog.set_select_multiple(true);
+            if (dialog.run() == Gtk.ResponseType.ACCEPT) {
+                dialog.hide();
+                foreach (var uri in dialog.get_uris())
+                    arr += uri;
+            }
+            dialog.destroy();
+            return arr;
+        }
+
     }
 
     namespace RemoveDialog {

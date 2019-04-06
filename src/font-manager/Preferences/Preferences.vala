@@ -87,12 +87,7 @@ namespace FontManager {
                     infobar.hide();
             });
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-        }
-
-        public override void show () {
             message.show();
-            base.show();
-            return;
         }
 
         protected virtual void show_message (string m) {
@@ -170,12 +165,7 @@ namespace FontManager {
         construct {
             controls = new FontConfigControls();
             pack_end(controls, false, false, 0);
-        }
-
-        public override void show () {
             controls.show();
-            base.show();
-            return;
         }
 
     }

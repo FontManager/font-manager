@@ -446,17 +446,9 @@ namespace FontManager {
             add(box);
             add_button.clicked.connect((w) => { add_selected(); });
             remove_button.clicked.connect(() => { remove_selected(); });
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
             add_button.show();
             remove_button.show();
             box.show();
-            base.show();
-            return;
         }
 
     }

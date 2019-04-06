@@ -67,18 +67,10 @@ namespace FontManager {
                 else
                     arrow.set_from_icon_name("go-next-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             });
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
             entry.show();
             arrow.show();
             expand_button.show();
-            base.show();
             add_button.hide();
-            return;
         }
 
         /**

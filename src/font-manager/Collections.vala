@@ -273,6 +273,7 @@ namespace FontManager {
             context_menu = get_context_menu();
             connect_signals();
             model = new CollectionModel();
+            controls.show();
         }
 
         void connect_signals () {
@@ -289,12 +290,6 @@ namespace FontManager {
             });
             get_selection().changed.connect(on_selection_changed);
             renderer.edited.connect(on_edited);
-            return;
-        }
-
-        public override void show () {
-            controls.show();
-            base.show();
             return;
         }
 

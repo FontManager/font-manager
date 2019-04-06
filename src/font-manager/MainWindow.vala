@@ -565,17 +565,7 @@ namespace FontManager {
 
         /* Window state */
 
-        public void save_state () {
-            if (settings == null)
-                return;
-            settings.set_strv("compare-list", compare.list());
-            settings.set_string("compare-foreground-color", compare.foreground_color.to_string());
-            settings.set_string("compare-background-color", compare.background_color.to_string());
-            settings.apply();
-            return;
-        }
-
-        public void bind_settings () {
+        void bind_settings () {
 
             if (settings == null)
                 return;
@@ -623,15 +613,20 @@ namespace FontManager {
             return;
         }
 
-        public override bool delete_event (Gdk.EventAny event) {
-            save_state();
+        [GtkCallback]
+        public bool on_delete_event (Gtk.Widget widget, Gdk.EventAny event) {
+            if (settings != null) {
+                settings.set_strv("compare-list", compare.list());
+                settings.set_string("compare-foreground-color", compare.foreground_color.to_string());
+                settings.set_string("compare-background-color", compare.background_color.to_string());
+                settings.apply();
+            }
             ((FontManager.Application) application).quit();
             return false;
         }
 
-        public override void realize () {
-
-            base.realize();
+        [GtkCallback]
+        public void on_realize (Gtk.Widget widget) {
 
             if (settings == null) {
                 ensure_sane_defaults();
@@ -705,7 +700,7 @@ namespace FontManager {
                 return false;
             });
 
-            bind_settings();
+            Idle.add(() => { bind_settings(); return false; });
 
             return;
         }

@@ -112,9 +112,11 @@ public class CellRendererPill : Gtk.CellRendererText {
             a.y += m.top;
             a.width -= m.left + m.right;
             a.height -= m.top + m.bottom;
+            ctx.save();
             ctx.add_class(style_class);
             ctx.render_background(cr, a.x, a.y, a.width, a.height);
             ctx.render_frame(cr, a.x, a.y, a.width, a.height);
+            ctx.restore();
         }
         base.render(cr, widget, background_area, cell_area, flags);
         return;

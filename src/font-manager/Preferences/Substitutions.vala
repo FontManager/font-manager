@@ -39,14 +39,9 @@ namespace FontManager {
             sub_list.load();
             connect_signals();
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-        }
-
-        public override void show () {
             base_controls.show();
             base_controls.remove_button.hide();
             sub_list.show();
-            base.show();
-            return;
         }
 
         void connect_signals () {
@@ -237,13 +232,8 @@ namespace FontManager {
             list.expand = true;
             add(list);
             list.row_selected.connect((r) => { row_selected(r); });
-        }
-
-        public override void show () {
             list.show();
             welcome.show();
-            base.show();
-            return;
         }
 
         public SubstituteList () {

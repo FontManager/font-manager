@@ -43,14 +43,9 @@ namespace FontManager {
             pack_end(source_list, true, true, 1);
             connect_signals();
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-        }
-
-        public override void show () {
             controls.show();
             controls.remove_button.hide();
             source_list.show();
-            base.show();
-            return;
         }
 
         void connect_signals () {
@@ -105,7 +100,7 @@ namespace FontManager {
         PlaceHolder welcome;
 
         public FontSourceList () {
-            Object(name: "FontSourceList");
+            Object(name: "FontManagerFontSourceList");
             string w1 = _("Font Sources");
             string w2 = _("Easily add or preview fonts without actually installing them.");
             string w3 = _("To add a new source simply drag a folder onto this area or click the add button in the toolbar.");
@@ -122,6 +117,8 @@ namespace FontManager {
             changed.connect(() => { Idle.add(() => { update(); return false; }); });
             sources.changed.connect(() => { changed(); });
             update();
+            welcome.show();
+            list.show();
         }
 
         /**
@@ -141,17 +138,6 @@ namespace FontManager {
                 list.add(w);
                 w.show();
             }
-            return;
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
-            welcome.show();
-            list.show();
-            update();
-            base.show();
             return;
         }
 
@@ -180,22 +166,8 @@ namespace FontManager {
          * Displays a file selection dialog where source folders can be added
          */
         public void on_add_source () {
-            string? [] arr = { };
-            var dialog = new Gtk.FileChooserDialog(_("Select source folders"),
-                                                    (Gtk.Window) this.get_toplevel(),
-                                                    Gtk.FileChooserAction.SELECT_FOLDER,
-                                                    _("_Cancel"),
-                                                    Gtk.ResponseType.CANCEL,
-                                                    _("_Open"),
-                                                    Gtk.ResponseType.ACCEPT,
-                                                    null);
-            dialog.set_select_multiple(true);
-            if (dialog.run() == Gtk.ResponseType.ACCEPT) {
-                dialog.hide();
-                foreach (var uri in dialog.get_uris())
-                    arr += uri;
-            }
-            dialog.destroy();
+            Gtk.Window? parent = Application.get_current_window();
+            string? [] arr = FileSelector.get_selected_sources(parent);
             if (arr.length > 0)
                 add_sources(arr);
             return;
@@ -240,34 +212,23 @@ namespace FontManager {
          * Widget representing a #Source and its current status.
          * Intended for use in a #Gtk.Listbox
          */
-        class FontSourceRow : Gtk.Box {
+        internal class FontSourceRow : LabeledSwitch {
 
             public weak Source source { get; set; }
             public Gtk.Image image { get; private set; }
-            public LabeledSwitch toggle { get; private set; }
 
             public FontSourceRow (Source source) {
                 Object(name: "FontSourceRow", source: source, orientation: Gtk.Orientation.HORIZONTAL);
                 image = new Gtk.Image();
-                image.set("expand", false, margin: DEFAULT_MARGIN_SIZE / 4, "margin-start", DEFAULT_MARGIN_SIZE, null);
-                toggle = new LabeledSwitch();
-                source.bind_property("active", toggle.toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-                source.bind_property("available", toggle.toggle, "sensitive", BindingFlags.SYNC_CREATE);
+                image.set("expand", false, "margin-end", DEFAULT_MARGIN_SIZE, null);
+                source.bind_property("active", toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+                source.bind_property("available", toggle, "sensitive", BindingFlags.SYNC_CREATE);
                 source.bind_property("icon-name", image, "icon-name", BindingFlags.SYNC_CREATE);
-                source.bind_property("name", toggle.label, "label", BindingFlags.SYNC_CREATE);
-                toggle.description.set_text(source.get_status_message());
-                pack_start(image, false, false, 6);
-                pack_end(toggle, true, true, 6);
-            }
-
-            /**
-             * {@inheritDoc}
-             */
-            public override void show () {
+                source.bind_property("name", label, "label", BindingFlags.SYNC_CREATE);
+                description.set_text(source.get_status_message());
+                pack_start(image, false, false, 0);
+                reorder_child(image, 0);
                 image.show();
-                toggle.show();
-                base.show();
-                return;
             }
 
         }

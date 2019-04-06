@@ -57,13 +57,8 @@ namespace FontManager {
             bind_properties();
             widgets = { wide_layout, use_csd, enable_animations, prefer_dark_theme,
                         wide_layout_options, on_maximize, grid };
-        }
-
-        public override void show () {
             foreach (var widget in widgets)
                 widget.show();
-            base.show();
-            return;
         }
 
         void bind_properties () {

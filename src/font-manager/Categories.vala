@@ -180,15 +180,10 @@ namespace FontManager {
             overlay.add_overlay(spinner);
             overlay.add(tree);
             add(overlay);
-        }
-
-        public override void show () {
             tree.show();
             spinner.show();
             spinner.start();
             overlay.show();
-            base.show();
-            return;
         }
 
         public void select_first_row () {

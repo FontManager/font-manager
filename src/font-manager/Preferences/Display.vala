@@ -28,12 +28,7 @@ namespace FontManager {
             pane = new DisplayPropertiesPane();
             pack_start(pane, true, true, 0);
             connect_signals();
-        }
-
-        public override void show () {
             pane.show();
-            base.show();
-            return;
         }
 
         void connect_signals () {
@@ -85,15 +80,8 @@ namespace FontManager {
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             grid.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             grid.foreach((w) => { w.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW); });
-        }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override void show () {
             foreach (var widget in widgets)
                 widget.show();
-            base.show();
         }
 
         void pack_components () {
