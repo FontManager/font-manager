@@ -1,4 +1,6 @@
 
+PODIR = join_paths(meson.source_root(), 'po')
+
 POTFILES = '''
 from glob import glob
 
@@ -18,10 +20,6 @@ with open('@1@/POTFILES', 'w') as POTFILES:
         POTFILES.write('{}\n'.format(f))
     for ext in [ 'c', 'vala', 'ui' ]:
         for f in filelist(ext):
-            if f.endswith('.in'):
-                f = f.replace('.in', '')
-            if not f.endswith(ext):
-                continue
             f = f.replace('@2@/', '')
             skip = False
             for d in [ 'build', 'tests' ]:
@@ -30,8 +28,10 @@ with open('@1@/POTFILES', 'w') as POTFILES:
                     break
             if skip:
                 continue
+            if not f.endswith(ext) and not f.endswith('.in'):
+                continue
             POTFILES.write('{}\n'.format(f))
-'''.format(meson.source_root(), meson.current_build_dir(), meson.source_root())
+'''.format(meson.source_root(), PODIR, meson.source_root())
 
 configure_file(
     command: [python, '-c', POTFILES],
