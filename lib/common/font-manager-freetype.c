@@ -55,8 +55,8 @@ static void get_sfnt_info (JsonObject *json_obj, const FT_Face face);
 static void get_ps_info (JsonObject *json_obj, const FT_Face face);
 static void get_license_info (JsonObject *json_obj);
 static void get_fs_type (JsonObject *json_obj, const FT_Face face);
+static void get_font_revision (JsonObject *json_obj, const FT_Face face);
 static void ensure_vendor (JsonObject *json_obj, const FT_Face face);
-static void ensure_version (JsonObject *json_obj, const FT_Face face);
 static void cleanup_version_string (JsonObject *json_obj);
 static void correct_filetype (JsonObject *json_obj);
 
@@ -166,15 +166,17 @@ font_manager_get_metadata (const gchar *filepath, gint index)
 
     /* Order matters */
     get_os2_info(json_obj, face);
+    get_font_revision(json_obj, face);
     get_sfnt_info(json_obj, face);
     get_ps_info(json_obj, face);
     get_license_info(json_obj);
     get_fs_type(json_obj, face);
 
     ensure_vendor(json_obj, face);
-    ensure_version(json_obj, face);
-    cleanup_version_string(json_obj);
     correct_filetype(json_obj);
+
+    if (!json_object_has_member(json_obj, "version"))
+        json_object_set_string_member(json_obj, "version", "1.0");
 
     for (int i = 0; ensure_member[i] != NULL; i++)
         if (!json_object_has_member(json_obj, ensure_member[i]))
@@ -358,7 +360,10 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
                 json_object_set_string_member(json_obj, "copyright", val);
                 break;
             case TT_NAME_ID_VERSION_STRING:
-                json_object_set_string_member(json_obj, "version", val);
+                if (!json_object_has_member(json_obj, "version")) {
+                    json_object_set_string_member(json_obj, "version", val);
+                    cleanup_version_string(json_obj);
+                }
                 break;
             case TT_NAME_ID_DESCRIPTION:
                 json_object_set_string_member(json_obj, "description", val);
@@ -514,19 +519,16 @@ ensure_vendor (JsonObject *json_obj, const FT_Face face)
 }
 
 static void
-ensure_version (JsonObject *json_obj, const FT_Face face)
+get_font_revision (JsonObject *json_obj, const FT_Face face)
 {
-    if (!json_object_has_member(json_obj, "version")) {
-        TT_Header *head = (TT_Header *) FT_Get_Sfnt_Table(face, FT_SFNT_HEAD);
-        if (head) {
-            if (head->Font_Revision) {
-                gchar *rev = g_strdup_printf("%f", (float) head->Font_Revision);
-                json_object_set_string_member(json_obj, "version", rev);
-                g_free(rev);
-                return;
-            }
+    TT_Header *head = (TT_Header *) FT_Get_Sfnt_Table(face, FT_SFNT_HEAD);
+    if (head) {
+        if (head->Font_Revision) {
+            gchar *rev = g_strdup_printf("%.2f", (float) head->Font_Revision / 65536.0);
+            json_object_set_string_member(json_obj, "version", rev);
+            g_free(rev);
+            return;
         }
-        json_object_set_string_member(json_obj, "version", "1.0");
     }
     return;
 }
