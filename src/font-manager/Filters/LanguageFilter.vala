@@ -143,7 +143,7 @@ namespace FontManager {
         }
 
         bool refilter () {
-            /* Unset the model to prevent expensive updates while filtering */
+            /* Unset the model to prevent updates while filtering */
             treeview.set_model(null);
             search_filter.refilter();
             treeview.set_model(search_filter);

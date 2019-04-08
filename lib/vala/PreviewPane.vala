@@ -137,9 +137,13 @@ namespace FontManager {
                 update_sample_string();
             });
             adjustment.value_changed.connect(() => { update_text_tag(); });
-            map.connect(() => { _visible_ = true;
+            map.connect(() => {
+                _visible_ = true;
                 update_text_tag();
-                update_sample_string();
+                Idle.add(() => {
+                    update_sample_string();
+                    return false;
+                });
             });
             unmap.connect(() => { _visible_ = false; });
         }

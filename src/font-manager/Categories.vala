@@ -259,20 +259,34 @@ namespace FontManager {
             model.get_value(iter, 0, out val);
             var path = model.get_path(iter);
             selected_filter = ((Category) val);
-            bool is_language_filter = (selected_filter.index == CategoryIndex.LANGUAGE);
-            if (is_language_filter && language_filter == null) {
-                language_filter = selected_filter as LanguageFilter;
-                overlay.add_overlay(language_filter.settings);
-                language_filter.selections_changed.connect(() => {
-                    update_language_filter_tooltip();
-                });
-                if (settings != null) {
-                    foreach (var entry in settings.get_strv("language-filter-list"))
-                        language_filter.add(entry);
+            val.unset();
+            Idle.add(() => {
+                bool is_language_filter = (selected_filter.index == CategoryIndex.LANGUAGE);
+                if (language_filter != null) {
+                    language_filter.settings.set_visible(is_language_filter);
+                    return false;
                 }
+                if (is_language_filter) {
+                    language_filter = selected_filter as LanguageFilter;
+                    overlay.add_overlay(language_filter.settings);
+                    language_filter.selections_changed.connect(() => {
+                        update_language_filter_tooltip();
+                    });
+                    if (settings != null) {
+                        foreach (var entry in settings.get_strv("language-filter-list"))
+                            language_filter.add(entry);
+                    }
+                    language_filter.settings.set_visible(is_language_filter);
+                }
+                return false;
+            });
+
+            selection_changed(selected_filter, path.get_indices()[0]);
+            if (path.get_depth() < 2) {
+                tree.collapse_all();
+                tree.expand_to_path(path);
             }
-            if (language_filter != null)
-                language_filter.settings.set_visible(is_language_filter);
+            selected_iter = model.get_string_from_iter(iter);
             /* NOTE :
              * Category updates are delayed till actual selection
              * Depending on size it may take a moment for the category to load
@@ -298,13 +312,6 @@ namespace FontManager {
 
                     }
             }
-            selection_changed(((Category) val), path.get_indices()[0]);
-            if (path.get_depth() < 2) {
-                tree.collapse_all();
-                tree.expand_to_path(path);
-            }
-            selected_iter = model.get_string_from_iter(iter);
-            val.unset();
             return;
         }
 

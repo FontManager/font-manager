@@ -123,6 +123,7 @@ namespace FontManager {
         Mode _mode;
         Disabled? disabled = null;
         Unsorted? unsorted = null;
+        LanguageFilter? language_filter = null;
 
         public MainWindow () {
             Object(title: About.DISPLAY_NAME, icon_name: About.ICON);
@@ -326,14 +327,14 @@ namespace FontManager {
             sidebar.orthographies.orthography_selected.connect((o) => { preview_pane.charmap.set_filter(o); });
 
             sidebar.standard.category_selected.connect((c, i) => {
-                if (c is Disabled && disabled == null) {
+                if (disabled == null && c is Disabled) {
                     disabled = (c as Disabled);
                     disabled.update.begin(reject, (obj,res) => {
                         disabled.update.end(res);
                         fontlist_pane.refilter();
                     });
                 }
-                if (c is Unsorted && unsorted == null) {
+                if (unsorted == null && c is Unsorted) {
                     unsorted = (c as Unsorted);
                     var collected = sidebar.collection_model.collections.get_full_contents();
                     unsorted.update.begin(collected, (obj, res) => {
@@ -341,8 +342,9 @@ namespace FontManager {
                         fontlist_pane.refilter();
                     });
                 }
-                if (c is LanguageFilter) {
-                    ((LanguageFilter) c).selections_changed.connect(() => {
+                if (language_filter == null && c is LanguageFilter) {
+                    language_filter = (c as LanguageFilter);
+                    language_filter.selections_changed.connect(() => {
                         fontlist_pane.refilter();
                     });
                 }

@@ -612,11 +612,13 @@ namespace FontManager {
         }
 
         public bool refilter () {
-            /* Unset the model to prevent expensive updates while filtering */
-            fontlist.model = null;
-            if (search_filter != null)
-                search_filter.refilter();
-            fontlist.model = search_filter;
+            /* NOTE :
+             * Creating a new Gtk.TreeModelFilter is cheaper than calling
+             * refilter on an existing one with a large child model.
+             */
+            var saved_model = real_model;
+            real_set_model(null);
+            real_set_model(saved_model);
             fontlist.select_first_row();
             if (controls.expanded)
                 fontlist.expand_all();
