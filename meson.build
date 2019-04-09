@@ -1,5 +1,5 @@
 
-project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.7.4')
+project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.7.5')
 
 cc = meson.get_compiler('c')
 # There has to be a better way to require a specific vala version, right?

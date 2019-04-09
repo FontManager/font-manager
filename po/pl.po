@@ -1,9 +1,9 @@
 # Piotr Strebski <strebski@gmail.com>, 2016. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: font-manager 0.7.4\n"
+"Project-Id-Version: font-manager 0.7.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2019-03-18 21:23-0400\n"
+"POT-Creation-Date: 2019-04-08 20:13-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,11 +15,241 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2)\n"
 
-#: lib/vala/About.vala:27 data/org.gnome.FontManager.appdata.xml.in.in:9
+#: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
-#: data/org.gnome.FontManager.desktop.in.in:6
+#: data/org.gnome.FontManager.desktop.in.in:6 lib/vala/About.vala:27
 msgid "Font Manager"
 msgstr "Zarządzanie czcionkami"
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:10
+msgid "A simple font management application for Gtk+ Desktop Environments"
+msgstr ""
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:13
+msgid ""
+"Font Manager is intended to provide a way for average users to easily manage "
+"desktop fonts, without having to resort to command line tools or editing "
+"configuration files by hand."
+msgstr ""
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:18
+msgid ""
+"While designed primarily with the Gnome Desktop Environment in mind, it "
+"should work well with other Gtk+ desktop environments."
+msgstr ""
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:22
+msgid "Font Manager is NOT a professional-grade font management solution."
+msgstr ""
+
+#: data/org.gnome.FontManager.desktop.in.in:7
+msgid "Preview, Compare and Manage Fonts"
+msgstr ""
+
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.FontManager.desktop.in.in:9
+#: data/org.gnome.FontViewer.desktop.in.in:9
+msgid "preferences-desktop-font"
+msgstr ""
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.FontManager.desktop.in.in:16
+#: data/org.gnome.FontViewer.desktop.in.in:16
+msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
+msgstr ""
+
+#: data/org.gnome.FontViewer.appdata.xml.in.in:9
+#: data/org.gnome.FontViewer.desktop.in.in:5
+#: data/org.gnome.FontViewer.desktop.in.in:6
+#: src/font-viewer/Application.vala:69 src/font-viewer/Application.vala:101
+#: src/font-viewer/MainWindow.vala:25 data/ui/font-viewer-main-window.ui:17
+msgid "Font Viewer"
+msgstr "Przeglądarka czcionek"
+
+#: data/org.gnome.FontViewer.appdata.xml.in.in:10
+msgid "A font viewer application for Gtk+ Desktop Environments"
+msgstr ""
+
+#: data/org.gnome.FontViewer.appdata.xml.in.in:13
+msgid ""
+"Font Viewer allows previewing font files prior to installation. It features "
+"several ways to preview font files along with a character map and displays "
+"font properties and license details."
+msgstr ""
+
+#: data/org.gnome.FontViewer.desktop.in.in:7
+msgid "Full featured font file preview application"
+msgstr ""
+
+#: lib/common/font-manager-source.c:224 lib/common/font-manager-source.c:239
+msgid "Source Unavailable"
+msgstr "Źródło niedostępne"
+
+#: lib/unicode/unicode-character-map.c:643
+msgid "Unknown character, unable to identify."
+msgstr ""
+
+#: lib/unicode/unicode-character-map.c:645
+msgid "Not found."
+msgstr ""
+
+#: lib/unicode/unicode-character-map.c:647
+msgid "Character found."
+msgstr ""
+
+#: lib/unicode/unicode-info.c:186
+msgid "<Non Private Use High Surrogate>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:188
+msgid "<Private Use High Surrogate>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:190
+msgid "<Low Surrogate>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:192
+msgid "<Private Use>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:194
+msgid "<Plane 15 Private Use>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:196
+msgid "<Plane 16 Private Use>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:200
+msgid "<not assigned>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:217
+msgid "Other, Control"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:219
+msgid "Other, Format"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:221
+msgid "Other, Not Assigned"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:223
+msgid "Other, Private Use"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:225
+msgid "Other, Surrogate"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:227
+msgid "Letter, Lowercase"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:229
+msgid "Letter, Modifier"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:231
+msgid "Letter, Other"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:233
+msgid "Letter, Titlecase"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:235
+msgid "Letter, Uppercase"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:237
+msgid "Mark, Spacing Combining"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:239
+msgid "Mark, Enclosing"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:241
+msgid "Mark, Non-Spacing"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:243
+msgid "Number, Decimal Digit"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:245
+msgid "Number, Letter"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:247
+msgid "Number, Other"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:249
+msgid "Punctuation, Connector"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:251
+msgid "Punctuation, Dash"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:253
+msgid "Punctuation, Close"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:255
+msgid "Punctuation, Final Quote"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:257
+msgid "Punctuation, Initial Quote"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:259
+msgid "Punctuation, Other"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:261
+msgid "Punctuation, Open"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:263
+msgid "Symbol, Currency"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:265
+msgid "Symbol, Modifier"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:267
+msgid "Symbol, Math"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:269
+msgid "Symbol, Other"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:271
+msgid "Separator, Line"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:273
+msgid "Separator, Paragraph"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:275
+msgid "Separator, Space"
+msgstr ""
+
+#. Unicode assigns "Common" as the script name for any character not
+#. * specifically listed in Scripts.txt
+#: lib/unicode/unicode-info.c:693
+msgid "Common"
+msgstr ""
 
 #: lib/vala/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
@@ -158,7 +388,7 @@ msgstr "Pełne"
 msgid "None"
 msgstr "Brak"
 
-#: lib/vala/FontConfig.vala:206 data/ui/font-manager-main-window.ui:165
+#: lib/vala/FontConfig.vala:206 data/ui/font-manager-main-window.ui:167
 msgid "Default"
 msgstr "Domyślne"
 
@@ -186,139 +416,139 @@ msgstr "VRGB"
 msgid "VBGR"
 msgstr "VBGR"
 
-#: lib/vala/Metadata.vala:95
+#: lib/vala/Metadata.vala:91
 msgid "File does not contain license information."
 msgstr "Plik nie zawiera informacji licencyjnych."
 
-#: lib/vala/PreviewPane.vala:120 lib/vala/PreviewPane.vala:233
-#: data/ui/font-manager-main-window.ui:107
+#: lib/vala/PreviewPane.vala:120 lib/vala/PreviewPane.vala:229
+#: data/ui/font-manager-main-window.ui:109
 msgid "Preview"
 msgstr "Podgląd"
 
-#: lib/vala/PreviewPane.vala:121 lib/vala/PreviewPane.vala:229
+#: lib/vala/PreviewPane.vala:121 lib/vala/PreviewPane.vala:225
 msgid "Waterfall"
 msgstr "Wodospad"
 
-#: lib/vala/PreviewPane.vala:122 lib/vala/PreviewPane.vala:231
+#: lib/vala/PreviewPane.vala:122 lib/vala/PreviewPane.vala:227
 msgid "Body Text"
 msgstr "Tekst główny"
 
-#: src/font-manager/Categories.vala:284
+#: src/font-manager/Categories.vala:324
 msgid "All"
 msgstr "Wszystkie"
 
-#: src/font-manager/Categories.vala:284
+#: src/font-manager/Categories.vala:324
 msgid "All Fonts"
 msgstr "Wszystkie czcionki"
 
-#: src/font-manager/Categories.vala:286
+#: src/font-manager/Categories.vala:326
 msgid "System"
 msgstr "System"
 
-#: src/font-manager/Categories.vala:286
+#: src/font-manager/Categories.vala:326
 msgid "Fonts available to all users"
 msgstr "Czcionki dostępne dla wszystkich użytkowników"
 
-#: src/font-manager/Categories.vala:292
+#: src/font-manager/Categories.vala:332
 #: data/ui/font-manager-properties-pane.ui:173
 msgid "Width"
 msgstr "Szerokość"
 
-#: src/font-manager/Categories.vala:292
+#: src/font-manager/Categories.vala:332
 msgid "Grouped by font width"
 msgstr "Pogrupowane według szerokości czcionek"
 
-#: src/font-manager/Categories.vala:294
+#: src/font-manager/Categories.vala:334
 #: data/ui/font-manager-properties-pane.ui:209
 msgid "Weight"
 msgstr "Grubość"
 
-#: src/font-manager/Categories.vala:294
+#: src/font-manager/Categories.vala:334
 msgid "Grouped by font weight"
 msgstr "Pogrupowane według grubości czcionek"
 
-#: src/font-manager/Categories.vala:296
+#: src/font-manager/Categories.vala:336
 #: data/ui/font-manager-properties-pane.ui:191
 msgid "Slant"
 msgstr "Pochylenie"
 
-#: src/font-manager/Categories.vala:296
+#: src/font-manager/Categories.vala:336
 msgid "Grouped by font angle"
 msgstr "Pogrupowane według kąta czcionek"
 
-#: src/font-manager/Categories.vala:298
+#: src/font-manager/Categories.vala:338
 #: data/ui/font-manager-properties-pane.ui:227
 msgid "Spacing"
 msgstr "Odstęp"
 
-#: src/font-manager/Categories.vala:298
+#: src/font-manager/Categories.vala:338
 msgid "Grouped by font spacing"
 msgstr "Pogrupowane według odstępu czcionek"
 
-#: src/font-manager/Categories.vala:300
+#: src/font-manager/Categories.vala:340
 #: data/ui/font-manager-preview-pane.ui:106
 msgid "License"
 msgstr "Licencja"
 
-#: src/font-manager/Categories.vala:300
+#: src/font-manager/Categories.vala:340
 msgid "Grouped by license type"
 msgstr "Pogrupowane według rodzaju licencji"
 
-#: src/font-manager/Categories.vala:302
+#: src/font-manager/Categories.vala:342
 #: data/ui/font-manager-properties-pane.ui:263
 msgid "Vendor"
 msgstr "Dostawca"
 
-#: src/font-manager/Categories.vala:302
+#: src/font-manager/Categories.vala:342
 msgid "Grouped by vendor"
 msgstr "Pogrupowane według dostawcy"
 
-#: src/font-manager/Categories.vala:304
+#: src/font-manager/Categories.vala:344
 msgid "Filetype"
 msgstr "Rodzaj pliku"
 
-#: src/font-manager/Categories.vala:304
+#: src/font-manager/Categories.vala:344
 msgid "Grouped by filetype"
 msgstr "Pogrupowane według rodzaju pliku"
 
-#: src/font-manager/Categories.vala:318
+#: src/font-manager/Categories.vala:360
 msgid "Family Kind"
 msgstr "Rodzaj rodziny"
 
-#: src/font-manager/Categories.vala:318
+#: src/font-manager/Categories.vala:360
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
 "Tutaj pogrupowane są tylko czcionki, które posiadają informację Panose."
 
-#: src/font-manager/Categories.vala:319
+#: src/font-manager/Categories.vala:361
 msgid "Any"
 msgstr "Dowolne"
 
-#: src/font-manager/Categories.vala:319
+#: src/font-manager/Categories.vala:361
 msgid "No Fit"
 msgstr "Brak pasujących"
 
-#: src/font-manager/Categories.vala:319
+#: src/font-manager/Categories.vala:361
 msgid "Text and Display"
 msgstr "Tekst i wyświetlanie"
 
-#: src/font-manager/Categories.vala:319
+#: src/font-manager/Categories.vala:361
 msgid "Script"
 msgstr "Skrypt"
 
-#: src/font-manager/Categories.vala:319
+#: src/font-manager/Categories.vala:361
 msgid "Decorative"
 msgstr "Dekoracyjne"
 
-#: src/font-manager/Categories.vala:319
+#: src/font-manager/Categories.vala:361
 msgid "Pictorial"
 msgstr "Obrazkowe"
 
-#: src/font-manager/Categories.vala:343
+#: src/font-manager/Categories.vala:385
 msgid "Normal"
 msgstr "Normalne"
 
-#: src/font-manager/Categories.vala:348
+#: src/font-manager/Categories.vala:390
 msgid "Regular"
 msgstr "Regularne"
 
@@ -342,15 +572,15 @@ msgstr "Dodaj nową kolekcję"
 msgid "Remove selected collection"
 msgstr "Usuń wybraną kolekcję"
 
-#: src/font-manager/Collections.vala:370
+#: src/font-manager/Collections.vala:365
 msgid "Copying files..."
 msgstr ""
 
-#: src/font-manager/Collections.vala:490
+#: src/font-manager/Collections.vala:485
 msgid "Copy to..."
 msgstr ""
 
-#: src/font-manager/Collections.vala:491
+#: src/font-manager/Collections.vala:486
 msgid "Compress..."
 msgstr ""
 
@@ -359,8 +589,8 @@ msgid "Select Destination"
 msgstr ""
 
 #: src/font-manager/Dialogs.vala:50 src/font-manager/Dialogs.vala:70
-#: src/font-manager/Dialogs.vala:109 src/font-manager/Migration.vala:55
-#: src/font-manager/Preferences/Sources.vala:187
+#: src/font-manager/Dialogs.vala:98 src/font-manager/Dialogs.vala:129
+#: src/font-manager/Migration.vala:55
 msgid "_Cancel"
 msgstr "_Anuluj"
 
@@ -372,20 +602,23 @@ msgstr ""
 msgid "Select files to install"
 msgstr "Wybierz pliki do zainstalowania"
 
-#: src/font-manager/Dialogs.vala:72
-#: src/font-manager/Preferences/Sources.vala:189
+#: src/font-manager/Dialogs.vala:72 src/font-manager/Dialogs.vala:100
 msgid "_Open"
 msgstr "_Otwórz"
 
-#: src/font-manager/Dialogs.vala:110
+#: src/font-manager/Dialogs.vala:95
+msgid "Select source folders"
+msgstr "Wybierz katalogi źródeł"
+
+#: src/font-manager/Dialogs.vala:130
 msgid "_Delete"
 msgstr "_Skasuj"
 
-#: src/font-manager/Dialogs.vala:115
+#: src/font-manager/Dialogs.vala:135
 msgid "Select fonts to remove"
 msgstr "Wybierz czcionki do usunięcia"
 
-#: src/font-manager/Dialogs.vala:127
+#: src/font-manager/Dialogs.vala:147
 msgid "Fonts installed in your home directory will appear here."
 msgstr ""
 
@@ -405,6 +638,14 @@ msgstr "Wyłączone"
 #: src/font-manager/Filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
 msgstr "Czcionki, które zostały wyłączone"
+
+#: src/font-manager/Filters/LanguageFilter.vala:28
+msgid "Filter based on language support"
+msgstr ""
+
+#: src/font-manager/Filters/LanguageFilter.vala:48
+msgid "Language"
+msgstr ""
 
 #: src/font-manager/Filters/Unsorted.vala:26
 msgid "Unsorted"
@@ -446,27 +687,27 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Zwiń wszystkie"
 
-#: src/font-manager/FontList.vala:421
+#: src/font-manager/FontList.vala:413
 msgid "Install"
 msgstr ""
 
-#: src/font-manager/FontList.vala:422
+#: src/font-manager/FontList.vala:414
 msgid "Copy Location"
 msgstr ""
 
-#: src/font-manager/FontList.vala:423
+#: src/font-manager/FontList.vala:415
 msgid "Show in Folder"
 msgstr ""
 
-#: src/font-manager/MainWindow.vala:54 data/ui/font-manager-main-window.ui:152
+#: src/font-manager/MainWindow.vala:54 data/ui/font-manager-main-window.ui:154
 msgid "Browse"
 msgstr "Przeglądaj"
 
-#: src/font-manager/MainWindow.vala:56 data/ui/font-manager-main-window.ui:123
+#: src/font-manager/MainWindow.vala:56 data/ui/font-manager-main-window.ui:125
 msgid "Compare"
 msgstr "Porównaj"
 
-#: src/font-manager/MainWindow.vala:58 data/ui/font-manager-main-window.ui:136
+#: src/font-manager/MainWindow.vala:58 data/ui/font-manager-main-window.ui:138
 msgid "Manage"
 msgstr "Zarządzaj"
 
@@ -569,7 +810,7 @@ msgid ""
 msgstr ""
 
 #: src/font-manager/Preferences/Desktop.vala:73
-#: src/font-manager/Preferences/Rendering.vala:86
+#: src/font-manager/Preferences/Rendering.vala:81
 msgid "Hinting"
 msgstr "Hinting"
 
@@ -577,31 +818,31 @@ msgstr "Hinting"
 msgid "The type of hinting to use when rendering fonts."
 msgstr ""
 
-#: src/font-manager/Preferences/Desktop.vala:100
+#: src/font-manager/Preferences/Desktop.vala:101
 msgid "GNOME desktop settings schema not found"
 msgstr ""
 
-#: src/font-manager/Preferences/Display.vala:42
-#: src/font-manager/Preferences/Rendering.vala:42
-#: src/font-manager/Preferences/Substitutions.vala:68
+#: src/font-manager/Preferences/Display.vala:37
+#: src/font-manager/Preferences/Rendering.vala:37
+#: src/font-manager/Preferences/Substitutions.vala:63
 msgid "Settings saved to file."
 msgstr "Ustawienia zostały zapisane do pliku."
 
-#: src/font-manager/Preferences/Display.vala:46
-#: src/font-manager/Preferences/Rendering.vala:46
-#: src/font-manager/Preferences/Substitutions.vala:72
+#: src/font-manager/Preferences/Display.vala:41
+#: src/font-manager/Preferences/Rendering.vala:41
+#: src/font-manager/Preferences/Substitutions.vala:67
 msgid "Removed configuration file."
 msgstr "Usunięty plik konfiguracyjny."
 
-#: src/font-manager/Preferences/Display.vala:75
+#: src/font-manager/Preferences/Display.vala:70
 msgid "Target DPI"
 msgstr "Docelowe DPI"
 
-#: src/font-manager/Preferences/Display.vala:76
+#: src/font-manager/Preferences/Display.vala:71
 msgid "Scale Factor"
 msgstr ""
 
-#: src/font-manager/Preferences/Display.vala:80
+#: src/font-manager/Preferences/Display.vala:75
 msgid "LCD Filter"
 msgstr "Filtr LCD"
 
@@ -629,36 +870,36 @@ msgstr "Wyświetlanie"
 msgid "Rendering"
 msgstr "Renderowanie"
 
-#: src/font-manager/Preferences/Rendering.vala:85
+#: src/font-manager/Preferences/Rendering.vala:80
 msgid "Antialias"
 msgstr "Antyalias"
 
-#: src/font-manager/Preferences/Rendering.vala:87
+#: src/font-manager/Preferences/Rendering.vala:82
 msgid "Enable Autohinter"
 msgstr "Włącz automatyczny hinting"
 
-#: src/font-manager/Preferences/Rendering.vala:96
+#: src/font-manager/Preferences/Rendering.vala:91
 msgid "Hinting Style"
 msgstr "Styl hintingu"
 
-#: src/font-manager/Preferences/Rendering.vala:97
+#: src/font-manager/Preferences/Rendering.vala:92
 msgid "Use Embedded Bitmaps"
 msgstr "Użyj osadzonych bitmap"
 
+#: src/font-manager/Preferences/Rendering.vala:94
 #: src/font-manager/Preferences/Rendering.vala:99
-#: src/font-manager/Preferences/Rendering.vala:104
 msgid " Size Restrictions "
 msgstr "Ograniczenia rozmiaru"
 
-#: src/font-manager/Preferences/Rendering.vala:102
+#: src/font-manager/Preferences/Rendering.vala:97
 msgid " Apply settings to point sizes "
 msgstr "Zastosuj ustawienia do rozmiarów punktu"
 
-#: src/font-manager/Preferences/Rendering.vala:169
+#: src/font-manager/Preferences/Rendering.vala:157
 msgid "Smaller than"
 msgstr "Mniejsze niż"
 
-#: src/font-manager/Preferences/Rendering.vala:170
+#: src/font-manager/Preferences/Rendering.vala:158
 msgid "Larger than"
 msgstr "Większe niż"
 
@@ -670,25 +911,21 @@ msgstr "Dodaj źródła"
 msgid "Remove selected source"
 msgstr "Usuń wybrane źródła"
 
-#: src/font-manager/Preferences/Sources.vala:109
+#: src/font-manager/Preferences/Sources.vala:104
 msgid "Font Sources"
 msgstr "Źródła czcionek"
 
-#: src/font-manager/Preferences/Sources.vala:110
+#: src/font-manager/Preferences/Sources.vala:105
 msgid "Easily add or preview fonts without actually installing them."
 msgstr "Łatwo dodaj lub podejrzyj czcionki bez ich instalowania."
 
-#: src/font-manager/Preferences/Sources.vala:111
+#: src/font-manager/Preferences/Sources.vala:106
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr ""
 "Aby dodać nowe źródło po prostu przeciągnij katalog na ten obszar lub "
 "kliknij przycisk dodawania na pasku narzędzi."
-
-#: src/font-manager/Preferences/Sources.vala:184
-msgid "Select source folders"
-msgstr "Wybierz katalogi źródeł"
 
 #: src/font-manager/Preferences/Substitutions.vala:33
 msgid "Add alias"
@@ -698,15 +935,15 @@ msgstr ""
 msgid "Remove selected alias"
 msgstr ""
 
-#: src/font-manager/Preferences/Substitutions.vala:229
+#: src/font-manager/Preferences/Substitutions.vala:224
 msgid "Font Substitutions"
 msgstr ""
 
-#: src/font-manager/Preferences/Substitutions.vala:230
+#: src/font-manager/Preferences/Substitutions.vala:225
 msgid "Easily substitute one font family for another."
 msgstr ""
 
-#: src/font-manager/Preferences/Substitutions.vala:231
+#: src/font-manager/Preferences/Substitutions.vala:226
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr ""
 
@@ -730,53 +967,44 @@ msgstr ""
 msgid "Prefer Dark Theme"
 msgstr ""
 
-#: src/font-manager/Preferences/UserInterface.vala:86
+#: src/font-manager/Preferences/UserInterface.vala:81
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
 "CSD zostało włączone. Zmiany zostaną zastosowane przy następnym uruchomieniu "
 "programu."
 
-#: src/font-manager/Preferences/UserInterface.vala:88
+#: src/font-manager/Preferences/UserInterface.vala:83
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
 "CSD zostało wyłączone. Zmiany zostaną zastosowane przy następnym "
 "uruchomieniu programu."
 
-#: src/font-manager/TitleBar.vala:52
+#: src/font-manager/TitleBar.vala:48
 msgid "Keyboard Shortcuts"
 msgstr ""
 
-#: src/font-manager/TitleBar.vala:53
+#: src/font-manager/TitleBar.vala:49
 #: data/ui/font-manager-shortcuts-window.ui:19
 msgid "Help"
 msgstr "Pomoc"
 
-#: src/font-manager/TitleBar.vala:54
+#: src/font-manager/TitleBar.vala:50
 msgid "About"
 msgstr "O programie"
 
-#: src/font-manager/TitleBar.vala:180
+#: src/font-manager/TitleBar.vala:176
 msgid "Add Fonts"
 msgstr "Dodaj czcionki"
 
-#: src/font-manager/TitleBar.vala:181
+#: src/font-manager/TitleBar.vala:177
 msgid "Remove Fonts"
 msgstr "Usuń czcionki"
 
-#: src/font-manager/TitleBar.vala:189 data/ui/font-manager-main-window.ui:182
+#: src/font-manager/TitleBar.vala:185 data/ui/font-manager-main-window.ui:184
 msgid "Preferences"
 msgstr "Preferencje"
-
-#: src/font-viewer/Application.vala:69 src/font-viewer/Application.vala:101
-#: src/font-viewer/MainWindow.vala:25
-#: data/org.gnome.FontViewer.appdata.xml.in.in:9
-#: data/org.gnome.FontViewer.desktop.in.in:5
-#: data/org.gnome.FontViewer.desktop.in.in:6
-#: data/ui/font-viewer-main-window.ui:17
-msgid "Font Viewer"
-msgstr "Przeglądarka czcionek"
 
 #: src/font-viewer/MainWindow.vala:26
 msgid "Preview font files before installing them."
@@ -818,74 +1046,6 @@ msgstr "Zainstalowana jest nowsza wersja"
 msgid "Installed"
 msgstr "Zainstalowane"
 
-#: lib/common/font-manager-source.c:224 lib/common/font-manager-source.c:239
-msgid "Source Unavailable"
-msgstr "Źródło niedostępne"
-
-#: lib/unicode/unicode-character-map.c:643
-msgid "Unknown character, unable to identify."
-msgstr ""
-
-#: lib/unicode/unicode-character-map.c:645
-msgid "Not found."
-msgstr ""
-
-#: lib/unicode/unicode-character-map.c:647
-msgid "Character found."
-msgstr ""
-
-#: data/org.gnome.FontManager.appdata.xml.in.in:10
-msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr ""
-
-#: data/org.gnome.FontManager.appdata.xml.in.in:13
-msgid ""
-"Font Manager is intended to provide a way for average users to easily manage "
-"desktop fonts, without having to resort to command line tools or editing "
-"configuration files by hand."
-msgstr ""
-
-#: data/org.gnome.FontManager.appdata.xml.in.in:18
-msgid ""
-"While designed primarily with the Gnome Desktop Environment in mind, it "
-"should work well with other Gtk+ desktop environments."
-msgstr ""
-
-#: data/org.gnome.FontManager.appdata.xml.in.in:22
-msgid "Font Manager is NOT a professional-grade font management solution."
-msgstr ""
-
-#: data/org.gnome.FontManager.desktop.in.in:7
-msgid "Preview, Compare and Manage Fonts"
-msgstr ""
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.FontManager.desktop.in.in:9
-#: data/org.gnome.FontViewer.desktop.in.in:9
-msgid "preferences-desktop-font"
-msgstr ""
-
-#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
-#: data/org.gnome.FontManager.desktop.in.in:16
-#: data/org.gnome.FontViewer.desktop.in.in:16
-msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
-
-#: data/org.gnome.FontViewer.appdata.xml.in.in:10
-msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr ""
-
-#: data/org.gnome.FontViewer.appdata.xml.in.in:13
-msgid ""
-"Font Viewer allows previewing font files prior to installation. It features "
-"several ways to preview font files along with a character map and displays "
-"font properties and license details."
-msgstr ""
-
-#: data/org.gnome.FontViewer.desktop.in.in:7
-msgid "Full featured font file preview application"
-msgstr ""
-
 #: data/ui/font-manager-alias-row.ui:18
 msgid "Enter target family"
 msgstr ""
@@ -925,6 +1085,22 @@ msgstr ""
 #: data/ui/font-manager-font-config-controls.ui:40
 msgid "Save"
 msgstr "Zapisz"
+
+#: data/ui/font-manager-language-filter-settings.ui:36
+msgid "Filter Settings"
+msgstr ""
+
+#: data/ui/font-manager-language-popover.ui:93
+msgid "Minimum Coverage"
+msgstr ""
+
+#: data/ui/font-manager-language-popover.ui:109
+msgid "90"
+msgstr ""
+
+#: data/ui/font-manager-language-popover.ui:142
+msgid "Deselect All"
+msgstr ""
 
 #: data/ui/font-manager-orthography-list.ui:73
 msgid "Clear selected filter"

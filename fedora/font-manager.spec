@@ -1,6 +1,6 @@
 %global MajorVersion 0
 %global MinorVersion 7
-%global PatchVersion 4
+%global PatchVersion 5
 %global build_timestamp %{lua: print(os.date("%Y%m%d"))}
 %global DBusName org.gnome.FontManager
 %global DBusName2 org.gnome.FontViewer
@@ -144,6 +144,6 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
-* Mon Mar 18 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.4-1
+* Mon Mar 18 2019 JerryCasiano <JerryCasiano@gmail.com> %{version}-%{release}
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
 
