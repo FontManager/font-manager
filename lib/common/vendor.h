@@ -57,6 +57,13 @@ static const struct
 VendorData[] =
 {
 
+    /* Various Sources */
+    {"ACG", "Monotype Imaging"},
+    {"B?", "Bigelow & Holmes"},
+    {"FJ", "Fujitsu"},
+    {"RICO", "Ricoh"},
+
+
     /* Courtesy of Microsoft Typography - https://docs.microsoft.com/en-us/typography/vendors/ */
     {"!ETF", "!Exclamachine Type Foundry"},
     {"$pro", "CheapProFonts"},
@@ -75,6 +82,7 @@ VendorData[] =
     {"A&S", "Art&Sign Studio"},
     {"A2", "A2-Type"},
     {"aaff", "AstroAcademia Font Foundry"},
+    {"AA", "Alireza Alipour"},
     {"AAT", "AhmetAltunType"},
     {"ABBO", "Arabic Dictionary Lab"},
     {"ABC", "Altek Instruments"},
@@ -86,10 +94,11 @@ VendorData[] =
     {"ADBE", "Adobe"},
     {"ADBO", "Adobe"},
     {"ADG", "Apply Design Group"},
-    {"AE", "AE Type"},
+    {"AES", "AE Type"},
     {"AEF", "Altered Ego Fonts"},
     {"AGFA", "Monotype Imaging (replaced by MONO)"},
     {"AID", "Artistic Imposter Design"},
+    {"AJL", "Alex John Lucas"},
     {"AJPT", "Alan Jay Prescott Typography"},
     {"AKOF", "AKOFAType"},
     {"ALFA", "Alphabets"},
@@ -320,6 +329,7 @@ VendorData[] =
     {"FXTL", "Foxtail Collectif"},
     {"FY", "Fontyou"},
     {"GAF", "Glifo Art Fonts Inc."},
+    {"GAKU", "Gakumon"},
     {"GALA", "Galápagos Design Group, Inc."},
     {"GALO", "Gerald Gallo"},
     {"GARI", "Gary Ritchie"},
@@ -472,10 +482,12 @@ VendorData[] =
     {"Ltrm", "Lettermin type and design"},
     {"LTRX", "Lighttracks"},
     {"LTTR", "LettError"},
+    {"LuAn", "Patrice Provost"},
     {"LUD", "Ludlow"},
     {"LuFo", "LucasFonts"},
     {"LUSH", "Lush Type"},
     {"LUV", "iLUVfonts"},
+    {"M+F", "Measure + Fit"},
     {"MACR", "Macromedia / Made with Fontographer"},
     {"MADT", "MADType"},
     {"MagD", "Magus Digital"},
@@ -566,6 +578,8 @@ VendorData[] =
     {"OHG", "Our House Graphic Design"},
     {"OHNO", "OH no Type Company"},
     {"OKAY", "Okay Type"},
+    {"OMNI", "Omnitype"},
+    {"OMSE", "OMSETYPE"},
     {"Once", "Michael T Neff"},
     {"OPTM", "Optimo"},
     {"OPTO", "Opto"},
@@ -631,6 +645,7 @@ VendorData[] =
     {"RPTR", "Rampage Raptor"},
     {"RRT", "Red Rooster Collection (ITF, Inc.)"},
     {"RSJ", "RSJ Software"},
+    {"RSMS", "Rsms"},
     {"RST", "Rosetta"},
     {"RUDY", "RudynFluffy"},
     {"RXBN", "Roxaboxen"},
@@ -746,6 +761,7 @@ VendorData[] =
     {"TYPR", "Type Project"},
     {"TYRE", "typerepublic"},
     {"UA", "UnAuthorized Type"},
+    {"UBER", "übertype"},
     {"UKUK", "Ultra Kühl"},
     {"ULA", "Montserrat Typeface"},
     {"UNDS", "Underscore Type"},
@@ -788,13 +804,6 @@ VendorData[] =
     {"ZeGr", "Zebra Font Factory"},
     {"zeta", "Tangram Studio"},
     {"ZSFT", "Zsoft"},
-
-
-    /* Various Sources */
-    {"ACG", "Monotype Imaging"},
-    {"B?", "Bigelow & Holmes"},
-    {"FJ", "Fujitsu"},
-    {"RICO", "Ricoh"},
 
 };
 
