@@ -81,6 +81,8 @@ namespace FontManager {
             treeview.append_column(column);
             treeview.set_model(store);
             set_default_button_relief(controls);
+            foreground_color = fg_color_button.rgba;
+            background_color = bg_color_button.rgba;
             bind_properties();
             connect_signals();
             base.constructed();
@@ -88,8 +90,8 @@ namespace FontManager {
         }
 
         void bind_properties () {
-            bind_property("foreground_color", fg_color_button, "rgba", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
-            bind_property("background_color", bg_color_button, "rgba", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
+            bind_property("foreground_color", fg_color_button, "rgba", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            bind_property("background_color", bg_color_button, "rgba", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             bind_property("preview-size", fontscale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             fontscale.bind_property("adjustment", this, "adjustment", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;

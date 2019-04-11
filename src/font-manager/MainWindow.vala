@@ -686,10 +686,16 @@ namespace FontManager {
                 var background = Gdk.RGBA();
                 bool foreground_set = foreground.parse(settings.get_string("compare-foreground-color"));
                 bool background_set = background.parse(settings.get_string("compare-background-color"));
-                if (foreground_set)
+                if (foreground_set) {
+                    if (foreground.alpha == 0.0)
+                        foreground.alpha = 1.0;
                     ((Gtk.ColorChooser) compare.fg_color_button).set_rgba(foreground);
-                if (background_set)
+                }
+                if (background_set) {
+                    if (background.alpha == 0.0)
+                        background.alpha = 1.0;
                     ((Gtk.ColorChooser) compare.bg_color_button).set_rgba(background);
+                }
                 var checklist = ((FontManager.Application) application).available_font_families.list();
                 foreach (var entry in settings.get_strv("compare-list"))
                     compare.add_from_string(entry, checklist);
