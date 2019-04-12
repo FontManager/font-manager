@@ -171,6 +171,8 @@ namespace FontManager {
                 main_window.fontlist.samples = get_non_latin_samples();
                 if (main_window.fontlist.samples == null)
                     warning("Failed to generate previews for fonts which do not support Basic Latin");
+                if (main_window.titlebar is Gtk.HeaderBar)
+                    ((Gtk.HeaderBar) main_window.titlebar).title = About.DISPLAY_NAME;
             }
             return;
         }
@@ -321,6 +323,8 @@ namespace FontManager {
         public void refresh () requires (main_window != null) {
             if (update_in_progress)
                 return;
+            if (main_window.titlebar is Gtk.HeaderBar)
+                ((Gtk.HeaderBar) main_window.titlebar).title = _("Update in progress...");
             update_in_progress = true;
             category_update_required = true;
             enable_user_font_configuration(false);
@@ -349,7 +353,7 @@ namespace FontManager {
             } catch (Error e) {
                 critical(e.message);
             }
-            refresh();
+            Idle.add(() => { refresh(); return false; });
             return;
         }
 
