@@ -209,6 +209,7 @@ namespace FontManager {
             fontlist.bind_property("samples", preview_pane.preview, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             var ui_prefs = (UserInterfacePreferences) preference_pane.get_page("Interface");
             ui_prefs.wide_layout.toggle.bind_property("active", this, "wide-layout", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            main_pane.bind_property("position", preference_pane, "position", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;
         }
 
