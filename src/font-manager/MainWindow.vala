@@ -78,7 +78,7 @@ namespace FontManager {
         public signal void mode_changed (int new_mode);
 
         public bool wide_layout { get; set; default = false; }
-        public bool use_csd { get; set; default = false; }
+        public bool use_csd { get; set; default = true; }
 
         [GtkChild] public Gtk.Stack main_stack { get; }
         [GtkChild] public Gtk.Stack content_stack { get; }
@@ -130,7 +130,8 @@ namespace FontManager {
             fontlist_pane.fontlist = new FontList();
             initialize_preference_pane(preference_pane);
             add_actions();
-            use_csd = settings.get_boolean("use-csd");
+            if (settings != null)
+                use_csd = settings.get_boolean("use-csd");
             if (Gdk.Screen.get_default().is_composited() && use_csd) {
                 titlebar = new ClientSideDecorations();
                 set_titlebar(titlebar);
@@ -466,13 +467,6 @@ namespace FontManager {
                     sidebar.mode = "Orthographies";
                 else
                     sidebar.mode = "Standard";
-            });
-
-            sources.changed.connect(() => {
-                Timeout.add_seconds(3, () => {
-                    ((FontManager.Application) application).refresh();
-                    return false;
-                });
             });
 
         }

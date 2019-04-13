@@ -146,6 +146,7 @@ namespace FontManager {
             if (category_update_required &&
                 attached.contains("Fonts") &&
                 attached.contains("Metadata")) {
+                category_update_required = false;
                 /* Re-select category after an update to prevent blank list */
                 if (main_window.sidebar.standard.selected_category != null) {
                     int index = main_window.sidebar.standard.selected_category.index;
@@ -161,7 +162,6 @@ namespace FontManager {
                 }
                 main_window.fontlist.queue_draw();
                 main_window.browser.treeview.queue_draw();
-                category_update_required = false;
             }
             if (attached.contains("Fonts") &&
                 attached.contains("Metadata") &&
@@ -211,6 +211,12 @@ namespace FontManager {
             reject = new Reject();
             reject.load();
             sources.load();
+            sources.changed.connect(() => {
+                Timeout.add_seconds(3, () => {
+                    refresh();
+                    return false;
+                });
+            });
             base.startup();
             return;
         }
@@ -317,24 +323,43 @@ namespace FontManager {
             return exit_status;
         }
 
+        async void refresh_async () throws ThreadError {
+            SourceFunc callback = refresh_async.callback;
+            ThreadFunc <bool> run_in_thread = () => {
+                enable_user_font_configuration(false);
+                update_font_configuration();
+                load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+                Json.Object available_fonts = get_available_fonts(null);
+                Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
+                FontModel model = new FontModel();
+                model.source_array = sorted_fonts;
+                main_window.model = model;
+                update_database_tables();
+                available_font_families.clear();
+                foreach (string family in available_fonts.get_members())
+                    available_font_families.add(family);
+                Idle.add((owned) callback);
+                return true;
+            };
+            new Thread <bool> ("refresh_async", run_in_thread);
+            yield;
+            return;
+        }
+
         [DBus (visible = false)]
         public void refresh () requires (main_window != null) {
             if (update_in_progress)
                 return;
             update_in_progress = true;
             category_update_required = true;
-            enable_user_font_configuration(false);
-            update_font_configuration();
-            load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
-            Json.Object available_fonts = get_available_fonts(null);
-            available_font_families.clear();
-            Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
-            FontModel model = new FontModel();
-            model.source_array = sorted_fonts;
-            main_window.model = model;
-            foreach (string family in available_fonts.get_members())
-                available_font_families.add(family);
-            update_database_tables();
+            refresh_async.begin((obj, res) => {
+                try {
+                    refresh_async.end(res);
+                } catch (Error e) {
+                    critical(e.message);
+                }
+
+            });
             return;
         }
 

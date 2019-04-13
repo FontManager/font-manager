@@ -169,7 +169,7 @@ namespace FontManager {
             Gtk.Window? parent = Application.get_current_window();
             string? [] arr = FileSelector.get_selected_sources(parent);
             if (arr.length > 0)
-                add_sources(arr);
+                Idle.add(() => { add_sources(arr); return false; });
             return;
         }
 
@@ -184,8 +184,9 @@ namespace FontManager {
                 return;
             var selected_source = ((FontSourceRow) selected_row.get_child()).source;
             if (!sources.remove(selected_source))
-                return;
-            sources.save();
+                warning("Failed to remove selected source");
+            else
+                Idle.add(() => { sources.save(); return false; });
             return;
         }
 
