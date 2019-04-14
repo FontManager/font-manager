@@ -724,6 +724,8 @@ namespace FontManager {
                     restore_last_selected_treepath(sidebar.standard.collection_tree, collection_path);
                     tree = sidebar.standard.category_tree.tree;
                     path = category_path;
+                    if (path.char_count() > 1)
+                        restore_last_selected_treepath(tree, path.split_set(":")[0]);
                 } else if (sidebar.standard.mode == StandardSidebarMode.COLLECTION) {
                     restore_last_selected_treepath(sidebar.standard.category_tree.tree, category_path);
                     tree = sidebar.standard.collection_tree;
@@ -731,6 +733,8 @@ namespace FontManager {
                 }
                 restore_last_selected_treepath(tree, path);
                 Idle.add(() => {
+                    if (path.char_count() > 1)
+                        fontlist_pane.refilter();
                     restore_last_selected_treepath(fontlist_pane.fontlist, font_path);
                     return false;
                 });
