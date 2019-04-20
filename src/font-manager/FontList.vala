@@ -284,6 +284,7 @@ namespace FontManager {
         public Font? selected_font { get; private set; default = null; }
 
         Gtk.Menu context_menu;
+        Gtk.MenuItem? filename = null;
         Gtk.MenuItem? installable = null;
 
         public FontList () {
@@ -345,9 +346,12 @@ namespace FontManager {
             selected_iter = model.get_string_from_iter(iter);
             val.unset();
             Idle.add(() => {
-                installable.set_visible(selection_is_sourced());
+                if (installable != null)
+                    installable.set_visible(selection_is_sourced());
                 return false;
             });
+            if (filename != null)
+                filename.label = Path.get_basename(selected_font.filepath);
             return;
         }
 
@@ -415,6 +419,15 @@ namespace FontManager {
                 MenuEntry("show_in_folder", _("Show in Folder"), "app.show_in_folder", null, new MenuCallbackWrapper(show_in_folder)),
             };
             var popup_menu = new Gtk.Menu();
+            filename = new Gtk.MenuItem.with_label("");
+            filename.sensitive = false;
+            filename.show();
+            popup_menu.append(filename);
+            var label = ((Gtk.Bin) filename).get_child();
+            label.set("hexpand", true, "justify", Gtk.Justification.FILL, "margin", 2, null);
+            var separator = new Gtk.SeparatorMenuItem();
+            separator.show();
+            popup_menu.append(separator);
             foreach (MenuEntry entry in context_menu_entries) {
                 var item = new Gtk.MenuItem.with_label(entry.display_name);
                 item.activate.connect(() => { entry.method.run(); });
