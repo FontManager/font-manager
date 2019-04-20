@@ -1,3 +1,16 @@
+Major changes between 0.7.4 to 0.7.5
+
+- Require Vala >= 0.42
+
+- Switch to Meson build system
+
+- Use GtkBuilder templates as much as possible
+
+- Fix inoperative desktop font preference controls
+
+- Add language filter to default categories
+
+
 Major changes between 0.7.3 to 0.7.4
 
 
