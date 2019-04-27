@@ -48,8 +48,9 @@ get_index (UnicodeCodepointList *_self, gunichar wc)
     g_return_val_if_fail(_self != NULL, -1);
     FontManagerCodepointList *self = FONT_MANAGER_CODEPOINT_LIST(_self);
     if (self->filter)
-        return g_list_index(self->filter, &wc);
-    return self->charset != NULL ? (gint) g_list_index(self->charset, &wc) : -1;
+        return g_list_index(self->filter, GINT_TO_POINTER(wc));
+    return self->charset != NULL ?
+           (gint) g_list_index(self->charset, GINT_TO_POINTER(wc)) : -1;
 }
 
 static gint

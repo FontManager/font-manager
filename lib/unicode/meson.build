@@ -1,11 +1,18 @@
 
+unicode_gresource_xml_file = files('UnicodeGResource.xml')
+
+unicode_gresource = gnome.compile_resources('unicode_gresource', unicode_gresource_xml_file)
+
 unicode_sources = [
+    unicode_gresource,
     'unicode-codepoint-list.c',
     'unicode-codepoint-list.h',
     'unicode-character-map.c',
     'unicode-character-map.h',
     'unicode-info.c',
-    'unicode-info.h'
+    'unicode-info.h',
+    'unicode-search-bar.c',
+    'unicode-search-bar.h'
 ]
 
 libunicode = both_libraries('unicode',
