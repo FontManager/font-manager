@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+    <gresource prefix="/org/gnome/FontManager">
+        <file compressed="true" preprocess="xml-stripblanks">icons/null.svg</file>
+        <file compressed="true" preprocess="xml-stripblanks">icons/opentype.svg</file>
+        <file compressed="true" preprocess="xml-stripblanks">icons/truetype.svg</file>
+        <file compressed="true" preprocess="xml-stripblanks">icons/type1.svg</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-viewer-main-window.ui</file>
+    </gresource>
+</gresources>

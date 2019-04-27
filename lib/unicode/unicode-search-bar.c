@@ -534,7 +534,7 @@ entry_changed (UnicodeSearchBar *self, G_GNUC_UNUSED GtkWidget *widget)
             g_source_remove(search_timeout);
             search_timeout = 0;
         }
-        search_timeout = g_timeout_add(333, (GSourceFunc) _entry_changed, self);
+        search_timeout = g_timeout_add(500, (GSourceFunc) _entry_changed, self);
     } else {
         UnicodeCodepointList *codepoint_list = unicode_character_map_get_codepoint_list(self->charmap);
         gunichar first_char = unicode_codepoint_list_get_char(codepoint_list, 0);

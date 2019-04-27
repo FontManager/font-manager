@@ -1,10 +1,10 @@
 
-unicode_gresource_xml_file = files('UnicodeGResource.xml')
+unicode_gresource_xml_file = files('unicode-gresources.xml')
 
 unicode_gresource = gnome.compile_resources('unicode_gresource', unicode_gresource_xml_file)
 
 unicode_sources = [
-    unicode_gresource,
+    unicode_gresource[0],
     'unicode-codepoint-list.c',
     'unicode-codepoint-list.h',
     'unicode-character-map.c',
