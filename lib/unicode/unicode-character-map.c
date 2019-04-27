@@ -383,7 +383,7 @@ draw_character (UnicodeCharacterMap *charmap,
     if (gtk_widget_has_focus(widget) && (gint) cell == priv->active_cell)
         _state = GTK_STATE_FLAG_SELECTED | GTK_STATE_FLAG_FOCUSED;
     else if ((gint) cell == priv->active_cell)
-        _state = GTK_STATE_FLAG_INSENSITIVE | GTK_STATE_FLAG_ACTIVE;
+        _state = GTK_STATE_FLAG_INSENSITIVE | GTK_STATE_FLAG_SELECTED;
     gtk_style_context_set_state(ctx, _state);
     pango_layout_get_pixel_size(priv->pango_layout, &char_width, &char_height);
     gtk_render_layout(ctx, cr,
@@ -429,7 +429,7 @@ draw_square_bg (UnicodeCharacterMap *charmap,
     if (gtk_widget_has_focus(widget) && cell == priv->active_cell)
         _state = GTK_STATE_FLAG_SELECTED;
     else if (cell == priv->active_cell)
-        _state = GTK_STATE_FLAG_INSENSITIVE | GTK_STATE_FLAG_ACTIVE;
+        _state = GTK_STATE_FLAG_INSENSITIVE | GTK_STATE_FLAG_SELECTED;
     else if (!wc || !unicode_unichar_validate(wc) || !unicode_unichar_isdefined(wc))
         _state = GTK_STATE_FLAG_INSENSITIVE;
     else

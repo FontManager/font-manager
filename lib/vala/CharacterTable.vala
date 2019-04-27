@@ -35,6 +35,15 @@ namespace FontManager {
         public double preview_size { get; set;}
         public unichar active_character { get; set; }
 
+        public bool search_mode {
+            get {
+                return stack.get_visible_child_name() == "search_bar";
+            }
+            set {
+                stack.set_visible_child_name(value ? "search_bar" : "fontscale");
+            }
+        }
+
         public Font? selected_font { get; set; default = null; }
         public BaseCharacterMap table { get; private set; }
         public Gtk.Adjustment adjustment { get; set;}
@@ -47,7 +56,9 @@ namespace FontManager {
         [GtkChild] Gtk.Label name_label;
         [GtkChild] Gtk.Label count_label;
         [GtkChild] Gtk.ScrolledWindow scrolled_window;
+        [GtkChild] Gtk.Stack stack;
         [GtkChild] FontScale fontscale;
+        [GtkChild] Unicode.SearchBar search_bar;
 
         public void set_filter (Orthography? orthography) {
             table.codepoint_list = null;
@@ -61,6 +72,7 @@ namespace FontManager {
             codepoint_list = new CodepointList();
             table = new BaseCharacterMap();
             table.codepoint_list = codepoint_list;
+            search_bar.charmap = table;
             table.show();
             scrolled_window.add(table);
 

@@ -267,10 +267,12 @@ namespace FontManager {
 
         [GtkChild] Gtk.Label preview_tab_label;
         [GtkChild] Gtk.MenuButton menu_button;
+        [GtkChild] Gtk.ToggleButton search_button;
 
         [GtkCallback]
         public void on_notebook_switch_page (Gtk.Widget page, uint page_num) {
             menu_button.sensitive = ((FontPreviewMode) page_num == FontPreviewMode.PREVIEW);
+            search_button.set_visible(page_num == PreviewPanePage.CHARACTER_MAP);
             return;
         }
 
@@ -310,6 +312,9 @@ namespace FontManager {
             });
             preview.preview_text_changed.connect((p) => {
                 preview_text_changed(p);
+            });
+            search_button.toggled.connect(() => {
+                charmap.search_mode = search_button.get_active();
             });
             notify["selected-font"].connect_after(() => { changed(); });
             return;

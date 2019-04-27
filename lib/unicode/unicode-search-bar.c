@@ -43,21 +43,21 @@ struct _UnicodeSearchState
 {
     UnicodeSearchDirection direction;
     UnicodeCodepointList *codepoint_list;
-    gint search_string_nfd_len;
-    gint search_index_nfd;
-    gint search_string_nfc_len;
-    gint search_index_nfc;
-    gint search_string_value;
     gint start_index;
     gint curr_index;
     gint match;       /* index of the found character */
+    gint search_string_value;
+    gint search_index_nfc;
+    gint search_index_nfd;
+    gint search_string_nfc_len;
+    gint search_string_nfd_len;
     gboolean searching;
     /* true if there are known to be no matches,
      * or there is known to be exactly one match and it has been found */
     gboolean search_complete;
     gboolean prepped;
     gchar *search_string;
-    gchar *search_string_nfd;  /* points into search_string_nfd_temp */
+    gchar *search_string_nfd;
     gchar *search_string_nfc;
 };
 
@@ -397,16 +397,16 @@ unicode_search_state_new (UnicodeCodepointList *codepoint_list,
     UnicodeSearchState *search_state = g_slice_new (UnicodeSearchState);
 
     search_state->codepoint_list = g_object_ref (codepoint_list);
-    search_state->search_string = g_strstrip(g_strdup(search_string));
-    search_state->search_string_nfd = g_utf8_normalize(search_string, -1, G_NORMALIZE_NFD);
     search_state->direction = direction;
     search_state->prepped = FALSE;
     search_state->match = -1;
     search_state->search_complete = FALSE;
     search_state->start_index = start_index;
     search_state->curr_index = start_index;
+    search_state->search_string = g_strstrip(g_strdup(search_string));
 
     /* NFD */
+    search_state->search_string_nfd = g_utf8_normalize(search_string, -1, G_NORMALIZE_NFD);
     search_state->search_string_nfd_len = g_utf8_strlen(search_state->search_string_nfd, -1);
 
     if (search_state->search_string_nfd_len == 1)

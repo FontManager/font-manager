@@ -90,11 +90,35 @@
       </packing>
     </child>
     <child>
-      <object class="FontManagerFontScale" id="fontscale">
+      <object class="GtkStack" id="stack">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="transition_duration">420</property>
+        <property name="transition_type">crossfade</property>
         <child>
-          <placeholder/>
+          <object class="FontManagerFontScale" id="fontscale">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="name">fontscale</property>
+          </packing>
+        </child>
+        <child>
+          <object class="UnicodeSearchBar" id="search_bar">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="name">search_bar</property>
+            <property name="position">1</property>
+          </packing>
         </child>
       </object>
       <packing>
