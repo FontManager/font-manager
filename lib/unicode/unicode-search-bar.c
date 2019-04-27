@@ -28,7 +28,7 @@
 
 #include "unicode-search-bar.h"
 
-#define UI_RESOURCE_PATH "/unicode-search-bar.ui"
+#define UI_RESOURCE_PATH "/ui/unicode-search-bar.ui"
 
 typedef enum
 {
@@ -369,6 +369,7 @@ static void
 unicode_search_state_free (UnicodeSearchState *search_state)
 {
     g_object_unref(search_state->codepoint_list);
+    g_free(search_state->search_string);
     g_free(search_state->search_string_nfd);
     g_free(search_state->search_string_nfc);
     g_slice_free(UnicodeSearchState, search_state);
