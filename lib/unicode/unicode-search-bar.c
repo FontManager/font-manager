@@ -481,6 +481,15 @@ on_next_button_clicked (UnicodeSearchBar *self, G_GNUC_UNUSED GtkWidget *widget)
     return;
 }
 
+static void
+on_map_event (UnicodeSearchBar *self,
+              G_GNUC_UNUSED GdkEvent *event,
+              G_GNUC_UNUSED GtkWidget *widget)
+{
+    gtk_widget_grab_focus(GTK_WIDGET(self->entry));
+    return;
+}
+
 static guint search_timeout = 0;
 
 static gboolean
@@ -558,6 +567,7 @@ unicode_search_bar_constructed (GObject *gobject)
     g_signal_connect_swapped(self->entry, "search-changed", G_CALLBACK(entry_changed), self);
     g_signal_connect_swapped(self->entry, "previous-match", G_CALLBACK(on_prev_button_clicked), self);
     g_signal_connect_swapped(self->entry, "next-match", G_CALLBACK(on_next_button_clicked), self);
+    g_signal_connect_swapped(self->entry, "map", G_CALLBACK(on_map_event), self);
     g_signal_connect_swapped(self->prev_button, "clicked", G_CALLBACK(on_prev_button_clicked), self);
     g_signal_connect_swapped(self->next_button, "clicked", G_CALLBACK(on_next_button_clicked), self);
     G_OBJECT_CLASS(unicode_search_bar_parent_class)->constructed(gobject);
@@ -626,6 +636,6 @@ unicode_search_bar_class_init (UnicodeSearchBarClass *klass)
 UnicodeSearchBar *
 unicode_search_bar_new (void)
 {
-    return g_object_new(UNICODE_TYPE_SEARCH_BAR, NULL);;
+    return UNICODE_SEARCH_BAR(g_object_new(UNICODE_TYPE_SEARCH_BAR, NULL));
 }
 
