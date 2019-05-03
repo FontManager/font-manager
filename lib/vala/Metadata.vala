@@ -20,6 +20,46 @@
 
 namespace FontManager {
 
+    enum Embedding {
+
+        INSTALLABLE = 0,
+        RESTRICTED_LICENSE = 2,
+        PREVIEW_AND_PRINT = 4,
+        EDITABLE = 8,
+        PREVIEW_AND_PRINT_NO_SUBSET = 260,
+        EDITABLE_NO_SUBSET = 264,
+        PREVIEW_AND_PRINT_BITMAP_ONLY = 516,
+        EDITABLE_BITMAP_ONLY = 520,
+        PREVIEW_AND_PRINT_NO_SUBSET_BITMAP_ONLY = 772,
+        EDITABLE_NO_SUBSET_BITMAP_ONLY = 776;
+
+        public string to_string () {
+            switch (this) {
+                case RESTRICTED_LICENSE:
+                    return _("Restricted License Embedding");
+                case PREVIEW_AND_PRINT:
+                    return _("Preview & Print Embedding");
+                case EDITABLE:
+                    return _("Editable Embedding");
+                case PREVIEW_AND_PRINT_NO_SUBSET:
+                    return _("Preview & Print Embedding | No Subsetting");
+                case EDITABLE_NO_SUBSET:
+                    return _("Editable Embedding | No Subsetting");
+                case PREVIEW_AND_PRINT_BITMAP_ONLY:
+                    return _("Preview & Print Embedding | Bitmap Embedding Only");
+                case EDITABLE_BITMAP_ONLY:
+                    return _("Editable Embedding | Bitmap Embedding Only");
+                case PREVIEW_AND_PRINT_NO_SUBSET_BITMAP_ONLY:
+                    return _("Preview & Print Embedding | No Subsetting | Bitmap Embedding Only");
+                case EDITABLE_NO_SUBSET_BITMAP_ONLY:
+                    return _("Editable Embedding | No Subsetting | Bitmap Embedding Only");
+                default:
+                    return _("Installable Embedding");
+            }
+        }
+
+    }
+
     public class Metadata : Object {
 
         public Font? selected_font { get; set; default = null; }
@@ -81,6 +121,7 @@ namespace FontManager {
 
         public bool is_mapped { get; private set; default = false; }
 
+        [GtkChild] Gtk.Label fsType;
         [GtkChild] Gtk.Label license;
         [GtkChild] Gtk.LinkButton license_url;
 
@@ -98,9 +139,11 @@ namespace FontManager {
         }
 
         void reset () {
+            fsType.set_text("");
             license.set_text("");
             license_url.set_uri("");
             license_url.set_label("");
+            fsType.hide();
             license.hide();
             license_url.hide();
             notice.show();
@@ -114,6 +157,8 @@ namespace FontManager {
             bool license_data = (info.license_data != null);
             if (license_data)
                 license.set_text(info.license_data);
+            fsType.set_text(((Embedding) info.fsType).to_string());
+            fsType.show();
             license.set_visible(license_data);
             license_url.expand = !license_data;
             if (info.license_url != null) {
