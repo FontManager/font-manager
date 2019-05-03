@@ -143,7 +143,6 @@ namespace FontManager {
             license.set_text("");
             license_url.set_uri("");
             license_url.set_label("");
-            fsType.hide();
             license.hide();
             license_url.hide();
             notice.show();
@@ -152,13 +151,14 @@ namespace FontManager {
 
         public void update (FontInfo? info) {
             reset();
-            if (!is_valid_source(info) || info.license_data == null && info.license_url == null)
+            if (!is_valid_source(info))
+                return;
+            fsType.set_text(((Embedding) info.fsType).to_string());
+            if (info.license_data == null && info.license_url == null)
                 return;
             bool license_data = (info.license_data != null);
             if (license_data)
                 license.set_text(info.license_data);
-            fsType.set_text(((Embedding) info.fsType).to_string());
-            fsType.show();
             license.set_visible(license_data);
             license_url.expand = !license_data;
             if (info.license_url != null) {
