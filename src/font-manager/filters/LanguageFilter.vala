@@ -140,6 +140,7 @@ namespace FontManager {
             /* XXX : Remove placeholder icon set in ui file to avoid Gtk warning */
             search_entry.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, null);
             base.constructed();
+            return;
         }
 
         bool refilter () {

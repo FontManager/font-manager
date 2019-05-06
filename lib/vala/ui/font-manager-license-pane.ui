@@ -10,7 +10,6 @@
         <property name="can_focus">False</property>
         <child>
           <object class="GtkLinkButton" id="license_url">
-            <property name="label" translatable="no"></property>
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="focus_on_click">False</property>
@@ -66,7 +65,7 @@
               <object class="GtkLabel" id="fsType">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="sensitive">False</property>
+                <property name="opacity">0.33000000000000002</property>
                 <property name="margin_left">18</property>
                 <property name="margin_right">18</property>
                 <property name="margin_top">12</property>
@@ -74,6 +73,9 @@
                 <property name="justify">center</property>
                 <property name="wrap">True</property>
                 <property name="wrap_mode">word-char</property>
+                <attributes>
+                  <attribute name="weight" value="bold"/>
+                </attributes>
               </object>
             </child>
             <style>

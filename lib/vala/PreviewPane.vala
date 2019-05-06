@@ -283,6 +283,12 @@ namespace FontManager {
         public override void constructed () {
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
             insert_action_group("default", new SimpleActionGroup());
+            var action = new SimpleAction("search_characters", null);
+            action.activate.connect((a, v) => {
+                search_button.set_active(!search_button.get_active());
+            });
+            string? [] accels = { "<Ctrl>f", null };
+            add_keyboard_shortcut(this, action, "search_characters", accels);
             preview = new FontPreview();
             metadata = new Metadata();
             charmap = new CharacterMap();
@@ -296,6 +302,7 @@ namespace FontManager {
             bind_properties();
             preview.show();
             charmap.show();
+            base.constructed();
             return;
         }
 

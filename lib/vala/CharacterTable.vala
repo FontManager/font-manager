@@ -93,6 +93,7 @@ namespace FontManager {
             fontscale.bind_property("adjustment", this, "adjustment", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             table.bind_property("active-character", this, "active-character", BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL);
             preview_size = DEFAULT_PREVIEW_SIZE;
+            base.constructed();
             return;
         }
 
