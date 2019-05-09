@@ -166,7 +166,7 @@ namespace FontManager {
                 license_url.set_label(info.license_url);
                 license_url.show();
             }
-            notice.hide();
+            notice.set_visible(!license_data);
             return;
         }
 

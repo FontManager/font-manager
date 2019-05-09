@@ -163,7 +163,7 @@ namespace FontManager {
                     string dest = Path.build_filename(install_dir, font.vendor, font.filetype, font.family);
                     assert(DirUtils.create_with_parents(dest, 0755) == 0);
                     string ext = get_file_extension(path);
-                    string filename = "%s %s.%s".printf(font.family, font.style, ext).replace(" ", "_");
+                    string filename = FontManager.to_filename("%s %s.%s".printf(font.family, font.style, ext));
                     string filepath = Path.build_filename(dest, filename);
                     File target = File.new_for_path(filepath);
                     try_copy(file, target);

@@ -160,9 +160,6 @@ font_manager_get_metadata (const gchar *filepath, gint index)
     json_object_set_string_member(json_obj, "psname", FT_Get_Postscript_Name(face));
     json_object_set_string_member(json_obj, "filetype", FT_Get_Font_Format(face));
     json_object_set_int_member(json_obj, "n-glyphs", face->num_glyphs);
-    /* Useful during font installation */
-    json_object_set_string_member(json_obj, "family", face->family_name);
-    json_object_set_string_member(json_obj, "style", face->style_name);
 
     /* Order matters */
     get_os2_info(json_obj, face);
@@ -174,6 +171,12 @@ font_manager_get_metadata (const gchar *filepath, gint index)
 
     ensure_vendor(json_obj, face);
     correct_filetype(json_obj);
+
+    /* Useful during font installation */
+    if (!json_object_has_member(json_obj, "family"))
+        json_object_set_string_member(json_obj, "family", (gchar *) face->family_name);
+    if (!json_object_has_member(json_obj, "style"))
+        json_object_set_string_member(json_obj, "style", (gchar *) face->style_name);
 
     if (!json_object_has_member(json_obj, "version"))
         json_object_set_string_member(json_obj, "version", "1.0");
@@ -328,8 +331,8 @@ get_os2_info (JsonObject *json_obj, const FT_Face face)
     return;
 }
 
-#define UTF16BE_2_UTF8(s)                                                                \
-g_convert((const gchar *) s.string, s.string_len, "UTF-8", "UTF-16BE", NULL, NULL, NULL) \
+#define SNAME_2_UTF8(s, c)                                                    \
+g_convert((const gchar *) s.string, s.string_len, "UTF-8", c, NULL, NULL, NULL) \
 
 /* Mostly lifted from fontilus by James Henstridge. Thanks. :-) */
 static void
@@ -348,14 +351,46 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
         if (FT_Get_Sfnt_Name(face, index, &sname) != 0)
             continue;
 
-        /* Only handle the unicode names for US langid */
-        if (!(sname.platform_id == TT_PLATFORM_MICROSOFT
-            && sname.encoding_id == TT_MS_ID_UNICODE_CS
-            && sname.language_id == TT_MS_LANGID_ENGLISH_UNITED_STATES))
+        if (sname.platform_id != TT_PLATFORM_MICROSOFT)
             continue;
 
-        gchar *val = UTF16BE_2_UTF8(sname);
+        gchar *val = NULL;
+
+        switch (sname.encoding_id) {
+            case TT_MS_ID_SJIS:
+                val = SNAME_2_UTF8(sname, "SJIS-WIN");
+                break;
+            case TT_MS_ID_GB2312:
+                val = SNAME_2_UTF8(sname, "GB2312");
+                break;
+            case TT_MS_ID_BIG_5:
+                val = SNAME_2_UTF8(sname, "BIG-5");
+                break;
+            case TT_MS_ID_WANSUNG:
+                val = SNAME_2_UTF8(sname, "Wansung");
+                break;
+            case TT_MS_ID_JOHAB:
+                val = SNAME_2_UTF8(sname, "Johab");
+                break;
+            default:
+                val = SNAME_2_UTF8(sname, "UTF-16BE");
+                break;
+        }
+
+        if (!val)
+            continue;
+
         switch (sname.name_id) {
+            case TT_NAME_ID_WWS_FAMILY:
+            case TT_NAME_ID_PREFERRED_FAMILY:
+            case TT_NAME_ID_FONT_FAMILY:
+                json_object_set_string_member(json_obj, "family", val);
+                break;
+            case TT_NAME_ID_WWS_SUBFAMILY:
+            case TT_NAME_ID_PREFERRED_SUBFAMILY:
+            case TT_NAME_ID_FONT_SUBFAMILY:
+                json_object_set_string_member(json_obj, "style", val);
+                break;
             case TT_NAME_ID_COPYRIGHT:
                 json_object_set_string_member(json_obj, "copyright", val);
                 break;
@@ -382,12 +417,12 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
                 break;
             case TT_NAME_ID_TRADEMARK:
                 if (!vendor)
-                    vendor = UTF16BE_2_UTF8(sname);
+                    vendor = SNAME_2_UTF8(sname, "UTF-16BE");
                 break;
             case TT_NAME_ID_MANUFACTURER:
                 if (vendor)
                     g_free(vendor);
-                vendor = UTF16BE_2_UTF8(sname);
+                vendor = SNAME_2_UTF8(sname, "UTF-16BE");
                 break;
             default:
                 break;
