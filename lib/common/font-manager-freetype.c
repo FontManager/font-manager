@@ -575,11 +575,13 @@ correct_filetype (JsonObject *json_obj)
     /* Compact Font Format doesn't really mean much. */
     if (g_strcmp0(filetype, "CFF") == 0) {
         const gchar *filepath = json_object_get_string_member(json_obj, "filepath");
-        if (g_str_has_suffix(filepath, ".otf")
-            || g_str_has_suffix(filepath, ".ttf")
-            || g_str_has_suffix(filepath, ".ttc")) {
+        gchar *ext = get_file_extension(filepath);
+        if (g_ascii_strcasecmp(ext, "otf") == 0
+            || g_ascii_strcasecmp(ext, "ttf") == 0
+            || g_str_has_suffix(ext, "ttc") == 0) {
             json_object_set_string_member(json_obj, "filetype", "OpenType");
         }
+        g_free(ext);
     }
     return;
 }
@@ -643,4 +645,3 @@ cleanup_version_string (JsonObject *json_obj)
     _cleanup_version_string(json_obj, ":");
     return;
 }
-
