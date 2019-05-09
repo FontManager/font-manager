@@ -578,7 +578,7 @@ correct_filetype (JsonObject *json_obj)
         gchar *ext = get_file_extension(filepath);
         if (g_ascii_strcasecmp(ext, "otf") == 0
             || g_ascii_strcasecmp(ext, "ttf") == 0
-            || g_str_has_suffix(ext, "ttc") == 0) {
+            || g_ascii_strcasecmp(ext, "ttc") == 0) {
             json_object_set_string_member(json_obj, "filetype", "OpenType");
         }
         g_free(ext);
