@@ -160,9 +160,10 @@ namespace FontManager {
                         critical("%i :: %s :: %s", code, message, filepath);
                         continue;
                     }
+
                     string dest = Path.build_filename(install_dir, font.vendor, font.filetype, font.family);
                     assert(DirUtils.create_with_parents(dest, 0755) == 0);
-                    string ext = get_file_extension(path);
+                    string ext = get_file_extension(path).down();
                     string filename = FontManager.to_filename("%s %s.%s".printf(font.family, font.style, ext));
                     string filepath = Path.build_filename(dest, filename);
                     File target = File.new_for_path(filepath);
