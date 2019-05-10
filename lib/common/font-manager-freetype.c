@@ -384,14 +384,23 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
             case TT_NAME_ID_WWS_FAMILY:
             case TT_NAME_ID_PREFERRED_FAMILY:
             case TT_NAME_ID_FONT_FAMILY:
+                if (json_object_has_member(json_obj, "family")
+                    && sname.language_id != TT_MS_LANGID_ENGLISH_UNITED_STATES)
+                    break;
                 json_object_set_string_member(json_obj, "family", val);
                 break;
             case TT_NAME_ID_WWS_SUBFAMILY:
             case TT_NAME_ID_PREFERRED_SUBFAMILY:
             case TT_NAME_ID_FONT_SUBFAMILY:
+                if (json_object_has_member(json_obj, "style")
+                    && sname.language_id != TT_MS_LANGID_ENGLISH_UNITED_STATES)
+                    break;
                 json_object_set_string_member(json_obj, "style", val);
                 break;
             case TT_NAME_ID_COPYRIGHT:
+                if (json_object_has_member(json_obj, "copyright")
+                    && sname.language_id != TT_MS_LANGID_ENGLISH_UNITED_STATES)
+                    break;
                 json_object_set_string_member(json_obj, "copyright", val);
                 break;
             case TT_NAME_ID_VERSION_STRING:
@@ -401,28 +410,43 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
                 }
                 break;
             case TT_NAME_ID_DESCRIPTION:
+                if (json_object_has_member(json_obj, "description")
+                    && sname.language_id != TT_MS_LANGID_ENGLISH_UNITED_STATES)
+                    break;
                 json_object_set_string_member(json_obj, "description", val);
                 break;
             case TT_NAME_ID_LICENSE:
+                if (json_object_has_member(json_obj, "license-data")
+                    && sname.language_id != TT_MS_LANGID_ENGLISH_UNITED_STATES)
+                    break;
                 json_object_set_string_member(json_obj, "license-data", val);
                 break;
             case TT_NAME_ID_LICENSE_URL:
+                if (json_object_has_member(json_obj, "license-url")
+                    && sname.language_id != TT_MS_LANGID_ENGLISH_UNITED_STATES)
+                    break;
                 json_object_set_string_member(json_obj, "license-url", val);
                 break;
             case TT_NAME_ID_DESIGNER:
+                if (json_object_has_member(json_obj, "designer")
+                    && sname.language_id != TT_MS_LANGID_ENGLISH_UNITED_STATES)
+                    break;
                 json_object_set_string_member(json_obj, "designer", val);
                 break;
             case TT_NAME_ID_DESIGNER_URL:
+                if (json_object_has_member(json_obj, "designer-url")
+                    && sname.language_id != TT_MS_LANGID_ENGLISH_UNITED_STATES)
+                    break;
                 json_object_set_string_member(json_obj, "designer-url", val);
                 break;
             case TT_NAME_ID_TRADEMARK:
                 if (!vendor)
-                    vendor = SNAME_2_UTF8(sname, "UTF-16BE");
+                    vendor = g_strdup(val);
                 break;
             case TT_NAME_ID_MANUFACTURER:
                 if (vendor)
                     g_free(vendor);
-                vendor = SNAME_2_UTF8(sname, "UTF-16BE");
+                vendor = g_strdup(val);
                 break;
             default:
                 break;
