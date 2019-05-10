@@ -344,6 +344,7 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
 
     gint namecount = FT_Get_Sfnt_Name_Count(face);
     gchar *vendor = NULL;
+    gboolean vendor_set = FALSE;
 
     for (gint index = 0; index < namecount; index++) {
 
@@ -440,13 +441,18 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
                 json_object_set_string_member(json_obj, "designer-url", val);
                 break;
             case TT_NAME_ID_TRADEMARK:
+                if (vendor_set)
+                    break;
                 if (!vendor)
                     vendor = g_strdup(val);
                 break;
             case TT_NAME_ID_MANUFACTURER:
+                if (vendor_set)
+                    break;
                 if (vendor)
                     g_free(vendor);
                 vendor = g_strdup(val);
+                vendor_set = (sname.language_id == TT_MS_LANGID_ENGLISH_UNITED_STATES);
                 break;
             default:
                 break;
