@@ -361,17 +361,20 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
             case TT_MS_ID_SJIS:
                 val = SNAME_2_UTF8(sname, "SJIS-WIN");
                 break;
-            case TT_MS_ID_GB2312:
+            case TT_MS_ID_PRC:
                 val = SNAME_2_UTF8(sname, "GB2312");
                 break;
             case TT_MS_ID_BIG_5:
                 val = SNAME_2_UTF8(sname, "BIG-5");
                 break;
             case TT_MS_ID_WANSUNG:
-                val = SNAME_2_UTF8(sname, "Wansung");
+                val = SNAME_2_UTF8(sname, "WANSUNG");
                 break;
             case TT_MS_ID_JOHAB:
-                val = SNAME_2_UTF8(sname, "Johab");
+                val = SNAME_2_UTF8(sname, "JOHAB");
+                break;
+            case TT_MS_ID_UCS_4:
+                val = SNAME_2_UTF8(sname, "UCS4");
                 break;
             default:
                 val = SNAME_2_UTF8(sname, "UTF-16BE");
@@ -382,17 +385,17 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
             continue;
 
         switch (sname.name_id) {
-            case TT_NAME_ID_WWS_FAMILY:
-            case TT_NAME_ID_PREFERRED_FAMILY:
             case TT_NAME_ID_FONT_FAMILY:
+            case TT_NAME_ID_WWS_FAMILY:
+            case TT_NAME_ID_TYPOGRAPHIC_FAMILY:
                 if (json_object_has_member(json_obj, "family")
                     && sname.language_id != TT_MS_LANGID_ENGLISH_UNITED_STATES)
                     break;
                 json_object_set_string_member(json_obj, "family", val);
                 break;
-            case TT_NAME_ID_WWS_SUBFAMILY:
-            case TT_NAME_ID_PREFERRED_SUBFAMILY:
             case TT_NAME_ID_FONT_SUBFAMILY:
+            case TT_NAME_ID_WWS_SUBFAMILY:
+            case TT_NAME_ID_TYPOGRAPHIC_SUBFAMILY:
                 if (json_object_has_member(json_obj, "style")
                     && sname.language_id != TT_MS_LANGID_ENGLISH_UNITED_STATES)
                     break;

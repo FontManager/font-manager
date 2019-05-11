@@ -144,6 +144,6 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
-* Thu May 2 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.5-1
+* Sat May 11 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.5-1
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
 
