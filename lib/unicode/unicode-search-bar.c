@@ -285,9 +285,6 @@ idle_search (UnicodeSearchBar *self)
     gunichar wc;
     GTimer *timer;
 
-    /* search without leading and tailing spaces */
-    /* with "match whole word" option, there's no need for leading and tailing spaces */
-
     if (quick_checks_before (self->search_state))
         return FALSE;
 
@@ -301,7 +298,6 @@ idle_search (UnicodeSearchBar *self)
 
         if (!unicode_unichar_validate (wc) || !unicode_unichar_isdefined (wc))
             continue;
-
 
         /* check for explicit codepoint */
         if (self->search_state->search_string_value != -1 && self->search_state->curr_index == self->search_state->search_string_value) {

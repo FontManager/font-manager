@@ -25,7 +25,6 @@ UNICODE_FILES = \
 UNICODE_SOURCES = \
 	unicode-blocks.h \
 	unicode-categories.h \
-	unicode-i18n.h \
 	unicode-names.h \
 	unicode-nameslist.h \
 	unicode-scripts.h \
@@ -34,6 +33,7 @@ UNICODE_SOURCES = \
 	$(NULL)
 
 download-unicode-data:
+	[ -e $(UNICODE_DATA_DIR) ] || mkdir -p $(UNICODE_DATA_DIR); \
 	for f in $(UNICODE_FILES); \
 	do \
 		[ -e $(UNICODE_DATA_DIR)$${f} ] || \
@@ -42,11 +42,11 @@ download-unicode-data:
 
 unicode-headers: download-unicode-data
 	PROG_UNZIP=$(UNZIP) ./gen-unicode-headers.pl $(UNICODE_VERSION) $(UNICODE_DATA_DIR) && \
-	./gen-unicode-headers.pl $(UNICODE_VERSION) $(UNICODE_DATA_DIR) --i18n && \
 	for f in $(UNICODE_SOURCES); \
 	do \
 		mv $${f} $(PKG_LIB_DIR)/unicode/; \
-	done
+	done && \
+	rm -rf $(UNICODE_DATA_DIR)
 
 $(PACKAGE_NAME).pot:
 	cd $(ABS_TOP_SRCDIR)  && \
