@@ -78,7 +78,7 @@ namespace FontManager {
         Variant argv = options.lookup_value("", VariantType.BYTESTRING_ARRAY);
         if (argv == null)
             return null;
-        string* [] filelist = argv.get_bytestring_array();
+        (unowned string) [] filelist = argv.get_bytestring_array();
         if (filelist.length == 0)
             return null;
         var files = new StringHashset();
@@ -91,7 +91,7 @@ namespace FontManager {
         Variant argv = options.lookup_value("", VariantType.BYTESTRING_ARRAY);
         if (argv == null)
             return null;
-        string* [] list = argv.get_bytestring_array();
+        (unowned string) [] list = argv.get_bytestring_array();
         if (list.length == 0)
             return null;
         var input = new StringHashset();
@@ -259,29 +259,83 @@ namespace FontManager {
             return 0;
         }
 
+        void ensure_sources () {
+            if (sources == null) {
+                sources = new Sources();
+                sources.load();
+            }
+            return;
+        }
+
+        void ensure_reject () {
+            if (reject == null) {
+                reject = new Reject();
+                reject.load();
+            }
+            return;
+        }
+
+        public string list () throws GLib.DBusError, GLib.IOError {
+            ensure_sources();
+            load_user_font_resources(null, sources.list_objects());
+            GLib.List <string> families = list_available_font_families();
+            assert(families.length() > 0);
+            StringBuilder builder = new StringBuilder();
+            foreach (string family in families)
+                builder.append("%s\n".printf(family));
+            return builder.str;
+        }
+
+        public string list_full () throws GLib.DBusError, GLib.IOError {
+            ensure_sources();
+            update_font_configuration();
+            load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+            Json.Object available_fonts = get_available_fonts(null);
+            Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
+            return print_json_array(sorted_fonts, true);
+        }
+
+        public void enable (string [] families) throws GLib.DBusError, GLib.IOError {
+            ensure_reject();
+            foreach (var family in families)
+                if (family in reject)
+                    reject.remove(family);
+            reject.save();
+            return;
+        }
+
+        public void disable (string [] families) throws GLib.DBusError, GLib.IOError {
+            ensure_reject();
+            foreach (var family in families)
+                reject.add(family);
+            reject.save();
+            return;
+        }
+
+        public void install (string [] filepaths) throws GLib.DBusError, GLib.IOError {
+            StringHashset filelist = new StringHashset();
+            foreach (var path in filepaths)
+                filelist.add(path);
+            var installer = new Library.Installer();
+            installer.process_sync(filelist);
+            return;
+        }
+
         public override int handle_local_options (VariantDict options) {
 
             int exit_status = -1;
 
             if (options.contains("version")) {
                 show_version();
-                exit_status = 0;
+                return 0;
             }
 
             if (options.contains("about")) {
                 show_about();
-                exit_status = 0;
+                return 0;
             }
 
-            if (reject == null && exit_status != 0) {
-                reject = new Reject();
-                reject.load();
-            }
-
-            if (sources == null && exit_status != 0) {
-                sources = new Sources();
-                sources.load();
-            }
+            ensure_reject();
 
             if (options.contains("enable")) {
                 var accept = get_command_line_input(options);
@@ -303,20 +357,22 @@ namespace FontManager {
             }
 
             if (options.contains("list")) {
-                load_user_font_resources(null, sources.list_objects());
-                GLib.List <string> families = list_available_font_families();
-                assert(families.length() > 0);
-                foreach (string family in families)
-                    stdout.printf("%s\n", family);
+                try {
+                    stdout.printf(list());
+                } catch (Error e) {
+                    critical(e.message);
+                    return e.code;
+                }
                 exit_status = 0;
             }
 
             if (options.contains("list-full")) {
-                update_font_configuration();
-                load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
-                Json.Object available_fonts = get_available_fonts(null);
-                Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
-                stdout.printf("\n%s\n\n", print_json_array(sorted_fonts, true));
+                try {
+                    stdout.printf("\n%s\n\n", list_full());
+                } catch (Error e) {
+                    critical(e.message);
+                    return e.code;
+                }
                 exit_status = 0;
             }
 
