@@ -1,0 +1,1297 @@
+# Font Manager - Simple font management for Gtk+ desktop environments
+#
+# Copyright Â© 2009 - 2016 Jerry Casiano
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+# Author:
+#  Jerry Casiano <JerryCasiano@gmail.com>
+# Jerry Casiano <JerryCasiano@gmail.com>, 2016. #zanata
+msgid ""
+msgstr ""
+"Project-Id-Version: font-manager 0.7.5\n"
+"Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
+"POT-Creation-Date: 2019-04-08 20:13-0400\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2019-05-31 19:07+0200\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Language-Team: \n"
+"Language: hr\n"
+"X-Generator: Poedit 2.2.3\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:9
+#: data/org.gnome.FontManager.desktop.in.in:5
+#: data/org.gnome.FontManager.desktop.in.in:6 lib/vala/About.vala:27
+msgid "Font Manager"
+msgstr "Font Manager"
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:10
+msgid "A simple font management application for Gtk+ Desktop Environments"
+msgstr ""
+"Jednostavni program za upravljanje fontovima u Gtk+ desktop okruženjima"
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:13
+msgid ""
+"Font Manager is intended to provide a way for average users to easily manage "
+"desktop fonts, without having to resort to command line tools or editing "
+"configuration files by hand."
+msgstr ""
+"Font Manager je namijenjen za lako upravljanje fontovima bez naredbenog "
+"retka i bez potrebe za ručnim uređivanjem konfiguracijskih datoteka."
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:18
+msgid ""
+"While designed primarily with the Gnome Desktop Environment in mind, it "
+"should work well with other Gtk+ desktop environments."
+msgstr ""
+"Iako je prvenstveno osmišljen za Gnome desktop okruženja, trebao bi dobro "
+"funkcionirati s drugim Gtk+ desktop okruženjima."
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:22
+msgid "Font Manager is NOT a professional-grade font management solution."
+msgstr "Font Manager NIJE profesionalno rješenje za upravljanje fontovima."
+
+#: data/org.gnome.FontManager.desktop.in.in:7
+msgid "Preview, Compare and Manage Fonts"
+msgstr "Pregledaj, usporedi i upravljaj fontovima"
+
+#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
+#: data/org.gnome.FontManager.desktop.in.in:9
+#: data/org.gnome.FontViewer.desktop.in.in:9
+msgid "preferences-desktop-font"
+msgstr "preferences-desktop-font"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.FontManager.desktop.in.in:16
+#: data/org.gnome.FontViewer.desktop.in.in:16
+msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
+msgstr "Grafike;Preglednik;GNOME;GTK;Publiciranje;"
+
+#: data/org.gnome.FontViewer.appdata.xml.in.in:9
+#: data/org.gnome.FontViewer.desktop.in.in:5
+#: data/org.gnome.FontViewer.desktop.in.in:6
+#: src/font-viewer/Application.vala:69 src/font-viewer/Application.vala:101
+#: src/font-viewer/MainWindow.vala:25 data/ui/font-viewer-main-window.ui:17
+msgid "Font Viewer"
+msgstr "Preglednik fontova"
+
+#: data/org.gnome.FontViewer.appdata.xml.in.in:10
+msgid "A font viewer application for Gtk+ Desktop Environments"
+msgstr "Program za pregled fontova u Gtk+ desktop okruženjima"
+
+#: data/org.gnome.FontViewer.appdata.xml.in.in:13
+msgid ""
+"Font Viewer allows previewing font files prior to installation. It features "
+"several ways to preview font files along with a character map and displays "
+"font properties and license details."
+msgstr ""
+"Preglednik fontova omogućuje pregled font datoteka prije instaliranja. "
+"Postoji nekoliko načina za pregled font datoteka kao i prikaz tablice "
+"slovnih znakova, svojstava fonta i pojedinosti o licenci."
+
+#: data/org.gnome.FontViewer.desktop.in.in:7
+msgid "Full featured font file preview application"
+msgstr "Program za pregled fontova s mnogim funkcijama"
+
+#: lib/common/font-manager-source.c:224 lib/common/font-manager-source.c:239
+msgid "Source Unavailable"
+msgstr "Izvor nije dostupan"
+
+#: lib/unicode/unicode-character-map.c:643
+msgid "Unknown character, unable to identify."
+msgstr "Nepoznati slovni znak, nije ga moguće odrediti."
+
+#: lib/unicode/unicode-character-map.c:645
+msgid "Not found."
+msgstr "Nije nađen."
+
+#: lib/unicode/unicode-character-map.c:647
+msgid "Character found."
+msgstr "Slovni znak ja nađen."
+
+#: lib/unicode/unicode-info.c:186
+msgid "<Non Private Use High Surrogate>"
+msgstr "<Visoki zamjenski znakovi ne-privatnog područja>"
+
+#: lib/unicode/unicode-info.c:188
+msgid "<Private Use High Surrogate>"
+msgstr "<Visoki zamjenski znakovi privatnog područja>"
+
+#: lib/unicode/unicode-info.c:190
+msgid "<Low Surrogate>"
+msgstr "<Niski zamjenski znakovi>"
+
+#: lib/unicode/unicode-info.c:192
+msgid "<Private Use>"
+msgstr "<Područje privatne upotrebe>"
+
+#: lib/unicode/unicode-info.c:194
+msgid "<Plane 15 Private Use>"
+msgstr "<Ploča 15 područja za privatnu upotrebu>"
+
+#: lib/unicode/unicode-info.c:196
+msgid "<Plane 16 Private Use>"
+msgstr "<Ploča 16 područja za privatnu upotrebu>"
+
+#: lib/unicode/unicode-info.c:200
+msgid "<not assigned>"
+msgstr "<Nedodijeljen>"
+
+#: lib/unicode/unicode-info.c:217
+msgid "Other, Control"
+msgstr "Ostalo, kontrolni znak"
+
+#: lib/unicode/unicode-info.c:219
+msgid "Other, Format"
+msgstr "Ostalo, format"
+
+#: lib/unicode/unicode-info.c:221
+msgid "Other, Not Assigned"
+msgstr "Ostalo, ne dodijeljeno"
+
+#: lib/unicode/unicode-info.c:223
+msgid "Other, Private Use"
+msgstr "Ostalo, privatna područje"
+
+#: lib/unicode/unicode-info.c:225
+msgid "Other, Surrogate"
+msgstr "Slovo, zamjenski znak"
+
+#: lib/unicode/unicode-info.c:227
+msgid "Letter, Lowercase"
+msgstr "Slovo, mala slova"
+
+#: lib/unicode/unicode-info.c:229
+msgid "Letter, Modifier"
+msgstr "Slovo, modifikator"
+
+#: lib/unicode/unicode-info.c:231
+msgid "Letter, Other"
+msgstr "Slovo, ostalo"
+
+#: lib/unicode/unicode-info.c:233
+msgid "Letter, Titlecase"
+msgstr "Slovo, naslovna slova"
+
+#: lib/unicode/unicode-info.c:235
+msgid "Letter, Uppercase"
+msgstr "Slovo, velika slova"
+
+#: lib/unicode/unicode-info.c:237
+msgid "Mark, Spacing Combining"
+msgstr "Oznaka, razmakna spajajuća"
+
+#: lib/unicode/unicode-info.c:239
+msgid "Mark, Enclosing"
+msgstr "Oznaka, obuhvatna"
+
+#: lib/unicode/unicode-info.c:241
+msgid "Mark, Non-Spacing"
+msgstr "Oznaka, ne-razmakna"
+
+#: lib/unicode/unicode-info.c:243
+msgid "Number, Decimal Digit"
+msgstr "Brojka, decimalni broj"
+
+#: lib/unicode/unicode-info.c:245
+msgid "Number, Letter"
+msgstr "Brojka, slovo"
+
+#: lib/unicode/unicode-info.c:247
+msgid "Number, Other"
+msgstr "Brojka, ostalo"
+
+#: lib/unicode/unicode-info.c:249
+msgid "Punctuation, Connector"
+msgstr "Interpunkcija, poveznik"
+
+#: lib/unicode/unicode-info.c:251
+msgid "Punctuation, Dash"
+msgstr "Interpunkcija, povlaka"
+
+#: lib/unicode/unicode-info.c:253
+msgid "Punctuation, Close"
+msgstr "Interpunkcija, zatvarajuća"
+
+#: lib/unicode/unicode-info.c:255
+msgid "Punctuation, Final Quote"
+msgstr "Interpunkcija, završni navodni znak"
+
+#: lib/unicode/unicode-info.c:257
+msgid "Punctuation, Initial Quote"
+msgstr "Interpunkcija, početni navodni znak"
+
+#: lib/unicode/unicode-info.c:259
+msgid "Punctuation, Other"
+msgstr "Interpunkcija, ostalo"
+
+#: lib/unicode/unicode-info.c:261
+msgid "Punctuation, Open"
+msgstr "Interpunkcija, otvarajuća"
+
+#: lib/unicode/unicode-info.c:263
+msgid "Symbol, Currency"
+msgstr "Simbol, valuta"
+
+#: lib/unicode/unicode-info.c:265
+msgid "Symbol, Modifier"
+msgstr "Simbol, modifikator"
+
+#: lib/unicode/unicode-info.c:267
+msgid "Symbol, Math"
+msgstr "Simbol, matematički"
+
+#: lib/unicode/unicode-info.c:269
+msgid "Symbol, Other"
+msgstr "Simbol, ostalo"
+
+#: lib/unicode/unicode-info.c:271
+msgid "Separator, Line"
+msgstr "Razdvojnik, redak"
+
+#: lib/unicode/unicode-info.c:273
+msgid "Separator, Paragraph"
+msgstr "Razdvojnik, odlomak"
+
+#: lib/unicode/unicode-info.c:275
+msgid "Separator, Space"
+msgstr "Razdvojnik, razmak"
+
+#. Unicode assigns "Common" as the script name for any character not
+#. * specifically listed in Scripts.txt
+#: lib/unicode/unicode-info.c:693
+msgid "Common"
+msgstr "Zajednički"
+
+#: lib/vala/About.vala:29
+msgid "Simple font management for GTK+ desktop environments"
+msgstr ""
+"Jednostavan program za upravljanje fontovima u Gtk+ desktop okruženjima"
+
+#: lib/vala/About.vala:35
+msgid ""
+"\n"
+"    This program is free software: you can redistribute it and/or modify\n"
+"    it under the terms of the GNU General Public License as published by\n"
+"    the Free Software Foundation, either version 3 of the License, or\n"
+"    (at your option) any later version.\n"
+"\n"
+"    This program is distributed in the hope that it will be useful,\n"
+"    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"    GNU General Public License for more details.\n"
+"\n"
+"    You should have received a copy of the GNU General Public License\n"
+"    along with this program.\n"
+"\n"
+"    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+"    "
+msgstr ""
+"\n"
+"     Ovaj program je slobodan softver: možeš ga redistribuirati i/ili "
+"mijenjati\n"
+"     pod uvjetima GNU Opće javne licence, koju je objavila\n"
+"     Free Software Foundation, u 3. verziji licence ili (po izboru)\n"
+"     bilo koje novije verzije.\n"
+"\n"
+"     Ovaj se program distribuira u nadi da će biti koristan,\n"
+"     ali BEZ IKAKVOG JAMSTVA; čak i bez podrazumijevanog jamstva za\n"
+"     PRODAJU ili PRIKLADNOST ZA ODREĐENU SVRHU. Pogledaj\n"
+"     GNU Opću javnu licencu za daljnje pojedinosti.\n"
+"\n"
+"     GNU Opća javna licenca se standardno pridodaje ovom programu.\n"
+"\n"
+"     Ako ne, pogledaj <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+"     "
+
+#: lib/vala/About.vala:66
+msgid "translator-credits"
+msgstr "Milo Ivir <mail@milotype.de>, 2019."
+
+#: lib/vala/FontConfig.vala:38
+msgid "Ultra-Condensed"
+msgstr "Ultra-Uski"
+
+#: lib/vala/FontConfig.vala:40
+msgid "Extra-Condensed"
+msgstr "Jako-Uski"
+
+#: lib/vala/FontConfig.vala:42
+msgid "Condensed"
+msgstr "Uski"
+
+#: lib/vala/FontConfig.vala:44
+msgid "Semi-Condensed"
+msgstr "Polu-Uski"
+
+#: lib/vala/FontConfig.vala:46
+msgid "Semi-Expanded"
+msgstr "Polu-Široki"
+
+#: lib/vala/FontConfig.vala:48
+msgid "Expanded"
+msgstr "Široki"
+
+#: lib/vala/FontConfig.vala:50
+msgid "Extra-Expanded"
+msgstr "Jako-Široki"
+
+#: lib/vala/FontConfig.vala:52
+msgid "Ultra-Expanded"
+msgstr "Ultra-Široki"
+
+#: lib/vala/FontConfig.vala:69
+msgid "Italic"
+msgstr "Kurziv"
+
+#: lib/vala/FontConfig.vala:71
+msgid "Oblique"
+msgstr "Ukošeni"
+
+#: lib/vala/FontConfig.vala:124
+msgid "Thin"
+msgstr "Tanki"
+
+#: lib/vala/FontConfig.vala:126
+msgid "Ultra-Light"
+msgstr "Ultra-Svjetli"
+
+#: lib/vala/FontConfig.vala:128 lib/vala/FontConfig.vala:208
+msgid "Light"
+msgstr "Svjetli"
+
+#: lib/vala/FontConfig.vala:130
+msgid "Book"
+msgstr "Normalni"
+
+#: lib/vala/FontConfig.vala:132 lib/vala/FontConfig.vala:186
+msgid "Medium"
+msgstr "Srednji"
+
+#: lib/vala/FontConfig.vala:134
+msgid "Semi-Bold"
+msgstr "Poludebeli"
+
+#: lib/vala/FontConfig.vala:136
+msgid "Bold"
+msgstr "Debeli"
+
+#: lib/vala/FontConfig.vala:138
+msgid "Ultra-Bold"
+msgstr "Ultra-Debeli"
+
+#: lib/vala/FontConfig.vala:140
+msgid "Heavy"
+msgstr "Masni"
+
+#: lib/vala/FontConfig.vala:142
+msgid "Ultra-Heavy"
+msgstr "Ultra-Masni"
+
+#: lib/vala/FontConfig.vala:160
+msgid "Proportional"
+msgstr "Proporcijalni"
+
+#: lib/vala/FontConfig.vala:162
+msgid "Dual Width"
+msgstr "Dvostruke širine"
+
+#: lib/vala/FontConfig.vala:164
+msgid "Monospace"
+msgstr "Neproporcionalni"
+
+#: lib/vala/FontConfig.vala:166
+msgid "Charcell"
+msgstr "Neproporcionalni prisiljeni"
+
+#: lib/vala/FontConfig.vala:184
+msgid "Slight"
+msgstr "Blagi"
+
+#: lib/vala/FontConfig.vala:188
+msgid "Full"
+msgstr "Potpuni"
+
+#: lib/vala/FontConfig.vala:190 lib/vala/FontConfig.vala:212
+#: lib/vala/FontConfig.vala:240
+msgid "None"
+msgstr "Bez"
+
+#: lib/vala/FontConfig.vala:206 data/ui/font-manager-main-window.ui:167
+msgid "Default"
+msgstr "Standardni"
+
+#: lib/vala/FontConfig.vala:210
+msgid "Legacy"
+msgstr "Stari"
+
+#: lib/vala/FontConfig.vala:230
+msgid "Unknown"
+msgstr "Nepoznato"
+
+#: lib/vala/FontConfig.vala:232
+msgid "RGB"
+msgstr "RBG"
+
+#: lib/vala/FontConfig.vala:234
+msgid "BGR"
+msgstr "BGR"
+
+#: lib/vala/FontConfig.vala:236
+msgid "VRGB"
+msgstr "VRGB"
+
+#: lib/vala/FontConfig.vala:238
+msgid "VBGR"
+msgstr "VBGR"
+
+#: lib/vala/Metadata.vala:91
+msgid "File does not contain license information."
+msgstr "Datoteka ne sadrži podatke o licenci."
+
+#: lib/vala/PreviewPane.vala:120 lib/vala/PreviewPane.vala:229
+#: data/ui/font-manager-main-window.ui:109
+msgid "Preview"
+msgstr "Pregled"
+
+#: lib/vala/PreviewPane.vala:121 lib/vala/PreviewPane.vala:225
+msgid "Waterfall"
+msgstr "Vodopad"
+
+#: lib/vala/PreviewPane.vala:122 lib/vala/PreviewPane.vala:227
+msgid "Body Text"
+msgstr "Osnovni tekst"
+
+#: src/font-manager/Categories.vala:324
+msgid "All"
+msgstr "Svi"
+
+#: src/font-manager/Categories.vala:324
+msgid "All Fonts"
+msgstr "Svi fontovi"
+
+#: src/font-manager/Categories.vala:326
+msgid "System"
+msgstr "Sustav"
+
+#: src/font-manager/Categories.vala:326
+msgid "Fonts available to all users"
+msgstr "Fontovi koji su dostupni svim korisnicima"
+
+#: src/font-manager/Categories.vala:332
+#: data/ui/font-manager-properties-pane.ui:173
+msgid "Width"
+msgstr "Širina"
+
+#: src/font-manager/Categories.vala:332
+msgid "Grouped by font width"
+msgstr "Grupirani po širini"
+
+#: src/font-manager/Categories.vala:334
+#: data/ui/font-manager-properties-pane.ui:209
+msgid "Weight"
+msgstr "Debljina"
+
+#: src/font-manager/Categories.vala:334
+msgid "Grouped by font weight"
+msgstr "Grupirani po debljini"
+
+#: src/font-manager/Categories.vala:336
+#: data/ui/font-manager-properties-pane.ui:191
+msgid "Slant"
+msgstr "Nagib"
+
+#: src/font-manager/Categories.vala:336
+msgid "Grouped by font angle"
+msgstr "Grupirani po nagibu"
+
+#: src/font-manager/Categories.vala:338
+#: data/ui/font-manager-properties-pane.ui:227
+msgid "Spacing"
+msgstr "Metrika"
+
+#: src/font-manager/Categories.vala:338
+msgid "Grouped by font spacing"
+msgstr "Grupirani po metrikama fonta"
+
+#: src/font-manager/Categories.vala:340
+#: data/ui/font-manager-preview-pane.ui:106
+msgid "License"
+msgstr "Licenca"
+
+#: src/font-manager/Categories.vala:340
+msgid "Grouped by license type"
+msgstr "Grupirani po vrsti licence"
+
+#: src/font-manager/Categories.vala:342
+#: data/ui/font-manager-properties-pane.ui:263
+msgid "Vendor"
+msgstr "Proizvođač"
+
+#: src/font-manager/Categories.vala:342
+msgid "Grouped by vendor"
+msgstr "Grupirani po proizvođaću"
+
+#: src/font-manager/Categories.vala:344
+msgid "Filetype"
+msgstr "Vrsta datoteke"
+
+#: src/font-manager/Categories.vala:344
+msgid "Grouped by filetype"
+msgstr "Grupirani po vrstama datoteka"
+
+#: src/font-manager/Categories.vala:360
+msgid "Family Kind"
+msgstr "Vrsta obitelji"
+
+#: src/font-manager/Categories.vala:360
+msgid "Only fonts which include Panose information will be grouped here."
+msgstr "Ovdje se grupiraju samo fontovi koji sadrže Panose podatke."
+
+#: src/font-manager/Categories.vala:361
+msgid "Any"
+msgstr "Bilo koji"
+
+#: src/font-manager/Categories.vala:361
+msgid "No Fit"
+msgstr "Neodređeno"
+
+#: src/font-manager/Categories.vala:361
+msgid "Text and Display"
+msgstr "Tekst i naslovi"
+
+#: src/font-manager/Categories.vala:361
+msgid "Script"
+msgstr "Krasopis"
+
+#: src/font-manager/Categories.vala:361
+msgid "Decorative"
+msgstr "Ukrasni"
+
+#: src/font-manager/Categories.vala:361
+msgid "Pictorial"
+msgstr "Slikovni"
+
+#: src/font-manager/Categories.vala:385
+msgid "Normal"
+msgstr "Normalno"
+
+#: src/font-manager/Categories.vala:390
+msgid "Regular"
+msgstr "Normalno"
+
+#: src/font-manager/CellRendererPill.vala:58
+msgid "Variation "
+msgstr "Varijacija"
+
+#: src/font-manager/CellRendererPill.vala:58
+msgid "Variations"
+msgstr "Varijacije"
+
+#: src/font-manager/Collections.vala:23
+msgid "Enter Collection Name"
+msgstr "Upiši ime zbirke"
+
+#: src/font-manager/Collections.vala:118
+msgid "Add new collection"
+msgstr "Dodaj novu zbirku"
+
+#: src/font-manager/Collections.vala:119
+msgid "Remove selected collection"
+msgstr "Ukloni odabranu zbirku"
+
+#: src/font-manager/Collections.vala:365
+msgid "Copying files..."
+msgstr "Kopiranje datoteka …"
+
+#: src/font-manager/Collections.vala:485
+msgid "Copy to..."
+msgstr "Kopiraj u …"
+
+#: src/font-manager/Collections.vala:486
+msgid "Compress..."
+msgstr "Komprimiraj …"
+
+#: src/font-manager/Dialogs.vala:47
+msgid "Select Destination"
+msgstr "Odaberi odredište"
+
+#: src/font-manager/Dialogs.vala:50 src/font-manager/Dialogs.vala:70
+#: src/font-manager/Dialogs.vala:98 src/font-manager/Dialogs.vala:129
+#: src/font-manager/Migration.vala:55
+msgid "_Cancel"
+msgstr "_Odustani"
+
+#: src/font-manager/Dialogs.vala:52
+msgid "_Select"
+msgstr "_Odaberi"
+
+#: src/font-manager/Dialogs.vala:67
+msgid "Select files to install"
+msgstr "Odaberi datoteke koje želiš instalirati"
+
+#: src/font-manager/Dialogs.vala:72 src/font-manager/Dialogs.vala:100
+msgid "_Open"
+msgstr "_Otvori"
+
+#: src/font-manager/Dialogs.vala:95
+msgid "Select source folders"
+msgstr "Odaberi izvorne mape"
+
+#: src/font-manager/Dialogs.vala:130
+msgid "_Delete"
+msgstr "_Izbriši"
+
+#: src/font-manager/Dialogs.vala:135
+msgid "Select fonts to remove"
+msgstr "Odaberi fontove koje želiš ukloniti"
+
+#: src/font-manager/Dialogs.vala:147
+msgid "Fonts installed in your home directory will appear here."
+msgstr ""
+"Ovdje će se prikazati fontovi koji su instalirani u tvojoj početnoj mapi."
+
+#: src/font-manager/Filters/Collection.vala:49
+msgid "New Collection"
+msgstr "Nova zbirka"
+
+#: src/font-manager/Filters/Collection.vala:51
+#, c-format
+msgid "Created : %s"
+msgstr "Stvoreno: %s"
+
+#: src/font-manager/Filters/Disabled.vala:26
+msgid "Disabled"
+msgstr "Deaktivirani"
+
+#: src/font-manager/Filters/Disabled.vala:26
+msgid "Fonts which have been disabled"
+msgstr "Deaktivirani fontovi"
+
+#: src/font-manager/Filters/LanguageFilter.vala:28
+msgid "Filter based on language support"
+msgstr "Filtar koji se temelji na jezičnoj podršci"
+
+#: src/font-manager/Filters/LanguageFilter.vala:48
+msgid "Language"
+msgstr "Jezik"
+
+#: src/font-manager/Filters/Unsorted.vala:26
+msgid "Unsorted"
+msgstr "Nerazvrstani"
+
+#: src/font-manager/Filters/Unsorted.vala:26
+msgid "Fonts not present in any collection"
+msgstr "Fontovi koji nisu prisutni u nijednoj zbirci"
+
+#: src/font-manager/Filters/UserFonts.vala:28
+msgid "User"
+msgstr "Korisnik"
+
+#: src/font-manager/Filters/UserFonts.vala:28
+msgid "Fonts available only to you"
+msgstr "Fontovi koji su dostupni samo tebi"
+
+#: src/font-manager/FontList.vala:43
+msgid "Remove selected font from collection"
+msgstr "Ukloni odabrani font iz izbora"
+
+#: src/font-manager/FontList.vala:48 src/font-manager/FontList.vala:64
+msgid "Expand all"
+msgstr "Rasklopi sve"
+
+#: src/font-manager/FontList.vala:52
+msgid "Search Families..."
+msgstr "Pretraži obitelji …"
+
+#: src/font-manager/FontList.vala:53
+#, c-format
+msgid ""
+"Case insensitive search of family names.\n"
+"\n"
+"Start search using %s to filter based on filepath."
+msgstr ""
+"Pretraživanje imena obitelji neovisno o veličini slova.\n"
+"\n"
+"Započni pretragu koristeći „%s” za filtriranje na temelju staze datoteke."
+
+#: src/font-manager/FontList.vala:64
+msgid "Collapse all"
+msgstr "Sklopi sve"
+
+#: src/font-manager/FontList.vala:413
+msgid "Install"
+msgstr "Instaliraj"
+
+#: src/font-manager/FontList.vala:414
+msgid "Copy Location"
+msgstr "Mjesto kopije"
+
+#: src/font-manager/FontList.vala:415
+msgid "Show in Folder"
+msgstr "Prikaži u mapi"
+
+#: src/font-manager/MainWindow.vala:54 data/ui/font-manager-main-window.ui:154
+msgid "Browse"
+msgstr "Pregledaj"
+
+#: src/font-manager/MainWindow.vala:56 data/ui/font-manager-main-window.ui:125
+msgid "Compare"
+msgstr "Usporedi"
+
+#: src/font-manager/MainWindow.vala:58 data/ui/font-manager-main-window.ui:138
+msgid "Manage"
+msgstr "Upravljaj"
+
+#: src/font-manager/Migration.vala:56
+msgid "_Continue"
+msgstr "_Nastavi"
+
+#: src/font-manager/Migration.vala:66
+msgid "Update Required"
+msgstr "Potrebno je aktualizirati"
+
+#: src/font-manager/Migration.vala:209
+msgid ""
+"\n"
+"Font Manager has detected files from a previous installation. Some files "
+"from previous versions are incompatible with this release. Others have been "
+"deprecated or moved.\n"
+"\n"
+"Font Manager will now attempt to migrate your fonts and collections. Files "
+"and settings which are no longer necessary or valid will be deleted. Any "
+"configuration files that could cause a conflict will also be deleted.\n"
+"\n"
+"It is strongly recommended that you back up any important files before "
+"proceeding.\n"
+msgstr ""
+"\n"
+"Font Manager je otkrio datoteke jedne prethodne instalacije. Neke datoteke "
+"prethodnih verzija nisu kompatibilne s ovim izdanjem. Druge su zastarjele "
+"ili premještene.\n"
+"\n"
+"Font Manager će sad pokušati preseliti tvoje fontove i zbirke. Datoteke i "
+"postavke koje više nisu potrebne ili ispravne će se izbrisati. Također će se "
+"izbrisati sve konfiguracijske datoteke koje mogu prouzročiti probleme.\n"
+"\n"
+"Preporuča se da napraviš sigurnosnu kopiju svih važnih datoteka prije nego "
+"što nastaviš s radom.\n"
+
+#: src/font-manager/Orthography.vala:228
+msgid "Update in progress"
+msgstr "Aktualiziranje je u tijeku"
+
+#: src/font-manager/Orthography.vala:348
+msgid "Coverage"
+msgstr "Pokrivenost"
+
+#: src/font-manager/Orthography.vala:380
+msgid "Supported Orthographies"
+msgstr "Podržani pravopisi"
+
+#: src/font-manager/Preferences/Desktop.vala:37
+msgid "Interface Font"
+msgstr "Font sučelja"
+
+#: src/font-manager/Preferences/Desktop.vala:38
+msgid "Font used throughout interface."
+msgstr "Font koji se koristi u sučelju."
+
+#: src/font-manager/Preferences/Desktop.vala:43
+msgid "Document Font"
+msgstr "Font dokumenata"
+
+#: src/font-manager/Preferences/Desktop.vala:44
+msgid "Font used for reading documents."
+msgstr "Font koji se koristi za čitanje dokumenata."
+
+#: src/font-manager/Preferences/Desktop.vala:49
+msgid "Monospace Font"
+msgstr "Neproporcionalni font"
+
+#: src/font-manager/Preferences/Desktop.vala:50
+msgid "Monospaced (fixed-width) font for use in locations such as terminals."
+msgstr ""
+"Neproporcionalni font (fiksne širine) koji se koristi npr. u terminalu."
+
+#: src/font-manager/Preferences/Desktop.vala:55
+msgid "Text Scaling Factor"
+msgstr "Faktor skaliranja teksta"
+
+#: src/font-manager/Preferences/Desktop.vala:56
+msgid ""
+"Factor used to enlarge or reduce text display, without changing font size"
+msgstr ""
+"Faktor kojim se skalira prikaz teksta, bez mijenjanja stvarne veličine fonta"
+
+#: src/font-manager/Preferences/Desktop.vala:61
+msgid "Antialiasing"
+msgstr "Zaglađivanje rubova"
+
+#: src/font-manager/Preferences/Desktop.vala:62
+msgid "The type of antialiasing to use when rendering fonts."
+msgstr "Vrsta zaglađivanja rubova za iscrtavanje fontova."
+
+#: src/font-manager/Preferences/Desktop.vala:67
+msgid "RGBA order"
+msgstr "RGBA raspored"
+
+#: src/font-manager/Preferences/Desktop.vala:68
+msgid ""
+"The order of subpixel elements on an LCD screen; only used when antialiasing "
+"is set to rgba."
+msgstr ""
+"Raspored podpiksela na LCD ekranu; koristi se samo kad je zaglađivanje "
+"rubova postavljeno na RGBA."
+
+#: src/font-manager/Preferences/Desktop.vala:73
+#: src/font-manager/Preferences/Rendering.vala:81
+msgid "Hinting"
+msgstr "Optimiranje prikaza"
+
+#: src/font-manager/Preferences/Desktop.vala:74
+msgid "The type of hinting to use when rendering fonts."
+msgstr "Vrsta podešavanja oblika slovnih znakova za iscrtavanje fontova."
+
+#: src/font-manager/Preferences/Desktop.vala:101
+msgid "GNOME desktop settings schema not found"
+msgstr "Shema za postavke GNOME radne površine nije nađena"
+
+#: src/font-manager/Preferences/Display.vala:37
+#: src/font-manager/Preferences/Rendering.vala:37
+#: src/font-manager/Preferences/Substitutions.vala:63
+msgid "Settings saved to file."
+msgstr "Postavke su spremljene u datoteku."
+
+#: src/font-manager/Preferences/Display.vala:41
+#: src/font-manager/Preferences/Rendering.vala:41
+#: src/font-manager/Preferences/Substitutions.vala:67
+msgid "Removed configuration file."
+msgstr "Datoteka konfiguracije je uklonjena."
+
+#: src/font-manager/Preferences/Display.vala:70
+msgid "Target DPI"
+msgstr "Željeni DPI"
+
+#: src/font-manager/Preferences/Display.vala:71
+msgid "Scale Factor"
+msgstr "Faktor skaliranja"
+
+#: src/font-manager/Preferences/Display.vala:75
+msgid "LCD Filter"
+msgstr "LCD filtar"
+
+#: src/font-manager/Preferences/Preferences.vala:24
+msgid "Interface"
+msgstr "Sučelje"
+
+#: src/font-manager/Preferences/Preferences.vala:25
+msgid "Sources"
+msgstr "Izvori"
+
+#: src/font-manager/Preferences/Preferences.vala:26
+msgid "Substitutions"
+msgstr "Zamjene"
+
+#: src/font-manager/Preferences/Preferences.vala:27
+msgid "Desktop"
+msgstr "Radna površina"
+
+#: src/font-manager/Preferences/Preferences.vala:28
+msgid "Display"
+msgstr "Prikaz"
+
+#: src/font-manager/Preferences/Preferences.vala:29
+msgid "Rendering"
+msgstr "Iscrtavanje"
+
+#: src/font-manager/Preferences/Rendering.vala:80
+msgid "Antialias"
+msgstr "Zaglađivanje rubova"
+
+#: src/font-manager/Preferences/Rendering.vala:82
+msgid "Enable Autohinter"
+msgstr "Aktiviraj automatsko optimiranje prikaza"
+
+#: src/font-manager/Preferences/Rendering.vala:91
+msgid "Hinting Style"
+msgstr "Način optimiranja prikaza"
+
+#: src/font-manager/Preferences/Rendering.vala:92
+msgid "Use Embedded Bitmaps"
+msgstr "Koristi ugrađene bitmape"
+
+#: src/font-manager/Preferences/Rendering.vala:94
+#: src/font-manager/Preferences/Rendering.vala:99
+msgid " Size Restrictions "
+msgstr " Ograničenja veličine "
+
+#: src/font-manager/Preferences/Rendering.vala:97
+msgid " Apply settings to point sizes "
+msgstr " Primijeni postavke na veličine "
+
+#: src/font-manager/Preferences/Rendering.vala:157
+msgid "Smaller than"
+msgstr "Manje od"
+
+#: src/font-manager/Preferences/Rendering.vala:158
+msgid "Larger than"
+msgstr "Veće od"
+
+#: src/font-manager/Preferences/Sources.vala:35
+msgid "Add source"
+msgstr "Dodaj izvor"
+
+#: src/font-manager/Preferences/Sources.vala:37
+msgid "Remove selected source"
+msgstr "Ukloni odabrani izvor"
+
+#: src/font-manager/Preferences/Sources.vala:104
+msgid "Font Sources"
+msgstr "Izvori fontova"
+
+#: src/font-manager/Preferences/Sources.vala:105
+msgid "Easily add or preview fonts without actually installing them."
+msgstr "Dodaj ili pregledaj fontove bez instaliranja."
+
+#: src/font-manager/Preferences/Sources.vala:106
+msgid ""
+"To add a new source simply drag a folder onto this area or click the add "
+"button in the toolbar."
+msgstr ""
+"Za dodavanje izvora, jednostavno povuci mapu na ovo područje ili klikni na "
+"dugme za dodavanje u alatnoj traci."
+
+#: src/font-manager/Preferences/Substitutions.vala:33
+msgid "Add alias"
+msgstr "Dodaj alias"
+
+#: src/font-manager/Preferences/Substitutions.vala:34
+msgid "Remove selected alias"
+msgstr "Ukloni odabrani alias"
+
+#: src/font-manager/Preferences/Substitutions.vala:224
+msgid "Font Substitutions"
+msgstr "Zamjene fontova"
+
+#: src/font-manager/Preferences/Substitutions.vala:225
+msgid "Easily substitute one font family for another."
+msgstr "Jednostavno zamijeni jednu obitelj fontova drugom obitelji."
+
+#: src/font-manager/Preferences/Substitutions.vala:226
+msgid "To add a new substitute click the add button in the toolbar."
+msgstr ""
+"Za dodavanje nove zamjene klikni na dugme za dodavanje u alatnoj traci."
+
+#: src/font-manager/Preferences/UserInterface.vala:38
+msgid "Wide Layout"
+msgstr "Široki format"
+
+#: src/font-manager/Preferences/UserInterface.vala:41
+msgid "Only When Maximized"
+msgstr "Samo kad je maksimalno povećano"
+
+#: src/font-manager/Preferences/UserInterface.vala:44
+msgid "Client Side Decorations"
+msgstr "Ukrasne funkcije klijenta"
+
+#: src/font-manager/Preferences/UserInterface.vala:46
+msgid "Enable Animations"
+msgstr "Aktiviraj animacije"
+
+#: src/font-manager/Preferences/UserInterface.vala:47
+msgid "Prefer Dark Theme"
+msgstr "Daj prednost tamnoj temi"
+
+#: src/font-manager/Preferences/UserInterface.vala:81
+msgid ""
+"CSD enabled. Change will take effect next time the application is started."
+msgstr ""
+"Ukrasne funkcije su aktivirane. Promjene će djelovati prilikom sljedećeg "
+"pokretanja programa."
+
+#: src/font-manager/Preferences/UserInterface.vala:83
+msgid ""
+"CSD disabled. Change will take effect next time the application is started."
+msgstr ""
+"Ukrasne funkcije klijenta su deaktivirane. Promjene će djelovati prilikom "
+"sljedećeg pokretanja programa."
+
+#: src/font-manager/TitleBar.vala:48
+msgid "Keyboard Shortcuts"
+msgstr "Tipkovni prečaci"
+
+#: src/font-manager/TitleBar.vala:49
+#: data/ui/font-manager-shortcuts-window.ui:19
+msgid "Help"
+msgstr "Pomoć"
+
+#: src/font-manager/TitleBar.vala:50
+msgid "About"
+msgstr "O programu"
+
+#: src/font-manager/TitleBar.vala:176
+msgid "Add Fonts"
+msgstr "Dodaj fontove"
+
+#: src/font-manager/TitleBar.vala:177
+msgid "Remove Fonts"
+msgstr "Ukloni fontove"
+
+#: src/font-manager/TitleBar.vala:185 data/ui/font-manager-main-window.ui:184
+msgid "Preferences"
+msgstr "Postavke"
+
+#: src/font-viewer/MainWindow.vala:26
+msgid "Preview font files before installing them."
+msgstr "Pregledaj fontove prije instaliranja."
+
+#: src/font-viewer/MainWindow.vala:27
+msgid "To preview a font simply drag it onto this area."
+msgstr "Za pregled fonta, jednostavno ga povuci na ovo područje."
+
+#: src/font-viewer/MainWindow.vala:51
+msgid "OpenType Font"
+msgstr "OpenType font"
+
+#: src/font-viewer/MainWindow.vala:52
+msgid "TrueType Font"
+msgstr "TrueType font"
+
+#: src/font-viewer/MainWindow.vala:53
+msgid "PostScript Type 1 Font"
+msgstr "PostScript Type 1 font"
+
+#: src/font-viewer/MainWindow.vala:100 src/font-viewer/MainWindow.vala:231
+msgid "Install Font"
+msgstr "Instaliraj font"
+
+#: src/font-viewer/MainWindow.vala:187
+msgid "No file selected"
+msgstr "Nijedna datoteka nije odabrana"
+
+#: src/font-viewer/MainWindow.vala:188
+msgid "Or unsupported filetype."
+msgstr "Ili nepodržane vrste datoteka."
+
+#: src/font-viewer/MainWindow.vala:226
+msgid "Newer version already installed"
+msgstr "Novija verzija je već instalirana"
+
+#: src/font-viewer/MainWindow.vala:228
+msgid "Installed"
+msgstr "Instalirano"
+
+#: data/ui/font-manager-alias-row.ui:18
+msgid "Enter target family"
+msgstr "Upiši željenu obitelj"
+
+#: data/ui/font-manager-alias-row.ui:31
+msgid "Add substitute"
+msgstr "Dodaj zamjenu"
+
+#: data/ui/font-manager-compare-view.ui:40
+msgid "Add selected font to comparison"
+msgstr "Dodaj odabrani font u usporedbu"
+
+#: data/ui/font-manager-compare-view.ui:63
+msgid "Remove selected font from comparison"
+msgstr "Ukloni odabrani font iz usporedbe"
+
+#: data/ui/font-manager-compare-view.ui:102
+#: data/ui/font-manager-compare-view.ui:104
+msgid "Select background color"
+msgstr "Odaberi boju pozadine"
+
+#: data/ui/font-manager-compare-view.ui:121
+#: data/ui/font-manager-compare-view.ui:123
+msgid "Select text  color"
+msgstr "Odaberi boju teksta"
+
+#: data/ui/font-manager-font-config-controls.ui:12
+msgid "Discard"
+msgstr "Odbaci"
+
+#: data/ui/font-manager-font-config-controls.ui:30
+msgid "Running applications may require a restart to reflect any changes."
+msgstr ""
+"Za prikaz promjena je možda potrebno ponovo pokrenuti aktivne programe."
+
+#: data/ui/font-manager-font-config-controls.ui:40
+msgid "Save"
+msgstr "Spremi"
+
+#: data/ui/font-manager-language-filter-settings.ui:36
+msgid "Filter Settings"
+msgstr "Postavke filtra"
+
+#: data/ui/font-manager-language-popover.ui:93
+msgid "Minimum Coverage"
+msgstr "Minimalna pokrivenost"
+
+#: data/ui/font-manager-language-popover.ui:109
+msgid "90"
+msgstr "90"
+
+#: data/ui/font-manager-language-popover.ui:142
+msgid "Deselect All"
+msgstr "Odznači sve"
+
+#: data/ui/font-manager-orthography-list.ui:73
+msgid "Clear selected filter"
+msgstr "Isprazni odabrani filtar"
+
+#: data/ui/font-manager-preview-controls.ui:19
+msgid "Undo changes"
+msgstr "Poništi promjene"
+
+#: data/ui/font-manager-preview-controls.ui:41
+msgid "Left Aligned"
+msgstr "Poravnato u lijevo"
+
+#: data/ui/font-manager-preview-controls.ui:66
+msgid "Edit preview text"
+msgstr "Uredi tekst pregleda"
+
+#: data/ui/font-manager-preview-controls.ui:88
+msgid "Centered"
+msgstr "Centrirano"
+
+#: data/ui/font-manager-preview-controls.ui:115
+msgid "Fill"
+msgstr "Ispuna"
+
+#: data/ui/font-manager-preview-controls.ui:141
+msgid "Right Aligned"
+msgstr "Poravnato u desno"
+
+#: data/ui/font-manager-preview-pane.ui:54
+msgid "Characters"
+msgstr "Tablica znakova"
+
+#: data/ui/font-manager-preview-pane.ui:80
+msgid "Properties"
+msgstr "Svojstva"
+
+#: data/ui/font-manager-preview-pane.ui:119
+msgid "Select preview type"
+msgstr "Odaberi vrstu pregleda"
+
+#: data/ui/font-manager-properties-pane.ui:139
+msgid "PostScript Name"
+msgstr "PostScript ime"
+
+#: data/ui/font-manager-properties-pane.ui:245
+msgid "Version"
+msgstr "Verzija"
+
+#: data/ui/font-manager-properties-pane.ui:281
+msgid "FileType"
+msgstr "Vrsta datoteke"
+
+#: data/ui/font-manager-properties-pane.ui:299
+msgid "Filesize"
+msgstr "Veličina datoteke"
+
+#: data/ui/font-manager-shortcuts-window.ui:14
+msgid "General"
+msgstr "Opće"
+
+#: data/ui/font-manager-shortcuts-window.ui:26
+msgid "Increase preview size"
+msgstr "Povećaj veličinu pregleda"
+
+#: data/ui/font-manager-shortcuts-window.ui:33
+msgid "Decrease preview size"
+msgstr "Smanji veličinu pregleda"
+
+#: data/ui/font-manager-shortcuts-window.ui:40
+msgid "Reset preview size"
+msgstr "Vrati izvornu veličinu pregleda"
+
+#: data/ui/font-manager-shortcuts-window.ui:47
+msgid "Reload"
+msgstr "Osvježi"
+
+#: data/ui/font-manager-shortcuts-window.ui:54
+msgid "Quit the application"
+msgstr "Zatvori program"
+
+#: data/ui/font-manager-shortcuts-window.ui:62
+msgid "Mode"
+msgstr "Način rada"
+
+#: data/ui/font-manager-shortcuts-window.ui:67
+msgid "Switch to Manage mode"
+msgstr "Prebaci na „Upravljaj”"
+
+#: data/ui/font-manager-shortcuts-window.ui:74
+msgid "Switch to Browse mode"
+msgstr "Prebaci na „Pregledaj”"
+
+#: data/ui/font-manager-shortcuts-window.ui:81
+msgid "Switch to Compare mode"
+msgstr "Prebaci na „Usporedi”"
+
+#: data/ui/font-manager-shortcuts-window.ui:89
+msgid "Preview Mode"
+msgstr "Način prikaza"
+
+#: data/ui/font-manager-shortcuts-window.ui:94
+msgid "Switch to Standard preview"
+msgstr "Prebaci na standardni prikaz"
+
+#: data/ui/font-manager-shortcuts-window.ui:101
+msgid "Switch to Waterfall preview"
+msgstr "Prebaci na prikaz vodopada"
+
+#: data/ui/font-manager-shortcuts-window.ui:108
+msgid "Switch to Body Text preview"
+msgstr "Prebaci na prikaz osnovnog teksta"
+
+#: data/ui/font-manager-standard-sidebar.ui:24
+msgid "Categories"
+msgstr "Kategorije"
+
+#: data/ui/font-manager-standard-sidebar.ui:66
+msgid "Collections"
+msgstr "Zbirke"
+
+#: data/ui/font-manager-subpixel-geometry.ui:44
+msgid "Subpixel Geometry"
+msgstr "Geometrija podpiksela"
+
+#: data/ui/font-manager-substitute.ui:40
+msgid "Remove substitute"
+msgstr "Ukloni zamjenu"
+
+#: data/ui/font-manager-substitute.ui:41
+msgid "Enter substitute family"
+msgstr "Upiši zamjensku obitelj"
+
+#: data/ui/font-manager-substitute.ui:58
+msgid "prefer"
+msgstr "daj prednost"
+
+#: data/ui/font-manager-substitute.ui:59
+msgid "accept"
+msgstr "prihvati"
+
+#: data/ui/font-manager-substitute.ui:60
+msgid "default"
+msgstr "standardno"
