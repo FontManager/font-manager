@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2019-04-08 20:13-0400\n"
+"POT-Creation-Date: 2019-04-11 22:52-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -430,6 +430,10 @@ msgstr ""
 
 #: lib/vala/PreviewPane.vala:122 lib/vala/PreviewPane.vala:227
 msgid "Body Text"
+msgstr ""
+
+#: src/font-manager/Application.vala:327
+msgid "Update in progress..."
 msgstr ""
 
 #: src/font-manager/Categories.vala:324
