@@ -18,6 +18,7 @@ License:    GPLv3+
 Url:        http://fontmanager.github.io/
 Source0:    %{git_archive}
 
+BuildRequires: gettext
 BuildRequires: meson
 BuildRequires: fontconfig-devel
 BuildRequires: freetype-devel
@@ -106,7 +107,7 @@ This package provides integration with the Thunar file manager.
 %py_byte_compile %{__python} %{buildroot}%{_datadir}/nautilus-python/extensions/
 %py_byte_compile %{__python} %{buildroot}%{_datadir}/nemo-python/extensions/
 %py_byte_compile %{__python} %{buildroot}%{_datadir}/thunarx-python/extensions/
-%find_lang %name
+%find_lang %{name}
 
 %check
 appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdata.xml
@@ -123,7 +124,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_mandir}/man1/%{name}.*
 
 %files -n %{name}-common -f %{name}.lang
-%doc README
+%license COPYING
 %{_libdir}/%{name}
 %{_datadir}/help/*/%{name}
 
