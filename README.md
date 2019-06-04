@@ -60,11 +60,11 @@ You'll need to ensure the following dependencies are installed:
 
 - `meson`
 - `ninja`
+- `vala >= 0.42`
 - `gtk+-3.0 >= 3.22`
 - `json-glib-1.0 >= 0.15`
-- `sqlite3 >= 3.8`
 - `libxml-2.0 >= 2.9`
-- `vala >= 0.42`
+- `sqlite3 >= 3.8`
 
 To build the application:
 
@@ -94,5 +94,13 @@ sudo ninja uninstall
 
 ## License
 
-[GPL 3](COPYING)
+This project is licensed under the GNU General Public License Version 3.0 - see 
+[COPYING](COPYING) for details.
+
+## Acknowledgements
+
+- Karl Pickett for getting the ball rolling with [fontmanager.py](https://raw.githubusercontent.com/FontManager/font-manager/6b9b351538b5118d07f6d228f3b42c91183b8b73/fontmanager.py)
+- Font Manager's compare mode is modeled after [gnome-specimen](https://launchpad.net/gnome-specimen) by Wouter Bolsterlee
+- Font Manager makes use of data compiled for [Fontaine](http://www.unifont.org/fontaine/) by Edward H. Trager in order to determine font file licensing and language support
+
 
