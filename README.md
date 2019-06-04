@@ -28,9 +28,9 @@ Font Manager is NOT a professional-grade font management solution.
 #### Arch User Repository
 Arch Linux users can find [`font-manager`](https://aur.archlinux.org/packages/font-manager/) in the AUR
 
-#### Fedora COPR 
+#### Fedora COPR
 
-<img src="https://copr.fedorainfracloud.org/coprs/jerrycasiano/FontManager/package/font-manager/status_image/last_build.png" />
+[![Copr build status](https://copr.fedorainfracloud.org/coprs/jerrycasiano/FontManager/package/font-manager/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/jerrycasiano/FontManager/package/font-manager/)
 
 Fedora packages built from latest revision:
 
@@ -39,7 +39,7 @@ dnf copr enable jerrycasiano/FontManager
 dnf install font-manager
 ```
 
-Please note that packages in COPR can conflict with official packages. 
+Please note that packages in COPR can conflict with official packages.
 Make sure to purge any previous installation before switching between COPR and official sources.
 
 #### Ubuntu Personal Package Archive
@@ -50,7 +50,7 @@ sudo add-apt-repository ppa:font-manager/staging
 sudo apt-get update
 sudo apt-get install font-manager
 ```
-Please note that packages in the PPA can conflict with official packages. 
+Please note that packages in the PPA can conflict with official packages.
 Make sure to purge any previous installation before switching between PPA and official sources.
 
 
@@ -94,7 +94,7 @@ sudo ninja uninstall
 
 ## License
 
-This project is licensed under the GNU General Public License Version 3.0 - see 
+This project is licensed under the GNU General Public License Version 3.0 - see
 [COPYING](COPYING) for details.
 
 ## Acknowledgements
