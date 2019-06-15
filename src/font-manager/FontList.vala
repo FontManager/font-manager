@@ -340,6 +340,7 @@ namespace FontManager {
                 selected_font.source_object = ((Family) object).get_default_variant();
                 notify_property("selected-font");
             } else {
+                selected_font = null;
                 selected_font = ((Font) object);
             }
             selected_family = selected_font.family;

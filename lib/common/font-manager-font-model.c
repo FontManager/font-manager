@@ -30,6 +30,8 @@ struct _FontManagerFontModel
     GObject parent_instance;
 
     gint stamp;
+    FontManagerFont *font;
+    FontManagerFamily *family;
     JsonArray *available_fonts;
 };
 
@@ -148,13 +150,11 @@ font_manager_font_model_get_value (GtkTreeModel *tree_model,
             break;
         case FONT_MANAGER_FONT_MODEL_OBJECT:
             if (root_node) {
-                FontManagerFamily *family = font_manager_family_new();
-                g_object_set(family, "source-object", obj, NULL);
-                g_value_take_object(value, family);
+                g_object_set(self->family, "source-object", obj, NULL);
+                g_value_set_object(value, self->family);
             } else {
-                FontManagerFont *font = font_manager_font_new();
-                g_object_set(font, "source-object", obj, NULL);
-                g_value_take_object(value, font);
+                g_object_set(self->font, "source-object", obj, NULL);
+                g_value_set_object(value, self->font);
             }
             break;
         default:
@@ -401,6 +401,8 @@ static void
 font_manager_font_model_init (FontManagerFontModel *self)
 {
     do { self->stamp = g_random_int(); } while (self->stamp == 0);
+    self->family = font_manager_family_new();
+    self->font = font_manager_font_new();
     return;
 }
 
@@ -408,8 +410,11 @@ static void
 font_manager_font_model_finalize (GObject *object)
 {
     FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(object);
-    if (self && self->available_fonts != NULL)
+    g_return_if_fail(self != NULL);
+    if (self->available_fonts)
         json_array_unref(self->available_fonts);
+    g_clear_object(&self->family);
+    g_clear_object(&self->font);
     G_OBJECT_CLASS(font_manager_font_model_parent_class)->finalize(object);
     return;
 }
@@ -496,5 +501,5 @@ font_manager_font_model_class_init (FontManagerFontModelClass *klass)
 FontManagerFontModel *
 font_manager_font_model_new (void)
 {
-    return FONT_MANAGER_FONT_MODEL(g_object_new(font_manager_font_model_get_type(), NULL));
+    return FONT_MANAGER_FONT_MODEL(g_object_new(FONT_MANAGER_TYPE_FONT_MODEL, NULL));
 }
