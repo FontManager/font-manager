@@ -3,11 +3,11 @@
     "aɪ pʰiː eɪ",
     0x25b,
     "ɑɐɔɗʤɜɵɸʎɤ",
-    { 
-        "/bəˈnɑːnəz ɑː ˈjeləʊ wen ðeɪ ɑː raɪp/", 
-        END_OF_DATA
+    {
+        "/bəˈnɑːnəz ɑː ˈjeləʊ wen ðeɪ ɑː raɪp/",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x251,
         0x250,
         0x252,
@@ -94,7 +94,7 @@
         0x1c1,
         0x1c2,
         0x1c3,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

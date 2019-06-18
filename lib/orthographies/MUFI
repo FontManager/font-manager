@@ -3,11 +3,11 @@
     "MUFI 3.0",
     0xfe,
     "łēƀſᚠᛁᛋᚳmþāȳðþæǣēġā",
-    { 
-        "Adiuuanos dſ ̄ ſalutariſ noſter & ꝓpt̄ głam nominiſ tui dnē liƀanoſ· & ꝓpitiuſ eſto peccatiſ noiſ ꝓpter nomen tuum·", 
-        END_OF_DATA
+    {
+        "Adiuuanos dſ ̄ ſalutariſ noſter & ꝓpt̄ głam nominiſ tui dnē liƀanoſ· & ꝓpitiuſ eſto peccatiſ noiſ ꝓpter nomen tuum·",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x20,
         0x21,
         0x22,
@@ -785,7 +785,7 @@
         0x10198,
         0x10199,
         0x1019a,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

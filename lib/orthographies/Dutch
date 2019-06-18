@@ -3,12 +3,12 @@
     "Nederlands",
     0x132,
     "ÁáËëĲĳÛû",
-    { 
-        "De export blijvt qua omvang typisch zwak.", 
-        "Catz' elixer bij Aquavit gemengd: je proeft whiskey!", 
-        END_OF_DATA
+    {
+        "De export blijvt qua omvang typisch zwak.",
+        "Catz' elixer bij Aquavit gemengd: je proeft whiskey!",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xc1,
         0xe1,
         0xc2,
@@ -41,7 +41,7 @@
         0xe4,
         0xdc,
         0xfc,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

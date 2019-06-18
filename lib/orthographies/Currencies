@@ -3,13 +3,13 @@
     "Currencies",
     0x20a6,
     "$¢£¥₧€₭",
-    { 
-        "Unicode currency symbols include $,¢,£,¥,₧,€ and ₭.", 
-        END_OF_DATA
+    {
+        "Unicode currency symbols include $,¢,£,¥,₧,€ and ₭.",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x24,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xa2, 0xa5,
         0x58f,
         0x60b,
@@ -20,7 +20,7 @@
         0xbf9,
         0xe3f,
         0x17db,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x20a0, 0x20bd,
         0xa838,
         0xfdfc,
@@ -30,7 +30,7 @@
         0xffe1,
         0xffe5,
         0xffe6,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

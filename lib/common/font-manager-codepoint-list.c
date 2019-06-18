@@ -173,7 +173,7 @@ font_manager_codepoint_list_set_font (FontManagerCodepointList *self, JsonObject
     g_return_if_fail(self != NULL);
     GList *new_charset = NULL;
     if (font && json_object_ref(font)) {
-        new_charset = get_charset_from_font_object(font);
+        new_charset = font_manager_get_charset_from_font_object(font);
         json_object_unref(font);
     }
     if (self->charset)

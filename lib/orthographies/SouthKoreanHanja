@@ -3,11 +3,11 @@
     "한문교육용기초한자",
     0x91d1,
     "畓乭無高城雙龍鬼",
-    { 
-        "畓乭無高城雙龍鬼", 
-        END_OF_DATA
+    {
+        "畓乭無高城雙龍鬼",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x4e00,
         0x4e01,
         0x4e03,
@@ -1817,7 +1817,7 @@
         0x9f52,
         0x9f8d,
         0x9f9c,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

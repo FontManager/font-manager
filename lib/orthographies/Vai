@@ -3,11 +3,11 @@
     "",
     0xa500,
     "ꔀ ꔁ ꔂ ꔃ ꔄ ꔅ ꔆ ꔇ",
-    { 
-        "ꔀ ꔁ ꔂ ꔃ ꔄ ꔅ ꔆ ꔇ", 
-        END_OF_DATA
+    {
+        "ꔀ ꔁ ꔂ ꔃ ꔄ ꔅ ꔆ ꔇ",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xa500,
         0xa501,
         0xa502,
@@ -308,7 +308,7 @@
         0xa629,
         0xa62a,
         0xa62b,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

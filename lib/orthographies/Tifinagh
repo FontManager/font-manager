@@ -3,11 +3,11 @@
     "ⵜⵉⴼⵉⵏⴰⵖ",
     0x2d30,
     "ⴰ ⴱ ⴲ ⴳ ⴴ ⴵ ⴶ ⴷ ",
-    { 
-        "ⴰ ⴱ ⴲ ⴳ ⴴ ⴵ ⴶ ⴷ ", 
-        END_OF_DATA
+    {
+        "ⴰ ⴱ ⴲ ⴳ ⴴ ⴵ ⴶ ⴷ ",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x2d30,
         0x2d31,
         0x2d32,
@@ -63,7 +63,7 @@
         0x2d64,
         0x2d65,
         0x2d6f,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

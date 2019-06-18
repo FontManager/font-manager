@@ -3,25 +3,25 @@
     "Aleut Cyrillic",
     0x414,
     "",
-    { 
-        "", 
-        END_OF_DATA
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x311,
         0x406,
         0x40e,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x410, 0x44f,
         0x456,
         0x45e,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x472, 0x475,
         0x4a4,
         0x4a5,
         0x51e,
         0x51f,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

@@ -3,11 +3,11 @@
     "Pan African Latin",
     0xc0,
     "ÀÁẬậíîȪȫ",
-    { 
-        "Pan African Latin sentence placeholder ...", 
-        END_OF_DATA
+    {
+        "Pan African Latin sentence placeholder ...",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xd8,
         0xf8,
         0x110,
@@ -296,7 +296,7 @@
         0xa78a,
         0x245,
         0xa7aa,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

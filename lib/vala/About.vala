@@ -18,9 +18,9 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-public const string AUTHOR = "Jerry Casiano <JerryCasiano@gmail.com>";
-
 namespace FontManager {
+
+    public const string AUTHOR = "Jerry Casiano <JerryCasiano@gmail.com>";
 
     namespace About {
 

@@ -3,11 +3,11 @@
     "سنڌي",
     0x67a,
     "ٺ ٻ ٽ ٿ ڀ ڃ ڄ ڇ",
-    { 
-        "", 
-        END_OF_DATA
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x67a,
         0x67b,
         0x67d,
@@ -35,7 +35,7 @@
         0x6d0,
         0x6fd,
         0x6fe,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

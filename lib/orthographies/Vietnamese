@@ -3,12 +3,12 @@
     "tiếng Việt",
     0x1ea6,
     "ẦầẵặỒỗỬửỴỵ",
-    { 
-        "Trăm năm, trong cõi người ta, Chữ tài, chữ mệnh, khéo là ghét nhau.", 
-        "Trải qua một cuộc bể dâu, Những điều trông thấy mà đau đớn lòng;", 
-        END_OF_DATA
+    {
+        "Trăm năm, trong cõi người ta, Chữ tài, chữ mệnh, khéo là ghét nhau.",
+        "Trải qua một cuộc bể dâu, Những điều trông thấy mà đau đớn lòng;",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xc0,
         0xe0,
         0xc1,
@@ -143,7 +143,7 @@
         0x1ef7,
         0x1ef4,
         0x1ef5,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

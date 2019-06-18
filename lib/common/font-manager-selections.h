@@ -27,12 +27,12 @@
 #include <libxml/tree.h>
 
 #include "font-manager-xml-writer.h"
-#include "string-hashset.h"
+#include "font-manager-string-hashset.h"
 
 G_BEGIN_DECLS
 
 #define FONT_MANAGER_TYPE_SELECTIONS (font_manager_selections_get_type())
-G_DECLARE_DERIVABLE_TYPE(FontManagerSelections, font_manager_selections, FONT_MANAGER, SELECTIONS, StringHashset)
+G_DECLARE_DERIVABLE_TYPE(FontManagerSelections, font_manager_selections, FONT_MANAGER, SELECTIONS, FontManagerStringHashset)
 
 struct _FontManagerSelectionsClass
 {

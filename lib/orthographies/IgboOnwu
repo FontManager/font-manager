@@ -3,11 +3,11 @@
     "Asụsụ Igbo",
     0x1eca,
     "Ịị Ụụ Ọọ Ṅṅ",
-    { 
-        "Asụsụ Igbo", 
-        END_OF_DATA
+    {
+        "Asụsụ Igbo",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x1eca,
         0x1ecb,
         0x1ecc,
@@ -38,7 +38,7 @@
         0xfa,
         0xd9,
         0xf9,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

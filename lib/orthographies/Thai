@@ -3,16 +3,16 @@
     "ภาษาไทย",
     0xe01,
     "ฟหกดสวงท",
-    { 
-        "มื่อชั่วพ่อขุนรามคำแหง เมืองสุโขทัยนี้ดี ในน้ำมีปลา ในนามีข้าว", 
-        END_OF_DATA
+    {
+        "มื่อชั่วพ่อขุนรามคำแหง เมืองสุโขทัยนี้ดี ในน้ำมีปลา ในนามีข้าว",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
-        START_RANGE_PAIR,
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
         0xe01, 0xe3a,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xe3f, 0xe5b,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

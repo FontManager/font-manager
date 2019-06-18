@@ -3,11 +3,11 @@
     "ਗੁਰਮੁਖੀ",
     0xa15,
     "ਕ ਖ ਗ ਘ ਙ ਚ ਛ ਜ",
-    { 
-        "ਕ ਖ ਗ ਘ ਙ ਚ ਛ ਜ", 
-        END_OF_DATA
+    {
+        "ਕ ਖ ਗ ਘ ਙ ਚ ਛ ਜ",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xa01,
         0xa02,
         0xa03,
@@ -87,7 +87,7 @@
         0xa73,
         0xa74,
         0xa75,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

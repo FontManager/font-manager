@@ -3,11 +3,11 @@
     "پښتو",
     0x685,
     "ټ پ ځ ڂ څ چ ډ ړ ګ ې",
-    { 
-        "", 
-        END_OF_DATA
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x67c,
         0x67e,
         0x681,
@@ -22,7 +22,7 @@
         0x6bc,
         0x6cd,
         0x6d0,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

@@ -24,8 +24,8 @@
 #include <glib.h>
 #include <json-glib/json-glib.h>
 
-#define START_RANGE_PAIR 0x0002
-#define END_OF_DATA 0x0000
+#define FONT_MANAGER_START_RANGE_PAIR 0x0002
+#define FONT_MANAGER_END_OF_DATA 0x0000
 
 typedef struct
 {
@@ -36,9 +36,9 @@ typedef struct
     const gchar *pangram [10];
     const gunichar values [4096];
 }
-OrthographyData;
+FontManagerOrthographyData;
 
-static const OrthographyData ArabicOrthographies [] = {
+static const FontManagerOrthographyData ArabicOrthographies [] = {
 #include "Arabic"
 #include "Farsi"
 #include "Urdu"
@@ -48,33 +48,33 @@ static const OrthographyData ArabicOrthographies [] = {
 #include "Uighur"
 };
 
-static const OrthographyData ChineseOrthographies [] = {
+static const FontManagerOrthographyData ChineseOrthographies [] = {
 #include "SimplifiedChinese"
 #include "TraditionalChinese"
 #include "ZhuYinFuHao"
 #include "CJKUnified"
 };
 
-static const OrthographyData GreekOrthographies [] = {
+static const FontManagerOrthographyData GreekOrthographies [] = {
 #include "BasicGreek"
 #include "PolytonicGreek"
 #include "ArchaicGreekLetters"
 };
 
-static const OrthographyData JapaneseOrthographies [] = {
+static const FontManagerOrthographyData JapaneseOrthographies [] = {
 #include "Kana"
 #include "Joyo"
 #include "Jinmeiyo"
 #include "Kokuji"
 };
 
-static const OrthographyData KoreanOrthographies [] = {
+static const FontManagerOrthographyData KoreanOrthographies [] = {
 #include "Jamo"
 #include "Hangul"
 #include "SouthKoreanHanja"
 };
 
-static const OrthographyData LatinOrthographies [] = {
+static const FontManagerOrthographyData LatinOrthographies [] = {
 #include "BasicLatin"
 #include "WesternEuropean"
 // Only contains one symbol
@@ -96,7 +96,7 @@ static const OrthographyData LatinOrthographies [] = {
 #include "IgboOnwu"
 };
 
-static const OrthographyData UncategorizedOrthographies [] = {
+static const FontManagerOrthographyData UncategorizedOrthographies [] = {
 
 //
 // The Rest: (In Latin alphabetic order for now ... )

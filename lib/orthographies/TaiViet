@@ -3,16 +3,16 @@
     "",
     0xaa80,
     "ꪀꪁꪂꪃꪄꪅꪆꪇꪈꪉ",
-    { 
-        "ꪀꪁꪂꪃꪄꪅꪆꪇꪈꪉ", 
-        END_OF_DATA
+    {
+        "ꪀꪁꪂꪃꪄꪅꪆꪇꪈꪉ",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
-        START_RANGE_PAIR,
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
         0xaa80, 0xaac2,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xaadb, 0xaadf,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

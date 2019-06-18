@@ -3,11 +3,11 @@
     "Latin Ligatures",
     0xfb06,
     "ﬀ ﬁ ﬂ ﬃ ﬄ ﬅ ﬆ",
-    { 
-        "Aﬀable ﬁnanciers ﬂowered with eﬃcacious aﬄuence in the ﬅalwart ﬆrata.", 
-        END_OF_DATA
+    {
+        "Aﬀable ﬁnanciers ﬂowered with eﬃcacious aﬄuence in the ﬅalwart ﬆrata.",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xfb00,
         0xfb01,
         0xfb02,
@@ -15,7 +15,7 @@
         0xfb04,
         0xfb05,
         0xfb06,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

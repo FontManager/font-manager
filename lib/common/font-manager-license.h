@@ -1,20 +1,20 @@
 /* Do not edit directly. See build-aux directory */
-#ifndef __LICENSE_H__
-#define __LICENSE_H__
+#ifndef __FONT_MANAGER_LICENSE_H__
+#define __FONT_MANAGER_LICENSE_H__
 
 #include <glib.h>
 
 G_BEGIN_DECLS
 
-#define MAX_KEYWORD_ENTRIES 25
+#define FONT_MANAGER_MAX_KEYWORD_ENTRIES 25
 
 static const struct
 {
     const gchar *license;
     const gchar *license_url;
-    const gchar *keywords[MAX_KEYWORD_ENTRIES];
+    const gchar *keywords[FONT_MANAGER_MAX_KEYWORD_ENTRIES];
 }
-LicenseData[] =
+FontManagerLicenseData[] =
 {
 
     {
@@ -295,9 +295,9 @@ LicenseData[] =
 
 };
 
-#define LICENSE_ENTRIES G_N_ELEMENTS(LicenseData)
+#define FONT_MANAGER_LICENSE_ENTRIES G_N_ELEMENTS(FontManagerLicenseData)
 
 G_END_DECLS
 
-#endif /* __LICENSE_H__ */
+#endif /* __FONT_MANAGER_LICENSE_H__ */
 

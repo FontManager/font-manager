@@ -1,4 +1,4 @@
-/* json.h
+/* font-manager-json.h
  *
  * Copyright (C) 2009 - 2019 Jerry Casiano
  *
@@ -26,15 +26,15 @@
 
 G_BEGIN_DECLS
 
-void set_json_error (JsonObject *json_obj, int err_code, const gchar *err_msg);
-gint compare_json_int_member (const gchar *member_name, JsonObject  *a, JsonObject  *b);
-gint compare_json_string_member (const gchar *member_name, JsonObject  *a, JsonObject  *b);
-gint compare_json_font_node (JsonNode *node_a, JsonNode *node_b);
-gchar * print_json_array (JsonArray *json_arr, gboolean pretty);
-gchar * print_json_object(JsonObject *json_obj, gboolean pretty);
-gboolean write_json_file (JsonNode *root, const gchar *filepath);
-JsonNode * load_json_file (const gchar *filepath);
-JsonArray * str_list_to_json_array (GList *slist);
+void font_manager_set_json_error (JsonObject *json_obj, int err_code, const gchar *err_msg);
+gint font_manager_compare_json_int_member (const gchar *member_name, JsonObject  *a, JsonObject  *b);
+gint font_manager_compare_json_string_member (const gchar *member_name, JsonObject  *a, JsonObject  *b);
+gint font_manager_compare_json_font_node (JsonNode *node_a, JsonNode *node_b);
+gchar * font_manager_print_json_array (JsonArray *json_arr, gboolean pretty);
+gchar * font_manager_print_json_object(JsonObject *json_obj, gboolean pretty);
+gboolean font_manager_write_json_file (JsonNode *root, const gchar *filepath);
+JsonNode * font_manager_load_json_file (const gchar *filepath);
+JsonArray * font_manager_str_list_to_json_array (GList *slist);
 
 G_END_DECLS
 

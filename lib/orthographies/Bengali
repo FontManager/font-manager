@@ -3,39 +3,39 @@
     "বাংলা",
     0x985,
     "অ আ ই ঈ উ এ ঐ ও ঔ ক খ গ",
-    { 
-        "না মামা থেকে কানা মামা ভাল।", 
-        END_OF_DATA
+    {
+        "না মামা থেকে কানা মামা ভাল।",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
-        START_RANGE_PAIR,
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
         0x981, 0x983,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x985, 0x98c,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x98f, 0x990,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x993, 0x9a8,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x9aa, 0x9b0,
         0x9b2,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x9b6, 0x9b9,
         0x9bc,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x9be, 0x9c4,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x9c7, 0x9c8,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x9cb, 0x9cd,
         0x9d7,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x9dc, 0x9dd,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x9df, 0x9e3,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x9e6, 0x9fa,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

@@ -3,11 +3,11 @@
     "",
     0x1723,
     "ᜣ ᜤ ᜥ ᜦ ᜧ ᜨ ᜩ ᜪ",
-    { 
-        "ᜣ ᜤ ᜥ ᜦ ᜧ ᜨ ᜩ ᜪ", 
-        END_OF_DATA
+    {
+        "ᜣ ᜤ ᜥ ᜦ ᜧ ᜨ ᜩ ᜪ",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x1720,
         0x1721,
         0x1722,
@@ -29,7 +29,7 @@
         0x1732,
         0x1733,
         0x1734,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

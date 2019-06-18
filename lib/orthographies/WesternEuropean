@@ -3,25 +3,25 @@
     "Western European",
     0xc0,
     "ÁàåÇçæÐðéîñöœßþÿ",
-    { 
-        "Falsches Üben von Xylophonmusik quält jeden größeren Zwerg.", 
-        "Vår sære Zulu fra badeøya spilte jo whist og quickstep i min taxi.", 
-        END_OF_DATA
+    {
+        "Falsches Üben von Xylophonmusik quält jeden größeren Zwerg.",
+        "Vår sære Zulu fra badeøya spilte jo whist og quickstep i min taxi.",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
-        START_RANGE_PAIR,
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
         0xc0, 0xcf,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xd0, 0xd6,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xd8, 0xdf,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xe0, 0xef,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xf0, 0xf6,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xf8, 0xff,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

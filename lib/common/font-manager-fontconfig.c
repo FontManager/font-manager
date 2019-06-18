@@ -30,8 +30,8 @@
 #include <pango/pangofc-fontmap.h>
 
 #include "font-manager-fontconfig.h"
-#include "json.h"
-#include "utils.h"
+#include "font-manager-json.h"
+#include "font-manager-utils.h"
 
 #include "unicode-info.h"
 
@@ -47,30 +47,30 @@ static const gchar *DEFAULT_VARIANTS[5] = {
 };
 
 /**
- * update_font_configuration:
+ * font_manager_update_font_configuration:
  *
  * Returns: %TRUE on success
  */
 gboolean
-update_font_configuration (void) {
+font_manager_update_font_configuration (void) {
     return (FcConfigDestroy(FcConfigGetCurrent()), FcInitReinitialize());
 }
 
 /**
- * enable_user_font_configuration:
+ * font_manager_enable_user_font_configuration:
  * @enable: %TRUE to include configuration files stored in users home directory.
  * %FALSE to exclude configuration files stored in users home directory.
  *
  * Returns: %TRUE on success
  */
 gboolean
-enable_user_font_configuration (gboolean enable)
+font_manager_enable_user_font_configuration (gboolean enable)
 {
     return (FcConfigEnableHome(enable), (FcConfigEnableHome(enable) == enable));
 }
 
 /**
- * add_application_font:
+ * font_manager_add_application_font:
  * @filepath: full path to font file to add to configuration
  *
  * Equivalent to #FcConfigAppFontAddFile
@@ -78,13 +78,13 @@ enable_user_font_configuration (gboolean enable)
  * Returns: %TRUE on success
  */
 gboolean
-add_application_font (const gchar *filepath)
+font_manager_add_application_font (const gchar *filepath)
 {
     return FcConfigAppFontAddFile(FcConfigGetCurrent(), (FcChar8 *) filepath);
 }
 
 /**
- * add_application_font_directory:
+ * font_manager_add_application_font_directory:
  * @dir: full path to directory to add to application specific configuration
  *
  * Equivalent to #FcConfigAppFontAddDir
@@ -92,25 +92,25 @@ add_application_font (const gchar *filepath)
  * Returns: %TRUE on success
  */
 gboolean
-add_application_font_directory (const gchar *dir)
+font_manager_add_application_font_directory (const gchar *dir)
 {
     return FcConfigAppFontAddDir(FcConfigGetCurrent(), (FcChar8 *) dir);
 }
 
 /**
- * clear_application_fonts:
+ * font_manager_clear_application_fonts:
  *
  * Equivalent to #FcConfigAppFontClear
  */
 void
-clear_application_fonts (void)
+font_manager_clear_application_fonts (void)
 {
     FcConfigAppFontClear(FcConfigGetCurrent());
     return;
 }
 
 /**
- * load_font_configuration_file:
+ * font_manager_load_font_configuration_file:
  * @filepath: full path to a valid fontconfig configuration file
  *
  * Equivalent to #FcConfigParseAndLoad
@@ -118,20 +118,20 @@ clear_application_fonts (void)
  * Returns: %TRUE on success
  */
 gboolean
-load_font_configuration_file (const gchar *filepath)
+font_manager_load_font_configuration_file (const gchar *filepath)
 {
     return FcConfigParseAndLoad(FcConfigGetCurrent(), (FcChar8 *) filepath, FALSE);
 }
 
 /**
- * list_available_font_files:
+ * font_manager_list_available_font_files:
  *
  * Returns: (element-type utf8) (transfer full) (nullable):
  * a newly created #GSList containing filepaths or %NULL.
  * Free the returned list using #g_slist_free_full(list, g_free)
  */
 GList *
-list_available_font_files (void)
+font_manager_list_available_font_files (void)
 {
     FcPattern *pattern = FcPatternBuild(NULL,NULL);
     FcObjectSet *objectset = FcObjectSetBuild (FC_FILE, NULL);
@@ -147,12 +147,12 @@ list_available_font_files (void)
     FcObjectSetDestroy(objectset);
     FcPatternDestroy(pattern);
     FcFontSetDestroy(fontset);
-    result = g_list_sort(result, (GCompareFunc) natural_sort);
+    result = g_list_sort(result, (GCompareFunc) font_manager_natural_sort);
     return result;
 }
 
 /**
- * list_font_directories:
+ * font_manager_list_font_directories:
  * @recursive: whether to include subfolders in listing
  *
  * Returns: (element-type utf8) (transfer full) (nullable):
@@ -160,7 +160,7 @@ list_available_font_files (void)
  * Free the returned list using #g_slist_free_full(list, g_free);
  */
 GList *
-list_font_directories (gboolean recursive)
+font_manager_list_font_directories (gboolean recursive)
 {
     FcChar8 *directory = NULL;
     FcStrList *fdlist = NULL;
@@ -183,12 +183,12 @@ list_font_directories (gboolean recursive)
     }
 
     FcStrListDone(fdlist);
-    result = g_list_sort(result, (GCompareFunc) natural_sort);
+    result = g_list_sort(result, (GCompareFunc) font_manager_natural_sort);
     return result;
 }
 
 /**
- * list_user_font_directories:
+ * font_manager_list_user_font_directories:
  *
  * Only returns directories which are writeable by user
  *
@@ -197,7 +197,7 @@ list_font_directories (gboolean recursive)
  * Free the returned list using #g_slist_free_full(list, g_free);
  */
 GList *
-list_user_font_directories (gboolean recursive)
+font_manager_list_user_font_directories (gboolean recursive)
 {
     FcChar8 *directory = NULL;
     FcStrList *fdlist = NULL;
@@ -206,7 +206,7 @@ list_user_font_directories (gboolean recursive)
     fdlist = FcConfigGetFontDirs(FcConfigGetCurrent());
 
     while ((directory = FcStrListNext(fdlist))) {
-        if (get_file_owner((const gchar *) directory) == 0) {
+        if (font_manager_get_file_owner((const gchar *) directory) == 0) {
             gboolean subdir = FALSE;
             if (!recursive) {
                 for (GList *iter = result; iter != NULL; iter = iter->next) {
@@ -222,19 +222,19 @@ list_user_font_directories (gboolean recursive)
     }
 
     FcStrListDone(fdlist);
-    result = g_list_sort(result, (GCompareFunc) natural_sort);
+    result = g_list_sort(result, (GCompareFunc) font_manager_natural_sort);
     return result;
 }
 
 /**
- * list_available_font_families:
+ * font_manager_list_available_font_families:
  *
  * Returns: (element-type utf8) (transfer full) (nullable):
  * a newly created #GSList containing family names or %NULL
  * Free the returned list using #g_slist_free_full(list, g_free);
  */
 GList *
-list_available_font_families (void)
+font_manager_list_available_font_families (void)
 {
     GList *result = NULL;
     FcPattern *pattern = FcPatternBuild(NULL,NULL);
@@ -252,12 +252,12 @@ list_available_font_families (void)
     FcObjectSetDestroy(objectset);
     FcPatternDestroy(pattern);
     FcFontSetDestroy(fontset);
-    result = g_list_sort(result, (GCompareFunc) natural_sort);
+    result = g_list_sort(result, (GCompareFunc) font_manager_natural_sort);
     return result;
 }
 
 /**
- * get_available_fonts:
+ * font_manager_get_available_fonts:
  * @family_name: (nullable): family name or %NULL
  *
  * If @family_name is not %NULL, only information for fonts belonging to
@@ -266,7 +266,7 @@ list_available_font_families (void)
  * Returns: (transfer full): a newly created #JsonObject
  */
 JsonObject *
-get_available_fonts (const gchar *family_name)
+font_manager_get_available_fonts (const gchar *family_name)
 {
     FcPattern *pattern = NULL;
 
@@ -296,14 +296,14 @@ get_available_fonts (const gchar *family_name)
 }
 
 /**
- * get_available_fonts_for_lang:
+ * font_manager_get_available_fonts_for_lang:
  * @lang_id: should be of the form Ll-Tt where Ll is a two or three letter
  * language from ISO 639 and Tt is a territory from ISO 3166.
  *
  * Returns: (transfer full): a newly created #JsonObject
  */
 JsonObject *
-get_available_fonts_for_lang (const gchar *lang_id)
+font_manager_get_available_fonts_for_lang (const gchar *lang_id)
 {
     FcPattern *pattern = FcPatternCreate();
     FcLangSet *langset = FcLangSetCreate();
@@ -335,13 +335,13 @@ get_available_fonts_for_lang (const gchar *lang_id)
 }
 
 /**
- * get_available_fonts_for_chars:
+ * font_manager_get_available_fonts_for_chars:
  * @chars: string of characters to search for
  *
  * Returns: (transfer full): a newly created #JsonObject
  */
 JsonObject *
-get_available_fonts_for_chars (const gchar *chars)
+font_manager_get_available_fonts_for_chars (const gchar *chars)
 {
     FcObjectSet  *objectset = FcObjectSetBuild(FC_FILE,
                                                FC_INDEX,
@@ -378,7 +378,7 @@ get_available_fonts_for_chars (const gchar *chars)
 }
 
 /**
- * get_langs_from_fontconfig_pattern: (skip)
+ * font_manager_get_langs_from_fontconfig_pattern: (skip)
  * @pattern: #FcPattern to examine
  *
  * Supplied FcPattern must contain an FcLangSet.
@@ -389,7 +389,7 @@ get_available_fonts_for_chars (const gchar *chars)
  * freed using #g_slist_free_full(slist, g_free) when no longer needed.
  */
 GList *
-get_langs_from_fontconfig_pattern (FcPattern *pattern)
+font_manager_get_langs_from_fontconfig_pattern (FcPattern *pattern)
 {
     GList *result = NULL;
     FcLangSet *lang_set = NULL;
@@ -408,7 +408,7 @@ get_langs_from_fontconfig_pattern (FcPattern *pattern)
 }
 
 /**
- * get_attributes_from_fontconfig_pattern: (skip)
+ * font_manager_get_attributes_from_fontconfig_pattern: (skip)
  * @pattern: #FcPattern to examine
  *
  * The supplied FcPattern must supply file and family information,
@@ -420,7 +420,7 @@ get_langs_from_fontconfig_pattern (FcPattern *pattern)
  * Returns: (transfer full): a newly created #JsonObject
  */
 JsonObject *
-get_attributes_from_fontconfig_pattern (FcPattern *pattern)
+font_manager_get_attributes_from_fontconfig_pattern (FcPattern *pattern)
 {
     int index;
     int slant;
@@ -488,7 +488,7 @@ get_attributes_from_fontconfig_pattern (FcPattern *pattern)
 }
 
 /**
- * get_attributes_from_filepath:
+ * font_manager_get_attributes_from_filepath:
  * @filepath: full path to font file to query
  * @index: index of face within file to select
  *
@@ -498,7 +498,7 @@ get_attributes_from_fontconfig_pattern (FcPattern *pattern)
  * Returns: (transfer full): a newly created #JsonObject
  */
 JsonObject *
-get_attributes_from_filepath (const gchar *filepath, int index)
+font_manager_get_attributes_from_filepath (const gchar *filepath, int index)
 {
     int count;
     FcBlanks *blanks = FcBlanksCreate();
@@ -507,10 +507,10 @@ get_attributes_from_filepath (const gchar *filepath, int index)
     JsonObject *json_obj = NULL;
 
     if (pattern) {
-        json_obj = get_attributes_from_fontconfig_pattern(pattern);
+        json_obj = font_manager_get_attributes_from_fontconfig_pattern(pattern);
     } else {
         json_obj = json_object_new();
-        set_json_error(json_obj, 0, "Failed to create FontConfig pattern for file");
+        font_manager_set_json_error(json_obj, 0, "Failed to create FontConfig pattern for file");
         if (blanks)
             FcBlanksDestroy(blanks);
         return json_obj;
@@ -522,7 +522,7 @@ get_attributes_from_filepath (const gchar *filepath, int index)
 }
 
 /**
- * get_charset_from_fontconfig_pattern: (skip)
+ * font_manager_get_charset_from_fontconfig_pattern: (skip)
  * @pattern: #FcPattern to examine
  *
  * Supplied FcPattern must contain an FcCharSet.
@@ -532,7 +532,7 @@ get_attributes_from_filepath (const gchar *filepath, int index)
  * The returned list should be freed using #g_slist_free when no longer needed.
  */
 GList *
-get_charset_from_fontconfig_pattern (FcPattern *pattern)
+font_manager_get_charset_from_fontconfig_pattern (FcPattern *pattern)
 {
     GList *result = NULL;
     FcCharSet *charset = NULL;
@@ -542,7 +542,7 @@ get_charset_from_fontconfig_pattern (FcPattern *pattern)
 }
 
 /**
- * get_charset_from_font_object:
+ * font_manager_get_charset_from_font_object:
  * @font_object: #JsonObject
  *
  * Returns: (element-type gunichar) (transfer container) (nullable):
@@ -550,7 +550,7 @@ get_charset_from_fontconfig_pattern (FcPattern *pattern)
  * The returned list should be freed using #g_slist_free when no longer needed.
  */
 GList *
-get_charset_from_font_object (JsonObject *font_object)
+font_manager_get_charset_from_font_object (JsonObject *font_object)
 {
     int index = json_object_get_int_member(font_object, "findex");
     const gchar *filepath = json_object_get_string_member(font_object, "filepath");
@@ -562,15 +562,15 @@ get_charset_from_font_object (JsonObject *font_object)
     FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
     GList *result = NULL;
     if (fontset->nfont > 0)
-        result = get_charset_from_fontconfig_pattern(fontset->fonts[0]);
+        result = font_manager_get_charset_from_fontconfig_pattern(fontset->fonts[0]);
     FcObjectSetDestroy(objectset);
     FcPatternDestroy(pattern);
     FcFontSetDestroy(fontset);
-    return result ? result : get_charset_from_filepath(filepath, index);
+    return result ? result : font_manager_get_charset_from_filepath(filepath, index);
 }
 
 /**
- * get_charset_from_filepath:
+ * font_manager_get_charset_from_filepath:
  * @filepath: full path to font file to query
  * @index: index of face within file to select
  *
@@ -579,7 +579,7 @@ get_charset_from_font_object (JsonObject *font_object)
  * The returned list should be freed using #g_slist_free when no longer needed.
  */
 GList *
-get_charset_from_filepath (const gchar *filepath, int index)
+font_manager_get_charset_from_filepath (const gchar *filepath, int index)
 {
     FT_Face         face;
     FT_Library      library;
@@ -618,16 +618,16 @@ get_charset_from_filepath (const gchar *filepath, int index)
 }
 
 /**
- * sort_json_font_listing:
- * @json_obj: #JsonObject returned from #get_available_fonts*
+ * font_manager_sort_json_font_listing:
+ * @json_obj: #JsonObject returned from #font_manager_get_available_fonts*
  *
  * Returns : (transfer full) : #JsonArray
  */
 JsonArray *
-sort_json_font_listing (JsonObject *json_obj)
+font_manager_sort_json_font_listing (JsonObject *json_obj)
 {
     GList *members = json_object_get_members(json_obj);
-    members = g_list_sort(members, (GCompareFunc) natural_sort);
+    members = g_list_sort(members, (GCompareFunc) font_manager_natural_sort);
     JsonArray *result = json_array_sized_new(g_list_length(members));
     gint index = 0;
     GList *iter;
@@ -641,7 +641,7 @@ sort_json_font_listing (JsonObject *json_obj)
         json_object_set_int_member(_family_obj, "n_variations", n_variations);
         json_object_set_array_member(_family_obj, "variations", _variations);
         json_object_set_int_member(_family_obj, "_index", index);
-        variations = g_list_sort(variations, (GCompareFunc) compare_json_font_node);
+        variations = g_list_sort(variations, (GCompareFunc) font_manager_compare_json_font_node);
         gint _index = 0;
         GList *_iter;
         for (_iter = variations; _iter != NULL; _iter = _iter->next) {
@@ -655,6 +655,7 @@ sort_json_font_listing (JsonObject *json_obj)
                     if (g_strrstr(style, DEFAULT_VARIANTS[i]) != NULL) {
                         const gchar *font_desc = json_object_get_string_member(style_obj, "description");
                         json_object_set_string_member(_family_obj, "description", font_desc);
+                        break;
                     }
                 }
             }
@@ -710,7 +711,7 @@ static void
 process_fontset (const FcFontSet *fontset, JsonObject *json_obj)
 {
     for (int i = 0; i < fontset->nfont; i++) {
-        JsonObject *font_obj = get_attributes_from_fontconfig_pattern(fontset->fonts[i]);
+        JsonObject *font_obj = font_manager_get_attributes_from_fontconfig_pattern(fontset->fonts[i]);
         const gchar *family = json_object_get_string_member(font_obj, "family");
         const gchar *style = json_object_get_string_member(font_obj, "style");
         if (!json_object_get_member(json_obj, family))

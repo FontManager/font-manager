@@ -45,10 +45,10 @@ const char *FT_Error_Message (FT_Error err)
 }
 
 #include "font-manager-freetype.h"
-#include "json.h"
-#include "license.h"
-#include "utils.h"
-#include "vendor.h"
+#include "font-manager-json.h"
+#include "font-manager-license.h"
+#include "font-manager-utils.h"
+#include "font-manager-vendor.h"
 
 static void get_os2_info (JsonObject *json_obj, const FT_Face face);
 static void get_sfnt_info (JsonObject *json_obj, const FT_Face face);
@@ -126,10 +126,10 @@ font_manager_get_metadata (const gchar *filepath, gint index)
 
     json_object_set_string_member(json_obj, "filepath", filepath);
     json_object_set_int_member(json_obj, "findex", index);
-    json_object_set_int_member(json_obj, "owner", get_file_owner(filepath));
+    json_object_set_int_member(json_obj, "owner", font_manager_get_file_owner(filepath));
 
     if (G_UNLIKELY(!g_file_get_contents(filepath, &font, &filesize, &error))) {
-        set_json_error(json_obj, error->code, error->message);
+        font_manager_set_json_error(json_obj, error->code, error->message);
         g_critical("%s : %s", error->message, filepath);
         g_error_free(error);
         return json_obj;
@@ -138,14 +138,14 @@ font_manager_get_metadata (const gchar *filepath, gint index)
     ft_error = FT_Init_FreeType(&library);
 
     if (G_UNLIKELY(ft_error)) {
-        set_json_error(json_obj, ft_error, FT_Error_Message(ft_error));
+        font_manager_set_json_error(json_obj, ft_error, FT_Error_Message(ft_error));
         return json_obj;
     }
 
     ft_error = FT_New_Memory_Face(library, (const FT_Byte *) font, (FT_Long) filesize, index, &face);
 
     if (G_UNLIKELY(ft_error)) {
-        set_json_error(json_obj, ft_error, FT_Error_Message(ft_error));
+        font_manager_set_json_error(json_obj, ft_error, FT_Error_Message(ft_error));
         return json_obj;
     }
 
@@ -207,17 +207,17 @@ font_manager_get_metadata (const gchar *filepath, gint index)
 static gint
 get_license_type (const gchar *license, const gchar *copyright, const gchar *url)
 {
-    for (guint i = 0; i < LICENSE_ENTRIES; i++) {
+    for (guint i = 0; i < FONT_MANAGER_LICENSE_ENTRIES; i++) {
         gint l = 0;
-        while (LicenseData[i].keywords[l]) {
-            if ((copyright && g_strrstr(copyright, LicenseData[i].keywords[l]))
-                || (license && g_strrstr(license, LicenseData[i].keywords[l]))
-                || (url && g_strrstr(url, LicenseData[i].keywords[l])))
+        while (FontManagerLicenseData[i].keywords[l]) {
+            if ((copyright && g_strrstr(copyright, FontManagerLicenseData[i].keywords[l]))
+                || (license && g_strrstr(license, FontManagerLicenseData[i].keywords[l]))
+                || (url && g_strrstr(url, FontManagerLicenseData[i].keywords[l])))
                 return i;
             l++;
         }
     }
-    return LICENSE_ENTRIES - 1;
+    return FONT_MANAGER_LICENSE_ENTRIES - 1;
 }
 
 /*
@@ -230,7 +230,7 @@ get_license_type (const gchar *license, const gchar *copyright, const gchar *url
 static const gchar *
 get_license_name (gint license_type)
 {
-    return LicenseData[license_type].license;
+    return FontManagerLicenseData[license_type].license;
 }
 
 /*
@@ -243,7 +243,7 @@ get_license_name (gint license_type)
 static const gchar *
 get_license_url (gint license_type)
 {
-    return LicenseData[license_type].license_url;
+    return FontManagerLicenseData[license_type].license_url;
 }
 
 /*
@@ -259,20 +259,20 @@ static const gchar *
 get_vendor_from_notice (const gchar *notice)
 {
     if (notice)
-        for(guint i = 0; i < NOTICE_ENTRIES; i++)
-            if (g_strrstr(notice, NoticeData[i].vendor_id))
-                return NoticeData[i].vendor;
+        for(guint i = 0; i < FONT_MANAGER_NOTICE_ENTRIES; i++)
+            if (g_strrstr(notice, FontManagerNoticeData[i].vendor_id))
+                return FontManagerNoticeData[i].vendor;
     return NULL;
 }
 
 static gboolean
-vendor_matches (const gchar vendor[MAX_VENDOR_ID_LENGTH], const gchar *vendor_id)
+vendor_matches (const gchar vendor[FONT_MANAGER_MAX_VENDOR_ID_LENGTH], const gchar *vendor_id)
 {
     gboolean result;
     GString *a, *b;
     /* vendor is not necessarily NUL-terminated. */
-    a = g_string_new_len((const gchar *) vendor, MAX_VENDOR_ID_LENGTH);
-    b = g_string_new_len((const gchar *) vendor_id, MAX_VENDOR_ID_LENGTH);
+    a = g_string_new_len((const gchar *) vendor, FONT_MANAGER_MAX_VENDOR_ID_LENGTH);
+    b = g_string_new_len((const gchar *) vendor_id, FONT_MANAGER_MAX_VENDOR_ID_LENGTH);
     result = g_string_equal(a, b);
     g_string_free(a, TRUE);
     g_string_free(b, TRUE);
@@ -282,8 +282,8 @@ vendor_matches (const gchar vendor[MAX_VENDOR_ID_LENGTH], const gchar *vendor_id
 static gboolean
 is_known_vendor (gchar *vendor)
 {
-    for (guint i = 0; i < VENDOR_ENTRIES; i++)
-        if (g_strcmp0(VendorData[i].vendor, vendor) == 0)
+    for (guint i = 0; i < FONT_MANAGER_VENDOR_ENTRIES; i++)
+        if (g_strcmp0(FontManagerVendorData[i].vendor, vendor) == 0)
             return TRUE;
     return FALSE;
 }
@@ -298,12 +298,12 @@ is_known_vendor (gchar *vendor)
  * Returns: (transfer none): string suitable for display or %NULL
  */
 static const gchar *
-get_vendor_from_vendor_id (const gchar vendor[MAX_VENDOR_ID_LENGTH])
+get_vendor_from_vendor_id (const gchar vendor[FONT_MANAGER_MAX_VENDOR_ID_LENGTH])
 {
     if (vendor)
-        for (guint i = 0; i < VENDOR_ENTRIES; i++)
-            if (vendor_matches(vendor, VendorData[i].vendor_id))
-                return VendorData[i].vendor;
+        for (guint i = 0; i < FONT_MANAGER_VENDOR_ENTRIES; i++)
+            if (vendor_matches(vendor, FontManagerVendorData[i].vendor_id))
+                return FontManagerVendorData[i].vendor;
     return NULL;
 }
 
@@ -521,7 +521,7 @@ get_license_info (JsonObject *json_obj)
     const gchar *license_name = get_license_name(license_type);
     json_object_set_string_member(json_obj, "license-type", license_name);
 
-    if (license_type < (gint) (LICENSE_ENTRIES - 1)) {
+    if (license_type < (gint) (FONT_MANAGER_LICENSE_ENTRIES - 1)) {
         license_url = get_license_url(license_type);
         if (license_url)
             json_object_set_string_member(json_obj, "license-url", license_url);
@@ -608,7 +608,7 @@ correct_filetype (JsonObject *json_obj)
     /* Compact Font Format doesn't really mean much. */
     if (g_strcmp0(filetype, "CFF") == 0) {
         const gchar *filepath = json_object_get_string_member(json_obj, "filepath");
-        gchar *ext = get_file_extension(filepath);
+        gchar *ext = font_manager_get_file_extension(filepath);
         if (g_ascii_strcasecmp(ext, "otf") == 0
             || g_ascii_strcasecmp(ext, "ttf") == 0
             || g_ascii_strcasecmp(ext, "ttc") == 0) {
@@ -665,7 +665,7 @@ cleanup_version_string (JsonObject *json_obj)
 
     for (guint i = 0; i < G_N_ELEMENTS(VERSION_STRING_EXCLUDES); i++) {
         if (g_strrstr(version, excludes[i]) != NULL) {
-            gchar *res = str_replace(version, excludes[i], "");
+            gchar *res = font_manager_str_replace(version, excludes[i], "");
             if (res) {
                 json_object_set_string_member(json_obj, "version", g_strstrip(res));
                 g_free(res);

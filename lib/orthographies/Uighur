@@ -3,11 +3,11 @@
     "ئۇيغۇر",
     0x6ad,
     "ڛ ۆ ڭ ە پ چ ژ گ",
-    { 
-        "", 
-        END_OF_DATA
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x6ad,
         0x6c6,
         0x6c8,
@@ -18,7 +18,7 @@
         0x686,
         0x698,
         0x6af,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

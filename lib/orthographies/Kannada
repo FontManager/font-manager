@@ -3,37 +3,37 @@
     "ಕನ್ನಡ",
     0xcb9,
     "ವ ಶ ಷ ಸ ಹ ಒ ಓ ಔ ಕ ಖ ಗ",
-    { 
-        "ಹೂವಿನ ಜೊತೆ ನಾರು ಸ್ವರ್ಗ ಸೇರಿಥು.", 
-        END_OF_DATA
+    {
+        "ಹೂವಿನ ಜೊತೆ ನಾರು ಸ್ವರ್ಗ ಸೇರಿಥು.",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
-        START_RANGE_PAIR,
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
         0xc82, 0xc83,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xc85, 0xc8c,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xc8e, 0xc90,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xc92, 0xca8,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xcaa, 0xcb3,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xcb5, 0xcb9,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xcbe, 0xcc4,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xcc6, 0xcc8,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xcca, 0xccd,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xcd5, 0xcd6,
         0xcde,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xce0, 0xce1,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xce6, 0xcef,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

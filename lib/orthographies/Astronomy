@@ -3,29 +3,29 @@
     "Astronomy",
     0x2605,
     "",
-    { 
-        "", 
-        END_OF_DATA
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x2605,
         0x2606,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x2609, 0x260d,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x263d, 0x2644,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x2646, 0x2653,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x26b3, 0x26b7,
         0x26ce,
         0x26e2,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x2b50, 0x2b52,
         0x1f30c,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x1f311, 0x1f320,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

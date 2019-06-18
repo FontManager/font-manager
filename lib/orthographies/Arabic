@@ -3,18 +3,18 @@
     "العربية",
     0x639,
     "ا ب ت ث ج ح خ د ذ ر ز س",
-    { 
-        "العين لا تعلو على الحاج", 
-        END_OF_DATA
+    {
+        "العين لا تعلو على الحاج",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
-        START_RANGE_PAIR,
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
         0x621, 0x63a,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x640, 0x652,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x660, 0x669,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

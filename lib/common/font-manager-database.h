@@ -27,8 +27,8 @@
 #include <json-glib/json-glib.h>
 #include <sqlite3.h>
 
-#include "string-hashset.h"
-#include "utils.h"
+#include "font-manager-string-hashset.h"
+#include "font-manager-utils.h"
 
 G_BEGIN_DECLS
 
@@ -133,8 +133,8 @@ void font_manager_sync_database (FontManagerDatabase *db,
 gboolean font_manager_sync_database_finish (GAsyncResult *result, GError **error);
 
 void font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
-                                                    StringHashset *families,
-                                                    StringHashset *fonts,
+                                                    FontManagerStringHashset *families,
+                                                    FontManagerStringHashset *fonts,
                                                     const gchar *sql,
                                                     GError **error);
 

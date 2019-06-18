@@ -3,11 +3,11 @@
     "Afrikaans",
     0x149,
     "ÈèËëÔôÛûŉ",
-    { 
-        "Alle menslike wesens word vry, met gelyke waardigheid en regte, gebore.", 
-        END_OF_DATA
+    {
+        "Alle menslike wesens word vry, met gelyke waardigheid en regte, gebore.",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xc0,
         0xe0,
         0xc1,
@@ -45,7 +45,7 @@
         0xdd,
         0xfd,
         0x149,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

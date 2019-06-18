@@ -3,11 +3,11 @@
     "Català",
     0x13f,
     "ÀàÇçÉéÍíĿŀÚúÑñ",
-    { 
-        "Aqueix betzol, Jan, comprava whisky de figa.", 
-        END_OF_DATA
+    {
+        "Aqueix betzol, Jan, comprava whisky de figa.",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xc0,
         0xe0,
         0xc7,
@@ -32,7 +32,7 @@
         0xfc,
         0xd1,
         0xf1,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

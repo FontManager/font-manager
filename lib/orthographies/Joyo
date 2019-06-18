@@ -3,11 +3,11 @@
     "日本常用漢字",
     0x4ed9,
     "凹渦靴稼拐涯仙",
-    { 
-        "常用漢字...", 
-        END_OF_DATA
+    {
+        "常用漢字...",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x4e9c,
         0x54c0,
         0x611b,
@@ -1953,7 +1953,7 @@
         0x67a0,
         0x6e7e,
         0x8155,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

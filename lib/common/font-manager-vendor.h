@@ -1,21 +1,21 @@
 /* Do not edit directly. See build-aux directory */
-#ifndef __VENDOR_H__
-#define __VENDOR_H__
+#ifndef __FONT_MANAGER_VENDOR_H__
+#define __FONT_MANAGER_VENDOR_H__
 
 #include <glib.h>
 
 G_BEGIN_DECLS
 
-#define MAX_VENDOR_ID_LENGTH 5
-#define MAX_VENDOR_LENGTH 100
+#define FONT_MANAGER_MAX_VENDOR_ID_LENGTH 5
+#define FONT_MANAGER_MAX_VENDOR_LENGTH 100
 
 static const struct
 {
-    const gchar vendor[MAX_VENDOR_LENGTH];
-    const gchar vendor_id[MAX_VENDOR_LENGTH];
+    const gchar vendor[FONT_MANAGER_MAX_VENDOR_LENGTH];
+    const gchar vendor_id[FONT_MANAGER_MAX_VENDOR_LENGTH];
 }
 /* Order is significant. */
-NoticeData [] =
+FontManagerNoticeData [] =
 {
     /* Notice data sourced from fcfreetype.c - http://www.freetype.org/ */
     {"Adobe", "adobe"},
@@ -51,10 +51,10 @@ NoticeData [] =
 
 static const struct
 {
-    const gchar vendor_id[MAX_VENDOR_ID_LENGTH];
-    const gchar vendor[MAX_VENDOR_LENGTH];
+    const gchar vendor_id[FONT_MANAGER_MAX_VENDOR_ID_LENGTH];
+    const gchar vendor[FONT_MANAGER_MAX_VENDOR_LENGTH];
 }
-VendorData[] =
+FontManagerVendorData[] =
 {
 
     /* Various Sources */
@@ -65,7 +65,6 @@ VendorData[] =
 
 
     /* Courtesy of Microsoft Typography - https://docs.microsoft.com/en-us/typography/vendors/ */
-    {"!ETF", "!Exclamachine Type Foundry"},
     {"$pro", "CheapProFonts"},
     {"100", "AUTHENTIC"},
     {"0264", "Patricia Lillie"},
@@ -78,8 +77,8 @@ VendorData[] =
     {"3ip", "Three Islands Press"},
     {"4FEB", "4th february"},
     {"5PTS", "Five Points Technology"},
+    {"72PT", "72 Puntos"},
     {"918", "RavenType"},
-    {"A&S", "Art&Sign Studio"},
     {"A2", "A2-Type"},
     {"aaff", "AstroAcademia Font Foundry"},
     {"AA", "Alireza Alipour"},
@@ -142,7 +141,6 @@ VendorData[] =
     {"AVFF", "Agustín Varela Font Factory"},
     {"AVP", "Aviation Partners"},
     {"AZLS", "Azalea Software, Inc."},
-    {"B&H", "Bigelow & Holmes"},
     {"BARS", "CIA (BAR CODES) UK"},
     {"BASE", "Baseline Fonts"},
     {"BAT", "BUREAU DES AFFAIRES TYPOGRAPHIQUES"},
@@ -182,7 +180,6 @@ VendorData[] =
     {"BUBU", "BUBULogix"},
     {"BWFW", "B/W Fontworks"},
     {"BwT", "Branding with Type"},
-    {"C&B", "Coppers & Brasses"},
     {"C&C", "Carter & Cone"},
     {"C&G", "C&G Inc."},
     {"C21", "Club 21"},
@@ -222,7 +219,7 @@ VendorData[] =
     {"cwwf", "Computers World Wide/AC Capital Funding"},
     {"CYPE", "Club Type"},
     {"CYRE", "Cyreal"},
-    {"D&ST", "Dots&Stripes Type"},
+    {"CZOO", "Creative ZOO"},
     {"DADA", "Dada Studio"},
     {"DAMA", "Dalton Maag Limited"},
     {"DARK", "Out Of The Dark"},
@@ -261,7 +258,6 @@ VendorData[] =
     {"DUXB", "Duxbury Systems, Inc."},
     {"DXTF", "DXTypefoundry"},
     {"DYNA", "DynaComware"},
-    {"ECAL", "ECAL Typefaces"},
     {"EDBI", "edilbiStudio"},
     {"EDGE", "Rivers Edge Corp."},
     {"EF", "Elsner+Flake"},
@@ -276,7 +272,6 @@ VendorData[] =
     {"ESIG", "E-Signature"},
     {"ETIO", "Ethiopian Font Foundry"},
     {"EVER", "Evertype"},
-    {"FA", "FontArte Type Foundry"},
     {"FAFO", "FamiraFonts"},
     {"FAPA", "FamiljenPangea"},
     {"FAT", "Fatype"},
@@ -328,7 +323,6 @@ VendorData[] =
     {"FWRE", "Fontware Limited"},
     {"FXTL", "Foxtail Collectif"},
     {"FY", "Fontyou"},
-    {"GAF", "Glifo Art Fonts Inc."},
     {"GAKU", "Gakumon"},
     {"GALA", "Galápagos Design Group, Inc."},
     {"GALO", "Gerald Gallo"},
@@ -356,10 +350,10 @@ VendorData[] =
     {"GS", "Grayscale Limited"},
     {"GT", "Graphity!"},
     {"GTYP", "G-Type"},
-    {"H", "Hurme Design"},
     {"H&FJ", "Hoefler & Frere-Jones"},
     {"HA", "HoboArt"},
     {"HAD", "Hoffmann Angelic Design"},
+    {"Hafo", "Hafonton"},
     {"HAIL", "Hail Design"},
     {"HanS", "HanStyle"},
     {"HAUS", "TypeHaus"},
@@ -381,7 +375,6 @@ VendorData[] =
     {"HVD", "HVD Fonts GmbH"},
     {"HXTP", "Hexatype"},
     {"HY", "HanYang Information & Communication"},
-    {"IBM", "IBM"},
     {"IC", "Ian J. Cox"},
     {"IDAU", "IDAutomation.com, Inc."},
     {"IDEA", "Glenn Campbell t/a Idea Studio"},
@@ -390,12 +383,14 @@ VendorData[] =
     {"IDMS", "Incstone Design by Megami Studios"},
     {"Idt.", "Identitype"},
     {"IFF", "Indian Font Factory"},
+    {"IINF", "iInformatica Srls"},
     {"IKOF", "IKOffice GmbH"},
     {"ILP", "Indigenous Languages Project"},
     {"IMPR", "Impress"},
     {"INGA", "Inga Type"},
     {"INGT", "Ingrimayne Type"},
     {"INRA", "INRAY Inc."},
+    {"INTF", "Interfont"},
     {"INTR", "Interstitial Entertainment"},
     {"INVC", "Invoice Central"},
     {"INVD", "TYPE INVADERS"},
@@ -407,7 +402,6 @@ VendorData[] =
     {"ITSM", "Simon Stratford"},
     {"IvyF", "The Ivy Foundry"},
     {"IWA", "Iwata Corporation"},
-    {"J23", "June 23"},
     {"JABM", "JAB'M Foundry"},
     {"JAF", "Just Another Foundry"},
     {"JAKE", "Jake Tilson Studio"},
@@ -423,9 +417,10 @@ VendorData[] =
     {"JP", "Jamra Patel"},
     {"JPTT", "Jeremy Tankard Typography Ltd"},
     {"JRW", "Richard Wordingham"},
+    {"JUST", "Just in Type"},
+    {"JVRT", "Just van Rossum Type"},
     {"JWTM", "Type Matters"},
     {"JY", "JIYUKOBO Ltd."},
-    {"K", "Kvant Type Foundry"},
     {"ka", "kloeg architecture"},
     {"KAME", "Kame Design"},
     {"KATF", "Kingsley/ATF"},
@@ -451,7 +446,6 @@ VendorData[] =
     {"KTRF", "Kazan Traditional Font"},
     {"KUBA", "Kuba Tatarkiewicz"},
     {"KUSH", "KushJain"},
-    {"L2M3", "L2M3 Kommunikationsdesign GmbH"},
     {"LA", "Large"},
     {"LAIT", "la laiterie"},
     {"LAND", "Typeland"},
@@ -459,14 +453,17 @@ VendorData[] =
     {"LARA", "Larabiefonts"},
     {"LAUD", "Carolina Laudon"},
     {"LAYT", "LAYOUT SARL"},
+    {"LBV", "La Bolde Vita"},
     {"LEAF", "Interleaf, Inc."},
     {"LETR", "Letraset"},
     {"lewd", "Lettering World LLC"},
     {"LFS", "Letters from Sweden"},
+    {"LGFF", "LIPIGHOR FONT FOUNDRY"},
     {"LGX", "Logix Research Institute, Inc."},
     {"LHF", "Letterhead Fonts"},
     {"LIND", "Lindenberg Software LLC"},
     {"LING", "Linguist's Software"},
+    {"LINK", "Linkpen Handwriting Fonts"},
     {"LINO", "Linotype GmbH"},
     {"LIVE", "Livedesign"},
     {"LJ", "Letterjuice"},
@@ -475,6 +472,7 @@ VendorData[] =
     {"LNTO", "Lineto"},
     {"lool", "lo-ol Type"},
     {"LORO", "LoRo Productions"},
+    {"LOU", "Lou Type Foundry"},
     {"LP", "LetterPerfect Fonts"},
     {"LT", "Le Typophage"},
     {"LTF", "Liberty Type Foundry"},
@@ -487,7 +485,6 @@ VendorData[] =
     {"LuFo", "LucasFonts"},
     {"LUSH", "Lush Type"},
     {"LUV", "iLUVfonts"},
-    {"M+F", "Measure + Fit"},
     {"MACR", "Macromedia / Made with Fontographer"},
     {"MADT", "MADType"},
     {"MagD", "Magus Digital"},
@@ -534,6 +531,7 @@ VendorData[] =
     {"MONO", "Monotype Imaging"},
     {"MOON", "Moonlight Type and Technolog"},
     {"MOTA", "Mota Italic"},
+    {"MRSL", "Mark Russell"},
     {"MRSW", "Morisawa & Company, Ltd."},
     {"MRV", "Morovia Corporation"},
     {"MS", "Microsoft Corp."},
@@ -552,7 +550,6 @@ VendorData[] =
     {"MVty", "MV Typo"},
     {"MW", "Michael Want"},
     {"MYFO", "MyFonts.com"},
-    {"NB", "No Bodoni Typography"},
     {"NBR", "Noir Blanc Rouge"},
     {"ncnd", "&cond"},
     {"NDCT", "Neufville Digital Corporatype"},
@@ -574,7 +571,6 @@ VendorData[] =
     {"NVTF", "Nova Type Foundry"},
     {"NYM", "Nymark Type"},
     {"NYCM", "NYC Music Services"},
-    {"ODSR", "Oddsorts"},
     {"OHG", "Our House Graphic Design"},
     {"OHNO", "OH no Type Company"},
     {"OKAY", "Okay Type"},
@@ -587,8 +583,8 @@ VendorData[] =
     {"ORBI", "Orbit Enterprises, Inc."},
     {"ORK1", "Ork1"},
     {"OSFC", "Out Of Step Font Company"},
+    {"OST", "Orange Slice Type"},
     {"OURT", "Ourtype"},
-    {"P22", "P22 Inc."},
     {"PARA", "ParaType Inc."},
     {"pbd0", "Peter Bain"},
     {"PBL", "Publié"},
@@ -605,6 +601,7 @@ VendorData[] =
     {"PLAT", "PLATINUM technology"},
     {"Plau", "Plau"},
     {"PLAY", "Playtype"},
+    {"PPPR", "Pepper Type"},
     {"PRFS", "Production First Software"},
     {"PRGR", "Paragraph"},
     {"PRLK", "Emre Parlak"},
@@ -621,10 +618,8 @@ VendorData[] =
     {"PTYP", "PreussType"},
     {"PYRS", "PYRS Fontlab Ltd. / Made with FontLab"},
     {"PYTE", "The Pyte Foundry"},
-    {"QMSI", "QMS/Imagen"},
     {"QRAT", "Quadrat Communications"},
     {"QTYP", "Qtypography"},
-    {"RARE", "Rare Bird Font Foundry"},
     {"RARI", "RAR Illustrations"},
     {"RDGR", "Rüdiger"},
     {"READ", "ReadyType"},
@@ -651,7 +646,6 @@ VendorData[] =
     {"RXBN", "Roxaboxen"},
     {"RYOB", "Ryobi Limited"},
     {"RYT", "Ra'ey Type"},
-    {"S4TF", "Sed4-Type Foundry"},
     {"SAJA", "Saja Typeworks"},
     {"SALT", "Solonka Type Foundry"},
     {"SAND", "Sandoll"},
@@ -682,6 +676,7 @@ VendorData[] =
     {"SL", "Silesian Letters"},
     {"Slab", "Schriftlabor"},
     {"SMC", "Swathanthra Malayalam Computing"},
+    {"SMPJ", "Senamirmir Project"},
     {"SN", "SourceNet"},
     {"SOHO", "Soft Horizons"},
     {"SOS", "Standing Ovations Software"},
@@ -704,7 +699,6 @@ VendorData[] =
     {"SYN", "SynFonts"},
     {"SYRC", "Syriac Computing Institute"},
     {"SYRF", "Syrian Revolution font"},
-    {"TB", "TypeBank Co.,Ltd"},
     {"TBFF", "TrueBlue Font Foundry"},
     {"TC", "Typeco"},
     {"TCH", "Darryl Cook"},
@@ -760,7 +754,6 @@ VendorData[] =
     {"TYPO", "Typodermic"},
     {"TYPR", "Type Project"},
     {"TYRE", "typerepublic"},
-    {"UA", "UnAuthorized Type"},
     {"UBER", "übertype"},
     {"UKUK", "Ultra Kühl"},
     {"ULA", "Montserrat Typeface"},
@@ -769,30 +762,29 @@ VendorData[] =
     {"UNIC", "Unicode Consortium"},
     {"URW", "URW++"},
     {"UT", "Unitype Inc"},
-    {"VINT", "Vinterstille"},
     {"VJ", "eDESIGNzone"},
     {"VKP", "Vijay K. Patel"},
     {"VLKF", "Visualogik Technology & Design"},
     {"VLNL", "VetteLetters.nl"},
     {"VMT", "VMType"},
     {"VOG", "Martin Vogel"},
+    {"VOL", "Bernd Volmer"},
+    {"VOLT", "volto.one"},
     {"VRED", "Vred Letters"},
     {"VROM", "Vladimir Romanov"},
     {"VS", "VorSicht GmbH"},
     {"VT", "VISUALTYPE SRL"},
     {"VTF", "Velvetyne Type Foundry"},
     {"VTP", "Quang Manh Nguyen"},
-    {"WAFO", "Walden Font Co."},
+    {"VTYP", "(v) design"},
     {"WALA", "Fontwala"},
     {"WASP", "Wasp Barcode Technologies"},
     {"WEI", "Wei Huang"},
     {"WILL", "Willerstorfer Font Foundry"},
     {"WL", "Writ Large Fonts"},
     {"WM", "Webmakers India"},
-    {"XFC", "Xerox Font Services"},
     {"XOTH", "Xoth Morello"},
     {"XYZ", "XYZ Type LLC"},
-    {"Y&Y", "Y&Y, Inc."},
     {"YDI", "YOON Design Group"},
     {"YDS", "Yellow Design Studio"},
     {"YN", "Yanone"},
@@ -807,10 +799,10 @@ VendorData[] =
 
 };
 
-#define NOTICE_ENTRIES G_N_ELEMENTS(NoticeData)
-#define VENDOR_ENTRIES G_N_ELEMENTS(VendorData)
+#define FONT_MANAGER_NOTICE_ENTRIES G_N_ELEMENTS(FontManagerNoticeData)
+#define FONT_MANAGER_VENDOR_ENTRIES G_N_ELEMENTS(FontManagerVendorData)
 
 G_END_DECLS
 
-#endif /* __VENDOR_H__ */
+#endif /* __FONT_MANAGER_VENDOR_H__ */
 

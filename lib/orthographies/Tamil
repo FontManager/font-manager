@@ -3,11 +3,11 @@
     "தமிழ் அரிச்சுவடி ",
     0xb95,
     "கஙசஜஞடணத",
-    { 
-        "செம்புலப் பெயனீர் போல அன்புடை நெஞ்சம் தாங்கலந் தனவே", 
-        END_OF_DATA
+    {
+        "செம்புலப் பெயனீர் போல அன்புடை நெஞ்சம் தாங்கலந் தனவே",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xb82,
         0xb83,
         0xb85,
@@ -59,7 +59,7 @@
         0xbcd,
         0xbd0,
         0xbd7,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xbe6, 0xbef,
         0xbf0,
         0xbf1,
@@ -72,7 +72,7 @@
         0xbf8,
         0xbf9,
         0xbfa,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

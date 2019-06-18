@@ -3,11 +3,11 @@
     "తెలుగు",
     0xc15,
     "క ఖ గ ఘ ఙ చ ఛ జ",
-    { 
-        "క ఖ గ ఘ ఙ చ ఛ జ", 
-        END_OF_DATA
+    {
+        "క ఖ గ ఘ ఙ చ ఛ జ",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xc01,
         0xc02,
         0xc03,
@@ -101,7 +101,7 @@
         0xc7d,
         0xc7e,
         0xc7f,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

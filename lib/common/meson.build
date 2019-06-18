@@ -4,8 +4,8 @@ result = run_command(python, '-c', list_sources)
 common_sources = result.stdout().strip().split('\n')
 common_sources += [
     configure_file(
-        input: 'utils.c.in',
-        output: 'utils.c',
+        input: 'font-manager-utils.c.in',
+        output: 'font-manager-utils.c',
         configuration: config
     )
 ]
@@ -37,14 +37,13 @@ common_gir = gnome.generate_gir(libcommon,
                                     json, gio, glib, gobject, gtk, pango, sqlite,
                                     xml, fontconfig, freetype, pangoft2, unicode_vapi
                                 ],
-                                extra_args: [
-                                    '--warn-all',
-                                    '--accept-unprefixed'
-                                ],
+                                extra_args: [ '--warn-all' ],
                                 includes: [
-                                    'Json-1.0',
+                                    'GLib-2.0',
+                                    'Gio-2.0',
                                     'Gdk-3.0',
                                     'Gtk-3.0',
+                                    'Json-1.0',
                                     'libxml2-2.0'
                                 ],
                                 include_directories: default_includes)
@@ -67,6 +66,7 @@ common_vapi = gnome.generate_vapi('FontManager-@0@'.format(meson.project_version
                                     metadata_dirs: meson.current_build_dir(),
                                     packages: [
                                         'glib-2.0',
+                                        'gio-2.0',
                                         'gdk-3.0',
                                         'gtk+-3.0',
                                         'json-glib-1.0',

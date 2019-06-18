@@ -18,9 +18,7 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-using FontManager;
-
-namespace FontViewer {
+namespace FontManager.FontViewer {
 
     [DBus (name = "org.gnome.FontViewer")]
     public class Application : Gtk.Application {

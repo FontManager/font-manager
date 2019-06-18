@@ -3,13 +3,13 @@
     "Central European",
     0x10c,
     "ÂâĄąÇçĐđĹĺűż",
-    { 
-        "Pchnąć w tę łódź jeża lub ośm skrzyń fig.", 
-        "Gojazni đačić s biciklom drži hmelj i finu vatu u džepu nošnje.", 
-        "Koń i żółw grali w kości z piękną ćmą u źródła.", 
-        END_OF_DATA
+    {
+        "Pchnąć w tę łódź jeża lub ośm skrzyń fig.",
+        "Gojazni đačić s biciklom drži hmelj i finu vatu u džepu nošnje.",
+        "Koń i żółw grali w kości z piękną ćmą u źródła.",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xc1,
         0xc2,
         0xc4,
@@ -91,7 +91,7 @@
         0x17c,
         0x17d,
         0x17e,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

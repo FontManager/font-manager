@@ -3,11 +3,11 @@
     "සිංහල",
     0xd9a,
     "ක ඛ ග ඝ ඞ ඟ ච ඡ",
-    { 
-        "ක ඛ ග ඝ ඞ ඟ ච ඡ", 
-        END_OF_DATA
+    {
+        "ක ඛ ග ඝ ඞ ඟ ච ඡ",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xd82,
         0xd83,
         0xd85,
@@ -88,7 +88,7 @@
         0xdf2,
         0xdf3,
         0xdf4,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

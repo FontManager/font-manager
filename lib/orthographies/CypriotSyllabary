@@ -3,21 +3,21 @@
     "Cypriot Syllabary",
     0x10800,
     "𐠂𐠁𐠀𐠃𐠄𐠅",
-    { 
-        "", 
-        END_OF_DATA
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
-        START_RANGE_PAIR,
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
         0x10800, 0x10805,
         0x10808,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x1080a, 0x10835,
         0x10837,
         0x10838,
         0x1083c,
         0x1083f,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

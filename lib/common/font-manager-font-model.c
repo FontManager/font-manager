@@ -494,7 +494,7 @@ font_manager_font_model_class_init (FontManagerFontModelClass *klass)
  * font_manager_font_model_new:
  *
  * Minimal #GtkTreeModel implementation which wraps the #JsonArray
- * returned by #sort_json_font_listing
+ * returned by #font_manager_sort_json_font_listing
  *
  * Returns : (transfer full) : a new #FontManagerFontModel
  */

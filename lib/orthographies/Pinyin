@@ -3,11 +3,11 @@
     "汉语拼音",
     0x1da,
     "āáǎàēéěèǘǚǜü",
-    { 
-        "hàn yǔ pīn yīn", 
-        END_OF_DATA
+    {
+        "hàn yǔ pīn yīn",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x101,
         0xe1,
         0x1ce,
@@ -33,7 +33,7 @@
         0x1da,
         0x1dc,
         0xfc,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

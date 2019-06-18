@@ -3,14 +3,14 @@
     "",
     0x10a60,
     "𐩠𐩡𐩢𐩣𐩤𐩥𐩦𐩧𐩨𐩩",
-    { 
-        "𐩠𐩡𐩢𐩣𐩤𐩥𐩦𐩧𐩨𐩩", 
-        END_OF_DATA
+    {
+        "𐩠𐩡𐩢𐩣𐩤𐩥𐩦𐩧𐩨𐩩",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
-        START_RANGE_PAIR,
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
         0x10a60, 0x10a7f,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

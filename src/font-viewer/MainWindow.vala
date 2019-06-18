@@ -18,9 +18,7 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-using FontManager;
-
-namespace FontViewer {
+namespace FontManager.FontViewer {
 
     internal const string w1 = _("Font Viewer");
     internal const string w2 = _("Preview font files before installing them.");

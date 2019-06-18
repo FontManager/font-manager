@@ -1,4 +1,4 @@
-/* string-hashset.c
+/* font-manager-string-hashset.c
  *
  * Copyright (C) 2009 - 2019 Jerry Casiano
  *
@@ -18,9 +18,9 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include "string-hashset.h"
+#include "font-manager-string-hashset.h"
 
-struct _StringHashsetClass
+struct _FontManagerStringHashsetClass
 {
     GObjectClass parent_class;
 };
@@ -29,9 +29,9 @@ typedef struct
 {
     GHashTable *hashset;
 }
-StringHashsetPrivate;
+FontManagerStringHashsetPrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE(StringHashset, string_hashset, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE(FontManagerStringHashset, font_manager_string_hashset, G_TYPE_OBJECT)
 
 enum
 {
@@ -41,25 +41,26 @@ enum
 };
 
 static void
-string_hashset_finalize (GObject *self)
+font_manager_string_hashset_finalize (GObject *gobject)
 {
-    g_return_if_fail(self != NULL);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(STRING_HASHSET(self));
+    g_return_if_fail(gobject != NULL);
+    FontManagerStringHashset *self = FONT_MANAGER_STRING_HASHSET(gobject);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     if (priv->hashset)
         g_hash_table_destroy(priv->hashset);
-    G_OBJECT_CLASS(string_hashset_parent_class)->finalize(self);
+    G_OBJECT_CLASS(font_manager_string_hashset_parent_class)->finalize(gobject);
     return;
 }
 
 static void
-string_hashset_get_property (GObject *gobject,
-                             guint property_id,
-                             GValue *value,
-                             GParamSpec *pspec)
+font_manager_string_hashset_get_property (GObject *gobject,
+                                          guint property_id,
+                                          GValue *value,
+                                          GParamSpec *pspec)
 {
-    StringHashset *self = STRING_HASHSET(gobject);
+    FontManagerStringHashset *self = FONT_MANAGER_STRING_HASHSET(gobject);
     g_return_if_fail(self != NULL);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
 
     switch (property_id) {
         case PROP_SIZE:
@@ -74,11 +75,11 @@ string_hashset_get_property (GObject *gobject,
 }
 
 static void
-string_hashset_class_init (StringHashsetClass *klass)
+font_manager_string_hashset_class_init (FontManagerStringHashsetClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    object_class->finalize = string_hashset_finalize;
-    object_class->get_property = string_hashset_get_property;
+    object_class->finalize = font_manager_string_hashset_finalize;
+    object_class->get_property = font_manager_string_hashset_get_property;
 
     g_object_class_install_property(object_class,
                                     PROP_SIZE,
@@ -89,10 +90,10 @@ string_hashset_class_init (StringHashsetClass *klass)
 }
 
 static void
-string_hashset_init (StringHashset *self)
+font_manager_string_hashset_init (FontManagerStringHashset *self)
 {
     g_return_if_fail(self != NULL);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     /* NULL value_destroy_function, keys and values are same */
     priv->hashset = g_hash_table_new_full((GHashFunc) g_str_hash,
                                           (GEqualFunc) g_str_equal,
@@ -102,18 +103,18 @@ string_hashset_init (StringHashset *self)
 }
 
 /**
- * string_hashset_add:
- * @self:           a #StringHashset
- * @str:            string to add to #StringHashset
+ * font_manager_string_hashset_add:
+ * @self:           a #FontManagerStringHashset
+ * @str:            string to add to #FontManagerStringHashset
  *
  * Returns:         %TRUE on success
  */
 gboolean
-string_hashset_add (StringHashset *self, const gchar *str)
+font_manager_string_hashset_add (FontManagerStringHashset *self, const gchar *str)
 {
     g_return_val_if_fail(self != NULL, FALSE);
     g_return_val_if_fail(str != NULL, FALSE);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     /* g_hash_table_add returns FALSE if the key previously existed */
     gchar *tmp = g_strdup(str);
     g_hash_table_add(priv->hashset, tmp);
@@ -121,20 +122,20 @@ string_hashset_add (StringHashset *self, const gchar *str)
 }
 
 /**
- * string_hashset_add_all:
- * @self:           a #StringHashset
- * @add: (element-type utf8) (transfer none): #Glist of strings to add to #StringHashset
+ * font_manager_string_hashset_add_all:
+ * @self:           a #FontManagerStringHashset
+ * @add: (element-type utf8) (transfer none): #Glist of strings to add to #FontManagerStringHashset
  *
  * Returns:         %TRUE if successful
  */
 gboolean
-string_hashset_add_all (StringHashset *self, GList *add)
+font_manager_string_hashset_add_all (FontManagerStringHashset *self, GList *add)
 {
     g_return_val_if_fail(self != NULL, FALSE);
     GList *iter;
     gboolean result = TRUE;
     for (iter = add; iter != NULL; iter = iter->next) {
-        if (!string_hashset_add(self, iter->data)) {
+        if (!font_manager_string_hashset_add(self, iter->data)) {
             result = FALSE;
             g_warning(G_STRLOC ": Failed to add %s", (char *) iter->data);
         }
@@ -143,32 +144,32 @@ string_hashset_add_all (StringHashset *self, GList *add)
 }
 
 /**
- * string_hashset_contains:
- * @self:           a #StringHashset
- * @str:            string to look for in #StringHashset
+ * font_manager_string_hashset_contains:
+ * @self:           a #FontManagerStringHashset
+ * @str:            string to look for in #FontManagerStringHashset
  *
- * Returns:         %TRUE if #StringHashset contains str
+ * Returns:         %TRUE if #FontManagerStringHashset contains str
  */
 gboolean
-string_hashset_contains (StringHashset *self, const gchar *str)
+font_manager_string_hashset_contains (FontManagerStringHashset *self, const gchar *str)
 {
     g_return_val_if_fail(self != NULL && str != NULL, FALSE);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     return g_hash_table_contains(priv->hashset, str);
 }
 
 /**
- * string_hashset_contains_all:
- * @self:           a #StringHashset
+ * font_manager_string_hashset_contains_all:
+ * @self:           a #FontManagerStringHashset
  * @contents: (element-type utf8) (transfer none): #GList containing strings to check
  *
- * Returns:         %TRUE if all strings in @contents are contained in #StringHashset
+ * Returns:         %TRUE if all strings in @contents are contained in #FontManagerStringHashset
  */
 gboolean
-string_hashset_contains_all (StringHashset *self, GList *contents)
+font_manager_string_hashset_contains_all (FontManagerStringHashset *self, GList *contents)
 {
     g_return_val_if_fail(self != NULL, FALSE);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     GList *iter;
     for (iter = contents; iter != NULL; iter = iter->next)
         if (!g_hash_table_contains(priv->hashset, iter->data))
@@ -177,32 +178,32 @@ string_hashset_contains_all (StringHashset *self, GList *contents)
 }
 
 /**
- * string_hashset_remove:
- * @self:           a #StringHashset
- * @str:            string to remove from #StringHashset
+ * font_manager_string_hashset_remove:
+ * @self:           a #FontManagerStringHashset
+ * @str:            string to remove from #FontManagerStringHashset
  *
  * Returns:         %TRUE if successful
  */
 gboolean
-string_hashset_remove (StringHashset *self, const gchar *str)
+font_manager_string_hashset_remove (FontManagerStringHashset *self, const gchar *str)
 {
     g_return_val_if_fail(self != NULL, FALSE);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     return g_hash_table_remove(priv->hashset, str);
 }
 
 /**
- * string_hashset_remove_all:
- * @self:           a #StringHashset
+ * font_manager_string_hashset_remove_all:
+ * @self:           a #FontManagerStringHashset
  * @remove: (element-type utf8) (transfer none): #GList containing strings to remove
  *
  * Returns:         %TRUE if successful
  */
 gboolean
-string_hashset_remove_all (StringHashset *self, GList *remove)
+font_manager_string_hashset_remove_all (FontManagerStringHashset *self, GList *remove)
 {
     g_return_val_if_fail(self != NULL, FALSE);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     GList *iter;
     gboolean result = TRUE;
     for (iter = remove; iter != NULL; iter = iter->next) {
@@ -216,17 +217,17 @@ string_hashset_remove_all (StringHashset *self, GList *remove)
 }
 
 /**
- * string_hashset_retain_all:
- * @self:           a #StringHashset
+ * font_manager_string_hashset_retain_all:
+ * @self:           a #FontManagerStringHashset
  * @retain: (element-type utf8) (transfer none): #GList of strings to check against
  *
  * Remove any elements not contained in @retain
  */
 gboolean
-string_hashset_retain_all (StringHashset *self, GList *retain)
+font_manager_string_hashset_retain_all (FontManagerStringHashset *self, GList *retain)
 {
     g_return_val_if_fail(self != NULL, FALSE);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     gboolean result = TRUE;
     GList *iter, *current = g_hash_table_get_keys(priv->hashset);
     for (iter = current; iter != NULL; iter = iter->next) {
@@ -243,32 +244,32 @@ string_hashset_retain_all (StringHashset *self, GList *retain)
 }
 
 /**
- * string_hashset_size:
- * @self:           a #StringHashset
+ * font_manager_string_hashset_size:
+ * @self:           a #FontManagerStringHashset
  *
- * Returns:         Returns the number of elements contained in #StringHashset
+ * Returns:         Returns the number of elements contained in #FontManagerStringHashset
  */
 guint
-string_hashset_size (StringHashset *self)
+font_manager_string_hashset_size (FontManagerStringHashset *self)
 {
     g_return_val_if_fail(self != NULL, 0);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     return g_hash_table_size(priv->hashset);
 }
 
 /**
- * string_hashset_list:
- * @self:           a #StringHashset
+ * font_manager_string_hashset_list:
+ * @self:           a #FontManagerStringHashset
  *
  * Returns: (element-type utf8) (transfer full): a #GList containing
- * the contents of #StringHashset.
+ * the contents of #FontManagerStringHashset.
  * Use g_list_free_full() when done using the list.
  */
 GList *
-string_hashset_list (StringHashset *self)
+font_manager_string_hashset_list (FontManagerStringHashset *self)
 {
     g_return_val_if_fail(self != NULL, NULL);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     GList *result = NULL;
     GList *iter = NULL;
     for (iter = g_hash_table_get_values(priv->hashset); iter != NULL; iter = iter->next)
@@ -278,33 +279,33 @@ string_hashset_list (StringHashset *self)
 }
 
 /**
- * string_hashset_clear:
- * @self:           a #StringHashset
+ * font_manager_string_hashset_clear:
+ * @self:           a #FontManagerStringHashset
  *
- * Clear the #StringHashset
+ * Clear the #FontManagerStringHashset
  */
 void
-string_hashset_clear (StringHashset *self)
+font_manager_string_hashset_clear (FontManagerStringHashset *self)
 {
     g_return_if_fail(self != NULL);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     g_hash_table_remove_all(priv->hashset);
     return;
 }
 
 /**
- * string_hashset_get:
- * @self:           a #StringHashset
+ * font_manager_string_hashset_get:
+ * @self:           a #FontManagerStringHashset
  * @index:          index of entry to retrieve
  *
- * Returns: (transfer none): a string which is owned by #StringHashset
+ * Returns: (transfer none): a string which is owned by #FontManagerStringHashset
  * and should not be modified or freed.
  */
 const gchar *
-string_hashset_get (StringHashset *self, guint index)
+font_manager_string_hashset_get (FontManagerStringHashset *self, guint index)
 {
     g_return_val_if_fail(self != NULL, 0);
-    StringHashsetPrivate *priv = string_hashset_get_instance_private(self);
+    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     GList *tmp = g_hash_table_get_keys(priv->hashset);
     const gchar *result = g_list_nth_data(tmp, index);
     g_list_free(tmp);
@@ -312,13 +313,13 @@ string_hashset_get (StringHashset *self, guint index)
 }
 
 /**
- * string_hashset_new:
+ * font_manager_string_hashset_new:
  *
- * Returns: (transfer full): the newly-created #StringHashset.
+ * Returns: (transfer full): the newly-created #FontManagerStringHashset.
  * Use g_object_unref() to free the result.
  **/
-StringHashset *
-string_hashset_new (void)
+FontManagerStringHashset *
+font_manager_string_hashset_new (void)
 {
-    return STRING_HASHSET(g_object_new(string_hashset_get_type(), NULL));
+    return FONT_MANAGER_STRING_HASHSET(g_object_new(FONT_MANAGER_TYPE_STRING_HASHSET, NULL));
 }

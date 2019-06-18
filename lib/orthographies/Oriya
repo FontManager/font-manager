@@ -3,11 +3,11 @@
     "ଓଡ଼ିଆ",
     0xb15,
     "କ ଖ ଗ ଘ ଙ ଚ ଛ ଜ",
-    { 
-        "କ ଖ ଗ ଘ ଙ ଚ ଛ ଜ", 
-        END_OF_DATA
+    {
+        "କ ଖ ଗ ଘ ଙ ଚ ଛ ଜ",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xb01,
         0xb02,
         0xb03,
@@ -92,7 +92,7 @@
         0xb6f,
         0xb70,
         0xb71,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

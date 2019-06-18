@@ -3,11 +3,11 @@
     "മലയാളം",
     0xd15,
     "ക ഖ ഗ ഘ ങ ച ഛ ജ",
-    { 
-        "ക ഖ ഗ ഘ ങ ച ഛ ജ", 
-        END_OF_DATA
+    {
+        "ക ഖ ഗ ഘ ങ ച ഛ ജ",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xd02,
         0xd03,
         0xd05,
@@ -103,7 +103,7 @@
         0xd7d,
         0xd7e,
         0xd7f,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

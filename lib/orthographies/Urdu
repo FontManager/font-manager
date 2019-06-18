@@ -3,11 +3,11 @@
     "اُردو",
     0x679,
     "ٹ پ چ ڈ ڐ ژ ڙ ے",
-    { 
-        "تمام انسان آزاد اور حقوق و عزت کے اعتبار سے برابر پیدا ہوۓ ہیں۔", 
-        END_OF_DATA
+    {
+        "تمام انسان آزاد اور حقوق و عزت کے اعتبار سے برابر پیدا ہوۓ ہیں۔",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x679,
         0x67e,
         0x686,
@@ -26,9 +26,9 @@
         0x6d2,
         0x6d3,
         0x6d4,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0x6f0, 0x6f9,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

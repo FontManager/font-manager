@@ -3,11 +3,11 @@
     "Română",
     0x21a,
     "ÂâĂăÎîȘșȚț",
-    { 
-        "Gheorghe, obezul, a reușit să obțină jucându-se un flux în Quebec de o mie kilowațioră.", 
-        END_OF_DATA
+    {
+        "Gheorghe, obezul, a reușit să obțină jucându-se un flux în Quebec de o mie kilowațioră.",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xc2,
         0xe2,
         0x102,
@@ -18,7 +18,7 @@
         0x219,
         0x21a,
         0x21b,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

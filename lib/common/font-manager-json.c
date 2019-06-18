@@ -1,4 +1,4 @@
-/* json.c
+/* font-manager-json.c
  *
  * Copyright (C) 2009 - 2019 Jerry Casiano
  *
@@ -21,18 +21,18 @@
 #include <glib.h>
 #include <json-glib/json-glib.h>
 
-#include "json.h"
-#include "utils.h"
+#include "font-manager-json.h"
+#include "font-manager-utils.h"
 
 /**
- * write_json_file:
+ * font_manager_write_json_file:
  * @root:               #JsonNode to use as root
  * @filepath:           filepath to write @root to
  *
  * Returns:             %TRUE if file was written successfully
  */
 gboolean
-write_json_file (JsonNode *root, const gchar *filepath)
+font_manager_write_json_file (JsonNode *root, const gchar *filepath)
 {
     g_return_val_if_fail(root != NULL && filepath != NULL, FALSE);
 
@@ -46,13 +46,13 @@ write_json_file (JsonNode *root, const gchar *filepath)
 }
 
 /**
- * load_json_file:
+ * font_manager_load_json_file:
  * @filepath:           filepath to a valid json file
  *
  * Returns: (transfer full) (nullable): #JsonNode or %NULL if file failed to load
  */
 JsonNode *
-load_json_file (const gchar *filepath)
+font_manager_load_json_file (const gchar *filepath)
 {
     g_return_val_if_fail(filepath != NULL, NULL);
 
@@ -67,7 +67,7 @@ load_json_file (const gchar *filepath)
 }
 
 /**
- * compare_json_int_member:
+ * font_manager_compare_json_int_member:
  * @member_name:        name of member to compare
  * @a:                  #JsonObject
  * @b:                  #JsonObject
@@ -76,9 +76,9 @@ load_json_file (const gchar *filepath)
  *                      if int member from a is <, == or > than int member from b
  */
 gint
-compare_json_int_member (const gchar *member_name,
-                         JsonObject *a,
-                         JsonObject *b)
+font_manager_compare_json_int_member (const gchar *member_name,
+                                      JsonObject *a,
+                                      JsonObject *b)
 {
     g_return_val_if_fail(member_name != NULL, 0);
     g_return_val_if_fail(a != NULL && b != NULL, 0);
@@ -92,7 +92,7 @@ compare_json_int_member (const gchar *member_name,
 }
 
 /**
- * compare_json_string_member:
+ * font_manager_compare_json_string_member:
  * @member_name:        name of member to compare
  * @a:                  #JsonObject
  * @b:                  #JsonObject
@@ -101,9 +101,9 @@ compare_json_int_member (const gchar *member_name,
  *                      if string member from a is <, == or > than string member from b
  */
 gint
-compare_json_string_member (const gchar *member_name,
-                            JsonObject *a,
-                            JsonObject *b)
+font_manager_compare_json_string_member (const gchar *member_name,
+                                         JsonObject *a,
+                                         JsonObject *b)
 {
     g_return_val_if_fail(member_name != NULL, 0);
     g_return_val_if_fail(a != NULL && b != NULL, 0);
@@ -112,7 +112,7 @@ compare_json_string_member (const gchar *member_name,
     const gchar *str_a = json_object_get_string_member(a, member_name);
     const gchar *str_b = json_object_get_string_member(b, member_name);
     g_return_val_if_fail(str_a != NULL && str_b != NULL, 0);
-    return natural_sort(str_a, str_b);
+    return font_manager_natural_sort(str_a, str_b);
 }
 
 /* Order matters */
@@ -123,7 +123,7 @@ static const gchar *STYLE_PROPS[3] = {
 };
 
 /**
- * compare_json_font_node:
+ * font_manager_compare_json_font_node:
  * @node_a:             #JsonNode containing a font description
  * @node_b:             #JsonNode containing a font description
  *
@@ -131,7 +131,7 @@ static const gchar *STYLE_PROPS[3] = {
  *                      if font a is <, == or > than font b
  */
 gint
-compare_json_font_node (JsonNode *node_a, JsonNode *node_b)
+font_manager_compare_json_font_node (JsonNode *node_a, JsonNode *node_b)
 {
     g_return_val_if_fail(JSON_NODE_HOLDS_OBJECT(node_a), 0);
     g_return_val_if_fail(JSON_NODE_HOLDS_OBJECT(node_b), 0);
@@ -141,22 +141,22 @@ compare_json_font_node (JsonNode *node_a, JsonNode *node_b)
     gint i, result = 0;
     /* Attempt to sort based on style properties */
     for (i = 0; i < (gint) G_N_ELEMENTS(STYLE_PROPS); i++) {
-        result = compare_json_int_member(STYLE_PROPS[i], a, b);
+        result = font_manager_compare_json_int_member(STYLE_PROPS[i], a, b);
         if (result != 0)
             return result;
     }
     /* All else being equal sort alphabetically based on style */
-    return compare_json_string_member("style", a, b);
+    return font_manager_compare_json_string_member("style", a, b);
 }
 
 /**
- * str_list_to_json_array:
+ * font_manager_str_list_to_json_array:
  * @slist: (element-type utf8): a #GList containing only strings
  *
  * Returns: (transfer full): a newly created #JsonArray
  */
 JsonArray *
-str_list_to_json_array (GList *slist)
+font_manager_str_list_to_json_array (GList *slist)
 {
     GList *iter;
     JsonArray *result = json_array_new();
@@ -166,7 +166,7 @@ str_list_to_json_array (GList *slist)
 }
 
 /**
- * print_json_array:
+ * font_manager_print_json_array:
  * @json_arr:           a #JsonArray
  * @pretty:             whether the output should be prettyfied for printing
  *
@@ -180,7 +180,7 @@ str_list_to_json_array (GList *slist)
  * Returns: (transfer full): a newly allocated buffer holding a JSON data stream.
  */
 gchar *
-print_json_array (JsonArray *json_arr, gboolean pretty)
+font_manager_print_json_array (JsonArray *json_arr, gboolean pretty)
 {
     g_return_val_if_fail(json_arr != NULL, NULL);
     JsonNode *n = json_node_new(JSON_NODE_ARRAY);
@@ -192,7 +192,7 @@ print_json_array (JsonArray *json_arr, gboolean pretty)
 }
 
 /**
- * print_json_object:
+ * font_manager_print_json_object:
  * @json_obj:           a #JsonObject
  * @pretty:             whether the output should be prettyfied for printing
  *
@@ -206,7 +206,7 @@ print_json_array (JsonArray *json_arr, gboolean pretty)
  * Returns: (transfer full): a newly allocated buffer holding a JSON data stream.
  */
 gchar *
-print_json_object (JsonObject *json_obj, gboolean pretty)
+font_manager_print_json_object (JsonObject *json_obj, gboolean pretty)
 {
     g_return_val_if_fail(json_obj != NULL, NULL);
     JsonNode *n = json_node_new(JSON_NODE_OBJECT);
@@ -218,7 +218,7 @@ print_json_object (JsonObject *json_obj, gboolean pretty)
 }
 
 /**
- * set_json_error:
+ * font_manager_set_json_error:
  * @json_obj:           a #JsonObject
  * @err_msg:            a description of the error suitable for display
  *
@@ -226,7 +226,7 @@ print_json_object (JsonObject *json_obj, gboolean pretty)
  * and a string member named err_msg to @err_msg in @json_obj
  */
 void
-set_json_error (JsonObject *json_obj, int err_code, const gchar *err_msg)
+font_manager_set_json_error (JsonObject *json_obj, int err_code, const gchar *err_msg)
 {
     json_object_set_boolean_member(json_obj, "err", TRUE);
     json_object_set_int_member(json_obj, "err_code", err_code);

@@ -1,4 +1,4 @@
-/* utils.c
+/* font-manager-utils.c
  *
  * Copyright (C) 2009 - 2019 Jerry Casiano
  *
@@ -22,7 +22,7 @@
 #include <glib/gprintf.h>
 #include <glib/gstdio.h>
 
-#include "utils.h"
+#include "font-manager-utils.h"
 
 static const gchar *POSSIBLE_SCHEMA_DIRS[] = {
     "@prefix@/share/glib-2.0/schemas",
@@ -42,12 +42,12 @@ get_possible_schema_dirs (void)
 }
 
 /**
- * get_progress_data: (skip)
+ * font_manager_get_progress_data: (skip)
  */
-ProgressData *
-get_progress_data (const gchar *message, guint processed, guint total)
+FontManagerProgressData *
+font_manager_get_progress_data (const gchar *message, guint processed, guint total)
 {
-    ProgressData *data = g_new0(ProgressData, 1);
+    FontManagerProgressData *data = g_new0(FontManagerProgressData, 1);
     data->processed = processed;
     data->total = total;
     data->message = g_strdup(message);
@@ -55,12 +55,12 @@ get_progress_data (const gchar *message, guint processed, guint total)
 }
 
 /**
- * free_progress_data: (skip)
+ * font_manager_free_progress_data: (skip)
  */
 void
-free_progress_data (gpointer data)
+font_manager_free_progress_data (gpointer data)
 {
-    ProgressData *_data = data;
+    FontManagerProgressData *_data = data;
     g_free(_data->message);
     g_free(_data);
     _data = NULL;
@@ -68,23 +68,23 @@ free_progress_data (gpointer data)
 }
 
 /**
- * is_dir:
+ * font_manager_is_dir:
  *
  * Returns:             #TRUE if path is a directory
  */
 gboolean
-is_dir (const gchar *filepath)
+font_manager_is_dir (const gchar *filepath)
 {
     return g_file_test(filepath, G_FILE_TEST_IS_DIR);
 }
 
 /**
- * exists:
+ * font_manager_exists:
  *
  * Returns:             #TRUE if path exists
  */
 gboolean
-exists (const gchar *filepath)
+font_manager_exists (const gchar *filepath)
 {
     return g_file_test(filepath, G_FILE_TEST_EXISTS);
 }
@@ -92,17 +92,17 @@ exists (const gchar *filepath)
 static gboolean
 ensure_dir_exists (const gchar *dir)
 {
-    return (G_LIKELY(exists(dir)) || (g_mkdir_with_parents(dir, 0755) == 0));
+    return (G_LIKELY(font_manager_exists(dir)) || (g_mkdir_with_parents(dir, 0755) == 0));
 }
 
 /**
- * natural_sort:
+ * font_manager_natural_sort:
  *
  * Returns:             an integer less than, equal to, or greater than zero,
  *                      if str1 is <, == or > than str2 .
  */
 gint
-natural_sort (const gchar *str1, const gchar *str2)
+font_manager_natural_sort (const gchar *str1, const gchar *str2)
 {
     g_return_val_if_fail((str1 != NULL && str2 != NULL), 0);
     gchar *s1 = g_utf8_collate_key_for_filename(str1, -1);
@@ -114,26 +114,26 @@ natural_sort (const gchar *str1, const gchar *str2)
 }
 
 /**
- * get_file_owner:
+ * font_manager_get_file_owner:
  * @filepath:   full path to file
  *
  * Returns:     0 if current user has read/write permissions, -1 otherwise
  */
 gint
-get_file_owner (const gchar *filepath)
+font_manager_get_file_owner (const gchar *filepath)
 {
     return g_access(filepath, R_OK | W_OK);
 }
 
 /**
- * get_file_extension:
+ * font_manager_get_file_extension:
  *
  * The returned string should be freed using #g_free().
  *
  * Returns: (transfer full) (nullable): a newly allocated string or %NULL
  */
 gchar *
-get_file_extension (const gchar *filepath)
+font_manager_get_file_extension (const gchar *filepath)
 {
     g_return_val_if_fail(filepath != NULL, NULL);
     g_return_val_if_fail(g_strrstr(filepath, ".") != NULL, NULL);
@@ -147,7 +147,7 @@ get_file_extension (const gchar *filepath)
 }
 
 /**
- * get_local_time:
+ * font_manager_get_local_time:
  *
  * The returned string should be freed using #g_free().
  *
@@ -155,7 +155,7 @@ get_file_extension (const gchar *filepath)
  *                                requested format or %NULL if there was an error.
  */
 gchar *
-get_local_time (void)
+font_manager_get_local_time (void)
 {
     GDateTime *local_time = g_date_time_new_now_local();
     gchar *result = g_date_time_format(local_time, "%c");
@@ -164,7 +164,7 @@ get_local_time (void)
 }
 
 /**
- * get_user_font_directory:
+ * font_manager_get_user_font_directory:
  *
  * This function attempts to create the directory if it doesn't already exist
  * and returns the filepath as a string if successful.
@@ -172,7 +172,7 @@ get_local_time (void)
  * Returns: (nullable): a newly allocated string or %NULL
  */
 gchar *
-get_user_font_directory (void)
+font_manager_get_user_font_directory (void)
 {
     gchar *font_dir = g_build_filename(g_get_user_data_dir(), "fonts", NULL);
     if (ensure_dir_exists(font_dir))
@@ -182,7 +182,7 @@ get_user_font_directory (void)
 }
 
 /**
- * get_package_cache_directory:
+ * font_manager_get_package_cache_directory:
  *
  * This function attempts to create the directory if it doesn't already exist
  * and returns the filepath as a string if successful.
@@ -190,7 +190,7 @@ get_user_font_directory (void)
  * Returns: (nullable): a newly allocated string or %NULL
  */
 gchar *
-get_package_cache_directory (void)
+font_manager_get_package_cache_directory (void)
 {
     gchar *cache_dir = g_build_filename(g_get_user_cache_dir(), "@PACKAGE_NAME@", NULL);
     if (ensure_dir_exists(cache_dir))
@@ -200,7 +200,7 @@ get_package_cache_directory (void)
 }
 
 /**
- * get_package_config_directory:
+ * font_manager_get_package_config_directory:
  *
  * This function attempts to create the directory if it doesn't already exist
  * and returns the filepath as a string if successful.
@@ -208,7 +208,7 @@ get_package_cache_directory (void)
  * Returns:  (nullable): a newly allocated string or %NULL
  */
 gchar *
-get_package_config_directory (void)
+font_manager_get_package_config_directory (void)
 {
     gchar *config_dir = g_build_filename(g_get_user_config_dir(), "@PACKAGE_NAME@", NULL);
     if (ensure_dir_exists(config_dir))
@@ -218,7 +218,7 @@ get_package_config_directory (void)
 }
 
 /**
- * get_user_fontconfig_directory:
+ * font_manager_get_user_fontconfig_directory:
  *
  * This function attempts to create the directory if it doesn't already exist
  * and returns the filepath as a string if successful.
@@ -226,7 +226,7 @@ get_package_config_directory (void)
  * Returns: (nullable): a newly allocated string or %NULL
  */
 gchar *
-get_user_fontconfig_directory (void)
+font_manager_get_user_fontconfig_directory (void)
 {
     gchar *config_dir = g_build_filename(g_get_user_config_dir(), "fontconfig", "conf.d", NULL);
     if (ensure_dir_exists(config_dir))
@@ -236,7 +236,7 @@ get_user_fontconfig_directory (void)
 }
 
 /**
- * str_replace: (skip)
+ * font_manager_str_replace: (skip)
  * @str:                a nul-terminated string
  * @target:             the nul-terminated string to search for
  * @replacement:        the nul-terminated string to replace target with
@@ -244,7 +244,7 @@ get_user_fontconfig_directory (void)
  * Returns: (nullable): a newly-allocated string or %NULL
  */
 gchar *
-str_replace (const gchar *str, const gchar *target, const gchar *replacement)
+font_manager_str_replace (const gchar *str, const gchar *target, const gchar *replacement)
 {
     g_return_val_if_fail((str != NULL && target != NULL && replacement != NULL), NULL);
     GError *error = NULL;
@@ -261,7 +261,7 @@ str_replace (const gchar *str, const gchar *target, const gchar *replacement)
 }
 
 /**
- * to_filename:
+ * font_manager_to_filename:
  * @str:                a nul-terminated string
  *
  * Replaces spaces and dashes with an underscore.
@@ -269,17 +269,17 @@ str_replace (const gchar *str, const gchar *target, const gchar *replacement)
  * Returns: (nullable): a newly-allocated string or %NULL
  */
 gchar *
-to_filename (const gchar *str)
+font_manager_to_filename (const gchar *str)
 {
     g_return_val_if_fail(str != NULL, NULL);
-    gchar *tmp = str_replace(str, " ", "_");
-    gchar *result = str_replace(tmp, "-", "_");
+    gchar *tmp = font_manager_str_replace(str, " ", "_");
+    gchar *result = font_manager_str_replace(tmp, "-", "_");
     g_free(tmp);
     return result;
 }
 
 /**
- * get_gsettings:
+ * font_manager_get_gsettings:
  * @schema_id:      the id of the schema
  *
  * This function allows applications to find their settings whether they are
@@ -290,7 +290,7 @@ to_filename (const gchar *str)
  * a newly created #GSettings instance or %NULL if schema_id could not be found
  */
 GSettings *
-get_gsettings (const gchar *schema_id)
+font_manager_get_gsettings (const gchar *schema_id)
 {
     GSettingsSchemaSource *schema_source = g_settings_schema_source_get_default();
     g_return_val_if_fail(schema_source != NULL, NULL);

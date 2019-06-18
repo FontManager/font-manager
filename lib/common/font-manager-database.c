@@ -25,7 +25,7 @@
 #include "font-manager-orthography.h"
 #include "font-manager-fontconfig.h"
 #include "font-manager-freetype.h"
-#include "json.h"
+#include "font-manager-json.h"
 #include "json-proxy-object-properties.h"
 
 #define CREATE_FONTS_TABLE "CREATE TABLE IF NOT EXISTS Fonts ( " \
@@ -265,7 +265,7 @@ font_manager_database_get_type_name (FontManagerDatabaseType type)
 gchar *
 font_manager_database_get_file (FontManagerDatabaseType type)
 {
-    gchar *cache_dir = get_package_cache_directory();
+    gchar *cache_dir = font_manager_get_package_cache_directory();
     gchar *filename = g_strdup_printf("%s.sqlite", font_manager_database_get_type_name(type));
     gchar *db_file = g_build_filename(cache_dir, filename, NULL);
     g_free(cache_dir);
@@ -799,10 +799,10 @@ bind_from_properties (sqlite3_stmt *stmt,
     return;
 }
 
-static StringHashset *
+static FontManagerStringHashset *
 get_known_files (FontManagerDatabase *db, const gchar *table)
 {
-    StringHashset *result = string_hashset_new();
+    FontManagerStringHashset *result = font_manager_string_hashset_new();
     g_return_val_if_fail(FONT_MANAGER_IS_DATABASE(db), result);
     g_return_val_if_fail(table != NULL, result);
     gchar *sql = g_strdup_printf("SELECT DISTINCT filepath FROM %s", table);
@@ -819,7 +819,7 @@ get_known_files (FontManagerDatabase *db, const gchar *table)
         sqlite3_stmt *stmt = font_manager_database_iterator_get(iter);
         const gchar *val = (const gchar *) sqlite3_column_text(stmt, 0);
         if (val)
-            string_hashset_add(result, val);
+            font_manager_string_hashset_add(result, val);
     }
     g_object_unref(iter);
     return result;
@@ -919,7 +919,7 @@ sync_orth_table (FontManagerDatabase *db, JsonObject *face, G_GNUC_UNUSED gpoint
     if (g_strv_contains(FONT_MANAGER_SKIP_ORTH_SCAN, family))
         blank_font = TRUE;
     JsonObject *orth = font_manager_get_orthography_results(blank_font ? NULL : face);
-    gchar *json_obj = print_json_object(orth, FALSE);
+    gchar *json_obj = font_manager_print_json_object(orth, FALSE);
     const gchar *sample = json_object_get_string_member(orth, "sample");
     g_assert(sqlite3_bind_text(db->stmt, 1, filepath, -1, SQLITE_STATIC) == SQLITE_OK);
     g_assert(sqlite3_bind_int(db->stmt, 2, index) == SQLITE_OK);
@@ -943,12 +943,12 @@ update_available_fonts (FontManagerDatabase *db,
 
     JsonObject *all_fonts = NULL;
 
-    StringHashset *known_files = get_known_files(db, insert->table);
-    GList *available_files = list_available_font_files();
-    if (string_hashset_contains_all(known_files, available_files))
+    FontManagerStringHashset *known_files = get_known_files(db, insert->table);
+    GList *available_files = font_manager_list_available_font_files();
+    if (font_manager_string_hashset_contains_all(known_files, available_files))
         goto cleanup;
 
-    all_fonts = get_available_fonts(NULL);
+    all_fonts = font_manager_get_available_fonts(NULL);
     guint processed = 0, total = json_object_get_size(all_fonts);
 
     font_manager_database_begin_transaction(db, error);
@@ -978,10 +978,10 @@ update_available_fonts (FontManagerDatabase *db,
                 goto cleanup;
         }
         if (insert->progress) {
-            ProgressData *data = get_progress_data(f_name, processed, total);
+            FontManagerProgressData *data = font_manager_get_progress_data(f_name, processed, total);
             g_main_context_invoke_full(NULL, G_PRIORITY_DEFAULT_IDLE,
                                        (GSourceFunc) insert->progress, data,
-                                       (GDestroyNotify) free_progress_data);
+                                       (GDestroyNotify) font_manager_free_progress_data);
         }
         JsonObject *family = json_node_get_object(f_node);
         JsonObjectIter s_iter;
@@ -991,7 +991,7 @@ update_available_fonts (FontManagerDatabase *db,
         while (json_object_iter_next(&s_iter, &s_name, &s_node)) {
             JsonObject *face = json_node_get_object(s_node);
             const gchar *filepath = json_object_get_string_member(face, "filepath");
-            if (string_hashset_contains(known_files, filepath))
+            if (font_manager_string_hashset_contains(known_files, filepath))
                 continue;
             else
                 insert->callback(db, face, insert->data);
@@ -1145,8 +1145,8 @@ font_manager_sync_database_finish (GAsyncResult *result, GError **error)
 /**
  * font_manager_get_matching_families_and_fonts:
  * @db: #FontManagerDatabase
- * @families: #StringHashset
- * @fonts: #StringHashset
+ * @families: #FontManagerStringHashset
+ * @fonts: #FontManagerStringHashset
  * @sql: SQL query to execute
  * @error: #GError or %NULL to ignore errors
  *
@@ -1155,14 +1155,14 @@ font_manager_sync_database_finish (GAsyncResult *result, GError **error)
  */
 void
 font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
-                                              StringHashset *families,
-                                              StringHashset *fonts,
+                                              FontManagerStringHashset *families,
+                                              FontManagerStringHashset *fonts,
                                               const gchar *sql,
                                               GError **error)
 {
     g_return_if_fail(FONT_MANAGER_IS_DATABASE(db));
-    g_return_if_fail(STRING_IS_HASHSET(families));
-    g_return_if_fail(STRING_IS_HASHSET(fonts));
+    g_return_if_fail(FONT_MANAGER_IS_STRING_HASHSET(families));
+    g_return_if_fail(FONT_MANAGER_IS_STRING_HASHSET(fonts));
     g_return_if_fail(sql != NULL);
     font_manager_database_execute_query(db, sql, error);
     g_return_if_fail(error == NULL || *error == NULL);
@@ -1174,8 +1174,8 @@ font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
         const gchar *font = (const gchar *) sqlite3_column_text(stmt, 1);
         if (family == NULL || font == NULL)
             continue;
-        string_hashset_add(families, family);
-        string_hashset_add(fonts, font);
+        font_manager_string_hashset_add(families, family);
+        font_manager_string_hashset_add(fonts, font);
     }
     g_object_unref(iter);
     return;
@@ -1185,6 +1185,7 @@ static FontManagerDatabase *main_database = NULL;
 
 /**
  * font_manager_get_database:
+ * @type:   #FontManagerDatabaseType
  * @error: (nullable): #GError or %NULL to ignore errors
  *
  * Convenience function which initializes the database and sets default options.

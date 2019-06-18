@@ -37,7 +37,7 @@ void print_struct(const char *name, const OrthographyData *p) {
     for (int i = 0; p->values[i]; i++) {
 
         if (p->values[i] == START_RANGE_PAIR) {
-            outfile << "        START_RANGE_PAIR," << endl;
+            outfile << "        FONT_MANAGER_START_RANGE_PAIR," << endl;
             outfile << "        0x" << std::hex << p->values[++i] << ", ";
             outfile << "0x" << std::hex << p->values[++i] << "," << endl;
 
@@ -46,7 +46,7 @@ void print_struct(const char *name, const OrthographyData *p) {
         }
     }
 
-    outfile << "        END_OF_DATA" << endl << "    }" << endl << "}," << endl << endl;
+    outfile << "        FONT_MANAGER_END_OF_DATA" << endl << "    }" << endl << "}," << endl << endl;
     outfile.close();
 }
 

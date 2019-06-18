@@ -31,7 +31,7 @@ typedef struct
 }
 FontManagerSelectionsPrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE(FontManagerSelections, font_manager_selections, STRING_TYPE_HASHSET)
+G_DEFINE_TYPE_WITH_PRIVATE(FontManagerSelections, font_manager_selections, FONT_MANAGER_TYPE_STRING_HASHSET)
 
 enum
 {
@@ -141,7 +141,7 @@ font_manager_selections_parse_selections (FontManagerSelections *self,
             continue;
         content = (xmlChar *) g_strstrip((gchar *) content);
         if (g_strcmp0((const char *) content, "") != 0)
-            string_hashset_add(STRING_HASHSET(self), (const gchar *) content);
+            font_manager_string_hashset_add(FONT_MANAGER_STRING_HASHSET(self), (const gchar *) content);
         xmlFree(content);
     }
     return;
@@ -154,7 +154,7 @@ font_manager_selections_write_selections (FontManagerSelections *self,
     g_return_if_fail(self != NULL);
     g_return_if_fail(writer != NULL);
     FontManagerSelectionsPrivate *priv = font_manager_selections_get_instance_private(self);
-    GList *selections = string_hashset_list(STRING_HASHSET(self));
+    GList *selections = font_manager_string_hashset_list(FONT_MANAGER_STRING_HASHSET(self));
     font_manager_xml_writer_add_selections(writer, priv->target_element, selections);
     g_list_free(selections);
     return;
@@ -271,7 +271,7 @@ font_manager_selections_load (FontManagerSelections *self)
     g_return_val_if_fail(self != NULL, FALSE);
     FontManagerSelectionsPrivate *priv = font_manager_selections_get_instance_private(self);
 
-    string_hashset_clear(STRING_HASHSET(self));
+    font_manager_string_hashset_clear(FONT_MANAGER_STRING_HASHSET(self));
     if (priv->monitor != NULL)
         g_clear_object(&priv->monitor);
 
@@ -331,7 +331,7 @@ font_manager_selections_save (FontManagerSelections *self)
     g_return_val_if_fail(filepath != NULL, FALSE);
     FontManagerXmlWriter *writer = font_manager_xml_writer_new();
     font_manager_xml_writer_open(writer, filepath);
-    if (string_hashset_size(STRING_HASHSET(self)))
+    if (font_manager_string_hashset_size(FONT_MANAGER_STRING_HASHSET(self)))
         FONT_MANAGER_SELECTIONS_GET_CLASS(self)->write_selections(self, writer);
     gboolean result = font_manager_xml_writer_close(writer);
     g_object_unref(writer);

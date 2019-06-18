@@ -28,20 +28,20 @@
 
 G_BEGIN_DECLS
 
-void clear_application_fonts (void);
-gboolean add_application_font (const gchar *filepath);
-gboolean add_application_font_directory (const gchar *dir);
-gboolean enable_user_font_configuration (gboolean enable);
-gboolean load_font_configuration_file (const gchar *filepath);
-gboolean update_font_configuration (void);
-GList * list_available_font_files (void);
-GList * list_available_font_families (void);
-GList * list_font_directories (gboolean recursive);
-GList * list_user_font_directories (gboolean recursive);
-GList * get_charset_from_font_object (JsonObject *font_object);
-GList * get_charset_from_filepath (const gchar *filepath, int index);
-GList * get_charset_from_fontconfig_pattern (FcPattern *pattern);
-GList * get_langs_from_fontconfig_pattern (FcPattern *pattern);
+void font_manager_clear_application_fonts (void);
+gboolean font_manager_add_application_font (const gchar *filepath);
+gboolean font_manager_add_application_font_directory (const gchar *dir);
+gboolean font_manager_enable_user_font_configuration (gboolean enable);
+gboolean font_manager_load_font_configuration_file (const gchar *filepath);
+gboolean font_manager_update_font_configuration (void);
+GList * font_manager_list_available_font_files (void);
+GList * font_manager_list_available_font_families (void);
+GList * font_manager_list_font_directories (gboolean recursive);
+GList * font_manager_list_user_font_directories (gboolean recursive);
+GList * font_manager_get_charset_from_font_object (JsonObject *font_object);
+GList * font_manager_get_charset_from_filepath (const gchar *filepath, int index);
+GList * font_manager_get_charset_from_fontconfig_pattern (FcPattern *pattern);
+GList * font_manager_get_langs_from_fontconfig_pattern (FcPattern *pattern);
 
 /* get_attributes_*:
  *
@@ -63,8 +63,8 @@ GList * get_langs_from_fontconfig_pattern (FcPattern *pattern);
  * If the environment variable DEBUG is set each object will also have
  * a member named pattern which will contain its FcPattern as a string.
  */
-JsonObject * get_attributes_from_filepath (const gchar *filepath, int index);
-JsonObject * get_attributes_from_fontconfig_pattern (FcPattern *pattern);
+JsonObject * font_manager_get_attributes_from_filepath (const gchar *filepath, int index);
+JsonObject * font_manager_get_attributes_from_fontconfig_pattern (FcPattern *pattern);
 
 /* get_available_*:
  *
@@ -87,11 +87,11 @@ JsonObject * get_attributes_from_fontconfig_pattern (FcPattern *pattern);
  *    },
  *    ...
  */
-JsonObject * get_available_fonts (const gchar *family_name);
-JsonObject * get_available_fonts_for_chars (const gchar *chars);
-JsonObject * get_available_fonts_for_lang (const gchar *lang_id);
+JsonObject * font_manager_get_available_fonts (const gchar *family_name);
+JsonObject * font_manager_get_available_fonts_for_chars (const gchar *chars);
+JsonObject * font_manager_get_available_fonts_for_lang (const gchar *lang_id);
 
-/* sort_json_font_listing:
+/* font_manager_sort_json_font_listing:
  *
  * Returns a #JsonArray with the following structure:
  *
@@ -120,7 +120,7 @@ JsonObject * get_available_fonts_for_lang (const gchar *lang_id);
  *    ...
  * ]
  */
-JsonArray * sort_json_font_listing (JsonObject *json_obj);
+JsonArray * font_manager_sort_json_font_listing (JsonObject *json_obj);
 
 G_END_DECLS
 

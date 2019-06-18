@@ -194,7 +194,7 @@ get_default_orthography (JsonObject *orthography)
 }
 
 static double
-get_coverage_from_charset (JsonObject *results, FcCharSet *charset, const OrthographyData *data)
+get_coverage_from_charset (JsonObject *results, FcCharSet *charset, const FontManagerOrthographyData *data)
 {
     int hits = 0, tries = 0;
     JsonArray *filter = NULL;
@@ -206,9 +206,9 @@ get_coverage_from_charset (JsonObject *results, FcCharSet *charset, const Orthog
     if (results)
         filter = json_array_new();
 
-    for (int i = 0; data->values[i] != END_OF_DATA; i++) {
+    for (int i = 0; data->values[i] != FONT_MANAGER_END_OF_DATA; i++) {
 
-        if (data->values[i] == START_RANGE_PAIR) {
+        if (data->values[i] == FONT_MANAGER_START_RANGE_PAIR) {
 
             gunichar start = data->values[++i];
             gunichar end = data->values[++i];
@@ -240,7 +240,9 @@ get_coverage_from_charset (JsonObject *results, FcCharSet *charset, const Orthog
 }
 
 static gboolean
-check_orthography (JsonObject *results, FcCharSet *charset, const OrthographyData *data)
+check_orthography (JsonObject *results,
+                   FcCharSet *charset,
+                   const FontManagerOrthographyData *data)
 {
     JsonObject *res = NULL;
     if (results)
@@ -288,7 +290,10 @@ charset_contains_sample_string (const FcCharSet *charset, const char *sample)
 }
 
 static void
-check_orthographies (JsonObject *results, FcCharSet *charset, const OrthographyData orth[], int len)
+check_orthographies (JsonObject *results,
+                     FcCharSet *charset,
+                     const FontManagerOrthographyData orth[],
+                     int len)
 {
     for (int i = 0; i < len; i++)
         check_orthography(results, charset, &orth[i]);

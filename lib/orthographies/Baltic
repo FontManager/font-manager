@@ -3,12 +3,12 @@
     "Baltic",
     0x136,
     "ĀāĄąčĖęīĶļŅšž",
-    { 
-        "Įlinkdama fechtuotojo špaga sublykčiojusi pragręžė apvalų arbūzą.", 
-        "Sarkanās jūrascūciņas peld pa jūru.", 
-        END_OF_DATA
+    {
+        "Įlinkdama fechtuotojo špaga sublykčiojusi pragręžė apvalų arbūzą.",
+        "Sarkanās jūrascūciņas peld pa jūru.",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x100,
         0x101,
         0x104,
@@ -49,7 +49,7 @@
         0x173,
         0x17d,
         0x17e,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

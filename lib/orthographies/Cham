@@ -3,20 +3,20 @@
     "",
     0xaa00,
     "ꨀꨁꨂꨃꨄꨅꨆꨇꨉ",
-    { 
-        "ꨀꨁꨂꨃꨄꨅꨆꨇꨉ", 
-        END_OF_DATA
+    {
+        "ꨀꨁꨂꨃꨄꨅꨆꨇꨉ",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
-        START_RANGE_PAIR,
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
         0xaa00, 0xaa36,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xaa40, 0xaa4d,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xaa50, 0xaa59,
-        START_RANGE_PAIR,
+        FONT_MANAGER_START_RANGE_PAIR,
         0xaa5c, 0xaa5f,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

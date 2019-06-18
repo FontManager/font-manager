@@ -3,11 +3,11 @@
     "ગુજરાતી લિપિ",
     0xa95,
     "ક ખ ગ ઘ ઙ ચ છ જ",
-    { 
-        "ક ખ ગ ઘ ઙ ચ છ જ", 
-        END_OF_DATA
+    {
+        "ક ખ ગ ઘ ઙ ચ છ જ",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0xa81,
         0xa82,
         0xa83,
@@ -91,7 +91,7 @@
         0xaee,
         0xaef,
         0xaf1,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

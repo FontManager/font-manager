@@ -3,18 +3,18 @@
     "Claudian Letters",
     0x2183,
     "ℲⅎↃↄⱵⱶ",
-    { 
-        "ℲⅎↃↄⱵⱶ", 
-        END_OF_DATA
+    {
+        "ℲⅎↃↄⱵⱶ",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x2132,
         0x214e,
         0x2183,
         0x2184,
         0x2c75,
         0x2c76,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

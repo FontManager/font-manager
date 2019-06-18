@@ -6,7 +6,7 @@ libfontmanager_gresources = gnome.compile_resources('libfontmanager-gresources',
 result = run_command(python, '-c', list_vala_sources)
 libvala_sources = result.stdout().strip().split('\n')
 
-libvala = static_library('FontManagerVala',
+libvala = static_library('FontManager',
                             [libvala_sources, libfontmanager_gresources, config_vapi_file],
                             dependencies: [
                                 common_vapi, unicode_vapi, m_dep, json, gio,
@@ -18,6 +18,6 @@ libvala = static_library('FontManagerVala',
 libvala_includes = include_directories('.')
 
 libvala_headers = [
-    configure_file(command: ['touch', 'FontManagerVala.h'], output: 'FontManagerVala.h'),
-    configure_file(command: ['touch', 'FontManagerVala.vapi'], output: 'FontManagerVala.vapi')
+    configure_file(command: ['touch', 'FontManager.h'], output: 'FontManager.h'),
+    configure_file(command: ['touch', 'FontManager.vapi'], output: 'FontManager.vapi')
 ]

@@ -3,11 +3,11 @@
     "قازاق",
     0x6ad,
     "ٴ ٵ ٷ ٸ پ چ ڭ گ ۆ ۉ",
-    { 
-        "", 
-        END_OF_DATA
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
+    {
         0x674,
         0x675,
         0x676,
@@ -21,7 +21,7 @@
         0x6c9,
         0x6cb,
         0x6d5,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 

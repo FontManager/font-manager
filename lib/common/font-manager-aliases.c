@@ -25,7 +25,7 @@
 #include "font-manager-alias.h"
 #include "font-manager-aliases.h"
 #include "font-manager-xml-writer.h"
-#include "string-hashset.h"
+#include "font-manager-string-hashset.h"
 
 struct _FontManagerAliases
 {
@@ -149,10 +149,10 @@ font_manager_aliases_init (FontManagerAliases *self)
 
 static void
 _xml_writer_add_alias_element(FontManagerXmlWriter *writer,
-                              StringHashset *hashset,
+                              FontManagerStringHashset *hashset,
                               const gchar *type)
 {
-    GList *families = string_hashset_list(hashset);
+    GList *families = font_manager_string_hashset_list(hashset);
     font_manager_xml_writer_start_element(writer, type);
     font_manager_xml_writer_add_elements(writer, "family", families);
     font_manager_xml_writer_end_element(writer);
@@ -165,9 +165,9 @@ xml_writer_add_alias_element (FontManagerXmlWriter *writer,
                               FontManagerAliasElement *alias)
 {
     gchar *family;
-    StringHashset *p;
-    StringHashset *a;
-    StringHashset *d;
+    FontManagerStringHashset *p;
+    FontManagerStringHashset *a;
+    FontManagerStringHashset *d;
     g_object_get(alias, "family", &family, "prefer", &p, "accept", &a, "default", &d, NULL);
     g_return_if_fail(family != NULL);
     font_manager_xml_writer_start_element(writer, "alias");
@@ -207,11 +207,11 @@ parse_alias_node (FontManagerAliases *self, xmlNodePtr alias_node)
             GParamSpec *pspec = g_object_class_find_property(object_class, (const gchar *) iter->name);
             if (pspec == NULL)
                 continue;
-            StringHashset *hashset = string_hashset_new();
+            FontManagerStringHashset *hashset = font_manager_string_hashset_new();
             for (xmlNodePtr _iter = iter->children; _iter != NULL; _iter = _iter->next) {
                 if (g_strcmp0((const char *) _iter->name, "family") == 0) {
                     xmlChar *content = xmlNodeGetContent(_iter);
-                    string_hashset_add(hashset, (const gchar *) content);
+                    font_manager_string_hashset_add(hashset, (const gchar *) content);
                     xmlFree(content);
                 }
             }

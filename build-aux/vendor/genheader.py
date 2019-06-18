@@ -28,23 +28,23 @@ from pprint import pprint
 NOTICE = """/* Do not edit directly. See build-aux directory */"""
 
 HEADER = """
-#ifndef __VENDOR_H__
-#define __VENDOR_H__
+#ifndef __FONT_MANAGER_VENDOR_H__
+#define __FONT_MANAGER_VENDOR_H__
 
 #include <glib.h>
 
 G_BEGIN_DECLS
 
-#define MAX_VENDOR_ID_LENGTH 5
-#define MAX_VENDOR_LENGTH 100
+#define FONT_MANAGER_MAX_VENDOR_ID_LENGTH 5
+#define FONT_MANAGER_MAX_VENDOR_LENGTH 100
 
 static const struct
 {
-    const gchar vendor[MAX_VENDOR_LENGTH];
-    const gchar vendor_id[MAX_VENDOR_LENGTH];
+    const gchar vendor[FONT_MANAGER_MAX_VENDOR_LENGTH];
+    const gchar vendor_id[FONT_MANAGER_MAX_VENDOR_LENGTH];
 }
 /* Order is significant. */
-NoticeData [] =
+FontManagerNoticeData [] =
 {
     /* Notice data sourced from fcfreetype.c - http://www.freetype.org/ */
     {"Adobe", "adobe"},
@@ -80,21 +80,21 @@ NoticeData [] =
 
 static const struct
 {
-    const gchar vendor_id[MAX_VENDOR_ID_LENGTH];
-    const gchar vendor[MAX_VENDOR_LENGTH];
+    const gchar vendor_id[FONT_MANAGER_MAX_VENDOR_ID_LENGTH];
+    const gchar vendor[FONT_MANAGER_MAX_VENDOR_LENGTH];
 }
-VendorData[] =
+FontManagerVendorData[] =
 {
 """
 
 FOOTER = """};
 
-#define NOTICE_ENTRIES G_N_ELEMENTS(NoticeData)
-#define VENDOR_ENTRIES G_N_ELEMENTS(VendorData)
+#define FONT_MANAGER_NOTICE_ENTRIES G_N_ELEMENTS(FontManagerNoticeData)
+#define FONT_MANAGER_VENDOR_ENTRIES G_N_ELEMENTS(FontManagerVendorData)
 
 G_END_DECLS
 
-#endif /* __VENDOR_H__ */
+#endif /* __FONT_MANAGER_VENDOR_H__ */
 
 """
 
@@ -139,7 +139,7 @@ def get_vendor_entries () :
 
 
 if __name__ == "__main__":
-    with open(path.join(sys.argv[1], "vendor.h"), "w") as header_file:
+    with open(path.join(sys.argv[1], "font-manager-vendor.h"), "w") as header_file:
         header_file.write(NOTICE)
         header_file.write(HEADER)
         header_file.write(get_vendor_entries())

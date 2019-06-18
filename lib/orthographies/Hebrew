@@ -3,14 +3,14 @@
     "עִבְרִית",
     0x5d0,
     "א ב ד ה ו ז ח ט י",
-    { 
-        "זה כיף סתם לשמוע איך תנצח קרפד עץ טוב בגן", 
-        END_OF_DATA
+    {
+        "זה כיף סתם לשמוע איך תנצח קרפד עץ טוב בגן",
+        FONT_MANAGER_END_OF_DATA
     },
-    { 
-        START_RANGE_PAIR,
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
         0x5d0, 0x5ea,
-        END_OF_DATA
+        FONT_MANAGER_END_OF_DATA
     }
 },
 
