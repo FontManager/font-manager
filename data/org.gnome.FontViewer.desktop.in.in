@@ -9,8 +9,8 @@ Icon=preferences-desktop-font
 DBusActivatable=true
 Exec=@PKGLIBEXECDIR@/font-viewer %u
 Terminal=false
-MimeType=application/x-font-ttf;application/x-font-type1;application/x-font-otf;
-Categories=GTK;GNOME;Utility;Graphics;Viewer;Publishing;
+MimeType=font/ttf;font/ttc;font/otf;font/type1;application/x-font-ttf;application/x-font-type1;application/x-font-otf;
+Categories=Utility;GTK;GNOME;
 # Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 Keywords=Graphics;Viewer;GNOME;GTK;Publishing;
 StartupNotify=true

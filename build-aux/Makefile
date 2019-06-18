@@ -55,17 +55,17 @@ $(PACKAGE_NAME).pot:
 	ninja -C build help-font-manager-pot && \
 	cd $(ABS_SRCDIR)
 
-license.h:
+$(PACKAGE_NAME)-license.h:
 	cd license && \
 	./genheader.py $(PKG_LIB_DIR)/common && \
 	cd ..
 
-vendor.h:
+$(PACKAGE_NAME)-vendor.h:
 	cd vendor && \
 	./genheader.py $(PKG_LIB_DIR)/common && \
 	cd ..
 
-update-headers: license.h vendor.h unicode-headers
+update-headers: $(PACKAGE_NAME)-license.h $(PACKAGE_NAME)-vendor.h unicode-headers
 update: update-headers $(PACKAGE_NAME).pot
 
 rpm:

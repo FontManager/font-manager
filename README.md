@@ -61,6 +61,7 @@ You'll need to ensure the following dependencies are installed:
 - `meson`
 - `ninja`
 - `vala >= 0.42`
+- `freetype2 >= 2.5`
 - `gtk+-3.0 >= 3.22`
 - `json-glib-1.0 >= 0.15`
 - `libxml-2.0 >= 2.9`
