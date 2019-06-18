@@ -40,6 +40,6 @@ def list_vendors () :
     vendor_list = pd.read_html(URL)
     for entry in vendor_list:
         for vendor in entry.itertuples():
-            if vendor[INDEX] > 1:
+            if vendor[INDEX] > 0:
                 yield (vendor[ID], vendor[NAME])
     return
