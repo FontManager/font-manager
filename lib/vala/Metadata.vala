@@ -231,13 +231,14 @@ namespace FontManager {
             vendor.set_visible(vendor_visibility);
             filetype.set_text(info.filetype);
             filesize.set_text(info.filesize);
-            if (info.designer != null && info.designer_url != null) {
-                if (info.designer.length < 96)
-                    design_link.set_label(info.designer);
-                else
-                    design_link.set_label(info.designer_url);
+            if (info.designer_url != null) {
+                design_link.set_label(info.designer_url);
                 design_link.set_uri(info.designer_url);
                 design_link.show();
+                if (info.designer != null)
+                    design_link.set_label(info.designer);
+                /* XXX : GtkLinkButton label seems to be created / destroyed on demand? */
+                design_link.get_children().nth_data(0).set("ellipsize", Pango.EllipsizeMode.END, null);
             } else if (info.designer != null) {
                 design_label.set_text(info.designer);
                 design_label.show();
