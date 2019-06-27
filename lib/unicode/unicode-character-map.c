@@ -701,7 +701,7 @@ unicode_character_map_draw (GtkWidget *widget, cairo_t *cr)
 
     }
 
-    draw_separators(charmap, cr);
+    //draw_separators(charmap, cr);
 
 expose_done:
 
