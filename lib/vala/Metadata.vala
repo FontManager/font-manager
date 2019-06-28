@@ -238,7 +238,12 @@ namespace FontManager {
                 if (info.designer != null)
                     design_link.set_label(info.designer);
                 /* XXX : GtkLinkButton label seems to be created / destroyed on demand? */
-                design_link.get_children().nth_data(0).set("ellipsize", Pango.EllipsizeMode.END, null);
+                List <weak Gtk.Widget>? children = design_link.get_children();
+                if (children != null) {
+                    Gtk.Widget? label = children.nth_data(0);
+                    if (label != null && label is Gtk.Label)
+                        ((Gtk.Label) label).set("ellipsize", Pango.EllipsizeMode.END, null);
+                }
             } else if (info.designer != null) {
                 design_label.set_text(info.designer);
                 design_label.show();

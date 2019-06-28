@@ -137,6 +137,9 @@
         <child>
           <placeholder/>
         </child>
+        <style>
+          <class name="view"/>
+        </style>
       </object>
       <packing>
         <property name="expand">True</property>
