@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-04-21 02:54+0000\n"
+"PO-Revision-Date: 2019-06-01 02:47+0000\n"
 "Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -20,7 +20,7 @@ msgstr ""
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 lib/vala/About.vala:27
 msgid "Font Manager"
-msgstr "Gestor de tipografías"
+msgstr "Gestor tipográfico"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
@@ -34,10 +34,10 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
-"El Gestor de tipografías proporciona una manera para que los usuarios puedan "
-"gestionar fácilmente los tipos de letra del escritorio, sin tener que "
-"recurrir a las herramientas de línea de órdenes o a editar los archivos de "
-"configuración manualmente."
+"Gestor tipográfico se ha diseñado para proporcionar a los usuarios una "
+"manera de gestionar fácilmente los tipos de letra del escritorio, sin tener "
+"que recurrir a las herramientas de línea de órdenes o a editar los archivos "
+"de configuración manualmente."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
@@ -50,8 +50,8 @@ msgstr ""
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
 msgstr ""
-"El Gestor de tipografías NO es una solución para la gestión profesional de "
-"tipos de letra."
+"Gestor tipográfico NO es una solución para la gestión profesional de tipos "
+"de letra."
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
@@ -75,7 +75,7 @@ msgstr "Gráficos;Visor;GNOME;GTK;Publicación;"
 #: src/font-viewer/Application.vala:69 src/font-viewer/Application.vala:101
 #: src/font-viewer/MainWindow.vala:25 data/ui/font-viewer-main-window.ui:17
 msgid "Font Viewer"
-msgstr "Visor de tipografías"
+msgstr "Visor tipográfico"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
@@ -87,11 +87,10 @@ msgid ""
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
 msgstr ""
-"Visor de tipografías permite obtener una vista previa de los archivos de "
-"tipo de letra antes de su instalación. Cuenta con varios modos de "
-"previsualización de los tipos de letra junto con un mapa de caracteres, y "
-"muestra también las propiedades del tipo de letra  y los detalles de su "
-"licencia."
+"Visor tipográfico permite obtener una vista previa de los archivos de tipos "
+"de letra antes de su instalación. Ofrece varios modos de previsualización de "
+"los tipos de letra junto con un mapa de caracteres y muestra las propiedades "
+"de los tipos de letra  y los detalles de la licencia."
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
@@ -293,10 +292,10 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"    Este programa es software libre; puede redistribuirlo y modificarlo\n"
+"    Este programa es software libre: puede redistribuirlo y/o modificarlo\n"
 "    bajo los términos de la Licencia Pública General de GNU publicada\n"
-"    por la Fundación para el Software Libre; ya sea la versión 3 de la\n"
-"    licencia o (a su elección) cualquier versión posterior.\n"
+"    por la Free Sotware Foundation, ya sea la versión 3 de la\n"
+"    licencia como (a su elección) cualquier versión posterior.\n"
 "\n"
 "    Este programa se distribuye con la esperanza de que sea útil, pero\n"
 "    SIN NINGUNA GARANTÍA; ni siquiera la garantía implícita de\n"
@@ -306,7 +305,7 @@ msgstr ""
 "    Debería haber recibido una copia de la Licencia Pública General de\n"
 "    GNU con este programa.\n"
 "\n"
-"    Si no, visite <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+"    Si no es así, consulte <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 "    "
 
 #: lib/vala/About.vala:66
@@ -551,7 +550,7 @@ msgstr "Agrupados por el tipo de archivo"
 
 #: src/font-manager/Categories.vala:360
 msgid "Family Kind"
-msgstr "Familia"
+msgstr "Clase de familia"
 
 #: src/font-manager/Categories.vala:360
 msgid "Only fonts which include Panose information will be grouped here."
@@ -776,14 +775,14 @@ msgid ""
 "proceeding.\n"
 msgstr ""
 "\n"
-"El Gestor de tipografías ha detectado archivos de una instalación anterior. "
+"Gestor tipográfico ha detectado archivos de una instalación anterior. "
 "Algunos archivos de versiones anteriores no son compatibles con esta versión."
-" Otros han quedado en desuso o han cambiado de ubicación.\n"
+" Otros han caído en desuso o han cambiado de ubicación.\n"
 "\n"
-"El Gestor de tipografías intentará ahora migrar los tipos y las colecciones "
-"existentes. Se eliminarán los archivos y los ajustes que ya no son "
-"necesarios o válidos. También se eliminarán los archivos de configuración "
-"que puedan provocar un conflicto.\n"
+"Gestor tipográfico intentará ahora migrar los tipos y las colecciones "
+"existentes. Los archivos y los ajustes que ya no son necesarios o válidos se "
+"eliminarán. También se eliminarán los archivos de configuración que puedan "
+"provocar un conflicto.\n"
 "\n"
 "Se recomienda encarecidamente que realice una copia de seguridad de los "
 "archivos importantes antes de continuar.\n"
@@ -814,7 +813,7 @@ msgstr "Tipo de letra para los documentos"
 
 #: src/font-manager/Preferences/Desktop.vala:44
 msgid "Font used for reading documents."
-msgstr "Tipo de letra usada para leer los documentos."
+msgstr "Tipo de letra usado para leer los documentos."
 
 #: src/font-manager/Preferences/Desktop.vala:49
 msgid "Monospace Font"
@@ -823,8 +822,8 @@ msgstr "Tipo de letra monoespaciada"
 #: src/font-manager/Preferences/Desktop.vala:50
 msgid "Monospaced (fixed-width) font for use in locations such as terminals."
 msgstr ""
-"Tipo de letra monoespaciada (ancho fijo) para usar en lugares como el "
-"terminal."
+"Tipo de letra monoespaciada (de ancho fijo) para usar en aplicaciones como "
+"el terminal."
 
 #: src/font-manager/Preferences/Desktop.vala:55
 msgid "Text Scaling Factor"
@@ -835,17 +834,17 @@ msgid ""
 "Factor used to enlarge or reduce text display, without changing font size"
 msgstr ""
 "Factor utilizado para ampliar o reducir la visualización del texto, sin "
-"cambiar el tamaño del tipo de letra."
+"cambiar el tamaño de la letra."
 
 #: src/font-manager/Preferences/Desktop.vala:61
 msgid "Antialiasing"
-msgstr "Suavizado"
+msgstr "Suavizado de contorno"
 
 #: src/font-manager/Preferences/Desktop.vala:62
 msgid "The type of antialiasing to use when rendering fonts."
 msgstr ""
-"El tipo de suavizado que se utiliza en la representación de los tipos de "
-"letra."
+"El tipo de suavizado de contorno que se utiliza en la representación de los "
+"tipos de letra."
 
 #: src/font-manager/Preferences/Desktop.vala:67
 msgid "RGBA order"
@@ -857,17 +856,18 @@ msgid ""
 "is set to rgba."
 msgstr ""
 "El orden de los subpíxeles en una pantalla LCD. Solo se utiliza cuando el "
-"suavizado se establece en RGBA."
+"suavizado de contorno se configura en RGBA."
 
 #: src/font-manager/Preferences/Desktop.vala:73
 #: src/font-manager/Preferences/Rendering.vala:81
 msgid "Hinting"
-msgstr "Optimización"
+msgstr "Optimización de formas"
 
 #: src/font-manager/Preferences/Desktop.vala:74
 msgid "The type of hinting to use when rendering fonts."
 msgstr ""
-"El tipo de optimización que se utiliza para representar los tipos de letra."
+"El tipo de optimización de formas que se utiliza para representar los tipos "
+"de letra."
 
 #: src/font-manager/Preferences/Desktop.vala:101
 msgid "GNOME desktop settings schema not found"
@@ -924,15 +924,15 @@ msgstr "Representación"
 
 #: src/font-manager/Preferences/Rendering.vala:80
 msgid "Antialias"
-msgstr "Suavizado"
+msgstr "Suavizado de contorno"
 
 #: src/font-manager/Preferences/Rendering.vala:82
 msgid "Enable Autohinter"
-msgstr "Optimización automática"
+msgstr "Optimización de formas automática"
 
 #: src/font-manager/Preferences/Rendering.vala:91
 msgid "Hinting Style"
-msgstr "Estilo de optimización"
+msgstr "Estilo de optimización de formas"
 
 #: src/font-manager/Preferences/Rendering.vala:92
 msgid "Use Embedded Bitmaps"
@@ -993,7 +993,7 @@ msgstr "Sustituciones de tipos de letra"
 
 #: src/font-manager/Preferences/Substitutions.vala:225
 msgid "Easily substitute one font family for another."
-msgstr "Sustituya fácilmente un tipo de letra por otro."
+msgstr "Sustituya fácilmente una familia de tipos de letra por otra."
 
 #: src/font-manager/Preferences/Substitutions.vala:226
 msgid "To add a new substitute click the add button in the toolbar."
@@ -1102,7 +1102,7 @@ msgstr "Instalado"
 
 #: data/ui/font-manager-alias-row.ui:18
 msgid "Enter target family"
-msgstr "Introducir el tipo de letra de destino"
+msgstr "Familia objetivo"
 
 #: data/ui/font-manager-alias-row.ui:31
 msgid "Add substitute"
@@ -1286,7 +1286,7 @@ msgstr "Eliminar sustituciones"
 
 #: data/ui/font-manager-substitute.ui:41
 msgid "Enter substitute family"
-msgstr "Introducir los tipos de letra de sustitución"
+msgstr "Familia sustituta"
 
 #: data/ui/font-manager-substitute.ui:58
 msgid "prefer"

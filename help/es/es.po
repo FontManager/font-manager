@@ -1,5 +1,4 @@
 # Adolfo Jayme <fitoschido@gmail.com>, 2016. #zanata
-# Toni Estevez <toni.estevez@gmail.com>, 2017. #zanata
 # Adolfo Jayme <fitoschido@gmail.com>, 2019. #zanata
 # Toni Estevez <toni.estevez@gmail.com>, 2019. #zanata
 msgid ""
@@ -9,8 +8,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-05-25 01:15+0000\n"
-"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
+"PO-Revision-Date: 2019-06-01 06:35+0000\n"
+"Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
 "X-Generator: Zanata 4.6.2\n"
@@ -75,7 +74,7 @@ msgstr "Tipos de letra disponibles solo para el usuario actual."
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr "Familia"
+msgstr "Clase de familia"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
@@ -83,8 +82,8 @@ msgid ""
 "Sorted by Family Kind - Requires Panose information to be present in font "
 "metadata."
 msgstr ""
-"Ordenados por tipo de familia: requiere que la información de PANOSE esté "
-"presente en los metadatos del tipo de letra."
+"Ordenados por la clase de familia: requiere que la información de PANOSE "
+"esté presente en los metadatos del tipo de letra."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -401,7 +400,7 @@ msgstr "Para eliminar tipos de letra de una colección:"
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:136
 msgid "Select the family or families you wish to remove"
-msgstr "Seleccione el tipo o los tipos de letra que quiera eliminar"
+msgstr "Seleccione la familia o familias que quiera eliminar"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:141
@@ -468,14 +467,14 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-font-activation.page:27
 msgid "To enable or disable a font family:"
-msgstr "Para activar o desactivar un tipo de letra:"
+msgstr "Para activar o desactivar una familia de tipos de letra:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-activation.page:30
 msgid "Select the family you wish to enable/disable in the font list"
 msgstr ""
-"Seleccione el tipo de letra que desea activar o desactivar en la lista de "
-"tipos"
+"Seleccione la familia de tipos que quiera activar o desactivar en la lista "
+"de tipos"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:47
@@ -910,7 +909,7 @@ msgstr " Visualice los metadatos disponibles de los tipos de letra"
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:28
 msgid "Install or remove fonts for your use"
-msgstr "Instale o elimine tipos de letra para tu uso."
+msgstr "Instale o elimine tipos de letra para su uso."
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:33
@@ -936,7 +935,7 @@ msgstr "Realice sustituciones de tipos de letra"
 #. (itstool) path: figure/title
 #: C/font-manager-introduction.page:55
 msgid "<app>Font Manager</app>"
-msgstr "<app>Gestor de tipografías</app>"
+msgstr "<app>Gestor tipográfico</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -956,8 +955,8 @@ msgid ""
 "For more information about <app>Font Manager</app>, please visit the <link "
 "href=\"http://fontmanager.github.io/\"> Homepage </link>"
 msgstr ""
-"Para obtener más información acerca de <app>Gestor de tipografías</app>, "
-"visite <link href=\"http://fontmanager.github.io/\"> Homepage </link>"
+"Para obtener más información acerca de <app>Gestor tipográfico</app>, "
+"consulte <link href=\"http://fontmanager.github.io/\"> Homepage </link>"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:67
@@ -967,9 +966,9 @@ msgid ""
 "github.com/FontManager/master/issues\"> Issue Tracker </link>"
 msgstr ""
 "Para informar de un error o hacer una sugerencia respecto  a la aplicación "
-"<app>Gestor de tipografías</app> o a este manual utilice el <link href="
-"\"https://github.com/FontManager/master/issues\"> Issue Tracker </link> del "
-"proyecto"
+"<app>Gestor tipográfico</app> o a este manual utilice el <link href=\"https:/"
+"/github.com/FontManager/master/issues\"> seguimiento de problemas </link> "
+"del proyecto"
 
 #. (itstool) path: info/desc
 #: C/font-manager-license.page:7
@@ -1126,7 +1125,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-substitutions.page:7
 msgid "Substitute one font family for another"
-msgstr "Sustituya un tipo de letra por otro"
+msgstr "Sustituya una familia de tipos de letra por otra"
 
 #. (itstool) path: page/title
 #: C/font-manager-substitutions.page:10
@@ -1139,8 +1138,7 @@ msgid ""
 "<app>Font Manager</app> allows you to substitute one font family for another."
 ""
 msgstr ""
-"<app>Gestor de tipografías</app> le permite sustituir un tipo e letra por "
-"otro."
+"<app>Gestor tipográfico</app> le permite sustituir una familia por otra."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:18
@@ -1167,8 +1165,8 @@ msgstr ""
 #: C/font-manager-substitutions.page:43
 msgid "Enter the name of the font family you wish to set up a substitute for."
 msgstr ""
-"Introduzca el nombre del tipo de letra para la que quiere configurar una "
-"sustitución."
+"Escriba el nombre de la familia de tipos de letra para la que quiere "
+"configurar una sustitución."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:48
@@ -1183,8 +1181,8 @@ msgstr ""
 #: C/font-manager-substitutions.page:57
 msgid "Enter the name of the substitute family and select the priority level."
 msgstr ""
-"Introduzca el nombre del tipo de letra sustituto y seleccione el nivel de "
-"prioridad."
+"Escriba el nombre de la familia sustituta y seleccione el nivel de prioridad."
+""
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:62
@@ -1223,7 +1221,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:113
 msgid "To remove all substitutes:"
-msgstr "Para eliminar todos los sustitutos:"
+msgstr "Para eliminar todas las sustituciones:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:129
@@ -1234,17 +1232,16 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:142
-#, fuzzy
 msgid ""
 "Fonts matching the target family are edited to prepend the list of preferred "
 "families before the matching family, append the acceptable families after "
 "the matching family and append the default families to the end of the family "
 "list."
 msgstr ""
-"Los tipos de letra que coinciden con el tipo objetivo se editan para "
-"anteponer la lista de tipos preferidos antes del tipo correspondiente. Añada "
-"los tipos aceptables después del tipo correspondiente y añada los tipos "
-"predeterminados al final de la lista de tipos."
+"Los tipos de letra que coinciden con la familia objetivo se editan para "
+"anteponer la lista de familias preferidas a la familia coincidente, añadir "
+"las familias aceptables después de la familia coincidente y añadir las "
+"familias predeterminadas al final de la lista de familias."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:148
@@ -1288,7 +1285,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/index.page:6
 msgid "Getting started with Font Manager."
-msgstr "Primeros pasos con Gestor de tipografías"
+msgstr "Primeros pasos con Gestor tipográfico"
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1308,13 +1305,13 @@ msgstr ""
 #: C/index.page:10
 msgctxt "link"
 msgid "Font Manager"
-msgstr "Gestor de tipografías"
+msgstr "Gestor tipográfico"
 
 #. (itstool) path: info/title
 #: C/index.page:11
 msgctxt "text"
 msgid "Font Manager"
-msgstr "Gestor de tipografías"
+msgstr "Gestor tipográfico"
 
 #. (itstool) path: credit/name
 #: C/index.page:14
@@ -1357,12 +1354,12 @@ msgid ""
 "font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
 "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
-"font.png\">Logotipo de Gestor de tipografías</media> Gestor de tipografías"
+"font.png\">Logotipo de Gestor tipográfico</media> Gestor de tipografías"
 
 #. (itstool) path: section/title
 #: C/index.page:37
 msgid "Managing Your Fonts"
-msgstr "Gestión de sus tipos de letra"
+msgstr "Gestionar sus tipos de letra"
 
 #. (itstool) path: section/title
 #: C/index.page:41
