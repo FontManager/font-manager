@@ -676,6 +676,10 @@ namespace FontManager {
             else
                 menu_button.popup.hide();
 
+            var checklist = ((FontManager.Application) application).available_font_families.list();
+            foreach (var entry in settings.get_strv("compare-list"))
+                compare.add_from_string(entry, checklist);
+
             Idle.add(() => {
                 var foreground = Gdk.RGBA();
                 var background = Gdk.RGBA();
@@ -691,9 +695,6 @@ namespace FontManager {
                         background.alpha = 1.0;
                     ((Gtk.ColorChooser) compare.bg_color_button).set_rgba(background);
                 }
-                var checklist = ((FontManager.Application) application).available_font_families.list();
-                foreach (var entry in settings.get_strv("compare-list"))
-                    compare.add_from_string(entry, checklist);
                 return false;
             });
 

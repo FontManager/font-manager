@@ -149,6 +149,8 @@ namespace FontManager {
                 store.set(iter, 0, default_desc, 1, description, -1);
                 store.append(out _iter);
                 store.set(_iter, 0, _desc, 1, description, -1);
+                Gtk.TreePath path = store.get_path(_iter);
+                treeview.scroll_to_cell(path, null, false, 0.0f, 0.0f);
             }
             return;
         }
