@@ -104,8 +104,10 @@ namespace FontManager {
         string default_sample;
         string local_sample;
 
-        public BaseFontList () {
-            Object(name: "BaseFontList", headers_visible: false, expand: true);
+        construct {
+            name = "BaseFontList";
+            headers_visible = false;
+            expand = true;
             toggle = new Gtk.CellRendererToggle();
             var text = new Gtk.CellRendererText();
             var count = new CellRendererStyleCount();

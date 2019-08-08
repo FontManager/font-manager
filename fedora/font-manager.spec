@@ -12,7 +12,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{PatchVersion}.%{build_timestamp}
-Release:    1
+Release:    2
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -145,5 +145,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
 %changelog
-* Wed Aug 07 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.5-1
+* Wed Aug 07 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.5-2
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
