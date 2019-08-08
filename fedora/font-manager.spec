@@ -6,6 +6,12 @@
 %global DBusName2 org.gnome.FontViewer
 %global git_archive https://github.com/FontManager/font-manager/archive/master.tar.gz
 
+%if 0%{?fedora} && 0%{?fedora} > 29 || 0%{?rhel} && 0%{?rhel} > 7
+%global have_python2 0
+%else
+%global have_python2 1
+%endif
+
 # Disable automatic compilation of Python files in extra directories
 %undefine __brp_python_bytecompile
 %global _python_bytecompile_extra 0
@@ -32,8 +38,14 @@ BuildRequires: pango-devel
 BuildRequires: sqlite-devel
 BuildRequires: vala >= 0.42
 BuildRequires: yelp-tools
+
+%if %{have_python2}
 BuildRequires: /usr/bin/python
 BuildRequires: python2-devel python3-devel
+%else
+BuildRequires: /usr/bin/python3
+BuildRequires: python3-devel
+%endif
 
 Requires: fontconfig
 Requires: %{name}-common
@@ -75,6 +87,9 @@ Requires: dbus-python
 %description -n nautilus-%{name}
 This package provides integration with the Nautilus file manager.
 
+
+%if %{have_python2}
+
 %package -n nemo-%{name}
 BuildArch: noarch
 Summary: Nemo extension for Font Manager
@@ -95,6 +110,9 @@ Requires: dbus-python
 %description -n thunarx-%{name}
 This package provides integration with the Thunar file manager.
 
+%endif
+
+
 %prep
 %autosetup -n %{name}-master
 
@@ -104,9 +122,15 @@ This package provides integration with the Thunar file manager.
 
 %install
 %meson_install
-%py_byte_compile %{__python} %{buildroot}%{_datadir}/nautilus-python/extensions/
-%py_byte_compile %{__python} %{buildroot}%{_datadir}/nemo-python/extensions/
-%py_byte_compile %{__python} %{buildroot}%{_datadir}/thunarx-python/extensions/
+
+%if %{have_python2}
+%py_byte_compile %{__python2} %{buildroot}%{_datadir}/nautilus-python/extensions/
+%py_byte_compile %{__python2} %{buildroot}%{_datadir}/nemo-python/extensions/
+%py_byte_compile %{__python2} %{buildroot}%{_datadir}/thunarx-python/extensions/
+%else
+%py_byte_compile %{__python3} %{buildroot}%{_datadir}/nautilus-python/extensions/
+%endif
+
 %find_lang %{name}
 
 %check
@@ -138,12 +162,16 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %files -n nautilus-%{name}
 %{_datadir}/nautilus-python/extensions/%{name}.py*
 
+%if %{have_python2}
+
 %files -n nemo-%{name}
 %{_datadir}/nemo-python/extensions/%{name}.py*
 
 %files -n thunarx-%{name}
 %{_datadir}/thunarx-python/extensions/%{name}.py*
 
+%endif
+
 %changelog
-* Wed Aug 07 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.5-2
+* Thu Aug 08 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.5-2
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
