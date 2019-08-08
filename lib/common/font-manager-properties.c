@@ -682,6 +682,6 @@ font_manager_properties_reset (FontManagerProperties *self)
 FontManagerProperties *
 font_manager_properties_new (void)
 {
-    return FONT_MANAGER_PROPERTIES(g_object_new(font_manager_properties_get_type(), NULL));
+    return FONT_MANAGER_PROPERTIES(g_object_new(FONT_MANAGER_TYPE_PROPERTIES, NULL));
 }
 

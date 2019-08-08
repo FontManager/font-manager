@@ -400,6 +400,6 @@ font_manager_xml_writer_add_test_element (FontManagerXmlWriter *self,
 FontManagerXmlWriter *
 font_manager_xml_writer_new (void)
 {
-    return FONT_MANAGER_XML_WRITER(g_object_new(font_manager_xml_writer_get_type(), NULL));
+    return FONT_MANAGER_XML_WRITER(g_object_new(FONT_MANAGER_TYPE_XML_WRITER, NULL));
 }
 

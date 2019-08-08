@@ -123,15 +123,27 @@ font_manager_aliases_class_init (FontManagerAliasesClass *klass)
     object_class->get_property = font_manager_aliases_get_property;
     object_class->set_property = font_manager_aliases_set_property;
 
+    /**
+     * FontManagerAliases:config-dir:
+     *
+     * Should be set to one of the directories monitored by Fontconfig
+     * for configuration files and writeable by the user.
+     */
     obj_properties[PROP_CONFIG_DIR] = g_param_spec_string("config-dir", NULL,
                                                           NULL, NULL,
                                                           G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
+    /**
+     * FontManagerAliases:target-file:
+     *
+     * Should be set to a filename in the form [3][0-9]*.conf
+     */
     obj_properties[PROP_TARGET_FILE] = g_param_spec_string("target-file", NULL,
                                                             NULL, NULL,
                                                             G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
+
     return;
 }
 
@@ -384,7 +396,7 @@ font_manager_aliases_save (FontManagerAliases *self)
  * font_manager_aliases_list:
  * @self:   #FontManagerAliases
  *
- * Returns: (transfer container) (element-type FontManager.AliasElement):
+ * Returns: (nullable) (transfer container) (element-type FontManager.AliasElement):
  * #GList of #FontManagerAliasElement or %NULL
  */
 GList *
@@ -421,5 +433,5 @@ font_manager_aliases_get_filepath (FontManagerAliases *self)
 FontManagerAliases *
 font_manager_aliases_new (void)
 {
-    return FONT_MANAGER_ALIASES(g_object_new(font_manager_aliases_get_type(), NULL));
+    return FONT_MANAGER_ALIASES(g_object_new(FONT_MANAGER_TYPE_ALIASES, NULL));
 }

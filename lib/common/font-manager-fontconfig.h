@@ -22,7 +22,6 @@
 #define __FONTCONFIG_H__
 
 #include <glib.h>
-#include <gmodule.h>
 #include <fontconfig/fontconfig.h>
 #include <json-glib/json-glib.h>
 

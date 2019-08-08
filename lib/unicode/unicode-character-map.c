@@ -1211,7 +1211,7 @@ unicode_character_map_class_init (UnicodeCharacterMapClass *klass)
     widget_class->activate_signal = signals[ACTIVATE];
 
     signals[STATUS_MESSAGE] = g_signal_new(I_("status-message"),
-                                            unicode_character_map_get_type(),
+                                            UNICODE_TYPE_CHARACTER_MAP,
                                             G_SIGNAL_RUN_FIRST,
                                             G_STRUCT_OFFSET(UnicodeCharacterMapClass, status_message),
                                             NULL, NULL,
@@ -1351,7 +1351,7 @@ unicode_character_map_class_init (UnicodeCharacterMapClass *klass)
 GtkWidget *
 unicode_character_map_new (void)
 {
-    return GTK_WIDGET(g_object_new(unicode_character_map_get_type(), NULL));
+    return GTK_WIDGET(g_object_new(UNICODE_TYPE_CHARACTER_MAP, NULL));
 }
 
 /**

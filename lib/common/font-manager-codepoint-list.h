@@ -22,7 +22,6 @@
 #define __FONT_MANAGER_CODEPOINT_LIST_H__
 
 #include <glib.h>
-#include <gmodule.h>
 #include <glib-object.h>
 #include <json-glib/json-glib.h>
 

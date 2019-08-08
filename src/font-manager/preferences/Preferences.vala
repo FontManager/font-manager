@@ -22,9 +22,9 @@ namespace FontManager {
 
     public void initialize_preference_pane (Preferences pane) {
         pane.add_page(new UserInterfacePreferences(), "Interface", _("Interface"));
+        pane.add_page(new DesktopPreferences(), "Desktop", _("Desktop"));
         pane.add_page(new SourcePreferences(), "Sources", _("Sources"));
         pane.add_page(new SubstitutionPreferences(), "Substitutions", _("Substitutions"));
-        pane.add_page(new DesktopPreferences(), "Desktop", _("Desktop"));
         pane.add_page(new DisplayPreferences(), "Display", _("Display"));
         pane.add_page(new RenderingPreferences(), "Rendering", _("Rendering"));
         return;

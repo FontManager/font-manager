@@ -147,7 +147,7 @@ font_manager_codepoint_list_class_init (FontManagerCodepointListClass *klass)
                                                         G_PARAM_STATIC_BLURB));
 
     /**
-     * FontManagerCodepointList:filter: (type GList(uint)) (transfer full)
+     * FontManagerCodepointList:filter: (type GList(uint)) (transfer none)
      */
     g_object_class_install_property(object_class,
                                     PROP_FILTER,
@@ -217,6 +217,6 @@ font_manager_codepoint_list_set_filter (FontManagerCodepointList *self, GList *f
 FontManagerCodepointList *
 font_manager_codepoint_list_new ()
 {
-    return FONT_MANAGER_CODEPOINT_LIST(g_object_new(font_manager_codepoint_list_get_type(), NULL));
+    return FONT_MANAGER_CODEPOINT_LIST(g_object_new(FONT_MANAGER_TYPE_CODEPOINT_LIST, NULL));
 }
 

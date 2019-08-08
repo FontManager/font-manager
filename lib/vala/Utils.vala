@@ -40,10 +40,10 @@ namespace FontManager {
         public string action_name;
         public string display_name;
         public string detailed_action_name;
-        public string? accelerator;
+        public string []? accelerator;
         public MenuCallbackWrapper method;
 
-        public MenuEntry (string name, string label, string detailed_signal, string? accel, MenuCallbackWrapper cbw) {
+        public MenuEntry (string name, string label, string detailed_signal, string []? accel, MenuCallbackWrapper cbw) {
             action_name = name;
             display_name = label;
             detailed_action_name = detailed_signal;

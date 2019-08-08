@@ -244,7 +244,7 @@ font_manager_font_model_iter_has_child (GtkTreeModel *tree_model, GtkTreeIter *i
     g_return_val_if_fail(self != NULL, FALSE);
     g_return_val_if_fail(iter != NULL, FALSE);
     g_return_val_if_fail(iter->stamp == self->stamp, FALSE);
-    return (iter->user_data != NULL && iter->user_data2 == NULL) ? TRUE : FALSE;
+    return (iter->user_data != NULL && iter->user_data2 == NULL);
 }
 
 static gint

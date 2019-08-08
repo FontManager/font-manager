@@ -264,7 +264,7 @@ FontManagerSource *
 font_manager_source_new (GFile *file)
 {
     g_return_val_if_fail(file != NULL, NULL);
-    FontManagerSource *self = FONT_MANAGER_SOURCE(g_object_new(font_manager_source_get_type(), NULL));
+    FontManagerSource *self = FONT_MANAGER_SOURCE(g_object_new(FONT_MANAGER_TYPE_SOURCE, NULL));
     FontManagerSourcePrivate *priv = font_manager_source_get_instance_private(self);
     priv->file = file != NULL ? g_object_ref(file) : NULL;
     font_manager_source_update(self);

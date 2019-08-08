@@ -19,7 +19,6 @@
 */
 
 #include "font-manager-alias.h"
-#include "font-manager-xml-writer.h"
 
 struct _FontManagerAliasElement
 {
@@ -167,7 +166,7 @@ font_manager_alias_element_init (FontManagerAliasElement *self)
  * font_manager_alias_element_get: (skip)
  * @priority:   "prefer", "accept" or "default"
  *
- * Returns: (transfer none): #FontManagerStringHashset or %NULL on error
+ * Returns: (transfer none) (nullable): #FontManagerStringHashset or %NULL on error
  */
 FontManagerStringHashset *
 font_manager_alias_element_get (FontManagerAliasElement *self, const gchar *priority) {
@@ -194,7 +193,7 @@ font_manager_alias_element_get (FontManagerAliasElement *self, const gchar *prio
 FontManagerAliasElement *
 font_manager_alias_element_new (const gchar *family)
 {
-    GObject *_self = g_object_new(font_manager_alias_element_get_type(), NULL);
+    GObject *_self = g_object_new(FONT_MANAGER_TYPE_ALIAS_ELEMENT, NULL);
     FontManagerAliasElement *self = FONT_MANAGER_ALIAS_ELEMENT(_self);
     FontManagerAliasElementPrivate *priv = font_manager_alias_element_get_instance_private(self);
     if (family != NULL)

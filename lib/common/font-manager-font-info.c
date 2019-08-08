@@ -115,5 +115,5 @@ font_manager_font_info_init (G_GNUC_UNUSED FontManagerFontInfo *self)
 FontManagerFontInfo *
 font_manager_font_info_new (void)
 {
-    return FONT_MANAGER_FONT_INFO(g_object_new(font_manager_font_info_get_type(), NULL));
+    return FONT_MANAGER_FONT_INFO(g_object_new(FONT_MANAGER_TYPE_FONT_INFO, NULL));
 }

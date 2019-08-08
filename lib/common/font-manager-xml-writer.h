@@ -22,7 +22,6 @@
 #define __FONT_MANAGER_XML_WRITER_H__
 
 #include <glib.h>
-#include <gmodule.h>
 #include <glib-object.h>
 
 G_BEGIN_DECLS

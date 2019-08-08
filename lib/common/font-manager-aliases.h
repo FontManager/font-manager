@@ -22,7 +22,6 @@
 #define __FONT_MANAGER_ALIASES_H__
 
 #include <glib.h>
-#include <gmodule.h>
 #include <glib-object.h>
 
 #include "font-manager-alias.h"

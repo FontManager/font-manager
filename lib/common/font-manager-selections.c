@@ -365,6 +365,6 @@ font_manager_selections_get_filepath (FontManagerSelections *self)
 FontManagerSelections *
 font_manager_selections_new (void)
 {
-    return FONT_MANAGER_SELECTIONS(g_object_new(font_manager_selections_get_type(), NULL));
+    return FONT_MANAGER_SELECTIONS(g_object_new(FONT_MANAGER_TYPE_SELECTIONS, NULL));
 }
 

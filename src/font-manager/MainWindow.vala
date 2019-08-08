@@ -480,8 +480,9 @@ namespace FontManager {
                     Timeout.add_seconds(3, () => {
                         ((FontManager.Application) application).refresh();
                         Timeout.add_seconds(3, () => {
-                         titlebar.installing_files = false;
-                         return false;
+                             titlebar.installing_files = false;
+                             fontlist_pane.refilter();
+                             return false;
                         });
                         return false;
                     });
@@ -500,6 +501,7 @@ namespace FontManager {
                         ((FontManager.Application) application).refresh();
                         Idle.add(() => {
                             titlebar.removing_files = false;
+                            fontlist_pane.refilter();
                             return false;
                         });
                         return false;

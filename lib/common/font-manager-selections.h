@@ -22,7 +22,6 @@
 #define __FONT_MANAGER_SELECTIONS_H__
 
 #include <glib.h>
-#include <gmodule.h>
 #include <glib-object.h>
 #include <libxml/tree.h>
 

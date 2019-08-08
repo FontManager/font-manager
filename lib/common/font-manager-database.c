@@ -612,7 +612,7 @@ font_manager_database_get_object (FontManagerDatabase *self, const gchar *sql, G
 FontManagerDatabase *
 font_manager_database_new (void)
 {
-    return FONT_MANAGER_DATABASE(g_object_new(font_manager_database_get_type(), NULL));
+    return FONT_MANAGER_DATABASE(g_object_new(FONT_MANAGER_TYPE_DATABASE, NULL));
 }
 
 /**
@@ -700,7 +700,7 @@ font_manager_database_iterator_new (FontManagerDatabase *db)
 {
     g_return_val_if_fail(db != NULL, NULL);
     g_return_val_if_fail(db->stmt != NULL, NULL);
-    GObject *gobject = g_object_new(font_manager_database_iterator_get_type(), NULL);
+    GObject *gobject = g_object_new(FONT_MANAGER_TYPE_DATABASE_ITERATOR, NULL);
     FontManagerDatabaseIterator *self = FONT_MANAGER_DATABASE_ITERATOR(gobject);
     self->db = g_object_ref(db);
     return self;

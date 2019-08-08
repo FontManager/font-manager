@@ -256,7 +256,11 @@ font_manager_str_replace (const gchar *str, const gchar *target, const gchar *re
         g_regex_unref(regex);
     }
     g_free(escaped_str);
-    g_return_val_if_fail(error == NULL, NULL);
+    if (error != NULL) {
+        g_error_free(error);
+        g_free(result);
+        g_return_val_if_reached(NULL);
+    }
     return result;
 }
 

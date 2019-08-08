@@ -45,18 +45,17 @@ namespace FontManager {
         var application = (FontManager.Application) GLib.Application.get_default();
         /* action_name, display_name, detailed_action_name, accelerator, method */
         MenuEntry [] app_menu_entries = {
-            MenuEntry("shortcuts", _("Keyboard Shortcuts"), "app.shortcuts", null, new MenuCallbackWrapper(application.shortcuts)),
-            MenuEntry("help", _("Help"), "app.help", "F1", new MenuCallbackWrapper(application.help)),
+            MenuEntry("shortcuts", _("Keyboard Shortcuts"), "app.shortcuts", { "<Ctrl>question", "<Ctrl>slash" }, new MenuCallbackWrapper(application.shortcuts)),
+            MenuEntry("help", _("Help"), "app.help", { "F1" }, new MenuCallbackWrapper(application.help)),
             MenuEntry("about", _("About"), "app.about", null, new MenuCallbackWrapper(application.about)),
         };
         var app_menu = new GLib.Menu();
         foreach (var entry in app_menu_entries) {
             add_action_from_menu_entry(application, entry);
             if (entry.accelerator != null) {
-                string? [2] accels = {entry.accelerator, null };
-                application.set_accels_for_action(entry.detailed_action_name, accels);
+                application.set_accels_for_action(entry.detailed_action_name, entry.accelerator);
                 GLib.MenuItem item = new MenuItem(entry.display_name, entry.detailed_action_name);
-                item.set_attribute("accel", "s", entry.accelerator);
+                item.set_attribute("accel", "s", entry.accelerator[0]);
                 app_menu.append_item(item);
             } else {
                 app_menu.append(entry.display_name, entry.detailed_action_name);

@@ -248,6 +248,7 @@ namespace FontManager {
         }
 
         Gtk.Menu context_menu;
+        Gtk.MenuItem menu_header;
         Gtk.TreeIter _selected_iter_;
         Gtk.CellRendererText renderer;
 
@@ -486,6 +487,15 @@ namespace FontManager {
                 MenuEntry("compress", _("Compress..."), "app.compress", null, new MenuCallbackWrapper(compress)),
             };
             var popup_menu = new Gtk.Menu();
+            menu_header = new Gtk.MenuItem.with_label("");
+            menu_header.sensitive = false;
+            menu_header.show();
+            popup_menu.append(menu_header);
+            var label = ((Gtk.Bin) menu_header).get_child();
+            label.set("hexpand", true, "justify", Gtk.Justification.FILL, "margin", 2, null);
+            var separator = new Gtk.SeparatorMenuItem();
+            separator.show();
+            popup_menu.append(separator);
             foreach (MenuEntry entry in context_menu_entries) {
                 var item = new Gtk.MenuItem.with_label(entry.display_name);
                 item.activate.connect(() => { entry.method.run(); });
@@ -555,6 +565,7 @@ namespace FontManager {
             model.get_value(iter, 0, out val);
             selection_changed(((Collection) val));
             selected_filter = ((Collection) val);
+            menu_header.label = ((Collection) val).name;
             _selected_iter_ = iter;
             selected_iter = model.get_string_from_iter(iter);
             val.unset();
