@@ -1,57 +1,7 @@
-These file manager extensions are intended to provide integration
-with popular GTK+ file managers and the font-viewer component
-of font-manager. While the font-viewer is open you should be able
-to preview font files simply by selecting them.
+This extension is intended to provide integration with the Nautilus and Nemo file managers.
 
-To install, copy the extension to one of the following directories.
-You may need to create the directory if it doesn't exist.
+It is a work in progress.
 
-Nautilus:
+Currently it allows easy previewing of font files by simply selecting them while
+font-viewer is open.
 
-    /usr/share/nautilus-python/extensions/
-    ~/.local/share/nautilus-python/extensions/
-
-Thunar:
-
-    /usr/share/thunarx-python/extensions/
-    ~/.local/share/thunarx-python/extensions/
-
-Nemo:
-
-    /usr/share/nemo-python/extensions/
-    ~/.local/share/nemo-python/extensions/
-
-
-If you installed the extension to a system directory, compile the extension
-
-For example:
-
-    python -m compileall /usr/share/nautilus-python/extensions/
-    python -O -m compileall /usr/share/nautilus-python/extensions/
-
-
-Nautilus python bindings are available on most distributions.
-
-    https://wiki.gnome.org/Projects/NautilusPython
-
-
-For Thunar python bindings
-
-    http://goodies.xfce.org/projects/bindings/thunarx-python
-
-    Ubuntu/Debian users can find thunarx-python in the RabbitVCS PPA.
-
-
-For Nemo python bindings 
-
-    https://github.com/linuxmint/nemo-extensions/tree/master/nemo-python
-
-
-KNOWN ISSUES
-
-    Ubuntu/Debian users *may* need to create a symbolic link to prevent Thunar from crashing.
-
-        sudo ln -sf /usr/lib/i386-linux-gnu/libpython2.7.so.1 /usr/lib/libpython2.7.so.1.0
-
-    This is not an issue specific to this extension. 
-`

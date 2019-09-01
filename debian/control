@@ -15,10 +15,9 @@ Build-Depends:
  libpango1.0-dev,
  libsqlite3-dev,
  libgirepository1.0-dev,
- yelp-tools,
- python,
- python-gobject,
- python-nautilus (>= 1.0)
+ libnautilus-extension-dev,
+ libnemo-extension-dev,
+ yelp-tools
 Standards-Version: 4.3.0
 Section: graphics
 Homepage: http://fontmanager.github.io/
@@ -71,13 +70,20 @@ Architecture: all
 Depends:
  font-viewer,
  nautilus (>= 3.0),
- python-gobject,
- python-dbus,
- python-nautilus (>= 1.0),
+ libnautilus-extension1a,
  ${misc:Depends}
 Description: Nautilus extension for Font Manager
  .
  This package provides integration with the Nautilus file manager.
 
-
+Package: nemo-font-manager
+Architecture: all
+Depends:
+ font-viewer,
+ nemo (>= 3.0),
+ libnemo-extension1,
+ ${misc:Depends}
+Description: Nemo extension for Font Manager
+ .
+ This package provides integration with the Nemo file manager.
 
