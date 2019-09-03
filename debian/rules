@@ -10,4 +10,5 @@ override_dh_auto_configure:
 	dh_auto_configure -- \
 	    --buildtype=debugoptimized \
 	    -Ddisable_pycompile=True \
-	    -Dnautilus=True
+	    -Dnautilus=True \
+	    -Dnemo=True

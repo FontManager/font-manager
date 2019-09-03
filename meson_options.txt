@@ -1,4 +1,2 @@
 option('nautilus', type: 'boolean', value: false, description: 'Install Nautilus extension')
-option('thunarx', type: 'boolean', value: false, description: 'Install Thunar extension')
 option('nemo', type: 'boolean', value: false, description: 'Install Nemo extension')
-option('disable_pycompile', type: 'boolean', value: false, description: 'Disable compilation of Python extensions')

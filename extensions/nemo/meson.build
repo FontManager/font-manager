@@ -1,5 +1,5 @@
 
-if nemo.found()
+if nemo.found() and get_option('nemo')
 
     result = run_command(python, '-c', list_sources)
     nemo_extension_sources = result.stdout().strip().split('\n')

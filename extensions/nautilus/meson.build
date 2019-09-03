@@ -1,5 +1,5 @@
 
-if nautilus.found()
+if nautilus.found() and get_option('nautilus')
 
     result = run_command(python, '-c', list_sources)
     nautilus_extension_sources = result.stdout().strip().split('\n')
