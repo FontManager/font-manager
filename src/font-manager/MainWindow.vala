@@ -727,6 +727,7 @@ namespace FontManager {
                     restore_last_selected_treepath(sidebar.standard.collection_tree, collection_path);
                     tree = sidebar.standard.category_tree.tree;
                     path = category_path;
+                    /* Preload category contents */
                     if (path.char_count() > 1)
                         restore_last_selected_treepath(tree, path.split_set(":")[0]);
                 } else if (sidebar.standard.mode == StandardSidebarMode.COLLECTION) {
@@ -772,7 +773,8 @@ namespace FontManager {
             var selection = tree.get_selection();
             var treepath = new Gtk.TreePath.from_string(path);
             selection.unselect_all();
-            tree.expand_to_path(treepath);
+            if (treepath.get_depth() > 1)
+                tree.expand_to_path(treepath);
             selection.select_path(treepath);
             tree.scroll_to_cell(treepath, null, true, 0.25f, 0.25f);
             return treepath;
