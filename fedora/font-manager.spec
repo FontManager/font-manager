@@ -63,7 +63,6 @@ Requires: %{name}-common >= %{version}
 This package contains the font-viewer component of font-manager.
 
 %package -n nautilus-%{name}
-BuildArch: noarch
 Summary: Nautilus extension for Font Manager
 Requires: font-viewer >= %{version}
 Requires: %{name}-common >= %{version}
@@ -71,7 +70,6 @@ Requires: %{name}-common >= %{version}
 This package provides integration with the Nautilus file manager.
 
 %package -n nemo-%{name}
-BuildArch: noarch
 Summary: Nemo extension for Font Manager
 Requires: font-viewer >= %{version}
 Requires: %{name}-common >= %{version}

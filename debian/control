@@ -66,7 +66,7 @@ Description: Full featured font file preview application for GTK+ Desktop Enviro
 
 
 Package: nautilus-font-manager
-Architecture: all
+Architecture: any
 Depends:
  font-viewer,
  nautilus (>= 3.0),
@@ -77,7 +77,7 @@ Description: Nautilus extension for Font Manager
  This package provides integration with the Nautilus file manager.
 
 Package: nemo-font-manager
-Architecture: all
+Architecture: any
 Depends:
  font-viewer,
  nemo (>= 3.0),
