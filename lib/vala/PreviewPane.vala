@@ -269,6 +269,8 @@ namespace FontManager {
         [GtkChild] Gtk.MenuButton menu_button;
         [GtkChild] Gtk.ToggleButton search_button;
 
+        string? current_uri = null;
+
         [GtkCallback]
         public void on_notebook_switch_page (Gtk.Widget page, uint page_num) {
             menu_button.sensitive = ((FontPreviewMode) page_num == FontPreviewMode.PREVIEW);
@@ -323,7 +325,7 @@ namespace FontManager {
             search_button.toggled.connect(() => {
                 charmap.search_mode = search_button.get_active();
             });
-            notify["selected-font"].connect_after(() => { changed(); });
+            notify["selected-font"].connect_after(() => { current_uri = null; changed(); });
             return;
         }
 
@@ -335,6 +337,8 @@ namespace FontManager {
         }
 
         public virtual void show_uri (string uri) {
+            if (uri == current_uri)
+                return;
             File file = File.new_for_commandline_arg(uri);
             return_if_fail(file.is_native());
             try {
@@ -363,6 +367,7 @@ namespace FontManager {
                 }
             }
             selected_font = font;
+            current_uri = uri;
             return;
         }
 
