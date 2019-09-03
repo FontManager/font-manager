@@ -80,7 +80,7 @@ This package provides integration with the Nemo file manager.
 %autosetup -n %{name}-master
 
 %build
-%meson --buildtype=debugoptimized -Dnautilus=True -DNemo=True
+%meson --buildtype=debugoptimized -Dnautilus=True -Dnemo=True
 %meson_build
 
 %install
