@@ -50,7 +50,7 @@ struct _FontManagerMenuProvider
     GDBusConnection *connection;
 };
 
-static void font_manager_menu_provider_interface_init (NemoMenuProviderInterface *iface);
+static void font_manager_menu_provider_interface_init (NemoMenuProviderIface *iface);
 
 G_DEFINE_DYNAMIC_TYPE_EXTENDED (FontManagerMenuProvider,
                                 font_manager_menu_provider,
@@ -152,7 +152,7 @@ font_manager_menu_provider_class_finalize (G_GNUC_UNUSED FontManagerMenuProvider
 }
 
 static void
-font_manager_menu_provider_interface_init (NemoMenuProviderInterface *iface)
+font_manager_menu_provider_interface_init (NemoMenuProviderIface *iface)
 {
     iface->get_file_items = font_manager_menu_provider_get_file_items;
     iface->get_background_items = font_manager_menu_provider_get_background_items;

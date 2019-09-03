@@ -1,7 +1,7 @@
-This extension is intended to provide integration with the Nautilus and Nemo file managers.
+These extensions are intended to provide integration with the Nautilus and Nemo file managers.
 
-It is a work in progress.
+They are a work in progress.
 
-Currently it allows easy previewing of font files by simply selecting them while
+Currently they allow easy previewing of font files by simply selecting them while
 font-viewer is open.
 
