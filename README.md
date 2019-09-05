@@ -42,6 +42,9 @@ dnf install font-manager
 Please note that packages in COPR can conflict with official packages.
 Make sure to purge any previous installation before switching between COPR and official sources.
 
+#### Gentoo
+Gentoo users may find [`font-manager`](https://github.com/PF4Public/gentoo-overlay/tree/master/app-misc/font-manager) in [::pf4public](https://github.com/PF4Public/gentoo-overlay) Gentoo overlay
+
 #### Ubuntu Personal Package Archive
 Ubuntu packages built from latest revision:
 
