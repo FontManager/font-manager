@@ -67,7 +67,7 @@ You'll need to ensure the following dependencies are installed:
 - `libxml-2.0 >= 2.9`
 - `sqlite3 >= 3.8`
 - `gobject-introspection`
-- `libgirepository >= 1.0` (if not blunded with `gobject-introspection`)
+- `libgirepository >= 1.0` (if not bundled with `gobject-introspection`)
 
 To build the application:
 
