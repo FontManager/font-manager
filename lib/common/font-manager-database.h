@@ -123,14 +123,20 @@ sqlite3_stmt * font_manager_database_iterator_get (FontManagerDatabaseIterator *
 
 FontManagerDatabase * font_manager_get_database (FontManagerDatabaseType type, GError **error);
 
-void font_manager_sync_database (FontManagerDatabase *db,
-                                  FontManagerDatabaseType type,
-                                  FontManagerProgressCallback progress,
-                                  GCancellable *cancellable,
-                                  GAsyncReadyCallback callback,
-                                  gpointer user_data);
+gboolean font_manager_update_database_sync (FontManagerDatabase *db,
+                                            FontManagerDatabaseType type,
+                                            FontManagerProgressCallback progress,
+                                            GCancellable *cancellable,
+                                            GError **error);
 
-gboolean font_manager_sync_database_finish (GAsyncResult *result, GError **error);
+void font_manager_update_database (FontManagerDatabase *db,
+                                   FontManagerDatabaseType type,
+                                   FontManagerProgressCallback progress,
+                                   GCancellable *cancellable,
+                                   GAsyncReadyCallback callback,
+                                   gpointer user_data);
+
+gboolean font_manager_update_database_finish (GAsyncResult *result, GError **error);
 
 void font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
                                                     FontManagerStringHashset *families,

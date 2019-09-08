@@ -23,21 +23,45 @@ namespace FontManager {
     public static GLib.Settings? settings = null;
     public static FontManager.Reject? reject = null;
     public static FontManager.Sources? sources = null;
+    public static MainWindow? main_window = null;
 
-    void update_database (DatabaseType type,
-                          ProgressCallback? progress = null,
-                          Cancellable? cancellable = null) {
+    bool print_progress (ProgressData data) {
+        int width = 72;
+        double progress = ((double) data.processed /(double) data.total);
+        if (progress < 1.0) {
+            int position = (int) (((double) width) * progress);
+            stdout.printf("\r[");
+            for (int i = 0; i < width; i++) {
+                if (i < position)
+                    stdout.printf("=");
+                else if (i == position)
+                    stdout.printf(">");
+                else
+                    stdout.printf(" ");
+            }
+            if (progress >= 0.99)
+                stdout.printf("] %i %\r", 100);
+            else
+                stdout.printf("] %i %\r", (int) (progress * 100.0));
+            stdout.flush();
+        }
+        return GLib.Source.REMOVE;
+    }
+
+    void sync_database (DatabaseType type,
+                        ProgressCallback? progress = null,
+                        Cancellable? cancellable = null) {
         try {
             var main = get_database(DatabaseType.BASE);
             var child = get_database(type);
-            sync_database.begin(
+            update_database.begin(
                 child,
                 type,
                 progress,
                 cancellable,
                 (obj, res) => {
                     try {
-                        bool success = sync_database.end(res);
+                        bool success = update_database.end(res);
                         child = null;
                         if (success) {
                             main.attach(type);
@@ -67,9 +91,9 @@ namespace FontManager {
         } catch (Error e) {
             critical(e.message);
         }
-        update_database(DatabaseType.FONT, progress, cancellable);
-        update_database(DatabaseType.METADATA, progress, cancellable);
-        update_database(DatabaseType.ORTHOGRAPHY, progress, cancellable);
+        sync_database(DatabaseType.FONT, progress, cancellable);
+        sync_database(DatabaseType.METADATA, progress, cancellable);
+        sync_database(DatabaseType.ORTHOGRAPHY, progress, cancellable);
         return;
     }
 
@@ -109,7 +133,7 @@ namespace FontManager {
         public StringHashset? available_font_families { get; set; default = null; }
 
         bool category_update_required = false;
-        MainWindow? main_window = null;
+
         StringHashset? attached = null;
 
         const OptionEntry[] options = {
@@ -120,6 +144,7 @@ namespace FontManager {
             { "disable", 'd', 0, OptionArg.NONE, null, "Space separated list of font families to disable", null },
             { "list", 'l', 0, OptionArg.NONE, null, "List available font families.", null },
             { "list-full", 0, 0, OptionArg.NONE, null, "Full listing including face information. (JSON)", null },
+            { "update", 'u', 0, OptionArg.NONE, null, "Update application database", null },
             { "", 0, 0, OptionArg.FILENAME_ARRAY, null, null, null },
             { null }
         };
@@ -129,15 +154,6 @@ namespace FontManager {
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
             add_main_option_entries(options);
-        }
-
-        public static Gtk.Window? get_current_window () {
-            Gtk.Application application = GLib.Application.get_default() as Gtk.Application;
-            unowned GLib.List <Gtk.Window> windows = application.get_windows();
-            Gtk.Window? most_recent = null;
-            if (windows != null)
-                most_recent = windows.nth_data(0);
-            return most_recent;
         }
 
         void update_interface_on_db_change () {
@@ -167,6 +183,7 @@ namespace FontManager {
                 attached.contains("Metadata") &&
                 attached.contains("Orthography")) {
                 update_in_progress = false;
+                main_window.titlebar.loading = false;
                 enable_user_font_configuration(true);
                 main_window.fontlist.samples = get_non_latin_samples();
                 if (main_window.fontlist.samples == null)
@@ -245,14 +262,33 @@ namespace FontManager {
             VariantDict options = cl.get_options_dict();
             StringHashset? filelist = get_command_line_files(cl);
 
-            if (filelist == null) {
-                activate();
-            } else if (options.contains("install")) {
-                var installer = new Library.Installer();
-                installer.process_sync(filelist);
-            } else {
+            if (options.contains("install") || options.contains("update")) {
+                if (options.contains("install") && filelist != null)
+                    new Library.Installer().process_sync(filelist);
+                ensure_sources();
+                ensure_reject();
+                update_font_configuration();
+                load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+                DatabaseType [] db_types = {
+                    DatabaseType.FONT,
+                    DatabaseType.METADATA,
+                    DatabaseType.ORTHOGRAPHY
+                };
+                foreach (var type in db_types) {
+                    try {
+                        stdout.printf("Updating %s\n", Database.get_type_name(type));
+                        update_database_sync(get_database(type), type, print_progress, null);
+                        stdout.printf("\n");
+                    } catch (Error e) {
+                        critical(e.message);
+                        return e.code;
+                    }
+                }
+            } else if (filelist != null) {
                 File [] files = { File.new_for_path(filelist[0]) };
                 open(files, "preview");
+            } else {
+                activate();
             }
 
             release();
@@ -288,6 +324,7 @@ namespace FontManager {
 
         public string list_full () throws GLib.DBusError, GLib.IOError {
             ensure_sources();
+            ensure_reject();
             update_font_configuration();
             load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
             Json.Object available_fonts = get_available_fonts(null);
@@ -379,7 +416,9 @@ namespace FontManager {
             return exit_status;
         }
 
-        async void refresh_async () throws ThreadError {
+        async void refresh_async (ProgressCallback? progress = null,
+                                  Cancellable? cancellable = null)
+                                  throws ThreadError {
             SourceFunc callback = refresh_async.callback;
             ThreadFunc <bool> run_in_thread = () => {
                 enable_user_font_configuration(false);
@@ -390,7 +429,7 @@ namespace FontManager {
                 FontModel model = new FontModel();
                 model.source_array = sorted_fonts;
                 main_window.model = model;
-                update_database_tables();
+                update_database_tables(progress, cancellable);
                 available_font_families.clear();
                 foreach (string family in available_fonts.get_members())
                     available_font_families.add(family);
@@ -408,7 +447,21 @@ namespace FontManager {
                 return;
             update_in_progress = true;
             category_update_required = true;
-            refresh_async.begin((obj, res) => {
+            main_window.titlebar.loading = true;
+            refresh_async.begin(
+            (data) => {
+                string? m = data.message;
+                double p = (double) data.processed;
+                double t =  (double) data.total;
+                double f = (p / t);
+                Idle.add(() => {
+                    main_window.titlebar.progress.database(m, f);
+                    return false;
+                });
+                return GLib.Source.REMOVE;
+            },
+            null,
+            (obj, res) => {
                 try {
                     refresh_async.end(res);
                 } catch (Error e) {

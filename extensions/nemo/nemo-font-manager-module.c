@@ -1,4 +1,4 @@
-/* nautilus-font-manager-module.c
+/* nemo-font-manager-module.c
  *
  * Copyright (C) 2019 Jerry Casiano
  *

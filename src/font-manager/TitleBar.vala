@@ -22,21 +22,55 @@ namespace FontManager {
 
     public class ProgressHeader : Gtk.Box {
 
-        public Gtk.Label title { get; private set; }
-        public Gtk.ProgressBar progress { get; private set; }
+        Gtk.Label title { protected get; protected set; }
+        Gtk.ProgressBar progress { protected get; protected set; }
+
+        double font = 0.0;
+        double metadata = 0.0;
+        double orthography = 0.0;
 
         construct {
-            title = new Gtk.Label("");
+            set_orientation(Gtk.Orientation.VERTICAL);
             progress = new Gtk.ProgressBar();
-            title.get_style_context().add_class("title");
-            progress.get_style_context().add_class("subtitle");
+            progress.show();
+            pack_end(progress, true, true, 2);
+            title = new Gtk.Label(About.DISPLAY_NAME);
+            title.show();
+            pack_start(title, true, true, 2);
+            notify["visible"].connect(() => { reset(); });
         }
 
-        public void update (string message, uint processed, uint total) {
-            title.set_text(message);
-            progress.set_fraction(processed/total * 100);
-            title.show();
-            progress.show();
+        void reset () {
+            font = 0.0;
+            metadata = 0.0;
+            orthography = 0.0;
+            title.set_text(About.DISPLAY_NAME);
+        }
+
+        public void database (string? message, double fraction) {
+
+            if (message == null)
+                return;
+
+            if (message == "Fonts")
+                font = fraction / 3;
+            else if (message == "Metadata")
+                metadata = fraction / 3;
+            else if (message == "Orthography")
+                orthography = fraction / 3;
+
+            if (font < 0.32)
+                title.set_text(_("Updating Database - Fonts"));
+            else if (metadata < 0.32)
+                title.set_text(_("Updating Database - Metadata"));
+            else
+                title.set_text(_("Updating Database - Orthography"));
+
+            double f = (font + metadata + orthography);
+            progress.set_fraction(f);
+            queue_draw();
+
+            return;
         }
 
     }
@@ -117,6 +151,9 @@ namespace FontManager {
         public abstract Gtk.MenuButton app_menu { get; protected set; }
         public abstract Gtk.Label main_menu_label { get; set; }
         public abstract Gtk.ToggleButton prefs_toggle { get; protected set; }
+        public abstract ProgressHeader progress { get; protected set; }
+
+        public abstract bool loading { set; }
 
         public bool installing_files {
             set {
@@ -190,6 +227,7 @@ namespace FontManager {
             app_menu_icon = new Gtk.Image.from_icon_name("open-menu-symbolic", Gtk.IconSize.MENU);
             app_menu.add(app_menu_icon);
             spinner = new Gtk.Spinner();
+            progress = new ProgressHeader();
             return;
         }
 
@@ -201,6 +239,13 @@ namespace FontManager {
         public Gtk.MenuButton app_menu { get; protected set; }
         public Gtk.Label main_menu_label { get; set; }
         public Gtk.ToggleButton prefs_toggle { get; protected set; }
+        public ProgressHeader progress { get; protected set; }
+
+        public bool loading {
+            set {
+                set_custom_title(value ? progress : null);
+            }
+        }
 
         protected Gtk.Revealer revealer { get; set; }
         protected Gtk.Image main_menu_icon { get; set; }
@@ -219,7 +264,7 @@ namespace FontManager {
             connect_signals();
             widgets = { main_menu_icon, main_menu_container, main_menu_label,
                         main_menu, prefs_toggle, manage_controls, revealer,
-                        app_menu, app_menu_icon, spinner };
+                        app_menu, app_menu_icon, spinner, progress };
             foreach (var widget in widgets)
                 widget.show();
         }
@@ -240,6 +285,13 @@ namespace FontManager {
         public Gtk.MenuButton app_menu { get; protected set; }
         public Gtk.Label main_menu_label { get; set; }
         public Gtk.ToggleButton prefs_toggle { get; protected set; }
+        public ProgressHeader progress { get; protected set; }
+
+        public bool loading {
+            set {
+                set_center_widget(value ? progress : null);
+            }
+        }
 
         protected Gtk.Revealer revealer { get; set; }
         protected Gtk.Image main_menu_icon { get; set; }
@@ -257,7 +309,7 @@ namespace FontManager {
             connect_signals();
             widgets = { main_menu_icon, main_menu_container, main_menu_label,
                         main_menu, prefs_toggle, manage_controls, revealer,
-                        app_menu, app_menu_icon, spinner };
+                        app_menu, app_menu_icon, spinner, progress };
             foreach (var widget in widgets)
                 widget.show();
         }

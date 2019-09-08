@@ -375,8 +375,7 @@ font_manager_database_get_version (FontManagerDatabase *self, GError **error)
     if (sqlite3_open_failed(self, error))
         return result;
     font_manager_database_execute_query(self, "PRAGMA user_version", error);
-    if (error != NULL && *error != NULL)
-        return result;
+    g_return_val_if_fail(error == NULL || *error == NULL, result);
     if (sqlite3_step(self->stmt) == SQLITE_ROW)
         result = sqlite3_column_int(self->stmt, 0);
     return result;
@@ -398,8 +397,7 @@ font_manager_database_set_version (FontManagerDatabase *self, int version, GErro
     gchar *sql = g_strdup_printf("PRAGMA user_version = %i", version);
     font_manager_database_execute_query(self, sql, error);
     g_free(sql);
-    if (error != NULL && *error != NULL)
-        return;
+    g_return_if_fail(error == NULL || *error == NULL);
     if (!sqlite3_step_succeeded(self, SQLITE_DONE))
         set_error(self, "sqlite3_step", error);
     return;
@@ -497,8 +495,7 @@ font_manager_database_initialize (FontManagerDatabase *self,
         return;
 
     font_manager_database_close(self, error);
-    if (error != NULL && *error != NULL)
-        return;
+    g_return_if_fail(error == NULL || *error == NULL);
 
     gchar *db_file;
     g_object_get(self, "file", &db_file, NULL);
@@ -516,40 +513,32 @@ font_manager_database_initialize (FontManagerDatabase *self,
     if (type == FONT_MANAGER_DATABASE_TYPE_FONT) {
 
         font_manager_database_execute_query(self, CREATE_FONTS_TABLE, error);
-        if (error != NULL && *error != NULL)
-            return;
+        g_return_if_fail(error == NULL || *error == NULL);
         if (!sqlite3_step_succeeded(self, SQLITE_DONE))
             set_error(self, "sqlite3_step", error);
-        if (error != NULL && *error != NULL)
-            return;
+        g_return_if_fail(error == NULL || *error == NULL);
 
     } else if (type == FONT_MANAGER_DATABASE_TYPE_METADATA) {
 
         font_manager_database_execute_query(self, CREATE_INFO_TABLE, error);
-        if (error != NULL && *error != NULL)
-            return;
+        g_return_if_fail(error == NULL || *error == NULL);
         if (!sqlite3_step_succeeded(self, SQLITE_DONE))
             set_error(self, "sqlite3_step", error);
-        if (error != NULL && *error != NULL)
-            return;
+        g_return_if_fail(error == NULL || *error == NULL);
 
         font_manager_database_execute_query(self, CREATE_PANOSE_TABLE, error);
-        if (error != NULL && *error != NULL)
-            return;
+        g_return_if_fail(error == NULL || *error == NULL);
         if (!sqlite3_step_succeeded(self, SQLITE_DONE))
             set_error(self, "sqlite3_step", error);
-        if (error != NULL && *error != NULL)
-            return;
+        g_return_if_fail(error == NULL || *error == NULL);
 
     } else if (type == FONT_MANAGER_DATABASE_TYPE_ORTHOGRAPHY) {
 
         font_manager_database_execute_query(self, CREATE_ORTH_TABLE, error);
-        if (error != NULL && *error != NULL)
-            return;
+        g_return_if_fail(error == NULL || *error == NULL);
         if (!sqlite3_step_succeeded(self, SQLITE_DONE))
             set_error(self, "sqlite3_step", error);
-        if (error != NULL && *error != NULL)
-            return;
+        g_return_if_fail(error == NULL || *error == NULL);
 
     }
 
@@ -572,8 +561,7 @@ font_manager_database_get_object (FontManagerDatabase *self, const gchar *sql, G
     g_return_val_if_fail(FONT_MANAGER_IS_DATABASE(self), NULL);
     g_return_val_if_fail(sql != NULL, NULL);
     font_manager_database_execute_query(self, sql, error);
-    if (error != NULL && *error != NULL)
-        return NULL;
+    g_return_val_if_fail(error == NULL || *error == NULL, NULL);
     if (!sqlite3_step_succeeded(self, SQLITE_ROW))
         return NULL;
 
@@ -596,12 +584,7 @@ font_manager_database_get_object (FontManagerDatabase *self, const gchar *sql, G
         }
     }
 
-    //return (json_object_get_size(obj) > 0) ? obj : json_object_unref(obj), NULL;
-    if (json_object_get_size(obj) > 0)
-        return obj;
-    else
-        json_object_unref(obj);
-    return NULL;
+    return (json_object_get_size(obj) > 0) ? obj : json_object_unref(obj), NULL;
 }
 
 /**
@@ -978,8 +961,9 @@ update_available_fonts (FontManagerDatabase *db,
                 goto cleanup;
         }
         if (insert->progress) {
-            FontManagerProgressData *data = font_manager_get_progress_data(f_name, processed, total);
-            g_main_context_invoke_full(NULL, G_PRIORITY_DEFAULT_IDLE,
+            FontManagerProgressData *data = font_manager_get_progress_data(insert->table, processed, total);
+            g_main_context_invoke_full(g_main_context_get_thread_default(),
+                                       G_PRIORITY_DEFAULT_IDLE,
                                        (GSourceFunc) insert->progress, data,
                                        (GDestroyNotify) font_manager_free_progress_data);
         }
@@ -1009,12 +993,24 @@ cleanup:
     return;
 }
 
+/**
+ * font_manager_update_database_sync:
+ * @db: #FontManagerDatabase instance
+ * @type: #DatabaseUpdateType
+ * @progress: (scope call) (nullable): #FontManagerProgressCallback
+ * @cancellable: (nullable): #GCancellable or %NULL
+ * @error: (nullable): #GError or %NULL
+ *
+ * Update application database as needed.
+ *
+ * Returns: %TRUE on success
+ */
 gboolean
-sync_database (FontManagerDatabase *db,
-               FontManagerDatabaseType type,
-               FontManagerProgressCallback progress,
-               GCancellable *cancellable,
-               GError **error)
+font_manager_update_database_sync (FontManagerDatabase *db,
+                                    FontManagerDatabaseType type,
+                                    FontManagerProgressCallback progress,
+                                    GCancellable *cancellable,
+                                    GError **error)
 {
     g_return_val_if_fail(FONT_MANAGER_IS_DATABASE(db), FALSE);
     g_return_val_if_fail(type != FONT_MANAGER_DATABASE_TYPE_BASE, FALSE);
@@ -1089,7 +1085,7 @@ sync_database_thread (GTask *task,
     gboolean result = FALSE;
     DatabaseSyncData *data = task_data;
 
-    result = sync_database(data->db, data->type, data->progress, cancellable, &error);
+    result = font_manager_update_database_sync(data->db, data->type, data->progress, cancellable, &error);
 
     if (error == NULL)
         g_task_return_boolean(task, result);
@@ -1098,7 +1094,7 @@ sync_database_thread (GTask *task,
 }
 
 /**
- * font_manager_sync_database:
+ * font_manager_update_database:
  * @db: #FontManagerDatabase instance
  * @type: #DatabaseUpdateType
  * @progress: (scope call) (nullable): #FontManagerProgressCallback
@@ -1109,12 +1105,12 @@ sync_database_thread (GTask *task,
  * Update application database as needed.
  */
 void
-font_manager_sync_database (FontManagerDatabase *db,
-                            FontManagerDatabaseType type,
-                            FontManagerProgressCallback progress,
-                            GCancellable *cancellable,
-                            GAsyncReadyCallback callback,
-                            gpointer user_data)
+font_manager_update_database (FontManagerDatabase *db,
+                              FontManagerDatabaseType type,
+                              FontManagerProgressCallback progress,
+                              GCancellable *cancellable,
+                              GAsyncReadyCallback callback,
+                              gpointer user_data)
 {
     g_return_if_fail(cancellable == NULL || G_IS_CANCELLABLE (cancellable));
     DatabaseSyncData *sync_data = get_sync_data(db, type, progress);
@@ -1128,14 +1124,14 @@ font_manager_sync_database (FontManagerDatabase *db,
 }
 
 /**
- * font_manager_sync_database_finish:
+ * font_manager_update_database_finish:
  * @result: #GAsyncResult
  * @error: (nullable): #GError or %NULL
  *
  * Returns: %TRUE on success
  */
 gboolean
-font_manager_sync_database_finish (GAsyncResult *result, GError **error)
+font_manager_update_database_finish (GAsyncResult *result, GError **error)
 {
     g_return_val_if_fail(g_task_is_valid(result, NULL), FALSE);
     g_return_val_if_fail(error == NULL || *error == NULL, FALSE);

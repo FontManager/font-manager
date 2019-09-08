@@ -166,8 +166,7 @@ namespace FontManager {
          * Displays a file selection dialog where source folders can be added
          */
         public void on_add_source () {
-            Gtk.Window? parent = Application.get_current_window();
-            string? [] arr = FileSelector.get_selected_sources(parent);
+            string? [] arr = FileSelector.get_selected_sources(main_window);
             if (arr.length > 0)
                 Idle.add(() => { add_sources(arr); return false; });
             return;

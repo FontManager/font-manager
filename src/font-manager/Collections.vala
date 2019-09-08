@@ -349,8 +349,7 @@ namespace FontManager {
         }
 
         async void _copy_to () requires (selected_filter != null) {
-            Gtk.Window? parent = Application.get_current_window();
-            string? target_dir = FileSelector.get_target_directory(parent);
+            string? target_dir = FileSelector.get_target_directory(main_window);
             if (target_dir == null)
                 return;
             string destination = Path.build_filename(target_dir, selected_filter.name);
@@ -363,7 +362,7 @@ namespace FontManager {
             StringHashset filelist = selected_filter.get_filelist();
             uint total = filelist.size;
             uint processed = 0;
-            var progress_dialog = new ProgressDialog(parent, _("Copying files..."));
+            var progress_dialog = new ProgressDialog(main_window, _("Copying files..."));
             progress_dialog.show_now();
             while (Gtk.events_pending())
                 Gtk.main_iteration();

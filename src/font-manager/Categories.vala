@@ -125,16 +125,10 @@ namespace FontManager {
                 tree.set_model(_model);
                 select_first_row();
                 _model.update_begin.connect(() => {
-                    spinner.show();
-                    spinner.start();
-                    Timeout.add(50, () => {
-                        queue_draw();
-                        return update_in_progress;
-                    });
+                    updating.show();
                 });
                 _model.update_complete.connect(() => {
-                    spinner.stop();
-                    spinner.hide();
+                    updating.hide();
                     update_in_progress = false;
                 });
             }
@@ -149,16 +143,17 @@ namespace FontManager {
         public Gtk.CellRendererPixbuf pixbuf_renderer { get; protected set; }
 
         Gtk.Overlay overlay;
-        Gtk.Spinner spinner;
 
         CategoryModel _model;
+        PlaceHolder updating;
 
         public CategoryTree () {
             expand = true;
             overlay = new Gtk.Overlay();
-            spinner = new Gtk.Spinner();
-            spinner.set("halign", Gtk.Align.CENTER, "valign", Gtk.Align.CENTER, null);
-            spinner.set_size_request(96, 96);
+            updating = new PlaceHolder(null, "emblem-synchronizing-symbolic");
+            string update_txt = _("Update in progress");
+            updating.label.set_markup("<b><big>%s</big></b>".printf(update_txt));
+            updating.show();
             tree = new BaseTreeView();
             model = new CategoryModel();
             tree.name = "CategoryTree";
@@ -178,12 +173,11 @@ namespace FontManager {
             tree.set_tooltip_column(CategoryColumn.COMMENT);
             tree.test_expand_row.connect((t,i,p) => { t.collapse_all(); return false; });
             tree.get_selection().changed.connect(on_selection_changed);
-            overlay.add_overlay(spinner);
+            overlay.add_overlay(updating);
             overlay.add(tree);
             add(overlay);
             tree.show();
-            spinner.show();
-            spinner.start();
+            updating.show();
             overlay.show();
         }
 

@@ -27,6 +27,12 @@
 
 G_BEGIN_DECLS
 
+/**
+ * FontManagerProgressData:
+ * @processed:  #guint
+ * @total:      #guint
+ * @message: (nullable): #gchar
+ */
 typedef struct
 {
     guint processed;

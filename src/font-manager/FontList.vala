@@ -465,8 +465,7 @@ namespace FontManager {
             string directory = GLib.Path.get_dirname(selected_font.filepath);
             string uri = "file://%s".printf(directory);
             try {
-                Gtk.Window? parent = Application.get_current_window();
-                Gtk.show_uri_on_window(parent, uri, Gdk.CURRENT_TIME);
+                Gtk.show_uri_on_window(main_window, uri, Gdk.CURRENT_TIME);
             } catch (Error e) {
                 warning(e.message);
             }
