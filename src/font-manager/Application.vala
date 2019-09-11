@@ -27,9 +27,8 @@ namespace FontManager {
 
     bool print_progress (ProgressData data) {
         int width = 72;
-        double progress = ((double) data.processed /(double) data.total);
-        if (progress < 1.0) {
-            int position = (int) (((double) width) * progress);
+        if (data.progress < 1.0) {
+            int position = (int) (((double) width) * data.progress);
             stdout.printf("\r[");
             for (int i = 0; i < width; i++) {
                 if (i < position)
@@ -39,10 +38,10 @@ namespace FontManager {
                 else
                     stdout.printf(" ");
             }
-            if (progress >= 0.99)
+            if (data.progress >= 0.99)
                 stdout.printf("] %i %\r", 100);
             else
-                stdout.printf("] %i %\r", (int) (progress * 100.0));
+                stdout.printf("] %i %\r", (int) (data.progress * 100.0));
             stdout.flush();
         }
         return GLib.Source.REMOVE;
@@ -268,8 +267,16 @@ namespace FontManager {
             StringHashset? filelist = get_command_line_files(cl);
 
             if (options.contains("install") || options.contains("update")) {
-                if (options.contains("install") && filelist != null)
-                    new Library.Installer().process_sync(filelist);
+                if (options.contains("install") && filelist != null) {
+                    var installer = new Library.Installer();
+                    installer.progress.connect((m, p, t) => {
+                        var data = new ProgressData(m, p, t);
+                        print_progress(data);
+                    });
+                    stdout.printf("Installing Font Files\n");
+                    installer.process_sync(filelist);
+                    stdout.printf("\n");
+                }
                 ensure_sources();
                 ensure_reject();
                 update_font_configuration();
@@ -281,7 +288,7 @@ namespace FontManager {
                 };
                 foreach (var type in db_types) {
                     try {
-                        stdout.printf("Updating %s\n", Database.get_type_name(type));
+                        stdout.printf("Updating Database - %s\n", Database.get_type_name(type));
                         update_database_sync(get_database(type), type, print_progress, null);
                         stdout.printf("\n");
                     } catch (Error e) {

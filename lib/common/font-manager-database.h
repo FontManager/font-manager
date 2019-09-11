@@ -27,6 +27,7 @@
 #include <json-glib/json-glib.h>
 #include <sqlite3.h>
 
+#include "font-manager-progress-data.h"
 #include "font-manager-string-hashset.h"
 #include "font-manager-utils.h"
 

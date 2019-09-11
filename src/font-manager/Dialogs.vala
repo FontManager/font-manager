@@ -25,17 +25,17 @@ namespace FontManager {
         Gtk.ProgressBar progress_bar;
 
         public ProgressDialog (Gtk.Window? parent, string? title) {
-            Object(transient_for: parent, text: title);
+            Object(transient_for: parent, modal: true, text: title);
             progress_bar = new Gtk.ProgressBar();
             ((Gtk.Box) get_message_area()).pack_end(progress_bar);
             set_default_size(475, 125);
         }
 
-        public void set_progress (ProgressData progress) {
-            secondary_text = progress.message;
+        public void set_progress (ProgressData data) {
+            secondary_text = data.message;
             if (!progress_bar.is_visible())
                 progress_bar.show();
-            progress_bar.set_fraction((double) progress.processed/progress.total);
+            progress_bar.set_fraction(data.progress);
             return;
         }
 

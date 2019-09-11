@@ -925,6 +925,7 @@ update_available_fonts (FontManagerDatabase *db,
     g_return_if_fail(FONT_MANAGER_IS_DATABASE(db));
 
     JsonObject *all_fonts = NULL;
+    FontManagerProgressData *progress = NULL;
 
     FontManagerStringHashset *known_files = get_known_files(db, insert->table);
     GList *available_files = font_manager_list_available_font_files();
@@ -961,11 +962,11 @@ update_available_fonts (FontManagerDatabase *db,
                 goto cleanup;
         }
         if (insert->progress) {
-            FontManagerProgressData *data = font_manager_get_progress_data(insert->table, processed, total);
-            g_main_context_invoke_full(g_main_context_get_thread_default(),
-                                       G_PRIORITY_DEFAULT_IDLE,
-                                       (GSourceFunc) insert->progress, data,
-                                       (GDestroyNotify) font_manager_free_progress_data);
+            if (!progress)
+                progress = font_manager_progress_data_new(insert->table, processed, total);
+            else
+                g_object_set(progress, "message", insert->table, "processed", processed, "total", total, NULL);
+            g_main_context_invoke(g_main_context_get_thread_default(), (GSourceFunc) insert->progress, progress);
         }
         JsonObject *family = json_node_get_object(f_node);
         JsonObjectIter s_iter;
@@ -990,6 +991,8 @@ cleanup:
     g_list_free_full(available_files, g_free);
     if (all_fonts)
         json_object_unref(all_fonts);
+    if (progress)
+        g_object_unref(progress);
     return;
 }
 

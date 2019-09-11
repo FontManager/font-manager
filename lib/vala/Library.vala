@@ -84,7 +84,7 @@ namespace FontManager {
 
         public class Installer : Object {
 
-            public signal void progress (string message, int processed, int total);
+            public signal void progress (string message, uint processed, uint total);
 
             static File? tmp_file = null;
 
@@ -148,6 +148,8 @@ namespace FontManager {
             void process_files (StringHashset filelist) {
                 var font = new FontInfo();
                 string install_dir = get_user_font_directory();
+                uint total = filelist.size;
+                uint processed = 0;
                 foreach (var path in filelist) {
                     if (path.contains("XtraStuf.mac") || path.contains("__MACOSX"))
                         return;
@@ -176,6 +178,9 @@ namespace FontManager {
                     } catch (Error e) {
                         warning(e.message);
                     }
+
+                    processed++;
+                    progress(filename, processed, total);
 
                 }
                 return;

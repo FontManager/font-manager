@@ -42,38 +42,6 @@ get_possible_schema_dirs (void)
 }
 
 /**
- * font_manager_get_progress_data: (skip)
- * @message:    progress message string
- * @processed:  processed
- * @total:      total
- *
- * Returns: (transfer full): #FontManagerProgressData
- */
-FontManagerProgressData *
-font_manager_get_progress_data (const gchar *message, guint processed, guint total)
-{
-    FontManagerProgressData *data = g_new0(FontManagerProgressData, 1);
-    data->processed = processed;
-    data->total = total;
-    data->message = g_strdup(message);
-    return data;
-}
-
-/**
- * font_manager_free_progress_data: (skip)
- * @data:   #FontManagerProgressData
- */
-void
-font_manager_free_progress_data (gpointer data)
-{
-    FontManagerProgressData *_data = data;
-    g_free(_data->message);
-    g_free(_data);
-    _data = NULL;
-    return;
-}
-
-/**
  * font_manager_is_dir:
  *
  * Returns:             #TRUE if path is a directory

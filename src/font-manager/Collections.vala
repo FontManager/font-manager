@@ -370,10 +370,7 @@ namespace FontManager {
                 File original = File.new_for_path(filepath);
                 string filename = original.get_basename();
                 {
-                    var progress = ProgressData();
-                    progress.message = filename;
-                    progress.processed = ++processed;
-                    progress.total = total;
+                    var progress = new ProgressData(filename, ++processed, total);
                     progress_dialog.set_progress(progress);
                 }
                 string path = Path.build_filename(destination, filename);

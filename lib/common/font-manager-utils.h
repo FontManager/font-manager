@@ -27,25 +27,6 @@
 
 G_BEGIN_DECLS
 
-/**
- * FontManagerProgressData:
- * @processed:  #guint
- * @total:      #guint
- * @message: (nullable): #gchar
- */
-typedef struct
-{
-    guint processed;
-    guint total;
-    gchar *message;
-}
-FontManagerProgressData;
-
-typedef gboolean (*FontManagerProgressCallback) (FontManagerProgressData *data);
-
-FontManagerProgressData * font_manager_get_progress_data (const gchar *message, guint processed, guint total);
-void font_manager_free_progress_data (gpointer data);
-
 gint font_manager_get_file_owner (const gchar *filepath);
 gint font_manager_natural_sort (const gchar *s1, const gchar *s2);
 gboolean font_manager_exists (const gchar *filepath);
