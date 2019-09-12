@@ -53,7 +53,8 @@ font_manager_progress_data_finalize (GObject *gobject)
     FontManagerProgressData *self = FONT_MANAGER_PROGRESS_DATA(gobject);
     g_return_if_fail(self != NULL);
     FontManagerProgressDataPrivate *priv = font_manager_progress_data_get_instance_private(self);
-    g_free(priv->message);
+    if (priv->message)
+        g_free(priv->message);
     G_OBJECT_CLASS(font_manager_progress_data_parent_class)->finalize(gobject);
     return;
 }
@@ -106,7 +107,8 @@ font_manager_progress_data_set_property (GObject *gobject,
             priv->total = g_value_get_uint(value);
             break;
         case PROP_MESSAGE:
-            g_free(priv->message);
+            if (priv->message)
+                g_free(priv->message);
             priv->message = g_value_dup_string(value);
             break;
         default:
@@ -114,7 +116,6 @@ font_manager_progress_data_set_property (GObject *gobject,
             break;
     }
     return;
-
 }
 
 static void
@@ -125,10 +126,41 @@ font_manager_progress_data_class_init (FontManagerProgressDataClass *klass)
     object_class->get_property = font_manager_progress_data_get_property;
     object_class->set_property = font_manager_progress_data_set_property;
 
-    obj_properties[PROP_PROCESSED] = g_param_spec_uint("processed", NULL, NULL, 0, G_MAXUINT, 0, G_PARAM_READWRITE);
-    obj_properties[PROP_TOTAL] = g_param_spec_uint("total", NULL, NULL, 0, G_MAXUINT, 0, G_PARAM_READWRITE);
-    obj_properties[PROP_MESSAGE] = g_param_spec_string("message", NULL, NULL, NULL, G_PARAM_READWRITE);
-    obj_properties[PROP_PROGRESS] = g_param_spec_double("progress", NULL, NULL, G_MINDOUBLE, G_MAXDOUBLE, G_MINDOUBLE, G_PARAM_READABLE);
+    /**
+     * FontManagerProgressData::processed:
+     *
+     * Amount processed so far
+     */
+    obj_properties[PROP_PROCESSED] = g_param_spec_uint("processed", NULL, NULL,
+                                                        0, G_MAXUINT, 0,
+                                                        G_PARAM_READWRITE);
+
+    /**
+     * FontManagerProgressData::total:
+     *
+     * Total amount to process
+     */
+    obj_properties[PROP_TOTAL] = g_param_spec_uint("total", NULL, NULL,
+                                                    0, G_MAXUINT, 0,
+                                                    G_PARAM_READWRITE);
+
+    /**
+     * FontManagerProgressData::message:
+     *
+     * String suitable for display
+     */
+    obj_properties[PROP_MESSAGE] = g_param_spec_string("message", NULL, NULL,
+                                                        NULL,
+                                                        G_PARAM_READWRITE);
+
+    /**
+     * FontManagerProgressData::progress:
+     *
+     * Progress as fraction between 0.0 - 1.0
+     */
+    obj_properties[PROP_PROGRESS] = g_param_spec_double("progress", NULL, NULL,
+                                                        G_MINDOUBLE, G_MAXDOUBLE, G_MINDOUBLE,
+                                                        G_PARAM_READABLE);
 
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
@@ -142,6 +174,9 @@ font_manager_progress_data_init (G_GNUC_UNUSED FontManagerProgressData *self)
 
 /**
  * font_manager_progress_data_new:
+ * @message: (nullable): string suitable for display
+ * @processed:  amount processed so far
+ * @total:      total amount to process
  *
  * Returns: (transfer full): #FontManagerProgressData
  * Use #g_object_unref to free the result.
@@ -151,9 +186,10 @@ font_manager_progress_data_new (const gchar *message, guint processed, guint tot
 {
     FontManagerProgressData *self = g_object_new(FONT_MANAGER_TYPE_PROGRESS_DATA, NULL);
     FontManagerProgressDataPrivate *priv = font_manager_progress_data_get_instance_private(self);
-    priv->message = g_strdup(message);
+    if (message)
+        priv->message = g_strdup(message);
     priv->processed = processed;
     priv->total = total;
-    return self;
+    return FONT_MANAGER_PROGRESS_DATA(self);
 }
 

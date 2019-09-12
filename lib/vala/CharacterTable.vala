@@ -62,7 +62,10 @@ namespace FontManager {
 
         public void set_filter (Orthography? orthography) {
             table.codepoint_list = null;
-            codepoint_list.filter = orthography != null ? orthography.filter : null;
+            if (orthography != null)
+                codepoint_list.set_filter(orthography.get_filter());
+            else
+                codepoint_list.set_filter(null);
             table.codepoint_list = codepoint_list;
             count = codepoint_list.get_last_index();
             return;

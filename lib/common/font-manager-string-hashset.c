@@ -204,8 +204,8 @@ font_manager_string_hashset_remove_all (FontManagerStringHashset *self, GList *r
 {
     g_return_val_if_fail(self != NULL, FALSE);
     FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
-    GList *iter;
     gboolean result = TRUE;
+    GList *iter = NULL;
     for (iter = remove; iter != NULL; iter = iter->next) {
         g_hash_table_remove(priv->hashset, iter->data);
         if (g_hash_table_contains(priv->hashset, iter->data)) {
@@ -229,8 +229,8 @@ font_manager_string_hashset_retain_all (FontManagerStringHashset *self, GList *r
     g_return_val_if_fail(self != NULL, FALSE);
     FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     gboolean result = TRUE;
-    GList *iter, *current = g_hash_table_get_keys(priv->hashset);
-    for (iter = current; iter != NULL; iter = iter->next) {
+    GList *iter = g_hash_table_get_keys(priv->hashset);
+    while (iter != NULL) {
         if (g_list_find_custom(retain, iter->data, (GCompareFunc) g_strcmp0) == NULL) {
             g_hash_table_remove(priv->hashset, iter->data);
             if (g_hash_table_contains(priv->hashset, iter->data)) {
@@ -238,8 +238,9 @@ font_manager_string_hashset_retain_all (FontManagerStringHashset *self, GList *r
                 g_warning(G_STRLOC ": Failed to remove %s", (char *) iter->data);
             }
         }
+        iter = iter->next;
     }
-    g_list_free(current);
+    g_list_free(iter);
     return result;
 }
 
@@ -271,10 +272,13 @@ font_manager_string_hashset_list (FontManagerStringHashset *self)
     g_return_val_if_fail(self != NULL, NULL);
     FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
     GList *result = NULL;
-    GList *iter = NULL;
-    for (iter = g_hash_table_get_values(priv->hashset); iter != NULL; iter = iter->next)
+    GList *iter = g_hash_table_get_values(priv->hashset);
+    while (iter != NULL) {
         result = g_list_prepend(result, g_strdup(iter->data));
+        iter = iter->next;
+    }
     result = g_list_reverse(result);
+    g_list_free(iter);
     return result;
 }
 

@@ -38,8 +38,7 @@ G_DEFINE_TYPE_WITH_CODE(FontManagerCodepointList, font_manager_codepoint_list, G
 enum
 {
     PROP_0,
-    PROP_FONT_OBJECT,
-    PROP_FILTER
+    PROP_FONT_OBJECT
 };
 
 static gint
@@ -116,9 +115,6 @@ font_manager_codepoint_list_set_property (GObject *object,
         case PROP_FONT_OBJECT:
             font_manager_codepoint_list_set_font(self, g_value_get_boxed(value));
             break;
-        case PROP_FILTER:
-            font_manager_codepoint_list_set_filter(self, g_value_get_pointer(value));
-            break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
             break;
@@ -146,17 +142,6 @@ font_manager_codepoint_list_class_init (FontManagerCodepointListClass *klass)
                                                         G_PARAM_STATIC_NICK |
                                                         G_PARAM_STATIC_BLURB));
 
-    /**
-     * FontManagerCodepointList:filter: (type GList(uint)) (transfer none)
-     */
-    g_object_class_install_property(object_class,
-                                    PROP_FILTER,
-                                    g_param_spec_pointer("filter",
-                                                        NULL, NULL,
-                                                        G_PARAM_WRITABLE |
-                                                        G_PARAM_STATIC_NAME |
-                                                        G_PARAM_STATIC_NICK |
-                                                        G_PARAM_STATIC_BLURB));
     return;
 }
 
@@ -186,7 +171,7 @@ font_manager_codepoint_list_set_font (FontManagerCodepointList *self, JsonObject
 /**
  * font_manager_codepoint_list_set_filter:
  * @self: #FontManagerCodepointList
- * @filter: (element-type uint) (transfer none) (nullable): #GList containing codepoints
+ * @filter: (element-type uint) (transfer full) (nullable): #GList containing codepoints
  *
  * When a filter is set only codepoints which are actually present in the filter
  * will be used.
@@ -195,14 +180,10 @@ void
 font_manager_codepoint_list_set_filter (FontManagerCodepointList *self, GList *filter)
 {
     g_return_if_fail(self != NULL);
-    GList *_filter = NULL;
-    for (GList *iter = filter; iter != NULL; iter = iter->next)
-        _filter = g_list_prepend(_filter, iter->data);
-    _filter = g_list_reverse(_filter);
     if (self->filter)
         g_list_free(self->filter);
     self->filter = NULL;
-    self->filter = _filter;
+    self->filter = filter;
     return;
 }
 

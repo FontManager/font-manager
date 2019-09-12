@@ -37,6 +37,7 @@ FontInfo.license_url nullable
 FontModel cheader_filename = "font-manager-font-model.h"
 FontModelColumn cheader_filename = "font-manager-font-model.h"
 
+Orthography cheader_filename = "font-manager-orthography.h"
 OrthographyData cheader_filename = "font-manager-orthography.h"
 get_orthography_results cheader_filename = "font-manager-orthography.h"
 get_sample_string_for_orthography cheader_filename = "font-manager-orthography.h"

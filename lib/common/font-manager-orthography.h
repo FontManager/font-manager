@@ -18,11 +18,20 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#ifndef __ORTHOGRAPHY_DATA_H__
-#define __ORTHOGRAPHY_DATA_H__
+#ifndef __FONT_MANAGER_ORTHOGRAPHY_H__
+#define __FONT_MANAGER_ORTHOGRAPHY_H__
 
 #include <glib.h>
 #include <json-glib/json-glib.h>
+
+G_BEGIN_DECLS
+
+#define FONT_MANAGER_TYPE_ORTHOGRAPHY (font_manager_orthography_get_type ())
+G_DECLARE_FINAL_TYPE(FontManagerOrthography, font_manager_orthography, FONT_MANAGER, ORTHOGRAPHY, GObject)
+
+FontManagerOrthography * font_manager_orthography_new (JsonObject *filter);
+GList * font_manager_orthography_get_filter (FontManagerOrthography *self);
+
 
 #define FONT_MANAGER_START_RANGE_PAIR 0x0002
 #define FONT_MANAGER_END_OF_DATA 0x0000
@@ -231,5 +240,7 @@ static const FontManagerOrthographyData UncategorizedOrthographies [] = {
 JsonObject * font_manager_get_orthography_results (JsonObject *font);
 gchar * font_manager_get_sample_string_for_orthography (JsonObject *orthography, GList *charset);
 
-#endif /* __ORTHOGRAPHY_DATA_H__ */
+G_END_DECLS
+
+#endif /* __FONT_MANAGER_ORTHOGRAPHY_H__ */
 

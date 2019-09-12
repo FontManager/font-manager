@@ -25,6 +25,160 @@
 #include "font-manager-orthography.h"
 #include "unicode-info.h"
 
+struct _FontManagerOrthography
+{
+    GObjectClass parent_class;
+};
+
+typedef struct
+{
+    JsonObject *source;
+}
+FontManagerOrthographyPrivate;
+
+G_DEFINE_TYPE_WITH_PRIVATE (FontManagerOrthography, font_manager_orthography, G_TYPE_OBJECT)
+
+enum
+{
+    PROP_RESERVED,
+    PROP_NAME,
+    PROP_NATIVE_NAME,
+    PROP_SAMPLE,
+    PROP_COVERAGE,
+    N_PROPERTIES
+};
+
+static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
+
+static void
+font_manager_orthography_finalize (GObject *gobject)
+{
+    FontManagerOrthography *self = FONT_MANAGER_ORTHOGRAPHY(gobject);
+    g_return_if_fail(self != NULL);
+    FontManagerOrthographyPrivate *priv = font_manager_orthography_get_instance_private(self);
+    if (priv->source)
+        json_object_unref(priv->source);
+    G_OBJECT_CLASS(font_manager_orthography_parent_class)->finalize(gobject);
+    return;
+}
+
+static const gchar *
+font_manager_orthography_get_member(FontManagerOrthographyPrivate *priv, GParamSpec *pspec)
+{
+    g_return_val_if_fail(priv->source != NULL, NULL);
+    const gchar *member = g_param_spec_get_name(pspec);
+    return json_object_has_member(priv->source, member) ?
+           json_object_get_string_member(priv->source, member) : NULL;
+}
+
+static gdouble
+font_manager_orthography_get_coverage(FontManagerOrthographyPrivate *priv)
+{
+    g_return_val_if_fail(priv->source != NULL, 0.0);
+    return json_object_has_member(priv->source, "coverage") ?
+           json_object_get_double_member(priv->source, "coverage") : 0.0;
+}
+
+static void
+font_manager_orthography_get_property (GObject *gobject,
+                                        guint property_id,
+                                        GValue *value,
+                                        GParamSpec *pspec)
+{
+    FontManagerOrthography *self = FONT_MANAGER_ORTHOGRAPHY(gobject);
+    g_return_if_fail(self != NULL);
+    FontManagerOrthographyPrivate *priv = font_manager_orthography_get_instance_private(self);
+    switch (property_id) {
+        case PROP_NAME:
+        case PROP_NATIVE_NAME:
+        case PROP_SAMPLE:
+            g_value_set_string(value, font_manager_orthography_get_member(priv, pspec));
+            break;
+        case PROP_COVERAGE:
+            g_value_set_double(value, font_manager_orthography_get_coverage(priv));
+            break;
+        default:
+            G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
+            break;
+    }
+    return;
+}
+
+static void
+font_manager_orthography_class_init (FontManagerOrthographyClass *klass)
+{
+    GObjectClass *object_class = G_OBJECT_CLASS(klass);
+    object_class->finalize = font_manager_orthography_finalize;
+    object_class->get_property = font_manager_orthography_get_property;
+
+    obj_properties[PROP_NAME] = g_param_spec_string("name", NULL, NULL,
+                                                    NULL,
+                                                    G_PARAM_READABLE);
+
+    obj_properties[PROP_NATIVE_NAME] = g_param_spec_string("native-name", NULL, NULL,
+                                                            NULL,
+                                                            G_PARAM_READABLE);
+
+    obj_properties[PROP_SAMPLE] = g_param_spec_string("sample", NULL, NULL,
+                                                       NULL,
+                                                       G_PARAM_READABLE);
+
+    obj_properties[PROP_COVERAGE] = g_param_spec_double("coverage", NULL, NULL,
+                                                        G_MINDOUBLE, G_MAXDOUBLE, G_MINDOUBLE,
+                                                        G_PARAM_READABLE);
+
+    g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
+    return;
+}
+
+static void
+font_manager_orthography_init (G_GNUC_UNUSED FontManagerOrthography *self)
+{
+    return;
+}
+
+/**
+ * font_manager_orthography_get_filter:
+ * @self: #FontManagerOrthography
+ *
+ *
+ * Returns: (element-type uint) (transfer full) (nullable): #GList containing codepoints
+ */
+GList *
+font_manager_orthography_get_filter (FontManagerOrthography *self)
+{
+    g_return_val_if_fail(self != NULL, NULL);
+    FontManagerOrthographyPrivate *priv = font_manager_orthography_get_instance_private(self);
+    GList *charlist = NULL;
+    if (priv->source && json_object_has_member(priv->source, "filter")) {
+        JsonArray *arr = json_object_get_array_member(priv->source, "filter");
+        guint arr_length = json_array_get_length(arr);
+        for (guint index = 0; index < arr_length; index++) {
+            gunichar uc = (gunichar) json_array_get_int_element(arr, index);
+            charlist = g_list_prepend(charlist, GINT_TO_POINTER(uc));
+        }
+        charlist = g_list_reverse(charlist);
+    }
+    return charlist;
+}
+
+/**
+ * font_manager_orthography_new:
+ * @filter:    #JsonObject
+ *
+ * Returns: (transfer full): #FontManagerOrthography
+ * Use #g_object_unref to free the result.
+ */
+FontManagerOrthography *
+font_manager_orthography_new (JsonObject *filter)
+{
+    FontManagerOrthography *self = g_object_new(FONT_MANAGER_TYPE_ORTHOGRAPHY, NULL);
+    FontManagerOrthographyPrivate *priv = font_manager_orthography_get_instance_private(self);
+    priv->source = filter ? json_object_ref(filter) : NULL;
+    return self;
+}
+
+
 #define GET_COVERAGE(o) json_object_get_double_member(json_node_get_object((JsonNode *) o), "coverage")
 #define LEN_CHARSET(o) json_array_get_length(json_object_get_array_member(json_node_get_object((JsonNode *) o), "filter"));
 

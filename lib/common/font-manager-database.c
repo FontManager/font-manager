@@ -962,11 +962,19 @@ update_available_fonts (FontManagerDatabase *db,
                 goto cleanup;
         }
         if (insert->progress) {
+
             if (!progress)
                 progress = font_manager_progress_data_new(insert->table, processed, total);
-            else
-                g_object_set(progress, "message", insert->table, "processed", processed, "total", total, NULL);
-            g_main_context_invoke(g_main_context_get_thread_default(), (GSourceFunc) insert->progress, progress);
+
+            g_object_ref(progress);
+            g_object_set(progress, "message", insert->table, "processed", processed, "total", total, NULL);
+
+            g_main_context_invoke_full(g_main_context_get_thread_default(),
+                                       G_PRIORITY_HIGH_IDLE,
+                                       (GSourceFunc) insert->progress,
+                                       progress,
+                                       (GDestroyNotify) g_object_unref);
+
         }
         JsonObject *family = json_node_get_object(f_node);
         JsonObjectIter s_iter;
@@ -1118,7 +1126,7 @@ font_manager_update_database (FontManagerDatabase *db,
     g_return_if_fail(cancellable == NULL || G_IS_CANCELLABLE (cancellable));
     DatabaseSyncData *sync_data = get_sync_data(db, type, progress);
     GTask *task = g_task_new(NULL, cancellable, callback, user_data);
-    g_task_set_priority(task, G_PRIORITY_HIGH);
+    g_task_set_priority(task, G_PRIORITY_DEFAULT);
     g_task_set_return_on_cancel(task, FALSE);
     g_task_set_task_data(task, (gpointer) sync_data, (GDestroyNotify) free_sync_data);
     g_task_run_in_thread(task, sync_database_thread);

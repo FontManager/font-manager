@@ -121,7 +121,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_libdir}/nemo/extensions-3.0/nemo-font-manager.so
 
 %changelog
-* Sun Sep 01 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.5-2
+* Thu Sep 12 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.5-2
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
-
-

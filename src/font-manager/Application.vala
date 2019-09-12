@@ -462,14 +462,9 @@ namespace FontManager {
             main_window.titlebar.loading = true;
             refresh_async.begin(
             (data) => {
-                string? m = data.message;
-                double p = (double) data.processed;
-                double t =  (double) data.total;
-                double f = (p / t);
-                Idle.add(() => {
-                    main_window.titlebar.progress.database(m, f);
-                    return false;
-                });
+                data.ref();
+                main_window.titlebar.progress.database(data);
+                data.unref();
                 return GLib.Source.REMOVE;
             },
             null,

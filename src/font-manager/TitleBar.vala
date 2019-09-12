@@ -47,17 +47,14 @@ namespace FontManager {
             title.set_text(About.DISPLAY_NAME);
         }
 
-        public void database (string? message, double fraction) {
+        public bool database (ProgressData data) {
 
-            if (message == null)
-                return;
-
-            if (message == "Fonts")
-                font = fraction / 3;
-            else if (message == "Metadata")
-                metadata = fraction / 3;
-            else if (message == "Orthography")
-                orthography = fraction / 3;
+            if (data.message == "Fonts")
+                font = data.progress / 3;
+            else if (data.message == "Metadata")
+                metadata = data.progress / 3;
+            else if (data.message == "Orthography")
+                orthography = data.progress / 3;
 
             if (font < 0.32)
                 title.set_text(_("Updating Database - Fonts"));
@@ -70,7 +67,7 @@ namespace FontManager {
             progress.set_fraction(f);
             queue_draw();
 
-            return;
+            return GLib.Source.REMOVE;
         }
 
     }
