@@ -370,6 +370,7 @@ namespace FontManager {
         [GtkChild] Gtk.Label header;
         [GtkChild] Gtk.ListBox list;
         [GtkChild] Gtk.Button clear;
+        [GtkChild] Gtk.Revealer clear_revealer;
 
         OrthographyListModel model;
 
@@ -384,7 +385,7 @@ namespace FontManager {
             unmap.connect(() => { _visible_ = false; });
             notify["selected-font"].connect(() => { update_pending = true; update_if_needed(); });
             list.row_selected.connect((r) => {
-                clear.sensitive = (r != null);
+                clear_revealer.set_reveal_child(r != null);
                 if (r == null) {
                     orthography_selected(null);
                     return;
