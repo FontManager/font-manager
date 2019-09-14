@@ -81,8 +81,8 @@ namespace FontManager {
             treeview.append_column(column);
             treeview.set_model(store);
             set_default_button_relief(controls);
-            foreground_color = fg_color_button.rgba;
-            background_color = bg_color_button.rgba;
+            foreground_color = fg_color_button.get_rgba();
+            background_color = bg_color_button.get_rgba();
             bind_properties();
             connect_signals();
             base.constructed();

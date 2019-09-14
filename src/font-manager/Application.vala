@@ -448,7 +448,7 @@ namespace FontManager {
                 Idle.add((owned) callback);
                 return true;
             };
-            new Thread <bool> ("refresh_async", run_in_thread);
+            new Thread <bool> ("refresh_async", (owned) run_in_thread);
             yield;
             return;
         }
