@@ -40,7 +40,7 @@ namespace FontManager {
             notify["visible"].connect(() => { reset(); });
         }
 
-        void reset () {
+        public void reset () {
             font = 0.0;
             metadata = 0.0;
             orthography = 0.0;
