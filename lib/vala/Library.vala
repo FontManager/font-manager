@@ -152,7 +152,7 @@ namespace FontManager {
                 uint processed = 0;
                 foreach (var path in filelist) {
                     if (path.contains("XtraStuf.mac") || path.contains("__MACOSX"))
-                        return;
+                        continue;
                     File file = File.new_for_path(path);
                     font.source_object = get_metadata(path, 0);
                     if (font.source_object.has_member("err")) {
