@@ -233,7 +233,7 @@ unicode_get_category_name (gunichar ch)
             return _("Letter, Titlecase");
         case G_UNICODE_UPPERCASE_LETTER:
             return _("Letter, Uppercase");
-        case G_UNICODE_COMBINING_MARK:
+        case G_UNICODE_SPACING_MARK:
             return _("Mark, Spacing Combining");
         case G_UNICODE_ENCLOSING_MARK:
             return _("Mark, Enclosing");
@@ -558,7 +558,7 @@ unicode_unichar_to_printable_utf8 (gunichar uc, gchar *outbuf)
   if (! unicode_unichar_validate (uc) || (! unicode_unichar_isgraph (uc)
       && g_unichar_type (uc) != G_UNICODE_PRIVATE_USE))
     return 0;
-  else if (g_unichar_type (uc) == G_UNICODE_COMBINING_MARK
+  else if (g_unichar_type (uc) == G_UNICODE_SPACING_MARK
       || g_unichar_type (uc) == G_UNICODE_ENCLOSING_MARK
       || g_unichar_type (uc) == G_UNICODE_NON_SPACING_MARK)
     {

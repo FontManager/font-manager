@@ -241,6 +241,8 @@ namespace FontManager {
         public bool loading {
             set {
                 set_custom_title(value ? progress : null);
+                if (!value)
+                    progress.reset();
             }
         }
 
@@ -287,6 +289,8 @@ namespace FontManager {
         public bool loading {
             set {
                 set_center_widget(value ? progress : null);
+                if (!value)
+                    progress.reset();
             }
         }
 
