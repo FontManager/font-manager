@@ -1,3 +1,37 @@
+# Remember to include glib.supp
+# /usr/share/glib-2.0/valgrind/glib.supp
+
+#
+# GLib
+#
+
+{
+    g_markup_parse_context_parse
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:g_markup_parse_context_parse
+}
+
+#
+# GObject
+#
+
+{
+    g_type_create_instance
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:g_type_create_instance
+}
+
+{
+    g_quark_init
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:g_quark_init
+}
 
 #
 # Fontconfig
@@ -9,14 +43,6 @@
     fun:*alloc
     ...
     fun:FcConfigValues
-}
-
-{
-    FcConfigParseAndLoad
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:FcConfigParseAndLoad*
 }
 
 #
@@ -32,6 +58,14 @@
 }
 
 {
+    pango_layout_check_lines
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:pango_layout_check_lines
+}
+
+{
     pango_layout_get_extents_internal
     Memcheck:Leak
     fun:*alloc
@@ -40,84 +74,19 @@
 }
 
 {
-    pango_context_get_metrics
+    pango_itemize_with_base_dir
     Memcheck:Leak
     fun:*alloc
     ...
-    fun:pango_context_get_metrics
+    fun:pango_itemize_with_base_dir
 }
 
 {
-    pango_layout_check_lines
+    pango_language_from_string
     Memcheck:Leak
     fun:*alloc
     ...
-    fun:pango_layout_check_lines
-}
-
-#
-# GLib
-#
-
-{
-    <tls>
-    Memcheck:Leak
-    fun:calloc
-    ...
-    fun:_dl_allocate_tls
-    ...
-    fun:pthread_create@@*
-}
-
-#
-# GObject
-#
-
-{
-    g_type_register_*
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:g_type_register_*
-}
-
-{
-    g_type_init_*
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:g_type_init_*
-}
-
-{
-    g_type_create_*
-    Memcheck:Leak
-    ...
-    fun:g_type_create_*
-}
-
-{
-    g_type_class_ref
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:g_type_class_ref
-}
-
-{
-    g_type_add_interface_static
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:g_type_add_interface_static
-}
-
-{
-    gobject_init
-    Memcheck:Leak
-    fun:*alloc*
-    ...
-    fun:_dl_init
+    fun:pango_language_from_string
 }
 
 #
@@ -125,26 +94,10 @@
 #
 
 {
-    gtk_init_check
+    gtk_init
     Memcheck:Leak
     ...
-    fun:gtk_init_check
-}
-
-{
-    gtk_css_node_declaration_make_writable*
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:gtk_css_node_declaration_make_writable*
-}
-
-{
-    gtk_do_render_layout
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:gtk_do_render_layout
+    fun:gtk_init
 }
 
 {
@@ -156,3 +109,19 @@
     fun:gtk_widget_draw_internal
 }
 
+{
+
+    gtk_*_propagate*
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:gtk_*_propagate*
+}
+
+{
+    gtk_css_node_declaration_make_writable*
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:gtk_css_node_declaration_make_writable*
+}

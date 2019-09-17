@@ -228,19 +228,22 @@ font_manager_string_hashset_retain_all (FontManagerStringHashset *self, GList *r
 {
     g_return_val_if_fail(self != NULL, FALSE);
     FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
+
     gboolean result = TRUE;
-    GList *iter = g_hash_table_get_keys(priv->hashset);
-    while (iter != NULL) {
-        if (g_list_find_custom(retain, iter->data, (GCompareFunc) g_strcmp0) == NULL) {
-            g_hash_table_remove(priv->hashset, iter->data);
-            if (g_hash_table_contains(priv->hashset, iter->data)) {
+    GHashTableIter iter;
+    gpointer key, value;
+
+    g_hash_table_iter_init(&iter, priv->hashset);
+    while (g_hash_table_iter_next (&iter, &key, &value)) {
+        if (g_list_find_custom(retain, key, (GCompareFunc) g_strcmp0) == NULL) {
+            g_hash_table_iter_remove(&iter);
+            if (g_hash_table_contains(priv->hashset, key)) {
                 result = FALSE;
-                g_warning(G_STRLOC ": Failed to remove %s", (char *) iter->data);
+                g_warning(G_STRLOC ": Failed to remove %s", (char *) key);
             }
         }
-        iter = iter->next;
     }
-    g_list_free(iter);
+
     return result;
 }
 
@@ -271,14 +274,16 @@ font_manager_string_hashset_list (FontManagerStringHashset *self)
 {
     g_return_val_if_fail(self != NULL, NULL);
     FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
+
     GList *result = NULL;
-    GList *iter = g_hash_table_get_values(priv->hashset);
-    while (iter != NULL) {
-        result = g_list_prepend(result, g_strdup(iter->data));
-        iter = iter->next;
+    GHashTableIter iter;
+    gpointer key, value;
+
+    g_hash_table_iter_init(&iter, priv->hashset);
+    while (g_hash_table_iter_next (&iter, &key, &value)) {
+        result = g_list_prepend(result, g_strdup(key));
     }
-    result = g_list_reverse(result);
-    g_list_free(iter);
+
     return result;
 }
 
