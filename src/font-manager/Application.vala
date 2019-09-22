@@ -496,6 +496,7 @@ namespace FontManager {
 
         [DBus (visible = false)]
         public new void quit () {
+            base.quit();
             /* Prevent noise during memcheck */
             {
                 try {
@@ -505,9 +506,9 @@ namespace FontManager {
                     settings = null;
                     reject = null;
                     sources = null;
+                    clear_application_fonts();
                 } catch (Error e) {}
             }
-            base.quit();
             return;
         }
 

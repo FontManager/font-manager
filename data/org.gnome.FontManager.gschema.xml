@@ -33,6 +33,11 @@
         <value nick="Collection" value="1" />
     </enum>
 
+    <enum id="org.gnome.FontManager.TitleButtonStyle">
+        <value nick="Normal" value="0" />
+        <value nick="Flat" value="1" />
+    </enum>
+
     <schema id="org.gnome.FontManager" path="/org/gnome/font-manager/">
 
         <key name="mode" enum="org.gnome.FontManager.Mode">
@@ -69,6 +74,12 @@
             <default>false</default>
             <summary>Use dark theme variant if available</summary>
             <description>Whether the application prefers to use a dark theme</description>
+        </key>
+
+        <key name="title-button-style" enum="org.gnome.FontManager.TitleButtonStyle">
+            <default>"Normal"</default>
+            <summary>Titlebar button style</summary>
+            <description>Possible modes are Normal and Flat.</description>
         </key>
 
         <key name="window-position" type="(ii)">

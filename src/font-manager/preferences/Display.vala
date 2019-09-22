@@ -74,18 +74,17 @@ namespace FontManager {
                 filters += ((LCDFilter) i).to_string();
             lcdfilter = new OptionScale(_("LCD Filter"), filters);
             spg = new SubpixelGeometry();
-            widgets = { grid, dpi, scale, lcdfilter, spg };
+            widgets = { dpi, scale, lcdfilter, spg };
             pack_components();
             bind_properties();
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             grid.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             grid.foreach((w) => { w.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW); });
-            foreach (var widget in widgets)
-                widget.show();
+            grid.show();
         }
 
         void pack_components () {
-            for (int i = 1; i < widgets.length; i++)
+            for (int i = 0; i < widgets.length; i++)
                 grid.attach(widgets[i], 0, i - 1, 2, 1);
             add(grid);
             return;

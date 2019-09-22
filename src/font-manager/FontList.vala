@@ -54,7 +54,7 @@ namespace FontManager {
             box.pack_end(entry, false, false, 0);
             box.pack_start(expand_button, false, false, 0);
             box.reorder_child(expand_button, 0);
-            set_default_button_relief(box);
+            set_button_relief_style(box);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             get_style_context().add_class(name);
             set_size_request(0, 0);

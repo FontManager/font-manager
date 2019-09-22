@@ -191,6 +191,15 @@ namespace FontManager {
             return;
         }
 
+        public void set_button_style (Gtk.ReliefStyle style) {
+            main_menu.relief = style;
+            prefs_toggle.relief = style;
+            app_menu.relief = style;
+            var button_box = manage_controls.get_child() as Gtk.Container;
+            set_button_relief_style(button_box, style);
+            return;
+        }
+
         protected void init_components () {
             main_menu = new Gtk.MenuButton();
             main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic", Gtk.IconSize.MENU);
@@ -201,7 +210,7 @@ namespace FontManager {
             main_menu_label.set("margin", 0, null);
             main_menu_container.pack_end(main_menu_label, false, false, 0);
             main_menu.add(main_menu_container);
-            main_menu.set("relief", Gtk.ReliefStyle.NONE, "margin", 0, null);
+            main_menu.margin = 0;
             main_menu.set_menu_model(get_main_menu_model(main_menu));
             revealer = new Gtk.Revealer();
             revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_RIGHT);
@@ -214,17 +223,22 @@ namespace FontManager {
             manage_controls.box.set("margin", 0, "border-width", 0, null);
             prefs_toggle = new Gtk.ToggleButton();
             prefs_toggle.set_image(new Gtk.Image.from_icon_name("preferences-system-symbolic", Gtk.IconSize.MENU));
-            prefs_toggle.relief = Gtk.ReliefStyle.NONE;
             prefs_toggle.set_tooltip_text(_("Preferences"));
             revealer.add(manage_controls);
             revealer.set_reveal_child(true);
             app_menu = new Gtk.MenuButton();
-            app_menu.set("relief", Gtk.ReliefStyle.NONE, "margin", 0, null);
+            app_menu.margin = 0;
             app_menu.set_menu_model(get_app_menu_model());
             app_menu_icon = new Gtk.Image.from_icon_name("open-menu-symbolic", Gtk.IconSize.MENU);
             app_menu.add(app_menu_icon);
             spinner = new Gtk.Spinner();
             progress = new ProgressHeader();
+            var style = Gtk.ReliefStyle.NORMAL;
+            if (settings != null) {
+                int saved_style = settings.get_enum("title-button-style");
+                style = saved_style == 0 ? Gtk.ReliefStyle.NORMAL : Gtk.ReliefStyle.NONE;
+            }
+            set_button_style(style);
             return;
         }
 

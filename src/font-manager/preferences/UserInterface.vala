@@ -20,18 +20,53 @@
 
 namespace FontManager {
 
+
+    /**
+     * TitleButtonStyle:
+     */
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-title-button-style.ui")]
+    public class TitleButtonStyle : Gtk.Box {
+
+        [GtkChild] Gtk.ComboBoxText combo;
+
+        /**
+         * LabeledSpinButton:value:
+         *
+         * Current value.
+         */
+        public string active {
+            get {
+                return combo.get_active() == 0 ? "Normal" : "Flat";
+            }
+            set {
+                combo.set_active(value == "Normal" ? 0 : 1);
+            }
+        }
+
+        construct {
+            combo.changed.connect(() => {
+                this.notify_property("active");
+                if (main_window != null) {
+                    var style = active == "Normal" ? Gtk.ReliefStyle.NORMAL : Gtk.ReliefStyle.NONE;
+                    main_window.titlebar.set_button_style(style);
+                }
+            });
+        }
+
+    }
+
     public class UserInterfacePreferences : SettingsPage {
 
         public LabeledSwitch wide_layout { get; private set; }
         public LabeledSwitch use_csd { get; private set; }
         public LabeledSwitch enable_animations { get; private set; }
         public LabeledSwitch prefer_dark_theme { get; private set; }
+        public TitleButtonStyle button_style { get; private set; }
 
         Gtk.Settings default_gtk_settings;
         Gtk.Grid grid;
         Gtk.Revealer wide_layout_options;
         Gtk.CheckButton on_maximize;
-        Gtk.Widget [] widgets;
 
         public UserInterfacePreferences () {
             orientation = Gtk.Orientation.VERTICAL;
@@ -43,22 +78,23 @@ namespace FontManager {
             on_maximize.margin_start = on_maximize.margin_end = DEFAULT_MARGIN_SIZE * 2;
             use_csd = new LabeledSwitch(_("Client Side Decorations"));
             wide_layout_options.add(on_maximize);
+            on_maximize.show();
+            wide_layout_options.show();
             enable_animations = new LabeledSwitch(_("Enable Animations"));
             prefer_dark_theme = new LabeledSwitch(_("Prefer Dark Theme"));
+            button_style = new TitleButtonStyle();
             grid = new Gtk.Grid();
             grid.attach(wide_layout, 0, 0, 1, 1);
             grid.attach(wide_layout_options, 0, 1, 1, 1);
             grid.attach(use_csd, 0, 2, 1, 1);
             grid.attach(enable_animations, 0, 3, 1, 1);
             grid.attach(prefer_dark_theme, 0, 4, 1, 1);
+            grid.attach(button_style, 0, 5, 1, 1);
             pack_end(grid, true, true, 0);
             default_gtk_settings = Gtk.Settings.get_default();
             connect_signals();
             bind_properties();
-            widgets = { wide_layout, use_csd, enable_animations, prefer_dark_theme,
-                        wide_layout_options, on_maximize, grid };
-            foreach (var widget in widgets)
-                widget.show();
+            grid.show();
         }
 
         void bind_properties () {
@@ -68,6 +104,7 @@ namespace FontManager {
             settings.bind("wide-layout-on-maximize", on_maximize, "active", SettingsBindFlags.DEFAULT);
             settings.bind("enable-animations", enable_animations.toggle, "active", SettingsBindFlags.DEFAULT);
             settings.bind("prefer-dark-theme", prefer_dark_theme.toggle, "active", SettingsBindFlags.DEFAULT);
+            settings.bind("title-button-style", button_style, "active", SettingsBindFlags.DEFAULT);
             return;
         }
 

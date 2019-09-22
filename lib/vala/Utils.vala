@@ -129,10 +129,11 @@ namespace FontManager {
         return separator;
     }
 
-    public void set_default_button_relief (Gtk.Container container) {
+    public void set_button_relief_style (Gtk.Container container,
+                                         Gtk.ReliefStyle relief = Gtk.ReliefStyle.NONE) {
         foreach (Gtk.Widget widget in container.get_children())
             if (widget is Gtk.Button)
-                ((Gtk.Button) widget).relief = Gtk.ReliefStyle.NONE;
+                ((Gtk.Button) widget).relief = relief;
         return;
     }
 

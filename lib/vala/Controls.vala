@@ -442,7 +442,7 @@ namespace FontManager {
             remove_button.set_image(new Gtk.Image.from_icon_name("list-remove-symbolic", Gtk.IconSize.MENU));
             box.pack_start(add_button, false, false, 1);
             box.pack_start(remove_button, false, false, 1);
-            set_default_button_relief(box);
+            set_button_relief_style(box);
             add(box);
             add_button.clicked.connect((w) => { add_selected(); });
             remove_button.clicked.connect(() => { remove_selected(); });

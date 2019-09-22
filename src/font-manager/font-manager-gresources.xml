@@ -16,5 +16,6 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-sidebar.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-standard-sidebar.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-substitute.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-title-button-style.ui</file>
     </gresource>
 </gresources>

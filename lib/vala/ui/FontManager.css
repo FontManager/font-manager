@@ -120,3 +120,7 @@ treeview {
 #FontManagerDesktopPreferences list row:hover {
     background-color: transparent;
 }
+
+#FontManagerDesktopPreferences list row {
+    padding: 0px;
+}
