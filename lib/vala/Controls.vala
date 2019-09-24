@@ -494,9 +494,10 @@ namespace FontManager {
                 button.add(icon);
                 icon.show();
                 button.set_tooltip_text(val.to_string());
+                button.set_data("rgba", i);
                 button.toggled.connect(() => {
                     if (button.active)
-                        rgba = i;
+                        rgba = button.get_data("rgba");
                 });
                 button_box.pack_start(button);
                 button.show();
