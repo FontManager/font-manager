@@ -49,7 +49,7 @@ namespace FontManager {
             entry = new Gtk.SearchEntry();
             entry.set_size_request(0, 0);
             entry.margin_end = MINIMUM_MARGIN_SIZE;
-            entry.placeholder_text = _("Search Families...");
+            entry.placeholder_text = _("Search Families…");
             entry.set_tooltip_text(_("Case insensitive search of family names.\n\nStart search using %s to filter based on filepath."). printf(Path.DIR_SEPARATOR_S));
             box.pack_end(entry, false, false, 0);
             box.pack_start(expand_button, false, false, 0);

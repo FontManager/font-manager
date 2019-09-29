@@ -362,7 +362,7 @@ namespace FontManager {
             StringHashset filelist = selected_filter.get_filelist();
             uint total = filelist.size;
             uint processed = 0;
-            var progress_dialog = new ProgressDialog(main_window, _("Copying files..."));
+            var progress_dialog = new ProgressDialog(main_window, _("Copying files…"));
             progress_dialog.show_now();
             while (Gtk.events_pending())
                 Gtk.main_iteration();
@@ -479,8 +479,8 @@ namespace FontManager {
         Gtk.Menu get_context_menu () {
             /* action_name, display_name, detailed_action_name, accelerator, method */
             MenuEntry [] context_menu_entries = {
-                MenuEntry("copy_to", _("Copy to..."), "app.copy_to", null, new MenuCallbackWrapper(copy_to)),
-                MenuEntry("compress", _("Compress..."), "app.compress", null, new MenuCallbackWrapper(compress)),
+                MenuEntry("copy_to", _("Copy to…"), "app.copy_to", null, new MenuCallbackWrapper(copy_to)),
+                MenuEntry("compress", _("Compress…"), "app.compress", null, new MenuCallbackWrapper(compress)),
             };
             var popup_menu = new Gtk.Menu();
             menu_header = new Gtk.MenuItem.with_label("");
