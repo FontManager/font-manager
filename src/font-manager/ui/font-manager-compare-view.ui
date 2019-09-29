@@ -118,9 +118,9 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Select text  color</property>
+            <property name="tooltip_text" translatable="yes">Select text color</property>
             <property name="use_alpha">True</property>
-            <property name="title" translatable="yes">Select text  color</property>
+            <property name="title" translatable="yes">Select text color</property>
             <property name="alpha">65535</property>
             <property name="rgba">rgb(0,0,0)</property>
           </object>
@@ -180,3 +180,4 @@
     </style>
   </template>
 </interface>
+
