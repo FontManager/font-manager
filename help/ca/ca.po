@@ -2,12 +2,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-04-11 22:52-0400\n"
+"POT-Creation-Date: 2019-10-02 21:44-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2017-03-05 11:11+0000\n"
-"Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
+"PO-Revision-Date: 2019-10-03 01:45+0000\n"
+"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
 "X-Generator: Zanata 4.6.2\n"
@@ -73,7 +73,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
 msgid ""
-"Sorted by Family Kind - Requires Panose information to be present in font "
+"Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
 msgstr ""
 
@@ -125,7 +125,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
 msgid ""
-"Sorted by font license - Requires license information to be present in font "
+"Sorted by font license — Requires license information to be present in font "
 "metadata."
 msgstr ""
 
@@ -137,7 +137,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
 msgid ""
-"Sorted by font vendor - Requires vendor information to be present in font "
+"Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
 msgstr ""
 
@@ -823,7 +823,7 @@ msgstr ""
 #: C/font-manager-introduction.page:57
 msgctxt "_"
 msgid ""
-"external ref='media/main-window.png' md5='d506a2c07ded6116e4bcfc1bc3c465a6'"
+"external ref='media/main-window.png' md5='3b97d3126fcc31148b2cdb3d09efa00d'"
 msgstr ""
 
 #. (itstool) path: note/p
@@ -1027,7 +1027,7 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:62
-msgid "Repeat steps 3 - 6 as needed."
+msgid "Repeat steps 3 – 6 as needed."
 msgstr ""
 
 #. (itstool) path: item/p
@@ -1144,7 +1144,7 @@ msgstr "Jerry Casiano"
 
 #. (itstool) path: credit/years
 #: C/index.page:16
-msgid "2009-2018"
+msgid "2009–2018"
 msgstr ""
 
 #. (itstool) path: credit/name
