@@ -190,6 +190,6 @@ font_manager_progress_data_new (const gchar *message, guint processed, guint tot
         priv->message = g_strdup(message);
     priv->processed = processed;
     priv->total = total;
-    return FONT_MANAGER_PROGRESS_DATA(self);
+    return self;
 }
 

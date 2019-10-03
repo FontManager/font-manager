@@ -226,7 +226,7 @@ namespace FontManager {
     public class CollectionTree : BaseTreeView {
 
         public signal void changed ();
-        public signal void selection_changed (Collection group);
+        public signal void selection_changed (Collection? group);
 
         public string selected_iter { get; protected set; default = "0"; }
         public Collection? selected_filter { get; protected set; default = null; }
@@ -244,6 +244,7 @@ namespace FontManager {
                 value.row_inserted.connect((t, p, i) => { update_and_cache_collections(); });
                 value.rows_reordered.connect((t, p, i) => { update_and_cache_collections(); });
                 value.row_changed.connect((t, p, i) => { update_and_cache_collections(); });
+                update_and_cache_collections();
             }
         }
 
@@ -255,6 +256,9 @@ namespace FontManager {
         public CollectionTree () {
             expand = true;
             controls = new CollectionControls();
+            controls.add_button.set_relief(Gtk.ReliefStyle.NORMAL);
+            Gtk.StyleContext ctx = controls.add_button.get_style_context();
+            ctx.add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             name = "FontManagerCollectionTree";
             renderer = new Gtk.CellRendererText();
             var count_renderer = new CellRendererCount();
@@ -321,7 +325,8 @@ namespace FontManager {
             return;
         }
 
-        public void on_remove_collection () {
+        public void on_remove_collection ()
+        requires (selected_filter != null) {
             if (!model.iter_is_valid(_selected_iter_))
                 return;
             var collections = model.collections.entries;
@@ -332,7 +337,8 @@ namespace FontManager {
             return;
         }
 
-        public bool remove_fonts (GLib.List <string> fonts) {
+        public bool remove_fonts (GLib.List <string> fonts)
+        requires (selected_filter != null) {
             bool res = selected_filter.families.remove_all(fonts);
             Idle.add(() => {
                 model.collections.save();
@@ -348,7 +354,8 @@ namespace FontManager {
             return true;
         }
 
-        async void _copy_to () requires (selected_filter != null) {
+        async void _copy_to ()
+        requires (selected_filter != null) {
             string? target_dir = FileSelector.get_target_directory(main_window);
             if (target_dir == null)
                 return;
@@ -456,7 +463,8 @@ namespace FontManager {
             return tmp_uri;
         }
 
-        void compress () {
+        void compress ()
+        requires (selected_filter != null) {
             var file_roller = new ArchiveManager();
             return_if_fail(file_roller.available);
             create_temporary_copy.begin(selected_filter, (obj, res) => {
@@ -511,7 +519,8 @@ namespace FontManager {
             return popup_menu;
         }
 
-        void on_edited (Gtk.CellRendererText renderer, string path, string new_text) {
+        void on_edited (Gtk.CellRendererText renderer, string path, string new_text)
+        requires (selected_filter != null) {
             string new_name = new_text.strip();
             if (new_name == selected_filter.name || new_name == "" || model.collections.entries.contains(new_name)) {
                 return;
@@ -556,6 +565,9 @@ namespace FontManager {
             Gtk.TreeIter iter;
             Gtk.TreeModel model;
             GLib.Value val;
+            selected_filter = null;
+            selected_iter = null;
+            selection_changed(null);
             if (!selection.get_selected(out model, out iter))
                 return;
             model.get_value(iter, 0, out val);
@@ -605,6 +617,14 @@ namespace FontManager {
         }
 
         void update_and_cache_collections () {
+            Gtk.StyleContext ctx = controls.add_button.get_style_context();
+            if (model.iter_n_children(null) > 0) {
+                controls.add_button.set_relief(Gtk.ReliefStyle.NONE);
+                ctx.remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            } else {
+                controls.add_button.set_relief(Gtk.ReliefStyle.NORMAL);
+                ctx.add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            }
             model.update_group_index();
             Idle.add(() => {
                 model.collections.save();

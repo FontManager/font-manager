@@ -242,14 +242,13 @@ font_manager_source_update (FontManagerSource *self)
     if (priv->file == NULL)
         return;
     priv->path = g_file_get_path(priv->file);
-    GFileInfo *fileinfo = g_file_query_info(priv->file,
-                                             G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME,
-                                             G_FILE_QUERY_INFO_NONE,
-                                             NULL, NULL);
+    g_autoptr(GFileInfo) fileinfo = g_file_query_info(priv->file,
+                                                        G_FILE_ATTRIBUTE_STANDARD_DISPLAY_NAME,
+                                                        G_FILE_QUERY_INFO_NONE,
+                                                        NULL, NULL);
     if (fileinfo != NULL) {
         g_free(priv->name);
         priv->name = g_markup_escape_text(g_file_info_get_display_name(fileinfo), -1);
-        g_object_unref(fileinfo);
     }
     return;
 }
@@ -264,7 +263,7 @@ FontManagerSource *
 font_manager_source_new (GFile *file)
 {
     g_return_val_if_fail(file != NULL, NULL);
-    FontManagerSource *self = FONT_MANAGER_SOURCE(g_object_new(FONT_MANAGER_TYPE_SOURCE, NULL));
+    FontManagerSource *self = g_object_new(FONT_MANAGER_TYPE_SOURCE, NULL);
     FontManagerSourcePrivate *priv = font_manager_source_get_instance_private(self);
     priv->file = file != NULL ? g_object_ref(file) : NULL;
     font_manager_source_update(self);

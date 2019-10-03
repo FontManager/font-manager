@@ -134,6 +134,6 @@ font_manager_family_get_default_variant (FontManagerFamily *self)
 FontManagerFamily *
 font_manager_family_new (void)
 {
-    return FONT_MANAGER_FAMILY(g_object_new(FONT_MANAGER_TYPE_FAMILY, NULL));
+    return g_object_new(FONT_MANAGER_TYPE_FAMILY, NULL);
 }
 

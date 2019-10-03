@@ -501,5 +501,5 @@ font_manager_font_model_class_init (FontManagerFontModelClass *klass)
 FontManagerFontModel *
 font_manager_font_model_new (void)
 {
-    return FONT_MANAGER_FONT_MODEL(g_object_new(FONT_MANAGER_TYPE_FONT_MODEL, NULL));
+    return g_object_new(FONT_MANAGER_TYPE_FONT_MODEL, NULL);
 }

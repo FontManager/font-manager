@@ -94,12 +94,10 @@ font_manager_menu_provider_get_file_items (G_GNUC_UNUSED NautilusMenuProvider *p
         if (!self->active)
             return items;
 
-        gchar *uri = nautilus_file_info_get_activation_uri(fileinfo);
+        g_autofree gchar *uri = nautilus_file_info_get_activation_uri(fileinfo);
 
-        if (g_strcmp0(self->uri, uri) == 0) {
-            g_free(uri);
+        if (g_strcmp0(self->uri, uri) == 0)
             return items;
-        }
 
         if (self->connection && !g_dbus_connection_is_closed(self->connection)) {
 

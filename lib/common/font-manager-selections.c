@@ -241,8 +241,12 @@ font_manager_selections_class_init (FontManagerSelectionsClass *klass)
 }
 
 static void
-font_manager_selections_init (G_GNUC_UNUSED FontManagerSelections *self)
+font_manager_selections_init (FontManagerSelections *self)
 {
+    FontManagerSelectionsPrivate *priv = font_manager_selections_get_instance_private(self);
+    priv->config_dir = NULL;
+    priv->target_element = NULL;
+    priv->target_file = NULL;
     return;
 }
 
@@ -275,11 +279,11 @@ font_manager_selections_load (FontManagerSelections *self)
     if (priv->monitor != NULL)
         g_clear_object(&priv->monitor);
 
-    gchar *filepath = font_manager_selections_get_filepath(self);
+    g_autofree gchar *filepath = font_manager_selections_get_filepath(self);
     if (filepath == NULL)
         return FALSE;
 
-    GFile *file = g_file_new_for_path(filepath);
+    g_autoptr(GFile) file = g_file_new_for_path(filepath);
 
     priv->monitor = g_file_monitor(file, G_FILE_MONITOR_NONE, NULL, NULL);
     if (priv->monitor != NULL)
@@ -287,11 +291,8 @@ font_manager_selections_load (FontManagerSelections *self)
     else
         g_critical(G_STRLOC ": Failed to create file monitor for %s", filepath);
 
-    if (!g_file_query_exists(file, NULL)) {
-        g_object_unref(file);
-        g_free(filepath);
+    if (!g_file_query_exists(file, NULL))
         return FALSE;
-    }
 
     xmlInitParser();
     xmlDoc *doc = xmlReadFile(filepath, NULL, 0);
@@ -299,8 +300,6 @@ font_manager_selections_load (FontManagerSelections *self)
     if (doc == NULL) {
         /* Empty file */
         xmlCleanupParser();
-        g_object_unref(file);
-        g_free(filepath);
         return FALSE;
     }
 
@@ -310,8 +309,6 @@ font_manager_selections_load (FontManagerSelections *self)
 
     xmlFreeDoc(doc);
     xmlCleanupParser();
-    g_object_unref(file);
-    g_free(filepath);
     return TRUE;
 }
 
@@ -327,15 +324,13 @@ gboolean
 font_manager_selections_save (FontManagerSelections *self)
 {
     g_return_val_if_fail(self != NULL, FALSE);
-    gchar * filepath = font_manager_selections_get_filepath(self);
+    g_autofree gchar * filepath = font_manager_selections_get_filepath(self);
     g_return_val_if_fail(filepath != NULL, FALSE);
-    FontManagerXmlWriter *writer = font_manager_xml_writer_new();
+    g_autoptr(FontManagerXmlWriter) writer = font_manager_xml_writer_new();
     font_manager_xml_writer_open(writer, filepath);
     if (font_manager_string_hashset_size(FONT_MANAGER_STRING_HASHSET(self)))
         FONT_MANAGER_SELECTIONS_GET_CLASS(self)->write_selections(self, writer);
     gboolean result = font_manager_xml_writer_close(writer);
-    g_object_unref(writer);
-    g_free(filepath);
     return result;
 }
 
@@ -365,6 +360,6 @@ font_manager_selections_get_filepath (FontManagerSelections *self)
 FontManagerSelections *
 font_manager_selections_new (void)
 {
-    return FONT_MANAGER_SELECTIONS(g_object_new(FONT_MANAGER_TYPE_SELECTIONS, NULL));
+    return g_object_new(FONT_MANAGER_TYPE_SELECTIONS, NULL);
 }
 

@@ -87,7 +87,7 @@ namespace FontManager {
         [GtkChild] public Gtk.Paned main_pane { get; }
         [GtkChild] public Gtk.Paned content_pane { get; }
 
-        [GtkChild] public Browse browser { get; }
+        [GtkChild] public Browse browse { get; }
         [GtkChild] public Compare compare { get; }
         [GtkChild] public PreviewPane preview_pane { get; }
         [GtkChild] public Preferences preference_pane { get; }
@@ -148,7 +148,7 @@ namespace FontManager {
 
         void zoom_in () {
             preview_pane.preview_size += 0.5;
-            browser.preview_size += 0.5;
+            browse.preview_size += 0.5;
             compare.preview_size += 0.5;
             preview_pane.charmap.preview_size += 0.5;
             return;
@@ -156,7 +156,7 @@ namespace FontManager {
 
         void zoom_out () {
             preview_pane.preview_size -= 0.5;
-            browser.preview_size -= 0.5;
+            browse.preview_size -= 0.5;
             compare.preview_size -= 0.5;
             preview_pane.charmap.preview_size -= 0.5;
             return;
@@ -164,7 +164,7 @@ namespace FontManager {
 
         void reset_zoom () {
             preview_pane.preview_size = 10.0;
-            browser.preview_size = 12.0;
+            browse.preview_size = 12.0;
             compare.preview_size = 12.0;
             preview_pane.charmap.preview_size = 18;
             return;
@@ -204,8 +204,8 @@ namespace FontManager {
             fontlist.bind_property("selected-font", preview_pane, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("selected-font", sidebar.orthographies, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("selected-font", compare, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
-            fontlist.bind_property("model", browser, "model", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
-            fontlist.bind_property("samples", browser, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+            fontlist.bind_property("model", browse, "model", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+            fontlist.bind_property("samples", browse, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("samples", compare, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("samples", preview_pane.preview, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             var ui_prefs = (UserInterfacePreferences) preference_pane.get_page("Interface");
@@ -255,7 +255,7 @@ namespace FontManager {
             if (titlebar.prefs_toggle.active && mode != Mode.MANAGE)
                 titlebar.prefs_toggle.active = false;
             if (mode == Mode.BROWSE)
-                browser.treeview.queue_draw();
+                browse.treeview.queue_draw();
             mode_changed(mode);
             return;
         }
@@ -382,8 +382,9 @@ namespace FontManager {
                         return false;
                     });
                 }
+                fontlist_pane.refilter();
                 fontlist.queue_draw();
-                browser.treeview.queue_draw();
+                browse.treeview.queue_draw();
             });
 
             Gtk.drag_dest_set(fontlist_pane, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
@@ -603,8 +604,8 @@ namespace FontManager {
             settings.bind("sidebar-size", main_pane, "position", SettingsBindFlags.DEFAULT);
             settings.bind("content-pane-position", content_pane, "position", SettingsBindFlags.DEFAULT);
             settings.bind("preview-font-size", preview_pane, "preview-size", SettingsBindFlags.DEFAULT);
-            settings.bind("browse-font-size", browser, "preview-size", SettingsBindFlags.DEFAULT);
-            settings.bind("browse-preview-text", browser.entry, "text", SettingsBindFlags.DEFAULT);
+            settings.bind("browse-font-size", browse, "preview-size", SettingsBindFlags.DEFAULT);
+            settings.bind("browse-preview-text", browse.entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("compare-font-size", compare, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("compare-preview-text", compare.entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("charmap-font-size", preview_pane.charmap, "preview-size", SettingsBindFlags.DEFAULT);
@@ -640,6 +641,7 @@ namespace FontManager {
             Gtk.Settings gtk = Gtk.Settings.get_default();
             gtk.gtk_application_prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
             gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
+            gtk.gtk_dialogs_use_header = settings.get_boolean("use-csd");
 
             int x, y, w, h;
             settings.get("window-size", "(ii)", out w, out h);
@@ -656,11 +658,11 @@ namespace FontManager {
 
             preview_pane.preview_size = settings.get_double("preview-font-size");
             preview_pane.charmap.preview_size = settings.get_double("charmap-font-size");
-            browser.preview_size = settings.get_double("browse-font-size");
+            browse.preview_size = settings.get_double("browse-font-size");
             /* Workaround first row height bug? in browse mode */
-            browser.preview_size++;
-            browser.preview_size--;
-            browser.entry.text = settings.get_string("browse-preview-text");
+            browse.preview_size++;
+            browse.preview_size--;
+            browse.entry.text = settings.get_string("browse-preview-text");
             compare.preview_size = settings.get_double("compare-font-size");
             compare.entry.text = settings.get_string("compare-preview-text");
 
@@ -678,9 +680,9 @@ namespace FontManager {
             else
                 menu_button.popup.hide();
 
-            var checklist = ((FontManager.Application) application).available_font_families.list();
             foreach (var entry in settings.get_strv("compare-list"))
-                compare.add_from_string(entry, checklist);
+                if (available_font_families != null)
+                    compare.add_from_string(entry, available_font_families.list());
 
             Idle.add(() => {
                 var foreground = Gdk.RGBA();
@@ -757,7 +759,7 @@ namespace FontManager {
             main_pane.position = 275;
             content_pane.position = 200;
             preview_pane.preview_size = 10.0;
-            browser.preview_size = 12.0;
+            browse.preview_size = 12.0;
             compare.preview_size = 12.0;
             preview_pane.charmap.preview_size = 18;
             preview_pane.notebook.page = 0;

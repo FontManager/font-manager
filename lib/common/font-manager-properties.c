@@ -303,16 +303,13 @@ font_manager_properties_add_match_criteria (FontManagerProperties *self,
 {
     g_return_if_fail(self != NULL);
     FontManagerPropertiesPrivate *priv = font_manager_properties_get_instance_private(self);
-    gchar *val = NULL;
     if (priv->less != 0.0) {
-        val = g_strdup_printf("%.1f", priv->less);
+        g_autofree gchar *val = g_strdup_printf("%.1f", priv->less);
         font_manager_xml_writer_add_test_element(writer, "size", "less", "double", val);
-        g_free(val);
     }
     if (priv->more != 0.0) {
-        val = g_strdup_printf("%.1f", priv->more);
+        g_autofree gchar *val = g_strdup_printf("%.1f", priv->more);
         font_manager_xml_writer_add_test_element(writer, "size", "more", "double", val);
-        g_free(val);
     }
     return;
 }
@@ -344,11 +341,11 @@ font_manager_properties_add_assignments (FontManagerProperties *self,
         /* Skip test elements, handled in add_match_criteria */
         if (i == PROP_LESS || i == PROP_MORE)
             continue;
-        gchar *val = NULL;
-        gchar *val_type = NULL;
+        g_autofree gchar *val = NULL;
+        g_autofree gchar *val_type = NULL;
         const gchar *name = PROPERTIES[i].name;
         GType type = PROPERTIES[i].type;
-        GValue value = G_VALUE_INIT;
+        g_auto(GValue) value = G_VALUE_INIT;
         g_value_init(&value, type);
         g_object_get_property(G_OBJECT(self), name, &value);
         switch (type) {
@@ -358,12 +355,11 @@ font_manager_properties_add_assignments (FontManagerProperties *self,
                 break;
             case G_TYPE_DOUBLE:
                 ; /* Empty statement */
-                gchar *locale = g_strdup(setlocale(LC_ALL, NULL));
+                g_autofree gchar *locale = g_strdup(setlocale(LC_ALL, NULL));
                 setlocale(LC_ALL, "C");
                 val = g_strdup_printf("%.1f", g_value_get_double(&value));
                 val_type = g_strdup("double");
                 setlocale(LC_ALL, locale);
-                g_free(locale);
                 break;
             case G_TYPE_BOOLEAN:
                 if (g_value_get_boolean(&value))
@@ -379,12 +375,8 @@ font_manager_properties_add_assignments (FontManagerProperties *self,
             default:
                 break;
         }
-        if (val && val_type) {
+        if (val && val_type)
             font_manager_xml_writer_add_assignment(writer, name, val_type, val);
-            g_free(val);
-            g_free(val_type);
-        }
-        g_value_unset(&value);
     }
 }
 
@@ -476,16 +468,13 @@ gboolean
 font_manager_properties_load (FontManagerProperties *self)
 {
     g_return_val_if_fail(self != NULL, FALSE);
-    gchar *filepath = font_manager_properties_get_filepath(self);
+    g_autofree gchar *filepath = font_manager_properties_get_filepath(self);
     if (filepath == NULL)
         return FALSE;
 
-    GFile *file = g_file_new_for_path(filepath);
-    if (!g_file_query_exists(file, NULL)) {
-        g_object_unref(file);
-        g_free(filepath);
+    g_autoptr(GFile) file = g_file_new_for_path(filepath);
+    if (!g_file_query_exists(file, NULL))
         return FALSE;
-    }
 
     xmlInitParser();
     xmlDoc *doc = xmlReadFile(filepath, NULL, 0);
@@ -493,8 +482,6 @@ font_manager_properties_load (FontManagerProperties *self)
     if (doc == NULL) {
         /* Empty file */
         xmlCleanupParser();
-        g_object_unref(file);
-        g_free(filepath);
         return FALSE;
     }
 
@@ -502,8 +489,6 @@ font_manager_properties_load (FontManagerProperties *self)
     if (root == NULL) {
         xmlFreeDoc(doc);
         xmlCleanupParser();
-        g_object_unref(file);
-        g_free(filepath);
         return FALSE;
     }
 
@@ -518,8 +503,6 @@ font_manager_properties_load (FontManagerProperties *self)
 
     xmlFreeDoc(doc);
     xmlCleanupParser();
-    g_object_unref(file);
-    g_free(filepath);
     return TRUE;
 }
 
@@ -533,9 +516,9 @@ gboolean
 font_manager_properties_save (FontManagerProperties *self)
 {
     g_return_val_if_fail(self != NULL, FALSE);
-    gchar *filepath = font_manager_properties_get_filepath(self);
+    g_autofree gchar *filepath = font_manager_properties_get_filepath(self);
     g_return_val_if_fail(filepath != NULL, FALSE);
-    FontManagerXmlWriter *writer = font_manager_xml_writer_new();
+    g_autoptr(FontManagerXmlWriter) writer = font_manager_xml_writer_new();
     font_manager_xml_writer_open(writer, filepath);
     font_manager_xml_writer_start_element(writer, "match");
     font_manager_xml_writer_write_attribute(writer, "target", "font");
@@ -543,8 +526,6 @@ font_manager_properties_save (FontManagerProperties *self)
     font_manager_properties_add_assignments(self, writer);
     font_manager_xml_writer_end_element(writer);
     gboolean result = font_manager_xml_writer_close(writer);
-    g_free(filepath);
-    g_object_unref(writer);
     return result;
 }
 
@@ -558,13 +539,11 @@ gboolean
 font_manager_properties_discard (FontManagerProperties *self)
 {
     g_return_val_if_fail(self != NULL, FALSE);
-    gchar *filepath = font_manager_properties_get_filepath(self);
-    GFile *file = g_file_new_for_path(filepath);
+    g_autofree gchar *filepath = font_manager_properties_get_filepath(self);
+    g_autoptr(GFile) file = g_file_new_for_path(filepath);
     gboolean result = TRUE;
     if (g_file_query_exists(file, NULL))
         result = g_file_delete(file, NULL, NULL);
-    g_object_unref(file);
-    g_free(filepath);
     font_manager_properties_reset(self);
     return result;
 }
@@ -682,6 +661,6 @@ font_manager_properties_reset (FontManagerProperties *self)
 FontManagerProperties *
 font_manager_properties_new (void)
 {
-    return FONT_MANAGER_PROPERTIES(g_object_new(FONT_MANAGER_TYPE_PROPERTIES, NULL));
+    return g_object_new(FONT_MANAGER_TYPE_PROPERTIES, NULL);
 }
 

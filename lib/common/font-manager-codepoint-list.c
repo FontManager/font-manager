@@ -198,6 +198,6 @@ font_manager_codepoint_list_set_filter (FontManagerCodepointList *self, GList *f
 FontManagerCodepointList *
 font_manager_codepoint_list_new ()
 {
-    return FONT_MANAGER_CODEPOINT_LIST(g_object_new(FONT_MANAGER_TYPE_CODEPOINT_LIST, NULL));
+    return g_object_new(FONT_MANAGER_TYPE_CODEPOINT_LIST, NULL);
 }
 

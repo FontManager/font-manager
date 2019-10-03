@@ -36,12 +36,11 @@ font_manager_write_json_file (JsonNode *root, const gchar *filepath)
 {
     g_return_val_if_fail(root != NULL && filepath != NULL, FALSE);
 
-    JsonGenerator * generator = json_generator_new();
+    g_autoptr(JsonGenerator) generator = json_generator_new();
     json_generator_set_root(generator, root);
     json_generator_set_pretty(generator, TRUE);
     json_generator_set_indent(generator, 4);
     gboolean result = json_generator_to_file(generator, filepath, NULL);
-    g_object_unref(generator);
     return result;
 }
 
@@ -56,13 +55,12 @@ font_manager_load_json_file (const gchar *filepath)
 {
     g_return_val_if_fail(filepath != NULL, NULL);
 
-    JsonParser *parser = json_parser_new();
+    g_autoptr(JsonParser) parser = json_parser_new();
     JsonNode *result = NULL;
     if (json_parser_load_from_file(parser, filepath, NULL)) {
         JsonNode *root = json_parser_get_root(parser);
         result = root ? json_node_copy(root) : NULL;
     }
-    g_object_unref(parser);
     return result;
 }
 
@@ -183,11 +181,10 @@ gchar *
 font_manager_print_json_array (JsonArray *json_arr, gboolean pretty)
 {
     g_return_val_if_fail(json_arr != NULL, NULL);
-    JsonNode *n = json_node_new(JSON_NODE_ARRAY);
+    g_autoptr(JsonNode) n = json_node_new(JSON_NODE_ARRAY);
     json_node_set_array(n, json_arr);
     gchar *res = (gchar *) json_to_string(n, pretty);
     json_node_set_array(n, NULL);
-    json_node_free(n);
     return res;
 }
 
@@ -209,11 +206,10 @@ gchar *
 font_manager_print_json_object (JsonObject *json_obj, gboolean pretty)
 {
     g_return_val_if_fail(json_obj != NULL, NULL);
-    JsonNode *n = json_node_new(JSON_NODE_OBJECT);
+    g_autoptr(JsonNode) n = json_node_new(JSON_NODE_OBJECT);
     json_node_set_object(n, json_obj);
     gchar *res = (gchar *) json_to_string(n, pretty);
     json_node_set_object(n, NULL);
-    json_node_free(n);
     return res;
 }
 

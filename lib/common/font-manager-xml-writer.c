@@ -297,9 +297,8 @@ font_manager_xml_writer_add_elements (FontManagerXmlWriter *self,
     g_return_if_fail(e_type != NULL);
     GList *iter;
     for (iter = elements; iter != NULL; iter = iter->next) {
-        gchar *element = g_markup_escape_text(g_strstrip(iter->data), -1);
+        g_autofree gchar *element = g_markup_escape_text(g_strstrip(iter->data), -1);
         xmlTextWriterWriteElement(self->writer, (xmlChar *) e_type, (xmlChar *) element);
-        g_free(element);
     }
     return;
 }
@@ -352,9 +351,8 @@ font_manager_xml_writer_add_selections (FontManagerXmlWriter *self,
     xmlTextWriterStartElement(self->writer, (xmlChar *) selection_type);
     GList *iter;
     for (iter = selections; iter != NULL; iter = iter->next) {
-        gchar *element = g_markup_escape_text(iter->data, -1);
+        g_autofree gchar *element = g_markup_escape_text(iter->data, -1);
         font_manager_xml_writer_add_patelt(self, "family", "string", element);
-        g_free(element);
     }
     xmlTextWriterEndElement(self->writer);
     xmlTextWriterEndElement(self->writer);
@@ -400,6 +398,6 @@ font_manager_xml_writer_add_test_element (FontManagerXmlWriter *self,
 FontManagerXmlWriter *
 font_manager_xml_writer_new (void)
 {
-    return FONT_MANAGER_XML_WRITER(g_object_new(FONT_MANAGER_TYPE_XML_WRITER, NULL));
+    return g_object_new(FONT_MANAGER_TYPE_XML_WRITER, NULL);
 }
 

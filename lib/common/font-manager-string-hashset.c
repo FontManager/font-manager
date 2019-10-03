@@ -330,5 +330,5 @@ font_manager_string_hashset_get (FontManagerStringHashset *self, guint index)
 FontManagerStringHashset *
 font_manager_string_hashset_new (void)
 {
-    return FONT_MANAGER_STRING_HASHSET(g_object_new(FONT_MANAGER_TYPE_STRING_HASHSET, NULL));
+    return g_object_new(FONT_MANAGER_TYPE_STRING_HASHSET, NULL);
 }

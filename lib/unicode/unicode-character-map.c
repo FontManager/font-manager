@@ -625,7 +625,7 @@ unicode_character_map_drag_data_received (GtkWidget *widget,
                                           G_GNUC_UNUSED guint time)
 {
     UnicodeCharacterMap *charmap = UNICODE_CHARACTER_MAP(widget);
-    gchar *text;
+    g_autofree gchar *text = NULL;
     gunichar wc;
 
     if (gtk_selection_data_get_length(selection_data) <= 0 ||
@@ -647,8 +647,6 @@ unicode_character_map_drag_data_received (GtkWidget *widget,
         unicode_character_map_emit_status_message(charmap, _("Character found."));
         unicode_character_map_set_active_character(charmap, wc);
     }
-
-    g_free(text);
     /* no need to chain up */
     return;
 }

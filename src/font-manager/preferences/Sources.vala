@@ -63,6 +63,14 @@ namespace FontManager {
                 controls.remove_button.sensitive = (r != null);
             });
             source_list.changed.connect(() => { changed(); });
+            source_list.place_holder.map.connect(() => {
+                controls.add_button.set_relief(Gtk.ReliefStyle.NORMAL);
+                controls.add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            });
+            source_list.place_holder.unmap.connect(() => {
+                controls.add_button.set_relief(Gtk.ReliefStyle.NONE);
+                controls.add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            });
             return;
         }
 
@@ -87,6 +95,8 @@ namespace FontManager {
          */
         public signal void row_selected (Gtk.ListBoxRow? row);
 
+        public PlaceHolder place_holder { get; private set; }
+
         /**
          * FontSourceList:first_row:
          */
@@ -97,7 +107,6 @@ namespace FontManager {
         }
 
         Gtk.ListBox list;
-        PlaceHolder welcome;
 
         public FontSourceList () {
             Object(name: "FontManagerFontSourceList");
@@ -106,9 +115,9 @@ namespace FontManager {
             string w3 = _("To add a new source simply drag a folder onto this area or click the add button in the toolbar.");
             string welcome_tmpl = "<span size=\"xx-large\" weight=\"bold\">%s</span>\n<span size=\"large\">\n\n%s\n</span>\n\n\n<span size=\"x-large\">%s</span>";
             string welcome_message = welcome_tmpl.printf(w1, w2, w3);
-            welcome = new PlaceHolder(welcome_message, "folder-symbolic");
+            place_holder = new PlaceHolder(welcome_message, "folder-symbolic");
             list = new Gtk.ListBox();
-            list.set_placeholder(welcome);
+            list.set_placeholder(place_holder);
             add(list);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             list.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
@@ -117,7 +126,7 @@ namespace FontManager {
             changed.connect(() => { Idle.add(() => { update(); return false; }); });
             sources.changed.connect(() => { changed(); });
             update();
-            welcome.show();
+            place_holder.show();
             list.show();
         }
 

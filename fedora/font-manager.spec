@@ -18,7 +18,7 @@ BuildRequires: gettext
 BuildRequires: meson
 BuildRequires: fontconfig-devel
 BuildRequires: freetype-devel
-BuildRequires: glib2-devel
+BuildRequires: glib2-devel >= 2.44
 BuildRequires: gobject-introspection-devel
 BuildRequires: gtk3-devel >= 3.22
 BuildRequires: json-glib-devel

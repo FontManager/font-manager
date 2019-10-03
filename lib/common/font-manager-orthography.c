@@ -252,7 +252,7 @@ get_fccharset_from_filepath (const gchar *filepath, int index)
     FT_Error         error;
 
     gsize           filesize = 0;
-    gchar           *font = NULL;
+    g_autofree gchar *font = NULL;
 
     FcCharSet *result = NULL;
 
@@ -265,14 +265,15 @@ get_fccharset_from_filepath (const gchar *filepath, int index)
         return result;
     }
 
-    error = FT_New_Memory_Face(library, (const FT_Byte *) font, (FT_Long) filesize, index, &face);
+    error = FT_New_Memory_Face(library, (const FT_Byte *) font,
+                               (FT_Long) filesize, index, &face);
+
     if (G_UNLIKELY(error)) {
         return result;
     }
 
     FcBlanks *blanks = FcBlanksCreate();
     result = FcFreeTypeCharSet(face, blanks);
-    g_free(font);
     FT_Done_Face(face);
     FT_Done_FreeType(library);
     FcBlanksDestroy(blanks);
@@ -323,7 +324,8 @@ get_sample_from_charlist (GList *charset)
     if (length > 0)
         for (int i = 0; i < 24; i++) {
             int rand = g_random_int_range(0, length);
-            g_string_append_unichar(res, (gunichar) GPOINTER_TO_INT(g_list_nth_data(charset, rand)));
+            gunichar ch = GPOINTER_TO_INT(g_list_nth_data(charset, rand));
+            g_string_append_unichar(res, ch);
         }
     return g_string_free(res, FALSE);
 }
@@ -348,7 +350,9 @@ get_default_orthography (JsonObject *orthography)
 }
 
 static double
-get_coverage_from_charset (JsonObject *results, FcCharSet *charset, const FontManagerOrthographyData *data)
+get_coverage_from_charset (JsonObject *results,
+                           FcCharSet *charset,
+                           const FontManagerOrthographyData *data)
 {
     int hits = 0, tries = 0;
     JsonArray *filter = NULL;
@@ -398,22 +402,19 @@ check_orthography (JsonObject *results,
                    FcCharSet *charset,
                    const FontManagerOrthographyData *data)
 {
-    JsonObject *res = NULL;
+    g_autoptr(JsonObject) res = NULL;
     if (results)
         res = json_object_new();
     double coverage = get_coverage_from_charset(res, charset, data);
-    if (coverage == 0) {
-        if (res)
-            json_object_unref(res);
+    if (coverage == 0)
         return FALSE;
-    }
     if (!results)
         return TRUE;
     json_object_set_string_member(res, "name", data->name);
     json_object_set_string_member(res, "native", data->native);
     json_object_set_string_member(res, "sample", data->sample);
     json_object_set_double_member(res, "coverage", coverage);
-    json_object_set_object_member(results, data->name, res);
+    json_object_set_object_member(results, data->name, json_object_ref(res));
     return TRUE;
 }
 
@@ -549,9 +550,8 @@ font_manager_get_orthography_results (JsonObject *font)
             json_object_set_object_member(results, "Uncategorized", uncategorized);
         }
 
-        gchar *sample = font_manager_get_sample_string(results, charset);
+        g_autofree gchar *sample = font_manager_get_sample_string(results, charset);
         json_object_set_string_member(results, "sample", sample);
-        g_free(sample);
 
     } else {
 

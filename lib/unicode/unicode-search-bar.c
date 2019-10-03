@@ -121,9 +121,8 @@ found_in_array (const gchar **haystack_arr, const gchar *search_string_nfd)
     gboolean matched = FALSE;
     if (haystack_arr) {
         for (gint i = 0; haystack_arr[i] != NULL; i++) {
-            gchar *haystack_nfd = g_utf8_normalize(haystack_arr[i], -1, G_NORMALIZE_NFD);
+            g_autofree gchar *haystack_nfd = g_utf8_normalize(haystack_arr[i], -1, G_NORMALIZE_NFD);
             matched = utf8_strcasestr(haystack_nfd, search_string_nfd) != NULL;
-            g_free(haystack_nfd);
             if (matched)
                 break;
         }
@@ -136,13 +135,12 @@ static gboolean
 matches (gunichar wc, const gchar *search_string_nfd)
 {
     const gchar *haystack;
-    gchar *haystack_nfd;
     gboolean matched = FALSE;
 
     haystack = unicode_get_codepoint_data_name(wc);
     if (haystack) {
         /* character names are ascii, so are nfd */
-        haystack_nfd = (gchar *) haystack;
+        g_autofree gchar *haystack_nfd = (gchar *) haystack;
         matched = utf8_strcasestr(haystack_nfd, search_string_nfd) != NULL;
     }
 
@@ -151,9 +149,8 @@ matches (gunichar wc, const gchar *search_string_nfd)
 
     haystack = unicode_get_unicode_kDefinition(wc);
     if (haystack) {
-        haystack_nfd = g_utf8_normalize(haystack, -1, G_NORMALIZE_NFD);
+        g_autofree gchar *haystack_nfd = g_utf8_normalize(haystack, -1, G_NORMALIZE_NFD);
         matched = utf8_strcasestr(haystack_nfd, search_string_nfd) != NULL;
-        g_free(haystack_nfd);
     }
 
     if (matched)
@@ -429,7 +426,7 @@ unicode_search_start (UnicodeSearchBar *self, UnicodeSearchDirection direction)
 
     gint start_index;
     gunichar start_char;
-    UnicodeCodepointList *codepoint_list;
+    g_autoptr(UnicodeCodepointList) codepoint_list = NULL;
 
     if (self->search_state && self->search_state->searching) /* Already searching */
         return;
@@ -461,7 +458,6 @@ unicode_search_start (UnicodeSearchBar *self, UnicodeSearchDirection direction)
 
     self->search_state->searching = TRUE;
     g_idle_add_full(G_PRIORITY_DEFAULT_IDLE, (GSourceFunc) idle_search, self, (GDestroyNotify) search_completed);
-    g_object_unref(codepoint_list);
     return;
 }
 
@@ -501,7 +497,7 @@ entry_changed (UnicodeSearchBar *self, G_GNUC_UNUSED GtkWidget *widget)
 {
     g_return_if_fail(self != NULL && self->charmap != NULL);
     set_action_visibility(self, FALSE);
-    gchar *entry_text = g_strstrip(g_strdup(gtk_entry_get_text(self->entry)));
+    g_autofree gchar *entry_text = g_strstrip(g_strdup(gtk_entry_get_text(self->entry)));
 
     if (strlen(entry_text) != 0) {
         if (search_timeout > 0) {
@@ -515,7 +511,6 @@ entry_changed (UnicodeSearchBar *self, G_GNUC_UNUSED GtkWidget *widget)
         unicode_character_map_set_active_character(self->charmap, first_char);
     }
 
-    g_free(entry_text);
     return;
 }
 
@@ -632,6 +627,6 @@ unicode_search_bar_class_init (UnicodeSearchBarClass *klass)
 UnicodeSearchBar *
 unicode_search_bar_new (void)
 {
-    return UNICODE_SEARCH_BAR(g_object_new(UNICODE_TYPE_SEARCH_BAR, NULL));
+    return g_object_new(UNICODE_TYPE_SEARCH_BAR, NULL);
 }
 

@@ -176,28 +176,21 @@ static void
 xml_writer_add_alias_element (FontManagerXmlWriter *writer,
                               FontManagerAliasElement *alias)
 {
-    gchar *family;
-    FontManagerStringHashset *p;
-    FontManagerStringHashset *a;
-    FontManagerStringHashset *d;
+    g_autofree gchar *family = NULL;
+    g_autoptr(FontManagerStringHashset) p = NULL;
+    g_autoptr(FontManagerStringHashset) a = NULL;
+    g_autoptr(FontManagerStringHashset) d = NULL;
     g_object_get(alias, "family", &family, "prefer", &p, "accept", &a, "default", &d, NULL);
     g_return_if_fail(family != NULL);
     font_manager_xml_writer_start_element(writer, "alias");
     font_manager_xml_writer_write_attribute(writer, "binding", "strong");
     font_manager_xml_writer_write_element(writer, "family", family);
-    g_free(family);
-    if (p) {
+    if (p)
         _xml_writer_add_alias_element(writer, p, "prefer");
-        g_object_unref(p);
-    }
-    if (a) {
+    if (a)
         _xml_writer_add_alias_element(writer, a, "accept");
-        g_object_unref(a);
-    }
-    if (d) {
+    if (d)
         _xml_writer_add_alias_element(writer, d, "default");
-        g_object_unref(d);
-    }
     font_manager_xml_writer_end_element(writer);
     return;
 }
@@ -219,7 +212,7 @@ parse_alias_node (FontManagerAliases *self, xmlNodePtr alias_node)
             GParamSpec *pspec = g_object_class_find_property(object_class, (const gchar *) iter->name);
             if (pspec == NULL)
                 continue;
-            FontManagerStringHashset *hashset = font_manager_string_hashset_new();
+            g_autoptr(FontManagerStringHashset) hashset = font_manager_string_hashset_new();
             for (xmlNodePtr _iter = iter->children; _iter != NULL; _iter = _iter->next) {
                 if (g_strcmp0((const char *) _iter->name, "family") == 0) {
                     xmlChar *content = xmlNodeGetContent(_iter);
@@ -228,7 +221,6 @@ parse_alias_node (FontManagerAliases *self, xmlNodePtr alias_node)
                 }
             }
             g_object_set(ae, g_param_spec_get_name(pspec), hashset, NULL);
-            g_object_unref(hashset);
         }
     }
     gchar *tmp = g_strdup((const gchar *) family);
@@ -331,16 +323,13 @@ font_manager_aliases_load (FontManagerAliases *self)
     FontManagerAliasesPrivate *priv = font_manager_aliases_get_instance_private(self);
     g_hash_table_remove_all(priv->hash_table);
 
-    gchar *filepath = font_manager_aliases_get_filepath(self);
+    g_autofree gchar *filepath = font_manager_aliases_get_filepath(self);
     if (filepath == NULL)
         return FALSE;
 
-    GFile *file = g_file_new_for_path(filepath);
-    if (!g_file_query_exists(file, NULL)) {
-        g_object_unref(file);
-        g_free(filepath);
+    g_autoptr(GFile) file = g_file_new_for_path(filepath);
+    if (!g_file_query_exists(file, NULL))
         return FALSE;
-    }
 
     xmlInitParser();
     xmlDoc *doc = xmlReadFile(filepath, NULL, 0);
@@ -348,8 +337,6 @@ font_manager_aliases_load (FontManagerAliases *self)
     if (doc == NULL) {
         /* Empty file */
         xmlCleanupParser();
-        g_object_unref(file);
-        g_free(filepath);
         return FALSE;
     }
 
@@ -362,8 +349,6 @@ font_manager_aliases_load (FontManagerAliases *self)
     xmlXPathFreeContext(ctx);
     xmlXPathFreeObject(res);
     xmlCleanupParser();
-    g_object_unref(file);
-    g_free(filepath);
     return TRUE;
 }
 
@@ -377,18 +362,16 @@ gboolean
 font_manager_aliases_save (FontManagerAliases *self)
 {
     g_return_val_if_fail(self != NULL, FALSE);
-    gchar *filepath = font_manager_aliases_get_filepath(self);
+    g_autofree gchar *filepath = font_manager_aliases_get_filepath(self);
     g_return_val_if_fail(filepath != NULL, FALSE);
     FontManagerAliasesPrivate *priv = font_manager_aliases_get_instance_private(self);
-    FontManagerXmlWriter *writer = font_manager_xml_writer_new();
+    g_autoptr(FontManagerXmlWriter) writer = font_manager_xml_writer_new();
     font_manager_xml_writer_open(writer, filepath);
     GList *aliases = g_hash_table_get_values(priv->hash_table);
     for (GList *iter = aliases; iter != NULL; iter = iter->next)
         xml_writer_add_alias_element(writer, iter->data);
     g_list_free(aliases);
     gboolean result = font_manager_xml_writer_close(writer);
-    g_object_unref(writer);
-    g_free(filepath);
     return result;
 }
 
@@ -433,5 +416,5 @@ font_manager_aliases_get_filepath (FontManagerAliases *self)
 FontManagerAliases *
 font_manager_aliases_new (void)
 {
-    return FONT_MANAGER_ALIASES(g_object_new(FONT_MANAGER_TYPE_ALIASES, NULL));
+    return g_object_new(FONT_MANAGER_TYPE_ALIASES, NULL);
 }

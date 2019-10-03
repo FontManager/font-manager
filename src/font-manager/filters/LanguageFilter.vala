@@ -88,8 +88,8 @@ namespace FontManager {
             } catch (DatabaseError error) {
                 warning(error.message);
             }
-            var application = ((FontManager.Application) GLib.Application.get_default());
-            families.retain_all(application.available_font_families.list());
+            if (available_font_families != null)
+                families.retain_all(available_font_families.list());
             return;
         }
 

@@ -212,4 +212,53 @@ namespace FontManager {
         return false;
     }
 
+    public bool print_progress (ProgressData data) {
+        int width = 72;
+        if (data.progress < 1.0) {
+            int position = (int) (((double) width) * data.progress);
+            stdout.printf("\r[");
+            for (int i = 0; i < width; i++) {
+                if (i < position)
+                    stdout.printf("=");
+                else if (i == position)
+                    stdout.printf(">");
+                else
+                    stdout.printf(" ");
+            }
+            if (data.progress >= 0.99)
+                stdout.printf("] %i %\r", 100);
+            else
+                stdout.printf("] %i %\r", (int) (data.progress * 100.0));
+            stdout.flush();
+        }
+        return GLib.Source.REMOVE;
+    }
+
+    public StringHashset? get_command_line_files (ApplicationCommandLine cl) {
+        VariantDict options = cl.get_options_dict();
+        Variant argv = options.lookup_value("", VariantType.BYTESTRING_ARRAY);
+        if (argv == null)
+            return null;
+        (unowned string) [] filelist = argv.get_bytestring_array();
+        if (filelist.length == 0)
+            return null;
+        var files = new StringHashset();
+        foreach (var file in filelist)
+            files.add(cl.create_file_for_arg(file).get_path());
+        return files;
+    }
+
+    public StringHashset? get_command_line_input (VariantDict options) {
+        Variant argv = options.lookup_value("", VariantType.BYTESTRING_ARRAY);
+        if (argv == null)
+            return null;
+        (unowned string) [] list = argv.get_bytestring_array();
+        if (list.length == 0)
+            return null;
+        var input = new StringHashset();
+        foreach (var str in list)
+            input.add(str);
+        return input;
+    }
+
 }

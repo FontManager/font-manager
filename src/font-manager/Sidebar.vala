@@ -92,7 +92,7 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-standard-sidebar.ui")]
     public class StandardSidebar : Gtk.Box {
 
-        public signal void collection_selected (Collection group);
+        public signal void collection_selected (Collection? group);
         public signal void category_selected (Category filter, int category);
         public signal void mode_selected (StandardSidebarMode mode);
 

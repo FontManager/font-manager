@@ -79,11 +79,9 @@ gint
 font_manager_natural_sort (const gchar *str1, const gchar *str2)
 {
     g_return_val_if_fail((str1 != NULL && str2 != NULL), 0);
-    gchar *s1 = g_utf8_collate_key_for_filename(str1, -1);
-    gchar *s2 = g_utf8_collate_key_for_filename(str2, -1);
+    g_autofree gchar *s1 = g_utf8_collate_key_for_filename(str1, -1);
+    g_autofree gchar *s2 = g_utf8_collate_key_for_filename(str2, -1);
     gint result = g_strcmp0(s1, s2);
-    g_free(s1);
-    g_free(s2);
     return result;
 }
 
@@ -131,9 +129,8 @@ font_manager_get_file_extension (const gchar *filepath)
 gchar *
 font_manager_get_local_time (void)
 {
-    GDateTime *local_time = g_date_time_new_now_local();
+    g_autoptr(GDateTime) local_time = g_date_time_new_now_local();
     gchar *result = g_date_time_format(local_time, "%c");
-    g_date_time_unref(local_time);
     return result;
 }
 
@@ -223,13 +220,12 @@ font_manager_str_replace (const gchar *str, const gchar *target, const gchar *re
     g_return_val_if_fail((str != NULL && target != NULL && replacement != NULL), NULL);
     GError *error = NULL;
     gchar *result = NULL;
-    gchar *escaped_str = g_regex_escape_string(target, -1);
+    g_autofree gchar *escaped_str = g_regex_escape_string(target, -1);
     GRegex *regex = g_regex_new(escaped_str, 0, 0, &error);
     if (error == NULL) {
         result = g_regex_replace_literal(regex, str, -1, 0, replacement, 0, &error);
         g_regex_unref(regex);
     }
-    g_free(escaped_str);
     if (error != NULL) {
         g_error_free(error);
         g_free(result);
@@ -250,9 +246,8 @@ gchar *
 font_manager_to_filename (const gchar *str)
 {
     g_return_val_if_fail(str != NULL, NULL);
-    gchar *tmp = font_manager_str_replace(str, " ", "_");
+    g_autofree gchar *tmp = font_manager_str_replace(str, " ", "_");
     gchar *result = font_manager_str_replace(tmp, "-", "_");
-    g_free(tmp);
     return result;
 }
 

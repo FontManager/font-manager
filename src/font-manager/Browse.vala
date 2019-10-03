@@ -53,7 +53,7 @@ namespace FontManager {
             return;
         }
 
-        public void expand_all () {
+        void expand_all () {
             treeview.expand_all();
             /* Workaround first row height bug? */
             treeview.get_column(0).queue_resize();

@@ -66,6 +66,14 @@ namespace FontManager {
                 if (sub_list.discard())
                     show_message(_("Removed configuration file."));
             });
+            sub_list.place_holder.map.connect(() => {
+                base_controls.add_button.set_relief(Gtk.ReliefStyle.NORMAL);
+                base_controls.add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            });
+            sub_list.place_holder.unmap.connect(() => {
+                base_controls.add_button.set_relief(Gtk.ReliefStyle.NONE);
+                base_controls.add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            });
             return;
         }
 
@@ -215,9 +223,10 @@ namespace FontManager {
 
         public signal void row_selected(Gtk.ListBoxRow? selected_row);
 
+        public PlaceHolder place_holder { get; private set; }
+
         Gtk.ListBox list;
         Gtk.ListStore completion_model;
-        PlaceHolder welcome;
 
         construct {
             name = "FontManagerAliasList";
@@ -226,14 +235,14 @@ namespace FontManager {
             string w3 = _("To add a new substitute click the add button in the toolbar.");
             string welcome_tmpl = "<span size=\"xx-large\" weight=\"bold\">%s</span>\n<span size=\"large\">\n\n%s\n</span>\n\n\n<span size=\"x-large\">%s</span>";
             string welcome_message = welcome_tmpl.printf(w1, w2, w3);
-            welcome = new PlaceHolder(welcome_message, "edit-find-replace-symbolic");
+            place_holder = new PlaceHolder(welcome_message, "edit-find-replace-symbolic");
             list = new Gtk.ListBox();
-            list.set_placeholder(welcome);
+            list.set_placeholder(place_holder);
             list.expand = true;
             add(list);
             list.row_selected.connect((r) => { row_selected(r); });
             list.show();
-            welcome.show();
+            place_holder.show();
         }
 
         public SubstituteList () {

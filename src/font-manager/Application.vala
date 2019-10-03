@@ -24,32 +24,11 @@ namespace FontManager {
     public static FontManager.Reject? reject = null;
     public static FontManager.Sources? sources = null;
     public static MainWindow? main_window = null;
+    public static StringHashset available_font_families = null;
 
-    bool print_progress (ProgressData data) {
-        int width = 72;
-        if (data.progress < 1.0) {
-            int position = (int) (((double) width) * data.progress);
-            stdout.printf("\r[");
-            for (int i = 0; i < width; i++) {
-                if (i < position)
-                    stdout.printf("=");
-                else if (i == position)
-                    stdout.printf(">");
-                else
-                    stdout.printf(" ");
-            }
-            if (data.progress >= 0.99)
-                stdout.printf("] %i %\r", 100);
-            else
-                stdout.printf("] %i %\r", (int) (data.progress * 100.0));
-            stdout.flush();
-        }
-        return GLib.Source.REMOVE;
-    }
-
-    void sync_database (DatabaseType type,
-                        ProgressCallback? progress = null,
-                        Cancellable? cancellable = null) {
+    public void sync_database (DatabaseType type,
+                                ProgressCallback? progress = null,
+                                Cancellable? cancellable = null) {
         try {
             var main = get_database(DatabaseType.BASE);
             var child = get_database(type);
@@ -78,8 +57,8 @@ namespace FontManager {
         return;
     }
 
-    void update_database_tables (ProgressCallback? progress = null,
-                                 Cancellable? cancellable = null) {
+    public void update_database_tables (ProgressCallback? progress = null,
+                                         Cancellable? cancellable = null) {
         try {
             var db = get_database(DatabaseType.BASE);
             DatabaseType [] types = { DatabaseType.FONT,
@@ -96,40 +75,11 @@ namespace FontManager {
         return;
     }
 
-    StringHashset? get_command_line_files (ApplicationCommandLine cl) {
-        VariantDict options = cl.get_options_dict();
-        Variant argv = options.lookup_value("", VariantType.BYTESTRING_ARRAY);
-        if (argv == null)
-            return null;
-        (unowned string) [] filelist = argv.get_bytestring_array();
-        if (filelist.length == 0)
-            return null;
-        var files = new StringHashset();
-        foreach (var file in filelist)
-            files.add(cl.create_file_for_arg(file).get_path());
-        return files;
-    }
-
-    StringHashset? get_command_line_input (VariantDict options) {
-        Variant argv = options.lookup_value("", VariantType.BYTESTRING_ARRAY);
-        if (argv == null)
-            return null;
-        (unowned string) [] list = argv.get_bytestring_array();
-        if (list.length == 0)
-            return null;
-        var input = new StringHashset();
-        foreach (var str in list)
-            input.add(str);
-        return input;
-    }
-
     [DBus (name = "org.gnome.FontManager")]
     public class Application: Gtk.Application  {
 
         [DBus (visible = false)]
         public bool update_in_progress { get; private set; default = false; }
-        [DBus (visible = false)]
-        public StringHashset? available_font_families { get; set; default = null; }
 
         bool category_update_required = false;
 
@@ -176,7 +126,7 @@ namespace FontManager {
                     main_window.sidebar.standard.category_tree.select_first_row();
                 }
                 main_window.fontlist.queue_draw();
-                main_window.browser.treeview.queue_draw();
+                main_window.browse.treeview.queue_draw();
             }
             if (attached.contains("Fonts") &&
                 attached.contains("Metadata") &&

@@ -479,11 +479,9 @@ font_manager_get_attributes_from_fontconfig_pattern (FcPattern *pattern)
     }
 
     PangoFontDescription *descr = pango_fc_font_description_from_pattern(pattern, FALSE);
-    gchar *font_desc = pango_font_description_to_string(descr);
+    g_autofree gchar *font_desc = pango_font_description_to_string(descr);
     pango_font_description_free(descr);
     json_object_set_string_member(json_obj, "description", font_desc);
-    g_free(font_desc);
-
     return json_obj;
 }
 
@@ -586,7 +584,7 @@ font_manager_get_charset_from_filepath (const gchar *filepath, int index)
     FT_Error         error;
 
     gsize           filesize = 0;
-    gchar           *font = NULL;
+    g_autofree gchar *font = NULL;
 
     GList *result = NULL;
 
@@ -609,7 +607,6 @@ font_manager_get_charset_from_filepath (const gchar *filepath, int index)
     result = list_charset(charset);
     if (!result && ((int) FcCharSetCount(charset) > 0))
         g_warning(G_STRLOC " : Failed to create FcCharSet for %s", filepath);
-    g_free(font);
     FT_Done_Face(face);
     FT_Done_FreeType(library);
     FcBlanksDestroy(blanks);

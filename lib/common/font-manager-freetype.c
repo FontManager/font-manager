@@ -119,7 +119,7 @@ font_manager_get_metadata (const gchar *filepath, gint index)
     FT_Error        ft_error;
 
     gsize           filesize = 0;
-    gchar           *font = NULL;
+    g_autofree gchar *font = NULL;
     GError          *error = NULL;
 
     JsonObject *json_obj = json_object_new();
@@ -149,12 +149,10 @@ font_manager_get_metadata (const gchar *filepath, gint index)
         return json_obj;
     }
 
-    gchar *_size = g_format_size(filesize);
-    gchar *_md5 = g_compute_checksum_for_data(G_CHECKSUM_MD5, (const guchar *) font, filesize);
+    g_autofree gchar *_size = g_format_size(filesize);
+    g_autofree gchar *_md5 = g_compute_checksum_for_data(G_CHECKSUM_MD5, (const guchar *) font, filesize);
     json_object_set_string_member(json_obj, "filesize", _size);
     json_object_set_string_member(json_obj, "checksum", _md5);
-    g_free(_md5);
-    g_free(_size);
 
     /* Fontconfig modifies invalid PostScript names by replacing illegal characters with - */
     json_object_set_string_member(json_obj, "psname", FT_Get_Postscript_Name(face));
@@ -185,10 +183,8 @@ font_manager_get_metadata (const gchar *filepath, gint index)
         if (!json_object_has_member(json_obj, ensure_member[i]))
             json_object_set_string_member(json_obj, ensure_member[i], NULL);
 
-    g_free(font);
     FT_Done_Face(face);
     FT_Done_FreeType(library);
-
     return json_obj;
 }
 
@@ -269,13 +265,12 @@ static gboolean
 vendor_matches (const gchar vendor[FONT_MANAGER_MAX_VENDOR_ID_LENGTH], const gchar *vendor_id)
 {
     gboolean result;
-    GString *a, *b;
+    g_autoptr(GString) a = NULL;
+    g_autoptr(GString) b = NULL;
     /* vendor is not necessarily NUL-terminated. */
     a = g_string_new_len((const gchar *) vendor, FONT_MANAGER_MAX_VENDOR_ID_LENGTH);
     b = g_string_new_len((const gchar *) vendor_id, FONT_MANAGER_MAX_VENDOR_ID_LENGTH);
     result = g_string_equal(a, b);
-    g_string_free(a, TRUE);
-    g_string_free(b, TRUE);
     return result;
 }
 
@@ -343,7 +338,7 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
         return;
 
     gint namecount = FT_Get_Sfnt_Name_Count(face);
-    gchar *vendor = NULL;
+    g_autofree gchar *vendor = NULL;
     gboolean vendor_set = FALSE;
 
     for (gint index = 0; index < namecount; index++) {
@@ -355,7 +350,7 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
         if (sname.platform_id != TT_PLATFORM_MICROSOFT)
             continue;
 
-        gchar *val = NULL;
+        g_autofree gchar *val = NULL;
 
         switch (sname.encoding_id) {
             case TT_MS_ID_SJIS:
@@ -460,7 +455,7 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
             default:
                 break;
         }
-        g_free(val);
+
     }
 
     if (vendor) {
@@ -473,7 +468,6 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
                     json_object_set_string_member(json_obj, "vendor", _vendor);
             }
         }
-        g_free(vendor);
     }
 
     return;
@@ -592,9 +586,8 @@ get_font_revision (JsonObject *json_obj, const FT_Face face)
     TT_Header *head = (TT_Header *) FT_Get_Sfnt_Table(face, FT_SFNT_HEAD);
     if (head) {
         if (head->Font_Revision) {
-            gchar *rev = g_strdup_printf("%.2f", (float) head->Font_Revision / 65536.0);
+            g_autofree gchar *rev = g_strdup_printf("%.2f", (float) head->Font_Revision / 65536.0);
             json_object_set_string_member(json_obj, "version", rev);
-            g_free(rev);
             return;
         }
     }
@@ -608,13 +601,12 @@ correct_filetype (JsonObject *json_obj)
     /* Compact Font Format doesn't really mean much. */
     if (g_strcmp0(filetype, "CFF") == 0) {
         const gchar *filepath = json_object_get_string_member(json_obj, "filepath");
-        gchar *ext = font_manager_get_file_extension(filepath);
+        g_autofree gchar *ext = font_manager_get_file_extension(filepath);
         if (g_ascii_strcasecmp(ext, "otf") == 0
             || g_ascii_strcasecmp(ext, "ttf") == 0
             || g_ascii_strcasecmp(ext, "ttc") == 0) {
             json_object_set_string_member(json_obj, "filetype", "OpenType");
         }
-        g_free(ext);
     }
     return;
 }
@@ -665,10 +657,9 @@ cleanup_version_string (JsonObject *json_obj)
 
     for (guint i = 0; i < G_N_ELEMENTS(VERSION_STRING_EXCLUDES); i++) {
         if (g_strrstr(version, excludes[i]) != NULL) {
-            gchar *res = font_manager_str_replace(version, excludes[i], "");
+            g_autofree gchar *res = font_manager_str_replace(version, excludes[i], "");
             if (res) {
                 json_object_set_string_member(json_obj, "version", g_strstrip(res));
-                g_free(res);
                 version = json_object_get_string_member(json_obj, "version");
             }
         }
