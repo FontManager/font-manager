@@ -25,6 +25,7 @@ namespace FontManager {
     public static FontManager.Sources? sources = null;
     public static MainWindow? main_window = null;
     public static StringHashset available_font_families = null;
+    public static StringHashset temp_files = null;
 
     public void sync_database (DatabaseType type,
                                 ProgressCallback? progress = null,
@@ -178,6 +179,7 @@ namespace FontManager {
             set_accels_for_action("app.quit", accels);
             settings = get_gsettings(BUS_ID);
             available_font_families = new StringHashset();
+            temp_files = new StringHashset();
             sources = new Sources();
             reject = new Reject();
             reject.load();
@@ -447,6 +449,8 @@ namespace FontManager {
         [DBus (visible = false)]
         public new void quit () {
             base.quit();
+            foreach (var path in temp_files)
+                remove_directory(File.new_for_path(path));
             /* Prevent noise during memcheck */
             {
                 try {
@@ -456,9 +460,22 @@ namespace FontManager {
                     settings = null;
                     reject = null;
                     sources = null;
+                    temp_files = null;
                     clear_application_fonts();
                 } catch (Error e) {}
             }
+            return;
+        }
+
+        [DBus (visible = false)]
+        public void import () {
+            import_user_data();
+            return;
+        }
+
+        [DBus (visible = false)]
+        public void export () {
+            export_user_data();
             return;
         }
 

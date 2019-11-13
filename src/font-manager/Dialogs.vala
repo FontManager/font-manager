@@ -24,8 +24,8 @@ namespace FontManager {
 
         Gtk.ProgressBar progress_bar;
 
-        public ProgressDialog (Gtk.Window? parent, string? title) {
-            Object(transient_for: parent, modal: true, text: title);
+        public ProgressDialog (string? title) {
+            Object(transient_for: main_window, modal: true, text: title);
             progress_bar = new Gtk.ProgressBar();
             ((Gtk.Box) get_message_area()).pack_end(progress_bar);
             set_default_size(475, 125);
@@ -43,9 +43,9 @@ namespace FontManager {
 
     namespace FileSelector {
 
-        public string? get_target_directory (Gtk.Window? parent) {
+        public string? get_target_directory () {
             var dialog = new Gtk.FileChooserDialog(_("Select Destination"),
-                                                    parent,
+                                                    main_window,
                                                     Gtk.FileChooserAction.SELECT_FOLDER,
                                                     _("_Cancel"),
                                                     Gtk.ResponseType.CANCEL,
@@ -62,10 +62,10 @@ namespace FontManager {
             return selection;
         }
 
-        public StringHashset get_selections (Gtk.Window? parent) {
+        public StringHashset get_selections () {
             var selections = new StringHashset();
             var dialog = new Gtk.FileChooserDialog(_("Select files to install"),
-                                                    parent,
+                                                    main_window,
                                                     Gtk.FileChooserAction.OPEN,
                                                     _("_Cancel"),
                                                     Gtk.ResponseType.CANCEL,
@@ -90,10 +90,10 @@ namespace FontManager {
             return selections;
         }
 
-        public string? [] get_selected_sources (Gtk.Window? parent) {
+        public string? [] get_selected_sources () {
             string? [] arr = { };
             var dialog = new Gtk.FileChooserDialog(_("Select source folders"),
-                                                    parent,
+                                                    main_window,
                                                     Gtk.FileChooserAction.SELECT_FOLDER,
                                                     _("_Cancel"),
                                                     Gtk.ResponseType.CANCEL,
@@ -114,27 +114,39 @@ namespace FontManager {
 
     namespace RemoveDialog {
 
-        public StringHashset get_selections (Gtk.Window? parent, Gtk.TreeModel model) {
+        public StringHashset get_selections (Gtk.TreeModel model) {
+            Gtk.HeaderBar? header = null;
+            bool use_csd = main_window != null ? main_window.use_csd : false;
             var selections = new StringHashset();
             FontListPane? tree = null;
             var dialog = new Gtk.Dialog();
             dialog.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            var header = new Gtk.HeaderBar();
+            if (use_csd)
+                header = new Gtk.HeaderBar();
             var content_area = dialog.get_content_area();
             var filter = new UserFonts();
             filter.update();
 
             if (filter.size > 0) {
                 var scroll = new Gtk.ScrolledWindow(null, null);
-                var cancel = new Gtk.Button.with_mnemonic(_("_Cancel"));
-                var remove = new Gtk.Button.with_mnemonic(_("_Delete"));
-                cancel.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-                remove.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
-                cancel.clicked.connect(() => { dialog.response(Gtk.ResponseType.CANCEL); });
-                remove.clicked.connect(() => { dialog.response(Gtk.ResponseType.ACCEPT); });
-                header.set_title(_("Select fonts to remove"));
-                header.pack_start(cancel);
-                header.pack_end(remove);
+                if (use_csd) {
+                    header.set_title(_("Select fonts to remove"));
+                    var cancel = new Gtk.Button.with_mnemonic(_("_Cancel"));
+                    var remove = new Gtk.Button.with_mnemonic(_("_Delete"));
+                    cancel.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+                    remove.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+                    cancel.clicked.connect(() => { dialog.response(Gtk.ResponseType.CANCEL); });
+                    remove.clicked.connect(() => { dialog.response(Gtk.ResponseType.ACCEPT); });
+                    header.pack_start(cancel);
+                    header.pack_end(remove);
+                    dialog.set_titlebar(header);
+                    header.show_all();
+                } else {
+                    dialog.set_title(_("Select fonts to remove"));
+                    dialog.add_buttons(_("_Cancel"), Gtk.ResponseType.CANCEL,
+                                       _("_Delete"), Gtk.ResponseType.ACCEPT,
+                                       null);
+                }
                 tree = new FontListPane();
                 tree.fontlist = new UserFontList();
                 tree.set("model", model, "filter", filter, "expand", true, null);
@@ -146,17 +158,16 @@ namespace FontManager {
                 var tmpl = "<big>%s</big>";
                 var msg = _("Fonts installed in your home directory will appear here.");
                 var content = new PlaceHolder(tmpl.printf(msg), "go-home-symbolic");
-                header.show_close_button = true;
+                if (use_csd)
+                    header.show_close_button = true;
                 content_area.add(content);
                 content.expand = true;
                 content.show();
                 dialog.set_size_request(270, 240);
             }
 
-            dialog.set_titlebar(header);
             dialog.set("modal", true, "destroy-with-parent", true, null);
-            dialog.set_transient_for(parent);
-            header.show_all();
+            dialog.set_transient_for(main_window);
             if (dialog.run() == Gtk.ResponseType.ACCEPT) {
                 dialog.hide();
                 selections = ((UserFontList) tree.fontlist).get_selections();

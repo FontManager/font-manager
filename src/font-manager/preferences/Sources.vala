@@ -48,6 +48,11 @@ namespace FontManager {
             source_list.show();
         }
 
+        public void update () {
+            source_list.update();
+            return;
+        }
+
         void connect_signals () {
             controls.add_selected.connect(() => {
                 source_list.on_add_source();
@@ -175,7 +180,7 @@ namespace FontManager {
          * Displays a file selection dialog where source folders can be added
          */
         public void on_add_source () {
-            string? [] arr = FileSelector.get_selected_sources(main_window);
+            string? [] arr = FileSelector.get_selected_sources();
             if (arr.length > 0)
                 Idle.add(() => { add_sources(arr); return false; });
             return;

@@ -81,17 +81,31 @@ namespace FontManager {
             MenuEntry("about", _("About"), "app.about", null, new MenuCallbackWrapper(application.about)),
         };
         var app_menu = new GLib.Menu();
+        var standard_entries = new GLib.Menu();
         foreach (var entry in app_menu_entries) {
             add_action_from_menu_entry(application, entry);
             if (entry.accelerator != null) {
                 application.set_accels_for_action(entry.detailed_action_name, entry.accelerator);
                 GLib.MenuItem item = new MenuItem(entry.display_name, entry.detailed_action_name);
                 item.set_attribute("accel", "s", entry.accelerator[0]);
-                app_menu.append_item(item);
+                standard_entries.append_item(item);
             } else {
-                app_menu.append(entry.display_name, entry.detailed_action_name);
+                standard_entries.append(entry.display_name, entry.detailed_action_name);
             }
         }
+        app_menu.append_section(null, standard_entries);
+        var data_menu = new GLib.Menu();
+        MenuEntry [] data_menu_entries = {
+            MenuEntry("import", _("Import"), "app.import", null, new MenuCallbackWrapper(application.import)),
+            MenuEntry("export", _("Export"), "app.export", null, new MenuCallbackWrapper(application.export))
+        };
+        foreach (var entry in data_menu_entries) {
+            add_action_from_menu_entry(application, entry);
+            GLib.MenuItem item = new MenuItem(entry.display_name, entry.detailed_action_name);
+            data_menu.append_item(item);
+        }
+        var data_section = new GLib.MenuItem.submenu(_("User Data"), data_menu);
+        app_menu.prepend_item(data_section);
         return app_menu;
     }
 

@@ -212,6 +212,40 @@ namespace FontManager {
         return false;
     }
 
+    public bool copy_directory (File source, File destination, FileCopyFlags flags) {
+        return_if_fail(source.query_exists());
+        return_if_fail(source.query_file_type(FileQueryInfoFlags.NONE) == FileType.DIRECTORY);
+        bool result = true;
+        try {
+            if (!destination.query_exists())
+                destination.make_directory_with_parents();
+            var enumerator = source.enumerate_children(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
+            FileInfo fileinfo = enumerator.next_file();
+            while (result && fileinfo != null) {
+                var source_type = fileinfo.get_file_type();
+                string name = fileinfo.get_name();
+                if (source_type == GLib.FileType.DIRECTORY) {
+                    string source_path = source.get_path();
+                    string destination_path = destination.get_path();
+                    source.get_child(name).copy_attributes(destination, flags);
+                    File s = File.new_for_path(Path.build_filename(source_path, name));
+                    File d = File.new_for_path(Path.build_filename(destination_path, name));
+                    result = copy_directory(s, d, flags);
+                } else if (source_type == GLib.FileType.REGULAR) {
+                    File original = source.get_child(name);
+                    string outp = Path.build_filename(destination.get_path(), name);
+                    File dest = File.new_for_path(outp);
+                    result = original.copy(dest, flags);
+                }
+                fileinfo = enumerator.next_file();
+            }
+        } catch (Error e) {
+            critical(e.message);
+            result = false;
+        }
+        return result;
+    }
+
     public bool print_progress (ProgressData data) {
         int width = 72;
         if (data.progress < 1.0) {

@@ -356,7 +356,7 @@ namespace FontManager {
 
         async void _copy_to ()
         requires (selected_filter != null) {
-            string? target_dir = FileSelector.get_target_directory(main_window);
+            string? target_dir = FileSelector.get_target_directory();
             if (target_dir == null)
                 return;
             string destination = Path.build_filename(target_dir, selected_filter.name);
@@ -369,7 +369,7 @@ namespace FontManager {
             StringHashset filelist = selected_filter.get_filelist();
             uint total = filelist.size;
             uint processed = 0;
-            var progress_dialog = new ProgressDialog(main_window, _("Copying files…"));
+            var progress_dialog = new ProgressDialog(_("Copying files…"));
             progress_dialog.show_now();
             while (Gtk.events_pending())
                 Gtk.main_iteration();
@@ -431,6 +431,7 @@ namespace FontManager {
             string temp_dir;
             try {
                 temp_dir = DirUtils.make_tmp(TMP_TMPL);
+                temp_files.add(temp_dir);
             } catch (Error e) {
                 critical(e.message);
                 return null;
@@ -470,9 +471,7 @@ namespace FontManager {
             create_temporary_copy.begin(selected_filter, (obj, res) => {
                 string result = create_temporary_copy.end(res);
                 return_if_fail(result != null);
-                string? [] filelist = {};
-                filelist += result;
-                filelist += null;
+                string? [] filelist = { result, null };
                 unowned string home = Environment.get_home_dir();
                 string destination = File.new_for_path(home).get_uri();
                 file_roller.compress(filelist, destination);

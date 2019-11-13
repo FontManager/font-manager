@@ -420,11 +420,11 @@ namespace FontManager {
             collections_tree.drag_data_received.connect(on_drag_data_received);
 
             titlebar.install_selected.connect(() => {
-                install_fonts(FileSelector.get_selections((Gtk.Window) this));
+                install_fonts(FileSelector.get_selections());
             });
 
             titlebar.remove_selected.connect(() => {
-                remove_fonts(RemoveDialog.get_selections((Gtk.Window) this, model));
+                remove_fonts(RemoveDialog.get_selections(model));
             });
 
             titlebar.preferences_selected.connect((a) => {
@@ -472,7 +472,7 @@ namespace FontManager {
 
         }
 
-        void install_fonts (StringHashset selections) {
+        public void install_fonts (StringHashset selections) {
             if (selections.size > 0) {
                 titlebar.installing_files = true;
                 var installer = new Library.Installer();
@@ -492,7 +492,7 @@ namespace FontManager {
             return;
         }
 
-        void remove_fonts (StringHashset selections) {
+        public void remove_fonts (StringHashset selections) {
             if (selections.size > 0) {
                 titlebar.removing_files = true;
                 model = null;
