@@ -46,7 +46,18 @@ treeview {
     background-color: #808080;
 }
 
-.CellRendererPill {
+.PreviewTileCount {
+    margin: 0px;
+    border-radius: 1em 0em 0.75em 0em;
+    border-width: 0.5px;
+    border-style: groove;
+    color: darker(@insensitive_fg_color);
+    border-color: alpha(darker(@borders), 0.333);
+    background-color: alpha(@insensitive_bg_color, 0.5);
+}
+
+.CellRendererPill,
+.PreviewTile {
     margin: 1px;
     border-width: 1px;
     border-style: groove;

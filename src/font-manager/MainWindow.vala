@@ -624,6 +624,7 @@ namespace FontManager {
                 settings.set_strv("compare-list", compare.list());
                 settings.set_string("compare-foreground-color", compare.foreground_color.to_string());
                 settings.set_string("compare-background-color", compare.background_color.to_string());
+                settings.set_enum("browse-mode", (int) browse.mode);
                 settings.apply();
             }
             ((FontManager.Application) application).quit();
@@ -710,6 +711,7 @@ namespace FontManager {
                 if (sidebar.standard.category_tree.update_in_progress)
                     return true;
                 restore_selections(font_path, category_path, collection_path);
+                browse.mode = (BrowseMode) settings.get_enum("browse-mode");
                 return false;
             });
 

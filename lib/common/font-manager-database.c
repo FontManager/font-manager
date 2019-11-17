@@ -554,7 +554,8 @@ font_manager_database_get_object (FontManagerDatabase *self, const gchar *sql, G
     g_return_val_if_fail(FONT_MANAGER_IS_DATABASE(self), NULL);
     g_return_val_if_fail(sql != NULL, NULL);
     font_manager_database_execute_query(self, sql, error);
-    g_return_val_if_fail(error == NULL || *error == NULL, NULL);
+    if (error != NULL && *error != NULL)
+        return NULL;
     if (!sqlite3_step_succeeded(self, SQLITE_ROW))
         return NULL;
 

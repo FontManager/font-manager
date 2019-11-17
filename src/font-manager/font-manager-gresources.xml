@@ -7,6 +7,7 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-compare-view.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-config-controls.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-list-pane.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-preview-tile.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-language-filter-settings.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-language-popover.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list.ui</file>

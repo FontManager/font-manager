@@ -33,6 +33,11 @@
         <value nick="Collection" value="1" />
     </enum>
 
+    <enum id="org.gnome.FontManager.BrowseMode">
+        <value nick="List" value="0" />
+        <value nick="Grid" value="1" />
+    </enum>
+
     <enum id="org.gnome.FontManager.TitleButtonStyle">
         <value nick="Normal" value="0" />
         <value nick="Flat" value="1" />
@@ -147,6 +152,12 @@
             <summary>Preview text</summary>
             <description>Last preview text used</description>
             <default>"DEFAULT"</default>
+        </key>
+
+        <key name="browse-mode" enum="org.gnome.FontManager.BrowseMode">
+            <summary>Browse Mode</summary>
+            <description>Possible modes are List and Grid.</description>
+            <default>"List"</default>
         </key>
 
         <key name="browse-font-size" type="d">

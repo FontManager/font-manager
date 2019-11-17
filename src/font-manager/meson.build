@@ -12,7 +12,7 @@ executable('font-manager',
             include_directories: [default_includes, libvala_includes],
             dependencies: [
                 json, gio, glib, gobject, gtk, pango, sqlite, xml,
-                common_vapi, unicode_vapi
+                common_vapi, unicode_vapi, m_dep
             ],
             install: true,
             install_rpath: pkglib_dir)

@@ -20,37 +20,200 @@
 
 namespace FontManager {
 
+    public enum BrowseMode {
+        LIST,
+        GRID,
+        N_MODES;
+    }
+
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-font-preview-tile.ui")]
+    public class FontPreviewTile : Gtk.Grid {
+
+        [GtkChild] public Gtk.Label family { get; }
+        [GtkChild] public Gtk.Label count { get; }
+        [GtkChild] public Gtk.TextView preview { get; }
+
+    }
+
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-browse-view.ui")]
     public class Browse : Gtk.Box {
 
         public double preview_size { get; set; }
-        public Gtk.TreeModel? model { get; set; }
         public Json.Object? samples { get; set; default = null; }
         public Gtk.Adjustment adjustment { get; set; }
+
+        public Gtk.TreeModel? model { get; set; }
+
+        public BrowseMode mode {
+            get {
+                return grid_is_visible ? BrowseMode.GRID : BrowseMode.LIST;
+            }
+            set {
+                if (value == BrowseMode.LIST)
+                    list_view.set_active(true);
+                else
+                    grid_view.set_active(true);
+            }
+        }
 
         [GtkChild] public Gtk.TreeView treeview { get; }
         [GtkChild] public PreviewEntry entry { get; private set; }
 
         [GtkChild] FontScale fontscale;
+        [GtkChild] Gtk.Stack browse_stack;
+        [GtkChild] Gtk.FlowBox flowbox;
+        [GtkChild] Gtk.ScrolledWindow browse_grid;
+        [GtkChild] Gtk.Label page_count;
+        [GtkChild] Gtk.Button prev_page;
+        [GtkChild] Gtk.Button next_page;
+        [GtkChild] Gtk.RadioButton list_view;
+        [GtkChild] Gtk.RadioButton grid_view;
+        [GtkChild] Gtk.Box page_controls;
+
+        double n_pages = 0.0;
+        double current_page = 0.0;
+        double MAX_TILES = 25.0;
+        bool grid_is_visible = false;
+
+        [GtkCallback]
+        public void on_click (Gtk.Button button) {
+            browse_stack.set_visible_child_name(button.name);
+            page_controls.set_visible(button.name == "grid");
+            return;
+        }
+
+        [GtkCallback]
+        public void on_prev_page_clicked (Gtk.Button button) {
+            current_page--;
+            update_grid();
+            return;
+        }
+
+        [GtkCallback]
+        public void on_next_page_clicked (Gtk.Button button) {
+            current_page++;
+            update_grid();
+            return;
+        }
 
         public override void constructed () {
             var renderer = new CellRendererTitle();
             treeview.insert_column_with_data_func(0, "", renderer, cell_data_func);
             treeview.get_selection().set_mode(Gtk.SelectionMode.NONE);
             bind_property("model", treeview, "model", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
-            notify["model"].connect(() => { expand_all(); });
             bind_property("preview-size", fontscale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             fontscale.bind_property("adjustment", this, "adjustment", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             entry.changed.connect(() => {
                 treeview.get_column(0).queue_resize();
                 treeview.queue_draw();
+                update_grid();
             });
             adjustment.value_changed.connect(() => {
                 treeview.get_column(0).queue_resize();
                 treeview.queue_draw();
+                update_grid();
+            });
+            notify["model"].connect(() => {
+                expand_all();
+                n_pages = 1.0;
+                current_page = 1.0;
+                update_grid();
+                if (model != null)
+                    n_pages = Math.ceil(model.iter_n_children(null) / MAX_TILES);
+                update_page_controls();
+            });
+            browse_grid.map.connect(() => {
+                grid_is_visible = true;
+                update_grid();
+            });
+            browse_grid.unmap.connect(() => {
+                grid_is_visible = false;
+                update_grid();
             });
             base.constructed();
             return;
+        }
+
+        void update_page_controls () {
+            page_count.set_text("%.f / %.f".printf(current_page, n_pages));
+            prev_page.set_sensitive(current_page > 1);
+            next_page.set_sensitive(n_pages > 1 && current_page < n_pages);
+            return;
+        }
+
+        internal Json.Object json_copy (Json.Object obj) {
+            Json.Object copy = new Json.Object();
+            copy.set_string_member("description", obj.get_string_member("description"));
+            copy.set_string_member("family", obj.get_string_member("family"));
+            Json.Array variations = obj.get_member("variations").dup_array();
+            copy.set_array_member("variations", variations);
+            return copy;
+        }
+
+        void update_grid () {
+            flowbox.bind_model(null, null);
+            if (!grid_is_visible)
+                return;
+            if (model != null) {
+                var list_model = new GLib.ListStore(typeof(Family));
+                double end = (current_page * MAX_TILES);
+                int start = (current_page == 1) ? 0 : (int) (end - MAX_TILES);
+                double current = start;
+                Gtk.TreeIter iter;
+                bool valid = model.iter_nth_child(out iter, null, start);
+                while (valid && current < end) {
+                    Value val;
+                    model.get_value(iter, FontModelColumn.OBJECT, out val);
+                    Object temp = val.get_object();
+                    Family family = new Family();
+                    family.source_object = json_copy(((JsonProxy) temp).source_object);
+                    list_model.append(family);
+                    valid = model.iter_next(ref iter);
+                    current++;
+                }
+                flowbox.bind_model(list_model, (Gtk.FlowBoxCreateWidgetFunc) preview_tile_from_item);
+                update_page_controls();
+            }
+            return;
+        }
+
+        string get_preview_label_markup (Family family) {
+            uint n_variations = family.variations.get_length();
+            string result = "";
+            for (uint i = 0; i < n_variations; i++) {
+                if (i > 0)
+                    result += "\n";
+                Font variation = new Font();
+                variation.source_object = family.variations.get_object_element(i);
+                string markup = "<span fallback = \"false\" font = \"%s %i\">%s</span>";
+                string preview_text = variation.style != null ?
+                                       variation.style :
+                                       variation.description;
+                if (entry.text_length > 0)
+                    preview_text = entry.text;
+                else if (samples != null && samples.has_member(variation.description))
+                    preview_text = samples.get_string_member(variation.description);
+                result += markup.printf(variation.description,
+                                        (int) preview_size,
+                                        Markup.escape_text(preview_text));
+            }
+            return result;
+        }
+
+        [CCode (instance_pos = -1)]
+        Gtk.Widget preview_tile_from_item (Family item) {
+            var tile = new FontPreviewTile();
+            string markup = "<span size=\"%i\"><b>%s</b></span>";
+            int title_size = (int) get_desc_size() * Pango.SCALE;
+            string title = markup.printf(title_size, Markup.escape_text(item.family));
+            tile.family.set_markup(title);
+            Gtk.TextBuffer buffer = tile.preview.get_buffer();
+            Gtk.TextIter iter;
+            buffer.get_start_iter(out iter);
+            buffer.insert_markup(ref iter, get_preview_label_markup(item), -1);
+            tile.count.set_text(item.variations.get_length().to_string());
+            tile.show();
+            return tile;
         }
 
         void expand_all () {

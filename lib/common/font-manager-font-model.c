@@ -35,11 +35,13 @@ struct _FontManagerFontModel
     JsonArray *available_fonts;
 };
 
+static void g_list_model_interface_init (GListModelInterface *iface);
 static void gtk_tree_model_interface_init (GtkTreeModelIface *iface);
 static void gtk_tree_drag_source_interface_init (GtkTreeDragSourceIface *iface);
 static void gtk_tree_drag_dest_interface_init (GtkTreeDragDestIface *iface);
 
 G_DEFINE_TYPE_WITH_CODE(FontManagerFontModel, font_manager_font_model, G_TYPE_OBJECT,
+    G_IMPLEMENT_INTERFACE(G_TYPE_LIST_MODEL, g_list_model_interface_init)
     G_IMPLEMENT_INTERFACE(GTK_TYPE_TREE_MODEL, gtk_tree_model_interface_init)
     G_IMPLEMENT_INTERFACE(GTK_TYPE_TREE_DRAG_SOURCE, gtk_tree_drag_source_interface_init)
     G_IMPLEMENT_INTERFACE(GTK_TYPE_TREE_DRAG_DEST, gtk_tree_drag_dest_interface_init))
@@ -312,6 +314,43 @@ font_manager_font_model_iter_parent (GtkTreeModel *tree_model,
     iter->user_data2 = NULL;
     return TRUE;
 }
+
+/* GListModelInterface */
+
+static GType
+font_manager_font_model_get_item_type (G_GNUC_UNUSED GListModel *self)
+{
+    return FONT_MANAGER_TYPE_FAMILY;
+}
+
+static guint
+font_manager_font_model_get_n_items (GListModel *self)
+{
+    g_return_val_if_fail(self != NULL, 0);
+    FontManagerFontModel *model = FONT_MANAGER_FONT_MODEL(self);
+    return json_array_get_length(model->available_fonts);
+}
+
+static gpointer
+font_manager_font_model_get_item (GListModel *self, guint position)
+{
+    g_return_val_if_fail(self != NULL, NULL);
+    if (position >= font_manager_font_model_get_n_items(self))
+        return NULL;
+    FontManagerFontModel *model = FONT_MANAGER_FONT_MODEL(self);
+    return json_array_get_object_element(model->available_fonts, position);
+}
+
+static void
+g_list_model_interface_init (GListModelInterface *iface)
+{
+    iface->get_item_type = font_manager_font_model_get_item_type;
+    iface->get_n_items = font_manager_font_model_get_n_items;
+    iface->get_item = font_manager_font_model_get_item;
+    return;
+}
+
+/* GtkTreeModelIface */
 
 static void
 gtk_tree_model_interface_init (GtkTreeModelIface *iface)
