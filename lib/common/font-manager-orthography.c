@@ -67,6 +67,8 @@ font_manager_orthography_get_member(FontManagerOrthographyPrivate *priv, GParamS
 {
     g_return_val_if_fail(priv->source != NULL, NULL);
     const gchar *member = g_param_spec_get_name(pspec);
+    if (g_strcmp0(member, "native-name") == 0 && json_object_has_member(priv->source, "native"))
+        return json_object_get_string_member(priv->source, "native");
     return json_object_has_member(priv->source, member) ?
            json_object_get_string_member(priv->source, member) : NULL;
 }
