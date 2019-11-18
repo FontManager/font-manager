@@ -38,6 +38,8 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-browse-view.ui")]
     public class Browse : Gtk.Box {
 
+        public signal void mode_selected (BrowseMode mode);
+
         public double preview_size { get; set; }
         public Json.Object? samples { get; set; default = null; }
         public Gtk.Adjustment adjustment { get; set; }
@@ -79,6 +81,7 @@ namespace FontManager {
         public void on_click (Gtk.Button button) {
             browse_stack.set_visible_child_name(button.name);
             page_controls.set_visible(button.name == "grid");
+            mode_selected(button.name == "grid" ? BrowseMode.GRID : BrowseMode.LIST);
             return;
         }
 

@@ -254,7 +254,7 @@ namespace FontManager {
             fontlist.queue_draw();
             if (titlebar.prefs_toggle.active && mode != Mode.MANAGE)
                 titlebar.prefs_toggle.active = false;
-            if (mode == Mode.BROWSE)
+            if (mode == Mode.BROWSE && browse.mode == BrowseMode.LIST)
                 browse.treeview.queue_draw();
             mode_changed(mode);
             return;
@@ -595,6 +595,10 @@ namespace FontManager {
                 settings.set_enum("sidebar-mode", (int) sidebar.standard.mode);
             });
 
+            browse.mode_selected.connect((m) => {
+                settings.set_enum("browse-mode", (int) m);
+            });
+
             preview_pane.preview_mode_changed.connect((m) => { settings.set_string("preview-mode", ((FontManager.FontPreviewMode) m).to_string()); });
             preview_pane.preview_text_changed.connect((p) => {
                 if (!preview_pane.preview.restore_default_preview && p != DEFAULT_PREVIEW_TEXT)
@@ -624,7 +628,6 @@ namespace FontManager {
                 settings.set_strv("compare-list", compare.list());
                 settings.set_string("compare-foreground-color", compare.foreground_color.to_string());
                 settings.set_string("compare-background-color", compare.background_color.to_string());
-                settings.set_enum("browse-mode", (int) browse.mode);
                 settings.apply();
             }
             ((FontManager.Application) application).quit();
@@ -710,12 +713,15 @@ namespace FontManager {
             Idle.add(() => {
                 if (sidebar.standard.category_tree.update_in_progress)
                     return true;
-                restore_selections(font_path, category_path, collection_path);
                 browse.mode = (BrowseMode) settings.get_enum("browse-mode");
+                restore_selections(font_path, category_path, collection_path);
                 return false;
             });
 
-            Idle.add(() => { bind_settings(); return false; });
+            Idle.add(() => {
+                bind_settings();
+                return false;
+            });
 
             return;
         }
