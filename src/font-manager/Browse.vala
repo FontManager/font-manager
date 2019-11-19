@@ -71,33 +71,12 @@ namespace FontManager {
         [GtkChild] Gtk.RadioButton list_view;
         [GtkChild] Gtk.RadioButton grid_view;
         [GtkChild] Gtk.Box page_controls;
+        [GtkChild] Gtk.Entry selected_page;
 
         double n_pages = 0.0;
         double current_page = 0.0;
         double MAX_TILES = 25.0;
         bool grid_is_visible = false;
-
-        [GtkCallback]
-        public void on_click (Gtk.Button button) {
-            browse_stack.set_visible_child_name(button.name);
-            page_controls.set_visible(button.name == "grid");
-            mode_selected(button.name == "grid" ? BrowseMode.GRID : BrowseMode.LIST);
-            return;
-        }
-
-        [GtkCallback]
-        public void on_prev_page_clicked (Gtk.Button button) {
-            current_page--;
-            update_grid();
-            return;
-        }
-
-        [GtkCallback]
-        public void on_next_page_clicked (Gtk.Button button) {
-            current_page++;
-            update_grid();
-            return;
-        }
 
         public override void constructed () {
             var renderer = new CellRendererTitle();
@@ -137,8 +116,54 @@ namespace FontManager {
             return;
         }
 
+        [GtkCallback]
+        public void on_click (Gtk.Button button) {
+            browse_stack.set_visible_child_name(button.name);
+            page_controls.set_visible(button.name == "grid");
+            mode_selected(button.name == "grid" ? BrowseMode.GRID : BrowseMode.LIST);
+            return;
+        }
+
+        [GtkCallback]
+        public void on_prev_page_clicked (Gtk.Button button) {
+            current_page--;
+            update_grid();
+            return;
+        }
+
+        [GtkCallback]
+        public void on_next_page_clicked (Gtk.Button button) {
+            current_page++;
+            update_grid();
+            return;
+        }
+
+        [GtkCallback]
+        public void on_selected_page_changed (Gtk.Editable entry) {
+            double selected = double.parse(((Gtk.Entry) entry).get_text());
+            current_page = selected.clamp(1.0, n_pages);
+            update_grid();
+            return;
+        }
+
+        [GtkCallback]
+        public bool on_selected_page_focus_in_event (Gtk.Widget entry,
+                                                       Gdk.EventFocus unused) {
+            selected_page.set_text("");
+            return false;
+        }
+
+        [GtkCallback]
+        public bool on_selected_page_focus_out_event (Gtk.Widget entry,
+                                                       Gdk.EventFocus unused) {
+            selected_page.set_text("%.f".printf(current_page));
+            return false;
+        }
+
         void update_page_controls () {
-            page_count.set_text("%.f / %.f".printf(current_page, n_pages));
+            selected_page.set_width_chars(n_pages < 100 ? 2 : 3);
+            page_count.set_text("/ %.f".printf(n_pages));
+            selected_page.set_text("%.f".printf(current_page));
             prev_page.set_sensitive(current_page > 1);
             next_page.set_sensitive(n_pages > 1 && current_page < n_pages);
             return;
@@ -177,6 +202,7 @@ namespace FontManager {
                 flowbox.bind_model(list_model, (Gtk.FlowBoxCreateWidgetFunc) preview_tile_from_item);
                 update_page_controls();
             }
+            flowbox.queue_resize();
             return;
         }
 

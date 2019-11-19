@@ -126,8 +126,8 @@
             <child>
               <object class="GtkLabel" id="page_count">
                 <property name="visible">True</property>
-                <property name="sensitive">False</property>
                 <property name="can_focus">False</property>
+                <property name="opacity">0.66000000000000003</property>
                 <property name="margin_left">6</property>
                 <property name="margin_right">6</property>
               </object>
@@ -140,6 +140,27 @@
             </child>
             <child>
               <placeholder/>
+            </child>
+            <child>
+              <object class="GtkEntry" id="selected_page">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="opacity">0.66000000000000003</property>
+                <property name="margin_top">6</property>
+                <property name="margin_bottom">6</property>
+                <property name="xalign">1</property>
+                <property name="caps_lock_warning">False</property>
+                <property name="input_purpose">digits</property>
+                <signal name="activate" handler="on_selected_page_changed" swapped="no"/>
+                <signal name="focus-in-event" handler="on_selected_page_focus_in_event" swapped="no"/>
+                <signal name="focus-out-event" handler="on_selected_page_focus_out_event" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="pack_type">end</property>
+                <property name="position">2</property>
+              </packing>
             </child>
             <child>
               <object class="GtkEventBox">
@@ -219,7 +240,7 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">2</property>
+                <property name="position">3</property>
               </packing>
             </child>
           </object>
@@ -341,4 +362,11 @@
       <class name="view"/>
     </style>
   </template>
+  <object class="GtkAdjustment" id="adjustment1">
+    <property name="lower">1</property>
+    <property name="upper">100</property>
+    <property name="value">1</property>
+    <property name="step_increment">1</property>
+    <property name="page_increment">10</property>
+  </object>
 </interface>
