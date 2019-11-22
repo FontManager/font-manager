@@ -1,5 +1,5 @@
 
-project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.7.5')
+project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.7.5', default_options: 'warning_level=2')
 
 cc = meson.get_compiler('c')
 # There has to be a better way to require a specific vala version, right?
@@ -32,7 +32,6 @@ add_global_arguments(
     '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
     '-DGDK_DISABLE_DEPRECATED',
     '-DGTK_DISABLE_DEPRECATED',
-    '-Wall', '-Wextra', '-Werror=format-security',
     language: 'c'
 )
 

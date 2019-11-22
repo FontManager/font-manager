@@ -46,6 +46,15 @@ treeview {
     background-color: #808080;
 }
 
+.HelpBubble {
+    margin: 1px;
+    border-width: 0px;
+    border-style: groove;
+    border-radius: 0.75em;
+    color: lighter(@theme_selected_fg_color);
+    background-color: alpha(@theme_text_color, 0.65);
+}
+
 .PreviewTileCount {
     margin: 0px;
     border-radius: 1em 0em 0.75em 0em;

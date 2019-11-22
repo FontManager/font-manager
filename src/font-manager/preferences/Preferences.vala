@@ -30,6 +30,35 @@ namespace FontManager {
         return;
     }
 
+    public class InlineHelp : Gtk.Button {
+
+        public Gtk.Label message { get; private set; }
+
+        public InlineHelp () {
+            message = new Gtk.Label("");
+            var bubble = new Gtk.Popover(this);
+            var icon = new Gtk.Image.from_icon_name("dialog-question-symbolic",
+                                                     Gtk.IconSize.LARGE_TOOLBAR);
+            can_focus = false;
+            opacity = 0.5;
+            margin_start = margin_end = 3;
+            relief = Gtk.ReliefStyle.NONE;
+            set_image(icon);
+            message.margin = DEFAULT_MARGIN_SIZE;
+            message.wrap = true;
+            message.wrap_mode = Pango.WrapMode.WORD_CHAR;
+            bubble.add(message);
+            bubble.get_style_context().remove_class(Gtk.STYLE_CLASS_BACKGROUND);
+            bubble.get_style_context().add_class("HelpBubble");
+            clicked.connect(() => {
+                bubble.popup();
+            });
+            icon.show();
+            message.show();
+        }
+
+    }
+
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-preferences.ui")]
     public class Preferences : Gtk.Paned {
 
@@ -70,35 +99,38 @@ namespace FontManager {
      *
      * Base class for preference panes.
      */
-    public class SettingsPage : Gtk.Box {
+    public class SettingsPage : Gtk.Overlay {
 
         protected Gtk.Label message;
         protected Gtk.InfoBar infobar;
+        protected Gtk.Box box;
+        protected Gtk.Revealer revealer;
 
         construct {
-            orientation = Gtk.Orientation.VERTICAL;
+            box = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+            revealer = new Gtk.Revealer();
             infobar = new Gtk.InfoBar();
             infobar.message_type = Gtk.MessageType.INFO;
             message = new Gtk.Label(null);
             infobar.get_content_area().add(message);
-            pack_start(infobar, false, false, 0);
+            infobar.set_show_close_button(true);
+            revealer.add(infobar);
+            box.pack_start(revealer, false, false, 0);
             infobar.response.connect((id) => {
                 if (id == Gtk.ResponseType.CLOSE)
-                    infobar.hide();
+                    revealer.set_reveal_child(false);
             });
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             message.show();
+            box.show();
+            infobar.show();
+            revealer.show();
+            add(box);
         }
 
         protected virtual void show_message (string m) {
             message.set_markup("<b>%s</b>".printf(m));
-            infobar.show();
-            infobar.queue_resize();
-            Timeout.add_seconds(3, () => {
-                infobar.hide();
-                infobar.queue_resize();
-                return infobar.visible;
-            });
+            revealer.set_reveal_child(true);
             return;
         }
 
@@ -160,12 +192,25 @@ namespace FontManager {
      */
     public class FontConfigSettingsPage : SettingsPage {
 
+        const string help_text = _("""Select save to generate a fontconfig configuration file from the above settings.
+
+Select discard to remove the configuration file and revert to the default settings.
+
+Note that not all environments/applications will honor these settings.""");
+
         protected FontConfigControls controls;
 
         construct {
             controls = new FontConfigControls();
-            pack_end(controls, false, false, 0);
+            box.pack_end(controls, false, false, 0);
             controls.show();
+            var help = new InlineHelp();
+            help.margin_bottom = 56;
+            help.margin_start = help.margin_end = 18;
+            help.valign = help.halign = Gtk.Align.END;
+            help.message.set_text(help_text);
+            add_overlay(help);
+            help.show();
         }
 
     }

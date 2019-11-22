@@ -26,7 +26,7 @@ namespace FontManager {
 
         public RenderingPreferences () {
             pane = new FontPropertiesPane();
-            pack_start(pane, true, true, 0);
+            box.pack_start(pane, true, true, 0);
             connect_signals();
             pane.show();
         }

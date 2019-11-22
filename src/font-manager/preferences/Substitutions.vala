@@ -26,16 +26,15 @@ namespace FontManager {
         SubstituteList sub_list;
 
         public SubstitutionPreferences () {
-            orientation = Gtk.Orientation.VERTICAL;
             sub_list = new SubstituteList();
             sub_list.expand = true;
             base_controls = new BaseControls();
             base_controls.add_button.set_tooltip_text(_("Add alias"));
             base_controls.remove_button.set_tooltip_text(_("Remove selected alias"));
             base_controls.remove_button.sensitive = false;
-            pack_start(base_controls, false, false, 1);
-            add_separator(this, Gtk.Orientation.HORIZONTAL);
-            pack_end(sub_list, true, true, 1);
+            box.pack_start(base_controls, false, false, 1);
+            add_separator(box, Gtk.Orientation.HORIZONTAL);
+            box.pack_end(sub_list, true, true, 1);
             sub_list.load();
             connect_signals();
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);

@@ -157,7 +157,7 @@
         <key name="browse-mode" enum="org.gnome.FontManager.BrowseMode">
             <summary>Browse Mode</summary>
             <description>Possible modes are List and Grid.</description>
-            <default>"List"</default>
+            <default>"Grid"</default>
         </key>
 
         <key name="browse-font-size" type="d">

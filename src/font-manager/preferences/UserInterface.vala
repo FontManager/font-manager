@@ -69,7 +69,6 @@ namespace FontManager {
         Gtk.CheckButton on_maximize;
 
         public UserInterfacePreferences () {
-            orientation = Gtk.Orientation.VERTICAL;
             wide_layout = new LabeledSwitch(_("Wide Layout"));
             wide_layout_options = new Gtk.Revealer();
             wide_layout_options.set_transition_duration(450);
@@ -90,10 +89,11 @@ namespace FontManager {
             grid.attach(enable_animations, 0, 3, 1, 1);
             grid.attach(prefer_dark_theme, 0, 4, 1, 1);
             grid.attach(button_style, 0, 5, 1, 1);
-            pack_end(grid, true, true, 0);
+            box.pack_end(grid, true, true, 0);
             default_gtk_settings = Gtk.Settings.get_default();
             connect_signals();
             bind_properties();
+            revealer.set_reveal_child(false);
             grid.show();
         }
 

@@ -185,8 +185,12 @@ namespace FontManager {
             reject.load();
             sources.load();
             sources.changed.connect(() => {
-                Timeout.add_seconds(3, () => {
-                    refresh();
+                /* XXX : FIXME */
+                Idle.add(() => {
+                    Timeout.add_seconds(3, () => {
+                        refresh();
+                        return false;
+                    });
                     return false;
                 });
             });

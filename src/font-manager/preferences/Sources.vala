@@ -22,13 +22,19 @@ namespace FontManager {
 
     public class SourcePreferences : SettingsPage {
 
+        const string help_text = _("""Fonts in any folders listed here will be available within the application.
+
+They are not be visible to other applications until the source is actually enabled.
+
+Note that not all environments/applications will honor these settings.""");
+
         public signal void changed ();
 
         BaseControls controls;
         FontSourceList source_list;
+        InlineHelp help;
 
         public SourcePreferences () {
-            orientation = Gtk.Orientation.VERTICAL;
             source_list = new FontSourceList();
             source_list.expand = true;
             controls = new BaseControls();
@@ -38,14 +44,18 @@ namespace FontManager {
             controls.remove_button.sensitive = false;
             controls.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             controls.add_button.sensitive = (sources != null);
-            pack_start(controls, false, false, 1);
-            add_separator(this, Gtk.Orientation.HORIZONTAL);
-            pack_end(source_list, true, true, 1);
+            help = new InlineHelp();
+            help.message.set_text(help_text);
+            controls.box.pack_end(help, false, false, 0);
+            box.pack_start(controls, false, false, 1);
+            add_separator(box, Gtk.Orientation.HORIZONTAL);
+            box.pack_end(source_list, true, true, 1);
             connect_signals();
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             controls.show();
             controls.remove_button.hide();
             source_list.show();
+            help.show();
         }
 
         public void update () {

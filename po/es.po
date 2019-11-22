@@ -1,15 +1,13 @@
-# Adolfo Jayme <fitoschido@gmail.com>, 2016. #zanata
-# Toni Estevez <toni.estevez@gmail.com>, 2017. #zanata
-# Toni Estevez <toni.estevez@gmail.com>, 2019. #zanata
+# Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2019-10-02 21:44-0400\n"
+"POT-Creation-Date: 2019-10-02 22:56-0400\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-10-03 01:45+0000\n"
+"PO-Revision-Date: 2019-10-03 02:39+0000\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -652,15 +650,15 @@ msgstr "Añadir una colección nueva"
 msgid "Remove selected collection"
 msgstr "Eliminar la colección seleccionada"
 
-#: src/font-manager/Collections.vala:365
+#: src/font-manager/Collections.vala:372
 msgid "Copying files…"
 msgstr "Copiando archivos…"
 
-#: src/font-manager/Collections.vala:485
+#: src/font-manager/Collections.vala:490
 msgid "Copy to…"
 msgstr "Copiar a…"
 
-#: src/font-manager/Collections.vala:486
+#: src/font-manager/Collections.vala:491
 msgid "Compress…"
 msgstr "Comprimir…"
 
