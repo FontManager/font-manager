@@ -24,7 +24,7 @@ namespace FontManager {
 
         const string help_text = _("""Fonts in any folders listed here will be available within the application.
 
-They are not be visible to other applications until the source is actually enabled.
+They will not be visible to other applications until the source is actually enabled.
 
 Note that not all environments/applications will honor these settings.""");
 

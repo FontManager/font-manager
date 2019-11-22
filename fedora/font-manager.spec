@@ -124,3 +124,4 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 * Sat Sep 21 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.5-2
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
 
+
