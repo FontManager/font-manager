@@ -359,20 +359,21 @@ font_manager_get_available_fonts_for_chars (const gchar *chars)
     glong n_chars = g_utf8_strlen(p, -1);
     JsonObject *result = json_object_new();
 
+    FcPattern *pattern = FcPatternCreate();
+    FcCharSet *charset = FcCharSetCreate();
+
     for (int i = 0; i < n_chars; i++) {
         wc = g_utf8_get_char(p);
-        FcPattern *pattern = FcPatternCreate();
-        FcCharSet *charset = FcCharSetCreate();
         g_assert(FcCharSetAddChar(charset, wc));
-        g_assert(FcPatternAddCharSet(pattern, FC_CHARSET, charset));
-        FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
-        process_fontset(fontset, result);
-        FcFontSetDestroy(fontset);
-        FcCharSetDestroy(charset);
-        FcPatternDestroy(pattern);
         p = g_utf8_next_char(p);
     }
 
+    g_assert(FcPatternAddCharSet(pattern, FC_CHARSET, charset));
+    FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
+    process_fontset(fontset, result);
+    FcFontSetDestroy(fontset);
+    FcCharSetDestroy(charset);
+    FcPatternDestroy(pattern);
     FcObjectSetDestroy(objectset);
     return result;
 }

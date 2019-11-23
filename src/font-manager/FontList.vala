@@ -616,6 +616,9 @@ namespace FontManager {
         [GtkChild] Gtk.Revealer revealer;
         [GtkChild] Gtk.ScrolledWindow scrolled_window;
 
+        string? char_search = null;
+        Json.Object? char_support = null;
+
         public override void constructed () {
             controls = new FontListControls();
             controls.set_remove_sensitivity(false);
@@ -696,6 +699,19 @@ namespace FontManager {
                 if (needle.has_prefix(Path.DIR_SEPARATOR_S)) {
                     string filepath = get_filepath_from_object(object).casefold();
                     search_match = filepath.contains(needle);
+                } else if (needle.has_prefix(Path.SEARCHPATH_SEPARATOR_S)) {
+                    string _needle = needle.replace(Path.SEARCHPATH_SEPARATOR_S, "");
+                    string family_name = get_family_from_object(object);
+                    if (char_search != _needle || char_support == null) {
+                        char_search = _needle;
+                        char_support = get_available_fonts_for_chars(char_search);
+                    }
+                    search_match = char_support.has_member(family_name);
+                    if (search_match && object is Font) {
+                        search_match = false;
+                        Json.Object family = char_support.get_object_member(family_name);
+                        search_match = family.has_member(((Font) object).style);
+                    }
                 } else {
                     string family = get_family_from_object(object).casefold();
                     search_match = family.contains(needle);
