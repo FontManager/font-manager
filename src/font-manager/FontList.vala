@@ -50,7 +50,11 @@ namespace FontManager {
             entry.set_size_request(0, 0);
             entry.margin_end = MINIMUM_MARGIN_SIZE;
             entry.placeholder_text = _("Search Families…");
-            entry.set_tooltip_text(_("Case insensitive search of family names.\n\nStart search using %s to filter based on filepath."). printf(Path.DIR_SEPARATOR_S));
+            entry.set_tooltip_text(_("""Case insensitive search of family names.
+
+Start search using %s to filter based on filepath.
+Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARATOR_S,
+                                                                 Path.SEARCHPATH_SEPARATOR_S));
             box.pack_end(entry, false, false, 0);
             box.pack_start(expand_button, false, false, 0);
             box.reorder_child(expand_button, 0);
@@ -708,7 +712,6 @@ namespace FontManager {
                     }
                     search_match = char_support.has_member(family_name);
                     if (search_match && object is Font) {
-                        search_match = false;
                         Json.Object family = char_support.get_object_member(family_name);
                         search_match = family.has_member(((Font) object).style);
                     }
