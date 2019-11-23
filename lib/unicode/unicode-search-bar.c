@@ -140,7 +140,7 @@ matches (gunichar wc, const gchar *search_string_nfd)
     haystack = unicode_get_codepoint_data_name(wc);
     if (haystack) {
         /* character names are ascii, so are nfd */
-        g_autofree gchar *haystack_nfd = (gchar *) haystack;
+        gchar *haystack_nfd = (gchar *) haystack;
         matched = utf8_strcasestr(haystack_nfd, search_string_nfd) != NULL;
     }
 
