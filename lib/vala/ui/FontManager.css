@@ -74,6 +74,7 @@ treeview {
     color: darker(@insensitive_fg_color);
     border-color: alpha(darker(@insensitive_bg_color), 0.25);
     background-color: alpha(@insensitive_bg_color, 0.5);
+    box-shadow: alpha(@borders, 0.333) 0.25px 0.25px 0.5px 1px;
 }
 
 .CellRendererPill:selected {
