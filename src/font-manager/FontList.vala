@@ -38,12 +38,17 @@ namespace FontManager {
 
         Gtk.Image arrow;
 
+        string expand_icon = "pan-end-symbolic";
+        string collapse_icon = "pan-down-symbolic";
+
         public FontListControls () {
             Object(name: "FontListControls", margin: 1);
+            if (get_direction() == Gtk.TextDirection.RTL)
+                expand_icon = "pan-start-symbolic";
             remove_button.set_tooltip_text(_("Remove selected font from collection"));
             add_button.destroy();
             expand_button = new Gtk.Button();
-            arrow = new Gtk.Image.from_icon_name("go-next-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+            arrow = new Gtk.Image.from_icon_name(expand_icon, Gtk.IconSize.SMALL_TOOLBAR);
             expand_button.add(arrow);
             expand_button.set_tooltip_text(_("Expand all"));
             entry = new Gtk.SearchEntry();
@@ -67,9 +72,9 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                 expand_all(expanded);
                 expand_button.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
                 if (expanded)
-                    arrow.set_from_icon_name("go-down-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+                    arrow.set_from_icon_name(collapse_icon, Gtk.IconSize.SMALL_TOOLBAR);
                 else
-                    arrow.set_from_icon_name("go-next-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+                    arrow.set_from_icon_name(expand_icon, Gtk.IconSize.SMALL_TOOLBAR);
             });
             entry.show();
             arrow.show();
