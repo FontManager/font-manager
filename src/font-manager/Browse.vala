@@ -33,6 +33,17 @@ namespace FontManager {
         [GtkChild] public Gtk.Label count { get; }
         [GtkChild] public Gtk.TextView preview { get; }
 
+        public override void constructed () {
+            preview.event.connect((event) => {
+                if (event.type == Gdk.EventType.SCROLL)
+                    return false;
+                preview.get_window(Gtk.TextWindowType.TEXT).set_cursor(null);
+                return true;
+            });
+            base.constructed();
+            return;
+        }
+
     }
 
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-browse-view.ui")]
