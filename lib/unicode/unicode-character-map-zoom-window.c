@@ -89,14 +89,8 @@ on_draw (GtkWidget *widget, cairo_t *cr, UnicodeCharacterMapZoomWindow *self)
         self->ctx = gtk_widget_get_style_context(widget);
 
     gchar buf[7];
-
     buf[unicode_unichar_to_printable_utf8(self->active_char, buf)] = '\0';
     pango_layout_set_text(self->layout, buf, -1);
-
-    if (pango_layout_get_unknown_glyphs_count(self->layout) > 0) {
-        gtk_widget_hide(GTK_WIDGET(self));
-        return TRUE;
-    }
 
     PangoRectangle char_rect;
     GtkAllocation alloc;
