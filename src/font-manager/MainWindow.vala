@@ -626,6 +626,9 @@ namespace FontManager {
         public bool on_delete_event (Gtk.Widget widget, Gdk.EventAny event) {
             if (settings != null) {
                 settings.set_strv("compare-list", compare.list());
+                var language_filter = sidebar.standard.category_tree.language_filter;
+                if (language_filter != null)
+                    settings.set_strv("language-filter-list", language_filter.list());
                 settings.set_string("compare-foreground-color", compare.foreground_color.to_string());
                 settings.set_string("compare-background-color", compare.background_color.to_string());
                 settings.apply();

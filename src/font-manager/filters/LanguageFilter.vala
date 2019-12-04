@@ -36,6 +36,7 @@ namespace FontManager {
         public StringHashset selected { get; set; }
         public double coverage { get; set; default = 90; }
 
+        public Gtk.Button settings_button { get; private set; }
         public LanguageFilterSettings settings { get; private set; }
 
         public override int size {
@@ -50,12 +51,14 @@ namespace FontManager {
             settings = new LanguageFilterSettings();
             bind_property("selected", settings, "selected", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             bind_property("coverage", settings, "coverage", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            settings_button = settings.get_button();
             settings.selections_changed.connect(() => {
                 update.begin((obj, res) => {
                     update.end(res);
                     selections_changed();
                 });
             });
+            main_window.sidebar.add_view(settings, "LanguageFilterSettings");
         }
 
         public void add (string language) {
@@ -95,8 +98,8 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-language-popover.ui")]
-    public class LanguagePopover : Gtk.Popover {
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-language-filter-settings.ui")]
+    public class LanguageFilterSettings : Gtk.Box {
 
         public signal void selections_changed ();
 
@@ -109,23 +112,25 @@ namespace FontManager {
 
         uint? search_timeout;
         uint16 text_length = 0;
+        Gtk.Button settings_button;
         Gtk.ListStore real_model;
         Gtk.TreeModelFilter? search_filter = null;
 
         public override void constructed () {
-            set_modal(true);
             selected = new StringHashset();
             bind_property("coverage", coverage_spin, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             real_model = new Gtk.ListStore(2, typeof(string), typeof(string));
             search_filter = new Gtk.TreeModelFilter(real_model, null);
             search_filter.set_visible_func((m, i) => { return visible_func(m, i); });
             treeview.set_model(search_filter);
+            treeview.get_selection().set_mode(Gtk.SelectionMode.NONE);
             Gtk.TreeIter iter;
             foreach (var entry in Orthographies) {
                 real_model.append(out iter);
                 real_model.set(iter, 0, entry.name, 1, entry.native, -1);
             }
             var text = new Gtk.CellRendererText();
+            text.ellipsize = Pango.EllipsizeMode.END;
             var toggle = new Gtk.CellRendererToggle();
             toggle.toggled.connect(on_toggled);
             treeview.row_activated.connect((path, col) => { on_toggled(path.to_string()); });
@@ -136,11 +141,29 @@ namespace FontManager {
                 queue_refilter();
                 text_length = search_entry.get_text_length();
             });
-            closed.connect(() => { search_entry.set_text(""); });
             /* XXX : Remove placeholder icon set in ui file to avoid Gtk warning */
             search_entry.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, null);
             base.constructed();
             return;
+        }
+
+        public Gtk.Button get_button () {
+            if (settings_button != null)
+                return settings_button;
+            settings_button = new Gtk.Button();
+            settings_button.always_show_image = true;
+            var settings_icon = new Gtk.Image.from_icon_name("preferences-desktop-locale", Gtk.IconSize.BUTTON);
+            settings_button.set_image(settings_icon);
+            settings_button.set_label("Filter Settings");
+            settings_button.halign = Gtk.Align.CENTER;
+            settings_button.valign = Gtk.Align.END;
+            settings_button.margin = 12;
+            settings_button.relief = Gtk.ReliefStyle.NONE;
+            settings_button.show();
+            settings_button.clicked.connect(() => {
+                main_window.sidebar.mode = "LanguageFilterSettings";
+            });
+            return settings_button;
         }
 
         bool refilter () {
@@ -153,11 +176,17 @@ namespace FontManager {
         }
 
         [GtkCallback]
+        void on_back_button_clicked () {
+            main_window.sidebar.mode = "Standard";
+            search_entry.set_text("");
+            return;
+        }
+
+        [GtkCallback]
         void on_clear_button_clicked () {
             selected.clear();
             treeview.queue_draw();
             selections_changed();
-            popdown();
             return;
         }
 
@@ -211,28 +240,6 @@ namespace FontManager {
 
             }
             return search_match;
-        }
-
-    }
-
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-language-filter-settings.ui")]
-    public class LanguageFilterSettings : Gtk.MenuButton {
-
-        public signal void selections_changed ();
-
-        public double coverage { get; set; default = 90; }
-        public StringHashset selected { get; set; }
-
-        LanguagePopover _popover_;
-
-        public override void constructed () {
-            _popover_ = new LanguagePopover();
-            set_popover(_popover_);
-            bind_property("coverage", popover, "coverage", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            bind_property("selected", popover, "selected", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            _popover_.selections_changed.connect(() => { selections_changed(); });
-            base.constructed();
-            return;
         }
 
     }

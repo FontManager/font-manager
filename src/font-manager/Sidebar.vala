@@ -75,7 +75,7 @@ namespace FontManager {
             return;
         }
 
-        void add_view (Gtk.Widget sidebar_view, string name) {
+        public void add_view (Gtk.Widget sidebar_view, string name) {
             add_named(sidebar_view, name);
             sidebar_view.show();
             return;

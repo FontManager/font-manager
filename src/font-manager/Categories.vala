@@ -257,12 +257,12 @@ namespace FontManager {
             Idle.add(() => {
                 bool is_language_filter = (selected_filter.index == CategoryIndex.LANGUAGE);
                 if (language_filter != null) {
-                    language_filter.settings.set_visible(is_language_filter);
+                    language_filter.settings_button.set_visible(is_language_filter);
                     return false;
                 }
                 if (is_language_filter) {
                     language_filter = selected_filter as LanguageFilter;
-                    overlay.add_overlay(language_filter.settings);
+                    overlay.add_overlay(language_filter.settings_button);
                     language_filter.selections_changed.connect(() => {
                         update_language_filter_tooltip();
                     });
@@ -270,7 +270,7 @@ namespace FontManager {
                         foreach (var entry in settings.get_strv("language-filter-list"))
                             language_filter.add(entry);
                     }
-                    language_filter.settings.set_visible(is_language_filter);
+                    language_filter.settings_button.set_visible(is_language_filter);
                 }
                 return false;
             });

@@ -113,6 +113,7 @@
           <object class="FontManagerPreviewEntry" id="entry">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="placeholder_text" translatable="yes">Enter Preview Text…</property>
           </object>
           <packing>
             <property name="expand">True</property>
