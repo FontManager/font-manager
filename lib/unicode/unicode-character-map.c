@@ -33,6 +33,7 @@
 #include "unicode-info.h"
 #include "unicode-codepoint-list.h"
 #include "unicode-character-map.h"
+#include "unicode-character-map-zoom-window.h"
 
 
 /* Notes
@@ -79,6 +80,7 @@ typedef struct
     gdouble click_x, click_y;
 
     UnicodeCodepointList *codepoint_list;
+    UnicodeCharacterMapZoomWindow *popover;
     double preview_size;
 }
 UnicodeCharacterMapPrivate;
@@ -546,6 +548,28 @@ unicode_character_map_set_font_desc_internal (UnicodeCharacterMap *charmap,
     return;
 }
 
+static void
+unicode_character_map_show_info(UnicodeCharacterMap *self, GdkEventButton *event)
+{
+    g_return_if_fail(self != NULL);
+
+    if (priv->active_cell >= unicode_codepoint_list_get_last_index(priv->codepoint_list))
+        return;
+
+    if (!priv->popover) {
+        priv->popover = unicode_character_map_zoom_window_new();
+        gtk_popover_set_relative_to((GtkPopover *) priv->popover, (GtkWidget *) self);
+        GBindingFlags flags = G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE;
+        g_object_bind_property(self, "font-desc", priv->popover, "font-desc", flags);
+        g_object_bind_property(self, "active-character", priv->popover, "active-character", flags);
+    }
+
+    GdkRectangle rect = { event->x, event->y, 1, 1 };
+    gtk_popover_set_pointing_to((GtkPopover *) priv->popover, &rect);
+    gtk_popover_popup((GtkPopover *) priv->popover);
+    return;
+}
+
 /* GtkWidget class methods */
 
 /* - single click: select character
@@ -573,6 +597,9 @@ unicode_character_map_button_press (GtkWidget *widget, GdkEventButton *event)
     else if ((event->button == 1 && event->type == GDK_BUTTON_PRESS) || event->button == 3) {
         unicode_character_map_set_active_cell(charmap, get_cell_at_xy(charmap, event->x, event->y));
     }
+
+    if (gdk_event_triggers_context_menu((GdkEvent *) event))
+        unicode_character_map_show_info(charmap, event);
 
     return TRUE;
 }
@@ -1043,6 +1070,7 @@ unicode_character_map_init (UnicodeCharacterMap *charmap)
     priv->target_list = gtk_target_list_new(NULL, 0);
     priv->preview_size = 14;
     priv->codepoint_list = NULL;
+    priv->popover = NULL;
 
     GtkWidget *widget = GTK_WIDGET(charmap);
 
@@ -1377,8 +1405,9 @@ unicode_character_map_set_font_desc (UnicodeCharacterMap *charmap, PangoFontDesc
  * unicode_character_map_get_font_desc:
  * @charmap: a #UnicodeCharacterMap
  *
- * Returns: the #PangoFontDescription used to display the character table.
- *   The returned object is owned by @charmap and must not be modified or freed.
+ * Returns: (transfer none) (nullable):
+ * The #PangoFontDescription used to display the character table.
+ * The returned object is owned by @charmap and must not be modified or freed.
  */
 PangoFontDescription *
 unicode_character_map_get_font_desc (UnicodeCharacterMap *charmap)

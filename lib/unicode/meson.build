@@ -9,6 +9,8 @@ unicode_sources = [
     'unicode-codepoint-list.h',
     'unicode-character-map.c',
     'unicode-character-map.h',
+    'unicode-character-map-zoom-window.c',
+    'unicode-character-map-zoom-window.h',
     'unicode-info.c',
     'unicode-info.h',
     'unicode-search-bar.c',

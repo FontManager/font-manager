@@ -23,27 +23,37 @@ treeview {
 }
 
 .red {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     background-color: #ff0000;
 }
 
 .green {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     background-color: #008000;
 }
 
 .blue {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     background-color: #0000ff;
 }
 
 .gray {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     background-color: #808080;
+}
+
+.rounded-button {
+    margin: 2px;
+    padding: 0px 18px 0px 18px;
+    border-radius: 1.0em;
+}
+
+.InlineHelp {
+    background: transparent;
 }
 
 .HelpBubble {
@@ -53,6 +63,10 @@ treeview {
     border-radius: 0.75em;
     color: lighter(@theme_selected_fg_color);
     background-color: alpha(@theme_text_color, 0.65);
+}
+
+.PangoGlyphMetrics {
+    color: alpha(@theme_selected_bg_color, 0.250);
 }
 
 .PreviewTileCount {
