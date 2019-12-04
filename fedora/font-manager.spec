@@ -1,6 +1,6 @@
 %global MajorVersion 0
 %global MinorVersion 7
-%global PatchVersion 5
+%global PatchVersion 6
 %global build_timestamp %{lua: print(os.date("%Y%m%d"))}
 %global DBusName org.gnome.FontManager
 %global DBusName2 org.gnome.FontViewer
@@ -8,7 +8,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{PatchVersion}.%{build_timestamp}
-Release:    2
+Release:    1
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -121,6 +121,6 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_libdir}/nemo/extensions-3.0/nemo-font-manager.so
 
 %changelog
-* Sat Sep 21 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.5-2
+* Sat Sep 21 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.6-1
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
 

@@ -349,11 +349,13 @@ font_manager_properties_add_assignments (FontManagerProperties *self,
         g_value_init(&value, type);
         g_object_get_property(G_OBJECT(self), name, &value);
         switch (type) {
-            case G_TYPE_INT:
+            /* Brackets around case statements here avoid warnings */
+            case G_TYPE_INT: {
                 val = g_strdup_printf("%i", g_value_get_int(&value));
                 val_type = g_strdup("int");
                 break;
-            case G_TYPE_DOUBLE:
+            }
+            case G_TYPE_DOUBLE: {
                 ; /* Empty statement */
                 g_autofree gchar *locale = g_strdup(setlocale(LC_ALL, NULL));
                 setlocale(LC_ALL, "C");
@@ -361,17 +363,20 @@ font_manager_properties_add_assignments (FontManagerProperties *self,
                 val_type = g_strdup("double");
                 setlocale(LC_ALL, locale);
                 break;
-            case G_TYPE_BOOLEAN:
+            }
+            case G_TYPE_BOOLEAN: {
                 if (g_value_get_boolean(&value))
                     val = g_strdup("true");
                 else
                     val = g_strdup("false");
                 val_type = g_strdup("bool");
                 break;
-            case G_TYPE_STRING:
+            }
+            case G_TYPE_STRING: {
                 val = g_strdup(g_value_get_string(&value));
                 val_type = g_strdup("string");
                 break;
+            }
             default:
                 break;
         }

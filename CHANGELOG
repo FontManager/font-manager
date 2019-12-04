@@ -1,3 +1,40 @@
+Major changes between 0.7.5 to 0.7.6
+
+- Add search to character map
+
+- Add zoom window to character map on right click
+
+- Add fsType information to license pane
+
+- Add grid view to browse mode
+
+- Add context info / help to preference panes
+
+- Display progress during database updates
+
+- Update unicode data to version 12.0.0
+
+- Update translations
+
+- Drop use of Python for file manager extensions
+
+- Closes Issue # 96
+
+    Fix build failure / crash with newer versions of Vala
+
+- Closes Issue # 75
+
+    Prefer family and style from name table and properly deal with their encoding
+
+- Addresses Issue # 99
+
+    Add Import / Export for user data
+
+- Addresses Issue # 102
+
+    Searches starting with : will filter based on character
+
+
 Major changes between 0.7.4 to 0.7.5
 
 - Require Vala >= 0.42
@@ -13,7 +50,6 @@ Major changes between 0.7.4 to 0.7.5
 
 Major changes between 0.7.3 to 0.7.4
 
-
 - Drop dependency on gucharmap library.
 
     Gucharmap is no longer in active development, and while the developers
@@ -27,7 +63,6 @@ Major changes between 0.7.3 to 0.7.4
 - Determine whether file-roller is available at runtime.
 
     --with-file-roller flag dropped.
-
 
 - Fixed a crash that occurred when non font files were dropped onto preview areas.
 
@@ -52,7 +87,6 @@ Major changes between 0.7.3 to 0.7.4
 - Added custom preview entry to Browse mode
 
 - Added custom preview entry to Compare mode
-
 
 - Closes Issue #12
 
@@ -105,4 +139,3 @@ Major changes between 0.7.3 to 0.7.4
 - Closes Issue #64
 
     Ensure "C" locale is used when saving double values to configuration files.
-

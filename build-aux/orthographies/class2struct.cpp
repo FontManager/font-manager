@@ -16,7 +16,7 @@ void print_struct(const char *name, const OrthographyData *p) {
     filename << "PROCESSED/" << name;
     outfile.open(filename.str());
 
-    cout << "    { \"" << p->commonName << "\", \"";
+    cout << "    _(\"" << p->commonName << "\")" << endl;
     cout << (strlen(p->nativeName) > 0 ? p->nativeName : p->commonName);
     cout << "\" }," << endl;
 
@@ -52,10 +52,10 @@ void print_struct(const char *name, const OrthographyData *p) {
 
 int main(int argc, const char *argv[]) {
 
-    cout << "static const struct {" << endl;
-    cout << "    const gchar *name;" << endl;
-    cout << "    const gchar *native;" << endl;
-    cout << "} " << endl << "Orthographies [] = " << endl << "{" << endl;
+    //cout << "static const struct {" << endl;
+    //cout << "    const gchar *name;" << endl;
+    //cout << "    const gchar *native;" << endl;
+    //cout << "} " << endl << "Orthographies [] = " << endl << "{" << endl;
 
     mkdir("PROCESSED", S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 
@@ -189,7 +189,7 @@ int main(int argc, const char *argv[]) {
     print_struct("Yi", Yi::pData);
     print_struct("ZhuYinFuHao", ZhuYinFuHao::pData);
 
-    cout << "};" << endl;
+    //cout << "};" << endl;
 
     return 0;
 
