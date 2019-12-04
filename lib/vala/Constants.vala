@@ -20,6 +20,8 @@
 
 namespace FontManager {
 
+    public const string AUTHOR = "Jerry Casiano <JerryCasiano@gmail.com>";
+
     public const string BUS_ID = "org.gnome.FontManager";
     public const string BUS_PATH = "/org/gnome/FontManager";
 
@@ -81,6 +83,51 @@ Suspendisse potenti. Nulla neque leo, condimentum nec posuere non, elementum sit
         "font/type1",
         "font/collection"
     };
+
+    namespace About {
+
+        public const string DISPLAY_NAME = _("Font Manager");
+        public const string ICON = "font-x-generic";
+        public const string COMMENT = _("Simple font management for GTK+ desktop environments");
+        public const string NAME = Config.PACKAGE_NAME;
+        public const string VERSION = Config.PACKAGE_VERSION;
+        public const string HOMEPAGE = Config.PACKAGE_URL;
+        public const string BUG_TRACKER = Config.PACKAGE_BUGREPORT;
+        public const string COPYRIGHT = "Copyright © 2009 - 2019 Jerry Casiano";
+        public const string LICENSE = _("""
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.
+
+    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+    """);
+
+        public const string [] AUTHORS = {
+            AUTHOR,
+            null
+        };
+
+        public const string [] DOCUMENTERS = {
+            AUTHOR,
+            null
+        };
+
+        public const string [] ARTISTS = {
+            null
+        };
+
+        public const string TRANSLATORS = _("translator-credits");
+
+    }
 
 }
 

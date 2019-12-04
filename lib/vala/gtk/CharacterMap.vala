@@ -1,4 +1,4 @@
-/* CharacterTable.vala
+/* CharacterMap.vala
  *
  * Copyright (C) 2009 - 2019 Jerry Casiano
  *
@@ -20,14 +20,6 @@
 
 namespace FontManager {
 
-    public class BaseCharacterMap : Unicode.CharacterMap {
-
-        public override bool button_press_event (Gdk.EventButton event) {
-            return base.button_press_event(event);
-        }
-
-    }
-
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-character-map.ui")]
     public class CharacterMap : Gtk.Box {
 
@@ -45,7 +37,7 @@ namespace FontManager {
         }
 
         public Font? selected_font { get; set; default = null; }
-        public BaseCharacterMap table { get; private set; }
+        public Unicode.CharacterMap table { get; private set; }
         public Gtk.Adjustment adjustment { get; set;}
 
         bool _visible_ = false;
@@ -73,7 +65,7 @@ namespace FontManager {
 
         public override void constructed () {
             codepoint_list = new CodepointList();
-            table = new BaseCharacterMap();
+            table = new Unicode.CharacterMap();
             table.codepoint_list = codepoint_list;
             search_bar.charmap = table;
             table.show();

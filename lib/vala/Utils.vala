@@ -63,6 +63,45 @@ namespace FontManager {
         return;
     }
 
+    public void show_version () {
+        stdout.printf("%s %s\n", About.NAME, About.VERSION);
+        return;
+    }
+
+    public void show_about () {
+        stdout.printf("\n    %s - %s\n\n\t\t  %s\n%s\n",
+                                            About.NAME,
+                                            About.COMMENT,
+                                            About.COPYRIGHT,
+                                            About.LICENSE);
+        return;
+    }
+
+    /**
+     * load_user_font_resources:
+     *
+     * Adds user configured font sources (directories) and rejected fonts to our
+     * FcConfig so that we can render fonts which are not actually "installed".
+     */
+    public bool load_user_font_resources (StringHashset? files, GLib.List <weak Source> sources) {
+        clear_application_fonts();
+        bool res = true;
+        if (!add_application_font_directory(get_user_font_directory())) {
+            res = false;
+            critical("Failed to add default user font directory to configuration!");
+        }
+        foreach (Source source in sources) {
+            if (source.available && !add_application_font_directory(source.path)) {
+                res = false;
+                warning("Failed to register user font source! : %s", source.path);
+            }
+        }
+        if (files != null)
+            foreach (string path in files)
+                add_application_font(path);
+        return res;
+    }
+
     public bool is_valid_source (JsonProxy? object) {
         return (object != null && object.source_object != null);
     }
@@ -213,8 +252,8 @@ namespace FontManager {
     }
 
     public bool copy_directory (File source, File destination, FileCopyFlags flags) {
-        return_if_fail(source.query_exists());
-        return_if_fail(source.query_file_type(FileQueryInfoFlags.NONE) == FileType.DIRECTORY);
+        return_val_if_fail(source.query_exists(), false);
+        return_val_if_fail(source.query_file_type(FileQueryInfoFlags.NONE) == FileType.DIRECTORY, false);
         bool result = true;
         try {
             if (!destination.query_exists())

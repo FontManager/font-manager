@@ -4,6 +4,7 @@
         <file compressed="true">ui/FontManager.css</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-character-map.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-scale.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-inline-help.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-labeled-font-button.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-labeled-switch.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-labeled-spin-button.ui</file>

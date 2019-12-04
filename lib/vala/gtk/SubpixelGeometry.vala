@@ -1,6 +1,6 @@
-/* Labels.vala
+/* SubpixelGeometry.vala
  *
- * Copyright (C) 2009 - 2018 Jerry Casiano
+ * Copyright (C) 2009 - 2019 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,70 +21,54 @@
 namespace FontManager {
 
     /**
-     * PlaceHolder:
+     * SubpixelGeometry:
      *
-     * It's intended use is to provide helpful information about an area
-     * which is empty and the user may not yet be familiar with.
-     */
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-place-holder.ui")]
-    public class PlaceHolder : Gtk.Box {
-
-        [GtkChild] public Gtk.Image image { get; }
-        [GtkChild] public Gtk.Label label { get; }
-
-        public PlaceHolder (string? str, string? icon) {
-            label.set_markup(str);
-            image.set_from_icon_name(icon, Gtk.IconSize.DIALOG);
-        }
-
-    }
-
-    /**
-     * ReactiveLabel:
+     * https://en.wikipedia.org/wiki/Subpixel_rendering
      *
-     * Label which reacts to mouseover and click events.
-     * Is actually a #GtkEventBox containing a #GtkLabel since
-     * events can not be added to widgets that have no window.
+     * Widget allowing user to select pixel layout.
      */
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-reactive-label.ui")]
-    public class ReactiveLabel : Gtk.EventBox {
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-subpixel-geometry.ui")]
+    public class SubpixelGeometry : Gtk.Box {
 
-        /**
-         * ReactiveLabel::clicked:
-         *
-         * Emitted when the label is clicked
-         */
-        public signal void clicked ();
-
-        /**
-         * Reactivelabel:label:
-         *
-         * The actual #GtkLabel
-         */
-        [GtkChild] public Gtk.Label label { get; }
-
-        /**
-         * {@inheritDoc}
-         */
-        public override bool enter_notify_event (Gdk.EventCrossing event) {
-            label.opacity = 0.95;
-            return false;
+        public int rgba {
+            get {
+                return _rgba;
+            }
+            set {
+                if (value < 0 || value >= ((int) options.length()))
+                    return;
+                _rgba = value;
+                options.nth_data(_rgba).active = true;
+            }
         }
 
-        /**
-         * {@inheritDoc}
-         */
-        public override bool leave_notify_event (Gdk.EventCrossing event) {
-            label.opacity = 0.65;
-            return false;
-        }
+        public GLib.List <Gtk.RadioButton> options;
 
-        /**
-         * {@inheritDoc}
-         */
-        public override bool button_press_event (Gdk.EventButton event) {
-            clicked();
-            return false;
+        int _rgba;
+
+        [GtkChild] Gtk.ButtonBox button_box;
+
+        public SubpixelGeometry () {
+            options = new GLib.List <Gtk.RadioButton> ();
+            for (int i = 0; i < SubpixelOrder.NONE; i++) {
+                if (i == 0)
+                    options.append(new Gtk.RadioButton(null));
+                else
+                    options.append(new Gtk.RadioButton.from_widget(options.nth_data(0)));
+                Gtk.RadioButton button = options.nth_data(i);
+                var val = (SubpixelOrder) i;
+                var icon = new SubpixelGeometryIcon(val);
+                button.add(icon);
+                icon.show();
+                button.set_tooltip_text(val.to_string());
+                button.set_data("rgba", i);
+                button.toggled.connect(() => {
+                    if (button.active)
+                        rgba = button.get_data("rgba");
+                });
+                button_box.pack_start(button);
+                button.show();
+            }
         }
 
     }
@@ -157,5 +141,3 @@ namespace FontManager {
     }
 
 }
-
-

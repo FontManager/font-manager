@@ -30,35 +30,6 @@ namespace FontManager {
         return;
     }
 
-    public class InlineHelp : Gtk.Button {
-
-        public Gtk.Label message { get; private set; }
-
-        public InlineHelp () {
-            message = new Gtk.Label("");
-            var bubble = new Gtk.Popover(this);
-            var icon = new Gtk.Image.from_icon_name("dialog-question-symbolic",
-                                                     Gtk.IconSize.LARGE_TOOLBAR);
-            can_focus = false;
-            opacity = 0.5;
-            margin_start = margin_end = 3;
-            relief = Gtk.ReliefStyle.NONE;
-            set_image(icon);
-            message.margin = DEFAULT_MARGIN_SIZE;
-            message.wrap = true;
-            message.wrap_mode = Pango.WrapMode.WORD_CHAR;
-            bubble.add(message);
-            bubble.get_style_context().remove_class(Gtk.STYLE_CLASS_BACKGROUND);
-            bubble.get_style_context().add_class("HelpBubble");
-            clicked.connect(() => {
-                bubble.popup();
-            });
-            icon.show();
-            message.show();
-        }
-
-    }
-
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-preferences.ui")]
     public class Preferences : Gtk.Paned {
 
