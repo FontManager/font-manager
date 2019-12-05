@@ -1,4 +1,4 @@
-Major changes between 0.7.5 to 0.7.6
+0.7.5 -> 0.7.6
 
 - Add search to character map
 
@@ -35,7 +35,7 @@ Major changes between 0.7.5 to 0.7.6
     Searches starting with : will filter based on character
 
 
-Major changes between 0.7.4 to 0.7.5
+0.7.4 -> 0.7.5
 
 - Require Vala >= 0.42
 
@@ -48,7 +48,7 @@ Major changes between 0.7.4 to 0.7.5
 - Add language filter to default categories
 
 
-Major changes between 0.7.3 to 0.7.4
+0.7.3 -> 0.7.4
 
 - Drop dependency on gucharmap library.
 
