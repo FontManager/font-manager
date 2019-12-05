@@ -564,8 +564,20 @@ unicode_character_map_show_info(UnicodeCharacterMap *self, GdkEventButton *event
         g_object_bind_property(self, "active-character", priv->popover, "active-character", flags);
     }
 
-    GdkRectangle rect = { event->x, event->y, 1, 1 };
-    gtk_popover_set_pointing_to((GtkPopover *) priv->popover, &rect);
+    gint row = (priv->active_cell - priv->page_first_cell) / priv->cols;
+    gint col = unicode_character_map_cell_column(self, priv->active_cell);
+
+    if ((row >= 0 && row < priv->rows) && (col >= 0 && col < priv->cols)) {
+        gint x_offset = unicode_character_map_x_offset(self, col);
+        gint column_width = unicode_character_map_column_width(self, col);
+        gint y_offset = unicode_character_map_y_offset(self, row);
+        GdkRectangle rect = { x_offset + (column_width / 2), y_offset, 1, 1 };
+        gtk_popover_set_pointing_to((GtkPopover *) priv->popover, &rect);
+    } else {
+        GdkRectangle rect = { event->x, event->y, 1, 1 };
+        gtk_popover_set_pointing_to((GtkPopover *) priv->popover, &rect);
+    }
+
     gtk_popover_popup((GtkPopover *) priv->popover);
     return;
 }
