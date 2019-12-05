@@ -85,8 +85,9 @@ public class CellRendererStyleCount : CellRendererPill {
             text = "";
             render_background = (_count > 0);
             if (_count > 0) {
-                string label = ngettext(_("Variation "), _("Variations"), (ulong) _count);
-                text = "%i %s".printf((int) _count, label);
+                text = ngettext(_("%i Variation "),
+                                _("%i Variations"),
+                                (ulong) _count).printf(count);
             }
         }
     }
