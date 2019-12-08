@@ -238,7 +238,6 @@ namespace FontManager {
             }
             set {
                 base.set_model(value);
-                set_model(value);
                 select_first_row();
                 value.row_deleted.connect((t, p) => { update_and_cache_collections(); });
                 value.row_inserted.connect((t, p, i) => { update_and_cache_collections(); });

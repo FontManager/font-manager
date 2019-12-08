@@ -180,43 +180,6 @@ namespace FontManager {
             return;
         }
 
-        internal Json.Object json_copy (Json.Object obj) {
-            Json.Object copy = new Json.Object();
-            copy.set_string_member("description", obj.get_string_member("description"));
-            copy.set_string_member("family", obj.get_string_member("family"));
-            Json.Array variations = obj.get_member("variations").dup_array();
-            copy.set_array_member("variations", variations);
-            return copy;
-        }
-
-        void update_grid () {
-            flowbox.bind_model(null, null);
-            if (!grid_is_visible)
-                return;
-            if (model != null) {
-                var list_model = new GLib.ListStore(typeof(Family));
-                double end = (current_page * MAX_TILES);
-                int start = (current_page == 1) ? 0 : (int) (end - MAX_TILES);
-                double current = start;
-                Gtk.TreeIter iter;
-                bool valid = model.iter_nth_child(out iter, null, start);
-                while (valid && current < end) {
-                    Value val;
-                    model.get_value(iter, FontModelColumn.OBJECT, out val);
-                    Object temp = val.get_object();
-                    Family family = new Family();
-                    family.source_object = json_copy(((JsonProxy) temp).source_object);
-                    list_model.append(family);
-                    valid = model.iter_next(ref iter);
-                    current++;
-                }
-                flowbox.bind_model(list_model, (Gtk.FlowBoxCreateWidgetFunc) preview_tile_from_item);
-                update_page_controls();
-            }
-            flowbox.queue_resize();
-            return;
-        }
-
         string get_preview_label_markup (Family family) {
             uint n_variations = family.variations.get_length();
             string result = "";
@@ -254,6 +217,50 @@ namespace FontManager {
             tile.count.set_text(item.variations.get_length().to_string());
             tile.show();
             return tile;
+        }
+
+        void update_grid () {
+            flowbox.bind_model(null, null);
+            if (!grid_is_visible)
+                return;
+            if (model != null) {
+                var list_model = new GLib.ListStore(typeof(Family));
+                double end = (current_page * MAX_TILES);
+                int start = (current_page == 1) ? 0 : (int) (end - MAX_TILES);
+                double current = start;
+                Gtk.TreeIter iter;
+                bool valid = model.iter_nth_child(out iter, null, start);
+                while (valid && current < end) {
+                    Value val;
+                    model.get_value(iter, FontModelColumn.OBJECT, out val);
+                    var temp = (Family) val.get_object();
+                    Family family = new Family();
+                    family.source_object = new Json.Object();
+                    family.source_object.set_string_member("description", temp.description);
+                    family.source_object.set_string_member("family", temp.family);
+                    int n_children = model.iter_n_children(iter);
+                    Json.Array variations = new Json.Array.sized(n_children);
+                    Gtk.TreeIter child;
+                    for (int i = 0; i < n_children; i++) {
+                        model.iter_nth_child(out child, iter, i);
+                        Value _val;
+                        model.get_value(child, FontModelColumn.OBJECT, out _val);
+                        var _var = (Font) _val.get_object();
+                        var variation = new Json.Object();
+                        variation.set_string_member("style", _var.style);
+                        variation.set_string_member("description", _var.description);
+                        variations.add_object_element(variation);
+                    }
+                    family.source_object.set_array_member("variations", variations);
+                    list_model.append(family);
+                    valid = model.iter_next(ref iter);
+                    current++;
+                }
+                flowbox.bind_model(list_model, (Gtk.FlowBoxCreateWidgetFunc) preview_tile_from_item);
+                update_page_controls();
+            }
+            flowbox.queue_resize();
+            return;
         }
 
         void expand_all () {

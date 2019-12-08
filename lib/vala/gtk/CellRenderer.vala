@@ -65,7 +65,7 @@ public class CellRendererCount : CellRendererPill {
         }
         set {
             _count = value;
-            text = (_count > 0) ? "%i".printf((int) count) : "";
+            text = (_count > 0) ? "%i".printf((int) _count) : "";
             render_background = (_count > 0);
         }
     }
@@ -87,7 +87,7 @@ public class CellRendererStyleCount : CellRendererPill {
             if (_count > 0) {
                 text = ngettext(_("%i Variation "),
                                 _("%i Variations"),
-                                (ulong) _count).printf(count);
+                                (ulong) _count).printf(_count);
             }
         }
     }
@@ -104,7 +104,7 @@ public class CellRendererTitle : CellRendererPill {
         }
         set {
             _title = value;
-            markup = _title != null ? "<b>%s</b>".printf(Markup.escape_text(title)) : "";
+            markup = _title != null ? "<b>%s</b>".printf(Markup.escape_text(_title)) : "";
         }
     }
 

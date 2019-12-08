@@ -85,7 +85,7 @@
             <property name="opacity">0.77000000000000002</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="margin_bottom">1</property>
+            <property name="margin_bottom">2</property>
             <property name="hexpand">False</property>
             <property name="vexpand">False</property>
             <signal name="clicked" handler="on_copy_clicked" object="UnicodeCharacterMapZoomWindow" swapped="no"/>

@@ -606,12 +606,12 @@ unicode_character_map_button_press (GtkWidget *widget, GdkEventButton *event)
         g_signal_emit(charmap, signals[ACTIVATE], 0);
     }
     /* single-click */
-    else if ((event->button == 1 && event->type == GDK_BUTTON_PRESS) || event->button == 3) {
+    else if ((event->button == 1 && event->type == GDK_BUTTON_PRESS)) {
         unicode_character_map_set_active_cell(charmap, get_cell_at_xy(charmap, event->x, event->y));
-    }
-
-    if (gdk_event_triggers_context_menu((GdkEvent *) event))
+    } else if (event->button == 3 || gdk_event_triggers_context_menu((GdkEvent *) event)) {
+        unicode_character_map_set_active_cell(charmap, get_cell_at_xy(charmap, event->x, event->y));
         unicode_character_map_show_info(charmap, event);
+    }
 
     return TRUE;
 }

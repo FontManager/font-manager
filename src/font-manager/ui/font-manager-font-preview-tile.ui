@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
   <template class="FontManagerFontPreviewTile" parent="GtkGrid">
+    <property name="width_request">196</property>
+    <property name="height_request">196</property>
     <property name="visible">True</property>
     <property name="can_focus">False</property>
+    <property name="valign">start</property>
     <property name="hexpand">True</property>
     <property name="vexpand">True</property>
     <child>
       <object class="GtkLabel" id="family">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_left">12</property>
+        <property name="margin_right">12</property>
         <property name="margin_top">6</property>
         <property name="margin_bottom">6</property>
       </object>
