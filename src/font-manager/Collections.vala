@@ -114,10 +114,21 @@ namespace FontManager {
      */
     public class CollectionControls : BaseControls {
 
+        public InlineHelp help { get; private set; }
+
+        const string help_message = """
+Add fonts by dragging them from the font list.
+
+The sidebar will automatically switch while dragging fonts.
+""";
+
         public CollectionControls () {
             add_button.set_tooltip_text(_("Add new collection"));
             remove_button.set_tooltip_text(_("Remove selected collection"));
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
+            help = new InlineHelp();
+            box.pack_end(help, false, false, 0);
+            help.message.set_text(help_message);
         }
 
     }
@@ -616,7 +627,9 @@ namespace FontManager {
 
         void update_and_cache_collections () {
             Gtk.StyleContext ctx = controls.add_button.get_style_context();
-            if (model.iter_n_children(null) > 0) {
+            int n_children = model.iter_n_children(null);
+            controls.help.set_visible(n_children == 1);
+            if (n_children > 0) {
                 controls.add_button.set_relief(Gtk.ReliefStyle.NONE);
                 ctx.remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             } else {

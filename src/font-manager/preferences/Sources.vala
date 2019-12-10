@@ -46,6 +46,7 @@ Note that not all environments/applications will honor these settings.""");
             controls.add_button.sensitive = (sources != null);
             help = new InlineHelp();
             help.margin = 1;
+            help.margin_start = help.margin_end = 2;
             help.message.set_text(help_text);
             controls.box.pack_end(help, false, false, 0);
             box.pack_start(controls, false, false, 1);

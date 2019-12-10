@@ -62,7 +62,7 @@ treeview {
     border-style: groove;
     border-radius: 0.75em;
     color: lighter(@theme_selected_fg_color);
-    background-color: alpha(@theme_text_color, 0.65);
+    background-color: alpha(@theme_text_color, 0.775);
 }
 
 .PangoGlyphMetrics {
