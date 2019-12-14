@@ -144,38 +144,27 @@ matches (gunichar wc, const gchar *search_string_nfd)
         matched = utf8_strcasestr(haystack_nfd, search_string_nfd) != NULL;
     }
 
-    if (matched)
-        goto match_found;
-
-    haystack = unicode_get_unicode_kDefinition(wc);
-    if (haystack) {
-        g_autofree gchar *haystack_nfd = g_utf8_normalize(haystack, -1, G_NORMALIZE_NFD);
-        matched = utf8_strcasestr(haystack_nfd, search_string_nfd) != NULL;
+    if (!matched) {
+        haystack = unicode_get_unicode_kDefinition(wc);
+        if (haystack) {
+            g_autofree gchar *haystack_nfd = g_utf8_normalize(haystack, -1, G_NORMALIZE_NFD);
+            matched = utf8_strcasestr(haystack_nfd, search_string_nfd) != NULL;
+        }
     }
 
-    if (matched)
-        goto match_found;
+    if (!matched)
+        matched = found_in_array(unicode_get_nameslist_equals(wc), search_string_nfd);
 
-    matched = found_in_array(unicode_get_nameslist_equals(wc), search_string_nfd);
+    if (!matched)
+        matched = found_in_array(unicode_get_nameslist_stars(wc), search_string_nfd);
 
-    if (matched)
-        goto match_found;
+    if (!matched)
+        matched = found_in_array(unicode_get_nameslist_colons(wc), search_string_nfd);
 
-    matched = found_in_array(unicode_get_nameslist_stars(wc), search_string_nfd);
-
-    if (matched)
-        goto match_found;
-
-    matched = found_in_array(unicode_get_nameslist_colons(wc), search_string_nfd);
-
-    if (matched)
-        goto match_found;
-
-    matched = found_in_array(unicode_get_nameslist_pounds(wc), search_string_nfd);
+    if (!matched)
+        matched = found_in_array(unicode_get_nameslist_pounds(wc), search_string_nfd);
 
     /* XXX: other strings */
-
-match_found:
 
     return matched;
 }
