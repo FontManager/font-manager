@@ -57,6 +57,13 @@ Please note that packages in the PPA can conflict with official packages.
 Make sure to purge any previous installation before switching between PPA and official sources.
 
 
+##### File Manager extensions
+
+Fedora and Ubuntu users can also find extensions for Nautilus and Nemo in the repositories.
+
+The extension allows you to preview font files by simply selecting them in the file manager while font-viewer is open.
+
+
 ### Building from source
 
 You'll need to ensure the following dependencies are installed:
