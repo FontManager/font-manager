@@ -22,9 +22,9 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: font-manager 0.7.6\n"
+"Project-Id-Version: font-manager 0.7.7\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2019-12-05 18:34-0500\n"
+"POT-Creation-Date: 2019-12-17 18:01-0500\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -645,23 +645,23 @@ msgstr "Обычные"
 msgid "Enter Collection Name"
 msgstr "Введите название коллекции"
 
-#: src/font-manager/Collections.vala:118
+#: src/font-manager/Collections.vala:126
 msgid "Add new collection"
 msgstr "Добавить новую коллекцию"
 
-#: src/font-manager/Collections.vala:119
+#: src/font-manager/Collections.vala:127
 msgid "Remove selected collection"
 msgstr "Удалить выбранную коллекцию"
 
-#: src/font-manager/Collections.vala:372
+#: src/font-manager/Collections.vala:382
 msgid "Copying files…"
 msgstr "Копирование файлов…"
 
-#: src/font-manager/Collections.vala:489
+#: src/font-manager/Collections.vala:499
 msgid "Copy to…"
 msgstr ""
 
-#: src/font-manager/Collections.vala:490
+#: src/font-manager/Collections.vala:500
 msgid "Compress…"
 msgstr "Сжатие…"
 
@@ -1606,17 +1606,17 @@ msgstr "Добавить источник"
 msgid "Remove selected source"
 msgstr "Удалить выбранный источник"
 
-#: src/font-manager/preferences/Sources.vala:129
+#: src/font-manager/preferences/Sources.vala:130
 #: src/font-manager/ui/font-manager-user-data.ui:137
 msgid "Font Sources"
 msgstr "Источники шрифтов"
 
-#: src/font-manager/preferences/Sources.vala:130
+#: src/font-manager/preferences/Sources.vala:131
 msgid "Easily add or preview fonts without actually installing them."
 msgstr ""
 "Легкое добавление или предварительный просмотр шрифтов без их установки."
 
-#: src/font-manager/preferences/Sources.vala:131
+#: src/font-manager/preferences/Sources.vala:132
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."

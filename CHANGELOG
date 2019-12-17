@@ -1,3 +1,7 @@
+0.7.6 -> 0.7.7
+
+- Fix file manager crash caused by extensions
+
 0.7.5 -> 0.7.6
 
 - Add search to character map

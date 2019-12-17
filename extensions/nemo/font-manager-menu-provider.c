@@ -117,7 +117,7 @@ font_manager_menu_provider_get_file_items (G_GNUC_UNUSED NemoMenuProvider *provi
         }
 
         g_free(self->uri);
-        self->uri = uri;
+        self->uri = g_strdup(uri);
 
     }
 

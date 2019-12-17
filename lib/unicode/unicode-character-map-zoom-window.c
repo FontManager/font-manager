@@ -132,9 +132,9 @@ on_draw (GtkWidget *widget, cairo_t *cr, UnicodeCharacterMapZoomWindow *self)
 
 static void
 unicode_character_map_zoom_window_set_property (GObject *gobject,
-                                    guint prop_id,
-                                    const GValue *value,
-                                    GParamSpec *pspec)
+                                                guint prop_id,
+                                                const GValue *value,
+                                                GParamSpec *pspec)
 {
     UnicodeCharacterMapZoomWindow *self = UNICODE_CHARACTER_MAP_ZOOM_WINDOW(gobject);
     switch (prop_id) {
@@ -156,9 +156,9 @@ unicode_character_map_zoom_window_set_property (GObject *gobject,
 
 static void
 unicode_character_map_zoom_window_get_property (GObject *gobject,
-                                    guint prop_id,
-                                    GValue *value,
-                                    GParamSpec *pspec)
+                                                guint prop_id,
+                                                GValue *value,
+                                                GParamSpec *pspec)
 {
     UnicodeCharacterMapZoomWindow *self = UNICODE_CHARACTER_MAP_ZOOM_WINDOW(gobject);
     switch (prop_id) {

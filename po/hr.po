@@ -20,9 +20,9 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: font-manager 0.7.6\n"
+"Project-Id-Version: font-manager 0.7.7\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2019-12-05 18:34-0500\n"
+"POT-Creation-Date: 2019-12-17 18:01-0500\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -658,23 +658,23 @@ msgstr "Normalni"
 msgid "Enter Collection Name"
 msgstr "Upiši naziv zbirke"
 
-#: src/font-manager/Collections.vala:118
+#: src/font-manager/Collections.vala:126
 msgid "Add new collection"
 msgstr "Dodaj novu zbirku"
 
-#: src/font-manager/Collections.vala:119
+#: src/font-manager/Collections.vala:127
 msgid "Remove selected collection"
 msgstr "Ukloni odabranu zbirku"
 
-#: src/font-manager/Collections.vala:372
+#: src/font-manager/Collections.vala:382
 msgid "Copying files…"
 msgstr "Kopiranje datoteka …"
 
-#: src/font-manager/Collections.vala:489
+#: src/font-manager/Collections.vala:499
 msgid "Copy to…"
 msgstr "Kopiraj u …"
 
-#: src/font-manager/Collections.vala:490
+#: src/font-manager/Collections.vala:500
 msgid "Compress…"
 msgstr "Komprimiraj …"
 
@@ -1616,16 +1616,16 @@ msgstr "Dodaj izvor"
 msgid "Remove selected source"
 msgstr "Ukloni odabrani izvor"
 
-#: src/font-manager/preferences/Sources.vala:129
+#: src/font-manager/preferences/Sources.vala:130
 #: src/font-manager/ui/font-manager-user-data.ui:137
 msgid "Font Sources"
 msgstr "Izvori fontova"
 
-#: src/font-manager/preferences/Sources.vala:130
+#: src/font-manager/preferences/Sources.vala:131
 msgid "Easily add or preview fonts without actually installing them."
 msgstr "Dodaj ili pregledaj fontove bez instaliranja."
 
-#: src/font-manager/preferences/Sources.vala:131
+#: src/font-manager/preferences/Sources.vala:132
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
