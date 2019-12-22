@@ -326,7 +326,7 @@ get_os2_info (JsonObject *json_obj, const FT_Face face)
     return;
 }
 
-#define SNAME_2_UTF8(s, c)                                                    \
+#define SNAME_2_UTF8(s, c)                                                      \
 g_convert((const gchar *) s.string, s.string_len, "UTF-8", c, NULL, NULL, NULL) \
 
 /* Mostly lifted from fontilus by James Henstridge. Thanks. :-) */
@@ -348,6 +348,10 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
             continue;
 
         if (sname.platform_id != TT_PLATFORM_MICROSOFT)
+            continue;
+
+        /* XXX : ? */
+        if (sname.string == NULL)
             continue;
 
         g_autofree gchar *val = NULL;
