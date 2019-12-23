@@ -28,12 +28,16 @@
 #include <pango/pango-font.h>
 #include <pango/pangofc-font.h>
 #include <pango/pangofc-fontmap.h>
+#include <pango/pango-utils.h>
+#include <pango/pango-version-macros.h>
 
 #include "font-manager-fontconfig.h"
 #include "font-manager-json.h"
 #include "font-manager-utils.h"
 
 #include "unicode-info.h"
+
+#define PANGO_1_44 PANGO_VERSION_ENCODE(1, 44, 0)
 
 static GList * list_charset (const FcCharSet *charset);
 static void process_fontset (const FcFontSet *fontset, JsonObject *json_obj);
@@ -123,6 +127,16 @@ font_manager_load_font_configuration_file (const gchar *filepath)
     return FcConfigParseAndLoad(FcConfigGetCurrent(), (FcChar8 *) filepath, FALSE);
 }
 
+/* Note : Type 1 font support was dropped in Pango 1.44 */
+gboolean
+is_legacy_format (FcPattern *pat)
+{
+    FcChar8 *format;
+    g_assert(FcPatternGetString(pat, FC_FONTFORMAT, 0, &format) == FcResultMatch);
+    return (g_strcmp0((const gchar *) format, "Type 1") == 0 ||
+            g_strcmp0((const gchar *) format, "Windows FNT") == 0);
+}
+
 /**
  * font_manager_list_available_font_files:
  *
@@ -134,14 +148,17 @@ GList *
 font_manager_list_available_font_files (void)
 {
     FcPattern *pattern = FcPatternBuild(NULL,NULL);
-    FcObjectSet *objectset = FcObjectSetBuild (FC_FILE, NULL);
+    FcObjectSet *objectset = FcObjectSetBuild (FC_FILE, FC_FONTFORMAT, NULL);
     FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
     GList *result = NULL;
 
     for (int i = 0; i < fontset->nfont; i++) {
         FcChar8 *file;
-        if (FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &file) == FcResultMatch)
+        if (FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &file) == FcResultMatch) {
+            if (pango_version() >= PANGO_1_44 && is_legacy_format(fontset->fonts[i]))
+                continue;
             result = g_list_prepend(result, g_strdup_printf("%s", file));
+        }
     }
 
     FcObjectSetDestroy(objectset);
@@ -238,12 +255,14 @@ font_manager_list_available_font_families (void)
 {
     GList *result = NULL;
     FcPattern *pattern = FcPatternBuild(NULL,NULL);
-    FcObjectSet *objectset = FcObjectSetBuild(FC_FAMILY, NULL);
+    FcObjectSet *objectset = FcObjectSetBuild(FC_FAMILY, FC_FONTFORMAT, NULL);
     FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
 
     for (int i = 0; i < fontset->nfont; i++) {
         FcChar8 *family;
         if (FcPatternGetString(fontset->fonts[i], FC_FAMILY, 0, &family) == FcResultMatch) {
+            if (pango_version() >= PANGO_1_44 && is_legacy_format(fontset->fonts[i]))
+                continue;
             if (g_list_find_custom(result, (const gchar *) family, (GCompareFunc) g_strcmp0) == NULL)
                 result = g_list_prepend(result, g_strdup_printf("%s", family));
         }
@@ -284,6 +303,7 @@ font_manager_get_available_fonts (const gchar *family_name)
                                               FC_WIDTH,
                                               FC_SPACING,
                                               FC_LANG,
+                                              FC_FONTFORMAT,
                                               NULL);
 
     FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
@@ -709,6 +729,8 @@ static void
 process_fontset (const FcFontSet *fontset, JsonObject *json_obj)
 {
     for (int i = 0; i < fontset->nfont; i++) {
+        if (pango_version() >= PANGO_1_44 && is_legacy_format(fontset->fonts[i]))
+            continue;
         JsonObject *font_obj = font_manager_get_attributes_from_fontconfig_pattern(fontset->fonts[i]);
         const gchar *family = json_object_get_string_member(font_obj, "family");
         const gchar *style = json_object_get_string_member(font_obj, "style");
