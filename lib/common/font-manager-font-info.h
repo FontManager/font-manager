@@ -25,10 +25,10 @@
 
 G_BEGIN_DECLS
 
+/* Order matters, adjust bind_from_properties to account for changes */
 static const FontManagerProxyObjectProperties InfoProperties [] =
 {
     { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST },
-    { FONT_MANAGER_PROXY_OBJECT_SOURCE, G_TYPE_RESERVED_USER_FIRST },
     { "filepath", G_TYPE_STRING },
     { "findex", G_TYPE_INT },
     { "family", G_TYPE_STRING },
@@ -49,6 +49,7 @@ static const FontManagerProxyObjectProperties InfoProperties [] =
     { "fsType", G_TYPE_INT },
     { "filesize", G_TYPE_STRING },
     { "checksum", G_TYPE_STRING },
+    { FONT_MANAGER_PROXY_OBJECT_SOURCE, G_TYPE_RESERVED_USER_FIRST },
     { "panose", G_TYPE_BOXED }
 };
 

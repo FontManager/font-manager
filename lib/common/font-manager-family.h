@@ -25,13 +25,14 @@
 
 G_BEGIN_DECLS
 
+/* Order matters, adjust bind_from_properties to account for changes */
 static const FontManagerProxyObjectProperties FamilyProperties [] =
 {
     { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST },
-    { FONT_MANAGER_PROXY_OBJECT_SOURCE, G_TYPE_RESERVED_USER_FIRST },
     { "family", G_TYPE_STRING },
     { "n-variations", G_TYPE_INT },
     { "description", G_TYPE_STRING },
+    { FONT_MANAGER_PROXY_OBJECT_SOURCE, G_TYPE_RESERVED_USER_FIRST },
     { "variations", G_TYPE_BOXED }
 };
 

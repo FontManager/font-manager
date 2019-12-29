@@ -25,10 +25,10 @@
 
 G_BEGIN_DECLS
 
+/* Order matters, adjust bind_from_properties to account for changes */
 static const FontManagerProxyObjectProperties FontProperties [] =
 {
     { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST },
-    { FONT_MANAGER_PROXY_OBJECT_SOURCE, G_TYPE_RESERVED_USER_FIRST },
     { "filepath", G_TYPE_STRING },
     { "findex", G_TYPE_INT },
     { "family", G_TYPE_STRING },
@@ -37,7 +37,8 @@ static const FontManagerProxyObjectProperties FontProperties [] =
     { "slant", G_TYPE_INT },
     { "weight", G_TYPE_INT },
     { "width", G_TYPE_INT },
-    { "description", G_TYPE_STRING }
+    { "description", G_TYPE_STRING },
+    { FONT_MANAGER_PROXY_OBJECT_SOURCE, G_TYPE_RESERVED_USER_FIRST }
 };
 
 #define FONT_MANAGER_TYPE_FONT (font_manager_font_get_type())
