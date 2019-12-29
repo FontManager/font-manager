@@ -102,10 +102,6 @@ namespace FontManager {
         return res;
     }
 
-    public bool is_valid_source (JsonProxy? object) {
-        return (object != null && object.source_object != null);
-    }
-
     public class MenuCallbackWrapper {
         public MenuCallback run;
         public MenuCallbackWrapper (MenuCallback c) {

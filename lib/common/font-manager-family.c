@@ -19,90 +19,35 @@
 */
 
 #include "font-manager-family.h"
-#include "font-manager-json-proxy.h"
-#include "json-proxy-object-properties.h"
 
 struct _FontManagerFamily
 {
     GObject parent_instance;
-
-    JsonObject *source_object;
 };
 
-G_DEFINE_TYPE_WITH_CODE(FontManagerFamily, font_manager_family, G_TYPE_OBJECT,
-                        G_IMPLEMENT_INTERFACE(FONT_MANAGER_TYPE_JSON_PROXY, NULL))
+G_DEFINE_TYPE(FontManagerFamily, font_manager_family, FONT_MANAGER_TYPE_JSON_PROXY)
 
 #define PROPERTIES FamilyProperties
 #define N_PROPERTIES G_N_ELEMENTS(PROPERTIES)
 static GParamSpec *obj_properties[N_PROPERTIES] = {0};
 
 static void
-font_manager_family_finalize (GObject *gobject)
-{
-    FontManagerFamily *self = FONT_MANAGER_FAMILY(gobject);
-    if (self && self->source_object != NULL)
-        json_object_unref(self->source_object);
-    G_OBJECT_CLASS(font_manager_family_parent_class)->finalize(gobject);
-    return;
-}
-
-static void
-font_manager_family_get_property (GObject *gobject,
-                                  guint property_id,
-                                  GValue *value,
-                                  GParamSpec *pspec)
-{
-    FontManagerFamily *self = FONT_MANAGER_FAMILY(gobject);
-    g_return_if_fail(self != NULL);
-    get_json_source_property(self->source_object, gobject, property_id, value, pspec);
-    return;
-}
-
-static void
-set_source (GObject *gobject, JsonObject *value)
-{
-    FontManagerFamily *self = FONT_MANAGER_FAMILY(gobject);
-    g_return_if_fail(self != NULL);
-    if (self->source_object == value)
-        return;
-    if (self->source_object != NULL)
-        json_object_unref(self->source_object);
-    self->source_object = value ? json_object_ref(value) : NULL;
-    return;
-}
-
-static void
-font_manager_family_set_property (GObject *gobject,
-                                  guint property_id,
-                                  const GValue *value,
-                                  GParamSpec *pspec)
-{
-    g_return_if_fail(gobject != NULL);
-
-    if (G_PARAM_SPEC_VALUE_TYPE(pspec) == JSON_TYPE_OBJECT)
-        set_source(gobject, g_value_get_boxed(value));
-    else
-        G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
-
-    return;
-}
-
-static void
 font_manager_family_class_init (FontManagerFamilyClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    object_class->get_property = font_manager_family_get_property;
-    object_class->set_property = font_manager_family_set_property;
-    object_class->finalize = font_manager_family_finalize;
-    generate_class_properties(obj_properties, PROPERTIES, N_PROPERTIES);
+    GObjectClass *parent_class = G_OBJECT_CLASS(font_manager_family_parent_class);
+    object_class->get_property = parent_class->get_property;
+    object_class->set_property = parent_class->set_property;
+    FontManagerJsonProxyClass *proxy_class = FONT_MANAGER_JSON_PROXY_CLASS(parent_class);
+    proxy_class->generate_properties(obj_properties, PROPERTIES, N_PROPERTIES);
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
 }
 
 static void
-font_manager_family_init (G_GNUC_UNUSED FontManagerFamily *self)
+font_manager_family_init (FontManagerFamily *self)
 {
-    return;
+    g_return_if_fail(self != NULL);
 }
 
 /**
@@ -114,8 +59,10 @@ JsonObject *
 font_manager_family_get_default_variant (FontManagerFamily *self)
 {
     g_return_val_if_fail(self != NULL, NULL);
-    const gchar *family_desc = json_object_get_string_member(self->source_object, "description");
-    JsonArray *arr = json_object_get_array_member(self->source_object, "variations");
+    g_autoptr(JsonObject) source = NULL;
+    g_object_get(self, "source-object", &source, NULL);
+    const gchar *family_desc = json_object_get_string_member(source, "description");
+    JsonArray *arr = json_object_get_array_member(source, "variations");
     guint i, arr_length = json_array_get_length(arr);
     for (i = 0; i < arr_length; i++) {
         JsonObject *font = json_array_get_object_element(arr, i);

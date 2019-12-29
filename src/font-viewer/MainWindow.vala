@@ -157,7 +157,7 @@ namespace FontManager.FontViewer {
         }
 
         public void update () {
-            bool have_valid_source = is_valid_source(preview.selected_font);
+            bool have_valid_source = preview.selected_font.is_valid();
             if (have_valid_source) {
                 preview.metadata.update();
                 update_titlebar(preview.selected_font.family,
@@ -207,12 +207,12 @@ namespace FontManager.FontViewer {
         }
 
         void update_install_button_state () {
-            bool have_valid_source = is_valid_source(preview.selected_font);
+            bool have_valid_source = preview.selected_font.is_valid();
             install_button.set_visible(have_valid_source);
             if (!have_valid_source)
                 return;
             clear_application_fonts();
-            return_if_fail(is_valid_source(preview.metadata.info));
+            return_if_fail(preview.metadata.info.is_valid());
             bool _installed = Library.is_installed(preview.metadata.info);
             string? conflict = Library.conflicts(preview.selected_font);
             add_application_font(preview.metadata.info.filepath);

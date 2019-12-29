@@ -21,18 +21,35 @@
 #ifndef __FONT_MANAGER_JSON_PROXY_H__
 #define __FONT_MANAGER_JSON_PROXY_H__
 
+#include <glib.h>
 #include <glib-object.h>
 #include <json-glib/json-glib.h>
 
 G_BEGIN_DECLS
 
-#define FONT_MANAGER_TYPE_JSON_PROXY (font_manager_json_proxy_get_type ())
-G_DECLARE_INTERFACE (FontManagerJsonProxy, font_manager_json_proxy, FONT_MANAGER, JSON_PROXY, GObject)
+#define FONT_MANAGER_PROXY_OBJECT_SOURCE "source-object"
 
-struct _FontManagerJsonProxyInterface
+typedef struct
 {
-    GTypeInterface parent_iface;
+    const gchar *name;
+    const GType type;
+}
+FontManagerProxyObjectProperties;
+
+#define FONT_MANAGER_TYPE_JSON_PROXY (font_manager_json_proxy_get_type ())
+G_DECLARE_DERIVABLE_TYPE (FontManagerJsonProxy, font_manager_json_proxy, FONT_MANAGER, JSON_PROXY, GObject)
+
+struct _FontManagerJsonProxyClass
+{
+    GObjectClass parent_class;
+
+    void (* generate_properties) (GParamSpec *pspec[],
+                                  const FontManagerProxyObjectProperties *properties,
+                                  gint num_properties);
 };
+
+FontManagerJsonProxy * font_manager_json_proxy_new (void);
+gboolean font_manager_json_proxy_is_valid (FontManagerJsonProxy *self);
 
 G_END_DECLS
 

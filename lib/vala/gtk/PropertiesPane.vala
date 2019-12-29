@@ -66,7 +66,7 @@ namespace FontManager {
 
         public void update (Font? font, FontInfo? info) {
             reset();
-            if (!is_valid_source(font) || !is_valid_source(info))
+            if (!font.is_valid() || !info.is_valid())
                 return;
             psname.set_text(info.psname);
             string? _width = ((Width) font.width).to_string();

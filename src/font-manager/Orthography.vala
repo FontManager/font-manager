@@ -99,7 +99,7 @@ namespace FontManager {
         public bool update_orthography () {
             entries = null;
             orthography = null;
-            if (!is_valid_source(font))
+            if (!font.is_valid())
                 return false;
             try {
                 Database? db = get_database(DatabaseType.BASE);

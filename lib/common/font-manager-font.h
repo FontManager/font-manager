@@ -21,12 +21,27 @@
 #ifndef __FONT_MANAGER_TYPE_FONT_H__
 #define __FONT_MANAGER_TYPE_FONT_H__
 
-#include <glib-object.h>
+#include "font-manager-json-proxy.h"
 
 G_BEGIN_DECLS
 
+static const FontManagerProxyObjectProperties FontProperties [] =
+{
+    { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST },
+    { FONT_MANAGER_PROXY_OBJECT_SOURCE, G_TYPE_RESERVED_USER_FIRST },
+    { "filepath", G_TYPE_STRING },
+    { "findex", G_TYPE_INT },
+    { "family", G_TYPE_STRING },
+    { "style", G_TYPE_STRING },
+    { "spacing", G_TYPE_INT },
+    { "slant", G_TYPE_INT },
+    { "weight", G_TYPE_INT },
+    { "width", G_TYPE_INT },
+    { "description", G_TYPE_STRING }
+};
+
 #define FONT_MANAGER_TYPE_FONT (font_manager_font_get_type())
-G_DECLARE_FINAL_TYPE(FontManagerFont, font_manager_font, FONT_MANAGER, FONT, GObject)
+G_DECLARE_FINAL_TYPE(FontManagerFont, font_manager_font, FONT_MANAGER, FONT, FontManagerJsonProxy)
 
 FontManagerFont * font_manager_font_new (void);
 

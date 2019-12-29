@@ -247,8 +247,7 @@ font_manager_to_filename (const gchar *str)
 {
     g_return_val_if_fail(str != NULL, NULL);
     g_autofree gchar *tmp = font_manager_str_replace(str, " ", "_");
-    gchar *result = font_manager_str_replace(tmp, "-", "_");
-    return result;
+    return font_manager_str_replace(tmp, "-", "_");
 }
 
 /**

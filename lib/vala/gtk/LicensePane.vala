@@ -100,7 +100,7 @@ namespace FontManager {
 
         public void update (FontInfo? info) {
             reset();
-            if (!is_valid_source(info))
+            if (!info.is_valid())
                 return;
             fsType.set_text(((Embedding) info.fsType).to_string());
             if (info.license_data == null && info.license_url == null)

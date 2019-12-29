@@ -18,7 +18,6 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include <glib.h>
 #include <glib/gstdio.h>
 
 #include "font-manager-database.h"
@@ -26,7 +25,9 @@
 #include "font-manager-fontconfig.h"
 #include "font-manager-freetype.h"
 #include "font-manager-json.h"
-#include "json-proxy-object-properties.h"
+#include "font-manager-font.h"
+#include "font-manager-family.h"
+#include "font-manager-font-info.h"
 
 #define CREATE_FONTS_TABLE "CREATE TABLE IF NOT EXISTS Fonts ( " \
 "uid INTEGER PRIMARY KEY, filepath TEXT, findex INTEGER, family TEXT, " \
@@ -267,8 +268,7 @@ font_manager_database_get_file (FontManagerDatabaseType type)
 {
     g_autofree gchar *cache_dir = font_manager_get_package_cache_directory();
     g_autofree gchar *filename = g_strdup_printf("%s.sqlite", font_manager_database_get_type_name(type));
-    gchar *db_file = g_build_filename(cache_dir, filename, NULL);
-    return db_file;
+    return g_build_filename(cache_dir, filename, NULL);
 }
 
 /**
@@ -752,7 +752,7 @@ free_sync_data (DatabaseSyncData *data)
 static void
 bind_from_properties (sqlite3_stmt *stmt,
                       JsonObject *json,
-                      const JsonProxyObjectProperties *properties,
+                      const FontManagerProxyObjectProperties *properties,
                       gint n_properties)
 {
     for (gint i = 0; i < n_properties; i++) {

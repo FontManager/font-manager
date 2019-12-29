@@ -6,6 +6,15 @@ dbus_service_dir = join_paths(datadir, 'dbus-1', 'services')
 desktop_dir = join_paths(datadir, 'applications')
 schema_dir = join_paths(datadir, 'glib-2.0', 'schemas')
 
+configure_file(
+    command: [
+        'glib-compile-schemas',
+        '--targetdir=' + meson.current_build_dir(),
+        meson.current_source_dir()
+    ],
+    output: 'gschema.compiled'
+)
+
 foreach path: service
     install_data('@0@.gschema.xml'.format(path), install_dir: schema_dir)
     i18n.merge_file(

@@ -158,7 +158,7 @@ namespace FontManager {
         }
 
         void update_sample_string () {
-            string description = is_valid_source(selected_font) ? selected_font.description : "";
+            string description = selected_font.is_valid() ? selected_font.description : "";
             /* Prevent tofu if possible */
             if (samples != null && samples.has_member(description)) {
                 string sample = samples.get_string_member(description);
@@ -180,7 +180,7 @@ namespace FontManager {
         void update_text_tag () {
             if (!_visible_)
                 return;
-            string description = is_valid_source(selected_font) ? selected_font.description : "";
+            string description = selected_font.is_valid() ? selected_font.description : "";
             Gtk.TextTag tag = tag_table.lookup("FontDescription");
             tag.set("font-desc", Pango.FontDescription.from_string(description),
                      "size-points", preview_size,

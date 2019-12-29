@@ -96,10 +96,10 @@ namespace FontManager {
             if (!_visible_ || !_update_required_)
                 return;
             table.codepoint_list = null;
-            string description =  is_valid_source(selected_font) ?
+            string description =  selected_font.is_valid() ?
                                   selected_font.description :
                                   DEFAULT_FONT;
-            codepoint_list.font = is_valid_source(selected_font) ?
+            codepoint_list.font = selected_font.is_valid() ?
                                   selected_font.source_object :
                                   null;
             table.font_desc = Pango.FontDescription.from_string(description);

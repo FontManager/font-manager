@@ -18,93 +18,36 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include <json-glib/json-glib.h>
-
 #include "font-manager-font-info.h"
-#include "font-manager-json-proxy.h"
-#include "json-proxy-object-properties.h"
 
 struct _FontManagerFontInfo
 {
     GObject parent_instance;
-
-    JsonObject *source_object;
 };
 
-G_DEFINE_TYPE_WITH_CODE(FontManagerFontInfo, font_manager_font_info, G_TYPE_OBJECT,
-                        G_IMPLEMENT_INTERFACE(FONT_MANAGER_TYPE_JSON_PROXY, NULL))
+G_DEFINE_TYPE(FontManagerFontInfo, font_manager_font_info, FONT_MANAGER_TYPE_JSON_PROXY)
 
 #define PROPERTIES InfoProperties
 #define N_PROPERTIES G_N_ELEMENTS(PROPERTIES)
 static GParamSpec *obj_properties[N_PROPERTIES] = {0};
 
 static void
-font_manager_font_info_finalize (GObject *gobject)
-{
-    FontManagerFontInfo *self = FONT_MANAGER_FONT_INFO(gobject);
-    if (self && self->source_object != NULL)
-        json_object_unref(self->source_object);
-    G_OBJECT_CLASS(font_manager_font_info_parent_class)->finalize(gobject);
-    return;
-}
-
-static void
-font_manager_font_info_get_property (GObject *gobject,
-                                     guint property_id,
-                                     GValue *value,
-                                     GParamSpec *pspec)
-{
-    FontManagerFontInfo *self = FONT_MANAGER_FONT_INFO(gobject);
-    g_return_if_fail(self != NULL);
-    get_json_source_property(self->source_object, gobject, property_id, value, pspec);
-    return;
-}
-
-static void
-set_source (GObject *gobject, JsonObject *value)
-{
-    FontManagerFontInfo *self = FONT_MANAGER_FONT_INFO(gobject);
-    g_return_if_fail(self != NULL);
-    if (self->source_object == value)
-        return;
-    if (self->source_object != NULL)
-        json_object_unref(self->source_object);
-    self->source_object = value ? json_object_ref(value) : NULL;
-    return;
-}
-
-static void
-font_manager_font_info_set_property (GObject *gobject,
-                                     guint property_id,
-                                     const GValue *value,
-                                     GParamSpec *pspec)
-{
-    g_return_if_fail(gobject != NULL);
-
-    if (G_PARAM_SPEC_VALUE_TYPE(pspec) == JSON_TYPE_OBJECT)
-        set_source(gobject, g_value_get_boxed(value));
-    else
-        G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
-
-    return;
-}
-
-static void
 font_manager_font_info_class_init (FontManagerFontInfoClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    object_class->get_property = font_manager_font_info_get_property;
-    object_class->set_property = font_manager_font_info_set_property;
-    object_class->finalize = font_manager_font_info_finalize;
-    generate_class_properties(obj_properties, PROPERTIES, N_PROPERTIES);
+    GObjectClass *parent_class = G_OBJECT_CLASS(font_manager_font_info_parent_class);
+    object_class->get_property = parent_class->get_property;
+    object_class->set_property = parent_class->set_property;
+    FontManagerJsonProxyClass *proxy_class = FONT_MANAGER_JSON_PROXY_CLASS(parent_class);
+    proxy_class->generate_properties(obj_properties, PROPERTIES, N_PROPERTIES);
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
 }
 
 static void
-font_manager_font_info_init (G_GNUC_UNUSED FontManagerFontInfo *self)
+font_manager_font_info_init (FontManagerFontInfo *self)
 {
-    return;
+    g_return_if_fail(self != NULL);
 }
 
 /**

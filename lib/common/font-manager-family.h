@@ -21,13 +21,22 @@
 #ifndef __FONT_MANAGER_FAMILY_H__
 #define __FONT_MANAGER_FAMILY_H__
 
-#include <glib-object.h>
-#include <json-glib/json-glib.h>
+#include "font-manager-json-proxy.h"
 
 G_BEGIN_DECLS
 
+static const FontManagerProxyObjectProperties FamilyProperties [] =
+{
+    { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST },
+    { FONT_MANAGER_PROXY_OBJECT_SOURCE, G_TYPE_RESERVED_USER_FIRST },
+    { "family", G_TYPE_STRING },
+    { "n-variations", G_TYPE_INT },
+    { "description", G_TYPE_STRING },
+    { "variations", G_TYPE_BOXED }
+};
+
 #define FONT_MANAGER_TYPE_FAMILY (font_manager_family_get_type())
-G_DECLARE_FINAL_TYPE(FontManagerFamily, font_manager_family, FONT_MANAGER, FAMILY, GObject)
+G_DECLARE_FINAL_TYPE(FontManagerFamily, font_manager_family, FONT_MANAGER, FAMILY, FontManagerJsonProxy)
 
 FontManagerFamily * font_manager_family_new (void);
 JsonObject * font_manager_family_get_default_variant (FontManagerFamily *self);

@@ -82,7 +82,7 @@ namespace FontManager {
                 changed();
             });
             notify["font"].connect((s, p) => {
-                family = is_valid_source(font) ? font.family : null;
+                family = font.is_valid() ? font.family : null;
             });
             load();
         }
@@ -100,7 +100,7 @@ namespace FontManager {
                 base.load();
             }
             /* Load font specific settings */
-            if (is_valid_source(font)) {
+            if (font.is_valid()) {
                 target_file = "29-%s.conf".printf(FontManager.to_filename(font.description));
                 base.load();
             }
@@ -113,7 +113,7 @@ namespace FontManager {
         protected override void add_match_criteria (XmlWriter writer) {
             if (family != null)
                 writer.add_test_element("family", "contains", "string", family);
-            if (is_valid_source(font)) {
+            if (font.is_valid()) {
                 writer.add_test_element("slant", "eq", "int", font.slant.to_string());
                 writer.add_test_element("weight", "eq", "int", font.weight.to_string());
                 writer.add_test_element("width", "eq", "int", font.width.to_string());

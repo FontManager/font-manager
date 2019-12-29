@@ -47,7 +47,7 @@ namespace FontManager {
         }
 
         public void update () {
-            if (is_valid_source(selected_font)) {
+            if (selected_font.is_valid()) {
                 info = new FontInfo();
                 try {
                     Database db = get_database(DatabaseType.BASE);
