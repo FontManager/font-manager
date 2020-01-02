@@ -45,9 +45,22 @@ namespace FontManager {
     public class BaseTreeView : Gtk.TreeView {
 
         PendingEvent pending_event;
+        Gtk.GestureLongPress long_press;
 
         construct {
             pending_event = PendingEvent();
+            long_press = new Gtk.GestureLongPress(this);
+            long_press.pressed.connect((x, y) => {
+                var event = new Gdk.Event(Gdk.EventType.BUTTON_PRESS);
+                var e = ((Gdk.EventButton) event);
+                e.x = x;
+                e.y = y;
+                e.button = Gdk.BUTTON_SECONDARY;
+                e.window = (Gdk.Window) get_window().ref();
+                e.device = long_press.get_device();
+                show_context_menu(e);
+                return;
+            });
         }
 
         /**
@@ -66,7 +79,7 @@ namespace FontManager {
          * {@inheritDoc}
          */
         public override bool button_press_event (Gdk.EventButton event) {
-            if (event.triggers_context_menu() && event.type == Gdk.EventType.BUTTON_PRESS)
+            if (event.triggers_context_menu())
                 return show_context_menu(event);
             Gtk.TreePath path;
             get_path_at_pos((int) event.x, (int) event.y, out path, null, null, null);

@@ -116,7 +116,7 @@ namespace FontManager {
          *              %FALSE to propagate the event further.
          */
         protected virtual bool show_context_menu (Gdk.EventButton event) {
-            return base.button_press_event(event);
+            return view.button_press_event(event);
         }
 
 
@@ -147,8 +147,6 @@ namespace FontManager {
         public override bool on_event (Gdk.Event event) {
             if (event.type == Gdk.EventType.SCROLL)
                 return false;
-            if (event.triggers_context_menu() && event.type == Gdk.EventType.BUTTON_PRESS)
-                return base.on_event(event);
             ((Gtk.TextView) this.view).get_window(Gtk.TextWindowType.TEXT).set_cursor(null);
             return true;
         }

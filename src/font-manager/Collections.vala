@@ -267,6 +267,7 @@ The sidebar will automatically switch while dragging fonts.
             expand = true;
             controls = new CollectionControls();
             controls.add_button.set_relief(Gtk.ReliefStyle.NORMAL);
+            controls.remove_button.set_sensitive(false);
             Gtk.StyleContext ctx = controls.add_button.get_style_context();
             ctx.add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             name = "FontManagerCollectionTree";
@@ -305,6 +306,9 @@ The sidebar will automatically switch while dragging fonts.
             });
             get_selection().changed.connect(on_selection_changed);
             renderer.edited.connect(on_edited);
+            selection_changed.connect((c) => {
+                controls.remove_button.set_sensitive(c != null);
+            });
             return;
         }
 
@@ -360,7 +364,7 @@ The sidebar will automatically switch while dragging fonts.
         }
 
         protected override bool show_context_menu (Gdk.EventButton e) {
-            context_menu.popup_at_pointer(null);
+            context_menu.popup_at_pointer(e);
             return true;
         }
 

@@ -415,7 +415,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         }
 
         protected override bool show_context_menu (Gdk.EventButton e) {
-            context_menu.popup_at_pointer(null);
+            context_menu.popup_at_pointer(e);
             return true;
         }
 

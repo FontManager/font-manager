@@ -27,6 +27,7 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
+#include <math.h>
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 
@@ -35,6 +36,7 @@
 #include "unicode-character-map.h"
 #include "unicode-character-map-zoom-window.h"
 
+#define VALID_FONT_SIZE(X) (X < 6.0 ? 6.0 : X > 96.0 ? 96.0 : X)
 
 /* Notes
  *
@@ -78,6 +80,10 @@ typedef struct
     /* Drag and Drop */
     GtkTargetList *target_list;
     gdouble click_x, click_y;
+
+    /* Touch events */
+    GtkGesture *long_press;
+    GtkGesture *pinch_zoom;
 
     UnicodeCodepointList *codepoint_list;
     UnicodeCharacterMapZoomWindow *popover;
@@ -549,7 +555,7 @@ unicode_character_map_set_font_desc_internal (UnicodeCharacterMap *charmap,
 }
 
 static void
-unicode_character_map_show_info(UnicodeCharacterMap *self, GdkEventButton *event)
+unicode_character_map_show_info(UnicodeCharacterMap *self, gdouble x, gdouble y)
 {
     g_return_if_fail(self != NULL);
 
@@ -574,7 +580,7 @@ unicode_character_map_show_info(UnicodeCharacterMap *self, GdkEventButton *event
         GdkRectangle rect = { x_offset + (column_width / 2), y_offset, 1, 1 };
         gtk_popover_set_pointing_to((GtkPopover *) priv->popover, &rect);
     } else {
-        GdkRectangle rect = { event->x, event->y, 1, 1 };
+        GdkRectangle rect = { x, y, 1, 1 };
         gtk_popover_set_pointing_to((GtkPopover *) priv->popover, &rect);
     }
 
@@ -591,29 +597,42 @@ static gboolean
 unicode_character_map_button_press (GtkWidget *widget, GdkEventButton *event)
 {
     UnicodeCharacterMap *charmap = UNICODE_CHARACTER_MAP(widget);
+    GtkWidgetClass *cls = GTK_WIDGET_CLASS(unicode_character_map_parent_class);
 
     /* In case we lost keyboard focus and are clicking to get it back */
     gtk_widget_grab_focus(widget);
 
+    gdouble x, y;
+
+    if (!gdk_event_get_coords((GdkEvent *) event, &x, &y))
+        return cls->button_press_event(widget, event);
+
+    guint button;
+
+    if (!gdk_event_get_button((GdkEvent *) event, &button))
+        return cls->button_press_event(widget, event);
+
     /* Drag and Drop */
-    if (event->button == 1) {
-        priv->click_x = event->x;
-        priv->click_y = event->y;
+    if (button == GDK_BUTTON_PRIMARY) {
+        priv->click_x = x;
+        priv->click_y = y;
     }
 
-    /* double-click */
-    if (event->button == 1 && event->type == GDK_2BUTTON_PRESS) {
-        g_signal_emit(charmap, signals[ACTIVATE], 0);
-    }
+    GdkEventType event_type = gdk_event_get_event_type((GdkEvent *) event);
+
     /* single-click */
-    else if ((event->button == 1 && event->type == GDK_BUTTON_PRESS)) {
-        unicode_character_map_set_active_cell(charmap, get_cell_at_xy(charmap, event->x, event->y));
-    } else if (event->button == 3 || gdk_event_triggers_context_menu((GdkEvent *) event)) {
-        unicode_character_map_set_active_cell(charmap, get_cell_at_xy(charmap, event->x, event->y));
-        unicode_character_map_show_info(charmap, event);
+    if ((button == GDK_BUTTON_PRIMARY && event_type == GDK_BUTTON_PRESS)) {
+        unicode_character_map_set_active_cell(charmap, get_cell_at_xy(charmap, x, y));
+    /* double-click */
+    } else if (button == GDK_BUTTON_PRIMARY && event_type == GDK_2BUTTON_PRESS) {
+        g_signal_emit(charmap, signals[ACTIVATE], 0);
+    /* right-click */
+    } else if (gdk_event_triggers_context_menu((GdkEvent *) event)) {
+        unicode_character_map_set_active_cell(charmap, get_cell_at_xy(charmap, x, y));
+        unicode_character_map_show_info(charmap, x, y);
     }
 
-    return TRUE;
+    return cls->button_press_event(widget, event);
 }
 
 static void
@@ -1066,6 +1085,27 @@ unicode_character_map_paste_clipboard (UnicodeCharacterMap *charmap)
     return;
 }
 
+void
+unicode_character_map_on_long_press (G_GNUC_UNUSED GtkGestureLongPress *gesture,
+                                     gdouble x,
+                                     gdouble y,
+                                     gpointer charmap)
+{
+    unicode_character_map_set_active_cell(charmap, get_cell_at_xy(charmap, x, y));
+    unicode_character_map_show_info(charmap, x, y);
+    return;
+}
+
+void
+unicode_character_map_on_pinch_zoom (G_GNUC_UNUSED GtkGestureZoom *gesture,
+                                     gdouble scale_factor,
+                                     gpointer charmap)
+{
+    gdouble size = nearbyint(priv->preview_size * scale_factor);
+    unicode_character_map_set_preview_size(charmap, VALID_FONT_SIZE(size));
+    return;
+}
+
 /* Does all the initial construction */
 static void
 unicode_character_map_init (UnicodeCharacterMap *charmap)
@@ -1085,20 +1125,25 @@ unicode_character_map_init (UnicodeCharacterMap *charmap)
     priv->popover = NULL;
 
     GtkWidget *widget = GTK_WIDGET(charmap);
-
-    gtk_widget_set_events(widget, GDK_EXPOSURE_MASK | GDK_KEY_PRESS_MASK |
-                        GDK_BUTTON_PRESS_MASK | GDK_BUTTON_RELEASE_MASK |
-                        GDK_BUTTON3_MOTION_MASK | GDK_BUTTON1_MOTION_MASK |
-                        GDK_FOCUS_CHANGE_MASK | GDK_SCROLL_MASK | GDK_SMOOTH_SCROLL_MASK);
-
+    gtk_widget_set_events(widget, GDK_ALL_EVENTS_MASK);
+    /* This is required to get key press events */
+    gtk_widget_set_can_focus(widget, TRUE);
+    /* Touch events */
+    priv->long_press = gtk_gesture_long_press_new(widget);
+    g_signal_connect(priv->long_press, "pressed",
+                     G_CALLBACK(unicode_character_map_on_long_press),
+                     widget);
+    priv->pinch_zoom = gtk_gesture_zoom_new(widget);
+    g_signal_connect(priv->pinch_zoom, "scale-changed",
+                     G_CALLBACK(unicode_character_map_on_pinch_zoom),
+                     widget);
+    /* Set up drag and drop */
     gtk_target_list_add_text_targets(priv->target_list, 0);
     gtk_drag_dest_set(widget, GTK_DEST_DEFAULT_ALL, NULL, 0, GDK_ACTION_COPY);
     gtk_drag_dest_add_text_targets(widget);
-    /* This is required to get key press events */
-    gtk_widget_set_can_focus(widget, TRUE);
     /* Make sure we look like what we are */
     gtk_style_context_add_class(gtk_widget_get_style_context(widget), GTK_STYLE_CLASS_VIEW);
-    gtk_widget_show_all(widget);
+    gtk_widget_show(widget);
     return;
 }
 
@@ -1115,6 +1160,12 @@ unicode_character_map_finalize (GObject *object)
 
     if (priv->codepoint_list)
         g_object_unref(priv->codepoint_list);
+
+    if (priv->long_press)
+        g_object_unref(priv->long_press);
+
+    if (priv->pinch_zoom)
+        g_object_unref(priv->pinch_zoom);
 
     G_OBJECT_CLASS(unicode_character_map_parent_class)->finalize(object);
     return;
@@ -1484,6 +1535,7 @@ unicode_character_map_set_preview_size (UnicodeCharacterMap *charmap, double siz
     priv->preview_size = size;
     PangoFontDescription *font_desc = pango_font_description_copy(priv->font_desc);
     unicode_character_map_set_font_desc_internal(charmap, font_desc);
+    g_object_notify(G_OBJECT(charmap), "preview-size");
     return;
 }
 
