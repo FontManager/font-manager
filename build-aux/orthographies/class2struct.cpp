@@ -99,6 +99,7 @@ int main(int argc, const char *argv[]) {
     //print_struct("ExtendedArabic", ExtendedArabic::pData);
     print_struct("Farsi", Farsi::pData);
     print_struct("Food", Food::pData);
+    print_struct("FullCyrillic", FullCyrillic::pData);
     print_struct("Georgian", Georgian::pData);
     print_struct("Glagolitic", Glagolitic::pData);
     print_struct("Gothic", Gothic::pData);

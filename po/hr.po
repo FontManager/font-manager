@@ -989,6 +989,10 @@ msgstr ""
 msgid "Food and Drink"
 msgstr ""
 
+#: src/font-manager/Orthographies.vala:33
+msgid "Full Cyrillic"
+msgstr ""
+
 #: src/font-manager/Orthographies.vala:84
 msgid "Georgian"
 msgstr ""

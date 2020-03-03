@@ -52,6 +52,7 @@
 #include "Euro.h"                      // Category=Latin
 #include "Farsi.h"                     // Category=Arabic
 #include "Food.h"
+#include "FullCyrillic.h"
 #include "Georgian.h"
 #include "Glagolitic.h"
 #include "Gothic.h"
