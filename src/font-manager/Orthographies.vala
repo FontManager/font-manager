@@ -81,6 +81,7 @@ namespace FontManager {
 
         { N_("Farsi"), "فارسی" },
         { N_("Food and Drink"), "Food and Drink" },
+        { N_("Full Cyrillic"), "Полная кири́ллица" },
         { N_("Georgian"), "ქართული დამწერლობა" },
         { N_("Glagolitic"), "hlaholika" },
         { N_("Gothic"), "𐌲𐌿𐍄𐌹𐍃𐌺" },
