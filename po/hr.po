@@ -1,23 +1,25 @@
 # Font Manager - Simple font management for Gtk+ desktop environments
-# 
-# Copyright Â© 2009 - 2016 Jerry Casiano
-# 
+#
+# Copyright © 2009 - 2016 Jerry Casiano
+#
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-# 
+#
 # Author:
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016.
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
+# Translator:
+# Milo Ivir <mail@milotype.de>, 2019., 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.7\n"
@@ -26,13 +28,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-10-03 02:38+0000\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
+"PO-Revision-Date: 2020-04-23 23:30+0200\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: \n"
 "Language: hr\n"
-"X-Generator: Zanata 4.6.2\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -43,7 +45,7 @@ msgstr "Font Manager"
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
 msgstr ""
-"Jednostavni program za upravljanje fontovima u Gtk+ desktop okruženjima"
+"Jednostavan program za upravljanje fontovima u Gtk+ desktop okruženjima"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
@@ -51,16 +53,17 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
-"Font Manager je namijenjen za lako upravljanje fontovima bez naredbenog "
-"retka i bez potrebe za ručnim uređivanjem konfiguracijskih datoteka."
+"Font Manager je namijenjen za jednostavno upravljanje fontovima bez "
+"naredbenog retka i bez potrebe za ručnim uređivanjem konfiguracijskih "
+"datoteka."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr ""
-"Iako je prvenstveno osmišljen za Gnome desktop okruženja, trebao bi dobro "
-"funkcionirati s drugim Gtk+ desktop okruženjima."
+"Iako je prvenstveno osmišljen za Gnome desktop okruženje, trebao bi dobro "
+"raditi i s drugim Gtk+ desktop okruženjima."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
@@ -115,39 +118,39 @@ msgstr "Izvor nije dostupan"
 
 #: lib/unicode/unicode-character-map.c:682
 msgid "Unknown character, unable to identify."
-msgstr "Nepoznati slovni znak, nije ga moguće odrediti."
+msgstr "Nepoznat znak, ne može se odrediti."
 
 #: lib/unicode/unicode-character-map.c:684
 msgid "Not found."
-msgstr "Nije nađen."
+msgstr "Nije pronađen."
 
 #: lib/unicode/unicode-character-map.c:686
 msgid "Character found."
-msgstr "Slovni znak ja nađen."
+msgstr "Znak je pronađen."
 
 #: lib/unicode/unicode-info.c:186
 msgid "<Non Private Use High Surrogate>"
-msgstr "<Visoki zamjenski znakovi ne-privatnog područja>"
+msgstr "<Gornji zamjenski znakovi ne-privatnog područja>"
 
 #: lib/unicode/unicode-info.c:188
 msgid "<Private Use High Surrogate>"
-msgstr "<Visoki zamjenski znakovi privatnog područja>"
+msgstr "<Gornji zamjenski znakovi privatnog područja>"
 
 #: lib/unicode/unicode-info.c:190
 msgid "<Low Surrogate>"
-msgstr "<Niski zamjenski znakovi>"
+msgstr "<Donji zamjenski znakovi>"
 
 #: lib/unicode/unicode-info.c:192
 msgid "<Private Use>"
-msgstr "<Privatna upotreba>"
+msgstr "<Privatno područje>"
 
 #: lib/unicode/unicode-info.c:194
 msgid "<Plane 15 Private Use>"
-msgstr "<Ploča 15 privatne upotrebe>"
+msgstr "<Ploča 15 privatnog područja>"
 
 #: lib/unicode/unicode-info.c:196
 msgid "<Plane 16 Private Use>"
-msgstr "<Ploča 16 privatne upotrebe>"
+msgstr "<Ploča 16 privatnog područja>"
 
 #: lib/unicode/unicode-info.c:200
 msgid "<not assigned>"
@@ -163,11 +166,11 @@ msgstr "Ostalo, format"
 
 #: lib/unicode/unicode-info.c:221
 msgid "Other, Not Assigned"
-msgstr "Ostalo, ne dodijeljeno"
+msgstr "Ostalo, nedodijeljeno"
 
 #: lib/unicode/unicode-info.c:223
 msgid "Other, Private Use"
-msgstr "Ostalo, privatna upotreba"
+msgstr "Ostalo, privatno područje"
 
 #: lib/unicode/unicode-info.c:225
 msgid "Other, Surrogate"
@@ -195,15 +198,15 @@ msgstr "Slovo, velika slova"
 
 #: lib/unicode/unicode-info.c:237
 msgid "Mark, Spacing Combining"
-msgstr "Oznaka, razmakna spajajuća"
+msgstr "Dijakritički znak, spojni sa širinom"
 
 #: lib/unicode/unicode-info.c:239
 msgid "Mark, Enclosing"
-msgstr "Oznaka, obuhvatna"
+msgstr "Dijakritički znak, obuhvatni"
 
 #: lib/unicode/unicode-info.c:241
 msgid "Mark, Non-Spacing"
-msgstr "Oznaka, ne-razmakna"
+msgstr "Dijakritički znak, bez širine"
 
 #: lib/unicode/unicode-info.c:243
 msgid "Number, Decimal Digit"
@@ -219,7 +222,7 @@ msgstr "Brojka, ostalo"
 
 #: lib/unicode/unicode-info.c:249
 msgid "Punctuation, Connector"
-msgstr "Interpunkcija, konektor"
+msgstr "Interpunkcija, spojnica"
 
 #: lib/unicode/unicode-info.c:251
 msgid "Punctuation, Dash"
@@ -231,11 +234,11 @@ msgstr "Interpunkcija, zatvarajuća"
 
 #: lib/unicode/unicode-info.c:255
 msgid "Punctuation, Final Quote"
-msgstr "Interpunkcija, završni navodni znak"
+msgstr "Interpunkcija, zatvarajući navodni znak"
 
 #: lib/unicode/unicode-info.c:257
 msgid "Punctuation, Initial Quote"
-msgstr "Interpunkcija, početni navodni znak"
+msgstr "Interpunkcija, otvarajući navodni znak"
 
 #: lib/unicode/unicode-info.c:259
 msgid "Punctuation, Other"
@@ -263,15 +266,15 @@ msgstr "Simbol, ostalo"
 
 #: lib/unicode/unicode-info.c:271
 msgid "Separator, Line"
-msgstr "Razdjeljivač, crta"
+msgstr "Znak rastavljanja, redak"
 
 #: lib/unicode/unicode-info.c:273
 msgid "Separator, Paragraph"
-msgstr "Razdjeljivač, odlomak"
+msgstr "Znak rastavljanja, odlomak"
 
 #: lib/unicode/unicode-info.c:275
 msgid "Separator, Space"
-msgstr "Razdjeljivač, razmak"
+msgstr "Znak rastavljanja, razmak"
 
 #. Unicode assigns "Common" as the script name for any character not
 #. * specifically listed in Scripts.txt
@@ -303,7 +306,7 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"     Ovaj program je slobodan softver: možeš ga redistribuirati i/ili "
+"     Ovaj program je slobodan softver: smije se redistribuirati i/ili "
 "mijenjati\n"
 "     pod uvjetima GNU opće javne licence, koju je objavila\n"
 "     Free Software Foundation, u 3. verziji licence ili (po izboru)\n"
@@ -312,24 +315,24 @@ msgstr ""
 "     Ovaj se program distribuira u nadi da će biti koristan,\n"
 "     ali BEZ IKAKVOG JAMSTVA; čak i bez podrazumijevanog jamstva za\n"
 "     PRODAJU ili PRIKLADNOST ZA ODREĐENU SVRHU. Pogledaj\n"
-"     GNU Opću javnu licencu za daljnje pojedinosti.\n"
+"     GNU opću javnu licencu za daljnje pojedinosti.\n"
 "\n"
-"     GNU opća javna licenca je standardno pridodana ovom programu.\n"
+"     GNU opća javna licenca standardno je pridodana ovom programu.\n"
 "\n"
-"     Ako ne, pogledaj <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+"     Ako nije, pogledaj <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 "     "
 
 #: lib/vala/Constants.vala:128
 msgid "translator-credits"
-msgstr "Milo Ivir <mail@milotype.de>, 2019."
+msgstr "Milo Ivir <mail@milotype.de>, 2019., 2020."
 
 #: lib/vala/fontconfig/Enumerations.vala:38
 msgid "Ultra-Condensed"
-msgstr "Ultra-Uski"
+msgstr "Ultra-uski"
 
 #: lib/vala/fontconfig/Enumerations.vala:40
 msgid "Extra-Condensed"
-msgstr "Jako-Uski"
+msgstr "Ekstra-uski"
 
 #: lib/vala/fontconfig/Enumerations.vala:42
 msgid "Condensed"
@@ -337,11 +340,11 @@ msgstr "Uski"
 
 #: lib/vala/fontconfig/Enumerations.vala:44
 msgid "Semi-Condensed"
-msgstr "Polu-Uski"
+msgstr "Polu-uski"
 
 #: lib/vala/fontconfig/Enumerations.vala:46
 msgid "Semi-Expanded"
-msgstr "Polu-Široki"
+msgstr "Polu-široki"
 
 #: lib/vala/fontconfig/Enumerations.vala:48
 msgid "Expanded"
@@ -349,11 +352,11 @@ msgstr "Široki"
 
 #: lib/vala/fontconfig/Enumerations.vala:50
 msgid "Extra-Expanded"
-msgstr "Jako-Široki"
+msgstr "Ekstra-široki"
 
 #: lib/vala/fontconfig/Enumerations.vala:52
 msgid "Ultra-Expanded"
-msgstr "Ultra-Široki"
+msgstr "Ultra-široki"
 
 #: lib/vala/fontconfig/Enumerations.vala:69
 msgid "Italic"
@@ -369,7 +372,7 @@ msgstr "Tanki"
 
 #: lib/vala/fontconfig/Enumerations.vala:126
 msgid "Ultra-Light"
-msgstr "Ultra-Svijetli"
+msgstr "Ultra-svijetli"
 
 #: lib/vala/fontconfig/Enumerations.vala:128
 #: lib/vala/fontconfig/Enumerations.vala:208
@@ -387,7 +390,7 @@ msgstr "Srednji"
 
 #: lib/vala/fontconfig/Enumerations.vala:134
 msgid "Semi-Bold"
-msgstr "Polu-Debeli"
+msgstr "Polu-debeli"
 
 #: lib/vala/fontconfig/Enumerations.vala:136
 msgid "Bold"
@@ -395,7 +398,7 @@ msgstr "Debeli"
 
 #: lib/vala/fontconfig/Enumerations.vala:138
 msgid "Ultra-Bold"
-msgstr "Ultra-Debeli"
+msgstr "Ultra-debeli"
 
 #: lib/vala/fontconfig/Enumerations.vala:140
 msgid "Heavy"
@@ -403,7 +406,7 @@ msgstr "Masni"
 
 #: lib/vala/fontconfig/Enumerations.vala:142
 msgid "Ultra-Heavy"
-msgstr "Ultra-Masni"
+msgstr "Ultra-masni"
 
 #: lib/vala/fontconfig/Enumerations.vala:160
 msgid "Proportional"
@@ -419,7 +422,7 @@ msgstr "Jednometrični"
 
 #: lib/vala/fontconfig/Enumerations.vala:166
 msgid "Charcell"
-msgstr "Prisiljene širine"
+msgstr "Prisiljeni oblici"
 
 #: lib/vala/fontconfig/Enumerations.vala:184
 msgid "Slight"
@@ -458,61 +461,61 @@ msgstr "BGR"
 
 #: lib/vala/fontconfig/Enumerations.vala:236
 msgid "VRGB"
-msgstr "VRGB"
+msgstr "RGB okomito"
 
 #: lib/vala/fontconfig/Enumerations.vala:238
 msgid "VBGR"
-msgstr "VBGR"
+msgstr "BGR okomito"
 
 #: lib/vala/gtk/CellRenderer.vala:88
 #, c-format
 msgid "%i Variation "
-msgstr ""
+msgstr "%i varijacija "
 
 #: lib/vala/gtk/CellRenderer.vala:89
 #, c-format
 msgid "%i Variations"
-msgstr ""
+msgstr "%i varijacije"
 
 #: lib/vala/gtk/LicensePane.vala:39
 msgid "Restricted License Embedding"
-msgstr ""
+msgstr "Ugradnja s ograničenom licencom"
 
 #: lib/vala/gtk/LicensePane.vala:41
 msgid "Preview & Print Embedding"
-msgstr ""
+msgstr "Dozvoljava pregled i ispis dokumenta"
 
 #: lib/vala/gtk/LicensePane.vala:43
 msgid "Editable Embedding"
-msgstr ""
+msgstr "Dozvoljava uređivanje dokumenta"
 
 #: lib/vala/gtk/LicensePane.vala:45
 msgid "Preview & Print Embedding | No Subsetting"
-msgstr ""
+msgstr "Dozvoljava pregled i ispis | Bez podskupina"
 
 #: lib/vala/gtk/LicensePane.vala:47
 msgid "Editable Embedding | No Subsetting"
-msgstr ""
+msgstr "Dozvoljava uređivanje | Bez podskupina"
 
 #: lib/vala/gtk/LicensePane.vala:49
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "Dozvoljava pregled i ispis | Ugradnja samo bitmapa"
 
 #: lib/vala/gtk/LicensePane.vala:51
 msgid "Editable Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "Dozvoljava uređivanje | Ugradnja samo bitmapa"
 
 #: lib/vala/gtk/LicensePane.vala:53
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr ""
+msgstr "Dozvoljava pregled i ispis | Bez podskupina | Ugradnja samo bitmapa"
 
 #: lib/vala/gtk/LicensePane.vala:55
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr ""
+msgstr "Dozvoljava uređivanje | Bez podskupina | Ugradnja samo bitmapa"
 
 #: lib/vala/gtk/LicensePane.vala:57
 msgid "Installable Embedding"
-msgstr ""
+msgstr "Dozvoljava instaliranje fonta"
 
 #: lib/vala/gtk/LicensePane.vala:81
 msgid "File does not contain license information."
@@ -529,7 +532,7 @@ msgstr "Vodopad"
 
 #: lib/vala/gtk/PreviewPane.vala:122 lib/vala/gtk/PreviewPane.vala:227
 msgid "Body Text"
-msgstr "Osnovni tekst"
+msgstr "Primjer teksta"
 
 #: src/font-manager/Categories.vala:154 src/font-manager/Orthography.vala:73
 msgid "Update in progress"
@@ -656,7 +659,7 @@ msgstr "Normalni"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
-msgstr "Upiši naziv zbirke"
+msgstr "Upiši ime zbirke"
 
 #: src/font-manager/Collections.vala:126
 msgid "Add new collection"
@@ -739,6 +742,10 @@ msgid ""
 "Start search using %s to filter based on filepath.\n"
 "Start search using %s to filter based on characters."
 msgstr ""
+"Pretraga imena obitelji bez razlikovanja velikih/malih slova.\n"
+"\n"
+"Započni pretragu pomoću %s za filtriranje na temelju datotečne staze.\n"
+"Započni pretragu pomoću %s za filtriranje na temelju znakova."
 
 #: src/font-manager/FontList.vala:73
 msgid "Collapse all"
@@ -807,536 +814,536 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrikaans"
 
 #: src/font-manager/Orthographies.vala:32
 msgid "Ahom"
-msgstr ""
+msgstr "Ahomski"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Aleut Cyrillic"
-msgstr ""
+msgstr "Aleutski ćirilica"
 
 #: src/font-manager/Orthographies.vala:34
 msgid "Aleut Latin"
-msgstr ""
+msgstr "Aleutski latinica"
 
 #: src/font-manager/Orthographies.vala:35
 msgid "Arabic"
-msgstr ""
+msgstr "Arapski"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
-msgstr ""
+msgstr "Arhaična grčka slova"
 
 #: src/font-manager/Orthographies.vala:37
 msgid "Armenian"
-msgstr ""
+msgstr "Armenski"
 
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
-msgstr ""
+msgstr "Astronomija"
 
 #: src/font-manager/Orthographies.vala:39
 msgid "Balinese"
-msgstr ""
+msgstr "Balijski"
 
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
-msgstr ""
+msgstr "Baltički"
 
 #: src/font-manager/Orthographies.vala:41
 msgid "Bamum"
-msgstr ""
+msgstr "Bamumski"
 
 #: src/font-manager/Orthographies.vala:42
 msgid "Basic Cyrillic"
-msgstr ""
+msgstr "Osnovna ćirilica"
 
 #: src/font-manager/Orthographies.vala:43
 msgid "Basic Greek"
-msgstr ""
+msgstr "Osnovni grčki"
 
 #: src/font-manager/Orthographies.vala:44
 msgid "Basic Latin"
-msgstr ""
+msgstr "Osnovna latinica"
 
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
-msgstr ""
+msgstr "Surat Batački"
 
 #: src/font-manager/Orthographies.vala:46
 msgid "Bengali"
-msgstr ""
+msgstr "Bengalski"
 
 #: src/font-manager/Orthographies.vala:47
 msgid "Brāhmī"
-msgstr ""
+msgstr "Brahmi"
 
 #: src/font-manager/Orthographies.vala:48
 msgid "Buginese"
-msgstr ""
+msgstr "Buginski"
 
 #: src/font-manager/Orthographies.vala:49
 msgid "Unified Canadian Aboriginal Syllabics"
-msgstr ""
+msgstr "Sjedinjeni slogovi kanadskih starosjedilaca"
 
 #: src/font-manager/Orthographies.vala:50
 msgid "Carian"
-msgstr ""
+msgstr "Karijanski"
 
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
-msgstr ""
+msgstr "Katalanski"
 
 #: src/font-manager/Orthographies.vala:52
 msgid "Central European"
-msgstr ""
+msgstr "Srednjoeuropski"
 
 #: src/font-manager/Orthographies.vala:53
 msgid "Chakma"
-msgstr ""
+msgstr "Čakmanski"
 
 #: src/font-manager/Orthographies.vala:54
 msgid "Cham"
-msgstr ""
+msgstr "Čamski"
 
 #: src/font-manager/Orthographies.vala:55
 msgid "Cherokee"
-msgstr ""
+msgstr "Čerokijski"
 
 #: src/font-manager/Orthographies.vala:56
 msgid "Chess Symbols"
-msgstr ""
+msgstr "Šahovski simboli"
 
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
 msgid "CJK Unified"
-msgstr ""
+msgstr "KJK sjedinjeni ideogrami"
 
 #: src/font-manager/Orthographies.vala:60
 msgid "CJK Unified Extension A"
-msgstr ""
+msgstr "KJK sjedinjeni ideogrami, proširenje A"
 
 #: src/font-manager/Orthographies.vala:61
 msgid "CJK Unified Extension B"
-msgstr ""
+msgstr "KJK sjedinjeni ideogrami, proširenje B"
 
 #: src/font-manager/Orthographies.vala:62
 msgid "CJK Unified Extension C"
-msgstr ""
+msgstr "KJK sjedinjeni ideogrami, proširenje C"
 
 #: src/font-manager/Orthographies.vala:63
 msgid "CJK Unified Extension D"
-msgstr ""
+msgstr "KJK sjedinjeni ideogrami, proširenje D"
 
 #: src/font-manager/Orthographies.vala:64
 msgid "CJK Unified Extension E"
-msgstr ""
+msgstr "KJK sjedinjeni ideogrami, proširenje E"
 
 #: src/font-manager/Orthographies.vala:65
 msgid "CJK Compatibility Ideographs"
-msgstr ""
+msgstr "CJK kompatibilni ideogrami"
 
 #: src/font-manager/Orthographies.vala:66
 msgid "CJK Compatibility Ideographs Supplement"
-msgstr ""
+msgstr "KJK kompatibilni ideogrami, dopuna"
 
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
 msgid "Claudian Letters"
-msgstr ""
+msgstr "Klaudijeva slova"
 
 #: src/font-manager/Orthographies.vala:70
 msgid "Coptic"
-msgstr ""
+msgstr "Koptski"
 
 #: src/font-manager/Orthographies.vala:71
 msgid "Currencies"
-msgstr ""
+msgstr "Valute"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
-msgstr ""
+msgstr "Cipriotski slogovni"
 
 #: src/font-manager/Orthographies.vala:73
 msgid "Devanagari"
-msgstr ""
+msgstr "Devanagari"
 
 #: src/font-manager/Orthographies.vala:74
 msgid "Dutch"
-msgstr ""
+msgstr "Nizozemski"
 
 #: src/font-manager/Orthographies.vala:75
 msgid "Egyptian Hieroglyphs"
-msgstr ""
+msgstr "Egipatski hijeroglifi"
 
 #: src/font-manager/Orthographies.vala:76
 msgid "Emoticons"
-msgstr ""
+msgstr "Emotikoni"
 
 #: src/font-manager/Orthographies.vala:77
 msgid "Ethiopic"
-msgstr ""
+msgstr "Etiopski"
 
 #. This "orthography" contains only the euro symbol...
 #. { N_("Euro"), "Euro" },
 #: src/font-manager/Orthographies.vala:82
 msgid "Farsi"
-msgstr ""
+msgstr "Farsi"
 
 #: src/font-manager/Orthographies.vala:83
 msgid "Food and Drink"
-msgstr ""
+msgstr "Hrana i piće"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Full Cyrillic"
-msgstr ""
+msgstr "Potpuna ćirilica"
 
 #: src/font-manager/Orthographies.vala:84
 msgid "Georgian"
-msgstr ""
+msgstr "Gruzijski"
 
 #: src/font-manager/Orthographies.vala:85
 msgid "Glagolitic"
-msgstr ""
+msgstr "Glagoljica"
 
 #: src/font-manager/Orthographies.vala:86
 msgid "Gothic"
-msgstr ""
+msgstr "Gotica"
 
 #: src/font-manager/Orthographies.vala:87
 msgid "Gujarati"
-msgstr ""
+msgstr "Gudžaratski"
 
 #: src/font-manager/Orthographies.vala:88
 msgid "Gurmukhi"
-msgstr ""
+msgstr "Gurmukhi"
 
 #: src/font-manager/Orthographies.vala:89
 msgid "Korean Hangul"
-msgstr ""
+msgstr "Korejski Hangul"
 
 #: src/font-manager/Orthographies.vala:90
 msgid "Hanunó'o"
-msgstr ""
+msgstr "Hanunó'o"
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hebrew"
-msgstr ""
+msgstr "Hebrejski"
 
 #: src/font-manager/Orthographies.vala:92
 #: src/font-manager/Orthographies.vala:94
 msgid "IPA"
-msgstr ""
+msgstr "IPA (američko fonetsko bilježenje)"
 
 #: src/font-manager/Orthographies.vala:93
 msgid "Igbo Onwu"
-msgstr ""
+msgstr "Igboški Onwu"
 
 #: src/font-manager/Orthographies.vala:95
 msgid "Korean Jamo"
-msgstr ""
+msgstr "Korejski Jamo"
 
 #: src/font-manager/Orthographies.vala:96
 msgid "Javanese"
-msgstr ""
+msgstr "Javanski"
 
 #: src/font-manager/Orthographies.vala:97
 msgid "Japanese Jinmeiyo"
-msgstr ""
+msgstr "Japanski Jinmeiyo"
 
 #: src/font-manager/Orthographies.vala:98
 msgid "Japanese Joyo"
-msgstr ""
+msgstr "Japanski Joyo"
 
 #: src/font-manager/Orthographies.vala:99
 msgid "Kaithi"
-msgstr ""
+msgstr "Kajtski"
 
 #: src/font-manager/Orthographies.vala:100
 msgid "Japanese Kana"
-msgstr ""
+msgstr "Japanski Kana"
 
 #: src/font-manager/Orthographies.vala:101
 msgid "Kannada"
-msgstr ""
+msgstr "Kannada"
 
 #: src/font-manager/Orthographies.vala:102
 msgid "Kayah Li"
-msgstr ""
+msgstr "Kayah Li"
 
 #: src/font-manager/Orthographies.vala:103
 msgid "Kazakh"
-msgstr ""
+msgstr "Kazački"
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kharoshthi"
-msgstr ""
+msgstr "Karoštski"
 
 #: src/font-manager/Orthographies.vala:105
 msgid "Khmer"
-msgstr ""
+msgstr "Kmerski"
 
 #: src/font-manager/Orthographies.vala:106
 msgid "Japanese Kokuji"
-msgstr ""
+msgstr "Japanski Kokuji"
 
 #: src/font-manager/Orthographies.vala:107
 msgid "Lao"
-msgstr ""
+msgstr "Laoški"
 
 #: src/font-manager/Orthographies.vala:108
 msgid "Latin Ligatures"
-msgstr ""
+msgstr "Latinične ligature"
 
 #: src/font-manager/Orthographies.vala:109
 msgid "Lepcha"
-msgstr ""
+msgstr "Lepčanski"
 
 #: src/font-manager/Orthographies.vala:110
 msgid "Limbu"
-msgstr ""
+msgstr "Limbuški"
 
 #: src/font-manager/Orthographies.vala:111
 msgid "Linear B Ideograms"
-msgstr ""
+msgstr "Linearni B ideogrami"
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Syllabary"
-msgstr ""
+msgstr "Linearni B slogovni"
 
 #: src/font-manager/Orthographies.vala:113
 msgid "Malayalam"
-msgstr ""
+msgstr "Malajalamski"
 
 #: src/font-manager/Orthographies.vala:114
 msgid "Mathematical Greek"
-msgstr ""
+msgstr "Matematički grčki znakovi"
 
 #: src/font-manager/Orthographies.vala:115
 msgid "Mathematical Latin"
-msgstr ""
+msgstr "Matematički latinični znakovi"
 
 #: src/font-manager/Orthographies.vala:116
 msgid "Mathematical Numerals"
-msgstr ""
+msgstr "Matematički numerički znakovi"
 
 #: src/font-manager/Orthographies.vala:117
 msgid "Mathematical Operators"
-msgstr ""
+msgstr "Matematički operatori"
 
 #: src/font-manager/Orthographies.vala:118
 msgid "Meetei Mayak"
-msgstr ""
+msgstr "Meetei Mayak"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Mende Kikakui"
-msgstr ""
+msgstr "Mende kikakuijski"
 
 #: src/font-manager/Orthographies.vala:120
 msgid "MeroiticCursive"
-msgstr ""
+msgstr "Meroitski kurziv"
 
 #: src/font-manager/Orthographies.vala:121
 msgid "Meroitic Hieroglyphs"
-msgstr ""
+msgstr "Meroitski hijeroglifi"
 
 #: src/font-manager/Orthographies.vala:122
 msgid "Miao"
-msgstr ""
+msgstr "Miaoški"
 
 #: src/font-manager/Orthographies.vala:123
 msgid "Mongolian"
-msgstr ""
+msgstr "Mongolski"
 
 #. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
 #. * Contains lots of duplicates, doubt many would find it useful
-#. 
+#.
 #. { N_("MUFI 3.0"), "MUFI 3.0" },
 #: src/font-manager/Orthographies.vala:130
 msgid "Myanmar"
-msgstr ""
+msgstr "Mianmarski"
 
 #: src/font-manager/Orthographies.vala:131
 msgid "New Tai Lue"
-msgstr ""
+msgstr "Novi Tai Lue"
 
 #: src/font-manager/Orthographies.vala:132
 msgid "N’Ko"
-msgstr ""
+msgstr "N’Ko"
 
 #: src/font-manager/Orthographies.vala:133
 msgid "Ogham"
-msgstr ""
+msgstr "Oghamski"
 
 #: src/font-manager/Orthographies.vala:134
 msgid "Ol Chiki"
-msgstr ""
+msgstr "Ol Chiki"
 
 #: src/font-manager/Orthographies.vala:135
 msgid "Old Italic"
-msgstr ""
+msgstr "Staroitalski"
 
 #: src/font-manager/Orthographies.vala:136
 msgid "Old South Arabian"
-msgstr ""
+msgstr "Stari južnoarapski"
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Oriya"
-msgstr ""
+msgstr "Orijski"
 
 #: src/font-manager/Orthographies.vala:138
 msgid "Osmanya"
-msgstr ""
+msgstr "Somalijsko"
 
 #: src/font-manager/Orthographies.vala:139
 msgid "Pan African Latin"
-msgstr ""
+msgstr "Sveafrička latinica"
 
 #: src/font-manager/Orthographies.vala:140
 msgid "Pashto"
-msgstr ""
+msgstr "Paštunski"
 
 #: src/font-manager/Orthographies.vala:141
 msgid "Phags Pa"
-msgstr ""
+msgstr "Phags Pa"
 
 #: src/font-manager/Orthographies.vala:142
 msgid "Pinyin"
-msgstr ""
+msgstr "Pinyin"
 
 #: src/font-manager/Orthographies.vala:143
 msgid "Polynesian"
-msgstr ""
+msgstr "Polinezijski"
 
 #: src/font-manager/Orthographies.vala:144
 msgid "Polytonic Greek"
-msgstr ""
+msgstr "Grčki, višeglasni"
 
 #: src/font-manager/Orthographies.vala:145
 msgid "Rejang"
-msgstr ""
+msgstr "Ređangski"
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Romanian"
-msgstr ""
+msgstr "Rumunjski"
 
 #: src/font-manager/Orthographies.vala:147
 msgid "Runic"
-msgstr ""
+msgstr "Runski"
 
 #: src/font-manager/Orthographies.vala:148
 msgid "Saurashtra"
-msgstr ""
+msgstr "Sauraštrijski"
 
 #: src/font-manager/Orthographies.vala:149
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "Kineski, pojednostavljeni"
 
 #: src/font-manager/Orthographies.vala:150
 msgid "Sindhi"
-msgstr ""
+msgstr "Sindi"
 
 #: src/font-manager/Orthographies.vala:151
 msgid "Sinhala"
-msgstr ""
+msgstr "Singalski"
 
 #: src/font-manager/Orthographies.vala:152
 msgid "South Korean Hanja"
-msgstr ""
+msgstr "Južnokorjski Hanja"
 
 #: src/font-manager/Orthographies.vala:153
 msgid "Sundanese"
-msgstr ""
+msgstr "Sudanski"
 
 #: src/font-manager/Orthographies.vala:154
 msgid "Syloti Nagri"
-msgstr ""
+msgstr "Syloti Nagri"
 
 #: src/font-manager/Orthographies.vala:155
 msgid "Syriac"
-msgstr ""
+msgstr "Sirjački"
 
 #: src/font-manager/Orthographies.vala:156
 msgid "Tai Le"
-msgstr ""
+msgstr "Tai Le"
 
 #: src/font-manager/Orthographies.vala:157
 msgid "Tai Tham (Lanna)"
-msgstr ""
+msgstr "Tai Tham (Lanna)"
 
 #: src/font-manager/Orthographies.vala:158
 msgid "Tai Viet"
-msgstr ""
+msgstr "Tai Viet"
 
 #: src/font-manager/Orthographies.vala:159
 msgid "Tamil"
-msgstr ""
+msgstr "Tamilski"
 
 #: src/font-manager/Orthographies.vala:160
 msgid "Telugu"
-msgstr ""
+msgstr "Teluški"
 
 #: src/font-manager/Orthographies.vala:161
 msgid "Thaana"
-msgstr ""
+msgstr "Thaana"
 
 #: src/font-manager/Orthographies.vala:162
 msgid "Thai"
-msgstr ""
+msgstr "Tajski"
 
 #: src/font-manager/Orthographies.vala:163
 msgid "Tibetan"
-msgstr ""
+msgstr "Tibetski"
 
 #: src/font-manager/Orthographies.vala:164
 msgid "Tifinagh"
-msgstr ""
+msgstr "Tifinagh"
 
 #: src/font-manager/Orthographies.vala:165
 msgid "Traditional Chinese"
-msgstr ""
+msgstr "Kineski, tradicionalni"
 
 #: src/font-manager/Orthographies.vala:166
 msgid "Turkish"
-msgstr ""
+msgstr "Turski"
 
 #: src/font-manager/Orthographies.vala:167
 msgid "Uighur"
-msgstr ""
+msgstr "Ujgurski"
 
 #: src/font-manager/Orthographies.vala:168
 msgid "Urdu"
-msgstr ""
+msgstr "Urdu"
 
 #: src/font-manager/Orthographies.vala:169
 msgid "Vai"
-msgstr ""
+msgstr "Vai"
 
 #: src/font-manager/Orthographies.vala:170
 msgid "Vedic Extensions"
-msgstr ""
+msgstr "Vedic proširenja"
 
 #: src/font-manager/Orthographies.vala:171
 msgid "Venda"
-msgstr ""
+msgstr "Venda"
 
 #: src/font-manager/Orthographies.vala:172
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vijetnamski"
 
 #: src/font-manager/Orthographies.vala:173
 msgid "Western European"
-msgstr ""
+msgstr "Zapadnoeuropski"
 
 #: src/font-manager/Orthographies.vala:174
 msgid "Yi"
-msgstr ""
+msgstr "Yi"
 
 #: src/font-manager/Orthographies.vala:175
 msgid "Chinese Zhuyin Fuhao"
-msgstr ""
+msgstr "Kineski Zhuyin Fuhao"
 
 #: src/font-manager/Orthography.vala:193
 msgid "Coverage"
@@ -1348,15 +1355,15 @@ msgstr "Podržani pravopisi"
 
 #: src/font-manager/TitleBar.vala:60
 msgid "Updating Database - Fonts"
-msgstr ""
+msgstr "Aktualiziranje baze podataka – fontovi"
 
 #: src/font-manager/TitleBar.vala:62
 msgid "Updating Database - Metadata"
-msgstr ""
+msgstr "Aktualiziranje baze podataka – metapodaci"
 
 #: src/font-manager/TitleBar.vala:64
 msgid "Updating Database - Orthography"
-msgstr ""
+msgstr "Aktualiziranje baze podataka – pravopis"
 
 #: src/font-manager/TitleBar.vala:79
 msgid "Keyboard Shortcuts"
@@ -1373,16 +1380,16 @@ msgstr "O programu"
 
 #: src/font-manager/TitleBar.vala:99
 msgid "Import"
-msgstr ""
+msgstr "Uvezi"
 
 #: src/font-manager/TitleBar.vala:100 src/font-manager/UserData.vala:117
 msgid "Export"
-msgstr ""
+msgstr "Izvezi"
 
 #: src/font-manager/TitleBar.vala:107 src/font-manager/UserData.vala:35
 #: src/font-manager/UserData.vala:46
 msgid "User Data"
-msgstr ""
+msgstr "Korisnički podaci"
 
 #: src/font-manager/TitleBar.vala:232
 msgid "Add Fonts"
@@ -1399,7 +1406,7 @@ msgstr "Postavke"
 
 #: src/font-manager/UserData.vala:55
 msgid "Select Exported Data"
-msgstr ""
+msgstr "Odaberi izvezene podatke"
 
 #: src/font-manager/filters/Collection.vala:49
 msgid "New Collection"
@@ -1420,7 +1427,7 @@ msgstr "Deaktivirani fontovi"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
 msgid "Filter based on language support"
-msgstr "Filtar koji se temelji na jezičnoj podršci"
+msgstr "Filtar na osnovi jezične podrške"
 
 #: src/font-manager/filters/LanguageFilter.vala:49
 msgid "Language"
@@ -1460,12 +1467,11 @@ msgstr "Font koji se koristi za čitanje dokumenata."
 
 #: src/font-manager/preferences/Desktop.vala:49
 msgid "Monospace Font"
-msgstr "Neproporcionalni font"
+msgstr "Jednometrični font"
 
 #: src/font-manager/preferences/Desktop.vala:50
 msgid "Monospaced (fixed-width) font for use in locations such as terminals."
-msgstr ""
-"Neproporcionalni font (fiksne širine) koji se koristi npr. u terminalu."
+msgstr "Jednometrični font (fiksne širine) koji se koristi npr. u terminalu."
 
 #: src/font-manager/preferences/Desktop.vala:55
 msgid "Text Scaling Factor"
@@ -1475,7 +1481,8 @@ msgstr "Faktor skaliranja teksta"
 msgid ""
 "Factor used to enlarge or reduce text display, without changing font size"
 msgstr ""
-"Faktor kojim se skalira prikaz teksta, bez mijenjanja stvarne veličine fonta"
+"Faktor kojim se povećava ili smanjuje prikaz teksta, bez mijenjanja stvarne "
+"veličine fonta"
 
 #: src/font-manager/preferences/Desktop.vala:61
 msgid "Antialiasing"
@@ -1504,7 +1511,7 @@ msgstr "Optimiranje prikaza"
 
 #: src/font-manager/preferences/Desktop.vala:74
 msgid "The type of hinting to use when rendering fonts."
-msgstr "Vrsta podešavanja oblika slovnih znakova za iscrtavanje fontova."
+msgstr "Vrsta optimiranja prikaza slovnih znakova tijekom iscrtavanje fontova."
 
 #: src/font-manager/preferences/Desktop.vala:101
 msgid "GNOME desktop settings schema not found"
@@ -1524,7 +1531,7 @@ msgstr "Datoteka konfiguracije je uklonjena."
 
 #: src/font-manager/preferences/Display.vala:70
 msgid "Target DPI"
-msgstr "Željeni DPI"
+msgstr "DPI cilja"
 
 #: src/font-manager/preferences/Display.vala:71
 msgid "Scale Factor"
@@ -1568,6 +1575,12 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"Odaberi Spremi za generiranje konfiguracijske datoteke iz gornjih postavki.\n"
+"\n"
+"Odaberi Odabaci za uklanjanje konfiguracijske datoteke i vraćanje na "
+"standardne postavke.\n"
+"\n"
+"Napomena: Neka okruženja i programi ne poštuju ove postavke."
 
 #: src/font-manager/preferences/Rendering.vala:80
 msgid "Antialias"
@@ -1611,6 +1624,11 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"Fontovi u svim ovdje navedenim mapama bit će dostupni u programu.\n"
+"\n"
+"Drugi programi ih neće vidjeti sve dok se izvor stvarno ne aktivira.\n"
+"\n"
+"Napomena: Neka okruženja i programi ne poštuju ove postavke."
 
 #: src/font-manager/preferences/Sources.vala:41
 msgid "Add source"
@@ -1634,8 +1652,8 @@ msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr ""
-"Za dodavanje izvora, jednostavno povuci mapu na ovo područje ili klikni na "
-"dugme za dodavanje u alatnoj traci."
+"Za dodavanje izvora, jednostavno povuci mapu na ovo područje ili pritisni "
+"gumb za dodavanje u alatnoj traci."
 
 #: src/font-manager/preferences/Substitutions.vala:32
 msgid "Add alias"
@@ -1655,8 +1673,7 @@ msgstr "Jednostavno zamijeni jednu obitelj fontova drugom obitelji."
 
 #: src/font-manager/preferences/Substitutions.vala:234
 msgid "To add a new substitute click the add button in the toolbar."
-msgstr ""
-"Za dodavanje nove zamjene klikni na dugme za dodavanje u alatnoj traci."
+msgstr "Za dodavanje nove zamjene, pritisni gumb za dodavanje u alatnoj traci."
 
 #: src/font-manager/preferences/UserInterface.vala:72
 msgid "Wide Layout"
@@ -1664,11 +1681,11 @@ msgstr "Široki format"
 
 #: src/font-manager/preferences/UserInterface.vala:75
 msgid "Only When Maximized"
-msgstr "Samo kad je maksimalno povećano"
+msgstr "Samo kad je prozor maksimalno razvučen"
 
 #: src/font-manager/preferences/UserInterface.vala:78
 msgid "Client Side Decorations"
-msgstr "Ukrasne funkcije klijenta"
+msgstr "Vizualne funkcije klijenta"
 
 #: src/font-manager/preferences/UserInterface.vala:82
 msgid "Enable Animations"
@@ -1682,14 +1699,14 @@ msgstr "Daj prednost tamnoj temi"
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
-"Ukrasne funkcije su aktivirane. Promjene će djelovati prilikom sljedećeg "
-"pokretanja programa."
+"Ukrasne funkcije klijenta su aktivirane. Promjene će se primijeniti nakon "
+"sljedećeg pokretanja programa."
 
 #: src/font-manager/preferences/UserInterface.vala:120
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
-"Ukrasne funkcije klijenta su deaktivirane. Promjene će djelovati prilikom "
+"Ukrasne funkcije klijenta su deaktivirane. Promjene će se primijeniti nakon "
 "sljedećeg pokretanja programa."
 
 #: src/font-viewer/MainWindow.vala:24
@@ -1726,7 +1743,7 @@ msgstr "Ili nepodržane vrste datoteka."
 
 #: src/font-viewer/MainWindow.vala:224
 msgid "Newer version already installed"
-msgstr "Novija verzija je već instalirana"
+msgstr "Već je instalirana novija verzija"
 
 #: src/font-viewer/MainWindow.vala:226
 msgid "Installed"
@@ -1734,7 +1751,7 @@ msgstr "Instalirano"
 
 #: lib/unicode/ui/unicode-character-map-zoom-window.ui:80
 msgid "Copy"
-msgstr ""
+msgstr "Kopiraj"
 
 #: lib/vala/ui/font-manager-preview-controls.ui:19
 msgid "Undo changes"
@@ -1754,7 +1771,7 @@ msgstr "Centrirano"
 
 #: lib/vala/ui/font-manager-preview-controls.ui:115
 msgid "Fill"
-msgstr "Ispunjeno"
+msgstr "Ispuni"
 
 #: lib/vala/ui/font-manager-preview-controls.ui:141
 msgid "Right Aligned"
@@ -1774,11 +1791,11 @@ msgstr "Odaberi vrstu pregleda"
 
 #: lib/vala/ui/font-manager-preview-pane.ui:141
 msgid "Search available characters"
-msgstr ""
+msgstr "Pretraži dostupne znakove"
 
 #: lib/vala/ui/font-manager-properties-pane.ui:147
 msgid "PostScript Name"
-msgstr "PostScript naziv"
+msgstr "PostScript ime"
 
 #: lib/vala/ui/font-manager-properties-pane.ui:253
 msgid "Version"
@@ -1806,23 +1823,23 @@ msgstr "Dodaj zamjenu"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:34
 msgid "List View"
-msgstr ""
+msgstr "Prikaz popisa"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:68
 msgid "Grid View"
-msgstr ""
+msgstr "Pločasti prikaz"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:116
 msgid "Enter Preview Text…"
-msgstr ""
+msgstr "Upiši tekst za pregled …"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:181
 msgid "Previous page"
-msgstr ""
+msgstr "Prethodna stranica"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:209
 msgid "Next page"
-msgstr ""
+msgstr "Sljedeća stranica"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:40
 msgid "Add selected font to comparison"
@@ -1840,7 +1857,7 @@ msgstr "Odaberi boju pozadine"
 #: src/font-manager/ui/font-manager-compare-view.ui:121
 #: src/font-manager/ui/font-manager-compare-view.ui:123
 msgid "Select text color"
-msgstr ""
+msgstr "Odaberi boju teksta"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:12
 msgid "Discard"
@@ -1849,7 +1866,7 @@ msgstr "Odbaci"
 #: src/font-manager/ui/font-manager-font-config-controls.ui:30
 msgid "Running applications may require a restart to reflect any changes."
 msgstr ""
-"Za prikaz promjena je možda potrebno ponovo pokrenuti aktivne programe."
+"Za prikaz promjena možda će biti potrebno ponovo pokrenuti aktivne programe."
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:40
 msgid "Save"
@@ -1857,11 +1874,11 @@ msgstr "Spremi"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:31
 msgid "Back"
-msgstr ""
+msgstr "Natrag"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:59
 msgid "Search Languages…"
-msgstr ""
+msgstr "Pretraži jezike …"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:73
 msgid "Deselect All"
@@ -1933,7 +1950,7 @@ msgstr "Prebaci na prikaz vodopada"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:108
 msgid "Switch to Body Text preview"
-msgstr "Prebaci na prikaz osnovnog teksta"
+msgstr "Prebaci na prikaz teksta"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:24
 msgid "Categories"
@@ -1965,20 +1982,20 @@ msgstr "standardno"
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:13
 msgid "Titlebar Button Style"
-msgstr ""
+msgstr "Stil gumbova u naslovnoj traci"
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:43
 msgid "Flat"
-msgstr ""
+msgstr "Plošno"
 
 #: src/font-manager/ui/font-manager-user-data.ui:79
 msgid "Font Configuration"
-msgstr ""
+msgstr "Konfiguracija fontova"
 
 #: src/font-manager/ui/font-manager-user-data.ui:108
 msgid "Font Collections"
-msgstr ""
+msgstr "Zbirke fontova"
 
 #: src/font-manager/ui/font-manager-user-data.ui:166
 msgid "Installed Fonts"
-msgstr ""
+msgstr "Instalirani fontovi"
