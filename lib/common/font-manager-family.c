@@ -1,6 +1,6 @@
 /* font-manager-family.c
  *
- * Copyright (C) 2009 - 2019 Jerry Casiano
+ * Copyright (C) 2009 - 2020 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,6 @@
  *
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
-
 #include "font-manager-family.h"
 
 struct _FontManagerFamily

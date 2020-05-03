@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright (C) 2009 - 2019 Jerry Casiano -->
+<!-- Copyright (C) 2009 - 2020 Jerry Casiano -->
 <component type="desktop-application">
 
     <id>org.gnome.FontViewer</id>
