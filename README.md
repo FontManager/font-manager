@@ -79,6 +79,7 @@ You'll need to ensure the following dependencies are installed:
 - `sqlite3 >= 3.8`
 - `gobject-introspection`
 - `yelp-tools`
+- `gettext`
 
 To build the application:
 
