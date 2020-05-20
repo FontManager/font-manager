@@ -78,8 +78,13 @@ You'll need to ensure the following dependencies are installed:
 - `libxml-2.0 >= 2.9`
 - `sqlite3 >= 3.8`
 - `gobject-introspection`
-- `yelp-tools`
-- `gettext`
+- `yelp-tools` (optional)
+- `gettext` (optional)
+
+If you wish to also build the file manager extensions:
+
+- `libnautilus-extension` (optional)
+- `libnemo-extension` (optional)
 
 To build the application:
 
@@ -105,6 +110,18 @@ To uninstall:
 
 ```
 sudo ninja uninstall
+```
+
+For a list of available build options:
+
+```
+meson configure
+```
+
+To change an option after the build directory has been configured:
+
+```
+meson configure -Dsome_option=true
 ```
 
 ## License
