@@ -10,12 +10,11 @@ libfontmanager = shared_library('fontmanager',
                                     libunicode.get_static_lib(),
                                     libcommon.get_static_lib()
                                 ],
-                                dependencies: [
-                                    fontconfig, freetype, json, gio, glib,
-                                    gobject, gtk, m_dep, pango, pangoft2,
-                                    sqlite, xml
-                                ],
-                                include_directories: default_includes,
+                                dependencies: project_deps,
                                 install: true,
                                 install_dir: pkglib_dir)
 
+libfontmanager_deps = declare_dependency(
+    link_with: libfontmanager,
+    include_directories: include_directories('.')
+)

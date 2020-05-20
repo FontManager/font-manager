@@ -19,8 +19,7 @@ unicode_sources = [
 
 libunicode = both_libraries('unicode',
                             unicode_sources,
-                            dependencies: [m_dep, glib, gobject, gtk, pango],
-                            include_directories: default_includes)
+                            dependencies: base_deps)
 
 unicode_gir = gnome.generate_gir(libunicode,
                                 sources: unicode_sources,

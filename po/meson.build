@@ -1,4 +1,22 @@
 
+gettext_info = '''
+
+	Install the gettext package and try again.
+		
+	For more information see https://www.gnu.org/software/gettext/
+'''
+
+#       Check for programs required by i18n.gettext       #
+#       Display a friendlier message if not present       #
+
+nls = find_program('msgfmt', required: false)
+
+if not nls.found() 
+	dependency('gettext', not_found_message: gettext_info)
+endif
+
+#                                                         #
+
 PODIR = join_paths(meson.source_root(), 'po')
 
 POTFILES = '''
@@ -46,3 +64,4 @@ gettext_args = [
 ]
 
 i18n.gettext(meson.project_name(), preset: 'glib', args: gettext_args)
+

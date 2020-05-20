@@ -22,21 +22,14 @@ endforeach
 
 libcommon = both_libraries('common',
                             common_sources,
-                            dependencies: [
-                                json, gio, glib, gobject, gtk, pango, sqlite,
-                                xml, fontconfig, freetype, pangoft2
-                            ],
-                            link_with: libunicode,
-                            include_directories: default_includes)
+                            dependencies: project_deps,
+                            link_with: libunicode)
 
 common_gir = gnome.generate_gir(libcommon,
                                 sources: [ common_sources, common_headers],
                                 namespace: 'FontManager',
                                 nsversion: meson.project_version(),
-                                dependencies: [
-                                    json, gio, glib, gobject, gtk, pango, sqlite,
-                                    xml, fontconfig, freetype, pangoft2, unicode_vapi
-                                ],
+                                dependencies: [project_deps, unicode_vapi],
                                 extra_args: [ '--warn-all' ],
                                 includes: [
                                     'GLib-2.0',
@@ -45,8 +38,7 @@ common_gir = gnome.generate_gir(libcommon,
                                     'Gtk-3.0',
                                     'Json-1.0',
                                     'libxml2-2.0'
-                                ],
-                                include_directories: default_includes)
+                                ])
 
 configure_file(
     input: 'FontManager.metadata',

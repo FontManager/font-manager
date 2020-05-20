@@ -1,5 +1,5 @@
 
-project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.7.7', default_options: 'warning_level=2')
+project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.7.7')
 
 cc = meson.get_compiler('c')
 # There has to be a better way to require a specific vala version, right?
@@ -20,22 +20,33 @@ pangoft2 = dependency('pangoft2', version: '>= 1.4')
 sqlite = dependency('sqlite3', version: '>= 3.8')
 xml = dependency('libxml-2.0', version: '>= 2.9')
 
-nautilus = dependency('libnautilus-extension', required: false)
-nemo = dependency('libnemo-extension', required: false)
+base_deps = declare_dependency(
+    dependencies: [m_dep, json, gio, glib, gmodule, gobject, gtk, pango, sqlite, xml],
+    include_directories: include_directories('.',
+                                             'lib/common',
+                                             'lib/orthographies',
+                                             'lib/unicode',
+                                             'lib/vala')
+)
+
+project_deps = declare_dependency(
+    dependencies: [ base_deps, fontconfig, freetype, pangoft2 ]
+)
 
 i18n = import('i18n')
 gnome= import('gnome')
 python = import('python').find_installation('python3')
+
+reproducible = get_option('reproducible') ? '-DREPRODUCIBLE' : '-DNOT_REPRODUCIBLE'
 
 add_global_arguments(
     '-DG_LOG_DOMAIN="[@0@]"'.format(meson.project_name()),
     '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
     '-DGDK_DISABLE_DEPRECATED',
     '-DGTK_DISABLE_DEPRECATED',
+    reproducible,
     language: 'c'
 )
-
-default_includes = include_directories( '.', 'lib/common', 'lib/orthographies', 'lib/unicode')
 
 config_vapi_file = files('config.vapi')
 prefix = get_option('prefix')
@@ -64,13 +75,46 @@ list_sources = file_list_template.format('c')
 list_headers = file_list_template.format('h')
 list_vala_sources = file_list_template.format('vala')
 
-subdir('po')
+if get_option('enable-nls')
+	subdir('po')
+endif
+
 subdir('help')
 subdir('lib')
 subdir('src')
 subdir('data')
-subdir('extensions')
+
+if get_option('nautilus') or get_option('nemo')
+	subdir('extensions')
+endif
 
 meson.add_install_script('meson_post_install.py')
 meson.add_dist_script('meson_dist.py')
 
+summary(
+	{
+		'Font Manager': get_option('manager'),
+		'Font Viewer': get_option('viewer'),
+		'Help Documents': get_option('yelp-doc'),
+		'Nautilus extension': get_option('nautilus'),
+		'Nemo extension': get_option('nemo'),
+		'Translations': get_option('enable-nls'),
+		'Reproducible build': get_option('reproducible')
+	},
+	section: '''Project options
+	''',
+	bool_yn: true
+)
+
+summary(
+	{
+		'prefix': prefix,
+		'bindir': get_option('bindir'),
+		'libdir': join_paths(get_option('libdir'), meson.project_name()),
+		'libexecdir': join_paths(get_option('libexecdir'), meson.project_name()),
+		'datadir': join_paths(datadir, meson.project_name())
+	}, 
+	section: '''Directories
+	'''
+)
+        

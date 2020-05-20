@@ -16,6 +16,12 @@ configure_file(
 )
 
 foreach path: service
+	if (path == 'org.gnome.FontManager' and not get_option('manager'))
+		continue
+	endif
+	if (path == 'org.gnome.FontViewer' and not get_option('viewer'))
+		continue
+	endif
     install_data('@0@.gschema.xml'.format(path), install_dir: schema_dir)
     i18n.merge_file(
         input: configure_file(
@@ -53,38 +59,46 @@ Exec=@1@/@2@ --gapplication-service
 """
 '''
 
-custom_target(
-    '@0@.service'.format(service[0]),
-    output: '@0@.service'.format(service[0]),
-    command: [
-        python,
-        '-c',
-        python_write.format(
-            dbus_service.format(
-                service[0],
-                join_paths(prefix, get_option('bindir')),
-                meson.project_name()
-            )
-        )
-    ],
-    install: true,
-    install_dir: dbus_service_dir
-)
+if get_option('manager')
+	
+	custom_target(
+	    '@0@.service'.format(service[0]),
+	    output: '@0@.service'.format(service[0]),
+	    command: [
+	        python,
+	        '-c',
+	        python_write.format(
+	            dbus_service.format(
+	                service[0],
+	                join_paths(prefix, get_option('bindir')),
+	                meson.project_name()
+	            )
+	        )
+	    ],
+	    install: true,
+	    install_dir: dbus_service_dir
+	)
 
-custom_target(
-    '@0@.service'.format(service[1]),
-    output: '@0@.service'.format(service[1]),
-    command: [
-        python,
-        '-c',
-        python_write.format(
-            dbus_service.format(
-                service[1],
-                pkglibexec_dir,
-                'font-viewer'
-            )
-        )
-    ],
-    install: true,
-    install_dir: dbus_service_dir
-)
+endif
+
+if get_option('viewer')
+
+	custom_target(
+	    '@0@.service'.format(service[1]),
+	    output: '@0@.service'.format(service[1]),
+	    command: [
+	        python,
+	        '-c',
+	        python_write.format(
+	            dbus_service.format(
+	                service[1],
+	                pkglibexec_dir,
+	                'font-viewer'
+	            )
+	        )
+	    ],
+	    install: true,
+	    install_dir: dbus_service_dir
+	)
+
+endif
