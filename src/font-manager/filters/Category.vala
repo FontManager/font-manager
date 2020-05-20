@@ -20,7 +20,7 @@
 
 namespace FontManager {
 
-    public class Category : FontListFilter {
+    public class Category : Filter {
 
         public string? sql { get; set; default = null; }
         public StringHashset descriptions { get; set; }

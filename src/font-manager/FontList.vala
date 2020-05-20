@@ -585,7 +585,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
     public class FontListPane : Gtk.Box {
 
         public FontListControls controls { get; protected set; }
-        public FontListFilter? filter { get; set; default = null; }
+        public Filter? filter { get; set; default = null; }
 
         public BaseFontList fontlist {
             get {

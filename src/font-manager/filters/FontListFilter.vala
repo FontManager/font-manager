@@ -24,7 +24,7 @@ namespace FontManager {
         return (a.index - b.index);
     }
 
-    public class FontListFilter : Filter, Cacheable {
+    public class Filter : Cacheable {
 
         public virtual string name { owned get; set; }
         public virtual string icon { owned get; set; }

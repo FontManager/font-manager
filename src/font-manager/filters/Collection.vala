@@ -27,7 +27,7 @@ namespace FontManager {
         return total;
     }
 
-    public class Collection : FontListFilter {
+    public class Collection : Filter {
 
         public bool active { get; set; default = true; }
         public GLib.List <Collection> children { get; owned set; }
