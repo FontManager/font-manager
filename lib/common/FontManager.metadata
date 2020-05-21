@@ -23,7 +23,6 @@ get_matching_families_and_fonts throws = "DatabaseError" cheader_filename = "fon
 CURRENT_DATABASE_VERSION cheader_filename = "font-manager-database.h"
 
 Family cheader_filename = "font-manager-family.h"
-Filter cheader_filename = "font-manager-filter.h"
 Font cheader_filename = "font-manager-font.h"
 
 FontInfo cheader_filename = "font-manager-font-info.h"
@@ -98,3 +97,5 @@ get_package_config_directory cheader_filename = "font-manager-utils.h"
 get_user_fontconfig_directory cheader_filename = "font-manager-utils.h"
 to_filename cheader_filename = "font-manager-utils.h"
 get_gsettings cheader_filename = "font-manager-utils.h"
+get_localized_pangram cheader_filename = "font-manager-utils.h"
+timecmp cheader_filename = "font-manager-utils.h"

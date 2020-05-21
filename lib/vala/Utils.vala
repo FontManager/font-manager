@@ -78,8 +78,6 @@ namespace FontManager {
     }
 
     /**
-     * load_user_font_resources:
-     *
      * Adds user configured font sources (directories) and rejected fonts to our
      * FcConfig so that we can render fonts which are not actually "installed".
      */
@@ -114,10 +112,6 @@ namespace FontManager {
         action.activate.connect((a, p) => { entry.method.run(); } );
         map.add_action(action);
         return;
-    }
-
-    public string get_localized_pangram () {
-        return Pango.Language.get_default().get_sample_string();
     }
 
     public string get_localized_preview_text () {
@@ -178,35 +172,6 @@ namespace FontManager {
         else
             cr.set_source_rgba(color.red, color.green, color.blue, alpha);
         return;
-    }
-
-    /**
-     * timecmp:
-     * @old:        filepath
-     * @proposed:   filepath
-     *
-     * Compare two files based on modification time.
-     *
-     * Returns:     an integer less than, equal to, or greater than zero,
-     *              if old is <, == or > than proposed.
-     */
-    public int timecmp (string old, string proposed) {
-        TimeVal? old_time = get_modification_time(old);
-        TimeVal? new_time = get_modification_time(proposed);
-        return_val_if_fail(old_time != null && new_time != null, 0);
-        return old_time.tv_sec == new_time.tv_sec ? 0 :
-               old_time.tv_sec < new_time.tv_sec ? -1 : 1;
-    }
-
-    public TimeVal? get_modification_time (string path) {
-        try {
-            var file = File.new_for_path(path);
-            var fileinfo = file.query_info(FileAttribute.TIME_MODIFIED, FileQueryInfoFlags.NONE, null);
-            return fileinfo.get_modification_time();
-        } catch (Error e) {
-            critical(e.message);
-        }
-        return null;
     }
 
     public bool remove_directory_tree_if_empty (File dir) {

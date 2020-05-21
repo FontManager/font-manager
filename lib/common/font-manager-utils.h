@@ -24,11 +24,13 @@
 
 #include <glib.h>
 #include <gio/gio.h>
+#include <pango/pango-language.h>
 
 G_BEGIN_DECLS
 
 gint font_manager_get_file_owner (const gchar *filepath) G_GNUC_PURE;
-gint font_manager_natural_sort (const gchar *s1, const gchar *s2) G_GNUC_PURE;
+gint font_manager_natural_sort (const gchar *str1, const gchar *str2) G_GNUC_PURE;
+gint font_manager_timecmp (gchar *a, gchar *b);
 gboolean font_manager_exists (const gchar *filepath) G_GNUC_PURE;
 gboolean font_manager_is_dir (const gchar *filepath) G_GNUC_PURE;
 gchar * font_manager_get_file_extension (const gchar *filepath) G_GNUC_PURE;
@@ -39,6 +41,7 @@ gchar * font_manager_get_package_config_directory (void) G_GNUC_CONST;
 gchar * font_manager_get_user_fontconfig_directory (void) G_GNUC_CONST;
 gchar * font_manager_str_replace (const gchar *str, const gchar *target, const gchar *replacement) G_GNUC_PURE;
 gchar * font_manager_to_filename (const gchar *str) G_GNUC_PURE;
+gchar * font_manager_get_localized_pangram (void);
 GSettings * font_manager_get_gsettings (const gchar *schema_id);
 
 G_END_DECLS
