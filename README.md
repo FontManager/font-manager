@@ -70,7 +70,7 @@ You'll need to ensure the following dependencies are installed:
 
 - `meson >= 0.50`
 - `ninja`
-- `glib >= 2.44`
+- `glib >= 2.62`
 - `vala >= 0.42`
 - `freetype2 >= 2.5`
 - `gtk+-3.0 >= 3.22`
