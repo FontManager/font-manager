@@ -1,13 +1,17 @@
+project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.7.7')
 
-project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.7.7', meson_version: '>= 0.50')
+if meson.version().version_compare('< 0.50')
+	error('Meson version is @0@ but project requires >= 0.50'.format(meson.version()))
+endif
 
-meson_has_summary_function = meson.version() >= '0.53'
+meson_has_summary_function = meson.version().version_compare('>= 0.53')
 
 cc = meson.get_compiler('c')
 # There has to be a better way to require a specific vala version, right?
 valac = meson.get_compiler('vala')
-have_required_vala_version = valac.version().version_compare('>= 0.42')
-assert(have_required_vala_version, 'valac version 0.42 or higher required.')
+if not valac.version().version_compare('>= 0.42')
+	error('Vala compiler version is @0@ but project requires >= 0.42'.format(valac.version()))
+endif
 m_dep = cc.find_library('m', required: false)
 fontconfig = dependency('fontconfig', version: '>= 2.1')
 freetype = dependency('freetype2', version: '>= 2.5')
