@@ -49,11 +49,13 @@ configure_file(
 common_vapi = gnome.generate_vapi('FontManager-@0@'.format(meson.project_version()),
                                     sources: [
                                         common_gir[0],
+                                        unicode_gir[0],
                                         'FontManager-custom.vala'
                                     ],
                                     vapi_dirs: [
                                         meson.current_build_dir(),
-                                        join_paths(meson.build_root(), 'lib', 'unicode')
+                                        join_paths(meson.build_root(), 'lib', 'unicode'),
+                                        join_paths(meson.source_root(), 'lib', 'unicode')
                                     ],
                                     metadata_dirs: meson.current_build_dir(),
                                     packages: [
@@ -64,5 +66,5 @@ common_vapi = gnome.generate_vapi('FontManager-@0@'.format(meson.project_version
                                         'json-glib-1.0',
                                         'libxml-2.0',
                                         'sqlite3',
-                                        'Unicode-@0@'.format(meson.project_version())
+                                        'Unicode'
                                     ])

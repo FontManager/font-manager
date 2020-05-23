@@ -103,7 +103,6 @@ if meson_has_summary_function
 		{
 			'Font Manager': get_option('manager'),
 			'Font Viewer': get_option('viewer'),
-			'API Documentation': get_option('gtk-doc'),
 			'Help Documents': get_option('yelp-doc'),
 			'Nautilus extension': get_option('nautilus'),
 			'Nemo extension': get_option('nemo'),
