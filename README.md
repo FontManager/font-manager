@@ -68,7 +68,7 @@ The extension allows you to preview font files by simply selecting them in the f
 
 You'll need to ensure the following dependencies are installed:
 
-- `meson`
+- `meson >= 0.50`
 - `ninja`
 - `glib >= 2.44`
 - `vala >= 0.42`

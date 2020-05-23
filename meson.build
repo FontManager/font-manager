@@ -1,5 +1,7 @@
 
-project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.7.7')
+project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.7.7', meson_version: '>= 0.50')
+
+meson_has_summary_function = meson.version() >= '0.53'
 
 cc = meson.get_compiler('c')
 # There has to be a better way to require a specific vala version, right?
@@ -91,30 +93,35 @@ endif
 meson.add_install_script('meson_post_install.py')
 meson.add_dist_script('meson_dist.py')
 
-summary(
-	{
-		'Font Manager': get_option('manager'),
-		'Font Viewer': get_option('viewer'),
-		'Help Documents': get_option('yelp-doc'),
-		'Nautilus extension': get_option('nautilus'),
-		'Nemo extension': get_option('nemo'),
-		'Translations': get_option('enable-nls'),
-		'Reproducible build': get_option('reproducible')
-	},
-	section: '''Project options
-	''',
-	bool_yn: true
-)
+if meson_has_summary_function
+	
+	summary(
+		{
+			'Font Manager': get_option('manager'),
+			'Font Viewer': get_option('viewer'),
+			'API Documentation': get_option('gtk-doc'),
+			'Help Documents': get_option('yelp-doc'),
+			'Nautilus extension': get_option('nautilus'),
+			'Nemo extension': get_option('nemo'),
+			'Translations': get_option('enable-nls'),
+			'Reproducible build': get_option('reproducible')
+		},
+		section: '''Project options
+		''',
+		bool_yn: true
+	)
+	
+	summary(
+		{
+			'prefix': prefix,
+			'bindir': get_option('bindir'),
+			'libdir': join_paths(get_option('libdir'), meson.project_name()),
+			'libexecdir': join_paths(get_option('libexecdir'), meson.project_name()),
+			'datadir': join_paths(datadir, meson.project_name())
+		}, 
+		section: '''Directories
+		'''
+	)
+	        
+endif
 
-summary(
-	{
-		'prefix': prefix,
-		'bindir': get_option('bindir'),
-		'libdir': join_paths(get_option('libdir'), meson.project_name()),
-		'libexecdir': join_paths(get_option('libexecdir'), meson.project_name()),
-		'datadir': join_paths(datadir, meson.project_name())
-	}, 
-	section: '''Directories
-	'''
-)
-        
