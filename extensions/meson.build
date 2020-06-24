@@ -1,9 +1,9 @@
 
 if get_option('nautilus')
-	subdir('nautilus')
+    subdir('nautilus')
 endif
 
 if get_option('nemo')
-	subdir('nemo')
+    subdir('nemo')
 endif
 

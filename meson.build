@@ -1,7 +1,7 @@
 project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.7.7')
 
 if meson.version().version_compare('< 0.50')
-	error('Meson version is @0@ but project requires >= 0.50'.format(meson.version()))
+    error('Meson version is @0@ but project requires >= 0.50'.format(meson.version()))
 endif
 
 meson_has_summary_function = meson.version().version_compare('>= 0.53')
@@ -10,7 +10,7 @@ cc = meson.get_compiler('c')
 # There has to be a better way to require a specific vala version, right?
 valac = meson.get_compiler('vala')
 if not valac.version().version_compare('>= 0.42')
-	error('Vala compiler version is @0@ but project requires >= 0.42'.format(valac.version()))
+    error('Vala compiler version is @0@ but project requires >= 0.42'.format(valac.version()))
 endif
 m_dep = cc.find_library('m', required: false)
 fontconfig = dependency('fontconfig', version: '>= 2.1')
@@ -82,7 +82,7 @@ list_headers = file_list_template.format('h')
 list_vala_sources = file_list_template.format('vala')
 
 if get_option('enable-nls')
-	subdir('po')
+    subdir('po')
 endif
 
 subdir('help')
@@ -91,40 +91,40 @@ subdir('src')
 subdir('data')
 
 if get_option('nautilus') or get_option('nemo')
-	subdir('extensions')
+    subdir('extensions')
 endif
 
 meson.add_install_script('meson_post_install.py')
 meson.add_dist_script('meson_dist.py')
 
 if meson_has_summary_function
-	
-	summary(
-		{
-			'Font Manager': get_option('manager'),
-			'Font Viewer': get_option('viewer'),
-			'Help Documents': get_option('yelp-doc'),
-			'Nautilus extension': get_option('nautilus'),
-			'Nemo extension': get_option('nemo'),
-			'Translations': get_option('enable-nls'),
-			'Reproducible build': get_option('reproducible')
-		},
-		section: '''Project options
-		''',
-		bool_yn: true
-	)
-	
-	summary(
-		{
-			'prefix': prefix,
-			'bindir': get_option('bindir'),
-			'libdir': join_paths(get_option('libdir'), meson.project_name()),
-			'libexecdir': join_paths(get_option('libexecdir'), meson.project_name()),
-			'datadir': join_paths(datadir, meson.project_name())
-		}, 
-		section: '''Directories
-		'''
-	)
-	        
+
+    summary(
+        {
+            'Font Manager': get_option('manager'),
+            'Font Viewer': get_option('viewer'),
+            'Help Documents': get_option('yelp-doc'),
+            'Nautilus extension': get_option('nautilus'),
+            'Nemo extension': get_option('nemo'),
+            'Translations': get_option('enable-nls'),
+            'Reproducible build': get_option('reproducible')
+        },
+        section: '''Project options
+        ''',
+        bool_yn: true
+    )
+
+    summary(
+        {
+            'prefix': prefix,
+            'bindir': get_option('bindir'),
+            'libdir': join_paths(get_option('libdir'), meson.project_name()),
+            'libexecdir': join_paths(get_option('libexecdir'), meson.project_name()),
+            'datadir': join_paths(datadir, meson.project_name())
+        },
+        section: '''Directories
+        '''
+    )
+
 endif
 

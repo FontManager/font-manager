@@ -21,10 +21,10 @@ set -e
 case "$1" in
     configure)
         glib-compile-schemas /usr/share/glib-2.0/schemas
-	;;
+    ;;
     abort-upgrade|abort-remove|abort-deconfigure)
         glib-compile-schemas /usr/share/glib-2.0/schemas
-	;;
+    ;;
     *)
         echo "postinst called with unknown argument \`$1'" >&2
         exit 1

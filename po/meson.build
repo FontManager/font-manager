@@ -1,9 +1,9 @@
 
 gettext_info = '''
 
-	Install the gettext package and try again.
-		
-	For more information see https://www.gnu.org/software/gettext/
+    Install the gettext package and try again.
+
+    For more information see https://www.gnu.org/software/gettext/
 '''
 
 #       Check for programs required by i18n.gettext       #
@@ -11,8 +11,8 @@ gettext_info = '''
 
 nls = find_program('msgfmt', required: false)
 
-if not nls.found() 
-	dependency('gettext', not_found_message: gettext_info)
+if not nls.found()
+    dependency('gettext', not_found_message: gettext_info)
 endif
 
 #                                                         #

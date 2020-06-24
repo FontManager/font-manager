@@ -19,53 +19,53 @@
 */
 
 namespace FontManager {
-	
-	public class Cacheable : Object, Json.Serializable {
-	
-	    public unowned ParamSpec? find_property (string name) {
-	        return this.get_class().find_property(name);
-	    }
-	
-	    public ParamSpec [] list_properties () {
-	        return this.get_class().list_properties();
-	    }
-	
-	    public new Value get_property (ParamSpec pspec) {
-	        Value val = Value(pspec.value_type);
-	        base.get_property(pspec.name, ref val);
-	        return val;
-	    }
-	
-	    public new void set_property (ParamSpec pspec, Value val) {
-	        base.set_property(pspec.name, val);
-	        return;
-	    }
-	
-	    public virtual bool deserialize_property (string prop_name,
-												  out Value val,
-												  ParamSpec pspec,
-												  Json.Node node) {
-	        val = Value(pspec.value_type);
-	        if (node.is_null())
-	            return true;
-	        val = node.get_value();
-	        return true;
-	    }
-	
-	    public virtual Json.Node serialize_property (string prop_name,
-													 Value val,
-													 ParamSpec pspec) {
-	        Json.Node node;
-	        /* XXX : Value.strdup_contents() is marked unstable */
-	        if (val.strdup_contents() == "NULL")
-	            node = new Json.Node(Json.NodeType.NULL);
-	        else {
-	            node = new Json.Node(Json.NodeType.VALUE);
-	            node.set_value(val);
-	        }
-	        return node;
-	    }
-	
-	}
+
+    public class Cacheable : Object, Json.Serializable {
+
+        public unowned ParamSpec? find_property (string name) {
+            return this.get_class().find_property(name);
+        }
+
+        public ParamSpec [] list_properties () {
+            return this.get_class().list_properties();
+        }
+
+        public new Value get_property (ParamSpec pspec) {
+            Value val = Value(pspec.value_type);
+            base.get_property(pspec.name, ref val);
+            return val;
+        }
+
+        public new void set_property (ParamSpec pspec, Value val) {
+            base.set_property(pspec.name, val);
+            return;
+        }
+
+        public virtual bool deserialize_property (string prop_name,
+                                                  out Value val,
+                                                  ParamSpec pspec,
+                                                  Json.Node node) {
+            val = Value(pspec.value_type);
+            if (node.is_null())
+                return true;
+            val = node.get_value();
+            return true;
+        }
+
+        public virtual Json.Node serialize_property (string prop_name,
+                                                     Value val,
+                                                     ParamSpec pspec) {
+            Json.Node node;
+            /* XXX : Value.strdup_contents() is marked unstable */
+            if (val.strdup_contents() == "NULL")
+                node = new Json.Node(Json.NodeType.NULL);
+            else {
+                node = new Json.Node(Json.NodeType.VALUE);
+                node.set_value(val);
+            }
+            return node;
+        }
+
+    }
 
 }
