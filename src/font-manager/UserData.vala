@@ -52,14 +52,11 @@ namespace FontManager {
     }
 
     public void import_user_data () {
-        var dialog = new Gtk.FileChooserDialog(_("Select Exported Data"),
-                                                    main_window,
-                                                    Gtk.FileChooserAction.SELECT_FOLDER,
-                                                    _("_Cancel"),
-                                                    Gtk.ResponseType.CANCEL,
-                                                    _("_Select"),
-                                                    Gtk.ResponseType.ACCEPT,
-                                                    null);
+        var dialog = new Gtk.FileChooserNative(_("Select Exported Data"),
+                                                main_window,
+                                                Gtk.FileChooserAction.SELECT_FOLDER,
+                                                _("_Select"),
+                                                _("_Cancel"));
         dialog.set_select_multiple(false);
         File? directory = null;
         if (dialog.run() == Gtk.ResponseType.ACCEPT)

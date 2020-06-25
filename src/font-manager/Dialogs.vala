@@ -44,14 +44,11 @@ namespace FontManager {
     namespace FileSelector {
 
         public string? get_target_directory () {
-            var dialog = new Gtk.FileChooserDialog(_("Select Destination"),
+            var dialog = new Gtk.FileChooserNative(_("Select Destination"),
                                                     main_window,
                                                     Gtk.FileChooserAction.SELECT_FOLDER,
-                                                    _("_Cancel"),
-                                                    Gtk.ResponseType.CANCEL,
                                                     _("_Select"),
-                                                    Gtk.ResponseType.ACCEPT,
-                                                    null);
+                                                    _("_Cancel"));
             dialog.set_select_multiple(false);
             dialog.set_do_overwrite_confirmation(true);
             dialog.set_create_folders(true);
@@ -64,14 +61,11 @@ namespace FontManager {
 
         public StringHashset get_selections () {
             var selections = new StringHashset();
-            var dialog = new Gtk.FileChooserDialog(_("Select files to install"),
+            var dialog = new Gtk.FileChooserNative(_("Select files to install"),
                                                     main_window,
                                                     Gtk.FileChooserAction.OPEN,
-                                                    _("_Cancel"),
-                                                    Gtk.ResponseType.CANCEL,
                                                     _("_Open"),
-                                                    Gtk.ResponseType.ACCEPT,
-                                                    null);
+                                                    _("_Cancel"));
             var filter = new Gtk.FileFilter();
             var file_roller = new ArchiveManager();
             if (file_roller.available)
@@ -92,14 +86,11 @@ namespace FontManager {
 
         public string? [] get_selected_sources () {
             string? [] arr = { };
-            var dialog = new Gtk.FileChooserDialog(_("Select source folders"),
+            var dialog = new Gtk.FileChooserNative(_("Select source folders"),
                                                     main_window,
                                                     Gtk.FileChooserAction.SELECT_FOLDER,
-                                                    _("_Cancel"),
-                                                    Gtk.ResponseType.CANCEL,
                                                     _("_Open"),
-                                                    Gtk.ResponseType.ACCEPT,
-                                                    null);
+                                                    _("_Cancel"));
             dialog.set_select_multiple(true);
             if (dialog.run() == Gtk.ResponseType.ACCEPT) {
                 dialog.hide();
