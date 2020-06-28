@@ -23,6 +23,15 @@ foreach path: service
         continue
     endif
     install_data('@0@.gschema.xml'.format(path), install_dir: schema_dir)
+
+    sizes = [ '128', '256' ]
+    icon_name = 'preferences-desktop-font-@0@.png'
+    foreach size: sizes
+        size_dir = '@0@x@1@'.format(size, size)
+        icon_dir = join_paths(datadir, 'icons', 'hicolor', size_dir, 'apps')
+        install_data(icon_name.format(size), install_dir: icon_dir, rename: '@0@.png'.format(path))
+    endforeach
+
     i18n.merge_file(
         input: configure_file(
                     input: '@0@.desktop.in.in'.format(path),

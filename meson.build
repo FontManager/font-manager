@@ -120,7 +120,7 @@ if meson_has_summary_function
             'bindir': get_option('bindir'),
             'libdir': join_paths(get_option('libdir'), meson.project_name()),
             'libexecdir': join_paths(get_option('libexecdir'), meson.project_name()),
-            'datadir': join_paths(datadir, meson.project_name())
+            'datadir': join_paths(datadir)
         },
         section: '''Directories
         '''

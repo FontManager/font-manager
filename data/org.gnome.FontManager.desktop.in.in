@@ -5,7 +5,7 @@ Name=Font Manager
 GenericName=Font Manager
 Comment=Preview, Compare and Manage Fonts
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-Icon=preferences-desktop-font
+Icon=org.gnome.FontManager
 DBusActivatable=true
 Exec=@PACKAGE_NAME@ %u
 Terminal=false

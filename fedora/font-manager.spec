@@ -100,6 +100,8 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/applications/%{DBusName}.desktop
 %{_datadir}/dbus-1/services/%{DBusName}.service
 %{_datadir}/glib-2.0/schemas/%{DBusName}.gschema.xml
+%{_datadir}/icons/hicolor/128x128/apps/%{DBusName}.png
+%{_datadir}/icons/hicolor/256x256/apps/%{DBusName}.png
 %{_mandir}/man1/%{name}.*
 
 %files -n %{name}-common -f %{name}.lang
@@ -113,6 +115,8 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/applications/%{DBusName2}.desktop
 %{_datadir}/dbus-1/services/%{DBusName2}.service
 %{_datadir}/glib-2.0/schemas/%{DBusName2}.gschema.xml
+%{_datadir}/icons/hicolor/128x128/apps/%{DBusName2}.png
+%{_datadir}/icons/hicolor/256x256/apps/%{DBusName2}.png
 
 %files -n nautilus-%{name}
 %{_libdir}/nautilus/extensions-3.0/nautilus-font-manager.so

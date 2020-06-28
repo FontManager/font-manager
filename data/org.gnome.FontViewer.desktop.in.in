@@ -5,7 +5,7 @@ Name=Font Viewer
 GenericName=Font Viewer
 Comment=Full featured font file preview application
 # Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-Icon=preferences-desktop-font
+Icon=org.gnome.FontViewer
 DBusActivatable=true
 Exec=@PKGLIBEXECDIR@/font-viewer %u
 Terminal=false
