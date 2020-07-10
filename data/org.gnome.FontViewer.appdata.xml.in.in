@@ -62,12 +62,9 @@
         </screenshot>
     </screenshots>
 
-    <!--
-    XXX : Validation fails due to missing timestamp but timestamps are deprecated...
     <releases>
-        <release version="@PACKAGE_VERSION@" />
+        <release version="@PACKAGE_VERSION@" date="2020-07-10"/>
     </releases>
-    -->
 
     <translation type="gettext">@PACKAGE_NAME@</translation>
 
