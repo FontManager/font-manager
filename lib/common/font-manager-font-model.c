@@ -18,20 +18,25 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include <gtk/gtk.h>
-#include <json-glib/json-glib.h>
-
-#include "font-manager-font.h"
-#include "font-manager-family.h"
 #include "font-manager-font-model.h"
+
+/**
+ * SECTION: font-manager-font-model
+ * @short_description: Font data model
+ * @title: Font Model
+ * @include: font-manager-font-model.h
+ * @see_also: #FontManagerFamily #FontManagerFont
+ *
+ * Minimal implementation which wraps the #JsonArray returned by #font_manager_sort_json_font_listing().
+ *
+ * This model provides read-only access to available #FontManagerFamily objects.
+ */
 
 struct _FontManagerFontModel
 {
     GObject parent_instance;
 
     gint stamp;
-    FontManagerFont *font;
-    FontManagerFamily *family;
     JsonArray *available_fonts;
 };
 
@@ -89,8 +94,8 @@ font_manager_font_model_get_column_type (G_GNUC_UNUSED GtkTreeModel *tree_model,
 
 static gboolean
 font_manager_font_model_get_iter (GtkTreeModel *tree_model,
-                                 GtkTreeIter *iter,
-                                 GtkTreePath *path)
+                                  GtkTreeIter *iter,
+                                  GtkTreePath *path)
 {
     FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(tree_model);
     g_return_val_if_fail(self != NULL, FALSE);
@@ -124,9 +129,9 @@ font_manager_font_model_get_path (GtkTreeModel *tree_model, GtkTreeIter *iter)
 
 static void
 font_manager_font_model_get_value (GtkTreeModel *tree_model,
-                                  GtkTreeIter *iter,
-                                  gint column,
-                                  GValue *value)
+                                   GtkTreeIter *iter,
+                                   gint column,
+                                   GValue *value)
 {
     FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(tree_model);
     g_return_if_fail(self != NULL);
@@ -152,11 +157,15 @@ font_manager_font_model_get_value (GtkTreeModel *tree_model,
             break;
         case FONT_MANAGER_FONT_MODEL_OBJECT:
             if (root_node) {
-                g_object_set(self->family, "source-object", obj, NULL);
-                g_value_set_object(value, self->family);
+                FontManagerFamily *family = font_manager_family_new();
+                g_object_set(family, "source-object", obj, NULL);
+                g_value_set_object(value, family);
+                g_object_unref(family);
             } else {
-                g_object_set(self->font, "source-object", obj, NULL);
-                g_value_set_object(value, self->font);
+                FontManagerFont *font = font_manager_font_new();
+                g_object_set(font, "source-object", obj, NULL);
+                g_value_set_object(value, font);
+                g_object_unref(font);
             }
             break;
         default:
@@ -217,8 +226,8 @@ font_manager_font_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *it
 
 static gboolean
 font_manager_font_model_iter_children (GtkTreeModel *tree_model,
-                                      GtkTreeIter *iter,
-                                      GtkTreeIter *parent)
+                                       GtkTreeIter *iter,
+                                       GtkTreeIter *parent)
 {
     FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(tree_model);
     g_return_val_if_fail(self != NULL, FALSE);
@@ -263,9 +272,9 @@ font_manager_font_model_iter_n_children (GtkTreeModel *tree_model, GtkTreeIter *
 
 static gboolean
 font_manager_font_model_iter_nth_child (GtkTreeModel *tree_model,
-                                       GtkTreeIter *iter,
-                                       GtkTreeIter *parent,
-                                       gint n)
+                                        GtkTreeIter *iter,
+                                        GtkTreeIter *parent,
+                                        gint n)
 {
     FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(tree_model);
     g_return_val_if_fail(self != NULL, FALSE);
@@ -301,8 +310,8 @@ font_manager_font_model_iter_nth_child (GtkTreeModel *tree_model,
 
 static gboolean
 font_manager_font_model_iter_parent (GtkTreeModel *tree_model,
-                                    GtkTreeIter *iter,
-                                    GtkTreeIter *child)
+                                     GtkTreeIter *iter,
+                                     GtkTreeIter *child)
 {
     FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(tree_model);
     g_return_val_if_fail(self != NULL, FALSE);
@@ -338,7 +347,10 @@ font_manager_font_model_get_item (GListModel *self, guint position)
     if (position >= font_manager_font_model_get_n_items(self))
         return NULL;
     FontManagerFontModel *model = FONT_MANAGER_FONT_MODEL(self);
-    return json_array_get_object_element(model->available_fonts, position);
+    JsonObject *obj = json_array_get_object_element(model->available_fonts, position);
+    FontManagerFamily *family = font_manager_family_new();
+    g_object_set(G_OBJECT(family), "source-object", obj, NULL);
+    return family;
 }
 
 static void
@@ -382,8 +394,8 @@ font_manager_font_model_row_draggable (G_GNUC_UNUSED GtkTreeDragSource *source,
 
 static gboolean
 font_manager_font_model_drag_data_get (GtkTreeDragSource *source,
-                                      GtkTreePath *path,
-                                      GtkSelectionData *selection_data)
+                                       GtkTreePath *path,
+                                       GtkSelectionData *selection_data)
 {
     if (gtk_tree_set_row_drag_data(selection_data, GTK_TREE_MODEL(source), path))
         return TRUE;
@@ -440,39 +452,36 @@ static void
 font_manager_font_model_init (FontManagerFontModel *self)
 {
     do { self->stamp = g_random_int(); } while (self->stamp == 0);
-    self->family = font_manager_family_new();
-    self->font = font_manager_font_new();
     return;
 }
 
 static void
-font_manager_font_model_finalize (GObject *object)
+font_manager_font_model_dispose (GObject *gobject)
 {
-    FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(object);
-    g_return_if_fail(self != NULL);
+    g_return_if_fail(gobject != NULL);
+    FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(gobject);
     if (self->available_fonts)
-        json_array_unref(self->available_fonts);
-    g_clear_object(&self->family);
-    g_clear_object(&self->font);
-    G_OBJECT_CLASS(font_manager_font_model_parent_class)->finalize(object);
+        g_clear_pointer(&self->available_fonts, json_array_unref);
+    G_OBJECT_CLASS(font_manager_font_model_parent_class)->dispose(gobject);
     return;
 }
 
 static void
-font_manager_font_model_get_property (GObject *object,
-                                     guint property_id,
-                                     GValue *value,
-                                     GParamSpec *pspec)
+font_manager_font_model_get_property (GObject *gobject,
+                                      guint property_id,
+                                      GValue *value,
+                                      GParamSpec *pspec)
 {
-    FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(object);
-    g_return_if_fail(self != NULL && self->available_fonts != NULL);
+    g_return_if_fail(gobject != NULL);
+    FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(gobject);
+    g_return_if_fail(self->available_fonts != NULL);
 
     switch (property_id) {
         case PROP_SOURCE:
             g_value_set_boxed(value, self->available_fonts);
             break;
         default:
-            G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
+            G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
             break;
     }
 
@@ -493,20 +502,20 @@ set_source (FontManagerFontModel *self, JsonArray *value)
 }
 
 static void
-font_manager_font_model_set_property (GObject *object,
-                                     guint property_id,
-                                     const GValue *value,
-                                     GParamSpec *pspec)
+font_manager_font_model_set_property (GObject *gobject,
+                                      guint property_id,
+                                      const GValue *value,
+                                      GParamSpec *pspec)
 {
-    FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(object);
-    g_return_if_fail(self != NULL);
+    g_return_if_fail(gobject != NULL);
+    FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(gobject);
 
     switch (property_id) {
         case PROP_SOURCE:
             set_source(self, g_value_get_boxed(value));
             break;
         default:
-            G_OBJECT_WARN_INVALID_PROPERTY_ID(object, property_id, pspec);
+            G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
             break;
     }
 
@@ -519,10 +528,18 @@ font_manager_font_model_class_init (FontManagerFontModelClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
     object_class->get_property = font_manager_font_model_get_property;
     object_class->set_property = font_manager_font_model_set_property;
-    object_class->finalize = font_manager_font_model_finalize;
+    object_class->dispose = font_manager_font_model_dispose;
+
+    /**
+     * FontManagerFontModel:source-array:
+     *
+     * #JsonArray source.
+     */
     g_object_class_install_property(object_class,
                                     PROP_SOURCE,
-                                    g_param_spec_boxed(SOURCE, NULL, NULL,
+                                    g_param_spec_boxed(SOURCE,
+                                                       NULL,
+                                                       "#JsonArray backing this model",
                                                        JSON_TYPE_ARRAY,
                                                        G_PARAM_STATIC_STRINGS |
                                                        G_PARAM_READWRITE));
@@ -532,10 +549,8 @@ font_manager_font_model_class_init (FontManagerFontModelClass *klass)
 /**
  * font_manager_font_model_new:
  *
- * Minimal #GtkTreeModel implementation which wraps the #JsonArray
- * returned by #font_manager_sort_json_font_listing
- *
- * Returns : (transfer full) : a new #FontManagerFontModel
+ * Returns : (transfer full) : A newly created #FontManagerFontModel.
+ * Free the returned object using #g_object_unref().
  */
 FontManagerFontModel *
 font_manager_font_model_new (void)

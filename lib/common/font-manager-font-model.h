@@ -23,6 +23,11 @@
 
 #include <glib.h>
 #include <glib-object.h>
+#include <gtk/gtk.h>
+#include <json-glib/json-glib.h>
+
+#include "font-manager-font.h"
+#include "font-manager-family.h"
 
 G_BEGIN_DECLS
 

@@ -59,7 +59,6 @@ namespace FontManager {
         [GtkChild] Gtk.TreeView treeview;
 
         bool have_default_colors = false;
-        string? description = null;
         string _preview_text;
         string default_preview_text;
         Gtk.ListStore store;
@@ -112,16 +111,8 @@ namespace FontManager {
                     return false;
                 }
             });
-            /* XXX :
-             * No idea when this became necessary or why this works reliably while directly
-             * accessing selected_font in the next closure doesn't...
-             */
-            notify["selected-font"].connect(() => {
-                if (selected_font != null)
-                    description = selected_font.description;
-            });
             add_button.clicked.connect(() => {
-                add_from_string(description);
+                add_from_string(selected_font.description);
             });
             remove_button.clicked.connect(() => {
                 on_remove();
