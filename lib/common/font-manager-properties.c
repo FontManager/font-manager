@@ -341,6 +341,7 @@ font_manager_properties_add_assignments (FontManagerProperties *self,
         /* Skip test elements, handled in add_match_criteria */
         if (i == PROP_LESS || i == PROP_MORE)
             continue;
+        g_autofree gchar *loc = NULL;
         g_autofree gchar *val = NULL;
         g_autofree gchar *val_type = NULL;
         const gchar *name = PROPERTIES[i].name;
@@ -356,12 +357,11 @@ font_manager_properties_add_assignments (FontManagerProperties *self,
                 break;
             }
             case G_TYPE_DOUBLE: {
-                ; /* Empty statement */
-                g_autofree gchar *locale = g_strdup(setlocale(LC_ALL, NULL));
+                loc = g_strdup(setlocale(LC_ALL, NULL));
                 setlocale(LC_ALL, "C");
                 val = g_strdup_printf("%.1f", g_value_get_double(&value));
                 val_type = g_strdup("double");
-                setlocale(LC_ALL, locale);
+                setlocale(LC_ALL, loc);
                 break;
             }
             case G_TYPE_BOOLEAN: {

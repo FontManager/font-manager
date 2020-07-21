@@ -775,6 +775,7 @@ bind_from_properties (sqlite3_stmt *stmt,
                       gint n_properties)
 {
     for (gint i = 0; i < n_properties; i++) {
+        const gchar *str = NULL;
         switch (properties[i].type) {
             case G_TYPE_INT:
                 g_assert(json_object_has_member(json, properties[i].name));
@@ -782,8 +783,6 @@ bind_from_properties (sqlite3_stmt *stmt,
                 g_assert(val >= -1 && sqlite3_bind_int(stmt, i, val) == SQLITE_OK);
                 break;
             case G_TYPE_STRING:
-                ; /* Empty statement */
-                const gchar *str = NULL;
                 if (json_object_has_member(json, properties[i].name))
                     str = json_object_get_string_member(json, properties[i].name);
                 g_assert(sqlite3_bind_text(stmt, i, str, -1, SQLITE_STATIC) == SQLITE_OK);

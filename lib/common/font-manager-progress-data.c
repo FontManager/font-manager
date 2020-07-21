@@ -67,6 +67,7 @@ font_manager_progress_data_get_property (GObject *gobject,
     g_return_if_fail(gobject != NULL);
     FontManagerProgressData *self = FONT_MANAGER_PROGRESS_DATA(gobject);
     FontManagerProgressDataPrivate *priv = font_manager_progress_data_get_instance_private(self);
+    gdouble fraction = ((gdouble) priv->processed / (gdouble) priv->total);
     switch (property_id) {
         case PROP_PROCESSED:
             g_value_set_uint(value, priv->processed);
@@ -78,8 +79,6 @@ font_manager_progress_data_get_property (GObject *gobject,
             g_value_set_string(value, priv->message);
             break;
         case PROP_PROGRESS:
-            ; /* Empty statement */
-            gdouble fraction = ((gdouble) priv->processed / (gdouble) priv->total);
             g_value_set_double(value, fraction);
             break;
         default:

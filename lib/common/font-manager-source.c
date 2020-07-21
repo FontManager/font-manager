@@ -116,13 +116,13 @@ font_manager_source_set_property (GObject *gobject,
     g_return_if_fail(gobject != NULL);
     FontManagerSource *self = FONT_MANAGER_SOURCE(gobject);
     FontManagerSourcePrivate *priv = font_manager_source_get_instance_private(self);
+    GFile *new_file = NULL;
     switch (property_id) {
         case PROP_ACTIVE:
             priv->active = g_value_get_boolean(value);
             break;
         case PROP_FILE:
-            ; /* Empty statement */
-            GFile *new_file = g_value_get_object(value);
+            new_file = g_value_get_object(value);
             if (new_file == priv->file)
                 return;
             if (priv->file)
