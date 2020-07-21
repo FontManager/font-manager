@@ -10,8 +10,7 @@ namespace FontManager {
         public unowned Sqlite.Statement get ();
     }
 
-    public class CodepointList : GLib.Object, Unicode.CodepointList {
-    }
+    public class CodepointList : GLib.Object, Unicode.CodepointList {}
 
     public class AliasElement : GLib.Object {
         public unowned StringHashset get (string priority);
@@ -20,6 +19,13 @@ namespace FontManager {
     public class Selections : StringHashset {
         [NoWrapper]
         public virtual unowned Xml.Node? get_selections (Xml.Doc *doc);
+    }
+
+    public enum fsType {
+
+        [CCode (cname = "font_manager_fsType_to_string")]
+        public unowned string? to_string ();
+
     }
 
 }

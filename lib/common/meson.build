@@ -1,4 +1,10 @@
 
+libfontmanager_gresource_xml_file = files('gresources.xml')
+
+libfontmanager_gresources = gnome.compile_resources('libfontmanager-gresources',
+                                                    libfontmanager_gresource_xml_file)
+
+
 result = run_command(python, '-c', list_sources)
 
 common_sources = result.stdout().strip().split('\n')
@@ -12,16 +18,31 @@ common_sources += [
 
 result = run_command(python, '-c', list_headers)
 
-common_headers = []
+common_headers = result.stdout().strip().split('\n')
 
-foreach h: result.stdout().strip().split('\n')
-    if (not h.startswith('json-proxy'))
-        common_headers += h
-    endif
-endforeach
+HEADER = join_paths(meson.current_build_dir(), 'font-manager.h')
+
+WRITE_HEADER = '''
+from glob import glob
+
+def filelist (ext):
+    for f in sorted(glob('@0@/*.{}*'.format(ext), recursive=True)):
+        yield f
+
+with open('@1@', 'w') as H:
+    H.write('#pragma once\n')
+    for f in filelist('h'):
+        f = f.replace('@2@/', '')
+        H.write('#include "{}"\n'.format(f))
+'''.format(meson.current_source_dir(), HEADER, meson.current_source_dir())
+
+configure_file(
+    command: [python, '-c', WRITE_HEADER],
+    output: 'font-manager.h'
+)
 
 libcommon = both_libraries('common',
-                            common_sources,
+                            [ common_sources, libfontmanager_gresources ],
                             dependencies: project_deps,
                             link_with: libunicode)
 
@@ -41,16 +62,16 @@ common_gir = gnome.generate_gir(libcommon,
                                 ])
 
 configure_file(
-    input: 'FontManager.metadata',
+    input: 'font-manager-common.metadata',
     output: 'FontManager-@0@.metadata'.format(meson.project_version()),
     copy: true
 )
 
-common_vapi = gnome.generate_vapi('FontManager-@0@'.format(meson.project_version()),
+common_vapi = gnome.generate_vapi('font-manager-common',
                                     sources: [
                                         common_gir[0],
                                         unicode_gir[0],
-                                        'FontManager-custom.vala'
+                                        'font-manager-common.vala'
                                     ],
                                     vapi_dirs: [
                                         meson.current_build_dir(),
