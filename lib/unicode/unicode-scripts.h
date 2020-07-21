@@ -7,6 +7,8 @@
 #define UNICODE_SCRIPTS_H
 
 #include <glib.h>
+#ifndef __GTK_DOC_IGNORE__
+
 typedef struct _UnicodeScript UnicodeScript;
 
 static const gchar unicode_script_list_strings[] =
@@ -2381,5 +2383,7 @@ unicode_scripts[] =
   { 0xE0020, 0xE007F, 23 },
   { 0xE0100, 0xE01EF, 52 },
 };
+
+#endif
 
 #endif  /* #ifndef UNICODE_SCRIPTS_H */

@@ -108,6 +108,8 @@ sub process_unicode_data_txt
 
     print $out "#include <glib.h>\n\n";
 
+    print $out "#ifndef __GTK_DOC_IGNORE__\n\n";
+
     my @unicode_pairs;
     my %names;
 
@@ -181,6 +183,7 @@ static inline const char * unicode_name_get_name(const UnicodeName *entry)
 
 EOT
 
+    print $out "#endif\n\n";
     print $out "#endif  /* #ifndef UNICODE_NAMES_H */\n";
 
     undef %names;
@@ -248,6 +251,8 @@ EOT
 
     print $out "#include <glib.h>\n\n";
 
+    print $out "#ifndef __GTK_DOC_IGNORE__\n\n";
+
     print $out "typedef struct _UnicodeCategory UnicodeCategory;\n\n";
 
     print $out "static const struct _UnicodeCategory\n";
@@ -295,7 +300,7 @@ EOT
     printf $out ("  { 0x%4.4X, 0x%4.4X, \%s },\n", $start_codepoint, $last_codepoint, $last_category);
 
     print $out "};\n\n";
-
+    print $out "#endif\n\n";
     print $out "#endif  /* #ifndef UNICODE_CATEGORIES_H */\n";
 
     close ($out);
@@ -323,6 +328,8 @@ sub process_unihan_zip
     print $out "#define UNICODE_UNIHAN_H\n\n";
 
     print $out "#include <glib.h>\n\n";
+
+    print $out "#ifndef __GTK_DOC_IGNORE__\n\n";
 
     print $out "typedef struct _Unihan Unihan;\n\n";
 
@@ -509,6 +516,7 @@ unicode_get_unicode_$name (gunichar uc)
 EOT
     }
 
+    print $out "#endif\n\n";
     print $out "#endif  /* #ifndef UNICODE_UNIHAN_H */\n";
 
     close ($unihan);
@@ -687,6 +695,8 @@ sub process_nameslist_txt
 
     print $out "#include <glib.h>\n\n";
 
+    print $out "#ifndef __GTK_DOC_IGNORE__\n\n";
+
     print $out "typedef struct _UnicharStringIndex UnicharStringIndex;\n";
     print $out "typedef struct _UnicharUnichar UnicharUnichar;\n";
     print $out "typedef struct _NamesList NamesList;\n\n";
@@ -743,7 +753,7 @@ sub process_nameslist_txt
         printf $out ("  { 0x%04X, \%d, \%d, \%d, \%d, \%d },\n", $wc, $eq, $star, $ex, $pound, $colon);
     }
     print $out "};\n\n";
-
+    print $out "#endif\n\n";
     print $out "#endif  /* #ifndef UNICODE_NAMESLIST_H */\n";
 
     close ($out);
@@ -802,6 +812,8 @@ sub process_blocks_txt
 
     print $out "#include <glib.h>\n";
 
+    print $out "#ifndef __GTK_DOC_IGNORE__\n\n";
+
     my @blocks;
     read_blocks_txt ($blocks_txt, \@blocks);
 
@@ -829,7 +841,7 @@ sub process_blocks_txt
         print $out qq/  { 0x$start, 0x$end, $offset },\n/;
     }
     print $out "};\n\n";
-
+    print $out "#endif\n\n";
     print $out "#endif  /* #ifndef UNICODE_BLOCKS_H */\n";
 
     close ($out);
@@ -913,6 +925,8 @@ sub process_scripts_txt
 
     print $out "#include <glib.h>\n";
 
+    print $out "#ifndef __GTK_DOC_IGNORE__\n\n";
+
     print $out "typedef struct _UnicodeScript UnicodeScript;\n\n";
 
     print $out "static const gchar unicode_script_list_strings[] =\n";
@@ -952,7 +966,7 @@ sub process_scripts_txt
                      $start, $script_hash{$start}->{'end'}, $scripts{$script_hash{$start}->{'script'}});
     }
     print $out "};\n\n";
-
+    print $out "#endif\n\n";
     print $out "#endif  /* #ifndef UNICODE_SCRIPTS_H */\n";
 
     close ($out);
@@ -1057,6 +1071,8 @@ sub process_versions_txt
 
     print $out "#include <glib.h>\n\n";
 
+    print $out "#ifndef __GTK_DOC_IGNORE__\n\n";
+
     print $out "typedef struct\n";
     print $out "{\n";
     print $out "  gunichar start;\n";
@@ -1093,7 +1109,7 @@ sub process_versions_txt
         printf $out (qq/  \%d,\n/, $version_offsets{$version});
     }
     print $out "};\n\n";
-
+    print $out "#endif\n\n";
     print $out "#endif  /* #ifndef UNICODE_VERSIONS_H */\n";
 
     close ($out);

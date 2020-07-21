@@ -35,8 +35,10 @@ HEADER = """
 
 G_BEGIN_DECLS
 
+#ifndef __GTK_DOC_IGNORE__
 #define FONT_MANAGER_MAX_VENDOR_ID_LENGTH 5
 #define FONT_MANAGER_MAX_VENDOR_LENGTH 100
+#endif
 
 static const struct
 {
@@ -89,8 +91,10 @@ FontManagerVendorData[] =
 
 FOOTER = """};
 
+#ifndef __GTK_DOC_IGNORE__
 #define FONT_MANAGER_NOTICE_ENTRIES G_N_ELEMENTS(FontManagerNoticeData)
 #define FONT_MANAGER_VENDOR_ENTRIES G_N_ELEMENTS(FontManagerVendorData)
+#endif
 
 G_END_DECLS
 

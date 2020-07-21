@@ -6,7 +6,9 @@
 
 G_BEGIN_DECLS
 
+#ifndef __GTK_DOC_IGNORE__
 #define FONT_MANAGER_MAX_KEYWORD_ENTRIES 25
+#endif
 
 static const struct
 {
@@ -295,7 +297,9 @@ FontManagerLicenseData[] =
 
 };
 
+#ifndef __GTK_DOC_IGNORE__
 #define FONT_MANAGER_LICENSE_ENTRIES G_N_ELEMENTS(FontManagerLicenseData)
+#endif
 
 G_END_DECLS
 

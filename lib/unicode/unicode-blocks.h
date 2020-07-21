@@ -7,6 +7,8 @@
 #define UNICODE_BLOCKS_H
 
 #include <glib.h>
+#ifndef __GTK_DOC_IGNORE__
+
 static const char unicode_blocks_strings[] =
   "Basic Latin\0"
   "Latin-1 Supplement\0"
@@ -621,5 +623,7 @@ unicode_blocks[] =
   { 0xF0000, 0xFFFFF, 4909 },
   { 0x100000, 0x10FFFF, 4942 },
 };
+
+#endif
 
 #endif  /* #ifndef UNICODE_BLOCKS_H */

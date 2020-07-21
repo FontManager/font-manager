@@ -8,6 +8,8 @@
 
 #include <glib.h>
 
+#ifndef __GTK_DOC_IGNORE__
+
 static const char unicode_names_strings[] = \
   "<control>\0"
   "ABACUS\0"
@@ -62044,5 +62046,7 @@ static inline const char * unicode_name_get_name(const UnicodeName *entry)
   guint32 offset = entry->name_offset;
   return unicode_names_strings + offset;
 }
+
+#endif
 
 #endif  /* #ifndef UNICODE_NAMES_H */

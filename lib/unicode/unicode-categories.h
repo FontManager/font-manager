@@ -8,6 +8,8 @@
 
 #include <glib.h>
 
+#ifndef __GTK_DOC_IGNORE__
+
 typedef struct _UnicodeCategory UnicodeCategory;
 
 static const struct _UnicodeCategory
@@ -3177,5 +3179,7 @@ unicode_categories[] =
   { 0xF0000, 0xFFFFD, G_UNICODE_PRIVATE_USE },
   { 0x100000, 0x10FFFD, G_UNICODE_PRIVATE_USE },
 };
+
+#endif
 
 #endif  /* #ifndef UNICODE_CATEGORIES_H */

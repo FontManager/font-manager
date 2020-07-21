@@ -8,6 +8,8 @@
 
 #include <glib.h>
 
+#ifndef __GTK_DOC_IGNORE__
+
 typedef struct _UnicharStringIndex UnicharStringIndex;
 typedef struct _UnicharUnichar UnicharUnichar;
 typedef struct _NamesList NamesList;
@@ -37124,5 +37126,7 @@ static const NamesList names_list[] =
   { 0xE0001, -1, 3708, -1, -1, -1 },
   { 0xE0100, -1, 3709, -1, -1, -1 },
 };
+
+#endif
 
 #endif  /* #ifndef UNICODE_NAMESLIST_H */

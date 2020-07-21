@@ -90,6 +90,10 @@ if get_option('nautilus') or get_option('nemo')
     subdir('extensions')
 endif
 
+if get_option('gtk-doc')
+    subdir('docs')
+endif
+
 meson.add_install_script('meson_post_install.py')
 meson.add_dist_script('meson_dist.py')
 
@@ -99,6 +103,7 @@ if meson_has_summary_function
         {
             'Font Manager': get_option('manager'),
             'Font Viewer': get_option('viewer'),
+            'API Documentation': get_option('gtk-doc'),
             'Help Documents': get_option('yelp-doc'),
             'Nautilus extension': get_option('nautilus'),
             'Nemo extension': get_option('nemo'),
@@ -113,10 +118,10 @@ if meson_has_summary_function
     summary(
         {
             'prefix': prefix,
-            'bindir': get_option('bindir'),
-            'libdir': join_paths(get_option('libdir'), meson.project_name()),
-            'libexecdir': join_paths(get_option('libexecdir'), meson.project_name()),
-            'datadir': join_paths(datadir, meson.project_name())
+            'bindir': join_paths(prefix, get_option('bindir')),
+            'libdir': join_paths(prefix, get_option('libdir'), meson.project_name()),
+            'libexecdir': join_paths(prefix, get_option('libexecdir'), meson.project_name()),
+            'datadir': join_paths(prefix, datadir)
         },
         section: '''Directories
         '''

@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+               "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd"
+[
+  <!ENTITY % local.common.attrib "xmlns:xi  CDATA  #FIXED 'http://www.w3.org/2003/XInclude'">
+]>
+
+<book id="index" xmlns:xi="http://www.w3.org/2003/XInclude">
+
+    <bookinfo>
+        <title>Font Manager Reference Manual</title>
+        <releaseinfo>Font Manager 0.7.7</releaseinfo>
+    </bookinfo>
+
+    <part>
+
+        <title>API Reference</title>
+
+        <chapter id="fontconfig">
+            <title>Font Configuration</title>
+            <xi:include href="xml/font-manager-alias.xml"/>
+            <xi:include href="xml/font-manager-aliases.xml"/>
+            <xi:include href="xml/font-manager-directories.xml"/>
+            <xi:include href="xml/font-manager-properties.xml"/>
+            <xi:include href="xml/font-manager-reject.xml"/>
+            <xi:include href="xml/font-manager-selections.xml"/>
+            <xi:include href="xml/font-manager-source.xml"/>
+            <xi:include href="xml/font-manager-fontconfig.xml"/>
+            <xi:include href="xml/font-manager-xml-writer.xml"/>
+        </chapter>
+
+        <chapter id="info">
+            <title>Font Information</title>
+            <xi:include href="xml/font-manager-codepoint-list.xml"/>
+            <xi:include href="xml/font-manager-database.xml"/>
+            <xi:include href="xml/font-manager-family.xml"/>
+            <xi:include href="xml/font-manager-font.xml"/>
+            <xi:include href="xml/font-manager-font-info.xml"/>
+            <xi:include href="xml/font-manager-freetype.xml"/>
+            <xi:include href="xml/font-manager-orthography.xml"/>
+        </chapter>
+
+        <chapter id="unicode">
+            <title>Unicode</title>
+            <xi:include href="xml/unicode-codepoint-list.xml"/>
+            <xi:include href="xml/unicode-character-map.xml"/>
+            <xi:include href="xml/unicode-character-map-zoom-window.xml"/>
+            <xi:include href="xml/unicode-search-bar.xml"/>
+            <xi:include href="xml/unicode-info.xml"/>
+        </chapter>
+
+        <chapter id="ui">
+            <title>User Interface</title>
+            <xi:include href="xml/font-manager-character-map.xml"/>
+            <xi:include href="xml/font-manager-font-model.xml"/>
+            <xi:include href="xml/font-manager-font-scale.xml"/>
+            <xi:include href="xml/font-manager-font-preview.xml"/>
+            <xi:include href="xml/font-manager-license-pane.xml"/>
+            <xi:include href="xml/font-manager-properties-pane.xml"/>
+            <xi:include href="xml/font-manager-preview-controls.xml"/>
+            <xi:include href="xml/font-manager-preview-pane.xml"/>
+            <xi:include href="xml/font-manager-place-holder.xml"/>
+            <xi:include href="xml/font-manager-gtk-utils.xml"/>
+        </chapter>
+
+        <chapter id="general">
+            <title>General</title>
+            <xi:include href="xml/font-manager-progress-data.xml"/>
+            <xi:include href="xml/font-manager-json-proxy.xml"/>
+            <xi:include href="xml/font-manager-json.xml"/>
+            <xi:include href="xml/font-manager-string-hashset.xml"/>
+            <xi:include href="xml/font-manager-utils.xml"/>
+        </chapter>
+
+    </part>
+
+    <index id="api-index">
+        <title>API Index</title>
+        <xi:include href="xml/api-index-full.xml"><xi:fallback /></xi:include>
+    </index>
+
+<!--
+    <index id="deprecated-api-index">
+        <title>Deprecated APIs</title>
+        <xi:include href="xml/api-index-deprecated.xml"><xi:fallback /></xi:include>
+    </index>
+-->
+
+    <xi:include href="xml/annotation-glossary.xml"><xi:fallback /></xi:include>
+
+</book>

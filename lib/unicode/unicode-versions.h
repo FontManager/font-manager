@@ -8,6 +8,8 @@
 
 #include <glib.h>
 
+#ifndef __GTK_DOC_IGNORE__
+
 typedef struct
 {
   gunichar start;
@@ -1613,5 +1615,7 @@ static const guint16 unicode_version_string_offsets[] =
   77,
   82,
 };
+
+#endif
 
 #endif  /* #ifndef UNICODE_VERSIONS_H */
