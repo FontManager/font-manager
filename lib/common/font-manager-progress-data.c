@@ -48,14 +48,13 @@ enum
 static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
 
 static void
-font_manager_progress_data_finalize (GObject *gobject)
+font_manager_progress_data_dispose (GObject *gobject)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerProgressData *self = FONT_MANAGER_PROGRESS_DATA(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerProgressDataPrivate *priv = font_manager_progress_data_get_instance_private(self);
-    if (priv->message)
-        g_free(priv->message);
-    G_OBJECT_CLASS(font_manager_progress_data_parent_class)->finalize(gobject);
+    g_clear_pointer(&priv->message, g_free);
+    G_OBJECT_CLASS(font_manager_progress_data_parent_class)->dispose(gobject);
     return;
 }
 
@@ -65,8 +64,8 @@ font_manager_progress_data_get_property (GObject *gobject,
                                          GValue *value,
                                          GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerProgressData *self = FONT_MANAGER_PROGRESS_DATA(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerProgressDataPrivate *priv = font_manager_progress_data_get_instance_private(self);
     switch (property_id) {
         case PROP_PROCESSED:
@@ -96,8 +95,8 @@ font_manager_progress_data_set_property (GObject *gobject,
                                          const GValue *value,
                                          GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerProgressData *self = FONT_MANAGER_PROGRESS_DATA(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerProgressDataPrivate *priv = font_manager_progress_data_get_instance_private(self);
     switch (property_id) {
         case PROP_PROCESSED:
@@ -122,7 +121,7 @@ static void
 font_manager_progress_data_class_init (FontManagerProgressDataClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    object_class->finalize = font_manager_progress_data_finalize;
+    object_class->dispose = font_manager_progress_data_dispose;
     object_class->get_property = font_manager_progress_data_get_property;
     object_class->set_property = font_manager_progress_data_set_property;
 

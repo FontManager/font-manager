@@ -108,14 +108,14 @@ PROPERTY_ID_RANGE [] =
 };
 
 static void
-font_manager_properties_finalize (GObject *self)
+font_manager_properties_dispose (GObject *gobject)
 {
-    FontManagerProperties *_self = FONT_MANAGER_PROPERTIES(self);
-    g_return_if_fail(_self != NULL);
-    FontManagerPropertiesPrivate *priv = font_manager_properties_get_instance_private(_self);
-    g_free(priv->config_dir);
-    g_free(priv->target_file);
-    G_OBJECT_CLASS(font_manager_properties_parent_class)->finalize(self);
+    g_return_if_fail(gobject != NULL);
+    FontManagerProperties *self = FONT_MANAGER_PROPERTIES(gobject);
+    FontManagerPropertiesPrivate *priv = font_manager_properties_get_instance_private(self);
+    g_clear_pointer(&priv->config_dir, g_free);
+    g_clear_pointer(&priv->target_file, g_free);
+    G_OBJECT_CLASS(font_manager_properties_parent_class)->dispose(gobject);
 }
 
 static void
@@ -124,8 +124,8 @@ font_manager_properties_get_property (GObject *gobject,
                                      GValue *value,
                                      GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerProperties *self = FONT_MANAGER_PROPERTIES(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerPropertiesPrivate *priv = font_manager_properties_get_instance_private(self);
     switch (property_id) {
         case PROP_HINTSTYLE:
@@ -183,8 +183,8 @@ font_manager_properties_set_property (GObject *gobject,
                                      const GValue *value,
                                      GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerProperties *self = FONT_MANAGER_PROPERTIES(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerPropertiesPrivate *priv = font_manager_properties_get_instance_private(self);
     switch (property_id) {
         case PROP_HINTSTYLE:
@@ -403,7 +403,7 @@ static void
 font_manager_properties_class_init (FontManagerPropertiesClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    object_class->finalize = font_manager_properties_finalize;
+    object_class->dispose = font_manager_properties_dispose;
     object_class->get_property = font_manager_properties_get_property;
     object_class->set_property = font_manager_properties_set_property;
 

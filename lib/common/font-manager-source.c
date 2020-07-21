@@ -59,15 +59,15 @@ static const gchar *_available = "folder-symbolic";
 static const gchar *_unavailable = "action-unavailable-symbolic";
 
 static void
-font_manager_source_finalize (GObject *gobject)
+font_manager_source_dispose (GObject *gobject)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerSource *self = FONT_MANAGER_SOURCE(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerSourcePrivate *priv = font_manager_source_get_instance_private(self);
-    g_free(priv->name);
-    g_free(priv->path);
-    g_object_unref(priv->file);
-    G_OBJECT_CLASS(font_manager_source_parent_class)->finalize(gobject);
+    g_clear_pointer(&priv->name, g_free);
+    g_clear_pointer(&priv->path, g_free);
+    g_clear_object(&priv->file);
+    G_OBJECT_CLASS(font_manager_source_parent_class)->dispose(gobject);
     return;
 }
 
@@ -77,8 +77,8 @@ font_manager_source_get_property (GObject *gobject,
                                  GValue *value,
                                  GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerSource *self = FONT_MANAGER_SOURCE(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerSourcePrivate *priv = font_manager_source_get_instance_private(self);
     gboolean available = priv->file != NULL ? g_file_query_exists(priv->file, NULL) : FALSE;
     switch (property_id) {
@@ -113,8 +113,8 @@ font_manager_source_set_property (GObject *gobject,
                                  const GValue *value,
                                  GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerSource *self = FONT_MANAGER_SOURCE(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerSourcePrivate *priv = font_manager_source_get_instance_private(self);
     switch (property_id) {
         case PROP_ACTIVE:
@@ -141,7 +141,7 @@ static void
 font_manager_source_class_init (FontManagerSourceClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    object_class->finalize = font_manager_source_finalize;
+    object_class->dispose = font_manager_source_dispose;
     object_class->get_property = font_manager_source_get_property;
     object_class->set_property = font_manager_source_set_property;
 

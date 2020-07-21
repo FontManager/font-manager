@@ -51,16 +51,16 @@ static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
 #define DEFAULT_PARAM_FLAGS (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS)
 
 static void
-font_manager_alias_element_finalize (GObject *self)
+font_manager_alias_element_dispose (GObject *gobject)
 {
-    FontManagerAliasElement *_self = FONT_MANAGER_ALIAS_ELEMENT(self);
-    g_return_if_fail(_self != NULL);
-    FontManagerAliasElementPrivate *priv = font_manager_alias_element_get_instance_private(_self);
-    g_free(priv->family);
+    g_return_if_fail(gobject != NULL);
+    FontManagerAliasElement *self = FONT_MANAGER_ALIAS_ELEMENT(gobject);
+    FontManagerAliasElementPrivate *priv = font_manager_alias_element_get_instance_private(self);
+    g_clear_pointer(&priv->family, g_free);
     g_clear_object(&priv->prefer);
     g_clear_object(&priv->accept);
     g_clear_object(&priv->_default);
-    G_OBJECT_CLASS(font_manager_alias_element_parent_class)->finalize(self);
+    G_OBJECT_CLASS(font_manager_alias_element_parent_class)->dispose(gobject);
     return;
 }
 
@@ -70,8 +70,8 @@ font_manager_alias_element_get_property (GObject *gobject,
                                         GValue *value,
                                         GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerAliasElement *self = FONT_MANAGER_ALIAS_ELEMENT(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerAliasElementPrivate *priv = font_manager_alias_element_get_instance_private(self);
     switch (property_id) {
         case PROP_FAMILY:
@@ -99,8 +99,8 @@ font_manager_alias_element_set_property (GObject *gobject,
                                         const GValue *value,
                                         GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerAliasElement *self = FONT_MANAGER_ALIAS_ELEMENT(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerAliasElementPrivate *priv = font_manager_alias_element_get_instance_private(self);
     switch (property_id) {
         case PROP_FAMILY:
@@ -127,7 +127,7 @@ static void
 font_manager_alias_element_class_init (FontManagerAliasElementClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    object_class->finalize = font_manager_alias_element_finalize;
+    object_class->dispose = font_manager_alias_element_dispose;
     object_class->get_property = font_manager_alias_element_get_property;
     object_class->set_property = font_manager_alias_element_set_property;
 

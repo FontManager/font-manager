@@ -41,14 +41,13 @@ enum
 };
 
 static void
-font_manager_string_hashset_finalize (GObject *gobject)
+font_manager_string_hashset_dispose (GObject *gobject)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerStringHashset *self = FONT_MANAGER_STRING_HASHSET(gobject);
     FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
-    if (priv->hashset)
-        g_hash_table_destroy(priv->hashset);
-    G_OBJECT_CLASS(font_manager_string_hashset_parent_class)->finalize(gobject);
+    g_clear_pointer(&priv->hashset, g_hash_table_destroy);
+    G_OBJECT_CLASS(font_manager_string_hashset_parent_class)->dispose(gobject);
     return;
 }
 
@@ -58,8 +57,8 @@ font_manager_string_hashset_get_property (GObject *gobject,
                                           GValue *value,
                                           GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerStringHashset *self = FONT_MANAGER_STRING_HASHSET(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
 
     switch (property_id) {
@@ -78,7 +77,7 @@ static void
 font_manager_string_hashset_class_init (FontManagerStringHashsetClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    object_class->finalize = font_manager_string_hashset_finalize;
+    object_class->dispose = font_manager_string_hashset_dispose;
     object_class->get_property = font_manager_string_hashset_get_property;
 
     g_object_class_install_property(object_class,

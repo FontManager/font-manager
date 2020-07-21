@@ -1148,26 +1148,17 @@ unicode_character_map_init (UnicodeCharacterMap *charmap)
 }
 
 static void
-unicode_character_map_finalize (GObject *object)
+unicode_character_map_dispose (GObject *gobject)
 {
-    UnicodeCharacterMap *charmap = UNICODE_CHARACTER_MAP(object);
-
-    if (priv->font_desc)
-        pango_font_description_free(priv->font_desc);
-
+    g_return_if_fail(gobject != NULL);
+    UnicodeCharacterMap *charmap = UNICODE_CHARACTER_MAP(gobject);
+    g_clear_pointer(&priv->font_desc, pango_font_description_free);
     unicode_character_map_clear_pango_layout(charmap);
-    gtk_target_list_unref(priv->target_list);
-
-    if (priv->codepoint_list)
-        g_object_unref(priv->codepoint_list);
-
-    if (priv->long_press)
-        g_object_unref(priv->long_press);
-
-    if (priv->pinch_zoom)
-        g_object_unref(priv->pinch_zoom);
-
-    G_OBJECT_CLASS(unicode_character_map_parent_class)->finalize(object);
+    g_clear_pointer(&priv->target_list, gtk_target_list_unref);
+    g_clear_object(&priv->codepoint_list);
+    g_clear_object(&priv->long_press);
+    g_clear_object(&priv->pinch_zoom);
+    G_OBJECT_CLASS(unicode_character_map_parent_class)->dispose(gobject);
     return;
 }
 
@@ -1261,7 +1252,7 @@ unicode_character_map_class_init (UnicodeCharacterMapClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 
-    object_class->finalize = unicode_character_map_finalize;
+    object_class->dispose = unicode_character_map_dispose;
     object_class->get_property = unicode_character_map_get_property;
     object_class->set_property = unicode_character_map_set_property;
 

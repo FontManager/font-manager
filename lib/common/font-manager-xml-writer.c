@@ -69,10 +69,11 @@ font_manager_xml_writer_reset (FontManagerXmlWriter *self)
 }
 
 static void
-font_manager_xml_writer_finalize (GObject *gobject)
+font_manager_xml_writer_dispose (GObject *gobject)
 {
+    g_return_if_fail(gobject != NULL);
     font_manager_xml_writer_reset(FONT_MANAGER_XML_WRITER(gobject));
-    G_OBJECT_CLASS(font_manager_xml_writer_parent_class)->finalize(gobject);
+    G_OBJECT_CLASS(font_manager_xml_writer_parent_class)->dispose(gobject);
     return;
 }
 
@@ -82,6 +83,7 @@ font_manager_xml_writer_get_property (GObject *gobject,
                                       GValue *value,
                                       GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     switch (property_id)
     {
         case PROP_FILEPATH:
@@ -98,7 +100,7 @@ static void
 font_manager_xml_writer_class_init (FontManagerXmlWriterClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    object_class->finalize = font_manager_xml_writer_finalize;
+    object_class->dispose = font_manager_xml_writer_dispose;
     object_class->get_property = font_manager_xml_writer_get_property;
 
     obj_properties[PROP_FILEPATH] = g_param_spec_string("filepath",

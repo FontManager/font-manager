@@ -564,20 +564,13 @@ unicode_search_bar_init (UnicodeSearchBar *self)
 }
 
 static void
-unicode_search_bar_finalize (GObject *object)
+unicode_search_bar_dispose (GObject *gobject)
 {
-    g_return_if_fail(object != NULL);
-    UnicodeSearchBar *self = UNICODE_SEARCH_BAR(object);
-
-    if (self->search_state) {
-        unicode_search_state_free(self->search_state);
-        self->search_state = NULL;
-    }
-
-    if (self->charmap)
-        g_clear_object(&self->charmap);
-
-    G_OBJECT_CLASS(unicode_search_bar_parent_class)->finalize(object);
+    g_return_if_fail(gobject != NULL);
+    UnicodeSearchBar *self = UNICODE_SEARCH_BAR(gobject);
+    g_clear_pointer(&self->search_state, unicode_search_state_free);
+    g_clear_object(&self->charmap);
+    G_OBJECT_CLASS(unicode_search_bar_parent_class)->dispose(gobject);
     return;
 }
 
@@ -589,7 +582,7 @@ unicode_search_bar_class_init (UnicodeSearchBarClass *klass)
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 
     object_class->constructed = unicode_search_bar_constructed;
-    object_class->finalize = unicode_search_bar_finalize;
+    object_class->dispose = unicode_search_bar_dispose;
     object_class->get_property = unicode_search_bar_get_property;
     object_class->set_property = unicode_search_bar_set_property;
 

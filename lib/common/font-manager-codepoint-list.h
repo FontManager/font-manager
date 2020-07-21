@@ -17,6 +17,7 @@
  *
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
+
 #ifndef __FONT_MANAGER_CODEPOINT_LIST_H__
 #define __FONT_MANAGER_CODEPOINT_LIST_H__
 

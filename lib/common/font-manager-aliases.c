@@ -54,16 +54,15 @@ enum
 static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
 
 static void
-font_manager_aliases_finalize (GObject *gobject)
+font_manager_aliases_dispose (GObject *gobject)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerAliases *self = FONT_MANAGER_ALIASES(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerAliasesPrivate *priv = font_manager_aliases_get_instance_private(self);
-    g_free(priv->config_dir);
-    g_free(priv->target_file);
-    if (priv->hash_table)
-        g_hash_table_destroy(priv->hash_table);
-    G_OBJECT_CLASS(font_manager_aliases_parent_class)->finalize(gobject);
+    g_clear_pointer(&priv->config_dir, g_free);
+    g_clear_pointer(&priv->target_file, g_free);
+    g_clear_pointer(&priv->hash_table, g_hash_table_destroy);
+    G_OBJECT_CLASS(font_manager_aliases_parent_class)->dispose(gobject);
     return;
 }
 
@@ -73,8 +72,8 @@ font_manager_aliases_get_property (GObject *gobject,
                                   GValue *value,
                                   GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerAliases *self = FONT_MANAGER_ALIASES(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerAliasesPrivate *priv = font_manager_aliases_get_instance_private(self);
     switch (property_id) {
         case PROP_CONFIG_DIR:
@@ -96,8 +95,8 @@ font_manager_aliases_set_property (GObject *gobject,
                                   const GValue *value,
                                   GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerAliases *self = FONT_MANAGER_ALIASES(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerAliasesPrivate *priv = font_manager_aliases_get_instance_private(self);
     switch (property_id) {
         case PROP_CONFIG_DIR:
@@ -119,7 +118,7 @@ static void
 font_manager_aliases_class_init (FontManagerAliasesClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
-    object_class->finalize = font_manager_aliases_finalize;
+    object_class->dispose = font_manager_aliases_dispose;
     object_class->get_property = font_manager_aliases_get_property;
     object_class->set_property = font_manager_aliases_set_property;
 

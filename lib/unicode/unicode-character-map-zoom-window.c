@@ -55,9 +55,7 @@ unicode_character_map_zoom_window_clear_layout (GtkWidget *widget)
 {
     UnicodeCharacterMapZoomWindow *self = UNICODE_CHARACTER_MAP_ZOOM_WINDOW(widget);
     g_return_if_fail(self != NULL);
-    if (self->layout)
-        g_object_unref(self->layout);
-    self->layout = NULL;
+    g_clear_object(&self->layout);
     return;
 }
 
@@ -194,14 +192,13 @@ unicode_character_map_zoom_window_init (UnicodeCharacterMapZoomWindow *self)
 }
 
 static void
-unicode_character_map_zoom_window_finalize (GObject *object)
+unicode_character_map_zoom_window_dispose (GObject *gobject)
 {
-    g_return_if_fail(object != NULL);
-    UnicodeCharacterMapZoomWindow *self = UNICODE_CHARACTER_MAP_ZOOM_WINDOW(object);
-    if (self->font_desc)
-        pango_font_description_free(self->font_desc);
-    unicode_character_map_zoom_window_clear_layout(GTK_WIDGET(object));
-    G_OBJECT_CLASS(unicode_character_map_zoom_window_parent_class)->finalize(object);
+    g_return_if_fail(gobject != NULL);
+    UnicodeCharacterMapZoomWindow *self = UNICODE_CHARACTER_MAP_ZOOM_WINDOW(gobject);
+    g_clear_pointer(&self->font_desc, pango_font_description_free);
+    unicode_character_map_zoom_window_clear_layout(GTK_WIDGET(gobject));
+    G_OBJECT_CLASS(unicode_character_map_zoom_window_parent_class)->dispose(gobject);
     return;
 }
 
@@ -212,7 +209,7 @@ unicode_character_map_zoom_window_class_init (UnicodeCharacterMapZoomWindowClass
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 
-    object_class->finalize = unicode_character_map_zoom_window_finalize;
+    object_class->dispose = unicode_character_map_zoom_window_dispose;
     object_class->constructed = unicode_character_map_zoom_window_constructed;
     object_class->get_property = unicode_character_map_zoom_window_get_property;
     object_class->set_property = unicode_character_map_zoom_window_set_property;

@@ -54,17 +54,16 @@ static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
 #define DEFAULT_PARAM_FLAGS (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS)
 
 static void
-font_manager_selections_finalize (GObject *gobject)
+font_manager_selections_dispose (GObject *gobject)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerSelections *self = FONT_MANAGER_SELECTIONS(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerSelectionsPrivate *priv = font_manager_selections_get_instance_private(self);
-    g_free(priv->config_dir);
-    g_free(priv->target_file);
-    g_free(priv->target_element);
-    if (priv->monitor != NULL)
-        g_clear_object(&priv->monitor);
-    G_OBJECT_CLASS(font_manager_selections_parent_class)->finalize(gobject);
+    g_clear_pointer(&priv->config_dir, g_free);
+    g_clear_pointer(&priv->target_file, g_free);
+    g_clear_pointer(&priv->target_element, g_free);
+    g_clear_object(&priv->monitor);
+    G_OBJECT_CLASS(font_manager_selections_parent_class)->dispose(gobject);
     return;
 }
 
@@ -74,8 +73,8 @@ font_manager_selections_get_property (GObject *gobject,
                                      GValue *value,
                                      GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerSelections *self = FONT_MANAGER_SELECTIONS(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerSelectionsPrivate *priv = font_manager_selections_get_instance_private(self);
 
     switch (property_id) {
@@ -102,8 +101,8 @@ font_manager_selections_set_property (GObject *gobject,
                                      const GValue *value,
                                      GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     FontManagerSelections *self = FONT_MANAGER_SELECTIONS(gobject);
-    g_return_if_fail(self != NULL);
     FontManagerSelectionsPrivate *priv = font_manager_selections_get_instance_private(self);
 
     switch (property_id) {
@@ -188,7 +187,7 @@ font_manager_selections_class_init (FontManagerSelectionsClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
     object_class->get_property = font_manager_selections_get_property;
     object_class->set_property = font_manager_selections_set_property;
-    object_class->finalize = font_manager_selections_finalize;
+    object_class->dispose = font_manager_selections_dispose;
 
     klass->load = font_manager_selections_load;
     klass->save = font_manager_selections_save;
@@ -243,6 +242,7 @@ font_manager_selections_class_init (FontManagerSelectionsClass *klass)
 static void
 font_manager_selections_init (FontManagerSelections *self)
 {
+    g_return_if_fail(self != NULL);
     FontManagerSelectionsPrivate *priv = font_manager_selections_get_instance_private(self);
     priv->config_dir = NULL;
     priv->target_element = NULL;
@@ -255,7 +255,7 @@ font_manager_selections_emit_changed (G_GNUC_UNUSED GFileMonitor *monitor,
                                       G_GNUC_UNUSED GFile *file,
                                       G_GNUC_UNUSED GFile *other_file,
                                       G_GNUC_UNUSED GFileMonitorEvent  event_type,
-                                      G_GNUC_UNUSED gpointer user_data)
+                                      gpointer user_data)
 {
     g_signal_emit(FONT_MANAGER_SELECTIONS(user_data), signals[CHANGED], 0);
     return;
