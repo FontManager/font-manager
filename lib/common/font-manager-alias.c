@@ -193,9 +193,5 @@ font_manager_alias_element_get (FontManagerAliasElement *self, const gchar *prio
 FontManagerAliasElement *
 font_manager_alias_element_new (const gchar *family)
 {
-    FontManagerAliasElement *self = g_object_new(FONT_MANAGER_TYPE_ALIAS_ELEMENT, NULL);
-    FontManagerAliasElementPrivate *priv = font_manager_alias_element_get_instance_private(self);
-    if (family != NULL)
-        priv->family = g_strdup(family);
-    return self;
+    return g_object_new(FONT_MANAGER_TYPE_ALIAS_ELEMENT, "family", family, NULL);
 }

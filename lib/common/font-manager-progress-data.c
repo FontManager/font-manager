@@ -182,12 +182,8 @@ font_manager_progress_data_init (G_GNUC_UNUSED FontManagerProgressData *self)
 FontManagerProgressData *
 font_manager_progress_data_new (const gchar *message, guint processed, guint total)
 {
-    FontManagerProgressData *self = g_object_new(FONT_MANAGER_TYPE_PROGRESS_DATA, NULL);
-    FontManagerProgressDataPrivate *priv = font_manager_progress_data_get_instance_private(self);
-    if (message)
-        priv->message = g_strdup(message);
-    priv->processed = processed;
-    priv->total = total;
-    return self;
+    return g_object_new(FONT_MANAGER_TYPE_PROGRESS_DATA,
+                        "message", message, "processed", processed, "total", total,
+                        NULL);
 }
 

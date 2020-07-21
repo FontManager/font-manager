@@ -460,8 +460,7 @@ font_manager_font_model_dispose (GObject *gobject)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(gobject);
-    if (self->available_fonts)
-        g_clear_pointer(&self->available_fonts, json_array_unref);
+    g_clear_pointer(&self->available_fonts, json_array_unref);
     G_OBJECT_CLASS(font_manager_font_model_parent_class)->dispose(gobject);
     return;
 }
