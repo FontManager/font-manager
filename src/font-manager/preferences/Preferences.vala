@@ -66,8 +66,6 @@ namespace FontManager {
     }
 
     /**
-     * SettingsPage:
-     *
      * Base class for preference panes.
      */
     public class SettingsPage : Gtk.Overlay {
@@ -108,38 +106,24 @@ namespace FontManager {
     }
 
     /**
-     * FontConfigControls:
-     *
      * #Gtk.Actionbar containing a save and discard button along with a notice
      * informing the user that changes may not take effect immediately.
      * Intended for use in pages which generate Fontconfig configuration files.
-     *
-     * -----------------------------------------------------------------------
-     * |                                                                     |
-     * |  Discard                     note                           Save    |
-     * |                                                                     |
-     * -----------------------------------------------------------------------
      */
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-font-config-controls.ui")]
     public class FontConfigControls : Gtk.ActionBar {
 
         /**
-         * Controls::save_selected:
-         *
          * Emitted when the user clicks Save
          */
         public signal void save_selected ();
 
         /**
-         * Controls::discard_selected:
-         *
          * Emitted when the user clicks Discard
          */
         public signal void discard_selected ();
 
         /**
-         * Controls:note:
-         *
          * Informational notice displayed between discard and save buttons.
          */
         public Gtk.Label note { get; private set; }
@@ -157,8 +141,6 @@ namespace FontManager {
     }
 
     /**
-     * FontConfigSettingsPage:
-     *
      * Base class for panes which generate Fontconfig configuration files.
      */
     public class FontConfigSettingsPage : SettingsPage {

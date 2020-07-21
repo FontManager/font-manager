@@ -85,8 +85,6 @@ namespace FontManager {
     }
 
     /**
-     * Substitute:
-     *
      * Single line widget representing a substitute font family
      * in a Fontconfig <alias> entry.
      */
@@ -94,8 +92,6 @@ namespace FontManager {
     class Substitute : Gtk.Grid {
 
         /**
-         * Substitute:priority:
-         *
          * prefer, accept, or default
          */
         public string priority {
@@ -109,9 +105,7 @@ namespace FontManager {
         }
 
         /**
-         * Substitute:family:
-         *
-         * Name of replacement family
+         * Name of target family
          */
         public string? family {
             owned get {

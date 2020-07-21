@@ -28,11 +28,7 @@ xml = dependency('libxml-2.0', version: '>= 2.9')
 
 base_deps = declare_dependency(
     dependencies: [m_dep, json, gio, glib, gmodule, gobject, gtk, pango, sqlite, xml],
-    include_directories: include_directories('.',
-                                             'lib/common',
-                                             'lib/orthographies',
-                                             'lib/unicode',
-                                             'lib/vala')
+    include_directories: include_directories('.', 'lib/common', 'lib/orthographies', 'lib/unicode')
 )
 
 project_deps = declare_dependency(
@@ -120,7 +116,7 @@ if meson_has_summary_function
             'bindir': get_option('bindir'),
             'libdir': join_paths(get_option('libdir'), meson.project_name()),
             'libexecdir': join_paths(get_option('libexecdir'), meson.project_name()),
-            'datadir': join_paths(datadir)
+            'datadir': join_paths(datadir, meson.project_name())
         },
         section: '''Directories
         '''

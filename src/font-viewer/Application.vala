@@ -36,6 +36,9 @@ namespace FontManager.FontViewer {
             base.startup();
             main_window = new MainWindow();
             add_window(main_window);
+            try {
+                get_database(DatabaseType.BASE).attach(DatabaseType.METADATA);
+            } catch (Error e) { }
             return;
         }
 
@@ -44,7 +47,7 @@ namespace FontManager.FontViewer {
         }
 
         public void show_uri (string uri) throws DBusError, IOError {
-            main_window.show_uri(uri);
+            main_window.open(uri);
             activate();
             return;
         }
@@ -79,7 +82,7 @@ namespace FontManager.FontViewer {
 
         public override bool dbus_register (DBusConnection conn, string path) throws Error {
             base.dbus_register(conn, path);
-            dbus_id = conn.register_object (BUS_PATH, this);
+            dbus_id = conn.register_object(BUS_PATH, this);
             if (dbus_id == 0)
                 critical("Could not register Font Viewer service ");
             return true;
@@ -98,7 +101,7 @@ namespace FontManager.FontViewer {
             GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
             Environment.set_application_name(_("Font Viewer"));
             Gtk.init(ref args);
-            set_application_style(FontManager.BUS_PATH);
+            set_application_style();
             return new Application(FontViewer.BUS_ID, (ApplicationFlags.HANDLES_OPEN)).run(args);
         }
 

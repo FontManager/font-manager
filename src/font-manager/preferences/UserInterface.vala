@@ -20,20 +20,11 @@
 
 namespace FontManager {
 
-
-    /**
-     * TitleButtonStyle:
-     */
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-title-button-style.ui")]
     public class TitleButtonStyle : Gtk.Box {
 
         [GtkChild] Gtk.ComboBoxText combo;
 
-        /**
-         * LabeledSpinButton:value:
-         *
-         * Current value.
-         */
         public string active {
             get {
                 return combo.get_active() == 0 ? "Normal" : "Flat";
@@ -73,8 +64,8 @@ namespace FontManager {
             wide_layout_options = new Gtk.Revealer();
             wide_layout_options.set_transition_duration(450);
             on_maximize = new Gtk.CheckButton.with_label(_("Only When Maximized"));
-            on_maximize.margin = DEFAULT_MARGIN_SIZE / 2;
-            on_maximize.margin_start = on_maximize.margin_end = DEFAULT_MARGIN_SIZE * 2;
+            on_maximize.margin = DEFAULT_MARGIN / 2;
+            on_maximize.margin_start = on_maximize.margin_end = DEFAULT_MARGIN * 2;
             use_csd = new LabeledSwitch(_("Client Side Decorations"));
             wide_layout_options.add(on_maximize);
             on_maximize.show();

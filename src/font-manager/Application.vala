@@ -227,7 +227,7 @@ namespace FontManager {
                     var installer = new Library.Installer();
                     installer.progress.connect((m, p, t) => {
                         var data = new ProgressData(m, p, t);
-                        print_progress(data);
+                        data.print();
                     });
                     stdout.printf("Installing Font Files\n");
                     installer.process_sync(filelist);
@@ -236,7 +236,11 @@ namespace FontManager {
                 ensure_sources();
                 ensure_reject();
                 update_font_configuration();
-                load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+                try {
+                    load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+                } catch (Error e) {
+                    critical(e.message);
+                }
                 DatabaseType [] db_types = {
                     DatabaseType.FONT,
                     DatabaseType.METADATA,
@@ -245,7 +249,7 @@ namespace FontManager {
                 foreach (var type in db_types) {
                     try {
                         stdout.printf("Updating Database - %s\n", Database.get_type_name(type));
-                        update_database_sync(get_database(type), type, print_progress, null);
+                        update_database_sync(get_database(type), type, ProgressData.print, null);
                         stdout.printf("\n");
                     } catch (Error e) {
                         critical(e.message);
@@ -294,7 +298,11 @@ namespace FontManager {
             ensure_sources();
             ensure_reject();
             update_font_configuration();
-            load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+            try {
+                load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+            } catch (Error e) {
+                critical(e.message);
+            }
             Json.Object available_fonts = get_available_fonts(null);
             Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
             return print_json_array(sorted_fonts, true);
@@ -391,7 +399,11 @@ namespace FontManager {
             ThreadFunc <bool> run_in_thread = () => {
                 enable_user_font_configuration(false);
                 update_font_configuration();
-                load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+                try {
+                    load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+                } catch (Error e) {
+                    critical(e.message);
+                }
                 Json.Object available_fonts = get_available_fonts(null);
                 Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
                 FontModel model = new FontModel();
@@ -543,11 +555,12 @@ namespace FontManager {
             GLib.Intl.textdomain(Config.PACKAGE_NAME);
             GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
             Environment.set_application_name(About.DISPLAY_NAME);
+            update_font_configuration();
             //enable_user_font_configuration(false);
             Gtk.init(ref args);
             if (update_declined())
                 return 0;
-            set_application_style(BUS_PATH);
+            set_application_style();
             ApplicationFlags FLAGS = (ApplicationFlags.HANDLES_OPEN |
                                       ApplicationFlags.HANDLES_COMMAND_LINE);
             return new Application(BUS_ID, FLAGS).run(args);

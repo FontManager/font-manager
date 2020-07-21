@@ -20,14 +20,9 @@
 
 namespace FontManager {
 
-    /**
-     * {@inheritDoc}
-     */
     public class FontListControls : BaseControls {
 
         /**
-         * FontListControls::expand_all:
-         *
          * Emitted when the expand_button is clicked
          */
         public signal void expand_all (bool expand);
@@ -53,7 +48,7 @@ namespace FontManager {
             expand_button.set_tooltip_text(_("Expand all"));
             entry = new Gtk.SearchEntry();
             entry.set_size_request(0, 0);
-            entry.margin_end = MINIMUM_MARGIN_SIZE;
+            entry.margin_end = MIN_MARGIN;
             entry.placeholder_text = _("Search Families…");
             entry.set_tooltip_text(_("""Case insensitive search of family names.
 
@@ -239,14 +234,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                                                      Gtk.TreeModel model,
                                                      Gtk.TreeIter treeiter) {
             if (model.iter_has_child(treeiter)) {
-                int count = 0;
-                Gtk.TreeIter child;
-                bool have_child = model.iter_children(out child, treeiter);
-                while (have_child) {
-                    count++;
-                    have_child = model.iter_next(ref child);
-                }
-                cell.set_property("count", count);
+                cell.set_property("count", model.iter_n_children(treeiter));
                 cell.set_property("visible", true);
             } else {
                 cell.set_property("count", 0);

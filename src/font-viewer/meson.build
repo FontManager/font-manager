@@ -8,9 +8,8 @@ result = run_command(python, '-c', list_vala_sources)
 font_viewer_sources = result.stdout().strip().split('\n')
 
 executable('font-viewer',
-            [font_viewer_sources, font_viewer_gresources, config_vapi_file, libvala_headers],
-            link_with: libfontmanager,
-            dependencies: [base_deps, libvala_deps],
+            [font_viewer_sources, font_viewer_gresources, config_vapi_file],
+            dependencies: libfontmanager_deps,
             install: true,
             install_dir: pkglibexec_dir,
             install_rpath: pkglib_dir)

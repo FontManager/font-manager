@@ -8,14 +8,22 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-config-controls.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-list-pane.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-preview-tile.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-inline-help.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-labeled-font-button.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-labeled-switch.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-labeled-spin-button.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-language-filter-settings.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-option-scale.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list-box-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preferences.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preview-entry.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-shortcuts-window.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-sidebar.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-standard-sidebar.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-substitute.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-subpixel-geometry-icon.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-subpixel-geometry.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-title-button-style.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-data.ui</file>
     </gresource>

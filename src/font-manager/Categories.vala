@@ -152,7 +152,7 @@ namespace FontManager {
             overlay = new Gtk.Overlay();
             updating = new PlaceHolder(null, "emblem-synchronizing-symbolic");
             string update_txt = _("Update in progress");
-            updating.label.set_markup("<b><big>%s</big></b>".printf(update_txt));
+            updating.message = "<b><big>%s</big></b>".printf(update_txt);
             updating.show();
             tree = new BaseTreeView();
             model = new CategoryModel();

@@ -109,9 +109,6 @@ namespace FontManager {
 
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public class CollectionControls : BaseControls {
 
         public InlineHelp help { get; private set; }

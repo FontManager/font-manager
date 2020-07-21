@@ -41,6 +41,18 @@ namespace FontManager {
 
     }
 
+    public const string [] FONT_MIMETYPES = {
+        "application/x-font-ttf",
+        "application/x-font-ttc",
+        "application/x-font-otf",
+        "application/x-font-type1",
+        "font/ttf",
+        "font/ttc",
+        "font/otf",
+        "font/type1",
+        "font/collection"
+    };
+
     namespace FileSelector {
 
         public string? get_target_directory () {

@@ -110,7 +110,7 @@ namespace FontManager {
 
         private bool charmap_visible {
             get {
-                int current_page = preview_pane.notebook.get_current_page();
+                int current_page = preview_pane.get_current_page();
                 return current_page == PreviewPanePage.CHARACTER_MAP;
             }
         }
@@ -147,67 +147,68 @@ namespace FontManager {
         }
 
         void zoom_in () {
-            preview_pane.preview_size += 0.5;
-            browse.preview_size += 0.5;
-            compare.preview_size += 0.5;
-            preview_pane.charmap.preview_size += 0.5;
+            var page = (PreviewPanePage) preview_pane.get_current_page();
+            if (page == PreviewPanePage.CHARACTER_MAP)
+                preview_pane.character_map_preview_size += 0.5;
+            else
+                preview_pane.preview_size += 0.5;
             return;
         }
 
         void zoom_out () {
-            preview_pane.preview_size -= 0.5;
-            browse.preview_size -= 0.5;
-            compare.preview_size -= 0.5;
-            preview_pane.charmap.preview_size -= 0.5;
+            var page = (PreviewPanePage) preview_pane.get_current_page();
+            if (page == PreviewPanePage.CHARACTER_MAP)
+                preview_pane.character_map_preview_size -= 0.5;
+            else
+                preview_pane.preview_size -= 0.5;
             return;
         }
 
         void reset_zoom () {
-            preview_pane.preview_size = 10.0;
-            browse.preview_size = 12.0;
-            compare.preview_size = 12.0;
-            preview_pane.charmap.preview_size = 18;
+            var page = (PreviewPanePage) preview_pane.get_current_page();
+            if (page == PreviewPanePage.CHARACTER_MAP)
+                preview_pane.character_map_preview_size = CHARACTER_MAP_PREVIEW_SIZE;
+            else
+                preview_pane.preview_size = DEFAULT_PREVIEW_SIZE;
             return;
         }
 
         void add_actions () {
 
-            insert_action_group("default", new SimpleActionGroup());
-
             var action = new SimpleAction("zoom_in", null);
             action.activate.connect((a, v) => { zoom_in(); });
             string? [] accels = { "<Ctrl>plus", "<Ctrl>equal", null };
-            add_keyboard_shortcut(this, action, "zoom_in", accels);
+            add_keyboard_shortcut(action, "zoom_in", accels);
 
             action = new SimpleAction("zoom_out", null);
             action.activate.connect((a, v) => { zoom_out(); });
             accels = { "<Ctrl>minus", null };
-            add_keyboard_shortcut(this, action, "zoom_out", accels);
+            add_keyboard_shortcut(action, "zoom_out", accels);
 
             action = new SimpleAction("zoom_default", null);
             action.activate.connect((a, v) => { reset_zoom(); });
             accels = { "<Ctrl>0", null };
-            add_keyboard_shortcut(this, action, "zoom_default", accels);
+            add_keyboard_shortcut(action, "zoom_default", accels);
 
             action = new SimpleAction("reload", null);
             action.activate.connect((a, v) => {
                 ((FontManager.Application) application).refresh();
             });
             accels = { "<Ctrl>r", "F5", null };
-            add_keyboard_shortcut(this, action, "reload", accels);
+            add_keyboard_shortcut(action, "reload", accels);
 
             return;
         }
 
         void bind_properties () {
             bind_property("model", fontlist_pane, "model", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
-            fontlist.bind_property("selected-font", preview_pane, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+            fontlist.bind_property("selected-font", preview_pane, "font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("selected-font", sidebar.orthographies, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("selected-font", compare, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("model", browse, "model", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("samples", browse, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("samples", compare, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
-            fontlist.bind_property("samples", preview_pane.preview, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+            fontlist.bind_property("samples", preview_pane, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             var ui_prefs = (UserInterfacePreferences) preference_pane.get_page("Interface");
             ui_prefs.wide_layout.toggle.bind_property("active", this, "wide-layout", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             main_pane.bind_property("position", preference_pane, "position", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
@@ -326,7 +327,7 @@ namespace FontManager {
 
             sidebar.standard.category_selected.connect((filter, index) => { fontlist_pane.filter = filter; });
             sidebar.standard.collection_selected.connect((filter) => { fontlist_pane.filter = filter; });
-            sidebar.orthographies.orthography_selected.connect((o) => { preview_pane.charmap.set_filter(o); });
+            sidebar.orthographies.orthography_selected.connect((o) => { preview_pane.orthography = o; });
 
             sidebar.standard.category_selected.connect((c, i) => {
                 if (disabled == null && c is Disabled) {
@@ -387,9 +388,9 @@ namespace FontManager {
                 browse.treeview.queue_draw();
             });
 
-            Gtk.drag_dest_set(fontlist_pane, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
+            Gtk.drag_dest_set(fontlist_pane, Gtk.DestDefaults.ALL, DragTargets, Gdk.DragAction.COPY);
             //fontlist.enable_model_drag_dest(AppDragTargets, AppDragActions);
-            fontlist.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK | Gdk.ModifierType.RELEASE_MASK, AppDragTargets, AppDragActions);
+            fontlist.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK | Gdk.ModifierType.RELEASE_MASK, DragTargets, Gdk.DragAction.COPY);
             var collections_tree = sidebar.standard.collection_tree;
             /* Let GTK+ handle re-ordering */
             collections_tree.set_reorderable(true);
@@ -401,7 +402,7 @@ namespace FontManager {
                  * Temporarily disable it and set the treeview up as a drag destination.
                  */
                 collections_tree.set_reorderable(false);
-                collections_tree.enable_model_drag_dest(AppDragTargets, AppDragActions);
+                collections_tree.enable_model_drag_dest(DragTargets, Gdk.DragAction.COPY);
                 if (sidebar.standard.mode == StandardSidebarMode.CATEGORY) {
                     sidebar_switch = true;
                     sidebar.standard.mode = StandardSidebarMode.COLLECTION;
@@ -463,7 +464,7 @@ namespace FontManager {
 
             });
 
-            preview_pane.notebook.switch_page.connect((page, page_num) => {
+            preview_pane.switch_page.connect((page, page_num) => {
                 if (page_num == PreviewPanePage.CHARACTER_MAP)
                     sidebar.mode = "Orthographies";
                 else
@@ -599,12 +600,8 @@ namespace FontManager {
                 settings.set_enum("browse-mode", (int) m);
             });
 
-            preview_pane.preview_mode_changed.connect((m) => { settings.set_string("preview-mode", ((FontManager.FontPreviewMode) m).to_string()); });
-            preview_pane.preview_text_changed.connect((p) => {
-                if (!preview_pane.preview.restore_default_preview && p != DEFAULT_PREVIEW_TEXT)
-                    settings.set_string("preview-text", p);
-            });
-
+            settings.bind("preview-text", preview_pane, "preview-text", SettingsBindFlags.DEFAULT);
+            settings.bind("preview-mode", preview_pane, "preview-mode", SettingsBindFlags.DEFAULT);
             settings.bind("sidebar-size", main_pane, "position", SettingsBindFlags.DEFAULT);
             settings.bind("content-pane-position", content_pane, "position", SettingsBindFlags.DEFAULT);
             settings.bind("preview-font-size", preview_pane, "preview-size", SettingsBindFlags.DEFAULT);
@@ -612,11 +609,11 @@ namespace FontManager {
             settings.bind("browse-preview-text", browse.entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("compare-font-size", compare, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("compare-preview-text", compare.entry, "text", SettingsBindFlags.DEFAULT);
-            settings.bind("charmap-font-size", preview_pane.charmap, "preview-size", SettingsBindFlags.DEFAULT);
+            // XXX : settings.bind("charmap-font-size", preview_pane.charmap, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("selected-category", sidebar.standard.category_tree, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("selected-collection", sidebar.standard.collection_tree, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("selected-font", fontlist, "selected-iter", SettingsBindFlags.DEFAULT);
-            settings.bind("preview-page", preview_pane.notebook, "page", SettingsBindFlags.DEFAULT);
+            settings.bind("preview-page", preview_pane, "page", SettingsBindFlags.DEFAULT);
             settings.bind("wide-layout", this, "wide-layout", SettingsBindFlags.DEFAULT);
             settings.bind("use-csd", this, "use-csd", SettingsBindFlags.DEFAULT);
             return;
@@ -657,14 +654,14 @@ namespace FontManager {
             set_default_size(w, h);
             move(x, y);
             sidebar.standard.mode = (StandardSidebarMode) settings.get_enum("sidebar-mode");
-            preview_pane.mode = FontManager.FontPreviewMode.parse(settings.get_string("preview-mode"));
-            preview_pane.notebook.page = settings.get_int("preview-page");
+            preview_pane.preview_mode = (FontPreviewMode) settings.get_enum("preview-mode");
+            preview_pane.page = settings.get_int("preview-page");
 
             main_pane.position = settings.get_int("sidebar-size");
             content_pane.position = settings.get_int("content-pane-position");
 
             preview_pane.preview_size = settings.get_double("preview-font-size");
-            preview_pane.charmap.preview_size = settings.get_double("charmap-font-size");
+            // XXX : preview_pane.charmap.preview_size = settings.get_double("charmap-font-size");
             browse.preview_size = settings.get_double("browse-font-size");
             /* Workaround first row height bug? in browse mode */
             browse.preview_size++;
@@ -675,7 +672,7 @@ namespace FontManager {
 
             var preview_text = settings.get_string("preview-text");
             if (preview_text != "DEFAULT")
-                preview_pane.set_preview_text(preview_text);
+                preview_pane.preview_text = preview_text;
             fontlist_pane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSidebarMode.COLLECTION);
 
             mode = (FontManager.Mode) settings.get_enum("mode");
@@ -766,14 +763,14 @@ namespace FontManager {
             set_default_size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
             mode = FontManager.Mode.MANAGE;
             sidebar.standard.mode = StandardSidebarMode.CATEGORY;
-            preview_pane.mode = FontManager.FontPreviewMode.WATERFALL;
+            preview_pane.preview_mode = FontManager.FontPreviewMode.WATERFALL;
             main_pane.position = 275;
             content_pane.position = 200;
             preview_pane.preview_size = 10.0;
             browse.preview_size = 12.0;
             compare.preview_size = 12.0;
-            preview_pane.charmap.preview_size = 18;
-            preview_pane.notebook.page = 0;
+            // XXX : preview_pane.charmap.preview_size = 18;
+            preview_pane.page = 0;
             fontlist_pane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSidebarMode.COLLECTION);
             return;
         }

@@ -46,8 +46,6 @@ namespace FontManager {
     }
 
     /**
-     * DisplayPropertiesPane:
-     *
      * Preference pane allowing configuration of display related Fontconfig properties
      */
     class DisplayPropertiesPane : Gtk.ScrolledWindow {

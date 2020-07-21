@@ -58,9 +58,13 @@ namespace FontManager {
             var header = new Gtk.HeaderBar();
             var box = dialog.get_content_area();
             var scrolled = new Gtk.ScrolledWindow(null, null);
-            var textview = new StaticTextView(null);
+            var textview = new Gtk.TextView();
+            textview.set("margin", DEFAULT_MARGIN, "editable", false,
+                         "cursor-visible", false, "accepts-tab", false,
+                         "overwrite", false, "wrap-mode", Gtk.WrapMode.WORD_CHAR, null);
             box.set_orientation(Gtk.Orientation.VERTICAL);
             scrolled.add(textview);
+            scrolled.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             box.pack_start(scrolled, true, true, 0);
             textview.buffer.set_text(update_notice);
             header.set_title(_("Update Required"));
@@ -73,6 +77,12 @@ namespace FontManager {
             dialog.set_size_request(540, 360);
             header.show_all();
             box.show_all();
+            textview.event.connect((e) => {
+                if (e.type == Gdk.EventType.SCROLL)
+                    return false;
+                textview.get_window(Gtk.TextWindowType.TEXT).set_cursor(null);
+                return true;
+            });
             cancel.clicked.connect(() => { dialog.response(Gtk.ResponseType.CANCEL); });
             accept.clicked.connect(() => { dialog.response(Gtk.ResponseType.ACCEPT); });
             dialog.response.connect((i) => { response = (Gtk.ResponseType) i; dialog.destroy(); });

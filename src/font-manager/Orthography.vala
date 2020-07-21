@@ -71,7 +71,7 @@ namespace FontManager {
             parser = new Json.Parser();
             updating = new PlaceHolder(null, "emblem-synchronizing-symbolic");
             string update_txt = _("Update in progress");
-            updating.label.set_markup("<b><big>%s</big></b>".printf(update_txt));
+            updating.message = "<b><big>%s</big></b>".printf(update_txt);
             updating.show();
             unavailable = new PlaceHolder(null, "action-unavailable-symbolic");
             unavailable.show();
@@ -185,8 +185,8 @@ namespace FontManager {
         public OrthographyListBoxRow (Orthography orth) {
             orthography = orth;
             C_name.set_text(orth.name);
-            bool have_native_name = orth.native_name != null && orth.native_name != "";
-            string _native = have_native_name ? orth.native_name : orth.name;
+            bool have_native_name = orth.native != null && orth.native != "";
+            string _native = have_native_name ? orth.native : orth.name;
             native_name.set_markup("<big>%s</big>".printf(_native));
             double cov_val = ((double) orth.coverage / 100);
             coverage.set_value(cov_val);

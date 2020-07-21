@@ -93,30 +93,20 @@ Note that not all environments/applications will honor these settings.""");
 
     }
 
-    /**
-     * FontSourceList:
-     */
     class FontSourceList : Gtk.ScrolledWindow {
 
         /**
-         * FontSourceList::changed:
-         *
          * Emitted when a row has been added or removed
          */
         public signal void changed ();
 
         /**
-         * FontSourceList::row_selected:
-         *
          * Emitted when a row has been selected
          */
         public signal void row_selected (Gtk.ListBoxRow? row);
 
         public PlaceHolder place_holder { get; private set; }
 
-        /**
-         * FontSourceList:first_row:
-         */
         Gtk.ListBoxRow first_row {
             get {
                 return list.get_row_at_index(0);
@@ -138,7 +128,7 @@ Note that not all environments/applications will honor these settings.""");
             add(list);
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             list.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, AppDragTargets, AppDragActions);
+            Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, DragTargets, Gdk.DragAction.COPY);
             list.row_selected.connect((r) => { row_selected(r); });
             changed.connect(() => { Idle.add(() => { update(); return false; }); });
             sources.changed.connect(() => { changed(); });
@@ -148,8 +138,6 @@ Note that not all environments/applications will honor these settings.""");
         }
 
         /**
-         * update:
-         *
          * Updates list to match sources
          */
         public void update () {
@@ -187,8 +175,6 @@ Note that not all environments/applications will honor these settings.""");
         }
 
         /**
-         * on_add_source:
-         *
          * Displays a file selection dialog where source folders can be added
          */
         public void on_add_source () {
@@ -199,8 +185,6 @@ Note that not all environments/applications will honor these settings.""");
         }
 
         /**
-         * on_remove_source:
-         *
          * Removes currently selected source
          */
         public void on_remove_source () {
@@ -233,10 +217,8 @@ Note that not all environments/applications will honor these settings.""");
         }
 
         /**
-         * FontSourceRow:
-         *
-         * Widget representing a #Source and its current status.
-         * Intended for use in a #Gtk.Listbox
+         * Widget representing a Source and its current status.
+         * Intended for use in a Listbox
          */
         internal class FontSourceRow : LabeledSwitch {
 
@@ -246,11 +228,11 @@ Note that not all environments/applications will honor these settings.""");
             public FontSourceRow (Source source) {
                 Object(name: "FontSourceRow", source: source, orientation: Gtk.Orientation.HORIZONTAL);
                 image = new Gtk.Image();
-                image.set("expand", false, "margin-end", DEFAULT_MARGIN_SIZE, null);
+                image.set("expand", false, "margin-end", DEFAULT_MARGIN, null);
                 source.bind_property("active", toggle, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-                source.bind_property("available", toggle, "sensitive", BindingFlags.SYNC_CREATE);
-                source.bind_property("icon-name", image, "icon-name", BindingFlags.SYNC_CREATE);
-                source.bind_property("name", label, "label", BindingFlags.SYNC_CREATE);
+                source.bind_property("available", toggle, "sensitive", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+                source.bind_property("icon-name", image, "icon-name", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+                source.bind_property("name", label, "label", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
                 description.set_text(source.get_status_message());
                 pack_start(image, false, false, 0);
                 reorder_child(image, 0);

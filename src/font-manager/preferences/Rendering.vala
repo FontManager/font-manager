@@ -46,17 +46,10 @@ namespace FontManager {
     }
 
     /**
-     * FontPropertiesPane:
-     *
      * Preference pane allowing configuration of FontConfig rendering properties
      */
     class FontPropertiesPane : Gtk.ScrolledWindow {
 
-        /**
-         * FontPropertiesPane:properties:
-         *
-         * #FontProperties in use
-         */
         public FontProperties properties { get; private set; }
 
         Gtk.Grid grid;
@@ -80,11 +73,11 @@ namespace FontManager {
             antialias = new LabeledSwitch(_("Antialias"));
             hinting = new LabeledSwitch(_("Hinting"));
             autohint = new Gtk.CheckButton.with_label(_("Enable Autohinter"));
-            autohint.margin = DEFAULT_MARGIN_SIZE;
+            autohint.margin = DEFAULT_MARGIN;
             hinting_options = new Gtk.Revealer();
             hinting_options.set_transition_duration(450);
             hinting_options_grid = new Gtk.Grid();
-            hinting_options_grid.margin = DEFAULT_MARGIN_SIZE + (DEFAULT_MARGIN_SIZE / 2);
+            hinting_options_grid.margin = (int) (DEFAULT_MARGIN * 1.5);
             string [] hintstyles = {};
             for (int i = 0; i <= HintStyle.FULL; i++)
                 hintstyles += ((HintStyle) i).to_string();
