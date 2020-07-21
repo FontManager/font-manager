@@ -37,16 +37,6 @@ namespace FontManager {
             return;
         }
 
-        public new bool visible_func (Gtk.TreeModel model, Gtk.TreeIter iter) {
-            Value val;
-            bool visible = false;
-            model.get_value(iter, FontModelColumn.OBJECT, out val);
-            string? family = ((Json.Object) val).get_string_member("family");
-            visible = (family in families);
-            val.unset();
-            return visible;
-        }
-
     }
 
 }
