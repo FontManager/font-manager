@@ -36,6 +36,15 @@
 #include "unicode-unihan.h"
 #include "unicode-scripts.h"
 
+/**
+ * SECTION: unicode-info
+ * @short_description: Unicode related utility functions
+ * @title: Unicode Information
+ * @include: unicode-info.h
+ *
+ * This widget provides a way to search for characters by name, value or
+ * other information.
+ */
 
 /* constants for hangul (de)composition, see UAX #15 */
 #define SBase 0xAC00

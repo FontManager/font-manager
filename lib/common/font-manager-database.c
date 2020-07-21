@@ -18,16 +18,24 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include <glib/gstdio.h>
-
 #include "font-manager-database.h"
-#include "font-manager-orthography.h"
-#include "font-manager-fontconfig.h"
-#include "font-manager-freetype.h"
-#include "font-manager-json.h"
-#include "font-manager-font.h"
-#include "font-manager-family.h"
-#include "font-manager-font-info.h"
+
+/**
+ * SECTION: font-manager-database
+ * @short_description: Database related functions
+ * @title: Database
+ * @include: font-manager-database.h
+ * @stability: Unstable
+ *
+ * Database class and related functions.
+ *
+ * The current design uses a three separate database files.
+ * The first holds information required for basic font identification,
+ * the second holds all the metadata extracted from the font file
+ * itself and the third has information related to orthography support.
+ *
+ * These are then attached to the "base" database for access.
+ */
 
 #define CREATE_FONTS_TABLE "CREATE TABLE IF NOT EXISTS Fonts ( " \
 "uid INTEGER PRIMARY KEY, filepath TEXT, findex INTEGER, family TEXT, " \
@@ -88,8 +96,6 @@ enum
 };
 
 static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
-
-#define DEFAULT_PARAM_FLAGS (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS)
 
 static void
 set_error (FontManagerDatabase *self, const gchar *ctx, GError **error)
@@ -223,8 +229,12 @@ font_manager_database_class_init (FontManagerDatabaseClass *klass)
      *
      * Filepath to database.
      */
-    obj_properties[PROP_FILE] = g_param_spec_string("file", NULL, NULL, NULL,
-                                                    DEFAULT_PARAM_FLAGS);
+    obj_properties[PROP_FILE] = g_param_spec_string("file",
+                                                    NULL,
+                                                    "Database file",
+                                                    NULL,
+                                                    G_PARAM_READWRITE |
+                                                    G_PARAM_STATIC_STRINGS);
 
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
@@ -243,7 +253,7 @@ font_manager_database_init (FontManagerDatabase *self)
  * font_manager_database_get_type_name:
  * @type: #FontManagerDatabaseType
  *
- * Returns: type name
+ * Returns: Database type name
  */
 const gchar *
 font_manager_database_get_type_name (FontManagerDatabaseType type)
@@ -264,7 +274,7 @@ font_manager_database_get_type_name (FontManagerDatabaseType type)
  * font_manager_database_get_file:
  * @type: #FontManagerDatabaseType
  *
- * Returns: (nullable): a newly allocated string or %NULL
+ * Returns: (nullable): A newly allocated string or %NULL
  */
 gchar *
 font_manager_database_get_file (FontManagerDatabaseType type)
@@ -280,7 +290,8 @@ font_manager_database_get_file (FontManagerDatabaseType type)
  * @error: (nullable): #GError or %NULL to ignore errors
  *
  * Open database.
- * It is not necessary to call this function in normal usage.
+ *
+ * Note: It is not necessary to call this function in normal usage.
  * The methods provided by this class will open the database if needed.
  */
 void
@@ -301,7 +312,8 @@ font_manager_database_open (FontManagerDatabase *self, GError **error)
  * @self:   #FontManagerDatabase
  * @error: (nullable): #GError or %NULL to ignore errors
  *
- * Begin a transaction, this should be paired with #commit_transaction.
+ * Begin a transaction, this should be paired with
+ * #font_manager_database_commit_transaction().
  */
 void
 font_manager_database_begin_transaction (FontManagerDatabase *self, GError **error)
@@ -325,7 +337,7 @@ font_manager_database_begin_transaction (FontManagerDatabase *self, GError **err
  * @error: (nullable): #GError or %NULL to ignore errors
  *
  * End a transaction. It is an error to call this function without having
- * previously called #begin_transaction.
+ * previously called #font_manager_database_begin_transaction().
  */
 void
 font_manager_database_commit_transaction (FontManagerDatabase *self, GError **error)
@@ -358,8 +370,6 @@ font_manager_database_execute_query (FontManagerDatabase *self, const gchar *sql
     g_return_if_fail(error == NULL || *error == NULL);
     if (sqlite3_open_failed(self, error))
         return;
-    //if (G_UNLIKELY(g_getenv("DEBUG")))
-        //g_debug(_sql);
     if (sqlite3_prepare_v2(self->db, sql, -1, &self->stmt, NULL) != SQLITE_OK)
         set_error(self, sql, error);
     return;
@@ -372,7 +382,7 @@ font_manager_database_execute_query (FontManagerDatabase *self, const gchar *sql
  *
  * Returns: Database schema version or -1 on error.
  */
-int
+gint
 font_manager_database_get_version (FontManagerDatabase *self, GError **error)
 {
     int result = -1;
@@ -389,7 +399,8 @@ font_manager_database_get_version (FontManagerDatabase *self, GError **error)
 
 /**
  * font_manager_database_set_version:
- * @self:   #FontManagerDatabase
+ * @self:       #FontManagerDatabase
+ * @version:    version number
  * @error: (nullable): #GError or %NULL to ignore errors
  *
  * Set database schema version.
@@ -556,9 +567,10 @@ font_manager_database_initialize (FontManagerDatabase *self,
  * font_manager_database_get_object:
  * @self: #FontManagerDatabase
  * @sql: SQL query
+ * @error: #GError or %NULL
  *
  * Returns: (transfer full) (nullable):
- * #JsonObject representation of first result
+ * #JsonObject representation of first result,
  * %NULL if there were no results or there was an error.
  */
 JsonObject *
@@ -616,7 +628,7 @@ font_manager_database_new (void)
  * @self:   #FontManagerDatabase
  *
  * Returns: (transfer full):   #FontManagerDatabaseIterator.
- * Free the result using g_object_unref().
+ * Free the return object using g_object_unref().
  */
 FontManagerDatabaseIterator *
 font_manager_database_iterator (FontManagerDatabase *self)
@@ -676,7 +688,7 @@ font_manager_database_iterator_next (FontManagerDatabaseIterator *self)
  * font_manager_database_iterator_get: (skip)
  * @self:   #FontManagerDatabase
  *
- * Returns: (transfer none): #Sqlite.Statement
+ * Returns: (transfer none): #sqlite3_stmt
  */
 sqlite3_stmt *
 font_manager_database_iterator_get (FontManagerDatabaseIterator *self)
@@ -687,9 +699,10 @@ font_manager_database_iterator_get (FontManagerDatabaseIterator *self)
 
 /**
  * font_manager_database_iterator_new:
+ * @db: #FontManagerDatabase
  *
- * Returns: (transfer full): #FontManagerDatabaseIterator
- * Free the result using g_object_unref().
+ * Returns: (transfer full): A newly created #FontManagerDatabaseIterator.
+ * Free the returned object using g_object_unref().
  */
 FontManagerDatabaseIterator *
 font_manager_database_iterator_new (FontManagerDatabase *db)
@@ -771,7 +784,7 @@ free_sync_data (DatabaseSyncData *data)
 static void
 bind_from_properties (sqlite3_stmt *stmt,
                       JsonObject *json,
-                      const FontManagerProxyObjectProperties *properties,
+                      const FontManagerJsonProxyProperties *properties,
                       gint n_properties)
 {
     for (gint i = 0; i < n_properties; i++) {
@@ -835,10 +848,10 @@ sync_metadata_table (FontManagerDatabase *db, JsonObject *face, gpointer data)
     JsonArray *panose_info = data;
     int index = json_object_get_int_member(face, "findex");
     const gchar *filepath = json_object_get_string_member(face, "filepath");
-    JsonObject *_face = font_manager_get_metadata(filepath, index);
-    if (json_object_has_member(_face, "err")) {
-        const gchar *err_msg = json_object_get_string_member(_face, "err_msg");
-        g_critical("Failed to get metadata for %s::%i - %s", filepath, index, err_msg);
+    GError *error = NULL;
+    JsonObject *_face = font_manager_get_metadata(filepath, index, &error);
+    if (error != NULL) {
+        g_critical("Failed to get metadata for %s::%i - %s", filepath, index, error->message);
         json_object_unref(_face);
         return;
     }
@@ -1018,7 +1031,7 @@ cleanup:
 /**
  * font_manager_update_database_sync:
  * @db: #FontManagerDatabase instance
- * @type: #DatabaseUpdateType
+ * @type: #FontManagerDatabaseType
  * @progress: (scope call) (nullable): #FontManagerProgressCallback
  * @cancellable: (nullable): #GCancellable or %NULL
  * @error: (nullable): #GError or %NULL
@@ -1119,7 +1132,7 @@ sync_database_thread (GTask *task,
 /**
  * font_manager_update_database:
  * @db: #FontManagerDatabase instance
- * @type: #DatabaseUpdateType
+ * @type: #FontManagerDatabaseType
  * @progress: (scope call) (nullable): #FontManagerProgressCallback
  * @cancellable: (nullable): #GCancellable or %NULL
  * @callback: (nullable) (scope async): #GAsyncReadyCallback or %NULL
@@ -1210,7 +1223,8 @@ static FontManagerDatabase *main_database = NULL;
  *
  * Convenience function which initializes the database and sets default options.
  *
- * Returns: (transfer full): #FontManagerDatabase.
+ * Returns: (transfer full) (nullable): The requested #FontManagerDatabase or %NULL on error.
+ * Free the returned object using #g_object_unref().
  */
 FontManagerDatabase *
 font_manager_get_database (FontManagerDatabaseType type, GError **error)
@@ -1225,4 +1239,75 @@ font_manager_get_database (FontManagerDatabaseType type, GError **error)
     if (type == FONT_MANAGER_DATABASE_TYPE_BASE && main_database == NULL)
         main_database = g_object_ref(db);
     return db;
+}
+
+GType
+font_manager_database_error_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { FONT_MANAGER_DATABASE_ERROR_OK, "FONT_MANAGER_DATABASE_ERROR_OK", "ok" },
+        { FONT_MANAGER_DATABASE_ERROR_ERROR, "FONT_MANAGER_DATABASE_ERROR_ERROR", "error" },
+        { FONT_MANAGER_DATABASE_ERROR_INTERNAL, "FONT_MANAGER_DATABASE_ERROR_INTERNAL", "internal" },
+        { FONT_MANAGER_DATABASE_ERROR_PERM, "FONT_MANAGER_DATABASE_ERROR_PERM", "perm" },
+        { FONT_MANAGER_DATABASE_ERROR_ABORT, "FONT_MANAGER_DATABASE_ERROR_ABORT", "abort" },
+        { FONT_MANAGER_DATABASE_ERROR_BUSY, "FONT_MANAGER_DATABASE_ERROR_BUSY", "busy" },
+        { FONT_MANAGER_DATABASE_ERROR_LOCKED, "FONT_MANAGER_DATABASE_ERROR_LOCKED", "locked" },
+        { FONT_MANAGER_DATABASE_ERROR_NOMEM, "FONT_MANAGER_DATABASE_ERROR_NOMEM", "nomem" },
+        { FONT_MANAGER_DATABASE_ERROR_READONLY, "FONT_MANAGER_DATABASE_ERROR_READONLY", "readonly" },
+        { FONT_MANAGER_DATABASE_ERROR_INTERRUPT, "FONT_MANAGER_DATABASE_ERROR_INTERRUPT", "interrupt" },
+        { FONT_MANAGER_DATABASE_ERROR_IOERR, "FONT_MANAGER_DATABASE_ERROR_IOERR", "ioerr" },
+        { FONT_MANAGER_DATABASE_ERROR_CORRUPT, "FONT_MANAGER_DATABASE_ERROR_CORRUPT", "corrupt" },
+        { FONT_MANAGER_DATABASE_ERROR_NOTFOUND, "FONT_MANAGER_DATABASE_ERROR_NOTFOUND", "notfound" },
+        { FONT_MANAGER_DATABASE_ERROR_FULL, "FONT_MANAGER_DATABASE_ERROR_FULL", "full" },
+        { FONT_MANAGER_DATABASE_ERROR_CANTOPEN, "FONT_MANAGER_DATABASE_ERROR_CANTOPEN", "cantopen" },
+        { FONT_MANAGER_DATABASE_ERROR_PROTOCOL, "FONT_MANAGER_DATABASE_ERROR_PROTOCOL", "protocol" },
+        { FONT_MANAGER_DATABASE_ERROR_EMPTY, "FONT_MANAGER_DATABASE_ERROR_EMPTY", "empty" },
+        { FONT_MANAGER_DATABASE_ERROR_SCHEMA, "FONT_MANAGER_DATABASE_ERROR_SCHEMA", "schema" },
+        { FONT_MANAGER_DATABASE_ERROR_TOOBIG, "FONT_MANAGER_DATABASE_ERROR_TOOBIG", "toobig" },
+        { FONT_MANAGER_DATABASE_ERROR_CONSTRAINT, "FONT_MANAGER_DATABASE_ERROR_CONSTRAINT", "constraint" },
+        { FONT_MANAGER_DATABASE_ERROR_MISMATCH, "FONT_MANAGER_DATABASE_ERROR_MISMATCH", "mismatch" },
+        { FONT_MANAGER_DATABASE_ERROR_MISUSE, "FONT_MANAGER_DATABASE_ERROR_MISUSE", "misuse" },
+        { FONT_MANAGER_DATABASE_ERROR_NOLFS, "FONT_MANAGER_DATABASE_ERROR_NOLFS", "nolfs" },
+        { FONT_MANAGER_DATABASE_ERROR_AUTH, "FONT_MANAGER_DATABASE_ERROR_AUTH", "auth" },
+        { FONT_MANAGER_DATABASE_ERROR_FORMAT, "FONT_MANAGER_DATABASE_ERROR_FORMAT", "format" },
+        { FONT_MANAGER_DATABASE_ERROR_RANGE, "FONT_MANAGER_DATABASE_ERROR_RANGE", "range" },
+        { FONT_MANAGER_DATABASE_ERROR_NOTADB, "FONT_MANAGER_DATABASE_ERROR_NOTADB", "notadb" },
+        { FONT_MANAGER_DATABASE_ERROR_NOTICE, "FONT_MANAGER_DATABASE_ERROR_NOTICE", "notice" },
+        { FONT_MANAGER_DATABASE_ERROR_WARNING, "FONT_MANAGER_DATABASE_ERROR_WARNING", "warning" },
+        { FONT_MANAGER_DATABASE_ERROR_ROW, "FONT_MANAGER_DATABASE_ERROR_ROW", "row" },
+        { FONT_MANAGER_DATABASE_ERROR_DONE, "FONT_MANAGER_DATABASE_ERROR_DONE", "done" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("FontManagerDatabaseError"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+
+GType
+font_manager_database_type_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { FONT_MANAGER_DATABASE_TYPE_BASE, "FONT_MANAGER_DATABASE_TYPE_BASE", "base" },
+        { FONT_MANAGER_DATABASE_TYPE_FONT, "FONT_MANAGER_DATABASE_TYPE_FONT", "font" },
+        { FONT_MANAGER_DATABASE_TYPE_METADATA, "FONT_MANAGER_DATABASE_TYPE_METADATA", "metadata" },
+        { FONT_MANAGER_DATABASE_TYPE_ORTHOGRAPHY, "FONT_MANAGER_DATABASE_TYPE_ORTHOGRAPHY", "orthography" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("FontManagerDatabaseType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
 }

@@ -17,7 +17,33 @@
  *
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
+
 #include "font-manager-family.h"
+
+/**
+ * SECTION: font-manager-family
+ * @short_description: Font family
+ * @title: Family
+ * @include: font-manager-family.h
+ * @see_also: #FontManagerJsonProxy #FontManagerFont
+ *
+ * #FontManagerFamily holds information about a font family along with an array
+ * of #JsonObject representing the fonts belonging to this font family.
+ * 
+ * The #JsonObject backing this class should have the following structure:
+ * 
+ * |[
+ * {
+ *   "family" : string,
+ *   "description" : string,
+ *   "n-variations" : int,
+ *   "variations" : [ ]
+ * }
+ *]|
+ * 
+ * variations is a #JsonArray of #JsonObjects representing individual fonts. 
+ * See #FontManagerFont for object description.
+ */
 
 struct _FontManagerFamily
 {
@@ -37,8 +63,7 @@ font_manager_family_class_init (FontManagerFamilyClass *klass)
     GObjectClass *parent_class = G_OBJECT_CLASS(font_manager_family_parent_class);
     object_class->get_property = parent_class->get_property;
     object_class->set_property = parent_class->set_property;
-    FontManagerJsonProxyClass *proxy_class = FONT_MANAGER_JSON_PROXY_CLASS(parent_class);
-    proxy_class->generate_properties(obj_properties, PROPERTIES, N_PROPERTIES);
+    font_manager_json_proxy_generate_properties(obj_properties, PROPERTIES, N_PROPERTIES);
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
 }
@@ -51,8 +76,9 @@ font_manager_family_init (FontManagerFamily *self)
 
 /**
  * font_manager_family_get_default_variant:
+ * @self:   #FontManagerFamily
  *
- * Returns: (transfer none): #JsonObject
+ * Returns: (transfer none): #JsonObject which should not be freed.
  */
 JsonObject *
 font_manager_family_get_default_variant (FontManagerFamily *self)
@@ -75,7 +101,8 @@ font_manager_family_get_default_variant (FontManagerFamily *self)
 /**
  * font_manager_family_new:
  *
- * Returns: (transfer full): a new #FontManagerFont
+ * Returns: (transfer full): A newly created #FontManagerFamily.
+ * Free the returned object using #g_object_unref().
  */
 FontManagerFamily *
 font_manager_family_new (void)

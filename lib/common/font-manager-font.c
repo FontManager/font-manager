@@ -20,6 +20,32 @@
 
 #include "font-manager-font.h"
 
+/**
+ * SECTION: font-manager-font
+ * @short_description: Font style information
+ * @title: Font
+ * @include: font-manager-font.h
+ * @see_also: #FontManagerJsonProxy
+ *
+ * #FontManagerFont holds basic style information for a single font.
+ * 
+ * The #JsonObject backing this class should have the following structure:
+ * 
+ *|[
+ * {
+ *   "filepath" : string,
+ *   "findex" : int,
+ *   "family" : string,
+ *   "style" : string,
+ *   "spacing" : int,
+ *   "slant" : int,
+ *   "weight" : int,
+ *   "width" : int,
+ *   "description" : string,
+ * }
+ *]|
+ */
+
 struct _FontManagerFont
 {
     GObject parent_instance;
@@ -38,8 +64,7 @@ font_manager_font_class_init (FontManagerFontClass *klass)
     GObjectClass *parent_class = G_OBJECT_CLASS(font_manager_font_parent_class);
     object_class->get_property = parent_class->get_property;
     object_class->set_property = parent_class->set_property;
-    FontManagerJsonProxyClass *proxy_class = FONT_MANAGER_JSON_PROXY_CLASS(parent_class);
-    proxy_class->generate_properties(obj_properties, PROPERTIES, N_PROPERTIES);
+    font_manager_json_proxy_generate_properties(obj_properties, PROPERTIES, N_PROPERTIES);
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
 }
@@ -53,7 +78,8 @@ font_manager_font_init (FontManagerFont *self)
 /**
  * font_manager_font_new:
  *
- * Returns: (transfer full): a new #FontManagerFont
+ * Returns: (transfer full): A newly created #FontManagerFont.
+ * Free the returned object using #g_object_unref().
  */
 FontManagerFont *
 font_manager_font_new (void)

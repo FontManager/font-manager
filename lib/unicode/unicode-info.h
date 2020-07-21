@@ -31,6 +31,32 @@
 
 G_BEGIN_DECLS
 
+/**
+ * UnicodeStandard:
+ * @UNICODE_VERSION_UNASSIGNED:     Not assigned
+ * @UNICODE_VERSION_1_1:            Version 1.1
+ * @UNICODE_VERSION_2_0:            Version 2.0
+ * @UNICODE_VERSION_2_1:            Version 2.1
+ * @UNICODE_VERSION_3_0:            Version 3.0
+ * @UNICODE_VERSION_3_1:            Version 3.1
+ * @UNICODE_VERSION_3_2:            Version 3.2
+ * @UNICODE_VERSION_4_0:            Version 4.0
+ * @UNICODE_VERSION_4_1:            Version 4.1
+ * @UNICODE_VERSION_5_0:            Version 5.0
+ * @UNICODE_VERSION_5_1:            Version 5.1
+ * @UNICODE_VERSION_5_2:            Version 5.2
+ * @UNICODE_VERSION_6_0:            Version 6.0
+ * @UNICODE_VERSION_6_1:            Version 6.1
+ * @UNICODE_VERSION_6_2:            Version 6.2
+ * @UNICODE_VERSION_6_3:            Version 6.3
+ * @UNICODE_VERSION_7_0:            Version 7.0
+ * @UNICODE_VERSION_8_0:            Version 8.0
+ * @UNICODE_VERSION_9_0:            Version 9.0
+ * @UNICODE_VERSION_10_0:           Version 10.0
+ * @UNICODE_VERSION_11_0:           Version 11.0
+ * @UNICODE_VERSION_12_0:           Version 12.0
+ * @UNICODE_VERSION_LATEST:         Version 12.0
+ */
 typedef enum {
     UNICODE_VERSION_UNASSIGNED,
     UNICODE_VERSION_1_1,

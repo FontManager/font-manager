@@ -65,6 +65,29 @@ GType COLUMN_TYPES [FONT_MANAGER_FONT_MODEL_N_COLUMNS] = {
     G_TYPE_INT
 };
 
+GType
+font_manager_font_model_column_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { FONT_MANAGER_FONT_MODEL_OBJECT, "FONT_MANAGER_FONT_MODEL_OBJECT", "object" },
+        { FONT_MANAGER_FONT_MODEL_NAME, "FONT_MANAGER_FONT_MODEL_NAME", "name" },
+        { FONT_MANAGER_FONT_MODEL_DESCRIPTION, "FONT_MANAGER_FONT_MODEL_DESCRIPTION", "description" },
+        { FONT_MANAGER_FONT_MODEL_COUNT, "FONT_MANAGER_FONT_MODEL_COUNT", "count" },
+        { FONT_MANAGER_FONT_MODEL_N_COLUMNS, "FONT_MANAGER_FONT_MODEL_N_COLUMNS", "n-columns" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("FontManagerFontModelColumn"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+
 #define SOURCE "source-array"
 #define JSON_OBJECT(o) (JsonObject *) o
 #define GET_INDEX(o) ((gint) json_object_get_int_member(JSON_OBJECT(o), "_index"))

@@ -28,6 +28,12 @@
         <value nick="Compare" value="2" />
     </enum>
 
+    <enum id="org.gnome.FontManager.FontPreviewMode">
+        <value nick="preview" value="0" />
+        <value nick="waterfall" value="1" />
+        <value nick="lorem-ipsum" value="2" />
+    </enum>
+
     <enum id="org.gnome.FontManager.SideBarMode">
         <value nick="Category" value="0" />
         <value nick="Collection" value="1" />
@@ -136,10 +142,10 @@
             <default>10.0</default>
         </key>
 
-        <key name="preview-mode" type="s">
+        <key name="preview-mode" enum="org.gnome.FontManager.FontPreviewMode">
             <summary>Preview Mode</summary>
-            <description>Possible modes are Preview, Waterfall and Body Text.</description>
-            <default>"Waterfall"</default>
+            <description>Possible modes are Preview, Waterfall and Lorem Ipsum.</description>
+            <default>"waterfall"</default>
         </key>
 
         <key name="preview-page" type="i">

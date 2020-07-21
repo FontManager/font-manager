@@ -20,6 +20,15 @@
 
 #include "font-manager-progress-data.h"
 
+/**
+ * SECTION: font-manager-progress-data
+ * @short_description: Progress data
+ * @title: Progress Data
+ * @include: font-manager-progress-data.h
+ *
+ * #FontManagerProgressData contains data necessary to display progress within the application.
+ */
+
 struct _FontManagerProgressData
 {
     GObjectClass parent_class;
@@ -125,38 +134,46 @@ font_manager_progress_data_class_init (FontManagerProgressDataClass *klass)
     object_class->set_property = font_manager_progress_data_set_property;
 
     /**
-     * FontManagerProgressData::processed:
+     * FontManagerProgressData:processed
      *
      * Amount processed so far
      */
-    obj_properties[PROP_PROCESSED] = g_param_spec_uint("processed", NULL, NULL,
+    obj_properties[PROP_PROCESSED] = g_param_spec_uint("processed",
+                                                        NULL,
+                                                        "Amount processed",
                                                         0, G_MAXUINT, 0,
                                                         G_PARAM_READWRITE);
 
     /**
-     * FontManagerProgressData::total:
+     * FontManagerProgressData:total
      *
      * Total amount to process
      */
-    obj_properties[PROP_TOTAL] = g_param_spec_uint("total", NULL, NULL,
+    obj_properties[PROP_TOTAL] = g_param_spec_uint("total",
+                                                    NULL,
+                                                    "Total to process",
                                                     0, G_MAXUINT, 0,
                                                     G_PARAM_READWRITE);
 
     /**
-     * FontManagerProgressData::message:
+     * FontManagerProgressData:message
      *
      * String suitable for display
      */
-    obj_properties[PROP_MESSAGE] = g_param_spec_string("message", NULL, NULL,
+    obj_properties[PROP_MESSAGE] = g_param_spec_string("message",
+                                                        NULL,
+                                                        "Message to display",
                                                         NULL,
                                                         G_PARAM_READWRITE);
 
     /**
-     * FontManagerProgressData::progress:
+     * FontManagerProgressData:progress
      *
      * Progress as fraction between 0.0 - 1.0
      */
-    obj_properties[PROP_PROGRESS] = g_param_spec_double("progress", NULL, NULL,
+    obj_properties[PROP_PROGRESS] = g_param_spec_double("progress",
+                                                        NULL,
+                                                        "Progress as a fraction between 0.0 - 1.0",
                                                         G_MINDOUBLE, G_MAXDOUBLE, G_MINDOUBLE,
                                                         G_PARAM_READABLE);
 
@@ -167,7 +184,41 @@ font_manager_progress_data_class_init (FontManagerProgressDataClass *klass)
 static void
 font_manager_progress_data_init (G_GNUC_UNUSED FontManagerProgressData *self)
 {
-    return;
+    g_return_if_fail(self != NULL);
+}
+
+/**
+ * font_manager_progress_data_print:
+ * @self:   #FontManagerProgressData
+ *
+ * Print progress to stdout.
+ *
+ * Returns: %G_SOURCE_REMOVE
+ */
+gboolean
+font_manager_progress_data_print (FontManagerProgressData *self)
+{
+    gint width = 72;
+    gdouble progress;
+    g_object_get(self, "progress", &progress, NULL);
+    if (progress < 1.0) {
+        gint position = (gint) (((gdouble) width) * progress);
+        fprintf(stdout, "\r[");
+        for (gint i = 0; i < width; i++) {
+            if (i < position)
+                fprintf(stdout, "=");
+            else if (i == position)
+                fprintf(stdout, ">");
+            else
+                fprintf(stdout, " ");
+        }
+        if (progress >= 0.99)
+            fprintf(stdout, "] %i%% \r", 100);
+        else
+            fprintf(stdout, "] %i%% \r", (gint) (progress * 100.0));
+        fflush(stdout);
+    }
+    return G_SOURCE_REMOVE;
 }
 
 /**
@@ -176,8 +227,8 @@ font_manager_progress_data_init (G_GNUC_UNUSED FontManagerProgressData *self)
  * @processed:  amount processed so far
  * @total:      total amount to process
  *
- * Returns: (transfer full): #FontManagerProgressData
- * Use #g_object_unref to free the result.
+ * Returns: (transfer full): A newly created #FontManagerProgressData.
+ * Free the returned object using #g_object_unref().
  */
 FontManagerProgressData *
 font_manager_progress_data_new (const gchar *message, guint processed, guint total)

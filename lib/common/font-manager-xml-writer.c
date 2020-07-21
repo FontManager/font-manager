@@ -22,6 +22,16 @@
 
 #include "font-manager-xml-writer.h"
 
+/**
+ * SECTION: font-manager-xml-writer
+ * @short_description: Convenience class for generating Fontconfig xml files
+ * @title: Xml Writer
+ * @include: font-manager-xml-writer.h
+ * @see_also: https://www.freedesktop.org/software/fontconfig/fontconfig-user.html
+ *
+ * Convenience class for generating fontconfig configuration files.
+ */
+
 struct _FontManagerXmlWriter
 {
     GObject parent_instance;
@@ -103,9 +113,14 @@ font_manager_xml_writer_class_init (FontManagerXmlWriterClass *klass)
     object_class->dispose = font_manager_xml_writer_dispose;
     object_class->get_property = font_manager_xml_writer_get_property;
 
+    /**
+     * FontManagerXmlWriter:filepath:
+     *
+     * Path to file.
+     */
     obj_properties[PROP_FILEPATH] = g_param_spec_string("filepath",
                                                         NULL,
-                                                        NULL,
+                                                        "Filepath",
                                                         NULL,
                                                         G_PARAM_STATIC_STRINGS |
                                                         G_PARAM_READABLE |
@@ -187,7 +202,7 @@ font_manager_xml_writer_discard (FontManagerXmlWriter *self)
  *
  * Start an xml element.
  *
- * Returns: the bytes written (may be 0 because of buffering) or -1 in case of error
+ * Returns: The number of bytes written (may be 0 because of buffering) or -1 in case of error.
  */
 gint
 font_manager_xml_writer_start_element (FontManagerXmlWriter *self, const gchar *name)
@@ -204,7 +219,7 @@ font_manager_xml_writer_start_element (FontManagerXmlWriter *self, const gchar *
  *
  * End the current xml element.
  *
- * Returns: the bytes written (may be 0 because of buffering) or -1 in case of error
+ * Returns: The number of bytes written (may be 0 because of buffering) or -1 in case of error.
  */
 gint
 font_manager_xml_writer_end_element (FontManagerXmlWriter *self)
@@ -220,7 +235,7 @@ font_manager_xml_writer_end_element (FontManagerXmlWriter *self)
  * @name:       element name
  * @content:    element content
  *
- * Returns: the bytes written (may be 0 because of buffering) or -1 in case of error
+ * Returns: The number of bytes written (may be 0 because of buffering) or -1 in case of error.
  */
 gint
 font_manager_xml_writer_write_element (FontManagerXmlWriter *self,
@@ -239,7 +254,7 @@ font_manager_xml_writer_write_element (FontManagerXmlWriter *self,
  * @name:       attribute name
  * @content:    attribute content
  *
- * Returns: the bytes written (may be 0 because of buffering) or -1 in case of error
+ * Returns: The number of bytes written (may be 0 because of buffering) or -1 in case of error.
  */
 gint
 font_manager_xml_writer_write_attribute (FontManagerXmlWriter *self,
@@ -260,7 +275,6 @@ font_manager_xml_writer_write_attribute (FontManagerXmlWriter *self,
  * @a_val:      new value to assign
  *
  * Assign a new value to a Fontconfig property.
- * https://www.freedesktop.org/software/fontconfig/fontconfig-user.html
  * Valid types are int, double, bool and string.
  */
 void
@@ -336,7 +350,7 @@ font_manager_xml_writer_add_patelt (FontManagerXmlWriter *self,
 /**
  * font_manager_xml_writer_add_selections:
  * @self:               an #FontManagerXmlWriter
- * @selection_type:     acceptfont || rejectfont
+ * @selection_type:     acceptfont or rejectfont
  * @selections: (element-type utf8) (transfer none): a #GList containing font family names
  *
  * Whitelist or blacklist a #GList of font families.
@@ -394,8 +408,8 @@ font_manager_xml_writer_add_test_element (FontManagerXmlWriter *self,
 /**
  * font_manager_xml_writer_new:
  *
- * Returns: (transfer full): the newly-created #FontManagerXmlWriter.
- * Use g_object_unref() to free the result.
+ * Returns: (transfer full): A newly created #FontManagerXmlWriter.
+ * Free the returned object using #g_object_unref().
  **/
 FontManagerXmlWriter *
 font_manager_xml_writer_new (void)

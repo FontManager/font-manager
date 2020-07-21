@@ -20,6 +20,25 @@
 
 #include "font-manager-alias.h"
 
+/**
+ * SECTION: font-manager-alias
+ * @short_description: Font substitution elements
+ * @title: Alias Elements
+ * @include: font-manager-alias.h
+ *
+ * #FontManagerAlias represents an &lt;alias&gt; element in a fontconfig
+ * configuration file.
+ *
+ * Alias elements provide a shorthand notation for
+ * the set of common match operations needed to substitute one font
+ * family for another.
+ *
+ * Fonts matching @family are edited to prepend the list of &lt;@prefer&gt;ed
+ * families before the matching @family, append the &lt;@accept&gt;able
+ * families after the matching @family and append the &lt;@default&gt;
+ * families to the end of the family list.
+ */
+
 struct _FontManagerAliasElement
 {
     GObjectClass parent_class;
@@ -131,19 +150,46 @@ font_manager_alias_element_class_init (FontManagerAliasElementClass *klass)
     object_class->get_property = font_manager_alias_element_get_property;
     object_class->set_property = font_manager_alias_element_set_property;
 
-    obj_properties[PROP_FAMILY] = g_param_spec_string("family", NULL, NULL,
+    /**
+     * FontManagerAliasElement:family:
+     *
+     * Family targeted for substitution.
+     */
+    obj_properties[PROP_FAMILY] = g_param_spec_string("family",
+                                                      NULL,
+                                                      "Target font family",
                                                       NULL,
                                                       DEFAULT_PARAM_FLAGS);
-
-    obj_properties[PROP_PREFER] = g_param_spec_object("prefer", NULL, NULL,
+    /**
+     * FontManagerAliasElement:prefer:
+     *
+     * Set of font families which should be preferred over @family.
+     */
+    obj_properties[PROP_PREFER] = g_param_spec_object("prefer",
+                                                     NULL,
+                                                     "List of preferred font families",
                                                      FONT_MANAGER_TYPE_STRING_HASHSET,
                                                      DEFAULT_PARAM_FLAGS);
 
-    obj_properties[PROP_ACCEPT] = g_param_spec_object("accept", NULL, NULL,
+    /**
+     * FontManagerAliasElement:accept:
+     *
+     * Set of font families which are acceptable substitutes for @family.
+     */
+    obj_properties[PROP_ACCEPT] = g_param_spec_object("accept",
+                                                     NULL,
+                                                     "List of acceptable font families",
                                                      FONT_MANAGER_TYPE_STRING_HASHSET,
                                                      DEFAULT_PARAM_FLAGS);
 
-    obj_properties[PROP_DEFAULT] = g_param_spec_object("default", NULL, NULL,
+    /**
+     * FontManagerAliasElement:default:
+     *
+     * Set of font families to be used as a fallback.
+     */
+    obj_properties[PROP_DEFAULT] = g_param_spec_object("default",
+                                                      NULL,
+                                                      "List of fallback fonts",
                                                       FONT_MANAGER_TYPE_STRING_HASHSET,
                                                       DEFAULT_PARAM_FLAGS);
 
@@ -164,9 +210,10 @@ font_manager_alias_element_init (FontManagerAliasElement *self)
 
 /**
  * font_manager_alias_element_get: (skip)
+ * @self:       #FontManagerAliasElement
  * @priority:   "prefer", "accept" or "default"
  *
- * Returns: (transfer none) (nullable): #FontManagerStringHashset or %NULL on error
+ * Returns: (transfer none) (nullable): A #FontManagerStringHashset or %NULL on error
  */
 FontManagerStringHashset *
 font_manager_alias_element_get (FontManagerAliasElement *self, const gchar *priority) {
@@ -187,8 +234,8 @@ font_manager_alias_element_get (FontManagerAliasElement *self, const gchar *prio
  * font_manager_alias_element_new:
  * @family: (nullable): family name
  *
- * Returns: (transfer full): #FontManagerAliasElement
- * Use #g_object_unref() to free result.
+ * Returns: (transfer full): A newly created #FontManagerAliasElement.
+ * Free the returned object using #g_object_unref().
  */
 FontManagerAliasElement *
 font_manager_alias_element_new (const gchar *family)

@@ -21,6 +21,14 @@
 #include "font-manager-codepoint-list.h"
 #include "font-manager-fontconfig.h"
 
+/**
+ * SECTION: font-manager-codepoint-list
+ * @short_description: Codepoint List
+ * @title: FontManagerCodepointList
+ * @include: font-manager-codepoint-list.h
+ *
+ * Codepoint list which limits results to available characters in the selected font.
+ */
 
 struct _FontManagerCodepointList
 {
@@ -131,11 +139,14 @@ font_manager_codepoint_list_class_init (FontManagerCodepointListClass *klass)
 
     /**
      * FontManagerCodepointList:font: (type JsonObject) (transfer none)
+     *
+     * Updates the codepoint list to contain only codepoints actually present in @font.
      */
     g_object_class_install_property(object_class,
                                     PROP_FONT_OBJECT,
                                     g_param_spec_boxed("font",
-                                                        NULL, NULL,
+                                                        NULL,
+                                                        "Current font",
                                                         JSON_TYPE_OBJECT,
                                                         G_PARAM_WRITABLE |
                                                         G_PARAM_STATIC_NAME |

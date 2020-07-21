@@ -33,6 +33,15 @@ G_BEGIN_DECLS
 #define FONT_MANAGER_TYPE_SELECTIONS (font_manager_selections_get_type())
 G_DECLARE_DERIVABLE_TYPE(FontManagerSelections, font_manager_selections, FONT_MANAGER, SELECTIONS, FontManagerStringHashset)
 
+/**
+ * FontManagerSelectionsClass:
+ * @changed:            emitted whenever the configuration has changed on disk
+ * @load:               load configuration from file
+ * @save:               save configuration to file
+ * @parse_selections:   parse fontconfig selections
+ * @write_selections:   write fontconfig selections
+ * @get_selections:     returns an #xmlNodePtr to the selectfont element
+ */
 struct _FontManagerSelectionsClass
 {
     GObjectClass parent_class;

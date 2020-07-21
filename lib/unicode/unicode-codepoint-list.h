@@ -37,10 +37,17 @@ G_BEGIN_DECLS
 #define UNICODE_TYPE_CODEPOINT_LIST (unicode_codepoint_list_get_type())
 G_DECLARE_INTERFACE(UnicodeCodepointList, unicode_codepoint_list, UNICODE, CODEPOINT_LIST, GObject)
 
+/**
+ * UnicodeCodepointListInterface:
+ * @get_char:       retrieve the #gunichar at @index in the list
+ * @get_index:      get the index of @wc in the list
+ * @get_last_index: last index in the list
+ */
 struct _UnicodeCodepointListInterface
 {
+    /*<private>*/
     GTypeInterface parent_iface;
-
+    /*<public>*/
     gunichar  (* get_char)         (UnicodeCodepointList *self, gint index);
     /* zero is the first index */
     gint      (* get_index)        (UnicodeCodepointList *self, gunichar wc);

@@ -25,6 +25,15 @@
 #include "font-manager-utils.h"
 
 /**
+ * SECTION: font-manager-json
+ * @short_description: JSON related utility functions
+ * @title: JSON Utility Functions
+ * @include: font-manager-json.h
+ *
+ * Helper functions to make working with JSON data easier.
+ */
+
+/**
  * font_manager_write_json_file:
  * @root:               #JsonNode to use as root
  * @filepath:           filepath to write @root to
@@ -70,7 +79,7 @@ font_manager_load_json_file (const gchar *filepath)
  * @a:                  #JsonObject
  * @b:                  #JsonObject
  *
- * Returns:             an integer less than, equal to, or greater than zero
+ * Returns:             An integer less than, equal to, or greater than zero
  *                      if int member from a is <, == or > than int member from b
  */
 gint
@@ -95,7 +104,7 @@ font_manager_compare_json_int_member (const gchar *member_name,
  * @a:                  #JsonObject
  * @b:                  #JsonObject
  *
- * Returns:             an integer less than, equal to, or greater than zero
+ * Returns:             An integer less than, equal to, or greater than zero
  *                      if string member from a is <, == or > than string member from b
  */
 gint
@@ -125,7 +134,7 @@ static const gchar *STYLE_PROPS[3] = {
  * @node_a:             #JsonNode containing a font description
  * @node_b:             #JsonNode containing a font description
  *
- * Returns:             an integer less than, equal to, or greater than zero,
+ * Returns:             An integer less than, equal to, or greater than zero,
  *                      if font a is <, == or > than font b
  */
 gint
@@ -151,7 +160,7 @@ font_manager_compare_json_font_node (JsonNode *node_a, JsonNode *node_b)
  * font_manager_str_list_to_json_array:
  * @slist: (element-type utf8): a #GList containing only strings
  *
- * Returns: (transfer full): a newly created #JsonArray
+ * Returns: (transfer full): A newly created #JsonArray
  */
 JsonArray *
 font_manager_str_list_to_json_array (GList *slist)
@@ -173,9 +182,8 @@ font_manager_str_list_to_json_array (GList *slist)
  * then setting the given array inside the node and calling json_to_string
  * on the node.
  *
+ * Returns: (transfer full): A newly allocated buffer holding a JSON data stream.
  * The returned string should be freed with g_free() when no longer needed.
- *
- * Returns: (transfer full): a newly allocated buffer holding a JSON data stream.
  */
 gchar *
 font_manager_print_json_array (JsonArray *json_arr, gboolean pretty)
@@ -198,9 +206,8 @@ font_manager_print_json_array (JsonArray *json_arr, gboolean pretty)
  * then setting the given object inside the node and calling json_to_string
  * on the node.
  *
+ * Returns: (transfer full): A newly allocated buffer holding a JSON data stream.
  * The returned string should be freed with g_free() when no longer needed.
- *
- * Returns: (transfer full): a newly allocated buffer holding a JSON data stream.
  */
 gchar *
 font_manager_print_json_object (JsonObject *json_obj, gboolean pretty)
@@ -211,21 +218,4 @@ font_manager_print_json_object (JsonObject *json_obj, gboolean pretty)
     gchar *res = (gchar *) json_to_string(n, pretty);
     json_node_set_object(n, NULL);
     return res;
-}
-
-/**
- * font_manager_set_json_error:
- * @json_obj:           a #JsonObject
- * @err_msg:            a description of the error suitable for display
- *
- * This function will print a warning, set a boolean member named err to %TRUE
- * and a string member named err_msg to @err_msg in @json_obj
- */
-void
-font_manager_set_json_error (JsonObject *json_obj, int err_code, const gchar *err_msg)
-{
-    json_object_set_boolean_member(json_obj, "err", TRUE);
-    json_object_set_int_member(json_obj, "err_code", err_code);
-    json_object_set_string_member(json_obj, "err_msg", err_msg);
-    return;
 }

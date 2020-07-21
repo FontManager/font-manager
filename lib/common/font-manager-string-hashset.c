@@ -20,6 +20,15 @@
 
 #include "font-manager-string-hashset.h"
 
+/**
+ * SECTION: font-manager-string-hashset
+ * @short_description: Set of unique strings
+ * @title: String Hashset
+ * @include: font-manager-string-hashset.h
+ *
+ * #FontManagerStringHashset wraps #GHashTable in order to store a set of strings.
+ */
+
 struct _FontManagerStringHashsetClass
 {
     GObjectClass parent_class;
@@ -46,7 +55,8 @@ font_manager_string_hashset_dispose (GObject *gobject)
     g_return_if_fail(gobject != NULL);
     FontManagerStringHashset *self = FONT_MANAGER_STRING_HASHSET(gobject);
     FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
-    g_clear_pointer(&priv->hashset, g_hash_table_destroy);
+    if (priv->hashset)
+        g_clear_pointer(&priv->hashset, g_hash_table_destroy);
     G_OBJECT_CLASS(font_manager_string_hashset_parent_class)->dispose(gobject);
     return;
 }
@@ -59,11 +69,10 @@ font_manager_string_hashset_get_property (GObject *gobject,
 {
     g_return_if_fail(gobject != NULL);
     FontManagerStringHashset *self = FONT_MANAGER_STRING_HASHSET(gobject);
-    FontManagerStringHashsetPrivate *priv = font_manager_string_hashset_get_instance_private(self);
 
     switch (property_id) {
         case PROP_SIZE:
-            g_value_set_uint(value, g_hash_table_size(priv->hashset));
+            g_value_set_uint(value, font_manager_string_hashset_size(self));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
@@ -80,9 +89,16 @@ font_manager_string_hashset_class_init (FontManagerStringHashsetClass *klass)
     object_class->dispose = font_manager_string_hashset_dispose;
     object_class->get_property = font_manager_string_hashset_get_property;
 
+    /**
+     * FontManagerStringHashset:size
+     *
+     * Number of strings contained in this set
+     */
     g_object_class_install_property(object_class,
                                     PROP_SIZE,
-                                    g_param_spec_uint("size", NULL, NULL,
+                                    g_param_spec_uint("size",
+                                                      NULL,
+                                                      "Number of entries",
                                                       0, G_MAXUINT, 0,
                                                       G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
     return;
@@ -103,10 +119,10 @@ font_manager_string_hashset_init (FontManagerStringHashset *self)
 
 /**
  * font_manager_string_hashset_add:
- * @self:           a #FontManagerStringHashset
- * @str:            string to add to #FontManagerStringHashset
+ * @self:   a #FontManagerStringHashset
+ * @str:    string to add to #FontManagerStringHashset
  *
- * Returns:         %TRUE on success
+ * Returns: %TRUE if @str was successfully added to @self
  */
 gboolean
 font_manager_string_hashset_add (FontManagerStringHashset *self, const gchar *str)
@@ -122,10 +138,10 @@ font_manager_string_hashset_add (FontManagerStringHashset *self, const gchar *st
 
 /**
  * font_manager_string_hashset_add_all:
- * @self:           a #FontManagerStringHashset
- * @add: (element-type utf8) (transfer none): #Glist of strings to add to #FontManagerStringHashset
+ * @self:   a #FontManagerStringHashset
+ * @add: (element-type utf8) (transfer none): #GList of strings to add to #FontManagerStringHashset
  *
- * Returns:         %TRUE if successful
+ * Returns: %TRUE if all the strings in @add were successfully added to @self
  */
 gboolean
 font_manager_string_hashset_add_all (FontManagerStringHashset *self, GList *add)
@@ -144,10 +160,10 @@ font_manager_string_hashset_add_all (FontManagerStringHashset *self, GList *add)
 
 /**
  * font_manager_string_hashset_contains:
- * @self:           a #FontManagerStringHashset
- * @str:            string to look for in #FontManagerStringHashset
+ * @self:   a #FontManagerStringHashset
+ * @str:    string to look for in #FontManagerStringHashset
  *
- * Returns:         %TRUE if #FontManagerStringHashset contains str
+ * Returns: %TRUE if @self contains str
  */
 gboolean
 font_manager_string_hashset_contains (FontManagerStringHashset *self, const gchar *str)
@@ -159,10 +175,10 @@ font_manager_string_hashset_contains (FontManagerStringHashset *self, const gcha
 
 /**
  * font_manager_string_hashset_contains_all:
- * @self:           a #FontManagerStringHashset
+ * @self:   a #FontManagerStringHashset
  * @contents: (element-type utf8) (transfer none): #GList containing strings to check
  *
- * Returns:         %TRUE if all strings in @contents are contained in #FontManagerStringHashset
+ * Returns: %TRUE if all strings in @contents are contained in @self
  */
 gboolean
 font_manager_string_hashset_contains_all (FontManagerStringHashset *self, GList *contents)
@@ -178,10 +194,10 @@ font_manager_string_hashset_contains_all (FontManagerStringHashset *self, GList 
 
 /**
  * font_manager_string_hashset_remove:
- * @self:           a #FontManagerStringHashset
- * @str:            string to remove from #FontManagerStringHashset
+ * @self:   a #FontManagerStringHashset
+ * @str:    string to remove from #FontManagerStringHashset
  *
- * Returns:         %TRUE if successful
+ * Returns: %TRUE if @str was successfully removed from @self
  */
 gboolean
 font_manager_string_hashset_remove (FontManagerStringHashset *self, const gchar *str)
@@ -193,10 +209,10 @@ font_manager_string_hashset_remove (FontManagerStringHashset *self, const gchar 
 
 /**
  * font_manager_string_hashset_remove_all:
- * @self:           a #FontManagerStringHashset
+ * @self:   a #FontManagerStringHashset
  * @remove: (element-type utf8) (transfer none): #GList containing strings to remove
  *
- * Returns:         %TRUE if successful
+ * Returns: %TRUE if all the strings in @remove were successfully removed from @self
  */
 gboolean
 font_manager_string_hashset_remove_all (FontManagerStringHashset *self, GList *remove)
@@ -217,10 +233,12 @@ font_manager_string_hashset_remove_all (FontManagerStringHashset *self, GList *r
 
 /**
  * font_manager_string_hashset_retain_all:
- * @self:           a #FontManagerStringHashset
+ * @self:   a #FontManagerStringHashset
  * @retain: (element-type utf8) (transfer none): #GList of strings to check against
  *
  * Remove any elements not contained in @retain
+ *
+ * Returns: %TRUE if any strings not present in @retain were successfully removed from @self
  */
 gboolean
 font_manager_string_hashset_retain_all (FontManagerStringHashset *self, GList *retain)
@@ -248,9 +266,9 @@ font_manager_string_hashset_retain_all (FontManagerStringHashset *self, GList *r
 
 /**
  * font_manager_string_hashset_size:
- * @self:           a #FontManagerStringHashset
+ * @self:   a #FontManagerStringHashset
  *
- * Returns:         Returns the number of elements contained in #FontManagerStringHashset
+ * Returns: Returns the number of strings contained in @self
  */
 guint
 font_manager_string_hashset_size (FontManagerStringHashset *self)
@@ -262,11 +280,11 @@ font_manager_string_hashset_size (FontManagerStringHashset *self)
 
 /**
  * font_manager_string_hashset_list:
- * @self:           a #FontManagerStringHashset
+ * @self:   a #FontManagerStringHashset
  *
- * Returns: (element-type utf8) (transfer full): a #GList containing
+ * Returns: (element-type utf8) (transfer full): A #GList containing
  * the contents of #FontManagerStringHashset.
- * Use g_list_free_full() when done using the list.
+ * Use #g_list_free_full(list, #g_free) when done using the list.
  */
 GList *
 font_manager_string_hashset_list (FontManagerStringHashset *self)
@@ -288,9 +306,9 @@ font_manager_string_hashset_list (FontManagerStringHashset *self)
 
 /**
  * font_manager_string_hashset_clear:
- * @self:           a #FontManagerStringHashset
+ * @self:   a #FontManagerStringHashset
  *
- * Clear the #FontManagerStringHashset
+ * Clear all strings from @self
  */
 void
 font_manager_string_hashset_clear (FontManagerStringHashset *self)
@@ -303,10 +321,10 @@ font_manager_string_hashset_clear (FontManagerStringHashset *self)
 
 /**
  * font_manager_string_hashset_get:
- * @self:           a #FontManagerStringHashset
- * @index:          index of entry to retrieve
+ * @self:   a #FontManagerStringHashset
+ * @index:  index of entry to retrieve
  *
- * Returns: (transfer none): a string which is owned by #FontManagerStringHashset
+ * Returns: (transfer none): A string which is owned by #FontManagerStringHashset
  * and should not be modified or freed.
  */
 const gchar *
@@ -323,8 +341,8 @@ font_manager_string_hashset_get (FontManagerStringHashset *self, guint index)
 /**
  * font_manager_string_hashset_new:
  *
- * Returns: (transfer full): the newly-created #FontManagerStringHashset.
- * Use g_object_unref() to free the result.
+ * Returns: (transfer full): A newly-created #FontManagerStringHashset.
+ * Free the returned object using #g_object_unref().
  **/
 FontManagerStringHashset *
 font_manager_string_hashset_new (void)

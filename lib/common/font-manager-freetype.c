@@ -18,21 +18,19 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include <glib.h>
-#include <glib-object.h>
-#include <glib/gprintf.h>
-#include <glib/gstdio.h>
-#include <json-glib/json-glib.h>
+#include "font-manager-freetype.h"
 
-#include <ft2build.h>
-#include FT_FREETYPE_H
-#include FT_TYPES_H
-#include FT_BDF_H
-#include FT_SFNT_NAMES_H
-#include FT_TRUETYPE_IDS_H
-#include FT_TRUETYPE_TABLES_H
-#include FT_TYPE1_TABLES_H
-#include FT_XFREE86_H
+/**
+ * SECTION: font-manager-freetype
+ * @short_description: FreeType utilty functions
+ * @title: FreeType Utility Functions
+ * @include: font-manager-freetype.h
+ * @see_also: #FontManagerFontInfo
+ *
+ * Functions used to gather information from font files using the FreeType library.
+ */
+
+G_DEFINE_QUARK(font-manager-freetype-error-quark, font_manager_freetype_error)
 
 const char *FT_Error_Message (FT_Error err)
 {
@@ -44,12 +42,6 @@ const char *FT_Error_Message (FT_Error err)
     return "(Unknown error)";
 }
 
-#include "font-manager-freetype.h"
-#include "font-manager-json.h"
-#include "font-manager-license.h"
-#include "font-manager-utils.h"
-#include "font-manager-vendor.h"
-
 static void get_os2_info (JsonObject *json_obj, const FT_Face face);
 static void get_sfnt_info (JsonObject *json_obj, const FT_Face face);
 static void get_ps_info (JsonObject *json_obj, const FT_Face face);
@@ -60,7 +52,6 @@ static void ensure_vendor (JsonObject *json_obj, const FT_Face face);
 static void cleanup_version_string (JsonObject *json_obj);
 static void correct_filetype (JsonObject *json_obj);
 
-
 /**
  * font_manager_get_face_count:
  * @filepath:       full path to font file to examine
@@ -70,7 +61,7 @@ static void correct_filetype (JsonObject *json_obj);
  *
  * Returns:         the number of variations contained in filepath
  */
-long
+glong
 font_manager_get_face_count (const gchar *filepath)
 {
     FT_Face         face;
@@ -101,26 +92,42 @@ static const gchar *ensure_member [] = {
     NULL
 };
 
+static void
+set_error (FT_Error ft_error, const gchar *ctx, GError **error)
+{
+    g_return_if_fail(error == NULL || *error == NULL);
+    const gchar *msg_format = "Freetype Error : (%s) [%i] - %s";
+    g_debug(msg_format, ctx, ft_error, FT_Error_Message(ft_error));
+    g_set_error(error,
+                FONT_MANAGER_FREETYPE_ERROR,
+                FONT_MANAGER_FREETYPE_ERROR_FAILED,
+                msg_format, ctx, ft_error, FT_Error_Message(ft_error));
+    return;
+}
+
 /**
  * font_manager_get_metadata:
- * @filepath:       full path to font file to examine
- * @index           face index to examine
+ * @filepath:   full path to font file to examine
+ * @index:      face index to examine
+ * @error:      #GError or %NULL to ignore errors
  *
- * If an error is encontered, the returned object will have a member named err
- * set to %TRUE and a member named err_msg containing a description of the error.
+ * See #FontManagerFontInfo for a description of the #JsonObject returned by this function.
  *
- * Returns: (transfer full): a newly created #JsonObject
+ * Returns: (transfer full) (nullable): A newly created #JsonObject or %NULL if there was an error.
+ * Free the returned object using #json_object_unref when no longer needed.
  */
 JsonObject *
-font_manager_get_metadata (const gchar *filepath, gint index)
+font_manager_get_metadata (const gchar *filepath, gint index, GError **error)
 {
+    g_return_val_if_fail(filepath != NULL, NULL);
+    g_return_val_if_fail((error == NULL || *error == NULL), NULL);
+
     FT_Face         face;
     FT_Library      library;
     FT_Error        ft_error;
 
     gsize           filesize = 0;
     g_autofree gchar *font = NULL;
-    GError          *error = NULL;
 
     JsonObject *json_obj = json_object_new();
 
@@ -128,25 +135,25 @@ font_manager_get_metadata (const gchar *filepath, gint index)
     json_object_set_int_member(json_obj, "findex", index);
     json_object_set_int_member(json_obj, "owner", font_manager_get_file_owner(filepath));
 
-    if (G_UNLIKELY(!g_file_get_contents(filepath, &font, &filesize, &error))) {
-        font_manager_set_json_error(json_obj, error->code, error->message);
-        g_critical("%s : %s", error->message, filepath);
-        g_error_free(error);
-        return json_obj;
+    if (G_UNLIKELY(!g_file_get_contents(filepath, &font, &filesize, error))) {
+        g_critical("%s : %s", (*error)->message, filepath);
+        return NULL;
     }
 
     ft_error = FT_Init_FreeType(&library);
 
     if (G_UNLIKELY(ft_error)) {
-        font_manager_set_json_error(json_obj, ft_error, FT_Error_Message(ft_error));
-        return json_obj;
+        set_error(ft_error, "FT_Init_FreeType", error);
+        g_clear_pointer(&json_obj, json_object_unref);
+        return NULL;
     }
 
     ft_error = FT_New_Memory_Face(library, (const FT_Byte *) font, (FT_Long) filesize, index, &face);
 
     if (G_UNLIKELY(ft_error)) {
-        font_manager_set_json_error(json_obj, ft_error, FT_Error_Message(ft_error));
-        return json_obj;
+        set_error(ft_error, "FT_Init_FreeType", error);
+        g_clear_pointer(&json_obj, json_object_unref);
+        return NULL;
     }
 
     g_autofree gchar *_size = g_format_size(filesize);
@@ -186,6 +193,110 @@ font_manager_get_metadata (const gchar *filepath, gint index)
     FT_Done_Face(face);
     FT_Done_FreeType(library);
     return json_obj;
+}
+
+/**
+ * font_manager_get_installation_target:
+ * @font_file:              #GFile
+ * @target_dir:             #GFile
+ * @create_directories:     whether to create suggested directories or not
+ * @error:                  #GError or %NULL to ignore errors
+ *
+ * The #GFile returned by this function is the suggested output file based
+ * on the metadata present in @font_file.
+ *
+ * If @create_directories is %FALSE the parent directory for the returned #GFile
+ * may not exist and should be created prior to use.
+ *
+ * Returns: (transfer full) (nullable):
+ * A newly-created #GFile or %NULL if there was an error.
+ * Free the returned object using #g_object_unref().
+ */
+GFile *
+font_manager_get_installation_target (GFile *font_file, GFile *target_dir,
+                                      gboolean create_directories, GError **error)
+{
+    g_return_val_if_fail((error == NULL || *error == NULL), NULL);
+    g_autofree gchar *dir = g_file_get_path(target_dir);
+    g_autofree gchar *filepath = g_file_get_path(font_file);
+    g_autofree gchar *ext = font_manager_get_file_extension(filepath);
+    g_autoptr(JsonObject) metadata = font_manager_get_metadata(filepath, 0, error);
+    g_return_val_if_fail((error == NULL || *error == NULL), NULL);
+    const gchar *vendor = json_object_get_string_member(metadata, "vendor");
+    const gchar *filetype = json_object_get_string_member(metadata, "filetype");
+    const gchar *family = json_object_get_string_member(metadata, "family");
+    const gchar *style = json_object_get_string_member(metadata, "style");
+    g_autofree gchar *name = g_strdup_printf("%s %s.%s", family, style, ext);
+    g_autofree gchar *filename = font_manager_to_filename(name);
+    GFile *target = g_file_new_build_filename(dir, vendor, filetype, family, filename, NULL);
+    g_autoptr(GFile) parent = g_file_get_parent(target);
+    if (create_directories)
+        if (!g_file_query_exists(parent, NULL))
+            if (!g_file_make_directory_with_parents(parent, NULL, error))
+                g_clear_object(&target);
+    return target;
+}
+
+GType
+font_manager_fsType_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { FONT_MANAGER_FSTYPE_INSTALLABLE, "FONT_MANAGER_FSTYPE_INSTALLABLE", "installable" },
+        { FONT_MANAGER_FSTYPE_RESTRICTED_LICENSE, "FONT_MANAGER_FSTYPE_RESTRICTED_LICENSE", "restricted_license" },
+        { FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT, "FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT", "preview_and_print" },
+        { FONT_MANAGER_FSTYPE_EDITABLE, "FONT_MANAGER_FSTYPE_EDITABLE", "editable" },
+        { FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET, "FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET", "preview_and_print_no_subset" },
+        { FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET, "FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET", "editable_no_subset" },
+        { FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_BITMAP_ONLY, "FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_BITMAP_ONLY", "preview_and_print_bitmap_only" },
+        { FONT_MANAGER_FSTYPE_EDITABLE_BITMAP_ONLY, "FONT_MANAGER_FSTYPE_EDITABLE_BITMAP_ONLY", "editable_bitmap_only" },
+        { FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET_BITMAP_ONLY, "FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET_BITMAP_ONLY", "preview_and_print_no_subset_bitmap_only" },
+        { FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET_BITMAP_ONLY, "FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET_BITMAP_ONLY", "editable_no_subset_bitmap_only" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("FontManagerfsType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+
+/**
+ * font_manager_fsType_to_string:
+ * @fstype: #FontManagerfsType
+ *
+ * Returns a description of the fsType field suitable for display.
+ *
+ * Returns: (transfer none) (nullable): @fstype as a string
+ */
+const gchar *
+font_manager_fsType_to_string (FontManagerfsType fstype) {
+    switch (fstype) {
+        case FONT_MANAGER_FSTYPE_RESTRICTED_LICENSE:
+            return _("Restricted License Embedding");
+        case FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT:
+            return _("Preview & Print Embedding");
+        case FONT_MANAGER_FSTYPE_EDITABLE:
+            return _("Editable Embedding");
+        case FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET:
+            return _("Preview & Print Embedding | No Subsetting");
+        case FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET:
+            return _("Editable Embedding | No Subsetting");
+        case FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_BITMAP_ONLY:
+            return _("Preview & Print Embedding | Bitmap Embedding Only");
+        case FONT_MANAGER_FSTYPE_EDITABLE_BITMAP_ONLY:
+            return _("Editable Embedding | Bitmap Embedding Only");
+        case FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET_BITMAP_ONLY:
+            return _("Preview & Print Embedding | No Subsetting | Bitmap Embedding Only");
+        case FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET_BITMAP_ONLY:
+            return _("Editable Embedding | No Subsetting | Bitmap Embedding Only");
+        default:
+            return _("Installable Embedding");
+    }
 }
 
 /*
@@ -543,14 +654,16 @@ get_fs_type (JsonObject *json_obj, const FT_Face face)
         fsType = 4;
     if (flags & FT_FSTYPE_EDITABLE_EMBEDDING)
         fsType = 8;
+    if (flags & FT_FSTYPE_INSTALLABLE_EMBEDDING)
+        fsType = 0;
 
     /* Additional restrictions */
     if (fsType == 4 || fsType == 8) {
         if (flags & FT_FSTYPE_NO_SUBSETTING)
-            fsType += 256;
+            fsType += 16;
         if (flags & FT_FSTYPE_BITMAP_EMBEDDING_ONLY){
             if (FT_HAS_FIXED_SIZES(face)) {
-                fsType += 512;
+                fsType += 32;
             } else {
                 /* Restricts embedding to bitmaps but contains none. */
                 fsType = 2;

@@ -22,18 +22,26 @@
 #define __FONT_MANAGER_DATABASE_H__
 
 #include <glib.h>
+#include <glib/gstdio.h>
 #include <gmodule.h>
 #include <glib-object.h>
 #include <json-glib/json-glib.h>
 #include <sqlite3.h>
 
+#include "font-manager-orthography.h"
+#include "font-manager-fontconfig.h"
+#include "font-manager-freetype.h"
+#include "font-manager-json.h"
+#include "font-manager-font.h"
+#include "font-manager-family.h"
+#include "font-manager-font-info.h"
 #include "font-manager-progress-data.h"
 #include "font-manager-string-hashset.h"
 #include "font-manager-utils.h"
 
 G_BEGIN_DECLS
 
-#define FONT_MANAGER_CURRENT_DATABASE_VERSION 8
+#define FONT_MANAGER_CURRENT_DATABASE_VERSION 9
 
 #define FONT_MANAGER_TYPE_DATABASE (font_manager_database_get_type ())
 G_DECLARE_FINAL_TYPE(FontManagerDatabase, font_manager_database, FONT_MANAGER, DATABASE, GObject)
@@ -44,7 +52,43 @@ G_DECLARE_FINAL_TYPE(FontManagerDatabaseIterator, font_manager_database_iterator
 GQuark font_manager_database_error_quark ();
 #define FONT_MANAGER_DATABASE_ERROR (font_manager_database_error_quark ())
 
-/* These map directly to SQLite primary result codes */
+/**
+ * FontManagerDatabaseError:
+ * @FONT_MANAGER_DATABASE_ERROR_OK:             SQLITE_OK
+ * @FONT_MANAGER_DATABASE_ERROR_ERROR:          SQLITE_ERROR
+ * @FONT_MANAGER_DATABASE_ERROR_INTERNAL:       SQLITE_INTERNAL
+ * @FONT_MANAGER_DATABASE_ERROR_PERM:           SQLITE_PERM
+ * @FONT_MANAGER_DATABASE_ERROR_ABORT:          SQLITE_ABORT
+ * @FONT_MANAGER_DATABASE_ERROR_BUSY:           SQLITE_BUSY
+ * @FONT_MANAGER_DATABASE_ERROR_LOCKED:         SQLITE_LOCKED
+ * @FONT_MANAGER_DATABASE_ERROR_NOMEM:          SQLITE_NOMEM
+ * @FONT_MANAGER_DATABASE_ERROR_READONLY:       SQLITE_READONLY
+ * @FONT_MANAGER_DATABASE_ERROR_INTERRUPT:      SQLITE_INTERRUPT
+ * @FONT_MANAGER_DATABASE_ERROR_IOERR:          SQLITE_IOERR
+ * @FONT_MANAGER_DATABASE_ERROR_CORRUPT:        SQLITE_CORRUPT
+ * @FONT_MANAGER_DATABASE_ERROR_NOTFOUND:       SQLITE_NOTFOUND
+ * @FONT_MANAGER_DATABASE_ERROR_FULL:           SQLITE_FULL
+ * @FONT_MANAGER_DATABASE_ERROR_CANTOPEN:       SQLITE_CANTOPEN
+ * @FONT_MANAGER_DATABASE_ERROR_PROTOCOL:       SQLITE_PROTOCOL
+ * @FONT_MANAGER_DATABASE_ERROR_EMPTY:          SQLITE_EMPTY
+ * @FONT_MANAGER_DATABASE_ERROR_SCHEMA:         SQLITE_SCHEMA
+ * @FONT_MANAGER_DATABASE_ERROR_TOOBIG:         SQLITE_TOOBIG
+ * @FONT_MANAGER_DATABASE_ERROR_CONSTRAINT:     SQLITE_CONSTRAINT
+ * @FONT_MANAGER_DATABASE_ERROR_MISMATCH:       SQLITE_MISMATCH
+ * @FONT_MANAGER_DATABASE_ERROR_MISUSE:         SQLITE_MISUSE
+ * @FONT_MANAGER_DATABASE_ERROR_NOLFS:          SQLITE_NOLFS
+ * @FONT_MANAGER_DATABASE_ERROR_AUTH:           SQLITE_AUTH
+ * @FONT_MANAGER_DATABASE_ERROR_FORMAT:         SQLITE_FORMAT
+ * @FONT_MANAGER_DATABASE_ERROR_RANGE:          SQLITE_RANGE
+ * @FONT_MANAGER_DATABASE_ERROR_NOTADB:         SQLITE_NOTADB
+ * @FONT_MANAGER_DATABASE_ERROR_NOTICE:         SQLITE_NOTICE
+ * @FONT_MANAGER_DATABASE_ERROR_WARNING:        SQLITE_WARNING
+ * @FONT_MANAGER_DATABASE_ERROR_ROW:            SQLITE_ROW
+ * @FONT_MANAGER_DATABASE_ERROR_DONE:           SQLITE_DONE
+ *
+ * These errors map directly to SQLite error codes.
+ * See https://sqlite.org/rescode.html for more detailed information.
+ */
 typedef enum
 {
     FONT_MANAGER_DATABASE_ERROR_OK,
@@ -81,6 +125,9 @@ typedef enum
 }
 FontManagerDatabaseError;
 
+GType font_manager_database_error_get_type (void) G_GNUC_CONST;
+#define FONT_MANAGER_TYPE_DATABASE_ERROR (font_manager_database_error_get_type ())
+
 struct _FontManagerDatabase
 {
     GObjectClass parent_class;
@@ -89,6 +136,13 @@ struct _FontManagerDatabase
     sqlite3_stmt *stmt;
 };
 
+/**
+ * FontManagerDatabaseType:
+ * @FONT_MANAGER_DATABASE_TYPE_BASE:        Base database file
+ * @FONT_MANAGER_DATABASE_TYPE_FONT:        Font style information
+ * @FONT_MANAGER_DATABASE_TYPE_METADATA:    Font metadata
+ * @FONT_MANAGER_DATABASE_TYPE_ORTHOGRAPHY: Orthography data
+ */
 typedef enum
 {
     FONT_MANAGER_DATABASE_TYPE_BASE,
@@ -98,6 +152,9 @@ typedef enum
 }
 FontManagerDatabaseType;
 
+GType font_manager_database_type_get_type (void) G_GNUC_CONST;
+#define FONT_MANAGER_TYPE_DATABASE_TYPE (font_manager_database_type_get_type ())
+
 const gchar * font_manager_database_get_type_name (FontManagerDatabaseType type);
 gchar * font_manager_database_get_file (FontManagerDatabaseType type);
 
@@ -106,7 +163,7 @@ void font_manager_database_open (FontManagerDatabase *self, GError **error);
 void font_manager_database_begin_transaction (FontManagerDatabase *self, GError **error);
 void font_manager_database_commit_transaction (FontManagerDatabase *self, GError **error);
 void font_manager_database_execute_query (FontManagerDatabase *self, const gchar *sql, GError **error);
-int font_manager_database_get_version (FontManagerDatabase *self, GError **error);
+gint font_manager_database_get_version (FontManagerDatabase *self, GError **error);
 void font_manager_database_set_version (FontManagerDatabase *self, int version, GError **error);
 void font_manager_database_vacuum (FontManagerDatabase *self, GError **error);
 void font_manager_database_initialize (FontManagerDatabase *self, FontManagerDatabaseType type, GError **error);

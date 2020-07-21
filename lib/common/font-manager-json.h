@@ -26,7 +26,6 @@
 
 G_BEGIN_DECLS
 
-void font_manager_set_json_error (JsonObject *json_obj, int err_code, const gchar *err_msg);
 gint font_manager_compare_json_int_member (const gchar *member_name, JsonObject  *a, JsonObject  *b);
 gint font_manager_compare_json_string_member (const gchar *member_name, JsonObject  *a, JsonObject  *b);
 gint font_manager_compare_json_font_node (JsonNode *node_a, JsonNode *node_b);

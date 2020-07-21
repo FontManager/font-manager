@@ -18,12 +18,17 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include <locale.h>
-#include <stdlib.h>
-#include <gio/gio.h>
-#include <fontconfig/fontconfig.h>
-
 #include "font-manager-properties.h"
+
+/**
+ * SECTION: font-manager-properties
+ * @short_description: Fontconfig property configuration
+ * @title: Font Properties
+ * @include: font-manager-properties.h
+ *
+ * Base class for generating fontconfig configuration files which modify
+ * font properties.
+ */
 
 typedef struct
 {
@@ -74,30 +79,6 @@ static GParamSpec *obj_properties[N_PROPERTIES] = {0};
 
 static const struct
 {
-    const gchar *name;
-    GType type;
-}
-PROPERTIES [] =
-{
-    { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST },
-    { "hintstyle", G_TYPE_INT },
-    { "antialias", G_TYPE_BOOLEAN },
-    { "hinting", G_TYPE_BOOLEAN },
-    { "autohint", G_TYPE_BOOLEAN },
-    { "embeddedbitmap", G_TYPE_BOOLEAN },
-    { "less", G_TYPE_DOUBLE },
-    { "more", G_TYPE_DOUBLE },
-    { "rgba", G_TYPE_INT },
-    { "lcdfilter", G_TYPE_INT },
-    { "scale", G_TYPE_DOUBLE },
-    { "dpi", G_TYPE_DOUBLE },
-    { "config-dir", G_TYPE_STRING },
-    { "target-file", G_TYPE_STRING },
-    { "type", G_TYPE_INT }
-};
-
-static const struct
-{
     gint start;
     gint end;
 }
@@ -106,6 +87,26 @@ PROPERTY_ID_RANGE [] =
     { 1, 7 },
     { 8, 11 }
 };
+
+GType
+font_manager_properties_type_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { FONT_MANAGER_PROPERTIES_TYPE_DEFAULT, "FONT_MANAGER_PROPERTIES_TYPE_DEFAULT", "default" },
+        { FONT_MANAGER_PROPERTIES_TYPE_DISPLAY, "FONT_MANAGER_PROPERTIES_TYPE_DISPLAY", "display" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("FontManagerPropertiesType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
 
 static void
 font_manager_properties_dispose (GObject *gobject)
@@ -416,28 +417,34 @@ font_manager_properties_class_init (FontManagerPropertiesClass *klass)
         switch (PROPERTIES[i].type) {
             case G_TYPE_INT:
                 obj_properties[i] = g_param_spec_int(PROPERTIES[i].name,
-                                                    NULL, NULL,
+                                                    NULL,
+                                                    PROPERTIES[i].desc,
                                                     0,
-                                                    i == PROP_LCDFILTER ? 6 : 4,
+                                                    i == PROP_LCDFILTER ? 6 :
+                                                    i == PROP_TYPE ? 1 : 4,
                                                     0,
                                                     DEFAULT_PARAM_FLAGS);
                 break;
             case G_TYPE_BOOLEAN:
                 obj_properties[i] = g_param_spec_boolean(PROPERTIES[i].name,
-                                                         NULL, NULL,
+                                                         NULL,
+                                                         PROPERTIES[i].desc,
                                                          FALSE,
                                                          DEFAULT_PARAM_FLAGS);
                 break;
             case G_TYPE_DOUBLE:
                 obj_properties[i] = g_param_spec_double(PROPERTIES[i].name,
-                                                        NULL, NULL,
+                                                        NULL,
+                                                        PROPERTIES[i].desc,
                                                         0.0, G_MAXDOUBLE,
                                                         get_default_for_double_property(i),
                                                         DEFAULT_PARAM_FLAGS);
                 break;
             case G_TYPE_STRING:
                 obj_properties[i] = g_param_spec_string(PROPERTIES[i].name,
-                                                       NULL, NULL, NULL,
+                                                       NULL,
+                                                       PROPERTIES[i].desc,
+                                                       NULL,
                                                        DEFAULT_PARAM_FLAGS);
                 break;
             case G_TYPE_RESERVED_GLIB_FIRST:
@@ -465,7 +472,7 @@ font_manager_properties_init (FontManagerProperties *self)
 
 /**
  * font_manager_properties_load:
- * @self    #FontManagerProperties
+ * @self:   #FontManagerProperties
  *
  * Returns: %TRUE if current configuration file was successfully loaded
  */
@@ -513,7 +520,7 @@ font_manager_properties_load (FontManagerProperties *self)
 
 /**
  * font_manager_properties_save:
- * @self    #FontManagerProperties
+ * @self:   #FontManagerProperties
  *
  * Returns: %TRUE if current configuration was successfully saved to file
  */
@@ -572,6 +579,7 @@ font_manager_properties_get_filepath (FontManagerProperties *self)
 
 /**
  * font_manager_properties_reset:
+ * @self:   #FontManagerProperties
  *
  * Reset all base properties to their default values
  */
@@ -660,8 +668,8 @@ font_manager_properties_reset (FontManagerProperties *self)
 /**
  * font_manager_properties_new:
  *
- * Returns: (transfer full): #FontManagerProperties
- * Use #g_object_unref() to free result.
+ * Returns: (transfer full): A newly created #FontManagerProperties
+ * Free the returned object using #g_object_unref().
  */
 FontManagerProperties *
 font_manager_properties_new (void)

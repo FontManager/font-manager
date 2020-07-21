@@ -34,6 +34,16 @@ G_BEGIN_DECLS
 #define FONT_MANAGER_TYPE_FONT_MODEL (font_manager_font_model_get_type())
 G_DECLARE_FINAL_TYPE(FontManagerFontModel, font_manager_font_model, FONT_MANAGER, FONT_MODEL, GObject)
 
+/**
+ * FontManagerFontModelColumn:
+ * @FONT_MANAGER_FONT_MODEL_OBJECT:         #FontManagerFont
+ * @FONT_MANAGER_FONT_MODEL_NAME:           Object name
+ * @FONT_MANAGER_FONT_MODEL_DESCRIPTION:    Font description
+ * @FONT_MANAGER_FONT_MODEL_COUNT:          Number of variations for family objects
+ * @FONT_MANAGER_FONT_MODEL_N_COLUMNS:      Number of columns in this model
+ *
+ * Index of available columns in #FontManagerFontModel.
+ */
 typedef enum
 {
     FONT_MANAGER_FONT_MODEL_OBJECT,
@@ -43,6 +53,9 @@ typedef enum
     FONT_MANAGER_FONT_MODEL_N_COLUMNS
 }
 FontManagerFontModelColumn;
+
+GType font_manager_font_model_column_get_type (void) G_GNUC_CONST;
+#define FONT_MANAGER_TYPE_FONT_MODEL_COLUMN (font_manager_font_model_column_get_type ())
 
 FontManagerFontModel * font_manager_font_model_new (void);
 

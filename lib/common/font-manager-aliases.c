@@ -27,6 +27,16 @@
 #include "font-manager-xml-writer.h"
 #include "font-manager-string-hashset.h"
 
+/**
+ * SECTION: font-manager-aliases
+ * @short_description: Fontconfig alias configuration
+ * @title: Aliases
+ * @include: font-manager-aliases.h
+ *
+ * #FontManagerAliases holds a set of #FontManagerAliasElement and provides methods
+ * for loading and saving from/to a fontconfig configuration file.
+ */
+
 struct _FontManagerAliases
 {
     GObjectClass parent_class;
@@ -128,17 +138,21 @@ font_manager_aliases_class_init (FontManagerAliasesClass *klass)
      * Should be set to one of the directories monitored by Fontconfig
      * for configuration files and writeable by the user.
      */
-    obj_properties[PROP_CONFIG_DIR] = g_param_spec_string("config-dir", NULL,
-                                                          NULL, NULL,
+    obj_properties[PROP_CONFIG_DIR] = g_param_spec_string("config-dir",
+                                                          NULL,
+                                                          "Fontconfig configuration directory",
+                                                          NULL,
                                                           G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     /**
      * FontManagerAliases:target-file:
      *
-     * Should be set to a filename in the form [3][0-9]*.conf
+     * Should be set to a filename in the form \[3\]\[0-9\]-*.conf
      */
-    obj_properties[PROP_TARGET_FILE] = g_param_spec_string("target-file", NULL,
-                                                            NULL, NULL,
+    obj_properties[PROP_TARGET_FILE] = g_param_spec_string("target-file",
+                                                            NULL,
+                                                            "Name of fontconfig configuration file",
+                                                            NULL,
                                                             G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
@@ -232,8 +246,10 @@ parse_alias_node (FontManagerAliases *self, xmlNodePtr alias_node)
 /**
  * font_manager_aliases_get:
  * @self:   #FontManagerAliases
+ * @family: Font family name.
  *
- * Returns: (transfer none): #FontManagerAliasElement
+ * Returns: (transfer none): #FontManagerAliasElement for @family or %NULL.
+ * The result may be modified but should not be freed.
  */
 FontManagerAliasElement *
 font_manager_aliases_get (FontManagerAliases *self, const gchar *family)
@@ -248,7 +264,7 @@ font_manager_aliases_get (FontManagerAliases *self, const gchar *family)
  * @self:   #FontManagerAliases
  * @family: family to check for
  *
- * Returns: %TRUE if @family exists
+ * Returns: %TRUE if a #FontManagerAliasElement for @family exists in @self
  */
 gboolean
 font_manager_aliases_contains (FontManagerAliases *self, const gchar *family)
@@ -263,7 +279,7 @@ font_manager_aliases_contains (FontManagerAliases *self, const gchar *family)
  * @self:   #FontManagerAliases
  * @family: family name
  *
- * Returns:    %TRUE if alias element for @family was added successfully
+ * Returns:    %TRUE if a new #FontManagerAliasElement for @family was added successfully
  */
 gboolean
 font_manager_aliases_add (FontManagerAliases *self, const gchar *family)
@@ -271,8 +287,7 @@ font_manager_aliases_add (FontManagerAliases *self, const gchar *family)
     g_return_val_if_fail(self != NULL, FALSE);
     FontManagerAliasesPrivate *priv = font_manager_aliases_get_instance_private(self);
     FontManagerAliasElement *element = font_manager_alias_element_new(family);
-    gchar *tmp = g_strdup(family);
-    g_hash_table_insert(priv->hash_table, tmp, element);
+    g_hash_table_insert(priv->hash_table, g_strdup(family), element);
     return g_hash_table_contains(priv->hash_table, family);
 }
 
@@ -281,14 +296,14 @@ font_manager_aliases_add (FontManagerAliases *self, const gchar *family)
  * @self:   #FontManagerAliases
  * @element: (transfer full): #FontManagerAliasElement
  *
- * Returns:    %TRUE if alias element was added successfully
+ * Returns:    %TRUE if @element was added successfully
  */
 gboolean
 font_manager_aliases_add_element (FontManagerAliases *self, FontManagerAliasElement *element)
 {
     g_return_val_if_fail(self != NULL, FALSE);
     FontManagerAliasesPrivate *priv = font_manager_aliases_get_instance_private(self);
-    gchar *tmp;
+    gchar *tmp = NULL;
     g_object_get(element, "family", &tmp, NULL);
     g_hash_table_insert(priv->hash_table, tmp, element);
     return g_hash_table_contains(priv->hash_table, tmp);
@@ -299,7 +314,7 @@ font_manager_aliases_add_element (FontManagerAliases *self, FontManagerAliasElem
  * @self:   #FontManagerAliases
  * @family: family name
  *
- * Returns:    %TRUE if alias element for @family was removed successfully
+ * Returns:    %TRUE if the #FontManagerAliasElement for @family was removed successfully
  */
 gboolean
 font_manager_aliases_remove (FontManagerAliases *self, const gchar *family)
@@ -378,8 +393,8 @@ font_manager_aliases_save (FontManagerAliases *self)
  * font_manager_aliases_list:
  * @self:   #FontManagerAliases
  *
- * Returns: (nullable) (transfer container) (element-type FontManager.AliasElement):
- * #GList of #FontManagerAliasElement or %NULL
+ * Returns: (nullable) (transfer container) (element-type FontManagerAliasElement):
+ * #GList of #FontManagerAliasElement or %NULL. Free the returned #GList using #g_list_free().
  */
 GList *
 font_manager_aliases_list (FontManagerAliases *self)
@@ -393,7 +408,7 @@ font_manager_aliases_list (FontManagerAliases *self)
  * font_manager_aliases_get_filepath:
  * @self:   #FontManagerAliases
  *
- * Returns: (transfer full) (nullable): a newly allocated string containing the full
+ * Returns: (transfer full) (nullable): A newly allocated string containing the full
  * filepath to current configuration file or %NULL. Free the result using #g_free().
  */
 gchar *
@@ -409,8 +424,8 @@ font_manager_aliases_get_filepath (FontManagerAliases *self)
 /**
  * font_manager_aliases_new:
  *
- * Returns: (transfer full): #FontManagerAliases
- * Use #g_object_unref() to free result.
+ * Returns: (transfer full): A newly created #FontManagerAliases.
+ * Free the returned object using #g_object_unref().
  */
 FontManagerAliases *
 font_manager_aliases_new (void)

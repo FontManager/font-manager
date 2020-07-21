@@ -21,6 +21,7 @@
 #ifndef __FONT_MANAGER_PROGRESS_DATA_H__
 #define __FONT_MANAGER_PROGRESS_DATA_H__
 
+#include <stdio.h>
 #include <glib.h>
 #include <glib-object.h>
 
@@ -29,9 +30,10 @@ G_BEGIN_DECLS
 #define FONT_MANAGER_TYPE_PROGRESS_DATA (font_manager_progress_data_get_type())
 G_DECLARE_FINAL_TYPE(FontManagerProgressData, font_manager_progress_data, FONT_MANAGER, PROGRESS_DATA, GObject)
 
-FontManagerProgressData * font_manager_progress_data_new (const gchar *message, guint processed, guint total);
-
 typedef gboolean (*FontManagerProgressCallback) (FontManagerProgressData *data);
+
+FontManagerProgressData * font_manager_progress_data_new (const gchar *message, guint processed, guint total);
+gboolean font_manager_progress_data_print (FontManagerProgressData *self);
 
 G_END_DECLS
 

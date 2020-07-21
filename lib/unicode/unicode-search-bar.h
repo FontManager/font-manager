@@ -34,7 +34,8 @@ G_BEGIN_DECLS
 #define UNICODE_TYPE_SEARCH_BAR (unicode_search_bar_get_type())
 G_DECLARE_FINAL_TYPE(UnicodeSearchBar, unicode_search_bar, UNICODE, SEARCH_BAR, GtkSearchBar)
 
-UnicodeSearchBar * unicode_search_bar_new (void);
+GtkWidget * unicode_search_bar_new (void);
+void unicode_search_bar_set_character_map (UnicodeSearchBar *self, UnicodeCharacterMap *character_map);
 
 G_END_DECLS
 

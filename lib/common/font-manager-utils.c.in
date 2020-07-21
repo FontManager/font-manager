@@ -18,15 +18,20 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include <unistd.h>
-#include <glib/gprintf.h>
-#include <glib/gstdio.h>
-
 #include "font-manager-utils.h"
+
+/**
+ * SECTION: font-manager-utils
+ * @title: Utility Functions
+ * @short_description: General purpose utility functions
+ * @include: font-manager-utils.h
+ */
 
 static const gchar *POSSIBLE_SCHEMA_DIRS[] = {
     "@prefix@/share/glib-2.0/schemas",
+#ifdef NOT_REPRODUCIBLE
     "@abs_top_srcdir@/data"
+#endif
 };
 
 static GSList *
@@ -43,8 +48,9 @@ get_possible_schema_dirs (void)
 
 /**
  * font_manager_is_dir:
+ * @filepath:   full path to file
  *
- * Returns:             #TRUE if path is a directory
+ * Returns:             %TRUE if @filepath is a directory
  */
 gboolean
 font_manager_is_dir (const gchar *filepath)
@@ -54,8 +60,9 @@ font_manager_is_dir (const gchar *filepath)
 
 /**
  * font_manager_exists:
+ * @filepath:   full path to file
  *
- * Returns:             #TRUE if path exists
+ * Returns:             %TRUE if @filepath exists
  */
 gboolean
 font_manager_exists (const gchar *filepath)
@@ -71,8 +78,10 @@ ensure_dir_exists (const gchar *dir)
 
 /**
  * font_manager_natural_sort:
+ * @str1:   a nul-terminated string
+ * @str2:   a nul-terminated string
  *
- * Returns:             an integer less than, equal to, or greater than zero,
+ * Returns:             An integer less than, equal to, or greater than zero,
  *                      if str1 is <, == or > than str2 .
  */
 gint
@@ -98,26 +107,11 @@ font_manager_get_file_owner (const gchar *filepath)
 }
 
 /**
- * font_manager_get_localized_pangram:
- *
- * Retrieve a sample string from Pango for the default language.
- * If Pango does not have a sample string for language,
- * the classic "The quick brown fox..." is returned.
- *
- * Returns: (transfer full): A newly allocated string. Free the result using #g_free.
- */
-gchar *
-font_manager_get_localized_pangram (void)
-{
-    PangoLanguage * lang = pango_language_get_default();
-    const gchar *pangram = pango_language_get_sample_string(lang);
-    return g_strdup(pangram);
-}
-
-/**
  * font_manager_timecmp:
  * @a:  a valid filepath
  * @b:  a valid filepath
+ *
+ * Compare the modification time of two different files.
  *
  * Returns: An integer less than, equal to, or greater than zero, if a is <, == or > than b.
  */
@@ -144,10 +138,10 @@ font_manager_timecmp (gchar *a, gchar *b)
 
 /**
  * font_manager_get_file_extension:
+ * @filepath:   full path to file
  *
- * The returned string should be freed using #g_free().
- *
- * Returns: (transfer full) (nullable): a newly allocated string or %NULL
+ * Returns: (transfer full) (nullable):
+ * A newly allocated string that must be freed with #g_free or %NULL
  */
 gchar *
 font_manager_get_file_extension (const gchar *filepath)
@@ -158,18 +152,18 @@ font_manager_get_file_extension (const gchar *filepath)
     gint arr_len = 0;
     while (str_arr[arr_len])
         arr_len++;
-    gchar *result = g_strdup(str_arr[arr_len - 1]);
+    g_autofree gchar *_result = g_strdup(str_arr[arr_len - 1]);
     g_strfreev(str_arr);
+    gchar *result = g_ascii_strdown(_result, -1);
     return result;
 }
 
 /**
  * font_manager_get_local_time:
  *
- * The returned string should be freed using #g_free().
- *
- * Returns: (transfer full) (nullable): a newly allocated string formatted to the
- *                                requested format or %NULL if there was an error.
+ * Returns: (transfer full) (nullable): A newly allocated string formatted
+ * to the requested format or %NULL if there was an error.
+ * The returned string must be freed using #g_free().
  */
 gchar *
 font_manager_get_local_time (void)
@@ -185,7 +179,8 @@ font_manager_get_local_time (void)
  * This function attempts to create the directory if it doesn't already exist
  * and returns the filepath as a string if successful.
  *
- * Returns: (nullable): a newly allocated string or %NULL
+ * Returns: (transfer full) (nullable):
+ * A newly allocated string that must be freed with #g_free or %NULL
  */
 gchar *
 font_manager_get_user_font_directory (void)
@@ -203,7 +198,8 @@ font_manager_get_user_font_directory (void)
  * This function attempts to create the directory if it doesn't already exist
  * and returns the filepath as a string if successful.
  *
- * Returns: (nullable): a newly allocated string or %NULL
+ * Returns: (transfer full) (nullable):
+ * A newly allocated string that must be freed with #g_free or %NULL
  */
 gchar *
 font_manager_get_package_cache_directory (void)
@@ -221,7 +217,8 @@ font_manager_get_package_cache_directory (void)
  * This function attempts to create the directory if it doesn't already exist
  * and returns the filepath as a string if successful.
  *
- * Returns:  (nullable): a newly allocated string or %NULL
+ * Returns: (transfer full) (nullable):
+ * A newly allocated string that must be freed with #g_free or %NULL
  */
 gchar *
 font_manager_get_package_config_directory (void)
@@ -239,7 +236,8 @@ font_manager_get_package_config_directory (void)
  * This function attempts to create the directory if it doesn't already exist
  * and returns the filepath as a string if successful.
  *
- * Returns: (nullable): a newly allocated string or %NULL
+ * Returns: (transfer full) (nullable):
+ * A newly allocated string that must be freed with #g_free or %NULL
  */
 gchar *
 font_manager_get_user_fontconfig_directory (void)
@@ -257,7 +255,8 @@ font_manager_get_user_fontconfig_directory (void)
  * @target:             the nul-terminated string to search for
  * @replacement:        the nul-terminated string to replace target with
  *
- * Returns: (nullable): a newly-allocated string or %NULL
+ * Returns: (transfer full) (nullable):
+ * A newly allocated string that must be freed with #g_free or %NULL
  */
 gchar *
 font_manager_str_replace (const gchar *str, const gchar *target, const gchar *replacement)
@@ -272,9 +271,9 @@ font_manager_str_replace (const gchar *str, const gchar *target, const gchar *re
         g_regex_unref(regex);
     }
     if (error != NULL) {
+        g_warning("%i - %s", error->code, error->message);
         g_error_free(error);
-        g_free(result);
-        g_return_val_if_reached(NULL);
+        g_clear_pointer(&result, g_free);
     }
     return result;
 }
@@ -285,7 +284,8 @@ font_manager_str_replace (const gchar *str, const gchar *target, const gchar *re
  *
  * Replaces spaces and dashes with an underscore.
  *
- * Returns: (nullable): a newly-allocated string or %NULL
+ * Returns: (transfer full) (nullable):
+ * A newly allocated string that must be freed with #g_free or %NULL
  */
 gchar *
 font_manager_to_filename (const gchar *str)
@@ -296,15 +296,33 @@ font_manager_to_filename (const gchar *str)
 }
 
 /**
+ * font_manager_install_file:
+ * @file:       #GFile
+ * @directory:  #GFile
+ * @error:      #GError or %NULL
+ *
+ * Returns:     %TRUE if installation was successful.
+ */
+gboolean
+font_manager_install_file (GFile *file, GFile *directory, GError **error)
+{
+    g_return_val_if_fail(error == NULL || *error == NULL, FALSE);
+    g_return_val_if_fail(file != NULL, FALSE);
+    g_return_val_if_fail(directory != NULL, FALSE);
+    g_autoptr(GFile) target = font_manager_get_installation_target(file, directory, TRUE, error);
+    g_return_val_if_fail(error == NULL || *error == NULL, FALSE);
+    GFileCopyFlags flags = G_FILE_COPY_ALL_METADATA | G_FILE_COPY_OVERWRITE | G_FILE_COPY_TARGET_DEFAULT_PERMS;
+    g_file_copy(file, target, flags, NULL, NULL, NULL, error);
+    g_return_val_if_fail(error == NULL || *error == NULL, FALSE);
+    return TRUE;
+}
+
+/**
  * font_manager_get_gsettings:
  * @schema_id:      the id of the schema
  *
- * This function allows applications to find their settings whether they are
- * installed or not. If the requested schema_id is not found in the default
- * source it will look in any directories listed in #POSSIBLE_SCHEMA_DIRS
- *
  * Returns: (transfer full) (nullable):
- * a newly created #GSettings instance or %NULL if schema_id could not be found
+ * A newly created #GSettings instance or %NULL if schema_id could not be found
  */
 GSettings *
 font_manager_get_gsettings (const gchar *schema_id)

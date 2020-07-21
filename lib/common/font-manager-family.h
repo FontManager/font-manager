@@ -26,14 +26,14 @@
 G_BEGIN_DECLS
 
 /* Order matters, adjust bind_from_properties to account for changes */
-static const FontManagerProxyObjectProperties FamilyProperties [] =
+static const FontManagerJsonProxyProperties FamilyProperties [] =
 {
-    { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST },
-    { "family", G_TYPE_STRING },
-    { "n-variations", G_TYPE_INT },
-    { "description", G_TYPE_STRING },
-    { FONT_MANAGER_PROXY_OBJECT_SOURCE, G_TYPE_RESERVED_USER_FIRST },
-    { "variations", G_TYPE_BOXED }
+    { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST, NULL },
+    { "family", G_TYPE_STRING, "Family name" },
+    { "n-variations", G_TYPE_INT, "Number of font variations" },
+    { "description", G_TYPE_STRING, "Pango font description" },
+    { FONT_MANAGER_JSON_PROXY_SOURCE, G_TYPE_RESERVED_USER_FIRST, "JsonObject source for this class" },
+    { "variations", G_TYPE_BOXED, "JsonArray of JsonObjects" }
 };
 
 #define FONT_MANAGER_TYPE_FAMILY (font_manager_family_get_type())

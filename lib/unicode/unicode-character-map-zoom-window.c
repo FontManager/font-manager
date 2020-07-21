@@ -24,6 +24,16 @@
 
 #define UI_RESOURCE_PATH "/ui/unicode-character-map-zoom-window.ui"
 
+/**
+ * SECTION: unicode-character-map-zoom-window
+ * @short_description: Close up view of the selected glyph
+ * @title: UnicodeCharacterMapZoomWindow
+ * @include: unicode-character-map-zoom-window.h
+ *
+ * This widget provides a close up of the selected glyph along with Pango
+ * font metrics and an option to copy the glyph to the clipboard.
+ */
+
 struct _UnicodeCharacterMapZoomWindow
 {
     GtkPopover  parent_instance;
@@ -221,12 +231,14 @@ unicode_character_map_zoom_window_class_init (UnicodeCharacterMapZoomWindowClass
     gtk_widget_class_bind_template_callback(widget_class, on_copy_clicked);
 
     obj_properties[PROP_FONT_DESC] = g_param_spec_boxed("font-desc",
-                                                        NULL, NULL,
+                                                        NULL,
+                                                        "PangoFontDescription",
                                                         PANGO_TYPE_FONT_DESCRIPTION,
                                                         DEFAULT_PARAM_FLAGS);
 
     obj_properties[PROP_ACTIVE_CHAR] = g_param_spec_unichar("active-character",
-                                                            NULL, NULL,
+                                                            NULL,
+                                                            "Active character",
                                                             0,
                                                             DEFAULT_PARAM_FLAGS);
 
@@ -238,7 +250,8 @@ unicode_character_map_zoom_window_class_init (UnicodeCharacterMapZoomWindowClass
 /**
  * unicode_character_map_zoom_window_new:
  *
- * Returns: (transfer full): a new #UnicodeCharacterMapZoomWindow
+ * Returns: (transfer full): A newly created #UnicodeCharacterMapZoomWindow.
+ * Free the returned object using #g_object_unref().
  */
 UnicodeCharacterMapZoomWindow *
 unicode_character_map_zoom_window_new (void)

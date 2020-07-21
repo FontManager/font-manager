@@ -20,6 +20,44 @@
 
 #include "font-manager-font-info.h"
 
+/**
+ * SECTION: font-manager-font-info
+ * @short_description: Font metadata
+ * @title: FontInfo
+ * @include: font-manager-font-info.h
+ * @see_also: #FontManagerJsonProxy
+ *
+ * #FontManagerFontInfo holds detailed metadata for a single font.
+ *
+ * The #JsonObject backing this class should have the following structure:
+ *
+ * |[
+ * {
+ *   "filepath" : string,
+ *   "findex" : int,
+ *   "family" : string,
+ *   "style" : string,
+ *   "owner" : int,
+ *   "psname" : string,
+ *   "filetype" : string,
+ *   "n-glyphs" : int,
+ *   "copyright" : string,
+ *   "version" : string,
+ *   "description" : string,
+ *   "license-data" : string,
+ *   "license-url" : string,
+ *   "vendor" : string,
+ *   "designer" : string,
+ *   "designer-url" : string,
+ *   "license-type" : string,
+ *   "fsType" : int,
+ *   "filesize" : string,
+ *   "checksum" : string,
+ *   "panose": JsonArray of ints,
+ * }
+ * ]|
+ */
+
 struct _FontManagerFontInfo
 {
     GObject parent_instance;
@@ -38,8 +76,7 @@ font_manager_font_info_class_init (FontManagerFontInfoClass *klass)
     GObjectClass *parent_class = G_OBJECT_CLASS(font_manager_font_info_parent_class);
     object_class->get_property = parent_class->get_property;
     object_class->set_property = parent_class->set_property;
-    FontManagerJsonProxyClass *proxy_class = FONT_MANAGER_JSON_PROXY_CLASS(parent_class);
-    proxy_class->generate_properties(obj_properties, PROPERTIES, N_PROPERTIES);
+    font_manager_json_proxy_generate_properties(obj_properties, PROPERTIES, N_PROPERTIES);
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
 }
@@ -53,7 +90,8 @@ font_manager_font_info_init (FontManagerFontInfo *self)
 /**
  * font_manager_font_info_new:
  *
- * Returns: (transfer full): a new #FontManagerFontInfo
+ * Returns: (transfer full): A newly created #FontManagerFontInfo.
+ * Free the returned object using #g_object_unref().
  */
 FontManagerFontInfo *
 font_manager_font_info_new (void)

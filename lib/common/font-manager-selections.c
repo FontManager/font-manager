@@ -22,6 +22,16 @@
 
 #include "font-manager-selections.h"
 
+/**
+ * SECTION: font-manager-selections
+ * @short_description: Fontconfig font selection configuration
+ * @title: Font Selection
+ * @include: font-manager-selections.h
+ *
+ * Base class for generating fontconfig configuration files which modify
+ * font selections.
+ */
+
 typedef struct
 {
     gchar *config_dir;
@@ -201,7 +211,7 @@ font_manager_selections_class_init (FontManagerSelectionsClass *klass)
      * Emitted whenever the underlying configuration file has changed on disk
      */
     signals[CHANGED] = g_signal_new(g_intern_static_string("changed"),
-                                    G_OBJECT_CLASS_TYPE(object_class),
+                                    G_TYPE_FROM_CLASS(object_class),
                                     G_SIGNAL_RUN_LAST,
                                     G_STRUCT_OFFSET(FontManagerSelectionsClass, changed),
                                     NULL, NULL, NULL,
@@ -214,25 +224,31 @@ font_manager_selections_class_init (FontManagerSelectionsClass *klass)
      * for configuration files and writeable by the user.
      */
     obj_properties[PROP_CONFIG_DIR] = g_param_spec_string("config-dir",
-                                                          NULL, NULL, NULL,
+                                                          NULL,
+                                                          "Fontconfig configuration directory",
+                                                          NULL,
                                                           DEFAULT_PARAM_FLAGS);
 
     /**
      * FontManagerSelections:target-file:
      *
-     * Should be set to a filename in the form [7][0-9]*.conf
+     * Should be set to a filename in the form \[7\]\[0-9\]-*.conf
      */
     obj_properties[PROP_TARGET_FILE] = g_param_spec_string("target-file",
-                                                           NULL, NULL, NULL,
+                                                           NULL,
+                                                           "Name of fontconfig configuration file",
+                                                           NULL,
                                                            DEFAULT_PARAM_FLAGS);
 
     /**
      * FontManagerSelections:target-element:
      *
-     * Valid values: <acceptfont> or <rejectfont>
+     * Valid values: acceptfont or rejectfont
      */
     obj_properties[PROP_TARGET_ELEMENT] = g_param_spec_string("target-element",
-                                                              NULL, NULL, NULL,
+                                                              NULL,
+                                                              "A valid selectfont element",
+                                                              NULL,
                                                               DEFAULT_PARAM_FLAGS);
 
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
@@ -267,7 +283,7 @@ font_manager_selections_emit_changed (G_GNUC_UNUSED GFileMonitor *monitor,
  *
  * Load @target_file from @config_dir
  *
- * Returns: #TRUE if configuration was loaded successfully
+ * Returns: %TRUE if configuration was loaded successfully.
  */
 gboolean
 font_manager_selections_load (FontManagerSelections *self)
@@ -289,7 +305,7 @@ font_manager_selections_load (FontManagerSelections *self)
     if (priv->monitor != NULL)
         g_signal_connect(priv->monitor, "changed", G_CALLBACK(font_manager_selections_emit_changed), self);
     else
-        g_critical(G_STRLOC ": Failed to create file monitor for %s", filepath);
+        g_warning(G_STRLOC ": Failed to create file monitor for %s", filepath);
 
     if (!g_file_query_exists(file, NULL))
         return FALSE;
@@ -318,7 +334,7 @@ font_manager_selections_load (FontManagerSelections *self)
  *
  * Saves current selections to @target_file in @config_dir
  *
- * Returns: #TRUE if configuration was saved successfully
+ * Returns: %TRUE if configuration was saved successfully.
  */
 gboolean
 font_manager_selections_save (FontManagerSelections *self)
@@ -338,7 +354,7 @@ font_manager_selections_save (FontManagerSelections *self)
  * font_manager_selections_get_filepath:
  * @self:   #FontManagerSelections
  *
- * Returns: (transfer full) (nullable): a newly allocated string containing the full
+ * Returns: (transfer full) (nullable): A newly allocated string containing the full
  * filepath to current configuration file or %NULL. Free the result using #g_free().
  */
 gchar *
@@ -354,8 +370,8 @@ font_manager_selections_get_filepath (FontManagerSelections *self)
 /**
  * font_manager_selections_new:
  *
- * Returns: (transfer full): #FontManagerSelections
- * Use #g_object_unref() to free result.
+ * Returns: (transfer full): A newly created #FontManagerSelections.
+ * Free the returned object using #g_object_unref().
  */
 FontManagerSelections *
 font_manager_selections_new (void)

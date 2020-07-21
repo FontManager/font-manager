@@ -27,6 +27,15 @@
 
 #include "unicode-codepoint-list.h"
 
+/**
+ * SECTION: unicode-codepoint-list
+ * @short_description: List interface for Unicode code points
+ * @title: UnicodeCodepointList
+ * @include: unicode-codepoint-list.h
+ * @see_also: UnicodeCharacterMap
+ *
+ * Interface for a list of unicode codepoints.
+ */
 
 G_DEFINE_INTERFACE (UnicodeCodepointList, unicode_codepoint_list, G_TYPE_OBJECT)
 
@@ -42,7 +51,7 @@ unicode_codepoint_list_default_init (G_GNUC_UNUSED UnicodeCodepointListInterface
  * @self: a #UnicodeCodepointList
  * @index: index indicating which character to get
  *
- * Returns: code point at @index in the codepoint list, or
+ * Returns: Code point at @index in the codepoint list, or
  *   (gunichar)(-1) if @index is beyond the last code point in list.
  **/
 gunichar
@@ -59,7 +68,7 @@ unicode_codepoint_list_get_char (UnicodeCodepointList *self, gint index)
  * @self: a #UnicodeCodepointList
  * @wc: character for which to find the index
  *
- * Returns: index of @wc, or -1 if @wc is not in this codepoint list.
+ * Returns: Index of @wc, or -1 if @wc is not in this codepoint list.
  **/
 gint
 unicode_codepoint_list_get_index (UnicodeCodepointList *self, gunichar wc)
@@ -74,7 +83,7 @@ unicode_codepoint_list_get_index (UnicodeCodepointList *self, gunichar wc)
  * unicode_codepoint_list_get_last_index:
  * @self: a #UnicodeCodepointList
  *
- * Returns: last index in this codepoint list.
+ * Returns: Last index in this codepoint list.
  **/
 gint
 unicode_codepoint_list_get_last_index (UnicodeCodepointList *self)

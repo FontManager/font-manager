@@ -26,19 +26,19 @@
 G_BEGIN_DECLS
 
 /* Order matters, adjust bind_from_properties to account for changes */
-static const FontManagerProxyObjectProperties FontProperties [] =
+static const FontManagerJsonProxyProperties FontProperties [] =
 {
-    { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST },
-    { "filepath", G_TYPE_STRING },
-    { "findex", G_TYPE_INT },
-    { "family", G_TYPE_STRING },
-    { "style", G_TYPE_STRING },
-    { "spacing", G_TYPE_INT },
-    { "slant", G_TYPE_INT },
-    { "weight", G_TYPE_INT },
-    { "width", G_TYPE_INT },
-    { "description", G_TYPE_STRING },
-    { FONT_MANAGER_PROXY_OBJECT_SOURCE, G_TYPE_RESERVED_USER_FIRST }
+    { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST, NULL },
+    { "filepath", G_TYPE_STRING, "Font filepath" },
+    { "findex", G_TYPE_INT, "Font face index" },
+    { "family", G_TYPE_STRING, "Fontconfig family name" },
+    { "style", G_TYPE_STRING, "Fontconfig style name"},
+    { "spacing", G_TYPE_INT, "Fontconfig spacing" },
+    { "slant", G_TYPE_INT, "Fontconfig slant" },
+    { "weight", G_TYPE_INT, "Fontconfig weight" },
+    { "width", G_TYPE_INT, "Fontconfig width" },
+    { "description", G_TYPE_STRING, "Pango font description" },
+    { FONT_MANAGER_JSON_PROXY_SOURCE, G_TYPE_RESERVED_USER_FIRST, "JsonObject source for this class" }
 };
 
 #define FONT_MANAGER_TYPE_FONT (font_manager_font_get_type())

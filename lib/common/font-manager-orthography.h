@@ -23,13 +23,33 @@
 
 #include <glib.h>
 #include <json-glib/json-glib.h>
+#include <fontconfig/fontconfig.h>
+#include <fontconfig/fcfreetype.h>
+#include <pango/pango-language.h>
+
+#include "font-manager-json-proxy.h"
+#include "unicode-info.h"
 
 G_BEGIN_DECLS
 
-#define FONT_MANAGER_TYPE_ORTHOGRAPHY (font_manager_orthography_get_type ())
-G_DECLARE_FINAL_TYPE(FontManagerOrthography, font_manager_orthography, FONT_MANAGER, ORTHOGRAPHY, GObject)
+JsonObject * font_manager_get_orthography_results (JsonObject *font);
+gchar * font_manager_get_sample_string_for_orthography (JsonObject *orthography, GList *charset);
 
-FontManagerOrthography * font_manager_orthography_new (JsonObject *filter);
+static const FontManagerJsonProxyProperties OrthographyProperties [] =
+{
+    { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST, NULL },
+    { "name", G_TYPE_STRING, "English name for orthography" },
+    { "native", G_TYPE_STRING, "Native name for orthography" },
+    { "sample", G_TYPE_STRING, "Pangram or sample string"},
+    { "coverage", G_TYPE_DOUBLE, "Coverage as a percentage" },
+    { FONT_MANAGER_JSON_PROXY_SOURCE, G_TYPE_RESERVED_USER_FIRST, "JsonObject source for this class" }
+};
+
+
+#define FONT_MANAGER_TYPE_ORTHOGRAPHY (font_manager_orthography_get_type ())
+G_DECLARE_FINAL_TYPE(FontManagerOrthography, font_manager_orthography, FONT_MANAGER, ORTHOGRAPHY, FontManagerJsonProxy)
+
+FontManagerOrthography * font_manager_orthography_new (JsonObject *orthography);
 GList * font_manager_orthography_get_filter (FontManagerOrthography *self);
 
 
@@ -123,7 +143,6 @@ static const FontManagerOrthographyData UncategorizedOrthographies [] = {
 #include "Coptic"
 #include "Currencies"
 #include "Food"
-#include "FullCyrillic"
 #include "Georgian"
 #include "Hebrew"
 #include "Khmer"
@@ -229,17 +248,6 @@ static const FontManagerOrthographyData UncategorizedOrthographies [] = {
 #include "EgyptianHieroglyphs"
 
 };
-
-#define N_ARABIC G_N_ELEMENTS(ArabicOrthographies)
-#define N_CHINESE G_N_ELEMENTS(ChineseOrthographies)
-#define N_GREEK G_N_ELEMENTS(GreekOrthographies)
-#define N_JAPANESE G_N_ELEMENTS(JapaneseOrthographies)
-#define N_KOREAN G_N_ELEMENTS(KoreanOrthographies)
-#define N_LATIN G_N_ELEMENTS(LatinOrthographies)
-#define N_MISC G_N_ELEMENTS(UncategorizedOrthographies)
-
-JsonObject * font_manager_get_orthography_results (JsonObject *font);
-gchar * font_manager_get_sample_string_for_orthography (JsonObject *orthography, GList *charset);
 
 G_END_DECLS
 

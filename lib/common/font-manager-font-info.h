@@ -21,36 +21,39 @@
 #ifndef __FONT_MANAGER_TYPE_FONT_INFO_H__
 #define __FONT_MANAGER_TYPE_FONT_INFO_H__
 
+#include <glib.h>
+#include <glib-object.h>
+
 #include "font-manager-json-proxy.h"
 
 G_BEGIN_DECLS
 
 /* Order matters, adjust bind_from_properties to account for changes */
-static const FontManagerProxyObjectProperties InfoProperties [] =
+static const FontManagerJsonProxyProperties InfoProperties [] =
 {
-    { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST },
-    { "filepath", G_TYPE_STRING },
-    { "findex", G_TYPE_INT },
-    { "family", G_TYPE_STRING },
-    { "style", G_TYPE_STRING },
-    { "owner", G_TYPE_INT },
-    { "psname", G_TYPE_STRING },
-    { "filetype", G_TYPE_STRING },
-    { "n-glyphs", G_TYPE_INT },
-    { "copyright", G_TYPE_STRING },
-    { "version", G_TYPE_STRING },
-    { "description", G_TYPE_STRING },
-    { "license-data", G_TYPE_STRING },
-    { "license-url", G_TYPE_STRING },
-    { "vendor", G_TYPE_STRING },
-    { "designer", G_TYPE_STRING },
-    { "designer-url", G_TYPE_STRING },
-    { "license-type", G_TYPE_STRING },
-    { "fsType", G_TYPE_INT },
-    { "filesize", G_TYPE_STRING },
-    { "checksum", G_TYPE_STRING },
-    { FONT_MANAGER_PROXY_OBJECT_SOURCE, G_TYPE_RESERVED_USER_FIRST },
-    { "panose", G_TYPE_BOXED }
+    { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST, NULL },
+    { "filepath", G_TYPE_STRING, "Filepath" },
+    { "findex", G_TYPE_INT, "Face index" },
+    { "family", G_TYPE_STRING, "Family name" },
+    { "style", G_TYPE_STRING, "Style" },
+    { "owner", G_TYPE_INT, "Whether file is writable by user" },
+    { "psname", G_TYPE_STRING, "PostScript name" },
+    { "filetype", G_TYPE_STRING, "Font format" },
+    { "n-glyphs", G_TYPE_INT, "Number of glyphs" },
+    { "copyright", G_TYPE_STRING, "Copyright notice" },
+    { "version", G_TYPE_STRING, "Font version" },
+    { "description", G_TYPE_STRING, "Design description" },
+    { "license-data", G_TYPE_STRING, "Embedded license data" },
+    { "license-url", G_TYPE_STRING, "License URL" },
+    { "vendor", G_TYPE_STRING, "Font foundry name" },
+    { "designer", G_TYPE_STRING, "Name of font designer" },
+    { "designer-url", G_TYPE_STRING, "Designer homepage" },
+    { "license-type", G_TYPE_STRING, "License type" },
+    { "fsType", G_TYPE_INT, "Embedding restrictions" },
+    { "filesize", G_TYPE_STRING, "Size on disk" },
+    { "checksum", G_TYPE_STRING, "MD5 checksum" },
+    { FONT_MANAGER_JSON_PROXY_SOURCE, G_TYPE_RESERVED_USER_FIRST, "JsonObject source for this class" },
+    { "panose", G_TYPE_BOXED, "Panose information as a JsonArray" }
 };
 
 #define FONT_MANAGER_TYPE_FONT_INFO (font_manager_font_info_get_type())

@@ -23,10 +23,17 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include <stdlib.h>
-#include <string.h>
-
 #include "unicode-search-bar.h"
+
+/**
+ * SECTION: unicode-search-bar
+ * @short_description: Search for unicode codepoints within a font
+ * @title: UnicodeCharacterMapSearchBar
+ * @include: unicode-search-bar.h
+ *
+ * This widget provides a way to search for characters by name, value or
+ * other information.
+ */
 
 #define UI_RESOURCE_PATH "/ui/unicode-search-bar.ui"
 
@@ -84,8 +91,6 @@ enum
 };
 
 static GParamSpec *obj_properties[N_PROPERTIES] = {0};
-
-#define DEFAULT_PARAM_FLAGS (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS)
 
 static const gchar *
 utf8_strcasestr (const gchar *haystack, const gchar *needle)
@@ -319,7 +324,7 @@ idle_search (UnicodeSearchBar *self)
 
 /**
  * unicode_search_state_free:
- * @search_state:
+ * @search_state:   #UnicodeSearchState
  **/
 static void
 unicode_search_state_free (UnicodeSearchState *search_state)
@@ -341,7 +346,8 @@ unicode_search_state_free (UnicodeSearchState *search_state)
  * Initializes a #UnicodeSearchState to search for the next character in
  * the codepoint list that matches @search_string. Assumes input is valid.
  *
- * Return value: the new #UnicodeSearchState.
+ * Return value: A newly created #UnicodeSearchState.
+ * Free the returned object using #unicode_search_state_free().
  **/
 static UnicodeSearchState *
 unicode_search_state_new (UnicodeCodepointList *codepoint_list,
@@ -509,10 +515,11 @@ unicode_search_bar_set_property (GObject *gobject,
                                  const GValue *value,
                                  GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     UnicodeSearchBar *self = UNICODE_SEARCH_BAR(gobject);
     switch (prop_id) {
         case PROP_CHARMAP:
-            g_set_object(&self->charmap, g_value_get_object(value));
+            unicode_search_bar_set_character_map(self, g_value_get_object(value));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, prop_id, pspec);
@@ -527,6 +534,7 @@ unicode_search_bar_get_property (GObject *gobject,
                                  GValue *value,
                                  GParamSpec *pspec)
 {
+    g_return_if_fail(gobject != NULL);
     UnicodeSearchBar *self = UNICODE_SEARCH_BAR(gobject);
     switch (prop_id) {
         case PROP_CHARMAP:
@@ -542,6 +550,7 @@ unicode_search_bar_get_property (GObject *gobject,
 static void
 unicode_search_bar_constructed (GObject *gobject)
 {
+    g_return_if_fail(gobject != NULL);
     UnicodeSearchBar *self = UNICODE_SEARCH_BAR(gobject);
     set_action_visibility(self, FALSE);
     g_signal_connect_swapped(self->entry, "search-changed", G_CALLBACK(entry_changed), self);
@@ -559,6 +568,7 @@ unicode_search_bar_init (UnicodeSearchBar *self)
 {
     g_return_if_fail(self != NULL);
     gtk_widget_init_template(GTK_WIDGET(self));
+    gtk_widget_set_name(GTK_WIDGET(self), "UnicodeSearchBar");
     self->charmap = NULL;
     return;
 }
@@ -592,9 +602,12 @@ unicode_search_bar_class_init (UnicodeSearchBarClass *klass)
     gtk_widget_class_bind_template_child(widget_class, UnicodeSearchBar, prev_button);
 
     obj_properties[PROP_CHARMAP] = g_param_spec_object("charmap",
-                                                        NULL, NULL,
+                                                        NULL,
+                                                        "UnicodeCharacterMap",
                                                         G_TYPE_OBJECT,
-                                                        DEFAULT_PARAM_FLAGS);
+                                                        G_PARAM_STATIC_STRINGS |
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_EXPLICIT_NOTIFY);
 
     g_object_class_install_property(object_class, PROP_CHARMAP, obj_properties[PROP_CHARMAP]);
 
@@ -602,11 +615,27 @@ unicode_search_bar_class_init (UnicodeSearchBarClass *klass)
 }
 
 /**
+ * unicode_search_bar_set_character_map:
+ * @self:                                       #UnicodeSearchBar
+ * @character_map: (transfer none) (nullable):  #UnicodeCharacterMap
+ */
+void
+unicode_search_bar_set_character_map (UnicodeSearchBar *self,
+                                      UnicodeCharacterMap *character_map)
+{
+    g_return_if_fail(self != NULL);
+    if (g_set_object(&self->charmap, character_map))
+        g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_CHARMAP]);
+    return;
+}
+
+/**
  * unicode_search_bar_new:
  *
- * Returns: (transfer full): a new #UnicodeSearchBar
+ * Returns: (transfer full): A newly created #UnicodeSearchBar.
+ * Free the returned object using #g_object_unref().
  */
-UnicodeSearchBar *
+GtkWidget *
 unicode_search_bar_new (void)
 {
     return g_object_new(UNICODE_TYPE_SEARCH_BAR, NULL);

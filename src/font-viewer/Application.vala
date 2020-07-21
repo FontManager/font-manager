@@ -64,22 +64,6 @@ namespace FontManager.FontViewer {
             return;
         }
 
-        [DBus (visible = "false")]
-        public void about () {
-            Gtk.show_about_dialog(main_window,
-                                 "program-name", _("Font Viewer"),
-                                 "logo-icon-name", About.ICON,
-                                 "version", About.VERSION,
-                                 "copyright", About.COPYRIGHT,
-                                 "comments", About.COMMENT,
-                                 "website", About.HOMEPAGE,
-                                 "authors", About.AUTHORS,
-                                 "license", About.LICENSE,
-                                 "translator-credits", About.TRANSLATORS,
-                                 null);
-            return;
-        }
-
         public override bool dbus_register (DBusConnection conn, string path) throws Error {
             base.dbus_register(conn, path);
             dbus_id = conn.register_object(BUS_PATH, this);

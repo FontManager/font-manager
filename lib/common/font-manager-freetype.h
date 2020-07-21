@@ -22,41 +22,89 @@
 #define __FREETYPE_H__
 
 #include <glib.h>
+#include <glib-object.h>
+#include <glib/gprintf.h>
+#include <glib/gstdio.h>
+#include <glib/gi18n-lib.h>
 #include <json-glib/json-glib.h>
+
+#include <ft2build.h>
+#include FT_FREETYPE_H
+#include FT_TYPES_H
+#include FT_BDF_H
+#include FT_SFNT_NAMES_H
+#include FT_TRUETYPE_IDS_H
+#include FT_TRUETYPE_TABLES_H
+#include FT_TYPE1_TABLES_H
+#include FT_XFREE86_H
+
+#include "font-manager-license.h"
+#include "font-manager-utils.h"
+#include "font-manager-vendor.h"
 
 G_BEGIN_DECLS
 
-long font_manager_get_face_count (const gchar * filepath);
+GQuark font_manager_freetype_error_quark ();
+#define FONT_MANAGER_FREETYPE_ERROR font_manager_freetype_error_quark()
 
-/* get_metadata:
- *
- * The returned object will have the following structure:
- *
- * {
- *      "filepath"      :   string,
- *      "findex"        :   int,
- *      "family"        :   string,
- *      "style"         :   string,
- *      "owner"         :   int,
- *      "psname"        :   string,
- *      "filetype"      :   string,
- *      "n_glyphs"      :   int,
- *      "panose"        :   array,
- *      "copyright"     :   string,
- *      "version"       :   string,
- *      "description"   :   string,
- *      "license_data"  :   string,
- *      "license_url"   :   string,
- *      "vendor"        :   string,
- *      "designer"      :   string,
- *      "designer_url   :   string,
- *      "license_type"  :   string,
- *      "fsType"        :   int,
- *      "filesize"      :   string,
- *      "checksum"      :   string
- * }
+/**
+ * FontManagerFreetypeError:
+ * @FONT_MANAGER_FREETYPE_ERROR_FAILED:     Call to Freetype library failed
  */
-JsonObject * font_manager_get_metadata (const gchar * filepath, gint index);
+typedef enum
+{
+    FONT_MANAGER_FREETYPE_ERROR_FAILED
+}
+FontManagerFreetypeError;
+
+/**
+ * FontManagerfsType:
+ * @FONT_MANAGER_FSTYPE_INSTALLABLE:
+ * Installable embedding
+ * @FONT_MANAGER_FSTYPE_RESTRICTED_LICENSE:
+ * Use prohibited without permission
+ * @FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT:
+ * Temporary read only access allowed.
+ * @FONT_MANAGER_FSTYPE_EDITABLE:
+ * Temporary read/write access allowed
+ * @FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET:
+ * Same as @PREVIEW_AND_PRINT with an additional restriction on subsetting
+ * @FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET:
+ * Same as @EDITABLE with an additional restriction on subsetting
+ * @FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_BITMAP_ONLY:
+ * Same as @PREVIEW_AND_PRINT but only bitmaps can be embeeded
+ * @FONT_MANAGER_FSTYPE_EDITABLE_BITMAP_ONLY:
+ * Same as @EDITABLE but only bitmaps can be embeeded
+ * @FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET_BITMAP_ONLY:
+ * Same as @PREVIEW_AND_PRINT but only bitmaps can be embeeded and no subsetting is allowed
+ * @FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET_BITMAP_ONLY:
+ * Same as @EDITABLE but only bitmaps can be embeeded and no subsetting is allowed
+ */
+typedef enum
+{
+    FONT_MANAGER_FSTYPE_INSTALLABLE = 0,
+    FONT_MANAGER_FSTYPE_RESTRICTED_LICENSE = 2,
+    FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT = 4,
+    FONT_MANAGER_FSTYPE_EDITABLE = 8,
+    FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET = 20,
+    FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET = 24,
+    FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_BITMAP_ONLY = 36,
+    FONT_MANAGER_FSTYPE_EDITABLE_BITMAP_ONLY = 40,
+    FONT_MANAGER_FSTYPE_PREVIEW_AND_PRINT_NO_SUBSET_BITMAP_ONLY = 52,
+    FONT_MANAGER_FSTYPE_EDITABLE_NO_SUBSET_BITMAP_ONLY = 56
+}
+FontManagerfsType;
+
+GType font_manager_fsType_get_type (void) G_GNUC_CONST;
+#define FONT_MANAGER_TYPE_FSTYPE (font_manager_fsType_get_type ())
+
+const gchar * font_manager_fsType_to_string (FontManagerfsType fstype);
+
+glong font_manager_get_face_count (const gchar * filepath);
+JsonObject * font_manager_get_metadata (const gchar * filepath, gint index, GError **error);
+
+GFile * font_manager_get_installation_target (GFile *font_file, GFile *target_dir,
+                                              gboolean create_directories, GError **error);
 
 G_END_DECLS
 

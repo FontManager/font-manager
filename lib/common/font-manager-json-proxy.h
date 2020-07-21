@@ -27,29 +27,45 @@
 
 G_BEGIN_DECLS
 
-#define FONT_MANAGER_PROXY_OBJECT_SOURCE "source-object"
+#define FONT_MANAGER_JSON_PROXY_SOURCE "source-object"
 
-typedef struct
+/**
+ * FontManagerJsonProxyProperties:
+ * @name:   Property name
+ * @type:   #GType of property
+ * @desc:   Description of property
+ *
+ * This struct provides the information required to map a member of a
+ * #JsonObject to a gobject property in a #FontManagerJsonProxy subclass.
+ */
+struct _FontManagerJsonProxyProperties
 {
     const gchar *name;
     const GType type;
-}
-FontManagerProxyObjectProperties;
+    const gchar *desc;
+};
+
+typedef struct _FontManagerJsonProxyProperties FontManagerJsonProxyProperties;
 
 #define FONT_MANAGER_TYPE_JSON_PROXY (font_manager_json_proxy_get_type ())
 G_DECLARE_DERIVABLE_TYPE (FontManagerJsonProxy, font_manager_json_proxy, FONT_MANAGER, JSON_PROXY, GObject)
 
+/**
+ * FontManagerJsonProxyClass:
+ * @is_valid:   default method returns %TRUE if source-object is not #NULL
+ */
 struct _FontManagerJsonProxyClass
 {
     GObjectClass parent_class;
 
-    void (* generate_properties) (GParamSpec *pspec[],
-                                  const FontManagerProxyObjectProperties *properties,
-                                  gint num_properties);
+    gboolean (* is_valid) (FontManagerJsonProxy *self);
 };
 
 FontManagerJsonProxy * font_manager_json_proxy_new (void);
 gboolean font_manager_json_proxy_is_valid (FontManagerJsonProxy *self);
+void font_manager_json_proxy_generate_properties (GParamSpec *pspec[],
+                                                  const FontManagerJsonProxyProperties *properties,
+                                                  gint num_properties);
 
 G_END_DECLS
 

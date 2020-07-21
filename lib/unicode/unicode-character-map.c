@@ -36,6 +36,15 @@
 #include "unicode-character-map.h"
 #include "unicode-character-map-zoom-window.h"
 
+/**
+ * SECTION: unicode-character-map
+ * @short_description: Browse available characters
+ * @title: UnicodeCharacterMap
+ * @include: unicode-character-map.h
+ *
+ * Widget which displays all the available characters in the selected font.
+ */
+
 #define VALID_FONT_SIZE(X) (X < 6.0 ? 6.0 : X > 96.0 ? 96.0 : X)
 
 /* Notes
@@ -97,7 +106,7 @@ G_DEFINE_TYPE_WITH_CODE (UnicodeCharacterMap, unicode_character_map,
                          G_IMPLEMENT_INTERFACE(GTK_TYPE_SCROLLABLE, NULL)
                          G_ADD_PRIVATE(UnicodeCharacterMap))
 
-/* Set during initial construction */
+/* XXX: FIXME! Set during initial construction - this IS a bad idea */
 UnicodeCharacterMapPrivate *priv = NULL;
 
 /* These are chosen for compatibility with the older code that didn't
@@ -1163,12 +1172,13 @@ unicode_character_map_dispose (GObject *gobject)
 }
 
 static void
-unicode_character_map_set_property (GObject *object,
+unicode_character_map_set_property (GObject *gobject,
                                     guint prop_id,
                                     const GValue *value,
                                     GParamSpec *pspec)
 {
-    UnicodeCharacterMap *charmap = UNICODE_CHARACTER_MAP(object);
+    g_return_if_fail(gobject != NULL);
+    UnicodeCharacterMap *charmap = UNICODE_CHARACTER_MAP(gobject);
 
     switch (prop_id) {
         case PROP_HADJUSTMENT:
@@ -1198,19 +1208,20 @@ unicode_character_map_set_property (GObject *object,
             unicode_character_map_set_preview_size(charmap, g_value_get_double(value));
             break;
         default:
-            G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
+            G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, prop_id, pspec);
             break;
     }
     return;
 }
 
 static void
-unicode_character_map_get_property (GObject *object,
+unicode_character_map_get_property (GObject *gobject,
                                     guint prop_id,
                                     GValue *value,
                                     GParamSpec *pspec)
 {
-    UnicodeCharacterMap *charmap = UNICODE_CHARACTER_MAP(object);
+    g_return_if_fail(gobject != NULL);
+    UnicodeCharacterMap *charmap = UNICODE_CHARACTER_MAP(gobject);
 
     switch (prop_id) {
         case PROP_HADJUSTMENT:
@@ -1238,7 +1249,7 @@ unicode_character_map_get_property (GObject *object,
             g_value_set_double(value, unicode_character_map_get_preview_size(charmap));
             break;
         default:
-            G_OBJECT_WARN_INVALID_PROPERTY_ID(object, prop_id, pspec);
+            G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, prop_id, pspec);
             break;
     }
     return;
@@ -1335,44 +1346,40 @@ unicode_character_map_class_init (UnicodeCharacterMapClass *klass)
     g_object_class_install_property(object_class,
                                     PROP_ACTIVE_CHAR,
                                     g_param_spec_uint("active-character",
-                                                        NULL, NULL,
+                                                        NULL,
+                                                        "Active character",
                                                         0,
                                                         UNICODE_UNICHAR_MAX,
                                                         0,
                                                         G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_NAME |
-                                                        G_PARAM_STATIC_NICK |
-                                                        G_PARAM_STATIC_BLURB));
+                                                        G_PARAM_STATIC_STRINGS));
 
     g_object_class_install_property(object_class,
                                     PROP_FONT_DESC,
                                     g_param_spec_boxed("font-desc",
-                                                        NULL, NULL,
+                                                        NULL,
+                                                        "PangoFontDescription",
                                                         PANGO_TYPE_FONT_DESCRIPTION,
                                                         G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_NAME |
-                                                        G_PARAM_STATIC_NICK |
-                                                        G_PARAM_STATIC_BLURB));
+                                                        G_PARAM_STATIC_STRINGS));
 
     g_object_class_install_property(object_class,
                                     PROP_PREVIEW_SIZE,
                                     g_param_spec_double("preview-size",
-                                                        NULL, NULL,
+                                                        NULL,
+                                                        "Preview size",
                                                         6, 96, 14,
                                                         G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_NAME |
-                                                        G_PARAM_STATIC_NICK |
-                                                        G_PARAM_STATIC_BLURB));
+                                                        G_PARAM_STATIC_STRINGS));
 
     g_object_class_install_property(object_class,
                                     PROP_CODEPOINT_LIST,
                                     g_param_spec_object("codepoint-list",
-                                                        NULL, NULL,
+                                                        NULL,
+                                                        "UnicodeCodepointList",
                                                         UNICODE_TYPE_CODEPOINT_LIST,
                                                         G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_NAME |
-                                                        G_PARAM_STATIC_NICK |
-                                                        G_PARAM_STATIC_BLURB));
+                                                        G_PARAM_STATIC_STRINGS));
 
     /* Keybindings */
     GtkBindingSet *binding_set = gtk_binding_set_by_class(klass);
@@ -1426,7 +1433,8 @@ unicode_character_map_class_init (UnicodeCharacterMapClass *klass)
 /**
  * unicode_character_map_new:
  *
- * Returns: (transfer full): a new #UnicodeCharacterMap
+ * Returns: (transfer full): A newly created #UnicodeCharacterMap.
+ * Free the returned object using #g_object_unref().
  */
 GtkWidget *
 unicode_character_map_new (void)
@@ -1474,7 +1482,7 @@ unicode_character_map_get_font_desc (UnicodeCharacterMap *charmap)
  * unicode_character_map_get_codepoint_list:
  * @charmap: a #UnicodeCharacterMap
  *
- * Returns: (transfer none) (nullable): the current codepoint list
+ * Returns: (transfer none) (nullable): The current #UnicodeCodepointList
  */
 UnicodeCodepointList *
 unicode_character_map_get_codepoint_list (UnicodeCharacterMap *charmap)
@@ -1515,12 +1523,12 @@ unicode_character_map_set_codepoint_list (UnicodeCharacterMap *charmap,
 /**
  * unicode_character_map_set_preview_size:
  * @charmap: a #UnicodeCharacterMap
- * @size: a double
+ * @size: new preview size
  *
  * Sets the preview size to @size.
  */
 void
-unicode_character_map_set_preview_size (UnicodeCharacterMap *charmap, double size)
+unicode_character_map_set_preview_size (UnicodeCharacterMap *charmap, gdouble size)
 {
     g_return_if_fail(UNICODE_IS_CHARACTER_MAP(charmap));
     priv->preview_size = size;
@@ -1534,7 +1542,7 @@ unicode_character_map_set_preview_size (UnicodeCharacterMap *charmap, double siz
  * unicode_character_map_get_preview_size:
  * @charmap: a #UnicodeCharacterMap
  *
- * Returns: the current preview size
+ * Returns: The current preview size
  */
 double
 unicode_character_map_get_preview_size (UnicodeCharacterMap *charmap)
@@ -1547,7 +1555,7 @@ unicode_character_map_get_preview_size (UnicodeCharacterMap *charmap)
  * unicode_character_map_get_active_character:
  * @charmap: a #UnicodeCharacterMap
  *
- * Returns: the currently selected character
+ * Returns: The currently selected #gunichar
  */
 gunichar
 unicode_character_map_get_active_character (UnicodeCharacterMap *charmap)

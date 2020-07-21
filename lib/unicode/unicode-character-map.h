@@ -37,6 +37,16 @@ G_BEGIN_DECLS
 #define UNICODE_TYPE_CHARACTER_MAP (unicode_character_map_get_type())
 G_DECLARE_DERIVABLE_TYPE(UnicodeCharacterMap, unicode_character_map, UNICODE, CHARACTER_MAP, GtkDrawingArea)
 
+/**
+ * UnicodeCharacterMapClass:
+ * @activate:                   called when a cell is activated
+ * @copy_clipboard:             called when copy to clipboard is requested
+ * @paste_clipboard:            called when paste from clipboard is requested
+ * @set_active_char:            called when a cell is selected
+ * @status_message:             called with search results on data drops
+ * @set_scroll_adjustments:     use to override scroll adjustments
+ * @move_cursor:                use to override cursor events
+ */
 struct _UnicodeCharacterMapClass
 {
     GtkDrawingAreaClass parent_class;
@@ -58,7 +68,7 @@ GtkWidget * unicode_character_map_new (void);
 void unicode_character_map_set_active_character (UnicodeCharacterMap *charmap, gunichar wc);
 void unicode_character_map_set_codepoint_list (UnicodeCharacterMap *charmap, UnicodeCodepointList *codepoint_list);
 void unicode_character_map_set_font_desc (UnicodeCharacterMap *charmap, PangoFontDescription *font_desc);
-void unicode_character_map_set_preview_size (UnicodeCharacterMap *charmap, double size);
+void unicode_character_map_set_preview_size (UnicodeCharacterMap *charmap, gdouble size);
 double unicode_character_map_get_preview_size (UnicodeCharacterMap *charmap);
 gunichar unicode_character_map_get_active_character (UnicodeCharacterMap *charmap);
 PangoFontDescription * unicode_character_map_get_font_desc (UnicodeCharacterMap *charmap);
