@@ -609,7 +609,7 @@ namespace FontManager {
             settings.bind("browse-preview-text", browse.entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("compare-font-size", compare, "preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("compare-preview-text", compare.entry, "text", SettingsBindFlags.DEFAULT);
-            // XXX : settings.bind("charmap-font-size", preview_pane.charmap, "preview-size", SettingsBindFlags.DEFAULT);
+            settings.bind("charmap-font-size", preview_pane, "character-map-preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("selected-category", sidebar.standard.category_tree, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("selected-collection", sidebar.standard.collection_tree, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("selected-font", fontlist, "selected-iter", SettingsBindFlags.DEFAULT);
@@ -661,7 +661,7 @@ namespace FontManager {
             content_pane.position = settings.get_int("content-pane-position");
 
             preview_pane.preview_size = settings.get_double("preview-font-size");
-            // XXX : preview_pane.charmap.preview_size = settings.get_double("charmap-font-size");
+            preview_pane.character_map_preview_size = settings.get_double("charmap-font-size");
             browse.preview_size = settings.get_double("browse-font-size");
             /* Workaround first row height bug? in browse mode */
             browse.preview_size++;
@@ -766,10 +766,10 @@ namespace FontManager {
             preview_pane.preview_mode = FontManager.FontPreviewMode.WATERFALL;
             main_pane.position = 275;
             content_pane.position = 200;
-            preview_pane.preview_size = 10.0;
-            browse.preview_size = 12.0;
-            compare.preview_size = 12.0;
-            // XXX : preview_pane.charmap.preview_size = 18;
+            preview_pane.preview_size = DEFAULT_PREVIEW_SIZE;
+            browse.preview_size = DEFAULT_PREVIEW_SIZE * 1.2;
+            compare.preview_size = DEFAULT_PREVIEW_SIZE * 1.2;
+            preview_pane.character_map_preview_size = CHARACTER_MAP_PREVIEW_SIZE;
             preview_pane.page = 0;
             fontlist_pane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSidebarMode.COLLECTION);
             return;
