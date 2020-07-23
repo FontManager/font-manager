@@ -607,9 +607,6 @@ font_manager_get_attributes_from_fontconfig_pattern (FcPattern *pattern)
  * @index:      index of face within file to select
  * @error:      #GError or %NULL to ignore errors
  *
- * If an error is encontered, the returned object will have a member named err
- * set to %TRUE and a member named err_msg containing a description of the error.
- *
  * See #FontManagerFont for a description of the #JsonObject returned by this function.
  *
  * Returns: (transfer full): A newly created #JsonObject which should be

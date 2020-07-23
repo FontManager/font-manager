@@ -299,7 +299,7 @@ font_manager_to_filename (const gchar *str)
  * font_manager_install_file:
  * @file:       #GFile
  * @directory:  #GFile
- * @error:      #GError or %NULL
+ * @error:      #GError or %NULL to ignore errors
  *
  * Returns:     %TRUE if installation was successful.
  */

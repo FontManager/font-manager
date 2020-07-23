@@ -567,7 +567,7 @@ font_manager_database_initialize (FontManagerDatabase *self,
  * font_manager_database_get_object:
  * @self: #FontManagerDatabase
  * @sql: SQL query
- * @error: #GError or %NULL
+ * @error: #GError or %NULL to ignore errors
  *
  * Returns: (transfer full) (nullable):
  * #JsonObject representation of first result,
@@ -1034,7 +1034,7 @@ cleanup:
  * @type: #FontManagerDatabaseType
  * @progress: (scope call) (nullable): #FontManagerProgressCallback
  * @cancellable: (nullable): #GCancellable or %NULL
- * @error: (nullable): #GError or %NULL
+ * @error: (nullable): #GError or %NULL to ignore errors
  *
  * Update application database as needed.
  *
@@ -1162,7 +1162,7 @@ font_manager_update_database (FontManagerDatabase *db,
 /**
  * font_manager_update_database_finish:
  * @result: #GAsyncResult
- * @error: (nullable): #GError or %NULL
+ * @error: (nullable): #GError or %NULL to ignore errors
  *
  * Returns: %TRUE on success
  */

@@ -143,6 +143,7 @@ static const FontManagerOrthographyData UncategorizedOrthographies [] = {
 #include "Coptic"
 #include "Currencies"
 #include "Food"
+#include "FullCyrillic"
 #include "Georgian"
 #include "Hebrew"
 #include "Khmer"
