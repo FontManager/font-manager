@@ -1,0 +1,11 @@
+valgrind \
+--tool=memcheck \
+--leak-check=full \
+--leak-resolution=high \
+--num-callers=20 \
+--show-leak-kinds=all \
+--log-file=results \
+--suppressions=/usr/share/glib-2.0/valgrind/glib.supp \
+--suppressions=/usr/share/gtk-3.0/valgrind/gtk.supp \
+--suppressions=font-manager.supp \
+$@

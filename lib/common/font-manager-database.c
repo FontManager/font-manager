@@ -592,12 +592,16 @@ font_manager_database_get_object (FontManagerDatabase *self, const gchar *sql, G
 
     for (gint i = 0; i < sqlite3_column_count(self->stmt); i++) {
         const gchar *name = sqlite3_column_origin_name(self->stmt, i);
+        gint int_column = -1;
+        const unsigned char *text_column = NULL;
         switch (sqlite3_column_type(self->stmt, i)) {
             case SQLITE_INTEGER:
-                json_object_set_int_member(obj, name, sqlite3_column_int(self->stmt, i));
+                int_column = sqlite3_column_int(self->stmt, i);
+                json_object_set_int_member(obj, name, int_column);
                 break;
             case SQLITE_TEXT:
-                json_object_set_string_member(obj, name, (const gchar *) sqlite3_column_text(self->stmt, i));
+                text_column = sqlite3_column_text(self->stmt, i);
+                json_object_set_string_member(obj, name, (const gchar *) text_column);
                 break;
             case SQLITE_NULL:
                 json_object_set_null_member(obj, name);

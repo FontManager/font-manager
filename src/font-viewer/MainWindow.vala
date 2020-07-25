@@ -212,10 +212,7 @@ namespace FontManager.FontViewer {
                 foreach (unowned Sqlite.Statement row in db)
                     if (filelist.find_custom(row.column_text(0), strcmp) != null)
                         return true;
-            } catch (Error e) {
-                warning(e.message);
-
-            }
+            } catch (Error e) { }
             return false;
         }
 

@@ -1,41 +1,4 @@
-# Remember to include glib.supp
-# /usr/share/glib-2.0/valgrind/glib.supp
-
-#
-# GLib
-#
-
-{
-    g_markup_parse_context_parse
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:g_markup_parse_context_parse
-}
-
-#
-# GObject
-#
-
-{
-    g_type_create_instance
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:g_type_create_instance
-}
-
-{
-    g_quark_init
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:g_quark_init
-}
-
-#
-# Fontconfig
-#
+# These functions are not called directly anywhere in our code.
 
 {
     FcConfigValues
@@ -45,63 +8,15 @@
     fun:FcConfigValues
 }
 
-#
-# Pango
-#
-
 {
-    pango*font_map_load_font*
+    FcValue*
     Memcheck:Leak
     fun:*alloc
     ...
-    fun:pango*font_map_load_font*
+    fun:FcValue*
 }
 
 {
-    pango_layout_check_lines
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:pango_layout_check_lines
-}
-
-{
-    pango_layout_get_extents_internal
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:pango_layout_get_extents_internal
-}
-
-{
-    pango_itemize_with_base_dir
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:pango_itemize_with_base_dir
-}
-
-{
-    pango_language_from_string
-    Memcheck:Leak
-    fun:*alloc
-    ...
-    fun:pango_language_from_string
-}
-
-#
-# Gtk+
-#
-
-{
-    gtk_init
-    Memcheck:Leak
-    ...
-    fun:gtk_init
-}
-
-{
-
     gtk_widget_draw_internal
     Memcheck:Leak
     fun:*alloc
@@ -110,18 +25,55 @@
 }
 
 {
-
-    gtk_*_propagate*
+    gtk_widget_query_size_for_orientation
     Memcheck:Leak
     fun:*alloc
     ...
-    fun:gtk_*_propagate*
+    fun:gtk_widget_query_size_for_orientation
 }
 
 {
-    gtk_css_node_declaration_make_writable*
+    gtk_builder_extend_with_template
     Memcheck:Leak
     fun:*alloc
     ...
-    fun:gtk_css_node_declaration_make_writable*
+    fun:gtk_builder_extend_with_template
+}
+
+# Triggered by font installation / removal.
+{
+    gtk_settings_notify
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:settings_update_fontconfig
+    fun:gtk_settings_notify
+}
+
+# These functions are called directly by our code...
+
+# but this one returns a boolean...
+{
+    FcConfigAppFontAdd*
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:FcConfigAppFontAdd*
+}
+
+# and this one returns nothing.
+{
+    gtk_text_buffer_insert_markup
+    Memcheck:Leak
+    fun:g_type_create_instance
+    ...
+    fun:gtk_text_buffer_insert_markup
+}
+
+{
+    gtk_text_buffer_insert_markup
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:gtk_text_buffer_insert_markup
 }

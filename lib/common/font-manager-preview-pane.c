@@ -133,6 +133,7 @@ font_manager_preview_pane_dispose (GObject *gobject)
     g_clear_pointer(&self->preview_text, g_free);
     g_clear_pointer(&self->current_uri, g_free);
     g_clear_pointer(&self->samples, json_object_unref);
+    font_manager_clear_application_fonts();
     G_OBJECT_CLASS(font_manager_preview_pane_parent_class)->dispose(gobject);
     return;
 }
@@ -368,6 +369,7 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
     json_object_unref(res);
     g_object_unref(db);
     g_set_object(&self->metadata, metadata);
+    g_object_unref(metadata);
     self->metadata_update_required = FALSE;
     return G_SOURCE_REMOVE;
 }
@@ -506,7 +508,7 @@ create_menu_button (FontManagerPreviewPane *self)
         g_autofree gchar *accel = g_strdup_printf("<Alt>%i", i + 1);
         const gchar *accels [] = { accel, NULL };
         gtk_application_set_accels_for_action(GTK_APPLICATION(application), action_name, accels);
-        GMenuItem *item = g_menu_item_new(display_name, action_name);
+        g_autoptr(GMenuItem) item = g_menu_item_new(display_name, action_name);
         g_menu_item_set_attribute(item, "accel", "s", accels[0],
                                         "action", "preview-mode",
                                         "target-value", action_name);
@@ -599,7 +601,6 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self, const gchar *u
         return;
     }
     g_autofree gchar *path = g_file_get_path(file);
-    font_manager_clear_application_fonts();
     font_manager_add_application_font(path);
     FontManagerFont *font = font_manager_font_new();
     JsonObject *source = font_manager_get_attributes_from_filepath(path, 0, &error);
