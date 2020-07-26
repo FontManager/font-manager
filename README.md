@@ -56,12 +56,18 @@ sudo apt-get install font-manager
 Please note that packages in the PPA can conflict with official packages.
 Make sure to purge any previous installation before switching between PPA and official sources.
 
-
-##### File Manager extensions
+#### File Manager extensions
 
 Fedora and Ubuntu users can also find extensions for Nautilus and Nemo in the repositories.
 
-The extension allows you to preview font files by simply selecting them in the file manager while font-viewer is open.
+The extension currently allows you to quickly preview font files by simply selecting them in the file manager while font-viewer is open and also adds an option to install font files in the file manager context menu.
+
+
+#### Flatpak
+
+<a href='https://flathub.org/apps/details/org.gnome.FontManager'><img width='220' alt='Download on Flathub' src='https://flathub.org/assets/badges/flathub-badge-i-en.png'/></a>
+
+Please note that not all features may be available when using the Flatpak version.
 
 
 ### Building from source
