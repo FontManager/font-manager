@@ -24,7 +24,10 @@
 
 #include <glib.h>
 #include <glib-object.h>
+#include <glib/gi18n-lib.h>
 #include <libnemo-extension/nemo-menu-provider.h>
+
+#include "font-manager-utils.h"
 
 G_BEGIN_DECLS
 

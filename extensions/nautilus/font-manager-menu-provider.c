@@ -25,18 +25,16 @@
 #define FONT_VIEWER_BUS_ID "org.gnome.FontViewer"
 #define FONT_VIEWER_BUS_PATH "/org/gnome/FontViewer"
 
-#define N_MIMETYPES 9
+#define N_MIMETYPES 7
 
 static const gchar *MIMETYPES [N_MIMETYPES] = {
     "font/ttf",
     "font/ttc",
     "font/otf",
-    "font/type1",
     "font/collection",
     "application/x-font-ttf",
     "application/x-font-ttc",
     "application/x-font-otf",
-    "application/x-font-type1"
 };
 
 struct _FontManagerMenuProvider
@@ -68,8 +66,45 @@ nautilus_file_info_is_font_file (NautilusFileInfo *fileinfo)
     return FALSE;
 }
 
+static gboolean
+file_list_contains_font_files (GList *nautilus_file_info_list)
+{
+    for (GList *iter = nautilus_file_info_list; iter != NULL; iter = iter->next)
+        if (nautilus_file_info_is_font_file(iter->data))
+            return TRUE;
+    return FALSE;
+}
+
+static void
+install_task (GTask *task,
+              FontManagerMenuProvider *self,
+              NautilusMenuItem *item,
+              GCancellable *cancellable)
+{
+    GList *filelist = g_object_get_data(G_OBJECT(item), "filelist");
+    g_return_if_fail(filelist != NULL);
+    for (GList *iter = filelist; iter != NULL; iter = iter->next) {
+        if (!nautilus_file_info_is_font_file(iter->data))
+            continue;
+        g_autoptr(GFile) file = nautilus_file_info_get_location(iter->data);
+        g_autofree gchar *dir = font_manager_get_user_font_directory();
+        g_autoptr(GFile) directory = g_file_new_for_path(dir);
+        font_manager_install_file(file, directory, NULL);
+    }
+    return;
+}
+
+static void
+on_install_selected (FontManagerMenuProvider *self, NautilusMenuItem *item)
+{
+    g_autoptr(GTask) task = g_task_new(self, NULL, NULL, NULL);
+    g_task_set_task_data(task, item, NULL);
+    g_task_run_in_thread(task, (GTaskThreadFunc) install_task);
+    return;
+}
+
 static GList *
-font_manager_menu_provider_get_file_items (G_GNUC_UNUSED NautilusMenuProvider *provider,
+font_manager_menu_provider_get_file_items (NautilusMenuProvider *provider,
                                            G_GNUC_UNUSED GtkWidget *widget,
                                            GList *filelist)
 {
@@ -87,17 +122,15 @@ font_manager_menu_provider_get_file_items (G_GNUC_UNUSED NautilusMenuProvider *p
         NautilusFileInfo *fileinfo = g_list_nth_data(filelist, 0);
 
         if (!nautilus_file_info_is_font_file(fileinfo))
-            return items;
-
-        /* TODO : Add menuitems for installation, package creation, etc */
+            goto menu;
 
         if (!self->active)
-            return items;
+            goto menu;
 
         g_autofree gchar *uri = nautilus_file_info_get_activation_uri(fileinfo);
 
         if (g_strcmp0(self->uri, uri) == 0)
-            return items;
+            goto menu;
 
         if (self->connection && !g_dbus_connection_is_closed(self->connection)) {
 
@@ -119,6 +152,22 @@ font_manager_menu_provider_get_file_items (G_GNUC_UNUSED NautilusMenuProvider *p
         g_free(self->uri);
         self->uri = g_strdup(uri);
 
+    }
+
+menu:
+
+    if (file_list_contains_font_files(filelist)) {
+        NautilusMenuItem *install = nautilus_menu_item_new("FontManager:install",
+                                                           _("Install"),
+                                                           single_selection ?
+                                                           _("Install the selected font file") :
+                                                           _("Install the selected font files"),
+                                                           NULL);
+        g_object_set_data_full(G_OBJECT(install), "filelist",
+                                nautilus_file_info_list_copy(filelist),
+                                (GDestroyNotify) nautilus_file_info_list_free);
+        g_signal_connect_swapped(install, "activate", G_CALLBACK(on_install_selected), self);
+        items = g_list_append(items, install);
     }
 
     return items;

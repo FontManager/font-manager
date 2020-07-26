@@ -18,6 +18,8 @@ nautilus_extension_dir = join_paths(get_option('libdir'), 'nautilus', 'extension
 nautilus_font_manager = shared_module('nautilus-font-manager',
                                       [nautilus_extension_sources, nautilus_extension_headers],
                                       dependencies: [nautilus, base_deps],
+                                      link_with: libfontmanager,
                                       name_prefix: '',
                                       install: true,
-                                      install_dir: nautilus_extension_dir)
+                                      install_dir: nautilus_extension_dir,
+                                      install_rpath: pkglib_dir)

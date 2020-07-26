@@ -18,6 +18,8 @@ nemo_extension_dir = join_paths(get_option('libdir'), 'nemo', 'extensions-3.0')
 nemo_font_manager = shared_module('nemo-font-manager',
                                   [nemo_extension_sources, nemo_extension_headers],
                                   dependencies: [nemo, base_deps],
+                                  link_with: libfontmanager,
                                   name_prefix: '',
                                   install: true,
-                                  install_dir: nemo_extension_dir)
+                                  install_dir: nemo_extension_dir,
+                                  install_rpath: pkglib_dir)

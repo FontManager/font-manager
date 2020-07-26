@@ -24,7 +24,10 @@
 
 #include <glib.h>
 #include <glib-object.h>
+#include <glib/gi18n-lib.h>
 #include <nautilus-extension.h>
+
+#include "font-manager-utils.h"
 
 G_BEGIN_DECLS
 
