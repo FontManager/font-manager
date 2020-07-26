@@ -168,6 +168,7 @@ GType font_manager_width_get_type (void) G_GNUC_CONST;
 #define FONT_MANAGER_TYPE_WIDTH (font_manager_width_get_type ())
 
 const gchar * font_manager_width_to_string (FontManagerWidth width);
+gboolean font_manager_width_defined (FontManagerWidth width);
 
 /**
  * FontManagerSpacing:

@@ -980,6 +980,31 @@ font_manager_width_to_string (FontManagerWidth width)
     }
 }
 
+/**
+ * font_manager_width_defined:
+ * @width:     #FontManagerWidth
+ *
+ * Returns:     %TRUE if @weight is valid.
+ */
+gboolean
+font_manager_width_defined (FontManagerWidth width)
+{
+    switch (width) {
+        case FONT_MANAGER_WIDTH_NORMAL:
+        case FONT_MANAGER_WIDTH_ULTRACONDENSED:
+        case FONT_MANAGER_WIDTH_EXTRACONDENSED:
+        case FONT_MANAGER_WIDTH_CONDENSED:
+        case FONT_MANAGER_WIDTH_SEMICONDENSED:
+        case FONT_MANAGER_WIDTH_SEMIEXPANDED:
+        case FONT_MANAGER_WIDTH_EXPANDED:
+        case FONT_MANAGER_WIDTH_EXTRAEXPANDED:
+        case FONT_MANAGER_WIDTH_ULTRAEXPANDED:
+            return TRUE;
+        default:
+            return FALSE;
+    }
+}
+
 GType
 font_manager_width_get_type (void)
 {

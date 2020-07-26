@@ -375,10 +375,10 @@ namespace FontManager {
                 else if (keyword == "width")
                     type = ((Width) val).to_string();
                 if (type == null)
-                    if (keyword == "slant" || keyword == "width")
+                    if (keyword == "slant" || (keyword == "width" && ((Width) val).defined()))
                         type = _("Normal");
-                    /* Ignore random weights */
-                    else if (keyword == "weight" && !((Weight) val).defined())
+                    /* Ignore random widths and weights */
+                    else if (keyword == "width" || (keyword == "weight" && !((Weight) val).defined()))
                         continue;
                     else
                         type = _("Regular");

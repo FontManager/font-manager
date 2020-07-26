@@ -65,7 +65,7 @@ namespace FontManager {
             wide_layout_options.set_transition_duration(450);
             on_maximize = new Gtk.CheckButton.with_label(_("Only When Maximized"));
             on_maximize.margin = DEFAULT_MARGIN / 2;
-            on_maximize.margin_start = on_maximize.margin_end = DEFAULT_MARGIN * 2;
+            on_maximize.margin_start = on_maximize.margin_end = DEFAULT_MARGIN * 4;
             use_csd = new LabeledSwitch(_("Client Side Decorations"));
             wide_layout_options.add(on_maximize);
             on_maximize.show();
