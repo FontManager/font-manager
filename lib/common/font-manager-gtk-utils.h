@@ -123,7 +123,7 @@ typedef enum
 }
 FontManagerDragTargetType;
 
-GType font_manager_drag_target_type_get_type (void) G_GNUC_CONST;
+GType font_manager_drag_target_type_get_type (void);
 #define FONT_MANAGER_TYPE_DRAG_TARGET_TYPE (font_manager_drag_target_type_get_type ())
 
 void font_manager_set_application_style (void);
@@ -131,8 +131,8 @@ void font_manager_widget_set_align (GtkWidget *widget, GtkAlign align);
 void font_manager_widget_set_expand (GtkWidget *widget, gboolean expand);
 void font_manager_widget_set_margin (GtkWidget *widget, gint margin);
 
-gchar * font_manager_get_localized_pangram (void) G_GNUC_CONST;
-gchar * font_manager_get_localized_preview_text (void) G_GNUC_CONST;
+gchar * font_manager_get_localized_pangram (void);
+gchar * font_manager_get_localized_preview_text (void);
 
 void font_manager_add_keyboard_shortcut (GSimpleAction *action,
                                          const gchar *action_name,
