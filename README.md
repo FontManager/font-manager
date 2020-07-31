@@ -47,9 +47,6 @@ dnf copr enable jerrycasiano/FontManager
 dnf install font-manager
 ```
 
-Please note that packages in COPR can conflict with official packages.
-Make sure to purge any previous installation before switching between COPR and official sources.
-
 #### Gentoo
 Gentoo users may find [`font-manager`](https://github.com/PF4Public/gentoo-overlay/tree/master/app-misc/font-manager) in [::pf4public](https://github.com/PF4Public/gentoo-overlay) Gentoo overlay
 
@@ -61,8 +58,6 @@ sudo add-apt-repository ppa:font-manager/staging
 sudo apt-get update
 sudo apt-get install font-manager
 ```
-Please note that packages in the PPA can conflict with official packages.
-Make sure to purge any previous installation before switching between PPA and official sources.
 
 #### File Manager extensions
 
