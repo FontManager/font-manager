@@ -84,6 +84,7 @@ namespace FontManager {
 
             switch (rgba) {
                 case SubpixelOrder.UNKNOWN:
+                case SubpixelOrder.NONE:
                     break;
                 case SubpixelOrder.BGR:
                 case SubpixelOrder.VBGR:
@@ -106,7 +107,7 @@ namespace FontManager {
 
             Gtk.Label [] labels = { l1, l2, l3 };
             for (int i = 0; i < labels.length; i++) {
-                /* @color: defined in data/FontManager.css */
+                /* @color: defined in FontManager.css */
                 labels[i].get_style_context().add_class(color[i]);
             }
 

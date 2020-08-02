@@ -23,7 +23,7 @@
 /**
  * SECTION: font-manager-font-info
  * @short_description: Font metadata
- * @title: FontInfo
+ * @title: Font Info
  * @include: font-manager-font-info.h
  * @see_also: #FontManagerJsonProxy
  *

@@ -22,8 +22,8 @@
 
 /**
  * SECTION: font-manager-character-map
- * @short_description: Character map widget
- * @title: FontManagerCharacterMap
+ * @short_description: Browse available characters
+ * @title: Character Map
  * @include: font-manager-character-map.h
  *
  * Widget which displays available characters in the selected font.

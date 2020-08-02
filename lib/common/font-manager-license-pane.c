@@ -23,7 +23,7 @@
 /**
  * SECTION: font-manager-license-pane
  * @short_description: Font licensing details
- * @title: FontManagerLicensePane
+ * @title: License Pane
  * @include: font-manager-license-pane.h
  *
  * Widget which displays embedded or detected font licensing data.

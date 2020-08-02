@@ -23,7 +23,7 @@
 /**
  * SECTION: font-manager-place-holder
  * @short_description: Place holder widget
- * @title: FontManagerPlaceHolder
+ * @title: Place Holder
  * @include: font-manager-place-holder.h
  *
  * Widget intended to display a message in an empty area.

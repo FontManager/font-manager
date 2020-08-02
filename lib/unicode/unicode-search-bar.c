@@ -28,7 +28,7 @@
 /**
  * SECTION: unicode-search-bar
  * @short_description: Search for unicode codepoints within a font
- * @title: UnicodeCharacterMapSearchBar
+ * @title: Search Bar
  * @include: unicode-search-bar.h
  *
  * This widget provides a way to search for characters by name, value or
@@ -601,7 +601,7 @@ unicode_search_bar_class_init (UnicodeSearchBarClass *klass)
     gtk_widget_class_bind_template_child(widget_class, UnicodeSearchBar, next_button);
     gtk_widget_class_bind_template_child(widget_class, UnicodeSearchBar, prev_button);
 
-    obj_properties[PROP_CHARMAP] = g_param_spec_object("charmap",
+    obj_properties[PROP_CHARMAP] = g_param_spec_object("character-map",
                                                         NULL,
                                                         "UnicodeCharacterMap",
                                                         G_TYPE_OBJECT,

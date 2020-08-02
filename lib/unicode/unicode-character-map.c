@@ -38,8 +38,8 @@
 
 /**
  * SECTION: unicode-character-map
- * @short_description: Browse available characters
- * @title: UnicodeCharacterMap
+ * @short_description: Character map widget
+ * @title: Character Map
  * @include: unicode-character-map.h
  *
  * Widget which displays all the available characters in the selected font.

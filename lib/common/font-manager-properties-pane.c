@@ -23,7 +23,7 @@
 /**
  * SECTION: font-manager-properties-pane
  * @short_description: Font properties widget
- * @title: FontManagerPropertiesPane
+ * @title: Properties Pane
  * @include: font-manager-properties-pane.h
  *
  * Widget intended to display a message in an empty area.
@@ -315,8 +315,8 @@ font_manager_properties_pane_init (FontManagerPropertiesPane *self)
 
 /**
  * font_manager_preoperties_pane_update:
- * @font:       (nullable): #FontManagerFont or %NULL
- * @metadata:   (nullable): #FontManagerFontInfo or %NULL
+ * @font: (nullable)        #FontManagerFont or %NULL
+ * @metadata: (nullable):   #FontManagerFontInfo or %NULL
  */
 void
 font_manager_properties_pane_update (FontManagerPropertiesPane *self,

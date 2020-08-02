@@ -23,7 +23,7 @@
 /**
  * SECTION: font-manager-preview-controls
  * @short_description: Font preview controls
- * @title: FontManagerPreviewControls
+ * @title: Preview Controls
  * @include: font-manager-preview-controls.h
  *
  * Widget which provides controls for setting preview text justification,

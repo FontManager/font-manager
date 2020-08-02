@@ -30,7 +30,7 @@
 /**
  * SECTION: unicode-codepoint-list
  * @short_description: List interface for Unicode code points
- * @title: UnicodeCodepointList
+ * @title: Codepoint List
  * @include: unicode-codepoint-list.h
  * @see_also: UnicodeCharacterMap
  *

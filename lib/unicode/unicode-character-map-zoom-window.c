@@ -27,7 +27,7 @@
 /**
  * SECTION: unicode-character-map-zoom-window
  * @short_description: Close up view of the selected glyph
- * @title: UnicodeCharacterMapZoomWindow
+ * @title: Zoom Window
  * @include: unicode-character-map-zoom-window.h
  *
  * This widget provides a close up of the selected glyph along with Pango

@@ -23,7 +23,7 @@
 /**
  * SECTION: font-manager-font-scale
  * @short_description: Font size selection widget
- * @title: FontManagerFontScale
+ * @title: Font Scale
  * @include: font-manager-font-scale.h
  *
  * Widget allowing for font size selection through use of a #GtkScale,

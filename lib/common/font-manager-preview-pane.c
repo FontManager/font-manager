@@ -23,7 +23,7 @@
 /**
  * SECTION: font-manager-preview-pane
  * @short_description: Preview pane widget
- * @title: FontManagerPreviewPane
+ * @title: Preview Pane
  * @include: font-manager-preview-pane.h
  *
  * Full featured font preview widget.

@@ -23,7 +23,7 @@
 /**
  * SECTION: font-manager-font-preview
  * @short_description: Full featured font preview widget
- * @title: FontManagerFontPreview
+ * @title: Font Preview
  * @include: font-manager-font-preview.h
  *
  * This widget allows previewing of font files in various ways.

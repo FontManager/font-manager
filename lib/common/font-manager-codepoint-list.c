@@ -23,8 +23,8 @@
 
 /**
  * SECTION: font-manager-codepoint-list
- * @short_description: Codepoint List
- * @title: FontManagerCodepointList
+ * @short_description: UnicodeCodepointList implementation
+ * @title: Codepoint List
  * @include: font-manager-codepoint-list.h
  *
  * Codepoint list which limits results to available characters in the selected font.
