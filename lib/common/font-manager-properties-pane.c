@@ -315,7 +315,7 @@ font_manager_properties_pane_init (FontManagerPropertiesPane *self)
 
 /**
  * font_manager_preoperties_pane_update:
- * @font: (nullable)        #FontManagerFont or %NULL
+ * @font: (nullable):       #FontManagerFont or %NULL
  * @metadata: (nullable):   #FontManagerFontInfo or %NULL
  */
 void
