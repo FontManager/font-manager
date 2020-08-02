@@ -791,7 +791,7 @@ font_manager_sort_json_font_listing (JsonObject *json_obj)
             if (!json_object_get_member(_family_obj, "description")) {
                 const gchar *style = json_object_get_string_member(style_obj, "style");
                 for (guint i = 0; i < G_N_ELEMENTS(DEFAULT_VARIANTS); i++) {
-                    if (g_strrstr(style, DEFAULT_VARIANTS[i]) != NULL) {
+                    if (g_strcmp0(style, DEFAULT_VARIANTS[i]) == 0) {
                         const gchar *font_desc = json_object_get_string_member(style_obj, "description");
                         json_object_set_string_member(_family_obj, "description", font_desc);
                         break;

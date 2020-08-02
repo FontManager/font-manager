@@ -97,6 +97,39 @@ namespace FontManager {
         return;
     }
 
+    public void update_database_tables (ProgressCallback? progress = null, Cancellable? cancellable = null) {
+        DatabaseType [] types = { DatabaseType.FONT, DatabaseType.METADATA, DatabaseType.ORTHOGRAPHY };
+        try {
+            var main = get_database(DatabaseType.BASE);
+            foreach (var type in types)
+                main.detach(type);
+            foreach (var type in types) {
+                var child = get_database(type);
+                update_database.begin(
+                    child,
+                    type,
+                    progress,
+                    cancellable,
+                    (obj, res) => {
+                        try {
+                            bool success = update_database.end(res);
+                            if (success) {
+                                main.attach(type);
+                            } else {
+                                critical("%s failed to update", Database.get_type_name(type));
+                            }
+                        } catch (Error e) {
+                            critical(e.message);
+                        }
+                    }
+                );
+            }
+        } catch (Error e) {
+            critical(e.message);
+        }
+        return;
+    }
+
     /**
      * Adds user configured font sources (directories) and rejected fonts to our
      * FcConfig so that we can render fonts which are not actually "installed".
@@ -156,6 +189,65 @@ namespace FontManager {
             warning(e.message);
         }
         return false;
+    }
+
+    internal void copy_metrics (File file, File destination) {
+        string basename = file.get_basename().split_set(".")[0];
+        foreach (var _ext in TYPE1_METRICS) {
+            string dir = file.get_parent().get_path();
+            string child = "%s%s".printf(basename, _ext);
+            File metrics = File.new_for_path(Path.build_filename(dir, child));
+            if (metrics.query_exists()) {
+                try {
+                    FileCopyFlags flags = FileCopyFlags.OVERWRITE |
+                                          FileCopyFlags.ALL_METADATA |
+                                          FileCopyFlags.TARGET_DEFAULT_PERMS;
+                    string copy_path = Path.build_filename(destination.get_path(), metrics.get_basename());
+                    File copy = File.new_for_path(copy_path);
+                    metrics.copy(copy, flags);
+                } catch (Error e) {
+                    critical(e.message);
+                }
+            }
+        }
+        return;
+    }
+
+    public async void copy_files (StringHashset filelist, File destination, bool show_progress) {
+        assert(destination.query_file_type(FileQueryInfoFlags.NONE) == FileType.DIRECTORY);
+        uint total = filelist.size;
+        uint processed = 0;
+        ProgressDialog? progress = null;
+        if (show_progress) {
+            progress = new ProgressDialog(_("Copying files…"));
+            progress.show_now();
+        }
+        foreach (string filepath in filelist) {
+            File original = File.new_for_path(filepath);
+            string filename = original.get_basename();
+            string path = Path.build_filename(destination.get_path(), filename);
+            File copy = File.new_for_path(path);
+            try {
+                FileCopyFlags flags = FileCopyFlags.OVERWRITE |
+                                      FileCopyFlags.ALL_METADATA |
+                                      FileCopyFlags.TARGET_DEFAULT_PERMS;
+                original.copy(copy, flags);
+                FileInfo info = original.query_info(FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE);
+                if (info.get_content_type().contains("type1"))
+                    copy_metrics(original, destination);
+            } catch (Error e) {
+                critical(e.message);
+            }
+            Idle.add(copy_files.callback);
+            if (progress != null) {
+                var progress_data = new ProgressData(filename, ++processed, total);
+                progress.set_progress(progress_data);
+            }
+            yield;
+        }
+        if (progress != null)
+            progress.destroy();
+        return;
     }
 
     public bool copy_directory (File source, File destination, FileCopyFlags flags) {

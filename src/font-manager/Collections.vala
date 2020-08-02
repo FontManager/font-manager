@@ -365,124 +365,41 @@ The sidebar will automatically switch while dragging fonts.
             return true;
         }
 
-        async void _copy_to ()
+        void copy_to ()
         requires (selected_filter != null) {
             string? target_dir = FileSelector.get_target_directory();
             if (target_dir == null)
                 return;
             string destination = Path.build_filename(target_dir, selected_filter.name);
-            /* XXX : BUG? : Using return_if_fail in a method marked as async generates incorrect C code */
-            if (DirUtils.create_with_parents(destination, 0755) != 0) {
-                critical("Failed to create temporary directory : %s", destination);
-                return;
-            }
+            return_if_fail(DirUtils.create_with_parents(destination, 0755) == 0);
             File tmp = File.new_for_path(destination);
-            StringHashset filelist = selected_filter.get_filelist();
-            uint total = filelist.size;
-            uint processed = 0;
-            var progress_dialog = new ProgressDialog(_("Copying files…"));
-            progress_dialog.show_now();
-            while (Gtk.events_pending())
-                Gtk.main_iteration();
-            foreach (string filepath in filelist) {
-                File original = File.new_for_path(filepath);
-                string filename = original.get_basename();
-                {
-                    var progress = new ProgressData(filename, ++processed, total);
-                    progress_dialog.set_progress(progress);
-                }
-                string path = Path.build_filename(destination, filename);
-                File copy = File.new_for_path(path);
-                try {
-                    FileCopyFlags flags = FileCopyFlags.OVERWRITE |
-                                          FileCopyFlags.ALL_METADATA |
-                                          FileCopyFlags.TARGET_DEFAULT_PERMS;
-                    original.copy(copy, flags);
-                    FileInfo info = original.query_info(FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE);
-                    if (info.get_content_type().contains("type1"))
-                        copy_metrics(original, tmp);
-                } catch (Error e) {
-                    critical(e.message);
-                }
-                Idle.add(_copy_to.callback);
-                yield;
-            }
-            progress_dialog.destroy();
+            copy_files.begin(selected_filter.get_filelist(),
+                             tmp,
+                             true,
+                             (obj, res) => {
+                                copy_files.end(res);
+                             }
+            );
             return;
-        }
-
-        void copy_to () {
-            _copy_to.begin((obj, res) => { _copy_to.end(res); });
-            return;
-        }
-
-        void copy_metrics (File file, File destination) {
-                string basename = file.get_basename().split_set(".")[0];
-                foreach (var _ext in TYPE1_METRICS) {
-                    string dir = file.get_parent().get_path();
-                    string child = "%s%s".printf(basename, _ext);
-                    File metrics = File.new_for_path(Path.build_filename(dir, child));
-                    if (metrics.query_exists()) {
-                        try {
-                            FileCopyFlags flags = FileCopyFlags.OVERWRITE |
-                                          FileCopyFlags.ALL_METADATA |
-                                          FileCopyFlags.TARGET_DEFAULT_PERMS;
-                            string copy_path = Path.build_filename(destination.get_path(), metrics.get_basename());
-                            File copy = File.new_for_path(copy_path);
-                            metrics.copy(copy, flags);
-                        } catch (Error e) {
-                            critical(e.message);
-                        }
-                    }
-                }
-                return;
-            }
-
-        async string? create_temporary_copy (Collection collection) {
-            string temp_dir;
-            try {
-                temp_dir = DirUtils.make_tmp(TMP_TMPL);
-                temp_files.add(temp_dir);
-            } catch (Error e) {
-                critical(e.message);
-                return null;
-            }
-            string tmp_path = Path.build_filename(temp_dir, collection.name);
-            assert(DirUtils.create_with_parents(tmp_path, 0755) == 0);
-            File tmp = File.new_for_path(tmp_path);
-            assert(tmp.query_exists());
-            string tmp_uri = tmp.get_uri();
-            StringHashset filelist = collection.get_filelist();
-            foreach (string filepath in filelist) {
-                File original = File.new_for_path(filepath);
-                string filename = original.get_basename();
-                string path = Path.build_filename(tmp_path, filename);
-                File copy = File.new_for_path(path);
-                try {
-                    FileCopyFlags flags = FileCopyFlags.OVERWRITE |
-                                          FileCopyFlags.ALL_METADATA |
-                                          FileCopyFlags.TARGET_DEFAULT_PERMS;
-                    original.copy(copy, flags);
-                    FileInfo info = original.query_info(FileAttribute.STANDARD_CONTENT_TYPE, FileQueryInfoFlags.NONE);
-                    if (info.get_content_type().contains("type1"))
-                        copy_metrics(original, tmp);
-                } catch (Error e) {
-                    critical(e.message);
-                }
-                Idle.add(create_temporary_copy.callback);
-                yield;
-            }
-            return tmp_uri;
         }
 
         void compress ()
         requires (selected_filter != null) {
             var file_roller = new ArchiveManager();
             return_if_fail(file_roller.available);
-            create_temporary_copy.begin(selected_filter, (obj, res) => {
-                string result = create_temporary_copy.end(res);
-                return_if_fail(result != null);
-                string? [] filelist = { result, null };
+            string temp_dir;
+            try {
+                temp_dir = DirUtils.make_tmp(TMP_TMPL);
+                temp_files.add(temp_dir);
+            } catch (Error e) {
+                critical(e.message);
+                return_if_reached();
+            }
+            string tmp_path = Path.build_filename(temp_dir, selected_filter.name);
+            assert(DirUtils.create_with_parents(tmp_path, 0755) == 0);
+            File tmp = File.new_for_path(tmp_path);
+            copy_files.begin(selected_filter.get_filelist(), tmp, false, (obj, res) => {
+                string? [] filelist = { tmp.get_uri(), null };
                 unowned string home = Environment.get_home_dir();
                 string destination = File.new_for_path(home).get_uri();
                 file_roller.compress(filelist, destination);

@@ -419,8 +419,14 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                 MenuEntry("show_in_folder", _("Show in Folder"), "app.show_in_folder", null, new MenuCallbackWrapper(show_in_folder)),
             };
             var popup_menu = new Gtk.Menu();
+            popup_menu.reserve_toggle_size = false;
             filename = new Gtk.MenuItem.with_label("");
+            filename.set_halign(Gtk.Align.CENTER);
+            filename.set_margin_start(DEFAULT_MARGIN * 2);
+            filename.set_margin_end(DEFAULT_MARGIN * 2);
             filename.sensitive = false;
+            filename.get_style_context().add_class("InsensitiveButton");
+            filename.get_child().opacity = 0.7;
             filename.show();
             popup_menu.append(filename);
             var label = ((Gtk.Bin) filename).get_child();
@@ -430,6 +436,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             popup_menu.append(separator);
             foreach (MenuEntry entry in context_menu_entries) {
                 var item = new Gtk.MenuItem.with_label(entry.display_name);
+                item.get_child().set_halign(Gtk.Align.CENTER);
                 item.activate.connect(() => { entry.method.run(); });
                 item.show();
                 popup_menu.append(item);

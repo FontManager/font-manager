@@ -27,55 +27,6 @@ namespace FontManager {
     public static StringHashset available_font_families = null;
     public static StringHashset temp_files = null;
 
-    public void sync_database (DatabaseType type,
-                                ProgressCallback? progress = null,
-                                Cancellable? cancellable = null) {
-        try {
-            var main = get_database(DatabaseType.BASE);
-            var child = get_database(type);
-            update_database.begin(
-                child,
-                type,
-                progress,
-                cancellable,
-                (obj, res) => {
-                    try {
-                        bool success = update_database.end(res);
-                        child = null;
-                        if (success) {
-                            main.attach(type);
-                        } else {
-                            critical("%s failed to update", Database.get_type_name(type));
-                        }
-                    } catch (Error e) {
-                        critical(e.message);
-                    }
-                }
-            );
-        } catch (Error e) {
-            critical(e.message);
-        }
-        return;
-    }
-
-    public void update_database_tables (ProgressCallback? progress = null,
-                                         Cancellable? cancellable = null) {
-        try {
-            var db = get_database(DatabaseType.BASE);
-            DatabaseType [] types = { DatabaseType.FONT,
-                                      DatabaseType.METADATA,
-                                      DatabaseType.ORTHOGRAPHY };
-            foreach (var type in types)
-                db.detach(type);
-        } catch (Error e) {
-            critical(e.message);
-        }
-        sync_database(DatabaseType.FONT, progress, cancellable);
-        sync_database(DatabaseType.METADATA, progress, cancellable);
-        sync_database(DatabaseType.ORTHOGRAPHY, progress, cancellable);
-        return;
-    }
-
     [DBus (name = "org.gnome.FontManager")]
     public class Application: Gtk.Application  {
 
