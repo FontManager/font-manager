@@ -101,7 +101,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
 
     public abstract class BaseFontList : BaseTreeView {
 
-        public Json.Object? samples { get; set; default = null; }
+        public GLib.HashTable <string, string>? samples { get; set; default = null; }
 
         protected Gtk.CellRendererToggle toggle;
 
@@ -208,9 +208,9 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                 cell.set_property("visible", false);
             } else {
                 string description = ((Font) obj).description;
-                if (samples != null && samples.has_member(description)) {
-                    string? sample = samples.get_string_member(description);
-                    if (sample != null && sample != default_sample && sample != local_sample)
+                if (samples != null && samples.contains(description)) {
+                    string sample = samples.lookup(description);
+                    if (sample != default_sample && sample != local_sample)
                         cell.set_property("text", sample);
                     else
                         cell.set_property("text", description);

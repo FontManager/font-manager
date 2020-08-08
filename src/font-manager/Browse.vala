@@ -52,7 +52,7 @@ namespace FontManager {
         public signal void mode_selected (BrowseMode mode);
 
         public double preview_size { get; set; }
-        public Json.Object? samples { get; set; default = null; }
+        public GLib.HashTable <string, string>? samples { get; set; default = null; }
         public Gtk.Adjustment adjustment { get; set; }
 
         public Gtk.TreeModel? model { get; set; }
@@ -194,8 +194,8 @@ namespace FontManager {
                                        variation.description;
                 if (entry.text_length > 0)
                     preview_text = entry.text;
-                else if (samples != null && samples.has_member(variation.description))
-                    preview_text = samples.get_string_member(variation.description);
+                else if (samples != null && samples.contains(variation.description))
+                    preview_text = samples.lookup(variation.description);
                 result += markup.printf(variation.description,
                                         (int) preview_size,
                                         Markup.escape_text(preview_text));
@@ -301,8 +301,8 @@ namespace FontManager {
                 cell.set_padding(32, 10);
                 if (entry.text_length > 0)
                     cell.set_property("text", entry.text);
-                else if (samples != null && samples.has_member(font_desc))
-                    cell.set_property("text", samples.get_string_member(font_desc));
+                else if (samples != null && samples.contains(font_desc))
+                    cell.set_property("text", samples.lookup(font_desc));
                 else
                     cell.set_property("text", font_desc);
             }

@@ -35,8 +35,8 @@ namespace FontManager {
             }
         }
 
-        public Category (string name, string comment, string icon, string? sql) {
-            Object(name: name, icon: icon, comment: comment, sql: sql);
+        public Category (string name, string comment, string icon, string? sql, int index) {
+            Object(name: name, icon: icon, comment: comment, sql: sql, index: index);
             families = new StringHashset();
             descriptions = new StringHashset();
             children = new GLib.List <Category> ();

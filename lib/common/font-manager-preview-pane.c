@@ -86,7 +86,7 @@ struct _FontManagerPreviewPane
     GtkWidget               *properties;
     GtkWidget               *license;
     GtkWidget               *search;
-    JsonObject              *samples;
+    GHashTable              *samples;
 
     FontManagerFont         *font;
     FontManagerFontInfo     *metadata;
@@ -132,7 +132,7 @@ font_manager_preview_pane_dispose (GObject *gobject)
     g_clear_object(&self->search);
     g_clear_pointer(&self->preview_text, g_free);
     g_clear_pointer(&self->current_uri, g_free);
-    g_clear_pointer(&self->samples, json_object_unref);
+    g_clear_pointer(&self->samples, g_hash_table_unref);
     font_manager_clear_application_fonts();
     G_OBJECT_CLASS(font_manager_preview_pane_parent_class)->dispose(gobject);
     return;
@@ -203,10 +203,10 @@ font_manager_preview_pane_set_property (GObject *gobject,
             break;
         case PROP_SAMPLES:
             if (self->samples)
-                g_clear_pointer(&self->samples, json_object_unref);
-            JsonObject *samples = g_value_get_boxed(value);
+                g_clear_pointer(&self->samples, g_hash_table_unref);
+            GHashTable *samples = g_value_get_boxed(value);
             if (samples)
-                self->samples = json_object_ref(samples);
+                self->samples = g_hash_table_ref(samples);
             break;
         case PROP_ORTHOGRAPHY:
             font_manager_preview_pane_set_orthography(self, g_value_get_object(value));
@@ -291,7 +291,7 @@ font_manager_preview_pane_class_init (FontManagerPreviewPaneClass *klass)
     obj_properties[PROP_SAMPLES] = g_param_spec_boxed("samples",
                                                       NULL,
                                                       "Dictionary of sample strings",
-                                                      JSON_TYPE_OBJECT,
+                                                      G_TYPE_HASH_TABLE,
                                                       G_PARAM_STATIC_STRINGS |
                                                       G_PARAM_READWRITE);
 
@@ -614,13 +614,13 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self, const gchar *u
     if (!json_object_has_member(orthography, "Basic Latin")) {
         GList *charset = font_manager_get_charset_from_filepath(path, 0);
         if (!self->samples) {
-            self->samples = json_object_new();
+            self->samples = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
             g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_SAMPLES]);
         }
         g_autofree gchar *sample = font_manager_get_sample_string_for_orthography(orthography, charset);
         if (sample) {
             const gchar *description = json_object_get_string_member(source, "description");
-            json_object_set_string_member(self->samples, description, sample);
+            g_hash_table_insert(self->samples, g_strdup(description), g_strdup(sample));
         }
         g_list_free(charset);
     }

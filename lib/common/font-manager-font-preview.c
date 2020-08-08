@@ -109,7 +109,7 @@ struct _FontManagerFontPreview
     GtkWidget   *controls;
     GtkWidget   *fontscale;
     GtkWidget   *textview;
-    JsonObject  *samples;
+    GHashTable  *samples;
 
     gdouble             preview_size;
     gboolean            allow_edit;
@@ -145,7 +145,7 @@ font_manager_font_preview_dispose (GObject *gobject)
     g_clear_pointer(&self->default_preview, g_free);
     g_clear_pointer(&self->restore_preview, g_free);
     g_clear_pointer(&self->font_desc, pango_font_description_free);
-    g_clear_pointer(&self->samples, json_object_unref);
+    g_clear_pointer(&self->samples, g_hash_table_unref);
     G_OBJECT_CLASS(font_manager_font_preview_parent_class)->dispose(gobject);
     return;
 }
@@ -304,7 +304,7 @@ font_manager_font_preview_class_init (FontManagerFontPreviewClass *klass)
     obj_properties[PROP_SAMPLES] = g_param_spec_boxed("samples",
                                                       NULL,
                                                       "Dictionary of sample strings",
-                                                      JSON_TYPE_OBJECT,
+                                                      G_TYPE_HASH_TABLE,
                                                       G_PARAM_STATIC_STRINGS |
                                                       G_PARAM_READWRITE |
                                                       G_PARAM_EXPLICIT_NOTIFY);
@@ -389,8 +389,8 @@ update_sample_string (FontManagerFontPreview *self)
     g_return_if_fail(self != NULL);
     g_autofree gchar *description = pango_font_description_to_string(self->font_desc);
     gboolean pangram_changed = FALSE;
-    if (self->samples && json_object_has_member(self->samples, description)) {
-        const gchar *sample = json_object_get_string_member(self->samples, description);
+    if (self->samples && g_hash_table_contains(self->samples, description)) {
+        const gchar *sample = g_hash_table_lookup(self->samples, description);
         if (sample) {
             g_free(self->pangram);
             self->pangram = g_strdup(sample);
@@ -694,12 +694,12 @@ font_manager_font_preview_set_justification (FontManagerFontPreview *self,
  * with the font description as key and sample string as value.
  */
 void
-font_manager_font_preview_set_sample_strings (FontManagerFontPreview *self, JsonObject *samples)
+font_manager_font_preview_set_sample_strings (FontManagerFontPreview *self, GHashTable *samples)
 {
     g_return_if_fail(self != NULL);
-    g_clear_pointer(&self->samples, json_object_unref);
+    g_clear_pointer(&self->samples, g_hash_table_unref);
     if (samples)
-        self->samples = json_object_ref(samples);
+        self->samples = g_hash_table_ref(samples);
     update_sample_string(self);
     g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_SAMPLES]);
     return;

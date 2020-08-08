@@ -36,8 +36,7 @@ namespace FontManager {
         N_GENERATED,
         UNSORTED,
         DISABLED,
-        LANGUAGE,
-        N_DEFAULT_CATEGORIES
+        LANGUAGE
     }
 
     public class CategoryModel : Gtk.TreeStore {
@@ -311,57 +310,57 @@ namespace FontManager {
 
     }
 
+    internal struct FilterData {
+        public int index;
+        public string name;
+        public string comment;
+        public string column;
+    }
+
+    internal const FilterData [] attributes = {
+        { CategoryIndex.WIDTH, N_("Width"), N_("Grouped by font width"), "width" },
+        { CategoryIndex.WEIGHT, N_("Weight"), N_("Grouped by font weight"), "weight" },
+        { CategoryIndex.SLANT, N_("Slant"), N_("Grouped by font angle"), "slant" },
+        { CategoryIndex.SPACING, N_("Spacing"), N_("Grouped by font spacing"), "spacing" }
+    };
+
+    internal const FilterData [] metadata = {
+        { CategoryIndex.LICENSE, N_("License"), N_("Grouped by license type"), "license-type" },
+        { CategoryIndex.VENDOR, N_("Vendor"), N_("Grouped by vendor"), "vendor" },
+        { CategoryIndex.FILETYPE, N_("Filetype"), N_("Grouped by filetype"), "filetype" }
+    };
+
     /*  WARNING : Long lines ahead... */
 
     GLib.List <Category> get_default_categories (Database db) {
-        var filters = new GLib.HashTable <string, Category> (str_hash, str_equal);
-        filters["All"] = new Category(_("All"), _("All Fonts"), "format-text-bold", "%s;".printf(SELECT_FROM_FONTS));
-        filters["All"].index = CategoryIndex.ALL;
-        filters["System"] = new Category(_("System"), _("Fonts available to all users"), "computer", "%s owner!=0 AND filepath LIKE '/usr%';".printf(SELECT_FROM_METADATA_WHERE));
-        filters["System"].index = CategoryIndex.SYSTEM;
-        filters["User"] = new UserFonts();
-        filters["User"].index = CategoryIndex.USER;
-        filters["Panose"] = construct_panose_filter();
-        filters["Panose"].index = CategoryIndex.PANOSE;
-        filters["Width"] = construct_attribute_filter(db, _("Width"), _("Grouped by font width"), "width");
-        filters["Width"].index = CategoryIndex.WIDTH;
-        filters["Weight"] = construct_attribute_filter(db, _("Weight"), _("Grouped by font weight"), "weight");
-        filters["Weight"].index = CategoryIndex.WEIGHT;
-        filters["Slant"] = construct_attribute_filter(db, _("Slant"), _("Grouped by font angle"), "slant");
-        filters["Slant"].index = CategoryIndex.SLANT;
-        filters["Spacing"] = construct_attribute_filter(db, _("Spacing"), _("Grouped by font spacing"), "spacing");
-        filters["Spacing"].index = CategoryIndex.SPACING;
-        filters["License"] = construct_info_filter(db, _("License"), _("Grouped by license type"), "license-type");
-        filters["License"].index = CategoryIndex.LICENSE;
-        filters["Vendor"] = construct_info_filter(db, _("Vendor"), _("Grouped by vendor"), "vendor");
-        filters["Vendor"].index = CategoryIndex.VENDOR;
-        filters["Filetype"] = construct_info_filter(db, _("Filetype"), _("Grouped by filetype"), "filetype");
-        filters["Filetype"].index = CategoryIndex.FILETYPE;
-        filters["Unsorted"] = new Unsorted();
-        filters["Unsorted"].index = CategoryIndex.UNSORTED;
-        filters["Disabled"] = new Disabled();
-        filters["Disabled"].index = CategoryIndex.DISABLED;
-        filters["Language"] = new LanguageFilter();
-        filters["Language"].index = CategoryIndex.LANGUAGE;
-        var sorted_filters = new GLib.List <Category> ();
-        foreach (Category category in filters.get_values())
-            sorted_filters.prepend(category);
-        sorted_filters.sort_with_data((CompareDataFunc) filter_sort);
-        return sorted_filters;
+        var filters = new GLib.List <Category> ();
+        filters.append(new Category(_("All"), _("All Fonts"), "format-text-bold", "%s;".printf(SELECT_FROM_FONTS), CategoryIndex.ALL));
+        filters.append(new Category(_("System"), _("Fonts available to all users"), "computer", "%s owner!=0 AND filepath LIKE '/usr%';".printf(SELECT_FROM_METADATA_WHERE), CategoryIndex.SYSTEM));
+        filters.append(new UserFonts());
+        filters.append(construct_panose_filter());
+        foreach (var entry in attributes)
+            filters.append(construct_attribute_filter(db, entry));
+        foreach (var entry in metadata)
+            filters.append(construct_info_filter(db, entry));
+        filters.append(new Unsorted());
+        filters.append(new Disabled());
+        filters.append(new LanguageFilter());
+        return filters;
     }
 
     Category construct_panose_filter () {
-        var panose = new Category(_("Family Kind"), _("Only fonts which include Panose information will be grouped here."), "folder", "%s P0 IS NOT NULL;".printf(SELECT_FROM_PANOSE_WHERE));
+        var panose = new Category(_("Family Kind"), _("Only fonts which include Panose information will be grouped here."), "folder", null, CategoryIndex.PANOSE);
         string [] kind = { _("Any"), _("No Fit"), _("Text and Display"), _("Script"), _("Decorative"), _("Pictorial") };
         for (int i = 0; i < kind.length; i++)
-            panose.children.prepend(new Category(kind[i], kind[i], "emblem-documents", "%s P0 = '%i';".printf(SELECT_FROM_PANOSE_WHERE, i)));
+            panose.children.prepend(new Category(kind[i], kind[i], "emblem-documents", "%s P0 = '%i';".printf(SELECT_FROM_PANOSE_WHERE, i), i));
         panose.children.reverse();
         return panose;
     }
 
-    Category construct_attribute_filter (Database db, string name, string comment, string keyword) {
-        var filter = new Category(name, comment, "folder", "%s;".printf(SELECT_FROM_FONTS));
+    Category construct_attribute_filter (Database db, FilterData data) {
+        var filter = new Category(data.name, data.comment, "folder", null, data.index);
         try {
+            var keyword = data.column;
             db.execute_query("SELECT DISTINCT %s FROM Fonts ORDER BY %s;".printf(keyword, keyword));
             foreach (unowned Sqlite.Statement row in db) {
                 int val = row.column_int(0);
@@ -382,21 +381,21 @@ namespace FontManager {
                         continue;
                     else
                         type = _("Regular");
-                filter.children.prepend(new Category(type, type, "emblem-documents", "%s WHERE %s=\"%i\";".printf(SELECT_FROM_FONTS, keyword, val)));
+                filter.children.prepend(new Category(type, type, "emblem-documents", "%s WHERE %s=\"%i\";".printf(SELECT_FROM_FONTS, keyword, val), data.index));
             }
             filter.children.reverse();
         } catch (DatabaseError e) { }
         return filter;
     }
 
-    Category construct_info_filter (Database db, string name, string comment, string _keyword) {
-        string keyword = _keyword.replace("\"", "\\\"").replace("'", "\'");
-        var filter = new Category(name, comment, "folder", "%s [%s] IS NOT NULL;".printf(SELECT_FROM_METADATA_WHERE, keyword));
+    Category construct_info_filter (Database db, FilterData data) {
+        string keyword = data.column.replace("\"", "\\\"").replace("'", "\'");
+        var filter = new Category(data.name, data.comment, "folder", null, data.index);
         try {
             db.execute_query("SELECT DISTINCT [%s] FROM Metadata ORDER BY [%s];".printf(keyword, keyword));
             foreach (unowned Sqlite.Statement row in db) {
                 string type = row.column_text(0);
-                filter.children.prepend(new Category(type, type, "emblem-documents", "%s [%s]=\"%s\";".printf(SELECT_FROM_METADATA_WHERE, keyword, type)));
+                filter.children.prepend(new Category(type, type, "emblem-documents", "%s [%s]=\"%s\";".printf(SELECT_FROM_METADATA_WHERE, keyword, type), data.index));
             }
             filter.children.reverse();
         } catch (DatabaseError e) { }

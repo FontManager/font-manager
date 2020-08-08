@@ -41,14 +41,13 @@ WHERE Orthography.sample IS NOT NULL;
 
 namespace FontManager {
 
-    public Json.Object? get_non_latin_samples () {
-        Json.Object? result = null;
+    public GLib.HashTable get_non_latin_samples () {
+        var result = new GLib.HashTable <string, string> (str_hash, str_equal);
         try {
             var db = get_database(DatabaseType.BASE);
             db.execute_query(SELECT_NON_LATIN_FONTS);
-            result = new Json.Object();
             foreach (unowned Sqlite.Statement row in db)
-                result.set_string_member(row.column_text(0), row.column_text(1));
+                result.insert(row.column_text(0), row.column_text(1));
         } catch (DatabaseError e) {
             message(e.message);
         }

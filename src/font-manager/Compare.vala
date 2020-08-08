@@ -36,7 +36,7 @@ namespace FontManager {
         public Gdk.RGBA foreground_color { get; set; }
         public Gdk.RGBA background_color { get; set; }
         public Gtk.Adjustment adjustment { get; set; }
-        public Json.Object? samples { get; set; default = null; }
+        public GLib.HashTable <string, string>? samples { get; set; default = null; }
         public Font? selected_font { get; set; default = null; }
 
         [GtkChild] public PreviewEntry entry { get; }
@@ -180,8 +180,8 @@ namespace FontManager {
                 cell.set_property("background-rgba", background_color);
                 if (entry.text_length > 0)
                     cell.set_property("text", entry.text);
-                else if (samples != null && samples.has_member(description))
-                    cell.set_property("text", samples.get_string_member(description));
+                else if (samples != null && samples.contains(description))
+                    cell.set_property("text", samples.lookup(description));
                 else
                     cell.set_property("text", preview_text);
                 cell.set_property("size-points", preview_size);

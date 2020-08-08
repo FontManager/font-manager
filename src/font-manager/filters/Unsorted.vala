@@ -23,7 +23,7 @@ namespace FontManager {
     public class Unsorted : Category {
 
         public Unsorted () {
-            base(_("Unsorted"), _("Fonts not present in any collection"), "dialog-question", "%s;".printf(SELECT_FROM_FONTS));
+            base(_("Unsorted"), _("Fonts not present in any collection"), "dialog-question", "%s;".printf(SELECT_FROM_FONTS), CategoryIndex.UNSORTED);
         }
 
         public new async void update (StringHashset sorted) {

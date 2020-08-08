@@ -64,7 +64,7 @@ void font_manager_font_preview_set_preview_size (FontManagerFontPreview *self, g
 void font_manager_font_preview_set_font_description (FontManagerFontPreview *self, const gchar *font);
 void font_manager_font_preview_set_preview_text (FontManagerFontPreview *self, const gchar *preview_text);
 void font_manager_font_preview_set_justification (FontManagerFontPreview *self, GtkJustification justification);
-void font_manager_font_preview_set_sample_strings (FontManagerFontPreview *self, JsonObject *samples);
+void font_manager_font_preview_set_sample_strings (FontManagerFontPreview *self, GHashTable *samples);
 gdouble font_manager_font_preview_get_preview_size (FontManagerFontPreview *self);
 gchar * font_manager_font_preview_get_font_description (FontManagerFontPreview *self);
 gchar * font_manager_font_preview_get_preview_text (FontManagerFontPreview *self);

@@ -46,7 +46,7 @@ namespace FontManager {
         }
 
         public LanguageFilter () {
-            base(_("Language"),  DEFAULT_LANGUAGE_FILTER_COMMENT, "preferences-desktop-locale", SELECT_ON_LANGUAGE);
+            base(_("Language"),  DEFAULT_LANGUAGE_FILTER_COMMENT, "preferences-desktop-locale", SELECT_ON_LANGUAGE, CategoryIndex.LANGUAGE);
             selected = new StringHashset();
             settings = new LanguageFilterSettings();
             bind_property("selected", settings, "selected", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
