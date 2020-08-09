@@ -224,19 +224,17 @@ namespace FontManager {
             DatabaseType [] types = { DatabaseType.FONT, DatabaseType.METADATA, DatabaseType.ORTHOGRAPHY };
             try {
                 Database? db = get_database(DatabaseType.BASE);
-                var reject = new Reject();
-                reject.load();
                 foreach (var path in selections) {
                     db.execute_query("SELECT family FROM Fonts WHERE filepath = \"%s\"".printf(path));
                     foreach (unowned Sqlite.Statement row in db)
-                        reject.remove(row.column_text(0));
+                        if (reject != null)
+                            reject.remove(row.column_text(0));
                     foreach (var type in types) {
                         var name = Database.get_type_name(type);
                         db.execute_query("DELETE FROM %s WHERE filepath = \"%s\"".printf(name, path));
                         db.stmt.step();
                     }
                 }
-                reject.save();
                 db = null;
                 foreach (var type in types) {
                     db = get_database(type);
