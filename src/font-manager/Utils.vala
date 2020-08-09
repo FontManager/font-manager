@@ -137,6 +137,11 @@ namespace FontManager {
     public bool load_user_font_resources (StringHashset? files, GLib.List <weak Source> sources) {
         clear_application_fonts();
         bool res = true;
+        var legacy_font_dir = Path.build_filename(Environment.get_home_dir(), ".fonts");
+        if (!add_application_font_directory(legacy_font_dir)) {
+            res = false;
+            warning("Failed to add legacy user font directory to configuration!");
+        }
         if (!add_application_font_directory(get_user_font_directory())) {
             res = false;
             critical("Failed to add default user font directory to configuration!");
