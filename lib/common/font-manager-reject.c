@@ -44,9 +44,10 @@ font_manager_reject_class_init (FontManagerRejectClass *klass)
 }
 
 static gboolean
-reload (FontManagerReject *self)
+reload (gpointer self)
 {
-    g_return_val_if_fail(self != NULL, FALSE);
+    /* XXX : FIXME! */
+    g_return_val_if_fail(FONT_MANAGER_IS_REJECT(self), FALSE);
     return !(font_manager_selections_load(FONT_MANAGER_SELECTIONS(self)));
 }
 
