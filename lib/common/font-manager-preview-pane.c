@@ -542,6 +542,7 @@ static void
 font_manager_preview_pane_init (FontManagerPreviewPane *self)
 {
     g_return_if_fail(self != NULL);
+    gtk_notebook_set_show_border(GTK_NOTEBOOK(self), FALSE);
     self->preview = font_manager_font_preview_new();
     self->character_map = font_manager_character_map_new();
     self->properties = font_manager_properties_pane_new();
