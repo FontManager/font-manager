@@ -402,12 +402,16 @@ font_manager_preview_pane_update (FontManagerPreviewPane *self)
         font_manager_preview_pane_update_metadata(self);
         font_manager_properties_pane_update(FONT_MANAGER_PROPERTIES_PANE(self->properties), self->font, self->metadata);
     } else if (page == FONT_MANAGER_PREVIEW_PANE_PAGE_LICENSE) {
-        font_manager_preview_pane_update_metadata(self);
-        FontManagerfsType fsType;
-        g_autofree gchar *license_data = NULL;
-        g_autofree gchar *license_url = NULL;
-        g_object_get(G_OBJECT(self->metadata), "fsType", &fsType, "license-data", &license_data, "license-url", &license_url, NULL);
-        g_object_set(G_OBJECT(self->license), "fstype", fsType, "license-data", license_data, "license-url", license_url, NULL);
+        if (self->metadata) {
+            font_manager_preview_pane_update_metadata(self);
+            FontManagerfsType fsType;
+            g_autofree gchar *license_data = NULL;
+            g_autofree gchar *license_url = NULL;
+            g_object_get(G_OBJECT(self->metadata), "fsType", &fsType, "license-data", &license_data, "license-url", &license_url, NULL);
+            g_object_set(G_OBJECT(self->license), "fstype", fsType, "license-data", license_data, "license-url", license_url, NULL);
+        } else {
+            g_object_set(G_OBJECT(self->license), "fstype", FONT_MANAGER_FSTYPE_RESTRICTED_LICENSE, "license-data", NULL, "license-url", NULL, NULL);
+        }
     }
     g_signal_emit(self, signals[CHANGED], 0);
     g_idle_add((GSourceFunc) font_manager_preview_pane_update_metadata, self);
