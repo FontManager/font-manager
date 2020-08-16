@@ -202,7 +202,7 @@ const gchar * font_manager_spacing_to_string (FontManagerSpacing spacing);
  * @FONT_MANAGER_SUBPIXEL_ORDER_VBGR:       FC_RGBA_VBGR
  * @FONT_MANAGER_SUBPIXEL_ORDER_NONE:       FC_RGBA_NONE
  *
- * These rgba values map directly to thoe defined by Fontconfig.
+ * These rgba values map directly to those defined by Fontconfig.
  */
 typedef enum
 {
@@ -227,7 +227,7 @@ const gchar * font_manager_subpixel_order_to_string (FontManagerSubpixelOrder rg
  * @FONT_MANAGER_HINT_STYLE_MEDIUM:     FC_HINT_MEDIUM
  * @FONT_MANAGER_HINT_STYLE_FULL:       FC_HINT_FULL
  *
- * These hinting values map directly to thoe defined by Fontconfig.
+ * These hinting values map directly to those defined by Fontconfig.
  */
 typedef enum
 {
@@ -250,7 +250,7 @@ const gchar * font_manager_hint_style_to_string (FontManagerHintStyle hinting);
  * @FONT_MANAGER_LCD_FILTER_LIGHT:      FC_LCD_LIGHT
  * @FONT_MANAGER_LCD_FILTER_LEGACY:     FC_LCD_LEGACY
  *
- * These filter values map directly to thoe defined by Fontconfig.
+ * These filter values map directly to those defined by Fontconfig.
  */
 typedef enum
 {

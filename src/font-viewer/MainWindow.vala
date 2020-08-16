@@ -227,13 +227,13 @@ namespace FontManager.FontViewer {
             string? conflict = conflicts(preview_pane.font);
             add_application_font(preview_pane.metadata.filepath);
             install_button.sensitive = false;
-            install_button.get_style_context().add_class("InsensitiveButton");
+            install_button.get_style_context().add_class("SensitiveChildLabel");
             if (conflict != null && timecmp(conflict, preview_pane.font.filepath) > 0) {
                 install_button.set_label(_("Newer version already installed"));
             } else if (_installed) {
                 install_button.set_label(_("Installed"));
             } else {
-                install_button.get_style_context().remove_class("InsensitiveButton");
+                install_button.get_style_context().remove_class("SensitiveChildLabel");
                 install_button.set_label(_("Install Font"));
                 install_button.sensitive = true;
             }

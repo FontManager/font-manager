@@ -425,7 +425,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             filename.set_margin_start(DEFAULT_MARGIN * 2);
             filename.set_margin_end(DEFAULT_MARGIN * 2);
             filename.sensitive = false;
-            filename.get_style_context().add_class("InsensitiveButton");
+            filename.get_style_context().add_class("SensitiveChildLabel");
             filename.get_child().opacity = 0.7;
             filename.show();
             popup_menu.append(filename);

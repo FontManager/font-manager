@@ -110,7 +110,7 @@ treeview {
     background-color: alpha(@insensitive_bg_color, 0.5);
 }
 
-.InsensitiveButton > label {
+.SensitiveChildLabel > label {
     text-shadow: 1px 1px darker(@selected_theme_bg_color);
     color: lighter(@theme_text_color);
 }
