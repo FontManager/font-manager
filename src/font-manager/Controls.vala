@@ -245,17 +245,15 @@ namespace FontManager {
                 else
                     options.append(new Gtk.RadioButton.from_widget(options.nth_data(0)));
                 Gtk.RadioButton button = options.nth_data(i);
-                var val = (SubpixelOrder) i;
-                var icon = new SubpixelGeometryIcon(val);
+                var icon = new SubpixelGeometryIcon((SubpixelOrder) i);
                 button.add(icon);
-                icon.show();
-                button.set_tooltip_text(val.to_string());
-                button.set_data("rgba", i);
+                button.set_tooltip_text(((SubpixelOrder) i).to_string());
                 button.toggled.connect(() => {
                     if (button.active)
-                        rgba = button.get_data("rgba");
+                        rgba = options.index(button);
                 });
                 button_box.pack_start(button);
+                icon.show();
                 button.show();
             }
         }
@@ -273,35 +271,22 @@ namespace FontManager {
 
         public SubpixelGeometryIcon (SubpixelOrder rgba) {
 
-            string [] color = { "gray", "gray", "gray" };
+            string [,] colors = {
+                { "gray", "gray", "gray" },
+                { "red", "green", "blue" },
+                { "blue", "green", "red" },
+                { "red", "green", "blue" },
+                { "blue", "green", "red" },
+                { "gray", "gray", "gray" }
+            };
 
-            switch (rgba) {
-                case SubpixelOrder.UNKNOWN:
-                case SubpixelOrder.NONE:
-                    break;
-                case SubpixelOrder.BGR:
-                case SubpixelOrder.VBGR:
-                    color = { "blue", "green", "red" };
-                    break;
-                default:
-                    color = { "red", "green", "blue" };
-                    break;
-            }
-
-            switch (rgba) {
-                case SubpixelOrder.VRGB:
-                case SubpixelOrder.VBGR:
-                    orientation = Gtk.Orientation.VERTICAL;
-                    break;
-                default:
-                    orientation = Gtk.Orientation.HORIZONTAL;
-                    break;
-            }
+            bool vertical = (rgba == SubpixelOrder.VBGR || rgba == SubpixelOrder.VRGB);
+            orientation = vertical ? Gtk.Orientation.VERTICAL : Gtk.Orientation.HORIZONTAL;
 
             Gtk.Label [] labels = { l1, l2, l3 };
             for (int i = 0; i < labels.length; i++) {
                 /* @color: defined in FontManager.css */
-                labels[i].get_style_context().add_class(color[i]);
+                labels[i].get_style_context().add_class(colors[rgba,i]);
             }
 
         }

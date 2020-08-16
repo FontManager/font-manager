@@ -29,7 +29,7 @@ namespace FontManager {
 
     public const Gtk.TargetEntry [] DragTargets = {
         { "font-family", Gtk.TargetFlags.SAME_APP, DragTargetType.FAMILY },
-        { "text/uri-list", 0, DragTargetType.EXTERNAL }
+        { "text/uri-list", Gtk.TargetFlags.OTHER_APP, DragTargetType.EXTERNAL }
     };
 
     public Pango.FontDescription get_font (Gtk.Widget widget, Gtk.StateFlags flags = Gtk.StateFlags.NORMAL) {

@@ -247,6 +247,7 @@ namespace FontManager {
             app_menu.add(app_menu_icon);
             spinner = new Gtk.Spinner();
             progress = new ProgressHeader();
+            progress.show();
             var style = Gtk.ReliefStyle.NORMAL;
             if (settings != null) {
                 int saved_style = settings.get_enum("title-button-style");
@@ -289,11 +290,7 @@ namespace FontManager {
             init_components();
             pack_components();
             connect_signals();
-            widgets = { main_menu_icon, main_menu_container, main_menu_label,
-                        main_menu, prefs_toggle, manage_controls, revealer,
-                        app_menu, app_menu_icon, spinner, progress };
-            foreach (var widget in widgets)
-                widget.show();
+            show_all();
         }
 
         void pack_components () {
@@ -336,11 +333,7 @@ namespace FontManager {
             init_components();
             pack_components();
             connect_signals();
-            widgets = { main_menu_icon, main_menu_container, main_menu_label,
-                        main_menu, prefs_toggle, manage_controls, revealer,
-                        app_menu, app_menu_icon, spinner, progress };
-            foreach (var widget in widgets)
-                widget.show();
+            show_all();
         }
 
         void pack_components () {
