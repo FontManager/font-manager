@@ -43,7 +43,7 @@ namespace FontManager.FontViewer {
         }
 
         public bool ready () throws DBusError, IOError {
-            return main_window.ready();
+            return main_window.is_visible();
         }
 
         public void show_uri (string uri) throws DBusError, IOError {

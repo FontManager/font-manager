@@ -519,6 +519,7 @@ font_manager_font_preview_init (FontManagerFontPreview *self)
     g_autoptr(GtkTextBuffer) buffer = gtk_text_buffer_new(tag_table);
     GtkWidget *scroll = gtk_scrolled_window_new(NULL, NULL);
     self->textview = gtk_text_view_new_with_buffer(buffer);
+    gtk_drag_dest_unset(self->textview);
     GtkWidget *controls = font_manager_preview_controls_new();
     self->controls = gtk_revealer_new();
     GtkWidget *fontscale = font_manager_font_scale_new();

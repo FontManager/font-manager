@@ -9,6 +9,7 @@
     <property name="type_hint">utility</property>
     <property name="show_menubar">False</property>
     <signal name="delete-event" handler="on_delete_event" swapped="no"/>
+    <signal name="drag-data-received" handler="on_drag_data_received" swapped="no"/>
     <signal name="realize" handler="on_realize" swapped="no"/>
     <child>
       <object class="GtkStack" id="stack">
@@ -16,33 +17,15 @@
         <property name="can_focus">False</property>
         <property name="transition_type">crossfade</property>
         <child>
-          <object class="GtkBox" id="preview_page">
+          <placeholder/>
+        </child>
+        <child>
+          <object class="FontManagerPreviewPane" id="preview_pane">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <placeholder/>
-            </child>
+            <property name="can_focus">True</property>
           </object>
           <packing>
             <property name="name">Preview</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox" id="welcome_page">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="hexpand">True</property>
-            <property name="vexpand">True</property>
-            <property name="orientation">vertical</property>
-            <child>
-              <placeholder/>
-            </child>
-          </object>
-          <packing>
-            <property name="name">Welcome</property>
             <property name="position">1</property>
           </packing>
         </child>
@@ -68,4 +51,16 @@
       </object>
     </child>
   </template>
+  <object class="GtkButton" id="install">
+    <property name="label" translatable="yes">Install Font</property>
+    <property name="visible">True</property>
+    <property name="can_focus">True</property>
+    <property name="receives_default">True</property>
+    <property name="opacity">0.75</property>
+    <property name="margin_start">2</property>
+    <property name="margin_end">2</property>
+    <property name="margin_top">2</property>
+    <property name="margin_bottom">2</property>
+    <signal name="clicked" handler="on_install_clicked" swapped="no"/>
+  </object>
 </interface>

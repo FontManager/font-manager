@@ -189,6 +189,7 @@ font_manager_license_pane_init (FontManagerLicensePane *self)
     gtk_widget_set_halign(self->placeholder, GTK_ALIGN_CENTER);
     gtk_widget_set_valign(self->placeholder, GTK_ALIGN_START);
     self->license_data = gtk_text_view_new();
+    gtk_drag_dest_unset(self->license_data);
     g_signal_connect(self->license_data, "event", G_CALLBACK(on_event), NULL);
     self->license_url = gtk_link_button_new("");
     GtkWidget *overlay = gtk_overlay_new();
