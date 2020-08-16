@@ -98,7 +98,7 @@ namespace FontManager {
             if (DesktopPreferences.available())
                 list = generate_options_list(interface_settings, x_settings);
             else
-                list = new PlaceHolder(_("GNOME desktop settings schema not found"), "dialog-warning-symbolic");
+                list = new PlaceHolder(null, null, _("GNOME desktop settings schema not found"), "dialog-warning-symbolic");
             box.add(list);
             list.show();
         }

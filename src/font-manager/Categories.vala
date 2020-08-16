@@ -149,9 +149,7 @@ namespace FontManager {
         public CategoryTree () {
             expand = true;
             overlay = new Gtk.Overlay();
-            updating = new PlaceHolder(null, "emblem-synchronizing-symbolic");
-            string update_txt = _("Update in progress");
-            updating.message = "<b><big>%s</big></b>".printf(update_txt);
+            updating = new PlaceHolder(null, null, _("Update in progress"), "emblem-synchronizing-symbolic");
             updating.show();
             tree = new BaseTreeView();
             model = new CategoryModel();

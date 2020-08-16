@@ -226,9 +226,7 @@ namespace FontManager {
             string w1 = _("Font Substitutions");
             string w2 = _("Easily substitute one font family for another.");
             string w3 = _("To add a new substitute click the add button in the toolbar.");
-            string welcome_tmpl = "<span size=\"xx-large\" weight=\"bold\">%s</span>\n<span size=\"large\">\n\n%s\n</span>\n\n\n<span size=\"x-large\">%s</span>";
-            string welcome_message = welcome_tmpl.printf(w1, w2, w3);
-            place_holder = new PlaceHolder(welcome_message, "edit-find-replace-symbolic");
+            place_holder = new PlaceHolder(w1, w2, w3, "edit-find-replace-symbolic");
             list = new Gtk.ListBox();
             list.set_placeholder(place_holder);
             list.expand = true;

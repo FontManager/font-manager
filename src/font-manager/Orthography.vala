@@ -68,11 +68,9 @@ namespace FontManager {
 
         construct {
             parser = new Json.Parser();
-            updating = new PlaceHolder(null, "emblem-synchronizing-symbolic");
-            string update_txt = _("Update in progress");
-            updating.message = "<b><big>%s</big></b>".printf(update_txt);
+            updating = new PlaceHolder(null, null, _("Update in progress"), "emblem-synchronizing-symbolic");
             updating.show();
-            unavailable = new PlaceHolder(null, "action-unavailable-symbolic");
+            unavailable = new PlaceHolder(null, null, null, "action-unavailable-symbolic");
             unavailable.show();
             notify["parent"].connect(() => {
                 parent.placeholder = updating;

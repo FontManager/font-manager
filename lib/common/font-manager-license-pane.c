@@ -182,10 +182,8 @@ font_manager_license_pane_init (FontManagerLicensePane *self)
     gtk_label_set_attributes(GTK_LABEL(self->fsType), attrs);
     g_clear_pointer(&attrs, pango_attr_list_unref);
     gtk_widget_set_opacity(self->fsType, 0.55);
-    const gchar *tmpl = "<big>%s</big>";
     const gchar *msg = _("File does not contain license information.");
-    g_autofree gchar *message = g_strdup_printf(tmpl, msg);
-    self->placeholder = font_manager_place_holder_new(message, "dialog-question-symbolic");
+    self->placeholder = font_manager_place_holder_new(NULL, NULL, msg, "dialog-question-symbolic");
     font_manager_widget_set_expand(self->placeholder, TRUE);
     font_manager_widget_set_margin(self->placeholder, FONT_MANAGER_DEFAULT_MARGIN * 4);
     gtk_widget_set_halign(self->placeholder, GTK_ALIGN_CENTER);
@@ -209,7 +207,13 @@ font_manager_license_pane_init (FontManagerLicensePane *self)
     gtk_box_pack_start(GTK_BOX(box), overlay, TRUE, TRUE, 0);
     gtk_box_pack_end(GTK_BOX(box), self->license_url, FALSE, FALSE, 0);
     gtk_container_add(GTK_CONTAINER(self), box);
-    gtk_widget_show_all(box);
+    gtk_widget_show(scroll);
+    gtk_widget_show(self->fsType);
+    gtk_widget_show(self->license_data);
+    gtk_widget_show(self->license_url);
+    gtk_widget_show(self->placeholder);
+    gtk_widget_show(overlay);
+    gtk_widget_show(box);
     return;
 }
 

@@ -21,6 +21,7 @@
 #ifndef __FONT_MANAGER_PLACE_HOLDER_H__
 #define __FONT_MANAGER_PLACE_HOLDER_H__
 
+#include <string.h>
 #include <gtk/gtk.h>
 
 #include "font-manager-gtk-utils.h"
@@ -30,7 +31,7 @@ G_BEGIN_DECLS
 #define FONT_MANAGER_TYPE_PLACE_HOLDER (font_manager_place_holder_get_type ())
 G_DECLARE_FINAL_TYPE(FontManagerPlaceHolder, font_manager_place_holder, FONT_MANAGER, PLACE_HOLDER, GtkEventBox)
 
-GtkWidget * font_manager_place_holder_new (const gchar *message, const gchar *icon_name);
+GtkWidget * font_manager_place_holder_new (const gchar *title, const gchar *subtitle, const gchar *message, const gchar *icon_name);
 
 G_END_DECLS
 

@@ -158,9 +158,8 @@ namespace FontManager {
                 dialog.set_size_request(540, 480);
                 scroll.show_all();
             } else {
-                var tmpl = "<big>%s</big>";
                 var msg = _("Fonts installed in your home directory will appear here.");
-                var content = new PlaceHolder(tmpl.printf(msg), "go-home-symbolic");
+                var content = new PlaceHolder(null, null, msg, "go-home-symbolic");
                 if (use_csd)
                     header.show_close_button = true;
                 content_area.add(content);
