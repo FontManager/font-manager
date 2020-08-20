@@ -18,7 +18,6 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-
 namespace FontManager {
 
     internal const string GNOME_INTERFACE_ID = "org.gnome.desktop.interface";

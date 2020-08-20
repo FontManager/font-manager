@@ -129,6 +129,8 @@ namespace FontManager {
             Object(title: About.DISPLAY_NAME, icon_name: About.ICON);
             fontlist_pane.fontlist = new FontList();
             initialize_preference_pane(preference_pane);
+            var user_action_list = ((UserActionList) preference_pane.get_page("UserActions"));
+            fontlist.user_actions = user_action_list.model;
             add_actions();
             if (settings != null)
                 use_csd = settings.get_boolean("use-csd");

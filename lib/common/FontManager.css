@@ -139,7 +139,8 @@ treeview {
     border-color: alpha(@borders, 0.75);
 }
 
-#FontManagerAliasList row {
+#FontManagerAliasList row,
+#FontManagerUserActionRow {
     border-radius: 0.25em;
 }
 

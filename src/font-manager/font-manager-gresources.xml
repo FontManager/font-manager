@@ -25,6 +25,8 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-subpixel-geometry-icon.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-subpixel-geometry.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-title-button-style.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-action-list.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-action-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-data.ui</file>
     </gresource>
 </gresources>

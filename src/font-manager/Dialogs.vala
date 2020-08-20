@@ -55,6 +55,21 @@ namespace FontManager {
 
     namespace FileSelector {
 
+        public string? get_executable () {
+            var dialog = new Gtk.FileChooserNative(_("Select executable"),
+                                                    main_window,
+                                                    Gtk.FileChooserAction.OPEN,
+                                                    _("_Select"),
+                                                    _("_Cancel"));
+            dialog.set_current_folder("/usr/bin");
+            dialog.set_select_multiple(false);
+            string? selection = null;
+            if (dialog.run() == Gtk.ResponseType.ACCEPT)
+                selection = dialog.get_filename();
+            dialog.destroy();
+            return selection;
+        }
+
         public string? get_target_directory () {
             var dialog = new Gtk.FileChooserNative(_("Select Destination"),
                                                     main_window,

@@ -22,6 +22,8 @@ namespace FontManager {
 
     public class Cacheable : Object, Json.Serializable {
 
+        public signal void changed ();
+
         public virtual bool deserialize_property (string prop_name,
                                                   out Value val,
                                                   ParamSpec pspec,

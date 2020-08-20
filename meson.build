@@ -17,6 +17,7 @@ fontconfig = dependency('fontconfig', version: '>= 2.1')
 freetype = dependency('freetype2', version: '>= 2.5')
 json = dependency('json-glib-1.0', version: '>= 0.15')
 gio = dependency('gio-2.0', version: '>= 2.44')
+gio_unix = dependency('gio-unix-2.0', version: '>= 2.44')
 glib = dependency('glib-2.0', version: '>= 2.62')
 gmodule = dependency('gmodule-2.0', version: '>= 2.44')
 gobject = dependency('gobject-2.0', version: '>= 2.44')
@@ -27,7 +28,7 @@ sqlite = dependency('sqlite3', version: '>= 3.8')
 xml = dependency('libxml-2.0', version: '>= 2.9')
 
 base_deps = declare_dependency(
-    dependencies: [m_dep, json, gio, glib, gmodule, gobject, gtk, pango, sqlite, xml],
+    dependencies: [m_dep, json, gio, gio_unix, glib, gmodule, gobject, gtk, pango, sqlite, xml],
     include_directories: include_directories('.', 'lib/common', 'lib/orthographies', 'lib/unicode')
 )
 

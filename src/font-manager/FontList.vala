@@ -281,6 +281,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         public string selected_iter { get; protected set; default = "0"; }
         public string? selected_family { get; private set; default = null; }
         public Font? selected_font { get; private set; default = null; }
+        public UserActionModel? user_actions { get; set; default = null; }
 
         Gtk.Menu context_menu;
         Gtk.MenuItem? filename = null;
@@ -291,6 +292,12 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             set_rubber_banding(true);
             get_selection().set_mode(Gtk.SelectionMode.MULTIPLE);
             context_menu = get_context_menu();
+            notify["user-actions"].connect(() => {
+                context_menu = get_context_menu();
+                user_actions.items_changed.connect(() => {
+                    context_menu = get_context_menu();
+                });
+            });
             selected_font = new Font();
         }
 
@@ -428,6 +435,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             filename.get_style_context().add_class("SensitiveChildLabel");
             filename.get_child().opacity = 0.7;
             filename.show();
+            filename.label = selected_font.is_valid() ? Path.get_basename(selected_font.filepath) : null;
             popup_menu.append(filename);
             var label = ((Gtk.Bin) filename).get_child();
             label.set("hexpand", true, "justify", Gtk.Justification.FILL, "margin", 2, null);
@@ -442,6 +450,17 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                 popup_menu.append(item);
                 if (entry.action_name == "install")
                     installable = item;
+            }
+            if (user_actions != null && user_actions.get_n_items() > 0) {
+                foreach (var entry in user_actions) {
+                    var item = new Gtk.MenuItem.with_label(entry.action_name);
+                    if (entry.comment != null)
+                        item.set_tooltip_text(entry.comment);
+                    item.get_child().set_halign(Gtk.Align.CENTER);
+                    item.activate.connect(() => { entry.run(selected_font); });
+                    item.show();
+                    popup_menu.append(item);
+                }
             }
             /* Wayland complains if not set */
             popup_menu.realize.connect(() => {

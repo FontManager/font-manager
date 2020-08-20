@@ -27,6 +27,7 @@ namespace FontManager {
         pane.add_page(new SubstitutionPreferences(), "Substitutions", _("Substitutions"));
         pane.add_page(new DisplayPreferences(), "Display", _("Display"));
         pane.add_page(new RenderingPreferences(), "Rendering", _("Rendering"));
+        pane.add_page(new UserActionList(), "UserActions", _("User Actions"));
         return;
     }
 
@@ -56,10 +57,15 @@ namespace FontManager {
             return;
         }
 
-        public Gtk.Widget get_page (string name) {
-            var scroll = ((Gtk.Container) stack.get_child_by_name(name));
-            var viewport = scroll.get_children().nth_data(0);
-            var widget = ((Gtk.Container) viewport).get_children().nth_data(0);
+        public Gtk.Widget? get_page (string name) {
+            Gtk.Widget? widget = null;
+            var child = ((Gtk.Container) stack.get_child_by_name(name));
+            if (child is Gtk.ScrolledWindow) {
+                var viewport = child.get_children().nth_data(0);
+                widget = ((Gtk.Container) viewport).get_children().nth_data(0);
+            } else {
+                widget = child;
+            }
             return widget;
         }
 
