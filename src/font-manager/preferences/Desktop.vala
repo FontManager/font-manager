@@ -75,13 +75,13 @@ namespace FontManager {
         },
     };
 
-    public class DesktopPreferences : SettingsPage {
-
-        Gtk.Widget list;
+    public class DesktopPreferences : Gtk.ScrolledWindow {
 
         static Settings? interface_settings = null;
         static Settings? x_settings = null;
         static bool initialized = false;
+
+        Gtk.ListBox list;
 
         public static bool available () {
             if (!initialized) {
@@ -94,18 +94,18 @@ namespace FontManager {
 
         public DesktopPreferences () {
             Object(name: "FontManagerDesktopPreferences");
+            list = new Gtk.ListBox();
+            list.set_selection_mode(Gtk.SelectionMode.NONE);
+            var place_holder = new PlaceHolder(null, null, _("GNOME desktop settings schema not found"), "dialog-warning-symbolic");
+            list.set_placeholder(place_holder);
             if (DesktopPreferences.available())
-                list = generate_options_list(interface_settings, x_settings);
-            else
-                list = new PlaceHolder(null, null, _("GNOME desktop settings schema not found"), "dialog-warning-symbolic");
-            box.add(list);
+                generate_options_list(interface_settings, x_settings);
+            add(list);
             list.show();
         }
 
-        Gtk.ListBox generate_options_list (Settings? interface_settings,
-                                            Settings? x_settings) {
-            var list = new Gtk.ListBox();
-            list.set_selection_mode(Gtk.SelectionMode.NONE);
+        void generate_options_list (Settings? interface_settings,
+                                    Settings? x_settings) {
             Gtk.Revealer spg_revealer = new Gtk.Revealer();
             OptionScale? antialias = null;
             foreach (var setting in DesktopSettings) {
@@ -170,12 +170,12 @@ namespace FontManager {
                 widget.show();
                 row.show();
             }
-            return_val_if_fail(antialias != null, list);
+            return_if_fail(antialias != null);
             spg_revealer.set_reveal_child(antialias.value == 2);
             antialias.notify["value"].connect(() => {
                 spg_revealer.set_reveal_child(antialias.value == 2);
             });
-            return list;
+            return;
         }
 
     }

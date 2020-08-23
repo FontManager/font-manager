@@ -131,21 +131,19 @@ treeview {
     border-top-right-radius: 0.333em;
 }
 
-#FontManagerSubstituteList {
-    border-radius: 0.25em;
-}
-
 #FontManagerSubstituteList button {
     border-color: alpha(@borders, 0.75);
 }
 
 #FontManagerAliasList row,
-#FontManagerUserActionRow {
+#FontManagerUserActionList row,
+#FontManagerUserSourceList row {
     border-radius: 0.25em;
 }
 
 #FontManagerAliasList row:selected,
-#FontManagerFontSourceList row:selected {
+#FontManagerUserActionList row:selected,
+#FontManagerUserSourceList row:selected {
     background-color: alpha(@theme_selected_bg_color, 0.85);
     border-radius: 0.25em;
 }

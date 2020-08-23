@@ -28,5 +28,7 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-action-list.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-action-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-data.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-source-list.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-source-row.ui</file>
     </gresource>
 </gresources>

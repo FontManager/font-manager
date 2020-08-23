@@ -214,7 +214,7 @@ namespace FontManager {
 
     class SubstituteList : Gtk.ScrolledWindow {
 
-        public signal void row_selected(Gtk.ListBoxRow? selected_row);
+        public signal void row_selected (Gtk.ListBoxRow? selected_row);
 
         public PlaceHolder place_holder { get; private set; }
 

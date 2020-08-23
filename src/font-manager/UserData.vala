@@ -102,8 +102,7 @@ namespace FontManager {
             critical(e.message);
         }
         main_window.sidebar.collection_model.collections = Collections.load();
-        sources.load();
-        ((SourcePreferences) main_window.preference_pane.get_page("Sources")).update();
+        ((UserSourceList) main_window.preference_pane["Sources"]).model = new UserSourceModel();
         return;
     }
 

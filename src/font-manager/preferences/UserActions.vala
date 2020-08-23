@@ -80,7 +80,7 @@ namespace FontManager {
 
     public class UserActionModel : Object, ListModel {
 
-        List <UserAction> actions = null;
+        public List <UserAction>? items = null;
 
         construct {
             load();
@@ -92,11 +92,11 @@ namespace FontManager {
         }
 
         public uint get_n_items () {
-            return actions != null ? actions.length() : 0;
+            return items != null ? items.length() : 0;
         }
 
         public Object? get_item (uint position) {
-            return actions.nth_data(position);
+            return items.nth_data(position);
         }
 
         public uint size {
@@ -110,16 +110,16 @@ namespace FontManager {
             return ((UserAction) get_item(index));
         }
 
-        public void add_action (UserAction action) {
-            actions.append(action);
-            uint position = actions.length() - 1;
+        public void add_item (UserAction item) {
+            items.append(item);
+            uint position = items.length() - 1;
             items_changed(position, 0, 1);
-            action.changed.connect(() => { items_changed(position, 0, 0); });
+            item.changed.connect(() => { items_changed(position, 0, 0); });
             return;
         }
 
-        public void remove_action(uint position) {
-            actions.remove(actions.nth_data(position));
+        public void remove_item (uint position) {
+            items.remove(items.nth_data(position));
             items_changed(position, 1, 0);
             return;
         }
@@ -136,8 +136,8 @@ namespace FontManager {
             if (node != null) {
                 node.get_array().foreach_element(
                     (arr, index, node) => {
-                        var action = Json.gobject_deserialize(typeof(UserAction), node);
-                        add_action((UserAction) action);
+                        var item = Json.gobject_deserialize(typeof(UserAction), node);
+                        add_item((UserAction) item);
                     }
                 );
             }
@@ -146,10 +146,10 @@ namespace FontManager {
 
         public void save () {
             Json.Node node = new Json.Node(Json.NodeType.ARRAY);
-            Json.Array array = new Json.Array.sized(actions.length());
-            foreach (var action in actions) {
-                var action_node = Json.gobject_serialize(action);
-                array.add_object_element(action_node.get_object());
+            Json.Array array = new Json.Array.sized(items.length());
+            foreach (var item in items) {
+                var item_node = Json.gobject_serialize(item);
+                array.add_object_element(item_node.get_object());
             }
             node.set_array(array);
             write_json_file(node, get_cache_file());
@@ -191,9 +191,12 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-user-action-list.ui")]
     public class UserActionList : Gtk.Box {
 
-        const string help_text = _("""By default the filepath for the selected font will be appended to the end of the argument list.
-To control where the filepath is inserted use FILEPATH as a placeholder.
+        const string help_text =
 
+_("""Actions defined here will be added to the font list context menu.
+
+By default the filepath for the selected font will be appended to the end of the argument list.
+To control where the filepath is inserted use FILEPATH as a placeholder.
 If FAMILY or STYLE are found in the argument list they will also be replaced.""");
 
         [GtkChild] Gtk.ListBox list;
@@ -201,13 +204,13 @@ If FAMILY or STYLE are found in the argument list they will also be replaced."""
 
         InlineHelp help;
 
-        public UserActionModel model { get; private set; }
+        public UserActionModel model { get; set; }
 
         public UserActionList () {
+            notify["model"].connect(() => { list.bind_model(model, UserActionRow.from_item); });
             model = new UserActionModel();
             var place_holder = new PlaceHolder(_("User Actions"), null, _("Custom context menu entries"), "open-menu-symbolic");
             list.set_placeholder(place_holder);
-            list.bind_model(model, UserActionRow.from_item);
             controls.remove_button.set_visible(false);
             help = new InlineHelp();
             help.margin_start = help.margin_end = 2;
@@ -215,10 +218,15 @@ If FAMILY or STYLE are found in the argument list they will also be replaced."""
             ((Gtk.Image) help.get_child()).set_pixel_size(22);
             controls.box.pack_end(help, false, false, 0);
             controls.add_selected.connect(() => {
-                model.add_action(new UserAction());
+                model.add_item(new UserAction());
             });
             controls.remove_selected.connect(() => {
-                model.remove_action(list.get_selected_row().get_index());
+                uint position = list.get_selected_row().get_index();
+                model.remove_item(position);
+                uint max = model.get_n_items() - 1;
+                while (position > max)
+                    position--;
+                list.select_row(list.get_row_at_index((int) position));
             });
             list.row_selected.connect((row) => {
                 controls.remove_button.set_visible(row != null);

@@ -129,8 +129,10 @@ namespace FontManager {
             Object(title: About.DISPLAY_NAME, icon_name: About.ICON);
             fontlist_pane.fontlist = new FontList();
             initialize_preference_pane(preference_pane);
-            var user_action_list = ((UserActionList) preference_pane.get_page("UserActions"));
+            var user_action_list = ((UserActionList) preference_pane["UserActions"]);
+            var user_sources_list = ((UserSourceList) preference_pane["Sources"]);
             fontlist.user_actions = user_action_list.model;
+            fontlist.user_sources = user_sources_list.model;
             add_actions();
             if (settings != null)
                 use_csd = settings.get_boolean("use-csd");
@@ -211,7 +213,7 @@ namespace FontManager {
             fontlist.bind_property("samples", browse, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("samples", compare, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("samples", preview_pane, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
-            var ui_prefs = (UserInterfacePreferences) preference_pane.get_page("Interface");
+            var ui_prefs = (UserInterfacePreferences) preference_pane["Interface"];
             ui_prefs.wide_layout.toggle.bind_property("active", this, "wide-layout", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             main_pane.bind_property("position", preference_pane, "position", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;

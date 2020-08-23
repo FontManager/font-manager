@@ -134,7 +134,7 @@ namespace FontManager {
      * Adds user configured font sources (directories) and rejected fonts to our
      * FcConfig so that we can render fonts which are not actually "installed".
      */
-    public bool load_user_font_resources (StringHashset? files, GLib.List <weak Source> sources) {
+    public bool load_user_font_resources (StringHashset? files, UserSourceModel? sources) {
         clear_application_fonts();
         bool res = true;
         var legacy_font_dir = Path.build_filename(Environment.get_home_dir(), ".fonts");
@@ -146,7 +146,10 @@ namespace FontManager {
             res = false;
             critical("Failed to add default user font directory to configuration!");
         }
-        foreach (Source source in sources) {
+        UserSourceModel? source_model = sources;
+        if (source_model == null)
+            source_model = new UserSourceModel();
+        foreach (Source source in source_model.items) {
             if (source.available && !add_application_font_directory(source.path)) {
                 res = false;
                 warning("Failed to register user font source! : %s", source.path);

@@ -23,11 +23,11 @@ namespace FontManager {
     public void initialize_preference_pane (Preferences pane) {
         pane.add_page(new UserInterfacePreferences(), "Interface", _("Interface"));
         pane.add_page(new DesktopPreferences(), "Desktop", _("Desktop"));
-        pane.add_page(new SourcePreferences(), "Sources", _("Sources"));
+        pane.add_page(new UserSourceList(), "Sources", _("Sources"));
+        pane.add_page(new UserActionList(), "UserActions", _("Actions"));
         pane.add_page(new SubstitutionPreferences(), "Substitutions", _("Substitutions"));
         pane.add_page(new DisplayPreferences(), "Display", _("Display"));
         pane.add_page(new RenderingPreferences(), "Rendering", _("Rendering"));
-        pane.add_page(new UserActionList(), "UserActions", _("User Actions"));
         return;
     }
 
@@ -57,7 +57,7 @@ namespace FontManager {
             return;
         }
 
-        public Gtk.Widget? get_page (string name) {
+        public new Gtk.Widget? get (string name) {
             Gtk.Widget? widget = null;
             var child = ((Gtk.Container) stack.get_child_by_name(name));
             if (child is Gtk.ScrolledWindow) {

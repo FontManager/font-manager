@@ -77,6 +77,15 @@ static const gchar *_available = "folder-symbolic";
 static const gchar *_unavailable = "action-unavailable-symbolic";
 
 static void
+font_manager_source_constructed (GObject *gobject)
+{
+    g_return_if_fail(gobject != NULL);
+    font_manager_source_update(FONT_MANAGER_SOURCE(gobject));
+    G_OBJECT_CLASS(font_manager_source_parent_class)->constructed(gobject);
+    return;
+}
+
+static void
 font_manager_source_dispose (GObject *gobject)
 {
     g_return_if_fail(gobject != NULL);
@@ -160,6 +169,7 @@ static void
 font_manager_source_class_init (FontManagerSourceClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
+    object_class->constructed = font_manager_source_constructed;
     object_class->dispose = font_manager_source_dispose;
     object_class->get_property = font_manager_source_get_property;
     object_class->set_property = font_manager_source_set_property;

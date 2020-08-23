@@ -22,7 +22,6 @@ namespace FontManager {
 
     public static GLib.Settings? settings = null;
     public static FontManager.Reject? reject = null;
-    public static FontManager.Sources? sources = null;
     public static MainWindow? main_window = null;
     public static StringHashset available_font_families = null;
     public static StringHashset temp_files = null;
@@ -51,6 +50,7 @@ namespace FontManager {
         };
 
         uint dbus_id = 0;
+        bool refresh_required = false;
 
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
@@ -77,6 +77,7 @@ namespace FontManager {
                     main_window.sidebar.category_model.update();
                     main_window.sidebar.standard.category_tree.select_first_row();
                 }
+                main_window.fontlist_pane.refilter();
                 main_window.fontlist.queue_draw();
                 main_window.browse.treeview.queue_draw();
             }
@@ -131,20 +132,8 @@ namespace FontManager {
             settings = get_gsettings(BUS_ID);
             available_font_families = new StringHashset();
             temp_files = new StringHashset();
-            sources = new Sources();
             reject = new Reject();
             reject.load();
-            sources.load();
-            sources.changed.connect(() => {
-                /* XXX : FIXME */
-                Idle.add(() => {
-                    Timeout.add_seconds(3, () => {
-                        refresh();
-                        return false;
-                    });
-                    return false;
-                });
-            });
             base.startup();
             return;
         }
@@ -184,11 +173,10 @@ namespace FontManager {
                     installer.process_sync(filelist);
                     stdout.printf("\n");
                 }
-                ensure_sources();
                 ensure_reject();
                 update_font_configuration();
                 try {
-                    load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+                    load_user_font_resources(reject.get_rejected_files(), null);
                 } catch (Error e) {
                     critical(e.message);
                 }
@@ -218,14 +206,6 @@ namespace FontManager {
             return 0;
         }
 
-        void ensure_sources () {
-            if (sources == null) {
-                sources = new Sources();
-                sources.load();
-            }
-            return;
-        }
-
         void ensure_reject () {
             if (reject == null) {
                 reject = new Reject();
@@ -235,8 +215,7 @@ namespace FontManager {
         }
 
         public string list () throws GLib.DBusError, GLib.IOError {
-            ensure_sources();
-            load_user_font_resources(null, sources.list_objects());
+            load_user_font_resources(null, null);
             GLib.List <string> families = list_available_font_families();
             assert(families.length() > 0);
             StringBuilder builder = new StringBuilder();
@@ -246,11 +225,10 @@ namespace FontManager {
         }
 
         public string list_full () throws GLib.DBusError, GLib.IOError {
-            ensure_sources();
             ensure_reject();
             update_font_configuration();
             try {
-                load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+                load_user_font_resources(reject.get_rejected_files(), null);
             } catch (Error e) {
                 critical(e.message);
             }
@@ -351,7 +329,7 @@ namespace FontManager {
                 enable_user_font_configuration(false);
                 update_font_configuration();
                 try {
-                    load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
+                    load_user_font_resources(reject.get_rejected_files(), null);
                 } catch (Error e) {
                     critical(e.message);
                 }
@@ -410,6 +388,18 @@ namespace FontManager {
                 critical(e.message);
             }
             Idle.add(() => { refresh(); return false; });
+            main_window.fontlist.user_sources.items_changed.connect(() => {
+                refresh_required = true;
+            });
+            /* XXX : Fix me...  */
+            ((UserSourceList) main_window.preference_pane["Sources"]).unmap.connect(() => {
+                if (refresh_required)
+                    Idle.add(() => {
+                        refresh();
+                        refresh_required = false;
+                        return false;
+                    });
+            });
             return;
         }
 
@@ -426,7 +416,6 @@ namespace FontManager {
                     main_db = null;
                     settings = null;
                     reject = null;
-                    sources = null;
                     temp_files = null;
                     clear_application_fonts();
                 } catch (Error e) {}
@@ -437,6 +426,12 @@ namespace FontManager {
         [DBus (visible = false)]
         public void import () {
             import_user_data();
+            refresh_required = true;
+            Idle.add(() => {
+                refresh();
+                refresh_required = false;
+                return false;
+            });
             return;
         }
 

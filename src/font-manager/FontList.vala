@@ -282,6 +282,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         public string? selected_family { get; private set; default = null; }
         public Font? selected_font { get; private set; default = null; }
         public UserActionModel? user_actions { get; set; default = null; }
+        public UserSourceModel? user_sources { get; set; default = null; }
 
         Gtk.Menu context_menu;
         Gtk.MenuItem? filename = null;
@@ -325,9 +326,9 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         }
 
         bool selection_is_sourced () requires (selected_font != null) {
-            if (sources != null)
-                foreach (string dir in sources)
-                    if (selected_font.filepath.contains(dir))
+            if (user_sources != null)
+                foreach (string path in user_sources)
+                    if (selected_font.filepath.contains(path))
                         return true;
             return false;
         }
