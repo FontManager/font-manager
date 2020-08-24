@@ -18,9 +18,6 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-internal double GET_COVERAGE (Json.Object o) { return o.get_double_member("coverage"); }
-internal unowned string GET_NAME (Json.Object o) { return o.get_string_member("name"); }
-
 internal string GET_ORTH_FOR (string f, int i) {
 return """SELECT json_extract(Orthography.support, '$')
 FROM Orthography WHERE json_valid(Orthography.support)
@@ -33,16 +30,20 @@ FROM Orthography WHERE json_valid(Orthography.support)
 AND Orthography.filepath = "%s"; """.printf(f);
 }
 
-const string SELECT_NON_LATIN_FONTS = """
+internal const string SELECT_NON_LATIN_FONTS = """
 SELECT DISTINCT description, Orthography.sample FROM Fonts
 JOIN Orthography USING (filepath, findex)
 WHERE Orthography.sample IS NOT NULL;
 """;
 
+internal unowned string GET_NAME (Json.Object o) { return o.get_string_member("name"); }
+internal double GET_COVERAGE (Json.Object o) { return o.get_double_member("coverage"); }
+
+
 namespace FontManager {
 
-    public GLib.HashTable get_non_latin_samples () {
-        var result = new GLib.HashTable <string, string> (str_hash, str_equal);
+    public HashTable get_non_latin_samples () {
+        var result = new HashTable <string, string> (str_hash, str_equal);
         try {
             var db = get_database(DatabaseType.BASE);
             db.execute_query(SELECT_NON_LATIN_FONTS);
@@ -54,117 +55,49 @@ namespace FontManager {
         return result;
     }
 
-    public class OrthographyListModel : Object, GLib.ListModel {
+    public class OrthographyListModel : Object, ListModel {
 
-        public Font? font { get; set; default = null; }
-        public Json.Object? orthography { get; private set; default = null; }
-        public weak OrthographyList? parent { get; set; default = null; }
+        public Json.Object? orthography { get; set; default = null; }
 
-        GLib.List <unowned Json.Node>? entries;
-        Json.Parser? parser = null;
-        PlaceHolder updating;
-        PlaceHolder unavailable;
-        weak PlaceHolder current_placeholder;
+        public List <unowned Json.Object>? items;
 
         construct {
-            parser = new Json.Parser();
-            updating = new PlaceHolder(null, null, _("Update in progress"), "emblem-synchronizing-symbolic");
-            updating.show();
-            unavailable = new PlaceHolder(null, null, null, "action-unavailable-symbolic");
-            unavailable.show();
-            notify["parent"].connect(() => {
-                parent.placeholder = updating;
-                current_placeholder = updating;
-            });
+            notify["orthography"].connect(() => { update_items(); });
         }
 
         public Type get_item_type () {
-            return typeof(Object);
+            return typeof(Orthography);
         }
 
         public uint get_n_items () {
-            return entries != null ? entries.length() : 0;
+            return items != null ? items.length() : 0;
         }
 
         public new Object? get_item (uint position) {
-            return_val_if_fail(entries != null, null);
-            return_val_if_fail(position < entries.length(), null);
-            Json.Node entry = entries.nth_data(position);
-            return new Orthography(entry.get_object());
+            return new Orthography(items.nth_data(position));
         }
 
-        public bool update_orthography () {
-            entries = null;
-            orthography = null;
-            if (!font.is_valid())
-                return false;
-            try {
-                Database? db = get_database(DatabaseType.BASE);
-                string query = GET_ORTH_FOR(font.filepath, font.findex);
-                db.execute_query(query);
-                if (db.stmt.step() == Sqlite.ROW)
-                    parse_json_result(db.stmt.column_text(0));
-                else {
-                    query = GET_BASE_ORTH_FOR(font.filepath);
-                    db.execute_query(query);
-                    if (db.stmt.step() == Sqlite.ROW)
-                        parse_json_result(db.stmt.column_text(0));
-                }
-                Idle.add(() => {
-                    if (current_placeholder == updating) {
-                        parent.placeholder = unavailable;
-                        current_placeholder = unavailable;
-                    }
-                    return false;
+        void update_items () {
+            uint n_items = items.length();
+            items = null;
+            items_changed(0, n_items, 0);
+            if (orthography != null) {
+                orthography.foreach_member((object, name, node) => {
+                    /* Skip anything which isn't an object representing an orthography */
+                    if (name == "sample")
+                        return;
+                    /* Basic Latin is always present but can be empty */
+                    if (GET_COVERAGE(node.get_object()) > 0)
+                        items.prepend(node.get_object());
                 });
-            } catch (DatabaseError e) {
-                Idle.add(() => {
-                    if (current_placeholder != updating) {
-                        parent.placeholder = updating;
-                        current_placeholder = updating;
-                    }
-                    return false;
+                items.sort((a, b) => {
+                    int result = (int) GET_COVERAGE(b) - (int) GET_COVERAGE(a);
+                    if (result == 0)
+                        result = natural_sort(GET_NAME(a), GET_NAME(b));
+                    return result;
                 });
             }
-            update_entries();
-            if (orthography == null)
-                return false;
-            return true;
-        }
-
-        void parse_json_result (string? json) {
-            return_if_fail(json != null);
-            try {
-                parser.load_from_data(json);
-            } catch (Error e) {
-                warning(e.message);
-                return;
-            }
-            Json.Node root = parser.get_root();
-            if (root.get_node_type() == Json.NodeType.OBJECT)
-                orthography = root.get_object();
-            return;
-        }
-
-        void update_entries () {
-            if (orthography == null)
-                return;
-            /* Remove anything which isn't an object representing an orthography */
-            if (orthography.has_member("sample"))
-                orthography.remove_member("sample");
-            GLib.List <unowned Json.Node>? _entries = orthography.get_values();
-            /* Basic Latin is always present but can be empty */
-            foreach (var entry in _entries)
-                if (GET_COVERAGE(entry.get_object()) > 0)
-                    entries.prepend(entry);
-            entries.sort((a, b) => {
-                Json.Object orth_a = a.get_object();
-                Json.Object orth_b = b.get_object();
-                int result = (int) GET_COVERAGE(orth_b) - (int) GET_COVERAGE(orth_a);
-                if (result == 0)
-                    result = natural_sort(GET_NAME(orth_a), GET_NAME(orth_b));
-                return result;
-            });
+            items_changed(0, 0, items.length());
             return;
         }
 
@@ -173,22 +106,19 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-orthography-list-box-row.ui")]
     public class OrthographyListBoxRow : Gtk.Grid {
 
-        public Orthography orthography { get; private set; }
-
         [GtkChild] Gtk.Label C_name;
         [GtkChild] Gtk.Label native_name;
         [GtkChild] Gtk.LevelBar coverage;
 
-        public OrthographyListBoxRow (Orthography orth) {
-            orthography = orth;
-            C_name.set_text(orth.name);
-            bool have_native_name = orth.native != null && orth.native != "";
-            string _native = have_native_name ? orth.native : orth.name;
-            native_name.set_markup("<big>%s</big>".printf(_native));
-            double cov_val = ((double) orth.coverage / 100);
-            coverage.set_value(cov_val);
-            string tooltip = _("Coverage");
-            set_tooltip_text("%s : %0.f%%".printf(tooltip, orth.coverage));
+        public static OrthographyListBoxRow from_item (Object item) {
+            Orthography orthography = (Orthography) item;
+            OrthographyListBoxRow row = new OrthographyListBoxRow();
+            row.C_name.set_text(orthography.name);
+            bool have_native_name = orthography.native != null && orthography.native != "";
+            row.native_name.set_text(have_native_name ? orthography.native : orthography.name);
+            row.coverage.set_value(((double) orthography.coverage / 100));
+            row.set_tooltip_text("%s : %0.f%%".printf(_("Coverage"), orthography.coverage));
+            return row;
         }
 
     }
@@ -196,15 +126,10 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-orthography-list.ui")]
     public class OrthographyList : Gtk.Box {
 
-        public signal void orthography_selected (Orthography? orth);
+        public signal void orthography_selected (Orthography? orthography);
 
         public Font? selected_font { get; set; default = null; }
-
-        public PlaceHolder? placeholder {
-            set {
-                list.set_placeholder(value);
-            }
-        }
+        public OrthographyListModel? model { get; set; default = null; }
 
         bool _visible_ = false;
         bool update_pending = false;
@@ -214,42 +139,80 @@ namespace FontManager {
         [GtkChild] Gtk.Button clear;
         [GtkChild] Gtk.Revealer clear_revealer;
 
-        OrthographyListModel model;
+        PlaceHolder place_holder;
 
         public OrthographyList () {
+            notify["model"].connect(() => { list.bind_model(model, OrthographyListBoxRow.from_item); });
             model = new OrthographyListModel();
-            model.parent = this;
-            var tmpl = "<b><big>%s</big></b>";
-            header.set_markup(tmpl.printf(_("Supported Orthographies")));
-            bind_property("selected-font", model, "font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+            place_holder = new PlaceHolder(null, null, null, null);
+            place_holder.show();
+            list.set_placeholder(place_holder);
+            header.set_text(_("Supported Orthographies"));
             clear.clicked.connect(() => { list.unselect_all(); });
             map.connect(() => { _visible_ = true; update_if_needed(); });
             unmap.connect(() => { _visible_ = false; });
             notify["selected-font"].connect(() => { update_pending = true; update_if_needed(); });
-            list.row_selected.connect((r) => {
-                clear_revealer.set_reveal_child(r != null);
-                if (r == null) {
+            list.row_selected.connect((row) => {
+                clear_revealer.set_reveal_child(row != null);
+                if (row == null) {
                     orthography_selected(null);
                     return;
                 }
-                var row = ((Gtk.Bin) r).get_child() as OrthographyListBoxRow;
-                orthography_selected(row.orthography);
+                orthography_selected((Orthography) model.get_item(row.get_index()));
             });
+        }
+
+        Json.Object? parse_json_result (string? json) {
+            return_val_if_fail(json != null, null);
+            try {
+                Json.Parser parser = new Json.Parser();
+                parser.load_from_data(json);
+                Json.Node root = parser.get_root();
+                if (root.get_node_type() == Json.NodeType.OBJECT)
+                    return root.get_object();
+            } catch (Error e) {
+                warning(e.message);
+                return null;
+            }
+            return null;
+        }
+
+        void update_model () {
+            model.orthography = null;
+            place_holder.message = _("Update in progress");
+            place_holder.icon_name = "emblem-synchronizing-symbolic";
+            if (!selected_font.is_valid())
+                return;
+            try {
+                Database? db = get_database(DatabaseType.BASE);
+                string query = GET_ORTH_FOR(selected_font.filepath, selected_font.findex);
+                db.execute_query(query);
+                if (db.stmt.step() == Sqlite.ROW)
+                    model.orthography = parse_json_result(db.stmt.column_text(0));
+                else {
+                    query = GET_BASE_ORTH_FOR(selected_font.filepath);
+                    db.execute_query(query);
+                    if (db.stmt.step() == Sqlite.ROW)
+                        model.orthography = parse_json_result(db.stmt.column_text(0));
+                }
+                /* No error and no results means this font file is likely broken or empty */
+                Idle.add(() => {
+                    place_holder.message = "";
+                    place_holder.icon_name = "action-unavailable-symbolic";
+                    return false;
+                });
+            } catch (DatabaseError e) {
+                /* Most likely cause of an error here is the database is currently being updated */
+                model.orthography = get_orthography_results(selected_font.source_object);
+            }
+            return;
         }
 
         void update_if_needed () {
             if (_visible_ && update_pending) {
-                list.bind_model(null, null);
-                if (!model.update_orthography())
-                    return;
-                list.bind_model(model, (item) => {
-                    return new OrthographyListBoxRow(item as Orthography);
-                });
+                update_model();
                 /* Show all available characters by default */
-                Idle.add(() => {
-                    list.unselect_all();
-                    return false;
-                });
+                list.unselect_all();
                 update_pending = false;
             }
             return;

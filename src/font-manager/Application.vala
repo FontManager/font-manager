@@ -90,11 +90,6 @@ namespace FontManager {
                 main_window.fontlist.samples = get_non_latin_samples();
                 if (main_window.fontlist.samples == null)
                     warning("Failed to generate previews for fonts which do not support Basic Latin");
-                /* XXX : FIXME! */
-                if (main_window.sidebar.mode == "Orthographies") {
-                    main_window.sidebar.mode = "Standard";
-                    main_window.sidebar.mode = "Orthographies";
-                }
             }
             return;
         }

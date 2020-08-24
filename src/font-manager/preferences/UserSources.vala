@@ -32,8 +32,7 @@ namespace FontManager {
             foreach (var path in this)
                 add_item(new Source(File.new_for_path(path)));
             items_changed.connect(() => {
-                Idle.add(() => { save(); return false; });
-                Idle.add(() => { save_active_items(); return false; });
+                Idle.add(() => { save(); save_active_items(); return false; });
             });
         }
 
