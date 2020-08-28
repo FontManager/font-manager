@@ -131,29 +131,30 @@ treeview {
     border-top-right-radius: 0.333em;
 }
 
-#FontManagerSubstituteList button {
+#FontManagerSubstituteList list button {
     border-color: alpha(@borders, 0.75);
 }
 
-#FontManagerAliasList row,
+#FontManagerSubstituteList list row,
 #FontManagerUserActionList row,
 #FontManagerUserSourceList row {
     border-radius: 0.25em;
 }
 
-#FontManagerAliasList row:selected,
+#FontManagerSubstituteList list row:selected,
 #FontManagerUserActionList row:selected,
 #FontManagerUserSourceList row:selected {
     background-color: alpha(@theme_selected_bg_color, 0.85);
     border-radius: 0.25em;
 }
 
-#FontManagerAliasList row:selected button {
+#FontManagerSubstituteList list row:selected button {
     background-color: @theme_bg_color;
     border-radius: 0.25em;
 }
 
-#FontManagerAliasRow list row:hover,
+#FontManagerSubstituteList row:hover,
+#FontManagerSubstituteListRow roe:hover,
 #FontManagerDesktopPreferences list row:hover {
     background-color: transparent;
 }
@@ -165,4 +166,18 @@ treeview {
 #FontManagerPropertiesPane separator {
     padding: 0px;
     margin: 12px 6px 12px 6px;
+}
+
+#FontManagerFontListDragCount {
+    border-radius: 50%;
+    border-color: alpha(@theme_selected_fg_color, 0.75);
+    border-style: solid;
+    border-width: 0.5px;
+    color: @theme_selected_fg_color;
+    background-color: alpha(@theme_selected_bg_color, 0.85);;
+    font-weight: bold;
+    font-size: larger;
+    padding: 6px;
+    min-width: 24px;
+    min-height: 24px;
 }

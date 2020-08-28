@@ -287,6 +287,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         Gtk.Menu context_menu;
         Gtk.MenuItem? filename = null;
         Gtk.MenuItem? installable = null;
+        Gtk.Overlay? drag_icon = null;
 
         public FontList () {
             name = "FontList";
@@ -317,11 +318,24 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             return selected;
         }
 
-        /* TODO :
-         * Set custom icon which includes selection count
-         */
         public override void drag_begin (Gdk.DragContext context) {
-            Gtk.drag_set_icon_name(context, "font-x-generic", 0, 0);
+            drag_icon = null;
+            drag_icon = new Gtk.Overlay() {
+                border_width = 16
+            };
+            var icon = new Gtk.Image();
+            icon.set_from_icon_name("font-x-generic", Gtk.IconSize.DIALOG);
+            drag_icon.add(icon);
+            var drag_count = new Gtk.Label(null) {
+                name = "FontManagerFontListDragCount",
+                opacity = 0.9,
+                halign = Gtk.Align.END,
+                valign = Gtk.Align.START,
+                label = get_selection().get_selected_rows(null).length().to_string()
+            };
+            drag_icon.add_overlay(drag_count);
+            drag_icon.show_all();
+            Gtk.drag_set_icon_widget(context, drag_icon, 10, 36);
             return;
         }
 

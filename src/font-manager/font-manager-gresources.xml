@@ -2,7 +2,6 @@
 <gresources>
     <gresource prefix="/org/gnome/FontManager">
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-main-window.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-alias-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-browse-view.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-compare-view.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-config-controls.ui</file>
@@ -22,6 +21,7 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-sidebar.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-standard-sidebar.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-substitute.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-substitute-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-subpixel-geometry-icon.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-subpixel-geometry.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-title-button-style.ui</file>
