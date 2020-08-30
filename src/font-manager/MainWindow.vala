@@ -674,9 +674,7 @@ namespace FontManager {
             compare.preview_size = settings.get_double("compare-font-size");
             compare.entry.text = settings.get_string("compare-preview-text");
 
-            var preview_text = settings.get_string("preview-text");
-            if (preview_text != "DEFAULT")
-                preview_pane.preview_text = preview_text;
+            preview_pane.preview_text = settings.get_string("preview-text");
             fontlist_pane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSidebarMode.COLLECTION);
 
             mode = (FontManager.Mode) settings.get_enum("mode");

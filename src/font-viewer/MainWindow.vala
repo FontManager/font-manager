@@ -237,9 +237,7 @@ namespace FontManager.FontViewer {
             set_default_size(w, h);
             move(x, y);
             preview_pane.preview_size = settings.get_double("preview-font-size");
-            var preview_text = settings.get_string("preview-text");
-            if (preview_text != "DEFAULT")
-                preview_pane.preview_text = preview_text;
+            preview_pane.preview_text = settings.get_string("preview-text");
             preview_pane.preview_mode = ((FontPreviewMode) settings.get_enum("mode"));
             Idle.add(() => { bind_settings(); return false; });
             return;

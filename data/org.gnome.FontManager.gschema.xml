@@ -157,7 +157,13 @@
         <key name="preview-text" type="s">
             <summary>Preview text</summary>
             <description>Last preview text used</description>
-            <default>"DEFAULT"</default>
+            <default>"    The quick brown fox jumps over the lazy dog.
+
+    ABCDEFGHIJKLMNOPQRSTUVWXYZ
+    abcdefghijklmnopqrstuvwxyz
+    1234567890.:,;(*!?')
+
+    "</default>
         </key>
 
         <key name="browse-mode" enum="org.gnome.FontManager.BrowseMode">
