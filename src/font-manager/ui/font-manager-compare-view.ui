@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.37.0 -->
 <interface domain="font-manager">
   <requires lib="gtk+" version="3.20"/>
   <template class="FontManagerCompare" parent="GtkBox">
@@ -24,13 +25,12 @@
       <object class="GtkBox" id="controls">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
-        <property name="margin-left">1</property>
-        <property name="margin-right">1</property>
+        <property name="margin-start">1</property>
+        <property name="margin-end">1</property>
         <property name="margin-top">1</property>
         <property name="margin-bottom">1</property>
         <property name="border-width">2</property>
         <property name="spacing">4</property>
-        <property name="homogeneous">True</property>
         <child type="center">
           <object class="FontManagerPreviewEntry" id="entry">
             <property name="visible">True</property>
@@ -54,6 +54,8 @@
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
             <property name="tooltip-text" translatable="yes">Select background color</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
             <property name="use-alpha">True</property>
             <property name="title" translatable="yes">Select background color</property>
             <property name="alpha">65535</property>
@@ -61,7 +63,7 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
             <property name="padding">1</property>
             <property name="pack-type">end</property>
             <property name="position">0</property>
@@ -73,6 +75,8 @@
             <property name="can-focus">True</property>
             <property name="receives-default">True</property>
             <property name="tooltip-text" translatable="yes">Select text color</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
             <property name="use-alpha">True</property>
             <property name="title" translatable="yes">Select text color</property>
             <property name="alpha">65535</property>
@@ -80,7 +84,7 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
             <property name="padding">1</property>
             <property name="pack-type">end</property>
             <property name="position">1</property>
@@ -93,6 +97,8 @@
             <property name="focus-on-click">False</property>
             <property name="receives-default">True</property>
             <property name="tooltip-text" translatable="yes">Add selected font to comparison</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkImage">
@@ -104,18 +110,19 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
             <property name="padding">1</property>
             <property name="position">2</property>
           </packing>
         </child>
         <child>
           <object class="GtkButton" id="remove_button">
-            <property name="visible">False</property>
             <property name="can-focus">True</property>
             <property name="focus-on-click">False</property>
             <property name="receives-default">True</property>
             <property name="tooltip-text" translatable="yes">Remove selected font from comparison</property>
+            <property name="halign">start</property>
+            <property name="valign">center</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkImage">
@@ -127,7 +134,7 @@
           </object>
           <packing>
             <property name="expand">False</property>
-            <property name="fill">True</property>
+            <property name="fill">False</property>
             <property name="padding">1</property>
             <property name="position">3</property>
           </packing>

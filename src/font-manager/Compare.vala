@@ -176,6 +176,8 @@ namespace FontManager {
             _preview_text = default_preview_text = get_localized_pangram();
             entry.set_placeholder_text(preview_text);
             set_button_relief_style(controls);
+            add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            add_button.set_relief(Gtk.ReliefStyle.NORMAL);
             foreground_color = fg_color_button.get_rgba();
             background_color = bg_color_button.get_rgba();
             bind_property("foreground_color", fg_color_button, "rgba", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
@@ -185,11 +187,25 @@ namespace FontManager {
             list.row_selected.connect((row) => {
                 remove_button.set_visible(row != null);
             });
+            model.items_changed.connect((p, a, r) => {
+                if (model.get_n_items() > 0) {
+                    add_button.set_relief(Gtk.ReliefStyle.NONE);
+                    add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+                } else {
+                    add_button.set_relief(Gtk.ReliefStyle.NORMAL);
+                    add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+                }
+            });
             add_button.clicked.connect(() => {
                 add_from_string(selected_font.description);
             });
             remove_button.clicked.connect(() => {
-                on_remove();
+                if (list.get_selected_row() == null)
+                    return;
+                uint position = list.get_selected_row().get_index();
+                model.remove_item(position);
+                while (position > 0 && position >= model.get_n_items()) { position--; }
+                list.select_row(list.get_row_at_index((int) position));
             });
             notify["preview-text"].connect(() => {
                 entry.set_placeholder_text(preview_text);
@@ -227,16 +243,6 @@ namespace FontManager {
             foreach (var item in model.items)
                 results += item.description;
             return results;
-        }
-
-        void on_remove () {
-            if (list.get_selected_row() == null)
-                return;
-            uint position = list.get_selected_row().get_index();
-            model.remove_item(position);
-            while (position > 0 && position >= model.get_n_items()) { position--; }
-            list.select_row(list.get_row_at_index((int) position));
-            return;
         }
 
     }
