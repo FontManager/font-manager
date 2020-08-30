@@ -31,15 +31,29 @@ namespace FontManager {
     public class CompareEntry : Object {
 
         public string? description { get; set; default = null; }
-        public string? preview_text { get; set; default = null; }
         public double preview_size { get; set; default = MIN_FONT_SIZE; }
         public Gdk.RGBA foreground_color { get; set; }
         public Gdk.RGBA background_color { get; set; }
         public Pango.FontDescription? font_desc { get; set; default = null; }
         public Pango.AttrList? attrs { get; set; default = null; }
 
-        public CompareEntry (string description, string preview_text) {
+        public string? preview_text {
+            get {
+                return _preview_text;
+            }
+            set {
+                _preview_text = (value != null && value != local_pangram) ? value : initial_preview;
+            }
+        }
+
+        string? _preview_text = null;
+        string? initial_preview = null;
+        string? local_pangram = null;
+
+        public CompareEntry (string description, string preview_text, string default_preview) {
             Object(description: description, preview_text: preview_text);
+            initial_preview = default_preview;
+            local_pangram = get_localized_pangram();
             font_desc = Pango.FontDescription.from_string(description);
             attrs = new Pango.AttrList();
             attrs.insert(Pango.attr_fallback_new(false));
@@ -135,10 +149,10 @@ namespace FontManager {
 
         public string? preview_text {
             get {
-                return _preview_text;
+                return _preview_text != null ? _preview_text : default_preview_text;
             }
             set {
-                _preview_text = value != null ? value : default_preview_text;
+                _preview_text = value;
             }
         }
 
@@ -152,14 +166,14 @@ namespace FontManager {
         [GtkChild] Gtk.Button remove_button;
         [GtkChild] Gtk.ListBox list;
 
-        string _preview_text;
-        string default_preview_text;
+        string? _preview_text = null;
+        string? default_preview_text = null;
 
         public override void constructed () {
             name = "FontManagerCompare";
             notify["model"].connect(() => { list.bind_model(model, CompareRow.from_item); });
             model = new CompareModel();
-            preview_text = default_preview_text = get_localized_pangram();
+            _preview_text = default_preview_text = get_localized_pangram();
             entry.set_placeholder_text(preview_text);
             set_button_relief_style(controls);
             foreground_color = fg_color_button.get_rgba();
@@ -180,6 +194,9 @@ namespace FontManager {
             notify["preview-text"].connect(() => {
                 entry.set_placeholder_text(preview_text);
             });
+            entry.changed.connect(() => {
+                preview_text = (entry.text_length > 0) ? entry.text : null;
+            });
             bg_color_button.color_set.connect(() => { color_set(); });
             fg_color_button.color_set.connect(() => { color_set(); });
             base.constructed();
@@ -192,9 +209,12 @@ namespace FontManager {
                 var preview = entry.text_length > 0 ? entry.text :
                               (samples != null && samples.contains(description)) ?
                               samples.lookup(description) : preview_text;
-                var item = new CompareEntry(description, preview);
+                var default_preview = (samples != null && samples.contains(description)) ?
+                                       samples.lookup(description) : default_preview_text;
+                var item = new CompareEntry(description, preview, default_preview);
                 BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
                 bind_property("preview-size", item, "preview-size", flags);
+                bind_property("preview-text", item, "preview-text", flags);
                 bind_property("foreground-color", item, "foreground-color", flags);
                 bind_property("background-color", item, "background-color", flags);
                 model.add_item(item);

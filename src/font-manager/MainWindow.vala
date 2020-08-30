@@ -688,9 +688,14 @@ namespace FontManager {
             else
                 menu_button.popup.hide();
 
-            foreach (var entry in settings.get_strv("compare-list"))
-                if (available_font_families != null)
-                    compare.add_from_string(entry, available_font_families.list());
+            Idle.add(() => {
+                if (compare.samples == null)
+                    return GLib.Source.CONTINUE;
+                foreach (var entry in settings.get_strv("compare-list"))
+                    if (available_font_families != null)
+                        compare.add_from_string(entry, available_font_families.list());
+                return GLib.Source.REMOVE;
+            });
 
             Idle.add(() => {
                 var foreground = Gdk.RGBA();
