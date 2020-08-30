@@ -185,11 +185,11 @@ Note that not all environments/applications will honor these settings.""");
                 model.add_items(sources);
             });
             controls.remove_selected.connect(() => {
+                if (list.get_selected_row() == null)
+                    return;
                 uint position = list.get_selected_row().get_index();
                 model.remove_item(position);
-                uint max = model.get_n_items() - 1;
-                while (position > max)
-                    position--;
+                while (position > 0 && position >= model.get_n_items()) { position--; }
                 list.select_row(list.get_row_at_index((int) position));
             });
             list.row_selected.connect((row) => {

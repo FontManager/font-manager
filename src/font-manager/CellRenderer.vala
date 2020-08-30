@@ -31,10 +31,10 @@ namespace FontManager {
         }
 
         public override void render (Cairo.Context cr,
-                                        Gtk.Widget widget,
-                                        Gdk.Rectangle background_area,
-                                        Gdk.Rectangle cell_area,
-                                        Gtk.CellRendererState flags)
+                                     Gtk.Widget widget,
+                                     Gdk.Rectangle background_area,
+                                     Gdk.Rectangle cell_area,
+                                     Gtk.CellRendererState flags)
         {
             if (render_background) {
                 Gdk.Rectangle a = get_aligned_area(widget, flags, cell_area);

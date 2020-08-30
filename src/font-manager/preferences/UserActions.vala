@@ -221,11 +221,11 @@ If FAMILY or STYLE are found in the argument list they will also be replaced."""
                 model.add_item(new UserAction());
             });
             controls.remove_selected.connect(() => {
+                if (list.get_selected_row() == null)
+                    return;
                 uint position = list.get_selected_row().get_index();
                 model.remove_item(position);
-                uint max = model.get_n_items() - 1;
-                while (position > max)
-                    position--;
+                while (position > 0 && position >= model.get_n_items()) { position--; }
                 list.select_row(list.get_row_at_index((int) position));
             });
             list.row_selected.connect((row) => {

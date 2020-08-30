@@ -3,7 +3,7 @@
   <requires lib="gtk+" version="3.20"/>
   <template class="FontManagerCompare" parent="GtkBox">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="FontManagerFontScale" id="fontscale">
@@ -16,67 +16,21 @@
       <packing>
         <property name="expand">False</property>
         <property name="fill">True</property>
-        <property name="pack_type">end</property>
+        <property name="pack-type">end</property>
         <property name="position">0</property>
       </packing>
     </child>
     <child>
       <object class="GtkBox" id="controls">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_left">1</property>
-        <property name="margin_right">1</property>
-        <property name="margin_top">1</property>
-        <property name="margin_bottom">1</property>
-        <property name="border_width">2</property>
+        <property name="can-focus">False</property>
+        <property name="margin-left">1</property>
+        <property name="margin-right">1</property>
+        <property name="margin-top">1</property>
+        <property name="margin-bottom">1</property>
+        <property name="border-width">2</property>
         <property name="spacing">4</property>
         <property name="homogeneous">True</property>
-        <child>
-          <object class="GtkButton" id="add_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="focus_on_click">False</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Add selected font to comparison</property>
-            <property name="relief">none</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">list-add-symbolic</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="padding">1</property>
-            <property name="position">2</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkButton" id="remove_button">
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="focus_on_click">False</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Remove selected font from comparison</property>
-            <property name="relief">none</property>
-            <child>
-              <object class="GtkImage">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="icon_name">list-remove-symbolic</property>
-              </object>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="padding">1</property>
-            <property name="position">3</property>
-          </packing>
-        </child>
         <child type="center">
           <object class="FontManagerPreviewEntry" id="entry">
             <property name="visible">True</property>
@@ -97,10 +51,10 @@
         <child>
           <object class="GtkColorButton" id="bg_color_button">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Select background color</property>
-            <property name="use_alpha">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Select background color</property>
+            <property name="use-alpha">True</property>
             <property name="title" translatable="yes">Select background color</property>
             <property name="alpha">65535</property>
             <property name="rgba">rgb(255,255,255)</property>
@@ -109,17 +63,17 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="padding">1</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
         <child>
           <object class="GtkColorButton" id="fg_color_button">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="tooltip_text" translatable="yes">Select text color</property>
-            <property name="use_alpha">True</property>
+            <property name="can-focus">True</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Select text color</property>
+            <property name="use-alpha">True</property>
             <property name="title" translatable="yes">Select text color</property>
             <property name="alpha">65535</property>
             <property name="rgba">rgb(0,0,0)</property>
@@ -128,8 +82,54 @@
             <property name="expand">False</property>
             <property name="fill">True</property>
             <property name="padding">1</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="add_button">
+            <property name="visible">True</property>
+            <property name="can-focus">True</property>
+            <property name="focus-on-click">False</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Add selected font to comparison</property>
+            <property name="relief">none</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">list-add-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="padding">1</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="remove_button">
+            <property name="visible">False</property>
+            <property name="can-focus">True</property>
+            <property name="focus-on-click">False</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Remove selected font from comparison</property>
+            <property name="relief">none</property>
+            <child>
+              <object class="GtkImage">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="icon-name">list-remove-symbolic</property>
+              </object>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="padding">1</property>
+            <property name="position">3</property>
           </packing>
         </child>
       </object>
@@ -142,7 +142,7 @@
     <child>
       <object class="GtkSeparator">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
       </object>
       <packing>
@@ -154,17 +154,21 @@
     <child>
       <object class="GtkScrolledWindow">
         <property name="visible">True</property>
-        <property name="can_focus">True</property>
+        <property name="can-focus">True</property>
         <child>
-          <object class="GtkTreeView" id="treeview">
-            <property name="name">FontManagerCompareTree</property>
+          <object class="GtkViewport">
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="headers_visible">False</property>
-            <property name="show_expanders">False</property>
-            <property name="tooltip_column">1</property>
-            <child internal-child="selection">
-              <object class="GtkTreeSelection"/>
+            <property name="can-focus">False</property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <property name="shadow-type">none</property>
+            <child>
+              <object class="GtkListBox" id="list">
+                <property name="visible">True</property>
+                <property name="can-focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+              </object>
             </child>
           </object>
         </child>
@@ -180,4 +184,3 @@
     </style>
   </template>
 </interface>
-

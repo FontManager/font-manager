@@ -321,7 +321,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         public override void drag_begin (Gdk.DragContext context) {
             drag_icon = null;
             drag_icon = new Gtk.Overlay() {
-                border_width = 16
+                border_width = 8
             };
             var icon = new Gtk.Image();
             icon.set_from_icon_name("font-x-generic", Gtk.IconSize.DIALOG);
@@ -335,7 +335,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             };
             drag_icon.add_overlay(drag_count);
             drag_icon.show_all();
-            Gtk.drag_set_icon_widget(context, drag_icon, 10, 36);
+            Gtk.drag_set_icon_widget(context, drag_icon, 20, 40);
             return;
         }
 

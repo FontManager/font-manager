@@ -18,15 +18,108 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-/* TODO : Move to Gtk.ListBox */
-
 namespace FontManager {
 
-    /* Most of the presentation and logic in our Compare view is based on
-     * Gnome Specimen by Wouter Bolsterlee.
-     *
-     * https://launchpad.net/gnome-specimen
-     */
+    internal Pango.Color gdk_rgba_to_pango_color (Gdk.RGBA rgba) {
+        var color = Pango.Color();
+        color.red = (uint16) (rgba.red * 65535);
+        color.green = (uint16) (rgba.green * 65535);
+        color.blue = (uint16) (rgba.blue * 65535);
+        return color;
+    }
+
+    public class CompareEntry : Object {
+
+        public string? description { get; set; default = null; }
+        public string? preview_text { get; set; default = null; }
+        public double preview_size { get; set; default = MIN_FONT_SIZE; }
+        public Gdk.RGBA foreground_color { get; set; }
+        public Gdk.RGBA background_color { get; set; }
+        public Pango.FontDescription? font_desc { get; set; default = null; }
+        public Pango.AttrList? attrs { get; set; default = null; }
+
+        public CompareEntry (string description, string preview_text) {
+            Object(description: description, preview_text: preview_text);
+            font_desc = Pango.FontDescription.from_string(description);
+            attrs = new Pango.AttrList();
+            attrs.insert(Pango.attr_fallback_new(false));
+            attrs.insert(new Pango.AttrFontDesc(font_desc));
+            font_desc.set_absolute_size(preview_size * Pango.SCALE);
+            attrs.insert(Pango.attr_foreground_new(0, 0, 0));
+            attrs.insert(Pango.attr_background_new(65535, 65535, 65535));
+            attrs.insert(Pango.attr_foreground_alpha_new(0));
+            attrs.insert(Pango.attr_background_alpha_new(0));
+            notify["foreground-color"].connect(() => {
+                var fg = gdk_rgba_to_pango_color(foreground_color);
+                attrs.change(Pango.attr_foreground_new(fg.red, fg.green, fg.blue));
+                var alpha = (uint16) (foreground_color.alpha * 65535);
+                attrs.change(Pango.attr_foreground_alpha_new(alpha));
+                notify_property("attrs");
+            });
+            notify["background-color"].connect(() => {
+                var bg = gdk_rgba_to_pango_color(background_color);
+                attrs.change(Pango.attr_background_new(bg.red, bg.green, bg.blue));
+                var alpha = (uint16) (background_color.alpha * 65535);
+                attrs.change(Pango.attr_background_alpha_new(alpha));
+                notify_property("attrs");
+            });
+            notify["preview-size"].connect(() => {
+                font_desc.set_absolute_size(preview_size * Pango.SCALE);
+                attrs.change(new Pango.AttrFontDesc(font_desc));
+                notify_property("attrs");
+            });
+        }
+
+    }
+
+    public class CompareModel : Object, ListModel {
+
+        public List <CompareEntry>? items = null;
+
+        public Type get_item_type () {
+            return typeof(CompareEntry);
+        }
+
+        public uint get_n_items () {
+            return items != null ? items.length() : 0;
+        }
+
+        public Object? get_item (uint position) {
+            return items.nth_data(position);
+        }
+
+        public void add_item (CompareEntry item) {
+            items.append(item);
+            uint position = items.length() - 1;
+            items_changed(position, 0, 1);
+            return;
+        }
+
+        public void remove_item (uint position) {
+            items.remove(items.nth_data(position));
+            items_changed(position, 1, 0);
+            return;
+        }
+
+    }
+
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-compare-row.ui")]
+    public class CompareRow : Gtk.Grid {
+
+        [GtkChild] Gtk.Label description;
+        [GtkChild] Gtk.Label preview;
+
+        public static CompareRow from_item (Object item) {
+            var row = new CompareRow();
+            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            item.bind_property("description", row.description, "label", flags);
+            item.bind_property("preview-text", row.preview, "label", flags);
+            item.bind_property("attrs", row.preview, "attributes", flags);
+            return row;
+        }
+
+    }
+
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-compare-view.ui")]
     public class Compare : Gtk.Box {
 
@@ -38,11 +131,7 @@ namespace FontManager {
         public Gtk.Adjustment adjustment { get; set; }
         public GLib.HashTable <string, string>? samples { get; set; default = null; }
         public Font? selected_font { get; set; default = null; }
-
-        [GtkChild] public PreviewEntry entry { get; }
-        [GtkChild] public FontScale fontscale { get; }
-        [GtkChild] public Gtk.ColorButton bg_color_button { get; }
-        [GtkChild] public Gtk.ColorButton fg_color_button { get; }
+        public CompareModel model { get; set; }
 
         public string? preview_text {
             get {
@@ -53,63 +142,34 @@ namespace FontManager {
             }
         }
 
+        [GtkChild] public PreviewEntry entry { get; }
+        [GtkChild] public FontScale fontscale { get; }
+        [GtkChild] public Gtk.ColorButton bg_color_button { get; }
+        [GtkChild] public Gtk.ColorButton fg_color_button { get; }
+
         [GtkChild] Gtk.Box controls;
         [GtkChild] Gtk.Button add_button;
         [GtkChild] Gtk.Button remove_button;
-        [GtkChild] Gtk.TreeView treeview;
+        [GtkChild] Gtk.ListBox list;
 
-        bool have_default_colors = false;
         string _preview_text;
         string default_preview_text;
-        Gtk.ListStore store;
-        Gtk.TreeViewColumn column;
-        Gtk.CellRendererText renderer;
-        Gdk.RGBA default_fg_color;
-        Gdk.RGBA default_bg_color;
-        Pango.FontDescription default_desc;
 
         public override void constructed () {
+            name = "FontManagerCompare";
+            notify["model"].connect(() => { list.bind_model(model, CompareRow.from_item); });
+            model = new CompareModel();
             preview_text = default_preview_text = get_localized_pangram();
-            default_desc = Pango.FontDescription.from_string(DEFAULT_FONT);
-            store = new Gtk.ListStore(2, typeof(Pango.FontDescription), typeof(string));
             entry.set_placeholder_text(preview_text);
-            renderer = new Gtk.CellRendererText();
-            column = new Gtk.TreeViewColumn();
-            column.pack_start(renderer, true);
-            column.set_cell_data_func(renderer, cell_data_func);
-            column.set_attributes(renderer, "font-desc", 0, "text", 1, null);
-            treeview.append_column(column);
-            treeview.set_model(store);
             set_button_relief_style(controls);
             foreground_color = fg_color_button.get_rgba();
             background_color = bg_color_button.get_rgba();
-            bind_properties();
-            connect_signals();
-            base.constructed();
-            return;
-        }
-
-        void bind_properties () {
             bind_property("foreground_color", fg_color_button, "rgba", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             bind_property("background_color", bg_color_button, "rgba", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             bind_property("preview-size", fontscale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             fontscale.bind_property("adjustment", this, "adjustment", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            return;
-        }
-
-        void connect_signals() {
-            /* selection, model, path, currently_selected_path */
-            treeview.get_selection().set_select_function((s, m, p, csp) => {
-                /* Disallow selection of preview rows */
-                if (p.get_indices()[0] % 2 == 0) {
-                    /* Name row */
-                    return true;
-                } else {
-                    /* Preview row */
-                    if (p.prev())
-                        s.select_path(p);
-                    return false;
-                }
+            list.row_selected.connect((row) => {
+                remove_button.set_visible(row != null);
             });
             add_button.clicked.connect(() => {
                 add_from_string(selected_font.description);
@@ -117,152 +177,46 @@ namespace FontManager {
             remove_button.clicked.connect(() => {
                 on_remove();
             });
-            bg_color_button.color_set.connect(() => { color_set(); });
-            fg_color_button.color_set.connect(() => { color_set(); });
-            notify["preview-size"].connect(() => { treeview.get_column(0).queue_resize(); });
-
-            style_updated.connect(() => {
-                update_default_colors();
-            });
-
-            entry.changed.connect(() => { treeview.queue_draw(); });
             notify["preview-text"].connect(() => {
                 entry.set_placeholder_text(preview_text);
             });
-            return;
-        }
-
-        void update_default_colors () {
-            Gtk.StyleContext ctx = get_style_context();
-            bool have_fg = ctx.lookup_color("theme_text_color", out default_fg_color);
-            bool have_bg = ctx.lookup_color("theme_base_color", out default_bg_color);
-            have_default_colors = (have_fg && have_bg);
+            bg_color_button.color_set.connect(() => { color_set(); });
+            fg_color_button.color_set.connect(() => { color_set(); });
+            base.constructed();
             return;
         }
 
         public void add_from_string (string description, GLib.List <string>? checklist = null) {
-            Gtk.TreeIter iter;
-            Gtk.TreeIter _iter;
             Pango.FontDescription _desc = Pango.FontDescription.from_string(description);
             if (checklist == null || checklist.find_custom(_desc.get_family(), strcmp) != null) {
-                store.append(out iter);
-                store.set(iter, 0, default_desc, 1, description, -1);
-                store.append(out _iter);
-                store.set(_iter, 0, _desc, 1, description, -1);
-                Gtk.TreePath path = store.get_path(_iter);
-                treeview.scroll_to_cell(path, null, false, 0.0f, 0.0f);
+                var preview = entry.text_length > 0 ? entry.text :
+                              (samples != null && samples.contains(description)) ?
+                              samples.lookup(description) : preview_text;
+                var item = new CompareEntry(description, preview);
+                BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+                bind_property("preview-size", item, "preview-size", flags);
+                bind_property("foreground-color", item, "foreground-color", flags);
+                bind_property("background-color", item, "background-color", flags);
+                model.add_item(item);
             }
             return;
         }
 
-        void cell_data_func (Gtk.CellLayout layout,
-                             Gtk.CellRenderer cell,
-                             Gtk.TreeModel model,
-                             Gtk.TreeIter treeiter) {
-            Pango.AttrList attrs = new Pango.AttrList();
-            attrs.insert(Pango.attr_fallback_new(false));
-            cell.set_property("attributes", attrs);
-            cell.set_property("ypad", 4);
-            Value val;
-            model.get_value(treeiter, 1, out val);
-            string description = (string) val;
-            if (model.get_path(treeiter).get_indices()[0] % 2 == 0) {
-                /* Name row */
-                if (have_default_colors) {
-                    cell.set_property("foreground-rgba", default_fg_color);
-                    cell.set_property("background-rgba", default_bg_color);
-                }
-                cell.set_property("size-points", get_desc_size());
-                cell.set_property("weight", 400);
-            } else {
-                /* Preview row */
-                cell.set_property("foreground-rgba", foreground_color);
-                cell.set_property("background-rgba", background_color);
-                if (entry.text_length > 0)
-                    cell.set_property("text", entry.text);
-                else if (samples != null && samples.contains(description))
-                    cell.set_property("text", samples.lookup(description));
-                else
-                    cell.set_property("text", preview_text);
-                cell.set_property("size-points", preview_size);
-            }
-            return;
-        }
-
-        public string [] list () {
+        public string [] list_items () {
             string [] results = {};
-            /* (model, path, iter) */
-            store.foreach((m, p, i) => {
-                Value val;
-                if (p.get_indices()[0] % 2 == 0)
-                    /* Skip name rows */
-                    return false;
-                m.get_value(i, 1, out val);
-                results += (string) val;
-                val.unset();
-                /* Keep going */
-                return false;
-            });
+            foreach (var item in model.items)
+                results += item.description;
             return results;
         }
 
         void on_remove () {
-            Gtk.TreeModel model;
-            Gtk.TreeIter iter;
-            treeview.get_selection().get_selected(out model, out iter);
-            /* NOTE:
-             * There is a warning attached to this function (iter_is_valid)
-             * about it being slow and only intended for debugging purposes.
-             *
-             * This particular tree should never grow to the point where this could become an issue.
-             */
-            if (store.iter_is_valid(iter)) {
-                /* NOTE:
-                 * Saving a string and using it to reset the iter became necessary
-                 * since the iter was always being set to null after calling remove.
-                 */
-                string iter_as_string = store.get_string_from_iter(iter);
-                store.remove(ref iter);
-                store.get_iter_from_string(out iter, iter_as_string);
-                bool still_valid = store.remove(ref iter);
-                /* Set the cursor to a remaining row instead of having the cursor disappear.
-                 * This allows for easy deletion of multiple previews by hitting the remove
-                 * button repeatedly.
-                 */
-                if (still_valid) {
-                    /* The treeiter is still valid. This means that another row has "shifted" to
-                     * the location the deleted row occupied before. Set the cursor to that row.
-                     */
-                     store.get_iter_from_string(out iter, iter_as_string);
-                     Gtk.TreePath path = model.get_path(iter);
-                     if (path != null && path.get_indices()[0] >= 0)
-                         treeview.set_cursor(path, column, false);
-                } else {
-                     /* The treeiter is no longer valid. In our case this means the bottom row in
-                      * the treeview was deleted. Set the cursor to the new bottom row.
-                      */
-                    int n_children = model.iter_n_children(null) - 2;
-                    if (n_children >= 0) {
-                        Gtk.TreePath path = new Gtk.TreePath.from_string(n_children.to_string());
-                        treeview.get_selection().select_path(path);
-                    }
-                }
-            }
+            if (list.get_selected_row() == null)
+                return;
+            uint position = list.get_selected_row().get_index();
+            model.remove_item(position);
+            while (position > 0 && position >= model.get_n_items()) { position--; }
+            list.select_row(list.get_row_at_index((int) position));
             return;
-        }
-
-        double get_desc_size () {
-            double desc_size = preview_size;
-            if (desc_size <= 10)
-                return desc_size;
-            else if (desc_size <= 20)
-                return desc_size / 1.75;
-            else if (desc_size <= 30)
-                return desc_size / 2;
-            else if (desc_size <= 50)
-                return desc_size / 2.25;
-            else
-                return desc_size / 2.5;
         }
 
     }
