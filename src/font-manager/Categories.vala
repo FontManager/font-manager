@@ -387,7 +387,7 @@ namespace FontManager {
     }
 
     Category construct_info_filter (Database db, FilterData data) {
-        string keyword = data.column.replace("\"", "\\\"").replace("'", "\'");
+        string keyword = data.column.replace("\"", "\\\"").replace("'", "''");
         var filter = new Category(data.name, data.comment, "folder", null, data.index);
         try {
             db.execute_query("SELECT DISTINCT [%s] FROM Metadata ORDER BY [%s];".printf(keyword, keyword));

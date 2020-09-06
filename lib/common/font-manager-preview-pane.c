@@ -350,9 +350,11 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
     FontManagerDatabase *db = font_manager_get_database(FONT_MANAGER_DATABASE_TYPE_BASE, &error);
     g_object_get(G_OBJECT(self->font), "filepath", &filepath, "findex", &index, NULL);
     if (error == NULL) {
-        const gchar *select = "SELECT * FROM Metadata WHERE filepath='%s' AND findex='%i'";
-        g_autofree gchar *query = g_strdup_printf(select, filepath, index);
+        const gchar *select = "SELECT * FROM Metadata WHERE filepath = %s AND findex = '%i'";
+        char *path = sqlite3_mprintf("%Q", filepath);
+        g_autofree gchar *query = g_strdup_printf(select, path, index);
         res = font_manager_database_get_object(db, query, &error);
+        sqlite3_free(path);
     }
     if (error != NULL) {
         g_warning("There was an error retrieving metadata from the database for %s : %s", filepath, error->message);

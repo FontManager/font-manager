@@ -150,47 +150,41 @@ namespace FontManager {
             connect_signals();
         }
 
-        void zoom_in () {
+        void zoom (bool zoom_in, bool zoom_out) {
             var page = (PreviewPanePage) preview_pane.get_current_page();
-            if (page == PreviewPanePage.CHARACTER_MAP)
-                preview_pane.character_map_preview_size += 0.5;
-            else
-                preview_pane.preview_size += 0.5;
-            return;
-        }
-
-        void zoom_out () {
-            var page = (PreviewPanePage) preview_pane.get_current_page();
-            if (page == PreviewPanePage.CHARACTER_MAP)
-                preview_pane.character_map_preview_size -= 0.5;
-            else
-                preview_pane.preview_size -= 0.5;
-            return;
-        }
-
-        void reset_zoom () {
-            var page = (PreviewPanePage) preview_pane.get_current_page();
-            if (page == PreviewPanePage.CHARACTER_MAP)
-                preview_pane.character_map_preview_size = CHARACTER_MAP_PREVIEW_SIZE;
-            else
-                preview_pane.preview_size = DEFAULT_PREVIEW_SIZE;
+            if (zoom_in) {
+                if (page == PreviewPanePage.CHARACTER_MAP)
+                    preview_pane.character_map_preview_size += 0.5;
+                else
+                    preview_pane.preview_size += 0.5;
+            } else if (zoom_out) {
+                if (page == PreviewPanePage.CHARACTER_MAP)
+                    preview_pane.character_map_preview_size -= 0.5;
+                else
+                    preview_pane.preview_size -= 0.5;
+            } else {
+                if (page == PreviewPanePage.CHARACTER_MAP)
+                    preview_pane.character_map_preview_size = CHARACTER_MAP_PREVIEW_SIZE;
+                else
+                    preview_pane.preview_size = DEFAULT_PREVIEW_SIZE;
+            }
             return;
         }
 
         void add_actions () {
 
             var action = new SimpleAction("zoom_in", null);
-            action.activate.connect((a, v) => { zoom_in(); });
+            action.activate.connect((a, v) => { zoom(true, false); });
             string? [] accels = { "<Ctrl>plus", "<Ctrl>equal", null };
             add_keyboard_shortcut(action, "zoom_in", accels);
 
             action = new SimpleAction("zoom_out", null);
-            action.activate.connect((a, v) => { zoom_out(); });
+            action.activate.connect((a, v) => { zoom(false, true); });
             accels = { "<Ctrl>minus", null };
             add_keyboard_shortcut(action, "zoom_out", accels);
 
             action = new SimpleAction("zoom_default", null);
-            action.activate.connect((a, v) => { reset_zoom(); });
+            action.activate.connect((a, v) => { zoom(false, false); });
             accels = { "<Ctrl>0", null };
             add_keyboard_shortcut(action, "zoom_default", accels);
 

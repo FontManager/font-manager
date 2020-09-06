@@ -211,10 +211,10 @@ namespace FontManager {
         void update_if_needed () {
             if (_visible_ && update_pending) {
                 update_model();
-                /* Show all available characters by default */
-                list.unselect_all();
                 update_pending = false;
             }
+            /* Show all available characters by default */
+            Idle.add(() => { list.unselect_all(); return GLib.Source.REMOVE; });
             return;
         }
 

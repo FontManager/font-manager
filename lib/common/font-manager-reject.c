@@ -92,8 +92,10 @@ font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error)
         goto out;
     }
     for (GList *iter = families; iter != NULL; iter = iter->next) {
-        const gchar *_sql = "SELECT DISTINCT filepath FROM Fonts WHERE family = '%s'";
-        g_autofree gchar *sql = g_strdup_printf(_sql, (gchar *) iter->data);
+        const gchar *_sql = "SELECT DISTINCT filepath FROM Fonts WHERE family = %s";
+        char *family = sqlite3_mprintf("%Q", (char *) iter->data);
+        g_autofree gchar *sql = g_strdup_printf(_sql, family);
+        sqlite3_free(family);
         font_manager_database_execute_query(db, sql, error);
         if (error != NULL && *error != NULL) {
             g_clear_object(&rejected_files);
