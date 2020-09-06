@@ -27,6 +27,7 @@ namespace FontManager {
         [GtkChild] public Gtk.CheckButton collections { get; }
         [GtkChild] public Gtk.CheckButton sources { get; }
         [GtkChild] public Gtk.CheckButton fonts { get; }
+        [GtkChild] public Gtk.CheckButton actions { get; }
 
         public UserDataDialog (string action) {
             set_transient_for(main_window);
@@ -89,7 +90,8 @@ namespace FontManager {
                         main_window.install_fonts(filelist);
                     }
                 } else if (source_type == GLib.FileType.REGULAR) {
-                    if (name == "Collections.json" || name == "Sources.xml") {
+                    string [] config_files = { "Collections.json", "Sources.xml", "Actions.json" };
+                    if (name in config_files) {
                         File config = File.new_for_path(Path.build_filename(root, name));
                         string config_dir = get_package_config_directory();
                         File target = File.new_for_path(Path.build_filename(config_dir, name));
@@ -155,6 +157,20 @@ namespace FontManager {
                 File collections = File.new_for_path(filepath);
                 if (collections.query_exists()) {
                     string copy = Path.build_filename(destination.get_path(), "Collections.json");
+                    File target = File.new_for_path(copy);
+                    try {
+                        collections.copy(target, flags);
+                    } catch (Error e) {
+                        critical(e.message);
+                    }
+                }
+            }
+            if (dialog.actions.active) {
+                string config_dir = get_package_config_directory();
+                string filepath = Path.build_filename(config_dir, "Actions.json");
+                File collections = File.new_for_path(filepath);
+                if (collections.query_exists()) {
+                    string copy = Path.build_filename(destination.get_path(), "Actions.json");
                     File target = File.new_for_path(copy);
                     try {
                         collections.copy(target, flags);
