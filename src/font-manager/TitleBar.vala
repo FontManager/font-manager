@@ -128,7 +128,7 @@ namespace FontManager {
         int i = 0;
         foreach (var mode in modes) {
             i++;
-            string? [2] accels = {"<Ctrl>%i".printf(i), null };
+            string? [] accels = {"<Ctrl>%i".printf(i), null };
             application.set_accels_for_action("app.mode::%s".printf(mode), accels);
             GLib.MenuItem item = new MenuItem(Mode.parse(mode).to_translatable_string(), "app.mode::%s".printf(mode));
             item.set_attribute("accel", "s", accels[0]);

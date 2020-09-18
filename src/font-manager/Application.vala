@@ -122,7 +122,7 @@ namespace FontManager {
                     main_window.close();
                 Idle.add(() => { this.quit(); return false; });
             });
-            const string? [2] accels = {"<Ctrl>q", null };
+            const string? [] accels = {"<Ctrl>q", null };
             set_accels_for_action("app.quit", accels);
             settings = get_gsettings(BUS_ID);
             available_font_families = new StringHashset();
