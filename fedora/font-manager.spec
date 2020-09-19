@@ -8,7 +8,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{PatchVersion}.%{build_timestamp}
-Release:    19
+Release:    20
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -31,6 +31,7 @@ BuildRequires: yelp-tools
 
 BuildRequires: nautilus-devel
 BuildRequires: nemo-devel
+BuildRequires: Thunar-devel
 
 Requires: fontconfig
 Requires: %{name}-common
@@ -76,11 +77,18 @@ Requires: %{name}-common >= %{version}
 %description -n nemo-%{name}
 This package provides integration with the Nemo file manager.
 
+%package -n thunar-%{name}
+Summary: Thunar extension for Font Manager
+Requires: font-viewer >= %{version}
+Requires: %{name}-common >= %{version}
+%description -n thunar-%{name}
+This package provides integration with the Thunar file manager.
+
 %prep
 %autosetup -n %{name}-master
 
 %build
-%meson --buildtype=debugoptimized -Dnautilus=True -Dnemo=True
+%meson --buildtype=debugoptimized -Dnautilus=True -Dnemo=True -Dthunar=True
 %meson_build
 
 %install
@@ -119,11 +127,14 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/icons/hicolor/256x256/apps/%{DBusName2}.png
 
 %files -n nautilus-%{name}
-%{_libdir}/nautilus/extensions-3.0/nautilus-font-manager.so
+%{_libdir}/nautilus/extensions-3.0/nautilus-%{name}.so
 
 %files -n nemo-%{name}
-%{_libdir}/nemo/extensions-3.0/nemo-font-manager.so
+%{_libdir}/nemo/extensions-3.0/nemo-%{name}.so
+
+%files -n thunar-%{name}
+%{_libdir}/thunarx-3/thunar-%{name}.so
 
 %changelog
-* Sat Sep 21 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.8-19
+* Sat Sep 21 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.8-20
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.

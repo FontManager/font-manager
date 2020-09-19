@@ -17,6 +17,7 @@ Build-Depends:
  libgirepository1.0-dev,
  libnautilus-extension-dev,
  libnemo-extension-dev,
+ libthunarx-3-dev,
  yelp-tools
 Standards-Version: 4.3.0
 Section: graphics
@@ -87,3 +88,14 @@ Description: Nemo extension for Font Manager
  .
  This package provides integration with the Nemo file manager.
 
+
+Package: thunar-font-manager
+Architecture: any
+Depends:
+ font-viewer,
+ thunar (>= 1.8),
+ libthunarx-3-0,
+ ${misc:Depends}
+Description: Thunar extension for Font Manager
+ .
+ This package provides integration with the Thunar file manager.

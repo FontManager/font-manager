@@ -11,4 +11,5 @@ override_dh_auto_configure:
 		--buildtype=debugoptimized \
 		-Dnautilus=true \
 		-Dnemo=true \
+		-Dthunar=True \
 		-Dreproducible=true
