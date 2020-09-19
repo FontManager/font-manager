@@ -61,9 +61,11 @@ sudo apt-get install font-manager
 
 #### File Manager extensions
 
-Fedora and Ubuntu users can also find extensions for Nautilus and Nemo in the repositories.
+Fedora and Ubuntu users can also find extensions for Nautilus, Nemo and Thunar in the repositories.
 
 The extension currently allows you to quickly preview font files by simply selecting them in the file manager while font-viewer is open and also adds an option to install font files in the file manager context menu.
+
+The Thunar extension also has very basic bulk renamer support.
 
 ### Building from source
 
@@ -86,6 +88,7 @@ If you wish to also build the file manager extensions:
 
 - `libnautilus-extension` (optional)
 - `libnemo-extension` (optional)
+- `thunar` (optional)
 
 To build the application:
 
