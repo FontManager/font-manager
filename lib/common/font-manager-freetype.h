@@ -103,6 +103,7 @@ const gchar * font_manager_fsType_to_string (FontManagerfsType fstype);
 glong font_manager_get_face_count (const gchar * filepath);
 JsonObject * font_manager_get_metadata (const gchar * filepath, gint index, GError **error);
 
+gchar * font_manager_get_suggested_filename (JsonObject *metadata);
 GFile * font_manager_get_installation_target (GFile *font_file, GFile *target_dir,
                                               gboolean create_directories, GError **error);
 

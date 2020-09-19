@@ -1,6 +1,6 @@
-/* nemo-font-manager-module.c
+/* font-manager-extension-utils.h
  *
- * Copyright (C) 2019 - 2020 Jerry Casiano
+ * Copyright (C) 2020 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,34 +18,17 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include <libnemo-extension/nemo-extension-types.h>
+#ifndef __FONT_MANAGER_EXTENSION_UTILS_H__
+#define __FONT_MANAGER_EXTENSION_UTILS_H__
 
-#include "config.h"
-#include "font-manager-menu-provider.h"
+#include <glib.h>
+#include <thunarx/thunarx.h>
 
-void
-nemo_module_initialize (GTypeModule *module)
-{
-    bindtextdomain(PACKAGE_NAME, NULL);
-    bind_textdomain_codeset(PACKAGE_NAME, NULL);
-    font_manager_menu_provider_load(module);
-    return;
-}
+G_BEGIN_DECLS
 
-void
-nemo_module_shutdown (void)
-{
-    return;
-}
+gboolean thunarx_file_info_is_font_file (ThunarxFileInfo *fileinfo);
+gboolean file_list_contains_font_files (GList *thunarx_file_info_list);
 
-void
-nemo_module_list_types (const GType **types,
-                        int      *num_types)
-{
-    static GType type_list[1];
-    type_list[0] = FONT_MANAGER_TYPE_MENU_PROVIDER;
-    *types = type_list;
-    *num_types = 1;
-    return;
-}
+G_END_DECLS
 
+#endif /* __FONT_MANAGER_EXTENSION_UTILS_H__ */

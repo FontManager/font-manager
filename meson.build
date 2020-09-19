@@ -41,13 +41,14 @@ gnome= import('gnome')
 python = import('python').find_installation('python3')
 
 reproducible = get_option('reproducible') ? '-DREPRODUCIBLE' : '-DNOT_REPRODUCIBLE'
+use_deprecated_gtk_api = get_option('thunar') ? '-DGTK_ENABLE_DEPRECATED' : '-DGTK_DISABLE_DEPRECATED'
 
 add_global_arguments(
     '-DG_LOG_DOMAIN="[@0@]"'.format(meson.project_name()),
     '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
-    '-DGDK_DISABLE_DEPRECATED',
-    '-DGTK_DISABLE_DEPRECATED',
     reproducible,
+    '-DGDK_DISABLE_DEPRECATED',
+    use_deprecated_gtk_api,
     language: 'c'
 )
 
@@ -86,10 +87,7 @@ subdir('help')
 subdir('lib')
 subdir('src')
 subdir('data')
-
-if get_option('nautilus') or get_option('nemo')
-    subdir('extensions')
-endif
+subdir('extensions')
 
 if get_option('gtk-doc')
     subdir('docs')
@@ -108,6 +106,7 @@ if meson_has_summary_function
             'Help Documents': get_option('yelp-doc'),
             'Nautilus extension': get_option('nautilus'),
             'Nemo extension': get_option('nemo'),
+            'Thunar extension': get_option('thunar'),
             'Translations': get_option('enable-nls'),
             'Reproducible build': get_option('reproducible')
         },

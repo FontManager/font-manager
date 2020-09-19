@@ -196,6 +196,21 @@ font_manager_get_metadata (const gchar *filepath, gint index, GError **error)
 }
 
 /**
+ * font_manager_get_suggested_filename:
+ * @metadata:       #JsonObject returned by #font_manager_get_metadata()
+ *
+ * Returns: (transfer full): A newly allocated string. Free the result using #g_free.
+ */
+gchar *
+font_manager_get_suggested_filename (JsonObject *metadata)
+{
+    const gchar *family = json_object_get_string_member(metadata, "family");
+    const gchar *style = json_object_get_string_member(metadata, "style");
+    g_autofree gchar *name = g_strdup_printf("%s %s", family, style);
+    return font_manager_to_filename(name);
+}
+
+/**
  * font_manager_get_installation_target:
  * @font_file:              #GFile
  * @target_dir:             #GFile
@@ -225,9 +240,8 @@ font_manager_get_installation_target (GFile *font_file, GFile *target_dir,
     const gchar *vendor = json_object_get_string_member(metadata, "vendor");
     const gchar *filetype = json_object_get_string_member(metadata, "filetype");
     const gchar *family = json_object_get_string_member(metadata, "family");
-    const gchar *style = json_object_get_string_member(metadata, "style");
-    g_autofree gchar *name = g_strdup_printf("%s %s.%s", family, style, ext);
-    g_autofree gchar *filename = font_manager_to_filename(name);
+    g_autofree gchar *suggested = font_manager_get_suggested_filename(metadata);
+    g_autofree gchar *filename = g_strdup_printf("%s.%s", suggested, ext);
     GFile *target = g_file_new_build_filename(dir, vendor, filetype, family, filename, NULL);
     g_autoptr(GFile) parent = g_file_get_parent(target);
     if (create_directories)

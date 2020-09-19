@@ -26,6 +26,8 @@
 void
 nautilus_module_initialize (GTypeModule *module)
 {
+    bindtextdomain(PACKAGE_NAME, NULL);
+    bind_textdomain_codeset(PACKAGE_NAME, NULL);
     font_manager_menu_provider_load(module);
     return;
 }

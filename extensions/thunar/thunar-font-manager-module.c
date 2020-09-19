@@ -1,4 +1,4 @@
-/* nemo-font-manager-module.c
+/* thunar-font-manager-module.c
  *
  * Copyright (C) 2019 - 2020 Jerry Casiano
  *
@@ -18,34 +18,43 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include <libnemo-extension/nemo-extension-types.h>
+#include <thunarx/thunarx.h>
 
 #include "config.h"
 #include "font-manager-menu-provider.h"
+#include "font-manager-renamer-provider.h"
 
-void
-nemo_module_initialize (GTypeModule *module)
+static gboolean
+have_compatible_thunarx_version ()
 {
+    return thunarx_check_version(THUNARX_MAJOR_VERSION, THUNARX_MINOR_VERSION, THUNARX_MICRO_VERSION) == NULL;
+}
+
+G_MODULE_EXPORT void
+thunar_extension_initialize (ThunarxProviderPlugin *plugin)
+{
+    g_return_if_fail(have_compatible_thunarx_version());
     bindtextdomain(PACKAGE_NAME, NULL);
     bind_textdomain_codeset(PACKAGE_NAME, NULL);
-    font_manager_menu_provider_load(module);
+    font_manager_menu_provider_load(plugin);
+    font_manager_renamer_provider_load(plugin);
     return;
 }
 
-void
-nemo_module_shutdown (void)
+G_MODULE_EXPORT void
+thunar_extension_shutdown (void)
 {
     return;
 }
 
-void
-nemo_module_list_types (const GType **types,
-                        int      *num_types)
+G_MODULE_EXPORT void
+thunar_extension_list_types (const GType **types,
+                             int      *num_types)
 {
-    static GType type_list[1];
+    static GType type_list[2];
     type_list[0] = FONT_MANAGER_TYPE_MENU_PROVIDER;
+    type_list[1] = FONT_MANAGER_TYPE_RENAMER_PROVIDER;
     *types = type_list;
-    *num_types = 1;
+    *num_types = 2;
     return;
 }
-

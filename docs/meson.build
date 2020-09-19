@@ -5,8 +5,14 @@ glib_prefix = dependency('glib-2.0').get_pkgconfig_variable('prefix')
 glib_docpath = join_paths(glib_prefix, 'share', 'gtk-doc', 'html')
 docpath = join_paths(get_option('datadir'), 'gtk-doc', 'html')
 
+font_manager_reference = configure_file(
+    input: 'font-manager.xml.in',
+    output: 'font-manager.xml',
+    configuration: config
+)
+
 gnome.gtkdoc('font-manager',
-    main_xml: 'font-manager.xml',
+    main_xml: join_paths(meson.build_root(), 'docs', 'font-manager.xml'),
     namespace: 'font_manager',
     src_dir: [
         join_paths(meson.source_root(), 'lib', 'common'),
@@ -29,6 +35,6 @@ gnome.gtkdoc('font-manager',
         '--extra-dir=@0@'.format(join_paths(glib_docpath, 'pango')),
         '--extra-dir=@0@'.format(join_paths(glib_docpath, 'libxml2')),
     ],
-    dependencies: libfontmanager_deps,
+    dependencies: [ font_manager_reference, libfontmanager_deps ],
     install: true
 )

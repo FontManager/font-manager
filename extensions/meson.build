@@ -7,3 +7,6 @@ if get_option('nemo')
     subdir('nemo')
 endif
 
+if get_option('thunar')
+    subdir('thunar')
+endif
