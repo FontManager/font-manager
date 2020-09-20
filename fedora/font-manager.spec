@@ -1,6 +1,6 @@
 %global MajorVersion 0
 %global MinorVersion 7
-%global PatchVersion 8
+%global PatchVersion 9
 %global build_timestamp %{lua: print(os.date("%Y%m%d"))}
 %global DBusName org.gnome.FontManager
 %global DBusName2 org.gnome.FontViewer
@@ -136,5 +136,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_libdir}/thunarx-3/thunar-%{name}.so
 
 %changelog
-* Sat Sep 21 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.8-20
+* Sat Sep 21 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.9-20
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.

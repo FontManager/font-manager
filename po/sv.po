@@ -4,7 +4,7 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 msgid ""
 msgstr ""
-"Project-Id-Version: font-manager 0.7.8\n"
+"Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-09-20 15:48-0400\n"
 "PO-Revision-Date: 2019-10-03 02:39-0400\n"
