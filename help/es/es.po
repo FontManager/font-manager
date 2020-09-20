@@ -1,15 +1,16 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 # Toni Estevez <toni.estevez@gmail.com>, 2019. #zanata
+# Adolfo Jayme <fitoschido@gmail.com>, 2020. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2019-12-17 18:01-0500\n"
+"POT-Creation-Date: 2020-09-20 15:48-0400\n"
+"PO-Revision-Date: 2020-07-27 01:58-0400\n"
+"Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
+"Language-Team: Spanish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2019-11-13 10:10+0000\n"
-"Last-Translator: Toni Estevez <toni.estevez@gmail.com>\n"
-"Language-Team: Spanish\n"
 "Language: es\n"
 "X-Generator: Zanata 4.6.2\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
@@ -19,7 +20,7 @@ msgctxt "_"
 msgid "translator-credits"
 msgstr ""
 "Toni Estevez <toni.estevez@gmail.com>\n"
-"Adolfo Jayme Barrientos <fitoschido@gmail.com>"
+"Adolfo Jayme Barrientos <fitojb@ubuntu.com>"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
@@ -37,18 +38,18 @@ msgid ""
 "<app>Font Manager</app> automatically categorizes your fonts based on "
 "various properties."
 msgstr ""
-"<app>Gestor de tipografías</app> categoriza los tipos de letra según varias "
+"<app>Gestor tipográfico</app> categoriza los tipos de letra según varias "
 "propiedades."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr "Todas"
+msgstr "Todos"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr "Todas las tipografías disponibles."
+msgstr "Todos los tipos de letra disponibles."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
@@ -58,7 +59,7 @@ msgstr "Sistema"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr "Tipografías disponibles para todos los usuarios."
+msgstr "Tipos de letra disponibles para todos los usuarios."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
@@ -68,7 +69,7 @@ msgstr "Usuario"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr "Tipografías disponibles solo para el usuario actual."
+msgstr "Tipos de letra disponibles solo para el usuario actual."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
@@ -135,8 +136,8 @@ msgid ""
 "Sorted by font license — Requires license information to be present in font "
 "metadata."
 msgstr ""
-"Ordenadas por licencia de la tipografía; requiere que la información de la "
-"licencia esté presente en los metadatos de la tipografía."
+"Ordenadas por licencia del tipo de letra; requiere que la información de la "
+"licencia esté presente en los metadatos del tipo de letra."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
@@ -149,8 +150,8 @@ msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
 msgstr ""
-"Ordenadas por el proveedor de la tipografía; requiere que la información del "
-"proveedor esté presente en los metadatos de la tipografía."
+"Ordenadas por el proveedor del tipo de letra; requiere que la información "
+"del proveedor esté presente en los metadatos del tipo de letra."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
@@ -160,7 +161,7 @@ msgstr "Tipo de archivo"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr "Ordenadas por el formato del archivo de la tipografía."
+msgstr "Ordenadas por el formato del archivo del tipo de letra."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
@@ -170,17 +171,17 @@ msgstr "Sin clasificar"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr "Las tipografías no clasificadas en ninguna colección."
+msgstr "Los tipos de letra no clasificados en ninguna colección."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr "Desactivadas"
+msgstr "Desactivados"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr "Las tipografías actualmente desactivadas."
+msgstr "Los tipos de letra actualmente desactivados."
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
@@ -1268,15 +1269,6 @@ msgstr "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
 msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
 msgstr "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
 
-#. (itstool) path: item/title
-#: C/font-manager-supported-formats.page:28
-msgid ""
-"<link href=\"http://wikipedia.org/wiki/Type_1_Font#Type_1\"> PostScript Type "
-"1 </link>"
-msgstr ""
-"<link href=\"http://wikipedia.org/wiki/Type_1_Font#Type_1\"> PostScript Type "
-"1 </link>"
-
 #. (itstool) path: info/desc
 #: C/index.page:6
 msgid "Getting started with Font Manager."
@@ -1365,3 +1357,4 @@ msgstr "Conocer sus tipografías"
 #: C/index.page:45
 msgid "Advanced Features"
 msgstr "Características avanzadas"
+
