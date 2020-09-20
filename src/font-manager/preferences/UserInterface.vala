@@ -55,7 +55,6 @@ namespace FontManager {
         public TitleButtonStyle button_style { get; private set; }
 
         Gtk.Settings default_gtk_settings;
-        Gtk.Grid grid;
         Gtk.Revealer wide_layout_options;
         Gtk.CheckButton on_maximize;
 
@@ -73,19 +72,28 @@ namespace FontManager {
             enable_animations = new LabeledSwitch(_("Enable Animations"));
             prefer_dark_theme = new LabeledSwitch(_("Prefer Dark Theme"));
             button_style = new TitleButtonStyle();
-            grid = new Gtk.Grid();
-            grid.attach(wide_layout, 0, 0, 1, 1);
-            grid.attach(wide_layout_options, 0, 1, 1, 1);
-            grid.attach(use_csd, 0, 2, 1, 1);
-            grid.attach(enable_animations, 0, 3, 1, 1);
-            grid.attach(prefer_dark_theme, 0, 4, 1, 1);
-            grid.attach(button_style, 0, 5, 1, 1);
-            box.pack_end(grid, true, true, 0);
+            var scroll = new Gtk.ScrolledWindow(null, null);
+            var list = new Gtk.ListBox();
+            Gtk.Widget [] widgets = { wide_layout, wide_layout_options, use_csd,
+                                      enable_animations, prefer_dark_theme, button_style };
+            foreach (var widget in widgets) {
+                var row = new Gtk.ListBoxRow() {
+                    activatable = false,
+                    selectable = false
+                };
+                row.add(widget);
+                list.add(row);
+                widget.show();
+                row.show();
+            }
+            box.pack_end(scroll);
+            scroll.add(list);
+            list.show();
+            scroll.show();
             default_gtk_settings = Gtk.Settings.get_default();
             connect_signals();
             bind_properties();
             revealer.set_reveal_child(false);
-            grid.show();
         }
 
         void bind_properties () {

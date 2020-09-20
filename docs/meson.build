@@ -35,6 +35,6 @@ gnome.gtkdoc('font-manager',
         '--extra-dir=@0@'.format(join_paths(glib_docpath, 'pango')),
         '--extra-dir=@0@'.format(join_paths(glib_docpath, 'libxml2')),
     ],
-    dependencies: [ font_manager_reference, libfontmanager_deps ],
+    dependencies: libfontmanager_deps,
     install: true
 )
