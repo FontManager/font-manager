@@ -148,7 +148,7 @@ font_manager_menu_provider_finalize (GObject *gobject)
 {
     FontManagerMenuProvider *self = FONT_MANAGER_MENU_PROVIDER(gobject);
     g_bus_unwatch_name(self->watch_id);
-    g_free(self->uri);
+    g_clear_pointer(&self->uri, g_free);
     g_clear_object(&self->connection);
     G_OBJECT_CLASS(font_manager_menu_provider_parent_class)->finalize(gobject);
     return;
@@ -177,8 +177,7 @@ font_viewer_active_callback (GDBusConnection *connection,
 {
     FontManagerMenuProvider *self = FONT_MANAGER_MENU_PROVIDER(user_data);
     self->active = TRUE;
-    g_free(self->uri);
-    self->uri = NULL;
+    g_clear_pointer(&self->uri, g_free);
     g_set_object(&self->connection, connection);
     return;
 }
@@ -190,8 +189,7 @@ font_viewer_inactive_callback (G_GNUC_UNUSED GDBusConnection *connection,
 {
     FontManagerMenuProvider *self = FONT_MANAGER_MENU_PROVIDER(user_data);
     self->active = FALSE;
-    g_free(self->uri);
-    self->uri = NULL;
+    g_clear_pointer(&self->uri, g_free);
     g_clear_object(&self->connection);
     return;
 }

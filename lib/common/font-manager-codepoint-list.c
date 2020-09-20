@@ -172,9 +172,7 @@ font_manager_codepoint_list_set_font (FontManagerCodepointList *self, JsonObject
         new_charset = font_manager_get_charset_from_font_object(font);
         json_object_unref(font);
     }
-    if (self->charset)
-        g_list_free(self->charset);
-    self->charset = NULL;
+    g_clear_pointer(&self->charset, g_list_free);
     self->charset = new_charset;
     return;
 }
@@ -191,9 +189,7 @@ void
 font_manager_codepoint_list_set_filter (FontManagerCodepointList *self, GList *filter)
 {
     g_return_if_fail(self != NULL);
-    if (self->filter)
-        g_list_free(self->filter);
-    self->filter = NULL;
+    g_clear_pointer(&self->filter, g_list_free);
     self->filter = filter;
     return;
 }

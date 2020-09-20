@@ -165,10 +165,7 @@ static void
 unicode_character_map_clear_pango_layout (UnicodeCharacterMap *charmap)
 {
     g_return_if_fail(charmap != NULL);
-    if (priv->pango_layout) {
-        g_object_unref(priv->pango_layout);
-        priv->pango_layout = NULL;
-    }
+    g_clear_object(&priv->pango_layout);
     return;
 }
 
@@ -936,8 +933,7 @@ unicode_character_map_set_vadjustment (UnicodeCharacterMap *charmap, GtkAdjustme
     if (priv->vadjustment) {
         g_signal_handler_disconnect(priv->vadjustment, priv->vadjustment_changed_handler_id);
         priv->vadjustment_changed_handler_id = 0;
-        g_object_unref(priv->vadjustment);
-        priv->vadjustment = NULL;
+        g_clear_object(&priv->vadjustment);
     }
 
     if (vadjustment) {

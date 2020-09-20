@@ -434,10 +434,7 @@ unicode_search_start (UnicodeSearchBar *self, UnicodeSearchDirection direction)
         || codepoint_list != self->search_state->codepoint_list
         || strcmp (self->search_state->search_string, gtk_entry_get_text(GTK_ENTRY(self->entry))) != 0 ) {
 
-        if (self->search_state) {
-            unicode_search_state_free(self->search_state);
-            self->search_state = NULL;
-        }
+        g_clear_pointer(&self->search_state, unicode_search_state_free);
 
         start_char = unicode_character_map_get_active_character(self->charmap);
         start_index = unicode_codepoint_list_get_index(codepoint_list, start_char);

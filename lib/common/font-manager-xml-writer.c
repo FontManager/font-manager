@@ -70,11 +70,8 @@ font_manager_xml_writer_set_default_options (FontManagerXmlWriter *self)
 static void
 font_manager_xml_writer_reset (FontManagerXmlWriter *self)
 {
-    if (self->writer != NULL)
-        xmlFreeTextWriter(self->writer);
-    self->writer = NULL;
-    g_free(self->filepath);
-    self->filepath = NULL;
+    g_clear_pointer(&self->writer, xmlFreeTextWriter);
+    g_clear_pointer(&self->filepath, g_free);
     return;
 }
 

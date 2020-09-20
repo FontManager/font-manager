@@ -115,8 +115,7 @@ sqlite3_open_failed (FontManagerDatabase *self, GError **error)
 {
     g_return_val_if_fail(self != NULL, TRUE);
     g_return_val_if_fail((error == NULL || *error == NULL), TRUE);
-    sqlite3_finalize(self->stmt);
-    self->stmt = NULL;
+    g_clear_pointer(&self->stmt, sqlite3_finalize);
     if (self->db != NULL)
         return FALSE;
     GError *err = NULL;
@@ -152,8 +151,7 @@ font_manager_database_close (FontManagerDatabase *self, GError **error)
 {
     g_return_if_fail(self != NULL);
     g_return_if_fail(error == NULL || *error == NULL);
-    sqlite3_finalize(self->stmt);
-    self->stmt = NULL;
+    g_clear_pointer(&self->stmt, sqlite3_finalize);
     sqlite3_exec(self->db, "PRAGMA optimize;", NULL, NULL, NULL);
     if (self->db && (sqlite3_close(self->db) != SQLITE_OK))
         set_error(self, "sqlite3_close", error);
@@ -654,9 +652,8 @@ font_manager_database_iterator_dispose (GObject *gobject)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerDatabaseIterator *self = FONT_MANAGER_DATABASE_ITERATOR(gobject);
-    sqlite3_finalize(self->db->stmt);
-    self->db->stmt = NULL;
-    g_object_unref(self->db);
+    g_clear_pointer(&self->db->stmt, sqlite3_finalize);
+    g_clear_object(&self->db);
     G_OBJECT_CLASS(font_manager_database_iterator_parent_class)->dispose(gobject);
     return;
 }
@@ -752,8 +749,7 @@ free_insert_data (InsertData *data)
 {
     g_free(data->table);
     g_free(data->sql);
-    g_free(data);
-    data = NULL;
+    g_clear_pointer(&data, g_free);
     return;
 }
 
@@ -781,8 +777,8 @@ static void
 free_sync_data (DatabaseSyncData *data)
 {
     g_object_unref(data->db);
-    g_free(data);
-    data = NULL;
+    g_clear_pointer(&data, g_free);
+    return;
 }
 
 static void
