@@ -1,1 +1,3 @@
 *.h linguist-language=C
+# Don't include orthography data in language statistics
+lib/orthographies/* linguist-vendored

@@ -347,6 +347,7 @@ namespace FontManager {
         public override void constructed () {
             var place_holder = new PlaceHolder(null, null, _("Save the current comparison\nby clicking the + button"), "view-pin-symbolic");
             list.set_placeholder(place_holder);
+            list.activate_on_single_click = false;
             model = new PinnedComparisonModel();
             list.bind_model(model, PinnedComparisonRow.from_item);
             place_holder.show();
@@ -355,8 +356,9 @@ namespace FontManager {
             restore_button.sensitive = false;
             list.row_selected.connect((row) => {
                 remove_button.sensitive = restore_button.sensitive = (row != null);
-                if (row == null)
-                    return;
+            });
+            list.row_activated.connect((row) => {
+                on_restore_button_clicked();
             });
             notify["compare"].connect(() => {
                 if (compare == null)
