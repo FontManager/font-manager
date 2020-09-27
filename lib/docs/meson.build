@@ -12,7 +12,7 @@ font_manager_reference = configure_file(
 )
 
 gnome.gtkdoc('font-manager',
-    main_xml: join_paths(meson.build_root(), 'docs', 'font-manager.xml'),
+    main_xml: join_paths(meson.build_root(), 'lib', 'docs', 'font-manager.xml'),
     namespace: 'font_manager',
     src_dir: [
         join_paths(meson.source_root(), 'lib', 'common'),

@@ -17,3 +17,7 @@ libfontmanager_deps = declare_dependency(
     link_with: libfontmanager,
     include_directories: include_directories('.')
 )
+
+if get_option('gtk-doc')
+    subdir('docs')
+endif

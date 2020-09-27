@@ -89,10 +89,6 @@ subdir('src')
 subdir('data')
 subdir('extensions')
 
-if get_option('gtk-doc')
-    subdir('docs')
-endif
-
 meson.add_install_script('meson_post_install.py')
 meson.add_dist_script('meson_dist.py')
 
