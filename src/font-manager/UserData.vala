@@ -90,7 +90,7 @@ namespace FontManager {
                         main_window.install_fonts(filelist);
                     }
                 } else if (source_type == GLib.FileType.REGULAR) {
-                    string [] config_files = { "Collections.json", "Sources.xml", "Actions.json" };
+                    string [] config_files = { "Collections.json", "Comparisons.json", "Sources.xml", "Actions.json" };
                     if (name in config_files) {
                         File config = File.new_for_path(Path.build_filename(root, name));
                         string config_dir = get_package_config_directory();
@@ -104,6 +104,8 @@ namespace FontManager {
             critical(e.message);
         }
         main_window.sidebar.collection_model.collections = Collections.load();
+        main_window.compare.pinned.load();
+        Signal.emit_by_name(main_window.compare.pinned, "closed");
         ((UserSourceList) main_window.preference_pane["Sources"]).model = new UserSourceModel();
         return;
     }
@@ -160,6 +162,17 @@ namespace FontManager {
                     File target = File.new_for_path(copy);
                     try {
                         collections.copy(target, flags);
+                    } catch (Error e) {
+                        critical(e.message);
+                    }
+                }
+                filepath = Path.build_filename(config_dir, "Comparisons.json");
+                File comparisons = File.new_for_path(filepath);
+                if (comparisons.query_exists()) {
+                    string copy = Path.build_filename(destination.get_path(), "Comparisons.json");
+                    File target = File.new_for_path(copy);
+                    try {
+                        comparisons.copy(target, flags);
                     } catch (Error e) {
                         critical(e.message);
                     }

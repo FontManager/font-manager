@@ -146,6 +146,7 @@ namespace FontManager {
         public GLib.HashTable <string, string>? samples { get; set; default = null; }
         public Font? selected_font { get; set; default = null; }
         public CompareModel model { get; set; }
+        public PinnedComparisons pinned { get; private set; }
 
         public string? preview_text {
             get {
@@ -164,6 +165,7 @@ namespace FontManager {
         [GtkChild] Gtk.Box controls;
         [GtkChild] Gtk.Button add_button;
         [GtkChild] Gtk.Button remove_button;
+        [GtkChild] Gtk.Button pinned_button;
         [GtkChild] Gtk.ListBox list;
 
         string? _preview_text = null;
@@ -173,6 +175,9 @@ namespace FontManager {
             name = "FontManagerCompare";
             notify["model"].connect(() => { list.bind_model(model, CompareRow.from_item); });
             model = new CompareModel();
+            pinned = new PinnedComparisons();
+            pinned.relative_to = pinned_button;
+            pinned.compare = this;
             _preview_text = default_preview_text = get_localized_pangram();
             entry.set_placeholder_text(preview_text);
             set_button_relief_style(controls);
@@ -184,8 +189,10 @@ namespace FontManager {
             bind_property("background_color", bg_color_button, "rgba", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             bind_property("preview-size", fontscale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             fontscale.bind_property("adjustment", this, "adjustment", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            remove_button.sensitive = false;
+            pinned_button.sensitive = (pinned.model.get_n_items() > 0);
             list.row_selected.connect((row) => {
-                remove_button.set_visible(row != null);
+                remove_button.sensitive = (row != null);
             });
             model.items_changed.connect((p, a, r) => {
                 if (model.get_n_items() > 0) {
@@ -195,17 +202,13 @@ namespace FontManager {
                     add_button.set_relief(Gtk.ReliefStyle.NORMAL);
                     add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
                 }
+                pinned_button.sensitive = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
             });
-            add_button.clicked.connect(() => {
-                add_from_string(selected_font.description);
+            pinned_button.clicked.connect(() => {
+                pinned.popup();
             });
-            remove_button.clicked.connect(() => {
-                if (list.get_selected_row() == null)
-                    return;
-                uint position = list.get_selected_row().get_index();
-                model.remove_item(position);
-                while (position > 0 && position >= model.get_n_items()) { position--; }
-                list.select_row(list.get_row_at_index((int) position));
+            pinned.closed.connect(() => {
+                pinned_button.sensitive = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
             });
             notify["preview-text"].connect(() => {
                 entry.set_placeholder_text(preview_text);
@@ -216,6 +219,15 @@ namespace FontManager {
             bg_color_button.color_set.connect(() => { color_set(); });
             fg_color_button.color_set.connect(() => { color_set(); });
             base.constructed();
+            return;
+        }
+
+        public void add_from_string_array (string [] additions) {
+            GLib.List <string>? checklist = null;
+            if (available_font_families != null)
+                checklist = available_font_families.list();
+            foreach (var entry in additions)
+                add_from_string(entry, checklist);
             return;
         }
 
@@ -245,6 +257,199 @@ namespace FontManager {
             return results;
         }
 
+        [GtkCallback]
+        public void on_add_button_clicked () {
+            add_from_string(selected_font.description);
+            return;
+        }
+
+        [GtkCallback]
+        public void on_remove_button_clicked () {
+            if (list.get_selected_row() == null)
+                return;
+            uint position = list.get_selected_row().get_index();
+            model.remove_item(position);
+            while (position > 0 && position >= model.get_n_items()) { position--; }
+            list.select_row(list.get_row_at_index((int) position));
+            return;
+        }
+
+    }
+
+    public class PinnedComparison : Object {
+        public string? label { get; set; default = ""; }
+        public string? created { get; set; default = new GLib.DateTime.now_local().format("%c"); }
+        public string [] items { get; set; default = {}; }
+    }
+
+    public class PinnedComparisonModel : Object, ListModel {
+
+        public List <PinnedComparison>? items = null;
+
+        public Type get_item_type () {
+            return typeof(PinnedComparison);
+        }
+
+        public uint get_n_items () {
+            return items != null ? items.length() : 0;
+        }
+
+        public Object? get_item (uint position) {
+            return items.nth_data(position);
+        }
+
+        public void add_item (PinnedComparison item) {
+            items.append(item);
+            uint position = items.length() - 1;
+            items_changed(position, 0, 1);
+            return;
+        }
+
+        public void remove_item (uint position) {
+            items.remove(items.nth_data(position));
+            items_changed(position, 1, 0);
+            return;
+        }
+
+    }
+
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-pinned-comparisons-row.ui")]
+    public class PinnedComparisonRow : Gtk.Grid {
+
+        [GtkChild] Gtk.Entry label;
+        [GtkChild] Gtk.Label created;
+
+        construct {
+            label.set_placeholder_text(_("Saved Comparison"));
+        }
+
+        public static PinnedComparisonRow from_item (Object item) {
+            var row = new PinnedComparisonRow();
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            item.bind_property("label", row.label.buffer, "text", flags);
+            item.bind_property("created", row.created, "label", flags);
+            return row;
+        }
+
+    }
+
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-pinned-comparisons.ui")]
+    public class PinnedComparisons : Gtk.Popover {
+
+        [GtkChild] Gtk.ListBox list;
+        [GtkChild] Gtk.Button save_button;
+        [GtkChild] Gtk.Button remove_button;
+        [GtkChild] Gtk.Button restore_button;
+
+        public Compare? compare { get; set; default = null; }
+        public PinnedComparisonModel? model { get; private set; default = null; }
+
+        public override void constructed () {
+            var place_holder = new PlaceHolder(null, null, _("Save the current comparison\nby clicking the + button"), "view-pin-symbolic");
+            list.set_placeholder(place_holder);
+            model = new PinnedComparisonModel();
+            list.bind_model(model, PinnedComparisonRow.from_item);
+            place_holder.show();
+            save_button.sensitive = false;
+            remove_button.sensitive = false;
+            restore_button.sensitive = false;
+            list.row_selected.connect((row) => {
+                remove_button.sensitive = restore_button.sensitive = (row != null);
+                if (row == null)
+                    return;
+            });
+            notify["compare"].connect(() => {
+                if (compare == null)
+                    return;
+                compare.model.items_changed.connect((p, a, r) => {
+                    save_button.sensitive = (compare.model.get_n_items() > 0);
+                });
+            });
+            load();
+            closed.connect(() => { cache_pinned_comparisons(); });
+            base.constructed();
+            return;
+        }
+
+        static string get_cache_file () {
+            string dirpath = get_package_config_directory();
+            string filepath = Path.build_filename(dirpath, "Comparisons.json");
+            DirUtils.create_with_parents(dirpath ,0755);
+            return filepath;
+        }
+
+        void cache_pinned_comparisons () {
+            var arr = new Json.Array();
+            uint total = model.get_n_items();
+            for (uint i = 0; i < total; i++) {
+                var item = (PinnedComparison) model.get_item(i);
+                var obj = new Json.Object();
+                obj.set_string_member("label", item.label);
+                obj.set_string_member("created", item.created);
+                var _arr = new Json.Array();
+                foreach (var _item in item.items)
+                    _arr.add_string_element(_item);
+                obj.set_array_member("items", _arr);
+                arr.add_object_element(obj);
+            }
+            var node = new Json.Node(Json.NodeType.ARRAY);
+            node.set_array(arr);
+            write_json_file(node, get_cache_file());
+            return;
+        }
+
+        public void load () {
+            Json.Node? root_node = load_json_file(get_cache_file());
+            if (root_node == null)
+                return;
+            root_node.get_array().foreach_element((array, index, node) => {
+                var obj = node.get_object();
+                var item = new PinnedComparison();
+                item.label = obj.get_string_member("label");
+                item.created = obj.get_string_member("created");
+                string [] _items = {};
+                obj.get_array_member("items").foreach_element((a, i, n) => {
+                    _items += a.get_string_element(i);
+                });
+                item.items = _items;
+                model.add_item(item);
+            });
+            return;
+        }
+
+        [GtkCallback]
+        public void on_save_clicked () {
+            var item = new PinnedComparison();
+            model.add_item(item);
+            item.items = compare.list_items();
+            return;
+        }
+
+        [GtkCallback]
+        public void on_remove_clicked () {
+            if (list.get_selected_row() == null)
+                return;
+            uint position = list.get_selected_row().get_index();
+            model.remove_item(position);
+            while (position > 0 && position >= model.get_n_items()) { position--; }
+            list.select_row(list.get_row_at_index((int) position));
+            return;
+        }
+
+        [GtkCallback]
+        public void on_restore_button_clicked () {
+            if (list.get_selected_row() == null)
+                return;
+            uint position = list.get_selected_row().get_index();
+            var item = model.get_item(position);
+            return_if_fail(compare != null);
+            while (compare.model.get_n_items() > 0)
+                compare.model.remove_item(0);
+            compare.add_from_string_array(((PinnedComparison) item).items);
+            return;
+        }
+
     }
 
 }
+

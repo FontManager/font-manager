@@ -683,9 +683,7 @@ namespace FontManager {
             Idle.add(() => {
                 if (compare.samples == null)
                     return GLib.Source.CONTINUE;
-                foreach (var entry in settings.get_strv("compare-list"))
-                    if (available_font_families != null)
-                        compare.add_from_string(entry, available_font_families.list());
+                compare.add_from_string_array(settings.get_strv("compare-list"));
                 return GLib.Source.REMOVE;
             });
 
