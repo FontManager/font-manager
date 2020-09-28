@@ -1,3 +1,16 @@
+# Avoid C header files being classified as Objective-C
 *.h linguist-language=C
+
+# Don't include build-aux in language statistics
+build-aux/* -linguist-detectable
+build-aux/license/* -linguist-detectable
+build-aux/vendor/* -linguist-detectable
+build-aux/orthographies/* -linguist-detectable
+
 # Don't include orthography data in language statistics
-lib/orthographies/* linguist-vendored
+build-aux/orthographies/fontaine/* linguist-vendored
+lib/orthographies/* -linguist-detectable
+
+# Don't include documentation in language statistics
+help/* linguist-documentation
+
