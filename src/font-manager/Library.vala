@@ -131,9 +131,7 @@ namespace FontManager {
                         continue;
                     File file = File.new_for_path(path);
                     try {
-                        File? target = get_installation_target(file, install_dir, true);
-                        if (target != null)
-                            install_file(file, target);
+                        install_file(file, install_dir);
                     } catch (Error e) {
                         critical(e.message);
                     }
