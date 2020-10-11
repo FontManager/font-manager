@@ -39,6 +39,7 @@
             <property name="margin_top">2</property>
             <property name="margin_bottom">2</property>
             <property name="hexpand">True</property>
+            <signal name="changed" handler="on_entry_changed" swapped="no"/>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -108,6 +109,7 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="relief">none</property>
+            <signal name="clicked" handler="on_pinned_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage">
                 <property name="visible">True</property>
@@ -201,6 +203,7 @@
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
+                <signal name="row-selected" handler="on_list_row_selected" swapped="no"/>
               </object>
             </child>
           </object>

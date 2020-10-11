@@ -160,10 +160,13 @@ namespace FontManager {
             scale.set_adjustment(new Gtk.Adjustment(0.0, 0.0, ((double) options.length - 1), 1.0, 1.0, 0.0));
             for (int i = 0; i < options.length; i++)
                 scale.add_mark(i, Gtk.PositionType.BOTTOM, options[i]);
-            scale.value_changed.connect(() => {
-                scale.set_value(Math.round(scale.adjustment.get_value()));
-            });
             bind_property("value", scale.adjustment, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+        }
+
+        [GtkCallback]
+        void on_scale_value_changed () {
+            scale.set_value(Math.round(scale.adjustment.get_value()));
+            return;
         }
 
     }
@@ -178,14 +181,14 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        public void on_icon_press_event (Gtk.EntryIconPosition position, Gdk.EventButton event) {
+        void on_icon_press_event (Gtk.EntryIconPosition position, Gdk.EventButton event) {
             if (position == Gtk.EntryIconPosition.SECONDARY)
                 set_text("");
             return;
         }
 
         [GtkCallback]
-        public void on_changed_event () {
+        void on_changed_event () {
             string icon_name = (text_length > 0) ? "edit-clear-symbolic" : "document-edit-symbolic";
             set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, icon_name);
             set_icon_activatable(Gtk.EntryIconPosition.SECONDARY, (text_length > 0));

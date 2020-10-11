@@ -370,7 +370,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             Idle.add(() => {
                 if (installable != null)
                     installable.set_visible(selection_is_sourced());
-                return false;
+                return GLib.Source.REMOVE;
             });
             if (filename != null)
                 filename.label = Path.get_basename(selected_font.filepath);
@@ -492,8 +492,8 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             installer.process.begin(filelist, (obj, res) => {
                 installer.process.end(res);
                 Timeout.add_seconds(3, () => {
-                    ((FontManager.Application) GLib.Application.get_default()).refresh();
-                    return false;
+                    get_default_application().refresh();
+                    return GLib.Source.REMOVE;
                 });
             });
             return;
@@ -649,6 +649,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
 
         uint? search_timeout;
         uint16 text_length = 0;
+        bool refresh_required = false;
         Gtk.TreeModel? real_model = null;
         Gtk.TreeModelFilter? search_filter = null;
         [GtkChild] Gtk.Revealer revealer;
@@ -679,7 +680,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             if (controls.expanded)
                 fontlist.expand_all();
             search_timeout = null;
-            return false;
+            return GLib.Source.REMOVE;
         }
 
         void real_set_model (Gtk.TreeModel? model) {
@@ -703,6 +704,16 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             return;
         }
 
+        void update () {
+            refresh_required = false;
+            refilter();
+            queue_draw();
+            fontlist.samples = get_non_latin_samples();
+            if (fontlist.samples == null)
+                warning("Failed to generate previews for fonts which do not support Basic Latin");
+            return;
+        }
+
         void connect_signals () {
             notify["filter"].connect(() => { refilter(); });
             controls.entry.search_changed.connect(() => {
@@ -723,6 +734,15 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             });
             controls.entry.activate.connect(() => {
                 fontlist.select_next_row();
+            });
+            db.update_started.connect(() => { refresh_required = true; });
+            db.status_changed.connect(() => {
+                if (refresh_required && db.ready(DatabaseType.METADATA))
+                    update();
+            });
+            db.update_complete.connect(() => {
+                if (refresh_required)
+                    update();
             });
             return;
         }

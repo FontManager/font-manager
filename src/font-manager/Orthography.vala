@@ -136,7 +136,6 @@ namespace FontManager {
 
         [GtkChild] Gtk.Label header;
         [GtkChild] Gtk.ListBox list;
-        [GtkChild] Gtk.Button clear;
         [GtkChild] Gtk.Revealer clear_revealer;
 
         PlaceHolder place_holder;
@@ -148,18 +147,37 @@ namespace FontManager {
             place_holder.show();
             list.set_placeholder(place_holder);
             header.set_text(_("Supported Orthographies"));
-            clear.clicked.connect(() => { list.unselect_all(); });
-            map.connect(() => { _visible_ = true; update_if_needed(); });
-            unmap.connect(() => { _visible_ = false; });
             notify["selected-font"].connect(() => { update_pending = true; update_if_needed(); });
-            list.row_selected.connect((row) => {
-                clear_revealer.set_reveal_child(row != null);
-                if (row == null) {
-                    orthography_selected(null);
-                    return;
-                }
-                orthography_selected((Orthography) model.get_item(row.get_index()));
-            });
+        }
+
+        [GtkCallback]
+        void on_clear_clicked () {
+            list.unselect_all();
+            return;
+        }
+
+        [GtkCallback]
+        void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
+            clear_revealer.set_reveal_child(row != null);
+            if (row == null) {
+                orthography_selected(null);
+                return;
+            }
+            orthography_selected((Orthography) model.get_item(row.get_index()));
+            return;
+        }
+
+        [GtkCallback]
+        void on_map_event () {
+            _visible_ = true;
+            update_if_needed();
+            return;
+        }
+
+        [GtkCallback]
+        void on_unmap_event () {
+            _visible_ = false;
+            return;
         }
 
         Json.Object? parse_json_result (string? json) {
@@ -199,7 +217,7 @@ namespace FontManager {
                 Idle.add(() => {
                     place_holder.message = "";
                     place_holder.icon_name = "action-unavailable-symbolic";
-                    return false;
+                    return GLib.Source.REMOVE;
                 });
             } catch (DatabaseError e) {
                 /* Most likely cause of an error here is the database is currently being updated */

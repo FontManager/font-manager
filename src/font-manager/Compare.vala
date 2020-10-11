@@ -191,9 +191,6 @@ namespace FontManager {
             fontscale.bind_property("adjustment", this, "adjustment", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             remove_button.sensitive = false;
             pinned_button.sensitive = (pinned.model.get_n_items() > 0);
-            list.row_selected.connect((row) => {
-                remove_button.sensitive = (row != null);
-            });
             model.items_changed.connect((p, a, r) => {
                 if (model.get_n_items() > 0) {
                     add_button.set_relief(Gtk.ReliefStyle.NONE);
@@ -204,17 +201,11 @@ namespace FontManager {
                 }
                 pinned_button.sensitive = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
             });
-            pinned_button.clicked.connect(() => {
-                pinned.popup();
-            });
             pinned.closed.connect(() => {
                 pinned_button.sensitive = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
             });
             notify["preview-text"].connect(() => {
                 entry.set_placeholder_text(preview_text);
-            });
-            entry.changed.connect(() => {
-                preview_text = (entry.text_length > 0) ? entry.text : null;
             });
             bg_color_button.color_set.connect(() => { color_set(); });
             fg_color_button.color_set.connect(() => { color_set(); });
@@ -258,19 +249,37 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        public void on_add_button_clicked () {
+        void on_entry_changed () {
+            preview_text = (entry.text_length > 0) ? entry.text : null;
+            return;
+        }
+
+        [GtkCallback]
+        void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
+            remove_button.sensitive = (row != null);
+            return;
+        }
+
+        [GtkCallback]
+        void on_add_button_clicked () {
             add_from_string(selected_font.description);
             return;
         }
 
         [GtkCallback]
-        public void on_remove_button_clicked () {
+        void on_remove_button_clicked () {
             if (list.get_selected_row() == null)
                 return;
             uint position = list.get_selected_row().get_index();
             model.remove_item(position);
             while (position > 0 && position >= model.get_n_items()) { position--; }
             list.select_row(list.get_row_at_index((int) position));
+            return;
+        }
+
+        [GtkCallback]
+        void on_pinned_button_clicked () {
+            pinned.popup();
             return;
         }
 
@@ -354,12 +363,6 @@ namespace FontManager {
             save_button.sensitive = false;
             remove_button.sensitive = false;
             restore_button.sensitive = false;
-            list.row_selected.connect((row) => {
-                remove_button.sensitive = restore_button.sensitive = (row != null);
-            });
-            list.row_activated.connect((row) => {
-                on_restore_button_clicked();
-            });
             notify["compare"].connect(() => {
                 if (compare == null)
                     return;
@@ -368,7 +371,6 @@ namespace FontManager {
                 });
             });
             load();
-            closed.connect(() => { cache_pinned_comparisons(); });
             base.constructed();
             return;
         }
@@ -378,26 +380,6 @@ namespace FontManager {
             string filepath = Path.build_filename(dirpath, "Comparisons.json");
             DirUtils.create_with_parents(dirpath ,0755);
             return filepath;
-        }
-
-        void cache_pinned_comparisons () {
-            var arr = new Json.Array();
-            uint total = model.get_n_items();
-            for (uint i = 0; i < total; i++) {
-                var item = (PinnedComparison) model.get_item(i);
-                var obj = new Json.Object();
-                obj.set_string_member("label", item.label);
-                obj.set_string_member("created", item.created);
-                var _arr = new Json.Array();
-                foreach (var _item in item.items)
-                    _arr.add_string_element(_item);
-                obj.set_array_member("items", _arr);
-                arr.add_object_element(obj);
-            }
-            var node = new Json.Node(Json.NodeType.ARRAY);
-            node.set_array(arr);
-            write_json_file(node, get_cache_file());
-            return;
         }
 
         public void load () {
@@ -420,7 +402,40 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        public void on_save_clicked () {
+        void on_list_row_activated (Gtk.ListBox box, Gtk.ListBoxRow? row) {
+            on_restore_button_clicked();
+            return;
+        }
+
+        [GtkCallback]
+        void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
+            remove_button.sensitive = restore_button.sensitive = (row != null);
+            return;
+        }
+
+        [GtkCallback]
+        void on_closed () {
+            var arr = new Json.Array();
+            uint total = model.get_n_items();
+            for (uint i = 0; i < total; i++) {
+                var item = (PinnedComparison) model.get_item(i);
+                var obj = new Json.Object();
+                obj.set_string_member("label", item.label);
+                obj.set_string_member("created", item.created);
+                var _arr = new Json.Array();
+                foreach (var _item in item.items)
+                    _arr.add_string_element(_item);
+                obj.set_array_member("items", _arr);
+                arr.add_object_element(obj);
+            }
+            var node = new Json.Node(Json.NodeType.ARRAY);
+            node.set_array(arr);
+            write_json_file(node, get_cache_file());
+            return;
+        }
+
+        [GtkCallback]
+        void on_save_clicked () {
             var item = new PinnedComparison();
             model.add_item(item);
             item.items = compare.list_items();
@@ -428,7 +443,7 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        public void on_remove_clicked () {
+        void on_remove_clicked () {
             if (list.get_selected_row() == null)
                 return;
             uint position = list.get_selected_row().get_index();
@@ -439,7 +454,7 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        public void on_restore_button_clicked () {
+        void on_restore_button_clicked () {
             if (list.get_selected_row() == null)
                 return;
             uint position = list.get_selected_row().get_index();
@@ -454,4 +469,3 @@ namespace FontManager {
     }
 
 }
-

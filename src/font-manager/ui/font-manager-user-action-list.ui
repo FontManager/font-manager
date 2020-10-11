@@ -36,6 +36,7 @@
               <object class="GtkListBox" id="list">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <signal name="row-selected" handler="on_list_row_selected" swapped="no"/>
               </object>
             </child>
           </object>

@@ -239,7 +239,7 @@ namespace FontManager.FontViewer {
             preview_pane.preview_size = settings.get_double("preview-font-size");
             preview_pane.preview_text = settings.get_string("preview-text");
             preview_pane.preview_mode = ((FontPreviewMode) settings.get_enum("mode"));
-            Idle.add(() => { bind_settings(); return false; });
+            Idle.add(() => { bind_settings(); return GLib.Source.REMOVE; });
             return;
         }
 

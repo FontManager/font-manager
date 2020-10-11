@@ -222,13 +222,13 @@ namespace FontManager {
                 if (orientation == Gtk.Orientation.HORIZONTAL) {
                     Idle.add(() => {
                         content_pane.set_position(settings.get_int("last-horizontal-content-pane-position"));
-                        return false;
+                        return GLib.Source.REMOVE;
                     });
                 } else {
                     Idle.add(() => {
                         if (settings.get_boolean("wide-layout-on-maximize") && !is_maximized)
                             content_pane.set_position(settings.get_int("last-vertical-content-pane-position"));
-                        return false;
+                        return GLib.Source.REMOVE;
                     });
                 }
             }
@@ -274,7 +274,7 @@ namespace FontManager {
                             set_layout_orientation(Gtk.Orientation.VERTICAL);
                         }
                     }
-                    return false;
+                    return GLib.Source.REMOVE;
                 });
             });
 
@@ -289,17 +289,17 @@ namespace FontManager {
                                     } else {
                                         set_layout_orientation(Gtk.Orientation.VERTICAL);
                                     }
-                                    return false;
+                                    return GLib.Source.REMOVE;
                                 });
                             }
                         } else {
                             Idle.add(() => {
                                 set_layout_orientation(Gtk.Orientation.VERTICAL);
-                                return false;
+                                return GLib.Source.REMOVE;
                             });
                         }
                     }
-                    return false;
+                    return GLib.Source.REMOVE;
                 });
             });
 
@@ -317,7 +317,7 @@ namespace FontManager {
                                 else
                                     set_layout_orientation(Gtk.Orientation.VERTICAL);
                             }
-                            return false;
+                            return GLib.Source.REMOVE;
                         });
                     }
                 });
@@ -378,7 +378,7 @@ namespace FontManager {
                         unsorted.update.begin(collected, (obj, res) => {
                             unsorted.update.end(res);
                         });
-                        return false;
+                        return GLib.Source.REMOVE;
                     });
                 }
                 fontlist_pane.refilter();
@@ -410,7 +410,7 @@ namespace FontManager {
                 if (sidebar_switch) {
                     Idle.add(() => {
                         sidebar.standard.mode = StandardSidebarMode.CATEGORY;
-                        return false;
+                        return GLib.Source.REMOVE;
                     });
                     sidebar_switch = false;
                 }
@@ -482,9 +482,9 @@ namespace FontManager {
                         Timeout.add_seconds(3, () => {
                              titlebar.installing_files = false;
                              fontlist_pane.refilter();
-                             return false;
+                             return GLib.Source.REMOVE;
                         });
-                        return false;
+                        return GLib.Source.REMOVE;
                     });
                 });
             }
@@ -502,9 +502,9 @@ namespace FontManager {
                         Idle.add(() => {
                             titlebar.removing_files = false;
                             fontlist_pane.refilter();
-                            return false;
+                            return GLib.Source.REMOVE;
                         });
-                        return false;
+                        return GLib.Source.REMOVE;
                     });
                 });
             }
@@ -702,7 +702,7 @@ namespace FontManager {
                         background.alpha = 1.0;
                     ((Gtk.ColorChooser) compare.bg_color_button).set_rgba(background);
                 }
-                return false;
+                return GLib.Source.REMOVE;
             });
 
             var font_path = settings.get_string("selected-font");
@@ -711,15 +711,15 @@ namespace FontManager {
 
             Idle.add(() => {
                 if (sidebar.standard.category_tree.update_in_progress)
-                    return true;
+                    return GLib.Source.CONTINUE;
                 browse.mode = (BrowseMode) settings.get_enum("browse-mode");
                 restore_selections(font_path, category_path, collection_path);
-                return false;
+                return GLib.Source.REMOVE;
             });
 
             Idle.add(() => {
                 bind_settings();
-                return false;
+                return GLib.Source.REMOVE;
             });
 
             return;
@@ -749,9 +749,9 @@ namespace FontManager {
                     if (path.char_count() > 1)
                         fontlist_pane.refilter();
                     restore_last_selected_treepath(fontlist_pane.fontlist, font_path);
-                    return false;
+                    return GLib.Source.REMOVE;
                 });
-                return false;
+                return GLib.Source.REMOVE;
             });
 
             return;

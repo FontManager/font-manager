@@ -59,6 +59,7 @@
             <property name="bottom_margin">16</property>
             <property name="cursor_visible">False</property>
             <property name="accepts_tab">False</property>
+            <signal name="event" handler="on_preview_event" swapped="no"/>
           </object>
           <packing>
             <property name="index">-1</property>
@@ -69,7 +70,7 @@
             <property name="visible">True</property>
             <property name="sensitive">False</property>
             <property name="can_focus">False</property>
-            <property name="opacity">0.66000000000000003</property>
+            <property name="opacity">0.66</property>
             <property name="halign">end</property>
             <property name="valign">end</property>
             <property name="margin_left">2</property>

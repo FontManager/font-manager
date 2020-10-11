@@ -137,7 +137,11 @@ namespace FontManager {
             bool use_csd = main_window != null ? main_window.use_csd : false;
             var selections = new StringHashset();
             FontListPane? tree = null;
-            var dialog = new Gtk.Dialog();
+            var dialog = new Gtk.Dialog() {
+                modal = true,
+                destroy_with_parent = true,
+                transient_for = main_window
+            };
             dialog.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             if (use_csd)
                 header = new Gtk.HeaderBar();
@@ -166,9 +170,12 @@ namespace FontManager {
                                        _("_Delete"), Gtk.ResponseType.ACCEPT,
                                        null);
                 }
-                tree = new FontListPane();
-                tree.fontlist = new UserFontList();
-                tree.set("model", model, "filter", filter, "expand", true, null);
+                tree = new FontListPane() {
+                    fontlist = new UserFontList(),
+                    model = model,
+                    filter = filter,
+                    expand = true
+                };
                 scroll.add(tree);
                 content_area.add(scroll);
                 dialog.set_size_request(540, 480);
@@ -184,8 +191,6 @@ namespace FontManager {
                 dialog.set_size_request(270, 240);
             }
 
-            dialog.set("modal", true, "destroy-with-parent", true, null);
-            dialog.set_transient_for(main_window);
             if (dialog.run() == Gtk.ResponseType.ACCEPT) {
                 dialog.hide();
                 selections = ((UserFontList) tree.fontlist).get_selections();

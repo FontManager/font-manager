@@ -353,7 +353,7 @@ The sidebar will automatically switch while dragging fonts.
             bool res = selected_filter.families.remove_all(fonts);
             Idle.add(() => {
                 model.collections.save();
-                return false;
+                return GLib.Source.REMOVE;
             });
             selected_filter.set_active_from_fonts(reject);
             changed();
@@ -465,7 +465,7 @@ The sidebar will automatically switch while dragging fonts.
             val.unset();
             Idle.add(() => {
                 model.collections.save();
-                return false;
+                return GLib.Source.REMOVE;
             });
             return;
         }
@@ -483,7 +483,7 @@ The sidebar will automatically switch while dragging fonts.
             changed();
             Idle.add(() => {
                 model.collections.save();
-                return false;
+                return GLib.Source.REMOVE;
             });
             return;
         }
@@ -557,7 +557,7 @@ The sidebar will automatically switch while dragging fonts.
             model.update_group_index();
             Idle.add(() => {
                 model.collections.save();
-                return false;
+                return GLib.Source.REMOVE;
             });
             return;
         }

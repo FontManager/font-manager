@@ -33,15 +33,12 @@ namespace FontManager {
         [GtkChild] public Gtk.Label count { get; }
         [GtkChild] public Gtk.TextView preview { get; }
 
-        public override void constructed () {
-            preview.event.connect((event) => {
-                if (event.type == Gdk.EventType.SCROLL)
-                    return false;
-                preview.get_window(Gtk.TextWindowType.TEXT).set_cursor(null);
-                return true;
-            });
-            base.constructed();
-            return;
+        [GtkCallback]
+        bool on_preview_event (Gdk.Event event) {
+            if (event.type == Gdk.EventType.SCROLL)
+                return false;
+            preview.get_window(Gtk.TextWindowType.TEXT).set_cursor(null);
+            return true;
         }
 
     }
@@ -62,10 +59,8 @@ namespace FontManager {
                 return grid_is_visible ? BrowseMode.GRID : BrowseMode.LIST;
             }
             set {
-                if (value == BrowseMode.LIST)
-                    list_view.set_active(true);
-                else
-                    grid_view.set_active(true);
+                list_view.set_active(value == BrowseMode.LIST);
+                grid_view.set_active(value == BrowseMode.LIST);
             }
         }
 
@@ -75,7 +70,6 @@ namespace FontManager {
         [GtkChild] FontScale fontscale;
         [GtkChild] Gtk.Stack browse_stack;
         [GtkChild] Gtk.FlowBox flowbox;
-        [GtkChild] Gtk.ScrolledWindow browse_grid;
         [GtkChild] Gtk.Label page_count;
         [GtkChild] Gtk.Button prev_page;
         [GtkChild] Gtk.Button next_page;
@@ -88,6 +82,7 @@ namespace FontManager {
         double current_page = 0.0;
         double MAX_TILES = 25.0;
         bool grid_is_visible = false;
+        bool refresh_required = false;
 
         public override void constructed () {
             var renderer = new CellRendererTitle();
@@ -96,11 +91,6 @@ namespace FontManager {
             bind_property("model", treeview, "model", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             bind_property("preview-size", fontscale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             fontscale.bind_property("adjustment", this, "adjustment", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            entry.changed.connect(() => {
-                treeview.get_column(0).queue_resize();
-                treeview.queue_draw();
-                update_grid();
-            });
             adjustment.value_changed.connect(() => {
                 treeview.get_column(0).queue_resize();
                 treeview.queue_draw();
@@ -115,20 +105,49 @@ namespace FontManager {
                     n_pages = Math.ceil(model.iter_n_children(null) / MAX_TILES);
                 update_page_controls();
             });
-            browse_grid.map.connect(() => {
-                grid_is_visible = true;
-                update_grid();
+            db.update_started.connect(() => { refresh_required = true; });
+            db.status_changed.connect(() => {
+                if (refresh_required && db.ready(DatabaseType.METADATA)) {
+                    refresh_required = false;
+                    if (!grid_is_visible)
+                        treeview.queue_draw();
+                }
             });
-            browse_grid.unmap.connect(() => {
-                grid_is_visible = false;
-                update_grid();
+            db.update_complete.connect(() => {
+                if (refresh_required) {
+                    refresh_required = false;
+                    if (!grid_is_visible)
+                        treeview.queue_draw();
+                }
             });
             base.constructed();
             return;
         }
 
         [GtkCallback]
-        public void on_click (Gtk.Button button) {
+        void on_entry_changed () {
+            treeview.get_column(0).queue_resize();
+            treeview.queue_draw();
+            update_grid();
+            return;
+        }
+
+        [GtkCallback]
+        void on_map () {
+            grid_is_visible = true;
+            update_grid();
+            return;
+        }
+
+        [GtkCallback]
+        void on_unmap () {
+            grid_is_visible = false;
+            update_grid();
+            return;
+        }
+
+        [GtkCallback]
+        void on_click (Gtk.Button button) {
             browse_stack.set_visible_child_name(button.name);
             page_controls.set_visible(button.name == "grid");
             mode_selected(button.name == "grid" ? BrowseMode.GRID : BrowseMode.LIST);
@@ -136,21 +155,21 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        public void on_prev_page_clicked (Gtk.Button button) {
+        void on_prev_page_clicked (Gtk.Button button) {
             current_page--;
             update_grid();
             return;
         }
 
         [GtkCallback]
-        public void on_next_page_clicked (Gtk.Button button) {
+        void on_next_page_clicked (Gtk.Button button) {
             current_page++;
             update_grid();
             return;
         }
 
         [GtkCallback]
-        public void on_selected_page_changed (Gtk.Editable entry) {
+        void on_selected_page_changed (Gtk.Editable entry) {
             double selected = double.parse(((Gtk.Entry) entry).get_text());
             current_page = selected.clamp(1.0, n_pages);
             update_grid();
@@ -158,14 +177,14 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        public bool on_selected_page_focus_in_event (Gtk.Widget entry,
+        bool on_selected_page_focus_in_event (Gtk.Widget entry,
                                                        Gdk.EventFocus unused) {
             selected_page.set_text("");
             return false;
         }
 
         [GtkCallback]
-        public bool on_selected_page_focus_out_event (Gtk.Widget entry,
+        bool on_selected_page_focus_out_event (Gtk.Widget entry,
                                                        Gdk.EventFocus unused) {
             selected_page.set_text("%.f".printf(current_page));
             return false;

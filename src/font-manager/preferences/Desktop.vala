@@ -161,10 +161,8 @@ namespace FontManager {
                 }
                 if (widget == null)
                     continue;
-                var row = new Gtk.ListBoxRow();
+                var row = new Gtk.ListBoxRow() { activatable = false, selectable = false };
                 row.add(widget);
-                row.set_activatable(false);
-                row.set_selectable(false);
                 list.insert(row, -1);
                 widget.set_tooltip_text(dgettext(null, setting.description));
                 widget.show();

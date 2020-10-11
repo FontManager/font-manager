@@ -20,6 +20,7 @@
 
 namespace FontManager {
 
+    public static DatabaseProxy? db = null;
     public static GLib.Settings? settings = null;
     public static FontManager.Reject? reject = null;
     public static MainWindow? main_window = null;
@@ -31,10 +32,6 @@ namespace FontManager {
 
         [DBus (visible = false)]
         public bool update_in_progress { get; private set; default = false; }
-
-        bool category_update_required = false;
-
-        StringHashset? attached = null;
 
         const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
@@ -50,68 +47,10 @@ namespace FontManager {
         };
 
         uint dbus_id = 0;
-        bool refresh_required = false;
 
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
             add_main_option_entries(options);
-        }
-
-        void update_interface_on_db_change () {
-            if (main_window == null)
-                return;
-            if (category_update_required &&
-                attached.contains("Fonts") &&
-                attached.contains("Metadata")) {
-                category_update_required = false;
-                /* Re-select category after an update to prevent blank list */
-                if (main_window.sidebar.standard.selected_category != null) {
-                    int index = main_window.sidebar.standard.selected_category.index;
-                    var path = new Gtk.TreePath.from_indices(index, -1);
-                    var tree = main_window.sidebar.standard.category_tree.tree;
-                    var selection = tree.get_selection();
-                    selection.unselect_all();
-                    main_window.sidebar.category_model.update();
-                    selection.select_path(path);
-                } else {
-                    main_window.sidebar.category_model.update();
-                    main_window.sidebar.standard.category_tree.select_first_row();
-                }
-                main_window.fontlist_pane.refilter();
-                main_window.fontlist.queue_draw();
-                main_window.browse.treeview.queue_draw();
-            }
-            if (attached.contains("Fonts") &&
-                attached.contains("Metadata") &&
-                attached.contains("Orthography")) {
-                update_in_progress = false;
-                main_window.titlebar.loading = false;
-                enable_user_font_configuration(true);
-                main_window.fontlist.samples = get_non_latin_samples();
-                if (main_window.fontlist.samples == null)
-                    warning("Failed to generate previews for fonts which do not support Basic Latin");
-            }
-            return;
-        }
-
-        bool update_status () {
-            attached.clear();
-            try {
-                var db = get_database(DatabaseType.BASE);
-                db.execute_query("PRAGMA database_list");
-                foreach (unowned Sqlite.Statement row in db)
-                    attached.add(row.column_text(1));
-            } catch (Error e) { return true; }
-            update_interface_on_db_change();
-            return false;
-        }
-
-        int authorizer (Sqlite.Action action,
-                        string? name, string? unused,
-                        string? db, string? trigger) {
-            if (action == Sqlite.Action.ATTACH || action == Sqlite.Action.DETACH)
-                Timeout.add(250, () => { return update_status(); });
-            return Sqlite.OK;
         }
 
         public override void startup () {
@@ -120,7 +59,7 @@ namespace FontManager {
             quit.activate.connect(() => {
                 if (main_window != null)
                     main_window.close();
-                Idle.add(() => { this.quit(); return false; });
+                Idle.add(() => { this.quit(); return GLib.Source.REMOVE; });
             });
             const string? [] accels = {"<Ctrl>q", null };
             set_accels_for_action("app.quit", accels);
@@ -263,12 +202,12 @@ namespace FontManager {
             int exit_status = -1;
 
             if (options.contains("version")) {
-                show_version();
+                print_version();
                 return 0;
             }
 
             if (options.contains("about")) {
-                show_about();
+                print_about();
                 return 0;
             }
 
@@ -316,91 +255,52 @@ namespace FontManager {
             return exit_status;
         }
 
-        async void refresh_async (ProgressCallback? progress = null,
-                                  Cancellable? cancellable = null)
-                                  throws ThreadError {
-            SourceFunc callback = refresh_async.callback;
-            ThreadFunc <bool> run_in_thread = () => {
-                enable_user_font_configuration(false);
-                update_font_configuration();
-                try {
-                    load_user_font_resources(reject.get_rejected_files(), null);
-                } catch (Error e) {
-                    critical(e.message);
-                }
-                Json.Object available_fonts = get_available_fonts(null);
-                Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
-                FontModel model = new FontModel();
-                model.source_array = sorted_fonts;
-                main_window.model = model;
-                update_database_tables(progress, cancellable);
-                available_font_families.clear();
-                foreach (string family in available_fonts.get_members())
-                    available_font_families.add(family);
-                Idle.add((owned) callback);
-                return true;
-            };
-            new Thread <bool> ("refresh_async", (owned) run_in_thread);
-            yield;
-            return;
-        }
-
         [DBus (visible = false)]
         public void refresh () requires (main_window != null) {
             if (update_in_progress)
                 return;
             update_in_progress = true;
-            category_update_required = true;
-            main_window.titlebar.loading = true;
-            refresh_async.begin(
-            (data) => {
-                data.ref();
-                main_window.titlebar.progress.database(data);
-                data.unref();
-                return GLib.Source.REMOVE;
-            },
-            null,
-            (obj, res) => {
-                try {
-                    refresh_async.end(res);
-                } catch (Error e) {
-                    critical(e.message);
-                }
-
-            });
+            enable_user_font_configuration(false);
+            update_font_configuration();
+            try {
+                load_user_font_resources(reject.get_rejected_files(), null);
+            } catch (Error e) {
+                critical(e.message);
+            }
+            Json.Object available_fonts = get_available_fonts(null);
+            Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
+            FontModel model = new FontModel();
+            model.source_array = sorted_fonts;
+            main_window.model = model;
+            db.update();
+            available_font_families.clear();
+            foreach (string family in available_fonts.get_members())
+                available_font_families.add(family);
             return;
         }
 
         protected override void activate () {
+            db = new DatabaseProxy();
             main_window = new MainWindow();
             add_window(main_window);
             main_window.show();
-            attached = new StringHashset();
-            try {
-                Database main = get_database(DatabaseType.BASE);
-                main.db.set_authorizer(this.authorizer);
-            } catch (Error e) {
-                critical(e.message);
-            }
-            Idle.add(() => { refresh(); return false; });
-            main_window.fontlist.user_sources.items_changed.connect(() => {
-                refresh_required = true;
+            db.set_progress_callback((data) => {
+                data.ref();
+                main_window.titlebar.progress.database(data);
+                data.unref();
+                return GLib.Source.REMOVE;
             });
-            /* XXX : Fix me...  */
-            ((UserSourceList) main_window.preference_pane["Sources"]).unmap.connect(() => {
-                if (refresh_required)
-                    Idle.add(() => {
-                        refresh();
-                        refresh_required = false;
-                        return false;
-                    });
+            db.update_started.connect(() => { update_in_progress = true; });
+            db.update_complete.connect(() => {
+                update_in_progress = false;
+                enable_user_font_configuration(true);
             });
+            Idle.add(() => { refresh(); return GLib.Source.REMOVE; });
             return;
         }
 
         [DBus (visible = false)]
         public new void quit () {
-            base.quit();
             foreach (var path in temp_files)
                 remove_directory(File.new_for_path(path));
             /* Prevent noise during memcheck */
@@ -415,17 +315,16 @@ namespace FontManager {
                     clear_application_fonts();
                 } catch (Error e) {}
             }
+            base.quit();
             return;
         }
 
         [DBus (visible = false)]
         public void import () {
             import_user_data();
-            refresh_required = true;
             Idle.add(() => {
                 refresh();
-                refresh_required = false;
-                return false;
+                return GLib.Source.REMOVE;
             });
             return;
         }
@@ -507,6 +406,10 @@ namespace FontManager {
             return new Application(BUS_ID, FLAGS).run(args);
         }
 
+    }
+
+    FontManager.Application get_default_application () {
+        return ((FontManager.Application) GLib.Application.get_default());
     }
 
 }

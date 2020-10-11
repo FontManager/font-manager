@@ -526,16 +526,21 @@ Note that not all environments/applications will honor these settings.""");
             notify["completion-model"].connect_after(() => {
                 entry.completion.set_text_column(0);
             });
-            add_button.clicked.connect(() => {
-                var sub = new Substitute();
-                sub.completion_model = completion_model;
-                list.insert(sub, -1);
-                sub.show();
-            });
-            entry.changed.connect(() => {
-                add_button.sensitive = (entry.get_text() != null);
-            });
             base.constructed();
+            return;
+        }
+
+        [GtkCallback]
+        void on_add_button_clicked () {
+            var sub = new Substitute() { completion_model = completion_model };
+            list.insert(sub, -1);
+            sub.show();
+            return;
+        }
+
+        [GtkCallback]
+        void on_entry_changed () {
+            add_button.sensitive = (entry.get_text() != null);
             return;
         }
 
@@ -600,8 +605,7 @@ Note that not all environments/applications will honor these settings.""");
         }
 
         public void on_add_row () {
-            var row = new SubstituteRow();
-            row.completion_model = completion_model;
+            var row = new SubstituteRow() { completion_model = completion_model };
             list.insert(row, -1);
             row.show();
             return;
@@ -615,9 +619,10 @@ Note that not all environments/applications will honor these settings.""");
         public bool discard () {
             while (list.get_row_at_index(0) != null)
                 ((Gtk.Widget) list.get_row_at_index(0)).destroy();
-            var aliases = new Aliases();
-            aliases.config_dir = get_user_fontconfig_directory();
-            aliases.target_file = "39-Aliases.conf";
+            var aliases = new Aliases() {
+                config_dir = get_user_fontconfig_directory(),
+                target_file = "39-Aliases.conf"
+            };
             File file = File.new_for_path(aliases.get_filepath());
             try {
                 if (file.delete())
@@ -630,9 +635,10 @@ Note that not all environments/applications will honor these settings.""");
         }
 
         public bool load () {
-            var aliases = new Aliases();
-            aliases.config_dir = get_user_fontconfig_directory();
-            aliases.target_file = "39-Aliases.conf";
+            var aliases = new Aliases() {
+                config_dir = get_user_fontconfig_directory(),
+                target_file = "39-Aliases.conf"
+            };
             bool res = aliases.load();
             foreach (AliasElement element in aliases.list()) {
                 var row = new SubstituteRow.from_element(element);
@@ -650,9 +656,10 @@ Note that not all environments/applications will honor these settings.""");
         }
 
         public bool save () {
-            var aliases = new Aliases();
-            aliases.config_dir = get_user_fontconfig_directory();
-            aliases.target_file = "39-Aliases.conf";
+            var aliases = new Aliases() {
+                config_dir = get_user_fontconfig_directory(),
+                target_file = "39-Aliases.conf"
+            };
             int i = 0;
             var alias_row = (SubstituteRow) get_bin_child(list.get_row_at_index(i));
             while (alias_row != null) {

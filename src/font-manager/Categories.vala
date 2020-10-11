@@ -111,27 +111,11 @@ namespace FontManager {
     public class CategoryTree : Gtk.ScrolledWindow {
 
         public signal void selection_changed (Category filter, int category);
+        public signal void update_complete ();
 
-        public bool update_in_progress { get; set; default = false; }
+        public bool update_in_progress { get; set; default = true; }
 
-        public CategoryModel model {
-            get {
-                return _model;
-            }
-            set {
-                update_in_progress = true;
-                _model = value;
-                tree.set_model(_model);
-                select_first_row();
-                _model.update_begin.connect(() => {
-                    updating.show();
-                });
-                _model.update_complete.connect(() => {
-                    updating.hide();
-                    update_in_progress = false;
-                });
-            }
-        }
+        public CategoryModel model { get; protected set; }
 
         public string selected_iter { get; protected set; default = "0"; }
         public Category? selected_filter { get; protected set; default = null; }
@@ -143,7 +127,7 @@ namespace FontManager {
 
         Gtk.Overlay overlay;
 
-        CategoryModel _model;
+        bool refresh_required = false;
         PlaceHolder updating;
 
         public CategoryTree () {
@@ -151,10 +135,14 @@ namespace FontManager {
             overlay = new Gtk.Overlay();
             updating = new PlaceHolder(null, null, _("Update in progress"), "emblem-synchronizing-symbolic");
             updating.show();
-            tree = new BaseTreeView();
+            tree = new BaseTreeView() {
+                name = "CategoryTree",
+                level_indentation = 12,
+                headers_visible = false,
+                show_expanders = false,
+                tooltip_column = CategoryColumn.COMMENT
+            };
             model = new CategoryModel();
-            tree.name = "CategoryTree";
-            tree.level_indentation = 12;
             renderer = new Gtk.CellRendererText();
             count_renderer = new CellRendererCount();
             pixbuf_renderer = new Gtk.CellRendererPixbuf();
@@ -165,11 +153,31 @@ namespace FontManager {
             tree.insert_column_with_data_func(2, "", count_renderer, count_cell_data_func);
             for (int i = 0; i < 3; i++)
                 tree.get_column(i).expand = (i == 1);
-            tree.set_headers_visible(false);
-            tree.show_expanders = false;
-            tree.set_tooltip_column(CategoryColumn.COMMENT);
             tree.test_expand_row.connect((t,i,p) => { t.collapse_all(); return false; });
             tree.get_selection().changed.connect(on_selection_changed);
+            tree.set_model(model);
+            model.update_begin.connect(() => {
+                update_in_progress = true;
+                updating.show();
+            });
+            model.update_complete.connect(() => {
+                updating.hide();
+                update_in_progress = false;
+                update_complete();
+            });
+            db.update_started.connect(() => { refresh_required = true; });
+            db.status_changed.connect(() => {
+                if (refresh_required && db.ready(DatabaseType.METADATA)) {
+                    refresh_required = false;
+                    update();
+                }
+            });
+            db.update_complete.connect(() => {
+                if (refresh_required) {
+                    refresh_required = false;
+                    update();
+                }
+            });
             overlay.add_overlay(updating);
             overlay.add(tree);
             add(overlay);
@@ -180,6 +188,22 @@ namespace FontManager {
 
         public void select_first_row () {
             tree.get_selection().select_path(new Gtk.TreePath.first());
+            return;
+        }
+
+        public void update () {
+            /* Re-select category after an update to prevent blank list */
+            if (selected_filter != null) {
+                int index = selected_filter.index;
+                var path = new Gtk.TreePath.from_indices(index, -1);
+                var selection = tree.get_selection();
+                selection.unselect_all();
+                model.update();
+                selection.select_path(path);
+            } else {
+                model.update();
+                select_first_row();
+            }
             return;
         }
 
@@ -255,7 +279,7 @@ namespace FontManager {
                 bool is_language_filter = (selected_filter.index == CategoryIndex.LANGUAGE);
                 if (language_filter != null) {
                     language_filter.settings_button.set_visible(is_language_filter);
-                    return false;
+                    return GLib.Source.REMOVE;
                 }
                 if (is_language_filter) {
                     language_filter = selected_filter as LanguageFilter;
@@ -269,7 +293,7 @@ namespace FontManager {
                     }
                     language_filter.settings_button.set_visible(is_language_filter);
                 }
-                return false;
+                return GLib.Source.REMOVE;
             });
 
             selection_changed(selected_filter, path.get_indices()[0]);

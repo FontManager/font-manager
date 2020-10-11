@@ -51,17 +51,29 @@ namespace FontManager {
 
         public static bool approved (Gtk.Window? parent) {
             Gtk.ResponseType response = Gtk.ResponseType.NONE;
-            var dialog = new Gtk.Dialog();
             var cancel = new Gtk.Button.with_mnemonic(_("_Cancel"));
             var accept = new Gtk.Button.with_mnemonic(_("_Continue"));
             accept.get_style_context().add_class(Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
             var header = new Gtk.HeaderBar();
-            var box = dialog.get_content_area();
             var scrolled = new Gtk.ScrolledWindow(null, null);
-            var textview = new Gtk.TextView();
-            textview.set("margin", DEFAULT_MARGIN, "editable", false,
-                         "cursor-visible", false, "accepts-tab", false,
-                         "overwrite", false, "wrap-mode", Gtk.WrapMode.WORD_CHAR, null);
+            var textview = new Gtk.TextView() {
+                margin = DEFAULT_MARGIN,
+                editable = false,
+                cursor_visible = false,
+                accepts_tab = false,
+                overwrite = false,
+                wrap_mode = Gtk.WrapMode.WORD_CHAR
+            };
+            var dialog = new Gtk.Dialog() {
+                transient_for = parent,
+                modal = true,
+                destroy_with_parent = true,
+                width_request = 540,
+                height_request = 360
+
+            };
+            dialog.set_titlebar(header);
+            var box = dialog.get_content_area();
             box.set_orientation(Gtk.Orientation.VERTICAL);
             scrolled.add(textview);
             scrolled.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
@@ -70,11 +82,6 @@ namespace FontManager {
             header.set_title(_("Update Required"));
             header.pack_start(cancel);
             header.pack_end(accept);
-            dialog.set_titlebar(header);
-            dialog.set_transient_for(parent);
-            dialog.modal = true;
-            dialog.destroy_with_parent = true;
-            dialog.set_size_request(540, 360);
             header.show_all();
             box.show_all();
             textview.event.connect((e) => {

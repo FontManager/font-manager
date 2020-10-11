@@ -32,7 +32,7 @@ namespace FontManager {
             foreach (var path in this)
                 add_item(new Source(File.new_for_path(path)));
             items_changed.connect(() => {
-                Idle.add(() => { save(); save_active_items(); return false; });
+                Idle.add(() => { save(); save_active_items(); return GLib.Source.REMOVE; });
             });
         }
 
@@ -81,7 +81,7 @@ namespace FontManager {
                 purge_database_entries.begin(item.path, (obj, res) => {
                     purge_database_entries.end(res);
                 });
-                return false;
+                return GLib.Source.REMOVE;
             });
             return;
         }
@@ -149,6 +149,7 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-user-source-list.ui")]
     public class UserSourceList : Gtk.Box {
 
+        bool refresh_required = false;
         const string help_text =
 
 _("""Fonts in any folders listed here will be available within the application.
@@ -192,9 +193,6 @@ Note that not all environments/applications will honor these settings.""");
                 while (position > 0 && position >= model.get_n_items()) { position--; }
                 list.select_row(list.get_row_at_index((int) position));
             });
-            list.row_selected.connect((row) => {
-                controls.remove_button.set_visible(row != null);
-            });
             place_holder.map.connect(() => {
                 controls.add_button.set_relief(Gtk.ReliefStyle.NORMAL);
                 controls.add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
@@ -204,6 +202,19 @@ Note that not all environments/applications will honor these settings.""");
                 controls.add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             });
             place_holder.show();
+            model.items_changed.connect(() => { refresh_required = true; });
+            unmap.connect(() => {
+                if (refresh_required) {
+                    get_default_application().refresh();
+                    refresh_required = false;
+                }
+            });
+        }
+
+        [GtkCallback]
+        void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
+            controls.remove_button.set_visible(row != null);
+            return;
         }
 
         public override void drag_data_received (Gdk.DragContext context,

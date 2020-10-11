@@ -97,39 +97,6 @@ namespace FontManager {
         return;
     }
 
-    public void update_database_tables (ProgressCallback? progress = null, Cancellable? cancellable = null) {
-        DatabaseType [] types = { DatabaseType.FONT, DatabaseType.METADATA, DatabaseType.ORTHOGRAPHY };
-        try {
-            var main = get_database(DatabaseType.BASE);
-            foreach (var type in types)
-                main.detach(type);
-            foreach (var type in types) {
-                var child = get_database(type);
-                update_database.begin(
-                    child,
-                    type,
-                    progress,
-                    cancellable,
-                    (obj, res) => {
-                        try {
-                            bool success = update_database.end(res);
-                            if (success) {
-                                main.attach(type);
-                            } else {
-                                critical("%s failed to update", Database.get_type_name(type));
-                            }
-                        } catch (Error e) {
-                            critical(e.message);
-                        }
-                    }
-                );
-            }
-        } catch (Error e) {
-            critical(e.message);
-        }
-        return;
-    }
-
     /**
      * Adds user configured font sources (directories) and rejected fonts to our
      * FcConfig so that we can render fonts which are not actually "installed".

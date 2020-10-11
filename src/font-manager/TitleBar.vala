@@ -29,7 +29,7 @@ namespace FontManager {
         double metadata = 0.0;
         double orthography = 0.0;
 
-        construct {
+        public ProgressHeader () {
             set_orientation(Gtk.Orientation.VERTICAL);
             progress = new Gtk.ProgressBar();
             progress.show();
@@ -45,6 +45,7 @@ namespace FontManager {
             metadata = 0.0;
             orthography = 0.0;
             title.set_text(About.DISPLAY_NAME);
+            progress.set_fraction(0.0f);
         }
 
         public bool database (ProgressData data) {
@@ -73,7 +74,7 @@ namespace FontManager {
     }
 
     GLib.MenuModel get_app_menu_model () {
-        var application = (FontManager.Application) GLib.Application.get_default();
+        var application = get_default_application();
         /* action_name, display_name, detailed_action_name, accelerator, method */
         MenuEntry [] app_menu_entries = {
             MenuEntry("shortcuts", _("Keyboard Shortcuts"), "app.shortcuts", { "<Ctrl>question", "<Ctrl>slash" }, new MenuCallbackWrapper(application.shortcuts)),
@@ -202,6 +203,8 @@ namespace FontManager {
                 prefs_toggle.set_active(active);
                 preferences_selected(prefs_toggle.get_active());
             });
+            db.update_started.connect(() => { loading = true; });
+            db.update_complete.connect(() => { loading = false; });
             return;
         }
 
@@ -215,16 +218,14 @@ namespace FontManager {
         }
 
         protected void init_components () {
-            main_menu = new Gtk.MenuButton();
+            main_menu = new Gtk.MenuButton() { margin = 0 };
             main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic", Gtk.IconSize.MENU);
             main_menu_container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 1);
             main_menu_container.pack_start(main_menu_icon, false, false, 0);
-            main_menu_label = new Gtk.Label(null);
+            main_menu_label = new Gtk.Label(null) { margin = 0};
             main_menu_label.set_markup("<b>%s</b>".printf(Mode.parse("Default").to_translatable_string()));
-            main_menu_label.set("margin", 0, null);
             main_menu_container.pack_end(main_menu_label, false, false, 0);
             main_menu.add(main_menu_container);
-            main_menu.margin = 0;
             main_menu.set_menu_model(get_main_menu_model(main_menu));
             revealer = new Gtk.Revealer();
             revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_RIGHT);

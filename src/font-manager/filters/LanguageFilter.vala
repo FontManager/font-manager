@@ -137,10 +137,6 @@ namespace FontManager {
             treeview.insert_column_with_data_func(FontListColumn.TOGGLE, "", toggle, toggle_cell_data_func);
             treeview.insert_column_with_attributes(-1, "", text, "text", 1, null);
             treeview.set_search_entry(search_entry);
-            search_entry.search_changed.connect(() => {
-                queue_refilter();
-                text_length = search_entry.get_text_length();
-            });
             /* XXX : Remove placeholder icon set in ui file to avoid Gtk warning */
             search_entry.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, null);
             base.constructed();
@@ -150,15 +146,15 @@ namespace FontManager {
         public Gtk.Button get_button () {
             if (settings_button != null)
                 return settings_button;
-            settings_button = new Gtk.Button();
-            settings_button.always_show_image = true;
-            var settings_icon = new Gtk.Image.from_icon_name("preferences-desktop-locale", Gtk.IconSize.BUTTON);
-            settings_button.set_image(settings_icon);
-            settings_button.set_label("Filter Settings");
-            settings_button.halign = Gtk.Align.CENTER;
-            settings_button.valign = Gtk.Align.END;
-            settings_button.margin = 12;
-            settings_button.relief = Gtk.ReliefStyle.NONE;
+            settings_button = new Gtk.Button() {
+                label = _("Filter Settings"),
+                image = new Gtk.Image.from_icon_name("preferences-desktop-locale", Gtk.IconSize.BUTTON),
+                always_show_image = true,
+                halign = Gtk.Align.CENTER,
+                valign = Gtk.Align.END,
+                margin = 12,
+                relief = Gtk.ReliefStyle.NONE
+            };
             settings_button.show();
             settings_button.clicked.connect(() => {
                 main_window.sidebar.mode = "LanguageFilterSettings";
@@ -173,6 +169,13 @@ namespace FontManager {
             treeview.set_model(search_filter);
             search_timeout = null;
             return false;
+        }
+
+        [GtkCallback]
+        void on_search_changed () {
+            queue_refilter();
+            text_length = search_entry.get_text_length();
+            return;
         }
 
         [GtkCallback]

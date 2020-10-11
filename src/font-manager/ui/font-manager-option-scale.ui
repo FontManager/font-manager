@@ -14,6 +14,7 @@
         <property name="hexpand">True</property>
         <property name="round_digits">1</property>
         <property name="draw_value">False</property>
+        <signal name="value-changed" handler="on_scale_value_changed" swapped="no"/>
       </object>
       <packing>
         <property name="expand">False</property>

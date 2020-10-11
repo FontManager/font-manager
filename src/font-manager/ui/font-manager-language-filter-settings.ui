@@ -57,6 +57,7 @@
             <property name="secondary_icon_name">edit-clear-symbolic</property>
             <property name="primary_icon_activatable">False</property>
             <property name="placeholder_text" translatable="yes">Search Languages…</property>
+            <signal name="search-changed" handler="on_search_changed" swapped="no"/>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -123,9 +124,6 @@
                 <child internal-child="selection">
                   <object class="GtkTreeSelection"/>
                 </child>
-                <style>
-                  <class name="popover"/>
-                </style>
               </object>
             </child>
           </object>

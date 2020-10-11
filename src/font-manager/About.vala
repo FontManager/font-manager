@@ -32,7 +32,7 @@ namespace FontManager {
         public const string VERSION = Config.PACKAGE_VERSION;
         public const string HOMEPAGE = Config.PACKAGE_URL;
         public const string BUG_TRACKER = Config.PACKAGE_BUGREPORT;
-        public const string COPYRIGHT = "Copyright © 2009 - 2019 Jerry Casiano";
+        public const string COPYRIGHT = "Copyright © 2009 - 2020 Jerry Casiano";
         public const string LICENSE = _("""
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -68,12 +68,12 @@ namespace FontManager {
 
     }
 
-    public void show_version () {
+    public void print_version () {
         stdout.printf("%s %s\n", About.NAME, About.VERSION);
         return;
     }
 
-    public void show_about () {
+    public void print_about () {
         stdout.printf("\n    %s - %s\n\n\t\t  %s\n%s\n",
                                             About.NAME,
                                             About.COMMENT,

@@ -114,6 +114,7 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="placeholder_text" translatable="yes">Enter Preview Text…</property>
+            <signal name="changed" handler="on_entry_changed" swapped="no"/>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -128,7 +129,7 @@
               <object class="GtkLabel" id="page_count">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="opacity">0.66000000000000003</property>
+                <property name="opacity">0.66</property>
                 <property name="margin_left">6</property>
                 <property name="margin_right">6</property>
               </object>
@@ -146,7 +147,7 @@
               <object class="GtkEntry" id="selected_page">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="opacity">0.66000000000000003</property>
+                <property name="opacity">0.66</property>
                 <property name="margin_top">6</property>
                 <property name="margin_bottom">6</property>
                 <property name="xalign">1</property>
@@ -306,6 +307,8 @@
             <property name="vexpand">True</property>
             <property name="propagate_natural_width">True</property>
             <property name="propagate_natural_height">True</property>
+            <signal name="map" handler="on_map" swapped="no"/>
+            <signal name="unmap" handler="on_unmap" swapped="no"/>
             <child>
               <object class="GtkViewport">
                 <property name="visible">True</property>

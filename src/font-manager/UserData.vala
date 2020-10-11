@@ -45,9 +45,7 @@ namespace FontManager {
                 header.show_all();
             } else {
                 set_title(_("User Data"));
-                add_buttons(_("_Cancel"), Gtk.ResponseType.CANCEL,
-                            action, Gtk.ResponseType.ACCEPT,
-                            null);
+                add_buttons(_("_Cancel"), Gtk.ResponseType.CANCEL, action, Gtk.ResponseType.ACCEPT, null);
             }
         }
     }
@@ -69,8 +67,8 @@ namespace FontManager {
             return;
         return_if_fail(directory.query_exists());
         FileCopyFlags flags = FileCopyFlags.OVERWRITE |
-                                FileCopyFlags.ALL_METADATA |
-                                FileCopyFlags.TARGET_DEFAULT_PERMS;
+                              FileCopyFlags.ALL_METADATA |
+                              FileCopyFlags.TARGET_DEFAULT_PERMS;
         try {
             FileInfo fileinfo;
             var enumerator = directory.enumerate_children(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
@@ -110,10 +108,25 @@ namespace FontManager {
         return;
     }
 
+    internal void copy_config (string config_name, string destdir, FileCopyFlags flags) {
+        string config_dir = get_package_config_directory();
+        string filepath = Path.build_filename(config_dir, config_name);
+        File config = File.new_for_path(filepath);
+        if (config.query_exists()) {
+            File target = File.new_for_path(Path.build_filename(destdir, config_name));
+            try {
+                config.copy(target, flags);
+            } catch (Error e) {
+                critical(e.message);
+            }
+        }
+        return;
+    }
+
     public void export_user_data () {
         FileCopyFlags flags = FileCopyFlags.OVERWRITE |
-                                FileCopyFlags.ALL_METADATA |
-                                FileCopyFlags.TARGET_DEFAULT_PERMS;
+                              FileCopyFlags.ALL_METADATA |
+                              FileCopyFlags.TARGET_DEFAULT_PERMS;
         var dialog = new UserDataDialog(_("Export"));
         if (dialog.run() == Gtk.ResponseType.ACCEPT) {
             dialog.hide();
@@ -139,59 +152,14 @@ namespace FontManager {
                 var dest_dir = Path.build_filename(destination.get_path(), "fontconfig", "conf.d");
                 copy_directory(File.new_for_path(settings_dir), File.new_for_path(dest_dir), flags);
             }
-            if (dialog.sources.active) {
-                string config_dir = get_package_config_directory();
-                string filepath = Path.build_filename(config_dir, "Sources.xml");
-                File sources = File.new_for_path(filepath);
-                if (sources.query_exists()) {
-                    string copy = Path.build_filename(destination.get_path(), "Sources.xml");
-                    File target = File.new_for_path(copy);
-                    try {
-                        sources.copy(target, flags);
-                    } catch (Error e) {
-                        critical(e.message);
-                    }
-                }
-            }
+            if (dialog.sources.active)
+                copy_config("Sources.xml", destination.get_path(), flags);
             if (dialog.collections.active) {
-                string config_dir = get_package_config_directory();
-                string filepath = Path.build_filename(config_dir, "Collections.json");
-                File collections = File.new_for_path(filepath);
-                if (collections.query_exists()) {
-                    string copy = Path.build_filename(destination.get_path(), "Collections.json");
-                    File target = File.new_for_path(copy);
-                    try {
-                        collections.copy(target, flags);
-                    } catch (Error e) {
-                        critical(e.message);
-                    }
-                }
-                filepath = Path.build_filename(config_dir, "Comparisons.json");
-                File comparisons = File.new_for_path(filepath);
-                if (comparisons.query_exists()) {
-                    string copy = Path.build_filename(destination.get_path(), "Comparisons.json");
-                    File target = File.new_for_path(copy);
-                    try {
-                        comparisons.copy(target, flags);
-                    } catch (Error e) {
-                        critical(e.message);
-                    }
-                }
+                copy_config("Collections.json", destination.get_path(), flags);
+                copy_config("Comparisons.json", destination.get_path(), flags);
             }
-            if (dialog.actions.active) {
-                string config_dir = get_package_config_directory();
-                string filepath = Path.build_filename(config_dir, "Actions.json");
-                File collections = File.new_for_path(filepath);
-                if (collections.query_exists()) {
-                    string copy = Path.build_filename(destination.get_path(), "Actions.json");
-                    File target = File.new_for_path(copy);
-                    try {
-                        collections.copy(target, flags);
-                    } catch (Error e) {
-                        critical(e.message);
-                    }
-                }
-            }
+            if (dialog.actions.active)
+                copy_config("Actions.json", destination.get_path(), flags);
             if (dialog.fonts.active) {
                 var font_dir = get_user_font_directory();
                 var dest_dir = Path.build_filename(destination.get_path(), "fonts");

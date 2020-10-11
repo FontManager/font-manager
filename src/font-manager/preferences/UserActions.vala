@@ -180,7 +180,7 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        public void on_executable_icon_press (Gtk.EntryIconPosition position, Gdk.Event event) {
+        void on_executable_icon_press (Gtk.EntryIconPosition position, Gdk.Event event) {
             var bin = FileSelector.get_executable();
             executable.set_text(bin != null ? bin : "");
             return;
@@ -228,9 +228,6 @@ If FAMILY or STYLE are found in the argument list they will also be replaced."""
                 while (position > 0 && position >= model.get_n_items()) { position--; }
                 list.select_row(list.get_row_at_index((int) position));
             });
-            list.row_selected.connect((row) => {
-                controls.remove_button.set_visible(row != null);
-            });
             place_holder.map.connect(() => {
                 controls.add_button.set_relief(Gtk.ReliefStyle.NORMAL);
                 controls.add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
@@ -240,6 +237,12 @@ If FAMILY or STYLE are found in the argument list they will also be replaced."""
                 controls.add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             });
             place_holder.show();
+        }
+
+        [GtkCallback]
+        void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
+            controls.remove_button.set_visible(row != null);
+            return;
         }
 
     }
