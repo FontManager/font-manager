@@ -60,7 +60,7 @@ namespace FontManager {
             }
             set {
                 list_view.set_active(value == BrowseMode.LIST);
-                grid_view.set_active(value == BrowseMode.LIST);
+                grid_view.set_active(value == BrowseMode.GRID);
             }
         }
 
