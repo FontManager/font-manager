@@ -8,7 +8,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{PatchVersion}.%{build_timestamp}
-Release:    8
+Release:    9
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -108,7 +108,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/applications/%{DBusName}.desktop
 %{_datadir}/dbus-1/services/%{DBusName}.service
 %{_datadir}/glib-2.0/schemas/%{DBusName}.gschema.xml
-%{_datadir}/gnome-shell/search-provider/%{DBusName}.SearchProvider.ini
+%{_datadir}/gnome-shell/search-providers/%{DBusName}.SearchProvider.ini
 %{_datadir}/icons/hicolor/128x128/apps/%{DBusName}.png
 %{_datadir}/icons/hicolor/256x256/apps/%{DBusName}.png
 %{_mandir}/man1/%{name}.*
@@ -137,5 +137,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_libdir}/thunarx-3/thunar-%{name}.so
 
 %changelog
-* Sat Sep 21 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.9-8
+* Sat Sep 21 2019 JerryCasiano <JerryCasiano@gmail.com> 0.7.9-9
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
