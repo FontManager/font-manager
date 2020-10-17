@@ -3,5 +3,5 @@ usr/share/metainfo/org.gnome.FontViewer.appdata.xml
 usr/share/applications/org.gnome.FontViewer.desktop
 usr/share/dbus-1/services/org.gnome.FontViewer.service
 usr/share/glib-2.0/schemas/org.gnome.FontViewer.gschema.xml
-/usr/share/icons/hicolor/128x128/apps/org.gnome.FontViewer.png
-/usr/share/icons/hicolor/256x256/apps/org.gnome.FontViewer.png
+usr/share/icons/hicolor/128x128/apps/org.gnome.FontViewer.png
+usr/share/icons/hicolor/256x256/apps/org.gnome.FontViewer.png
