@@ -46,14 +46,15 @@ namespace FontManager.FontViewer {
             return main_window.is_visible();
         }
 
-        public void show_uri (string uri) throws DBusError, IOError {
-            main_window.open(uri);
+        public void show_uri (string uri, int index) throws DBusError, IOError {
+            main_window.open(uri, index);
             activate();
             return;
         }
 
         public override void open (File [] files, string hint) {
-            main_window.open(files[0].get_path());
+            int index = hint != "" ? int.parse(hint) : 0;
+            main_window.open(files[0].get_path(), index);
             activate();
             return;
         }

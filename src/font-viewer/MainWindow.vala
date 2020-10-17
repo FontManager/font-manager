@@ -100,8 +100,8 @@ namespace FontManager.FontViewer {
             return;
         }
 
-        public void open (string arg)  {
-            preview_pane.show_uri(arg);
+        public void open (string arg, int index)  {
+            preview_pane.show_uri(arg, index);
             update();
             return;
         }
@@ -252,7 +252,7 @@ namespace FontManager.FontViewer {
                                            uint time) {
             switch (info) {
                 case DragTargetType.EXTERNAL:
-                    this.open(selection_data.get_uris()[0]);
+                    this.open(selection_data.get_uris()[0], 0);
                     break;
                 default:
                     return;

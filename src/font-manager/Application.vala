@@ -23,6 +23,7 @@ namespace FontManager {
     public static DatabaseProxy? db = null;
     public static GLib.Settings? settings = null;
     public static FontManager.Reject? reject = null;
+    public static FontModel? font_model = null;
     public static MainWindow? main_window = null;
     public static StringHashset available_font_families = null;
     public static StringHashset temp_files = null;
@@ -47,6 +48,7 @@ namespace FontManager {
         };
 
         uint dbus_id = 0;
+        SearchProvider? gs_search_provider = null;
 
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
@@ -54,6 +56,20 @@ namespace FontManager {
         }
 
         public override void startup () {
+            base.startup();
+            settings = get_gsettings(BUS_ID);
+            available_font_families = new StringHashset();
+            temp_files = new StringHashset();
+            reject = new Reject();
+            reject.load();
+            font_model = new FontModel();
+            db = new DatabaseProxy();
+            db.update_started.connect(() => { update_in_progress = true; });
+            db.update_complete.connect(() => {
+                update_in_progress = false;
+                enable_user_font_configuration(true);
+            });
+            Idle.add(() => { refresh(); return GLib.Source.REMOVE; });
             SimpleAction quit = new SimpleAction("quit", null);
             add_action(quit);
             quit.activate.connect(() => {
@@ -63,23 +79,18 @@ namespace FontManager {
             });
             const string? [] accels = {"<Ctrl>q", null };
             set_accels_for_action("app.quit", accels);
-            settings = get_gsettings(BUS_ID);
-            available_font_families = new StringHashset();
-            temp_files = new StringHashset();
-            reject = new Reject();
-            reject.load();
-            base.startup();
             return;
         }
 
         public override void open (File [] files, string hint) {
+            int index = hint != "" ? int.parse(hint) : 0;
             try {
                 DBusConnection conn = Bus.get_sync(BusType.SESSION);
                 conn.call_sync(FontViewer.BUS_ID,
                                 FontViewer.BUS_PATH,
                                 FontViewer.BUS_ID,
                                 "ShowUri",
-                                new Variant("(s)", files[0].get_uri()),
+                                new Variant("(si)", files[0].get_uri(), index),
                                 null,
                                 DBusCallFlags.NONE,
                                 -1,
@@ -256,7 +267,7 @@ namespace FontManager {
         }
 
         [DBus (visible = false)]
-        public void refresh () requires (main_window != null) {
+        public void refresh () {
             if (update_in_progress)
                 return;
             update_in_progress = true;
@@ -269,9 +280,11 @@ namespace FontManager {
             }
             Json.Object available_fonts = get_available_fonts(null);
             Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
-            FontModel model = new FontModel();
-            model.source_array = sorted_fonts;
-            main_window.model = model;
+            font_model.source_array = sorted_fonts;
+            if (main_window != null) {
+                main_window.model = null;
+                main_window.model = font_model;
+            }
             db.update();
             available_font_families.clear();
             foreach (string family in available_fonts.get_members())
@@ -280,22 +293,19 @@ namespace FontManager {
         }
 
         protected override void activate () {
-            db = new DatabaseProxy();
-            main_window = new MainWindow();
-            add_window(main_window);
-            main_window.show();
-            db.set_progress_callback((data) => {
-                data.ref();
-                main_window.titlebar.progress.database(data);
-                data.unref();
-                return GLib.Source.REMOVE;
-            });
-            db.update_started.connect(() => { update_in_progress = true; });
-            db.update_complete.connect(() => {
-                update_in_progress = false;
-                enable_user_font_configuration(true);
-            });
-            Idle.add(() => { refresh(); return GLib.Source.REMOVE; });
+            if (main_window == null) {
+                main_window = new MainWindow();
+                add_window(main_window);
+                main_window.model = font_model;
+                db.set_progress_callback((data) => {
+                    data.ref();
+                    main_window.titlebar.progress.database(data);
+                    data.unref();
+                    return GLib.Source.REMOVE;
+                });
+                Idle.add(() => { refresh(); return GLib.Source.REMOVE; });
+            }
+            main_window.present_with_time(Gdk.CURRENT_TIME);
             return;
         }
 
@@ -376,17 +386,22 @@ namespace FontManager {
         }
 
         public override bool dbus_register (DBusConnection conn, string path) throws Error {
-            base.dbus_register(conn, path);
+            bool result = base.dbus_register(conn, path);
             dbus_id = conn.register_object (BUS_PATH, this);
             if (dbus_id == 0)
                 critical("Could not register Font Manager service ");
-            return true;
+            if (gs_search_provider == null)
+                gs_search_provider = new SearchProvider();
+            gs_search_provider.dbus_register(conn);
+            return result;
         }
 
         public override void dbus_unregister (DBusConnection conn, string path) {
             if (dbus_id != 0)
                 conn.unregister_object(dbus_id);
+            gs_search_provider.dbus_unregister(conn);
             base.dbus_unregister(conn, path);
+            return;
         }
 
         public static int main (string [] args) {

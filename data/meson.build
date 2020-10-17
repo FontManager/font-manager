@@ -5,6 +5,7 @@ appdata_dir = join_paths(datadir, 'metainfo')
 dbus_service_dir = join_paths(datadir, 'dbus-1', 'services')
 desktop_dir = join_paths(datadir, 'applications')
 schema_dir = join_paths(datadir, 'glib-2.0', 'schemas')
+search_provider_dir = join_paths(datadir, 'gnome-shell', 'search-providers')
 
 configure_file(
     command: [
@@ -87,6 +88,10 @@ if get_option('manager')
         install: true,
         install_dir: dbus_service_dir
     )
+
+    if get_option('search-provider')
+        install_data('org.gnome.FontManager.SearchProvider.ini', install_dir: search_provider_dir)
+    endif
 
 endif
 

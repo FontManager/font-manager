@@ -100,6 +100,7 @@ if meson_has_summary_function
             'Font Viewer': get_option('viewer'),
             'Help Documents': get_option('yelp-doc'),
             'Nautilus extension': get_option('nautilus'),
+            'GNOME search provider': get_option('search-provider'),
             'Nemo extension': get_option('nemo'),
             'Thunar extension': get_option('thunar'),
             'Translations': get_option('enable-nls'),

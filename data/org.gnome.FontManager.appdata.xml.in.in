@@ -26,6 +26,7 @@
 
     <kudos>
         <kudo>ModernToolkit</kudo>
+        <kudo>SearchProvider</kudo>
         <kudo>UserDocs</kudo>
     </kudos>
 

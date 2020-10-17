@@ -426,6 +426,7 @@ font_manager_get_available_fonts_for_lang (const gchar *lang_id)
                                               FC_WIDTH,
                                               FC_SPACING,
                                               FC_LANG,
+                                              FC_FONTFORMAT,
                                               NULL);
 
     FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
@@ -464,6 +465,7 @@ font_manager_get_available_fonts_for_chars (const gchar *chars)
                                                FC_WIDTH,
                                                FC_SPACING,
                                                FC_CHARSET,
+                                               FC_FONTFORMAT,
                                                NULL);
 
     gunichar wc;

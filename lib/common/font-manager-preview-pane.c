@@ -584,9 +584,10 @@ font_manager_preview_pane_init (FontManagerPreviewPane *self)
  * font_manager_preview_pane_show_uri:
  * @self:       #FontManagerPreviewPane
  * @uri:        filepath to display
+ * @index:      index of face within file
  */
 void
-font_manager_preview_pane_show_uri (FontManagerPreviewPane *self, const gchar *uri)
+font_manager_preview_pane_show_uri (FontManagerPreviewPane *self, const gchar *uri, int index)
 {
     g_return_if_fail(self != NULL);
     if (self->current_uri && g_strcmp0(self->current_uri, uri) == 0)
@@ -610,7 +611,7 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self, const gchar *u
     g_autofree gchar *path = g_file_get_path(file);
     font_manager_add_application_font(path);
     FontManagerFont *font = font_manager_font_new();
-    JsonObject *source = font_manager_get_attributes_from_filepath(path, 0, &error);
+    JsonObject *source = font_manager_get_attributes_from_filepath(path, index, &error);
     if (error != NULL) {
         g_critical("%s : %s", error->message, path);
         g_clear_error(&error);
@@ -619,7 +620,7 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self, const gchar *u
     }
     JsonObject *orthography = font_manager_get_orthography_results(source);
     if (!json_object_has_member(orthography, "Basic Latin")) {
-        GList *charset = font_manager_get_charset_from_filepath(path, 0);
+        GList *charset = font_manager_get_charset_from_filepath(path, index);
         if (!self->samples) {
             self->samples = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
             g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_SAMPLES]);
