@@ -39,6 +39,15 @@ namespace FontManager.FontViewer {
             try {
                 get_database(DatabaseType.BASE).attach(DatabaseType.METADATA);
             } catch (Error e) { }
+            SimpleAction quit = new SimpleAction("quit", null);
+            add_action(quit);
+            quit.activate.connect(() => {
+                if (main_window != null)
+                    main_window.close();
+                Idle.add(() => { this.quit(); return GLib.Source.REMOVE; });
+            });
+            const string? [] accels = {"<Ctrl>q", null };
+            set_accels_for_action("app.quit", accels);
             return;
         }
 
