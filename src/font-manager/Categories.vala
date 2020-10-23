@@ -24,7 +24,6 @@ namespace FontManager {
         ALL,
         SYSTEM,
         USER,
-        N_CORE,
         PANOSE,
         WIDTH,
         WEIGHT,
@@ -33,7 +32,6 @@ namespace FontManager {
         LICENSE,
         VENDOR,
         FILETYPE,
-        N_GENERATED,
         UNSORTED,
         DISABLED,
         LANGUAGE
@@ -44,30 +42,34 @@ namespace FontManager {
         public signal void update_begin ();
         public signal void update_complete ();
 
-        GLib.List <Category>? categories = null;
+        public GenericArray <Category>? categories { get; set; default = null; }
 
-        construct {
+        public CategoryModel () {
             set_column_types({typeof(Object), typeof(string), typeof(string), typeof(string) });
+            categories = new GenericArray <Category> ();
+            notify["categories"].connect(() => {
+                clear();
+                if (categories != null)
+                    categories.foreach((filter) => {
+                        filter.requires_update = true;
+                        append_category((Category) filter);
+                    });
+            });
         }
 
-        void init_categories () {
-            categories = null;
-            try {
-                Database db = get_database(DatabaseType.BASE);
-                categories = get_default_categories(db);
-            } catch (DatabaseError e) {
-                critical(e.message);
-            }
-            return;
+        public static string get_cache_file () {
+            string dirpath = get_package_cache_directory();
+            string filepath = Path.build_filename(dirpath, "Categories.json");
+            DirUtils.create_with_parents(dirpath ,0755);
+            return filepath;
         }
 
         void append_category (Category filter) {
-            if (filter.index < CategoryIndex.N_CORE) {
+            if (filter.index < CategoryIndex.PANOSE) {
                 filter.update.begin((obj, res) => {
                     filter.update.end(res);
                     filter.requires_update = false;
                 });
-
             }
             Gtk.TreeIter iter;
             this.append(out iter, null);
@@ -75,24 +77,25 @@ namespace FontManager {
             string comment = Markup.escape_text(filter.comment);
             this.set(iter, 0, filter, 1, filter.icon, 2, filter.name, 3, comment, -1);
             comment = null;
-            foreach(var child in filter.children) {
+            filter.children.foreach((child) => {
                 string child_comment = Markup.escape_text(child.comment);
                 Gtk.TreeIter _iter;
                 this.append(out _iter, iter);
                 this.set(_iter, 0, child, 1, child.icon, 2, child.name, 3, child_comment, -1);
                 child_comment = null;
-            }
+            });
             return;
         }
 
         public void update () {
             update_begin();
             clear();
-            if (categories == null)
-                init_categories();
-            foreach (var filter in categories) {
-                filter.requires_update = true;
-                append_category((Category) filter);
+            categories = null;
+            try {
+                Database db = get_database(DatabaseType.BASE);
+                categories = get_default_categories(db);
+            } catch (DatabaseError e) {
+                critical(e.message);
             }
             update_complete();
             return;
@@ -115,11 +118,12 @@ namespace FontManager {
 
         public bool update_in_progress { get; set; default = true; }
 
-        public CategoryModel model { get; protected set; }
+        public CategoryModel model { get; set; }
 
         public string selected_iter { get; protected set; default = "0"; }
         public Category? selected_filter { get; protected set; default = null; }
         public LanguageFilter? language_filter { get; set; default = null; }
+        public LanguageFilterSettings language_filter_settings { get; private set; }
         public BaseTreeView tree { get; protected set; }
         public Gtk.CellRendererText renderer { get; protected set; }
         public CellRendererCount count_renderer { get; protected set; }
@@ -143,6 +147,7 @@ namespace FontManager {
                 tooltip_column = CategoryColumn.COMMENT
             };
             model = new CategoryModel();
+            tree.set_model(model);
             renderer = new Gtk.CellRendererText();
             count_renderer = new CellRendererCount();
             pixbuf_renderer = new Gtk.CellRendererPixbuf();
@@ -155,15 +160,19 @@ namespace FontManager {
                 tree.get_column(i).expand = (i == 1);
             tree.test_expand_row.connect((t,i,p) => { t.collapse_all(); return false; });
             tree.get_selection().changed.connect(on_selection_changed);
-            tree.set_model(model);
-            model.update_begin.connect(() => {
-                update_in_progress = true;
-                updating.show();
-            });
-            model.update_complete.connect(() => {
-                updating.hide();
-                update_in_progress = false;
-                update_complete();
+            language_filter_settings = new LanguageFilterSettings();
+            notify["model"].connect(() => {
+                tree.set_model(model);
+                tree.queue_draw();
+                model.update_begin.connect(() => {
+                    update_in_progress = true;
+                    updating.show();
+                });
+                model.update_complete.connect(() => {
+                    updating.hide();
+                    update_in_progress = false;
+                    update_complete();
+                });
             });
             db.update_started.connect(() => { refresh_required = true; });
             db.status_changed.connect(() => {
@@ -184,6 +193,44 @@ namespace FontManager {
             tree.show();
             updating.show();
             overlay.show();
+        }
+
+        public static string get_cache_file () {
+            string dirpath = get_package_cache_directory();
+            string filepath = Path.build_filename(dirpath, "Categories.cache");
+            DirUtils.create_with_parents(dirpath ,0755);
+            return filepath;
+        }
+
+        public void save () {
+            Json.Array cache = new Json.Array();
+            model.categories.foreach((child) => {
+                cache.add_element(Json.gobject_serialize(child));
+            });
+            Json.Node node = new Json.Node(Json.NodeType.ARRAY);
+            node.set_array(cache);
+            write_json_file(node, get_cache_file(), false);
+            return;
+        }
+
+        public bool load () {
+            string cache_file = get_cache_file();
+            if (!exists(cache_file))
+                return false;
+            Json.Node? root = load_json_file(cache_file);
+            if (root != null) {
+                Json.Array array = root.get_array();
+                model.update_begin();
+                var categories = new GenericArray <Category> ();
+                array.foreach_element((arr, index, node) => {
+                    var category = (Category) Json.gobject_deserialize(typeof(Category), node);
+                    categories.insert((int) index, category);
+                });
+                model.categories = categories;
+                model.update_complete();
+                notify_property("model");
+            }
+            return true;
         }
 
         public void select_first_row () {
@@ -219,7 +266,7 @@ namespace FontManager {
             model.get_value(treeiter, CategoryColumn.OBJECT, out val);
             var obj = (Category) val.get_object();
             /* Or dynamic categories */
-            if (obj.index < CategoryIndex.N_GENERATED) {
+            if (obj.index < CategoryIndex.UNSORTED) {
                 cell.set_property("count", obj.size);
                 cell.set_property("visible", true);
             }
@@ -277,21 +324,29 @@ namespace FontManager {
             val.unset();
             Idle.add(() => {
                 bool is_language_filter = (selected_filter.index == CategoryIndex.LANGUAGE);
-                if (language_filter != null) {
-                    language_filter.settings_button.set_visible(is_language_filter);
+                if (language_filter != null && language_filter == selected_filter) {
+                    language_filter_settings.get_button().set_visible(is_language_filter);
                     return GLib.Source.REMOVE;
                 }
                 if (is_language_filter) {
                     language_filter = selected_filter as LanguageFilter;
-                    overlay.add_overlay(language_filter.settings_button);
+                    overlay.add_overlay(language_filter_settings.get_button());
                     language_filter.selections_changed.connect(() => {
                         update_language_filter_tooltip();
+                    });
+                    language_filter.bind_property("selected", language_filter_settings, "selected", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+                    language_filter.bind_property("coverage", language_filter_settings, "coverage", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+                    language_filter_settings.selections_changed.connect(() => {
+                        language_filter.update.begin((obj, res) => {
+                            language_filter.update.end(res);
+                            language_filter.selections_changed();
+                        });
                     });
                     if (settings != null) {
                         foreach (var entry in settings.get_strv("language-filter-list"))
                             language_filter.add(entry);
                     }
-                    language_filter.settings_button.set_visible(is_language_filter);
+                    language_filter_settings.get_button().set_visible(is_language_filter);
                 }
                 return GLib.Source.REMOVE;
             });
@@ -312,20 +367,11 @@ namespace FontManager {
                         tree.queue_draw();
                     return selected_filter.requires_update;
                 });
-                if (selected_filter.index < CategoryIndex.N_GENERATED)
+                if (selected_filter.index < CategoryIndex.UNSORTED)
                     selected_filter.update.begin((obj, res) => {
                         selected_filter.update.end(res);
                         selected_filter.requires_update = false;
                     });
-                else if (selected_filter.index == CategoryIndex.DISABLED)
-                    if (reject != null) {
-                        var filter = ((Disabled) selected_filter);
-                        filter.update.begin(reject, (obj, res) => {
-                            filter.update.end(res);
-                            selected_filter.requires_update = false;
-                        });
-
-                    }
             }
             return;
         }
@@ -354,19 +400,19 @@ namespace FontManager {
 
     /*  WARNING : Long lines ahead... */
 
-    GLib.List <Category> get_default_categories (Database db) {
-        var filters = new GLib.List <Category> ();
-        filters.append(new Category(_("All"), _("All Fonts"), "format-text-bold", "%s;".printf(SELECT_FROM_FONTS), CategoryIndex.ALL));
-        filters.append(new Category(_("System"), _("Fonts available to all users"), "computer", "%s owner!=0 AND filepath LIKE '/usr%';".printf(SELECT_FROM_METADATA_WHERE), CategoryIndex.SYSTEM));
-        filters.append(new UserFonts());
-        filters.append(construct_panose_filter());
+    GenericArray <Category> get_default_categories (Database db) {
+        var filters = new GenericArray <Category> ();
+        filters.add(new Category(_("All"), _("All Fonts"), "format-text-bold", "%s;".printf(SELECT_FROM_FONTS), CategoryIndex.ALL));
+        filters.add(new Category(_("System"), _("Fonts available to all users"), "computer", "%s owner!=0 AND filepath LIKE '/usr%';".printf(SELECT_FROM_METADATA_WHERE), CategoryIndex.SYSTEM));
+        filters.add(new UserFonts());
+        filters.add(construct_panose_filter());
         foreach (var entry in attributes)
-            filters.append(construct_attribute_filter(db, entry));
+            filters.add(construct_attribute_filter(db, entry));
         foreach (var entry in metadata)
-            filters.append(construct_info_filter(db, entry));
-        filters.append(new Unsorted());
-        filters.append(new Disabled());
-        filters.append(new LanguageFilter());
+            filters.add(construct_info_filter(db, entry));
+        filters.add(new Unsorted());
+        filters.add(new Disabled());
+        filters.add(new LanguageFilter());
         return filters;
     }
 
@@ -374,8 +420,7 @@ namespace FontManager {
         var panose = new Category(_("Family Kind"), _("Only fonts which include Panose information will be grouped here."), "folder", null, CategoryIndex.PANOSE);
         string [] kind = { _("Any"), _("No Fit"), _("Text and Display"), _("Script"), _("Decorative"), _("Pictorial") };
         for (int i = 0; i < kind.length; i++)
-            panose.children.prepend(new Category(kind[i], kind[i], "emblem-documents", "%s P0 = '%i';".printf(SELECT_FROM_PANOSE_WHERE, i), i));
-        panose.children.reverse();
+            panose.children.add(new Category(kind[i], kind[i], "emblem-documents", "%s P0 = '%i';".printf(SELECT_FROM_PANOSE_WHERE, i), i));
         return panose;
     }
 
@@ -403,9 +448,8 @@ namespace FontManager {
                         continue;
                     else
                         type = _("Regular");
-                filter.children.prepend(new Category(type, type, "emblem-documents", "%s WHERE %s=\"%i\";".printf(SELECT_FROM_FONTS, keyword, val), data.index));
+                filter.children.add(new Category(type, type, "emblem-documents", "%s WHERE %s=\"%i\";".printf(SELECT_FROM_FONTS, keyword, val), data.index));
             }
-            filter.children.reverse();
         } catch (DatabaseError e) { }
         return filter;
     }
@@ -417,9 +461,8 @@ namespace FontManager {
             db.execute_query("SELECT DISTINCT [%s] FROM Metadata ORDER BY [%s];".printf(keyword, keyword));
             foreach (unowned Sqlite.Statement row in db) {
                 string type = row.column_text(0);
-                filter.children.prepend(new Category(type, type, "emblem-documents", "%s [%s]=\"%s\";".printf(SELECT_FROM_METADATA_WHERE, keyword, type), data.index));
+                filter.children.add(new Category(type, type, "emblem-documents", "%s [%s]=\"%s\";".printf(SELECT_FROM_METADATA_WHERE, keyword, type), data.index));
             }
-            filter.children.reverse();
         } catch (DatabaseError e) { }
         return filter;
     }

@@ -28,11 +28,12 @@ namespace FontManager {
 
         enum ID {
             FILEPATH,
-            FACE_INDEX,
-            FONT_DESC;
+            INDEX,
+            FAMILY,
+            STYLE;
         }
 
-        const string QUERY = "SELECT filepath, findex, description from Fonts WHERE family LIKE \"%s%\" ORDER BY weight;";
+        const string QUERY = "SELECT filepath, findex, family, style from Fonts WHERE family LIKE \"%s%\" ORDER BY weight;";
 
         string get_search_term (string [] terms) {
             var search_term = new StringBuilder();
@@ -50,9 +51,10 @@ namespace FontManager {
                 Json.Object fonts = node.get_object();
                 fonts.foreach_member((obj, name, node) => {
                     Json.Object font = node.get_object();
-                    result_set += "%s::%i::%s".printf(font.get_string_member("filepath"),
-                                                      (int) font.get_int_member("findex"),
-                                                      font.get_string_member("description"));
+                    result_set += "%s::%i::%s::%s".printf(font.get_string_member("filepath"),
+                                                          (int) font.get_int_member("findex"),
+                                                          font.get_string_member("family"),
+                                                          font.get_string_member("style"));
                 });
             });
             return result_set;
@@ -63,11 +65,15 @@ namespace FontManager {
             var search_term = get_search_term(terms);
             try {
                 Database db = get_database(DatabaseType.BASE);
+                /* Application is not running - trigger a refresh in case the db is empty */
+                if (available_font_families.size == 0)
+                    get_default_application().refresh();
                 db.execute_query(QUERY.printf(search_term));
                 foreach (unowned Sqlite.Statement row in db)
-                    result_set += "%s::%i::%s".printf(row.column_text(ID.FILEPATH),
-                                                      row.column_int(ID.FACE_INDEX),
-                                                      row.column_text(ID.FONT_DESC));
+                    result_set += "%s::%i::%s::%s".printf(row.column_text(ID.FILEPATH),
+                                                          row.column_int(ID.INDEX),
+                                                          row.column_text(ID.FAMILY),
+                                                          row.column_text(ID.STYLE));
             } catch (Error e) {
                 warning(e.message);
             }
@@ -98,9 +104,9 @@ namespace FontManager {
             foreach (string entry in results) {
                 string [] data = entry.split("::");
                 var meta = new HashTable <string, Variant> (str_hash, str_equal);
-                meta.insert("id", "%s::%s".printf(data[ID.FILEPATH], data[ID.FACE_INDEX]));
-                meta.insert("name", data[ID.FONT_DESC]);
-                meta.insert("description", " ");
+                meta.insert("id", "%s::%s".printf(data[ID.FILEPATH], data[ID.INDEX]));
+                meta.insert("name", data[ID.FAMILY]);
+                meta.insert("description", data[ID.STYLE]);
                 metas.add(meta);
             }
             return metas.data;
@@ -111,7 +117,7 @@ namespace FontManager {
         throws GLib.DBusError, GLib.IOError {
             string [] data = result.split("::");
             File file = File.new_for_path(data[ID.FILEPATH]);
-            int findex = int.parse(data[ID.FACE_INDEX]);
+            int findex = int.parse(data[ID.INDEX]);
             try {
                 DBusConnection conn = Bus.get_sync(BusType.SESSION);
                 conn.call_sync(FontViewer.BUS_ID,

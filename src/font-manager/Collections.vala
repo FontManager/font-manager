@@ -91,7 +91,7 @@ namespace FontManager {
         }
 
         public bool save () {
-            if (!write_json_file(Json.gobject_serialize(this), get_cache_file())) {
+            if (!write_json_file(Json.gobject_serialize(this), get_cache_file(), true)) {
                 warning("Failed to save collection cache file.");
                 return false;
             }
@@ -202,7 +202,7 @@ The sidebar will automatically switch while dragging fonts.
                 Gtk.TreeIter piter;
                 m.iter_parent(out piter, i);
                 m.get_value(piter, CollectionColumn.OBJECT, out parent);
-                ((Collection) parent).children.append(collection);
+                ((Collection) parent).children.add(collection);
                 /* In case this used to be a root node */
                 if (_collections.entries.contains(collection.name))
                     _collections.entries.remove(collection.name);
@@ -212,14 +212,14 @@ The sidebar will automatically switch while dragging fonts.
             });
         }
 
-        void insert_children (GLib.List <Collection> children, Gtk.TreeIter parent) {
+        void insert_children (GenericArray <Collection> children, Gtk.TreeIter parent) {
             children.sort_with_data((CompareDataFunc) filter_sort);
-            foreach(Collection child in children) {
+            children.foreach((child) => {
                 Gtk.TreeIter _iter;
                 this.append(out _iter, parent);
                 this.set(_iter, 0, child, 1, child.comment, -1);
                 insert_children(child.children, _iter);
-            }
+            });
         }
 
     }

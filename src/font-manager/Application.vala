@@ -28,6 +28,21 @@ namespace FontManager {
     public static StringHashset available_font_families = null;
     public static StringHashset temp_files = null;
 
+    internal void clear_resources () {
+        clear_application_fonts();
+        settings = null;
+        reject = null;
+        foreach (var path in temp_files)
+            remove_directory(File.new_for_path(path));
+        temp_files = null;
+        try {
+            Database main_db = get_database(DatabaseType.BASE);
+            main_db.unref();
+            main_db = null;
+        } catch (Error e) {}
+        return;
+    }
+
     [DBus (name = "org.gnome.FontManager")]
     public class Application: Gtk.Application  {
 
@@ -62,14 +77,12 @@ namespace FontManager {
             temp_files = new StringHashset();
             reject = new Reject();
             reject.load();
-            font_model = new FontModel();
             db = new DatabaseProxy();
             db.update_started.connect(() => { update_in_progress = true; });
             db.update_complete.connect(() => {
                 update_in_progress = false;
                 enable_user_font_configuration(true);
             });
-            Idle.add(() => { refresh(); return GLib.Source.REMOVE; });
             SimpleAction quit = new SimpleAction("quit", null);
             add_action(quit);
             quit.activate.connect(() => {
@@ -266,29 +279,41 @@ namespace FontManager {
             return exit_status;
         }
 
+        async void refresh_async () {
+            SourceFunc callback = refresh_async.callback;
+            ThreadFunc <bool> run_in_thread = () => {
+                enable_user_font_configuration(false);
+                update_font_configuration();
+                try {
+                    load_user_font_resources(reject.get_rejected_files(), null);
+                } catch (Error e) {
+                    critical(e.message);
+                }
+                Json.Object available_fonts = get_available_fonts(null);
+                db.update();
+                Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
+                font_model.source_array = sorted_fonts;
+                if (main_window != null) {
+                    main_window.model = null;
+                    main_window.model = font_model;
+                }
+                available_font_families.clear();
+                foreach (string family in available_fonts.get_members())
+                    available_font_families.add(family);
+                Idle.add((owned) callback);
+                return true;
+            };
+            new Thread <bool> ("refresh_async", (owned) run_in_thread);
+            yield;
+            return;
+        }
+
         [DBus (visible = false)]
         public void refresh () {
             if (update_in_progress)
                 return;
             update_in_progress = true;
-            enable_user_font_configuration(false);
-            update_font_configuration();
-            try {
-                load_user_font_resources(reject.get_rejected_files(), null);
-            } catch (Error e) {
-                critical(e.message);
-            }
-            Json.Object available_fonts = get_available_fonts(null);
-            Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
-            font_model.source_array = sorted_fonts;
-            if (main_window != null) {
-                main_window.model = null;
-                main_window.model = font_model;
-            }
-            db.update();
-            available_font_families.clear();
-            foreach (string family in available_fonts.get_members())
-                available_font_families.add(family);
+            refresh_async.begin((obj, res) => { refresh_async.end(res); });
             return;
         }
 
@@ -296,35 +321,22 @@ namespace FontManager {
             if (main_window == null) {
                 main_window = new MainWindow();
                 add_window(main_window);
-                main_window.model = font_model;
                 db.set_progress_callback((data) => {
                     data.ref();
                     main_window.titlebar.progress.database(data);
                     data.unref();
                     return GLib.Source.REMOVE;
                 });
-                Idle.add(() => { refresh(); return GLib.Source.REMOVE; });
             }
             main_window.present_with_time(Gdk.CURRENT_TIME);
+            refresh();
             return;
         }
 
         [DBus (visible = false)]
         public new void quit () {
-            foreach (var path in temp_files)
-                remove_directory(File.new_for_path(path));
-            /* Prevent noise during memcheck */
-            {
-                try {
-                    Database main_db = get_database(DatabaseType.BASE);
-                    main_db.unref();
-                    main_db = null;
-                    settings = null;
-                    reject = null;
-                    temp_files = null;
-                    clear_application_fonts();
-                } catch (Error e) {}
-            }
+            /* Try to prevent noise during memcheck */
+            clear_resources();
             base.quit();
             return;
         }
@@ -410,8 +422,6 @@ namespace FontManager {
             GLib.Intl.textdomain(Config.PACKAGE_NAME);
             GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
             Environment.set_application_name(About.DISPLAY_NAME);
-            update_font_configuration();
-            //enable_user_font_configuration(false);
             Gtk.init(ref args);
             if (update_declined())
                 return 0;

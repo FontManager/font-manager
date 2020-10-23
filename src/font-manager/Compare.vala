@@ -430,7 +430,7 @@ namespace FontManager {
             }
             var node = new Json.Node(Json.NodeType.ARRAY);
             node.set_array(arr);
-            write_json_file(node, get_cache_file());
+            write_json_file(node, get_cache_file(), true);
             return;
         }
 

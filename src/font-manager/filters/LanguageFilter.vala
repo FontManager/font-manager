@@ -36,9 +36,6 @@ namespace FontManager {
         public StringHashset selected { get; set; }
         public double coverage { get; set; default = 90; }
 
-        public Gtk.Button settings_button { get; private set; }
-        public LanguageFilterSettings settings { get; private set; }
-
         public override int size {
             get {
                 return ((int) selected.size);
@@ -48,17 +45,6 @@ namespace FontManager {
         public LanguageFilter () {
             base(_("Language"),  DEFAULT_LANGUAGE_FILTER_COMMENT, "preferences-desktop-locale", SELECT_ON_LANGUAGE, CategoryIndex.LANGUAGE);
             selected = new StringHashset();
-            settings = new LanguageFilterSettings();
-            bind_property("selected", settings, "selected", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            bind_property("coverage", settings, "coverage", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            settings_button = settings.get_button();
-            settings.selections_changed.connect(() => {
-                update.begin((obj, res) => {
-                    update.end(res);
-                    selections_changed();
-                });
-            });
-            main_window.sidebar.add_view(settings, "LanguageFilterSettings");
         }
 
         public void add (string language) {

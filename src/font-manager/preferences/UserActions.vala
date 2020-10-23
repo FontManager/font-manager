@@ -152,7 +152,7 @@ namespace FontManager {
                 array.add_object_element(item_node.get_object());
             }
             node.set_array(array);
-            write_json_file(node, get_cache_file());
+            write_json_file(node, get_cache_file(), true);
             return;
         }
 

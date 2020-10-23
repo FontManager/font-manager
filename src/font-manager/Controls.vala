@@ -227,33 +227,36 @@ namespace FontManager {
                 return _rgba;
             }
             set {
-                if (value < 0 || value >= ((int) options.length()))
+                if (value < 0 || value >= ((int) options.length))
                     return;
                 _rgba = value;
-                options.nth_data(_rgba).active = true;
+                options[_rgba].active = true;
             }
         }
 
-        public GLib.List <Gtk.RadioButton> options;
+        public GenericArray <Gtk.RadioButton> options { get; private set; }
 
         int _rgba;
 
         [GtkChild] Gtk.ButtonBox button_box;
 
         public SubpixelGeometry () {
-            options = new GLib.List <Gtk.RadioButton> ();
+            options = new GenericArray <Gtk.RadioButton> ();
             for (int i = 0; i < SubpixelOrder.NONE; i++) {
                 if (i == 0)
-                    options.append(new Gtk.RadioButton(null));
+                    options.insert(i, new Gtk.RadioButton(null));
                 else
-                    options.append(new Gtk.RadioButton.from_widget(options.nth_data(0)));
-                Gtk.RadioButton button = options.nth_data(i);
+                    options.insert(i, new Gtk.RadioButton.from_widget(options[0]));
+                Gtk.RadioButton button = options[i];
                 var icon = new SubpixelGeometryIcon((SubpixelOrder) i);
                 button.add(icon);
                 button.set_tooltip_text(((SubpixelOrder) i).to_string());
                 button.toggled.connect(() => {
-                    if (button.active)
-                        rgba = options.index(button);
+                    if (button.active) {
+                        uint index;
+                        options.find(button, out index);
+                        rgba = (int) index;
+                    }
                 });
                 button_box.pack_start(button);
                 icon.show();

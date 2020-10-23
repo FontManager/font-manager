@@ -22,15 +22,14 @@ namespace FontManager {
 
     int get_collection_total (Collection root) {
         int total = (int) root.families.size;
-        foreach (Collection child in root.children)
-            total += get_collection_total(child);
+        root.children.foreach((child) => { total += get_collection_total(child); });
         return total;
     }
 
     public class Collection : Filter {
 
         public bool active { get; set; default = true; }
-        public GLib.List <Collection> children { get; owned set; }
+        public GenericArray <Collection> children { get; set; }
         public StringHashset families { get; set; }
 
         public override int size {
@@ -42,7 +41,7 @@ namespace FontManager {
         public Collection (string? name, string? comment) {
             Object(name: name, comment: comment);
             requires_update = false;
-            children = new GLib.List <Collection> ();
+            children = new GenericArray <Collection> ();
             families = new StringHashset();
             /* XXX : Translatable string as default argument generates broken vapi ? */
             if (name == null)
@@ -54,10 +53,9 @@ namespace FontManager {
         }
 
         public void clear_children () {
-            foreach (Collection child in children)
-                child.clear_children();
+            children.foreach((child) => { child.clear_children(); });
             children = null;
-            children = new GLib.List <Collection> ();
+            children = new GenericArray <Collection> ();
             return;
         }
 
@@ -71,23 +69,20 @@ namespace FontManager {
                     break;
                 }
             }
-            foreach (Collection child in children)
-                child.set_active_from_fonts(reject);
+            children.foreach((child) => { child.set_active_from_fonts(reject); });
             return;
         }
 
         void add_child_contents (Collection child, StringHashset full_contents) {
             full_contents.add_all(child.families.list());
-            foreach(Collection _child in child.children)
-                add_child_contents(_child, full_contents);
+            children.foreach((_child) => { add_child_contents(_child, full_contents); });
             return;
         }
 
         public StringHashset get_full_contents () {
             var full_contents = new StringHashset();
             full_contents.add_all(families.list());
-            foreach (Collection child in children)
-                add_child_contents(child, full_contents);
+            children.foreach((_child) => { add_child_contents(_child, full_contents); });
             return full_contents;
         }
 
@@ -116,10 +111,10 @@ namespace FontManager {
             else
                 reject.add_all(_families);
             reject.save();
-            foreach (Collection child in children) {
+            children.foreach((child) => {
                 child.active = active;
                 child.update(reject);
-            }
+            });
             return;
         }
 
@@ -141,13 +136,13 @@ namespace FontManager {
                                                       ParamSpec pspec,
                                                       Json.Node node) {
             val = Value(pspec.value_type);
-            if (pspec.value_type == typeof(GLib.List)) {
-                GLib.List <Collection> *res = new GLib.List <Collection> ();
+            if (pspec.value_type == typeof(GenericArray)) {
+                GenericArray <Collection> res = new GenericArray <Collection> ();
                 node.get_object().foreach_member((obj, name, node) => {
                     Object child = Json.gobject_deserialize(typeof(Collection), node);
-                    res->append(child as Collection);
+                    res.add((Collection) child);
                 });
-                val.set_pointer(res);
+                val.set_boxed(res);
                 return true;
             } else if (pspec.value_type == typeof(StringHashset)) {
                 var res = new StringHashset();
@@ -164,11 +159,12 @@ namespace FontManager {
         public override Json.Node serialize_property (string prop_name,
                                                          Value val,
                                                          ParamSpec pspec) {
-            if (pspec.value_type == typeof(GLib.List)) {
+            if (pspec.value_type == typeof(GenericArray)) {
                 var node = new Json.Node(Json.NodeType.OBJECT);
                 var obj = new Json.Object();
-                foreach (Collection child in children)
+                children.foreach((child) => {
                     obj.set_member(child.name.escape(""), Json.gobject_serialize(child));
+                });
                 node.set_object(obj);
                 return node;
             } else if (pspec.value_type == typeof(StringHashset)) {

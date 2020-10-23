@@ -31,7 +31,7 @@ gint font_manager_compare_json_string_member (const gchar *member_name, JsonObje
 gint font_manager_compare_json_font_node (JsonNode *node_a, JsonNode *node_b);
 gchar * font_manager_print_json_array (JsonArray *json_arr, gboolean pretty);
 gchar * font_manager_print_json_object(JsonObject *json_obj, gboolean pretty);
-gboolean font_manager_write_json_file (JsonNode *root, const gchar *filepath);
+gboolean font_manager_write_json_file (JsonNode *root, const gchar *filepath, gboolean pretty);
 JsonNode * font_manager_load_json_file (const gchar *filepath);
 JsonArray * font_manager_str_list_to_json_array (GList *slist);
 

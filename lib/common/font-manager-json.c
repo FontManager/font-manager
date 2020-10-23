@@ -37,17 +37,18 @@
  * font_manager_write_json_file:
  * @root:               #JsonNode to use as root
  * @filepath:           filepath to write @root to
+ * @pretty:             whether the generated string should be pretty printed
  *
  * Returns:             %TRUE if file was written successfully
  */
 gboolean
-font_manager_write_json_file (JsonNode *root, const gchar *filepath)
+font_manager_write_json_file (JsonNode *root, const gchar *filepath, gboolean pretty)
 {
     g_return_val_if_fail(root != NULL && filepath != NULL, FALSE);
 
     g_autoptr(JsonGenerator) generator = json_generator_new();
     json_generator_set_root(generator, root);
-    json_generator_set_pretty(generator, TRUE);
+    json_generator_set_pretty(generator, pretty);
     json_generator_set_indent(generator, 4);
     gboolean result = json_generator_to_file(generator, filepath, NULL);
     return result;

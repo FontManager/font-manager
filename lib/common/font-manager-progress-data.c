@@ -174,7 +174,7 @@ font_manager_progress_data_class_init (FontManagerProgressDataClass *klass)
     obj_properties[PROP_PROGRESS] = g_param_spec_double("progress",
                                                         NULL,
                                                         "Progress as a fraction between 0.0 - 1.0",
-                                                        G_MINDOUBLE, G_MAXDOUBLE, G_MINDOUBLE,
+                                                        0.0, 1.0, 0.0,
                                                         G_PARAM_READABLE);
 
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);

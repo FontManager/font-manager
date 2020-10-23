@@ -27,7 +27,7 @@ namespace FontManager {
         public StringHashset families { get; set; }
         public DatabaseType db_type { get; set; default = DatabaseType.BASE; }
 
-        public GLib.List <Category> children;
+        public GenericArray <Category> children { get; set; }
 
         public override int size {
             get {
@@ -39,7 +39,7 @@ namespace FontManager {
             Object(name: name, icon: icon, comment: comment, sql: sql, index: index);
             families = new StringHashset();
             descriptions = new StringHashset();
-            children = new GLib.List <Category> ();
+            children = new GenericArray <Category> ();
         }
 
         public new async void update () {
@@ -49,7 +49,8 @@ namespace FontManager {
                 Database db = get_database(db_type);
                 if (sql != null)
                     get_matching_families_and_fonts(db, families, descriptions, sql);
-                foreach (Category child in children) {
+                for (int i = 0; i < children.length; i++) {
+                    var child = children[i];
                     child.update.begin((obj, res) => {
                         child.update.end(res);
                         Idle.add(update.callback);
@@ -78,23 +79,28 @@ namespace FontManager {
             return visible;
         }
 
-        /* Don't cache results */
-
         public override bool deserialize_property (string prop_name,
                                                       out Value val,
                                                       ParamSpec pspec,
                                                       Json.Node node) {
             val = Value(pspec.value_type);
-            if (pspec.value_type == typeof(GLib.List)) {
-                GLib.List <Category> *res = new GLib.List <Category> ();
-                node.get_array().foreach_element((array, index, node) => {
+            if (pspec.value_type == typeof(GenericArray)) {
+                GenericArray <Category> res = new GenericArray <Category> ();
+                node.get_object().foreach_member((obj, name, node) => {
                     Object child = Json.gobject_deserialize(typeof(Category), node);
-                    res->append(child as Category);
+                    res.add((Category) child);
                 });
-                val.set_pointer(res);
+                val.set_boxed(res);
                 return true;
             } else if (pspec.value_type == typeof(StringHashset)) {
-                val.set_object(new StringHashset());
+                var res = new StringHashset();
+//                node.get_array().foreach_element((arr, index, node) => {
+//                    res.add(node.get_string());
+//                });
+                val.set_object(res);
+                return true;
+            } else if (pspec.value_type == typeof(DatabaseType)) {
+                val.set_enum((DatabaseType) ((int) node.get_int()));
                 return true;
             } else {
                 return base.deserialize_property(prop_name, out val, pspec, node);
@@ -102,17 +108,27 @@ namespace FontManager {
         }
 
         public override Json.Node serialize_property (string prop_name,
-                                                         Value val,
-                                                         ParamSpec pspec) {
-            if (pspec.value_type == typeof(GLib.List)) {
-                var node = new Json.Node(Json.NodeType.ARRAY);
-                var json_array = new Json.Array.sized(children.length());
-                foreach (Category child in children)
-                    json_array.add_element(Json.gobject_serialize(child));
-                node.set_array(json_array);
+                                                      Value val,
+                                                      ParamSpec pspec) {
+            if (pspec.value_type == typeof(GenericArray)) {
+                var node = new Json.Node(Json.NodeType.OBJECT);
+                var obj = new Json.Object();
+                children.foreach((child) => {
+                    obj.set_member(child.name.escape(""), Json.gobject_serialize(child));
+                });
+                node.set_object(obj);
                 return node;
             } else if (pspec.value_type == typeof(StringHashset)) {
-                return new Json.Node(Json.NodeType.OBJECT);
+                var node = new Json.Node(Json.NodeType.ARRAY);
+                var arr = new Json.Array();
+//                foreach (string family in families)
+//                    arr.add_string_element(family);
+                node.set_array(arr);
+                return node;
+            } else if (pspec.value_type == typeof(DatabaseType)) {
+                var node = new Json.Node(Json.NodeType.VALUE);
+                node.set_int((int) val.get_enum());
+                return node;
             } else {
                 return base.serialize_property(prop_name, val, pspec);
             }

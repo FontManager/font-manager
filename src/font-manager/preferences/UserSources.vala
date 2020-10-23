@@ -205,8 +205,11 @@ Note that not all environments/applications will honor these settings.""");
             model.items_changed.connect(() => { refresh_required = true; });
             unmap.connect(() => {
                 if (refresh_required) {
-                    get_default_application().refresh();
-                    refresh_required = false;
+                    Idle.add(() => {
+                        get_default_application().refresh();
+                        refresh_required = false;
+                        return GLib.Source.REMOVE;
+                    });
                 }
             });
         }

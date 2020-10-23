@@ -44,11 +44,7 @@ namespace FontManager {
             }
         }
 
-        public CategoryModel? category_model {
-            get {
-                return standard.category_tree.model;
-            }
-        }
+        public CategoryModel? category_model { get; set; }
 
         public CollectionModel? collection_model {
             get {
@@ -65,6 +61,9 @@ namespace FontManager {
                 else
                     set_transition_type(Gtk.StackTransitionType.OVER_RIGHT);
             });
+            add_view(standard.category_tree.language_filter_settings, "LanguageFilterSettings");
+            BindingFlags flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
+            standard.category_tree.bind_property("model", this, "category-model", flags);
             base.constructed();
             return;
         }
@@ -73,6 +72,15 @@ namespace FontManager {
             add_named(sidebar_view, name);
             sidebar_view.show();
             return;
+        }
+
+        public void save () {
+            standard.category_tree.save();
+            return;
+        }
+
+        public bool load () {
+            return standard.category_tree.load();
         }
 
     }

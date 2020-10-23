@@ -284,6 +284,8 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         public UserActionModel? user_actions { get; set; default = null; }
         public UserSourceModel? user_sources { get; set; default = null; }
 
+        bool refresh_required = false;
+        string? saved_iter = null;
         Gtk.Menu context_menu;
         Gtk.MenuItem? filename = null;
         Gtk.MenuItem? installable = null;
@@ -301,6 +303,28 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                 });
             });
             selected_font = new Font();
+            db.update_started.connect(() => { saved_iter = selected_iter; refresh_required = true; });
+            db.status_changed.connect(() => {
+                if (refresh_required && db.ready(DatabaseType.METADATA)) {
+                    refresh_required = false;
+                    Idle.add(() => { restore_saved_iter(); return GLib.Source.REMOVE; });
+                }
+            });
+            db.update_complete.connect(() => {
+                if (refresh_required) {
+                    refresh_required = false;
+                    Idle.add(() => { restore_saved_iter(); return GLib.Source.REMOVE; });
+                }
+            });
+        }
+
+        void restore_saved_iter () {
+            Gtk.TreeIter iter;
+            Gtk.TreeSelection selection = get_selection();
+            selection.unselect_all();
+            if (model.get_iter_from_string(out iter, saved_iter))
+                selection.select_iter(iter);
+            return;
         }
 
         public StringHashset get_selected_families () {
@@ -661,11 +685,46 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         public override void constructed () {
             controls = new FontListControls();
             controls.set_remove_sensitivity(false);
+            fontlist = new FontList();
+            font_model = new FontModel();
+            model = font_model;
             revealer.add(controls);
             connect_signals();
             controls.show();
             base.constructed();
             return;
+        }
+
+        public static string get_cache_file () {
+            string dirpath = get_package_cache_directory();
+            string filepath = Path.build_filename(dirpath, "FontModel.cache");
+            DirUtils.create_with_parents(dirpath ,0755);
+            return filepath;
+        }
+
+        public void save () {
+            var node = new Json.Node(Json.NodeType.ARRAY);
+            node.set_array(font_model.source_array);
+            write_json_file(node, get_cache_file(), false);
+            return;
+        }
+
+        public bool load () {
+            string cache_file = get_cache_file();
+            if (!exists(cache_file))
+                return false;
+            Json.Node? root = load_json_file(cache_file);
+            if (root != null) {
+                Json.Array array = root.get_array();
+                model = null;
+                font_model.source_array = array;
+                model = font_model;
+                available_font_families.clear();
+                array.foreach_element((arr, index, node) => {
+                    available_font_families.add(node.get_object().get_string_member("family"));
+                });
+            }
+            return true;
         }
 
         public bool refilter () {

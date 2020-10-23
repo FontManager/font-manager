@@ -160,6 +160,8 @@ font_manager_font_model_get_value (GtkTreeModel *tree_model,
 {
     FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(tree_model);
     g_return_if_fail(self != NULL);
+    g_return_if_fail(self->available_fonts != NULL);
+    g_return_if_fail(json_array_get_length(self->available_fonts) > 0);
     g_return_if_fail(iter != NULL);
     g_return_if_fail(iter->stamp == self->stamp);
     g_return_if_fail(iter->user_data != NULL);
@@ -207,7 +209,7 @@ font_manager_font_model_iter_next (GtkTreeModel *tree_model, GtkTreeIter *iter)
     g_return_val_if_fail(iter != NULL, FALSE);
     g_return_val_if_fail(iter->stamp == self->stamp, FALSE);
     g_return_val_if_fail(iter->user_data != NULL, FALSE);
-    if (!self->available_fonts)
+    if (!self->available_fonts || json_array_get_length(self->available_fonts) < 1)
         return FALSE;
     gint index;
     if (iter->user_data2 == NULL) {
@@ -235,7 +237,7 @@ font_manager_font_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *it
     g_return_val_if_fail(iter != NULL, FALSE);
     g_return_val_if_fail(iter->stamp == self->stamp, FALSE);
     g_return_val_if_fail(iter->user_data != NULL, FALSE);
-    if (!self->available_fonts)
+    if (!self->available_fonts || json_array_get_length(self->available_fonts) < 1)
         return FALSE;
     gint index;
     if (iter->user_data2 == NULL) {
@@ -294,6 +296,7 @@ font_manager_font_model_iter_n_children (GtkTreeModel *tree_model, GtkTreeIter *
 {
     FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(tree_model);
     g_return_val_if_fail(self != NULL, 0);
+    g_return_val_if_fail(self->available_fonts != NULL, 0);
     /* Special case - if iter is %NULL this function should return the number of toplevel nodes */
     if (iter == NULL)
         return ((gint) json_array_get_length(self->available_fonts));
@@ -310,7 +313,7 @@ font_manager_font_model_iter_nth_child (GtkTreeModel *tree_model,
     FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(tree_model);
     g_return_val_if_fail(self != NULL, FALSE);
     g_return_val_if_fail(n >= 0, FALSE);
-    if (!self->available_fonts)
+    if (!self->available_fonts || json_array_get_length(self->available_fonts) < 1)
         return FALSE;
     iter->stamp = self->stamp;
     /* Special case - if parent is %NULL this function should set iter to toplevel node n */
@@ -484,7 +487,7 @@ static void
 font_manager_font_model_init (FontManagerFontModel *self)
 {
     do { self->stamp = g_random_int(); } while (self->stamp == 0);
-    self->available_fonts = NULL;
+    self->available_fonts = json_array_new();
     return;
 }
 

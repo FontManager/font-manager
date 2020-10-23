@@ -144,7 +144,7 @@ namespace FontManager {
                         var spg = new SubpixelGeometry();
                         spg_revealer.add(spg);
                         spg.show();
-                        spg.options.nth_data(0).hide();
+                        spg.options[0].hide();
                         spg.rgba = x_settings.get_enum(setting.key);
                         spg.notify["rgba"].connect(() => {
                             x_settings.set_enum(setting.key, spg.rgba);

@@ -127,7 +127,6 @@ namespace FontManager {
 
         public MainWindow () {
             Object(title: About.DISPLAY_NAME, icon_name: About.ICON);
-            fontlist_pane.fontlist = new FontList();
             initialize_preference_pane(preference_pane);
             var user_action_list = ((UserActionList) preference_pane["UserActions"]);
             var user_sources_list = ((UserSourceList) preference_pane["Sources"]);
@@ -190,7 +189,7 @@ namespace FontManager {
 
             action = new SimpleAction("reload", null);
             action.activate.connect((a, v) => {
-                ((FontManager.Application) application).refresh();
+                get_default_application().refresh();
             });
             accels = { "<Ctrl>r", "F5", null };
             add_keyboard_shortcut(action, "reload", accels);
@@ -328,14 +327,14 @@ namespace FontManager {
             sidebar.orthographies.orthography_selected.connect((o) => { preview_pane.orthography = o; });
 
             sidebar.standard.category_selected.connect((c, i) => {
-                if (disabled == null && c is Disabled) {
+                if (disabled == null && c is Disabled || c is Disabled && disabled != c) {
                     disabled = (c as Disabled);
                     disabled.update.begin(reject, (obj,res) => {
                         disabled.update.end(res);
                         fontlist_pane.refilter();
                     });
                 }
-                if (unsorted == null && c is Unsorted) {
+                if (unsorted == null && c is Unsorted || c is Unsorted && unsorted != c) {
                     unsorted = (c as Unsorted);
                     var collected = sidebar.collection_model.collections.get_full_contents();
                     unsorted.update.begin(collected, (obj, res) => {
@@ -343,7 +342,7 @@ namespace FontManager {
                         fontlist_pane.refilter();
                     });
                 }
-                if (language_filter == null && c is LanguageFilter) {
+                if (language_filter == null && c is LanguageFilter || c is LanguageFilter && language_filter != c) {
                     language_filter = (c as LanguageFilter);
                     language_filter.selections_changed.connect(() => {
                         fontlist_pane.refilter();
@@ -478,7 +477,7 @@ namespace FontManager {
                 installer.process.begin(selections, (obj, res) => {
                     installer.process.end(res);
                     Timeout.add_seconds(3, () => {
-                        ((FontManager.Application) application).refresh();
+                        get_default_application().refresh();
                         Timeout.add_seconds(3, () => {
                              titlebar.installing_files = false;
                              fontlist_pane.refilter();
@@ -498,7 +497,7 @@ namespace FontManager {
                 Library.remove.begin(selections, (obj, res) => {
                     Library.remove.end(res);
                     Idle.add(() => {
-                        ((FontManager.Application) application).refresh();
+                        get_default_application().refresh();
                         Idle.add(() => {
                             titlebar.removing_files = false;
                             fontlist_pane.refilter();
@@ -619,17 +618,21 @@ namespace FontManager {
 
         [GtkCallback]
         public bool on_delete_event (Gtk.Widget widget, Gdk.EventAny event) {
-            if (settings != null) {
-                settings.set_strv("compare-list", compare.list_items());
-                var language_filter = sidebar.standard.category_tree.language_filter;
-                if (language_filter != null)
-                    settings.set_strv("language-filter-list", language_filter.list());
-                settings.set_string("compare-foreground-color", compare.foreground_color.to_string());
-                settings.set_string("compare-background-color", compare.background_color.to_string());
-                settings.apply();
-            }
-            ((FontManager.Application) application).quit();
-            return false;
+            hide();
+            Idle.add(() => {
+                if (settings != null) {
+                    settings.set_strv("compare-list", compare.list_items());
+                    var language_filter = sidebar.standard.category_tree.language_filter;
+                    if (language_filter != null)
+                        settings.set_strv("language-filter-list", language_filter.list());
+                    settings.set_string("compare-foreground-color", compare.foreground_color.to_string());
+                    settings.set_string("compare-background-color", compare.background_color.to_string());
+                    settings.apply();
+                }
+                get_default_application().quit();
+                return GLib.Source.REMOVE;
+            });
+            return true;
         }
 
         [GtkCallback]
