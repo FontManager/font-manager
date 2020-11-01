@@ -18,8 +18,6 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include <gio/gio.h>
-
 #include "font-manager-selections.h"
 
 /**
@@ -41,7 +39,7 @@ typedef struct
 }
 FontManagerSelectionsPrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE(FontManagerSelections, font_manager_selections, FONT_MANAGER_TYPE_STRING_HASHSET)
+G_DEFINE_TYPE_WITH_PRIVATE(FontManagerSelections, font_manager_selections, FONT_MANAGER_TYPE_STRING_SET)
 
 enum
 {
@@ -150,7 +148,7 @@ font_manager_selections_parse_selections (FontManagerSelections *self,
             continue;
         content = (xmlChar *) g_strstrip((gchar *) content);
         if (g_strcmp0((const char *) content, "") != 0)
-            font_manager_string_hashset_add(FONT_MANAGER_STRING_HASHSET(self), (const gchar *) content);
+            font_manager_string_set_add(FONT_MANAGER_STRING_SET(self), (const gchar *) content);
         xmlFree(content);
     }
     return;
@@ -163,7 +161,7 @@ font_manager_selections_write_selections (FontManagerSelections *self,
     g_return_if_fail(self != NULL);
     g_return_if_fail(writer != NULL);
     FontManagerSelectionsPrivate *priv = font_manager_selections_get_instance_private(self);
-    GList *selections = font_manager_string_hashset_list(FONT_MANAGER_STRING_HASHSET(self));
+    GList *selections = font_manager_string_set_list(FONT_MANAGER_STRING_SET(self));
     font_manager_xml_writer_add_selections(writer, priv->target_element, selections);
     g_list_free(selections);
     return;
@@ -291,12 +289,12 @@ font_manager_selections_load (FontManagerSelections *self)
     g_return_val_if_fail(self != NULL, FALSE);
     FontManagerSelectionsPrivate *priv = font_manager_selections_get_instance_private(self);
 
-    font_manager_string_hashset_clear(FONT_MANAGER_STRING_HASHSET(self));
+    font_manager_string_set_clear(FONT_MANAGER_STRING_SET(self));
     if (priv->monitor != NULL)
         g_clear_object(&priv->monitor);
 
     g_autofree gchar *filepath = font_manager_selections_get_filepath(self);
-    if (filepath == NULL)
+    if (filepath == NULL || !font_manager_exists(filepath))
         return FALSE;
 
     g_autoptr(GFile) file = g_file_new_for_path(filepath);
@@ -310,12 +308,10 @@ font_manager_selections_load (FontManagerSelections *self)
     if (!g_file_query_exists(file, NULL))
         return FALSE;
 
-    xmlInitParser();
     xmlDoc *doc = xmlReadFile(filepath, NULL, 0);
 
     if (doc == NULL) {
         /* Empty file */
-        xmlCleanupParser();
         return FALSE;
     }
 
@@ -324,7 +320,6 @@ font_manager_selections_load (FontManagerSelections *self)
         FONT_MANAGER_SELECTIONS_GET_CLASS(self)->parse_selections(self, selections);
 
     xmlFreeDoc(doc);
-    xmlCleanupParser();
     return TRUE;
 }
 
@@ -344,7 +339,7 @@ font_manager_selections_save (FontManagerSelections *self)
     g_return_val_if_fail(filepath != NULL, FALSE);
     g_autoptr(FontManagerXmlWriter) writer = font_manager_xml_writer_new();
     font_manager_xml_writer_open(writer, filepath);
-    if (font_manager_string_hashset_size(FONT_MANAGER_STRING_HASHSET(self)))
+    if (font_manager_string_set_size(FONT_MANAGER_STRING_SET(self)))
         FONT_MANAGER_SELECTIONS_GET_CLASS(self)->write_selections(self, writer);
     gboolean result = font_manager_xml_writer_close(writer);
     return result;

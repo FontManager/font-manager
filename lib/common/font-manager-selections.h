@@ -23,15 +23,17 @@
 
 #include <glib.h>
 #include <glib-object.h>
+#include <gio/gio.h>
 #include <libxml/tree.h>
 
 #include "font-manager-xml-writer.h"
-#include "font-manager-string-hashset.h"
+#include "font-manager-string-set.h"
+#include "font-manager-utils.h"
 
 G_BEGIN_DECLS
 
 #define FONT_MANAGER_TYPE_SELECTIONS (font_manager_selections_get_type())
-G_DECLARE_DERIVABLE_TYPE(FontManagerSelections, font_manager_selections, FONT_MANAGER, SELECTIONS, FontManagerStringHashset)
+G_DECLARE_DERIVABLE_TYPE(FontManagerSelections, font_manager_selections, FONT_MANAGER, SELECTIONS, FontManagerStringSet)
 
 /**
  * FontManagerSelectionsClass:

@@ -59,7 +59,7 @@ namespace FontManager {
 
         public Json.Object? orthography { get; set; default = null; }
 
-        public List <unowned Json.Object>? items;
+        public GenericArray <unowned Json.Object>? items { get; private set; default = null; }
 
         construct {
             notify["orthography"].connect(() => { update_items(); });
@@ -70,16 +70,17 @@ namespace FontManager {
         }
 
         public uint get_n_items () {
-            return items != null ? items.length() : 0;
+            return items != null ? items.length : 0;
         }
 
         public new Object? get_item (uint position) {
-            return new Orthography(items.nth_data(position));
+            return new Orthography(items[position]);
         }
 
         void update_items () {
-            uint n_items = items.length();
+            uint n_items = get_n_items();
             items = null;
+            items = new GenericArray <unowned Json.Object> ();
             items_changed(0, n_items, 0);
             if (orthography != null) {
                 orthography.foreach_member((object, name, node) => {
@@ -88,7 +89,7 @@ namespace FontManager {
                         return;
                     /* Basic Latin is always present but can be empty */
                     if (GET_COVERAGE(node.get_object()) > 0)
-                        items.prepend(node.get_object());
+                        items.add(node.get_object());
                 });
                 items.sort((a, b) => {
                     int result = (int) GET_COVERAGE(b) - (int) GET_COVERAGE(a);
@@ -97,7 +98,7 @@ namespace FontManager {
                     return result;
                 });
             }
-            items_changed(0, 0, items.length());
+            items_changed(0, 0, get_n_items());
             return;
         }
 

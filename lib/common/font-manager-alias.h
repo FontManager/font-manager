@@ -24,7 +24,7 @@
 #include <glib.h>
 #include <glib-object.h>
 
-#include "font-manager-string-hashset.h"
+#include "font-manager-string-set.h"
 
 G_BEGIN_DECLS
 
@@ -32,7 +32,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE(FontManagerAliasElement, font_manager_alias_element, FONT_MANAGER, ALIAS_ELEMENT, GObject)
 
 FontManagerAliasElement * font_manager_alias_element_new (const gchar *family);
-FontManagerStringHashset * font_manager_alias_element_get (FontManagerAliasElement *self, const gchar *priority);
+FontManagerStringSet * font_manager_alias_element_get (FontManagerAliasElement *self, const gchar *priority);
 
 G_END_DECLS
 

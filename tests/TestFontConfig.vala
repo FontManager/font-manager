@@ -18,9 +18,9 @@ public class TestAliasElement : FontManager.TestCase {
         assert(ae is AliasElement);
         ae.family = "Test";
         assert(ae.family != null);
-        assert(ae.prefer is StringHashset);
-        assert(ae.accept is StringHashset);
-        assert(ae.default is StringHashset);
+        assert(ae.prefer is StringSet);
+        assert(ae.accept is StringSet);
+        assert(ae.default is StringSet);
         return;
     }
 

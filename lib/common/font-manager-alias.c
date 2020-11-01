@@ -47,9 +47,9 @@ struct _FontManagerAliasElement
 typedef struct
 {
     gchar *family;
-    FontManagerStringHashset *prefer;
-    FontManagerStringHashset *accept;
-    FontManagerStringHashset *_default;
+    FontManagerStringSet *prefer;
+    FontManagerStringSet *accept;
+    FontManagerStringSet *_default;
 }
 FontManagerAliasElementPrivate;
 
@@ -168,7 +168,7 @@ font_manager_alias_element_class_init (FontManagerAliasElementClass *klass)
     obj_properties[PROP_PREFER] = g_param_spec_object("prefer",
                                                      NULL,
                                                      "List of preferred font families",
-                                                     FONT_MANAGER_TYPE_STRING_HASHSET,
+                                                     FONT_MANAGER_TYPE_STRING_SET,
                                                      DEFAULT_PARAM_FLAGS);
 
     /**
@@ -179,7 +179,7 @@ font_manager_alias_element_class_init (FontManagerAliasElementClass *klass)
     obj_properties[PROP_ACCEPT] = g_param_spec_object("accept",
                                                      NULL,
                                                      "List of acceptable font families",
-                                                     FONT_MANAGER_TYPE_STRING_HASHSET,
+                                                     FONT_MANAGER_TYPE_STRING_SET,
                                                      DEFAULT_PARAM_FLAGS);
 
     /**
@@ -190,7 +190,7 @@ font_manager_alias_element_class_init (FontManagerAliasElementClass *klass)
     obj_properties[PROP_DEFAULT] = g_param_spec_object("default",
                                                       NULL,
                                                       "List of fallback fonts",
-                                                      FONT_MANAGER_TYPE_STRING_HASHSET,
+                                                      FONT_MANAGER_TYPE_STRING_SET,
                                                       DEFAULT_PARAM_FLAGS);
 
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
@@ -202,9 +202,9 @@ font_manager_alias_element_init (FontManagerAliasElement *self)
 {
     g_return_if_fail(self != NULL);
     FontManagerAliasElementPrivate *priv = font_manager_alias_element_get_instance_private(self);
-    priv->prefer = font_manager_string_hashset_new();
-    priv->accept = font_manager_string_hashset_new();
-    priv->_default = font_manager_string_hashset_new();
+    priv->prefer = font_manager_string_set_new();
+    priv->accept = font_manager_string_set_new();
+    priv->_default = font_manager_string_set_new();
     return;
 }
 
@@ -213,9 +213,9 @@ font_manager_alias_element_init (FontManagerAliasElement *self)
  * @self:       #FontManagerAliasElement
  * @priority:   "prefer", "accept" or "default"
  *
- * Returns: (transfer none) (nullable): A #FontManagerStringHashset or %NULL on error
+ * Returns: (transfer none) (nullable): A #FontManagerStringSet or %NULL on error
  */
-FontManagerStringHashset *
+FontManagerStringSet *
 font_manager_alias_element_get (FontManagerAliasElement *self, const gchar *priority) {
     g_return_val_if_fail(self != NULL, NULL);
     FontManagerAliasElementPrivate *priv = font_manager_alias_element_get_instance_private(self);

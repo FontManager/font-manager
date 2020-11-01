@@ -69,7 +69,7 @@ namespace FontManager.FontViewer {
         }
 
         protected override void activate () {
-            main_window.show();
+            main_window.present_with_time(Gdk.CURRENT_TIME);
             main_window.update();
             return;
         }

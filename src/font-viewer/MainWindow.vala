@@ -40,12 +40,12 @@ namespace FontManager.FontViewer {
         [GtkChild] PreviewPane preview_pane;
 
         PlaceHolder welcome;
-        StringHashset installed;
+        StringSet installed;
         Settings? settings = null;
 
         public override void constructed () {
             settings = get_gsettings(FontViewer.BUS_ID);
-            installed = new StringHashset();
+            installed = new StringSet();
             welcome = new PlaceHolder(w1, w2, w3, "font-x-generic-symbolic");
             welcome.show();
             stack.add_named(welcome, "Welcome");
@@ -81,22 +81,18 @@ namespace FontManager.FontViewer {
         }
 
         void add_actions () {
-
             var action = new SimpleAction("zoom_in", null);
             action.activate.connect((a, v) => { zoom(true, false); });
             string? [] accels = { "<Ctrl>plus", "<Ctrl>equal", null };
             add_keyboard_shortcut(action, "zoom_in", accels);
-
             action = new SimpleAction("zoom_out", null);
             action.activate.connect((a, v) => { zoom(false, true); });
             accels = { "<Ctrl>minus", null };
             add_keyboard_shortcut(action, "zoom_out", accels);
-
             action = new SimpleAction("zoom_default", null);
             action.activate.connect((a, v) => { zoom(false, false); });
             accels = { "<Ctrl>0", null };
             add_keyboard_shortcut(action, "zoom_default", accels);
-
             return;
         }
 

@@ -22,15 +22,19 @@ namespace FontManager {
 
     public class UserSourceModel : Directories, ListModel {
 
-        public List <Source>? items = null;
+        public GenericArray <Source> items { get; private set; }
 
         construct {
             config_dir = get_package_config_directory();
             target_element = "source";
             target_file = "Sources.xml";
             load();
+            items = new GenericArray <Source> ();
+            var _items = new GenericArray<Source> ();
             foreach (var path in this)
-                add_item(new Source(File.new_for_path(path)));
+                _items.add(new Source(File.new_for_path(path)));
+            _items.sort((a, b) => { return natural_sort(a.name, b.name); });
+            _items.foreach((item) => { add_item(item); });
             items_changed.connect(() => {
                 Idle.add(() => { save(); save_active_items(); return GLib.Source.REMOVE; });
             });
@@ -41,31 +45,17 @@ namespace FontManager {
         }
 
         public uint get_n_items () {
-            return items != null ? items.length() : 0;
+            return items != null ? items.length : 0;
         }
 
         public Object? get_item (uint position) {
-            return items.nth_data(position);
-        }
-
-        public void add_items (Source [] _items) {
-            uint start = items.length();
-            foreach (Source item in _items) {
-                add(item.path);
-                items.append(item);
-                uint position = items.length() - 1;
-                item.changed.connect(() => { items_changed(position, 0, 0); });
-                item.notify["active"].connect(() => { items_changed(position, 0, 0); });
-            }
-            uint end = items.length();
-            items_changed(start, 0, end - start);
-            return;
+            return items[position];
         }
 
         public void add_item (Source item) {
             add(item.path);
-            items.append(item);
-            uint position = items.length() - 1;
+            items.add(item);
+            uint position = get_n_items() - 1;
             items_changed(position, 0, 1);
             item.changed.connect(() => { items_changed(position, 0, 0); });
             item.notify["active"].connect(() => { items_changed(position, 0, 0); });
@@ -73,7 +63,7 @@ namespace FontManager {
         }
 
         public void remove_item (uint position) {
-            var item = items.nth_data(position);
+            var item = items[position];
             remove(item.path);
             items.remove(item);
             items_changed(position, 1, 0);
@@ -88,9 +78,10 @@ namespace FontManager {
 
         void save_active_items () {
             var active = new Directories();
-            foreach (var item in items)
+            items.foreach((item) => {
                 if (item.active)
                     active.add(item.path);
+            });
             active.save();
             return;
         }
@@ -180,10 +171,8 @@ Note that not all environments/applications will honor these settings.""");
             ((Gtk.Image) help.get_child()).set_pixel_size(22);
             controls.box.pack_end(help, false, false, 0);
             controls.add_selected.connect(() => {
-                Source [] sources = {};
                 foreach (var uri in FileSelector.get_selected_sources())
-                    sources += new Source(File.new_for_uri(uri));
-                model.add_items(sources);
+                    model.add_item(new Source(File.new_for_uri(uri)));
             });
             controls.remove_selected.connect(() => {
                 if (list.get_selected_row() == null)
@@ -227,10 +216,8 @@ Note that not all environments/applications will honor these settings.""");
                                                  uint info,
                                                  uint time) {
             if (info == DragTargetType.EXTERNAL) {
-                Source [] sources = {};
                 foreach (var uri in selection_data.get_uris())
-                    sources += new Source(File.new_for_uri(uri));
-                model.add_items(sources);
+                    model.add_item(new Source(File.new_for_uri(uri)));
             } else {
                 warning("Ignoring unsupported drag target.");
             }

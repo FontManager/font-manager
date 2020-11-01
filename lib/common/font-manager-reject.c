@@ -79,13 +79,13 @@ font_manager_reject_init (FontManagerReject *self)
  * A set of filepaths for all currently blacklisted fonts or %NULL if there was an error.
  * Free the returned object using #g_object_unref().
  */
-FontManagerStringHashset *
+FontManagerStringSet *
 font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error)
 {
     g_return_val_if_fail(self != NULL, NULL);
     g_return_val_if_fail((error == NULL || *error == NULL), NULL);
-    FontManagerStringHashset *rejected_files = font_manager_string_hashset_new();
-    GList *families = font_manager_string_hashset_list(FONT_MANAGER_STRING_HASHSET(self));
+    FontManagerStringSet *rejected_files = font_manager_string_set_new();
+    GList *families = font_manager_string_set_list(FONT_MANAGER_STRING_SET(self));
     FontManagerDatabase *db = font_manager_get_database(FONT_MANAGER_DATABASE_TYPE_FONT, error);
     if (error != NULL && *error != NULL) {
         g_clear_object(&rejected_files);
@@ -106,7 +106,7 @@ font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error)
             sqlite3_stmt *stmt = font_manager_database_iterator_get(db_iter);
             const gchar *path = (const gchar *) sqlite3_column_text(stmt, 0);
             if (font_manager_exists(path))
-                font_manager_string_hashset_add(rejected_files, path);
+                font_manager_string_set_add(rejected_files, path);
         }
         g_object_unref(db_iter);
     }

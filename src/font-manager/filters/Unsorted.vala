@@ -26,7 +26,7 @@ namespace FontManager {
             base(_("Unsorted"), _("Fonts not present in any collection"), "dialog-question", "%s;".printf(SELECT_FROM_FONTS), CategoryIndex.UNSORTED);
         }
 
-        public new async void update (StringHashset sorted) {
+        public new async void update (StringSet sorted) {
             SourceFunc callback = update.callback;
             base.update.begin((obj, res) => {
                 base.update.end(res);

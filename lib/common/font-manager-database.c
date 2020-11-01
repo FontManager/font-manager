@@ -807,10 +807,10 @@ bind_from_properties (sqlite3_stmt *stmt,
     return;
 }
 
-static FontManagerStringHashset *
+static FontManagerStringSet *
 get_known_files (FontManagerDatabase *db, const gchar *table)
 {
-    FontManagerStringHashset *result = font_manager_string_hashset_new();
+    FontManagerStringSet *result = font_manager_string_set_new();
     g_return_val_if_fail(FONT_MANAGER_IS_DATABASE(db), result);
     g_return_val_if_fail(table != NULL, result);
     g_autofree gchar *sql = g_strdup_printf("SELECT DISTINCT filepath FROM %s", table);
@@ -826,7 +826,7 @@ get_known_files (FontManagerDatabase *db, const gchar *table)
         sqlite3_stmt *stmt = font_manager_database_iterator_get(iter);
         const gchar *val = (const gchar *) sqlite3_column_text(stmt, 0);
         if (val)
-            font_manager_string_hashset_add(result, val);
+            font_manager_string_set_add(result, val);
     }
     g_object_unref(iter);
     return result;
@@ -951,9 +951,9 @@ update_available_fonts (FontManagerDatabase *db,
     JsonObject *all_fonts = NULL;
     FontManagerProgressData *progress = NULL;
 
-    FontManagerStringHashset *known_files = get_known_files(db, insert->table);
+    FontManagerStringSet *known_files = get_known_files(db, insert->table);
     GList *available_files = font_manager_list_available_font_files();
-    if (font_manager_string_hashset_contains_all(known_files, available_files))
+    if (font_manager_string_set_contains_all(known_files, available_files))
         goto cleanup;
 
     all_fonts = font_manager_get_available_fonts(NULL);
@@ -1008,7 +1008,7 @@ update_available_fonts (FontManagerDatabase *db,
         while (json_object_iter_next(&s_iter, &s_name, &s_node)) {
             JsonObject *face = json_node_get_object(s_node);
             const gchar *filepath = json_object_get_string_member(face, "filepath");
-            if (font_manager_string_hashset_contains(known_files, filepath))
+            if (font_manager_string_set_contains(known_files, filepath))
                 continue;
             else
                 insert->callback(db, face, insert->data);
@@ -1177,8 +1177,8 @@ font_manager_update_database_finish (GAsyncResult *result, GError **error)
 /**
  * font_manager_get_matching_families_and_fonts:
  * @db: #FontManagerDatabase
- * @families: #FontManagerStringHashset
- * @fonts: #FontManagerStringHashset
+ * @families: #FontManagerStringSet
+ * @fonts: #FontManagerStringSet
  * @sql: SQL query to execute
  * @error: #GError or %NULL to ignore errors
  *
@@ -1187,14 +1187,14 @@ font_manager_update_database_finish (GAsyncResult *result, GError **error)
  */
 void
 font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
-                                              FontManagerStringHashset *families,
-                                              FontManagerStringHashset *fonts,
+                                              FontManagerStringSet *families,
+                                              FontManagerStringSet *fonts,
                                               const gchar *sql,
                                               GError **error)
 {
     g_return_if_fail(FONT_MANAGER_IS_DATABASE(db));
-    g_return_if_fail(FONT_MANAGER_IS_STRING_HASHSET(families));
-    g_return_if_fail(FONT_MANAGER_IS_STRING_HASHSET(fonts));
+    g_return_if_fail(FONT_MANAGER_IS_STRING_SET(families));
+    g_return_if_fail(FONT_MANAGER_IS_STRING_SET(fonts));
     g_return_if_fail(sql != NULL);
     g_return_if_fail(error == NULL || *error == NULL);
     font_manager_database_execute_query(db, sql, error);
@@ -1207,8 +1207,8 @@ font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
         const gchar *font = (const gchar *) sqlite3_column_text(stmt, 1);
         if (family == NULL || font == NULL)
             continue;
-        font_manager_string_hashset_add(families, family);
-        font_manager_string_hashset_add(fonts, font);
+        font_manager_string_set_add(families, family);
+        font_manager_string_set_add(fonts, font);
     }
     g_object_unref(iter);
     return;

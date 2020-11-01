@@ -23,7 +23,7 @@
 
 #include "font-manager-database.h"
 #include "font-manager-selections.h"
-#include "font-manager-string-hashset.h"
+#include "font-manager-string-set.h"
 #include "font-manager-utils.h"
 
 G_BEGIN_DECLS
@@ -32,7 +32,7 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE(FontManagerReject, font_manager_reject, FONT_MANAGER, REJECT, FontManagerSelections)
 
 FontManagerReject * font_manager_reject_new (void);
-FontManagerStringHashset * font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error);
+FontManagerStringSet * font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error);
 
 G_END_DECLS
 

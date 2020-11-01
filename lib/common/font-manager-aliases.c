@@ -25,7 +25,7 @@
 #include "font-manager-alias.h"
 #include "font-manager-aliases.h"
 #include "font-manager-xml-writer.h"
-#include "font-manager-string-hashset.h"
+#include "font-manager-string-set.h"
 
 /**
  * SECTION: font-manager-aliases
@@ -174,10 +174,10 @@ font_manager_aliases_init (FontManagerAliases *self)
 
 static void
 _xml_writer_add_alias_element(FontManagerXmlWriter *writer,
-                              FontManagerStringHashset *hashset,
+                              FontManagerStringSet *hashset,
                               const gchar *type)
 {
-    GList *families = font_manager_string_hashset_list(hashset);
+    GList *families = font_manager_string_set_list(hashset);
     font_manager_xml_writer_start_element(writer, type);
     font_manager_xml_writer_add_elements(writer, "family", families);
     font_manager_xml_writer_end_element(writer);
@@ -190,9 +190,9 @@ xml_writer_add_alias_element (FontManagerXmlWriter *writer,
                               FontManagerAliasElement *alias)
 {
     g_autofree gchar *family = NULL;
-    g_autoptr(FontManagerStringHashset) p = NULL;
-    g_autoptr(FontManagerStringHashset) a = NULL;
-    g_autoptr(FontManagerStringHashset) d = NULL;
+    g_autoptr(FontManagerStringSet) p = NULL;
+    g_autoptr(FontManagerStringSet) a = NULL;
+    g_autoptr(FontManagerStringSet) d = NULL;
     g_object_get(alias, "family", &family, "prefer", &p, "accept", &a, "default", &d, NULL);
     g_return_if_fail(family != NULL);
     font_manager_xml_writer_start_element(writer, "alias");
@@ -225,11 +225,11 @@ parse_alias_node (FontManagerAliases *self, xmlNodePtr alias_node)
             GParamSpec *pspec = g_object_class_find_property(object_class, (const gchar *) iter->name);
             if (pspec == NULL)
                 continue;
-            g_autoptr(FontManagerStringHashset) hashset = font_manager_string_hashset_new();
+            g_autoptr(FontManagerStringSet) hashset = font_manager_string_set_new();
             for (xmlNodePtr _iter = iter->children; _iter != NULL; _iter = _iter->next) {
                 if (g_strcmp0((const char *) _iter->name, "family") == 0) {
                     xmlChar *content = xmlNodeGetContent(_iter);
-                    font_manager_string_hashset_add(hashset, (const gchar *) content);
+                    font_manager_string_set_add(hashset, (const gchar *) content);
                     xmlFree(content);
                 }
             }
@@ -350,7 +350,6 @@ font_manager_aliases_load (FontManagerAliases *self)
 
     if (doc == NULL) {
         /* Empty file */
-        xmlCleanupParser();
         return FALSE;
     }
 
@@ -362,7 +361,6 @@ font_manager_aliases_load (FontManagerAliases *self)
     xmlFreeDoc(doc);
     xmlXPathFreeContext(ctx);
     xmlXPathFreeObject(res);
-    xmlCleanupParser();
     return TRUE;
 }
 

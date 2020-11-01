@@ -288,6 +288,8 @@ font_manager_font_model_iter_has_child (GtkTreeModel *tree_model, GtkTreeIter *i
     g_return_val_if_fail(self != NULL, FALSE);
     g_return_val_if_fail(iter != NULL, FALSE);
     g_return_val_if_fail(iter->stamp == self->stamp, FALSE);
+    if (!self->available_fonts || json_array_get_length(self->available_fonts) < 1)
+        return FALSE;
     return (iter->user_data != NULL && iter->user_data2 == NULL);
 }
 

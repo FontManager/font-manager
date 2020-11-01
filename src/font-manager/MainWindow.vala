@@ -144,6 +144,7 @@ namespace FontManager {
                 add_separator(main_box, Gtk.Orientation.HORIZONTAL);
             }
             main_stack.set_visible_child_name("Default");
+            main_stack.sensitive = false;
             titlebar.show();
             bind_properties();
             connect_signals();
@@ -171,29 +172,24 @@ namespace FontManager {
         }
 
         void add_actions () {
-
             var action = new SimpleAction("zoom_in", null);
             action.activate.connect((a, v) => { zoom(true, false); });
             string? [] accels = { "<Ctrl>plus", "<Ctrl>equal", null };
             add_keyboard_shortcut(action, "zoom_in", accels);
-
             action = new SimpleAction("zoom_out", null);
             action.activate.connect((a, v) => { zoom(false, true); });
             accels = { "<Ctrl>minus", null };
             add_keyboard_shortcut(action, "zoom_out", accels);
-
             action = new SimpleAction("zoom_default", null);
             action.activate.connect((a, v) => { zoom(false, false); });
             accels = { "<Ctrl>0", null };
             add_keyboard_shortcut(action, "zoom_default", accels);
-
             action = new SimpleAction("reload", null);
             action.activate.connect((a, v) => {
                 get_default_application().refresh();
             });
             accels = { "<Ctrl>r", "F5", null };
             add_keyboard_shortcut(action, "reload", accels);
-
             return;
         }
 
@@ -470,7 +466,7 @@ namespace FontManager {
 
         }
 
-        public void install_fonts (StringHashset selections) {
+        public void install_fonts (StringSet selections) {
             if (selections.size > 0) {
                 titlebar.installing_files = true;
                 var installer = new Library.Installer();
@@ -490,7 +486,7 @@ namespace FontManager {
             return;
         }
 
-        public void remove_fonts (StringHashset selections) {
+        public void remove_fonts (StringSet selections) {
             if (selections.size > 0) {
                 titlebar.removing_files = true;
                 model = null;
@@ -523,7 +519,7 @@ namespace FontManager {
                     family_drop_handler(widget, x, y);
                     break;
                 case DragTargetType.EXTERNAL:
-                    var selections = new StringHashset();
+                    var selections = new StringSet();
                     foreach (var uri in selection_data.get_uris())
                         selections.add(File.new_for_uri(uri).get_path());
                     install_fonts(selections);
@@ -717,6 +713,7 @@ namespace FontManager {
                     return GLib.Source.CONTINUE;
                 browse.mode = (BrowseMode) settings.get_enum("browse-mode");
                 restore_selections(font_path, category_path, collection_path);
+                Idle.add(() => { main_stack.sensitive = true; return GLib.Source.REMOVE; });
                 return GLib.Source.REMOVE;
             });
 
@@ -774,6 +771,7 @@ namespace FontManager {
             preview_pane.character_map_preview_size = CHARACTER_MAP_PREVIEW_SIZE;
             preview_pane.page = 0;
             fontlist_pane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSidebarMode.COLLECTION);
+            main_stack.sensitive = true;
             return;
         }
 

@@ -83,7 +83,7 @@ namespace FontManager {
                         File config_dir = File.new_for_path(get_user_fontconfig_directory());
                         copy_directory(config_files, config_dir, flags);
                     } else if (name == "fonts") {
-                        var filelist = new StringHashset();
+                        var filelist = new StringSet();
                         filelist.add(Path.build_filename(root, name));
                         main_window.install_fonts(filelist);
                     }

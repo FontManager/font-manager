@@ -53,8 +53,8 @@ namespace FontManager {
             return;
         }
 
-        public StringHashset get_full_contents () {
-            var full_contents = new StringHashset ();
+        public StringSet get_full_contents () {
+            var full_contents = new StringSet ();
             foreach (var entry in entries.get_values())
                 full_contents.add_all(entry.get_full_contents().list());
             return full_contents;
@@ -310,8 +310,14 @@ The sidebar will automatically switch while dragging fonts.
         }
 
         public void select_first_row () {
-            get_selection().unselect_all();
-            get_selection().select_path(new Gtk.TreePath.first());
+            if (model == null)
+                return;
+            Gtk.TreePath path = new Gtk.TreePath.first();
+            Gtk.TreeSelection selection = get_selection();
+            selection.unselect_all();
+            selection.select_path(path);
+            if (selection.path_is_selected(path))
+                scroll_to_cell(path, null, true, 0.5f, 0.5f);
             return;
         }
 
@@ -348,16 +354,16 @@ The sidebar will automatically switch while dragging fonts.
             return;
         }
 
-        public bool remove_fonts (GLib.List <string> fonts)
+        public void remove_fonts (GLib.List <string> fonts)
         requires (selected_filter != null) {
-            bool res = selected_filter.families.remove_all(fonts);
+            selected_filter.families.remove_all(fonts);
             Idle.add(() => {
                 model.collections.save();
                 return GLib.Source.REMOVE;
             });
             selected_filter.set_active_from_fonts(reject);
             changed();
-            return res;
+            return;
         }
 
         protected override bool show_context_menu (Gdk.EventButton e) {

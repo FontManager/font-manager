@@ -33,7 +33,7 @@ namespace FontManager {
 
         public signal void selections_changed ();
 
-        public StringHashset selected { get; set; }
+        public StringSet selected { get; set; }
         public double coverage { get; set; default = 90; }
 
         public override int size {
@@ -44,7 +44,7 @@ namespace FontManager {
 
         public LanguageFilter () {
             base(_("Language"),  DEFAULT_LANGUAGE_FILTER_COMMENT, "preferences-desktop-locale", SELECT_ON_LANGUAGE, CategoryIndex.LANGUAGE);
-            selected = new StringHashset();
+            selected = new StringSet();
         }
 
         public void add (string language) {
@@ -58,7 +58,7 @@ namespace FontManager {
 
         public string [] list () {
             string [] result = {};
-            foreach (var language in selected)
+            foreach (string language in selected)
                 result += language;
             return result;
         }
@@ -90,7 +90,7 @@ namespace FontManager {
         public signal void selections_changed ();
 
         public double coverage { get; set; default = 90; }
-        public StringHashset selected { get; set; }
+        public StringSet selected { get; set; }
 
         [GtkChild] Gtk.SpinButton coverage_spin;
         [GtkChild] Gtk.SearchEntry search_entry;
@@ -103,7 +103,7 @@ namespace FontManager {
         Gtk.TreeModelFilter? search_filter = null;
 
         public override void constructed () {
-            selected = new StringHashset();
+            selected = new StringSet();
             bind_property("coverage", coverage_spin, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             real_model = new Gtk.ListStore(2, typeof(string), typeof(string));
             search_filter = new Gtk.TreeModelFilter(real_model, null);

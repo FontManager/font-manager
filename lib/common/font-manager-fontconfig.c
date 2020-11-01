@@ -218,7 +218,6 @@ font_manager_list_available_font_files (void)
     FcObjectSetDestroy(objectset);
     FcPatternDestroy(pattern);
     FcFontSetDestroy(fontset);
-    result = g_list_sort(result, (GCompareFunc) font_manager_natural_sort);
     return result;
 }
 
@@ -254,7 +253,6 @@ font_manager_list_font_directories (gboolean recursive)
     }
 
     FcStrListDone(fdlist);
-    result = g_list_sort(result, (GCompareFunc) font_manager_natural_sort);
     return result;
 }
 
@@ -294,7 +292,6 @@ font_manager_list_user_font_directories (gboolean recursive)
     }
 
     FcStrListDone(fdlist);
-    result = g_list_sort(result, (GCompareFunc) font_manager_natural_sort);
     return result;
 }
 
@@ -326,7 +323,6 @@ font_manager_list_available_font_families (void)
     FcObjectSetDestroy(objectset);
     FcPatternDestroy(pattern);
     FcFontSetDestroy(fontset);
-    result = g_list_sort(result, (GCompareFunc) font_manager_natural_sort);
     return result;
 }
 

@@ -86,8 +86,8 @@ namespace FontManager {
             return selection;
         }
 
-        public StringHashset get_selections () {
-            var selections = new StringHashset();
+        public StringSet get_selections () {
+            var selections = new StringSet();
             var dialog = new Gtk.FileChooserNative(_("Select files to install"),
                                                     main_window,
                                                     Gtk.FileChooserAction.OPEN,
@@ -132,10 +132,10 @@ namespace FontManager {
 
     namespace RemoveDialog {
 
-        public StringHashset get_selections (Gtk.TreeModel model) {
+        public StringSet get_selections (Gtk.TreeModel model) {
             Gtk.HeaderBar? header = null;
             bool use_csd = main_window != null ? main_window.use_csd : false;
-            var selections = new StringHashset();
+            var selections = new StringSet();
             FontListPane? tree = null;
             var dialog = new Gtk.Dialog() {
                 modal = true,

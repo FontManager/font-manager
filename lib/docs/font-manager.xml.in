@@ -68,7 +68,7 @@
             <xi:include href="xml/font-manager-progress-data.xml"/>
             <xi:include href="xml/font-manager-json-proxy.xml"/>
             <xi:include href="xml/font-manager-json.xml"/>
-            <xi:include href="xml/font-manager-string-hashset.xml"/>
+            <xi:include href="xml/font-manager-string-set.xml"/>
             <xi:include href="xml/font-manager-utils.xml"/>
         </chapter>
 

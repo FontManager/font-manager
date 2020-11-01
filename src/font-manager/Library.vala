@@ -28,7 +28,7 @@ namespace FontManager {
 
     namespace Library {
 
-        public async void remove (StringHashset selections) {
+        public async void remove (StringSet selections) {
             SourceFunc callback = remove.callback;
             ThreadFunc <Object?> _remove = () => {
                 foreach (var path in selections) {
@@ -65,7 +65,7 @@ namespace FontManager {
 
             static File? tmp_file = null;
 
-            public void process_sync (StringHashset filelist) {
+            public void process_sync (StringSet filelist) {
                 var sorter = new Sorter();
                 sorter.sort(filelist);
                 process_files(sorter.fonts);
@@ -76,7 +76,7 @@ namespace FontManager {
                 return;
             }
 
-            public async void process (StringHashset filelist) {
+            public async void process (StringSet filelist) {
                 SourceFunc callback = process.callback;
                 ThreadFunc <Object?> install = () => {
                     var sorter = new Sorter();
@@ -122,7 +122,7 @@ namespace FontManager {
                 return;
             }
 
-            void process_files (StringHashset filelist) {
+            void process_files (StringSet filelist) {
                 uint total = filelist.size;
                 uint processed = 0;
                 File install_dir = File.new_for_path(get_user_font_directory());
@@ -147,7 +147,7 @@ namespace FontManager {
                 return;
             }
 
-            void process_archives (StringHashset filelist) {
+            void process_archives (StringSet filelist) {
 
                 if (filelist.size == 0)
                     return;
@@ -189,7 +189,7 @@ namespace FontManager {
                     }
 
                     var sorter = new Sorter();
-                    var list = new StringHashset();
+                    var list = new StringSet();
                     list.add(tmp.get_path());
                     sorter.sort(list);
                     process_files(sorter.fonts);
@@ -218,7 +218,7 @@ namespace FontManager {
             return;
         }
 
-        internal void purge_entries (StringHashset selections) {
+        internal void purge_entries (StringSet selections) {
             DatabaseType [] types = { DatabaseType.FONT, DatabaseType.METADATA, DatabaseType.ORTHOGRAPHY };
             try {
                 Database? db = get_database(DatabaseType.BASE);
@@ -254,10 +254,10 @@ namespace FontManager {
 
         internal class Sorter : Object {
 
-            public StringHashset? fonts { get; private set; default = null; }
-            public StringHashset? archives { get; private set; default = null; }
+            public StringSet? fonts { get; private set; default = null; }
+            public StringSet? archives { get; private set; default = null; }
 
-            StringHashset? supported_archives = null;
+            StringSet? supported_archives = null;
 
             public uint total {
                 get {
@@ -266,15 +266,15 @@ namespace FontManager {
             }
 
             construct {
-                supported_archives = new StringHashset();
+                supported_archives = new StringSet();
                 var file_roller = new ArchiveManager();
                 if (file_roller.available)
                     supported_archives = file_roller.get_supported_types();
             }
 
-            public void sort (StringHashset filelist) {
-                fonts = new StringHashset ();
-                archives  = new StringHashset ();
+            public void sort (StringSet filelist) {
+                fonts = new StringSet ();
+                archives  = new StringSet ();
                 process_files(filelist);
                 return;
             }
@@ -305,7 +305,7 @@ namespace FontManager {
                 return;
             }
 
-            void process_files (StringHashset filelist) {
+            void process_files (StringSet filelist) {
                 foreach (var path in filelist) {
                     var file = File.new_for_path(path);
                     var attrs = "%s,%s,%s".printf(FileAttribute.STANDARD_CONTENT_TYPE, FileAttribute.STANDARD_TYPE, FileAttribute.STANDARD_NAME);

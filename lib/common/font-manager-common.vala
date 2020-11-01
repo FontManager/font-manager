@@ -13,10 +13,10 @@ namespace FontManager {
     public class CodepointList : GLib.Object, Unicode.CodepointList {}
 
     public class AliasElement : GLib.Object {
-        public unowned StringHashset get (string priority);
+        public unowned StringSet get (string priority);
     }
 
-    public class Selections : StringHashset {
+    public class Selections : StringSet {
         [NoWrapper]
         public virtual unowned Xml.Node? get_selections (Xml.Doc *doc);
     }

@@ -488,12 +488,10 @@ font_manager_properties_load (FontManagerProperties *self)
     if (!g_file_query_exists(file, NULL))
         return FALSE;
 
-    xmlInitParser();
     xmlDoc *doc = xmlReadFile(filepath, NULL, 0);
 
     if (doc == NULL) {
         /* Empty file */
-        xmlCleanupParser();
         return FALSE;
     }
 
@@ -514,7 +512,6 @@ font_manager_properties_load (FontManagerProperties *self)
     }
 
     xmlFreeDoc(doc);
-    xmlCleanupParser();
     return TRUE;
 }
 

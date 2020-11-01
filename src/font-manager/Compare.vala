@@ -88,29 +88,33 @@ namespace FontManager {
 
     public class CompareModel : Object, ListModel {
 
-        public List <CompareEntry>? items = null;
+        public GenericArray <CompareEntry>? items { get; private set; }
+
+        construct {
+            items = new GenericArray <CompareEntry> ();
+        }
 
         public Type get_item_type () {
             return typeof(CompareEntry);
         }
 
         public uint get_n_items () {
-            return items != null ? items.length() : 0;
+            return items.length;
         }
 
         public Object? get_item (uint position) {
-            return items.nth_data(position);
+            return items[position];
         }
 
         public void add_item (CompareEntry item) {
-            items.append(item);
-            uint position = items.length() - 1;
+            items.add(item);
+            uint position = get_n_items() - 1;
             items_changed(position, 0, 1);
             return;
         }
 
         public void remove_item (uint position) {
-            items.remove(items.nth_data(position));
+            items.remove_index(position);
             items_changed(position, 1, 0);
             return;
         }
@@ -243,8 +247,7 @@ namespace FontManager {
 
         public string [] list_items () {
             string [] results = {};
-            foreach (var item in model.items)
-                results += item.description;
+            model.items.foreach((item) => { results += item.description; });
             return results;
         }
 

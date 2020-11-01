@@ -23,8 +23,8 @@ namespace FontManager {
     public class Category : Filter {
 
         public string? sql { get; set; default = null; }
-        public StringHashset descriptions { get; set; }
-        public StringHashset families { get; set; }
+        public StringSet descriptions { get; set; }
+        public StringSet families { get; set; }
         public DatabaseType db_type { get; set; default = DatabaseType.BASE; }
 
         public GenericArray <Category> children { get; set; }
@@ -37,8 +37,8 @@ namespace FontManager {
 
         public Category (string name, string comment, string icon, string? sql, int index) {
             Object(name: name, icon: icon, comment: comment, sql: sql, index: index);
-            families = new StringHashset();
-            descriptions = new StringHashset();
+            families = new StringSet();
+            descriptions = new StringSet();
             children = new GenericArray <Category> ();
         }
 
@@ -92,8 +92,8 @@ namespace FontManager {
                 });
                 val.set_boxed(res);
                 return true;
-            } else if (pspec.value_type == typeof(StringHashset)) {
-                var res = new StringHashset();
+            } else if (pspec.value_type == typeof(StringSet)) {
+                var res = new StringSet();
 //                node.get_array().foreach_element((arr, index, node) => {
 //                    res.add(node.get_string());
 //                });
@@ -118,7 +118,7 @@ namespace FontManager {
                 });
                 node.set_object(obj);
                 return node;
-            } else if (pspec.value_type == typeof(StringHashset)) {
+            } else if (pspec.value_type == typeof(StringSet)) {
                 var node = new Json.Node(Json.NodeType.ARRAY);
                 var arr = new Json.Array();
 //                foreach (string family in families)

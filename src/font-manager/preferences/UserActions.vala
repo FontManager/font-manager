@@ -44,6 +44,7 @@ namespace FontManager {
                     } else {
                         action_icon = "system-run-symbolic";
                     }
+                    app_info = null;
                 }
             });
             notify.connect(() => { changed(); });
@@ -80,9 +81,10 @@ namespace FontManager {
 
     public class UserActionModel : Object, ListModel {
 
-        public List <UserAction>? items = null;
+        public GenericArray <UserAction> items { get; private set; }
 
         construct {
+            items = new GenericArray <UserAction> ();
             load();
             items_changed.connect(() => { save(); });
         }
@@ -92,11 +94,11 @@ namespace FontManager {
         }
 
         public uint get_n_items () {
-            return items != null ? items.length() : 0;
+            return items != null ? items.length : 0;
         }
 
         public Object? get_item (uint position) {
-            return items.nth_data(position);
+            return items[position];
         }
 
         public uint size {
@@ -111,15 +113,15 @@ namespace FontManager {
         }
 
         public void add_item (UserAction item) {
-            items.append(item);
-            uint position = items.length() - 1;
+            items.add(item);
+            uint position = size - 1;
             items_changed(position, 0, 1);
             item.changed.connect(() => { items_changed(position, 0, 0); });
             return;
         }
 
         public void remove_item (uint position) {
-            items.remove(items.nth_data(position));
+            items.remove_index(position);
             items_changed(position, 1, 0);
             return;
         }
@@ -146,11 +148,11 @@ namespace FontManager {
 
         public void save () {
             Json.Node node = new Json.Node(Json.NodeType.ARRAY);
-            Json.Array array = new Json.Array.sized(items.length());
-            foreach (var item in items) {
+            Json.Array array = new Json.Array.sized(size);
+            items.foreach((item) => {
                 var item_node = Json.gobject_serialize(item);
                 array.add_object_element(item_node.get_object());
-            }
+            });
             node.set_array(array);
             write_json_file(node, get_cache_file(), true);
             return;

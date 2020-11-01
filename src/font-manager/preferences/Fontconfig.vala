@@ -288,6 +288,16 @@ Note that not all environments/applications will honor these settings.""");
             return;
         }
 
+        public void set_family (string? family) {
+            pane.properties.family = family;
+            return;
+        }
+
+        public void set_font (Font? font) {
+            pane.properties.font = font;
+            return;
+        }
+
     }
 
     /**
@@ -330,6 +340,7 @@ Note that not all environments/applications will honor these settings.""");
             embeddedbitmap = new LabeledSwitch(_("Use Embedded Bitmaps"));
             size_options = new SizeOptions();
             expander = new Gtk.Expander(_(" Size Restrictions "));
+            expander.margin = DEFAULT_MARGIN * 2;
             expander.notify["expanded"].connect(() => {
                 if (expander.expanded)
                     expander.set_label(_(" Apply settings to point sizes "));

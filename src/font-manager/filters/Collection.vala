@@ -30,7 +30,7 @@ namespace FontManager {
 
         public bool active { get; set; default = true; }
         public GenericArray <Collection> children { get; set; }
-        public StringHashset families { get; set; }
+        public StringSet families { get; set; }
 
         public override int size {
             get {
@@ -42,7 +42,7 @@ namespace FontManager {
             Object(name: name, comment: comment);
             requires_update = false;
             children = new GenericArray <Collection> ();
-            families = new StringHashset();
+            families = new StringSet();
             /* XXX : Translatable string as default argument generates broken vapi ? */
             if (name == null)
                 name = _("New Collection");
@@ -73,21 +73,21 @@ namespace FontManager {
             return;
         }
 
-        void add_child_contents (Collection child, StringHashset full_contents) {
+        void add_child_contents (Collection child, StringSet full_contents) {
             full_contents.add_all(child.families.list());
             children.foreach((_child) => { add_child_contents(_child, full_contents); });
             return;
         }
 
-        public StringHashset get_full_contents () {
-            var full_contents = new StringHashset();
+        public StringSet get_full_contents () {
+            var full_contents = new StringSet();
             full_contents.add_all(families.list());
             children.foreach((_child) => { add_child_contents(_child, full_contents); });
             return full_contents;
         }
 
-        public StringHashset get_filelist () {
-            var results = new StringHashset();
+        public StringSet get_filelist () {
+            var results = new StringSet();
             try {
                 Database db = get_database(DatabaseType.BASE);
                 var contents = get_full_contents();
@@ -144,8 +144,8 @@ namespace FontManager {
                 });
                 val.set_boxed(res);
                 return true;
-            } else if (pspec.value_type == typeof(StringHashset)) {
-                var res = new StringHashset();
+            } else if (pspec.value_type == typeof(StringSet)) {
+                var res = new StringSet();
                 node.get_array().foreach_element((arr, index, node) => {
                     res.add(node.get_string());
                 });
@@ -167,7 +167,7 @@ namespace FontManager {
                 });
                 node.set_object(obj);
                 return node;
-            } else if (pspec.value_type == typeof(StringHashset)) {
+            } else if (pspec.value_type == typeof(StringSet)) {
                 var node = new Json.Node(Json.NodeType.ARRAY);
                 var arr = new Json.Array();
                 foreach (string family in families)

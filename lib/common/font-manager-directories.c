@@ -44,7 +44,7 @@ font_manager_directories_write_selections (FontManagerSelections *self,
 {
     g_return_if_fail(FONT_MANAGER_IS_SELECTIONS(self));
     g_return_if_fail(FONT_MANAGER_IS_XML_WRITER(writer));
-    GList *directories = font_manager_string_hashset_list(FONT_MANAGER_STRING_HASHSET(self));
+    GList *directories = font_manager_string_set_list(FONT_MANAGER_STRING_SET(self));
     g_autofree gchar *element = NULL;
     g_object_get(G_OBJECT(self), "target-element", &element, NULL);
     font_manager_xml_writer_add_elements(writer, element, directories);

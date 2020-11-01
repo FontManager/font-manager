@@ -36,7 +36,7 @@
 #include "font-manager-family.h"
 #include "font-manager-font-info.h"
 #include "font-manager-progress-data.h"
-#include "font-manager-string-hashset.h"
+#include "font-manager-string-set.h"
 #include "font-manager-utils.h"
 
 G_BEGIN_DECLS
@@ -197,8 +197,8 @@ void font_manager_update_database (FontManagerDatabase *db,
 gboolean font_manager_update_database_finish (GAsyncResult *result, GError **error);
 
 void font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
-                                                    FontManagerStringHashset *families,
-                                                    FontManagerStringHashset *fonts,
+                                                    FontManagerStringSet *families,
+                                                    FontManagerStringSet *fonts,
                                                     const gchar *sql,
                                                     GError **error);
 

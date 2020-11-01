@@ -152,6 +152,8 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         }
 
         public void select_first_row () {
+            if (model == null)
+                return;
             Gtk.TreePath path = new Gtk.TreePath.first();
             Gtk.TreeSelection selection = get_selection();
             selection.unselect_all();
@@ -327,8 +329,8 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             return;
         }
 
-        public StringHashset get_selected_families () {
-            var selected = new StringHashset();
+        public StringSet get_selected_families () {
+            var selected = new StringSet();
             List <Gtk.TreePath> _selected = get_selection().get_selected_rows(null);
             foreach (Gtk.TreePath path in _selected) {
                 Value val;
@@ -401,8 +403,8 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             return;
         }
 
-        StringHashset get_files_for_family (Family family) {
-            var results = new StringHashset();
+        StringSet get_files_for_family (Family family) {
+            var results = new StringSet();
             foreach (var node in family.variations.get_elements()) {
                 var object = node.get_object();
                 results.add(object.get_string_member("filepath"));
@@ -510,7 +512,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         }
 
         public void install () {
-            var filelist = new StringHashset();
+            var filelist = new StringSet();
             filelist.add(selected_font.filepath);
             var installer = new Library.Installer();
             installer.process.begin(filelist, (obj, res) => {
@@ -545,18 +547,18 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
 
     public class UserFontList : BaseFontList {
 
-        StringHashset selected_families;
-        StringHashset selected_fonts;
+        StringSet selected_families;
+        StringSet selected_fonts;
 
         public UserFontList () {
             name = "UserFontList";
             get_selection().set_mode(Gtk.SelectionMode.SINGLE);
-            selected_families = new StringHashset ();
-            selected_fonts = new StringHashset ();
+            selected_families = new StringSet ();
+            selected_fonts = new StringSet ();
         }
 
-        public StringHashset get_selections () {
-            var selections = new StringHashset();
+        public StringSet get_selections () {
+            var selections = new StringSet();
             try {
                 Database db = get_database(DatabaseType.BASE);
                 string user_font_dir = get_user_font_directory();

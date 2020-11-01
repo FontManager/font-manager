@@ -134,9 +134,9 @@ namespace FontManager {
             return false;
         }
 
-        public StringHashset get_supported_types (string action = "extract")
+        public StringSet get_supported_types (string action = "extract")
         requires (file_roller != null) {
-            var supported_types = new StringHashset();
+            var supported_types = new StringSet();
             try {
                 HashTable <string, string> [] array = file_roller.get_supported_types(action);
                 foreach (var hashtable in array) {

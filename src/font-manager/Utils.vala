@@ -101,7 +101,7 @@ namespace FontManager {
      * Adds user configured font sources (directories) and rejected fonts to our
      * FcConfig so that we can render fonts which are not actually "installed".
      */
-    public bool load_user_font_resources (StringHashset? files, UserSourceModel? sources) {
+    public bool load_user_font_resources (StringSet? files, UserSourceModel? sources) {
         clear_application_fonts();
         bool res = true;
         var legacy_font_dir = Path.build_filename(Environment.get_home_dir(), ".fonts");
@@ -116,12 +116,13 @@ namespace FontManager {
         UserSourceModel? source_model = sources;
         if (source_model == null)
             source_model = new UserSourceModel();
-        foreach (Source source in source_model.items) {
+        source_model.items.foreach((source) => {
             if (source.available && !add_application_font_directory(source.path)) {
                 res = false;
                 warning("Failed to register user font source! : %s", source.path);
             }
-        }
+        });
+        source_model = null;
         if (files != null)
             foreach (string path in files)
                 add_application_font(path);
@@ -188,7 +189,7 @@ namespace FontManager {
         return;
     }
 
-    public async void copy_files (StringHashset filelist, File destination, bool show_progress) {
+    public async void copy_files (StringSet filelist, File destination, bool show_progress) {
         assert(destination.query_file_type(FileQueryInfoFlags.NONE) == FileType.DIRECTORY);
         uint total = filelist.size;
         uint processed = 0;
@@ -259,7 +260,7 @@ namespace FontManager {
         return result;
     }
 
-    public StringHashset? get_command_line_files (ApplicationCommandLine cl) {
+    public StringSet? get_command_line_files (ApplicationCommandLine cl) {
         VariantDict options = cl.get_options_dict();
         Variant argv = options.lookup_value("", VariantType.BYTESTRING_ARRAY);
         if (argv == null)
@@ -267,20 +268,20 @@ namespace FontManager {
         (unowned string) [] filelist = argv.get_bytestring_array();
         if (filelist.length == 0)
             return null;
-        var files = new StringHashset();
+        var files = new StringSet();
         foreach (var file in filelist)
             files.add(cl.create_file_for_arg(file).get_path());
         return files;
     }
 
-    public StringHashset? get_command_line_input (VariantDict options) {
+    public StringSet? get_command_line_input (VariantDict options) {
         Variant argv = options.lookup_value("", VariantType.BYTESTRING_ARRAY);
         if (argv == null)
             return null;
         (unowned string) [] list = argv.get_bytestring_array();
         if (list.length == 0)
             return null;
-        var input = new StringHashset();
+        var input = new StringSet();
         foreach (var str in list)
             input.add(str);
         return input;

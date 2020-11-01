@@ -157,7 +157,7 @@ namespace FontManager {
         }
 
         static void import_fonts () {
-            StringHashset font_dirs = new StringHashset();
+            StringSet font_dirs = new StringSet();
             string old_font_dir = Path.build_filename(Environment.get_home_dir(), ".fonts");
             File ofd = File.new_for_path(old_font_dir);
             if (ofd.query_exists())

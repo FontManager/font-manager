@@ -25,15 +25,16 @@ namespace FontManager {
     public static FontManager.Reject? reject = null;
     public static FontModel? font_model = null;
     public static MainWindow? main_window = null;
-    public static StringHashset available_font_families = null;
-    public static StringHashset temp_files = null;
+    public static StringSet available_font_families = null;
+    public static StringSet temp_files = null;
 
     internal void clear_resources () {
         clear_application_fonts();
         settings = null;
         reject = null;
-        foreach (var path in temp_files)
-            remove_directory(File.new_for_path(path));
+        if (temp_files != null)
+            foreach (string path in temp_files)
+                remove_directory(File.new_for_path(path));
         temp_files = null;
         try {
             Database main_db = get_database(DatabaseType.BASE);
@@ -73,8 +74,8 @@ namespace FontManager {
         public override void startup () {
             base.startup();
             settings = get_gsettings(BUS_ID);
-            available_font_families = new StringHashset();
-            temp_files = new StringHashset();
+            available_font_families = new StringSet();
+            temp_files = new StringSet();
             reject = new Reject();
             reject.load();
             db = new DatabaseProxy();
@@ -118,7 +119,7 @@ namespace FontManager {
             hold();
 
             VariantDict options = cl.get_options_dict();
-            StringHashset? filelist = get_command_line_files(cl);
+            StringSet? filelist = get_command_line_files(cl);
 
             if (options.contains("install") || options.contains("update")) {
                 if (options.contains("install") && filelist != null) {
@@ -213,7 +214,7 @@ namespace FontManager {
         }
 
         public void install (string [] filepaths) throws GLib.DBusError, GLib.IOError {
-            StringHashset filelist = new StringHashset();
+            StringSet filelist = new StringSet();
             foreach (var path in filepaths)
                 filelist.add(path);
             var installer = new Library.Installer();
@@ -292,11 +293,11 @@ namespace FontManager {
                 Json.Object available_fonts = get_available_fonts(null);
                 db.update();
                 Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
-                font_model.source_array = sorted_fonts;
-                if (main_window != null) {
+                if (main_window != null)
                     main_window.model = null;
+                font_model.source_array = sorted_fonts;
+                if (main_window != null)
                     main_window.model = font_model;
-                }
                 available_font_families.clear();
                 foreach (string family in available_fonts.get_members())
                     available_font_families.add(family);

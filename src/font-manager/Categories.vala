@@ -57,13 +57,6 @@ namespace FontManager {
             });
         }
 
-        public static string get_cache_file () {
-            string dirpath = get_package_cache_directory();
-            string filepath = Path.build_filename(dirpath, "Categories.json");
-            DirUtils.create_with_parents(dirpath ,0755);
-            return filepath;
-        }
-
         void append_category (Category filter) {
             if (filter.index < CategoryIndex.PANOSE) {
                 filter.update.begin((obj, res) => {
@@ -234,7 +227,14 @@ namespace FontManager {
         }
 
         public void select_first_row () {
-            tree.get_selection().select_path(new Gtk.TreePath.first());
+            if (model == null)
+                return;
+            Gtk.TreePath path = new Gtk.TreePath.first();
+            Gtk.TreeSelection selection = tree.get_selection();
+            selection.unselect_all();
+            selection.select_path(path);
+            if (selection.path_is_selected(path))
+                tree.scroll_to_cell(path, null, true, 0.5f, 0.5f);
             return;
         }
 
@@ -298,6 +298,7 @@ namespace FontManager {
                 return;
             }
             StringBuilder builder = new StringBuilder("\n");
+            language_filter.selected.sort((CompareFunc) natural_sort);
             foreach (var lang in language_filter.selected) {
                 string language = lang;
                 foreach (var orth in Orthographies) {
