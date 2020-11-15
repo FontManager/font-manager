@@ -80,8 +80,10 @@ typedef enum {
     UNICODE_VERSION_10_0,
     UNICODE_VERSION_11_0,
     UNICODE_VERSION_12_0,
+    UNICODE_VERSION_12_1,
+    UNICODE_VERSION_13_0,
     /* private, will move forward with each revision */
-    UNICODE_VERSION_LATEST = UNICODE_VERSION_12_0
+    UNICODE_VERSION_LATEST = UNICODE_VERSION_13_0
 } UnicodeStandard;
 
 /* return values are read-only */
