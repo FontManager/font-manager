@@ -5,12 +5,12 @@
     <project-version>master</project-version>
     <project-type>gettext</project-type>
     <!-- Set to the toplevel directory so all .pot files are included -->
-    <src-dir>../</src-dir>
-    <trans-dir>../</trans-dir>
+    <src-dir>.</src-dir>
+    <trans-dir>.</trans-dir>
     <!-- Rules to direct files to their proper locations -->
     <rules>
-        <rule pattern="**/po/*.pot">{path}/{locale_with_underscore}.po</rule>
-        <rule pattern="**/help/*.pot">{path}/{locale_with_underscore}/{locale_with_underscore}.po</rule>
+        <rule pattern="po/*.pot">{path}/{locale_with_underscore}.po</rule>
+        <rule pattern="help/*.pot">{path}/{locale_with_underscore}/{locale_with_underscore}.po</rule>
     </rules>
     <hooks>
         <hook command="pull">
