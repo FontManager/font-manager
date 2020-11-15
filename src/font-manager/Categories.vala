@@ -325,7 +325,7 @@ namespace FontManager {
             val.unset();
             Idle.add(() => {
                 bool is_language_filter = (selected_filter.index == CategoryIndex.LANGUAGE);
-                if (language_filter != null && language_filter == selected_filter) {
+                if (language_filter != null) {
                     language_filter_settings.get_button().set_visible(is_language_filter);
                     return GLib.Source.REMOVE;
                 }
