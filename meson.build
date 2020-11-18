@@ -24,7 +24,9 @@ gobject = dependency('gobject-2.0', version: '>= 2.44')
 gtk = dependency('gtk+-3.0', version: '>= 3.22')
 pango = dependency('pango', version: '>= 1.4')
 pangoft2 = dependency('pangoft2', version: '>= 1.4')
+soup = dependency('libsoup-2.4', version: '>= 2.62')
 sqlite = dependency('sqlite3', version: '>= 3.8')
+webkit = dependency('webkit2gtk-4.0', version: '>= 2.24')
 xml = dependency('libxml-2.0', version: '>= 2.9')
 
 base_deps = declare_dependency(
@@ -41,14 +43,14 @@ gnome= import('gnome')
 python = import('python').find_installation('python3')
 
 reproducible = get_option('reproducible') ? '-DREPRODUCIBLE' : '-DNOT_REPRODUCIBLE'
-use_deprecated_gtk_api = get_option('thunar') ? '-DGTK_ENABLE_DEPRECATED' : '-DGTK_DISABLE_DEPRECATED'
+# webkit uses deprecated API also
+# use_deprecated_gtk_api = get_option('thunar') ? '-DGTK_ENABLE_DEPRECATED' : '-DGTK_DISABLE_DEPRECATED'
 
 add_global_arguments(
     '-DG_LOG_DOMAIN="[@0@]"'.format(meson.project_name()),
     '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
     reproducible,
     '-DGDK_DISABLE_DEPRECATED',
-    use_deprecated_gtk_api,
     language: 'c'
 )
 

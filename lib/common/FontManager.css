@@ -190,3 +190,10 @@ treeview {
     background-color: transparent;
 }
 
+#GoogleFontsLanguageList row:hover {
+    background-color: transparent;
+}
+
+#GoogleFontsLanguageList row checkbutton check {
+    margin-right: 8px;
+}

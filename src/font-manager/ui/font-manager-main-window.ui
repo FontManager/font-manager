@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.36.0 -->
 <interface domain="font-manager">
   <requires lib="gtk+" version="3.22"/>
   <template class="FontManagerMainWindow" parent="GtkApplicationWindow">
     <property name="can_focus">False</property>
     <signal name="delete-event" handler="on_delete_event" swapped="no"/>
     <signal name="realize" handler="on_realize" swapped="no"/>
-    <child>
-      <placeholder/>
-    </child>
     <child>
       <object class="GtkBox" id="main_box">
         <property name="visible">True</property>
@@ -29,7 +27,7 @@
                 <property name="vexpand">True</property>
                 <property name="position">275</property>
                 <child>
-                  <object class="GtkPaned" id="lock_child_position">
+                  <object class="GtkPaned" id="lock_sidebar_position">
                     <property name="width_request">1</property>
                     <property name="height_request">-1</property>
                     <property name="visible">True</property>
@@ -184,6 +182,20 @@
                 <property name="position">1</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkOverlay" id="web_pane">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <child>
+                  <placeholder/>
+                </child>
+              </object>
+              <packing>
+                <property name="name">Google Fonts</property>
+                <property name="title" translatable="yes">Google Fonts</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">True</property>
@@ -196,6 +208,9 @@
           <placeholder/>
         </child>
       </object>
+    </child>
+    <child type="titlebar">
+      <placeholder/>
     </child>
   </template>
 </interface>

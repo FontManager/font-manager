@@ -9,6 +9,6 @@ font_manager_sources = result.stdout().strip().split('\n')
 
 executable('font-manager',
             [font_manager_sources, font_manager_gresources, config_vapi_file],
-            dependencies: libfontmanager_deps,
+            dependencies: [ libfontmanager_deps, soup, webkit  ],
             install: true,
             install_rpath: pkglib_dir)

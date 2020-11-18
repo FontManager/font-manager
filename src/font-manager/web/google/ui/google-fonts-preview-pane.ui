@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.36.0 -->
+<interface>
+  <requires lib="gtk+" version="3.22"/>
+  <template class="FontManagerGoogleFontsPreviewPane" parent="GtkBox">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkActionBar">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="opacity">0.9</property>
+        <property name="valign">end</property>
+        <child>
+          <object class="GtkColorButton" id="bg_color_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Select background color</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="margin_start">6</property>
+            <property name="title" translatable="yes">Select background color</property>
+            <property name="rgba">rgb(255,255,255)</property>
+          </object>
+          <packing>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkColorButton" id="fg_color_button">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="tooltip_text" translatable="yes">Select text color</property>
+            <property name="halign">center</property>
+            <property name="valign">center</property>
+            <property name="title" translatable="yes">Select text color</property>
+            <property name="rgba">rgb(0,0,0)</property>
+          </object>
+          <packing>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="FontManagerPreviewEntry" id="entry">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="hexpand">True</property>
+            <signal name="changed" handler="on_entry_changed" swapped="no"/>
+          </object>
+          <packing>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <style>
+          <class name="view"/>
+        </style>
+      </object>
+      <packing>
+        <property name="expand">False</property>
+        <property name="fill">True</property>
+        <property name="pack_type">end</property>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+    <child>
+      <object class="GtkOverlay" id="preview_overlay">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <child>
+          <object class="GtkScrolledWindow" id="preview_box">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="index">-1</property>
+          </packing>
+        </child>
+      </object>
+      <packing>
+        <property name="expand">True</property>
+        <property name="fill">True</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+  </template>
+</interface>

@@ -33,5 +33,8 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-data.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-source-list.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-source-row.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-catalog.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-font-filters.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-preview-pane.ui</file>
     </gresource>
 </gresources>
