@@ -29,6 +29,7 @@ namespace FontManager.GoogleFonts {
         public GenericArray <Font> variants { get; set; }
         public GenericSet <string> subsets { get; set; }
         public int count { get; private set; default = 0; }
+        public int version { get; private set; default = 1; }
 
         public Family (Json.Object source) {
             family = source.get_string_member("family");
@@ -45,6 +46,8 @@ namespace FontManager.GoogleFonts {
             source.get_array_member("subsets").foreach_element((array, index, node) => {
                 subsets.add(node.get_string());
             });
+            string [] _version = variants[0].url.split("/");
+            version = int.parse(_version[_version.length - 2].replace("v", ""));
         }
 
         public Font get_default_variant () {
@@ -73,6 +76,7 @@ namespace FontManager.GoogleFonts {
         public int weight { get; set; }
         public bool italic { get; set; }
         public string style { get { return italic ? "italic" : "normal"; } }
+        public int version { get; private set; default = 1; }
 
         public Font (string family, string variant, string url) {
             Object(family: family, url: url);
@@ -81,6 +85,8 @@ namespace FontManager.GoogleFonts {
                 weight = (int) Weight.REGULAR;
             else
                 weight = int.parse(italic ? variant.replace("italic", "") : variant);
+            string [] _version = url.split("/");
+            version = int.parse(_version[_version.length - 2].replace("v", ""));
         }
 
         public string to_display_name () {

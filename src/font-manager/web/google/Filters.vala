@@ -25,6 +25,8 @@ namespace FontManager.GoogleFonts {
 
         public signal void changed ();
 
+        [GtkChild] public Gtk.ComboBoxText sort_order { get; private set; }
+
         [GtkChild] Gtk.Grid category_grid;
         [GtkChild] Gtk.ListBox language_list;
 

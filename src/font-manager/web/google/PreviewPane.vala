@@ -57,6 +57,7 @@ namespace FontManager.GoogleFonts {
     [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-fonts-preview-pane.ui")]
     public class PreviewPane : Gtk.Box {
 
+        public Family family { get; set; default = null; }
         public Font? font { get; set; default = null; }
 
         public string preview_text {
@@ -68,24 +69,34 @@ namespace FontManager.GoogleFonts {
             }
         }
 
+        [GtkChild] Gtk.Box controls;
+        [GtkChild] Gtk.Button download_button;
         [GtkChild] Gtk.ScrolledWindow preview_box;
         [GtkChild] Gtk.ColorButton bg_color_button;
         [GtkChild] Gtk.ColorButton fg_color_button;
         [GtkChild] PreviewEntry entry;
 
-        WebKit.WebView preview;
+        WebKit.WebView? preview = null;
         string? _preview_text = null;
-        string? default_preview_text = "The quick brown fox jumps over a lazy dog.";
+        string? default_preview_text = "The quick brown fox jumps over the lazy dog.";
 
         construct {
-            preview = new WebKit.WebView.with_context(get_webkit_context());
-            preview_box.add(preview);
-            preview.show();
+            map.connect(() => {
+                if (preview != null)
+                    return;
+                preview = new WebKit.WebView.with_context(get_webkit_context());
+                preview_box.add(preview);
+                preview.show();
+            });
             entry.set_placeholder_text(preview_text);
-            notify["font"].connect(update_preview);
+            notify["family"].connect(on_family_changed);
+            notify["font"].connect(update);
             notify["preview-text"].connect(() => { entry.set_placeholder_text(preview_text); });
-            bg_color_button.color_set.connect_after(() => { update_preview(); });
-            fg_color_button.color_set.connect_after(() => { update_preview(); });
+            bg_color_button.color_set.connect_after(() => { update(); });
+            fg_color_button.color_set.connect_after(() => { update(); });
+            set_button_relief_style(controls);
+            download_button.set_relief(Gtk.ReliefStyle.NORMAL);
+            download_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
         }
 
         string generate_waterfall () {
@@ -101,7 +112,12 @@ namespace FontManager.GoogleFonts {
             return builder.str;
         }
 
-        public void update_preview () {
+        void on_family_changed () {
+            download_button.set_label(family != null ? _("Download Family") : _("Download Font"));
+            return;
+        }
+
+        public void update () {
             string html = "<html><body><p> </p></body></html>";
             if (font != null)
                 html = generate_waterfall();
@@ -110,9 +126,15 @@ namespace FontManager.GoogleFonts {
         }
 
         [GtkCallback]
+        void on_download_button_clicked () {
+            message("download clicked");
+            return;
+        }
+
+        [GtkCallback]
         void on_entry_changed () {
             preview_text = (entry.text_length > 0) ? entry.text : null;
-            update_preview();
+            update();
             return;
         }
 

@@ -211,6 +211,7 @@ namespace FontManager {
             var google_fonts_pane = (GoogleFonts.Catalog) web_pane.get_child();
             main_pane.bind_property("position", google_fonts_pane, "position", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             content_pane.bind_property("position", google_fonts_pane.content_pane, "position", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            content_pane.bind_property("orientation", google_fonts_pane.content_pane, "orientation", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;
         }
 
@@ -430,6 +431,8 @@ namespace FontManager {
             });
 
             titlebar.preferences_selected.connect((a) => {
+                if (a && titlebar.web_toggle.active)
+                    titlebar.web_toggle.active = false;
                 if (a)
                     main_stack.set_visible_child_name("Preferences");
                 else
@@ -437,6 +440,8 @@ namespace FontManager {
             });
 
             titlebar.web_selected.connect((a) => {
+                if (a && titlebar.prefs_toggle.active)
+                    titlebar.prefs_toggle.active = false;
                 if (a)
                     main_stack.set_visible_child_name("Google Fonts");
                 else

@@ -24,6 +24,7 @@
                 <property name="height_request">80</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="valign">start</property>
                 <property name="margin_start">6</property>
                 <property name="margin_end">6</property>
                 <property name="activatable">False</property>
@@ -35,158 +36,24 @@
                     <property name="valign">center</property>
                     <property name="margin_start">6</property>
                     <property name="margin_end">6</property>
+                    <property name="margin_bottom">2</property>
                     <property name="expanded">True</property>
                     <child>
-                      <object class="GtkGrid" id="category_grid">
+                      <object class="GtkComboBoxText" id="sort_order">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="valign">center</property>
                         <property name="margin_start">24</property>
                         <property name="margin_end">24</property>
                         <property name="margin_top">12</property>
                         <property name="margin_bottom">12</property>
-                        <property name="hexpand">True</property>
-                        <property name="vexpand">True</property>
-                        <property name="row_spacing">12</property>
-                        <child>
-                          <object class="GtkCheckButton">
-                            <property name="name">serif</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="focus_on_click">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="active">True</property>
-                            <property name="draw_indicator">True</property>
-                            <signal name="toggled" handler="on_category_toggled" swapped="no"/>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="opacity">0.9490196078431372</property>
-                                <property name="margin_start">6</property>
-                                <property name="label" translatable="yes">Serif</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">0</property>
-                            <property name="width">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton">
-                            <property name="name">sans-serif</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="focus_on_click">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="active">True</property>
-                            <property name="draw_indicator">True</property>
-                            <signal name="toggled" handler="on_category_toggled" swapped="no"/>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="opacity">0.9490196078431372</property>
-                                <property name="margin_start">6</property>
-                                <property name="label" translatable="yes">Sans Serif</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">1</property>
-                            <property name="width">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton">
-                            <property name="name">display</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="focus_on_click">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="active">True</property>
-                            <property name="draw_indicator">True</property>
-                            <signal name="toggled" handler="on_category_toggled" swapped="no"/>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="opacity">0.9490196078431372</property>
-                                <property name="margin_start">6</property>
-                                <property name="label" translatable="yes">Display</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">2</property>
-                            <property name="width">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton">
-                            <property name="name">handwriting</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="focus_on_click">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="active">True</property>
-                            <property name="draw_indicator">True</property>
-                            <signal name="toggled" handler="on_category_toggled" swapped="no"/>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="opacity">0.9490196078431372</property>
-                                <property name="margin_start">6</property>
-                                <property name="label" translatable="yes">Handwriting</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">3</property>
-                            <property name="width">2</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <object class="GtkCheckButton">
-                            <property name="name">monospace</property>
-                            <property name="visible">True</property>
-                            <property name="can_focus">True</property>
-                            <property name="focus_on_click">False</property>
-                            <property name="receives_default">False</property>
-                            <property name="hexpand">True</property>
-                            <property name="vexpand">True</property>
-                            <property name="active">True</property>
-                            <property name="draw_indicator">True</property>
-                            <signal name="toggled" handler="on_category_toggled" swapped="no"/>
-                            <child>
-                              <object class="GtkLabel">
-                                <property name="visible">True</property>
-                                <property name="can_focus">False</property>
-                                <property name="opacity">0.9490196078431372</property>
-                                <property name="margin_start">6</property>
-                                <property name="label" translatable="yes">Monospace</property>
-                              </object>
-                            </child>
-                          </object>
-                          <packing>
-                            <property name="left_attach">0</property>
-                            <property name="top_attach">4</property>
-                            <property name="width">2</property>
-                          </packing>
-                        </child>
+                        <property name="active">0</property>
+                        <items>
+                          <item id="alpha" translatable="yes">Name</item>
+                          <item id="date" translatable="yes">Newest</item>
+                          <item id="popularity" translatable="yes">Most Popular</item>
+                          <item id="trending" translatable="yes">Trending</item>
+                        </items>
                       </object>
                     </child>
                     <child type="label">
@@ -199,12 +66,231 @@
                         <property name="margin_end">12</property>
                         <property name="margin_top">6</property>
                         <property name="margin_bottom">6</property>
-                        <property name="label" translatable="yes">Category</property>
+                        <property name="label" translatable="yes">Sort Order</property>
                         <attributes>
                           <attribute name="weight" value="medium"/>
                           <attribute name="scale" value="1.1000000000000001"/>
                         </attributes>
                       </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkListBoxRow">
+                <property name="width_request">100</property>
+                <property name="height_request">80</property>
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_start">6</property>
+                <property name="margin_end">6</property>
+                <property name="activatable">False</property>
+                <property name="selectable">False</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="orientation">vertical</property>
+                    <child>
+                      <object class="GtkSeparator">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="opacity">0.7490196078431373</property>
+                        <property name="margin_start">6</property>
+                        <property name="margin_end">6</property>
+                        <property name="margin_bottom">6</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkExpander">
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="valign">center</property>
+                        <property name="margin_start">6</property>
+                        <property name="margin_end">6</property>
+                        <property name="expanded">True</property>
+                        <child>
+                          <object class="GtkGrid" id="category_grid">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="margin_start">24</property>
+                            <property name="margin_end">24</property>
+                            <property name="margin_top">12</property>
+                            <property name="margin_bottom">12</property>
+                            <property name="hexpand">True</property>
+                            <property name="vexpand">True</property>
+                            <property name="row_spacing">12</property>
+                            <child>
+                              <object class="GtkCheckButton">
+                                <property name="name">serif</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="focus_on_click">False</property>
+                                <property name="receives_default">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                                <property name="active">True</property>
+                                <property name="draw_indicator">True</property>
+                                <signal name="toggled" handler="on_category_toggled" swapped="no"/>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="opacity">0.9490196078431372</property>
+                                    <property name="margin_start">6</property>
+                                    <property name="label" translatable="yes">Serif</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">0</property>
+                                <property name="width">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkCheckButton">
+                                <property name="name">sans-serif</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="focus_on_click">False</property>
+                                <property name="receives_default">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                                <property name="active">True</property>
+                                <property name="draw_indicator">True</property>
+                                <signal name="toggled" handler="on_category_toggled" swapped="no"/>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="opacity">0.9490196078431372</property>
+                                    <property name="margin_start">6</property>
+                                    <property name="label" translatable="yes">Sans Serif</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">1</property>
+                                <property name="width">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkCheckButton">
+                                <property name="name">display</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="focus_on_click">False</property>
+                                <property name="receives_default">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                                <property name="active">True</property>
+                                <property name="draw_indicator">True</property>
+                                <signal name="toggled" handler="on_category_toggled" swapped="no"/>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="opacity">0.9490196078431372</property>
+                                    <property name="margin_start">6</property>
+                                    <property name="label" translatable="yes">Display</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">2</property>
+                                <property name="width">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkCheckButton">
+                                <property name="name">handwriting</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="focus_on_click">False</property>
+                                <property name="receives_default">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                                <property name="active">True</property>
+                                <property name="draw_indicator">True</property>
+                                <signal name="toggled" handler="on_category_toggled" swapped="no"/>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="opacity">0.9490196078431372</property>
+                                    <property name="margin_start">6</property>
+                                    <property name="label" translatable="yes">Handwriting</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">3</property>
+                                <property name="width">2</property>
+                              </packing>
+                            </child>
+                            <child>
+                              <object class="GtkCheckButton">
+                                <property name="name">monospace</property>
+                                <property name="visible">True</property>
+                                <property name="can_focus">True</property>
+                                <property name="focus_on_click">False</property>
+                                <property name="receives_default">False</property>
+                                <property name="hexpand">True</property>
+                                <property name="vexpand">True</property>
+                                <property name="active">True</property>
+                                <property name="draw_indicator">True</property>
+                                <signal name="toggled" handler="on_category_toggled" swapped="no"/>
+                                <child>
+                                  <object class="GtkLabel">
+                                    <property name="visible">True</property>
+                                    <property name="can_focus">False</property>
+                                    <property name="opacity">0.9490196078431372</property>
+                                    <property name="margin_start">6</property>
+                                    <property name="label" translatable="yes">Monospace</property>
+                                  </object>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">4</property>
+                                <property name="width">2</property>
+                              </packing>
+                            </child>
+                          </object>
+                        </child>
+                        <child type="label">
+                          <object class="GtkLabel">
+                            <property name="visible">True</property>
+                            <property name="can_focus">False</property>
+                            <property name="opacity">0.7490196078431373</property>
+                            <property name="halign">center</property>
+                            <property name="margin_start">12</property>
+                            <property name="margin_end">12</property>
+                            <property name="margin_top">6</property>
+                            <property name="margin_bottom">6</property>
+                            <property name="label" translatable="yes">Category</property>
+                            <attributes>
+                              <attribute name="weight" value="medium"/>
+                              <attribute name="scale" value="1.1000000000000001"/>
+                            </attributes>
+                          </object>
+                        </child>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
                     </child>
                   </object>
                 </child>

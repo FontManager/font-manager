@@ -21,14 +21,22 @@
 namespace FontManager.GoogleFonts {
 
     const string API_KEY = "QUl6YVN5QTlpUmZqMFlYc184RGhJR1Q1YzNGRDBWNmtSQWV5cFA4";
-    const string GET = "https://www.googleapis.com/webfonts/v1/webfonts?sort=ALPHA&key=%s";
+    const string GET = "https://www.googleapis.com/webfonts/v1/webfonts?key=%s&sort=%s";
+
+    internal static WebKit.WebContext? web_context = null;
+
+    public string get_font_directory () {
+        return Path.build_filename(get_user_font_directory(), "Google Fonts");
+    }
 
     public WebKit.WebContext get_webkit_context () {
-        var ctx = new WebKit.WebContext.ephemeral();
-        ctx.set_cache_model(WebKit.CacheModel.DOCUMENT_BROWSER);
-        ctx.prefetch_dns("https://www.googleapis.com/");
-        ctx.prefetch_dns("http://fonts.gstatic.com/");
-        return ctx;
+        if (web_context != null)
+            return web_context;
+        web_context = new WebKit.WebContext.ephemeral();
+        web_context.set_cache_model(WebKit.CacheModel.DOCUMENT_BROWSER);
+        web_context.prefetch_dns("https://www.googleapis.com/");
+        web_context.prefetch_dns("http://fonts.gstatic.com/");
+        return web_context;
     }
 
     [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-fonts-catalog.ui")]
@@ -51,6 +59,7 @@ namespace FontManager.GoogleFonts {
                 _connected_ = network_monitor.get_connectivity() != NetworkConnectivity.LOCAL;
                 update_if_needed();
             });
+            filters.sort_order.changed.connect(() => { queue_fontlist_update(); });
             map.connect(() => { _visible_ = true; update_if_needed(); });
             unmap.connect(() => { _visible_ = false; });
             var list = font_list_pane.fontlist;
@@ -64,13 +73,17 @@ namespace FontManager.GoogleFonts {
                 Value val;
                 list.model.get_value(iter, 0, out val);
                 var obj = val.get_object();
+                Family? family = null;
                 Font? variant = null;
-                if (list.model.iter_has_child(iter))
-                    variant = ((Family) obj).get_default_variant();
-                else
+                if (list.model.iter_has_child(iter)) {
+                    family = (Family) obj;
+                    variant = family.get_default_variant();
+                } else {
                     variant = (Font) obj;
+                }
                 if (variant == null)
                     return;
+                preview_pane.family = family;
                 preview_pane.font = variant;
             });
             _connected_ = network_monitor.get_connectivity() != NetworkConnectivity.LOCAL;
@@ -118,6 +131,14 @@ namespace FontManager.GoogleFonts {
             return;
         }
 
+        void queue_fontlist_update () {
+            var session = new Soup.Session();
+            var _API_KEY = (string) Base64.decode(API_KEY);
+            var message = new Soup.Message("GET", GET.printf(_API_KEY, filters.sort_order.active_id));
+            session.queue_message(message, populate_font_model);
+            return;
+        }
+
         void update_if_needed () {
             if (!_connected_) {
                 font_list_pane.place_holder.set("title", _("Network Offline"),
@@ -130,11 +151,10 @@ namespace FontManager.GoogleFonts {
             if (!_connected_ || !_visible_)
                 return;
             if (font_list_pane.model == null || font_list_pane.model.iter_n_children(null) == 0) {
-                var session = new Soup.Session();
-                var message = new Soup.Message("GET", GET.printf((string) Base64.decode(API_KEY)));
-                session.queue_message(message, populate_font_model);
+                queue_fontlist_update();
             } else {
                 font_list_pane.place_holder.hide();
+                preview_pane.update();
             }
             return;
         }
