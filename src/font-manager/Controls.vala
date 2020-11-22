@@ -181,7 +181,7 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        void on_icon_press_event (Gtk.EntryIconPosition position, Gdk.EventButton event) {
+        void on_icon_press_event (Gtk.Entry entry, Gtk.EntryIconPosition position, Gdk.Event event) {
             if (position == Gtk.EntryIconPosition.SECONDARY)
                 set_text("");
             return;
