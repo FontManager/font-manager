@@ -21,22 +21,11 @@
 namespace FontManager.GoogleFonts {
 
     const string API_KEY = "QUl6YVN5QTlpUmZqMFlYc184RGhJR1Q1YzNGRDBWNmtSQWV5cFA4";
-    const string GET = "https://www.googleapis.com/webfonts/v1/webfonts?key=%s&sort=%s";
-
-    internal static WebKit.WebContext? web_context = null;
+    const string GET = "GET";
+    const string WEBFONTS = "https://www.googleapis.com/webfonts/v1/webfonts?key=%s&sort=%s";
 
     public string get_font_directory () {
         return Path.build_filename(get_user_font_directory(), "Google Fonts");
-    }
-
-    public WebKit.WebContext get_webkit_context () {
-        if (web_context != null)
-            return web_context;
-        web_context = new WebKit.WebContext.ephemeral();
-        web_context.set_cache_model(WebKit.CacheModel.DOCUMENT_BROWSER);
-        web_context.prefetch_dns("https://www.googleapis.com/");
-        web_context.prefetch_dns("http://fonts.gstatic.com/");
-        return web_context;
     }
 
     [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-fonts-catalog.ui")]
@@ -81,8 +70,7 @@ namespace FontManager.GoogleFonts {
                 } else {
                     variant = (Font) obj;
                 }
-                if (variant == null)
-                    return;
+                return_if_fail(variant != null);
                 preview_pane.family = family;
                 preview_pane.font = variant;
             });
@@ -134,7 +122,7 @@ namespace FontManager.GoogleFonts {
         void queue_fontlist_update () {
             var session = new Soup.Session();
             var _API_KEY = (string) Base64.decode(API_KEY);
-            var message = new Soup.Message("GET", GET.printf(_API_KEY, filters.sort_order.active_id));
+            var message = new Soup.Message(GET, WEBFONTS.printf(_API_KEY, filters.sort_order.active_id));
             session.queue_message(message, populate_font_model);
             return;
         }
@@ -154,7 +142,7 @@ namespace FontManager.GoogleFonts {
                 queue_fontlist_update();
             } else {
                 font_list_pane.place_holder.hide();
-                preview_pane.update();
+                preview_pane.update_preview();
             }
             return;
         }

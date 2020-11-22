@@ -62,7 +62,6 @@
         </child>
         <child>
           <object class="GtkButton" id="download_button">
-            <property name="sensitive">False</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="focus_on_click">False</property>

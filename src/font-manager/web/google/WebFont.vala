@@ -22,6 +22,59 @@ namespace FontManager.GoogleFonts {
 
     const string FONT_FACE = "@font-face { font-family: '%s'; font-style: %s; font-weight: %i; src: local('%s'), local('%s'), url(%s) format('truetype'); }";
 
+    public enum FileStatus {
+        NOT_INSTALLED,
+        INSTALLED,
+        REQUIRES_UPDATE;
+    }
+
+    public async bool download_font_files (Font [] fonts) {
+        var session = new Soup.Session();
+        bool retval = true;
+        foreach (var font in fonts) {
+            string font_dir = Path.build_filename(get_font_directory(), font.family);
+            if (DirUtils.create_with_parents(font_dir, 0755) != 0) {
+                warning("Failed to create directory : %s", font_dir);
+                return false;
+            }
+            string filename = font.get_filename();
+            string filepath = Path.build_filename(font_dir, filename);
+            var message = new Soup.Message(GET, font.url);
+            session.queue_message(message, (s, m) => {
+                if (message.status_code != Soup.Status.OK) {
+                    warning("Failed to download data for : %s :: %i", filename, (int) message.status_code);
+                    retval = false;
+                    return;
+                }
+                try {
+                    Bytes bytes = message.response_body.flatten().get_as_bytes();
+                    File font_file = File.new_for_path(filepath);
+                    if (font_file.query_exists())
+                        font_file.delete();
+                    FileOutputStream stream = font_file.create(FileCreateFlags.PRIVATE);
+                    stream.write_bytes_async.begin(bytes, Priority.DEFAULT, null, (obj, res) => {
+                        try {
+                            stream.write_bytes_async.end(res);
+                            stream.close();
+                        } catch (Error e) {
+                            warning("Failed to write data for : %s :: %i : %s", filename, e.code, e.message);
+                            retval = false;
+                            return;
+                        }
+                    });
+                } catch (Error e) {
+                    warning("Failed to write data for : %s :: %i : %s", filename, e.code, e.message);
+                    retval = false;
+                    return;
+                }
+
+            });
+            Idle.add(download_font_files.callback);
+            yield;
+        }
+        return retval;
+    }
+
     public class Family : Object {
 
         public string family { get; set; }
@@ -67,6 +120,15 @@ namespace FontManager.GoogleFonts {
             return builder.str;
         }
 
+        public FileStatus get_installation_status () {
+            for (int i = 0; i < variants.length; i++) {
+                var status = variants[i].get_installation_status();
+                if (status != FileStatus.NOT_INSTALLED)
+                    return status;
+            }
+            return FileStatus.NOT_INSTALLED;
+        }
+
     }
 
     public class Font : Object {
@@ -109,6 +171,32 @@ namespace FontManager.GoogleFonts {
             string _local = "%s-%s".printf(family.replace(" ", ""), description.replace(" ", ""));
             string style = italic ? "italic" : "normal";
             return FONT_FACE.printf(family, style, weight, local, _local, url);
+        }
+
+        public string get_filename () {
+            string ext = get_file_extension(url);
+            string style = to_description().replace(" ", "_");
+            string family = family.replace(" ", "_");
+            return "%s_%s.%i.%s".printf(family, style, version, ext);
+        }
+
+        public FileStatus get_installation_status () {
+            string dir = get_font_directory();
+            string filepath = Path.build_filename(dir, family, get_filename());
+            File font = File.new_for_path(filepath);
+            if (font.query_exists())
+                return FileStatus.INSTALLED;
+            File font_dir = File.new_for_path(Path.build_filename(dir, family));
+            if (font_dir.query_exists()) {
+                string ext = get_file_extension(url);
+                string style = to_description().replace(" ", "_");
+                string family = family.replace(" ", "_");
+                string filename =  "%s_%s.%i.%s".printf(family, style, version - 1, ext);
+                File outdated = font_dir.get_child(filename);
+                if (outdated.query_exists())
+                    return FileStatus.REQUIRES_UPDATE;
+            }
+            return FileStatus.NOT_INSTALLED;
         }
 
     }
