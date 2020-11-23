@@ -18,6 +18,8 @@ Build-Depends:
  libnautilus-extension-dev,
  libnemo-extension-dev,
  libthunarx-3-dev,
+ libwebkit2gtk-4.0-dev,
+ libsoup2.4-dev,
  yelp-tools
 Standards-Version: 4.3.0
 Section: graphics

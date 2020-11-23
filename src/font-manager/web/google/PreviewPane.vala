@@ -22,16 +22,25 @@ internal const string HEADER = """
 <html>
   <head>
     <style>
-      .nowrap{
+      body {
+        color: %s;
+        background-color: %s;
+      }
+      .noWrap {
         overflow: visible;
         white-space: nowrap;
         display:block;
         width:100%;
       }
-      body {
-        color: %s;
-        background-color: %s;
-    }
+      .bodyText {
+        margin: 18px;
+        text-align: justify;
+      }
+      .previewText {
+        font-family: %s;
+        font-style: %s;
+        font-weight: %i;
+      }
       %s
     </style>
   </head>
@@ -40,9 +49,15 @@ internal const string HEADER = """
 """;
 
 internal const string WATERFALL_ROW = """
-      <p id="%i" class="nowrap">
+      <p id="%i" class="noWrap">
         <span style="font-family: monospace;font-size: 10px;">%s</span>
-        <span class="previewText" style="font-size:%ipx;font-family:%s;font-style:%s;font-weight:%i;">%s</span>
+        <span class="previewText" style="font-size:%ipx;">%s</span>
+      </p>
+""";
+
+internal const string BODY_TEXT = """
+      <p class="bodyText" style="font-size:%0.2fpx;">
+        <span class="previewText">%s</span>
       </p>
 """;
 
@@ -54,11 +69,18 @@ internal const string FOOTER = """
 
 namespace FontManager.GoogleFonts {
 
+    public enum PreviewType {
+        WATERFALL,
+        LOREM_IPSUM;
+    }
+
     [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-fonts-preview-pane.ui")]
     public class PreviewPane : Gtk.Box {
 
         public Family? family { get; set; default = null; }
         public Font? font { get; set; default = null; }
+        public PreviewType preview_type { get; set; default = PreviewType.WATERFALL; }
+        public double preview_size { get; set; default = 16.0; }
 
         public string preview_text {
             get {
@@ -70,11 +92,14 @@ namespace FontManager.GoogleFonts {
         }
 
         [GtkChild] Gtk.Box controls;
+        [GtkChild] Gtk.Box scale_container;
         [GtkChild] Gtk.Button download_button;
         [GtkChild] Gtk.ScrolledWindow preview_box;
         [GtkChild] Gtk.ColorButton bg_color_button;
         [GtkChild] Gtk.ColorButton fg_color_button;
+        [GtkChild] Gtk.MenuButton menu_button;
         [GtkChild] PreviewEntry entry;
+        [GtkChild] FontScale fontscale;
 
         WebKit.WebView? preview = null;
         string? _preview_text = null;
@@ -117,28 +142,48 @@ namespace FontManager.GoogleFonts {
             entry.set_placeholder_text(preview_text);
             notify["family"].connect((obj, pspec) => { selection_changed(); });
             notify["font"].connect((obj, pspec) => { update_preview(); selection_changed(); });
-            notify["preview-text"].connect(() => { entry.set_placeholder_text(preview_text); });
+            notify["preview-text"].connect((obj, pspec) => { entry.set_placeholder_text(preview_text); });
+            notify["preview-type"].connect((obj, pspec) => {
+                scale_container.set_visible(preview_type == PreviewType.LOREM_IPSUM);
+                entry.set_visible(preview_type == PreviewType.WATERFALL);
+            });
+            notify["preview-size"].connect((obj, pspec) => { update_preview(); });
             bg_color_button.color_set.connect_after(() => { update_preview(); });
             fg_color_button.color_set.connect_after(() => { update_preview(); });
             set_button_relief_style(controls);
             download_button.set_relief(Gtk.ReliefStyle.NORMAL);
+            menu_button.set_relief(Gtk.ReliefStyle.NORMAL);
+            scale_container.set_visible(preview_type == PreviewType.LOREM_IPSUM);
+            entry.set_visible(preview_type == PreviewType.WATERFALL);
+            bind_property("preview-size", fontscale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
         }
 
         bool on_event (Gtk.Widget widget, Gdk.Event event) {
             if (event.type == Gdk.EventType.SCROLL)
                 return Gdk.EVENT_PROPAGATE;
-            message(preview.get_settings().user_agent);
             return Gdk.EVENT_STOP;
+        }
+
+        string generate_lorem_ipsum () {
+            StringBuilder builder = new StringBuilder();
+            builder.append(HEADER.printf(fg_color_button.get_rgba().to_string(),
+                                         bg_color_button.get_rgba().to_string(),
+                                         font.family, font.style, font.weight,
+                                         font.to_font_face_rule()));
+            builder.append(BODY_TEXT.printf(preview_size, LOREM_IPSUM));
+            builder.append(FOOTER);
+            return builder.str;
         }
 
         string generate_waterfall () {
             StringBuilder builder = new StringBuilder();
             builder.append(HEADER.printf(fg_color_button.get_rgba().to_string(),
                                          bg_color_button.get_rgba().to_string(),
+                                         font.family, font.style, font.weight,
                                          font.to_font_face_rule()));
             for (int i = 6; i <= 96; i++) {
                 string pixels = i < 10 ? "&nbsp;&nbsp;%ipx&nbsp".printf(i) : "&nbsp;%ipx&nbsp;".printf(i);
-                builder.append(WATERFALL_ROW.printf(i, pixels, i, font.family, font.style, font.weight, preview_text));
+                builder.append(WATERFALL_ROW.printf(i, pixels, i, preview_text));
             }
             builder.append(FOOTER);
             return builder.str;
@@ -172,9 +217,29 @@ namespace FontManager.GoogleFonts {
 
         public void update_preview () {
             string html = "<html><body><p> </p></body></html>";
-            if (font != null)
-                html = generate_waterfall();
+            if (font != null) {
+                switch (preview_type) {
+                    case PreviewType.WATERFALL:
+                        html = generate_waterfall();
+                        break;
+                    case PreviewType.LOREM_IPSUM:
+                        html = generate_lorem_ipsum();
+                        break;
+                    default:
+                        assert_not_reached();
+                }
+            }
             preview.load_html(html, null);
+            return;
+        }
+
+        [GtkCallback]
+        void on_preview_type_toggled (Gtk.ToggleButton widget) {
+            if (!widget.active)
+                return;
+            preview_type = (PreviewType) int.parse(widget.name);
+            menu_button.popover.popdown();
+            update_preview();
             return;
         }
 

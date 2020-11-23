@@ -23,10 +23,12 @@ BuildRequires: gobject-introspection-devel
 BuildRequires: gtk3-devel >= 3.22
 BuildRequires: json-glib-devel
 BuildRequires: libappstream-glib
+BuildRequires: libsoup-devel
 BuildRequires: libxml2-devel
 BuildRequires: pango-devel
 BuildRequires: sqlite-devel
 BuildRequires: vala >= 0.42
+BuildRequires: webkit2gtk3-devel
 BuildRequires: yelp-tools
 
 BuildRequires: nautilus-devel
@@ -38,7 +40,9 @@ Requires: %{name}-common
 Requires: font-viewer
 Requires: freetype
 Requires: gtk3 >= 3.22
+Requires: libsoup
 Requires: sqlite
+Requires: webkit2gtk3
 Requires: yelp
 
 %description
