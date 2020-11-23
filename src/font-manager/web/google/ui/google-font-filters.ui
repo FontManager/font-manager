@@ -116,7 +116,7 @@
                         <property name="margin-end">6</property>
                         <property name="expanded">True</property>
                         <child>
-                          <!-- n-columns=3 n-rows=5 -->
+                          <!-- n-columns=2 n-rows=5 -->
                           <object class="GtkGrid" id="category_grid">
                             <property name="visible">True</property>
                             <property name="can-focus">False</property>
@@ -266,21 +266,6 @@
                                 <property name="top-attach">4</property>
                                 <property name="width">2</property>
                               </packing>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
-                            </child>
-                            <child>
-                              <placeholder/>
                             </child>
                           </object>
                         </child>

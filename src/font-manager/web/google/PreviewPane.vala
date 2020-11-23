@@ -79,8 +79,9 @@ namespace FontManager.GoogleFonts {
 
         public Family? family { get; set; default = null; }
         public Font? font { get; set; default = null; }
-        public PreviewType preview_type { get; set; default = PreviewType.WATERFALL; }
         public double preview_size { get; set; default = 16.0; }
+        public WebKit.WebView? preview { get; set; default = null; }
+        public PreviewType preview_type { get; set; default = PreviewType.WATERFALL; }
 
         public string preview_text {
             get {
@@ -101,7 +102,6 @@ namespace FontManager.GoogleFonts {
         [GtkChild] PreviewEntry entry;
         [GtkChild] FontScale fontscale;
 
-        WebKit.WebView? preview = null;
         string? _preview_text = null;
         string? default_preview_text = "The quick brown fox jumps over the lazy dog.";
 

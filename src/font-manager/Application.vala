@@ -36,11 +36,6 @@ namespace FontManager {
             foreach (string path in temp_files)
                 remove_directory(File.new_for_path(path));
         temp_files = null;
-        try {
-            Database main_db = get_database(DatabaseType.BASE);
-            main_db.unref();
-            main_db = null;
-        } catch (Error e) {}
         return;
     }
 

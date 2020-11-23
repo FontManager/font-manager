@@ -134,7 +134,6 @@ namespace FontManager.GoogleFonts {
             box.show();
             var view = new Gtk.EventBox();
             place_holder = new PlaceHolder(null, null, null, null);
-            place_holder.valign = Gtk.Align.START;
             view.get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             view.expand = true;
             view.add(place_holder);

@@ -39,6 +39,8 @@ namespace FontManager.GoogleFonts {
 
         bool _connected_ = false;
         bool _visible_ = false;
+        uint http_status = Soup.Status.OK;
+        string status_message = "";
         NetworkMonitor network_monitor;
 
         public override void constructed () {
@@ -48,7 +50,7 @@ namespace FontManager.GoogleFonts {
                 _connected_ = network_monitor.get_connectivity() != NetworkConnectivity.LOCAL;
                 update_if_needed();
             });
-            filters.sort_order.changed.connect(() => { queue_fontlist_update(); });
+            filters.sort_order.changed.connect(() => { populate_font_model(); });
             map.connect(() => { _visible_ = true; update_if_needed(); });
             unmap.connect(() => { _visible_ = false; });
             var list = font_list_pane.fontlist;
@@ -75,16 +77,19 @@ namespace FontManager.GoogleFonts {
                 preview_pane.font = variant;
             });
             _connected_ = network_monitor.get_connectivity() != NetworkConnectivity.LOCAL;
+            if (_connected_)
+                Idle.add(() => { check_font_list_cache(); return GLib.Source.REMOVE; });
             base.constructed();
             return;
         }
 
-        void populate_font_model (Soup.Session session, Soup.Message message) {
-            if (message.status_code == Soup.Status.OK) {
-                var data = (string) message.response_body.flatten().data;
+        void populate_font_model () {
+            if (http_status == Soup.Status.OK) {
                 try {
+                    string filename = "gfc-%s.json".printf(filters.sort_order.active_id);
+                    string cache = Path.build_filename(get_package_cache_directory(), filename);
                     var parser = new Json.Parser();
-                    parser.load_from_data(data);
+                    parser.load_from_file(cache);
                     Json.Array items = parser.get_root().get_object().get_array_member("items");
                     var model = new Gtk.TreeStore(3, typeof(Object), typeof(string), typeof(int));
                     items.foreach_element((array, index, node) => {
@@ -99,31 +104,88 @@ namespace FontManager.GoogleFonts {
                     font_list_pane.select_first_row();
                     font_list_pane.place_holder.hide();
                 } catch (Error e) {
-                    font_list_pane.place_holder.set("title", _("Error procesing retrieved data"),
+                    font_list_pane.place_holder.set("title", _("Error procesing data"),
                                                     "subtitle", e.message,
                                                     "icon-name", "dialog-error-symbolic",
                                                     null);
                     font_list_pane.place_holder.show();
+                    filters.hide();
+                    preview_pane.hide();
                 }
             } else {
-                if (message.status_code > 0 && message.status_code < 100) {
+                if (http_status > 0 && http_status < 100) {
                     font_list_pane.place_holder.set("title", _("Network Error"),
-                                                    "subtitle", message.reason_phrase,
+                                                    "subtitle", status_message,
                                                     "message", _("Please check your network settings"),
                                                     "icon-name", "network-error-symbolic",
                                                     null);
                     font_list_pane.place_holder.show();
+                    filters.hide();
+                    preview_pane.hide();
                 }
-                warning("%i : %s", (int) message.status_code, message.reason_phrase);
+                warning("%i : %s", (int) http_status, status_message);
             }
             return;
         }
 
-        void queue_fontlist_update () {
+        async void update_font_list_cache () {
             var session = new Soup.Session();
             var _API_KEY = (string) Base64.decode(API_KEY);
-            var message = new Soup.Message(GET, WEBFONTS.printf(_API_KEY, filters.sort_order.active_id));
-            session.queue_message(message, populate_font_model);
+            string [] order = { "alpha", "date", "popularity", "trending" };
+            foreach (var entry in order) {
+                var message = new Soup.Message(GET, WEBFONTS.printf(_API_KEY, entry));
+                session.queue_message(message, (s, m) => {
+                    string filename = "gfc-%s.json".printf(entry);
+                    string filepath = Path.build_filename(get_package_cache_directory(), filename);
+                    if (message.status_code != Soup.Status.OK) {
+                        http_status = message.status_code;
+                        status_message = message.reason_phrase;
+                        warning("Failed to download data for : %s :: %i", filename, (int) message.status_code);
+                        return;
+                    }
+                    try {
+                        Bytes bytes = message.response_body.flatten().get_as_bytes();
+                        File cache_file = File.new_for_path(filepath);
+                        if (cache_file.query_exists())
+                            cache_file.delete();
+                        FileOutputStream stream = cache_file.create(FileCreateFlags.PRIVATE);
+                        stream.write_bytes_async.begin(bytes, Priority.DEFAULT, null, (obj, res) => {
+                            try {
+                                stream.write_bytes_async.end(res);
+                                stream.close();
+                            } catch (Error e) {
+                                warning("Failed to write data for : %s :: %i : %s", filename, e.code, e.message);
+                                return;
+                            }
+                        });
+                    } catch (Error e) {
+                        warning("Failed to write data for : %s :: %i : %s", filename, e.code, e.message);
+                        return;
+                    }
+
+                });
+                Idle.add(update_font_list_cache.callback);
+                yield;
+            }
+        }
+
+        void check_font_list_cache () {
+            string cache = Path.build_filename(get_package_cache_directory(), "gfc-alpha.json");
+            File cache_file = File.new_for_path(cache);
+            if (cache_file.query_exists()) {
+                try {
+                    FileInfo file_info = cache_file.query_info(FileAttribute.TIME_CREATED, FileQueryInfoFlags.NONE);
+                    uint64 ctime = file_info.get_attribute_uint64(FileAttribute.TIME_CREATED);
+                    DateTime now = new DateTime.now_local();
+                    DateTime created = new DateTime.from_unix_local((int64) ctime);
+                    if (now.difference(created) > TimeSpan.DAY)
+                        update_font_list_cache.begin((obj, res) => { update_font_list_cache.end(res); });
+                    return;
+                } catch (Error e) {
+                    warning("Failed to query file information : %s : %s",  cache, e.message);
+                }
+            }
+            update_font_list_cache.begin((obj, res) => { update_font_list_cache.end(res); });
             return;
         }
 
@@ -134,14 +196,19 @@ namespace FontManager.GoogleFonts {
                                                 "icon-name", "network-offline-symbolic",
                                                 null);
                 font_list_pane.place_holder.show();
-                preview_pane.font = null;
+                filters.hide();
+                preview_pane.hide();
             }
             if (!_connected_ || !_visible_)
                 return;
             if (font_list_pane.model == null || font_list_pane.model.iter_n_children(null) == 0) {
-                queue_fontlist_update();
+                populate_font_model();
+                preview_pane.show();
+                filters.show();
             } else {
                 font_list_pane.place_holder.hide();
+                preview_pane.show();
+                filters.show();
                 preview_pane.update_preview();
             }
             return;
