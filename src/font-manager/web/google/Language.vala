@@ -57,4 +57,105 @@ namespace FontManager.GoogleFonts {
         { N_("Vietnamese"), "vietnamese", "Bầu trời trong xanh thăm thẳm, không một gợn mây." }
     };
 
+    public class Sample : Object {
+
+        public string display_name { get; set; }
+        public string name { get; set; }
+        public string sample { get; set; }
+
+        public Sample (string lang) {
+            foreach (var entry in Languages) {
+                if (entry.name == lang) {
+                    Object(display_name: entry.display_name, name: entry.name, sample: entry.sample);
+                }
+            }
+        }
+
+    }
+
+    public class SampleModel : Object, GLib.ListModel {
+
+        public StringSet? items {
+            get {
+                return _items;
+            }
+            set {
+                uint n_items = get_n_items();
+                _items = value;
+                items_changed(0, n_items, get_n_items());
+            }
+        }
+
+        StringSet? _items = null;
+
+        public Type get_item_type () {
+            return typeof(Sample);
+        }
+
+        public uint get_n_items () {
+            return items != null ? items.size : 0;
+        }
+
+        public Object? get_item (uint position) {
+            return new Sample(items[position]);
+        }
+
+    }
+
+    public class SampleRow : Gtk.Box {
+
+        public static SampleRow from_item (Object item) {
+            var row = new SampleRow() { orientation = Gtk.Orientation.VERTICAL, margin = 6 };
+            var sample = (Sample) item;
+            var name_label = new Gtk.Label(sample.display_name);
+            row.pack_start(name_label, false, false, 2);
+            name_label.show();
+            var sample_label = new Gtk.Label("<small>%s</small>".printf(sample.sample)) {
+                sensitive = false,
+                ellipsize = Pango.EllipsizeMode.END,
+                use_markup = true
+            };
+            row.pack_end(sample_label, false, false, 2);
+            sample_label.show();
+            return row;
+        }
+
+    }
+
+    [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-fonts-sample-list.ui")]
+    public class SampleList : Gtk.Popover {
+
+        public signal void row_selected (Sample sample);
+
+        public SampleModel model { get; private set; }
+
+        public StringSet items {
+            set {
+                model.items = value;
+            }
+        }
+
+        [GtkChild] Gtk.ListBox sample_list;
+
+        construct {
+            sample_list.row_activated.connect((box, row) => {
+                if (row == null)
+                    return;
+                uint position = row.get_index();
+                var item = (Sample) model.get_item(position);
+                row_selected(item);
+            });
+            notify["model"].connect((obj, pspec) => {
+                sample_list.bind_model(model, SampleRow.from_item);
+            });
+            model = new SampleModel();
+        }
+
+        public void unselect_all () {
+            sample_list.unselect_all();
+            return;
+        }
+
+    }
+
 }

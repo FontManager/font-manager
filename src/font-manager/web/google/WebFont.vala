@@ -80,7 +80,7 @@ namespace FontManager.GoogleFonts {
         public string family { get; set; }
         public string category { get; set; }
         public GenericArray <Font> variants { get; set; }
-        public GenericSet <string> subsets { get; set; }
+        public StringSet subsets { get; set; }
         public int count { get; private set; default = 0; }
         public int version { get; private set; default = 1; }
 
@@ -88,11 +88,11 @@ namespace FontManager.GoogleFonts {
             family = source.get_string_member("family");
             category = source.get_string_member("category");
             variants = new GenericArray <Font> ();
-            subsets = new GenericSet <string> (str_hash, str_equal, null);
+            subsets = new StringSet();
             var filelist = source.get_object_member("files");
             source.get_array_member("variants").foreach_element((array, index, node) => {
                 var entry = node.get_string();
-                var variant = new Font(family, entry, filelist.get_string_member(entry));
+                var variant = new Font(family, entry, filelist.get_string_member(entry), subsets);
                 variants.insert((int) index, variant);
                 count++;
             });
@@ -139,9 +139,10 @@ namespace FontManager.GoogleFonts {
         public bool italic { get; set; }
         public string style { get { return italic ? "italic" : "normal"; } }
         public int version { get; private set; default = 1; }
+        public StringSet subsets { get; set; }
 
-        public Font (string family, string variant, string url) {
-            Object(family: family, url: url);
+        public Font (string family, string variant, string url, StringSet subsets) {
+            Object(family: family, url: url, subsets: subsets);
             italic = variant.contains("italic");
             if (variant == "regular" || variant == "italic")
                 weight = (int) Weight.REGULAR;

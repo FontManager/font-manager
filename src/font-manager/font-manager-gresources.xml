@@ -36,5 +36,6 @@
         <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-catalog.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-font-filters.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-preview-pane.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-sample-list.ui</file>
     </gresource>
 </gresources>

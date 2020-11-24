@@ -35,6 +35,7 @@ namespace FontManager.GoogleFonts {
         [GtkChild] public Filters filters { get; private set; }
         [GtkChild] public Gtk.Paned content_pane { get; private set; }
 
+        [GtkChild] Gtk.Paned filter_pane;
         [GtkChild] PreviewPane preview_pane;
 
         bool _connected_ = false;
@@ -83,6 +84,23 @@ namespace FontManager.GoogleFonts {
             return;
         }
 
+        void hide_http_status () {
+            font_list_pane.place_holder.hide();
+            preview_pane.show();
+            filter_pane.show();
+            preview_pane.update_preview();
+            return;
+        }
+
+        void show_http_status (string? title, string? subtitle, string? message, string? icon_name) {
+            font_list_pane.place_holder.set("title", title, "subtitle", subtitle,
+                                            "message", message, "icon-name", icon_name, null);
+            font_list_pane.place_holder.show();
+            filter_pane.hide();
+            preview_pane.hide();
+            return;
+        }
+
         void populate_font_model () {
             if (http_status == Soup.Status.OK) {
                 try {
@@ -104,24 +122,18 @@ namespace FontManager.GoogleFonts {
                     font_list_pane.select_first_row();
                     font_list_pane.place_holder.hide();
                 } catch (Error e) {
-                    font_list_pane.place_holder.set("title", _("Error procesing data"),
-                                                    "subtitle", e.message,
-                                                    "icon-name", "dialog-error-symbolic",
-                                                    null);
-                    font_list_pane.place_holder.show();
-                    filters.hide();
-                    preview_pane.hide();
+                    show_http_status(_("Error procesing data"), e.message, null, "dialog-error-symbolic");
                 }
             } else {
                 if (http_status > 0 && http_status < 100) {
-                    font_list_pane.place_holder.set("title", _("Network Error"),
-                                                    "subtitle", status_message,
-                                                    "message", _("Please check your network settings"),
-                                                    "icon-name", "network-error-symbolic",
-                                                    null);
-                    font_list_pane.place_holder.show();
-                    filters.hide();
-                    preview_pane.hide();
+                    show_http_status(_("Network Error"), status_message,
+                                     _("Please check your network settings"), "network-error-symbolic");
+                } else if (http_status >= 400 && http_status < 500) {
+                    show_http_status(_("Client Error"), status_message,
+                                     _("Try restarting the application. If the issue persists, please file a bug."),
+                                     "dialog-error-symbolic");
+                } else if (http_status >= 500 && http_status < 600) {
+                    show_http_status(_("Server Error"), status_message, null, "network-error-symbolic");
                 }
                 warning("%i : %s", (int) http_status, status_message);
             }
@@ -130,10 +142,10 @@ namespace FontManager.GoogleFonts {
 
         async void update_font_list_cache () {
             var session = new Soup.Session();
-            var _API_KEY = (string) Base64.decode(API_KEY);
+            var GFC_API_KEY = (string) Base64.decode(API_KEY);
             string [] order = { "alpha", "date", "popularity", "trending" };
             foreach (var entry in order) {
-                var message = new Soup.Message(GET, WEBFONTS.printf(_API_KEY, entry));
+                var message = new Soup.Message(GET, WEBFONTS.printf(GFC_API_KEY, entry));
                 session.queue_message(message, (s, m) => {
                     string filename = "gfc-%s.json".printf(entry);
                     string filepath = Path.build_filename(get_package_cache_directory(), filename);
@@ -191,26 +203,15 @@ namespace FontManager.GoogleFonts {
 
         void update_if_needed () {
             if (!_connected_) {
-                font_list_pane.place_holder.set("title", _("Network Offline"),
-                                                "subtitle", _("An active internet connection is required to access the Google Fonts catalog"),
-                                                "icon-name", "network-offline-symbolic",
-                                                null);
-                font_list_pane.place_holder.show();
-                filters.hide();
-                preview_pane.hide();
+                show_http_status(_("Network Offline"),
+                                 _("An active internet connection is required to access the Google Fonts catalog"),
+                                 null, "network-offline-symbolic");
             }
             if (!_connected_ || !_visible_)
                 return;
-            if (font_list_pane.model == null || font_list_pane.model.iter_n_children(null) == 0) {
+            if (font_list_pane.model == null || font_list_pane.model.iter_n_children(null) == 0)
                 populate_font_model();
-                preview_pane.show();
-                filters.show();
-            } else {
-                font_list_pane.place_holder.hide();
-                preview_pane.show();
-                filters.show();
-                preview_pane.update_preview();
-            }
+            hide_http_status();
             return;
         }
 

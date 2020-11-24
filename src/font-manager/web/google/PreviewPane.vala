@@ -33,7 +33,7 @@ internal const string HEADER = """
         width:100%;
       }
       .bodyText {
-        margin: 18px;
+        margin: 12px 8px 12px 8px;
         text-align: justify;
       }
       .previewText {
@@ -104,11 +104,13 @@ namespace FontManager.GoogleFonts {
 
         string? _preview_text = null;
         string? default_preview_text = "The quick brown fox jumps over the lazy dog.";
+        bool restore_default_preview = false;
+
+        SampleList sample_list;
 
         WebKit.WebContext get_webkit_context () {
             var web_context = new WebKit.WebContext.ephemeral();
             web_context.set_cache_model(WebKit.CacheModel.DOCUMENT_BROWSER);
-            web_context.prefetch_dns("https://www.googleapis.com/");
             web_context.prefetch_dns("http://fonts.gstatic.com/");
             return web_context;
         }
@@ -156,6 +158,22 @@ namespace FontManager.GoogleFonts {
             scale_container.set_visible(preview_type == PreviewType.LOREM_IPSUM);
             entry.set_visible(preview_type == PreviewType.WATERFALL);
             bind_property("preview-size", fontscale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            sample_list = new SampleList() {
+                relative_to = entry,
+                position = Gtk.PositionType.BOTTOM
+            };
+            entry.set_icon_from_icon_name(Gtk.EntryIconPosition.PRIMARY, "preferences-desktop-locale-symbolic");
+            entry.icon_press.connect((entry, position, event) => {
+                if (position == Gtk.EntryIconPosition.PRIMARY) {
+                    sample_list.popup();
+                    sample_list.unselect_all();
+                }
+            });
+            sample_list.row_selected.connect((s) => {
+                entry.set_text(s.sample);
+                restore_default_preview = true;
+                sample_list.popdown();
+            });
         }
 
         bool on_event (Gtk.Widget widget, Gdk.Event event) {
@@ -212,10 +230,23 @@ namespace FontManager.GoogleFonts {
                     break;
             }
             download_button.set_label(label);
+            sample_list.items = family != null ? family.subsets : font.subsets;
+            uint langs = sample_list.model.get_n_items();
+            entry.set_icon_tooltip_text(
+                Gtk.EntryIconPosition.PRIMARY,
+                ngettext(_("%i Language Sample Available "),
+                         _("%i Language Samples Available"),
+                         (ulong) langs).printf((int) langs)
+            );
             return;
         }
 
         public void update_preview () {
+            if (restore_default_preview) {
+                entry.set_text("");
+                preview_text = default_preview_text;
+                restore_default_preview = false;
+            }
             string html = "<html><body><p> </p></body></html>";
             if (font != null) {
                 switch (preview_type) {
