@@ -125,9 +125,12 @@ namespace FontManager {
         Unsorted? unsorted = null;
         LanguageFilter? language_filter = null;
 
+        [GtkChild] Gtk.Overlay web_pane;
+
         public MainWindow () {
             Object(title: About.DISPLAY_NAME, icon_name: About.ICON);
             initialize_preference_pane(preference_pane);
+            web_pane.add(new GoogleFonts.Catalog());
             var user_action_list = ((UserActionList) preference_pane["UserActions"]);
             var user_sources_list = ((UserSourceList) preference_pane["Sources"]);
             fontlist.user_actions = user_action_list.model;
@@ -205,6 +208,10 @@ namespace FontManager {
             var ui_prefs = (UserInterfacePreferences) preference_pane["Interface"];
             ui_prefs.wide_layout.toggle.bind_property("active", this, "wide-layout", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             main_pane.bind_property("position", preference_pane, "position", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            var google_fonts_pane = (GoogleFonts.Catalog) web_pane.get_child();
+            main_pane.bind_property("position", google_fonts_pane, "position", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            content_pane.bind_property("position", google_fonts_pane.content_pane, "position", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            content_pane.bind_property("orientation", google_fonts_pane.content_pane, "orientation", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             return;
         }
 
@@ -248,6 +255,8 @@ namespace FontManager {
             fontlist.queue_draw();
             if (titlebar.prefs_toggle.active && mode != Mode.MANAGE)
                 titlebar.prefs_toggle.active = false;
+            if (titlebar.web_toggle.active && mode != Mode.MANAGE)
+                titlebar.web_toggle.active = false;
             if (mode == Mode.BROWSE && browse.mode == BrowseMode.LIST)
                 browse.treeview.queue_draw();
             mode_changed(mode);
@@ -422,8 +431,19 @@ namespace FontManager {
             });
 
             titlebar.preferences_selected.connect((a) => {
+                if (a && titlebar.web_toggle.active)
+                    titlebar.web_toggle.active = false;
                 if (a)
                     main_stack.set_visible_child_name("Preferences");
+                else
+                    main_stack.set_visible_child_name("Default");
+            });
+
+            titlebar.web_selected.connect((a) => {
+                if (a && titlebar.prefs_toggle.active)
+                    titlebar.prefs_toggle.active = false;
+                if (a)
+                    main_stack.set_visible_child_name("Google Fonts");
                 else
                     main_stack.set_visible_child_name("Default");
             });
