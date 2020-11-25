@@ -1,3 +1,17 @@
+0.7.9 -> 0.8.0
+
+- Fix FTBFS with Vala 0.50+
+
+- Adds Google Fonts integration - #54
+
+- Allow saving compare lists contents
+
+- Add GNOME Shell search provider
+
+- Update Unicode data to 13.0
+
+- Update vendor data
+
 0.7.8 -> 0.7.9
 
 - Fixes build failures with Vala 0.50
