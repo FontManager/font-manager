@@ -19,7 +19,7 @@
 */
 
 internal const string HEADER = """
-<html>
+<html dir="%s">
   <head>
     <style>
       body {
@@ -184,7 +184,9 @@ namespace FontManager.GoogleFonts {
 
         string generate_lorem_ipsum () {
             StringBuilder builder = new StringBuilder();
-            builder.append(HEADER.printf(fg_color_button.get_rgba().to_string(),
+            string text_direction = entry.get_layout().get_direction(0) == Pango.Direction.RTL ? "rtl" : "ltr";
+            builder.append(HEADER.printf(text_direction,
+                                         fg_color_button.get_rgba().to_string(),
                                          bg_color_button.get_rgba().to_string(),
                                          font.family, font.style, font.weight,
                                          font.to_font_face_rule()));
@@ -195,7 +197,9 @@ namespace FontManager.GoogleFonts {
 
         string generate_waterfall () {
             StringBuilder builder = new StringBuilder();
-            builder.append(HEADER.printf(fg_color_button.get_rgba().to_string(),
+            string text_direction = entry.get_layout().get_direction(0) == Pango.Direction.RTL ? "rtl" : "ltr";
+            builder.append(HEADER.printf(text_direction,
+                                         fg_color_button.get_rgba().to_string(),
                                          bg_color_button.get_rgba().to_string(),
                                          font.family, font.style, font.weight,
                                          font.to_font_face_rule()));
