@@ -184,7 +184,8 @@ namespace FontManager.GoogleFonts {
 
         string generate_lorem_ipsum () {
             StringBuilder builder = new StringBuilder();
-            string text_direction = entry.get_layout().get_direction(0) == Pango.Direction.RTL ? "rtl" : "ltr";
+            Pango.LayoutLine? line = entry.get_layout().get_line(0);
+            string text_direction = line != null && line.resolved_dir == Pango.Direction.RTL ? "rtl" : "ltr";
             builder.append(HEADER.printf(text_direction,
                                          fg_color_button.get_rgba().to_string(),
                                          bg_color_button.get_rgba().to_string(),
@@ -197,7 +198,8 @@ namespace FontManager.GoogleFonts {
 
         string generate_waterfall () {
             StringBuilder builder = new StringBuilder();
-            string text_direction = entry.get_layout().get_direction(0) == Pango.Direction.RTL ? "rtl" : "ltr";
+            Pango.LayoutLine? line = entry.get_layout().get_line(0);
+            string text_direction = line != null && line.resolved_dir == Pango.Direction.RTL ? "rtl" : "ltr";
             builder.append(HEADER.printf(text_direction,
                                          fg_color_button.get_rgba().to_string(),
                                          bg_color_button.get_rgba().to_string(),
