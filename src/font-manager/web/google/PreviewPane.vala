@@ -143,8 +143,15 @@ namespace FontManager.GoogleFonts {
                     preview = get_webkit_webview();
             });
             entry.set_placeholder_text(preview_text);
-            notify["family"].connect((obj, pspec) => { selection_changed(); });
-            notify["font"].connect((obj, pspec) => { update_preview(); selection_changed(); });
+            notify["family"].connect((obj, pspec) => {
+                FileStatus status = family != null ? family.get_installation_status() : font.get_installation_status();
+                selection_changed(status);
+            });
+            notify["font"].connect((obj, pspec) => {
+                update_preview();
+                FileStatus status = font.get_installation_status();
+                selection_changed(status);
+            });
             notify["preview-text"].connect((obj, pspec) => { entry.set_placeholder_text(preview_text); });
             notify["preview-type"].connect((obj, pspec) => {
                 scale_container.set_visible(preview_type == PreviewType.LOREM_IPSUM);
@@ -216,9 +223,7 @@ namespace FontManager.GoogleFonts {
             return builder.str;
         }
 
-        void selection_changed (FileStatus? status = null) {
-            if (status == null)
-                status = family != null ? family.get_installation_status() : font.get_installation_status();
+        void selection_changed (FileStatus? status) {
             string label;
             var ctx = download_button.get_style_context();
             switch (status) {
@@ -290,12 +295,22 @@ namespace FontManager.GoogleFonts {
             string dirname = family != null ? family.family : font.family;
             File font_dir = File.new_for_path(Path.build_filename(get_font_directory(), dirname));
             if (family != null) {
+                Font []? update = null;
+                if (status == FileStatus.REQUIRES_UPDATE) {
+                    for (int i = 0; i < family.variants.length; i++) {
+                        var variant = family.variants[i];
+                        if (variant.get_installation_status() != FileStatus.NOT_INSTALLED)
+                            update += variant;
+                    }
+                }
                 if (font_dir.query_exists())
                     remove_directory(font_dir);
                 if (status == FileStatus.INSTALLED) {
                     selection_changed(FileStatus.NOT_INSTALLED);
                 } else {
-                    download_font_files.begin(family.variants.data, (obj, res) => {
+                    if (update == null)
+                        update = family.variants.data;
+                    download_font_files.begin(update, (obj, res) => {
                         if (download_font_files.end(res))
                             selection_changed(FileStatus.INSTALLED);
                     });
