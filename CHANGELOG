@@ -1,8 +1,10 @@
 0.7.9 -> 0.8.0
 
-- Fix FTBFS with Vala 0.50+
+- Fix FTBFS with Vala 0.50+ - #134
 
 - Adds Google Fonts integration - #54
+
+- Requires WebKitGtk and libsoup
 
 - Allow saving compare lists contents
 
@@ -30,7 +32,7 @@
 
 - Fix incorrect font being added to comparison - #124
 
-- Filter out legacy fonts which are no longer suported by newer Pamgo versions.
+- Filter out legacy fonts which are no longer suported by newer Pango versions.
 
 - Updates / fixes to translations ( #105, #117 )
 

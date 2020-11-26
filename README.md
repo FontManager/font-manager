@@ -14,6 +14,7 @@ Font Manager is NOT a professional-grade font management solution.
 - Preview and compare font files
 - Activate or deactivate installed font families
 - Automatic categorization based on font properties
+- Google Fonts Catalog integration
 - Integrated character map
 - User font collections
 - User font installation and removal
@@ -81,6 +82,8 @@ You'll need to ensure the following dependencies are installed:
 - `libxml-2.0 >= 2.9`
 - `sqlite3 >= 3.8`
 - `gobject-introspection`
+- `webkit2gtk3 >= 2.24`
+- `libsoup >= 2.62`
 - `yelp-tools` (optional)
 - `gettext` (optional)
 
