@@ -105,6 +105,7 @@ namespace FontManager.GoogleFonts {
         string? _preview_text = null;
         string? default_preview_text = "The quick brown fox jumps over the lazy dog.";
         bool restore_default_preview = false;
+        Font? stored_font = null;
 
         SampleList sample_list;
 
@@ -170,9 +171,11 @@ namespace FontManager.GoogleFonts {
                 }
             });
             sample_list.row_selected.connect((s) => {
-                entry.set_text(s.sample);
-                restore_default_preview = true;
+                entry.set_text(s);
                 sample_list.popdown();
+                /* XXX : TODO : How to disable font fallback for WebView? */
+                restore_default_preview = true;
+                stored_font = font;
             });
         }
 
@@ -248,7 +251,8 @@ namespace FontManager.GoogleFonts {
         }
 
         public void update_preview () {
-            if (restore_default_preview) {
+            /* Restore default preview if a language sample was selected and the font has changed. */
+            if (font != stored_font && restore_default_preview) {
                 entry.set_text("");
                 preview_text = default_preview_text;
                 restore_default_preview = false;

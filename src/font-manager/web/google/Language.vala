@@ -125,7 +125,7 @@ namespace FontManager.GoogleFonts {
     [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-fonts-sample-list.ui")]
     public class SampleList : Gtk.Popover {
 
-        public signal void row_selected (Sample sample);
+        public signal void row_selected (string sample);
 
         public SampleModel model { get; private set; }
 
@@ -143,7 +143,7 @@ namespace FontManager.GoogleFonts {
                     return;
                 uint position = row.get_index();
                 var item = (Sample) model.get_item(position);
-                row_selected(item);
+                row_selected(item.sample);
             });
             notify["model"].connect((obj, pspec) => {
                 sample_list.bind_model(model, SampleRow.from_item);
