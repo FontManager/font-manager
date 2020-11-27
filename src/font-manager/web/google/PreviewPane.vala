@@ -134,6 +134,21 @@ namespace FontManager.GoogleFonts {
             };
             settings.set_user_agent_with_application_details(Config.PACKAGE_NAME, Config.PACKAGE_VERSION);
             preview.settings = settings;
+            preview.resource_load_started.connect((view, resource, request) => {
+                resource.failed.connect((resource, error) => {
+                    warning("%i : %s", error.code, error.message);
+                });
+                resource.finished.connect((resource) => {
+                    var status = (Soup.Status) resource.response.status_code;
+                    if (status == Soup.Status.OK)
+                        return;
+                    var uri = resource.get_uri();
+                    if (uri.has_suffix("ttf") || uri.has_suffix("otf")) {
+                        warning("Failed to load font resource : %s", uri);
+                        message("HTTP status code : %i", (int) status);
+                    }
+                });
+            });
             return preview;
         }
 
