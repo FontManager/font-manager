@@ -18,6 +18,8 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
+#if HAVE_WEBKIT
+
 namespace FontManager.GoogleFonts {
 
     public struct LanguageData {
@@ -159,3 +161,5 @@ namespace FontManager.GoogleFonts {
     }
 
 }
+
+#endif /* HAVE_WEBKIT */

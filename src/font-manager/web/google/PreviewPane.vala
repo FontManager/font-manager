@@ -18,6 +18,8 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
+#if HAVE_WEBKIT
+
 internal const string HEADER = """
 <html dir="%s">
   <head>
@@ -372,3 +374,5 @@ namespace FontManager.GoogleFonts {
     }
 
 }
+
+#endif /* HAVE_WEBKIT */

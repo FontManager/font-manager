@@ -18,6 +18,8 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
+#if HAVE_WEBKIT
+
 namespace FontManager.GoogleFonts {
 
     [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-font-filters.ui")]
@@ -117,3 +119,5 @@ namespace FontManager.GoogleFonts {
     }
 
 }
+
+#endif /* HAVE_WEBKIT */

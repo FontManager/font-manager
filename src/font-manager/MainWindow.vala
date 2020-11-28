@@ -125,12 +125,18 @@ namespace FontManager {
         Unsorted? unsorted = null;
         LanguageFilter? language_filter = null;
 
+#if HAVE_WEBKIT
         [GtkChild] Gtk.Overlay web_pane;
+#endif /* HAVE_WEBKIT */
 
         public MainWindow () {
             Object(title: About.DISPLAY_NAME, icon_name: About.ICON);
             initialize_preference_pane(preference_pane);
+
+#if HAVE_WEBKIT
             web_pane.add(new GoogleFonts.Catalog());
+#endif /* HAVE_WEBKIT */
+
             var user_action_list = ((UserActionList) preference_pane["UserActions"]);
             var user_sources_list = ((UserSourceList) preference_pane["Sources"]);
             fontlist.user_actions = user_action_list.model;
@@ -208,10 +214,14 @@ namespace FontManager {
             var ui_prefs = (UserInterfacePreferences) preference_pane["Interface"];
             ui_prefs.wide_layout.toggle.bind_property("active", this, "wide-layout", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             main_pane.bind_property("position", preference_pane, "position", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+
+#if HAVE_WEBKIT
             var google_fonts_pane = (GoogleFonts.Catalog) web_pane.get_child();
             main_pane.bind_property("position", google_fonts_pane, "position", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             content_pane.bind_property("position", google_fonts_pane.content_pane, "position", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             content_pane.bind_property("orientation", google_fonts_pane.content_pane, "orientation", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+#endif /* HAVE_WEBKIT */
+
             return;
         }
 
@@ -255,8 +265,12 @@ namespace FontManager {
             fontlist.queue_draw();
             if (titlebar.prefs_toggle.active && mode != Mode.MANAGE)
                 titlebar.prefs_toggle.active = false;
+
+#if HAVE_WEBKIT
             if (titlebar.web_toggle.active && mode != Mode.MANAGE)
                 titlebar.web_toggle.active = false;
+#endif /* HAVE_WEBKIT */
+
             if (mode == Mode.BROWSE && browse.mode == BrowseMode.LIST)
                 browse.treeview.queue_draw();
             mode_changed(mode);
@@ -431,13 +445,19 @@ namespace FontManager {
             });
 
             titlebar.preferences_selected.connect((a) => {
+
+#if HAVE_WEBKIT
                 if (a && titlebar.web_toggle.active)
                     titlebar.web_toggle.active = false;
+#endif /* HAVE_WEBKIT */
+
                 if (a)
                     main_stack.set_visible_child_name("Preferences");
                 else
                     main_stack.set_visible_child_name("Default");
             });
+
+#if HAVE_WEBKIT
 
             titlebar.web_selected.connect((a) => {
                 if (a && titlebar.prefs_toggle.active)
@@ -447,6 +467,8 @@ namespace FontManager {
                 else
                     main_stack.set_visible_child_name("Default");
             });
+
+#endif /* HAVE_WEBKIT */
 
             main_stack.notify["visible-child-name"].connect(() => {
                 if (main_stack.get_visible_child_name() == "Default")

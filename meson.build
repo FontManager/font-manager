@@ -24,10 +24,14 @@ gobject = dependency('gobject-2.0', version: '>= 2.44')
 gtk = dependency('gtk+-3.0', version: '>= 3.22')
 pango = dependency('pango', version: '>= 1.4')
 pangoft2 = dependency('pangoft2', version: '>= 1.4')
-soup = dependency('libsoup-2.4', version: '>= 2.62')
 sqlite = dependency('sqlite3', version: '>= 3.8')
-webkit = dependency('webkit2gtk-4.0', version: '>= 2.24')
 xml = dependency('libxml-2.0', version: '>= 2.9')
+
+if get_option('webkit')
+    soup = dependency('libsoup-2.4', version: '>= 2.62')
+    webkit = dependency('webkit2gtk-4.0', version: '>= 2.24')
+    add_global_arguments('-D', 'HAVE_WEBKIT', language: 'vala')
+endif
 
 base_deps = declare_dependency(
     dependencies: [m_dep, json, gio, gio_unix, glib, gmodule, gobject, gtk, pango, sqlite, xml],
@@ -43,14 +47,14 @@ gnome= import('gnome')
 python = import('python').find_installation('python3')
 
 reproducible = get_option('reproducible') ? '-DREPRODUCIBLE' : '-DNOT_REPRODUCIBLE'
-# webkit uses deprecated API also
-# use_deprecated_gtk_api = get_option('thunar') ? '-DGTK_ENABLE_DEPRECATED' : '-DGTK_DISABLE_DEPRECATED'
+use_deprecated_gtk_api = get_option('webkit') or get_option('thunar') ? '-DGTK_ENABLE_DEPRECATED' : '-DGTK_DISABLE_DEPRECATED'
 
 add_global_arguments(
     '-DG_LOG_DOMAIN="[@0@]"'.format(meson.project_name()),
     '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
     reproducible,
     '-DGDK_DISABLE_DEPRECATED',
+    use_deprecated_gtk_api,
     language: 'c'
 )
 
@@ -101,8 +105,9 @@ if meson_has_summary_function
             'Font Manager': get_option('manager'),
             'Font Viewer': get_option('viewer'),
             'Help Documents': get_option('yelp-doc'),
-            'Nautilus extension': get_option('nautilus'),
             'GNOME search provider': get_option('search-provider'),
+            'Google Fonts Integration': get_option('webkit'),
+            'Nautilus extension': get_option('nautilus'),
             'Nemo extension': get_option('nemo'),
             'Thunar extension': get_option('thunar'),
             'Translations': get_option('enable-nls'),

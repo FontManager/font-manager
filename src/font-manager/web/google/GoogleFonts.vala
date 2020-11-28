@@ -18,6 +18,8 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
+#if HAVE_WEBKIT
+
 namespace FontManager.GoogleFonts {
 
     const string API_KEY = "QUl6YVN5QTlpUmZqMFlYc184RGhJR1Q1YzNGRDBWNmtSQWV5cFA4";
@@ -219,3 +221,4 @@ namespace FontManager.GoogleFonts {
 
 }
 
+#endif /* HAVE_WEBKIT */

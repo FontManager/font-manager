@@ -18,6 +18,8 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
+#if HAVE_WEBKIT
+
 namespace FontManager.GoogleFonts {
 
     const string FONT_FACE = "@font-face { font-family: '%s'; font-style: %s; font-weight: %i; src: local('%s'), local('%s'), url(%s) format('truetype'); }";
@@ -203,3 +205,5 @@ namespace FontManager.GoogleFonts {
     }
 
 }
+
+#endif /* HAVE_WEBKIT */

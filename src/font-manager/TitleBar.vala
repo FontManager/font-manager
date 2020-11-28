@@ -157,14 +157,22 @@ namespace FontManager {
         public signal void install_selected ();
         public signal void remove_selected ();
         public signal void add_selected ();
+
+#if HAVE_WEBKIT
         public signal void web_selected (bool active);
+#endif /* HAVE_WEBKIT */
+
         public signal void preferences_selected (bool active);
 
         public abstract Gtk.MenuButton main_menu { get; protected set; }
         public abstract Gtk.MenuButton app_menu { get; protected set; }
         public abstract Gtk.Label main_menu_label { get; set; }
         public abstract Gtk.ToggleButton prefs_toggle { get; protected set; }
+
+#if HAVE_WEBKIT
         public abstract Gtk.ToggleButton web_toggle { get; protected set; }
+#endif /* HAVE_WEBKIT */
+
         public abstract ProgressHeader progress { get; protected set; }
 
         public abstract bool loading { set; }
@@ -205,9 +213,13 @@ namespace FontManager {
                 prefs_toggle.set_active(active);
                 preferences_selected(prefs_toggle.get_active());
             });
+
+#if HAVE_WEBKIT
             web_toggle.toggled.connect((button) => {
                 web_selected(button.active);
             });
+#endif /* HAVE_WEBKIT */
+
             db.update_started.connect(() => { loading = true; });
             db.update_complete.connect(() => { loading = false; });
             return;
@@ -235,15 +247,19 @@ namespace FontManager {
             revealer = new Gtk.Revealer();
             revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_RIGHT);
             manage_controls = new BaseControls();
+
+#if HAVE_WEBKIT
             web_toggle = new Gtk.ToggleButton();
             var download_icon = new Gtk.Label("<b><big> G </big></b>") { use_markup = true, opacity = 0.9 };
             web_toggle.add(download_icon);
             download_icon.show();
-            manage_controls.add_button.set_tooltip_text(_("Add Fonts"));
-            manage_controls.remove_button.set_tooltip_text(_("Remove Fonts"));
             manage_controls.box.pack_end(web_toggle, false, false, 1);
             web_toggle.show();
             web_toggle.set_tooltip_text("Google Fonts");
+#endif /* HAVE_WEBKIT */
+
+            manage_controls.add_button.set_tooltip_text(_("Add Fonts"));
+            manage_controls.remove_button.set_tooltip_text(_("Remove Fonts"));
             var separator = add_separator(manage_controls.box);
             separator.get_style_context().add_class("separator");
             manage_controls.box.reorder_child(manage_controls.box.get_children().nth_data(2), 0);
@@ -278,7 +294,11 @@ namespace FontManager {
         public Gtk.MenuButton app_menu { get; protected set; }
         public Gtk.Label main_menu_label { get; set; }
         public Gtk.ToggleButton prefs_toggle { get; protected set; }
+
+#if HAVE_WEBKIT
         public Gtk.ToggleButton web_toggle { get; protected set; }
+#endif /* HAVE_WEBKIT */
+
         public ProgressHeader progress { get; protected set; }
 
         public bool loading {
@@ -323,7 +343,11 @@ namespace FontManager {
         public Gtk.MenuButton app_menu { get; protected set; }
         public Gtk.Label main_menu_label { get; set; }
         public Gtk.ToggleButton prefs_toggle { get; protected set; }
+
+#if HAVE_WEBKIT
         public Gtk.ToggleButton web_toggle { get; protected set; }
+#endif /* HAVE_WEBKIT */
+
         public ProgressHeader progress { get; protected set; }
 
         public bool loading {
