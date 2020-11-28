@@ -58,11 +58,11 @@ namespace FontManager {
                 orthography = data.progress / 3;
 
             if (font < 0.32)
-                title.set_text(_("Updating Database - Fonts"));
+                title.set_text(_("Updating Database — Fonts"));
             else if (metadata < 0.32)
-                title.set_text(_("Updating Database - Metadata"));
+                title.set_text(_("Updating Database — Metadata"));
             else
-                title.set_text(_("Updating Database - Orthography"));
+                title.set_text(_("Updating Database — Orthography"));
 
             double f = (font + metadata + orthography);
             progress.set_fraction(f);
