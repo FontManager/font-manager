@@ -268,7 +268,7 @@ set_start_widget (FontManagerPreviewControls *self)
         gtk_button_set_image(GTK_BUTTON(widget), icon);
         g_object_set(G_OBJECT(widget), "draw-indicator", FALSE, NULL);
         gtk_button_set_relief(GTK_BUTTON(widget), GTK_RELIEF_NONE);
-        gtk_widget_set_tooltip_text(widget, gettext(JustificationControls[i].tooltip_text));
+        gtk_widget_set_tooltip_text(widget, g_dgettext(NULL, JustificationControls[i].tooltip_text));
         gboolean active = (JustificationControls[i].justification == GTK_JUSTIFY_CENTER);
         gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(widget), active);
         g_object_set_data(G_OBJECT(widget), "index", GINT_TO_POINTER(i));

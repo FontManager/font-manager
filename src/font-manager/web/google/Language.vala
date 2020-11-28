@@ -109,7 +109,7 @@ namespace FontManager.GoogleFonts {
         public static SampleRow from_item (Object item) {
             var row = new SampleRow() { orientation = Gtk.Orientation.VERTICAL, margin = 6 };
             var sample = (Sample) item;
-            var name_label = new Gtk.Label(sample.display_name);
+            var name_label = new Gtk.Label(dgettext(null, sample.display_name));
             row.pack_start(name_label, false, false, 2);
             name_label.show();
             var sample_label = new Gtk.Label("<small>%s</small>".printf(sample.sample)) {

@@ -95,7 +95,8 @@ static const FontPropertyRow FontPropertyRows [] =
 static GtkWidget *
 create_title_label (FontManagerPropertiesPane *self, gint property)
 {
-    GtkWidget *title = gtk_label_new(FontPropertyRows[property].display_name);
+
+    GtkWidget *title = gtk_label_new(g_dgettext(NULL, FontPropertyRows[property].display_name));
     gtk_widget_set_sensitive(title, FALSE);
     gtk_widget_set_opacity(title, 0.9);
     gtk_widget_set_halign(title, GTK_ALIGN_END);

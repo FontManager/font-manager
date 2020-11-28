@@ -426,7 +426,9 @@ namespace FontManager {
     }
 
     Category construct_attribute_filter (Database db, FilterData data) {
-        var filter = new Category(data.name, data.comment, "folder", null, data.index);
+        var name = dgettext(null, data.name);
+        var comment = dgettext(null, data.comment);
+        var filter = new Category(name, comment, "folder", null, data.index);
         try {
             var keyword = data.column;
             db.execute_query("SELECT DISTINCT %s FROM Fonts ORDER BY %s;".printf(keyword, keyword));
@@ -457,7 +459,9 @@ namespace FontManager {
 
     Category construct_info_filter (Database db, FilterData data) {
         string keyword = data.column.replace("\"", "\\\"").replace("'", "''");
-        var filter = new Category(data.name, data.comment, "folder", null, data.index);
+        var name = dgettext(null, data.name);
+        var comment = dgettext(null, data.comment);
+        var filter = new Category(name, comment, "folder", null, data.index);
         try {
             db.execute_query("SELECT DISTINCT [%s] FROM Metadata ORDER BY [%s];".printf(keyword, keyword));
             foreach (unowned Sqlite.Statement row in db) {
