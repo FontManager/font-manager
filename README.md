@@ -82,8 +82,6 @@ You'll need to ensure the following dependencies are installed:
 - `libxml-2.0 >= 2.9`
 - `sqlite3 >= 3.8`
 - `gobject-introspection`
-- `webkit2gtk3 >= 2.24`
-- `libsoup >= 2.62`
 - `yelp-tools` (optional)
 - `gettext` (optional)
 
@@ -92,6 +90,11 @@ If you wish to also build the file manager extensions:
 - `libnautilus-extension` (optional)
 - `libnemo-extension` (optional)
 - `thunar` (optional)
+
+If you wish to also build the Google Fonts integration:
+
+- `webkit2gtk3 >= 2.24` (optional)
+- `libsoup >= 2.62` (optional)
 
 To build the application:
 
