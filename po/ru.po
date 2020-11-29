@@ -728,12 +728,12 @@ msgid "Pictorial"
 msgstr "Псевдографические"
 
 #: src/font-manager/CellRenderer.vala:90
-#, fuzzy, c-format
+#, c-format
 msgid "%i Variation "
 msgstr "%i вариант "
 
 #: src/font-manager/CellRenderer.vala:91
-#, fuzzy, c-format
+#, c-format
 msgid "%i Variations"
 msgstr "%i вариант "
 
@@ -1482,12 +1482,12 @@ msgid "Download Font"
 msgstr "Загрузить шрифт"
 
 #: src/font-manager/web/google/PreviewPane.vala:276
-#, fuzzy, c-format
+#, c-format
 msgid "%i Language Sample Available "
 msgstr "Доступен %i языковой образец "
 
 #: src/font-manager/web/google/PreviewPane.vala:277
-#, fuzzy, c-format
+#, c-format
 msgid "%i Language Samples Available"
 msgstr "Доступен %i языковой образец "
 
