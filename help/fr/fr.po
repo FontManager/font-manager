@@ -2,13 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2020-11-29 13:54-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-12-02 01:24+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -45,7 +48,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "Système"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
@@ -55,7 +58,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "Utilisateur"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
@@ -77,7 +80,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "Largeur"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
@@ -107,7 +110,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "Espacement"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
@@ -117,7 +120,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "Licence"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
@@ -129,7 +132,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "Fournisseur"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -151,7 +154,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "Non trié"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
@@ -161,7 +164,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "Désactivé"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
@@ -584,7 +587,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "Sources"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
