@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-11-26 21:23+0100\n"
+"POT-Creation-Date: 2020-11-28 19:07-0500\n"
 "PO-Revision-Date: 2020-11-28 17:05+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: \n"
@@ -54,11 +54,6 @@ msgstr "Lettertypebeheer is GEEN professionele beheeroplossing."
 msgid "Preview, Compare and Manage Fonts"
 msgstr "Lettertypen voorvertonen, vergelijken en beheren"
 
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.FontManager.desktop.in.in:9
-msgid "org.gnome.FontManager"
-msgstr "org.gnome.FontManager"
-
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
 #: data/org.gnome.FontViewer.desktop.in.in:16
@@ -90,11 +85,6 @@ msgstr ""
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
 msgstr "Lettertypevoorvertoning boordevol functies"
-
-#. Translators: Do NOT translate or transliterate this text (this is an icon file name)!
-#: data/org.gnome.FontViewer.desktop.in.in:9
-msgid "org.gnome.FontViewer"
-msgstr "org.gnome.FontViewer"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
@@ -130,7 +120,7 @@ msgid "Waterfall"
 msgstr "Waterval"
 
 #: lib/common/font-manager-fontconfig.c:826
-#: src/font-manager/web/google/Weight.vala:63
+#: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
 msgstr "Dun"
 
@@ -140,7 +130,7 @@ msgstr "Erg licht"
 
 #: lib/common/font-manager-fontconfig.c:830
 #: lib/common/font-manager-fontconfig.c:1183
-#: src/font-manager/web/google/Weight.vala:67
+#: src/font-manager/web/google/Weight.vala:69
 msgid "Light"
 msgstr "Licht"
 
@@ -154,7 +144,7 @@ msgstr "Boek"
 
 #: lib/common/font-manager-fontconfig.c:836
 #: lib/common/font-manager-fontconfig.c:1140
-#: src/font-manager/web/google/Weight.vala:71
+#: src/font-manager/web/google/Weight.vala:73
 msgid "Medium"
 msgstr "Gemiddeld"
 
@@ -163,7 +153,7 @@ msgid "Semi-Bold"
 msgstr "Deels vetgedrukt"
 
 #: lib/common/font-manager-fontconfig.c:840
-#: src/font-manager/web/google/Weight.vala:75
+#: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
 msgstr "Vetgedrukt"
 
@@ -180,7 +170,7 @@ msgid "Ultra-Heavy"
 msgstr "Zeer, zeer vetgedrukt"
 
 #: lib/common/font-manager-fontconfig.c:921
-#: src/font-manager/web/google/WebFont.vala:156
+#: src/font-manager/web/google/WebFont.vala:158
 msgid "Italic"
 msgstr "Cursief"
 
@@ -419,14 +409,14 @@ msgstr "Bestandstype"
 msgid "Filesize"
 msgstr "Bestandsgrootte"
 
-#: lib/common/font-manager-properties-pane.c:213
-#: src/font-manager/Categories.vala:451
-#: src/font-manager/web/google/Weight.vala:69
+#: lib/common/font-manager-properties-pane.c:214
+#: src/font-manager/Categories.vala:453
+#: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
 msgstr "Normaal"
 
-#: lib/common/font-manager-properties-pane.c:213
-#: src/font-manager/Categories.vala:446
+#: lib/common/font-manager-properties-pane.c:214
+#: src/font-manager/Categories.vala:448
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
 msgstr "Normal"
@@ -820,13 +810,13 @@ msgid "Remove selected font from collection"
 msgstr "Geselecteerd lettertype verwijderen uit verzameling"
 
 #: src/font-manager/FontList.vala:48 src/font-manager/FontList.vala:68
-#: src/font-manager/web/google/FontList.vala:49
-#: src/font-manager/web/google/FontList.vala:63
+#: src/font-manager/web/google/FontList.vala:51
+#: src/font-manager/web/google/FontList.vala:65
 msgid "Expand all"
 msgstr "Alles uitklappen"
 
 #: src/font-manager/FontList.vala:52
-#: src/font-manager/web/google/FontList.vala:53
+#: src/font-manager/web/google/FontList.vala:55
 msgid "Search Families…"
 msgstr "Zoeken naar families…"
 
@@ -844,7 +834,7 @@ msgstr ""
 "Begin met zoeken met %s om te filteren op tekens."
 
 #: src/font-manager/FontList.vala:68
-#: src/font-manager/web/google/FontList.vala:63
+#: src/font-manager/web/google/FontList.vala:65
 msgid "Collapse all"
 msgstr "Alles inklappen"
 
@@ -908,15 +898,21 @@ msgid "Supported Orthographies"
 msgstr "Ondersteunde orthografieën"
 
 #: src/font-manager/TitleBar.vala:61
-msgid "Updating Database - Fonts"
+#, fuzzy
+#| msgid "Updating Database - Fonts"
+msgid "Updating Database — Fonts"
 msgstr "Bezig met bijwerken van databank - Lettertypen"
 
 #: src/font-manager/TitleBar.vala:63
-msgid "Updating Database - Metadata"
+#, fuzzy
+#| msgid "Updating Database - Metadata"
+msgid "Updating Database — Metadata"
 msgstr "Bezig met bijwerken van databank - Metagegevens"
 
 #: src/font-manager/TitleBar.vala:65
-msgid "Updating Database - Orthography"
+#, fuzzy
+#| msgid "Updating Database - Orthography"
+msgid "Updating Database — Orthography"
 msgstr "Bezig met bijwerken van databank - Orthografieën"
 
 #: src/font-manager/TitleBar.vala:80
@@ -945,15 +941,16 @@ msgstr "Exporteren"
 msgid "User Data"
 msgstr "Gebruikersgegevens"
 
-#: src/font-manager/TitleBar.vala:242
+#. HAVE_WEBKIT
+#: src/font-manager/TitleBar.vala:261
 msgid "Add Fonts"
 msgstr "Lettertypen toevoegen"
 
-#: src/font-manager/TitleBar.vala:243
+#: src/font-manager/TitleBar.vala:262
 msgid "Remove Fonts"
 msgstr "Lettertypen verwijderen"
 
-#: src/font-manager/TitleBar.vala:253
+#: src/font-manager/TitleBar.vala:269
 #: src/font-manager/ui/font-manager-main-window.ui:181
 msgid "Preferences"
 msgstr "Voorkeuren"
@@ -1296,207 +1293,207 @@ msgstr ""
 "Voeg een nieuwe bron toe door een map naar dit vak te verslepen of door op "
 "de werkbalkknop 'Toevoegen' te klikken."
 
-#: src/font-manager/web/google/FontList.vala:54
+#: src/font-manager/web/google/FontList.vala:56
 msgid "Case insensitive search of family names."
 msgstr "Hoofdletterongevoelige zoekfunctie van lettertypenamen."
 
-#: src/font-manager/web/google/GoogleFonts.vala:125
+#: src/font-manager/web/google/GoogleFonts.vala:127
 msgid "Error procesing data"
 msgstr "Fout tijdens gegevensverwerking"
 
-#: src/font-manager/web/google/GoogleFonts.vala:129
+#: src/font-manager/web/google/GoogleFonts.vala:131
 msgid "Network Error"
 msgstr "Netwerkfout"
 
-#: src/font-manager/web/google/GoogleFonts.vala:130
+#: src/font-manager/web/google/GoogleFonts.vala:132
 msgid "Please check your network settings"
 msgstr "Controleer je internetverbinding"
 
-#: src/font-manager/web/google/GoogleFonts.vala:132
+#: src/font-manager/web/google/GoogleFonts.vala:134
 msgid "Client Error"
 msgstr "Clientfout"
 
-#: src/font-manager/web/google/GoogleFonts.vala:133
+#: src/font-manager/web/google/GoogleFonts.vala:135
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
 "Herstart de toepassing. Meld het probleem als bug als het probleem zich "
 "blijft voordoen."
 
-#: src/font-manager/web/google/GoogleFonts.vala:136
+#: src/font-manager/web/google/GoogleFonts.vala:138
 msgid "Server Error"
 msgstr "Serverfout"
 
-#: src/font-manager/web/google/GoogleFonts.vala:206
+#: src/font-manager/web/google/GoogleFonts.vala:208
 msgid "Network Offline"
 msgstr "Geen internetverbinding"
 
-#: src/font-manager/web/google/GoogleFonts.vala:207
+#: src/font-manager/web/google/GoogleFonts.vala:209
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
 "Je moet verbonden zijn met het internet om de Google Fonts-catalogus te "
 "kunnen openen"
 
-#: src/font-manager/web/google/Language.vala:30
+#: src/font-manager/web/google/Language.vala:32
 msgid "Arabic"
 msgstr "Arabisch"
 
-#: src/font-manager/web/google/Language.vala:31
+#: src/font-manager/web/google/Language.vala:33
 msgid "Bengali"
 msgstr "Bengaals"
 
-#: src/font-manager/web/google/Language.vala:32
+#: src/font-manager/web/google/Language.vala:34
 msgid "Chinese (Hong Kong)"
 msgstr "Chinees (Hongkong)"
 
-#: src/font-manager/web/google/Language.vala:33
+#: src/font-manager/web/google/Language.vala:35
 msgid "Chinese (Simplified)"
 msgstr "Chinees (Vereenvoudigd)"
 
-#: src/font-manager/web/google/Language.vala:34
+#: src/font-manager/web/google/Language.vala:36
 msgid "Chinese (Traditional)"
 msgstr "Chinees (Traditioneel)"
 
-#: src/font-manager/web/google/Language.vala:35
+#: src/font-manager/web/google/Language.vala:37
 msgid "Cyrillic"
 msgstr "Cyrillisch"
 
-#: src/font-manager/web/google/Language.vala:36
+#: src/font-manager/web/google/Language.vala:38
 msgid "Cyrillic Extended"
 msgstr "Cyrillisch (Uitgebreid)"
 
-#: src/font-manager/web/google/Language.vala:37
+#: src/font-manager/web/google/Language.vala:39
 msgid "Devanagari"
 msgstr "Devanagari"
 
-#: src/font-manager/web/google/Language.vala:38
+#: src/font-manager/web/google/Language.vala:40
 msgid "Greek"
 msgstr "Grieks"
 
-#: src/font-manager/web/google/Language.vala:39
+#: src/font-manager/web/google/Language.vala:41
 msgid "Greek Extended"
 msgstr "Grieks (Uitgebreid)"
 
-#: src/font-manager/web/google/Language.vala:40
+#: src/font-manager/web/google/Language.vala:42
 msgid "Gujarati"
 msgstr "Gujarati"
 
-#: src/font-manager/web/google/Language.vala:41
+#: src/font-manager/web/google/Language.vala:43
 msgid "Gurmukhi"
 msgstr "Gurmukhi"
 
-#: src/font-manager/web/google/Language.vala:42
+#: src/font-manager/web/google/Language.vala:44
 msgid "Hebrew"
 msgstr "Hebreeuws"
 
-#: src/font-manager/web/google/Language.vala:43
+#: src/font-manager/web/google/Language.vala:45
 msgid "Japanese"
 msgstr "Japans"
 
-#: src/font-manager/web/google/Language.vala:44
+#: src/font-manager/web/google/Language.vala:46
 msgid "Kannada"
 msgstr "Kannada"
 
-#: src/font-manager/web/google/Language.vala:45
+#: src/font-manager/web/google/Language.vala:47
 msgid "Khmer"
 msgstr "Khmer"
 
-#: src/font-manager/web/google/Language.vala:46
+#: src/font-manager/web/google/Language.vala:48
 msgid "Korean"
 msgstr "Koreaans"
 
-#: src/font-manager/web/google/Language.vala:47
+#: src/font-manager/web/google/Language.vala:49
 msgid "Latin"
 msgstr "Latijns"
 
-#: src/font-manager/web/google/Language.vala:48
+#: src/font-manager/web/google/Language.vala:50
 msgid "Latin Extended"
 msgstr "Latijns (Uitgebreid)"
 
-#: src/font-manager/web/google/Language.vala:49
+#: src/font-manager/web/google/Language.vala:51
 msgid "Malayalam"
 msgstr "Malayalam"
 
-#: src/font-manager/web/google/Language.vala:50
+#: src/font-manager/web/google/Language.vala:52
 msgid "Myanmar"
 msgstr "Boermees"
 
-#: src/font-manager/web/google/Language.vala:51
+#: src/font-manager/web/google/Language.vala:53
 msgid "Oriya"
 msgstr "Odia"
 
-#: src/font-manager/web/google/Language.vala:52
+#: src/font-manager/web/google/Language.vala:54
 msgid "Sinhala"
 msgstr "Sinhalees"
 
-#: src/font-manager/web/google/Language.vala:53
+#: src/font-manager/web/google/Language.vala:55
 msgid "Tamil"
 msgstr "Tamil"
 
-#: src/font-manager/web/google/Language.vala:54
+#: src/font-manager/web/google/Language.vala:56
 msgid "Telugu"
 msgstr "Telugu"
 
-#: src/font-manager/web/google/Language.vala:55
+#: src/font-manager/web/google/Language.vala:57
 msgid "Thai"
 msgstr "Thais"
 
-#: src/font-manager/web/google/Language.vala:56
+#: src/font-manager/web/google/Language.vala:58
 msgid "Tibetan"
 msgstr "Tibetaans"
 
-#: src/font-manager/web/google/Language.vala:57
+#: src/font-manager/web/google/Language.vala:59
 msgid "Vietnamese"
 msgstr "Vietnamees"
 
-#: src/font-manager/web/google/PreviewPane.vala:226
+#: src/font-manager/web/google/PreviewPane.vala:257
 msgid "Update Family"
 msgstr "Familie bijwerken"
 
-#: src/font-manager/web/google/PreviewPane.vala:226
+#: src/font-manager/web/google/PreviewPane.vala:257
 msgid "Update Font"
 msgstr "Lettertype bijwerken"
 
-#: src/font-manager/web/google/PreviewPane.vala:231
+#: src/font-manager/web/google/PreviewPane.vala:262
 msgid "Remove Family"
 msgstr "Familie verwijderen"
 
-#: src/font-manager/web/google/PreviewPane.vala:231
+#: src/font-manager/web/google/PreviewPane.vala:262
 msgid "Remove Font"
 msgstr "Lettertype verwijderen"
 
-#: src/font-manager/web/google/PreviewPane.vala:236
+#: src/font-manager/web/google/PreviewPane.vala:267
 msgid "Download Family"
 msgstr "Familie downloaden"
 
-#: src/font-manager/web/google/PreviewPane.vala:236
+#: src/font-manager/web/google/PreviewPane.vala:267
 msgid "Download Font"
 msgstr "Lettertype downloaden"
 
-#: src/font-manager/web/google/PreviewPane.vala:246
+#: src/font-manager/web/google/PreviewPane.vala:277
 #, c-format
 msgid "%i Language Sample Available "
 msgstr "%i taalvoorbeeld beschikbaar "
 
-#: src/font-manager/web/google/PreviewPane.vala:247
+#: src/font-manager/web/google/PreviewPane.vala:278
 #, c-format
 msgid "%i Language Samples Available"
 msgstr "%i taalvoorbeelden beschikbaar"
 
-#: src/font-manager/web/google/Weight.vala:65
+#: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
 msgstr "Erg licht"
 
-#: src/font-manager/web/google/Weight.vala:73
+#: src/font-manager/web/google/Weight.vala:75
 msgid "SemiBold"
 msgstr "Deels vetgedrukt"
 
-#: src/font-manager/web/google/Weight.vala:77
+#: src/font-manager/web/google/Weight.vala:79
 msgid "ExtraBold"
 msgstr "Erg vetgedrukt"
 
-#: src/font-manager/web/google/Weight.vala:79
+#: src/font-manager/web/google/Weight.vala:81
 msgid "Black"
 msgstr "Zwart"
 
@@ -1612,7 +1609,6 @@ msgid "90"
 msgstr "90"
 
 #: src/font-manager/ui/font-manager-main-window.ui:195
-#| msgid "Remove Fonts"
 msgid "Google Fonts"
 msgstr "Google Fonts"
 
@@ -1828,6 +1824,12 @@ msgstr "Variaties"
 #: src/font-manager/web/google/ui/google-font-filters.ui:523
 msgid "Language Support"
 msgstr "Taalondersteuning"
+
+#~ msgid "org.gnome.FontManager"
+#~ msgstr "org.gnome.FontManager"
+
+#~ msgid "org.gnome.FontViewer"
+#~ msgstr "org.gnome.FontViewer"
 
 #~ msgid "Afrikaans"
 #~ msgstr "Afrikaans"
