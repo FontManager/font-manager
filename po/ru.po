@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-11-29 13:52-0500\n"
-"PO-Revision-Date: 2020-11-29 15:33+0300\n"
+"PO-Revision-Date: 2020-11-29 22:21+0300\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
@@ -728,13 +728,12 @@ msgid "Pictorial"
 msgstr "Псевдографические"
 
 #: src/font-manager/CellRenderer.vala:90
-#, fuzzy, c-format
-#| msgid "%i Variation "
+#, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
 msgstr[0] "%i вариант "
-msgstr[1] "%i вариант "
-msgstr[2] "%i вариант "
+msgstr[1] "%i варианта"
+msgstr[2] "%i вариантов"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1481,13 +1480,12 @@ msgid "Download Font"
 msgstr "Загрузить шрифт"
 
 #: src/font-manager/web/google/PreviewPane.vala:276
-#, fuzzy, c-format
-#| msgid "%i Language Sample Available "
+#, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] "Доступен %i языковой образец "
-msgstr[1] "Доступен %i языковой образец "
-msgstr[2] "Доступен %i языковой образец "
+msgstr[1] "Доступно %i языковых образца"
+msgstr[2] "Доступно %i языковых образцов"
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
