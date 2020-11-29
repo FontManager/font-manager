@@ -22,6 +22,16 @@ Font Manager is NOT a professional-grade font management solution.
 - User font substitution settings
 - Desktop font settings (GNOME Desktop or compatible environments)
 
+## Localization 
+
+Font Manager is being translated using [Weblate](https://weblate.org), a web tool designed to ease translating for both developers and translators.
+
+If you would like to help this application reach more users in their native language please visit the [project page on Weblate](https://hosted.weblate.org/engage/font-manager/).
+
+<a href="https://hosted.weblate.org/engage/font-manager/">
+<img src="https://hosted.weblate.org/widgets/font-manager/-/svg-badge.svg" alt="Translation status" />
+</a>
+
 ## Installation
 
 
