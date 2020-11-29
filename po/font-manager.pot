@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-11-28 19:07-0500\n"
+"POT-Creation-Date: 2020-11-29 13:52-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -696,12 +697,9 @@ msgstr ""
 #: src/font-manager/CellRenderer.vala:90
 #, c-format
 msgid "%i Variation "
-msgstr ""
-
-#: src/font-manager/CellRenderer.vala:91
-#, c-format
-msgid "%i Variations"
-msgstr ""
+msgid_plural "%i Variations"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1370,39 +1368,36 @@ msgstr ""
 msgid "Vietnamese"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:257
+#: src/font-manager/web/google/PreviewPane.vala:256
 msgid "Update Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:257
+#: src/font-manager/web/google/PreviewPane.vala:256
 msgid "Update Font"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:262
+#: src/font-manager/web/google/PreviewPane.vala:261
 msgid "Remove Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:262
+#: src/font-manager/web/google/PreviewPane.vala:261
 msgid "Remove Font"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:267
+#: src/font-manager/web/google/PreviewPane.vala:266
 msgid "Download Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:267
+#: src/font-manager/web/google/PreviewPane.vala:266
 msgid "Download Font"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:277
+#: src/font-manager/web/google/PreviewPane.vala:276
 #, c-format
 msgid "%i Language Sample Available "
-msgstr ""
-
-#: src/font-manager/web/google/PreviewPane.vala:278
-#, c-format
-msgid "%i Language Samples Available"
-msgstr ""
+msgid_plural "%i Language Samples Available"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"

@@ -87,8 +87,8 @@ namespace FontManager {
                 text = "";
                 render_background = (_count > 0);
                 if (_count > 0) {
-                    text = ngettext(_("%i Variation "),
-                                    _("%i Variations"),
+                    text = ngettext("%i Variation ",
+                                    "%i Variations",
                                     (ulong) _count).printf(_count);
                 }
             }

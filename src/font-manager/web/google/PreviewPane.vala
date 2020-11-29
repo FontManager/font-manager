@@ -273,8 +273,8 @@ namespace FontManager.GoogleFonts {
             uint langs = sample_list.model.get_n_items();
             entry.set_icon_tooltip_text(
                 Gtk.EntryIconPosition.PRIMARY,
-                ngettext(_("%i Language Sample Available "),
-                         _("%i Language Samples Available"),
+                ngettext("%i Language Sample Available ",
+                         "%i Language Samples Available",
                          (ulong) langs).printf((int) langs)
             );
             return;
