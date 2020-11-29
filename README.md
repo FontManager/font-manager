@@ -45,6 +45,9 @@ Please note that not all features may be available when using the Flatpak versio
 ### Distribution packages
 
 #### Arch User Repository
+
+![AUR version](https://img.shields.io/aur/version/font-manager)  ![AUR maintainer](https://img.shields.io/aur/maintainer/font-manager) 
+
 Arch Linux users can find [`font-manager`](https://aur.archlinux.org/packages/font-manager/) in the AUR
 
 #### Fedora COPR
@@ -59,6 +62,7 @@ dnf install font-manager
 ```
 
 #### Gentoo
+
 Gentoo users may find [`font-manager`](https://github.com/PF4Public/gentoo-overlay/tree/master/app-misc/font-manager) in [::pf4public](https://github.com/PF4Public/gentoo-overlay) Gentoo overlay
 
 #### Ubuntu Personal Package Archive
