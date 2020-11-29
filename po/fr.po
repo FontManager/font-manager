@@ -7,23 +7,28 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-11-28 19:07-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-11-29 15:42+0000\n"
+"Last-Translator: J. Lavoie <j.lavoie@net-c.ca>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:28
 msgid "Font Manager"
-msgstr ""
+msgstr "Font Manager"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
 msgstr ""
+"Une application simple de gestion des polices pour les environnements de "
+"bureau Gtk+"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
@@ -31,26 +36,35 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
+"Font Manager est destiné à fournir un manière pour les utilisateurs moyens "
+"de gérer facilement les polices de bureau, sans avoir à recourir à des "
+"outils de ligne de commande ou à modifier les fichiers de configuration à la "
+"main."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr ""
+"Bien que conçu principalement avec l'environnement de bureau Gnome à "
+"l'esprit, il devrait bien fonctionner avec d'autres environnements de bureau "
+"Gtk+."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
 msgstr ""
+"Font Manager n'est PAS une solution de gestion des polices de qualité "
+"professionnelle."
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr ""
+msgstr "Prévisualiser, comparer et gérer les polices"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
 #: data/org.gnome.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
+msgstr "Graphisme; Visionneuse; GNOME; GTK; Publication;"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
 #: data/org.gnome.FontViewer.desktop.in.in:5
@@ -58,11 +72,13 @@ msgstr ""
 #: src/font-viewer/Application.vala:96 src/font-viewer/MainWindow.vala:23
 #: src/font-viewer/font-viewer-main-window.ui:41
 msgid "Font Viewer"
-msgstr ""
+msgstr "Visionneuse de polices"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
 msgstr ""
+"Une application de visualisation de polices pour les environnements de "
+"bureau Gtk+"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
@@ -70,6 +86,10 @@ msgid ""
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
 msgstr ""
+"Font Viewer permet de prévisualiser les fichiers de polices avant "
+"l'installation. Il propose plusieurs manières de prévisualiser les fichiers "
+"de police avec une carte de caractères et affiche les propriétés de police "
+"et les détails de la licence."
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
