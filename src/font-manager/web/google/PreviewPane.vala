@@ -106,6 +106,7 @@ namespace FontManager.GoogleFonts {
 
         string? _preview_text = null;
         string? default_preview_text = "The quick brown fox jumps over the lazy dog.";
+        bool refresh_required = false;
         bool restore_default_preview = false;
         Font? stored_font = null;
 
@@ -163,6 +164,15 @@ namespace FontManager.GoogleFonts {
             map.connect(() => {
                 if (preview == null)
                     preview = get_webkit_webview();
+                refresh_required = false;
+            });
+            unmap.connect(() => {
+                if (!refresh_required)
+                    return;
+                Timeout.add(3500, () => {
+                    get_default_application().refresh();
+                    return GLib.Source.REMOVE;
+                });
             });
             entry.set_placeholder_text(preview_text);
             notify["family"].connect((obj, pspec) => {
@@ -332,12 +342,20 @@ namespace FontManager.GoogleFonts {
                     remove_directory(font_dir);
                 if (status == FileStatus.INSTALLED) {
                     selection_changed(FileStatus.NOT_INSTALLED);
+                    refresh_required = true;
                 } else {
                     if (update == null)
                         update = family.variants.data;
+                    /* XXX : Losing these before access in async function ? - Issue #151 */
+                    foreach (var font in update)
+                        font.ref();
                     download_font_files.begin(update, (obj, res) => {
-                        if (download_font_files.end(res))
+                        if (download_font_files.end(res)) {
                             selection_changed(FileStatus.INSTALLED);
+                            refresh_required = true;
+                        }
+                        foreach (var font in update)
+                            font.unref();
                     });
                 }
             } else {
@@ -356,19 +374,23 @@ namespace FontManager.GoogleFonts {
                         font_file.delete();
                         remove_directory_tree_if_empty(font_dir);
                         selection_changed(FileStatus.NOT_INSTALLED);
+                        refresh_required = true;
                     } catch (Error e) {
                         warning("Failed to remove file : %s", font_file.get_path());
                         critical("%i : %s", e.code, e.message);
                     }
                 }
                 if (status == FileStatus.NOT_INSTALLED || status == FileStatus.REQUIRES_UPDATE) {
+                    font.ref();
                     download_font_files.begin({font}, (obj, res) => {
-                        if (download_font_files.end(res))
+                        if (download_font_files.end(res)) {
                             selection_changed(FileStatus.INSTALLED);
+                            refresh_required = true;
+                        }
+                        font.unref();
                     });
                 }
             }
-            Timeout.add(3500, () => { get_default_application().refresh(); return GLib.Source.REMOVE; });
             return;
         }
 

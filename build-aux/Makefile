@@ -115,9 +115,14 @@ BUILD_DEPENDS = \
 	libsqlite3-dev \
 	libgirepository1.0-dev \
 	yelp-tools \
-	python \
-	python-gobject \
-	python-nautilus
+	python3 \
+	python-gi-dev \
+	python3-nautilus \
+	libsoup2.4-dev \
+	libwebkit2gtk-4.0-dev \
+	libnautilus-extension-dev \
+	libnemo-extension-dev \
+	libthunarx-3-dev
 
 deb:
 	@echo -e '\n*** Need to ensure build dependencies are installed ***\n\n'
