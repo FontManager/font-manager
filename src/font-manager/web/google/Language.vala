@@ -68,7 +68,7 @@ namespace FontManager.GoogleFonts {
         public Sample (string lang) {
             foreach (var entry in Languages) {
                 if (entry.name == lang) {
-                    Object(display_name: entry.display_name, name: entry.name, sample: entry.sample);
+                    Object(display_name: dgettext(null, entry.display_name), name: entry.name, sample: entry.sample);
                 }
             }
         }
