@@ -225,7 +225,6 @@ namespace FontManager.GoogleFonts {
                                          font.to_font_face_rule()));
             var pref_loc = Intl.setlocale(LocaleCategory.ALL, "");
             Intl.setlocale(LocaleCategory.ALL, "C");
-            //var size = "%.1f".printf(preview_size);
             builder.append(BODY_TEXT.printf(preview_size, LOREM_IPSUM));
             Intl.setlocale(LocaleCategory.ALL, pref_loc);
             builder.append(FOOTER);

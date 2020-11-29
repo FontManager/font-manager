@@ -39,7 +39,7 @@ namespace FontManager.GoogleFonts {
         public override void constructed () {
             base.constructed();
             foreach (var lang in Languages) {
-                var check = new Gtk.CheckButton.with_label(lang.display_name) {
+                var check = new Gtk.CheckButton.with_label(dgettext(null, lang.display_name)) {
                     can_focus = false,
                     name = lang.name
                 };
