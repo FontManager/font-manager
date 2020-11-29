@@ -922,7 +922,6 @@ msgstr ""
 "Es wird dringend empfohlen, alle wichtigen Dateien zu sichern bevor Du "
 "weitermachst.\n"
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
 msgstr ""
@@ -1658,7 +1657,6 @@ msgstr "Gewünschte DPI"
 #: src/font-manager/preferences/Fontconfig.vala:236
 msgid "Scale Factor"
 msgstr "Vergrößerungs-Faktor"
-==== BASE ====
 
 #: src/font-manager/preferences/Fontconfig.vala:240
 msgid "LCD Filter"

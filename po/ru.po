@@ -911,7 +911,6 @@ msgstr ""
 "Перед продолжением строго рекомендуется сделать резервную копию всех важных "
 "файлов.\n"
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
 msgstr "Африкаанс"
@@ -939,33 +938,23 @@ msgstr "Древнегреческие буквы"
 #: src/font-manager/Orthographies.vala:37
 msgid "Armenian"
 msgstr "Армянский"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
 msgstr "Астрономия"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:39
 msgid "Balinese"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:41
 msgid "Bamum"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:42
 msgid "Basic Cyrillic"
 msgstr "Базовая кириллица"
@@ -973,187 +962,125 @@ msgstr "Базовая кириллица"
 #: src/font-manager/Orthographies.vala:43
 msgid "Basic Greek"
 msgstr "Базовый греческий"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:44
 msgid "Basic Latin"
 msgstr "Базовая латиница"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:46
 msgid "Bengali"
 msgstr "Бенгальский"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:47
 msgid "Brāhmī"
 msgstr "Брахми"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:48
 msgid "Buginese"
 msgstr "Бугийский"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:49
 msgid "Unified Canadian Aboriginal Syllabics"
 msgstr "Слоговое письмо канадских аборигенов"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:50
 msgid "Carian"
 msgstr "Карийский"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
 msgstr "Каталонский"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:52
 msgid "Central European"
 msgstr "Центрально-европейский"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:53
 msgid "Chakma"
 msgstr "Чакма"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:54
 msgid "Cham"
 msgstr "Чамский"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:55
 msgid "Cherokee"
 msgstr "Чероки"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:56
 msgid "Chess Symbols"
 msgstr "Шахматные символы"
-==== BASE ====
 
-==== BASE ====
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
 msgid "CJK Unified"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:60
 msgid "CJK Unified Extension A"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:61
 msgid "CJK Unified Extension B"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:62
 msgid "CJK Unified Extension C"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:63
 msgid "CJK Unified Extension D"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:64
 msgid "CJK Unified Extension E"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:65
 msgid "CJK Compatibility Ideographs"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:66
 msgid "CJK Compatibility Ideographs Supplement"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
 msgid "Claudian Letters"
 msgstr "Клавдиевы буквы"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:70
 msgid "Coptic"
 msgstr "Коптский"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:71
 msgid "Currencies"
 msgstr "Знаки валют"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
 msgstr "Кипрское письмо"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:73
 msgid "Devanagari"
 msgstr "Деванагари"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:74
 msgid "Dutch"
 msgstr "Голландский"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:75
 msgid "Egyptian Hieroglyphs"
 msgstr "Египетские иероглифы"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:76
 msgid "Emoticons"
-==== BASE ====
 msgstr ""
-==== BASE ====
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:77
 msgid "Ethiopic"
 msgstr "Эфиопский"
@@ -1163,21 +1090,15 @@ msgstr "Эфиопский"
 #: src/font-manager/Orthographies.vala:82
 msgid "Farsi"
 msgstr "Фарси"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:83
 msgid "Food and Drink"
 msgstr "Еда и напитки"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:84
 msgid "Full Cyrillic"
 msgstr ""
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:85
 msgid "Georgian"
 msgstr "Грузинский"
@@ -1185,9 +1106,7 @@ msgstr "Грузинский"
 #: src/font-manager/Orthographies.vala:86
 msgid "Glagolitic"
 msgstr "Глаголица"
-==== BASE ====
 
-==== BASE ====
 #: src/font-manager/Orthographies.vala:87
 msgid "Gothic"
 msgstr ""
@@ -1754,7 +1673,6 @@ msgid "Hinting Style"
 msgstr "Стиль хинтинга"
 
 #: src/font-manager/preferences/Fontconfig.vala:330
-==== BASE ====
 msgid "Use Embedded Bitmaps"
 msgstr "Использовать встроенные битовые карты"
 
@@ -2181,8 +2099,6 @@ msgstr "Добавить выбранный шрифт к сравнению"
 msgid "Remove selected font from comparison"
 msgstr "Удалить выбранный шрифт из сравнения"
 
-==== BASE ====
-==== BASE ====
 #: src/font-manager/ui/font-manager-font-config-controls.ui:12
 msgid "Discard"
 msgstr "Отбросить"
