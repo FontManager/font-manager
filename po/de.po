@@ -23,7 +23,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-11-29 13:52-0500\n"
-"PO-Revision-Date: 2020-11-29 15:51+0300\n"
+"PO-Revision-Date: 2020-11-29 22:21+0300\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -746,12 +746,11 @@ msgid "Pictorial"
 msgstr "Bildhaft"
 
 #: src/font-manager/CellRenderer.vala:90
-#, fuzzy, c-format
-#| msgid "%i Variation "
+#, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
 msgstr[0] "%i Variante "
-msgstr[1] "%i Variante "
+msgstr[1] "%i Varianten"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
