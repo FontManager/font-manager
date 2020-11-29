@@ -567,21 +567,21 @@ unicode_unichar_to_printable_utf8 (gunichar uc, gchar *outbuf)
   if (! unicode_unichar_validate (uc) || (! unicode_unichar_isgraph (uc)
       && g_unichar_type (uc) != G_UNICODE_PRIVATE_USE))
     return 0;
-  else if (g_unichar_type (uc) == G_UNICODE_SPACING_MARK
-      || g_unichar_type (uc) == G_UNICODE_ENCLOSING_MARK
-      || g_unichar_type (uc) == G_UNICODE_NON_SPACING_MARK)
-    {
-      gint x;
+  //else if (g_unichar_type (uc) == G_UNICODE_SPACING_MARK
+      //|| g_unichar_type (uc) == G_UNICODE_ENCLOSING_MARK
+      //|| g_unichar_type (uc) == G_UNICODE_NON_SPACING_MARK)
+    //{
+      //gint x;
 
-      outbuf[0] = ' ';
-      outbuf[1] = '\xe2'; /* ZERO */
-      outbuf[2] = '\x80'; /* WIDTH */
-      outbuf[3] = '\x8d'; /* JOINER (0x200D) */
+      //outbuf[0] = ' ';
+      //outbuf[1] = '\xe2'; /* ZERO */
+      //outbuf[2] = '\x80'; /* WIDTH */
+      //outbuf[3] = '\x8d'; /* JOINER (0x200D) */
 
-      x = g_unichar_to_utf8 (uc, outbuf + 4);
+      //x = g_unichar_to_utf8 (uc, outbuf + 4);
 
-      return x + 4;
-    }
+      //return x + 4;
+    //}
   else
     return g_unichar_to_utf8 (uc, outbuf);
 }
