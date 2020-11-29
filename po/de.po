@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-11-29 11:34-0500\n"
+"POT-Creation-Date: 2020-11-29 13:52-0500\n"
 "PO-Revision-Date: 2020-11-29 15:51+0300\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: \n"
@@ -746,14 +746,12 @@ msgid "Pictorial"
 msgstr "Bildhaft"
 
 #: src/font-manager/CellRenderer.vala:90
-#, c-format
+#, fuzzy, c-format
+#| msgid "%i Variation "
 msgid "%i Variation "
-msgstr "%i Variante "
-
-#: src/font-manager/CellRenderer.vala:91
-#, c-format
-msgid "%i Variations"
-msgstr "%i Varianten"
+msgid_plural "%i Variations"
+msgstr[0] "%i Variante "
+msgstr[1] "%i Variante "
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1479,12 +1477,9 @@ msgstr "Schrift herunterladen"
 #: src/font-manager/web/google/PreviewPane.vala:276
 #, c-format
 msgid "%i Language Sample Available "
-msgstr ""
-
-#: src/font-manager/web/google/PreviewPane.vala:277
-#, c-format
-msgid "%i Language Samples Available"
-msgstr ""
+msgid_plural "%i Language Samples Available"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
@@ -1833,3 +1828,6 @@ msgstr "Varianten"
 #: src/font-manager/web/google/ui/google-font-filters.ui:523
 msgid "Language Support"
 msgstr "Sprachunterstützung"
+
+#~ msgid "%i Variations"
+#~ msgstr "%i Varianten"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-11-28 19:07-0500\n"
+"POT-Creation-Date: 2020-11-29 13:52-0500\n"
 "PO-Revision-Date: 2020-11-28 17:05+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: \n"
@@ -718,14 +718,12 @@ msgid "Pictorial"
 msgstr "Pictogram"
 
 #: src/font-manager/CellRenderer.vala:90
-#, c-format
+#, fuzzy, c-format
+#| msgid "%i Variation "
 msgid "%i Variation "
-msgstr "%i variatie "
-
-#: src/font-manager/CellRenderer.vala:91
-#, c-format
-msgid "%i Variations"
-msgstr "%i variaties"
+msgid_plural "%i Variations"
+msgstr[0] "%i variatie "
+msgstr[1] "%i variatie "
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1447,39 +1445,37 @@ msgstr "Tibetaans"
 msgid "Vietnamese"
 msgstr "Vietnamees"
 
-#: src/font-manager/web/google/PreviewPane.vala:257
+#: src/font-manager/web/google/PreviewPane.vala:256
 msgid "Update Family"
 msgstr "Familie bijwerken"
 
-#: src/font-manager/web/google/PreviewPane.vala:257
+#: src/font-manager/web/google/PreviewPane.vala:256
 msgid "Update Font"
 msgstr "Lettertype bijwerken"
 
-#: src/font-manager/web/google/PreviewPane.vala:262
+#: src/font-manager/web/google/PreviewPane.vala:261
 msgid "Remove Family"
 msgstr "Familie verwijderen"
 
-#: src/font-manager/web/google/PreviewPane.vala:262
+#: src/font-manager/web/google/PreviewPane.vala:261
 msgid "Remove Font"
 msgstr "Lettertype verwijderen"
 
-#: src/font-manager/web/google/PreviewPane.vala:267
+#: src/font-manager/web/google/PreviewPane.vala:266
 msgid "Download Family"
 msgstr "Familie downloaden"
 
-#: src/font-manager/web/google/PreviewPane.vala:267
+#: src/font-manager/web/google/PreviewPane.vala:266
 msgid "Download Font"
 msgstr "Lettertype downloaden"
 
-#: src/font-manager/web/google/PreviewPane.vala:277
-#, c-format
+#: src/font-manager/web/google/PreviewPane.vala:276
+#, fuzzy, c-format
+#| msgid "%i Language Sample Available "
 msgid "%i Language Sample Available "
-msgstr "%i taalvoorbeeld beschikbaar "
-
-#: src/font-manager/web/google/PreviewPane.vala:278
-#, c-format
-msgid "%i Language Samples Available"
-msgstr "%i taalvoorbeelden beschikbaar"
+msgid_plural "%i Language Samples Available"
+msgstr[0] "%i taalvoorbeeld beschikbaar "
+msgstr[1] "%i taalvoorbeeld beschikbaar "
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
@@ -1824,6 +1820,12 @@ msgstr "Variaties"
 #: src/font-manager/web/google/ui/google-font-filters.ui:523
 msgid "Language Support"
 msgstr "Taalondersteuning"
+
+#~ msgid "%i Variations"
+#~ msgstr "%i variaties"
+
+#~ msgid "%i Language Samples Available"
+#~ msgstr "%i taalvoorbeelden beschikbaar"
 
 #~ msgid "org.gnome.FontManager"
 #~ msgstr "org.gnome.FontManager"

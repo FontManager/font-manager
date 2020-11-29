@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-11-28 19:07-0500\n"
+"POT-Creation-Date: 2020-11-29 13:52-0500\n"
 "PO-Revision-Date: 2020-07-27 01:54-0400\n"
 "Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -731,14 +731,12 @@ msgid "Pictorial"
 msgstr "Iconográficos"
 
 #: src/font-manager/CellRenderer.vala:90
-#, c-format
+#, fuzzy, c-format
+#| msgid "%i Variation "
 msgid "%i Variation "
-msgstr "%i variación"
-
-#: src/font-manager/CellRenderer.vala:91
-#, c-format
-msgid "%i Variations"
-msgstr "%i variaciones"
+msgid_plural "%i Variations"
+msgstr[0] "%i variación"
+msgstr[1] "%i variación"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1464,47 +1462,44 @@ msgstr "Tibetano"
 msgid "Vietnamese"
 msgstr "Vietnamita"
 
-#: src/font-manager/web/google/PreviewPane.vala:257
+#: src/font-manager/web/google/PreviewPane.vala:256
 msgid "Update Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:257
+#: src/font-manager/web/google/PreviewPane.vala:256
 #, fuzzy
 #| msgid "Monospace Font"
 msgid "Update Font"
 msgstr "Tipo de letra monoespaciada"
 
-#: src/font-manager/web/google/PreviewPane.vala:262
+#: src/font-manager/web/google/PreviewPane.vala:261
 #, fuzzy
 #| msgid "Remove Fonts"
 msgid "Remove Family"
 msgstr "Desinstalar tipos de letra"
 
-#: src/font-manager/web/google/PreviewPane.vala:262
+#: src/font-manager/web/google/PreviewPane.vala:261
 #, fuzzy
 #| msgid "Remove Fonts"
 msgid "Remove Font"
 msgstr "Desinstalar tipos de letra"
 
-#: src/font-manager/web/google/PreviewPane.vala:267
+#: src/font-manager/web/google/PreviewPane.vala:266
 msgid "Download Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:267
+#: src/font-manager/web/google/PreviewPane.vala:266
 #, fuzzy
 #| msgid "Monospace Font"
 msgid "Download Font"
 msgstr "Tipo de letra monoespaciada"
 
-#: src/font-manager/web/google/PreviewPane.vala:277
+#: src/font-manager/web/google/PreviewPane.vala:276
 #, c-format
 msgid "%i Language Sample Available "
-msgstr ""
-
-#: src/font-manager/web/google/PreviewPane.vala:278
-#, c-format
-msgid "%i Language Samples Available"
-msgstr ""
+msgid_plural "%i Language Samples Available"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/font-manager/web/google/Weight.vala:67
 #, fuzzy
@@ -1875,6 +1870,9 @@ msgstr "%i variaciones"
 #| msgid "Language"
 msgid "Language Support"
 msgstr "Idioma"
+
+#~ msgid "%i Variations"
+#~ msgstr "%i variaciones"
 
 #~ msgid "Afrikaans"
 #~ msgstr "Afrikáans"

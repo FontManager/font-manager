@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-11-29 11:34-0500\n"
+"POT-Creation-Date: 2020-11-29 13:52-0500\n"
 "PO-Revision-Date: 2020-11-29 15:33+0300\n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -728,14 +728,13 @@ msgid "Pictorial"
 msgstr "Псевдографические"
 
 #: src/font-manager/CellRenderer.vala:90
-#, c-format
+#, fuzzy, c-format
+#| msgid "%i Variation "
 msgid "%i Variation "
-msgstr "%i вариант "
-
-#: src/font-manager/CellRenderer.vala:91
-#, c-format
-msgid "%i Variations"
-msgstr "%i вариант "
+msgid_plural "%i Variations"
+msgstr[0] "%i вариант "
+msgstr[1] "%i вариант "
+msgstr[2] "%i вариант "
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1482,14 +1481,13 @@ msgid "Download Font"
 msgstr "Загрузить шрифт"
 
 #: src/font-manager/web/google/PreviewPane.vala:276
-#, c-format
+#, fuzzy, c-format
+#| msgid "%i Language Sample Available "
 msgid "%i Language Sample Available "
-msgstr "Доступен %i языковой образец "
-
-#: src/font-manager/web/google/PreviewPane.vala:277
-#, c-format
-msgid "%i Language Samples Available"
-msgstr "Доступен %i языковой образец "
+msgid_plural "%i Language Samples Available"
+msgstr[0] "Доступен %i языковой образец "
+msgstr[1] "Доступен %i языковой образец "
+msgstr[2] "Доступен %i языковой образец "
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
@@ -1837,6 +1835,12 @@ msgstr "Вариации"
 #: src/font-manager/web/google/ui/google-font-filters.ui:523
 msgid "Language Support"
 msgstr "Поддержка языков"
+
+#~ msgid "%i Variations"
+#~ msgstr "%i вариант "
+
+#~ msgid "%i Language Samples Available"
+#~ msgstr "Доступен %i языковой образец "
 
 #~ msgid "Afrikaans"
 #~ msgstr "Африкаанс"
