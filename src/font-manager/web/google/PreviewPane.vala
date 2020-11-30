@@ -169,11 +169,15 @@ namespace FontManager.GoogleFonts {
             unmap.connect(() => {
                 if (!refresh_required)
                     return;
-                get_default_application().refresh();
+                Idle.add(() => {
+                    get_default_application().refresh();
+                    return GLib.Source.REMOVE;
+                });
             });
             entry.set_placeholder_text(preview_text);
             notify["refresh-required"].connect((obj, pspec) => {
-                main_window.model = null;
+                if (refresh_required && main_window.model != null)
+                    main_window.model = null;
             });
             notify["family"].connect((obj, pspec) => {
                 FileStatus status = family != null ? family.get_installation_status() : font.get_installation_status();

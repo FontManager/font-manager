@@ -71,7 +71,7 @@ treeview {
 
 .PreviewTileCount {
     margin: 0px;
-    border-radius: 1em 0em 0.75em 0em;
+    border-radius: 8px 0px 4px 0px;
     border-width: 0.5px;
     border-style: groove;
     color: darker(@insensitive_fg_color);

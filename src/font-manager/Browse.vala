@@ -35,6 +35,28 @@ namespace FontManager {
 
     }
 
+    public class GridListModel : Object, ListModel {
+
+        public GenericArray <Family>? items { get; set; }
+
+        public GridListModel (GenericArray <Family> items) {
+            Object(items: items);
+        }
+
+        public Type get_item_type () {
+            return typeof(Family);
+        }
+
+        public uint get_n_items () {
+            return items.length;
+        }
+
+        public Object? get_item (uint position) {
+            return items[position];
+        }
+
+    }
+
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-browse-view.ui")]
     public class Browse : Gtk.Box {
 
@@ -229,11 +251,10 @@ namespace FontManager {
 
         void update_grid () {
             flowbox.bind_model(null, null);
-            flowbox.set_visible(model != null);
             if (!grid_is_visible)
                 return;
             if (model != null) {
-                var list_model = new GLib.ListStore(typeof(Family));
+                var items = new GenericArray <Family> ();
                 double end = (current_page * MAX_TILES);
                 int start = (current_page == 1) ? 0 : (int) (end - MAX_TILES);
                 double current = start;
@@ -261,12 +282,17 @@ namespace FontManager {
                         variations.add_object_element(variation);
                     }
                     family.source_object.set_array_member("variations", variations);
-                    list_model.append(family);
+                    items.add(family);
                     valid = model.iter_next(ref iter);
                     current++;
                 }
-                flowbox.bind_model(list_model, (Gtk.FlowBoxCreateWidgetFunc) preview_tile_from_item);
-                update_page_controls();
+                var list_model = new GridListModel(items);
+                Idle.add(() => {
+                    flowbox.bind_model(list_model,
+                                       (Gtk.FlowBoxCreateWidgetFunc) preview_tile_from_item);
+                    update_page_controls();
+                    return GLib.Source.REMOVE;
+                });
             }
             flowbox.set_visible(model != null);
             return;
