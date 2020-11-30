@@ -79,8 +79,7 @@ treeview {
     background-color: alpha(@insensitive_bg_color, 0.5);
 }
 
-.CellRendererPill,
-.PreviewTile {
+.CellRendererPill {
     margin: 1px;
     border-width: 1px;
     border-style: groove;
@@ -91,7 +90,12 @@ treeview {
 }
 
 .PreviewTile {
-    border-color: alpha(darker(@borders), 0.5);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 6px;
+    color: darker(@insensitive_fg_color);
+    border-color: alpha(darker(@borders), 0.333);
+    background-color: alpha(@insensitive_bg_color, 0.5);
 }
 
 .CellRendererPill:selected {

@@ -193,10 +193,10 @@ namespace FontManager {
 
         string get_preview_label_markup (Family family) {
             uint n_variations = family.variations.get_length();
-            string result = "";
+            var result = new StringBuilder();
             for (uint i = 0; i < n_variations; i++) {
                 if (i > 0)
-                    result += "\n";
+                    result.append("\n");
                 Font variation = new Font();
                 variation.source_object = family.variations.get_object_element(i);
                 string markup = "<span fallback = \"false\" font = \"%s %i\">%s</span>";
@@ -207,11 +207,11 @@ namespace FontManager {
                     preview_text = entry.text;
                 else if (samples != null && samples.contains(variation.description))
                     preview_text = samples.lookup(variation.description);
-                result += markup.printf(variation.description,
-                                        (int) preview_size,
-                                        Markup.escape_text(preview_text));
+                result.append(markup.printf(variation.description,
+                                            (int) preview_size,
+                                            Markup.escape_text(preview_text)));
             }
-            return result;
+            return result.str;
         }
 
         [CCode (instance_pos = -1)]
