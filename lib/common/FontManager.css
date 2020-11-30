@@ -75,12 +75,8 @@ treeview {
     border-width: 0.5px;
     border-style: groove;
     color: darker(@insensitive_fg_color);
-    border-color: alpha(darker(@borders), 0.333);
+    border-color: alpha(darker(@borders), 0.9);
     background-color: alpha(@insensitive_bg_color, 0.5);
-}
-
-.PreviewTile {
-    box-shadow: alpha(@borders, 0.333) 0.25px 0.25px 0.5px 0.5px;
 }
 
 .CellRendererPill,
@@ -92,6 +88,10 @@ treeview {
     color: darker(@insensitive_fg_color);
     border-color: alpha(darker(@insensitive_bg_color), 0.25);
     background-color: alpha(@insensitive_bg_color, 0.5);
+}
+
+.PreviewTile {
+    border-color: alpha(darker(@borders), 0.5);
 }
 
 .CellRendererPill:selected {
@@ -158,7 +158,7 @@ treeview {
 }
 
 #FontManagerSubstituteList row:hover,
-#FontManagerSubstituteListRow roe:hover,
+#FontManagerSubstituteListRow row:hover,
 #FontManagerDesktopPreferences list row:hover {
     background-color: transparent;
 }

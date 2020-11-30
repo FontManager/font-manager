@@ -31,15 +31,7 @@ namespace FontManager {
 
         [GtkChild] public Gtk.Label family { get; }
         [GtkChild] public Gtk.Label count { get; }
-        [GtkChild] public Gtk.TextView preview { get; }
-
-        [GtkCallback]
-        bool on_preview_event (Gdk.Event event) {
-            if (event.type == Gdk.EventType.SCROLL)
-                return false;
-            preview.get_window(Gtk.TextWindowType.TEXT).set_cursor(null);
-            return true;
-        }
+        [GtkChild] public Gtk.Label preview { get; }
 
     }
 
@@ -229,10 +221,7 @@ namespace FontManager {
             int title_size = (int) get_desc_size() * Pango.SCALE;
             string title = markup.printf(title_size, Markup.escape_text(item.family));
             tile.family.set_markup(title);
-            Gtk.TextBuffer buffer = tile.preview.get_buffer();
-            Gtk.TextIter iter;
-            buffer.get_start_iter(out iter);
-            buffer.insert_markup(ref iter, get_preview_label_markup(item), -1);
+            tile.preview.set_markup(get_preview_label_markup(item));
             tile.count.set_text(item.variations.get_length().to_string());
             tile.show();
             return tile;
@@ -240,6 +229,7 @@ namespace FontManager {
 
         void update_grid () {
             flowbox.bind_model(null, null);
+            flowbox.set_visible(model != null);
             if (!grid_is_visible)
                 return;
             if (model != null) {
@@ -278,7 +268,7 @@ namespace FontManager {
                 flowbox.bind_model(list_model, (Gtk.FlowBoxCreateWidgetFunc) preview_tile_from_item);
                 update_page_controls();
             }
-            flowbox.queue_resize();
+            flowbox.set_visible(model != null);
             return;
         }
 

@@ -81,6 +81,7 @@ namespace FontManager.GoogleFonts {
 
         public Family? family { get; set; default = null; }
         public Font? font { get; set; default = null; }
+        public bool refresh_required { get; set; default = false; }
         public double preview_size { get; set; default = 16.0; }
         public WebKit.WebView? preview { get; set; default = null; }
         public PreviewType preview_type { get; set; default = PreviewType.WATERFALL; }
@@ -106,7 +107,6 @@ namespace FontManager.GoogleFonts {
 
         string? _preview_text = null;
         string? default_preview_text = "The quick brown fox jumps over the lazy dog.";
-        bool refresh_required = false;
         bool restore_default_preview = false;
         Font? stored_font = null;
 
@@ -169,12 +169,12 @@ namespace FontManager.GoogleFonts {
             unmap.connect(() => {
                 if (!refresh_required)
                     return;
-                Timeout.add(3500, () => {
-                    get_default_application().refresh();
-                    return GLib.Source.REMOVE;
-                });
+                get_default_application().refresh();
             });
             entry.set_placeholder_text(preview_text);
+            notify["refresh-required"].connect((obj, pspec) => {
+                main_window.model = null;
+            });
             notify["family"].connect((obj, pspec) => {
                 FileStatus status = family != null ? family.get_installation_status() : font.get_installation_status();
                 selection_changed(status);
