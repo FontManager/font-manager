@@ -57,16 +57,19 @@ namespace FontManager {
             else if (data.message == "Orthography")
                 orthography = data.progress / 3;
 
-            if (font < 0.32)
-                title.set_text(_("Updating Database — Fonts"));
-            else if (metadata < 0.32)
-                title.set_text(_("Updating Database — Metadata"));
-            else
-                title.set_text(_("Updating Database — Orthography"));
+            Idle.add(() => {
+                if (font < 0.32)
+                    title.set_text(_("Updating Database — Fonts"));
+                else if (metadata < 0.32)
+                    title.set_text(_("Updating Database — Metadata"));
+                else
+                    title.set_text(_("Updating Database — Orthography"));
 
-            double f = (font + metadata + orthography);
-            progress.set_fraction(f);
-            queue_draw();
+                double f = (font + metadata + orthography);
+                progress.set_fraction(f);
+                queue_draw();
+                return GLib.Source.REMOVE;
+            });
 
             return GLib.Source.REMOVE;
         }
@@ -303,9 +306,12 @@ namespace FontManager {
 
         public bool loading {
             set {
-                set_custom_title(value ? progress : null);
-                if (!value)
-                    progress.reset();
+                Idle.add(() => {
+                    set_custom_title(value ? progress : null);
+                    if (!value)
+                        progress.reset();
+                    return GLib.Source.REMOVE;
+                });
             }
         }
 
@@ -352,9 +358,12 @@ namespace FontManager {
 
         public bool loading {
             set {
-                set_center_widget(value ? progress : null);
-                if (!value)
-                    progress.reset();
+                Idle.add(() => {
+                    set_center_widget(value ? progress : null);
+                    if (!value)
+                        progress.reset();
+                    return GLib.Source.REMOVE;
+                });
             }
         }
 

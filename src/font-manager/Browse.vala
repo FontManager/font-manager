@@ -37,10 +37,10 @@ namespace FontManager {
 
     public class GridListModel : Object, ListModel {
 
-        public GenericArray <Family>? items { get; set; }
+        public GenericArray <Object>? items { get; private set; }
 
-        public GridListModel (GenericArray <Family> items) {
-            Object(items: items);
+        construct {
+            items = new GenericArray <Object> ();
         }
 
         public Type get_item_type () {
@@ -53,6 +53,28 @@ namespace FontManager {
 
         public Object? get_item (uint position) {
             return items[position];
+        }
+
+        public void clear () {
+            uint start = 0;
+            uint end = get_n_items();
+            items.remove_range(start, end);
+            items_changed(start, end, 0);
+            return;
+        }
+
+        public void add_item (Object item) {
+            return_if_fail(item is Family);
+            uint position = get_n_items();
+            items.add(item);
+            items_changed(position, 0, 1);
+            return;
+        }
+
+        public void remove_item (uint position) {
+            items.remove_index(position);
+            items_changed(position, 1, 0);
+            return;
         }
 
     }
@@ -96,9 +118,11 @@ namespace FontManager {
         double current_page = 0.0;
         double MAX_TILES = 25.0;
         bool grid_is_visible = false;
-        bool refresh_required = false;
+        GridListModel flowbox_model;
 
         public override void constructed () {
+            flowbox_model = new GridListModel();
+            flowbox.bind_model(flowbox_model, (Gtk.FlowBoxCreateWidgetFunc) preview_tile_from_item);
             var renderer = new CellRendererTitle();
             treeview.insert_column_with_data_func(0, "", renderer, cell_data_func);
             treeview.get_selection().set_mode(Gtk.SelectionMode.NONE);
@@ -119,21 +143,6 @@ namespace FontManager {
                     n_pages = Math.ceil(model.iter_n_children(null) / MAX_TILES);
                 update_page_controls();
             });
-            db.update_started.connect(() => { refresh_required = true; });
-            db.status_changed.connect(() => {
-                if (refresh_required && db.ready(DatabaseType.METADATA)) {
-                    refresh_required = false;
-                    if (!grid_is_visible)
-                        treeview.queue_draw();
-                }
-            });
-            db.update_complete.connect(() => {
-                if (refresh_required) {
-                    refresh_required = false;
-                    if (!grid_is_visible)
-                        treeview.queue_draw();
-                }
-            });
             base.constructed();
             return;
         }
@@ -150,6 +159,7 @@ namespace FontManager {
         void on_map () {
             grid_is_visible = true;
             update_grid();
+            treeview.queue_draw();
             return;
         }
 
@@ -157,6 +167,7 @@ namespace FontManager {
         void on_unmap () {
             grid_is_visible = false;
             update_grid();
+            treeview.queue_draw();
             return;
         }
 
@@ -237,7 +248,8 @@ namespace FontManager {
         }
 
         [CCode (instance_pos = -1)]
-        Gtk.Widget preview_tile_from_item (Family item) {
+        Gtk.Widget preview_tile_from_item (Object _item) {
+            var item = (Family) _item;
             var tile = new FontPreviewTile();
             string markup = "<span size=\"%i\"><b>%s</b></span>";
             int title_size = (int) get_desc_size() * Pango.SCALE;
@@ -250,11 +262,10 @@ namespace FontManager {
         }
 
         void update_grid () {
-            flowbox.bind_model(null, null);
+            flowbox_model.clear();
             if (!grid_is_visible)
                 return;
             if (model != null) {
-                var items = new GenericArray <Family> ();
                 double end = (current_page * MAX_TILES);
                 int start = (current_page == 1) ? 0 : (int) (end - MAX_TILES);
                 double current = start;
@@ -263,38 +274,13 @@ namespace FontManager {
                 while (valid && current < end) {
                     Value val;
                     model.get_value(iter, FontModelColumn.OBJECT, out val);
-                    var temp = (Family) val.get_object();
-                    Family family = new Family();
-                    family.source_object = new Json.Object();
-                    family.source_object.set_string_member("description", temp.description);
-                    family.source_object.set_string_member("family", temp.family);
-                    int n_children = model.iter_n_children(iter);
-                    Json.Array variations = new Json.Array.sized(n_children);
-                    Gtk.TreeIter child;
-                    for (int i = 0; i < n_children; i++) {
-                        model.iter_nth_child(out child, iter, i);
-                        Value _val;
-                        model.get_value(child, FontModelColumn.OBJECT, out _val);
-                        var _var = (Font) _val.get_object();
-                        var variation = new Json.Object();
-                        variation.set_string_member("style", _var.style);
-                        variation.set_string_member("description", _var.description);
-                        variations.add_object_element(variation);
-                    }
-                    family.source_object.set_array_member("variations", variations);
-                    items.add(family);
+                    flowbox_model.add_item(val.get_object());
                     valid = model.iter_next(ref iter);
                     current++;
+                    val.unset();
                 }
-                var list_model = new GridListModel(items);
-                Idle.add(() => {
-                    flowbox.bind_model(list_model,
-                                       (Gtk.FlowBoxCreateWidgetFunc) preview_tile_from_item);
-                    update_page_controls();
-                    return GLib.Source.REMOVE;
-                });
+                update_page_controls();
             }
-            flowbox.set_visible(model != null);
             return;
         }
 
@@ -309,6 +295,8 @@ namespace FontManager {
                              Gtk.CellRenderer cell,
                              Gtk.TreeModel model,
                              Gtk.TreeIter treeiter) {
+            if (grid_is_visible)
+                return;
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             Object obj = val.get_object();

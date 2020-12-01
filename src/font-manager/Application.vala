@@ -275,9 +275,10 @@ namespace FontManager {
             return exit_status;
         }
 
-        async void refresh_async () {
-            SourceFunc callback = refresh_async.callback;
-            ThreadFunc <bool> run_in_thread = () => {
+        void refresh_async () {
+            ThreadFunc <void> run_in_thread = () => {
+                if (main_window != null)
+                    Idle.add(() => { main_window.model = null; return GLib.Source.REMOVE; });
                 enable_user_font_configuration(false);
                 update_font_configuration();
                 try {
@@ -288,19 +289,15 @@ namespace FontManager {
                 Json.Object available_fonts = get_available_fonts(null);
                 db.update();
                 Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
-                if (main_window != null)
-                    main_window.model = null;
                 font_model.source_array = sorted_fonts;
-                if (main_window != null)
-                    main_window.model = font_model;
                 available_font_families.clear();
                 foreach (string family in available_fonts.get_members())
                     available_font_families.add(family);
-                Idle.add((owned) callback);
-                return true;
+                if (main_window != null)
+                    Idle.add(() => { main_window.model = font_model; return GLib.Source.REMOVE; });
+                return;
             };
-            new Thread <bool> ("refresh_async", (owned) run_in_thread);
-            yield;
+            new Thread <void> ("refresh_async", (owned) run_in_thread);
             return;
         }
 
@@ -309,7 +306,7 @@ namespace FontManager {
             if (update_in_progress)
                 return;
             update_in_progress = true;
-            refresh_async.begin((obj, res) => { refresh_async.end(res); });
+            refresh_async();
             return;
         }
 
