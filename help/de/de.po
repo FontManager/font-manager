@@ -3,10 +3,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2020-11-29 13:54-0500\n"
-"PO-Revision-Date: 2020-12-02 01:24+0000\n"
-"Last-Translator: migmedia <coding@migmedia.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
-"manager-help-docs/de/>\n"
+"PO-Revision-Date: 2020-12-03 00:36+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +35,7 @@ msgid ""
 "<app>Font Manager</app> automatically categorizes your fonts based on "
 "various properties."
 msgstr ""
-"<app>Font Manager</app> kategorisiert Ihre Schriftarten automatisch an hand "
+"<app>Font Manager</app> kategorisiert deine Schriftarten automatisch anhand "
 "mehrerer Eigenschaften."
 
 #. (itstool) path: item/title
@@ -65,35 +65,30 @@ msgstr "Anwender"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
-#, fuzzy
 msgid "Fonts available only to you."
-msgstr "Schriftarten, die nur für Sie verfügbar sind."
+msgstr "Nur für Dich verfügbare Schriften."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
-#, fuzzy
 msgid "Family Kind"
 msgstr "Familienart"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
-#, fuzzy
 msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
 msgstr ""
-"Sortiert nach Familienart - Erfordert, dass Panose-Informationen in "
-"Schriftmetadaten vorhanden sind."
+"Sortiert nach Familienart – Erfordert Panose-Informationen in "
+"Schriftmetadaten."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
-#, fuzzy
 msgid "Width"
 msgstr "Breite"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
-#, fuzzy
 msgid "Sorted by font width property."
 msgstr "Sortiert nach Laufweite."
 
@@ -109,7 +104,6 @@ msgstr "Sortiert nach Schriftschnitt."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
-#, fuzzy
 msgid "Slant"
 msgstr "Neigung"
 
@@ -157,7 +151,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "Dateityp"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
@@ -167,17 +161,17 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "Unsortiert"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "Schriftarten, die in keiner deiner Sammlungen vorhanden sind."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktiviert"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
@@ -237,7 +231,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "Kollektionen"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
@@ -600,7 +594,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "Quellen"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
@@ -931,7 +925,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11
 msgid "Language Support"
-msgstr ""
+msgstr "Sprachunterstützung"
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:13
