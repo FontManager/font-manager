@@ -25,16 +25,17 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-11-29 13:52-0500\n"
-"PO-Revision-Date: 2019-10-03 02:38-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2020-12-02 12:45+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 4.6.2\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -115,17 +116,17 @@ msgstr "Instaliraj"
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr ""
+msgstr "Instaliraj odabrani font"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr ""
+msgstr "Instaliraj odabrane fontove"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr ""
+msgstr "Svojstva fonta"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:106
@@ -154,7 +155,7 @@ msgstr "Svijetli"
 
 #: lib/common/font-manager-fontconfig.c:832
 msgid "Semi-Light"
-msgstr ""
+msgstr "Polu-Svijetli"
 
 #: lib/common/font-manager-fontconfig.c:834
 msgid "Book"
@@ -649,7 +650,7 @@ msgstr ""
 
 #: src/font-manager/About.vala:67
 msgid "translator-credits"
-msgstr "Milo Ivir <mail@milotype.de>, 2019."
+msgstr "Milo Ivir <mail@milotype.de>, 2019., 2020."
 
 #: src/font-manager/Categories.vala:133 src/font-manager/Orthography.vala:201
 msgid "Update in progress"
@@ -740,9 +741,9 @@ msgstr "Slikovni"
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%i varijanta "
+msgstr[1] "%i varijante "
+msgstr[2] "%i varijanta "
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1286,215 +1287,202 @@ msgstr ""
 
 #: src/font-manager/web/google/FontList.vala:56
 msgid "Case insensitive search of family names."
-msgstr ""
+msgstr "Pretraživanje imena bez razlikovanja velikih/malih slova."
 
 #: src/font-manager/web/google/GoogleFonts.vala:127
 msgid "Error procesing data"
-msgstr ""
+msgstr "Greška u obradi podataka"
 
 #: src/font-manager/web/google/GoogleFonts.vala:131
 msgid "Network Error"
-msgstr ""
+msgstr "Mrežna greška"
 
 #: src/font-manager/web/google/GoogleFonts.vala:132
 msgid "Please check your network settings"
-msgstr ""
+msgstr "Provjeri postavke mreže"
 
 #: src/font-manager/web/google/GoogleFonts.vala:134
 msgid "Client Error"
-msgstr ""
+msgstr "Greška klijenta"
 
 #: src/font-manager/web/google/GoogleFonts.vala:135
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
+"Pokušaj ponovo pokrenuti program. Ako problem ne nestane, prijavi grešku."
 
 #: src/font-manager/web/google/GoogleFonts.vala:138
 msgid "Server Error"
-msgstr ""
+msgstr "Greška poslužitelja"
 
 #: src/font-manager/web/google/GoogleFonts.vala:208
 msgid "Network Offline"
-msgstr ""
+msgstr "Mreža isključena"
 
 #: src/font-manager/web/google/GoogleFonts.vala:209
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
-msgstr ""
+msgstr "Za pristup katalogu Google fontova potrebna je aktivna internetska veza"
 
 #: src/font-manager/web/google/Language.vala:32
 msgid "Arabic"
-msgstr ""
+msgstr "Arapski"
 
 #: src/font-manager/web/google/Language.vala:33
 msgid "Bengali"
-msgstr ""
+msgstr "Bengalski"
 
 #: src/font-manager/web/google/Language.vala:34
 msgid "Chinese (Hong Kong)"
-msgstr ""
+msgstr "Kineski (Hong Kong)"
 
 #: src/font-manager/web/google/Language.vala:35
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Kineski (pojednostavljeni)"
 
 #: src/font-manager/web/google/Language.vala:36
 msgid "Chinese (Traditional)"
-msgstr ""
+msgstr "Kineski (tradicionalni)"
 
 #: src/font-manager/web/google/Language.vala:37
 msgid "Cyrillic"
-msgstr ""
+msgstr "Ćirilica"
 
 #: src/font-manager/web/google/Language.vala:38
 msgid "Cyrillic Extended"
-msgstr ""
+msgstr "Ćirilica, proširena"
 
 #: src/font-manager/web/google/Language.vala:39
 msgid "Devanagari"
-msgstr ""
+msgstr "Devanagari"
 
 #: src/font-manager/web/google/Language.vala:40
 msgid "Greek"
-msgstr ""
+msgstr "Grčki"
 
 #: src/font-manager/web/google/Language.vala:41
 msgid "Greek Extended"
-msgstr ""
+msgstr "Grčki, prošireni"
 
 #: src/font-manager/web/google/Language.vala:42
 msgid "Gujarati"
-msgstr ""
+msgstr "Gudžaratski"
 
 #: src/font-manager/web/google/Language.vala:43
 msgid "Gurmukhi"
-msgstr ""
+msgstr "Gurmukijski"
 
 #: src/font-manager/web/google/Language.vala:44
 msgid "Hebrew"
-msgstr ""
+msgstr "Hebrejski"
 
 #: src/font-manager/web/google/Language.vala:45
 msgid "Japanese"
-msgstr ""
+msgstr "Japanski"
 
 #: src/font-manager/web/google/Language.vala:46
 msgid "Kannada"
-msgstr ""
+msgstr "Kannada"
 
 #: src/font-manager/web/google/Language.vala:47
 msgid "Khmer"
-msgstr ""
+msgstr "Kmerski"
 
 #: src/font-manager/web/google/Language.vala:48
 msgid "Korean"
-msgstr ""
+msgstr "Korejski"
 
 #: src/font-manager/web/google/Language.vala:49
 msgid "Latin"
-msgstr ""
+msgstr "Latinica"
 
 #: src/font-manager/web/google/Language.vala:50
 msgid "Latin Extended"
-msgstr ""
+msgstr "Latinica, prošireno"
 
 #: src/font-manager/web/google/Language.vala:51
 msgid "Malayalam"
-msgstr ""
+msgstr "Malajalamski"
 
 #: src/font-manager/web/google/Language.vala:52
 msgid "Myanmar"
-msgstr ""
+msgstr "Mijanmar"
 
 #: src/font-manager/web/google/Language.vala:53
 msgid "Oriya"
-msgstr ""
+msgstr "Orijski"
 
 #: src/font-manager/web/google/Language.vala:54
 msgid "Sinhala"
-msgstr ""
+msgstr "Sinhaleški"
 
 #: src/font-manager/web/google/Language.vala:55
 msgid "Tamil"
-msgstr ""
+msgstr "Tamilski"
 
 #: src/font-manager/web/google/Language.vala:56
 msgid "Telugu"
-msgstr ""
+msgstr "Teluški"
 
 #: src/font-manager/web/google/Language.vala:57
 msgid "Thai"
-msgstr ""
+msgstr "Tajlandski"
 
 #: src/font-manager/web/google/Language.vala:58
 msgid "Tibetan"
-msgstr ""
+msgstr "Tibetski"
 
 #: src/font-manager/web/google/Language.vala:59
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vijetnamski"
 
 #: src/font-manager/web/google/PreviewPane.vala:256
 msgid "Update Family"
-msgstr ""
+msgstr "Aktualiziraj obitelj"
 
 #: src/font-manager/web/google/PreviewPane.vala:256
-#, fuzzy
-#| msgid "Monospace Font"
 msgid "Update Font"
-msgstr "Neproporcionalni font"
+msgstr "Aktualiziraj font"
 
 #: src/font-manager/web/google/PreviewPane.vala:261
-#, fuzzy
-#| msgid "Remove Fonts"
 msgid "Remove Family"
-msgstr "Ukloni fontove"
+msgstr "Ukloni obitelj"
 
 #: src/font-manager/web/google/PreviewPane.vala:261
-#, fuzzy
-#| msgid "Remove Fonts"
 msgid "Remove Font"
-msgstr "Ukloni fontove"
+msgstr "Ukloni font"
 
 #: src/font-manager/web/google/PreviewPane.vala:266
 msgid "Download Family"
-msgstr ""
+msgstr "Preuzmi obitelj"
 
 #: src/font-manager/web/google/PreviewPane.vala:266
-#, fuzzy
-#| msgid "Monospace Font"
 msgid "Download Font"
-msgstr "Neproporcionalni font"
+msgstr "Preuzmi font"
 
 #: src/font-manager/web/google/PreviewPane.vala:276
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%i primjerak jezika dostupan "
+msgstr[1] "%i primjerka jezika dostupna "
+msgstr[2] "%i primjeraka jezika dostupni "
 
 #: src/font-manager/web/google/Weight.vala:67
-#, fuzzy
-#| msgid "Ultra-Light"
 msgid "ExtraLight"
 msgstr "Ultra-Svijetli"
 
 #: src/font-manager/web/google/Weight.vala:75
-#, fuzzy
-#| msgid "Semi-Bold"
 msgid "SemiBold"
 msgstr "Polu-Debeli"
 
 #: src/font-manager/web/google/Weight.vala:79
-#, fuzzy
-#| msgid "Ultra-Bold"
 msgid "ExtraBold"
 msgstr "Ultra-Debeli"
 
 #: src/font-manager/web/google/Weight.vala:81
 msgid "Black"
-msgstr ""
+msgstr "Tamni"
 
 #: src/font-viewer/MainWindow.vala:24
 msgid "Preview font files before installing them."
@@ -1609,42 +1597,32 @@ msgid "90"
 msgstr "90"
 
 #: src/font-manager/ui/font-manager-main-window.ui:195
-#, fuzzy
-#| msgid "Remove Fonts"
 msgid "Google Fonts"
-msgstr "Ukloni fontove"
+msgstr "Google fontovi"
 
 #: src/font-manager/ui/font-manager-orthography-list.ui:86
 msgid "Clear selected filter"
 msgstr "Isprazni odabrani filtar"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:26
-#, fuzzy
-#| msgid "Created : %s"
 msgid "Created : "
-msgstr "Stvoreno: %s"
+msgstr "Stvoreno: "
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:63
 msgid "Some date and time"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:30
-#, fuzzy
-#| msgid "Remove selected font from comparison"
 msgid "Save current comparison"
-msgstr "Ukloni odabrani font iz usporedbe"
+msgstr "Spremi trenutačnu usporedbu"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:60
-#, fuzzy
-#| msgid "Remove selected font from comparison"
 msgid "Remove selected comparison"
-msgstr "Ukloni odabrani font iz usporedbe"
+msgstr "Ukloni odabranu usporedbu"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:90
-#, fuzzy
-#| msgid "Remove selected font from comparison"
 msgid "Restore selected comparison"
-msgstr "Ukloni odabrani font iz usporedbe"
+msgstr "Obnovi odabranu usporedbu"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:14
 msgid "General"
@@ -1757,86 +1735,80 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:31
 msgid "Comment"
-msgstr ""
+msgstr "Komentar"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:47
 msgid "Executable"
-msgstr ""
+msgstr "Izvršna datoteka"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:63
 msgid "Arguments"
-msgstr ""
+msgstr "Varijable"
 
 #: src/font-manager/ui/font-manager-user-data.ui:73
 msgid "Font Configuration"
-msgstr ""
+msgstr "Konfiguracija fonta"
 
 #: src/font-manager/ui/font-manager-user-data.ui:102
 msgid "Font Collections"
-msgstr ""
+msgstr "Zbirke fontova"
 
 #: src/font-manager/ui/font-manager-user-data.ui:160
 msgid "Installed Fonts"
-msgstr ""
+msgstr "Intalirani fontovi"
 
 #: src/font-manager/ui/font-manager-user-data.ui:189
 msgid "Custom Actions"
-msgstr ""
+msgstr "Prilagođene radnje"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
-msgstr ""
+msgstr "Najnoviji"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:54
 msgid "Most Popular"
-msgstr ""
+msgstr "Najpopularniji"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:55
 msgid "Trending"
-msgstr ""
+msgstr "U trendu"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:69
 msgid "Sort Order"
-msgstr ""
+msgstr "Redoslijed"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:148
 msgid "Serif"
-msgstr ""
+msgstr "Serifni"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:176
 msgid "Sans Serif"
-msgstr ""
+msgstr "Bezserifni"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:232
-#, fuzzy
-#| msgid "Hinting"
 msgid "Handwriting"
-msgstr "Optimiranje prikaza"
+msgstr "Rukopis"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:282
-#, fuzzy
-#| msgid "Categories"
 msgid "Category"
-msgstr "Kategorije"
+msgstr "Kategorija"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:374
 msgid "4+"
-msgstr ""
+msgstr "4+"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:393
 msgid "8+"
-msgstr ""
+msgstr "8+"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:412
 msgid "12+"
-msgstr ""
+msgstr "12+"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:443
 msgid "Variations"
-msgstr ""
+msgstr "Varijante"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:523
-#, fuzzy
-#| msgid "Language"
 msgid "Language Support"
-msgstr "Jezik"
+msgstr "Jezična podrška"
