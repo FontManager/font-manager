@@ -69,7 +69,10 @@ namespace FontManager {
             try {
                 Database db = get_database(db_type);
                 foreach (string language in selected) {
+                    var pref_loc = Intl.setlocale(LocaleCategory.ALL, "");
+                    Intl.setlocale(LocaleCategory.ALL, "C");
                     string _sql_ = sql.printf(language, coverage);
+                    Intl.setlocale(LocaleCategory.ALL, pref_loc);
                     get_matching_families_and_fonts(db, families, descriptions, _sql_);
                     Idle.add(update.callback);
                     yield;
