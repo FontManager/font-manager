@@ -19,15 +19,16 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016.
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 # migmedia <coding@migmedia.de>, 2020.
+# Milo Ivir <mail@milotype.de>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-11-29 13:52-0500\n"
-"PO-Revision-Date: 2020-12-02 01:24+0000\n"
-"Last-Translator: migmedia <coding@migmedia.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/de/>\n"
+"PO-Revision-Date: 2020-12-03 00:36+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -394,13 +395,11 @@ msgstr "Stil"
 
 #: lib/common/font-manager-properties-pane.c:83
 #: src/font-manager/Categories.vala:390
-#, fuzzy
 msgid "Width"
 msgstr "Breite"
 
 #: lib/common/font-manager-properties-pane.c:84
 #: src/font-manager/Categories.vala:392
-#, fuzzy
 msgid "Slant"
 msgstr "Neigung"
 
@@ -662,7 +661,7 @@ msgid "translator-credits"
 msgstr ""
 "PF4Public\n"
 "Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Milo Ivir <mail@milotype.de>, 2019"
+"Milo Ivir <mail@milotype.de>, 2019, 2020"
 
 #: src/font-manager/Categories.vala:133 src/font-manager/Orthography.vala:201
 msgid "Update in progress"
@@ -717,7 +716,6 @@ msgid "Fonts available to all users"
 msgstr "Für alle Benutzer verfügbare Schriften"
 
 #: src/font-manager/Categories.vala:421
-#, fuzzy
 msgid "Family Kind"
 msgstr "Familienart"
 
