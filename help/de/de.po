@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2020-11-29 13:54-0500\n"
 "PO-Revision-Date: 2020-12-03 00:36+0000\n"
-"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Last-Translator: migmedia <coding@migmedia.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/de/>\n"
 "Language: de\n"
@@ -139,7 +139,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "Anbieter"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -147,6 +147,8 @@ msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
 msgstr ""
+"Sortiert nach Schriftartenanbieter — Erfordert Anbieterinformationen in den "
+"Schriftarten-Metadaten."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
