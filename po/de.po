@@ -26,7 +26,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-11-29 13:52-0500\n"
 "PO-Revision-Date: 2020-12-03 00:36+0000\n"
-"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Last-Translator: migmedia <coding@migmedia.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/de/>\n"
 "Language: de\n"
@@ -420,7 +420,7 @@ msgstr "Version"
 #: lib/common/font-manager-properties-pane.c:88
 #: src/font-manager/Categories.vala:398
 msgid "Vendor"
-msgstr "Hersteller"
+msgstr "Anbieter"
 
 #: lib/common/font-manager-properties-pane.c:89
 msgid "FileType"
