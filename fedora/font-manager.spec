@@ -1,6 +1,6 @@
 %global MajorVersion 0
 %global MinorVersion 8
-%global PatchVersion 1
+%global PatchVersion 2
 %global build_timestamp %{lua: print(os.date("%Y%m%d"))}
 %global DBusName org.gnome.FontManager
 %global DBusName2 org.gnome.FontViewer
@@ -141,5 +141,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_libdir}/thunarx-3/thunar-%{name}.so
 
 %changelog
-* Tue Dec 1 2020 JerryCasiano <JerryCasiano@gmail.com> 0.8.1-1
+* Tue Dec 1 2020 JerryCasiano <JerryCasiano@gmail.com> 0.8.2-1
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.

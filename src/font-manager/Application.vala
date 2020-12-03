@@ -276,7 +276,7 @@ namespace FontManager {
         }
 
         void refresh_async () {
-            ThreadFunc <void> run_in_thread = () => {
+            ThreadFunc <bool> run_in_thread = () => {
                 if (main_window != null)
                     Idle.add(() => { main_window.model = null; return GLib.Source.REMOVE; });
                 enable_user_font_configuration(false);
@@ -295,9 +295,9 @@ namespace FontManager {
                     available_font_families.add(family);
                 if (main_window != null)
                     Idle.add(() => { main_window.model = font_model; return GLib.Source.REMOVE; });
-                return;
+                return true;
             };
-            new Thread <void> ("refresh_async", (owned) run_in_thread);
+            new Thread <bool> ("refresh_async", (owned) run_in_thread);
             return;
         }
 

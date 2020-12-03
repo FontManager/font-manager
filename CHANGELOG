@@ -1,3 +1,8 @@
+0.8.1 -> 0.8.2
+
+- Revert change incompatible with older Vala versions
+- Include latest translation updates
+
 0.8.0 -> 0.8.1
 
 - Make WebKit and libsoup optional - #137
