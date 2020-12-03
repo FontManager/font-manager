@@ -45,7 +45,8 @@ msgstr "Font Manager"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr "Jednostavan program za upravljanje fontovima u Gtk+ desktop okruženjima"
+msgstr ""
+"Jednostavan program za upravljanje fontovima u Gtk+ desktop okruženjima"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
@@ -1102,8 +1103,8 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
-"Odaberi „Spremi” za generiranje konfiguracijske datoteke iz gornjih postavki."
-"\n"
+"Odaberi „Spremi” za generiranje konfiguracijske datoteke iz gornjih "
+"postavki.\n"
 "\n"
 "Odaberi „Odbaci” za uklanjanje konfiguracijske datoteke i vraćanje na "
 "standardne postavke.\n"
@@ -1345,7 +1346,8 @@ msgstr "Mreža isključena"
 #: src/font-manager/web/google/GoogleFonts.vala:209
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
-msgstr "Za pristup katalogu Google fontova potrebna je aktivna internetska veza"
+msgstr ""
+"Za pristup katalogu Google fontova potrebna je aktivna internetska veza"
 
 #: src/font-manager/web/google/Language.vala:32
 msgid "Arabic"
@@ -1592,7 +1594,8 @@ msgstr "Odbaci"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:30
 msgid "Running applications may require a restart to reflect any changes."
-msgstr "Za primjenu promjena aktivni programi se možda moraju ponovo pokrenuti."
+msgstr ""
+"Za primjenu promjena aktivni programi se možda moraju ponovo pokrenuti."
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:40
 msgid "Save"
