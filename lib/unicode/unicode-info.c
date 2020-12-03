@@ -567,6 +567,7 @@ unicode_unichar_to_printable_utf8 (gunichar uc, gchar *outbuf)
   if (! unicode_unichar_validate (uc) || (! unicode_unichar_isgraph (uc)
       && g_unichar_type (uc) != G_UNICODE_PRIVATE_USE))
     return 0;
+  /* XXX : https://github.com/FontManager/font-manager/issues/143 */
   //else if (g_unichar_type (uc) == G_UNICODE_SPACING_MARK
       //|| g_unichar_type (uc) == G_UNICODE_ENCLOSING_MARK
       //|| g_unichar_type (uc) == G_UNICODE_NON_SPACING_MARK)

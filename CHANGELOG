@@ -1,3 +1,15 @@
+0.8.0 -> 0.8.1
+
+- Make WebKit and libsoup optional - #137
+
+- Fix issue when building with --buildtype=release - #136
+
+- Fix GF preview issue due to use of localized values in html - #135 / #138
+
+- Fix crash when downloading fonts - #151
+
+- Translation updates and bugfixes thanks to @PF4Public - #144
+
 0.7.9 -> 0.8.0
 
 - Fix FTBFS with Vala 0.50+ - #134
