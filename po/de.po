@@ -18,20 +18,23 @@
 # Author:
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016.
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
+# migmedia <coding@migmedia.de>, 2020.
+# Milo Ivir <mail@milotype.de>, 2020.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-11-29 13:52-0500\n"
-"PO-Revision-Date: 2020-11-29 22:21+0300\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2020-12-03 00:36+0000\n"
+"Last-Translator: migmedia <coding@migmedia.de>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
+"manager/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -403,12 +406,12 @@ msgstr "Neigung"
 #: lib/common/font-manager-properties-pane.c:85
 #: src/font-manager/Categories.vala:391
 msgid "Weight"
-msgstr "Stärke"
+msgstr "Strichstärke"
 
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:393
 msgid "Spacing"
-msgstr "Dickte"
+msgstr "Laufweite"
 
 #: lib/common/font-manager-properties-pane.c:87
 msgid "Version"
@@ -417,7 +420,7 @@ msgstr "Version"
 #: lib/common/font-manager-properties-pane.c:88
 #: src/font-manager/Categories.vala:398
 msgid "Vendor"
-msgstr "Hersteller"
+msgstr "Anbieter"
 
 #: lib/common/font-manager-properties-pane.c:89
 msgid "FileType"
@@ -658,7 +661,7 @@ msgid "translator-credits"
 msgstr ""
 "PF4Public\n"
 "Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Milo Ivir <mail@milotype.de>, 2019"
+"Milo Ivir <mail@milotype.de>, 2019, 2020"
 
 #: src/font-manager/Categories.vala:133 src/font-manager/Orthography.vala:201
 msgid "Update in progress"
@@ -1026,7 +1029,7 @@ msgstr "Schriften ohne Kollektionszugehörigkeit"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr "Benutzer"
+msgstr "Anwender"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "Fonts available only to you"
