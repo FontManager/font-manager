@@ -1,6 +1,6 @@
 app-id: org.gnome.FontManager
 runtime: org.gnome.Platform
-runtime-version: 'master'
+runtime-version: '3.38'
 sdk: org.gnome.Sdk
 
 command: font-manager
@@ -9,6 +9,7 @@ finish-args:
   - --socket=wayland
   - --socket=fallback-x11
   - --share=ipc
+  - --share=network
 
   # XDG Data/Fonts location
   - --filesystem=xdg-data/fonts:create
@@ -32,5 +33,5 @@ modules:
       - -Dreproducible=true
     sources:
       - type: git
-        url: https://github.com/FontManager/font-manager.git
+        path: .
 

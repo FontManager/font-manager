@@ -40,6 +40,7 @@ namespace FontManager.GoogleFonts {
         [GtkChild] Gtk.Paned filter_pane;
         [GtkChild] PreviewPane preview_pane;
 
+        bool cache_checked = false;
         bool _connected_ = false;
         bool _visible_ = false;
         uint http_status = Soup.Status.OK;
@@ -124,7 +125,13 @@ namespace FontManager.GoogleFonts {
                     font_list_pane.select_first_row();
                     font_list_pane.place_holder.hide();
                 } catch (Error e) {
-                    show_http_status(_("Error procesing data"), e.message, null, "dialog-error-symbolic");
+                    if (cache_checked)
+                        show_http_status(_("Error procesing data"), e.message, null, "dialog-error-symbolic");
+                    else
+                        update_font_list_cache.begin((obj, res) => {
+                            update_font_list_cache.end(res);
+                            populate_font_model();
+                        });
                 }
             } else {
                 if (http_status > 0 && http_status < 100) {
@@ -194,12 +201,14 @@ namespace FontManager.GoogleFonts {
                     DateTime created = new DateTime.from_unix_local((int64) ctime);
                     if (now.difference(created) > TimeSpan.DAY)
                         update_font_list_cache.begin((obj, res) => { update_font_list_cache.end(res); });
+                    cache_checked = true;
                     return;
                 } catch (Error e) {
                     warning("Failed to query file information : %s : %s",  cache, e.message);
                 }
             }
             update_font_list_cache.begin((obj, res) => { update_font_list_cache.end(res); });
+            cache_checked = true;
             return;
         }
 

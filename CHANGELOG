@@ -1,3 +1,9 @@
+0.8.2 -> 0.8.3
+
+- Fixes an issue where if a network connection is not available at startup
+  Google Fonts information will never be updated. Flatpak builds hit this issue
+  everytime. Regular installations can simply restart to work around this bug.
+
 0.8.1 -> 0.8.2
 
 - Revert change incompatible with older Vala versions
