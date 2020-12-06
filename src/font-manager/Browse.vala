@@ -131,7 +131,6 @@ namespace FontManager {
             fontscale.bind_property("adjustment", this, "adjustment", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             adjustment.value_changed.connect(() => {
                 treeview.get_column(0).queue_resize();
-                treeview.queue_draw();
                 update_grid();
             });
             notify["model"].connect(() => {
@@ -147,32 +146,42 @@ namespace FontManager {
             return;
         }
 
+        public void restore_state (GLib.Settings settings) {
+            preview_size = settings.get_double("browse-font-size");
+            entry.text = settings.get_string("browse-preview-text");
+            mode = (BrowseMode) settings.get_enum("browse-mode");
+            treeview.get_column(0).queue_resize();
+            mode_selected.connect((m) => { settings.set_enum("browse-mode", (int) m); });
+            settings.bind("browse-font-size", this, "preview-size", SettingsBindFlags.DEFAULT);
+            settings.bind("browse-preview-text", entry, "text", SettingsBindFlags.DEFAULT);
+            return;
+        }
+
         [GtkCallback]
         void on_entry_changed () {
             treeview.get_column(0).queue_resize();
-            treeview.queue_draw();
             update_grid();
             return;
         }
 
         [GtkCallback]
-        void on_map () {
+        void on_grid_map () {
             grid_is_visible = true;
             update_grid();
-            treeview.queue_draw();
+            treeview.get_column(0).queue_resize();
             return;
         }
 
         [GtkCallback]
-        void on_unmap () {
+        void on_grid_unmap () {
             grid_is_visible = false;
             update_grid();
-            treeview.queue_draw();
+            treeview.get_column(0).queue_resize();
             return;
         }
 
         [GtkCallback]
-        void on_click (Gtk.Button button) {
+        void on_mode_button_click (Gtk.Button button) {
             browse_stack.set_visible_child_name(button.name);
             page_controls.set_visible(button.name == "grid");
             mode_selected(button.name == "grid" ? BrowseMode.GRID : BrowseMode.LIST);

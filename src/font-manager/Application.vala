@@ -21,16 +21,13 @@
 namespace FontManager {
 
     public static DatabaseProxy? db = null;
-    public static GLib.Settings? settings = null;
     public static FontManager.Reject? reject = null;
     public static FontModel? font_model = null;
     public static MainWindow? main_window = null;
-    public static StringSet available_font_families = null;
     public static StringSet temp_files = null;
 
     internal void clear_resources () {
         clear_application_fonts();
-        settings = null;
         reject = null;
         if (temp_files != null)
             foreach (string path in temp_files)
@@ -44,6 +41,10 @@ namespace FontManager {
 
         [DBus (visible = false)]
         public bool update_in_progress { get; private set; default = false; }
+        [DBus (visible = false)]
+        public GLib.Settings? settings { get; private set; default = null; }
+        [DBus (visible = false)]
+        public StringSet? available_families { get; private set; default = null; }
 
         const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
@@ -68,8 +69,7 @@ namespace FontManager {
 
         public override void startup () {
             base.startup();
-            settings = get_gsettings(BUS_ID);
-            available_font_families = new StringSet();
+            available_families = new StringSet();
             temp_files = new StringSet();
             reject = new Reject();
             reject.load();
@@ -88,6 +88,11 @@ namespace FontManager {
             });
             const string? [] accels = {"<Ctrl>q", null };
             set_accels_for_action("app.quit", accels);
+            settings = get_gsettings(BUS_ID);
+            Gtk.Settings gtk = Gtk.Settings.get_default();
+            gtk.gtk_application_prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
+            gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
+            gtk.gtk_dialogs_use_header = settings.get_boolean("use-csd");
             return;
         }
 
@@ -290,9 +295,9 @@ namespace FontManager {
                 db.update();
                 Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
                 font_model.source_array = sorted_fonts;
-                available_font_families.clear();
+                available_families.clear();
                 foreach (string family in available_fonts.get_members())
-                    available_font_families.add(family);
+                    available_families.add(family);
                 if (main_window != null)
                     Idle.add(() => { main_window.model = font_model; return GLib.Source.REMOVE; });
                 return true;

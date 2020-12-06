@@ -124,6 +124,7 @@ namespace FontManager {
         Disabled? disabled = null;
         Unsorted? unsorted = null;
         LanguageFilter? language_filter = null;
+        GLib.Settings? settings = null;
 
 #if HAVE_WEBKIT
         [GtkChild] Gtk.Overlay web_pane;
@@ -131,6 +132,7 @@ namespace FontManager {
 
         public MainWindow () {
             Object(title: About.DISPLAY_NAME, icon_name: About.ICON);
+            settings = get_default_application().settings;
             initialize_preference_pane(preference_pane);
 
 #if HAVE_WEBKIT
@@ -611,8 +613,6 @@ namespace FontManager {
             if (settings == null)
                 return;
 
-            settings.delay();
-
             configure_event.connect((_w, /* Gdk.EventConfigure */ e) => {
                 /* Size and position provided by event is invalid on Wayland */
                 int w, h, x, y;
@@ -631,19 +631,12 @@ namespace FontManager {
                 settings.set_enum("sidebar-mode", (int) sidebar.standard.mode);
             });
 
-            browse.mode_selected.connect((m) => {
-                settings.set_enum("browse-mode", (int) m);
-            });
-
             settings.bind("preview-text", preview_pane, "preview-text", SettingsBindFlags.DEFAULT);
             settings.bind("preview-mode", preview_pane, "preview-mode", SettingsBindFlags.DEFAULT);
             settings.bind("sidebar-size", main_pane, "position", SettingsBindFlags.DEFAULT);
             settings.bind("content-pane-position", content_pane, "position", SettingsBindFlags.DEFAULT);
             settings.bind("preview-font-size", preview_pane, "preview-size", SettingsBindFlags.DEFAULT);
-            settings.bind("browse-font-size", browse, "preview-size", SettingsBindFlags.DEFAULT);
-            settings.bind("browse-preview-text", browse.entry, "text", SettingsBindFlags.DEFAULT);
-            settings.bind("compare-font-size", compare, "preview-size", SettingsBindFlags.DEFAULT);
-            settings.bind("compare-preview-text", compare.entry, "text", SettingsBindFlags.DEFAULT);
+
             settings.bind("charmap-font-size", preview_pane, "character-map-preview-size", SettingsBindFlags.DEFAULT);
             settings.bind("selected-category", sidebar.standard.category_tree, "selected-iter", SettingsBindFlags.DEFAULT);
             settings.bind("selected-collection", sidebar.standard.collection_tree, "selected-iter", SettingsBindFlags.DEFAULT);
@@ -659,13 +652,14 @@ namespace FontManager {
             hide();
             Idle.add(() => {
                 if (settings != null) {
-                    settings.set_strv("compare-list", compare.list_items());
                     var language_filter = sidebar.standard.category_tree.language_filter;
                     if (language_filter != null)
                         settings.set_strv("language-filter-list", language_filter.list());
-                    settings.set_string("compare-foreground-color", compare.foreground_color.to_string());
-                    settings.set_string("compare-background-color", compare.background_color.to_string());
-                    settings.apply();
+
+
+                    compare.save_state(settings);
+
+
                 }
                 get_default_application().quit();
                 return GLib.Source.REMOVE;
@@ -680,11 +674,6 @@ namespace FontManager {
                 ensure_sane_defaults();
                 return;
             }
-
-            Gtk.Settings gtk = Gtk.Settings.get_default();
-            gtk.gtk_application_prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
-            gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
-            gtk.gtk_dialogs_use_header = settings.get_boolean("use-csd");
 
             int x, y, w, h;
             settings.get("window-size", "(ii)", out w, out h);
@@ -701,13 +690,6 @@ namespace FontManager {
 
             preview_pane.preview_size = settings.get_double("preview-font-size");
             preview_pane.character_map_preview_size = settings.get_double("charmap-font-size");
-            browse.preview_size = settings.get_double("browse-font-size");
-            /* Workaround first row height bug? in browse mode */
-            browse.preview_size++;
-            browse.preview_size--;
-            browse.entry.text = settings.get_string("browse-preview-text");
-            compare.preview_size = settings.get_double("compare-font-size");
-            compare.entry.text = settings.get_string("compare-preview-text");
 
             preview_pane.preview_text = settings.get_string("preview-text");
             fontlist_pane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSidebarMode.COLLECTION);
@@ -721,30 +703,9 @@ namespace FontManager {
             else
                 menu_button.popup.hide();
 
-            Idle.add(() => {
-                if (compare.samples == null)
-                    return GLib.Source.CONTINUE;
-                compare.add_from_string_array(settings.get_strv("compare-list"));
-                return GLib.Source.REMOVE;
-            });
+            browse.restore_state(settings);
+            compare.restore_state(settings);
 
-            Idle.add(() => {
-                var foreground = Gdk.RGBA();
-                var background = Gdk.RGBA();
-                bool foreground_set = foreground.parse(settings.get_string("compare-foreground-color"));
-                bool background_set = background.parse(settings.get_string("compare-background-color"));
-                if (foreground_set) {
-                    if (foreground.alpha == 0.0)
-                        foreground.alpha = 1.0;
-                    ((Gtk.ColorChooser) compare.fg_color_button).set_rgba(foreground);
-                }
-                if (background_set) {
-                    if (background.alpha == 0.0)
-                        background.alpha = 1.0;
-                    ((Gtk.ColorChooser) compare.bg_color_button).set_rgba(background);
-                }
-                return GLib.Source.REMOVE;
-            });
 
             var font_path = settings.get_string("selected-font");
             var collection_path = settings.get_string("selected-collection");
@@ -753,7 +714,6 @@ namespace FontManager {
             Idle.add(() => {
                 if (sidebar.standard.category_tree.update_in_progress)
                     return GLib.Source.CONTINUE;
-                browse.mode = (BrowseMode) settings.get_enum("browse-mode");
                 restore_selections(font_path, category_path, collection_path);
                 Idle.add(() => { main_stack.sensitive = true; return GLib.Source.REMOVE; });
                 return GLib.Source.REMOVE;
@@ -815,21 +775,6 @@ namespace FontManager {
             fontlist_pane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSidebarMode.COLLECTION);
             main_stack.sensitive = true;
             return;
-        }
-
-        Gtk.TreePath? restore_last_selected_treepath (Gtk.TreeView? tree, string? path) {
-            return_val_if_fail(tree != null && tree.model != null && path != null, null);
-            Gtk.TreeIter? iter = null;
-            if (!tree.model.get_iter_first(out iter))
-                return null;
-            var selection = tree.get_selection();
-            var treepath = new Gtk.TreePath.from_string(path);
-            selection.unselect_all();
-            if (treepath.get_depth() > 1)
-                tree.expand_to_path(treepath);
-            selection.select_path(treepath);
-            tree.scroll_to_cell(treepath, null, true, 0.25f, 0.25f);
-            return treepath;
         }
 
     }

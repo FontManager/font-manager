@@ -281,6 +281,7 @@ namespace FontManager {
             progress = new ProgressHeader();
             progress.show();
             var style = Gtk.ReliefStyle.NORMAL;
+            GLib.Settings? settings = get_default_application().settings;
             if (settings != null) {
                 int saved_style = settings.get_enum("title-button-style");
                 style = saved_style == 0 ? Gtk.ReliefStyle.NORMAL : Gtk.ReliefStyle.NONE;

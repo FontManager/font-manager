@@ -721,9 +721,11 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                 model = null;
                 font_model.source_array = array;
                 model = font_model;
-                available_font_families.clear();
+                var available_families = get_default_application().available_families;
+                return_val_if_fail(available_families != null, false);
+                available_families.clear();
                 array.foreach_element((arr, index, node) => {
-                    available_font_families.add(node.get_object().get_string_member("family"));
+                    available_families.add(node.get_object().get_string_member("family"));
                 });
             }
             return true;

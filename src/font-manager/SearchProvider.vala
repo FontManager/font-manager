@@ -66,7 +66,9 @@ namespace FontManager {
             try {
                 Database db = get_database(DatabaseType.BASE);
                 /* Application is not running - trigger a refresh in case the db is empty */
-                if (available_font_families.size == 0)
+                StringSet? available_families = get_default_application().available_families;
+                return_val_if_fail(available_families != null, result_set);
+                if (available_families.size == 0)
                     get_default_application().refresh();
                 db.execute_query(QUERY.printf(search_term));
                 foreach (unowned Sqlite.Statement row in db)

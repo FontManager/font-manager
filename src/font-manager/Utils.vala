@@ -97,6 +97,21 @@ namespace FontManager {
         return;
     }
 
+    public Gtk.TreePath? restore_last_selected_treepath (Gtk.TreeView? tree, string? path) {
+        return_val_if_fail(tree != null && tree.model != null && path != null, null);
+        Gtk.TreeIter? iter = null;
+        if (!tree.model.get_iter_first(out iter))
+            return null;
+        var selection = tree.get_selection();
+        var treepath = new Gtk.TreePath.from_string(path);
+        selection.unselect_all();
+        if (treepath.get_depth() > 1)
+            tree.expand_to_path(treepath);
+        selection.select_path(treepath);
+        tree.scroll_to_cell(treepath, null, true, 0.25f, 0.25f);
+        return treepath;
+    }
+
     /**
      * Adds user configured font sources (directories) and rejected fonts to our
      * FcConfig so that we can render fonts which are not actually "installed".

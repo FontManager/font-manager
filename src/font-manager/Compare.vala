@@ -61,8 +61,8 @@ namespace FontManager {
             font_desc.set_absolute_size(preview_size * Pango.SCALE);
             attrs.insert(Pango.attr_foreground_new(0, 0, 0));
             attrs.insert(Pango.attr_background_new(65535, 65535, 65535));
-            attrs.insert(Pango.attr_foreground_alpha_new(0));
-            attrs.insert(Pango.attr_background_alpha_new(0));
+            attrs.insert(Pango.attr_foreground_alpha_new(65535));
+            attrs.insert(Pango.attr_background_alpha_new(65535));
             notify["foreground-color"].connect(() => {
                 var fg = gdk_rgba_to_pango_color(foreground_color);
                 attrs.change(Pango.attr_foreground_new(fg.red, fg.green, fg.blue));
@@ -189,38 +189,81 @@ namespace FontManager {
             add_button.set_relief(Gtk.ReliefStyle.NORMAL);
             foreground_color = fg_color_button.get_rgba();
             background_color = bg_color_button.get_rgba();
-            bind_property("foreground_color", fg_color_button, "rgba", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            bind_property("background_color", bg_color_button, "rgba", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            bind_property("preview-size", fontscale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-            fontscale.bind_property("adjustment", this, "adjustment", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            bind_property("foreground_color", fg_color_button, "rgba", flags);
+            bind_property("background_color", bg_color_button, "rgba", flags);
+            bind_property("preview-size", fontscale, "value", flags);
+            fontscale.bind_property("adjustment", this, "adjustment", flags);
             remove_button.sensitive = false;
             pinned_button.sensitive = (pinned.model.get_n_items() > 0);
-            model.items_changed.connect((p, a, r) => {
-                if (model.get_n_items() > 0) {
-                    add_button.set_relief(Gtk.ReliefStyle.NONE);
-                    add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-                } else {
-                    add_button.set_relief(Gtk.ReliefStyle.NORMAL);
-                    add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-                }
-                pinned_button.sensitive = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
-            });
+            bg_color_button.color_set.connect(() => { color_set(); });
+            fg_color_button.color_set.connect(() => { color_set(); });
+            model.items_changed.connect(on_items_changed);
+            notify["preview-text"].connect(() => { entry.set_placeholder_text(preview_text); });
             pinned.closed.connect(() => {
                 pinned_button.sensitive = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
             });
-            notify["preview-text"].connect(() => {
-                entry.set_placeholder_text(preview_text);
-            });
-            bg_color_button.color_set.connect(() => { color_set(); });
-            fg_color_button.color_set.connect(() => { color_set(); });
             base.constructed();
+            return;
+        }
+
+        public void on_items_changed (uint position, uint added, uint removed) {
+            if (model.get_n_items() > 0) {
+                add_button.set_relief(Gtk.ReliefStyle.NONE);
+                add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            } else {
+                add_button.set_relief(Gtk.ReliefStyle.NORMAL);
+                add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+            }
+            pinned_button.sensitive = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
+            return;
+        }
+
+        public void restore_state (GLib.Settings settings) {
+            preview_size = settings.get_double("compare-font-size");
+            entry.text = settings.get_string("compare-preview-text");
+            Idle.add(() => {
+                var foreground = Gdk.RGBA();
+                var background = Gdk.RGBA();
+                bool foreground_set = foreground.parse(settings.get_string("compare-foreground-color"));
+                bool background_set = background.parse(settings.get_string("compare-background-color"));
+                if (foreground_set) {
+                    if (foreground.alpha == 0.0)
+                        foreground.alpha = 1.0;
+                    ((Gtk.ColorChooser) fg_color_button).set_rgba(foreground);
+                }
+                if (background_set) {
+                    if (background.alpha == 0.0)
+                        background.alpha = 1.0;
+                    ((Gtk.ColorChooser) bg_color_button).set_rgba(background);
+                }
+                return GLib.Source.REMOVE;
+            });
+            Idle.add(() => {
+                if (samples == null)
+                    return GLib.Source.CONTINUE;
+                add_from_string_array(settings.get_strv("compare-list"));
+                return GLib.Source.REMOVE;
+            });
+            settings.bind("compare-preview-text", entry, "text", SettingsBindFlags.DEFAULT);
+            settings.bind("compare-font-size", this, "preview-size", SettingsBindFlags.DEFAULT);
+            return;
+        }
+
+        public void save_state (GLib.Settings settings) {
+            settings.delay();
+            settings.set_strv("compare-list", list_items());
+            settings.set_string("compare-foreground-color", foreground_color.to_string());
+            settings.set_string("compare-background-color", background_color.to_string());
+            settings.apply();
             return;
         }
 
         public void add_from_string_array (string [] additions) {
             GLib.List <string>? checklist = null;
-            if (available_font_families != null)
-                checklist = available_font_families.list();
+            StringSet? available_families = get_default_application().available_families;
+            if (available_families != null)
+                checklist = available_families.list();
             foreach (var entry in additions)
                 add_from_string(entry, checklist);
             return;
@@ -354,25 +397,24 @@ namespace FontManager {
         [GtkChild] Gtk.Button restore_button;
 
         public Compare? compare { get; set; default = null; }
-        public PinnedComparisonModel? model { get; private set; default = null; }
+        public PinnedComparisonModel? model { get; set; default = null; }
 
         public override void constructed () {
-            var place_holder = new PlaceHolder(null, null, _("Save the current comparison\nby clicking the + button"), "view-pin-symbolic");
+            /* TRANSLATORS : Please preserve the newline character somewhere in the middle of the string */
+            var place_holder_text = _("Save the current comparison\nby clicking the + button");
+            var place_holder = new PlaceHolder(null, null, place_holder_text, "view-pin-symbolic");
             list.set_placeholder(place_holder);
-            list.activate_on_single_click = false;
-            model = new PinnedComparisonModel();
-            list.bind_model(model, PinnedComparisonRow.from_item);
             place_holder.show();
-            save_button.sensitive = false;
-            remove_button.sensitive = false;
-            restore_button.sensitive = false;
             notify["compare"].connect(() => {
-                if (compare == null)
-                    return;
-                compare.model.items_changed.connect((p, a, r) => {
-                    save_button.sensitive = (compare.model.get_n_items() > 0);
-                });
+                if (compare != null)
+                    compare.model.items_changed.connect((p, a, r) => {
+                        save_button.sensitive = (compare.model.get_n_items() > 0);
+                    });
             });
+            notify["model"].connect((obj, pspec) => {
+                list.bind_model(model, PinnedComparisonRow.from_item);
+            });
+            model = new PinnedComparisonModel();
             load();
             base.constructed();
             return;

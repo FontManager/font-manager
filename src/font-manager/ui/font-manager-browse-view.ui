@@ -3,46 +3,46 @@
   <requires lib="gtk+" version="3.22"/>
   <template class="FontManagerBrowse" parent="GtkBox">
     <property name="visible">True</property>
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <property name="hexpand">True</property>
     <property name="vexpand">True</property>
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="margin_left">6</property>
-        <property name="margin_right">6</property>
+        <property name="can-focus">False</property>
+        <property name="margin-start">6</property>
+        <property name="margin-end">6</property>
         <child>
           <object class="GtkEventBox">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="homogeneous">True</property>
                 <child>
                   <object class="GtkRadioButton" id="list_view">
                     <property name="name">list</property>
-                    <property name="width_request">16</property>
-                    <property name="height_request">16</property>
+                    <property name="width-request">16</property>
+                    <property name="height-request">16</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="focus_on_click">False</property>
-                    <property name="receives_default">False</property>
-                    <property name="tooltip_text" translatable="yes">List View</property>
-                    <property name="margin_left">6</property>
-                    <property name="margin_top">6</property>
-                    <property name="margin_bottom">6</property>
+                    <property name="can-focus">True</property>
+                    <property name="focus-on-click">False</property>
+                    <property name="receives-default">False</property>
+                    <property name="tooltip-text" translatable="yes">List View</property>
+                    <property name="margin-start">6</property>
+                    <property name="margin-top">6</property>
+                    <property name="margin-bottom">6</property>
                     <property name="active">True</property>
-                    <property name="draw_indicator">False</property>
-                    <signal name="clicked" handler="on_click" swapped="no"/>
+                    <property name="draw-indicator">False</property>
+                    <signal name="clicked" handler="on_mode_button_click" swapped="no"/>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">view-list-symbolic</property>
+                        <property name="can-focus">False</property>
+                        <property name="icon-name">view-list-symbolic</property>
                         <property name="icon_size">2</property>
                       </object>
                     </child>
@@ -59,24 +59,24 @@
                 <child>
                   <object class="GtkRadioButton" id="grid_view">
                     <property name="name">grid</property>
-                    <property name="width_request">16</property>
-                    <property name="height_request">16</property>
+                    <property name="width-request">16</property>
+                    <property name="height-request">16</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
-                    <property name="focus_on_click">False</property>
-                    <property name="receives_default">False</property>
-                    <property name="tooltip_text" translatable="yes">Grid View</property>
-                    <property name="margin_right">6</property>
-                    <property name="margin_top">6</property>
-                    <property name="margin_bottom">6</property>
-                    <property name="draw_indicator">False</property>
+                    <property name="can-focus">True</property>
+                    <property name="focus-on-click">False</property>
+                    <property name="receives-default">False</property>
+                    <property name="tooltip-text" translatable="yes">Grid View</property>
+                    <property name="margin-right">6</property>
+                    <property name="margin-top">6</property>
+                    <property name="margin-bottom">6</property>
+                    <property name="draw-indicator">False</property>
                     <property name="group">list_view</property>
-                    <signal name="clicked" handler="on_click" swapped="no"/>
+                    <signal name="clicked" handler="on_mode_button_click" swapped="no"/>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="icon_name">view-grid-symbolic</property>
+                        <property name="can-focus">False</property>
+                        <property name="icon-name">view-grid-symbolic</property>
                         <property name="icon_size">2</property>
                       </object>
                     </child>
@@ -124,19 +124,19 @@
         </child>
         <child>
           <object class="GtkBox" id="page_controls">
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <child>
               <object class="GtkLabel" id="page_count">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="opacity">0.66</property>
-                <property name="margin_left">6</property>
-                <property name="margin_right">6</property>
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="pack_type">end</property>
+                <property name="pack-type">end</property>
                 <property name="position">0</property>
               </packing>
             </child>
@@ -146,13 +146,13 @@
             <child>
               <object class="GtkEntry" id="selected_page">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can-focus">True</property>
                 <property name="opacity">0.66</property>
-                <property name="margin_top">6</property>
-                <property name="margin_bottom">6</property>
+                <property name="margin-top">6</property>
+                <property name="margin-bottom">6</property>
                 <property name="xalign">1</property>
-                <property name="caps_lock_warning">False</property>
-                <property name="input_purpose">digits</property>
+                <property name="caps-lock-warning">False</property>
+                <property name="input-purpose">digits</property>
                 <signal name="activate" handler="on_selected_page_changed" swapped="no"/>
                 <signal name="focus-in-event" handler="on_selected_page_focus_in_event" swapped="no"/>
                 <signal name="focus-out-event" handler="on_selected_page_focus_out_event" swapped="no"/>
@@ -160,35 +160,35 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">False</property>
-                <property name="pack_type">end</property>
+                <property name="pack-type">end</property>
                 <property name="position">2</property>
               </packing>
             </child>
             <child>
               <object class="GtkEventBox">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="homogeneous">True</property>
                     <child>
                       <object class="GtkButton" id="prev_page">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="focus_on_click">False</property>
-                        <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Previous page</property>
-                        <property name="margin_left">6</property>
-                        <property name="margin_top">6</property>
-                        <property name="margin_bottom">6</property>
+                        <property name="can-focus">False</property>
+                        <property name="focus-on-click">False</property>
+                        <property name="receives-default">True</property>
+                        <property name="tooltip-text" translatable="yes">Previous page</property>
+                        <property name="margin-start">6</property>
+                        <property name="margin-top">6</property>
+                        <property name="margin-bottom">6</property>
                         <signal name="clicked" handler="on_prev_page_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="icon_name">go-previous-symbolic</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">go-previous-symbolic</property>
                           </object>
                         </child>
                         <style>
@@ -204,19 +204,19 @@
                     <child>
                       <object class="GtkButton" id="next_page">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="focus_on_click">False</property>
-                        <property name="receives_default">True</property>
-                        <property name="tooltip_text" translatable="yes">Next page</property>
-                        <property name="margin_right">6</property>
-                        <property name="margin_top">6</property>
-                        <property name="margin_bottom">6</property>
+                        <property name="can-focus">False</property>
+                        <property name="focus-on-click">False</property>
+                        <property name="receives-default">True</property>
+                        <property name="tooltip-text" translatable="yes">Next page</property>
+                        <property name="margin-right">6</property>
+                        <property name="margin-top">6</property>
+                        <property name="margin-bottom">6</property>
                         <signal name="clicked" handler="on_next_page_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="icon_name">go-next-symbolic</property>
+                            <property name="can-focus">False</property>
+                            <property name="icon-name">go-next-symbolic</property>
                           </object>
                         </child>
                         <style>
@@ -265,27 +265,27 @@
     <child>
       <object class="GtkStack" id="browse_stack">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="transition_type">crossfade</property>
+        <property name="can-focus">False</property>
+        <property name="transition-type">crossfade</property>
         <child>
           <object class="GtkScrolledWindow" id="browse_list">
             <property name="name">browse_list</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can-focus">True</property>
             <child>
               <object class="GtkTreeView" id="treeview">
                 <property name="name">FontManagerBrowseTreeView</property>
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="margin_left">6</property>
-                <property name="margin_right">6</property>
-                <property name="margin_top">1</property>
+                <property name="can-focus">True</property>
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
+                <property name="margin-top">1</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
-                <property name="headers_visible">False</property>
-                <property name="search_column">2</property>
-                <property name="show_expanders">False</property>
-                <property name="tooltip_column">2</property>
+                <property name="headers-visible">False</property>
+                <property name="search-column">2</property>
+                <property name="show-expanders">False</property>
+                <property name="tooltip-column">2</property>
                 <child internal-child="selection">
                   <object class="GtkTreeSelection">
                     <property name="mode">none</property>
@@ -302,32 +302,32 @@
           <object class="GtkScrolledWindow" id="browse_grid">
             <property name="name">browse_grid</property>
             <property name="visible">True</property>
-            <property name="can_focus">True</property>
+            <property name="can-focus">True</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
-            <property name="propagate_natural_width">True</property>
-            <property name="propagate_natural_height">True</property>
-            <signal name="map" handler="on_map" swapped="no"/>
-            <signal name="unmap" handler="on_unmap" swapped="no"/>
+            <property name="propagate-natural-width">True</property>
+            <property name="propagate-natural-height">True</property>
+            <signal name="map" handler="on_grid_map" swapped="no"/>
+            <signal name="unmap" handler="on_grid_unmap" swapped="no"/>
             <child>
               <object class="GtkViewport">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
-                <property name="shadow_type">none</property>
+                <property name="shadow-type">none</property>
                 <child>
                   <object class="GtkFlowBox" id="flowbox">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_left">9</property>
-                    <property name="margin_right">9</property>
-                    <property name="column_spacing">1</property>
-                    <property name="row_spacing">1</property>
-                    <property name="min_children_per_line">2</property>
-                    <property name="max_children_per_line">12</property>
-                    <property name="selection_mode">none</property>
-                    <property name="activate_on_single_click">False</property>
+                    <property name="can-focus">False</property>
+                    <property name="margin-start">9</property>
+                    <property name="margin-end">9</property>
+                    <property name="column-spacing">1</property>
+                    <property name="row-spacing">1</property>
+                    <property name="min-children-per-line">2</property>
+                    <property name="max-children-per-line">12</property>
+                    <property name="selection-mode">none</property>
+                    <property name="activate-on-single-click">False</property>
                   </object>
                 </child>
               </object>
@@ -370,7 +370,7 @@
     <property name="lower">1</property>
     <property name="upper">100</property>
     <property name="value">1</property>
-    <property name="step_increment">1</property>
-    <property name="page_increment">10</property>
+    <property name="step-increment">1</property>
+    <property name="page-increment">10</property>
   </object>
 </interface>

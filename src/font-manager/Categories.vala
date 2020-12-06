@@ -343,6 +343,7 @@ namespace FontManager {
                             language_filter.selections_changed();
                         });
                     });
+                    GLib.Settings? settings = get_default_application().settings;
                     if (settings != null) {
                         foreach (var entry in settings.get_strv("language-filter-list"))
                             language_filter.add(entry);

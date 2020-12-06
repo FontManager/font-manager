@@ -80,8 +80,9 @@ namespace FontManager {
             } catch (DatabaseError error) {
                 warning(error.message);
             }
-            if (available_font_families != null)
-                families.retain_all(available_font_families.list());
+            StringSet? available_families = get_default_application().available_families;
+            return_if_fail(available_families != null);
+            families.retain_all(available_families.list());
             return;
         }
 

@@ -97,13 +97,15 @@ namespace FontManager {
         }
 
         void bind_properties () {
+            GLib.Settings? settings = get_default_application().settings;
             return_if_fail(settings != null);
-            settings.bind("use-csd", use_csd.toggle, "active", SettingsBindFlags.DEFAULT);
-            settings.bind("wide-layout", wide_layout.toggle, "active", SettingsBindFlags.DEFAULT);
-            settings.bind("wide-layout-on-maximize", on_maximize, "active", SettingsBindFlags.DEFAULT);
-            settings.bind("enable-animations", enable_animations.toggle, "active", SettingsBindFlags.DEFAULT);
-            settings.bind("prefer-dark-theme", prefer_dark_theme.toggle, "active", SettingsBindFlags.DEFAULT);
-            settings.bind("title-button-style", button_style, "active", SettingsBindFlags.DEFAULT);
+            SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
+            settings.bind("use-csd", use_csd.toggle, "active", flags);
+            settings.bind("wide-layout", wide_layout.toggle, "active", flags);
+            settings.bind("wide-layout-on-maximize", on_maximize, "active", flags);
+            settings.bind("enable-animations", enable_animations.toggle, "active", flags);
+            settings.bind("prefer-dark-theme", prefer_dark_theme.toggle, "active", flags);
+            settings.bind("title-button-style", button_style, "active", flags);
             return;
         }
 
