@@ -65,29 +65,8 @@ $(PACKAGE_NAME)-vendor.h:
 	./genheader.py $(PKG_LIB_DIR)/common && \
 	cd ..
 
-push-pot-files: $(PACKAGE_NAME).pot
-	cd $(ABS_TOP_SRCDIR)  && \
-	cp $(ABS_SRCDIR)/zanata.xml . && \
-	zanata push && \
-	rm zanata.xml && \
-	cd $(ABS_SRCDIR)
-
-push-translations:
-	cd $(ABS_TOP_SRCDIR)  && \
-	cp $(ABS_SRCDIR)/zanata.xml . && \
-	zanata push --push-type target --lang $@ && \
-	rm zanata.xml && \
-	cd $(ABS_SRCDIR)
-
-pull-translations:
-	cd $(ABS_TOP_SRCDIR)  && \
-	cp $(ABS_SRCDIR)/zanata.xml . && \
-	zanata pull --min-doc-percent 10 && \
-	rm zanata.xml && \
-	cd $(ABS_SRCDIR)
-
 update-headers: $(PACKAGE_NAME)-license.h $(PACKAGE_NAME)-vendor.h unicode-headers
-update: update-headers $(PACKAGE_NAME).pot push-pot-files pull-translations
+update: update-headers $(PACKAGE_NAME).pot
 
 rpm:
 	@echo -e "\n**** Need to ensure build dependencies are installed\n";
