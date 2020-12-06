@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-11-29 13:52-0500\n"
+"POT-Creation-Date: 2020-12-05 23:29-0500\n"
 "PO-Revision-Date: 2020-12-03 00:36+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
@@ -328,6 +328,12 @@ msgstr "Ugrađivanje za uređivanje | Bez podskupina | Samo bitmapi"
 msgid "Installable Embedding"
 msgstr "Instaliranje dozvoljeno"
 
+#: lib/common/font-manager-freetype.c:703
+#, fuzzy
+#| msgid "Unknown"
+msgid "Unknown Vendor"
+msgstr "Nepoznato"
+
 #: lib/common/font-manager-license-pane.c:185
 msgid "File does not contain license information."
 msgstr "Datoteka ne sadrži podatke o licenci."
@@ -603,7 +609,7 @@ msgstr "Znak rastavljanja, razmak"
 
 #. Unicode assigns "Common" as the script name for any character not
 #. * specifically listed in Scripts.txt
-#: lib/unicode/unicode-info.c:702
+#: lib/unicode/unicode-info.c:703
 msgid "Common"
 msgstr "Obični"
 
@@ -920,54 +926,54 @@ msgstr "Pokrivenost"
 msgid "Supported Orthographies"
 msgstr "Podržani pravopisi"
 
-#: src/font-manager/TitleBar.vala:61
+#: src/font-manager/TitleBar.vala:62
 msgid "Updating Database — Fonts"
 msgstr "Aktualiziranje baze podataka – fontovi"
 
-#: src/font-manager/TitleBar.vala:63
+#: src/font-manager/TitleBar.vala:64
 msgid "Updating Database — Metadata"
 msgstr "Aktualiziranje baze podataka – metapodaci"
 
-#: src/font-manager/TitleBar.vala:65
+#: src/font-manager/TitleBar.vala:66
 msgid "Updating Database — Orthography"
 msgstr "Aktualiziranje baze podataka – pravopis"
 
-#: src/font-manager/TitleBar.vala:80
+#: src/font-manager/TitleBar.vala:83
 msgid "Keyboard Shortcuts"
 msgstr "Tipkovni prečaci"
 
-#: src/font-manager/TitleBar.vala:81
+#: src/font-manager/TitleBar.vala:84
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:19
 msgid "Help"
 msgstr "Pomoć"
 
-#: src/font-manager/TitleBar.vala:82
+#: src/font-manager/TitleBar.vala:85
 msgid "About"
 msgstr "O programu"
 
-#: src/font-manager/TitleBar.vala:100
+#: src/font-manager/TitleBar.vala:103
 msgid "Import"
 msgstr "Uvezi"
 
-#: src/font-manager/TitleBar.vala:101 src/font-manager/UserData.vala:130
+#: src/font-manager/TitleBar.vala:104 src/font-manager/UserData.vala:130
 msgid "Export"
 msgstr "Izvezi"
 
-#: src/font-manager/TitleBar.vala:108 src/font-manager/UserData.vala:36
+#: src/font-manager/TitleBar.vala:111 src/font-manager/UserData.vala:36
 #: src/font-manager/UserData.vala:47
 msgid "User Data"
 msgstr "Korisnički podaci"
 
 #. HAVE_WEBKIT
-#: src/font-manager/TitleBar.vala:261
+#: src/font-manager/TitleBar.vala:264
 msgid "Add Fonts"
 msgstr "Dodaj fontove"
 
-#: src/font-manager/TitleBar.vala:262
+#: src/font-manager/TitleBar.vala:265
 msgid "Remove Fonts"
 msgstr "Ukloni fontove"
 
-#: src/font-manager/TitleBar.vala:269
+#: src/font-manager/TitleBar.vala:272
 #: src/font-manager/ui/font-manager-main-window.ui:181
 msgid "Preferences"
 msgstr "Postavke"
@@ -1005,7 +1011,7 @@ msgstr "Filtar koji se temelji na jezičnoj podršci"
 msgid "Language"
 msgstr "Jezik"
 
-#: src/font-manager/filters/LanguageFilter.vala:136
+#: src/font-manager/filters/LanguageFilter.vala:139
 msgid "Filter Settings"
 msgstr "Postavke filtra"
 
@@ -1313,37 +1319,37 @@ msgstr ""
 msgid "Case insensitive search of family names."
 msgstr "Pretraživanje imena obitelji bez razlikovanja velikih/malih slova."
 
-#: src/font-manager/web/google/GoogleFonts.vala:127
+#: src/font-manager/web/google/GoogleFonts.vala:129
 msgid "Error procesing data"
 msgstr "Greška tijekom obrade podataka"
 
-#: src/font-manager/web/google/GoogleFonts.vala:131
+#: src/font-manager/web/google/GoogleFonts.vala:138
 msgid "Network Error"
 msgstr "Greška mreže"
 
-#: src/font-manager/web/google/GoogleFonts.vala:132
+#: src/font-manager/web/google/GoogleFonts.vala:139
 msgid "Please check your network settings"
 msgstr "Provjeri mrežne postavke"
 
-#: src/font-manager/web/google/GoogleFonts.vala:134
+#: src/font-manager/web/google/GoogleFonts.vala:141
 msgid "Client Error"
 msgstr "Greška klijenta"
 
-#: src/font-manager/web/google/GoogleFonts.vala:135
+#: src/font-manager/web/google/GoogleFonts.vala:142
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
 "Pokušaj ponovo pokrenuti program. Ako problem ne nestane, prijavi grešku."
 
-#: src/font-manager/web/google/GoogleFonts.vala:138
+#: src/font-manager/web/google/GoogleFonts.vala:145
 msgid "Server Error"
 msgstr "Greška poslužitelja"
 
-#: src/font-manager/web/google/GoogleFonts.vala:208
+#: src/font-manager/web/google/GoogleFonts.vala:217
 msgid "Network Offline"
 msgstr "Mreža isključena"
 
-#: src/font-manager/web/google/GoogleFonts.vala:209
+#: src/font-manager/web/google/GoogleFonts.vala:218
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
@@ -1461,31 +1467,31 @@ msgstr "Tibetski"
 msgid "Vietnamese"
 msgstr "Vijetnamski"
 
-#: src/font-manager/web/google/PreviewPane.vala:256
+#: src/font-manager/web/google/PreviewPane.vala:270
 msgid "Update Family"
 msgstr "Aktualiziraj obitelj"
 
-#: src/font-manager/web/google/PreviewPane.vala:256
+#: src/font-manager/web/google/PreviewPane.vala:270
 msgid "Update Font"
 msgstr "Aktualiziraj font"
 
-#: src/font-manager/web/google/PreviewPane.vala:261
+#: src/font-manager/web/google/PreviewPane.vala:275
 msgid "Remove Family"
 msgstr "Ukloni obitelj"
 
-#: src/font-manager/web/google/PreviewPane.vala:261
+#: src/font-manager/web/google/PreviewPane.vala:275
 msgid "Remove Font"
 msgstr "Ukloni font"
 
-#: src/font-manager/web/google/PreviewPane.vala:266
+#: src/font-manager/web/google/PreviewPane.vala:280
 msgid "Download Family"
 msgstr "Preuzmi obitelj"
 
-#: src/font-manager/web/google/PreviewPane.vala:266
+#: src/font-manager/web/google/PreviewPane.vala:280
 msgid "Download Font"
 msgstr "Preuzmi font"
 
-#: src/font-manager/web/google/PreviewPane.vala:276
+#: src/font-manager/web/google/PreviewPane.vala:290
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-11-29 13:54-0500\n"
+"POT-Creation-Date: 2020-12-05 23:39-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1114,7 +1114,7 @@ msgstr ""
 
 #. (itstool) path: credit/name
 #: C/index.page:20
-msgid "Zanata"
+msgid "Weblate"
 msgstr ""
 
 #. (itstool) path: license/p

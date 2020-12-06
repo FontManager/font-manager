@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-11-29 13:54-0500\n"
+"POT-Creation-Date: 2020-12-05 23:39-0500\n"
 "PO-Revision-Date: 2020-12-03 00:36+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
@@ -1253,8 +1253,8 @@ msgstr "2009. – 2020."
 
 #. (itstool) path: credit/name
 #: C/index.page:20
-msgid "Zanata"
-msgstr "Zanata"
+msgid "Weblate"
+msgstr ""
 
 #. (itstool) path: license/p
 #: C/index.page:24
@@ -1298,3 +1298,6 @@ msgstr "Upoznaj svoje fontove"
 #: C/index.page:45
 msgid "Advanced Features"
 msgstr "Napredne funkcije"
+
+#~ msgid "Zanata"
+#~ msgstr "Zanata"

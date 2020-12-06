@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-11-29 13:54-0500\n"
+"POT-Creation-Date: 2020-12-05 23:39-0500\n"
 "PO-Revision-Date: 2020-07-27 01:58-0400\n"
 "Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -1283,8 +1283,8 @@ msgstr "2009–2018"
 
 #. (itstool) path: credit/name
 #: C/index.page:20
-msgid "Zanata"
-msgstr "Zanata"
+msgid "Weblate"
+msgstr ""
 
 #. (itstool) path: license/p
 #: C/index.page:24
@@ -1328,3 +1328,6 @@ msgstr "Conocer sus tipografías"
 #: C/index.page:45
 msgid "Advanced Features"
 msgstr "Características avanzadas"
+
+#~ msgid "Zanata"
+#~ msgstr "Zanata"

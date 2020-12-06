@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-11-29 13:52-0500\n"
+"POT-Creation-Date: 2020-12-05 23:29-0500\n"
 "PO-Revision-Date: 2020-07-27 01:54-0400\n"
 "Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -319,6 +319,12 @@ msgstr ""
 msgid "Installable Embedding"
 msgstr "Incrustación: instalable"
 
+#: lib/common/font-manager-freetype.c:703
+#, fuzzy
+#| msgid "Unknown"
+msgid "Unknown Vendor"
+msgstr "Desconocido"
+
 #: lib/common/font-manager-license-pane.c:185
 msgid "File does not contain license information."
 msgstr "El archivo no contiene información sobre la licencia."
@@ -594,7 +600,7 @@ msgstr "Separador, espacio"
 
 #. Unicode assigns "Common" as the script name for any character not
 #. * specifically listed in Scripts.txt
-#: lib/unicode/unicode-info.c:702
+#: lib/unicode/unicode-info.c:703
 msgid "Common"
 msgstr "Común"
 
@@ -913,60 +919,60 @@ msgstr "Cobertura"
 msgid "Supported Orthographies"
 msgstr "Ortografías compatibles"
 
-#: src/font-manager/TitleBar.vala:61
+#: src/font-manager/TitleBar.vala:62
 #, fuzzy
 #| msgid "Updating Database - Fonts"
 msgid "Updating Database — Fonts"
 msgstr "Actualizando la base de datos… tipos de letra"
 
-#: src/font-manager/TitleBar.vala:63
+#: src/font-manager/TitleBar.vala:64
 #, fuzzy
 #| msgid "Updating Database - Metadata"
 msgid "Updating Database — Metadata"
 msgstr "Actualizando la base de datos… metadatos"
 
-#: src/font-manager/TitleBar.vala:65
+#: src/font-manager/TitleBar.vala:66
 #, fuzzy
 #| msgid "Updating Database - Orthography"
 msgid "Updating Database — Orthography"
 msgstr "Actualizando la base de datos… ortografía"
 
-#: src/font-manager/TitleBar.vala:80
+#: src/font-manager/TitleBar.vala:83
 msgid "Keyboard Shortcuts"
 msgstr "Atajos de teclado"
 
-#: src/font-manager/TitleBar.vala:81
+#: src/font-manager/TitleBar.vala:84
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:19
 msgid "Help"
 msgstr "Ayuda"
 
-#: src/font-manager/TitleBar.vala:82
+#: src/font-manager/TitleBar.vala:85
 msgid "About"
 msgstr "Acerca de"
 
-#: src/font-manager/TitleBar.vala:100
+#: src/font-manager/TitleBar.vala:103
 msgid "Import"
 msgstr "Importar"
 
-#: src/font-manager/TitleBar.vala:101 src/font-manager/UserData.vala:130
+#: src/font-manager/TitleBar.vala:104 src/font-manager/UserData.vala:130
 msgid "Export"
 msgstr "Exportar"
 
-#: src/font-manager/TitleBar.vala:108 src/font-manager/UserData.vala:36
+#: src/font-manager/TitleBar.vala:111 src/font-manager/UserData.vala:36
 #: src/font-manager/UserData.vala:47
 msgid "User Data"
 msgstr "Datos de usuario"
 
 #. HAVE_WEBKIT
-#: src/font-manager/TitleBar.vala:261
+#: src/font-manager/TitleBar.vala:264
 msgid "Add Fonts"
 msgstr "Instalar tipos de letra"
 
-#: src/font-manager/TitleBar.vala:262
+#: src/font-manager/TitleBar.vala:265
 msgid "Remove Fonts"
 msgstr "Desinstalar tipos de letra"
 
-#: src/font-manager/TitleBar.vala:269
+#: src/font-manager/TitleBar.vala:272
 #: src/font-manager/ui/font-manager-main-window.ui:181
 msgid "Preferences"
 msgstr "Preferencias"
@@ -1004,7 +1010,7 @@ msgstr "Filtro basado en la compatibilidad de idioma"
 msgid "Language"
 msgstr "Idioma"
 
-#: src/font-manager/filters/LanguageFilter.vala:136
+#: src/font-manager/filters/LanguageFilter.vala:139
 msgid "Filter Settings"
 msgstr ""
 
@@ -1308,36 +1314,36 @@ msgstr ""
 msgid "Case insensitive search of family names."
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:127
+#: src/font-manager/web/google/GoogleFonts.vala:129
 msgid "Error procesing data"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:131
+#: src/font-manager/web/google/GoogleFonts.vala:138
 msgid "Network Error"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:132
+#: src/font-manager/web/google/GoogleFonts.vala:139
 msgid "Please check your network settings"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:134
+#: src/font-manager/web/google/GoogleFonts.vala:141
 msgid "Client Error"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:135
+#: src/font-manager/web/google/GoogleFonts.vala:142
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:138
+#: src/font-manager/web/google/GoogleFonts.vala:145
 msgid "Server Error"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:208
+#: src/font-manager/web/google/GoogleFonts.vala:217
 msgid "Network Offline"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:209
+#: src/font-manager/web/google/GoogleFonts.vala:218
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
@@ -1462,39 +1468,39 @@ msgstr "Tibetano"
 msgid "Vietnamese"
 msgstr "Vietnamita"
 
-#: src/font-manager/web/google/PreviewPane.vala:256
+#: src/font-manager/web/google/PreviewPane.vala:270
 msgid "Update Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:256
+#: src/font-manager/web/google/PreviewPane.vala:270
 #, fuzzy
 #| msgid "Monospace Font"
 msgid "Update Font"
 msgstr "Tipo de letra monoespaciada"
 
-#: src/font-manager/web/google/PreviewPane.vala:261
+#: src/font-manager/web/google/PreviewPane.vala:275
 #, fuzzy
 #| msgid "Remove Fonts"
 msgid "Remove Family"
 msgstr "Desinstalar tipos de letra"
 
-#: src/font-manager/web/google/PreviewPane.vala:261
+#: src/font-manager/web/google/PreviewPane.vala:275
 #, fuzzy
 #| msgid "Remove Fonts"
 msgid "Remove Font"
 msgstr "Desinstalar tipos de letra"
 
-#: src/font-manager/web/google/PreviewPane.vala:266
+#: src/font-manager/web/google/PreviewPane.vala:280
 msgid "Download Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:266
+#: src/font-manager/web/google/PreviewPane.vala:280
 #, fuzzy
 #| msgid "Monospace Font"
 msgid "Download Font"
 msgstr "Tipo de letra monoespaciada"
 
-#: src/font-manager/web/google/PreviewPane.vala:276
+#: src/font-manager/web/google/PreviewPane.vala:290
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
