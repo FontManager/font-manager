@@ -465,7 +465,7 @@ namespace FontManager {
         try {
             db.execute_query("SELECT DISTINCT [%s] FROM Metadata ORDER BY [%s];".printf(keyword, keyword));
             foreach (unowned Sqlite.Statement row in db) {
-                string type = row.column_text(0);
+                string type = dgettext(null, row.column_text(0));
                 filter.children.add(new Category(type, type, "emblem-documents", "%s [%s]=\"%s\";".printf(SELECT_FROM_METADATA_WHERE, keyword, type), data.index));
             }
         } catch (DatabaseError e) { }

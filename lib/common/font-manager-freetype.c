@@ -700,7 +700,7 @@ static void
 ensure_vendor (JsonObject *json_obj, const FT_Face face)
 {
     if (!json_object_has_member(json_obj, "vendor")) {
-        json_object_set_string_member(json_obj, "vendor", "Unknown Vendor");
+        json_object_set_string_member(json_obj, "vendor", _("Unknown Vendor"));
         /* XXX : Is this even worth checking for? */
         BDF_PropertyRec prop;
         int result = FT_Get_BDF_Property(face, "FOUNDRY", &prop);
