@@ -105,6 +105,12 @@
             <default>(900, 600)</default>
         </key>
 
+        <key name="is-maximized" type="b">
+            <default>false</default>
+            <summary>Window state</summary>
+            <description>Whether window is maximized</description>
+        </key>
+
         <key name="sidebar-size" type="i">
             <summary>Sidebar size</summary>
             <description>Size of the sidebar in pixels.</description>

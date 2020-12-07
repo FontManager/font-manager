@@ -344,10 +344,8 @@ namespace FontManager {
                         });
                     });
                     GLib.Settings? settings = get_default_application().settings;
-                    if (settings != null) {
-                        foreach (var entry in settings.get_strv("language-filter-list"))
-                            language_filter.add(entry);
-                    }
+                    if (settings != null)
+                        language_filter.restore_state(settings);
                     language_filter_settings.get_button().set_visible(is_language_filter);
                 }
                 return GLib.Source.REMOVE;

@@ -39,6 +39,11 @@ namespace FontManager.FontViewer {
         [GtkChild] Gtk.Button install;
         [GtkChild] PreviewPane preview_pane;
 
+        int w = -1;
+        int h = -1;
+        int x = -1;
+        int y = -1;
+        bool is_tiled = false;
         PlaceHolder welcome;
         StringSet installed;
         Settings? settings = null;
@@ -55,6 +60,8 @@ namespace FontManager.FontViewer {
             add_actions();
             update_install_state();
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, DragTargets, Gdk.DragAction.COPY);
+            size_allocate.connect(on_size_allocate);
+            window_state_event.connect(on_window_state_event);
             base.constructed();
             return;
         }
@@ -179,26 +186,19 @@ namespace FontManager.FontViewer {
             return;
         }
 
-        void bind_settings () {
-            if (settings == null)
+        bool on_window_state_event (Gtk.Widget widget, Gdk.EventWindowState event) {
+
+            if ((event.changed_mask & Gdk.WindowState.TILED) != 0)
+                is_tiled = (event.new_window_state & Gdk.WindowState.TILED) != 0;
+
+            return Gdk.EVENT_PROPAGATE;
+        }
+
+        void on_size_allocate (Gtk.Widget widget, Gtk.Allocation allocation) {
+            if (is_maximized || is_tiled)
                 return;
-            configure_event.connect((w, e) => {
-                /* Avoid tiny windows on Wayland */
-                if (e.width < DEFAULT_WIDTH || e.height < DEFAULT_HEIGHT)
-                    return false;
-                /* Size provided by event is not usable on Gtk+ > 3.18 */
-                int actual_window_width, actual_window_height;
-                get_size(out actual_window_width, out actual_window_height);
-                settings.set("window-size", "(ii)", actual_window_width, actual_window_height);
-                settings.set("window-position", "(ii)", e.x, e.y);
-                return false;
-            });
-            settings.bind("mode", preview_pane, "preview-mode", SettingsBindFlags.DEFAULT);
-            settings.bind("preview-text", preview_pane, "preview-text", SettingsBindFlags.DEFAULT);
-            settings.bind("preview-font-size", preview_pane, "preview-size", SettingsBindFlags.DEFAULT);
-            var charmap = preview_pane.get_nth_page(PreviewPanePage.CHARACTER_MAP);
-            settings.bind("charmap-font-size", charmap, "preview-size", SettingsBindFlags.DEFAULT);
-            settings.delay();
+            get_size(out w, out h);
+            get_position(out x, out y);
             return;
         }
 
@@ -218,6 +218,10 @@ namespace FontManager.FontViewer {
 
         [GtkCallback]
         public bool on_delete_event (Gtk.Widget widget, Gdk.EventAny event) {
+            settings.delay();
+            settings.set("window-size", "(ii)", w, h);
+            settings.set("window-position", "(ii)", x, y);
+            settings.set_boolean("is-maximized", is_maximized);
             settings.apply();
             ((Application) GLib.Application.get_default()).quit();
             return true;
@@ -227,15 +231,13 @@ namespace FontManager.FontViewer {
         public void on_realize (Gtk.Widget widget) {
             if (settings == null)
                 return;
-            int x, y, w, h;
+            if (settings.get_boolean("is-maximized"))
+                maximize();
             settings.get("window-size", "(ii)", out w, out h);
             settings.get("window-position", "(ii)", out x, out y);
             set_default_size(w, h);
             move(x, y);
-            preview_pane.preview_size = settings.get_double("preview-font-size");
-            preview_pane.preview_text = settings.get_string("preview-text");
-            preview_pane.preview_mode = ((FontPreviewMode) settings.get_enum("mode"));
-            Idle.add(() => { bind_settings(); return GLib.Source.REMOVE; });
+            preview_pane.restore_state(settings);
             return;
         }
 

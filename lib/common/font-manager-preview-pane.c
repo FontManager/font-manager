@@ -675,6 +675,35 @@ font_manager_preview_pane_set_orthography (FontManagerPreviewPane *self,
 }
 
 /**
+ * font_manager_preview_pane_restore_state:
+ * @self:       #FontManagerPreviewPane
+ * @settings:   #GSettings
+ *
+ * Apply any applicable settings in @settings to @self and also bind those settings to
+ * their respective properties so that they are updated when any changes take place.
+ */
+void
+font_manager_preview_pane_restore_state (FontManagerPreviewPane *self, GSettings *settings)
+{
+    g_return_if_fail(self != NULL);
+    g_return_if_fail(settings != NULL);
+    g_autofree gchar *preview_text = g_settings_get_string(settings, "preview-text");
+    g_object_set(self,
+                 "page",  g_settings_get_int(settings, "preview-page"),
+                 "preview-mode", g_settings_get_enum(settings, "preview-mode"),
+                 "preview-text", preview_text,
+                 "preview-size", g_settings_get_double(settings, "preview-font-size"),
+                 "character-map-preview-size", g_settings_get_double(settings, "charmap-font-size"),
+                 NULL);
+    g_settings_bind(settings, "preview-page", self, "page", G_SETTINGS_BIND_DEFAULT);
+    g_settings_bind(settings, "preview-mode", self, "preview-mode", G_SETTINGS_BIND_DEFAULT);
+    g_settings_bind(settings, "preview-text", self, "preview-text", G_SETTINGS_BIND_DEFAULT);
+    g_settings_bind(settings, "preview-font-size", self, "preview-size", G_SETTINGS_BIND_DEFAULT);
+    g_settings_bind(settings, "charmap-font-size", self, "character-map-preview-size", G_SETTINGS_BIND_DEFAULT);
+    return;
+}
+
+/**
  * font_manager_preview_pane_new:
  *
  * Returns: (transfer full): A newly created #FontManagerPreviewPane.

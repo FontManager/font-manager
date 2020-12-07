@@ -30,12 +30,6 @@
 
     <schema id="org.gnome.FontViewer" path="/org/gnome/font-manager/font-viewer/">
 
-        <key name="mode" enum="org.gnome.FontViewer.FontPreviewMode">
-            <summary>Mode</summary>
-            <description>Possible modes are Preview, Waterfall and Lorem Ipsum.</description>
-            <default>"waterfall"</default>
-        </key>
-
         <key name='window-position' type='(ii)'>
             <summary>Window position</summary>
             <description>On screen position of the main window. (x, y)</description>
@@ -46,6 +40,12 @@
             <summary>Window size</summary>
             <description>Width and height of the main window.</description>
             <default>(600, 400)</default>
+        </key>
+
+        <key name="is-maximized" type="b">
+            <default>false</default>
+            <summary>Window state</summary>
+            <description>Whether window is maximized</description>
         </key>
 
         <key name="preview-font-size" type="d">
@@ -59,6 +59,18 @@
             <summary>Preview text</summary>
             <description>Last preview text used</description>
             <default>"DEFAULT"</default>
+        </key>
+
+        <key name="preview-mode" enum="org.gnome.FontViewer.FontPreviewMode">
+            <summary>Preview Mode</summary>
+            <description>Possible modes are Preview, Waterfall and Lorem Ipsum.</description>
+            <default>"waterfall"</default>
+        </key>
+
+        <key name="preview-page" type="i">
+            <summary>Selected preview page</summary>
+            <description>Last selected preview page</description>
+            <default>0</default>
         </key>
 
         <key name="charmap-font-size" type="d">

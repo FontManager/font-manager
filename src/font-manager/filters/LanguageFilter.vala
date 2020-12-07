@@ -42,9 +42,31 @@ namespace FontManager {
             }
         }
 
-        public LanguageFilter () {
-            base(_("Language"),  DEFAULT_LANGUAGE_FILTER_COMMENT, "preferences-desktop-locale", SELECT_ON_LANGUAGE, CategoryIndex.LANGUAGE);
+        construct {
             selected = new StringSet();
+        }
+
+        public LanguageFilter () {
+            base(_("Language"),
+                 DEFAULT_LANGUAGE_FILTER_COMMENT,
+                 "preferences-desktop-locale",
+                 SELECT_ON_LANGUAGE,
+                 CategoryIndex.LANGUAGE);
+        }
+
+        public void restore_state (GLib.Settings settings) {
+            foreach (var entry in settings.get_strv("language-filter-list"))
+                selected.add(entry);
+            update.begin((obj, res) => {
+                update.end(res);
+                selections_changed();
+            });
+            return;
+        }
+
+        public void save_state (GLib.Settings settings) {
+            settings.set_strv("language-filter-list", list());
+            return;
         }
 
         public void add (string language) {
@@ -108,7 +130,8 @@ namespace FontManager {
 
         public override void constructed () {
             selected = new StringSet();
-            bind_property("coverage", coverage_spin, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            bind_property("coverage", coverage_spin, "value", flags);
             real_model = new Gtk.ListStore(2, typeof(string), typeof(string));
             search_filter = new Gtk.TreeModelFilter(real_model, null);
             search_filter.set_visible_func((m, i) => { return visible_func(m, i); });
