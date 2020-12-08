@@ -176,7 +176,8 @@ namespace FontManager.GoogleFonts {
             });
             entry.set_placeholder_text(preview_text);
             notify["refresh-required"].connect((obj, pspec) => {
-                if (refresh_required && main_window.model != null)
+                MainWindow? main_window = get_default_application().main_window;
+                if (refresh_required && main_window != null && main_window.model != null)
                     main_window.model = null;
             });
             notify["family"].connect((obj, pspec) => {

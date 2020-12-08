@@ -222,6 +222,7 @@ namespace FontManager {
             DatabaseType [] types = { DatabaseType.FONT, DatabaseType.METADATA, DatabaseType.ORTHOGRAPHY };
             try {
                 Database? db = get_database(DatabaseType.BASE);
+                Reject? reject = get_default_application().reject;
                 foreach (var path in selections) {
                     db.execute_query("SELECT family FROM Fonts WHERE filepath = \"%s\"".printf(path));
                     foreach (unowned Sqlite.Statement row in db)

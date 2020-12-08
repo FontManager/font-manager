@@ -30,6 +30,7 @@ namespace FontManager {
         [GtkChild] public Gtk.CheckButton actions { get; }
 
         public UserDataDialog (string action) {
+            MainWindow? main_window = get_default_application().main_window;
             set_transient_for(main_window);
             if (main_window.use_csd) {
                 var header = new Gtk.HeaderBar();
@@ -52,7 +53,7 @@ namespace FontManager {
 
     public void import_user_data () {
         var dialog = new Gtk.FileChooserNative(_("Select Exported Data"),
-                                                main_window,
+                                                get_default_application().main_window,
                                                 Gtk.FileChooserAction.SELECT_FOLDER,
                                                 _("_Select"),
                                                 _("_Cancel"));
@@ -85,7 +86,7 @@ namespace FontManager {
                     } else if (name == "fonts") {
                         var filelist = new StringSet();
                         filelist.add(Path.build_filename(root, name));
-                        main_window.install_fonts(filelist);
+                        get_default_application().main_window.install_fonts(filelist);
                     }
                 } else if (source_type == GLib.FileType.REGULAR) {
                     string [] config_files = { "Collections.json", "Comparisons.json", "Sources.xml", "Actions.json" };
@@ -101,6 +102,7 @@ namespace FontManager {
         } catch (Error e) {
             critical(e.message);
         }
+        MainWindow? main_window = get_default_application().main_window;
         main_window.sidebar.collection_model.collections = Collections.load();
         main_window.compare.pinned.load();
         Signal.emit_by_name(main_window.compare.pinned, "closed");
@@ -133,7 +135,7 @@ namespace FontManager {
             string temp_dir;
             try {
                 temp_dir = DirUtils.make_tmp(TMP_TMPL);
-                temp_files.add(temp_dir);
+                get_default_application().temp_files.add(temp_dir);
             } catch (Error e) {
                 critical(e.message);
                 return;

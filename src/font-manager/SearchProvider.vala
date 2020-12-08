@@ -144,6 +144,8 @@ namespace FontManager {
             string search_term = get_search_term(terms);
             /* XXX : FIXME */
             Timeout.add(1000, () => {
+                MainWindow? main_window = get_default_application().main_window;
+                return_val_if_fail(main_window != null, GLib.Source.REMOVE);
                 var categories = main_window.sidebar.standard.category_tree;
                 if (application.update_in_progress || categories.update_in_progress)
                     return GLib.Source.CONTINUE;

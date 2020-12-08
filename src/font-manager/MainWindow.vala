@@ -233,24 +233,6 @@ namespace FontManager {
             return;
         }
 
-        public void set_layout_orientation (Gtk.Orientation orientation) {
-            if (settings != null) {
-                string key = "last-vertical-content-pane-position";
-                if (is_horizontal)
-                    key = "last-horizontal-content-pane-position";
-                settings.set_int(key, content_pane.position);
-            }
-            content_pane.set_orientation(orientation);
-            if (settings != null) {
-                int position = settings.get_int("last-vertical-content-pane-position");
-                if (orientation == Gtk.Orientation.HORIZONTAL)
-                    position = settings.get_int("last-horizontal-content-pane-position");
-                content_pane.set_position(position);
-            }
-            is_horizontal = (orientation == Gtk.Orientation.HORIZONTAL);
-            return;
-        }
-
         void real_set_mode (Mode mode) {
             _mode = mode;
             titlebar.main_menu_label.set_markup("<b>%s</b>".printf(mode.to_translatable_string()));
@@ -302,6 +284,8 @@ namespace FontManager {
             sidebar.standard.category_selected.connect((c, i) => {
                 if (disabled == null && c is Disabled || c is Disabled && disabled != c) {
                     disabled = (c as Disabled);
+                    Reject? reject = get_default_application().reject;
+                    return_if_fail(reject != null);
                     disabled.update.begin(reject, (obj,res) => {
                         disabled.update.end(res);
                         fontlist_pane.refilter();
@@ -438,6 +422,15 @@ namespace FontManager {
                     content_stack.set_transition_type(Gtk.StackTransitionType.UNDER_RIGHT);
             });
 
+            preview_pane.switch_page.connect((page, page_num) => {
+                if (page_num == PreviewPanePage.CHARACTER_MAP)
+                    sidebar.mode = "Orthographies";
+                else
+                    sidebar.mode = "Standard";
+            });
+
+            Reject? reject = get_default_application().reject;
+            return_if_fail(reject != null);
             reject.changed.connect(() => {
                 /* Fontlist.on_family_toggled adds any newly rejected files  */
                 //load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
@@ -453,13 +446,7 @@ namespace FontManager {
 
             });
 
-            preview_pane.switch_page.connect((page, page_num) => {
-                if (page_num == PreviewPanePage.CHARACTER_MAP)
-                    sidebar.mode = "Orthographies";
-                else
-                    sidebar.mode = "Standard";
-            });
-
+            return;
         }
 
         public void install_fonts (StringSet selections) {
@@ -546,6 +533,7 @@ namespace FontManager {
             var group = (Collection) val.get_object();
             if (group != null) {
                 group.families.add_all(fontlist.get_selected_families().list());
+                Reject? reject = get_default_application().reject;
                 group.set_active_from_fonts(reject);
                 sidebar.collection_model.collections.save();
                 if (unsorted != null) {
@@ -559,6 +547,20 @@ namespace FontManager {
         }
 
         /* Window state */
+
+        void set_layout_orientation (Gtk.Orientation orientation) {
+            string key = "last-vertical-content-pane-position";
+            if (is_horizontal)
+                key = "last-horizontal-content-pane-position";
+            settings.set_int(key, content_pane.position);
+            content_pane.set_orientation(orientation);
+            int position = settings.get_int("last-vertical-content-pane-position");
+            if (orientation == Gtk.Orientation.HORIZONTAL)
+                position = settings.get_int("last-horizontal-content-pane-position");
+            content_pane.set_position(position);
+            is_horizontal = (orientation == Gtk.Orientation.HORIZONTAL);
+            return;
+        }
 
         void update_layout_orientation () {
             if (settings == null)

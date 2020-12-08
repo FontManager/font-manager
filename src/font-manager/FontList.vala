@@ -186,6 +186,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         }
 
         void set_sensitivity(Gtk.CellRenderer cell, Gtk.TreeIter treeiter, string? family) {
+            Reject? reject = get_default_application().reject;
             bool inactive = (reject != null && family != null ? family in reject : false);
             cell.set_property("strikethrough" , inactive);
             if (inactive && get_selection().iter_is_selected(treeiter))
@@ -298,13 +299,19 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             set_rubber_banding(true);
             get_selection().set_mode(Gtk.SelectionMode.MULTIPLE);
             context_menu = get_context_menu();
+            selected_font = new Font();
+            connect_signals();
+        }
+
+        void connect_signals () {
             notify["user-actions"].connect(() => {
                 context_menu = get_context_menu();
                 user_actions.items_changed.connect(() => {
                     context_menu = get_context_menu();
                 });
             });
-            selected_font = new Font();
+            DatabaseProxy? db = get_default_application().db;
+            return_if_fail(db != null);
             db.update_started.connect(() => { saved_iter = selected_iter; refresh_required = true; });
             db.status_changed.connect(() => {
                 if (refresh_required && db.ready(DatabaseType.METADATA)) {
@@ -413,6 +420,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         }
 
         protected override void on_toggled (string path) {
+            Reject? reject = get_default_application().reject;
             if (reject == null)
                 return;
             Gtk.TreeIter iter;
@@ -438,6 +446,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                                                        Gtk.CellRenderer cell,
                                                        Gtk.TreeModel model,
                                                        Gtk.TreeIter treeiter) {
+            Reject? reject = get_default_application().reject;
             if (reject != null && model.iter_has_child(treeiter)) {
                 Value val;
                 model.get_value(treeiter, FontModelColumn.NAME, out val);
@@ -529,7 +538,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             string directory = GLib.Path.get_dirname(selected_font.filepath);
             string uri = "file://%s".printf(directory);
             try {
-                Gtk.show_uri_on_window(main_window, uri, Gdk.CURRENT_TIME);
+                Gtk.show_uri_on_window(get_default_application().main_window, uri, Gdk.CURRENT_TIME);
             } catch (Error e) {
                 warning(e.message);
             }
@@ -688,8 +697,6 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             controls = new FontListControls();
             controls.set_remove_sensitivity(false);
             fontlist = new FontList();
-            font_model = new FontModel();
-            model = font_model;
             revealer.add(controls);
             connect_signals();
             controls.show();
@@ -706,7 +713,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
 
         public void save () {
             var node = new Json.Node(Json.NodeType.ARRAY);
-            node.set_array(font_model.source_array);
+            node.set_array(((FontModel) model).source_array);
             write_json_file(node, get_cache_file(), false);
             return;
         }
@@ -718,6 +725,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             Json.Node? root = load_json_file(cache_file);
             if (root != null) {
                 Json.Array array = root.get_array();
+                var font_model = (FontModel) model;
                 model = null;
                 font_model.source_array = array;
                 model = font_model;
@@ -798,6 +806,8 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             controls.entry.activate.connect(() => {
                 fontlist.select_next_row();
             });
+            DatabaseProxy? db = get_default_application().db;
+            return_if_fail(db != null);
             db.update_started.connect(() => { refresh_required = true; });
             db.status_changed.connect(() => {
                 if (refresh_required && db.ready(DatabaseType.METADATA))

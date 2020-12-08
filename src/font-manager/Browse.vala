@@ -310,23 +310,26 @@ namespace FontManager {
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             Object obj = val.get_object();
             string font_desc;
-            bool active;
+            bool active = true;
             Pango.AttrList attrs = new Pango.AttrList();
             attrs.insert(Pango.attr_fallback_new(false));
             cell.set_property("attributes", attrs);
             Pango.FontDescription default_desc = get_font(treeview);
             default_desc.set_size((int) ((get_desc_size()) * Pango.SCALE));
             cell.set_property("font-desc" , default_desc);
+            Reject? reject = get_default_application().reject;
             if (obj is Family) {
                 font_desc = ((Family) obj).family;
-                active = !(((Family) obj).family in reject);
+                if (reject != null)
+                    active = !(((Family) obj).family in reject);
                 cell.set_property("title" , font_desc);
                 cell.set_padding(24, 8);
                 ((CellRendererPill) cell).render_background = true;
             } else {
                 ((CellRendererPill) cell).render_background = false;
                 font_desc = ((Font) obj).description;
-                active = !(((Font) obj).family in reject);
+                if (reject != null)
+                    active = !(((Font) obj).family in reject);
                 Pango.FontDescription desc = Pango.FontDescription.from_string(font_desc);
                 desc.set_size((int) (preview_size * Pango.SCALE));
                 cell.set_property("font-desc" , desc);

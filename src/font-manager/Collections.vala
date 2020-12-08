@@ -38,6 +38,8 @@ namespace FontManager {
         }
 
         public void update () {
+            Reject? reject = get_default_application().reject;
+            return_if_fail(reject != null);
             foreach (Collection collection in entries.get_values())
                 collection.set_active_from_fonts(reject);
             return;
@@ -290,11 +292,6 @@ The sidebar will automatically switch while dragging fonts.
         }
 
         void connect_signals () {
-            return_if_fail(reject != null);
-            reject.changed.connect(() => {
-                model.collections.update();
-                get_column(0).queue_resize();
-            });
             controls.add_selected.connect(() => {
                 on_add_collection();
             });
@@ -305,6 +302,12 @@ The sidebar will automatically switch while dragging fonts.
             renderer.edited.connect(on_edited);
             selection_changed.connect((c) => {
                 controls.remove_button.set_sensitive(c != null);
+            });
+            Reject? reject = get_default_application().reject;
+            return_if_fail(reject != null);
+            reject.changed.connect(() => {
+                model.collections.update();
+                get_column(0).queue_resize();
             });
             return;
         }
@@ -331,6 +334,7 @@ The sidebar will automatically switch while dragging fonts.
             var group = new Collection(default_collection_name, null);
             if (families != null) {
                 group.families.add_all(families);
+                Reject? reject = get_default_application().reject;
                 group.set_active_from_fonts(reject);
             }
             model.collections.entries[default_collection_name] = group;
@@ -361,6 +365,7 @@ The sidebar will automatically switch while dragging fonts.
                 model.collections.save();
                 return GLib.Source.REMOVE;
             });
+            Reject? reject = get_default_application().reject;
             selected_filter.set_active_from_fonts(reject);
             changed();
             return;
@@ -396,7 +401,7 @@ The sidebar will automatically switch while dragging fonts.
             string temp_dir;
             try {
                 temp_dir = DirUtils.make_tmp(TMP_TMPL);
-                temp_files.add(temp_dir);
+                get_default_application().temp_files.add(temp_dir);
             } catch (Error e) {
                 critical(e.message);
                 return_if_reached();
@@ -483,6 +488,7 @@ The sidebar will automatically switch while dragging fonts.
             model.get_value(iter, CollectionColumn.OBJECT, out val);
             var group = (Collection) val.get_object();
             group.active = !(group.active);
+            Reject? reject = get_default_application().reject;
             group.update(reject);
             group.set_active_from_fonts(reject);
             val.unset();

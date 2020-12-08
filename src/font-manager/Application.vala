@@ -20,20 +20,8 @@
 
 namespace FontManager {
 
-    public static DatabaseProxy? db = null;
-    public static FontManager.Reject? reject = null;
-    public static FontModel? font_model = null;
-    public static MainWindow? main_window = null;
-    public static StringSet temp_files = null;
-
-    internal void clear_resources () {
-        clear_application_fonts();
-        reject = null;
-        if (temp_files != null)
-            foreach (string path in temp_files)
-                remove_directory(File.new_for_path(path));
-        temp_files = null;
-        return;
+    FontManager.Application get_default_application () {
+        return ((FontManager.Application) GLib.Application.get_default());
     }
 
     [DBus (name = "org.gnome.FontManager")]
@@ -44,7 +32,17 @@ namespace FontManager {
         [DBus (visible = false)]
         public GLib.Settings? settings { get; private set; default = null; }
         [DBus (visible = false)]
-        public StringSet? available_families { get; private set; default = null; }
+        public FontModel? model { get; set; default = null; }
+        [DBus (visible = false)]
+        public MainWindow? main_window { get; private set; default = null; }
+        [DBus (visible = false)]
+        public DatabaseProxy? db { get; private set; default = new DatabaseProxy(); }
+        [DBus (visible = false)]
+        public Reject? reject { get; private set; default = new Reject(); }
+        [DBus (visible = false)]
+        public StringSet? temp_files { get; private set; default = new StringSet(); }
+        [DBus (visible = false)]
+        public StringSet? available_families { get; private set; default = new StringSet(); }
 
         const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
@@ -65,34 +63,18 @@ namespace FontManager {
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
             add_main_option_entries(options);
+            settings = get_gsettings(app_id);
         }
 
         public override void startup () {
             base.startup();
-            available_families = new StringSet();
-            temp_files = new StringSet();
-            reject = new Reject();
             reject.load();
-            db = new DatabaseProxy();
-            db.update_started.connect(() => { update_in_progress = true; });
-            db.update_complete.connect(() => {
-                update_in_progress = false;
-                enable_user_font_configuration(true);
-            });
-            SimpleAction quit = new SimpleAction("quit", null);
-            add_action(quit);
-            quit.activate.connect(() => {
-                if (main_window != null)
-                    main_window.close();
-                Idle.add(() => { this.quit(); return GLib.Source.REMOVE; });
-            });
-            const string? [] accels = {"<Ctrl>q", null };
-            set_accels_for_action("app.quit", accels);
-            settings = get_gsettings(BUS_ID);
             Gtk.Settings gtk = Gtk.Settings.get_default();
             gtk.gtk_application_prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
             gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
             gtk.gtk_dialogs_use_header = settings.get_boolean("use-csd");
+            db.update_started.connect(() => { update_in_progress = true; });
+            db.update_complete.connect(() => { update_in_progress = false; });
             return;
         }
 
@@ -132,7 +114,6 @@ namespace FontManager {
                     installer.process_sync(filelist);
                     stdout.printf("\n");
                 }
-                ensure_reject();
                 update_font_configuration();
                 try {
                     load_user_font_resources(reject.get_rejected_files(), null);
@@ -165,14 +146,6 @@ namespace FontManager {
             return 0;
         }
 
-        void ensure_reject () {
-            if (reject == null) {
-                reject = new Reject();
-                reject.load();
-            }
-            return;
-        }
-
         public string list () throws GLib.DBusError, GLib.IOError {
             load_user_font_resources(null, null);
             GLib.List <string> families = list_available_font_families();
@@ -184,7 +157,6 @@ namespace FontManager {
         }
 
         public string list_full () throws GLib.DBusError, GLib.IOError {
-            ensure_reject();
             update_font_configuration();
             try {
                 load_user_font_resources(reject.get_rejected_files(), null);
@@ -197,7 +169,6 @@ namespace FontManager {
         }
 
         public void enable (string [] families) throws GLib.DBusError, GLib.IOError {
-            ensure_reject();
             foreach (var family in families)
                 if (family in reject)
                     reject.remove(family);
@@ -206,7 +177,6 @@ namespace FontManager {
         }
 
         public void disable (string [] families) throws GLib.DBusError, GLib.IOError {
-            ensure_reject();
             foreach (var family in families)
                 reject.add(family);
             reject.save();
@@ -235,8 +205,6 @@ namespace FontManager {
                 print_about();
                 return 0;
             }
-
-            ensure_reject();
 
             if (options.contains("enable")) {
                 var accept = get_command_line_input(options);
@@ -282,8 +250,9 @@ namespace FontManager {
 
         void refresh_async () {
             ThreadFunc <bool> run_in_thread = () => {
+                var font_model = (FontModel) model;
                 if (main_window != null)
-                    Idle.add(() => { main_window.model = null; return GLib.Source.REMOVE; });
+                    Idle.add(() => { model = null; return GLib.Source.REMOVE; });
                 enable_user_font_configuration(false);
                 update_font_configuration();
                 try {
@@ -299,7 +268,8 @@ namespace FontManager {
                 foreach (string family in available_fonts.get_members())
                     available_families.add(family);
                 if (main_window != null)
-                    Idle.add(() => { main_window.model = font_model; return GLib.Source.REMOVE; });
+                    Idle.add(() => { model = font_model; return GLib.Source.REMOVE; });
+                enable_user_font_configuration(true);
                 return true;
             };
             new Thread <bool> ("refresh_async", (owned) run_in_thread);
@@ -319,12 +289,24 @@ namespace FontManager {
             if (main_window == null) {
                 main_window = new MainWindow();
                 add_window(main_window);
+                BindingFlags flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
+                bind_property("model", main_window, "model", flags);
+                model = new FontModel();
                 db.set_progress_callback((data) => {
                     data.ref();
-                    main_window.titlebar.progress.database(data);
+                    /* XXX : FIXME : main_window.set_progress() -> children */
+                    get_default_application().main_window.titlebar.progress.database(data);
                     data.unref();
                     return GLib.Source.REMOVE;
                 });
+                SimpleAction quit = new SimpleAction("quit", null);
+                add_action(quit);
+                quit.activate.connect(() => {
+                    main_window.close();
+                    Idle.add(() => { this.quit(); return GLib.Source.REMOVE; });
+                });
+                const string? [] accels = {"<Ctrl>q", null };
+                set_accels_for_action("app.quit", accels);
             }
             main_window.present_with_time(Gdk.CURRENT_TIME);
             refresh();
@@ -333,8 +315,10 @@ namespace FontManager {
 
         [DBus (visible = false)]
         public new void quit () {
+            foreach (string path in temp_files)
+                remove_directory(File.new_for_path(path));
             /* Try to prevent noise during memcheck */
-            clear_resources();
+            clear_application_fonts();
             base.quit();
             return;
         }
@@ -429,10 +413,6 @@ namespace FontManager {
             return new Application(BUS_ID, FLAGS).run(args);
         }
 
-    }
-
-    FontManager.Application get_default_application () {
-        return ((FontManager.Application) GLib.Application.get_default());
     }
 
 }

@@ -223,8 +223,11 @@ namespace FontManager {
             });
 #endif /* HAVE_WEBKIT */
 
-            db.update_started.connect(() => { loading = true; });
-            db.update_complete.connect(() => { loading = false; });
+            DatabaseProxy? db = get_default_application().db;
+            if (db != null) {
+                db.update_started.connect(() => { loading = true; });
+                db.update_complete.connect(() => { loading = false; });
+            }
             return;
         }
 

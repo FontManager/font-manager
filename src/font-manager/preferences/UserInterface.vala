@@ -37,6 +37,7 @@ namespace FontManager {
         construct {
             combo.changed.connect(() => {
                 this.notify_property("active");
+                MainWindow? main_window = get_default_application().main_window;
                 if (main_window != null) {
                     var style = active == "Normal" ? Gtk.ReliefStyle.NORMAL : Gtk.ReliefStyle.NONE;
                     main_window.titlebar.set_button_style(style);

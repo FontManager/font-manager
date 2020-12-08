@@ -139,8 +139,6 @@ namespace FontManager {
                 show_expanders = false,
                 tooltip_column = CategoryColumn.COMMENT
             };
-            model = new CategoryModel();
-            tree.set_model(model);
             renderer = new Gtk.CellRendererText();
             count_renderer = new CellRendererCount();
             pixbuf_renderer = new Gtk.CellRendererPixbuf();
@@ -154,6 +152,18 @@ namespace FontManager {
             tree.test_expand_row.connect((t,i,p) => { t.collapse_all(); return false; });
             tree.get_selection().changed.connect(on_selection_changed);
             language_filter_settings = new LanguageFilterSettings();
+            overlay.add_overlay(updating);
+            overlay.add(tree);
+            add(overlay);
+            tree.show();
+            updating.show();
+            overlay.show();
+            connect_signals();
+            model = new CategoryModel();
+            tree.set_model(model);
+        }
+
+        void connect_signals () {
             notify["model"].connect(() => {
                 tree.set_model(model);
                 tree.queue_draw();
@@ -167,6 +177,8 @@ namespace FontManager {
                     update_complete();
                 });
             });
+            DatabaseProxy? db = get_default_application().db;
+            return_if_fail(db != null);
             db.update_started.connect(() => { refresh_required = true; });
             db.status_changed.connect(() => {
                 if (refresh_required && db.ready(DatabaseType.METADATA)) {
@@ -180,12 +192,7 @@ namespace FontManager {
                     update();
                 }
             });
-            overlay.add_overlay(updating);
-            overlay.add(tree);
-            add(overlay);
-            tree.show();
-            updating.show();
-            overlay.show();
+            return;
         }
 
         public static string get_cache_file () {

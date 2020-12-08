@@ -25,6 +25,7 @@ namespace FontManager {
         Gtk.ProgressBar progress_bar;
 
         public ProgressDialog (string? title) {
+            MainWindow? main_window = get_default_application().main_window;
             Object(transient_for: main_window, modal: true, text: title);
             progress_bar = new Gtk.ProgressBar();
             ((Gtk.Box) get_message_area()).pack_end(progress_bar);
@@ -57,7 +58,7 @@ namespace FontManager {
 
         public string? get_executable () {
             var dialog = new Gtk.FileChooserNative(_("Select executable"),
-                                                    main_window,
+                                                    get_default_application().main_window,
                                                     Gtk.FileChooserAction.OPEN,
                                                     _("_Select"),
                                                     _("_Cancel"));
@@ -72,7 +73,7 @@ namespace FontManager {
 
         public string? get_target_directory () {
             var dialog = new Gtk.FileChooserNative(_("Select Destination"),
-                                                    main_window,
+                                                    get_default_application().main_window,
                                                     Gtk.FileChooserAction.SELECT_FOLDER,
                                                     _("_Select"),
                                                     _("_Cancel"));
@@ -89,7 +90,7 @@ namespace FontManager {
         public StringSet get_selections () {
             var selections = new StringSet();
             var dialog = new Gtk.FileChooserNative(_("Select files to install"),
-                                                    main_window,
+                                                    get_default_application().main_window,
                                                     Gtk.FileChooserAction.OPEN,
                                                     _("_Open"),
                                                     _("_Cancel"));
@@ -114,7 +115,7 @@ namespace FontManager {
         public string? [] get_selected_sources () {
             string? [] arr = { };
             var dialog = new Gtk.FileChooserNative(_("Select source folders"),
-                                                    main_window,
+                                                    get_default_application().main_window,
                                                     Gtk.FileChooserAction.SELECT_FOLDER,
                                                     _("_Open"),
                                                     _("_Cancel"));
@@ -134,6 +135,7 @@ namespace FontManager {
 
         public StringSet get_selections (Gtk.TreeModel model) {
             Gtk.HeaderBar? header = null;
+            MainWindow? main_window = get_default_application().main_window;
             bool use_csd = main_window != null ? main_window.use_csd : false;
             var selections = new StringSet();
             FontListPane? tree = null;

@@ -170,7 +170,7 @@ namespace FontManager {
             };
             settings_button.show();
             settings_button.clicked.connect(() => {
-                main_window.sidebar.mode = "LanguageFilterSettings";
+                get_default_application().main_window.sidebar.mode = "LanguageFilterSettings";
             });
             return settings_button;
         }
@@ -193,7 +193,7 @@ namespace FontManager {
 
         [GtkCallback]
         void on_back_button_clicked () {
-            main_window.sidebar.mode = "Standard";
+            get_default_application().main_window.sidebar.mode = "Standard";
             search_entry.set_text("");
             return;
         }
