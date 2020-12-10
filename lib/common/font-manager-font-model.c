@@ -89,10 +89,19 @@ font_manager_font_model_column_get_type (void)
 }
 
 #define SOURCE "source-array"
-#define JSON_OBJECT(o) (JsonObject *) o
-#define GET_INDEX(o) ((gint) json_object_get_int_member(JSON_OBJECT(o), "_index"))
-#define GET_VARIATIONS(o) json_object_get_array_member(JSON_OBJECT(o), "variations")
-#define N_VARIATIONS(o) ((gint) json_object_get_int_member(JSON_OBJECT(o), "n_variations"))
+
+gint
+get_n_variations (FontManagerFontModel *self, gint index)
+{
+    JsonObject *family = json_array_get_object_element(self->available_fonts, index);
+    return (gint) json_object_get_int_member(family, "n_variations");
+}
+
+gboolean
+invalid_iter (GtkTreeIter *iter) {
+    iter->stamp = 0;
+    return FALSE;
+}
 
 /* GtkTreeModelIface */
 
@@ -126,15 +135,16 @@ font_manager_font_model_get_iter (GtkTreeModel *tree_model,
     gint depth = gtk_tree_path_get_depth(path);
     gint *indices = gtk_tree_path_get_indices(path);
     if (!self->available_fonts || indices[0] >= ((int) json_array_get_length(self->available_fonts)))
-        return FALSE;
+        return invalid_iter(iter);
     iter->stamp = self->stamp;
-    iter->user_data = json_array_get_object_element(self->available_fonts, indices[0]);
-    g_return_val_if_fail(iter->user_data != NULL, FALSE);
+    iter->user_data = GINT_TO_POINTER(indices[0]);
+    iter->user_data2 = GINT_TO_POINTER(-1);
     if (depth > 1) {
-        JsonArray *variations = GET_VARIATIONS(iter->user_data);
-        iter->user_data2 = json_array_get_object_element(variations, indices[1]);
-    } else
-        iter->user_data2 = NULL;
+        gint n_variations = get_n_variations(self, indices[0]);
+        if (indices[1] >= n_variations)
+            return invalid_iter(iter);
+        iter->user_data2 = GINT_TO_POINTER(indices[1]);
+    }
     return TRUE;
 }
 
@@ -144,12 +154,11 @@ font_manager_font_model_get_path (GtkTreeModel *tree_model, GtkTreeIter *iter)
     FontManagerFontModel *self = FONT_MANAGER_FONT_MODEL(tree_model);
     g_return_val_if_fail(self != NULL, NULL);
     g_return_val_if_fail(iter->stamp == self->stamp, NULL);
-    g_return_val_if_fail(iter->user_data != NULL, NULL);
-    gint index = GET_INDEX(iter->user_data);
-    if (iter->user_data2 == NULL)
-        return gtk_tree_path_new_from_indices(index, -1);
-    else
-        return gtk_tree_path_new_from_indices(index, GET_INDEX(iter->user_data2), -1);
+    GtkTreePath *path = gtk_tree_path_new();
+    gtk_tree_path_append_index(path, GPOINTER_TO_INT(iter->user_data));
+    if (GPOINTER_TO_INT(iter->user_data2) != -1)
+        gtk_tree_path_append_index(path, GPOINTER_TO_INT(iter->user_data2));
+    return path;
 }
 
 static void
@@ -164,11 +173,16 @@ font_manager_font_model_get_value (GtkTreeModel *tree_model,
     g_return_if_fail(json_array_get_length(self->available_fonts) > 0);
     g_return_if_fail(iter != NULL);
     g_return_if_fail(iter->stamp == self->stamp);
-    g_return_if_fail(iter->user_data != NULL);
     g_value_init(value, COLUMN_TYPES[column]);
-    gboolean root_node = (iter->user_data2 == NULL);
+    JsonObject *root = NULL, *child = NULL;
+    root = json_array_get_object_element(self->available_fonts, GPOINTER_TO_INT(iter->user_data));
+    gboolean root_node = (GPOINTER_TO_INT(iter->user_data2) == -1);
+    if (!root_node) {
+        JsonArray *children = json_object_get_array_member(root, "variations");
+        child = json_array_get_object_element(children, GPOINTER_TO_INT(iter->user_data2));
+    }
+    JsonObject *obj = root_node ? root : child;
     const gchar *member = root_node ? "family" : "style";
-    JsonObject *obj = root_node ? JSON_OBJECT(iter->user_data) : JSON_OBJECT(iter->user_data2);
     switch (column) {
         case FONT_MANAGER_FONT_MODEL_NAME:
             g_value_set_string(value, json_object_get_string_member(obj, member));
@@ -178,7 +192,7 @@ font_manager_font_model_get_value (GtkTreeModel *tree_model,
             break;
         case FONT_MANAGER_FONT_MODEL_COUNT:
             if (root_node)
-                g_value_set_int(value, N_VARIATIONS(obj));
+                g_value_set_int(value, get_n_variations(self, GPOINTER_TO_INT(iter->user_data)));
             else
                 g_value_set_int(value, -1);
             break;
@@ -208,23 +222,20 @@ font_manager_font_model_iter_next (GtkTreeModel *tree_model, GtkTreeIter *iter)
     g_return_val_if_fail(self != NULL, FALSE);
     g_return_val_if_fail(iter != NULL, FALSE);
     g_return_val_if_fail(iter->stamp == self->stamp, FALSE);
-    g_return_val_if_fail(iter->user_data != NULL, FALSE);
     if (!self->available_fonts || json_array_get_length(self->available_fonts) < 1)
-        return FALSE;
-    gint index;
-    if (iter->user_data2 == NULL) {
+        return invalid_iter(iter);
+    gint index = GPOINTER_TO_INT(iter->user_data);
+    if (GPOINTER_TO_INT(iter->user_data2) == -1) {
         gint n_root_nodes = (gint) json_array_get_length(self->available_fonts);
-        index = GET_INDEX(iter->user_data);
         if (!(index < n_root_nodes - 1))
-            return FALSE;
-        iter->user_data = json_array_get_object_element(self->available_fonts, index + 1);
+            return invalid_iter(iter);
+        iter->user_data = GINT_TO_POINTER(index + 1);
     } else {
-        gint n_children = N_VARIATIONS(iter->user_data);
-        index = GET_INDEX(iter->user_data2);
+        gint n_children = get_n_variations(self, index);
+        index = GPOINTER_TO_INT(iter->user_data2);
         if (!(index < n_children - 1))
-            return FALSE;
-        JsonArray *variations = GET_VARIATIONS(iter->user_data);
-        iter->user_data2 = json_array_get_object_element(variations, index + 1);
+            return invalid_iter(iter);
+        iter->user_data2 = GINT_TO_POINTER(index + 1);
     }
     return TRUE;
 }
@@ -236,21 +247,18 @@ font_manager_font_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *it
     g_return_val_if_fail(self != NULL, FALSE);
     g_return_val_if_fail(iter != NULL, FALSE);
     g_return_val_if_fail(iter->stamp == self->stamp, FALSE);
-    g_return_val_if_fail(iter->user_data != NULL, FALSE);
     if (!self->available_fonts || json_array_get_length(self->available_fonts) < 1)
-        return FALSE;
-    gint index;
-    if (iter->user_data2 == NULL) {
-        index = GET_INDEX(iter->user_data);
+        return invalid_iter(iter);
+    gint index = GPOINTER_TO_INT(iter->user_data);
+    if (GPOINTER_TO_INT(iter->user_data2) == -1) {
         if (index < 1)
-            return FALSE;
-        iter->user_data = json_array_get_object_element(self->available_fonts, index - 1);
+            return invalid_iter(iter);
+        iter->user_data = GINT_TO_POINTER(index - 1);
     } else {
-        index = GET_INDEX(iter->user_data2);
+        index = GPOINTER_TO_INT(iter->user_data2);
         if (index < 1)
-            return FALSE;
-        JsonArray *variations = GET_VARIATIONS(iter->user_data);
-        iter->user_data2 = json_array_get_object_element(variations, index - 1);
+            return invalid_iter(iter);
+        iter->user_data2 = GINT_TO_POINTER(index - 1);
     }
     return TRUE;
 }
@@ -264,19 +272,17 @@ font_manager_font_model_iter_children (GtkTreeModel *tree_model,
     g_return_val_if_fail(self != NULL, FALSE);
     iter->stamp = self->stamp;
     if (!self->available_fonts || json_array_get_length(self->available_fonts) < 1)
-        return FALSE;
+        return invalid_iter(iter);
     /* Special case - if parent equals %NULL this function should return the first node */
     if (parent == NULL) {
-        iter->user_data = json_array_get_object_element(self->available_fonts, 0);
-        iter->user_data2 = NULL;
-    } else if (parent->user_data2 != NULL) {
+        iter->user_data = GINT_TO_POINTER(0);
+        iter->user_data2 = GINT_TO_POINTER(-1);
+    } else if (GPOINTER_TO_INT(parent->user_data2) != -1) {
         /* Maximum depth of this model is 2 */
-        iter->stamp = 0;
-        return FALSE;
+        return invalid_iter(iter);
     } else {
         iter->user_data = parent->user_data;
-        JsonArray *variations = GET_VARIATIONS(iter->user_data);
-        iter->user_data2 = json_array_get_object_element(variations, 0);
+        iter->user_data2 = GINT_TO_POINTER(0);
     }
     return TRUE;
 }
@@ -290,7 +296,7 @@ font_manager_font_model_iter_has_child (GtkTreeModel *tree_model, GtkTreeIter *i
     g_return_val_if_fail(iter->stamp == self->stamp, FALSE);
     if (!self->available_fonts || json_array_get_length(self->available_fonts) < 1)
         return FALSE;
-    return (iter->user_data != NULL && iter->user_data2 == NULL);
+    return (GPOINTER_TO_INT(iter->user_data2) == -1);
 }
 
 static gint
@@ -302,8 +308,7 @@ font_manager_font_model_iter_n_children (GtkTreeModel *tree_model, GtkTreeIter *
     /* Special case - if iter is %NULL this function should return the number of toplevel nodes */
     if (iter == NULL)
         return ((gint) json_array_get_length(self->available_fonts));
-    g_return_val_if_fail(iter->user_data != NULL, 0);
-    return N_VARIATIONS(iter->user_data);
+    return get_n_variations(self, GPOINTER_TO_INT(iter->user_data));
 }
 
 static gboolean
@@ -322,24 +327,22 @@ font_manager_font_model_iter_nth_child (GtkTreeModel *tree_model,
     if (parent == NULL) {
         gint n_root_nodes = (gint) json_array_get_length(self->available_fonts);
         if (n < n_root_nodes) {
-            iter->user_data = json_array_get_object_element(self->available_fonts, n);
-            iter->user_data2 = NULL;
+            iter->user_data = GINT_TO_POINTER(n);
+            iter->user_data2 = GINT_TO_POINTER(-1);
             return TRUE;
         } else {
-            return FALSE;
+            return invalid_iter(iter);
         }
     }
 
-    g_return_val_if_fail(parent->user_data != NULL, FALSE);
-    gint n_children = N_VARIATIONS(parent->user_data);
+    g_return_val_if_fail(parent->stamp == self->stamp, FALSE);
+    gint n_children = get_n_variations(self, GPOINTER_TO_INT(parent->user_data));
 
     if (n > n_children -1) {
-        return FALSE;
+        return invalid_iter(iter);
     } else {
         iter->user_data = parent->user_data;
-        JsonArray *variations = GET_VARIATIONS(iter->user_data);
-        iter->user_data2 = json_array_get_object_element(variations, n);
-        g_return_val_if_fail(iter->user_data2 != NULL, FALSE);
+        iter->user_data2 = GINT_TO_POINTER(n);
         return TRUE;
     }
 
@@ -357,7 +360,7 @@ font_manager_font_model_iter_parent (GtkTreeModel *tree_model,
     g_return_val_if_fail(child->user_data2 != NULL, FALSE);
     iter->stamp = self->stamp;
     iter->user_data = child->user_data;
-    iter->user_data2 = NULL;
+    iter->user_data2 = GINT_TO_POINTER(-1);
     return TRUE;
 }
 
