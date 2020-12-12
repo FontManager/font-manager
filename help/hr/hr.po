@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2020-12-05 23:39-0500\n"
-"PO-Revision-Date: 2020-12-03 00:36+0000\n"
+"PO-Revision-Date: 2020-12-09 02:29+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/hr/>\n"
@@ -143,7 +143,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr "Proizvođač"
+msgstr "Prodavač"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -151,8 +151,8 @@ msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
 msgstr ""
-"Razvrstani po proizvođaču fonta – zahtijeva podatke o proizvođaču u meta-"
-"podacima fonta."
+"Razvrstano po prodavaču fontova – zahtijeva podatke o prodavaču u "
+"metapodacima fonta."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
@@ -554,7 +554,7 @@ msgid ""
 "files."
 msgstr ""
 "Instaliraj <link action=\"install:file-roller\" href=\"https://wiki.gnome."
-"org/Apps/FileRoller\">Upravljač arhivama</link> za aktiviranje podrške za "
+"org/Apps/FileRoller\">Upravljač arhiva</link> za aktiviranje podrške za "
 "komprimirane datoteke."
 
 #. (itstool) path: note/p
@@ -565,7 +565,7 @@ msgid ""
 "take a moment depending on number of changes."
 msgstr ""
 "<app>Font Manager</app> će aktualizirati prikaz, kadgod promjene to "
-"zahtijevaju. Ovo može nešto potrajati, ovisno o količini promjena."
+"zahtijevaju. Ovo može potrajati, ovisno o količini promjena."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-removal.page:8
@@ -916,8 +916,8 @@ msgid ""
 "For more information about <app>Font Manager</app>, please visit the <link "
 "href=\"http://fontmanager.github.io/\"> Homepage </link>"
 msgstr ""
-"Za daljnje informacije o <app>Font Manageru</app>, posjeti <link href="
-"\"http://fontmanager.github.io/\"> web-stranicu </link>"
+"Za daljnje informacije o <app>Font Manageru</app> posjeti <link href=\"http"
+"://fontmanager.github.io/\"> web-stranicu </link>"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:67
@@ -1082,9 +1082,7 @@ msgstr "Zamjena"
 #: C/font-manager-substitutions.page:12
 msgid ""
 "<app>Font Manager</app> allows you to substitute one font family for another."
-msgstr ""
-"<app>Font Manager</app> omogućuje zamjenu jedne obitelji fontova drugom "
-"obitelji."
+msgstr "<app>Font Manager</app> omogućuje zamjenjivanje obitelji fontova."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:18
@@ -1254,7 +1252,7 @@ msgstr "2009. – 2020."
 #. (itstool) path: credit/name
 #: C/index.page:20
 msgid "Weblate"
-msgstr ""
+msgstr "Weblate"
 
 #. (itstool) path: license/p
 #: C/index.page:24
@@ -1281,8 +1279,8 @@ msgid ""
 "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
 "font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
-"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
-"font.png\"> Font Manager logo </media> Font Manager"
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font"
+".png\"> Font Manager logotip </media> Font Manager"
 
 #. (itstool) path: section/title
 #: C/index.page:37

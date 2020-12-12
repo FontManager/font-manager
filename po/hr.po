@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-12-05 23:29-0500\n"
-"PO-Revision-Date: 2020-12-03 00:36+0000\n"
+"PO-Revision-Date: 2020-12-09 02:29+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hr/>\n"
@@ -329,10 +329,8 @@ msgid "Installable Embedding"
 msgstr "Instaliranje dozvoljeno"
 
 #: lib/common/font-manager-freetype.c:703
-#, fuzzy
-#| msgid "Unknown"
 msgid "Unknown Vendor"
-msgstr "Nepoznato"
+msgstr "Nepoznat prodavač"
 
 #: lib/common/font-manager-license-pane.c:185
 msgid "File does not contain license information."
@@ -421,7 +419,7 @@ msgstr "Verzija"
 #: lib/common/font-manager-properties-pane.c:88
 #: src/font-manager/Categories.vala:398
 msgid "Vendor"
-msgstr "Proizvođač"
+msgstr "Prodavač"
 
 #: lib/common/font-manager-properties-pane.c:89
 msgid "FileType"
@@ -683,7 +681,7 @@ msgstr "Grupirani po vrsti licence"
 
 #: src/font-manager/Categories.vala:398
 msgid "Grouped by vendor"
-msgstr "Grupirani po proizvođaću"
+msgstr "Grupirani po prodavaču"
 
 #: src/font-manager/Categories.vala:399
 msgid "Filetype"

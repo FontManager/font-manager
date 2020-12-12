@@ -25,10 +25,10 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-12-05 23:29-0500\n"
-"PO-Revision-Date: 2020-12-03 00:36+0000\n"
-"Last-Translator: migmedia <coding@migmedia.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/de/>\n"
+"PO-Revision-Date: 2020-12-10 19:29+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -334,10 +334,8 @@ msgid "Installable Embedding"
 msgstr ""
 
 #: lib/common/font-manager-freetype.c:703
-#, fuzzy
-#| msgid "Unknown"
 msgid "Unknown Vendor"
-msgstr "Unbekannt"
+msgstr "Unbekannter Anbieter"
 
 #: lib/common/font-manager-license-pane.c:185
 msgid "File does not contain license information."
@@ -695,7 +693,7 @@ msgstr "Geordnet nach Lizenz"
 
 #: src/font-manager/Categories.vala:398
 msgid "Grouped by vendor"
-msgstr "Geordnet nach Hersteller"
+msgstr "Geordnet nach Anbieter"
 
 #: src/font-manager/Categories.vala:399
 msgid "Filetype"
@@ -727,7 +725,7 @@ msgstr "Familienart"
 
 #: src/font-manager/Categories.vala:421
 msgid "Only fonts which include Panose information will be grouped here."
-msgstr "Nur Schriften mit Panose Informationen werden hier gruppiert."
+msgstr "Hier werden nur Schriften mit Panose Informationen gruppiert."
 
 #: src/font-manager/Categories.vala:422
 #: src/font-manager/web/google/ui/google-font-filters.ui:355
@@ -783,13 +781,15 @@ msgstr "Komprimieren …"
 
 #: src/font-manager/Compare.vala:335
 msgid "Saved Comparison"
-msgstr ""
+msgstr "Gespeicherter Vergleich"
 
 #: src/font-manager/Compare.vala:360
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
 msgstr ""
+"Plus Zeichen drücken, um\n"
+"jetzigen Vergleich zu speichern"
 
 #: src/font-manager/Dialogs.vala:59
 msgid "Select executable"
@@ -1023,7 +1023,7 @@ msgstr "Sprache"
 
 #: src/font-manager/filters/LanguageFilter.vala:139
 msgid "Filter Settings"
-msgstr ""
+msgstr "Filter-Einstellungen"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
@@ -1310,32 +1310,34 @@ msgstr ""
 
 #: src/font-manager/web/google/FontList.vala:56
 msgid "Case insensitive search of family names."
-msgstr ""
+msgstr "Suche nach Familiennamen ohne berücksichtigt der Groß-/Kleinschreibung."
 
 #: src/font-manager/web/google/GoogleFonts.vala:129
 msgid "Error procesing data"
-msgstr ""
+msgstr "Fehler beim Verarbeiten von Daten"
 
 #: src/font-manager/web/google/GoogleFonts.vala:138
 msgid "Network Error"
-msgstr ""
+msgstr "Netzwerk-Fehler"
 
 #: src/font-manager/web/google/GoogleFonts.vala:139
 msgid "Please check your network settings"
-msgstr ""
+msgstr "Netzwerkeinstellungen überprüfen"
 
 #: src/font-manager/web/google/GoogleFonts.vala:141
 msgid "Client Error"
-msgstr ""
+msgstr "Client-Fehler"
 
 #: src/font-manager/web/google/GoogleFonts.vala:142
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
+"Versuche die Anwendung neu zu starten. Wenn das Problem weiterhin besteht, "
+"melde den Fehler."
 
 #: src/font-manager/web/google/GoogleFonts.vala:145
 msgid "Server Error"
-msgstr ""
+msgstr "Server-Fehler"
 
 #: src/font-manager/web/google/GoogleFonts.vala:217
 msgid "Network Offline"
@@ -1348,123 +1350,123 @@ msgstr ""
 
 #: src/font-manager/web/google/Language.vala:32
 msgid "Arabic"
-msgstr ""
+msgstr "Arabisch"
 
 #: src/font-manager/web/google/Language.vala:33
 msgid "Bengali"
-msgstr ""
+msgstr "Bengalisch"
 
 #: src/font-manager/web/google/Language.vala:34
 msgid "Chinese (Hong Kong)"
-msgstr ""
+msgstr "Chinesisch (Hong Kong)"
 
 #: src/font-manager/web/google/Language.vala:35
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Chinesisch (vereinfacht)"
 
 #: src/font-manager/web/google/Language.vala:36
 msgid "Chinese (Traditional)"
-msgstr ""
+msgstr "Chinesisch (traditionell)"
 
 #: src/font-manager/web/google/Language.vala:37
 msgid "Cyrillic"
-msgstr ""
+msgstr "Kyrillisch"
 
 #: src/font-manager/web/google/Language.vala:38
 msgid "Cyrillic Extended"
-msgstr ""
+msgstr "Kyrillisch erweitert"
 
 #: src/font-manager/web/google/Language.vala:39
 msgid "Devanagari"
-msgstr ""
+msgstr "Devanagari"
 
 #: src/font-manager/web/google/Language.vala:40
 msgid "Greek"
-msgstr ""
+msgstr "Griechisch"
 
 #: src/font-manager/web/google/Language.vala:41
 msgid "Greek Extended"
-msgstr ""
+msgstr "Griechisch erweitert"
 
 #: src/font-manager/web/google/Language.vala:42
 msgid "Gujarati"
-msgstr ""
+msgstr "Gujarati"
 
 #: src/font-manager/web/google/Language.vala:43
 msgid "Gurmukhi"
-msgstr ""
+msgstr "Gurmukhi"
 
 #: src/font-manager/web/google/Language.vala:44
 msgid "Hebrew"
-msgstr ""
+msgstr "Hebräisch"
 
 #: src/font-manager/web/google/Language.vala:45
 msgid "Japanese"
-msgstr ""
+msgstr "Japanisch"
 
 #: src/font-manager/web/google/Language.vala:46
 msgid "Kannada"
-msgstr ""
+msgstr "Kannada"
 
 #: src/font-manager/web/google/Language.vala:47
 msgid "Khmer"
-msgstr ""
+msgstr "Khmer"
 
 #: src/font-manager/web/google/Language.vala:48
 msgid "Korean"
-msgstr ""
+msgstr "Koreanisch"
 
 #: src/font-manager/web/google/Language.vala:49
 msgid "Latin"
-msgstr ""
+msgstr "Lateinisch"
 
 #: src/font-manager/web/google/Language.vala:50
 msgid "Latin Extended"
-msgstr ""
+msgstr "Lateinisch erweitert"
 
 #: src/font-manager/web/google/Language.vala:51
 msgid "Malayalam"
-msgstr ""
+msgstr "Malayalam"
 
 #: src/font-manager/web/google/Language.vala:52
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar"
 
 #: src/font-manager/web/google/Language.vala:53
 msgid "Oriya"
-msgstr ""
+msgstr "Oriya"
 
 #: src/font-manager/web/google/Language.vala:54
 msgid "Sinhala"
-msgstr ""
+msgstr "Singhalesisch"
 
 #: src/font-manager/web/google/Language.vala:55
 msgid "Tamil"
-msgstr ""
+msgstr "Tamilisch"
 
 #: src/font-manager/web/google/Language.vala:56
 msgid "Telugu"
-msgstr ""
+msgstr "Telugisch"
 
 #: src/font-manager/web/google/Language.vala:57
 msgid "Thai"
-msgstr ""
+msgstr "Thailändisch"
 
 #: src/font-manager/web/google/Language.vala:58
 msgid "Tibetan"
-msgstr ""
+msgstr "Tibetisch"
 
 #: src/font-manager/web/google/Language.vala:59
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vietnamesisch"
 
 #: src/font-manager/web/google/PreviewPane.vala:270
 msgid "Update Family"
-msgstr "Familienart aktualisieren"
+msgstr "Familie aktualisieren"
 
 #: src/font-manager/web/google/PreviewPane.vala:270
 msgid "Update Font"
-msgstr "Schriftart aktualisieren"
+msgstr "Schrift aktualisieren"
 
 #: src/font-manager/web/google/PreviewPane.vala:275
 msgid "Remove Family"
@@ -1486,8 +1488,8 @@ msgstr "Schrift herunterladen"
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i Sprachbeispiel verfügbar "
+msgstr[1] "%i Sprachbeispiele verfügbar "
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
