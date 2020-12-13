@@ -916,8 +916,8 @@ msgid ""
 "For more information about <app>Font Manager</app>, please visit the <link "
 "href=\"http://fontmanager.github.io/\"> Homepage </link>"
 msgstr ""
-"Za daljnje informacije o <app>Font Manageru</app> posjeti <link href=\"http"
-"://fontmanager.github.io/\"> web-stranicu </link>"
+"Za daljnje informacije o <app>Font Manageru</app> posjeti <link href="
+"\"http://fontmanager.github.io/\"> web-stranicu </link>"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:67
@@ -1279,8 +1279,8 @@ msgid ""
 "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
 "font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
-"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font"
-".png\"> Font Manager logotip </media> Font Manager"
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
+"font.png\"> Font Manager logotip </media> Font Manager"
 
 #. (itstool) path: section/title
 #: C/index.page:37
