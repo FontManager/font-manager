@@ -34,69 +34,11 @@ namespace FontManager {
         FILETYPE,
         UNSORTED,
         DISABLED,
-        LANGUAGE
+        LANGUAGE,
+        N_CATEGORIES
     }
 
-    public class CategoryModel : Gtk.TreeStore {
-
-        public signal void update_begin ();
-        public signal void update_complete ();
-
-        public GenericArray <Category>? categories { get; set; default = null; }
-
-        public CategoryModel () {
-            set_column_types({typeof(Object), typeof(string), typeof(string), typeof(string) });
-            categories = new GenericArray <Category> ();
-            notify["categories"].connect(() => {
-                clear();
-                if (categories != null)
-                    categories.foreach((filter) => {
-                        filter.requires_update = true;
-                        append_category((Category) filter);
-                    });
-            });
-        }
-
-        void append_category (Category filter) {
-            if (filter.index < CategoryIndex.PANOSE) {
-                filter.update.begin((obj, res) => {
-                    filter.update.end(res);
-                    filter.requires_update = false;
-                });
-            }
-            Gtk.TreeIter iter;
-            this.append(out iter, null);
-            /* Comments are used for tooltips. */
-            string comment = Markup.escape_text(filter.comment);
-            this.set(iter, 0, filter, 1, filter.icon, 2, filter.name, 3, comment, -1);
-            comment = null;
-            filter.children.foreach((child) => {
-                string child_comment = Markup.escape_text(child.comment);
-                Gtk.TreeIter _iter;
-                this.append(out _iter, iter);
-                this.set(_iter, 0, child, 1, child.icon, 2, child.name, 3, child_comment, -1);
-                child_comment = null;
-            });
-            return;
-        }
-
-        public void update () {
-            update_begin();
-            clear();
-            categories = null;
-            try {
-                Database db = get_database(DatabaseType.BASE);
-                categories = get_default_categories(db);
-            } catch (DatabaseError e) {
-                critical(e.message);
-            }
-            update_complete();
-            return;
-        }
-
-    }
-
-    public enum CategoryColumn {
+    public enum CategoryModelColumn {
         OBJECT,
         ICON,
         NAME,
@@ -104,8 +46,250 @@ namespace FontManager {
         N_COLUMNS
     }
 
+    public class CategoryModel : Object, Gtk.TreeModel {
+
+        public signal void update_begin ();
+        public signal void update_complete ();
+
+        public GenericArray <Category>? categories { get; set; default = null; }
+
+        int stamp = 0;
+        string language_filter_tooltip = DEFAULT_LANGUAGE_FILTER_COMMENT;
+
+        construct {
+            do { stamp = (int) GLib.Random.next_int(); } while (stamp == 0);
+        }
+
+        bool invalid_iter (Gtk.TreeIter iter) {
+            iter.stamp = 0;
+            return false;
+        }
+
+        Gtk.TreeIter valid_iter () {
+            int none = -1;
+            var iter = Gtk.TreeIter () { stamp = stamp, user_data2 = none.to_pointer() };
+            return iter;
+        }
+
+        void update_language_filter_tooltip () {
+            var filter = (LanguageFilter) categories[CategoryIndex.LANGUAGE];
+            if (filter.size == 0) {
+                language_filter_tooltip = DEFAULT_LANGUAGE_FILTER_COMMENT;
+                return;
+            }
+            StringBuilder builder = new StringBuilder("");
+            filter.selected.sort((CompareFunc) natural_sort);
+            foreach (var lang in filter.selected) {
+                string language = lang;
+                foreach (var orth in Orthographies) {
+                    if (orth.name == lang) {
+                        language = orth.native;
+                        break;
+                    }
+                }
+                builder.append("   %s   ".printf(language));
+            }
+            language_filter_tooltip = GLib.Markup.escape_text(builder.str);
+            return;
+        }
+
+        public Gtk.TreeModelFlags get_flags () {
+            return Gtk.TreeModelFlags.ITERS_PERSIST;
+        }
+
+        public int get_n_columns () {
+            return CategoryModelColumn.N_COLUMNS;
+        }
+
+        public Type get_column_type (int index) {
+            if (index == CategoryModelColumn.OBJECT)
+                return typeof(Object);
+            return typeof(string);
+        }
+
+        public bool get_iter (out Gtk.TreeIter iter, Gtk.TreePath path) {
+            iter = valid_iter();
+            if (categories == null)
+                return invalid_iter(iter);
+            int depth = path.get_depth();
+            int [] indices = path.get_indices();
+            iter.user_data = indices[0].to_pointer();
+            if (depth > 1) {
+                int n_child = indices[1];
+                int n_children = iter_n_children(iter);
+                if (n_child < 0 || n_child >= n_children)
+                    return invalid_iter(iter);
+                iter.user_data2 = n_child.to_pointer();
+            }
+            return true;
+        }
+
+        public Gtk.TreePath? get_path (Gtk.TreeIter iter)
+        requires (iter.stamp == stamp) {
+            var path = new Gtk.TreePath();
+            path.append_index((int) iter.user_data);
+            if (((int) iter.user_data2) != -1)
+                path.append_index((int) iter.user_data2);
+            return path;
+        }
+
+        public void get_value (Gtk.TreeIter iter, int column, out GLib.Value val)
+        requires (iter.stamp == stamp)
+        requires (column >= 0 && column < CategoryModelColumn.N_COLUMNS) {
+            val = Value(get_column_type(column));
+            Category parent = categories[(int) iter.user_data];
+            Category? child = null;
+            if (((int) iter.user_data2) != -1)
+                child = parent.children[(int) iter.user_data2];
+            Category target = child != null ? child : parent;
+            switch (column) {
+                case CategoryModelColumn.NAME:
+                    val.set_string(target.name);
+                    break;
+                case CategoryModelColumn.ICON:
+                    val.set_string(target.icon);
+                    break;
+                case CategoryModelColumn.COMMENT:
+                    /* Escaping needed as this is used in tooltip */
+                    if (target.index == CategoryIndex.LANGUAGE)
+                        val.set_string(language_filter_tooltip);
+                    else
+                        val.set_string(GLib.Markup.escape_text(target.comment));
+                    break;
+                case CategoryModelColumn.OBJECT:
+                    val.set_object(target);
+                    break;
+                default:
+                    assert_not_reached();
+            }
+            return;
+        }
+
+        public bool iter_next (ref Gtk.TreeIter iter)
+        requires (iter.stamp == stamp) {
+            int parent = (int) iter.user_data;
+            int child = (int) iter.user_data2;
+            if (child != -1) {
+                int next_child = child + 1;
+                if (next_child >= categories[parent].children.length)
+                    return invalid_iter(iter);
+                iter.user_data2 = next_child.to_pointer();
+            } else {
+                int next_parent = parent + 1;
+                if (next_parent >= categories.length)
+                    return invalid_iter(iter);
+                iter.user_data = next_parent.to_pointer();
+            }
+            return true;
+        }
+
+        public bool iter_previous (ref Gtk.TreeIter iter)
+        requires (iter.stamp == stamp) {
+            int parent = (int) iter.user_data;
+            int child = (int) iter.user_data2;
+            if (child != -1) {
+                int next_child = child - 1;
+                if (next_child <= 0)
+                    return invalid_iter(iter);
+                iter.user_data2 = next_child.to_pointer();
+            } else {
+                int next_parent = parent - 1;
+                if (next_parent <= 0)
+                    return invalid_iter(iter);
+                iter.user_data = next_parent.to_pointer();
+            }
+            return true;
+        }
+
+        public bool iter_children (out Gtk.TreeIter iter, Gtk.TreeIter? parent)
+        requires (parent.stamp == stamp) {
+            iter = valid_iter();
+            if (categories == null || ((int) parent.user_data2) != -1)
+                return invalid_iter(iter);
+            int first_index = 0;
+            if (parent == null) {
+                iter.user_data = first_index.to_pointer();
+            } else {
+                iter.user_data = parent.user_data;
+                iter.user_data2 = first_index.to_pointer();
+            }
+            return true;
+        }
+
+        public bool iter_has_child (Gtk.TreeIter iter)
+        requires (iter.stamp == stamp) {
+            if (categories == null)
+                return false;
+            return iter_n_children(iter) > 0;
+        }
+
+        public int iter_n_children (Gtk.TreeIter? iter)
+        requires (iter == null || iter.stamp == stamp) {
+            if (categories == null)
+                return 0;
+            if (iter == null)
+                return categories.length;
+            if (((int) iter.user_data2) != -1)
+                return 0;
+            Category parent = categories[(int) iter.user_data];
+            return parent.children.length;
+        }
+
+        public bool iter_nth_child (out Gtk.TreeIter iter, Gtk.TreeIter? parent, int n)
+        requires (parent == null || parent.stamp == stamp) {
+            iter = valid_iter();
+            if (categories == null)
+                return invalid_iter(iter);
+            if (parent == null) {
+                if (n >= categories.length)
+                    return invalid_iter(iter);
+                iter.user_data = n.to_pointer();
+                return true;
+            }
+            int n_children = iter_n_children(parent);
+            if (n > n_children - 1)
+                return invalid_iter(iter);
+            else {
+                iter.user_data = parent.user_data;
+                iter.user_data2 = n.to_pointer();
+            }
+            return true;
+        }
+
+        public bool iter_parent (out Gtk.TreeIter iter, Gtk.TreeIter child)
+        requires (child.stamp == stamp)
+        requires (((int) child.user_data2) != -1) {
+            iter = valid_iter();
+            iter.user_data = child.user_data;
+            return true;
+        }
+
+        public void update () {
+            update_begin();
+            categories = null;
+            try {
+                Database db = get_database(DatabaseType.BASE);
+                categories = get_default_categories(db);
+            } catch (DatabaseError e) {
+                critical(e.message);
+            }
+            for (int i = CategoryIndex.ALL; i < CategoryIndex.PANOSE; i++) {
+                Category cat = categories[i];
+                cat.update.begin((obj, res) => { cat.update.end(res); });
+            }
+            var lang_filter = (LanguageFilter) categories[CategoryIndex.LANGUAGE];
+            lang_filter.selections_changed.connect(() => {
+                update_language_filter_tooltip();
+            });
+            update_complete();
+            return;
+        }
+
+    }
+
     public class CategoryTree : Gtk.ScrolledWindow {
 
+        public signal void changed ();
         public signal void selection_changed (Category filter, int category);
         public signal void update_complete ();
 
@@ -116,7 +300,6 @@ namespace FontManager {
         public string selected_iter { get; protected set; default = "0"; }
         public Category? selected_filter { get; protected set; default = null; }
         public LanguageFilter? language_filter { get; set; default = null; }
-        public LanguageFilterSettings language_filter_settings { get; private set; }
         public BaseTreeView tree { get; protected set; }
         public Gtk.CellRendererText renderer { get; protected set; }
         public CellRendererCount count_renderer { get; protected set; }
@@ -137,7 +320,7 @@ namespace FontManager {
                 level_indentation = 12,
                 headers_visible = false,
                 show_expanders = false,
-                tooltip_column = CategoryColumn.COMMENT
+                tooltip_column = CategoryModelColumn.COMMENT
             };
             renderer = new Gtk.CellRendererText();
             count_renderer = new CellRendererCount();
@@ -145,13 +328,12 @@ namespace FontManager {
             renderer.set_property("ellipsize", Pango.EllipsizeMode.END);
             renderer.set_property("ellipsize-set", true);
             tree.insert_column_with_data_func(0, "", pixbuf_renderer, pixbuf_cell_data_func);
-            tree.insert_column_with_attributes(1, "", renderer, "text", CategoryColumn.NAME, null);
+            tree.insert_column_with_attributes(1, "", renderer, "text", CategoryModelColumn.NAME, null);
             tree.insert_column_with_data_func(2, "", count_renderer, count_cell_data_func);
             for (int i = 0; i < 3; i++)
                 tree.get_column(i).expand = (i == 1);
             tree.test_expand_row.connect((t,i,p) => { t.collapse_all(); return false; });
             tree.get_selection().changed.connect(on_selection_changed);
-            language_filter_settings = new LanguageFilterSettings();
             overlay.add_overlay(updating);
             overlay.add(tree);
             add(overlay);
@@ -160,7 +342,7 @@ namespace FontManager {
             overlay.show();
             connect_signals();
             model = new CategoryModel();
-            tree.set_model(model);
+            model.update();
         }
 
         void connect_signals () {
@@ -168,17 +350,19 @@ namespace FontManager {
                 tree.set_model(model);
                 tree.queue_draw();
                 model.update_begin.connect(() => {
+                    tree.set_model(null);
                     update_in_progress = true;
                     updating.show();
                 });
                 model.update_complete.connect(() => {
                     updating.hide();
                     update_in_progress = false;
+                    tree.set_model(model);
                     update_complete();
                 });
             });
             DatabaseProxy? db = get_default_application().db;
-            return_if_fail(db != null);
+            assert(db != null);
             db.update_started.connect(() => { refresh_required = true; });
             db.status_changed.connect(() => {
                 if (refresh_required && db.ready(DatabaseType.METADATA)) {
@@ -191,6 +375,18 @@ namespace FontManager {
                     refresh_required = false;
                     update();
                 }
+            });
+            Reject? reject = get_default_application().reject;
+            assert(reject != null);
+            reject.changed.connect(() => {
+                if (model.categories == null)
+                    return;
+                Disabled disabled = (Disabled) model.categories[CategoryIndex.DISABLED];
+                disabled.update.begin(reject, (obj,res) => {
+                    disabled.update.end(res);
+                    if (selected_filter.index == CategoryIndex.DISABLED)
+                        Idle.add(() => { changed(); return GLib.Source.REMOVE; });
+                });
             });
             return;
         }
@@ -270,10 +466,10 @@ namespace FontManager {
             if (model.iter_has_child(treeiter))
                 return;
             Value val;
-            model.get_value(treeiter, CategoryColumn.OBJECT, out val);
+            model.get_value(treeiter, CategoryModelColumn.OBJECT, out val);
             var obj = (Category) val.get_object();
             /* Or dynamic categories */
-            if (obj.index < CategoryIndex.UNSORTED) {
+            if (obj.index < CategoryIndex.UNSORTED || obj.index == CategoryIndex.DISABLED) {
                 cell.set_property("count", obj.size);
                 cell.set_property("visible", true);
             }
@@ -286,37 +482,13 @@ namespace FontManager {
                                     Gtk.TreeModel model,
                                     Gtk.TreeIter treeiter) {
             Value val;
-            model.get_value(treeiter, 0, out val);
+            model.get_value(treeiter, CategoryModelColumn.OBJECT, out val);
             var obj = val.get_object();
             if (tree.is_row_expanded(model.get_path(treeiter)))
                 cell.set_property("icon-name", "folder-open");
             else
                 cell.set_property("icon-name", ((Category) obj).icon);
             val.unset();
-            return;
-        }
-
-        void update_language_filter_tooltip () {
-            Gtk.TreeIter lang_iter;
-            var store = (Gtk.TreeStore) model;
-            model.iter_nth_child(out lang_iter, null, model.iter_n_children(null) - 1);
-            if (language_filter.selected.size == 0) {
-                store.set(lang_iter, CategoryColumn.COMMENT, DEFAULT_LANGUAGE_FILTER_COMMENT, -1);
-                return;
-            }
-            StringBuilder builder = new StringBuilder("\n");
-            language_filter.selected.sort((CompareFunc) natural_sort);
-            foreach (var lang in language_filter.selected) {
-                string language = lang;
-                foreach (var orth in Orthographies) {
-                    if (orth.name == lang) {
-                        language = orth.native;
-                        break;
-                    }
-                }
-                builder.append("    %s    \n".printf(language));
-            }
-            store.set(lang_iter, CategoryColumn.COMMENT, builder.str, -1);
             return;
         }
 
@@ -333,27 +505,14 @@ namespace FontManager {
             Idle.add(() => {
                 bool is_language_filter = (selected_filter.index == CategoryIndex.LANGUAGE);
                 if (language_filter != null) {
-                    language_filter_settings.get_button().set_visible(is_language_filter);
+                    language_filter.settings.get_button().set_visible(is_language_filter);
                     return GLib.Source.REMOVE;
                 }
                 if (is_language_filter) {
                     language_filter = selected_filter as LanguageFilter;
-                    overlay.add_overlay(language_filter_settings.get_button());
-                    language_filter.selections_changed.connect(() => {
-                        update_language_filter_tooltip();
-                    });
-                    language_filter.bind_property("selected", language_filter_settings, "selected", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-                    language_filter.bind_property("coverage", language_filter_settings, "coverage", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
-                    language_filter_settings.selections_changed.connect(() => {
-                        language_filter.update.begin((obj, res) => {
-                            language_filter.update.end(res);
-                            language_filter.selections_changed();
-                        });
-                    });
-                    GLib.Settings? settings = get_default_application().settings;
-                    if (settings != null)
-                        language_filter.restore_state(settings);
-                    language_filter_settings.get_button().set_visible(is_language_filter);
+                    overlay.add_overlay(language_filter.settings.get_button());
+                    language_filter.settings.get_button().set_visible(is_language_filter);
+                    language_filter.selections_changed.connect(() => { changed(); });
                 }
                 return GLib.Source.REMOVE;
             });
@@ -379,6 +538,7 @@ namespace FontManager {
                         selected_filter.update.end(res);
                         selected_filter.requires_update = false;
                     });
+
             }
             return;
         }

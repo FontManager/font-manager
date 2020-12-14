@@ -127,9 +127,6 @@ namespace FontManager {
         const int DEFAULT_HEIGHT = 600;
 
         Mode _mode;
-        Disabled? disabled = null;
-        Unsorted? unsorted = null;
-        LanguageFilter? language_filter = null;
         GLib.Settings? settings = null;
 
 #if HAVE_WEBKIT
@@ -281,30 +278,11 @@ namespace FontManager {
             sidebar.standard.collection_selected.connect((filter) => { fontlist_pane.filter = filter; });
             sidebar.orthographies.orthography_selected.connect((o) => { preview_pane.orthography = o; });
 
+            sidebar.standard.category_tree.changed.connect(() => { fontlist_pane.refilter(); });
+
             sidebar.standard.category_selected.connect((c, i) => {
-                if (disabled == null && c is Disabled || c is Disabled && disabled != c) {
-                    disabled = (c as Disabled);
-                    Reject? reject = get_default_application().reject;
-                    return_if_fail(reject != null);
-                    disabled.update.begin(reject, (obj,res) => {
-                        disabled.update.end(res);
-                        fontlist_pane.refilter();
-                    });
-                }
-                if (unsorted == null && c is Unsorted || c is Unsorted && unsorted != c) {
-                    unsorted = (c as Unsorted);
-                    var collected = sidebar.collection_model.collections.get_full_contents();
-                    unsorted.update.begin(collected, (obj, res) => {
-                        unsorted.update.end(res);
-                        fontlist_pane.refilter();
-                    });
-                }
-                if (language_filter == null && c is LanguageFilter || c is LanguageFilter && language_filter != c) {
-                    language_filter = (c as LanguageFilter);
-                    language_filter.selections_changed.connect(() => {
-                        fontlist_pane.refilter();
-                    });
-                }
+                if (c is Unsorted)
+                    update_unsorted_category();
             });
 
             sidebar.standard.mode_selected.connect((m) => {
@@ -328,15 +306,7 @@ namespace FontManager {
             });
 
             sidebar.standard.collection_tree.changed.connect(() => {
-                if (unsorted != null) {
-                    Idle.add(() => {
-                        var collected = sidebar.collection_model.collections.get_full_contents();
-                        unsorted.update.begin(collected, (obj, res) => {
-                            unsorted.update.end(res);
-                        });
-                        return GLib.Source.REMOVE;
-                    });
-                }
+                update_unsorted_category();
                 fontlist_pane.refilter();
                 fontlist.queue_draw();
                 browse.treeview.queue_draw();
@@ -429,23 +399,6 @@ namespace FontManager {
                     sidebar.mode = "Standard";
             });
 
-            Reject? reject = get_default_application().reject;
-            return_if_fail(reject != null);
-            reject.changed.connect(() => {
-                /* Fontlist.on_family_toggled adds any newly rejected files  */
-                //load_user_font_resources(reject.get_rejected_files(), sources.list_objects());
-
-                if (disabled == null)
-                    return;
-
-                disabled.update.begin(reject, (obj,res) => {
-                    disabled.update.end(res);
-                    if (sidebar.standard.selected_category.index == CategoryIndex.DISABLED)
-                        fontlist_pane.refilter();
-                });
-
-            });
-
             return;
         }
 
@@ -472,7 +425,6 @@ namespace FontManager {
         public void remove_fonts (StringSet selections) {
             if (selections.size > 0) {
                 titlebar.removing_files = true;
-                model = null;
                 Library.remove.begin(selections, (obj, res) => {
                     Library.remove.end(res);
                     Idle.add(() => {
@@ -486,6 +438,17 @@ namespace FontManager {
                     });
                 });
             }
+            return;
+        }
+
+        void update_unsorted_category () {
+            return_if_fail(sidebar.category_model != null);
+            var unsorted = (Unsorted) sidebar.category_model.categories[CategoryIndex.UNSORTED];
+            var collected = sidebar.collection_model.collections.get_full_contents();
+            unsorted.update.begin(collected, (obj, res) => {
+                unsorted.update.end(res);
+                fontlist_pane.refilter();
+            });
             return;
         }
 
@@ -536,12 +499,7 @@ namespace FontManager {
                 Reject? reject = get_default_application().reject;
                 group.set_active_from_fonts(reject);
                 sidebar.collection_model.collections.save();
-                if (unsorted != null) {
-                    var collected = sidebar.collection_model.collections.get_full_contents();
-                    unsorted.update.begin(collected, (obj, res) => {
-                        unsorted.update.end(res);
-                    });
-                }
+                update_unsorted_category();
             }
             return;
         }
@@ -625,12 +583,12 @@ namespace FontManager {
             Idle.add(() => {
                 if (settings != null) {
                     settings.delay();
-                    if (language_filter != null)
-                        language_filter.save_state(settings);
+                    var language_filter = sidebar.category_model.categories[CategoryIndex.LANGUAGE];
+                    ((LanguageFilter) language_filter).save_state(settings);
                     compare.save_state(settings);
                     settings.set("window-size", "(ii)", w, h);
                     settings.set("window-position", "(ii)", x, y);
-                    settings.set_boolean("is-maximized", is_maximized);
+//                    settings.set_boolean("is-maximized", is_maximized);
                     settings.apply();
                 }
                 get_default_application().quit();
@@ -647,8 +605,8 @@ namespace FontManager {
                 return;
             }
 
-            if (settings.get_boolean("is-maximized"))
-                maximize();
+//            if (settings.get_boolean("is-maximized"))
+//                maximize();
             settings.get("window-size", "(ii)", out w, out h);
             settings.get("window-position", "(ii)", out x, out y);
             wide_layout = settings.get_boolean("wide-layout");
@@ -679,8 +637,11 @@ namespace FontManager {
             Idle.add(() => {
                 if (sidebar.standard.category_tree.update_in_progress)
                     return GLib.Source.CONTINUE;
-                restore_selections(font_path, category_path, collection_path);
-                Idle.add(() => { main_stack.sensitive = true; return GLib.Source.REMOVE; });
+                Idle.add(() => {
+                    restore_selections(font_path, category_path, collection_path);
+                    Idle.add(() => { main_stack.sensitive = true; return GLib.Source.REMOVE; });
+                    return GLib.Source.REMOVE;
+                });
                 return GLib.Source.REMOVE;
             });
 

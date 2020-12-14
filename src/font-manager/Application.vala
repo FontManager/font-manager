@@ -250,7 +250,6 @@ namespace FontManager {
 
         void refresh_async () {
             ThreadFunc <bool> run_in_thread = () => {
-                var font_model = (FontModel) model;
                 if (main_window != null)
                     Idle.add(() => { model = null; return GLib.Source.REMOVE; });
                 enable_user_font_configuration(false);
@@ -263,6 +262,7 @@ namespace FontManager {
                 Json.Object available_fonts = get_available_fonts(null);
                 db.update();
                 Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
+                var font_model = new FontModel();
                 font_model.source_array = sorted_fonts;
                 available_families.clear();
                 foreach (string family in available_fonts.get_members())

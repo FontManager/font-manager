@@ -725,8 +725,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             Json.Node? root = load_json_file(cache_file);
             if (root != null) {
                 Json.Array array = root.get_array();
-                var font_model = (FontModel) model;
-                model = null;
+                var font_model = new FontModel();
                 font_model.source_array = array;
                 model = font_model;
                 var available_families = get_default_application().available_families;

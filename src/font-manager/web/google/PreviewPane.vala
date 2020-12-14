@@ -176,9 +176,10 @@ namespace FontManager.GoogleFonts {
             });
             entry.set_placeholder_text(preview_text);
             notify["refresh-required"].connect((obj, pspec) => {
+                /* Prevent warnings due to missing / added fonts */
                 MainWindow? main_window = get_default_application().main_window;
-                if (refresh_required && main_window != null && main_window.model != null)
-                    main_window.model = null;
+                if (refresh_required && main_window != null)
+                    Idle.add(() => { main_window.model = null; return GLib.Source.REMOVE; });
             });
             notify["family"].connect((obj, pspec) => {
                 FileStatus status = family != null ? family.get_installation_status() : font.get_installation_status();

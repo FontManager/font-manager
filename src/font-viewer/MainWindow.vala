@@ -46,10 +46,8 @@ namespace FontManager.FontViewer {
         bool is_tiled = false;
         PlaceHolder welcome;
         StringSet installed;
-        Settings? settings = null;
 
         public override void constructed () {
-            settings = get_gsettings(FontViewer.BUS_ID);
             installed = new StringSet();
             welcome = new PlaceHolder(w1, w2, w3, "font-x-generic-symbolic");
             welcome.show();
@@ -218,21 +216,25 @@ namespace FontManager.FontViewer {
 
         [GtkCallback]
         public bool on_delete_event (Gtk.Widget widget, Gdk.EventAny event) {
-            settings.delay();
-            settings.set("window-size", "(ii)", w, h);
-            settings.set("window-position", "(ii)", x, y);
-            settings.set_boolean("is-maximized", is_maximized);
-            settings.apply();
-            ((Application) GLib.Application.get_default()).quit();
+            var settings = ((FontViewer.Application) application).settings;
+            if (settings != null) {
+                settings.delay();
+                settings.set("window-size", "(ii)", w, h);
+                settings.set("window-position", "(ii)", x, y);
+//                settings.set_boolean("is-maximized", is_maximized);
+                settings.apply();
+            }
+            ((FontViewer.Application) application).quit();
             return true;
         }
 
         [GtkCallback]
         public void on_realize (Gtk.Widget widget) {
+            var settings = ((FontViewer.Application) application).settings;
             if (settings == null)
                 return;
-            if (settings.get_boolean("is-maximized"))
-                maximize();
+//            if (settings.get_boolean("is-maximized"))
+//                maximize();
             settings.get("window-size", "(ii)", out w, out h);
             settings.get("window-position", "(ii)", out x, out y);
             set_default_size(w, h);
@@ -248,13 +250,8 @@ namespace FontManager.FontViewer {
                                            Gtk.SelectionData selection_data,
                                            uint info,
                                            uint time) {
-            switch (info) {
-                case DragTargetType.EXTERNAL:
-                    this.open(selection_data.get_uris()[0], 0);
-                    break;
-                default:
-                    return;
-            }
+            if (info == DragTargetType.EXTERNAL)
+                open(selection_data.get_uris()[0], 0);
             return;
         }
 

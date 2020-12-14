@@ -35,6 +35,7 @@ namespace FontManager {
 
         public StringSet selected { get; set; }
         public double coverage { get; set; default = 90; }
+        public LanguageFilterSettings settings { get; private set; }
 
         public override int size {
             get {
@@ -44,6 +45,13 @@ namespace FontManager {
 
         construct {
             selected = new StringSet();
+            settings = new LanguageFilterSettings(this);
+            settings.selections_changed.connect(() => {
+                Idle.add(() => {
+                    update.begin((obj, res) => { update.end(res); });
+                    return GLib.Source.REMOVE;
+                });
+            });
         }
 
         public LanguageFilter () {
@@ -52,15 +60,15 @@ namespace FontManager {
                  "preferences-desktop-locale",
                  SELECT_ON_LANGUAGE,
                  CategoryIndex.LANGUAGE);
+            GLib.Settings? settings = get_default_application().settings;
+            if (settings != null)
+                restore_state(settings);
         }
 
         public void restore_state (GLib.Settings settings) {
             foreach (var entry in settings.get_strv("language-filter-list"))
                 selected.add(entry);
-            update.begin((obj, res) => {
-                update.end(res);
-                selections_changed();
-            });
+            update.begin((obj, res) => { update.end(res); });
             return;
         }
 
@@ -71,10 +79,7 @@ namespace FontManager {
 
         public void add (string language) {
             selected.add(language);
-            update.begin((obj, res) => {
-                update.end(res);
-                selections_changed();
-            });
+            update.begin((obj, res) => { update.end(res); });
             return;
         }
 
@@ -105,6 +110,7 @@ namespace FontManager {
             StringSet? available_families = get_default_application().available_families;
             return_if_fail(available_families != null);
             families.retain_all(available_families.list());
+            Idle.add(() => {  selections_changed(); return GLib.Source.REMOVE; });
             return;
         }
 
@@ -115,8 +121,7 @@ namespace FontManager {
 
         public signal void selections_changed ();
 
-        public double coverage { get; set; default = 90; }
-        public StringSet selected { get; set; }
+        weak LanguageFilter filter;
 
         [GtkChild] Gtk.SpinButton coverage_spin;
         [GtkChild] Gtk.SearchEntry search_entry;
@@ -128,10 +133,7 @@ namespace FontManager {
         Gtk.ListStore real_model;
         Gtk.TreeModelFilter? search_filter = null;
 
-        public override void constructed () {
-            selected = new StringSet();
-            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
-            bind_property("coverage", coverage_spin, "value", flags);
+        construct {
             real_model = new Gtk.ListStore(2, typeof(string), typeof(string));
             search_filter = new Gtk.TreeModelFilter(real_model, null);
             search_filter.set_visible_func((m, i) => { return visible_func(m, i); });
@@ -154,6 +156,12 @@ namespace FontManager {
             search_entry.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, null);
             base.constructed();
             return;
+        }
+
+        public LanguageFilterSettings (LanguageFilter filter) {
+            this.filter = filter;
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            filter.bind_property("coverage", coverage_spin, "value", flags);
         }
 
         public Gtk.Button get_button () {
@@ -200,7 +208,7 @@ namespace FontManager {
 
         [GtkCallback]
         void on_clear_button_clicked () {
-            selected.clear();
+            filter.selected.clear();
             treeview.queue_draw();
             selections_changed();
             return;
@@ -212,10 +220,10 @@ namespace FontManager {
             search_filter.get_iter_from_string(out iter, path);
             search_filter.get_value(iter, 0, out val);
             var lang = (string) val;
-            if (lang in selected)
-                selected.remove(lang);
+            if (lang in filter.selected)
+                filter.selected.remove(lang);
             else
-                selected.add(lang);
+                filter.selected.add(lang);
             val.unset();
             treeview.queue_draw();
             selections_changed();
@@ -228,7 +236,7 @@ namespace FontManager {
                                     Gtk.TreeIter treeiter) {
             Value val;
             model.get_value(treeiter, 0, out val);
-            cell.set_property("active", (selected.contains((string) val)));
+            cell.set_property("active", (filter.selected.contains((string) val)));
             val.unset();
             return;
         }

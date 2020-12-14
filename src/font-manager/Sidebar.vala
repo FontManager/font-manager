@@ -61,9 +61,11 @@ namespace FontManager {
                 else
                     set_transition_type(Gtk.StackTransitionType.OVER_RIGHT);
             });
-            add_view(standard.category_tree.language_filter_settings, "LanguageFilterSettings");
             BindingFlags flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
             standard.category_tree.bind_property("model", this, "category-model", flags);
+            standard.category_tree.notify["language-filter"].connect((o, p) => {
+                add_view(standard.category_tree.language_filter.settings, "LanguageFilterSettings");
+            });
             base.constructed();
             return;
         }
@@ -137,8 +139,7 @@ namespace FontManager {
                 selected_collection = g;
             });
 
-            /* XXX : string? pspec? */
-            sidebar_stack.notify["visible-child-name"].connect((pspec) => {
+            sidebar_stack.notify["visible-child-name"].connect((obj, pspec) => {
                 mode_selected(mode);
             });
 
