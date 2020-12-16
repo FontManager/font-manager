@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2020-12-05 23:39-0500\n"
-"PO-Revision-Date: 2020-12-13 22:29+0000\n"
+"PO-Revision-Date: 2020-12-16 23:29+0000\n"
 "Last-Translator: Fúlvio Alves <fga.fulvio@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/font-"
-"manager/font-manager-help-docs/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
+"font-manager/font-manager-help-docs/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +26,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "Categorias"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
@@ -154,7 +154,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "Sem classificação"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
@@ -224,7 +224,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "Coleções"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
@@ -918,7 +918,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11
 msgid "Language Support"
-msgstr ""
+msgstr "Suporte a idiomas"
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:13
