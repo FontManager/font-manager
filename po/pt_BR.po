@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-12-05 23:29-0500\n"
-"PO-Revision-Date: 2020-12-13 22:29+0000\n"
+"PO-Revision-Date: 2020-12-16 23:29+0000\n"
 "Last-Translator: Fúlvio Alves <fga.fulvio@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/pt_BR/>\n"
@@ -145,7 +145,7 @@ msgstr "Semi-Leve"
 
 #: lib/common/font-manager-fontconfig.c:834
 msgid "Book"
-msgstr ""
+msgstr "Livro"
 
 #: lib/common/font-manager-fontconfig.c:836
 #: lib/common/font-manager-fontconfig.c:1140
@@ -201,19 +201,19 @@ msgstr "Semi-Condensado"
 
 #: lib/common/font-manager-fontconfig.c:969
 msgid "Semi-Expanded"
-msgstr ""
+msgstr "Semi-Expandido"
 
 #: lib/common/font-manager-fontconfig.c:971
 msgid "Expanded"
-msgstr ""
+msgstr "Expandido"
 
 #: lib/common/font-manager-fontconfig.c:973
 msgid "Extra-Expanded"
-msgstr ""
+msgstr "Extra-Expandido"
 
 #: lib/common/font-manager-fontconfig.c:975
 msgid "Ultra-Expanded"
-msgstr ""
+msgstr "Ultra-Expandido"
 
 #: lib/common/font-manager-fontconfig.c:1044
 msgid "Proportional"
@@ -234,29 +234,29 @@ msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:1089
 msgid "Unknown"
-msgstr ""
+msgstr "Desconhecido"
 
 #: lib/common/font-manager-fontconfig.c:1091
 msgid "RGB"
-msgstr ""
+msgstr "RGB"
 
 #: lib/common/font-manager-fontconfig.c:1093
 msgid "BGR"
-msgstr ""
+msgstr "BGR"
 
 #: lib/common/font-manager-fontconfig.c:1095
 msgid "VRGB"
-msgstr ""
+msgstr "VRGB"
 
 #: lib/common/font-manager-fontconfig.c:1097
 msgid "VBGR"
-msgstr ""
+msgstr "VBGR"
 
 #: lib/common/font-manager-fontconfig.c:1099
 #: lib/common/font-manager-fontconfig.c:1144
 #: lib/common/font-manager-fontconfig.c:1187
 msgid "None"
-msgstr ""
+msgstr "Nenhum"
 
 #: lib/common/font-manager-fontconfig.c:1138
 msgid "Slight"
@@ -269,15 +269,16 @@ msgstr ""
 #: lib/common/font-manager-fontconfig.c:1181
 #: src/font-manager/ui/font-manager-main-window.ui:164
 msgid "Default"
-msgstr ""
+msgstr "Padrão"
 
 #: lib/common/font-manager-fontconfig.c:1185
 msgid "Legacy"
-msgstr ""
+msgstr "Legado"
 
 #: lib/common/font-manager-freetype.c:294
+#, fuzzy
 msgid "Restricted License Embedding"
-msgstr ""
+msgstr "Licença de incorporação restrita"
 
 #: lib/common/font-manager-freetype.c:296
 msgid "Preview & Print Embedding"
@@ -325,27 +326,27 @@ msgstr "O arquivo não contém informações de licença."
 
 #: lib/common/font-manager-preview-controls.c:76
 msgid "Left Aligned"
-msgstr ""
+msgstr "Alinhado à esquerda"
 
 #: lib/common/font-manager-preview-controls.c:82
 msgid "Centered"
-msgstr ""
+msgstr "Centralizado"
 
 #: lib/common/font-manager-preview-controls.c:88
 msgid "Fill"
-msgstr ""
+msgstr "Preencher"
 
 #: lib/common/font-manager-preview-controls.c:94
 msgid "Right Aligned"
-msgstr ""
+msgstr "Alinhado à direita"
 
 #: lib/common/font-manager-preview-controls.c:311
 msgid "Edit preview text"
-msgstr ""
+msgstr "Editar texto de visualização"
 
 #: lib/common/font-manager-preview-controls.c:312
 msgid "Undo changes"
-msgstr ""
+msgstr "Desfazer alterações"
 
 #: lib/common/font-manager-preview-pane.c:43
 #: lib/common/font-manager-preview-pane.c:555
@@ -640,7 +641,7 @@ msgstr ""
 
 #: src/font-manager/About.vala:67
 msgid "translator-credits"
-msgstr "Fúlvio Alves <fga.fulvio@gmail.com>, 2020"
+msgstr "Fúlvio Alves <fga.fulvio@gmail.com>"
 
 #: src/font-manager/Categories.vala:133 src/font-manager/Orthography.vala:201
 msgid "Update in progress"
@@ -648,23 +649,23 @@ msgstr "Atualização em progresso"
 
 #: src/font-manager/Categories.vala:390
 msgid "Grouped by font width"
-msgstr ""
+msgstr "Agrupado pela largura da fonte"
 
 #: src/font-manager/Categories.vala:391
 msgid "Grouped by font weight"
-msgstr ""
+msgstr "Agrupado por peso da fonte"
 
 #: src/font-manager/Categories.vala:392
 msgid "Grouped by font angle"
-msgstr ""
+msgstr "Agrupado por ângulo da fonte"
 
 #: src/font-manager/Categories.vala:393
 msgid "Grouped by font spacing"
-msgstr ""
+msgstr "Agrupado por espaçamento da fonte"
 
 #: src/font-manager/Categories.vala:397
 msgid "Grouped by license type"
-msgstr ""
+msgstr "Agrupado por tipo de licença"
 
 #: src/font-manager/Categories.vala:398
 msgid "Grouped by vendor"
@@ -700,7 +701,7 @@ msgstr "Tipo de família"
 
 #: src/font-manager/Categories.vala:421
 msgid "Only fonts which include Panose information will be grouped here."
-msgstr ""
+msgstr "Apenas fontes que incluam informações Panose serão agrupadas aqui."
 
 #: src/font-manager/Categories.vala:422
 #: src/font-manager/web/google/ui/google-font-filters.ui:355
@@ -731,8 +732,8 @@ msgstr "Pictórica"
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i Variação "
+msgstr[1] "%i Variações "
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -863,7 +864,7 @@ msgstr ""
 #: src/font-manager/MainWindow.vala:58
 #: src/font-manager/ui/font-manager-main-window.ui:135
 msgid "Manage"
-msgstr ""
+msgstr "Gerenciar"
 
 #: src/font-manager/Migration.vala:55
 msgid "_Continue"
@@ -987,11 +988,11 @@ msgstr "Fontes que foram desativadas"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
 msgid "Filter based on language support"
-msgstr ""
+msgstr "Filtro baseado no suporte ao idioma"
 
 #: src/font-manager/filters/LanguageFilter.vala:46
 msgid "Language"
-msgstr ""
+msgstr "Idioma"
 
 #: src/font-manager/filters/LanguageFilter.vala:139
 msgid "Filter Settings"
@@ -999,11 +1000,11 @@ msgstr ""
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
-msgstr ""
+msgstr "Sem classificação"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
-msgstr ""
+msgstr "Fontes não presentes em qualquer coleção"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
@@ -1011,7 +1012,7 @@ msgstr "Usuário"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "Fonts available only to you"
-msgstr ""
+msgstr "Fontes disponíveis apenas para você"
 
 #: src/font-manager/preferences/Desktop.vala:36
 msgid "Interface Font"
@@ -1205,6 +1206,15 @@ msgid ""
 "To control where the filepath is inserted use FILEPATH as a placeholder.\n"
 "If FAMILY or STYLE are found in the argument list they will also be replaced."
 msgstr ""
+"As ações definidas aqui serão adicionadas ao menu de contexto da lista de "
+"fontes\n"
+"\n"
+"Por padrão, o caminho do arquivo para a fonte selecionada será anexado ao "
+"final da lista de argumentos.\n"
+"Para controlar onde o caminho do arquivo está inserido, use FILEPATH como um "
+"espaço reservado.\n"
+"Se FAMILY ou STYLE forem encontrados na lista de argumentos, eles também "
+"serão substituídos."
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "User Actions"
@@ -1238,11 +1248,15 @@ msgstr ""
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
+"CSD ativado. A alteração terá efeito na próxima vez que o programa for "
+"iniciado."
 
 #: src/font-manager/preferences/UserInterface.vala:119
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
+"CSD desativado. A alteração terá efeito na próxima vez que o programa for "
+"iniciado."
 
 #: src/font-manager/preferences/UserSources.vala:146
 msgid ""
@@ -1274,6 +1288,8 @@ msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr ""
+"Para adicionar uma nova fonte, simplesmente arraste uma pasta para esta área "
+"ou clique no botão Adicionar na barra de ferramentas."
 
 #: src/font-manager/web/google/FontList.vala:56
 msgid "Case insensitive search of family names."
@@ -1285,93 +1301,95 @@ msgstr ""
 
 #: src/font-manager/web/google/GoogleFonts.vala:138
 msgid "Network Error"
-msgstr ""
+msgstr "Erro de rede"
 
 #: src/font-manager/web/google/GoogleFonts.vala:139
 msgid "Please check your network settings"
-msgstr ""
+msgstr "Verifique suas configurações de rede"
 
 #: src/font-manager/web/google/GoogleFonts.vala:141
 msgid "Client Error"
-msgstr ""
+msgstr "Erro de cliente"
 
 #: src/font-manager/web/google/GoogleFonts.vala:142
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
-msgstr ""
+msgstr "Tente reiniciar o programa. Se o problema persistir, informe o erro."
 
 #: src/font-manager/web/google/GoogleFonts.vala:145
 msgid "Server Error"
-msgstr ""
+msgstr "Erro de servidor"
 
 #: src/font-manager/web/google/GoogleFonts.vala:217
 msgid "Network Offline"
-msgstr ""
+msgstr "Rede offline"
 
 #: src/font-manager/web/google/GoogleFonts.vala:218
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
+"É necessária uma conexão ativa à internet para acessar o catálogo do Google "
+"Fonts"
 
 #: src/font-manager/web/google/Language.vala:32
 msgid "Arabic"
-msgstr ""
+msgstr "Árabe"
 
 #: src/font-manager/web/google/Language.vala:33
 msgid "Bengali"
-msgstr ""
+msgstr "Bengali"
 
 #: src/font-manager/web/google/Language.vala:34
 msgid "Chinese (Hong Kong)"
-msgstr ""
+msgstr "Chinês (Hong Kong)"
 
 #: src/font-manager/web/google/Language.vala:35
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Chinês (Simplificado)"
 
 #: src/font-manager/web/google/Language.vala:36
 msgid "Chinese (Traditional)"
-msgstr ""
+msgstr "Chinês (Tradicional)"
 
 #: src/font-manager/web/google/Language.vala:37
 msgid "Cyrillic"
-msgstr ""
+msgstr "Cirílico"
 
 #: src/font-manager/web/google/Language.vala:38
 msgid "Cyrillic Extended"
-msgstr ""
+msgstr "Cirílico Extendido"
 
 #: src/font-manager/web/google/Language.vala:39
 msgid "Devanagari"
-msgstr ""
+msgstr "Devanágari"
 
 #: src/font-manager/web/google/Language.vala:40
 msgid "Greek"
-msgstr ""
+msgstr "Grego"
 
 #: src/font-manager/web/google/Language.vala:41
 msgid "Greek Extended"
-msgstr ""
+msgstr "Grego Estendido"
 
 #: src/font-manager/web/google/Language.vala:42
 msgid "Gujarati"
-msgstr ""
+msgstr "Guzerate"
 
 #: src/font-manager/web/google/Language.vala:43
 msgid "Gurmukhi"
-msgstr ""
+msgstr "Gurmukhi"
 
 #: src/font-manager/web/google/Language.vala:44
 msgid "Hebrew"
-msgstr ""
+msgstr "Hebraico"
 
 #: src/font-manager/web/google/Language.vala:45
 msgid "Japanese"
-msgstr ""
+msgstr "Japonês"
 
 #: src/font-manager/web/google/Language.vala:46
 msgid "Kannada"
-msgstr ""
+msgstr "Canarim"
 
 #: src/font-manager/web/google/Language.vala:47
 msgid "Khmer"
@@ -1507,23 +1525,23 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-browse-view.ui:34
 msgid "List View"
-msgstr ""
+msgstr "Visualização em lista"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:68
 msgid "Grid View"
-msgstr ""
+msgstr "Visualização em lista"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:116
 msgid "Enter Preview Text…"
-msgstr ""
+msgstr "Inserir texto de visualização…"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:182
 msgid "Previous page"
-msgstr ""
+msgstr "Página anterior"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:210
 msgid "Next page"
-msgstr ""
+msgstr "Próxima página"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
@@ -1569,7 +1587,7 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:59
 msgid "Search Languages…"
-msgstr ""
+msgstr "Pesquisar idiomas…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:74
 msgid "Deselect All"
@@ -1641,15 +1659,15 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:67
 msgid "Switch to Manage mode"
-msgstr ""
+msgstr "Alternar para o modo de Gerenciamento"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:74
 msgid "Switch to Browse mode"
-msgstr "Mudar para o modo de Navegação"
+msgstr "Alternar para o modo de Navegação"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:81
 msgid "Switch to Compare mode"
-msgstr ""
+msgstr "Alterar para o modo de Comparação"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:89
 msgid "Preview Mode"
@@ -1657,23 +1675,23 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:94
 msgid "Switch to Standard preview"
-msgstr ""
+msgstr "Alternar para a visualização padrão"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:101
 msgid "Switch to Waterfall preview"
-msgstr ""
+msgstr "Alternar para a visualização em cascata"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:108
 msgid "Switch to Body Text preview"
-msgstr ""
+msgstr "Mudar para a visualização do corpo do texto"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:24
 msgid "Categories"
-msgstr ""
+msgstr "Categorias"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:66
 msgid "Collections"
-msgstr ""
+msgstr "Coleções"
 
 #: src/font-manager/ui/font-manager-subpixel-geometry.ui:44
 msgid "Subpixel Geometry"
@@ -1738,7 +1756,7 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-user-data.ui:102
 msgid "Font Collections"
-msgstr ""
+msgstr "Coleções de fontes"
 
 #: src/font-manager/ui/font-manager-user-data.ui:160
 msgid "Installed Fonts"
@@ -1798,4 +1816,4 @@ msgstr ""
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:523
 msgid "Language Support"
-msgstr ""
+msgstr "Suporte a idiomas"
