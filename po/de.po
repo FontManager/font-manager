@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-12-05 23:29-0500\n"
+"POT-Creation-Date: 2020-12-18 18:00-0500\n"
 "PO-Revision-Date: 2020-12-10 19:29+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
@@ -84,7 +84,7 @@ msgstr "Grafik;Betrachter;GNOME;GTK;Publizieren;"
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
 #: data/org.gnome.FontViewer.desktop.in.in:5
 #: data/org.gnome.FontViewer.desktop.in.in:6
-#: src/font-viewer/Application.vala:96 src/font-viewer/MainWindow.vala:23
+#: src/font-viewer/Application.vala:101 src/font-viewer/MainWindow.vala:23
 #: src/font-viewer/font-viewer-main-window.ui:41
 msgid "Font Viewer"
 msgstr "Schriften-Betrachter"
@@ -112,7 +112,7 @@ msgstr "Voll funktionsfähige Anwendung zur Vorschau von Schriftdateien"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:465
+#: src/font-manager/FontList.vala:474
 msgid "Install"
 msgstr "Installieren"
 
@@ -377,7 +377,7 @@ msgstr "Eigenschaften"
 
 #: lib/common/font-manager-preview-pane.c:47
 #: lib/common/font-manager-preview-pane.c:557
-#: src/font-manager/Categories.vala:397
+#: src/font-manager/Categories.vala:587
 msgid "License"
 msgstr "Lizenz"
 
@@ -398,22 +398,22 @@ msgid "Style"
 msgstr "Stil"
 
 #: lib/common/font-manager-properties-pane.c:83
-#: src/font-manager/Categories.vala:390
+#: src/font-manager/Categories.vala:580
 msgid "Width"
 msgstr "Breite"
 
 #: lib/common/font-manager-properties-pane.c:84
-#: src/font-manager/Categories.vala:392
+#: src/font-manager/Categories.vala:582
 msgid "Slant"
 msgstr "Neigung"
 
 #: lib/common/font-manager-properties-pane.c:85
-#: src/font-manager/Categories.vala:391
+#: src/font-manager/Categories.vala:581
 msgid "Weight"
 msgstr "Strichstärke"
 
 #: lib/common/font-manager-properties-pane.c:86
-#: src/font-manager/Categories.vala:393
+#: src/font-manager/Categories.vala:583
 msgid "Spacing"
 msgstr "Laufweite"
 
@@ -422,7 +422,7 @@ msgid "Version"
 msgstr "Version"
 
 #: lib/common/font-manager-properties-pane.c:88
-#: src/font-manager/Categories.vala:398
+#: src/font-manager/Categories.vala:588
 msgid "Vendor"
 msgstr "Anbieter"
 
@@ -435,13 +435,13 @@ msgid "Filesize"
 msgstr "Dateigröße"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:453
+#: src/font-manager/Categories.vala:643
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
 msgstr "Standard"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:448
+#: src/font-manager/Categories.vala:638
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
 msgstr "Normal"
@@ -667,88 +667,88 @@ msgstr ""
 "Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Milo Ivir <mail@milotype.de>, 2019, 2020"
 
-#: src/font-manager/Categories.vala:133 src/font-manager/Orthography.vala:201
+#: src/font-manager/Categories.vala:339 src/font-manager/Orthography.vala:201
 msgid "Update in progress"
 msgstr "Aktualisierung läuft"
 
-#: src/font-manager/Categories.vala:390
+#: src/font-manager/Categories.vala:580
 msgid "Grouped by font width"
 msgstr "Geordnet nach Schriftbreite"
 
-#: src/font-manager/Categories.vala:391
+#: src/font-manager/Categories.vala:581
 msgid "Grouped by font weight"
 msgstr "Geordnet nach Strichstärke"
 
-#: src/font-manager/Categories.vala:392
+#: src/font-manager/Categories.vala:582
 msgid "Grouped by font angle"
 msgstr "Geordnet nach Schriftwinkel"
 
-#: src/font-manager/Categories.vala:393
+#: src/font-manager/Categories.vala:583
 msgid "Grouped by font spacing"
 msgstr "Geordnet nach Dicktenart"
 
-#: src/font-manager/Categories.vala:397
+#: src/font-manager/Categories.vala:587
 msgid "Grouped by license type"
 msgstr "Geordnet nach Lizenz"
 
-#: src/font-manager/Categories.vala:398
+#: src/font-manager/Categories.vala:588
 msgid "Grouped by vendor"
 msgstr "Geordnet nach Anbieter"
 
-#: src/font-manager/Categories.vala:399
+#: src/font-manager/Categories.vala:589
 msgid "Filetype"
 msgstr "Dateityp"
 
-#: src/font-manager/Categories.vala:399
+#: src/font-manager/Categories.vala:589
 msgid "Grouped by filetype"
 msgstr "Geordnet nach Dateityp"
 
-#: src/font-manager/Categories.vala:406
+#: src/font-manager/Categories.vala:596
 msgid "All"
 msgstr "Alle"
 
-#: src/font-manager/Categories.vala:406
+#: src/font-manager/Categories.vala:596
 msgid "All Fonts"
 msgstr "Alle Schriften"
 
-#: src/font-manager/Categories.vala:407
+#: src/font-manager/Categories.vala:597
 msgid "System"
 msgstr "System"
 
-#: src/font-manager/Categories.vala:407
+#: src/font-manager/Categories.vala:597
 msgid "Fonts available to all users"
 msgstr "Für alle Benutzer verfügbare Schriften"
 
-#: src/font-manager/Categories.vala:421
+#: src/font-manager/Categories.vala:611
 msgid "Family Kind"
 msgstr "Familienart"
 
-#: src/font-manager/Categories.vala:421
+#: src/font-manager/Categories.vala:611
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr "Hier werden nur Schriften mit Panose Informationen gruppiert."
 
-#: src/font-manager/Categories.vala:422
+#: src/font-manager/Categories.vala:612
 #: src/font-manager/web/google/ui/google-font-filters.ui:355
 msgid "Any"
 msgstr "Alle"
 
-#: src/font-manager/Categories.vala:422
+#: src/font-manager/Categories.vala:612
 msgid "No Fit"
 msgstr "Keine Übereinstimmung"
 
-#: src/font-manager/Categories.vala:422
+#: src/font-manager/Categories.vala:612
 msgid "Text and Display"
 msgstr "Text und Überschriften"
 
-#: src/font-manager/Categories.vala:422
+#: src/font-manager/Categories.vala:612
 msgid "Script"
 msgstr "Schreibschrift"
 
-#: src/font-manager/Categories.vala:422
+#: src/font-manager/Categories.vala:612
 msgid "Decorative"
 msgstr "Dekorativ"
 
-#: src/font-manager/Categories.vala:422
+#: src/font-manager/Categories.vala:612
 msgid "Pictorial"
 msgstr "Bildhaft"
 
@@ -763,27 +763,28 @@ msgstr[1] "%i Varianten"
 msgid "Enter Collection Name"
 msgstr "Namen der Kollektion eintragen"
 
-#: src/font-manager/Collections.vala:123
+#: src/font-manager/Collections.vala:125
 msgid "Add new collection"
 msgstr "Neue Kollektion hinzufügen"
 
-#: src/font-manager/Collections.vala:124
+#: src/font-manager/Collections.vala:126
 msgid "Remove selected collection"
 msgstr "Ausgewählte Kollektion entfernen"
 
-#: src/font-manager/Collections.vala:423
+#: src/font-manager/Collections.vala:428
 msgid "Copy to…"
 msgstr "Kopieren nach …"
 
-#: src/font-manager/Collections.vala:424
+#: src/font-manager/Collections.vala:429
 msgid "Compress…"
 msgstr "Komprimieren …"
 
-#: src/font-manager/Compare.vala:335
+#: src/font-manager/Compare.vala:378
 msgid "Saved Comparison"
 msgstr "Gespeicherter Vergleich"
 
-#: src/font-manager/Compare.vala:360
+#. TRANSLATORS : Please preserve the newline character somewhere in the middle of the string
+#: src/font-manager/Compare.vala:404
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -791,48 +792,48 @@ msgstr ""
 "Plus Zeichen drücken, um\n"
 "jetzigen Vergleich zu speichern"
 
-#: src/font-manager/Dialogs.vala:59
+#: src/font-manager/Dialogs.vala:60
 msgid "Select executable"
 msgstr "Ausführbare Datei auswählen"
 
-#: src/font-manager/Dialogs.vala:62 src/font-manager/Dialogs.vala:77
-#: src/font-manager/UserData.vala:57
+#: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
+#: src/font-manager/UserData.vala:58
 msgid "_Select"
 msgstr "Au_swählen"
 
-#: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
-#: src/font-manager/Dialogs.vala:95 src/font-manager/Dialogs.vala:120
-#: src/font-manager/Dialogs.vala:157 src/font-manager/Dialogs.vala:169
-#: src/font-manager/Migration.vala:54 src/font-manager/UserData.vala:37
-#: src/font-manager/UserData.vala:48 src/font-manager/UserData.vala:58
+#: src/font-manager/Dialogs.vala:64 src/font-manager/Dialogs.vala:79
+#: src/font-manager/Dialogs.vala:96 src/font-manager/Dialogs.vala:121
+#: src/font-manager/Dialogs.vala:159 src/font-manager/Dialogs.vala:171
+#: src/font-manager/Migration.vala:54 src/font-manager/UserData.vala:38
+#: src/font-manager/UserData.vala:49 src/font-manager/UserData.vala:59
 msgid "_Cancel"
 msgstr "_Abbrechen"
 
-#: src/font-manager/Dialogs.vala:74
+#: src/font-manager/Dialogs.vala:75
 msgid "Select Destination"
 msgstr "Ziel auswählen"
 
-#: src/font-manager/Dialogs.vala:91
+#: src/font-manager/Dialogs.vala:92
 msgid "Select files to install"
 msgstr "Dateien zum installieren auswählen"
 
-#: src/font-manager/Dialogs.vala:94 src/font-manager/Dialogs.vala:119
+#: src/font-manager/Dialogs.vala:95 src/font-manager/Dialogs.vala:120
 msgid "_Open"
 msgstr "_Öffnen"
 
-#: src/font-manager/Dialogs.vala:116
+#: src/font-manager/Dialogs.vala:117
 msgid "Select source folders"
 msgstr "Quellverzeichnisse auswählen"
 
-#: src/font-manager/Dialogs.vala:156 src/font-manager/Dialogs.vala:168
+#: src/font-manager/Dialogs.vala:158 src/font-manager/Dialogs.vala:170
 msgid "Select fonts to remove"
 msgstr "Schriften zum entfernen auswählen"
 
-#: src/font-manager/Dialogs.vala:158 src/font-manager/Dialogs.vala:170
+#: src/font-manager/Dialogs.vala:160 src/font-manager/Dialogs.vala:172
 msgid "_Delete"
 msgstr "_Entfernen"
 
-#: src/font-manager/Dialogs.vala:184
+#: src/font-manager/Dialogs.vala:186
 msgid "Fonts installed in your home directory will appear here."
 msgstr ""
 "In Deinem Heim-Verzeichnis installierte Schriftarten werden hier angezeigt."
@@ -870,11 +871,11 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Alle einklappen"
 
-#: src/font-manager/FontList.vala:466
+#: src/font-manager/FontList.vala:475
 msgid "Copy Location"
 msgstr "Dateipfad kopieren"
 
-#: src/font-manager/FontList.vala:467
+#: src/font-manager/FontList.vala:476
 msgid "Show in Folder"
 msgstr "Im Ordner zeigen"
 
@@ -965,34 +966,34 @@ msgstr "Über"
 msgid "Import"
 msgstr "Importieren"
 
-#: src/font-manager/TitleBar.vala:104 src/font-manager/UserData.vala:130
+#: src/font-manager/TitleBar.vala:104 src/font-manager/UserData.vala:132
 msgid "Export"
 msgstr "Exportieren"
 
-#: src/font-manager/TitleBar.vala:111 src/font-manager/UserData.vala:36
-#: src/font-manager/UserData.vala:47
+#: src/font-manager/TitleBar.vala:111 src/font-manager/UserData.vala:37
+#: src/font-manager/UserData.vala:48
 msgid "User Data"
 msgstr "Benutzerdaten"
 
 #. HAVE_WEBKIT
-#: src/font-manager/TitleBar.vala:264
+#: src/font-manager/TitleBar.vala:267
 msgid "Add Fonts"
 msgstr "Schriften hinzufügen"
 
-#: src/font-manager/TitleBar.vala:265
+#: src/font-manager/TitleBar.vala:268
 msgid "Remove Fonts"
 msgstr "Schriften entfernen"
 
-#: src/font-manager/TitleBar.vala:272
+#: src/font-manager/TitleBar.vala:275
 #: src/font-manager/ui/font-manager-main-window.ui:181
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: src/font-manager/UserData.vala:54
+#: src/font-manager/UserData.vala:55
 msgid "Select Exported Data"
 msgstr "Exportierte Daten auswählen"
 
-#: src/font-manager/Utils.vala:198
+#: src/font-manager/Utils.vala:213
 msgid "Copying files…"
 msgstr "Kopieren von Dateien …"
 
@@ -1017,11 +1018,11 @@ msgstr "Deaktivierte Schriften"
 msgid "Filter based on language support"
 msgstr "Filter, basierend auf Sprachunterstützung"
 
-#: src/font-manager/filters/LanguageFilter.vala:46
+#: src/font-manager/filters/LanguageFilter.vala:58
 msgid "Language"
 msgstr "Sprache"
 
-#: src/font-manager/filters/LanguageFilter.vala:139
+#: src/font-manager/filters/LanguageFilter.vala:171
 msgid "Filter Settings"
 msgstr "Filter-Einstellungen"
 
@@ -1246,34 +1247,34 @@ msgstr "Benutzerbefehle"
 msgid "Custom context menu entries"
 msgstr "Eigene Kontextmenüeinträge"
 
-#: src/font-manager/preferences/UserInterface.vala:62
+#: src/font-manager/preferences/UserInterface.vala:63
 msgid "Wide Layout"
 msgstr "Breites Layout"
 
-#: src/font-manager/preferences/UserInterface.vala:65
+#: src/font-manager/preferences/UserInterface.vala:66
 msgid "Only When Maximized"
 msgstr "Nur wenn maximiert"
 
-#: src/font-manager/preferences/UserInterface.vala:68
+#: src/font-manager/preferences/UserInterface.vala:69
 msgid "Client Side Decorations"
 msgstr "Optische Funktionen vom Client"
 
-#: src/font-manager/preferences/UserInterface.vala:72
+#: src/font-manager/preferences/UserInterface.vala:73
 msgid "Enable Animations"
 msgstr "Aktiviere Animationen"
 
-#: src/font-manager/preferences/UserInterface.vala:73
+#: src/font-manager/preferences/UserInterface.vala:74
 msgid "Prefer Dark Theme"
 msgstr "Dunklem Thema Vorrang geben"
 
-#: src/font-manager/preferences/UserInterface.vala:117
+#: src/font-manager/preferences/UserInterface.vala:120
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
 "Optische Funktionen vom Client sind aktiviert. Änderungen werden erst nach "
 "Neustart des Programms sichtbar."
 
-#: src/font-manager/preferences/UserInterface.vala:119
+#: src/font-manager/preferences/UserInterface.vala:122
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
@@ -1461,31 +1462,31 @@ msgstr "Tibetisch"
 msgid "Vietnamese"
 msgstr "Vietnamesisch"
 
-#: src/font-manager/web/google/PreviewPane.vala:270
+#: src/font-manager/web/google/PreviewPane.vala:272
 msgid "Update Family"
 msgstr "Familie aktualisieren"
 
-#: src/font-manager/web/google/PreviewPane.vala:270
+#: src/font-manager/web/google/PreviewPane.vala:272
 msgid "Update Font"
 msgstr "Schrift aktualisieren"
 
-#: src/font-manager/web/google/PreviewPane.vala:275
+#: src/font-manager/web/google/PreviewPane.vala:277
 msgid "Remove Family"
 msgstr "Familie entfernen"
 
-#: src/font-manager/web/google/PreviewPane.vala:275
+#: src/font-manager/web/google/PreviewPane.vala:277
 msgid "Remove Font"
 msgstr "Schrift entfernen"
 
-#: src/font-manager/web/google/PreviewPane.vala:280
+#: src/font-manager/web/google/PreviewPane.vala:282
 msgid "Download Family"
 msgstr "Familie herunterladen"
 
-#: src/font-manager/web/google/PreviewPane.vala:280
+#: src/font-manager/web/google/PreviewPane.vala:282
 msgid "Download Font"
 msgstr "Schrift herunterladen"
 
-#: src/font-manager/web/google/PreviewPane.vala:290
+#: src/font-manager/web/google/PreviewPane.vala:292
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
@@ -1516,23 +1517,23 @@ msgstr "Siehe Dir Schriften an, noch bevor Du sie installierst."
 msgid "To preview a font simply drag it onto this area."
 msgstr "Für eine Schriften-Vorschau, ziehe die Schrift auf dieses Feld."
 
-#: src/font-viewer/MainWindow.vala:119
+#: src/font-viewer/MainWindow.vala:124
 msgid "No file selected"
 msgstr "Keine ausgewählte Datei"
 
-#: src/font-viewer/MainWindow.vala:120
+#: src/font-viewer/MainWindow.vala:125
 msgid "Or unsupported filetype."
 msgstr "Oder nicht unterstützende Dateiarten."
 
-#: src/font-viewer/MainWindow.vala:171
+#: src/font-viewer/MainWindow.vala:176
 msgid "Newer version already installed"
 msgstr "Eine neuere Version existiert bereits"
 
-#: src/font-viewer/MainWindow.vala:173
+#: src/font-viewer/MainWindow.vala:178
 msgid "Installed"
 msgstr "Installiert"
 
-#: src/font-viewer/MainWindow.vala:176
+#: src/font-viewer/MainWindow.vala:181
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Install Font"
 msgstr "Schriften installieren"
@@ -1630,15 +1631,11 @@ msgstr ""
 msgid "Clear selected filter"
 msgstr "Ausgewählten Filter leeren"
 
-#: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:26
+#: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:27
 msgid "Created : "
 msgstr "Erstellt : "
 
-#: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:63
-msgid "Some date and time"
-msgstr ""
-
-#: src/font-manager/ui/font-manager-pinned-comparisons.ui:30
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:31
 msgid "Save current comparison"
 msgstr "Gegenwärtigen Vergleich speichern"
 
@@ -1646,7 +1643,7 @@ msgstr "Gegenwärtigen Vergleich speichern"
 msgid "Remove selected comparison"
 msgstr "Ausgewählten Vergleich entfernen"
 
-#: src/font-manager/ui/font-manager-pinned-comparisons.ui:90
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:89
 msgid "Restore selected comparison"
 msgstr "Ausgewählten Vergleich wiederherstellen"
 
