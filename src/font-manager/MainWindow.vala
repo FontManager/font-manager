@@ -91,8 +91,8 @@ namespace FontManager {
         [GtkChild] public Compare compare { get; }
         [GtkChild] public PreviewPane preview_pane { get; }
         [GtkChild] public Preferences preference_pane { get; }
-        [GtkChild] public Sidebar sidebar { get; private set; }
-        [GtkChild] public FontListPane fontlist_pane { get; private set; }
+        [GtkChild] public Sidebar sidebar { get; }
+        [GtkChild] public FontListPane fontlist_pane { get; }
 
         public FontModel? model { get; set; default = null; }
         public TitleBar titlebar { get; private set; }
@@ -119,6 +119,8 @@ namespace FontManager {
         int h = -1;
         int x = -1;
         int y = -1;
+        int sidebar_size = 30;
+        int content_size = 40;
         bool is_tiled = false;
         bool is_fullscreen = false;
         bool is_horizontal = false;
@@ -262,17 +264,6 @@ namespace FontManager {
 
             window_state_event.connect(on_window_state_event);
             size_allocate.connect(on_size_allocate);
-
-            notify["wide-layout"].connect(() => {
-                Idle.add(() => { update_layout_orientation(); return GLib.Source.REMOVE; });
-            });
-
-            if (settings != null) {
-                settings.changed.connect((key) => {
-                    if (key == "wide-layout-on-maximize")
-                        Idle.add(() => { update_layout_orientation(); return GLib.Source.REMOVE; });
-                });
-            }
 
             sidebar.standard.category_selected.connect((filter, index) => { fontlist_pane.filter = filter; });
             sidebar.standard.collection_selected.connect((filter) => { fontlist_pane.filter = filter; });
@@ -506,17 +497,35 @@ namespace FontManager {
 
         /* Window state */
 
+        int position_to_percentage (Gtk.Paned paned, bool horizontal = true) {
+            double position = (double) paned.position;
+            double area = horizontal ? (double) paned.get_allocated_width() :
+                                       (double) paned.get_allocated_height();
+            return (int) Math.round((position / area) * 100.0);
+        }
+
+        int percentage_to_position (Gtk.Paned paned, int percent, bool horizontal = true) {
+            double area = horizontal ? (double) paned.get_allocated_width() :
+                                       (double) paned.get_allocated_height();
+            return (int) Math.round(((double) percent / 100.0) * area);
+        }
+
         void set_layout_orientation (Gtk.Orientation orientation) {
-            string key = "last-vertical-content-pane-position";
-            if (is_horizontal)
-                key = "last-horizontal-content-pane-position";
-            settings.set_int(key, content_pane.position);
-            content_pane.set_orientation(orientation);
-            int position = settings.get_int("last-vertical-content-pane-position");
-            if (orientation == Gtk.Orientation.HORIZONTAL)
-                position = settings.get_int("last-horizontal-content-pane-position");
-            content_pane.set_position(position);
+            Gtk.Paned pane = content_pane;
+
+#if HAVE_WEBKIT
+                var google_fonts_pane = (GoogleFonts.Catalog) web_pane.get_child();
+                if (google_fonts_pane.content_pane.get_mapped())
+                    pane = google_fonts_pane.content_pane;
+#endif /* HAVE_WEBKIT */
+
             is_horizontal = (orientation == Gtk.Orientation.HORIZONTAL);
+            pane.set_orientation(orientation);
+            Idle.add(() => {
+                int position = percentage_to_position(pane, content_size, is_horizontal);
+                pane.set_position(position);
+                return GLib.Source.REMOVE;
+            });
             return;
         }
 
@@ -558,14 +567,6 @@ namespace FontManager {
             if (settings == null)
                 return;
 
-            mode_changed.connect((i) => {
-                settings.set_enum("mode", (int) i);
-            });
-
-            sidebar.standard.mode_selected.connect(() => {
-                settings.set_enum("sidebar-mode", (int) sidebar.standard.mode);
-            });
-
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
             settings.bind("sidebar-size", main_pane, "position", flags);
             settings.bind("content-pane-position", content_pane, "position", flags);
@@ -574,6 +575,46 @@ namespace FontManager {
             settings.bind("selected-font", fontlist, "selected-iter", flags);
             settings.bind("wide-layout", this, "wide-layout", flags);
             settings.bind("use-csd", this, "use-csd", flags);
+
+            mode_changed.connect((i) => {
+                settings.set_enum("mode", (int) i);
+            });
+
+            sidebar.standard.mode_selected.connect(() => {
+                settings.set_enum("sidebar-mode", (int) sidebar.standard.mode);
+            });
+
+            settings.changed.connect((key) => {
+                if (key == "wide-layout-on-maximize")
+                    Idle.add(() => { update_layout_orientation(); return GLib.Source.REMOVE; });
+            });
+
+            notify["wide-layout"].connect(() => {
+                Idle.add(() => { update_layout_orientation(); return GLib.Source.REMOVE; });
+            });
+
+            main_pane.notify["position"].connect((obj, pspec) => {
+                int position = position_to_percentage(main_pane);
+                if (position < 2 || position > 98)
+                    return;
+                sidebar_size = position;
+            });
+
+            content_pane.notify["position"].connect((obj, pspec) => {
+                Gtk.Paned pane = content_pane;
+
+#if HAVE_WEBKIT
+                var google_fonts_pane = (GoogleFonts.Catalog) web_pane.get_child();
+                if (google_fonts_pane.content_pane.get_mapped())
+                    pane = google_fonts_pane.content_pane;
+#endif /* HAVE_WEBKIT */
+
+                int position = position_to_percentage(pane, is_horizontal);
+                if (position < 2 || position > 98)
+                    return;
+                content_size = position;
+            });
+
             return;
         }
 
@@ -588,7 +629,7 @@ namespace FontManager {
                     compare.save_state(settings);
                     settings.set("window-size", "(ii)", w, h);
                     settings.set("window-position", "(ii)", x, y);
-//                    settings.set_boolean("is-maximized", is_maximized);
+                    settings.set_boolean("is-maximized", is_maximized);
                     settings.apply();
                 }
                 get_default_application().quit();
@@ -605,16 +646,20 @@ namespace FontManager {
                 return;
             }
 
-//            if (settings.get_boolean("is-maximized"))
-//                maximize();
+            if (settings.get_boolean("is-maximized"))
+                maximize();
             settings.get("window-size", "(ii)", out w, out h);
             settings.get("window-position", "(ii)", out x, out y);
-            wide_layout = settings.get_boolean("wide-layout");
+
             set_default_size(w, h);
             move(x, y);
             sidebar.standard.mode = (StandardSidebarMode) settings.get_enum("sidebar-mode");
+
             main_pane.position = settings.get_int("sidebar-size");
             content_pane.position = settings.get_int("content-pane-position");
+            wide_layout = settings.get_boolean("wide-layout");
+            is_horizontal = content_pane.orientation == Gtk.Orientation.HORIZONTAL;
+
             fontlist_pane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSidebarMode.COLLECTION);
 
             mode = (FontManager.Mode) settings.get_enum("mode");
@@ -626,9 +671,12 @@ namespace FontManager {
             else
                 menu_button.popup.hide();
 
-            preview_pane.restore_state(settings);
-            browse.restore_state(settings);
-            compare.restore_state(settings);
+            Idle.add(() => {
+                preview_pane.restore_state(settings);
+                browse.restore_state(settings);
+                compare.restore_state(settings);
+                return GLib.Source.REMOVE;
+            });
 
             var font_path = settings.get_string("selected-font");
             var collection_path = settings.get_string("selected-collection");

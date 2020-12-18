@@ -264,6 +264,15 @@ namespace FontManager {
             return true;
         }
 
+        void emit_row_changed_signal (int index) {
+            Gtk.TreeIter iter;
+            Gtk.TreePath path = new Gtk.TreePath();
+            path.append_index(index);
+            get_iter(out iter, path);
+            row_changed(path, iter);
+            return;
+        }
+
         public void update () {
             update_begin();
             categories = null;
@@ -273,15 +282,28 @@ namespace FontManager {
             } catch (DatabaseError e) {
                 critical(e.message);
             }
+            /* Preload main categories */
             for (int i = CategoryIndex.ALL; i < CategoryIndex.PANOSE; i++) {
                 Category cat = categories[i];
                 cat.update.begin((obj, res) => { cat.update.end(res); });
             }
+            update_complete();
             var lang_filter = (LanguageFilter) categories[CategoryIndex.LANGUAGE];
             lang_filter.selections_changed.connect(() => {
                 update_language_filter_tooltip();
+                emit_row_changed_signal((int) CategoryIndex.LANGUAGE);
             });
-            update_complete();
+            Reject? reject = get_default_application().reject;
+            assert(reject != null);
+            Disabled disabled = (Disabled) categories[CategoryIndex.DISABLED];
+            reject.changed.connect(() => {
+                if (categories == null)
+                    return;
+                disabled.update.begin(reject, (obj,res) => {
+                    disabled.update.end(res);
+                    emit_row_changed_signal((int) CategoryIndex.DISABLED);
+                });
+            });
             return;
         }
 
@@ -307,6 +329,7 @@ namespace FontManager {
 
         Gtk.Overlay overlay;
 
+        uint? change_timeout = null;
         bool refresh_required = false;
         PlaceHolder updating;
 
@@ -360,6 +383,20 @@ namespace FontManager {
                     tree.set_model(model);
                     update_complete();
                 });
+                model.row_changed.connect((path, iter) => {
+                    /* Prevents the changed signal from being emitted multiple times for the same
+                     * event and also prevents the entry from disappearing from the list instantly
+                     * if it is enabled while in the Disabled category. */
+                    if (path.to_string() == selected_iter) {
+                        if (change_timeout == null) {
+                            change_timeout = Timeout.add(500, () => {
+                                                changed();
+                                                change_timeout = null;
+                                                return GLib.Source.REMOVE;
+                                             });
+                        }
+                    }
+                });
             });
             DatabaseProxy? db = get_default_application().db;
             assert(db != null);
@@ -375,18 +412,6 @@ namespace FontManager {
                     refresh_required = false;
                     update();
                 }
-            });
-            Reject? reject = get_default_application().reject;
-            assert(reject != null);
-            reject.changed.connect(() => {
-                if (model.categories == null)
-                    return;
-                Disabled disabled = (Disabled) model.categories[CategoryIndex.DISABLED];
-                disabled.update.begin(reject, (obj,res) => {
-                    disabled.update.end(res);
-                    if (selected_filter.index == CategoryIndex.DISABLED)
-                        Idle.add(() => { changed(); return GLib.Source.REMOVE; });
-                });
             });
             return;
         }
@@ -468,7 +493,7 @@ namespace FontManager {
             Value val;
             model.get_value(treeiter, CategoryModelColumn.OBJECT, out val);
             var obj = (Category) val.get_object();
-            /* Or dynamic categories */
+            /* Or dynamic categories, aside from disabled font families */
             if (obj.index < CategoryIndex.UNSORTED || obj.index == CategoryIndex.DISABLED) {
                 cell.set_property("count", obj.size);
                 cell.set_property("visible", true);
@@ -523,12 +548,11 @@ namespace FontManager {
                 tree.expand_to_path(path);
             }
             selected_iter = model.get_string_from_iter(iter);
-            /* NOTE :
-             * Category updates are delayed till actual selection
-             * Depending on size it may take a moment for the category to load
-             */
+            /* Category updates are delayed till actual selection for categories with children.
+             * Depending on size it may take a moment for the category to load. */
             if (selected_filter.requires_update) {
                 Idle.add(() => {
+                    /* Counts fail to draw due to missing row-changed signals. */
                     if (!selected_filter.requires_update)
                         tree.queue_draw();
                     return selected_filter.requires_update;

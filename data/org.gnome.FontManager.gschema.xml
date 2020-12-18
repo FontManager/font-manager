@@ -126,19 +126,7 @@
         <key name="content-pane-position" type="i">
             <summary>Content area size</summary>
             <description>Position of the content pane.</description>
-            <default>200</default>
-        </key>
-
-        <key name="last-vertical-content-pane-position" type="i">
-            <summary>Content area size</summary>
-            <description>Position of the content pane.</description>
-            <default>200</default>
-        </key>
-
-        <key name="last-horizontal-content-pane-position" type="i">
-            <summary>Content area size</summary>
-            <description>Position of the content pane.</description>
-            <default>200</default>
+            <default>240</default>
         </key>
 
         <key name="preview-font-size" type="d">

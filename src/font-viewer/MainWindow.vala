@@ -221,7 +221,6 @@ namespace FontManager.FontViewer {
                 settings.delay();
                 settings.set("window-size", "(ii)", w, h);
                 settings.set("window-position", "(ii)", x, y);
-//                settings.set_boolean("is-maximized", is_maximized);
                 settings.apply();
             }
             ((FontViewer.Application) application).quit();
@@ -233,8 +232,6 @@ namespace FontManager.FontViewer {
             var settings = ((FontViewer.Application) application).settings;
             if (settings == null)
                 return;
-//            if (settings.get_boolean("is-maximized"))
-//                maximize();
             settings.get("window-size", "(ii)", out w, out h);
             settings.get("window-position", "(ii)", out x, out y);
             set_default_size(w, h);
