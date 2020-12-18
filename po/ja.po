@@ -7,24 +7,26 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-12-05 23:29-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2020-12-18 23:02+0000\n"
+"Last-Translator: Takuro Onoue <kusanaginoturugi@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.4-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:28
 msgid "Font Manager"
-msgstr ""
+msgstr "フォントマネージャー"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "Gtk+ デスクトップ環境用のシンプルなフォント管理アプリケーション"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
@@ -32,26 +34,28 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
+"Font Manager は平均的なユーザーがコマンドラインツールを使用したり構成ファイルを手動で編集したりすることなく、デスクトップフォントを簡単に管理"
+"する方法を提供することを目的としています。"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
-msgstr ""
+msgstr "主に Gnome デスクトップ環境を念頭に置いて設計されていますが、他の Gtk+ デスクトップ環境でもうまく機能するはずです。"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
-msgstr ""
+msgstr "Font Manager はプロフェッショナルグレードのフォント管理ソリューションではありません。"
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr ""
+msgstr "フォントのプレビュー、比較および管理"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
 #: data/org.gnome.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
+msgstr "グラフィックス;ビューア; GNOME; GTK;パブリッシング;"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
 #: data/org.gnome.FontViewer.desktop.in.in:5
@@ -59,11 +63,11 @@ msgstr ""
 #: src/font-viewer/Application.vala:96 src/font-viewer/MainWindow.vala:23
 #: src/font-viewer/font-viewer-main-window.ui:41
 msgid "Font Viewer"
-msgstr ""
+msgstr "フォントビューアー"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "Gtk+ デスクトップ環境用のフォントビューアアプリケーション"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
@@ -74,168 +78,171 @@ msgstr ""
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr ""
+msgstr "フル機能のフォントファイルプレビューアプリケーション"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
 #: src/font-manager/FontList.vala:465
 msgid "Install"
-msgstr ""
+msgstr "インストール"
 
 #: extensions/nautilus/font-manager-menu-provider.c:163
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr ""
+msgstr "選択したフォントファイルをインストールします"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr ""
+msgstr "選択した複数のフォントファイルをインストールします"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr ""
+msgstr "フォントプロパティ"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:106
 msgid "Preview"
-msgstr ""
+msgstr "プレビュー"
 
 #: lib/common/font-manager-font-preview.c:87
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
 msgid "Waterfall"
-msgstr ""
+msgstr "ウォーターフォール"
 
 #: lib/common/font-manager-fontconfig.c:826
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
-msgstr ""
+msgstr "シン"
 
 #: lib/common/font-manager-fontconfig.c:828
 msgid "Ultra-Light"
-msgstr ""
+msgstr "ウルトラライト"
 
 #: lib/common/font-manager-fontconfig.c:830
 #: lib/common/font-manager-fontconfig.c:1183
 #: src/font-manager/web/google/Weight.vala:69
 msgid "Light"
-msgstr ""
+msgstr "ライト"
 
 #: lib/common/font-manager-fontconfig.c:832
 msgid "Semi-Light"
-msgstr ""
+msgstr "セミライト"
 
 #: lib/common/font-manager-fontconfig.c:834
 msgid "Book"
-msgstr ""
+msgstr "ブック"
 
 #: lib/common/font-manager-fontconfig.c:836
 #: lib/common/font-manager-fontconfig.c:1140
 #: src/font-manager/web/google/Weight.vala:73
 msgid "Medium"
-msgstr ""
+msgstr "ミディアム"
 
 #: lib/common/font-manager-fontconfig.c:838
 msgid "Semi-Bold"
-msgstr ""
+msgstr "セミボールド"
 
 #: lib/common/font-manager-fontconfig.c:840
 #: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
-msgstr ""
+msgstr "ボールド"
 
 #: lib/common/font-manager-fontconfig.c:842
 msgid "Ultra-Bold"
-msgstr ""
+msgstr "ウルトラボールド"
 
 #: lib/common/font-manager-fontconfig.c:844
 msgid "Heavy"
-msgstr ""
+msgstr "ヘビー"
 
 #: lib/common/font-manager-fontconfig.c:846
 msgid "Ultra-Heavy"
-msgstr ""
+msgstr "ウルトラヘビー"
 
 #: lib/common/font-manager-fontconfig.c:921
 #: src/font-manager/web/google/WebFont.vala:158
 msgid "Italic"
-msgstr ""
+msgstr "イタリック体"
 
 #: lib/common/font-manager-fontconfig.c:923
 msgid "Oblique"
-msgstr ""
+msgstr "斜体"
 
 #: lib/common/font-manager-fontconfig.c:961
 msgid "Ultra-Condensed"
-msgstr ""
+msgstr "ウルトラコンサイズド"
 
 #: lib/common/font-manager-fontconfig.c:963
 msgid "Extra-Condensed"
-msgstr ""
+msgstr "エクストラコンデンスド"
 
 #: lib/common/font-manager-fontconfig.c:965
 msgid "Condensed"
-msgstr ""
+msgstr "コンデンスド"
 
 #: lib/common/font-manager-fontconfig.c:967
 msgid "Semi-Condensed"
-msgstr ""
+msgstr "セミコンデンスド"
 
 #: lib/common/font-manager-fontconfig.c:969
 msgid "Semi-Expanded"
-msgstr ""
+msgstr "セミエクスパンデッド"
 
 #: lib/common/font-manager-fontconfig.c:971
 msgid "Expanded"
-msgstr ""
+msgstr "エクスパンデッド"
 
 #: lib/common/font-manager-fontconfig.c:973
 msgid "Extra-Expanded"
-msgstr ""
+msgstr "エクストラエクスパンデッド"
 
 #: lib/common/font-manager-fontconfig.c:975
 msgid "Ultra-Expanded"
-msgstr ""
+msgstr "ウルトラエクスパンデッド"
 
 #: lib/common/font-manager-fontconfig.c:1044
 msgid "Proportional"
-msgstr ""
+msgstr "プロポーショナル"
 
 #: lib/common/font-manager-fontconfig.c:1046
 msgid "Dual Width"
-msgstr ""
+msgstr "二倍幅"
 
 #: lib/common/font-manager-fontconfig.c:1048
 #: src/font-manager/web/google/ui/google-font-filters.ui:260
 msgid "Monospace"
-msgstr ""
+msgstr "等幅"
 
 #: lib/common/font-manager-fontconfig.c:1050
 msgid "Charcell"
-msgstr ""
+msgstr "チャーセル幅"
 
 #: lib/common/font-manager-fontconfig.c:1089
 msgid "Unknown"
 msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:1091
+#, fuzzy
 msgid "RGB"
-msgstr ""
+msgstr "RGB"
 
 #: lib/common/font-manager-fontconfig.c:1093
 msgid "BGR"
-msgstr ""
+msgstr "BGR"
 
 #: lib/common/font-manager-fontconfig.c:1095
+#, fuzzy
 msgid "VRGB"
-msgstr ""
+msgstr "VRGB"
 
 #: lib/common/font-manager-fontconfig.c:1097
+#, fuzzy
 msgid "VBGR"
-msgstr ""
+msgstr "VBGR"
 
 #: lib/common/font-manager-fontconfig.c:1099
 #: lib/common/font-manager-fontconfig.c:1144
