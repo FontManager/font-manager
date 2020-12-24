@@ -75,7 +75,7 @@ namespace FontManager {
 
         void add_child_contents (Collection child, StringSet full_contents) {
             full_contents.add_all(child.families.list());
-            children.foreach((_child) => { add_child_contents(_child, full_contents); });
+            child.children.foreach((_child) => { add_child_contents(_child, full_contents); });
             return;
         }
 
