@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-12-18 18:00-0500\n"
+"POT-Creation-Date: 2020-12-26 11:40-0500\n"
 "PO-Revision-Date: 2020-12-03 00:36+0000\n"
 "Last-Translator: migmedia <coding@migmedia.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"

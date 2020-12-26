@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-12-18 18:00-0500\n"
+"POT-Creation-Date: 2020-12-26 11:40-0500\n"
 "PO-Revision-Date: 2020-12-09 02:29+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
@@ -107,7 +107,7 @@ msgstr "Program za prikaz fontova s raznim funkcijama"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:474
+#: src/font-manager/FontList.vala:472
 msgid "Install"
 msgstr "Instaliraj"
 
@@ -128,7 +128,7 @@ msgid "Font Properties"
 msgstr "Svojstva fonta"
 
 #: lib/common/font-manager-font-preview.c:85
-#: src/font-manager/ui/font-manager-main-window.ui:106
+#: src/font-manager/ui/font-manager-main-window.ui:105
 msgid "Preview"
 msgstr "Prikaz"
 
@@ -280,7 +280,7 @@ msgid "Full"
 msgstr "Potpuno"
 
 #: lib/common/font-manager-fontconfig.c:1181
-#: src/font-manager/ui/font-manager-main-window.ui:164
+#: src/font-manager/ui/font-manager-main-window.ui:163
 msgid "Default"
 msgstr "Standardno"
 
@@ -372,7 +372,7 @@ msgstr "Svojstva"
 
 #: lib/common/font-manager-preview-pane.c:47
 #: lib/common/font-manager-preview-pane.c:557
-#: src/font-manager/Categories.vala:587
+#: src/font-manager/Categories.vala:572
 msgid "License"
 msgstr "Licenca"
 
@@ -393,22 +393,22 @@ msgid "Style"
 msgstr "Stil"
 
 #: lib/common/font-manager-properties-pane.c:83
-#: src/font-manager/Categories.vala:580
+#: src/font-manager/Categories.vala:565
 msgid "Width"
 msgstr "Širina"
 
 #: lib/common/font-manager-properties-pane.c:84
-#: src/font-manager/Categories.vala:582
+#: src/font-manager/Categories.vala:567
 msgid "Slant"
 msgstr "Nagib"
 
 #: lib/common/font-manager-properties-pane.c:85
-#: src/font-manager/Categories.vala:581
+#: src/font-manager/Categories.vala:566
 msgid "Weight"
 msgstr "Debljina"
 
 #: lib/common/font-manager-properties-pane.c:86
-#: src/font-manager/Categories.vala:583
+#: src/font-manager/Categories.vala:568
 msgid "Spacing"
 msgstr "Metrika"
 
@@ -417,7 +417,7 @@ msgid "Version"
 msgstr "Verzija"
 
 #: lib/common/font-manager-properties-pane.c:88
-#: src/font-manager/Categories.vala:588
+#: src/font-manager/Categories.vala:573
 msgid "Vendor"
 msgstr "Prodavač"
 
@@ -430,13 +430,13 @@ msgid "Filesize"
 msgstr "Veličina datoteke"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:643
+#: src/font-manager/Categories.vala:628
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
 msgstr "Regularni"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:638
+#: src/font-manager/Categories.vala:623
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
 msgstr "Normalni"
@@ -655,88 +655,84 @@ msgstr ""
 msgid "translator-credits"
 msgstr "Milo Ivir <mail@milotype.de>, 2019., 2020."
 
-#: src/font-manager/Categories.vala:339 src/font-manager/Orthography.vala:201
-msgid "Update in progress"
-msgstr "Aktualiziranje u tijeku"
-
-#: src/font-manager/Categories.vala:580
+#: src/font-manager/Categories.vala:565
 msgid "Grouped by font width"
 msgstr "Grupirani po širini"
 
-#: src/font-manager/Categories.vala:581
+#: src/font-manager/Categories.vala:566
 msgid "Grouped by font weight"
 msgstr "Grupirani po debljini"
 
-#: src/font-manager/Categories.vala:582
+#: src/font-manager/Categories.vala:567
 msgid "Grouped by font angle"
 msgstr "Grupirani po nagibu"
 
-#: src/font-manager/Categories.vala:583
+#: src/font-manager/Categories.vala:568
 msgid "Grouped by font spacing"
 msgstr "Grupirani po metrici"
 
-#: src/font-manager/Categories.vala:587
+#: src/font-manager/Categories.vala:572
 msgid "Grouped by license type"
 msgstr "Grupirani po vrsti licence"
 
-#: src/font-manager/Categories.vala:588
+#: src/font-manager/Categories.vala:573
 msgid "Grouped by vendor"
 msgstr "Grupirani po prodavaču"
 
-#: src/font-manager/Categories.vala:589
+#: src/font-manager/Categories.vala:574
 msgid "Filetype"
 msgstr "Vrsta datoteke"
 
-#: src/font-manager/Categories.vala:589
+#: src/font-manager/Categories.vala:574
 msgid "Grouped by filetype"
 msgstr "Grupirani po datotečnoj vrsti"
 
-#: src/font-manager/Categories.vala:596
+#: src/font-manager/Categories.vala:581
 msgid "All"
 msgstr "Svi"
 
-#: src/font-manager/Categories.vala:596
+#: src/font-manager/Categories.vala:581
 msgid "All Fonts"
 msgstr "Svi fontovi"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:582
 msgid "System"
 msgstr "Sustav"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:582
 msgid "Fonts available to all users"
 msgstr "Fontovi koji su dostupni svim korisnicima"
 
-#: src/font-manager/Categories.vala:611
+#: src/font-manager/Categories.vala:596
 msgid "Family Kind"
 msgstr "Vrsta obitelji"
 
-#: src/font-manager/Categories.vala:611
+#: src/font-manager/Categories.vala:596
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr "Ovdje se grupiraju samo fontovi koji sadrže Panose podatke."
 
-#: src/font-manager/Categories.vala:612
-#: src/font-manager/web/google/ui/google-font-filters.ui:355
+#: src/font-manager/Categories.vala:597
+#: src/font-manager/web/google/ui/google-font-filters.ui:346
 msgid "Any"
 msgstr "Bilo koji"
 
-#: src/font-manager/Categories.vala:612
+#: src/font-manager/Categories.vala:597
 msgid "No Fit"
 msgstr "Neodređeno"
 
-#: src/font-manager/Categories.vala:612
+#: src/font-manager/Categories.vala:597
 msgid "Text and Display"
 msgstr "Tekst i naslovi"
 
-#: src/font-manager/Categories.vala:612
+#: src/font-manager/Categories.vala:597
 msgid "Script"
 msgstr "Krasopis"
 
-#: src/font-manager/Categories.vala:612
+#: src/font-manager/Categories.vala:597
 msgid "Decorative"
 msgstr "Ukrasni"
 
-#: src/font-manager/Categories.vala:612
+#: src/font-manager/Categories.vala:597
 msgid "Pictorial"
 msgstr "Slikovni"
 
@@ -752,28 +748,20 @@ msgstr[2] "%i varijanta "
 msgid "Enter Collection Name"
 msgstr "Upiši ime zbirke"
 
-#: src/font-manager/Collections.vala:125
-msgid "Add new collection"
-msgstr "Dodaj novu zbirku"
-
-#: src/font-manager/Collections.vala:126
-msgid "Remove selected collection"
-msgstr "Ukloni odabranu zbirku"
-
-#: src/font-manager/Collections.vala:428
+#: src/font-manager/Collections.vala:389
 msgid "Copy to…"
 msgstr "Kopiraj u …"
 
-#: src/font-manager/Collections.vala:429
+#: src/font-manager/Collections.vala:390
 msgid "Compress…"
 msgstr "Komprimiraj …"
 
-#: src/font-manager/Compare.vala:378
+#: src/font-manager/Compare.vala:379
 msgid "Saved Comparison"
 msgstr "Spremljena usporedba"
 
 #. TRANSLATORS : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:404
+#: src/font-manager/Compare.vala:405
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -860,26 +848,26 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Sklopi sve"
 
-#: src/font-manager/FontList.vala:475
+#: src/font-manager/FontList.vala:473
 msgid "Copy Location"
 msgstr "Mjesto kopije"
 
-#: src/font-manager/FontList.vala:476
+#: src/font-manager/FontList.vala:474
 msgid "Show in Folder"
 msgstr "Prikaži u mapi"
 
 #: src/font-manager/MainWindow.vala:54
-#: src/font-manager/ui/font-manager-main-window.ui:151
+#: src/font-manager/ui/font-manager-main-window.ui:150
 msgid "Browse"
 msgstr "Pregledaj"
 
 #: src/font-manager/MainWindow.vala:56
-#: src/font-manager/ui/font-manager-main-window.ui:122
+#: src/font-manager/ui/font-manager-main-window.ui:121
 msgid "Compare"
 msgstr "Usporedi"
 
 #: src/font-manager/MainWindow.vala:58
-#: src/font-manager/ui/font-manager-main-window.ui:135
+#: src/font-manager/ui/font-manager-main-window.ui:134
 msgid "Manage"
 msgstr "Upravljaj"
 
@@ -924,6 +912,10 @@ msgstr "Pokrivenost"
 #: src/font-manager/Orthography.vala:150
 msgid "Supported Orthographies"
 msgstr "Podržani pravopisi"
+
+#: src/font-manager/Orthography.vala:201
+msgid "Update in progress"
+msgstr "Aktualiziranje u tijeku"
 
 #: src/font-manager/TitleBar.vala:62
 msgid "Updating Database — Fonts"
@@ -973,7 +965,7 @@ msgid "Remove Fonts"
 msgstr "Ukloni fontove"
 
 #: src/font-manager/TitleBar.vala:275
-#: src/font-manager/ui/font-manager-main-window.ui:181
+#: src/font-manager/ui/font-manager-main-window.ui:180
 msgid "Preferences"
 msgstr "Postavke"
 
@@ -981,7 +973,7 @@ msgstr "Postavke"
 msgid "Select Exported Data"
 msgstr "Odaberi izvezene podatke"
 
-#: src/font-manager/Utils.vala:213
+#: src/font-manager/Utils.vala:220
 msgid "Copying files…"
 msgstr "Kopiranje datoteka …"
 
@@ -1009,10 +1001,6 @@ msgstr "Filtar koji se temelji na jezičnoj podršci"
 #: src/font-manager/filters/LanguageFilter.vala:58
 msgid "Language"
 msgstr "Jezik"
-
-#: src/font-manager/filters/LanguageFilter.vala:171
-msgid "Filter Settings"
-msgstr "Postavke filtra"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
@@ -1118,13 +1106,13 @@ msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:204
 #: src/font-manager/preferences/Fontconfig.vala:282
-#: src/font-manager/preferences/Fontconfig.vala:457
+#: src/font-manager/preferences/Fontconfig.vala:456
 msgid "Settings saved to file."
 msgstr "Postavke su spremljene u datoteku."
 
 #: src/font-manager/preferences/Fontconfig.vala:208
 #: src/font-manager/preferences/Fontconfig.vala:286
-#: src/font-manager/preferences/Fontconfig.vala:461
+#: src/font-manager/preferences/Fontconfig.vala:460
 msgid "Removed configuration file."
 msgstr "Datoteka konfiguracije je uklonjena."
 
@@ -1181,15 +1169,15 @@ msgstr "Dodaj alias"
 msgid "Remove selected alias"
 msgstr "Ukloni odabrani alias"
 
-#: src/font-manager/preferences/Fontconfig.vala:599
+#: src/font-manager/preferences/Fontconfig.vala:598
 msgid "Font Substitutions"
 msgstr "Zamjene fontova"
 
-#: src/font-manager/preferences/Fontconfig.vala:600
+#: src/font-manager/preferences/Fontconfig.vala:599
 msgid "Easily substitute one font family for another."
 msgstr "Jednostavno zamijeni jednu obitelj fontova drugom obitelji."
 
-#: src/font-manager/preferences/Fontconfig.vala:601
+#: src/font-manager/preferences/Fontconfig.vala:600
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr "Za dodavanje nove zamjene pritisni gumb za dodavanje u alatnoj traci."
 
@@ -1571,23 +1559,23 @@ msgstr "Sljedeća stranica"
 msgid "Add selected font to comparison"
 msgstr "Dodaj odabrani font u usporedbu"
 
-#: src/font-manager/ui/font-manager-compare-view.ui:83
+#: src/font-manager/ui/font-manager-compare-view.ui:84
 msgid "Remove selected font from comparison"
 msgstr "Ukloni odabrani font iz usporedbe"
 
-#: src/font-manager/ui/font-manager-compare-view.ui:108
+#: src/font-manager/ui/font-manager-compare-view.ui:110
 msgid "Pinned Comparisons"
 msgstr "Prikvačena usporedba"
 
-#: src/font-manager/ui/font-manager-compare-view.ui:133
-#: src/font-manager/ui/font-manager-compare-view.ui:137
+#: src/font-manager/ui/font-manager-compare-view.ui:136
+#: src/font-manager/ui/font-manager-compare-view.ui:140
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:73
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:76
 msgid "Select background color"
 msgstr "Odaberi boju pozadine"
 
-#: src/font-manager/ui/font-manager-compare-view.ui:154
-#: src/font-manager/ui/font-manager-compare-view.ui:158
+#: src/font-manager/ui/font-manager-compare-view.ui:157
+#: src/font-manager/ui/font-manager-compare-view.ui:161
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:90
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:93
 msgid "Select text color"
@@ -1610,23 +1598,23 @@ msgstr "Spremi"
 msgid "Back"
 msgstr "Natrag"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:59
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:61
 msgid "Search Languages…"
 msgstr "Pretraži jezike …"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:74
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:76
 msgid "Deselect All"
 msgstr "Odznači sve"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:154
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:155
 msgid "Minimum Coverage"
 msgstr "Minimalna pokrivenost"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:170
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:171
 msgid "90"
 msgstr "90"
 
-#: src/font-manager/ui/font-manager-main-window.ui:195
+#: src/font-manager/ui/font-manager-main-window.ui:194
 msgid "Google Fonts"
 msgstr "Google fontovi"
 
@@ -1638,15 +1626,15 @@ msgstr "Isprazni odabrani filtar"
 msgid "Created : "
 msgstr "Stvoreno: "
 
-#: src/font-manager/ui/font-manager-pinned-comparisons.ui:31
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:32
 msgid "Save current comparison"
 msgstr "Spremi trenutačnu usporedbu"
 
-#: src/font-manager/ui/font-manager-pinned-comparisons.ui:60
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:62
 msgid "Remove selected comparison"
 msgstr "Ukloni odabranu usporedbu"
 
-#: src/font-manager/ui/font-manager-pinned-comparisons.ui:89
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:92
 msgid "Restore selected comparison"
 msgstr "Obnovi odabranu usporedbu"
 
@@ -1706,13 +1694,27 @@ msgstr "Prebaci na kaskadni prikaz"
 msgid "Switch to Body Text preview"
 msgstr "Prebaci na prikaz teksta"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:24
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:58
 msgid "Categories"
 msgstr "Kategorije"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:66
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:129
 msgid "Collections"
 msgstr "Zbirke"
+
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:175
+#, fuzzy
+#| msgid "Clear selected filter"
+msgid "Edit selected category"
+msgstr "Isprazni odabrani filtar"
+
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:198
+msgid "Add new collection"
+msgstr "Dodaj novu zbirku"
+
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:221
+msgid "Remove selected collection"
+msgstr "Ukloni odabranu zbirku"
 
 #: src/font-manager/ui/font-manager-subpixel-geometry.ui:44
 msgid "Subpixel Geometry"
@@ -1819,25 +1821,28 @@ msgstr "Rukopisni"
 msgid "Category"
 msgstr "Kategorija"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:374
+#: src/font-manager/web/google/ui/google-font-filters.ui:365
 msgid "4+"
 msgstr "4+"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:393
+#: src/font-manager/web/google/ui/google-font-filters.ui:384
 msgid "8+"
 msgstr "8+"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:412
+#: src/font-manager/web/google/ui/google-font-filters.ui:403
 msgid "12+"
 msgstr "12+"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:443
+#: src/font-manager/web/google/ui/google-font-filters.ui:434
 msgid "Variations"
 msgstr "Varijante"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:523
+#: src/font-manager/web/google/ui/google-font-filters.ui:503
 msgid "Language Support"
 msgstr "Jezična podrška"
+
+#~ msgid "Filter Settings"
+#~ msgstr "Postavke filtra"
 
 #~ msgid "Some date and time"
 #~ msgstr "Neki datum i vrijeme"
