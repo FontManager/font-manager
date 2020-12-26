@@ -36,9 +36,9 @@ namespace FontManager.GoogleFonts {
         [GtkChild] public FontListPane font_list_pane { get; }
         [GtkChild] public Filters filters { get; }
         [GtkChild] public Gtk.Paned content_pane { get; }
+        [GtkChild] public PreviewPane preview_pane { get; }
 
         [GtkChild] Gtk.Paned filter_pane;
-        [GtkChild] PreviewPane preview_pane;
 
         bool cache_checked = false;
         bool _connected_ = false;

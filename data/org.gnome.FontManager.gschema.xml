@@ -49,6 +49,11 @@
         <value nick="Flat" value="1" />
     </enum>
 
+    <enum id="org.gnome.FontManager.GoogleFonts.PreviewMode">
+        <value nick="waterfall" value="0" />
+        <value nick="lorem-ipsum" value="1" />
+    </enum>
+
     <schema id="org.gnome.FontManager" path="/org/gnome/font-manager/">
 
         <key name="mode" enum="org.gnome.FontManager.Mode">
@@ -239,6 +244,37 @@
             <summary>Language Filter list</summary>
             <description>Array of string containing language selections.</description>
             <default>[]</default>
+        </key>
+
+        <key name="google-fonts-preview-mode" enum="org.gnome.FontManager.GoogleFonts.PreviewMode">
+            <summary>Google Fonts Preview Mode</summary>
+            <description>Possible modes are Waterfall and Lorem Ipsum.</description>
+            <default>"waterfall"</default>
+        </key>
+
+        <key name="google-fonts-foreground-color" type="s">
+            <summary>Google Fonts preview foreground color</summary>
+            <description>Color to use for foreground (text color) in RGB format.</description>
+            <default>"rgb(0,0,0)"</default>
+        </key>
+
+        <key name="google-fonts-background-color" type="s">
+            <summary>Google Fonts preview background color</summary>
+            <description>Color to use for background in RGB format</description>
+            <default>"rgb(255,255,255)"</default>
+        </key>
+
+        <key name="google-fonts-font-size" type="d">
+            <range min="6.0" max="96.0"/>
+            <summary>Google Fonts preview font size</summary>
+            <description>Size point to use in Google Fonts lorem-ipsum mode.</description>
+            <default>16.0</default>
+        </key>
+
+        <key name="google-fonts-preview-text" type="s">
+            <summary>Google Fonts preview text</summary>
+            <description>Last preview text used in Google Fonts waterfall preview</description>
+            <default>""</default>
         </key>
 
     </schema>

@@ -232,7 +232,7 @@
             <property name="margin-bottom">6</property>
             <property name="active">True</property>
             <property name="draw-indicator">True</property>
-            <signal name="toggled" handler="on_preview_type_toggled" swapped="no"/>
+            <signal name="toggled" handler="on_mode_toggled" swapped="no"/>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
@@ -262,7 +262,7 @@
             <property name="active">True</property>
             <property name="draw-indicator">True</property>
             <property name="group">waterfall</property>
-            <signal name="toggled" handler="on_preview_type_toggled" swapped="no"/>
+            <signal name="toggled" handler="on_mode_toggled" swapped="no"/>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>

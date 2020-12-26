@@ -71,7 +71,7 @@ internal const string FOOTER = """
 
 namespace FontManager.GoogleFonts {
 
-    public enum PreviewType {
+    public enum PreviewMode {
         WATERFALL,
         LOREM_IPSUM;
     }
@@ -84,7 +84,7 @@ namespace FontManager.GoogleFonts {
         public bool refresh_required { get; set; default = false; }
         public double preview_size { get; set; default = 16.0; }
         public WebKit.WebView? preview { get; set; default = null; }
-        public PreviewType preview_type { get; set; default = PreviewType.WATERFALL; }
+        public PreviewMode mode { get; set; default = PreviewMode.WATERFALL; }
 
         public string preview_text {
             get {
@@ -104,6 +104,7 @@ namespace FontManager.GoogleFonts {
         [GtkChild] Gtk.MenuButton menu_button;
         [GtkChild] PreviewEntry entry;
         [GtkChild] FontScale fontscale;
+        [GtkChild] Gtk.RadioButton lorem_ipsum;
 
         string? _preview_text = null;
         string? default_preview_text = "The quick brown fox jumps over the lazy dog.";
@@ -161,6 +162,7 @@ namespace FontManager.GoogleFonts {
         }
 
         construct {
+
             map.connect(() => {
                 if (preview == null)
                     preview = get_webkit_webview();
@@ -191,9 +193,9 @@ namespace FontManager.GoogleFonts {
                 selection_changed(status);
             });
             notify["preview-text"].connect((obj, pspec) => { entry.set_placeholder_text(preview_text); });
-            notify["preview-type"].connect((obj, pspec) => {
-                scale_container.set_visible(preview_type == PreviewType.LOREM_IPSUM);
-                entry.set_visible(preview_type == PreviewType.WATERFALL);
+            notify["mode"].connect((obj, pspec) => {
+                scale_container.set_visible(mode == PreviewMode.LOREM_IPSUM);
+                entry.set_visible(mode == PreviewMode.WATERFALL);
             });
             notify["preview-size"].connect((obj, pspec) => { update_preview(); });
             bg_color_button.color_set.connect_after(() => { update_preview(); });
@@ -201,8 +203,8 @@ namespace FontManager.GoogleFonts {
             set_button_relief_style(controls);
             download_button.set_relief(Gtk.ReliefStyle.NORMAL);
             menu_button.set_relief(Gtk.ReliefStyle.NORMAL);
-            scale_container.set_visible(preview_type == PreviewType.LOREM_IPSUM);
-            entry.set_visible(preview_type == PreviewType.WATERFALL);
+            scale_container.set_visible(mode == PreviewMode.LOREM_IPSUM);
+            entry.set_visible(mode == PreviewMode.WATERFALL);
             bind_property("preview-size", fontscale, "value", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
             sample_list = new SampleList() {
                 relative_to = entry,
@@ -297,6 +299,8 @@ namespace FontManager.GoogleFonts {
         }
 
         public void update_preview () {
+            if (preview == null)
+                return;
             /* Restore default preview if a language sample was selected and the font has changed. */
             if (font != stored_font && restore_default_preview) {
                 entry.set_text("");
@@ -305,11 +309,11 @@ namespace FontManager.GoogleFonts {
             }
             string html = "<html><body><p> </p></body></html>";
             if (font != null) {
-                switch (preview_type) {
-                    case PreviewType.WATERFALL:
+                switch (mode) {
+                    case PreviewMode.WATERFALL:
                         html = generate_waterfall();
                         break;
-                    case PreviewType.LOREM_IPSUM:
+                    case PreviewMode.LOREM_IPSUM:
                         html = generate_lorem_ipsum();
                         break;
                     default:
@@ -320,11 +324,45 @@ namespace FontManager.GoogleFonts {
             return;
         }
 
+        public void restore_state (GLib.Settings settings) {
+            preview_size = settings.get_double("google-fonts-font-size");
+            entry.text = settings.get_string("google-fonts-preview-text");
+            mode = (PreviewMode) settings.get_enum("google-fonts-preview-mode");
+            lorem_ipsum.set_active(mode == PreviewMode.LOREM_IPSUM);
+            Idle.add(() => {
+                var foreground = Gdk.RGBA();
+                var background = Gdk.RGBA();
+                bool foreground_set = foreground.parse(settings.get_string("google-fonts-foreground-color"));
+                bool background_set = background.parse(settings.get_string("google-fonts-background-color"));
+                if (foreground_set) {
+                    if (foreground.alpha == 0.0)
+                        foreground.alpha = 1.0;
+                    ((Gtk.ColorChooser) fg_color_button).set_rgba(foreground);
+                }
+                if (background_set) {
+                    if (background.alpha == 0.0)
+                        background.alpha = 1.0;
+                    ((Gtk.ColorChooser) bg_color_button).set_rgba(background);
+                }
+                return GLib.Source.REMOVE;
+            });
+            settings.bind("google-fonts-preview-text", entry, "text", SettingsBindFlags.DEFAULT);
+            settings.bind("google-fonts-font-size", this, "preview-size", SettingsBindFlags.DEFAULT);
+            settings.bind("google-fonts-preview-mode", this, "mode", SettingsBindFlags.DEFAULT);
+            return;
+        }
+
+        public void save_state (GLib.Settings settings) {
+            settings.set_string("google-fonts-foreground-color", fg_color_button.get_rgba().to_string());
+            settings.set_string("google-fonts-background-color", bg_color_button.get_rgba().to_string());
+            return;
+        }
+
         [GtkCallback]
-        void on_preview_type_toggled (Gtk.ToggleButton widget) {
+        void on_mode_toggled (Gtk.ToggleButton widget) {
             if (!widget.active)
                 return;
-            preview_type = (PreviewType) int.parse(widget.name);
+            mode = (PreviewMode) int.parse(widget.name);
             menu_button.popover.popdown();
             update_preview();
             return;

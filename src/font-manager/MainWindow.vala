@@ -611,6 +611,12 @@ namespace FontManager {
                     var language_filter = category_tree.model.categories[CategoryIndex.LANGUAGE];
                     ((LanguageFilter) language_filter).save_state(settings);
                     compare.save_state(settings);
+
+#if HAVE_WEBKIT
+                    var google_fonts_pane = (GoogleFonts.Catalog) web_pane.get_child();
+                    google_fonts_pane.preview_pane.save_state(settings);
+#endif /* HAVE_WEBKIT */
+
                     settings.set("window-size", "(ii)", w, h);
                     settings.set("window-position", "(ii)", x, y);
                     settings.set_boolean("is-maximized", is_maximized);
@@ -656,6 +662,12 @@ namespace FontManager {
                 preview_pane.restore_state(settings);
                 browse.restore_state(settings);
                 compare.restore_state(settings);
+
+#if HAVE_WEBKIT
+                var google_fonts_pane = (GoogleFonts.Catalog) web_pane.get_child();
+                google_fonts_pane.preview_pane.restore_state(settings);
+#endif /* HAVE_WEBKIT */
+
                 return GLib.Source.REMOVE;
             });
 

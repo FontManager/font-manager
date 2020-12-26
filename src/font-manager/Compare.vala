@@ -252,11 +252,9 @@ namespace FontManager {
         }
 
         public void save_state (GLib.Settings settings) {
-            settings.delay();
             settings.set_strv("compare-list", list_items());
             settings.set_string("compare-foreground-color", foreground_color.to_string());
             settings.set_string("compare-background-color", background_color.to_string());
-            settings.apply();
             return;
         }
 
