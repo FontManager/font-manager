@@ -164,7 +164,7 @@ Note that not all environments/applications will honor these settings.""");
             string w3 = _("To add a new source simply drag a folder onto this area or click the add button in the toolbar.");
             var place_holder = new PlaceHolder(w1, w2, w3, "folder-symbolic");
             list.set_placeholder(place_holder);
-            controls.remove_button.set_visible(false);
+            set_control_sensitivity(controls.remove_button, false);
             help = new InlineHelp();
             help.margin_start = help.margin_end = 2;
             help.message.set_text(help_text);
@@ -205,7 +205,7 @@ Note that not all environments/applications will honor these settings.""");
 
         [GtkCallback]
         void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
-            controls.remove_button.set_visible(row != null);
+            set_control_sensitivity(controls.remove_button, row != null);
             return;
         }
 

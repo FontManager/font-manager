@@ -83,9 +83,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
          *              %FALSE if remove function is unavailable.
          */
         public void set_remove_sensitivity (bool sensitive) {
-            remove_button.set_sensitive(sensitive);
-            remove_button.set_has_tooltip(sensitive);
-            remove_button.opacity = sensitive ? 1.0 : 0.1;
+            set_control_sensitivity(remove_button, sensitive);
             return;
         }
 

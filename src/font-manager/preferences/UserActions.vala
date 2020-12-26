@@ -213,7 +213,7 @@ If FAMILY or STYLE are found in the argument list they will also be replaced."""
             model = new UserActionModel();
             var place_holder = new PlaceHolder(_("User Actions"), null, _("Custom context menu entries"), "open-menu-symbolic");
             list.set_placeholder(place_holder);
-            controls.remove_button.set_visible(false);
+            set_control_sensitivity(controls.remove_button, false);
             help = new InlineHelp();
             help.margin_start = help.margin_end = 2;
             help.message.set_text(help_text);
@@ -243,7 +243,7 @@ If FAMILY or STYLE are found in the argument list they will also be replaced."""
 
         [GtkCallback]
         void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
-            controls.remove_button.set_visible(row != null);
+            set_control_sensitivity(controls.remove_button, row != null);
             return;
         }
 

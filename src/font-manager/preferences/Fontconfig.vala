@@ -426,7 +426,7 @@ Note that not all environments/applications will honor these settings.""");
             base_controls = new BaseControls();
             base_controls.add_button.set_tooltip_text(_("Add alias"));
             base_controls.remove_button.set_tooltip_text(_("Remove selected alias"));
-            base_controls.remove_button.sensitive = false;
+            set_control_sensitivity(base_controls.remove_button, false);
             box.pack_start(base_controls, false, false, 1);
             add_separator(box, Gtk.Orientation.HORIZONTAL);
             box.pack_end(sub_list, true, true, 1);
@@ -434,7 +434,6 @@ Note that not all environments/applications will honor these settings.""");
             connect_signals();
             get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
             base_controls.show();
-            base_controls.remove_button.hide();
             sub_list.show();
         }
 
@@ -450,7 +449,7 @@ Note that not all environments/applications will honor these settings.""");
                     base_controls.remove_button.show();
                 else
                     base_controls.remove_button.hide();
-                base_controls.remove_button.sensitive = (r != null);
+                set_control_sensitivity(base_controls.remove_button, r != null);
             });
             controls.save_selected.connect(() => {
                 if (sub_list.save())
@@ -551,7 +550,7 @@ Note that not all environments/applications will honor these settings.""");
 
         [GtkCallback]
         void on_entry_changed () {
-            add_button.sensitive = (entry.get_text() != null);
+            set_control_sensitivity(add_button, entry.get_text() != null);
             return;
         }
 

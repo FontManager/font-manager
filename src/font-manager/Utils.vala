@@ -67,6 +67,13 @@ namespace FontManager {
         return;
     }
 
+    public void set_control_sensitivity(Gtk.Widget widget, bool sensitive) {
+        widget.sensitive = sensitive;
+        widget.opacity = sensitive ? 0.9 : 0.45;
+        widget.has_tooltip = sensitive;
+        return;
+    }
+
     public class MenuCallbackWrapper {
         public MenuCallback run;
         public MenuCallbackWrapper (MenuCallback c) {

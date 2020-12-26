@@ -77,6 +77,7 @@
         <child>
           <object class="GtkButton" id="remove_button">
             <property name="visible">True</property>
+            <property name="sensitive">False</property>
             <property name="can_focus">True</property>
             <property name="focus_on_click">False</property>
             <property name="receives_default">True</property>
@@ -84,6 +85,7 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="relief">none</property>
+            <property name="opacity">0.45</property>
             <signal name="clicked" handler="on_remove_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage">
@@ -109,6 +111,7 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="relief">none</property>
+            <property name="opacity">0.45</property>
             <signal name="clicked" handler="on_pinned_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage">

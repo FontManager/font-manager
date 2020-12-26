@@ -106,8 +106,7 @@ namespace FontManager {
             category_tree.selection_changed.connect((f) => {
                 on_tree_selection_changed(category_tree, f);
                 bool is_lang_filter = (f != null && f.index == CategoryIndex.LANGUAGE);
-                edit_button.sensitive = is_lang_filter;
-                edit_button.opacity = is_lang_filter ? 0.90 : 0.45;
+                set_control_sensitivity(edit_button, is_lang_filter);
                 if (is_lang_filter) {
                     edit_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
                     edit_button.set_relief(Gtk.ReliefStyle.NORMAL);
@@ -118,9 +117,7 @@ namespace FontManager {
             });
             collection_tree.selection_changed.connect((f) => {
                 on_tree_selection_changed(collection_tree, f);
-                bool have_selection = f != null;
-                remove_button.sensitive = have_selection;
-                remove_button.opacity = have_selection ? 0.90 : 0.45;
+                set_control_sensitivity(remove_button, f != null);
             });
 
             add_button.clicked.connect(() => {
@@ -143,8 +140,7 @@ namespace FontManager {
 
             collection_expander.notify["expanded"].connect_after((o, p) => {
                 bool expanded = collection_expander.get_expanded();
-                add_button.sensitive = expanded;
-                add_button.opacity = expanded ? 0.90 : 0.45;
+                set_control_sensitivity(add_button, expanded);
                 if (!expanded && collection_tree.selected_filter != null)
                     category_tree.select_first_row();
                 if (expanded && collection_tree.model.iter_n_children(null) < 1) {

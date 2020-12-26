@@ -194,14 +194,14 @@ namespace FontManager {
             bind_property("background_color", bg_color_button, "rgba", flags);
             bind_property("preview-size", fontscale, "value", flags);
             fontscale.bind_property("adjustment", this, "adjustment", flags);
-            remove_button.sensitive = false;
-            pinned_button.sensitive = (pinned.model.get_n_items() > 0);
+            set_control_sensitivity(pinned_button, pinned.model.get_n_items() > 0);
             bg_color_button.color_set.connect(() => { color_set(); });
             fg_color_button.color_set.connect(() => { color_set(); });
             model.items_changed.connect(on_items_changed);
             notify["preview-text"].connect(() => { entry.set_placeholder_text(preview_text); });
             pinned.closed.connect(() => {
-                pinned_button.sensitive = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
+                bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
+                set_control_sensitivity(pinned_button, have_items);
             });
             base.constructed();
             return;
@@ -215,7 +215,8 @@ namespace FontManager {
                 add_button.set_relief(Gtk.ReliefStyle.NORMAL);
                 add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
             }
-            pinned_button.sensitive = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
+            bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
+            set_control_sensitivity(pinned_button, have_items);
             return;
         }
 
@@ -302,7 +303,7 @@ namespace FontManager {
 
         [GtkCallback]
         void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
-            remove_button.sensitive = (row != null);
+            set_control_sensitivity(remove_button, row != null);
             return;
         }
 
@@ -408,7 +409,7 @@ namespace FontManager {
             notify["compare"].connect(() => {
                 if (compare != null)
                     compare.model.items_changed.connect((p, a, r) => {
-                        save_button.sensitive = (compare.model.get_n_items() > 0);
+                        set_control_sensitivity(save_button, compare.model.get_n_items() > 0);
                     });
             });
             notify["model"].connect((obj, pspec) => {
@@ -454,7 +455,8 @@ namespace FontManager {
 
         [GtkCallback]
         void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
-            remove_button.sensitive = restore_button.sensitive = (row != null);
+            set_control_sensitivity(remove_button, row != null);
+            set_control_sensitivity(restore_button, row != null);
             return;
         }
 
