@@ -530,8 +530,9 @@ namespace FontManager {
             });
             if (path.get_depth() < 2) {
                 collapse_all();
-                expand_to_path(path);
+                get_column(0).queue_resize();
             }
+            expand_to_path(path);
             /* Category updates are delayed till actual selection for categories with children.
              * Depending on size it may take a moment for the category to load. */
             if (selected_filter != null && selected_filter.requires_update) {

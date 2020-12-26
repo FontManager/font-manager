@@ -476,8 +476,9 @@ namespace FontManager {
             Gtk.TreePath path = model.get_path(iter);
             if (path.get_depth() < 2) {
                 collapse_all();
-                expand_to_path(path);
+                get_column(0).queue_resize();
             }
+            expand_to_path(path);
             model.get_value(iter, 0, out val);
             selected_filter = ((Collection) val);
             menu_header.label = ((Collection) val).name;
