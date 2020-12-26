@@ -1,6 +1,6 @@
 %global MajorVersion 0
 %global MinorVersion 8
-%global PatchVersion 3
+%global PatchVersion 4
 %global build_timestamp %{lua: print(os.date("%Y%m%d"))}
 %global DBusName org.gnome.FontManager
 %global DBusName2 org.gnome.FontViewer
@@ -8,7 +8,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{PatchVersion}.%{build_timestamp}
-Release:    5
+Release:    1
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -141,5 +141,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_libdir}/thunarx-3/thunar-%{name}.so
 
 %changelog
-* Tue Dec 1 2020 JerryCasiano <JerryCasiano@gmail.com> 0.8.3-5
+* Tue Dec 1 2020 JerryCasiano <JerryCasiano@gmail.com> 0.8.4-1
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
