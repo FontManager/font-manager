@@ -111,28 +111,6 @@ namespace FontManager {
 
     }
 
-    public class CollectionControls : BaseControls {
-
-        public InlineHelp help { get; private set; }
-
-        const string help_message = """
-Add fonts by dragging them from the font list.
-
-The sidebar will automatically switch while dragging fonts.
-""";
-
-        public CollectionControls () {
-            add_button.set_tooltip_text(_("Add new collection"));
-            remove_button.set_tooltip_text(_("Remove selected collection"));
-            get_style_context().add_class(Gtk.STYLE_CLASS_VIEW);
-            help = new InlineHelp();
-            box.pack_end(help, false, false, 0);
-            help.message.set_text(help_message);
-        }
-
-    }
-
-
     public class CollectionModel : Gtk.TreeStore {
 
         public Collections collections {
@@ -149,9 +127,6 @@ The sidebar will automatically switch while dragging fonts.
 
         construct {
             set_column_types({typeof(Object), typeof(string), typeof(string)});
-        }
-
-        public CollectionModel () {
             collections = Collections.load();
         }
 
@@ -238,9 +213,8 @@ The sidebar will automatically switch while dragging fonts.
         public signal void changed ();
         public signal void selection_changed (Collection? group);
 
-        public string selected_iter { get; protected set; default = "0"; }
+        public string selected_iter { get; protected set; default = "-1"; }
         public Collection? selected_filter { get; protected set; default = null; }
-        public CollectionControls controls { get; protected set; }
 
         public new CollectionModel? model {
             get {
@@ -262,14 +236,13 @@ The sidebar will automatically switch while dragging fonts.
         Gtk.TreeIter _selected_iter_;
         Gtk.CellRendererText renderer;
 
-        public CollectionTree () {
-            expand = true;
-            controls = new CollectionControls();
-            controls.add_button.set_relief(Gtk.ReliefStyle.NORMAL);
-            controls.remove_button.set_sensitive(false);
-            Gtk.StyleContext ctx = controls.add_button.get_style_context();
-            ctx.add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+        construct {
             name = "FontManagerCollectionTree";
+            expand = true;
+            level_indentation = 12;
+            headers_visible = false;
+            reorderable = true;
+            show_expanders = false;
             renderer = new Gtk.CellRendererText();
             var count_renderer = new CellRendererCount();
             var toggle = new Gtk.CellRendererToggle();
@@ -282,27 +255,15 @@ The sidebar will automatically switch while dragging fonts.
             insert_column_with_data_func(2, "", count_renderer, count_cell_data_func);
             for (int i = 0; i < CollectionColumn.N_COLUMNS; i++)
                 get_column(i).expand = (i == CollectionColumn.NAME);
-            set_headers_visible(false);
-            reorderable = true;
             set_tooltip_column(CollectionColumn.COMMENT);
             context_menu = get_context_menu();
             connect_signals();
             model = new CollectionModel();
-            controls.show();
         }
 
         void connect_signals () {
-            controls.add_selected.connect(() => {
-                on_add_collection();
-            });
-            controls.remove_selected.connect(() => {
-                on_remove_collection();
-            });
             get_selection().changed.connect(on_selection_changed);
             renderer.edited.connect(on_edited);
-            selection_changed.connect((c) => {
-                controls.remove_button.set_sensitive(c != null);
-            });
             Reject? reject = get_default_application().reject;
             return_if_fail(reject != null);
             reject.changed.connect(() => {
@@ -431,6 +392,8 @@ The sidebar will automatically switch while dragging fonts.
             var popup_menu = new Gtk.Menu();
             menu_header = new Gtk.MenuItem.with_label("");
             menu_header.sensitive = false;
+            menu_header.get_style_context().add_class("SensitiveChildLabel");
+            menu_header.opacity = 0.8;
             menu_header.show();
             popup_menu.append(menu_header);
             var label = ((Gtk.Bin) menu_header).get_child();
@@ -505,17 +468,23 @@ The sidebar will automatically switch while dragging fonts.
             Gtk.TreeModel model;
             GLib.Value val;
             selected_filter = null;
-            selected_iter = null;
-            selection_changed(null);
-            if (!selection.get_selected(out model, out iter))
+            selected_iter = "-1";
+            if (!selection.get_selected(out model, out iter)) {
+                selection_changed(null);
                 return;
+            }
+            Gtk.TreePath path = model.get_path(iter);
+            if (path.get_depth() < 2) {
+                collapse_all();
+                expand_to_path(path);
+            }
             model.get_value(iter, 0, out val);
-            selection_changed(((Collection) val));
             selected_filter = ((Collection) val);
             menu_header.label = ((Collection) val).name;
             _selected_iter_ = iter;
             selected_iter = model.get_string_from_iter(iter);
             val.unset();
+            selection_changed(selected_filter);
             return;
         }
 
@@ -556,16 +525,6 @@ The sidebar will automatically switch while dragging fonts.
         }
 
         void update_and_cache_collections () {
-            Gtk.StyleContext ctx = controls.add_button.get_style_context();
-            int n_children = model.iter_n_children(null);
-            controls.help.set_visible(n_children == 1);
-            if (n_children > 0) {
-                controls.add_button.set_relief(Gtk.ReliefStyle.NONE);
-                ctx.remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-            } else {
-                controls.add_button.set_relief(Gtk.ReliefStyle.NORMAL);
-                ctx.add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
-            }
             model.update_group_index();
             Idle.add(() => {
                 model.collections.save();

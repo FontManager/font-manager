@@ -194,6 +194,14 @@ treeview {
     background-color: transparent;
 }
 
+#FontManagerCategoryExpander title arrow,
+#FontManagerCollectionExpander title arrow {
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
 #GoogleFontsLanguageList row:hover {
     background-color: transparent;
 }

@@ -103,7 +103,7 @@ namespace FontManager {
             critical(e.message);
         }
         MainWindow? main_window = get_default_application().main_window;
-        main_window.sidebar.collection_model.collections = Collections.load();
+        main_window.sidebar.standard.collection_tree.model.collections = Collections.load();
         main_window.compare.pinned.load();
         Signal.emit_by_name(main_window.compare.pinned, "closed");
         ((UserSourceList) main_window.preference_pane["Sources"]).model = new UserSourceModel();

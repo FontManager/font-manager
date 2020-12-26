@@ -129,7 +129,6 @@ namespace FontManager {
 
         uint? search_timeout;
         uint16 text_length = 0;
-        Gtk.Button settings_button;
         Gtk.ListStore real_model;
         Gtk.TreeModelFilter? search_filter = null;
 
@@ -162,25 +161,6 @@ namespace FontManager {
             this.filter = filter;
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             filter.bind_property("coverage", coverage_spin, "value", flags);
-        }
-
-        public Gtk.Button get_button () {
-            if (settings_button != null)
-                return settings_button;
-            settings_button = new Gtk.Button() {
-                label = _("Filter Settings"),
-                image = new Gtk.Image.from_icon_name("preferences-desktop-locale", Gtk.IconSize.BUTTON),
-                always_show_image = true,
-                halign = Gtk.Align.CENTER,
-                valign = Gtk.Align.END,
-                margin = 12,
-                relief = Gtk.ReliefStyle.NONE
-            };
-            settings_button.show();
-            settings_button.clicked.connect(() => {
-                get_default_application().main_window.sidebar.mode = "LanguageFilterSettings";
-            });
-            return settings_button;
         }
 
         bool refilter () {

@@ -124,7 +124,6 @@ namespace FontManager {
         bool is_tiled = false;
         bool is_fullscreen = false;
         bool is_horizontal = false;
-        bool sidebar_switch = false;
         const int DEFAULT_WIDTH = 900;
         const int DEFAULT_HEIGHT = 600;
 
@@ -244,7 +243,6 @@ namespace FontManager {
                 sidebar.mode = "Standard";
             titlebar.reveal_controls((mode == Mode.MANAGE));
             fontlist_pane.show_controls = (mode != Mode.BROWSE);
-            fontlist_pane.controls.set_remove_sensitivity((mode == Mode.MANAGE && sidebar.standard.mode == StandardSidebarMode.COLLECTION));
             fontlist.queue_draw();
             if (titlebar.prefs_toggle.active && mode != Mode.MANAGE)
                 titlebar.prefs_toggle.active = false;
@@ -260,40 +258,36 @@ namespace FontManager {
             return;
         }
 
+        void on_sidebar_selection_changed (Filter? filter) {
+            if (filter != null && filter is Unsorted)
+                update_unsorted_category();
+            fontlist_pane.filter = filter;
+            return;
+        }
+
         void connect_signals () {
 
             window_state_event.connect(on_window_state_event);
             size_allocate.connect(on_size_allocate);
 
-            sidebar.standard.category_selected.connect((filter, index) => { fontlist_pane.filter = filter; });
-            sidebar.standard.collection_selected.connect((filter) => { fontlist_pane.filter = filter; });
+            sidebar.standard.selection_changed.connect(on_sidebar_selection_changed);
+
             sidebar.orthographies.orthography_selected.connect((o) => { preview_pane.orthography = o; });
 
             sidebar.standard.category_tree.changed.connect(() => { fontlist_pane.refilter(); });
 
-            sidebar.standard.category_selected.connect((c, i) => {
-                if (c is Unsorted)
-                    update_unsorted_category();
-            });
-
-            sidebar.standard.mode_selected.connect((m) => {
-                /* NOTE : This indicates a drag & drop operation is in progress. */
-                if (sidebar_switch)
-                    return;
-                if (m == StandardSidebarMode.CATEGORY)
-                    fontlist_pane.filter = sidebar.standard.selected_category;
-                else
-                    fontlist_pane.filter = sidebar.standard.selected_collection;
-                bool sensitive = (mode == Mode.MANAGE && m == StandardSidebarMode.COLLECTION);
-                fontlist_pane.controls.set_remove_sensitivity(sensitive);
+            CollectionTree collection_tree = sidebar.standard.collection_tree;
+            collection_tree.selection_changed.connect_after((s) => {
+                bool removable = (s != null && fontlist_pane.model_filter.iter_n_children(null) > 0);
+                fontlist_pane.controls.set_remove_sensitivity(removable);
             });
 
             fontlist_pane.controls.remove_selected.connect(() => {
-                if (sidebar.standard.selected_collection == null)
-                    return;
-                sidebar.standard.collection_tree.remove_fonts(fontlist.get_selected_families().list());
-                sidebar.standard.collection_tree.queue_draw();
+                collection_tree.remove_fonts(fontlist.get_selected_families().list());
+                collection_tree.queue_draw();
                 fontlist_pane.refilter();
+                bool removable = (fontlist_pane.model_filter.iter_n_children(null) > 0);
+                fontlist_pane.controls.set_remove_sensitivity(removable);
             });
 
             sidebar.standard.collection_tree.changed.connect(() => {
@@ -304,7 +298,6 @@ namespace FontManager {
             });
 
             Gtk.drag_dest_set(fontlist_pane, Gtk.DestDefaults.ALL, DragTargets, Gdk.DragAction.COPY);
-            //fontlist.enable_model_drag_dest(AppDragTargets, AppDragActions);
             fontlist.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK | Gdk.ModifierType.RELEASE_MASK, DragTargets, Gdk.DragAction.COPY);
             var collections_tree = sidebar.standard.collection_tree;
             /* Let GTK+ handle re-ordering */
@@ -314,23 +307,15 @@ namespace FontManager {
             fontlist_pane.drag_data_received.connect(on_drag_data_received);
             fontlist.drag_begin.connect((w, c) => {
                 /* When reorderable is set no other drag and drop is possible.
-                 * Temporarily disable it and set the treeview up as a drag destination.
-                 */
+                 * Temporarily disable it and set the treeview up as a drag destination. */
                 collections_tree.set_reorderable(false);
                 collections_tree.enable_model_drag_dest(DragTargets, Gdk.DragAction.COPY);
-                if (sidebar.standard.mode == StandardSidebarMode.CATEGORY) {
-                    sidebar_switch = true;
-                    sidebar.standard.mode = StandardSidebarMode.COLLECTION;
-                }
+                if (!sidebar.standard.collection_expander.expanded)
+                    sidebar.standard.collection_expander.set_expanded(true);
+                sidebar.standard.category_tree.sensitive = false;
             });
             fontlist.drag_end.connect((w, c) => {
-                if (sidebar_switch) {
-                    Idle.add(() => {
-                        sidebar.standard.mode = StandardSidebarMode.CATEGORY;
-                        return GLib.Source.REMOVE;
-                    });
-                    sidebar_switch = false;
-                }
+                sidebar.standard.category_tree.sensitive = true;
                 collections_tree.set_reorderable(true);
             });
             collections_tree.drag_data_received.connect(on_drag_data_received);
@@ -433,9 +418,11 @@ namespace FontManager {
         }
 
         void update_unsorted_category () {
-            return_if_fail(sidebar.category_model != null);
-            var unsorted = (Unsorted) sidebar.category_model.categories[CategoryIndex.UNSORTED];
-            var collected = sidebar.collection_model.collections.get_full_contents();
+            var category_tree = sidebar.standard.category_tree;
+            var collection_tree = sidebar.standard.collection_tree;
+            return_if_fail(category_tree.model != null);
+            var unsorted = (Unsorted) category_tree.model.categories[CategoryIndex.UNSORTED];
+            var collected = collection_tree.model.collections.get_full_contents();
             unsorted.update.begin(collected, (obj, res) => {
                 unsorted.update.end(res);
                 fontlist_pane.refilter();
@@ -489,7 +476,7 @@ namespace FontManager {
                 group.families.add_all(fontlist.get_selected_families().list());
                 Reject? reject = get_default_application().reject;
                 group.set_active_from_fonts(reject);
-                sidebar.collection_model.collections.save();
+                sidebar.standard.collection_tree.model.collections.save();
                 update_unsorted_category();
             }
             return;
@@ -580,10 +567,6 @@ namespace FontManager {
                 settings.set_enum("mode", (int) i);
             });
 
-            sidebar.standard.mode_selected.connect(() => {
-                settings.set_enum("sidebar-mode", (int) sidebar.standard.mode);
-            });
-
             settings.changed.connect((key) => {
                 if (key == "wide-layout-on-maximize")
                     Idle.add(() => { update_layout_orientation(); return GLib.Source.REMOVE; });
@@ -624,7 +607,8 @@ namespace FontManager {
             Idle.add(() => {
                 if (settings != null) {
                     settings.delay();
-                    var language_filter = sidebar.category_model.categories[CategoryIndex.LANGUAGE];
+                    var category_tree = sidebar.standard.category_tree;
+                    var language_filter = category_tree.model.categories[CategoryIndex.LANGUAGE];
                     ((LanguageFilter) language_filter).save_state(settings);
                     compare.save_state(settings);
                     settings.set("window-size", "(ii)", w, h);
@@ -653,14 +637,11 @@ namespace FontManager {
 
             set_default_size(w, h);
             move(x, y);
-            sidebar.standard.mode = (StandardSidebarMode) settings.get_enum("sidebar-mode");
 
             main_pane.position = settings.get_int("sidebar-size");
             content_pane.position = settings.get_int("content-pane-position");
             wide_layout = settings.get_boolean("wide-layout");
             is_horizontal = content_pane.orientation == Gtk.Orientation.HORIZONTAL;
-
-            fontlist_pane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSidebarMode.COLLECTION);
 
             mode = (FontManager.Mode) settings.get_enum("mode");
             var action = get_default_application().lookup_action("mode") as SimpleAction;
@@ -708,22 +689,20 @@ namespace FontManager {
             Idle.add(() => {
                 BaseTreeView? tree = null;
                 string? path = null;
-                if (sidebar.standard.mode == StandardSidebarMode.CATEGORY) {
-                    restore_last_selected_treepath(sidebar.standard.collection_tree, collection_path);
-                    tree = sidebar.standard.category_tree.tree;
+                if (category_path != "-1") {
+                    tree = sidebar.standard.category_tree;
                     path = category_path;
-                    /* Preload category contents */
-                    if (path.char_count() > 1)
-                        restore_last_selected_treepath(tree, path.split_set(":")[0]);
-                } else if (sidebar.standard.mode == StandardSidebarMode.COLLECTION) {
-                    restore_last_selected_treepath(sidebar.standard.category_tree.tree, category_path);
+                } else if (collection_path != "-1") {
                     tree = sidebar.standard.collection_tree;
                     path = collection_path;
+                    sidebar.standard.collection_expander.set_expanded(true);
                 }
+                /* Preload category contents */
+                if (tree is CategoryTree && path.char_count() > 1)
+                    restore_last_selected_treepath(tree, path.split_set(":")[0]);
                 restore_last_selected_treepath(tree, path);
                 Idle.add(() => {
-                    if (path.char_count() > 1)
-                        fontlist_pane.refilter();
+                    fontlist_pane.refilter();
                     restore_last_selected_treepath(fontlist_pane.fontlist, font_path);
                     return GLib.Source.REMOVE;
                 });
@@ -737,7 +716,6 @@ namespace FontManager {
         void ensure_sane_defaults () {
             set_default_size(DEFAULT_WIDTH, DEFAULT_HEIGHT);
             mode = FontManager.Mode.MANAGE;
-            sidebar.standard.mode = StandardSidebarMode.CATEGORY;
             preview_pane.preview_mode = FontManager.FontPreviewMode.WATERFALL;
             main_pane.position = 275;
             content_pane.position = 200;
@@ -746,7 +724,6 @@ namespace FontManager {
             compare.preview_size = DEFAULT_PREVIEW_SIZE * 1.2;
             preview_pane.character_map_preview_size = CHARACTER_MAP_PREVIEW_SIZE;
             preview_pane.page = 0;
-            fontlist_pane.controls.set_remove_sensitivity(sidebar.standard.mode == StandardSidebarMode.COLLECTION);
             main_stack.sensitive = true;
             return;
         }

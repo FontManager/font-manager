@@ -105,39 +105,47 @@ namespace FontManager {
 
             if (options.contains("install") || options.contains("update")) {
                 if (options.contains("install") && filelist != null) {
-                    var installer = new Library.Installer();
-                    installer.progress.connect((m, p, t) => {
-                        var data = new ProgressData(m, p, t);
-                        data.print();
-                    });
-                    stdout.printf("Installing Font Files\n");
-                    installer.process_sync(filelist);
-                    stdout.printf("\n");
-                }
-                update_font_configuration();
-                try {
-                    load_user_font_resources(reject.get_rejected_files(), null);
-                } catch (Error e) {
-                    critical(e.message);
-                }
-                DatabaseType [] db_types = {
-                    DatabaseType.FONT,
-                    DatabaseType.METADATA,
-                    DatabaseType.ORTHOGRAPHY
-                };
-                foreach (var type in db_types) {
-                    try {
-                        stdout.printf("Updating Database - %s\n", Database.get_type_name(type));
-                        update_database_sync(get_database(type), type, ProgressData.print, null);
+                    if (main_window != null) {
+                        main_window.install_fonts(filelist);
+                    } else {
+                        var installer = new Library.Installer();
+                        installer.progress.connect((m, p, t) => {
+                            var data = new ProgressData(m, p, t);
+                            data.print();
+                        });
+                        stdout.printf("Installing Font Files\n");
+                        installer.process_sync(filelist);
                         stdout.printf("\n");
+                    }
+                }
+                if (main_window != null) {
+                    refresh();
+                } else {
+                    update_font_configuration();
+                    try {
+                        load_user_font_resources(reject.get_rejected_files(), null);
                     } catch (Error e) {
                         critical(e.message);
-                        return e.code;
+                    }
+                    DatabaseType [] db_types = {
+                        DatabaseType.FONT,
+                        DatabaseType.METADATA,
+                        DatabaseType.ORTHOGRAPHY
+                    };
+                    foreach (var type in db_types) {
+                        try {
+                            stdout.printf("Updating Database - %s\n", Database.get_type_name(type));
+                            update_database_sync(get_database(type), type, ProgressData.print, null);
+                            stdout.printf("\n");
+                        } catch (Error e) {
+                            critical(e.message);
+                            return e.code;
+                        }
                     }
                 }
             } else if (filelist != null) {
                 File [] files = { File.new_for_path(filelist[0]) };
-                open(files, "preview");
+                open(files, "0");
             } else {
                 activate();
             }
@@ -202,7 +210,7 @@ namespace FontManager {
             }
 
             if (options.contains("about")) {
-                print_about();
+                About.print();
                 return 0;
             }
 

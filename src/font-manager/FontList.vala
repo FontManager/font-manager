@@ -673,6 +673,8 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             }
         }
 
+        public Gtk.TreeModelFilter model_filter { get { return search_filter; } }
+
         public bool show_controls {
             get {
                 return revealer.get_reveal_child();

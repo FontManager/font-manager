@@ -152,10 +152,9 @@ namespace FontManager {
                 Idle.add(() => {
                     main_window.mode = Mode.MANAGE;
                     main_window.sidebar.mode = "Standard";
-                    main_window.sidebar.standard.mode = StandardSidebarMode.CATEGORY;
                     categories.select_first_row();
                     main_window.fontlist_pane.controls.entry.set_text(search_term);
-                    if (!categories.tree.get_selection().path_is_selected(new Gtk.TreePath.first()))
+                    if (!categories.get_selection().path_is_selected(new Gtk.TreePath.first()))
                         return GLib.Source.CONTINUE;
                     return GLib.Source.REMOVE;
                 });

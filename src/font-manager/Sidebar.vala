@@ -44,14 +44,6 @@ namespace FontManager {
             }
         }
 
-        public CategoryModel? category_model { get; set; }
-
-        public CollectionModel? collection_model {
-            get {
-                return standard.collection_tree.model;
-            }
-        }
-
         public override void constructed () {
             add_view(new FontManager.StandardSidebar(), "Standard");
             add_view(new FontManager.OrthographyList(), "Orthographies");
@@ -61,8 +53,6 @@ namespace FontManager {
                 else
                     set_transition_type(Gtk.StackTransitionType.OVER_RIGHT);
             });
-            BindingFlags flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
-            standard.category_tree.bind_property("model", this, "category-model", flags);
             standard.category_tree.notify["language-filter"].connect((o, p) => {
                 add_view(standard.category_tree.language_filter.settings, "LanguageFilterSettings");
             });
@@ -87,63 +77,85 @@ namespace FontManager {
 
     }
 
-    public enum StandardSidebarMode {
-        CATEGORY,
-        COLLECTION,
-        N_MODES
-    }
-
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-standard-sidebar.ui")]
     public class StandardSidebar : Gtk.Box {
 
-        public signal void collection_selected (Collection? group);
-        public signal void category_selected (Category filter, int category);
-        public signal void mode_selected (StandardSidebarMode mode);
+        public signal void selection_changed (Filter? filter);
 
-        public Collection? selected_collection { get; protected set; default = null; }
-        public Category? selected_category { get; protected set; default = null; }
+        [GtkChild] public CategoryTree category_tree { get; }
+        [GtkChild] public CollectionTree collection_tree { get; }
+        [GtkChild] public Gtk.Expander collection_expander { get; }
 
-        public StandardSidebarMode mode {
-            get {
-                return (StandardSidebarMode) int.parse(sidebar_stack.get_visible_child_name());
-            }
-            set {
-                sidebar_stack.set_visible_child_name(((int) value).to_string());
-            }
+        [GtkChild] Gtk.Button add_button;
+        [GtkChild] Gtk.Button edit_button;
+        [GtkChild] Gtk.Button remove_button;
+
+        public void on_tree_selection_changed (BaseTreeView tree, Filter? filter) {
+            if (filter == null)
+                return;
+            Gtk.TreeView sibling = (tree is CollectionTree) ? (Gtk.TreeView) category_tree :
+                                                              (Gtk.TreeView) collection_tree;
+            Gtk.TreeSelection selection = sibling.get_selection();
+            selection.unselect_all();
+            selection_changed(filter);
+            return;
         }
 
-        public CategoryTree category_tree { get; private set; }
-        public CollectionTree collection_tree { get; private set; }
-
-        [GtkChild] Gtk.Stack sidebar_stack;
-        [GtkChild] Gtk.Box categories;
-        [GtkChild] Gtk.Box collections;
-        [GtkChild] Gtk.ScrolledWindow collection_scroll;
-
         public override void constructed () {
-            category_tree = new CategoryTree();
-            categories.add(category_tree);
-            category_tree.show();
-            collection_tree = new CollectionTree();
-            collections.pack_start(collection_tree.controls, false, true, 0);
-            collection_scroll.add(collection_tree);
-            collection_tree.show();
 
-            category_tree.selection_changed.connect((f, i) => {
-                category_selected(f, i);
-                selected_category = f;
-
+            category_tree.selection_changed.connect((f) => {
+                on_tree_selection_changed(category_tree, f);
+                bool is_lang_filter = (f != null && f.index == CategoryIndex.LANGUAGE);
+                edit_button.sensitive = is_lang_filter;
+                edit_button.opacity = is_lang_filter ? 0.90 : 0.45;
+                if (is_lang_filter) {
+                    edit_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+                    edit_button.set_relief(Gtk.ReliefStyle.NORMAL);
+                } else {
+                    edit_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+                    edit_button.set_relief(Gtk.ReliefStyle.NONE);
+                }
             });
-            collection_tree.selection_changed.connect((g) => {
-                collection_selected(g);
-                selected_collection = g;
+            collection_tree.selection_changed.connect((f) => {
+                on_tree_selection_changed(collection_tree, f);
+                bool have_selection = f != null;
+                remove_button.sensitive = have_selection;
+                remove_button.opacity = have_selection ? 0.90 : 0.45;
             });
 
-            sidebar_stack.notify["visible-child-name"].connect((obj, pspec) => {
-                mode_selected(mode);
+            add_button.clicked.connect(() => {
+                collection_tree.on_add_collection();
+                add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+                add_button.set_relief(Gtk.ReliefStyle.NONE);
             });
 
-            mode = StandardSidebarMode.CATEGORY;
+            edit_button.clicked.connect(() => {
+                get_default_application().main_window.sidebar.mode = "LanguageFilterSettings";
+            });
+
+            remove_button.clicked.connect(() => {
+                collection_tree.on_remove_collection();
+                if (collection_tree.model.iter_n_children(null) < 1) {
+                    add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+                    add_button.set_relief(Gtk.ReliefStyle.NORMAL);
+                }
+            });
+
+            collection_expander.notify["expanded"].connect_after((o, p) => {
+                bool expanded = collection_expander.get_expanded();
+                add_button.sensitive = expanded;
+                add_button.opacity = expanded ? 0.90 : 0.45;
+                if (!expanded && collection_tree.selected_filter != null)
+                    category_tree.select_first_row();
+                if (expanded && collection_tree.model.iter_n_children(null) < 1) {
+                    add_button.get_style_context().add_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+                    add_button.set_relief(Gtk.ReliefStyle.NORMAL);
+                } else {
+                    add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+                    add_button.set_relief(Gtk.ReliefStyle.NONE);
+                }
+            });
+
             base.constructed();
             return;
         }

@@ -66,19 +66,15 @@ namespace FontManager {
 
         public const string TRANSLATORS = _("translator-credits");
 
+        public void print () {
+            stdout.printf("\n    %s - %s\n\n\t\t  %s\n%s\n", NAME, COMMENT, COPYRIGHT, LICENSE);
+            return;
+        }
+
     }
 
     public void print_version () {
         stdout.printf("%s %s\n", About.NAME, About.VERSION);
-        return;
-    }
-
-    public void print_about () {
-        stdout.printf("\n    %s - %s\n\n\t\t  %s\n%s\n",
-                                            About.NAME,
-                                            About.COMMENT,
-                                            About.COPYRIGHT,
-                                            About.LICENSE);
         return;
     }
 

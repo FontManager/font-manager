@@ -29,7 +29,6 @@
             <property name="focus_on_click">False</property>
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">Back</property>
-            <property name="relief">none</property>
             <property name="always_show_image">True</property>
             <signal name="clicked" handler="on_back_button_clicked" swapped="no"/>
             <child>
@@ -40,6 +39,9 @@
                 <property name="icon_size">2</property>
               </object>
             </child>
+            <style>
+              <class name="suggested-action"/>
+            </style>
           </object>
           <packing>
             <property name="expand">False</property>
@@ -73,7 +75,6 @@
             <property name="receives_default">True</property>
             <property name="tooltip_text" translatable="yes">Deselect All</property>
             <property name="halign">center</property>
-            <property name="relief">none</property>
             <signal name="clicked" handler="on_clear_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage">

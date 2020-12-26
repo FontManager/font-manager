@@ -309,78 +309,62 @@ namespace FontManager {
 
     }
 
-    public class CategoryTree : Gtk.ScrolledWindow {
+    public class CategoryTree : BaseTreeView {
 
         public signal void changed ();
-        public signal void selection_changed (Category filter, int category);
+        public signal void selection_changed (Category? filter);
         public signal void update_complete ();
 
         public bool update_in_progress { get; set; default = true; }
 
-        public CategoryModel model { get; set; }
+        public new CategoryModel model { get; set; }
 
         public string selected_iter { get; protected set; default = "0"; }
         public Category? selected_filter { get; protected set; default = null; }
         public LanguageFilter? language_filter { get; set; default = null; }
-        public BaseTreeView tree { get; protected set; }
-        public Gtk.CellRendererText renderer { get; protected set; }
-        public CellRendererCount count_renderer { get; protected set; }
-        public Gtk.CellRendererPixbuf pixbuf_renderer { get; protected set; }
-
-        Gtk.Overlay overlay;
 
         uint? change_timeout = null;
         bool refresh_required = false;
-        PlaceHolder updating;
+        Gtk.CellRendererText renderer;
+        CellRendererCount count_renderer;
+        Gtk.CellRendererPixbuf pixbuf_renderer;
 
-        public CategoryTree () {
+        construct {
+            name = "FontManagerCategoryTree";
             expand = true;
-            overlay = new Gtk.Overlay();
-            updating = new PlaceHolder(null, null, _("Update in progress"), "emblem-synchronizing-symbolic");
-            updating.show();
-            tree = new BaseTreeView() {
-                name = "CategoryTree",
-                level_indentation = 12,
-                headers_visible = false,
-                show_expanders = false,
-                tooltip_column = CategoryModelColumn.COMMENT
-            };
+            level_indentation = 12;
+            headers_visible = false;
+            show_expanders = false;
+            tooltip_column = CategoryModelColumn.COMMENT;
             renderer = new Gtk.CellRendererText();
             count_renderer = new CellRendererCount();
             pixbuf_renderer = new Gtk.CellRendererPixbuf();
             renderer.set_property("ellipsize", Pango.EllipsizeMode.END);
             renderer.set_property("ellipsize-set", true);
-            tree.insert_column_with_data_func(0, "", pixbuf_renderer, pixbuf_cell_data_func);
-            tree.insert_column_with_attributes(1, "", renderer, "text", CategoryModelColumn.NAME, null);
-            tree.insert_column_with_data_func(2, "", count_renderer, count_cell_data_func);
+            insert_column_with_data_func(0, "", pixbuf_renderer, pixbuf_cell_data_func);
+            insert_column_with_attributes(1, "", renderer, "text", CategoryModelColumn.NAME, null);
+            insert_column_with_data_func(2, "", count_renderer, count_cell_data_func);
             for (int i = 0; i < 3; i++)
-                tree.get_column(i).expand = (i == 1);
-            tree.test_expand_row.connect((t,i,p) => { t.collapse_all(); return false; });
-            tree.get_selection().changed.connect(on_selection_changed);
-            overlay.add_overlay(updating);
-            overlay.add(tree);
-            add(overlay);
-            tree.show();
-            updating.show();
-            overlay.show();
+                get_column(i).expand = (i == 1);
+            test_expand_row.connect((t,i,p) => { t.collapse_all(); return Gdk.EVENT_PROPAGATE; });
             connect_signals();
             model = new CategoryModel();
             model.update();
+            show();
         }
 
         void connect_signals () {
+            get_selection().changed.connect(on_selection_changed);
             notify["model"].connect(() => {
-                tree.set_model(model);
-                tree.queue_draw();
+                base.set_model(model);
+                queue_draw();
                 model.update_begin.connect(() => {
-                    tree.set_model(null);
+                    base.set_model(null);
                     update_in_progress = true;
-                    updating.show();
                 });
                 model.update_complete.connect(() => {
-                    updating.hide();
                     update_in_progress = false;
-                    tree.set_model(model);
+                    base.set_model(model);
                     update_complete();
                 });
                 model.row_changed.connect((path, iter) => {
@@ -458,11 +442,11 @@ namespace FontManager {
             if (model == null)
                 return;
             Gtk.TreePath path = new Gtk.TreePath.first();
-            Gtk.TreeSelection selection = tree.get_selection();
+            Gtk.TreeSelection selection = get_selection();
             selection.unselect_all();
             selection.select_path(path);
             if (selection.path_is_selected(path))
-                tree.scroll_to_cell(path, null, true, 0.5f, 0.5f);
+                scroll_to_cell(path, null, true, 0.5f, 0.5f);
             return;
         }
 
@@ -471,7 +455,7 @@ namespace FontManager {
             if (selected_filter != null) {
                 int index = selected_filter.index;
                 var path = new Gtk.TreePath.from_indices(index, -1);
-                var selection = tree.get_selection();
+                var selection = get_selection();
                 selection.unselect_all();
                 model.update();
                 selection.select_path(path);
@@ -509,7 +493,7 @@ namespace FontManager {
             Value val;
             model.get_value(treeiter, CategoryModelColumn.OBJECT, out val);
             var obj = val.get_object();
-            if (tree.is_row_expanded(model.get_path(treeiter)))
+            if (is_row_expanded(model.get_path(treeiter)))
                 cell.set_property("icon-name", "folder-open");
             else
                 cell.set_property("icon-name", ((Category) obj).icon);
@@ -521,49 +505,50 @@ namespace FontManager {
             Gtk.TreeIter iter;
             Gtk.TreeModel model;
             GLib.Value val;
-            if (!selection.get_selected(out model, out iter))
+            selected_filter = null;
+            selected_iter = "-1";
+            if (!selection.get_selected(out model, out iter)) {
+                selection_changed(null);
                 return;
+            }
             model.get_value(iter, 0, out val);
             var path = model.get_path(iter);
             selected_filter = ((Category) val);
             val.unset();
+            if (selected_filter == null)
+                return;
+            selected_iter = model.get_string_from_iter(iter);
             Idle.add(() => {
                 bool is_language_filter = (selected_filter.index == CategoryIndex.LANGUAGE);
-                if (language_filter != null) {
-                    language_filter.settings.get_button().set_visible(is_language_filter);
+                if (language_filter != null)
                     return GLib.Source.REMOVE;
-                }
                 if (is_language_filter) {
                     language_filter = selected_filter as LanguageFilter;
-                    overlay.add_overlay(language_filter.settings.get_button());
-                    language_filter.settings.get_button().set_visible(is_language_filter);
                     language_filter.selections_changed.connect(() => { changed(); });
                 }
                 return GLib.Source.REMOVE;
             });
-
-            selection_changed(selected_filter, path.get_indices()[0]);
             if (path.get_depth() < 2) {
-                tree.collapse_all();
-                tree.expand_to_path(path);
+                collapse_all();
+                expand_to_path(path);
             }
-            selected_iter = model.get_string_from_iter(iter);
             /* Category updates are delayed till actual selection for categories with children.
              * Depending on size it may take a moment for the category to load. */
-            if (selected_filter.requires_update) {
+            if (selected_filter != null && selected_filter.requires_update) {
                 Idle.add(() => {
                     /* Counts fail to draw due to missing row-changed signals. */
-                    if (!selected_filter.requires_update)
-                        tree.queue_draw();
-                    return selected_filter.requires_update;
+                    if (selected_filter != null && !selected_filter.requires_update)
+                        queue_draw();
+                    return (selected_filter != null && selected_filter.requires_update);
                 });
-                if (selected_filter.index < CategoryIndex.UNSORTED)
+                if (selected_filter != null && selected_filter.index < CategoryIndex.UNSORTED)
                     selected_filter.update.begin((obj, res) => {
                         selected_filter.update.end(res);
                         selected_filter.requires_update = false;
                     });
 
             }
+            selection_changed(selected_filter);
             return;
         }
 
