@@ -69,6 +69,11 @@
                 http://raw.githubusercontent.com/FontManager/resources/master/compare_mode.png
             </image>
         </screenshot>
+        <screenshot>
+            <image type="source">
+                http://raw.githubusercontent.com/FontManager/resources/google_fonts_integration.png
+            </image>
+        </screenshot>
     </screenshots>
 
     <releases>
