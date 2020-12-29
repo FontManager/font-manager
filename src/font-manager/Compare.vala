@@ -148,6 +148,7 @@ namespace FontManager {
         public Gdk.RGBA background_color { get; set; }
         public Gtk.Adjustment adjustment { get; set; }
         public GLib.HashTable <string, string>? samples { get; set; default = null; }
+        public GenericArray <string>? selected_fonts { get; set; default = null; }
         public Font? selected_font { get; set; default = null; }
         public CompareModel model { get; set; }
         public PinnedComparisons pinned { get; private set; }
@@ -307,7 +308,10 @@ namespace FontManager {
 
         [GtkCallback]
         void on_add_button_clicked () {
-            add_from_string(selected_font.description);
+            if (selected_fonts != null)
+                add_from_string_array(selected_fonts.data);
+            else
+                add_from_string(selected_font.description);
             return;
         }
 

@@ -281,6 +281,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
 
         public string selected_iter { get; protected set; default = "0"; }
         public string? selected_family { get; private set; default = null; }
+        public GenericArray <string>? selected_fonts { get; set; default = null; }
         public Font? selected_font { get; private set; default = null; }
         public UserActionModel? user_actions { get; set; default = null; }
         public UserSourceModel? user_sources { get; set; default = null; }
@@ -378,10 +379,27 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             return false;
         }
 
+        void update_selected_fonts (GLib.List <Gtk.TreePath> selected) {
+            selected_fonts = null;
+            if (selected.length() == 1)
+                return;
+            selected_fonts = new GenericArray <string> ();
+            foreach (var path in selected) {
+                Value val;
+                Gtk.TreeIter iter;
+                model.get_iter(out iter, path);
+                model.get_value(iter, FontModelColumn.DESCRIPTION, out val);
+                selected_fonts.add((string) val);
+                val.unset();
+            }
+            return;
+        }
+
         protected override void on_selection_changed (Gtk.TreeSelection selection) {
             List <Gtk.TreePath> selected = selection.get_selected_rows(null);
             if (selected == null || selected.length() < 1)
                 return;
+            update_selected_fonts(selected);
             Gtk.TreePath path = selected.nth_data(0);
             Gtk.TreeIter iter;
             model.get_iter(out iter, path);

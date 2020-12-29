@@ -213,6 +213,7 @@ namespace FontManager {
             fontlist.bind_property("selected-font", preview_pane, "font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("selected-font", sidebar.orthographies, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("selected-font", compare, "selected-font", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
+            fontlist.bind_property("selected-fonts", compare, "selected-fonts", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("model", browse, "model", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("samples", browse, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
             fontlist.bind_property("samples", compare, "samples", BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE);
