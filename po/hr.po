@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-12-26 11:40-0500\n"
-"PO-Revision-Date: 2020-12-09 02:29+0000\n"
+"PO-Revision-Date: 2020-12-30 03:29+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hr/>\n"
@@ -35,7 +35,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.4.1-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -1703,10 +1703,8 @@ msgid "Collections"
 msgstr "Zbirke"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:175
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Edit selected category"
-msgstr "Isprazni odabrani filtar"
+msgstr "Uredi odabranu kategoriju"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:198
 msgid "Add new collection"
