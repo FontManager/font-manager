@@ -58,7 +58,7 @@
                             <property name="label" translatable="yes">Categories</property>
                             <attributes>
                               <attribute name="weight" value="medium"/>
-                              <attribute name="scale" value="1.0329999999999999"/>
+                              <attribute name="scale" value="1.1000000000000001"/>
                             </attributes>
                           </object>
                         </child>
@@ -129,7 +129,7 @@
                             <property name="label" translatable="yes">Collections</property>
                             <attributes>
                               <attribute name="weight" value="medium"/>
-                              <attribute name="scale" value="1.0329999999999999"/>
+                              <attribute name="scale" value="1.1000000000000001"/>
                             </attributes>
                           </object>
                         </child>
@@ -196,7 +196,7 @@
             <property name="can-focus">False</property>
             <property name="receives-default">True</property>
             <property name="tooltip-text" translatable="yes">Add new collection</property>
-            <property name="opacity">0.9</property>
+            <property name="opacity">0.90</property>
             <property name="relief">none</property>
             <child>
               <object class="GtkImage">
