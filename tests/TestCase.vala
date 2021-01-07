@@ -37,7 +37,7 @@ namespace FontManager {
         /* Need to hold a ref to these */
         TestWrapper [] tests = new TestWrapper[0];
 
-        public TestCase (string name) {
+        protected TestCase (string name) {
             suite = new GLib.TestSuite(name);
         }
 

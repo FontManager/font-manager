@@ -10,7 +10,6 @@ public static int main (string [] args) {
     root.add_suite(new TestDirectories().get_suite());
     root.add_suite(new TestReject().get_suite());
     root.add_suite(new TestSource().get_suite());
-    root.add_suite(new TestSources().get_suite());
     /* END FONTCONFIG TESTING */
 
     return Test.run();
