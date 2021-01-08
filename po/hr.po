@@ -19,13 +19,13 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016.
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 # Translator:
-# Milo Ivir <mail@milotype.de>, 2019., 2020.
+# Milo Ivir <mail@milotype.de>, 2019., 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-12-26 11:40-0500\n"
-"PO-Revision-Date: 2020-12-30 03:29+0000\n"
+"PO-Revision-Date: 2021-01-08 07:32+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hr/>\n"
@@ -290,7 +290,7 @@ msgstr "Staro"
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Restricted License Embedding"
-msgstr "Ugrađivanje zabranjeno"
+msgstr "Ograničeno ugrađivanje"
 
 #: lib/common/font-manager-freetype.c:296
 msgid "Preview & Print Embedding"
@@ -326,7 +326,7 @@ msgstr "Ugrađivanje za uređivanje | Bez podskupina | Samo bitmapi"
 
 #: lib/common/font-manager-freetype.c:312
 msgid "Installable Embedding"
-msgstr "Instaliranje dozvoljeno"
+msgstr "Ugrađivanje za instaliranje"
 
 #: lib/common/font-manager-freetype.c:703
 msgid "Unknown Vendor"
@@ -637,18 +637,18 @@ msgstr ""
 "\n"
 "    Ovaj program je slobodan softver: smije se redistribuirati i/ili "
 "mijenjati\n"
-"     pod uvjetima GNU opće javne licence, koju je objavila\n"
-"     Free Software Foundation, pod uvjetima 3. verzije licence ili\n"
-"     bilo koje novije verzije.\n"
+"    pod uvjetima GNU opće javne licence, koju je objavila\n"
+"    Free Software Foundation, pod uvjetima 3. verzije licence ili\n"
+"    bilo koje novije verzije.\n"
 "\n"
-"     Ovaj se program distribuira u nadi da će biti koristan,\n"
-"     ali BEZ IKAKVOG JAMSTVA; čak i bez podrazumijevanog jamstva za\n"
-"     PRODAJU ili PRIKLADNOST ZA ODREĐENU SVRHU. Pogledaj\n"
-"     GNU Opću javnu licencu za daljnje pojedinosti.\n"
+"    Ovaj se program distribuira u nadi da će biti koristan,\n"
+"    ali BEZ IKAKVOG JAMSTVA; čak i bez podrazumijevanog jamstva za\n"
+"    PRODAJU ili PRIKLADNOST ZA ODREĐENU SVRHU. Pogledaj\n"
+"    GNU opću javnu licencu za pojedinosti.\n"
 "\n"
-"     GNU opća javna licenca je standardno pridodana ovom programu.\n"
+"    GNU opća javna licenca standardno je pridodana ovom programu.\n"
 "\n"
-"     Ako nije, pogledaj <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+"    Ako nije, pogledaj <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 "    "
 
 #: src/font-manager/About.vala:67
@@ -911,7 +911,7 @@ msgstr "Pokrivenost"
 
 #: src/font-manager/Orthography.vala:150
 msgid "Supported Orthographies"
-msgstr "Podržani pravopisi"
+msgstr "Podržani sustavi znakova"
 
 #: src/font-manager/Orthography.vala:201
 msgid "Update in progress"
@@ -927,7 +927,7 @@ msgstr "Aktualiziranje baze podataka – metapodaci"
 
 #: src/font-manager/TitleBar.vala:66
 msgid "Updating Database — Orthography"
-msgstr "Aktualiziranje baze podataka – pravopis"
+msgstr "Aktualiziranje baze podataka – sustavi znakova"
 
 #: src/font-manager/TitleBar.vala:83
 msgid "Keyboard Shortcuts"

@@ -19,16 +19,16 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016.
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 # migmedia <coding@migmedia.de>, 2020.
-# Milo Ivir <mail@milotype.de>, 2020.
+# Milo Ivir <mail@milotype.de>, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2020-12-26 11:40-0500\n"
-"PO-Revision-Date: 2020-12-30 03:29+0000\n"
+"PO-Revision-Date: 2021-01-08 07:32+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -54,9 +54,9 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
-"Font Manager soll durchschnittlichen Benutzern die einfache Verwaltung von "
-"Desktop-Schriftarten ermöglichen, ohne auf Befehlszeilentools "
-"zurückzugreifen oder Konfigurationsdateien manuell bearbeiten zu müssen."
+"Font Manager ermöglicht durchschnittlichen Benutzern die einfache Verwaltung "
+"von Desktop-Schriftarten, ohne auf Befehlszeilentools zurückzugreifen oder "
+"Konfigurationsdateien manuell bearbeiten zu müssen."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
@@ -91,8 +91,7 @@ msgstr "Schriften-Betrachter"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr ""
-"Eine Anwendung zum Betrachten von Schriftarten in Gtk+ Desktop-Umgebungen"
+msgstr "Anwendung zum Betrachten von Schriftarten in Gtk+ Desktop-Umgebungen"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
@@ -130,7 +129,7 @@ msgstr "Ausgewältete Schriften installieren"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr "Eigenschaften der Schrift"
+msgstr "Schrift-Eigenschaften"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:105
@@ -405,7 +404,7 @@ msgstr "Breite"
 #: lib/common/font-manager-properties-pane.c:84
 #: src/font-manager/Categories.vala:567
 msgid "Slant"
-msgstr "Neigung"
+msgstr "Schrägstellung"
 
 #: lib/common/font-manager-properties-pane.c:85
 #: src/font-manager/Categories.vala:566
@@ -415,7 +414,7 @@ msgstr "Strichstärke"
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:568
 msgid "Spacing"
-msgstr "Laufweite"
+msgstr "Dicktenart"
 
 #: lib/common/font-manager-properties-pane.c:87
 msgid "Version"
@@ -669,7 +668,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:565
 msgid "Grouped by font width"
-msgstr "Geordnet nach Schriftbreite"
+msgstr "Geordnet nach Breite"
 
 #: src/font-manager/Categories.vala:566
 msgid "Grouped by font weight"
@@ -677,7 +676,7 @@ msgstr "Geordnet nach Strichstärke"
 
 #: src/font-manager/Categories.vala:567
 msgid "Grouped by font angle"
-msgstr "Geordnet nach Schriftwinkel"
+msgstr "Geordnet nach Schrägstellung"
 
 #: src/font-manager/Categories.vala:568
 msgid "Grouped by font spacing"
@@ -757,7 +756,7 @@ msgstr[1] "%i Varianten"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
-msgstr "Namen der Kollektion eintragen"
+msgstr "Name der Sammlung eintragen"
 
 #: src/font-manager/Collections.vala:389
 msgid "Copy to…"
@@ -828,7 +827,7 @@ msgstr ""
 
 #: src/font-manager/FontList.vala:43
 msgid "Remove selected font from collection"
-msgstr "Ausgewählte Schrift aus Kollektion entfernen"
+msgstr "Ausgewählte Schrift aus der Sammlung entfernen"
 
 #: src/font-manager/FontList.vala:48 src/font-manager/FontList.vala:68
 #: src/font-manager/web/google/FontList.vala:51
@@ -909,10 +908,10 @@ msgstr ""
 "Dateien von früheren Versionen sind inkompatibel mit dieser Version, andere "
 "sind veraltet oder wurden verschoben.\n"
 "\n"
-"Font Manager wird nun versuchen Deine Schriften und Kollektionen zu "
-"migrieren. Dateien, welche nicht länger benötig werden oder nicht korrekt "
-"sind, werden entfernt. Alle Einstellungen welche einen Konflikt hervorufen "
-"könnten, werden entfernt.\n"
+"Font Manager wird nun versuchen Deine Schriften und Sammlungen zu migrieren. "
+"Dateien, welche nicht länger benötig werden oder nicht korrekt sind, werden "
+"entfernt. Alle Einstellungen welche einen Konflikt hervorufen könnten, "
+"werden entfernt.\n"
 "\n"
 "Es wird dringend empfohlen, alle wichtigen Dateien zu sichern bevor Du "
 "weitermachst.\n"
@@ -991,7 +990,7 @@ msgstr "Kopieren von Dateien …"
 
 #: src/font-manager/filters/Collection.vala:48
 msgid "New Collection"
-msgstr "Neue Kollektion"
+msgstr "Neue Sammlung"
 
 #: src/font-manager/filters/Collection.vala:50
 #, c-format
@@ -1020,7 +1019,7 @@ msgstr "Unsortiert"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
-msgstr "Schriften ohne Kollektionszugehörigkeit"
+msgstr "Schriften die in keiner Sammlung vorhanden sind"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
@@ -1331,12 +1330,14 @@ msgstr "Server-Fehler"
 
 #: src/font-manager/web/google/GoogleFonts.vala:217
 msgid "Network Offline"
-msgstr ""
+msgstr "Netzwerk Offline"
 
 #: src/font-manager/web/google/GoogleFonts.vala:218
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
+"Für den Zugriff auf den Google Fonts Katalog ist eine aktive "
+"Internetverbindung erforderlich"
 
 #: src/font-manager/web/google/Language.vala:32
 msgid "Arabic"
@@ -1697,7 +1698,7 @@ msgstr "Kategorien"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:129
 msgid "Collections"
-msgstr "Kollektionen"
+msgstr "Sammlungen"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:175
 msgid "Edit selected category"
@@ -1705,11 +1706,11 @@ msgstr "Ausgewählte Kategorie bearbeiten"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:198
 msgid "Add new collection"
-msgstr "Neue Kollektion hinzufügen"
+msgstr "Neue Sammlung hinzufügen"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:221
 msgid "Remove selected collection"
-msgstr "Ausgewählte Kollektion entfernen"
+msgstr "Ausgewählte Sammlung entfernen"
 
 #: src/font-manager/ui/font-manager-subpixel-geometry.ui:44
 msgid "Subpixel Geometry"
@@ -1774,7 +1775,7 @@ msgstr "Schrifteinstellungen"
 
 #: src/font-manager/ui/font-manager-user-data.ui:102
 msgid "Font Collections"
-msgstr "Schriftkollektionen"
+msgstr "Schriften-Sammlungen"
 
 #: src/font-manager/ui/font-manager-user-data.ui:160
 msgid "Installed Fonts"
