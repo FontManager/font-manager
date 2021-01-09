@@ -3,16 +3,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2020-12-26 11:40-0500\n"
-"PO-Revision-Date: 2020-12-03 00:36+0000\n"
-"Last-Translator: migmedia <coding@migmedia.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
-"manager-help-docs/de/>\n"
+"PO-Revision-Date: 2021-01-08 07:32+0000\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.4.1-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -79,8 +79,8 @@ msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
 msgstr ""
-"Sortiert nach Familienart – Erfordert Panose-Informationen in "
-"Schriftmetadaten."
+"Sortiert nach Familienart – Erfordert, dass Panose-Informationen in den "
+"Schrift-Metadaten vorhanden sind."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -90,7 +90,7 @@ msgstr "Breite"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr "Sortiert nach Laufweite."
+msgstr "Sortiert nach Breite."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
@@ -100,27 +100,27 @@ msgstr "Strichstärke"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr "Sortiert nach Schriftschnitt."
+msgstr "Sortiert nach Strichstärke."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr "Neigung"
+msgstr "Schrägstellung"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr "Sortiert nach Schriftneigung."
+msgstr "Sortiert nach Schrägstellung."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr "Laufweite"
+msgstr "Dicktenart"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr "Sortiert nach Laufweite."
+msgstr "Sortiert nach Dicktenart."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
@@ -133,8 +133,8 @@ msgid ""
 "Sorted by font license — Requires license information to be present in font "
 "metadata."
 msgstr ""
-"Sortiert nach der Lizenz der Schriftarten – Erfordert, dass "
-"Lizenzinformationen in Schriftmetadaten vorhanden sind."
+"Sortiert nach Lizenz – Erfordert, dass Lizenzinformationen in den Schrift-"
+"Metadaten vorhanden sind."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
@@ -147,8 +147,8 @@ msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
 msgstr ""
-"Sortiert nach Schriftartenanbieter — Erfordert Anbieterinformationen in den "
-"Schriftarten-Metadaten."
+"Sortiert nach Anbieter – Erfordert, dass Anbieterinformationen in den "
+"Schrift-Metadaten vorhanden sind."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
@@ -158,7 +158,7 @@ msgstr "Dateityp"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr ""
+msgstr "Nach Dateiformat sortiert."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
@@ -178,12 +178,12 @@ msgstr "Deaktiviert"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "Derzeit deaktivierte Schriftfamilien."
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr ""
+msgstr "Darstellung einzelner Zeichen und ihrer Details"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
@@ -233,7 +233,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr "Kollektionen"
+msgstr "Sammlungen"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
@@ -773,7 +773,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:23
 msgid "View available font metadata"
-msgstr ""
+msgstr "Darstellung verfügbarer Schriftmetadaten"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:28
@@ -834,7 +834,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-license.page:7
 msgid "View license information contained in font files"
-msgstr ""
+msgstr "Darstellung von Lizenzinformationen in Schriftartdateien"
 
 #. (itstool) path: page/title
 #: C/font-manager-license.page:10
@@ -877,7 +877,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-metadata.page:7
 msgid "View metadata embedded in your font files"
-msgstr ""
+msgstr "Darstellung von Metadaten, die in Schriftartdateien eingebettet sind"
 
 #. (itstool) path: page/title
 #: C/font-manager-metadata.page:10
@@ -922,7 +922,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-orthographies.page:8
 msgid "View languages supported and their coverage"
-msgstr ""
+msgstr "Darstellung der unterstützten Sprachen und deren Abdeckung"
 
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11

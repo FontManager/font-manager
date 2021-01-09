@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2020-12-26 11:40-0500\n"
-"PO-Revision-Date: 2020-12-09 02:29+0000\n"
+"PO-Revision-Date: 2021-01-08 07:32+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/hr/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.4.1-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -83,8 +83,7 @@ msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
 msgstr ""
-"Razvrstani po vrsti obitelji – zahtijeva Panose podatke u meta-podacima "
-"fonta."
+"Razvrstani po vrsti obitelji – zahtijeva Panose podatke u metapodacima fonta."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -137,7 +136,7 @@ msgid ""
 "Sorted by font license — Requires license information to be present in font "
 "metadata."
 msgstr ""
-"Razvrstani po licenci fonta – zahtijeva podatke o licenci u meta-podacima "
+"Razvrstani po licenci fonta – zahtijeva podatke o licenci u metapodacima "
 "fonta."
 
 #. (itstool) path: item/title
@@ -162,7 +161,7 @@ msgstr "Vrsta datoteke"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr "Razvrstano po datotečnom formatu."
+msgstr "Razvrstani po datotečnom formatu."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
@@ -187,7 +186,7 @@ msgstr "Trenutačno deaktivirane obitelji fontova."
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr "Prikaži pojedinačne znakove i njihove pojedinosti"
+msgstr "Prikaz znakova i njihovih pojedinosti"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
@@ -268,7 +267,7 @@ msgstr "Stvaraj ili briši zbirke kako god želiš."
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:34
 msgid "Select the Collection view at the bottom of the sidebar."
-msgstr "Odaberi prikaz za zbirke na dnu bočne trake."
+msgstr "Odaberi prikaz zbirke na dnu bočne trake."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:39
@@ -298,12 +297,12 @@ msgid ""
 "gui> at the top of the Collection view."
 msgstr ""
 "Pritisni <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
-"gui> na vrhu prikaza zbirki."
+"gui> u gornjem dijelu prikaza zbirke."
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:51
 msgid "Enter a name for your new collection"
-msgstr "Upiši naziv za tvoju novu zbirku"
+msgstr "Upiši ime za tvoju novu zbirku"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:56
@@ -358,7 +357,7 @@ msgid ""
 "gui> at the top of the Collection view."
 msgstr ""
 "Pritisni <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
-"> </gui> na vrhu prikaza zbirki."
+"> </gui> u gornjem dijelu prikaza zbirke."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:92
@@ -384,7 +383,7 @@ msgstr "Za uklanjanje obitelji iz zbirke:"
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:136
 msgid "Select the family or families you wish to remove"
-msgstr "Odaberi obitelj ili obitelji, koje želiš ukloniti"
+msgstr "Odaberi obitelj ili obitelji koje želiš ukloniti"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:141
@@ -408,7 +407,7 @@ msgstr "Odaberi zbirku, pritisni je još jednom"
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:160
 msgid "Enter a new name"
-msgstr "Upiši novi naziv"
+msgstr "Upiši novo ime"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:165
@@ -423,7 +422,7 @@ msgstr "Aktiviranje i deaktiviranje obitelji fontova"
 #. (itstool) path: page/title
 #: C/font-manager-font-activation.page:11
 msgid "Activation"
-msgstr "Aktivacija"
+msgstr "Aktiviranje"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:13
@@ -441,7 +440,7 @@ msgid ""
 "use, disabling fonts you do not use very often or do not need at the moment "
 "helps keep these at a reasonable size."
 msgstr ""
-"Ako imaš velik broj instaliranih fontova, dijalozi i popisi za odabiranje "
+"Ako imaš velik broj instaliranih fontova, dijalozi i popisi za biranje "
 "fontova mogu u mnogim programima postati jako dugački i neugodni za "
 "korištenje. Deaktiviranje fontova koje ne koristiš često ili koje trenutačno "
 "ne trebaš, pomaže održati razumnu dužinu popisa fontova."
@@ -454,7 +453,7 @@ msgstr "Za aktiviranje ili deaktiviranje obitelji fontova:"
 #. (itstool) path: item/p
 #: C/font-manager-font-activation.page:30
 msgid "Select the family you wish to enable/disable in the font list"
-msgstr "Odaberi obitelj u popisu koju želiš aktivirati ili deaktivirati"
+msgstr "U popisu fontova odaberi obitelj koju želiš aktivirati ili deaktivirati"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:47
@@ -462,7 +461,7 @@ msgid ""
 "You can also double-click, press <gui style=\"button\">Space</gui> or press "
 "<gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
-"Odabrani font možeš uključiti/isključiti dvostrukim pritiskom mišem, "
+"Odabrani font možeš aktivirati/deaktivirati dvostrukim pritiskom mišem, "
 "pritiskom <gui style=\"button\">razmaknice</gui> ili pritiskom tipke <gui "
 "style=\"button\">Enter</gui>."
 
@@ -473,7 +472,7 @@ msgid ""
 "enable or disable multiple families at once."
 msgstr ""
 "<link xref=\"organize#user-collections\">Zbirke</link> olakšavaju "
-"istovremeno aktiviranje ili deaktiviranje obitelji fontova."
+"istovremeno aktiviranje ili deaktiviranje većeg broja obitelji fontova."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:58
@@ -517,7 +516,7 @@ msgid ""
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
 "Pritisni <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
-"symbolic.svg\"/> </gui> na vrhu prozora"
+"symbolic.svg\"/> </gui> u gornjem dijelu prozora"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:31
@@ -564,8 +563,8 @@ msgid ""
 "<app>Font Manager</app> will reload anytime changes require it. This may "
 "take a moment depending on number of changes."
 msgstr ""
-"<app>Font Manager</app> će aktualizirati prikaz, kadgod promjene to "
-"zahtijevaju. Ovo može potrajati, ovisno o količini promjena."
+"<app>Font Manager</app> će se aktualizirati kadgod promjene to zahtijevaju. "
+"Ovo može potrajati, ovisno o količini promjena."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-removal.page:8
@@ -610,7 +609,7 @@ msgid ""
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
 "Pritisni <gui style=\"button\"> <media type=\"image\" src=\"media/list-"
-"remove-symbolic.svg\"/> </gui> na vrhu prozora"
+"remove-symbolic.svg\"/> </gui> u gornjem dijelu prozora"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:44
@@ -618,7 +617,7 @@ msgid ""
 "Select the families or individual styles you wish to remove from the list "
 "that is displayed"
 msgstr ""
-"Odaberi obitelji ili pojedine stilove, koje želiš ukloniti iz prikazanog "
+"Odaberi obitelji ili pojedine stilove koje želiš ukloniti iz prikazanog "
 "popisa"
 
 #. (itstool) path: item/p
@@ -650,8 +649,8 @@ msgid ""
 "Files are permanently deleted. Before removing any fonts ensure you have "
 "backups if there is a chance you may need them again."
 msgstr ""
-"Datoteke se trajno brišu. Prije uklanjanja fontova, pazi da imaš sigurnosne "
-"kopije, ako misliš da će ti fontovi možda ponovo zatrebati."
+"Datoteke se trajno brišu. Prije uklanjanja fontova spremi sigurnosne kopije, "
+"ako misliš da će ti fontovi možda ponovo zatrebati."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-sources.page:7
@@ -678,8 +677,8 @@ msgid ""
 "This allows keeping font files somewhere other than your home directory or "
 "temporarily \"installing\" a directory of fonts."
 msgstr ""
-"Ovo omogućuje čuvanje datoteka fontova negdje drugdje, nego u tvojoj "
-"početnoj mapi ili privremeno „instaliranje” mape za fontove."
+"Ovo omogućuje čuvanje datoteka fontova na mjestu koje nije tvoja početna "
+"mapa ili privremeno „instaliranje” mape fontova."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:21
@@ -716,9 +715,9 @@ msgid ""
 "type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the "
 "top of the window."
 msgstr ""
-"Otvori dijaloški okvir za svojstva programa <app>Font Manager</app> "
-"pritiskom gumba <gui> <media type=\"image\" src=\"media/preferences-system-"
-"symbolic.svg\"/> </gui> na vrhu prozora."
+"Otvori dijaloški okvir postavki programa <app>Font Manager</app> pritiskom "
+"gumba <gui> <media type=\"image\" src=\"media/preferences-system-symbolic."
+"svg\"/> </gui> u gornjem dijelu prozora."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:40 C/font-manager-font-sources.page:72
@@ -772,9 +771,9 @@ msgid ""
 "\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg"
 "\"/> </gui> at the top of the window."
 msgstr ""
-"Otvori dijaloški okvir za svojstva programa <app>Font Manager</app> "
-"pritiskom gumba <gui style=\"button\"> <media type=\"image\" src=\"media/"
-"preferences-system-symbolic.svg\"/> </gui> na vrhu prozora."
+"Otvori dijaloški okvir postavki programa <app>Font Manager</app> pritiskom "
+"gumba <gui style=\"button\"> <media type=\"image\" src=\"media/preferences-"
+"system-symbolic.svg\"/> </gui> u gornjem dijelu prozora."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:107
@@ -792,7 +791,7 @@ msgid ""
 "While sources are always available within the application they are not "
 "available to other applications until they are enabled."
 msgstr ""
-"Mada su izvori uvijek dostupni unutar programa, oni nisu dostupni drugim "
+"Dok su izvori uvijek dostupni unutar programa, oni nisu dostupni drugim "
 "programima, sve dok ih se ne aktivira."
 
 #. (itstool) path: note/p
@@ -801,7 +800,7 @@ msgid ""
 "You can avoid having multiple copies of the same files by adding directories "
 "from other filesystems."
 msgstr ""
-"Možeš izbjeći višestruke kopije istih datoteka, dodavanjem mape iz drugih "
+"Višestruke kopije istih datoteka možeš izbjeći dodavanjem mape iz drugih "
 "datotečnih sustava."
 
 #. (itstool) path: info/desc
@@ -812,7 +811,7 @@ msgstr "Stvori fontconfig konfiguracijske datoteke"
 #. (itstool) path: page/title
 #: C/font-manager-fontconfig.page:10
 msgid "Display and Rendering Preferences"
-msgstr "Postavke za prikaz i iscrtavanje"
+msgstr "Postavke prikaza i iscrtavanja"
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:12
@@ -820,8 +819,8 @@ msgid ""
 "The \"Display\" and \"Rendering\" panes in the preferences dialog generate "
 "valid fontconfig configuration files for the exposed properties."
 msgstr ""
-"Ploče „Prikaz” i „Iscrtavanje” u dijaloškom okviru postavaka, generiraju "
-"valjane fontconfig konfiguracijske datoteke za prikazana svojstva."
+"Ploče „Prikaz” i „Iscrtavanje” u dijaloškom okviru postavki generiraju "
+"valjane fontconfig konfiguracijske datoteke za izložena svojstva."
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:17
@@ -838,7 +837,7 @@ msgid ""
 "Desktop environments and applications may rely on their own configuration "
 "mechanism."
 msgstr ""
-"Neka radna okruženja i aplikacije rade s vlastitim konfiguracijskim "
+"Neka radna okruženja i programi rade s vlastitim konfiguracijskim "
 "mehanizmima."
 
 #. (itstool) path: info/desc
@@ -864,7 +863,7 @@ msgstr "Pregled fontova na razne načine"
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:23
 msgid "View available font metadata"
-msgstr "Prikaz dostupnih meta-podataka fontova"
+msgstr "Prikaz dostupnih metapodataka fontova"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:28
@@ -891,7 +890,7 @@ msgstr "Određivanje različitih mapa za fontove"
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:48
 msgid "Perform font substitution"
-msgstr "Zamjenjivanje fontova"
+msgstr "Izvrši zamjenjivanje fontova"
 
 #. (itstool) path: figure/title
 #: C/font-manager-introduction.page:55
@@ -933,7 +932,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-license.page:7
 msgid "View license information contained in font files"
-msgstr "Prikaži podatke o licencama, sadržane u font datotekama"
+msgstr "Prikaz licence sadržane u font datotekama"
 
 #. (itstool) path: page/title
 #: C/font-manager-license.page:10
@@ -979,12 +978,12 @@ msgstr "Neki fontovi ne sadrže podatke o licenci."
 #. (itstool) path: info/desc
 #: C/font-manager-metadata.page:7
 msgid "View metadata embedded in your font files"
-msgstr "Prikaži meta-podatke ugrađene u font datotekama"
+msgstr "Prikaz metapodataka u font datotekama"
 
 #. (itstool) path: page/title
 #: C/font-manager-metadata.page:10
 msgid "Metadata"
-msgstr "Meta-podaci"
+msgstr "Metapodaci"
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:12
@@ -999,7 +998,7 @@ msgid ""
 "Selecting this tab allows viewing metadata contained in the currently "
 "selected font."
 msgstr ""
-"Odabirom ove kartice prikazuju se meta-podaci trenutačno odabranog fonta."
+"Odabirom ove kartice prikazuju se metapodaci trenutačno odabranog fonta."
 
 #. (itstool) path: figure/title
 #: C/font-manager-metadata.page:22
@@ -1026,7 +1025,7 @@ msgstr "Neka su svojstva opcionalna i ne postoje u svim fontovima."
 #. (itstool) path: info/desc
 #: C/font-manager-orthographies.page:8
 msgid "View languages supported and their coverage"
-msgstr "Prikaži podržane jezike i njihovu pokrivenost"
+msgstr "Prikaz podržanih jezika i njihova pokrivenost"
 
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11
@@ -1040,7 +1039,7 @@ msgid ""
 "orthographies supported by the currently selected font."
 msgstr ""
 "Dok se koristi tablica znakova, bočna traka će se prebaciti na prikaz "
-"pravopisa koje trenutačno odabrani font podržava."
+"sustava znakova koje trenutačno odabrani font podržava."
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:18
@@ -1048,13 +1047,13 @@ msgid ""
 "Selecting an orthography from the list will filter the character map so that "
 "it only displays relevant characters"
 msgstr ""
-"Odabirom pravopisa s popisa, tablica znakova se filtrira, tako da prikazuje "
-"samo relevantne znakove"
+"Odabirom sustava znakova s popisa, tablica znakova se filtrira, tako da "
+"prikazuje samo relevantne znakove"
 
 #. (itstool) path: figure/title
 #: C/font-manager-orthographies.page:28
 msgid "<app>Supported Orthographies</app>"
-msgstr "<app>Podržani pravopisi</app>"
+msgstr "<app>Podržani sustavi znakova</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -1107,7 +1106,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:43
 msgid "Enter the name of the font family you wish to set up a substitute for."
-msgstr "Upiši naziv obitelji fontova, kojoj želiš odrediti zamjenu."
+msgstr "Upiši ime obitelji fontova kojoj želiš odrediti zamjenu."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:48
@@ -1121,7 +1120,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:57
 msgid "Enter the name of the substitute family and select the priority level."
-msgstr "Upiši naziv zamjenske obitelji i odaberi razinu važnosti."
+msgstr "Upiši ime zamjenske obitelji i odaberi razinu prioriziranja."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:62
@@ -1145,7 +1144,7 @@ msgstr "Za uklanjanje zamjene:"
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:91
 msgid "Select the entry you wish to remove from the list."
-msgstr "Odaberi unos koji želiš ukloniti s popisa."
+msgstr "Odaberi zapis koji želiš ukloniti s popisa."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:96
@@ -1191,7 +1190,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-supported-formats.page:5
 msgid "Font formats supported by <app>Font Manager</app>."
-msgstr "Font formati koje <app>Font Manager</app> podržava."
+msgstr "Formati fontova koje <app>Font Manager</app> podržava."
 
 #. (itstool) path: page/title
 #: C/font-manager-supported-formats.page:10
@@ -1285,12 +1284,12 @@ msgstr ""
 #. (itstool) path: section/title
 #: C/index.page:37
 msgid "Managing Your Fonts"
-msgstr "Upravljaj svojim fontovima"
+msgstr "Upravljanje fontovima"
 
 #. (itstool) path: section/title
 #: C/index.page:41
 msgid "Getting to Know Your Fonts"
-msgstr "Upoznaj svoje fontove"
+msgstr "Proučavanje fontova"
 
 #. (itstool) path: section/title
 #: C/index.page:45
