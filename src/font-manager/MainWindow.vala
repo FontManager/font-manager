@@ -284,7 +284,7 @@ namespace FontManager {
             });
 
             fontlist_pane.controls.remove_selected.connect(() => {
-                collection_tree.remove_fonts(fontlist.get_selected_families().list());
+                collection_tree.remove_fonts(fontlist.get_selected_families());
                 collection_tree.queue_draw();
                 fontlist_pane.refilter();
                 bool removable = (fontlist_pane.model_filter.iter_n_children(null) > 0);
@@ -474,7 +474,7 @@ namespace FontManager {
             model.get_value(iter, CollectionColumn.OBJECT, out val);
             var group = (Collection) val.get_object();
             if (group != null) {
-                group.families.add_all(fontlist.get_selected_families().list());
+                group.families.add_all(fontlist.get_selected_families());
                 Reject? reject = get_default_application().reject;
                 group.set_active_from_fonts(reject);
                 sidebar.standard.collection_tree.model.collections.save();

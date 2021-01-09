@@ -74,14 +74,14 @@ namespace FontManager {
         }
 
         void add_child_contents (Collection child, StringSet full_contents) {
-            full_contents.add_all(child.families.list());
+            full_contents.add_all(child.families);
             child.children.foreach((_child) => { add_child_contents(_child, full_contents); });
             return;
         }
 
         public StringSet get_full_contents () {
             var full_contents = new StringSet();
-            full_contents.add_all(families.list());
+            full_contents.add_all(families);
             children.foreach((_child) => { add_child_contents(_child, full_contents); });
             return full_contents;
         }
@@ -105,11 +105,10 @@ namespace FontManager {
         public new void update (Reject? reject) {
             if (reject == null)
                 return;
-            GLib.List <string> _families = families.list();
             if (active)
-                reject.remove_all(_families);
+                reject.remove_all(families);
             else
-                reject.add_all(_families);
+                reject.add_all(families);
             reject.save();
             children.foreach((child) => {
                 child.active = active;

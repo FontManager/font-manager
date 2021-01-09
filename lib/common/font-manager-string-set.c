@@ -132,14 +132,15 @@ font_manager_string_set_add (FontManagerStringSet *self, const gchar *str)
 /**
  * font_manager_string_set_add_all:
  * @self:   a #FontManagerStringSet
- * @add: (element-type utf8) (transfer none): #GList of strings to add to #FontManagerStringSet
+ * @add: (transfer none): #FontManagerStringSet to add to @self
  */
 void
-font_manager_string_set_add_all (FontManagerStringSet *self, GList *add)
+font_manager_string_set_add_all (FontManagerStringSet *self, FontManagerStringSet *add)
 {
     g_return_if_fail(self != NULL);
-    for (GList *iter = add; iter != NULL; iter = iter->next)
-        font_manager_string_set_add(self, iter->data);
+    guint n_strings = font_manager_string_set_size(add);
+    for (guint i = 0; i < n_strings; i++)
+        font_manager_string_set_add(self, font_manager_string_set_get(add, i));
     return;
 }
 
@@ -161,16 +162,17 @@ font_manager_string_set_contains (FontManagerStringSet *self, const gchar *str)
 /**
  * font_manager_string_set_contains_all:
  * @self:   a #FontManagerStringSet
- * @contents: (element-type utf8) (transfer none): #GList containing strings to check
+ * @contents: (transfer none): #FontManagerStringSet to check against
  *
  * Returns: %TRUE if all strings in @contents are contained in @self
  */
 gboolean
-font_manager_string_set_contains_all (FontManagerStringSet *self, GList *contents)
+font_manager_string_set_contains_all (FontManagerStringSet *self, FontManagerStringSet *contents)
 {
     g_return_val_if_fail(self != NULL, FALSE);
-    for (GList *iter = contents; iter != NULL; iter = iter->next)
-        if (!font_manager_string_set_contains(self, iter->data))
+    guint n_strings = font_manager_string_set_size(contents);
+    for (guint i = 0; i < n_strings; i++)
+        if (!font_manager_string_set_contains(self, font_manager_string_set_get(contents, i)))
             return FALSE;
     return TRUE;
 }
@@ -194,33 +196,36 @@ font_manager_string_set_remove (FontManagerStringSet *self, const gchar *str)
 /**
  * font_manager_string_set_remove_all:
  * @self:   a #FontManagerStringSet
- * @remove: (element-type utf8) (transfer none): #GList containing strings to remove
+ * @remove: (transfer none): #FontManagerStringSet containing entries to remove
  */
 void
-font_manager_string_set_remove_all (FontManagerStringSet *self, GList *remove)
+font_manager_string_set_remove_all (FontManagerStringSet *self, FontManagerStringSet *remove)
 {
     g_return_if_fail(self != NULL);
-    for (GList *iter = remove; iter != NULL; iter = iter->next)
-        font_manager_string_set_remove(self, iter->data);
+    guint n_strings = font_manager_string_set_size(remove);
+    for (guint i = 0; i < n_strings; i++)
+        font_manager_string_set_remove(self, font_manager_string_set_get(remove, i));
     return;
 }
 
 /**
  * font_manager_string_set_retain_all:
  * @self:   a #FontManagerStringSet
- * @retain: (element-type utf8) (transfer none): #GList of strings to check against
+ * @retain: (transfer none): #FontManagerStringSet
  *
  * Remove any elements not contained in @retain
  */
 void
-font_manager_string_set_retain_all (FontManagerStringSet *self, GList *retain)
+font_manager_string_set_retain_all (FontManagerStringSet *self, FontManagerStringSet *retain)
 {
     g_return_if_fail(self != NULL);
     FontManagerStringSetPrivate *priv = font_manager_string_set_get_instance_private(self);
     GPtrArray *tmp = g_ptr_array_new_with_free_func((GDestroyNotify) g_free);
-    for (GList *iter = retain; iter != NULL; iter = iter->next) {
+    guint n_strings = font_manager_string_set_size(retain);
+    for (guint i = 0; i < n_strings; i++) {
         guint index;
-        if (g_ptr_array_find_with_equal_func(priv->strings, iter->data, (GEqualFunc) g_str_equal, &index))
+        const gchar *entry = font_manager_string_set_get(retain, i);
+        if (g_ptr_array_find_with_equal_func(priv->strings, entry, (GEqualFunc) g_str_equal, &index))
             g_ptr_array_add(tmp, g_ptr_array_steal_index_fast(priv->strings, index));
     }
     g_ptr_array_free(priv->strings, TRUE);

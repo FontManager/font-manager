@@ -30,7 +30,7 @@ namespace FontManager {
             SourceFunc callback = update.callback;
             base.update.begin((obj, res) => {
                 base.update.end(res);
-                families.remove_all(sorted.list());
+                families.remove_all(sorted);
                 Idle.add((owned) callback);
             });
             yield;

@@ -132,10 +132,16 @@ namespace FontManager {
                         DatabaseType.METADATA,
                         DatabaseType.ORTHOGRAPHY
                     };
+                    Json.Object available_fonts = get_available_fonts(null);
+                    var available_files = new StringSet();
+                    foreach (string path in list_available_font_files())
+                        available_files.add(path);
                     foreach (var type in db_types) {
                         try {
                             stdout.printf("Updating Database - %s\n", Database.get_type_name(type));
-                            update_database_sync(get_database(type), type, ProgressData.print, null);
+                            update_database_sync(get_database(type), type,
+                                                 available_fonts, available_files,
+                                                 ProgressData.print, null);
                             stdout.printf("\n");
                         } catch (Error e) {
                             critical(e.message);
@@ -205,7 +211,7 @@ namespace FontManager {
             int exit_status = -1;
 
             if (options.contains("version")) {
-                print_version();
+                stdout.printf("%s %s\n", About.NAME, About.VERSION);
                 return 0;
             }
 
@@ -268,7 +274,7 @@ namespace FontManager {
                     critical(e.message);
                 }
                 Json.Object available_fonts = get_available_fonts(null);
-                db.update();
+                db.update(available_fonts);
                 Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
                 var font_model = new FontModel();
                 font_model.source_array = sorted_fonts;

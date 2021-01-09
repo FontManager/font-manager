@@ -62,7 +62,7 @@ namespace FontManager {
             }
             StringSet? available_families = get_default_application().available_families;
             return_if_fail(available_families != null);
-            families.retain_all(available_families.list());
+            families.retain_all(available_families);
             return;
         }
 

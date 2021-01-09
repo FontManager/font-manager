@@ -183,12 +183,16 @@ FontManagerDatabase * font_manager_get_database (FontManagerDatabaseType type, G
 
 gboolean font_manager_update_database_sync (FontManagerDatabase *db,
                                             FontManagerDatabaseType type,
+                                            JsonObject *available_fonts,
+                                            FontManagerStringSet *available_files,
                                             FontManagerProgressCallback progress,
                                             GCancellable *cancellable,
                                             GError **error);
 
 void font_manager_update_database (FontManagerDatabase *db,
                                    FontManagerDatabaseType type,
+                                   JsonObject *available_fonts,
+                                   FontManagerStringSet *available_files,
                                    FontManagerProgressCallback progress,
                                    GCancellable *cancellable,
                                    GAsyncReadyCallback callback,

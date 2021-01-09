@@ -58,7 +58,7 @@ namespace FontManager {
         public StringSet get_full_contents () {
             var full_contents = new StringSet ();
             foreach (var entry in entries.get_values())
-                full_contents.add_all(entry.get_full_contents().list());
+                full_contents.add_all(entry.get_full_contents());
             return full_contents;
         }
 
@@ -285,7 +285,7 @@ namespace FontManager {
             return;
         }
 
-        public void on_add_collection (GLib.List <string>? families = null) {
+        public void on_add_collection (StringSet? families = null) {
             string default_collection_name = DEFAULT_COLLECTION_NAME;
             int i = 1;
             while (model.collections.entries.contains(default_collection_name)) {
@@ -319,7 +319,7 @@ namespace FontManager {
             return;
         }
 
-        public void remove_fonts (GLib.List <string> fonts)
+        public void remove_fonts (StringSet fonts)
         requires (selected_filter != null) {
             selected_filter.families.remove_all(fonts);
             Idle.add(() => {

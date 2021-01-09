@@ -18,7 +18,6 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-
 namespace FontManager {
 
     public const string AUTHOR = "Jerry Casiano <JerryCasiano@gmail.com>";
@@ -73,10 +72,4 @@ namespace FontManager {
 
     }
 
-    public void print_version () {
-        stdout.printf("%s %s\n", About.NAME, About.VERSION);
-        return;
-    }
-
 }
-

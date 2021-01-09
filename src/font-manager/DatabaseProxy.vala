@@ -72,8 +72,11 @@ namespace FontManager {
             return;
         }
 
-        public void update () {
+        public void update (Json.Object available_fonts) {
             update_started();
+            var available_files = new StringSet();
+            foreach (string path in list_available_font_files())
+                available_files.add(path);
             for (int i = 1; i < n_db_types; i++) {
                 var type = (DatabaseType) i;
                 status.replace(type, false);
@@ -82,6 +85,8 @@ namespace FontManager {
                     update_database.begin(
                         child,
                         type,
+                        available_fonts,
+                        available_files,
                         progress,
                         cancellable,
                         (obj, res) => {
