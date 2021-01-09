@@ -453,7 +453,8 @@ msgstr "Za aktiviranje ili deaktiviranje obitelji fontova:"
 #. (itstool) path: item/p
 #: C/font-manager-font-activation.page:30
 msgid "Select the family you wish to enable/disable in the font list"
-msgstr "U popisu fontova odaberi obitelj koju želiš aktivirati ili deaktivirati"
+msgstr ""
+"U popisu fontova odaberi obitelj koju želiš aktivirati ili deaktivirati"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:47
@@ -716,8 +717,8 @@ msgid ""
 "top of the window."
 msgstr ""
 "Otvori dijaloški okvir postavki programa <app>Font Manager</app> pritiskom "
-"gumba <gui> <media type=\"image\" src=\"media/preferences-system-symbolic."
-"svg\"/> </gui> u gornjem dijelu prozora."
+"gumba <gui> <media type=\"image\" src=\"media/preferences-system-symbolic.svg"
+"\"/> </gui> u gornjem dijelu prozora."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:40 C/font-manager-font-sources.page:72
