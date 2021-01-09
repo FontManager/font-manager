@@ -196,10 +196,7 @@ treeview {
 
 #FontManagerCategoryExpander title arrow,
 #FontManagerCollectionExpander title arrow {
-    margin-left: 12px;
-    margin-right: 12px;
-    margin-top: 6px;
-    margin-bottom: 6px;
+    margin: 6px 10px 6px 10px;
 }
 
 #GoogleFontsLanguageList row:hover {
