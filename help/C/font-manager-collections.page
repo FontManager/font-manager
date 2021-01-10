@@ -31,11 +31,6 @@
 
     <list>
         <item>
-            <p>
-                Select the Collection view at the bottom of the sidebar.
-            </p>
-        </item>
-        <item>
             <title>To create a new collection:</title>
                 <steps>
                     <item>
@@ -44,7 +39,7 @@
                             <gui>
                             <media type="image" src="media/list-add-symbolic.svg"/>
                             </gui>
-                            at the top of the Collection view.
+                            at the bottom of the Collection view.
                         </p>
                     </item>
                     <item>
@@ -54,17 +49,8 @@
                     </item>
                     <item>
                         <p>
-                            Switch back to Category view.
-                        </p>
-                    </item>
-                    <item>
-                        <p>
                             Add fonts by dragging them from the font list
                             to your new collection.
-                        </p>
-                        <p>
-                            Note : The sidebar will automatically switch to
-                            collections from categories while dragging fonts.
                         </p>
                     </item>
                 </steps>
@@ -83,7 +69,7 @@
                             <gui>
                             <media type="image" src="media/list-remove-symbolic.svg"/>
                             </gui>
-                            at the top of the Collection view.
+                            at the bottom of the Collection view.
                         </p>
                     </item>
                 </steps>

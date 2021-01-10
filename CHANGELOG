@@ -4,6 +4,9 @@
 - Make insensitive controls more consistent across different areas
 - Fix dbus method signature in file manager extensions
 - Fix infinite loop triggered by listing contents of collections which contain children
+- Save / Restore state for Google Fonts preview pane
+- Fix initial preview text in Font Viewer schema
+- Add all currently selected fonts to comparison when add button is clicked - Issue #170
 
 0.8.2 -> 0.8.3
 
