@@ -25,7 +25,7 @@ JOIN Orthography USING (filepath, findex)
 WHERE json_tree.key = 'coverage' AND json_tree.value > %f;
 """;
 
-const string DEFAULT_LANGUAGE_FILTER_COMMENT = _("Filter based on language support");
+const string DEFAULT_LANGUAGE_FILTER_COMMENT = _("Filter based on supported orthographies");
 
 namespace FontManager {
 
@@ -55,7 +55,7 @@ namespace FontManager {
         }
 
         public LanguageFilter () {
-            base(_("Language"),
+            base(_("Supported Orthographies"),
                  DEFAULT_LANGUAGE_FILTER_COMMENT,
                  "preferences-desktop-locale",
                  SELECT_ON_LANGUAGE,
