@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-12-26 11:40-0500\n"
+"POT-Creation-Date: 2021-01-12 19:49-0500\n"
 "PO-Revision-Date: 2020-07-27 01:58-0400\n"
 "Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -269,14 +269,8 @@ msgstr "Las colecciones no modifican sus archivos de ninguna manera."
 msgid "Feel free to create or delete as many as you like."
 msgstr "Siéntase libre de crear o eliminar tantas como desee."
 
-#. (itstool) path: item/p
-#: C/font-manager-collections.page:34
-msgid "Select the Collection view at the bottom of the sidebar."
-msgstr ""
-"Seleccione la vista de colección en la parte inferior de la barra lateral."
-
 #. (itstool) path: item/title
-#: C/font-manager-collections.page:39
+#: C/font-manager-collections.page:34
 msgid "To create a new collection:"
 msgstr "Para crear una nueva colección:"
 
@@ -285,7 +279,7 @@ msgstr "Para crear una nueva colección:"
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/font-manager-collections.page:45 C/font-manager-font-installation.page:25
+#: C/font-manager-collections.page:40 C/font-manager-font-installation.page:25
 #: C/font-manager-font-sources.page:46 C/font-manager-substitutions.page:37
 #: C/font-manager-substitutions.page:51
 msgctxt "_"
@@ -297,48 +291,38 @@ msgstr ""
 "md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:42
+#: C/font-manager-collections.page:37
+#, fuzzy
+#| msgid ""
+#| "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+#| "gui> at the top of the Collection view."
 msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
-"gui> at the top of the Collection view."
+"gui> at the bottom of the Collection view."
 msgstr ""
 "Clique <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui>en la parte superior de la vista de colección."
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:51
+#: C/font-manager-collections.page:46
 msgid "Enter a name for your new collection"
 msgstr "Escriba un nombre para su nueva colección"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:56
-msgid "Switch back to Category view."
-msgstr "Vuelva a la vista de categoría."
-
-#. (itstool) path: item/p
-#: C/font-manager-collections.page:61
+#: C/font-manager-collections.page:51
 msgid "Add fonts by dragging them from the font list to your new collection."
 msgstr ""
 "Añada tipografías arrastrándolas desde la lista de tipografías  a su nueva "
 "colección."
 
-#. (itstool) path: item/p
-#: C/font-manager-collections.page:65
-msgid ""
-"Note : The sidebar will automatically switch to collections from categories "
-"while dragging fonts."
-msgstr ""
-"Nota: la barra lateral cambiará automáticamente a las colecciones desde las "
-"categorías mientras arrastra los tipos de letra."
-
 #. (itstool) path: item/title
-#: C/font-manager-collections.page:73
+#: C/font-manager-collections.page:59
 msgid "To delete a collection:"
 msgstr "Para eliminar una colección:"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:76 C/font-manager-collections.page:95
-#: C/font-manager-collections.page:113 C/font-manager-collections.page:131
+#: C/font-manager-collections.page:62 C/font-manager-collections.page:81
+#: C/font-manager-collections.page:99 C/font-manager-collections.page:117
 msgid "Select the collection"
 msgstr "Seleccione la colección"
 
@@ -347,7 +331,7 @@ msgstr "Seleccione la colección"
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/font-manager-collections.page:84 C/font-manager-collections.page:144
+#: C/font-manager-collections.page:70 C/font-manager-collections.page:130
 #: C/font-manager-font-removal.page:38 C/font-manager-font-sources.page:84
 #: C/font-manager-substitutions.page:99
 msgctxt "_"
@@ -359,42 +343,46 @@ msgstr ""
 "md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:81
+#: C/font-manager-collections.page:67
+#, fuzzy
+#| msgid ""
+#| "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
+#| "> </gui> at the top of the Collection view."
 msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
-"gui> at the top of the Collection view."
+"gui> at the bottom of the Collection view."
 msgstr ""
 "Clique <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> "
 "</gui> en la parte superior de la vista de colección."
 
 #. (itstool) path: item/title
-#: C/font-manager-collections.page:92
+#: C/font-manager-collections.page:78
 msgid "To enable a collection:"
 msgstr "Para activar una colección:"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:100 C/font-manager-collections.page:118
+#: C/font-manager-collections.page:86 C/font-manager-collections.page:104
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
 msgstr "Clique en la <gui style=\"checkbox\"> casilla de verificació </gui>"
 
 #. (itstool) path: item/title
-#: C/font-manager-collections.page:110
+#: C/font-manager-collections.page:96
 msgid "To disable a collection:"
 msgstr "Para desactivar una colección:"
 
 #. (itstool) path: item/title
-#: C/font-manager-collections.page:128
+#: C/font-manager-collections.page:114
 msgid "To remove families from a collection:"
 msgstr "Para eliminar tipografías de una colección:"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:136
+#: C/font-manager-collections.page:122
 msgid "Select the family or families you wish to remove"
 msgstr "Seleccione la familia o familias que quiera eliminar"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:141
+#: C/font-manager-collections.page:127
 msgid ""
 "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
 "> </gui> at the top of the font list."
@@ -403,22 +391,22 @@ msgstr ""
 "> </gui> en la parte superior de la lista de tipografías."
 
 #. (itstool) path: item/title
-#: C/font-manager-collections.page:152
+#: C/font-manager-collections.page:138
 msgid "To rename a collection:"
 msgstr "Para renombrar una colección:"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:155
+#: C/font-manager-collections.page:141
 msgid "Select a collection, click it again"
 msgstr "Seleccione una colección, haga clic otra vez"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:160
+#: C/font-manager-collections.page:146
 msgid "Enter a new name"
 msgstr "Escriba un nombre nuevo"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:165
+#: C/font-manager-collections.page:151
 msgid "Press <gui style=\"button\">Enter</gui>"
 msgstr "Pulse <gui style=\"button\">Intro</gui>"
 
@@ -918,9 +906,14 @@ msgstr "<app>Gestor tipográfico</app>"
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-introduction.page:57
+#, fuzzy
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='media/main-window.png' "
+#| "md5='3b97d3126fcc31148b2cdb3d09efa00d'"
 msgctxt "_"
 msgid ""
-"external ref='media/main-window.png' md5='3b97d3126fcc31148b2cdb3d09efa00d'"
+"external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
 msgstr ""
 "external ref='media/main-window.png' md5='3b97d3126fcc31148b2cdb3d09efa00d'"
 
@@ -1086,9 +1079,14 @@ msgstr "<app>Ortografías compatibles</app>"
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-orthographies.page:29
+#, fuzzy
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='media/orthographies.png' "
+#| "md5='03e57aabb0162f6db3d40dd0fb1987ee'"
 msgctxt "_"
 msgid ""
-"external ref='media/orthographies.png' md5='03e57aabb0162f6db3d40dd0fb1987ee'"
+"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 msgstr ""
 "external ref='media/orthographies.png' md5='03e57aabb0162f6db3d40dd0fb1987ee'"
 
@@ -1328,6 +1326,20 @@ msgstr "Conocer sus tipografías"
 #: C/index.page:45
 msgid "Advanced Features"
 msgstr "Características avanzadas"
+
+#~ msgid "Select the Collection view at the bottom of the sidebar."
+#~ msgstr ""
+#~ "Seleccione la vista de colección en la parte inferior de la barra lateral."
+
+#~ msgid "Switch back to Category view."
+#~ msgstr "Vuelva a la vista de categoría."
+
+#~ msgid ""
+#~ "Note : The sidebar will automatically switch to collections from "
+#~ "categories while dragging fonts."
+#~ msgstr ""
+#~ "Nota: la barra lateral cambiará automáticamente a las colecciones desde "
+#~ "las categorías mientras arrastra los tipos de letra."
 
 #~ msgid "Zanata"
 #~ msgstr "Zanata"

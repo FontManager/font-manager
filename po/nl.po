@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-12-26 11:40-0500\n"
+"POT-Creation-Date: 2021-01-12 19:49-0500\n"
 "PO-Revision-Date: 2020-11-28 17:05+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: \n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
-#: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:28
+#: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
 msgstr "Lettertypebeheer"
 
@@ -89,7 +89,7 @@ msgstr "Lettertypevoorvertoning boordevol functies"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:472
+#: src/font-manager/FontList.vala:490
 msgid "Install"
 msgstr "Installeren"
 
@@ -358,7 +358,7 @@ msgstr "Eigenschappen"
 
 #: lib/common/font-manager-preview-pane.c:47
 #: lib/common/font-manager-preview-pane.c:557
-#: src/font-manager/Categories.vala:572
+#: src/font-manager/Categories.vala:574
 msgid "License"
 msgstr "Licentie"
 
@@ -379,22 +379,22 @@ msgid "Style"
 msgstr "Stijl"
 
 #: lib/common/font-manager-properties-pane.c:83
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:567
 msgid "Width"
 msgstr "Breedte"
 
 #: lib/common/font-manager-properties-pane.c:84
-#: src/font-manager/Categories.vala:567
+#: src/font-manager/Categories.vala:569
 msgid "Slant"
 msgstr "Schuinte"
 
 #: lib/common/font-manager-properties-pane.c:85
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:568
 msgid "Weight"
 msgstr "Zwaarte"
 
 #: lib/common/font-manager-properties-pane.c:86
-#: src/font-manager/Categories.vala:568
+#: src/font-manager/Categories.vala:570
 msgid "Spacing"
 msgstr "Spatiëring"
 
@@ -403,7 +403,7 @@ msgid "Version"
 msgstr "Versie"
 
 #: lib/common/font-manager-properties-pane.c:88
-#: src/font-manager/Categories.vala:573
+#: src/font-manager/Categories.vala:575
 msgid "Vendor"
 msgstr "Leverancier"
 
@@ -416,13 +416,13 @@ msgid "Filesize"
 msgstr "Bestandsgrootte"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:628
+#: src/font-manager/Categories.vala:630
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
 msgstr "Normaal"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:623
+#: src/font-manager/Categories.vala:625
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
 msgstr "Normal"
@@ -597,11 +597,11 @@ msgstr "Scheidingsteken, Spatie"
 msgid "Common"
 msgstr "Algemeen"
 
-#: src/font-manager/About.vala:30
+#: src/font-manager/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
 msgstr "Een eenvoudige lettertypebeheertoepassing voor GTK+-werkomgevingen"
 
-#: src/font-manager/About.vala:36
+#: src/font-manager/About.vala:35
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -634,88 +634,91 @@ msgstr ""
 "You should have received a copy of the GNU General Public License\n"
 "along with this program.  If not, see <http://www.gnu.org/licenses/>."
 
-#: src/font-manager/About.vala:67
+#. TRANSLATORS : Please feel free to add yourself to the list of translators,
+#. but do not modify or remove previous entries. New entries should be separated
+#. by a newline character so that they are displayed properly in the interface.
+#: src/font-manager/About.vala:69
 msgid "translator-credits"
 msgstr "Heimen Stoffels"
 
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:567
 msgid "Grouped by font width"
 msgstr "Gegroepeerd op letterbreedte"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:568
 msgid "Grouped by font weight"
 msgstr "Gegroepeerd op letterzwaarte"
 
-#: src/font-manager/Categories.vala:567
+#: src/font-manager/Categories.vala:569
 msgid "Grouped by font angle"
 msgstr "Gegroepeerd op letterschuinte"
 
-#: src/font-manager/Categories.vala:568
+#: src/font-manager/Categories.vala:570
 msgid "Grouped by font spacing"
 msgstr "Gegroepeerd op letterspatiëring"
 
-#: src/font-manager/Categories.vala:572
+#: src/font-manager/Categories.vala:574
 msgid "Grouped by license type"
 msgstr "Gegroepeerd op licentie"
 
-#: src/font-manager/Categories.vala:573
+#: src/font-manager/Categories.vala:575
 msgid "Grouped by vendor"
 msgstr "Gegroepeerd op leverancier"
 
-#: src/font-manager/Categories.vala:574
+#: src/font-manager/Categories.vala:576
 msgid "Filetype"
 msgstr "Bestandstype"
 
-#: src/font-manager/Categories.vala:574
+#: src/font-manager/Categories.vala:576
 msgid "Grouped by filetype"
 msgstr "Gegroepeerd op bestandstype"
 
-#: src/font-manager/Categories.vala:581
+#: src/font-manager/Categories.vala:583
 msgid "All"
 msgstr "Alle"
 
-#: src/font-manager/Categories.vala:581
+#: src/font-manager/Categories.vala:583
 msgid "All Fonts"
 msgstr "Alle lettertypen"
 
-#: src/font-manager/Categories.vala:582
+#: src/font-manager/Categories.vala:584
 msgid "System"
 msgstr "Systeem"
 
-#: src/font-manager/Categories.vala:582
+#: src/font-manager/Categories.vala:584
 msgid "Fonts available to all users"
 msgstr "Lettertypen voor alle gebruikers"
 
-#: src/font-manager/Categories.vala:596
+#: src/font-manager/Categories.vala:598
 msgid "Family Kind"
 msgstr "Soort familie"
 
-#: src/font-manager/Categories.vala:596
+#: src/font-manager/Categories.vala:598
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr "Alleen lettertypen met Panose-informatie worden hier gegroepeerd."
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 #: src/font-manager/web/google/ui/google-font-filters.ui:346
 msgid "Any"
 msgstr "Elke"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "No Fit"
 msgstr "Niet inpassen"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "Text and Display"
 msgstr "Tekst en weergave"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "Script"
 msgstr "Script"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "Decorative"
 msgstr "Decoratief"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "Pictorial"
 msgstr "Pictogram"
 
@@ -739,12 +742,12 @@ msgstr "Kopiëren naar…"
 msgid "Compress…"
 msgstr "Inpakken…"
 
-#: src/font-manager/Compare.vala:379
+#: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
 msgstr "Opgeslagen vergelijking"
 
 #. TRANSLATORS : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:405
+#: src/font-manager/Compare.vala:407
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -831,11 +834,11 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Alles inklappen"
 
-#: src/font-manager/FontList.vala:473
+#: src/font-manager/FontList.vala:491
 msgid "Copy Location"
 msgstr "Locatie kopiëren"
 
-#: src/font-manager/FontList.vala:474
+#: src/font-manager/FontList.vala:492
 msgid "Show in Folder"
 msgstr "Bekijken in map"
 
@@ -887,6 +890,8 @@ msgid "Coverage"
 msgstr "Bereik"
 
 #: src/font-manager/Orthography.vala:150
+#: src/font-manager/filters/LanguageFilter.vala:58
+#: src/font-manager/web/google/ui/google-font-filters.ui:503
 msgid "Supported Orthographies"
 msgstr "Ondersteunde orthografieën"
 
@@ -978,12 +983,10 @@ msgid "Fonts which have been disabled"
 msgstr "Uitgeschakelde lettertypen"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
-msgid "Filter based on language support"
-msgstr "Filter op basis van taalondersteuning"
-
-#: src/font-manager/filters/LanguageFilter.vala:58
-msgid "Language"
-msgstr "Taal"
+#, fuzzy
+#| msgid "Supported Orthographies"
+msgid "Filter based on supported orthographies"
+msgstr "Ondersteunde orthografieën"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
@@ -1440,31 +1443,31 @@ msgstr "Tibetaans"
 msgid "Vietnamese"
 msgstr "Vietnamees"
 
-#: src/font-manager/web/google/PreviewPane.vala:272
+#: src/font-manager/web/google/PreviewPane.vala:274
 msgid "Update Family"
 msgstr "Familie bijwerken"
 
-#: src/font-manager/web/google/PreviewPane.vala:272
+#: src/font-manager/web/google/PreviewPane.vala:274
 msgid "Update Font"
 msgstr "Lettertype bijwerken"
 
-#: src/font-manager/web/google/PreviewPane.vala:277
+#: src/font-manager/web/google/PreviewPane.vala:279
 msgid "Remove Family"
 msgstr "Familie verwijderen"
 
-#: src/font-manager/web/google/PreviewPane.vala:277
+#: src/font-manager/web/google/PreviewPane.vala:279
 msgid "Remove Font"
 msgstr "Lettertype verwijderen"
 
-#: src/font-manager/web/google/PreviewPane.vala:282
+#: src/font-manager/web/google/PreviewPane.vala:284
 msgid "Download Family"
 msgstr "Familie downloaden"
 
-#: src/font-manager/web/google/PreviewPane.vala:282
+#: src/font-manager/web/google/PreviewPane.vala:284
 msgid "Download Font"
 msgstr "Lettertype downloaden"
 
-#: src/font-manager/web/google/PreviewPane.vala:292
+#: src/font-manager/web/google/PreviewPane.vala:294
 #, fuzzy, c-format
 #| msgid "%i Language Sample Available "
 msgid "%i Language Sample Available "
@@ -1579,23 +1582,25 @@ msgstr "Herstart geopende toepassingen om de wijzigingen toe te passen."
 msgid "Save"
 msgstr "Opslaan"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:31
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:32
 msgid "Back"
 msgstr "Terug"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:61
-msgid "Search Languages…"
-msgstr "Zoeken naar talen…"
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:62
+#, fuzzy
+#| msgid "Supported Orthographies"
+msgid "Search Orthographies…"
+msgstr "Ondersteunde orthografieën"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:76
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
 msgstr "Niets selecteren"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:155
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:156
 msgid "Minimum Coverage"
 msgstr "Minimumbereik"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:171
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:172
 msgid "90"
 msgstr "90"
 
@@ -1822,9 +1827,17 @@ msgstr "12+"
 msgid "Variations"
 msgstr "Variaties"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:503
-msgid "Language Support"
-msgstr "Taalondersteuning"
+#~ msgid "Filter based on language support"
+#~ msgstr "Filter op basis van taalondersteuning"
+
+#~ msgid "Language"
+#~ msgstr "Taal"
+
+#~ msgid "Search Languages…"
+#~ msgstr "Zoeken naar talen…"
+
+#~ msgid "Language Support"
+#~ msgstr "Taalondersteuning"
 
 #~ msgid "Filter Settings"
 #~ msgstr "Filterinstellingen"
