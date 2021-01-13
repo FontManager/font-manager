@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2020-12-26 11:40-0500\n"
+"POT-Creation-Date: 2021-01-12 19:49-0500\n"
 "PO-Revision-Date: 2021-01-08 07:32+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
@@ -264,13 +264,8 @@ msgstr "Zbirke ne mijenjaju tvoje datoteke na nikoji način."
 msgid "Feel free to create or delete as many as you like."
 msgstr "Stvaraj ili briši zbirke kako god želiš."
 
-#. (itstool) path: item/p
-#: C/font-manager-collections.page:34
-msgid "Select the Collection view at the bottom of the sidebar."
-msgstr "Odaberi prikaz zbirke na dnu bočne trake."
-
 #. (itstool) path: item/title
-#: C/font-manager-collections.page:39
+#: C/font-manager-collections.page:34
 msgid "To create a new collection:"
 msgstr "Za stvaranje nove zbirke:"
 
@@ -279,7 +274,7 @@ msgstr "Za stvaranje nove zbirke:"
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/font-manager-collections.page:45 C/font-manager-font-installation.page:25
+#: C/font-manager-collections.page:40 C/font-manager-font-installation.page:25
 #: C/font-manager-font-sources.page:46 C/font-manager-substitutions.page:37
 #: C/font-manager-substitutions.page:51
 msgctxt "_"
@@ -291,46 +286,36 @@ msgstr ""
 "md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:42
+#: C/font-manager-collections.page:37
+#, fuzzy
+#| msgid ""
+#| "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+#| "gui> at the top of the Collection view."
 msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
-"gui> at the top of the Collection view."
+"gui> at the bottom of the Collection view."
 msgstr ""
 "Pritisni <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> u gornjem dijelu prikaza zbirke."
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:51
+#: C/font-manager-collections.page:46
 msgid "Enter a name for your new collection"
 msgstr "Upiši ime za tvoju novu zbirku"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:56
-msgid "Switch back to Category view."
-msgstr "Prebaci natrag na prikaz kategorija."
-
-#. (itstool) path: item/p
-#: C/font-manager-collections.page:61
+#: C/font-manager-collections.page:51
 msgid "Add fonts by dragging them from the font list to your new collection."
 msgstr "Dodaj fontove, povlačeći ih iz popisa fontova na tvoju novu zbirku."
 
-#. (itstool) path: item/p
-#: C/font-manager-collections.page:65
-msgid ""
-"Note : The sidebar will automatically switch to collections from categories "
-"while dragging fonts."
-msgstr ""
-"Napomena: Bočna traka će se iz kategorija automatski prebaciti na zbirke dok "
-"povlačiš fontove."
-
 #. (itstool) path: item/title
-#: C/font-manager-collections.page:73
+#: C/font-manager-collections.page:59
 msgid "To delete a collection:"
 msgstr "Za brisanje zbirke:"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:76 C/font-manager-collections.page:95
-#: C/font-manager-collections.page:113 C/font-manager-collections.page:131
+#: C/font-manager-collections.page:62 C/font-manager-collections.page:81
+#: C/font-manager-collections.page:99 C/font-manager-collections.page:117
 msgid "Select the collection"
 msgstr "Odaberi zbirku"
 
@@ -339,7 +324,7 @@ msgstr "Odaberi zbirku"
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/font-manager-collections.page:84 C/font-manager-collections.page:144
+#: C/font-manager-collections.page:70 C/font-manager-collections.page:130
 #: C/font-manager-font-removal.page:38 C/font-manager-font-sources.page:84
 #: C/font-manager-substitutions.page:99
 msgctxt "_"
@@ -351,42 +336,46 @@ msgstr ""
 "md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:81
+#: C/font-manager-collections.page:67
+#, fuzzy
+#| msgid ""
+#| "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
+#| "> </gui> at the top of the Collection view."
 msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
-"gui> at the top of the Collection view."
+"gui> at the bottom of the Collection view."
 msgstr ""
 "Pritisni <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
 "> </gui> u gornjem dijelu prikaza zbirke."
 
 #. (itstool) path: item/title
-#: C/font-manager-collections.page:92
+#: C/font-manager-collections.page:78
 msgid "To enable a collection:"
 msgstr "Za aktiviranje zbirke:"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:100 C/font-manager-collections.page:118
+#: C/font-manager-collections.page:86 C/font-manager-collections.page:104
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
 msgstr "Aktiviraj <gui style=\"checkbox\"> kvadratić </gui>"
 
 #. (itstool) path: item/title
-#: C/font-manager-collections.page:110
+#: C/font-manager-collections.page:96
 msgid "To disable a collection:"
 msgstr "Za deaktiviranje zbirke:"
 
 #. (itstool) path: item/title
-#: C/font-manager-collections.page:128
+#: C/font-manager-collections.page:114
 msgid "To remove families from a collection:"
 msgstr "Za uklanjanje obitelji iz zbirke:"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:136
+#: C/font-manager-collections.page:122
 msgid "Select the family or families you wish to remove"
 msgstr "Odaberi obitelj ili obitelji koje želiš ukloniti"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:141
+#: C/font-manager-collections.page:127
 msgid ""
 "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
 "> </gui> at the top of the font list."
@@ -395,22 +384,22 @@ msgstr ""
 "> </gui> na vrhu popisa fontova."
 
 #. (itstool) path: item/title
-#: C/font-manager-collections.page:152
+#: C/font-manager-collections.page:138
 msgid "To rename a collection:"
 msgstr "Za preimenovanje zbirke:"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:155
+#: C/font-manager-collections.page:141
 msgid "Select a collection, click it again"
 msgstr "Odaberi zbirku, pritisni je još jednom"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:160
+#: C/font-manager-collections.page:146
 msgid "Enter a new name"
 msgstr "Upiši novo ime"
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:165
+#: C/font-manager-collections.page:151
 msgid "Press <gui style=\"button\">Enter</gui>"
 msgstr "Pritisni <gui style=\"button\">Enter</gui>"
 
@@ -904,9 +893,14 @@ msgstr "<app>Font Manager</app>"
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-introduction.page:57
+#, fuzzy
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='media/main-window.png' "
+#| "md5='3b97d3126fcc31148b2cdb3d09efa00d'"
 msgctxt "_"
 msgid ""
-"external ref='media/main-window.png' md5='3b97d3126fcc31148b2cdb3d09efa00d'"
+"external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
 msgstr ""
 "external ref='media/main-window.png' md5='3b97d3126fcc31148b2cdb3d09efa00d'"
 
@@ -1062,9 +1056,14 @@ msgstr "<app>Podržani sustavi znakova</app>"
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-orthographies.page:29
+#, fuzzy
+#| msgctxt "_"
+#| msgid ""
+#| "external ref='media/orthographies.png' "
+#| "md5='03e57aabb0162f6db3d40dd0fb1987ee'"
 msgctxt "_"
 msgid ""
-"external ref='media/orthographies.png' md5='03e57aabb0162f6db3d40dd0fb1987ee'"
+"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 msgstr ""
 "external ref='media/orthographies.png' md5='03e57aabb0162f6db3d40dd0fb1987ee'"
 
@@ -1296,6 +1295,19 @@ msgstr "Proučavanje fontova"
 #: C/index.page:45
 msgid "Advanced Features"
 msgstr "Napredne funkcije"
+
+#~ msgid "Select the Collection view at the bottom of the sidebar."
+#~ msgstr "Odaberi prikaz zbirke na dnu bočne trake."
+
+#~ msgid "Switch back to Category view."
+#~ msgstr "Prebaci natrag na prikaz kategorija."
+
+#~ msgid ""
+#~ "Note : The sidebar will automatically switch to collections from "
+#~ "categories while dragging fonts."
+#~ msgstr ""
+#~ "Napomena: Bočna traka će se iz kategorija automatski prebaciti na zbirke "
+#~ "dok povlačiš fontove."
 
 #~ msgid "Zanata"
 #~ msgstr "Zanata"

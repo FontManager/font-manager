@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-12-26 11:40-0500\n"
+"POT-Creation-Date: 2021-01-12 19:49-0500\n"
 "PO-Revision-Date: 2019-10-03 02:38-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Arabic\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
-#: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:28
+#: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
 msgstr "مدير الخطوط"
 
@@ -78,7 +78,7 @@ msgstr ""
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:472
+#: src/font-manager/FontList.vala:490
 msgid "Install"
 msgstr ""
 
@@ -345,7 +345,7 @@ msgstr "الخصائص"
 
 #: lib/common/font-manager-preview-pane.c:47
 #: lib/common/font-manager-preview-pane.c:557
-#: src/font-manager/Categories.vala:572
+#: src/font-manager/Categories.vala:574
 msgid "License"
 msgstr "الترخيص"
 
@@ -366,22 +366,22 @@ msgid "Style"
 msgstr ""
 
 #: lib/common/font-manager-properties-pane.c:83
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:567
 msgid "Width"
 msgstr "العرض"
 
 #: lib/common/font-manager-properties-pane.c:84
-#: src/font-manager/Categories.vala:567
+#: src/font-manager/Categories.vala:569
 msgid "Slant"
 msgstr "الميلان"
 
 #: lib/common/font-manager-properties-pane.c:85
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:568
 msgid "Weight"
 msgstr "الوزن"
 
 #: lib/common/font-manager-properties-pane.c:86
-#: src/font-manager/Categories.vala:568
+#: src/font-manager/Categories.vala:570
 msgid "Spacing"
 msgstr "التوسع"
 
@@ -390,7 +390,7 @@ msgid "Version"
 msgstr "الإصدارة"
 
 #: lib/common/font-manager-properties-pane.c:88
-#: src/font-manager/Categories.vala:573
+#: src/font-manager/Categories.vala:575
 msgid "Vendor"
 msgstr "البائع"
 
@@ -403,13 +403,13 @@ msgid "Filesize"
 msgstr ""
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:628
+#: src/font-manager/Categories.vala:630
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
 msgstr "عادي"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:623
+#: src/font-manager/Categories.vala:625
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
 msgstr "طبيعي"
@@ -584,11 +584,11 @@ msgstr ""
 msgid "Common"
 msgstr ""
 
-#: src/font-manager/About.vala:30
+#: src/font-manager/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
 msgstr "إدارة بسيطة للخطوط لبيئات سطح مكتك جتك+"
 
-#: src/font-manager/About.vala:36
+#: src/font-manager/About.vala:35
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -608,88 +608,91 @@ msgid ""
 "    "
 msgstr ""
 
-#: src/font-manager/About.vala:67
+#. TRANSLATORS : Please feel free to add yourself to the list of translators,
+#. but do not modify or remove previous entries. New entries should be separated
+#. by a newline character so that they are displayed properly in the interface.
+#: src/font-manager/About.vala:69
 msgid "translator-credits"
 msgstr ""
 
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:567
 msgid "Grouped by font width"
 msgstr "مجمّعة حسب عرض الخط"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:568
 msgid "Grouped by font weight"
 msgstr "مجمّعة حسب وزن الخط"
 
-#: src/font-manager/Categories.vala:567
+#: src/font-manager/Categories.vala:569
 msgid "Grouped by font angle"
 msgstr "مجمّعة حسب زاوية الخط"
 
-#: src/font-manager/Categories.vala:568
+#: src/font-manager/Categories.vala:570
 msgid "Grouped by font spacing"
 msgstr "مجمّعة حسب توسع الخط"
 
-#: src/font-manager/Categories.vala:572
+#: src/font-manager/Categories.vala:574
 msgid "Grouped by license type"
 msgstr "مجمّعة حسب نوع الترخيص"
 
-#: src/font-manager/Categories.vala:573
+#: src/font-manager/Categories.vala:575
 msgid "Grouped by vendor"
 msgstr "مجمّعة حسب البائع"
 
-#: src/font-manager/Categories.vala:574
+#: src/font-manager/Categories.vala:576
 msgid "Filetype"
 msgstr "نوع الملف"
 
-#: src/font-manager/Categories.vala:574
+#: src/font-manager/Categories.vala:576
 msgid "Grouped by filetype"
 msgstr "مجمّعة حسب نوع الملف"
 
-#: src/font-manager/Categories.vala:581
+#: src/font-manager/Categories.vala:583
 msgid "All"
 msgstr "الكل"
 
-#: src/font-manager/Categories.vala:581
+#: src/font-manager/Categories.vala:583
 msgid "All Fonts"
 msgstr "كل الخطوط"
 
-#: src/font-manager/Categories.vala:582
+#: src/font-manager/Categories.vala:584
 msgid "System"
 msgstr "النظام"
 
-#: src/font-manager/Categories.vala:582
+#: src/font-manager/Categories.vala:584
 msgid "Fonts available to all users"
 msgstr "الخطوط المتاحة لكل المستخدمين"
 
-#: src/font-manager/Categories.vala:596
+#: src/font-manager/Categories.vala:598
 msgid "Family Kind"
 msgstr "نوع العائلة"
 
-#: src/font-manager/Categories.vala:596
+#: src/font-manager/Categories.vala:598
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr "لن تظهر سوى الخطوط التي تحتوي معلومات Panose."
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 #: src/font-manager/web/google/ui/google-font-filters.ui:346
 msgid "Any"
 msgstr "أي شيء"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "No Fit"
 msgstr "لا شيء مناسب"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "Text and Display"
 msgstr "النص و العناوين"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "Script"
 msgstr "نظام الكتابة"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "Decorative"
 msgstr "زخرفي"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "Pictorial"
 msgstr "تصويري"
 
@@ -716,12 +719,12 @@ msgstr ""
 msgid "Compress…"
 msgstr ""
 
-#: src/font-manager/Compare.vala:379
+#: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
 msgstr ""
 
 #. TRANSLATORS : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:405
+#: src/font-manager/Compare.vala:407
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -801,11 +804,11 @@ msgstr ""
 msgid "Collapse all"
 msgstr "قلّص الكل"
 
-#: src/font-manager/FontList.vala:473
+#: src/font-manager/FontList.vala:491
 msgid "Copy Location"
 msgstr ""
 
-#: src/font-manager/FontList.vala:474
+#: src/font-manager/FontList.vala:492
 msgid "Show in Folder"
 msgstr ""
 
@@ -860,6 +863,8 @@ msgid "Coverage"
 msgstr ""
 
 #: src/font-manager/Orthography.vala:150
+#: src/font-manager/filters/LanguageFilter.vala:58
+#: src/font-manager/web/google/ui/google-font-filters.ui:503
 msgid "Supported Orthographies"
 msgstr ""
 
@@ -945,11 +950,7 @@ msgid "Fonts which have been disabled"
 msgstr "الخطوط غير المفعّلة"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
-msgid "Filter based on language support"
-msgstr ""
-
-#: src/font-manager/filters/LanguageFilter.vala:58
-msgid "Language"
+msgid "Filter based on supported orthographies"
 msgstr ""
 
 #: src/font-manager/filters/Unsorted.vala:26
@@ -1378,37 +1379,37 @@ msgstr ""
 msgid "Vietnamese"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:272
+#: src/font-manager/web/google/PreviewPane.vala:274
 msgid "Update Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:272
+#: src/font-manager/web/google/PreviewPane.vala:274
 #, fuzzy
 #| msgid "Add Fonts"
 msgid "Update Font"
 msgstr "أضف خطوط"
 
-#: src/font-manager/web/google/PreviewPane.vala:277
+#: src/font-manager/web/google/PreviewPane.vala:279
 #, fuzzy
 #| msgid "Remove Fonts"
 msgid "Remove Family"
 msgstr "احذف الخطوط"
 
-#: src/font-manager/web/google/PreviewPane.vala:277
+#: src/font-manager/web/google/PreviewPane.vala:279
 #, fuzzy
 #| msgid "Remove Fonts"
 msgid "Remove Font"
 msgstr "احذف الخطوط"
 
-#: src/font-manager/web/google/PreviewPane.vala:282
+#: src/font-manager/web/google/PreviewPane.vala:284
 msgid "Download Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:282
+#: src/font-manager/web/google/PreviewPane.vala:284
 msgid "Download Font"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:292
+#: src/font-manager/web/google/PreviewPane.vala:294
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
@@ -1532,23 +1533,25 @@ msgstr "تحتاج إعادة تشغيل البرامج المفتوحة لتط�
 msgid "Save"
 msgstr "احفظ"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:31
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:32
 msgid "Back"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:61
-msgid "Search Languages…"
-msgstr ""
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:62
+#, fuzzy
+#| msgid "Search Families…"
+msgid "Search Orthographies…"
+msgstr "ابحث في العائلات…"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:76
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:155
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:156
 msgid "Minimum Coverage"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:171
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:172
 msgid "90"
 msgstr ""
 
@@ -1785,8 +1788,4 @@ msgstr ""
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:434
 msgid "Variations"
-msgstr ""
-
-#: src/font-manager/web/google/ui/google-font-filters.ui:503
-msgid "Language Support"
 msgstr ""

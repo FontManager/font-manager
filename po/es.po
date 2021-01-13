@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2020-12-26 11:40-0500\n"
+"POT-Creation-Date: 2021-01-12 19:49-0500\n"
 "PO-Revision-Date: 2020-07-27 01:54-0400\n"
 "Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
-#: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:28
+#: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
 msgstr "Gestor tipográfico"
 
@@ -92,7 +92,7 @@ msgstr "Completa aplicación para previsualizar archivos de tipos de letra"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:472
+#: src/font-manager/FontList.vala:490
 msgid "Install"
 msgstr "Instalar"
 
@@ -365,7 +365,7 @@ msgstr "Propiedades"
 
 #: lib/common/font-manager-preview-pane.c:47
 #: lib/common/font-manager-preview-pane.c:557
-#: src/font-manager/Categories.vala:572
+#: src/font-manager/Categories.vala:574
 msgid "License"
 msgstr "Licencia"
 
@@ -386,22 +386,22 @@ msgid "Style"
 msgstr ""
 
 #: lib/common/font-manager-properties-pane.c:83
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:567
 msgid "Width"
 msgstr "Anchura"
 
 #: lib/common/font-manager-properties-pane.c:84
-#: src/font-manager/Categories.vala:567
+#: src/font-manager/Categories.vala:569
 msgid "Slant"
 msgstr "Inclinación"
 
 #: lib/common/font-manager-properties-pane.c:85
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:568
 msgid "Weight"
 msgstr "Peso"
 
 #: lib/common/font-manager-properties-pane.c:86
-#: src/font-manager/Categories.vala:568
+#: src/font-manager/Categories.vala:570
 msgid "Spacing"
 msgstr "Espaciado"
 
@@ -410,7 +410,7 @@ msgid "Version"
 msgstr "Versión"
 
 #: lib/common/font-manager-properties-pane.c:88
-#: src/font-manager/Categories.vala:573
+#: src/font-manager/Categories.vala:575
 msgid "Vendor"
 msgstr "Proveedor"
 
@@ -423,13 +423,13 @@ msgid "Filesize"
 msgstr "Tamaño de archivo"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:628
+#: src/font-manager/Categories.vala:630
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
 msgstr "Regular"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:623
+#: src/font-manager/Categories.vala:625
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
 msgstr "Normal"
@@ -604,11 +604,11 @@ msgstr "Separador, espacio"
 msgid "Common"
 msgstr "Común"
 
-#: src/font-manager/About.vala:30
+#: src/font-manager/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
 msgstr "Gestión de tipos de letra para entornos de escritorio Gtk+"
 
-#: src/font-manager/About.vala:36
+#: src/font-manager/About.vala:35
 msgid ""
 "\n"
 "    This program is free software: you can redistribute it and/or modify\n"
@@ -644,91 +644,94 @@ msgstr ""
 "    Si no es así, consulte <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 "    "
 
-#: src/font-manager/About.vala:67
+#. TRANSLATORS : Please feel free to add yourself to the list of translators,
+#. but do not modify or remove previous entries. New entries should be separated
+#. by a newline character so that they are displayed properly in the interface.
+#: src/font-manager/About.vala:69
 msgid "translator-credits"
 msgstr ""
 "Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Toni Estevez, toni.estevez@gmail.com"
 
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:567
 msgid "Grouped by font width"
 msgstr "Agrupados por anchura de letra"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:568
 msgid "Grouped by font weight"
 msgstr "Agrupados por peso de letra"
 
-#: src/font-manager/Categories.vala:567
+#: src/font-manager/Categories.vala:569
 msgid "Grouped by font angle"
 msgstr "Agrupados por inclinación de letra"
 
-#: src/font-manager/Categories.vala:568
+#: src/font-manager/Categories.vala:570
 msgid "Grouped by font spacing"
 msgstr "Agrupados por espaciado de letra"
 
-#: src/font-manager/Categories.vala:572
+#: src/font-manager/Categories.vala:574
 msgid "Grouped by license type"
 msgstr "Agrupados por tipo de licencia"
 
-#: src/font-manager/Categories.vala:573
+#: src/font-manager/Categories.vala:575
 msgid "Grouped by vendor"
 msgstr "Agrupados por proveedor"
 
-#: src/font-manager/Categories.vala:574
+#: src/font-manager/Categories.vala:576
 msgid "Filetype"
 msgstr "Tipo de archivo"
 
-#: src/font-manager/Categories.vala:574
+#: src/font-manager/Categories.vala:576
 msgid "Grouped by filetype"
 msgstr "Agrupados por tipo de archivo"
 
-#: src/font-manager/Categories.vala:581
+#: src/font-manager/Categories.vala:583
 msgid "All"
 msgstr "Todos"
 
-#: src/font-manager/Categories.vala:581
+#: src/font-manager/Categories.vala:583
 msgid "All Fonts"
 msgstr "Todos los tipos de letra"
 
-#: src/font-manager/Categories.vala:582
+#: src/font-manager/Categories.vala:584
 msgid "System"
 msgstr "Sistema"
 
-#: src/font-manager/Categories.vala:582
+#: src/font-manager/Categories.vala:584
 msgid "Fonts available to all users"
 msgstr "Tipos de letra disponibles para todos los usuarios"
 
-#: src/font-manager/Categories.vala:596
+#: src/font-manager/Categories.vala:598
 msgid "Family Kind"
 msgstr "Clase de familia"
 
-#: src/font-manager/Categories.vala:596
+#: src/font-manager/Categories.vala:598
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
 "Solo los tipos de letra que incluyen información PANOSE se agrupan aquí"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 #: src/font-manager/web/google/ui/google-font-filters.ui:346
 msgid "Any"
 msgstr "Todas"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "No Fit"
 msgstr "No encaja"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "Text and Display"
 msgstr "Texto y títulos"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "Script"
 msgstr "Manuscritos"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "Decorative"
 msgstr "Decorativos"
 
-#: src/font-manager/Categories.vala:597
+#: src/font-manager/Categories.vala:599
 msgid "Pictorial"
 msgstr "Iconográficos"
 
@@ -752,12 +755,12 @@ msgstr "Copiar en…"
 msgid "Compress…"
 msgstr "Comprimir…"
 
-#: src/font-manager/Compare.vala:379
+#: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
 msgstr ""
 
 #. TRANSLATORS : Please preserve the newline character somewhere in the middle of the string
-#: src/font-manager/Compare.vala:405
+#: src/font-manager/Compare.vala:407
 msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
@@ -842,11 +845,11 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Contraer todo"
 
-#: src/font-manager/FontList.vala:473
+#: src/font-manager/FontList.vala:491
 msgid "Copy Location"
 msgstr "Copiar la ubicación"
 
-#: src/font-manager/FontList.vala:474
+#: src/font-manager/FontList.vala:492
 msgid "Show in Folder"
 msgstr "Mostrar en la carpeta"
 
@@ -905,6 +908,8 @@ msgid "Coverage"
 msgstr "Cobertura"
 
 #: src/font-manager/Orthography.vala:150
+#: src/font-manager/filters/LanguageFilter.vala:58
+#: src/font-manager/web/google/ui/google-font-filters.ui:503
 msgid "Supported Orthographies"
 msgstr "Ortografías compatibles"
 
@@ -996,12 +1001,10 @@ msgid "Fonts which have been disabled"
 msgstr "Tipos de letra que se han desactivado"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
-msgid "Filter based on language support"
-msgstr "Filtro basado en la compatibilidad de idioma"
-
-#: src/font-manager/filters/LanguageFilter.vala:58
-msgid "Language"
-msgstr "Idioma"
+#, fuzzy
+#| msgid "Supported Orthographies"
+msgid "Filter based on supported orthographies"
+msgstr "Ortografías compatibles"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
@@ -1457,39 +1460,39 @@ msgstr "Tibetano"
 msgid "Vietnamese"
 msgstr "Vietnamita"
 
-#: src/font-manager/web/google/PreviewPane.vala:272
+#: src/font-manager/web/google/PreviewPane.vala:274
 msgid "Update Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:272
+#: src/font-manager/web/google/PreviewPane.vala:274
 #, fuzzy
 #| msgid "Monospace Font"
 msgid "Update Font"
 msgstr "Tipo de letra monoespaciada"
 
-#: src/font-manager/web/google/PreviewPane.vala:277
+#: src/font-manager/web/google/PreviewPane.vala:279
 #, fuzzy
 #| msgid "Remove Fonts"
 msgid "Remove Family"
 msgstr "Desinstalar tipos de letra"
 
-#: src/font-manager/web/google/PreviewPane.vala:277
+#: src/font-manager/web/google/PreviewPane.vala:279
 #, fuzzy
 #| msgid "Remove Fonts"
 msgid "Remove Font"
 msgstr "Desinstalar tipos de letra"
 
-#: src/font-manager/web/google/PreviewPane.vala:282
+#: src/font-manager/web/google/PreviewPane.vala:284
 msgid "Download Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:282
+#: src/font-manager/web/google/PreviewPane.vala:284
 #, fuzzy
 #| msgid "Monospace Font"
 msgid "Download Font"
 msgstr "Tipo de letra monoespaciada"
 
-#: src/font-manager/web/google/PreviewPane.vala:292
+#: src/font-manager/web/google/PreviewPane.vala:294
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
@@ -1611,23 +1614,25 @@ msgstr ""
 msgid "Save"
 msgstr "Guardar"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:31
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:32
 msgid "Back"
 msgstr "Atrás"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:61
-msgid "Search Languages…"
-msgstr "Buscar idiomas…"
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:62
+#, fuzzy
+#| msgid "Supported Orthographies"
+msgid "Search Orthographies…"
+msgstr "Ortografías compatibles"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:76
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
 msgstr "No seleccionar nada"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:155
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:156
 msgid "Minimum Coverage"
 msgstr "Cobertura mínima"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:171
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:172
 msgid "90"
 msgstr "90"
 
@@ -1870,11 +1875,19 @@ msgstr ""
 msgid "Variations"
 msgstr "%i variaciones"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:503
+#~ msgid "Filter based on language support"
+#~ msgstr "Filtro basado en la compatibilidad de idioma"
+
+#~ msgid "Language"
+#~ msgstr "Idioma"
+
+#~ msgid "Search Languages…"
+#~ msgstr "Buscar idiomas…"
+
 #, fuzzy
-#| msgid "Language"
-msgid "Language Support"
-msgstr "Idioma"
+#~| msgid "Language"
+#~ msgid "Language Support"
+#~ msgstr "Idioma"
 
 #~ msgid "%i Variations"
 #~ msgstr "%i variaciones"
