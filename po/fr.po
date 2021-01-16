@@ -3,21 +3,22 @@
 # This file is distributed under the same license as the font-manager package.
 # J. Lavoie <j.lavoie@net-c.ca>, 2020.
 # Julien Humbert <julroy67@gmail.com>, 2020.
+# Laurent DÉRÉDEC <images-ld@gmx.fr>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-12 19:49-0500\n"
-"PO-Revision-Date: 2020-12-30 03:29+0000\n"
-"Last-Translator: Julien Humbert <julroy67@gmail.com>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/fr/>\n"
+"PO-Revision-Date: 2021-01-16 22:32+0000\n"
+"Last-Translator: Laurent DÉRÉDEC <images-ld@gmx.fr>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.4.1-dev\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -574,7 +575,7 @@ msgstr "Ponctuation, Autres"
 
 #: lib/unicode/unicode-info.c:270
 msgid "Punctuation, Open"
-msgstr ""
+msgstr "Ponctuation, ouvrir"
 
 #: lib/unicode/unicode-info.c:272
 msgid "Symbol, Currency"
@@ -590,15 +591,15 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:278
 msgid "Symbol, Other"
-msgstr ""
+msgstr "Symbole, Autre"
 
 #: lib/unicode/unicode-info.c:280
 msgid "Separator, Line"
-msgstr ""
+msgstr "Séparateur, Ligne"
 
 #: lib/unicode/unicode-info.c:282
 msgid "Separator, Paragraph"
-msgstr ""
+msgstr "Séparateur, Paragraphe"
 
 #: lib/unicode/unicode-info.c:284
 msgid "Separator, Space"
@@ -608,7 +609,7 @@ msgstr "Séparateur, espace"
 #. * specifically listed in Scripts.txt
 #: lib/unicode/unicode-info.c:703
 msgid "Common"
-msgstr ""
+msgstr "Commun"
 
 #: src/font-manager/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
