@@ -417,12 +417,12 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             selected_iter = model.get_string_from_iter(iter);
             val.unset();
             Idle.add(() => {
+                if (filename != null)
+                    filename.label = Path.get_basename(selected_font.filepath);
                 if (installable != null)
                     installable.set_visible(selection_is_sourced());
                 return GLib.Source.REMOVE;
             });
-            if (filename != null)
-                filename.label = Path.get_basename(selected_font.filepath);
             return;
         }
 
@@ -720,40 +720,6 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             controls.show();
             base.constructed();
             return;
-        }
-
-        public static string get_cache_file () {
-            string dirpath = get_package_cache_directory();
-            string filepath = Path.build_filename(dirpath, "FontModel.cache");
-            DirUtils.create_with_parents(dirpath ,0755);
-            return filepath;
-        }
-
-        public void save () {
-            var node = new Json.Node(Json.NodeType.ARRAY);
-            node.set_array(((FontModel) model).source_array);
-            write_json_file(node, get_cache_file(), false);
-            return;
-        }
-
-        public bool load () {
-            string cache_file = get_cache_file();
-            if (!exists(cache_file))
-                return false;
-            Json.Node? root = load_json_file(cache_file);
-            if (root != null) {
-                Json.Array array = root.get_array();
-                var font_model = new FontModel();
-                font_model.source_array = array;
-                model = font_model;
-                var available_families = get_default_application().available_families;
-                return_val_if_fail(available_families != null, false);
-                available_families.clear();
-                array.foreach_element((arr, index, node) => {
-                    available_families.add(node.get_object().get_string_member("family"));
-                });
-            }
-            return true;
         }
 
         public bool refilter () {

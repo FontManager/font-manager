@@ -66,15 +66,6 @@ namespace FontManager {
             return;
         }
 
-        public void save () {
-            standard.category_tree.save();
-            return;
-        }
-
-        public bool load () {
-            return standard.category_tree.load();
-        }
-
     }
 
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-standard-sidebar.ui")]

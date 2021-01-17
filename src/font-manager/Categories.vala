@@ -317,8 +317,6 @@ namespace FontManager {
 
         public bool update_in_progress { get; set; default = true; }
 
-        public new CategoryModel model { get; set; }
-
         public string selected_iter { get; protected set; default = "0"; }
         public Category? selected_filter { get; protected set; default = null; }
         public LanguageFilter? language_filter { get; set; default = null; }
@@ -328,6 +326,7 @@ namespace FontManager {
         Gtk.CellRendererText renderer;
         CellRendererCount count_renderer;
         Gtk.CellRendererPixbuf pixbuf_renderer;
+        CategoryModel? _model_;
 
         construct {
             name = "FontManagerCategoryTree";
@@ -350,25 +349,28 @@ namespace FontManager {
             test_expand_row.connect((t,i,p) => { t.collapse_all(); return Gdk.EVENT_PROPAGATE; });
             connect_signals();
             model = new CategoryModel();
-            model.update();
+            update();
             show();
         }
 
         void connect_signals () {
             get_selection().changed.connect(on_selection_changed);
             notify["model"].connect(() => {
-                base.set_model(model);
+                if (model == null && update_in_progress)
+                    return;
+                else
+                    _model_ = (CategoryModel) model;
                 queue_draw();
-                model.update_begin.connect(() => {
-                    base.set_model(null);
+                _model_.update_begin.connect(() => {
+                    model = null;
                     update_in_progress = true;
                 });
-                model.update_complete.connect(() => {
+                _model_.update_complete.connect(() => {
                     update_in_progress = false;
-                    base.set_model(model);
+                    model = _model_;
                     update_complete();
                 });
-                model.row_changed.connect((path, iter) => {
+                _model_.row_changed.connect((path, iter) => {
                     /* Prevents the changed signal from being emitted multiple times for the same
                      * event and also prevents the entry from disappearing from the list instantly
                      * if it is enabled while in the Disabled category. */
@@ -401,44 +403,6 @@ namespace FontManager {
             return;
         }
 
-        public static string get_cache_file () {
-            string dirpath = get_package_cache_directory();
-            string filepath = Path.build_filename(dirpath, "Categories.cache");
-            DirUtils.create_with_parents(dirpath ,0755);
-            return filepath;
-        }
-
-        public void save () {
-            Json.Array cache = new Json.Array();
-            model.categories.foreach((child) => {
-                cache.add_element(Json.gobject_serialize(child));
-            });
-            Json.Node node = new Json.Node(Json.NodeType.ARRAY);
-            node.set_array(cache);
-            write_json_file(node, get_cache_file(), false);
-            return;
-        }
-
-        public bool load () {
-            string cache_file = get_cache_file();
-            if (!exists(cache_file))
-                return false;
-            Json.Node? root = load_json_file(cache_file);
-            if (root != null) {
-                Json.Array array = root.get_array();
-                model.update_begin();
-                var categories = new GenericArray <Category> ();
-                array.foreach_element((arr, index, node) => {
-                    var category = (Category) Json.gobject_deserialize(typeof(Category), node);
-                    categories.insert((int) index, category);
-                });
-                model.categories = categories;
-                model.update_complete();
-                notify_property("model");
-            }
-            return true;
-        }
-
         public void select_first_row () {
             if (model == null)
                 return;
@@ -452,16 +416,18 @@ namespace FontManager {
         }
 
         public void update () {
+            if (model == null || _model_ == null)
+                return;
             /* Re-select category after an update to prevent blank list */
             if (selected_filter != null) {
                 int index = selected_filter.index;
                 var path = new Gtk.TreePath.from_indices(index, -1);
                 var selection = get_selection();
                 selection.unselect_all();
-                model.update();
+                _model_.update();
                 selection.select_path(path);
             } else {
-                model.update();
+                _model_.update();
                 select_first_row();
             }
             return;

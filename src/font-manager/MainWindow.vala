@@ -422,7 +422,8 @@ namespace FontManager {
             var category_tree = sidebar.standard.category_tree;
             var collection_tree = sidebar.standard.collection_tree;
             return_if_fail(category_tree.model != null);
-            var unsorted = (Unsorted) category_tree.model.categories[CategoryIndex.UNSORTED];
+            var category_model = (CategoryModel) category_tree.model;
+            var unsorted = (Unsorted) category_model.categories[CategoryIndex.UNSORTED];
             var collected = collection_tree.model.collections.get_full_contents();
             unsorted.update.begin(collected, (obj, res) => {
                 unsorted.update.end(res);
@@ -609,7 +610,8 @@ namespace FontManager {
                 if (settings != null) {
                     settings.delay();
                     var category_tree = sidebar.standard.category_tree;
-                    var language_filter = category_tree.model.categories[CategoryIndex.LANGUAGE];
+                    var category_model = (CategoryModel) category_tree.model;
+                    var language_filter = category_model.categories[CategoryIndex.LANGUAGE];
                     ((LanguageFilter) language_filter).save_state(settings);
                     compare.save_state(settings);
 
