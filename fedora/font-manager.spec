@@ -8,7 +8,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{PatchVersion}.%{build_timestamp}
-Release:    2
+Release:    3
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -92,7 +92,7 @@ This package provides integration with the Thunar file manager.
 %autosetup -n %{name}-master
 
 %build
-%meson --buildtype=debugoptimized -Dnautilus=True -Dnemo=True -Dthunar=True
+%meson --buildtype=release -Dnautilus=true -Dnemo=true -Dthunar=true -Dreproducible=true
 %meson_build
 
 %install
@@ -141,5 +141,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_libdir}/thunarx-3/thunar-%{name}.so
 
 %changelog
-* Tue Dec 1 2020 JerryCasiano <JerryCasiano@gmail.com> 0.8.4-2
+* Tue Dec 1 2020 JerryCasiano <JerryCasiano@gmail.com> 0.8.4-3
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.

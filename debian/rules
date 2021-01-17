@@ -8,8 +8,8 @@ DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-		--buildtype=debugoptimized \
+		--buildtype=release \
 		-Dnautilus=true \
 		-Dnemo=true \
-		-Dthunar=True \
+		-Dthunar=true \
 		-Dreproducible=true
