@@ -24,17 +24,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-01-17 13:22-0500\n"
-"PO-Revision-Date: 2021-01-08 07:32+0000\n"
+"POT-Creation-Date: 2021-01-12 19:49-0500\n"
+"PO-Revision-Date: 2021-01-17 18:27+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4.1-dev\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -294,43 +294,43 @@ msgstr "Veraltet"
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Restricted License Embedding"
-msgstr ""
+msgstr "Keine Einbettung erlaubt"
 
 #: lib/common/font-manager-freetype.c:296
 msgid "Preview & Print Embedding"
-msgstr ""
+msgstr "Vorschau und Druck erlaubt"
 
 #: lib/common/font-manager-freetype.c:298
 msgid "Editable Embedding"
-msgstr ""
+msgstr "Bearbeitung erlaubt"
 
 #: lib/common/font-manager-freetype.c:300
 msgid "Preview & Print Embedding | No Subsetting"
-msgstr ""
+msgstr "Vorschau und Druck erlaubt | Keine Untergruppen"
 
 #: lib/common/font-manager-freetype.c:302
 msgid "Editable Embedding | No Subsetting"
-msgstr ""
+msgstr "Bearbeitung erlaubt | Keine Untergruppen"
 
 #: lib/common/font-manager-freetype.c:304
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "Vorschau und Druck erlaubt | Nur Bitmaps"
 
 #: lib/common/font-manager-freetype.c:306
 msgid "Editable Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "Bearbeitung erlaubt | Nur Bitmaps"
 
 #: lib/common/font-manager-freetype.c:308
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr ""
+msgstr "Vorschau und Druck erlaubt | Keine Untergruppen | Nur Bitmaps"
 
 #: lib/common/font-manager-freetype.c:310
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr ""
+msgstr "Bearbeitung erlaubt | Keine Untergruppen | Nur Bitmaps"
 
 #: lib/common/font-manager-freetype.c:312
 msgid "Installable Embedding"
-msgstr ""
+msgstr "Installieren erlaubt"
 
 #. TRANSLATORS : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:704
@@ -1516,7 +1516,7 @@ msgstr "Anwendungsbereich"
 #: src/font-manager/filters/LanguageFilter.vala:58
 #: src/font-manager/web/google/ui/google-font-filters.ui:503
 msgid "Supported Orthographies"
-msgstr "Unterstützte Orthografien"
+msgstr "Unterstützte Schriftzeichen"
 
 #: src/font-manager/Orthography.vala:204
 msgid "Update in progress"
@@ -1532,7 +1532,7 @@ msgstr "Aktualisierung der Datenbank — Metadaten"
 
 #: src/font-manager/TitleBar.vala:66
 msgid "Updating Database — Orthography"
-msgstr "Aktualisierung der Datenbank — Orthografie"
+msgstr "Aktualisierung der Datenbank – Schriftzeichen"
 
 #: src/font-manager/TitleBar.vala:83
 msgid "Keyboard Shortcuts"
@@ -1600,10 +1600,8 @@ msgid "Fonts which have been disabled"
 msgstr "Deaktivierte Schriften"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
-#, fuzzy
-#| msgid "Supported Orthographies"
 msgid "Filter based on supported orthographies"
-msgstr "Unterstützte Orthografien"
+msgstr "Nach unterstützten Schriftzeichen filtern"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
@@ -2085,7 +2083,7 @@ msgstr "Entferne ausgewählte Schrift vom Vergleich"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:110
 msgid "Pinned Comparisons"
-msgstr ""
+msgstr "Fixierte Vergleiche"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:136
 #: src/font-manager/ui/font-manager-compare-view.ui:140
@@ -2120,10 +2118,8 @@ msgid "Back"
 msgstr "Zurück"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:62
-#, fuzzy
-#| msgid "Supported Orthographies"
 msgid "Search Orthographies…"
-msgstr "Unterstützte Orthografien"
+msgstr "Schriftzeichen durchsuchen …"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
