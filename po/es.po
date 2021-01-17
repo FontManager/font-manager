@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-01-12 19:49-0500\n"
+"POT-Creation-Date: 2021-01-17 13:22-0500\n"
 "PO-Revision-Date: 2020-07-27 01:54-0400\n"
 "Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
 "Language-Team: Spanish\n"
@@ -319,7 +319,8 @@ msgstr ""
 msgid "Installable Embedding"
 msgstr "Incrustación: instalable"
 
-#: lib/common/font-manager-freetype.c:703
+#. TRANSLATORS : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
+#: lib/common/font-manager-freetype.c:704
 #, fuzzy
 #| msgid "Unknown"
 msgid "Unknown Vendor"
@@ -365,7 +366,7 @@ msgstr "Propiedades"
 
 #: lib/common/font-manager-preview-pane.c:47
 #: lib/common/font-manager-preview-pane.c:557
-#: src/font-manager/Categories.vala:574
+#: src/font-manager/Categories.vala:540
 msgid "License"
 msgstr "Licencia"
 
@@ -386,22 +387,22 @@ msgid "Style"
 msgstr ""
 
 #: lib/common/font-manager-properties-pane.c:83
-#: src/font-manager/Categories.vala:567
+#: src/font-manager/Categories.vala:533
 msgid "Width"
 msgstr "Anchura"
 
 #: lib/common/font-manager-properties-pane.c:84
-#: src/font-manager/Categories.vala:569
+#: src/font-manager/Categories.vala:535
 msgid "Slant"
 msgstr "Inclinación"
 
 #: lib/common/font-manager-properties-pane.c:85
-#: src/font-manager/Categories.vala:568
+#: src/font-manager/Categories.vala:534
 msgid "Weight"
 msgstr "Peso"
 
 #: lib/common/font-manager-properties-pane.c:86
-#: src/font-manager/Categories.vala:570
+#: src/font-manager/Categories.vala:536
 msgid "Spacing"
 msgstr "Espaciado"
 
@@ -410,7 +411,7 @@ msgid "Version"
 msgstr "Versión"
 
 #: lib/common/font-manager-properties-pane.c:88
-#: src/font-manager/Categories.vala:575
+#: src/font-manager/Categories.vala:541
 msgid "Vendor"
 msgstr "Proveedor"
 
@@ -423,13 +424,13 @@ msgid "Filesize"
 msgstr "Tamaño de archivo"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:630
+#: src/font-manager/Categories.vala:596
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
 msgstr "Regular"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:625
+#: src/font-manager/Categories.vala:591
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
 msgstr "Normal"
@@ -653,85 +654,85 @@ msgstr ""
 "Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Toni Estevez, toni.estevez@gmail.com"
 
-#: src/font-manager/Categories.vala:567
+#: src/font-manager/Categories.vala:533
 msgid "Grouped by font width"
 msgstr "Agrupados por anchura de letra"
 
-#: src/font-manager/Categories.vala:568
+#: src/font-manager/Categories.vala:534
 msgid "Grouped by font weight"
 msgstr "Agrupados por peso de letra"
 
-#: src/font-manager/Categories.vala:569
+#: src/font-manager/Categories.vala:535
 msgid "Grouped by font angle"
 msgstr "Agrupados por inclinación de letra"
 
-#: src/font-manager/Categories.vala:570
+#: src/font-manager/Categories.vala:536
 msgid "Grouped by font spacing"
 msgstr "Agrupados por espaciado de letra"
 
-#: src/font-manager/Categories.vala:574
+#: src/font-manager/Categories.vala:540
 msgid "Grouped by license type"
 msgstr "Agrupados por tipo de licencia"
 
-#: src/font-manager/Categories.vala:575
+#: src/font-manager/Categories.vala:541
 msgid "Grouped by vendor"
 msgstr "Agrupados por proveedor"
 
-#: src/font-manager/Categories.vala:576
+#: src/font-manager/Categories.vala:542
 msgid "Filetype"
 msgstr "Tipo de archivo"
 
-#: src/font-manager/Categories.vala:576
+#: src/font-manager/Categories.vala:542
 msgid "Grouped by filetype"
 msgstr "Agrupados por tipo de archivo"
 
-#: src/font-manager/Categories.vala:583
+#: src/font-manager/Categories.vala:549
 msgid "All"
 msgstr "Todos"
 
-#: src/font-manager/Categories.vala:583
+#: src/font-manager/Categories.vala:549
 msgid "All Fonts"
 msgstr "Todos los tipos de letra"
 
-#: src/font-manager/Categories.vala:584
+#: src/font-manager/Categories.vala:550
 msgid "System"
 msgstr "Sistema"
 
-#: src/font-manager/Categories.vala:584
+#: src/font-manager/Categories.vala:550
 msgid "Fonts available to all users"
 msgstr "Tipos de letra disponibles para todos los usuarios"
 
-#: src/font-manager/Categories.vala:598
+#: src/font-manager/Categories.vala:564
 msgid "Family Kind"
 msgstr "Clase de familia"
 
-#: src/font-manager/Categories.vala:598
+#: src/font-manager/Categories.vala:564
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
 "Solo los tipos de letra que incluyen información PANOSE se agrupan aquí"
 
-#: src/font-manager/Categories.vala:599
+#: src/font-manager/Categories.vala:565
 #: src/font-manager/web/google/ui/google-font-filters.ui:346
 msgid "Any"
 msgstr "Todas"
 
-#: src/font-manager/Categories.vala:599
+#: src/font-manager/Categories.vala:565
 msgid "No Fit"
 msgstr "No encaja"
 
-#: src/font-manager/Categories.vala:599
+#: src/font-manager/Categories.vala:565
 msgid "Text and Display"
 msgstr "Texto y títulos"
 
-#: src/font-manager/Categories.vala:599
+#: src/font-manager/Categories.vala:565
 msgid "Script"
 msgstr "Manuscritos"
 
-#: src/font-manager/Categories.vala:599
+#: src/font-manager/Categories.vala:565
 msgid "Decorative"
 msgstr "Decorativos"
 
-#: src/font-manager/Categories.vala:599
+#: src/font-manager/Categories.vala:565
 msgid "Pictorial"
 msgstr "Iconográficos"
 
@@ -903,17 +904,595 @@ msgstr ""
 "Se recomienda encarecidamente que realice una copia de seguridad de los "
 "archivos importantes antes de continuar.\n"
 
-#: src/font-manager/Orthography.vala:121
+#: src/font-manager/Orthographies.vala:31
+msgid "Afrikaans"
+msgstr "Afrikáans"
+
+#: src/font-manager/Orthographies.vala:32
+msgid "Ahom"
+msgstr "Ahom"
+
+#: src/font-manager/Orthographies.vala:33
+msgid "Aleut Cyrillic"
+msgstr "Aleutiano, cirílico"
+
+#: src/font-manager/Orthographies.vala:34
+#, fuzzy
+#| msgid "Aleut Latin"
+msgid "Aleut Latin"
+msgstr "Aleutiano, latino"
+
+#: src/font-manager/Orthographies.vala:35
+#: src/font-manager/web/google/Language.vala:32
+msgid "Arabic"
+msgstr "Árabe"
+
+#: src/font-manager/Orthographies.vala:36
+msgid "Archaic Greek Letters"
+msgstr "Letras griegas arcaicas"
+
+#: src/font-manager/Orthographies.vala:37
+msgid "Armenian"
+msgstr "Armenio"
+
+#: src/font-manager/Orthographies.vala:38
+msgid "Astronomy"
+msgstr "Astronomía"
+
+#: src/font-manager/Orthographies.vala:39
+msgid "Balinese"
+msgstr "Balinés"
+
+#: src/font-manager/Orthographies.vala:40
+msgid "Baltic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:41
+msgid "Bamum"
+msgstr "Bamún"
+
+#: src/font-manager/Orthographies.vala:42
+msgid "Basic Cyrillic"
+msgstr "Cirílico básico"
+
+#: src/font-manager/Orthographies.vala:43
+#, fuzzy
+#| msgid "Basic Greek"
+msgid "Basic Greek"
+msgstr "Griego básico"
+
+#: src/font-manager/Orthographies.vala:44
+msgid "Basic Latin"
+msgstr "Latino básico"
+
+#: src/font-manager/Orthographies.vala:45
+msgid "Surat Batak"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:46
+#: src/font-manager/web/google/Language.vala:33
+msgid "Bengali"
+msgstr "Bengalí"
+
+#: src/font-manager/Orthographies.vala:47
+msgid "Brāhmī"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:48
+msgid "Buginese"
+msgstr "Buguinés"
+
+#: src/font-manager/Orthographies.vala:49
+msgid "Unified Canadian Aboriginal Syllabics"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:50
+#, fuzzy
+#| msgid "%i Variations"
+msgid "Carian"
+msgstr "%i variaciones"
+
+#: src/font-manager/Orthographies.vala:51
+msgid "Catalan"
+msgstr "Catalán"
+
+#: src/font-manager/Orthographies.vala:52
+msgid "Central European"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:53
+msgid "Chakma"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:54
+msgid "Cham"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:55
+msgid "Cherokee"
+msgstr "Cheroqui"
+
+#: src/font-manager/Orthographies.vala:56
+msgid "Chess Symbols"
+msgstr "Símbolos del ajedrez"
+
+#. CJK entries added manually
+#: src/font-manager/Orthographies.vala:59
+msgid "CJK Unified"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:60
+msgid "CJK Unified Extension A"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:61
+msgid "CJK Unified Extension B"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:62
+msgid "CJK Unified Extension C"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:63
+msgid "CJK Unified Extension D"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:64
+msgid "CJK Unified Extension E"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:65
+msgid "CJK Compatibility Ideographs"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:66
+msgid "CJK Compatibility Ideographs Supplement"
+msgstr ""
+
+#. End CJK entries
+#: src/font-manager/Orthographies.vala:69
+msgid "Claudian Letters"
+msgstr "Letras claudianas"
+
+#: src/font-manager/Orthographies.vala:70
+msgid "Coptic"
+msgstr "Copto"
+
+#: src/font-manager/Orthographies.vala:71
+msgid "Currencies"
+msgstr "Monedas"
+
+#: src/font-manager/Orthographies.vala:72
+msgid "Cypriot Syllabary"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:73
+#: src/font-manager/web/google/Language.vala:39
+msgid "Devanagari"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:74
+msgid "Dutch"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:75
+msgid "Egyptian Hieroglyphs"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:76
+msgid "Emoticons"
+msgstr "Emoticonos"
+
+#: src/font-manager/Orthographies.vala:77
+msgid "Ethiopic"
+msgstr ""
+
+#. This "orthography" contains only the euro symbol...
+#. { "Euro", "Euro" },
+#: src/font-manager/Orthographies.vala:82
+msgid "Farsi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:83
+msgid "Food and Drink"
+msgstr "Alimentos y bebidas"
+
+#: src/font-manager/Orthographies.vala:84
+#, fuzzy
+#| msgid "Full Cyrillic"
+msgid "Full Cyrillic"
+msgstr "Cirílico completo"
+
+#: src/font-manager/Orthographies.vala:85
+msgid "Georgian"
+msgstr "Georgiano"
+
+#: src/font-manager/Orthographies.vala:86
+msgid "Glagolitic"
+msgstr "Glagolítico"
+
+#: src/font-manager/Orthographies.vala:87
+msgid "Gothic"
+msgstr "Gótico"
+
+#: src/font-manager/Orthographies.vala:88
+#: src/font-manager/web/google/Language.vala:42
+msgid "Gujarati"
+msgstr "Guyaratí"
+
+#: src/font-manager/Orthographies.vala:89
+#: src/font-manager/web/google/Language.vala:43
+msgid "Gurmukhi"
+msgstr "Gurmují"
+
+#: src/font-manager/Orthographies.vala:90
+msgid "Korean Hangul"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:91
+msgid "Hanunó'o"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:92
+#: src/font-manager/web/google/Language.vala:44
+msgid "Hebrew"
+msgstr "Hebreo"
+
+#: src/font-manager/Orthographies.vala:93
+#: src/font-manager/Orthographies.vala:95
+msgid "IPA"
+msgstr "AFI"
+
+#: src/font-manager/Orthographies.vala:94
+msgid "Igbo Onwu"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:96
+msgid "Korean Jamo"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:97
+#, fuzzy
+#| msgid "Javanese"
+msgid "Javanese"
+msgstr "Javanés"
+
+#: src/font-manager/Orthographies.vala:98
+#, fuzzy
+#| msgid "Javanese"
+msgid "Japanese Jinmeiyo"
+msgstr "Javanés"
+
+#: src/font-manager/Orthographies.vala:99
+#, fuzzy
+#| msgid "Javanese"
+msgid "Japanese Joyo"
+msgstr "Javanés"
+
+#: src/font-manager/Orthographies.vala:100
+msgid "Kaithi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:101
+#, fuzzy
+#| msgid "Javanese"
+msgid "Japanese Kana"
+msgstr "Javanés"
+
+#: src/font-manager/Orthographies.vala:102
+#: src/font-manager/web/google/Language.vala:46
+msgid "Kannada"
+msgstr "Canarés"
+
+#: src/font-manager/Orthographies.vala:103
+msgid "Kayah Li"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:104
+msgid "Kazakh"
+msgstr "Kazajo"
+
+#: src/font-manager/Orthographies.vala:105
+msgid "Kharoshthi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:106
+#: src/font-manager/web/google/Language.vala:47
+msgid "Khmer"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:107
+#, fuzzy
+#| msgid "Javanese"
+msgid "Japanese Kokuji"
+msgstr "Javanés"
+
+#: src/font-manager/Orthographies.vala:108
+msgid "Lao"
+msgstr "Lao"
+
+#: src/font-manager/Orthographies.vala:109
+msgid "Latin Ligatures"
+msgstr "Ligaduras latinas"
+
+#: src/font-manager/Orthographies.vala:110
+msgid "Lepcha"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:111
+msgid "Limbu"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:112
+msgid "Linear B Ideograms"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:113
+msgid "Linear B Syllabary"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:114
+#: src/font-manager/web/google/Language.vala:51
+msgid "Malayalam"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:115
+msgid "Mathematical Greek"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:116
+#, fuzzy
+#| msgid "Basic Latin"
+msgid "Mathematical Latin"
+msgstr "Latino básico"
+
+#: src/font-manager/Orthographies.vala:117
+msgid "Mathematical Numerals"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:118
+msgid "Mathematical Operators"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:119
+msgid "Meetei Mayak"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:120
+msgid "Mende Kikakui"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:121
+msgid "MeroiticCursive"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:122
+msgid "Meroitic Hieroglyphs"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:123
+msgid "Miao"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:124
+msgid "Mongolian"
+msgstr "Mongol"
+
+#. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
+#. * Contains lots of duplicates, doubt many would find it useful
+#.
+#. { "MUFI 3.0", "MUFI 3.0" },
+#: src/font-manager/Orthographies.vala:131
+#: src/font-manager/web/google/Language.vala:52
+msgid "Myanmar"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:132
+msgid "New Tai Lue"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:133
+msgid "N’Ko"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:134
+msgid "Ogham"
+msgstr "Ogámico"
+
+#: src/font-manager/Orthographies.vala:135
+msgid "Ol Chiki"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:136
+#, fuzzy
+#| msgid "Italic"
+msgid "Old Italic"
+msgstr "Itálica"
+
+#: src/font-manager/Orthographies.vala:137
+msgid "Old South Arabian"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:138
+#: src/font-manager/web/google/Language.vala:53
+msgid "Oriya"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:139
+msgid "Osmanya"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:140
+#, fuzzy
+#| msgid "Basic Latin"
+msgid "Pan African Latin"
+msgstr "Latino básico"
+
+#: src/font-manager/Orthographies.vala:141
+msgid "Pashto"
+msgstr "Pastún"
+
+#: src/font-manager/Orthographies.vala:142
+msgid "Phags Pa"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:143
+msgid "Pinyin"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:144
+msgid "Polynesian"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:145
+msgid "Polytonic Greek"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:146
+msgid "Rejang"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:147
+msgid "Romanian"
+msgstr "Rumano"
+
+#: src/font-manager/Orthographies.vala:148
+msgid "Runic"
+msgstr "Rúnico"
+
+#: src/font-manager/Orthographies.vala:149
+msgid "Saurashtra"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:150
+msgid "Simplified Chinese"
+msgstr "Chino simplificado"
+
+#: src/font-manager/Orthographies.vala:151
+msgid "Sindhi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:152
+#: src/font-manager/web/google/Language.vala:54
+msgid "Sinhala"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:153
+msgid "South Korean Hanja"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:154
+msgid "Sundanese"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:155
+msgid "Syloti Nagri"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:156
+msgid "Syriac"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:157
+msgid "Tai Le"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:158
+msgid "Tai Tham (Lanna)"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:159
+msgid "Tai Viet"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:160
+#: src/font-manager/web/google/Language.vala:55
+msgid "Tamil"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:161
+#: src/font-manager/web/google/Language.vala:56
+msgid "Telugu"
+msgstr "Telugu"
+
+#: src/font-manager/Orthographies.vala:162
+msgid "Thaana"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:163
+#: src/font-manager/web/google/Language.vala:57
+msgid "Thai"
+msgstr "Tai"
+
+#: src/font-manager/Orthographies.vala:164
+#: src/font-manager/web/google/Language.vala:58
+msgid "Tibetan"
+msgstr "Tibetano"
+
+#: src/font-manager/Orthographies.vala:165
+msgid "Tifinagh"
+msgstr "Tifinag"
+
+#: src/font-manager/Orthographies.vala:166
+msgid "Traditional Chinese"
+msgstr "Chino tradicional"
+
+#: src/font-manager/Orthographies.vala:167
+msgid "Turkish"
+msgstr "Turco"
+
+#: src/font-manager/Orthographies.vala:168
+msgid "Uighur"
+msgstr "Uigur"
+
+#: src/font-manager/Orthographies.vala:169
+msgid "Urdu"
+msgstr "Urdu"
+
+#: src/font-manager/Orthographies.vala:170
+msgid "Vai"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:171
+msgid "Vedic Extensions"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:172
+#, fuzzy
+#| msgid "Vendor"
+msgid "Venda"
+msgstr "Proveedor"
+
+#: src/font-manager/Orthographies.vala:173
+#: src/font-manager/web/google/Language.vala:59
+msgid "Vietnamese"
+msgstr "Vietnamita"
+
+#: src/font-manager/Orthographies.vala:174
+msgid "Western European"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:175
+msgid "Yi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:176
+msgid "Chinese Zhuyin Fuhao"
+msgstr ""
+
+#. TRANSLATORS : Coverage refers to the amount of support the font provides for an
+#. orthography. This will be displayed as "Coverage : XXX%" in the interface.
+#: src/font-manager/Orthography.vala:124
 msgid "Coverage"
 msgstr "Cobertura"
 
-#: src/font-manager/Orthography.vala:150
+#: src/font-manager/Orthography.vala:153
 #: src/font-manager/filters/LanguageFilter.vala:58
 #: src/font-manager/web/google/ui/google-font-filters.ui:503
 msgid "Supported Orthographies"
 msgstr "Ortografías compatibles"
 
-#: src/font-manager/Orthography.vala:201
+#: src/font-manager/Orthography.vala:204
 msgid "Update in progress"
 msgstr "Actualización en curso"
 
@@ -1340,14 +1919,6 @@ msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:32
-msgid "Arabic"
-msgstr "Árabe"
-
-#: src/font-manager/web/google/Language.vala:33
-msgid "Bengali"
-msgstr "Bengalí"
-
 #: src/font-manager/web/google/Language.vala:34
 msgid "Chinese (Hong Kong)"
 msgstr ""
@@ -1370,10 +1941,6 @@ msgstr "Cirílico completo"
 msgid "Cyrillic Extended"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:39
-msgid "Devanagari"
-msgstr ""
-
 #: src/font-manager/web/google/Language.vala:40
 #, fuzzy
 #| msgid "Basic Greek"
@@ -1384,31 +1951,11 @@ msgstr "Griego básico"
 msgid "Greek Extended"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:42
-msgid "Gujarati"
-msgstr "Guyaratí"
-
-#: src/font-manager/web/google/Language.vala:43
-msgid "Gurmukhi"
-msgstr "Gurmují"
-
-#: src/font-manager/web/google/Language.vala:44
-msgid "Hebrew"
-msgstr "Hebreo"
-
 #: src/font-manager/web/google/Language.vala:45
 #, fuzzy
 #| msgid "Javanese"
 msgid "Japanese"
 msgstr "Javanés"
-
-#: src/font-manager/web/google/Language.vala:46
-msgid "Kannada"
-msgstr "Canarés"
-
-#: src/font-manager/web/google/Language.vala:47
-msgid "Khmer"
-msgstr ""
 
 #: src/font-manager/web/google/Language.vala:48
 msgid "Korean"
@@ -1423,42 +1970,6 @@ msgstr "Aleutiano, latino"
 #: src/font-manager/web/google/Language.vala:50
 msgid "Latin Extended"
 msgstr ""
-
-#: src/font-manager/web/google/Language.vala:51
-msgid "Malayalam"
-msgstr ""
-
-#: src/font-manager/web/google/Language.vala:52
-msgid "Myanmar"
-msgstr ""
-
-#: src/font-manager/web/google/Language.vala:53
-msgid "Oriya"
-msgstr ""
-
-#: src/font-manager/web/google/Language.vala:54
-msgid "Sinhala"
-msgstr ""
-
-#: src/font-manager/web/google/Language.vala:55
-msgid "Tamil"
-msgstr ""
-
-#: src/font-manager/web/google/Language.vala:56
-msgid "Telugu"
-msgstr "Telugu"
-
-#: src/font-manager/web/google/Language.vala:57
-msgid "Thai"
-msgstr "Tai"
-
-#: src/font-manager/web/google/Language.vala:58
-msgid "Tibetan"
-msgstr "Tibetano"
-
-#: src/font-manager/web/google/Language.vala:59
-msgid "Vietnamese"
-msgstr "Vietnamita"
 
 #: src/font-manager/web/google/PreviewPane.vala:274
 msgid "Update Family"
@@ -1891,114 +2402,3 @@ msgstr "%i variaciones"
 
 #~ msgid "%i Variations"
 #~ msgstr "%i variaciones"
-
-#~ msgid "Afrikaans"
-#~ msgstr "Afrikáans"
-
-#~ msgid "Ahom"
-#~ msgstr "Ahom"
-
-#~ msgid "Aleut Cyrillic"
-#~ msgstr "Aleutiano, cirílico"
-
-#~ msgid "Archaic Greek Letters"
-#~ msgstr "Letras griegas arcaicas"
-
-#~ msgid "Armenian"
-#~ msgstr "Armenio"
-
-#~ msgid "Astronomy"
-#~ msgstr "Astronomía"
-
-#~ msgid "Balinese"
-#~ msgstr "Balinés"
-
-#~ msgid "Bamum"
-#~ msgstr "Bamún"
-
-#~ msgid "Basic Cyrillic"
-#~ msgstr "Cirílico básico"
-
-#~ msgid "Basic Latin"
-#~ msgstr "Latino básico"
-
-#~ msgid "Buginese"
-#~ msgstr "Buguinés"
-
-#~ msgid "Catalan"
-#~ msgstr "Catalán"
-
-#~ msgid "Cherokee"
-#~ msgstr "Cheroqui"
-
-#~ msgid "Chess Symbols"
-#~ msgstr "Símbolos del ajedrez"
-
-#~ msgid "Claudian Letters"
-#~ msgstr "Letras claudianas"
-
-#~ msgid "Coptic"
-#~ msgstr "Copto"
-
-#~ msgid "Currencies"
-#~ msgstr "Monedas"
-
-#~ msgid "Emoticons"
-#~ msgstr "Emoticonos"
-
-#~ msgid "Food and Drink"
-#~ msgstr "Alimentos y bebidas"
-
-#~ msgid "Georgian"
-#~ msgstr "Georgiano"
-
-#~ msgid "Glagolitic"
-#~ msgstr "Glagolítico"
-
-#~ msgid "Gothic"
-#~ msgstr "Gótico"
-
-#~ msgid "IPA"
-#~ msgstr "AFI"
-
-#~ msgid "Kazakh"
-#~ msgstr "Kazajo"
-
-#~ msgid "Lao"
-#~ msgstr "Lao"
-
-#~ msgid "Latin Ligatures"
-#~ msgstr "Ligaduras latinas"
-
-#~ msgid "Mongolian"
-#~ msgstr "Mongol"
-
-#~ msgid "Ogham"
-#~ msgstr "Ogámico"
-
-#~ msgid "Pashto"
-#~ msgstr "Pastún"
-
-#~ msgid "Romanian"
-#~ msgstr "Rumano"
-
-#~ msgid "Runic"
-#~ msgstr "Rúnico"
-
-#~ msgid "Simplified Chinese"
-#~ msgstr "Chino simplificado"
-
-#~ msgid "Tifinagh"
-#~ msgstr "Tifinag"
-
-#~ msgid "Traditional Chinese"
-#~ msgstr "Chino tradicional"
-
-#~ msgid "Turkish"
-#~ msgstr "Turco"
-
-#~ msgid "Uighur"
-#~ msgstr "Uigur"
-
-#~ msgid "Urdu"
-#~ msgstr "Urdu"
