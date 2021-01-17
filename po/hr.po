@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-12 19:49-0500\n"
-"PO-Revision-Date: 2021-01-08 07:32+0000\n"
+"PO-Revision-Date: 2021-01-15 16:32+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hr/>\n"
@@ -35,7 +35,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.1-dev\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -102,7 +102,7 @@ msgstr ""
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr "Program za prikaz fontova s raznim funkcijama"
+msgstr "Program za pregled fontova s raznim funkcijama"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
@@ -130,7 +130,7 @@ msgstr "Svojstva fonta"
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:105
 msgid "Preview"
-msgstr "Prikaz"
+msgstr "Pregled"
 
 #: lib/common/font-manager-font-preview.c:87
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
@@ -346,7 +346,7 @@ msgstr "Centrirano"
 
 #: lib/common/font-manager-preview-controls.c:88
 msgid "Fill"
-msgstr "Ispunjeno"
+msgstr "Poravnato obostrano"
 
 #: lib/common/font-manager-preview-controls.c:94
 msgid "Right Aligned"
@@ -363,7 +363,7 @@ msgstr "Poništi promjene"
 #: lib/common/font-manager-preview-pane.c:43
 #: lib/common/font-manager-preview-pane.c:555
 msgid "Characters"
-msgstr "Tablica znakova"
+msgstr "Znakovi"
 
 #: lib/common/font-manager-preview-pane.c:45
 #: lib/common/font-manager-preview-pane.c:556
@@ -656,7 +656,7 @@ msgstr ""
 #. by a newline character so that they are displayed properly in the interface.
 #: src/font-manager/About.vala:69
 msgid "translator-credits"
-msgstr "Milo Ivir <mail@milotype.de>, 2019., 2020."
+msgstr "Milo Ivir <mail@milotype.de>, 2019., 2020., 2021."
 
 #: src/font-manager/Categories.vala:567
 msgid "Grouped by font width"
@@ -688,7 +688,7 @@ msgstr "Vrsta datoteke"
 
 #: src/font-manager/Categories.vala:576
 msgid "Grouped by filetype"
-msgstr "Grupirani po datotečnoj vrsti"
+msgstr "Grupirani po vrsti datoteke"
 
 #: src/font-manager/Categories.vala:583
 msgid "All"
@@ -779,7 +779,7 @@ msgstr "Odaberi izvršnu datoteku"
 #: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
 #: src/font-manager/UserData.vala:58
 msgid "_Select"
-msgstr "_Odaberi"
+msgstr "Oda_beri"
 
 #: src/font-manager/Dialogs.vala:64 src/font-manager/Dialogs.vala:79
 #: src/font-manager/Dialogs.vala:96 src/font-manager/Dialogs.vala:121
@@ -787,7 +787,7 @@ msgstr "_Odaberi"
 #: src/font-manager/Migration.vala:54 src/font-manager/UserData.vala:38
 #: src/font-manager/UserData.vala:49 src/font-manager/UserData.vala:59
 msgid "_Cancel"
-msgstr "_Odustani"
+msgstr "O_dustani"
 
 #: src/font-manager/Dialogs.vala:75
 msgid "Select Destination"
@@ -1000,10 +1000,8 @@ msgid "Fonts which have been disabled"
 msgstr "Deaktivirani fontovi"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
-#, fuzzy
-#| msgid "Supported Orthographies"
 msgid "Filter based on supported orthographies"
-msgstr "Podržani sustavi znakova"
+msgstr "Filtar na osnovi podržanih sustava znakova"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
@@ -1031,7 +1029,7 @@ msgstr "Font koji se koristi u sučelju."
 
 #: src/font-manager/preferences/Desktop.vala:42
 msgid "Document Font"
-msgstr "Font dokumenata"
+msgstr "Font dokumenta"
 
 #: src/font-manager/preferences/Desktop.vala:43
 msgid "Font used for reading documents."
@@ -1602,10 +1600,8 @@ msgid "Back"
 msgstr "Natrag"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:62
-#, fuzzy
-#| msgid "Supported Orthographies"
 msgid "Search Orthographies…"
-msgstr "Podržani sustavi znakova"
+msgstr "Pretraži sustave znakova …"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
@@ -1778,7 +1774,7 @@ msgstr "Argumenti"
 
 #: src/font-manager/ui/font-manager-user-data.ui:73
 msgid "Font Configuration"
-msgstr "Konfiguracija fonta"
+msgstr "Konfiguracija fontova"
 
 #: src/font-manager/ui/font-manager-user-data.ui:102
 msgid "Font Collections"
