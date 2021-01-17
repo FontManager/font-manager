@@ -32,6 +32,7 @@ HEADER = """
 #define __FONT_MANAGER_LICENSE_H__
 
 #include <glib.h>
+#include <glib/gi18n-lib.h>
 
 G_BEGIN_DECLS
 
@@ -62,6 +63,7 @@ G_END_DECLS
 
 """
 
+TRANSLATOR_COMMENT = """/* TRANSLATORS : This is the name of a software license. */"""
 
 def write_license_entry (tmp, val) :
     if val is None:
@@ -79,7 +81,8 @@ def get_license_entries () :
                 obj = json.load(raw)
                 for l in obj["License"]:
                     tmp.write("\n    {\n")
-                    write_license_entry(tmp, l["Name"])
+                    tmp.write('        {0}\n'.format(TRANSLATOR_COMMENT))
+                    tmp.write('        N_("{0}"),\n'.format(l["Name"]))
                     write_license_entry(tmp, l["URL"])
                     tmp.write("        {\n")
                     for k in l["Keywords"]:

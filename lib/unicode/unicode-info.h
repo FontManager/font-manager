@@ -55,7 +55,9 @@ G_BEGIN_DECLS
  * @UNICODE_VERSION_10_0:           Version 10.0
  * @UNICODE_VERSION_11_0:           Version 11.0
  * @UNICODE_VERSION_12_0:           Version 12.0
- * @UNICODE_VERSION_LATEST:         Version 12.0
+ * @UNICODE_VERSION_12_1:           Version 12.1
+ * @UNICODE_VERSION_13_0:           Version 13.0
+ * @UNICODE_VERSION_LATEST:         Version 13.0
  */
 typedef enum {
     UNICODE_VERSION_UNASSIGNED,

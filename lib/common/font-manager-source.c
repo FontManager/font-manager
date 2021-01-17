@@ -176,7 +176,7 @@ font_manager_source_class_init (FontManagerSourceClass *klass)
 
     /**
      * FontManagerSource::changed:
-     * @self:           #Source which changed
+     * @self:           #FontManagerSource which changed
      * @file:           #GFile
      * @other_file:     #GFile
      * @event_type:     #GFileMonitorEvent

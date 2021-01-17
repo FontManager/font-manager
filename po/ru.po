@@ -934,10 +934,8 @@ msgid "Aleut Cyrillic"
 msgstr "Алеутский, кириллица"
 
 #: src/font-manager/Orthographies.vala:34
-#, fuzzy
-#| msgid "Latin"
 msgid "Aleut Latin"
-msgstr "Латинский"
+msgstr "Алеутский, латиница"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
@@ -973,10 +971,8 @@ msgid "Basic Cyrillic"
 msgstr "Базовая кириллица"
 
 #: src/font-manager/Orthographies.vala:43
-#, fuzzy
-#| msgid "Greek"
 msgid "Basic Greek"
-msgstr "Греческий"
+msgstr "Базовый греческий"
 
 #: src/font-manager/Orthographies.vala:44
 msgid "Basic Latin"
@@ -1113,10 +1109,8 @@ msgid "Food and Drink"
 msgstr "Еда и напитки"
 
 #: src/font-manager/Orthographies.vala:84
-#, fuzzy
-#| msgid "Cyrillic"
 msgid "Full Cyrillic"
-msgstr "Кириллица"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:85
 msgid "Georgian"
@@ -1141,10 +1135,8 @@ msgid "Gurmukhi"
 msgstr "Гурмукхи"
 
 #: src/font-manager/Orthographies.vala:90
-#, fuzzy
-#| msgid "South Korean Hanja"
 msgid "Korean Hangul"
-msgstr "Южнокорейский Ханча"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hanunó'o"
@@ -1171,10 +1163,8 @@ msgid "Korean Jamo"
 msgstr "Корейский"
 
 #: src/font-manager/Orthographies.vala:97
-#, fuzzy
-#| msgid "Japanese"
 msgid "Javanese"
-msgstr "Японский"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:98
 msgid "Japanese Jinmeiyo"
@@ -1330,10 +1320,8 @@ msgid "Osmanya"
 msgstr "Исмания"
 
 #: src/font-manager/Orthographies.vala:140
-#, fuzzy
-#| msgid "Basic Latin"
 msgid "Pan African Latin"
-msgstr "Базовая латиница"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:141
 msgid "Pashto"
@@ -1409,10 +1397,8 @@ msgid "Tai Tham (Lanna)"
 msgstr "Ланна"
 
 #: src/font-manager/Orthographies.vala:159
-#, fuzzy
-#| msgid "Tai Le"
 msgid "Tai Viet"
-msgstr "Лы"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:160
 #: src/font-manager/web/google/Language.vala:55

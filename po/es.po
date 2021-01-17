@@ -917,8 +917,6 @@ msgid "Aleut Cyrillic"
 msgstr "Aleutiano, cirílico"
 
 #: src/font-manager/Orthographies.vala:34
-#, fuzzy
-#| msgid "Aleut Latin"
 msgid "Aleut Latin"
 msgstr "Aleutiano, latino"
 
@@ -956,8 +954,6 @@ msgid "Basic Cyrillic"
 msgstr "Cirílico básico"
 
 #: src/font-manager/Orthographies.vala:43
-#, fuzzy
-#| msgid "Basic Greek"
 msgid "Basic Greek"
 msgstr "Griego básico"
 
@@ -987,10 +983,8 @@ msgid "Unified Canadian Aboriginal Syllabics"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:50
-#, fuzzy
-#| msgid "%i Variations"
 msgid "Carian"
-msgstr "%i variaciones"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
@@ -1098,8 +1092,6 @@ msgid "Food and Drink"
 msgstr "Alimentos y bebidas"
 
 #: src/font-manager/Orthographies.vala:84
-#, fuzzy
-#| msgid "Full Cyrillic"
 msgid "Full Cyrillic"
 msgstr "Cirílico completo"
 
@@ -1158,26 +1150,20 @@ msgid "Javanese"
 msgstr "Javanés"
 
 #: src/font-manager/Orthographies.vala:98
-#, fuzzy
-#| msgid "Javanese"
 msgid "Japanese Jinmeiyo"
-msgstr "Javanés"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:99
-#, fuzzy
-#| msgid "Javanese"
 msgid "Japanese Joyo"
-msgstr "Javanés"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:100
 msgid "Kaithi"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:101
-#, fuzzy
-#| msgid "Javanese"
 msgid "Japanese Kana"
-msgstr "Javanés"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:102
 #: src/font-manager/web/google/Language.vala:46
@@ -1202,10 +1188,8 @@ msgid "Khmer"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:107
-#, fuzzy
-#| msgid "Javanese"
 msgid "Japanese Kokuji"
-msgstr "Javanés"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:108
 msgid "Lao"
@@ -1241,10 +1225,8 @@ msgid "Mathematical Greek"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:116
-#, fuzzy
-#| msgid "Basic Latin"
 msgid "Mathematical Latin"
-msgstr "Latino básico"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:117
 msgid "Mathematical Numerals"
@@ -1304,10 +1286,8 @@ msgid "Ol Chiki"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:136
-#, fuzzy
-#| msgid "Italic"
 msgid "Old Italic"
-msgstr "Itálica"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
@@ -1323,10 +1303,8 @@ msgid "Osmanya"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:140
-#, fuzzy
-#| msgid "Basic Latin"
 msgid "Pan African Latin"
-msgstr "Latino básico"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:141
 msgid "Pashto"
@@ -1458,10 +1436,8 @@ msgid "Vedic Extensions"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:172
-#, fuzzy
-#| msgid "Vendor"
 msgid "Venda"
-msgstr "Proveedor"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:173
 #: src/font-manager/web/google/Language.vala:59

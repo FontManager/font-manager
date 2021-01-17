@@ -899,10 +899,8 @@ msgid "Aleut Cyrillic"
 msgstr "Aleutcyrillisch"
 
 #: src/font-manager/Orthographies.vala:34
-#, fuzzy
-#| msgid "Latin"
 msgid "Aleut Latin"
-msgstr "Latijns"
+msgstr "Aleutlatijns"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
@@ -938,10 +936,8 @@ msgid "Basic Cyrillic"
 msgstr "Basiscyrillisch"
 
 #: src/font-manager/Orthographies.vala:43
-#, fuzzy
-#| msgid "Greek"
 msgid "Basic Greek"
-msgstr "Grieks"
+msgstr "Basisgrieks"
 
 #: src/font-manager/Orthographies.vala:44
 msgid "Basic Latin"
@@ -1078,10 +1074,8 @@ msgid "Food and Drink"
 msgstr "Eten en drinken"
 
 #: src/font-manager/Orthographies.vala:84
-#, fuzzy
-#| msgid "Cyrillic"
 msgid "Full Cyrillic"
-msgstr "Cyrillisch"
+msgstr "Volledig Cyrillisch"
 
 #: src/font-manager/Orthographies.vala:85
 msgid "Georgian"
@@ -1128,16 +1122,12 @@ msgid "Igbo Onwu"
 msgstr "Igbo Onwu"
 
 #: src/font-manager/Orthographies.vala:96
-#, fuzzy
-#| msgid "Korean"
 msgid "Korean Jamo"
-msgstr "Koreaans"
+msgstr "Koreaans (Jamo)"
 
 #: src/font-manager/Orthographies.vala:97
-#, fuzzy
-#| msgid "Japanese"
 msgid "Javanese"
-msgstr "Japans"
+msgstr "Javaans"
 
 #: src/font-manager/Orthographies.vala:98
 msgid "Japanese Jinmeiyo"

@@ -114,10 +114,13 @@ namespace FontManager {
         public static OrthographyListBoxRow from_item (Object item) {
             Orthography orthography = (Orthography) item;
             OrthographyListBoxRow row = new OrthographyListBoxRow();
-            row.C_name.set_text(orthography.name);
+            string name = dgettext(null, orthography.name);
+            row.C_name.set_text(name);
             bool have_native_name = orthography.native != null && orthography.native != "";
-            row.native_name.set_text(have_native_name ? orthography.native : orthography.name);
+            row.native_name.set_text(have_native_name ? orthography.native : name);
             row.coverage.set_value(((double) orthography.coverage / 100));
+            /* TRANSLATORS : Coverage refers to the amount of support the font provides for an
+               orthography. This will be displayed as "Coverage : XXX%" in the interface. */
             row.set_tooltip_text("%s : %0.f%%".printf(_("Coverage"), orthography.coverage));
             return row;
         }

@@ -26,7 +26,7 @@
  * @title: Alias Elements
  * @include: font-manager-alias.h
  *
- * #FontManagerAlias represents an &lt;alias&gt; element in a fontconfig
+ * #FontManagerAliasElement represents an &lt;alias&gt; element in a fontconfig
  * configuration file.
  *
  * Alias elements provide a shorthand notation for
