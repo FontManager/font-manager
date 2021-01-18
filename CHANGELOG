@@ -1,5 +1,6 @@
 0.8.3 -> 0.8.4
 
+- Fix a bug where most categories fail to load on first run.
 - Move to a more traditional sidebar layout - Issue #59
 - Make insensitive controls more consistent across different areas
 - Fix dbus method signature in file manager extensions

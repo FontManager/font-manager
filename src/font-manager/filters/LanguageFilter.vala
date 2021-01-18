@@ -133,7 +133,7 @@ namespace FontManager {
         Gtk.TreeModelFilter? search_filter = null;
 
         construct {
-            real_model = new Gtk.ListStore(2, typeof(string), typeof(string));
+            real_model = new Gtk.ListStore(2, typeof(string), typeof(string), typeof(string));
             search_filter = new Gtk.TreeModelFilter(real_model, null);
             search_filter.set_visible_func((m, i) => { return visible_func(m, i); });
             treeview.set_model(search_filter);
@@ -141,7 +141,11 @@ namespace FontManager {
             Gtk.TreeIter iter;
             foreach (var entry in Orthographies) {
                 real_model.append(out iter);
-                real_model.set(iter, 0, entry.name, 1, entry.native, -1);
+                string local = dgettext(null, entry.name);
+                /* Prefer the actual native name but fallback to localized name, if available. */
+                string native = entry.native != entry.name ? entry.native : local;
+                /* Store all three for use during filtering */
+                real_model.set(iter, 0, entry.name, 1, native, 2, local, -1);
             }
             var text = new Gtk.CellRendererText();
             text.ellipsize = Pango.EllipsizeMode.END;
@@ -233,7 +237,7 @@ namespace FontManager {
             bool search_match = true;
             if (text_length > 0) {
                 string needle = search_entry.get_text().casefold();
-                for (int i = 0; i <= 1; i++) {
+                for (int i = 0; i <= 2; i++) {
                     Value val;
                     model.get_value(iter, i, out val);
                     var haystack = (string) val;
