@@ -133,7 +133,7 @@ namespace FontManager {
         Gtk.TreeModelFilter? search_filter = null;
 
         construct {
-            real_model = new Gtk.ListStore(2, typeof(string), typeof(string), typeof(string));
+            real_model = new Gtk.ListStore(3, typeof(string), typeof(string), typeof(string));
             search_filter = new Gtk.TreeModelFilter(real_model, null);
             search_filter.set_visible_func((m, i) => { return visible_func(m, i); });
             treeview.set_model(search_filter);

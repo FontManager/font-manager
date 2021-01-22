@@ -356,7 +356,7 @@ namespace FontManager {
         void connect_signals () {
             get_selection().changed.connect(on_selection_changed);
             notify["model"].connect(() => {
-                if (model == null && update_in_progress)
+                if (model == null)
                     return;
                 else
                     _model_ = (CategoryModel) model;

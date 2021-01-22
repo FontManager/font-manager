@@ -149,9 +149,8 @@ font_manager_get_file_extension (const gchar *filepath)
     g_return_val_if_fail(filepath != NULL, NULL);
     g_return_val_if_fail(g_strrstr(filepath, ".") != NULL, NULL);
     gchar ** str_arr = g_strsplit(filepath, ".", -1);
-    gint arr_len = 0;
-    while (str_arr[arr_len])
-        arr_len++;
+    g_return_val_if_fail(str_arr != NULL, NULL);
+    guint arr_len = g_strv_length(str_arr);
     g_autofree gchar *_result = g_strdup(str_arr[arr_len - 1]);
     g_strfreev(str_arr);
     gchar *result = g_ascii_strdown(_result, -1);
