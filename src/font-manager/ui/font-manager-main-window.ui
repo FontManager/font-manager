@@ -1,42 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
   <requires lib="gtk+" version="3.22"/>
+  <requires lib="user-templates" version="0.0"/>
   <template class="FontManagerMainWindow" parent="GtkApplicationWindow">
-    <property name="can_focus">False</property>
+    <property name="can-focus">False</property>
     <signal name="delete-event" handler="on_delete_event" swapped="no"/>
     <signal name="realize" handler="on_realize" swapped="no"/>
     <child>
       <object class="GtkBox" id="main_box">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkStack" id="main_stack">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
+            <property name="can-focus">False</property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
-            <property name="transition_duration">720</property>
-            <property name="transition_type">under-up</property>
+            <property name="transition-duration">720</property>
+            <property name="transition-type">under-up</property>
             <child>
               <object class="GtkPaned" id="main_pane">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can-focus">True</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
                 <property name="position">275</property>
                 <child>
                   <object class="GtkPaned" id="lock_sidebar_position">
-                    <property name="width_request">1</property>
-                    <property name="height_request">-1</property>
+                    <property name="width-request">1</property>
+                    <property name="height-request">-1</property>
                     <property name="visible">True</property>
-                    <property name="can_focus">True</property>
+                    <property name="can-focus">True</property>
                     <child>
                       <object class="FontManagerSidebar" id="sidebar">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="transition_duration">420</property>
-                        <property name="transition_type">under-left</property>
+                        <property name="can-focus">False</property>
+                        <property name="transition-duration">420</property>
+                        <property name="transition-type">under-left</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -58,15 +59,15 @@
                 <child>
                   <object class="GtkStack" id="content_stack">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can-focus">False</property>
                     <property name="hexpand">True</property>
                     <property name="vexpand">True</property>
-                    <property name="transition_duration">420</property>
-                    <property name="transition_type">over-left</property>
+                    <property name="transition-duration">420</property>
+                    <property name="transition-type">over-left</property>
                     <child>
                       <object class="GtkPaned" id="content_pane">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
+                        <property name="can-focus">True</property>
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
                         <property name="orientation">vertical</property>
@@ -74,7 +75,7 @@
                         <child>
                           <object class="FontManagerFontListPane" id="fontlist_pane">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
+                            <property name="can-focus">False</property>
                             <property name="orientation">vertical</property>
                             <child>
                               <placeholder/>
@@ -88,8 +89,8 @@
                         <child>
                           <object class="GtkStack" id="view_stack">
                             <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="transition_type">crossfade</property>
+                            <property name="can-focus">False</property>
+                            <property name="transition-type">crossfade</property>
                             <child>
                               <object class="FontManagerPreviewPane" id="preview_pane">
                                 <property name="visible">True</property>
@@ -108,7 +109,7 @@
                             <child>
                               <object class="FontManagerCompare" id="compare">
                                 <property name="visible">True</property>
-                                <property name="can_focus">False</property>
+                                <property name="can-focus">False</property>
                                 <property name="hexpand">True</property>
                                 <property name="vexpand">True</property>
                                 <property name="orientation">vertical</property>
@@ -137,7 +138,7 @@
                     <child>
                       <object class="FontManagerBrowse" id="browse">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can-focus">False</property>
                         <property name="hexpand">True</property>
                         <property name="vexpand">True</property>
                         <property name="orientation">vertical</property>
@@ -166,14 +167,8 @@
             <child>
               <object class="FontManagerPreferences" id="preference_pane">
                 <property name="visible">True</property>
-                <property name="can_focus">True</property>
+                <property name="can-focus">True</property>
                 <property name="position">275</property>
-                <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <placeholder/>
-                </child>
               </object>
               <packing>
                 <property name="name">Preferences</property>
@@ -184,14 +179,14 @@
             <child>
               <object class="GtkOverlay" id="web_pane">
                 <property name="visible">True</property>
-                <property name="can_focus">False</property>
+                <property name="can-focus">False</property>
                 <child>
                   <placeholder/>
                 </child>
               </object>
               <packing>
                 <property name="name">Google Fonts</property>
-                <property name="title" translatable="yes">Google Fonts</property>
+                <property name="title">Google Fonts</property>
                 <property name="position">2</property>
               </packing>
             </child>
@@ -199,7 +194,7 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
-            <property name="pack_type">end</property>
+            <property name="pack-type">end</property>
             <property name="position">0</property>
           </packing>
         </child>
@@ -207,9 +202,6 @@
           <placeholder/>
         </child>
       </object>
-    </child>
-    <child type="titlebar">
-      <placeholder/>
     </child>
   </template>
 </interface>

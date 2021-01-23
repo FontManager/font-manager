@@ -215,6 +215,7 @@ namespace FontManager.GoogleFonts {
         void update_if_needed () {
             if (!_connected_) {
                 show_http_status(_("Network Offline"),
+                                 /* TRANSLATORS : Avoid translating "Google Fonts" in this message, if possible */
                                  _("An active internet connection is required to access the Google Fonts catalog"),
                                  null, "network-offline-symbolic");
             }

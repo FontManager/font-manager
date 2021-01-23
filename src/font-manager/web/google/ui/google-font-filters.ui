@@ -362,7 +362,7 @@
                         </child>
                         <child>
                           <object class="GtkRadioButton">
-                            <property name="label" translatable="yes">4+</property>
+                            <property name="label">4+</property>
                             <property name="name">4</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
@@ -381,7 +381,7 @@
                         </child>
                         <child>
                           <object class="GtkRadioButton">
-                            <property name="label" translatable="yes">8+</property>
+                            <property name="label">8+</property>
                             <property name="name">8</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
@@ -400,7 +400,7 @@
                         </child>
                         <child>
                           <object class="GtkRadioButton">
-                            <property name="label" translatable="yes">12+</property>
+                            <property name="label">12+</property>
                             <property name="name">12</property>
                             <property name="visible">True</property>
                             <property name="can-focus">True</property>
