@@ -24,11 +24,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-01-12 19:49-0500\n"
+"POT-Creation-Date: 2021-01-23 12:09-0500\n"
 "PO-Revision-Date: 2021-01-17 18:27+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
-"font-manager/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
+"manager/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,7 +132,7 @@ msgid "Font Properties"
 msgstr "Schrift-Eigenschaften"
 
 #: lib/common/font-manager-font-preview.c:85
-#: src/font-manager/ui/font-manager-main-window.ui:105
+#: src/font-manager/ui/font-manager-main-window.ui:106
 msgid "Preview"
 msgstr "Vorschau"
 
@@ -241,7 +241,7 @@ msgid "Dual Width"
 msgstr "Doppelte Breite"
 
 #: lib/common/font-manager-fontconfig.c:1048
-#: src/font-manager/web/google/ui/google-font-filters.ui:260
+#: src/font-manager/web/google/ui/google-font-filters.ui:261
 msgid "Monospace"
 msgstr "Dicktengleiche"
 
@@ -284,7 +284,7 @@ msgid "Full"
 msgstr "Voll"
 
 #: lib/common/font-manager-fontconfig.c:1181
-#: src/font-manager/ui/font-manager-main-window.ui:163
+#: src/font-manager/ui/font-manager-main-window.ui:164
 msgid "Default"
 msgstr "Voreingestellt"
 
@@ -727,7 +727,7 @@ msgid "Only fonts which include Panose information will be grouped here."
 msgstr "Hier werden nur Schriften mit Panose Informationen gruppiert."
 
 #: src/font-manager/Categories.vala:565
-#: src/font-manager/web/google/ui/google-font-filters.ui:346
+#: src/font-manager/web/google/ui/google-font-filters.ui:347
 msgid "Any"
 msgstr "Alle"
 
@@ -871,17 +871,17 @@ msgid "Show in Folder"
 msgstr "Im Ordner zeigen"
 
 #: src/font-manager/MainWindow.vala:54
-#: src/font-manager/ui/font-manager-main-window.ui:150
+#: src/font-manager/ui/font-manager-main-window.ui:151
 msgid "Browse"
 msgstr "Durchsehen"
 
 #: src/font-manager/MainWindow.vala:56
-#: src/font-manager/ui/font-manager-main-window.ui:121
+#: src/font-manager/ui/font-manager-main-window.ui:122
 msgid "Compare"
 msgstr "Vergleichen"
 
 #: src/font-manager/MainWindow.vala:58
-#: src/font-manager/ui/font-manager-main-window.ui:134
+#: src/font-manager/ui/font-manager-main-window.ui:135
 msgid "Manage"
 msgstr "Verwalten"
 
@@ -1514,7 +1514,7 @@ msgstr "Anwendungsbereich"
 
 #: src/font-manager/Orthography.vala:153
 #: src/font-manager/filters/LanguageFilter.vala:58
-#: src/font-manager/web/google/ui/google-font-filters.ui:503
+#: src/font-manager/web/google/ui/google-font-filters.ui:504
 msgid "Supported Orthographies"
 msgstr "Unterstützte Schriftzeichen"
 
@@ -1570,7 +1570,7 @@ msgid "Remove Fonts"
 msgstr "Schriften entfernen"
 
 #: src/font-manager/TitleBar.vala:275
-#: src/font-manager/ui/font-manager-main-window.ui:180
+#: src/font-manager/ui/font-manager-main-window.ui:175
 msgid "Preferences"
 msgstr "Einstellungen"
 
@@ -1798,7 +1798,7 @@ msgid "Substitutions"
 msgstr "Ersatz"
 
 #: src/font-manager/preferences/Preferences.vala:29
-#: src/font-manager/web/google/ui/google-font-filters.ui:204
+#: src/font-manager/web/google/ui/google-font-filters.ui:205
 msgid "Display"
 msgstr "Anzeige"
 
@@ -1922,7 +1922,8 @@ msgstr "Server-Fehler"
 msgid "Network Offline"
 msgstr "Netzwerk Offline"
 
-#: src/font-manager/web/google/GoogleFonts.vala:218
+#. TRANSLATORS : Avoid translating "Google Fonts" in this message, if possible
+#: src/font-manager/web/google/GoogleFonts.vala:219
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
@@ -2133,11 +2134,6 @@ msgstr "Mindest-Anwendungsbereich"
 msgid "90"
 msgstr "90"
 
-# Should this be translated anyway?
-#: src/font-manager/ui/font-manager-main-window.ui:194
-msgid "Google Fonts"
-msgstr "Google Fonts"
-
 #: src/font-manager/ui/font-manager-orthography-list.ui:86
 msgid "Clear selected filter"
 msgstr "Ausgewählten Filter leeren"
@@ -2275,7 +2271,7 @@ msgid "Flat"
 msgstr "Flach"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:16
-#: src/font-manager/web/google/ui/google-font-filters.ui:52
+#: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Name"
 msgstr "Name"
 
@@ -2307,54 +2303,55 @@ msgstr "Installierte Schriften"
 msgid "Custom Actions"
 msgstr "Benutzerbefehle"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:53
+#: src/font-manager/web/google/ui/google-font-filters.ui:54
 msgid "Newest"
 msgstr "Neuste"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:54
+#: src/font-manager/web/google/ui/google-font-filters.ui:55
 msgid "Most Popular"
 msgstr "Beliebteste"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:55
+#: src/font-manager/web/google/ui/google-font-filters.ui:56
 msgid "Trending"
 msgstr "Im Trend"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:69
+#: src/font-manager/web/google/ui/google-font-filters.ui:70
 msgid "Sort Order"
 msgstr "Anordnen"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:148
+#: src/font-manager/web/google/ui/google-font-filters.ui:149
 msgid "Serif"
 msgstr "Mit Serife"
 
 # Grotesk?
-#: src/font-manager/web/google/ui/google-font-filters.ui:176
+#: src/font-manager/web/google/ui/google-font-filters.ui:177
 msgid "Sans Serif"
 msgstr "Ohne Serife"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:232
+#: src/font-manager/web/google/ui/google-font-filters.ui:233
 msgid "Handwriting"
 msgstr "Handschrift"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:282
+#: src/font-manager/web/google/ui/google-font-filters.ui:283
 msgid "Category"
 msgstr "Kategorien"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:365
-msgid "4+"
-msgstr "4+"
-
-#: src/font-manager/web/google/ui/google-font-filters.ui:384
-msgid "8+"
-msgstr "8+"
-
-#: src/font-manager/web/google/ui/google-font-filters.ui:403
-msgid "12+"
-msgstr "12+"
-
-#: src/font-manager/web/google/ui/google-font-filters.ui:434
+#: src/font-manager/web/google/ui/google-font-filters.ui:435
 msgid "Variations"
 msgstr "Varianten"
+
+# Should this be translated anyway?
+#~ msgid "Google Fonts"
+#~ msgstr "Google Fonts"
+
+#~ msgid "4+"
+#~ msgstr "4+"
+
+#~ msgid "8+"
+#~ msgstr "8+"
+
+#~ msgid "12+"
+#~ msgstr "12+"
 
 #~ msgid "Filter based on language support"
 #~ msgstr "Filter, basierend auf Sprachunterstützung"

@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-01-12 19:49-0500\n"
+"POT-Creation-Date: 2021-01-23 12:09-0500\n"
 "PO-Revision-Date: 2021-01-23 17:14+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
@@ -128,7 +128,7 @@ msgid "Font Properties"
 msgstr "Svojstva fonta"
 
 #: lib/common/font-manager-font-preview.c:85
-#: src/font-manager/ui/font-manager-main-window.ui:105
+#: src/font-manager/ui/font-manager-main-window.ui:106
 msgid "Preview"
 msgstr "Pregled"
 
@@ -237,7 +237,7 @@ msgid "Dual Width"
 msgstr "Dvostruke širine"
 
 #: lib/common/font-manager-fontconfig.c:1048
-#: src/font-manager/web/google/ui/google-font-filters.ui:260
+#: src/font-manager/web/google/ui/google-font-filters.ui:261
 msgid "Monospace"
 msgstr "Jednometrični"
 
@@ -280,7 +280,7 @@ msgid "Full"
 msgstr "Potpuno"
 
 #: lib/common/font-manager-fontconfig.c:1181
-#: src/font-manager/ui/font-manager-main-window.ui:163
+#: src/font-manager/ui/font-manager-main-window.ui:164
 msgid "Default"
 msgstr "Standardno"
 
@@ -716,7 +716,7 @@ msgid "Only fonts which include Panose information will be grouped here."
 msgstr "Ovdje se grupiraju samo fontovi koji sadrže Panose podatke."
 
 #: src/font-manager/Categories.vala:565
-#: src/font-manager/web/google/ui/google-font-filters.ui:346
+#: src/font-manager/web/google/ui/google-font-filters.ui:347
 msgid "Any"
 msgstr "Bilo koji"
 
@@ -861,17 +861,17 @@ msgid "Show in Folder"
 msgstr "Prikaži u mapi"
 
 #: src/font-manager/MainWindow.vala:54
-#: src/font-manager/ui/font-manager-main-window.ui:150
+#: src/font-manager/ui/font-manager-main-window.ui:151
 msgid "Browse"
 msgstr "Pregledaj"
 
 #: src/font-manager/MainWindow.vala:56
-#: src/font-manager/ui/font-manager-main-window.ui:121
+#: src/font-manager/ui/font-manager-main-window.ui:122
 msgid "Compare"
 msgstr "Usporedi"
 
 #: src/font-manager/MainWindow.vala:58
-#: src/font-manager/ui/font-manager-main-window.ui:134
+#: src/font-manager/ui/font-manager-main-window.ui:135
 msgid "Manage"
 msgstr "Upravljaj"
 
@@ -1487,7 +1487,7 @@ msgstr "Pokrivenost"
 
 #: src/font-manager/Orthography.vala:153
 #: src/font-manager/filters/LanguageFilter.vala:58
-#: src/font-manager/web/google/ui/google-font-filters.ui:503
+#: src/font-manager/web/google/ui/google-font-filters.ui:504
 msgid "Supported Orthographies"
 msgstr "Podržani sustavi znakova"
 
@@ -1543,7 +1543,7 @@ msgid "Remove Fonts"
 msgstr "Ukloni fontove"
 
 #: src/font-manager/TitleBar.vala:275
-#: src/font-manager/ui/font-manager-main-window.ui:180
+#: src/font-manager/ui/font-manager-main-window.ui:175
 msgid "Preferences"
 msgstr "Postavke"
 
@@ -1776,7 +1776,7 @@ msgid "Substitutions"
 msgstr "Zamjene"
 
 #: src/font-manager/preferences/Preferences.vala:29
-#: src/font-manager/web/google/ui/google-font-filters.ui:204
+#: src/font-manager/web/google/ui/google-font-filters.ui:205
 msgid "Display"
 msgstr "Prikaz"
 
@@ -1910,7 +1910,8 @@ msgstr "Greška poslužitelja"
 msgid "Network Offline"
 msgstr "Mreža isključena"
 
-#: src/font-manager/web/google/GoogleFonts.vala:218
+#. TRANSLATORS : Avoid translating "Google Fonts" in this message, if possible
+#: src/font-manager/web/google/GoogleFonts.vala:219
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
@@ -2120,10 +2121,6 @@ msgstr "Minimalna pokrivenost"
 msgid "90"
 msgstr "90"
 
-#: src/font-manager/ui/font-manager-main-window.ui:194
-msgid "Google Fonts"
-msgstr "Google fontovi"
-
 #: src/font-manager/ui/font-manager-orthography-list.ui:86
 msgid "Clear selected filter"
 msgstr "Isprazni odabrani filtar"
@@ -2261,7 +2258,7 @@ msgid "Flat"
 msgstr "Plošno"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:16
-#: src/font-manager/web/google/ui/google-font-filters.ui:52
+#: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Name"
 msgstr "Ime"
 
@@ -2293,53 +2290,53 @@ msgstr "Intalirani fontovi"
 msgid "Custom Actions"
 msgstr "Prilagođene radnje"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:53
+#: src/font-manager/web/google/ui/google-font-filters.ui:54
 msgid "Newest"
 msgstr "Najnoviji"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:54
+#: src/font-manager/web/google/ui/google-font-filters.ui:55
 msgid "Most Popular"
 msgstr "Najpopularniji"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:55
+#: src/font-manager/web/google/ui/google-font-filters.ui:56
 msgid "Trending"
 msgstr "U trendu"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:69
+#: src/font-manager/web/google/ui/google-font-filters.ui:70
 msgid "Sort Order"
 msgstr "Redoslijed"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:148
+#: src/font-manager/web/google/ui/google-font-filters.ui:149
 msgid "Serif"
 msgstr "Serifni"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:176
+#: src/font-manager/web/google/ui/google-font-filters.ui:177
 msgid "Sans Serif"
 msgstr "Bezserifni"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:232
+#: src/font-manager/web/google/ui/google-font-filters.ui:233
 msgid "Handwriting"
 msgstr "Rukopisni"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:282
+#: src/font-manager/web/google/ui/google-font-filters.ui:283
 msgid "Category"
 msgstr "Kategorija"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:365
-msgid "4+"
-msgstr "4+"
-
-#: src/font-manager/web/google/ui/google-font-filters.ui:384
-msgid "8+"
-msgstr "8+"
-
-#: src/font-manager/web/google/ui/google-font-filters.ui:403
-msgid "12+"
-msgstr "12+"
-
-#: src/font-manager/web/google/ui/google-font-filters.ui:434
+#: src/font-manager/web/google/ui/google-font-filters.ui:435
 msgid "Variations"
 msgstr "Varijante"
+
+#~ msgid "Google Fonts"
+#~ msgstr "Google fontovi"
+
+#~ msgid "4+"
+#~ msgstr "4+"
+
+#~ msgid "8+"
+#~ msgstr "8+"
+
+#~ msgid "12+"
+#~ msgstr "12+"
 
 #~ msgid "Filter based on language support"
 #~ msgstr "Filtar koji se temelji na jezičnoj podršci"

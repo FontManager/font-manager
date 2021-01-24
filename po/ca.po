@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-01-17 13:22-0500\n"
+"POT-Creation-Date: 2021-01-23 12:09-0500\n"
 "PO-Revision-Date: 2019-10-03 02:39-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Catalan\n"
@@ -98,7 +98,7 @@ msgid "Font Properties"
 msgstr ""
 
 #: lib/common/font-manager-font-preview.c:85
-#: src/font-manager/ui/font-manager-main-window.ui:105
+#: src/font-manager/ui/font-manager-main-window.ui:106
 msgid "Preview"
 msgstr "Vista prèvia"
 
@@ -207,7 +207,7 @@ msgid "Dual Width"
 msgstr "Amplada doble"
 
 #: lib/common/font-manager-fontconfig.c:1048
-#: src/font-manager/web/google/ui/google-font-filters.ui:260
+#: src/font-manager/web/google/ui/google-font-filters.ui:261
 msgid "Monospace"
 msgstr "Monoespaiada"
 
@@ -250,7 +250,7 @@ msgid "Full"
 msgstr "Complet"
 
 #: lib/common/font-manager-fontconfig.c:1181
-#: src/font-manager/ui/font-manager-main-window.ui:163
+#: src/font-manager/ui/font-manager-main-window.ui:164
 msgid "Default"
 msgstr "Predeterminat"
 
@@ -673,7 +673,7 @@ msgstr ""
 "Només s'inclouen aquí els tipus de lletra que inclouen informació PANOSE"
 
 #: src/font-manager/Categories.vala:565
-#: src/font-manager/web/google/ui/google-font-filters.ui:346
+#: src/font-manager/web/google/ui/google-font-filters.ui:347
 msgid "Any"
 msgstr "Cap"
 
@@ -810,17 +810,17 @@ msgid "Show in Folder"
 msgstr ""
 
 #: src/font-manager/MainWindow.vala:54
-#: src/font-manager/ui/font-manager-main-window.ui:150
+#: src/font-manager/ui/font-manager-main-window.ui:151
 msgid "Browse"
 msgstr "Examina"
 
 #: src/font-manager/MainWindow.vala:56
-#: src/font-manager/ui/font-manager-main-window.ui:121
+#: src/font-manager/ui/font-manager-main-window.ui:122
 msgid "Compare"
 msgstr "Compara"
 
 #: src/font-manager/MainWindow.vala:58
-#: src/font-manager/ui/font-manager-main-window.ui:134
+#: src/font-manager/ui/font-manager-main-window.ui:135
 msgid "Manage"
 msgstr "Gestiona"
 
@@ -1423,7 +1423,7 @@ msgstr ""
 
 #: src/font-manager/Orthography.vala:153
 #: src/font-manager/filters/LanguageFilter.vala:58
-#: src/font-manager/web/google/ui/google-font-filters.ui:503
+#: src/font-manager/web/google/ui/google-font-filters.ui:504
 msgid "Supported Orthographies"
 msgstr ""
 
@@ -1479,7 +1479,7 @@ msgid "Remove Fonts"
 msgstr "Desinstal·la tipus de lletra"
 
 #: src/font-manager/TitleBar.vala:275
-#: src/font-manager/ui/font-manager-main-window.ui:180
+#: src/font-manager/ui/font-manager-main-window.ui:175
 msgid "Preferences"
 msgstr "Preferències"
 
@@ -1701,7 +1701,7 @@ msgid "Substitutions"
 msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:29
-#: src/font-manager/web/google/ui/google-font-filters.ui:204
+#: src/font-manager/web/google/ui/google-font-filters.ui:205
 msgid "Display"
 msgstr "Visualització"
 
@@ -1822,7 +1822,8 @@ msgstr ""
 msgid "Network Offline"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:218
+#. TRANSLATORS : Avoid translating "Google Fonts" in this message, if possible
+#: src/font-manager/web/google/GoogleFonts.vala:219
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
@@ -2045,12 +2046,6 @@ msgstr ""
 msgid "90"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-main-window.ui:194
-#, fuzzy
-#| msgid "Remove Fonts"
-msgid "Google Fonts"
-msgstr "Desinstal·la tipus de lletra"
-
 #: src/font-manager/ui/font-manager-orthography-list.ui:86
 msgid "Clear selected filter"
 msgstr ""
@@ -2196,7 +2191,7 @@ msgid "Flat"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:16
-#: src/font-manager/web/google/ui/google-font-filters.ui:52
+#: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Name"
 msgstr ""
 
@@ -2228,54 +2223,47 @@ msgstr ""
 msgid "Custom Actions"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:53
+#: src/font-manager/web/google/ui/google-font-filters.ui:54
 msgid "Newest"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:54
+#: src/font-manager/web/google/ui/google-font-filters.ui:55
 msgid "Most Popular"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:55
+#: src/font-manager/web/google/ui/google-font-filters.ui:56
 msgid "Trending"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:69
+#: src/font-manager/web/google/ui/google-font-filters.ui:70
 msgid "Sort Order"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:148
+#: src/font-manager/web/google/ui/google-font-filters.ui:149
 msgid "Serif"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:176
+#: src/font-manager/web/google/ui/google-font-filters.ui:177
 msgid "Sans Serif"
 msgstr ""
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:232
+#: src/font-manager/web/google/ui/google-font-filters.ui:233
 #, fuzzy
 #| msgid "Hinting"
 msgid "Handwriting"
 msgstr "Millora del contorn"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:282
+#: src/font-manager/web/google/ui/google-font-filters.ui:283
 #, fuzzy
 #| msgid "Categories"
 msgid "Category"
 msgstr "Categories"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:365
-msgid "4+"
-msgstr ""
-
-#: src/font-manager/web/google/ui/google-font-filters.ui:384
-msgid "8+"
-msgstr ""
-
-#: src/font-manager/web/google/ui/google-font-filters.ui:403
-msgid "12+"
-msgstr ""
-
-#: src/font-manager/web/google/ui/google-font-filters.ui:434
+#: src/font-manager/web/google/ui/google-font-filters.ui:435
 msgid "Variations"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Remove Fonts"
+#~ msgid "Google Fonts"
+#~ msgstr "Desinstal·la tipus de lletra"
