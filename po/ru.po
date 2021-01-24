@@ -17,17 +17,12 @@
 #
 # Author:
 # Jerry Casiano <JerryCasiano@gmail.com>
-# Jerry Casiano <JerryCasiano@gmail.com>, 2017. #zanata, 2021.
-# Alexandre Prokoudine <alexandre.prokoudine@gmail.com>, 2019. #zanata
-# Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata, 2021.
-# Andrey F. <firsan777@mail.ru>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-23 12:09-0500\n"
-"PO-Revision-Date: 2021-01-13 00:50+0000\n"
-"Last-Translator: Jerry Casiano <JerryCasiano@gmail.com>\n"
+"PO-Revision-Date: 2021-01-24 23:11+0300\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/ru/>\n"
 "Language: ru\n"
@@ -36,7 +31,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.1-dev\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -339,7 +334,7 @@ msgstr "Устанавливаемое встраивание"
 #. TRANSLATORS : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:704
 msgid "Unknown Vendor"
-msgstr "Неизвестный продавец"
+msgstr "Неизвестный распространитель"
 
 #: lib/common/font-manager-license-pane.c:185
 msgid "File does not contain license information."
@@ -363,7 +358,7 @@ msgstr "Выравнивание по правому краю"
 
 #: lib/common/font-manager-preview-controls.c:311
 msgid "Edit preview text"
-msgstr "Изменить текст предварительного просмотра"
+msgstr "Редактировать текст предварительного просмотра"
 
 #: lib/common/font-manager-preview-controls.c:312
 msgid "Undo changes"
@@ -428,7 +423,7 @@ msgstr "Версия"
 #: lib/common/font-manager-properties-pane.c:88
 #: src/font-manager/Categories.vala:541
 msgid "Vendor"
-msgstr "Разработчик"
+msgstr "Распространитель"
 
 #: lib/common/font-manager-properties-pane.c:89
 msgid "FileType"
@@ -694,7 +689,7 @@ msgstr "Сгруппированные по лицензии"
 
 #: src/font-manager/Categories.vala:541
 msgid "Grouped by vendor"
-msgstr "Сгруппированные по разработчику"
+msgstr "Сгруппированные по распространителю"
 
 #: src/font-manager/Categories.vala:542
 msgid "Filetype"
@@ -722,7 +717,7 @@ msgstr "Шрифты, доступные всем пользователям"
 
 #: src/font-manager/Categories.vala:564
 msgid "Family Kind"
-msgstr "Семейство"
+msgstr "Тип семейства"
 
 #: src/font-manager/Categories.vala:564
 msgid "Only fonts which include Panose information will be grouped here."
@@ -731,7 +726,7 @@ msgstr "Здесь сгруппированы только шрифты, име�
 #: src/font-manager/Categories.vala:565
 #: src/font-manager/web/google/ui/google-font-filters.ui:347
 msgid "Any"
-msgstr "Все"
+msgstr "Любой"
 
 #: src/font-manager/Categories.vala:565
 msgid "No Fit"
@@ -1110,7 +1105,7 @@ msgstr "Еда и напитки"
 
 #: src/font-manager/Orthographies.vala:84
 msgid "Full Cyrillic"
-msgstr ""
+msgstr "Полная кириллица"
 
 #: src/font-manager/Orthographies.vala:85
 msgid "Georgian"
@@ -1136,7 +1131,7 @@ msgstr "Гурмукхи"
 
 #: src/font-manager/Orthographies.vala:90
 msgid "Korean Hangul"
-msgstr ""
+msgstr "Корейский Хангыль"
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hanunó'o"
@@ -1157,14 +1152,12 @@ msgid "Igbo Onwu"
 msgstr "Игбо"
 
 #: src/font-manager/Orthographies.vala:96
-#, fuzzy
-#| msgid "Korean"
 msgid "Korean Jamo"
 msgstr "Корейский"
 
 #: src/font-manager/Orthographies.vala:97
 msgid "Javanese"
-msgstr ""
+msgstr "Яванский"
 
 #: src/font-manager/Orthographies.vala:98
 msgid "Japanese Jinmeiyo"
@@ -1319,9 +1312,10 @@ msgstr "Орийя"
 msgid "Osmanya"
 msgstr "Исмания"
 
+# Пан-африканский?
 #: src/font-manager/Orthographies.vala:140
 msgid "Pan African Latin"
-msgstr ""
+msgstr "Африканский латинский"
 
 #: src/font-manager/Orthographies.vala:141
 msgid "Pashto"
@@ -1341,7 +1335,7 @@ msgstr "Полинезийский"
 
 #: src/font-manager/Orthographies.vala:145
 msgid "Polytonic Greek"
-msgstr ""
+msgstr "Политонический греческий"
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Rejang"
@@ -1398,7 +1392,7 @@ msgstr "Ланна"
 
 #: src/font-manager/Orthographies.vala:159
 msgid "Tai Viet"
-msgstr ""
+msgstr "Тайский"
 
 #: src/font-manager/Orthographies.vala:160
 #: src/font-manager/web/google/Language.vala:55
@@ -1567,10 +1561,8 @@ msgid "Fonts which have been disabled"
 msgstr "Отключенные шрифты"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
-#, fuzzy
-#| msgid "Supported Orthographies"
 msgid "Filter based on supported orthographies"
-msgstr "Поддерживаемая орфография"
+msgstr "Фильтр по поддерживаемой орфографии"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
@@ -2107,10 +2099,8 @@ msgid "Back"
 msgstr "Назад"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:62
-#, fuzzy
-#| msgid "Supported Orthographies"
 msgid "Search Orthographies…"
-msgstr "Поддерживаемая орфография"
+msgstr "Искать орфографии…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
@@ -2328,31 +2318,3 @@ msgstr "Категории"
 #: src/font-manager/web/google/ui/google-font-filters.ui:435
 msgid "Variations"
 msgstr "Вариации"
-
-# Should this be translated anyway?
-#~ msgid "Google Fonts"
-#~ msgstr "Шрифты Google"
-
-#~ msgid "Filter based on language support"
-#~ msgstr "Фильтр по языковой поддержке"
-
-#~ msgid "Language"
-#~ msgstr "Язык"
-
-#~ msgid "Search Languages…"
-#~ msgstr "Поиск по языкам…"
-
-#~ msgid "Language Support"
-#~ msgstr "Поддержка языков"
-
-#~ msgid "Filter Settings"
-#~ msgstr "Настройки фильтра"
-
-#~ msgid "Some date and time"
-#~ msgstr "Дата и время"
-
-#~ msgid "%i Variations"
-#~ msgstr "%i вариант "
-
-#~ msgid "%i Language Samples Available"
-#~ msgstr "Доступен %i языковой образец "
