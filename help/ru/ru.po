@@ -1,11 +1,10 @@
-# Jerry Casiano <JerryCasiano@gmail.com>, 2017. #zanata
-# Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
+# Author:
+# Jerry Casiano <JerryCasiano@gmail.com>
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "POT-Creation-Date: 2021-01-23 12:09-0500\n"
-"PO-Revision-Date: 2021-01-10 12:32+0000\n"
-"Last-Translator: Andrey F. <firsan777@mail.ru>\n"
+"PO-Revision-Date: 2021-01-24 23:18+0300\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/ru/>\n"
 "Language: ru\n"
@@ -14,12 +13,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 4.4.1-dev\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr ""
+msgstr "PF4Public"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
@@ -81,6 +80,8 @@ msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
 msgstr ""
+"Отсортировано по типам семейств — требует наличия информации Panose в "
+"метаданных шрифта."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -95,32 +96,32 @@ msgstr "Сгруппированные по ширине."
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr "Вес"
+msgstr "Насыщенность"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr "Сгруппированные по весу."
+msgstr "Сгруппированные по насыщенности."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr "Скос"
+msgstr "Наклон"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr "Сгруппированные по скосу."
+msgstr "Сгруппированные по наклону."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr "Отступ"
+msgstr "Пропорции"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr "Сгруппированные по отступу."
+msgstr "Сгруппированные по пропорциям."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
@@ -133,11 +134,13 @@ msgid ""
 "Sorted by font license — Requires license information to be present in font "
 "metadata."
 msgstr ""
+"Отсортировано по лицензии — требует наличия информации Panose в метаданных "
+"шрифта."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr "Поставщик"
+msgstr "Распространитель"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -145,6 +148,8 @@ msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
 msgstr ""
+"Отсортировано по распространителю — требует наличия информации Panose в "
+"метаданных шрифта."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
@@ -280,10 +285,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:37
-#, fuzzy
-#| msgid ""
-#| "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
-#| "gui> at the top of the Collection view."
 msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
@@ -329,10 +330,6 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:67
-#, fuzzy
-#| msgid ""
-#| "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
-#| "> </gui> at the top of the Collection view."
 msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
@@ -1112,7 +1109,7 @@ msgstr "Введите имя семейства для подстановки �
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:62
 msgid "Repeat steps 3 – 6 as needed."
-msgstr ""
+msgstr "Повторите шаги 3 – 6 при необходимости."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:67 C/font-manager-substitutions.page:105
@@ -1279,16 +1276,3 @@ msgstr "Знакомство с вашими шрифтами"
 #: C/index.page:45
 msgid "Advanced Features"
 msgstr "Продвинутые функции"
-
-#~ msgid "Select the Collection view at the bottom of the sidebar."
-#~ msgstr "Выберите вид «Коллекции» в нижней части боковой панели."
-
-#~ msgid "Switch back to Category view."
-#~ msgstr "Переключитесь обратно к виду «Категории»."
-
-#~ msgid ""
-#~ "Note : The sidebar will automatically switch to collections from "
-#~ "categories while dragging fonts."
-#~ msgstr ""
-#~ "Примечание : Боковая панель автоматически переключится из категорий к "
-#~ "коллекциям при перетаскивании шрифтов."
