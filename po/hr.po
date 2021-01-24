@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-12 19:49-0500\n"
-"PO-Revision-Date: 2021-01-17 18:27+0000\n"
+"PO-Revision-Date: 2021-01-23 17:14+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hr/>\n"
@@ -911,23 +911,19 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrikaanski"
 
 #: src/font-manager/Orthographies.vala:32
 msgid "Ahom"
-msgstr ""
+msgstr "Ahom"
 
 #: src/font-manager/Orthographies.vala:33
-#, fuzzy
-#| msgid "Cyrillic"
 msgid "Aleut Cyrillic"
-msgstr "Ćirilica"
+msgstr "Aleut ćirilica"
 
 #: src/font-manager/Orthographies.vala:34
-#, fuzzy
-#| msgid "Latin"
 msgid "Aleut Latin"
-msgstr "Latinica"
+msgstr "Aleut latinica"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
@@ -936,51 +932,43 @@ msgstr "Arapski"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
-msgstr ""
+msgstr "Arhaična grčka slova"
 
 #: src/font-manager/Orthographies.vala:37
 msgid "Armenian"
-msgstr ""
+msgstr "Armenijski"
 
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
-msgstr ""
+msgstr "Astronomija"
 
 #: src/font-manager/Orthographies.vala:39
-#, fuzzy
-#| msgid "Japanese"
 msgid "Balinese"
-msgstr "Japanski"
+msgstr "Balijski"
 
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
-msgstr ""
+msgstr "Baltički"
 
 #: src/font-manager/Orthographies.vala:41
 msgid "Bamum"
-msgstr ""
+msgstr "Bamum"
 
 #: src/font-manager/Orthographies.vala:42
-#, fuzzy
-#| msgid "Cyrillic"
 msgid "Basic Cyrillic"
-msgstr "Ćirilica"
+msgstr "Osnovna ćirilica"
 
 #: src/font-manager/Orthographies.vala:43
-#, fuzzy
-#| msgid "Greek"
 msgid "Basic Greek"
-msgstr "Grčki"
+msgstr "Osnovno grčko pismo"
 
 #: src/font-manager/Orthographies.vala:44
-#, fuzzy
-#| msgid "Latin"
 msgid "Basic Latin"
-msgstr "Latinica"
+msgstr "Osnovna latinica"
 
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
-msgstr ""
+msgstr "Surat Batak"
 
 #: src/font-manager/Orthographies.vala:46
 #: src/font-manager/web/google/Language.vala:33
@@ -989,45 +977,43 @@ msgstr "Bengalski"
 
 #: src/font-manager/Orthographies.vala:47
 msgid "Brāhmī"
-msgstr ""
+msgstr "Bramski"
 
 #: src/font-manager/Orthographies.vala:48
 msgid "Buginese"
-msgstr ""
+msgstr "Bugijski"
 
 #: src/font-manager/Orthographies.vala:49
 msgid "Unified Canadian Aboriginal Syllabics"
-msgstr ""
+msgstr "Sjedinjeni kanadski aboridžinski slogovi"
 
 #: src/font-manager/Orthographies.vala:50
-#, fuzzy
-#| msgid "Variations"
 msgid "Carian"
-msgstr "Varijante"
+msgstr "Karijanski"
 
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
-msgstr ""
+msgstr "Katalonski"
 
 #: src/font-manager/Orthographies.vala:52
 msgid "Central European"
-msgstr ""
+msgstr "Srednjoeuropski"
 
 #: src/font-manager/Orthographies.vala:53
 msgid "Chakma"
-msgstr ""
+msgstr "Čakmanski"
 
 #: src/font-manager/Orthographies.vala:54
 msgid "Cham"
-msgstr ""
+msgstr "Čamski"
 
 #: src/font-manager/Orthographies.vala:55
 msgid "Cherokee"
-msgstr ""
+msgstr "Čerokijski"
 
 #: src/font-manager/Orthographies.vala:56
 msgid "Chess Symbols"
-msgstr ""
+msgstr "Šahovski simboli"
 
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
@@ -1069,17 +1055,15 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:70
 msgid "Coptic"
-msgstr ""
+msgstr "Koptski"
 
 #: src/font-manager/Orthographies.vala:71
-#, fuzzy
-#| msgid "Preferences"
 msgid "Currencies"
-msgstr "Postavke"
+msgstr "Valute"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
-msgstr ""
+msgstr "Ciparski slogovi"
 
 #: src/font-manager/Orthographies.vala:73
 #: src/font-manager/web/google/Language.vala:39
@@ -1088,29 +1072,29 @@ msgstr "Devanagari"
 
 #: src/font-manager/Orthographies.vala:74
 msgid "Dutch"
-msgstr ""
+msgstr "Nizozemski"
 
 #: src/font-manager/Orthographies.vala:75
 msgid "Egyptian Hieroglyphs"
-msgstr ""
+msgstr "Egipatski hijeroglifi"
 
 #: src/font-manager/Orthographies.vala:76
 msgid "Emoticons"
-msgstr ""
+msgstr "Emotikoni"
 
 #: src/font-manager/Orthographies.vala:77
 msgid "Ethiopic"
-msgstr ""
+msgstr "Etiopski"
 
 #. This "orthography" contains only the euro symbol...
 #. { "Euro", "Euro" },
 #: src/font-manager/Orthographies.vala:82
 msgid "Farsi"
-msgstr ""
+msgstr "Farsi"
 
 #: src/font-manager/Orthographies.vala:83
 msgid "Food and Drink"
-msgstr ""
+msgstr "Hrana i piće"
 
 #: src/font-manager/Orthographies.vala:84
 #, fuzzy
@@ -1124,11 +1108,11 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:86
 msgid "Glagolitic"
-msgstr ""
+msgstr "Glagoljica"
 
 #: src/font-manager/Orthographies.vala:87
 msgid "Gothic"
-msgstr ""
+msgstr "Gotica"
 
 #: src/font-manager/Orthographies.vala:88
 #: src/font-manager/web/google/Language.vala:42
