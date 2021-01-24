@@ -403,7 +403,7 @@ namespace FontManager {
         public PinnedComparisonModel? model { get; set; default = null; }
 
         public override void constructed () {
-            /* TRANSLATORS : Please preserve the newline character somewhere in the middle of the string */
+            /* Translators : Please preserve the newline character somewhere in the middle of the string */
             var place_holder_text = _("Save the current comparison\nby clicking the + button");
             var place_holder = new PlaceHolder(null, null, place_holder_text, "view-pin-symbolic");
             list.set_placeholder(place_holder);

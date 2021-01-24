@@ -21,7 +21,7 @@ FontManagerLicenseData[] =
 {
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("Aladdin Free Public License"),
         "http://pages.cs.wisc.edu/~ghost/doc/AFPL/6.01/Public.htm",
         {
@@ -31,7 +31,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("Apache 2.0"),
         "http://www.apache.org/licenses/LICENSE-2.0",
         {
@@ -43,7 +43,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("Arphic Public License"),
         "http://ftp.gnu.org/gnu/non-gnu/chinese-fonts-truetype/LICENSE",
         {
@@ -56,7 +56,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("Bitstream Vera License"),
         "http://www-old.gnome.org/fonts/#Final_Bitstream_Vera_Fonts",
         {
@@ -68,7 +68,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("CC-BY-SA"),
         "http://creativecommons.org/licenses/by-sa/3.0/",
         {
@@ -85,7 +85,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("CC-BY"),
         "http://creativecommons.org/licenses/by/3.0/",
         {
@@ -98,7 +98,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("CC-0"),
         "http://creativecommons.org/publicdomain/zero/1.0/",
         {
@@ -115,7 +115,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("Freeware"),
         "http://en.wikipedia.org/wiki/Freeware",
         {
@@ -126,7 +126,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("GPL with font exception"),
         "http://www.gnu.org/copyleft/gpl.html",
         {
@@ -140,7 +140,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("GNU General Public License"),
         "http://www.gnu.org/copyleft/gpl.html",
         {
@@ -161,7 +161,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("GNU Lesser General Public License"),
         "http://www.gnu.org/licenses/lgpl.html",
         {
@@ -173,7 +173,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("GUST Font License"),
         "http://tug.org/fonts/licenses/GUST-FONT-LICENSE.txt",
         {
@@ -183,7 +183,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("IPA"),
         "http://opensource.org/licenses/ipafont.html",
         {
@@ -196,7 +196,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("M+ Fonts Project License"),
         "http://mplus-fonts.sourceforge.jp/webfonts/#license",
         {
@@ -206,7 +206,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("MIT License"),
         "http://www.opensource.org/licenses/mit-license.php",
         {
@@ -217,7 +217,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("Magenta Open License"),
         "http://www.ellak.gr/pub/fonts/mgopen/index.en.html#license",
         {
@@ -227,7 +227,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("Monotype Imaging EULA"),
         "http://www.fonts.com/info/legal/eula/monotype-imaging",
         {
@@ -239,7 +239,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("SIL Open Font License"),
         "http://scripts.sil.org/OFL",
         {
@@ -258,7 +258,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("Public Domain (not a license)"),
         "http://en.wikipedia.org/wiki/Public_domain",
         {
@@ -269,7 +269,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("STIX Font License"),
         "http://www.aip.org/stixfonts/user_license.html",
         {
@@ -280,7 +280,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("Ubuntu Font License 1.0"),
         "http://font.ubuntu.com/ufl/ubuntu-font-licence-1.0.txt",
         {
@@ -291,7 +291,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("License to TeX Users Group for the Utopia Typeface"),
         "http://tug.org/fonts/utopia/LICENSE-utopia.txt",
         {
@@ -301,7 +301,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("XFree86 License"),
         "http://www.xfree86.org/legal/licenses.html",
         {
@@ -312,7 +312,7 @@ FontManagerLicenseData[] =
     },
 
     {
-        /* TRANSLATORS : This is the name of a software license. */
+        /* Translators : This is the name of a software license. */
         N_("Unknown License"),
         NULL,
         {

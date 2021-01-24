@@ -700,7 +700,7 @@ static void
 ensure_vendor (JsonObject *json_obj, const FT_Face face)
 {
     if (!json_object_has_member(json_obj, "vendor")) {
-        /* TRANSLATORS : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid */
+        /* Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid */
         json_object_set_string_member(json_obj, "vendor", N_("Unknown Vendor"));
         /* XXX : Is this even worth checking for? */
         BDF_PropertyRec prop;

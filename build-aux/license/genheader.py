@@ -63,7 +63,7 @@ G_END_DECLS
 
 """
 
-TRANSLATOR_COMMENT = """/* TRANSLATORS : This is the name of a software license. */"""
+TRANSLATOR_COMMENT = """/* Translators : This is the name of a software license. */"""
 
 def write_license_entry (tmp, val) :
     if val is None:

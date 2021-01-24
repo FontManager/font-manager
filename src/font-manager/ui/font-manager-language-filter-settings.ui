@@ -169,7 +169,7 @@
             <property name="halign">start</property>
             <property name="hexpand">True</property>
             <property name="max-length">2</property>
-            <property name="text" translatable="yes">90</property>
+            <property name="text">90</property>
             <property name="input-purpose">digits</property>
             <property name="adjustment">coverage_adjustment</property>
             <property name="value">90</property>
