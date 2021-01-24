@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-23 12:09-0500\n"
-"PO-Revision-Date: 2021-01-23 17:14+0000\n"
+"PO-Revision-Date: 2021-01-24 23:57+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hr/>\n"
@@ -919,11 +919,11 @@ msgstr "Ahom"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Aleut Cyrillic"
-msgstr "Aleut ćirilica"
+msgstr "Aleutski ćirilica"
 
 #: src/font-manager/Orthographies.vala:34
 msgid "Aleut Latin"
-msgstr "Aleut latinica"
+msgstr "Aleutski latinica"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
@@ -1018,40 +1018,40 @@ msgstr "Šahovski simboli"
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
 msgid "CJK Unified"
-msgstr ""
+msgstr "CJK ujedinjeni"
 
 #: src/font-manager/Orthographies.vala:60
 msgid "CJK Unified Extension A"
-msgstr ""
+msgstr "CJK ujedinjeni, proširenje A"
 
 #: src/font-manager/Orthographies.vala:61
 msgid "CJK Unified Extension B"
-msgstr ""
+msgstr "CJK ujedinjeni, proširenje B"
 
 #: src/font-manager/Orthographies.vala:62
 msgid "CJK Unified Extension C"
-msgstr ""
+msgstr "CJK ujedinjeni, proširenje C"
 
 #: src/font-manager/Orthographies.vala:63
 msgid "CJK Unified Extension D"
-msgstr ""
+msgstr "CJK ujedinjeni, proširenje D"
 
 #: src/font-manager/Orthographies.vala:64
 msgid "CJK Unified Extension E"
-msgstr ""
+msgstr "CJK ujedinjeni, proširenje E"
 
 #: src/font-manager/Orthographies.vala:65
 msgid "CJK Compatibility Ideographs"
-msgstr ""
+msgstr "CJK komatibilnost ideogrami"
 
 #: src/font-manager/Orthographies.vala:66
 msgid "CJK Compatibility Ideographs Supplement"
-msgstr ""
+msgstr "CJK komatibilnost ideogrami, dopuna"
 
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
 msgid "Claudian Letters"
-msgstr ""
+msgstr "Klaudijeva slova"
 
 #: src/font-manager/Orthographies.vala:70
 msgid "Coptic"
@@ -1097,14 +1097,12 @@ msgid "Food and Drink"
 msgstr "Hrana i piće"
 
 #: src/font-manager/Orthographies.vala:84
-#, fuzzy
-#| msgid "Cyrillic"
 msgid "Full Cyrillic"
-msgstr "Ćirilica"
+msgstr "Potpuna ćirilica"
 
 #: src/font-manager/Orthographies.vala:85
 msgid "Georgian"
-msgstr ""
+msgstr "Gruzijski"
 
 #: src/font-manager/Orthographies.vala:86
 msgid "Glagolitic"
@@ -1125,14 +1123,12 @@ msgid "Gurmukhi"
 msgstr "Gurmukijski"
 
 #: src/font-manager/Orthographies.vala:90
-#, fuzzy
-#| msgid "Korean"
 msgid "Korean Hangul"
-msgstr "Korejski"
+msgstr "Korejski Hangul"
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hanunó'o"
-msgstr ""
+msgstr "Hanunó'o"
 
 #: src/font-manager/Orthographies.vala:92
 #: src/font-manager/web/google/Language.vala:44
@@ -1142,45 +1138,35 @@ msgstr "Hebrejski"
 #: src/font-manager/Orthographies.vala:93
 #: src/font-manager/Orthographies.vala:95
 msgid "IPA"
-msgstr ""
+msgstr "IPA"
 
 #: src/font-manager/Orthographies.vala:94
 msgid "Igbo Onwu"
-msgstr ""
+msgstr "Igbo Onwu"
 
 #: src/font-manager/Orthographies.vala:96
-#, fuzzy
-#| msgid "Korean"
 msgid "Korean Jamo"
-msgstr "Korejski"
+msgstr "Korejski Jamo"
 
 #: src/font-manager/Orthographies.vala:97
-#, fuzzy
-#| msgid "Japanese"
 msgid "Javanese"
-msgstr "Japanski"
+msgstr "Javanski"
 
 #: src/font-manager/Orthographies.vala:98
-#, fuzzy
-#| msgid "Japanese"
 msgid "Japanese Jinmeiyo"
-msgstr "Japanski"
+msgstr "Japanski Jinmeiyo"
 
 #: src/font-manager/Orthographies.vala:99
-#, fuzzy
-#| msgid "Japanese"
 msgid "Japanese Joyo"
-msgstr "Japanski"
+msgstr "Japanski Joyo"
 
 #: src/font-manager/Orthographies.vala:100
 msgid "Kaithi"
-msgstr ""
+msgstr "Kajtski"
 
 #: src/font-manager/Orthographies.vala:101
-#, fuzzy
-#| msgid "Japanese"
 msgid "Japanese Kana"
-msgstr "Japanski"
+msgstr "Japanski Kana"
 
 #: src/font-manager/Orthographies.vala:102
 #: src/font-manager/web/google/Language.vala:46
@@ -1189,15 +1175,15 @@ msgstr "Kannada"
 
 #: src/font-manager/Orthographies.vala:103
 msgid "Kayah Li"
-msgstr ""
+msgstr "Kayah Li"
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kazakh"
-msgstr ""
+msgstr "Kazaški"
 
 #: src/font-manager/Orthographies.vala:105
 msgid "Kharoshthi"
-msgstr ""
+msgstr "Karoštisjki"
 
 #: src/font-manager/Orthographies.vala:106
 #: src/font-manager/web/google/Language.vala:47
@@ -1205,34 +1191,32 @@ msgid "Khmer"
 msgstr "Kmerski"
 
 #: src/font-manager/Orthographies.vala:107
-#, fuzzy
-#| msgid "Japanese"
 msgid "Japanese Kokuji"
-msgstr "Japanski"
+msgstr "Japanski Kokuji"
 
 #: src/font-manager/Orthographies.vala:108
 msgid "Lao"
-msgstr ""
+msgstr "Laoški"
 
 #: src/font-manager/Orthographies.vala:109
 msgid "Latin Ligatures"
-msgstr ""
+msgstr "Latinične ligature"
 
 #: src/font-manager/Orthographies.vala:110
 msgid "Lepcha"
-msgstr ""
+msgstr "Lepcha"
 
 #: src/font-manager/Orthographies.vala:111
 msgid "Limbu"
-msgstr ""
+msgstr "Limbuški"
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Ideograms"
-msgstr ""
+msgstr "Linearni B ideogrami"
 
 #: src/font-manager/Orthographies.vala:113
 msgid "Linear B Syllabary"
-msgstr ""
+msgstr "Linearni B slogovi"
 
 #: src/font-manager/Orthographies.vala:114
 #: src/font-manager/web/google/Language.vala:51
@@ -1241,43 +1225,43 @@ msgstr "Malajalamski"
 
 #: src/font-manager/Orthographies.vala:115
 msgid "Mathematical Greek"
-msgstr ""
+msgstr "Matematički znakovi, grčki"
 
 #: src/font-manager/Orthographies.vala:116
 msgid "Mathematical Latin"
-msgstr ""
+msgstr "Matematički znakovi, latinica"
 
 #: src/font-manager/Orthographies.vala:117
 msgid "Mathematical Numerals"
-msgstr ""
+msgstr "Matematički znakovi, brojevi"
 
 #: src/font-manager/Orthographies.vala:118
 msgid "Mathematical Operators"
-msgstr ""
+msgstr "Matematički znakovi, operatori"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Meetei Mayak"
-msgstr ""
+msgstr "Meetei Mayak"
 
 #: src/font-manager/Orthographies.vala:120
 msgid "Mende Kikakui"
-msgstr ""
+msgstr "Mende Kikakui"
 
 #: src/font-manager/Orthographies.vala:121
 msgid "MeroiticCursive"
-msgstr ""
+msgstr "Meroitski pisani"
 
 #: src/font-manager/Orthographies.vala:122
 msgid "Meroitic Hieroglyphs"
-msgstr ""
+msgstr "Meroitski hijeroglifi"
 
 #: src/font-manager/Orthographies.vala:123
 msgid "Miao"
-msgstr ""
+msgstr "Miao"
 
 #: src/font-manager/Orthographies.vala:124
 msgid "Mongolian"
-msgstr ""
+msgstr "Mongolski"
 
 #. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
 #. * Contains lots of duplicates, doubt many would find it useful
@@ -1290,29 +1274,27 @@ msgstr "Mijanmar"
 
 #: src/font-manager/Orthographies.vala:132
 msgid "New Tai Lue"
-msgstr ""
+msgstr "Novi Tai Lue"
 
 #: src/font-manager/Orthographies.vala:133
 msgid "N’Ko"
-msgstr ""
+msgstr "N’Ko"
 
 #: src/font-manager/Orthographies.vala:134
 msgid "Ogham"
-msgstr ""
+msgstr "Ogam"
 
 #: src/font-manager/Orthographies.vala:135
 msgid "Ol Chiki"
-msgstr ""
+msgstr "Ol Chiki"
 
 #: src/font-manager/Orthographies.vala:136
-#, fuzzy
-#| msgid "Italic"
 msgid "Old Italic"
-msgstr "Kurziv"
+msgstr "Staroitalski"
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
-msgstr ""
+msgstr "Stari južnoarapski"
 
 #: src/font-manager/Orthographies.vala:138
 #: src/font-manager/web/google/Language.vala:53
@@ -1321,55 +1303,55 @@ msgstr "Orijski"
 
 #: src/font-manager/Orthographies.vala:139
 msgid "Osmanya"
-msgstr ""
+msgstr "Osmanijski"
 
 #: src/font-manager/Orthographies.vala:140
 msgid "Pan African Latin"
-msgstr ""
+msgstr "Svoafrička latinica"
 
 #: src/font-manager/Orthographies.vala:141
 msgid "Pashto"
-msgstr ""
+msgstr "Paštunski"
 
 #: src/font-manager/Orthographies.vala:142
 msgid "Phags Pa"
-msgstr ""
+msgstr "Phags Pa"
 
 #: src/font-manager/Orthographies.vala:143
 msgid "Pinyin"
-msgstr ""
+msgstr "Pinđinski"
 
 #: src/font-manager/Orthographies.vala:144
 msgid "Polynesian"
-msgstr ""
+msgstr "Polinezijski"
 
 #: src/font-manager/Orthographies.vala:145
 msgid "Polytonic Greek"
-msgstr ""
+msgstr "Grčki, politonski"
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Rejang"
-msgstr ""
+msgstr "Rejang"
 
 #: src/font-manager/Orthographies.vala:147
 msgid "Romanian"
-msgstr ""
+msgstr "Rumunjski"
 
 #: src/font-manager/Orthographies.vala:148
 msgid "Runic"
-msgstr ""
+msgstr "Runski"
 
 #: src/font-manager/Orthographies.vala:149
 msgid "Saurashtra"
-msgstr ""
+msgstr "Saurashtra"
 
 #: src/font-manager/Orthographies.vala:150
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "Kineski pojednostavljeni"
 
 #: src/font-manager/Orthographies.vala:151
 msgid "Sindhi"
-msgstr ""
+msgstr "Sindhi"
 
 #: src/font-manager/Orthographies.vala:152
 #: src/font-manager/web/google/Language.vala:54
@@ -1378,31 +1360,31 @@ msgstr "Sinhaleški"
 
 #: src/font-manager/Orthographies.vala:153
 msgid "South Korean Hanja"
-msgstr ""
+msgstr "Južnokorejski Hanja"
 
 #: src/font-manager/Orthographies.vala:154
 msgid "Sundanese"
-msgstr ""
+msgstr "Sundanski"
 
 #: src/font-manager/Orthographies.vala:155
 msgid "Syloti Nagri"
-msgstr ""
+msgstr "Syloti Nagri"
 
 #: src/font-manager/Orthographies.vala:156
 msgid "Syriac"
-msgstr ""
+msgstr "Sirjački"
 
 #: src/font-manager/Orthographies.vala:157
 msgid "Tai Le"
-msgstr ""
+msgstr "Tai Le"
 
 #: src/font-manager/Orthographies.vala:158
 msgid "Tai Tham (Lanna)"
-msgstr ""
+msgstr "Tai Tham (Lanna)"
 
 #: src/font-manager/Orthographies.vala:159
 msgid "Tai Viet"
-msgstr ""
+msgstr "Tai Viet"
 
 #: src/font-manager/Orthographies.vala:160
 #: src/font-manager/web/google/Language.vala:55
@@ -1416,7 +1398,7 @@ msgstr "Teluški"
 
 #: src/font-manager/Orthographies.vala:162
 msgid "Thaana"
-msgstr ""
+msgstr "Thaana"
 
 #: src/font-manager/Orthographies.vala:163
 #: src/font-manager/web/google/Language.vala:57
@@ -1430,37 +1412,35 @@ msgstr "Tibetski"
 
 #: src/font-manager/Orthographies.vala:165
 msgid "Tifinagh"
-msgstr ""
+msgstr "Tifinagh"
 
 #: src/font-manager/Orthographies.vala:166
 msgid "Traditional Chinese"
-msgstr ""
+msgstr "Kineski tradicionalni"
 
 #: src/font-manager/Orthographies.vala:167
 msgid "Turkish"
-msgstr ""
+msgstr "Turski"
 
 #: src/font-manager/Orthographies.vala:168
 msgid "Uighur"
-msgstr ""
+msgstr "Ujgurski"
 
 #: src/font-manager/Orthographies.vala:169
 msgid "Urdu"
-msgstr ""
+msgstr "Urdski"
 
 #: src/font-manager/Orthographies.vala:170
 msgid "Vai"
-msgstr ""
+msgstr "Vai"
 
 #: src/font-manager/Orthographies.vala:171
 msgid "Vedic Extensions"
-msgstr ""
+msgstr "Vedic proširenja"
 
 #: src/font-manager/Orthographies.vala:172
-#, fuzzy
-#| msgid "Vendor"
 msgid "Venda"
-msgstr "Prodavač"
+msgstr "Venda"
 
 #: src/font-manager/Orthographies.vala:173
 #: src/font-manager/web/google/Language.vala:59
@@ -1469,15 +1449,15 @@ msgstr "Vijetnamski"
 
 #: src/font-manager/Orthographies.vala:174
 msgid "Western European"
-msgstr ""
+msgstr "Zapadnoeuropski"
 
 #: src/font-manager/Orthographies.vala:175
 msgid "Yi"
-msgstr ""
+msgstr "Yi"
 
 #: src/font-manager/Orthographies.vala:176
 msgid "Chinese Zhuyin Fuhao"
-msgstr ""
+msgstr "Kineski Zhuyin Fuhao"
 
 #. TRANSLATORS : Coverage refers to the amount of support the font provides for an
 #. orthography. This will be displayed as "Coverage : XXX%" in the interface.
@@ -1935,7 +1915,7 @@ msgstr "Ćirilica"
 
 #: src/font-manager/web/google/Language.vala:38
 msgid "Cyrillic Extended"
-msgstr "Ćirilica, proširena"
+msgstr "Ćirilica, prošireno"
 
 #: src/font-manager/web/google/Language.vala:40
 msgid "Greek"
@@ -1943,7 +1923,7 @@ msgstr "Grčki"
 
 #: src/font-manager/web/google/Language.vala:41
 msgid "Greek Extended"
-msgstr "Grčki, prošireni"
+msgstr "Grčki, prošireno"
 
 #: src/font-manager/web/google/Language.vala:45
 msgid "Japanese"
