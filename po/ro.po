@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-23 12:09-0500\n"
-"PO-Revision-Date: 2021-01-24 01:21+0000\n"
+"PO-Revision-Date: 2021-01-24 23:57+0000\n"
 "Last-Translator: Aurelian Ciocîltan <aurelianciociltan@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/ro/>\n"
@@ -298,7 +298,6 @@ msgid "Preview & Print Embedding | Bitmap Embedding Only"
 msgstr "Previzualizare și încorporare tipărire | Numai încorporare bitmap"
 
 #: lib/common/font-manager-freetype.c:306
-#, fuzzy
 msgid "Editable Embedding | Bitmap Embedding Only"
 msgstr "Încorporare modificabilă | Numai încorporare bitmap"
 
