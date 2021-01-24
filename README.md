@@ -22,7 +22,7 @@ Font Manager is NOT a professional-grade font management solution.
 - User font substitution settings
 - Desktop font settings (GNOME Desktop or compatible environments)
 
-## Localization 
+## Localization
 
 Font Manager is being translated using [Weblate](https://weblate.org), a web tool designed to ease translating for both developers and translators.
 
@@ -47,7 +47,7 @@ If you would like to help this application reach more users in their native lang
 
 #### Arch User Repository
 
-![AUR version](https://img.shields.io/aur/version/font-manager)  ![AUR maintainer](https://img.shields.io/aur/maintainer/font-manager) 
+![AUR version](https://img.shields.io/aur/version/font-manager)  ![AUR maintainer](https://img.shields.io/aur/maintainer/font-manager)
 
 Arch Linux users can find [`font-manager`](https://aur.archlinux.org/packages/font-manager/) in the AUR
 
@@ -100,16 +100,16 @@ You'll need to ensure the following dependencies are installed:
 - `yelp-tools` (optional)
 - `gettext` (optional)
 
-If you wish to also build the file manager extensions:
+If you wish to also build file manager extensions, you will need corresponding development libraries:
 
-- `libnautilus-extension` (optional)
-- `libnemo-extension` (optional)
-- `thunar` (optional)
+- `libnautilus-extension`
+- `libnemo-extension`
+- `thunar`
 
-If you wish to also build the Google Fonts integration:
+If you wish to also build Google Fonts integration, which is enabled by default, the following libraries are required:
 
-- `webkit2gtk3 >= 2.24` (optional)
-- `libsoup >= 2.62` (optional)
+- `webkit2gtk3 >= 2.24`
+- `libsoup >= 2.62`
 
 To build the application:
 
@@ -160,4 +160,3 @@ This project is licensed under the GNU General Public License Version 3.0 - see
 - The compare mode in Font Manager is modeled after [gnome-specimen](https://launchpad.net/gnome-specimen) by Wouter Bolsterlee
 - Font Manager makes use of data compiled for [Fontaine](http://www.unifont.org/fontaine/) by Edward H. Trager
 - The character map in Font Manager is based on [Gucharmap](https://wiki.gnome.org/action/show/Apps/Gucharmap)
-
