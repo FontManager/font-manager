@@ -1,28 +1,34 @@
-# Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Jerry Casiano
+# This file is distributed under the same license as the font-manager package.
+# Aurelian Ciocîltan <aurelianciociltan@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"Project-Id-Version: font-manager 0.7.9\n"
+"Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-23 12:09-0500\n"
-"PO-Revision-Date: 2019-10-03 02:38-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Amharic\n"
-"Language: am\n"
+"PO-Revision-Date: 2021-01-24 01:21+0000\n"
+"Last-Translator: Aurelian Ciocîltan <aurelianciociltan@gmail.com>\n"
+"Language-Team: Romanian <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/ro/>\n"
+"Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 4.6.2\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
-msgstr "የ ፊደል አስተዳዳሪ"
+msgstr "Manager de fonturi"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
 msgstr ""
+"O aplicație simplă de gestionare a fonturilor pentru Mediile Desktop Gtk +"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
@@ -30,26 +36,31 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
+"Font Manager este destinat să ofere utilizatorilor normali o modalitate de a "
+"gestiona cu ușurință fonturile desktop, fără a fi nevoie să recurgă la "
+"instrumente de linie de comandă sau de a edita fișiere de configurare manual."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr ""
+"Deși este conceput în primul rând având în vedere mediul desktop Gnome, "
+"acesta ar trebui să funcționeze bine cu alte medii desktop Gtk +."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
-msgstr ""
+msgstr "Font Manager NU este o soluție profesională de gestionare a fonturilor."
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr ""
+msgstr "Previzualizați, comparați și gestionați fonturile"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
 #: data/org.gnome.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
+msgstr "Grafică; Vizualizator; GNOME; GTK; Editare;"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
 #: data/org.gnome.FontViewer.desktop.in.in:5
@@ -57,11 +68,11 @@ msgstr ""
 #: src/font-viewer/Application.vala:101 src/font-viewer/MainWindow.vala:23
 #: src/font-viewer/font-viewer-main-window.ui:41
 msgid "Font Viewer"
-msgstr ""
+msgstr "Vizualizator fonturi"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "O aplicație vizualizator de fonturi pentru Mediile desktop Gtk+"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
@@ -69,245 +80,250 @@ msgid ""
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
 msgstr ""
+"Vizualizatorul de fonturi permite examinarea fișierelor de fonturi înainte "
+"de instalare. Acesta oferă mai multe moduri de a examina fișierele de font "
+"împreună cu o hartă de caractere și afișează proprietățile fontului și "
+"detaliile licenței."
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr ""
+msgstr "Aplicație completă de previzualizare a fișierului de fonturi"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
 #: src/font-manager/FontList.vala:490
 msgid "Install"
-msgstr ""
+msgstr "Instalare"
 
 #: extensions/nautilus/font-manager-menu-provider.c:163
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr ""
+msgstr "Instalați fișierul de font selectat"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr ""
+msgstr "Instalați fișierul de font selectat"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr ""
+msgstr "Proprietăți font"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:106
 msgid "Preview"
-msgstr ""
+msgstr "Previzualizare"
 
 #: lib/common/font-manager-font-preview.c:87
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
 msgid "Waterfall"
-msgstr ""
+msgstr "Cascadă"
 
 #: lib/common/font-manager-fontconfig.c:826
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
-msgstr "ቀጭን"
+msgstr "Subțire"
 
 #: lib/common/font-manager-fontconfig.c:828
 msgid "Ultra-Light"
-msgstr ""
+msgstr "Ultra-ușor"
 
 #: lib/common/font-manager-fontconfig.c:830
 #: lib/common/font-manager-fontconfig.c:1183
 #: src/font-manager/web/google/Weight.vala:69
 msgid "Light"
-msgstr ""
+msgstr "Ușor"
 
 #: lib/common/font-manager-fontconfig.c:832
 msgid "Semi-Light"
-msgstr ""
+msgstr "Semi-ușor"
 
 #: lib/common/font-manager-fontconfig.c:834
 msgid "Book"
-msgstr "መጽሀፍ"
+msgstr "Carte"
 
 #: lib/common/font-manager-fontconfig.c:836
 #: lib/common/font-manager-fontconfig.c:1140
 #: src/font-manager/web/google/Weight.vala:73
 msgid "Medium"
-msgstr "መካከለኛ"
+msgstr "Mediu"
 
 #: lib/common/font-manager-fontconfig.c:838
 msgid "Semi-Bold"
-msgstr ""
+msgstr "Semi-Bold"
 
 #: lib/common/font-manager-fontconfig.c:840
 #: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
-msgstr "ማድመቂያ"
+msgstr "Bold"
 
 #: lib/common/font-manager-fontconfig.c:842
 msgid "Ultra-Bold"
-msgstr ""
+msgstr "Ultra-Bold"
 
 #: lib/common/font-manager-fontconfig.c:844
 msgid "Heavy"
-msgstr ""
+msgstr "Greu"
 
 #: lib/common/font-manager-fontconfig.c:846
 msgid "Ultra-Heavy"
-msgstr ""
+msgstr "Ultra-greu"
 
 #: lib/common/font-manager-fontconfig.c:921
 #: src/font-manager/web/google/WebFont.vala:158
 msgid "Italic"
-msgstr "ማዝመሚያ"
+msgstr "Italic"
 
 #: lib/common/font-manager-fontconfig.c:923
 msgid "Oblique"
-msgstr ""
+msgstr "Oblic"
 
 #: lib/common/font-manager-fontconfig.c:961
 msgid "Ultra-Condensed"
-msgstr ""
+msgstr "Ultra-condensat"
 
 #: lib/common/font-manager-fontconfig.c:963
 msgid "Extra-Condensed"
-msgstr ""
+msgstr "Extra-condensat"
 
 #: lib/common/font-manager-fontconfig.c:965
 msgid "Condensed"
-msgstr ""
+msgstr "Condensat"
 
 #: lib/common/font-manager-fontconfig.c:967
 msgid "Semi-Condensed"
-msgstr ""
+msgstr "Semicondensat"
 
 #: lib/common/font-manager-fontconfig.c:969
 msgid "Semi-Expanded"
-msgstr ""
+msgstr "Semi-extins"
 
 #: lib/common/font-manager-fontconfig.c:971
 msgid "Expanded"
-msgstr ""
+msgstr "Extins"
 
 #: lib/common/font-manager-fontconfig.c:973
 msgid "Extra-Expanded"
-msgstr ""
+msgstr "Extra-extins"
 
 #: lib/common/font-manager-fontconfig.c:975
 msgid "Ultra-Expanded"
-msgstr ""
+msgstr "Ultra-extins"
 
 #: lib/common/font-manager-fontconfig.c:1044
 msgid "Proportional"
-msgstr "ተመጣጣኝ"
+msgstr "Proporţional"
 
 #: lib/common/font-manager-fontconfig.c:1046
 msgid "Dual Width"
-msgstr ""
+msgstr "Lățime dublă"
 
 #: lib/common/font-manager-fontconfig.c:1048
 #: src/font-manager/web/google/ui/google-font-filters.ui:261
 msgid "Monospace"
-msgstr ""
+msgstr "Monospace"
 
 #: lib/common/font-manager-fontconfig.c:1050
 msgid "Charcell"
-msgstr ""
+msgstr "Charcell"
 
 #: lib/common/font-manager-fontconfig.c:1089
 msgid "Unknown"
-msgstr "ያልታወቀ"
+msgstr "Necunoscut(ă)"
 
 #: lib/common/font-manager-fontconfig.c:1091
 msgid "RGB"
-msgstr ""
+msgstr "RGB"
 
 #: lib/common/font-manager-fontconfig.c:1093
 msgid "BGR"
-msgstr ""
+msgstr "BGR"
 
 #: lib/common/font-manager-fontconfig.c:1095
 msgid "VRGB"
-msgstr ""
+msgstr "VRGB"
 
 #: lib/common/font-manager-fontconfig.c:1097
 msgid "VBGR"
-msgstr ""
+msgstr "VBGR"
 
 #: lib/common/font-manager-fontconfig.c:1099
 #: lib/common/font-manager-fontconfig.c:1144
 #: lib/common/font-manager-fontconfig.c:1187
 msgid "None"
-msgstr "ምንም"
+msgstr "Niciunul"
 
 #: lib/common/font-manager-fontconfig.c:1138
 msgid "Slight"
-msgstr ""
+msgstr "Uşor"
 
 #: lib/common/font-manager-fontconfig.c:1142
 msgid "Full"
-msgstr "ሙሉ"
+msgstr "Plin"
 
 #: lib/common/font-manager-fontconfig.c:1181
 #: src/font-manager/ui/font-manager-main-window.ui:164
 msgid "Default"
-msgstr "ነባር"
+msgstr "Prestabilit"
 
 #: lib/common/font-manager-fontconfig.c:1185
 msgid "Legacy"
-msgstr ""
+msgstr "Învechit"
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Restricted License Embedding"
-msgstr ""
+msgstr "Încorporare licență restricționată"
 
 #: lib/common/font-manager-freetype.c:296
 msgid "Preview & Print Embedding"
-msgstr ""
+msgstr "Previzualizare și imprimare încorporare"
 
 #: lib/common/font-manager-freetype.c:298
 msgid "Editable Embedding"
-msgstr ""
+msgstr "Încorporare editabilă"
 
 #: lib/common/font-manager-freetype.c:300
 msgid "Preview & Print Embedding | No Subsetting"
-msgstr ""
+msgstr "Previzualizare și încorporare tipărire | Fără subsetare"
 
 #: lib/common/font-manager-freetype.c:302
 msgid "Editable Embedding | No Subsetting"
-msgstr ""
+msgstr "Încorporare modificabilă | Fără subsetare"
 
 #: lib/common/font-manager-freetype.c:304
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "Previzualizare și încorporare tipărire | Numai încorporare bitmap"
 
 #: lib/common/font-manager-freetype.c:306
+#, fuzzy
 msgid "Editable Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "Încorporare modificabilă | Numai încorporare bitmap"
 
 #: lib/common/font-manager-freetype.c:308
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
 msgstr ""
+"Previzualizare și încorporare tipărire | Fără subsetare | Numai încorporare "
+"bitmap"
 
 #: lib/common/font-manager-freetype.c:310
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr ""
+msgstr "Încorporare modificabilă | Fără subsetare | Numai încorporare bitmap"
 
 #: lib/common/font-manager-freetype.c:312
 msgid "Installable Embedding"
-msgstr ""
+msgstr "Incorporare instalabilă"
 
 #. TRANSLATORS : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:704
-#, fuzzy
-#| msgid "Unknown"
 msgid "Unknown Vendor"
-msgstr "ያልታወቀ"
+msgstr "Furnizor necunoscut"
 
 #: lib/common/font-manager-license-pane.c:185
 msgid "File does not contain license information."
-msgstr ""
+msgstr "Fișierul nu conține informații despre licență."
 
 #: lib/common/font-manager-preview-controls.c:76
 msgid "Left Aligned"
@@ -586,7 +602,7 @@ msgstr ""
 
 #: src/font-manager/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
-msgstr "የ ፊደል አስተዳዳሪ ለ GTK+ ዴስክቶፕ"
+msgstr ""
 
 #: src/font-manager/About.vala:35
 msgid ""
@@ -702,10 +718,11 @@ msgid "%i Variation "
 msgid_plural "%i Variations"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
-msgstr "የ ስብስብ ስም ያስገቡ"
+msgstr ""
 
 #: src/font-manager/Collections.vala:389
 msgid "Copy to…"
@@ -1226,10 +1243,8 @@ msgid "Ol Chiki"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:136
-#, fuzzy
-#| msgid "Italic"
 msgid "Old Italic"
-msgstr "ማዝመሚያ"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
@@ -1476,20 +1491,20 @@ msgstr ""
 
 #: src/font-manager/filters/Collection.vala:48
 msgid "New Collection"
-msgstr "አዲስ ስብስብ"
+msgstr ""
 
 #: src/font-manager/filters/Collection.vala:50
 #, c-format
 msgid "Created : %s"
-msgstr "የ ተፈጠረ: %s"
+msgstr ""
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Disabled"
-msgstr "ተሰናክሏል"
+msgstr ""
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
-msgstr "የ ተሰናከሉ ፊደሎች"
+msgstr ""
 
 #: src/font-manager/filters/LanguageFilter.vala:28
 msgid "Filter based on supported orthographies"
@@ -1497,7 +1512,7 @@ msgstr ""
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
-msgstr "ያልተለየ"
+msgstr ""
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
@@ -1878,22 +1893,19 @@ msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
 msgstr ""
 
 #: src/font-manager/web/google/Weight.vala:75
-#, fuzzy
-#| msgid "Bold"
 msgid "SemiBold"
-msgstr "ማድመቂያ"
+msgstr ""
 
 #: src/font-manager/web/google/Weight.vala:79
-#, fuzzy
-#| msgid "Bold"
 msgid "ExtraBold"
-msgstr "ማድመቂያ"
+msgstr ""
 
 #: src/font-manager/web/google/Weight.vala:81
 msgid "Black"
@@ -2008,17 +2020,15 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:172
 msgid "90"
-msgstr ""
+msgstr "90"
 
 #: src/font-manager/ui/font-manager-orthography-list.ui:86
 msgid "Clear selected filter"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:27
-#, fuzzy
-#| msgid "Created : %s"
 msgid "Created : "
-msgstr "የ ተፈጠረ: %s"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:32
 msgid "Save current comparison"
@@ -2042,164 +2052,164 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:33
 msgid "Decrease preview size"
-msgstr ""
+msgstr "Reduceți dimensiunea previzualizării"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:40
 msgid "Reset preview size"
-msgstr ""
+msgstr "Resetați dimensiunea previzualizării"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:47
 msgid "Reload"
-msgstr ""
+msgstr "Reîncarcă"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:54
 msgid "Quit the application"
-msgstr ""
+msgstr "Părăsiți aplicația"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:62
 msgid "Mode"
-msgstr ""
+msgstr "Mod"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:67
 msgid "Switch to Manage mode"
-msgstr ""
+msgstr "Comutarea la modul Gestionare"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:74
 msgid "Switch to Browse mode"
-msgstr ""
+msgstr "Treceți la modul Navigare"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:81
 msgid "Switch to Compare mode"
-msgstr ""
+msgstr "Treceți la modul Comparare"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:89
 msgid "Preview Mode"
-msgstr ""
+msgstr "Mod de previzualizare"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:94
 msgid "Switch to Standard preview"
-msgstr ""
+msgstr "Treceți la previzualizarea standard"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:101
 msgid "Switch to Waterfall preview"
-msgstr ""
+msgstr "Treceți la previzualizarea Waterfall"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:108
 msgid "Switch to Body Text preview"
-msgstr ""
+msgstr "Treceți la previzualizarea textului corpului"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:58
 msgid "Categories"
-msgstr ""
+msgstr "Categorii"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:129
 msgid "Collections"
-msgstr ""
+msgstr "Colecţii"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:175
 msgid "Edit selected category"
-msgstr ""
+msgstr "Editarea categoriei selectate"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:198
 msgid "Add new collection"
-msgstr ""
+msgstr "Adăugare colecție nouă"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:221
 msgid "Remove selected collection"
-msgstr ""
+msgstr "Eliminare colecția selectată"
 
 #: src/font-manager/ui/font-manager-subpixel-geometry.ui:44
 msgid "Subpixel Geometry"
-msgstr ""
+msgstr "Geometria subpixelului"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:18
 msgid "Enter target family"
-msgstr ""
+msgstr "Introduceți familia țintă"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:32
 msgid "Add substitute"
-msgstr ""
+msgstr "Adăugare înlocuitor"
 
 #: src/font-manager/ui/font-manager-substitute.ui:41
 msgid "Remove substitute"
-msgstr ""
+msgstr "Eliminare înlocuitor"
 
 #: src/font-manager/ui/font-manager-substitute.ui:42
 msgid "Enter substitute family"
-msgstr ""
+msgstr "Introduceți familia înlocuitoare"
 
 #: src/font-manager/ui/font-manager-substitute.ui:59
 msgid "prefer"
-msgstr ""
+msgstr "prefer"
 
 #: src/font-manager/ui/font-manager-substitute.ui:60
 msgid "accept"
-msgstr ""
+msgstr "acceptă"
 
 #: src/font-manager/ui/font-manager-substitute.ui:61
 msgid "default"
-msgstr ""
+msgstr "implicit"
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:13
 msgid "Titlebar Button Style"
-msgstr ""
+msgstr "Stil butoane bară titlu"
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:43
 msgid "Flat"
-msgstr ""
+msgstr "Plat"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:16
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Name"
-msgstr ""
+msgstr "Denumire"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:31
 msgid "Comment"
-msgstr ""
+msgstr "Comentariu"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:47
 msgid "Executable"
-msgstr ""
+msgstr "Executabil"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:63
 msgid "Arguments"
-msgstr ""
+msgstr "Argumente"
 
 #: src/font-manager/ui/font-manager-user-data.ui:73
 msgid "Font Configuration"
-msgstr ""
+msgstr "Configurare font"
 
 #: src/font-manager/ui/font-manager-user-data.ui:102
 msgid "Font Collections"
-msgstr ""
+msgstr "Colecții de fonturi"
 
 #: src/font-manager/ui/font-manager-user-data.ui:160
 msgid "Installed Fonts"
-msgstr ""
+msgstr "Fonturi instalate"
 
 #: src/font-manager/ui/font-manager-user-data.ui:189
 msgid "Custom Actions"
-msgstr ""
+msgstr "Acțiuni personalizate"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:54
 msgid "Newest"
-msgstr ""
+msgstr "Cele mai recente"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:55
 msgid "Most Popular"
-msgstr ""
+msgstr "Cele mai populare"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:56
 msgid "Trending"
-msgstr ""
+msgstr "Trenduri"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:70
 msgid "Sort Order"
-msgstr ""
+msgstr "Sortează ordinea"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:149
 msgid "Serif"
-msgstr ""
+msgstr "Serif"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:177
 msgid "Sans Serif"
