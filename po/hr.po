@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-01-23 12:09-0500\n"
+"POT-Creation-Date: 2021-01-24 18:58-0500\n"
 "PO-Revision-Date: 2021-01-24 23:57+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
@@ -237,7 +237,7 @@ msgid "Dual Width"
 msgstr "Dvostruke širine"
 
 #: lib/common/font-manager-fontconfig.c:1048
-#: src/font-manager/web/google/ui/google-font-filters.ui:261
+#: src/font-manager/web/google/ui/google-font-filters.ui:260
 msgid "Monospace"
 msgstr "Jednometrični"
 
@@ -328,7 +328,7 @@ msgstr "Ugrađivanje za uređivanje | Bez podskupina | Samo bitmapi"
 msgid "Installable Embedding"
 msgstr "Ugrađivanje za instaliranje"
 
-#. TRANSLATORS : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
+#. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:704
 msgid "Unknown Vendor"
 msgstr "Nepoznat prodavač"
@@ -373,7 +373,7 @@ msgstr "Svojstva"
 
 #: lib/common/font-manager-preview-pane.c:47
 #: lib/common/font-manager-preview-pane.c:557
-#: src/font-manager/Categories.vala:540
+#: src/font-manager/Categories.vala:541
 msgid "License"
 msgstr "Licenca"
 
@@ -394,22 +394,22 @@ msgid "Style"
 msgstr "Stil"
 
 #: lib/common/font-manager-properties-pane.c:83
-#: src/font-manager/Categories.vala:533
+#: src/font-manager/Categories.vala:534
 msgid "Width"
 msgstr "Širina"
 
 #: lib/common/font-manager-properties-pane.c:84
-#: src/font-manager/Categories.vala:535
+#: src/font-manager/Categories.vala:536
 msgid "Slant"
 msgstr "Nagib"
 
 #: lib/common/font-manager-properties-pane.c:85
-#: src/font-manager/Categories.vala:534
+#: src/font-manager/Categories.vala:535
 msgid "Weight"
 msgstr "Debljina"
 
 #: lib/common/font-manager-properties-pane.c:86
-#: src/font-manager/Categories.vala:536
+#: src/font-manager/Categories.vala:537
 msgid "Spacing"
 msgstr "Metrika"
 
@@ -418,7 +418,7 @@ msgid "Version"
 msgstr "Verzija"
 
 #: lib/common/font-manager-properties-pane.c:88
-#: src/font-manager/Categories.vala:541
+#: src/font-manager/Categories.vala:542
 msgid "Vendor"
 msgstr "Prodavač"
 
@@ -431,13 +431,13 @@ msgid "Filesize"
 msgstr "Veličina datoteke"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:596
+#: src/font-manager/Categories.vala:597
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
 msgstr "Regularni"
 
 #: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:591
+#: src/font-manager/Categories.vala:592
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
 msgstr "Normalni"
@@ -652,91 +652,91 @@ msgstr ""
 "    Ako nije, pogledaj <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 "    "
 
-#. TRANSLATORS : Please feel free to add yourself to the list of translators,
+#. Translators : Please feel free to add yourself to the list of translators,
 #. but do not modify or remove previous entries. New entries should be separated
 #. by a newline character so that they are displayed properly in the interface.
 #: src/font-manager/About.vala:69
 msgid "translator-credits"
 msgstr "Milo Ivir <mail@milotype.de>, 2019., 2020., 2021."
 
-#: src/font-manager/Categories.vala:533
+#: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
 msgstr "Grupirani po širini"
 
-#: src/font-manager/Categories.vala:534
+#: src/font-manager/Categories.vala:535
 msgid "Grouped by font weight"
 msgstr "Grupirani po debljini"
 
-#: src/font-manager/Categories.vala:535
+#: src/font-manager/Categories.vala:536
 msgid "Grouped by font angle"
 msgstr "Grupirani po nagibu"
 
-#: src/font-manager/Categories.vala:536
+#: src/font-manager/Categories.vala:537
 msgid "Grouped by font spacing"
 msgstr "Grupirani po metrici"
 
-#: src/font-manager/Categories.vala:540
+#: src/font-manager/Categories.vala:541
 msgid "Grouped by license type"
 msgstr "Grupirani po vrsti licence"
 
-#: src/font-manager/Categories.vala:541
+#: src/font-manager/Categories.vala:542
 msgid "Grouped by vendor"
 msgstr "Grupirani po prodavaču"
 
-#: src/font-manager/Categories.vala:542
+#: src/font-manager/Categories.vala:543
 msgid "Filetype"
 msgstr "Vrsta datoteke"
 
-#: src/font-manager/Categories.vala:542
+#: src/font-manager/Categories.vala:543
 msgid "Grouped by filetype"
 msgstr "Grupirani po vrsti datoteke"
 
-#: src/font-manager/Categories.vala:549
+#: src/font-manager/Categories.vala:550
 msgid "All"
 msgstr "Svi"
 
-#: src/font-manager/Categories.vala:549
+#: src/font-manager/Categories.vala:550
 msgid "All Fonts"
 msgstr "Svi fontovi"
 
-#: src/font-manager/Categories.vala:550
+#: src/font-manager/Categories.vala:551
 msgid "System"
 msgstr "Sustav"
 
-#: src/font-manager/Categories.vala:550
+#: src/font-manager/Categories.vala:551
 msgid "Fonts available to all users"
 msgstr "Fontovi koji su dostupni svim korisnicima"
 
-#: src/font-manager/Categories.vala:564
+#: src/font-manager/Categories.vala:565
 msgid "Family Kind"
 msgstr "Vrsta obitelji"
 
-#: src/font-manager/Categories.vala:564
+#: src/font-manager/Categories.vala:565
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr "Ovdje se grupiraju samo fontovi koji sadrže Panose podatke."
 
-#: src/font-manager/Categories.vala:565
-#: src/font-manager/web/google/ui/google-font-filters.ui:347
+#: src/font-manager/Categories.vala:566
+#: src/font-manager/web/google/ui/google-font-filters.ui:346
 msgid "Any"
 msgstr "Bilo koji"
 
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:566
 msgid "No Fit"
 msgstr "Neodređeno"
 
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:566
 msgid "Text and Display"
 msgstr "Tekst i naslovi"
 
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:566
 msgid "Script"
 msgstr "Krasopis"
 
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:566
 msgid "Decorative"
 msgstr "Ukrasni"
 
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:566
 msgid "Pictorial"
 msgstr "Slikovni"
 
@@ -764,7 +764,7 @@ msgstr "Komprimiraj …"
 msgid "Saved Comparison"
 msgstr "Spremljena usporedba"
 
-#. TRANSLATORS : Please preserve the newline character somewhere in the middle of the string
+#. Translators : Please preserve the newline character somewhere in the middle of the string
 #: src/font-manager/Compare.vala:407
 msgid ""
 "Save the current comparison\n"
@@ -1459,7 +1459,7 @@ msgstr "Yi"
 msgid "Chinese Zhuyin Fuhao"
 msgstr "Kineski Zhuyin Fuhao"
 
-#. TRANSLATORS : Coverage refers to the amount of support the font provides for an
+#. Translators : Coverage refers to the amount of support the font provides for an
 #. orthography. This will be displayed as "Coverage : XXX%" in the interface.
 #: src/font-manager/Orthography.vala:124
 msgid "Coverage"
@@ -1467,7 +1467,7 @@ msgstr "Pokrivenost"
 
 #: src/font-manager/Orthography.vala:153
 #: src/font-manager/filters/LanguageFilter.vala:58
-#: src/font-manager/web/google/ui/google-font-filters.ui:504
+#: src/font-manager/web/google/ui/google-font-filters.ui:503
 msgid "Supported Orthographies"
 msgstr "Podržani sustavi znakova"
 
@@ -1756,7 +1756,7 @@ msgid "Substitutions"
 msgstr "Zamjene"
 
 #: src/font-manager/preferences/Preferences.vala:29
-#: src/font-manager/web/google/ui/google-font-filters.ui:205
+#: src/font-manager/web/google/ui/google-font-filters.ui:204
 msgid "Display"
 msgstr "Prikaz"
 
@@ -1890,7 +1890,7 @@ msgstr "Greška poslužitelja"
 msgid "Network Offline"
 msgstr "Mreža isključena"
 
-#. TRANSLATORS : Avoid translating "Google Fonts" in this message, if possible
+#. Translators : Avoid translating "Google Fonts" in this message, if possible
 #: src/font-manager/web/google/GoogleFonts.vala:219
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
@@ -2097,10 +2097,6 @@ msgstr "Odznači sve"
 msgid "Minimum Coverage"
 msgstr "Minimalna pokrivenost"
 
-#: src/font-manager/ui/font-manager-language-filter-settings.ui:172
-msgid "90"
-msgstr "90"
-
 #: src/font-manager/ui/font-manager-orthography-list.ui:86
 msgid "Clear selected filter"
 msgstr "Isprazni odabrani filtar"
@@ -2238,7 +2234,7 @@ msgid "Flat"
 msgstr "Plošno"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:16
-#: src/font-manager/web/google/ui/google-font-filters.ui:53
+#: src/font-manager/web/google/ui/google-font-filters.ui:52
 msgid "Name"
 msgstr "Ime"
 
@@ -2270,41 +2266,44 @@ msgstr "Intalirani fontovi"
 msgid "Custom Actions"
 msgstr "Prilagođene radnje"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:54
+#: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
 msgstr "Najnoviji"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:55
+#: src/font-manager/web/google/ui/google-font-filters.ui:54
 msgid "Most Popular"
 msgstr "Najpopularniji"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:56
+#: src/font-manager/web/google/ui/google-font-filters.ui:55
 msgid "Trending"
 msgstr "U trendu"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:70
+#: src/font-manager/web/google/ui/google-font-filters.ui:69
 msgid "Sort Order"
 msgstr "Redoslijed"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:149
+#: src/font-manager/web/google/ui/google-font-filters.ui:148
 msgid "Serif"
 msgstr "Serifni"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:177
+#: src/font-manager/web/google/ui/google-font-filters.ui:176
 msgid "Sans Serif"
 msgstr "Bezserifni"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:233
+#: src/font-manager/web/google/ui/google-font-filters.ui:232
 msgid "Handwriting"
 msgstr "Rukopisni"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:283
+#: src/font-manager/web/google/ui/google-font-filters.ui:282
 msgid "Category"
 msgstr "Kategorija"
 
-#: src/font-manager/web/google/ui/google-font-filters.ui:435
+#: src/font-manager/web/google/ui/google-font-filters.ui:434
 msgid "Variations"
 msgstr "Varijante"
+
+#~ msgid "90"
+#~ msgstr "90"
 
 #~ msgid "Google Fonts"
 #~ msgstr "Google fontovi"
