@@ -108,7 +108,7 @@ namespace FontManager {
                 warning(error.message);
             }
             StringSet? available_families = get_default_application().available_families;
-            return_if_fail(available_families != null);
+            assert(available_families != null);
             families.retain_all(available_families);
             Idle.add(() => {  selections_changed(); return GLib.Source.REMOVE; });
             return;

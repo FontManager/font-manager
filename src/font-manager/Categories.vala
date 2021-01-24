@@ -296,6 +296,7 @@ namespace FontManager {
             Reject? reject = get_default_application().reject;
             assert(reject != null);
             Disabled disabled = (Disabled) categories[CategoryIndex.DISABLED];
+            disabled.update.begin(reject, (obj, res) => { disabled.update.end(res); });
             reject.changed.connect(() => {
                 if (categories == null)
                     return;

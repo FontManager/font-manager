@@ -84,36 +84,27 @@ font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error)
 {
     g_return_val_if_fail(self != NULL, NULL);
     g_return_val_if_fail((error == NULL || *error == NULL), NULL);
-    FontManagerStringSet *rejected_files = font_manager_string_set_new();
-    GList *families = font_manager_string_set_list(FONT_MANAGER_STRING_SET(self));
-    FontManagerDatabase *db = font_manager_get_database(FONT_MANAGER_DATABASE_TYPE_FONT, error);
-    if (error != NULL && *error != NULL) {
-        g_clear_object(&rejected_files);
-        goto out;
-    }
-    for (GList *iter = families; iter != NULL; iter = iter->next) {
+    g_autoptr(FontManagerStringSet) rejected_files = font_manager_string_set_new();
+    g_autoptr(FontManagerDatabase) db = font_manager_get_database(FONT_MANAGER_DATABASE_TYPE_FONT, error);
+    g_return_val_if_fail(error == NULL || *error == NULL, NULL);
+    guint len_rejected = font_manager_string_set_size(FONT_MANAGER_STRING_SET(self));
+    for (guint i = 0; i < len_rejected; i++) {
         const gchar *_sql = "SELECT DISTINCT filepath FROM Fonts WHERE family = %s";
-        char *family = sqlite3_mprintf("%Q", (char *) iter->data);
+        const gchar *data = font_manager_string_set_get(FONT_MANAGER_STRING_SET(self), i);
+        char *family = sqlite3_mprintf("%Q", (char *) data);
         g_autofree gchar *sql = g_strdup_printf(_sql, family);
         sqlite3_free(family);
         font_manager_database_execute_query(db, sql, error);
-        if (error != NULL && *error != NULL) {
-            g_clear_object(&rejected_files);
-            goto out;
-        }
-        FontManagerDatabaseIterator *db_iter = font_manager_database_iterator_new(db);
+        g_return_val_if_fail(error == NULL || *error == NULL, NULL);
+        g_autoptr(FontManagerDatabaseIterator) db_iter = font_manager_database_iterator_new(db);
         while (font_manager_database_iterator_next(db_iter)) {
             sqlite3_stmt *stmt = font_manager_database_iterator_get(db_iter);
             const gchar *path = (const gchar *) sqlite3_column_text(stmt, 0);
             if (font_manager_exists(path))
                 font_manager_string_set_add(rejected_files, path);
         }
-        g_object_unref(db_iter);
     }
-out:
-    g_clear_object(&db);
-    g_list_free_full(families, g_free);
-    return rejected_files;
+    return g_steal_pointer(&rejected_files);
 }
 
 /**

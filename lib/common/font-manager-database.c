@@ -752,13 +752,15 @@ get_insert_data (const gchar *table, const gchar *sql,
 static void
 free_insert_data (InsertData *data)
 {
-    g_free(data->table);
-    g_free(data->sql);
-    json_object_unref(data->available_fonts);
-    g_object_unref(data->available_files);
+    g_clear_pointer(&data->table, g_free);
+    g_clear_pointer(&data->sql, g_free);
+    g_clear_pointer(&data->available_fonts, json_object_unref);
+    g_clear_object(&data->available_files);
     g_clear_pointer(&data, g_free);
     return;
 }
+
+G_DEFINE_AUTOPTR_CLEANUP_FUNC(InsertData, free_insert_data);
 
 typedef struct
 {
@@ -789,9 +791,9 @@ get_sync_data (FontManagerDatabase *db,
 static void
 free_sync_data (DatabaseSyncData *data)
 {
-    g_object_unref(data->db);
-    json_object_unref(data->available_fonts);
-    g_object_unref(data->available_files);
+    g_clear_object(&data->db);
+    g_clear_pointer(&data->available_fonts, json_object_unref);
+    g_clear_object(&data->available_files);
     g_clear_pointer(&data, g_free);
     return;
 }
@@ -963,21 +965,18 @@ update_available_fonts (FontManagerDatabase *db,
     g_return_if_fail(FONT_MANAGER_IS_DATABASE(db));
     g_return_if_fail(error == NULL || *error == NULL);
 
-    FontManagerProgressData *progress = NULL;
+    g_autoptr(FontManagerProgressData) progress = NULL;
+    g_autoptr(FontManagerStringSet) known_files = get_known_files(db, insert->table);
 
-    FontManagerStringSet *known_files = get_known_files(db, insert->table);
     if (font_manager_string_set_contains_all(known_files, insert->available_files))
-        goto cleanup;
+        return;
 
     guint processed = 0, total = json_object_get_size(insert->available_fonts);
 
     font_manager_database_begin_transaction(db, error);
-    if (error != NULL && *error != NULL)
-        goto cleanup;
-
+    g_return_if_fail(error == NULL || *error == NULL);
     font_manager_database_execute_query(db, insert->sql, error);
-    if (error != NULL && *error != NULL)
-        goto cleanup;
+    g_return_if_fail(error == NULL || *error == NULL);
 
     JsonObjectIter f_iter;
     const gchar *f_name;
@@ -989,15 +988,12 @@ update_available_fonts (FontManagerDatabase *db,
         /* Stash results periodically so we don't lose everything if closed */
         if (processed > 0 && processed % 500 == 0) {
             font_manager_database_commit_transaction(db, error);
-            if (error != NULL && *error != NULL)
-                goto cleanup;
+            g_return_if_fail(error == NULL || *error == NULL);
             font_manager_database_begin_transaction(db, error);
-            if (error != NULL && *error != NULL)
-                goto cleanup;
+            g_return_if_fail(error == NULL || *error == NULL);
             /* Previous call frees the prepared statement we were using */
             font_manager_database_execute_query(db, insert->sql, error);
-            if (error != NULL && *error != NULL)
-                goto cleanup;
+            g_return_if_fail(error == NULL || *error == NULL);
         }
         if (insert->progress) {
 
@@ -1031,11 +1027,6 @@ update_available_fonts (FontManagerDatabase *db,
     }
 
     font_manager_database_commit_transaction(db, error);
-
-cleanup:
-    g_object_unref(known_files);
-    if (progress)
-        g_object_unref(progress);
     return;
 }
 
@@ -1066,8 +1057,8 @@ font_manager_update_database_sync (FontManagerDatabase *db,
     g_return_val_if_fail(type != FONT_MANAGER_DATABASE_TYPE_BASE, FALSE);
     g_return_val_if_fail((error == NULL || *error == NULL), FALSE);
 
-    InsertData *data = NULL;
-    JsonArray *panose = NULL;
+    g_autoptr(InsertData) data = NULL;
+    g_autoptr(JsonArray) panose = NULL;
     const gchar *table = font_manager_database_get_type_name(type);
 
     if (g_cancellable_is_cancelled(cancellable))
@@ -1077,15 +1068,9 @@ font_manager_update_database_sync (FontManagerDatabase *db,
 
         font_manager_database_execute_query(db, DROP_FONT_MATCH_INDEX, NULL);
         g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
-
         data = get_insert_data(table, INSERT_FONT_ROW, available_fonts, available_files,
                                       (InsertCallback) sync_fonts_table, progress, NULL);
-
         update_available_fonts(db, data, cancellable, error);
-
-        if (error != NULL && *error != NULL)
-            goto cleanup;
-
         font_manager_database_execute_query(db, CREATE_FONT_MATCH_INDEX, NULL);
         g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
 
@@ -1098,16 +1083,9 @@ font_manager_update_database_sync (FontManagerDatabase *db,
         panose = json_array_new();
         data = get_insert_data(table, INSERT_INFO_ROW, available_fonts, available_files,
                                 (InsertCallback) sync_metadata_table, progress, panose);
-
         update_available_fonts(db, data, cancellable, error);
-
-        if (error != NULL && *error != NULL)
-            goto cleanup;
-
+        g_return_val_if_fail(error == NULL || *error == NULL, FALSE);
         sync_panose_table(db, panose, cancellable, error);
-        if (error != NULL && *error != NULL)
-            goto cleanup;
-
         font_manager_database_execute_query(db, CREATE_INFO_MATCH_INDEX, NULL);
         g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
         font_manager_database_execute_query(db, CREATE_PANOSE_MATCH_INDEX, NULL);
@@ -1117,16 +1095,10 @@ font_manager_update_database_sync (FontManagerDatabase *db,
 
         data = get_insert_data(table, INSERT_ORTH_ROW, available_fonts, available_files,
                                        (InsertCallback) sync_orth_table, progress, NULL);
-
         update_available_fonts(db, data, cancellable, error);
 
     }
 
-cleanup:
-    if (panose)
-        json_array_unref(panose);
-    if (data)
-        free_insert_data(data);
     g_return_val_if_fail(error == NULL || *error == NULL, FALSE);
     return TRUE;
 }
