@@ -1,6 +1,6 @@
 /* nautilus-font-manager-module.c
  *
- * Copyright (C) 2019 - 2020 Jerry Casiano
+ * Copyright (C) 2019 - 2021 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

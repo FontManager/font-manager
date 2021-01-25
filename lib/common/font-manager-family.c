@@ -1,6 +1,6 @@
 /* font-manager-family.c
  *
- * Copyright (C) 2009 - 2020 Jerry Casiano
+ * Copyright (C) 2009 - 2021 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,9 +29,9 @@
  *
  * #FontManagerFamily holds information about a font family along with an array
  * of #JsonObject representing the fonts belonging to this font family.
- * 
+ *
  * The #JsonObject backing this class should have the following structure:
- * 
+ *
  * |[
  * {
  *   "family" : string,
@@ -40,8 +40,8 @@
  *   "variations" : [ ]
  * }
  *]|
- * 
- * variations is a #JsonArray of #JsonObjects representing individual fonts. 
+ *
+ * variations is a #JsonArray of #JsonObjects representing individual fonts.
  * See #FontManagerFont for object description.
  */
 
