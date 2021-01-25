@@ -22,7 +22,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-24 18:58-0500\n"
-"PO-Revision-Date: 2021-01-24 23:11+0300\n"
+"PO-Revision-Date: 2021-01-25 13:27+0300\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/ru/>\n"
 "Language: ru\n"
@@ -32,6 +32,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Poedit 2.2.4\n"
+"Last-Translator: \n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
