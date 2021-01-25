@@ -198,15 +198,13 @@ font_manager_font_model_get_value (GtkTreeModel *tree_model,
             break;
         case FONT_MANAGER_FONT_MODEL_OBJECT:
             if (root_node) {
-                FontManagerFamily *family = font_manager_family_new();
+                g_autoptr(FontManagerFamily) family = font_manager_family_new();
                 g_object_set(family, "source-object", obj, NULL);
                 g_value_set_object(value, family);
-                g_object_unref(family);
             } else {
-                FontManagerFont *font = font_manager_font_new();
+                g_autoptr(FontManagerFont) font = font_manager_font_new();
                 g_object_set(font, "source-object", obj, NULL);
                 g_value_set_object(value, font);
-                g_object_unref(font);
             }
             break;
         default:

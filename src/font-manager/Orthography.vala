@@ -45,7 +45,7 @@ namespace FontManager {
     public HashTable get_non_latin_samples () {
         var result = new HashTable <string, string> (str_hash, str_equal);
         try {
-            var db = get_database(DatabaseType.BASE);
+            Database db = get_database(DatabaseType.BASE);
             db.execute_query(SELECT_NON_LATIN_FONTS);
             foreach (unowned Sqlite.Statement row in db)
                 result.insert(row.column_text(0), row.column_text(1));
@@ -206,7 +206,7 @@ namespace FontManager {
             if (!selected_font.is_valid())
                 return;
             try {
-                Database? db = get_database(DatabaseType.BASE);
+                Database db = get_database(DatabaseType.BASE);
                 string query = GET_ORTH_FOR(selected_font.filepath, selected_font.findex);
                 db.execute_query(query);
                 if (db.stmt.step() == Sqlite.ROW)

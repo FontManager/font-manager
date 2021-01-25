@@ -332,7 +332,14 @@ namespace FontManager {
             foreach (string path in temp_files)
                 remove_directory(File.new_for_path(path));
             /* Try to prevent noise during memcheck */
-            clear_application_fonts();
+            {
+                clear_application_fonts();
+                try {
+                    Database main = get_database(DatabaseType.BASE);
+                    main.unref();
+                } catch (Error e) {}
+                main_window = null;
+            }
             base.quit();
             return;
         }

@@ -129,7 +129,7 @@ font_manager_get_metadata (const gchar *filepath, gint index, GError **error)
     gsize           filesize = 0;
     g_autofree gchar *font = NULL;
 
-    JsonObject *json_obj = json_object_new();
+    g_autoptr(JsonObject) json_obj = json_object_new();
 
     json_object_set_string_member(json_obj, "filepath", filepath);
     json_object_set_int_member(json_obj, "findex", index);
@@ -144,7 +144,6 @@ font_manager_get_metadata (const gchar *filepath, gint index, GError **error)
 
     if (G_UNLIKELY(ft_error)) {
         set_error(ft_error, "FT_Init_FreeType", error);
-        g_clear_pointer(&json_obj, json_object_unref);
         return NULL;
     }
 
@@ -152,7 +151,6 @@ font_manager_get_metadata (const gchar *filepath, gint index, GError **error)
 
     if (G_UNLIKELY(ft_error)) {
         set_error(ft_error, "FT_Init_FreeType", error);
-        g_clear_pointer(&json_obj, json_object_unref);
         return NULL;
     }
 
@@ -192,7 +190,7 @@ font_manager_get_metadata (const gchar *filepath, gint index, GError **error)
 
     FT_Done_Face(face);
     FT_Done_FreeType(library);
-    return json_obj;
+    return g_steal_pointer(&json_obj);
 }
 
 /**

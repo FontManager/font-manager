@@ -345,9 +345,9 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
     gint index = 0;
     GError *error = NULL;
     g_autofree gchar *filepath = NULL;
-    JsonObject *res = NULL;
-    FontManagerFontInfo *metadata = font_manager_font_info_new();
-    FontManagerDatabase *db = font_manager_get_database(FONT_MANAGER_DATABASE_TYPE_BASE, &error);
+    g_autoptr(JsonObject) res = NULL;
+    g_autoptr(FontManagerFontInfo) metadata = font_manager_font_info_new();
+    g_autoptr(FontManagerDatabase) db = font_manager_get_database(FONT_MANAGER_DATABASE_TYPE_BASE, &error);
     g_object_get(G_OBJECT(self->font), "filepath", &filepath, "findex", &index, NULL);
     if (error == NULL) {
         const gchar *select = "SELECT * FROM Metadata WHERE filepath = %s AND findex = '%i'";
@@ -368,10 +368,7 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
         }
     }
     g_object_set(G_OBJECT(metadata), "source-object", res, NULL);
-    json_object_unref(res);
-    g_object_unref(db);
     g_set_object(&self->metadata, metadata);
-    g_object_unref(metadata);
     self->metadata_update_required = FALSE;
     return G_SOURCE_REMOVE;
 }
@@ -503,7 +500,7 @@ create_menu_button (FontManagerPreviewPane *self)
     gtk_container_add(GTK_CONTAINER(menu_button), menu_icon);
     GMenu *mode_menu = g_menu_new();
     GVariant *variant = g_variant_new_string("Waterfall");
-    GSimpleAction *action = g_simple_action_new_stateful("preview-mode", G_VARIANT_TYPE_STRING, variant);
+    g_autoptr(GSimpleAction) action = g_simple_action_new_stateful("preview-mode", G_VARIANT_TYPE_STRING, variant);
     g_simple_action_set_enabled(action, TRUE);
     g_action_map_add_action(G_ACTION_MAP(application), G_ACTION(action));
     g_signal_connect(action, "activate", G_CALLBACK(on_mode_action_activated), self);
@@ -523,7 +520,6 @@ create_menu_button (FontManagerPreviewPane *self)
     gtk_menu_button_set_menu_model(GTK_MENU_BUTTON(menu_button), G_MENU_MODEL(mode_menu));
     gtk_widget_show(menu_icon);
     gtk_widget_show(menu_button);
-    g_object_unref(action);
     font_manager_widget_set_margin(menu_button, 2);
     gtk_widget_set_margin_top(menu_button, 1);
     gtk_widget_set_margin_bottom(menu_button, 1);
@@ -555,12 +551,11 @@ font_manager_preview_pane_init (FontManagerPreviewPane *self)
     append_page(self, self->character_map, _("Characters"));
     append_page(self, self->properties, _("Properties"));
     append_page(self, self->license, _("License"));
-    GSimpleAction *search = g_simple_action_new("character-search", NULL);
+    g_autoptr(GSimpleAction) search = g_simple_action_new("character-search", NULL);
     g_simple_action_set_enabled(search, TRUE);
     g_signal_connect(search, "activate", G_CALLBACK(on_search_action_activated), self);
     GtkApplication *application = GTK_APPLICATION(g_application_get_default());
     g_action_map_add_action(G_ACTION_MAP(application), G_ACTION(search));
-    g_object_unref(search);
     const gchar *accels [] = { "<Ctrl>f", NULL };
     gtk_application_set_accels_for_action(application, "app.character-search", accels);
     gtk_notebook_set_action_widget(GTK_NOTEBOOK(self), create_menu_button(self), GTK_PACK_START);
@@ -610,15 +605,14 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self, const gchar *u
     }
     g_autofree gchar *path = g_file_get_path(file);
     font_manager_add_application_font(path);
-    FontManagerFont *font = font_manager_font_new();
-    JsonObject *source = font_manager_get_attributes_from_filepath(path, index, &error);
+    g_autoptr(FontManagerFont) font = font_manager_font_new();
+    g_autoptr(JsonObject) source = font_manager_get_attributes_from_filepath(path, index, &error);
     if (error != NULL) {
         g_critical("%s : %s", error->message, path);
         g_clear_error(&error);
-        g_object_unref(font);
         return;
     }
-    JsonObject *orthography = font_manager_get_orthography_results(source);
+    g_autoptr(JsonObject) orthography = font_manager_get_orthography_results(source);
     if (!json_object_has_member(orthography, "Basic Latin")) {
         GList *charset = font_manager_get_charset_from_filepath(path, index);
         if (!self->samples) {
@@ -635,9 +629,6 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self, const gchar *u
     g_object_set(font, "source-object", source, NULL);
     font_manager_preview_pane_set_font(self, font);
     self->current_uri = g_strdup(uri);
-    g_object_unref(font);
-    json_object_unref(source);
-    json_object_unref(orthography);
     return;
 }
 

@@ -1,6 +1,14 @@
 # These functions are not called directly anywhere in our code.
 
 {
+    dl-init
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:_dl_init
+}
+
+{
     FcConfigValues
     Memcheck:Leak
     fun:*alloc
@@ -33,11 +41,43 @@
 }
 
 {
+    gtk_widget_get_preferred*
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:gtk_widget_get_preferred*
+}
+
+{
+    gtk_container_propagate_draw
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:gtk_container_propagate_draw
+}
+
+{
     gtk_builder_extend_with_template
     Memcheck:Leak
     fun:*alloc
     ...
     fun:gtk_builder_extend_with_template
+}
+
+{
+    pango_layout_get_extents_internal
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:pango_layout_get_extents_internal*
+}
+
+{
+    rsvg_rust_handle_close
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:rsvg_rust_handle_close
 }
 
 # Triggered by font installation / removal.

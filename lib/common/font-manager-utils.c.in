@@ -261,17 +261,14 @@ gchar *
 font_manager_str_replace (const gchar *str, const gchar *target, const gchar *replacement)
 {
     g_return_val_if_fail((str != NULL && target != NULL && replacement != NULL), NULL);
-    GError *error = NULL;
     gchar *result = NULL;
+    g_autoptr(GError) error = NULL;
     g_autofree gchar *escaped_str = g_regex_escape_string(target, -1);
-    GRegex *regex = g_regex_new(escaped_str, 0, 0, &error);
-    if (error == NULL) {
+    g_autoptr(GRegex) regex = g_regex_new(escaped_str, 0, 0, &error);
+    if (error == NULL)
         result = g_regex_replace_literal(regex, str, -1, 0, replacement, 0, &error);
-        g_regex_unref(regex);
-    }
     if (error != NULL) {
         g_warning("%i - %s", error->code, error->message);
-        g_error_free(error);
         g_clear_pointer(&result, g_free);
     }
     return result;
@@ -328,7 +325,7 @@ font_manager_get_gsettings (const gchar *schema_id)
 {
     GSettingsSchemaSource *schema_source = g_settings_schema_source_get_default();
     g_return_val_if_fail(schema_source != NULL, NULL);
-    GSettingsSchema *schema = g_settings_schema_source_lookup(schema_source, schema_id, TRUE);
+    g_autoptr(GSettingsSchema) schema = g_settings_schema_source_lookup(schema_source, schema_id, TRUE);
     if (schema != NULL) {
         g_debug("Using schema with id %s from default source", schema_id);
     } else {
@@ -342,7 +339,7 @@ font_manager_get_gsettings (const gchar *schema_id)
                 g_debug("Skipping invalid or non-existent directory path %s", dir);
                 continue;
             }
-            GSettingsSchemaSource *source;
+            g_autoptr(GSettingsSchemaSource) source = NULL;
             source = g_settings_schema_source_new_from_directory(dir, schema_source, FALSE, NULL);
             if (source == NULL) {
                 g_debug("Failed to create schema source for %s", dir);
@@ -352,10 +349,8 @@ font_manager_get_gsettings (const gchar *schema_id)
             schema = g_settings_schema_source_lookup(source, schema_id, TRUE);
             if (schema != NULL) {
                 g_debug("Using schema with id %s from %s", schema_id, dir);
-                g_settings_schema_source_unref(source);
                 break;
             }
-            g_settings_schema_source_unref(source);
         }
         g_slist_free_full(slist, g_free);
         if (schema == NULL) {
@@ -364,7 +359,5 @@ font_manager_get_gsettings (const gchar *schema_id)
             return NULL;
         }
     }
-    GSettings *result = g_settings_new_full(schema, NULL, NULL);
-    g_settings_schema_unref(schema);
-    return result;
+    return g_settings_new_full(schema, NULL, NULL);
 }

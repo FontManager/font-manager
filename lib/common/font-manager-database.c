@@ -831,21 +831,19 @@ get_known_files (FontManagerDatabase *db, const gchar *table)
     g_return_val_if_fail(FONT_MANAGER_IS_DATABASE(db), result);
     g_return_val_if_fail(table != NULL, result);
     g_autofree gchar *sql = g_strdup_printf("SELECT DISTINCT filepath FROM %s", table);
-    GError *error = NULL;
+    g_autoptr(GError) error = NULL;
     font_manager_database_execute_query(db, sql, &error);
     if (error != NULL) {
         g_critical("%s", error->message);
-        g_error_free(error);
         return result;
     }
-    FontManagerDatabaseIterator *iter = font_manager_database_iterator(db);
+    g_autoptr(FontManagerDatabaseIterator) iter = font_manager_database_iterator(db);
     while (font_manager_database_iterator_next(iter)) {
         sqlite3_stmt *stmt = font_manager_database_iterator_get(iter);
         const gchar *val = (const gchar *) sqlite3_column_text(stmt, 0);
         if (val)
             font_manager_string_set_add(result, val);
     }
-    g_object_unref(iter);
     return result;
 }
 
@@ -866,10 +864,9 @@ sync_metadata_table (FontManagerDatabase *db, JsonObject *face, gpointer data)
     int index = json_object_get_int_member(face, "findex");
     const gchar *filepath = json_object_get_string_member(face, "filepath");
     GError *error = NULL;
-    JsonObject *_face = font_manager_get_metadata(filepath, index, &error);
+    g_autoptr(JsonObject) _face = font_manager_get_metadata(filepath, index, &error);
     if (error != NULL) {
         g_critical("Failed to get metadata for %s::%i - %s", filepath, index, error->message);
-        json_object_unref(_face);
         return;
     }
     bind_from_properties(db->stmt, _face, INFO_PROPERTIES, G_N_ELEMENTS(INFO_PROPERTIES));
@@ -884,7 +881,6 @@ sync_metadata_table (FontManagerDatabase *db, JsonObject *face, gpointer data)
         json_object_set_member(panose, "panose", _panose);
         json_array_add_object_element(panose_info, panose);
     }
-    json_object_unref(_face);
     return;
 }
 
@@ -1025,7 +1021,6 @@ update_available_fonts (FontManagerDatabase *db,
         }
         processed++;
     }
-
     font_manager_database_commit_transaction(db, error);
     return;
 }
@@ -1149,12 +1144,11 @@ font_manager_update_database (FontManagerDatabase *db,
 {
     g_return_if_fail(cancellable == NULL || G_IS_CANCELLABLE (cancellable));
     DatabaseSyncData *sync_data = get_sync_data(db, type, available_fonts, available_files, progress);
-    GTask *task = g_task_new(NULL, cancellable, callback, user_data);
+    g_autoptr(GTask) task = g_task_new(NULL, cancellable, callback, user_data);
     g_task_set_priority(task, G_PRIORITY_DEFAULT);
     g_task_set_return_on_cancel(task, FALSE);
     g_task_set_task_data(task, (gpointer) sync_data, (GDestroyNotify) free_sync_data);
     g_task_run_in_thread(task, sync_database_thread);
-    g_object_unref(task);
     return;
 }
 
@@ -1198,7 +1192,7 @@ font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
     g_return_if_fail(error == NULL || *error == NULL);
     font_manager_database_execute_query(db, sql, error);
     g_return_if_fail(error == NULL || *error == NULL);
-    FontManagerDatabaseIterator *iter = font_manager_database_iterator(db);
+    g_autoptr(FontManagerDatabaseIterator) iter = font_manager_database_iterator(db);
     while (font_manager_database_iterator_next(iter)) {
         sqlite3_stmt *stmt = font_manager_database_iterator_get(iter);
         g_assert(sqlite3_column_count(stmt) >= 2);
@@ -1209,7 +1203,6 @@ font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
         font_manager_string_set_add(families, family);
         font_manager_string_set_add(fonts, font);
     }
-    g_object_unref(iter);
     return;
 }
 
