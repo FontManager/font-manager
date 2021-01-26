@@ -25,10 +25,10 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-24 18:58-0500\n"
-"PO-Revision-Date: 2021-01-17 18:27+0000\n"
+"PO-Revision-Date: 2021-01-26 23:50+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
-"Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/de/>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -929,16 +929,12 @@ msgid "Ahom"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:33
-#, fuzzy
-#| msgid "Cyrillic"
 msgid "Aleut Cyrillic"
-msgstr "Kyrillisch"
+msgstr "Aleutisch Kyrillisch"
 
 #: src/font-manager/Orthographies.vala:34
-#, fuzzy
-#| msgid "Latin"
 msgid "Aleut Latin"
-msgstr "Lateinisch"
+msgstr "Aleut Lateinisch"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
@@ -951,21 +947,19 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:37
 msgid "Armenian"
-msgstr ""
+msgstr "Armenisch"
 
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
-msgstr ""
+msgstr "Astronomie"
 
 #: src/font-manager/Orthographies.vala:39
-#, fuzzy
-#| msgid "Japanese"
 msgid "Balinese"
-msgstr "Japanisch"
+msgstr "Balinesisch"
 
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
-msgstr ""
+msgstr "Baltisch"
 
 #: src/font-manager/Orthographies.vala:41
 msgid "Bamum"
@@ -1018,11 +1012,11 @@ msgstr "Varianten"
 
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
-msgstr ""
+msgstr "Katalanisch"
 
 #: src/font-manager/Orthographies.vala:52
 msgid "Central European"
-msgstr ""
+msgstr "Mitteleuropäisch"
 
 #: src/font-manager/Orthographies.vala:53
 msgid "Chakma"
@@ -1038,7 +1032,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:56
 msgid "Chess Symbols"
-msgstr ""
+msgstr "Schachsymbole"
 
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
@@ -1083,10 +1077,8 @@ msgid "Coptic"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:71
-#, fuzzy
-#| msgid "Preferences"
 msgid "Currencies"
-msgstr "Einstellungen"
+msgstr "Währungen"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
@@ -1103,25 +1095,25 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:75
 msgid "Egyptian Hieroglyphs"
-msgstr ""
+msgstr "Ägyptische Hieroglyphen"
 
 #: src/font-manager/Orthographies.vala:76
 msgid "Emoticons"
-msgstr ""
+msgstr "Emoticons"
 
 #: src/font-manager/Orthographies.vala:77
 msgid "Ethiopic"
-msgstr ""
+msgstr "Äthiopisch"
 
 #. This "orthography" contains only the euro symbol...
 #. { "Euro", "Euro" },
 #: src/font-manager/Orthographies.vala:82
 msgid "Farsi"
-msgstr ""
+msgstr "Farsi"
 
 #: src/font-manager/Orthographies.vala:83
 msgid "Food and Drink"
-msgstr ""
+msgstr "Essen und Trinken"
 
 #: src/font-manager/Orthographies.vala:84
 #, fuzzy
@@ -1131,15 +1123,15 @@ msgstr "Kyrillisch"
 
 #: src/font-manager/Orthographies.vala:85
 msgid "Georgian"
-msgstr ""
+msgstr "Georgisch"
 
 #: src/font-manager/Orthographies.vala:86
 msgid "Glagolitic"
-msgstr ""
+msgstr "Glagolitisch"
 
 #: src/font-manager/Orthographies.vala:87
 msgid "Gothic"
-msgstr ""
+msgstr "Gotisch"
 
 #: src/font-manager/Orthographies.vala:88
 #: src/font-manager/web/google/Language.vala:42
@@ -1169,7 +1161,7 @@ msgstr "Hebräisch"
 #: src/font-manager/Orthographies.vala:93
 #: src/font-manager/Orthographies.vala:95
 msgid "IPA"
-msgstr ""
+msgstr "IPA"
 
 #: src/font-manager/Orthographies.vala:94
 msgid "Igbo Onwu"
@@ -1188,16 +1180,12 @@ msgid "Javanese"
 msgstr "Japanisch"
 
 #: src/font-manager/Orthographies.vala:98
-#, fuzzy
-#| msgid "Japanese"
 msgid "Japanese Jinmeiyo"
-msgstr "Japanisch"
+msgstr "Japanisch Jinmeiyo"
 
 #: src/font-manager/Orthographies.vala:99
-#, fuzzy
-#| msgid "Japanese"
 msgid "Japanese Joyo"
-msgstr "Japanisch"
+msgstr "Japanisch Joyo"
 
 #: src/font-manager/Orthographies.vala:100
 msgid "Kaithi"
@@ -1220,7 +1208,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kazakh"
-msgstr ""
+msgstr "Kasachisch"
 
 #: src/font-manager/Orthographies.vala:105
 msgid "Kharoshthi"
@@ -1243,7 +1231,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:109
 msgid "Latin Ligatures"
-msgstr ""
+msgstr "Lateinische Ligaturen"
 
 #: src/font-manager/Orthographies.vala:110
 msgid "Lepcha"
@@ -1255,11 +1243,11 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Ideograms"
-msgstr ""
+msgstr "Lineare B Ideogramme"
 
 #: src/font-manager/Orthographies.vala:113
 msgid "Linear B Syllabary"
-msgstr ""
+msgstr "Lineare B Silben"
 
 #: src/font-manager/Orthographies.vala:114
 #: src/font-manager/web/google/Language.vala:51
@@ -1268,19 +1256,19 @@ msgstr "Malayalam"
 
 #: src/font-manager/Orthographies.vala:115
 msgid "Mathematical Greek"
-msgstr ""
+msgstr "Mathematische griechische"
 
 #: src/font-manager/Orthographies.vala:116
 msgid "Mathematical Latin"
-msgstr ""
+msgstr "Mathematische lateinische"
 
 #: src/font-manager/Orthographies.vala:117
 msgid "Mathematical Numerals"
-msgstr ""
+msgstr "Mathematische Ziffern"
 
 #: src/font-manager/Orthographies.vala:118
 msgid "Mathematical Operators"
-msgstr ""
+msgstr "Mathematische Operatoren"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Meetei Mayak"
@@ -1304,7 +1292,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:124
 msgid "Mongolian"
-msgstr ""
+msgstr "Mongolisch"
 
 #. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
 #. * Contains lots of duplicates, doubt many would find it useful
@@ -1368,11 +1356,11 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:144
 msgid "Polynesian"
-msgstr ""
+msgstr "Polynesisch"
 
 #: src/font-manager/Orthographies.vala:145
 msgid "Polytonic Greek"
-msgstr ""
+msgstr "Polytonisch griechisch"
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Rejang"
@@ -1380,11 +1368,11 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:147
 msgid "Romanian"
-msgstr ""
+msgstr "Rumänisch"
 
 #: src/font-manager/Orthographies.vala:148
 msgid "Runic"
-msgstr ""
+msgstr "Runen"
 
 #: src/font-manager/Orthographies.vala:149
 msgid "Saurashtra"
@@ -1465,7 +1453,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:167
 msgid "Turkish"
-msgstr ""
+msgstr "Türkisch"
 
 #: src/font-manager/Orthographies.vala:168
 msgid "Uighur"
@@ -1484,10 +1472,8 @@ msgid "Vedic Extensions"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:172
-#, fuzzy
-#| msgid "Vendor"
 msgid "Venda"
-msgstr "Anbieter"
+msgstr "Venda"
 
 #: src/font-manager/Orthographies.vala:173
 #: src/font-manager/web/google/Language.vala:59
@@ -1496,11 +1482,11 @@ msgstr "Vietnamesisch"
 
 #: src/font-manager/Orthographies.vala:174
 msgid "Western European"
-msgstr ""
+msgstr "Westeuropäisch"
 
 #: src/font-manager/Orthographies.vala:175
 msgid "Yi"
-msgstr ""
+msgstr "Yi"
 
 #: src/font-manager/Orthographies.vala:176
 msgid "Chinese Zhuyin Fuhao"
