@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-01-24 18:58-0500\n"
-"PO-Revision-Date: 2021-01-24 01:21+0000\n"
+"PO-Revision-Date: 2021-01-26 15:32+0000\n"
 "Last-Translator: Aurelian Ciocîltan <aurelianciociltan@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/ro/>\n"
@@ -39,7 +39,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "Toate"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
@@ -49,7 +49,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "Sistem"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
@@ -69,7 +69,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "Tipul familiei"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
@@ -81,7 +81,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "Lăţime"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
@@ -91,7 +91,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr ""
+msgstr "Greutate"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
@@ -101,7 +101,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr ""
+msgstr "Oblic"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
@@ -111,7 +111,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "Spaţiere"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
@@ -121,7 +121,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "Licență"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
@@ -133,7 +133,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "Furnizor"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -145,7 +145,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "Tip fișier"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
