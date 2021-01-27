@@ -1,6 +1,5 @@
 
 # Font Manager <img src="help/C/media/preferences-desktop-font.png" align="right">
-<hr> Citiţi în alte limbi: [`English`](https://github.com/FontManager/font-manager/blob/master/README.md) <hr>
 Un manager de fonturi simplu pentru Mediile Desktop GTK.
 
 ![Main Window](https://github.com/FontManager/resources/blob/master/font-manager.png?raw=true)
