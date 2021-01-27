@@ -4,7 +4,7 @@
 A simple font management application for GTK Desktop Environments
 
 ![Main Window](https://github.com/FontManager/resources/blob/master/font-manager.png?raw=true)
-<hr> Read this in other languages:<hr> [Română](https://github.com/FontManager/font-manager/blob/master/README.ro.md)
+<a>Read this in other languages: [Română](https://github.com/FontManager/font-manager/blob/master/README.ro.md)<a>
 Font Manager is intended to provide a way for average users to easily manage desktop fonts, without having to resort to command line tools or editing configuration files by hand. While designed primarily with the Gnome Desktop Environment in mind, it should work well with other GTK desktop environments.
 
 Font Manager is NOT a professional-grade font management solution.
