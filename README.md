@@ -1,3 +1,5 @@
+|[English](README.md)|[Română](README.ro.md)|
+|--------------------|----------------------|
 
 # Font Manager <img src="help/C/media/preferences-desktop-font.png" align="right">
 
