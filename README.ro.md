@@ -1,10 +1,9 @@
 
 # Font Manager <img src="help/C/media/preferences-desktop-font.png" align="right"> 
-<hr>*Citiţi în alte limbi: [English](README.md)*<hr>
 Un manager de fonturi simplu pentru Mediile Desktop GTK.
 
 ![Main Window](https://github.com/FontManager/resources/blob/master/font-manager.png?raw=true)
-*Citiţi în alte limbi: [English](README.md)*
+<hr>Citiţi în alte limbi:[English](README.md)<hr>
 Font Manager este proiectat pentru a furniza utilizatorilor normali o cale uşoară de a administra fonturile de desktop, făra a fi nevoie de a recurge la command line sau la editarea manuală a fişierelor de configurare. Deşi este proiectat în special pentru Gnome Desktop Environment, ar trebui să meargă bine şi cu alte medii desktop GTK.
 
 Font Manager NU este o soluţie de gestionare a fonturilor de calitate profesională.
