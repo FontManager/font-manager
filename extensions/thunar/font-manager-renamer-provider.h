@@ -32,16 +32,12 @@
 
 G_BEGIN_DECLS
 
-G_DEFINE_AUTOPTR_CLEANUP_FUNC(ThunarxRenamer, g_object_unref)
-
 #define FONT_MANAGER_TYPE_RENAMER (font_manager_renamer_get_type())
-
 G_DECLARE_FINAL_TYPE (FontManagerRenamer, font_manager_renamer, FONT_MANAGER, RENAMER, ThunarxRenamer)
 
 ThunarxRenamer * font_manager_renamer_new (void);
 
 #define FONT_MANAGER_TYPE_RENAMER_PROVIDER (font_manager_renamer_provider_get_type())
-
 G_DECLARE_FINAL_TYPE (FontManagerRenamerProvider, font_manager_renamer_provider, FONT_MANAGER, RENAMER_PROVIDER, GObject)
 
 void font_manager_renamer_provider_load (ThunarxProviderPlugin *module);

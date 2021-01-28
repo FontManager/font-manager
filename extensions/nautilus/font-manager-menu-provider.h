@@ -32,7 +32,6 @@
 G_BEGIN_DECLS
 
 #define FONT_MANAGER_TYPE_MENU_PROVIDER (font_manager_menu_provider_get_type())
-
 G_DECLARE_FINAL_TYPE (FontManagerMenuProvider, font_manager_menu_provider, FONT_MANAGER, MENU_PROVIDER, GObject)
 
 void font_manager_menu_provider_load (GTypeModule *module);

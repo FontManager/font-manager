@@ -90,8 +90,7 @@ font_manager_natural_sort (const gchar *str1, const gchar *str2)
     g_return_val_if_fail((str1 != NULL && str2 != NULL), 0);
     g_autofree gchar *s1 = g_utf8_collate_key_for_filename(str1, -1);
     g_autofree gchar *s2 = g_utf8_collate_key_for_filename(str2, -1);
-    gint result = g_strcmp0(s1, s2);
-    return result;
+    return g_strcmp0(s1, s2);
 }
 
 /**
@@ -151,10 +150,9 @@ font_manager_get_file_extension (const gchar *filepath)
     gchar ** str_arr = g_strsplit(filepath, ".", -1);
     g_return_val_if_fail(str_arr != NULL, NULL);
     guint arr_len = g_strv_length(str_arr);
-    g_autofree gchar *_result = g_strdup(str_arr[arr_len - 1]);
+    g_autofree gchar *res = g_strdup(str_arr[arr_len - 1]);
     g_strfreev(str_arr);
-    gchar *result = g_ascii_strdown(_result, -1);
-    return result;
+    return g_ascii_strdown(res, -1);
 }
 
 /**
@@ -168,8 +166,7 @@ gchar *
 font_manager_get_local_time (void)
 {
     g_autoptr(GDateTime) local_time = g_date_time_new_now_local();
-    gchar *result = g_date_time_format(local_time, "%c");
-    return result;
+    return g_date_time_format(local_time, "%c");
 }
 
 /**
@@ -184,10 +181,9 @@ font_manager_get_local_time (void)
 gchar *
 font_manager_get_user_font_directory (void)
 {
-    gchar *font_dir = g_build_filename(g_get_user_data_dir(), "fonts", NULL);
+    g_autofree gchar *font_dir = g_build_filename(g_get_user_data_dir(), "fonts", NULL);
     if (ensure_dir_exists(font_dir))
-        return font_dir;
-    g_free(font_dir);
+        return g_steal_pointer(&font_dir);
     return NULL;
 }
 
@@ -203,10 +199,9 @@ font_manager_get_user_font_directory (void)
 gchar *
 font_manager_get_package_cache_directory (void)
 {
-    gchar *cache_dir = g_build_filename(g_get_user_cache_dir(), "@PACKAGE_NAME@", NULL);
+    g_autofree gchar *cache_dir = g_build_filename(g_get_user_cache_dir(), "@PACKAGE_NAME@", NULL);
     if (ensure_dir_exists(cache_dir))
-        return cache_dir;
-    g_free(cache_dir);
+        return g_steal_pointer(&cache_dir);
     return NULL;
 }
 
@@ -222,10 +217,9 @@ font_manager_get_package_cache_directory (void)
 gchar *
 font_manager_get_package_config_directory (void)
 {
-    gchar *config_dir = g_build_filename(g_get_user_config_dir(), "@PACKAGE_NAME@", NULL);
+    g_autofree gchar *config_dir = g_build_filename(g_get_user_config_dir(), "@PACKAGE_NAME@", NULL);
     if (ensure_dir_exists(config_dir))
-        return config_dir;
-    g_free(config_dir);
+        return g_steal_pointer(&config_dir);
     return NULL;
 }
 
@@ -241,10 +235,9 @@ font_manager_get_package_config_directory (void)
 gchar *
 font_manager_get_user_fontconfig_directory (void)
 {
-    gchar *config_dir = g_build_filename(g_get_user_config_dir(), "fontconfig", "conf.d", NULL);
+    g_autofree gchar *config_dir = g_build_filename(g_get_user_config_dir(), "fontconfig", "conf.d", NULL);
     if (ensure_dir_exists(config_dir))
-        return config_dir;
-    g_free(config_dir);
+        return g_steal_pointer(&config_dir);
     return NULL;
 }
 
@@ -261,17 +254,17 @@ gchar *
 font_manager_str_replace (const gchar *str, const gchar *target, const gchar *replacement)
 {
     g_return_val_if_fail((str != NULL && target != NULL && replacement != NULL), NULL);
-    gchar *result = NULL;
+    gchar *res = NULL;
     g_autoptr(GError) error = NULL;
     g_autofree gchar *escaped_str = g_regex_escape_string(target, -1);
     g_autoptr(GRegex) regex = g_regex_new(escaped_str, 0, 0, &error);
     if (error == NULL)
-        result = g_regex_replace_literal(regex, str, -1, 0, replacement, 0, &error);
+        res = g_regex_replace_literal(regex, str, -1, 0, replacement, 0, &error);
     if (error != NULL) {
         g_warning("%i - %s", error->code, error->message);
-        g_clear_pointer(&result, g_free);
+        g_clear_pointer(&res, g_free);
     }
-    return result;
+    return res;
 }
 
 /**
