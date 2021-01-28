@@ -539,6 +539,7 @@ namespace FontManager {
 
     internal const FilterData [] metadata = {
         { CategoryIndex.LICENSE, N_("License"), N_("Grouped by license type"), "license-type" },
+        /* Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid */
         { CategoryIndex.VENDOR, N_("Vendor"), N_("Grouped by vendor"), "vendor" },
         { CategoryIndex.FILETYPE, N_("Filetype"), N_("Grouped by filetype"), "filetype" }
     };

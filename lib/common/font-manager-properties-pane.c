@@ -85,6 +85,7 @@ static const FontPropertyRow FontPropertyRows [] =
     { FONT, G_TYPE_INT, "weight", N_("Weight") },
     { FONT, G_TYPE_INT, "spacing", N_("Spacing") },
     { METADATA, G_TYPE_STRING, "version", N_("Version") },
+    /* Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid */
     { METADATA, G_TYPE_STRING, "vendor", N_("Vendor") },
     { METADATA, G_TYPE_STRING, "filetype", N_("FileType") },
     { METADATA, G_TYPE_STRING, "filesize", N_("Filesize") },
