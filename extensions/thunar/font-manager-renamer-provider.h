@@ -32,6 +32,8 @@
 
 G_BEGIN_DECLS
 
+G_DEFINE_AUTOPTR_CLEANUP_FUNC(ThunarxRenamer, g_object_unref)
+
 #define FONT_MANAGER_TYPE_RENAMER (font_manager_renamer_get_type())
 G_DECLARE_FINAL_TYPE (FontManagerRenamer, font_manager_renamer, FONT_MANAGER, RENAMER, ThunarxRenamer)
 
