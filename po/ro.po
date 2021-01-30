@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-24 18:58-0500\n"
-"PO-Revision-Date: 2021-01-26 15:32+0000\n"
+"PO-Revision-Date: 2021-01-30 15:41+0000\n"
 "Last-Translator: Aurelian Ciocîltan <aurelianciociltan@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/ro/>\n"
@@ -1110,148 +1110,148 @@ msgstr "Gujarati"
 #: src/font-manager/Orthographies.vala:89
 #: src/font-manager/web/google/Language.vala:43
 msgid "Gurmukhi"
-msgstr ""
+msgstr "Gurmukhi"
 
 #: src/font-manager/Orthographies.vala:90
 msgid "Korean Hangul"
-msgstr ""
+msgstr "Hangul coreean"
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hanunó'o"
-msgstr ""
+msgstr "Hanunó'o"
 
 #: src/font-manager/Orthographies.vala:92
 #: src/font-manager/web/google/Language.vala:44
 msgid "Hebrew"
-msgstr ""
+msgstr "Ebraică"
 
 #: src/font-manager/Orthographies.vala:93
 #: src/font-manager/Orthographies.vala:95
 msgid "IPA"
-msgstr ""
+msgstr "IPA"
 
 #: src/font-manager/Orthographies.vala:94
 msgid "Igbo Onwu"
-msgstr ""
+msgstr "Igbo Onwu"
 
 #: src/font-manager/Orthographies.vala:96
 msgid "Korean Jamo"
-msgstr ""
+msgstr "Coreeană Jamo"
 
 #: src/font-manager/Orthographies.vala:97
 msgid "Javanese"
-msgstr ""
+msgstr "Javaneză"
 
 #: src/font-manager/Orthographies.vala:98
 msgid "Japanese Jinmeiyo"
-msgstr ""
+msgstr "Jinmeiyo japonez"
 
 #: src/font-manager/Orthographies.vala:99
 msgid "Japanese Joyo"
-msgstr ""
+msgstr "Japoneză Joyo"
 
 #: src/font-manager/Orthographies.vala:100
 msgid "Kaithi"
-msgstr ""
+msgstr "Kaithi"
 
 #: src/font-manager/Orthographies.vala:101
 msgid "Japanese Kana"
-msgstr ""
+msgstr "Japoneză Kana"
 
 #: src/font-manager/Orthographies.vala:102
 #: src/font-manager/web/google/Language.vala:46
 msgid "Kannada"
-msgstr ""
+msgstr "Kannada"
 
 #: src/font-manager/Orthographies.vala:103
 msgid "Kayah Li"
-msgstr ""
+msgstr "Kayah Li"
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kazakh"
-msgstr ""
+msgstr "Kazahă"
 
 #: src/font-manager/Orthographies.vala:105
 msgid "Kharoshthi"
-msgstr ""
+msgstr "Kharoshthi"
 
 #: src/font-manager/Orthographies.vala:106
 #: src/font-manager/web/google/Language.vala:47
 msgid "Khmer"
-msgstr ""
+msgstr "Khmeră"
 
 #: src/font-manager/Orthographies.vala:107
 msgid "Japanese Kokuji"
-msgstr ""
+msgstr "Japoneză Kokuji"
 
 #: src/font-manager/Orthographies.vala:108
 msgid "Lao"
-msgstr ""
+msgstr "Loațiană"
 
 #: src/font-manager/Orthographies.vala:109
 msgid "Latin Ligatures"
-msgstr ""
+msgstr "Ligaturi latine"
 
 #: src/font-manager/Orthographies.vala:110
 msgid "Lepcha"
-msgstr ""
+msgstr "Lepcha"
 
 #: src/font-manager/Orthographies.vala:111
 msgid "Limbu"
-msgstr ""
+msgstr "Limbu"
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Ideograms"
-msgstr ""
+msgstr "Ideograme liniare B"
 
 #: src/font-manager/Orthographies.vala:113
 msgid "Linear B Syllabary"
-msgstr ""
+msgstr "Silabar B liniar"
 
 #: src/font-manager/Orthographies.vala:114
 #: src/font-manager/web/google/Language.vala:51
 msgid "Malayalam"
-msgstr ""
+msgstr "Malayalam"
 
 #: src/font-manager/Orthographies.vala:115
 msgid "Mathematical Greek"
-msgstr ""
+msgstr "Greacă matematică"
 
 #: src/font-manager/Orthographies.vala:116
 msgid "Mathematical Latin"
-msgstr ""
+msgstr "Latină matematică"
 
 #: src/font-manager/Orthographies.vala:117
 msgid "Mathematical Numerals"
-msgstr ""
+msgstr "Numere matematice"
 
 #: src/font-manager/Orthographies.vala:118
 msgid "Mathematical Operators"
-msgstr ""
+msgstr "Operatori matematici"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Meetei Mayak"
-msgstr ""
+msgstr "Meetei Mayak"
 
 #: src/font-manager/Orthographies.vala:120
 msgid "Mende Kikakui"
-msgstr ""
+msgstr "Mende Kikakui"
 
 #: src/font-manager/Orthographies.vala:121
 msgid "MeroiticCursive"
-msgstr ""
+msgstr "MeroiticCursiv"
 
 #: src/font-manager/Orthographies.vala:122
 msgid "Meroitic Hieroglyphs"
-msgstr ""
+msgstr "Hieroglife meroitice"
 
 #: src/font-manager/Orthographies.vala:123
 msgid "Miao"
-msgstr ""
+msgstr "Miao"
 
 #: src/font-manager/Orthographies.vala:124
 msgid "Mongolian"
-msgstr ""
+msgstr "Mongolă"
 
 #. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
 #. * Contains lots of duplicates, doubt many would find it useful
@@ -1260,331 +1260,333 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:131
 #: src/font-manager/web/google/Language.vala:52
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar"
 
 #: src/font-manager/Orthographies.vala:132
 msgid "New Tai Lue"
-msgstr ""
+msgstr "Noul Tai Lue"
 
 #: src/font-manager/Orthographies.vala:133
 msgid "N’Ko"
-msgstr ""
+msgstr "N'Ko"
 
 #: src/font-manager/Orthographies.vala:134
 msgid "Ogham"
-msgstr ""
+msgstr "Ogham"
 
 #: src/font-manager/Orthographies.vala:135
 msgid "Ol Chiki"
-msgstr ""
+msgstr "Ol Chiki"
 
 #: src/font-manager/Orthographies.vala:136
 msgid "Old Italic"
-msgstr ""
+msgstr "Italic vechi"
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
-msgstr ""
+msgstr "Arabă de Sud Veche"
 
 #: src/font-manager/Orthographies.vala:138
 #: src/font-manager/web/google/Language.vala:53
 msgid "Oriya"
-msgstr ""
+msgstr "Oriya"
 
 #: src/font-manager/Orthographies.vala:139
 msgid "Osmanya"
-msgstr ""
+msgstr "Osmanya"
 
 #: src/font-manager/Orthographies.vala:140
 msgid "Pan African Latin"
-msgstr ""
+msgstr "Latină panafricană"
 
 #: src/font-manager/Orthographies.vala:141
 msgid "Pashto"
-msgstr ""
+msgstr "Paştună"
 
 #: src/font-manager/Orthographies.vala:142
 msgid "Phags Pa"
-msgstr ""
+msgstr "Phags Pa"
 
 #: src/font-manager/Orthographies.vala:143
 msgid "Pinyin"
-msgstr ""
+msgstr "Pinyin"
 
 #: src/font-manager/Orthographies.vala:144
 msgid "Polynesian"
-msgstr ""
+msgstr "Polineziană"
 
 #: src/font-manager/Orthographies.vala:145
 msgid "Polytonic Greek"
-msgstr ""
+msgstr "Greacă politonică"
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Rejang"
-msgstr ""
+msgstr "Rejang"
 
 #: src/font-manager/Orthographies.vala:147
 msgid "Romanian"
-msgstr ""
+msgstr "Română"
 
 #: src/font-manager/Orthographies.vala:148
 msgid "Runic"
-msgstr ""
+msgstr "Runică"
 
 #: src/font-manager/Orthographies.vala:149
 msgid "Saurashtra"
-msgstr ""
+msgstr "Saurashtra"
 
 #: src/font-manager/Orthographies.vala:150
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "Chineză simplificată"
 
 #: src/font-manager/Orthographies.vala:151
 msgid "Sindhi"
-msgstr ""
+msgstr "Sindhi"
 
 #: src/font-manager/Orthographies.vala:152
 #: src/font-manager/web/google/Language.vala:54
 msgid "Sinhala"
-msgstr ""
+msgstr "Singhaleză"
 
 #: src/font-manager/Orthographies.vala:153
 msgid "South Korean Hanja"
-msgstr ""
+msgstr "Hanja sud-coreeană"
 
 #: src/font-manager/Orthographies.vala:154
 msgid "Sundanese"
-msgstr ""
+msgstr "Sundaneză"
 
 #: src/font-manager/Orthographies.vala:155
 msgid "Syloti Nagri"
-msgstr ""
+msgstr "Syloti Nagri"
 
 #: src/font-manager/Orthographies.vala:156
 msgid "Syriac"
-msgstr ""
+msgstr "Siriacă"
 
 #: src/font-manager/Orthographies.vala:157
 msgid "Tai Le"
-msgstr ""
+msgstr "Tai Le"
 
 #: src/font-manager/Orthographies.vala:158
 msgid "Tai Tham (Lanna)"
-msgstr ""
+msgstr "Tai Tham (Lanna)"
 
 #: src/font-manager/Orthographies.vala:159
 msgid "Tai Viet"
-msgstr ""
+msgstr "Tai Viet"
 
 #: src/font-manager/Orthographies.vala:160
 #: src/font-manager/web/google/Language.vala:55
 msgid "Tamil"
-msgstr ""
+msgstr "Limba Tamil"
 
 #: src/font-manager/Orthographies.vala:161
 #: src/font-manager/web/google/Language.vala:56
 msgid "Telugu"
-msgstr ""
+msgstr "Limba Telugu"
 
 #: src/font-manager/Orthographies.vala:162
 msgid "Thaana"
-msgstr ""
+msgstr "Thaana"
 
 #: src/font-manager/Orthographies.vala:163
 #: src/font-manager/web/google/Language.vala:57
 msgid "Thai"
-msgstr ""
+msgstr "Tailandeză"
 
 #: src/font-manager/Orthographies.vala:164
 #: src/font-manager/web/google/Language.vala:58
 msgid "Tibetan"
-msgstr ""
+msgstr "Tibetană"
 
 #: src/font-manager/Orthographies.vala:165
 msgid "Tifinagh"
-msgstr ""
+msgstr "Tifinagh"
 
 #: src/font-manager/Orthographies.vala:166
 msgid "Traditional Chinese"
-msgstr ""
+msgstr "Chineză tradițională"
 
 #: src/font-manager/Orthographies.vala:167
 msgid "Turkish"
-msgstr ""
+msgstr "Turcă"
 
 #: src/font-manager/Orthographies.vala:168
 msgid "Uighur"
-msgstr ""
+msgstr "Uighur"
 
 #: src/font-manager/Orthographies.vala:169
 msgid "Urdu"
-msgstr ""
+msgstr "Urdu"
 
 #: src/font-manager/Orthographies.vala:170
 msgid "Vai"
-msgstr ""
+msgstr "Vai"
 
 #: src/font-manager/Orthographies.vala:171
 msgid "Vedic Extensions"
-msgstr ""
+msgstr "Extensii vedice"
 
 #: src/font-manager/Orthographies.vala:172
 msgid "Venda"
-msgstr ""
+msgstr "Venda"
 
 #: src/font-manager/Orthographies.vala:173
 #: src/font-manager/web/google/Language.vala:59
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vietnameză"
 
 #: src/font-manager/Orthographies.vala:174
 msgid "Western European"
-msgstr ""
+msgstr "Europa de Vest"
 
 #: src/font-manager/Orthographies.vala:175
 msgid "Yi"
-msgstr ""
+msgstr "Yi"
 
 #: src/font-manager/Orthographies.vala:176
 msgid "Chinese Zhuyin Fuhao"
-msgstr ""
+msgstr "Chineză Zhuyin Fuhao"
 
 #. Translators : Coverage refers to the amount of support the font provides for an
 #. orthography. This will be displayed as "Coverage : XXX%" in the interface.
 #: src/font-manager/Orthography.vala:124
 msgid "Coverage"
-msgstr ""
+msgstr "Acoperire"
 
 #: src/font-manager/Orthography.vala:153
 #: src/font-manager/filters/LanguageFilter.vala:58
 #: src/font-manager/web/google/ui/google-font-filters.ui:503
 msgid "Supported Orthographies"
-msgstr ""
+msgstr "Ortografii acceptate"
 
 #: src/font-manager/Orthography.vala:204
 msgid "Update in progress"
-msgstr ""
+msgstr "Actualizare în curs"
 
 #: src/font-manager/TitleBar.vala:62
 msgid "Updating Database — Fonts"
-msgstr ""
+msgstr "Actualizare bază de date — Fonturi"
 
 #: src/font-manager/TitleBar.vala:64
 msgid "Updating Database — Metadata"
-msgstr ""
+msgstr "Actualizarea bazei de date - metadate"
 
 #: src/font-manager/TitleBar.vala:66
 msgid "Updating Database — Orthography"
-msgstr ""
+msgstr "Actualizarea bazei de date - Ortografie"
 
 #: src/font-manager/TitleBar.vala:83
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Comenzi rapide de la tastatură"
 
 #: src/font-manager/TitleBar.vala:84
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:19
 msgid "Help"
-msgstr ""
+msgstr "Ajutor"
 
 #: src/font-manager/TitleBar.vala:85
 msgid "About"
-msgstr ""
+msgstr "Despre"
 
 #: src/font-manager/TitleBar.vala:103
 msgid "Import"
-msgstr ""
+msgstr "Importați"
 
 #: src/font-manager/TitleBar.vala:104 src/font-manager/UserData.vala:132
 msgid "Export"
-msgstr ""
+msgstr "Exportează"
 
 #: src/font-manager/TitleBar.vala:111 src/font-manager/UserData.vala:37
 #: src/font-manager/UserData.vala:48
 msgid "User Data"
-msgstr ""
+msgstr "Datele utilizatorului"
 
 #. HAVE_WEBKIT
 #: src/font-manager/TitleBar.vala:267
 msgid "Add Fonts"
-msgstr ""
+msgstr "Adăugare fonturi"
 
 #: src/font-manager/TitleBar.vala:268
 msgid "Remove Fonts"
-msgstr ""
+msgstr "Eliminare fonturi"
 
 #: src/font-manager/TitleBar.vala:275
 #: src/font-manager/ui/font-manager-main-window.ui:175
 msgid "Preferences"
-msgstr ""
+msgstr "Preferințe"
 
 #: src/font-manager/UserData.vala:55
 msgid "Select Exported Data"
-msgstr ""
+msgstr "Selectați Date exportate"
 
 #: src/font-manager/Utils.vala:220
 msgid "Copying files…"
-msgstr ""
+msgstr "Se copiază fișierele…"
 
 #: src/font-manager/filters/Collection.vala:48
 msgid "New Collection"
-msgstr ""
+msgstr "Colecție nouă"
 
 #: src/font-manager/filters/Collection.vala:50
 #, c-format
 msgid "Created : %s"
-msgstr ""
+msgstr "Creat : %s"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Disabled"
-msgstr ""
+msgstr "Deactivat"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
-msgstr ""
+msgstr "Fonturi care au fost dezactivate"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
 msgid "Filter based on supported orthographies"
-msgstr ""
+msgstr "Filtru bazat pe ortografii acceptate"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
-msgstr ""
+msgstr "Nesortate"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
-msgstr ""
+msgstr "Fonturi care nu sunt prezente în nicio colecție"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr ""
+msgstr "Utilizator"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "Fonts available only to you"
-msgstr ""
+msgstr "Fonturi disponibile numai pentru dvs"
 
 #: src/font-manager/preferences/Desktop.vala:36
 msgid "Interface Font"
-msgstr ""
+msgstr "Interfață font"
 
 #: src/font-manager/preferences/Desktop.vala:37
 msgid "Font used throughout interface."
-msgstr ""
+msgstr "Font utilizat în întreaga interfață."
 
 #: src/font-manager/preferences/Desktop.vala:42
 msgid "Document Font"
-msgstr ""
+msgstr "Fontul Documentului"
 
 #: src/font-manager/preferences/Desktop.vala:43
 msgid "Font used for reading documents."
-msgstr ""
+msgstr "Font utilizat pentru citirea documentelor."
 
 #: src/font-manager/preferences/Desktop.vala:48
 msgid "Monospace Font"
-msgstr ""
+msgstr "Font Monospace"
 
 #: src/font-manager/preferences/Desktop.vala:49
 msgid "Monospaced (fixed-width) font for use in locations such as terminals."
 msgstr ""
+"Font monospațiat (cu lățime fixă) pentru utilizare în locații precum "
+"terminale."
 
 #: src/font-manager/preferences/Desktop.vala:54
 msgid "Text Scaling Factor"
@@ -1666,93 +1668,95 @@ msgstr "DPI țintă"
 
 #: src/font-manager/preferences/Fontconfig.vala:236
 msgid "Scale Factor"
-msgstr ""
+msgstr "Factor de scală"
 
 #: src/font-manager/preferences/Fontconfig.vala:240
 msgid "LCD Filter"
-msgstr ""
+msgstr "Filtru LCD"
 
 #: src/font-manager/preferences/Fontconfig.vala:328
 msgid "Antialias"
-msgstr ""
+msgstr "Antialiasing"
 
 #: src/font-manager/preferences/Fontconfig.vala:330
 msgid "Enable Autohinter"
-msgstr ""
+msgstr "Activați Autohinter"
 
 #: src/font-manager/preferences/Fontconfig.vala:339
 msgid "Hinting Style"
-msgstr ""
+msgstr "Stil de hinting"
 
 #: src/font-manager/preferences/Fontconfig.vala:340
 msgid "Use Embedded Bitmaps"
-msgstr ""
+msgstr "Utilizați Bitmap-uri încorporate"
 
 #: src/font-manager/preferences/Fontconfig.vala:342
 #: src/font-manager/preferences/Fontconfig.vala:348
 msgid " Size Restrictions "
-msgstr ""
+msgstr " Restricții de dimensiune "
 
 #: src/font-manager/preferences/Fontconfig.vala:346
 msgid " Apply settings to point sizes "
-msgstr ""
+msgstr " Aplicați setările dimensiunilor punctelor "
 
 #: src/font-manager/preferences/Fontconfig.vala:406
 msgid "Smaller than"
-msgstr ""
+msgstr "Mai mic decât"
 
 #: src/font-manager/preferences/Fontconfig.vala:407
 msgid "Larger than"
-msgstr ""
+msgstr "Mai mare decât"
 
 #: src/font-manager/preferences/Fontconfig.vala:427
 msgid "Add alias"
-msgstr ""
+msgstr "Adăugați alias"
 
 #: src/font-manager/preferences/Fontconfig.vala:428
 msgid "Remove selected alias"
-msgstr ""
+msgstr "Eliminați aliasul selectat"
 
 #: src/font-manager/preferences/Fontconfig.vala:598
 msgid "Font Substitutions"
-msgstr ""
+msgstr "Substituții de fonturi"
 
 #: src/font-manager/preferences/Fontconfig.vala:599
 msgid "Easily substitute one font family for another."
-msgstr ""
+msgstr "Înlocuiți cu ușurință o familie de fonturi cu alta."
 
 #: src/font-manager/preferences/Fontconfig.vala:600
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr ""
+"Pentru a adăuga un înlocuitor nou, faceți clic pe butonul adăugare din bara "
+"de instrumente."
 
 #: src/font-manager/preferences/Preferences.vala:24
 msgid "Interface"
-msgstr ""
+msgstr "Interfață"
 
 #: src/font-manager/preferences/Preferences.vala:25
 msgid "Desktop"
-msgstr ""
+msgstr "Desktop"
 
 #: src/font-manager/preferences/Preferences.vala:26
 msgid "Sources"
-msgstr ""
+msgstr "Surse"
 
 #: src/font-manager/preferences/Preferences.vala:27
 msgid "Actions"
-msgstr ""
+msgstr "Acţiuni"
 
 #: src/font-manager/preferences/Preferences.vala:28
 msgid "Substitutions"
-msgstr ""
+msgstr "Substituţii"
 
 #: src/font-manager/preferences/Preferences.vala:29
 #: src/font-manager/web/google/ui/google-font-filters.ui:204
 msgid "Display"
-msgstr ""
+msgstr "Afişare"
 
 #: src/font-manager/preferences/Preferences.vala:30
 msgid "Rendering"
-msgstr ""
+msgstr "Redare"
 
 #: src/font-manager/preferences/UserActions.vala:198
 msgid ""
@@ -1763,44 +1767,57 @@ msgid ""
 "To control where the filepath is inserted use FILEPATH as a placeholder.\n"
 "If FAMILY or STYLE are found in the argument list they will also be replaced."
 msgstr ""
+"Acțiunile definite aici vor fi adăugate la meniul contextual al listei de "
+"fonturi.\n"
+"\n"
+"În mod implicit, calea fișierului pentru fontul selectat va fi adăugată la "
+"sfârșitul listei de argumente.\n"
+"Pentru a controla unde este introdusă calea fișierului, utilizați FILEPATH "
+"ca substituent.\n"
+"Dacă FAMILY sau STYLE se găsesc în lista de argumente, vor fi, de asemenea, "
+"înlocuite."
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "User Actions"
-msgstr ""
+msgstr "Acțiuni ale utilizatorului"
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "Custom context menu entries"
-msgstr ""
+msgstr "Intrări personalizate din meniul contextual"
 
 #: src/font-manager/preferences/UserInterface.vala:63
 msgid "Wide Layout"
-msgstr ""
+msgstr "Aspect lat"
 
 #: src/font-manager/preferences/UserInterface.vala:66
 msgid "Only When Maximized"
-msgstr ""
+msgstr "Numai când este maximizat"
 
 #: src/font-manager/preferences/UserInterface.vala:69
 msgid "Client Side Decorations"
-msgstr ""
+msgstr "Decorațiuni pentru client"
 
 #: src/font-manager/preferences/UserInterface.vala:73
 msgid "Enable Animations"
-msgstr ""
+msgstr "Activare animații"
 
 #: src/font-manager/preferences/UserInterface.vala:74
 msgid "Prefer Dark Theme"
-msgstr ""
+msgstr "Preferă Tema Întunecată"
 
 #: src/font-manager/preferences/UserInterface.vala:120
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
+"CSD activat. Modificarea va intra în vigoare la următoarea pornire a "
+"aplicației."
 
 #: src/font-manager/preferences/UserInterface.vala:122
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
+"CSD dezactivat. Modificarea va intra în vigoare la următoarea pornire a "
+"aplicației."
 
 #: src/font-manager/preferences/UserSources.vala:146
 msgid ""
@@ -1811,80 +1828,93 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"Fonturile din toate folderele listate aici vor fi disponibile în cadrul "
+"aplicației.\n"
+"\n"
+"Acestea nu vor fi vizibile pentru alte aplicații până când sursa nu este "
+"activată efectiv.\n"
+"\n"
+"Rețineți că nu toate mediile / aplicații le va onora aceste setări."
 
 #: src/font-manager/preferences/UserSources.vala:162
 #: src/font-manager/ui/font-manager-user-data.ui:131
 msgid "Font Sources"
-msgstr ""
+msgstr "Surse de fonturi"
 
 #: src/font-manager/preferences/UserSources.vala:163
 msgid "Easily add or preview fonts without actually installing them."
-msgstr ""
+msgstr "Adăugați sau examinați cu ușurință fonturi fără a le instala efectiv."
 
 #: src/font-manager/preferences/UserSources.vala:164
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr ""
+"Pentru a adăuga o sursă nouă, pur și simplu trageți un folder pe această "
+"zonă sau faceți clic pe butonul Adăugare din bara de instrumente."
 
 #: src/font-manager/web/google/FontList.vala:56
 msgid "Case insensitive search of family names."
-msgstr ""
+msgstr "Căutare insensibilă la majuscule și minuscule a numelor de familie."
 
 #: src/font-manager/web/google/GoogleFonts.vala:129
 msgid "Error procesing data"
-msgstr ""
+msgstr "Eroare la prelucrarea datelor"
 
 #: src/font-manager/web/google/GoogleFonts.vala:138
 msgid "Network Error"
-msgstr ""
+msgstr "Eroare de rețea"
 
 #: src/font-manager/web/google/GoogleFonts.vala:139
 msgid "Please check your network settings"
-msgstr ""
+msgstr "Vă rugăm să verificați setările de rețea"
 
 #: src/font-manager/web/google/GoogleFonts.vala:141
 msgid "Client Error"
-msgstr ""
+msgstr "Eroare client"
 
 #: src/font-manager/web/google/GoogleFonts.vala:142
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
+"Încercați să reporniți aplicația. Dacă problema persistă, vă rugăm să "
+"arhivați o eroare."
 
 #: src/font-manager/web/google/GoogleFonts.vala:145
 msgid "Server Error"
-msgstr ""
+msgstr "Eroare de server"
 
 #: src/font-manager/web/google/GoogleFonts.vala:217
 msgid "Network Offline"
-msgstr ""
+msgstr "Rețea offline"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
 #: src/font-manager/web/google/GoogleFonts.vala:219
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
+"Pentru a accesa catalogul Google Fonts este necesară o conexiune activă la "
+"internet"
 
 #: src/font-manager/web/google/Language.vala:34
 msgid "Chinese (Hong Kong)"
-msgstr ""
+msgstr "Chineză (Hong Kong)"
 
 #: src/font-manager/web/google/Language.vala:35
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Chineză (simplificată)"
 
 #: src/font-manager/web/google/Language.vala:36
 msgid "Chinese (Traditional)"
-msgstr ""
+msgstr "Chineză (tradițională)"
 
 #: src/font-manager/web/google/Language.vala:37
 msgid "Cyrillic"
-msgstr ""
+msgstr "Chirilică"
 
 #: src/font-manager/web/google/Language.vala:38
 msgid "Cyrillic Extended"
-msgstr ""
+msgstr "Chirilică extinsă"
 
 #: src/font-manager/web/google/Language.vala:40
 msgid "Greek"
@@ -1968,130 +1998,132 @@ msgstr "Pentru a previzualiza un font pur și simplu trageți-l în această zon
 
 #: src/font-viewer/MainWindow.vala:124
 msgid "No file selected"
-msgstr ""
+msgstr "Nici un fișier selectat"
 
 #: src/font-viewer/MainWindow.vala:125
 msgid "Or unsupported filetype."
-msgstr ""
+msgstr "Sau tip de fișier neacceptat."
 
 #: src/font-viewer/MainWindow.vala:176
 msgid "Newer version already installed"
-msgstr ""
+msgstr "Versiune mai nouă deja instalată"
 
 #: src/font-viewer/MainWindow.vala:178
 msgid "Installed"
-msgstr ""
+msgstr "Instalat"
 
 #: src/font-viewer/MainWindow.vala:181
 #: src/font-viewer/font-viewer-main-window.ui:55
 msgid "Install Font"
-msgstr ""
+msgstr "Instalați Font"
 
 #: lib/unicode/ui/unicode-character-map-zoom-window.ui:80
 msgid "Copy"
-msgstr ""
+msgstr "Copiază"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:34
 msgid "List View"
-msgstr ""
+msgstr "Vizualizare listă"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:68
 msgid "Grid View"
-msgstr ""
+msgstr "Vizualizare grilă"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:116
 msgid "Enter Preview Text…"
-msgstr ""
+msgstr "Introduceți textul de previzualizare …"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:182
 msgid "Previous page"
-msgstr ""
+msgstr "Pagina anterioară"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:210
 msgid "Next page"
-msgstr ""
+msgstr "Pagina următoare"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
-msgstr ""
+msgstr "Adăugați fontul selectat la comparație"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:84
 msgid "Remove selected font from comparison"
-msgstr ""
+msgstr "Eliminați fontul selectat din comparație"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:110
 msgid "Pinned Comparisons"
-msgstr ""
+msgstr "Comparații fixate"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:136
 #: src/font-manager/ui/font-manager-compare-view.ui:140
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:73
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:76
 msgid "Select background color"
-msgstr ""
+msgstr "Selectați culoarea de fundal"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:157
 #: src/font-manager/ui/font-manager-compare-view.ui:161
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:90
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:93
 msgid "Select text color"
-msgstr ""
+msgstr "Selectați culoarea textului"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:12
 msgid "Discard"
-msgstr ""
+msgstr "Renunțaţi"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:30
 msgid "Running applications may require a restart to reflect any changes."
 msgstr ""
+"Aplicațiile care rulează pot necesita o repornire pentru a reflecta orice "
+"modificare."
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:40
 msgid "Save"
-msgstr ""
+msgstr "Salvați"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:32
 msgid "Back"
-msgstr ""
+msgstr "Înapoi"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:62
 msgid "Search Orthographies…"
-msgstr ""
+msgstr "Căutați ortografii …"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
-msgstr ""
+msgstr "Deselectați toate"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:156
 msgid "Minimum Coverage"
-msgstr ""
+msgstr "Acoperire minimă"
 
 #: src/font-manager/ui/font-manager-orthography-list.ui:86
 msgid "Clear selected filter"
-msgstr ""
+msgstr "Ștergeți filtrul selectat"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:27
 msgid "Created : "
-msgstr ""
+msgstr "Creat : "
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:32
 msgid "Save current comparison"
-msgstr ""
+msgstr "Salvați comparația actuală"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:62
 msgid "Remove selected comparison"
-msgstr ""
+msgstr "Eliminați comparația selectată"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:92
 msgid "Restore selected comparison"
-msgstr ""
+msgstr "Restabiliți comparația selectată"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:14
 msgid "General"
-msgstr ""
+msgstr "General"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:26
 msgid "Increase preview size"
-msgstr ""
+msgstr "Măriți dimensiunea previzualizării"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:33
 msgid "Decrease preview size"
@@ -2256,7 +2288,7 @@ msgstr "Serif"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:176
 msgid "Sans Serif"
-msgstr ""
+msgstr "Sans Serif"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:232
 msgid "Handwriting"
@@ -2268,7 +2300,7 @@ msgstr "Categorie"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:434
 msgid "Variations"
-msgstr ""
+msgstr "Variaţii"
 
 #~ msgid "90"
 #~ msgstr "90"
