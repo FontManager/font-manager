@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-01-24 18:58-0500\n"
+"POT-Creation-Date: 2021-01-31 14:53-0500\n"
 "PO-Revision-Date: 2021-01-19 23:32+0000\n"
 "Last-Translator: Jerry Casiano <JerryCasiano@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
@@ -66,8 +66,8 @@ msgstr "Gráficos;Visor;GNOME;GTK;Publicación;"
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
 #: data/org.gnome.FontViewer.desktop.in.in:5
 #: data/org.gnome.FontViewer.desktop.in.in:6
-#: src/font-viewer/Application.vala:101 src/font-viewer/MainWindow.vala:23
-#: src/font-viewer/font-viewer-main-window.ui:41
+#: src/font-viewer/Application.vala:98 src/font-viewer/MainWindow.vala:23
+#: src/font-viewer/font-viewer-main-window.ui:39
 msgid "Font Viewer"
 msgstr "Visor tipográfico"
 
@@ -274,54 +274,54 @@ msgstr "Predeterminado"
 msgid "Legacy"
 msgstr "Legado"
 
-#: lib/common/font-manager-freetype.c:294
+#: lib/common/font-manager-freetype.c:292
 msgid "Restricted License Embedding"
 msgstr "Incrustación: licencia restringida"
 
-#: lib/common/font-manager-freetype.c:296
+#: lib/common/font-manager-freetype.c:294
 msgid "Preview & Print Embedding"
 msgstr "Incrustación: previsualizar e imprimir"
 
-#: lib/common/font-manager-freetype.c:298
+#: lib/common/font-manager-freetype.c:296
 msgid "Editable Embedding"
 msgstr "Incrustación: editable"
 
-#: lib/common/font-manager-freetype.c:300
+#: lib/common/font-manager-freetype.c:298
 msgid "Preview & Print Embedding | No Subsetting"
 msgstr "Incrustación: previsualizar e imprimir | sin creación de subconjuntos"
 
-#: lib/common/font-manager-freetype.c:302
+#: lib/common/font-manager-freetype.c:300
 msgid "Editable Embedding | No Subsetting"
 msgstr "Incrustación: editable | sin creación de subconjuntos"
 
-#: lib/common/font-manager-freetype.c:304
+#: lib/common/font-manager-freetype.c:302
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
 msgstr ""
 "Incrustación: previsualizar e imprimir | incrustación de mapas de bits "
 "solamente"
 
-#: lib/common/font-manager-freetype.c:306
+#: lib/common/font-manager-freetype.c:304
 msgid "Editable Embedding | Bitmap Embedding Only"
 msgstr "Incrustación: editable | incrustación de mapas de bits solamente"
 
-#: lib/common/font-manager-freetype.c:308
+#: lib/common/font-manager-freetype.c:306
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
 msgstr ""
 "Incrustación: previsualizar e imprimir | sin creación de subconjuntos | "
 "incrustación de mapas de bits solamente"
 
-#: lib/common/font-manager-freetype.c:310
+#: lib/common/font-manager-freetype.c:308
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
 msgstr ""
 "Incrustación: editable | sin creación de subconjuntos | incrustación de "
 "mapas de bits solamente"
 
-#: lib/common/font-manager-freetype.c:312
+#: lib/common/font-manager-freetype.c:310
 msgid "Installable Embedding"
 msgstr "Incrustación: instalable"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
-#: lib/common/font-manager-freetype.c:704
+#: lib/common/font-manager-freetype.c:702
 #, fuzzy
 #| msgid "Unknown"
 msgid "Unknown Vendor"
@@ -356,22 +356,22 @@ msgid "Undo changes"
 msgstr "Deshacer los cambios"
 
 #: lib/common/font-manager-preview-pane.c:43
-#: lib/common/font-manager-preview-pane.c:555
+#: lib/common/font-manager-preview-pane.c:551
 msgid "Characters"
 msgstr "Caracteres"
 
 #: lib/common/font-manager-preview-pane.c:45
-#: lib/common/font-manager-preview-pane.c:556
+#: lib/common/font-manager-preview-pane.c:552
 msgid "Properties"
 msgstr "Propiedades"
 
 #: lib/common/font-manager-preview-pane.c:47
-#: lib/common/font-manager-preview-pane.c:557
+#: lib/common/font-manager-preview-pane.c:553
 #: src/font-manager/Categories.vala:541
 msgid "License"
 msgstr "Licencia"
 
-#: lib/common/font-manager-preview-pane.c:437
+#: lib/common/font-manager-preview-pane.c:434
 msgid "Search available characters"
 msgstr "Buscar en los caracteres disponibles"
 
@@ -411,27 +411,28 @@ msgstr "Espaciado"
 msgid "Version"
 msgstr "Versión"
 
-#: lib/common/font-manager-properties-pane.c:88
-#: src/font-manager/Categories.vala:542
+#. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
+#: lib/common/font-manager-properties-pane.c:89
+#: src/font-manager/Categories.vala:543
 msgid "Vendor"
 msgstr "Proveedor"
 
-#: lib/common/font-manager-properties-pane.c:89
+#: lib/common/font-manager-properties-pane.c:90
 msgid "FileType"
 msgstr "Tipo de archivo"
 
-#: lib/common/font-manager-properties-pane.c:90
+#: lib/common/font-manager-properties-pane.c:91
 msgid "Filesize"
 msgstr "Tamaño de archivo"
 
-#: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:597
+#: lib/common/font-manager-properties-pane.c:215
+#: src/font-manager/Categories.vala:598
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
 msgstr "Regular"
 
-#: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:592
+#: lib/common/font-manager-properties-pane.c:215
+#: src/font-manager/Categories.vala:593
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
 msgstr "Normal"
@@ -675,65 +676,65 @@ msgstr "Agrupados por espaciado de letra"
 msgid "Grouped by license type"
 msgstr "Agrupados por tipo de licencia"
 
-#: src/font-manager/Categories.vala:542
+#: src/font-manager/Categories.vala:543
 msgid "Grouped by vendor"
 msgstr "Agrupados por proveedor"
 
-#: src/font-manager/Categories.vala:543
+#: src/font-manager/Categories.vala:544
 msgid "Filetype"
 msgstr "Tipo de archivo"
 
-#: src/font-manager/Categories.vala:543
+#: src/font-manager/Categories.vala:544
 msgid "Grouped by filetype"
 msgstr "Agrupados por tipo de archivo"
 
-#: src/font-manager/Categories.vala:550
+#: src/font-manager/Categories.vala:551
 msgid "All"
 msgstr "Todos"
 
-#: src/font-manager/Categories.vala:550
+#: src/font-manager/Categories.vala:551
 msgid "All Fonts"
 msgstr "Todos los tipos de letra"
 
-#: src/font-manager/Categories.vala:551
+#: src/font-manager/Categories.vala:552
 msgid "System"
 msgstr "Sistema"
 
-#: src/font-manager/Categories.vala:551
+#: src/font-manager/Categories.vala:552
 msgid "Fonts available to all users"
 msgstr "Tipos de letra disponibles para todos los usuarios"
 
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:566
 msgid "Family Kind"
 msgstr "Clase de familia"
 
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
 "Solo los tipos de letra que incluyen información PANOSE se agrupan aquí"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:567
 #: src/font-manager/web/google/ui/google-font-filters.ui:346
 msgid "Any"
 msgstr "Todas"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:567
 msgid "No Fit"
 msgstr "No encaja"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:567
 msgid "Text and Display"
 msgstr "Texto y títulos"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:567
 msgid "Script"
 msgstr "Manuscritos"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:567
 msgid "Decorative"
 msgstr "Decorativos"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:567
 msgid "Pictorial"
 msgstr "Iconográficos"
 
@@ -2018,24 +2019,24 @@ msgstr "Previsualice los archivos de tipos de letra antes de instalarlos."
 msgid "To preview a font simply drag it onto this area."
 msgstr "Para previsualizar un tipo de letra, arrástrelo aquí."
 
-#: src/font-viewer/MainWindow.vala:124
+#: src/font-viewer/MainWindow.vala:122
 msgid "No file selected"
 msgstr "No se seleccionó ningún archivo"
 
-#: src/font-viewer/MainWindow.vala:125
+#: src/font-viewer/MainWindow.vala:123
 msgid "Or unsupported filetype."
 msgstr "O el tipo de archivo no es compatible."
 
-#: src/font-viewer/MainWindow.vala:176
+#: src/font-viewer/MainWindow.vala:174
 msgid "Newer version already installed"
 msgstr "Ya se ha instalado una versión más reciente"
 
-#: src/font-viewer/MainWindow.vala:178
+#: src/font-viewer/MainWindow.vala:176
 msgid "Installed"
 msgstr "Instalado"
 
-#: src/font-viewer/MainWindow.vala:181
-#: src/font-viewer/font-viewer-main-window.ui:55
+#: src/font-viewer/MainWindow.vala:179
+#: src/font-viewer/font-viewer-main-window.ui:53
 msgid "Install Font"
 msgstr "Instalar tipos de letra"
 
