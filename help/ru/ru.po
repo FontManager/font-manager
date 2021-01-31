@@ -3,8 +3,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-01-24 18:58-0500\n"
+"POT-Creation-Date: 2021-01-31 14:53-0500\n"
 "PO-Revision-Date: 2021-01-25 13:27+0300\n"
+"Last-Translator: \n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/ru/>\n"
 "Language: ru\n"
@@ -14,7 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 2.2.4\n"
-"Last-Translator: \n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"

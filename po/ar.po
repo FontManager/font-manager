@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-01-24 18:58-0500\n"
+"POT-Creation-Date: 2021-01-31 14:53-0500\n"
 "PO-Revision-Date: 2019-10-03 02:38-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Arabic\n"
@@ -55,8 +55,8 @@ msgstr ""
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
 #: data/org.gnome.FontViewer.desktop.in.in:5
 #: data/org.gnome.FontViewer.desktop.in.in:6
-#: src/font-viewer/Application.vala:101 src/font-viewer/MainWindow.vala:23
-#: src/font-viewer/font-viewer-main-window.ui:41
+#: src/font-viewer/Application.vala:98 src/font-viewer/MainWindow.vala:23
+#: src/font-viewer/font-viewer-main-window.ui:39
 msgid "Font Viewer"
 msgstr "عارض الخطوط"
 
@@ -259,48 +259,48 @@ msgstr "المبدئي"
 msgid "Legacy"
 msgstr "عتيق"
 
-#: lib/common/font-manager-freetype.c:294
+#: lib/common/font-manager-freetype.c:292
 msgid "Restricted License Embedding"
 msgstr ""
 
-#: lib/common/font-manager-freetype.c:296
+#: lib/common/font-manager-freetype.c:294
 msgid "Preview & Print Embedding"
 msgstr ""
 
-#: lib/common/font-manager-freetype.c:298
+#: lib/common/font-manager-freetype.c:296
 msgid "Editable Embedding"
 msgstr ""
 
-#: lib/common/font-manager-freetype.c:300
+#: lib/common/font-manager-freetype.c:298
 msgid "Preview & Print Embedding | No Subsetting"
 msgstr ""
 
-#: lib/common/font-manager-freetype.c:302
+#: lib/common/font-manager-freetype.c:300
 msgid "Editable Embedding | No Subsetting"
 msgstr ""
 
-#: lib/common/font-manager-freetype.c:304
+#: lib/common/font-manager-freetype.c:302
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
 msgstr ""
 
-#: lib/common/font-manager-freetype.c:306
+#: lib/common/font-manager-freetype.c:304
 msgid "Editable Embedding | Bitmap Embedding Only"
 msgstr ""
 
-#: lib/common/font-manager-freetype.c:308
+#: lib/common/font-manager-freetype.c:306
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
 msgstr ""
 
-#: lib/common/font-manager-freetype.c:310
+#: lib/common/font-manager-freetype.c:308
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
 msgstr ""
 
-#: lib/common/font-manager-freetype.c:312
+#: lib/common/font-manager-freetype.c:310
 msgid "Installable Embedding"
 msgstr ""
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
-#: lib/common/font-manager-freetype.c:704
+#: lib/common/font-manager-freetype.c:702
 #, fuzzy
 #| msgid "Unknown"
 msgid "Unknown Vendor"
@@ -335,22 +335,22 @@ msgid "Undo changes"
 msgstr "تراجع عن التغييرات"
 
 #: lib/common/font-manager-preview-pane.c:43
-#: lib/common/font-manager-preview-pane.c:555
+#: lib/common/font-manager-preview-pane.c:551
 msgid "Characters"
 msgstr "المحارف"
 
 #: lib/common/font-manager-preview-pane.c:45
-#: lib/common/font-manager-preview-pane.c:556
+#: lib/common/font-manager-preview-pane.c:552
 msgid "Properties"
 msgstr "الخصائص"
 
 #: lib/common/font-manager-preview-pane.c:47
-#: lib/common/font-manager-preview-pane.c:557
+#: lib/common/font-manager-preview-pane.c:553
 #: src/font-manager/Categories.vala:541
 msgid "License"
 msgstr "الترخيص"
 
-#: lib/common/font-manager-preview-pane.c:437
+#: lib/common/font-manager-preview-pane.c:434
 msgid "Search available characters"
 msgstr ""
 
@@ -390,27 +390,28 @@ msgstr "التوسع"
 msgid "Version"
 msgstr "الإصدارة"
 
-#: lib/common/font-manager-properties-pane.c:88
-#: src/font-manager/Categories.vala:542
+#. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
+#: lib/common/font-manager-properties-pane.c:89
+#: src/font-manager/Categories.vala:543
 msgid "Vendor"
 msgstr "البائع"
 
-#: lib/common/font-manager-properties-pane.c:89
+#: lib/common/font-manager-properties-pane.c:90
 msgid "FileType"
 msgstr ""
 
-#: lib/common/font-manager-properties-pane.c:90
+#: lib/common/font-manager-properties-pane.c:91
 msgid "Filesize"
 msgstr ""
 
-#: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:597
+#: lib/common/font-manager-properties-pane.c:215
+#: src/font-manager/Categories.vala:598
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
 msgstr "عادي"
 
-#: lib/common/font-manager-properties-pane.c:214
-#: src/font-manager/Categories.vala:592
+#: lib/common/font-manager-properties-pane.c:215
+#: src/font-manager/Categories.vala:593
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
 msgstr "طبيعي"
@@ -636,64 +637,64 @@ msgstr "مجمّعة حسب توسع الخط"
 msgid "Grouped by license type"
 msgstr "مجمّعة حسب نوع الترخيص"
 
-#: src/font-manager/Categories.vala:542
+#: src/font-manager/Categories.vala:543
 msgid "Grouped by vendor"
 msgstr "مجمّعة حسب البائع"
 
-#: src/font-manager/Categories.vala:543
+#: src/font-manager/Categories.vala:544
 msgid "Filetype"
 msgstr "نوع الملف"
 
-#: src/font-manager/Categories.vala:543
+#: src/font-manager/Categories.vala:544
 msgid "Grouped by filetype"
 msgstr "مجمّعة حسب نوع الملف"
 
-#: src/font-manager/Categories.vala:550
+#: src/font-manager/Categories.vala:551
 msgid "All"
 msgstr "الكل"
 
-#: src/font-manager/Categories.vala:550
+#: src/font-manager/Categories.vala:551
 msgid "All Fonts"
 msgstr "كل الخطوط"
 
-#: src/font-manager/Categories.vala:551
+#: src/font-manager/Categories.vala:552
 msgid "System"
 msgstr "النظام"
 
-#: src/font-manager/Categories.vala:551
+#: src/font-manager/Categories.vala:552
 msgid "Fonts available to all users"
 msgstr "الخطوط المتاحة لكل المستخدمين"
 
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:566
 msgid "Family Kind"
 msgstr "نوع العائلة"
 
-#: src/font-manager/Categories.vala:565
+#: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr "لن تظهر سوى الخطوط التي تحتوي معلومات Panose."
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:567
 #: src/font-manager/web/google/ui/google-font-filters.ui:346
 msgid "Any"
 msgstr "أي شيء"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:567
 msgid "No Fit"
 msgstr "لا شيء مناسب"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:567
 msgid "Text and Display"
 msgstr "النص و العناوين"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:567
 msgid "Script"
 msgstr "نظام الكتابة"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:567
 msgid "Decorative"
 msgstr "زخرفي"
 
-#: src/font-manager/Categories.vala:566
+#: src/font-manager/Categories.vala:567
 msgid "Pictorial"
 msgstr "تصويري"
 
@@ -1942,24 +1943,24 @@ msgstr "عاين ملفات الخطوط قبل تنصيبهم"
 msgid "To preview a font simply drag it onto this area."
 msgstr "لمعاينة خط يمكنك سحبه إلى هذه المنطقة."
 
-#: src/font-viewer/MainWindow.vala:124
+#: src/font-viewer/MainWindow.vala:122
 msgid "No file selected"
 msgstr "لا ملفات محددة"
 
-#: src/font-viewer/MainWindow.vala:125
+#: src/font-viewer/MainWindow.vala:123
 msgid "Or unsupported filetype."
 msgstr "أو نوع الملف غير مدعوم."
 
-#: src/font-viewer/MainWindow.vala:176
+#: src/font-viewer/MainWindow.vala:174
 msgid "Newer version already installed"
 msgstr "هناك إصدارة أحدث منصّبة"
 
-#: src/font-viewer/MainWindow.vala:178
+#: src/font-viewer/MainWindow.vala:176
 msgid "Installed"
 msgstr "المنصبة"
 
-#: src/font-viewer/MainWindow.vala:181
-#: src/font-viewer/font-viewer-main-window.ui:55
+#: src/font-viewer/MainWindow.vala:179
+#: src/font-viewer/font-viewer-main-window.ui:53
 msgid "Install Font"
 msgstr "نصِّب الخط"
 

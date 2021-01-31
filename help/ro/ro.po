@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-01-24 18:58-0500\n"
+"POT-Creation-Date: 2021-01-31 14:53-0500\n"
 "PO-Revision-Date: 2021-01-30 15:41+0000\n"
 "Last-Translator: Aurelian Ciocîltan <aurelianciociltan@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/font-manager/"
