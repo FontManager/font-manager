@@ -58,8 +58,6 @@ namespace FontManager.FontViewer {
             add_actions();
             update_install_state();
             Gtk.drag_dest_set(this, Gtk.DestDefaults.ALL, DragTargets, Gdk.DragAction.COPY);
-            size_allocate.connect(on_size_allocate);
-            window_state_event.connect(on_window_state_event);
             base.constructed();
             return;
         }
@@ -184,14 +182,14 @@ namespace FontManager.FontViewer {
             return;
         }
 
+        [GtkCallback]
         bool on_window_state_event (Gtk.Widget widget, Gdk.EventWindowState event) {
-
             if ((event.changed_mask & Gdk.WindowState.TILED) != 0)
                 is_tiled = (event.new_window_state & Gdk.WindowState.TILED) != 0;
-
             return Gdk.EVENT_PROPAGATE;
         }
 
+        [GtkCallback]
         void on_size_allocate (Gtk.Widget widget, Gtk.Allocation allocation) {
             if (is_maximized || is_tiled)
                 return;

@@ -2,23 +2,22 @@
 <interface domain="font-manager">
   <requires lib="gtk+" version="3.22"/>
   <template class="FontManagerFontViewerMainWindow" parent="GtkApplicationWindow">
-    <property name="can_focus">False</property>
-    <property name="default_width">600</property>
-    <property name="default_height">400</property>
-    <property name="icon_name">font-x-generic-symbolic</property>
-    <property name="type_hint">utility</property>
-    <property name="show_menubar">False</property>
+    <property name="can-focus">False</property>
+    <property name="default-width">600</property>
+    <property name="default-height">400</property>
+    <property name="icon-name">font-x-generic-symbolic</property>
+    <property name="type-hint">utility</property>
+    <property name="show-menubar">False</property>
     <signal name="delete-event" handler="on_delete_event" swapped="no"/>
     <signal name="drag-data-received" handler="on_drag_data_received" swapped="no"/>
     <signal name="realize" handler="on_realize" swapped="no"/>
+    <signal name="size-allocate" handler="on_size_allocate" swapped="no"/>
+    <signal name="window-state-event" handler="on_window_state_event" swapped="no"/>
     <child>
       <object class="GtkStack" id="stack">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="transition_type">crossfade</property>
-        <child>
-          <placeholder/>
-        </child>
+        <property name="can-focus">False</property>
+        <property name="transition-type">crossfade</property>
         <child>
           <object class="FontManagerPreviewPane" id="preview_pane">
             <property name="visible">True</property>
@@ -26,7 +25,6 @@
           </object>
           <packing>
             <property name="name">Preview</property>
-            <property name="position">1</property>
           </packing>
         </child>
         <style>
@@ -37,14 +35,14 @@
     <child type="titlebar">
       <object class="GtkHeaderBar" id="titlebar">
         <property name="visible">True</property>
-        <property name="can_focus">False</property>
+        <property name="can-focus">False</property>
         <property name="title" translatable="yes">Font Viewer</property>
-        <property name="show_close_button">True</property>
+        <property name="show-close-button">True</property>
         <child>
           <object class="GtkImage" id="title_icon">
             <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="icon_name">preferences-desktop-font</property>
+            <property name="can-focus">False</property>
+            <property name="icon-name">preferences-desktop-font</property>
             <property name="icon_size">3</property>
           </object>
         </child>
@@ -54,13 +52,13 @@
   <object class="GtkButton" id="install">
     <property name="label" translatable="yes">Install Font</property>
     <property name="visible">True</property>
-    <property name="can_focus">True</property>
-    <property name="receives_default">True</property>
+    <property name="can-focus">True</property>
+    <property name="receives-default">True</property>
     <property name="opacity">0.75</property>
-    <property name="margin_start">2</property>
-    <property name="margin_end">2</property>
-    <property name="margin_top">2</property>
-    <property name="margin_bottom">2</property>
+    <property name="margin-start">2</property>
+    <property name="margin-end">2</property>
+    <property name="margin-top">2</property>
+    <property name="margin-bottom">2</property>
     <signal name="clicked" handler="on_install_clicked" swapped="no"/>
   </object>
 </interface>

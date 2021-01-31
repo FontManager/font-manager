@@ -41,9 +41,6 @@ namespace FontManager {
                 base.startup();
                 main_window = new MainWindow();
                 add_window(main_window);
-                try {
-                    get_database(DatabaseType.BASE).attach(DatabaseType.METADATA);
-                } catch (Error e) { }
                 SimpleAction quit = new SimpleAction("quit", null);
                 add_action(quit);
                 quit.activate.connect(() => {
