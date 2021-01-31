@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-01-24 18:58-0500\n"
-"PO-Revision-Date: 2021-01-26 15:32+0000\n"
+"PO-Revision-Date: 2021-01-30 15:41+0000\n"
 "Last-Translator: Aurelian Ciocîltan <aurelianciociltan@gmail.com>\n"
 "Language-Team: Romanian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/ro/>\n"
@@ -59,7 +59,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "Utilizator"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
@@ -155,7 +155,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "Nesortate"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
@@ -165,7 +165,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "Deactivat"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
@@ -571,7 +571,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "Surse"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
