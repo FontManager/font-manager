@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-31 14:53-0500\n"
-"PO-Revision-Date: 2020-11-28 17:05+0100\n"
+"PO-Revision-Date: 2021-02-01 17:19+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -314,10 +314,8 @@ msgstr "Installeerbare insluiting"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:702
-#, fuzzy
-#| msgid "Unknown"
 msgid "Unknown Vendor"
-msgstr "Onbekend"
+msgstr "Onbekende maker"
 
 #: lib/common/font-manager-license-pane.c:185
 msgid "File does not contain license information."
@@ -725,12 +723,11 @@ msgid "Pictorial"
 msgstr "Pictogram"
 
 #: src/font-manager/CellRenderer.vala:90
-#, fuzzy, c-format
-#| msgid "%i Variation "
+#, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
 msgstr[0] "%i variatie "
-msgstr[1] "%i variatie "
+msgstr[1] "%i variaties"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1454,22 +1451,16 @@ msgid "Update in progress"
 msgstr "Bezig met bijwerken"
 
 #: src/font-manager/TitleBar.vala:62
-#, fuzzy
-#| msgid "Updating Database - Fonts"
 msgid "Updating Database — Fonts"
-msgstr "Bezig met bijwerken van databank - Lettertypen"
+msgstr "Bezig met bijwerken van databank — Lettertypen"
 
 #: src/font-manager/TitleBar.vala:64
-#, fuzzy
-#| msgid "Updating Database - Metadata"
 msgid "Updating Database — Metadata"
-msgstr "Bezig met bijwerken van databank - Metagegevens"
+msgstr "Bezig met bijwerken van databank — Metagegevens"
 
 #: src/font-manager/TitleBar.vala:66
-#, fuzzy
-#| msgid "Updating Database - Orthography"
 msgid "Updating Database — Orthography"
-msgstr "Bezig met bijwerken van databank - Orthografieën"
+msgstr "Bezig met bijwerken van databank — Orthografieën"
 
 #: src/font-manager/TitleBar.vala:83
 msgid "Keyboard Shortcuts"
@@ -1537,10 +1528,8 @@ msgid "Fonts which have been disabled"
 msgstr "Uitgeschakelde lettertypen"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
-#, fuzzy
-#| msgid "Supported Orthographies"
 msgid "Filter based on supported orthographies"
-msgstr "Ondersteunde orthografieën"
+msgstr "Filter op basis van ondersteunde orthografieën"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
@@ -1955,12 +1944,11 @@ msgid "Download Font"
 msgstr "Lettertype downloaden"
 
 #: src/font-manager/web/google/PreviewPane.vala:294
-#, fuzzy, c-format
-#| msgid "%i Language Sample Available "
+#, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] "%i taalvoorbeeld beschikbaar "
-msgstr[1] "%i taalvoorbeeld beschikbaar "
+msgstr[1] "%i taalvoorbeelden beschikbaar "
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
@@ -2074,10 +2062,8 @@ msgid "Back"
 msgstr "Terug"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:62
-#, fuzzy
-#| msgid "Supported Orthographies"
 msgid "Search Orthographies…"
-msgstr "Ondersteunde orthografieën"
+msgstr "Orthografieën doorzoeken…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
@@ -2172,10 +2158,8 @@ msgid "Collections"
 msgstr "Verzamelingen"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:175
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Edit selected category"
-msgstr "Geselecteerd filter wissen"
+msgstr "Geselecteerde categorie bewerken"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:198
 msgid "Add new collection"
