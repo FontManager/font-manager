@@ -77,7 +77,24 @@
     </screenshots>
 
     <releases>
-        <release version="@PACKAGE_VERSION@" date="2020-07-10"/>
+        <release version="@PACKAGE_VERSION@" date="2021-01-31"/>
+        <release version="0.8.3" date="2020-12-03"/>
+        <release version="0.8.2" date="2020-12-02"/>
+        <release version="0.8.1" date="2020-12-02"/>
+        <release version="0.8.0" date="2020-11-25"/>
+        <release version="0.7.9" date="2020-09-20"/>
+        <release version="0.7.8" date="2020-07-10"/>
+        <release version="0.7.7" date="2019-12-17"/>
+        <release version="0.7.6" date="2019-12-15"/>
+        <release version="0.7.5" date="2019-04-20"/>
+        <release version="0.7.4.3" date="2019-03-12"/>
+        <release version="0.7.4.2" date="2019-01-18"/>
+        <release version="0.7.4.1" date="2019-01-10"/>
+        <release version="0.7.4" date="2019-01-01"/>
+        <release version="0.7.3.1" date="2018-08-29"/>
+        <release version="0.7.3" date="2016-10-16"/>
+        <release version="0.7.2" date="2015-06-03"/>
+        <release version="0.7.1" date="2015-05-29"/>
     </releases>
 
     <translation type="gettext">@PACKAGE_NAME@</translation>
