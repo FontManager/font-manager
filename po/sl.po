@@ -7,25 +7,27 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-31 14:53-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-02-01 22:29+0000\n"
+"Last-Translator: Jadran Rudec <jrudec@gmail.com>\n"
+"Language-Team: Slovenian <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/sl/>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
-msgstr ""
+msgstr "Upravitelj pisav"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "Preprost program za upravljanje pisav v namiznih okoljih Gtk+"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
@@ -33,26 +35,31 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
+"Upravitelj pisav naj bi povprečnim uporabnikom omogočil enostavno "
+"upravljanje pisav na namizju, ne da bi se morali zatekati k orodjem ukazne "
+"vrstice ali ročno urejati nastavitvene datoteke."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr ""
+"Čeprav je zasnovan predvsem z namenom namiznega okolja Gnome, bi moral dobro "
+"delovati z drugimi namiznimi okolji Gtk+."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
-msgstr ""
+msgstr "Upravitelj pisav NI profesionalna rešitev za upravljanje pisav."
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr ""
+msgstr "Predogled, primerjava in upravljanje pisav"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
 #: data/org.gnome.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
+msgstr "Grafika; Pregledovalnik; GNOME; GTK; Založništvo;"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
 #: data/org.gnome.FontViewer.desktop.in.in:5
@@ -60,11 +67,11 @@ msgstr ""
 #: src/font-viewer/Application.vala:98 src/font-viewer/MainWindow.vala:23
 #: src/font-viewer/font-viewer-main-window.ui:39
 msgid "Font Viewer"
-msgstr ""
+msgstr "Pregledovalnik pisav"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "Pregledovalnik pisav namiznih okoljih Gtk+"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
@@ -72,222 +79,225 @@ msgid ""
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
 msgstr ""
+"Pregledovalnik pisav omogoča predogled datotek pisav pred namestitvijo. Ima "
+"več načinov za predogled datotek pisav skupaj z zemljevidom znakov in "
+"prikazuje lastnosti pisave in podrobnosti o licenci."
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr ""
+msgstr "Polno predstavljena aplikacija za predogled datotek pisav"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
 #: src/font-manager/FontList.vala:490
 msgid "Install"
-msgstr ""
+msgstr "Namesti"
 
 #: extensions/nautilus/font-manager-menu-provider.c:163
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr ""
+msgstr "Namesti izbrano datoteko pisave"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr ""
+msgstr "Namesti izbrane datoteke pisav"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr ""
+msgstr "Lastnosti pisave"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:106
 msgid "Preview"
-msgstr ""
+msgstr "Predogled"
 
 #: lib/common/font-manager-font-preview.c:87
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
 msgid "Waterfall"
-msgstr ""
+msgstr "Slap"
 
 #: lib/common/font-manager-fontconfig.c:826
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
-msgstr ""
+msgstr "Tanko"
 
 #: lib/common/font-manager-fontconfig.c:828
 msgid "Ultra-Light"
-msgstr ""
+msgstr "Zelo svetlo"
 
 #: lib/common/font-manager-fontconfig.c:830
 #: lib/common/font-manager-fontconfig.c:1183
 #: src/font-manager/web/google/Weight.vala:69
 msgid "Light"
-msgstr ""
+msgstr "Svetlo"
 
 #: lib/common/font-manager-fontconfig.c:832
 msgid "Semi-Light"
-msgstr ""
+msgstr "Polsvetlo"
 
 #: lib/common/font-manager-fontconfig.c:834
 msgid "Book"
-msgstr ""
+msgstr "Knjiga"
 
 #: lib/common/font-manager-fontconfig.c:836
 #: lib/common/font-manager-fontconfig.c:1140
 #: src/font-manager/web/google/Weight.vala:73
 msgid "Medium"
-msgstr ""
+msgstr "Srednje"
 
 #: lib/common/font-manager-fontconfig.c:838
 msgid "Semi-Bold"
-msgstr ""
+msgstr "Pol-krepko"
 
 #: lib/common/font-manager-fontconfig.c:840
 #: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
-msgstr ""
+msgstr "Krepko"
 
 #: lib/common/font-manager-fontconfig.c:842
 msgid "Ultra-Bold"
-msgstr ""
+msgstr "Zelo krepko"
 
 #: lib/common/font-manager-fontconfig.c:844
 msgid "Heavy"
-msgstr ""
+msgstr "Težko"
 
 #: lib/common/font-manager-fontconfig.c:846
 msgid "Ultra-Heavy"
-msgstr ""
+msgstr "Zelo krepko"
 
 #: lib/common/font-manager-fontconfig.c:921
 #: src/font-manager/web/google/WebFont.vala:158
 msgid "Italic"
-msgstr ""
+msgstr "Ležeče"
 
 #: lib/common/font-manager-fontconfig.c:923
 msgid "Oblique"
-msgstr ""
+msgstr "Poševno"
 
 #: lib/common/font-manager-fontconfig.c:961
 msgid "Ultra-Condensed"
-msgstr ""
+msgstr "Zelo zgoščeno"
 
 #: lib/common/font-manager-fontconfig.c:963
 msgid "Extra-Condensed"
-msgstr ""
+msgstr "Izjemno zgoščeno"
 
 #: lib/common/font-manager-fontconfig.c:965
 msgid "Condensed"
-msgstr ""
+msgstr "Zgoščeno"
 
 #: lib/common/font-manager-fontconfig.c:967
 msgid "Semi-Condensed"
-msgstr ""
+msgstr "Polzgoščeno"
 
 #: lib/common/font-manager-fontconfig.c:969
 msgid "Semi-Expanded"
-msgstr ""
+msgstr "Napol razširjeno"
 
 #: lib/common/font-manager-fontconfig.c:971
 msgid "Expanded"
-msgstr ""
+msgstr "Razširjeno"
 
 #: lib/common/font-manager-fontconfig.c:973
 msgid "Extra-Expanded"
-msgstr ""
+msgstr "Izjemno razširjeno"
 
 #: lib/common/font-manager-fontconfig.c:975
 msgid "Ultra-Expanded"
-msgstr ""
+msgstr "Zelo razširjeno"
 
 #: lib/common/font-manager-fontconfig.c:1044
 msgid "Proportional"
-msgstr ""
+msgstr "Sorazmerno"
 
 #: lib/common/font-manager-fontconfig.c:1046
 msgid "Dual Width"
-msgstr ""
+msgstr "Dvojna širina"
 
 #: lib/common/font-manager-fontconfig.c:1048
 #: src/font-manager/web/google/ui/google-font-filters.ui:260
 msgid "Monospace"
-msgstr ""
+msgstr "En prostor"
 
 #: lib/common/font-manager-fontconfig.c:1050
 msgid "Charcell"
-msgstr ""
+msgstr "Znakovna celica"
 
 #: lib/common/font-manager-fontconfig.c:1089
 msgid "Unknown"
-msgstr ""
+msgstr "Neznano"
 
 #: lib/common/font-manager-fontconfig.c:1091
 msgid "RGB"
-msgstr ""
+msgstr "RGB"
 
 #: lib/common/font-manager-fontconfig.c:1093
 msgid "BGR"
-msgstr ""
+msgstr "BGR"
 
 #: lib/common/font-manager-fontconfig.c:1095
 msgid "VRGB"
-msgstr ""
+msgstr "VRGB"
 
 #: lib/common/font-manager-fontconfig.c:1097
 msgid "VBGR"
-msgstr ""
+msgstr "VBGR"
 
 #: lib/common/font-manager-fontconfig.c:1099
 #: lib/common/font-manager-fontconfig.c:1144
 #: lib/common/font-manager-fontconfig.c:1187
 msgid "None"
-msgstr ""
+msgstr "Brez"
 
 #: lib/common/font-manager-fontconfig.c:1138
 msgid "Slight"
-msgstr ""
+msgstr "Rahlo"
 
 #: lib/common/font-manager-fontconfig.c:1142
 msgid "Full"
-msgstr ""
+msgstr "Poln"
 
 #: lib/common/font-manager-fontconfig.c:1181
 #: src/font-manager/ui/font-manager-main-window.ui:164
 msgid "Default"
-msgstr ""
+msgstr "Privzeto"
 
 #: lib/common/font-manager-fontconfig.c:1185
 msgid "Legacy"
-msgstr ""
+msgstr "Opuščeno"
 
 #: lib/common/font-manager-freetype.c:292
 msgid "Restricted License Embedding"
-msgstr ""
+msgstr "Omejena vdelava licence"
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Preview & Print Embedding"
-msgstr ""
+msgstr "Vdelava za predogled in tiskanje"
 
 #: lib/common/font-manager-freetype.c:296
 msgid "Editable Embedding"
-msgstr ""
+msgstr "Vdelava, ki jo je mogoče urejati"
 
 #: lib/common/font-manager-freetype.c:298
 msgid "Preview & Print Embedding | No Subsetting"
-msgstr ""
+msgstr "Vdelava za predogled in tiskanje | Brez podnastavitve"
 
 #: lib/common/font-manager-freetype.c:300
 msgid "Editable Embedding | No Subsetting"
-msgstr ""
+msgstr "Vdelava, ki jo je mogoče urejati | Brez podnastavitve"
 
 #: lib/common/font-manager-freetype.c:302
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "Vdelava za predogled in tiskanje | Samo vdelava bitne slike"
 
 #: lib/common/font-manager-freetype.c:304
 msgid "Editable Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "Vdelava, ki jo je mogoče urejati | Samo vdelava bitne slike"
 
 #: lib/common/font-manager-freetype.c:306
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
