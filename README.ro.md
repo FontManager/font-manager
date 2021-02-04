@@ -12,7 +12,7 @@ Font Manager NU este o soluţie de gestionare a fonturilor de calitate profesion
 - Pevizualizaţi şi comparaţi fonturi
 - Activaţi sau dezactivaţi familii de fonturi
 - Categorizare automată bazată pe proprietăţile fontului
-- Integrare cu Google Fonts Catalog 
+- Integrare cu Google Fonts Catalog
 - Hartă de caractere integrată
 - Colecţii de fonturi ale utilizatorului
 - Instalarea şi ştergerea fonturilor utilizatorului
@@ -83,7 +83,7 @@ Extensia Thunar are, de asemenea, suport de bază pentru redenumire bulk.
 
 Va trebui să vă asiguraţi că următoarele depentenţe sunt instalate:
 
-- `meson >= 0.50`
+- `meson >= 0.53`
 - `ninja`
 - `glib >= 2.62`
 - `vala >= 0.42`

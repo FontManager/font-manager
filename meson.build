@@ -1,10 +1,8 @@
 project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.8.4')
 
-if meson.version().version_compare('< 0.50')
-    error('Meson version is @0@ but project requires >= 0.50'.format(meson.version()))
+if meson.version().version_compare('< 0.53')
+    error('Meson version is @0@ but project requires >= 0.53'.format(meson.version()))
 endif
-
-meson_has_summary_function = meson.version().version_compare('>= 0.53')
 
 cc = meson.get_compiler('c')
 # There has to be a better way to require a specific vala version, right?
@@ -98,38 +96,34 @@ subdir('extensions')
 meson.add_install_script('meson_post_install.py')
 meson.add_dist_script('meson_dist.py')
 
-if meson_has_summary_function
+summary(
+    {
+        'Font Manager': get_option('manager'),
+        'Font Viewer': get_option('viewer'),
+        'Help Documents': get_option('yelp-doc'),
+        'GNOME search provider': get_option('search-provider'),
+        'Google Fonts Integration': get_option('webkit'),
+        'Nautilus extension': get_option('nautilus'),
+        'Nemo extension': get_option('nemo'),
+        'Thunar extension': get_option('thunar'),
+        'Translations': get_option('enable-nls'),
+        'API Documentation': get_option('gtk-doc'),
+        'Reproducible build': get_option('reproducible')
+    },
+    section: '''Project options
+    ''',
+    bool_yn: true
+)
 
-    summary(
-        {
-            'Font Manager': get_option('manager'),
-            'Font Viewer': get_option('viewer'),
-            'Help Documents': get_option('yelp-doc'),
-            'GNOME search provider': get_option('search-provider'),
-            'Google Fonts Integration': get_option('webkit'),
-            'Nautilus extension': get_option('nautilus'),
-            'Nemo extension': get_option('nemo'),
-            'Thunar extension': get_option('thunar'),
-            'Translations': get_option('enable-nls'),
-            'API Documentation': get_option('gtk-doc'),
-            'Reproducible build': get_option('reproducible')
-        },
-        section: '''Project options
-        ''',
-        bool_yn: true
-    )
-
-    summary(
-        {
-            'prefix': prefix,
-            'bindir': join_paths(prefix, get_option('bindir')),
-            'libdir': join_paths(prefix, get_option('libdir'), meson.project_name()),
-            'libexecdir': join_paths(prefix, get_option('libexecdir'), meson.project_name()),
-            'datadir': join_paths(prefix, datadir)
-        },
-        section: '''Directories
-        '''
-    )
-
-endif
+summary(
+    {
+        'prefix': prefix,
+        'bindir': join_paths(prefix, get_option('bindir')),
+        'libdir': join_paths(prefix, get_option('libdir'), meson.project_name()),
+        'libexecdir': join_paths(prefix, get_option('libexecdir'), meson.project_name()),
+        'datadir': join_paths(prefix, datadir)
+    },
+    section: '''Directories
+    '''
+)
 
