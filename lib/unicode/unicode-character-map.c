@@ -115,7 +115,7 @@ UnicodeCharacterMapPrivate *priv = NULL;
  */
 #define FACTOR_WIDTH (2.25) /* 3 / (96 / 72) */
 #define FACTOR_HEIGHT (1.875) /* 2.5 / (96 / 72) */
-#define DEFAULT_FONT_SIZE (20.0 * (double) PANGO_SCALE)
+#define DEFAULT_FONT_SIZE (16.0 * (double) PANGO_SCALE)
 
 enum
 {
@@ -323,9 +323,7 @@ create_glyph_surface (UnicodeCharacterMap *charmap, gunichar wc, double font_fac
 static int
 get_font_size_px (UnicodeCharacterMap *charmap)
 {
-    g_assert(priv->font_desc != NULL);
-
-    int font_size;
+    int font_size = 0;
     GtkWidget *widget = GTK_WIDGET(charmap);
     GdkScreen *screen = gtk_widget_get_screen(widget);
     double resolution = gdk_screen_get_resolution(screen);
@@ -334,9 +332,10 @@ get_font_size_px (UnicodeCharacterMap *charmap)
     if (resolution < 0.0)
         resolution = 96.0;
 
-    font_size = pango_font_description_get_size(priv->font_desc);
+    if (priv->font_desc)
+        font_size = pango_font_description_get_size(priv->font_desc);
 
-    if (PANGO_PIXELS(font_size) <= 0)
+    if (font_size == 0 || PANGO_PIXELS(font_size) <= 0)
         font_size = DEFAULT_FONT_SIZE * resolution / 72.0;
 
     return PANGO_PIXELS(font_size);
@@ -1125,7 +1124,7 @@ unicode_character_map_init (UnicodeCharacterMap *charmap)
     priv->hscroll_policy = GTK_SCROLL_NATURAL;
     priv->vscroll_policy = GTK_SCROLL_NATURAL;
     priv->target_list = gtk_target_list_new(NULL, 0);
-    priv->preview_size = 14;
+    priv->preview_size = 16;
     priv->codepoint_list = NULL;
     priv->popover = NULL;
 
@@ -1441,14 +1440,13 @@ unicode_character_map_new (void)
 /**
  * unicode_character_map_set_font_desc:
  * @charmap: a #UnicodeCharacterMap
- * @font_desc: a #PangoFontDescription
+ * @font_desc: (transfer none): a #PangoFontDescription
  *
  * Sets @font_desc as the font to use to display the character table.
  */
 void
 unicode_character_map_set_font_desc (UnicodeCharacterMap *charmap, PangoFontDescription *font_desc)
 {
-
     g_return_if_fail(UNICODE_IS_CHARACTER_MAP(charmap));
     g_return_if_fail(font_desc != NULL);
 
@@ -1527,7 +1525,7 @@ void
 unicode_character_map_set_preview_size (UnicodeCharacterMap *charmap, gdouble size)
 {
     g_return_if_fail(UNICODE_IS_CHARACTER_MAP(charmap));
-    priv->preview_size = size;
+    priv->preview_size = VALID_FONT_SIZE(size);
     PangoFontDescription *font_desc = pango_font_description_copy(priv->font_desc);
     unicode_character_map_set_font_desc_internal(charmap, font_desc);
     g_object_notify(G_OBJECT(charmap), "preview-size");
