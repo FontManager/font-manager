@@ -2,13 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-01-31 14:53-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-02-09 11:50+0000\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -23,7 +26,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "Kategorier"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
@@ -35,7 +38,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "Alla"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
@@ -45,7 +48,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
@@ -55,7 +58,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "Användare"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
@@ -65,7 +68,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "Familjart"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
@@ -77,7 +80,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "Bredd"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
@@ -87,7 +90,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr ""
+msgstr "Tjocklek"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
@@ -97,7 +100,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr ""
+msgstr "Lutning"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
@@ -107,7 +110,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "Mellanrum"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
@@ -117,7 +120,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "Licens"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
@@ -129,7 +132,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "Leverantör"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -141,7 +144,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "Filtyp"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
@@ -151,7 +154,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "Osorterat"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
@@ -161,7 +164,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "Inaktiverat"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
@@ -221,7 +224,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "Kollektioner"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
@@ -567,7 +570,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "Källor"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
