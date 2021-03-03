@@ -426,8 +426,6 @@ namespace FontManager {
             GLib.Intl.setlocale(GLib.LocaleCategory.ALL, null);
             Environment.set_application_name(About.DISPLAY_NAME);
             Gtk.init(ref args);
-            if (update_declined())
-                return 0;
             set_application_style();
             ApplicationFlags FLAGS = (ApplicationFlags.HANDLES_OPEN |
                                       ApplicationFlags.HANDLES_COMMAND_LINE);
