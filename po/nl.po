@@ -1,22 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Heimen Stoffels <vistausss@outlook.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-31 14:53-0500\n"
-"PO-Revision-Date: 2021-02-01 17:19+0100\n"
+"PO-Revision-Date: 2021-02-06 19:50+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
-"Language-Team: \n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -390,7 +390,7 @@ msgstr "Schuinte"
 #: lib/common/font-manager-properties-pane.c:85
 #: src/font-manager/Categories.vala:535
 msgid "Weight"
-msgstr "Zwaarte"
+msgstr "Dikte"
 
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:537
@@ -405,7 +405,7 @@ msgstr "Versie"
 #: lib/common/font-manager-properties-pane.c:89
 #: src/font-manager/Categories.vala:543
 msgid "Vendor"
-msgstr "Leverancier"
+msgstr "Maker"
 
 #: lib/common/font-manager-properties-pane.c:90
 msgid "FileType"
@@ -621,7 +621,7 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"This program is free software: you can redistribute it and/or modify\n"
+"    This program is free software: you can redistribute it and/or modify\n"
 "it under the terms of the GNU General Public License as published by\n"
 "the Free Software Foundation, either version 3 of the License, or\n"
 "(at your option) any later version.\n"
@@ -632,7 +632,8 @@ msgstr ""
 "GNU General Public License for more details.\n"
 "\n"
 "You should have received a copy of the GNU General Public License\n"
-"along with this program.  If not, see <http://www.gnu.org/licenses/>."
+"along with this program.  If not, see <http://www.gnu.org/licenses/>.\n"
+"    "
 
 #. Translators : Please feel free to add yourself to the list of translators,
 #. but do not modify or remove previous entries. New entries should be separated
@@ -691,7 +692,7 @@ msgstr "Lettertypen voor alle gebruikers"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr "Soort familie"
+msgstr "Familie"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
@@ -883,6 +884,13 @@ msgstr ""
 "Sommige van deze bestanden zijn incompatibel met deze uitgave; anderen zijn "
 "verouderd of verplaatst.\n"
 "\n"
+"Er wordt nu getracht om je lettertypen en verzamelingen te migreren. "
+"Bestanden en instellingen die niet meer nodig of beschadigd zijn, worden "
+"verwijderd. Conflicterende configuratiebestanden worden eveneens verwijderd."
+"\n"
+"\n"
+"Wij raden aan een back-up te maken van belangrijke bestanden alvorens door "
+"te gaan.\n"
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
@@ -1541,7 +1549,7 @@ msgstr "Lettertypen die geen onderdeel zijn van een verzameling"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr "Gebruiker"
+msgstr "Eigen"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "Fonts available only to you"
@@ -1553,7 +1561,7 @@ msgstr "Vormgevingslettertype"
 
 #: src/font-manager/preferences/Desktop.vala:37
 msgid "Font used throughout interface."
-msgstr "Het lettertype dat de toepassing gebruikt"
+msgstr "Het lettertype dat in de toepassing wordt gebruikt."
 
 #: src/font-manager/preferences/Desktop.vala:42
 msgid "Document Font"
@@ -1561,7 +1569,7 @@ msgstr "Documentlettertype"
 
 #: src/font-manager/preferences/Desktop.vala:43
 msgid "Font used for reading documents."
-msgstr "Het lettertype dat gebruikt wordt bij het lezen van documenten"
+msgstr "Het lettertype dat gebruikt wordt bij het lezen van documenten."
 
 #: src/font-manager/preferences/Desktop.vala:48
 msgid "Monospace Font"
@@ -1592,7 +1600,7 @@ msgstr "Anti-kartelvorming"
 msgid "The type of antialiasing to use when rendering fonts."
 msgstr ""
 "Het soort anti-kartelvorming dat moet worden gebruikt tijdens het laden van "
-"lettertypen"
+"lettertypen."
 
 #: src/font-manager/preferences/Desktop.vala:66
 msgid "RGBA order"
@@ -1604,7 +1612,7 @@ msgid ""
 "is set to rgba."
 msgstr ""
 "De volgorde van subpixelelementen op lcd-schermen (alleen van toepassing als "
-"anti-kartelvorming is ingesteld op rgba)"
+"anti-kartelvorming is ingesteld op rgba)."
 
 #: src/font-manager/preferences/Desktop.vala:72
 #: src/font-manager/preferences/Fontconfig.vala:329
@@ -1613,7 +1621,7 @@ msgstr "Hinten"
 
 #: src/font-manager/preferences/Desktop.vala:73
 msgid "The type of hinting to use when rendering fonts."
-msgstr "Hoe lettertypen moeten worden gehint"
+msgstr "Hoe lettertypen moeten worden gehint."
 
 #: src/font-manager/preferences/Desktop.vala:99
 msgid "GNOME desktop settings schema not found"
@@ -1708,7 +1716,7 @@ msgstr "Vervangingen"
 
 #: src/font-manager/preferences/Fontconfig.vala:599
 msgid "Easily substitute one font family for another."
-msgstr "Vervang één familie door een andere"
+msgstr "Vervang één familie door een andere."
 
 #: src/font-manager/preferences/Fontconfig.vala:600
 msgid "To add a new substitute click the add button in the toolbar."
@@ -1741,7 +1749,7 @@ msgstr "Weergave"
 
 #: src/font-manager/preferences/Preferences.vala:30
 msgid "Rendering"
-msgstr "Rendering"
+msgstr "Opmaak"
 
 #: src/font-manager/preferences/UserActions.vala:198
 msgid ""
@@ -1757,13 +1765,12 @@ msgstr ""
 "\n"
 "Standaard wordt het bestandspad van het geselecteerde lettertype toegevoegd "
 "aan het eind van de opdrachtregeloptielijst.\n"
-"\n"
 "Gebruik FILEPATH als plaatshouder om een andere positie daarvoor te kiezen.\n"
 "Als FAMILY of STYLE zijn aangetroffen, worden zij eveneens vervangen."
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "User Actions"
-msgstr "Gebruikersacties"
+msgstr "Eigen acties"
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "Custom context menu entries"

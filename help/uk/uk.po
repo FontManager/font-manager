@@ -1,45 +1,39 @@
-# Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-01-31 14:53-0500\n"
-"PO-Revision-Date: 2021-03-01 21:50+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
-"Language-Team: Catalan <https://hosted.weblate.org/projects/font-manager/"
-"font-manager-help-docs/ca/>\n"
-"Language: ca\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Toni Estevez <toni.estevez@gmail.com>, 2017"
+msgstr ""
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
 msgid "Automatically generated categories"
-msgstr "Categories generades automàticament"
+msgstr ""
 
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr "Categories"
+msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
-msgid ""
-"<app>Font Manager</app> automatically categorizes your fonts based on "
-"various properties."
+msgid "<app>Font Manager</app> automatically categorizes your fonts based on various properties."
 msgstr ""
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr "Totes"
+msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
@@ -49,7 +43,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr "Sistema"
+msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
@@ -69,19 +63,17 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr "Classe de família"
+msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
-msgid ""
-"Sorted by Family Kind — Requires Panose information to be present in font "
-"metadata."
+msgid "Sorted by Family Kind — Requires Panose information to be present in font metadata."
 msgstr ""
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr "Amplada"
+msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
@@ -91,7 +83,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr "Pes"
+msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
@@ -101,7 +93,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr "Inclinació"
+msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
@@ -111,7 +103,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr "Espaiat"
+msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
@@ -121,31 +113,27 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr "Llicència"
+msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
-msgid ""
-"Sorted by font license — Requires license information to be present in font "
-"metadata."
+msgid "Sorted by font license — Requires license information to be present in font metadata."
 msgstr ""
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr "Proveïdor"
+msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
-msgid ""
-"Sorted by font vendor — Requires vendor information to be present in font "
-"metadata."
+msgid "Sorted by font vendor — Requires vendor information to be present in font metadata."
 msgstr ""
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr "Tipus de fitxer"
+msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
@@ -184,16 +172,12 @@ msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
-msgid ""
-"While in \"Manage\" mode the preview pane contains a tab labeled \"Characters"
-"\"."
+msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters\"."
 msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
-msgid ""
-"Selecting this tab allows viewing all glyphs contained in the currently "
-"selected font."
+msgid "Selecting this tab allows viewing all glyphs contained in the currently selected font."
 msgstr ""
 
 #. (itstool) path: figure/title
@@ -208,8 +192,7 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-character-map.page:24
 msgctxt "_"
-msgid ""
-"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
+msgid "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
 
 #. (itstool) path: note/p
@@ -225,7 +208,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr "Col·leccions"
+msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
@@ -234,9 +217,7 @@ msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
-msgid ""
-"Collections allow you to organize your fonts in a way that makes sense to "
-"you and also make it easier to enable or disable many families at once."
+msgid "Collections allow you to organize your fonts in a way that makes sense to you and also make it easier to enable or disable many families at once."
 msgstr ""
 
 #. (itstool) path: note/p
@@ -259,20 +240,18 @@ msgstr ""
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/font-manager-collections.page:40 C/font-manager-font-installation.page:25
-#: C/font-manager-font-sources.page:46 C/font-manager-substitutions.page:37
+#: C/font-manager-collections.page:40
+#: C/font-manager-font-installation.page:25
+#: C/font-manager-font-sources.page:46
+#: C/font-manager-substitutions.page:37
 #: C/font-manager-substitutions.page:51
 msgctxt "_"
-msgid ""
-"external ref='media/list-add-symbolic.svg' "
-"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
+msgid "external ref='media/list-add-symbolic.svg' md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:37
-msgid ""
-"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
-"gui> at the bottom of the Collection view."
+msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> at the bottom of the Collection view."
 msgstr ""
 
 #. (itstool) path: item/p
@@ -291,8 +270,10 @@ msgid "To delete a collection:"
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:62 C/font-manager-collections.page:81
-#: C/font-manager-collections.page:99 C/font-manager-collections.page:117
+#: C/font-manager-collections.page:62
+#: C/font-manager-collections.page:81
+#: C/font-manager-collections.page:99
+#: C/font-manager-collections.page:117
 msgid "Select the collection"
 msgstr ""
 
@@ -301,20 +282,18 @@ msgstr ""
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/font-manager-collections.page:70 C/font-manager-collections.page:130
-#: C/font-manager-font-removal.page:38 C/font-manager-font-sources.page:84
+#: C/font-manager-collections.page:70
+#: C/font-manager-collections.page:130
+#: C/font-manager-font-removal.page:38
+#: C/font-manager-font-sources.page:84
 #: C/font-manager-substitutions.page:99
 msgctxt "_"
-msgid ""
-"external ref='media/list-remove-symbolic.svg' "
-"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
+msgid "external ref='media/list-remove-symbolic.svg' md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:67
-msgid ""
-"Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
-"gui> at the bottom of the Collection view."
+msgid "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> at the bottom of the Collection view."
 msgstr ""
 
 #. (itstool) path: item/title
@@ -323,7 +302,8 @@ msgid "To enable a collection:"
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-collections.page:86 C/font-manager-collections.page:104
+#: C/font-manager-collections.page:86
+#: C/font-manager-collections.page:104
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
 msgstr ""
@@ -345,9 +325,7 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:127
-msgid ""
-"Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
-"> </gui> at the top of the font list."
+msgid "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> at the top of the font list."
 msgstr ""
 
 #. (itstool) path: item/title
@@ -382,17 +360,12 @@ msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:13
-msgid ""
-"<app>Font Manager</app> allows you to activate and de-activate font families."
+msgid "<app>Font Manager</app> allows you to activate and de-activate font families."
 msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:18
-msgid ""
-"If you have a large number of fonts installed, font selection dialogs and "
-"lists in many applications can get very long and become uncomfortable to "
-"use, disabling fonts you do not use very often or do not need at the moment "
-"helps keep these at a reasonable size."
+msgid "If you have a large number of fonts installed, font selection dialogs and lists in many applications can get very long and become uncomfortable to use, disabling fonts you do not use very often or do not need at the moment helps keep these at a reasonable size."
 msgstr ""
 
 #. (itstool) path: item/title
@@ -407,24 +380,17 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:47
-msgid ""
-"You can also double-click, press <gui style=\"button\">Space</gui> or press "
-"<gui style=\"button\">Enter</gui> to toggle the selected font."
+msgid "You can also double-click, press <gui style=\"button\">Space</gui> or press <gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:51
-msgid ""
-"<link xref=\"organize#user-collections\">Collections</link> make it easy to "
-"enable or disable multiple families at once."
+msgid "<link xref=\"organize#user-collections\">Collections</link> make it easy to enable or disable multiple families at once."
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:58
-msgid ""
-"While any changes made using <app>Font Manager</app> are applied "
-"immediately, open applications may need to be restarted in order to reflect "
-"those changes."
+msgid "While any changes made using <app>Font Manager</app> are applied immediately, open applications may need to be restarted in order to reflect those changes."
 msgstr ""
 
 #. (itstool) path: info/desc
@@ -439,58 +405,45 @@ msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-font-installation.page:12
-msgid ""
-"<app>Font Manager</app> supports the most common <link xref=\"supported-"
-"formats\">font formats</link>."
+msgid "<app>Font Manager</app> supports the most common <link xref=\"supported-formats\">font formats</link>."
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
+#: C/font-manager-font-installation.page:19
+#: C/font-manager-font-removal.page:32
 msgid "While in <gui style=\"button\">Manage</gui> mode"
 msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:22
-msgid ""
-"Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
-"symbolic.svg\"/> </gui> at the top of the window"
+msgid "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:31
-msgid ""
-"Select the files you wish to install from the file selector dialog that is "
-"displayed and click <gui style=\"button\">Open</gui>"
+msgid "Select the files you wish to install from the file selector dialog that is displayed and click <gui style=\"button\">Open</gui>"
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:40
-msgid ""
-"Drag and drop is also supported. Simply drag files onto the font list to "
-"install them."
+msgid "Drag and drop is also supported. Simply drag files onto the font list to install them."
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:44
-msgid ""
-"You can drag any supported filetype onto the font list. This includes font "
-"files, directories and archives."
+msgid "You can drag any supported filetype onto the font list. This includes font files, directories and archives."
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:51
-msgid ""
-"Install <link action=\"install:file-roller\" href=\"https://wiki.gnome.org/"
-"Apps/FileRoller\">Archive Manager</link>. to enable support for compressed "
-"files."
+msgid "Install <link action=\"install:file-roller\" href=\"https://wiki.gnome.org/Apps/FileRoller\">Archive Manager</link>. to enable support for compressed files."
 msgstr ""
 
 #. (itstool) path: note/p
-#: C/font-manager-font-installation.page:59 C/font-manager-font-removal.page:76
+#: C/font-manager-font-installation.page:59
+#: C/font-manager-font-removal.page:76
 #: C/font-manager-font-sources.page:138
-msgid ""
-"<app>Font Manager</app> will reload anytime changes require it. This may "
-"take a moment depending on number of changes."
+msgid "<app>Font Manager</app> will reload anytime changes require it. This may take a moment depending on number of changes."
 msgstr ""
 
 #. (itstool) path: info/desc
@@ -505,17 +458,12 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:14
-msgid ""
-"The only fonts listed in the removal dialog will be those installed in your "
-"default font directory."
+msgid "The only fonts listed in the removal dialog will be those installed in your default font directory."
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:18
-msgid ""
-"Font files installed system wide are typically installed as part of the "
-"operating system, as packages or by the system administrator. <app>Font "
-"Manager</app> does not provide for removal of such files at this time."
+msgid "Font files installed system wide are typically installed as part of the operating system, as packages or by the system administrator. <app>Font Manager</app> does not provide for removal of such files at this time."
 msgstr ""
 
 #. (itstool) path: item/title
@@ -525,16 +473,12 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:35
-msgid ""
-"Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
-"symbolic.svg\"/> </gui> at the top of the window"
+msgid "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:44
-msgid ""
-"Select the families or individual styles you wish to remove from the list "
-"that is displayed"
+msgid "Select the families or individual styles you wish to remove from the list that is displayed"
 msgstr ""
 
 #. (itstool) path: item/p
@@ -544,23 +488,17 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:60
-msgid ""
-"<app>Font Manager</app> organizes and stores installed fonts in the default "
-"user font directory."
+msgid "<app>Font Manager</app> organizes and stores installed fonts in the default user font directory."
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:63
-msgid ""
-"Current default user font directory is located at <code><file>~/.local/share/"
-"fonts</file></code>"
+msgid "Current default user font directory is located at <code><file>~/.local/share/fonts</file></code>"
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:69
-msgid ""
-"Files are permanently deleted. Before removing any fonts ensure you have "
-"backups if there is a chance you may need them again."
+msgid "Files are permanently deleted. Before removing any fonts ensure you have backups if there is a chance you may need them again."
 msgstr ""
 
 #. (itstool) path: info/desc
@@ -575,16 +513,12 @@ msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
-msgid ""
-"<app>Font Manager</app> allows you to add or remove directories to scan for "
-"font files. Added directories are scanned recursively."
+msgid "<app>Font Manager</app> allows you to add or remove directories to scan for font files. Added directories are scanned recursively."
 msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:17
-msgid ""
-"This allows keeping font files somewhere other than your home directory or "
-"temporarily \"installing\" a directory of fonts."
+msgid "This allows keeping font files somewhere other than your home directory or temporarily \"installing\" a directory of fonts."
 msgstr ""
 
 #. (itstool) path: page/p
@@ -602,42 +536,40 @@ msgstr ""
 #. the file changes, the md5 hash will change to let you know you need to
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
-#: C/font-manager-font-sources.page:34 C/font-manager-font-sources.page:66
-#: C/font-manager-font-sources.page:98 C/font-manager-substitutions.page:25
-#: C/font-manager-substitutions.page:82 C/font-manager-substitutions.page:120
+#: C/font-manager-font-sources.page:34
+#: C/font-manager-font-sources.page:66
+#: C/font-manager-font-sources.page:98
+#: C/font-manager-substitutions.page:25
+#: C/font-manager-substitutions.page:82
+#: C/font-manager-substitutions.page:120
 msgctxt "_"
-msgid ""
-"external ref='media/preferences-system-symbolic.svg' "
-"md5='63ed081f78639fc6ec234a9351cf52e6'"
+msgid "external ref='media/preferences-system-symbolic.svg' md5='63ed081f78639fc6ec234a9351cf52e6'"
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-font-sources.page:30 C/font-manager-font-sources.page:62
-#: C/font-manager-substitutions.page:21 C/font-manager-substitutions.page:78
+#: C/font-manager-font-sources.page:30
+#: C/font-manager-font-sources.page:62
+#: C/font-manager-substitutions.page:21
+#: C/font-manager-substitutions.page:78
 #: C/font-manager-substitutions.page:116
-msgid ""
-"Open the <app>Font Manager</app> preferences dialog by clicking <gui> <media "
-"type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the "
-"top of the window."
+msgid "Open the <app>Font Manager</app> preferences dialog by clicking <gui> <media type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the top of the window."
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-font-sources.page:40 C/font-manager-font-sources.page:72
+#: C/font-manager-font-sources.page:40
+#: C/font-manager-font-sources.page:72
 #: C/font-manager-font-sources.page:104
 msgid "Select \"Sources\" from the sidebar"
 msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:43
-msgid ""
-"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
-"gui>"
+msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui>"
 msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:51
-msgid ""
-"Select the directory you wish to add from the file selector that is displayed"
+msgid "Select the directory you wish to add from the file selector that is displayed"
 msgstr ""
 
 #. (itstool) path: item/title
@@ -652,9 +584,7 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:81
-msgid ""
-"Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
-"gui>"
+msgid "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui>"
 msgstr ""
 
 #. (itstool) path: item/title
@@ -664,10 +594,7 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:94
-msgid ""
-"Open the <app>Font Manager</app> preferences dialog by clicking <gui style="
-"\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg"
-"\"/> </gui> at the top of the window."
+msgid "Open the <app>Font Manager</app> preferences dialog by clicking <gui style=\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the top of the window."
 msgstr ""
 
 #. (itstool) path: item/p
@@ -682,16 +609,12 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:124
-msgid ""
-"While sources are always available within the application they are not "
-"available to other applications until they are enabled."
+msgid "While sources are always available within the application they are not available to other applications until they are enabled."
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:131
-msgid ""
-"You can avoid having multiple copies of the same files by adding directories "
-"from other filesystems."
+msgid "You can avoid having multiple copies of the same files by adding directories from other filesystems."
 msgstr ""
 
 #. (itstool) path: info/desc
@@ -706,23 +629,17 @@ msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:12
-msgid ""
-"The \"Display\" and \"Rendering\" panes in the preferences dialog generate "
-"valid fontconfig configuration files for the exposed properties."
+msgid "The \"Display\" and \"Rendering\" panes in the preferences dialog generate valid fontconfig configuration files for the exposed properties."
 msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:17
-msgid ""
-"See <link href=\"https://www.freedesktop.org/software/fontconfig/fontconfig-"
-"user.html\">fonts-conf</link> for more details."
+msgid "See <link href=\"https://www.freedesktop.org/software/fontconfig/fontconfig-user.html\">fonts-conf</link> for more details."
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-fontconfig.page:22
-msgid ""
-"Desktop environments and applications may rely on their own configuration "
-"mechanism."
+msgid "Desktop environments and applications may rely on their own configuration mechanism."
 msgstr ""
 
 #. (itstool) path: info/desc
@@ -787,23 +704,17 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-introduction.page:57
 msgctxt "_"
-msgid ""
-"external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
+msgid "external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:61
-msgid ""
-"For more information about <app>Font Manager</app>, please visit the <link "
-"href=\"http://fontmanager.github.io/\"> Homepage </link>"
+msgid "For more information about <app>Font Manager</app>, please visit the <link href=\"http://fontmanager.github.io/\"> Homepage </link>"
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:67
-msgid ""
-"To report a bug or make a suggestion regarding the <app>Font Manager</app> "
-"application or this manual, please use the projects <link href=\"https://"
-"github.com/FontManager/master/issues\"> Issue Tracker </link>"
+msgid "To report a bug or make a suggestion regarding the <app>Font Manager</app> application or this manual, please use the projects <link href=\"https://github.com/FontManager/master/issues\"> Issue Tracker </link>"
 msgstr ""
 
 #. (itstool) path: info/desc
@@ -818,15 +729,12 @@ msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:12
-msgid ""
-"While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
+msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
 msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:16
-msgid ""
-"Selecting this tab allows viewing any licensing information contained in the "
-"currently selected font."
+msgid "Selecting this tab allows viewing any licensing information contained in the currently selected font."
 msgstr ""
 
 #. (itstool) path: figure/title
@@ -861,16 +769,12 @@ msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:12
-msgid ""
-"While in \"Manage\" mode the preview pane contains a tab labeled \"Properties"
-"\"."
+msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Properties\"."
 msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:16
-msgid ""
-"Selecting this tab allows viewing metadata contained in the currently "
-"selected font."
+msgid "Selecting this tab allows viewing metadata contained in the currently selected font."
 msgstr ""
 
 #. (itstool) path: figure/title
@@ -885,8 +789,7 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-metadata.page:23
 msgctxt "_"
-msgid ""
-"external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
+msgid "external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
 msgstr ""
 
 #. (itstool) path: note/p
@@ -906,16 +809,12 @@ msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:13
-msgid ""
-"While the character map is in use the sidebar will switch to displaying the "
-"orthographies supported by the currently selected font."
+msgid "While the character map is in use the sidebar will switch to displaying the orthographies supported by the currently selected font."
 msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:18
-msgid ""
-"Selecting an orthography from the list will filter the character map so that "
-"it only displays relevant characters"
+msgid "Selecting an orthography from the list will filter the character map so that it only displays relevant characters"
 msgstr ""
 
 #. (itstool) path: figure/title
@@ -930,8 +829,7 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-orthographies.page:29
 msgctxt "_"
-msgid ""
-"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
+msgid "external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 msgstr ""
 
 #. (itstool) path: info/desc
@@ -946,8 +844,7 @@ msgstr ""
 
 #. (itstool) path: page/p
 #: C/font-manager-substitutions.page:12
-msgid ""
-"<app>Font Manager</app> allows you to substitute one font family for another."
+msgid "<app>Font Manager</app> allows you to substitute one font family for another."
 msgstr ""
 
 #. (itstool) path: item/title
@@ -956,16 +853,15 @@ msgid "To add a substitute:"
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-substitutions.page:31 C/font-manager-substitutions.page:88
+#: C/font-manager-substitutions.page:31
+#: C/font-manager-substitutions.page:88
 #: C/font-manager-substitutions.page:126
 msgid "Select \"Substitutions\" from the sidebar"
 msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:34
-msgid ""
-"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
-"gui> in the substitutions pane."
+msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> in the substitutions pane."
 msgstr ""
 
 #. (itstool) path: item/p
@@ -975,9 +871,7 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:48
-msgid ""
-"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
-"gui> on the right."
+msgid "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </gui> on the right."
 msgstr ""
 
 #. (itstool) path: item/p
@@ -991,10 +885,9 @@ msgid "Repeat steps 3 – 6 as needed."
 msgstr ""
 
 #. (itstool) path: item/p
-#: C/font-manager-substitutions.page:67 C/font-manager-substitutions.page:105
-msgid ""
-"Click <gui style=\"button\">Save</gui> to write the configuration file when "
-"done."
+#: C/font-manager-substitutions.page:67
+#: C/font-manager-substitutions.page:105
+msgid "Click <gui style=\"button\">Save</gui> to write the configuration file when done."
 msgstr ""
 
 #. (itstool) path: item/title
@@ -1009,9 +902,7 @@ msgstr ""
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:96
-msgid ""
-"Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
-"gui> in the substitutions pane."
+msgid "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </gui> in the substitutions pane."
 msgstr ""
 
 #. (itstool) path: item/title
@@ -1026,18 +917,12 @@ msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:142
-msgid ""
-"Fonts matching the target family are edited to prepend the list of preferred "
-"families before the matching family, append the acceptable families after "
-"the matching family and append the default families to the end of the family "
-"list."
+msgid "Fonts matching the target family are edited to prepend the list of preferred families before the matching family, append the acceptable families after the matching family and append the default families to the end of the family list."
 msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:148
-msgid ""
-"While changes are applied immediately open applications may need to be "
-"restarted."
+msgid "While changes are applied immediately open applications may need to be restarted."
 msgstr ""
 
 #. (itstool) path: info/desc
@@ -1072,9 +957,7 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: C/index.page:8
 msgctxt "_"
-msgid ""
-"external ref='media/preferences-desktop-font-16.png' "
-"md5='4903102ad113c096aa95ef8a5ccaf0c2'"
+msgid "external ref='media/preferences-desktop-font-16.png' md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 msgstr ""
 
 #. (itstool) path: info/title
@@ -1087,12 +970,12 @@ msgstr ""
 #: C/index.page:11
 msgctxt "text"
 msgid "Font Manager"
-msgstr "Gestor de tipus de lletra"
+msgstr ""
 
 #. (itstool) path: credit/name
 #: C/index.page:14
 msgid "Jerry Casiano"
-msgstr "Jerry Casiano"
+msgstr ""
 
 #. (itstool) path: credit/years
 #: C/index.page:16
@@ -1116,16 +999,12 @@ msgstr ""
 #. whatever you like once you have updated your copy of the file.
 #: C/index.page:30
 msgctxt "_"
-msgid ""
-"external ref='media/preferences-desktop-font.png' "
-"md5='f9108efe15fb60827b402b9a3a936589'"
+msgid "external ref='media/preferences-desktop-font.png' md5='f9108efe15fb60827b402b9a3a936589'"
 msgstr ""
 
 #. (itstool) path: page/title
 #: C/index.page:29
-msgid ""
-"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
-"font.png\"> Font Manager logo </media> Font Manager"
+msgid "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
 
 #. (itstool) path: section/title

@@ -2,20 +2,22 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2017. #zanata
 # Jerry Casiano <JerryCasiano@gmail.com>, 2018. #zanata
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-31 14:53-0500\n"
-"PO-Revision-Date: 2019-10-03 02:39-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Svenska Språkfiler <https://svenskasprakfiler.se>\n"
+"PO-Revision-Date: 2021-02-08 11:16+0000\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language-Team: Swedish <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 4.6.2\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -97,17 +99,17 @@ msgstr "Installera"
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr ""
+msgstr "Installera markerad teckensnittsfil"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr ""
+msgstr "Installera markerad teckensnittsfiler"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr ""
+msgstr "Teckensnittsegenskaper"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:106
@@ -136,7 +138,7 @@ msgstr "Lätt"
 
 #: lib/common/font-manager-fontconfig.c:832
 msgid "Semi-Light"
-msgstr ""
+msgstr "Semilätt"
 
 #: lib/common/font-manager-fontconfig.c:834
 msgid "Book"
@@ -272,50 +274,51 @@ msgstr "Äldre"
 
 #: lib/common/font-manager-freetype.c:292
 msgid "Restricted License Embedding"
-msgstr ""
+msgstr "Begränsad licensinbäddning"
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Preview & Print Embedding"
-msgstr ""
+msgstr "Förhandsgransknings- & utskriftsinbäddning"
 
 #: lib/common/font-manager-freetype.c:296
 msgid "Editable Embedding"
-msgstr ""
+msgstr "Redigerbar inbäddning"
 
 #: lib/common/font-manager-freetype.c:298
 msgid "Preview & Print Embedding | No Subsetting"
-msgstr ""
+msgstr "Förhandsgransknings- & utskriftsinbäddning | Ingen underinställning"
 
 #: lib/common/font-manager-freetype.c:300
 msgid "Editable Embedding | No Subsetting"
-msgstr ""
+msgstr "Redigerbar inbäddning | Ingen underinställning"
 
 #: lib/common/font-manager-freetype.c:302
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "Förhandsgransknings- & utskriftsinbäddning | Endast bitmap-inbäddning"
 
 #: lib/common/font-manager-freetype.c:304
 msgid "Editable Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "Redigerbar inbäddning | Endast bitmap-inbäddning"
 
 #: lib/common/font-manager-freetype.c:306
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
 msgstr ""
+"Förhandsgransknings- & utskriftsinbäddning | Ingen underinställning | Endast "
+"bitmap-inbäddning"
 
 #: lib/common/font-manager-freetype.c:308
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
 msgstr ""
+"Redigerbar inbäddning | Ingen underinställning | Endast bitmap-inbäddning"
 
 #: lib/common/font-manager-freetype.c:310
 msgid "Installable Embedding"
-msgstr ""
+msgstr "Installerbar-inbäddning"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:702
-#, fuzzy
-#| msgid "Unknown"
 msgid "Unknown Vendor"
-msgstr "Okänt"
+msgstr "Okänd leverantör"
 
 #: lib/common/font-manager-license-pane.c:185
 msgid "File does not contain license information."
@@ -363,7 +366,7 @@ msgstr "Licens"
 
 #: lib/common/font-manager-preview-pane.c:434
 msgid "Search available characters"
-msgstr ""
+msgstr "Sök tillgängliga tecken"
 
 #: lib/common/font-manager-properties-pane.c:80
 msgid "PostScript Name"
@@ -371,11 +374,11 @@ msgstr "PostScript-namn"
 
 #: lib/common/font-manager-properties-pane.c:81
 msgid "Family"
-msgstr ""
+msgstr "Familj"
 
 #: lib/common/font-manager-properties-pane.c:82
 msgid "Style"
-msgstr ""
+msgstr "Stil"
 
 #: lib/common/font-manager-properties-pane.c:83
 #: src/font-manager/Categories.vala:534
@@ -395,7 +398,7 @@ msgstr "Tjocklek"
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:537
 msgid "Spacing"
-msgstr "Avstånd"
+msgstr "Mellanrum"
 
 #: lib/common/font-manager-properties-pane.c:87
 msgid "Version"
@@ -445,157 +448,157 @@ msgstr "Tecken hittat."
 
 #: lib/unicode/unicode-info.c:195
 msgid "<Non Private Use High Surrogate>"
-msgstr ""
+msgstr "<Icke privat bruk Stor surrogat>"
 
 #: lib/unicode/unicode-info.c:197
 msgid "<Private Use High Surrogate>"
-msgstr ""
+msgstr "<Privat bruk Stor surrogat>"
 
 #: lib/unicode/unicode-info.c:199
 msgid "<Low Surrogate>"
-msgstr ""
+msgstr "<Liten surrogat>"
 
 #: lib/unicode/unicode-info.c:201
 msgid "<Private Use>"
-msgstr ""
+msgstr "<Privat bruk>"
 
 #: lib/unicode/unicode-info.c:203
 msgid "<Plane 15 Private Use>"
-msgstr ""
+msgstr "<Plan 15 Privat bruk>"
 
 #: lib/unicode/unicode-info.c:205
 msgid "<Plane 16 Private Use>"
-msgstr ""
+msgstr "<Plan 16 Privat bruk>"
 
 #: lib/unicode/unicode-info.c:209
 msgid "<not assigned>"
-msgstr ""
+msgstr "<inte tilldelad>"
 
 #: lib/unicode/unicode-info.c:226
 msgid "Other, Control"
-msgstr ""
+msgstr "Annat, Kontroll"
 
 #: lib/unicode/unicode-info.c:228
 msgid "Other, Format"
-msgstr ""
+msgstr "Annat, Format"
 
 #: lib/unicode/unicode-info.c:230
 msgid "Other, Not Assigned"
-msgstr ""
+msgstr "Annat, Inte tilldelat"
 
 #: lib/unicode/unicode-info.c:232
 msgid "Other, Private Use"
-msgstr ""
+msgstr "Annat, Privat användning"
 
 #: lib/unicode/unicode-info.c:234
 msgid "Other, Surrogate"
-msgstr ""
+msgstr "Annat, Surrogat"
 
 #: lib/unicode/unicode-info.c:236
 msgid "Letter, Lowercase"
-msgstr ""
+msgstr "gemener"
 
 #: lib/unicode/unicode-info.c:238
 msgid "Letter, Modifier"
-msgstr ""
+msgstr "Modifierare"
 
 #: lib/unicode/unicode-info.c:240
 msgid "Letter, Other"
-msgstr ""
+msgstr "Annat"
 
 #: lib/unicode/unicode-info.c:242
 msgid "Letter, Titlecase"
-msgstr ""
+msgstr "Inledande Versal"
 
 #: lib/unicode/unicode-info.c:244
 msgid "Letter, Uppercase"
-msgstr ""
+msgstr "VERSALER"
 
 #: lib/unicode/unicode-info.c:246
 msgid "Mark, Spacing Combining"
-msgstr ""
+msgstr "Markera, Kombinera blanksteg"
 
 #: lib/unicode/unicode-info.c:248
 msgid "Mark, Enclosing"
-msgstr ""
+msgstr "Markera, Omslut"
 
 #: lib/unicode/unicode-info.c:250
 msgid "Mark, Non-Spacing"
-msgstr ""
+msgstr "Markera, Ej blanksteg"
 
 #: lib/unicode/unicode-info.c:252
 msgid "Number, Decimal Digit"
-msgstr ""
+msgstr "Tal, Decimal siffra"
 
 #: lib/unicode/unicode-info.c:254
 msgid "Number, Letter"
-msgstr ""
+msgstr "Siffra, Bokstav"
 
 #: lib/unicode/unicode-info.c:256
 msgid "Number, Other"
-msgstr ""
+msgstr "Siffra, Annat"
 
 #: lib/unicode/unicode-info.c:258
 msgid "Punctuation, Connector"
-msgstr ""
+msgstr "Interpunktion, Koppling"
 
 #: lib/unicode/unicode-info.c:260
 msgid "Punctuation, Dash"
-msgstr ""
+msgstr "Interpunktion, Streck"
 
 #: lib/unicode/unicode-info.c:262
 msgid "Punctuation, Close"
-msgstr ""
+msgstr "Interpunktion, Stäng"
 
 #: lib/unicode/unicode-info.c:264
 msgid "Punctuation, Final Quote"
-msgstr ""
+msgstr "Interpunktion, Slutcitat"
 
 #: lib/unicode/unicode-info.c:266
 msgid "Punctuation, Initial Quote"
-msgstr ""
+msgstr "Interpunktion, Inledande citat"
 
 #: lib/unicode/unicode-info.c:268
 msgid "Punctuation, Other"
-msgstr ""
+msgstr "Interpunktion, Annat"
 
 #: lib/unicode/unicode-info.c:270
 msgid "Punctuation, Open"
-msgstr ""
+msgstr "Interpunktion, Öppen"
 
 #: lib/unicode/unicode-info.c:272
 msgid "Symbol, Currency"
-msgstr ""
+msgstr "Symbol, Valuta"
 
 #: lib/unicode/unicode-info.c:274
 msgid "Symbol, Modifier"
-msgstr ""
+msgstr "Symbol, Modifierare"
 
 #: lib/unicode/unicode-info.c:276
 msgid "Symbol, Math"
-msgstr ""
+msgstr "Symbol, Matematik"
 
 #: lib/unicode/unicode-info.c:278
 msgid "Symbol, Other"
-msgstr ""
+msgstr "Symbol, Annat"
 
 #: lib/unicode/unicode-info.c:280
 msgid "Separator, Line"
-msgstr ""
+msgstr "Separator, Rad"
 
 #: lib/unicode/unicode-info.c:282
 msgid "Separator, Paragraph"
-msgstr ""
+msgstr "Separator, Stycke"
 
 #: lib/unicode/unicode-info.c:284
 msgid "Separator, Space"
-msgstr ""
+msgstr "Separator, Blanksteg"
 
 #. Unicode assigns "Common" as the script name for any character not
 #. * specifically listed in Scripts.txt
 #: lib/unicode/unicode-info.c:703
 msgid "Common"
-msgstr ""
+msgstr "Normal"
 
 #: src/font-manager/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
@@ -694,7 +697,7 @@ msgstr "Teckensnitt tillgängliga för alla användare"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr "Familj"
+msgstr "Familjart"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
@@ -731,8 +734,8 @@ msgstr "Bildmässigt"
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i variation "
+msgstr[1] "%i variationer "
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -748,7 +751,7 @@ msgstr "Komprimera…"
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
-msgstr ""
+msgstr "Sparade jämförelse"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
 #: src/font-manager/Compare.vala:407
@@ -756,10 +759,12 @@ msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
 msgstr ""
+"Spara aktuell jämförelse\n"
+"genom att klicka på +"
 
 #: src/font-manager/Dialogs.vala:60
 msgid "Select executable"
-msgstr ""
+msgstr "Välj körbar"
 
 #: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
 #: src/font-manager/UserData.vala:58
@@ -825,6 +830,10 @@ msgid ""
 "Start search using %s to filter based on filepath.\n"
 "Start search using %s to filter based on characters."
 msgstr ""
+"Skiftlägesokänslig sökning av familjnamn.\n"
+"\n"
+"Starta sökningen med %s för att filtrera baserat på sökväg.\n"
+"Starta sökningen med %s för att filtrera baserat på tecken."
 
 #: src/font-manager/FontList.vala:68
 #: src/font-manager/web/google/FontList.vala:65
@@ -891,142 +900,142 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrikaan"
 
 #: src/font-manager/Orthographies.vala:32
 msgid "Ahom"
-msgstr ""
+msgstr "Ahom"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Aleut Cyrillic"
-msgstr ""
+msgstr "Aleut kyrilliska"
 
 #: src/font-manager/Orthographies.vala:34
 msgid "Aleut Latin"
-msgstr ""
+msgstr "Aleut Latin"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
 msgid "Arabic"
-msgstr ""
+msgstr "Arabiska"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
-msgstr ""
+msgstr "Arkaiska grekiska bokstäver"
 
 #: src/font-manager/Orthographies.vala:37
 msgid "Armenian"
-msgstr ""
+msgstr "Armeniska"
 
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
-msgstr ""
+msgstr "Astronomi"
 
 #: src/font-manager/Orthographies.vala:39
 msgid "Balinese"
-msgstr ""
+msgstr "Balinesiska"
 
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
-msgstr ""
+msgstr "Baltic"
 
 #: src/font-manager/Orthographies.vala:41
 msgid "Bamum"
-msgstr ""
+msgstr "Bamum"
 
 #: src/font-manager/Orthographies.vala:42
 msgid "Basic Cyrillic"
-msgstr ""
+msgstr "Grundläggande kyrilliska"
 
 #: src/font-manager/Orthographies.vala:43
 msgid "Basic Greek"
-msgstr ""
+msgstr "Grundläggande grekiska"
 
 #: src/font-manager/Orthographies.vala:44
 msgid "Basic Latin"
-msgstr ""
+msgstr "Grundläggande latin"
 
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
-msgstr ""
+msgstr "Surat Batak"
 
 #: src/font-manager/Orthographies.vala:46
 #: src/font-manager/web/google/Language.vala:33
 msgid "Bengali"
-msgstr ""
+msgstr "Bengali"
 
 #: src/font-manager/Orthographies.vala:47
 msgid "Brāhmī"
-msgstr ""
+msgstr "Brāhmī"
 
 #: src/font-manager/Orthographies.vala:48
 msgid "Buginese"
-msgstr ""
+msgstr "Buginesiska"
 
 #: src/font-manager/Orthographies.vala:49
 msgid "Unified Canadian Aboriginal Syllabics"
-msgstr ""
+msgstr "Unified kanadensiska aboriginal syllabics"
 
 #: src/font-manager/Orthographies.vala:50
 msgid "Carian"
-msgstr ""
+msgstr "Kariska"
 
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
-msgstr ""
+msgstr "Katalanska"
 
 #: src/font-manager/Orthographies.vala:52
 msgid "Central European"
-msgstr ""
+msgstr "Centraleuropeisk"
 
 #: src/font-manager/Orthographies.vala:53
 msgid "Chakma"
-msgstr ""
+msgstr "Chakma"
 
 #: src/font-manager/Orthographies.vala:54
 msgid "Cham"
-msgstr ""
+msgstr "Cham"
 
 #: src/font-manager/Orthographies.vala:55
 msgid "Cherokee"
-msgstr ""
+msgstr "Cherokesiska"
 
 #: src/font-manager/Orthographies.vala:56
 msgid "Chess Symbols"
-msgstr ""
+msgstr "Schacksymboler"
 
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
 msgid "CJK Unified"
-msgstr ""
+msgstr "CJK enhetlig"
 
 #: src/font-manager/Orthographies.vala:60
 msgid "CJK Unified Extension A"
-msgstr ""
+msgstr "CJK enhetligt tillägg A"
 
 #: src/font-manager/Orthographies.vala:61
 msgid "CJK Unified Extension B"
-msgstr ""
+msgstr "CJK enhetligt tillägg B"
 
 #: src/font-manager/Orthographies.vala:62
 msgid "CJK Unified Extension C"
-msgstr ""
+msgstr "CJK enhetligt tillägg C"
 
 #: src/font-manager/Orthographies.vala:63
 msgid "CJK Unified Extension D"
-msgstr ""
+msgstr "CJK enhetligt tillägg D"
 
 #: src/font-manager/Orthographies.vala:64
 msgid "CJK Unified Extension E"
-msgstr ""
+msgstr "CJK enhetligt tillägg E"
 
 #: src/font-manager/Orthographies.vala:65
 msgid "CJK Compatibility Ideographs"
-msgstr ""
+msgstr "CJK-kompatibilitetsideografier"
 
 #: src/font-manager/Orthographies.vala:66
 msgid "CJK Compatibility Ideographs Supplement"
-msgstr ""
+msgstr "Tillägg till CJK-kompatibilitetsideografier"
 
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
@@ -1035,74 +1044,72 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:70
 msgid "Coptic"
-msgstr ""
+msgstr "Koptiska"
 
 #: src/font-manager/Orthographies.vala:71
-#, fuzzy
-#| msgid "Preferences"
 msgid "Currencies"
-msgstr "Inställningar"
+msgstr "Valutor"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
-msgstr ""
+msgstr "Cypriotiska syllabary"
 
 #: src/font-manager/Orthographies.vala:73
 #: src/font-manager/web/google/Language.vala:39
 msgid "Devanagari"
-msgstr ""
+msgstr "Devanagari"
 
 #: src/font-manager/Orthographies.vala:74
 msgid "Dutch"
-msgstr ""
+msgstr "Nederländska"
 
 #: src/font-manager/Orthographies.vala:75
 msgid "Egyptian Hieroglyphs"
-msgstr ""
+msgstr "Egyptiska Hieroglyfer"
 
 #: src/font-manager/Orthographies.vala:76
 msgid "Emoticons"
-msgstr ""
+msgstr "Uttryckssymboler"
 
 #: src/font-manager/Orthographies.vala:77
 msgid "Ethiopic"
-msgstr ""
+msgstr "Etiopiska"
 
 #. This "orthography" contains only the euro symbol...
 #. { "Euro", "Euro" },
 #: src/font-manager/Orthographies.vala:82
 msgid "Farsi"
-msgstr ""
+msgstr "Persiska"
 
 #: src/font-manager/Orthographies.vala:83
 msgid "Food and Drink"
-msgstr ""
+msgstr "Mat och dryck"
 
 #: src/font-manager/Orthographies.vala:84
 msgid "Full Cyrillic"
-msgstr ""
+msgstr "Fullständig kyrilliska"
 
 #: src/font-manager/Orthographies.vala:85
 msgid "Georgian"
-msgstr ""
+msgstr "Georgiska"
 
 #: src/font-manager/Orthographies.vala:86
 msgid "Glagolitic"
-msgstr ""
+msgstr "Glagolitiska"
 
 #: src/font-manager/Orthographies.vala:87
 msgid "Gothic"
-msgstr ""
+msgstr "Gotiska"
 
 #: src/font-manager/Orthographies.vala:88
 #: src/font-manager/web/google/Language.vala:42
 msgid "Gujarati"
-msgstr ""
+msgstr "Gujarati"
 
 #: src/font-manager/Orthographies.vala:89
 #: src/font-manager/web/google/Language.vala:43
 msgid "Gurmukhi"
-msgstr ""
+msgstr "Gurmukhi"
 
 #: src/font-manager/Orthographies.vala:90
 msgid "Korean Hangul"
@@ -1115,7 +1122,7 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:92
 #: src/font-manager/web/google/Language.vala:44
 msgid "Hebrew"
-msgstr ""
+msgstr "Hebreiska"
 
 #: src/font-manager/Orthographies.vala:93
 #: src/font-manager/Orthographies.vala:95
@@ -1153,7 +1160,7 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:102
 #: src/font-manager/web/google/Language.vala:46
 msgid "Kannada"
-msgstr ""
+msgstr "Kannada"
 
 #: src/font-manager/Orthographies.vala:103
 msgid "Kayah Li"
@@ -1170,7 +1177,7 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:106
 #: src/font-manager/web/google/Language.vala:47
 msgid "Khmer"
-msgstr ""
+msgstr "Khmer"
 
 #: src/font-manager/Orthographies.vala:107
 msgid "Japanese Kokuji"
@@ -1203,7 +1210,7 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:114
 #: src/font-manager/web/google/Language.vala:51
 msgid "Malayalam"
-msgstr ""
+msgstr "Malayalam"
 
 #: src/font-manager/Orthographies.vala:115
 msgid "Mathematical Greek"
@@ -1252,7 +1259,7 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:131
 #: src/font-manager/web/google/Language.vala:52
 msgid "Myanmar"
-msgstr ""
+msgstr "Myanmar"
 
 #: src/font-manager/Orthographies.vala:132
 msgid "New Tai Lue"
@@ -1271,10 +1278,8 @@ msgid "Ol Chiki"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:136
-#, fuzzy
-#| msgid "Italic"
 msgid "Old Italic"
-msgstr "Kursiv"
+msgstr "Gammal kursiv"
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
@@ -1283,7 +1288,7 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:138
 #: src/font-manager/web/google/Language.vala:53
 msgid "Oriya"
-msgstr ""
+msgstr "Oriya"
 
 #: src/font-manager/Orthographies.vala:139
 msgid "Osmanya"
@@ -1340,7 +1345,7 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:152
 #: src/font-manager/web/google/Language.vala:54
 msgid "Sinhala"
-msgstr ""
+msgstr "Sinhala"
 
 #: src/font-manager/Orthographies.vala:153
 msgid "South Korean Hanja"
@@ -1373,12 +1378,12 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:160
 #: src/font-manager/web/google/Language.vala:55
 msgid "Tamil"
-msgstr ""
+msgstr "Tamil"
 
 #: src/font-manager/Orthographies.vala:161
 #: src/font-manager/web/google/Language.vala:56
 msgid "Telugu"
-msgstr ""
+msgstr "Telugu"
 
 #: src/font-manager/Orthographies.vala:162
 msgid "Thaana"
@@ -1387,12 +1392,12 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:163
 #: src/font-manager/web/google/Language.vala:57
 msgid "Thai"
-msgstr ""
+msgstr "Thailändska"
 
 #: src/font-manager/Orthographies.vala:164
 #: src/font-manager/web/google/Language.vala:58
 msgid "Tibetan"
-msgstr ""
+msgstr "Tibetanska"
 
 #: src/font-manager/Orthographies.vala:165
 msgid "Tifinagh"
@@ -1423,15 +1428,13 @@ msgid "Vedic Extensions"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:172
-#, fuzzy
-#| msgid "Vendor"
 msgid "Venda"
-msgstr "Leverantör"
+msgstr "Venda"
 
 #: src/font-manager/Orthographies.vala:173
 #: src/font-manager/web/google/Language.vala:59
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vietnamesiska"
 
 #: src/font-manager/Orthographies.vala:174
 msgid "Western European"
@@ -1463,15 +1466,15 @@ msgstr "Uppdatering pågår"
 
 #: src/font-manager/TitleBar.vala:62
 msgid "Updating Database — Fonts"
-msgstr ""
+msgstr "Uppdaterar databas — Teckensnitt"
 
 #: src/font-manager/TitleBar.vala:64
 msgid "Updating Database — Metadata"
-msgstr ""
+msgstr "Uppdaterar databas — Metadata"
 
 #: src/font-manager/TitleBar.vala:66
 msgid "Updating Database — Orthography"
-msgstr ""
+msgstr "Uppdaterar databas — Ortografi"
 
 #: src/font-manager/TitleBar.vala:83
 msgid "Keyboard Shortcuts"
@@ -1488,16 +1491,16 @@ msgstr "Om"
 
 #: src/font-manager/TitleBar.vala:103
 msgid "Import"
-msgstr ""
+msgstr "Importera"
 
 #: src/font-manager/TitleBar.vala:104 src/font-manager/UserData.vala:132
 msgid "Export"
-msgstr ""
+msgstr "Exportera"
 
 #: src/font-manager/TitleBar.vala:111 src/font-manager/UserData.vala:37
 #: src/font-manager/UserData.vala:48
 msgid "User Data"
-msgstr ""
+msgstr "Användardata"
 
 #. HAVE_WEBKIT
 #: src/font-manager/TitleBar.vala:267
@@ -1515,7 +1518,7 @@ msgstr "Inställningar"
 
 #: src/font-manager/UserData.vala:55
 msgid "Select Exported Data"
-msgstr ""
+msgstr "Välj exporterad data"
 
 #: src/font-manager/Utils.vala:220
 msgid "Copying files…"
@@ -1539,10 +1542,8 @@ msgid "Fonts which have been disabled"
 msgstr "Teckensnitt som har inaktiverats"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
-#, fuzzy
-#| msgid "Supported Orthographies"
 msgid "Filter based on supported orthographies"
-msgstr "Ortografier som stöds"
+msgstr "Filter baserat på ortografier som stöds"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
@@ -1640,6 +1641,13 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"Välj Spara, för att generera en fontconfig konfigurationsfil från "
+"ovanstående inställningar.\n"
+"\n"
+"Välj Ignorera för att ta bort konfigurationsfilen och återgå till "
+"standardinställningarna.\n"
+"\n"
+"Notera att inte alla miljöer/ program kommer att hedra dessa inställningar."
 
 #: src/font-manager/preferences/Fontconfig.vala:204
 #: src/font-manager/preferences/Fontconfig.vala:282
@@ -1733,7 +1741,7 @@ msgstr "Källor"
 
 #: src/font-manager/preferences/Preferences.vala:27
 msgid "Actions"
-msgstr ""
+msgstr "Åtgärder"
 
 #: src/font-manager/preferences/Preferences.vala:28
 msgid "Substitutions"
@@ -1757,14 +1765,22 @@ msgid ""
 "To control where the filepath is inserted use FILEPATH as a placeholder.\n"
 "If FAMILY or STYLE are found in the argument list they will also be replaced."
 msgstr ""
+"Åtgärder som definieras här kommer att läggas till i teckensnittslistans "
+"snabbmeny.\n"
+"\n"
+"Som standard kommer sökvägen för det valda teckensnittet att läggas till i "
+"slutet av argumentlistan.\n"
+"Om du vill styra var sökvägen infogas använder du FILEPATH som platshållare."
+"\n"
+"Om FAMILY eller STYLE hittas i argumentlistan kommer de också att ersättas."
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "User Actions"
-msgstr ""
+msgstr "Användaråtgärder"
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "Custom context menu entries"
-msgstr ""
+msgstr "Anpassade snabbmenyposter"
 
 #: src/font-manager/preferences/UserInterface.vala:63
 msgid "Wide Layout"
@@ -1805,6 +1821,13 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"Teckensnitt i alla mappar som anges här kommer att finnas tillgängliga i "
+"programmet.\n"
+"\n"
+"De kommer inte att vara synliga för andra program förrän källan verkligen är "
+"aktiverad.\n"
+"\n"
+"Notera att inte alla miljöer/program kommer att hedra dessa inställningar."
 
 #: src/font-manager/preferences/UserSources.vala:162
 #: src/font-manager/ui/font-manager-user-data.ui:131
@@ -1825,147 +1848,136 @@ msgstr ""
 
 #: src/font-manager/web/google/FontList.vala:56
 msgid "Case insensitive search of family names."
-msgstr ""
+msgstr "Skiftlägesokänslig sökning av familjnamn."
 
 #: src/font-manager/web/google/GoogleFonts.vala:129
 msgid "Error procesing data"
-msgstr ""
+msgstr "Kunde inte bearbeta data"
 
 #: src/font-manager/web/google/GoogleFonts.vala:138
 msgid "Network Error"
-msgstr ""
+msgstr "Nätverksfel"
 
 #: src/font-manager/web/google/GoogleFonts.vala:139
 msgid "Please check your network settings"
-msgstr ""
+msgstr "Kontrollera dina nätverksinställningar"
 
 #: src/font-manager/web/google/GoogleFonts.vala:141
 msgid "Client Error"
-msgstr ""
+msgstr "Klientfel"
 
 #: src/font-manager/web/google/GoogleFonts.vala:142
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
+"Försök starta om programmet. Posta gärna en felrapport om problemet kvarstår."
 
 #: src/font-manager/web/google/GoogleFonts.vala:145
 msgid "Server Error"
-msgstr ""
+msgstr "Serverfel"
 
 #: src/font-manager/web/google/GoogleFonts.vala:217
 msgid "Network Offline"
-msgstr ""
+msgstr "Nätverket offline"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
 #: src/font-manager/web/google/GoogleFonts.vala:219
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
+"En aktiv internetanslutning krävs för att få tillgång till Google Fonts-"
+"katalogen"
 
 #: src/font-manager/web/google/Language.vala:34
 msgid "Chinese (Hong Kong)"
-msgstr ""
+msgstr "Kinesiska (Hong Kong)"
 
 #: src/font-manager/web/google/Language.vala:35
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Kinesiska (Förenklad)"
 
 #: src/font-manager/web/google/Language.vala:36
 msgid "Chinese (Traditional)"
-msgstr ""
+msgstr "Kinesiska (Traditionell)"
 
 #: src/font-manager/web/google/Language.vala:37
 msgid "Cyrillic"
-msgstr ""
+msgstr "Cyrilliska"
 
 #: src/font-manager/web/google/Language.vala:38
 msgid "Cyrillic Extended"
-msgstr ""
+msgstr "Cyrilliska Utökad"
 
 #: src/font-manager/web/google/Language.vala:40
 msgid "Greek"
-msgstr ""
+msgstr "Grekiska"
 
 #: src/font-manager/web/google/Language.vala:41
 msgid "Greek Extended"
-msgstr ""
+msgstr "Grekiska Utökad"
 
 #: src/font-manager/web/google/Language.vala:45
 msgid "Japanese"
-msgstr ""
+msgstr "Japanska"
 
 #: src/font-manager/web/google/Language.vala:48
 msgid "Korean"
-msgstr ""
+msgstr "Koreanska"
 
 #: src/font-manager/web/google/Language.vala:49
 msgid "Latin"
-msgstr ""
+msgstr "Latin"
 
 #: src/font-manager/web/google/Language.vala:50
 msgid "Latin Extended"
-msgstr ""
+msgstr "Latin Utökad"
 
 #: src/font-manager/web/google/PreviewPane.vala:274
 msgid "Update Family"
-msgstr ""
+msgstr "Uppdatera familj"
 
 #: src/font-manager/web/google/PreviewPane.vala:274
-#, fuzzy
-#| msgid "Monospace Font"
 msgid "Update Font"
-msgstr "Monospace teckensnitt"
+msgstr "Uppdatera teckensnitt"
 
 #: src/font-manager/web/google/PreviewPane.vala:279
-#, fuzzy
-#| msgid "Remove Fonts"
 msgid "Remove Family"
-msgstr "Ta bort teckensnitt"
+msgstr "Ta bort familj"
 
 #: src/font-manager/web/google/PreviewPane.vala:279
-#, fuzzy
-#| msgid "Remove Fonts"
 msgid "Remove Font"
 msgstr "Ta bort teckensnitt"
 
 #: src/font-manager/web/google/PreviewPane.vala:284
 msgid "Download Family"
-msgstr ""
+msgstr "Ladda ner familj"
 
 #: src/font-manager/web/google/PreviewPane.vala:284
-#, fuzzy
-#| msgid "Monospace Font"
 msgid "Download Font"
-msgstr "Monospace teckensnitt"
+msgstr "Ladda ner teckensnitt"
 
 #: src/font-manager/web/google/PreviewPane.vala:294
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i språkexempel tillgängligt "
+msgstr[1] "%i språkexempel tillgängliga "
 
 #: src/font-manager/web/google/Weight.vala:67
-#, fuzzy
-#| msgid "Ultra-Light"
 msgid "ExtraLight"
-msgstr "Ultralätt"
+msgstr "Extra lätt"
 
 #: src/font-manager/web/google/Weight.vala:75
-#, fuzzy
-#| msgid "Semi-Bold"
 msgid "SemiBold"
 msgstr "Semifet"
 
 #: src/font-manager/web/google/Weight.vala:79
-#, fuzzy
-#| msgid "Ultra-Bold"
 msgid "ExtraBold"
-msgstr "Ultrafet"
+msgstr "Extra fet"
 
 #: src/font-manager/web/google/Weight.vala:81
 msgid "Black"
-msgstr ""
+msgstr "Svart"
 
 #: src/font-viewer/MainWindow.vala:24
 msgid "Preview font files before installing them."
@@ -1998,27 +2010,27 @@ msgstr "Installera teckensnitt"
 
 #: lib/unicode/ui/unicode-character-map-zoom-window.ui:80
 msgid "Copy"
-msgstr ""
+msgstr "Kopiera"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:34
 msgid "List View"
-msgstr ""
+msgstr "Listvy"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:68
 msgid "Grid View"
-msgstr ""
+msgstr "Ikonvy"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:116
 msgid "Enter Preview Text…"
-msgstr ""
+msgstr "Ange förhandsvisningstext…"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:182
 msgid "Previous page"
-msgstr ""
+msgstr "Föregående sida"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:210
 msgid "Next page"
-msgstr ""
+msgstr "Nästa sida"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
@@ -2030,7 +2042,7 @@ msgstr "Ta bort markerat teckensnitt från jämförelsen"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:110
 msgid "Pinned Comparisons"
-msgstr ""
+msgstr "Fästa jämförelser"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:136
 #: src/font-manager/ui/font-manager-compare-view.ui:140
@@ -2044,7 +2056,7 @@ msgstr "Välj bakgrundsfärg"
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:90
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:93
 msgid "Select text color"
-msgstr ""
+msgstr "Välj textfärg"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:12
 msgid "Discard"
@@ -2060,49 +2072,39 @@ msgstr "Spara"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:32
 msgid "Back"
-msgstr ""
+msgstr "Tillbaka"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:62
-#, fuzzy
-#| msgid "Supported Orthographies"
 msgid "Search Orthographies…"
-msgstr "Ortografier som stöds"
+msgstr "Sök ortografier…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
-msgstr ""
+msgstr "Avmarkera alla"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:156
 msgid "Minimum Coverage"
-msgstr ""
+msgstr "Minsta täckning"
 
 #: src/font-manager/ui/font-manager-orthography-list.ui:86
 msgid "Clear selected filter"
 msgstr "Rensa valt filter"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:27
-#, fuzzy
-#| msgid "Created : %s"
 msgid "Created : "
-msgstr "Skapad: %s"
+msgstr "Skapad : "
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:32
-#, fuzzy
-#| msgid "Remove selected font from comparison"
 msgid "Save current comparison"
-msgstr "Ta bort markerat teckensnitt från jämförelsen"
+msgstr "Spara aktuell jämförelse"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:62
-#, fuzzy
-#| msgid "Remove selected font from comparison"
 msgid "Remove selected comparison"
-msgstr "Ta bort markerat teckensnitt från jämförelsen"
+msgstr "Ta bort markerad jämförelse"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:92
-#, fuzzy
-#| msgid "Remove selected font from comparison"
 msgid "Restore selected comparison"
-msgstr "Ta bort markerat teckensnitt från jämförelsen"
+msgstr "Återställ markerad jämförelse"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:14
 msgid "General"
@@ -2169,10 +2171,8 @@ msgid "Collections"
 msgstr "Kollektioner"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:175
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Edit selected category"
-msgstr "Rensa valt filter"
+msgstr "Redigera vald kategori"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:198
 msgid "Add new collection"
@@ -2216,84 +2216,80 @@ msgstr "standard"
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:13
 msgid "Titlebar Button Style"
-msgstr ""
+msgstr "Knappstil för rubrikfält"
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:43
 msgid "Flat"
-msgstr ""
+msgstr "Platt"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:16
 #: src/font-manager/web/google/ui/google-font-filters.ui:52
 msgid "Name"
-msgstr ""
+msgstr "Namn"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:31
 msgid "Comment"
-msgstr ""
+msgstr "Kommentar"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:47
 msgid "Executable"
-msgstr ""
+msgstr "Körbar"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:63
 msgid "Arguments"
-msgstr ""
+msgstr "Argument"
 
 #: src/font-manager/ui/font-manager-user-data.ui:73
 msgid "Font Configuration"
-msgstr ""
+msgstr "Teckensnittsinställning"
 
 #: src/font-manager/ui/font-manager-user-data.ui:102
 msgid "Font Collections"
-msgstr ""
+msgstr "Teckensnittskollektioner"
 
 #: src/font-manager/ui/font-manager-user-data.ui:160
 msgid "Installed Fonts"
-msgstr ""
+msgstr "Installerade teckensnitt"
 
 #: src/font-manager/ui/font-manager-user-data.ui:189
 msgid "Custom Actions"
-msgstr ""
+msgstr "Anpassade åtgärder"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
-msgstr ""
+msgstr "Nyast"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:54
 msgid "Most Popular"
-msgstr ""
+msgstr "Mest populär"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:55
 msgid "Trending"
-msgstr ""
+msgstr "Trend"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:69
 msgid "Sort Order"
-msgstr ""
+msgstr "Sorteringsordning"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:148
 msgid "Serif"
-msgstr ""
+msgstr "Serif"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:176
 msgid "Sans Serif"
-msgstr ""
+msgstr "Sans Serif"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:232
-#, fuzzy
-#| msgid "Hinting"
 msgid "Handwriting"
-msgstr "Hintning"
+msgstr "Handskrift"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:282
-#, fuzzy
-#| msgid "Categories"
 msgid "Category"
-msgstr "Kategorier"
+msgstr "Kategori"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:434
 msgid "Variations"
-msgstr ""
+msgstr "Variationer"
 
 #, fuzzy
 #~| msgid "Remove Fonts"

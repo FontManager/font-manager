@@ -2,28 +2,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-01-31 14:53-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-02-06 19:50+0000\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.5-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr ""
+msgstr "Heimen Stoffels, <vistausss@outlook.com>, 2021"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
 msgid "Automatically generated categories"
-msgstr ""
+msgstr "Automatisch samengestelde categorieën"
 
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "Categorieën"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
@@ -31,41 +34,43 @@ msgid ""
 "<app>Font Manager</app> automatically categorizes your fonts based on "
 "various properties."
 msgstr ""
+"<app>Lettertypebeheer</app> stelt automatisch categorieën samen op basis van "
+"verschillende eigenschappen."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr ""
+msgstr "Alle beschikbare lettertypen."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "Systeem"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr ""
+msgstr "Lettertypen voor alle gebruikers."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "Eigen"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr ""
+msgstr "Lettertypen voor jou."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "Familie"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
@@ -73,51 +78,53 @@ msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
 msgstr ""
+"Gesorteerd op familie. Hiervoor dient de Panose-informatie beschikbaar te "
+"zijn in de lettertype-metagegevens."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "Breedte"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr ""
+msgstr "Gesorteerd op lettertypebreedte."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr ""
+msgstr "Dikte"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr ""
+msgstr "Gesorteerd op lettertypedikte."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr ""
+msgstr "Schuinte"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr ""
+msgstr "Gesorteerd op lettertypeschuinte."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "Spatiëring"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr ""
+msgstr "Gesorteerd op lettertypespatiëring."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "Licentie"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
@@ -125,11 +132,13 @@ msgid ""
 "Sorted by font license — Requires license information to be present in font "
 "metadata."
 msgstr ""
+"Gesorteerd op de licentie. Hiervoor dient de licentie-informatie beschikbaar "
+"te zijn in de lettertype-metagegevens."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "Maker"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -137,46 +146,48 @@ msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
 msgstr ""
+"Gesorteerd op maker. Hiervoor dient informatie over de maker beschikbaar te "
+"zijn in de lettertype-metagegevens."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "Bestandstype"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr ""
+msgstr "Gesorteerd op bestandstype."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "Ongesorteerd"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "Lettertypen die niet aanwezig zijn in één van je verzamelingen."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "Uitgeschakeld"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "Momenteel uitgeschakelde lettertypen."
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr ""
+msgstr "Individuele tekens en details bekijken"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
 msgid "Character Map"
-msgstr ""
+msgstr "Speciale tekens"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
@@ -184,6 +195,8 @@ msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters"
 "\"."
 msgstr ""
+"In de beheermodus is er een tabblad genaamd 'Tekens' zichtbaar op het "
+"voorvertoningspaneel."
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
@@ -191,11 +204,13 @@ msgid ""
 "Selecting this tab allows viewing all glyphs contained in the currently "
 "selected font."
 msgstr ""
+"Klik op dit tabblad om alle tekens van het geselecteerde lettertype te "
+"bekijken."
 
 #. (itstool) path: figure/title
 #: C/font-manager-character-map.page:23
 msgid "<app>Character Map tab</app>"
-msgstr ""
+msgstr "<app>Tabblad speciale tekens</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -207,26 +222,28 @@ msgctxt "_"
 msgid ""
 "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
+"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
 msgid "Drag characters onto other applications to use them."
-msgstr ""
+msgstr "Sleep tekens naar andere toepassingen om ze te gebruiken."
 
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7
 msgid "Organizing Your Fonts"
-msgstr ""
+msgstr "Lettertypen organiseren"
 
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "Verzamelingen"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
 msgid "<app>Font Manager</app> allows you to define your own collections."
 msgstr ""
+"<app>Lettertypebeheer</app> stelt je in staat verzamelingen aan te leggen."
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
@@ -234,21 +251,23 @@ msgid ""
 "Collections allow you to organize your fonts in a way that makes sense to "
 "you and also make it easier to enable or disable many families at once."
 msgstr ""
+"Met verzamelingen kun je je lettertypen organiseren op jóuw manier en het "
+"makkelijker maken om allerlei families in en uit te schakelen."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:24
 msgid "Collections do not modify your files in any way."
-msgstr ""
+msgstr "Verzamelingen passen je bestanden niet aan."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:27
 msgid "Feel free to create or delete as many as you like."
-msgstr ""
+msgstr "Leg zo veel verzamelingen aan (of verwijder ze) als je zelf wilt."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:34
 msgid "To create a new collection:"
-msgstr ""
+msgstr "Aanleggen van een verzameling:"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -263,6 +282,8 @@ msgid ""
 "external ref='media/list-add-symbolic.svg' "
 "md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 msgstr ""
+"external ref='media/list-add-symbolic.svg' "
+"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:37
@@ -270,27 +291,29 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
+"Klik op <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> aan de onderkant van de verzamelingsweergave."
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:46
 msgid "Enter a name for your new collection"
-msgstr ""
+msgstr "Geef je verzameling een naam"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:51
 msgid "Add fonts by dragging them from the font list to your new collection."
-msgstr ""
+msgstr "Sleep lettertypen van de lijst naar de verzameling om ze toe te voegen."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:59
 msgid "To delete a collection:"
-msgstr ""
+msgstr "Verwijderen van een verzameling:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:62 C/font-manager-collections.page:81
 #: C/font-manager-collections.page:99 C/font-manager-collections.page:117
 msgid "Select the collection"
-msgstr ""
+msgstr "Selecteer de verzameling"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -305,6 +328,8 @@ msgid ""
 "external ref='media/list-remove-symbolic.svg' "
 "md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 msgstr ""
+"external ref='media/list-remove-symbolic.svg' "
+"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:67
@@ -312,32 +337,34 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
+"Klik op <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> "
+"</gui> aan de onderkant van de verzamelingsweergave."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:78
 msgid "To enable a collection:"
-msgstr ""
+msgstr "Inschakelen van een verzameling:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:86 C/font-manager-collections.page:104
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
-msgstr ""
+msgstr "Klik op het <gui style=\"checkbox\"> aankruisvakje </gui>"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:96
 msgid "To disable a collection:"
-msgstr ""
+msgstr "Uitschakelen van een verzameling:"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:114
 msgid "To remove families from a collection:"
-msgstr ""
+msgstr "Verwijderen van families uit een verzameling:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:122
 msgid "Select the family or families you wish to remove"
-msgstr ""
+msgstr "Selecteer de familie(s) die je wilt verwijderen"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:127
@@ -345,42 +372,46 @@ msgid ""
 "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
 "> </gui> at the top of the font list."
 msgstr ""
+"Klik op <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> "
+"</gui> bovenaan de lettertypelijst."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:138
 msgid "To rename a collection:"
-msgstr ""
+msgstr "Naam wijzigen van een verzameling:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:141
 msgid "Select a collection, click it again"
-msgstr ""
+msgstr "Selecteer een verzameling en klik deze nogmaals aan"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:146
 msgid "Enter a new name"
-msgstr ""
+msgstr "Voer een nieuwe naam in"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:151
 msgid "Press <gui style=\"button\">Enter</gui>"
-msgstr ""
+msgstr "Druk op <gui style=\"button\">Enter</gui>"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-activation.page:8
 msgid "Activating and De-activating font families"
-msgstr ""
+msgstr "In- en uitschakelen van lettertypefamilies"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-activation.page:11
 msgid "Activation"
-msgstr ""
+msgstr "Inschakelen"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:13
 msgid ""
 "<app>Font Manager</app> allows you to activate and de-activate font families."
 msgstr ""
+"<app>Lettertypebeheer</app> stelt je in staat lettertypen in en uit te "
+"schakelen."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:18
@@ -390,16 +421,20 @@ msgid ""
 "use, disabling fonts you do not use very often or do not need at the moment "
 "helps keep these at a reasonable size."
 msgstr ""
+"Als je een groot aantal lettertypen hebt geïnstalleerd, dan kunnen "
+"lettertypekeuzemenu's traag reageren en/of onprettig in het gebruik zijn. "
+"Vuistregel: probeer zo veel mogelijk lettertypen uit te schakelen die je "
+"niet vaak gebruikt of momenteel niet nodig hebt."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-activation.page:27
 msgid "To enable or disable a font family:"
-msgstr ""
+msgstr "In- of uitschakelen van een lettertypefamilie:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-activation.page:30
 msgid "Select the family you wish to enable/disable in the font list"
-msgstr ""
+msgstr "Selecteer de familie in de lijst die je wilt in-/uitschakelen"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:47
@@ -407,6 +442,8 @@ msgid ""
 "You can also double-click, press <gui style=\"button\">Space</gui> or press "
 "<gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
+"Of dubbelklik, druk op de <gui style=\"button\">spatiebalk</gui> of druk op "
+"<gui style=\"button\">Enter</gui>."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:51
@@ -414,6 +451,8 @@ msgid ""
 "<link xref=\"organize#user-collections\">Collections</link> make it easy to "
 "enable or disable multiple families at once."
 msgstr ""
+"<link xref=\"organize#user-collections\">Verzamelingen</link> stellen je in "
+"staat eenvoudig meerdere families tegelijk in of uit te schakelen."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:58
@@ -422,16 +461,19 @@ msgid ""
 "immediately, open applications may need to be restarted in order to reflect "
 "those changes."
 msgstr ""
+"Wijzigingen die je aanbrengt met <app>Lettertypebeheer</app> worden in "
+"principe direct toegepast, maar het kan zijn dat je openstaande toepassingen "
+"opnieuw moet starten."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-installation.page:7
 msgid "Adding fonts for your use"
-msgstr ""
+msgstr "Eigen lettertypen toevoegen"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-installation.page:10
 msgid "Installation"
-msgstr ""
+msgstr "Installatie"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-installation.page:12
@@ -439,11 +481,13 @@ msgid ""
 "<app>Font Manager</app> supports the most common <link xref=\"supported-"
 "formats\">font formats</link>."
 msgstr ""
+"<app>Lettertypebeheer</app> ondersteunt de meest voorkomende <link xref"
+"=\"supported-formats\">lettertypen</link>."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
 msgid "While in <gui style=\"button\">Manage</gui> mode"
-msgstr ""
+msgstr "In de <gui style=\"button\">beheer</gui>modus"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:22
@@ -451,6 +495,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"Klik op <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
+"symbolic.svg\"/> </gui> aan de bovenkant van het venster"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:31
@@ -458,6 +504,8 @@ msgid ""
 "Select the files you wish to install from the file selector dialog that is "
 "displayed and click <gui style=\"button\">Open</gui>"
 msgstr ""
+"Selecteer de te installeren bestanden in het getoonde keuzevenster en klik "
+"op <gui style=\"button\">Openen</gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:40
@@ -465,6 +513,8 @@ msgid ""
 "Drag and drop is also supported. Simply drag files onto the font list to "
 "install them."
 msgstr ""
+"Daarnaast kun je ook bestanden naar de lettertypelijst slepen om ze te "
+"installeren."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:44
@@ -472,6 +522,8 @@ msgid ""
 "You can drag any supported filetype onto the font list. This includes font "
 "files, directories and archives."
 msgstr ""
+"Je kunt elk ondersteund bestandstype ernaartoe slepen: lettertypebestanden, -"
+"mappen en -archieven."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:51
@@ -480,6 +532,9 @@ msgid ""
 "Apps/FileRoller\">Archive Manager</link>. to enable support for compressed "
 "files."
 msgstr ""
+"Installeer <link action=\"install:file-roller\" href=\"https://wiki.gnome."
+"org/Apps/FileRoller\">Archiefbeheer</link> om ondersteuning voor ingepakte "
+"bestanden in te schakelen."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:59 C/font-manager-font-removal.page:76
@@ -488,16 +543,18 @@ msgid ""
 "<app>Font Manager</app> will reload anytime changes require it. This may "
 "take a moment depending on number of changes."
 msgstr ""
+"<app>Lettertypebeheer</app> herlaad zichzelf telkens als er wijzigingen zijn "
+"aangebracht. Afhankelijk van het aantal wijzigingen kan dit even duren."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-removal.page:8
 msgid "Getting rid of unwanted fonts"
-msgstr ""
+msgstr "Verwijderen van ongewenste lettertypen"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-removal.page:11
 msgid "Removal"
-msgstr ""
+msgstr "Verwijdering"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:14
@@ -505,6 +562,8 @@ msgid ""
 "The only fonts listed in the removal dialog will be those installed in your "
 "default font directory."
 msgstr ""
+"De enige lettertypen die worden getoond op het verwijdervenster zijn die uit "
+"je standaard lettertypenmap."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:18
@@ -513,11 +572,14 @@ msgid ""
 "operating system, as packages or by the system administrator. <app>Font "
 "Manager</app> does not provide for removal of such files at this time."
 msgstr ""
+"Systeemlettertypen zijn doorgaans onderdeel van het besturingssysteem, als "
+"pakketten of van de systeembeheerder. <app>Lettertypebeheer</app> heeft "
+"momenteel geen ondersteuning voor het verwijderen van zulke lettertypen."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-removal.page:29
 msgid "To remove fonts you no longer need:"
-msgstr ""
+msgstr "Verwijderen van lettertypen die je niet meer nodig hebt:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:35
@@ -525,6 +587,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"Klik op <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/> </gui> aan de bovenkant van het venster"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:44
@@ -532,11 +596,13 @@ msgid ""
 "Select the families or individual styles you wish to remove from the list "
 "that is displayed"
 msgstr ""
+"Selecteer op de getoonde lijst de families of individuele stijlen die je "
+"wilt verwijderen"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:50
 msgid "Click <gui style=\"button\">Delete</gui>"
-msgstr ""
+msgstr "Klik op <gui style=\"button\">Verwijderen</gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:60
@@ -544,6 +610,8 @@ msgid ""
 "<app>Font Manager</app> organizes and stores installed fonts in the default "
 "user font directory."
 msgstr ""
+"<app>Lettertypebeheer</app> bewaart en ordent je bestanden in de standaard "
+"lettertypenmap van je account."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:63
@@ -551,6 +619,8 @@ msgid ""
 "Current default user font directory is located at <code><file>~/.local/share/"
 "fonts</file></code>"
 msgstr ""
+"De huidige lettertypenmap van je account is <code><file>~/.local/share/"
+"fonts</file></code>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:69
@@ -558,16 +628,18 @@ msgid ""
 "Files are permanently deleted. Before removing any fonts ensure you have "
 "backups if there is a chance you may need them again."
 msgstr ""
+"Bestanden worden permanent verwijderd. Zorg altijd voor een back-up voordat "
+"je lettertypen verwijdert."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-sources.page:7
 msgid "Adding and removing font directories"
-msgstr ""
+msgstr "Toevoegen en verwijderen van lettertypenmappen"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "Bronnen"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
@@ -575,6 +647,8 @@ msgid ""
 "<app>Font Manager</app> allows you to add or remove directories to scan for "
 "font files. Added directories are scanned recursively."
 msgstr ""
+"<app>Lettertypebeheer</app> stelt je in staat mappen met lettertypebestanden "
+"toe te voegen of te verwijderen. De mappen worden recursief doorzocht."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:17
@@ -582,16 +656,18 @@ msgid ""
 "This allows keeping font files somewhere other than your home directory or "
 "temporarily \"installing\" a directory of fonts."
 msgstr ""
+"Hierdoor kun je lettertypebestanden elders opslaan of ze tijdelijk "
+"'installeren' in een lettertypenmap."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:21
 msgid "It also allows you to organize your font files anyway you like."
-msgstr ""
+msgstr "Ook kun je lettertypebestanden ordenen op jóuw manier."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:27
 msgid "To add a source:"
-msgstr ""
+msgstr "Toevoegen van een bron:"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -606,6 +682,8 @@ msgid ""
 "external ref='media/preferences-system-symbolic.svg' "
 "md5='63ed081f78639fc6ec234a9351cf52e6'"
 msgstr ""
+"external ref='media/preferences-system-symbolic.svg' "
+"md5='63ed081f78639fc6ec234a9351cf52e6'"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:30 C/font-manager-font-sources.page:62
@@ -616,12 +694,15 @@ msgid ""
 "type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the "
 "top of the window."
 msgstr ""
+"Open de <app>Lettertypebeheer</app>-voorkeuren door te klikken op <gui> "
+"<media type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> "
+"aan de bovenkant van het venster."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:40 C/font-manager-font-sources.page:72
 #: C/font-manager-font-sources.page:104
 msgid "Select \"Sources\" from the sidebar"
-msgstr ""
+msgstr "Kies 'Bronnen' in de zijbalk"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:43
@@ -629,22 +710,26 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
+"Klik op <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> "
+"</gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:51
 msgid ""
 "Select the directory you wish to add from the file selector that is displayed"
 msgstr ""
+"Selecteer op het getoonde bestandskeuzevenster de map die je wilt toevoegen"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:59
 msgid "To remove a source:"
-msgstr ""
+msgstr "Verwijderen van een bron:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:75
 msgid "Select the directory you wish to remove from the list that is displayed"
 msgstr ""
+"Selecteer op het getoonde bestandskeuzevenster de map die je wilt verwijderen"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:81
@@ -652,11 +737,13 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
+"Klik op <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> "
+"</gui>"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:91
 msgid "To enable or disable a source:"
-msgstr ""
+msgstr "In- of uitschakelen van een bron:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:94
@@ -665,16 +752,19 @@ msgid ""
 "\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg"
 "\"/> </gui> at the top of the window."
 msgstr ""
+"Open de <app>Lettertypebeheer</app>-voorkeuren door te klikken op <gui style="
+"\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic."
+"svg\"/> </gui> aan de bovenkant van het venster."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:107
 msgid "Select the source you want to enable or disable"
-msgstr ""
+msgstr "Selecteer de in of uit te schakelen bron"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:112
 msgid "Click the <gui> toggle switch </gui>"
-msgstr ""
+msgstr "Klik op de <gui> schakelaar </gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:124
@@ -682,6 +772,8 @@ msgid ""
 "While sources are always available within the application they are not "
 "available to other applications until they are enabled."
 msgstr ""
+"Bronnen zijn altijd beschikbaar in de toepassing, maar niet in andere, "
+"tenzij ze expliciet worden ingeschakeld."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:131
@@ -689,16 +781,18 @@ msgid ""
 "You can avoid having multiple copies of the same files by adding directories "
 "from other filesystems."
 msgstr ""
+"Je kunt mappen van andere bestandssystemen toevoegen om meerdere kopieën van "
+"dezelfde bestanden te voorkomen."
 
 #. (itstool) path: info/desc
 #: C/font-manager-fontconfig.page:7
 msgid "Generate fontconfig configuration files"
-msgstr ""
+msgstr "Fontconfig-configuratiebestanden samenstellen"
 
 #. (itstool) path: page/title
 #: C/font-manager-fontconfig.page:10
 msgid "Display and Rendering Preferences"
-msgstr ""
+msgstr "Weergave- en opmaakvoorkeuren"
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:12
@@ -706,6 +800,8 @@ msgid ""
 "The \"Display\" and \"Rendering\" panes in the preferences dialog generate "
 "valid fontconfig configuration files for the exposed properties."
 msgstr ""
+"De panelen 'Weergave' en 'Laden' in de voorkeuren stellen geldige fontconfig-"
+"configuratiebestanden samen met de geselecteerde eigenschappen."
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:17
@@ -713,6 +809,8 @@ msgid ""
 "See <link href=\"https://www.freedesktop.org/software/fontconfig/fontconfig-"
 "user.html\">fonts-conf</link> for more details."
 msgstr ""
+"Ga voor meer informatie naar <link href=\"https://www.freedesktop.org/"
+"software/fontconfig/fontconfig-user.html\">fonts-conf</link>."
 
 #. (itstool) path: note/p
 #: C/font-manager-fontconfig.page:22
@@ -720,61 +818,64 @@ msgid ""
 "Desktop environments and applications may rely on their own configuration "
 "mechanism."
 msgstr ""
+"Werkomgevingen en toepassingen hebben mogelijk hun eigen "
+"configuratiemechanismen."
 
 #. (itstool) path: info/desc
 #: C/font-manager-introduction.page:5
 msgid "Introduction to <app>Font Manager</app>."
-msgstr ""
+msgstr "<app>Lettertypebeheer</app>-introductie."
 
 #. (itstool) path: page/p
 #: C/font-manager-introduction.page:10
 msgid "<app>Font Manager</app> allows you to :"
-msgstr ""
+msgstr "<app>Lettertypebeheer</app> stelt je in staat om:"
 
 #. (itstool) path: page/title
 #: C/font-manager-introduction.page:12
 msgid "Introduction"
-msgstr ""
+msgstr "Introductie"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:18
 msgid "Preview font files in various ways"
-msgstr ""
+msgstr "Lettertypebestanden op verschillende manieren voor te vertonen"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:23
 msgid "View available font metadata"
-msgstr ""
+msgstr "Beschikbare lettertype-metagegevens te bekijken"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:28
 msgid "Install or remove fonts for your use"
-msgstr ""
+msgstr "Lettertypen voor eigen gebruik te installeren of verwijderen"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:33
 msgid "Group fonts into \"Collections\""
-msgstr ""
+msgstr "Lettertypen te groeperen in 'Verzamelingen'"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:38
 msgid "Enable or disable individual font families or entire collections"
 msgstr ""
+"Individuele lettertypefamilies of hele verzamelingen in- en uitschakelen"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:43
 msgid "Specify different directories to use for fonts"
-msgstr ""
+msgstr "Verschillende lettertypenmappen opgeven"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:48
 msgid "Perform font substitution"
-msgstr ""
+msgstr "Lettertypen vervangen"
 
 #. (itstool) path: figure/title
 #: C/font-manager-introduction.page:55
 msgid "<app>Font Manager</app>"
-msgstr ""
+msgstr "<app>Lettertypebeheer</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -786,6 +887,7 @@ msgctxt "_"
 msgid ""
 "external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
 msgstr ""
+"external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:61
@@ -793,6 +895,8 @@ msgid ""
 "For more information about <app>Font Manager</app>, please visit the <link "
 "href=\"http://fontmanager.github.io/\"> Homepage </link>"
 msgstr ""
+"Meer informatie over <app>Lettertypebeheer</app> is te vinden op de <link "
+"href=\"http://fontmanager.github.io/\"> website</link>"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:67
@@ -801,22 +905,27 @@ msgid ""
 "application or this manual, please use the projects <link href=\"https://"
 "github.com/FontManager/master/issues\"> Issue Tracker </link>"
 msgstr ""
+"Heb je een bug gevonden in <app>Lettertypebeheer</app> of wil je een idee "
+"delen? Ga dan naar de <link href=\"https://github.com/FontManager/master/"
+"issues\"> issuepagina </link>"
 
 #. (itstool) path: info/desc
 #: C/font-manager-license.page:7
 msgid "View license information contained in font files"
-msgstr ""
+msgstr "Licentie-informatie uit lettertypebestanden bekijken"
 
 #. (itstool) path: page/title
 #: C/font-manager-license.page:10
 msgid "Licensing"
-msgstr ""
+msgstr "Licentie"
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:12
 msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
 msgstr ""
+"In de beheermodus is er een tabblad genaamd 'Licentie' zichtbaar op het "
+"voorvertoningspaneel."
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:16
@@ -824,11 +933,13 @@ msgid ""
 "Selecting this tab allows viewing any licensing information contained in the "
 "currently selected font."
 msgstr ""
+"Op dit tabblad kun je licentie-informatie van het momenteel geselecteerde "
+"lettertype bekijken."
 
 #. (itstool) path: figure/title
 #: C/font-manager-license.page:22
 msgid "<app>Font License tab</app>"
-msgstr ""
+msgstr "<app>Licentietabblad</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -838,22 +949,22 @@ msgstr ""
 #: C/font-manager-license.page:23
 msgctxt "_"
 msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
-msgstr ""
+msgstr "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
 
 #. (itstool) path: note/p
 #: C/font-manager-license.page:27
 msgid "Not all font files contain licensing information."
-msgstr ""
+msgstr "Niet alle lettertypebestanden bevatten licentie-informatie."
 
 #. (itstool) path: info/desc
 #: C/font-manager-metadata.page:7
 msgid "View metadata embedded in your font files"
-msgstr ""
+msgstr "Metagegevens uit lettertypebestanden bekijken"
 
 #. (itstool) path: page/title
 #: C/font-manager-metadata.page:10
 msgid "Metadata"
-msgstr ""
+msgstr "Metagegevens"
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:12
@@ -861,6 +972,8 @@ msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"Properties"
 "\"."
 msgstr ""
+"In de beheermodus is er een tabblad genaamd 'Eigenschappen' zichtbaar op het "
+"voorvertoningspaneel."
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:16
@@ -868,11 +981,13 @@ msgid ""
 "Selecting this tab allows viewing metadata contained in the currently "
 "selected font."
 msgstr ""
+"Op dit tabblad vind je metagegevens uit het momenteel geselecteerde "
+"lettertype."
 
 #. (itstool) path: figure/title
 #: C/font-manager-metadata.page:22
 msgid "<app>Font Properties tab</app>"
-msgstr ""
+msgstr "<app>Eigenschappentabblad</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -884,21 +999,24 @@ msgctxt "_"
 msgid ""
 "external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
 msgstr ""
+"external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
 
 #. (itstool) path: note/p
 #: C/font-manager-metadata.page:27
 msgid "Some properties are optional and may not be present in all font files."
 msgstr ""
+"Sommige eigenschappen zijn optioneel en mogelijk niet aanwezig in bepaalde "
+"lettertypebestanden."
 
 #. (itstool) path: info/desc
 #: C/font-manager-orthographies.page:8
 msgid "View languages supported and their coverage"
-msgstr ""
+msgstr "Ondersteunde talen en hun bereik bekijken"
 
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11
 msgid "Language Support"
-msgstr ""
+msgstr "Taalondersteuning"
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:13
@@ -906,6 +1024,8 @@ msgid ""
 "While the character map is in use the sidebar will switch to displaying the "
 "orthographies supported by the currently selected font."
 msgstr ""
+"Op de pagina 'Speciale tekens' toont de zijbalk de door het momenteel "
+"geselecteerde lettertype ondersteunde orthografieën."
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:18
@@ -913,11 +1033,13 @@ msgid ""
 "Selecting an orthography from the list will filter the character map so that "
 "it only displays relevant characters"
 msgstr ""
+"Selecteer een orthografie om de speciale tekens te filteren zodat deze "
+"alleen relevante tekens toont"
 
 #. (itstool) path: figure/title
 #: C/font-manager-orthographies.page:28
 msgid "<app>Supported Orthographies</app>"
-msgstr ""
+msgstr "<app>Ondersteunde orthografieën</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -929,33 +1051,36 @@ msgctxt "_"
 msgid ""
 "external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 msgstr ""
+"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 
 #. (itstool) path: info/desc
 #: C/font-manager-substitutions.page:7
 msgid "Substitute one font family for another"
-msgstr ""
+msgstr "Lettertypefamilie vervangen door een andere"
 
 #. (itstool) path: page/title
 #: C/font-manager-substitutions.page:10
 msgid "Substitution"
-msgstr ""
+msgstr "Vervanging"
 
 #. (itstool) path: page/p
 #: C/font-manager-substitutions.page:12
 msgid ""
 "<app>Font Manager</app> allows you to substitute one font family for another."
 msgstr ""
+"<app>Lettertypebeheer</app> stelt je in staat één lettertypefamilie te "
+"vervangen door een andere."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:18
 msgid "To add a substitute:"
-msgstr ""
+msgstr "Toevoegen van een vervanging:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:31 C/font-manager-substitutions.page:88
 #: C/font-manager-substitutions.page:126
 msgid "Select \"Substitutions\" from the sidebar"
-msgstr ""
+msgstr "Kies 'Vervangingen' in de zijbalk"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:34
@@ -963,11 +1088,13 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> in the substitutions pane."
 msgstr ""
+"Klik op <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> op het vervangingenpaneel."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:43
 msgid "Enter the name of the font family you wish to set up a substitute for."
-msgstr ""
+msgstr "Voer de naam in van de lettertypefamilie die je wilt vervangen."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:48
@@ -975,16 +1102,19 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> on the right."
 msgstr ""
+"Klik aan de rechterkant op <gui> <media type=\"image\" src=\"media/list-add-"
+"symbolic.svg\"/> </gui>."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:57
 msgid "Enter the name of the substitute family and select the priority level."
 msgstr ""
+"Voer de naam in van de vervangende familie en kies het prioriteitsniveau."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:62
 msgid "Repeat steps 3 – 6 as needed."
-msgstr ""
+msgstr "Indien nodig, herhaal stap 3-6."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:67 C/font-manager-substitutions.page:105
@@ -992,16 +1122,18 @@ msgid ""
 "Click <gui style=\"button\">Save</gui> to write the configuration file when "
 "done."
 msgstr ""
+"Klik op <gui style=\"button\">Opslaan</gui> om het configuratiebestand op te "
+"slaan."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:75
 msgid "To remove a substitute:"
-msgstr ""
+msgstr "Verwijderen van een vervanging:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:91
 msgid "Select the entry you wish to remove from the list."
-msgstr ""
+msgstr "Selecteer het te verwijderen item."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:96
@@ -1009,16 +1141,19 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> in the substitutions pane."
 msgstr ""
+"Klik op <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> "
+"</gui> op het vervangingenpaneel."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:113
 msgid "To remove all substitutes:"
-msgstr ""
+msgstr "Verwijderen van alle vervangingen:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:129
 msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
 msgstr ""
+"Klik op <gui style=\"button\"> Verwerpen </gui> op het vervangingenpaneel."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:142
@@ -1028,6 +1163,9 @@ msgid ""
 "the matching family and append the default families to the end of the family "
 "list."
 msgstr ""
+"Lettertypen die overeenkomen met de doelfamilie worden toegevoegd aan de "
+"lijst met voorkeursfamilies vóór de overeenkomende. De acceptabele families "
+"worden erna toegevoegd aan het einde van de lijst."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:148
@@ -1035,31 +1173,33 @@ msgid ""
 "While changes are applied immediately open applications may need to be "
 "restarted."
 msgstr ""
+"Wijzigingen die je aanbrengt worden in principe direct toegepast, maar het "
+"kan zijn dat je openstaande toepassingen opnieuw moet starten."
 
 #. (itstool) path: info/desc
 #: C/font-manager-supported-formats.page:5
 msgid "Font formats supported by <app>Font Manager</app>."
-msgstr ""
+msgstr "Door <app>Lettertypebeheer</app> ondersteunde lettertypeformaten."
 
 #. (itstool) path: page/title
 #: C/font-manager-supported-formats.page:10
 msgid "Supported File Formats"
-msgstr ""
+msgstr "Ondersteunde bestandsformaten"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:14
 msgid "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
-msgstr ""
+msgstr "<link href=\"https://nl.wikipedia.org/wiki/TrueType\"> TrueType </link>"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:21
 msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
-msgstr ""
+msgstr "<link href=\"https://nl.wikipedia.org/wiki/OpenType\"> OpenType </link>"
 
 #. (itstool) path: info/desc
 #: C/index.page:6
 msgid "Getting started with Font Manager."
-msgstr ""
+msgstr "Aan de slag met Lettertypebeheer."
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1072,38 +1212,40 @@ msgid ""
 "external ref='media/preferences-desktop-font-16.png' "
 "md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 msgstr ""
+"external ref='media/preferences-desktop-font-16.png' "
+"md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 
 #. (itstool) path: info/title
 #: C/index.page:10
 msgctxt "link"
 msgid "Font Manager"
-msgstr ""
+msgstr "Lettertypebeheer"
 
 #. (itstool) path: info/title
 #: C/index.page:11
 msgctxt "text"
 msgid "Font Manager"
-msgstr ""
+msgstr "Lettertypebeheer"
 
 #. (itstool) path: credit/name
 #: C/index.page:14
 msgid "Jerry Casiano"
-msgstr ""
+msgstr "Jerry Casiano"
 
 #. (itstool) path: credit/years
 #: C/index.page:16
 msgid "2009–2020"
-msgstr ""
+msgstr "2009–2020"
 
 #. (itstool) path: credit/name
 #: C/index.page:20
 msgid "Weblate"
-msgstr ""
+msgstr "Weblate"
 
 #. (itstool) path: license/p
 #: C/index.page:24
 msgid "GNU General Public License Version 3"
-msgstr ""
+msgstr "GNU General Public License, versie 3"
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1116,6 +1258,8 @@ msgid ""
 "external ref='media/preferences-desktop-font.png' "
 "md5='f9108efe15fb60827b402b9a3a936589'"
 msgstr ""
+"external ref='media/preferences-desktop-font.png' "
+"md5='f9108efe15fb60827b402b9a3a936589'"
 
 #. (itstool) path: page/title
 #: C/index.page:29
@@ -1123,18 +1267,20 @@ msgid ""
 "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
 "font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font"
+".png\"> Lettertypebeheer-logo </media> Lettertypebeheer"
 
 #. (itstool) path: section/title
 #: C/index.page:37
 msgid "Managing Your Fonts"
-msgstr ""
+msgstr "Beheer je lettertypen"
 
 #. (itstool) path: section/title
 #: C/index.page:41
 msgid "Getting to Know Your Fonts"
-msgstr ""
+msgstr "Leer je lettertypen kennen"
 
 #. (itstool) path: section/title
 #: C/index.page:45
 msgid "Advanced Features"
-msgstr ""
+msgstr "Uitgebreide functies"
