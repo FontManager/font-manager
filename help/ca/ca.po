@@ -1,9 +1,10 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
+# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-01-31 14:53-0500\n"
-"PO-Revision-Date: 2021-03-01 21:50+0000\n"
+"PO-Revision-Date: 2021-03-18 09:18+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/ca/>\n"
@@ -12,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -35,6 +36,8 @@ msgid ""
 "<app>Font Manager</app> automatically categorizes your fonts based on "
 "various properties."
 msgstr ""
+"El <app>Gestor tipogràfic</app> categoritza automàticament les vostres "
+"lletres tipogràfiques segons diverses propietats."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
@@ -44,7 +47,7 @@ msgstr "Totes"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr ""
+msgstr "Totes les lletres tipogràfiques disponibles."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
@@ -54,17 +57,17 @@ msgstr "Sistema"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr ""
+msgstr "Lletres tipogràfiques disponibles per a tots els usuaris."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "Usuari"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr ""
+msgstr "Lletres tipogràfiques només disponibles per a vós."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
@@ -155,12 +158,12 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "Sense classificar"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "Les lletres tipogràfiques que no són a cap de les vostres col·leccions."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
@@ -180,7 +183,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
 msgid "Character Map"
-msgstr ""
+msgstr "Mapa de caràcters"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
@@ -220,7 +223,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7
 msgid "Organizing Your Fonts"
-msgstr ""
+msgstr "Organització de les lletres tipogràfiques"
 
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
@@ -252,7 +255,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:34
 msgid "To create a new collection:"
-msgstr ""
+msgstr "Per a crear una col·lecció nova:"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -278,7 +281,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:46
 msgid "Enter a name for your new collection"
-msgstr ""
+msgstr "Introduïu un nom per a la vostra col·lecció nova"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:51
@@ -288,13 +291,13 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:59
 msgid "To delete a collection:"
-msgstr ""
+msgstr "Per a suprimir una col·lecció:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:62 C/font-manager-collections.page:81
 #: C/font-manager-collections.page:99 C/font-manager-collections.page:117
 msgid "Select the collection"
-msgstr ""
+msgstr "Seleccioneu la col·lecció"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -857,7 +860,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-metadata.page:10
 msgid "Metadata"
-msgstr ""
+msgstr "Metadades"
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:12
@@ -996,6 +999,8 @@ msgid ""
 "Click <gui style=\"button\">Save</gui> to write the configuration file when "
 "done."
 msgstr ""
+"Quan finalitzeu, feu clic a <gui style=\"button\">Desa</gui> per a escriure "
+"el fitxer de configuració."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:75
@@ -1048,7 +1053,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-supported-formats.page:10
 msgid "Supported File Formats"
-msgstr ""
+msgstr "Formats de fitxer compatibles"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:14
@@ -1081,13 +1086,13 @@ msgstr ""
 #: C/index.page:10
 msgctxt "link"
 msgid "Font Manager"
-msgstr ""
+msgstr "Gestor tipogràfic"
 
 #. (itstool) path: info/title
 #: C/index.page:11
 msgctxt "text"
 msgid "Font Manager"
-msgstr "Gestor de tipus de lletra"
+msgstr "Gestor tipogràfic"
 
 #. (itstool) path: credit/name
 #: C/index.page:14
@@ -1131,7 +1136,7 @@ msgstr ""
 #. (itstool) path: section/title
 #: C/index.page:37
 msgid "Managing Your Fonts"
-msgstr ""
+msgstr "Gestió de les lletres tipogràfiques"
 
 #. (itstool) path: section/title
 #: C/index.page:41
@@ -1141,4 +1146,4 @@ msgstr ""
 #. (itstool) path: section/title
 #: C/index.page:45
 msgid "Advanced Features"
-msgstr ""
+msgstr "Funcions avançades"
