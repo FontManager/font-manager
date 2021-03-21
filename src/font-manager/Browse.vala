@@ -101,7 +101,7 @@ namespace FontManager {
         }
 
         [GtkChild] public Gtk.TreeView treeview { get; }
-        [GtkChild] public PreviewEntry entry { get; private set; }
+        [GtkChild] public PreviewEntry entry { get; }
 
         [GtkChild] FontScale fontscale;
         [GtkChild] Gtk.Stack browse_stack;

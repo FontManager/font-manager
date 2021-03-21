@@ -124,7 +124,7 @@ namespace FontManager {
          */
         [GtkChild] public Gtk.Label description { get; }
 
-        [GtkChild] public Gtk.FontButton button { get; private set; }
+        [GtkChild] public Gtk.FontButton button { get; }
 
         public string font { get; set; default = DEFAULT_FONT; }
 
