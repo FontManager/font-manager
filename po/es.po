@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-01-31 14:53-0500\n"
-"PO-Revision-Date: 2021-03-01 21:50+0000\n"
+"PO-Revision-Date: 2021-03-05 12:50+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5\n"
+"X-Generator: Weblate 4.5.1-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -273,7 +273,7 @@ msgstr "Predeterminado"
 
 #: lib/common/font-manager-fontconfig.c:1185
 msgid "Legacy"
-msgstr "Legado"
+msgstr "Heredado"
 
 #: lib/common/font-manager-freetype.c:292
 msgid "Restricted License Embedding"
@@ -1353,7 +1353,7 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:152
 #: src/font-manager/web/google/Language.vala:54
 msgid "Sinhala"
-msgstr ""
+msgstr "Cingalés"
 
 #: src/font-manager/Orthographies.vala:153
 msgid "South Korean Hanja"
@@ -1361,7 +1361,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:154
 msgid "Sundanese"
-msgstr ""
+msgstr "Sondanés"
 
 #: src/font-manager/Orthographies.vala:155
 msgid "Syloti Nagri"
@@ -1369,7 +1369,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:156
 msgid "Syriac"
-msgstr ""
+msgstr "Siríaco"
 
 #: src/font-manager/Orthographies.vala:157
 msgid "Tai Le"
@@ -1625,7 +1625,7 @@ msgid ""
 "is set to rgba."
 msgstr ""
 "El orden de los subpíxeles en una pantalla LCD. Solo se utiliza cuando el "
-"suavizado de contorno se configura en RGBA."
+"antidentado se configura como RGBA."
 
 #: src/font-manager/preferences/Desktop.vala:72
 #: src/font-manager/preferences/Fontconfig.vala:329
@@ -1667,7 +1667,7 @@ msgstr "Se ha eliminado el archivo de configuración."
 
 #: src/font-manager/preferences/Fontconfig.vala:235
 msgid "Target DPI"
-msgstr "Puntos por pulgada (DPI)"
+msgstr "Puntos por pulgada objetivo"
 
 #: src/font-manager/preferences/Fontconfig.vala:236
 msgid "Scale Factor"
@@ -1679,11 +1679,11 @@ msgstr "Filtro LCD"
 
 #: src/font-manager/preferences/Fontconfig.vala:328
 msgid "Antialias"
-msgstr "Suavizado de contorno"
+msgstr "Antidentado"
 
 #: src/font-manager/preferences/Fontconfig.vala:330
 msgid "Enable Autohinter"
-msgstr "Optimización de formas automática"
+msgstr "Activar optimizador de formas automático"
 
 #: src/font-manager/preferences/Fontconfig.vala:339
 msgid "Hinting Style"
@@ -2008,7 +2008,7 @@ msgstr "Instalado"
 #: src/font-viewer/MainWindow.vala:179
 #: src/font-viewer/font-viewer-main-window.ui:53
 msgid "Install Font"
-msgstr "Instalar tipos de letra"
+msgstr "Instalar tipo de letra"
 
 #: lib/unicode/ui/unicode-character-map-zoom-window.ui:80
 msgid "Copy"
