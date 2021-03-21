@@ -29,9 +29,9 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-font-preview-tile.ui")]
     public class FontPreviewTile : Gtk.Grid {
 
-        [GtkChild] public Gtk.Label family { get; }
-        [GtkChild] public Gtk.Label count { get; }
-        [GtkChild] public Gtk.Label preview { get; }
+        [GtkChild] public unowned Gtk.Label family { get; }
+        [GtkChild] public unowned Gtk.Label count { get; }
+        [GtkChild] public unowned Gtk.Label preview { get; }
 
     }
 
@@ -100,19 +100,19 @@ namespace FontManager {
             }
         }
 
-        [GtkChild] public Gtk.TreeView treeview { get; }
-        [GtkChild] public PreviewEntry entry { get; }
+        [GtkChild] public unowned Gtk.TreeView treeview { get; }
+        [GtkChild] public unowned PreviewEntry entry { get; }
 
-        [GtkChild] FontScale fontscale;
-        [GtkChild] Gtk.Stack browse_stack;
-        [GtkChild] Gtk.FlowBox flowbox;
-        [GtkChild] Gtk.Label page_count;
-        [GtkChild] Gtk.Button prev_page;
-        [GtkChild] Gtk.Button next_page;
-        [GtkChild] Gtk.RadioButton list_view;
-        [GtkChild] Gtk.RadioButton grid_view;
-        [GtkChild] Gtk.Box page_controls;
-        [GtkChild] Gtk.Entry selected_page;
+        [GtkChild] unowned FontScale fontscale;
+        [GtkChild] unowned Gtk.Stack browse_stack;
+        [GtkChild] unowned Gtk.FlowBox flowbox;
+        [GtkChild] unowned Gtk.Label page_count;
+        [GtkChild] unowned Gtk.Button prev_page;
+        [GtkChild] unowned Gtk.Button next_page;
+        [GtkChild] unowned Gtk.RadioButton list_view;
+        [GtkChild] unowned Gtk.RadioButton grid_view;
+        [GtkChild] unowned Gtk.Box page_controls;
+        [GtkChild] unowned Gtk.Entry selected_page;
 
         double n_pages = 0.0;
         double current_page = 0.0;

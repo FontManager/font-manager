@@ -27,10 +27,10 @@ namespace FontManager.GoogleFonts {
 
         public signal void changed ();
 
-        [GtkChild] public Gtk.ComboBoxText sort_order { get; }
+        [GtkChild] public unowned Gtk.ComboBoxText sort_order { get; }
 
-        [GtkChild] Gtk.Grid category_grid;
-        [GtkChild] Gtk.ListBox language_list;
+        [GtkChild] unowned Gtk.Grid category_grid;
+        [GtkChild] unowned Gtk.ListBox language_list;
 
         int n_variations = 0;
         StringSet categories;

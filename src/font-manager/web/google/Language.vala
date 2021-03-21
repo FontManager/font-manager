@@ -137,7 +137,7 @@ namespace FontManager.GoogleFonts {
             }
         }
 
-        [GtkChild] Gtk.ListBox sample_list;
+        [GtkChild] unowned Gtk.ListBox sample_list;
 
         construct {
             sample_list.row_activated.connect((box, row) => {

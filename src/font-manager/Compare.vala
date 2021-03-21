@@ -124,8 +124,8 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-compare-row.ui")]
     public class CompareRow : Gtk.Grid {
 
-        [GtkChild] Gtk.Label description;
-        [GtkChild] Gtk.Label preview;
+        [GtkChild] unowned Gtk.Label description;
+        [GtkChild] unowned Gtk.Label preview;
 
         public static CompareRow from_item (Object item) {
             var row = new CompareRow();
@@ -162,16 +162,16 @@ namespace FontManager {
             }
         }
 
-        [GtkChild] public PreviewEntry entry { get; }
-        [GtkChild] public FontScale fontscale { get; }
-        [GtkChild] public Gtk.ColorButton bg_color_button { get; }
-        [GtkChild] public Gtk.ColorButton fg_color_button { get; }
+        [GtkChild] public unowned PreviewEntry entry { get; }
+        [GtkChild] public unowned FontScale fontscale { get; }
+        [GtkChild] public unowned Gtk.ColorButton bg_color_button { get; }
+        [GtkChild] public unowned Gtk.ColorButton fg_color_button { get; }
 
-        [GtkChild] Gtk.Box controls;
-        [GtkChild] Gtk.Button add_button;
-        [GtkChild] Gtk.Button remove_button;
-        [GtkChild] Gtk.Button pinned_button;
-        [GtkChild] Gtk.ListBox list;
+        [GtkChild] unowned Gtk.Box controls;
+        [GtkChild] unowned Gtk.Button add_button;
+        [GtkChild] unowned Gtk.Button remove_button;
+        [GtkChild] unowned Gtk.Button pinned_button;
+        [GtkChild] unowned Gtk.ListBox list;
 
         string? _preview_text = null;
         string? default_preview_text = null;
@@ -374,8 +374,8 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-pinned-comparisons-row.ui")]
     public class PinnedComparisonRow : Gtk.Grid {
 
-        [GtkChild] Gtk.Entry label;
-        [GtkChild] Gtk.Label created;
+        [GtkChild] unowned Gtk.Entry label;
+        [GtkChild] unowned Gtk.Label created;
 
         construct {
             label.set_placeholder_text(_("Saved Comparison"));
@@ -394,10 +394,10 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-pinned-comparisons.ui")]
     public class PinnedComparisons : Gtk.Popover {
 
-        [GtkChild] Gtk.ListBox list;
-        [GtkChild] Gtk.Button save_button;
-        [GtkChild] Gtk.Button remove_button;
-        [GtkChild] Gtk.Button restore_button;
+        [GtkChild] unowned Gtk.ListBox list;
+        [GtkChild] unowned Gtk.Button save_button;
+        [GtkChild] unowned Gtk.Button remove_button;
+        [GtkChild] unowned Gtk.Button restore_button;
 
         public Compare? compare { get; set; default = null; }
         public PinnedComparisonModel? model { get; set; default = null; }

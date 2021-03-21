@@ -23,7 +23,7 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-title-button-style.ui")]
     public class TitleButtonStyle : Gtk.Box {
 
-        [GtkChild] Gtk.ComboBoxText combo;
+        [GtkChild] unowned Gtk.ComboBoxText combo;
 
         public string active {
             get {

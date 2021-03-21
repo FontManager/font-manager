@@ -107,9 +107,9 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-orthography-list-box-row.ui")]
     public class OrthographyListBoxRow : Gtk.Grid {
 
-        [GtkChild] Gtk.Label C_name;
-        [GtkChild] Gtk.Label native_name;
-        [GtkChild] Gtk.LevelBar coverage;
+        [GtkChild] unowned Gtk.Label C_name;
+        [GtkChild] unowned Gtk.Label native_name;
+        [GtkChild] unowned Gtk.LevelBar coverage;
 
         public static OrthographyListBoxRow from_item (Object item) {
             Orthography orthography = (Orthography) item;
@@ -138,9 +138,9 @@ namespace FontManager {
         bool _visible_ = false;
         bool update_pending = false;
 
-        [GtkChild] Gtk.Label header;
-        [GtkChild] Gtk.ListBox list;
-        [GtkChild] Gtk.Revealer clear_revealer;
+        [GtkChild] unowned Gtk.Label header;
+        [GtkChild] unowned Gtk.ListBox list;
+        [GtkChild] unowned Gtk.Revealer clear_revealer;
 
         PlaceHolder place_holder;
 

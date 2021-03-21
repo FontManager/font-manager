@@ -95,16 +95,16 @@ namespace FontManager.GoogleFonts {
             }
         }
 
-        [GtkChild] Gtk.Box controls;
-        [GtkChild] Gtk.Box scale_container;
-        [GtkChild] Gtk.Button download_button;
-        [GtkChild] Gtk.ScrolledWindow preview_box;
-        [GtkChild] Gtk.ColorButton bg_color_button;
-        [GtkChild] Gtk.ColorButton fg_color_button;
-        [GtkChild] Gtk.MenuButton menu_button;
-        [GtkChild] PreviewEntry entry;
-        [GtkChild] FontScale fontscale;
-        [GtkChild] Gtk.RadioButton lorem_ipsum;
+        [GtkChild] unowned Gtk.Box controls;
+        [GtkChild] unowned Gtk.Box scale_container;
+        [GtkChild] unowned Gtk.Button download_button;
+        [GtkChild] unowned Gtk.ScrolledWindow preview_box;
+        [GtkChild] unowned Gtk.ColorButton bg_color_button;
+        [GtkChild] unowned Gtk.ColorButton fg_color_button;
+        [GtkChild] unowned Gtk.MenuButton menu_button;
+        [GtkChild] unowned PreviewEntry entry;
+        [GtkChild] unowned FontScale fontscale;
+        [GtkChild] unowned Gtk.RadioButton lorem_ipsum;
 
         string? _preview_text = null;
         string? default_preview_text = "The quick brown fox jumps over the lazy dog.";

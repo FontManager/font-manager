@@ -73,13 +73,13 @@ namespace FontManager {
 
         public signal void selection_changed (Filter? filter);
 
-        [GtkChild] public CategoryTree category_tree { get; }
-        [GtkChild] public CollectionTree collection_tree { get; }
-        [GtkChild] public Gtk.Expander collection_expander { get; }
+        [GtkChild] public unowned CategoryTree category_tree { get; }
+        [GtkChild] public unowned CollectionTree collection_tree { get; }
+        [GtkChild] public unowned Gtk.Expander collection_expander { get; }
 
-        [GtkChild] Gtk.Button add_button;
-        [GtkChild] Gtk.Button edit_button;
-        [GtkChild] Gtk.Button remove_button;
+        [GtkChild] unowned Gtk.Button add_button;
+        [GtkChild] unowned Gtk.Button edit_button;
+        [GtkChild] unowned Gtk.Button remove_button;
 
         public void on_tree_selection_changed (BaseTreeView tree, Filter? filter) {
             if (filter == null)

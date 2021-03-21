@@ -33,12 +33,12 @@ namespace FontManager.GoogleFonts {
     [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-fonts-catalog.ui")]
     public class Catalog : Gtk.Paned {
 
-        [GtkChild] public FontListPane font_list_pane { get; }
-        [GtkChild] public Filters filters { get; }
-        [GtkChild] public Gtk.Paned content_pane { get; }
-        [GtkChild] public PreviewPane preview_pane { get; }
+        [GtkChild] public unowned FontListPane font_list_pane { get; }
+        [GtkChild] public unowned Filters filters { get; }
+        [GtkChild] public unowned Gtk.Paned content_pane { get; }
+        [GtkChild] public unowned PreviewPane preview_pane { get; }
 
-        [GtkChild] Gtk.Paned filter_pane;
+        [GtkChild] unowned Gtk.Paned filter_pane;
 
         bool cache_checked = false;
         bool _connected_ = false;

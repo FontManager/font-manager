@@ -37,8 +37,8 @@ namespace FontManager {
         public Gtk.Widget visible_child { get; set; }
         public string visible_child_name { get; set; }
 
-        [GtkChild] Gtk.Stack stack;
-        [GtkChild] Gtk.StackSidebar sidebar;
+        [GtkChild] unowned Gtk.Stack stack;
+        [GtkChild] unowned Gtk.StackSidebar sidebar;
 
         public override void constructed () {
             sidebar.get_style_context().remove_class(Gtk.STYLE_CLASS_SIDEBAR);

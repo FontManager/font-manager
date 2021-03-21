@@ -147,8 +147,8 @@ namespace FontManager {
          */
         public Gtk.Label note { get; private set; }
 
-        [GtkChild] Gtk.Button save_button;
-        [GtkChild] Gtk.Button discard_button;
+        [GtkChild] unowned Gtk.Button save_button;
+        [GtkChild] unowned Gtk.Button discard_button;
 
         public override void constructed () {
             save_button.clicked.connect(() => { save_selected(); });
@@ -493,9 +493,9 @@ Note that not all environments/applications will honor these settings.""");
          */
         public string? priority { get; set; default = null; }
 
-        [GtkChild] Gtk.Button close;
-        [GtkChild] Gtk.ComboBoxText type;
-        [GtkChild] Gtk.Entry target;
+        [GtkChild] unowned Gtk.Button close;
+        [GtkChild] unowned Gtk.ComboBoxText type;
+        [GtkChild] unowned Gtk.Entry target;
 
         public override void constructed () {
             target.completion  = new Gtk.EntryCompletion();
@@ -524,9 +524,9 @@ Note that not all environments/applications will honor these settings.""");
         public string? family { get; set; default = null; }
         public Gtk.TreeModel? completion_model { get; set; default = null; }
 
-        [GtkChild] Gtk.Entry entry;
-        [GtkChild] Gtk.ListBox list;
-        [GtkChild] Gtk.Button add_button;
+        [GtkChild] unowned Gtk.Entry entry;
+        [GtkChild] unowned Gtk.ListBox list;
+        [GtkChild] unowned Gtk.Button add_button;
 
         public override void constructed () {
             entry.completion = new Gtk.EntryCompletion();

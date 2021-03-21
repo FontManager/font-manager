@@ -23,11 +23,11 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-user-data.ui")]
     public class UserDataDialog : Gtk.Dialog {
 
-        [GtkChild] public Gtk.CheckButton settings { get; }
-        [GtkChild] public Gtk.CheckButton collections { get; }
-        [GtkChild] public Gtk.CheckButton sources { get; }
-        [GtkChild] public Gtk.CheckButton fonts { get; }
-        [GtkChild] public Gtk.CheckButton actions { get; }
+        [GtkChild] public unowned Gtk.CheckButton settings { get; }
+        [GtkChild] public unowned Gtk.CheckButton collections { get; }
+        [GtkChild] public unowned Gtk.CheckButton sources { get; }
+        [GtkChild] public unowned Gtk.CheckButton fonts { get; }
+        [GtkChild] public unowned Gtk.CheckButton actions { get; }
 
         public UserDataDialog (string action) {
             MainWindow? main_window = get_default_application().main_window;

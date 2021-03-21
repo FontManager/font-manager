@@ -34,10 +34,10 @@ namespace FontManager.FontViewer {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-viewer-main-window.ui")]
     public class MainWindow : Gtk.ApplicationWindow {
 
-        [GtkChild] Gtk.Stack stack;
-        [GtkChild] Gtk.HeaderBar titlebar;
-        [GtkChild] Gtk.Button install;
-        [GtkChild] PreviewPane preview_pane;
+        [GtkChild] unowned Gtk.Stack stack;
+        [GtkChild] unowned Gtk.HeaderBar titlebar;
+        [GtkChild] unowned Gtk.Button install;
+        [GtkChild] unowned PreviewPane preview_pane;
 
         int w = -1;
         int h = -1;

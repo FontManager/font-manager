@@ -115,10 +115,10 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-user-source-row.ui")]
     public class UserSourceRow : Gtk.Box {
 
-        [GtkChild] Gtk.Image icon;
-        [GtkChild] Gtk.Label title;
-        [GtkChild] Gtk.Label description;
-        [GtkChild] Gtk.Switch active;
+        [GtkChild] unowned Gtk.Image icon;
+        [GtkChild] unowned Gtk.Label title;
+        [GtkChild] unowned Gtk.Label description;
+        [GtkChild] unowned Gtk.Switch active;
 
         public static UserSourceRow from_item (Object item) {
             Source source = (Source) item;
@@ -149,8 +149,8 @@ They will not be visible to other applications until the source is actually enab
 
 Note that not all environments/applications will honor these settings.""");
 
-        [GtkChild] Gtk.ListBox list;
-        [GtkChild] BaseControls controls;
+        [GtkChild] unowned Gtk.ListBox list;
+        [GtkChild] unowned BaseControls controls;
 
         InlineHelp help;
 

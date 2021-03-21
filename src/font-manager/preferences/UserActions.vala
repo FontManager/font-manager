@@ -163,11 +163,11 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-user-action-row.ui")]
     public class UserActionRow : Gtk.Grid {
 
-        [GtkChild] Gtk.Image action_icon;
-        [GtkChild] Gtk.Entry action_name;
-        [GtkChild] Gtk.Entry comment;
-        [GtkChild] Gtk.Entry executable;
-        [GtkChild] Gtk.Entry arguments;
+        [GtkChild] unowned Gtk.Image action_icon;
+        [GtkChild] unowned Gtk.Entry action_name;
+        [GtkChild] unowned Gtk.Entry comment;
+        [GtkChild] unowned Gtk.Entry executable;
+        [GtkChild] unowned Gtk.Entry arguments;
 
         public static UserActionRow from_item (Object item) {
             UserAction action = ((UserAction) item);
@@ -201,8 +201,8 @@ By default the filepath for the selected font will be appended to the end of the
 To control where the filepath is inserted use FILEPATH as a placeholder.
 If FAMILY or STYLE are found in the argument list they will also be replaced.""");
 
-        [GtkChild] Gtk.ListBox list;
-        [GtkChild] BaseControls controls;
+        [GtkChild] unowned Gtk.ListBox list;
+        [GtkChild] unowned BaseControls controls;
 
         InlineHelp help;
 

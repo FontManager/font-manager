@@ -123,9 +123,9 @@ namespace FontManager {
 
         weak LanguageFilter filter;
 
-        [GtkChild] Gtk.SpinButton coverage_spin;
-        [GtkChild] Gtk.SearchEntry search_entry;
-        [GtkChild] Gtk.TreeView treeview;
+        [GtkChild] unowned Gtk.SpinButton coverage_spin;
+        [GtkChild] unowned Gtk.SearchEntry search_entry;
+        [GtkChild] unowned Gtk.TreeView treeview;
 
         uint? search_timeout;
         uint16 text_length = 0;

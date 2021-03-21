@@ -70,14 +70,14 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-labeled-switch.ui")]
     public class LabeledSwitch : Gtk.Box {
 
-        [GtkChild] public Gtk.Label label { get; }
+        [GtkChild] public unowned Gtk.Label label { get; }
 
         /**
          * Centered Label with dim-label style class
          */
-        [GtkChild] public Gtk.Label description { get; }
+        [GtkChild] public unowned Gtk.Label description { get; }
 
-        [GtkChild] public Gtk.Switch toggle { get; }
+        [GtkChild] public unowned Gtk.Switch toggle { get; }
 
         public LabeledSwitch (string? label = null) {
             this.label.set_text(label != null ? label : "");
@@ -91,16 +91,16 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-labeled-spin-button.ui")]
     public class LabeledSpinButton : Gtk.Box {
 
-        [GtkChild] public Gtk.Label label { get; }
+        [GtkChild] public unowned Gtk.Label label { get; }
 
         /**
          * Centered Label with dim-label style class
          */
-        [GtkChild] public Gtk.Label description { get; }
+        [GtkChild] public unowned Gtk.Label description { get; }
 
         public double @value { get; set; default = 0.0; }
 
-        [GtkChild] Gtk.SpinButton spin;
+        [GtkChild] unowned Gtk.SpinButton spin;
 
         public LabeledSpinButton (string? label, double min, double max, double step) {
             this.label.set_text(label != null ? label : "");
@@ -117,14 +117,14 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-labeled-font-button.ui")]
     public class LabeledFontButton : Gtk.Box {
 
-        [GtkChild] public Gtk.Label label { get; }
+        [GtkChild] public unowned Gtk.Label label { get; }
 
         /**
          * Centered Label with dim-label style class
          */
-        [GtkChild] public Gtk.Label description { get; }
+        [GtkChild] public unowned Gtk.Label description { get; }
 
-        [GtkChild] public Gtk.FontButton button { get; }
+        [GtkChild] public unowned Gtk.FontButton button { get; }
 
         public string font { get; set; default = DEFAULT_FONT; }
 
@@ -151,8 +151,8 @@ namespace FontManager {
 
         public string [] options { get; construct set;}
 
-        [GtkChild] Gtk.Label label;
-        [GtkChild] Gtk.Scale scale;
+        [GtkChild] unowned Gtk.Label label;
+        [GtkChild] unowned Gtk.Scale scale;
 
         public OptionScale (string? heading, string [] options) {
             this.options = options;
@@ -238,7 +238,7 @@ namespace FontManager {
 
         int _rgba;
 
-        [GtkChild] Gtk.ButtonBox button_box;
+        [GtkChild] unowned Gtk.ButtonBox button_box;
 
         public SubpixelGeometry () {
             options = new GenericArray <Gtk.RadioButton> ();
@@ -271,9 +271,9 @@ namespace FontManager {
 
         public int size { get; set; default = 36; }
 
-        [GtkChild] Gtk.Label l1;
-        [GtkChild] Gtk.Label l2;
-        [GtkChild] Gtk.Label l3;
+        [GtkChild] unowned Gtk.Label l1;
+        [GtkChild] unowned Gtk.Label l2;
+        [GtkChild] unowned Gtk.Label l3;
 
         public SubpixelGeometryIcon (SubpixelOrder rgba) {
 

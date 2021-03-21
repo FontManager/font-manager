@@ -80,19 +80,19 @@ namespace FontManager {
         public bool wide_layout { get; set; default = false; }
         public bool use_csd { get; set; default = true; }
 
-        [GtkChild] public Gtk.Stack main_stack { get; }
-        [GtkChild] public Gtk.Stack content_stack { get; }
-        [GtkChild] public Gtk.Stack view_stack { get; }
-        [GtkChild] public Gtk.Box main_box { get; }
-        [GtkChild] public Gtk.Paned main_pane { get; }
-        [GtkChild] public Gtk.Paned content_pane { get; }
+        [GtkChild] public unowned Gtk.Stack main_stack { get; }
+        [GtkChild] public unowned Gtk.Stack content_stack { get; }
+        [GtkChild] public unowned Gtk.Stack view_stack { get; }
+        [GtkChild] public unowned Gtk.Box main_box { get; }
+        [GtkChild] public unowned Gtk.Paned main_pane { get; }
+        [GtkChild] public unowned Gtk.Paned content_pane { get; }
 
-        [GtkChild] public Browse browse { get; }
-        [GtkChild] public Compare compare { get; }
-        [GtkChild] public PreviewPane preview_pane { get; }
-        [GtkChild] public Preferences preference_pane { get; }
-        [GtkChild] public Sidebar sidebar { get; }
-        [GtkChild] public FontListPane fontlist_pane { get; }
+        [GtkChild] public unowned Browse browse { get; }
+        [GtkChild] public unowned Compare compare { get; }
+        [GtkChild] public unowned PreviewPane preview_pane { get; }
+        [GtkChild] public unowned Preferences preference_pane { get; }
+        [GtkChild] public unowned Sidebar sidebar { get; }
+        [GtkChild] public unowned FontListPane fontlist_pane { get; }
 
         public FontModel? model { get; set; default = null; }
         public TitleBar titlebar { get; private set; }
@@ -131,7 +131,7 @@ namespace FontManager {
         GLib.Settings? settings = null;
 
 #if HAVE_WEBKIT
-        [GtkChild] Gtk.Overlay web_pane;
+        [GtkChild] unowned Gtk.Overlay web_pane;
 #endif /* HAVE_WEBKIT */
 
         public MainWindow () {

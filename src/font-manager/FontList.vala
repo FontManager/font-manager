@@ -705,8 +705,8 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         bool refresh_required = false;
         Gtk.TreeModel? real_model = null;
         Gtk.TreeModelFilter? search_filter = null;
-        [GtkChild] Gtk.Revealer revealer;
-        [GtkChild] Gtk.ScrolledWindow scrolled_window;
+        [GtkChild] unowned Gtk.Revealer revealer;
+        [GtkChild] unowned Gtk.ScrolledWindow scrolled_window;
 
         string? char_search = null;
         Json.Object? char_support = null;
