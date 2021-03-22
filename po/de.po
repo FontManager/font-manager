@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-01-31 14:53-0500\n"
+"POT-Creation-Date: 2021-03-22 18:26-0400\n"
 "PO-Revision-Date: 2021-01-26 23:50+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
@@ -451,15 +451,15 @@ msgstr "Normal"
 msgid "Source Unavailable"
 msgstr "Quelle nicht verfügbar"
 
-#: lib/unicode/unicode-character-map.c:707
+#: lib/unicode/unicode-character-map.c:706
 msgid "Unknown character, unable to identify."
 msgstr "Unbekanntes Zeichen, Identifizierung unmöglich."
 
-#: lib/unicode/unicode-character-map.c:709
+#: lib/unicode/unicode-character-map.c:708
 msgid "Not found."
 msgstr "Nicht gefunden."
 
-#: lib/unicode/unicode-character-map.c:711
+#: lib/unicode/unicode-character-map.c:710
 msgid "Character found."
 msgstr "Zeichen gefunden."
 
@@ -796,8 +796,8 @@ msgstr "Au_swählen"
 #: src/font-manager/Dialogs.vala:64 src/font-manager/Dialogs.vala:79
 #: src/font-manager/Dialogs.vala:96 src/font-manager/Dialogs.vala:121
 #: src/font-manager/Dialogs.vala:159 src/font-manager/Dialogs.vala:171
-#: src/font-manager/Migration.vala:54 src/font-manager/UserData.vala:38
-#: src/font-manager/UserData.vala:49 src/font-manager/UserData.vala:59
+#: src/font-manager/UserData.vala:38 src/font-manager/UserData.vala:49
+#: src/font-manager/UserData.vala:59
 msgid "_Cancel"
 msgstr "_Abbrechen"
 
@@ -886,41 +886,6 @@ msgstr "Vergleichen"
 msgid "Manage"
 msgstr "Verwalten"
 
-#: src/font-manager/Migration.vala:55
-msgid "_Continue"
-msgstr "_Weiter"
-
-#: src/font-manager/Migration.vala:82
-msgid "Update Required"
-msgstr "Aktualisierung wird benötigt"
-
-#: src/font-manager/Migration.vala:226
-msgid ""
-"\n"
-"Font Manager has detected files from a previous installation. Some files "
-"from previous versions are incompatible with this release. Others have been "
-"deprecated or moved.\n"
-"\n"
-"Font Manager will now attempt to migrate your fonts and collections. Files "
-"and settings which are no longer necessary or valid will be deleted. Any "
-"configuration files that could cause a conflict will also be deleted.\n"
-"\n"
-"It is strongly recommended that you back up any important files before "
-"proceeding.\n"
-msgstr ""
-"\n"
-"Font Manager hat Dateien einer früheren Installation gefunden. Einige "
-"Dateien von früheren Versionen sind inkompatibel mit dieser Version, andere "
-"sind veraltet oder wurden verschoben.\n"
-"\n"
-"Font Manager wird nun versuchen Deine Schriften und Sammlungen zu migrieren. "
-"Dateien, welche nicht länger benötig werden oder nicht korrekt sind, werden "
-"entfernt. Alle Einstellungen welche einen Konflikt hervorufen könnten, "
-"werden entfernt.\n"
-"\n"
-"Es wird dringend empfohlen, alle wichtigen Dateien zu sichern bevor Du "
-"weitermachst.\n"
-
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
 msgstr ""
@@ -968,19 +933,16 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:42
 #, fuzzy
-#| msgid "Cyrillic"
 msgid "Basic Cyrillic"
 msgstr "Kyrillisch"
 
 #: src/font-manager/Orthographies.vala:43
 #, fuzzy
-#| msgid "Greek"
 msgid "Basic Greek"
 msgstr "Griechisch"
 
 #: src/font-manager/Orthographies.vala:44
 #, fuzzy
-#| msgid "Latin"
 msgid "Basic Latin"
 msgstr "Lateinisch"
 
@@ -1007,7 +969,6 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:50
 #, fuzzy
-#| msgid "Variations"
 msgid "Carian"
 msgstr "Varianten"
 
@@ -1118,7 +1079,6 @@ msgstr "Essen und Trinken"
 
 #: src/font-manager/Orthographies.vala:84
 #, fuzzy
-#| msgid "Cyrillic"
 msgid "Full Cyrillic"
 msgstr "Kyrillisch"
 
@@ -1146,7 +1106,6 @@ msgstr "Gurmukhi"
 
 #: src/font-manager/Orthographies.vala:90
 #, fuzzy
-#| msgid "Korean"
 msgid "Korean Hangul"
 msgstr "Koreanisch"
 
@@ -1170,13 +1129,11 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:96
 #, fuzzy
-#| msgid "Korean"
 msgid "Korean Jamo"
 msgstr "Koreanisch"
 
 #: src/font-manager/Orthographies.vala:97
 #, fuzzy
-#| msgid "Japanese"
 msgid "Javanese"
 msgstr "Japanisch"
 
@@ -1194,7 +1151,6 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:101
 #, fuzzy
-#| msgid "Japanese"
 msgid "Japanese Kana"
 msgstr "Japanisch"
 
@@ -1222,7 +1178,6 @@ msgstr "Khmer"
 
 #: src/font-manager/Orthographies.vala:107
 #, fuzzy
-#| msgid "Japanese"
 msgid "Japanese Kokuji"
 msgstr "Japanisch"
 
@@ -1322,7 +1277,6 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:136
 #, fuzzy
-#| msgid "Italic"
 msgid "Old Italic"
 msgstr "Kursiv"
 
@@ -2322,6 +2276,39 @@ msgstr "Kategorien"
 #: src/font-manager/web/google/ui/google-font-filters.ui:434
 msgid "Variations"
 msgstr "Varianten"
+
+#~ msgid "_Continue"
+#~ msgstr "_Weiter"
+
+#~ msgid "Update Required"
+#~ msgstr "Aktualisierung wird benötigt"
+
+#~ msgid ""
+#~ "\n"
+#~ "Font Manager has detected files from a previous installation. Some files "
+#~ "from previous versions are incompatible with this release. Others have "
+#~ "been deprecated or moved.\n"
+#~ "\n"
+#~ "Font Manager will now attempt to migrate your fonts and collections. "
+#~ "Files and settings which are no longer necessary or valid will be "
+#~ "deleted. Any configuration files that could cause a conflict will also be "
+#~ "deleted.\n"
+#~ "\n"
+#~ "It is strongly recommended that you back up any important files before "
+#~ "proceeding.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Font Manager hat Dateien einer früheren Installation gefunden. Einige "
+#~ "Dateien von früheren Versionen sind inkompatibel mit dieser Version, "
+#~ "andere sind veraltet oder wurden verschoben.\n"
+#~ "\n"
+#~ "Font Manager wird nun versuchen Deine Schriften und Sammlungen zu "
+#~ "migrieren. Dateien, welche nicht länger benötig werden oder nicht korrekt "
+#~ "sind, werden entfernt. Alle Einstellungen welche einen Konflikt "
+#~ "hervorufen könnten, werden entfernt.\n"
+#~ "\n"
+#~ "Es wird dringend empfohlen, alle wichtigen Dateien zu sichern bevor Du "
+#~ "weitermachst.\n"
 
 #~ msgid "90"
 #~ msgstr "90"

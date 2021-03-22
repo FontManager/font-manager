@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-01-31 14:53-0500\n"
+"POT-Creation-Date: 2021-03-22 18:26-0400\n"
 "PO-Revision-Date: 2021-03-18 09:18+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
@@ -454,9 +454,9 @@ msgid ""
 "You can also double-click, press <gui style=\"button\">Space</gui> or press "
 "<gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
-"También puede pulsar dos veces con el ratón o presionar <gui style=\"button\""
-">Espacio</gui> o <gui style=\"button\">Intro</gui> para activar o desactivar "
-"el tipo de letra seleccionado."
+"También puede pulsar dos veces con el ratón o presionar <gui style=\"button"
+"\">Espacio</gui> o <gui style=\"button\">Intro</gui> para activar o "
+"desactivar el tipo de letra seleccionado."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:51
@@ -494,8 +494,8 @@ msgid ""
 "<app>Font Manager</app> supports the most common <link xref=\"supported-"
 "formats\">font formats</link>."
 msgstr ""
-"<app>Gestor tipográfico</app> admite los <link xref=\"supported-formats\""
-">formatos de tipo de letra</link> más habituales."
+"<app>Gestor tipográfico</app> admite los <link xref=\"supported-formats"
+"\">formatos de tipo de letra</link> más habituales."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
@@ -728,8 +728,8 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
-"Pulse en <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> "
-"</gui>"
+"Pulse en <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:51
@@ -771,8 +771,8 @@ msgid ""
 "\"/> </gui> at the top of the window."
 msgstr ""
 "Abra el cuadro de diálogo de preferencias de <app>Gestor tipográfico</app> "
-"pulsando en <gui style=\"button\"> <media type=\"image\" src=\"media"
-"/preferences-system-symbolic.svg\"/> </gui> en la parte superior de la "
+"pulsando en <gui style=\"button\"> <media type=\"image\" src=\"media/"
+"preferences-system-symbolic.svg\"/> </gui> en la parte superior de la "
 "ventana."
 
 #. (itstool) path: item/p

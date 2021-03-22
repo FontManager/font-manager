@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-01-31 14:53-0500\n"
+"POT-Creation-Date: 2021-03-22 18:26-0400\n"
 "PO-Revision-Date: 2021-02-06 19:50+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/"
-"font-manager-help-docs/nl/>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/font-"
+"manager-help-docs/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -302,7 +302,8 @@ msgstr "Geef je verzameling een naam"
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:51
 msgid "Add fonts by dragging them from the font list to your new collection."
-msgstr "Sleep lettertypen van de lijst naar de verzameling om ze toe te voegen."
+msgstr ""
+"Sleep lettertypen van de lijst naar de verzameling om ze toe te voegen."
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:59
@@ -481,8 +482,8 @@ msgid ""
 "<app>Font Manager</app> supports the most common <link xref=\"supported-"
 "formats\">font formats</link>."
 msgstr ""
-"<app>Lettertypebeheer</app> ondersteunt de meest voorkomende <link xref"
-"=\"supported-formats\">lettertypen</link>."
+"<app>Lettertypebeheer</app> ondersteunt de meest voorkomende <link xref="
+"\"supported-formats\">lettertypen</link>."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
@@ -710,8 +711,8 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
-"Klik op <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> "
-"</gui>"
+"Klik op <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:51
@@ -753,8 +754,8 @@ msgid ""
 "\"/> </gui> at the top of the window."
 msgstr ""
 "Open de <app>Lettertypebeheer</app>-voorkeuren door te klikken op <gui style="
-"\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic."
-"svg\"/> </gui> aan de bovenkant van het venster."
+"\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg"
+"\"/> </gui> aan de bovenkant van het venster."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:107
@@ -949,7 +950,8 @@ msgstr "<app>Licentietabblad</app>"
 #: C/font-manager-license.page:23
 msgctxt "_"
 msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
-msgstr "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
+msgstr ""
+"external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
 
 #. (itstool) path: note/p
 #: C/font-manager-license.page:27
@@ -1189,12 +1191,14 @@ msgstr "Ondersteunde bestandsformaten"
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:14
 msgid "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
-msgstr "<link href=\"https://nl.wikipedia.org/wiki/TrueType\"> TrueType </link>"
+msgstr ""
+"<link href=\"https://nl.wikipedia.org/wiki/TrueType\"> TrueType </link>"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:21
 msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
-msgstr "<link href=\"https://nl.wikipedia.org/wiki/OpenType\"> OpenType </link>"
+msgstr ""
+"<link href=\"https://nl.wikipedia.org/wiki/OpenType\"> OpenType </link>"
 
 #. (itstool) path: info/desc
 #: C/index.page:6
@@ -1267,8 +1271,8 @@ msgid ""
 "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
 "font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
-"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font"
-".png\"> Lettertypebeheer-logo </media> Lettertypebeheer"
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
+"font.png\"> Lettertypebeheer-logo </media> Lettertypebeheer"
 
 #. (itstool) path: section/title
 #: C/index.page:37

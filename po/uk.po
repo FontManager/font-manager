@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-01-31 14:53-0500\n"
+"POT-Creation-Date: 2021-03-22 18:26-0400\n"
 "PO-Revision-Date: 2021-02-18 21:50+0000\n"
 "Last-Translator: Tymofij Lytvynenko <till.svit@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/font-manager/"
@@ -422,15 +422,15 @@ msgstr ""
 msgid "Source Unavailable"
 msgstr ""
 
-#: lib/unicode/unicode-character-map.c:707
+#: lib/unicode/unicode-character-map.c:706
 msgid "Unknown character, unable to identify."
 msgstr ""
 
-#: lib/unicode/unicode-character-map.c:709
+#: lib/unicode/unicode-character-map.c:708
 msgid "Not found."
 msgstr ""
 
-#: lib/unicode/unicode-character-map.c:711
+#: lib/unicode/unicode-character-map.c:710
 msgid "Character found."
 msgstr ""
 
@@ -743,8 +743,8 @@ msgstr ""
 #: src/font-manager/Dialogs.vala:64 src/font-manager/Dialogs.vala:79
 #: src/font-manager/Dialogs.vala:96 src/font-manager/Dialogs.vala:121
 #: src/font-manager/Dialogs.vala:159 src/font-manager/Dialogs.vala:171
-#: src/font-manager/Migration.vala:54 src/font-manager/UserData.vala:38
-#: src/font-manager/UserData.vala:49 src/font-manager/UserData.vala:59
+#: src/font-manager/UserData.vala:38 src/font-manager/UserData.vala:49
+#: src/font-manager/UserData.vala:59
 msgid "_Cancel"
 msgstr ""
 
@@ -826,29 +826,6 @@ msgstr ""
 #: src/font-manager/MainWindow.vala:58
 #: src/font-manager/ui/font-manager-main-window.ui:135
 msgid "Manage"
-msgstr ""
-
-#: src/font-manager/Migration.vala:55
-msgid "_Continue"
-msgstr ""
-
-#: src/font-manager/Migration.vala:82
-msgid "Update Required"
-msgstr ""
-
-#: src/font-manager/Migration.vala:226
-msgid ""
-"\n"
-"Font Manager has detected files from a previous installation. Some files "
-"from previous versions are incompatible with this release. Others have been "
-"deprecated or moved.\n"
-"\n"
-"Font Manager will now attempt to migrate your fonts and collections. Files "
-"and settings which are no longer necessary or valid will be deleted. Any "
-"configuration files that could cause a conflict will also be deleted.\n"
-"\n"
-"It is strongly recommended that you back up any important files before "
-"proceeding.\n"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:31

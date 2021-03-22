@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-01-31 14:53-0500\n"
+"POT-Creation-Date: 2021-03-22 18:26-0400\n"
 "PO-Revision-Date: 2021-01-25 13:27+0300\n"
 "Last-Translator: \n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/font-manager/"

@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-01-31 14:53-0500\n"
+"POT-Creation-Date: 2021-03-22 18:26-0400\n"
 "PO-Revision-Date: 2021-03-18 09:18+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/font-manager/"
@@ -163,7 +163,8 @@ msgstr "Sense classificar"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr "Les lletres tipogràfiques que no són a cap de les vostres col·leccions."
+msgstr ""
+"Les lletres tipogràfiques que no són a cap de les vostres col·leccions."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91

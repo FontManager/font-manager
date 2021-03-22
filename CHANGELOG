@@ -1,3 +1,7 @@
+0.8.4 -> 0.8.5
+
+- Fix FTBFS with Vala >= 0.52
+
 0.8.3 -> 0.8.4
 
 - Fix a bug where most categories fail to load on first run.
