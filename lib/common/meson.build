@@ -87,5 +87,5 @@ common_vapi = gnome.generate_vapi('font-manager-common',
                                         'json-glib-1.0',
                                         'libxml-2.0',
                                         'sqlite3',
-                                        'Unicode'
+                                        'Unicode-@0@'.format(meson.project_version())
                                     ])
