@@ -1,5 +1,7 @@
 
 subdir('unicode')
+# https://github.com/FontManager/font-manager/issues/208
+ensure_unicode_vapi_generation = declare_dependency(dependencies: unicode_vapi)
 subdir('common')
 
 libfontmanager = shared_library('fontmanager',
