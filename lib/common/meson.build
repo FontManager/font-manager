@@ -71,7 +71,7 @@ common_vapi = gnome.generate_vapi('font-manager-common',
                                     sources: [
                                         common_gir[0],
                                         unicode_gir[0],
-                                        'font-manager-common.vala'
+                                        'font-manager-common.vala',
                                     ],
                                     vapi_dirs: [
                                         meson.current_build_dir(),
@@ -87,5 +87,5 @@ common_vapi = gnome.generate_vapi('font-manager-common',
                                         'json-glib-1.0',
                                         'libxml-2.0',
                                         'sqlite3',
-                                        'Unicode-@0@'.format(meson.project_version())
+                                        unicode_vapi
                                     ])
