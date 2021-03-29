@@ -651,6 +651,7 @@ namespace FontManager {
             content_pane.position = settings.get_int("content-pane-position");
             wide_layout = settings.get_boolean("wide-layout");
             is_horizontal = content_pane.orientation == Gtk.Orientation.HORIZONTAL;
+            Idle.add(() => { update_layout_orientation(); return GLib.Source.REMOVE; });
 
             mode = (FontManager.Mode) settings.get_enum("mode");
             var action = get_default_application().lookup_action("mode") as SimpleAction;
