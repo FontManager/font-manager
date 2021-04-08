@@ -80,7 +80,6 @@ namespace FontManager {
         static Settings? interface_settings = null;
         static Settings? x_settings = null;
         static bool initialized = false;
-
         Gtk.ListBox list;
 
         public static bool available () {
@@ -106,9 +105,23 @@ namespace FontManager {
 
         void generate_options_list (Settings? interface_settings,
                                     Settings? x_settings) {
+            /* Ensure keys still exist since we don't control these schemas and GSettings crashes on any error */
+            SettingsSchemaSource default_schemas = SettingsSchemaSource.get_default();
+            SettingsSchema? interface_schema = default_schemas.lookup(GNOME_INTERFACE_ID, true);
+            string [] interface_keys = {};
+            if (interface_schema != null)
+                interface_keys = interface_schema.list_keys();
+            string [] xsettings_keys = {};
+            SettingsSchema? xsettings_schema = default_schemas.lookup(GNOME_XSETTINGS_ID, true);
+            if (xsettings_schema != null)
+                xsettings_keys = xsettings_schema.list_keys();
             Gtk.Revealer spg_revealer = new Gtk.Revealer();
             OptionScale? antialias = null;
             foreach (var setting in DesktopSettings) {
+                if (!(setting.key in interface_keys) && !(setting.key in xsettings_keys)) {
+                    message("Ignoring deprecated settings key : %s", setting.key);
+                    continue;
+                }
                 Gtk.Widget? widget = null;
                 if (setting.type == "string") {
                     widget = new LabeledFontButton(dgettext(null, setting.name));
