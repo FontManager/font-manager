@@ -16,23 +16,25 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Author:
-#  Jerry Casiano <JerryCasiano@gmail.com>
+# Jerry Casiano <JerryCasiano@gmail.com>
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016. #zanata
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
+# 玉堂白鹤 <yjwork@qq.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-03-22 18:26-0400\n"
-"PO-Revision-Date: 2019-10-03 02:38-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Chinese (China) <@>\n"
+"PO-Revision-Date: 2021-04-07 04:40+0000\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"font-manager/font-manager/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 4.6.2\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.6-dev\n"
 
 # Not translate very good, just for use.
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
@@ -43,34 +45,35 @@ msgstr "字体管理器"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "一个简单的适用于 Gtk+ 桌面环境的字体管理应用程序"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
+#, fuzzy
 msgid ""
 "Font Manager is intended to provide a way for average users to easily manage "
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
-msgstr ""
+msgstr "Font Manager旨在为普通用户提供一种轻松管理桌面字体的方法，而无需借助命令行工具或手工编辑配置文件。"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
-msgstr ""
+msgstr "虽然主要是考虑为 Gnome 桌面环境而设计，但它应该能很好地适用于其他 Gtk+ 桌面环境。"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
-msgstr ""
+msgstr "字体管理器 不是 专业级的字体管理解决方案。"
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr ""
+msgstr "预览，比较和管理字体"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
 #: data/org.gnome.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
+msgstr "Graphics;Viewer;GNOME;GTK;Publishing;图形;查看;GNOME;GTK;出版;"
 
 # Not translate very good, just for use.
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
@@ -78,47 +81,46 @@ msgstr ""
 #: data/org.gnome.FontViewer.desktop.in.in:6
 #: src/font-viewer/Application.vala:98 src/font-viewer/MainWindow.vala:23
 #: src/font-viewer/font-viewer-main-window.ui:39
-#, fuzzy
 msgid "Font Viewer"
-msgstr "字体管理器"
+msgstr "字体查看器"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "一个用于 Gtk+ 桌面环境的字体查看应用程序"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
 "Font Viewer allows previewing font files prior to installation. It features "
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
-msgstr ""
+msgstr "字体查看器允许在安装前预览字体文件。它提供了几种预览字体文件以及字符映射的方法，并显示字体属性和许可证详细信息。"
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr ""
+msgstr "全功能字体文件预览应用程序"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
 #: src/font-manager/FontList.vala:490
 msgid "Install"
-msgstr ""
+msgstr "安装"
 
 #: extensions/nautilus/font-manager-menu-provider.c:163
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr ""
+msgstr "安装所选字体文件"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr ""
+msgstr "安装所选字体文件"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr ""
+msgstr "字体属性"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:106
@@ -147,7 +149,7 @@ msgstr "细(Light)"
 
 #: lib/common/font-manager-fontconfig.c:832
 msgid "Semi-Light"
-msgstr ""
+msgstr "半细(Semi-Light)"
 
 #: lib/common/font-manager-fontconfig.c:834
 msgid "Book"
@@ -283,19 +285,20 @@ msgstr "传统(Legacy)"
 
 #: lib/common/font-manager-freetype.c:292
 msgid "Restricted License Embedding"
-msgstr ""
+msgstr "嵌入许可受限"
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Preview & Print Embedding"
-msgstr ""
+msgstr "预览和打印嵌入"
 
 #: lib/common/font-manager-freetype.c:296
 msgid "Editable Embedding"
-msgstr ""
+msgstr "可编辑嵌入"
 
 #: lib/common/font-manager-freetype.c:298
+#, fuzzy
 msgid "Preview & Print Embedding | No Subsetting"
-msgstr ""
+msgstr "预览和打印嵌入 | 无子集"
 
 #: lib/common/font-manager-freetype.c:300
 msgid "Editable Embedding | No Subsetting"
@@ -319,18 +322,16 @@ msgstr ""
 
 #: lib/common/font-manager-freetype.c:310
 msgid "Installable Embedding"
-msgstr ""
+msgstr "可安装的嵌入"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:702
-#, fuzzy
 msgid "Unknown Vendor"
-msgstr "未知(Unknown)"
+msgstr "未知供应商"
 
 #: lib/common/font-manager-license-pane.c:185
-#, fuzzy
 msgid "File does not contain license information."
-msgstr "文件未包含协议描述。"
+msgstr "文件不包含许可证信息。"
 
 #: lib/common/font-manager-preview-controls.c:76
 msgid "Left Aligned"
@@ -376,7 +377,7 @@ msgstr "许可证"
 
 #: lib/common/font-manager-preview-pane.c:434
 msgid "Search available characters"
-msgstr ""
+msgstr "搜索可用字符"
 
 #: lib/common/font-manager-properties-pane.c:80
 msgid "PostScript Name"
@@ -384,11 +385,11 @@ msgstr "PostScript 名称"
 
 #: lib/common/font-manager-properties-pane.c:81
 msgid "Family"
-msgstr ""
+msgstr "家族"
 
 #: lib/common/font-manager-properties-pane.c:82
 msgid "Style"
-msgstr ""
+msgstr "样式"
 
 #: lib/common/font-manager-properties-pane.c:83
 #: src/font-manager/Categories.vala:534
@@ -422,11 +423,11 @@ msgstr "供应商"
 
 #: lib/common/font-manager-properties-pane.c:90
 msgid "FileType"
-msgstr ""
+msgstr "文件类型"
 
 #: lib/common/font-manager-properties-pane.c:91
 msgid "Filesize"
-msgstr ""
+msgstr "文件大小"
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:598
@@ -447,15 +448,15 @@ msgstr "%s --> 资源不存在"
 
 #: lib/unicode/unicode-character-map.c:706
 msgid "Unknown character, unable to identify."
-msgstr ""
+msgstr "未知字符，无法识别。"
 
 #: lib/unicode/unicode-character-map.c:708
 msgid "Not found."
-msgstr ""
+msgstr "没有发现。"
 
 #: lib/unicode/unicode-character-map.c:710
 msgid "Character found."
-msgstr ""
+msgstr "找到字符。"
 
 #: lib/unicode/unicode-info.c:195
 msgid "<Non Private Use High Surrogate>"
@@ -483,23 +484,23 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:209
 msgid "<not assigned>"
-msgstr ""
+msgstr "<未分配>"
 
 #: lib/unicode/unicode-info.c:226
 msgid "Other, Control"
-msgstr ""
+msgstr "其他，控制"
 
 #: lib/unicode/unicode-info.c:228
 msgid "Other, Format"
-msgstr ""
+msgstr "其他, 格式"
 
 #: lib/unicode/unicode-info.c:230
 msgid "Other, Not Assigned"
-msgstr ""
+msgstr "其他，未指定"
 
 #: lib/unicode/unicode-info.c:232
 msgid "Other, Private Use"
-msgstr ""
+msgstr "其他，私人用途"
 
 #: lib/unicode/unicode-info.c:234
 msgid "Other, Surrogate"
@@ -814,9 +815,8 @@ msgstr "全部展开"
 
 #: src/font-manager/FontList.vala:52
 #: src/font-manager/web/google/FontList.vala:55
-#, fuzzy
 msgid "Search Families…"
-msgstr "搜索数据库"
+msgstr "搜索家族…"
 
 #: src/font-manager/FontList.vala:53
 #, c-format
@@ -838,7 +838,7 @@ msgstr ""
 
 #: src/font-manager/FontList.vala:492
 msgid "Show in Folder"
-msgstr ""
+msgstr "在文件夹中显示"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:151
@@ -857,7 +857,7 @@ msgstr "管理"
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
-msgstr ""
+msgstr "南非荷兰语（Afrikaans）"
 
 #: src/font-manager/Orthographies.vala:32
 msgid "Ahom"
@@ -2156,13 +2156,12 @@ msgid "accept"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-substitute.ui:61
-#, fuzzy
 msgid "default"
-msgstr "默认(Default)"
+msgstr "默认"
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:13
 msgid "Titlebar Button Style"
-msgstr ""
+msgstr "标题栏按钮样式"
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:43
 msgid "Flat"
@@ -2171,7 +2170,7 @@ msgstr ""
 #: src/font-manager/ui/font-manager-user-action-row.ui:16
 #: src/font-manager/web/google/ui/google-font-filters.ui:52
 msgid "Name"
-msgstr ""
+msgstr "名称"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:31
 msgid "Comment"
@@ -2179,15 +2178,15 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:47
 msgid "Executable"
-msgstr ""
+msgstr "可执行"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:63
 msgid "Arguments"
-msgstr ""
+msgstr "参数"
 
 #: src/font-manager/ui/font-manager-user-data.ui:73
 msgid "Font Configuration"
-msgstr ""
+msgstr "字体配置"
 
 #: src/font-manager/ui/font-manager-user-data.ui:102
 msgid "Font Collections"
@@ -2195,49 +2194,48 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-user-data.ui:160
 msgid "Installed Fonts"
-msgstr ""
+msgstr "已安装字体"
 
 #: src/font-manager/ui/font-manager-user-data.ui:189
 msgid "Custom Actions"
-msgstr ""
+msgstr "自定义动作"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
-msgstr ""
+msgstr "最新的"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:54
 msgid "Most Popular"
-msgstr ""
+msgstr "最受欢迎"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:55
 msgid "Trending"
-msgstr ""
+msgstr "趋势"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:69
 msgid "Sort Order"
-msgstr ""
+msgstr "排序方式"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:148
 msgid "Serif"
-msgstr ""
+msgstr "Serif 衬线字体"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:176
 msgid "Sans Serif"
-msgstr ""
+msgstr "Sans Serif 无衬线字体"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:232
 msgid "Handwriting"
-msgstr ""
+msgstr "手写"
 
 # msgstr "区块"
 #: src/font-manager/web/google/ui/google-font-filters.ui:282
-#, fuzzy
 msgid "Category"
 msgstr "分类"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:434
 msgid "Variations"
-msgstr ""
+msgstr "变体"
 
 #, fuzzy
 #~ msgid "_Continue"
