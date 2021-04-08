@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-03-22 18:26-0400\n"
-"PO-Revision-Date: 2021-03-05 12:50+0000\n"
+"PO-Revision-Date: 2021-03-25 16:29+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.1-dev\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -772,7 +772,7 @@ msgstr ""
 
 #: src/font-manager/Dialogs.vala:60
 msgid "Select executable"
-msgstr ""
+msgstr "Seleccionar ejecutable"
 
 #: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
 #: src/font-manager/UserData.vala:58
@@ -1203,7 +1203,7 @@ msgstr "Operadores matemáticos"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Meetei Mayak"
-msgstr ""
+msgstr "Manipurí"
 
 #: src/font-manager/Orthographies.vala:120
 msgid "Mende Kikakui"
@@ -1211,11 +1211,11 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:121
 msgid "MeroiticCursive"
-msgstr ""
+msgstr "Cursiva meroítica"
 
 #: src/font-manager/Orthographies.vala:122
 msgid "Meroitic Hieroglyphs"
-msgstr ""
+msgstr "Jeroglíficos meroíticos"
 
 #: src/font-manager/Orthographies.vala:123
 msgid "Miao"
@@ -1232,7 +1232,7 @@ msgstr "Mongol"
 #: src/font-manager/Orthographies.vala:131
 #: src/font-manager/web/google/Language.vala:52
 msgid "Myanmar"
-msgstr ""
+msgstr "Birmano"
 
 #: src/font-manager/Orthographies.vala:132
 msgid "New Tai Lue"
@@ -1351,7 +1351,7 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:160
 #: src/font-manager/web/google/Language.vala:55
 msgid "Tamil"
-msgstr ""
+msgstr "Tamil"
 
 #: src/font-manager/Orthographies.vala:161
 #: src/font-manager/web/google/Language.vala:56
@@ -1398,7 +1398,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:171
 msgid "Vedic Extensions"
-msgstr ""
+msgstr "Ampliaciones védicas"
 
 #: src/font-manager/Orthographies.vala:172
 msgid "Venda"
@@ -1552,12 +1552,12 @@ msgstr "Tipo de letra usado para leer los documentos."
 
 #: src/font-manager/preferences/Desktop.vala:48
 msgid "Monospace Font"
-msgstr "Tipo de letra monoespaciada"
+msgstr "Tipo de letra monoespaciado"
 
 #: src/font-manager/preferences/Desktop.vala:49
 msgid "Monospaced (fixed-width) font for use in locations such as terminals."
 msgstr ""
-"Tipo de letra monoespaciada (de ancho fijo) para usar en aplicaciones como "
+"Tipo de letra monoespaciado (de anchura fija) para usar en aplicaciones como "
 "el terminal."
 
 #: src/font-manager/preferences/Desktop.vala:54
@@ -1689,13 +1689,13 @@ msgstr "Sustituciones de tipos de letra"
 
 #: src/font-manager/preferences/Fontconfig.vala:599
 msgid "Easily substitute one font family for another."
-msgstr "Sustituya fácilmente una familia de tipos de letra por otra."
+msgstr "Sustituya fácilmente una familia tipográfica por otra."
 
 #: src/font-manager/preferences/Fontconfig.vala:600
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr ""
-"Para añadir una nueva sustitución, haga clic en el botón de añadir de la "
-"barra de herramientas."
+"Para añadir una sustitución nueva, pulse en el botón Añadir de la barra de "
+"herramientas."
 
 #: src/font-manager/preferences/Preferences.vala:24
 msgid "Interface"
