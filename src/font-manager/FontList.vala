@@ -114,13 +114,14 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             var text = new Gtk.CellRendererText();
             var count = new CellRendererStyleCount();
             var preview = new Gtk.CellRendererText();
+            text.ellipsize = Pango.EllipsizeMode.END;
             preview.ellipsize = Pango.EllipsizeMode.END;
             insert_column_with_data_func(FontListColumn.TOGGLE, "", toggle, toggle_cell_data_func);
             insert_column_with_data_func(FontListColumn.TEXT, "", text, text_cell_data_func);
             insert_column_with_data_func(FontListColumn.PREVIEW, "", preview, preview_cell_data_func);
             insert_column_with_data_func(FontListColumn.COUNT, "", count, count_cell_data_func);
             for (int i = 0; i < FontListColumn.N_COLUMNS; i++)
-                get_column(i).expand = (i == FontListColumn.PREVIEW);
+                get_column(i).expand = (i != FontListColumn.TOGGLE);
             connect_signals();
             default_sample = Pango.Language.from_string("xx").get_sample_string();
             local_sample = get_localized_pangram();

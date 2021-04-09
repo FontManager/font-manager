@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.38.2 -->
 <interface domain="font-manager">
   <requires lib="gtk+" version="3.22"/>
   <requires lib="user-templates" version="0.0"/>
@@ -73,10 +74,23 @@
                         <property name="orientation">vertical</property>
                         <property name="position">200</property>
                         <child>
-                          <object class="FontManagerFontListPane" id="fontlist_pane">
+                          <object class="GtkPaned" id="lock_fontlist_pane">
                             <property name="visible">True</property>
-                            <property name="can-focus">False</property>
-                            <property name="orientation">vertical</property>
+                            <property name="can-focus">True</property>
+                            <child>
+                              <object class="FontManagerFontListPane" id="fontlist_pane">
+                                <property name="visible">True</property>
+                                <property name="can-focus">False</property>
+                                <property name="orientation">vertical</property>
+                                <child>
+                                  <placeholder/>
+                                </child>
+                              </object>
+                              <packing>
+                                <property name="resize">False</property>
+                                <property name="shrink">True</property>
+                              </packing>
+                            </child>
                             <child>
                               <placeholder/>
                             </child>
