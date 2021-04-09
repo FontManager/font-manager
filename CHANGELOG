@@ -1,3 +1,7 @@
+0.8.5 -> 0.8.6
+
+- Fix GSettings crash with GNOME 40 due to missing "antialias" setting
+
 0.8.4 -> 0.8.5
 
 - Fix FTBFS with Vala >= 0.52
