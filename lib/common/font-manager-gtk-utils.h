@@ -23,6 +23,10 @@
 
 #include <gtk/gtk.h>
 
+#include <pango/pango-context.h>
+#include <pango/pango-fontmap.h>
+#include <pango/pangofc-fontmap.h>
+
 #define FONT_MANAGER_BUS_ID "org.gnome.FontManager"
 #define FONT_MANAGER_BUS_PATH "/org/gnome/FontManager"
 #define FONT_MANAGER_FONT_VIEWER_BUS_ID "org.gnome.FontViewer"
@@ -127,6 +131,7 @@ GType font_manager_drag_target_type_get_type (void);
 #define FONT_MANAGER_TYPE_DRAG_TARGET_TYPE (font_manager_drag_target_type_get_type ())
 
 void font_manager_set_application_style (void);
+void font_manager_clear_pango_cache (PangoContext *ctx);
 void font_manager_widget_set_align (GtkWidget *widget, GtkAlign align);
 void font_manager_widget_set_expand (GtkWidget *widget, gboolean expand);
 void font_manager_widget_set_margin (GtkWidget *widget, gint margin);

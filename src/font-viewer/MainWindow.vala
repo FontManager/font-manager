@@ -136,9 +136,7 @@ namespace FontManager.FontViewer {
                 db.execute_query("SELECT DISTINCT filepath FROM Fonts WHERE description = \"%s\"".printf(font.description));
                 if (db.stmt.step() == Sqlite.ROW)
                     return db.stmt.column_text(0);
-            } catch (Error e) {
-                warning(e.message);
-            }
+            } catch (Error e) { }
             return null;
         }
 

@@ -121,7 +121,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             insert_column_with_data_func(FontListColumn.PREVIEW, "", preview, preview_cell_data_func);
             insert_column_with_data_func(FontListColumn.COUNT, "", count, count_cell_data_func);
             for (int i = 0; i < FontListColumn.N_COLUMNS; i++)
-                get_column(i).expand = (i != FontListColumn.TOGGLE);
+                get_column(i).expand = (i != FontListColumn.TOGGLE && i != FontListColumn.COUNT);
             connect_signals();
             default_sample = Pango.Language.from_string("xx").get_sample_string();
             local_sample = get_localized_pangram();
@@ -202,13 +202,23 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             Value val;
             model.get_value(treeiter, FontModelColumn.OBJECT, out val);
             Object obj = val.get_object();
-            Pango.AttrList attrs = new Pango.AttrList();
-            attrs.insert(Pango.attr_fallback_new(false));
-            cell.set_property("attributes", attrs);
             if (obj is Family) {
-                cell.set_property("text", ((Family) obj).description);
+                cell.set_property("text", "");
                 cell.set_property("visible", false);
             } else {
+                Gtk.TreeIter? parent;
+                if (model.iter_parent(out parent, treeiter)) {
+                    Gtk.TreePath path = model.get_path(parent);
+                    if (!is_row_expanded(path)) {
+                        cell.set_property("text", "");
+                        cell.set_property("visible", false);
+                        val.unset();
+                        return;
+                    }
+                }
+                Pango.AttrList attrs = new Pango.AttrList();
+                attrs.insert(Pango.attr_fallback_new(false));
+                cell.set_property("attributes", attrs);
                 string description = ((Font) obj).description;
                 if (samples != null && samples.contains(description)) {
                     string sample = samples.lookup(description);

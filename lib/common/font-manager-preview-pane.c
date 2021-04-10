@@ -357,7 +357,7 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
         sqlite3_free(path);
     }
     if (error != NULL) {
-        g_warning("There was an error retrieving metadata from the database for %s : %s", filepath, error->message);
+        // g_warning("There was an error retrieving metadata from the database for %s : %s", filepath, error->message);
         g_clear_error(&error);
     }
     if (!res) {
@@ -605,6 +605,7 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self, const gchar *u
     }
     g_autofree gchar *path = g_file_get_path(file);
     font_manager_add_application_font(path);
+    font_manager_clear_pango_cache(gtk_widget_get_pango_context((GtkWidget *) self));
     g_autoptr(FontManagerFont) font = font_manager_font_new();
     g_autoptr(JsonObject) source = font_manager_get_attributes_from_filepath(path, index, &error);
     if (error != NULL) {

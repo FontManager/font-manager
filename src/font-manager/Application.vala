@@ -281,8 +281,13 @@ namespace FontManager {
                 available_families.clear();
                 foreach (string family in available_fonts.get_members())
                     available_families.add(family);
-                if (main_window != null)
-                    Idle.add(() => { model = font_model; return GLib.Source.REMOVE; });
+                if (main_window != null) {
+                    Idle.add(() => {
+                        clear_pango_cache(main_window.get_pango_context());
+                        model = font_model;
+                        return GLib.Source.REMOVE;
+                    });
+                }
                 enable_user_font_configuration(true);
                 return true;
             };

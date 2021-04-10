@@ -175,3 +175,19 @@ font_manager_add_keyboard_shortcut (GSimpleAction *action,
     gtk_application_set_accels_for_action(application, detailed_action_name, accels);
     return;
 }
+
+/**
+ * font_manager_clear_pango_cache:
+ * @ctx:    #PangoContext
+ *
+ * Forces Pango to update the cached font configuration.
+ *
+ * Required to render sourced fonts on Pango > 1.47
+ */
+void
+font_manager_clear_pango_cache (PangoContext *ctx)
+{
+    PangoFontMap *font_map = pango_context_get_font_map(ctx);
+    pango_fc_font_map_config_changed((PangoFcFontMap *) font_map);
+    return;
+}
