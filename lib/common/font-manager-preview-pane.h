@@ -45,7 +45,7 @@ typedef enum
 }
 FontManagerPreviewPanePage;
 
-GType font_manager_preview_pane_page_get_type (void) G_GNUC_CONST;
+GType font_manager_preview_pane_page_get_type (void);
 #define FONT_MANAGER_TYPE_PREVIEW_PANE_PAGE (font_manager_preview_pane_page_get_type ())
 
 const gchar * font_manager_preview_pane_page_to_string (FontManagerPreviewPanePage page);

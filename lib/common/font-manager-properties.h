@@ -88,7 +88,7 @@ typedef enum
 }
 FontManagerPropertiesType;
 
-GType font_manager_properties_type_get_type (void) G_GNUC_CONST;
+GType font_manager_properties_type_get_type (void);
 #define FONT_MANAGER_TYPE_PROPERTIES_TYPE (font_manager_properties_type_get_type ())
 
 FontManagerProperties * font_manager_properties_new (void);

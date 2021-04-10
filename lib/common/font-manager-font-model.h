@@ -54,7 +54,7 @@ typedef enum
 }
 FontManagerFontModelColumn;
 
-GType font_manager_font_model_column_get_type (void) G_GNUC_CONST;
+GType font_manager_font_model_column_get_type (void);
 #define FONT_MANAGER_TYPE_FONT_MODEL_COLUMN (font_manager_font_model_column_get_type ())
 
 FontManagerFontModel * font_manager_font_model_new (void);

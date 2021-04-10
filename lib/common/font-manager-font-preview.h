@@ -51,7 +51,7 @@ typedef enum
 }
 FontManagerFontPreviewMode;
 
-GType font_manager_font_preview_mode_get_type (void) G_GNUC_CONST;
+GType font_manager_font_preview_mode_get_type (void);
 #define FONT_MANAGER_TYPE_FONT_PREVIEW_MODE (font_manager_font_preview_mode_get_type())
 
 const gchar * font_manager_font_preview_mode_to_string (FontManagerFontPreviewMode mode);

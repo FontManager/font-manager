@@ -125,7 +125,7 @@ typedef enum
 }
 FontManagerDatabaseError;
 
-GType font_manager_database_error_get_type (void) G_GNUC_CONST;
+GType font_manager_database_error_get_type (void);
 #define FONT_MANAGER_TYPE_DATABASE_ERROR (font_manager_database_error_get_type ())
 
 struct _FontManagerDatabase
@@ -152,7 +152,7 @@ typedef enum
 }
 FontManagerDatabaseType;
 
-GType font_manager_database_type_get_type (void) G_GNUC_CONST;
+GType font_manager_database_type_get_type (void);
 #define FONT_MANAGER_TYPE_DATABASE_TYPE (font_manager_database_type_get_type ())
 
 const gchar * font_manager_database_get_type_name (FontManagerDatabaseType type);

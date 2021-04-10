@@ -109,7 +109,7 @@ typedef enum
 }
 FontManagerWeight;
 
-GType font_manager_weight_get_type (void) G_GNUC_CONST;
+GType font_manager_weight_get_type (void);
 #define FONT_MANAGER_TYPE_WEIGHT (font_manager_weight_get_type ())
 
 const gchar * font_manager_weight_to_string (FontManagerWeight weight);
@@ -131,7 +131,7 @@ typedef enum
 }
 FontManagerSlant;
 
-GType font_manager_slant_get_type (void) G_GNUC_CONST;
+GType font_manager_slant_get_type (void);
 #define FONT_MANAGER_TYPE_SLANT (font_manager_slant_get_type ())
 
 const gchar * font_manager_slant_to_string (FontManagerSlant slant);
@@ -164,7 +164,7 @@ typedef enum
 }
 FontManagerWidth;
 
-GType font_manager_width_get_type (void) G_GNUC_CONST;
+GType font_manager_width_get_type (void);
 #define FONT_MANAGER_TYPE_WIDTH (font_manager_width_get_type ())
 
 const gchar * font_manager_width_to_string (FontManagerWidth width);
@@ -188,7 +188,7 @@ typedef enum
 }
 FontManagerSpacing;
 
-GType font_manager_spacing_get_type (void) G_GNUC_CONST;
+GType font_manager_spacing_get_type (void);
 #define FONT_MANAGER_TYPE_SPACING (font_manager_spacing_get_type ())
 
 const gchar * font_manager_spacing_to_string (FontManagerSpacing spacing);
@@ -215,7 +215,7 @@ typedef enum
 }
 FontManagerSubpixelOrder;
 
-GType font_manager_subpixel_order_get_type (void) G_GNUC_CONST;
+GType font_manager_subpixel_order_get_type (void);
 #define FONT_MANAGER_TYPE_SUBPIXEL_ORDER (font_manager_subpixel_order_get_type ())
 
 const gchar * font_manager_subpixel_order_to_string (FontManagerSubpixelOrder rgba);
@@ -238,7 +238,7 @@ typedef enum
 }
 FontManagerHintStyle;
 
-GType font_manager_hint_style_get_type (void) G_GNUC_CONST;
+GType font_manager_hint_style_get_type (void);
 #define FONT_MANAGER_TYPE_HINT_STYLE (font_manager_hint_style_get_type ())
 
 const gchar * font_manager_hint_style_to_string (FontManagerHintStyle hinting);
@@ -261,7 +261,7 @@ typedef enum
 }
 FontManagerLCDFilter;
 
-GType font_manager_lcd_filter_get_type (void) G_GNUC_CONST;
+GType font_manager_lcd_filter_get_type (void);
 #define FONT_MANAGER_TYPE_LCD_FILTER (font_manager_lcd_filter_get_type ())
 
 const gchar * font_manager_lcd_filter_to_string (FontManagerLCDFilter filter);
