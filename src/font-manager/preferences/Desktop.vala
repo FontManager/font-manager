@@ -73,6 +73,24 @@ namespace FontManager {
             N_("The type of hinting to use when rendering fonts."),
             "int",
         },
+        {
+            "font-antialiasing",
+            N_("Antialiasing"),
+            N_("The type of antialiasing to use when rendering fonts."),
+            "int",
+        },
+        {
+            "font-rgba-order",
+            N_("RGBA order"),
+            N_("The order of subpixel elements on an LCD screen; only used when antialiasing is set to rgba."),
+            "int",
+        },
+        {
+            "font-hinting",
+            N_("Hinting"),
+            N_("The type of hinting to use when rendering fonts."),
+            "int",
+        },
     };
 
     public class DesktopPreferences : Gtk.ScrolledWindow {
@@ -88,7 +106,7 @@ namespace FontManager {
                 x_settings = get_gsettings(GNOME_XSETTINGS_ID);
                 initialized = true;
             }
-            return (interface_settings != null && x_settings != null);
+            return (interface_settings != null);
         }
 
         public DesktopPreferences () {
@@ -105,7 +123,7 @@ namespace FontManager {
 
         void generate_options_list (Settings? interface_settings,
                                     Settings? x_settings) {
-            /* Ensure keys still exist since we don't control these schemas and GSettings crashes on any error */
+            /* Ensure keys exist since we don't control these schemas and GSettings crashes on any error */
             SettingsSchemaSource default_schemas = SettingsSchemaSource.get_default();
             SettingsSchema? interface_schema = default_schemas.lookup(GNOME_INTERFACE_ID, true);
             string [] interface_keys = {};
@@ -118,10 +136,8 @@ namespace FontManager {
             Gtk.Revealer spg_revealer = new Gtk.Revealer();
             OptionScale? antialias = null;
             foreach (var setting in DesktopSettings) {
-                if (!(setting.key in interface_keys) && !(setting.key in xsettings_keys)) {
-                    message("Ignoring deprecated settings key : %s", setting.key);
+                if (!(setting.key in interface_keys) && !(setting.key in xsettings_keys))
                     continue;
-                }
                 Gtk.Widget? widget = null;
                 if (setting.type == "string") {
                     widget = new LabeledFontButton(dgettext(null, setting.name));
@@ -130,15 +146,15 @@ namespace FontManager {
                     widget = new LabeledSpinButton(dgettext(null, setting.name), 0.5, 3.0, 0.1);
                     interface_settings.bind(setting.key, widget, "value", SettingsBindFlags.DEFAULT);
                 } else if (setting.type == "int") {
-                    if (setting.key != "rgba-order") {
+                    if (!(setting.key.contains("rgba-order"))) {
                         string? [] options = null;
-                        if (setting.key == "antialiasing")
+                        if (setting.key.contains("antialiasing"))
                             options = { "None", "Grayscale", "RGBA" };
-                        else if (setting.key == "hinting")
+                        else if (setting.key.contains("hinting"))
                             options = { "None", "Slight", "Medium", "Full" };
                         widget = new OptionScale(dgettext(null, setting.name), options);
                         var scale = widget as OptionScale;
-                        if (setting.key == "antialiasing")
+                        if (setting.key.contains("antialiasing"))
                             antialias = scale;
                         scale.value = (double) x_settings.get_enum(setting.key);
                         scale.notify["value"].connect(() => {
