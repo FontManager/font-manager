@@ -177,14 +177,17 @@ namespace FontManager {
                         spg_revealer.add(spg);
                         spg.show();
                         spg.options[0].hide();
-                        spg.rgba = x_settings.get_enum(setting.key);
+                        Settings? rgba_settings = interface_settings;
+                        if (setting.key == "rgba-order")
+                            rgba_settings = x_settings;
+                        spg.rgba = rgba_settings.get_enum(setting.key);
                         spg.notify["rgba"].connect(() => {
-                            x_settings.set_enum(setting.key, spg.rgba);
+                            rgba_settings.set_enum(setting.key, spg.rgba);
                         });
-                        x_settings.changed.connect((key) => {
+                        rgba_settings.changed.connect((key) => {
                             if (key != setting.key)
                                 return;
-                            int new_value = x_settings.get_enum(setting.key);
+                            int new_value = rgba_settings.get_enum(setting.key);
                             if (spg.rgba != new_value)
                                 spg.rgba = new_value;
                         });
