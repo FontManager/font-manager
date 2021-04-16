@@ -121,8 +121,10 @@ namespace FontManager {
             list.show();
         }
 
-        void generate_options_list (Settings? interface_settings,
+        void generate_options_list (Settings interface_settings,
                                     Settings? x_settings) {
+            /* Settings instance to be used below for scale widgets */
+            Settings? _settings = interface_settings;
             /* Ensure keys exist since we don't control these schemas and GSettings crashes on any error */
             SettingsSchemaSource default_schemas = SettingsSchemaSource.get_default();
             SettingsSchema? interface_schema = default_schemas.lookup(GNOME_INTERFACE_ID, true);
@@ -130,9 +132,16 @@ namespace FontManager {
             if (interface_schema != null)
                 interface_keys = interface_schema.list_keys();
             string [] xsettings_keys = {};
-            SettingsSchema? xsettings_schema = default_schemas.lookup(GNOME_XSETTINGS_ID, true);
-            if (xsettings_schema != null)
-                xsettings_keys = xsettings_schema.list_keys();
+            if ("font-antialiasing" in interface_keys) {
+                x_settings = null;
+            } else {
+                SettingsSchema? xsettings_schema = default_schemas.lookup(GNOME_XSETTINGS_ID, true);
+                if (xsettings_schema != null)
+                    xsettings_keys = xsettings_schema.list_keys();
+            }
+            /* Newer key not found use deprecated xsettings keys if possible */
+            if (x_settings != null)
+                _settings = x_settings;
             Gtk.Revealer spg_revealer = new Gtk.Revealer();
             OptionScale? antialias = null;
             foreach (var setting in DesktopSettings) {
@@ -156,9 +165,6 @@ namespace FontManager {
                         var scale = widget as OptionScale;
                         if (setting.key.contains("antialiasing"))
                             antialias = scale;
-                        Settings? _settings = interface_settings;
-                        if (setting.key == "antialiasing" || setting.key == "hinting")
-                            _settings = x_settings;
                         scale.value = (double) _settings.get_enum(setting.key);
                         scale.notify["value"].connect(() => {
                             _settings.set_enum(setting.key, (int) scale.value);
@@ -177,17 +183,14 @@ namespace FontManager {
                         spg_revealer.add(spg);
                         spg.show();
                         spg.options[0].hide();
-                        Settings? rgba_settings = interface_settings;
-                        if (setting.key == "rgba-order")
-                            rgba_settings = x_settings;
-                        spg.rgba = rgba_settings.get_enum(setting.key);
+                        spg.rgba = _settings.get_enum(setting.key);
                         spg.notify["rgba"].connect(() => {
-                            rgba_settings.set_enum(setting.key, spg.rgba);
+                            _settings.set_enum(setting.key, spg.rgba);
                         });
-                        rgba_settings.changed.connect((key) => {
+                        _settings.changed.connect((key) => {
                             if (key != setting.key)
                                 return;
-                            int new_value = rgba_settings.get_enum(setting.key);
+                            int new_value = _settings.get_enum(setting.key);
                             if (spg.rgba != new_value)
                                 spg.rgba = new_value;
                         });
