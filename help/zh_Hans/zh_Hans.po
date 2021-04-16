@@ -1,10 +1,11 @@
 # Eric <spice2wolf@gmail.com>, 2021.
+# 玉堂白鹤 <yjwork@qq.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-03-22 18:26-0400\n"
-"PO-Revision-Date: 2021-04-08 06:26+0000\n"
-"Last-Translator: Eric <spice2wolf@gmail.com>\n"
+"PO-Revision-Date: 2021-04-13 05:26+0000\n"
+"Last-Translator: 玉堂白鹤 <yjwork@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager-help-docs/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -39,7 +40,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "全部"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
@@ -91,7 +92,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr "粗细"
+msgstr "字体粗细"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
