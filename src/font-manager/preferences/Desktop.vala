@@ -156,14 +156,17 @@ namespace FontManager {
                         var scale = widget as OptionScale;
                         if (setting.key.contains("antialiasing"))
                             antialias = scale;
-                        scale.value = (double) x_settings.get_enum(setting.key);
+                        Settings? _settings = interface_settings;
+                        if (setting.key == "antialiasing" || setting.key == "hinting")
+                            _settings = x_settings;
+                        scale.value = (double) _settings.get_enum(setting.key);
                         scale.notify["value"].connect(() => {
-                            x_settings.set_enum(setting.key, (int) scale.value);
+                            _settings.set_enum(setting.key, (int) scale.value);
                         });
-                        x_settings.changed.connect((key) => {
+                        _settings.changed.connect((key) => {
                             if (key != setting.key)
                                 return;
-                            var new_value = (double) x_settings.get_enum(setting.key);
+                            var new_value = (double) _settings.get_enum(setting.key);
                             if (scale.value != new_value)
                                 scale.value = new_value;
                         });
