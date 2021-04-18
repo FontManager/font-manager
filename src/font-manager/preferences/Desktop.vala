@@ -114,6 +114,7 @@ namespace FontManager {
             list = new Gtk.ListBox();
             list.set_selection_mode(Gtk.SelectionMode.NONE);
             var place_holder = new PlaceHolder(null, null, _("GNOME desktop settings schema not found"), "dialog-warning-symbolic");
+            place_holder.show();
             list.set_placeholder(place_holder);
             if (DesktopPreferences.available())
                 generate_options_list(interface_settings, x_settings);
