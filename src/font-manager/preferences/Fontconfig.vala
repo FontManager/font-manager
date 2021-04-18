@@ -532,6 +532,7 @@ Note that not all environments/applications will honor these settings.""");
             entry.completion = new Gtk.EntryCompletion();
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("completion-model", entry.completion, "model", flags);
+            flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             entry.bind_property("text", this, "family", flags);
             notify["completion-model"].connect_after(() => {
                 entry.completion.set_text_column(0);
