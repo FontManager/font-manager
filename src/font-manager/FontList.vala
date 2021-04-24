@@ -120,8 +120,12 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             insert_column_with_data_func(FontListColumn.TEXT, "", text, text_cell_data_func);
             insert_column_with_data_func(FontListColumn.PREVIEW, "", preview, preview_cell_data_func);
             insert_column_with_data_func(FontListColumn.COUNT, "", count, count_cell_data_func);
-            for (int i = 0; i < FontListColumn.N_COLUMNS; i++)
-                get_column(i).expand = (i != FontListColumn.TOGGLE && i != FontListColumn.COUNT);
+            for (int i = 0; i < FontListColumn.N_COLUMNS; i++) {
+                var column = get_column(i);
+                column.resizable = true;
+                column.sizing = Gtk.TreeViewColumnSizing.AUTOSIZE;
+                column.expand = (i != FontListColumn.TOGGLE && i != FontListColumn.COUNT);
+            }
             connect_signals();
             default_sample = Pango.Language.from_string("xx").get_sample_string();
             local_sample = get_localized_pangram();
@@ -199,40 +203,38 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                                                        Gtk.CellRenderer cell,
                                                        Gtk.TreeModel model,
                                                        Gtk.TreeIter treeiter) {
-            Value val;
-            model.get_value(treeiter, FontModelColumn.OBJECT, out val);
-            Object obj = val.get_object();
-            if (obj is Family) {
+            Gtk.TreeIter? parent;
+            if (model.iter_parent(out parent, treeiter)) {
+                Gtk.TreePath path = model.get_path(parent);
+                if (is_row_expanded(path)) {
+                    Value val;
+                    model.get_value(treeiter, FontModelColumn.OBJECT, out val);
+                    Object obj = val.get_object();
+                    Pango.AttrList attrs = new Pango.AttrList();
+                    attrs.insert(Pango.attr_fallback_new(false));
+                    cell.set_property("attributes", attrs);
+                    string description = ((Font) obj).description;
+                    if (samples != null && samples.contains(description)) {
+                        string sample = samples.lookup(description);
+                        if (sample != default_sample && sample != local_sample)
+                            cell.set_property("text", sample);
+                        else
+                            cell.set_property("text", description);
+                    } else
+                        cell.set_property("text", description);
+                    cell.set_property("font", description);
+                    cell.set_property("visible", true);
+                    set_sensitivity(cell, treeiter, ((Font) obj).family);
+                    val.unset();
+                    return;
+                } else {
+                    cell.set_property("text", "");
+                    cell.set_property("visible", false);
+                }
+            } else {
                 cell.set_property("text", "");
                 cell.set_property("visible", false);
-            } else {
-                Gtk.TreeIter? parent;
-                if (model.iter_parent(out parent, treeiter)) {
-                    Gtk.TreePath path = model.get_path(parent);
-                    if (!is_row_expanded(path)) {
-                        cell.set_property("text", "");
-                        cell.set_property("visible", false);
-                        val.unset();
-                        return;
-                    }
-                }
-                Pango.AttrList attrs = new Pango.AttrList();
-                attrs.insert(Pango.attr_fallback_new(false));
-                cell.set_property("attributes", attrs);
-                string description = ((Font) obj).description;
-                if (samples != null && samples.contains(description)) {
-                    string sample = samples.lookup(description);
-                    if (sample != default_sample && sample != local_sample)
-                        cell.set_property("text", sample);
-                    else
-                        cell.set_property("text", description);
-                } else
-                    cell.set_property("text", description);
-                cell.set_property("font", description);
-                cell.set_property("visible", true);
-                set_sensitivity(cell, treeiter, ((Font) obj).family);
             }
-            val.unset();
             return;
         }
 
