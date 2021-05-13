@@ -42,28 +42,31 @@
     <screenshots>
         <screenshot type="default">
             <image type="source">
-                http://raw.githubusercontent.com/FontManager/resources/master/font_viewer_main.png
+                https://raw.githubusercontent.com/FontManager/resources/master/font_viewer_main.png
             </image>
         </screenshot>
         <screenshot>
             <image type="source">
-                http://raw.githubusercontent.com/FontManager/resources/master/font_viewer_character_map.png
+                https://raw.githubusercontent.com/FontManager/resources/master/font_viewer_character_map.png
             </image>
         </screenshot>
         <screenshot>
             <image type="source">
-                http://raw.githubusercontent.com/FontManager/resources/master/font_viewer_properties.png
+                https://raw.githubusercontent.com/FontManager/resources/master/font_viewer_properties.png
             </image>
         </screenshot>
         <screenshot>
             <image type="source">
-                http://raw.githubusercontent.com/FontManager/resources/master/font_viewer_license.png
+                https://raw.githubusercontent.com/FontManager/resources/master/font_viewer_license.png
             </image>
         </screenshot>
     </screenshots>
 
     <releases>
-        <release version="@PACKAGE_VERSION@" date="2021-01-31"/>
+        <release version="@PACKAGE_VERSION@" date="2021-04-09"/>
+        <release version="0.8.5" date="2021-03-22"/>
+        <release version="0.8.4-1" date="2021-02-02"/>
+        <release version="0.8.4" date="2021-01-31"/>
         <release version="0.8.3" date="2020-12-03"/>
         <release version="0.8.2" date="2020-12-02"/>
         <release version="0.8.1" date="2020-12-02"/>
