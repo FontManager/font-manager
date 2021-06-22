@@ -1,14 +1,18 @@
+# Quentin PAGÈS <quentinantonin@free.fr>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-03-22 18:26-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-05-30 14:32+0000\n"
+"Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
+"Language-Team: Occitan <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/oc/>\n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -23,7 +27,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "Categorias"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
@@ -35,7 +39,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "Totes"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
@@ -45,7 +49,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "Sistèma"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
@@ -55,7 +59,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "Utilizaire"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
@@ -77,7 +81,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "Largor"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
@@ -117,7 +121,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "Licéncia"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
@@ -129,7 +133,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "Provesidor"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -141,7 +145,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "Tipe de fichièr"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
@@ -221,7 +225,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "Colleccions"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
@@ -567,7 +571,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "Fonts"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
