@@ -17,13 +17,14 @@
 #
 # Author:
 # Jerry Casiano <JerryCasiano@gmail.com>
+# Artem <KovalevArtem.ru@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-03-22 18:26-0400\n"
-"PO-Revision-Date: 2021-01-25 13:27+0300\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2021-06-22 13:33+0000\n"
+"Last-Translator: Artem <KovalevArtem.ru@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/ru/>\n"
 "Language: ru\n"
@@ -32,7 +33,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Poedit 2.2.4\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -281,7 +282,7 @@ msgstr "Полный"
 #: lib/common/font-manager-fontconfig.c:1181
 #: src/font-manager/ui/font-manager-main-window.ui:164
 msgid "Default"
-msgstr "По-умолчанию"
+msgstr "По умолчанию"
 
 #: lib/common/font-manager-fontconfig.c:1185
 msgid "Legacy"
