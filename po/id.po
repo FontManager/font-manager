@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the font-manager package.
 # liimee <alt3753.7@gmail.com>, 2021.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
+# Reza Almanda <rezaalmanda27@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-03-22 18:26-0400\n"
-"PO-Revision-Date: 2021-05-29 10:32+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"PO-Revision-Date: 2021-06-22 13:33+0000\n"
+"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/id/>\n"
 "Language: id\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -386,7 +387,7 @@ msgstr "Berat"
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:537
 msgid "Spacing"
-msgstr ""
+msgstr "Jarak"
 
 #: lib/common/font-manager-properties-pane.c:87
 msgid "Version"
@@ -645,7 +646,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:544
 msgid "Filetype"
-msgstr ""
+msgstr "tipe file"
 
 #: src/font-manager/Categories.vala:544
 msgid "Grouped by filetype"
@@ -653,7 +654,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:551
 msgid "All"
-msgstr ""
+msgstr "Semua"
 
 #: src/font-manager/Categories.vala:551
 msgid "All Fonts"
@@ -661,7 +662,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:552
 msgid "System"
-msgstr ""
+msgstr "Sistem"
 
 #: src/font-manager/Categories.vala:552
 msgid "Fonts available to all users"
@@ -669,7 +670,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr ""
+msgstr "Jenis Keluarga"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
@@ -1463,7 +1464,7 @@ msgstr ""
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Disabled"
-msgstr ""
+msgstr "Nonaktif"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
@@ -1483,7 +1484,7 @@ msgstr ""
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr ""
+msgstr "Pengguna"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "Fonts available only to you"
@@ -2057,11 +2058,11 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:58
 msgid "Categories"
-msgstr ""
+msgstr "Kategori"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:129
 msgid "Collections"
-msgstr ""
+msgstr "Koleksi"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:175
 msgid "Edit selected category"

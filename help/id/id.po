@@ -1,11 +1,12 @@
 # liimee <alt3753.7@gmail.com>, 2021.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
+# Reza Almanda <rezaalmanda27@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-03-22 18:26-0400\n"
-"PO-Revision-Date: 2021-05-29 10:32+0000\n"
-"Last-Translator: Jacque Fresco <aidter@use.startmail.com>\n"
+"PO-Revision-Date: 2021-06-22 13:33+0000\n"
+"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/id/>\n"
 "Language: id\n"
@@ -13,22 +14,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr ""
+msgstr "Reza Almanda (https://rezaalmanda.github.io)"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
 msgid "Automatically generated categories"
-msgstr ""
+msgstr "Kategori yang dibuat secara otomatis"
 
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "Kategori"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
@@ -38,17 +39,17 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "Semua"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr ""
+msgstr "Semua font yang tersedia."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "Sistem"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
@@ -58,17 +59,17 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "Pengguna"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr ""
+msgstr "Font yang tersedia hanya untuk anda."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "Jenis Keluarga"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
@@ -108,12 +109,12 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "Jarak"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr ""
+msgstr "Diurutkan menurut properti jarak font."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
@@ -138,7 +139,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "tipe file"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
@@ -158,7 +159,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "Nonaktif"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
@@ -208,12 +209,12 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7
 msgid "Organizing Your Fonts"
-msgstr ""
+msgstr "Kelola Font Anda"
 
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "Koleksi"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
@@ -272,7 +273,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:59
 msgid "To delete a collection:"
-msgstr ""
+msgstr "Untuk menghapus koleksi:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:62
@@ -280,7 +281,7 @@ msgstr ""
 #: C/font-manager-collections.page:99
 #: C/font-manager-collections.page:117
 msgid "Select the collection"
-msgstr ""
+msgstr "Pilih koleksi"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -311,17 +312,17 @@ msgstr ""
 #: C/font-manager-collections.page:104
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
-msgstr ""
+msgstr "Klik <gui style=\"checkbox\"> kotak centang </gui>"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:96
 msgid "To disable a collection:"
-msgstr ""
+msgstr "Untuk menonaktifkan koleksi:"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:114
 msgid "To remove families from a collection:"
-msgstr ""
+msgstr "Untuk menghapus keluarga dari koleksi:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:122
@@ -351,22 +352,24 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:151
 msgid "Press <gui style=\"button\">Enter</gui>"
-msgstr ""
+msgstr "Tekan <gui style=\"button\">Enter</gui>"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-activation.page:8
 msgid "Activating and De-activating font families"
-msgstr ""
+msgstr "Mengaktifkan dan Menonaktifkan keluarga font"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-activation.page:11
 msgid "Activation"
-msgstr ""
+msgstr "Aktivasi"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:13
 msgid "<app>Font Manager</app> allows you to activate and de-activate font families."
 msgstr ""
+"<app> Font Manager</app> memungkinkan Anda mengaktifkan dan menonaktifkan "
+"keluarga font."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:18
@@ -406,7 +409,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-font-installation.page:10
 msgid "Installation"
-msgstr ""
+msgstr "Pemasangan"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-installation.page:12
@@ -730,7 +733,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-license.page:10
 msgid "Licensing"
-msgstr ""
+msgstr "Lisensi"
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:12
@@ -810,7 +813,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11
 msgid "Language Support"
-msgstr ""
+msgstr "Dukungan Bahasa"
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:13
@@ -969,33 +972,33 @@ msgstr ""
 #: C/index.page:10
 msgctxt "link"
 msgid "Font Manager"
-msgstr ""
+msgstr "Font Manager"
 
 #. (itstool) path: info/title
 #: C/index.page:11
 msgctxt "text"
 msgid "Font Manager"
-msgstr ""
+msgstr "Font Manager"
 
 #. (itstool) path: credit/name
 #: C/index.page:14
 msgid "Jerry Casiano"
-msgstr ""
+msgstr "Jerry Casiano"
 
 #. (itstool) path: credit/years
 #: C/index.page:16
 msgid "2009–2020"
-msgstr ""
+msgstr "2009–2020"
 
 #. (itstool) path: credit/name
 #: C/index.page:20
 msgid "Weblate"
-msgstr ""
+msgstr "Weblate"
 
 #. (itstool) path: license/p
 #: C/index.page:24
 msgid "GNU General Public License Version 3"
-msgstr ""
+msgstr "Lisensi Publik Umum GNU Versi 3"
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1006,23 +1009,27 @@ msgstr ""
 msgctxt "_"
 msgid "external ref='media/preferences-desktop-font.png' md5='f9108efe15fb60827b402b9a3a936589'"
 msgstr ""
+"external ref='media/preferences-desktop-font.png' "
+"md5='f9108efe15fb60827b402b9a3a936589'"
 
 #. (itstool) path: page/title
 #: C/index.page:29
 msgid "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font"
+".png\"> Logo Font Manager </media> Font Manager"
 
 #. (itstool) path: section/title
 #: C/index.page:37
 msgid "Managing Your Fonts"
-msgstr ""
+msgstr "Kelola Font Anda"
 
 #. (itstool) path: section/title
 #: C/index.page:41
 msgid "Getting to Know Your Fonts"
-msgstr ""
+msgstr "Mengenal Font Anda"
 
 #. (itstool) path: section/title
 #: C/index.page:45
 msgid "Advanced Features"
-msgstr ""
+msgstr "Fitur lanjutan"
