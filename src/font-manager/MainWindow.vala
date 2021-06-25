@@ -304,9 +304,13 @@ namespace FontManager {
             /* Let GTK+ handle re-ordering */
             collections_tree.set_reorderable(true);
 
+            Gtk.TreePath drag_start_path = null;
+
             fontlist.drag_data_received.connect(on_drag_data_received);
             fontlist_pane.drag_data_received.connect(on_drag_data_received);
             fontlist.drag_begin.connect((w, c) => {
+                if (!fontlist.get_visible_range(out drag_start_path, null))
+                    drag_start_path = null;
                 /* When reorderable is set no other drag and drop is possible.
                  * Temporarily disable it and set the treeview up as a drag destination. */
                 collections_tree.set_reorderable(false);
@@ -318,6 +322,11 @@ namespace FontManager {
             fontlist.drag_end.connect((w, c) => {
                 sidebar.standard.category_tree.sensitive = true;
                 collections_tree.set_reorderable(true);
+                Idle.add(() => {
+                    if (drag_start_path != null)
+                        fontlist.scroll_to_cell(drag_start_path, null, false, 0.0f, 0.0f);
+                    return GLib.Source.REMOVE;
+                });
             });
             collections_tree.drag_data_received.connect(on_drag_data_received);
 
