@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-03-22 18:26-0400\n"
-"PO-Revision-Date: 2021-04-13 05:26+0000\n"
+"PO-Revision-Date: 2021-06-04 04:32+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/zh_Hans/>\n"
@@ -35,7 +35,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"X-Generator: Weblate 4.7-dev\n"
 
 # Not translate very good, just for use.
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
@@ -416,7 +416,7 @@ msgstr "版本"
 #: lib/common/font-manager-properties-pane.c:89
 #: src/font-manager/Categories.vala:543
 msgid "Vendor"
-msgstr "供应商"
+msgstr "厂商"
 
 #: lib/common/font-manager-properties-pane.c:90
 msgid "FileType"
@@ -690,7 +690,7 @@ msgstr "可供所有用户使用的字体"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr "字体家族类型"
+msgstr "字体族"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
@@ -1487,7 +1487,7 @@ msgstr "已创建: %s"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Disabled"
-msgstr "禁用"
+msgstr "已禁用"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
@@ -1499,7 +1499,7 @@ msgstr "根据支持的拼写体系进行过滤"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
-msgstr "未分类"
+msgstr "未排序"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"

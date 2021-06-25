@@ -1,32 +1,34 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
-# Quentin PAGÈS <quentinantonin@free.fr>, 2021.
+# liimee <alt3753.7@gmail.com>, 2021.
+# Jacque Fresco <aidter@use.startmail.com>, 2021.
+# Reza Almanda <rezaalmanda27@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"Project-Id-Version: font-manager 0.8.3\n"
+"Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-03-22 18:26-0400\n"
-"PO-Revision-Date: 2021-05-30 14:32+0000\n"
-"Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
-"Language-Team: Occitan <https://hosted.weblate.org/projects/font-manager/"
-"font-manager/oc/>\n"
-"Language: oc\n"
+"PO-Revision-Date: 2021-06-22 13:33+0000\n"
+"Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/id/>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.7.1-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
-msgstr "Gestionari de poliça"
+msgstr "Pengelola Font"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "Aplikasi pengelolaan font sederhana untuk Lingkungan Desktop Gtk+"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
@@ -47,7 +49,7 @@ msgstr ""
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr "Previsualizar, comparar e gerir las poliças"
+msgstr ""
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
@@ -83,28 +85,28 @@ msgstr ""
 #: extensions/thunar/font-manager-menu-provider.c:131
 #: src/font-manager/FontList.vala:490
 msgid "Install"
-msgstr "Installar"
+msgstr "Pasang"
 
 #: extensions/nautilus/font-manager-menu-provider.c:163
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr "Installar lo fichièr de poliça seleccionat"
+msgstr "Pasang berkas font yang dipilih"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr ""
+msgstr "Pasang berkas-berkas font yang dipilih"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr "Proprietats de la poliça"
+msgstr "Properti Font"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:106
 msgid "Preview"
-msgstr "Previsualizacion"
+msgstr "Tinjauan"
 
 #: lib/common/font-manager-font-preview.c:87
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
@@ -114,31 +116,31 @@ msgstr ""
 #: lib/common/font-manager-fontconfig.c:826
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
-msgstr ""
+msgstr "Tipis"
 
 #: lib/common/font-manager-fontconfig.c:828
 msgid "Ultra-Light"
-msgstr ""
+msgstr "Ultra-Ringan"
 
 #: lib/common/font-manager-fontconfig.c:830
 #: lib/common/font-manager-fontconfig.c:1183
 #: src/font-manager/web/google/Weight.vala:69
 msgid "Light"
-msgstr ""
+msgstr "Ringan"
 
 #: lib/common/font-manager-fontconfig.c:832
 msgid "Semi-Light"
-msgstr ""
+msgstr "Semi-Ringan"
 
 #: lib/common/font-manager-fontconfig.c:834
 msgid "Book"
-msgstr "Libre"
+msgstr "Buku"
 
 #: lib/common/font-manager-fontconfig.c:836
 #: lib/common/font-manager-fontconfig.c:1140
 #: src/font-manager/web/google/Weight.vala:73
 msgid "Medium"
-msgstr ""
+msgstr "Medium"
 
 #: lib/common/font-manager-fontconfig.c:838
 msgid "Semi-Bold"
@@ -147,7 +149,7 @@ msgstr ""
 #: lib/common/font-manager-fontconfig.c:840
 #: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
-msgstr "Gras"
+msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:842
 msgid "Ultra-Bold"
@@ -164,7 +166,7 @@ msgstr ""
 #: lib/common/font-manager-fontconfig.c:921
 #: src/font-manager/web/google/WebFont.vala:158
 msgid "Italic"
-msgstr "Italica"
+msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:923
 msgid "Oblique"
@@ -204,7 +206,7 @@ msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:1044
 msgid "Proportional"
-msgstr ""
+msgstr "Proporsional"
 
 #: lib/common/font-manager-fontconfig.c:1046
 msgid "Dual Width"
@@ -213,7 +215,7 @@ msgstr ""
 #: lib/common/font-manager-fontconfig.c:1048
 #: src/font-manager/web/google/ui/google-font-filters.ui:260
 msgid "Monospace"
-msgstr ""
+msgstr "Monospace"
 
 #: lib/common/font-manager-fontconfig.c:1050
 msgid "Charcell"
@@ -225,38 +227,38 @@ msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:1091
 msgid "RGB"
-msgstr ""
+msgstr "RGB"
 
 #: lib/common/font-manager-fontconfig.c:1093
 msgid "BGR"
-msgstr ""
+msgstr "BGR"
 
 #: lib/common/font-manager-fontconfig.c:1095
 msgid "VRGB"
-msgstr ""
+msgstr "VRGB"
 
 #: lib/common/font-manager-fontconfig.c:1097
 msgid "VBGR"
-msgstr ""
+msgstr "VBGR"
 
 #: lib/common/font-manager-fontconfig.c:1099
 #: lib/common/font-manager-fontconfig.c:1144
 #: lib/common/font-manager-fontconfig.c:1187
 msgid "None"
-msgstr ""
+msgstr "Tidak Ada"
 
 #: lib/common/font-manager-fontconfig.c:1138
 msgid "Slight"
-msgstr ""
+msgstr "Sedikit"
 
 #: lib/common/font-manager-fontconfig.c:1142
 msgid "Full"
-msgstr ""
+msgstr "Penuh"
 
 #: lib/common/font-manager-fontconfig.c:1181
 #: src/font-manager/ui/font-manager-main-window.ui:164
 msgid "Default"
-msgstr ""
+msgstr "Default"
 
 #: lib/common/font-manager-fontconfig.c:1185
 msgid "Legacy"
@@ -309,7 +311,7 @@ msgstr ""
 
 #: lib/common/font-manager-license-pane.c:185
 msgid "File does not contain license information."
-msgstr ""
+msgstr "Berkas tidak mengandung informasi lisensi."
 
 #: lib/common/font-manager-preview-controls.c:76
 msgid "Left Aligned"
@@ -321,7 +323,7 @@ msgstr ""
 
 #: lib/common/font-manager-preview-controls.c:88
 msgid "Fill"
-msgstr "Justificat"
+msgstr "Isi"
 
 #: lib/common/font-manager-preview-controls.c:94
 msgid "Right Aligned"
@@ -338,39 +340,39 @@ msgstr ""
 #: lib/common/font-manager-preview-pane.c:43
 #: lib/common/font-manager-preview-pane.c:551
 msgid "Characters"
-msgstr "Caractèrs"
+msgstr "Karakter-karakter"
 
 #: lib/common/font-manager-preview-pane.c:45
 #: lib/common/font-manager-preview-pane.c:552
 msgid "Properties"
-msgstr "Proprietats"
+msgstr "Properti-properti"
 
 #: lib/common/font-manager-preview-pane.c:47
 #: lib/common/font-manager-preview-pane.c:553
 #: src/font-manager/Categories.vala:541
 msgid "License"
-msgstr "Licéncia"
+msgstr "Lisensi"
 
 #: lib/common/font-manager-preview-pane.c:434
 msgid "Search available characters"
-msgstr ""
+msgstr "Cari karakter yang tersedia"
 
 #: lib/common/font-manager-properties-pane.c:80
 msgid "PostScript Name"
-msgstr "Nom PostScript"
+msgstr "Nama PostScript"
 
 #: lib/common/font-manager-properties-pane.c:81
 msgid "Family"
-msgstr "Familha"
+msgstr ""
 
 #: lib/common/font-manager-properties-pane.c:82
 msgid "Style"
-msgstr "Estil"
+msgstr "Gaya"
 
 #: lib/common/font-manager-properties-pane.c:83
 #: src/font-manager/Categories.vala:534
 msgid "Width"
-msgstr "Largor"
+msgstr "Lebar"
 
 #: lib/common/font-manager-properties-pane.c:84
 #: src/font-manager/Categories.vala:536
@@ -380,58 +382,58 @@ msgstr ""
 #: lib/common/font-manager-properties-pane.c:85
 #: src/font-manager/Categories.vala:535
 msgid "Weight"
-msgstr ""
+msgstr "Berat"
 
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:537
 msgid "Spacing"
-msgstr ""
+msgstr "Jarak"
 
 #: lib/common/font-manager-properties-pane.c:87
 msgid "Version"
-msgstr "Version"
+msgstr "Versi"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-properties-pane.c:89
 #: src/font-manager/Categories.vala:543
 msgid "Vendor"
-msgstr "Provesidor"
+msgstr "Vendor"
 
 #: lib/common/font-manager-properties-pane.c:90
 msgid "FileType"
-msgstr ""
+msgstr "JenisBerkas"
 
 #: lib/common/font-manager-properties-pane.c:91
 msgid "Filesize"
-msgstr ""
+msgstr "Ukuran berkas"
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:598
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
-msgstr ""
+msgstr "Reguler"
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:593
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: lib/common/font-manager-source.c:308 lib/common/font-manager-source.c:323
 msgid "Source Unavailable"
-msgstr ""
+msgstr "Sumber Tidak Tersedia"
 
 #: lib/unicode/unicode-character-map.c:706
 msgid "Unknown character, unable to identify."
-msgstr ""
+msgstr "Karakter tak diketahui, tidak dapat mengidentifikasi."
 
 #: lib/unicode/unicode-character-map.c:708
 msgid "Not found."
-msgstr "Pas trobat."
+msgstr "Tak ditemukan."
 
 #: lib/unicode/unicode-character-map.c:710
 msgid "Character found."
-msgstr ""
+msgstr "Karakter ditemukan."
 
 #: lib/unicode/unicode-info.c:195
 msgid "<Non Private Use High Surrogate>"
@@ -491,7 +493,7 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:240
 msgid "Letter, Other"
-msgstr "Letra, autras"
+msgstr ""
 
 #: lib/unicode/unicode-info.c:242
 msgid "Letter, Titlecase"
@@ -499,7 +501,7 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:244
 msgid "Letter, Uppercase"
-msgstr "Letra, majuscula"
+msgstr ""
 
 #: lib/unicode/unicode-info.c:246
 msgid "Mark, Spacing Combining"
@@ -519,11 +521,11 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:254
 msgid "Number, Letter"
-msgstr "Nombre, letra"
+msgstr ""
 
 #: lib/unicode/unicode-info.c:256
 msgid "Number, Other"
-msgstr "Nombre, autres"
+msgstr ""
 
 #: lib/unicode/unicode-info.c:258
 msgid "Punctuation, Connector"
@@ -547,7 +549,7 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:268
 msgid "Punctuation, Other"
-msgstr "Pontuacion, autras"
+msgstr ""
 
 #: lib/unicode/unicode-info.c:270
 msgid "Punctuation, Open"
@@ -610,31 +612,13 @@ msgid ""
 "    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 "    "
 msgstr ""
-"\n"
-"    Aqueste programa es un logicial liure : lo podètz tornar distribuir e/o "
-"lo modificar\n"
-"    segon los tèrmes de la licéncia publica generala GNU, coma es publicada "
-"per la\n"
-"    Free Software Foundation ; version 2 de la licéncia, o (se volètz) tota "
-"version seguenta.\n"
-"\n"
-"    Aqueste programa es distribuit dins l'espèr d'èsser util, mas\n"
-"    SENS CAP DE GARANTIDA, inclusas las garantidas de\n"
-"    COMERCIALIZACION o d'ADAPTACION A UNA TÒCA ESPECIFICA.\n"
-"    Consultatz la licéncia publica generala GNU per mai de detalhs.\n"
-"\n"
-"    Deuriatz aver recebut una còpia de la licéncia GNU GPL\n"
-"amb aqueste programa.\n"
-"\n"
-"    Autrament vejatz <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
-"    "
 
 #. Translators : Please feel free to add yourself to the list of translators,
 #. but do not modify or remove previous entries. New entries should be separated
 #. by a newline character so that they are displayed properly in the interface.
 #: src/font-manager/About.vala:69
 msgid "translator-credits"
-msgstr "Quentin PAGÈS"
+msgstr ""
 
 #: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
@@ -662,7 +646,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:544
 msgid "Filetype"
-msgstr "Tipe de fichièr"
+msgstr "tipe file"
 
 #: src/font-manager/Categories.vala:544
 msgid "Grouped by filetype"
@@ -670,7 +654,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:551
 msgid "All"
-msgstr "Totes"
+msgstr "Semua"
 
 #: src/font-manager/Categories.vala:551
 msgid "All Fonts"
@@ -678,7 +662,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:552
 msgid "System"
-msgstr "Sistèma"
+msgstr "Sistem"
 
 #: src/font-manager/Categories.vala:552
 msgid "Fonts available to all users"
@@ -686,7 +670,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr ""
+msgstr "Jenis Keluarga"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
@@ -721,8 +705,7 @@ msgstr ""
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] "%i variacion "
-msgstr[1] "%i variacions "
+msgstr[0] ""
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -734,7 +717,7 @@ msgstr ""
 
 #: src/font-manager/Collections.vala:390
 msgid "Compress…"
-msgstr "Compressar…"
+msgstr ""
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
@@ -754,7 +737,7 @@ msgstr ""
 #: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
 #: src/font-manager/UserData.vala:58
 msgid "_Select"
-msgstr "_Seleccionar"
+msgstr ""
 
 #: src/font-manager/Dialogs.vala:64 src/font-manager/Dialogs.vala:79
 #: src/font-manager/Dialogs.vala:96 src/font-manager/Dialogs.vala:121
@@ -762,7 +745,7 @@ msgstr "_Seleccionar"
 #: src/font-manager/UserData.vala:38 src/font-manager/UserData.vala:49
 #: src/font-manager/UserData.vala:59
 msgid "_Cancel"
-msgstr "_Anullar"
+msgstr ""
 
 #: src/font-manager/Dialogs.vala:75
 msgid "Select Destination"
@@ -774,7 +757,7 @@ msgstr ""
 
 #: src/font-manager/Dialogs.vala:95 src/font-manager/Dialogs.vala:120
 msgid "_Open"
-msgstr "_Dobrir"
+msgstr ""
 
 #: src/font-manager/Dialogs.vala:117
 msgid "Select source folders"
@@ -786,7 +769,7 @@ msgstr ""
 
 #: src/font-manager/Dialogs.vala:160 src/font-manager/Dialogs.vala:172
 msgid "_Delete"
-msgstr "_Suprimir"
+msgstr ""
 
 #: src/font-manager/Dialogs.vala:186
 msgid "Fonts installed in your home directory will appear here."
@@ -832,17 +815,17 @@ msgstr ""
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:151
 msgid "Browse"
-msgstr "Percórrer"
+msgstr ""
 
 #: src/font-manager/MainWindow.vala:56
 #: src/font-manager/ui/font-manager-main-window.ui:122
 msgid "Compare"
-msgstr "Comparar"
+msgstr ""
 
 #: src/font-manager/MainWindow.vala:58
 #: src/font-manager/ui/font-manager-main-window.ui:135
 msgid "Manage"
-msgstr "Gerir"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
@@ -863,7 +846,7 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
 msgid "Arabic"
-msgstr ""
+msgstr "Arab"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
@@ -879,7 +862,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:39
 msgid "Balinese"
-msgstr ""
+msgstr "Bahasa Bali"
 
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
@@ -928,7 +911,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
-msgstr "Catalan"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:52
 msgid "Central European"
@@ -994,7 +977,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:71
 msgid "Currencies"
-msgstr "Devisas"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
@@ -1007,7 +990,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:74
 msgid "Dutch"
-msgstr "Neerlandés"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:75
 msgid "Egyptian Hieroglyphs"
@@ -1015,7 +998,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:76
 msgid "Emoticons"
-msgstr "Emoticònas"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:77
 msgid "Ethiopic"
@@ -1025,7 +1008,7 @@ msgstr ""
 #. { "Euro", "Euro" },
 #: src/font-manager/Orthographies.vala:82
 msgid "Farsi"
-msgstr ""
+msgstr "Farsi"
 
 #: src/font-manager/Orthographies.vala:83
 msgid "Food and Drink"
@@ -1073,7 +1056,7 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:93
 #: src/font-manager/Orthographies.vala:95
 msgid "IPA"
-msgstr ""
+msgstr "IPA"
 
 #: src/font-manager/Orthographies.vala:94
 msgid "Igbo Onwu"
@@ -1085,7 +1068,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:97
 msgid "Javanese"
-msgstr ""
+msgstr "Bahasa Jawa"
 
 #: src/font-manager/Orthographies.vala:98
 msgid "Japanese Jinmeiyo"
@@ -1270,7 +1253,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:147
 msgid "Romanian"
-msgstr "Romanés"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:148
 msgid "Runic"
@@ -1355,7 +1338,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:167
 msgid "Turkish"
-msgstr "Turc"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:168
 msgid "Uighur"
@@ -1408,59 +1391,59 @@ msgstr ""
 
 #: src/font-manager/Orthography.vala:204
 msgid "Update in progress"
-msgstr "Actualizacion en cors"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:62
 msgid "Updating Database — Fonts"
-msgstr "Actualizacion de la basa de donadas — Poliças"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:64
 msgid "Updating Database — Metadata"
-msgstr "Actualizacion de la basa de donadas — Metadonadas"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:66
 msgid "Updating Database — Orthography"
-msgstr "Actualizacion de la basa de donadas — Ortografia"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:83
 msgid "Keyboard Shortcuts"
-msgstr "Acorchis clavièr"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:84
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:19
 msgid "Help"
-msgstr "Ajuda"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:85
 msgid "About"
-msgstr "A prepaus"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:103
 msgid "Import"
-msgstr "Importar"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:104 src/font-manager/UserData.vala:132
 msgid "Export"
-msgstr "Exportar"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:111 src/font-manager/UserData.vala:37
 #: src/font-manager/UserData.vala:48
 msgid "User Data"
-msgstr "Donadas utilizaire"
+msgstr ""
 
 #. HAVE_WEBKIT
 #: src/font-manager/TitleBar.vala:267
 msgid "Add Fonts"
-msgstr "Apondre poliças"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:268
 msgid "Remove Fonts"
-msgstr "Suprimir poliças"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:275
 #: src/font-manager/ui/font-manager-main-window.ui:175
 msgid "Preferences"
-msgstr "Preferéncias"
+msgstr ""
 
 #: src/font-manager/UserData.vala:55
 msgid "Select Exported Data"
@@ -1481,7 +1464,7 @@ msgstr ""
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Disabled"
-msgstr ""
+msgstr "Nonaktif"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
@@ -1501,7 +1484,7 @@ msgstr ""
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr "Utilizaire"
+msgstr "Pengguna"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "Fonts available only to you"
@@ -1661,19 +1644,19 @@ msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:24
 msgid "Interface"
-msgstr "Interfàcia"
+msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:25
 msgid "Desktop"
-msgstr "Burèu"
+msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:26
 msgid "Sources"
-msgstr "Fonts"
+msgstr "Sumber"
 
 #: src/font-manager/preferences/Preferences.vala:27
 msgid "Actions"
-msgstr "Accions"
+msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:28
 msgid "Substitutions"
@@ -1682,7 +1665,7 @@ msgstr ""
 #: src/font-manager/preferences/Preferences.vala:29
 #: src/font-manager/web/google/ui/google-font-filters.ui:204
 msgid "Display"
-msgstr "Afichatge"
+msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:30
 msgid "Rendering"
@@ -1771,7 +1754,7 @@ msgstr ""
 
 #: src/font-manager/web/google/GoogleFonts.vala:138
 msgid "Network Error"
-msgstr "Error ret"
+msgstr ""
 
 #: src/font-manager/web/google/GoogleFonts.vala:139
 msgid "Please check your network settings"
@@ -1830,15 +1813,15 @@ msgstr ""
 
 #: src/font-manager/web/google/Language.vala:45
 msgid "Japanese"
-msgstr ""
+msgstr "Bahasa Jepang"
 
 #: src/font-manager/web/google/Language.vala:48
 msgid "Korean"
-msgstr ""
+msgstr "Bahasa Korea"
 
 #: src/font-manager/web/google/Language.vala:49
 msgid "Latin"
-msgstr "Latin"
+msgstr ""
 
 #: src/font-manager/web/google/Language.vala:50
 msgid "Latin Extended"
@@ -1873,7 +1856,6 @@ msgstr ""
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
@@ -1913,16 +1895,16 @@ msgstr ""
 
 #: src/font-viewer/MainWindow.vala:176
 msgid "Installed"
-msgstr "Installada"
+msgstr ""
 
 #: src/font-viewer/MainWindow.vala:179
 #: src/font-viewer/font-viewer-main-window.ui:53
 msgid "Install Font"
-msgstr "Installar la poliça"
+msgstr ""
 
 #: lib/unicode/ui/unicode-character-map-zoom-window.ui:80
 msgid "Copy"
-msgstr "Copiar"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-browse-view.ui:34
 msgid "List View"
@@ -1938,11 +1920,11 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-browse-view.ui:182
 msgid "Previous page"
-msgstr "Pagina precedenta"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-browse-view.ui:210
 msgid "Next page"
-msgstr "Pagina seguenta"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
@@ -1972,7 +1954,7 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:12
 msgid "Discard"
-msgstr "Ignorar"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:30
 msgid "Running applications may require a restart to reflect any changes."
@@ -2020,7 +2002,7 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:14
 msgid "General"
-msgstr "General"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:26
 msgid "Increase preview size"
@@ -2036,15 +2018,15 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:47
 msgid "Reload"
-msgstr "Recargar"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:54
 msgid "Quit the application"
-msgstr "Quitar l’aplicacion"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:62
 msgid "Mode"
-msgstr "Mòde"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:67
 msgid "Switch to Manage mode"
@@ -2076,11 +2058,11 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:58
 msgid "Categories"
-msgstr "Categorias"
+msgstr "Kategori"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:129
 msgid "Collections"
-msgstr "Colleccions"
+msgstr "Koleksi"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:175
 msgid "Edit selected category"
