@@ -1,14 +1,18 @@
+# HelaBasa <R45XvezA@protonmail.ch>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-03-22 18:26-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-07-10 05:32+0000\n"
+"Last-Translator: HelaBasa <R45XvezA@protonmail.ch>\n"
+"Language-Team: Sinhala <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/si/>\n"
 "Language: si\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -23,7 +27,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "ප්‍රවර්ග"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
@@ -33,7 +37,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "සියල්ල"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
@@ -43,7 +47,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "පද්ධතිය"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
@@ -53,7 +57,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "පරිශීලක"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
@@ -73,7 +77,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "පළල"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
@@ -113,7 +117,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "බලපත්‍රය"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
@@ -153,7 +157,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "අබල කර ඇත"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
@@ -341,7 +345,7 @@ msgstr ""
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:146
 msgid "Enter a new name"
-msgstr ""
+msgstr "නව නමක් ඇතුළත් කරන්න"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:151
@@ -805,7 +809,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11
 msgid "Language Support"
-msgstr ""
+msgstr "භාෂා සහාය"
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:13
@@ -1020,4 +1024,4 @@ msgstr ""
 #. (itstool) path: section/title
 #: C/index.page:45
 msgid "Advanced Features"
-msgstr ""
+msgstr "උසස් විශේෂාංග"
