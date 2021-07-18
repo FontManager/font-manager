@@ -133,7 +133,7 @@ namespace FontManager {
                     try {
                         install_file(file, install_dir);
                     } catch (Error e) {
-                        critical(e.message);
+                        critical("%s : %s", e.message, path);
                     }
                     processed++;
                     try {
