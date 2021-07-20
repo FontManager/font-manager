@@ -99,6 +99,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
 
     public abstract class BaseFontList : BaseTreeView {
 
+        public string selected_iter { get; protected set; default = "0"; }
         public GLib.HashTable <string, string>? samples { get; set; default = null; }
 
         protected Gtk.CellRendererToggle toggle;
@@ -292,7 +293,6 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             }
         }
 
-        public string selected_iter { get; protected set; default = "0"; }
         public string? selected_family { get; private set; default = null; }
         public GenericArray <string>? selected_fonts { get; set; default = null; }
         public Font? selected_font { get; private set; default = null; }
@@ -718,6 +718,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         bool refresh_required = false;
         Gtk.TreeModel? real_model = null;
         Gtk.TreeModelFilter? search_filter = null;
+        GLib.HashTable <string, string> filter_state;
         [GtkChild] unowned Gtk.Revealer revealer;
         [GtkChild] unowned Gtk.ScrolledWindow scrolled_window;
 
@@ -731,6 +732,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             revealer.add(controls);
             connect_signals();
             controls.show();
+            filter_state = new HashTable <string, string> (str_hash, str_equal);
             base.constructed();
             return;
         }
@@ -782,7 +784,19 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         }
 
         void connect_signals () {
-            notify["filter"].connect(() => { refilter(); });
+            notify["filter"].connect(() => {
+                refilter();
+                if (filter != null)
+                    Idle.add(() => {
+                        if (filter_state.contains(filter.name))
+                            restore_last_selected_treepath(fontlist, filter_state[filter.name]);
+                        return GLib.Source.REMOVE;
+                    });
+            });
+            fontlist.notify["selected-iter"].connect(() => {
+                if (filter != null && fontlist.selected_iter != "0")
+                    filter_state[filter.name] = fontlist.selected_iter;
+            });
             controls.entry.search_changed.connect(() => {
                 queue_refilter();
                 text_length = controls.entry.get_text_length();
