@@ -794,7 +794,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                     });
             });
             fontlist.notify["selected-iter"].connect(() => {
-                if (filter != null && fontlist.selected_iter != "0")
+                if (filter != null)
                     filter_state[filter.name] = fontlist.selected_iter;
             });
             controls.entry.search_changed.connect(() => {
