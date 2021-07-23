@@ -785,13 +785,12 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
 
         void connect_signals () {
             notify["filter"].connect(() => {
+                string? saved_iter = null;
+                if (filter != null && filter_state.contains(filter.name))
+                    saved_iter = filter_state[filter.name];
                 refilter();
-                if (filter != null)
-                    Idle.add(() => {
-                        if (filter_state.contains(filter.name))
-                            restore_last_selected_treepath(fontlist, filter_state[filter.name]);
-                        return GLib.Source.REMOVE;
-                    });
+                if (saved_iter != null)
+                    restore_last_selected_treepath(fontlist, saved_iter);
             });
             fontlist.notify["selected-iter"].connect(() => {
                 if (filter != null)
