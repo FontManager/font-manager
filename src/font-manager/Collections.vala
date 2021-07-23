@@ -208,6 +208,33 @@ namespace FontManager {
         N_COLUMNS
     }
 
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-collection-rename-popover.ui")]
+    internal class CollectionRenamePopover : Gtk.Popover {
+
+        public signal void renamed (string new_name);
+
+        [GtkChild] public unowned Gtk.Entry name_entry { get; }
+        [GtkChild] public unowned Gtk.Button rename_button { get; }
+
+        public override void constructed () {
+            rename_button.clicked.connect(() => {
+                renamed(name_entry.get_text().strip());
+                Idle.add(() => { popdown(); return GLib.Source.REMOVE; });
+            });
+            key_press_event.connect((ev) => {
+                if (ev.keyval == Gdk.Key.KP_Enter || ev.keyval == Gdk.Key.Return) {
+                    renamed(name_entry.get_text().strip());
+                    Idle.add(() => { popdown(); return GLib.Source.REMOVE; });
+                    return Gdk.EVENT_STOP;
+                }
+                return Gdk.EVENT_PROPAGATE;
+            });
+            base.constructed();
+            return;
+        }
+
+    }
+
     public class CollectionTree : BaseTreeView {
 
         public signal void changed ();
@@ -235,6 +262,8 @@ namespace FontManager {
         Gtk.MenuItem menu_header;
         Gtk.TreeIter _selected_iter_;
         Gtk.CellRendererText renderer;
+
+        CollectionRenamePopover? rename_popover = null;
 
         construct {
             name = "FontManagerCollectionTree";
@@ -379,6 +408,36 @@ namespace FontManager {
             return;
         }
 
+        Gdk.Rectangle get_selected_area () {
+            Gdk.Rectangle area;
+            Gtk.TreePath path = new Gtk.TreePath.from_string(selected_iter);
+            get_cell_area(path, get_column(CollectionColumn.NAME), out area);
+            return area;
+        }
+
+        void rename ()
+        requires (selected_filter != null) {
+            if (rename_popover == null) {
+                rename_popover = new CollectionRenamePopover();
+                rename_popover.set_relative_to(this);
+                rename_popover.renamed.connect((new_name) => {
+                    if (new_name == "" || new_name == selected_filter.name)
+                        return;
+                    model.collections.rename_collection(selected_filter, new_name);
+                    menu_header.label = new_name;
+                    Idle.add(() => {
+                        model.collections.save();
+                        return GLib.Source.REMOVE;
+                    });
+                });
+            }
+            rename_popover.name_entry.set_text(selected_filter.name);
+            rename_popover.name_entry.grab_focus();
+            rename_popover.set_pointing_to(get_selected_area());
+            rename_popover.popup();
+            return;
+        }
+
         /* TODO :
          * Implement and group all context menus used in the application so that
          * they're easy to modify/extend in one place.
@@ -388,6 +447,7 @@ namespace FontManager {
             MenuEntry [] context_menu_entries = {
                 MenuEntry("copy_to", _("Copy to…"), "app.copy_to", null, new MenuCallbackWrapper(copy_to)),
                 MenuEntry("compress", _("Compress…"), "app.compress", null, new MenuCallbackWrapper(compress)),
+                MenuEntry("rename", _("Rename…"), "app.rename", null, new MenuCallbackWrapper(rename)),
             };
             var popup_menu = new Gtk.Menu();
             menu_header = new Gtk.MenuItem.with_label("");
@@ -436,6 +496,7 @@ namespace FontManager {
             model.get_value(iter, CollectionColumn.OBJECT, out val);
             var group = (Collection) val.get_object();
             model.collections.rename_collection(group, new_name);
+            menu_header.label = new_name;
             val.unset();
             Idle.add(() => {
                 model.collections.save();
