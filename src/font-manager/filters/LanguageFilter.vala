@@ -57,7 +57,7 @@ namespace FontManager {
         public LanguageFilter () {
             base(_("Supported Orthographies"),
                  DEFAULT_LANGUAGE_FILTER_COMMENT,
-                 "preferences-desktop-locale",
+                 "preferences-desktop-locale-symbolic",
                  SELECT_ON_LANGUAGE,
                  CategoryIndex.LANGUAGE);
             GLib.Settings? settings = get_default_application().settings;

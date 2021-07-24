@@ -462,7 +462,7 @@ namespace FontManager {
             model.get_value(treeiter, CategoryModelColumn.OBJECT, out val);
             var obj = val.get_object();
             if (is_row_expanded(model.get_path(treeiter)))
-                cell.set_property("icon-name", "folder-open");
+                cell.set_property("icon-name", "folder-open-symbolic");
             else
                 cell.set_property("icon-name", ((Category) obj).icon);
             val.unset();
@@ -548,8 +548,8 @@ namespace FontManager {
 
     GenericArray <Category> get_default_categories (Database db) {
         var filters = new GenericArray <Category> ();
-        filters.add(new Category(_("All"), _("All Fonts"), "format-text-bold", "%s;".printf(SELECT_FROM_FONTS), CategoryIndex.ALL));
-        filters.add(new Category(_("System"), _("Fonts available to all users"), "computer", "%s owner!=0 AND filepath LIKE '/usr%';".printf(SELECT_FROM_METADATA_WHERE), CategoryIndex.SYSTEM));
+        filters.add(new Category(_("All"), _("All Fonts"), "format-text-bold-symbolic", "%s;".printf(SELECT_FROM_FONTS), CategoryIndex.ALL));
+        filters.add(new Category(_("System"), _("Fonts available to all users"), "computer-symbolic", "%s owner!=0 AND filepath LIKE '/usr%';".printf(SELECT_FROM_METADATA_WHERE), CategoryIndex.SYSTEM));
         filters.add(new UserFonts());
         filters.add(construct_panose_filter());
         foreach (var entry in attributes)
@@ -563,17 +563,17 @@ namespace FontManager {
     }
 
     Category construct_panose_filter () {
-        var panose = new Category(_("Family Kind"), _("Only fonts which include Panose information will be grouped here."), "folder", null, CategoryIndex.PANOSE);
+        var panose = new Category(_("Family Kind"), _("Only fonts which include Panose information will be grouped here."), "folder-symbolic", null, CategoryIndex.PANOSE);
         string [] kind = { _("Any"), _("No Fit"), _("Text and Display"), _("Script"), _("Decorative"), _("Pictorial") };
         for (int i = 0; i < kind.length; i++)
-            panose.children.add(new Category(kind[i], kind[i], "emblem-documents", "%s P0 = '%i';".printf(SELECT_FROM_PANOSE_WHERE, i), i));
+            panose.children.add(new Category(kind[i], kind[i], "emblem-documents-symbolic", "%s P0 = '%i';".printf(SELECT_FROM_PANOSE_WHERE, i), i));
         return panose;
     }
 
     Category construct_attribute_filter (Database db, FilterData data) {
         var name = dgettext(null, data.name);
         var comment = dgettext(null, data.comment);
-        var filter = new Category(name, comment, "folder", null, data.index);
+        var filter = new Category(name, comment, "folder-symbolic", null, data.index);
         try {
             var keyword = data.column;
             db.execute_query("SELECT DISTINCT %s FROM Fonts ORDER BY %s;".printf(keyword, keyword));
@@ -596,7 +596,7 @@ namespace FontManager {
                         continue;
                     else
                         type = _("Regular");
-                filter.children.add(new Category(type, type, "emblem-documents", "%s WHERE %s=\"%i\";".printf(SELECT_FROM_FONTS, keyword, val), data.index));
+                filter.children.add(new Category(type, type, "emblem-documents-symbolic", "%s WHERE %s=\"%i\";".printf(SELECT_FROM_FONTS, keyword, val), data.index));
             }
         } catch (DatabaseError e) { }
         return filter;
@@ -606,7 +606,7 @@ namespace FontManager {
         string keyword = data.column.replace("\"", "\\\"").replace("'", "''");
         var name = dgettext(null, data.name);
         var comment = dgettext(null, data.comment);
-        var filter = new Category(name, comment, "folder", null, data.index);
+        var filter = new Category(name, comment, "folder-symbolic", null, data.index);
         try {
             db.execute_query("SELECT DISTINCT [%s] FROM Metadata ORDER BY [%s];".printf(keyword, keyword));
             foreach (unowned Sqlite.Statement row in db) {

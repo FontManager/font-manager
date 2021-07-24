@@ -24,7 +24,7 @@ namespace FontManager {
 
         public UserFonts () {
             string sql = "%s filepath LIKE \"%s%\";".printf(SELECT_FROM_METADATA_WHERE, Environment.get_home_dir());
-            base(_("User"), _("Fonts available only to you"), "avatar-default", sql, CategoryIndex.USER);
+            base(_("User"), _("Fonts available only to you"), "avatar-default-symbolic", sql, CategoryIndex.USER);
         }
 
         public new void update () {
