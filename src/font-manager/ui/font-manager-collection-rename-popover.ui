@@ -38,6 +38,7 @@
           <object class="GtkEntry" id="name_entry">
             <property name="visible">True</property>
             <property name="can-focus">True</property>
+            <property name="has-focus">True</property>
             <property name="can-default">True</property>
             <property name="hexpand">True</property>
             <property name="vexpand">False</property>

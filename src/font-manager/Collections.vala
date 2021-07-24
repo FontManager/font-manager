@@ -362,7 +362,8 @@ namespace FontManager {
         }
 
         protected override bool show_context_menu (Gdk.EventButton e) {
-            context_menu.popup_at_pointer(e);
+            if (selected_filter != null)
+                context_menu.popup_at_pointer(e);
             return true;
         }
 
