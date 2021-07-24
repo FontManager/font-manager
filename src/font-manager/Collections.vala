@@ -424,6 +424,7 @@ namespace FontManager {
                     if (new_name == "" || new_name == selected_filter.name)
                         return;
                     model.collections.rename_collection(selected_filter, new_name);
+                    queue_draw();
                     menu_header.label = new_name;
                     Idle.add(() => {
                         model.collections.save();
