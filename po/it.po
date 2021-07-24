@@ -2,29 +2,33 @@
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
 # Nicola Tudino <tudo75@gmail.com>, 2021.
+# Nicola Tudino <tudo75@hotmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-03-22 18:26-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-07-24 00:43+0000\n"
+"Last-Translator: Nicola Tudino <tudo75@hotmail.com>\n"
+"Language-Team: Italian <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
-msgstr ""
+msgstr "Font Manager"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
 msgstr ""
+"Una semplice applicazione per la gestione dei font per ambienti desktop Gtk+"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
@@ -32,26 +36,33 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
+"Font Manager è pensato per permettere agli utenti comuni di gestire "
+"facilmente i font del sistema, senza dover ricorrere a strumenti da riga di "
+"comando o dover modificare manualmente file di configurazione."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr ""
+"Progettato principalmente per l'ambiente desktop Gnome, dovrebbe funzionare "
+"bene anche con altri ambienti desktop Gtk+."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
 msgstr ""
+"Font Manager NON è una soluzione per la gestione dei font di tipo "
+"professionale."
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr ""
+msgstr "Anteprima, Confronta e Gestisci fonts"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
 #: data/org.gnome.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
+msgstr "Graphics;Viewer;GNOME;GTK;Publishing;"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
 #: data/org.gnome.FontViewer.desktop.in.in:5
@@ -59,11 +70,11 @@ msgstr ""
 #: src/font-viewer/Application.vala:98 src/font-viewer/MainWindow.vala:23
 #: src/font-viewer/font-viewer-main-window.ui:39
 msgid "Font Viewer"
-msgstr ""
+msgstr "Font Viewer"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "Un visualizzatore dei font per ambienti desktop Gtk+"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
@@ -71,62 +82,65 @@ msgid ""
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
 msgstr ""
+"Font Viewer permette di vedere un anteprima dei font prima di installarli. "
+"Permette diversi tipi di anteprima oltre ad una mappa dei caratteri, elenco "
+"delle proprietà del font e dettagli sulla licenza."
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr ""
+msgstr "Applicazione completa per l'anteprima del font"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
 #: src/font-manager/FontList.vala:490
 msgid "Install"
-msgstr ""
+msgstr "Installa"
 
 #: extensions/nautilus/font-manager-menu-provider.c:163
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr ""
+msgstr "Installa il font selezionato"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr ""
+msgstr "Installa i font selezionati"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr ""
+msgstr "Proprietà del font"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:106
 msgid "Preview"
-msgstr ""
+msgstr "Anteprima"
 
 #: lib/common/font-manager-font-preview.c:87
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
 msgid "Waterfall"
-msgstr ""
+msgstr "A cascata"
 
 #: lib/common/font-manager-fontconfig.c:826
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
-msgstr ""
+msgstr "Thin"
 
 #: lib/common/font-manager-fontconfig.c:828
 msgid "Ultra-Light"
-msgstr ""
+msgstr "Ultra-Light"
 
 #: lib/common/font-manager-fontconfig.c:830
 #: lib/common/font-manager-fontconfig.c:1183
 #: src/font-manager/web/google/Weight.vala:69
 msgid "Light"
-msgstr ""
+msgstr "Light"
 
 #: lib/common/font-manager-fontconfig.c:832
 msgid "Semi-Light"
-msgstr ""
+msgstr "Semi-Light"
 
 #: lib/common/font-manager-fontconfig.c:834
 msgid "Book"
@@ -162,11 +176,11 @@ msgstr ""
 #: lib/common/font-manager-fontconfig.c:921
 #: src/font-manager/web/google/WebFont.vala:158
 msgid "Italic"
-msgstr ""
+msgstr "Corsivo"
 
 #: lib/common/font-manager-fontconfig.c:923
 msgid "Oblique"
-msgstr ""
+msgstr "Obliquo"
 
 #: lib/common/font-manager-fontconfig.c:961
 msgid "Ultra-Condensed"
@@ -202,11 +216,11 @@ msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:1044
 msgid "Proportional"
-msgstr ""
+msgstr "Proporzionale"
 
 #: lib/common/font-manager-fontconfig.c:1046
 msgid "Dual Width"
-msgstr ""
+msgstr "Doppia larghezza"
 
 #: lib/common/font-manager-fontconfig.c:1048
 #: src/font-manager/web/google/ui/google-font-filters.ui:260
@@ -219,7 +233,7 @@ msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:1089
 msgid "Unknown"
-msgstr ""
+msgstr "Sconosciuto"
 
 #: lib/common/font-manager-fontconfig.c:1091
 msgid "RGB"
@@ -241,7 +255,7 @@ msgstr ""
 #: lib/common/font-manager-fontconfig.c:1144
 #: lib/common/font-manager-fontconfig.c:1187
 msgid "None"
-msgstr ""
+msgstr "Nessuno"
 
 #: lib/common/font-manager-fontconfig.c:1138
 msgid "Slight"
@@ -254,15 +268,16 @@ msgstr ""
 #: lib/common/font-manager-fontconfig.c:1181
 #: src/font-manager/ui/font-manager-main-window.ui:164
 msgid "Default"
-msgstr ""
+msgstr "Predefinito"
 
 #: lib/common/font-manager-fontconfig.c:1185
 msgid "Legacy"
 msgstr ""
 
 #: lib/common/font-manager-freetype.c:292
+#, fuzzy
 msgid "Restricted License Embedding"
-msgstr ""
+msgstr "Incorporamento della licenza con restrizioni"
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Preview & Print Embedding"
@@ -347,7 +362,7 @@ msgstr ""
 #: lib/common/font-manager-preview-pane.c:553
 #: src/font-manager/Categories.vala:541
 msgid "License"
-msgstr ""
+msgstr "Licenza"
 
 #: lib/common/font-manager-preview-pane.c:434
 msgid "Search available characters"
@@ -368,22 +383,22 @@ msgstr ""
 #: lib/common/font-manager-properties-pane.c:83
 #: src/font-manager/Categories.vala:534
 msgid "Width"
-msgstr ""
+msgstr "Larghezza"
 
 #: lib/common/font-manager-properties-pane.c:84
 #: src/font-manager/Categories.vala:536
 msgid "Slant"
-msgstr ""
+msgstr "Inclinazione"
 
 #: lib/common/font-manager-properties-pane.c:85
 #: src/font-manager/Categories.vala:535
 msgid "Weight"
-msgstr ""
+msgstr "Peso"
 
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:537
 msgid "Spacing"
-msgstr ""
+msgstr "Spaziatura"
 
 #: lib/common/font-manager-properties-pane.c:87
 msgid "Version"
@@ -393,7 +408,7 @@ msgstr ""
 #: lib/common/font-manager-properties-pane.c:89
 #: src/font-manager/Categories.vala:543
 msgid "Vendor"
-msgstr ""
+msgstr "Venditore"
 
 #: lib/common/font-manager-properties-pane.c:90
 msgid "FileType"
@@ -642,40 +657,40 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:544
 msgid "Filetype"
-msgstr ""
+msgstr "Formato del file"
 
 #: src/font-manager/Categories.vala:544
 msgid "Grouped by filetype"
-msgstr ""
+msgstr "Raggruppati per formato del file"
 
 #: src/font-manager/Categories.vala:551
 msgid "All"
-msgstr ""
+msgstr "Tutti"
 
 #: src/font-manager/Categories.vala:551
 msgid "All Fonts"
-msgstr ""
+msgstr "Tutti i font"
 
 #: src/font-manager/Categories.vala:552
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: src/font-manager/Categories.vala:552
 msgid "Fonts available to all users"
-msgstr ""
+msgstr "Font disponibili per tutti gli utenti"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr ""
+msgstr "Tipologia di famiglia"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
-msgstr ""
+msgstr "Solo i font che posseggono le informazioni Panose sono raggruppati qui."
 
 #: src/font-manager/Categories.vala:567
 #: src/font-manager/web/google/ui/google-font-filters.ui:346
 msgid "Any"
-msgstr ""
+msgstr "Qualsiasi"
 
 #: src/font-manager/Categories.vala:567
 msgid "No Fit"
@@ -1461,7 +1476,7 @@ msgstr ""
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Disabled"
-msgstr ""
+msgstr "Disabilitati"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
@@ -1473,7 +1488,7 @@ msgstr ""
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
-msgstr ""
+msgstr "Non ordinati"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
@@ -1481,7 +1496,7 @@ msgstr ""
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr ""
+msgstr "Utente"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "Fonts available only to you"
@@ -1649,7 +1664,7 @@ msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:26
 msgid "Sources"
-msgstr ""
+msgstr "Fonti"
 
 #: src/font-manager/preferences/Preferences.vala:27
 msgid "Actions"
@@ -2056,11 +2071,11 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:58
 msgid "Categories"
-msgstr ""
+msgstr "Categorie"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:129
 msgid "Collections"
-msgstr ""
+msgstr "Collezioni"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:175
 msgid "Edit selected category"
