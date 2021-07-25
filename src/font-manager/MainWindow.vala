@@ -656,6 +656,7 @@ namespace FontManager {
             set_default_size(w, h);
             move(x, y);
 
+            preview_pane.set_max_waterfall_size(settings.get_double("max-waterfall-size"));
             main_pane.position = settings.get_int("sidebar-size");
             content_pane.position = settings.get_int("content-pane-position");
             wide_layout = settings.get_boolean("wide-layout");
@@ -729,6 +730,7 @@ namespace FontManager {
                 Idle.add(() => {
                     fontlist_pane.refilter();
                     restore_last_selected_treepath(fontlist_pane.fontlist, font_path);
+                    fontlist_pane.begin_selection_tracking();
                     return GLib.Source.REMOVE;
                 });
                 return GLib.Source.REMOVE;

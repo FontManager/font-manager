@@ -240,6 +240,13 @@
             <default>"0"</default>
         </key>
 
+        <key name="max-waterfall-size" type="d">
+            <range min="6.0" max="96.0"/>
+            <summary>Maximum waterfall preview size</summary>
+            <description>Maximum size point to render in Waterfall mode.</description>
+            <default>48.0</default>
+        </key>
+
         <key name="language-filter-list" type="as">
             <summary>Language Filter list</summary>
             <description>Array of string containing language selections.</description>

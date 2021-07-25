@@ -773,17 +773,8 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             return;
         }
 
-        void update () {
-            refresh_required = false;
-            refilter();
-            queue_draw();
-            fontlist.samples = get_non_latin_samples();
-            if (fontlist.samples == null)
-                warning("Failed to generate previews for fonts which do not support Basic Latin");
-            return;
-        }
-
-        void connect_signals () {
+        /* XXX : Prevents selections in the wrong category at startup. Shouldn't need this. */
+        public void begin_selection_tracking () {
             notify["filter"].connect(() => {
                 string? saved_iter = null;
                 if (filter != null && filter_state.contains(filter.name))
@@ -796,6 +787,22 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                 if (filter != null)
                     filter_state[filter.name] = fontlist.selected_iter;
             });
+            if (filter != null)
+                filter_state[filter.name] = fontlist.selected_iter;
+            return;
+        }
+
+        void update () {
+            refresh_required = false;
+            refilter();
+            queue_draw();
+            fontlist.samples = get_non_latin_samples();
+            if (fontlist.samples == null)
+                warning("Failed to generate previews for fonts which do not support Basic Latin");
+            return;
+        }
+
+        void connect_signals () {
             controls.entry.search_changed.connect(() => {
                 queue_refilter();
                 text_length = controls.entry.get_text_length();

@@ -696,6 +696,19 @@ font_manager_preview_pane_restore_state (FontManagerPreviewPane *self, GSettings
 }
 
 /**
+ * font_manager_preview_pane_set_max_waterfall_size:
+ * @self:           #FontManagerFontPreview
+ * @size_points:    Maximum size to use for waterfall previews.
+ */
+void
+font_manager_preview_pane_set_max_waterfall_size (FontManagerPreviewPane *self,
+                                                  gdouble size_points)
+{
+    font_manager_font_preview_set_max_waterfall_size(FONT_MANAGER_FONT_PREVIEW(self->preview), size_points);
+    return;
+}
+
+/**
  * font_manager_preview_pane_new:
  *
  * Returns: (transfer full): A newly created #FontManagerPreviewPane.

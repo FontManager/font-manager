@@ -96,6 +96,7 @@ font_manager_font_preview_mode_to_translatable_string (FontManagerFontPreviewMod
 #define MIN_FONT_SIZE FONT_MANAGER_MIN_FONT_SIZE
 #define MAX_FONT_SIZE FONT_MANAGER_MAX_FONT_SIZE
 #define DEFAULT_PREVIEW_SIZE FONT_MANAGER_DEFAULT_PREVIEW_SIZE
+#define DEFAULT_WATERFALL_MAX_SIZE 48.0
 
 struct _FontManagerFontPreview
 {
@@ -111,6 +112,7 @@ struct _FontManagerFontPreview
     GtkWidget   *textview;
     GHashTable  *samples;
 
+    gint                max_waterfall_size;
     gdouble             preview_size;
     gboolean            allow_edit;
     GtkJustification    justification;
@@ -129,6 +131,7 @@ enum
     PROP_FONT_DESC,
     PROP_JUSTIFICATION,
     PROP_SAMPLES,
+    PROP_WATERFALL_MAX,
     N_PROPERTIES
 };
 
@@ -179,6 +182,9 @@ font_manager_font_preview_get_property (GObject *gobject,
         case PROP_SAMPLES:
             g_value_set_boxed(value, self->samples);
             break;
+        case PROP_WATERFALL_MAX:
+            g_value_set_double(value, self->max_waterfall_size);
+            break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
     }
@@ -211,6 +217,9 @@ font_manager_font_preview_set_property (GObject *gobject,
             break;
         case PROP_SAMPLES:
             font_manager_font_preview_set_sample_strings(self, g_value_get_boxed(value));
+            break;
+        case PROP_WATERFALL_MAX:
+            font_manager_font_preview_set_max_waterfall_size(self, g_value_get_double(value));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
@@ -309,6 +318,21 @@ font_manager_font_preview_class_init (FontManagerFontPreviewClass *klass)
                                                       G_PARAM_READWRITE |
                                                       G_PARAM_EXPLICIT_NOTIFY);
 
+    /**
+     * FontManagerFontPreview:max-waterfall-size:
+     *
+     * The current maximum waterfall preview size.
+     */
+    obj_properties[PROP_WATERFALL_MAX] = g_param_spec_double("max-waterfall-size",
+                                                             NULL,
+                                                             "Maximum waterfall preview size in points.",
+                                                             MIN_FONT_SIZE,
+                                                             MAX_FONT_SIZE,
+                                                             DEFAULT_WATERFALL_MAX_SIZE,
+                                                             G_PARAM_STATIC_STRINGS |
+                                                             G_PARAM_READWRITE |
+                                                             G_PARAM_EXPLICIT_NOTIFY);
+
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
 }
@@ -354,7 +378,7 @@ generate_waterfall_line (FontManagerFontPreview *self)
     g_autofree gchar *pangram = g_strdup_printf("%s\n", self->pangram);
     gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, pangram, -1, line, "FontDescription", NULL);
     current_line++;
-    return current_line > FONT_MANAGER_MAX_FONT_SIZE ? G_SOURCE_REMOVE : G_SOURCE_CONTINUE;
+    return current_line > self->max_waterfall_size ? G_SOURCE_REMOVE : G_SOURCE_CONTINUE;
 }
 
 static void
@@ -506,6 +530,7 @@ font_manager_font_preview_init (FontManagerFontPreview *self)
     self->allow_edit = FALSE;
     self->samples = NULL;
     self->restore_preview = NULL;
+    self->max_waterfall_size = DEFAULT_WATERFALL_MAX_SIZE;
     GtkStyleContext *ctx = gtk_widget_get_style_context(GTK_WIDGET(self));
     gtk_style_context_add_class(ctx, GTK_STYLE_CLASS_VIEW);
     gtk_widget_set_name(GTK_WIDGET(self), "FontManagerFontPreview");
@@ -703,6 +728,23 @@ font_manager_font_preview_set_sample_strings (FontManagerFontPreview *self, GHas
         self->samples = g_hash_table_ref(samples);
     update_sample_string(self);
     g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_SAMPLES]);
+    return;
+}
+
+/**
+ * font_manager_font_preview_set_max_waterfall_size:
+ * @self:           #FontManagerFontPreview
+ * @size_points:    Maximum size to use for waterfall previews.
+ */
+void
+font_manager_font_preview_set_max_waterfall_size (FontManagerFontPreview *self,
+                                                  gdouble size_points)
+{
+    g_return_if_fail(self != NULL);
+    self->max_waterfall_size = CLAMP(size_points, MIN_FONT_SIZE * 4, MAX_FONT_SIZE);
+    if (self->mode == FONT_MANAGER_FONT_PREVIEW_MODE_WATERFALL)
+        generate_waterfall_preview(self);
+    g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_WATERFALL_MAX]);
     return;
 }
 

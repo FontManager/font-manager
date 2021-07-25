@@ -47,6 +47,31 @@ namespace FontManager {
 
     }
 
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-waterfall-size.ui")]
+    public class WaterfallSize : Gtk.Box {
+
+        [GtkChild] unowned Gtk.ComboBoxText combo;
+
+        public double max_size {
+            get {
+                return (double.parse(combo.get_active_id()));
+            }
+            set {
+                combo.set_active_id(value.to_string());
+            }
+        }
+
+        construct {
+            combo.changed.connect(() => {
+                this.notify_property("max-size");
+                MainWindow? main_window = get_default_application().main_window;
+                if (main_window != null)
+                    main_window.preview_pane.set_max_waterfall_size(max_size);
+            });
+        }
+
+    }
+
     public class UserInterfacePreferences : SettingsPage {
 
         public LabeledSwitch wide_layout { get; private set; }
@@ -54,6 +79,7 @@ namespace FontManager {
         public LabeledSwitch enable_animations { get; private set; }
         public LabeledSwitch prefer_dark_theme { get; private set; }
         public TitleButtonStyle button_style { get; private set; }
+        public WaterfallSize waterfall_size { get; private set; }
 
         Gtk.Settings default_gtk_settings;
         Gtk.Revealer wide_layout_options;
@@ -73,10 +99,11 @@ namespace FontManager {
             enable_animations = new LabeledSwitch(_("Enable Animations"));
             prefer_dark_theme = new LabeledSwitch(_("Prefer Dark Theme"));
             button_style = new TitleButtonStyle();
+            waterfall_size = new WaterfallSize();
             var scroll = new Gtk.ScrolledWindow(null, null);
             var list = new Gtk.ListBox();
-            Gtk.Widget [] widgets = { wide_layout, wide_layout_options, use_csd,
-                                      enable_animations, prefer_dark_theme, button_style };
+            Gtk.Widget [] widgets = { wide_layout, wide_layout_options, use_csd, enable_animations,
+                                                 prefer_dark_theme, button_style, waterfall_size };
             foreach (var widget in widgets) {
                 var row = new Gtk.ListBoxRow() {
                     activatable = false,
@@ -107,6 +134,7 @@ namespace FontManager {
             settings.bind("enable-animations", enable_animations.toggle, "active", flags);
             settings.bind("prefer-dark-theme", prefer_dark_theme.toggle, "active", flags);
             settings.bind("title-button-style", button_style, "active", flags);
+            settings.bind("max-waterfall-size", waterfall_size, "max-size", flags);
             return;
         }
 
