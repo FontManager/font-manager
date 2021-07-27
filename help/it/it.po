@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-03-22 18:26-0400\n"
-"PO-Revision-Date: 2021-07-21 15:33+0000\n"
+"PO-Revision-Date: 2021-07-27 01:35+0000\n"
 "Last-Translator: Nicola Tudino <tudo75@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/it/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "translator-credits"
+msgstr "Crediti Traduzione"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
@@ -91,7 +91,7 @@ msgstr "Ordinati per larghezza del carattere."
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr "Peso"
+msgstr "Spessore"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
@@ -133,7 +133,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr "Venditore"
+msgstr "Fornitore"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -210,7 +210,6 @@ msgstr "<app>Scheda Mappa caratteri</app>"
 msgctxt "_"
 msgid "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
-"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
@@ -268,8 +267,6 @@ msgstr "Per creare una nuova collezione:"
 msgctxt "_"
 msgid "external ref='media/list-add-symbolic.svg' md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 msgstr ""
-"external ref='media/list-add-symbolic.svg' "
-"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:37
@@ -315,8 +312,6 @@ msgstr "Seleziona la collezione"
 msgctxt "_"
 msgid "external ref='media/list-remove-symbolic.svg' md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 msgstr ""
-"external ref='media/list-remove-symbolic.svg' "
-"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:67
@@ -633,8 +628,6 @@ msgstr "Per aggiungere una fonte:"
 msgctxt "_"
 msgid "external ref='media/preferences-system-symbolic.svg' md5='63ed081f78639fc6ec234a9351cf52e6'"
 msgstr ""
-"external ref='media/preferences-system-symbolic.svg' "
-"md5='63ed081f78639fc6ec234a9351cf52e6'"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:30
@@ -819,7 +812,6 @@ msgstr "<app>Font Manager</app>"
 msgctxt "_"
 msgid "external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
 msgstr ""
-"external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:61
@@ -875,7 +867,7 @@ msgstr "<app> Scheda Licenza del carattere</app>"
 #: C/font-manager-license.page:23
 msgctxt "_"
 msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
-msgstr "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
+msgstr ""
 
 #. (itstool) path: note/p
 #: C/font-manager-license.page:27
@@ -920,7 +912,6 @@ msgstr "<app>Scheda Proprietà del carattere</app>"
 msgctxt "_"
 msgid "external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
 msgstr ""
-"external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
 
 #. (itstool) path: note/p
 #: C/font-manager-metadata.page:27
@@ -967,7 +958,6 @@ msgstr "<app>Ortografie supportate</app>"
 msgctxt "_"
 msgid "external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 msgstr ""
-"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 
 #. (itstool) path: info/desc
 #: C/font-manager-substitutions.page:7
@@ -1098,12 +1088,12 @@ msgstr "Formati di file supportati"
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:14
 msgid "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
-msgstr "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
+msgstr ""
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:21
 msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
-msgstr "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
+msgstr ""
 
 #. (itstool) path: info/desc
 #: C/index.page:6
@@ -1119,8 +1109,6 @@ msgstr "Introduzione a Font Manager."
 msgctxt "_"
 msgid "external ref='media/preferences-desktop-font-16.png' md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 msgstr ""
-"external ref='media/preferences-desktop-font-16.png' "
-"md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 
 #. (itstool) path: info/title
 #: C/index.page:10
@@ -1137,7 +1125,7 @@ msgstr "Font Manager"
 #. (itstool) path: credit/name
 #: C/index.page:14
 msgid "Jerry Casiano"
-msgstr "Jerry Casiano"
+msgstr ""
 
 #. (itstool) path: credit/years
 #: C/index.page:16
@@ -1163,8 +1151,6 @@ msgstr "GNU General Public License versione 3"
 msgctxt "_"
 msgid "external ref='media/preferences-desktop-font.png' md5='f9108efe15fb60827b402b9a3a936589'"
 msgstr ""
-"external ref='media/preferences-desktop-font.png' "
-"md5='f9108efe15fb60827b402b9a3a936589'"
 
 #. (itstool) path: page/title
 #: C/index.page:29
