@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-03-22 18:26-0400\n"
+"POT-Creation-Date: 2021-07-26 21:37-0400\n"
 "PO-Revision-Date: 2021-06-15 20:32+0000\n"
 "Last-Translator: Fellow Turkish <f3ll0wm4il3r_12@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
@@ -92,7 +92,7 @@ msgstr "Tam özellikli yazı tipi dosyası önizleme uygulaması"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:490
+#: src/font-manager/FontList.vala:503
 msgid "Install"
 msgstr "Yükle"
 
@@ -113,7 +113,7 @@ msgid "Font Properties"
 msgstr "Yazı Tipi Özellikleri"
 
 #: lib/common/font-manager-font-preview.c:85
-#: src/font-manager/ui/font-manager-main-window.ui:106
+#: src/font-manager/ui/font-manager-main-window.ui:120
 msgid "Preview"
 msgstr "Önizle"
 
@@ -265,7 +265,7 @@ msgid "Full"
 msgstr "Tam"
 
 #: lib/common/font-manager-fontconfig.c:1181
-#: src/font-manager/ui/font-manager-main-window.ui:164
+#: src/font-manager/ui/font-manager-main-window.ui:178
 msgid "Default"
 msgstr "Varsayılan"
 
@@ -741,13 +741,17 @@ msgstr[1] "%i Değişimleri "
 msgid "Enter Collection Name"
 msgstr "Koleksiyon Adını Girin"
 
-#: src/font-manager/Collections.vala:389
+#: src/font-manager/Collections.vala:450
 msgid "Copy to…"
 msgstr "Şuraya kopyala…"
 
-#: src/font-manager/Collections.vala:390
+#: src/font-manager/Collections.vala:451
 msgid "Compress…"
 msgstr "Sıkıştır…"
+
+#: src/font-manager/Collections.vala:452
+msgid "Rename…"
+msgstr ""
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
@@ -840,26 +844,26 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Tümünü daralt"
 
-#: src/font-manager/FontList.vala:491
+#: src/font-manager/FontList.vala:504
 msgid "Copy Location"
 msgstr "Konumu Kopyala"
 
-#: src/font-manager/FontList.vala:492
+#: src/font-manager/FontList.vala:505
 msgid "Show in Folder"
 msgstr "Klasörde Göster"
 
 #: src/font-manager/MainWindow.vala:54
-#: src/font-manager/ui/font-manager-main-window.ui:151
+#: src/font-manager/ui/font-manager-main-window.ui:165
 msgid "Browse"
 msgstr "Göz At"
 
 #: src/font-manager/MainWindow.vala:56
-#: src/font-manager/ui/font-manager-main-window.ui:122
+#: src/font-manager/ui/font-manager-main-window.ui:136
 msgid "Compare"
 msgstr "Karşılaştır"
 
 #: src/font-manager/MainWindow.vala:58
-#: src/font-manager/ui/font-manager-main-window.ui:135
+#: src/font-manager/ui/font-manager-main-window.ui:149
 msgid "Manage"
 msgstr "Yönet"
 
@@ -1477,7 +1481,7 @@ msgid "Remove Fonts"
 msgstr "Yazı Tiplerini Kaldır"
 
 #: src/font-manager/TitleBar.vala:275
-#: src/font-manager/ui/font-manager-main-window.ui:175
+#: src/font-manager/ui/font-manager-main-window.ui:189
 msgid "Preferences"
 msgstr "Tercihler"
 
@@ -1564,18 +1568,22 @@ msgstr ""
 "için kullanılan değişken"
 
 #: src/font-manager/preferences/Desktop.vala:60
+#: src/font-manager/preferences/Desktop.vala:78
 msgid "Antialiasing"
 msgstr "Kenar yumuşatma"
 
 #: src/font-manager/preferences/Desktop.vala:61
+#: src/font-manager/preferences/Desktop.vala:79
 msgid "The type of antialiasing to use when rendering fonts."
 msgstr "Yazı tiplerini işlerken kullanılacak kenar yumuşatma türü."
 
 #: src/font-manager/preferences/Desktop.vala:66
+#: src/font-manager/preferences/Desktop.vala:84
 msgid "RGBA order"
 msgstr "RGBA sırası"
 
 #: src/font-manager/preferences/Desktop.vala:67
+#: src/font-manager/preferences/Desktop.vala:85
 msgid ""
 "The order of subpixel elements on an LCD screen; only used when antialiasing "
 "is set to rgba."
@@ -1584,15 +1592,17 @@ msgstr ""
 "olarak ayarlandığında kullanılır."
 
 #: src/font-manager/preferences/Desktop.vala:72
+#: src/font-manager/preferences/Desktop.vala:90
 #: src/font-manager/preferences/Fontconfig.vala:329
 msgid "Hinting"
 msgstr "Düzgünleştirme"
 
 #: src/font-manager/preferences/Desktop.vala:73
+#: src/font-manager/preferences/Desktop.vala:91
 msgid "The type of hinting to use when rendering fonts."
 msgstr "Yazı tiplerini işlerken kullanılacak düzgünleştirme türü."
 
-#: src/font-manager/preferences/Desktop.vala:99
+#: src/font-manager/preferences/Desktop.vala:116
 msgid "GNOME desktop settings schema not found"
 msgstr "GNOME masaüstü ayarları şeması bulunamadı"
 
@@ -1679,15 +1689,15 @@ msgstr "Takma ad ekle"
 msgid "Remove selected alias"
 msgstr "Seçili takma adı kaldır"
 
-#: src/font-manager/preferences/Fontconfig.vala:598
+#: src/font-manager/preferences/Fontconfig.vala:599
 msgid "Font Substitutions"
 msgstr "Yazı Tipi Değişimleri"
 
-#: src/font-manager/preferences/Fontconfig.vala:599
+#: src/font-manager/preferences/Fontconfig.vala:600
 msgid "Easily substitute one font family for another."
 msgstr "Bir yazı tipi ailesini diğeriyle kolayca değiştirin."
 
-#: src/font-manager/preferences/Fontconfig.vala:600
+#: src/font-manager/preferences/Fontconfig.vala:601
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr "Yeni bir yedek eklemek için araç çubuğundaki ekle düğmesini tıklayın."
 
@@ -1745,34 +1755,34 @@ msgstr "Kullanıcı Eylemleri"
 msgid "Custom context menu entries"
 msgstr "Özel bağlam menüsü girdileri"
 
-#: src/font-manager/preferences/UserInterface.vala:63
+#: src/font-manager/preferences/UserInterface.vala:89
 msgid "Wide Layout"
 msgstr "Geniş Düzen"
 
-#: src/font-manager/preferences/UserInterface.vala:66
+#: src/font-manager/preferences/UserInterface.vala:92
 msgid "Only When Maximized"
 msgstr "Yalnızca Ekranı Kapladığında"
 
-#: src/font-manager/preferences/UserInterface.vala:69
+#: src/font-manager/preferences/UserInterface.vala:95
 msgid "Client Side Decorations"
 msgstr "İstemci Tarafı Süslemeleri"
 
-#: src/font-manager/preferences/UserInterface.vala:73
+#: src/font-manager/preferences/UserInterface.vala:99
 msgid "Enable Animations"
 msgstr "Animasyonları Etkinleştir"
 
-#: src/font-manager/preferences/UserInterface.vala:74
+#: src/font-manager/preferences/UserInterface.vala:100
 msgid "Prefer Dark Theme"
 msgstr "Koyu Temayı Tercih Et"
 
-#: src/font-manager/preferences/UserInterface.vala:120
+#: src/font-manager/preferences/UserInterface.vala:148
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
 "CSD etkin. Değişiklik, uygulamanın bir sonraki başlatılışında geçerli "
 "olacaktır."
 
-#: src/font-manager/preferences/UserInterface.vala:122
+#: src/font-manager/preferences/UserInterface.vala:150
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
@@ -1962,15 +1972,15 @@ msgstr "Seçili dosya yok"
 msgid "Or unsupported filetype."
 msgstr "Veya desteklenmeyen dosya türü."
 
-#: src/font-viewer/MainWindow.vala:174
+#: src/font-viewer/MainWindow.vala:172
 msgid "Newer version already installed"
 msgstr "Daha yeni sürüm zaten yüklü"
 
-#: src/font-viewer/MainWindow.vala:176
+#: src/font-viewer/MainWindow.vala:174
 msgid "Installed"
 msgstr "Yüklü"
 
-#: src/font-viewer/MainWindow.vala:179
+#: src/font-viewer/MainWindow.vala:177
 #: src/font-viewer/font-viewer-main-window.ui:53
 msgid "Install Font"
 msgstr "Yazı Tipini Yükle"
@@ -1998,6 +2008,16 @@ msgstr "Önceki sayfa"
 #: src/font-manager/ui/font-manager-browse-view.ui:210
 msgid "Next page"
 msgstr "Sonraki sayfa"
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
+#, fuzzy
+#| msgid "Enter Collection Name"
+msgid "Collection Name"
+msgstr "Koleksiyon Adını Girin"
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:54
+msgid "_Rename"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
@@ -2131,23 +2151,23 @@ msgstr "Şelale önizlemesine geç"
 msgid "Switch to Body Text preview"
 msgstr "Gövde Metni önizlemesine geç"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:58
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:59
 msgid "Categories"
 msgstr "Kategoriler"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:129
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:130
 msgid "Collections"
 msgstr "Koleksiyonlar"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:175
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:176
 msgid "Edit selected category"
 msgstr "Seçili kategoriyi düzenle"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:198
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:199
 msgid "Add new collection"
 msgstr "Yeni koleksiyon ekle"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:221
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:222
 msgid "Remove selected collection"
 msgstr "Seçili koleksiyonu kaldır"
 
@@ -2223,6 +2243,14 @@ msgstr "Yüklü Yazı Tipleri"
 #: src/font-manager/ui/font-manager-user-data.ui:189
 msgid "Custom Actions"
 msgstr "Özel Eylemler"
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:28
+msgid "Higher values may adversely affect performance"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:54
+msgid "Maximum Waterfall Preview Point Size"
+msgstr ""
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"

@@ -25,7 +25,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-03-22 18:26-0400\n"
+"POT-Creation-Date: 2021-07-26 21:37-0400\n"
 "PO-Revision-Date: 2021-06-04 04:32+0000\n"
 "Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -53,13 +53,17 @@ msgid ""
 "Font Manager is intended to provide a way for average users to easily manage "
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
-msgstr "Font Manager旨在为普通用户提供一种轻松管理桌面字体的方法，而无需借助命令行工具或手工编辑配置文件。"
+msgstr ""
+"Font Manager旨在为普通用户提供一种轻松管理桌面字体的方法，而无需借助命令行工"
+"具或手工编辑配置文件。"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
-msgstr "虽然主要是考虑为 Gnome 桌面环境而设计，但它应该能很好地适用于其他 Gtk+ 桌面环境。"
+msgstr ""
+"虽然主要是考虑为 Gnome 桌面环境而设计，但它应该能很好地适用于其他 Gtk+ 桌面环"
+"境。"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
@@ -93,7 +97,9 @@ msgid ""
 "Font Viewer allows previewing font files prior to installation. It features "
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
-msgstr "字体查看器允许在安装前预览字体文件。它提供了几种预览字体文件以及字符映射的方法，并显示字体属性和许可证详细信息。"
+msgstr ""
+"字体查看器允许在安装前预览字体文件。它提供了几种预览字体文件以及字符映射的方"
+"法，并显示字体属性和许可证详细信息。"
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
@@ -102,7 +108,7 @@ msgstr "全功能字体文件预览应用程序"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:490
+#: src/font-manager/FontList.vala:503
 msgid "Install"
 msgstr "安装"
 
@@ -123,7 +129,7 @@ msgid "Font Properties"
 msgstr "字体属性"
 
 #: lib/common/font-manager-font-preview.c:85
-#: src/font-manager/ui/font-manager-main-window.ui:106
+#: src/font-manager/ui/font-manager-main-window.ui:120
 msgid "Preview"
 msgstr "预览"
 
@@ -275,7 +281,7 @@ msgid "Full"
 msgstr "全部"
 
 #: lib/common/font-manager-fontconfig.c:1181
-#: src/font-manager/ui/font-manager-main-window.ui:164
+#: src/font-manager/ui/font-manager-main-window.ui:178
 msgid "Default"
 msgstr "默认"
 
@@ -732,13 +738,17 @@ msgstr[0] "%i 种变体 "
 msgid "Enter Collection Name"
 msgstr "输入集合名称"
 
-#: src/font-manager/Collections.vala:389
+#: src/font-manager/Collections.vala:450
 msgid "Copy to…"
 msgstr "复制到…"
 
-#: src/font-manager/Collections.vala:390
+#: src/font-manager/Collections.vala:451
 msgid "Compress…"
 msgstr "压缩…"
+
+#: src/font-manager/Collections.vala:452
+msgid "Rename…"
+msgstr ""
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
@@ -827,26 +837,26 @@ msgstr ""
 msgid "Collapse all"
 msgstr "全部折叠"
 
-#: src/font-manager/FontList.vala:491
+#: src/font-manager/FontList.vala:504
 msgid "Copy Location"
 msgstr "复制位置"
 
-#: src/font-manager/FontList.vala:492
+#: src/font-manager/FontList.vala:505
 msgid "Show in Folder"
 msgstr "在文件夹中显示"
 
 #: src/font-manager/MainWindow.vala:54
-#: src/font-manager/ui/font-manager-main-window.ui:151
+#: src/font-manager/ui/font-manager-main-window.ui:165
 msgid "Browse"
 msgstr "浏览"
 
 #: src/font-manager/MainWindow.vala:56
-#: src/font-manager/ui/font-manager-main-window.ui:122
+#: src/font-manager/ui/font-manager-main-window.ui:136
 msgid "Compare"
 msgstr "比较"
 
 #: src/font-manager/MainWindow.vala:58
-#: src/font-manager/ui/font-manager-main-window.ui:135
+#: src/font-manager/ui/font-manager-main-window.ui:149
 msgid "Manage"
 msgstr "管理"
 
@@ -1464,7 +1474,7 @@ msgid "Remove Fonts"
 msgstr "删除字体"
 
 #: src/font-manager/TitleBar.vala:275
-#: src/font-manager/ui/font-manager-main-window.ui:175
+#: src/font-manager/ui/font-manager-main-window.ui:189
 msgid "Preferences"
 msgstr "首选项"
 
@@ -1547,33 +1557,39 @@ msgid ""
 msgstr "在不更改字体大小的情况下用于放大或缩小文本显示的倍率"
 
 #: src/font-manager/preferences/Desktop.vala:60
+#: src/font-manager/preferences/Desktop.vala:78
 msgid "Antialiasing"
 msgstr "抗锯齿"
 
 #: src/font-manager/preferences/Desktop.vala:61
+#: src/font-manager/preferences/Desktop.vala:79
 msgid "The type of antialiasing to use when rendering fonts."
 msgstr "渲染字体时使用的抗锯齿类型。"
 
 #: src/font-manager/preferences/Desktop.vala:66
+#: src/font-manager/preferences/Desktop.vala:84
 msgid "RGBA order"
 msgstr "RGBA 次序"
 
 #: src/font-manager/preferences/Desktop.vala:67
+#: src/font-manager/preferences/Desktop.vala:85
 msgid ""
 "The order of subpixel elements on an LCD screen; only used when antialiasing "
 "is set to rgba."
 msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:72
+#: src/font-manager/preferences/Desktop.vala:90
 #: src/font-manager/preferences/Fontconfig.vala:329
 msgid "Hinting"
 msgstr "字体微调"
 
 #: src/font-manager/preferences/Desktop.vala:73
+#: src/font-manager/preferences/Desktop.vala:91
 msgid "The type of hinting to use when rendering fonts."
 msgstr "渲染字体时使用的微调类型。"
 
-#: src/font-manager/preferences/Desktop.vala:99
+#: src/font-manager/preferences/Desktop.vala:116
 msgid "GNOME desktop settings schema not found"
 msgstr ""
 
@@ -1653,15 +1669,15 @@ msgstr "添加别名"
 msgid "Remove selected alias"
 msgstr "删除所选别名"
 
-#: src/font-manager/preferences/Fontconfig.vala:598
+#: src/font-manager/preferences/Fontconfig.vala:599
 msgid "Font Substitutions"
 msgstr "字体替换"
 
-#: src/font-manager/preferences/Fontconfig.vala:599
+#: src/font-manager/preferences/Fontconfig.vala:600
 msgid "Easily substitute one font family for another."
 msgstr "轻松地用一个字体家族替换另一个字体家族。"
 
-#: src/font-manager/preferences/Fontconfig.vala:600
+#: src/font-manager/preferences/Fontconfig.vala:601
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr "要添加新的替换项，请单击工具栏中的“添加”按钮。"
 
@@ -1712,32 +1728,32 @@ msgstr "用户动作"
 msgid "Custom context menu entries"
 msgstr "自定义上下文菜单项"
 
-#: src/font-manager/preferences/UserInterface.vala:63
+#: src/font-manager/preferences/UserInterface.vala:89
 msgid "Wide Layout"
 msgstr "宽幅布局"
 
-#: src/font-manager/preferences/UserInterface.vala:66
+#: src/font-manager/preferences/UserInterface.vala:92
 msgid "Only When Maximized"
 msgstr "只有在最大化时"
 
-#: src/font-manager/preferences/UserInterface.vala:69
+#: src/font-manager/preferences/UserInterface.vala:95
 msgid "Client Side Decorations"
 msgstr "客户端装饰(CSD)"
 
-#: src/font-manager/preferences/UserInterface.vala:73
+#: src/font-manager/preferences/UserInterface.vala:99
 msgid "Enable Animations"
 msgstr "启用动画"
 
-#: src/font-manager/preferences/UserInterface.vala:74
+#: src/font-manager/preferences/UserInterface.vala:100
 msgid "Prefer Dark Theme"
 msgstr "偏爱黑暗主题"
 
-#: src/font-manager/preferences/UserInterface.vala:120
+#: src/font-manager/preferences/UserInterface.vala:148
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr "CSD 已启用。更改将在下次启动应用程序时生效。"
 
-#: src/font-manager/preferences/UserInterface.vala:122
+#: src/font-manager/preferences/UserInterface.vala:150
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr "CSD 已禁用。更改将在下次启动应用程序时生效。"
@@ -1917,15 +1933,15 @@ msgstr "未选择文件"
 msgid "Or unsupported filetype."
 msgstr "或不支持该文件类型。"
 
-#: src/font-viewer/MainWindow.vala:174
+#: src/font-viewer/MainWindow.vala:172
 msgid "Newer version already installed"
 msgstr "新版本已安装"
 
-#: src/font-viewer/MainWindow.vala:176
+#: src/font-viewer/MainWindow.vala:174
 msgid "Installed"
 msgstr "已安装"
 
-#: src/font-viewer/MainWindow.vala:179
+#: src/font-viewer/MainWindow.vala:177
 #: src/font-viewer/font-viewer-main-window.ui:53
 msgid "Install Font"
 msgstr "安装字体"
@@ -1953,6 +1969,16 @@ msgstr "上一页"
 #: src/font-manager/ui/font-manager-browse-view.ui:210
 msgid "Next page"
 msgstr "下一页"
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
+#, fuzzy
+#| msgid "Enter Collection Name"
+msgid "Collection Name"
+msgstr "输入集合名称"
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:54
+msgid "_Rename"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
@@ -2085,23 +2111,23 @@ msgid "Switch to Body Text preview"
 msgstr "切换到正文文本预览"
 
 # msgstr "区块"
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:58
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:59
 msgid "Categories"
 msgstr "分类"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:129
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:130
 msgid "Collections"
 msgstr "字体集"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:175
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:176
 msgid "Edit selected category"
 msgstr "编辑所选类别"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:198
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:199
 msgid "Add new collection"
 msgstr "添加新的字体集"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:221
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:222
 msgid "Remove selected collection"
 msgstr "删除选中的字体集"
 
@@ -2177,6 +2203,14 @@ msgstr "已安装字体"
 #: src/font-manager/ui/font-manager-user-data.ui:189
 msgid "Custom Actions"
 msgstr "自定义动作"
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:28
+msgid "Higher values may adversely affect performance"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:54
+msgid "Maximum Waterfall Preview Point Size"
+msgstr ""
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"

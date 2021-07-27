@@ -6,11 +6,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-01-31 14:53-0500\n"
+"POT-Creation-Date: 2021-07-26 21:37-0400\n"
 "PO-Revision-Date: 2021-03-21 15:29+0000\n"
 "Last-Translator: Fúlvio Alves <fga.fulvio@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
-"font-manager/font-manager/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/font-"
+"manager/font-manager/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -94,7 +94,7 @@ msgstr "Programa completo de visualização de arquivos de fontes"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:490
+#: src/font-manager/FontList.vala:503
 msgid "Install"
 msgstr "Instalar"
 
@@ -115,7 +115,7 @@ msgid "Font Properties"
 msgstr "Propriedades da fonte"
 
 #: lib/common/font-manager-font-preview.c:85
-#: src/font-manager/ui/font-manager-main-window.ui:106
+#: src/font-manager/ui/font-manager-main-window.ui:120
 msgid "Preview"
 msgstr "Visualização"
 
@@ -267,7 +267,7 @@ msgid "Full"
 msgstr "Cheio"
 
 #: lib/common/font-manager-fontconfig.c:1181
-#: src/font-manager/ui/font-manager-main-window.ui:164
+#: src/font-manager/ui/font-manager-main-window.ui:178
 msgid "Default"
 msgstr "Padrão"
 
@@ -740,13 +740,17 @@ msgstr[1] "%i Variações "
 msgid "Enter Collection Name"
 msgstr "Digite o nome da coleção"
 
-#: src/font-manager/Collections.vala:389
+#: src/font-manager/Collections.vala:450
 msgid "Copy to…"
 msgstr "Copiar para…"
 
-#: src/font-manager/Collections.vala:390
+#: src/font-manager/Collections.vala:451
 msgid "Compress…"
 msgstr "Comprimir…"
+
+#: src/font-manager/Collections.vala:452
+msgid "Rename…"
+msgstr ""
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
@@ -839,26 +843,26 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Recolher todos"
 
-#: src/font-manager/FontList.vala:491
+#: src/font-manager/FontList.vala:504
 msgid "Copy Location"
 msgstr "Copiar localização"
 
-#: src/font-manager/FontList.vala:492
+#: src/font-manager/FontList.vala:505
 msgid "Show in Folder"
 msgstr "Mostrar na pasta"
 
 #: src/font-manager/MainWindow.vala:54
-#: src/font-manager/ui/font-manager-main-window.ui:151
+#: src/font-manager/ui/font-manager-main-window.ui:165
 msgid "Browse"
 msgstr "Navegar"
 
 #: src/font-manager/MainWindow.vala:56
-#: src/font-manager/ui/font-manager-main-window.ui:122
+#: src/font-manager/ui/font-manager-main-window.ui:136
 msgid "Compare"
 msgstr "Comparar"
 
 #: src/font-manager/MainWindow.vala:58
-#: src/font-manager/ui/font-manager-main-window.ui:135
+#: src/font-manager/ui/font-manager-main-window.ui:149
 msgid "Manage"
 msgstr "Gerenciar"
 
@@ -1476,7 +1480,7 @@ msgid "Remove Fonts"
 msgstr "Remover fontes"
 
 #: src/font-manager/TitleBar.vala:275
-#: src/font-manager/ui/font-manager-main-window.ui:175
+#: src/font-manager/ui/font-manager-main-window.ui:189
 msgid "Preferences"
 msgstr "Preferências"
 
@@ -1561,18 +1565,22 @@ msgstr ""
 "tamanho da fonte"
 
 #: src/font-manager/preferences/Desktop.vala:60
+#: src/font-manager/preferences/Desktop.vala:78
 msgid "Antialiasing"
 msgstr "Suavização"
 
 #: src/font-manager/preferences/Desktop.vala:61
+#: src/font-manager/preferences/Desktop.vala:79
 msgid "The type of antialiasing to use when rendering fonts."
 msgstr "O tipo de suavização a ser utilizado ao renderizar fontes."
 
 #: src/font-manager/preferences/Desktop.vala:66
+#: src/font-manager/preferences/Desktop.vala:84
 msgid "RGBA order"
 msgstr "Ordem RGBA"
 
 #: src/font-manager/preferences/Desktop.vala:67
+#: src/font-manager/preferences/Desktop.vala:85
 msgid ""
 "The order of subpixel elements on an LCD screen; only used when antialiasing "
 "is set to rgba."
@@ -1581,15 +1589,17 @@ msgstr ""
 "anti-serrilhamento está definido como rgba."
 
 #: src/font-manager/preferences/Desktop.vala:72
+#: src/font-manager/preferences/Desktop.vala:90
 #: src/font-manager/preferences/Fontconfig.vala:329
 msgid "Hinting"
 msgstr "Hinting"
 
 #: src/font-manager/preferences/Desktop.vala:73
+#: src/font-manager/preferences/Desktop.vala:91
 msgid "The type of hinting to use when rendering fonts."
 msgstr "O tipo de hinting a ser usado ao renderizar fontes."
 
-#: src/font-manager/preferences/Desktop.vala:99
+#: src/font-manager/preferences/Desktop.vala:116
 msgid "GNOME desktop settings schema not found"
 msgstr "Esquema de configurações da área de trabalho GNOME não encontrado"
 
@@ -1677,15 +1687,15 @@ msgstr "Adicionar alias"
 msgid "Remove selected alias"
 msgstr "Remover o alias selecionado"
 
-#: src/font-manager/preferences/Fontconfig.vala:598
+#: src/font-manager/preferences/Fontconfig.vala:599
 msgid "Font Substitutions"
 msgstr "Substituições de fonte"
 
-#: src/font-manager/preferences/Fontconfig.vala:599
+#: src/font-manager/preferences/Fontconfig.vala:600
 msgid "Easily substitute one font family for another."
 msgstr "Substitua facilmente uma família de fontes por outra."
 
-#: src/font-manager/preferences/Fontconfig.vala:600
+#: src/font-manager/preferences/Fontconfig.vala:601
 msgid "To add a new substitute click the add button in the toolbar."
 msgstr ""
 "Para adicionar uma nova substituta, clique no botão Adicionar na barra de "
@@ -1747,34 +1757,34 @@ msgstr "Ações do usuário"
 msgid "Custom context menu entries"
 msgstr "Entradas personalizadas do menu de contexto"
 
-#: src/font-manager/preferences/UserInterface.vala:63
+#: src/font-manager/preferences/UserInterface.vala:89
 msgid "Wide Layout"
 msgstr "Layout ampliado"
 
-#: src/font-manager/preferences/UserInterface.vala:66
+#: src/font-manager/preferences/UserInterface.vala:92
 msgid "Only When Maximized"
 msgstr "Somente quando maximizado"
 
-#: src/font-manager/preferences/UserInterface.vala:69
+#: src/font-manager/preferences/UserInterface.vala:95
 msgid "Client Side Decorations"
 msgstr "Decorações do lado do cliente"
 
-#: src/font-manager/preferences/UserInterface.vala:73
+#: src/font-manager/preferences/UserInterface.vala:99
 msgid "Enable Animations"
 msgstr "Habilitar animações"
 
-#: src/font-manager/preferences/UserInterface.vala:74
+#: src/font-manager/preferences/UserInterface.vala:100
 msgid "Prefer Dark Theme"
 msgstr "Preferir tema escuro"
 
-#: src/font-manager/preferences/UserInterface.vala:120
+#: src/font-manager/preferences/UserInterface.vala:148
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
 "CSD ativado. A alteração terá efeito na próxima vez que o programa for "
 "iniciado."
 
-#: src/font-manager/preferences/UserInterface.vala:122
+#: src/font-manager/preferences/UserInterface.vala:150
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
@@ -1963,15 +1973,15 @@ msgstr "Nenhum arquivo selecionado"
 msgid "Or unsupported filetype."
 msgstr "Ou tipo de arquivo não suportado."
 
-#: src/font-viewer/MainWindow.vala:174
+#: src/font-viewer/MainWindow.vala:172
 msgid "Newer version already installed"
 msgstr "Versão mais recente já instalada"
 
-#: src/font-viewer/MainWindow.vala:176
+#: src/font-viewer/MainWindow.vala:174
 msgid "Installed"
 msgstr "Instalada"
 
-#: src/font-viewer/MainWindow.vala:179
+#: src/font-viewer/MainWindow.vala:177
 #: src/font-viewer/font-viewer-main-window.ui:53
 msgid "Install Font"
 msgstr "Instalar fonte"
@@ -1999,6 +2009,16 @@ msgstr "Página anterior"
 #: src/font-manager/ui/font-manager-browse-view.ui:210
 msgid "Next page"
 msgstr "Próxima página"
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
+#, fuzzy
+#| msgid "Enter Collection Name"
+msgid "Collection Name"
+msgstr "Digite o nome da coleção"
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:54
+msgid "_Rename"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
@@ -2132,23 +2152,23 @@ msgstr "Alternar para a visualização em cascata"
 msgid "Switch to Body Text preview"
 msgstr "Mudar para a visualização do corpo do texto"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:58
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:59
 msgid "Categories"
 msgstr "Categorias"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:129
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:130
 msgid "Collections"
 msgstr "Coleções"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:175
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:176
 msgid "Edit selected category"
 msgstr "Editar categoria selecionada"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:198
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:199
 msgid "Add new collection"
 msgstr "Adicionar nova coleção"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:221
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:222
 msgid "Remove selected collection"
 msgstr "Remover coleção selecionada"
 
@@ -2224,6 +2244,14 @@ msgstr "Fontes instaladas"
 #: src/font-manager/ui/font-manager-user-data.ui:189
 msgid "Custom Actions"
 msgstr "Ações personalizadas"
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:28
+msgid "Higher values may adversely affect performance"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:54
+msgid "Maximum Waterfall Preview Point Size"
+msgstr ""
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
