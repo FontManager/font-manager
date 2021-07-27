@@ -25,8 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-01-26 23:50+0000\n"
-"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"PO-Revision-Date: 2021-07-27 13:06+0300\n"
 "Language-Team: German <https://hosted.weblate.org/projects/font-manager/font-"
 "manager/de/>\n"
 "Language: de\n"
@@ -34,7 +33,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5-dev\n"
+"X-Generator: Poedit 2.2.4\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -773,7 +772,7 @@ msgstr "Komprimieren …"
 
 #: src/font-manager/Collections.vala:452
 msgid "Rename…"
-msgstr ""
+msgstr "Umbenennen…"
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
@@ -1954,7 +1953,7 @@ msgstr "Schrift herunterladen"
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] "%i Sprachbeispiel verfügbar "
-msgstr[1] "%i Sprachbeispiele verfügbar "
+msgstr[1] "%i Sprachbeispiele verfügbar"
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
@@ -2026,14 +2025,12 @@ msgid "Next page"
 msgstr "Nächste Seite"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
-#, fuzzy
-#| msgid "Enter Collection Name"
 msgid "Collection Name"
-msgstr "Name der Sammlung eintragen"
+msgstr "Name der Sammlung"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:54
 msgid "_Rename"
-msgstr ""
+msgstr "_Umbenennen"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
@@ -2266,7 +2263,7 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:54
 msgid "Maximum Waterfall Preview Point Size"
-msgstr ""
+msgstr "Maximale Größe der Vorschau beim Wasserfall"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
