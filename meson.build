@@ -1,4 +1,4 @@
-project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.8.6')
+project('font-manager', ['c', 'vala'], license: 'GPL3', version: '0.8.7')
 
 if meson.version().version_compare('< 0.53')
     error('Meson version is @0@ but project requires >= 0.53'.format(meson.version()))

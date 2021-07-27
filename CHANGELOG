@@ -1,3 +1,16 @@
+0.8.6 -> 0.8.7
+
+- Fixes rendering issues with Pango > 1.47 - Issue #213
+- Fixes missing desktop settings with GNOME 40 - Issue #215
+- Fixes missing substitution target family names - Issue #216
+- Restore font list positions when switching filters and after drag and drop - Issue #220
+- Adds a "rename" entry to collections context menu - Suggested in Issue #220
+- Switches to using symbolic icons in sidebar for consistency
+- Limits Waterfall preview to 48pt to improve application responsiveness with large font collections
+- Adds a preference to allow setting maximum Waterfall preview point size
+- Update vendor list
+- Include latest translation updates
+
 0.8.5 -> 0.8.6
 
 - Fix GSettings crash with GNOME 40 due to missing "antialias" setting

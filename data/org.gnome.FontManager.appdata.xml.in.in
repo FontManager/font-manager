@@ -77,7 +77,8 @@
     </screenshots>
 
     <releases>
-        <release version="@PACKAGE_VERSION@" date="2021-04-09"/>
+        <release version="@PACKAGE_VERSION@" date="2021-07-26"/>
+        <release version="0.8.6" date="2021-04-09"/>
         <release version="0.8.5" date="2021-03-22"/>
         <release version="0.8.4-1" date="2021-02-02"/>
         <release version="0.8.4" date="2021-01-31"/>
