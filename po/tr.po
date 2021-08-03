@@ -2,13 +2,14 @@
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
 # Fellow Turkish <f3ll0wm4il3r_12@protonmail.com>, 2021.
+# Oğuz Ersen <oguzersen@protonmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-06-15 20:32+0000\n"
-"Last-Translator: Fellow Turkish <f3ll0wm4il3r_12@protonmail.com>\n"
+"PO-Revision-Date: 2021-08-03 18:33+0000\n"
+"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/tr/>\n"
 "Language: tr\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -646,7 +647,9 @@ msgstr ""
 #. by a newline character so that they are displayed properly in the interface.
 #: src/font-manager/About.vala:69
 msgid "translator-credits"
-msgstr "Musa ORUÇ"
+msgstr ""
+"Musa ORUÇ\n"
+"Oğuz Ersen"
 
 #: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
@@ -751,7 +754,7 @@ msgstr "Sıkıştır…"
 
 #: src/font-manager/Collections.vala:452
 msgid "Rename…"
-msgstr ""
+msgstr "Yeniden adlandır…"
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
@@ -1617,7 +1620,7 @@ msgid ""
 "Note that not all environments/applications will honor these settings."
 msgstr ""
 "Yukarıdaki ayarlardan bir fontconfig yapılandırma dosyası oluşturmak için "
-"kaydet'i seçin.\n"
+"kaydet seçeneğini seçin.\n"
 "\n"
 "Yapılandırma dosyasını kaldırmak ve varsayılan ayarlara geri dönmek için at "
 "seçeneğini seçin.\n"
@@ -1719,7 +1722,7 @@ msgstr "Eylemler"
 
 #: src/font-manager/preferences/Preferences.vala:28
 msgid "Substitutions"
-msgstr "Yedekler"
+msgstr "Değişimler"
 
 #: src/font-manager/preferences/Preferences.vala:29
 #: src/font-manager/web/google/ui/google-font-filters.ui:204
@@ -2010,14 +2013,12 @@ msgid "Next page"
 msgstr "Sonraki sayfa"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
-#, fuzzy
-#| msgid "Enter Collection Name"
 msgid "Collection Name"
-msgstr "Koleksiyon Adını Girin"
+msgstr "Koleksiyon Adı"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:54
 msgid "_Rename"
-msgstr ""
+msgstr "_Yeniden Adlandır"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
@@ -2047,7 +2048,7 @@ msgstr "Metin rengini seçin"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:12
 msgid "Discard"
-msgstr "Vazgeç"
+msgstr "At"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:30
 msgid "Running applications may require a restart to reflect any changes."
@@ -2246,11 +2247,11 @@ msgstr "Özel Eylemler"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:28
 msgid "Higher values may adversely affect performance"
-msgstr ""
+msgstr "Daha yüksek değerler performansı olumsuz etkileyebilir"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:54
 msgid "Maximum Waterfall Preview Point Size"
-msgstr ""
+msgstr "Azami Şelale Ön İzlemesi Nokta Boyutu"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
