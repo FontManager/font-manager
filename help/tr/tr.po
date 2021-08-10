@@ -1,10 +1,11 @@
 # Fellow Turkish <f3ll0wm4il3r_12@protonmail.com>, 2021.
+# Oğuz Ersen <oguzersen@protonmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-06-15 20:32+0000\n"
-"Last-Translator: Fellow Turkish <f3ll0wm4il3r_12@protonmail.com>\n"
+"PO-Revision-Date: 2021-08-03 18:33+0000\n"
+"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/tr/>\n"
 "Language: tr\n"
@@ -12,12 +13,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Musa ORUÇ"
+msgstr ""
+"Musa ORUÇ\n"
+"Oğuz Ersen"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
@@ -803,7 +806,7 @@ msgstr "Fontconfig yapılandırma dosyaları oluşturma"
 #. (itstool) path: page/title
 #: C/font-manager-fontconfig.page:10
 msgid "Display and Rendering Preferences"
-msgstr ""
+msgstr "Görüntüleme ve Görselleştirme Tercihleri"
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:12
@@ -811,6 +814,9 @@ msgid ""
 "The \"Display\" and \"Rendering\" panes in the preferences dialog generate "
 "valid fontconfig configuration files for the exposed properties."
 msgstr ""
+"Tercihler iletişim kutusundaki \"Görüntüleme\" ve \"Görselleştirme\" "
+"bölmeleri, seçilen özellikler için geçerli fontconfig yapılandırma dosyaları "
+"oluşturur."
 
 #. (itstool) path: page/p
 #: C/font-manager-fontconfig.page:17
@@ -880,7 +886,7 @@ msgstr "Yazı tipleri için kullanılacak farklı dizinleri belirtme"
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:48
 msgid "Perform font substitution"
-msgstr ""
+msgstr "Yazı tipi değişimi gerçekleştir"
 
 #. (itstool) path: figure/title
 #: C/font-manager-introduction.page:55
@@ -1021,7 +1027,6 @@ msgstr ""
 
 #. (itstool) path: info/desc
 #: C/font-manager-orthographies.page:8
-#, fuzzy
 msgid "View languages supported and their coverage"
 msgstr "Desteklenen dilleri ve kapsamlarını görüntüleyin"
 
@@ -1067,31 +1072,32 @@ msgstr ""
 
 #. (itstool) path: info/desc
 #: C/font-manager-substitutions.page:7
-#, fuzzy
 msgid "Substitute one font family for another"
 msgstr "Bir yazı tipi ailesini diğeriyle değiştirin"
 
 #. (itstool) path: page/title
 #: C/font-manager-substitutions.page:10
 msgid "Substitution"
-msgstr ""
+msgstr "Değişim"
 
 #. (itstool) path: page/p
 #: C/font-manager-substitutions.page:12
 msgid ""
 "<app>Font Manager</app> allows you to substitute one font family for another."
 msgstr ""
+"<app>Yazı Tipi Yöneticisi</app>, bir yazı tipi ailesini diğeriyle "
+"değiştirmenize olanak tanır."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:18
 msgid "To add a substitute:"
-msgstr ""
+msgstr "Bir değişim eklemek için:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:31 C/font-manager-substitutions.page:88
 #: C/font-manager-substitutions.page:126
 msgid "Select \"Substitutions\" from the sidebar"
-msgstr ""
+msgstr "Kenar çubuğundan \"Değişimler\" seçeneğini seçin"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:34
@@ -1099,11 +1105,13 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> in the substitutions pane."
 msgstr ""
+"Değişimler bölmesinde <gui> <media type=\"image\" src=\"media/list-add-"
+"symbolic.svg\"/> </gui> ögesine tıklayın."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:43
 msgid "Enter the name of the font family you wish to set up a substitute for."
-msgstr ""
+msgstr "Değiştirmek için ayarlamak istediğiniz yazı tipi ailesinin adını girin."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:48
@@ -1111,16 +1119,18 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> on the right."
 msgstr ""
+"Sağdaki <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> ögesine tıklayın."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:57
 msgid "Enter the name of the substitute family and select the priority level."
-msgstr ""
+msgstr "Değiştirilecek ailenin adını girin ve öncelik seviyesini seçin."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:62
 msgid "Repeat steps 3 – 6 as needed."
-msgstr ""
+msgstr "3 – 6 arasındaki adımları gerektiği kadar tekrarlayın."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:67 C/font-manager-substitutions.page:105
@@ -1128,16 +1138,18 @@ msgid ""
 "Click <gui style=\"button\">Save</gui> to write the configuration file when "
 "done."
 msgstr ""
+"İşiniz bittiğinde yapılandırma dosyasını yazmak için <gui style=\"button\""
+">Kaydet</gui> düğmesine tıklayın."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:75
 msgid "To remove a substitute:"
-msgstr ""
+msgstr "Bir değişimi kaldırmak için:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:91
 msgid "Select the entry you wish to remove from the list."
-msgstr ""
+msgstr "Listeden kaldırmak istediğiniz girdiyi seçin."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:96
@@ -1145,16 +1157,19 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> in the substitutions pane."
 msgstr ""
+"Değişimler bölmesindeki <gui> <media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/> </gui> ögesine tıklayın."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:113
 msgid "To remove all substitutes:"
-msgstr ""
+msgstr "Tüm değişimleri kaldırmak için:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:129
 msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
 msgstr ""
+"Değişimler bölmesinde <gui style=\"button\"> At </gui> düğmesine tıklayın."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:142
@@ -1164,6 +1179,10 @@ msgid ""
 "the matching family and append the default families to the end of the family "
 "list."
 msgstr ""
+"Hedef aileyle eşleşen yazı tipleri, tercih edilen aileleri eşleşen aileden "
+"önce listenin başına, kabul edilebilir aileleri eşleşen aileden sonra "
+"listenin sonuna ve varsayılan aileleri aile listesinin sonuna ekleyecek "
+"şekilde düzenlenir."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:148
