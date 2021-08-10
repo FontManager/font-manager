@@ -96,7 +96,9 @@ font_manager_font_preview_mode_to_translatable_string (FontManagerFontPreviewMod
 #define MIN_FONT_SIZE FONT_MANAGER_MIN_FONT_SIZE
 #define MAX_FONT_SIZE FONT_MANAGER_MAX_FONT_SIZE
 #define DEFAULT_PREVIEW_SIZE FONT_MANAGER_DEFAULT_PREVIEW_SIZE
-#define DEFAULT_WATERFALL_MAX_SIZE 48.0
+#define DEFAULT_WATERFALL_MAX_SIZE MAX_FONT_SIZE / 2
+
+static void generate_waterfall_preview (FontManagerFontPreview *self);
 
 struct _FontManagerFontPreview
 {
@@ -112,9 +114,12 @@ struct _FontManagerFontPreview
     GtkWidget   *textview;
     GHashTable  *samples;
 
-    gint                max_waterfall_size;
+    gdouble             waterfall_size_ratio;
+    gdouble             min_waterfall_size;
+    gdouble             max_waterfall_size;
     gdouble             preview_size;
     gboolean            allow_edit;
+    gboolean            show_line_size;
     GtkJustification    justification;
     FontManagerFontPreviewMode  mode;
     PangoFontDescription *font_desc;
@@ -131,7 +136,10 @@ enum
     PROP_FONT_DESC,
     PROP_JUSTIFICATION,
     PROP_SAMPLES,
+    PROP_WATERFALL_MIN,
     PROP_WATERFALL_MAX,
+    PROP_WATERFALL_RATIO,
+    PROP_SHOW_LINE_SIZE,
     N_PROPERTIES
 };
 
@@ -182,8 +190,17 @@ font_manager_font_preview_get_property (GObject *gobject,
         case PROP_SAMPLES:
             g_value_set_boxed(value, self->samples);
             break;
+        case PROP_WATERFALL_MIN:
+            g_value_set_double(value, self->min_waterfall_size);
+            break;
         case PROP_WATERFALL_MAX:
             g_value_set_double(value, self->max_waterfall_size);
+            break;
+        case PROP_WATERFALL_RATIO:
+            g_value_set_double(value, self->waterfall_size_ratio);
+            break;
+        case PROP_SHOW_LINE_SIZE:
+            g_value_set_boolean(value, self->show_line_size);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
@@ -218,8 +235,19 @@ font_manager_font_preview_set_property (GObject *gobject,
         case PROP_SAMPLES:
             font_manager_font_preview_set_sample_strings(self, g_value_get_boxed(value));
             break;
+        case PROP_WATERFALL_MIN:
+            font_manager_font_preview_set_waterfall_size(self, g_value_get_double(value), -1.0, -1.0);
+            break;
         case PROP_WATERFALL_MAX:
-            font_manager_font_preview_set_max_waterfall_size(self, g_value_get_double(value));
+            font_manager_font_preview_set_waterfall_size(self, -1.0, g_value_get_double(value), -1.0);
+            break;
+        case PROP_WATERFALL_RATIO:
+            font_manager_font_preview_set_waterfall_size(self, -1.0, -1.0, g_value_get_double(value));
+            break;
+        case PROP_SHOW_LINE_SIZE:
+            self->show_line_size = g_value_get_boolean(value);
+            if (self->mode == FONT_MANAGER_FONT_PREVIEW_MODE_WATERFALL)
+                generate_waterfall_preview(self);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
@@ -319,6 +347,21 @@ font_manager_font_preview_class_init (FontManagerFontPreviewClass *klass)
                                                       G_PARAM_EXPLICIT_NOTIFY);
 
     /**
+     * FontManagerFontPreview:min-waterfall-size:
+     *
+     * The current minimum waterfall preview size.
+     */
+    obj_properties[PROP_WATERFALL_MIN] = g_param_spec_double("min-waterfall-size",
+                                                             NULL,
+                                                             "Minimum waterfall preview size in points.",
+                                                             MIN_FONT_SIZE,
+                                                             DEFAULT_WATERFALL_MAX_SIZE,
+                                                             MIN_FONT_SIZE,
+                                                             G_PARAM_STATIC_STRINGS |
+                                                             G_PARAM_READWRITE |
+                                                             G_PARAM_EXPLICIT_NOTIFY);
+
+    /**
      * FontManagerFontPreview:max-waterfall-size:
      *
      * The current maximum waterfall preview size.
@@ -327,11 +370,38 @@ font_manager_font_preview_class_init (FontManagerFontPreviewClass *klass)
                                                              NULL,
                                                              "Maximum waterfall preview size in points.",
                                                              MIN_FONT_SIZE,
-                                                             MAX_FONT_SIZE,
+                                                             MAX_FONT_SIZE * 2,
                                                              DEFAULT_WATERFALL_MAX_SIZE,
                                                              G_PARAM_STATIC_STRINGS |
                                                              G_PARAM_READWRITE |
                                                              G_PARAM_EXPLICIT_NOTIFY);
+
+    /**
+     * FontManagerFontPreview:waterfall-size-ratio:
+     *
+     * Waterfall point size common ratio.
+     */
+    obj_properties[PROP_WATERFALL_RATIO] = g_param_spec_double("mwaterfall-size-ratio",
+                                                                NULL,
+                                                                "Waterfall point size common ratio",
+                                                                1.0,
+                                                                DEFAULT_WATERFALL_MAX_SIZE / 2,
+                                                                1.1,
+                                                                G_PARAM_STATIC_STRINGS |
+                                                                G_PARAM_READWRITE |
+                                                                G_PARAM_EXPLICIT_NOTIFY);
+
+    /**
+     * FontManagerFontPreview:show-line-size:
+     *
+     * Whether to display line size in Waterfall preview or not.
+     */
+     obj_properties[PROP_SHOW_LINE_SIZE] = g_param_spec_boolean("show-line-size",
+                                                                NULL,
+                                                                "Whether to display Waterfall preview line size",
+                                                                TRUE,
+                                                                G_PARAM_STATIC_STRINGS |
+                                                                G_PARAM_READWRITE);
 
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
@@ -369,15 +439,22 @@ generate_waterfall_line (FontManagerFontPreview *self)
     gint i = current_line;
     g_autofree gchar *size_point = NULL;
     g_autofree gchar *line = g_strdup_printf("%i", i);
-    size_point = g_strdup_printf(i < 10 ? " %spt.  " : "%spt.  ", line);
+    if (self->show_line_size)
+        size_point = g_strdup_printf(i < 10 ? " %spt.  " : "%spt.  ", line);
     gtk_text_buffer_get_iter_at_line(buffer, &iter, i);
-    gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, size_point, -1, "SizePoint", NULL);
+    if (self->show_line_size)
+        gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, size_point, -1, "SizePoint", NULL);
     if (!gtk_text_tag_table_lookup(tag_table, line))
         gtk_text_buffer_create_tag(buffer, line, "size-points", (gdouble) i, NULL);
-    gtk_text_buffer_get_end_iter(buffer, &iter);
+    if (self->show_line_size)
+        gtk_text_buffer_get_end_iter(buffer, &iter);
     g_autofree gchar *pangram = g_strdup_printf("%s\n", self->pangram);
     gtk_text_buffer_insert_with_tags_by_name(buffer, &iter, pangram, -1, line, "FontDescription", NULL);
-    current_line++;
+    if (self->waterfall_size_ratio > 1.0) {
+        gdouble next = current_line * self->waterfall_size_ratio;
+        current_line = self->waterfall_size_ratio > 1.1 ? floor(next) : ceil(next);
+    } else
+        current_line++;
     return current_line > self->max_waterfall_size ? G_SOURCE_REMOVE : G_SOURCE_CONTINUE;
 }
 
@@ -388,7 +465,7 @@ generate_waterfall_preview (FontManagerFontPreview *self)
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(self->textview));
     gtk_text_buffer_set_text(buffer, "", -1);
     g_idle_remove_by_data(self);
-    current_line = FONT_MANAGER_MIN_FONT_SIZE;
+    current_line = self->min_waterfall_size;
     g_idle_add((GSourceFunc) generate_waterfall_line, self);
     return;
 }
@@ -412,13 +489,11 @@ update_sample_string (FontManagerFontPreview *self)
 {
     g_return_if_fail(self != NULL);
     g_autofree gchar *description = pango_font_description_to_string(self->font_desc);
-    gboolean pangram_changed = FALSE;
     if (self->samples && g_hash_table_contains(self->samples, description)) {
         const gchar *sample = g_hash_table_lookup(self->samples, description);
         if (sample) {
             g_free(self->pangram);
             self->pangram = g_strdup(sample);
-            pangram_changed = TRUE;
             if (self->mode == FONT_MANAGER_FONT_PREVIEW_MODE_PREVIEW
                 && g_strcmp0(self->preview, self->default_preview) == 0) {
                 self->restore_preview = g_strdup(self->preview);
@@ -429,14 +504,13 @@ update_sample_string (FontManagerFontPreview *self)
         if (g_strcmp0(self->pangram, self->default_pangram) != 0) {
             g_free(self->pangram);
             self->pangram = g_strdup(self->default_pangram);
-            pangram_changed = TRUE;
         }
         if (self->restore_preview && self->mode == FONT_MANAGER_FONT_PREVIEW_MODE_PREVIEW) {
             font_manager_font_preview_set_preview_text(self, self->restore_preview);
             g_clear_pointer(&self->restore_preview, g_free);
         }
     }
-    if (pangram_changed && self->mode == FONT_MANAGER_FONT_PREVIEW_MODE_WATERFALL)
+    if (self->mode == FONT_MANAGER_FONT_PREVIEW_MODE_WATERFALL)
         generate_waterfall_preview(self);
     return;
 }
@@ -528,9 +602,12 @@ font_manager_font_preview_init (FontManagerFontPreview *self)
 {
     g_return_if_fail(self != NULL);
     self->allow_edit = FALSE;
+    self->show_line_size = TRUE;
     self->samples = NULL;
     self->restore_preview = NULL;
+    self->min_waterfall_size = MIN_FONT_SIZE + 2;
     self->max_waterfall_size = DEFAULT_WATERFALL_MAX_SIZE;
+    self->waterfall_size_ratio = 1.1;
     GtkStyleContext *ctx = gtk_widget_get_style_context(GTK_WIDGET(self));
     gtk_style_context_add_class(ctx, GTK_STYLE_CLASS_VIEW);
     gtk_widget_set_name(GTK_WIDGET(self), "FontManagerFontPreview");
@@ -577,6 +654,7 @@ font_manager_font_preview_init (FontManagerFontPreview *self)
     gtk_widget_show_all(scroll);
     gtk_widget_show_all(self->controls);
     gtk_widget_show_all(self->fontscale);
+    font_manager_font_preview_set_waterfall_size(self, self->min_waterfall_size, DEFAULT_WATERFALL_MAX_SIZE, 1.0);
     return;
 }
 
@@ -732,19 +810,34 @@ font_manager_font_preview_set_sample_strings (FontManagerFontPreview *self, GHas
 }
 
 /**
- * font_manager_font_preview_set_max_waterfall_size:
+ * font_manager_font_preview_set_waterfall_size:
  * @self:           #FontManagerFontPreview
- * @size_points:    Maximum size to use for waterfall previews.
+ * @min_size:       Minimum point size to use for waterfall previews. (-1.0 to keep current)
+ * @max_size:       Maximum size to use for waterfall previews. (-1.0 to keep current)
+ * @ratio:          Waterfall point size common ratio. (-1.0 to keep current)
  */
 void
-font_manager_font_preview_set_max_waterfall_size (FontManagerFontPreview *self,
-                                                  gdouble size_points)
+font_manager_font_preview_set_waterfall_size (FontManagerFontPreview *self,
+                                              gdouble min_size,
+                                              gdouble max_size,
+                                              gdouble ratio)
 {
     g_return_if_fail(self != NULL);
-    self->max_waterfall_size = CLAMP(size_points, MIN_FONT_SIZE * 4, MAX_FONT_SIZE);
+    g_return_if_fail(ratio == -1.0 || (ratio >= 1.0 && ratio <= DEFAULT_WATERFALL_MAX_SIZE));
+    if (min_size != -1.0) {
+        self->min_waterfall_size = CLAMP(min_size, MIN_FONT_SIZE, MAX_FONT_SIZE / 2);
+        g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_WATERFALL_MIN]);
+    }
+    if (max_size != -1.0) {
+        self->max_waterfall_size = CLAMP(max_size, MIN_FONT_SIZE * 4, MAX_FONT_SIZE * 2);
+        g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_WATERFALL_MAX]);
+    }
+    if (ratio != -1.0) {
+        self->waterfall_size_ratio = ratio;
+        g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_WATERFALL_RATIO]);
+    }
     if (self->mode == FONT_MANAGER_FONT_PREVIEW_MODE_WATERFALL)
         generate_waterfall_preview(self);
-    g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_WATERFALL_MAX]);
     return;
 }
 

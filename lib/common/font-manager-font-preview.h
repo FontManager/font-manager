@@ -21,6 +21,7 @@
 #ifndef __FONT_MANAGER_FONT_PREVIEW_H__
 #define __FONT_MANAGER_FONT_PREVIEW_H__
 
+#include <math.h>
 #include <glib.h>
 #include <glib/gi18n-lib.h>
 #include <glib-object.h>
@@ -65,7 +66,7 @@ void font_manager_font_preview_set_font_description (FontManagerFontPreview *sel
 void font_manager_font_preview_set_preview_text (FontManagerFontPreview *self, const gchar *preview_text);
 void font_manager_font_preview_set_justification (FontManagerFontPreview *self, GtkJustification justification);
 void font_manager_font_preview_set_sample_strings (FontManagerFontPreview *self, GHashTable *samples);
-void font_manager_font_preview_set_max_waterfall_size (FontManagerFontPreview *self, gdouble size_points);
+void font_manager_font_preview_set_waterfall_size (FontManagerFontPreview *self, gdouble min_size, gdouble max_size, gdouble ratio);
 gdouble font_manager_font_preview_get_preview_size (FontManagerFontPreview *self);
 gchar * font_manager_font_preview_get_font_description (FontManagerFontPreview *self);
 gchar * font_manager_font_preview_get_preview_text (FontManagerFontPreview *self);

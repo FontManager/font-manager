@@ -77,6 +77,7 @@ struct _FontManagerPreviewPane
     GtkNotebook   parent_instance;
 
     gboolean                metadata_update_required;
+    gboolean                show_line_size;
     gdouble                 preview_size;
     gdouble                 glyph_preview_size;
     gchar                   *preview_text;
@@ -114,6 +115,7 @@ enum
     PROP_FONT,
     PROP_METADATA,
     PROP_ORTHOGRAPHY,
+    PROP_SHOW_LINE_SIZE,
     N_PROPERTIES
 };
 
@@ -169,6 +171,9 @@ font_manager_preview_pane_get_property (GObject *gobject,
         case PROP_SAMPLES:
             g_value_set_boxed(value, self->samples);
             break;
+        case PROP_SHOW_LINE_SIZE:
+            g_value_set_boolean(value, self->show_line_size);
+            break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
     }
@@ -210,6 +215,9 @@ font_manager_preview_pane_set_property (GObject *gobject,
             break;
         case PROP_ORTHOGRAPHY:
             font_manager_preview_pane_set_orthography(self, g_value_get_object(value));
+            break;
+        case PROP_SHOW_LINE_SIZE:
+            self->show_line_size = g_value_get_boolean(value);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
@@ -331,6 +339,18 @@ font_manager_preview_pane_class_init (FontManagerPreviewPaneClass *klass)
                                                             G_PARAM_WRITABLE |
                                                             G_PARAM_STATIC_STRINGS |
                                                             G_PARAM_EXPLICIT_NOTIFY);
+
+    /**
+     * FontManagerFontPreview:show-line-size:
+     *
+     * Whether to display line size in Waterfall preview or not.
+     */
+     obj_properties[PROP_SHOW_LINE_SIZE] = g_param_spec_boolean("show-line-size",
+                                                                NULL,
+                                                                "Whether to display Waterfall preview line size",
+                                                                TRUE,
+                                                                G_PARAM_STATIC_STRINGS |
+                                                                G_PARAM_READWRITE);
 
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
@@ -546,6 +566,7 @@ font_manager_preview_pane_init (FontManagerPreviewPane *self)
     self->properties = font_manager_properties_pane_new();
     self->license = font_manager_license_pane_new();
     self->metadata_update_required = TRUE;
+    self->show_line_size = TRUE;
     FontManagerFontPreviewMode mode = font_manager_font_preview_get_preview_mode(FONT_MANAGER_FONT_PREVIEW(self->preview));
     append_page(self, self->preview, font_manager_font_preview_mode_to_translatable_string(mode));
     append_page(self, self->character_map, _("Characters"));
@@ -570,6 +591,7 @@ font_manager_preview_pane_init (FontManagerPreviewPane *self)
     g_object_bind_property(self->preview, "preview-text", self, "preview-text", flags);
     g_object_bind_property(self->preview, "preview-mode", self, "preview-mode", flags);
     g_object_bind_property(self->preview, "samples", self, "samples", flags);
+    g_object_bind_property(self->preview, "show-line-size", self, "show-line-size", flags);
     g_object_bind_property(self->character_map, "preview-size", self, "character-map-preview-size", flags);
     g_signal_connect(self, "switch-page", G_CALLBACK(on_page_switch), NULL);
     return;
@@ -696,15 +718,19 @@ font_manager_preview_pane_restore_state (FontManagerPreviewPane *self, GSettings
 }
 
 /**
- * font_manager_preview_pane_set_max_waterfall_size:
+ * font_manager_preview_pane_set_waterfall_size:
  * @self:           #FontManagerFontPreview
- * @size_points:    Maximum size to use for waterfall previews.
+ * @min_size:       Minimum point size to use for waterfall previews. (-1.0 to keep current)
+ * @max_size:       Maximum size to use for waterfall previews. (-1.0 to keep current)
+ * @ratio:          Waterfall point size common ratio. (-1.0 to keep current)
  */
 void
-font_manager_preview_pane_set_max_waterfall_size (FontManagerPreviewPane *self,
-                                                  gdouble size_points)
+font_manager_preview_pane_set_waterfall_size (FontManagerPreviewPane *self,
+                                              gdouble min_size,
+                                              gdouble max_size,
+                                              gdouble ratio)
 {
-    font_manager_font_preview_set_max_waterfall_size(FONT_MANAGER_FONT_PREVIEW(self->preview), size_points);
+    font_manager_font_preview_set_waterfall_size(FONT_MANAGER_FONT_PREVIEW(self->preview), min_size, max_size, ratio);
     return;
 }
 

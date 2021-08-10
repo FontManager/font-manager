@@ -47,27 +47,131 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-waterfall-size.ui")]
-    public class WaterfallSize : Gtk.Box {
+    internal enum PredefinedWaterfallSize {
 
-        [GtkChild] unowned Gtk.ComboBoxText combo;
+        LINEAR_48,
+        72_11,
+        LINEAR_96,
+        96_11,
+        120_12,
+        144_13,
+        192_14,
+        CUSTOM;
 
-        public double max_size {
-            get {
-                return (double.parse(combo.get_active_id()));
-            }
-            set {
-                combo.set_active_id(value.to_string());
+        public double [] to_size_array () {
+            switch (this) {
+                case LINEAR_48:
+                    return { 8.0, 48.0, 1.0 };
+                case 72_11:
+                    return { 8.0, 72.0, 1.1 };
+                case LINEAR_96:
+                    return { 8.0, 96.0, 1.0 };
+                case 96_11:
+                    return { 8.0, 96.0, 1.1 };
+                case 120_12:
+                    return { 8.0, 120.0, 1.2 };
+                case 144_13:
+                    return { 8.0, 144.0, 1.3 };
+                case 192_14:
+                    return { 8.0, 192.0, 1.4 };
+                default:
+                    return { 0.0, 0.0, 0.0 };
             }
         }
 
-        construct {
-            combo.changed.connect(() => {
-                this.notify_property("max-size");
-                MainWindow? main_window = get_default_application().main_window;
-                if (main_window != null)
-                    main_window.preview_pane.set_max_waterfall_size(max_size);
-            });
+        /* GSettingsBind*Mapping functions */
+
+        public static Variant to_setting (Value val, VariantType type) {
+            switch (val.get_int()) {
+                case 0:
+                    return new Variant.string("48 Points Linear");
+                case 1:
+                    return new Variant.string("72 Points 1.1 Ratio");
+                case 2:
+                    return new Variant.string("96 Points Linear");
+                case 3:
+                    return new Variant.string("96 Points 1.1 Ratio");
+                case 4:
+                    return new Variant.string("120 Points 1.2 Ratio");
+                case 5:
+                    return new Variant.string("144 Points 1.3 Ratio");
+                case 6:
+                    return new Variant.string("192 Points 1.4 Ratio");
+                default:
+                    return new Variant.string("Custom");
+            }
+        }
+
+        public static bool from_setting (Value val, Variant variant) {
+            switch (variant.get_string()) {
+                case "48 Points Linear":
+                    val.set_int(0);
+                    break;
+                case "72 Points 1.1 Ratio":
+                    val.set_int(1);
+                    break;
+                case "96 Points Linear":
+                    val.set_int(2);
+                    break;
+                case "96 Points 1.1 Ratio":
+                    val.set_int(3);
+                    break;
+                case "120 Points 1.2 Ratio":
+                    val.set_int(4);
+                    break;
+                case "144 Points 1.3 Ratio":
+                    val.set_int(5);
+                    break;
+                case "192 Points 1.4 Ratio":
+                    val.set_int(6);
+                    break;
+                default:
+                    val.set_int(7);
+                    break;
+            }
+            return true;
+        }
+
+    }
+
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-waterfall-size.ui")]
+    public class WaterfallSize : Gtk.Box {
+
+        [GtkChild] public unowned Gtk.SpinButton min { get; }
+        [GtkChild] public unowned Gtk.SpinButton max { get; }
+        [GtkChild] public unowned Gtk.SpinButton ratio { get; }
+        [GtkChild] public unowned Gtk.ComboBoxText selection { get; }
+        [GtkChild] public unowned Gtk.Revealer revealer { get; }
+        [GtkChild] public unowned Gtk.Switch show_line_size { get; }
+
+        [GtkCallback]
+        bool on_show_line_size_state_set () {
+            MainWindow? main_window = get_default_application().main_window;
+            if (main_window != null)
+                main_window.preview_pane.show_line_size = show_line_size.active;
+            return Gdk.EVENT_PROPAGATE;
+        }
+
+        [GtkCallback]
+        void on_value_changed () {
+            MainWindow? main_window = get_default_application().main_window;
+            if (main_window != null)
+                main_window.preview_pane.set_waterfall_size(min.value, max.value, ratio.value);
+            return;
+        }
+
+        [GtkCallback]
+        void on_selection_changed () {
+            double [] selected = ((PredefinedWaterfallSize) selection.active).to_size_array();
+            bool custom = selected[0] == 0.0;
+            revealer.set_reveal_child(custom);
+            if (custom)
+                return;
+            min.value = selected[0];
+            max.value = selected[1];
+            ratio.value = selected[2];
+            on_value_changed();
+            return;
         }
 
     }
@@ -134,7 +238,13 @@ namespace FontManager {
             settings.bind("enable-animations", enable_animations.toggle, "active", flags);
             settings.bind("prefer-dark-theme", prefer_dark_theme.toggle, "active", flags);
             settings.bind("title-button-style", button_style, "active", flags);
-            settings.bind("max-waterfall-size", waterfall_size, "max-size", flags);
+            settings.bind("min-waterfall-size", waterfall_size.min, "value", flags);
+            settings.bind("max-waterfall-size", waterfall_size.max, "value", flags);
+            settings.bind("waterfall-size-ratio", waterfall_size.ratio, "value", flags);
+            settings.bind("waterfall-show-line-size", waterfall_size.show_line_size, "active", flags);
+            settings.bind_with_mapping("predefined-waterfall-size", waterfall_size.selection,
+                                        "active", flags, PredefinedWaterfallSize.from_setting,
+                                        PredefinedWaterfallSize.to_setting, null, null);
             return;
         }
 

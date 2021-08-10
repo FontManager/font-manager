@@ -656,7 +656,10 @@ namespace FontManager {
             set_default_size(w, h);
             move(x, y);
 
-            preview_pane.set_max_waterfall_size(settings.get_double("max-waterfall-size"));
+            preview_pane.set_waterfall_size(settings.get_double("min-waterfall-size"),
+                                            settings.get_double("max-waterfall-size"),
+                                            settings.get_double("waterfall-size-ratio"));
+            preview_pane.show_line_size = settings.get_boolean("waterfall-show-line-size");
             main_pane.position = settings.get_int("sidebar-size");
             content_pane.position = settings.get_int("content-pane-position");
             wide_layout = settings.get_boolean("wide-layout");
@@ -694,7 +697,13 @@ namespace FontManager {
                     return GLib.Source.CONTINUE;
                 Idle.add(() => {
                     restore_selections(font_path, category_path, collection_path);
-                    Idle.add(() => { main_stack.sensitive = true; return GLib.Source.REMOVE; });
+                    Idle.add(() => {
+                        /* XXX : FIXME : Ensure our content pane position is correct.
+                         * It fails to restore properly intermittently. */
+                        update_layout_orientation();
+                        main_stack.sensitive = true;
+                        return GLib.Source.REMOVE;
+                    });
                     return GLib.Source.REMOVE;
                 });
                 return GLib.Source.REMOVE;
@@ -704,6 +713,7 @@ namespace FontManager {
                 bind_settings();
                 return GLib.Source.REMOVE;
             });
+
 
             return;
         }
