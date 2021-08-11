@@ -80,6 +80,7 @@ namespace FontManager {
         [GtkChild] unowned Gtk.Button add_button;
         [GtkChild] unowned Gtk.Button edit_button;
         [GtkChild] unowned Gtk.Button remove_button;
+        [GtkChild] unowned Gtk.ScrolledWindow sidebar_scroll;
 
         public void on_tree_selection_changed (BaseTreeView tree, Filter? filter) {
             if (filter == null)
@@ -141,6 +142,13 @@ namespace FontManager {
                     add_button.get_style_context().remove_class(Gtk.STYLE_CLASS_SUGGESTED_ACTION);
                     add_button.set_relief(Gtk.ReliefStyle.NONE);
                 }
+            });
+
+            collection_tree.collection_added.connect(() => {
+                Idle.add(() => {
+                    sidebar_scroll.vadjustment.set_value(sidebar_scroll.vadjustment.get_upper());
+                    return GLib.Source.REMOVE;
+                });
             });
 
             base.constructed();

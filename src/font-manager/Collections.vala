@@ -239,6 +239,7 @@ namespace FontManager {
 
         public signal void changed ();
         public signal void selection_changed (Collection? group);
+        public signal void collection_added ();
 
         public string selected_iter { get; protected set; default = "-1"; }
         public Collection? selected_filter { get; protected set; default = null; }
@@ -333,6 +334,7 @@ namespace FontManager {
             model.set(iter, 0, group, 1, group.comment, -1);
             grab_focus();
             set_cursor(model.get_path(iter), get_column(CollectionColumn.NAME), true);
+            collection_added();
             return;
         }
 
