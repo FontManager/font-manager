@@ -68,7 +68,7 @@ GType COLUMN_TYPES [FONT_MANAGER_FONT_MODEL_N_COLUMNS] = {
 GType
 font_manager_font_model_column_get_type (void)
 {
-  static volatile gsize g_define_type_id__volatile = 0;
+  static gsize g_define_type_id__volatile = 0;
 
   if (g_once_init_enter (&g_define_type_id__volatile))
     {

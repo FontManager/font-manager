@@ -880,7 +880,7 @@ font_manager_weight_defined (FontManagerWeight weight)
 GType
 font_manager_weight_get_type (void)
 {
-  static volatile gsize g_define_type_id__volatile = 0;
+  static gsize g_define_type_id__volatile = 0;
 
   if (g_once_init_enter (&g_define_type_id__volatile))
     {
@@ -929,7 +929,7 @@ font_manager_slant_to_string (FontManagerSlant slant)
 GType
 font_manager_slant_get_type (void)
 {
-  static volatile gsize g_define_type_id__volatile = 0;
+  static gsize g_define_type_id__volatile = 0;
 
   if (g_once_init_enter (&g_define_type_id__volatile))
     {
@@ -1006,7 +1006,7 @@ font_manager_width_defined (FontManagerWidth width)
 GType
 font_manager_width_get_type (void)
 {
-  static volatile gsize g_define_type_id__volatile = 0;
+  static gsize g_define_type_id__volatile = 0;
 
   if (g_once_init_enter (&g_define_type_id__volatile))
     {
@@ -1056,7 +1056,7 @@ font_manager_spacing_to_string (FontManagerSpacing spacing)
 GType
 font_manager_spacing_get_type (void)
 {
-  static volatile gsize g_define_type_id__volatile = 0;
+  static gsize g_define_type_id__volatile = 0;
 
   if (g_once_init_enter (&g_define_type_id__volatile))
     {
@@ -1103,7 +1103,7 @@ font_manager_subpixel_order_to_string (FontManagerSubpixelOrder rgba)
 GType
 font_manager_subpixel_order_get_type (void)
 {
-  static volatile gsize g_define_type_id__volatile = 0;
+  static gsize g_define_type_id__volatile = 0;
 
   if (g_once_init_enter (&g_define_type_id__volatile))
     {
@@ -1148,7 +1148,7 @@ font_manager_hint_style_to_string (FontManagerHintStyle hinting)
 GType
 font_manager_hint_style_get_type (void)
 {
-  static volatile gsize g_define_type_id__volatile = 0;
+  static gsize g_define_type_id__volatile = 0;
 
   if (g_once_init_enter (&g_define_type_id__volatile))
     {
@@ -1191,7 +1191,7 @@ font_manager_lcd_filter_to_string (FontManagerLCDFilter filter)
 GType
 font_manager_lcd_filter_get_type (void)
 {
-  static volatile gsize g_define_type_id__volatile = 0;
+  static gsize g_define_type_id__volatile = 0;
 
   if (g_once_init_enter (&g_define_type_id__volatile))
     {
