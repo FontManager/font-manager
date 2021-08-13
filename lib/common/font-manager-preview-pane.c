@@ -341,7 +341,7 @@ font_manager_preview_pane_class_init (FontManagerPreviewPaneClass *klass)
                                                             G_PARAM_EXPLICIT_NOTIFY);
 
     /**
-     * FontManagerFontPreview:show-line-size:
+     * FontManagerFontPreviewPane:show-line-size:
      *
      * Whether to display line size in Waterfall preview or not.
      */
