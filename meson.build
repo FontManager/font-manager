@@ -20,6 +20,7 @@ glib = dependency('glib-2.0', version: '>= 2.62')
 gmodule = dependency('gmodule-2.0', version: '>= 2.44')
 gobject = dependency('gobject-2.0', version: '>= 2.44')
 gtk = dependency('gtk+-3.0', version: '>= 3.22')
+harfbuzz = dependency('harfbuzz', version: '>= 2.0')
 pango = dependency('pango', version: '>= 1.4')
 pangoft2 = dependency('pangoft2', version: '>= 1.4')
 sqlite = dependency('sqlite3', version: '>= 3.8')
@@ -36,8 +37,9 @@ base_deps = declare_dependency(
     include_directories: include_directories('.', 'lib/common', 'lib/orthographies', 'lib/unicode')
 )
 
+# This dependency cannot be used for vala targets
 project_deps = declare_dependency(
-    dependencies: [ base_deps, fontconfig, freetype, pangoft2 ]
+    dependencies: [ base_deps, fontconfig, freetype, harfbuzz, pangoft2 ]
 )
 
 i18n = import('i18n')

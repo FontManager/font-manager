@@ -635,19 +635,14 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self, const gchar *u
         g_clear_error(&error);
         return;
     }
-    g_autoptr(JsonObject) orthography = font_manager_get_orthography_results(source);
-    if (!json_object_has_member(orthography, "Basic Latin")) {
-        GList *charset = font_manager_get_charset_from_filepath(path, index);
+    g_autofree gchar *sample = font_manager_get_sample_string(source);
+    if (sample) {
         if (!self->samples) {
             self->samples = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
             g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_SAMPLES]);
         }
-        g_autofree gchar *sample = font_manager_get_sample_string_for_orthography(orthography, charset);
-        if (sample) {
-            const gchar *description = json_object_get_string_member(source, "description");
-            g_hash_table_insert(self->samples, g_strdup(description), g_strdup(sample));
-        }
-        g_list_free(charset);
+        const gchar *description = json_object_get_string_member(source, "description");
+        g_hash_table_insert(self->samples, g_strdup(description), g_strdup(sample));
     }
     g_object_set(font, "source-object", source, NULL);
     font_manager_preview_pane_set_font(self, font);

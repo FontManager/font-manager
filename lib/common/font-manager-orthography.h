@@ -21,10 +21,9 @@
 #ifndef __FONT_MANAGER_ORTHOGRAPHY_H__
 #define __FONT_MANAGER_ORTHOGRAPHY_H__
 
+#include <hb.h>
 #include <glib.h>
 #include <json-glib/json-glib.h>
-#include <fontconfig/fontconfig.h>
-#include <fontconfig/fcfreetype.h>
 #include <pango/pango-language.h>
 
 #include "font-manager-json-proxy.h"
@@ -33,7 +32,8 @@
 G_BEGIN_DECLS
 
 JsonObject * font_manager_get_orthography_results (JsonObject *font);
-gchar * font_manager_get_sample_string_for_orthography (JsonObject *orthography, GList *charset);
+gchar * font_manager_get_sample_string (JsonObject *font);
+GList * font_manager_get_charlist_from_font_object (JsonObject *font);
 
 static const FontManagerJsonProxyProperties OrthographyProperties [] =
 {

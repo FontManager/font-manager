@@ -47,121 +47,37 @@
 #define LEN_CHARSET(n) json_array_get_length(json_object_get_array_member(GET_OBJECT(n), "filter"))
 
 static GList *
-charset_to_list (const FcCharSet *charset)
+_hb_set_to_list (const hb_set_t *charset)
 {
     GList *result = NULL;
-    FcChar32  ucs4, pos;
-    FcChar32  map[FC_CHARSET_MAP_SIZE];
-
-    for (ucs4 = FcCharSetFirstPage (charset, map, &pos);
-         ucs4 != FC_CHARSET_DONE;
-         ucs4 = FcCharSetNextPage (charset, map, &pos)) {
-
-        for (int i = 0; i < FC_CHARSET_MAP_SIZE; i++) {
-            int b = 0;
-            FcChar32 bits = map[i];
-            FcChar32 base = ucs4 + i * 32;
-            while (bits) {
-                if (bits & 1) {
-                    gunichar ch = (base + b);
-                    if (unicode_unichar_isgraph(ch))
-                        result = g_list_prepend(result, GINT_TO_POINTER(ch));
-                }
-                bits >>= 1;
-                b++;
-            }
-        }
-
-    }
-
+    hb_codepoint_t codepoint = HB_SET_VALUE_INVALID;
+    while (hb_set_next(charset, &codepoint))
+        if (unicode_unichar_isgraph(codepoint))
+            result = g_list_prepend(result, GINT_TO_POINTER(codepoint));
     return g_list_reverse(result);
 }
 
 static JsonArray *
-charset_to_json_array (const FcCharSet *charset)
+_hb_set_to_json_array (const hb_set_t *charset)
 {
     JsonArray *result = json_array_new();
-    FcChar32  ucs4, pos;
-    FcChar32  map[FC_CHARSET_MAP_SIZE];
-
-    for (ucs4 = FcCharSetFirstPage (charset, map, &pos);
-         ucs4 != FC_CHARSET_DONE;
-         ucs4 = FcCharSetNextPage (charset, map, &pos)) {
-
-        for (int i = 0; i < FC_CHARSET_MAP_SIZE; i++) {
-            int b = 0;
-            FcChar32 bits = map[i];
-            FcChar32 base = ucs4 + i * 32;
-            while (bits) {
-                if (bits & 1) {
-                    gunichar ch = (base + b);
-                    if (unicode_unichar_isgraph(ch))
-                        json_array_add_int_element(result, ch);
-                }
-                bits >>= 1;
-                b++;
-            }
-        }
-
-    }
-
+    hb_codepoint_t codepoint = HB_SET_VALUE_INVALID;
+    while (hb_set_next(charset, &codepoint))
+        if (unicode_unichar_isgraph(codepoint))
+            json_array_add_int_element(result, codepoint);
     return result;
 }
 
-static FcCharSet *
-get_fccharset_from_filepath (const gchar *filepath, int index)
+static hb_set_t *
+get_charset_from_font_object (JsonObject *font)
 {
-    FT_Face         face;
-    FT_Library      library;
-    FT_Error         error;
-
-    gsize           filesize = 0;
-    g_autofree gchar *font = NULL;
-
-    FcCharSet *result = NULL;
-
-    if (G_UNLIKELY(!g_file_get_contents(filepath, &font, &filesize, NULL))) {
-        return result;
-    }
-
-    error = FT_Init_FreeType(&library);
-    if (G_UNLIKELY(error)) {
-        return result;
-    }
-
-    error = FT_New_Memory_Face(library, (const FT_Byte *) font,
-                               (FT_Long) filesize, index, &face);
-
-    if (G_UNLIKELY(error)) {
-        return result;
-    }
-
-    FcBlanks *blanks = FcBlanksCreate();
-    result = FcFreeTypeCharSet(face, blanks);
-    FT_Done_Face(face);
-    FT_Done_FreeType(library);
-    FcBlanksDestroy(blanks);
-    return result;
-}
-
-static FcCharSet *
-get_fccharset_from_font_object (JsonObject *font)
-{
-    int result = -1, index = json_object_get_int_member(font, "findex");
-    const gchar *filepath = json_object_get_string_member(font, "filepath");
-    FcPattern *pattern = FcPatternBuild(NULL,
-                                         FC_FILE, FcTypeString, filepath,
-                                         FC_INDEX, FcTypeInteger, index,
-                                         NULL);
-    FcObjectSet *objectset = FcObjectSetBuild(FC_CHARSET, NULL);
-    FcFontSet *fontset = FcFontList(NULL, pattern, objectset);
-    FcCharSet *charset = NULL;
-    if (fontset->nfont > 0)
-        result = FcPatternGetCharSet(fontset->fonts[0], FC_CHARSET, 0, &charset);
-    FcObjectSetDestroy(objectset);
-    FcPatternDestroy(pattern);
-    FcFontSetDestroy(fontset);
-    return result == FcResultMatch ? charset : get_fccharset_from_filepath(filepath, index);
+    hb_blob_t *blob = hb_blob_create_from_file(json_object_get_string_member(font, "filepath"));
+    hb_face_t *face = hb_face_create(blob, json_object_get_int_member(font, "findex"));
+    hb_set_t *charset = hb_set_create();
+    hb_face_collect_unicodes(face, charset);
+    hb_blob_destroy(blob);
+    hb_face_destroy(face);
+    return charset;
 }
 
 static gint
@@ -181,23 +97,23 @@ sort_by_coverage (gconstpointer a, gconstpointer b)
 }
 
 static gchar *
-get_sample_from_charlist (GList *charset)
+get_sample_from_charlist (GList *charlist)
 {
     GString *res = g_string_new(NULL);
-    guint length = g_list_length(charset);
+    guint length = g_list_length(charlist);
     if (length > 0)
         for (int i = 0; i < 24; i++) {
             int rand = g_random_int_range(0, length);
-            gunichar ch = GPOINTER_TO_INT(g_list_nth_data(charset, rand));
+            gunichar ch = GPOINTER_TO_INT(g_list_nth_data(charlist, rand));
             g_string_append_unichar(res, ch);
         }
     return g_string_free(res, FALSE);
 }
 
 static gchar *
-get_sample_from_charset (FcCharSet *charset)
+get_sample_from_charset (hb_set_t *charset)
 {
-    GList *charlist = charset_to_list(charset);
+    GList *charlist = _hb_set_to_list(charset);
     gchar *res = get_sample_from_charlist(charlist);
     g_list_free(charlist);
     return res;
@@ -218,14 +134,14 @@ get_default_orthography (JsonObject *orthography)
 
 static double
 get_coverage_from_charset (JsonObject *results,
-                           FcCharSet *charset,
+                           hb_set_t *charset,
                            const FontManagerOrthographyData *data)
 {
     int hits = 0, tries = 0;
     JsonArray *filter = NULL;
 
     /* If it doesn't contain key there's no point in going further */
-    if (!FcCharSetHasChar(charset, data->key))
+    if (!hb_set_has(charset, data->key))
         return 0;
 
     if (results)
@@ -238,18 +154,18 @@ get_coverage_from_charset (JsonObject *results,
             gunichar start = data->values[++i];
             gunichar end = data->values[++i];
 
-            for (gunichar ch = start; ch <= end; ch++) {
+            for (gunichar codepoint = start; codepoint <= end; codepoint++) {
                 tries++;
-                if (FcCharSetHasChar(charset, ch))
+                if (hb_set_has(charset, codepoint))
                     hits++;
                 if (results)
-                    json_array_add_int_element(filter, (int) ch);
+                    json_array_add_int_element(filter, (int) codepoint);
             }
 
         } else {
 
             tries++;
-            if (FcCharSetHasChar(charset, data->values[i]))
+            if (hb_set_has(charset, data->values[i]))
                 hits++;
             if (results)
                 json_array_add_int_element(filter, (int) data->values[i]);
@@ -266,7 +182,7 @@ get_coverage_from_charset (JsonObject *results,
 
 static gboolean
 check_orthography (JsonObject *results,
-                   FcCharSet *charset,
+                   hb_set_t *charset,
                    const FontManagerOrthographyData *data)
 {
     g_autoptr(JsonObject) res = NULL;
@@ -286,25 +202,12 @@ check_orthography (JsonObject *results,
 }
 
 static gboolean
-charlist_contains_sample_string (GList *charlist, const char *sample)
+charset_contains_sample_string (const hb_set_t *charset, const char *sample)
 {
     const char *p = sample;
     while (*p) {
-        gunichar ch = g_utf8_get_char(p);
-        if (!g_list_find(charlist, GINT_TO_POINTER(ch)))
-            return FALSE;
-        p = g_utf8_next_char(p);
-    }
-    return TRUE;
-}
-
-static gboolean
-charset_contains_sample_string (const FcCharSet *charset, const char *sample)
-{
-    const char *p = sample;
-    while (*p) {
-        gunichar ch = g_utf8_get_char(p);
-        if (!FcCharSetHasChar(charset, ch))
+        gunichar codepoint = g_utf8_get_char(p);
+        if (!hb_set_has(charset, codepoint))
             return FALSE;
         p = g_utf8_next_char(p);
     }
@@ -313,7 +216,7 @@ charset_contains_sample_string (const FcCharSet *charset, const char *sample)
 
 static void
 check_orthographies (JsonObject *results,
-                     FcCharSet *charset,
+                     hb_set_t *charset,
                      const FontManagerOrthographyData orth[],
                      int len)
 {
@@ -325,14 +228,6 @@ check_orthographies (JsonObject *results,
 static gchar *
 get_default_sample_string_for_orthography (JsonObject *orthography)
 {
-    if (json_object_has_member(orthography, "Basic Latin")) {
-        JsonObject *latin = json_object_get_object_member(orthography, "Basic Latin");
-        if (json_object_get_double_member(latin, "coverage") > 90) {
-            PangoLanguage *xx = pango_language_from_string("xx");
-            return g_strdup(pango_language_get_sample_string(xx));
-        }
-    }
-
     if (json_object_get_size(orthography) > 0) {
         JsonObject *def = get_default_orthography(orthography);
         if (def && json_object_get_double_member(def, "coverage") > 90) {
@@ -344,11 +239,19 @@ get_default_sample_string_for_orthography (JsonObject *orthography)
         }
     }
 
+    if (json_object_has_member(orthography, "Basic Latin")) {
+        JsonObject *latin = json_object_get_object_member(orthography, "Basic Latin");
+        if (json_object_get_double_member(latin, "coverage") > 90) {
+            PangoLanguage *xx = pango_language_from_string("xx");
+            return g_strdup(pango_language_get_sample_string(xx));
+        }
+    }
+
     return NULL;
 }
 
 static gchar *
-font_manager_get_sample_string (JsonObject *orthography, FcCharSet *charset)
+get_sample_string (JsonObject *orthography, hb_set_t *charset)
 {
     const char *local_sample = pango_language_get_sample_string(NULL);
     if (charset_contains_sample_string(charset, local_sample))
@@ -389,11 +292,11 @@ font_manager_get_sample_string (JsonObject *orthography, FcCharSet *charset)
 JsonObject *
 font_manager_get_orthography_results (JsonObject *font)
 {
-    FcCharSet *charset = NULL;
+    hb_set_t *charset = NULL;
     JsonObject *results = json_object_new();
 
     if (font)
-        charset = get_fccharset_from_font_object(font);
+        charset = get_charset_from_font_object(font);
 
     if (charset) {
         if (check_orthography(NULL, charset, LatinOrthographies))
@@ -411,18 +314,18 @@ font_manager_get_orthography_results (JsonObject *font)
         check_orthographies(results, charset, UncategorizedOrthographies, N_MISC);
     }
 
-    if (charset && FcCharSetCount(charset) > 0) {
+    if (charset && !hb_set_is_empty(charset)) {
 
         if (json_object_get_size(results) == 0) {
             JsonObject *uncategorized = json_object_new();
-            JsonArray *char_array = charset_to_json_array(charset);
+            JsonArray *char_array = _hb_set_to_json_array(charset);
             json_object_set_string_member(uncategorized, "name", "Uncategorized");
             json_object_set_double_member(uncategorized, "coverage", 100);
             json_object_set_array_member(uncategorized, "filter", char_array);
             json_object_set_object_member(results, "Uncategorized", uncategorized);
         }
 
-        g_autofree gchar *sample = font_manager_get_sample_string(results, charset);
+        g_autofree gchar *sample = get_sample_string(results, charset);
         json_object_set_string_member(results, "sample", sample);
 
     } else {
@@ -431,28 +334,51 @@ font_manager_get_orthography_results (JsonObject *font)
 
     }
 
+    if (charset)
+        hb_set_destroy(charset);
+
     return results;
 }
 
 /**
- * font_manager_get_sample_string_for_orthography:
- * @orthography: #JsonObject containing orthography results
- * @charset: (nullable) (transfer none) (element-type uint): #GList of unichar or %NULL
+ * font_manager_get_sample_string:
+ * @font:        #JsonObject
  *
- * @orthography should be one of the members of the object returned
- * by #font_manager_get_orthography_results()
- *
- * Returns: (nullable) (transfer full): a sample string for the given orthography/charset
+ * Returns: (nullable) (transfer full): A newly allocated string that must be freed with #g_free
  *                                      or %NULL if the systems default language is supported
  */
 gchar *
-font_manager_get_sample_string_for_orthography (JsonObject *orthography, GList *charset)
+font_manager_get_sample_string (JsonObject *font)
 {
     const char *local_sample = pango_language_get_sample_string(NULL);
-    if (charlist_contains_sample_string(charset, local_sample))
+    hb_set_t *charset = get_charset_from_font_object(font);
+    if (charset_contains_sample_string(charset, local_sample)) {
+        hb_set_destroy(charset);
         return NULL;
+    }
+    g_autoptr(JsonObject) orthography = font_manager_get_orthography_results(font);
     gchar *sample = get_default_sample_string_for_orthography(orthography);
-    return sample ? sample : get_sample_from_charlist(charset);
+    if (!sample)
+        sample = get_sample_from_charset(charset);
+    hb_set_destroy(charset);
+    return sample;
+}
+
+/**
+ * font_manager_get_charlist_from_font_object:
+ * @font:   #JsonObject
+ *
+ * Returns: (element-type gunichar) (transfer container) (nullable):
+ * a newly created #GSList of codepoints or %NULL.
+ * The returned list should be freed using #g_slist_free when no longer needed.
+ */
+GList *
+font_manager_get_charlist_from_font_object (JsonObject *font)
+{
+    hb_set_t *charset = get_charset_from_font_object(font);
+    GList *result = _hb_set_to_list(charset);
+    hb_set_destroy(charset);
+    return result;
 }
 
 #define PROPERTIES OrthographyProperties

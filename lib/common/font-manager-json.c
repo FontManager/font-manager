@@ -50,8 +50,7 @@ font_manager_write_json_file (JsonNode *root, const gchar *filepath, gboolean pr
     json_generator_set_root(generator, root);
     json_generator_set_pretty(generator, pretty);
     json_generator_set_indent(generator, 4);
-    gboolean result = json_generator_to_file(generator, filepath, NULL);
-    return result;
+    return json_generator_to_file(generator, filepath, NULL);
 }
 
 /**
@@ -66,12 +65,10 @@ font_manager_load_json_file (const gchar *filepath)
     g_return_val_if_fail(filepath != NULL, NULL);
 
     g_autoptr(JsonParser) parser = json_parser_new();
-    JsonNode *result = NULL;
-    if (json_parser_load_from_file(parser, filepath, NULL)) {
-        JsonNode *root = json_parser_get_root(parser);
-        result = root ? json_node_copy(root) : NULL;
-    }
-    return result;
+    JsonNode *root = NULL;
+    if (json_parser_load_from_file(parser, filepath, NULL))
+        root = json_parser_get_root(parser);
+    return root ? json_node_copy(root) : NULL;
 }
 
 /**
@@ -94,9 +91,7 @@ font_manager_compare_json_int_member (const gchar *member_name,
     g_return_val_if_fail(json_object_has_member(b, member_name), 0);
     gint int_a = json_object_get_int_member(a, member_name);
     gint int_b = json_object_get_int_member(b, member_name);
-    if (int_a != int_b)
-        return int_a - int_b;
-    return 0;
+    return int_a == int_b ? 0 : int_a - int_b;
 }
 
 /**
