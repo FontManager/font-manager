@@ -16,61 +16,63 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Author:
-#  Jerry Casiano <JerryCasiano@gmail.com>
+# Jerry Casiano <JerryCasiano@gmail.com>
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016. #zanata
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
+# Alang Hsu <alang.hsu@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2019-10-03 02:38-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Chinese (China) <@>\n"
+"PO-Revision-Date: 2021-08-15 06:35+0000\n"
+"Last-Translator: Alang Hsu <alang.hsu@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
+"font-manager/font-manager/zh_Hant/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 4.6.2\n"
-"Plural-Forms: nplurals=1; plural=0\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 # Not translate very good, just for use.
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
-msgstr "字体管理器"
+msgstr "字型管理器"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "一個支援 GTK+ 桌面環境的簡易字型管理軟體"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
 "Font Manager is intended to provide a way for average users to easily manage "
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
-msgstr ""
+msgstr "字型管理是要提供一般使用者一個易於管理桌面字型的方式，不一定要用指令式工具或手動編輯設定檔。"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
-msgstr ""
+msgstr "雖然主要設計是用 GNOME 桌面環境，應該也能在其他 GTK+ 桌面環境運作。"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
-msgstr ""
+msgstr "字型管理器不是一個專業級的字型管理解決方案。"
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr ""
+msgstr "預覽，比對與管理字型"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
 #: data/org.gnome.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
+msgstr "圖形;檢視器;GNOME;GTK;發佈中;"
 
 # Not translate very good, just for use.
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
@@ -78,52 +80,51 @@ msgstr ""
 #: data/org.gnome.FontViewer.desktop.in.in:6
 #: src/font-viewer/Application.vala:98 src/font-viewer/MainWindow.vala:23
 #: src/font-viewer/font-viewer-main-window.ui:39
-#, fuzzy
 msgid "Font Viewer"
-msgstr "字体管理器"
+msgstr "字型檢視器"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "一個支援 GTK+桌面環境的字型檢視器應用"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
 "Font Viewer allows previewing font files prior to installation. It features "
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
-msgstr ""
+msgstr "字型檢視器在安裝前可以預覽字型檔案。它有幾個特色是對於字型檔和字元對應的預覽與顯示字型屬性及授權細節。"
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr ""
+msgstr "全功能字型檔案預覽的應用"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
 #: src/font-manager/FontList.vala:503
 msgid "Install"
-msgstr ""
+msgstr "安裝"
 
 #: extensions/nautilus/font-manager-menu-provider.c:163
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr ""
+msgstr "安裝已選擇的檔案"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr ""
+msgstr "安裝已選擇的檔案"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr ""
+msgstr "字型屬性"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:120
 msgid "Preview"
-msgstr "预览"
+msgstr "預覽"
 
 #: lib/common/font-manager-font-preview.c:87
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
@@ -133,25 +134,25 @@ msgstr "瀑布"
 #: lib/common/font-manager-fontconfig.c:826
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
-msgstr "轻(Thin)"
+msgstr "瘦(Thin)"
 
 #: lib/common/font-manager-fontconfig.c:828
 msgid "Ultra-Light"
-msgstr "超细(Ultra-Light)"
+msgstr "超細(Ultra-Light)"
 
 #: lib/common/font-manager-fontconfig.c:830
 #: lib/common/font-manager-fontconfig.c:1183
 #: src/font-manager/web/google/Weight.vala:69
 msgid "Light"
-msgstr "细(Light)"
+msgstr "細(Light)"
 
 #: lib/common/font-manager-fontconfig.c:832
 msgid "Semi-Light"
-msgstr ""
+msgstr "半細"
 
 #: lib/common/font-manager-fontconfig.c:834
 msgid "Book"
-msgstr "预设(Book)"
+msgstr "預定(Book)"
 
 #: lib/common/font-manager-fontconfig.c:836
 #: lib/common/font-manager-fontconfig.c:1140
@@ -174,20 +175,20 @@ msgstr "超粗(Ultra-Bold)"
 
 #: lib/common/font-manager-fontconfig.c:844
 msgid "Heavy"
-msgstr "重(Heavy)"
+msgstr "黑(Heavy)"
 
 #: lib/common/font-manager-fontconfig.c:846
 msgid "Ultra-Heavy"
-msgstr "超重(Ultra-Heavy)"
+msgstr "超黑(Ultra-Heavy)"
 
 #: lib/common/font-manager-fontconfig.c:921
 #: src/font-manager/web/google/WebFont.vala:158
 msgid "Italic"
-msgstr "斜体(Italic)"
+msgstr "斜體(Italic)"
 
 #: lib/common/font-manager-fontconfig.c:923
 msgid "Oblique"
-msgstr "倾斜体(Oblique)"
+msgstr "傾斜體(Oblique)"
 
 #: lib/common/font-manager-fontconfig.c:961
 msgid "Ultra-Condensed"
@@ -207,19 +208,19 @@ msgstr "半窄(Semi-Condensed)"
 
 #: lib/common/font-manager-fontconfig.c:969
 msgid "Semi-Expanded"
-msgstr "半宽(Semi-Expanded)"
+msgstr "半寬(Semi-Expanded)"
 
 #: lib/common/font-manager-fontconfig.c:971
 msgid "Expanded"
-msgstr "宽(Expanded)"
+msgstr "寬(Expanded)"
 
 #: lib/common/font-manager-fontconfig.c:973
 msgid "Extra-Expanded"
-msgstr "特宽(Extra-Expanded)"
+msgstr "特寬(Extra-Expanded)"
 
 #: lib/common/font-manager-fontconfig.c:975
 msgid "Ultra-Expanded"
-msgstr "超宽(Ultra-Expanded)"
+msgstr "超寬(Ultra-Expanded)"
 
 #: lib/common/font-manager-fontconfig.c:1044
 msgid "Proportional"
@@ -227,16 +228,16 @@ msgstr "比例(Proportional)"
 
 #: lib/common/font-manager-fontconfig.c:1046
 msgid "Dual Width"
-msgstr "双宽(Dual Width)"
+msgstr "雙寬(Dual Width)"
 
 #: lib/common/font-manager-fontconfig.c:1048
 #: src/font-manager/web/google/ui/google-font-filters.ui:260
 msgid "Monospace"
-msgstr "等宽(Monospace)"
+msgstr "等寬(Monospace)"
 
 #: lib/common/font-manager-fontconfig.c:1050
 msgid "Charcell"
-msgstr "等宽等高(Charcell)"
+msgstr "Charcell"
 
 #: lib/common/font-manager-fontconfig.c:1089
 msgid "Unknown"
@@ -262,7 +263,7 @@ msgstr "VBGR"
 #: lib/common/font-manager-fontconfig.c:1144
 #: lib/common/font-manager-fontconfig.c:1187
 msgid "None"
-msgstr "无(None)"
+msgstr "無(None)"
 
 #: lib/common/font-manager-fontconfig.c:1138
 msgid "Slight"
@@ -275,130 +276,126 @@ msgstr "全部(Full)"
 #: lib/common/font-manager-fontconfig.c:1181
 #: src/font-manager/ui/font-manager-main-window.ui:178
 msgid "Default"
-msgstr "默认(Default)"
+msgstr "預設(Default)"
 
 #: lib/common/font-manager-fontconfig.c:1185
 msgid "Legacy"
-msgstr "传统(Legacy)"
+msgstr "傳統(Legacy)"
 
 #: lib/common/font-manager-freetype.c:292
 msgid "Restricted License Embedding"
-msgstr ""
+msgstr "有限制的授權嵌入"
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Preview & Print Embedding"
-msgstr ""
+msgstr "預覽 & 印出 嵌入"
 
 #: lib/common/font-manager-freetype.c:296
 msgid "Editable Embedding"
-msgstr ""
+msgstr "可編輯的嵌入"
 
 #: lib/common/font-manager-freetype.c:298
 msgid "Preview & Print Embedding | No Subsetting"
-msgstr ""
+msgstr "預覽 & 印出嵌入 | 無子設定"
 
 #: lib/common/font-manager-freetype.c:300
 msgid "Editable Embedding | No Subsetting"
-msgstr ""
+msgstr "可編輯嵌入 | 無子設定"
 
 #: lib/common/font-manager-freetype.c:302
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "預覽 & 印出嵌入 | 只有 Bitmap"
 
 #: lib/common/font-manager-freetype.c:304
 msgid "Editable Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "可編輯嵌入 | 只有 Bitmap"
 
 #: lib/common/font-manager-freetype.c:306
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr ""
+msgstr "預覽 & 印出嵌入 | 無子設定 | 只有 Bitmap"
 
 #: lib/common/font-manager-freetype.c:308
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr ""
+msgstr "可編輯嵌入 | 無子設定 | 只有 Bitmap"
 
 #: lib/common/font-manager-freetype.c:310
 msgid "Installable Embedding"
-msgstr ""
+msgstr "可安裝的嵌入"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:702
-#, fuzzy
 msgid "Unknown Vendor"
-msgstr "未知(Unknown)"
+msgstr "不明廠商(Unknown)"
 
 #: lib/common/font-manager-license-pane.c:185
-#, fuzzy
 msgid "File does not contain license information."
-msgstr "文件未包含协议描述。"
+msgstr "檔案沒有包含授權資訊。"
 
 #: lib/common/font-manager-preview-controls.c:76
 msgid "Left Aligned"
-msgstr "左对齐"
+msgstr "向左對齊"
 
 #: lib/common/font-manager-preview-controls.c:82
 msgid "Centered"
-msgstr "居中"
+msgstr "置中"
 
 #: lib/common/font-manager-preview-controls.c:88
 msgid "Fill"
-msgstr "两端对齐"
+msgstr "左右對齊"
 
 #: lib/common/font-manager-preview-controls.c:94
 msgid "Right Aligned"
-msgstr "右对齐"
+msgstr "向右對齊"
 
 #: lib/common/font-manager-preview-controls.c:311
 msgid "Edit preview text"
-msgstr "编辑预览文本"
+msgstr "編輯預覽文字"
 
 #: lib/common/font-manager-preview-controls.c:312
 msgid "Undo changes"
-msgstr "撤销更改"
+msgstr "取消變更"
 
 #: lib/common/font-manager-preview-pane.c:43
 #: lib/common/font-manager-preview-pane.c:551
-#, fuzzy
 msgid "Characters"
-msgstr "字符映射"
+msgstr "字元對應"
 
 #: lib/common/font-manager-preview-pane.c:45
 #: lib/common/font-manager-preview-pane.c:552
-#, fuzzy
 msgid "Properties"
-msgstr "比例(Proportional)"
+msgstr "屬性"
 
 #: lib/common/font-manager-preview-pane.c:47
 #: lib/common/font-manager-preview-pane.c:553
 #: src/font-manager/Categories.vala:541
 msgid "License"
-msgstr "许可证"
+msgstr "授權"
 
 #: lib/common/font-manager-preview-pane.c:434
 msgid "Search available characters"
-msgstr ""
+msgstr "搜尋可用字元"
 
 #: lib/common/font-manager-properties-pane.c:80
 msgid "PostScript Name"
-msgstr "PostScript 名称"
+msgstr "PostScript 名稱"
 
 #: lib/common/font-manager-properties-pane.c:81
 msgid "Family"
-msgstr ""
+msgstr "家族"
 
 #: lib/common/font-manager-properties-pane.c:82
 msgid "Style"
-msgstr ""
+msgstr "風格"
 
 #: lib/common/font-manager-properties-pane.c:83
 #: src/font-manager/Categories.vala:534
 msgid "Width"
-msgstr "字宽"
+msgstr "字寬"
 
 #: lib/common/font-manager-properties-pane.c:84
 #: src/font-manager/Categories.vala:536
 msgid "Slant"
-msgstr "倾斜"
+msgstr "傾斜"
 
 #: lib/common/font-manager-properties-pane.c:85
 #: src/font-manager/Categories.vala:535
@@ -418,21 +415,21 @@ msgstr "版本"
 #: lib/common/font-manager-properties-pane.c:89
 #: src/font-manager/Categories.vala:543
 msgid "Vendor"
-msgstr "供应商"
+msgstr "提供商"
 
 #: lib/common/font-manager-properties-pane.c:90
 msgid "FileType"
-msgstr ""
+msgstr "檔案類型"
 
 #: lib/common/font-manager-properties-pane.c:91
 msgid "Filesize"
-msgstr ""
+msgstr "檔案大小"
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:598
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
-msgstr "常规(Regular)"
+msgstr "常規(Regular)"
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:593
