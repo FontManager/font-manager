@@ -287,7 +287,7 @@ idle_search (UnicodeSearchBar *self)
         self->search_state->curr_index = (self->search_state->curr_index + self->search_state->direction + n_chars) % n_chars;
         wc = unicode_codepoint_list_get_char (self->search_state->codepoint_list, self->search_state->curr_index);
 
-        if (!unicode_unichar_validate (wc) || !unicode_unichar_isdefined (wc))
+        if (!unicode_unichar_validate (wc))
             continue;
 
         /* check for explicit codepoint */

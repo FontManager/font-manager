@@ -23,18 +23,14 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#include <glib/gi18n-lib.h>
-#include <gtk/gtk.h>
-
 #include "unicode-info.h"
-#include "unicode-codepoint-list.h" /* UNICODE_UNICHAR_MAX */
+
 #include "unicode-names.h"
 #include "unicode-blocks.h"
 #include "unicode-nameslist.h"
 #include "unicode-categories.h"
 #include "unicode-versions.h"
 #include "unicode-unihan.h"
-#include "unicode-scripts.h"
 
 /**
  * SECTION: unicode-info
@@ -588,32 +584,16 @@ unicode_unichar_to_printable_utf8 (gunichar uc, gchar *outbuf)
 }
 
 /**
- * unicode_unichar_isdefined:
- * @uc: a Unicode character
- *
- * Determines if a given character is assigned in the Unicode
- * standard.
- *
- * Returns: %TRUE if the character has an assigned value
- **/
-gboolean
-unicode_unichar_isdefined (gunichar uc)
-{
-    return g_unichar_isdefined(uc);
-  //return g_unichar_type (uc) != G_UNICODE_UNASSIGNED;
-}
-
-/**
  * unicode_unichar_isgraph:
  * @uc: a Unicode character
  *
  * Determines whether a character is printable and not a space
- * (returns %FALSE for control characters, format characters, and
- * spaces). g_unichar_isprint() is similar, but returns %TRUE for
+ * (returns %FALSE for control characters and spaces).
+ * g_unichar_isprint() is similar, but returns %TRUE for
  * spaces. Given some UTF-8 text, obtain a character value with
  * g_utf8_get_char().
  *
- * Returns: %TRUE if @c is printable unless it's a space
+ * Returns: %TRUE if @c is printable unless it's a space or control character
  **/
 gboolean
 unicode_unichar_isgraph (gunichar uc)
@@ -632,73 +612,7 @@ unicode_unichar_isgraph (gunichar uc)
    */
   if (t == G_UNICODE_FORMAT)
     return (uc >= 0x0600 && uc <= 0x0605) ||
-       uc == 0x06DD ||
-           uc == 0x070F ||
-           uc == 0x08E2 ||
-           uc == 0x110BD;
+            uc == 0x06DD || uc == 0x070F || uc == 0x08E2 || uc == 0x110BD;
 
-  return (t != G_UNICODE_CONTROL
-          && t != G_UNICODE_UNASSIGNED
-          //&& t != G_UNICODE_PRIVATE_USE
-          && t != G_UNICODE_SURROGATE
-          && t != G_UNICODE_SPACE_SEPARATOR);
-}
-
-/**
- * unicode_list_scripts:
- *
- * Returns an array of untranslated script names.
- *
- * The strings in the array are owned by gucharmap and should not be
- * modified or free; the array itself however is allocated and should
- * be freed with g_free().
- *
- * Returns: (transfer container) (array zero-terminated=1) (element-type utf8):
- * newly allocated %NULL-terminated array of gchar*, the items are const,
- * but the array should be freed by the caller.
- **/
-const gchar **
-unicode_list_scripts (void)
-{
-    guint i;
-    const char **scripts;
-
-    scripts = (const char **) g_new(char*, G_N_ELEMENTS(unicode_script_list_offsets) + 1);
-    for (i = 0; i < G_N_ELEMENTS(unicode_script_list_offsets); ++i)
-        scripts[i] = unicode_script_list_strings + unicode_script_list_offsets[i];
-    scripts[i] = NULL;
-    return scripts;
-}
-
-/**
- * unicode_get_script_for_char:
- * @wc: a character
- *
- * Returns: The English (untranslated) name of the script to which the
- * character belongs. Characters that don't belong to an actual script
- * return %"Common".
- **/
-const gchar *
-unicode_get_script_for_char (gunichar wc)
-{
-    gint min = 0;
-    gint mid;
-    gint max = sizeof(unicode_scripts) / sizeof(UnicodeScript) - 1;
-
-    if (wc > UNICODE_UNICHAR_MAX)
-        return NULL;
-
-    while (max >= min) {
-        mid = (min + max) / 2;
-        if (wc > unicode_scripts[mid].end)
-            min = mid + 1;
-        else if (wc < unicode_scripts[mid].start)
-            max = mid - 1;
-        else
-            return unicode_script_list_strings + unicode_script_list_offsets[unicode_scripts[mid].script_index];
-    }
-
-    /* Unicode assigns "Common" as the script name for any character not
-    * specifically listed in Scripts.txt */
-    return N_("Common");
+  return (t != G_UNICODE_CONTROL && t != G_UNICODE_SPACE_SEPARATOR);
 }

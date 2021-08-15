@@ -8,11 +8,10 @@
 #  - unicode-nameslist.h
 #  - unicode-unihan.h
 #  - unicode-categories.h
-#  - unicode-scripts.h
 #  - unicode-versions.h
 #
 # usage: ./gen-unicode-headers.pl UNICODE-VERSION DIRECTORY
-# where DIRECTORY contains UnicodeData.txt Unihan.zip NamesList.txt Blocks.txt Scripts.txt
+# where DIRECTORY contains UnicodeData.txt Unihan.zip NamesList.txt Blocks.txt
 #
 # NOTE! Some code copied from glib/glib/gen-unicode-tables.pl; keep in sync!
 
@@ -24,12 +23,12 @@ $PROG_UNZIP = "unzip" unless (defined $PROG_UNZIP);
 
 $| = 1;  # flush stdout buffer
 
-if (@ARGV != 2 && @ARGV != 3)
+if (@ARGV != 2)
 {
     $0 =~ s@.*/@@;
     die <<EOF
 
-Usage: $0 UNICODE-VERSION DIRECTORY [--i18n]
+Usage: $0 UNICODE-VERSION DIRECTORY
 
 DIRECTORY should contain the following Unicode data files:
 UnicodeData.txt Unihan.zip NamesList.txt Blocks.txt Scripts.txt
@@ -39,16 +38,10 @@ which can be found at http://www.unicode.org/Public/UNIDATA/
 EOF
 }
 
-my ($unicodedata_txt, $unihan_zip, $nameslist_txt, $blocks_txt, $scripts_txt, $versions_txt);
+my ($unicodedata_txt, $unihan_zip, $nameslist_txt, $blocks_txt, $versions_txt);
 
 my $v = $ARGV[0];
 my $d = $ARGV[1];
-
-my $gen_translatable_strings = 0;
-if (@ARGV == 3)
-{
-    $gen_translatable_strings = 1 if ($ARGV[2] eq "--i18n") or die "Unknown option \"$ARGV[2]\"\n";
-}
 
 opendir (my $dir, $d) or die "Cannot open Unicode data dir $d: $!\n";
 for my $f (readdir ($dir))
@@ -57,7 +50,6 @@ for my $f (readdir ($dir))
     $unihan_zip = "$d/$f" if ($f =~ /Unihan.*\.zip/);
     $nameslist_txt = "$d/$f" if ($f =~ /NamesList.*\.txt/);
     $blocks_txt = "$d/$f" if ($f =~ /Blocks.*\.txt/);
-    $scripts_txt = "$d/$f" if ($f =~ /Scripts.*\.txt/);
     $versions_txt = "$d/$f" if ($f =~ /DerivedAge.*\.txt/);
 }
 
@@ -65,22 +57,13 @@ defined $unicodedata_txt or die "Did not find $d/UnicodeData.txt";
 defined $unihan_zip or die "Did not find $d/Unihan.zip";
 defined $nameslist_txt or die "Did not find $d/NamesList.txt";
 defined $blocks_txt or die "Did not find $d/Blocks.txt";
-defined $scripts_txt or die "Did not find $d/Scripts.txt";
 defined $versions_txt or die "Did not find $d/DerivedAge.txt";
 
-if ($gen_translatable_strings)
-{
-    process_translatable_strings ($blocks_txt, $scripts_txt);
-}
-else
-{
-    process_unicode_data_txt ($unicodedata_txt);
-    process_nameslist_txt ($nameslist_txt);
-    process_blocks_txt ($blocks_txt);
-    process_scripts_txt ($scripts_txt);
-    process_versions_txt ($versions_txt);
-    process_unihan_zip ($unihan_zip);
-}
+process_unicode_data_txt ($unicodedata_txt);
+process_nameslist_txt ($nameslist_txt);
+process_blocks_txt ($blocks_txt);
+process_versions_txt ($versions_txt);
+process_unihan_zip ($unihan_zip);
 
 exit;
 
@@ -851,168 +834,168 @@ sub process_blocks_txt
 
 #------------------------#
 
-sub read_scripts_txt
-{
-    my ($scripts_txt, $script_hash, $scripts) = @_;
+#sub read_scripts_txt
+#{
+    #my ($scripts_txt, $script_hash, $scripts) = @_;
 
-    # Override script names
-    my %script_overrides =
-    (
-      "Nko" => "N\'Ko"
-    );
+    ## Override script names
+    #my %script_overrides =
+    #(
+      #"Nko" => "N\'Ko"
+    #);
 
-    open (my $scripts_file, $scripts_txt) or die;
+    #open (my $scripts_file, $scripts_txt) or die;
 
-    while (my $line = <$scripts_file>)
-    {
-        my ($start, $end, $raw_script);
+    #while (my $line = <$scripts_file>)
+    #{
+        #my ($start, $end, $raw_script);
 
-        if ($line =~ /^([0-9A-F]+)\.\.([0-9A-F]+)\s+;\s+(\S+)/)
-        {
-            $start = hex ($1);
-            $end = hex ($2);
-            $raw_script = $3;
-        }
-        elsif ($line =~ /^([0-9A-F]+)\s+;\s+(\S+)/)
-        {
-            $start = hex ($1);
-            $end = $start;
-            $raw_script = $2;
-        }
-        else
-        {
-            next;
-        }
+        #if ($line =~ /^([0-9A-F]+)\.\.([0-9A-F]+)\s+;\s+(\S+)/)
+        #{
+            #$start = hex ($1);
+            #$end = hex ($2);
+            #$raw_script = $3;
+        #}
+        #elsif ($line =~ /^([0-9A-F]+)\s+;\s+(\S+)/)
+        #{
+            #$start = hex ($1);
+            #$end = $start;
+            #$raw_script = $2;
+        #}
+        #else
+        #{
+            #next;
+        #}
 
-        my $script = $raw_script;
-        $script =~ tr/_/ /;
-        $script =~ s/(\w+)/\u\L$1/g;
+        #my $script = $raw_script;
+        #$script =~ tr/_/ /;
+        #$script =~ s/(\w+)/\u\L$1/g;
 
-        if (exists $script_overrides{$script}) {
-                $script = $script_overrides{$script};
-        }
+        #if (exists $script_overrides{$script}) {
+                #$script = $script_overrides{$script};
+        #}
 
-        $script_hash->{$start} = { 'end' => $end, 'script' => $script };
-        $scripts->{$script} = 1;
-    }
+        #$script_hash->{$start} = { 'end' => $end, 'script' => $script };
+        #$scripts->{$script} = 1;
+    #}
 
-    close ($scripts_file);
+    #close ($scripts_file);
 
-    # Adds Common to make sure works with UCD <= 4.0.0
-    $scripts->{"Common"} = 1;
-}
+    ## Adds Common to make sure works with UCD <= 4.0.0
+    #$scripts->{"Common"} = 1;
+#}
 
-sub process_scripts_txt
-{
-    my ($scripts_txt) = @_;
+#sub process_scripts_txt
+#{
+    #my ($scripts_txt) = @_;
 
-    print "processing $scripts_txt...";
+    #print "processing $scripts_txt...";
 
-    my %script_hash;
-    my %scripts;
+    #my %script_hash;
+    #my %scripts;
 
-    read_scripts_txt ($scripts_txt, \%script_hash, \%scripts);
+    #read_scripts_txt ($scripts_txt, \%script_hash, \%scripts);
 
-    open (my $out, "> unicode-scripts.h") or die;
+    #open (my $out, "> unicode-scripts.h") or die;
 
-    print $out "/* unicode-scripts.h */\n";
-    print $out "/* THIS IS A GENERATED FILE. CHANGES WILL BE OVERWRITTEN. */\n";
-    print $out "/* Generated by $0 */\n";
-    print $out "/* Generated from UCD version $v */\n\n";
+    #print $out "/* unicode-scripts.h */\n";
+    #print $out "/* THIS IS A GENERATED FILE. CHANGES WILL BE OVERWRITTEN. */\n";
+    #print $out "/* Generated by $0 */\n";
+    #print $out "/* Generated from UCD version $v */\n\n";
 
-    print $out "#ifndef UNICODE_SCRIPTS_H\n";
-    print $out "#define UNICODE_SCRIPTS_H\n\n";
+    #print $out "#ifndef UNICODE_SCRIPTS_H\n";
+    #print $out "#define UNICODE_SCRIPTS_H\n\n";
 
-    print $out "#include <glib.h>\n";
+    #print $out "#include <glib.h>\n";
 
-    print $out "#ifndef __GTK_DOC_IGNORE__\n\n";
+    #print $out "#ifndef __GTK_DOC_IGNORE__\n\n";
 
-    print $out "typedef struct _UnicodeScript UnicodeScript;\n\n";
+    #print $out "typedef struct _UnicodeScript UnicodeScript;\n\n";
 
-    print $out "static const gchar unicode_script_list_strings[] =\n";
-    my $offset = 0;
-    my $i = 0;
-    my %script_offsets;
-    for my $script (sort keys %scripts)
-    {
-        printf $out (qq/  "\%s\\0"\n/, $script);
-        $scripts{$script} = $i;
-        $i++;
-    $script_offsets{$script} = $offset;
-    $offset += length($script) + 1;
-    }
-    print $out "  ;\n\n";
-    undef $offset;
+    #print $out "static const gchar unicode_script_list_strings[] =\n";
+    #my $offset = 0;
+    #my $i = 0;
+    #my %script_offsets;
+    #for my $script (sort keys %scripts)
+    #{
+        #printf $out (qq/  "\%s\\0"\n/, $script);
+        #$scripts{$script} = $i;
+        #$i++;
+    #$script_offsets{$script} = $offset;
+    #$offset += length($script) + 1;
+    #}
+    #print $out "  ;\n\n";
+    #undef $offset;
 
-    print $out "static const guint16 unicode_script_list_offsets[] =\n";
-    print $out "{\n";
-    for my $script (sort keys %scripts)
-    {
-        printf $out (qq/  \%d,\n/, $script_offsets{$script});
-    }
-    print $out "};\n\n";
+    #print $out "static const guint16 unicode_script_list_offsets[] =\n";
+    #print $out "{\n";
+    #for my $script (sort keys %scripts)
+    #{
+        #printf $out (qq/  \%d,\n/, $script_offsets{$script});
+    #}
+    #print $out "};\n\n";
 
-    print $out "static const struct _UnicodeScript\n";
-    print $out "{\n";
-    print $out "  gunichar start;\n";
-    print $out "  gunichar end;\n";
-    print $out "  guint8 script_index;   /* index into unicode_script_list_offsets */\n";
-    print $out "}\n";
-    print $out "unicode_scripts[] =\n";
-    print $out "{\n";
-    for my $start (sort { $a <=> $b } keys %script_hash)
-    {
-        printf $out (qq/  { 0x%04X, 0x%04X, \%2d },\n/,
-                     $start, $script_hash{$start}->{'end'}, $scripts{$script_hash{$start}->{'script'}});
-    }
-    print $out "};\n\n";
-    print $out "#endif\n\n";
-    print $out "#endif  /* #ifndef UNICODE_SCRIPTS_H */\n";
+    #print $out "static const struct _UnicodeScript\n";
+    #print $out "{\n";
+    #print $out "  gunichar start;\n";
+    #print $out "  gunichar end;\n";
+    #print $out "  guint8 script_index;   /* index into unicode_script_list_offsets */\n";
+    #print $out "}\n";
+    #print $out "unicode_scripts[] =\n";
+    #print $out "{\n";
+    #for my $start (sort { $a <=> $b } keys %script_hash)
+    #{
+        #printf $out (qq/  { 0x%04X, 0x%04X, \%2d },\n/,
+                     #$start, $script_hash{$start}->{'end'}, $scripts{$script_hash{$start}->{'script'}});
+    #}
+    #print $out "};\n\n";
+    #print $out "#endif\n\n";
+    #print $out "#endif  /* #ifndef UNICODE_SCRIPTS_H */\n";
 
-    close ($out);
-    print " done.\n";
-}
+    #close ($out);
+    #print " done.\n";
+#}
 
 #------------------------#
 
-sub process_translatable_strings
-{
-    my ($blocks_txt, $scripts_txt) = @_;
+#sub process_translatable_strings
+#{
+    #my ($blocks_txt, $scripts_txt) = @_;
 
-    print "processing $blocks_txt and $scripts_txt...";
+    #print "processing $blocks_txt and $scripts_txt...";
 
-    my @blocks;
-    read_blocks_txt ($blocks_txt, \@blocks);
+    #my @blocks;
+    #read_blocks_txt ($blocks_txt, \@blocks);
 
-    my %script_hash;
-    my %scripts;
+    #my %script_hash;
+    #my %scripts;
 
-    read_scripts_txt ($scripts_txt, \%script_hash, \%scripts);
+    #read_scripts_txt ($scripts_txt, \%script_hash, \%scripts);
 
-    open (my $out, "> unicode-i18n.h") or die;
+    #open (my $out, "> unicode-i18n.h") or die;
 
-    print $out "unicode-i18n.h for extraction by gettext\n";
-    print $out "THIS IS A GENERATED FILE. CHANGES WILL BE OVERWRITTEN.\n";
-    print $out "Generated by $0\n";
-    print $out "Generated from UCD version $v\n\n";
+    #print $out "unicode-i18n.h for extraction by gettext\n";
+    #print $out "THIS IS A GENERATED FILE. CHANGES WILL BE OVERWRITTEN.\n";
+    #print $out "Generated by $0\n";
+    #print $out "Generated from UCD version $v\n\n";
 
-    foreach my $block (@blocks)
-    {
-        my ($start, $end, $name, $offset) = @{$block};
-        print $out qq/N_("$name")\n/;
-    }
+    #foreach my $block (@blocks)
+    #{
+        #my ($start, $end, $name, $offset) = @{$block};
+        #print $out qq/N_("$name")\n/;
+    #}
 
-    print $out "\n";
+    #print $out "\n";
 
-    my $i = 0;
-    for my $script (sort keys %scripts)
-    {
-        print $out qq/N_("$script")\n/;
-    }
+    #my $i = 0;
+    #for my $script (sort keys %scripts)
+    #{
+        #print $out qq/N_("$script")\n/;
+    #}
 
-    close ($out);
-    print " done.\n";
-}
+    #close ($out);
+    #print " done.\n";
+#}
 
 #------------------------#
 

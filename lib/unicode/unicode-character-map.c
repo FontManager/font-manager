@@ -376,9 +376,7 @@ draw_character (UnicodeCharacterMap *charmap,
     cell = get_cell_at_rowcol(charmap, row, col);
     gunichar wc = unicode_codepoint_list_get_char(priv->codepoint_list, cell);
 
-    if (wc > UNICODE_UNICHAR_MAX ||
-        !unicode_unichar_validate(wc) ||
-        !unicode_unichar_isdefined(wc))
+    if (wc > UNICODE_UNICHAR_MAX || !unicode_unichar_validate(wc))
         return;
 
     n = unicode_unichar_to_printable_utf8(wc, buf);
@@ -443,7 +441,7 @@ draw_square_bg (UnicodeCharacterMap *charmap,
         _state = GTK_STATE_FLAG_SELECTED;
     else if (cell == priv->active_cell)
         _state = GTK_STATE_FLAG_INSENSITIVE | GTK_STATE_FLAG_SELECTED;
-    else if (!wc || !unicode_unichar_validate(wc) || !unicode_unichar_isdefined(wc))
+    else if (!wc || !unicode_unichar_validate(wc))
         _state = GTK_STATE_FLAG_INSENSITIVE;
     else
         _state = GTK_STATE_FLAG_NORMAL;

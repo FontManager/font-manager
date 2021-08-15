@@ -17,7 +17,6 @@ UNICODE_FILES = \
 	Blocks.txt \
 	DerivedAge.txt \
 	NamesList.txt \
-	Scripts.txt \
 	UnicodeData.txt \
 	Unihan.zip \
 	$(NULL)
@@ -27,7 +26,6 @@ UNICODE_SOURCES = \
 	unicode-categories.h \
 	unicode-names.h \
 	unicode-nameslist.h \
-	unicode-scripts.h \
 	unicode-unihan.h \
 	unicode-versions.h \
 	$(NULL)
