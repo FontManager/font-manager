@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-06-22 13:33+0000\n"
+"PO-Revision-Date: 2021-08-14 08:33+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/id/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7.1-dev\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -56,7 +56,7 @@ msgstr "Sistem"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr ""
+msgstr "Font tersedia untuk semua pengguna."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
@@ -88,7 +88,7 @@ msgstr "Lebar"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr ""
+msgstr "Urutkan berdasarkan lebar font."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
@@ -782,7 +782,7 @@ msgstr ""
 #. (itstool) path: figure/title
 #: C/font-manager-introduction.page:55
 msgid "<app>Font Manager</app>"
-msgstr ""
+msgstr "<app>Font Manager</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -794,6 +794,7 @@ msgctxt "_"
 msgid ""
 "external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
 msgstr ""
+"external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:61
@@ -836,7 +837,7 @@ msgstr ""
 #. (itstool) path: figure/title
 #: C/font-manager-license.page:22
 msgid "<app>Font License tab</app>"
-msgstr ""
+msgstr "<app>Tab Lisensi Font</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -846,7 +847,7 @@ msgstr ""
 #: C/font-manager-license.page:23
 msgctxt "_"
 msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
-msgstr ""
+msgstr "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
 
 #. (itstool) path: note/p
 #: C/font-manager-license.page:27
@@ -856,12 +857,12 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-metadata.page:7
 msgid "View metadata embedded in your font files"
-msgstr ""
+msgstr "Lihat metadata yang disematkan di berkas font anda"
 
 #. (itstool) path: page/title
 #: C/font-manager-metadata.page:10
 msgid "Metadata"
-msgstr ""
+msgstr "Metadata"
 
 #. (itstool) path: page/p
 #: C/font-manager-metadata.page:12
@@ -1021,7 +1022,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:113
 msgid "To remove all substitutes:"
-msgstr ""
+msgstr "Untuk mencopot semua subtitusi:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:129
@@ -1047,27 +1048,27 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-supported-formats.page:5
 msgid "Font formats supported by <app>Font Manager</app>."
-msgstr ""
+msgstr "Format font yang didukung <app>Font Manager</app>."
 
 #. (itstool) path: page/title
 #: C/font-manager-supported-formats.page:10
 msgid "Supported File Formats"
-msgstr ""
+msgstr "Format berkas yang didukung"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:14
 msgid "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
-msgstr ""
+msgstr "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:21
 msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
-msgstr ""
+msgstr "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
 
 #. (itstool) path: info/desc
 #: C/index.page:6
 msgid "Getting started with Font Manager."
-msgstr ""
+msgstr "Selayang pandang Font Manager."
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1080,6 +1081,8 @@ msgid ""
 "external ref='media/preferences-desktop-font-16.png' "
 "md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 msgstr ""
+"external ref='media/preferences-desktop-font-16.png' "
+"md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 
 #. (itstool) path: info/title
 #: C/index.page:10
