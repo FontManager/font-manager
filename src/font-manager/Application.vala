@@ -320,10 +320,7 @@ namespace FontManager {
                 });
                 SimpleAction quit = new SimpleAction("quit", null);
                 add_action(quit);
-                quit.activate.connect(() => {
-                    main_window.close();
-                    Idle.add(() => { this.quit(); return GLib.Source.REMOVE; });
-                });
+                quit.activate.connect(() => { main_window.close(); });
                 const string? [] accels = {"<Ctrl>q", null };
                 set_accels_for_action("app.quit", accels);
             }
