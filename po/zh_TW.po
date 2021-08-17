@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-08-15 06:35+0000\n"
+"PO-Revision-Date: 2021-08-17 12:34+0000\n"
 "Last-Translator: Alang Hsu <alang.hsu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/zh_Hant/>\n"
@@ -41,7 +41,7 @@ msgstr ""
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
-msgstr "字型管理器"
+msgstr "字型總管"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
@@ -62,7 +62,7 @@ msgstr "雖然主要設計是用 GNOME 桌面環境，應該也能在其他 GTK+
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
-msgstr "字型管理器不是一個專業級的字型管理解決方案。"
+msgstr "字型總管不是一個專業級的字型管理解決方案。"
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
@@ -325,7 +325,7 @@ msgstr "可安裝的嵌入"
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:702
 msgid "Unknown Vendor"
-msgstr "不明廠商(Unknown)"
+msgstr "不明供應商(Unknown)"
 
 #: lib/common/font-manager-license-pane.c:185
 msgid "File does not contain license information."
@@ -415,7 +415,7 @@ msgstr "版本"
 #: lib/common/font-manager-properties-pane.c:89
 #: src/font-manager/Categories.vala:543
 msgid "Vendor"
-msgstr "提供商"
+msgstr "供應商"
 
 #: lib/common/font-manager-properties-pane.c:90
 msgid "FileType"
@@ -440,19 +440,19 @@ msgstr "正常(Normal)"
 #: lib/common/font-manager-source.c:308 lib/common/font-manager-source.c:323
 #, fuzzy
 msgid "Source Unavailable"
-msgstr "%s --> 资源不存在"
+msgstr "%s --> 資源不存在"
 
 #: lib/unicode/unicode-character-map.c:706
 msgid "Unknown character, unable to identify."
-msgstr ""
+msgstr "無法辨識的不明字元。"
 
 #: lib/unicode/unicode-character-map.c:708
 msgid "Not found."
-msgstr ""
+msgstr "不存在。"
 
 #: lib/unicode/unicode-character-map.c:710
 msgid "Character found."
-msgstr ""
+msgstr "字元已找到。"
 
 #: lib/unicode/unicode-info.c:195
 msgid "<Non Private Use High Surrogate>"
@@ -480,27 +480,27 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:209
 msgid "<not assigned>"
-msgstr ""
+msgstr "<未指派>"
 
 #: lib/unicode/unicode-info.c:226
 msgid "Other, Control"
-msgstr ""
+msgstr "其他,控制"
 
 #: lib/unicode/unicode-info.c:228
 msgid "Other, Format"
-msgstr ""
+msgstr "其他,格式"
 
 #: lib/unicode/unicode-info.c:230
 msgid "Other, Not Assigned"
-msgstr ""
+msgstr "其他,未指派"
 
 #: lib/unicode/unicode-info.c:232
 msgid "Other, Private Use"
-msgstr ""
+msgstr "其他,私人使用"
 
 #: lib/unicode/unicode-info.c:234
 msgid "Other, Surrogate"
-msgstr ""
+msgstr "其他,代理"
 
 #: lib/unicode/unicode-info.c:236
 msgid "Letter, Lowercase"
