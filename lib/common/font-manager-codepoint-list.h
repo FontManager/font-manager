@@ -21,11 +21,14 @@
 #ifndef __FONT_MANAGER_CODEPOINT_LIST_H__
 #define __FONT_MANAGER_CODEPOINT_LIST_H__
 
+#include <hb.h>
 #include <glib.h>
 #include <glib-object.h>
 #include <json-glib/json-glib.h>
 
+#include "font-manager-regional-indicator-symbols.h"
 #include "unicode-codepoint-list.h"
+#include "unicode-info.h"
 
 G_BEGIN_DECLS
 

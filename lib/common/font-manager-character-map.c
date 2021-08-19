@@ -41,6 +41,7 @@ struct _FontManagerCharacterMap
     GtkWidget   *fontscale;
     GtkWidget   *search;
 
+    gint                        active_cell;
     gdouble                     preview_size;
     FontManagerFont             *font;
     FontManagerCodepointList    *codepoint_list;
@@ -53,6 +54,7 @@ enum
     PROP_RESERVED,
     PROP_FONT,
     PROP_ACTIVE_CHAR,
+    PROP_ACTIVE_CELL,
     PROP_PREVIEW_SIZE,
     PROP_SEARCH_MODE,
     N_PROPERTIES
@@ -60,7 +62,7 @@ enum
 
 static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
 
-void font_manager_character_map_set_active_character(FontManagerCharacterMap *self, gunichar ac);
+void font_manager_character_map_set_active_cell(FontManagerCharacterMap *self, gint cell);
 
 static void
 font_manager_character_map_dispose (GObject *gobject)
@@ -92,6 +94,9 @@ font_manager_character_map_get_property (GObject *gobject,
             ac = unicode_character_map_get_active_character(charmap);
             g_value_set_uint(value, (guint) ac);
             break;
+        case PROP_ACTIVE_CELL:
+            g_value_set_int(value, self->active_cell);
+            break;
         case PROP_SEARCH_MODE:
             child = gtk_stack_get_visible_child(GTK_STACK(self->action_area));
             g_value_set_boolean(value, child == self->search);
@@ -119,7 +124,11 @@ font_manager_character_map_set_property (GObject *gobject,
             font_manager_character_map_set_font(self, g_value_get_object(value));
             break;
         case PROP_ACTIVE_CHAR:
-            font_manager_character_map_set_active_character(self, g_value_get_uint(value));
+            unicode_character_map_set_active_character(UNICODE_CHARACTER_MAP(self->character_map),
+                                                       g_value_get_uint(value));
+            break;
+        case PROP_ACTIVE_CELL:
+            font_manager_character_map_set_active_cell(self, g_value_get_int(value));
             break;
         case PROP_SEARCH_MODE:
             child = g_value_get_boolean(value) ? self->search : self->fontscale;
@@ -153,8 +162,7 @@ font_manager_character_map_class_init (FontManagerCharacterMapClass *klass)
                                                     "Currently selected font",
                                                     FONT_MANAGER_TYPE_FONT,
                                                     G_PARAM_STATIC_STRINGS |
-                                                    G_PARAM_READWRITE |
-                                                    G_PARAM_EXPLICIT_NOTIFY);
+                                                    G_PARAM_READWRITE);
 
     /**
      * FontManagerCharacterMap:active-character:
@@ -168,8 +176,16 @@ font_manager_character_map_class_init (FontManagerCharacterMapClass *klass)
                                                         UNICODE_UNICHAR_MAX,
                                                         0,
                                                         G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS |
-                                                        G_PARAM_EXPLICIT_NOTIFY);
+                                                        G_PARAM_STATIC_STRINGS);
+
+    obj_properties[PROP_ACTIVE_CELL] = g_param_spec_int("active-cell",
+                                                        NULL,
+                                                        "Active cell in character map",
+                                                        G_MININT,
+                                                        G_MAXINT,
+                                                        0,
+                                                        G_PARAM_READWRITE |
+                                                        G_PARAM_STATIC_STRINGS);
 
     /**
      * FontManagerCharacterMap:preview-size:
@@ -265,18 +281,39 @@ font_manager_character_map_init (FontManagerCharacterMap *self)
     g_object_bind_property(self, "preview-size", self->fontscale, "value", flags);
     g_object_bind_property(self->character_map, "preview-size", self->fontscale, "value", flags);
     g_object_bind_property(self->character_map, "active-character", self, "active-character", flags);
+    g_object_bind_property(self->character_map, "active-cell", self, "active-cell", flags);
     return;
 }
 
 void
-font_manager_character_map_set_active_character(FontManagerCharacterMap *self, gunichar ac)
+font_manager_character_map_set_active_cell(FontManagerCharacterMap *self, gint cell)
 {
     g_return_if_fail(self != NULL);
-    g_autofree gchar *codepoint_str = g_markup_printf_escaped("<b>U+%4.4X</b>", ac);
-    const gchar *name = unicode_get_codepoint_name(ac);
-    g_autofree gchar *name_str = g_markup_printf_escaped("<b>%s</b>", name);
-    gtk_label_set_markup(GTK_LABEL(self->codepoint), codepoint_str);
-    gtk_label_set_markup(GTK_LABEL(self->name), name_str);
+    self->active_cell = cell;
+    GSList *codepoints = unicode_codepoint_list_get_codepoints(UNICODE_CODEPOINT_LIST(self->codepoint_list), cell);
+    if (g_slist_length(codepoints) == 1) {
+        gunichar ac = (gunichar) GPOINTER_TO_INT(g_slist_nth_data(codepoints, 0));
+        g_autofree gchar *codepoint_str = g_markup_printf_escaped("<b>U+%4.4X</b>", ac);
+        const gchar *name = unicode_get_codepoint_name(ac);
+        g_autofree gchar *name_str = g_markup_printf_escaped("<b>%s</b>", name);
+        gtk_label_set_markup(GTK_LABEL(self->codepoint), codepoint_str);
+        gtk_label_set_markup(GTK_LABEL(self->name), name_str);
+    } else if (cell != 0) {
+        gunichar code1 = (gunichar) GPOINTER_TO_INT(g_slist_nth_data(codepoints, 0));
+        gunichar code2 = (gunichar) GPOINTER_TO_INT(g_slist_nth_data(codepoints, 1));
+        int index;
+        for (index = 0; index < G_N_ELEMENTS(FontManagerRIS); index++)
+            if (FontManagerRIS[index].code1 == code1 && FontManagerRIS[index].code2 == code2)
+                break;
+        g_autofree gchar *points = g_markup_printf_escaped("<b>U+%4.4X</b> + <b>U+%4.4X</b>", code1, code2);
+        g_autofree gchar *name = g_markup_printf_escaped("<b>%s</b>", FontManagerRIS[index].region);
+        gtk_label_set_markup(GTK_LABEL(self->codepoint), points);
+        gtk_label_set_markup(GTK_LABEL(self->name), name);
+    } else {
+        gtk_label_set_markup(GTK_LABEL(self->codepoint), "");
+        gtk_label_set_markup(GTK_LABEL(self->name), "");
+    }
+    g_slist_free(codepoints);
     return;
 }
 

@@ -33,7 +33,6 @@ G_BEGIN_DECLS
 
 JsonObject * font_manager_get_orthography_results (JsonObject *font);
 gchar * font_manager_get_sample_string (JsonObject *font);
-GList * font_manager_get_charlist_from_font_object (JsonObject *font);
 
 static const FontManagerJsonProxyProperties OrthographyProperties [] =
 {

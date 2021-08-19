@@ -19,7 +19,6 @@
 */
 
 #include "font-manager-codepoint-list.h"
-#include "font-manager-orthography.h"
 
 /**
  * SECTION: font-manager-codepoint-list
@@ -33,6 +32,8 @@
 struct _FontManagerCodepointList
 {
     GObject parent_instance;
+
+    gboolean has_regional_indicator_symbols;
 
     GList *charset;
     GList *filter;
@@ -56,8 +57,7 @@ get_index (UnicodeCodepointList *_self, gunichar wc)
     FontManagerCodepointList *self = FONT_MANAGER_CODEPOINT_LIST(_self);
     if (self->filter)
         return g_list_index(self->filter, GINT_TO_POINTER(wc));
-    return self->charset != NULL ?
-           (gint) g_list_index(self->charset, GINT_TO_POINTER(wc)) : -1;
+    return self->charset != NULL ? (gint) g_list_index(self->charset, GINT_TO_POINTER(wc)) : -1;
 }
 
 static gint
@@ -66,8 +66,12 @@ get_last_index (UnicodeCodepointList *_self)
     g_return_val_if_fail(_self != NULL, -1);
     FontManagerCodepointList *self = FONT_MANAGER_CODEPOINT_LIST(_self);
     if (self->filter)
-        return g_list_length(self->filter);
-    return self->charset != NULL ? (gint) g_list_length(self->charset) : -1;
+        return g_list_length(self->filter) - 1;
+    if (!self->charset)
+        return -1;
+    if (!self->has_regional_indicator_symbols)
+        return (gint) g_list_length(self->charset) - 1;
+    return (((gint) g_list_length(self->charset)) + G_N_ELEMENTS(FontManagerRIS)) - 1;
 }
 
 static gunichar
@@ -82,10 +86,35 @@ get_char (UnicodeCodepointList *_self, gint index)
            (gunichar) -1;
 }
 
+static GSList *
+get_codepoints (UnicodeCodepointList *_self, gint index)
+{
+    g_return_val_if_fail(_self != NULL, NULL);
+    FontManagerCodepointList *self = FONT_MANAGER_CODEPOINT_LIST(_self);
+    gint base_codepoints = (gint) g_list_length(self->charset);
+    GSList *results = NULL;
+    if (index < base_codepoints) {
+        if (self->filter)
+            results = g_slist_append(results, g_list_nth_data(self->filter, index));
+        else
+            results = g_slist_append(results, self->charset != NULL ?
+                                              g_list_nth_data(self->charset, index) :
+                                              GINT_TO_POINTER(-1));
+    } else {
+        gint _index = index - base_codepoints;
+        if (_index < G_N_ELEMENTS(FontManagerRIS)) {
+            results = g_slist_append(results, GINT_TO_POINTER(FontManagerRIS[_index].code1));
+            results = g_slist_append(results, GINT_TO_POINTER(FontManagerRIS[_index].code2));
+        }
+    }
+    return results;
+}
+
 static void
 unicode_codepoint_list_interface_init (UnicodeCodepointListInterface *iface)
 {
     iface->get_char = get_char;
+    iface->get_codepoints = get_codepoints;
     iface->get_index = get_index;
     iface->get_last_index = get_last_index;
     return;
@@ -95,10 +124,8 @@ static void
 font_manager_codepoint_list_finalize (GObject *object)
 {
     FontManagerCodepointList *self = FONT_MANAGER_CODEPOINT_LIST(object);
-    if (self->charset)
-        g_list_free(self->charset);
-    if (self->filter)
-        g_list_free(self->filter);
+    g_clear_pointer(&self->charset, g_list_free);
+    g_clear_pointer(&self->filter, g_list_free);
     G_OBJECT_CLASS(font_manager_codepoint_list_parent_class)->finalize(object);
     return;
 }
@@ -108,6 +135,7 @@ font_manager_codepoint_list_init (FontManagerCodepointList *self)
 {
     self->charset = NULL;
     self->filter = NULL;
+    self->has_regional_indicator_symbols = FALSE;
     return;
 }
 
@@ -156,6 +184,36 @@ font_manager_codepoint_list_class_init (FontManagerCodepointListClass *klass)
     return;
 }
 
+static void
+check_for_regional_indicator_symbols (FontManagerCodepointList *self, hb_set_t *charset)
+{
+    self->has_regional_indicator_symbols = FALSE;
+    for (guint32 i = FONT_MANAGER_RIS_START_POINT; i < FONT_MANAGER_RIS_END_POINT; i++)
+        if (!hb_set_has(charset, i))
+            return;
+    self->has_regional_indicator_symbols = TRUE;
+    return;
+}
+
+static void
+populate_charset (FontManagerCodepointList *self, JsonObject *font)
+{
+    hb_blob_t *blob = hb_blob_create_from_file(json_object_get_string_member(font, "filepath"));
+    hb_face_t *face = hb_face_create(blob, json_object_get_int_member(font, "findex"));
+    hb_set_t *charset = hb_set_create();
+    hb_face_collect_unicodes(face, charset);
+    hb_codepoint_t codepoint = HB_SET_VALUE_INVALID;
+    while (hb_set_next(charset, &codepoint))
+        if (unicode_unichar_isgraph(codepoint))
+            self->charset = g_list_prepend(self->charset, GINT_TO_POINTER(codepoint));
+    self->charset = g_list_reverse(self->charset);
+    check_for_regional_indicator_symbols(self, charset);
+    hb_blob_destroy(blob);
+    hb_face_destroy(face);
+    hb_set_destroy(charset);
+    return;
+}
+
 /**
  * font_manager_codepoint_list_set_font:
  * @self:   #FontManagerCodepointList
@@ -167,13 +225,11 @@ void
 font_manager_codepoint_list_set_font (FontManagerCodepointList *self, JsonObject *font)
 {
     g_return_if_fail(self != NULL);
-    GList *new_charset = NULL;
+    g_clear_pointer(&self->charset, g_list_free);
     if (font && json_object_ref(font)) {
-        new_charset = font_manager_get_charlist_from_font_object(font);
+        populate_charset(self, font);
         json_object_unref(font);
     }
-    g_clear_pointer(&self->charset, g_list_free);
-    self->charset = new_charset;
     return;
 }
 

@@ -25,6 +25,22 @@
 }
 
 {
+    FcPatternObjectAddWithBinding
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:FcPatternObjectAddWithBinding
+}
+
+{
+    FcFontRenderPrepare
+    Memcheck:Leak
+    fun:*alloc
+    ...
+    fun:FcFontRenderPrepare
+}
+
+{
     gtk_widget_draw_internal
     Memcheck:Leak
     fun:*alloc

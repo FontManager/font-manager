@@ -364,23 +364,6 @@ font_manager_get_sample_string (JsonObject *font)
     return sample;
 }
 
-/**
- * font_manager_get_charlist_from_font_object:
- * @font:   #JsonObject
- *
- * Returns: (element-type gunichar) (transfer container) (nullable):
- * a newly created #GSList of codepoints or %NULL.
- * The returned list should be freed using #g_slist_free when no longer needed.
- */
-GList *
-font_manager_get_charlist_from_font_object (JsonObject *font)
-{
-    hb_set_t *charset = get_charset_from_font_object(font);
-    GList *result = _hb_set_to_list(charset);
-    hb_set_destroy(charset);
-    return result;
-}
-
 #define PROPERTIES OrthographyProperties
 #define N_PROPERTIES G_N_ELEMENTS(PROPERTIES)
 static GParamSpec *obj_properties[N_PROPERTIES] = {0};

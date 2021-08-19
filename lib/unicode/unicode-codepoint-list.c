@@ -64,6 +64,23 @@ unicode_codepoint_list_get_char (UnicodeCodepointList *self, gint index)
 }
 
 /**
+ * unicode_codepoint_list_get_codepoints:
+ * @self: a #UnicodeCodepointList
+ * @index: index indicating which character to get
+ *
+ * Returns: (element-type uint) (transfer container) (nullable): #GSList containing codepoints.
+ * Free the returned #GSList using #g_slist_free().
+ **/
+GSList *
+unicode_codepoint_list_get_codepoints (UnicodeCodepointList *self, gint index)
+{
+    g_return_val_if_fail(UNICODE_IS_CODEPOINT_LIST(self), NULL);
+    UnicodeCodepointListInterface *iface = UNICODE_CODEPOINT_LIST_GET_IFACE(self);
+    g_return_val_if_fail(iface->get_codepoints != NULL, NULL);
+    return iface->get_codepoints(self, index);
+}
+
+/**
  * unicode_codepoint_list_get_index:
  * @self: a #UnicodeCodepointList
  * @wc: character for which to find the index

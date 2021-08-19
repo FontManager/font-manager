@@ -38,7 +38,8 @@ struct _UnicodeCharacterMapZoomWindow
 {
     GtkPopover  parent_instance;
 
-    gunichar active_char;
+    int active_cell;
+    gchar *cell_text;
     GtkDrawingArea *drawing_area;
     PangoFontDescription *font_desc;
     PangoLayout *layout;
@@ -52,7 +53,8 @@ enum
 {
     PROP_RESERVED,
     PROP_FONT_DESC,
-    PROP_ACTIVE_CHAR,
+    PROP_ACTIVE_CELL,
+    PROP_CELL_TEXT,
     N_PROPERTIES
 };
 
@@ -73,12 +75,8 @@ static void
 on_copy_clicked (G_GNUC_UNUSED GtkButton *button, UnicodeCharacterMapZoomWindow *self)
 {
     g_return_if_fail(self != NULL);
-    if (unicode_unichar_validate(self->active_char)) {
-        gchar utf8[7];
-        gsize len = g_unichar_to_utf8(self->active_char, utf8);
-        GtkClipboard *clipboard = gtk_widget_get_clipboard(GTK_WIDGET(self), GDK_SELECTION_CLIPBOARD);
-        gtk_clipboard_set_text(clipboard, utf8, len);
-    }
+    GtkClipboard *clipboard = gtk_widget_get_clipboard(GTK_WIDGET(self), GDK_SELECTION_CLIPBOARD);
+    gtk_clipboard_set_text(clipboard, self->cell_text, -1);
     return;
 }
 
@@ -96,9 +94,7 @@ on_draw (GtkWidget *widget, cairo_t *cr, UnicodeCharacterMapZoomWindow *self)
     if (!self->ctx)
         self->ctx = gtk_widget_get_style_context(widget);
 
-    gchar buf[7];
-    buf[unicode_unichar_to_printable_utf8(self->active_char, buf)] = '\0';
-    pango_layout_set_text(self->layout, buf, -1);
+    pango_layout_set_text(self->layout, self->cell_text, -1);
 
     PangoRectangle char_rect;
     GtkAllocation alloc;
@@ -146,14 +142,18 @@ unicode_character_map_zoom_window_set_property (GObject *gobject,
 {
     UnicodeCharacterMapZoomWindow *self = UNICODE_CHARACTER_MAP_ZOOM_WINDOW(gobject);
     switch (prop_id) {
-        case PROP_ACTIVE_CHAR:
-            self->active_char = g_value_get_uint(value);
+        case PROP_ACTIVE_CELL:
+            self->active_cell = g_value_get_int(value);
             break;
         case PROP_FONT_DESC:
             if (self->font_desc)
                 pango_font_description_free(self->font_desc);
             self->font_desc = pango_font_description_copy(g_value_get_boxed(value));
             pango_font_description_set_size(self->font_desc, 96 * PANGO_SCALE);
+            break;
+        case PROP_CELL_TEXT:
+            g_clear_pointer(&self->cell_text, g_free);
+            self->cell_text = g_value_dup_string(value);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, prop_id, pspec);
@@ -170,11 +170,14 @@ unicode_character_map_zoom_window_get_property (GObject *gobject,
 {
     UnicodeCharacterMapZoomWindow *self = UNICODE_CHARACTER_MAP_ZOOM_WINDOW(gobject);
     switch (prop_id) {
-        case PROP_ACTIVE_CHAR:
-            g_value_set_uint(value, self->active_char);
+        case PROP_ACTIVE_CELL:
+            g_value_set_int(value, self->active_cell);
             break;
         case PROP_FONT_DESC:
             g_value_set_boxed(value, self->font_desc);
+            break;
+        case PROP_CELL_TEXT:
+            g_value_set_string(value, self->cell_text);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, prop_id, pspec);
@@ -236,11 +239,19 @@ unicode_character_map_zoom_window_class_init (UnicodeCharacterMapZoomWindowClass
                                                         PANGO_TYPE_FONT_DESCRIPTION,
                                                         DEFAULT_PARAM_FLAGS);
 
-    obj_properties[PROP_ACTIVE_CHAR] = g_param_spec_unichar("active-character",
-                                                            NULL,
-                                                            "Active character",
-                                                            0,
-                                                            DEFAULT_PARAM_FLAGS);
+    obj_properties[PROP_ACTIVE_CELL] = g_param_spec_int("active-cell",
+                                                        NULL,
+                                                        "Active cell in character map",
+                                                        G_MININT,
+                                                        G_MAXINT,
+                                                        0,
+                                                        DEFAULT_PARAM_FLAGS);
+
+    obj_properties[PROP_CELL_TEXT] = g_param_spec_string("cell-text",
+                                                         NULL,
+                                                         "Text to display",
+                                                         NULL,
+                                                         DEFAULT_PARAM_FLAGS);
 
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
 
