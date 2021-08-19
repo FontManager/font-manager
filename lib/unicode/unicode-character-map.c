@@ -1483,6 +1483,7 @@ unicode_character_map_set_font_desc (UnicodeCharacterMap *charmap, PangoFontDesc
         return;
 
     unicode_character_map_set_font_desc_internal(charmap, pango_font_description_copy(font_desc));
+    unicode_character_map_emit_status_message(charmap, "font-desc");
     return;
 }
 

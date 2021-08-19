@@ -611,6 +611,20 @@ unicode_search_bar_class_init (UnicodeSearchBarClass *klass)
     return;
 }
 
+static void
+reset_search (G_GNUC_UNUSED UnicodeCharacterMap *charmap,
+              G_GNUC_UNUSED const gchar *status_message,
+              UnicodeSearchBar *self)
+{
+    g_return_if_fail(self != NULL);
+    if (gtk_widget_get_mapped(GTK_WIDGET(self->entry)) && gtk_entry_get_text_length(self->entry) > 0) {
+        g_autofree gchar *previous_text = g_strdup(gtk_entry_get_text(self->entry));
+        gtk_entry_set_text(self->entry, " ");
+        gtk_entry_set_text(self->entry, previous_text);
+    }
+    return;
+}
+
 /**
  * unicode_search_bar_set_character_map:
  * @self:                                       #UnicodeSearchBar
@@ -621,8 +635,12 @@ unicode_search_bar_set_character_map (UnicodeSearchBar *self,
                                       UnicodeCharacterMap *character_map)
 {
     g_return_if_fail(self != NULL);
+    if (self->charmap)
+        g_signal_handlers_disconnect_by_func(self->charmap, G_CALLBACK(reset_search), self);
     if (g_set_object(&self->charmap, character_map))
         g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_CHARMAP]);
+    if (self->charmap)
+        g_signal_connect_after(self->charmap, "status-message", G_CALLBACK(reset_search), self);
     return;
 }
 
