@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-08-15 06:35+0000\n"
+"PO-Revision-Date: 2021-08-17 12:34+0000\n"
 "Last-Translator: Alang Hsu <alang.hsu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager-help-docs/zh_Hant/>\n"
@@ -133,7 +133,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr "提供商"
+msgstr "供應商"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
