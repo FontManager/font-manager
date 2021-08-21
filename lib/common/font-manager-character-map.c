@@ -53,7 +53,6 @@ enum
 {
     PROP_RESERVED,
     PROP_FONT,
-    PROP_ACTIVE_CHAR,
     PROP_ACTIVE_CELL,
     PROP_PREVIEW_SIZE,
     PROP_SEARCH_MODE,
@@ -83,16 +82,10 @@ font_manager_character_map_get_property (GObject *gobject,
 {
     g_return_if_fail(gobject != NULL);
     FontManagerCharacterMap *self = FONT_MANAGER_CHARACTER_MAP(gobject);
-    UnicodeCharacterMap *charmap = UNICODE_CHARACTER_MAP(self->character_map);
-    gunichar ac = -1;
     GtkWidget *child = NULL;
     switch (property_id) {
         case PROP_FONT:
             g_value_set_object(value, self->font);
-            break;
-        case PROP_ACTIVE_CHAR:
-            ac = unicode_character_map_get_active_character(charmap);
-            g_value_set_uint(value, (guint) ac);
             break;
         case PROP_ACTIVE_CELL:
             g_value_set_int(value, self->active_cell);
@@ -122,10 +115,6 @@ font_manager_character_map_set_property (GObject *gobject,
     switch (property_id) {
         case PROP_FONT:
             font_manager_character_map_set_font(self, g_value_get_object(value));
-            break;
-        case PROP_ACTIVE_CHAR:
-            unicode_character_map_set_active_character(UNICODE_CHARACTER_MAP(self->character_map),
-                                                       g_value_get_uint(value));
             break;
         case PROP_ACTIVE_CELL:
             font_manager_character_map_set_active_cell(self, g_value_get_int(value));
@@ -163,20 +152,6 @@ font_manager_character_map_class_init (FontManagerCharacterMapClass *klass)
                                                     FONT_MANAGER_TYPE_FONT,
                                                     G_PARAM_STATIC_STRINGS |
                                                     G_PARAM_READWRITE);
-
-    /**
-     * FontManagerCharacterMap:active-character:
-     *
-     * Currently selected character
-     */
-    obj_properties[PROP_ACTIVE_CHAR] = g_param_spec_uint("active-character",
-                                                        NULL,
-                                                        "Active character",
-                                                        0,
-                                                        UNICODE_UNICHAR_MAX,
-                                                        0,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS);
 
     obj_properties[PROP_ACTIVE_CELL] = g_param_spec_int("active-cell",
                                                         NULL,
@@ -280,7 +255,6 @@ font_manager_character_map_init (FontManagerCharacterMap *self)
     GBindingFlags flags = G_BINDING_SYNC_CREATE | G_BINDING_BIDIRECTIONAL;
     g_object_bind_property(self, "preview-size", self->fontscale, "value", flags);
     g_object_bind_property(self->character_map, "preview-size", self->fontscale, "value", flags);
-    g_object_bind_property(self->character_map, "active-character", self, "active-character", flags);
     g_object_bind_property(self->character_map, "active-cell", self, "active-cell", flags);
     return;
 }
@@ -291,14 +265,15 @@ font_manager_character_map_set_active_cell(FontManagerCharacterMap *self, gint c
     g_return_if_fail(self != NULL);
     self->active_cell = cell;
     GSList *codepoints = unicode_codepoint_list_get_codepoints(UNICODE_CODEPOINT_LIST(self->codepoint_list), cell);
-    if (g_slist_length(codepoints) == 1) {
+    guint points = g_slist_length(codepoints);
+    if (points == 1) {
         gunichar ac = (gunichar) GPOINTER_TO_INT(g_slist_nth_data(codepoints, 0));
         g_autofree gchar *codepoint_str = g_markup_printf_escaped("<b>U+%4.4X</b>", ac);
         const gchar *name = unicode_get_codepoint_name(ac);
         g_autofree gchar *name_str = g_markup_printf_escaped("<b>%s</b>", name);
         gtk_label_set_markup(GTK_LABEL(self->codepoint), codepoint_str);
         gtk_label_set_markup(GTK_LABEL(self->name), name_str);
-    } else if (cell != 0) {
+    } else if (points == 2) {
         gunichar code1 = (gunichar) GPOINTER_TO_INT(g_slist_nth_data(codepoints, 0));
         gunichar code2 = (gunichar) GPOINTER_TO_INT(g_slist_nth_data(codepoints, 1));
         int index;

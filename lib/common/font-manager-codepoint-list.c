@@ -34,6 +34,7 @@ struct _FontManagerCodepointList
     GObject parent_instance;
 
     gboolean has_regional_indicator_symbols;
+    gboolean is_regional_indicator_filter;
 
     GList *charset;
     GList *filter;
@@ -51,13 +52,25 @@ enum
 };
 
 static gint
-get_index (UnicodeCodepointList *_self, gunichar wc)
+get_index (UnicodeCodepointList *_self, GSList *codepoints)
 {
     g_return_val_if_fail(_self != NULL, -1);
     FontManagerCodepointList *self = FONT_MANAGER_CODEPOINT_LIST(_self);
-    if (self->filter)
-        return g_list_index(self->filter, GINT_TO_POINTER(wc));
-    return self->charset != NULL ? (gint) g_list_index(self->charset, GINT_TO_POINTER(wc)) : -1;
+    if (!codepoints || g_slist_length(codepoints) < 1)
+        return -1;
+    gunichar code1 = (gunichar) GPOINTER_TO_INT(g_slist_nth_data(codepoints, 0));
+    if (self->filter && self->is_regional_indicator_filter) {
+        if (g_slist_length(codepoints) == 2) {
+            gunichar code2 = (gunichar) GPOINTER_TO_INT(g_slist_nth_data(codepoints, 1));
+            for (int i = 0; i < G_N_ELEMENTS(FontManagerRIS); i++)
+                if (FontManagerRIS[i].code1 == code1 && FontManagerRIS[i].code2 == code2)
+                    return i;
+        }
+        return -1;
+    } else if (self->filter)
+        return g_list_index(self->filter, GINT_TO_POINTER(code1));
+    else
+        return self->charset != NULL ? (gint) g_list_index(self->charset, GINT_TO_POINTER(code1)) : -1;
 }
 
 static gint
@@ -65,25 +78,15 @@ get_last_index (UnicodeCodepointList *_self)
 {
     g_return_val_if_fail(_self != NULL, -1);
     FontManagerCodepointList *self = FONT_MANAGER_CODEPOINT_LIST(_self);
-    if (self->filter)
+    if (self->filter && self->is_regional_indicator_filter)
+        return G_N_ELEMENTS(FontManagerRIS) - 1;
+    else if (self->filter)
         return g_list_length(self->filter) - 1;
     if (!self->charset)
         return -1;
     if (!self->has_regional_indicator_symbols)
         return (gint) g_list_length(self->charset) - 1;
     return (((gint) g_list_length(self->charset)) + G_N_ELEMENTS(FontManagerRIS)) - 1;
-}
-
-static gunichar
-get_char (UnicodeCodepointList *_self, gint index)
-{
-    g_return_val_if_fail(_self != NULL, (gunichar) -1);
-    FontManagerCodepointList *self = FONT_MANAGER_CODEPOINT_LIST(_self);
-    if (self->filter)
-        return GPOINTER_TO_INT(g_list_nth_data(self->filter, index));
-    return self->charset != NULL ?
-           (gunichar) GPOINTER_TO_INT(g_list_nth_data(self->charset, index)) :
-           (gunichar) -1;
 }
 
 static GSList *
@@ -94,13 +97,18 @@ get_codepoints (UnicodeCodepointList *_self, gint index)
     gint base_codepoints = (gint) g_list_length(self->charset);
     GSList *results = NULL;
     if (index < base_codepoints) {
-        if (self->filter)
+        if (self->filter && self->is_regional_indicator_filter) {
+            if (index < G_N_ELEMENTS(FontManagerRIS)) {
+                results = g_slist_append(results, GINT_TO_POINTER(FontManagerRIS[index].code1));
+                results = g_slist_append(results, GINT_TO_POINTER(FontManagerRIS[index].code2));
+            }
+        } else if (self->filter)
             results = g_slist_append(results, g_list_nth_data(self->filter, index));
         else
             results = g_slist_append(results, self->charset != NULL ?
                                               g_list_nth_data(self->charset, index) :
                                               GINT_TO_POINTER(-1));
-    } else {
+    } else if (base_codepoints > 0) {
         gint _index = index - base_codepoints;
         if (_index < G_N_ELEMENTS(FontManagerRIS)) {
             results = g_slist_append(results, GINT_TO_POINTER(FontManagerRIS[_index].code1));
@@ -113,7 +121,6 @@ get_codepoints (UnicodeCodepointList *_self, gint index)
 static void
 unicode_codepoint_list_interface_init (UnicodeCodepointListInterface *iface)
 {
-    iface->get_char = get_char;
     iface->get_codepoints = get_codepoints;
     iface->get_index = get_index;
     iface->get_last_index = get_last_index;
@@ -136,6 +143,7 @@ font_manager_codepoint_list_init (FontManagerCodepointList *self)
     self->charset = NULL;
     self->filter = NULL;
     self->has_regional_indicator_symbols = FALSE;
+    self->is_regional_indicator_filter = FALSE;
     return;
 }
 
@@ -233,6 +241,15 @@ font_manager_codepoint_list_set_font (FontManagerCodepointList *self, JsonObject
     return;
 }
 
+gboolean
+_is_regional_indicator_filter (GList *filter)
+{
+    if (!filter || g_list_length(filter) != 26)
+        return FALSE;
+    return (GPOINTER_TO_INT(g_list_nth_data(filter, 0)) == FONT_MANAGER_RIS_START_POINT
+            && GPOINTER_TO_INT(g_list_nth_data(filter, 25)) == FONT_MANAGER_RIS_END_POINT);
+}
+
 /**
  * font_manager_codepoint_list_set_filter:
  * @self: #FontManagerCodepointList
@@ -247,6 +264,7 @@ font_manager_codepoint_list_set_filter (FontManagerCodepointList *self, GList *f
     g_return_if_fail(self != NULL);
     g_clear_pointer(&self->filter, g_list_free);
     self->filter = filter;
+    self->is_regional_indicator_filter = _is_regional_indicator_filter(filter);
     return;
 }
 

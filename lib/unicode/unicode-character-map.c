@@ -123,7 +123,6 @@ enum
     STATUS_MESSAGE,
     MOVE_CURSOR,
     COPY_CLIPBOARD,
-    PASTE_CLIPBOARD,
     NUM_SIGNALS
 };
 
@@ -136,7 +135,6 @@ enum
     PROP_VADJUSTMENT,
     PROP_HSCROLL_POLICY,
     PROP_VSCROLL_POLICY,
-    PROP_ACTIVE_CHAR,
     PROP_ACTIVE_CELL,
     PROP_CODEPOINT_LIST,
     PROP_FONT_DESC,
@@ -263,12 +261,30 @@ unicode_character_map_y_offset (UnicodeCharacterMap *charmap, gint row)
     return y;
 }
 
+static gchar *
+get_text_for_cell (UnicodeCharacterMap *charmap, gint cell)
+{
+    GSList *codepoints = unicode_codepoint_list_get_codepoints(priv->codepoint_list, cell);
+    for (GSList *iter = codepoints; iter != NULL; iter = iter->next) {
+        gunichar wc = GPOINTER_TO_INT(iter->data);
+        if (wc > UNICODE_UNICHAR_MAX || !unicode_unichar_validate(wc))
+            return NULL;
+    }
+
+    gchar text [24];
+    gchar *p = text;
+    for (GSList *iter = codepoints; iter != NULL; iter = iter->next)
+        p += unicode_unichar_to_printable_utf8((gunichar) GPOINTER_TO_INT(iter->data), p);
+    p[0] = 0;
+    g_slist_free(codepoints);
+    return g_strdup(text);
+}
+
 static PangoLayout *
-layout_scaled_glyph (UnicodeCharacterMap *charmap, gunichar uc, double font_factor)
+layout_scaled_glyph (UnicodeCharacterMap *charmap, double font_factor)
 {
     PangoFontDescription *font_desc;
     PangoLayout *layout;
-    gchar buf[11];
 
     font_desc = pango_font_description_copy(priv->font_desc);
     double font_size = font_factor * pango_font_description_get_size(priv->font_desc);
@@ -281,21 +297,21 @@ layout_scaled_glyph (UnicodeCharacterMap *charmap, gunichar uc, double font_fact
     unicode_character_map_ensure_pango_layout(charmap);
     layout = pango_layout_new(pango_layout_get_context (priv->pango_layout));
     pango_layout_set_font_description(layout, font_desc);
-    buf[unicode_unichar_to_printable_utf8(uc, buf)] = '\0';
-    pango_layout_set_text(layout, buf, -1);
+    g_autofree gchar *glyph = get_text_for_cell(charmap, priv->active_cell);
+    pango_layout_set_text(layout, glyph, -1);
     pango_font_description_free(font_desc);
     return layout;
 }
 
 static cairo_surface_t *
-create_glyph_surface (UnicodeCharacterMap *charmap, gunichar wc, double font_factor)
+create_glyph_surface (UnicodeCharacterMap *charmap, double font_factor)
 {
     GtkWidget *widget = GTK_WIDGET(charmap);
     enum { PADDING = 16 };
     gint width, height;
     PangoRectangle char_rect;
 
-    PangoLayout *pango_layout = layout_scaled_glyph(charmap, wc, font_factor);
+    PangoLayout *pango_layout = layout_scaled_glyph(charmap, font_factor);
     pango_layout_get_pixel_extents(pango_layout, &char_rect, NULL);
     width  = char_rect.width + 2 * PADDING;
     height = char_rect.height + 2 * PADDING;
@@ -359,25 +375,6 @@ get_cell_at_xy (UnicodeCharacterMap *charmap, gint x, gint y)
         return priv->last_cell;
 
     return cell;
-}
-
-static gchar *
-get_text_for_cell (UnicodeCharacterMap *charmap, gint cell)
-{
-    GSList *codepoints = unicode_codepoint_list_get_codepoints(priv->codepoint_list, cell);
-    for (GSList *iter = codepoints; iter != NULL; iter = iter->next) {
-        gunichar wc = GPOINTER_TO_INT(iter->data);
-        if (wc > UNICODE_UNICHAR_MAX || !unicode_unichar_validate(wc))
-            return NULL;
-    }
-
-    gchar text [24];
-    gchar *p = text;
-    for (GSList *iter = codepoints; iter != NULL; iter = iter->next)
-        p += unicode_unichar_to_printable_utf8((gunichar) GPOINTER_TO_INT(iter->data), p);
-    p[0] = 0;
-    g_slist_free(codepoints);
-    return g_strdup(text);
 }
 
 static void
@@ -497,46 +494,6 @@ draw_separators (UnicodeCharacterMap *charmap, cairo_t *cr)
 }
 
 static void
-unicode_character_map_set_active_cell (UnicodeCharacterMap *charmap, gint cell)
-{
-    GtkWidget *widget = GTK_WIDGET(charmap);
-
-    if (cell == priv->active_cell)
-        return;
-
-    if (cell < 0)
-        cell = 0;
-    else if (cell > priv->last_cell)
-        cell = priv->last_cell;
-
-    int old_active_cell = priv->active_cell;
-    int old_page_first_cell = priv->page_first_cell;
-
-    priv->active_cell = cell;
-
-    if (cell < priv->page_first_cell || cell >= priv->page_first_cell + priv->page_size) {
-        int old_row = old_active_cell / priv->cols;
-        int new_row = cell / priv->cols;
-        int new_page_first_cell = old_page_first_cell + ((new_row - old_row) * priv->cols);
-        int last_row = (priv->last_cell / priv->cols) + 1;
-        int last_page_first_row = last_row - priv->rows;
-        int last_page_first_cell = (last_page_first_row * priv->cols) + 1;
-        priv->page_first_cell = CLAMP(new_page_first_cell, 0, last_page_first_cell);
-        if (priv->vadjustment)
-            gtk_adjustment_set_value(priv->vadjustment, priv->page_first_cell / priv->cols);
-    } else if (gtk_widget_get_realized(widget)) {
-        /* Clear previous selection */
-        expose_cell(charmap, old_active_cell);
-        /* Update selected cell */
-        expose_cell(charmap, cell);
-    }
-
-    g_object_notify(G_OBJECT(charmap), "active-character");
-    g_object_notify(G_OBJECT(charmap), "active-cell");
-    return;
-}
-
-static void
 vadjustment_value_changed_cb (GtkAdjustment *vadjustment, UnicodeCharacterMap *charmap)
 {
     int row = (int) gtk_adjustment_get_value (vadjustment);
@@ -569,7 +526,7 @@ unicode_character_map_set_font_desc_internal (UnicodeCharacterMap *charmap,
     unicode_character_map_set_active_cell(charmap, 1);
     update_scrollbar_adjustment(charmap);
     g_object_notify(G_OBJECT(charmap), "font-desc");
-    g_object_notify(G_OBJECT(charmap), "active-character");
+    g_object_notify(G_OBJECT(charmap), "active-cell");
     return;
 }
 
@@ -669,9 +626,7 @@ unicode_character_map_drag_begin (GtkWidget *widget, GdkDragContext *context)
     GdkMonitor *monitor = gdk_display_get_monitor_at_window(display, window);
     gdk_monitor_get_geometry(monitor, &geometry);
     scale = CLAMP(((0.3 * geometry.height) / (FACTOR_WIDTH * font_size_px)), 1.0, 5.0);
-    drag_surface = create_glyph_surface(charmap,
-                                        unicode_character_map_get_active_character(charmap),
-                                        scale);
+    drag_surface = create_glyph_surface(charmap, scale);
     gtk_drag_set_icon_surface(context, drag_surface);
     cairo_surface_destroy(drag_surface);
     /* no need to chain up */
@@ -687,41 +642,6 @@ unicode_character_map_drag_data_get (GtkWidget *widget,
 {
     g_autofree gchar *text = get_text_for_cell(UNICODE_CHARACTER_MAP(widget), priv->active_cell);
     gtk_selection_data_set_text(selection_data, text, -1);
-    /* no need to chain up */
-    return;
-}
-
-static void
-unicode_character_map_drag_data_received (GtkWidget *widget,
-                                          G_GNUC_UNUSED GdkDragContext *context,
-                                          G_GNUC_UNUSED gint x, G_GNUC_UNUSED gint y,
-                                          GtkSelectionData *selection_data,
-                                          G_GNUC_UNUSED guint info,
-                                          G_GNUC_UNUSED guint time)
-{
-    UnicodeCharacterMap *charmap = UNICODE_CHARACTER_MAP(widget);
-    g_autofree gchar *text = NULL;
-    gunichar wc;
-
-    if (gtk_selection_data_get_length(selection_data) <= 0 ||
-        gtk_selection_data_get_data(selection_data) == NULL)
-        return;
-
-    text = (gchar *) gtk_selection_data_get_text(selection_data);
-
-    if (text == NULL) /* XXX: say something in the statusbar? */
-        return;
-
-    wc = g_utf8_get_char_validated(text, -1);
-
-    if (wc == (gunichar)(-2) || wc == (gunichar)(-1) || wc > UNICODE_UNICHAR_MAX)
-        unicode_character_map_emit_status_message(charmap, _("Unknown character, unable to identify."));
-    else if (unicode_codepoint_list_get_index(priv->codepoint_list, wc) == -1)
-        unicode_character_map_emit_status_message(charmap, _("Not found."));
-    else {
-        unicode_character_map_emit_status_message(charmap, _("Character found."));
-        unicode_character_map_set_active_character(charmap, wc);
-    }
     /* no need to chain up */
     return;
 }
@@ -787,13 +707,11 @@ expose_done:
 static gboolean
 unicode_character_map_motion_notify (GtkWidget *widget, GdkEventMotion *event)
 {
-    UnicodeCharacterMap *charmap = UNICODE_CHARACTER_MAP(widget);
     gboolean (* motion_notify_event) (GtkWidget *, GdkEventMotion *) =
     GTK_WIDGET_CLASS (unicode_character_map_parent_class)->motion_notify_event;
 
     if ((event->state & GDK_BUTTON1_MASK) &&
-        gtk_drag_check_threshold(widget, priv->click_x, priv->click_y, event->x, event->y) &&
-        unicode_unichar_validate(unicode_character_map_get_active_character(charmap)))
+        gtk_drag_check_threshold(widget, priv->click_x, priv->click_y, event->x, event->y))
     {
         gtk_drag_begin_with_coordinates(widget,
                                         priv->target_list,
@@ -1055,49 +973,9 @@ unicode_character_map_move_cursor (UnicodeCharacterMap *charmap,
 static void
 unicode_character_map_copy_clipboard (UnicodeCharacterMap *charmap)
 {
-    gunichar wc = unicode_character_map_get_active_character(charmap);
-    if (unicode_unichar_validate(wc)) {
-        gchar utf8[7];
-        gsize len = g_unichar_to_utf8(wc, utf8);
-        GtkClipboard *clipboard = gtk_widget_get_clipboard(GTK_WIDGET(charmap),
-                                                            GDK_SELECTION_CLIPBOARD);
-        gtk_clipboard_set_text(clipboard, utf8, len);
-    }
-    return;
-}
-
-static void
-unicode_character_map_paste_received_cb (G_GNUC_UNUSED GtkClipboard *clipboard,
-                                         const char *text,
-                                         gpointer user_data)
-{
-    gpointer *data = (gpointer *) user_data;
-    UnicodeCharacterMap *charmap = *data;
-
-    g_slice_free(gpointer, data);
-    g_return_if_fail(charmap != NULL);
-    g_object_remove_weak_pointer(G_OBJECT(charmap), data);
-    g_return_if_fail(text != NULL);
-
-    gunichar wc = g_utf8_get_char_validated(text, -1);
-    if (wc == 0 || !unicode_unichar_validate(wc)) {
-        gtk_widget_error_bell(GTK_WIDGET(charmap));
-        return;
-    }
-    unicode_character_map_set_active_character(charmap, wc);
-    return;
-}
-
-static void
-unicode_character_map_paste_clipboard (UnicodeCharacterMap *charmap)
-{
-    g_return_if_fail(gtk_widget_get_realized(GTK_WIDGET(charmap)));
-
-    gpointer *data = g_slice_new(gpointer);
+    g_autofree gchar *text = get_text_for_cell(charmap, priv->active_cell);
     GtkClipboard *clipboard = gtk_widget_get_clipboard(GTK_WIDGET(charmap), GDK_SELECTION_CLIPBOARD);
-    *data = charmap;
-    g_object_add_weak_pointer(G_OBJECT(charmap), data);
-    gtk_clipboard_request_text(clipboard, unicode_character_map_paste_received_cb, data);
+    gtk_clipboard_set_text(clipboard, text, -1);
     return;
 }
 
@@ -1202,9 +1080,6 @@ unicode_character_map_set_property (GObject *gobject,
             priv->vscroll_policy = g_value_get_enum(value);
             gtk_widget_queue_resize(GTK_WIDGET(charmap));
             break;
-        case PROP_ACTIVE_CHAR:
-            unicode_character_map_set_active_character(charmap, g_value_get_uint(value));
-            break;
         case PROP_ACTIVE_CELL:
             priv->active_cell = g_value_get_int(value);
             break;
@@ -1246,9 +1121,6 @@ unicode_character_map_get_property (GObject *gobject,
         case PROP_VSCROLL_POLICY:
             g_value_set_enum(value, priv->vscroll_policy);
             break;
-        case PROP_ACTIVE_CHAR:
-            g_value_set_uint(value, unicode_character_map_get_active_character (charmap));
-            break;
         case PROP_ACTIVE_CELL:
             g_value_set_int(value, priv->active_cell);
             break;
@@ -1282,7 +1154,6 @@ unicode_character_map_class_init (UnicodeCharacterMapClass *klass)
 
     widget_class->drag_begin = unicode_character_map_drag_begin;
     widget_class->drag_data_get = unicode_character_map_drag_data_get;
-    widget_class->drag_data_received = unicode_character_map_drag_data_received;
     widget_class->button_press_event = unicode_character_map_button_press;
     widget_class->get_preferred_width = unicode_character_map_get_preferred_width;
     widget_class->get_preferred_height = unicode_character_map_get_preferred_height;
@@ -1292,10 +1163,9 @@ unicode_character_map_class_init (UnicodeCharacterMapClass *klass)
     widget_class->style_updated = unicode_character_map_style_updated;
 
     klass->activate = NULL;
-    klass->set_active_char = NULL;
+    klass->set_active_cell = NULL;
     klass->move_cursor = unicode_character_map_move_cursor;
     klass->copy_clipboard = unicode_character_map_copy_clipboard;
-    klass->paste_clipboard = unicode_character_map_paste_clipboard;
 
     /* GtkScrollable interface properties */
     g_object_class_override_property(object_class, PROP_HADJUSTMENT, "hadjustment");
@@ -1343,29 +1213,6 @@ unicode_character_map_class_init (UnicodeCharacterMapClass *klass)
                                             NULL,//g_cclosure_marshal_VOID__VOID,
                                             G_TYPE_NONE,
                                             0);
-
-    signals[PASTE_CLIPBOARD] = g_signal_new(I_("paste-clipboard"),
-                                            G_OBJECT_CLASS_TYPE(object_class),
-                                            G_SIGNAL_RUN_LAST | G_SIGNAL_ACTION,
-                                            G_STRUCT_OFFSET(UnicodeCharacterMapClass, paste_clipboard),
-                                            NULL, NULL,
-                                            NULL,//g_cclosure_marshal_VOID__VOID,
-                                            G_TYPE_NONE,
-                                            0);
-
-    /* Not using g_param_spec_unichar on purpose, since it disallows certain
-     * values we want (it's performing a g_unichar_validate).
-     */
-    g_object_class_install_property(object_class,
-                                    PROP_ACTIVE_CHAR,
-                                    g_param_spec_uint("active-character",
-                                                        NULL,
-                                                        "Active character",
-                                                        0,
-                                                        UNICODE_UNICHAR_MAX,
-                                                        0,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS));
 
     g_object_class_install_property(object_class,
                                     PROP_ACTIVE_CELL,
@@ -1446,8 +1293,6 @@ unicode_character_map_class_init (UnicodeCharacterMapClass *klass)
     /* Clipboard actions */
     gtk_binding_entry_add_signal(binding_set, GDK_KEY_c, GDK_CONTROL_MASK, "copy-clipboard", 0);
     gtk_binding_entry_add_signal(binding_set, GDK_KEY_Insert, GDK_CONTROL_MASK, "copy-clipboard", 0);
-    gtk_binding_entry_add_signal(binding_set, GDK_KEY_v, GDK_CONTROL_MASK, "paste-clipboard", 0);
-    gtk_binding_entry_add_signal(binding_set, GDK_KEY_Insert, GDK_SHIFT_MASK, "paste-clipboard", 0);
 
     return;
 }
@@ -1537,7 +1382,7 @@ unicode_character_map_set_codepoint_list (UnicodeCharacterMap *charmap,
     else
         priv->last_cell = 0;
     g_object_notify(obj, "codepoint-list");
-    g_object_notify(obj, "active-character");
+    g_object_notify(obj, "active-cell");
     gtk_widget_queue_draw(GTK_WIDGET(charmap));
     update_scrollbar_adjustment(charmap);
     g_object_thaw_notify(obj);
@@ -1576,38 +1421,59 @@ unicode_character_map_get_preview_size (UnicodeCharacterMap *charmap)
 }
 
 /**
- * unicode_character_map_get_active_character:
+ * unicode_character_map_get_active_cell:
  * @charmap: a #UnicodeCharacterMap
  *
- * Returns: The currently selected #gunichar
+ * Returns: The currently selected cell
  */
-gunichar
-unicode_character_map_get_active_character (UnicodeCharacterMap *charmap)
+gint
+unicode_character_map_get_active_cell (UnicodeCharacterMap *charmap)
 {
     g_return_val_if_fail(UNICODE_IS_CHARACTER_MAP(charmap), 0);
-    if (!priv->codepoint_list)
-        return 0;
-    return unicode_codepoint_list_get_char(priv->codepoint_list, priv->active_cell);
+    return priv->active_cell;
 }
 
+
 /**
- * unicode_character_map_set_active_character:
+ * unicode_character_map_set_active_cell:
  * @charmap: a #UnicodeCharacterMap
- * @wc: a unicode character (UTF-32)
- *
- * Sets @wc as the selected character.
+ * @cell: cell to select
  */
 void
-unicode_character_map_set_active_character (UnicodeCharacterMap *charmap, gunichar wc)
+unicode_character_map_set_active_cell (UnicodeCharacterMap *charmap, gint cell)
 {
-    g_return_if_fail(UNICODE_IS_CHARACTER_MAP(charmap));
-    if (!UNICODE_IS_CODEPOINT_LIST(priv->codepoint_list))
+    GtkWidget *widget = GTK_WIDGET(charmap);
+
+    if (cell == priv->active_cell)
         return;
-    gint cell = unicode_codepoint_list_get_index(priv->codepoint_list, wc);
-    if (cell < 0 || cell > priv->last_cell) {
-        gtk_widget_error_bell(GTK_WIDGET(charmap));
-        return;
+
+    if (cell < 0)
+        cell = 0;
+    else if (cell > priv->last_cell)
+        cell = priv->last_cell;
+
+    int old_active_cell = priv->active_cell;
+    int old_page_first_cell = priv->page_first_cell;
+
+    priv->active_cell = cell;
+
+    if (cell < priv->page_first_cell || cell >= priv->page_first_cell + priv->page_size) {
+        int old_row = old_active_cell / priv->cols;
+        int new_row = cell / priv->cols;
+        int new_page_first_cell = old_page_first_cell + ((new_row - old_row) * priv->cols);
+        int last_row = (priv->last_cell / priv->cols) + 1;
+        int last_page_first_row = last_row - priv->rows;
+        int last_page_first_cell = (last_page_first_row * priv->cols) + 1;
+        priv->page_first_cell = CLAMP(new_page_first_cell, 0, last_page_first_cell);
+        if (priv->vadjustment)
+            gtk_adjustment_set_value(priv->vadjustment, priv->page_first_cell / priv->cols);
+    } else if (gtk_widget_get_realized(widget)) {
+        /* Clear previous selection */
+        expose_cell(charmap, old_active_cell);
+        /* Update selected cell */
+        expose_cell(charmap, cell);
     }
-    unicode_character_map_set_active_cell(charmap, cell);
+
+    g_object_notify(G_OBJECT(charmap), "active-cell");
     return;
 }

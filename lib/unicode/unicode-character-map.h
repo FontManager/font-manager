@@ -41,7 +41,6 @@ G_DECLARE_DERIVABLE_TYPE(UnicodeCharacterMap, unicode_character_map, UNICODE, CH
  * UnicodeCharacterMapClass:
  * @activate:                   called when a cell is activated
  * @copy_clipboard:             called when copy to clipboard is requested
- * @paste_clipboard:            called when paste from clipboard is requested
  * @set_active_char:            called when a cell is selected
  * @status_message:             called with search results on data drops
  * @set_scroll_adjustments:     use to override scroll adjustments
@@ -53,8 +52,7 @@ struct _UnicodeCharacterMapClass
 
     void    (* activate)                (UnicodeCharacterMap *charmap);
     void    (* copy_clipboard)          (UnicodeCharacterMap *charmap);
-    void    (* paste_clipboard)         (UnicodeCharacterMap *charmap);
-    void    (* set_active_char)         (UnicodeCharacterMap *charmap, guint ch);
+    void    (* set_active_cell)         (UnicodeCharacterMap *charmap, gint cell);
     void    (* status_message)          (UnicodeCharacterMap *charmap, const gchar *message);
     void    (* set_scroll_adjustments)  (UnicodeCharacterMap *charmap,
                                           GtkAdjustment *hadjustment,
@@ -65,12 +63,12 @@ struct _UnicodeCharacterMapClass
 };
 
 GtkWidget * unicode_character_map_new (void);
-void unicode_character_map_set_active_character (UnicodeCharacterMap *charmap, gunichar wc);
+void unicode_character_map_set_active_cell (UnicodeCharacterMap *charmap, gint cell);
 void unicode_character_map_set_codepoint_list (UnicodeCharacterMap *charmap, UnicodeCodepointList *codepoint_list);
 void unicode_character_map_set_font_desc (UnicodeCharacterMap *charmap, PangoFontDescription *font_desc);
 void unicode_character_map_set_preview_size (UnicodeCharacterMap *charmap, gdouble size);
 double unicode_character_map_get_preview_size (UnicodeCharacterMap *charmap);
-gunichar unicode_character_map_get_active_character (UnicodeCharacterMap *charmap);
+gint unicode_character_map_get_active_cell (UnicodeCharacterMap *charmap);
 PangoFontDescription * unicode_character_map_get_font_desc (UnicodeCharacterMap *charmap);
 UnicodeCodepointList * unicode_character_map_get_codepoint_list (UnicodeCharacterMap *charmap);
 

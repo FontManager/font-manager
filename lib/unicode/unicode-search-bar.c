@@ -203,15 +203,23 @@ check_for_explicit_codepoint (const UnicodeCodepointList *codepoint_list, const 
 
     if (nptr != string) {
         wc = strtoul(nptr, &endptr, base);
-        if (endptr != nptr)
-            index = unicode_codepoint_list_get_index((UnicodeCodepointList *) codepoint_list, wc);
+        if (endptr != nptr) {
+            GSList *codepoints = NULL;
+            codepoints = g_slist_append(codepoints, GINT_TO_POINTER(wc));
+            index = unicode_codepoint_list_get_index((UnicodeCodepointList *) codepoint_list, codepoints);
+            g_slist_free(codepoints);
+        }
     }
 
     /* Check for hex codepoint without any prefix. */
     if (index < 0 && base > 10) {
         wc = strtoul(string, &endptr, base);
-        if (endptr-3 >= string)
-            index = unicode_codepoint_list_get_index((UnicodeCodepointList *) codepoint_list, wc);
+        if (endptr-3 >= string) {
+            GSList *codepoints = NULL;
+            codepoints = g_slist_append(codepoints, GINT_TO_POINTER(wc));
+            index = unicode_codepoint_list_get_index((UnicodeCodepointList *) codepoint_list, codepoints);
+            g_slist_free(codepoints);
+        }
     }
 
     return index;
@@ -258,7 +266,10 @@ quick_checks_after (UnicodeSearchState *search_state)
 {
     /* jump to the first nonspace character unless it’s plain ascii */
     if (search_state->search_string_nfd[0] < 0x20 || search_state->search_string_nfd[0] > 0x7e) {
-        gint index = unicode_codepoint_list_get_index (search_state->codepoint_list, g_utf8_get_char (search_state->search_string_nfd));
+        GSList *codepoints = NULL;
+        codepoints = g_slist_append(codepoints, GINT_TO_POINTER(g_utf8_get_char(search_state->search_string_nfd)));
+        gint index = unicode_codepoint_list_get_index (search_state->codepoint_list, codepoints);
+        g_slist_free(codepoints);
         if (index != -1) {
             search_state->match = index;
             search_state->search_complete = TRUE;
@@ -285,7 +296,9 @@ idle_search (UnicodeSearchBar *self)
 
     do {
         self->search_state->curr_index = (self->search_state->curr_index + self->search_state->direction + n_chars) % n_chars;
-        wc = unicode_codepoint_list_get_char (self->search_state->codepoint_list, self->search_state->curr_index);
+        GSList *codepoints = unicode_codepoint_list_get_codepoints(self->search_state->codepoint_list, self->search_state->curr_index);
+        wc = (gunichar) GPOINTER_TO_INT(g_slist_nth_data(codepoints, 0));
+        g_slist_free(codepoints);
 
         if (!unicode_unichar_validate (wc))
             continue;
@@ -369,18 +382,24 @@ unicode_search_state_new (UnicodeCodepointList *codepoint_list,
     search_state->search_string_nfd = g_utf8_normalize(search_string, -1, G_NORMALIZE_NFD);
     search_state->search_string_nfd_len = g_utf8_strlen(search_state->search_string_nfd, -1);
 
-    if (search_state->search_string_nfd_len == 1)
-        search_state->search_index_nfd = unicode_codepoint_list_get_index(search_state->codepoint_list, g_utf8_get_char(search_state->search_string_nfd));
-    else
+    if (search_state->search_string_nfd_len == 1) {
+        GSList *codepoints = NULL;
+        codepoints = g_slist_append(codepoints, GINT_TO_POINTER(g_utf8_get_char(search_state->search_string_nfd)));
+        search_state->search_index_nfd  = unicode_codepoint_list_get_index (search_state->codepoint_list, codepoints);
+        g_slist_free(codepoints);
+    } else
         search_state->search_index_nfd = -1;
 
     /* NFC */
     search_state->search_string_nfc = g_utf8_normalize(search_state->search_string_nfd, -1, G_NORMALIZE_NFC);
     search_state->search_string_nfc_len = g_utf8_strlen (search_state->search_string_nfc, -1);
 
-    if (search_state->search_string_nfc_len == 1)
-        search_state->search_index_nfc = unicode_codepoint_list_get_index(search_state->codepoint_list, g_utf8_get_char(search_state->search_string_nfc));
-    else
+    if (search_state->search_string_nfc_len == 1) {
+        GSList *codepoints = NULL;
+        codepoints = g_slist_append(codepoints, GINT_TO_POINTER(g_utf8_get_char(search_state->search_string_nfc)));
+        search_state->search_index_nfc  = unicode_codepoint_list_get_index(search_state->codepoint_list, codepoints);
+        g_slist_free(codepoints);
+    } else
         search_state->search_index_nfc = -1;
 
     /* INDEX */
@@ -403,13 +422,9 @@ search_completed (UnicodeSearchBar *self)
 {
     g_return_if_fail(self != NULL && self->charmap != NULL);
     UnicodeSearchState *search_state = self->search_state;
-    gunichar found_char = -1;
-
-    if (search_state->match >= 0)
-        found_char = unicode_codepoint_list_get_char(search_state->codepoint_list, search_state->match);
-
+    gint index = search_state->match >= 0 ? search_state->match : -1;
     search_state->searching = FALSE;
-    unicode_character_map_set_active_character(self->charmap, found_char);
+    unicode_character_map_set_active_cell(self->charmap, index);
     set_action_visibility(self, !search_state->search_complete);
     return;
 }
@@ -420,7 +435,6 @@ unicode_search_start (UnicodeSearchBar *self, UnicodeSearchDirection direction)
     g_return_if_fail(self != NULL && self->charmap != NULL);
 
     gint start_index;
-    gunichar start_char;
     g_autoptr(UnicodeCodepointList) codepoint_list = NULL;
 
     if (self->search_state && self->search_state->searching) /* Already searching */
@@ -436,14 +450,12 @@ unicode_search_start (UnicodeSearchBar *self, UnicodeSearchDirection direction)
 
         g_clear_pointer(&self->search_state, unicode_search_state_free);
 
-        start_char = unicode_character_map_get_active_character(self->charmap);
-        start_index = unicode_codepoint_list_get_index(codepoint_list, start_char);
+        start_index = unicode_character_map_get_active_cell(self->charmap);
         self->search_state = unicode_search_state_new(codepoint_list,
                                                       gtk_entry_get_text(GTK_ENTRY(self->entry)),
                                                       start_index, direction );
     } else {
-        start_char = unicode_character_map_get_active_character (self->charmap);
-        self->search_state->start_index = unicode_codepoint_list_get_index (codepoint_list, start_char);
+        self->search_state->start_index = unicode_character_map_get_active_cell(self->charmap);
         self->search_state->curr_index = self->search_state->start_index;
         self->search_state->direction = direction;
     }
@@ -498,9 +510,7 @@ entry_changed (UnicodeSearchBar *self, G_GNUC_UNUSED GtkWidget *widget)
         }
         search_timeout = g_timeout_add(500, (GSourceFunc) _entry_changed, self);
     } else {
-        UnicodeCodepointList *codepoint_list = unicode_character_map_get_codepoint_list(self->charmap);
-        gunichar first_char = unicode_codepoint_list_get_char(codepoint_list, 0);
-        unicode_character_map_set_active_character(self->charmap, first_char);
+        unicode_character_map_set_active_cell(self->charmap, 0);
     }
 
     return;

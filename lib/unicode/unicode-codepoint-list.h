@@ -48,17 +48,15 @@ struct _UnicodeCodepointListInterface
     /*<private>*/
     GTypeInterface parent_iface;
     /*<public>*/
-    gunichar    (* get_char)        (UnicodeCodepointList *self, gint index);
     GSList *    (* get_codepoints)  (UnicodeCodepointList *self, gint index);
     /* zero is the first index */
-    gint        (* get_index)       (UnicodeCodepointList *self, gunichar wc);
+    gint        (* get_index)       (UnicodeCodepointList *self, GSList *codepoints);
     gint        (* get_last_index)  (UnicodeCodepointList *self);
 
 };
 
-gunichar    unicode_codepoint_list_get_char         (UnicodeCodepointList *self, gint index);
 GSList *    unicode_codepoint_list_get_codepoints   (UnicodeCodepointList *self, gint index);
-gint        unicode_codepoint_list_get_index        (UnicodeCodepointList *self, gunichar wc);
+gint        unicode_codepoint_list_get_index        (UnicodeCodepointList *self, GSList *codepoints);
 gint        unicode_codepoint_list_get_last_index   (UnicodeCodepointList *self);
 
 G_END_DECLS

@@ -172,6 +172,7 @@ static const FontManagerOrthographyData UncategorizedOrthographies [] = {
 #include "MathematicalOperators"
 #include "ChessSymbols"
 #include "Emoticons"
+#include "EmojiFlags"
 
 //
 // Indic:
