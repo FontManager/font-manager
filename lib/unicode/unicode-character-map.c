@@ -296,6 +296,10 @@ layout_scaled_glyph (UnicodeCharacterMap *charmap, double font_factor)
 
     unicode_character_map_ensure_pango_layout(charmap);
     layout = pango_layout_new(pango_layout_get_context (priv->pango_layout));
+    PangoAttrList *attrs = pango_attr_list_new();
+    pango_attr_list_insert(attrs, pango_attr_fallback_new (FALSE));
+    pango_layout_set_attributes(layout, attrs);
+    pango_attr_list_unref(attrs);
     pango_layout_set_font_description(layout, font_desc);
     g_autofree gchar *glyph = get_text_for_cell(charmap, priv->active_cell);
     pango_layout_set_text(layout, glyph, -1);

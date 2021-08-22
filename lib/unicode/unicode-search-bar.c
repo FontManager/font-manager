@@ -292,16 +292,10 @@ idle_search (UnicodeSearchBar *self)
 
     timer = g_timer_new ();
 
-    gint n_chars = unicode_codepoint_list_get_last_index(self->search_state->codepoint_list) + 1;
+    gint n_chars = unicode_codepoint_list_get_last_index(self->search_state->codepoint_list);
 
     do {
         self->search_state->curr_index = (self->search_state->curr_index + self->search_state->direction + n_chars) % n_chars;
-        GSList *codepoints = unicode_codepoint_list_get_codepoints(self->search_state->codepoint_list, self->search_state->curr_index);
-        wc = (gunichar) GPOINTER_TO_INT(g_slist_nth_data(codepoints, 0));
-        g_slist_free(codepoints);
-
-        if (!unicode_unichar_validate (wc))
-            continue;
 
         /* check for explicit codepoint */
         if (self->search_state->search_string_value != -1 && self->search_state->curr_index == self->search_state->search_string_value) {
@@ -311,12 +305,25 @@ idle_search (UnicodeSearchBar *self)
             return FALSE;
         }
 
-        /* check for other matches */
-        if (matches(wc, self->search_state->search_string_nfd)) {
-            self->search_state->match = self->search_state->curr_index;
-            g_timer_destroy (timer);
-            return FALSE;
+        GSList *codepoints = unicode_codepoint_list_get_codepoints(self->search_state->codepoint_list, self->search_state->curr_index);
+
+        for (GSList *iter = codepoints; iter != NULL; iter = iter->next) {
+
+            wc = (gunichar) GPOINTER_TO_INT(iter->data);
+
+            if (!unicode_unichar_validate (wc))
+                continue;
+
+            /* check for other matches */
+            if (matches(wc, self->search_state->search_string_nfd)) {
+                self->search_state->match = self->search_state->curr_index;
+                g_timer_destroy (timer);
+                return FALSE;
+            }
+
         }
+
+        g_slist_free(codepoints);
 
         if (g_timer_elapsed (timer, NULL) > 0.050) {
             g_timer_destroy (timer);
