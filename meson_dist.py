@@ -10,8 +10,7 @@ chdir(environ['MESON_DIST_ROOT'])
 excluded_dirs = {
     'build-aux',
     'debian',
-    'fedora',
-    'tests'
+    'fedora'
 }
 
 for d in excluded_dirs:
