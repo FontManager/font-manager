@@ -1,33 +1,37 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
+# knuxify <knuxfanwin8.mail@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2019-10-03 02:38-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Polish\n"
+"PO-Revision-Date: 2021-08-25 15:34+0000\n"
+"Last-Translator: knuxify <knuxfanwin8.mail@gmail.com>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 4.6.2\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Piotr Strębski <strebski@o2.pl>, 2016"
+msgstr ""
+"knuxify <knuxify@gmail.com>, 2021\n"
+"Piotr Strębski <strebski@o2.pl>, 2016"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
 msgid "Automatically generated categories"
-msgstr ""
+msgstr "Automatycznie wygenerowane kategorie"
 
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "Kategorie"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
@@ -35,41 +39,43 @@ msgid ""
 "<app>Font Manager</app> automatically categorizes your fonts based on "
 "various properties."
 msgstr ""
+"<app>Font Manager</app> automatycznie kategoryzuje twoje czcionki na "
+"podstawie różnych właściwości."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "Wszystkie"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr ""
+msgstr "Wszystkie dostępne czcionki."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr ""
+msgstr "Czcionki dostępne dla wszystkich użytkowników."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "Użytkownik"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr ""
+msgstr "Czcionki dostępne tylko dla ciebie."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "Podobne rodziny"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
@@ -77,51 +83,53 @@ msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
 msgstr ""
+"Sortowane według podobnych rodzin czcionek - wymaga informacji Panose w "
+"metadanych czcionki."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "Szerokość"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr ""
+msgstr "Sortowane według szerokości czcionki."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr ""
+msgstr "Grubość"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr ""
+msgstr "Sortowane według grubości czcionki."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr ""
+msgstr "Pochylenie"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr ""
+msgstr "Sortowane według pochylenia czcionki."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "Odstępy między znakami"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr ""
+msgstr "Sortowane według odstępów między znakami w czcionce."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "Licencja"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
@@ -129,11 +137,13 @@ msgid ""
 "Sorted by font license — Requires license information to be present in font "
 "metadata."
 msgstr ""
+"Sortowane według licencji - wymaga informacji o licencji w metadanych "
+"czcionki."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "Wytwórnia"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -141,53 +151,55 @@ msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
 msgstr ""
+"Sortowane według dostawcy czcionki - wymaga informacji o dostawcy w "
+"metadanych czcionki."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "Rodzaj pliku"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr ""
+msgstr "Sortowane według rodzaju pliku."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "Nieposortowane"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "Czcionki, które nie znajdują się w żadnych z twoich kolekcji."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "Wyłączone"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "Wyłączone rodziny czcionek."
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr ""
+msgstr "Przeglądaj indywidualne znaki i informacje o nich"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
 msgid "Character Map"
-msgstr ""
+msgstr "Mapa znaków"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
 msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters"
 "\"."
-msgstr ""
+msgstr "W trybie zarządzania widok podglądu zawiera zakładkę nazwaną \"Znaki\"."
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
@@ -195,11 +207,13 @@ msgid ""
 "Selecting this tab allows viewing all glyphs contained in the currently "
 "selected font."
 msgstr ""
+"Wybranie tej zakładki umożliwia przeglądanie wszystkich znaków zawartych w "
+"wybranej czcionce."
 
 #. (itstool) path: figure/title
 #: C/font-manager-character-map.page:23
 msgid "<app>Character Map tab</app>"
-msgstr ""
+msgstr "<app>Zakładka \"Mapa znaków\"</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -211,26 +225,27 @@ msgctxt "_"
 msgid ""
 "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
+"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
 msgid "Drag characters onto other applications to use them."
-msgstr ""
+msgstr "Przeciągnij znaki na inne aplikacje by ich użyć."
 
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7
 msgid "Organizing Your Fonts"
-msgstr ""
+msgstr "Organizacja czcionek"
 
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "Kolekcje"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
 msgid "<app>Font Manager</app> allows you to define your own collections."
-msgstr ""
+msgstr "<app>Font Manager</app> umożliwia tworzenie własnych kolekcji."
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
@@ -571,7 +586,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "Źródła"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
