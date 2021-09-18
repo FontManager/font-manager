@@ -1,11 +1,12 @@
 # Eric <spice2wolf@gmail.com>, 2021.
 # 玉堂白鹤 <yjwork@qq.com>, 2021.
+# JI YH <3178879831@qq.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-06-04 04:32+0000\n"
-"Last-Translator: Eric <spice2wolf@gmail.com>\n"
+"PO-Revision-Date: 2021-09-12 03:33+0000\n"
+"Last-Translator: JI YH <3178879831@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager-help-docs/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -13,17 +14,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr ""
+msgstr "翻译器信用"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
 msgid "Automatically generated categories"
-msgstr ""
+msgstr "自动生成的类别"
 
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
@@ -35,7 +36,7 @@ msgstr "分类"
 msgid ""
 "<app>Font Manager</app> automatically categorizes your fonts based on "
 "various properties."
-msgstr ""
+msgstr "<app>字体管理器</app> 基于各种属性自动分类你的字体。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
@@ -45,7 +46,7 @@ msgstr "全部"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr ""
+msgstr "所有可用的字体。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
@@ -55,7 +56,7 @@ msgstr "系统"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr ""
+msgstr "对所有用户都可用的字体。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
@@ -65,7 +66,7 @@ msgstr "用户"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr ""
+msgstr "仅对你可用的字体。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
@@ -77,7 +78,7 @@ msgstr "字体族"
 msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
-msgstr ""
+msgstr "由 Family Kind 分类 — 在字体元数据中需要Panose信息。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -87,7 +88,7 @@ msgstr "字宽"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr ""
+msgstr "按字宽分类。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
@@ -97,7 +98,7 @@ msgstr "字体粗细"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr ""
+msgstr "按字粗分类。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
@@ -107,7 +108,7 @@ msgstr "倾斜"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr ""
+msgstr "按字体斜度分类。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
@@ -117,7 +118,7 @@ msgstr "字距"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr ""
+msgstr "按字体间距分类。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
@@ -129,7 +130,7 @@ msgstr "许可证"
 msgid ""
 "Sorted by font license — Requires license information to be present in font "
 "metadata."
-msgstr ""
+msgstr "按字体许可证分类 — 在元数据中需要许可证信息。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
@@ -141,7 +142,7 @@ msgstr "厂商"
 msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
-msgstr ""
+msgstr "按字体制作者分类 — 在字体元数据中需要制作者信息。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
@@ -151,7 +152,7 @@ msgstr "文件类型"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr ""
+msgstr "按字体格式分类。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
@@ -161,7 +162,7 @@ msgstr "未排序"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "没有在任何集合里出现的字体。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
@@ -171,36 +172,36 @@ msgstr "已禁用"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "目前有缺陷的字体家族。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr ""
+msgstr "查看独立的字符和它们的细节"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
 msgid "Character Map"
-msgstr ""
+msgstr "字符地图"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
 msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters"
 "\"."
-msgstr ""
+msgstr "当处于管理模式时，预览窗口包含一个“字符”标签。"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
 msgid ""
 "Selecting this tab allows viewing all glyphs contained in the currently "
 "selected font."
-msgstr ""
+msgstr "选择这个标签以允许查看所有包含在选中的字体里的字。"
 
 #. (itstool) path: figure/title
 #: C/font-manager-character-map.page:23
 msgid "<app>Character Map tab</app>"
-msgstr ""
+msgstr "<app>字符地图页</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -208,20 +209,22 @@ msgstr ""
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-character-map.page:24
+#, fuzzy
 msgctxt "_"
 msgid ""
 "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
+"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
 msgid "Drag characters onto other applications to use them."
-msgstr ""
+msgstr "将字体拖动到其它应用上以使用。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7
 msgid "Organizing Your Fonts"
-msgstr ""
+msgstr "组织你的字体"
 
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
@@ -231,29 +234,29 @@ msgstr "字体集"
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
 msgid "<app>Font Manager</app> allows you to define your own collections."
-msgstr ""
+msgstr "<app>字体管理器</app>让你可以定义你自己的集合。"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
 msgid ""
 "Collections allow you to organize your fonts in a way that makes sense to "
 "you and also make it easier to enable or disable many families at once."
-msgstr ""
+msgstr "集合允许你以一种对你来说有意义且更易同时启用或禁用许多家族的方法来组织你的字体。"
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:24
 msgid "Collections do not modify your files in any way."
-msgstr ""
+msgstr "集合不会以任何方式修改你的文件。"
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:27
 msgid "Feel free to create or delete as many as you like."
-msgstr ""
+msgstr "自由地创建或删除。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:34
 msgid "To create a new collection:"
-msgstr ""
+msgstr "创建一个新的集合："
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -263,11 +266,14 @@ msgstr ""
 #: C/font-manager-collections.page:40 C/font-manager-font-installation.page:25
 #: C/font-manager-font-sources.page:46 C/font-manager-substitutions.page:37
 #: C/font-manager-substitutions.page:51
+#, fuzzy
 msgctxt "_"
 msgid ""
 "external ref='media/list-add-symbolic.svg' "
 "md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 msgstr ""
+"external ref='media/list-add-symbolic.svg' "
+"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:37
@@ -275,11 +281,13 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
+"点击位于集合查看下方的<gui><media type=\"image\" src=\"media/list-add-symbolic.svg\""
+"/></gui>。"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:46
 msgid "Enter a name for your new collection"
-msgstr ""
+msgstr "为你的新集合输入一个名字"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:51
