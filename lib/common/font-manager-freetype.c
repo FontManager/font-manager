@@ -278,7 +278,7 @@ font_manager_fsType_get_type (void)
 }
 
 /**
- * font_manager_fsType_to_string:
+ * font_manager_fsType_to_string: (skip)
  * @fstype: #FontManagerfsType
  *
  * Returns a description of the fsType field suitable for display.
