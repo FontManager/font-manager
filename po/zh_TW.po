@@ -20,13 +20,14 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2016. #zanata
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 # Alang Hsu <alang.hsu@gmail.com>, 2021.
+# lemon37564 <stonydragon0701@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-08-17 12:34+0000\n"
-"Last-Translator: Alang Hsu <alang.hsu@gmail.com>\n"
+"PO-Revision-Date: 2021-10-23 19:38+0000\n"
+"Last-Translator: lemon37564 <stonydragon0701@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -34,7 +35,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 # Not translate very good, just for use.
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
@@ -237,7 +238,7 @@ msgstr "等寬(Monospace)"
 
 #: lib/common/font-manager-fontconfig.c:1050
 msgid "Charcell"
-msgstr "Charcell"
+msgstr "等寬等高(Charcell)"
 
 #: lib/common/font-manager-fontconfig.c:1089
 msgid "Unknown"
@@ -400,7 +401,7 @@ msgstr "傾斜"
 #: lib/common/font-manager-properties-pane.c:85
 #: src/font-manager/Categories.vala:535
 msgid "Weight"
-msgstr "字重"
+msgstr "厚度"
 
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:537
@@ -438,9 +439,8 @@ msgid "Normal"
 msgstr "正常(Normal)"
 
 #: lib/common/font-manager-source.c:308 lib/common/font-manager-source.c:323
-#, fuzzy
 msgid "Source Unavailable"
-msgstr "%s --> 資源不存在"
+msgstr "無法取得資源"
 
 #: lib/unicode/unicode-character-map.c:706
 msgid "Unknown character, unable to identify."
@@ -448,7 +448,7 @@ msgstr "無法辨識的不明字元。"
 
 #: lib/unicode/unicode-character-map.c:708
 msgid "Not found."
-msgstr "不存在。"
+msgstr "字元不存在。"
 
 #: lib/unicode/unicode-character-map.c:710
 msgid "Character found."
@@ -468,7 +468,7 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:201
 msgid "<Private Use>"
-msgstr ""
+msgstr "<私人使用>"
 
 #: lib/unicode/unicode-info.c:203
 msgid "<Plane 15 Private Use>"
@@ -504,23 +504,23 @@ msgstr "其他,代理"
 
 #: lib/unicode/unicode-info.c:236
 msgid "Letter, Lowercase"
-msgstr ""
+msgstr "字母,小寫"
 
 #: lib/unicode/unicode-info.c:238
 msgid "Letter, Modifier"
-msgstr ""
+msgstr "字母,修飾符"
 
 #: lib/unicode/unicode-info.c:240
 msgid "Letter, Other"
-msgstr ""
+msgstr "字母,其他"
 
 #: lib/unicode/unicode-info.c:242
 msgid "Letter, Titlecase"
-msgstr ""
+msgstr "字母,標題"
 
 #: lib/unicode/unicode-info.c:244
 msgid "Letter, Uppercase"
-msgstr ""
+msgstr "字母,大寫"
 
 #: lib/unicode/unicode-info.c:246
 msgid "Mark, Spacing Combining"
@@ -536,19 +536,20 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:252
 msgid "Number, Decimal Digit"
-msgstr ""
+msgstr "數字,十進位數"
 
 #: lib/unicode/unicode-info.c:254
 msgid "Number, Letter"
-msgstr ""
+msgstr "數字,字母"
 
 #: lib/unicode/unicode-info.c:256
 msgid "Number, Other"
-msgstr ""
+msgstr "數字,其他"
 
 #: lib/unicode/unicode-info.c:258
+#, fuzzy
 msgid "Punctuation, Connector"
-msgstr ""
+msgstr "標點符號,連接符"
 
 #: lib/unicode/unicode-info.c:260
 msgid "Punctuation, Dash"
@@ -559,16 +560,17 @@ msgid "Punctuation, Close"
 msgstr ""
 
 #: lib/unicode/unicode-info.c:264
+#, fuzzy
 msgid "Punctuation, Final Quote"
-msgstr ""
+msgstr "標點符號,後引號"
 
 #: lib/unicode/unicode-info.c:266
 msgid "Punctuation, Initial Quote"
-msgstr ""
+msgstr "標點符號,前引號"
 
 #: lib/unicode/unicode-info.c:268
 msgid "Punctuation, Other"
-msgstr ""
+msgstr "標點符號,其他"
 
 #: lib/unicode/unicode-info.c:270
 msgid "Punctuation, Open"
@@ -609,9 +611,8 @@ msgid "Common"
 msgstr ""
 
 #: src/font-manager/About.vala:29
-#, fuzzy
 msgid "Simple font management for GTK+ desktop environments"
-msgstr "GTK+桌面环境下的简易字体管理器"
+msgstr "GTK+環境下的字體管理程式"
 
 #: src/font-manager/About.vala:35
 msgid ""
@@ -632,123 +633,139 @@ msgid ""
 "    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
 "    "
 msgstr ""
+"\n"
+"    本程式為免費軟體：亦即你可以在免費軟體基金會 GNU\n"
+"    通用公眾授權條款下任意再發行/更改，不論是第三版許可證\n"
+"    ，或是更新的版本(依據您的選擇)。\n"
+"\n"
+"    |=>本程式的發布是希望能起到作用。但没有任何的保證性；\n"
+"    甚至没有隱晦的保證性、商業性或特定用途的適用性。<=|\n"
+"    更詳細的資訊請查 GNU通用公眾授權條款。\n"
+"\n"
+"    您應與本程式一同獲得了一份GNU通用公眾授權條款的複本。\n"
+"\n"
+"    若否，請前往<http://www.gnu.org/licenses/gpl-3.0.txt>。\n"
+"    "
 
 #. Translators : Please feel free to add yourself to the list of translators,
 #. but do not modify or remove previous entries. New entries should be separated
 #. by a newline character so that they are displayed properly in the interface.
 #: src/font-manager/About.vala:69
 msgid "translator-credits"
-msgstr ""
+msgstr "lemon37564 <rdp65536@gmail.com>, 2021"
 
 #: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
-msgstr "按字宽分组"
+msgstr "依字體寬度分組"
 
 #: src/font-manager/Categories.vala:535
 msgid "Grouped by font weight"
-msgstr "按字重分组"
+msgstr "依字體粗細分組"
 
 #: src/font-manager/Categories.vala:536
 msgid "Grouped by font angle"
-msgstr "按倾斜分组"
+msgstr "依字體角度分組"
 
 #: src/font-manager/Categories.vala:537
 msgid "Grouped by font spacing"
-msgstr "按字距分组"
+msgstr "依字體距離分組"
 
 #: src/font-manager/Categories.vala:541
 msgid "Grouped by license type"
-msgstr "按许可证分组"
+msgstr "依許可證分組"
 
 #: src/font-manager/Categories.vala:543
 msgid "Grouped by vendor"
-msgstr "按供应商分组"
+msgstr "依供應商分组"
 
 #: src/font-manager/Categories.vala:544
 msgid "Filetype"
-msgstr "文件类型"
+msgstr "檔案類型"
 
 #: src/font-manager/Categories.vala:544
 msgid "Grouped by filetype"
-msgstr "按文件类型分组"
+msgstr "依檔案類型分组"
 
 # Do not to translate this one.
 #: src/font-manager/Categories.vala:551
 msgid "All"
-msgstr "全部"
+msgstr "所有字體"
 
 #: src/font-manager/Categories.vala:551
 msgid "All Fonts"
-msgstr "全部字体"
+msgstr "所有字體"
 
 #: src/font-manager/Categories.vala:552
 msgid "System"
-msgstr "系统"
+msgstr "系統"
 
 #: src/font-manager/Categories.vala:552
 msgid "Fonts available to all users"
-msgstr "字体对所有用户可见"
+msgstr "系統字體"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr "类型"
+msgstr "字體家族"
 
 #: src/font-manager/Categories.vala:566
+#, fuzzy
 msgid "Only fonts which include Panose information will be grouped here."
-msgstr "只有包含Panose信息的字体将被分组到这里"
+msgstr "這裡只會顯示含有Panose訊息的字體。"
 
 #: src/font-manager/Categories.vala:567
 #: src/font-manager/web/google/ui/google-font-filters.ui:346
+#, fuzzy
 msgid "Any"
 msgstr "任意(Any)"
 
 #: src/font-manager/Categories.vala:567
 msgid "No Fit"
-msgstr "无匹配(No Fit)"
+msgstr "無符合"
 
 #: src/font-manager/Categories.vala:567
 msgid "Text and Display"
-msgstr "文本和显示(Text and Display)"
+msgstr "文本與顯示"
 
 #: src/font-manager/Categories.vala:567
 msgid "Script"
-msgstr "脚本(Script)"
+msgstr "腳本"
 
 # msgstr "手写体(Script)"
 #: src/font-manager/Categories.vala:567
 msgid "Decorative"
-msgstr "修饰(Decorative)"
+msgstr "裝飾"
 
 #: src/font-manager/Categories.vala:567
+#, fuzzy
 msgid "Pictorial"
-msgstr "图形(Pictorial)"
+msgstr "圖形(Pictorial)"
 
 #: src/font-manager/CellRenderer.vala:90
-#, c-format
+#, c-format, fuzzy
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] ""
+msgstr[0] "%i 不同類型 "
 
 #: src/font-manager/Collections.vala:23
-#, fuzzy
 msgid "Enter Collection Name"
-msgstr "新字体集"
+msgstr "輸入字集名"
 
 #: src/font-manager/Collections.vala:450
 msgid "Copy to…"
-msgstr ""
+msgstr "複製到…"
 
 #: src/font-manager/Collections.vala:451
 msgid "Compress…"
-msgstr ""
+msgstr "壓縮…"
 
 #: src/font-manager/Collections.vala:452
 msgid "Rename…"
-msgstr ""
+msgstr "重新命名…"
 
 #: src/font-manager/Compare.vala:381
+#, fuzzy
 msgid "Saved Comparison"
-msgstr ""
+msgstr "已儲存的比較"
 
 #. Translators : Please preserve the newline character somewhere in the middle of the string
 #: src/font-manager/Compare.vala:407
@@ -756,10 +773,12 @@ msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
 msgstr ""
+"按「+」按鈕以\n"
+"儲存目前的比較"
 
 #: src/font-manager/Dialogs.vala:60
 msgid "Select executable"
-msgstr ""
+msgstr "選擇可執行檔"
 
 #: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
 #: src/font-manager/UserData.vala:58
@@ -771,36 +790,39 @@ msgstr ""
 #: src/font-manager/Dialogs.vala:159 src/font-manager/Dialogs.vala:171
 #: src/font-manager/UserData.vala:38 src/font-manager/UserData.vala:49
 #: src/font-manager/UserData.vala:59
+#, fuzzy
 msgid "_Cancel"
 msgstr "取消(_C)"
 
 #: src/font-manager/Dialogs.vala:75
 msgid "Select Destination"
-msgstr ""
+msgstr "選擇目的地"
 
 #: src/font-manager/Dialogs.vala:92
 msgid "Select files to install"
-msgstr "选择文件安装"
+msgstr "選擇檔案以安裝"
 
 #: src/font-manager/Dialogs.vala:95 src/font-manager/Dialogs.vala:120
+#, fuzzy
 msgid "_Open"
-msgstr "打开(_O)"
+msgstr "開啟(_O)"
 
 #: src/font-manager/Dialogs.vala:117
 msgid "Select source folders"
-msgstr "选择字体源文件夹"
+msgstr "選擇來源資料夾"
 
 #: src/font-manager/Dialogs.vala:158 src/font-manager/Dialogs.vala:170
 msgid "Select fonts to remove"
-msgstr "选择字体删除"
+msgstr "選擇要刪除的字體"
 
 #: src/font-manager/Dialogs.vala:160 src/font-manager/Dialogs.vala:172
+#, fuzzy
 msgid "_Delete"
-msgstr "删除(_D)"
+msgstr "刪除(_D)"
 
 #: src/font-manager/Dialogs.vala:186
 msgid "Fonts installed in your home directory will appear here."
-msgstr ""
+msgstr "安裝在家目錄的字體會顯示在這裡。"
 
 #: src/font-manager/FontList.vala:43
 #, fuzzy
@@ -811,13 +833,12 @@ msgstr "删除比较组中选中的字体"
 #: src/font-manager/web/google/FontList.vala:51
 #: src/font-manager/web/google/FontList.vala:65
 msgid "Expand all"
-msgstr "全部展开"
+msgstr "全部展開"
 
 #: src/font-manager/FontList.vala:52
 #: src/font-manager/web/google/FontList.vala:55
-#, fuzzy
 msgid "Search Families…"
-msgstr "搜索数据库"
+msgstr "搜尋字體家族…"
 
 #: src/font-manager/FontList.vala:53
 #, c-format
@@ -831,25 +852,25 @@ msgstr ""
 #: src/font-manager/FontList.vala:68
 #: src/font-manager/web/google/FontList.vala:65
 msgid "Collapse all"
-msgstr "全部折叠"
+msgstr "全部折疊"
 
 #: src/font-manager/FontList.vala:504
 msgid "Copy Location"
-msgstr ""
+msgstr "複製路徑"
 
 #: src/font-manager/FontList.vala:505
 msgid "Show in Folder"
-msgstr ""
+msgstr "在資料夾中檢視"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
 msgid "Browse"
-msgstr "浏览"
+msgstr "瀏覽"
 
 #: src/font-manager/MainWindow.vala:56
 #: src/font-manager/ui/font-manager-main-window.ui:136
 msgid "Compare"
-msgstr "比较"
+msgstr "比較"
 
 #: src/font-manager/MainWindow.vala:58
 #: src/font-manager/ui/font-manager-main-window.ui:149
@@ -858,32 +879,32 @@ msgstr "管理"
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
-msgstr ""
+msgstr "南非語字母(Afrikaans)"
 
 #: src/font-manager/Orthographies.vala:32
 msgid "Ahom"
-msgstr ""
+msgstr "阿洪姆語字母(Ahom)"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Aleut Cyrillic"
-msgstr ""
+msgstr "阿留申字母(Aleut Cyrillic)"
 
 #: src/font-manager/Orthographies.vala:34
 msgid "Aleut Latin"
-msgstr ""
+msgstr "阿留申拉丁字母(Aleut Latin)"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
 msgid "Arabic"
-msgstr ""
+msgstr "阿拉伯字母(Arabic)"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
-msgstr ""
+msgstr "優卑亞字母 (Archaic Greek alphabets)"
 
 #: src/font-manager/Orthographies.vala:37
 msgid "Armenian"
-msgstr ""
+msgstr "亞美尼亞字母(Armenian)"
 
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
@@ -891,201 +912,203 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:39
 msgid "Balinese"
-msgstr ""
+msgstr "峇里語字母(Balinese)"
 
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
-msgstr ""
+msgstr "波羅的海字母(Baltic)"
 
 #: src/font-manager/Orthographies.vala:41
 msgid "Bamum"
-msgstr ""
+msgstr "巴穆姆文字(Bamum)"
 
 #: src/font-manager/Orthographies.vala:42
 msgid "Basic Cyrillic"
-msgstr ""
+msgstr "基本西里爾字母(Basic Cyrillic)"
 
 #: src/font-manager/Orthographies.vala:43
 msgid "Basic Greek"
-msgstr ""
+msgstr "基本希臘字母(Basic Greek)"
 
 #: src/font-manager/Orthographies.vala:44
 msgid "Basic Latin"
-msgstr ""
+msgstr "基本拉丁字母(Basic Latin)"
 
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
-msgstr ""
+msgstr "巴塔克文字母(Surat Batak)"
 
 #: src/font-manager/Orthographies.vala:46
 #: src/font-manager/web/google/Language.vala:33
 msgid "Bengali"
-msgstr ""
+msgstr "孟加拉字母(Bengali)"
 
 #: src/font-manager/Orthographies.vala:47
 msgid "Brāhmī"
-msgstr ""
+msgstr "波羅密文字(Brāhmī)"
 
 #: src/font-manager/Orthographies.vala:48
 msgid "Buginese"
-msgstr ""
+msgstr "布吉語字母(Buginese)"
 
 #: src/font-manager/Orthographies.vala:49
 msgid "Unified Canadian Aboriginal Syllabics"
-msgstr ""
+msgstr "統一加拿大原住民音節文字(Unified Canadian Aboriginal Syllabics)"
 
 #: src/font-manager/Orthographies.vala:50
 msgid "Carian"
-msgstr ""
+msgstr "卡里亞文字(Carian)"
 
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
-msgstr ""
+msgstr "加泰隆語字母(Catalan)"
 
 #: src/font-manager/Orthographies.vala:52
 msgid "Central European"
-msgstr ""
+msgstr "中歐文字(Central European)"
 
 #: src/font-manager/Orthographies.vala:53
 msgid "Chakma"
-msgstr ""
+msgstr "查克馬文字母(Chakma)"
 
 #: src/font-manager/Orthographies.vala:54
 msgid "Cham"
-msgstr ""
+msgstr "占文字(Cham)"
 
 #: src/font-manager/Orthographies.vala:55
 msgid "Cherokee"
-msgstr ""
+msgstr "切羅基語(Cherokee)"
 
 #: src/font-manager/Orthographies.vala:56
 msgid "Chess Symbols"
-msgstr ""
+msgstr "西洋棋符號(Chess Symbols)"
 
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
 msgid "CJK Unified"
-msgstr ""
+msgstr "中日韓統一表意文字(CJK Unified)"
 
 #: src/font-manager/Orthographies.vala:60
 msgid "CJK Unified Extension A"
-msgstr ""
+msgstr "中日韓統一表意文字擴充區A (CJK Unified Extension A)"
 
 #: src/font-manager/Orthographies.vala:61
 msgid "CJK Unified Extension B"
-msgstr ""
+msgstr "中日韓統一表意文字擴充區B (CJK Unified Extension B)"
 
 #: src/font-manager/Orthographies.vala:62
 msgid "CJK Unified Extension C"
-msgstr ""
+msgstr "中日韓統一表意文字擴充區C (CJK Unified Extension C)"
 
 #: src/font-manager/Orthographies.vala:63
 msgid "CJK Unified Extension D"
-msgstr ""
+msgstr "中日韓統一表意文字擴充區D (CJK Unified Extension D)"
 
 #: src/font-manager/Orthographies.vala:64
 msgid "CJK Unified Extension E"
-msgstr ""
+msgstr "中日韓統一表意文字擴充區E (CJK Unified Extension E)"
 
 #: src/font-manager/Orthographies.vala:65
 msgid "CJK Compatibility Ideographs"
-msgstr ""
+msgstr "中日韓相容表意文字 (CJK Compatibility Ideographs)"
 
 #: src/font-manager/Orthographies.vala:66
 msgid "CJK Compatibility Ideographs Supplement"
-msgstr ""
+msgstr "中日韓相容表意文字補充區 (CJK Compatibility Ideographs Supplement)"
 
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
 msgid "Claudian Letters"
-msgstr ""
+msgstr "克勞狄字母(Claudian Letters)"
 
 #: src/font-manager/Orthographies.vala:70
 msgid "Coptic"
-msgstr ""
+msgstr "科普特語(Coptic)"
 
 #: src/font-manager/Orthographies.vala:71
+#, fuzzy
 msgid "Currencies"
-msgstr ""
+msgstr "貨幣(Currencies)"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
-msgstr ""
+msgstr "賽普勒斯音節文字 (Cypriot syllabary)"
 
 #: src/font-manager/Orthographies.vala:73
 #: src/font-manager/web/google/Language.vala:39
 msgid "Devanagari"
-msgstr ""
+msgstr "天城文 (Devanagari)"
 
 #: src/font-manager/Orthographies.vala:74
 msgid "Dutch"
-msgstr ""
+msgstr "荷蘭文(Dutch)"
 
 #: src/font-manager/Orthographies.vala:75
 msgid "Egyptian Hieroglyphs"
-msgstr ""
+msgstr "聖書體 (Egyptian hieroglyphs)"
 
 #: src/font-manager/Orthographies.vala:76
 msgid "Emoticons"
-msgstr ""
+msgstr "表情符號"
 
 #: src/font-manager/Orthographies.vala:77
 msgid "Ethiopic"
-msgstr ""
+msgstr "吉茲語(Ethiopic)"
 
 #. This "orthography" contains only the euro symbol...
 #. { "Euro", "Euro" },
 #: src/font-manager/Orthographies.vala:82
 msgid "Farsi"
-msgstr ""
+msgstr "波斯語(Farsi)"
 
 #: src/font-manager/Orthographies.vala:83
 msgid "Food and Drink"
-msgstr ""
+msgstr "食物與飲料符號(Food and Drink)"
 
 #: src/font-manager/Orthographies.vala:84
+#, fuzzy
 msgid "Full Cyrillic"
-msgstr ""
+msgstr "全形西里爾字母(Full Cyrillic)"
 
 #: src/font-manager/Orthographies.vala:85
 msgid "Georgian"
-msgstr ""
+msgstr "格魯吉亞語(Georgian)"
 
 #: src/font-manager/Orthographies.vala:86
 msgid "Glagolitic"
-msgstr ""
+msgstr "格拉哥里字母(Glagolitic)"
 
 #: src/font-manager/Orthographies.vala:87
 msgid "Gothic"
-msgstr ""
+msgstr "歌德體(Gothic)"
 
 #: src/font-manager/Orthographies.vala:88
 #: src/font-manager/web/google/Language.vala:42
 msgid "Gujarati"
-msgstr ""
+msgstr "古吉拉特語(Gujarati)"
 
 #: src/font-manager/Orthographies.vala:89
 #: src/font-manager/web/google/Language.vala:43
 msgid "Gurmukhi"
-msgstr ""
+msgstr "古木基文(Gurmukhi)"
 
 #: src/font-manager/Orthographies.vala:90
 msgid "Korean Hangul"
-msgstr ""
+msgstr "諺文(Korean Hangul)"
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hanunó'o"
-msgstr ""
+msgstr "哈努諾文(Hanunó'o)"
 
 #: src/font-manager/Orthographies.vala:92
 #: src/font-manager/web/google/Language.vala:44
 msgid "Hebrew"
-msgstr ""
+msgstr "希伯來語(Hebrew)"
 
 #: src/font-manager/Orthographies.vala:93
 #: src/font-manager/Orthographies.vala:95
 msgid "IPA"
-msgstr ""
+msgstr "國際音標"
 
 #: src/font-manager/Orthographies.vala:94
 msgid "Igbo Onwu"
@@ -1097,15 +1120,15 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:97
 msgid "Javanese"
-msgstr ""
+msgstr "爪哇語(Javanese)"
 
 #: src/font-manager/Orthographies.vala:98
 msgid "Japanese Jinmeiyo"
-msgstr ""
+msgstr "人名用 日文漢字(Japanese Jinmeiyo)"
 
 #: src/font-manager/Orthographies.vala:99
 msgid "Japanese Joyo"
-msgstr ""
+msgstr "日文常用漢字(Japanese Joyo)"
 
 #: src/font-manager/Orthographies.vala:100
 msgid "Kaithi"
@@ -1113,62 +1136,62 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:101
 msgid "Japanese Kana"
-msgstr ""
+msgstr "日文假名(Japanese Kana)"
 
 #: src/font-manager/Orthographies.vala:102
 #: src/font-manager/web/google/Language.vala:46
 msgid "Kannada"
-msgstr ""
+msgstr "康納達語(Kannada)"
 
 #: src/font-manager/Orthographies.vala:103
 msgid "Kayah Li"
-msgstr ""
+msgstr "克耶李文(Kayah Li)"
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kazakh"
-msgstr ""
+msgstr "哈薩克語(Kazakh)"
 
 #: src/font-manager/Orthographies.vala:105
 msgid "Kharoshthi"
-msgstr ""
+msgstr "佉盧文(Kharoshthi)"
 
 #: src/font-manager/Orthographies.vala:106
 #: src/font-manager/web/google/Language.vala:47
 msgid "Khmer"
-msgstr ""
+msgstr "高棉語(Khmer)"
 
 #: src/font-manager/Orthographies.vala:107
 msgid "Japanese Kokuji"
-msgstr ""
+msgstr "日文國字(Japanese Kokuji)"
 
 #: src/font-manager/Orthographies.vala:108
 msgid "Lao"
-msgstr ""
+msgstr "老撾語(Lao)"
 
 #: src/font-manager/Orthographies.vala:109
 msgid "Latin Ligatures"
-msgstr ""
+msgstr "拉丁合字(Latin Ligatures)"
 
 #: src/font-manager/Orthographies.vala:110
 msgid "Lepcha"
-msgstr ""
+msgstr "絨巴語(Lepcha)"
 
 #: src/font-manager/Orthographies.vala:111
 msgid "Limbu"
-msgstr ""
+msgstr "林布語(Limbu)"
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Ideograms"
-msgstr ""
+msgstr "線形文字B表意文字 (Linear B Ideograms)"
 
 #: src/font-manager/Orthographies.vala:113
 msgid "Linear B Syllabary"
-msgstr ""
+msgstr "線形文字B (Linear B Syllabary)"
 
 #: src/font-manager/Orthographies.vala:114
 #: src/font-manager/web/google/Language.vala:51
 msgid "Malayalam"
-msgstr ""
+msgstr "馬拉雅拉姆語(Malayalam)"
 
 #: src/font-manager/Orthographies.vala:115
 msgid "Mathematical Greek"
@@ -1183,32 +1206,33 @@ msgid "Mathematical Numerals"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:118
+#, fuzzy
 msgid "Mathematical Operators"
-msgstr ""
+msgstr "數學符號(Mathematical Operators)"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Meetei Mayak"
-msgstr ""
+msgstr "曼尼普爾文(Metei Mayek)"
 
 #: src/font-manager/Orthographies.vala:120
 msgid "Mende Kikakui"
-msgstr ""
+msgstr "門德文(Mende Kikaku)"
 
 #: src/font-manager/Orthographies.vala:121
 msgid "MeroiticCursive"
-msgstr ""
+msgstr "麥羅埃草書(Meroitic Cursive)"
 
 #: src/font-manager/Orthographies.vala:122
 msgid "Meroitic Hieroglyphs"
-msgstr ""
+msgstr "麥羅埃象形文字(Meroitic Hieroglyphs)"
 
 #: src/font-manager/Orthographies.vala:123
 msgid "Miao"
-msgstr ""
+msgstr "苗文(Miao)"
 
 #: src/font-manager/Orthographies.vala:124
 msgid "Mongolian"
-msgstr ""
+msgstr "蒙古語(Mongolian)"
 
 #. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
 #. * Contains lots of duplicates, doubt many would find it useful
@@ -1217,41 +1241,40 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:131
 #: src/font-manager/web/google/Language.vala:52
 msgid "Myanmar"
-msgstr ""
+msgstr "緬甸語(Myanmar)"
 
 #: src/font-manager/Orthographies.vala:132
 msgid "New Tai Lue"
-msgstr ""
+msgstr "新傣仂文(New Tai Lue)"
 
 #: src/font-manager/Orthographies.vala:133
 msgid "N’Ko"
-msgstr ""
+msgstr "西非書面字母(N’Ko)"
 
 #: src/font-manager/Orthographies.vala:134
 msgid "Ogham"
-msgstr ""
+msgstr "歐甘字母(Ogham)"
 
 #: src/font-manager/Orthographies.vala:135
 msgid "Ol Chiki"
-msgstr ""
+msgstr "桑塔利文(Ol Chiki)"
 
 #: src/font-manager/Orthographies.vala:136
-#, fuzzy
 msgid "Old Italic"
-msgstr "斜体(Italic)"
+msgstr "古義大利字母(Old Italic)"
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
-msgstr ""
+msgstr "南阿拉伯字母(Old South Arabian)"
 
 #: src/font-manager/Orthographies.vala:138
 #: src/font-manager/web/google/Language.vala:53
 msgid "Oriya"
-msgstr ""
+msgstr "奧里亞語(Oriya)"
 
 #: src/font-manager/Orthographies.vala:139
 msgid "Osmanya"
-msgstr ""
+msgstr "奧斯曼亞字母(Osmanya)"
 
 #: src/font-manager/Orthographies.vala:140
 msgid "Pan African Latin"
@@ -1259,31 +1282,31 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:141
 msgid "Pashto"
-msgstr ""
+msgstr "普什圖語(Pashto)"
 
 #: src/font-manager/Orthographies.vala:142
 msgid "Phags Pa"
-msgstr ""
+msgstr "八思巴字母(Phags Pa)"
 
 #: src/font-manager/Orthographies.vala:143
 msgid "Pinyin"
-msgstr ""
+msgstr "拼音(Pinyin)"
 
 #: src/font-manager/Orthographies.vala:144
 msgid "Polynesian"
-msgstr ""
+msgstr "玻里尼西亞文(Polynesian)"
 
 #: src/font-manager/Orthographies.vala:145
 msgid "Polytonic Greek"
-msgstr ""
+msgstr "希臘語變音符號(Polytonic Greek)"
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Rejang"
-msgstr ""
+msgstr "拉讓文(Rejang)"
 
 #: src/font-manager/Orthographies.vala:147
 msgid "Romanian"
-msgstr ""
+msgstr "羅馬尼亞語(Romanian)"
 
 #: src/font-manager/Orthographies.vala:148
 msgid "Runic"
@@ -1291,92 +1314,92 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:149
 msgid "Saurashtra"
-msgstr ""
+msgstr "索拉什特拉(Saurashtra)"
 
 #: src/font-manager/Orthographies.vala:150
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "簡體中文"
 
 #: src/font-manager/Orthographies.vala:151
 msgid "Sindhi"
-msgstr ""
+msgstr "信德語(Sindhi)"
 
 #: src/font-manager/Orthographies.vala:152
 #: src/font-manager/web/google/Language.vala:54
 msgid "Sinhala"
-msgstr ""
+msgstr "僧伽羅語(Sinhala)"
 
 #: src/font-manager/Orthographies.vala:153
 msgid "South Korean Hanja"
-msgstr ""
+msgstr "韓國漢字(South Korean Hanja)"
 
 #: src/font-manager/Orthographies.vala:154
 msgid "Sundanese"
-msgstr ""
+msgstr "巽他語(Sundanese)"
 
 #: src/font-manager/Orthographies.vala:155
 msgid "Syloti Nagri"
-msgstr ""
+msgstr "希洛弟納格里文(Syloti Nagri)"
 
 #: src/font-manager/Orthographies.vala:156
 msgid "Syriac"
-msgstr ""
+msgstr "敘利亞語(Syriac)"
 
 #: src/font-manager/Orthographies.vala:157
 msgid "Tai Le"
-msgstr ""
+msgstr "傣那語(Tai Le)"
 
 #: src/font-manager/Orthographies.vala:158
 msgid "Tai Tham (Lanna)"
-msgstr ""
+msgstr "老傣仂文(Tai Tham (Lanna))"
 
 #: src/font-manager/Orthographies.vala:159
 msgid "Tai Viet"
-msgstr ""
+msgstr "傣擔文(Tai Viet)"
 
 #: src/font-manager/Orthographies.vala:160
 #: src/font-manager/web/google/Language.vala:55
 msgid "Tamil"
-msgstr ""
+msgstr "坦米爾語(Tamil)"
 
 #: src/font-manager/Orthographies.vala:161
 #: src/font-manager/web/google/Language.vala:56
 msgid "Telugu"
-msgstr ""
+msgstr "泰盧固語(Telugu)"
 
 #: src/font-manager/Orthographies.vala:162
 msgid "Thaana"
-msgstr ""
+msgstr "它拿字母(Thaana)"
 
 #: src/font-manager/Orthographies.vala:163
 #: src/font-manager/web/google/Language.vala:57
 msgid "Thai"
-msgstr ""
+msgstr "泰語(Thai)"
 
 #: src/font-manager/Orthographies.vala:164
 #: src/font-manager/web/google/Language.vala:58
 msgid "Tibetan"
-msgstr ""
+msgstr "標準藏語(Tibetan)"
 
 #: src/font-manager/Orthographies.vala:165
 msgid "Tifinagh"
-msgstr ""
+msgstr "提非納文字(Tifinagh)"
 
 #: src/font-manager/Orthographies.vala:166
 msgid "Traditional Chinese"
-msgstr ""
+msgstr "繁體中文"
 
 #: src/font-manager/Orthographies.vala:167
 msgid "Turkish"
-msgstr ""
+msgstr "土耳其語(Turkish)"
 
 #: src/font-manager/Orthographies.vala:168
 msgid "Uighur"
-msgstr ""
+msgstr "維吾爾語(Uighur)"
 
 #: src/font-manager/Orthographies.vala:169
 msgid "Urdu"
-msgstr ""
+msgstr "烏爾都語(Urdu)"
 
 #: src/font-manager/Orthographies.vala:170
 msgid "Vai"
@@ -1384,21 +1407,20 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:171
 msgid "Vedic Extensions"
-msgstr ""
+msgstr "梵文與其他印度文字延伸符(Vedic Extensions)"
 
 #: src/font-manager/Orthographies.vala:172
-#, fuzzy
 msgid "Venda"
-msgstr "供应商"
+msgstr "溫達語(Venda)"
 
 #: src/font-manager/Orthographies.vala:173
 #: src/font-manager/web/google/Language.vala:59
 msgid "Vietnamese"
-msgstr ""
+msgstr "越南語(Vietnamese)"
 
 #: src/font-manager/Orthographies.vala:174
 msgid "Western European"
-msgstr ""
+msgstr "西歐文字(Western European)"
 
 #: src/font-manager/Orthographies.vala:175
 msgid "Yi"
@@ -1406,13 +1428,14 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:176
 msgid "Chinese Zhuyin Fuhao"
-msgstr ""
+msgstr "注音符號"
 
 #. Translators : Coverage refers to the amount of support the font provides for an
 #. orthography. This will be displayed as "Coverage : XXX%" in the interface.
 #: src/font-manager/Orthography.vala:124
+#, fuzzy
 msgid "Coverage"
-msgstr ""
+msgstr "覆蓋率"
 
 #: src/font-manager/Orthography.vala:153
 #: src/font-manager/filters/LanguageFilter.vala:58
@@ -1422,160 +1445,165 @@ msgstr ""
 
 #: src/font-manager/Orthography.vala:204
 msgid "Update in progress"
-msgstr ""
+msgstr "正在更新"
 
 #: src/font-manager/TitleBar.vala:62
 msgid "Updating Database — Fonts"
-msgstr ""
+msgstr "正在更新資料庫 — 字體"
 
 #: src/font-manager/TitleBar.vala:64
 msgid "Updating Database — Metadata"
-msgstr ""
+msgstr "正在更新資料庫 — 附加資料"
 
 #: src/font-manager/TitleBar.vala:66
 msgid "Updating Database — Orthography"
-msgstr ""
+msgstr "正在更新資料庫 — 拼寫體系"
 
 #: src/font-manager/TitleBar.vala:83
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "快捷鍵"
 
 #: src/font-manager/TitleBar.vala:84
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:19
 msgid "Help"
-msgstr "帮助"
+msgstr "幫助"
 
 #: src/font-manager/TitleBar.vala:85
 msgid "About"
-msgstr "关于"
+msgstr "關於"
 
 #: src/font-manager/TitleBar.vala:103
 msgid "Import"
-msgstr ""
+msgstr "匯入"
 
 #: src/font-manager/TitleBar.vala:104 src/font-manager/UserData.vala:132
 msgid "Export"
-msgstr ""
+msgstr "匯出"
 
 #: src/font-manager/TitleBar.vala:111 src/font-manager/UserData.vala:37
 #: src/font-manager/UserData.vala:48
 msgid "User Data"
-msgstr ""
+msgstr "使用者資料"
 
 #. HAVE_WEBKIT
 #: src/font-manager/TitleBar.vala:267
 msgid "Add Fonts"
-msgstr "添加字体"
+msgstr "新增字體"
 
 #: src/font-manager/TitleBar.vala:268
 msgid "Remove Fonts"
-msgstr "删除字体"
+msgstr "移除字體"
 
 #: src/font-manager/TitleBar.vala:275
 #: src/font-manager/ui/font-manager-main-window.ui:189
 msgid "Preferences"
-msgstr ""
+msgstr "偏好"
 
 #: src/font-manager/UserData.vala:55
 msgid "Select Exported Data"
-msgstr ""
+msgstr "選擇已匯出資料"
 
 #: src/font-manager/Utils.vala:220
 msgid "Copying files…"
-msgstr ""
+msgstr "複製檔案…"
 
 #: src/font-manager/filters/Collection.vala:48
 msgid "New Collection"
-msgstr "新字体集"
+msgstr "新字集"
 
 #: src/font-manager/filters/Collection.vala:50
 #, c-format
 msgid "Created : %s"
-msgstr "创建: %s"
+msgstr "建立: %s"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Disabled"
-msgstr "禁用"
+msgstr "未啟用"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
-msgstr "禁用字体"
+msgstr "已禁用字體"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
+#, fuzzy
 msgid "Filter based on supported orthographies"
-msgstr ""
+msgstr "對支援的拼寫體系過濾"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
-msgstr "未分类"
+msgstr "未排序"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
-msgstr "字体未在任何字体集中"
+msgstr "字體未出現在任何字集中"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr "用户"
+msgstr "使用者"
 
 #: src/font-manager/filters/UserFonts.vala:27
-#, fuzzy
 msgid "Fonts available only to you"
-msgstr "字体只有你可见"
+msgstr "你的字體"
 
 #: src/font-manager/preferences/Desktop.vala:36
+#, fuzzy
 msgid "Interface Font"
-msgstr ""
+msgstr "界面字體"
 
 #: src/font-manager/preferences/Desktop.vala:37
 msgid "Font used throughout interface."
 msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:42
+#, fuzzy
 msgid "Document Font"
-msgstr ""
+msgstr "文件字體"
 
 #: src/font-manager/preferences/Desktop.vala:43
 msgid "Font used for reading documents."
-msgstr ""
+msgstr "用於閱讀文檔的字體。"
 
 #: src/font-manager/preferences/Desktop.vala:48
 msgid "Monospace Font"
-msgstr ""
+msgstr "等寬字體"
 
 #: src/font-manager/preferences/Desktop.vala:49
 msgid "Monospaced (fixed-width) font for use in locations such as terminals."
-msgstr ""
+msgstr "用於命令列之等寬字體(固定寬度)。"
 
 #: src/font-manager/preferences/Desktop.vala:54
 msgid "Text Scaling Factor"
-msgstr ""
+msgstr "文字縮放倍率"
 
 #: src/font-manager/preferences/Desktop.vala:55
+#, fuzzy
 msgid ""
 "Factor used to enlarge or reduce text display, without changing font size"
-msgstr ""
+msgstr "在不更改字體大小的情況下，縮放文本的顯示倍率"
 
 #: src/font-manager/preferences/Desktop.vala:60
 #: src/font-manager/preferences/Desktop.vala:78
 msgid "Antialiasing"
-msgstr ""
+msgstr "抗鋸齒"
 
 #: src/font-manager/preferences/Desktop.vala:61
 #: src/font-manager/preferences/Desktop.vala:79
+#, fuzzy
 msgid "The type of antialiasing to use when rendering fonts."
-msgstr ""
+msgstr "繪製字體時使用的抗鋸齒類型。"
 
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:84
 msgid "RGBA order"
-msgstr ""
+msgstr "RGBA順序"
 
 #: src/font-manager/preferences/Desktop.vala:67
 #: src/font-manager/preferences/Desktop.vala:85
+#, fuzzy
 msgid ""
 "The order of subpixel elements on an LCD screen; only used when antialiasing "
 "is set to rgba."
-msgstr ""
+msgstr "LCD螢幕上子像素的順序；只在抗鋸齒被設為RGBA時使用。"
 
 #: src/font-manager/preferences/Desktop.vala:72
 #: src/font-manager/preferences/Desktop.vala:90
@@ -1589,8 +1617,9 @@ msgid "The type of hinting to use when rendering fonts."
 msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:116
+#, fuzzy
 msgid "GNOME desktop settings schema not found"
-msgstr ""
+msgstr "未找到GNOME桌面設定綱要"
 
 #: src/font-manager/preferences/Fontconfig.vala:167
 msgid ""
@@ -1602,34 +1631,40 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"選擇儲存以上設定到設定文件中\n"
+"\n"
+"選擇刪除設定文件並恢復預設設定\n"
+"\n"
+"注意，並非所有環境/程式都會遵守這些設定。"
 
 #: src/font-manager/preferences/Fontconfig.vala:204
 #: src/font-manager/preferences/Fontconfig.vala:282
 #: src/font-manager/preferences/Fontconfig.vala:456
 msgid "Settings saved to file."
-msgstr ""
+msgstr "設定已儲存至文件。"
 
 #: src/font-manager/preferences/Fontconfig.vala:208
 #: src/font-manager/preferences/Fontconfig.vala:286
 #: src/font-manager/preferences/Fontconfig.vala:460
+#, fuzzy
 msgid "Removed configuration file."
-msgstr ""
+msgstr "移除配置文件。"
 
 #: src/font-manager/preferences/Fontconfig.vala:235
 msgid "Target DPI"
-msgstr ""
+msgstr "目標 DPI"
 
 #: src/font-manager/preferences/Fontconfig.vala:236
 msgid "Scale Factor"
-msgstr ""
+msgstr "縮放倍率"
 
 #: src/font-manager/preferences/Fontconfig.vala:240
 msgid "LCD Filter"
-msgstr ""
+msgstr "LCD 濾鏡"
 
 #: src/font-manager/preferences/Fontconfig.vala:328
 msgid "Antialias"
-msgstr ""
+msgstr "抗鋸齒"
 
 #: src/font-manager/preferences/Fontconfig.vala:330
 msgid "Enable Autohinter"
@@ -1640,13 +1675,14 @@ msgid "Hinting Style"
 msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:340
+#, fuzzy
 msgid "Use Embedded Bitmaps"
-msgstr ""
+msgstr "使用內嵌點陣"
 
 #: src/font-manager/preferences/Fontconfig.vala:342
 #: src/font-manager/preferences/Fontconfig.vala:348
 msgid " Size Restrictions "
-msgstr ""
+msgstr " 尺寸限制 "
 
 #: src/font-manager/preferences/Fontconfig.vala:346
 msgid " Apply settings to point sizes "
@@ -1654,23 +1690,24 @@ msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:406
 msgid "Smaller than"
-msgstr ""
+msgstr "小於"
 
 #: src/font-manager/preferences/Fontconfig.vala:407
 msgid "Larger than"
-msgstr ""
+msgstr "大於"
 
 #: src/font-manager/preferences/Fontconfig.vala:427
 msgid "Add alias"
-msgstr ""
+msgstr "新增別名"
 
 #: src/font-manager/preferences/Fontconfig.vala:428
 msgid "Remove selected alias"
-msgstr ""
+msgstr "移除選擇的別名"
 
 #: src/font-manager/preferences/Fontconfig.vala:599
+#, fuzzy
 msgid "Font Substitutions"
-msgstr ""
+msgstr "字型替換"
 
 #: src/font-manager/preferences/Fontconfig.vala:600
 msgid "Easily substitute one font family for another."
@@ -1678,24 +1715,24 @@ msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:601
 msgid "To add a new substitute click the add button in the toolbar."
-msgstr ""
+msgstr "按下工具列中的新增按鈕以增加新的替換選項。"
 
 #: src/font-manager/preferences/Preferences.vala:24
 msgid "Interface"
-msgstr ""
+msgstr "界面"
 
 #: src/font-manager/preferences/Preferences.vala:25
 msgid "Desktop"
-msgstr ""
+msgstr "桌面"
 
 #: src/font-manager/preferences/Preferences.vala:26
-#, fuzzy
 msgid "Sources"
-msgstr "管理字体源"
+msgstr "字體來源"
 
 #: src/font-manager/preferences/Preferences.vala:27
+#, fuzzy
 msgid "Actions"
-msgstr ""
+msgstr "動作"
 
 #: src/font-manager/preferences/Preferences.vala:28
 msgid "Substitutions"
@@ -1703,15 +1740,15 @@ msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:29
 #: src/font-manager/web/google/ui/google-font-filters.ui:204
-#, fuzzy
 msgid "Display"
-msgstr "文本和显示(Text and Display)"
+msgstr "顯示"
 
 #: src/font-manager/preferences/Preferences.vala:30
 msgid "Rendering"
-msgstr ""
+msgstr "繪製"
 
 #: src/font-manager/preferences/UserActions.vala:198
+#, fuzzy
 msgid ""
 "Actions defined here will be added to the font list context menu.\n"
 "\n"
@@ -1720,46 +1757,55 @@ msgid ""
 "To control where the filepath is inserted use FILEPATH as a placeholder.\n"
 "If FAMILY or STYLE are found in the argument list they will also be replaced."
 msgstr ""
+"這裡定義的動作將被添加到字體列表的選單中。\n"
+"\n"
+"預設情況下，所選字體的檔案路徑將被附加到參數列表的尾端。\n"
+"如要控制檔案路徑被插入的位置，可以使用 FILEPATH 作為占位符。\n"
+"如果在參數列表中出現 FAMILY 或 STYLE ，他們也會被替换。"
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "User Actions"
-msgstr ""
+msgstr "使用者動作"
 
 #: src/font-manager/preferences/UserActions.vala:214
+#, fuzzy
 msgid "Custom context menu entries"
-msgstr ""
+msgstr "自訂選單項目"
 
 #: src/font-manager/preferences/UserInterface.vala:89
 msgid "Wide Layout"
 msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:92
+#, fuzzy
 msgid "Only When Maximized"
-msgstr ""
+msgstr "只在最大化時"
 
 #: src/font-manager/preferences/UserInterface.vala:95
+#, fuzzy
 msgid "Client Side Decorations"
-msgstr ""
+msgstr "用戶端裝飾"
 
 #: src/font-manager/preferences/UserInterface.vala:99
 msgid "Enable Animations"
-msgstr ""
+msgstr "啟用動畫"
 
 #: src/font-manager/preferences/UserInterface.vala:100
 msgid "Prefer Dark Theme"
-msgstr ""
+msgstr "偏好深色主題"
 
 #: src/font-manager/preferences/UserInterface.vala:148
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
-msgstr ""
+msgstr "CSD 已啟用。下次啟動程式時將做出變更。"
 
 #: src/font-manager/preferences/UserInterface.vala:150
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
-msgstr ""
+msgstr "CSD 已停用。下次啟動程式時將做出變更。"
 
 #: src/font-manager/preferences/UserSources.vala:146
+#, fuzzy
 msgid ""
 "Fonts in any folders listed here will be available within the application.\n"
 "\n"
@@ -1768,220 +1814,217 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"在這裡顯示的任何字體都將可使用。\n"
+"\n"
+"在真正啟用之前，其他應用程式無法看到這些字體\n"
+"\n"
+"注意，並非所有環境/程式都會遵守這些設定。"
 
 #: src/font-manager/preferences/UserSources.vala:162
 #: src/font-manager/ui/font-manager-user-data.ui:131
-#, fuzzy
 msgid "Font Sources"
-msgstr "管理字体源"
+msgstr "字體來源"
 
 #: src/font-manager/preferences/UserSources.vala:163
 #, fuzzy
 msgid "Easily add or preview fonts without actually installing them."
-msgstr "快速添加或预览字体"
+msgstr "預覽字體而不安裝。"
 
 #: src/font-manager/preferences/UserSources.vala:164
+#, fuzzy
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
-msgstr "通过拖放到此区域或单击工具栏上的按钮来添加新的字体源。"
+msgstr "拖曳資料夾至此或按下選單中的新增按鈕以增加新的來源。"
 
 #: src/font-manager/web/google/FontList.vala:56
 msgid "Case insensitive search of family names."
-msgstr ""
+msgstr "忽略大小寫查詢字體家族名稱。"
 
 #: src/font-manager/web/google/GoogleFonts.vala:129
 msgid "Error procesing data"
-msgstr ""
+msgstr "處理資料時發生錯誤"
 
 #: src/font-manager/web/google/GoogleFonts.vala:138
 msgid "Network Error"
-msgstr ""
+msgstr "網路錯誤"
 
 #: src/font-manager/web/google/GoogleFonts.vala:139
 msgid "Please check your network settings"
-msgstr ""
+msgstr "請檢查您的網路設定"
 
 #: src/font-manager/web/google/GoogleFonts.vala:141
+#, fuzzy
 msgid "Client Error"
-msgstr ""
+msgstr "客戶端錯誤"
 
 #: src/font-manager/web/google/GoogleFonts.vala:142
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
-msgstr ""
+msgstr "請嘗試重新啟動此程式。若問題持續發生，請向開發人員回報。"
 
 #: src/font-manager/web/google/GoogleFonts.vala:145
 msgid "Server Error"
-msgstr ""
+msgstr "伺服器異常"
 
 #: src/font-manager/web/google/GoogleFonts.vala:217
 msgid "Network Offline"
-msgstr ""
+msgstr "網路斷線"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
 #: src/font-manager/web/google/GoogleFonts.vala:219
+#, fuzzy
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
-msgstr ""
+msgstr "需要網路連線以檢視Google字型目錄"
 
 #: src/font-manager/web/google/Language.vala:34
 msgid "Chinese (Hong Kong)"
-msgstr ""
+msgstr "中文(香港)"
 
 #: src/font-manager/web/google/Language.vala:35
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "中文(簡體)"
 
 #: src/font-manager/web/google/Language.vala:36
 msgid "Chinese (Traditional)"
-msgstr ""
+msgstr "中文(繁體)"
 
 #: src/font-manager/web/google/Language.vala:37
 msgid "Cyrillic"
-msgstr ""
+msgstr "西里爾字母(Cyrillic)"
 
 #: src/font-manager/web/google/Language.vala:38
 msgid "Cyrillic Extended"
-msgstr ""
+msgstr "擴充西里爾字母(Cyrillic Extended)"
 
 #: src/font-manager/web/google/Language.vala:40
 msgid "Greek"
-msgstr ""
+msgstr "希臘語(Greek)"
 
 #: src/font-manager/web/google/Language.vala:41
 msgid "Greek Extended"
-msgstr ""
+msgstr "擴充希臘語(Greek)"
 
 #: src/font-manager/web/google/Language.vala:45
 msgid "Japanese"
-msgstr ""
+msgstr "日文"
 
 #: src/font-manager/web/google/Language.vala:48
 msgid "Korean"
-msgstr ""
+msgstr "韓文"
 
 #: src/font-manager/web/google/Language.vala:49
 msgid "Latin"
-msgstr ""
+msgstr "拉丁文"
 
 #: src/font-manager/web/google/Language.vala:50
 msgid "Latin Extended"
-msgstr ""
+msgstr "擴充拉丁文(Latin Extended)"
 
 #: src/font-manager/web/google/PreviewPane.vala:274
 msgid "Update Family"
-msgstr ""
+msgstr "更新字體家族"
 
 #: src/font-manager/web/google/PreviewPane.vala:274
-#, fuzzy
 msgid "Update Font"
-msgstr "添加字体"
+msgstr "更新字體"
 
 #: src/font-manager/web/google/PreviewPane.vala:279
-#, fuzzy
 msgid "Remove Family"
-msgstr "删除字体"
+msgstr "移除字體家族"
 
 #: src/font-manager/web/google/PreviewPane.vala:279
-#, fuzzy
 msgid "Remove Font"
-msgstr "删除字体"
+msgstr "移除字體"
 
 #: src/font-manager/web/google/PreviewPane.vala:284
 msgid "Download Family"
-msgstr ""
+msgstr "下載字體家族"
 
 #: src/font-manager/web/google/PreviewPane.vala:284
 msgid "Download Font"
-msgstr ""
+msgstr "下載字體"
 
 #: src/font-manager/web/google/PreviewPane.vala:294
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] ""
+msgstr[0] "%i 有可用的語言範例 "
 
 #: src/font-manager/web/google/Weight.vala:67
-#, fuzzy
 msgid "ExtraLight"
-msgstr "超细(Ultra-Light)"
+msgstr "超细(ExtraLight)"
 
 #: src/font-manager/web/google/Weight.vala:75
-#, fuzzy
 msgid "SemiBold"
-msgstr "半粗(Semi-Bold)"
+msgstr "中等粗(SemiBold)"
 
 #: src/font-manager/web/google/Weight.vala:79
-#, fuzzy
 msgid "ExtraBold"
-msgstr "超粗(Ultra-Bold)"
+msgstr "超粗(ExtraBold)"
 
 #: src/font-manager/web/google/Weight.vala:81
+#, fuzzy
 msgid "Black"
-msgstr ""
+msgstr "黑體"
 
 #: src/font-viewer/MainWindow.vala:24
-#, fuzzy
 msgid "Preview font files before installing them."
-msgstr "快速添加或预览字体"
+msgstr "在安裝之前先檢視字體。"
 
 #: src/font-viewer/MainWindow.vala:25
 msgid "To preview a font simply drag it onto this area."
-msgstr ""
+msgstr "將字型檔案拖曳至此以檢視。"
 
 #: src/font-viewer/MainWindow.vala:122
 msgid "No file selected"
-msgstr ""
+msgstr "未選擇任何檔案"
 
 #: src/font-viewer/MainWindow.vala:123
-#, fuzzy
 msgid "Or unsupported filetype."
-msgstr "按文件类型分组"
+msgstr "或是未知的檔案類型。"
 
 #: src/font-viewer/MainWindow.vala:172
 msgid "Newer version already installed"
 msgstr "新版本已安装"
 
 #: src/font-viewer/MainWindow.vala:174
-#, fuzzy
 msgid "Installed"
-msgstr "全部字体"
+msgstr "已安裝字型"
 
 #: src/font-viewer/MainWindow.vala:177
 #: src/font-viewer/font-viewer-main-window.ui:53
-#, fuzzy
 msgid "Install Font"
-msgstr "全部字体"
+msgstr "安裝字體"
 
 #: lib/unicode/ui/unicode-character-map-zoom-window.ui:80
 msgid "Copy"
-msgstr ""
+msgstr "複製"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:34
 msgid "List View"
-msgstr ""
+msgstr "以列表檢視"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:68
 msgid "Grid View"
-msgstr ""
+msgstr "以網格檢視"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:116
 msgid "Enter Preview Text…"
-msgstr ""
+msgstr "輸入文字以預覽…"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:182
 msgid "Previous page"
-msgstr ""
+msgstr "上一頁"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:210
 msgid "Next page"
-msgstr ""
+msgstr "下一頁"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
-#, fuzzy
 msgid "Collection Name"
-msgstr "新字体集"
+msgstr "字集名稱"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:54
 msgid "_Rename"
@@ -1989,134 +2032,131 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
-msgstr "添加选中的字体进行比较"
+msgstr "新增選中的字體至比較"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:84
 msgid "Remove selected font from comparison"
-msgstr "删除比较组中选中的字体"
+msgstr "移除已選中的比較字體"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:110
+#, fuzzy
 msgid "Pinned Comparisons"
-msgstr ""
+msgstr "已標注的比較"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:136
 #: src/font-manager/ui/font-manager-compare-view.ui:140
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:73
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:76
 msgid "Select background color"
-msgstr "选择背景颜色"
+msgstr "選擇背景顏色"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:157
 #: src/font-manager/ui/font-manager-compare-view.ui:161
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:90
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:93
 msgid "Select text color"
-msgstr ""
+msgstr "選擇文字顏色"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:12
 msgid "Discard"
-msgstr ""
+msgstr "放棄"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:30
 msgid "Running applications may require a restart to reflect any changes."
-msgstr ""
+msgstr "正在執行中的程式可能需要重啟以檢視變更。"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:40
 msgid "Save"
-msgstr ""
+msgstr "儲存"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:32
 msgid "Back"
-msgstr ""
+msgstr "返回"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:62
-#, fuzzy
 msgid "Search Orthographies…"
-msgstr "搜索数据库"
+msgstr "搜尋拼寫體系…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
-msgstr ""
+msgstr "全部取消選取"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:156
 msgid "Minimum Coverage"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-orthography-list.ui:86
+#, fuzzy
 msgid "Clear selected filter"
-msgstr ""
+msgstr "清除過濾器"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:27
-#, fuzzy
 msgid "Created : "
-msgstr "创建: %s"
+msgstr "建立: "
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:32
-#, fuzzy
 msgid "Save current comparison"
-msgstr "删除比较组中选中的字体"
+msgstr "保存目前的比較"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:62
-#, fuzzy
 msgid "Remove selected comparison"
-msgstr "删除比较组中选中的字体"
+msgstr "移除已選比較"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:92
-#, fuzzy
 msgid "Restore selected comparison"
-msgstr "删除比较组中选中的字体"
+msgstr "恢復已選比較"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:14
 msgid "General"
-msgstr ""
+msgstr "一般"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:26
 msgid "Increase preview size"
-msgstr ""
+msgstr "增大預覽尺寸"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:33
 msgid "Decrease preview size"
-msgstr ""
+msgstr "減小預覽尺寸"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:40
 msgid "Reset preview size"
-msgstr ""
+msgstr "重設預覽尺寸"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:47
 msgid "Reload"
-msgstr ""
+msgstr "重新載入"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:54
 msgid "Quit the application"
-msgstr ""
+msgstr "關閉應用程式"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:62
 msgid "Mode"
-msgstr ""
+msgstr "模式"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:67
 msgid "Switch to Manage mode"
-msgstr ""
+msgstr "切換至管理模式"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:74
 msgid "Switch to Browse mode"
-msgstr ""
+msgstr "切換至瀏覽模式"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:81
 msgid "Switch to Compare mode"
-msgstr ""
+msgstr "切換至比較模式"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:89
 msgid "Preview Mode"
-msgstr ""
+msgstr "預覽模式"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:94
 msgid "Switch to Standard preview"
-msgstr ""
+msgstr "切換至標準預覽"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:101
 msgid "Switch to Waterfall preview"
-msgstr ""
+msgstr "切換至瀑布模式預覽"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:108
 msgid "Switch to Body Text preview"
@@ -2125,23 +2165,23 @@ msgstr ""
 # msgstr "区块"
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:59
 msgid "Categories"
-msgstr "分类"
+msgstr "分類"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:130
 msgid "Collections"
-msgstr "字体集"
+msgstr "字集"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:176
 msgid "Edit selected category"
-msgstr ""
+msgstr "編輯已選目錄"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:199
 msgid "Add new collection"
-msgstr "添加新的字体集"
+msgstr "增加新字集"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:222
 msgid "Remove selected collection"
-msgstr "删除选中的字体集"
+msgstr "移除選擇的字集"
 
 #: src/font-manager/ui/font-manager-subpixel-geometry.ui:44
 msgid "Subpixel Geometry"
@@ -2152,116 +2192,119 @@ msgid "Enter target family"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:32
+#, fuzzy
 msgid "Add substitute"
-msgstr ""
+msgstr "新增替代"
 
 #: src/font-manager/ui/font-manager-substitute.ui:41
+#, fuzzy
 msgid "Remove substitute"
-msgstr ""
+msgstr "移除替代"
 
 #: src/font-manager/ui/font-manager-substitute.ui:42
+#, fuzzy
 msgid "Enter substitute family"
-msgstr ""
+msgstr "輸入替代字體家族"
 
 #: src/font-manager/ui/font-manager-substitute.ui:59
 msgid "prefer"
-msgstr ""
+msgstr "偏好"
 
 #: src/font-manager/ui/font-manager-substitute.ui:60
 msgid "accept"
-msgstr ""
+msgstr "接受"
 
 #: src/font-manager/ui/font-manager-substitute.ui:61
-#, fuzzy
 msgid "default"
-msgstr "默认(Default)"
+msgstr "預設"
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:13
 msgid "Titlebar Button Style"
-msgstr ""
+msgstr "標題列按鈕樣式"
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:43
 msgid "Flat"
-msgstr ""
+msgstr "平坦"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:16
 #: src/font-manager/web/google/ui/google-font-filters.ui:52
 msgid "Name"
-msgstr ""
+msgstr "名稱"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:31
 msgid "Comment"
-msgstr ""
+msgstr "註解"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:47
 msgid "Executable"
-msgstr ""
+msgstr "可執行檔"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:63
 msgid "Arguments"
-msgstr ""
+msgstr "參數"
 
 #: src/font-manager/ui/font-manager-user-data.ui:73
 msgid "Font Configuration"
-msgstr ""
+msgstr "字體調整"
 
 #: src/font-manager/ui/font-manager-user-data.ui:102
 msgid "Font Collections"
-msgstr ""
+msgstr "字體集"
 
 #: src/font-manager/ui/font-manager-user-data.ui:160
 msgid "Installed Fonts"
-msgstr ""
+msgstr "已安裝的字體"
 
 #: src/font-manager/ui/font-manager-user-data.ui:189
+#, fuzzy
 msgid "Custom Actions"
-msgstr ""
+msgstr "自訂動作"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:28
 msgid "Higher values may adversely affect performance"
-msgstr ""
+msgstr "較高的值可能導致效能降低"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:54
+#, fuzzy
 msgid "Maximum Waterfall Preview Point Size"
-msgstr ""
+msgstr "瀑布模式最大預覽點尺寸"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
-msgstr ""
+msgstr "最新"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:54
 msgid "Most Popular"
-msgstr ""
+msgstr "最受歡迎"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:55
 msgid "Trending"
-msgstr ""
+msgstr "熱門"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:69
 msgid "Sort Order"
-msgstr ""
+msgstr "排序依據"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:148
 msgid "Serif"
-msgstr ""
+msgstr "襯線體"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:176
 msgid "Sans Serif"
-msgstr ""
+msgstr "無襯線體"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:232
 msgid "Handwriting"
-msgstr ""
+msgstr "手寫體"
 
 # msgstr "区块"
 #: src/font-manager/web/google/ui/google-font-filters.ui:282
-#, fuzzy
 msgid "Category"
-msgstr "分类"
+msgstr "目錄"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:434
 msgid "Variations"
-msgstr ""
+msgstr "種"
 
 #, fuzzy
 #~ msgid "_Continue"
