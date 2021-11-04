@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-08-14 08:33+0000\n"
+"PO-Revision-Date: 2021-10-10 01:03+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/id/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -49,13 +49,13 @@ msgstr ""
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr ""
+msgstr "Pratinjau, Bandingkan, dan Kelola Font"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
 #: data/org.gnome.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
+msgstr "Grafik;Penampil;GNOME;GTK;Publishing;"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
 #: data/org.gnome.FontViewer.desktop.in.in:5
@@ -63,11 +63,11 @@ msgstr ""
 #: src/font-viewer/Application.vala:98 src/font-viewer/MainWindow.vala:23
 #: src/font-viewer/font-viewer-main-window.ui:39
 msgid "Font Viewer"
-msgstr ""
+msgstr "Penampil Font"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "Aplikasi penampil font untuk Lingkungan Desktop Gtk+"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
@@ -144,29 +144,29 @@ msgstr "Medium"
 
 #: lib/common/font-manager-fontconfig.c:838
 msgid "Semi-Bold"
-msgstr ""
+msgstr "Semi-tebal"
 
 #: lib/common/font-manager-fontconfig.c:840
 #: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
-msgstr ""
+msgstr "Tebal"
 
 #: lib/common/font-manager-fontconfig.c:842
 msgid "Ultra-Bold"
-msgstr ""
+msgstr "Ultra-Tebal"
 
 #: lib/common/font-manager-fontconfig.c:844
 msgid "Heavy"
-msgstr ""
+msgstr "Berat"
 
 #: lib/common/font-manager-fontconfig.c:846
 msgid "Ultra-Heavy"
-msgstr ""
+msgstr "Ultra-Berat"
 
 #: lib/common/font-manager-fontconfig.c:921
 #: src/font-manager/web/google/WebFont.vala:158
 msgid "Italic"
-msgstr ""
+msgstr "Miring"
 
 #: lib/common/font-manager-fontconfig.c:923
 msgid "Oblique"
@@ -223,7 +223,7 @@ msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:1089
 msgid "Unknown"
-msgstr ""
+msgstr "Tidak diketahui"
 
 #: lib/common/font-manager-fontconfig.c:1091
 msgid "RGB"
@@ -270,19 +270,19 @@ msgstr ""
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Preview & Print Embedding"
-msgstr ""
+msgstr "Pratinjau & Cetak Penyematan"
 
 #: lib/common/font-manager-freetype.c:296
 msgid "Editable Embedding"
-msgstr ""
+msgstr "Penyematan yang dapat diedit"
 
 #: lib/common/font-manager-freetype.c:298
 msgid "Preview & Print Embedding | No Subsetting"
-msgstr ""
+msgstr "Pratinjau & Cetak Penyematan | Tanpa Subsetting"
 
 #: lib/common/font-manager-freetype.c:300
 msgid "Editable Embedding | No Subsetting"
-msgstr ""
+msgstr "Penyematan yang dapat diedit | Tanpa Subsetting"
 
 #: lib/common/font-manager-freetype.c:302
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
@@ -307,7 +307,7 @@ msgstr ""
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:702
 msgid "Unknown Vendor"
-msgstr ""
+msgstr "Vendor tidak dikenal"
 
 #: lib/common/font-manager-license-pane.c:185
 msgid "File does not contain license information."
@@ -315,11 +315,11 @@ msgstr "Berkas tidak mengandung informasi lisensi."
 
 #: lib/common/font-manager-preview-controls.c:76
 msgid "Left Aligned"
-msgstr ""
+msgstr "Rata Kiri"
 
 #: lib/common/font-manager-preview-controls.c:82
 msgid "Centered"
-msgstr ""
+msgstr "Rata Tengah"
 
 #: lib/common/font-manager-preview-controls.c:88
 msgid "Fill"
@@ -327,15 +327,15 @@ msgstr "Isi"
 
 #: lib/common/font-manager-preview-controls.c:94
 msgid "Right Aligned"
-msgstr ""
+msgstr "Rata Kanan"
 
 #: lib/common/font-manager-preview-controls.c:311
 msgid "Edit preview text"
-msgstr ""
+msgstr "Edits teks pratinjau"
 
 #: lib/common/font-manager-preview-controls.c:312
 msgid "Undo changes"
-msgstr ""
+msgstr "Batalkan perubahan"
 
 #: lib/common/font-manager-preview-pane.c:43
 #: lib/common/font-manager-preview-pane.c:551
@@ -363,7 +363,7 @@ msgstr "Nama PostScript"
 
 #: lib/common/font-manager-properties-pane.c:81
 msgid "Family"
-msgstr ""
+msgstr "Keluarga"
 
 #: lib/common/font-manager-properties-pane.c:82
 msgid "Style"
@@ -449,7 +449,7 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:201
 msgid "<Private Use>"
-msgstr ""
+msgstr "<Penggunaan Pribadi>"
 
 #: lib/unicode/unicode-info.c:203
 msgid "<Plane 15 Private Use>"
@@ -469,7 +469,7 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:228
 msgid "Other, Format"
-msgstr ""
+msgstr "Lainnya, Format"
 
 #: lib/unicode/unicode-info.c:230
 msgid "Other, Not Assigned"
@@ -569,7 +569,7 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:278
 msgid "Symbol, Other"
-msgstr ""
+msgstr "Simbol, Lainnya"
 
 #: lib/unicode/unicode-info.c:280
 msgid "Separator, Line"
@@ -622,19 +622,19 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
-msgstr ""
+msgstr "Kelompokan berdasarkan lebar font"
 
 #: src/font-manager/Categories.vala:535
 msgid "Grouped by font weight"
-msgstr ""
+msgstr "Kelompokkan berdasarkan berat font"
 
 #: src/font-manager/Categories.vala:536
 msgid "Grouped by font angle"
-msgstr ""
+msgstr "Kelompokkan berdasarkan sudut font"
 
 #: src/font-manager/Categories.vala:537
 msgid "Grouped by font spacing"
-msgstr ""
+msgstr "Kelompokkan berdasarkan spasi font"
 
 #: src/font-manager/Categories.vala:541
 msgid "Grouped by license type"
@@ -658,7 +658,7 @@ msgstr "Semua"
 
 #: src/font-manager/Categories.vala:551
 msgid "All Fonts"
-msgstr ""
+msgstr "Semua Font"
 
 #: src/font-manager/Categories.vala:552
 msgid "System"
@@ -666,7 +666,7 @@ msgstr "Sistem"
 
 #: src/font-manager/Categories.vala:552
 msgid "Fonts available to all users"
-msgstr ""
+msgstr "Font yang tersedia untuk semua pengguna"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
@@ -687,11 +687,11 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:567
 msgid "Text and Display"
-msgstr ""
+msgstr "Teks dan Display"
 
 #: src/font-manager/Categories.vala:567
 msgid "Script"
-msgstr ""
+msgstr "Skrip"
 
 #: src/font-manager/Categories.vala:567
 msgid "Decorative"
@@ -713,7 +713,7 @@ msgstr ""
 
 #: src/font-manager/Collections.vala:450
 msgid "Copy to…"
-msgstr ""
+msgstr "Salin ke…"
 
 #: src/font-manager/Collections.vala:451
 msgid "Compress…"
@@ -721,7 +721,7 @@ msgstr ""
 
 #: src/font-manager/Collections.vala:452
 msgid "Rename…"
-msgstr ""
+msgstr "Ganti nama…"
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
@@ -741,7 +741,7 @@ msgstr ""
 #: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
 #: src/font-manager/UserData.vala:58
 msgid "_Select"
-msgstr ""
+msgstr "_Pilih"
 
 #: src/font-manager/Dialogs.vala:64 src/font-manager/Dialogs.vala:79
 #: src/font-manager/Dialogs.vala:96 src/font-manager/Dialogs.vala:121
@@ -749,23 +749,23 @@ msgstr ""
 #: src/font-manager/UserData.vala:38 src/font-manager/UserData.vala:49
 #: src/font-manager/UserData.vala:59
 msgid "_Cancel"
-msgstr ""
+msgstr "_Batal"
 
 #: src/font-manager/Dialogs.vala:75
 msgid "Select Destination"
-msgstr ""
+msgstr "Pilih Tujuan"
 
 #: src/font-manager/Dialogs.vala:92
 msgid "Select files to install"
-msgstr ""
+msgstr "Pilih file untuk diinstal"
 
 #: src/font-manager/Dialogs.vala:95 src/font-manager/Dialogs.vala:120
 msgid "_Open"
-msgstr ""
+msgstr "_Buka"
 
 #: src/font-manager/Dialogs.vala:117
 msgid "Select source folders"
-msgstr ""
+msgstr "Pilih folder sumber"
 
 #: src/font-manager/Dialogs.vala:158 src/font-manager/Dialogs.vala:170
 msgid "Select fonts to remove"
@@ -810,7 +810,7 @@ msgstr ""
 
 #: src/font-manager/FontList.vala:504
 msgid "Copy Location"
-msgstr ""
+msgstr "Salin Lokasi"
 
 #: src/font-manager/FontList.vala:505
 msgid "Show in Folder"
@@ -824,12 +824,12 @@ msgstr ""
 #: src/font-manager/MainWindow.vala:56
 #: src/font-manager/ui/font-manager-main-window.ui:136
 msgid "Compare"
-msgstr ""
+msgstr "Bandingkan"
 
 #: src/font-manager/MainWindow.vala:58
 #: src/font-manager/ui/font-manager-main-window.ui:149
 msgid "Manage"
-msgstr ""
+msgstr "Kelola"
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
@@ -862,7 +862,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
-msgstr ""
+msgstr "Astronomi"
 
 #: src/font-manager/Orthographies.vala:39
 msgid "Balinese"

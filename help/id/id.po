@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-08-14 08:33+0000\n"
+"PO-Revision-Date: 2021-10-10 01:03+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/id/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -881,7 +881,7 @@ msgstr ""
 #. (itstool) path: figure/title
 #: C/font-manager-metadata.page:22
 msgid "<app>Font Properties tab</app>"
-msgstr ""
+msgstr "<app>Tab properti font</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -893,6 +893,7 @@ msgctxt "_"
 msgid ""
 "external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
 msgstr ""
+"external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
 
 #. (itstool) path: note/p
 #: C/font-manager-metadata.page:27
@@ -947,24 +948,26 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-substitutions.page:10
 msgid "Substitution"
-msgstr ""
+msgstr "Pengganti"
 
 #. (itstool) path: page/p
 #: C/font-manager-substitutions.page:12
 msgid ""
 "<app>Font Manager</app> allows you to substitute one font family for another."
 msgstr ""
+"<app> Font Manager </app> memungkinkan Anda untuk mengganti satu keluarga "
+"font dengan yang lain."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:18
 msgid "To add a substitute:"
-msgstr ""
+msgstr "Untuk menambahkan pengganti:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:31 C/font-manager-substitutions.page:88
 #: C/font-manager-substitutions.page:126
 msgid "Select \"Substitutions\" from the sidebar"
-msgstr ""
+msgstr "Pilih \"Pergantian\" dari bilah sisi"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:34
@@ -972,6 +975,8 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> in the substitutions pane."
 msgstr ""
+"Klik <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> di panel pengganti."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:43
@@ -984,16 +989,18 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> on the right."
 msgstr ""
+"Klik <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> di sebelah kanan."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:57
 msgid "Enter the name of the substitute family and select the priority level."
-msgstr ""
+msgstr "Masukkan nama keluarga pengganti dan pilih tingkat prioritas."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:62
 msgid "Repeat steps 3 – 6 as needed."
-msgstr ""
+msgstr "Ulangi langkah 3 - 6 sesuai kebutuhan."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:67 C/font-manager-substitutions.page:105
@@ -1001,16 +1008,17 @@ msgid ""
 "Click <gui style=\"button\">Save</gui> to write the configuration file when "
 "done."
 msgstr ""
+"Klik <gui style=\"button\">Simpan</gui> untuk menyimpan file konfigurasi."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:75
 msgid "To remove a substitute:"
-msgstr ""
+msgstr "Untuk menghapus pengganti:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:91
 msgid "Select the entry you wish to remove from the list."
-msgstr ""
+msgstr "Pilih entri yang ingin dihapus dari daftar."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:96
@@ -1018,6 +1026,8 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> in the substitutions pane."
 msgstr ""
+"Klik <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui> di panel pengganti."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:113
