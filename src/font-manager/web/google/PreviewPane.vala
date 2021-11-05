@@ -46,7 +46,7 @@ internal const string HEADER = """
       %s
     </style>
   </head>
-  <body>
+  <body oncontextmenu="return false;">
     <div>
 """;
 
@@ -227,7 +227,9 @@ namespace FontManager.GoogleFonts {
         }
 
         bool on_event (Gtk.Widget widget, Gdk.Event event) {
-            if (event.type == Gdk.EventType.SCROLL)
+            Gdk.EventType [] allowed_events = { Gdk.EventType.SCROLL, Gdk.EventType.TOUCH_BEGIN,
+                                                Gdk.EventType.TOUCH_END, Gdk.EventType.TOUCH_UPDATE };
+            if (event.type in allowed_events)
                 return Gdk.EVENT_PROPAGATE;
             return Gdk.EVENT_STOP;
         }
