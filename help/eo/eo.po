@@ -443,8 +443,8 @@ msgid ""
 "You can also double-click, press <gui style=\"button\">Space</gui> or press "
 "<gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
-"Vi ankaŭ povas duoble alklaki, premi la klavon <gui style=\"button\""
-">Spaceto</gui> aŭ premi la klavon <gui style=\"button\">Enigi</gui> por "
+"Vi ankaŭ povas duoble alklaki, premi la klavon <gui style=\"button"
+"\">Spaceto</gui> aŭ premi la klavon <gui style=\"button\">Enigi</gui> por "
 "baskuligi la elektitan tiparon."
 
 #. (itstool) path: note/p
@@ -496,8 +496,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
-"Alklaku la butonon <gui style=\"button\"><media type=\"image\" src=\"media"
-"/list-add-symbolic.svg\"/></gui> ĉe la supro de la fenestro"
+"Alklaku la butonon <gui style=\"button\"><media type=\"image\" src=\"media/"
+"list-add-symbolic.svg\"/></gui> ĉe la supro de la fenestro"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:31
@@ -588,8 +588,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
-"Alklaku la butonon <gui style=\"button\"><media type=\"image\" src=\"media"
-"/list-remove-symbolic.svg\"/></gui> ĉe la supro de la fenestro"
+"Alklaku la butonon <gui style=\"button\"><media type=\"image\" src=\"media/"
+"list-remove-symbolic.svg\"/></gui> ĉe la supro de la fenestro"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:44
@@ -694,8 +694,8 @@ msgid ""
 "top of the window."
 msgstr ""
 "Malfermu la dialogon pri agordoj de <app>Tiparadministrilo</app> alklakante "
-"la butonon <gui><media type=\"image\" src=\"media/preferences-system-symbolic"
-".svg\"/></gui> ĉe la supro de la fenestro."
+"la butonon <gui><media type=\"image\" src=\"media/preferences-system-"
+"symbolic.svg\"/></gui> ĉe la supro de la fenestro."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:40 C/font-manager-font-sources.page:72
@@ -709,8 +709,8 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
-"Alklaku <gui><media type=\"image\" src=\"media/list-add-symbolic.svg\""
-"/></gui>"
+"Alklaku <gui><media type=\"image\" src=\"media/list-add-symbolic.svg\"/></"
+"gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:51
@@ -734,8 +734,8 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui>"
 msgstr ""
-"Alklaku <gui><media type=\"image\" src=\"media/list-remove-symbolic.svg\""
-"/></gui>"
+"Alklaku <gui><media type=\"image\" src=\"media/list-remove-symbolic.svg\"/></"
+"gui>"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:91
@@ -750,8 +750,8 @@ msgid ""
 "\"/> </gui> at the top of the window."
 msgstr ""
 "Malfermu la dialogon pri agordoj de <app>Tiparadministrilo</app> alklakante "
-"la butonon <gui style=\"button\"><media type=\"image\" src=\"media"
-"/preferences-system-symbolic.svg\"/></gui> ĉe la supro de la fenestro."
+"la butonon <gui style=\"button\"><media type=\"image\" src=\"media/"
+"preferences-system-symbolic.svg\"/></gui> ĉe la supro de la fenestro."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:107
@@ -944,7 +944,8 @@ msgstr "<app>Langeto de tiparaj permesiloj</app>"
 #: C/font-manager-license.page:23
 msgctxt "_"
 msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
-msgstr "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
+msgstr ""
+"external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
 
 #. (itstool) path: note/p
 #: C/font-manager-license.page:27
@@ -1164,7 +1165,8 @@ msgstr ""
 msgid ""
 "While changes are applied immediately open applications may need to be "
 "restarted."
-msgstr "Dum ŝanĝoj tuj efektiviĝos, ruliĝantaj programoj eble bezonos relanĉon."
+msgstr ""
+"Dum ŝanĝoj tuj efektiviĝos, ruliĝantaj programoj eble bezonos relanĉon."
 
 #. (itstool) path: info/desc
 #: C/font-manager-supported-formats.page:5
@@ -1257,8 +1259,8 @@ msgid ""
 "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
 "font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
-"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font"
-".png\">emblemo de Tiparadministrilo</media> Tiparadministrilo"
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
+"font.png\">emblemo de Tiparadministrilo</media> Tiparadministrilo"
 
 #. (itstool) path: section/title
 #: C/index.page:37
