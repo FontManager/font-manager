@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-09-12 03:33+0000\n"
-"Last-Translator: JI YH <3178879831@qq.com>\n"
+"PO-Revision-Date: 2021-10-02 03:37+0000\n"
+"Last-Translator: Eric <spice2wolf@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager-help-docs/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -209,7 +209,6 @@ msgstr "<app>字符地图页</app>"
 #. update your localized copy. The msgstr is not used at all. Set it to
 #. whatever you like once you have updated your copy of the file.
 #: C/font-manager-character-map.page:24
-#, fuzzy
 msgctxt "_"
 msgid ""
 "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
@@ -266,7 +265,6 @@ msgstr "创建一个新的集合："
 #: C/font-manager-collections.page:40 C/font-manager-font-installation.page:25
 #: C/font-manager-font-sources.page:46 C/font-manager-substitutions.page:37
 #: C/font-manager-substitutions.page:51
-#, fuzzy
 msgctxt "_"
 msgid ""
 "external ref='media/list-add-symbolic.svg' "

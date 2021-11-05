@@ -1,10 +1,11 @@
 # Alang Hsu <alang.hsu@gmail.com>, 2021.
+# lemon37564 <stonydragon0701@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-08-17 12:34+0000\n"
-"Last-Translator: Alang Hsu <alang.hsu@gmail.com>\n"
+"PO-Revision-Date: 2021-10-21 18:39+0000\n"
+"Last-Translator: lemon37564 <stonydragon0701@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager-help-docs/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -12,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -27,7 +28,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "分類"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
@@ -39,7 +40,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "所有字體"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
@@ -49,7 +50,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "系統"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
@@ -59,7 +60,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "使用者"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
@@ -69,7 +70,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "字體家族"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
@@ -91,7 +92,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr ""
+msgstr "厚度"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
@@ -111,7 +112,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "字距"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
@@ -145,7 +146,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "檔案類型"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
@@ -155,7 +156,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "未排序"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
@@ -165,7 +166,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "未啟用"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
@@ -225,7 +226,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "字集"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
@@ -571,7 +572,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "字體來源"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12

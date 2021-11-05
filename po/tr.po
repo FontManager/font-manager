@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-08-03 18:33+0000\n"
+"PO-Revision-Date: 2021-11-04 17:37+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -1940,8 +1940,8 @@ msgstr "Yazı Tipini İndir"
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] "%i Dil Örneği Mevcut "
-msgstr[1] "%i Dil Örnekleri Mevcut "
+msgstr[0] "%i Dil Örneği Var "
+msgstr[1] "%i Dil Örneği Var "
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
