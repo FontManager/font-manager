@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-10-23 19:38+0000\n"
+"PO-Revision-Date: 2021-11-17 17:52+0000\n"
 "Last-Translator: Artem <Localizer_in_Russian@protonmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/ru/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.9.1-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -1254,7 +1254,7 @@ msgstr "Weblate"
 #. (itstool) path: license/p
 #: C/index.page:24
 msgid "GNU General Public License Version 3"
-msgstr ""
+msgstr "Стандартная общественная лицензия GNU (GPL), 3 версия"
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
