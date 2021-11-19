@@ -457,15 +457,17 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             model.get_iter_from_string(out iter, path);
             model.get_value(iter, FontModelColumn.OBJECT, out val);
             var family_object = val.get_object() as Family;
-            string family = get_family_from_object(family_object);
-            if (family in reject)
-                reject.remove(family);
-            else {
-                foreach (var filepath in get_files_for_family(family_object))
-                    add_application_font(filepath);
-                reject.add(family);
+            if (family_object != null) {
+                string family = get_family_from_object(family_object);
+                if (family in reject)
+                    reject.remove(family);
+                else {
+                    foreach (var filepath in get_files_for_family(family_object))
+                        add_application_font(filepath);
+                    reject.add(family);
+                }
+                reject.save();
             }
-            reject.save();
             val.unset();
             queue_draw();
             return;
