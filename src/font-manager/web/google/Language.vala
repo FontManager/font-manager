@@ -31,6 +31,7 @@ namespace FontManager.GoogleFonts {
     public const LanguageData [] Languages = {
         { N_("Arabic"), "arabic", "الحب سماء لا تمطر غير الأحلام." },
         { N_("Bengali"), "bengali", "আগুনের শিখা নিভে গিয়েছিল, আর তিনি জানলা দিয়ে তারাদের দিকে তাকালেন৷" },
+        { N_("Cherokee"), "cherokee", "ᎠᎣᎤᎴᎺᎾᏃᏆᏒᏔᏣᏫᏲᏴ" },
         { N_("Chinese (Hong Kong)"), "chinese-hongkong", "他們所有的設備和儀器彷彿都是有生命的。" },
         { N_("Chinese (Simplified)"), "chinese-simplified", "他们所有的设备和仪器彷佛都是有生命的。" },
         { N_("Chinese (Traditional)"), "chinese-traditional", "他們所有的設備和儀器彷彿都是有生命的。" },
@@ -66,10 +67,20 @@ namespace FontManager.GoogleFonts {
         public string sample { get; set; }
 
         public Sample (string lang) {
+            bool known = false;
             foreach (var entry in Languages) {
                 if (entry.name == lang) {
-                    Object(display_name: dgettext(null, entry.display_name), name: entry.name, sample: entry.sample);
+                    known = true;
+                    display_name = dgettext(null, entry.display_name);
+                    name = entry.name;
+                    sample = entry.sample;
                 }
+            }
+            if (!known) {
+                /* TRANSLATORS : The replacement character here refers to a language name */
+                display_name = _("No sample for %s available").printf(lang);
+                name = "unknown";
+                sample = _("Please file an issue requesting an update to available samples.");
             }
         }
 
