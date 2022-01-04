@@ -1,13 +1,14 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata, 2021.
 # Adolfo Jayme <fitoschido@gmail.com>, 2020. #zanata
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
+# nzgha <nzghafoss.ldxwe@slmail.me>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-03-25 16:29+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2021-12-10 04:53+0000\n"
+"Last-Translator: nzgha <nzghafoss.ldxwe@slmail.me>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
 "Language: es\n"
@@ -15,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.2-dev\n"
+"X-Generator: Weblate 4.10-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -759,7 +760,7 @@ msgstr "Comprimir…"
 
 #: src/font-manager/Collections.vala:452
 msgid "Rename…"
-msgstr ""
+msgstr "Renombrar…"
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
@@ -934,7 +935,7 @@ msgstr "Latino básico"
 
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
-msgstr ""
+msgstr "Surat Batak"
 
 #: src/font-manager/Orthographies.vala:46
 #: src/font-manager/web/google/Language.vala:33
@@ -967,7 +968,7 @@ msgstr "Centroeuropeo"
 
 #: src/font-manager/Orthographies.vala:53
 msgid "Chakma"
-msgstr ""
+msgstr "Chakma"
 
 #: src/font-manager/Orthographies.vala:54
 msgid "Cham"
