@@ -49,9 +49,11 @@ If you would like to help this application reach more users in their native lang
 
 #### Arch User Repository
 
-![AUR version](https://img.shields.io/aur/version/font-manager)  ![AUR maintainer](https://img.shields.io/aur/maintainer/font-manager)
+Arch Linux users can install [`font-manager`](https://archlinux.org/packages/community/x86_64/font-manager/) from official repositories:
 
-Arch Linux users can find [`font-manager`](https://aur.archlinux.org/packages/font-manager/) in the AUR
+```
+pacman -S font-manager
+```
 
 #### Fedora COPR
 
