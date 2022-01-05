@@ -45,9 +45,11 @@ Dacă aţi dori să ajutaţi această aplicaţie să ajungă la mai mulţi utili
 
 #### Arch User Repository
 
-![AUR version](https://img.shields.io/aur/version/font-manager)  ![AUR maintainer](https://img.shields.io/aur/maintainer/font-manager)
+Utilizatorii Arch Linux pot instala [`font-manager`](https://archlinux.org/packages/community/x86_64/font-manager/) din depozitele oficiale:
 
-Utilizatorii Arch Linux pot găsi [`font-manager`](https://aur.archlinux.org/packages/font-manager/) în AUR
+```
+pacman -S font-manager
+```
 
 #### Fedora COPR
 
