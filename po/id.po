@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-10-10 01:03+0000\n"
+"PO-Revision-Date: 2021-12-16 23:53+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/id/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -814,12 +814,12 @@ msgstr "Salin Lokasi"
 
 #: src/font-manager/FontList.vala:505
 msgid "Show in Folder"
-msgstr ""
+msgstr "Tampilkan di dalam Folder"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
 msgid "Browse"
-msgstr ""
+msgstr "Telusuri"
 
 #: src/font-manager/MainWindow.vala:56
 #: src/font-manager/ui/font-manager-main-window.ui:136
@@ -833,19 +833,19 @@ msgstr "Kelola"
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrika"
 
 #: src/font-manager/Orthographies.vala:32
 msgid "Ahom"
-msgstr ""
+msgstr "Ahom"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Aleut Cyrillic"
-msgstr ""
+msgstr "Aleut Cyrillic"
 
 #: src/font-manager/Orthographies.vala:34
 msgid "Aleut Latin"
-msgstr ""
+msgstr "Latin Aleut"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
@@ -854,11 +854,11 @@ msgstr "Arab"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
-msgstr ""
+msgstr "Huruf Yunani Kuno"
 
 #: src/font-manager/Orthographies.vala:37
 msgid "Armenian"
-msgstr ""
+msgstr "Armenia"
 
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
@@ -870,15 +870,15 @@ msgstr "Bahasa Bali"
 
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
-msgstr ""
+msgstr "Baltik"
 
 #: src/font-manager/Orthographies.vala:41
 msgid "Bamum"
-msgstr ""
+msgstr "Bamum"
 
 #: src/font-manager/Orthographies.vala:42
 msgid "Basic Cyrillic"
-msgstr ""
+msgstr "Cyrillic Dasar"
 
 #: src/font-manager/Orthographies.vala:43
 msgid "Basic Greek"
@@ -1269,202 +1269,202 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:150
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "Cina Sederhana"
 
 #: src/font-manager/Orthographies.vala:151
 msgid "Sindhi"
-msgstr ""
+msgstr "Sindhi"
 
 #: src/font-manager/Orthographies.vala:152
 #: src/font-manager/web/google/Language.vala:54
 msgid "Sinhala"
-msgstr ""
+msgstr "Sinhala"
 
 #: src/font-manager/Orthographies.vala:153
 msgid "South Korean Hanja"
-msgstr ""
+msgstr "Hanja Korea Selatan"
 
 #: src/font-manager/Orthographies.vala:154
 msgid "Sundanese"
-msgstr ""
+msgstr "Sunda"
 
 #: src/font-manager/Orthographies.vala:155
 msgid "Syloti Nagri"
-msgstr ""
+msgstr "Syloti Nagri"
 
 #: src/font-manager/Orthographies.vala:156
 msgid "Syriac"
-msgstr ""
+msgstr "Syriac"
 
 #: src/font-manager/Orthographies.vala:157
 msgid "Tai Le"
-msgstr ""
+msgstr "Tai Le"
 
 #: src/font-manager/Orthographies.vala:158
 msgid "Tai Tham (Lanna)"
-msgstr ""
+msgstr "Tai Tham (Lanna)"
 
 #: src/font-manager/Orthographies.vala:159
 msgid "Tai Viet"
-msgstr ""
+msgstr "Tai Viet"
 
 #: src/font-manager/Orthographies.vala:160
 #: src/font-manager/web/google/Language.vala:55
 msgid "Tamil"
-msgstr ""
+msgstr "Tamil"
 
 #: src/font-manager/Orthographies.vala:161
 #: src/font-manager/web/google/Language.vala:56
 msgid "Telugu"
-msgstr ""
+msgstr "Telugu"
 
 #: src/font-manager/Orthographies.vala:162
 msgid "Thaana"
-msgstr ""
+msgstr "Thaana"
 
 #: src/font-manager/Orthographies.vala:163
 #: src/font-manager/web/google/Language.vala:57
 msgid "Thai"
-msgstr ""
+msgstr "Thai"
 
 #: src/font-manager/Orthographies.vala:164
 #: src/font-manager/web/google/Language.vala:58
 msgid "Tibetan"
-msgstr ""
+msgstr "Tibet"
 
 #: src/font-manager/Orthographies.vala:165
 msgid "Tifinagh"
-msgstr ""
+msgstr "Tifinagh"
 
 #: src/font-manager/Orthographies.vala:166
 msgid "Traditional Chinese"
-msgstr ""
+msgstr "Cina Tradisional"
 
 #: src/font-manager/Orthographies.vala:167
 msgid "Turkish"
-msgstr ""
+msgstr "Turki"
 
 #: src/font-manager/Orthographies.vala:168
 msgid "Uighur"
-msgstr ""
+msgstr "Uighur"
 
 #: src/font-manager/Orthographies.vala:169
 msgid "Urdu"
-msgstr ""
+msgstr "Urdu"
 
 #: src/font-manager/Orthographies.vala:170
 msgid "Vai"
-msgstr ""
+msgstr "Vai"
 
 #: src/font-manager/Orthographies.vala:171
 msgid "Vedic Extensions"
-msgstr ""
+msgstr "Ekstensi Veda"
 
 #: src/font-manager/Orthographies.vala:172
 msgid "Venda"
-msgstr ""
+msgstr "Venda"
 
 #: src/font-manager/Orthographies.vala:173
 #: src/font-manager/web/google/Language.vala:59
 msgid "Vietnamese"
-msgstr ""
+msgstr "Vietnam"
 
 #: src/font-manager/Orthographies.vala:174
 msgid "Western European"
-msgstr ""
+msgstr "Eropa Barat"
 
 #: src/font-manager/Orthographies.vala:175
 msgid "Yi"
-msgstr ""
+msgstr "Yi"
 
 #: src/font-manager/Orthographies.vala:176
 msgid "Chinese Zhuyin Fuhao"
-msgstr ""
+msgstr "Zhuyin Fuhao Cina"
 
 #. Translators : Coverage refers to the amount of support the font provides for an
 #. orthography. This will be displayed as "Coverage : XXX%" in the interface.
 #: src/font-manager/Orthography.vala:124
 msgid "Coverage"
-msgstr ""
+msgstr "Cakupan"
 
 #: src/font-manager/Orthography.vala:153
 #: src/font-manager/filters/LanguageFilter.vala:58
 #: src/font-manager/web/google/ui/google-font-filters.ui:503
 msgid "Supported Orthographies"
-msgstr ""
+msgstr "Ortografi yang Didukung"
 
 #: src/font-manager/Orthography.vala:204
 msgid "Update in progress"
-msgstr ""
+msgstr "Pembaruan sedang berlangsung"
 
 #: src/font-manager/TitleBar.vala:62
 msgid "Updating Database — Fonts"
-msgstr ""
+msgstr "Memperbarui Database — Font"
 
 #: src/font-manager/TitleBar.vala:64
 msgid "Updating Database — Metadata"
-msgstr ""
+msgstr "Memperbarui Database — Metadata"
 
 #: src/font-manager/TitleBar.vala:66
 msgid "Updating Database — Orthography"
-msgstr ""
+msgstr "Memperbarui Database — Ortografi"
 
 #: src/font-manager/TitleBar.vala:83
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Pintasan Keyboard"
 
 #: src/font-manager/TitleBar.vala:84
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:19
 msgid "Help"
-msgstr ""
+msgstr "Bantuan"
 
 #: src/font-manager/TitleBar.vala:85
 msgid "About"
-msgstr ""
+msgstr "Tentang"
 
 #: src/font-manager/TitleBar.vala:103
 msgid "Import"
-msgstr ""
+msgstr "Impor"
 
 #: src/font-manager/TitleBar.vala:104 src/font-manager/UserData.vala:132
 msgid "Export"
-msgstr ""
+msgstr "Ekspor"
 
 #: src/font-manager/TitleBar.vala:111 src/font-manager/UserData.vala:37
 #: src/font-manager/UserData.vala:48
 msgid "User Data"
-msgstr ""
+msgstr "Data Pengguna"
 
 #. HAVE_WEBKIT
 #: src/font-manager/TitleBar.vala:267
 msgid "Add Fonts"
-msgstr ""
+msgstr "Tambah Font"
 
 #: src/font-manager/TitleBar.vala:268
 msgid "Remove Fonts"
-msgstr ""
+msgstr "Buang Font"
 
 #: src/font-manager/TitleBar.vala:275
 #: src/font-manager/ui/font-manager-main-window.ui:189
 msgid "Preferences"
-msgstr ""
+msgstr "Preferensi"
 
 #: src/font-manager/UserData.vala:55
 msgid "Select Exported Data"
-msgstr ""
+msgstr "Pilih Data yang Diekspor"
 
 #: src/font-manager/Utils.vala:220
 msgid "Copying files…"
-msgstr ""
+msgstr "Menyalin file…"
 
 #: src/font-manager/filters/Collection.vala:48
 msgid "New Collection"
-msgstr ""
+msgstr "Koleksi Baru"
 
 #: src/font-manager/filters/Collection.vala:50
 #, c-format
 msgid "Created : %s"
-msgstr ""
+msgstr "Dibuat : %s"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Disabled"
@@ -1472,19 +1472,19 @@ msgstr "Nonaktif"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
-msgstr ""
+msgstr "Font yang dinonaktifkan"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
 msgid "Filter based on supported orthographies"
-msgstr ""
+msgstr "Filter berdasarkan ortografi yang didukung"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
-msgstr ""
+msgstr "Tidak disortir"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
-msgstr ""
+msgstr "Font tidak ada dalam koleksi apa pun"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
@@ -1492,19 +1492,19 @@ msgstr "Pengguna"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "Fonts available only to you"
-msgstr ""
+msgstr "Font hanya tersedia untuk Anda"
 
 #: src/font-manager/preferences/Desktop.vala:36
 msgid "Interface Font"
-msgstr ""
+msgstr "Font Antarmuka"
 
 #: src/font-manager/preferences/Desktop.vala:37
 msgid "Font used throughout interface."
-msgstr ""
+msgstr "Font yang digunakan di seluruh antarmuka."
 
 #: src/font-manager/preferences/Desktop.vala:42
 msgid "Document Font"
-msgstr ""
+msgstr "Font Dokumen"
 
 #: src/font-manager/preferences/Desktop.vala:43
 msgid "Font used for reading documents."
@@ -1579,17 +1579,17 @@ msgstr ""
 #: src/font-manager/preferences/Fontconfig.vala:282
 #: src/font-manager/preferences/Fontconfig.vala:456
 msgid "Settings saved to file."
-msgstr ""
+msgstr "Pengaturan disimpan ke file."
 
 #: src/font-manager/preferences/Fontconfig.vala:208
 #: src/font-manager/preferences/Fontconfig.vala:286
 #: src/font-manager/preferences/Fontconfig.vala:460
 msgid "Removed configuration file."
-msgstr ""
+msgstr "File konfigurasi dihapus."
 
 #: src/font-manager/preferences/Fontconfig.vala:235
 msgid "Target DPI"
-msgstr ""
+msgstr "Target DPI"
 
 #: src/font-manager/preferences/Fontconfig.vala:236
 msgid "Scale Factor"

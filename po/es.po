@@ -1,13 +1,15 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata, 2021.
 # Adolfo Jayme <fitoschido@gmail.com>, 2020. #zanata
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
+# nzgha <nzghafoss.ldxwe@slmail.me>, 2021.
+# Alberto Cañaveras <acmp@tuta.io>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-03-25 16:29+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2021-12-23 12:51+0000\n"
+"Last-Translator: Alberto Cañaveras <acmp@tuta.io>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
 "Language: es\n"
@@ -15,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.2-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -759,7 +761,7 @@ msgstr "Comprimir…"
 
 #: src/font-manager/Collections.vala:452
 msgid "Rename…"
-msgstr ""
+msgstr "Renombrar…"
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
@@ -934,7 +936,7 @@ msgstr "Latino básico"
 
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
-msgstr ""
+msgstr "Surat Batak"
 
 #: src/font-manager/Orthographies.vala:46
 #: src/font-manager/web/google/Language.vala:33
@@ -967,11 +969,11 @@ msgstr "Centroeuropeo"
 
 #: src/font-manager/Orthographies.vala:53
 msgid "Chakma"
-msgstr ""
+msgstr "Chakma"
 
 #: src/font-manager/Orthographies.vala:54
 msgid "Cham"
-msgstr ""
+msgstr "Cham"
 
 #: src/font-manager/Orthographies.vala:55
 msgid "Cherokee"
@@ -984,35 +986,37 @@ msgstr "Símbolos del ajedrez"
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
 msgid "CJK Unified"
-msgstr ""
+msgstr "CJK Unificado"
 
 #: src/font-manager/Orthographies.vala:60
 msgid "CJK Unified Extension A"
-msgstr ""
+msgstr "CJK Unificado Extensión A"
 
 #: src/font-manager/Orthographies.vala:61
 msgid "CJK Unified Extension B"
-msgstr ""
+msgstr "CJK Unificado Extensión B"
 
 #: src/font-manager/Orthographies.vala:62
 msgid "CJK Unified Extension C"
-msgstr ""
+msgstr "CJK Unificado Extensión C"
 
 #: src/font-manager/Orthographies.vala:63
 msgid "CJK Unified Extension D"
-msgstr ""
+msgstr "CJK Unificado Extensión D"
 
 #: src/font-manager/Orthographies.vala:64
 msgid "CJK Unified Extension E"
-msgstr ""
+msgstr "CJK Unificado Extensión E"
 
 #: src/font-manager/Orthographies.vala:65
+#, fuzzy
 msgid "CJK Compatibility Ideographs"
-msgstr ""
+msgstr "Ideogramas de compatibilidad CJK"
 
 #: src/font-manager/Orthographies.vala:66
+#, fuzzy
 msgid "CJK Compatibility Ideographs Supplement"
-msgstr ""
+msgstr "Suplemento de ideogramas de compatibilidad CJK"
 
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
@@ -1107,8 +1111,9 @@ msgid "IPA"
 msgstr "AFI"
 
 #: src/font-manager/Orthographies.vala:94
+#, fuzzy
 msgid "Igbo Onwu"
-msgstr ""
+msgstr "Igbo Onwu"
 
 #: src/font-manager/Orthographies.vala:96
 msgid "Korean Jamo"
@@ -1119,20 +1124,24 @@ msgid "Javanese"
 msgstr "Javanés"
 
 #: src/font-manager/Orthographies.vala:98
+#, fuzzy
 msgid "Japanese Jinmeiyo"
-msgstr ""
+msgstr "Jinmeiyo japonés"
 
 #: src/font-manager/Orthographies.vala:99
+#, fuzzy
 msgid "Japanese Joyo"
-msgstr ""
+msgstr "Joyo japonés"
 
 #: src/font-manager/Orthographies.vala:100
+#, fuzzy
 msgid "Kaithi"
-msgstr ""
+msgstr "Kaithi"
 
 #: src/font-manager/Orthographies.vala:101
+#, fuzzy
 msgid "Japanese Kana"
-msgstr ""
+msgstr "Kana japonés"
 
 #: src/font-manager/Orthographies.vala:102
 #: src/font-manager/web/google/Language.vala:46
@@ -1140,8 +1149,9 @@ msgid "Kannada"
 msgstr "Canarés"
 
 #: src/font-manager/Orthographies.vala:103
+#, fuzzy
 msgid "Kayah Li"
-msgstr ""
+msgstr "Kayah Li"
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kazakh"
@@ -1157,8 +1167,9 @@ msgid "Khmer"
 msgstr "Camboyano"
 
 #: src/font-manager/Orthographies.vala:107
+#, fuzzy
 msgid "Japanese Kokuji"
-msgstr ""
+msgstr "Kokuji japonés"
 
 #: src/font-manager/Orthographies.vala:108
 msgid "Lao"
@@ -1169,12 +1180,14 @@ msgid "Latin Ligatures"
 msgstr "Ligaduras latinas"
 
 #: src/font-manager/Orthographies.vala:110
+#, fuzzy
 msgid "Lepcha"
-msgstr ""
+msgstr "Lepcha"
 
 #: src/font-manager/Orthographies.vala:111
+#, fuzzy
 msgid "Limbu"
-msgstr ""
+msgstr "Limbu"
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Ideograms"
@@ -1222,8 +1235,9 @@ msgid "Meroitic Hieroglyphs"
 msgstr "Jeroglíficos meroíticos"
 
 #: src/font-manager/Orthographies.vala:123
+#, fuzzy
 msgid "Miao"
-msgstr ""
+msgstr "Miao"
 
 #: src/font-manager/Orthographies.vala:124
 msgid "Mongolian"
@@ -1240,7 +1254,7 @@ msgstr "Birmano"
 
 #: src/font-manager/Orthographies.vala:132
 msgid "New Tai Lue"
-msgstr ""
+msgstr "Nuevo Tai Lü"
 
 #: src/font-manager/Orthographies.vala:133
 msgid "N’Ko"
