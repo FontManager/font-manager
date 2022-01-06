@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-07-26 21:37-0400\n"
+"POT-Creation-Date: 2021-12-07 23:53+0300\n"
 "PO-Revision-Date: 2021-05-30 14:32+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/font-manager/"
@@ -81,7 +81,7 @@ msgstr ""
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:503
+#: src/font-manager/FontList.vala:505
 msgid "Install"
 msgstr "Installar"
 
@@ -111,154 +111,154 @@ msgstr "Previsualizacion"
 msgid "Waterfall"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:826
+#: lib/common/font-manager-fontconfig.c:699
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:828
+#: lib/common/font-manager-fontconfig.c:701
 msgid "Ultra-Light"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:830
-#: lib/common/font-manager-fontconfig.c:1183
+#: lib/common/font-manager-fontconfig.c:703
+#: lib/common/font-manager-fontconfig.c:1056
 #: src/font-manager/web/google/Weight.vala:69
 msgid "Light"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:832
+#: lib/common/font-manager-fontconfig.c:705
 msgid "Semi-Light"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:834
+#: lib/common/font-manager-fontconfig.c:707
 msgid "Book"
 msgstr "Libre"
 
-#: lib/common/font-manager-fontconfig.c:836
-#: lib/common/font-manager-fontconfig.c:1140
+#: lib/common/font-manager-fontconfig.c:709
+#: lib/common/font-manager-fontconfig.c:1013
 #: src/font-manager/web/google/Weight.vala:73
 msgid "Medium"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:838
+#: lib/common/font-manager-fontconfig.c:711
 msgid "Semi-Bold"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:840
+#: lib/common/font-manager-fontconfig.c:713
 #: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
 msgstr "Gras"
 
-#: lib/common/font-manager-fontconfig.c:842
+#: lib/common/font-manager-fontconfig.c:715
 msgid "Ultra-Bold"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:844
+#: lib/common/font-manager-fontconfig.c:717
 msgid "Heavy"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:846
+#: lib/common/font-manager-fontconfig.c:719
 msgid "Ultra-Heavy"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:921
+#: lib/common/font-manager-fontconfig.c:794
 #: src/font-manager/web/google/WebFont.vala:158
 msgid "Italic"
 msgstr "Italica"
 
-#: lib/common/font-manager-fontconfig.c:923
+#: lib/common/font-manager-fontconfig.c:796
 msgid "Oblique"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:961
+#: lib/common/font-manager-fontconfig.c:834
 msgid "Ultra-Condensed"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:963
+#: lib/common/font-manager-fontconfig.c:836
 msgid "Extra-Condensed"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:965
+#: lib/common/font-manager-fontconfig.c:838
 msgid "Condensed"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:967
+#: lib/common/font-manager-fontconfig.c:840
 msgid "Semi-Condensed"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:969
+#: lib/common/font-manager-fontconfig.c:842
 msgid "Semi-Expanded"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:971
+#: lib/common/font-manager-fontconfig.c:844
 msgid "Expanded"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:973
+#: lib/common/font-manager-fontconfig.c:846
 msgid "Extra-Expanded"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:975
+#: lib/common/font-manager-fontconfig.c:848
 msgid "Ultra-Expanded"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1044
+#: lib/common/font-manager-fontconfig.c:917
 msgid "Proportional"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1046
+#: lib/common/font-manager-fontconfig.c:919
 msgid "Dual Width"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1048
+#: lib/common/font-manager-fontconfig.c:921
 #: src/font-manager/web/google/ui/google-font-filters.ui:260
 msgid "Monospace"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1050
+#: lib/common/font-manager-fontconfig.c:923
 msgid "Charcell"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1089
+#: lib/common/font-manager-fontconfig.c:962
 msgid "Unknown"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1091
+#: lib/common/font-manager-fontconfig.c:964
 msgid "RGB"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1093
+#: lib/common/font-manager-fontconfig.c:966
 msgid "BGR"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1095
+#: lib/common/font-manager-fontconfig.c:968
 msgid "VRGB"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1097
+#: lib/common/font-manager-fontconfig.c:970
 msgid "VBGR"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1099
-#: lib/common/font-manager-fontconfig.c:1144
-#: lib/common/font-manager-fontconfig.c:1187
+#: lib/common/font-manager-fontconfig.c:972
+#: lib/common/font-manager-fontconfig.c:1017
+#: lib/common/font-manager-fontconfig.c:1060
 msgid "None"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1138
+#: lib/common/font-manager-fontconfig.c:1011
 msgid "Slight"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1142
+#: lib/common/font-manager-fontconfig.c:1015
 msgid "Full"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1181
+#: lib/common/font-manager-fontconfig.c:1054
 #: src/font-manager/ui/font-manager-main-window.ui:178
 msgid "Default"
 msgstr ""
 
-#: lib/common/font-manager-fontconfig.c:1185
+#: lib/common/font-manager-fontconfig.c:1058
 msgid "Legacy"
 msgstr ""
 
@@ -336,22 +336,22 @@ msgid "Undo changes"
 msgstr ""
 
 #: lib/common/font-manager-preview-pane.c:43
-#: lib/common/font-manager-preview-pane.c:551
+#: lib/common/font-manager-preview-pane.c:572
 msgid "Characters"
 msgstr "Caractèrs"
 
 #: lib/common/font-manager-preview-pane.c:45
-#: lib/common/font-manager-preview-pane.c:552
+#: lib/common/font-manager-preview-pane.c:573
 msgid "Properties"
 msgstr "Proprietats"
 
 #: lib/common/font-manager-preview-pane.c:47
-#: lib/common/font-manager-preview-pane.c:553
+#: lib/common/font-manager-preview-pane.c:574
 #: src/font-manager/Categories.vala:541
 msgid "License"
 msgstr "Licéncia"
 
-#: lib/common/font-manager-preview-pane.c:434
+#: lib/common/font-manager-preview-pane.c:454
 msgid "Search available characters"
 msgstr ""
 
@@ -421,170 +421,152 @@ msgstr ""
 msgid "Source Unavailable"
 msgstr ""
 
-#: lib/unicode/unicode-character-map.c:706
-msgid "Unknown character, unable to identify."
-msgstr ""
-
-#: lib/unicode/unicode-character-map.c:708
-msgid "Not found."
-msgstr "Pas trobat."
-
-#: lib/unicode/unicode-character-map.c:710
-msgid "Character found."
-msgstr ""
-
-#: lib/unicode/unicode-info.c:195
+#: lib/unicode/unicode-info.c:191
 msgid "<Non Private Use High Surrogate>"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:197
+#: lib/unicode/unicode-info.c:193
 msgid "<Private Use High Surrogate>"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:199
+#: lib/unicode/unicode-info.c:195
 msgid "<Low Surrogate>"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:201
+#: lib/unicode/unicode-info.c:197
 msgid "<Private Use>"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:203
+#: lib/unicode/unicode-info.c:199
 msgid "<Plane 15 Private Use>"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:205
+#: lib/unicode/unicode-info.c:201
 msgid "<Plane 16 Private Use>"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:209
+#: lib/unicode/unicode-info.c:205
 msgid "<not assigned>"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:226
+#: lib/unicode/unicode-info.c:222
 msgid "Other, Control"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:228
+#: lib/unicode/unicode-info.c:224
 msgid "Other, Format"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:230
+#: lib/unicode/unicode-info.c:226
 msgid "Other, Not Assigned"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:232
+#: lib/unicode/unicode-info.c:228
 msgid "Other, Private Use"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:234
+#: lib/unicode/unicode-info.c:230
 msgid "Other, Surrogate"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:236
+#: lib/unicode/unicode-info.c:232
 msgid "Letter, Lowercase"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:238
+#: lib/unicode/unicode-info.c:234
 msgid "Letter, Modifier"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:240
+#: lib/unicode/unicode-info.c:236
 msgid "Letter, Other"
 msgstr "Letra, autras"
 
-#: lib/unicode/unicode-info.c:242
+#: lib/unicode/unicode-info.c:238
 msgid "Letter, Titlecase"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:244
+#: lib/unicode/unicode-info.c:240
 msgid "Letter, Uppercase"
 msgstr "Letra, majuscula"
 
-#: lib/unicode/unicode-info.c:246
+#: lib/unicode/unicode-info.c:242
 msgid "Mark, Spacing Combining"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:248
+#: lib/unicode/unicode-info.c:244
 msgid "Mark, Enclosing"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:250
+#: lib/unicode/unicode-info.c:246
 msgid "Mark, Non-Spacing"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:252
+#: lib/unicode/unicode-info.c:248
 msgid "Number, Decimal Digit"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:254
+#: lib/unicode/unicode-info.c:250
 msgid "Number, Letter"
 msgstr "Nombre, letra"
 
-#: lib/unicode/unicode-info.c:256
+#: lib/unicode/unicode-info.c:252
 msgid "Number, Other"
 msgstr "Nombre, autres"
 
-#: lib/unicode/unicode-info.c:258
+#: lib/unicode/unicode-info.c:254
 msgid "Punctuation, Connector"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:260
+#: lib/unicode/unicode-info.c:256
 msgid "Punctuation, Dash"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:262
+#: lib/unicode/unicode-info.c:258
 msgid "Punctuation, Close"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:264
+#: lib/unicode/unicode-info.c:260
 msgid "Punctuation, Final Quote"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:266
+#: lib/unicode/unicode-info.c:262
 msgid "Punctuation, Initial Quote"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:268
+#: lib/unicode/unicode-info.c:264
 msgid "Punctuation, Other"
 msgstr "Pontuacion, autras"
 
-#: lib/unicode/unicode-info.c:270
+#: lib/unicode/unicode-info.c:266
 msgid "Punctuation, Open"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:272
+#: lib/unicode/unicode-info.c:268
 msgid "Symbol, Currency"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:274
+#: lib/unicode/unicode-info.c:270
 msgid "Symbol, Modifier"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:276
+#: lib/unicode/unicode-info.c:272
 msgid "Symbol, Math"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:278
+#: lib/unicode/unicode-info.c:274
 msgid "Symbol, Other"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:280
+#: lib/unicode/unicode-info.c:276
 msgid "Separator, Line"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:282
+#: lib/unicode/unicode-info.c:278
 msgid "Separator, Paragraph"
 msgstr ""
 
-#: lib/unicode/unicode-info.c:284
+#: lib/unicode/unicode-info.c:280
 msgid "Separator, Space"
-msgstr ""
-
-#. Unicode assigns "Common" as the script name for any character not
-#. * specifically listed in Scripts.txt
-#: lib/unicode/unicode-info.c:703
-msgid "Common"
 msgstr ""
 
 #: src/font-manager/About.vala:29
@@ -728,15 +710,15 @@ msgstr[1] "%i variacions "
 msgid "Enter Collection Name"
 msgstr ""
 
-#: src/font-manager/Collections.vala:450
+#: src/font-manager/Collections.vala:452
 msgid "Copy to…"
 msgstr ""
 
-#: src/font-manager/Collections.vala:451
+#: src/font-manager/Collections.vala:453
 msgid "Compress…"
 msgstr "Compressar…"
 
-#: src/font-manager/Collections.vala:452
+#: src/font-manager/Collections.vala:454
 msgid "Rename…"
 msgstr ""
 
@@ -825,11 +807,11 @@ msgstr ""
 msgid "Collapse all"
 msgstr ""
 
-#: src/font-manager/FontList.vala:504
+#: src/font-manager/FontList.vala:506
 msgid "Copy Location"
 msgstr ""
 
-#: src/font-manager/FontList.vala:505
+#: src/font-manager/FontList.vala:507
 msgid "Show in Folder"
 msgstr ""
 
@@ -947,6 +929,7 @@ msgid "Cham"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:55
+#: src/font-manager/web/google/Language.vala:34
 msgid "Cherokee"
 msgstr ""
 
@@ -1005,7 +988,7 @@ msgid "Cypriot Syllabary"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:73
-#: src/font-manager/web/google/Language.vala:39
+#: src/font-manager/web/google/Language.vala:40
 msgid "Devanagari"
 msgstr ""
 
@@ -1052,12 +1035,12 @@ msgid "Gothic"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:88
-#: src/font-manager/web/google/Language.vala:42
+#: src/font-manager/web/google/Language.vala:43
 msgid "Gujarati"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:89
-#: src/font-manager/web/google/Language.vala:43
+#: src/font-manager/web/google/Language.vala:44
 msgid "Gurmukhi"
 msgstr ""
 
@@ -1070,7 +1053,7 @@ msgid "Hanunó'o"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:92
-#: src/font-manager/web/google/Language.vala:44
+#: src/font-manager/web/google/Language.vala:45
 msgid "Hebrew"
 msgstr ""
 
@@ -1108,7 +1091,7 @@ msgid "Japanese Kana"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:102
-#: src/font-manager/web/google/Language.vala:46
+#: src/font-manager/web/google/Language.vala:47
 msgid "Kannada"
 msgstr ""
 
@@ -1125,7 +1108,7 @@ msgid "Kharoshthi"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:106
-#: src/font-manager/web/google/Language.vala:47
+#: src/font-manager/web/google/Language.vala:48
 msgid "Khmer"
 msgstr ""
 
@@ -1158,7 +1141,7 @@ msgid "Linear B Syllabary"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:114
-#: src/font-manager/web/google/Language.vala:51
+#: src/font-manager/web/google/Language.vala:52
 msgid "Malayalam"
 msgstr ""
 
@@ -1207,7 +1190,7 @@ msgstr ""
 #.
 #. { "MUFI 3.0", "MUFI 3.0" },
 #: src/font-manager/Orthographies.vala:131
-#: src/font-manager/web/google/Language.vala:52
+#: src/font-manager/web/google/Language.vala:53
 msgid "Myanmar"
 msgstr ""
 
@@ -1236,7 +1219,7 @@ msgid "Old South Arabian"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:138
-#: src/font-manager/web/google/Language.vala:53
+#: src/font-manager/web/google/Language.vala:54
 msgid "Oriya"
 msgstr ""
 
@@ -1293,7 +1276,7 @@ msgid "Sindhi"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:152
-#: src/font-manager/web/google/Language.vala:54
+#: src/font-manager/web/google/Language.vala:55
 msgid "Sinhala"
 msgstr ""
 
@@ -1326,12 +1309,12 @@ msgid "Tai Viet"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:160
-#: src/font-manager/web/google/Language.vala:55
+#: src/font-manager/web/google/Language.vala:56
 msgid "Tamil"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:161
-#: src/font-manager/web/google/Language.vala:56
+#: src/font-manager/web/google/Language.vala:57
 msgid "Telugu"
 msgstr ""
 
@@ -1340,12 +1323,12 @@ msgid "Thaana"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:163
-#: src/font-manager/web/google/Language.vala:57
+#: src/font-manager/web/google/Language.vala:58
 msgid "Thai"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:164
-#: src/font-manager/web/google/Language.vala:58
+#: src/font-manager/web/google/Language.vala:59
 msgid "Tibetan"
 msgstr ""
 
@@ -1382,7 +1365,7 @@ msgid "Venda"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:173
-#: src/font-manager/web/google/Language.vala:59
+#: src/font-manager/web/google/Language.vala:60
 msgid "Vietnamese"
 msgstr ""
 
@@ -1716,32 +1699,32 @@ msgstr ""
 msgid "Custom context menu entries"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:89
+#: src/font-manager/preferences/UserInterface.vala:193
 msgid "Wide Layout"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:92
+#: src/font-manager/preferences/UserInterface.vala:196
 msgid "Only When Maximized"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:95
+#: src/font-manager/preferences/UserInterface.vala:199
 msgid "Client Side Decorations"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:99
+#: src/font-manager/preferences/UserInterface.vala:203
 msgid "Enable Animations"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:100
+#: src/font-manager/preferences/UserInterface.vala:204
 msgid "Prefer Dark Theme"
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:148
+#: src/font-manager/preferences/UserInterface.vala:258
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
 
-#: src/font-manager/preferences/UserInterface.vala:150
+#: src/font-manager/preferences/UserInterface.vala:260
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
@@ -1810,75 +1793,85 @@ msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:34
+#: src/font-manager/web/google/Language.vala:35
 msgid "Chinese (Hong Kong)"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:35
+#: src/font-manager/web/google/Language.vala:36
 msgid "Chinese (Simplified)"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:36
+#: src/font-manager/web/google/Language.vala:37
 msgid "Chinese (Traditional)"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:37
+#: src/font-manager/web/google/Language.vala:38
 msgid "Cyrillic"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:38
+#: src/font-manager/web/google/Language.vala:39
 msgid "Cyrillic Extended"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:40
+#: src/font-manager/web/google/Language.vala:41
 msgid "Greek"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:41
+#: src/font-manager/web/google/Language.vala:42
 msgid "Greek Extended"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:45
+#: src/font-manager/web/google/Language.vala:46
 msgid "Japanese"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:48
+#: src/font-manager/web/google/Language.vala:49
 msgid "Korean"
 msgstr ""
 
-#: src/font-manager/web/google/Language.vala:49
+#: src/font-manager/web/google/Language.vala:50
 msgid "Latin"
 msgstr "Latin"
 
-#: src/font-manager/web/google/Language.vala:50
+#: src/font-manager/web/google/Language.vala:51
 msgid "Latin Extended"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:274
+#. TRANSLATORS : The replacement character here refers to a language name
+#: src/font-manager/web/google/Language.vala:81
+#, c-format
+msgid "No sample for %s available"
+msgstr ""
+
+#: src/font-manager/web/google/Language.vala:83
+msgid "Please file an issue requesting an update to available samples."
+msgstr ""
+
+#: src/font-manager/web/google/PreviewPane.vala:276
 msgid "Update Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:274
+#: src/font-manager/web/google/PreviewPane.vala:276
 msgid "Update Font"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:279
+#: src/font-manager/web/google/PreviewPane.vala:281
 msgid "Remove Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:279
+#: src/font-manager/web/google/PreviewPane.vala:281
 msgid "Remove Font"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:284
+#: src/font-manager/web/google/PreviewPane.vala:286
 msgid "Download Family"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:284
+#: src/font-manager/web/google/PreviewPane.vala:286
 msgid "Download Font"
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:294
+#: src/font-manager/web/google/PreviewPane.vala:296
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
@@ -2094,23 +2087,23 @@ msgstr ""
 msgid "Switch to Body Text preview"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:59
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:58
 msgid "Categories"
 msgstr "Categorias"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:130
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:129
 msgid "Collections"
 msgstr "Colleccions"
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:176
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:175
 msgid "Edit selected category"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:199
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:198
 msgid "Add new collection"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-standard-sidebar.ui:222
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:221
 msgid "Remove selected collection"
 msgstr ""
 
@@ -2187,12 +2180,72 @@ msgstr ""
 msgid "Custom Actions"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-waterfall-size.ui:28
+#: src/font-manager/ui/font-manager-waterfall-size.ui:25
+msgid "Display line size in Waterfall Preview"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:74
+msgid "Waterfall Preview Size Settings"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:93
+msgid "Up to 48 points (Linear Scaling)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:94
+msgid "Up to 72 points (1.1 Common Ratio)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:95
+msgid "Up to 96 points (Linear Scaling)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:96
+msgid "Up to 96 points (1.1 Common Ratio)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:97
+msgid "Up to 120 points (1.2 Common Ratio)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:98
+msgid "Up to 144 points (1.3 Common Ratio)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:99
+msgid "Up to 192 points (1.4 Common Ratio)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:100
+msgid "Custom Size Settings"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:142
+msgid "Minimum Waterfall Preview Point Size"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:155
+msgid "8.0"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:174
+msgid "Maximum Waterfall Preview Point Size"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:185
 msgid "Higher values may adversely affect performance"
 msgstr ""
 
-#: src/font-manager/ui/font-manager-waterfall-size.ui:54
-msgid "Maximum Waterfall Preview Point Size"
+#: src/font-manager/ui/font-manager-waterfall-size.ui:188
+msgid "48.0"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:207
+msgid "Waterfall Preview Point Size Common Ratio"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:220
+msgid "1.0"
 msgstr ""
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
@@ -2230,3 +2283,6 @@ msgstr ""
 #: src/font-manager/web/google/ui/google-font-filters.ui:434
 msgid "Variations"
 msgstr ""
+
+#~ msgid "Not found."
+#~ msgstr "Pas trobat."
