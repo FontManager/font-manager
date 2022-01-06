@@ -160,5 +160,5 @@ This project is licensed under the GNU General Public License Version 3.0 - see
 
 - Karl Pickett for getting the ball rolling with [fontmanager.py](https://raw.githubusercontent.com/FontManager/font-manager/6b9b351538b5118d07f6d228f3b42c91183b8b73/fontmanager.py)
 - The compare mode in Font Manager is modeled after [gnome-specimen](https://launchpad.net/gnome-specimen) by Wouter Bolsterlee
-- Font Manager makes use of data compiled for [Fontaine](http://www.unifont.org/fontaine/) by Edward H. Trager
+- Font Manager makes use of data compiled for [Fontaine](https://www.unifont.org/fontaine/) by Edward H. Trager
 - The character map in Font Manager is based on [Gucharmap](https://wiki.gnome.org/action/show/Apps/Gucharmap)
