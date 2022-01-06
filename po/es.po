@@ -2025,7 +2025,6 @@ msgstr "Página siguiente"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
 #, fuzzy
-#| msgid "Enter Collection Name"
 msgid "Collection Name"
 msgstr "Escriba el nombre de la colección"
 
@@ -2339,7 +2338,6 @@ msgstr "Variaciones"
 #~ msgstr "90"
 
 #, fuzzy
-#~| msgid "Remove Fonts"
 #~ msgid "Google Fonts"
 #~ msgstr "Desinstalar tipos de letra"
 
@@ -2353,7 +2351,6 @@ msgstr "Variaciones"
 #~ msgstr "Buscar idiomas…"
 
 #, fuzzy
-#~| msgid "Language"
 #~ msgid "Language Support"
 #~ msgstr "Idioma"
 
