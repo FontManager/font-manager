@@ -2,13 +2,13 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2017. #zanata
 # Jerry Casiano <JerryCasiano@gmail.com>, 2018. #zanata
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
-# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2021.
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-12-07 23:53+0300\n"
-"PO-Revision-Date: 2021-07-27 05:52+0000\n"
+"PO-Revision-Date: 2022-01-08 11:53+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/sv/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -679,7 +679,7 @@ msgstr "Teckensnitt tillgängliga för alla användare"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr "Familjart"
+msgstr "Familjetyp"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
@@ -1487,7 +1487,7 @@ msgstr "Skapad: %s"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Disabled"
-msgstr "Inaktiverat"
+msgstr "Avaktiverad"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
@@ -1894,11 +1894,12 @@ msgstr "Latin Utökad"
 #: src/font-manager/web/google/Language.vala:81
 #, c-format
 msgid "No sample for %s available"
-msgstr ""
+msgstr "Inget exempel för %s tillgängligt"
 
 #: src/font-manager/web/google/Language.vala:83
 msgid "Please file an issue requesting an update to available samples."
 msgstr ""
+"Registrera ett ärende för att begära en uppdatering av tillgängliga exempel."
 
 #: src/font-manager/web/google/PreviewPane.vala:276
 msgid "Update Family"
@@ -2132,7 +2133,7 @@ msgstr "Växla till standardgranskningsläge"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:101
 msgid "Switch to Waterfall preview"
-msgstr "Växla vattenfallsgranskning"
+msgstr "Växla till kaskadgranskning"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:108
 msgid "Switch to Body Text preview"
@@ -2144,7 +2145,7 @@ msgstr "Kategorier"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:129
 msgid "Collections"
-msgstr "Kollektioner"
+msgstr "Samlingar"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:175
 msgid "Edit selected category"
@@ -2233,61 +2234,55 @@ msgstr "Anpassade åtgärder"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:25
 msgid "Display line size in Waterfall Preview"
-msgstr ""
+msgstr "Visa radstorlek i kaskadliknande förhandsgranskning"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:74
-#, fuzzy
-#| msgid "Maximum Waterfall Preview Point Size"
 msgid "Waterfall Preview Size Settings"
-msgstr "Maximal punktstorlek för förhandsgranskningsfall"
+msgstr "Storleksinställning för kaskadgranskning"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:93
 msgid "Up to 48 points (Linear Scaling)"
-msgstr ""
+msgstr "Upp till 48 punkter (linjär skalning)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:94
 msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "Upp till 72 punkter (1,1 vanligt förhållande)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:95
 msgid "Up to 96 points (Linear Scaling)"
-msgstr ""
+msgstr "Upp till 96 punkter (linjär skalning)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:96
 msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "Upp till 96 punkter (1,1 vanligt förhållande)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:97
 msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr ""
+msgstr "Upp till 120 punkter (1,2 vanligt förhållande)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:98
 msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr ""
+msgstr "Upp till 144 punkter (1,3 vanligt förhållande)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:99
 msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr ""
+msgstr "Upp till 192 punkter (1,4 vanligt förhållande)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:100
-#, fuzzy
-#| msgid "Custom Actions"
 msgid "Custom Size Settings"
-msgstr "Anpassade åtgärder"
+msgstr "Anpassat"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:142
-#, fuzzy
-#| msgid "Maximum Waterfall Preview Point Size"
 msgid "Minimum Waterfall Preview Point Size"
-msgstr "Maximal punktstorlek för förhandsgranskningsfall"
+msgstr "Minsta punktstorlek för kaskadliknande förhandsgranskning"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:155
 msgid "8.0"
-msgstr ""
+msgstr "8.0"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:174
 msgid "Maximum Waterfall Preview Point Size"
-msgstr "Maximal punktstorlek för förhandsgranskningsfall"
+msgstr "Största punktstorlek för kaskadliknande förhandsgranskning"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:185
 msgid "Higher values may adversely affect performance"
@@ -2295,17 +2290,15 @@ msgstr "Högre värden kan påverka prestanda negativt"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:188
 msgid "48.0"
-msgstr ""
+msgstr "48.0"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:207
-#, fuzzy
-#| msgid "Maximum Waterfall Preview Point Size"
 msgid "Waterfall Preview Point Size Common Ratio"
-msgstr "Maximal punktstorlek för förhandsgranskningsfall"
+msgstr "Punktstorlek för kaskadliknande förhandsgranskning"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:220
 msgid "1.0"
-msgstr ""
+msgstr "1.0"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
