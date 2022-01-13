@@ -2,13 +2,13 @@
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
 # Fellow Turkish <f3ll0wm4il3r_12@protonmail.com>, 2021.
-# Oğuz Ersen <oguzersen@protonmail.com>, 2021.
+# Oğuz Ersen <oguzersen@protonmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-12-07 23:53+0300\n"
-"PO-Revision-Date: 2021-11-04 17:37+0000\n"
+"PO-Revision-Date: 2022-01-08 11:53+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/tr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -1899,11 +1899,12 @@ msgstr "Latince Genişletilmiş"
 #: src/font-manager/web/google/Language.vala:81
 #, c-format
 msgid "No sample for %s available"
-msgstr ""
+msgstr "%s için örnek yok"
 
 #: src/font-manager/web/google/Language.vala:83
 msgid "Please file an issue requesting an update to available samples."
 msgstr ""
+"Lütfen kullanılabilir örnekler için güncelleme talep eden bir sorun bildirin."
 
 #: src/font-manager/web/google/PreviewPane.vala:276
 msgid "Update Family"
@@ -2139,7 +2140,7 @@ msgstr "Standart önizlemeye geç"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:101
 msgid "Switch to Waterfall preview"
-msgstr "Şelale önizlemesine geç"
+msgstr "Şelale ön izlemesine geç"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:108
 msgid "Switch to Body Text preview"
@@ -2240,17 +2241,15 @@ msgstr "Özel Eylemler"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:25
 msgid "Display line size in Waterfall Preview"
-msgstr ""
+msgstr "Şelale ön izlemesinde satır boyutunu görüntüle"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:74
-#, fuzzy
-#| msgid "Maximum Waterfall Preview Point Size"
 msgid "Waterfall Preview Size Settings"
-msgstr "Azami Şelale Ön İzlemesi Nokta Boyutu"
+msgstr "Şelale Ön İzlemesi Boyutu Ayarları"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:93
 msgid "Up to 48 points (Linear Scaling)"
-msgstr ""
+msgstr "48 noktaya kadar (Doğrusal Ölçekleme)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:94
 msgid "Up to 72 points (1.1 Common Ratio)"
@@ -2277,20 +2276,16 @@ msgid "Up to 192 points (1.4 Common Ratio)"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:100
-#, fuzzy
-#| msgid "Custom Actions"
 msgid "Custom Size Settings"
-msgstr "Özel Eylemler"
+msgstr "Özel Boyut Ayarları"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:142
-#, fuzzy
-#| msgid "Maximum Waterfall Preview Point Size"
 msgid "Minimum Waterfall Preview Point Size"
-msgstr "Azami Şelale Ön İzlemesi Nokta Boyutu"
+msgstr "Asgari Şelale Ön İzlemesi Nokta Boyutu"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:155
 msgid "8.0"
-msgstr ""
+msgstr "8,0"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:174
 msgid "Maximum Waterfall Preview Point Size"
@@ -2302,7 +2297,7 @@ msgstr "Daha yüksek değerler performansı olumsuz etkileyebilir"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:188
 msgid "48.0"
-msgstr ""
+msgstr "48,0"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:207
 #, fuzzy
@@ -2312,7 +2307,7 @@ msgstr "Azami Şelale Ön İzlemesi Nokta Boyutu"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:220
 msgid "1.0"
-msgstr ""
+msgstr "1,0"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"

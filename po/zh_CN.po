@@ -21,13 +21,14 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 # 玉堂白鹤 <yjwork@qq.com>, 2021.
 # Eric <spice2wolf@gmail.com>, 2021.
+# Eric <alchemillatruth@purelymail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-12-07 23:53+0300\n"
-"PO-Revision-Date: 2021-07-28 05:17+0000\n"
-"Last-Translator: Eric <spice2wolf@gmail.com>\n"
+"PO-Revision-Date: 2022-01-08 11:53+0000\n"
+"Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -35,7 +36,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 # Not translate very good, just for use.
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
@@ -2232,10 +2233,8 @@ msgid "Up to 192 points (1.4 Common Ratio)"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:100
-#, fuzzy
-#| msgid "Custom Actions"
 msgid "Custom Size Settings"
-msgstr "自定义动作"
+msgstr "自定义尺寸设置"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:142
 msgid "Minimum Waterfall Preview Point Size"

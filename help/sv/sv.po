@@ -1,8 +1,9 @@
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-02-09 11:50+0000\n"
+"PO-Revision-Date: 2022-01-08 11:53+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/sv/>\n"
@@ -11,17 +12,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr ""
+msgstr "Åke Engelbrektson"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
 msgid "Automatically generated categories"
-msgstr ""
+msgstr "Automatiskt genererade kategorier"
 
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
@@ -34,6 +35,8 @@ msgid ""
 "<app>Font Manager</app> automatically categorizes your fonts based on "
 "various properties."
 msgstr ""
+"<app>Font Manager</app> kategoriserar automatiskt dina teckensnitt, baserat "
+"på olika egenskaper."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
@@ -43,7 +46,7 @@ msgstr "Alla"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr ""
+msgstr "Alla tillgängliga teckensnitt."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
@@ -53,7 +56,7 @@ msgstr "System"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr ""
+msgstr "Teckensnitt tillgängliga för alla användare."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
@@ -63,12 +66,12 @@ msgstr "Användare"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr ""
+msgstr "Teckensnitt tillgängliga endast för dig."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr "Familjart"
+msgstr "Familjetyp"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
@@ -76,6 +79,8 @@ msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
 msgstr ""
+"Sorterat efter familjetyp — Kräver att Panose-information finns i "
+"teckensnittets metadata."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -85,7 +90,7 @@ msgstr "Bredd"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr ""
+msgstr "Sorterade efter teckensnittets bredd."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
@@ -95,7 +100,7 @@ msgstr "Tjocklek"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr ""
+msgstr "Sorterat efter teckensnittets tjocklek."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
@@ -105,7 +110,7 @@ msgstr "Lutning"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr ""
+msgstr "Sorterat efter teckensnittets lutning."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
@@ -115,7 +120,7 @@ msgstr "Mellanrum"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr ""
+msgstr "Sorterat efter teckensnittets avståndsegenskap."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
@@ -128,6 +133,8 @@ msgid ""
 "Sorted by font license — Requires license information to be present in font "
 "metadata."
 msgstr ""
+"Sorterad efter teckensnittets licens - Kräver att licensinformation finns i "
+"teckensnittets metadata."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
@@ -140,6 +147,8 @@ msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
 msgstr ""
+"Sorterad efter teckensnittets leverantör – Kräver att leverantörsinformation "
+"finns i teckensnittets metadata."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
@@ -149,7 +158,7 @@ msgstr "Filtyp"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr ""
+msgstr "Sorterat efter filformat."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
@@ -159,27 +168,27 @@ msgstr "Osorterat"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "Typsnitt som inte finns i någon av dina samlingar."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr "Inaktiverat"
+msgstr "Avaktiverad"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "För närvarande inaktiverade teckensnittsfamiljer."
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr ""
+msgstr "Visa enskilda tecken och dess information"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
 msgid "Character Map"
-msgstr ""
+msgstr "Teckenuppsättning"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
@@ -224,7 +233,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr "Kollektioner"
+msgstr "Samlingar"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
