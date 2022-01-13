@@ -303,6 +303,7 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
         string? saved_iter = null;
         Gtk.Menu context_menu;
         Gtk.MenuItem? filename = null;
+        Gtk.MenuItem? n_selected = null;
         Gtk.MenuItem? installable = null;
         Gtk.Overlay? drag_icon = null;
 
@@ -394,8 +395,11 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
 
         void update_selected_fonts (GLib.List <Gtk.TreePath> selected) {
             selected_fonts = null;
-            if (selected.length() == 1)
+            context_menu = null;
+            if (selected.length() == 1) {
+                context_menu = get_context_menu();
                 return;
+            }
             selected_fonts = new GenericArray <string> ();
             foreach (var path in selected) {
                 Value val;
@@ -405,6 +409,8 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                 selected_fonts.add((string) val);
                 val.unset();
             }
+            context_menu = get_multiple_selection_context_menu();
+            n_selected.label = _("%i selected items".printf((int) selected.length()));
             return;
         }
 
@@ -510,8 +516,8 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             popup_menu.reserve_toggle_size = false;
             filename = new Gtk.MenuItem.with_label("");
             filename.set_halign(Gtk.Align.CENTER);
-            filename.set_margin_start(DEFAULT_MARGIN * 2);
-            filename.set_margin_end(DEFAULT_MARGIN * 2);
+            filename.set_margin_start(DEFAULT_MARGIN * 3);
+            filename.set_margin_end(DEFAULT_MARGIN * 3);
             filename.sensitive = false;
             filename.get_style_context().add_class("SensitiveChildLabel");
             filename.get_child().opacity = 0.7;
@@ -542,6 +548,60 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                     item.show();
                     popup_menu.append(item);
                 }
+            }
+            /* Wayland complains if not set */
+            popup_menu.realize.connect(() => {
+                Gdk.Window child = popup_menu.get_window();
+                child.set_type_hint(Gdk.WindowTypeHint.POPUP_MENU);
+            });
+            return popup_menu;
+        }
+
+        void toggle_selected_fonts (bool enable) {
+            Reject? reject = get_default_application().reject;
+            if (reject == null)
+                return;
+            foreach (var family in get_selected_families()) {
+                if (enable)
+                    reject.remove(family);
+                else
+                    reject.add(family);
+            }
+            reject.save();
+            queue_draw();
+            return;
+        }
+
+        Gtk.Menu get_multiple_selection_context_menu () {
+            /* action_name, display_name, detailed_action_name, accelerator, method */
+            MenuEntry [] context_menu_entries = {
+                MenuEntry("enable", _("Enable selected items"), "app.install", null,
+                          new MenuCallbackWrapper(() => { toggle_selected_fonts(true); })),
+                MenuEntry("disable", _("Disable selected items"), "app.copy_location", null,
+                          new MenuCallbackWrapper(() => { toggle_selected_fonts(false); })),
+            };
+            var popup_menu = new Gtk.Menu();
+            popup_menu.reserve_toggle_size = false;
+            n_selected = new Gtk.MenuItem.with_label("");
+            n_selected.set_halign(Gtk.Align.CENTER);
+            n_selected.set_margin_start(DEFAULT_MARGIN * 4);
+            n_selected.set_margin_end(DEFAULT_MARGIN * 4);
+            n_selected.sensitive = false;
+            n_selected.get_style_context().add_class("SensitiveChildLabel");
+            n_selected.get_child().opacity = 0.7;
+            n_selected.show();
+            popup_menu.append(n_selected);
+            var label = ((Gtk.Bin) n_selected).get_child();
+            label.set("hexpand", true, "justify", Gtk.Justification.FILL, "margin", 2, null);
+            var separator = new Gtk.SeparatorMenuItem();
+            separator.show();
+            popup_menu.append(separator);
+            foreach (MenuEntry entry in context_menu_entries) {
+                var item = new Gtk.MenuItem.with_label(entry.display_name);
+                item.get_child().set_halign(Gtk.Align.CENTER);
+                item.activate.connect(() => { entry.method.run(); });
+                item.show();
+                popup_menu.append(item);
             }
             /* Wayland complains if not set */
             popup_menu.realize.connect(() => {
