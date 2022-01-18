@@ -21,13 +21,14 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 # Alang Hsu <alang.hsu@gmail.com>, 2021.
 # lemon37564 <stonydragon0701@gmail.com>, 2021.
+# Kisaragi Hiu <mail@kisaragi-hiu.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2021-12-07 23:53+0300\n"
-"PO-Revision-Date: 2021-10-23 19:38+0000\n"
-"Last-Translator: lemon37564 <stonydragon0701@gmail.com>\n"
+"PO-Revision-Date: 2022-01-18 01:05+0000\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/zh_Hant/>\n"
 "Language: zh_TW\n"
@@ -35,7 +36,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 # Not translate very good, just for use.
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
@@ -53,9 +54,7 @@ msgid ""
 "Font Manager is intended to provide a way for average users to easily manage "
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
-msgstr ""
-"字型管理是要提供一般使用者一個易於管理桌面字型的方式，不一定要用指令式工具或"
-"手動編輯設定檔。"
+msgstr "字型總管讓一般使用者能夠簡單的管理桌面字型，而不需要去使用指令列工具或是手動編輯設定檔。"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
@@ -75,7 +74,7 @@ msgstr "預覽，比對與管理字型"
 #: data/org.gnome.FontManager.desktop.in.in:16
 #: data/org.gnome.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr "圖形;檢視器;GNOME;GTK;發佈中;"
+msgstr "圖形;檢視器;GNOME;GTK;出版;"
 
 # Not translate very good, just for use.
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
@@ -88,20 +87,18 @@ msgstr "字型檢視器"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr "一個支援 GTK+桌面環境的字型檢視器應用"
+msgstr "一個支援 GTK+ 桌面環境的字型檢視軟體"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
 "Font Viewer allows previewing font files prior to installation. It features "
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
-msgstr ""
-"字型檢視器在安裝前可以預覽字型檔案。它有幾個特色是對於字型檔和字元對應的預覽"
-"與顯示字型屬性及授權細節。"
+msgstr "字型檢視器讓您在安裝前能預覽字型檔案。它提供了幾種不同的預覽方式和字元對映，並且顯示字型屬性和授權細節。"
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr "全功能字型檔案預覽的應用"
+msgstr "功能完善的字型檔案預覽程式"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
@@ -476,43 +473,43 @@ msgstr "<未指派>"
 
 #: lib/unicode/unicode-info.c:222
 msgid "Other, Control"
-msgstr "其他,控制"
+msgstr "其他，控制"
 
 #: lib/unicode/unicode-info.c:224
 msgid "Other, Format"
-msgstr "其他,格式"
+msgstr "其他，格式"
 
 #: lib/unicode/unicode-info.c:226
 msgid "Other, Not Assigned"
-msgstr "其他,未指派"
+msgstr "其他，未指定"
 
 #: lib/unicode/unicode-info.c:228
 msgid "Other, Private Use"
-msgstr "其他,私人使用"
+msgstr "其他，私人使用"
 
 #: lib/unicode/unicode-info.c:230
 msgid "Other, Surrogate"
-msgstr "其他,代理"
+msgstr "其他，代理"
 
 #: lib/unicode/unicode-info.c:232
 msgid "Letter, Lowercase"
-msgstr "字母,小寫"
+msgstr "字母，小寫"
 
 #: lib/unicode/unicode-info.c:234
 msgid "Letter, Modifier"
-msgstr "字母,修飾符"
+msgstr "字母，修飾符"
 
 #: lib/unicode/unicode-info.c:236
 msgid "Letter, Other"
-msgstr "字母,其他"
+msgstr "字母，其他"
 
 #: lib/unicode/unicode-info.c:238
 msgid "Letter, Titlecase"
-msgstr "字母,標題"
+msgstr "字母，標題"
 
 #: lib/unicode/unicode-info.c:240
 msgid "Letter, Uppercase"
-msgstr "字母,大寫"
+msgstr "字母，大寫"
 
 #: lib/unicode/unicode-info.c:242
 msgid "Mark, Spacing Combining"
@@ -620,17 +617,17 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"    本程式為免費軟體：亦即你可以在免費軟體基金會 GNU\n"
-"    通用公眾授權條款下任意再發行/更改，不論是第三版許可證\n"
-"    ，或是更新的版本(依據您的選擇)。\n"
+"    本程式為自由軟體：你可以在自由軟體基金會 GNU\n"
+"    通用公眾授權條款第3版或是更新的版本(依據您的選擇)下\n"
+"    任意再發行/更改。\n"
 "\n"
-"    |=>本程式的發布是希望能起到作用。但没有任何的保證性；\n"
-"    甚至没有隱晦的保證性、商業性或特定用途的適用性。<=|\n"
-"    更詳細的資訊請查 GNU通用公眾授權條款。\n"
+"    本程式的發布是希望能有用途，但不做任何的擔保；\n"
+"    也不保證商業性或特定用途的適用性。\n"
+"    詳細資訊請見 GNU 通用公眾授權條款。\n"
 "\n"
-"    您應與本程式一同獲得了一份GNU通用公眾授權條款的複本。\n"
+"    您應有與本程式一同獲得了一份GNU通用公眾授權條款的複本。\n"
 "\n"
-"    若否，請前往<http://www.gnu.org/licenses/gpl-3.0.txt>。\n"
+"    若否，請見 <http://www.gnu.org/licenses/gpl-3.0.txt>。\n"
 "    "
 
 #. Translators : Please feel free to add yourself to the list of translators,
@@ -802,7 +799,6 @@ msgid "Select fonts to remove"
 msgstr "選擇要刪除的字體"
 
 #: src/font-manager/Dialogs.vala:160 src/font-manager/Dialogs.vala:172
-#, fuzzy
 msgid "_Delete"
 msgstr "刪除(_D)"
 
