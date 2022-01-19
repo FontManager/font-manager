@@ -1,3 +1,14 @@
+0.8.7 -> 0.8.8
+
+- Adds options for Waterfall display and sizing - Issue #230
+- Enables basic support for Emoji flag sequences - Issue #109
+- Fixes build failure with GCC 11 - Issue #240
+- Fixes warnings generated when double clicking an item in the fontlist - Issue #248
+- Fixes warnings generated when an unknown language is encountered - Google Fonts Catalog - Issue #249
+- Allows toggling the state of multiple families in the fontlist - Issue #261
+- Update vendor list
+- Include latest translation updates
+
 0.8.6 -> 0.8.7
 
 - Fixes rendering issues with Pango > 1.47 - Issue #213
