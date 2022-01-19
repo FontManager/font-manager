@@ -47,7 +47,7 @@ Dacă aţi dori să ajutaţi această aplicaţie să ajungă la mai mulţi utili
 
 Utilizatorii Arch Linux pot instala [`font-manager`](https://archlinux.org/packages/community/x86_64/font-manager/) din depozitele oficiale:
 
-```
+```bash
 pacman -S font-manager
 ```
 
@@ -56,7 +56,7 @@ pacman -S font-manager
 [![Copr build status](https://copr.fedorainfracloud.org/coprs/jerrycasiano/FontManager/package/font-manager/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/jerrycasiano/FontManager/package/font-manager/)
 
 Pachete Fedora construite din ultima revizie:
-```
+```bash
 dnf copr enable jerrycasiano/FontManager
 dnf install font-manager
 ```
@@ -67,7 +67,7 @@ Utilizatorii Gentoo pot găsi [`font-manager`](https://github.com/PF4Public/gent
 
 #### Ubuntu Personal Package Archive
 Pakete Ubuntu cunstruite din ultima revizie:
-```
+```bash
 sudo add-apt-repository ppa:font-manager/staging
 sudo apt-get update
 sudo apt-get install font-manager
@@ -111,7 +111,7 @@ Dacă doriţi să construiţi şi integrare cu Google Fonts, care este activată
 
 Pentru a construi aplicaţia:
 
-```
+```bash
 meson --prefix=/usr --buildtype=release build
 cd build
 ninja
@@ -119,31 +119,31 @@ ninja
 
 Penru a rula aplicaţia fără a o instala:
 
-```
+```bash
 src/font-manager/font-manager
 ```
 
 Pentru a instala aplicaţia:
 
-```
+```bash
 sudo ninja install
 ```
 
 Pentru dezinstalare:
 
-```
+```bash
 sudo ninja uninstall
 ```
 
 Pentru o listă cu opţiunile de construire disponibile:
 
-```
+```bash
 meson configure
 ```
 
 Penru a schimba o opţiune după ce directorul de construcţie a fost configurat:
 
-```
+```bash
 meson configure -Dsome_option=true
 ```
 

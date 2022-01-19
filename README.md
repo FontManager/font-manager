@@ -51,7 +51,7 @@ If you would like to help this application reach more users in their native lang
 
 Arch Linux users can install [`font-manager`](https://archlinux.org/packages/community/x86_64/font-manager/) from official repositories:
 
-```
+```bash
 pacman -S font-manager
 ```
 
@@ -61,7 +61,7 @@ pacman -S font-manager
 
 Fedora packages built from latest revision:
 
-```
+```bash
 dnf copr enable jerrycasiano/FontManager
 dnf install font-manager
 ```
@@ -73,7 +73,7 @@ Gentoo users may find [`font-manager`](https://github.com/PF4Public/gentoo-overl
 #### Ubuntu Personal Package Archive
 Ubuntu packages built from latest revision:
 
-```
+```bash
 sudo add-apt-repository ppa:font-manager/staging
 sudo apt-get update
 sudo apt-get install font-manager
@@ -117,7 +117,7 @@ If you wish to also build Google Fonts integration, which is enabled by default,
 
 To build the application:
 
-```
+```bash
 meson --prefix=/usr --buildtype=release build
 cd build
 ninja
@@ -125,31 +125,31 @@ ninja
 
 To run the application without installing:
 
-```
+```bash
 src/font-manager/font-manager
 ```
 
 To install the application:
 
-```
+```bash
 sudo ninja install
 ```
 
 To uninstall:
 
-```
+```bash
 sudo ninja uninstall
 ```
 
 For a list of available build options:
 
-```
+```bash
 meson configure
 ```
 
 To change an option after the build directory has been configured:
 
-```
+```bash
 meson configure -Dsome_option=true
 ```
 
