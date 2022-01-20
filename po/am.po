@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-12-07 23:53+0300\n"
+"POT-Creation-Date: 2022-01-19 15:52-0500\n"
 "PO-Revision-Date: 2019-10-03 02:38-0400\n"
 "Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
 "Language-Team: Amharic\n"
@@ -77,7 +77,7 @@ msgstr ""
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:505
+#: src/font-manager/FontList.vala:511
 msgid "Install"
 msgstr ""
 
@@ -786,12 +786,25 @@ msgstr ""
 msgid "Collapse all"
 msgstr ""
 
-#: src/font-manager/FontList.vala:506
+#: src/font-manager/FontList.vala:413
+#, c-format
+msgid "%i selected items"
+msgstr ""
+
+#: src/font-manager/FontList.vala:512
 msgid "Copy Location"
 msgstr ""
 
-#: src/font-manager/FontList.vala:507
+#: src/font-manager/FontList.vala:513
 msgid "Show in Folder"
+msgstr ""
+
+#: src/font-manager/FontList.vala:578
+msgid "Enable selected items"
+msgstr ""
+
+#: src/font-manager/FontList.vala:580
+msgid "Disable selected items"
 msgstr ""
 
 #: src/font-manager/MainWindow.vala:54

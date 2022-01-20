@@ -26,7 +26,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-12-07 23:53+0300\n"
+"POT-Creation-Date: 2022-01-19 15:52-0500\n"
 "PO-Revision-Date: 2022-01-18 01:05+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -54,7 +54,9 @@ msgid ""
 "Font Manager is intended to provide a way for average users to easily manage "
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
-msgstr "字型總管讓一般使用者能夠簡單的管理桌面字型，而不需要去使用指令列工具或是手動編輯設定檔。"
+msgstr ""
+"字型總管讓一般使用者能夠簡單的管理桌面字型，而不需要去使用指令列工具或是手動"
+"編輯設定檔。"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
@@ -94,7 +96,9 @@ msgid ""
 "Font Viewer allows previewing font files prior to installation. It features "
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
-msgstr "字型檢視器讓您在安裝前能預覽字型檔案。它提供了幾種不同的預覽方式和字元對映，並且顯示字型屬性和授權細節。"
+msgstr ""
+"字型檢視器讓您在安裝前能預覽字型檔案。它提供了幾種不同的預覽方式和字元對映，"
+"並且顯示字型屬性和授權細節。"
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
@@ -103,7 +107,7 @@ msgstr "功能完善的字型檔案預覽程式"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:505
+#: src/font-manager/FontList.vala:511
 msgid "Install"
 msgstr "安裝"
 
@@ -836,13 +840,28 @@ msgstr ""
 msgid "Collapse all"
 msgstr "全部折疊"
 
-#: src/font-manager/FontList.vala:506
+#: src/font-manager/FontList.vala:413
+#, fuzzy, c-format
+msgid "%i selected items"
+msgstr "清除過濾器"
+
+#: src/font-manager/FontList.vala:512
 msgid "Copy Location"
 msgstr "複製路徑"
 
-#: src/font-manager/FontList.vala:507
+#: src/font-manager/FontList.vala:513
 msgid "Show in Folder"
 msgstr "在資料夾中檢視"
+
+#: src/font-manager/FontList.vala:578
+#, fuzzy
+msgid "Enable selected items"
+msgstr "清除過濾器"
+
+#: src/font-manager/FontList.vala:580
+#, fuzzy
+msgid "Disable selected items"
+msgstr "清除過濾器"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165

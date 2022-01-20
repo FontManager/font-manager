@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-12-07 23:53+0300\n"
+"POT-Creation-Date: 2022-01-19 15:52-0500\n"
 "PO-Revision-Date: 2022-01-04 03:53+0000\n"
 "Last-Translator: Igor Kriznar <ikriznar@gmail.com>\n"
 "Language-Team: Slovenian <https://hosted.weblate.org/projects/font-manager/"
@@ -91,7 +91,7 @@ msgstr "Polno predstavljena aplikacija za predogled datotek pisav"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:505
+#: src/font-manager/FontList.vala:511
 msgid "Install"
 msgstr "Namesti"
 
@@ -805,13 +805,30 @@ msgstr ""
 msgid "Collapse all"
 msgstr ""
 
-#: src/font-manager/FontList.vala:506
+#: src/font-manager/FontList.vala:413
+#, c-format
+msgid "%i selected items"
+msgstr ""
+
+#: src/font-manager/FontList.vala:512
 msgid "Copy Location"
 msgstr ""
 
-#: src/font-manager/FontList.vala:507
+#: src/font-manager/FontList.vala:513
 msgid "Show in Folder"
 msgstr ""
+
+#: src/font-manager/FontList.vala:578
+#, fuzzy
+#| msgid "Install the selected font files"
+msgid "Enable selected items"
+msgstr "Namesti izbrane datoteke pisav"
+
+#: src/font-manager/FontList.vala:580
+#, fuzzy
+#| msgid "Install the selected font files"
+msgid "Disable selected items"
+msgstr "Namesti izbrane datoteke pisav"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165

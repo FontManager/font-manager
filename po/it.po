@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2021-12-07 23:53+0300\n"
+"POT-Creation-Date: 2022-01-19 15:52-0500\n"
 "PO-Revision-Date: 2021-07-27 01:35+0000\n"
 "Last-Translator: Nicola Tudino <tudo75@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/font-manager/"
@@ -96,7 +96,7 @@ msgstr "Applicazione completa per l'anteprima del tipo di carattere"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:505
+#: src/font-manager/FontList.vala:511
 msgid "Install"
 msgstr "Installa"
 
@@ -813,13 +813,31 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Comprimi tutto"
 
-#: src/font-manager/FontList.vala:506
+#: src/font-manager/FontList.vala:413
+#, fuzzy, c-format
+#| msgid "Clear selected filter"
+msgid "%i selected items"
+msgstr "Cancella il filtro selezionato"
+
+#: src/font-manager/FontList.vala:512
 msgid "Copy Location"
 msgstr "Copia la posizione"
 
-#: src/font-manager/FontList.vala:507
+#: src/font-manager/FontList.vala:513
 msgid "Show in Folder"
 msgstr "Mostra nella cartella"
+
+#: src/font-manager/FontList.vala:578
+#, fuzzy
+#| msgid "Clear selected filter"
+msgid "Enable selected items"
+msgstr "Cancella il filtro selezionato"
+
+#: src/font-manager/FontList.vala:580
+#, fuzzy
+#| msgid "Clear selected filter"
+msgid "Disable selected items"
+msgstr "Cancella il filtro selezionato"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
