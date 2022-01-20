@@ -410,7 +410,9 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                 val.unset();
             }
             context_menu = get_multiple_selection_context_menu();
-            n_selected.label = _("%i selected items".printf((int) selected.length()));
+            int n_items = (int) selected.length();
+            const string msg = _("%i selected items");
+            n_selected.label = ngettext(msg, msg, (ulong) n_items).printf(n_items);
             return;
         }
 
