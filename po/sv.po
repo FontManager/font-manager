@@ -2396,6 +2396,5 @@ msgstr "Variationer"
 #~ "fortsätter.\n"
 
 #, fuzzy
-#~| msgid "Remove Fonts"
 #~ msgid "Google Fonts"
 #~ msgstr "Ta bort teckensnitt"
