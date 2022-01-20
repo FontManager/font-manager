@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-01-19 15:52-0500\n"
-"PO-Revision-Date: 2022-01-08 11:53+0000\n"
+"PO-Revision-Date: 2022-01-20 07:44+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/sv/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -827,10 +827,9 @@ msgid "Collapse all"
 msgstr "Komprimera alla"
 
 #: src/font-manager/FontList.vala:413
-#, fuzzy, c-format
-#| msgid "Clear selected filter"
+#, c-format
 msgid "%i selected items"
-msgstr "Rensa valt filter"
+msgstr "%i markerade objekt"
 
 #: src/font-manager/FontList.vala:512
 msgid "Copy Location"
@@ -841,16 +840,12 @@ msgid "Show in Folder"
 msgstr "Visa i mapp"
 
 #: src/font-manager/FontList.vala:578
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Enable selected items"
-msgstr "Rensa valt filter"
+msgstr "Aktivera markerade objekt"
 
 #: src/font-manager/FontList.vala:580
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Disable selected items"
-msgstr "Rensa valt filter"
+msgstr "Inaktivera markerade objekt"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
