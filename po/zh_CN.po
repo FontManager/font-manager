@@ -22,13 +22,14 @@
 # 玉堂白鹤 <yjwork@qq.com>, 2021.
 # Eric <spice2wolf@gmail.com>, 2021.
 # Eric <alchemillatruth@purelymail.com>, 2022.
+# joe <ourmicroid@outlook.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-01-20 18:36-0500\n"
-"PO-Revision-Date: 2022-01-20 23:40+0000\n"
-"Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
+"PO-Revision-Date: 2022-01-22 07:53+0000\n"
+"Last-Translator: joe <ourmicroid@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -308,23 +309,23 @@ msgstr "预览和打印嵌入 | 无子集"
 
 #: lib/common/font-manager-freetype.c:300
 msgid "Editable Embedding | No Subsetting"
-msgstr ""
+msgstr "可编辑的嵌入 | 无子集"
 
 #: lib/common/font-manager-freetype.c:302
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "预览和打印嵌入|仅位图嵌入"
 
 #: lib/common/font-manager-freetype.c:304
 msgid "Editable Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "可编辑的嵌入|仅位图嵌入"
 
 #: lib/common/font-manager-freetype.c:306
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr ""
+msgstr "预览和打印嵌入|无子集|仅位图嵌入"
 
 #: lib/common/font-manager-freetype.c:308
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr ""
+msgstr "可编辑的嵌入|无子集|仅位图嵌入"
 
 #: lib/common/font-manager-freetype.c:310
 msgid "Installable Embedding"
@@ -451,27 +452,27 @@ msgstr "源不可用"
 
 #: lib/unicode/unicode-info.c:191
 msgid "<Non Private Use High Surrogate>"
-msgstr ""
+msgstr "<Non Private Use High Surrogate>"
 
 #: lib/unicode/unicode-info.c:193
 msgid "<Private Use High Surrogate>"
-msgstr ""
+msgstr "<Private Use High Surrogate>"
 
 #: lib/unicode/unicode-info.c:195
 msgid "<Low Surrogate>"
-msgstr ""
+msgstr "<Low Surrogate>"
 
 #: lib/unicode/unicode-info.c:197
 msgid "<Private Use>"
-msgstr ""
+msgstr "<Private Use>"
 
 #: lib/unicode/unicode-info.c:199
 msgid "<Plane 15 Private Use>"
-msgstr ""
+msgstr "<Plane 15 Private Use>"
 
 #: lib/unicode/unicode-info.c:201
 msgid "<Plane 16 Private Use>"
-msgstr ""
+msgstr "<Plane 16 Private Use>"
 
 #: lib/unicode/unicode-info.c:205
 msgid "<not assigned>"
