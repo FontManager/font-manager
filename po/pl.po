@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2022-01-19 15:52-0500\n"
+"POT-Creation-Date: 2022-01-20 18:36-0500\n"
 "PO-Revision-Date: 2021-08-25 15:34+0000\n"
 "Last-Translator: knuxify <knuxfanwin8.mail@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/font-manager/font-"
@@ -93,7 +93,7 @@ msgstr "Funkcjonalna aplikacja do podglądania plików czcionek"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:511
+#: src/font-manager/FontList.vala:513
 msgid "Install"
 msgstr "Zainstaluj"
 
@@ -830,27 +830,27 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Zwiń wszystkie"
 
-#: src/font-manager/FontList.vala:413
+#: src/font-manager/FontList.vala:414
 #, fuzzy, c-format
 #| msgid "Clear selected filter"
 msgid "%i selected items"
 msgstr "Wyczyść wybrany filtr"
 
-#: src/font-manager/FontList.vala:512
+#: src/font-manager/FontList.vala:514
 msgid "Copy Location"
 msgstr "Kopiuj ścieżkę"
 
-#: src/font-manager/FontList.vala:513
+#: src/font-manager/FontList.vala:515
 msgid "Show in Folder"
 msgstr "Pokaż w folderze"
 
-#: src/font-manager/FontList.vala:578
+#: src/font-manager/FontList.vala:580
 #, fuzzy
 #| msgid "Clear selected filter"
 msgid "Enable selected items"
 msgstr "Wyczyść wybrany filtr"
 
-#: src/font-manager/FontList.vala:580
+#: src/font-manager/FontList.vala:582
 #, fuzzy
 #| msgid "Clear selected filter"
 msgid "Disable selected items"

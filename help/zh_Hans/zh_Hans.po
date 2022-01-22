@@ -1,12 +1,13 @@
 # Eric <spice2wolf@gmail.com>, 2021.
 # 玉堂白鹤 <yjwork@qq.com>, 2021.
 # JI YH <3178879831@qq.com>, 2021.
+# joe <ourmicroid@outlook.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-10-02 03:37+0000\n"
-"Last-Translator: Eric <spice2wolf@gmail.com>\n"
+"PO-Revision-Date: 2022-01-22 07:53+0000\n"
+"Last-Translator: joe <ourmicroid@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager-help-docs/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -14,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -290,18 +291,18 @@ msgstr "为你的新集合输入一个名字"
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:51
 msgid "Add fonts by dragging them from the font list to your new collection."
-msgstr ""
+msgstr "拖动字体到新收藏夹添加字体。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:59
 msgid "To delete a collection:"
-msgstr ""
+msgstr "删除集合："
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:62 C/font-manager-collections.page:81
 #: C/font-manager-collections.page:99 C/font-manager-collections.page:117
 msgid "Select the collection"
-msgstr ""
+msgstr "选择集合"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -323,32 +324,34 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
+"在收藏夹底部点击 <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
+"> </gui>。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:78
 msgid "To enable a collection:"
-msgstr ""
+msgstr "启用集合："
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:86 C/font-manager-collections.page:104
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
-msgstr ""
+msgstr "点击<gui style=\"checkbox\">复选框</gui>"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:96
 msgid "To disable a collection:"
-msgstr ""
+msgstr "禁用集合："
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:114
 msgid "To remove families from a collection:"
-msgstr ""
+msgstr "从收藏夹移除集合："
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:122
 msgid "Select the family or families you wish to remove"
-msgstr ""
+msgstr "选择要移除的集合"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:127
@@ -356,42 +359,44 @@ msgid ""
 "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
 "> </gui> at the top of the font list."
 msgstr ""
+"在字体列表顶部点击<gui><media type=\"image\" src=\"media/list-remove-symbolic.svg\""
+"/></gui>"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:138
 msgid "To rename a collection:"
-msgstr ""
+msgstr "重命名："
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:141
 msgid "Select a collection, click it again"
-msgstr ""
+msgstr "选择并再次点击一个集合"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:146
 msgid "Enter a new name"
-msgstr ""
+msgstr "输入新名称"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:151
 msgid "Press <gui style=\"button\">Enter</gui>"
-msgstr ""
+msgstr "按下<gui style=\"button\">回车</gui>"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-activation.page:8
 msgid "Activating and De-activating font families"
-msgstr ""
+msgstr "激活和取消激活字体系列"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-activation.page:11
 msgid "Activation"
-msgstr ""
+msgstr "激活"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:13
 msgid ""
 "<app>Font Manager</app> allows you to activate and de-activate font families."
-msgstr ""
+msgstr "<app>字体管理器</app> 允许激活和不激活字体。"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:18
@@ -400,17 +405,17 @@ msgid ""
 "lists in many applications can get very long and become uncomfortable to "
 "use, disabling fonts you do not use very often or do not need at the moment "
 "helps keep these at a reasonable size."
-msgstr ""
+msgstr "如果安装大量字体，则字体选择框和列表会很长且使用不舒服，禁用不常用或暂没有字体有助于这些字体保持合理大小。"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-activation.page:27
 msgid "To enable or disable a font family:"
-msgstr ""
+msgstr "启用或禁用字体："
 
 #. (itstool) path: item/p
 #: C/font-manager-font-activation.page:30
 msgid "Select the family you wish to enable/disable in the font list"
-msgstr ""
+msgstr "在字体列表选择要启用/禁用字体"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:47
@@ -418,13 +423,14 @@ msgid ""
 "You can also double-click, press <gui style=\"button\">Space</gui> or press "
 "<gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
+"可双击，按<gui style=\"button\">空格</gui>或按<gui style=\"button\">回车</gui>切换所选字体。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:51
 msgid ""
 "<link xref=\"organize#user-collections\">Collections</link> make it easy to "
 "enable or disable multiple families at once."
-msgstr ""
+msgstr "<link xref=\"organize#user-collections\">收集</link>可使一次启用或禁用多个跟简单。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:58
@@ -437,24 +443,24 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-font-installation.page:7
 msgid "Adding fonts for your use"
-msgstr ""
+msgstr "添加你要用的字体"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-installation.page:10
 msgid "Installation"
-msgstr ""
+msgstr "安装"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-installation.page:12
 msgid ""
 "<app>Font Manager</app> supports the most common <link xref=\"supported-"
 "formats\">font formats</link>."
-msgstr ""
+msgstr "<app>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
 msgid "While in <gui style=\"button\">Manage</gui> mode"
-msgstr ""
+msgstr "在<gui style=\"button\">管理</gui>模式"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:22
@@ -462,13 +468,15 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"在窗口顶部点击<gui style=\"button\"><media type=\"image\" src=\"media/list-add-"
+"symbolic.svg\"/></gui>"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:31
 msgid ""
 "Select the files you wish to install from the file selector dialog that is "
 "displayed and click <gui style=\"button\">Open</gui>"
-msgstr ""
+msgstr "‎文件选择器对话框中选择要安装的文件后单击‎<gui style=\"button\">打开</gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:40
