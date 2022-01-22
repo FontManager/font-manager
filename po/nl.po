@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-01-19 15:52-0500\n"
-"PO-Revision-Date: 2022-01-08 11:53+0000\n"
+"PO-Revision-Date: 2022-01-20 23:40+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/nl/>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -822,10 +822,9 @@ msgid "Collapse all"
 msgstr "Alles inklappen"
 
 #: src/font-manager/FontList.vala:413
-#, fuzzy, c-format
-#| msgid "Clear selected filter"
+#, c-format
 msgid "%i selected items"
-msgstr "Geselecteerd filter wissen"
+msgstr "%i geselecteerde items wissen"
 
 #: src/font-manager/FontList.vala:512
 msgid "Copy Location"
@@ -836,16 +835,12 @@ msgid "Show in Folder"
 msgstr "Bekijken in map"
 
 #: src/font-manager/FontList.vala:578
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Enable selected items"
-msgstr "Geselecteerd filter wissen"
+msgstr "Geselecteerde items inschakelen"
 
 #: src/font-manager/FontList.vala:580
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Disable selected items"
-msgstr "Geselecteerd filter wissen"
+msgstr "Geselecteerde items uitschakelen"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
