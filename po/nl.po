@@ -90,7 +90,7 @@ msgstr "Lettertypevoorvertoning boordevol functies"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:513
+#: src/font-manager/FontList.vala:513 src/font-manager/FontList.vala:511
 msgid "Install"
 msgstr "Installeren"
 
@@ -821,24 +821,24 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Alles inklappen"
 
-#: src/font-manager/FontList.vala:414
+#: src/font-manager/FontList.vala:414 src/font-manager/FontList.vala:413
 #, c-format
 msgid "%i selected items"
 msgstr "%i geselecteerde items wissen"
 
-#: src/font-manager/FontList.vala:514
+#: src/font-manager/FontList.vala:514 src/font-manager/FontList.vala:512
 msgid "Copy Location"
 msgstr "Locatie kopiëren"
 
-#: src/font-manager/FontList.vala:515
+#: src/font-manager/FontList.vala:515 src/font-manager/FontList.vala:513
 msgid "Show in Folder"
 msgstr "Bekijken in map"
 
-#: src/font-manager/FontList.vala:580
+#: src/font-manager/FontList.vala:580 src/font-manager/FontList.vala:578
 msgid "Enable selected items"
 msgstr "Geselecteerde items inschakelen"
 
-#: src/font-manager/FontList.vala:582
+#: src/font-manager/FontList.vala:582 src/font-manager/FontList.vala:580
 msgid "Disable selected items"
 msgstr "Geselecteerde items uitschakelen"
 
