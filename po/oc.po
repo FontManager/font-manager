@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2022-01-19 15:52-0500\n"
+"POT-Creation-Date: 2022-01-20 18:36-0500\n"
 "PO-Revision-Date: 2021-05-30 14:32+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/font-manager/"
@@ -81,7 +81,7 @@ msgstr ""
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:511
+#: src/font-manager/FontList.vala:513
 msgid "Install"
 msgstr "Installar"
 
@@ -807,26 +807,26 @@ msgstr ""
 msgid "Collapse all"
 msgstr ""
 
-#: src/font-manager/FontList.vala:413
+#: src/font-manager/FontList.vala:414
 #, c-format
 msgid "%i selected items"
 msgstr ""
 
-#: src/font-manager/FontList.vala:512
+#: src/font-manager/FontList.vala:514
 msgid "Copy Location"
 msgstr ""
 
-#: src/font-manager/FontList.vala:513
+#: src/font-manager/FontList.vala:515
 msgid "Show in Folder"
 msgstr ""
 
-#: src/font-manager/FontList.vala:578
+#: src/font-manager/FontList.vala:580
 #, fuzzy
 #| msgid "Install the selected font file"
 msgid "Enable selected items"
 msgstr "Installar lo fichièr de poliça seleccionat"
 
-#: src/font-manager/FontList.vala:580
+#: src/font-manager/FontList.vala:582
 #, fuzzy
 #| msgid "Install the selected font file"
 msgid "Disable selected items"
