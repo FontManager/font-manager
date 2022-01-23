@@ -2,12 +2,13 @@
 # 玉堂白鹤 <yjwork@qq.com>, 2021.
 # JI YH <3178879831@qq.com>, 2021.
 # joe <ourmicroid@outlook.com>, 2022.
+# Eric <alchemillatruth@purelymail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2022-01-22 07:53+0000\n"
-"Last-Translator: joe <ourmicroid@outlook.com>\n"
+"PO-Revision-Date: 2022-01-23 13:53+0000\n"
+"Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager-help-docs/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -359,8 +360,8 @@ msgid ""
 "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
 "> </gui> at the top of the font list."
 msgstr ""
-"在字体列表顶部点击<gui><media type=\"image\" src=\"media/list-remove-symbolic.svg\""
-"/></gui>"
+"点击字体列表顶部的 <gui><media type=\"image\" src=\"media/list-remove-symbolic.svg\""
+"/></gui>。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:138
@@ -455,7 +456,8 @@ msgstr "安装"
 msgid ""
 "<app>Font Manager</app> supports the most common <link xref=\"supported-"
 "formats\">font formats</link>."
-msgstr "<app>"
+msgstr ""
+"<app>Font Manager</app> 支持最常见的 <link xref=\"supported-formats\">字体格式</link>。"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
