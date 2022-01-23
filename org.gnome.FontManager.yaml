@@ -15,7 +15,7 @@ finish-args:
   - --filesystem=xdg-data/fonts:create
   - --persist=xdg-data/fonts
 
-  # XDG complient locations for font config
+  # XDG compliant locations for font config
   - --filesystem=xdg-config/fontconfig:create
   - --persist=xdg-config/fontconfig
 
@@ -32,6 +32,6 @@ modules:
     config-opts:
       - -Dreproducible=true
     sources:
-      - type: git
+      - type: dir
         path: .
 

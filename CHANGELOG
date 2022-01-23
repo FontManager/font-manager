@@ -6,8 +6,8 @@
 - Fixes warnings generated when double clicking an item in the fontlist - Issue #248
 - Fixes warnings generated when an unknown language is encountered - Google Fonts Catalog - Issue #249
 - Allows toggling the state of multiple families in the fontlist - Issue #261
-- Update vendor list
-- Include latest translation updates
+- Updates vendor list
+- Includes latest translation updates
 
 0.8.6 -> 0.8.7
 
