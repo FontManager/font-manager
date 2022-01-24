@@ -207,11 +207,12 @@ namespace FontManager {
                 widget.show();
                 row.show();
             }
-            return_if_fail(antialias != null);
-            spg_revealer.set_reveal_child(antialias.value == 2);
-            antialias.notify["value"].connect(() => {
+            if (antialias != null) {
                 spg_revealer.set_reveal_child(antialias.value == 2);
-            });
+                antialias.notify["value"].connect(() => {
+                    spg_revealer.set_reveal_child(antialias.value == 2);
+                });
+            }
             return;
         }
 

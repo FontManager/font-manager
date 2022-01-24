@@ -154,16 +154,10 @@ namespace FontManager.GoogleFonts {
             var GFC_API_KEY = (string) Base64.decode(API_KEY);
             string [] order = { "alpha", "date", "popularity", "trending" };
             foreach (var entry in order) {
+                string filename = "gfc-%s.json".printf(entry);
                 var message = new Soup.Message(GET, WEBFONTS.printf(GFC_API_KEY, entry));
-                session.queue_message(message, (s, m) => {
-                    string filename = "gfc-%s.json".printf(entry);
+                if (session.send_message(message) == Soup.Status.OK) {
                     string filepath = Path.build_filename(get_package_cache_directory(), filename);
-                    if (message.status_code != Soup.Status.OK) {
-                        http_status = message.status_code;
-                        status_message = message.reason_phrase;
-                        warning("Failed to download data for : %s :: %i", filename, (int) message.status_code);
-                        return;
-                    }
                     try {
                         Bytes bytes = message.response_body.flatten().get_as_bytes();
                         File cache_file = File.new_for_path(filepath);
@@ -183,10 +177,14 @@ namespace FontManager.GoogleFonts {
                         warning("Failed to write data for : %s :: %i : %s", filename, e.code, e.message);
                         return;
                     }
-
-                });
-                Idle.add(update_font_list_cache.callback);
-                yield;
+                    Idle.add(update_font_list_cache.callback);
+                    yield;
+                } else {
+                    http_status = message.status_code;
+                    status_message = message.reason_phrase;
+                    warning("Failed to download data for : %s :: %i", filename, (int) message.status_code);
+                    return;
+                }
             }
         }
 
