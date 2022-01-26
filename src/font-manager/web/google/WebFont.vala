@@ -42,12 +42,7 @@ namespace FontManager.GoogleFonts {
             string filename = font.get_filename();
             string filepath = Path.build_filename(font_dir, filename);
             var message = new Soup.Message(GET, font.url);
-            session.queue_message(message, (s, m) => {
-                if (message.status_code != Soup.Status.OK) {
-                    warning("Failed to download data for : %s :: %i", filename, (int) message.status_code);
-                    retval = false;
-                    return;
-                }
+            if (session.send_message(message) == Soup.Status.OK) {
                 try {
                     Bytes bytes = message.response_body.flatten().get_as_bytes();
                     File font_file = File.new_for_path(filepath);
@@ -64,15 +59,18 @@ namespace FontManager.GoogleFonts {
                             return;
                         }
                     });
+                    if (!retval)
+                        return false;
                 } catch (Error e) {
                     warning("Failed to write data for : %s :: %i : %s", filename, e.code, e.message);
-                    retval = false;
-                    return;
+                    return false;
                 }
-
-            });
-            Idle.add(download_font_files.callback);
-            yield;
+                Idle.add(download_font_files.callback);
+                yield;
+            } else {
+                warning("Failed to download data for : %s :: %i", filename, (int) message.status_code);
+                return false;
+            }
         }
         return retval;
     }
