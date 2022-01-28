@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2022-01-20 18:36-0500\n"
+"POT-Creation-Date: 2022-01-28 18:24-0500\n"
 "PO-Revision-Date: 2022-01-08 11:53+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
@@ -93,7 +93,7 @@ msgstr "Tam özellikli yazı tipi dosyası önizleme uygulaması"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:513
+#: src/font-manager/FontList.vala:514
 msgid "Install"
 msgstr "Yükle"
 
@@ -174,7 +174,7 @@ msgid "Ultra-Heavy"
 msgstr "Aşırı Ağır"
 
 #: lib/common/font-manager-fontconfig.c:794
-#: src/font-manager/web/google/WebFont.vala:158
+#: src/font-manager/web/google/WebFont.vala:156
 msgid "Italic"
 msgstr "İtalik"
 
@@ -833,23 +833,25 @@ msgstr "Tümünü daralt"
 #, fuzzy, c-format
 #| msgid "Clear selected filter"
 msgid "%i selected items"
-msgstr "Seçili filtreyi temizle"
+msgid_plural "%i selected items"
+msgstr[0] "Seçili filtreyi temizle"
+msgstr[1] "Seçili filtreyi temizle"
 
-#: src/font-manager/FontList.vala:514
+#: src/font-manager/FontList.vala:515
 msgid "Copy Location"
 msgstr "Konumu Kopyala"
 
-#: src/font-manager/FontList.vala:515
+#: src/font-manager/FontList.vala:516
 msgid "Show in Folder"
 msgstr "Klasörde Göster"
 
-#: src/font-manager/FontList.vala:580
+#: src/font-manager/FontList.vala:581
 #, fuzzy
 #| msgid "Clear selected filter"
 msgid "Enable selected items"
 msgstr "Seçili filtreyi temizle"
 
-#: src/font-manager/FontList.vala:582
+#: src/font-manager/FontList.vala:583
 #, fuzzy
 #| msgid "Clear selected filter"
 msgid "Disable selected items"
@@ -1858,12 +1860,12 @@ msgstr ""
 msgid "Server Error"
 msgstr "Sunucu Hatası"
 
-#: src/font-manager/web/google/GoogleFonts.vala:217
+#: src/font-manager/web/google/GoogleFonts.vala:215
 msgid "Network Offline"
 msgstr "Ağ Çevrimdışı"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
-#: src/font-manager/web/google/GoogleFonts.vala:219
+#: src/font-manager/web/google/GoogleFonts.vala:217
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""

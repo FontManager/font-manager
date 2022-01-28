@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2022-01-20 18:36-0500\n"
+"POT-Creation-Date: 2022-01-28 18:24-0500\n"
 "PO-Revision-Date: 2021-05-30 14:32+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/font-manager/"
@@ -81,7 +81,7 @@ msgstr ""
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:513
+#: src/font-manager/FontList.vala:514
 msgid "Install"
 msgstr "Installar"
 
@@ -162,7 +162,7 @@ msgid "Ultra-Heavy"
 msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:794
-#: src/font-manager/web/google/WebFont.vala:158
+#: src/font-manager/web/google/WebFont.vala:156
 msgid "Italic"
 msgstr "Italica"
 
@@ -810,23 +810,25 @@ msgstr ""
 #: src/font-manager/FontList.vala:414
 #, c-format
 msgid "%i selected items"
-msgstr ""
+msgid_plural "%i selected items"
+msgstr[0] ""
+msgstr[1] ""
 
-#: src/font-manager/FontList.vala:514
+#: src/font-manager/FontList.vala:515
 msgid "Copy Location"
 msgstr ""
 
-#: src/font-manager/FontList.vala:515
+#: src/font-manager/FontList.vala:516
 msgid "Show in Folder"
 msgstr ""
 
-#: src/font-manager/FontList.vala:580
+#: src/font-manager/FontList.vala:581
 #, fuzzy
 #| msgid "Install the selected font file"
 msgid "Enable selected items"
 msgstr "Installar lo fichièr de poliça seleccionat"
 
-#: src/font-manager/FontList.vala:582
+#: src/font-manager/FontList.vala:583
 #, fuzzy
 #| msgid "Install the selected font file"
 msgid "Disable selected items"
@@ -1800,12 +1802,12 @@ msgstr ""
 msgid "Server Error"
 msgstr ""
 
-#: src/font-manager/web/google/GoogleFonts.vala:217
+#: src/font-manager/web/google/GoogleFonts.vala:215
 msgid "Network Offline"
 msgstr ""
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
-#: src/font-manager/web/google/GoogleFonts.vala:219
+#: src/font-manager/web/google/GoogleFonts.vala:217
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""

@@ -24,7 +24,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2022-01-19 15:52-0500\n"
+"POT-Creation-Date: 2022-01-28 18:24-0500\n"
 "PO-Revision-Date: 2022-01-20 23:40+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
@@ -107,7 +107,7 @@ msgstr "Program za pregled fontova s raznim funkcijama"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:511 src/font-manager/FontList.vala:513
+#: src/font-manager/FontList.vala:514
 msgid "Install"
 msgstr "Instaliraj"
 
@@ -188,7 +188,7 @@ msgid "Ultra-Heavy"
 msgstr "Ultra-Masni"
 
 #: lib/common/font-manager-fontconfig.c:794
-#: src/font-manager/web/google/WebFont.vala:158
+#: src/font-manager/web/google/WebFont.vala:156
 msgid "Italic"
 msgstr "Kurziv"
 
@@ -840,23 +840,27 @@ msgid "Collapse all"
 msgstr "Sklopi sve"
 
 #: src/font-manager/FontList.vala:414
-#, c-format
+#, fuzzy, c-format
+#| msgid "%i selected items"
 msgid "%i selected items"
-msgstr "Odabranih elemenata: %i"
+msgid_plural "%i selected items"
+msgstr[0] "Odabranih elemenata: %i"
+msgstr[1] "Odabranih elemenata: %i"
+msgstr[2] "Odabranih elemenata: %i"
 
-#: src/font-manager/FontList.vala:512 src/font-manager/FontList.vala:514
+#: src/font-manager/FontList.vala:515
 msgid "Copy Location"
 msgstr "Mjesto kopije"
 
-#: src/font-manager/FontList.vala:513 src/font-manager/FontList.vala:515
+#: src/font-manager/FontList.vala:516
 msgid "Show in Folder"
 msgstr "Prikaži u mapi"
 
-#: src/font-manager/FontList.vala:578 src/font-manager/FontList.vala:580
+#: src/font-manager/FontList.vala:581
 msgid "Enable selected items"
 msgstr "Aktiviraj odabrane elemente"
 
-#: src/font-manager/FontList.vala:580 src/font-manager/FontList.vala:582
+#: src/font-manager/FontList.vala:583
 msgid "Disable selected items"
 msgstr "Deaktiviraj odabrane elemente"
 
@@ -1859,12 +1863,12 @@ msgstr ""
 msgid "Server Error"
 msgstr "Greška poslužitelja"
 
-#: src/font-manager/web/google/GoogleFonts.vala:217
+#: src/font-manager/web/google/GoogleFonts.vala:215
 msgid "Network Offline"
 msgstr "Mreža isključena"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
-#: src/font-manager/web/google/GoogleFonts.vala:219
+#: src/font-manager/web/google/GoogleFonts.vala:217
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""

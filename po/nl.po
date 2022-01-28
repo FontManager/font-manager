@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2022-01-20 18:36-0500\n"
+"POT-Creation-Date: 2022-01-28 18:24-0500\n"
 "PO-Revision-Date: 2022-01-20 23:40+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/font-"
@@ -90,7 +90,7 @@ msgstr "Lettertypevoorvertoning boordevol functies"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:513 src/font-manager/FontList.vala:511
+#: src/font-manager/FontList.vala:514
 msgid "Install"
 msgstr "Installeren"
 
@@ -171,7 +171,7 @@ msgid "Ultra-Heavy"
 msgstr "Zeer, zeer vetgedrukt"
 
 #: lib/common/font-manager-fontconfig.c:794
-#: src/font-manager/web/google/WebFont.vala:158
+#: src/font-manager/web/google/WebFont.vala:156
 msgid "Italic"
 msgstr "Cursief"
 
@@ -821,24 +821,27 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Alles inklappen"
 
-#: src/font-manager/FontList.vala:414 src/font-manager/FontList.vala:413
-#, c-format
+#: src/font-manager/FontList.vala:414
+#, fuzzy, c-format
+#| msgid "%i selected items"
 msgid "%i selected items"
-msgstr "%i geselecteerde items wissen"
+msgid_plural "%i selected items"
+msgstr[0] "%i geselecteerde items wissen"
+msgstr[1] "%i geselecteerde items wissen"
 
-#: src/font-manager/FontList.vala:514 src/font-manager/FontList.vala:512
+#: src/font-manager/FontList.vala:515
 msgid "Copy Location"
 msgstr "Locatie kopiëren"
 
-#: src/font-manager/FontList.vala:515 src/font-manager/FontList.vala:513
+#: src/font-manager/FontList.vala:516
 msgid "Show in Folder"
 msgstr "Bekijken in map"
 
-#: src/font-manager/FontList.vala:580 src/font-manager/FontList.vala:578
+#: src/font-manager/FontList.vala:581
 msgid "Enable selected items"
 msgstr "Geselecteerde items inschakelen"
 
-#: src/font-manager/FontList.vala:582 src/font-manager/FontList.vala:580
+#: src/font-manager/FontList.vala:583
 msgid "Disable selected items"
 msgstr "Geselecteerde items uitschakelen"
 
@@ -1842,12 +1845,12 @@ msgstr ""
 msgid "Server Error"
 msgstr "Serverfout"
 
-#: src/font-manager/web/google/GoogleFonts.vala:217
+#: src/font-manager/web/google/GoogleFonts.vala:215
 msgid "Network Offline"
 msgstr "Geen internetverbinding"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
-#: src/font-manager/web/google/GoogleFonts.vala:219
+#: src/font-manager/web/google/GoogleFonts.vala:217
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
