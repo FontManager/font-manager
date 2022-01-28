@@ -411,8 +411,9 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             }
             context_menu = get_multiple_selection_context_menu();
             int n_items = (int) selected.length();
-            string msg = _("%i selected items");
-            n_selected.label = ngettext(msg, msg, (ulong) n_items).printf(n_items);
+            n_selected.label = ngettext("%i selected items",
+                                        "%i selected items",
+                                        (ulong) n_items).printf(n_items);
             return;
         }
 
