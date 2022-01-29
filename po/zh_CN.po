@@ -27,7 +27,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2022-01-20 18:36-0500\n"
+"POT-Creation-Date: 2022-01-28 18:24-0500\n"
 "PO-Revision-Date: 2022-01-22 07:53+0000\n"
 "Last-Translator: joe <ourmicroid@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -110,7 +110,7 @@ msgstr "全功能字体文件预览应用程序"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:513 src/font-manager/FontList.vala:511
+#: src/font-manager/FontList.vala:514
 msgid "Install"
 msgstr "安装"
 
@@ -191,7 +191,7 @@ msgid "Ultra-Heavy"
 msgstr "超重(Ultra-Heavy)"
 
 #: lib/common/font-manager-fontconfig.c:794
-#: src/font-manager/web/google/WebFont.vala:158
+#: src/font-manager/web/google/WebFont.vala:156
 msgid "Italic"
 msgstr "斜体(Italic)"
 
@@ -821,24 +821,26 @@ msgstr ""
 msgid "Collapse all"
 msgstr "全部折叠"
 
-#: src/font-manager/FontList.vala:414 src/font-manager/FontList.vala:413
-#, c-format
+#: src/font-manager/FontList.vala:414
+#, fuzzy, c-format
+#| msgid "%i selected items"
 msgid "%i selected items"
-msgstr "%i 个选中的项目"
+msgid_plural "%i selected items"
+msgstr[0] "%i 个选中的项目"
 
-#: src/font-manager/FontList.vala:514 src/font-manager/FontList.vala:512
+#: src/font-manager/FontList.vala:515
 msgid "Copy Location"
 msgstr "复制位置"
 
-#: src/font-manager/FontList.vala:515 src/font-manager/FontList.vala:513
+#: src/font-manager/FontList.vala:516
 msgid "Show in Folder"
 msgstr "在文件夹中显示"
 
-#: src/font-manager/FontList.vala:580 src/font-manager/FontList.vala:578
+#: src/font-manager/FontList.vala:581
 msgid "Enable selected items"
 msgstr "启动所选项目"
 
-#: src/font-manager/FontList.vala:582 src/font-manager/FontList.vala:580
+#: src/font-manager/FontList.vala:583
 msgid "Disable selected items"
 msgstr "禁用所选项目"
 
@@ -1815,12 +1817,12 @@ msgstr "尝试重新启动应用程序。如果问题仍然存在，请提交一
 msgid "Server Error"
 msgstr "服务器错误"
 
-#: src/font-manager/web/google/GoogleFonts.vala:217
+#: src/font-manager/web/google/GoogleFonts.vala:215
 msgid "Network Offline"
 msgstr "网络离线"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
-#: src/font-manager/web/google/GoogleFonts.vala:219
+#: src/font-manager/web/google/GoogleFonts.vala:217
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr "需要有效的互联网连接才能访问 Google 字体目录"

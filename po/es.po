@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2022-01-20 18:36-0500\n"
+"POT-Creation-Date: 2022-01-28 18:24-0500\n"
 "PO-Revision-Date: 2021-12-23 12:51+0000\n"
 "Last-Translator: Alberto Cañaveras <acmp@tuta.io>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
@@ -96,7 +96,7 @@ msgstr "Completa aplicación para previsualizar archivos de tipos de letra"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:513
+#: src/font-manager/FontList.vala:514
 msgid "Install"
 msgstr "Instalar"
 
@@ -177,7 +177,7 @@ msgid "Ultra-Heavy"
 msgstr "Ultrapesada"
 
 #: lib/common/font-manager-fontconfig.c:794
-#: src/font-manager/web/google/WebFont.vala:158
+#: src/font-manager/web/google/WebFont.vala:156
 msgid "Italic"
 msgstr "Itálica"
 
@@ -840,23 +840,25 @@ msgstr "Contraer todo"
 #, fuzzy, c-format
 #| msgid "Clear selected filter"
 msgid "%i selected items"
-msgstr "Borrar el filtro seleccionado"
+msgid_plural "%i selected items"
+msgstr[0] "Borrar el filtro seleccionado"
+msgstr[1] "Borrar el filtro seleccionado"
 
-#: src/font-manager/FontList.vala:514
+#: src/font-manager/FontList.vala:515
 msgid "Copy Location"
 msgstr "Copiar la ubicación"
 
-#: src/font-manager/FontList.vala:515
+#: src/font-manager/FontList.vala:516
 msgid "Show in Folder"
 msgstr "Mostrar en la carpeta"
 
-#: src/font-manager/FontList.vala:580
+#: src/font-manager/FontList.vala:581
 #, fuzzy
 #| msgid "Clear selected filter"
 msgid "Enable selected items"
 msgstr "Borrar el filtro seleccionado"
 
-#: src/font-manager/FontList.vala:582
+#: src/font-manager/FontList.vala:583
 #, fuzzy
 #| msgid "Clear selected filter"
 msgid "Disable selected items"
@@ -1868,12 +1870,12 @@ msgstr ""
 msgid "Server Error"
 msgstr "Error en el servidor"
 
-#: src/font-manager/web/google/GoogleFonts.vala:217
+#: src/font-manager/web/google/GoogleFonts.vala:215
 msgid "Network Offline"
 msgstr "Red desconectada"
 
 #. Translators : Avoid translating "Google Fonts" in this message, if possible
-#: src/font-manager/web/google/GoogleFonts.vala:219
+#: src/font-manager/web/google/GoogleFonts.vala:217
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
