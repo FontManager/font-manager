@@ -321,7 +321,7 @@ namespace FontManager {
                 SimpleAction quit = new SimpleAction("quit", null);
                 add_action(quit);
                 quit.activate.connect(() => { main_window.close(); });
-                const string? [] accels = {"<Ctrl>q", null };
+                const string? [] accels = {"<Ctrl>q", "<Ctrl>w", null };
                 set_accels_for_action("app.quit", accels);
             }
             main_window.present_with_time(Gdk.CURRENT_TIME);
