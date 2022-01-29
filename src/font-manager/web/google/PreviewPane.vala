@@ -51,9 +51,9 @@ internal const string HEADER = """
 """;
 
 internal const string WATERFALL_ROW = """
-      <p id="%i" class="noWrap">
+      <p id="%.0lf" class="noWrap">
         <span style="font-family: monospace;font-size: 10px;">%s</span>
-        <span class="previewText" style="font-size:%ipx;">%s</span>
+        <span class="previewText" style="font-size:%.0lfpx;">%s</span>
       </p>
 """;
 
@@ -82,7 +82,11 @@ namespace FontManager.GoogleFonts {
         public Family? family { get; set; default = null; }
         public Font? font { get; set; default = null; }
         public bool refresh_required { get; set; default = false; }
+        public bool show_line_size { get; set; default = true; }
         public double preview_size { get; set; default = 16.0; }
+        public double min_waterfall_size { get; set; default = MIN_FONT_SIZE; }
+        public double max_waterfall_size { get; set; default = MAX_FONT_SIZE * 2; }
+        public double waterfall_size_ratio { get; set; default = 1.1; }
         public WebKit.WebView? preview { get; set; default = null; }
         public PreviewMode mode { get; set; default = PreviewMode.WATERFALL; }
 
@@ -200,6 +204,10 @@ namespace FontManager.GoogleFonts {
             notify["preview-size"].connect((obj, pspec) => { update_preview(); });
             bg_color_button.color_set.connect_after(() => { update_preview(); });
             fg_color_button.color_set.connect_after(() => { update_preview(); });
+            notify["min-waterfall-size"].connect_after(() => { update_preview(); });
+            notify["max-waterfall-size"].connect_after(() => { update_preview(); });
+            notify["waterfall-size-ratio"].connect_after(() => { update_preview(); });
+            notify["show-line-size"].connect_after(() => { update_preview(); });
             set_button_relief_style(controls);
             download_button.set_relief(Gtk.ReliefStyle.NORMAL);
             menu_button.set_relief(Gtk.ReliefStyle.NORMAL);
@@ -251,6 +259,13 @@ namespace FontManager.GoogleFonts {
             return builder.str;
         }
 
+        double get_next_line_size (double current) {
+            if (waterfall_size_ratio <= 1.0)
+                return current + 1.0;
+            double next = current * waterfall_size_ratio;
+            return waterfall_size_ratio > 1.1 ? Math.floor(next) : Math.ceil(next);
+        }
+
         string generate_waterfall () {
             StringBuilder builder = new StringBuilder();
             Pango.LayoutLine? line = entry.get_layout().get_line(0);
@@ -260,8 +275,10 @@ namespace FontManager.GoogleFonts {
                                          bg_color_button.get_rgba().to_string(),
                                          font.family, font.style, font.weight,
                                          font.to_font_face_rule()));
-            for (int i = 6; i <= 96; i++) {
-                string pixels = i < 10 ? "&nbsp;&nbsp;%ipx&nbsp".printf(i) : "&nbsp;%ipx&nbsp;".printf(i);
+            for (double i = min_waterfall_size; i <= max_waterfall_size; i = get_next_line_size(i)) {
+                string pixels = "&nbsp;";
+                if (show_line_size)
+                    pixels = i < 10 ? "&nbsp;&nbsp;%.0lfpx&nbsp".printf(i) : "&nbsp;%.0lfpx&nbsp;".printf(i);
                 builder.append(WATERFALL_ROW.printf(i, pixels, i, preview_text));
             }
             builder.append(FOOTER);
@@ -323,6 +340,14 @@ namespace FontManager.GoogleFonts {
                 }
             }
             preview.load_html(html, null);
+            return;
+        }
+
+        public void set_waterfall_size (double min_size, double max_size, double ratio) {
+            min_waterfall_size = min_size;
+            max_waterfall_size = max_size;
+            waterfall_size_ratio = ratio;
+            update_preview();
             return;
         }
 

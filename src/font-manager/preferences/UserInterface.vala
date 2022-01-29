@@ -147,16 +147,26 @@ namespace FontManager {
         [GtkCallback]
         bool on_show_line_size_state_set () {
             MainWindow? main_window = get_default_application().main_window;
-            if (main_window != null)
+            if (main_window != null) {
                 main_window.preview_pane.show_line_size = show_line_size.active;
+#if HAVE_WEBKIT
+                var google_fonts_pane = (GoogleFonts.Catalog) main_window.web_pane.get_child();
+                google_fonts_pane.preview_pane.show_line_size = show_line_size.active;
+#endif /* HAVE_WEBKIT */
+            }
             return Gdk.EVENT_PROPAGATE;
         }
 
         [GtkCallback]
         void on_value_changed () {
             MainWindow? main_window = get_default_application().main_window;
-            if (main_window != null)
+            if (main_window != null) {
                 main_window.preview_pane.set_waterfall_size(min.value, max.value, ratio.value);
+#if HAVE_WEBKIT
+                var google_fonts_pane = (GoogleFonts.Catalog) main_window.web_pane.get_child();
+                google_fonts_pane.preview_pane.set_waterfall_size(min.value, max.value, ratio.value);
+#endif /* HAVE_WEBKIT */
+            }
             return;
         }
 

@@ -131,7 +131,7 @@ namespace FontManager {
         GLib.Settings? settings = null;
 
 #if HAVE_WEBKIT
-        [GtkChild] unowned Gtk.Overlay web_pane;
+        [GtkChild] public unowned Gtk.Overlay web_pane { get; }
 #endif /* HAVE_WEBKIT */
 
         public MainWindow () {
@@ -659,7 +659,17 @@ namespace FontManager {
             preview_pane.set_waterfall_size(settings.get_double("min-waterfall-size"),
                                             settings.get_double("max-waterfall-size"),
                                             settings.get_double("waterfall-size-ratio"));
+
+#if HAVE_WEBKIT
+            var google_fonts_pane = (GoogleFonts.Catalog) web_pane.get_child();
+            google_fonts_pane.preview_pane.set_waterfall_size(settings.get_double("min-waterfall-size"),
+                                                              settings.get_double("max-waterfall-size"),
+                                                              settings.get_double("waterfall-size-ratio"));
+#endif /* HAVE_WEBKIT */
             preview_pane.show_line_size = settings.get_boolean("waterfall-show-line-size");
+#if HAVE_WEBKIT
+            google_fonts_pane.preview_pane.show_line_size = settings.get_boolean("waterfall-show-line-size");
+#endif /* HAVE_WEBKIT */
             main_pane.position = settings.get_int("sidebar-size");
             content_pane.position = settings.get_int("content-pane-position");
             wide_layout = settings.get_boolean("wide-layout");
@@ -681,7 +691,6 @@ namespace FontManager {
                 compare.restore_state(settings);
 
 #if HAVE_WEBKIT
-                var google_fonts_pane = (GoogleFonts.Catalog) web_pane.get_child();
                 google_fonts_pane.preview_pane.restore_state(settings);
 #endif /* HAVE_WEBKIT */
 
