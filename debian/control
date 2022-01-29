@@ -7,7 +7,7 @@ Build-Depends:
  meson (>= 0.46),
  libxml2-dev,
  libfreetype6-dev,
- libfontconfig1-dev,
+ libfontconfig1-dev (>= 2.12),
  libglib2.0-dev (>= 2.44),
  libjson-glib-dev,
  libcairo2-dev,

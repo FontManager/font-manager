@@ -171,6 +171,7 @@ font_manager_list_available_font_files (void)
 {
     FcPattern *pattern = FcPatternBuild(NULL,NULL);
     FcObjectSet *objectset = FcObjectSetBuild (FC_FILE, FC_FONTFORMAT, NULL);
+    g_assert(FcPatternAddBool(pattern, FC_VARIABLE, FcFalse));
     FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
     GList *result = NULL;
 
@@ -275,6 +276,7 @@ font_manager_list_available_font_families (void)
 {
     GList *result = NULL;
     FcPattern *pattern = FcPatternBuild(NULL,NULL);
+    g_assert(FcPatternAddBool(pattern, FC_VARIABLE, FcFalse));
     FcObjectSet *objectset = FcObjectSetBuild(FC_FAMILY, FC_FONTFORMAT, NULL);
     FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
 
@@ -332,9 +334,14 @@ font_manager_get_available_fonts (const gchar *family_name)
     FcPattern *pattern = NULL;
 
     if (family_name)
-        pattern = FcPatternBuild (NULL, FC_FAMILY, FcTypeString, family_name, NULL);
+        pattern = FcPatternBuild (NULL,
+                                  FC_FAMILY, FcTypeString, family_name,
+                                  FC_VARIABLE, FcTypeBool, FcFalse,
+                                  NULL);
     else
-        pattern = FcPatternBuild (NULL, NULL);
+        pattern = FcPatternBuild (NULL,
+                                  FC_VARIABLE, FcTypeBool, FcFalse,
+                                  NULL);
 
     FcObjectSet *objectset = FcObjectSetBuild(FC_FILE,
                                               FC_INDEX,
@@ -380,6 +387,7 @@ font_manager_get_available_fonts_for_lang (const gchar *lang_id)
 
     g_assert(FcLangSetAdd(langset, language));
     g_assert(FcPatternAddLangSet(pattern, FC_LANG, langset));
+    g_assert(FcPatternAddBool(pattern, FC_VARIABLE, FcFalse));
 
     FcObjectSet *objectset = FcObjectSetBuild(FC_FILE,
                                               FC_INDEX,
@@ -439,6 +447,8 @@ font_manager_get_available_fonts_for_chars (const gchar *chars)
 
     FcPattern *pattern = FcPatternCreate();
     FcCharSet *charset = FcCharSetCreate();
+
+    g_assert(FcPatternAddBool(pattern, FC_VARIABLE, FcFalse));
 
     for (int i = 0; i < n_chars; i++) {
         wc = g_utf8_get_char(p);

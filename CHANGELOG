@@ -1,5 +1,6 @@
 0.8.7 -> 0.8.8
 
+- Bumps Fontconfig minimum version to 2.12
 - Adds options for Waterfall display and sizing - Issue #230
 - Enables basic support for Emoji flag sequences - Issue #109
 - Fixes build failure with GCC 11 - Issue #240

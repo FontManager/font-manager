@@ -11,7 +11,7 @@ if not valac.version().version_compare('>= 0.42')
     error('Vala compiler version is @0@ but project requires >= 0.42'.format(valac.version()))
 endif
 m_dep = cc.find_library('m', required: false)
-fontconfig = dependency('fontconfig', version: '>= 2.1')
+fontconfig = dependency('fontconfig', version: '>= 2.12')
 freetype = dependency('freetype2', version: '>= 2.5')
 json = dependency('json-glib-1.0', version: '>= 0.15')
 gio = dependency('gio-2.0', version: '>= 2.44')
