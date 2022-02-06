@@ -411,7 +411,9 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             }
             context_menu = get_multiple_selection_context_menu();
             int n_items = (int) selected.length();
-            n_selected.label = ngettext("%i selected items",
+            /* Translators : Even though singular form is not used yet, it is here
+            to make for a proper ngettext call. Still it is advisable to translate it. */
+            n_selected.label = ngettext("%i selected item",
                                         "%i selected items",
                                         (ulong) n_items).printf(n_items);
             return;
