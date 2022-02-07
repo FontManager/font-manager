@@ -853,8 +853,8 @@ msgstr "Alle einklappen"
 #, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "%i Ausgewähltes Element"
-msgstr[1] "%i Ausgewählte Elemente"
+msgstr[0] "%i ausgewähltes Element"
+msgstr[1] "%i ausgewählte Elemente"
 
 #: src/font-manager/FontList.vala:517
 msgid "Copy Location"
