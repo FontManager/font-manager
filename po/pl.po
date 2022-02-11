@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2022-01-28 18:24-0500\n"
+"POT-Creation-Date: 2022-02-06 14:56+0300\n"
 "PO-Revision-Date: 2021-08-25 15:34+0000\n"
 "Last-Translator: knuxify <knuxfanwin8.mail@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/font-manager/font-"
@@ -93,7 +93,7 @@ msgstr "Funkcjonalna aplikacja do podglądania plików czcionek"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:514
+#: src/font-manager/FontList.vala:516
 msgid "Install"
 msgstr "Zainstaluj"
 
@@ -123,159 +123,159 @@ msgstr "Podgląd"
 msgid "Waterfall"
 msgstr "Wodospad"
 
-#: lib/common/font-manager-fontconfig.c:699
+#: lib/common/font-manager-fontconfig.c:709
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
 msgstr "Cienkie"
 
-#: lib/common/font-manager-fontconfig.c:701
+#: lib/common/font-manager-fontconfig.c:711
 #, fuzzy
 msgid "Ultra-Light"
 msgstr "Bardzo lekkie"
 
-#: lib/common/font-manager-fontconfig.c:703
-#: lib/common/font-manager-fontconfig.c:1056
+#: lib/common/font-manager-fontconfig.c:713
+#: lib/common/font-manager-fontconfig.c:1066
 #: src/font-manager/web/google/Weight.vala:69
 #, fuzzy
 msgid "Light"
 msgstr "Lekkie"
 
-#: lib/common/font-manager-fontconfig.c:705
+#: lib/common/font-manager-fontconfig.c:715
 msgid "Semi-Light"
 msgstr "Lekko cienka"
 
-#: lib/common/font-manager-fontconfig.c:707
+#: lib/common/font-manager-fontconfig.c:717
 #, fuzzy
 msgid "Book"
 msgstr "Książka"
 
-#: lib/common/font-manager-fontconfig.c:709
-#: lib/common/font-manager-fontconfig.c:1013
+#: lib/common/font-manager-fontconfig.c:719
+#: lib/common/font-manager-fontconfig.c:1023
 #: src/font-manager/web/google/Weight.vala:73
 #, fuzzy
 msgid "Medium"
 msgstr "Średnie"
 
-#: lib/common/font-manager-fontconfig.c:711
+#: lib/common/font-manager-fontconfig.c:721
 #, fuzzy
 msgid "Semi-Bold"
 msgstr "Połowa pogrubienia"
 
-#: lib/common/font-manager-fontconfig.c:713
+#: lib/common/font-manager-fontconfig.c:723
 #: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
 msgstr "Pogrubione"
 
-#: lib/common/font-manager-fontconfig.c:715
+#: lib/common/font-manager-fontconfig.c:725
 msgid "Ultra-Bold"
 msgstr "Bardzo pogrubione"
 
-#: lib/common/font-manager-fontconfig.c:717
+#: lib/common/font-manager-fontconfig.c:727
 msgid "Heavy"
 msgstr "Ciężkie"
 
-#: lib/common/font-manager-fontconfig.c:719
+#: lib/common/font-manager-fontconfig.c:729
 msgid "Ultra-Heavy"
 msgstr "Bardzo ciężkie"
 
-#: lib/common/font-manager-fontconfig.c:794
+#: lib/common/font-manager-fontconfig.c:804
 #: src/font-manager/web/google/WebFont.vala:156
 msgid "Italic"
 msgstr "Kursywa"
 
-#: lib/common/font-manager-fontconfig.c:796
+#: lib/common/font-manager-fontconfig.c:806
 msgid "Oblique"
 msgstr "Nachylone"
 
-#: lib/common/font-manager-fontconfig.c:834
+#: lib/common/font-manager-fontconfig.c:844
 msgid "Ultra-Condensed"
 msgstr "Bardzo zagęszczone"
 
-#: lib/common/font-manager-fontconfig.c:836
+#: lib/common/font-manager-fontconfig.c:846
 msgid "Extra-Condensed"
 msgstr "Ekstra zagęszczone"
 
-#: lib/common/font-manager-fontconfig.c:838
+#: lib/common/font-manager-fontconfig.c:848
 msgid "Condensed"
 msgstr "Zagęszczone"
 
-#: lib/common/font-manager-fontconfig.c:840
+#: lib/common/font-manager-fontconfig.c:850
 msgid "Semi-Condensed"
 msgstr "Połowa zagęszczenia"
 
-#: lib/common/font-manager-fontconfig.c:842
+#: lib/common/font-manager-fontconfig.c:852
 msgid "Semi-Expanded"
 msgstr "Połowa rozszerzenia"
 
-#: lib/common/font-manager-fontconfig.c:844
+#: lib/common/font-manager-fontconfig.c:854
 msgid "Expanded"
 msgstr "Rozszerzone"
 
-#: lib/common/font-manager-fontconfig.c:846
+#: lib/common/font-manager-fontconfig.c:856
 msgid "Extra-Expanded"
 msgstr "Ekstra rozszerzone"
 
-#: lib/common/font-manager-fontconfig.c:848
+#: lib/common/font-manager-fontconfig.c:858
 msgid "Ultra-Expanded"
 msgstr "Bardzo rozszerzone"
 
-#: lib/common/font-manager-fontconfig.c:917
+#: lib/common/font-manager-fontconfig.c:927
 msgid "Proportional"
 msgstr "Proporcjonalne"
 
-#: lib/common/font-manager-fontconfig.c:919
+#: lib/common/font-manager-fontconfig.c:929
 msgid "Dual Width"
 msgstr "Podwójna szerokość"
 
-#: lib/common/font-manager-fontconfig.c:921
+#: lib/common/font-manager-fontconfig.c:931
 #: src/font-manager/web/google/ui/google-font-filters.ui:260
 msgid "Monospace"
 msgstr "Stała szerokość"
 
-#: lib/common/font-manager-fontconfig.c:923
+#: lib/common/font-manager-fontconfig.c:933
 msgid "Charcell"
 msgstr "Charcell"
 
-#: lib/common/font-manager-fontconfig.c:962
+#: lib/common/font-manager-fontconfig.c:972
 msgid "Unknown"
 msgstr "Nieznane"
 
-#: lib/common/font-manager-fontconfig.c:964
+#: lib/common/font-manager-fontconfig.c:974
 msgid "RGB"
 msgstr "RGB"
 
-#: lib/common/font-manager-fontconfig.c:966
+#: lib/common/font-manager-fontconfig.c:976
 msgid "BGR"
 msgstr "BGR"
 
-#: lib/common/font-manager-fontconfig.c:968
+#: lib/common/font-manager-fontconfig.c:978
 msgid "VRGB"
 msgstr "VRGB"
 
-#: lib/common/font-manager-fontconfig.c:970
+#: lib/common/font-manager-fontconfig.c:980
 msgid "VBGR"
 msgstr "VBGR"
 
-#: lib/common/font-manager-fontconfig.c:972
-#: lib/common/font-manager-fontconfig.c:1017
-#: lib/common/font-manager-fontconfig.c:1060
+#: lib/common/font-manager-fontconfig.c:982
+#: lib/common/font-manager-fontconfig.c:1027
+#: lib/common/font-manager-fontconfig.c:1070
 msgid "None"
 msgstr "Brak"
 
-#: lib/common/font-manager-fontconfig.c:1011
+#: lib/common/font-manager-fontconfig.c:1021
 msgid "Slight"
 msgstr "Drobne"
 
-#: lib/common/font-manager-fontconfig.c:1015
+#: lib/common/font-manager-fontconfig.c:1025
 msgid "Full"
 msgstr "Pełne"
 
-#: lib/common/font-manager-fontconfig.c:1054
+#: lib/common/font-manager-fontconfig.c:1064
 #: src/font-manager/ui/font-manager-main-window.ui:178
 msgid "Default"
 msgstr "Domyślne"
 
-#: lib/common/font-manager-fontconfig.c:1058
+#: lib/common/font-manager-fontconfig.c:1068
 msgid "Legacy"
 msgstr "Przestarzałe"
 
@@ -830,30 +830,32 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Zwiń wszystkie"
 
-#: src/font-manager/FontList.vala:414
+#. Translators : Even though singular form is not used yet, it is here
+#. to make for a proper ngettext call. Still it is advisable to translate it.
+#: src/font-manager/FontList.vala:416
 #, fuzzy, c-format
 #| msgid "Clear selected filter"
-msgid "%i selected items"
+msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "Wyczyść wybrany filtr"
 msgstr[1] "Wyczyść wybrany filtr"
 msgstr[2] "Wyczyść wybrany filtr"
 
-#: src/font-manager/FontList.vala:515
+#: src/font-manager/FontList.vala:517
 msgid "Copy Location"
 msgstr "Kopiuj ścieżkę"
 
-#: src/font-manager/FontList.vala:516
+#: src/font-manager/FontList.vala:518
 msgid "Show in Folder"
 msgstr "Pokaż w folderze"
 
-#: src/font-manager/FontList.vala:581
+#: src/font-manager/FontList.vala:583
 #, fuzzy
 #| msgid "Clear selected filter"
 msgid "Enable selected items"
 msgstr "Wyczyść wybrany filtr"
 
-#: src/font-manager/FontList.vala:583
+#: src/font-manager/FontList.vala:585
 #, fuzzy
 #| msgid "Clear selected filter"
 msgid "Disable selected items"
@@ -1764,34 +1766,34 @@ msgstr "Akcje użytkownika"
 msgid "Custom context menu entries"
 msgstr "Własne pozycje w menu kontekstowym"
 
-#: src/font-manager/preferences/UserInterface.vala:193
+#: src/font-manager/preferences/UserInterface.vala:203
 msgid "Wide Layout"
 msgstr "Układ szeroki"
 
-#: src/font-manager/preferences/UserInterface.vala:196
+#: src/font-manager/preferences/UserInterface.vala:206
 msgid "Only When Maximized"
 msgstr "Tylko gdy zmaksymalizowane"
 
-#: src/font-manager/preferences/UserInterface.vala:199
+#: src/font-manager/preferences/UserInterface.vala:209
 msgid "Client Side Decorations"
 msgstr "Dekoracje po stronie klienta"
 
-#: src/font-manager/preferences/UserInterface.vala:203
+#: src/font-manager/preferences/UserInterface.vala:213
 msgid "Enable Animations"
 msgstr "Włącz animacje"
 
-#: src/font-manager/preferences/UserInterface.vala:204
+#: src/font-manager/preferences/UserInterface.vala:214
 msgid "Prefer Dark Theme"
 msgstr "Użyj ciemnego motywu"
 
-#: src/font-manager/preferences/UserInterface.vala:258
+#: src/font-manager/preferences/UserInterface.vala:268
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
 "CSD zostało włączone. Zmiany zostaną zastosowane przy następnym uruchomieniu "
 "programu."
 
-#: src/font-manager/preferences/UserInterface.vala:260
+#: src/font-manager/preferences/UserInterface.vala:270
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
@@ -1928,31 +1930,31 @@ msgstr ""
 msgid "Please file an issue requesting an update to available samples."
 msgstr ""
 
-#: src/font-manager/web/google/PreviewPane.vala:276
+#: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Family"
 msgstr "Aktualizuj rodzinę"
 
-#: src/font-manager/web/google/PreviewPane.vala:276
+#: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Font"
 msgstr "Aktualizuj czcionkę"
 
-#: src/font-manager/web/google/PreviewPane.vala:281
+#: src/font-manager/web/google/PreviewPane.vala:298
 msgid "Remove Family"
 msgstr "Usuń rodzinę"
 
-#: src/font-manager/web/google/PreviewPane.vala:281
+#: src/font-manager/web/google/PreviewPane.vala:298
 msgid "Remove Font"
 msgstr "Usuń czcionkę"
 
-#: src/font-manager/web/google/PreviewPane.vala:286
+#: src/font-manager/web/google/PreviewPane.vala:303
 msgid "Download Family"
 msgstr "Pobierz rodzinę"
 
-#: src/font-manager/web/google/PreviewPane.vala:286
+#: src/font-manager/web/google/PreviewPane.vala:303
 msgid "Download Font"
 msgstr "Pobierz czcionkę"
 
-#: src/font-manager/web/google/PreviewPane.vala:296
+#: src/font-manager/web/google/PreviewPane.vala:313
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"

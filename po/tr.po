@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
-"POT-Creation-Date: 2022-01-28 18:24-0500\n"
+"POT-Creation-Date: 2022-02-06 14:56+0300\n"
 "PO-Revision-Date: 2022-01-08 11:53+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
@@ -93,7 +93,7 @@ msgstr "Tam özellikli yazı tipi dosyası önizleme uygulaması"
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
-#: src/font-manager/FontList.vala:514
+#: src/font-manager/FontList.vala:516
 msgid "Install"
 msgstr "Yükle"
 
@@ -123,154 +123,154 @@ msgstr "Önizle"
 msgid "Waterfall"
 msgstr "Şelale"
 
-#: lib/common/font-manager-fontconfig.c:699
+#: lib/common/font-manager-fontconfig.c:709
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
 msgstr "İnce"
 
-#: lib/common/font-manager-fontconfig.c:701
+#: lib/common/font-manager-fontconfig.c:711
 msgid "Ultra-Light"
 msgstr "Aşırı İnce"
 
-#: lib/common/font-manager-fontconfig.c:703
-#: lib/common/font-manager-fontconfig.c:1056
+#: lib/common/font-manager-fontconfig.c:713
+#: lib/common/font-manager-fontconfig.c:1066
 #: src/font-manager/web/google/Weight.vala:69
 msgid "Light"
 msgstr "Hafif"
 
-#: lib/common/font-manager-fontconfig.c:705
+#: lib/common/font-manager-fontconfig.c:715
 msgid "Semi-Light"
 msgstr "Yarı Hafif"
 
-#: lib/common/font-manager-fontconfig.c:707
+#: lib/common/font-manager-fontconfig.c:717
 msgid "Book"
 msgstr "Kitap"
 
-#: lib/common/font-manager-fontconfig.c:709
-#: lib/common/font-manager-fontconfig.c:1013
+#: lib/common/font-manager-fontconfig.c:719
+#: lib/common/font-manager-fontconfig.c:1023
 #: src/font-manager/web/google/Weight.vala:73
 msgid "Medium"
 msgstr "Orta"
 
-#: lib/common/font-manager-fontconfig.c:711
+#: lib/common/font-manager-fontconfig.c:721
 msgid "Semi-Bold"
 msgstr "Yarı Kalın"
 
-#: lib/common/font-manager-fontconfig.c:713
+#: lib/common/font-manager-fontconfig.c:723
 #: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
 msgstr "Kalın"
 
-#: lib/common/font-manager-fontconfig.c:715
+#: lib/common/font-manager-fontconfig.c:725
 msgid "Ultra-Bold"
 msgstr "Aşırı Kalın"
 
-#: lib/common/font-manager-fontconfig.c:717
+#: lib/common/font-manager-fontconfig.c:727
 msgid "Heavy"
 msgstr "Ağır"
 
-#: lib/common/font-manager-fontconfig.c:719
+#: lib/common/font-manager-fontconfig.c:729
 msgid "Ultra-Heavy"
 msgstr "Aşırı Ağır"
 
-#: lib/common/font-manager-fontconfig.c:794
+#: lib/common/font-manager-fontconfig.c:804
 #: src/font-manager/web/google/WebFont.vala:156
 msgid "Italic"
 msgstr "İtalik"
 
-#: lib/common/font-manager-fontconfig.c:796
+#: lib/common/font-manager-fontconfig.c:806
 msgid "Oblique"
 msgstr "Eğik"
 
-#: lib/common/font-manager-fontconfig.c:834
+#: lib/common/font-manager-fontconfig.c:844
 msgid "Ultra-Condensed"
 msgstr "Aşırı Dar"
 
-#: lib/common/font-manager-fontconfig.c:836
+#: lib/common/font-manager-fontconfig.c:846
 msgid "Extra-Condensed"
 msgstr "Fazla Dar"
 
-#: lib/common/font-manager-fontconfig.c:838
+#: lib/common/font-manager-fontconfig.c:848
 msgid "Condensed"
 msgstr "Dar"
 
-#: lib/common/font-manager-fontconfig.c:840
+#: lib/common/font-manager-fontconfig.c:850
 msgid "Semi-Condensed"
 msgstr "Yarı Dar"
 
-#: lib/common/font-manager-fontconfig.c:842
+#: lib/common/font-manager-fontconfig.c:852
 msgid "Semi-Expanded"
 msgstr "Yarı Geniş"
 
-#: lib/common/font-manager-fontconfig.c:844
+#: lib/common/font-manager-fontconfig.c:854
 msgid "Expanded"
 msgstr "Geniş"
 
-#: lib/common/font-manager-fontconfig.c:846
+#: lib/common/font-manager-fontconfig.c:856
 msgid "Extra-Expanded"
 msgstr "Fazla Geniş"
 
-#: lib/common/font-manager-fontconfig.c:848
+#: lib/common/font-manager-fontconfig.c:858
 msgid "Ultra-Expanded"
 msgstr "Aşırı Geniş"
 
-#: lib/common/font-manager-fontconfig.c:917
+#: lib/common/font-manager-fontconfig.c:927
 msgid "Proportional"
 msgstr "Orantılı"
 
-#: lib/common/font-manager-fontconfig.c:919
+#: lib/common/font-manager-fontconfig.c:929
 msgid "Dual Width"
 msgstr "Çift Genişlik"
 
-#: lib/common/font-manager-fontconfig.c:921
+#: lib/common/font-manager-fontconfig.c:931
 #: src/font-manager/web/google/ui/google-font-filters.ui:260
 msgid "Monospace"
 msgstr "Eşaralıklı"
 
-#: lib/common/font-manager-fontconfig.c:923
+#: lib/common/font-manager-fontconfig.c:933
 msgid "Charcell"
 msgstr "Charcell"
 
-#: lib/common/font-manager-fontconfig.c:962
+#: lib/common/font-manager-fontconfig.c:972
 msgid "Unknown"
 msgstr "Bilinmiyor"
 
-#: lib/common/font-manager-fontconfig.c:964
+#: lib/common/font-manager-fontconfig.c:974
 msgid "RGB"
 msgstr "RGB (Kırmızı-Yeşil-Mavi)"
 
-#: lib/common/font-manager-fontconfig.c:966
+#: lib/common/font-manager-fontconfig.c:976
 msgid "BGR"
 msgstr "BGR (Mavi-Yeşil-Kırmızı)"
 
-#: lib/common/font-manager-fontconfig.c:968
+#: lib/common/font-manager-fontconfig.c:978
 msgid "VRGB"
 msgstr "VRGB (Dikey Kırmızı-Yeşil-Mavi)"
 
-#: lib/common/font-manager-fontconfig.c:970
+#: lib/common/font-manager-fontconfig.c:980
 msgid "VBGR"
 msgstr "VBGR (Dikey Mavi-Yeşil-Kırmızı)"
 
-#: lib/common/font-manager-fontconfig.c:972
-#: lib/common/font-manager-fontconfig.c:1017
-#: lib/common/font-manager-fontconfig.c:1060
+#: lib/common/font-manager-fontconfig.c:982
+#: lib/common/font-manager-fontconfig.c:1027
+#: lib/common/font-manager-fontconfig.c:1070
 msgid "None"
 msgstr "Hiçbiri"
 
-#: lib/common/font-manager-fontconfig.c:1011
+#: lib/common/font-manager-fontconfig.c:1021
 msgid "Slight"
 msgstr "Hafif"
 
-#: lib/common/font-manager-fontconfig.c:1015
+#: lib/common/font-manager-fontconfig.c:1025
 msgid "Full"
 msgstr "Tam"
 
-#: lib/common/font-manager-fontconfig.c:1054
+#: lib/common/font-manager-fontconfig.c:1064
 #: src/font-manager/ui/font-manager-main-window.ui:178
 msgid "Default"
 msgstr "Varsayılan"
 
-#: lib/common/font-manager-fontconfig.c:1058
+#: lib/common/font-manager-fontconfig.c:1068
 msgid "Legacy"
 msgstr "Eski"
 
@@ -829,29 +829,31 @@ msgstr ""
 msgid "Collapse all"
 msgstr "Tümünü daralt"
 
-#: src/font-manager/FontList.vala:414
+#. Translators : Even though singular form is not used yet, it is here
+#. to make for a proper ngettext call. Still it is advisable to translate it.
+#: src/font-manager/FontList.vala:416
 #, fuzzy, c-format
 #| msgid "Clear selected filter"
-msgid "%i selected items"
+msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "Seçili filtreyi temizle"
 msgstr[1] "Seçili filtreyi temizle"
 
-#: src/font-manager/FontList.vala:515
+#: src/font-manager/FontList.vala:517
 msgid "Copy Location"
 msgstr "Konumu Kopyala"
 
-#: src/font-manager/FontList.vala:516
+#: src/font-manager/FontList.vala:518
 msgid "Show in Folder"
 msgstr "Klasörde Göster"
 
-#: src/font-manager/FontList.vala:581
+#: src/font-manager/FontList.vala:583
 #, fuzzy
 #| msgid "Clear selected filter"
 msgid "Enable selected items"
 msgstr "Seçili filtreyi temizle"
 
-#: src/font-manager/FontList.vala:583
+#: src/font-manager/FontList.vala:585
 #, fuzzy
 #| msgid "Clear selected filter"
 msgid "Disable selected items"
@@ -1761,34 +1763,34 @@ msgstr "Kullanıcı Eylemleri"
 msgid "Custom context menu entries"
 msgstr "Özel bağlam menüsü girdileri"
 
-#: src/font-manager/preferences/UserInterface.vala:193
+#: src/font-manager/preferences/UserInterface.vala:203
 msgid "Wide Layout"
 msgstr "Geniş Düzen"
 
-#: src/font-manager/preferences/UserInterface.vala:196
+#: src/font-manager/preferences/UserInterface.vala:206
 msgid "Only When Maximized"
 msgstr "Yalnızca Ekranı Kapladığında"
 
-#: src/font-manager/preferences/UserInterface.vala:199
+#: src/font-manager/preferences/UserInterface.vala:209
 msgid "Client Side Decorations"
 msgstr "İstemci Tarafı Süslemeleri"
 
-#: src/font-manager/preferences/UserInterface.vala:203
+#: src/font-manager/preferences/UserInterface.vala:213
 msgid "Enable Animations"
 msgstr "Animasyonları Etkinleştir"
 
-#: src/font-manager/preferences/UserInterface.vala:204
+#: src/font-manager/preferences/UserInterface.vala:214
 msgid "Prefer Dark Theme"
 msgstr "Koyu Temayı Tercih Et"
 
-#: src/font-manager/preferences/UserInterface.vala:258
+#: src/font-manager/preferences/UserInterface.vala:268
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
 "CSD etkin. Değişiklik, uygulamanın bir sonraki başlatılışında geçerli "
 "olacaktır."
 
-#: src/font-manager/preferences/UserInterface.vala:260
+#: src/font-manager/preferences/UserInterface.vala:270
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
@@ -1926,31 +1928,31 @@ msgid "Please file an issue requesting an update to available samples."
 msgstr ""
 "Lütfen kullanılabilir örnekler için güncelleme talep eden bir sorun bildirin."
 
-#: src/font-manager/web/google/PreviewPane.vala:276
+#: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Family"
 msgstr "Aileyi Güncelle"
 
-#: src/font-manager/web/google/PreviewPane.vala:276
+#: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Font"
 msgstr "Yazı Tipini Güncelle"
 
-#: src/font-manager/web/google/PreviewPane.vala:281
+#: src/font-manager/web/google/PreviewPane.vala:298
 msgid "Remove Family"
 msgstr "Aileyi Kaldır"
 
-#: src/font-manager/web/google/PreviewPane.vala:281
+#: src/font-manager/web/google/PreviewPane.vala:298
 msgid "Remove Font"
 msgstr "Yazı Tipini Kaldır"
 
-#: src/font-manager/web/google/PreviewPane.vala:286
+#: src/font-manager/web/google/PreviewPane.vala:303
 msgid "Download Family"
 msgstr "Aileyi İndir"
 
-#: src/font-manager/web/google/PreviewPane.vala:286
+#: src/font-manager/web/google/PreviewPane.vala:303
 msgid "Download Font"
 msgstr "Yazı Tipini İndir"
 
-#: src/font-manager/web/google/PreviewPane.vala:296
+#: src/font-manager/web/google/PreviewPane.vala:313
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
