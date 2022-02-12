@@ -1,10 +1,10 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
-# knuxify <knuxfanwin8.mail@gmail.com>, 2021.
+# knuxify <knuxfanwin8.mail@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-09-18 20:37+0000\n"
+"PO-Revision-Date: 2022-02-12 06:55+0000\n"
 "Last-Translator: knuxify <knuxfanwin8.mail@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/pl/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -1010,12 +1010,12 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-orthographies.page:8
 msgid "View languages supported and their coverage"
-msgstr ""
+msgstr "Zobacz obsługiwane języki i ich pokrycie"
 
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11
 msgid "Language Support"
-msgstr ""
+msgstr "Wsparcie języków"
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:13
@@ -1023,6 +1023,8 @@ msgid ""
 "While the character map is in use the sidebar will switch to displaying the "
 "orthographies supported by the currently selected font."
 msgstr ""
+"Gdy mapa znaków jest w użyciu, na pasku bocznym wyświetlą się ortografie "
+"wspierane przez aktualnie wybraną czcionkę."
 
 #. (itstool) path: page/p
 #: C/font-manager-orthographies.page:18
@@ -1030,11 +1032,13 @@ msgid ""
 "Selecting an orthography from the list will filter the character map so that "
 "it only displays relevant characters"
 msgstr ""
+"Wybranie ortografii z listy sprawi, że mapa znaków będzie pokazywać jedynie "
+"powiązane znaki"
 
 #. (itstool) path: figure/title
 #: C/font-manager-orthographies.page:28
 msgid "<app>Supported Orthographies</app>"
-msgstr ""
+msgstr "<app>Wspierane ortografie</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -1046,33 +1050,36 @@ msgctxt "_"
 msgid ""
 "external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 msgstr ""
+"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
 
 #. (itstool) path: info/desc
 #: C/font-manager-substitutions.page:7
 msgid "Substitute one font family for another"
-msgstr ""
+msgstr "Zamień wybraną czcionkę na inną"
 
 #. (itstool) path: page/title
 #: C/font-manager-substitutions.page:10
 msgid "Substitution"
-msgstr ""
+msgstr "Substytucje"
 
 #. (itstool) path: page/p
 #: C/font-manager-substitutions.page:12
 msgid ""
 "<app>Font Manager</app> allows you to substitute one font family for another."
 msgstr ""
+"<app>Font Manager</app> umożliwia zamienienie wybranej czcionki na inną "
+"(substytucję)."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:18
 msgid "To add a substitute:"
-msgstr ""
+msgstr "Aby dodać substytut:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:31 C/font-manager-substitutions.page:88
 #: C/font-manager-substitutions.page:126
 msgid "Select \"Substitutions\" from the sidebar"
-msgstr ""
+msgstr "Wybierz \"Substytucje\" na pasku bocznym"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:34
@@ -1080,11 +1087,13 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> in the substitutions pane."
 msgstr ""
+"Kliknij <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> w oknie substytucji."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:43
 msgid "Enter the name of the font family you wish to set up a substitute for."
-msgstr ""
+msgstr "Wpisz nazwę rodziny czcionek, dla której chcesz dodać substytut."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:48
@@ -1092,16 +1101,18 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> on the right."
 msgstr ""
+"Kliknij <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> po prawej stronie."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:57
 msgid "Enter the name of the substitute family and select the priority level."
-msgstr ""
+msgstr "Wpisz nazwę rodziny-substytutu i wybierz poziom priorytetu."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:62
 msgid "Repeat steps 3 – 6 as needed."
-msgstr ""
+msgstr "Powtórz kroki 3 – 6 aby dodać kolejne substytucje."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:67 C/font-manager-substitutions.page:105
@@ -1109,16 +1120,18 @@ msgid ""
 "Click <gui style=\"button\">Save</gui> to write the configuration file when "
 "done."
 msgstr ""
+"Po dodaniu wszystkich substytucji, kliknij <gui style=\"button\">Zapisz</"
+"gui> aby zapisać plik konfiguracyjny."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:75
 msgid "To remove a substitute:"
-msgstr ""
+msgstr "Aby usunąć substytut:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:91
 msgid "Select the entry you wish to remove from the list."
-msgstr ""
+msgstr "Wybierz substytut który chcesz usunąć z listy."
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:96
@@ -1126,16 +1139,18 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> in the substitutions pane."
 msgstr ""
+"Kliknij <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> "
+"</gui> w oknie substytucji."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:113
 msgid "To remove all substitutes:"
-msgstr ""
+msgstr "Aby usunąć wszystkie substytuty:"
 
 #. (itstool) path: item/p
 #: C/font-manager-substitutions.page:129
 msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
-msgstr ""
+msgstr "Kliknij <gui style=\"button\">Odrzuć</gui> w oknie substytucji."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:142
@@ -1145,6 +1160,9 @@ msgid ""
 "the matching family and append the default families to the end of the family "
 "list."
 msgstr ""
+"Czcionki pasujące do docelowej rodziny są edytowane by dodać listę "
+"preferowanych rodzin przed pasującą rodziną, dodać akceptowane rodziny po "
+"pasującej rodzinie i dodać domyślne rodziny do końca listy rodzin."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:148
@@ -1152,31 +1170,33 @@ msgid ""
 "While changes are applied immediately open applications may need to be "
 "restarted."
 msgstr ""
+"Podczas gdy zmiany zostają wprowadzone od razu, może istnieć potrzeba "
+"ponownego uruchomienia otwartych aplikacji."
 
 #. (itstool) path: info/desc
 #: C/font-manager-supported-formats.page:5
 msgid "Font formats supported by <app>Font Manager</app>."
-msgstr ""
+msgstr "Formaty czcionek wspierane przez <app>Font Manager</app>."
 
 #. (itstool) path: page/title
 #: C/font-manager-supported-formats.page:10
 msgid "Supported File Formats"
-msgstr ""
+msgstr "Wspierane formaty plików"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:14
 msgid "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
-msgstr ""
+msgstr "<link href=\"https://pl.wikipedia.org/wiki/TrueType\">TrueType</link>"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:21
 msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
-msgstr ""
+msgstr "<link href=\"https://pl.wikipedia.org/wiki/OpenType\">OpenType</link>"
 
 #. (itstool) path: info/desc
 #: C/index.page:6
 msgid "Getting started with Font Manager."
-msgstr ""
+msgstr "Pierwsze kroki z Font Manager."
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1189,12 +1209,14 @@ msgid ""
 "external ref='media/preferences-desktop-font-16.png' "
 "md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 msgstr ""
+"external ref='media/preferences-desktop-font-16.png' "
+"md5='4903102ad113c096aa95ef8a5ccaf0c2'"
 
 #. (itstool) path: info/title
 #: C/index.page:10
 msgctxt "link"
 msgid "Font Manager"
-msgstr ""
+msgstr "Font Manager"
 
 #. (itstool) path: info/title
 #: C/index.page:11
@@ -1210,17 +1232,17 @@ msgstr "Jerry Casiano"
 #. (itstool) path: credit/years
 #: C/index.page:16
 msgid "2009–2020"
-msgstr ""
+msgstr "2009–2020"
 
 #. (itstool) path: credit/name
 #: C/index.page:20
 msgid "Weblate"
-msgstr ""
+msgstr "Weblate"
 
 #. (itstool) path: license/p
 #: C/index.page:24
 msgid "GNU General Public License Version 3"
-msgstr ""
+msgstr "GNU General Public License Version 3"
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1233,6 +1255,8 @@ msgid ""
 "external ref='media/preferences-desktop-font.png' "
 "md5='f9108efe15fb60827b402b9a3a936589'"
 msgstr ""
+"external ref='media/preferences-desktop-font.png' "
+"md5='f9108efe15fb60827b402b9a3a936589'"
 
 #. (itstool) path: page/title
 #: C/index.page:29
@@ -1240,18 +1264,20 @@ msgid ""
 "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
 "font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font"
+".png\"> Logo Font Manager </media> Font Manager"
 
 #. (itstool) path: section/title
 #: C/index.page:37
 msgid "Managing Your Fonts"
-msgstr ""
+msgstr "Zarządzaj swoimi czcionkami"
 
 #. (itstool) path: section/title
 #: C/index.page:41
 msgid "Getting to Know Your Fonts"
-msgstr ""
+msgstr "Poznaj swoje czcionki"
 
 #. (itstool) path: section/title
 #: C/index.page:45
 msgid "Advanced Features"
-msgstr ""
+msgstr "Zaawansowane opcje"
