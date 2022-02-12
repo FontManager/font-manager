@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-01-20 07:44+0000\n"
+"PO-Revision-Date: 2022-02-11 07:00+0000\n"
 "Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/sv/>\n"
@@ -829,11 +829,10 @@ msgstr "Komprimera alla"
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:416
-#, fuzzy, c-format
-#| msgid "%i selected items"
+#, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "%i markerade objekt"
+msgstr[0] "%i markerat objekt"
 msgstr[1] "%i markerade objekt"
 
 #: src/font-manager/FontList.vala:517
