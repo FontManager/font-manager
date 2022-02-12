@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-01-20 23:40+0000\n"
+"PO-Revision-Date: 2022-02-12 06:55+0000\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/nl/>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -824,12 +824,11 @@ msgstr "Alles inklappen"
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:416
-#, fuzzy, c-format
-#| msgid "%i selected items"
+#, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "%i geselecteerde items wissen"
-msgstr[1] "%i geselecteerde items wissen"
+msgstr[0] "%i geselecteerde item"
+msgstr[1] "%i geselecteerde items"
 
 #: src/font-manager/FontList.vala:517
 msgid "Copy Location"
