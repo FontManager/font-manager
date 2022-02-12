@@ -28,8 +28,8 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-01-22 07:53+0000\n"
-"Last-Translator: joe <ourmicroid@outlook.com>\n"
+"PO-Revision-Date: 2022-02-12 06:55+0000\n"
+"Last-Translator: Eric <alchemillatruth@purelymail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -824,8 +824,7 @@ msgstr "全部折叠"
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:416
-#, fuzzy, c-format
-#| msgid "%i selected items"
+#, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i 个选中的项目"
