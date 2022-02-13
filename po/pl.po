@@ -1,21 +1,21 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata, 2021.
-# knuxify <knuxfanwin8.mail@gmail.com>, 2021.
+# knuxify <knuxfanwin8.mail@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2021-08-25 15:34+0000\n"
+"PO-Revision-Date: 2022-02-12 06:55+0000\n"
 "Last-Translator: knuxify <knuxfanwin8.mail@gmail.com>\n"
-"Language-Team: Polish <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/pl/>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.8.1-dev\n"
+"X-Generator: Weblate 4.11-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -126,57 +126,52 @@ msgstr "Wodospad"
 #: lib/common/font-manager-fontconfig.c:709
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
-msgstr "Cienkie"
+msgstr "Cienka"
 
 #: lib/common/font-manager-fontconfig.c:711
-#, fuzzy
 msgid "Ultra-Light"
-msgstr "Bardzo lekkie"
+msgstr "Ultralekka"
 
 #: lib/common/font-manager-fontconfig.c:713
 #: lib/common/font-manager-fontconfig.c:1066
 #: src/font-manager/web/google/Weight.vala:69
-#, fuzzy
 msgid "Light"
-msgstr "Lekkie"
+msgstr "Lekka"
 
 #: lib/common/font-manager-fontconfig.c:715
 msgid "Semi-Light"
-msgstr "Lekko cienka"
+msgstr "Półlekka"
 
 #: lib/common/font-manager-fontconfig.c:717
-#, fuzzy
 msgid "Book"
 msgstr "Książka"
 
 #: lib/common/font-manager-fontconfig.c:719
 #: lib/common/font-manager-fontconfig.c:1023
 #: src/font-manager/web/google/Weight.vala:73
-#, fuzzy
 msgid "Medium"
-msgstr "Średnie"
+msgstr "Średnia"
 
 #: lib/common/font-manager-fontconfig.c:721
-#, fuzzy
 msgid "Semi-Bold"
-msgstr "Połowa pogrubienia"
+msgstr "Półpogrubiona"
 
 #: lib/common/font-manager-fontconfig.c:723
 #: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
-msgstr "Pogrubione"
+msgstr "Pogrubiona"
 
 #: lib/common/font-manager-fontconfig.c:725
 msgid "Ultra-Bold"
-msgstr "Bardzo pogrubione"
+msgstr "Ultrapogrubiona"
 
 #: lib/common/font-manager-fontconfig.c:727
 msgid "Heavy"
-msgstr "Ciężkie"
+msgstr "Ciężka"
 
 #: lib/common/font-manager-fontconfig.c:729
 msgid "Ultra-Heavy"
-msgstr "Bardzo ciężkie"
+msgstr "Ultraciężka"
 
 #: lib/common/font-manager-fontconfig.c:804
 #: src/font-manager/web/google/WebFont.vala:156
@@ -185,43 +180,43 @@ msgstr "Kursywa"
 
 #: lib/common/font-manager-fontconfig.c:806
 msgid "Oblique"
-msgstr "Nachylone"
+msgstr "Ukośna"
 
 #: lib/common/font-manager-fontconfig.c:844
 msgid "Ultra-Condensed"
-msgstr "Bardzo zagęszczone"
+msgstr "Bardzo zagęszczona"
 
 #: lib/common/font-manager-fontconfig.c:846
 msgid "Extra-Condensed"
-msgstr "Ekstra zagęszczone"
+msgstr "Ekstra zagęszczona"
 
 #: lib/common/font-manager-fontconfig.c:848
 msgid "Condensed"
-msgstr "Zagęszczone"
+msgstr "Zagęszczona"
 
 #: lib/common/font-manager-fontconfig.c:850
 msgid "Semi-Condensed"
-msgstr "Połowa zagęszczenia"
+msgstr "Półzagęszczona"
 
 #: lib/common/font-manager-fontconfig.c:852
 msgid "Semi-Expanded"
-msgstr "Połowa rozszerzenia"
+msgstr "Półrozszerzona"
 
 #: lib/common/font-manager-fontconfig.c:854
 msgid "Expanded"
-msgstr "Rozszerzone"
+msgstr "Rozszerzona"
 
 #: lib/common/font-manager-fontconfig.c:856
 msgid "Extra-Expanded"
-msgstr "Ekstra rozszerzone"
+msgstr "Ekstra rozszerzona"
 
 #: lib/common/font-manager-fontconfig.c:858
 msgid "Ultra-Expanded"
-msgstr "Bardzo rozszerzone"
+msgstr "Bardzo rozszerzona"
 
 #: lib/common/font-manager-fontconfig.c:927
 msgid "Proportional"
-msgstr "Proporcjonalne"
+msgstr "Proporcjonalna"
 
 #: lib/common/font-manager-fontconfig.c:929
 msgid "Dual Width"
@@ -833,13 +828,12 @@ msgstr "Zwiń wszystkie"
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:416
-#, fuzzy, c-format
-#| msgid "Clear selected filter"
+#, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "Wyczyść wybrany filtr"
-msgstr[1] "Wyczyść wybrany filtr"
-msgstr[2] "Wyczyść wybrany filtr"
+msgstr[0] "%i wybrany element"
+msgstr[1] "%i wybrane elementy"
+msgstr[2] "%i wybranych elementów"
 
 #: src/font-manager/FontList.vala:517
 msgid "Copy Location"
@@ -850,16 +844,12 @@ msgid "Show in Folder"
 msgstr "Pokaż w folderze"
 
 #: src/font-manager/FontList.vala:583
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Enable selected items"
-msgstr "Wyczyść wybrany filtr"
+msgstr "Włącz wybrane elementy"
 
 #: src/font-manager/FontList.vala:585
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Disable selected items"
-msgstr "Wyczyść wybrany filtr"
+msgstr "Wyłącz wybrane elementy"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
@@ -1702,9 +1692,8 @@ msgid "Font Substitutions"
 msgstr "Substytucje czcionek"
 
 #: src/font-manager/preferences/Fontconfig.vala:600
-#, fuzzy
 msgid "Easily substitute one font family for another."
-msgstr "Zamień ze sobą dwie rodziny czcionek."
+msgstr "Dodaj substytut dla wybranej czcionki."
 
 #: src/font-manager/preferences/Fontconfig.vala:601
 msgid "To add a new substitute click the add button in the toolbar."
@@ -1741,7 +1730,6 @@ msgid "Rendering"
 msgstr "Renderowanie"
 
 #: src/font-manager/preferences/UserActions.vala:198
-#, fuzzy
 msgid ""
 "Actions defined here will be added to the font list context menu.\n"
 "\n"
@@ -1750,8 +1738,8 @@ msgid ""
 "To control where the filepath is inserted use FILEPATH as a placeholder.\n"
 "If FAMILY or STYLE are found in the argument list they will also be replaced."
 msgstr ""
-"Akcje tutaj zdefiniowane zostaną dodane do menu kontekstowego listy "
-"czcionek.\n"
+"Akcje tutaj zdefiniowane zostaną dodane do menu kontekstowego listy czcionek."
+"\n"
 "\n"
 "Domyślnie ścieżka pliku wybranej czcionki zostanie dodana na koniec listy "
 "argumentów.\n"
@@ -1924,11 +1912,12 @@ msgstr "Rozszerzona łacina"
 #: src/font-manager/web/google/Language.vala:81
 #, c-format
 msgid "No sample for %s available"
-msgstr ""
+msgstr "Brak przykładowego tekstu dla %s"
 
 #: src/font-manager/web/google/Language.vala:83
 msgid "Please file an issue requesting an update to available samples."
 msgstr ""
+"Prosimy o przesłanie zgłoszenia z prośbą o aktualizację dostępnych próbek."
 
 #: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Family"
@@ -1964,21 +1953,19 @@ msgstr[2] "%i przykładów języków dostępnych "
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
-msgstr "Bardzo cienkie"
+msgstr "Ekstra cienka"
 
 #: src/font-manager/web/google/Weight.vala:75
-#, fuzzy
 msgid "SemiBold"
-msgstr "Połowa pogrubienia"
+msgstr "Półpogrubiona"
 
 #: src/font-manager/web/google/Weight.vala:79
-#, fuzzy
 msgid "ExtraBold"
-msgstr "Bardzo pogrubione"
+msgstr "Ekstra pogrubiona"
 
 #: src/font-manager/web/google/Weight.vala:81
 msgid "Black"
-msgstr "Najbardziej pogrubione"
+msgstr "Mocno pogrubiona"
 
 #: src/font-viewer/MainWindow.vala:24
 msgid "Preview font files before installing them."
@@ -2170,9 +2157,8 @@ msgid "Switch to Waterfall preview"
 msgstr "Przejdź na tryb wodospadu"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:108
-#, fuzzy
 msgid "Switch to Body Text preview"
-msgstr "Przejdź na tryb podglądu tekstu"
+msgstr "Przejdź na tryb podglądu przykładowego tekstu"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:58
 msgid "Categories"
@@ -2211,7 +2197,6 @@ msgid "Remove substitute"
 msgstr "Usuń substytut"
 
 #: src/font-manager/ui/font-manager-substitute.ui:42
-#, fuzzy
 msgid "Enter substitute family"
 msgstr "Wpisz rodzinę-substytut"
 
@@ -2270,57 +2255,51 @@ msgstr "Niestandardowe akcje"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:25
 msgid "Display line size in Waterfall Preview"
-msgstr ""
+msgstr "Wyświetl rozmiar linii w podglądzie wodospadu"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:74
-#, fuzzy
-#| msgid "Maximum Waterfall Preview Point Size"
 msgid "Waterfall Preview Size Settings"
-msgstr "Maksymalny rozmiar czcionki w podglądzie wodospadu"
+msgstr "Ustawienia rozmiaru podglądu wodospadu"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:93
 msgid "Up to 48 points (Linear Scaling)"
-msgstr ""
+msgstr "Do 48 punktów (Skalowanie liniowe)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:94
 msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "Do 72 punktów (Iloraz ciągu: 1.1)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:95
 msgid "Up to 96 points (Linear Scaling)"
-msgstr ""
+msgstr "Do 96 punktów (Skalowanie liniowe)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:96
 msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "Do 96 punktów (Iloraz ciągu: 1.1)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:97
 msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr ""
+msgstr "Do 120 punktów (Iloraz ciągu 1.2)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:98
 msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr ""
+msgstr "Do 144 punktów (Iloraz ciągu: 1.3)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:99
 msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr ""
+msgstr "Do 192 punktów (Iloraz ciągu: 1.4)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:100
-#, fuzzy
-#| msgid "Custom Actions"
 msgid "Custom Size Settings"
-msgstr "Niestandardowe akcje"
+msgstr "Niestandardowe opcje rozmiaru"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:142
-#, fuzzy
-#| msgid "Maximum Waterfall Preview Point Size"
 msgid "Minimum Waterfall Preview Point Size"
-msgstr "Maksymalny rozmiar czcionki w podglądzie wodospadu"
+msgstr "Minimalny rozmiar czcionki w podglądzie wodospadu"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:155
 msgid "8.0"
-msgstr ""
+msgstr "8,0"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:174
 msgid "Maximum Waterfall Preview Point Size"
@@ -2332,17 +2311,15 @@ msgstr "Wyższe wartości mogą niekorzystnie wpłynąć na wydajność"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:188
 msgid "48.0"
-msgstr ""
+msgstr "48,0"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:207
-#, fuzzy
-#| msgid "Maximum Waterfall Preview Point Size"
 msgid "Waterfall Preview Point Size Common Ratio"
-msgstr "Maksymalny rozmiar czcionki w podglądzie wodospadu"
+msgstr "Iloraz ciągu rozmiaru czcionki w podglądzie wodospadu"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:220
 msgid "1.0"
-msgstr ""
+msgstr "1,0"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
