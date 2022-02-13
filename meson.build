@@ -104,7 +104,7 @@ summary(
         'Font Viewer': get_option('viewer'),
         'Help Documents': get_option('yelp-doc'),
         'GNOME search provider': get_option('search-provider'),
-        'Google Fonts Integration': get_option('webkit'),
+        'Google Fonts Integration ': get_option('webkit'),
         'Nautilus extension': get_option('nautilus'),
         'Nemo extension': get_option('nemo'),
         'Thunar extension': get_option('thunar'),
