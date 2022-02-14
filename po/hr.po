@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-01-20 23:40+0000\n"
+"PO-Revision-Date: 2022-02-14 00:56+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hr/>\n"
@@ -842,13 +842,12 @@ msgstr "Sklopi sve"
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:416
-#, fuzzy, c-format
-#| msgid "%i selected items"
+#, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "Odabranih elemenata: %i"
-msgstr[1] "Odabranih elemenata: %i"
-msgstr[2] "Odabranih elemenata: %i"
+msgstr[0] "%i odabrani element"
+msgstr[1] "%i odabrana elementa"
+msgstr[2] "%i odabranih elemenata"
 
 #: src/font-manager/FontList.vala:517
 msgid "Copy Location"
