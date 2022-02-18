@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <template class="TestApplicationWindow" parent="GtkApplicationWindow">
+        <style>
+            <class name="devel"/>
+        </style>
+        <property name="title" translatable="yes">Widget Test</property>
+        <property name="default-height">500</property>
+        <property name="default-width">320</property>
+        <child>
+            <object class="GtkBox" id="content_area">
+                <property name="orientation">vertical</property>
+                <child>
+                    <object class="GtkScrolledWindow" id="scroll">
+                        <child>
+                            <object class="GtkListBox" id="widget_list">
+                                <property name="hexpand">true</property>
+                                <property name="vexpand">true</property>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkSeparator" id="separator">
+                        <property name="hexpand">true</property>
+                        <property name="vexpand">false</property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkHeaderBar" id="action_area">
+                        <property name="show-title-buttons">false</property>
+                        <property name="title-widget">
+                            <object class="GtkButton" id="run_button">
+                                <property name="sensitive">false</property>
+                                <property name="label">  Run  </property>
+                                <property name="margin-start">24</property>
+                                <property name="margin-end">24</property>
+                                <property name="valign">center</property>
+                                <property name="hexpand">true</property>
+                                <property name="vexpand">false</property>
+                            </object>
+                        </property>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </template>
+</interface>
