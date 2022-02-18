@@ -19,9 +19,20 @@ place_holder = library('place-holder',
                         include_directories: test_build_dir,
                         sources: [ test_application_sources, 'place-holder-test.c' ],
                         link_with: libfontmanager_gtk)
+
 preview_controls = library('preview-controls',
                             name_prefix: '',
                             dependencies: base_deps,
                             include_directories: test_build_dir,
                             sources: [ test_application_sources, 'preview-controls-test.c' ],
                             link_with: libfontmanager_gtk)
+
+preview_controls = library('preview-page',
+                            name_prefix: '',
+                            dependencies: base_deps,
+                            include_directories: test_build_dir,
+                            sources: [ test_application_sources, 'preview-page-test.c' ],
+                            link_with: libfontmanager_gtk)
+
+
+

@@ -11,6 +11,7 @@ valac = meson.get_compiler('vala')
 if not valac.version().version_compare('>= 0.42')
     error('Vala compiler version is @0@ but project requires >= 0.42'.format(valac.version()))
 endif
+m_dep = cc.find_library('m', required: false)
 python = import('python').find_installation('python3')
 gnome = import('gnome')
 json = dependency('json-glib-1.0', version: '>= 0.15')
@@ -27,7 +28,7 @@ list_sources = file_list_template.format('c')
 list_headers = file_list_template.format('h')
 
 base_deps = declare_dependency(
-    dependencies: [json, gmodule, gtk],
+    dependencies: [m_dep, json, gmodule, gtk],
     include_directories: include_directories('.', 'lib/gtk')
 )
 

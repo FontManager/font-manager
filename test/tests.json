@@ -14,5 +14,9 @@
     {
         "name" : "preview-controls",
         "label" : "Preview Controls"
+    },
+    {
+        "name" : "preview-page",
+        "label" : "Font Preview Page"
     }
 ]
