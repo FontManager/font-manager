@@ -2,5 +2,9 @@
     {
         "name" : "font-scale",
         "label" : "Font Size Scale"
+    },
+    {
+        "name" : "preview-controls",
+        "label" : "Preview Controls"
     }
 ]

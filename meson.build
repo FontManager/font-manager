@@ -33,6 +33,7 @@ base_deps = declare_dependency(
 
 add_global_arguments(
     '-DG_LOG_DOMAIN="[@0@]"'.format(meson.project_name()),
+    '-DGETTEXT_PACKAGE="font-manager"',
     language: 'c'
 )
 
