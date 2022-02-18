@@ -4,6 +4,14 @@
         "label" : "Font Size Scale"
     },
     {
+        "name" : "license-page",
+        "label" : "License Page"
+    },
+    {
+        "name" : "place-holder",
+        "label" : "Place Holder Page"
+    },
+    {
         "name" : "preview-controls",
         "label" : "Preview Controls"
     }
