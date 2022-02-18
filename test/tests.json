@@ -1,1 +1,6 @@
-[]
+[
+    {
+        "name" : "font-scale",
+        "label" : "Font Size Scale"
+    }
+]

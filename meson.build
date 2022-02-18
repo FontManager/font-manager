@@ -11,13 +11,24 @@ valac = meson.get_compiler('vala')
 if not valac.version().version_compare('>= 0.42')
     error('Vala compiler version is @0@ but project requires >= 0.42'.format(valac.version()))
 endif
+python = import('python').find_installation('python3')
 gnome = import('gnome')
 json = dependency('json-glib-1.0', version: '>= 0.15')
 gmodule = dependency('gmodule-2.0', version: '>= 2.70')
 gtk = dependency('gtk4', version: '>= 4.0')
 
+file_list_template = '''
+from glob import glob
+for f in sorted(glob('**/*.@0@', recursive=True)):
+    print(f)
+'''
+
+list_sources = file_list_template.format('c')
+list_headers = file_list_template.format('h')
+
 base_deps = declare_dependency(
     dependencies: [json, gmodule, gtk],
+    include_directories: include_directories('.', 'lib/gtk')
 )
 
 add_global_arguments(
@@ -25,5 +36,6 @@ add_global_arguments(
     language: 'c'
 )
 
+subdir('lib')
 subdir('test')
 

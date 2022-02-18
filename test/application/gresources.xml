@@ -2,6 +2,6 @@
 <gresources>
   <gresource prefix="/host/local/WidgetTest">
     <file compressed="true">custom.css</file>
-    <file preprocess="xml-stripblanks">application/test-application.ui</file>
+    <file preprocess="xml-stripblanks">test-application.ui</file>
   </gresource>
 </gresources>

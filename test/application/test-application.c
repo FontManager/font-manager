@@ -177,7 +177,7 @@ test_application_window_class_init (TestApplicationWindowClass *klass)
     G_OBJECT_CLASS(klass)->constructed = test_application_window_constructed;
 
     gtk_widget_class_set_template_from_resource(GTK_WIDGET_CLASS(klass),
-                                               "/host/local/WidgetTest/test-application.ui");
+                                               "/host/local/WidgetTest/application/test-application.ui");
     gtk_widget_class_bind_template_child(GTK_WIDGET_CLASS(klass), TestApplicationWindow, widget_list);
     gtk_widget_class_bind_template_child(GTK_WIDGET_CLASS(klass), TestApplicationWindow, run_button);
     g_autoptr(GtkCssProvider) custom_css = gtk_css_provider_new();
