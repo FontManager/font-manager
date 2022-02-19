@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include <glib.h>
+#include <glib/gprintf.h>
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 #include <pango/pango-layout.h>

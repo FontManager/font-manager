@@ -184,11 +184,10 @@ font_manager_license_page_init (FontManagerLicensePage *self)
     GtkWidget *overlay = gtk_overlay_new();
     GtkWidget *scroll = gtk_scrolled_window_new();
     GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 2);
-    PangoAttrList *attrs = pango_attr_list_new();
+    g_autoptr(PangoAttrList) attrs = pango_attr_list_new();
     PangoAttribute *attr = pango_attr_weight_new(PANGO_WEIGHT_BOLD);
     pango_attr_list_insert(attrs, attr);
     gtk_label_set_attributes(GTK_LABEL(self->fsType), attrs);
-    g_clear_pointer(&attrs, pango_attr_list_unref);
     gtk_text_view_set_editable(GTK_TEXT_VIEW(self->license_data), FALSE);
     gtk_text_view_set_cursor_visible(GTK_TEXT_VIEW(self->license_data), FALSE);
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(self->license_data), GTK_WRAP_WORD_CHAR);

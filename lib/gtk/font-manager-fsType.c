@@ -26,7 +26,7 @@
  * @title: Font embedding restrictions
  * @include: font-manager-fsType.h
  *
- * This main purpose of this enumeration is to provide a description of the fsType field of
+ * The main purpose of this enumeration is to provide a description of the fsType field of
  * font files in a user friendly manner.
  */
 

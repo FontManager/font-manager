@@ -26,11 +26,11 @@
  * @title: FontManagerPreviewPage
  * @include: font-manager-preview-page.h
  *
- * This widget consists of three pages and allows previewing font files in various ways.
+ * This widget has three modes to allow previewing font files in various ways.
  *
- * The first page provides an "active" preview where the user can edit the displayed text, set the
- * size and justification. The second page displays a standard "waterfall" preview of the selected
- * font and the third page displays several paragraphs of "Lorem Ipsum" text.
+ * The first mode provides an "active" preview where the user can edit the displayed text, set the
+ * size and justification. The second mode displays a standard "waterfall" preview of the selected
+ * font and the third mode displays several paragraphs of "Lorem Ipsum" text.
  */
 
 GType

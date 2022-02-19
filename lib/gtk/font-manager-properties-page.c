@@ -62,10 +62,12 @@ FontPropertyRow [] =
     /* Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid */
     { "vendor", N_("Vendor") },
     { "filetype", N_("FileType") },
+    /* Keep this entry last */
     { "filesize", N_("Filesize") },
 };
 
 #define N_FONT_PROPERTIES G_N_ELEMENTS(FontPropertyRow)
+#define FILESIZE_PROPERTY (N_FONT_PROPERTIES - 1)
 
 static GtkWidget *
 create_title_label (FontManagerPropertiesPage *self, gint property)
@@ -96,7 +98,17 @@ construct_start_child (FontManagerPropertiesPage *self)
     self->grid = gtk_grid_new();
     for (gint i = 0; i < N_FONT_PROPERTIES; i++) {
         gtk_grid_attach(GTK_GRID(self->grid), create_title_label(self, i), 0, i, 1, 1);
-        gtk_grid_attach(GTK_GRID(self->grid), create_value_label(self, i), 1, i, 1, 1);
+        if (i == FILESIZE_PROPERTY) {
+            GtkWidget *value = gtk_link_button_new_with_label("", NULL);
+            GtkWidget *label = gtk_button_get_child(GTK_BUTTON(value));
+            gtk_widget_set_halign(label, GTK_ALIGN_START);
+            gtk_widget_set_halign(value, GTK_ALIGN_START);
+            gtk_widget_remove_css_class(value, "text-button");
+            gtk_widget_remove_css_class(value, "link");
+            gtk_grid_attach(GTK_GRID(self->grid), value, 1, i, 1, 1);
+        } else {
+            gtk_grid_attach(GTK_GRID(self->grid), create_value_label(self, i), 1, i, 1, 1);
+        }
     }
     gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scroll), self->grid);
     font_manager_widget_set_expand(self->grid, FALSE);
@@ -174,7 +186,20 @@ update (FontManagerPropertiesPage *self)
         }
 
         GtkWidget *widget = gtk_grid_get_child_at(GTK_GRID(self->grid), 1, i);
-        gtk_label_set_label(GTK_LABEL(widget), value);
+
+        if (i == FILESIZE_PROPERTY) {
+            g_autofree gchar *uri = NULL;
+            if (json_object_has_member(self->properties, "filepath")) {
+                const gchar *filepath = json_object_get_string_member(self->properties, "filepath");
+                gtk_widget_set_tooltip_text(GTK_WIDGET(widget), filepath);
+                g_autofree gchar *dirpath = g_path_get_dirname(filepath);
+                uri = g_strdup_printf("file://%s", dirpath);
+            }
+            gtk_link_button_set_uri(GTK_LINK_BUTTON(widget), uri ? uri : "");
+            gtk_button_set_label(GTK_BUTTON(widget), value);
+        } else {
+            gtk_label_set_label(GTK_LABEL(widget), value);
+        }
 
     }
 
@@ -216,7 +241,12 @@ reset (FontManagerPropertiesPage *self)
     for (gint i = 0; i < N_FONT_PROPERTIES; i++) {
         set_row_visible(self, i, TRUE);
         GtkWidget *widget = gtk_grid_get_child_at(GTK_GRID(self->grid), 1, i);
-        gtk_label_set_label(GTK_LABEL(widget), NULL);
+        if (i == FILESIZE_PROPERTY) {
+            gtk_link_button_set_uri(GTK_LINK_BUTTON(widget), "");
+            gtk_button_set_label(GTK_BUTTON(widget), NULL);
+        } else {
+            gtk_label_set_label(GTK_LABEL(widget), NULL);
+        }
     }
     gtk_label_set_text(GTK_LABEL(self->copyright), NULL);
     gtk_label_set_text(GTK_LABEL(self->description), NULL);
@@ -281,6 +311,7 @@ font_manager_properties_page_init (FontManagerPropertiesPage *self)
  *      "version"       :   string,
  *      "vendor"        :   string,
  *      "filetype"      :   string,
+ *      "filepath"      :   string,
  *      "filesize"      :   string,
  *      "copyright"     :   string,
  *      "description"   :   string,

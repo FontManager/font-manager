@@ -18,16 +18,13 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
-#ifndef __FONT_MANAGER_FONT_SCALE_H__
-#define __FONT_MANAGER_FONT_SCALE_H__
+#pragma once
 
 #include <glib.h>
 #include <glib-object.h>
 #include <gtk/gtk.h>
 
 #include "font-manager-gtk-utils.h"
-
-G_BEGIN_DECLS
 
 #define FONT_MANAGER_TYPE_FONT_SCALE (font_manager_font_scale_get_type())
 G_DECLARE_FINAL_TYPE(FontManagerFontScale, font_manager_font_scale, FONT_MANAGER, FONT_SCALE, GtkWidget)
@@ -39,6 +36,3 @@ gdouble font_manager_font_scale_get_value (FontManagerFontScale *self);
 void font_manager_font_scale_set_adjustment (FontManagerFontScale *self, GtkAdjustment *adjustment);
 void font_manager_font_scale_set_value (FontManagerFontScale *self, gdouble value);
 
-G_END_DECLS
-
-#endif /* __FONT_MANAGER_FONT_SCALE_H__ */

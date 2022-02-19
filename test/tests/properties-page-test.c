@@ -22,6 +22,7 @@ get_test_props ()
     json_object_set_string_member(props, "version", "5.61");
     json_object_set_string_member(props, "vendor", "Microsoft");
     json_object_set_string_member(props, "filetype", "TrueType");
+    json_object_set_string_member(props, "filepath", "/usr/share/fonts/Candara.ttf");
     json_object_set_string_member(props, "filesize", "218.5kB");
     json_object_set_string_member(props, "designer", "Gary Munch");
     json_object_set_string_member(props, "designer-url", "http://www.munchfonts.com");
