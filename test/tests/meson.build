@@ -1,5 +1,6 @@
 
 tests = [
+    'character-map',
     'font-scale',
     'license-page',
     'place-holder',
@@ -14,7 +15,7 @@ foreach t: tests
             dependencies: base_deps,
             include_directories: test_build_dir,
             sources: [ test_application_sources, '@0@-test.c'.format(t) ],
-            link_with: libfontmanager_gtk)
+            link_with: [ libfontmanager_gtk, libunicode ])
 endforeach
 
 

@@ -29,7 +29,7 @@ list_headers = file_list_template.format('h')
 
 base_deps = declare_dependency(
     dependencies: [m_dep, json, gmodule, gtk],
-    include_directories: include_directories('.', 'lib/gtk')
+    include_directories: include_directories('.', 'lib/gtk', 'lib/unicode')
 )
 
 add_global_arguments(

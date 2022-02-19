@@ -1,5 +1,9 @@
 [
     {
+        "name" : "character-map",
+        "label" : "Character Map"
+    },
+    {
         "name" : "font-scale",
         "label" : "Font Size Scale"
     },

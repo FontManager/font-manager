@@ -1,3 +1,3 @@
 
 subdir('gtk')
-
+subdir('unicode')
