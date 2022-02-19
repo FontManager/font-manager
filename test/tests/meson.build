@@ -1,38 +1,20 @@
 
-font_scale = library('font-scale',
-                     name_prefix: '',
-                     dependencies: base_deps,
-                     include_directories: test_build_dir,
-                     sources: [ test_application_sources, 'font-scale-test.c' ],
-                     link_with: libfontmanager_gtk)
+tests = [
+    'font-scale',
+    'license-page',
+    'place-holder',
+    'preview-controls',
+    'preview-page',
+    'properties-page'
+]
 
-license_page = library('license-page',
-                        name_prefix: '',
-                        dependencies: base_deps,
-                        include_directories: test_build_dir,
-                        sources: [ test_application_sources, 'license-page-test.c' ],
-                        link_with: libfontmanager_gtk)
-
-place_holder = library('place-holder',
-                        name_prefix: '',
-                        dependencies: base_deps,
-                        include_directories: test_build_dir,
-                        sources: [ test_application_sources, 'place-holder-test.c' ],
-                        link_with: libfontmanager_gtk)
-
-preview_controls = library('preview-controls',
-                            name_prefix: '',
-                            dependencies: base_deps,
-                            include_directories: test_build_dir,
-                            sources: [ test_application_sources, 'preview-controls-test.c' ],
-                            link_with: libfontmanager_gtk)
-
-preview_controls = library('preview-page',
-                            name_prefix: '',
-                            dependencies: base_deps,
-                            include_directories: test_build_dir,
-                            sources: [ test_application_sources, 'preview-page-test.c' ],
-                            link_with: libfontmanager_gtk)
-
+foreach t: tests
+    library(t,
+            name_prefix: '',
+            dependencies: base_deps,
+            include_directories: test_build_dir,
+            sources: [ test_application_sources, '@0@-test.c'.format(t) ],
+            link_with: libfontmanager_gtk)
+endforeach
 
 

@@ -18,5 +18,9 @@
     {
         "name" : "preview-page",
         "label" : "Font Preview Page"
+    },
+    {
+        "name" : "properties-page",
+        "label" : "Font Properties Page"
     }
 ]
