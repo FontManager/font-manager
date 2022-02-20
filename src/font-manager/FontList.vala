@@ -92,7 +92,6 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
     enum FontListColumn {
         TOGGLE,
         TEXT,
-        PREVIEW,
         COUNT,
         N_COLUMNS
     }
@@ -119,7 +118,6 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             preview.ellipsize = Pango.EllipsizeMode.END;
             insert_column_with_data_func(FontListColumn.TOGGLE, "", toggle, toggle_cell_data_func);
             insert_column_with_data_func(FontListColumn.TEXT, "", text, text_cell_data_func);
-            insert_column_with_data_func(FontListColumn.PREVIEW, "", preview, preview_cell_data_func);
             insert_column_with_data_func(FontListColumn.COUNT, "", count, count_cell_data_func);
             for (int i = 0; i < FontListColumn.N_COLUMNS; i++) {
                 var column = get_column(i);
@@ -205,37 +203,32 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
                                                        Gtk.TreeModel model,
                                                        Gtk.TreeIter treeiter) {
             Gtk.TreeIter? parent;
+            cell.set_property("markup", "");
+            cell.set_property("visible", false);
             if (model.iter_parent(out parent, treeiter)) {
                 Gtk.TreePath path = model.get_path(parent);
-                if (is_row_expanded(path)) {
-                    Value val;
-                    model.get_value(treeiter, FontModelColumn.OBJECT, out val);
-                    Object obj = val.get_object();
-                    Pango.AttrList attrs = new Pango.AttrList();
-                    attrs.insert(Pango.attr_fallback_new(false));
-                    cell.set_property("attributes", attrs);
-                    string description = ((Font) obj).description;
-                    if (samples != null && samples.contains(description)) {
-                        string sample = samples.lookup(description);
-                        if (sample != default_sample && sample != local_sample)
-                            cell.set_property("text", sample);
-                        else
-                            cell.set_property("text", description);
-                    } else
-                        cell.set_property("text", description);
-                    cell.set_property("font", description);
-                    cell.set_property("visible", true);
-                    set_sensitivity(cell, treeiter, ((Font) obj).family);
-                    val.unset();
+                if (!is_row_expanded(path))
                     return;
-                } else {
-                    cell.set_property("text", "");
-                    cell.set_property("visible", false);
-                }
-            } else {
-                cell.set_property("text", "");
-                cell.set_property("visible", false);
             }
+            Value val;
+            model.get_value(treeiter, FontModelColumn.OBJECT, out val);
+            Object obj = val.get_object();
+            Pango.AttrList attrs = new Pango.AttrList();
+            attrs.insert(Pango.attr_fallback_new(false));
+            cell.set_property("attributes", attrs);
+            string description = ((Font) obj).description;
+            string? sample = description;
+            if (samples != null && samples.contains(description)) {
+                string _sample = samples.lookup(description);
+                if (_sample != default_sample && _sample != local_sample)
+                    sample = _sample;
+            }
+            string markup = """<span font="%s">%s</span>""".printf(GLib.Markup.escape_text(description),
+                                                                    GLib.Markup.escape_text(sample));
+            cell.set_property("markup", markup);
+            cell.set_property("visible", true);
+            set_sensitivity(cell, treeiter, ((Font) obj).family);
+            val.unset();
             return;
         }
 
@@ -267,13 +260,12 @@ Start search using %s to filter based on characters."""). printf(Path.DIR_SEPARA
             Object obj = val.get_object();
             string family = get_family_from_object(obj);
             if (obj is Family) {
-                cell.set_property("text", family);
+                cell.set_property("markup", family);
                 set_sensitivity(cell, treeiter, family);
                 cell.set_padding(0, 0);
             } else {
-                cell.set_property("text", ((Font) obj).style);
-                set_sensitivity(cell, treeiter, family);
-                cell.set_padding(8, 0);
+                preview_cell_data_func(layout, cell, model, treeiter);
+                cell.set_padding(12, 4);
             }
             val.unset();
             return;
