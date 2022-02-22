@@ -30,7 +30,6 @@ struct _TestApplicationWindow
     GtkApplicationWindow parent;
 
     GtkWidget *widget_list;
-    GtkWidget *run_button;
 };
 
 struct _TestDialog
@@ -95,13 +94,15 @@ test_dialog_run (TestDialog *self)
 }
 
 static void
-test_application_window_on_run_clicked (TestApplicationWindow *self, GtkButton *unused)
+test_application_window_on_row_activated (TestApplicationWindow *self,
+                                          GtkListBox            *list_box,
+                                          GtkListBoxRow         *row)
 {
     GModule *module;
     GetWidgetFunc get_widget;
     TestDialog *widget;
-    GtkListBoxRow *row = gtk_list_box_get_selected_row(GTK_LIST_BOX(self->widget_list));
-    GtkWidget *entry = gtk_list_box_row_get_child(row);
+    GtkListBoxRow *_row = gtk_list_box_get_selected_row(GTK_LIST_BOX(self->widget_list));
+    GtkWidget *entry = gtk_list_box_row_get_child(_row);
     const gchar *name = gtk_widget_get_name(entry);
     g_autofree gchar *module_name = g_strdup_printf("%s.so", name);
     g_autofree gchar *module_file = g_build_filename(MODULE_PATH, module_name, NULL);
@@ -115,31 +116,9 @@ test_application_window_on_run_clicked (TestApplicationWindow *self, GtkButton *
 }
 
 static void
-test_application_window_on_row_selected (TestApplicationWindow *self,
-                                         GtkListBox* listbox,
-                                         GtkListBoxRow* row)
-{
-    gtk_widget_set_sensitive(self->run_button, row != NULL);
-    return;
-}
-
-static void
-test_application_window_on_row_activated (TestApplicationWindow *self,
-                                          GtkListBox            *list_box,
-                                          GtkListBoxRow         *row)
-{
-    test_application_window_on_run_clicked(self, NULL);
-    return;
-}
-
-static void
 test_application_window_constructed (GObject *gobject)
 {
     TestApplicationWindow *self = TEST_APPLICATION_WINDOW(gobject);
-    g_signal_connect_swapped(self->run_button, "clicked",
-                             G_CALLBACK(test_application_window_on_run_clicked), self);
-    g_signal_connect_swapped(self->widget_list, "row-selected",
-                             G_CALLBACK(test_application_window_on_row_selected), self);
     g_signal_connect_swapped(self->widget_list, "row-activated",
                              G_CALLBACK(test_application_window_on_row_activated), self);
     return;
@@ -188,7 +167,6 @@ test_application_window_class_init (TestApplicationWindowClass *klass)
     gtk_widget_class_set_template_from_resource(GTK_WIDGET_CLASS(klass),
                                                "/host/local/WidgetTest/application/test-application.ui");
     gtk_widget_class_bind_template_child(GTK_WIDGET_CLASS(klass), TestApplicationWindow, widget_list);
-    gtk_widget_class_bind_template_child(GTK_WIDGET_CLASS(klass), TestApplicationWindow, run_button);
     g_autoptr(GtkCssProvider) custom_css = gtk_css_provider_new();
     gtk_css_provider_load_from_resource(custom_css, "/host/local/WidgetTest/custom.css");
     gtk_style_context_add_provider_for_display(gdk_display_get_default(),
@@ -272,3 +250,4 @@ main (int argc, char *argv[])
     g_application_run(G_APPLICATION(test_application_new()), argc, argv);
     return status;
 }
+

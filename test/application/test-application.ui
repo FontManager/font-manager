@@ -20,28 +20,6 @@
                         </child>
                     </object>
                 </child>
-                <child>
-                    <object class="GtkSeparator" id="separator">
-                        <property name="hexpand">true</property>
-                        <property name="vexpand">false</property>
-                    </object>
-                </child>
-                <child>
-                    <object class="GtkHeaderBar" id="action_area">
-                        <property name="show-title-buttons">false</property>
-                        <property name="title-widget">
-                            <object class="GtkButton" id="run_button">
-                                <property name="sensitive">false</property>
-                                <property name="label">  Run  </property>
-                                <property name="margin-start">24</property>
-                                <property name="margin-end">24</property>
-                                <property name="valign">center</property>
-                                <property name="hexpand">true</property>
-                                <property name="vexpand">false</property>
-                            </object>
-                        </property>
-                    </object>
-                </child>
             </object>
         </child>
     </template>
