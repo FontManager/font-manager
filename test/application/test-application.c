@@ -1,6 +1,6 @@
 /* test_application.c
  *
- * Copyright (C) 2020 Jerry Casiano
+ * Copyright (C) 2020-2022 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,8 +36,6 @@ struct _TestApplicationWindow
 struct _TestDialog
 {
     GtkDialog   parent_instance;
-
-    gint        status;
 };
 
 G_DEFINE_TYPE(TestApplication, test_application, GTK_TYPE_APPLICATION)
@@ -126,6 +124,15 @@ test_application_window_on_row_selected (TestApplicationWindow *self,
 }
 
 static void
+test_application_window_on_row_activated (TestApplicationWindow *self,
+                                          GtkListBox            *list_box,
+                                          GtkListBoxRow         *row)
+{
+    test_application_window_on_run_clicked(self, NULL);
+    return;
+}
+
+static void
 test_application_window_constructed (GObject *gobject)
 {
     TestApplicationWindow *self = TEST_APPLICATION_WINDOW(gobject);
@@ -133,6 +140,8 @@ test_application_window_constructed (GObject *gobject)
                              G_CALLBACK(test_application_window_on_run_clicked), self);
     g_signal_connect_swapped(self->widget_list, "row-selected",
                              G_CALLBACK(test_application_window_on_row_selected), self);
+    g_signal_connect_swapped(self->widget_list, "row-activated",
+                             G_CALLBACK(test_application_window_on_row_activated), self);
     return;
 }
 
@@ -223,6 +232,7 @@ static void
 test_dialog_init (TestDialog *self)
 {
     g_return_if_fail(self != NULL);
+    gtk_widget_add_css_class(GTK_WIDGET(self), "devel");
     gtk_window_set_deletable(GTK_WINDOW(self), FALSE);
     GtkWidget *pass = gtk_dialog_add_button(GTK_DIALOG(self), "Pass", GTK_RESPONSE_ACCEPT);
     GtkWidget *fail = gtk_dialog_add_button(GTK_DIALOG(self), "Fail", GTK_RESPONSE_REJECT);
