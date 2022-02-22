@@ -636,6 +636,8 @@ unicode_search_bar_init (UnicodeSearchBar *self)
     gtk_search_bar_set_search_mode(GTK_SEARCH_BAR(search_bar), TRUE);
     gtk_widget_set_parent(search_bar, GTK_WIDGET(self));
     gtk_widget_set_name(GTK_WIDGET(self), "UnicodeSearchBar");
+    gtk_widget_set_opacity(self->prev_button, 0.75);
+    gtk_widget_set_opacity(self->next_button, 0.75);
     font_manager_widget_set_expand(GTK_WIDGET(search_bar), TRUE);
     gtk_widget_set_hexpand(GTK_WIDGET(self), TRUE);
     gtk_widget_set_vexpand(GTK_WIDGET(self), FALSE);

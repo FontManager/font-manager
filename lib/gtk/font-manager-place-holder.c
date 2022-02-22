@@ -219,7 +219,7 @@ set_message_attributes (GtkWidget *widget)
 }
 
 static void
-insert_label (GtkBox *box, GtkWidget *widget, gboolean expand, gboolean fill)
+insert_label (GtkBox *box, GtkWidget *widget)
 {
     gtk_widget_set_opacity(widget, 0.90);
     gtk_widget_set_sensitive(widget, FALSE);
@@ -254,9 +254,9 @@ font_manager_place_holder_init (FontManagerPlaceHolder *self)
     GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, FONT_MANAGER_DEFAULT_MARGIN);
     gtk_box_prepend(GTK_BOX(bbox), self->icon);
     gtk_box_append(GTK_BOX(bbox), box);
-    insert_label(GTK_BOX(box), self->title, FALSE, FALSE);
-    insert_label(GTK_BOX(box), self->subtitle, FALSE, FALSE);
-    insert_label(GTK_BOX(box), self->message, TRUE, TRUE);
+    insert_label(GTK_BOX(box), self->title);
+    insert_label(GTK_BOX(box), self->subtitle);
+    insert_label(GTK_BOX(box), self->message);
     gtk_widget_set_margin_bottom(box, FONT_MANAGER_DEFAULT_MARGIN * 4);
     gtk_widget_set_margin_top(box, FONT_MANAGER_DEFAULT_MARGIN * 4);
     font_manager_widget_set_margin(bbox, FONT_MANAGER_DEFAULT_MARGIN * 4);

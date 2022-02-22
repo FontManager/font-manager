@@ -26,8 +26,9 @@
  * @title: FontManagerFontScale
  * @include: font-manager-font-scale.h
  *
- * Widget allowing for font size selection through use of a #GtkScale, #GtkSpinButton and two
- * clickable #GtkLabel widgets for quick selection of minimum and maximum sizes.
+ * Widget allowing for font size selection through use of a #GtkScale,
+ * #GtkSpinButton and two clickable #GtkLabel widgets for quick selection
+ * of minimum and maximum sizes.
  */
 
 #define DEFAULT_OPACITY 0.60
@@ -211,7 +212,8 @@ add_click_target (FontManagerFontScale *self, GtkWidget *widget)
     gtk_gesture_single_set_exclusive(GTK_GESTURE_SINGLE(gesture), TRUE);
     gtk_gesture_single_set_button(GTK_GESTURE_SINGLE(gesture), GDK_BUTTON_PRIMARY);
     g_signal_connect(gesture, "pressed", G_CALLBACK(on_click), self);
-    gtk_event_controller_set_propagation_phase(GTK_EVENT_CONTROLLER(gesture), GTK_PHASE_BUBBLE);
+    gtk_event_controller_set_propagation_phase(GTK_EVENT_CONTROLLER(gesture),
+                                               GTK_PHASE_BUBBLE);
     gtk_widget_add_controller(widget, GTK_EVENT_CONTROLLER(gesture));
     return;
 }
@@ -224,7 +226,10 @@ font_manager_font_scale_init (FontManagerFontScale *self)
     self->max = gtk_label_new(NULL);
     self->scale = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, NULL);
     self->spin = gtk_spin_button_new(NULL, 0.5, 1);
-    self->adjustment = gtk_adjustment_new(DEFAULT_PREVIEW_SIZE, MIN_FONT_SIZE, MAX_FONT_SIZE, 0.5, 1.0, 0);
+    self->adjustment = gtk_adjustment_new(DEFAULT_PREVIEW_SIZE,
+                                          MIN_FONT_SIZE,
+                                          MAX_FONT_SIZE,
+                                          0.5, 1.0, 0);
     self->adjustment = g_object_ref_sink(self->adjustment);
     font_manager_font_scale_set_adjustment(self, self->adjustment);
     add_child_widget(self, "min", self->min);
@@ -277,14 +282,16 @@ font_manager_font_scale_get_value (FontManagerFontScale *self)
  * @adjustment:     #GtkAdjustment to use
  */
 void
-font_manager_font_scale_set_adjustment (FontManagerFontScale *self, GtkAdjustment *adjustment)
+font_manager_font_scale_set_adjustment (FontManagerFontScale *self,
+                                        GtkAdjustment *adjustment)
 {
     g_return_if_fail(self != NULL && adjustment != NULL);
     if (g_set_object(&self->adjustment, adjustment))
         g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_ADJUSTMENT]);
     gtk_range_set_adjustment(GTK_RANGE(self->scale), self->adjustment);
     gtk_spin_button_set_adjustment(GTK_SPIN_BUTTON(self->spin), self->adjustment);
-    g_signal_connect_swapped(self->adjustment, "value-changed", (GCallback) on_value_changed, self);
+    g_signal_connect_swapped(self->adjustment, "value-changed",
+                             (GCallback) on_value_changed, self);
     return;
 }
 
@@ -297,7 +304,8 @@ void
 font_manager_font_scale_set_value (FontManagerFontScale *self, gdouble value)
 {
     g_return_if_fail(self != NULL && self->adjustment != NULL);
-    gtk_adjustment_set_value(self->adjustment, CLAMP(value, MIN_FONT_SIZE, MAX_FONT_SIZE));
+    gtk_adjustment_set_value(self->adjustment,
+                             CLAMP(value, MIN_FONT_SIZE, MAX_FONT_SIZE));
     return;
 }
 
