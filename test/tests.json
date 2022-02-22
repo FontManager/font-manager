@@ -16,6 +16,10 @@
         "label" : "Place Holder Page"
     },
     {
+        "name" : "preference-row",
+        "label" : "Preference Row"
+    },
+    {
         "name" : "preview-controls",
         "label" : "Preview Controls"
     },

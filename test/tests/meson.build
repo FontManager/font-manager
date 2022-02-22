@@ -4,6 +4,7 @@ tests = [
     'font-scale',
     'license-page',
     'place-holder',
+    'preference-row',
     'preview-controls',
     'preview-page',
     'properties-page'
