@@ -349,7 +349,6 @@ unicode_character_map_draw_character_with_metrics (GtkDrawingArea *widget,
     gint xpad = ((alloc.width - char_rect.width) / 2);
     gint ypad = ((alloc.height - char_rect.height) / 2);
     gint baseline = pango_layout_get_baseline(self->zoom_layout) / PANGO_SCALE;
-    gtk_render_layout(ctx, cr, char_rect.x + xpad, char_rect.y + ypad, self->zoom_layout);
     gtk_style_context_save(ctx);
     gtk_style_context_set_state(ctx, GTK_STATE_FLAG_INSENSITIVE);
     gtk_style_context_add_class(ctx, "PangoGlyphMetrics");
@@ -359,6 +358,7 @@ unicode_character_map_draw_character_with_metrics (GtkDrawingArea *widget,
     gtk_render_line(ctx, cr, PANGO_LBEARING(char_rect) + ypad, 1, PANGO_LBEARING(char_rect) + ypad, alloc.height - 1);
     gtk_render_line(ctx, cr, PANGO_RBEARING(char_rect) + ypad, 1, PANGO_RBEARING(char_rect) + ypad, alloc.height - 1);
     gtk_style_context_restore(ctx);
+    gtk_render_layout(ctx, cr, char_rect.x + xpad, char_rect.y + ypad, self->zoom_layout);
     return;
 }
 
