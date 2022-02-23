@@ -209,7 +209,6 @@ static void
 set_title_attributes (GtkWidget *widget)
 {
     PangoAttrList *attrs = pango_attr_list_new();
-    pango_attr_list_insert(attrs, pango_attr_weight_new(PANGO_WEIGHT_BOLD));
     pango_attr_list_insert(attrs, pango_attr_scale_new(PANGO_SCALE_MEDIUM));
     gtk_label_set_attributes(GTK_LABEL(widget), attrs);
     pango_attr_list_unref(attrs);
