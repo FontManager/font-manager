@@ -68,7 +68,7 @@ font_manager_fsType_get_type (void)
  * Returns: (transfer none) (nullable): @fstype as a string
  */
 const gchar *
-font_manager_fsType_to_string (FontManagerfsType fstype) {
+font_manager_fsType_to_string (gint fstype) {
     switch (fstype) {
         case FONT_MANAGER_FSTYPE_RESTRICTED_LICENSE:
             return _("Restricted License Embedding");

@@ -23,7 +23,7 @@
 /**
  * SECTION: font-manager-font-scale
  * @short_description: Font size selection widget
- * @title: FontManagerFontScale
+ * @title: Font Scale
  * @include: font-manager-font-scale.h
  *
  * Widget allowing for font size selection through use of a #GtkScale,
@@ -35,19 +35,32 @@
 #define FOCUSED_OPACITY 0.95
 #define MIN_FONT_SIZE FONT_MANAGER_MIN_FONT_SIZE
 #define MAX_FONT_SIZE FONT_MANAGER_MAX_FONT_SIZE
-#define DEFAULT_PREVIEW_SIZE FONT_MANAGER_DEFAULT_PREVIEW_SIZE
 #define MIN_LABEL "<span font=\"Serif Italic Bold\" size=\"small\"> A </span>"
 #define MAX_LABEL "<span font=\"Serif Italic Bold\" size=\"large\"> A </span>"
+
+#define N_ZOOM_SHORTCUTS 3
+
+static const struct {
+    gint16 direction;
+    const gchar *accel;
+} ZoomShortcuts [N_ZOOM_SHORTCUTS] = {
+    { -1, "<Ctrl>minus" },
+    { 0, "<Ctrl>0" },
+    { 1, "<Ctrl>plus|<Ctrl>equal" }
+};
+
+static void on_zoom (GtkWidget *widget, const gchar *action_name, GVariant *parameter);
 
 struct _FontManagerFontScale
 {
     GtkWidget parent_instance;
 
-    GtkWidget *min;
-    GtkWidget *max;
-    GtkWidget *scale;
-    GtkWidget *spin;
-    GtkAdjustment *adjustment;
+    gdouble         default_size;
+    GtkWidget       *min;
+    GtkWidget       *max;
+    GtkWidget       *scale;
+    GtkWidget       *spin;
+    GtkAdjustment   *adjustment;
 };
 
 G_DEFINE_TYPE(FontManagerFontScale, font_manager_font_scale, GTK_TYPE_WIDGET)
@@ -55,8 +68,9 @@ G_DEFINE_TYPE(FontManagerFontScale, font_manager_font_scale, GTK_TYPE_WIDGET)
 enum
 {
     PROP_RESERVED,
-    PROP_VALUE,
     PROP_ADJUSTMENT,
+    PROP_DEFAULT_SIZE,
+    PROP_VALUE,
     N_PROPERTIES
 };
 
@@ -85,6 +99,9 @@ font_manager_font_scale_get_property (GObject *gobject,
         case PROP_ADJUSTMENT:
             g_value_set_object(value, font_manager_font_scale_get_adjustment(self));
             break;
+        case PROP_DEFAULT_SIZE:
+            g_value_set_double(value, self->default_size);
+            break;
         case PROP_VALUE:
             g_value_set_double(value, font_manager_font_scale_get_value(self));
             break;
@@ -106,6 +123,9 @@ font_manager_font_scale_set_property (GObject *gobject,
         case PROP_ADJUSTMENT:
             font_manager_font_scale_set_adjustment(self, g_value_get_object(value));
             break;
+        case PROP_DEFAULT_SIZE:
+            font_manager_font_scale_set_default_size(self, g_value_get_double(value));
+            break;
         case PROP_VALUE:
             font_manager_font_scale_set_value(self, g_value_get_double(value));
             break;
@@ -126,21 +146,7 @@ font_manager_font_scale_class_init (FontManagerFontScaleClass *klass)
     object_class->set_property = font_manager_font_scale_set_property;
     gtk_widget_class_set_layout_manager_type(widget_class, GTK_TYPE_BOX_LAYOUT);
     gtk_widget_class_set_css_name(widget_class, "FontManagerFontScale");
-
-    /**
-     * FontManagerFontScale:value:
-     *
-     * The current value of #FontManagerFontScale.
-     */
-    obj_properties[PROP_VALUE] = g_param_spec_double("value",
-                                                     NULL,
-                                                     "Current value",
-                                                     MIN_FONT_SIZE,
-                                                     MAX_FONT_SIZE,
-                                                     DEFAULT_PREVIEW_SIZE,
-                                                     G_PARAM_STATIC_STRINGS |
-                                                     G_PARAM_READWRITE |
-                                                     G_PARAM_EXPLICIT_NOTIFY);
+    gtk_widget_class_install_action(widget_class, "zoom", "n",  on_zoom);
 
     /**
      * FontManagerFontScale:adjustment:
@@ -155,7 +161,55 @@ font_manager_font_scale_class_init (FontManagerFontScaleClass *klass)
                                                           G_PARAM_READWRITE |
                                                           G_PARAM_EXPLICIT_NOTIFY);
 
+    /**
+     * FontManagerFontScale:default-size:
+     *
+     * The default preview size of #FontManagerFontScale.
+     */
+    obj_properties[PROP_DEFAULT_SIZE] = g_param_spec_double("default-size",
+                                                            NULL,
+                                                            "Default preview size",
+                                                            MIN_FONT_SIZE,
+                                                            MAX_FONT_SIZE,
+                                                            FONT_MANAGER_DEFAULT_PREVIEW_SIZE,
+                                                            G_PARAM_STATIC_STRINGS |
+                                                            G_PARAM_READWRITE |
+                                                            G_PARAM_EXPLICIT_NOTIFY);
+
+    /**
+     * FontManagerFontScale:value:
+     *
+     * The current value of #FontManagerFontScale.
+     */
+    obj_properties[PROP_VALUE] = g_param_spec_double("value",
+                                                     NULL,
+                                                     "Current value",
+                                                     MIN_FONT_SIZE,
+                                                     MAX_FONT_SIZE,
+                                                     FONT_MANAGER_DEFAULT_PREVIEW_SIZE,
+                                                     G_PARAM_STATIC_STRINGS |
+                                                     G_PARAM_READWRITE |
+                                                     G_PARAM_EXPLICIT_NOTIFY);
+
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
+    return;
+
+}
+
+static void
+on_zoom (GtkWidget   *widget,
+         const gchar *action_name,
+         GVariant    *parameter)
+{
+    FontManagerFontScale *self = FONT_MANAGER_FONT_SCALE(widget);
+    gint16 direction = g_variant_get_int16(parameter);
+    gdouble step = 0.5;
+    gdouble current = gtk_adjustment_get_value(self->adjustment);
+    gdouble value = self->default_size;
+    if (direction != 0)
+        value = direction > 0 ? current + step : current - step;
+    value = CLAMP(value, MIN_FONT_SIZE, MAX_FONT_SIZE);
+    gtk_adjustment_set_value(self->adjustment, value);
     return;
 }
 
@@ -222,11 +276,12 @@ static void
 font_manager_font_scale_init (FontManagerFontScale *self)
 {
     g_return_if_fail(self != NULL);
+    self->default_size = FONT_MANAGER_DEFAULT_PREVIEW_SIZE;
     self->min = gtk_label_new(NULL);
     self->max = gtk_label_new(NULL);
     self->scale = gtk_scale_new(GTK_ORIENTATION_HORIZONTAL, NULL);
     self->spin = gtk_spin_button_new(NULL, 0.5, 1);
-    self->adjustment = gtk_adjustment_new(DEFAULT_PREVIEW_SIZE,
+    self->adjustment = gtk_adjustment_new(self->default_size,
                                           MIN_FONT_SIZE,
                                           MAX_FONT_SIZE,
                                           0.5, 1.0, 0);
@@ -247,6 +302,18 @@ font_manager_font_scale_init (FontManagerFontScale *self)
     gtk_widget_set_valign(GTK_WIDGET(self), GTK_ALIGN_END);
     gtk_widget_add_css_class(GTK_WIDGET(self), FONT_MANAGER_STYLE_CLASS_VIEW);
     gtk_widget_set_name(GTK_WIDGET(self), "FontManagerFontScale");
+    GtkEventController *shortcuts = gtk_shortcut_controller_new();
+    gtk_event_controller_set_propagation_phase(shortcuts, GTK_PHASE_BUBBLE);
+    gtk_widget_add_controller(GTK_WIDGET(self), GTK_EVENT_CONTROLLER(shortcuts));
+    gtk_shortcut_controller_set_scope(GTK_SHORTCUT_CONTROLLER(shortcuts), GTK_SHORTCUT_SCOPE_GLOBAL);
+    for (gint i = 0; i < N_ZOOM_SHORTCUTS; i++) {
+        GtkShortcutAction *action = gtk_named_action_new("zoom");
+        GtkShortcutTrigger *trigger = gtk_shortcut_trigger_parse_string(ZoomShortcuts[i].accel);
+        GtkShortcut *shortcut = gtk_shortcut_new(trigger, action);
+        GVariant *args = g_variant_new_int16(ZoomShortcuts[i].direction);
+        gtk_shortcut_set_arguments(shortcut, args);
+        gtk_shortcut_controller_add_shortcut(GTK_SHORTCUT_CONTROLLER(shortcuts), shortcut);
+    }
     return;
 }
 
@@ -296,6 +363,27 @@ font_manager_font_scale_set_adjustment (FontManagerFontScale *self,
 }
 
 /**
+ * font_manager_font_scale_set_default_size:
+ * @self:   #FontManagerFontScale
+ * @value:  #gdouble to use as default size for @self
+ *
+ * Sets the size used as default when a reset is requested using a keyboard
+ * shortcut i.e. &lt;Ctrl&gt;+0
+ */
+void
+font_manager_font_scale_set_default_size (FontManagerFontScale *self,
+                                          gdouble value)
+{
+    self->default_size = value;
+    gdouble current_value = gtk_adjustment_get_value(self->adjustment);
+    gtk_adjustment_configure(self->adjustment,
+                             current_value,
+                             MIN_FONT_SIZE, MAX_FONT_SIZE,
+                             0.5, 1.0, 0);
+    return;
+}
+
+/**
  * font_manager_font_scale_set_value:
  * @self:   #FontManagerFontScale
  * @value:  New value
@@ -320,3 +408,4 @@ font_manager_font_scale_new (void)
 {
     return g_object_new(FONT_MANAGER_TYPE_FONT_SCALE, NULL);
 }
+

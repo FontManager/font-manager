@@ -28,6 +28,10 @@
         "label" : "Font Preview Page"
     },
     {
+        "name" : "preview-pane",
+        "label" : "Font Preview Pane"
+    },
+    {
         "name" : "properties-page",
         "label" : "Font Properties Page"
     }

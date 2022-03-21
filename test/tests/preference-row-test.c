@@ -5,7 +5,7 @@ G_MODULE_EXPORT
 TestDialog *
 get_widget (TestApplicationWindow *parent)
 {
-    TestDialog *dialog = test_dialog_new(parent, "Font Scale", 540, 480);
+    TestDialog *dialog = test_dialog_new(parent, "Preference Row", 540, 480);
     GtkWidget *scroll = gtk_scrolled_window_new();
     GtkWidget *list_box = gtk_list_box_new();
     gtk_widget_add_css_class(list_box, "rich-list");

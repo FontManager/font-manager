@@ -20,6 +20,15 @@
 
 #include "font-manager-preference-row.h"
 
+/**
+ * SECTION: font-manager-preference-row
+ * @short_description: Preference row widget
+ * @title: Preference Row
+ * @include: font-manager-preference-row.h
+ *
+ * Convenience class to allow quickly creating consistent application preference rows.
+ */
+
 struct _FontManagerPreferenceRow
 {
     GtkListBoxRow   parent_instance;
@@ -32,9 +41,7 @@ struct _FontManagerPreferenceRow
     GtkWidget       *children;
 };
 
-G_DEFINE_TYPE(FontManagerPreferenceRow,
-              font_manager_preference_row,
-              GTK_TYPE_LIST_BOX_ROW)
+G_DEFINE_TYPE(FontManagerPreferenceRow, font_manager_preference_row, GTK_TYPE_LIST_BOX_ROW)
 
 enum
 {
@@ -116,23 +123,19 @@ font_manager_preference_row_set_property (GObject *gobject,
     FontManagerPreferenceRow *self = FONT_MANAGER_PREFERENCE_ROW(gobject);
     switch (property_id) {
         case PROP_ICON_NAME:
-            font_manager_preference_row_set_icon_name(self,
-                                                      g_value_get_string(value));
+            font_manager_preference_row_set_icon_name(self, g_value_get_string(value));
             font_manager_preference_row_update_title_alignment(self);
             break;
         case PROP_TITLE:
-            font_manager_preference_row_set_label(GTK_LABEL(self->title),
-                                                  g_value_get_string(value));
+            font_manager_preference_row_set_label(GTK_LABEL(self->title), g_value_get_string(value));
             font_manager_preference_row_update_title_alignment(self);
             break;
         case PROP_SUBTITLE:
-            font_manager_preference_row_set_label(GTK_LABEL(self->subtitle),
-                                                  g_value_get_string(value));
+            font_manager_preference_row_set_label(GTK_LABEL(self->subtitle), g_value_get_string(value));
             font_manager_preference_row_update_title_alignment(self);
             break;
         case PROP_CONTROL:
-            font_manager_preference_row_set_action_widget(self,
-                                                          g_value_get_object(value));
+            font_manager_preference_row_set_action_widget(self, g_value_get_object(value));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
@@ -233,7 +236,6 @@ insert_widget (GtkGrid *grid, GtkWidget *widget,
                int width, int height,
                gboolean expand)
 {
-    gtk_widget_set_opacity(widget, 0.75);
     gtk_widget_set_halign(widget, halign);
     gtk_widget_set_valign(widget, valign);
     font_manager_widget_set_margin(widget, FONT_MANAGER_DEFAULT_MARGIN);
@@ -279,31 +281,6 @@ font_manager_preference_row_init (FontManagerPreferenceRow *self)
     gtk_list_box_row_set_child(GTK_LIST_BOX_ROW(self), container);
     gtk_widget_set_name(GTK_WIDGET(self), "FontManagerPreferenceRow");
     return;
-}
-
-/**
- * font_manager_preference_row_new:
- * @title:                          Preference name
- * @subtitle:       (nullable):     Description of preference or %NULL
- * @icon_name:      (nullable):     Icon to display or %NULL
- * @action_widget:  (nullable):     #GtkWidget to control preference state or %NULL
- *
- * Returns: (transfer full): A newly created #FontManagerPreferenceRow.
- * Free the returned object using #g_object_unref().
- */
-
-GtkWidget *
-font_manager_preference_row_new (const gchar *title,
-                                 const gchar *subtitle,
-                                 const gchar *icon_name,
-                                 GtkWidget *action_widget)
-{
-    return g_object_new(FONT_MANAGER_TYPE_PREFERENCE_ROW,
-                        "title", title,
-                        "subtitle", subtitle,
-                        "icon-name", icon_name,
-                        "action-widget", action_widget,
-                        NULL);
 }
 
 /**
@@ -389,5 +366,29 @@ font_manager_preference_row_set_child_visible (FontManagerPreferenceRow *self,
     g_return_if_fail(self != NULL);
     gtk_revealer_set_reveal_child(GTK_REVEALER(self->revealer), visible);
     return;
+}
+
+/**
+ * font_manager_preference_row_new:
+ * @title:                          Preference name
+ * @subtitle:       (nullable):     Description of preference or %NULL
+ * @icon_name:      (nullable):     Icon to display or %NULL
+ * @action_widget:  (nullable):     #GtkWidget to control preference state or %NULL
+ *
+ * Returns: (transfer full): A newly created #FontManagerPreferenceRow.
+ * Free the returned object using #g_object_unref().
+ */
+GtkWidget *
+font_manager_preference_row_new (const gchar *title,
+                                 const gchar *subtitle,
+                                 const gchar *icon_name,
+                                 GtkWidget *action_widget)
+{
+    return g_object_new(FONT_MANAGER_TYPE_PREFERENCE_ROW,
+                        "title", title,
+                        "subtitle", subtitle,
+                        "icon-name", icon_name,
+                        "action-widget", action_widget,
+                        NULL);
 }
 

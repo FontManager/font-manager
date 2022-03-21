@@ -36,9 +36,9 @@ TestDialog *
 get_widget (TestApplicationWindow *parent)
 {
     TestDialog *dialog = test_dialog_new(parent, "Properties Page", 600, 450);
-    GtkWidget *props = font_manager_properties_page_new();
+    GtkWidget *props = font_manager_font_properties_page_new();
     g_autoptr(JsonObject) _props = get_test_props();
-    font_manager_properties_page_update(FONT_MANAGER_PROPERTIES_PAGE(props), _props);
+    font_manager_font_properties_page_update(FONT_MANAGER_PROPERTIES_PAGE(props), _props);
     test_dialog_append(dialog, props);
     return dialog;
 }

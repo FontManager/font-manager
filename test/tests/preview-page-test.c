@@ -5,8 +5,7 @@ void on_font_set (GtkFontButton *chooser, gpointer user_data)
 {
     g_autoptr(PangoFontDescription) font_desc = gtk_font_chooser_get_font_desc(GTK_FONT_CHOOSER(chooser));
     pango_font_description_unset_fields(font_desc, PANGO_FONT_MASK_SIZE);
-    g_autofree gchar *font = pango_font_description_to_string(font_desc);
-    font_manager_preview_page_set_font_description(FONT_MANAGER_PREVIEW_PAGE(user_data), font);
+    font_manager_preview_page_set_font_desc(FONT_MANAGER_PREVIEW_PAGE(user_data), font_desc);
     return;
 }
 

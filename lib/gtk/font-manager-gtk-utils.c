@@ -28,6 +28,52 @@
  */
 
 /**
+ * font_manager_set_application_style:
+ *
+ * Load application specific CSS and icons.
+ */
+void
+font_manager_set_application_style (void)
+{
+    g_autofree gchar *css = g_build_path(G_DIR_SEPARATOR_S,
+                                         FONT_MANAGER_BUS_PATH,
+                                         "ui",
+                                         "FontManager.css",
+                                         NULL);
+
+    g_autofree gchar *icons = g_build_path(G_DIR_SEPARATOR_S,
+                                           FONT_MANAGER_BUS_PATH,
+                                           "icons",
+                                           NULL);
+
+    GdkDisplay *default_display = gdk_display_get_default();
+    GtkIconTheme *icon_theme = gtk_icon_theme_get_for_display(default_display);
+    g_autoptr(GtkCssProvider) css_provider = gtk_css_provider_new();
+    gtk_icon_theme_add_resource_path(icon_theme, icons);
+    gtk_css_provider_load_from_resource(css_provider, css);
+    gtk_style_context_add_provider_for_display(default_display,
+                                              GTK_STYLE_PROVIDER(css_provider),
+                                              GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
+    return;
+}
+
+/**
+ * font_manager_clear_pango_cache:
+ * @ctx:    #PangoContext
+ *
+ * Forces Pango to update the cached font configuration.
+ *
+ * Required to render sourced fonts on Pango > 1.47
+ */
+void
+font_manager_clear_pango_cache (PangoContext *ctx)
+{
+    PangoFontMap *font_map = pango_context_get_font_map(ctx);
+    pango_fc_font_map_config_changed((PangoFcFontMap *) font_map);
+    return;
+}
+
+/**
  * font_manager_text_tag_table_new:
  *
  * Returns: (transfer full): A newly created #GtkTextTagTable.
@@ -50,6 +96,8 @@ font_manager_text_tag_table_new (void)
 
 /**
  * font_manager_widget_set_align:
+ * @widget:     #GtkWidget
+ * @align:      #GtkAlign
  *
  * Set both halign and valign to the same value.
  */
@@ -64,6 +112,8 @@ font_manager_widget_set_align (GtkWidget *widget, GtkAlign align)
 
 /**
  * font_manager_widget_set_expand:
+ * @widget:     #GtkWidget
+ * @expand:     #gboolean
  *
  * Set both hexpand and vexpand to the same value.
  */
@@ -78,6 +128,8 @@ font_manager_widget_set_expand (GtkWidget *widget, gboolean expand)
 
 /**
  * font_manager_widget_set_margin:
+ * @widget:     #GtkWidget
+ * @margin:     #gint
  *
  * Set all margin properties to the same value.
  */
@@ -94,6 +146,7 @@ font_manager_widget_set_margin (GtkWidget *widget, gint margin)
 
 /**
  * font_manager_widget_dispose:
+ * @widget:     #GtkWidget
  *
  * Convenience function which iterates through the children of a #GtkWidget,
  * calls #gtk_widget_unparent() on each and sets the pointer to #NULL.
@@ -129,6 +182,18 @@ font_manager_get_localized_pangram (void)
 }
 
 /**
+ * font_manager_get_localized_preview_text:
+ *
+ * Returns: (transfer full): A newly allocated string. Free the result using #g_free.
+ */
+gchar *
+font_manager_get_localized_preview_text (void)
+{
+    g_autofree gchar *pangram = font_manager_get_localized_pangram();
+    return g_strdup_printf(FONT_MANAGER_DEFAULT_PREVIEW_TEXT, pangram);
+}
+
+/**
  * font_manager_get_shortcut_for_stateful_action:
  * @prefix: (nullable): Action prefix i.e. "app", "window", etc.
  * @name:               Action name
@@ -158,20 +223,22 @@ font_manager_get_shortcut_for_stateful_action (const gchar *prefix, const gchar 
 static gint pending_event = 0;
 static GdkModifierType modifiers = (GDK_CONTROL_MASK | GDK_SHIFT_MASK);
 
-gboolean tree_view_select_func (GtkTreeSelection *selection,
-                                GtkTreeModel *model,
-                                GtkTreePath *path,
-                                gboolean path_currently_selected,
-                                gpointer user_data)
+static gboolean
+tree_view_select_func (GtkTreeSelection *selection,
+                       GtkTreeModel     *model,
+                       GtkTreePath      *path,
+                       gboolean          path_currently_selected,
+                       gpointer          user_data)
 {
     return (pending_event < 1);
 }
 
-void on_tree_view_pressed_event (GtkGestureClick *gesture,
-                                 gint n_press,
-                                 gdouble x,
-                                 gdouble y,
-                                 gpointer treeview)
+static void
+on_tree_view_pressed_event (GtkGestureClick *gesture,
+                            gint             n_press,
+                            gdouble          x,
+                            gdouble          y,
+                            gpointer         treeview)
 {
     g_autoptr(GtkTreePath) path;
     gtk_tree_view_get_path_at_pos(treeview, x, y, &path, NULL, NULL, NULL);
@@ -188,11 +255,12 @@ void on_tree_view_pressed_event (GtkGestureClick *gesture,
     return;
 }
 
-void on_tree_view_released_event (GtkGestureClick *gesture,
-                                 gint n_press,
-                                 gdouble x,
-                                 gdouble y,
-                                 gpointer treeview)
+static void
+on_tree_view_released_event (GtkGestureClick *gesture,
+                             gint             n_press,
+                             gdouble          x,
+                             gdouble          y,
+                             gpointer         treeview)
 {
     g_autoptr(GtkTreePath) path;
     gtk_tree_view_get_path_at_pos(treeview, x, y, &path, NULL, NULL, NULL);

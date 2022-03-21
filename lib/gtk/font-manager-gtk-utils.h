@@ -20,8 +20,18 @@
 
 #pragma once
 
+#include <pango/pango-context.h>
+#include <pango/pango-fontmap.h>
+#include <pango/pangofc-fontmap.h>
+
 #include <gtk/gtk.h>
 
+#define FONT_MANAGER_BUS_ID "org.gnome.FontManager"
+#define FONT_MANAGER_BUS_PATH "/org/gnome/FontManager"
+#define FONT_MANAGER_FONT_VIEWER_BUS_ID "org.gnome.FontViewer"
+#define FONT_MANAGER_FONT_VIEWER_BUS_PATH "/org/gnome/FontViewer"
+
+#define FONT_MANAGER_STYLE_CLASS_FLAT "flat"
 #define FONT_MANAGER_STYLE_CLASS_VIEW "view"
 #define FONT_MANAGER_STYLE_CLASS_DIM_LABEL "dim-label"
 
@@ -32,6 +42,7 @@
 #define FONT_MANAGER_MIN_FONT_SIZE 6.0
 #define FONT_MANAGER_MAX_FONT_SIZE 96.0
 #define FONT_MANAGER_DEFAULT_PREVIEW_SIZE 10.0
+#define FONT_MANAGER_CHARACTER_MAP_PREVIEW_SIZE 16.0
 
 #define FONT_MANAGER_DEFAULT_PREVIEW_TEXT "\n\n\n"\
 "    %s\n" \
@@ -105,12 +116,15 @@
 "sem facilisis nisi, ut aliquet sapien est a sapien. Quisque sed enim j" \
 "usto, sit amet volutpat urna."
 
+void font_manager_set_application_style (void);
+void font_manager_clear_pango_cache (PangoContext *ctx);
 void font_manager_widget_set_align (GtkWidget *widget, GtkAlign align);
 void font_manager_widget_set_expand (GtkWidget *widget, gboolean expand);
 void font_manager_widget_set_margin (GtkWidget *widget, gint margin);
 void font_manager_widget_dispose (GtkWidget *widget);
 
 gchar * font_manager_get_localized_pangram (void);
+gchar * font_manager_get_localized_preview_text (void);
 
 GtkTextTagTable * font_manager_text_tag_table_new (void);
 GtkGesture * font_manager_tree_view_setup_drag_selection (GtkTreeView *treeview);

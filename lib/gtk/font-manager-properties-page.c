@@ -26,7 +26,8 @@
  * @title: Properties Pane
  * @include: font-manager-properties-page.h
  *
- * Widget intended to display a message in an empty area.
+ * This widget displays extended information about the selected font file,
+ * including any embedded designer details, copyright and design description.
  */
 
 struct _FontManagerPropertiesPage
@@ -42,7 +43,7 @@ struct _FontManagerPropertiesPage
     JsonObject  *properties;
 };
 
-G_DEFINE_TYPE(FontManagerPropertiesPage, font_manager_properties_page, GTK_TYPE_WIDGET)
+G_DEFINE_TYPE(FontManagerPropertiesPage, font_manager_font_properties_page, GTK_TYPE_WIDGET)
 
 static const struct
 {
@@ -127,15 +128,6 @@ construct_end_child (FontManagerPropertiesPage *self)
     self->description = gtk_label_new(NULL);
     self->designer = gtk_link_button_new("");
     self->designer_label = gtk_label_new("");
-    gtk_label_set_yalign(GTK_LABEL(self->copyright), 0.0);
-    gtk_label_set_yalign(GTK_LABEL(self->description), 0.0);
-    gtk_label_set_xalign(GTK_LABEL(self->copyright), 0.0);
-    gtk_label_set_xalign(GTK_LABEL(self->description), 0.0);
-    font_manager_widget_set_expand(box, TRUE);
-    font_manager_widget_set_margin(self->copyright, FONT_MANAGER_DEFAULT_MARGIN * 2);
-    font_manager_widget_set_margin(self->description, FONT_MANAGER_DEFAULT_MARGIN * 2);
-    font_manager_widget_set_margin(self->designer, FONT_MANAGER_DEFAULT_MARGIN);
-    font_manager_widget_set_margin(self->designer_label, FONT_MANAGER_DEFAULT_MARGIN * 2);
     gtk_label_set_ellipsize(GTK_LABEL(self->designer_label), PANGO_ELLIPSIZE_END);
     gtk_widget_set_margin_top(self->copyright, FONT_MANAGER_DEFAULT_MARGIN * 3);
     gtk_widget_set_margin_bottom(self->copyright, 0);
@@ -143,17 +135,30 @@ construct_end_child (FontManagerPropertiesPage *self)
     gtk_label_set_wrap_mode(GTK_LABEL(self->copyright), PANGO_WRAP_WORD_CHAR);
     gtk_label_set_wrap(GTK_LABEL(self->description), TRUE);
     gtk_label_set_wrap_mode(GTK_LABEL(self->description), PANGO_WRAP_WORD_CHAR);
-    gtk_box_insert_child_after(GTK_BOX(box), self->copyright, NULL);
-    gtk_box_insert_child_after(GTK_BOX(box), self->description, self->copyright);
-    gtk_box_insert_child_after(GTK_BOX(box), self->designer, self->description);
-    gtk_box_insert_child_after(GTK_BOX(box), self->designer_label, self->designer);
+    gtk_box_append(GTK_BOX(box), self->copyright);
+    gtk_box_append(GTK_BOX(box), self->description);
+    gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scroll), box);
+    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll),
+                                   GTK_POLICY_NEVER,
+                                   GTK_POLICY_AUTOMATIC);
+    gtk_box_append(GTK_BOX(child2), scroll);
+    gtk_box_append(GTK_BOX(child2), self->designer);
+    gtk_box_append(GTK_BOX(child2), self->designer_label);
+    gtk_label_set_yalign(GTK_LABEL(self->copyright), 0.0);
+    gtk_label_set_yalign(GTK_LABEL(self->description), 0.0);
+    gtk_label_set_xalign(GTK_LABEL(self->copyright), 0.0);
+    gtk_label_set_xalign(GTK_LABEL(self->description), 0.0);
+    font_manager_widget_set_expand(GTK_WIDGET(self), TRUE);
+    font_manager_widget_set_expand(box, TRUE);
+    font_manager_widget_set_expand(scroll, TRUE);
     font_manager_widget_set_expand(self->copyright, FALSE);
     font_manager_widget_set_expand(self->description, TRUE);
     font_manager_widget_set_expand(self->designer, FALSE);
     font_manager_widget_set_expand(self->designer_label, FALSE);
-    gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scroll), box);
-    gtk_box_append(GTK_BOX(child2), scroll);
-    font_manager_widget_set_expand(scroll, TRUE);
+    font_manager_widget_set_margin(self->copyright, FONT_MANAGER_DEFAULT_MARGIN * 2);
+    font_manager_widget_set_margin(self->description, FONT_MANAGER_DEFAULT_MARGIN * 2);
+    font_manager_widget_set_margin(self->designer, FONT_MANAGER_DEFAULT_MARGIN);
+    font_manager_widget_set_margin(self->designer_label, FONT_MANAGER_DEFAULT_MARGIN * 2);
     gtk_widget_set_margin_start(child2, FONT_MANAGER_DEFAULT_MARGIN * 1.5);
     gtk_widget_set_margin_end(child2, FONT_MANAGER_DEFAULT_MARGIN * 1.5);
     return child2;
@@ -170,8 +175,33 @@ set_row_visible (FontManagerPropertiesPage *self, gint row, gboolean visible)
 }
 
 static void
+reset (FontManagerPropertiesPage *self)
+{
+    g_return_if_fail(self != NULL);
+    for (gint i = 0; i < N_FONT_PROPERTIES; i++) {
+        set_row_visible(self, i, TRUE);
+        GtkWidget *widget = gtk_grid_get_child_at(GTK_GRID(self->grid), 1, i);
+        if (i == FILESIZE_PROPERTY) {
+            gtk_link_button_set_uri(GTK_LINK_BUTTON(widget), "");
+            gtk_button_set_label(GTK_BUTTON(widget), NULL);
+        } else {
+            gtk_label_set_label(GTK_LABEL(widget), NULL);
+        }
+    }
+    gtk_label_set_text(GTK_LABEL(self->copyright), NULL);
+    gtk_label_set_text(GTK_LABEL(self->description), NULL);
+    gtk_button_set_label(GTK_BUTTON(self->designer), "");
+    gtk_link_button_set_uri(GTK_LINK_BUTTON(self->designer), "");
+    gtk_widget_set_tooltip_text(self->designer, "");
+    gtk_label_set_label(GTK_LABEL(self->designer_label), "");
+    return;
+}
+
+static void
 update (FontManagerPropertiesPage *self)
 {
+    reset(self);
+
     for (gint i = 0; i < N_FONT_PROPERTIES; i++) {
 
         const gchar *member = FontPropertyRow[i].member_name;
@@ -235,61 +265,39 @@ update (FontManagerPropertiesPage *self)
 }
 
 static void
-reset (FontManagerPropertiesPage *self)
-{
-    g_return_if_fail(self != NULL);
-    for (gint i = 0; i < N_FONT_PROPERTIES; i++) {
-        set_row_visible(self, i, TRUE);
-        GtkWidget *widget = gtk_grid_get_child_at(GTK_GRID(self->grid), 1, i);
-        if (i == FILESIZE_PROPERTY) {
-            gtk_link_button_set_uri(GTK_LINK_BUTTON(widget), "");
-            gtk_button_set_label(GTK_BUTTON(widget), NULL);
-        } else {
-            gtk_label_set_label(GTK_LABEL(widget), NULL);
-        }
-    }
-    gtk_label_set_text(GTK_LABEL(self->copyright), NULL);
-    gtk_label_set_text(GTK_LABEL(self->description), NULL);
-    gtk_button_set_label(GTK_BUTTON(self->designer), "");
-    gtk_link_button_set_uri(GTK_LINK_BUTTON(self->designer), "");
-    gtk_widget_set_tooltip_text(self->designer, "");
-    gtk_label_set_label(GTK_LABEL(self->designer_label), "");
-    return;
-}
-
-static void
-font_manager_properties_page_dispose (GObject *gobject)
+font_manager_font_properties_page_dispose (GObject *gobject)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerPropertiesPage *self = FONT_MANAGER_PROPERTIES_PAGE(gobject);
     g_clear_pointer(&self->properties, json_object_unref);
     font_manager_widget_dispose(GTK_WIDGET(self));
-    G_OBJECT_CLASS(font_manager_properties_page_parent_class)->dispose(gobject);
+    G_OBJECT_CLASS(font_manager_font_properties_page_parent_class)->dispose(gobject);
 }
 
 static void
-font_manager_properties_page_class_init (FontManagerPropertiesPageClass *klass)
+font_manager_font_properties_page_class_init (FontManagerPropertiesPageClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
-    object_class->dispose = font_manager_properties_page_dispose;
+    object_class->dispose = font_manager_font_properties_page_dispose;
     gtk_widget_class_set_layout_manager_type(widget_class, GTK_TYPE_BOX_LAYOUT);
     gtk_widget_class_set_css_name(widget_class, "FontManagerPropertiesPage");
     return;
 }
 
 static void
-font_manager_properties_page_init (FontManagerPropertiesPage *self)
+font_manager_font_properties_page_init (FontManagerPropertiesPage *self)
 {
     g_return_if_fail(self != NULL);
     gtk_widget_add_css_class(GTK_WIDGET(self), FONT_MANAGER_STYLE_CLASS_VIEW);
     gtk_widget_add_css_class(GTK_WIDGET(self), "FontManagerPropertiesPage");
     gtk_widget_set_name(GTK_WIDGET(self), "FontManagerPropertiesPage");
     GtkWidget *pane = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
+    gtk_widget_set_parent(pane, GTK_WIDGET(self));
+    font_manager_widget_set_expand(pane, TRUE);
     gtk_paned_set_start_child(GTK_PANED(pane), construct_start_child(self));
     gtk_paned_set_end_child(GTK_PANED(pane), construct_end_child(self));
     gtk_paned_set_position(GTK_PANED(pane), 250);
-    gtk_widget_set_parent(pane, GTK_WIDGET(self));
     font_manager_widget_set_expand(GTK_WIDGET(self), TRUE);
     return;
 }
@@ -322,24 +330,23 @@ font_manager_properties_page_init (FontManagerPropertiesPage *self)
  * Missing members and %NULL values are allowed. Members not listed above are ignored.
  */
 void
-font_manager_properties_page_update (FontManagerPropertiesPage *self, JsonObject *properties)
+font_manager_font_properties_page_update (FontManagerPropertiesPage *self, JsonObject *properties)
 {
     g_return_if_fail(self != NULL);
     g_clear_pointer(&self->properties, json_object_unref);
-    self->properties = json_object_ref(properties);
-    reset(self);
+    self->properties = properties ? json_object_ref(properties) : NULL;
     update(self);
     return;
 }
 
 /**
- * font_manager_properties_page_new:
+ * font_manager_font_properties_page_new:
  *
  * Returns: (transfer full): A newly created #FontManagerPropertiesPage.
  * Free the returned object using #g_object_unref().
  */
 GtkWidget *
-font_manager_properties_page_new ()
+font_manager_font_properties_page_new ()
 {
     return g_object_new(FONT_MANAGER_TYPE_PROPERTIES_PAGE, NULL);
 }

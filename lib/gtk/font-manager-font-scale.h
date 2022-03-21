@@ -34,5 +34,6 @@ GtkWidget * font_manager_font_scale_new (void);
 GtkAdjustment * font_manager_font_scale_get_adjustment (FontManagerFontScale *self);
 gdouble font_manager_font_scale_get_value (FontManagerFontScale *self);
 void font_manager_font_scale_set_adjustment (FontManagerFontScale *self, GtkAdjustment *adjustment);
+void font_manager_font_scale_set_default_size (FontManagerFontScale *self, gdouble value);
 void font_manager_font_scale_set_value (FontManagerFontScale *self, gdouble value);
 

@@ -85,7 +85,7 @@ test_application_new (void)
     return g_object_new(TEST_TYPE_APPLICATION, "application-id", "host.local.WidgetTest", NULL);
 }
 
-static void
+void
 test_dialog_run (TestDialog *self)
 {
     g_signal_connect(self, "response", G_CALLBACK(quit), NULL);
