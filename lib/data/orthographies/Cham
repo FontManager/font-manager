@@ -1,0 +1,22 @@
+{
+    "Cham",
+    "",
+    0xaa00,
+    "ꨀꨁꨂꨃꨄꨅꨆꨇꨉ",
+    {
+        "ꨀꨁꨂꨃꨄꨅꨆꨇꨉ",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xaa00, 0xaa36,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xaa40, 0xaa4d,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xaa50, 0xaa59,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xaa5c, 0xaa5f,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

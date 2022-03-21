@@ -1,0 +1,18 @@
+{
+    "Saurashtra",
+    "",
+    0xa882,
+    "ꢂꢃꢄ",
+    {
+        "ꢂꢃꢄ",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xa880, 0xa8c4,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xa8ce, 0xa8d9,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

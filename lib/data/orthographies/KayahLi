@@ -1,0 +1,16 @@
+{
+    "Kayah Li",
+    "",
+    0xa90a,
+    "ꤊꤋꤌꤍꤎꤏꤐꤑꤒ",
+    {
+        "ꤊꤋꤌꤍꤎꤏꤐꤑꤒ",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xa900, 0xa92f,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

@@ -1,0 +1,18 @@
+{
+    "Tai Viet",
+    "",
+    0xaa80,
+    "ꪀꪁꪂꪃꪄꪅꪆꪇꪈꪉ",
+    {
+        "ꪀꪁꪂꪃꪄꪅꪆꪇꪈꪉ",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xaa80, 0xaac2,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xaadb, 0xaadf,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

@@ -1,0 +1,15 @@
+{
+    "License" : [
+        {
+            "Name" : "Apache 2.0",
+            "URL" : "http://www.apache.org/licenses/LICENSE-2.0",
+            "Keywords" : [
+                "Apache",
+                "Apache License",
+                "Apache 2 License",
+                null
+            ]
+        }
+    ]
+}
+

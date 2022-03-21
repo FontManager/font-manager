@@ -1,0 +1,16 @@
+{
+    "Bamum",
+    "ꚠꚡꚢꚣ",
+    0xa6a0,
+    "ꚠꚡꚢꚣ",
+    {
+        "ꚠꚡꚢꚣ",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xa6a0, 0xa6f7,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

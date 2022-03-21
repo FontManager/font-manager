@@ -1,0 +1,28 @@
+{
+    "Devanagari",
+    "देवनागरी",
+    0x915,
+    "क ख ग घ ङ च छ ज झ ञ ट",
+    {
+        "आप भला तो सब भला ।",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x905, 0x914,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x915, 0x939,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x93f, 0x94c,
+        0x94d,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x958, 0x95f,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x960, 0x965,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x966, 0x96f,
+        0x970,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

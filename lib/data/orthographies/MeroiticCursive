@@ -1,0 +1,18 @@
+{
+    "MeroiticCursive",
+    "MeroiticCursive",
+    0x109a0,
+    "𐦠𐦡𐦢𐦣𐦤𐦥",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x109a0, 0x109b7,
+        0x109be,
+        0x109bf,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

@@ -1,0 +1,32 @@
+{
+    "Turkish",
+    "Türkçe",
+    0x130,
+    "ÂâÇçĞğİıÖöŞşÛû",
+    {
+        "Pijamalı hasta, yağız şoföre çabucak güvendi.",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        0xc2,
+        0xe2,
+        0xc7,
+        0xe7,
+        0x11e,
+        0x11f,
+        0xce,
+        0xee,
+        0x130,
+        0x131,
+        0xd6,
+        0xf6,
+        0x15e,
+        0x15f,
+        0xdb,
+        0xfb,
+        0xdc,
+        0xfc,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

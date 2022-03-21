@@ -1,0 +1,26 @@
+{
+    "Linear B Syllabary",
+    "Linear B Syllabary",
+    0x10000,
+    "𐀀𐀁𐀂𐀃𐀄𐀅",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x10000, 0x1000b,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1000d, 0x10026,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x10028, 0x1003a,
+        0x1003c,
+        0x1003d,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1003f, 0x1004d,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x10050, 0x1005d,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

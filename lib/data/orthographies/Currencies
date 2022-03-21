@@ -1,0 +1,36 @@
+{
+    "Currencies",
+    "Currencies",
+    0x20a6,
+    "$¢£¥₧€₭",
+    {
+        "Unicode currency symbols include $,¢,£,¥,₧,€ and ₭.",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        0x24,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xa2, 0xa5,
+        0x58f,
+        0x60b,
+        0x9f2,
+        0x9f3,
+        0x9fb,
+        0xaf1,
+        0xbf9,
+        0xe3f,
+        0x17db,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x20a0, 0x20bd,
+        0xa838,
+        0xfdfc,
+        0xfe69,
+        0xff04,
+        0xffe0,
+        0xffe1,
+        0xffe5,
+        0xffe6,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

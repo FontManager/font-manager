@@ -1,0 +1,26 @@
+{
+    "Myanmar",
+    "မြန်မာအက္ခရာ",
+    0x1000,
+    "ကခဂဃငစဆဇ",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1000, 0x1021,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1023, 0x1027,
+        0x1029,
+        0x102a,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x102c, 0x1032,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1036, 0x1039,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1040, 0x1059,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

@@ -1,0 +1,124 @@
+{
+    "CJK Unified",
+    "",
+    0x4e00,
+    "",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x4e00, 0x9fff,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+{
+    "CJK Unified Extension A",
+    "",
+    0x3400,
+    "",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x3400, 0x4dbf,
+        FONT_MANAGER_END_OF_DATA
+    },
+},
+{
+    "CJK Unified Extension B",
+    "",
+    0x20000,
+    "",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0X20000, 0X2a6df,
+        FONT_MANAGER_END_OF_DATA
+    },
+},
+{
+    "CJK Unified Extension C",
+    "",
+    0x2a700,
+    "",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0X2a700, 0x2b73f,
+        FONT_MANAGER_END_OF_DATA
+    },
+},
+{
+    "CJK Unified Extension D",
+    "",
+    0x2b740,
+    "",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x2b740, 0x2b81f,
+        FONT_MANAGER_END_OF_DATA
+    },
+},
+{
+    "CJK Unified Extension E",
+    "",
+    0x2b820,
+    "",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x2b820, 0x2ceaf,
+        FONT_MANAGER_END_OF_DATA
+    },
+},
+{
+    "CJK Compatibility Ideographs",
+    "",
+    0xf900,
+    "",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xf900, 0xfaff,
+        FONT_MANAGER_END_OF_DATA
+    },
+},
+{
+    "CJK Compatibility Ideographs Supplement",
+    "",
+    0x2f800,
+    "",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x2f800, 0x2fa1f,
+        FONT_MANAGER_END_OF_DATA
+    },
+},
+
+
+
+

@@ -1,0 +1,20 @@
+{
+    "Miao",
+    "",
+    0x16f00,
+    "",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x16f00, 0x16f44,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x16f50, 0x16f7e,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x16f8f, 0x16f9f,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

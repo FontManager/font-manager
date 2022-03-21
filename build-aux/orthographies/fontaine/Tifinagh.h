@@ -1,0 +1,103 @@
+//
+// Tifinagh.h
+//
+
+#ifndef ORTHOGRAPHY_DATA
+#include "../OrthographyData.h"
+#endif
+
+#ifndef TIFINAGH
+#define TIFINAGH
+
+namespace Tifinagh{
+
+//
+// Unicode values 
+//
+UINT32 values[]={
+	// Tifinagh - Letters
+	0x2D30, // ( ⴰ ) TIFINAGH LETTER YA
+	0x2D31, // ( ⴱ ) TIFINAGH LETTER YAB
+	0x2D32, // ( ⴲ ) TIFINAGH LETTER YABH
+	0x2D33, // ( ⴳ ) TIFINAGH LETTER YAG
+	0x2D34, // ( ⴴ ) TIFINAGH LETTER YAGHH
+	0x2D35, // ( ⴵ ) TIFINAGH LETTER BERBER ACADEMY YAJ
+	0x2D36, // ( ⴶ ) TIFINAGH LETTER YAJ
+	0x2D37, // ( ⴷ ) TIFINAGH LETTER YAD
+	0x2D38, // ( ⴸ ) TIFINAGH LETTER YADH
+	0x2D39, // ( ⴹ ) TIFINAGH LETTER YADD
+	0x2D3A, // ( ⴺ ) TIFINAGH LETTER YADDH
+	0x2D3B, // ( ⴻ ) TIFINAGH LETTER YEY
+	0x2D3C, // ( ⴼ ) TIFINAGH LETTER YAF
+	0x2D3D, // ( ⴽ ) TIFINAGH LETTER YAK
+	0x2D3E, // ( ⴾ ) TIFINAGH LETTER TUAREG YAK
+	0x2D3F, // ( ⴿ ) TIFINAGH LETTER YAKHH
+	0x2D40, // ( ⵀ ) TIFINAGH LETTER YAH
+	0x2D41, // ( ⵁ ) TIFINAGH LETTER BERBER ACADEMY YAH
+	0x2D42, // ( ⵂ ) TIFINAGH LETTER TUAREG YAH
+	0x2D43, // ( ⵃ ) TIFINAGH LETTER YAHH
+	0x2D44, // ( ⵄ ) TIFINAGH LETTER YAA
+	0x2D45, // ( ⵅ ) TIFINAGH LETTER YAKH
+	0x2D46, // ( ⵆ ) TIFINAGH LETTER TUAREG YAKH
+	0x2D47, // ( ⵇ ) TIFINAGH LETTER YAQ
+	0x2D48, // ( ⵈ ) TIFINAGH LETTER TUAREG YAQ
+	0x2D49, // ( ⵉ ) TIFINAGH LETTER YI
+	0x2D4A, // ( ⵊ ) TIFINAGH LETTER YAZH
+	0x2D4B, // ( ⵋ ) TIFINAGH LETTER AHAGGAR YAZH
+	0x2D4C, // ( ⵌ ) TIFINAGH LETTER TUAREG YAZH
+	0x2D4D, // ( ⵍ ) TIFINAGH LETTER YAL
+	0x2D4E, // ( ⵎ ) TIFINAGH LETTER YAM
+	0x2D4F, // ( ⵏ ) TIFINAGH LETTER YAN
+	0x2D50, // ( ⵐ ) TIFINAGH LETTER TUAREG YAGN
+	0x2D51, // ( ⵑ ) TIFINAGH LETTER TUAREG YANG
+	0x2D52, // ( ⵒ ) TIFINAGH LETTER YAP
+	0x2D53, // ( ⵓ ) TIFINAGH LETTER YU
+	0x2D54, // ( ⵔ ) TIFINAGH LETTER YAR
+	0x2D55, // ( ⵕ ) TIFINAGH LETTER YARR
+	0x2D56, // ( ⵖ ) TIFINAGH LETTER YAGH
+	0x2D57, // ( ⵗ ) TIFINAGH LETTER TUAREG YAGH
+	0x2D58, // ( ⵘ ) TIFINAGH LETTER AYER YAGH
+	0x2D59, // ( ⵙ ) TIFINAGH LETTER YAS
+	0x2D5A, // ( ⵚ ) TIFINAGH LETTER YASS
+	0x2D5B, // ( ⵛ ) TIFINAGH LETTER YASH
+	0x2D5C, // ( ⵜ ) TIFINAGH LETTER YAT
+	0x2D5D, // ( ⵝ ) TIFINAGH LETTER YATH
+	0x2D5E, // ( ⵞ ) TIFINAGH LETTER YACH
+	0x2D5F, // ( ⵟ ) TIFINAGH LETTER YATT
+	0x2D60, // ( ⵠ ) TIFINAGH LETTER YAV
+	0x2D61, // ( ⵡ ) TIFINAGH LETTER YAW
+	0x2D62, // ( ⵢ ) TIFINAGH LETTER YAY
+	0x2D63, // ( ⵣ ) TIFINAGH LETTER YAZ
+	0x2D64, // ( ⵤ ) TIFINAGH LETTER TAWELLEMET YAZ
+	0x2D65, // ( ⵥ ) TIFINAGH LETTER YAZZ
+	// Tifinagh - Modifier letter
+	0x2D6F, // ( ⵯ ) TIFINAGH MODIFIER LETTER LABIALIZATION MARK
+	END_OF_DATA
+};
+
+//
+// Sample sentences
+// 
+const char *sentences[]={
+	"ⴰ ⴱ ⴲ ⴳ ⴴ ⴵ ⴶ ⴷ ",
+	END_OF_DATA
+};
+
+
+//
+// 
+//
+OrthographyData data={
+	"Tifinagh", // Common name
+	"ⵜⵉⴼⵉⵏⴰⵖ", // Native name
+	0x2D30, // key
+	values,
+	"ⴰ ⴱ ⴲ ⴳ ⴴ ⴵ ⴶ ⴷ ", // Sample characters
+	sentences
+};
+
+const OrthographyData *pData = &data;
+
+}; // end of namespace
+
+#endif

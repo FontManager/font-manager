@@ -1,0 +1,32 @@
+{
+    "Full Cyrillic",
+    "Полная кириллица",
+    0x414,
+    "",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        0x300,
+        0x301,
+        0x306,
+        0x308,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x400, 0x484,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x487, 0x52F,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1C80, 0x1C88,
+        0x1D2B,
+        0x1D78,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x2DE0, 0x2DFF,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xA640, 0xA69F,
+        0xFE2E,
+        0xFE2F,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

@@ -1,0 +1,23 @@
+{
+    "Food and Drink",
+    "Food and Drink",
+    0x2615,
+    "",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        0x2615,
+        0x26fe,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1f32d, 0x1f32f,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1f33d, 0x1f33f,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1f344, 0x1f37f,
+        0x1f9c0,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

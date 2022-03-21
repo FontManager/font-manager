@@ -1,0 +1,39 @@
+{
+    "Kannada",
+    "ಕನ್ನಡ",
+    0xcb9,
+    "ವ ಶ ಷ ಸ ಹ ಒ ಓ ಔ ಕ ಖ ಗ",
+    {
+        "ಹೂವಿನ ಜೊತೆ ನಾರು ಸ್ವರ್ಗ ಸೇರಿಥು.",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xc82, 0xc83,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xc85, 0xc8c,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xc8e, 0xc90,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xc92, 0xca8,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xcaa, 0xcb3,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xcb5, 0xcb9,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xcbe, 0xcc4,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xcc6, 0xcc8,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xcca, 0xccd,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xcd5, 0xcd6,
+        0xcde,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xce0, 0xce1,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xce6, 0xcef,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

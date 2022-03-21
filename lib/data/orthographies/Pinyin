@@ -1,0 +1,39 @@
+{
+    "Pinyin",
+    "汉语拼音",
+    0x1da,
+    "āáǎàēéěèǘǚǜü",
+    {
+        "hàn yǔ pīn yīn",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        0x101,
+        0xe1,
+        0x1ce,
+        0xe0,
+        0x113,
+        0xe9,
+        0x11b,
+        0xe8,
+        0x12b,
+        0xed,
+        0x1d0,
+        0xec,
+        0x14d,
+        0xf3,
+        0x1d2,
+        0xf2,
+        0x16b,
+        0xfa,
+        0x1d4,
+        0xf9,
+        0x1d6,
+        0x1d8,
+        0x1da,
+        0x1dc,
+        0xfc,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

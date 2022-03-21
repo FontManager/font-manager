@@ -1,0 +1,29 @@
+{
+    "Tibetan",
+    "དབུ་ཅན་",
+    0xf40,
+    "ཀ ཁ ག གྷ ང  ཅ ཆ ཇ",
+    {
+        "བོད་སྐད་",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xf00, 0xf47,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xf49, 0xf6a,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xf71, 0xf7f,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xf80, 0xf8b,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xf90, 0xf97,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xf99, 0xfbc,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xfbe, 0xfcc,
+        0xfcf,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

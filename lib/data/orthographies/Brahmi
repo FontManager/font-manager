@@ -1,0 +1,18 @@
+{
+    "Brāhmī",
+    "",
+    0x11005,
+    "𑀩𑀼𑀤𑀥𑀁 𑀲𑀭𑀡𑀁 𑀕𑀘𑀙𑀫𑀺",
+    {
+        "𑀩𑀼𑀤𑀥𑀁 𑀲𑀭𑀡𑀁 𑀕𑀘𑀙𑀫𑀺",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x11000, 0x1104d,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x11052, 0x1106f,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

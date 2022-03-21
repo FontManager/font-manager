@@ -1,0 +1,16 @@
+{
+    "Korean Hangul",
+    "한글 / 조선글",
+    0xac00,
+    "",
+    {
+        "",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0xac00, 0xd7a3,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+

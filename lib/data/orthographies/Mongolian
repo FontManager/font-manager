@@ -1,0 +1,24 @@
+{
+    "Mongolian",
+    "",
+    0x1820,
+    "ᠠᠡᠢᠣᠤᠥᠦᠧ",
+    {
+        "ᠠᠡᠢᠣᠤᠥᠦᠧ",
+        FONT_MANAGER_END_OF_DATA
+    },
+    {
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1800, 0x180a,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x180b, 0x180e,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1810, 0x1819,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1820, 0x1877,
+        FONT_MANAGER_START_RANGE_PAIR,
+        0x1880, 0x18aa,
+        FONT_MANAGER_END_OF_DATA
+    }
+},
+
