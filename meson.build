@@ -74,8 +74,13 @@ endif
 subdir('lib')
 subdir('test')
 
-meson.add_install_script('meson_post_install.py')
 meson.add_dist_script('meson_dist.py')
+
+gnome.post_install(
+    glib_compile_schemas: true,
+    gtk_update_icon_cache: true,
+    update_desktop_database: true
+)
 
 summary(
     {
