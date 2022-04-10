@@ -108,18 +108,19 @@ font_manager_place_holder_set_property (GObject *gobject,
 {
     g_return_if_fail(gobject != NULL);
     FontManagerPlaceHolder *self = FONT_MANAGER_PLACE_HOLDER(gobject);
+    const gchar *val = g_value_get_string(value);
     switch (property_id) {
         case PROP_ICON_NAME:
-            gtk_image_set_from_icon_name(GTK_IMAGE(self->icon), g_value_get_string(value));
+            gtk_image_set_from_icon_name(GTK_IMAGE(self->icon), val);
             break;
         case PROP_TITLE:
-            font_manager_place_holder_set_label(GTK_LABEL(self->title), g_value_get_string(value));
+            font_manager_place_holder_set_label(GTK_LABEL(self->title), val);
             break;
         case PROP_SUBTITLE:
-            font_manager_place_holder_set_label(GTK_LABEL(self->subtitle), g_value_get_string(value));
+            font_manager_place_holder_set_label(GTK_LABEL(self->subtitle), val);
             break;
         case PROP_MESSAGE:
-            font_manager_place_holder_set_label(GTK_LABEL(self->message), g_value_get_string(value));
+            font_manager_place_holder_set_label(GTK_LABEL(self->message), val);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
@@ -148,7 +149,8 @@ font_manager_place_holder_class_init (FontManagerPlaceHolderClass *klass)
                                                          NULL,
                                                          "Named icon to display",
                                                          NULL,
-                                                         G_PARAM_STATIC_STRINGS | G_PARAM_READWRITE);
+                                                         G_PARAM_STATIC_STRINGS |
+                                                         G_PARAM_READWRITE);
 
     /**
      * FontManagerPlaceHolder:title:
@@ -159,7 +161,8 @@ font_manager_place_holder_class_init (FontManagerPlaceHolderClass *klass)
                                                       NULL,
                                                       "Title to display under icon",
                                                       NULL,
-                                                      G_PARAM_STATIC_STRINGS | G_PARAM_READWRITE);
+                                                      G_PARAM_STATIC_STRINGS |
+                                                      G_PARAM_READWRITE);
 
     /**
      * FontManagerPlaceHolder:subtitle:
@@ -170,7 +173,8 @@ font_manager_place_holder_class_init (FontManagerPlaceHolderClass *klass)
                                                         NULL,
                                                         "Subtitle to display under icon",
                                                         NULL,
-                                                        G_PARAM_STATIC_STRINGS | G_PARAM_READWRITE);
+                                                        G_PARAM_STATIC_STRINGS |
+                                                        G_PARAM_READWRITE);
 
     /**
      * FontManagerPlaceHolder:message:
@@ -181,7 +185,8 @@ font_manager_place_holder_class_init (FontManagerPlaceHolderClass *klass)
                                                       NULL,
                                                       "Text to display under icon",
                                                       NULL,
-                                                      G_PARAM_STATIC_STRINGS | G_PARAM_READWRITE);
+                                                      G_PARAM_STATIC_STRINGS |
+                                                      G_PARAM_READWRITE);
 
     g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
     return;
@@ -281,9 +286,15 @@ font_manager_place_holder_init (FontManagerPlaceHolder *self)
  * Free the returned object using #g_object_unref().
  */
 GtkWidget *
-font_manager_place_holder_new (const gchar *title, const gchar *subtitle,
-                               const gchar *message, const gchar *icon_name)
+font_manager_place_holder_new (const gchar *title,
+                               const gchar *subtitle,
+                               const gchar *message,
+                               const gchar *icon_name)
 {
-    return g_object_new(FONT_MANAGER_TYPE_PLACE_HOLDER, "icon-name", icon_name,
-                        "title", title, "subtitle", subtitle, "message", message, NULL);
+    return g_object_new(FONT_MANAGER_TYPE_PLACE_HOLDER,
+                        "icon-name", icon_name,
+                        "title", title,
+                        "subtitle", subtitle,
+                        "message", message,
+                        NULL);
 }

@@ -51,7 +51,9 @@ typedef struct
 }
 FontManagerFontPropertiesPrivate;
 
-G_DEFINE_TYPE_WITH_PRIVATE(FontManagerFontProperties, font_manager_font_properties, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE(FontManagerFontProperties,
+                           font_manager_font_properties,
+                           G_TYPE_OBJECT)
 
 enum
 {
@@ -113,21 +115,23 @@ font_manager_font_properties_dispose (GObject *gobject)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerFontProperties *self = FONT_MANAGER_FONT_PROPERTIES(gobject);
-    FontManagerFontPropertiesPrivate *priv = font_manager_font_properties_get_instance_private(self);
+    FontManagerFontPropertiesPrivate *priv;
+    priv = font_manager_font_properties_get_instance_private(self);
     g_clear_pointer(&priv->config_dir, g_free);
     g_clear_pointer(&priv->target_file, g_free);
     G_OBJECT_CLASS(font_manager_font_properties_parent_class)->dispose(gobject);
 }
 
 static void
-font_manager_font_properties_get_property (GObject *gobject,
-                                     guint property_id,
-                                     GValue *value,
-                                     GParamSpec *pspec)
+font_manager_font_properties_get_property (GObject    *gobject,
+                                           guint       property_id,
+                                           GValue     *value,
+                                           GParamSpec *pspec)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerFontProperties *self = FONT_MANAGER_FONT_PROPERTIES(gobject);
-    FontManagerFontPropertiesPrivate *priv = font_manager_font_properties_get_instance_private(self);
+    FontManagerFontPropertiesPrivate *priv;
+    priv = font_manager_font_properties_get_instance_private(self);
     switch (property_id) {
         case PROP_HINTSTYLE:
             g_value_set_int(value, priv->hintstyle);
@@ -179,14 +183,15 @@ font_manager_font_properties_get_property (GObject *gobject,
 }
 
 static void
-font_manager_font_properties_set_property (GObject *gobject,
-                                     guint property_id,
-                                     const GValue *value,
-                                     GParamSpec *pspec)
+font_manager_font_properties_set_property (GObject      *gobject,
+                                           guint         property_id,
+                                           const GValue *value,
+                                           GParamSpec   *pspec)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerFontProperties *self = FONT_MANAGER_FONT_PROPERTIES(gobject);
-    FontManagerFontPropertiesPrivate *priv = font_manager_font_properties_get_instance_private(self);
+    FontManagerFontPropertiesPrivate *priv;
+    priv = font_manager_font_properties_get_instance_private(self);
     switch (property_id) {
         case PROP_HINTSTYLE:
             priv->hintstyle = g_value_get_int(value);
@@ -240,7 +245,8 @@ font_manager_font_properties_set_property (GObject *gobject,
 }
 
 static void
-font_manager_font_properties_parse_edit_node (FontManagerFontProperties *self, xmlNode *edit_node)
+font_manager_font_properties_parse_edit_node (FontManagerFontProperties *self,
+                                              xmlNode                   *edit_node)
 {
     xmlChar *prop_name = NULL;
     for (xmlAttrPtr prop = edit_node->properties; prop != NULL; prop = prop->next) {
@@ -273,7 +279,8 @@ font_manager_font_properties_parse_edit_node (FontManagerFontProperties *self, x
 }
 
 static void
-font_manager_font_properties_parse_test_node (FontManagerFontProperties *self, xmlNode *test_node)
+font_manager_font_properties_parse_test_node (FontManagerFontProperties *self,
+                                              xmlNode                   *test_node)
 {
     xmlChar *prop_name = NULL;
     xmlChar *prop_val = NULL;
@@ -300,10 +307,11 @@ font_manager_font_properties_parse_test_node (FontManagerFontProperties *self, x
 
 static void
 font_manager_font_properties_add_match_criteria (FontManagerFontProperties *self,
-                                           FontManagerXmlWriter *writer)
+                                                 FontManagerXmlWriter      *writer)
 {
     g_return_if_fail(self != NULL);
-    FontManagerFontPropertiesPrivate *priv = font_manager_font_properties_get_instance_private(self);
+    FontManagerFontPropertiesPrivate *priv;
+    priv = font_manager_font_properties_get_instance_private(self);
     if (priv->less != 0.0) {
         g_autofree gchar *val = g_strdup_printf("%.1f", priv->less);
         font_manager_xml_writer_add_test_element(writer, "size", "less", "double", val);
@@ -316,7 +324,8 @@ font_manager_font_properties_add_match_criteria (FontManagerFontProperties *self
 }
 
 static void
-font_manager_font_properties_parse_match_node (FontManagerFontProperties *self, xmlNode *match_node)
+font_manager_font_properties_parse_match_node (FontManagerFontProperties *self,
+                                               xmlNode                   *match_node)
 {
     for (xmlNode *iter = match_node->children; iter != NULL; iter = iter->next) {
         if (iter->type != XML_ELEMENT_NODE) {
@@ -332,10 +341,11 @@ font_manager_font_properties_parse_match_node (FontManagerFontProperties *self, 
 
 static void
 font_manager_font_properties_add_assignments (FontManagerFontProperties *self,
-                                        FontManagerXmlWriter *writer)
+                                              FontManagerXmlWriter      *writer)
 {
     g_return_if_fail(self != NULL);
-    FontManagerFontPropertiesPrivate *priv = font_manager_font_properties_get_instance_private(self);
+    FontManagerFontPropertiesPrivate *priv;
+    priv = font_manager_font_properties_get_instance_private(self);
 
     int t = (int) priv->type;
     for (int i = PROPERTY_ID_RANGE[t].start; i <= PROPERTY_ID_RANGE[t].end; i++) {
@@ -465,7 +475,8 @@ font_manager_font_properties_init (FontManagerFontProperties *self)
 {
     g_return_if_fail(self != NULL);
     font_manager_font_properties_reset(self);
-    FontManagerFontPropertiesPrivate *priv = font_manager_font_properties_get_instance_private(self);
+    FontManagerFontPropertiesPrivate *priv;
+    priv = font_manager_font_properties_get_instance_private(self);
     priv->type = FONT_MANAGER_FONT_PROPERTIES_TYPE_DEFAULT;
     return;
 }
@@ -568,7 +579,8 @@ gchar *
 font_manager_font_properties_get_filepath (FontManagerFontProperties *self)
 {
     g_return_val_if_fail(self != NULL, NULL);
-    FontManagerFontPropertiesPrivate *priv = font_manager_font_properties_get_instance_private(self);
+    FontManagerFontPropertiesPrivate *priv;
+    priv = font_manager_font_properties_get_instance_private(self);
     if (priv->config_dir == NULL || priv->target_file == NULL)
         return NULL;
     return g_build_filename(priv->config_dir, priv->target_file, NULL);
@@ -584,7 +596,8 @@ void
 font_manager_font_properties_reset (FontManagerFontProperties *self)
 {
     g_return_if_fail(self != NULL);
-    FontManagerFontPropertiesPrivate *priv = font_manager_font_properties_get_instance_private(self);
+    FontManagerFontPropertiesPrivate *priv;
+    priv = font_manager_font_properties_get_instance_private(self);
     priv->hintstyle = 0;
     /* This is the default, even when not set */
     priv->antialias = TRUE;
@@ -633,22 +646,22 @@ font_manager_font_properties_reset (FontManagerFontProperties *self)
             if (FcPatternGetInteger(system, FC_LCD_FILTER, 0, &lcdfilter) == FcResultMatch)
                 priv->lcdfilter = lcdfilter;
 
-            if (FcPatternGetDouble(system, FC_SCALE, 0 , &scale) == FcResultMatch)
+            if (FcPatternGetDouble(system, FC_SCALE, 0, &scale) == FcResultMatch)
                 priv->scale = scale;
 
-            if (FcPatternGetDouble(system, FC_DPI, 0 , &dpi) == FcResultMatch)
+            if (FcPatternGetDouble(system, FC_DPI, 0, &dpi) == FcResultMatch)
                 priv->dpi = dpi;
 
-            if (FcPatternGetBool(system, FC_ANTIALIAS, 0 , &antialias) == FcResultMatch)
+            if (FcPatternGetBool(system, FC_ANTIALIAS, 0, &antialias) == FcResultMatch)
                 priv->antialias = antialias;
 
-            if (FcPatternGetBool(system, FC_HINTING, 0 , &hinting) == FcResultMatch)
+            if (FcPatternGetBool(system, FC_HINTING, 0, &hinting) == FcResultMatch)
                 priv->hinting = hinting;
 
-            if (FcPatternGetBool(system, FC_AUTOHINT, 0 , &autohint) == FcResultMatch)
+            if (FcPatternGetBool(system, FC_AUTOHINT, 0, &autohint) == FcResultMatch)
                 priv->autohint = autohint;
 
-            if (FcPatternGetBool(system, FC_EMBEDDED_BITMAP, 0 , &embeddedbitmap) == FcResultMatch)
+            if (FcPatternGetBool(system, FC_EMBEDDED_BITMAP, 0, &embeddedbitmap) == FcResultMatch)
                 priv->embeddedbitmap = embeddedbitmap;
 
             FcPatternDestroy(system);

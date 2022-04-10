@@ -65,9 +65,9 @@ font_manager_license_page_dispose (GObject *gobject)
 }
 
 static void
-font_manager_license_page_get_property (GObject *gobject,
-                                        guint property_id,
-                                        GValue *value,
+font_manager_license_page_get_property (GObject    *gobject,
+                                        guint       property_id,
+                                        GValue     *value,
                                         GParamSpec *pspec)
 {
     g_return_if_fail(gobject != NULL);
@@ -92,10 +92,10 @@ font_manager_license_page_get_property (GObject *gobject,
 }
 
 static void
-font_manager_license_page_set_property (GObject *gobject,
-                                        guint property_id,
+font_manager_license_page_set_property (GObject      *gobject,
+                                        guint         property_id,
                                         const GValue *value,
-                                        GParamSpec *pspec)
+                                        GParamSpec   *pspec)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerLicensePage *self = FONT_MANAGER_LICENSE_PAGE(gobject);
@@ -287,17 +287,20 @@ font_manager_license_page_set_fsType (FontManagerLicensePage *self, gint fstype)
  * @license_data: (nullable):   License data embedded in font file or %NULL
  */
 void
-font_manager_license_page_set_license_data (FontManagerLicensePage *self, const gchar *license_data)
+font_manager_license_page_set_license_data (FontManagerLicensePage *self,
+                                            const gchar            *license_data)
 {
     g_return_if_fail(self != NULL);
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(self->license_data));
-    g_autofree gchar *license_text = license_data ? g_strdup_printf("\n%s\n", license_data) : g_strdup("");
+    g_autofree gchar *license_text = license_data ?
+                                     g_strdup_printf("\n%s\n", license_data) :
+                                     g_strdup("");
     gtk_text_buffer_set_text(buffer, license_text, -1);
     gtk_widget_set_visible(self->placeholder, license_data == NULL);
     gtk_widget_set_visible(self->license_data, license_data != NULL);
     gtk_widget_set_visible(self->fsType, license_data != NULL);
-    gboolean link_visibility = gtk_link_button_get_uri(GTK_LINK_BUTTON(self->license_url)) != NULL;
-    gtk_widget_set_visible(self->license_url, link_visibility);
+    const gchar *uri = gtk_link_button_get_uri(GTK_LINK_BUTTON(self->license_url));
+    gtk_widget_set_visible(self->license_url, uri != NULL);
     return;
 }
 
@@ -307,7 +310,8 @@ font_manager_license_page_set_license_data (FontManagerLicensePage *self, const 
  * @url: (nullable):    URL to latest version of license or %NULL
  */
 void
-font_manager_license_page_set_license_url (FontManagerLicensePage *self, const gchar *url)
+font_manager_license_page_set_license_url (FontManagerLicensePage *self,
+                                           const gchar            *url)
 {
     g_return_if_fail(self != NULL);
     gtk_button_set_label(GTK_BUTTON(self->license_url), url);

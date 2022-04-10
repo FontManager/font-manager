@@ -65,7 +65,7 @@ font_manager_preference_row_set_label (GtkLabel *_label, const gchar *msg)
 
 static void
 font_manager_preference_row_set_icon_name (FontManagerPreferenceRow *self,
-                                           const gchar *icon_name)
+                                           const gchar              *icon_name)
 {
     gtk_image_set_from_icon_name(GTK_IMAGE(self->icon), icon_name);
     gtk_widget_set_visible(GTK_WIDGET(self->icon), icon_name != NULL);
@@ -88,9 +88,9 @@ font_manager_preference_row_update_title_alignment (FontManagerPreferenceRow *se
 }
 
 static void
-font_manager_preference_row_get_property (GObject *gobject,
-                                          guint property_id,
-                                          GValue *value,
+font_manager_preference_row_get_property (GObject    *gobject,
+                                          guint       property_id,
+                                          GValue     *value,
                                           GParamSpec *pspec)
 {
     g_return_if_fail(gobject != NULL);
@@ -114,24 +114,25 @@ font_manager_preference_row_get_property (GObject *gobject,
 }
 
 static void
-font_manager_preference_row_set_property (GObject *gobject,
-                                          guint property_id,
+font_manager_preference_row_set_property (GObject      *gobject,
+                                          guint         property_id,
                                           const GValue *value,
-                                          GParamSpec *pspec)
+                                          GParamSpec   *pspec)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerPreferenceRow *self = FONT_MANAGER_PREFERENCE_ROW(gobject);
+    const gchar *val = g_value_get_string(value);
     switch (property_id) {
         case PROP_ICON_NAME:
-            font_manager_preference_row_set_icon_name(self, g_value_get_string(value));
+            font_manager_preference_row_set_icon_name(self, val);
             font_manager_preference_row_update_title_alignment(self);
             break;
         case PROP_TITLE:
-            font_manager_preference_row_set_label(GTK_LABEL(self->title), g_value_get_string(value));
+            font_manager_preference_row_set_label(GTK_LABEL(self->title), val);
             font_manager_preference_row_update_title_alignment(self);
             break;
         case PROP_SUBTITLE:
-            font_manager_preference_row_set_label(GTK_LABEL(self->subtitle), g_value_get_string(value));
+            font_manager_preference_row_set_label(GTK_LABEL(self->subtitle), val);
             font_manager_preference_row_update_title_alignment(self);
             break;
         case PROP_CONTROL:
@@ -230,11 +231,15 @@ set_subtitle_attributes (GtkWidget *widget)
 }
 
 static void
-insert_widget (GtkGrid *grid, GtkWidget *widget,
-               GtkAlign halign, GtkAlign valign,
-               int column, int row,
-               int width, int height,
-               gboolean expand)
+insert_widget (GtkGrid   *grid,
+               GtkWidget *widget,
+               GtkAlign   halign,
+               GtkAlign   valign,
+               int        column,
+               int        row,
+               int        width,
+               int        height,
+               gboolean   expand)
 {
     gtk_widget_set_halign(widget, halign);
     gtk_widget_set_valign(widget, valign);
@@ -320,7 +325,9 @@ font_manager_preference_row_set_action_widget (FontManagerPreferenceRow *self,
 }
 
 static void
-on_state_set (GtkSwitch *control, gboolean state, FontManagerPreferenceRow *self)
+on_state_set (GtkSwitch                *control,
+              gboolean                  state,
+              FontManagerPreferenceRow *self)
 {
     gboolean visible = gtk_switch_get_active(control);
     font_manager_preference_row_set_child_visible(self, visible);
@@ -361,7 +368,7 @@ font_manager_preference_row_append_child (FontManagerPreferenceRow *parent,
  */
 void
 font_manager_preference_row_set_child_visible (FontManagerPreferenceRow *self,
-                                               gboolean visible)
+                                               gboolean                  visible)
 {
     g_return_if_fail(self != NULL);
     gtk_revealer_set_reveal_child(GTK_REVEALER(self->revealer), visible);
@@ -382,7 +389,7 @@ GtkWidget *
 font_manager_preference_row_new (const gchar *title,
                                  const gchar *subtitle,
                                  const gchar *icon_name,
-                                 GtkWidget *action_widget)
+                                 GtkWidget   *action_widget)
 {
     return g_object_new(FONT_MANAGER_TYPE_PREFERENCE_ROW,
                         "title", title,

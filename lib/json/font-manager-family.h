@@ -22,7 +22,6 @@
 
 #include "font-manager-json-proxy.h"
 
-/* Order matters, adjust bind_from_properties to account for changes */
 static const FontManagerJsonProxyProperty FamilyProperties [] =
 {
     { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST, NULL },

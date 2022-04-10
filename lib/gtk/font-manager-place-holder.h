@@ -28,4 +28,8 @@
 #define FONT_MANAGER_TYPE_PLACE_HOLDER (font_manager_place_holder_get_type ())
 G_DECLARE_FINAL_TYPE(FontManagerPlaceHolder, font_manager_place_holder, FONT_MANAGER, PLACE_HOLDER, GtkWidget)
 
-GtkWidget * font_manager_place_holder_new (const gchar *title, const gchar *subtitle, const gchar *message, const gchar *icon_name);
+GtkWidget * font_manager_place_holder_new (const gchar *title,
+                                           const gchar *subtitle,
+                                           const gchar *message,
+                                           const gchar *icon_name);
+

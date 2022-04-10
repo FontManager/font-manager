@@ -42,47 +42,49 @@ font_manager_json_proxy_dispose (GObject *gobject)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerJsonProxy *self = FONT_MANAGER_JSON_PROXY(gobject);
-    FontManagerJsonProxyPrivate *priv = font_manager_json_proxy_get_instance_private(self);
+    FontManagerJsonProxyPrivate *priv;
+    priv = font_manager_json_proxy_get_instance_private(self);
     g_clear_pointer(&priv->source_object, json_object_unref);
     G_OBJECT_CLASS(font_manager_json_proxy_parent_class)->dispose(gobject);
     return;
 }
 
 static void
-font_manager_json_proxy_set_property (GObject *gobject,
-                                      guint property_id,
+font_manager_json_proxy_set_property (GObject      *gobject,
+                                      guint         property_id,
                                       const GValue *value,
-                                      GParamSpec *pspec)
+                                      GParamSpec   *pspec)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerJsonProxy *self = FONT_MANAGER_JSON_PROXY(gobject);
-    FontManagerJsonProxyPrivate *priv = font_manager_json_proxy_get_instance_private(self);
-
+    FontManagerJsonProxyPrivate *priv;
+    priv = font_manager_json_proxy_get_instance_private(self);
     GType val_type  = G_PARAM_SPEC_VALUE_TYPE(pspec);
+    JsonObject *src = priv->source_object;
 
     if (val_type == JSON_TYPE_OBJECT) {
         JsonObject *json_obj = g_value_get_boxed(value);
-        if (priv->source_object == json_obj)
+        if (src == json_obj)
             return;
-        if (priv->source_object != NULL)
-            json_object_unref(priv->source_object);
+        if (src != NULL)
+            json_object_unref(src);
         priv->source_object = json_obj ? json_object_ref(json_obj) : NULL;
         return;
     }
 
-    if (priv->source_object == NULL)
+    if (src == NULL)
         return;
 
     if (val_type == G_TYPE_STRING) {
-        json_object_set_string_member(priv->source_object, pspec->name, g_value_get_string(value));
+        json_object_set_string_member(src, pspec->name, g_value_get_string(value));
     } else if (val_type == G_TYPE_INT) {
-        json_object_set_int_member(priv->source_object, pspec->name, g_value_get_int(value));
+        json_object_set_int_member(src, pspec->name, g_value_get_int(value));
     } else if (val_type == G_TYPE_DOUBLE) {
-        json_object_set_double_member(priv->source_object, pspec->name, g_value_get_double(value));
+        json_object_set_double_member(src, pspec->name, g_value_get_double(value));
     } else if (val_type == G_TYPE_BOOLEAN) {
-        json_object_set_boolean_member(priv->source_object, pspec->name, g_value_get_boolean(value));
+        json_object_set_boolean_member(src, pspec->name, g_value_get_boolean(value));
     } else if (val_type == JSON_TYPE_ARRAY) {
-        json_object_set_array_member(priv->source_object, pspec->name, g_value_get_boxed(value));
+        json_object_set_array_member(src, pspec->name, g_value_get_boxed(value));
     } else {
         G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
     }
@@ -91,35 +93,36 @@ font_manager_json_proxy_set_property (GObject *gobject,
 }
 
 static void
-font_manager_json_proxy_get_property (GObject *gobject,
-                                      guint property_id,
-                                      GValue *value,
+font_manager_json_proxy_get_property (GObject    *gobject,
+                                      guint       property_id,
+                                      GValue     *value,
                                       GParamSpec *pspec)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerJsonProxy *self = FONT_MANAGER_JSON_PROXY(gobject);
-    FontManagerJsonProxyPrivate *priv = font_manager_json_proxy_get_instance_private(self);
+    FontManagerJsonProxyPrivate *priv;
+    priv = font_manager_json_proxy_get_instance_private(self);
+    GType val_type  = G_PARAM_SPEC_VALUE_TYPE(pspec);
+    JsonObject *src = priv->source_object;
 
-    if (priv->source_object == NULL)
+    if (src == NULL)
         return;
 
-    GType val_type  = G_PARAM_SPEC_VALUE_TYPE(pspec);
-
-    if (!json_object_get_member(priv->source_object, pspec->name) && val_type != JSON_TYPE_OBJECT)
+    if (!json_object_get_member(src, pspec->name) && val_type != JSON_TYPE_OBJECT)
         return;
 
     if (val_type == G_TYPE_STRING) {
-        g_value_set_string(value, json_object_get_string_member(priv->source_object, pspec->name));
+        g_value_set_string(value, json_object_get_string_member(src, pspec->name));
     } else if (val_type == G_TYPE_INT) {
-        g_value_set_int(value, json_object_get_int_member(priv->source_object, pspec->name));
+        g_value_set_int(value, json_object_get_int_member(src, pspec->name));
     } else if (val_type == G_TYPE_DOUBLE) {
-        g_value_set_double(value, json_object_get_double_member(priv->source_object, pspec->name));
+        g_value_set_double(value, json_object_get_double_member(src, pspec->name));
     } else if (val_type == G_TYPE_BOOLEAN) {
-        g_value_set_boolean(value, json_object_get_boolean_member(priv->source_object, pspec->name));
+        g_value_set_boolean(value, json_object_get_boolean_member(src, pspec->name));
     } else if (val_type == JSON_TYPE_ARRAY) {
-        g_value_set_boxed(value, json_object_get_array_member(priv->source_object, pspec->name));
+        g_value_set_boxed(value, json_object_get_array_member(src, pspec->name));
     } else if (val_type == JSON_TYPE_OBJECT) {
-        g_value_set_boxed(value, priv->source_object);
+        g_value_set_boxed(value, src);
     } else {
         G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
     }
@@ -131,7 +134,8 @@ static gboolean
 font_manager_json_proxy_default_is_valid (FontManagerJsonProxy *self)
 {
     g_return_val_if_fail(self != NULL, FALSE);
-    FontManagerJsonProxyPrivate *priv = font_manager_json_proxy_get_instance_private(self);
+    FontManagerJsonProxyPrivate *priv;
+    priv = font_manager_json_proxy_get_instance_private(self);
     return (priv->source_object != NULL);
 }
 

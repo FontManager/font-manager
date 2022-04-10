@@ -92,3 +92,4 @@ font_manager_fsType_to_string (gint fstype) {
             return _("Installable Embedding");
     }
 }
+

@@ -148,8 +148,8 @@ enum
 
 static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
 
-static void set_preview_mode_internal (FontManagerPreviewPage *self,
-                                       FontManagerPreviewPageMode mode);
+static void set_preview_mode_internal (FontManagerPreviewPage     *self,
+                                       FontManagerPreviewPageMode  mode);
 
 static void
 font_manager_preview_page_dispose (GObject *gobject)
@@ -170,14 +170,13 @@ font_manager_preview_page_dispose (GObject *gobject)
 }
 
 static void
-font_manager_preview_page_get_property (GObject *gobject,
-                                        guint property_id,
-                                        GValue *value,
+font_manager_preview_page_get_property (GObject    *gobject,
+                                        guint       property_id,
+                                        GValue     *value,
                                         GParamSpec *pspec)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerPreviewPage *self = FONT_MANAGER_PREVIEW_PAGE(gobject);
-    g_autofree gchar *font = NULL;
     switch (property_id) {
         case PROP_PREVIEW_SIZE:
             g_value_set_double(value, font_manager_preview_page_get_preview_size(self));
@@ -216,10 +215,10 @@ font_manager_preview_page_get_property (GObject *gobject,
 }
 
 static void
-font_manager_preview_page_set_property (GObject *gobject,
-                                        guint property_id,
+font_manager_preview_page_set_property (GObject      *gobject,
+                                        guint         property_id,
                                         const GValue *value,
-                                        GParamSpec *pspec)
+                                        GParamSpec   *pspec)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerPreviewPage *self = FONT_MANAGER_PREVIEW_PAGE(gobject);
@@ -414,7 +413,8 @@ font_manager_preview_page_class_init (FontManagerPreviewPageClass *klass)
 }
 
 static void
-update_revealer_state (FontManagerPreviewPage *self, FontManagerPreviewPageMode mode)
+update_revealer_state (FontManagerPreviewPage     *self,
+                       FontManagerPreviewPageMode  mode)
 {
     g_return_if_fail(self != NULL);
     gboolean controls_visible = gtk_revealer_get_child_revealed(GTK_REVEALER(self->controls));
@@ -576,8 +576,8 @@ on_undo_clicked (FontManagerPreviewPage *self, FontManagerPreviewControls *contr
 }
 
 static void
-on_mode_action_activated (GSimpleAction *action,
-                          GVariant *parameter,
+on_mode_action_activated (GSimpleAction          *action,
+                          GVariant               *parameter,
                           FontManagerPreviewPage *self)
 {
     FontManagerPreviewPageMode mode = FONT_MANAGER_PREVIEW_PAGE_MODE_LOREM_IPSUM;
@@ -592,7 +592,9 @@ on_mode_action_activated (GSimpleAction *action,
 }
 
 static void
-on_zoom_event (FontManagerPreviewPage *self, GtkGestureZoom *controller, gdouble scale)
+on_zoom_event (FontManagerPreviewPage *self,
+               GtkGestureZoom         *controller,
+               gdouble                 scale)
 {
     g_return_if_fail(self != NULL);
     if (self->mode != FONT_MANAGER_PREVIEW_PAGE_MODE_WATERFALL) {
@@ -605,7 +607,10 @@ on_zoom_event (FontManagerPreviewPage *self, GtkGestureZoom *controller, gdouble
 }
 
 static void
-on_long_press_event (GtkWidget *textview, GtkGestureZoom *controller, gdouble x, gdouble y)
+on_long_press_event (GtkWidget      *textview,
+                     GtkGestureZoom *controller,
+                     gdouble         x,
+                     gdouble         y)
 {
     g_return_if_fail(GTK_IS_TEXT_VIEW(textview));
     gtk_widget_activate_action(textview, "menu.popup", NULL);
@@ -613,7 +618,10 @@ on_long_press_event (GtkWidget *textview, GtkGestureZoom *controller, gdouble x,
 }
 
 static void
-on_swipe_event (FontManagerPreviewPage *self, gdouble x, gdouble y, GtkGestureSwipe *swipe)
+on_swipe_event (FontManagerPreviewPage *self,
+                gdouble                 x,
+                gdouble                 y,
+                GtkGestureSwipe        *swipe)
 {
     g_return_if_fail(self != NULL);
     gint mode = (gint) self->mode;
@@ -819,7 +827,7 @@ font_manager_preview_page_get_preview_text (FontManagerPreviewPage *self)
  */
 void
 font_manager_preview_page_set_font_desc (FontManagerPreviewPage *self,
-                                         PangoFontDescription *font_desc)
+                                         PangoFontDescription   *font_desc)
 {
     g_return_if_fail(self != NULL);
     g_clear_pointer(&self->font_desc, pango_font_description_free);
@@ -840,7 +848,7 @@ font_manager_preview_page_set_font_desc (FontManagerPreviewPage *self,
  */
 void
 font_manager_preview_page_set_justification (FontManagerPreviewPage *self,
-                                             GtkJustification justification)
+                                             GtkJustification        justification)
 {
     g_return_if_fail(self != NULL);
     self->justification = justification;
@@ -851,8 +859,8 @@ font_manager_preview_page_set_justification (FontManagerPreviewPage *self,
 }
 
 static void
-set_preview_mode_internal (FontManagerPreviewPage *self,
-                           FontManagerPreviewPageMode mode)
+set_preview_mode_internal (FontManagerPreviewPage     *self,
+                           FontManagerPreviewPageMode  mode)
 {
     g_idle_remove_by_data(self);
     self->mode = mode;
@@ -896,8 +904,8 @@ set_preview_mode_internal (FontManagerPreviewPage *self,
  * @mode:   Preview mode.
  */
 void
-font_manager_preview_page_set_preview_mode (FontManagerPreviewPage *self,
-                                            FontManagerPreviewPageMode mode)
+font_manager_preview_page_set_preview_mode (FontManagerPreviewPage     *self,
+                                            FontManagerPreviewPageMode  mode)
 {
     g_return_if_fail(self != NULL);
     const gchar *mode_string = font_manager_preview_page_mode_to_string(mode);
@@ -912,7 +920,7 @@ font_manager_preview_page_set_preview_mode (FontManagerPreviewPage *self,
  */
 void
 font_manager_preview_page_set_preview_size (FontManagerPreviewPage *self,
-                                            gdouble size_points)
+                                            gdouble                 size_points)
 {
     g_return_if_fail(self != NULL);
     self->preview_size = CLAMP(size_points, MIN_FONT_SIZE, MAX_FONT_SIZE);
@@ -930,7 +938,7 @@ font_manager_preview_page_set_preview_size (FontManagerPreviewPage *self,
  */
 void
 font_manager_preview_page_set_preview_text (FontManagerPreviewPage *self,
-                                            const gchar *preview_text)
+                                            const gchar            *preview_text)
 {
     g_return_if_fail(self != NULL);
 
@@ -960,7 +968,8 @@ font_manager_preview_page_set_preview_text (FontManagerPreviewPage *self,
  * with the font description as key and sample string as value.
  */
 void
-font_manager_preview_page_set_sample_strings (FontManagerPreviewPage *self, GHashTable *samples)
+font_manager_preview_page_set_sample_strings (FontManagerPreviewPage *self,
+                                              GHashTable             *samples)
 {
     g_return_if_fail(self != NULL);
     g_clear_pointer(&self->samples, g_hash_table_unref);
@@ -980,9 +989,9 @@ font_manager_preview_page_set_sample_strings (FontManagerPreviewPage *self, GHas
  */
 void
 font_manager_preview_page_set_waterfall_size (FontManagerPreviewPage *self,
-                                              gdouble min_size,
-                                              gdouble max_size,
-                                              gdouble ratio)
+                                              gdouble                 min_size,
+                                              gdouble                 max_size,
+                                              gdouble                 ratio)
 {
     g_return_if_fail(self != NULL);
     g_return_if_fail(ratio == -1.0 || (ratio >= 1.0 && ratio <= DEFAULT_WATERFALL_MAX_SIZE));
@@ -1018,13 +1027,15 @@ font_manager_preview_page_set_waterfall_size (FontManagerPreviewPage *self,
  *  - preview-text
  */
 void
-font_manager_preview_page_restore_state (FontManagerPreviewPage *self, GSettings *settings)
+font_manager_preview_page_restore_state (FontManagerPreviewPage *self,
+                                         GSettings              *settings)
 {
     g_return_if_fail(self != NULL);
     g_return_if_fail(settings != NULL);
-    g_settings_bind(settings, "preview-font-size", self, "preview-size", G_SETTINGS_BIND_DEFAULT);
-    g_settings_bind(settings, "preview-mode", self, "preview-mode", G_SETTINGS_BIND_DEFAULT);
-    g_settings_bind(settings, "preview-text", self, "preview-text", G_SETTINGS_BIND_DEFAULT);
+    GSettingsBindFlags flags = G_SETTINGS_BIND_DEFAULT;
+    g_settings_bind(settings, "preview-font-size", self, "preview-size", flags);
+    g_settings_bind(settings, "preview-mode", self, "preview-mode", flags);
+    g_settings_bind(settings, "preview-text", self, "preview-text", flags);
     return;
 }
 
@@ -1039,3 +1050,4 @@ font_manager_preview_page_new (void)
 {
     return g_object_new(FONT_MANAGER_TYPE_PREVIEW_PAGE, NULL);
 }
+

@@ -122,9 +122,9 @@ set_font_description (FontManagerPreviewControls *self,
 }
 
 static void
-font_manager_preview_controls_get_property (GObject *gobject,
-                                            guint property_id,
-                                            GValue *value,
+font_manager_preview_controls_get_property (GObject    *gobject,
+                                            guint       property_id,
+                                            GValue     *value,
                                             GParamSpec *pspec)
 {
     FontManagerPreviewControls *self = FONT_MANAGER_PREVIEW_CONTROLS(gobject);
@@ -146,10 +146,10 @@ font_manager_preview_controls_get_property (GObject *gobject,
 }
 
 static void
-font_manager_preview_controls_set_property (GObject *gobject,
-                                            guint property_id,
+font_manager_preview_controls_set_property (GObject      *gobject,
+                                            guint         property_id,
                                             const GValue *value,
-                                            GParamSpec *pspec)
+                                            GParamSpec   *pspec)
 {
     FontManagerPreviewControls *self = FONT_MANAGER_PREVIEW_CONTROLS(gobject);
     g_return_if_fail(self != NULL);

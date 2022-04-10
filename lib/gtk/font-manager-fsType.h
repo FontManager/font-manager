@@ -66,3 +66,4 @@ GType font_manager_fsType_get_type (void);
 #define FONT_MANAGER_TYPE_FSTYPE (font_manager_fsType_get_type ())
 
 const gchar * font_manager_fsType_to_string (gint fstype);
+

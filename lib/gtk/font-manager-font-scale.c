@@ -88,9 +88,9 @@ font_manager_font_scale_dispose (GObject *gobject)
 }
 
 static void
-font_manager_font_scale_get_property (GObject *gobject,
-                                      guint property_id,
-                                      GValue *value,
+font_manager_font_scale_get_property (GObject    *gobject,
+                                      guint       property_id,
+                                      GValue     *value,
                                       GParamSpec *pspec)
 {
     FontManagerFontScale *self = FONT_MANAGER_FONT_SCALE(gobject);
@@ -112,10 +112,10 @@ font_manager_font_scale_get_property (GObject *gobject,
 }
 
 static void
-font_manager_font_scale_set_property (GObject *gobject,
-                                      guint property_id,
+font_manager_font_scale_set_property (GObject      *gobject,
+                                      guint         property_id,
                                       const GValue *value,
-                                      GParamSpec *pspec)
+                                      GParamSpec   *pspec)
 {
     FontManagerFontScale *self = FONT_MANAGER_FONT_SCALE(gobject);
     g_return_if_fail(self != NULL);
@@ -214,10 +214,10 @@ on_zoom (GtkWidget   *widget,
 }
 
 static void
-on_click (GtkGestureClick *gesture,
-          gint n_press,
-          gdouble x,
-          gdouble y,
+on_click (GtkGestureClick      *gesture,
+          gint                  n_press,
+          gdouble               x,
+          gdouble               y,
           FontManagerFontScale *self)
 {
     g_return_if_fail(self != NULL);
@@ -228,7 +228,9 @@ on_click (GtkGestureClick *gesture,
 }
 
 static void
-on_state_change (GtkWidget *widget, GtkStateFlags flags, FontManagerFontScale *self)
+on_state_change (GtkWidget            *widget,
+                 GtkStateFlags         flags,
+                 FontManagerFontScale *self)
 {
     gboolean active = gtk_window_is_active(GTK_WINDOW(gtk_widget_get_root(widget)));
     gboolean prelight = ((flags & GTK_STATE_FLAG_PRELIGHT) == 0);
@@ -245,7 +247,9 @@ on_value_changed (FontManagerFontScale *self, GtkAdjustment *adjustment)
 }
 
 static void
-add_child_widget (FontManagerFontScale *self, const gchar *name, GtkWidget *widget)
+add_child_widget (FontManagerFontScale *self,
+                  const gchar          *name,
+                  GtkWidget            *widget)
 {
     gtk_widget_set_parent(widget, GTK_WIDGET(self));
     gtk_widget_set_name(widget, name);
@@ -293,6 +297,8 @@ font_manager_font_scale_init (FontManagerFontScale *self)
     add_child_widget(self, "spin", self->spin);
     add_click_target(self, self->min);
     add_click_target(self, self->max);
+    gtk_widget_set_focusable(self->scale, FALSE);
+    gtk_widget_set_focusable(self->spin, FALSE);
     gtk_widget_set_hexpand(self->scale, TRUE);
     gtk_widget_set_halign(self->scale, GTK_ALIGN_FILL);
     gtk_scale_set_draw_value(GTK_SCALE(self->scale), FALSE);
@@ -350,7 +356,7 @@ font_manager_font_scale_get_value (FontManagerFontScale *self)
  */
 void
 font_manager_font_scale_set_adjustment (FontManagerFontScale *self,
-                                        GtkAdjustment *adjustment)
+                                        GtkAdjustment        *adjustment)
 {
     g_return_if_fail(self != NULL && adjustment != NULL);
     if (g_set_object(&self->adjustment, adjustment))
@@ -372,7 +378,7 @@ font_manager_font_scale_set_adjustment (FontManagerFontScale *self,
  */
 void
 font_manager_font_scale_set_default_size (FontManagerFontScale *self,
-                                          gdouble value)
+                                          gdouble               value)
 {
     self->default_size = value;
     gdouble current_value = gtk_adjustment_get_value(self->adjustment);

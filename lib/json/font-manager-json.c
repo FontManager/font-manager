@@ -38,7 +38,9 @@
  * Returns:             %TRUE if file was written successfully
  */
 gboolean
-font_manager_write_json_file (JsonNode *root, const gchar *filepath, gboolean pretty)
+font_manager_write_json_file (JsonNode    *root,
+                              const gchar *filepath,
+                              gboolean     pretty)
 {
     g_return_val_if_fail(root != NULL && filepath != NULL, FALSE);
 
@@ -74,12 +76,12 @@ font_manager_load_json_file (const gchar *filepath)
  * @b:                  #JsonObject
  *
  * Returns:             An integer less than, equal to, or greater than zero
- *                      if int member from a is <, == or > than int member from b
+ *                      if member from a is <, == or > than member from b
  */
 gint
 font_manager_compare_json_int_member (const gchar *member_name,
-                                      JsonObject *a,
-                                      JsonObject *b)
+                                      JsonObject  *a,
+                                      JsonObject  *b)
 {
     g_return_val_if_fail(member_name != NULL, 0);
     g_return_val_if_fail(a != NULL && b != NULL, 0);
@@ -97,12 +99,12 @@ font_manager_compare_json_int_member (const gchar *member_name,
  * @b:                  #JsonObject
  *
  * Returns:             An integer less than, equal to, or greater than zero
- *                      if string member from a is <, == or > than string member from b
+ *                      if member from a is <, == or > than member from b
  */
 gint
 font_manager_compare_json_string_member (const gchar *member_name,
-                                         JsonObject *a,
-                                         JsonObject *b)
+                                         JsonObject  *a,
+                                         JsonObject  *b)
 {
     g_return_val_if_fail(member_name != NULL, 0);
     g_return_val_if_fail(a != NULL && b != NULL, 0);
@@ -130,7 +132,8 @@ static const gchar *STYLE_PROPS[3] = {
  *                      if font a is <, == or > than font b
  */
 gint
-font_manager_compare_json_font_node (JsonNode *node_a, JsonNode *node_b)
+font_manager_compare_json_font_node (JsonNode *node_a,
+                                     JsonNode *node_b)
 {
     g_return_val_if_fail(JSON_NODE_HOLDS_OBJECT(node_a), 0);
     g_return_val_if_fail(JSON_NODE_HOLDS_OBJECT(node_b), 0);
@@ -178,7 +181,8 @@ font_manager_str_list_to_json_array (GList *slist)
  * The returned string should be freed with g_free() when no longer needed.
  */
 gchar *
-font_manager_print_json_array (JsonArray *json_arr, gboolean pretty)
+font_manager_print_json_array (JsonArray *json_arr,
+                               gboolean   pretty)
 {
     g_return_val_if_fail(json_arr != NULL, NULL);
     g_autoptr(JsonNode) n = json_node_new(JSON_NODE_ARRAY);
@@ -202,7 +206,8 @@ font_manager_print_json_array (JsonArray *json_arr, gboolean pretty)
  * The returned string should be freed with g_free() when no longer needed.
  */
 gchar *
-font_manager_print_json_object (JsonObject *json_obj, gboolean pretty)
+font_manager_print_json_object (JsonObject *json_obj,
+                                gboolean    pretty)
 {
     g_return_val_if_fail(json_obj != NULL, NULL);
     g_autoptr(JsonNode) n = json_node_new(JSON_NODE_OBJECT);
@@ -211,3 +216,4 @@ font_manager_print_json_object (JsonObject *json_obj, gboolean pretty)
     json_node_set_object(n, NULL);
     return res;
 }
+

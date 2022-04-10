@@ -42,3 +42,4 @@ get_widget (TestApplicationWindow *parent)
     test_dialog_append(dialog, props);
     return dialog;
 }
+

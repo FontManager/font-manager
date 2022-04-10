@@ -64,7 +64,8 @@ enum
 static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
 
 void
-font_manager_character_map_set_active_cell(FontManagerCharacterMap *self, gint cell)
+font_manager_character_map_set_active_cell (FontManagerCharacterMap *self,
+                                            gint                     cell)
 {
     g_return_if_fail(self != NULL);
     self->active_cell = cell;
@@ -83,9 +84,9 @@ font_manager_character_map_dispose (GObject *gobject)
 }
 
 static void
-font_manager_character_map_get_property (GObject *gobject,
-                                         guint property_id,
-                                         GValue *value,
+font_manager_character_map_get_property (GObject    *gobject,
+                                         guint       property_id,
+                                         GValue     *value,
                                          GParamSpec *pspec)
 {
     g_return_if_fail(gobject != NULL);
@@ -112,10 +113,10 @@ font_manager_character_map_get_property (GObject *gobject,
 }
 
 static void
-font_manager_character_map_set_property (GObject *gobject,
-                                        guint property_id,
-                                        const GValue *value,
-                                        GParamSpec *pspec)
+font_manager_character_map_set_property (GObject      *gobject,
+                                         guint         property_id,
+                                         const GValue *value,
+                                         GParamSpec   *pspec)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerCharacterMap *self = FONT_MANAGER_CHARACTER_MAP(gobject);
@@ -244,8 +245,7 @@ font_manager_character_map_init (FontManagerCharacterMap *self)
     font_manager_unicode_search_bar_set_character_map(search_bar, charmap);
     font_manager_font_scale_set_default_size(FONT_MANAGER_FONT_SCALE(self->fontscale),
                                              FONT_MANAGER_CHARACTER_MAP_PREVIEW_SIZE);
-    font_manager_font_scale_set_value(FONT_MANAGER_FONT_SCALE(self->fontscale),
-                                      FONT_MANAGER_CHARACTER_MAP_PREVIEW_SIZE);
+    self->preview_size = FONT_MANAGER_CHARACTER_MAP_PREVIEW_SIZE;
     gtk_widget_set_parent(box, GTK_WIDGET(self));
     font_manager_widget_set_expand(GTK_WIDGET(box), TRUE);
     font_manager_widget_set_expand(GTK_WIDGET(charmap), TRUE);
@@ -267,7 +267,7 @@ font_manager_character_map_init (FontManagerCharacterMap *self)
  */
 void
 font_manager_character_map_set_font_desc (FontManagerCharacterMap *self,
-                                          PangoFontDescription *font_desc)
+                                          PangoFontDescription    *font_desc)
 {
     g_return_if_fail(self != NULL);
     g_clear_pointer(&self->font_desc, pango_font_description_free);
