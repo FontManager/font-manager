@@ -805,6 +805,10 @@ bind_from_properties (sqlite3_stmt *stmt,
                       const FontManagerJsonProxyProperty *properties,
                       gint n_properties)
 {
+    if (g_getenv("G_MESSAGES_DEBUG")) {
+        g_autofree gchar *json_data = font_manager_print_json_object(json, FALSE);
+        g_debug("Database.bind_from_properties : %s", json_data);
+    }
     for (gint i = 0; i < n_properties; i++) {
         const gchar *str = NULL;
         switch (properties[i].type) {
@@ -1027,6 +1031,72 @@ update_available_fonts (FontManagerDatabase *db,
 }
 
 /**
+ * font_manager_database_add_entry:
+ * @file:       #GFile
+ * @error:      #GError or %NULL to ignore errors
+ *
+ * Adds information for @file to the database.
+ */
+void
+font_manager_database_add_entry (GFile *file, GError **error)
+{
+    g_return_if_fail(file != NULL);
+    g_autofree gchar *path = g_file_get_path(file);
+    gint n_faces = font_manager_get_face_count(path);
+    g_autoptr(JsonArray) panose = json_array_new();
+    g_autoptr(FontManagerDatabase) db = NULL;
+    db = font_manager_get_database(FONT_MANAGER_DATABASE_TYPE_BASE, error);
+    for (gint i = 0; i < n_faces; i++) {
+        g_autoptr(JsonObject) face = NULL;
+        face = font_manager_get_attributes_from_filepath(path, i, error);
+        g_return_if_fail(error == NULL || *error == NULL);
+        font_manager_database_execute_query(db, INSERT_FONT_ROW, error);
+        g_return_if_fail(error == NULL || *error == NULL);
+        sync_fonts_table(db, face, NULL);
+        font_manager_database_execute_query(db, INSERT_INFO_ROW, error);
+        g_return_if_fail(error == NULL || *error == NULL);
+        sync_metadata_table(db, face, panose);
+        font_manager_database_execute_query(db, INSERT_ORTH_ROW, error);
+        g_return_if_fail(error == NULL || *error == NULL);
+        sync_orth_table(db, face, NULL);
+    }
+    sync_panose_table(db, panose, NULL, error);
+    return;
+}
+
+/**
+ * font_manager_database_remove_entry:
+ * @file:       #GFile
+ * @error:      #GError or %NULL to ignore errors
+ *
+ * Removes any entries for @file in the database
+ */
+void
+font_manager_database_remove_entry (GFile *file, GError **error)
+{
+    g_return_if_fail(file != NULL);
+    g_autoptr(FontManagerDatabase) db = NULL;
+    g_autofree gchar *path = g_file_get_path(file);
+    db = font_manager_get_database(FONT_MANAGER_DATABASE_TYPE_BASE, error);
+    g_return_if_fail(error == NULL || *error == NULL);
+    font_manager_database_begin_transaction(db, error);
+    g_return_if_fail(error == NULL || *error == NULL);
+    for (gint i = 1; i <= 3; i++) {
+        FontManagerDatabaseType db_type = (FontManagerDatabaseType) i;
+        const gchar *db_name = font_manager_database_get_type_name(db_type);
+        const gchar *_sql = "DELETE FROM %s WHERE filepath = \"%s\"";
+        g_autofree gchar *sql = g_strdup_printf(_sql, db_name, path);
+        font_manager_database_execute_query(db, sql, error);
+        g_return_if_fail(error == NULL || *error == NULL);
+        if (!sqlite3_step_succeeded(db, SQLITE_DONE))
+            set_error(db, "sqlite3_step", error);
+        g_return_if_fail(error == NULL || *error == NULL);
+    }
+    font_manager_database_commit_transaction(db, error);
+    return;
+}
+
+/**
  * font_manager_update_database_sync:
  * @db: #FontManagerDatabase instance
  * @type: #FontManagerDatabaseType
@@ -1212,6 +1282,20 @@ font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
 
 static FontManagerDatabase *main_database = NULL;
 
+static void
+attach_children (FontManagerDatabase *self, GError **error)
+{
+    g_return_if_fail(self != NULL);
+    g_return_if_fail(error == NULL || *error == NULL);
+    font_manager_database_attach(self, FONT_MANAGER_DATABASE_TYPE_FONT, error);
+    g_return_if_fail(error == NULL || *error == NULL);
+    font_manager_database_attach(self, FONT_MANAGER_DATABASE_TYPE_METADATA, error);
+    g_return_if_fail(error == NULL || *error == NULL);
+    font_manager_database_attach(self, FONT_MANAGER_DATABASE_TYPE_ORTHOGRAPHY, error);
+    g_return_if_fail(error == NULL || *error == NULL);
+    return;
+}
+
 /**
  * font_manager_get_database:
  * @type:   #FontManagerDatabaseType
@@ -1219,7 +1303,8 @@ static FontManagerDatabase *main_database = NULL;
  *
  * Convenience function which initializes the database and sets default options.
  *
- * Returns: (transfer full) (nullable): The requested #FontManagerDatabase or %NULL on error.
+ * Returns: (transfer full) (nullable):
+ * The requested #FontManagerDatabase or %NULL on error.
  * Free the returned object using #g_object_unref().
  */
 FontManagerDatabase *
@@ -1232,8 +1317,12 @@ font_manager_get_database (FontManagerDatabaseType type, GError **error)
     g_autofree gchar *db_file = font_manager_database_get_file(type);
     g_object_set(db, "file", db_file, NULL);
     font_manager_database_initialize(db, type, error);
-    if (type == FONT_MANAGER_DATABASE_TYPE_BASE && main_database == NULL)
+    g_return_val_if_fail((error == NULL || *error == NULL), NULL);
+    if (type == FONT_MANAGER_DATABASE_TYPE_BASE && main_database == NULL) {
         main_database = g_object_ref(db);
+        attach_children(main_database, error);
+        g_return_val_if_fail((error == NULL || *error == NULL), NULL);
+    }
     return db;
 }
 

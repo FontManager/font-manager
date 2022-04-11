@@ -21,6 +21,7 @@
 #pragma once
 
 #include <glib.h>
+#include <glib/gprintf.h>
 #include <glib/gstdio.h>
 #include <gmodule.h>
 #include <glib-object.h>
@@ -167,6 +168,9 @@ void font_manager_database_initialize (FontManagerDatabase *self, FontManagerDat
 void font_manager_database_attach (FontManagerDatabase *self, FontManagerDatabaseType type, GError **error);
 void font_manager_database_detach (FontManagerDatabase *self, FontManagerDatabaseType type, GError **error);
 JsonObject * font_manager_database_get_object (FontManagerDatabase *self, const gchar *sql, GError **error);
+void font_manager_database_add_entry (GFile *file, GError **error);
+void font_manager_database_remove_entry (GFile *file, GError **error);
+
 FontManagerDatabaseIterator * font_manager_database_iterator (FontManagerDatabase *self);
 
 /* Standard Iterator protocol */
