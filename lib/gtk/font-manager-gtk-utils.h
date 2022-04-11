@@ -44,7 +44,7 @@
 #define FONT_MANAGER_DEFAULT_PREVIEW_SIZE 10.0
 #define FONT_MANAGER_CHARACTER_MAP_PREVIEW_SIZE 16.0
 
-#define FONT_MANAGER_DEFAULT_PREVIEW_TEXT "\n\n\n"\
+#define FONT_MANAGER_DEFAULT_PREVIEW_TEXT "\n"\
 "    %s\n" \
 "\n" \
 "    ABCDEFGHIJKLMNOPQRSTUVWXYZ\n" \
@@ -129,5 +129,8 @@ gchar * font_manager_get_localized_preview_text (void);
 GtkTextTagTable * font_manager_text_tag_table_new (void);
 GtkGesture * font_manager_tree_view_setup_drag_selection (GtkTreeView *treeview);
 
-GtkShortcut * font_manager_get_shortcut_for_stateful_action (const gchar *prefix, const gchar *name,
-                                                             const gchar *target, const gchar *accel);
+GtkShortcut * font_manager_get_shortcut_for_stateful_action (const gchar *prefix,
+                                                             const gchar *name,
+                                                             const gchar *target,
+                                                             const gchar *accel);
+

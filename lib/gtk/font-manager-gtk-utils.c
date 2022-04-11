@@ -49,8 +49,14 @@ font_manager_set_application_style (void)
     GdkDisplay *default_display = gdk_display_get_default();
     GtkIconTheme *icon_theme = gtk_icon_theme_get_for_display(default_display);
     g_autoptr(GtkCssProvider) css_provider = gtk_css_provider_new();
+    g_debug("Adding icons from resource path : %s", icons);
     gtk_icon_theme_add_resource_path(icon_theme, icons);
+    g_debug("Loading custom css from resource path : %s", css);
     gtk_css_provider_load_from_resource(css_provider, css);
+    if (g_getenv("G_MESSAGES_DEBUG")) {
+        g_autofree gchar *css_data = gtk_css_provider_to_string(css_provider);
+        g_debug("CssProvider data : \n\n%s", css_data);
+    }
     gtk_style_context_add_provider_for_display(default_display,
                                               GTK_STYLE_PROVIDER(css_provider),
                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
@@ -204,11 +210,15 @@ font_manager_get_localized_preview_text (void)
  * Free the returned object using #g_object_unref.
  */
 GtkShortcut *
-font_manager_get_shortcut_for_stateful_action (const gchar *prefix, const gchar *name,
-                                                const gchar *target, const gchar *accel)
+font_manager_get_shortcut_for_stateful_action (const gchar *prefix,
+                                               const gchar *name,
+                                               const gchar *target,
+                                               const gchar *accel)
 {
     g_return_val_if_fail(name != NULL && target != NULL, NULL);
-    g_autofree gchar *action_name = prefix ? g_strdup_printf("%s.%s", prefix, name) : g_strdup(name);
+    g_autofree gchar *action_name = prefix ?
+                                    g_strdup_printf("%s.%s", prefix, name) :
+                                    g_strdup(name);
     GtkShortcutAction *shortcut_action = gtk_named_action_new(action_name);
     GtkShortcutTrigger *shortcut_trigger = gtk_shortcut_trigger_parse_string(accel);
     GtkShortcut *shortcut = gtk_shortcut_new(shortcut_trigger, shortcut_action);
@@ -287,7 +297,9 @@ on_tree_view_released_event (GtkGestureClick *gesture,
  *
  * Returns: (transfer none): The #GtkGesture added to @treeview.
  */
-GtkGesture * font_manager_tree_view_setup_drag_selection (GtkTreeView *treeview) {
+GtkGesture *
+font_manager_tree_view_setup_drag_selection (GtkTreeView *treeview)
+{
     GtkGesture *gesture = gtk_gesture_click_new();
     gtk_gesture_single_set_touch_only(GTK_GESTURE_SINGLE(gesture), FALSE);
     gtk_gesture_single_set_exclusive(GTK_GESTURE_SINGLE(gesture), TRUE);

@@ -20,14 +20,25 @@
 
 #pragma once
 
+#include <glib/gi18n-lib.h>
+#include <locale.h>
 #include <unistd.h>
 #include <glib.h>
 #include <glib/gprintf.h>
 #include <glib/gstdio.h>
 #include <gio/gio.h>
-#include <pango/pango-language.h>
+
+#include <fontconfig/fontconfig.h>
+#include <freetype/freetype.h>
+#include <gtk/gtk.h>
+#include <hb.h>
+#include <json-glib/json-glib.h>
+#include <pango/pango.h>
+#include <libxml/xmlversion.h>
+#include <sqlite3.h>
 
 #include "font-manager-freetype.h"
+#include "font-manager-string-set.h"
 
 #define FONT_MANAGER_TMP_TMPL "font-manager_XXXXXX"
 
@@ -48,6 +59,8 @@ typedef struct _ObjectProperty
 }
 FontManagerObjectProperty;
 
+void font_manager_setup_i18n (void);
+void font_manager_print_library_versions (void);
 gint font_manager_get_file_owner (const gchar *filepath);
 gint font_manager_natural_sort (const gchar *str1, const gchar *str2) G_GNUC_PURE;
 gint font_manager_timecmp (gchar *a, gchar *b);
@@ -63,4 +76,5 @@ gchar * font_manager_get_user_fontconfig_directory (void);
 gchar * font_manager_str_replace (const gchar *str, const gchar *target, const gchar *replacement) G_GNUC_PURE;
 gchar * font_manager_to_filename (const gchar *str) G_GNUC_PURE;
 GSettings * font_manager_get_gsettings (const gchar *schema_id);
+FontManagerStringSet * font_manager_get_command_line_files (GApplicationCommandLine *cmdline);
 

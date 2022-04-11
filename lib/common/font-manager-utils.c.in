@@ -47,6 +47,73 @@ get_possible_schema_dirs (void)
 }
 
 /**
+ * font_manager_setup_i18n:
+ *
+ * Initializes gettext translations
+ */
+void
+font_manager_setup_i18n ()
+{
+    setlocale(LC_ALL, "");
+    bindtextdomain("@GETTEXT_PACKAGE@", "@localedir@");
+    bind_textdomain_codeset("@GETTEXT_PACKAGE@", "UTF-8");
+    textdomain("@GETTEXT_PACKAGE@");
+    return;
+}
+
+/**
+ * font_manager_print_library_versions:
+ *
+ * Logs the versions of libraries in use for debugging purposes.
+ */
+void
+font_manager_print_library_versions ()
+{
+    g_debug("Fontconfig version : %i", FcGetVersion());
+
+    g_debug("Freetype version (compile-time) : %i.%i.%i", FREETYPE_MAJOR,
+                                                          FREETYPE_MINOR,
+                                                          FREETYPE_PATCH);
+    FT_Library library;
+    FT_Error ft_error = FT_Init_FreeType(&library);
+    if (!ft_error) {
+        FT_Int major, minor, patch;
+        FT_Library_Version(library, &major, &minor, &patch);
+        g_debug("Freetype version (run-time) : %i.%i.%i", major, minor, patch);
+    }
+    FT_Done_FreeType(library);
+
+    g_debug("Harfbuzz version (compile-time) : %s", HB_VERSION_STRING);
+    g_debug("Harfbuzz version (run-time) : %s", hb_version_string());
+
+    g_debug("JSON-GLib version : %s", JSON_VERSION_S);
+
+    g_debug("Pango version (compile-time) : %s", PANGO_VERSION_STRING);
+    g_debug("Pango version (run-time) : %i", pango_version());
+
+    g_debug("libxml2 version : %s", LIBXML_VERSION_STRING);
+
+    g_debug("SQLite version (compile-time) : %s", SQLITE_VERSION);
+    g_debug("SQLite version (run-time) : %s", sqlite3_libversion());
+
+    g_debug("GLib version (compile-time) : %i.%i.%i", GLIB_MAJOR_VERSION,
+                                                      GLIB_MINOR_VERSION,
+                                                      GLIB_MICRO_VERSION);
+    g_debug("GLib version (run-time) : %i.%i.%i", glib_major_version,
+                                                  glib_minor_version,
+                                                  glib_micro_version);
+
+    g_debug("GTK version (compile-time) : %i.%i.%i", GTK_MAJOR_VERSION,
+                                                     GTK_MINOR_VERSION,
+                                                     GTK_MICRO_VERSION);
+    g_debug("GTK version (run-time) : %i.%i.%i", gtk_get_major_version(),
+                                                 gtk_get_minor_version(),
+                                                 gtk_get_micro_version());
+
+    return;
+}
+
+/**
  * font_manager_is_dir:
  * @filepath:   full path to file
  *
@@ -305,6 +372,41 @@ font_manager_install_file (GFile *file, GFile *directory, GError **error)
     g_file_copy(file, target, flags, NULL, NULL, NULL, error);
     g_return_val_if_fail(error == NULL || *error == NULL, FALSE);
     return TRUE;
+}
+
+/**
+ * font_manager_get_command_line_files:
+ * @cmdline:    #GApplicationCommandLine
+ *
+ * Returns: (transfer full): #FontManagerStringSet containing filepaths for each
+ * file specified in @cmdline or %NULL if no files were specified.
+ */
+FontManagerStringSet *
+font_manager_get_command_line_files (GApplicationCommandLine *cmdline)
+{
+    g_return_val_if_fail(cmdline != NULL, NULL);
+    GVariantDict *options = g_application_command_line_get_options_dict(cmdline);
+    g_autoptr(GVariant) argv = g_variant_dict_lookup_value(options,
+                                                           "",
+                                                           G_VARIANT_TYPE_BYTESTRING_ARRAY);
+    if (!argv)
+        return NULL;
+    g_debug("Processing files passed on command line");
+    gsize array_length;
+    const gchar **filelist = g_variant_get_bytestring_array(argv, &array_length);
+    if G_UNLIKELY(array_length == 0)
+        return NULL;
+    FontManagerStringSet *files = font_manager_string_set_new();
+    gint i = 0;
+    while (filelist[i]) {
+        g_autoptr(GFile) file = g_application_command_line_create_file_for_arg(cmdline, filelist[i]);
+        g_autofree gchar *path = g_file_get_path(file);
+        g_debug("Adding %s to list of command line files", path);
+        font_manager_string_set_add(files, path);
+        i++;
+    }
+    g_free(filelist);
+    return files;
 }
 
 /**

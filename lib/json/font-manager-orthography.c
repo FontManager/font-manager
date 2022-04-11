@@ -138,5 +138,7 @@ font_manager_orthography_get_filter (FontManagerOrthography *self)
 FontManagerOrthography *
 font_manager_orthography_new (JsonObject *orthography)
 {
-    return g_object_new(FONT_MANAGER_TYPE_ORTHOGRAPHY, FONT_MANAGER_JSON_PROXY_SOURCE, orthography, NULL);
+    return g_object_new(FONT_MANAGER_TYPE_ORTHOGRAPHY,
+                        FONT_MANAGER_JSON_PROXY_SOURCE, orthography,
+                        NULL);
 }
