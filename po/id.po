@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the font-manager package.
 # liimee <alt3753.7@gmail.com>, 2021.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
-# Reza Almanda <rezaalmanda27@gmail.com>, 2021.
+# Reza Almanda <rezaalmanda27@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2021-12-16 23:53+0000\n"
+"PO-Revision-Date: 2022-06-05 04:36+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/id/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -36,16 +36,21 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
+"Font Manager dibuat untuk membantu pengguna komputer mengelola font, tanpa "
+"harus bersusah payah menggunakan command line atau mengeditnya secara manual."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr ""
+"Meskipun dirancang terutama dengan mempertimbangkan Lingkungan Desktop "
+"Gnome, ini seharusnya bekerja dengan baik dengan lingkungan desktop Gtk + "
+"lainnya."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
-msgstr ""
+msgstr "Font Manager BUKAN solusi manajemen font kelas profesional."
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
@@ -75,10 +80,13 @@ msgid ""
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
 msgstr ""
+"Font Viewer memungkinkan pratinjau file font sebelum instalasi. Mulai dari "
+"cara untuk melihat pratinjau file font bersama dengan peta karakter dan "
+"menampilkan properti font dan detail lisensi."
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr ""
+msgstr "Aplikasi pratinjau file font berfitur lengkap"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
@@ -111,7 +119,7 @@ msgstr "Tinjauan"
 #: lib/common/font-manager-font-preview.c:87
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
 msgid "Waterfall"
-msgstr ""
+msgstr "Waterfall"
 
 #: lib/common/font-manager-fontconfig.c:709
 #: src/font-manager/web/google/Weight.vala:65
@@ -170,15 +178,15 @@ msgstr "Miring"
 
 #: lib/common/font-manager-fontconfig.c:806
 msgid "Oblique"
-msgstr ""
+msgstr "Oblique"
 
 #: lib/common/font-manager-fontconfig.c:844
 msgid "Ultra-Condensed"
-msgstr ""
+msgstr "Ultra-Condensed"
 
 #: lib/common/font-manager-fontconfig.c:846
 msgid "Extra-Condensed"
-msgstr ""
+msgstr "Extra-Condensed"
 
 #: lib/common/font-manager-fontconfig.c:848
 msgid "Condensed"
@@ -377,7 +385,7 @@ msgstr "Lebar"
 #: lib/common/font-manager-properties-pane.c:84
 #: src/font-manager/Categories.vala:536
 msgid "Slant"
-msgstr ""
+msgstr "Kemiringan"
 
 #: lib/common/font-manager-properties-pane.c:85
 #: src/font-manager/Categories.vala:535
