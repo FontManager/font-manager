@@ -2,13 +2,14 @@
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
 # Takuro Onoue <kusanaginoturugi@gmail.com>, 2020.
+# Ryo Nakano <ryonakaknock3@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2020-12-18 23:02+0000\n"
-"Last-Translator: Takuro Onoue <kusanaginoturugi@gmail.com>\n"
+"PO-Revision-Date: 2022-04-18 00:09+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/ja/>\n"
 "Language: ja\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -34,9 +35,9 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
-"Font Manager は平均的なユーザーがコマンドラインツールを使用したり構成ファイル"
-"を手動で編集したりすることなく、デスクトップフォントを簡単に管理する方法を提"
-"供することを目的としています。"
+"“フォントマネージャー”は、一般的なユーザーがデスクトップフォントを簡単に管理"
+"できる方法を提供することを目的としています。コマンドラインツールを使用したり"
+"、設定ファイルを手動で編集したりする必要はありません。"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
@@ -48,19 +49,19 @@ msgstr ""
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
-msgstr ""
-"Font Manager はプロフェッショナルグレードのフォント管理ソリューションではあり"
-"ません。"
+msgstr "“フォントマネージャー”は、プロ用のフォント管理ソリューションではありません。"
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr "フォントのプレビュー、比較および管理"
+msgstr "フォントをプレビュー、比較、管理します"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
 #: data/org.gnome.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr "グラフィックス;ビューア; GNOME; GTK;パブリッシング;"
+msgstr ""
+"Graphics;Viewer;GNOME;GTK;Publishing;グラフィックス;ビューアー;ビュアー;ビュ"
+"ーワー;GNOME;GTK;出版;"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
 #: data/org.gnome.FontViewer.desktop.in.in:5
@@ -72,7 +73,7 @@ msgstr "フォントビューアー"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr "Gtk+ デスクトップ環境用のフォントビューアアプリケーション"
+msgstr "Gtk+ デスクトップ環境用のフォントビューアーアプリケーション"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
@@ -228,10 +229,9 @@ msgstr "チャーセル幅"
 
 #: lib/common/font-manager-fontconfig.c:972
 msgid "Unknown"
-msgstr ""
+msgstr "不明"
 
 #: lib/common/font-manager-fontconfig.c:974
-#, fuzzy
 msgid "RGB"
 msgstr "RGB"
 
@@ -240,12 +240,10 @@ msgid "BGR"
 msgstr "BGR"
 
 #: lib/common/font-manager-fontconfig.c:978
-#, fuzzy
 msgid "VRGB"
 msgstr "VRGB"
 
 #: lib/common/font-manager-fontconfig.c:980
-#, fuzzy
 msgid "VBGR"
 msgstr "VBGR"
 
@@ -253,7 +251,7 @@ msgstr "VBGR"
 #: lib/common/font-manager-fontconfig.c:1027
 #: lib/common/font-manager-fontconfig.c:1070
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 #: lib/common/font-manager-fontconfig.c:1021
 msgid "Slight"

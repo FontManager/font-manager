@@ -1,10 +1,11 @@
 # Hautzii <am.03012002@gmail.com>, 2021.
+# Alexandre ZANNI <alexandre.zanni@hotmail.fr>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-10-18 10:35+0000\n"
-"Last-Translator: Hautzii <am.03012002@gmail.com>\n"
+"PO-Revision-Date: 2022-03-17 11:55+0000\n"
+"Last-Translator: Alexandre ZANNI <alexandre.zanni@hotmail.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/fr/>\n"
 "Language: fr\n"
@@ -12,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -79,6 +80,8 @@ msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
 msgstr ""
+"Trié par type de famille - Nécessite que les informations de PANOSE soient "
+"présentes dans les métadonnées de la police."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -551,16 +554,19 @@ msgid ""
 "<app>Font Manager</app> will reload anytime changes require it. This may "
 "take a moment depending on number of changes."
 msgstr ""
+"<app>Font Manager</app> se rechargera chaque fois que des changements le "
+"nécessiteront. Cela peut prendre un moment en fonction du nombre de "
+"changements."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-removal.page:8
 msgid "Getting rid of unwanted fonts"
-msgstr ""
+msgstr "Se débarrasser des polices indésirables"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-removal.page:11
 msgid "Removal"
-msgstr ""
+msgstr "Suppression"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:14

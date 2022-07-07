@@ -4,21 +4,22 @@
 # J. Lavoie <j.lavoie@net-c.ca>, 2020.
 # Julien Humbert <julroy67@gmail.com>, 2020.
 # Laurent DÉRÉDEC <images-ld@gmx.fr>, 2021.
+# Alexandre ZANNI <alexandre.zanni@hotmail.fr>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2021-01-16 22:32+0000\n"
-"Last-Translator: Laurent DÉRÉDEC <images-ld@gmx.fr>\n"
-"Language-Team: French <https://hosted.weblate.org/projects/font-manager/font-"
-"manager/fr/>\n"
+"PO-Revision-Date: 2022-03-17 11:55+0000\n"
+"Last-Translator: Alexandre ZANNI <alexandre.zanni@hotmail.fr>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.5-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -517,15 +518,15 @@ msgstr "Lettre, Majuscule"
 
 #: lib/unicode/unicode-info.c:242
 msgid "Mark, Spacing Combining"
-msgstr ""
+msgstr "Signe, Espace Combinatoire"
 
 #: lib/unicode/unicode-info.c:244
 msgid "Mark, Enclosing"
-msgstr ""
+msgstr "Signe, Englobant"
 
 #: lib/unicode/unicode-info.c:246
 msgid "Mark, Non-Spacing"
-msgstr ""
+msgstr "Signe, Sans Espacement"
 
 #: lib/unicode/unicode-info.c:248
 msgid "Number, Decimal Digit"
@@ -541,7 +542,7 @@ msgstr "Nombre, Autres"
 
 #: lib/unicode/unicode-info.c:254
 msgid "Punctuation, Connector"
-msgstr ""
+msgstr "Ponctuation, Connecteur"
 
 #: lib/unicode/unicode-info.c:256
 msgid "Punctuation, Dash"
@@ -577,7 +578,7 @@ msgstr ""
 
 #: lib/unicode/unicode-info.c:272
 msgid "Symbol, Math"
-msgstr ""
+msgstr "Symboles, Mathématiques"
 
 #: lib/unicode/unicode-info.c:274
 msgid "Symbol, Other"

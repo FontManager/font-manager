@@ -1,11 +1,11 @@
 # liimee <alt3753.7@gmail.com>, 2021.
 # Jacque Fresco <aidter@use.startmail.com>, 2021.
-# Reza Almanda <rezaalmanda27@gmail.com>, 2021.
+# Reza Almanda <rezaalmanda27@gmail.com>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-12-16 23:53+0000\n"
+"PO-Revision-Date: 2022-06-05 04:36+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/id/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -37,6 +37,8 @@ msgid ""
 "<app>Font Manager</app> automatically categorizes your fonts based on "
 "various properties."
 msgstr ""
+"<app>Font Manager</app> secara otomatis mengkategorikan font Anda "
+"berdasarkan berbagai properti."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
@@ -79,6 +81,8 @@ msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
 msgstr ""
+"Diurutkan berdasarkan Jenis Keluarga - Memerlukan informasi Panose dalam "
+"metadata font."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -98,17 +102,17 @@ msgstr "Berat"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr ""
+msgstr "Diurutkan berdasarkan properti berat font."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr ""
+msgstr "Kemiringan"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr ""
+msgstr "Diurutkan berdasarkan properti kemiringan font."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
@@ -131,6 +135,8 @@ msgid ""
 "Sorted by font license — Requires license information to be present in font "
 "metadata."
 msgstr ""
+"Diurutkan berdasarkan lisensi font - Memerlukan informasi lisensi yang ada "
+"dalam metadata font."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
@@ -143,6 +149,8 @@ msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
 msgstr ""
+"Diurutkan berdasarkan vendor font - Memerlukan informasi vendor untuk hadir "
+"dalam metadata font."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
@@ -152,7 +160,7 @@ msgstr "tipe file"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr ""
+msgstr "Diurutkan berdasarkan format file."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
@@ -162,7 +170,7 @@ msgstr "Tidak disortir"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "Font yang tidak ada dalam koleksi Anda."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
@@ -172,12 +180,12 @@ msgstr "Nonaktif"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "Keluarga font yang saat ini dinonaktifkan."
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr ""
+msgstr "Informasi masing-masing karakter dan detailnya"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11

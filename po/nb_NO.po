@@ -1,22 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
-# Allan Nordhøy <epost@anotheragency.no>, 2020.
+# Allan Nordhøy <epost@anotheragency.no>, 2020, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2020-11-29 19:42+0000\n"
+"PO-Revision-Date: 2022-06-01 02:16+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
-"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/font-"
-"manager/font-manager/nb_NO/>\n"
+"Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
+"font-manager/font-manager/nb_NO/>\n"
 "Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"X-Generator: Weblate 4.13-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -30,17 +30,24 @@ msgid "A simple font management application for Gtk+ Desktop Environments"
 msgstr "Et enkelt skriftbehandlingsprogram for GTK-skrivebordsmiljøer"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
+#, fuzzy
 msgid ""
 "Font Manager is intended to provide a way for average users to easily manage "
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
+"Font Manager har til hensikt å hjelpe gjennomsnittlige brukere å håndtere "
+"skrivebordsskrifter, uten å måtte bruke kommandolinjeverktøy eller redigere "
+"oppsettsfiler selv."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
+#, fuzzy
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr ""
+"Selv om det er designet for GNOME-skrivebordsmiljøet bør det fungere på "
+"andre GTK-skrivebord."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
@@ -48,7 +55,7 @@ msgstr ""
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr ""
+msgstr "Forhåndsvis, sammenlign, og håndter skrifter"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
@@ -106,7 +113,7 @@ msgstr ""
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:120
 msgid "Preview"
-msgstr ""
+msgstr "Forhåndsvisning"
 
 #: lib/common/font-manager-font-preview.c:87
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
@@ -134,7 +141,7 @@ msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:717
 msgid "Book"
-msgstr ""
+msgstr "Bok"
 
 #: lib/common/font-manager-fontconfig.c:719
 #: lib/common/font-manager-fontconfig.c:1023
@@ -210,12 +217,12 @@ msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:929
 msgid "Dual Width"
-msgstr ""
+msgstr "Dobbelbredde"
 
 #: lib/common/font-manager-fontconfig.c:931
 #: src/font-manager/web/google/ui/google-font-filters.ui:260
 msgid "Monospace"
-msgstr ""
+msgstr "Fastbredde"
 
 #: lib/common/font-manager-fontconfig.c:933
 msgid "Charcell"
@@ -223,7 +230,7 @@ msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:972
 msgid "Unknown"
-msgstr ""
+msgstr "Ukjent"
 
 #: lib/common/font-manager-fontconfig.c:974
 msgid "RGB"
@@ -331,27 +338,27 @@ msgstr ""
 
 #: lib/common/font-manager-preview-controls.c:311
 msgid "Edit preview text"
-msgstr ""
+msgstr "Rediger forhåndsvisningstekst"
 
 #: lib/common/font-manager-preview-controls.c:312
 msgid "Undo changes"
-msgstr ""
+msgstr "Angre endringer"
 
 #: lib/common/font-manager-preview-pane.c:43
 #: lib/common/font-manager-preview-pane.c:572
 msgid "Characters"
-msgstr ""
+msgstr "Tegn"
 
 #: lib/common/font-manager-preview-pane.c:45
 #: lib/common/font-manager-preview-pane.c:573
 msgid "Properties"
-msgstr ""
+msgstr "Egenskaper"
 
 #: lib/common/font-manager-preview-pane.c:47
 #: lib/common/font-manager-preview-pane.c:574
 #: src/font-manager/Categories.vala:541
 msgid "License"
-msgstr ""
+msgstr "Lisens"
 
 #: lib/common/font-manager-preview-pane.c:454
 msgid "Search available characters"
@@ -372,7 +379,7 @@ msgstr ""
 #: lib/common/font-manager-properties-pane.c:83
 #: src/font-manager/Categories.vala:534
 msgid "Width"
-msgstr ""
+msgstr "Bredde"
 
 #: lib/common/font-manager-properties-pane.c:84
 #: src/font-manager/Categories.vala:536
@@ -401,27 +408,27 @@ msgstr ""
 
 #: lib/common/font-manager-properties-pane.c:90
 msgid "FileType"
-msgstr ""
+msgstr "Filtype"
 
 #: lib/common/font-manager-properties-pane.c:91
 msgid "Filesize"
-msgstr ""
+msgstr "Filstørrelse"
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:598
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
-msgstr ""
+msgstr "Vanlig"
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:593
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: lib/common/font-manager-source.c:308 lib/common/font-manager-source.c:323
 msgid "Source Unavailable"
-msgstr ""
+msgstr "Kilden er utilgjengelig"
 
 #: lib/unicode/unicode-info.c:191
 msgid "<Non Private Use High Surrogate>"
@@ -600,7 +607,7 @@ msgstr ""
 #. by a newline character so that they are displayed properly in the interface.
 #: src/font-manager/About.vala:69
 msgid "translator-credits"
-msgstr ""
+msgstr "Allan Nordhøy <epost@anotheragency.no>"
 
 #: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
@@ -2093,7 +2100,7 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:58
 msgid "Categories"
-msgstr ""
+msgstr "Kategorier"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:129
 msgid "Collections"
