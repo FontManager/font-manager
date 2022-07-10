@@ -37,6 +37,8 @@ vala_deps = declare_dependency(
     dependencies: [ gmodule, gtk, json, sqlite, xml ]
 )
 
+includes = [ include_directories('.') ]
+
 config_vapi_file = files('config.vapi')
 prefix = get_option('prefix')
 datadir = get_option('datadir')
@@ -51,6 +53,7 @@ config.set('PACKAGE_BUGREPORT', 'https://github.com/FontManager/master/issues')
 config.set('GETTEXT_PACKAGE', meson.project_name())
 config.set('PKGLIBEXECDIR', pkglibexec_dir)
 config.set('prefix', prefix)
+config.set('localedir', join_paths(prefix, datadir, 'locale'))
 config.set('abs_top_srcdir', meson.current_build_dir())
 
 # XXX
@@ -73,6 +76,7 @@ endif
 
 subdir('lib')
 subdir('test')
+subdir('src')
 
 meson.add_dist_script('meson_dist.py')
 

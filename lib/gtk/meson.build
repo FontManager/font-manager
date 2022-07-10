@@ -8,13 +8,13 @@ gtk_includes = [
     unicode_includes
 ]
 
-result = run_command(python, '-c', list_sources)
+result = run_command(python, '-c', list_sources, check: true)
 
 foreach f: result.stdout().strip().split('\n')
     gtk_sources += files(f)
 endforeach
 
-result = run_command(python, '-c', list_headers)
+result = run_command(python, '-c', list_headers, check: true)
 
 foreach f: result.stdout().strip().split('\n')
     gtk_headers += files(f)
