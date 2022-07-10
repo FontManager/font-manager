@@ -304,7 +304,7 @@ font_manager_preference_row_get_action_widget (FontManagerPreferenceRow *self)
 /**
  * font_manager_preference_row_set_action_widget:
  * @self:                   #FontManagerPreferenceRow
- * @control: (nullable):    #Gtkwidget
+ * @control: (nullable):    #GtkWidget
  *
  * Sets the action widget for @self.
  */

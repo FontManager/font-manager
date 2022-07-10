@@ -54,11 +54,12 @@ const gchar * font_manager_preview_pane_page_to_string (FontManagerPreviewPanePa
 G_DECLARE_FINAL_TYPE(FontManagerPreviewPane, font_manager_preview_pane, FONT_MANAGER, PREVIEW_PANE, GtkWidget)
 
 GtkWidget * font_manager_preview_pane_new (void);
-void font_manager_preview_pane_show_uri (FontManagerPreviewPane *self, const gchar *uri, int index);
+gboolean font_manager_preview_pane_show_uri (FontManagerPreviewPane *self, const gchar *uri, int index);
 void font_manager_preview_pane_set_font (FontManagerPreviewPane *self, FontManagerFont *font);
 void font_manager_preview_pane_set_orthography (FontManagerPreviewPane *self, FontManagerOrthography *orthography);
 void font_manager_preview_pane_set_waterfall_size (FontManagerPreviewPane *self, gdouble min_size, gdouble max_size, gdouble ratio);
 void font_manager_preview_pane_restore_state (FontManagerPreviewPane *self, GSettings *settings);
+void font_manager_preview_pane_set_action_widget (FontManagerPreviewPane *self, GtkWidget *widget, GtkPackType pack_type);
 
 G_END_DECLS
 

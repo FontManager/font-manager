@@ -27,7 +27,7 @@
  * @include: font-manager-fsType.h
  *
  * The main purpose of this enumeration is to provide a description of the
- * fsType field of font files in a user friendly manner.
+ * fsType field of font files in a user friendly form.
  */
 
 GType

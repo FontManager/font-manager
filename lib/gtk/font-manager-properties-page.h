@@ -30,7 +30,15 @@
 #include "font-manager-gtk-utils.h"
 
 #define FONT_MANAGER_TYPE_PROPERTIES_PAGE (font_manager_font_properties_page_get_type ())
-G_DECLARE_FINAL_TYPE(FontManagerPropertiesPage, font_manager_font_properties_page, FONT_MANAGER, PROPERTIES_PAGE, GtkWidget)
+
+G_DECLARE_FINAL_TYPE(FontManagerPropertiesPage,
+                     font_manager_font_properties_page,
+                     FONT_MANAGER,
+                     PROPERTIES_PAGE,
+                     GtkWidget)
 
 GtkWidget * font_manager_font_properties_page_new ();
-void font_manager_font_properties_page_update (FontManagerPropertiesPage *self, JsonObject *properties);
+
+void font_manager_font_properties_page_update (FontManagerPropertiesPage *self,
+                                               JsonObject                *properties);
+

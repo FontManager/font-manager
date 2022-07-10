@@ -174,8 +174,8 @@ font_manager_get_file_owner (const gchar *filepath)
 
 /**
  * font_manager_timecmp:
- * @a:  a valid filepath
- * @b:  a valid filepath
+ * @file_a:  #GFile
+ * @file_b:  #GFile
  *
  * Compare the modification time of two different files.
  *
@@ -183,14 +183,12 @@ font_manager_get_file_owner (const gchar *filepath)
  *              if a is <, == or > than b.
  */
 gint
-font_manager_timecmp (gchar *a, gchar *b)
+font_manager_timecmp (GFile *file_a, GFile *file_b)
 {
     g_autoptr(GError) error = NULL;
     gchar *attrs = G_FILE_ATTRIBUTE_TIME_MODIFIED;
     GFileQueryInfoFlags flags = G_FILE_QUERY_INFO_NONE;
-    g_autoptr(GFile) file_a = g_file_new_for_path(a);
     g_return_val_if_fail(g_file_query_exists(file_a, NULL), 0);
-    g_autoptr(GFile) file_b = g_file_new_for_path(b);
     g_return_val_if_fail(g_file_query_exists(file_b, NULL), 0);
     g_autoptr(GFileInfo) info_a = g_file_query_info(file_a, attrs, flags, NULL, &error);
     g_return_val_if_fail(error == NULL, 0);

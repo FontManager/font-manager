@@ -144,9 +144,9 @@ font_manager_preview_pane_dispose (GObject *gobject)
 }
 
 static void
-font_manager_preview_pane_get_property (GObject *gobject,
-                                        guint property_id,
-                                        GValue *value,
+font_manager_preview_pane_get_property (GObject    *gobject,
+                                        guint       property_id,
+                                        GValue     *value,
                                         GParamSpec *pspec)
 {
     g_return_if_fail(gobject != NULL);
@@ -183,10 +183,10 @@ font_manager_preview_pane_get_property (GObject *gobject,
 }
 
 static void
-font_manager_preview_pane_set_property (GObject *gobject,
-                                        guint property_id,
+font_manager_preview_pane_set_property (GObject      *gobject,
+                                        guint         property_id,
                                         const GValue *value,
-                                        GParamSpec *pspec)
+                                        GParamSpec   *pspec)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerPreviewPane *self = FONT_MANAGER_PREVIEW_PANE(gobject);
@@ -231,9 +231,9 @@ font_manager_preview_pane_set_property (GObject *gobject,
 }
 
 static void
-on_search_action_activated (GtkWidget *widget,
+on_search_action_activated (GtkWidget                *widget,
                             G_GNUC_UNUSED const char *action_name,
-                            G_GNUC_UNUSED GVariant *parameter)
+                            G_GNUC_UNUSED GVariant   *parameter)
 {
     g_return_if_fail(widget != NULL);
     FontManagerPreviewPane *self = FONT_MANAGER_PREVIEW_PANE(widget);
@@ -519,7 +519,9 @@ on_page_switch (FontManagerPreviewPane *self,
 }
 
 static void
-append_page (GtkNotebook *notebook, GtkWidget *widget, const gchar *title)
+append_page (GtkNotebook *notebook,
+             GtkWidget   *widget,
+             const gchar *title)
 {
     gint page_added = gtk_notebook_append_page(notebook, widget, gtk_label_new(title));
     g_warn_if_fail(page_added >= 0);
@@ -533,6 +535,25 @@ update_mode (FontManagerPreviewPane *self)
     GtkWidget *widget = gtk_notebook_get_tab_label(self->notebook, self->preview);
     gtk_label_set_text(GTK_LABEL(widget), font_manager_preview_page_mode_to_translatable_string(self->mode));
     return;
+}
+
+static gboolean
+on_drop (GtkDropTarget          *target,
+         const GValue           *value,
+         double                  x,
+         double                  y,
+         FontManagerPreviewPane *self)
+{
+    if (G_VALUE_HOLDS(value, GDK_TYPE_FILE_LIST)) {
+        GSList *files = g_value_get_boxed(value);
+        /* We only handle the first face in the first file at this level */
+        if (g_slist_length(files) > 0) {
+            GFile *file = g_slist_nth_data(files, 0);
+            g_autofree gchar *uri = g_file_get_uri(file);
+            font_manager_preview_pane_show_uri(self, uri, 0);
+        }
+    }
+    return TRUE;
 }
 
 static void
@@ -569,6 +590,9 @@ font_manager_preview_pane_init (FontManagerPreviewPane *self)
     g_object_bind_property(self->character_map, "preview-size", self, "character-map-preview-size", flags);
     g_signal_connect_swapped(self->notebook, "switch-page", G_CALLBACK(on_page_switch), self);
     g_signal_connect(self, "notify::preview-mode", G_CALLBACK(update_mode), NULL);
+    GtkDropTarget *target = gtk_drop_target_new(GDK_TYPE_FILE_LIST, GDK_ACTION_COPY);
+    g_signal_connect(target, "drop", G_CALLBACK(on_drop), self);
+    gtk_widget_add_controller(GTK_WIDGET(self), GTK_EVENT_CONTROLLER(target));
     return;
 }
 
@@ -577,18 +601,20 @@ font_manager_preview_pane_init (FontManagerPreviewPane *self)
  * @self:       #FontManagerPreviewPane
  * @uri:        filepath to display
  * @index:      index of face within file
+ *
+ * Returns:     %TRUE on success
  */
-void
+gboolean
 font_manager_preview_pane_show_uri (FontManagerPreviewPane *self,
                                     const gchar            *uri,
                                     int                     index)
 {
-    g_return_if_fail(self != NULL);
+    g_return_val_if_fail(self != NULL, FALSE);
     if (self->current_uri && g_strcmp0(self->current_uri, uri) == 0)
-        return;
+        return FALSE;
     g_clear_pointer(&self->current_uri, g_free);
     g_autoptr(GFile) file = g_file_new_for_commandline_arg(uri);
-    g_return_if_fail(g_file_is_native(file));
+    g_return_val_if_fail(g_file_is_native(file), FALSE);
     GError *error = NULL;
     g_autoptr(GFileInfo) info = g_file_query_info(file,
                                                   G_FILE_ATTRIBUTE_STANDARD_CONTENT_TYPE,
@@ -598,12 +624,12 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self,
     if (error != NULL) {
         g_critical("Failed to query file info for %s : %s", uri, error->message);
         g_clear_error(&error);
-        return;
+        return FALSE;
     }
     const gchar *content_type = g_file_info_get_content_type(info);
     if (!g_strrstr(content_type, "font")) {
         g_warning("Ignoring unsupported filetype : %s", content_type);
-        return;
+        return FALSE;
     }
     g_autofree gchar *path = g_file_get_path(file);
     font_manager_add_application_font(path);
@@ -613,7 +639,7 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self,
     if (error != NULL) {
         g_critical("%s : %s", error->message, path);
         g_clear_error(&error);
-        return;
+        return FALSE;
     }
     g_autofree gchar *sample = font_manager_get_sample_string(source);
     if (sample) {
@@ -627,7 +653,7 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self,
     g_object_set(font, "source-object", source, NULL);
     font_manager_preview_pane_set_font(self, font);
     self->current_uri = g_strdup(uri);
-    return;
+    return TRUE;
 }
 
 /**
@@ -703,14 +729,31 @@ font_manager_preview_pane_restore_state (FontManagerPreviewPane *self,
  */
 void
 font_manager_preview_pane_set_waterfall_size (FontManagerPreviewPane *self,
-                                              gdouble min_size,
-                                              gdouble max_size,
-                                              gdouble ratio)
+                                              gdouble                 min_size,
+                                              gdouble                 max_size,
+                                              gdouble                 ratio)
 {
-    font_manager_preview_page_set_waterfall_size(FONT_MANAGER_PREVIEW_PAGE(self->preview),
+    g_return_if_fail(self != NULL);
+    FontManagerPreviewPage *preview = FONT_MANAGER_PREVIEW_PAGE(self->preview);
+    font_manager_preview_page_set_waterfall_size(preview,
                                                  min_size,
                                                  max_size,
                                                  ratio);
+    return;
+}
+
+/**
+ * font_manager_preview_pane_set_action_widget:
+ * @self:           #FontManagerFontPreview
+ * @widget:         #GtkWidget to set as action widget
+ * @pack_typr:      #GtkPackType
+ */
+void
+font_manager_preview_pane_set_action_widget (FontManagerPreviewPane *self,
+                                             GtkWidget              *widget,
+                                             GtkPackType             pack_type)
+{
+    gtk_notebook_set_action_widget(GTK_NOTEBOOK(self->notebook), widget, pack_type);
     return;
 }
 

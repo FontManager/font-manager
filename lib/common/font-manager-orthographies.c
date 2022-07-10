@@ -120,7 +120,9 @@ get_default_orthography (JsonObject *orthography)
     JsonObject *res = NULL;
     if (g_list_length(orthographies) > 0) {
         orthographies = g_list_sort(orthographies, sort_by_coverage);
-        res = json_node_get_object(g_list_nth_data(orthographies, 0));
+        JsonNode *node = g_list_nth_data(orthographies, 0);
+        if (node && json_node_get_node_type(node) == JSON_NODE_OBJECT)
+            res = json_node_get_object(node);
     }
     g_list_free(orthographies);
     return res;

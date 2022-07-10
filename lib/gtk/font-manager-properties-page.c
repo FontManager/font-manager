@@ -137,6 +137,7 @@ construct_end_child (FontManagerPropertiesPage *self)
     gtk_label_set_wrap_mode(GTK_LABEL(self->description), PANGO_WRAP_WORD_CHAR);
     gtk_box_append(GTK_BOX(box), self->copyright);
     gtk_box_append(GTK_BOX(box), self->description);
+    gtk_widget_set_size_request(box, 0, 0);
     gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scroll), box);
     gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scroll),
                                    GTK_POLICY_NEVER,
@@ -157,6 +158,9 @@ construct_end_child (FontManagerPropertiesPage *self)
     font_manager_widget_set_expand(self->designer_label, FALSE);
     font_manager_widget_set_margin(self->copyright, FONT_MANAGER_DEFAULT_MARGIN * 2);
     font_manager_widget_set_margin(self->description, FONT_MANAGER_DEFAULT_MARGIN * 2);
+    /* Affected by the margin set on our pane separator */
+    gtk_widget_set_margin_start(self->copyright, 0);
+    gtk_widget_set_margin_start(self->description, 0);
     font_manager_widget_set_margin(self->designer, FONT_MANAGER_DEFAULT_MARGIN);
     font_manager_widget_set_margin(self->designer_label, FONT_MANAGER_DEFAULT_MARGIN * 2);
     gtk_widget_set_margin_start(child2, FONT_MANAGER_DEFAULT_MARGIN * 1.5);
@@ -165,7 +169,9 @@ construct_end_child (FontManagerPropertiesPage *self)
 }
 
 static void
-set_row_visible (FontManagerPropertiesPage *self, gint row, gboolean visible)
+set_row_visible (FontManagerPropertiesPage *self,
+                 gint                       row,
+                 gboolean                   visible)
 {
     GtkWidget *title = gtk_grid_get_child_at(GTK_GRID(self->grid), 0, row);
     GtkWidget *value = gtk_grid_get_child_at(GTK_GRID(self->grid), 1, row);
@@ -297,7 +303,6 @@ font_manager_font_properties_page_init (FontManagerPropertiesPage *self)
     font_manager_widget_set_expand(pane, TRUE);
     gtk_paned_set_start_child(GTK_PANED(pane), construct_start_child(self));
     gtk_paned_set_end_child(GTK_PANED(pane), construct_end_child(self));
-    gtk_paned_set_position(GTK_PANED(pane), 250);
     font_manager_widget_set_expand(GTK_WIDGET(self), TRUE);
     return;
 }
@@ -327,10 +332,12 @@ font_manager_font_properties_page_init (FontManagerPropertiesPage *self)
  *      "designer-url"  :   string
  * }
  *
- * Missing members and %NULL values are allowed. Members not listed above are ignored.
+ * Missing members and %NULL values are allowed.
+ * Members not listed above are ignored.
  */
 void
-font_manager_font_properties_page_update (FontManagerPropertiesPage *self, JsonObject *properties)
+font_manager_font_properties_page_update (FontManagerPropertiesPage *self,
+                                          JsonObject                *properties)
 {
     g_return_if_fail(self != NULL);
     g_clear_pointer(&self->properties, json_object_unref);

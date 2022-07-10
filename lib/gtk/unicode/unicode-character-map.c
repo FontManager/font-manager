@@ -645,15 +645,15 @@ set_font_desc_internal (FontManagerUnicodeCharacterMap *self,
     g_return_if_fail(font_desc != NULL);
     if (!self->font_desc || !pango_font_description_equal(font_desc, self->font_desc)){
         g_clear_pointer(&self->font_desc, pango_font_description_free);
+        pango_font_description_set_size(font_desc, self->preview_size * PANGO_SCALE);
         self->font_desc = pango_font_description_copy(font_desc);
         populate_charset(self, font_desc);
         g_object_notify(G_OBJECT(self), "font-desc");
     }
-    pango_font_description_set_size(self->font_desc, self->preview_size * PANGO_SCALE);
-    clear_pango_layout(self);
     self->active_cell = 0;
     self->page_first_cell = 0;
     self->last_cell = self->charset ? get_last_index(self) : 0;
+    clear_pango_layout(self);
     gtk_widget_queue_resize(GTK_WIDGET(self));
     g_object_notify(G_OBJECT(self), "active-cell");
     return;

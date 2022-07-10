@@ -20,10 +20,9 @@ namespace FontManager {
     }
 
     public enum fsType {
-
         [CCode (cname = "font_manager_fsType_to_string")]
         public unowned string? to_string ();
-
     }
 
 }
+

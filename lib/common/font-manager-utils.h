@@ -63,7 +63,7 @@ void font_manager_setup_i18n (void);
 void font_manager_print_library_versions (void);
 gint font_manager_get_file_owner (const gchar *filepath);
 gint font_manager_natural_sort (const gchar *str1, const gchar *str2) G_GNUC_PURE;
-gint font_manager_timecmp (gchar *a, gchar *b);
+gint font_manager_timecmp (GFile *file_a, GFile *file_b);
 gboolean font_manager_exists (const gchar *filepath);
 gboolean font_manager_is_dir (const gchar *filepath);
 gboolean font_manager_install_file (GFile *file, GFile *directory, GError **error);
