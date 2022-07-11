@@ -66,6 +66,7 @@
             <xi:include href="xml/font-manager-preview-pane.xml"/>
             <xi:include href="xml/font-manager-place-holder.xml"/>
             <xi:include href="xml/font-manager-preference-row.xml"/>
+            <xi:include href="xml/font-manager-application-window.xml"/>
             <xi:include href="xml/font-manager-gtk-utils.xml"/>
         </chapter>
 
