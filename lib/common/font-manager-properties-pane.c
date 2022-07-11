@@ -303,6 +303,16 @@ font_manager_properties_pane_class_init (FontManagerPropertiesPaneClass *klass)
 }
 
 static void
+update_pane_position (GtkWidget    *widget,
+                      GdkRectangle *allocation,
+                      gpointer      user_data)
+{
+    int position = ((gint) round((gdouble) (40.0 / 100.0) * (gdouble) allocation->width));
+    gtk_paned_set_position(GTK_PANED(widget), position);
+    return;
+}
+
+static void
 font_manager_properties_pane_init (FontManagerPropertiesPane *self)
 {
     g_return_if_fail(self != NULL);
@@ -311,7 +321,7 @@ font_manager_properties_pane_init (FontManagerPropertiesPane *self)
     gtk_widget_set_name(GTK_WIDGET(self), "FontManagerPropertiesPane");
     gtk_paned_add1(GTK_PANED(self), construct_child1(self));
     gtk_paned_add2(GTK_PANED(self), construct_child2(self));
-    gtk_paned_set_position(GTK_PANED(self), 250);
+    g_signal_connect(self, "size-allocate", G_CALLBACK(update_pane_position), NULL);
     return;
 }
 

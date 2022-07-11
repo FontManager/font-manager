@@ -21,6 +21,7 @@
 #ifndef __FONT_MANAGER_PROPERTIES_PANE_H__
 #define __FONT_MANAGER_PROPERTIES_PANE_H__
 
+#include <math.h>
 #include <glib/gi18n-lib.h>
 #include <gtk/gtk.h>
 #include <pango/pango-layout.h>
