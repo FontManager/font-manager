@@ -41,14 +41,14 @@ namespace FontManager.FontViewer {
         }
 
         public override void constructed () {
-            stack.set_visible_child_name("PlaceHolder");
-            preview_pane.set_action_widget(action_button, Gtk.PackType.END);
-            update_action_button();
             var target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
             target.on_drop.connect(on_drop);
             stack.add_controller(target);
+            stack.set_visible_child_name("PlaceHolder");
+            preview_pane.set_action_widget(action_button, Gtk.PackType.END);
             preview_pane.changed.connect(this.update);
             preview_pane.realize.connect(() => { preview_pane.restore_state(settings); });
+            update_action_button();
             base.constructed();
             return;
         }
@@ -159,7 +159,6 @@ namespace FontManager.FontViewer {
             File font_dir = File.new_for_path(get_user_font_directory());
             switch (file_status) {
                 case FileStatus.INSTALLED:
-                case FileStatus.WOULD_DOWNGRADE:
                     try {
                         File parent = current_target.get_parent();
                         current_target.delete(null);
