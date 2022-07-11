@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+    <gresource prefix="/org/gnome/FontManager/ui">
+        <file compressed="true" preprocess="xml-stripblanks">font-viewer-main-window.ui</file>
+    </gresource>
+</gresources>

@@ -18,3 +18,66 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
+decoration, window, window.background, dialog.message {
+    border-radius: .575em;
+    background: #fff;
+    outline: 1px solid rgba(0, 0, 0, 0.05);
+    outline-offset: -1px;
+    box-shadow: 0 1px 3px 3px transparent,
+                0 2px 8px 2px rgba(0, 0, 0, 0.13),
+                0 3px 20px 10px rgba(0, 0, 0, 0.09),
+                0 6px 32px 16px rgba(0, 0, 0, 0.04),
+                0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.rounded-button {
+    padding: 0px 18px 0px 18px;
+    border-radius: 1em;
+}
+
+.count {
+    margin: 0px;
+    padding: 2px 12px 2px 12px;
+    border-width: 0.75px;
+    border-style: groove;
+    border-radius: 0.75em;
+    color: alpha(@theme_fg_color, 0.9);
+    border-color: alpha(darker(@insensitive_fg_color), 0.25);
+    background-color: alpha(@insensitive_bg_color, 0.75);
+}
+
+.PangoGlyphMetrics {
+    color: alpha(lighter(@theme_selected_bg_color), 0.333);
+}
+
+.CharacterMapSeparator {
+    color: alpha(@borders, 0.5);
+}
+
+.CharacterMapCell:selected {
+    border-radius: 0.333em;
+    background-color: alpha(@theme_selected_bg_color, 0.9);
+}
+
+.CharacterMapGlyph:selected {
+    color: lighter(@theme_selected_fg_color);
+}
+
+.FontManagerPropertiesPage separator {
+    padding: 0px;
+    margin: 12px;
+    opacity: 0.5;
+}
+
+.FontManagerPropertiesPage grid button {
+	border-style: solid;
+	margin: 5px 3px 3px 3px;
+	padding: 0px 9px 0px 9px;
+	border-color: alpha(@borders, 0.5);
+}
+
+.FontManagerPropertiesPage grid button:hover {
+	background-color: alpha(lighter(@theme_fg_color), 0.075);
+}
+
+
