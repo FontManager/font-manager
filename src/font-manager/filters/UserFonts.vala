@@ -23,7 +23,7 @@ namespace FontManager {
     public class UserFonts : Category {
 
         public UserFonts () {
-            string sql = "%s filepath LIKE \"%s%\";".printf(SELECT_FROM_METADATA_WHERE, Environment.get_home_dir());
+            string sql = "%s WHERE filepath LIKE \"%s%\";".printf(SELECT_FROM_FONTS, get_user_font_directory());
             base(_("User"), _("Fonts available only to you"), "avatar-default-symbolic", sql, CategoryIndex.USER);
         }
 

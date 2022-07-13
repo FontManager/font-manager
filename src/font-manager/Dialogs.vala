@@ -149,7 +149,6 @@ namespace FontManager {
                 header = new Gtk.HeaderBar();
             var content_area = dialog.get_content_area();
             var filter = new UserFonts();
-            filter.sql = "%s filepath LIKE \"%s%\";".printf(SELECT_FROM_METADATA_WHERE, get_user_font_directory());
             filter.update();
 
             if (filter.size > 0) {
@@ -178,6 +177,7 @@ namespace FontManager {
                     filter = filter,
                     expand = true
                 };
+                tree.refilter();
                 scroll.add(tree);
                 content_area.add(scroll);
                 dialog.set_size_request(540, 480);
