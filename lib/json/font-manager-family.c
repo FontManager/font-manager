@@ -37,6 +37,7 @@
  *   "family" : string,
  *   "description" : string,
  *   "n-variations" : int,
+ *   "active" : bool,
  *   "variations" : [ ]
  * }
  *]|

@@ -77,8 +77,8 @@ font_manager_json_proxy_set_property (GObject      *gobject,
 
     if (val_type == G_TYPE_STRING) {
         json_object_set_string_member(src, pspec->name, g_value_get_string(value));
-    } else if (val_type == G_TYPE_INT) {
-        json_object_set_int_member(src, pspec->name, g_value_get_int(value));
+    } else if (val_type == G_TYPE_INT64) {
+        json_object_set_int_member(src, pspec->name, g_value_get_int64(value));
     } else if (val_type == G_TYPE_DOUBLE) {
         json_object_set_double_member(src, pspec->name, g_value_get_double(value));
     } else if (val_type == G_TYPE_BOOLEAN) {
@@ -108,13 +108,13 @@ font_manager_json_proxy_get_property (GObject    *gobject,
     if (src == NULL)
         return;
 
-    if (!json_object_get_member(src, pspec->name) && val_type != JSON_TYPE_OBJECT)
+    if (!json_object_has_member(src, pspec->name) && val_type != JSON_TYPE_OBJECT)
         return;
 
     if (val_type == G_TYPE_STRING) {
         g_value_set_string(value, json_object_get_string_member(src, pspec->name));
-    } else if (val_type == G_TYPE_INT) {
-        g_value_set_int(value, json_object_get_int_member(src, pspec->name));
+    } else if (val_type == G_TYPE_INT64) {
+        g_value_set_int64(value, json_object_get_int_member(src, pspec->name));
     } else if (val_type == G_TYPE_DOUBLE) {
         g_value_set_double(value, json_object_get_double_member(src, pspec->name));
     } else if (val_type == G_TYPE_BOOLEAN) {
@@ -178,12 +178,12 @@ font_manager_json_proxy_generate_properties (GParamSpec *pspec[],
     for (gint i = 0; i < num_properties; i++) {
         const gchar *prop_name = properties[i].name;
         switch (properties[i].type) {
-            case G_TYPE_INT:
-                pspec[i] = g_param_spec_int(prop_name,
-                                            NULL,
-                                            properties[i].desc,
-                                            G_MININT, G_MAXINT, 0,
-                                            OBJECT_PARAM_FLAGS);
+            case G_TYPE_INT64:
+                pspec[i] = g_param_spec_int64(prop_name,
+                                              NULL,
+                                              properties[i].desc,
+                                              G_MININT, G_MAXINT, 0,
+                                              OBJECT_PARAM_FLAGS);
                 break;
             case G_TYPE_DOUBLE:
                 pspec[i] = g_param_spec_double(prop_name,

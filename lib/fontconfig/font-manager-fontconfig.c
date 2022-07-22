@@ -576,6 +576,7 @@ font_manager_get_attributes_from_fontconfig_pattern (FcPattern *pattern)
     g_autofree gchar *font_desc = pango_font_description_to_string(descr);
     pango_font_description_free(descr);
     json_object_set_string_member(json_obj, "description", font_desc);
+    json_object_set_boolean_member(json_obj, "active", TRUE);
     return json_obj;
 }
 
@@ -638,6 +639,7 @@ font_manager_get_attributes_from_filepath (const gchar *filepath, int index, GEr
  *       },
  *       ...
  *     ],
+ *     "active" :   bool,
  *     "description" : string,
  *   },
  *   ...
@@ -660,8 +662,9 @@ font_manager_sort_json_font_listing (JsonObject *json_obj)
         JsonArray *_variations = json_array_sized_new(n_variations);
         JsonObject *_family_obj = json_object_new();
         json_object_set_string_member(_family_obj, "family", iter->data);
-        json_object_set_int_member(_family_obj, "n_variations", n_variations);
+        json_object_set_int_member(_family_obj, "n-variations", n_variations);
         json_object_set_array_member(_family_obj, "variations", _variations);
+        json_object_set_boolean_member(_family_obj, "active", TRUE);
         json_object_set_int_member(_family_obj, "_index", index);
         variations = g_list_sort(variations, (GCompareFunc) font_manager_compare_json_font_node);
         gint _index = 0;

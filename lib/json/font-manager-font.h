@@ -27,14 +27,15 @@ static const FontManagerJsonProxyProperty FontProperties [] =
 {
     { "RESERVED", G_TYPE_RESERVED_GLIB_FIRST, NULL },
     { "filepath", G_TYPE_STRING, "Font filepath" },
-    { "findex", G_TYPE_INT, "Font face index" },
+    { "findex", G_TYPE_INT64, "Font face index" },
     { "family", G_TYPE_STRING, "Fontconfig family name" },
     { "style", G_TYPE_STRING, "Fontconfig style name"},
-    { "spacing", G_TYPE_INT, "Fontconfig spacing" },
-    { "slant", G_TYPE_INT, "Fontconfig slant" },
-    { "weight", G_TYPE_INT, "Fontconfig weight" },
-    { "width", G_TYPE_INT, "Fontconfig width" },
+    { "spacing", G_TYPE_INT64, "Fontconfig spacing" },
+    { "slant", G_TYPE_INT64, "Fontconfig slant" },
+    { "weight", G_TYPE_INT64, "Fontconfig weight" },
+    { "width", G_TYPE_INT64, "Fontconfig width" },
     { "description", G_TYPE_STRING, "Pango font description" },
+    { "active", G_TYPE_BOOLEAN, "Whether font is active" },
     { FONT_MANAGER_JSON_PROXY_SOURCE, G_TYPE_RESERVED_USER_FIRST, "JsonObject source for this class" }
 };
 
