@@ -8,6 +8,10 @@
         "label" : "Font Size Scale"
     },
     {
+        "name" : "font-list",
+        "label" : "Font List"
+    },
+    {
         "name" : "license-page",
         "label" : "License Page"
     },

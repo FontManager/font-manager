@@ -2,6 +2,7 @@
 tests = [
     'character-map',
     'font-scale',
+    'font-list',
     'license-page',
     'place-holder',
     'preference-row',
@@ -17,6 +18,6 @@ foreach t: tests
             dependencies: base_deps,
             include_directories: [ test_build_dir, includes ],
             sources: [ test_application_sources, '@0@-test.c'.format(t) ],
-            link_with: libfontmanager)
+            link_with: [ libfontmanager, vala_test_lib] )
 endforeach
 

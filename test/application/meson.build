@@ -15,3 +15,4 @@ widget_test = executable('test-application',
 
 test('Widget Test', widget_test, timeout: 0)
 
+

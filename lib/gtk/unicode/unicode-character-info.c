@@ -155,7 +155,7 @@ font_manager_unicode_character_info_init (FontManagerUnicodeCharacterInfo *self)
     gtk_widget_set_hexpand(center_box, TRUE);
     gtk_widget_set_vexpand(center_box, FALSE);
     gtk_widget_set_parent(center_box, GTK_WIDGET(self));
-    gtk_widget_add_css_class(self->n_codepoints, "count");
+    gtk_widget_add_css_class(self->n_codepoints, "CharacterMapCount");
     gtk_widget_set_name(GTK_WIDGET(self), "FontManagerUnicodeCharacterInfo");
     gtk_widget_set_hexpand(GTK_WIDGET(self), TRUE);
     gtk_widget_set_vexpand(GTK_WIDGET(self), FALSE);

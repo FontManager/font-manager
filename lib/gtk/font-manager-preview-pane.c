@@ -665,7 +665,7 @@ void
 font_manager_preview_pane_set_font (FontManagerPreviewPane *self,
                                     FontManagerFont        *font)
 {
-    g_return_if_fail(self != NULL);
+    g_return_if_fail(FONT_MANAGER_IS_PREVIEW_PANE(self));
     g_clear_pointer(&self->current_uri, g_free);
     if (g_set_object(&self->font, font))
         g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_FONT]);
@@ -746,7 +746,7 @@ font_manager_preview_pane_set_waterfall_size (FontManagerPreviewPane *self,
  * font_manager_preview_pane_set_action_widget:
  * @self:           #FontManagerFontPreview
  * @widget:         #GtkWidget to set as action widget
- * @pack_typr:      #GtkPackType
+ * @pack_type:      #GtkPackType
  */
 void
 font_manager_preview_pane_set_action_widget (FontManagerPreviewPane *self,

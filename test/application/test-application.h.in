@@ -25,7 +25,7 @@
 #include <gtk/gtk.h>
 #include <json-glib/json-glib.h>
 
-#define MODULE_PATH "@MODULE_PATH@"
+#define TEST_MODULE_PATH "@TEST_MODULE_PATH@"
 #define TEST_ENTRIES "@TEST_ENTRIES@"
 
 #define TEST_TYPE_APPLICATION (test_application_get_type())
@@ -35,7 +35,7 @@ G_DECLARE_FINAL_TYPE(TestApplicationWindow, test_application_window, TEST, APPLI
 #define TEST_TYPE_DIALOG (test_dialog_get_type ())
 G_DECLARE_FINAL_TYPE(TestDialog, test_dialog, TEST, DIALOG, GtkDialog)
 
-typedef TestDialog * (* GetWidgetFunc) (GtkWindow *parent);
+typedef TestDialog * (* TestGetWidgetFunc) (GtkWindow *parent);
 
 TestApplication * test_application_new (void);
 TestApplicationWindow * test_application_window_new (TestApplication *application);

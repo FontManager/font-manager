@@ -57,14 +57,14 @@ config.set('localedir', join_paths(prefix, datadir, 'locale'))
 config.set('abs_top_srcdir', meson.current_build_dir())
 
 # XXX
-config.set('MODULE_PATH', join_paths(meson.current_build_dir(), 'test', 'tests'))
+config.set('TEST_MODULE_PATH', join_paths(meson.current_build_dir(), 'test', 'tests'))
 config.set('TEST_ENTRIES', join_paths(meson.current_source_dir(), 'test', 'tests.json'))
 
 configure_file(input: 'config.h.meson', output: 'config.h', configuration: config)
 
 add_project_arguments(
     '-DG_LOG_DOMAIN="[@0@]"'.format(meson.project_name()),
-    '-DGETTEXT_PACKAGE="font-manager"',
+    '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
     language: 'c'
 )
 
@@ -75,8 +75,8 @@ else
 endif
 
 subdir('lib')
-subdir('test')
 subdir('src')
+subdir('test')
 
 meson.add_dist_script('meson_dist.py')
 

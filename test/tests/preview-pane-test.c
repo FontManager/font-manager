@@ -26,7 +26,7 @@ on_control_clicked (GtkButton *button,
 static gboolean
 set_random_font (FontManagerPreviewPane *pane)
 {
-    if (paused)
+    if (!pane || paused)
         return G_SOURCE_CONTINUE;
     guint entry = g_random_int_range(0, json_array_get_length(available_fonts));
     g_autoptr(FontManagerFamily) family = font_manager_family_new();

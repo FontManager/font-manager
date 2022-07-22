@@ -99,13 +99,13 @@ test_application_window_on_row_activated (TestApplicationWindow *self,
                                           GtkListBoxRow         *row)
 {
     GModule *module;
-    GetWidgetFunc get_widget;
+    TestGetWidgetFunc get_widget;
     TestDialog *widget;
     GtkListBoxRow *_row = gtk_list_box_get_selected_row(GTK_LIST_BOX(self->widget_list));
     GtkWidget *entry = gtk_list_box_row_get_child(_row);
     const gchar *name = gtk_widget_get_name(entry);
     g_autofree gchar *module_name = g_strdup_printf("%s.so", name);
-    g_autofree gchar *module_file = g_build_filename(MODULE_PATH, module_name, NULL);
+    g_autofree gchar *module_file = g_build_filename(TEST_MODULE_PATH, module_name, NULL);
     module = g_module_open(module_file, G_MODULE_BIND_LOCAL);
     g_module_symbol(module, "get_widget", (gpointer *) &get_widget);
     widget = get_widget(GTK_WINDOW(self));

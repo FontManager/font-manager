@@ -121,7 +121,8 @@ font_manager_preference_row_set_property (GObject      *gobject,
 {
     g_return_if_fail(gobject != NULL);
     FontManagerPreferenceRow *self = FONT_MANAGER_PREFERENCE_ROW(gobject);
-    const gchar *val = g_value_get_string(value);
+    gboolean string_type = pspec->value_type == G_TYPE_STRING;
+    const gchar *val = string_type ?  g_value_get_string(value) : NULL;
     switch (property_id) {
         case PROP_ICON_NAME:
             font_manager_preference_row_set_icon_name(self, val);
