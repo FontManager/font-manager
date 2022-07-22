@@ -314,3 +314,4 @@ font_manager_tree_view_setup_drag_selection (GtkTreeView *treeview)
 
 /* End - GtkTreeView multiple selection drag support */
 
+

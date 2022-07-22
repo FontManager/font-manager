@@ -64,3 +64,4 @@ void font_manager_preview_pane_set_action_widget (FontManagerPreviewPane *self, 
 G_END_DECLS
 
 #endif /* __FONT_MANAGER_PREVIEW_PANE_H__ */
+

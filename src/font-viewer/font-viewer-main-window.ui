@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.0" />
+  <requires lib="gtk" version="4.0"/>
   <template class="FontManagerFontViewerMainWindow" parent="FontManagerApplicationWindow">
     <property name="default-width">600</property>
     <property name="default-height">450</property>
@@ -46,7 +46,7 @@
               <object class="GtkLabel" id="title_label">
                 <property name="label" translatable="yes">No file selected</property>
                 <style>
-                  <class name="title" />
+                  <class name="title"/>
                 </style>
               </object>
             </child>
@@ -54,7 +54,7 @@
               <object class="GtkLabel" id="subtitle_label">
                 <property name="label" translatable="yes">Or unsupported filetype.</property>
                 <style>
-                  <class name="subtitle" />
+                  <class name="subtitle"/>
                 </style>
               </object>
             </child>
@@ -79,6 +79,7 @@
     <property name="margin-end">2</property>
     <property name="margin-top">2</property>
     <property name="margin-bottom">2</property>
-  <signal name="clicked" handler="on_action_button_clicked" swapped="no"/>
+    <signal name="clicked" handler="on_action_button_clicked" swapped="no"/>
   </object>
 </interface>
+

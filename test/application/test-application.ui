@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-    <template class="TestApplicationWindow" parent="GtkApplicationWindow">
-        <style>
-            <class name="devel"/>
-        </style>
-        <property name="title" translatable="yes">Widget Test</property>
-        <property name="default-height">500</property>
-        <property name="default-width">320</property>
+  <template class="TestApplicationWindow" parent="GtkApplicationWindow">
+    <style>
+      <class name="devel"/>
+    </style>
+    <property name="title" translatable="yes">Widget Test</property>
+    <property name="default-height">500</property>
+    <property name="default-width">320</property>
+    <child>
+      <object class="GtkBox" id="content_area">
+        <property name="orientation">vertical</property>
         <child>
-            <object class="GtkBox" id="content_area">
-                <property name="orientation">vertical</property>
-                <child>
-                    <object class="GtkScrolledWindow" id="scroll">
-                        <child>
-                            <object class="GtkListBox" id="widget_list">
-                                <property name="hexpand">true</property>
-                                <property name="vexpand">true</property>
-                            </object>
-                        </child>
-                    </object>
-                </child>
-            </object>
+          <object class="GtkScrolledWindow" id="scroll">
+            <child>
+              <object class="GtkListBox" id="widget_list">
+                <property name="hexpand">true</property>
+                <property name="vexpand">true</property>
+              </object>
+            </child>
+          </object>
         </child>
-    </template>
+      </object>
+    </child>
+  </template>
 </interface>
+

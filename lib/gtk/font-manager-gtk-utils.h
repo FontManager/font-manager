@@ -134,3 +134,4 @@ GtkShortcut * font_manager_get_shortcut_for_stateful_action (const gchar *prefix
                                                              const gchar *target,
                                                              const gchar *accel);
 
+
