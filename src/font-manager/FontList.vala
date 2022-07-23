@@ -192,12 +192,18 @@ namespace FontManager {
 
         public Gtk.TreeListModel model { get; private set; default = null; }
 
+        public BaseFontModel font_model {
+            get {
+                return ((BaseFontModel) model.model);
+            }
+        }
+
         public Json.Array? available_fonts {
             get {
-                return ((FontModel) model.model).entries;
+                return font_model.entries;
             }
             set {
-                ((FontModel) model.model).entries = value;
+                font_model.entries = value;
             }
         }
 
@@ -253,27 +259,22 @@ namespace FontManager {
             return_if_fail(item != null);
             bool parent = item is Family;
             tree_expander.set_list_row(parent ? list_row : null);
-            // NOTE :
-            // Binding expanded properties here did not work as intended.
-            // It's also unclear how to make use of the actions added to
-            // listitems by #Gtk.TreeExpander, at least to me anyway...
-            row.map.connect(() => {
-                expander.notify["expanded"].connect(() => {
-                    Idle.add(() => {
-                        list_row.set_expanded(expander.expanded);
-                        return GLib.Source.REMOVE;
-                    });
-                });
+            return;
+        }
+
+        void queue_update () {
+            Idle.add(() => {
+                font_model.update_items();
+                // Try to prevent some rendering artifacts
+                listview.queue_draw();
+                return GLib.Source.REMOVE;
             });
             return;
         }
 
         bool refilter () {
-            var font_model = ((BaseFontModel) model.model);
             font_model.search_term = search.text.strip();
-            font_model.update_items();
-            if (expander.expanded)
-                on_expander_activated(expander);
+            queue_update();
             search_timeout = null;
             return GLib.Source.REMOVE;
         }
@@ -306,11 +307,8 @@ namespace FontManager {
 
         [GtkCallback]
         void on_expander_activated (Gtk.Expander unused) {
-            // Try to prevent some rendering artifacts
-            Idle.add(() => {
-                listview.queue_draw();
-                return GLib.Source.REMOVE;
-            });
+            model.set_autoexpand(!expander.expanded);
+            queue_update();
             return;
         }
 
