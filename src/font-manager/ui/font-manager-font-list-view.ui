@@ -17,7 +17,8 @@
                 <property name="margin-end">2</property>
                 <property name="margin-start">4</property>
                 <property name="valign">center</property>
-                <signal name="activate" handler="on_expander_activated"/>
+                <property name="tooltip-text">Expand all</property>
+                <signal name="activate" handler="on_expander_activated" after="true"/>
               </object>
             </child>
             <child>

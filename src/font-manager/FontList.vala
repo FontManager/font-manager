@@ -20,6 +20,11 @@
 
 internal int64 GET_INDEX (Json.Object o) { return o.get_int_member("_index"); }
 
+const string search_tip = _("""Case insensitive search of family names.
+
+Start search using %s to filter based on filepath.
+Start search using %s to filter based on characters.""");
+
 namespace FontManager {
 
     public class BaseFontModel : Object, ListModel {
@@ -208,10 +213,9 @@ namespace FontManager {
         }
 
         [GtkChild] unowned Gtk.ListView listview;
-        [GtkChild] unowned Gtk.Expander expander;
         [GtkChild] unowned Gtk.SearchEntry search;
 
-        uint? search_timeout;
+        uint search_timeout = 0;
         Gtk.MultiSelection selection;
 
         construct {
@@ -231,6 +235,11 @@ namespace FontManager {
                 });
             }
             search.search_changed.connect(queue_refilter);
+            search.activate.connect(next_match);
+            search.next_match.connect(next_match);
+            search.previous_match.connect(previous_match);
+            search.set_tooltip_text(search_tip.printf(Path.DIR_SEPARATOR_S,
+                                                      Path.SEARCHPATH_SEPARATOR_S));
         }
 
         Gtk.SignalListItemFactory get_factory () {
@@ -272,16 +281,32 @@ namespace FontManager {
             return;
         }
 
+        public void select_item (uint position) {
+            listview.activate_action("list.select-item", "(ubb)", position, false, false);
+            listview.activate_action("list.scroll-to-item", "u", position);
+            return;
+        }
+
+        void next_match (Gtk.SearchEntry entry) {
+            select_item(selection.get_selection().get_minimum() + 1);
+            return;
+        }
+
+        void previous_match (Gtk.SearchEntry entry) {
+            select_item(selection.get_selection().get_minimum() - 1);
+            return;
+        }
+
         bool refilter () {
             font_model.search_term = search.text.strip();
             queue_update();
-            search_timeout = null;
+            search_timeout = 0;
             return GLib.Source.REMOVE;
         }
 
         // Add slight delay to avoid filtering while search is still changing
         public void queue_refilter () {
-            if (search_timeout != null)
+            if (search_timeout != 0)
                 GLib.Source.remove(search_timeout);
             search_timeout = Timeout.add(333, refilter);
             return;
@@ -306,8 +331,10 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        void on_expander_activated (Gtk.Expander unused) {
-            model.set_autoexpand(!expander.expanded);
+        void on_expander_activated (Gtk.Expander expander) {
+            bool expanded = expander.expanded;
+            model.set_autoexpand(expanded);
+            expander.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
             queue_update();
             return;
         }
