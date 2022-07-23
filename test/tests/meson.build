@@ -3,6 +3,7 @@ tests = [
     'character-map',
     'font-scale',
     'font-list',
+    'font-list-selection',
     'license-page',
     'place-holder',
     'preference-row',

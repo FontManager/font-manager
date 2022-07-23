@@ -4,7 +4,6 @@
 #include "font-manager-json-proxy.h"
 #include "font-manager-family.h"
 #include "font-manager-font.h"
-#include "font-manager-orthography.h"
 #include "font-manager-preview-pane.h"
 #include "test-application.h"
 

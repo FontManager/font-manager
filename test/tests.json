@@ -12,6 +12,10 @@
         "label" : "Font List"
     },
     {
+        "name" : "font-list-selection",
+        "label" : "Font List Selection"
+    },
+    {
         "name" : "license-page",
         "label" : "License Page"
     },
