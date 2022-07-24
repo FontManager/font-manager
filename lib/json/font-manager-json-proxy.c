@@ -130,15 +130,6 @@ font_manager_json_proxy_get_property (GObject    *gobject,
     return;
 }
 
-static gboolean
-font_manager_json_proxy_default_is_valid (FontManagerJsonProxy *self)
-{
-    g_return_val_if_fail(self != NULL, FALSE);
-    FontManagerJsonProxyPrivate *priv;
-    priv = font_manager_json_proxy_get_instance_private(self);
-    return (priv->source_object != NULL);
-}
-
 
 static void
 font_manager_json_proxy_class_init (FontManagerJsonProxyClass *klass)
@@ -147,7 +138,6 @@ font_manager_json_proxy_class_init (FontManagerJsonProxyClass *klass)
     object_class->dispose = font_manager_json_proxy_dispose;
     object_class->get_property = font_manager_json_proxy_get_property;
     object_class->set_property = font_manager_json_proxy_set_property;
-    klass->is_valid = font_manager_json_proxy_default_is_valid;
     return;
 }
 
@@ -158,70 +148,69 @@ font_manager_json_proxy_init (FontManagerJsonProxy *self)
 }
 
 /**
- * font_manager_json_proxy_generate_properties:
- * @pspec: (out caller-allocates):  empty array of #GParamSpec to store results
- * @properties:                     array of #FontManagerJsonProxyProperty
- * @num_properties:                 number of entries in properties
+ * font_manager_json_proxy_install_properties: (skip)
+ * @klass:          #FontManagerJsonProxyClass
  *
- * Automatically generate class properties from an array of #FontManagerJsonProxyProperty.
+ * properties and n_properties must be set before calling this method.
  *
  * A property with type G_TYPE_BOXED is assumed to be a #JsonArray.
  * A property with type JSON_TYPE_OBJECT is assumed to be the @source-object.
  */
 void
-font_manager_json_proxy_generate_properties (GParamSpec *pspec[],
-                                             const FontManagerJsonProxyProperty *properties,
-                                             gint num_properties)
+font_manager_json_proxy_install_properties (FontManagerJsonProxyClass *klass)
 {
+    GObjectClass *object_class = G_OBJECT_CLASS(klass);
     GParamFlags OBJECT_PARAM_FLAGS = (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
-    for (gint i = 0; i < num_properties; i++) {
-        const gchar *prop_name = properties[i].name;
-        switch (properties[i].type) {
+    for (gint i = 0; i < klass->n_properties; i++) {
+        switch (klass->properties[i].type) {
             case G_TYPE_INT64:
-                pspec[i] = g_param_spec_int64(prop_name,
-                                              NULL,
-                                              properties[i].desc,
-                                              G_MININT, G_MAXINT, 0,
-                                              OBJECT_PARAM_FLAGS);
+                g_object_class_install_property(object_class, i,
+                                                g_param_spec_int64(klass->properties[i].name,
+                                                                   NULL,
+                                                                   klass->properties[i].desc,
+                                                                   G_MININT, G_MAXINT, 0,
+                                                                   OBJECT_PARAM_FLAGS));
                 break;
             case G_TYPE_DOUBLE:
-                pspec[i] = g_param_spec_double(prop_name,
-                                               NULL,
-                                               properties[i].desc,
-                                               -G_MAXDOUBLE, G_MAXDOUBLE, 0.0,
-                                               OBJECT_PARAM_FLAGS);
+                g_object_class_install_property(object_class, i,
+                                                g_param_spec_double(klass->properties[i].name,
+                                                                    NULL,
+                                                                    klass->properties[i].desc,
+                                                                    -G_MAXDOUBLE, G_MAXDOUBLE, 0.0,
+                                                                    OBJECT_PARAM_FLAGS));
                 break;
             case G_TYPE_BOOLEAN:
-                pspec[i] = g_param_spec_boolean(prop_name,
-                                                NULL,
-                                                properties[i].desc,
-                                                FALSE,
-                                                OBJECT_PARAM_FLAGS);
+                g_object_class_install_property(object_class, i,
+                                                g_param_spec_boolean(klass->properties[i].name,
+                                                                     NULL,
+                                                                     klass->properties[i].desc,
+                                                                     FALSE,
+                                                                     OBJECT_PARAM_FLAGS));
                 break;
             case G_TYPE_STRING:
-                pspec[i] = g_param_spec_string(prop_name,
-                                               NULL,
-                                               properties[i].desc,
-                                               NULL,
-                                               OBJECT_PARAM_FLAGS);
+                g_object_class_install_property(object_class, i,
+                                                g_param_spec_string(klass->properties[i].name,
+                                                                    NULL,
+                                                                    klass->properties[i].desc,
+                                                                    NULL,
+                                                                    OBJECT_PARAM_FLAGS));
                 break;
             case G_TYPE_BOXED:
-                pspec[i] = g_param_spec_boxed(prop_name,
-                                              NULL,
-                                              properties[i].desc,
-                                              JSON_TYPE_ARRAY,
-                                              OBJECT_PARAM_FLAGS);
+                g_object_class_install_property(object_class, i,
+                                                g_param_spec_boxed(klass->properties[i].name,
+                                                                   NULL,
+                                                                   klass->properties[i].desc,
+                                                                   JSON_TYPE_ARRAY,
+                                                                   OBJECT_PARAM_FLAGS));
                 break;
             case G_TYPE_RESERVED_USER_FIRST:
-                pspec[i] = g_param_spec_boxed(prop_name,
-                                              NULL,
-                                              properties[i].desc,
-                                              JSON_TYPE_OBJECT,
-                                              OBJECT_PARAM_FLAGS);
-                break;
-            case G_TYPE_RESERVED_GLIB_FIRST:
-                pspec[i] = NULL;
+                g_object_class_install_property(object_class, i,
+                                                g_param_spec_boxed(klass->properties[i].name,
+                                                                   NULL,
+                                                                   klass->properties[i].desc,
+                                                                   JSON_TYPE_OBJECT,
+                                                                   OBJECT_PARAM_FLAGS));
                 break;
             default:
                 break;
@@ -234,18 +223,30 @@ font_manager_json_proxy_generate_properties (GParamSpec *pspec[],
  * font_manager_json_proxy_is_valid:
  * @self: (nullable): #FontManagerJsonProxy
  *
- * The default method returns %TRUE if source-object is not #NULL.
- *
  * Returns: %TRUE if proxy is valid
  */
 gboolean
 font_manager_json_proxy_is_valid (FontManagerJsonProxy *self)
 {
-    if (self == NULL)
-        return FALSE;
+    g_return_val_if_fail(self != NULL, FALSE);
     FontManagerJsonProxyClass *klass = FONT_MANAGER_JSON_PROXY_GET_CLASS(self);
-    g_return_val_if_fail(klass->is_valid != NULL, FALSE);
-    return klass->is_valid(self);
+    g_autoptr(JsonObject) source = NULL;
+    g_object_get(self, "source-object", &source, NULL);
+    if (source == NULL)
+        return FALSE;
+    for (gint i = 0; i < klass->n_properties; i++) {
+        switch (klass->properties[i].type) {
+            case G_TYPE_RESERVED_GLIB_FIRST:
+            case G_TYPE_RESERVED_USER_FIRST:
+                break;
+            default:
+                if (json_object_has_member(source, klass->properties[i].name))
+                    break;
+                else
+                    return FALSE;
+        }
+    }
+    return TRUE;
 }
 
 /**

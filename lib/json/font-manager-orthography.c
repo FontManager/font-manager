@@ -45,10 +45,6 @@
  * filter is a #JsonArray of available codepoints
  */
 
-#define PROPERTIES OrthographyProperties
-#define N_PROPERTIES G_N_ELEMENTS(PROPERTIES)
-static GParamSpec *obj_properties[N_PROPERTIES] = {0};
-
 struct _FontManagerOrthography
 {
     GObjectClass parent_class;
@@ -56,39 +52,17 @@ struct _FontManagerOrthography
 
 G_DEFINE_TYPE(FontManagerOrthography, font_manager_orthography, FONT_MANAGER_TYPE_JSON_PROXY)
 
-static gboolean
-is_valid (FontManagerJsonProxy *self)
-{
-    g_autoptr(JsonObject) source = NULL;
-    g_object_get(self, "source-object", &source, NULL);
-    if (source == NULL)
-        return FALSE;
-    for (gint i = 0; i < N_PROPERTIES; i++) {
-        const gchar *prop_name = PROPERTIES[i].name;
-        switch (PROPERTIES[i].type) {
-            case G_TYPE_RESERVED_GLIB_FIRST:
-            case G_TYPE_RESERVED_USER_FIRST:
-                break;
-            default:
-                if (json_object_has_member(source, prop_name))
-                    break;
-                else
-                    return FALSE;
-        }
-    }
-    return TRUE;
-}
-
 static void
 font_manager_orthography_class_init (FontManagerOrthographyClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
     GObjectClass *parent_class = G_OBJECT_CLASS(font_manager_orthography_parent_class);
+    FontManagerJsonProxyClass *proxy_class = FONT_MANAGER_JSON_PROXY_CLASS(klass);
     object_class->get_property = parent_class->get_property;
     object_class->set_property = parent_class->set_property;
-    FONT_MANAGER_JSON_PROXY_CLASS(klass)->is_valid = is_valid;
-    font_manager_json_proxy_generate_properties(obj_properties, PROPERTIES, N_PROPERTIES);
-    g_object_class_install_properties(object_class, N_PROPERTIES, obj_properties);
+    proxy_class->properties = OrthographyProperties;
+    proxy_class->n_properties = G_N_ELEMENTS(OrthographyProperties);
+    font_manager_json_proxy_install_properties(proxy_class);
     return;
 }
 

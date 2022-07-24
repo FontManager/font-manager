@@ -50,13 +50,11 @@ struct _FontManagerJsonProxyClass
 {
     GObjectClass parent_class;
 
-    gboolean (* is_valid) (FontManagerJsonProxy *self);
+    gint n_properties;
+    const FontManagerJsonProxyProperty *properties;
 };
 
 FontManagerJsonProxy * font_manager_json_proxy_new (void);
 gboolean font_manager_json_proxy_is_valid (FontManagerJsonProxy *self);
-
-void font_manager_json_proxy_generate_properties (GParamSpec *pspec[],
-                                                  const FontManagerJsonProxyProperty *properties,
-                                                  gint num_properties);
+void font_manager_json_proxy_install_properties (FontManagerJsonProxyClass *klass);
 
