@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
     <gresource prefix="/org/gnome/FontManager">
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-category-list-view.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-list-view.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-list-box-row.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-item-list-box-row.ui</file>
     </gresource>
 </gresources>

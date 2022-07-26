@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <interface>
-  <template class="FontManagerFontListBoxRow" parent="GtkBox">
+  <requires lib="gtk" version="4.0"/>
+  <template class="FontManagerItemListBoxRow" parent="GtkBox">
     <property name="orientation">vertical</property>
     <child>
       <object class="GtkBox">
@@ -8,6 +9,12 @@
         <child>
           <object class="GtkCheckButton" id="item_state">
             <property name="active">True</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage" id="item_icon">
+              <property name="visible">False</property>
+              <property name="margin-start">6</property>
           </object>
         </child>
         <child>
@@ -33,12 +40,17 @@
         </child>
         <child>
           <object class="GtkLabel" id="item_count">
-            <style><class name="count"/></style>
             <property name="halign">center</property>
             <property name="margin-end">6</property>
             <property name="margin-start">6</property>
             <property name="valign">center</property>
+            <style>
+              <class name="count"/>
+            </style>
           </object>
+        </child>
+        <child>
+          <object class="GtkListView"/>
         </child>
       </object>
     </child>

@@ -193,6 +193,8 @@ font_manager_license_page_init (FontManagerLicensePage *self)
     gtk_text_view_set_wrap_mode(GTK_TEXT_VIEW(self->license_data), GTK_WRAP_WORD_CHAR);
     GtkWidget *separator_top = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
     GtkWidget *separator_bottom = gtk_separator_new(GTK_ORIENTATION_HORIZONTAL);
+    gtk_widget_add_css_class(separator_top, "thin-separator");
+    gtk_widget_add_css_class(separator_bottom, "thin-separator");
     gtk_widget_set_opacity(separator_top, 0.25);
     gtk_widget_set_opacity(separator_bottom, 0.25);
     gtk_box_prepend(GTK_BOX(box), self->fsType);

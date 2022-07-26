@@ -1,7 +1,15 @@
 [
     {
+        "name" : "category-list",
+        "label" : "Category List"
+    },
+    {
         "name" : "character-map",
         "label" : "Character Map"
+    },
+    {
+        "name" : "dialog",
+        "label" : "Dialog Test"
     },
     {
         "name" : "font-scale",

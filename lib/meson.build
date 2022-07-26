@@ -22,7 +22,7 @@ src_includes = [
     unicode_includes,
 ]
 
-includes += [ src_includes + data_includes ]
+includes += [ include_directories('.'),  src_includes + data_includes ]
 
 sources = [
     common_sources,

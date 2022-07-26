@@ -39,7 +39,7 @@ vala_deps = declare_dependency(
 
 includes = [ include_directories('.') ]
 
-config_vapi_file = files('config.vapi')
+config_vapi = files('config.vapi')
 prefix = get_option('prefix')
 datadir = get_option('datadir')
 pkglib_dir = join_paths(prefix, get_option('libdir'), meson.project_name())

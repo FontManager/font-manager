@@ -132,15 +132,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-font-list-box-row.ui")]
-    public class FontListBoxRow : Gtk.Box {
-
-        public Object? item { get; set; default = null; }
-
-        [GtkChild] public unowned Gtk.CheckButton item_state { get; }
-        [GtkChild] public unowned Gtk.Label item_name { get; }
-        [GtkChild] public unowned Gtk.Label item_preview { get; }
-        [GtkChild] public unowned Gtk.Label item_count { get; }
+    public class FontListBoxRow : ItemListBoxRow {
 
         Binding? binding = null;
 
@@ -195,20 +187,18 @@ namespace FontManager {
 
         public Object? selected_item { get; set; default = null; }
 
-        public Gtk.TreeListModel model { get; private set; default = null; }
-
-        public BaseFontModel font_model {
+        public BaseFontModel model {
             get {
-                return ((BaseFontModel) model.model);
+                return ((BaseFontModel) treemodel.model);
             }
         }
 
         public Json.Array? available_fonts {
             get {
-                return font_model.entries;
+                return model.entries;
             }
             set {
-                font_model.entries = value;
+                model.entries = value;
             }
         }
 
@@ -216,13 +206,14 @@ namespace FontManager {
         [GtkChild] unowned Gtk.SearchEntry search;
 
         uint search_timeout = 0;
+        Gtk.TreeListModel treemodel;
         Gtk.MultiSelection selection;
 
         construct {
-            model = new Gtk.TreeListModel(new FontModel(),
-                                          false,
-                                          false,
-                                          FontModel.get_child_model);
+            treemodel = new Gtk.TreeListModel(new FontModel(),
+                                              false,
+                                              false,
+                                              FontModel.get_child_model);
             selection = new Gtk.MultiSelection(model);
             listview.set_factory(get_factory());
             listview.set_model(selection);
@@ -257,7 +248,7 @@ namespace FontManager {
         }
 
         void bind_list_row (Gtk.ListItem list_item) {
-            var list_row = model.get_row(list_item.get_position());
+            var list_row = treemodel.get_row(list_item.get_position());
             var tree_expander = (Gtk.TreeExpander) list_item.get_child();
             tree_expander.margin_start = 2;
             tree_expander.set_list_row(null);
@@ -273,7 +264,7 @@ namespace FontManager {
 
         void queue_update () {
             Idle.add(() => {
-                font_model.update_items();
+                model.update_items();
                 // Try to prevent some rendering artifacts
                 listview.queue_draw();
                 return GLib.Source.REMOVE;
@@ -298,7 +289,7 @@ namespace FontManager {
         }
 
         bool refilter () {
-            font_model.search_term = search.text.strip();
+            model.search_term = search.text.strip();
             queue_update();
             search_timeout = 0;
             return GLib.Source.REMOVE;
@@ -314,7 +305,7 @@ namespace FontManager {
 
         // NOTE:
         // @position doesn't necessarily point to the actual selection
-        // within the TreeListModel, the actual selection lies somewhere
+        // within the ListView, the actual selection lies somewhere
         // between @position + @n_items. The precise location within that
         // range appears to be affected by a variety of factors i.e.
         // previous selection, multiple selections, directional changes, etc.
@@ -323,7 +314,7 @@ namespace FontManager {
             // to the first currently selected row in the ListView.
             Gtk.Bitset selections = selection.get_selection();
             uint i = selections.get_minimum();
-            var list_row = (Gtk.TreeListRow) model.get_item(i);
+            var list_row = (Gtk.TreeListRow) treemodel.get_item(i);
             Object? item = list_row.get_item();
             selected_item = item;
             selection_changed(item);
@@ -333,7 +324,7 @@ namespace FontManager {
         [GtkCallback]
         void on_expander_activated (Gtk.Expander expander) {
             bool expanded = expander.expanded;
-            model.set_autoexpand(expanded);
+            treemodel.set_autoexpand(expanded);
             expander.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
             queue_update();
             return;
