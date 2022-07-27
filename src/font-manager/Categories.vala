@@ -102,12 +102,39 @@ namespace FontManager {
 
     public class CategoryListBoxRow : ItemListBoxRow {
 
+        public Gtk.TreeExpander? expander { get; set; default = null; }
+        public Gtk.SelectionModel? selection { get; set; default = null; }
+
         ulong handler_id = 0;
 
         construct {
             notify["item"].connect((pspec) => { on_item_set(); });
             item_state.visible = false;
             item_preview.visible = false;
+            var click = new Gtk.GestureClick();
+            add_controller(click);
+            click.pressed.connect(on_click);
+        }
+
+        void on_click (Gtk.GestureClick click, int n_press, double x, double y) {
+            if (expander == null || selection == null)
+                return;
+            Gtk.TreeListRow? row = expander.get_list_row();
+            if (row == null)
+                return;
+            uint position = row.get_position();
+            if (selection.is_selected(position)) {
+                Gdk.Event event = click.get_current_event();
+                if (event == null || event.triggers_context_menu())
+                    return;
+                bool expanded = row.expanded;
+                Idle.add(() => {
+                    if (row.expandable)
+                        row.expanded = !expanded;
+                    return GLib.Source.REMOVE;
+                });
+            }
+            return;
         }
 
         void reset_row () {
@@ -195,7 +222,10 @@ namespace FontManager {
         void setup_list_row (Gtk.ListItem list_item) {
             var tree_expander = new Gtk.TreeExpander();
             tree_expander.set_indent_for_icon(false);
-            tree_expander.set_child(new CategoryListBoxRow());
+            var row = new CategoryListBoxRow();
+            row.expander = tree_expander;
+            row.selection = selection;
+            tree_expander.set_child(row);
             list_item.set_child(tree_expander);
             return;
         }
@@ -242,15 +272,19 @@ namespace FontManager {
             uint i = selections.get_minimum();
             var list_row = (Gtk.TreeListRow) treemodel.get_item(i);
             Object? item = list_row.get_item();
-            var category = ((Category) item);
-            int index = category.index;
-            bool index_in_range = (index > CategoryIndex.USER && index < CategoryIndex.UNSORTED);
-            if (index_in_range && category.depth < 1) {
-                collapse_all();
-                if (list_row.is_expandable())
-                    list_row.set_expanded(true);
-            } else if (category.depth < 1)
-                collapse_all();
+            Idle.add(() => {
+                var category = ((Category) item);
+                int index = category.index;
+                bool index_in_range = (index > CategoryIndex.USER &&
+                                       index < CategoryIndex.UNSORTED);
+                if (index_in_range && category.depth < 1 ) {
+                    collapse_all();
+                    if (list_row.is_expandable())
+                        list_row.set_expanded(true);
+                } else if (category.depth < 1)
+                    collapse_all();
+                return GLib.Source.REMOVE;
+            });
             selected_item = item;
             selection_changed(item);
             return;
@@ -356,3 +390,4 @@ namespace FontManager {
     }
 
 }
+
