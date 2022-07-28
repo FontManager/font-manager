@@ -26,7 +26,7 @@ namespace FontManager {
         return total;
     }
 
-    public class Collection : Filter {
+    public class Collection : FontListFilter {
 
         public bool active { get; set; default = true; }
         public GenericArray <Collection> children { get; set; }
@@ -118,7 +118,7 @@ namespace FontManager {
             return;
         }
 
-        public override bool visible_func (Object? item) {
+        public override bool matches (Object? item) {
             bool visible = false;
             string family;
             item.get("family", out family, null);

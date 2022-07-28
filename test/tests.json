@@ -4,6 +4,10 @@
         "label" : "Category List"
     },
     {
+        "name" : "category-list-selection",
+        "label" : "Category Selection"
+    },
+    {
         "name" : "character-map",
         "label" : "Character Map"
     },

@@ -28,3 +28,4 @@ get_widget (TestApplicationWindow *parent)
     test_dialog_append(dialog, categories);
     return dialog;
 }
+

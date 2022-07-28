@@ -49,9 +49,6 @@
             </style>
           </object>
         </child>
-        <child>
-          <object class="GtkListView"/>
-        </child>
       </object>
     </child>
   </template>

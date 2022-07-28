@@ -1,59 +1,65 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <interface>
   <requires lib="gtk" version="4.0"/>
   <template class="FontManagerFontListView" parent="GtkBox">
     <style>
       <class name="view"/>
     </style>
-    <property name="orientation">vertical</property>
     <child>
-      <object class="GtkCenterBox">
-        <property name="margin-top">2</property>
-        <property name="margin-bottom">2</property>
-        <child type="start">
-          <object class="GtkBox">
-            <child>
-              <object class="GtkExpander" id="expander">
-                <property name="halign">center</property>
-                <property name="margin-end">2</property>
-                <property name="margin-start">4</property>
-                <property name="valign">center</property>
-                <property name="tooltip-text">Expand all</property>
-                <signal name="activate" handler="on_expander_activated" after="true"/>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="remove">
-                <property name="halign">center</property>
-                <property name="icon-name">list-remove-symbolic</property>
-                <property name="valign">center</property>
-                <property name="sensitive">false</property>
-                <style>
-                  <class name="flat"/>
-                </style>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child type="end">
-          <object class="GtkSearchEntry" id="search">
-            <property name="activates-default">True</property>
-            <property name="placeholder-text">Search Families…</property>
-            <property name="margin-end">4</property>
-            <property name="margin-start">4</property>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="GtkScrolledWindow">
-        <property name="hexpand">True</property>
-        <property name="vexpand">True</property>
+      <object class="GtkBox">
+        <property name="margin-end">3</property>
+        <property name="margin-start">3</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkListView" id="listview">
-            <property name="enable-rubberband">True</property>
+          <object class="GtkCenterBox">
+            <property name="margin-bottom">2</property>
+            <property name="margin-top">2</property>
+            <child type="start">
+              <object class="GtkBox">
+                <child>
+                  <object class="GtkExpander" id="expander">
+                    <property name="halign">center</property>
+                    <property name="margin-end">2</property>
+                    <property name="margin-start">4</property>
+                    <property name="tooltip-text">Expand all</property>
+                    <property name="valign">center</property>
+                    <signal name="activate" handler="on_expander_activated" after="yes"/>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkButton" id="remove">
+                    <property name="halign">center</property>
+                    <property name="icon-name">list-remove-symbolic</property>
+                    <property name="sensitive">false</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="flat"/>
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkSearchEntry" id="search">
+                <property name="activates-default">True</property>
+                <property name="margin-end">4</property>
+                <property name="margin-start">4</property>
+                <property name="placeholder-text">Search Families…</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
+            <child>
+              <object class="GtkListView" id="listview">
+                <property name="enable-rubberband">True</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
+              </object>
+            </child>
           </object>
         </child>
       </object>

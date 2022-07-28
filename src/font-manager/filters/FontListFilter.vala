@@ -20,11 +20,11 @@
 
 namespace FontManager {
 
-    public int filter_sort (Filter a, Filter b) {
+    public int filter_sort (FontListFilter a, FontListFilter b) {
         return (a.index - b.index);
     }
 
-    public class Filter : Cacheable {
+    public class FontListFilter : Cacheable {
 
         public virtual string name { owned get; set; }
         public virtual string icon { owned get; set; }
@@ -39,7 +39,7 @@ namespace FontManager {
             return;
         }
 
-        public virtual bool visible_func (Object? item) {
+        public virtual bool matches (Object? item) {
             return item != null ? true : false;
         }
 

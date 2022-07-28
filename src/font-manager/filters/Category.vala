@@ -20,7 +20,7 @@
 
 namespace FontManager {
 
-    public class Category : Filter {
+    public class Category : FontListFilter {
 
         public string? sql { get; set; default = null; }
         public StringSet descriptions { get; set; }
@@ -64,13 +64,12 @@ namespace FontManager {
             return;
         }
 
-        public override bool visible_func (Object? item) {
+        public override bool matches (Object? item) {
             bool visible = false;
             if (item is Family)
                 visible = (((Family) item).family in families);
             else if (item is Font)
-                visible = (((Font) item).family in families &&
-                           ((Font) item).description in descriptions);
+                visible = (((Font) item).description in descriptions);
             return visible;
         }
 

@@ -1,6 +1,7 @@
 
 tests = [
     'category-list',
+    'category-list-selection',
     'character-map',
     'dialog',
     'font-scale',

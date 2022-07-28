@@ -61,9 +61,9 @@ namespace FontManager {
 
     }
 
-    public class ChildCategoryListModel : BaseCategoryListModel {}
-
     public class CategoryListModel : BaseCategoryListModel {
+
+        class ChildCategoryListModel : BaseCategoryListModel {}
 
         public CategoryListModel () {
             notify["available-families"]. connect_after((pspecc) => {
@@ -154,7 +154,8 @@ namespace FontManager {
             handler_id = category.changed.connect(on_item_set);
             bool root_node = category.depth < 1;
             int index = category.index;
-            bool show_root_count = (index < CategoryIndex.PANOSE || index > CategoryIndex.FILETYPE);
+            bool show_root_count = (index < CategoryIndex.PANOSE ||
+                                    index > CategoryIndex.FILETYPE);
             item_name.set_label(category.name);
             item_count.visible = !root_node || show_root_count;
             item_icon.visible = !root_node || show_root_count;
@@ -172,9 +173,9 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-category-list-view.ui")]
     public class CategoryListView : Gtk.Box {
 
-        public signal void selection_changed (Object? item);
+        public signal void selection_changed (FontListFilter? item);
 
-        public Object? selected_item { get; set; default = null; }
+        public FontListFilter? selected_item { get; set; default = null; }
 
         // FIXME : Need to handle updates to Unsorted and Disabled categories
         public Reject? reject { get; set; default = null; }
@@ -285,8 +286,8 @@ namespace FontManager {
                     collapse_all();
                 return GLib.Source.REMOVE;
             });
-            selected_item = item;
-            selection_changed(item);
+            selected_item = (FontListFilter) item;
+            selection_changed((FontListFilter) item);
             return;
         }
 

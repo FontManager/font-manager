@@ -34,9 +34,11 @@ namespace FontManager {
         public GenericArray <unowned Json.Object>? items { get; protected set; default = null; }
 
         public string? search_term { get; set; default = null; }
+        public FontListFilter? filter { get; set; default = null; }
 
         construct {
             notify["entries"].connect(() => { update_items(); });
+            notify["filter"].connect(() => { update_items(); });
         }
 
         public Type get_item_type () {
@@ -66,25 +68,33 @@ namespace FontManager {
 
         bool matches_search_term (Json.Object item) {
             bool item_matches = true;
-            if (search_term == null || search_term == "")
+            if (search_term == null || search_term.strip() == "")
                 return item_matches;
-            if (search_term.has_prefix(Path.DIR_SEPARATOR_S)) {
+            var search = search_term.strip();
+            if (search.has_prefix(Path.DIR_SEPARATOR_S)) {
                 string filepath = get_filepath_from_object(item);
-                item_matches = filepath.contains(search_term);
-            } else if (search_term.has_prefix(Path.SEARCHPATH_SEPARATOR_S)) {
-                // string needle = search_term.replace(Path.SEARCHPATH_SEPARATOR_S, "");
+                item_matches = filepath.contains(search);
+            } else if (search.has_prefix(Path.SEARCHPATH_SEPARATOR_S)) {
+                // string needle = search.replace(Path.SEARCHPATH_SEPARATOR_S, "");
                 // string family = item.get_string_member("family");
                 // XXX : FIXME!
             } else {
                 string family = item.get_string_member("family").casefold();
-                item_matches = family.contains(search_term.casefold());
+                item_matches = family.contains(search.casefold());
             }
             return item_matches;
         }
 
         bool matches_filter (Json.Object item) {
-            // XXX : FIXME!
-            return true;
+            if (filter == null)
+                return true;
+            Object? object = null;
+            if (item.has_member("filepath"))
+                object = new Font();
+            else
+                object = new Family();
+            object.set(JSON_PROXY_SOURCE, item, null);
+            return filter.matches(object);
         }
 
         public void update_items () {
@@ -94,9 +104,20 @@ namespace FontManager {
             items_changed(0, n_items, 0);
             if (entries != null) {
                 entries.foreach_element((array, index, node) => {
-                    Json.Object item  = node.get_object();
-                    if (matches_search_term(item) && matches_filter(item))
+                    Json.Object item = node.get_object();
+                    if (matches_search_term(item) && matches_filter(item)) {
+                        if (item.has_member("variations")) {
+                            Json.Array variants = item.get_array_member("variations");
+                            int n_matches = 0;
+                            variants.foreach_element((a, i, n) => {
+                                Json.Object v = n.get_object();
+                                if (matches_search_term(v) && matches_filter(v))
+                                    n_matches++;
+                            });
+                            item.set_int_member("n-variations", n_matches);
+                        }
                         items.add(item);
+                    }
                 });
                 items.sort((a, b) => {
                     return (int) (GET_INDEX(a) - GET_INDEX(b));
@@ -122,10 +143,13 @@ namespace FontManager {
 
         }
 
-        public static ListModel? get_child_model (Object item) {
+        public ListModel? get_child_model (Object item) {
             if (!(item is Family))
                 return null;
             var child = new VariantModel();
+            BindingFlags flags = BindingFlags.SYNC_CREATE;
+            bind_property("filter", child, "filter", flags, null, null);
+            bind_property("search-term", child, "search-term", flags, null, null);
             child.entries = ((Family) item).variations;
             return child;
         }
@@ -186,6 +210,7 @@ namespace FontManager {
         public signal void selection_changed (Object? item);
 
         public Object? selected_item { get; set; default = null; }
+        public FontListFilter filter { get; set; default = null; }
 
         public BaseFontModel model {
             get {
@@ -203,6 +228,7 @@ namespace FontManager {
         }
 
         [GtkChild] unowned Gtk.ListView listview;
+        [GtkChild] unowned Gtk.Expander expander;
         [GtkChild] unowned Gtk.SearchEntry search;
 
         uint search_timeout = 0;
@@ -210,11 +236,12 @@ namespace FontManager {
         Gtk.MultiSelection selection;
 
         construct {
-            treemodel = new Gtk.TreeListModel(new FontModel(),
+            var fontmodel = new FontModel();
+            treemodel = new Gtk.TreeListModel(fontmodel,
                                               false,
                                               false,
-                                              FontModel.get_child_model);
-            selection = new Gtk.MultiSelection(model);
+                                              fontmodel.get_child_model);
+            selection = new Gtk.MultiSelection(treemodel);
             listview.set_factory(get_factory());
             listview.set_model(selection);
             selection.selection_changed.connect(on_selection_changed);
@@ -225,6 +252,18 @@ namespace FontManager {
                     debug("selection_changed : %s", description);
                 });
             }
+            // BindingFlags flags = BindingFlags.SYNC_CREATE;
+            // bind_property("filter", fontmodel, "filter", flags, null, null);
+            // XXX : Nasty? workaround for lag caused by category selection
+            // See on_expander_activated for more details.
+            notify["filter"].connect((pspec) => {
+                bool expanded = expander.expanded;
+                if (expanded)
+                    expander.activate();
+                fontmodel.filter = filter;
+                if (expanded)
+                    expander.activate();
+            });
             search.search_changed.connect(queue_refilter);
             search.activate.connect(next_match);
             search.next_match.connect(next_match);
@@ -264,6 +303,7 @@ namespace FontManager {
 
         void queue_update () {
             Idle.add(() => {
+                model.search_term = search.text.strip();
                 model.update_items();
                 // Try to prevent some rendering artifacts
                 listview.queue_draw();
@@ -289,7 +329,6 @@ namespace FontManager {
         }
 
         bool refilter () {
-            model.search_term = search.text.strip();
             queue_update();
             search_timeout = 0;
             return GLib.Source.REMOVE;
@@ -305,7 +344,7 @@ namespace FontManager {
 
         // NOTE:
         // @position doesn't necessarily point to the actual selection
-        // within the ListView, the actual selection lies somewhere
+        // within the TreeListModel, the actual selection lies somewhere
         // between @position + @n_items. The precise location within that
         // range appears to be affected by a variety of factors i.e.
         // previous selection, multiple selections, directional changes, etc.
@@ -321,8 +360,15 @@ namespace FontManager {
             return;
         }
 
+        // XXX : FIXME : This may need to be removed...
+        // Expanding all rows can cause significant lag in the interface
+        // especially when all rows are expanded during category selection.
+        // This is very noticeable even with categories containing as little
+        // as a hundred entries, with rows collapsed switching categories
+        // happens almost instantly regardless of quantity which seems to
+        // indicate that the issue is likely not caused by our models ?
         [GtkCallback]
-        void on_expander_activated (Gtk.Expander expander) {
+        void on_expander_activated (Gtk.Expander _expander) {
             bool expanded = expander.expanded;
             treemodel.set_autoexpand(expanded);
             expander.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
