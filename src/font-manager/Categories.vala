@@ -110,7 +110,6 @@ namespace FontManager {
         construct {
             notify["item"].connect((pspec) => { on_item_set(); });
             item_state.visible = false;
-            item_preview.visible = false;
             var click = new Gtk.GestureClick();
             add_controller(click);
             click.pressed.connect(on_click);
@@ -138,7 +137,7 @@ namespace FontManager {
         }
 
         void reset_row () {
-            item_name.set_label("");
+            item_label.set_label("");
             item_count.visible = true;
             item_count.set_label("");
             if (handler_id != 0)
@@ -156,7 +155,7 @@ namespace FontManager {
             int index = category.index;
             bool show_root_count = (index < CategoryIndex.PANOSE ||
                                     index > CategoryIndex.FILETYPE);
-            item_name.set_label(category.name);
+            item_label.set_label(category.name);
             item_count.visible = !root_node || show_root_count;
             item_icon.visible = !root_node || show_root_count;
             if (item_icon.visible)

@@ -38,7 +38,12 @@ namespace FontManager {
 
         construct {
             notify["entries"].connect(() => { update_items(); });
-            notify["filter"].connect(() => { update_items(); });
+            notify["filter"].connect(() => {
+                Idle.add(() => {
+                    update_items();
+                    return GLib.Source.REMOVE;
+                });
+            });
         }
 
         public Type get_item_type () {
@@ -169,9 +174,7 @@ namespace FontManager {
                 binding.unbind();
             binding = null;
             item_state.set("active", true, "visible", true, "sensitive", true, null);
-            item_name.set_label("");
-            item_preview.set_attributes(null);
-            item_preview.set_label("");
+            item_label.set("label", "", "attributes", null, "halign", Gtk.Align.START, null);
             item_count.visible = true;
             item_count.set_label("");
             return;
@@ -184,20 +187,26 @@ namespace FontManager {
             bool root = item is Family;
             BindingFlags flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
             binding = item.bind_property("active", item_state, "active", flags, null, null);
-            item_name.set_label(root ? ((Family) item).family : "");
             item_state.set("sensitive", root, "visible", root, null);
             item_count.visible = root;
-            string desc = root ? "" : ((Font) item).description;
-            Pango.FontDescription font_desc = Pango.FontDescription.from_string(desc);
-            Pango.AttrList attrs = new Pango.AttrList();
-            attrs.insert(new Pango.AttrFontDesc(font_desc));
-            attrs.insert(Pango.attr_fallback_new(false));
-            item_preview.set_attributes(attrs);
-            item_preview.set_label(root ? "" : ((Font) item).description);
+            string family;
+            string description;
+            item.get("family", out family, "description", out description, null);
+            string label = root ? family : description;
+            item_label.set_label(label);
             if (root) {
                 var count = (int) ((Family) item).n_variations;
-                var label = ngettext("%i Variation ", "%i Variations", (ulong) count);
-                item_count.set_label(label.printf(count));
+                var count_label = ngettext("%i Variation ", "%i Variations", (ulong) count);
+                item_count.set_label(count_label.printf(count));
+            } else {
+                item_label.set_halign(Gtk.Align.CENTER);
+                Pango.FontDescription font_desc = Pango.FontDescription.from_string(label);
+                Pango.AttrList attrs = new Pango.AttrList();
+                attrs.insert(Pango.attr_fallback_new(false));
+                attrs.insert(new Pango.AttrFontDesc(font_desc));
+                // XXX : REGRESSION : PERFORMANCE
+                // Setting font description appears to be incredibly slow.
+                item_label.set_attributes(attrs);
             }
             return;
         }
@@ -252,18 +261,8 @@ namespace FontManager {
                     debug("selection_changed : %s", description);
                 });
             }
-            // BindingFlags flags = BindingFlags.SYNC_CREATE;
-            // bind_property("filter", fontmodel, "filter", flags, null, null);
-            // XXX : Nasty? workaround for lag caused by category selection
-            // See on_expander_activated for more details.
-            notify["filter"].connect((pspec) => {
-                bool expanded = expander.expanded;
-                if (expanded)
-                    expander.activate();
-                fontmodel.filter = filter;
-                if (expanded)
-                    expander.activate();
-            });
+            BindingFlags flags = BindingFlags.SYNC_CREATE;
+            bind_property("filter", fontmodel, "filter", flags, null, null);
             search.search_changed.connect(queue_refilter);
             search.activate.connect(next_match);
             search.next_match.connect(next_match);
@@ -305,8 +304,6 @@ namespace FontManager {
             Idle.add(() => {
                 model.search_term = search.text.strip();
                 model.update_items();
-                // Try to prevent some rendering artifacts
-                listview.queue_draw();
                 return GLib.Source.REMOVE;
             });
             return;
@@ -360,13 +357,13 @@ namespace FontManager {
             return;
         }
 
-        // XXX : FIXME : This may need to be removed...
-        // Expanding all rows can cause significant lag in the interface
-        // especially when all rows are expanded during category selection.
-        // This is very noticeable even with categories containing as little
-        // as a hundred entries, with rows collapsed switching categories
-        // happens almost instantly regardless of quantity which seems to
-        // indicate that the issue is likely not caused by our models ?
+        // XXX : REGRESSION : PERFORMANCE : This may need to be removed...
+        // Expanding all rows can cause significant lag in the interface.
+        // This is very noticeable with all rows expanded during category
+        // selection, even with categories containing as little as a few
+        // dozen entries, with rows collapsed switching categories happens
+        // almost instantly regardless of quantity.
+        // Setting font description appears to be incredibly slow.
         [GtkCallback]
         void on_expander_activated (Gtk.Expander _expander) {
             bool expanded = expander.expanded;
