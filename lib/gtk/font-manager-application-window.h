@@ -41,7 +41,8 @@ struct _FontManagerApplicationWindowClass
 
 GtkWidget * font_manager_application_window_new (void);
 
+void font_manager_application_window_show_help (FontManagerApplicationWindow *self);
+
 void font_manager_application_window_restore_state (FontManagerApplicationWindow *self,
                                                     GSettings                    *settings);
-void font_manager_application_window_show_help (FontManagerApplicationWindow *self);
 

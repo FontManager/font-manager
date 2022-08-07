@@ -27,10 +27,42 @@ namespace FontManager {
 
         [GtkChild] public unowned Gtk.CheckButton item_state { get; }
         [GtkChild] public unowned Gtk.Image item_icon { get; }
-        [GtkChild] public unowned Gtk.Label item_name { get; }
-        [GtkChild] public unowned Gtk.Label item_preview { get; }
+        [GtkChild] public unowned Gtk.Label item_label { get; }
         [GtkChild] public unowned Gtk.Label item_count { get; }
 
     }
+
+    namespace ProgressDialog {
+
+        public Gtk.MessageDialog create (Gtk.Window? parent, string? title) {
+            var dialog = new Gtk.MessageDialog(parent,
+                                               Gtk.DialogFlags.MODAL |
+                                               Gtk.DialogFlags.DESTROY_WITH_PARENT |
+                                               Gtk.DialogFlags.USE_HEADER_BAR,
+                                               Gtk.MessageType.INFO,
+                                               Gtk.ButtonsType.NONE,
+                                               "%s", title != null ? title : "");
+            var progress = new Gtk.ProgressBar();
+            var box = dialog.get_message_area() as Gtk.Box;
+            box.append(progress);
+            dialog.set_default_size(475, 125);
+            return dialog;
+        }
+
+        public void update (Gtk.MessageDialog dialog, ProgressData data) {
+            var child = dialog.get_message_area().get_last_child();
+            return_if_fail(child is Gtk.ProgressBar);
+            var progress_bar = child as Gtk.ProgressBar;
+            dialog.secondary_text = data.message;
+            progress_bar.set_fraction(data.progress);
+            dialog.queue_draw();
+            return;
+        }
+
+    }
+
+
+
+
 
 }

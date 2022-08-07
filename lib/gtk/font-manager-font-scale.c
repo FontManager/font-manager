@@ -302,6 +302,7 @@ font_manager_font_scale_init (FontManagerFontScale *self)
     gtk_widget_set_hexpand(self->scale, TRUE);
     gtk_widget_set_halign(self->scale, GTK_ALIGN_FILL);
     gtk_scale_set_draw_value(GTK_SCALE(self->scale), FALSE);
+    gtk_spin_button_set_numeric(GTK_SPIN_BUTTON(self->spin), TRUE);
     gtk_label_set_markup(GTK_LABEL(self->min), MIN_LABEL);
     gtk_label_set_markup(GTK_LABEL(self->max), MAX_LABEL);
     gtk_widget_set_hexpand(GTK_WIDGET(self), TRUE);

@@ -7,8 +7,17 @@
 #include "font-manager-preview-pane.h"
 #include "test-application.h"
 
+static guint source_id = 0;
 static gboolean paused = FALSE;
 static JsonArray *available_fonts;
+
+static void
+remove_source ()
+{
+    if (source_id > 0)
+        g_source_remove(source_id);
+    return;
+}
 
 static void
 on_control_clicked (GtkButton *button,
@@ -56,7 +65,8 @@ get_widget (TestApplicationWindow *parent)
     GSettings *settings = font_manager_get_gsettings("org.gnome.FontManager");
     font_manager_preview_pane_restore_state(FONT_MANAGER_PREVIEW_PANE(pane), settings);
     // Select a random font from installed files every 5 seconds
-    g_timeout_add_seconds(5, (GSourceFunc) set_random_font, pane);
+    source_id = g_timeout_add_seconds(5, (GSourceFunc) set_random_font, pane);
+    g_signal_connect(dialog, "response", G_CALLBACK(remove_source), NULL);
     return dialog;
 }
 

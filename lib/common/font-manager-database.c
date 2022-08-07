@@ -812,7 +812,7 @@ bind_from_properties (sqlite3_stmt *stmt,
     for (gint i = 0; i < n_properties; i++) {
         const gchar *str = NULL;
         switch (properties[i].type) {
-            case G_TYPE_INT:
+            case G_TYPE_INT64:
                 g_assert(json_object_has_member(json, properties[i].name));
                 gint val = json_object_get_int_member(json, properties[i].name);
                 g_assert(val >= -1 && sqlite3_bind_int(stmt, i, val) == SQLITE_OK);

@@ -44,7 +44,8 @@ G_DECLARE_DERIVABLE_TYPE (FontManagerJsonProxy, font_manager_json_proxy, FONT_MA
 
 /**
  * FontManagerJsonProxyClass:
- * @is_valid:   default method returns %TRUE if source-object is not #NULL
+ * @n_properties:   # of members in the #JsonObject backing this class
+ * @properties:     an array of #FontManagerJsonProxyProperty describing the members
  */
 struct _FontManagerJsonProxyClass
 {

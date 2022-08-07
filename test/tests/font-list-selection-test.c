@@ -19,7 +19,7 @@ on_control_clicked (GtkButton *button,
     vertical = !vertical;
     gtk_button_set_icon_name(button,
                              vertical ?
-                             "view-right-pane-symbolic" :
+                             "view-left-pane-symbolic" :
                              "view-top-pane-symbolic");
     return;
 }
@@ -56,7 +56,7 @@ get_widget (TestApplicationWindow *parent)
     gtk_paned_set_start_child(GTK_PANED(pane), fontlist);
     gtk_paned_set_end_child(GTK_PANED(pane), preview);
     test_dialog_append(dialog, pane);
-    GtkWidget *button = gtk_button_new_from_icon_name("view-right-pane-symbolic");
+    GtkWidget *button = gtk_button_new_from_icon_name("view-left-pane-symbolic");
     gtk_widget_set_opacity(button, 0.75);
     gtk_widget_set_opacity(gtk_button_get_child(GTK_BUTTON(button)), 0.9);
     g_signal_connect(button, "clicked", G_CALLBACK(on_control_clicked), pane);

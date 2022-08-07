@@ -73,21 +73,22 @@ namespace FontManager {
             return;
         }
 
-        public void show_dialog (Gtk.Window? parent) {
-            Gtk.show_about_dialog(parent,
-                                "program-name", DISPLAY_NAME,
-                                "logo-icon-name", ICON,
-                                "version", VERSION,
-                                "copyright", COPYRIGHT,
-                                "comments", COMMENT,
-                                "website", HOMEPAGE,
-                                "authors", AUTHORS,
-                                "license", LICENSE,
-                                "translator-credits", TRANSLATORS,
-                                null);
-            return;
-        }
+    }
 
+    public void show_about_dialog (Gtk.Window? parent) {
+        Gtk.show_about_dialog(parent,
+                              "program-name", About.DISPLAY_NAME,
+                              "logo-icon-name", About.ICON,
+                              "version", About.VERSION,
+                              "copyright", About.COPYRIGHT,
+                              "comments", About.COMMENT,
+                              "website", About.HOMEPAGE,
+                              "authors", About.AUTHORS,
+                              "license", About.LICENSE,
+                              "translator-credits", About.TRANSLATORS,
+                              null);
+        return;
     }
 
 }
+

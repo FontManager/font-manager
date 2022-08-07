@@ -151,7 +151,7 @@ font_manager_json_proxy_init (FontManagerJsonProxy *self)
  * font_manager_json_proxy_install_properties: (skip)
  * @klass:          #FontManagerJsonProxyClass
  *
- * properties and n_properties must be set before calling this method.
+ * properties and n_properties MUST be set before calling this method.
  *
  * A property with type G_TYPE_BOXED is assumed to be a #JsonArray.
  * A property with type JSON_TYPE_OBJECT is assumed to be the @source-object.
@@ -159,6 +159,7 @@ font_manager_json_proxy_init (FontManagerJsonProxy *self)
 void
 font_manager_json_proxy_install_properties (FontManagerJsonProxyClass *klass)
 {
+
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
     GParamFlags OBJECT_PARAM_FLAGS = (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
