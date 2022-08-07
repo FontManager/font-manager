@@ -52,9 +52,9 @@ config.set('PACKAGE_URL', 'http://fontmanager.github.io/')
 config.set('PACKAGE_BUGREPORT', 'https://github.com/FontManager/master/issues')
 config.set('GETTEXT_PACKAGE', meson.project_name())
 config.set('PKGLIBEXECDIR', pkglibexec_dir)
-config.set('prefix', prefix)
-config.set('localedir', join_paths(prefix, datadir, 'locale'))
-config.set('abs_top_srcdir', meson.current_build_dir())
+config.set('PREFIX', prefix)
+config.set('LOCALEDIR', join_paths(prefix, datadir, 'locale'))
+config.set('SRCDIR', meson.current_build_dir())
 
 # XXX
 config.set('TEST_MODULE_PATH', join_paths(meson.current_build_dir(), 'test', 'tests'))
@@ -62,9 +62,12 @@ config.set('TEST_ENTRIES', join_paths(meson.current_source_dir(), 'test', 'tests
 
 configure_file(input: 'config.h.meson', output: 'config.h', configuration: config)
 
+reproducible = get_option('reproducible') ? '-DREPRODUCIBLE' : '-DNOT_REPRODUCIBLE'
+
 add_project_arguments(
     '-DG_LOG_DOMAIN="[@0@]"'.format(meson.project_name()),
     '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
+    reproducible,
     language: 'c'
 )
 

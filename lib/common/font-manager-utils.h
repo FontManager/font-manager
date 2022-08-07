@@ -20,6 +20,8 @@
 
 #pragma once
 
+#include "config.h"
+
 #include <glib/gi18n-lib.h>
 #include <locale.h>
 #include <unistd.h>

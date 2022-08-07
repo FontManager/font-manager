@@ -28,9 +28,9 @@
  */
 
 static const gchar *POSSIBLE_SCHEMA_DIRS[] = {
-    "@prefix@/share/glib-2.0/schemas",
+    PREFIX"/share/glib-2.0/schemas",
 #ifdef NOT_REPRODUCIBLE
-    "@abs_top_srcdir@/data"
+    SRCDIR"/data"
 #endif
 };
 
@@ -55,9 +55,9 @@ void
 font_manager_setup_i18n ()
 {
     setlocale(LC_ALL, "");
-    bindtextdomain("@GETTEXT_PACKAGE@", "@localedir@");
-    bind_textdomain_codeset("@GETTEXT_PACKAGE@", "UTF-8");
-    textdomain("@GETTEXT_PACKAGE@");
+    bindtextdomain(GETTEXT_PACKAGE, LOCALEDIR);
+    bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
+    textdomain(GETTEXT_PACKAGE);
     return;
 }
 
@@ -265,7 +265,7 @@ font_manager_get_user_font_directory (void)
 gchar *
 font_manager_get_package_cache_directory (void)
 {
-    g_autofree gchar *cache_dir = g_build_filename(g_get_user_cache_dir(), "@PACKAGE_NAME@", NULL);
+    g_autofree gchar *cache_dir = g_build_filename(g_get_user_cache_dir(), PACKAGE_NAME, NULL);
     if (ensure_dir_exists(cache_dir))
         return g_steal_pointer(&cache_dir);
     return NULL;
@@ -283,7 +283,7 @@ font_manager_get_package_cache_directory (void)
 gchar *
 font_manager_get_package_config_directory (void)
 {
-    g_autofree gchar *config_dir = g_build_filename(g_get_user_config_dir(), "@PACKAGE_NAME@", NULL);
+    g_autofree gchar *config_dir = g_build_filename(g_get_user_config_dir(), PACKAGE_NAME, NULL);
     if (ensure_dir_exists(config_dir))
         return g_steal_pointer(&config_dir);
     return NULL;

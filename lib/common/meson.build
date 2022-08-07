@@ -15,7 +15,3 @@ foreach f: result.stdout().strip().split('\n')
     common_headers += files(f)
 endforeach
 
-common_sources += configure_file(input: 'font-manager-utils.c.in',
-                                 output: 'font-manager-utils.c',
-                                 configuration: config)
-
