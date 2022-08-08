@@ -32,6 +32,83 @@ namespace FontManager {
 
     }
 
+    public const string [] FONT_MIMETYPES = {
+        "application/x-font-ttf",
+        "application/x-font-ttc",
+        "application/x-font-otf",
+        "application/x-font-type1",
+        "font/ttf",
+        "font/ttc",
+        "font/otf",
+        "font/type1",
+        "font/collection"
+    };
+
+    namespace FileSelector {
+
+        public Gtk.FileChooserNative get_executable (Gtk.Window? parent) {
+            var dialog = new Gtk.FileChooserNative(_("Select executable"),
+                                                    parent,
+                                                    Gtk.FileChooserAction.OPEN,
+                                                    _("_Select"),
+                                                    _("_Cancel")) {
+                                                        modal = true,
+                                                        select_multiple = false
+                                                    };
+            try {
+                dialog.set_current_folder(File.new_for_path("/usr/bin"));
+            } catch (Error e) {
+                critical(e.message);
+            }
+            return dialog;
+        }
+
+        public Gtk.FileChooserNative get_target_directory (Gtk.Window? parent) {
+            var dialog = new Gtk.FileChooserNative(_("Select Destination"),
+                                                    parent,
+                                                    Gtk.FileChooserAction.SELECT_FOLDER,
+                                                    _("_Select"),
+                                                    _("_Cancel")) {
+                                                        modal = true,
+                                                        select_multiple = false,
+                                                        create_folders = true
+                                                    };
+            return dialog;
+        }
+
+        public Gtk.FileChooserNative get_selections (Gtk.Window? parent) {
+            var filter = new Gtk.FileFilter();
+            var file_roller = new ArchiveManager();
+            if (file_roller.available)
+                foreach (string mimetype in file_roller.get_supported_types())
+                    filter.add_mime_type(mimetype);
+            foreach (var mimetype in FONT_MIMETYPES)
+                filter.add_mime_type(mimetype);
+            var dialog = new Gtk.FileChooserNative(_("Select files to install"),
+                                                    parent,
+                                                    Gtk.FileChooserAction.OPEN,
+                                                    _("_Open"),
+                                                    _("_Cancel")) {
+                                                        filter = filter,
+                                                        select_multiple = true
+                                                    };
+            return dialog;
+        }
+
+        public Gtk.FileChooserNative get_selected_sources (Gtk.Window? parent) {
+            var dialog = new Gtk.FileChooserNative(_("Select source folders"),
+                                                    parent,
+                                                    Gtk.FileChooserAction.SELECT_FOLDER,
+                                                    _("_Open"),
+                                                    _("_Cancel")) {
+                                                        modal = true,
+                                                        select_multiple = true
+                                                    };
+            return dialog;
+        }
+
+    }
+
     namespace ProgressDialog {
 
         public Gtk.MessageDialog create (Gtk.Window? parent, string? title) {
@@ -55,14 +132,9 @@ namespace FontManager {
             var progress_bar = child as Gtk.ProgressBar;
             dialog.secondary_text = data.message;
             progress_bar.set_fraction(data.progress);
-            dialog.queue_draw();
             return;
         }
 
     }
-
-
-
-
 
 }
