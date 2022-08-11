@@ -113,8 +113,8 @@ namespace FontManager.FontViewer {
 
         void update_action_button () {
             bool have_valid_source = preview_pane.font != null && preview_pane.font.is_valid();
-            action_button.get_style_context().remove_class("destructive-action");
-            action_button.get_style_context().remove_class("suggested-action");
+            action_button.get_style_context().remove_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
+            action_button.get_style_context().remove_class(STYLE_CLASS_SUGGESTED_ACTION);
             action_button.set_tooltip_text(null);
             action_button.set_visible(have_valid_source);
             if (!have_valid_source)
@@ -122,16 +122,16 @@ namespace FontManager.FontViewer {
             switch (file_status) {
                 case FileStatus.WOULD_DOWNGRADE:
                     action_button.set_label(_("Newer version already installed"));
-                    action_button.get_style_context().add_class("destructive-action");
+                    action_button.get_style_context().add_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
                     action_button.set_tooltip_text(_("Click to overwrite"));
                     break;
                 case FileStatus.INSTALLED:
                     action_button.set_label(_("Remove Font"));
-                    action_button.get_style_context().add_class("destructive-action");
+                    action_button.get_style_context().add_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
                     break;
                 default:
                     action_button.set_label(_("Install Font"));
-                    action_button.get_style_context().add_class("suggested-action");
+                    action_button.get_style_context().add_class(STYLE_CLASS_SUGGESTED_ACTION);
                     break;
             }
             return;
@@ -183,5 +183,4 @@ namespace FontManager.FontViewer {
     }
 
 }
-
 

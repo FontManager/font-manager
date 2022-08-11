@@ -1101,7 +1101,7 @@ font_manager_unicode_character_map_init (FontManagerUnicodeCharacterMap *self)
     self->hadjustment = NULL;
     self->hscroll_policy = GTK_SCROLL_NATURAL;
     self->vscroll_policy = GTK_SCROLL_NATURAL;
-    self->preview_size = 16;
+    self->preview_size = FONT_MANAGER_LARGE_PREVIEW_SIZE;
     GtkWidget *widget = GTK_WIDGET(self);
     gtk_widget_set_focusable(widget, TRUE);
     gtk_widget_add_css_class(widget, FONT_MANAGER_STYLE_CLASS_VIEW);

@@ -296,7 +296,7 @@ font_manager_preview_pane_class_init (FontManagerPreviewPaneClass *klass)
                                                                   "Font preview size",
                                                                   FONT_MANAGER_MIN_FONT_SIZE,
                                                                   FONT_MANAGER_MAX_FONT_SIZE,
-                                                                  FONT_MANAGER_CHARACTER_MAP_PREVIEW_SIZE,
+                                                                  FONT_MANAGER_LARGE_PREVIEW_SIZE,
                                                                   G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     /**
@@ -560,7 +560,10 @@ static void
 font_manager_preview_pane_init (FontManagerPreviewPane *self)
 {
     g_return_if_fail(self != NULL);
+    gtk_widget_add_css_class(GTK_WIDGET(self), "FontManagerPreviewPane");
     self->notebook = GTK_NOTEBOOK(gtk_notebook_new());
+    GtkWidget *box = gtk_widget_get_first_child(GTK_WIDGET(self->notebook));
+    gtk_widget_add_css_class(box, FONT_MANAGER_STYLE_CLASS_BACKGROUND);
     gtk_notebook_set_show_border(self->notebook, FALSE);
     gtk_widget_set_parent(GTK_WIDGET(self->notebook), GTK_WIDGET(self));
     self->preview = font_manager_preview_page_new();

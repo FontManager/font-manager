@@ -190,7 +190,7 @@ font_manager_character_map_class_init (FontManagerCharacterMapClass *klass)
                                                             "Preview size",
                                                             FONT_MANAGER_MIN_FONT_SIZE,
                                                             FONT_MANAGER_MAX_FONT_SIZE,
-                                                            FONT_MANAGER_CHARACTER_MAP_PREVIEW_SIZE,
+                                                            FONT_MANAGER_LARGE_PREVIEW_SIZE,
                                                             G_PARAM_STATIC_STRINGS |
                                                             G_PARAM_READWRITE);
 
@@ -244,8 +244,8 @@ font_manager_character_map_init (FontManagerCharacterMap *self)
     FontManagerUnicodeSearchBar *search_bar = FONT_MANAGER_UNICODE_SEARCH_BAR(self->search);
     font_manager_unicode_search_bar_set_character_map(search_bar, charmap);
     font_manager_font_scale_set_default_size(FONT_MANAGER_FONT_SCALE(self->fontscale),
-                                             FONT_MANAGER_CHARACTER_MAP_PREVIEW_SIZE);
-    self->preview_size = FONT_MANAGER_CHARACTER_MAP_PREVIEW_SIZE;
+                                             FONT_MANAGER_LARGE_PREVIEW_SIZE);
+    self->preview_size = FONT_MANAGER_LARGE_PREVIEW_SIZE;
     gtk_widget_set_parent(box, GTK_WIDGET(self));
     font_manager_widget_set_expand(GTK_WIDGET(box), TRUE);
     font_manager_widget_set_expand(GTK_WIDGET(charmap), TRUE);
