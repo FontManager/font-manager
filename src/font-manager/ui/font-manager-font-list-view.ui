@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<interface>
+<interface domain="font-manager">
   <requires lib="gtk" version="4.0"/>
   <template class="FontManagerFontListView" parent="GtkBox">
     <style>
@@ -44,7 +44,7 @@
                 <property name="activates-default">True</property>
                 <property name="margin-end">4</property>
                 <property name="margin-start">4</property>
-                <property name="placeholder-text">Search Families…</property>
+                <property name="placeholder-text" translatable="1">Search Families…</property>
               </object>
             </child>
           </object>

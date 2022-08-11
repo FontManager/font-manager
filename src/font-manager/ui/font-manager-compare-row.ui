@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.0" />
+  <template class="FontManagerCompareRow" parent="GtkGrid">
+    <property name="name">FontManagerCompareRow</property>
+    <property name="hexpand">1</property>
+    <property name="vexpand">1</property>
+    <child>
+      <object class="GtkSeparator">
+        <property name="opacity">0.5</property>
+        <property name="margin-start">3</property>
+        <property name="margin-end">3</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="row">1</property>
+          <property name="column-span">3</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel" id="description">
+            <property name="vexpand">1</property>
+            <property name="opacity">0.95</property>
+            <property name="margin-start">6</property>
+            <property name="margin-end">6</property>
+            <property name="margin-top">9</property>
+            <property name="margin-bottom">9</property>
+          </object>
+        </child>
+        <layout>
+          <property name="column">0</property>
+          <property name="row">0</property>
+          <property name="column-span">3</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="name">FontManagerComparePreview</property>
+        <property name="css-name">FontManagerComparePreview</property>
+        <property name="css-classes">FontManagerComparePreview</property>
+        <property name="visible">True</property>
+        <property name="can-focus">False</property>
+        <child>
+          <object class="GtkLabel" id="preview">
+            <property name="name">FontManagerComparePreviewLabel</property>
+            <property name="margin-start">6</property>
+            <property name="margin-end">6</property>
+            <property name="margin-top">9</property>
+            <property name="margin-bottom">9</property>
+            <property name="hexpand">1</property>
+            <property name="vexpand">1</property>
+          </object>
+        </child>
+        <style>
+          <class name="view" />
+        </style>
+        <layout>
+          <property name="column">0</property>
+          <property name="row">2</property>
+          <property name="column-span">3</property>
+          <property name="row-span">2</property>
+        </layout>
+      </object>
+    </child>
+  </template>
+</interface>

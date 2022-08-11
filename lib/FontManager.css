@@ -57,8 +57,9 @@ row:selected .count {
     background-color: shade(@theme_selected_bg_color, 0.75);
 }
 
-.PangoGlyphMetrics {
-    color: alpha(lighter(@theme_selected_bg_color), 0.333);
+.CharacterMapCell:selected {
+    border-radius: 0.333em;
+    background-color: alpha(@theme_selected_bg_color, 0.9);
 }
 
 .CharacterMapCount {
@@ -72,17 +73,30 @@ row:selected .count {
     background-color: alpha(@insensitive_bg_color, 0.75);
 }
 
+.CharacterMapGlyph:selected {
+    color: lighter(@theme_selected_fg_color);
+}
+
 .CharacterMapSeparator {
     color: alpha(@borders, 0.5);
 }
 
-.CharacterMapCell:selected {
-    border-radius: 0.333em;
-    background-color: alpha(@theme_selected_bg_color, 0.9);
+.FontManagerCompare row {
+	border-radius: 0.333em;
 }
 
-.CharacterMapGlyph:selected {
-    color: lighter(@theme_selected_fg_color);
+.FontManagerComparePreview  {
+	border-radius: 0.25em;
+}
+
+.FontManagerCategoryListView > row > treeexpander expander {
+	-gtk-icon-source: -gtk-icontheme('folder-symbolic');
+	margin: 0px 0px 0px 8px;
+}
+
+.FontManagerCategoryListView > row > treeexpander expander:checked {
+	-gtk-icon-source: -gtk-icontheme('folder-open-symbolic');
+	margin: 0px 0px 0px 8px;
 }
 
 .FontManagerPropertiesPage separator {
@@ -102,13 +116,7 @@ row:selected .count {
 	background-color: alpha(lighter(@theme_fg_color), 0.075);
 }
 
-.FontManagerCategoryListView > row > treeexpander expander {
-	-gtk-icon-source: -gtk-icontheme('folder-symbolic');
-	margin: 0px 0px 0px 8px;
-}
-
-.FontManagerCategoryListView > row > treeexpander expander:checked {
-	-gtk-icon-source: -gtk-icontheme('folder-open-symbolic');
-	margin: 0px 0px 0px 8px;
+.PangoGlyphMetrics {
+    color: alpha(lighter(@theme_selected_bg_color), 0.333);
 }
 

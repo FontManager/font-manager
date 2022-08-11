@@ -12,6 +12,10 @@
         "label" : "Character Map"
     },
     {
+        "name" : "compare",
+        "label" : "Font Comparison"
+    },
+    {
         "name" : "dialog",
         "label" : "Dialog Test"
     },

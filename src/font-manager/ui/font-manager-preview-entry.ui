@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.0"/>
+  <template class="FontManagerPreviewEntry" parent="GtkEntry">
+    <property name="focusable">1</property>
+    <property name="opacity">0.75</property>
+    <property name="margin-start">6</property>
+    <property name="margin-end">6</property>
+    <property name="margin_top">6</property>
+    <property name="margin_bottom">6</property>
+    <property name="hexpand">1</property>
+    <property name="vexpand">0</property>
+    <signal name="changed" handler="on_changed_event" swapped="no"/>
+    <signal name="icon-press" handler="on_icon_press_event" swapped="no"/>
+  </template>
+</interface>
+

@@ -3,6 +3,7 @@ tests = [
     'category-list',
     'category-list-selection',
     'character-map',
+    'compare',
     'dialog',
     'font-scale',
     'font-list',
