@@ -274,7 +274,7 @@ font_manager_string_set_list (FontManagerStringSet *self)
  * @user_data:              user data to pass to the function
  *
  * Calls a function for each string of a #FontManagerStringSet.
- * func must not add elements to or remove elements from the #FontManagerStringSet.
+ * @func must not add elements to or remove elements from the #FontManagerStringSet.
  */
 void
 font_manager_string_set_foreach(FontManagerStringSet *self, GFunc func, gpointer user_data)
@@ -305,7 +305,7 @@ font_manager_string_set_clear (FontManagerStringSet *self)
  * @self:                       #FontManagerStringSet
  * @compare_func: (scope call): #GCompareFunc
  *
- * Sorts the set, using compare_func
+ * Sorts the set, using @compare_func
  */
 void
 font_manager_string_set_sort(FontManagerStringSet *self, GCompareFunc compare_func)
@@ -333,6 +333,28 @@ font_manager_string_set_get (FontManagerStringSet *self, guint index)
     return g_ptr_array_index(priv->strings, index);
 }
 
+static void
+add_string_to_array (gchar *str, GStrvBuilder *strv)
+{
+    g_strv_builder_add(strv, str);
+    return;
+}
+
+/**
+ * font_manager_string_set_to_strv:
+ * @self:   a #FontManagerStringSet
+ *
+ * Returns: (array zero-terminated=1) (element-type utf8) (transfer full):
+ * The returned value should be freed with #g_strfreev() when no longer needed.
+ */
+GStrv
+font_manager_string_set_to_strv (FontManagerStringSet *self)
+{
+    g_autoptr(GStrvBuilder) strv = g_strv_builder_new();
+    font_manager_string_set_foreach(self, (GFunc) add_string_to_array, strv);
+    return g_strv_builder_end(strv);
+}
+
 /**
  * font_manager_string_set_new:
  *
@@ -344,3 +366,21 @@ font_manager_string_set_new (void)
 {
     return g_object_new(FONT_MANAGER_TYPE_STRING_SET, NULL);
 }
+
+/**
+ * font_manager_string_set_new_from_strv:
+ * @strv: (array zero-terminated=1) (element-type utf8) (not nullable) (transfer none) :
+ * %NULL terminated array of strings to include in the returned set
+ *
+ * Returns: (transfer full): A newly-created #FontManagerStringSet.
+ * Free the returned object using #g_object_unref().
+ **/
+FontManagerStringSet *
+font_manager_string_set_new_from_strv (GStrv strv)
+{
+    FontManagerStringSet *set = font_manager_string_set_new();
+    for (int i = 0; strv[i] != NULL; i++)
+        font_manager_string_set_add(set, strv[i]);
+    return set;
+}
+

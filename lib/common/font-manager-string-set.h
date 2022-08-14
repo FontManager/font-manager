@@ -27,6 +27,7 @@
 G_DECLARE_DERIVABLE_TYPE(FontManagerStringSet, font_manager_string_set, FONT_MANAGER, STRING_SET, GObject)
 
 FontManagerStringSet * font_manager_string_set_new (void);
+FontManagerStringSet * font_manager_string_set_new_from_strv (GStrv strv);
 guint font_manager_string_set_size (FontManagerStringSet *self);
 const gchar * font_manager_string_set_get (FontManagerStringSet *self, guint index);
 void font_manager_string_set_add (FontManagerStringSet *self, const gchar *str);
@@ -40,4 +41,5 @@ GList * font_manager_string_set_list (FontManagerStringSet *self);
 void font_manager_string_set_foreach(FontManagerStringSet *self, GFunc func, gpointer user_data);
 void font_manager_string_set_sort(FontManagerStringSet *self, GCompareFunc compare_func);
 void font_manager_string_set_clear (FontManagerStringSet *self);
+GStrv font_manager_string_set_to_strv (FontManagerStringSet *self);
 
