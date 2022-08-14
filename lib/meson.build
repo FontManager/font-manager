@@ -40,9 +40,9 @@ headers = [
     unicode_headers
 ]
 
-HEADER = join_paths(meson.current_build_dir(), 'font-manager.h')
+header = join_paths(meson.current_build_dir(), 'font-manager.h')
 
-WRITE_HEADER = '''
+write_header = '''
 from glob import glob
 from os.path import basename
 
@@ -54,10 +54,10 @@ with open('@1@', 'w') as H:
     H.write('#pragma once\n')
     for f in filelist('h'):
         H.write('#include "{}"\n'.format(basename(f)))
-'''.format(meson.current_source_dir(), HEADER, meson.current_source_dir())
+'''.format(meson.current_source_dir(), header, meson.current_source_dir())
 
 library_header_file = configure_file(
-    command: [python, '-c', WRITE_HEADER],
+    command: [python, '-c', write_header],
     output: 'font-manager.h'
 )
 

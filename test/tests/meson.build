@@ -1,22 +1,4 @@
 
-tests = [
-    'category-list',
-    'category-list-selection',
-    'character-map',
-    'compare',
-    'dialog',
-    'font-scale',
-    'font-list',
-    'font-list-selection',
-    'license-page',
-    'place-holder',
-    'preference-row',
-    'preview-controls',
-    'preview-page',
-    'preview-pane',
-    'properties-page'
-]
-
 foreach t: tests
     library(t,
             name_prefix: '',
