@@ -24,6 +24,25 @@ namespace FontManager {
         return (a.index - b.index);
     }
 
+    public class BaseFontListFilterListModel : Object, ListModel {
+
+        public GenericArray <FontListFilter>? items { get; set; default = null; }
+
+        public Type get_item_type () {
+            return typeof(FontListFilter);
+        }
+
+        public uint get_n_items () {
+            return items != null ? items.length : 0;
+        }
+
+        public Object? get_item (uint position) {
+            return_val_if_fail(items[position] != null, null);
+            return items[position];
+        }
+
+    }
+
     public class FontListFilter : Cacheable {
 
         public virtual string name { owned get; set; }

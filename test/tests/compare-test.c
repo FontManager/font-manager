@@ -26,9 +26,10 @@ get_widget (TestApplicationWindow *parent)
 {
     TestDialog *dialog = test_dialog_new(parent, "Font Comparison", 700, 750);
     GtkWidget *fontlist = GTK_WIDGET(font_manager_font_list_view_new());
-    FontManagerCompare *widget = font_manager_compare_new();
+    FontManagerComparePane *widget = font_manager_compare_pane_new();
     g_autoptr(JsonObject) available_fonts = font_manager_get_available_fonts(NULL);
     g_autoptr(JsonArray) sorted_font_array = font_manager_sort_json_font_listing(available_fonts);
+    font_manager_update_item_preview_text(sorted_font_array);
     g_object_set(fontlist, "available-fonts", sorted_font_array, NULL);
     GtkWidget *pane = gtk_paned_new(GTK_ORIENTATION_VERTICAL);
     gtk_paned_set_start_child(GTK_PANED(pane), fontlist);
@@ -39,9 +40,10 @@ get_widget (TestApplicationWindow *parent)
     gtk_widget_set_opacity(gtk_button_get_child(GTK_BUTTON(button)), 0.9);
     g_signal_connect(button, "clicked", G_CALLBACK(on_control_clicked), pane);
     test_dialog_append_control(dialog, button);
-    g_object_bind_property(fontlist, "selected-fonts", widget, "selected-fonts", G_BINDING_SYNC_CREATE);
-    GSettings *settings = font_manager_get_gsettings("org.gnome.FontManager");
-    /* font_manager_preview_pane_restore_state(FONT_MANAGER_PREVIEW_PANE(preview), settings); */
+    g_object_bind_property(fontlist, "selected-items", widget, "selected-items", G_BINDING_SYNC_CREATE);
+    g_autoptr(GSettings) settings = font_manager_get_gsettings("org.gnome.FontManager");
+    font_manager_compare_pane_restore_state(widget, settings);
+    g_object_ref(widget);
     return dialog;
 }
 

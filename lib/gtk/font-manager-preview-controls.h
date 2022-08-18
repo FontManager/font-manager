@@ -25,6 +25,7 @@
 #include <gtk/gtk.h>
 #include <glib/gi18n-lib.h>
 
+#include "font-manager-font.h"
 #include "font-manager-gtk-utils.h"
 
 #define FONT_MANAGER_TYPE_PREVIEW_CONTROLS (font_manager_preview_controls_get_type())

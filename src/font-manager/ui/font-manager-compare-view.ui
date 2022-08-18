@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
   <requires lib="gtk" version="4.0" />
-  <template class="FontManagerCompare" parent="GtkBox">
+  <template class="FontManagerComparePane" parent="GtkBox">
     <property name="css-name">FontManagerCompare</property>
     <property name="css-classes">FontManagerCompare</property>
     <property name="orientation">vertical</property>

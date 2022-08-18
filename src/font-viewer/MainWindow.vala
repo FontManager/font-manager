@@ -69,8 +69,7 @@ namespace FontManager.FontViewer {
         }
 
         public void update () {
-            bool have_valid_source = preview_pane.font != null && preview_pane.font.is_valid();
-            if (have_valid_source) {
+            if (preview_pane.font != null) {
                 current_file = File.new_for_path(preview_pane.font.filepath);
                 string family = preview_pane.font.family;
                 string style = preview_pane.font.style;
@@ -84,7 +83,7 @@ namespace FontManager.FontViewer {
                 subtitle_label.set_label(_("Or unsupported filetype."));
                 headerbar.set_tooltip_markup(null);
             }
-            stack.set_visible_child_name(have_valid_source ? "Preview" : "PlaceHolder");
+            stack.set_visible_child_name(preview_pane.font != null ? "Preview" : "PlaceHolder");
             current_target = null;
             file_status = get_file_status();
             update_action_button();
@@ -112,12 +111,11 @@ namespace FontManager.FontViewer {
         }
 
         void update_action_button () {
-            bool have_valid_source = preview_pane.font != null && preview_pane.font.is_valid();
             action_button.get_style_context().remove_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
             action_button.get_style_context().remove_class(STYLE_CLASS_SUGGESTED_ACTION);
             action_button.set_tooltip_text(null);
-            action_button.set_visible(have_valid_source);
-            if (!have_valid_source)
+            action_button.set_visible(preview_pane.font != null);
+            if (preview_pane.font == null)
                 return;
             switch (file_status) {
                 case FileStatus.WOULD_DOWNGRADE:

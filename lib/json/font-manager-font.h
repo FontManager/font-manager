@@ -35,6 +35,7 @@ static const FontManagerJsonProxyProperty FontProperties [] =
     { "weight", G_TYPE_INT64, "Fontconfig weight" },
     { "width", G_TYPE_INT64, "Fontconfig width" },
     { "description", G_TYPE_STRING, "Pango font description" },
+    { "preview-text", G_TYPE_STRING, "Sample text" },
     { "active", G_TYPE_BOOLEAN, "Whether font is active" },
     { FONT_MANAGER_JSON_PROXY_SOURCE, G_TYPE_RESERVED_USER_FIRST, "JsonObject source for this class" }
 };

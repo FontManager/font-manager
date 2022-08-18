@@ -93,7 +93,6 @@ struct _FontManagerPreviewPane
     GtkWidget               *license;
     GtkWidget               *search;
     GtkNotebook             *notebook;
-    GHashTable              *samples;
 
     FontManagerFont             *font;
     FontManagerPreviewPageMode  mode;
@@ -116,7 +115,6 @@ enum
     PROP_GLYPH_PREVIEW_SIZE,
     PROP_PREVIEW_TEXT,
     PROP_PREVIEW_MODE,
-    PROP_SAMPLES,
     PROP_FONT,
     PROP_ORTHOGRAPHY,
     PROP_SHOW_LINE_SIZE,
@@ -136,7 +134,6 @@ font_manager_preview_pane_dispose (GObject *gobject)
     g_clear_object(&self->font);
     g_clear_pointer(&self->preview_text, g_free);
     g_clear_pointer(&self->current_uri, g_free);
-    g_clear_pointer(&self->samples, g_hash_table_unref);
     font_manager_clear_application_fonts();
     font_manager_widget_dispose(GTK_WIDGET(self));
     G_OBJECT_CLASS(font_manager_preview_pane_parent_class)->dispose(gobject);
@@ -166,9 +163,6 @@ font_manager_preview_pane_get_property (GObject    *gobject,
             break;
         case PROP_FONT:
             g_value_set_object(value, self->font);
-            break;
-        case PROP_SAMPLES:
-            g_value_set_boxed(value, self->samples);
             break;
         case PROP_SHOW_LINE_SIZE:
             g_value_set_boolean(value, self->show_line_size);
@@ -207,13 +201,6 @@ font_manager_preview_pane_set_property (GObject      *gobject,
             break;
         case PROP_FONT:
             font_manager_preview_pane_set_font(self, g_value_get_object(value));
-            break;
-        case PROP_SAMPLES:
-            if (self->samples)
-                g_clear_pointer(&self->samples, g_hash_table_unref);
-            GHashTable *samples = g_value_get_boxed(value);
-            if (samples)
-                self->samples = g_hash_table_ref(samples);
             break;
         case PROP_ORTHOGRAPHY:
             font_manager_preview_pane_set_orthography(self, g_value_get_object(value));
@@ -321,18 +308,6 @@ font_manager_preview_pane_class_init (FontManagerPreviewPaneClass *klass)
                                                           G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS);
 
     /**
-     * FontManagerPreviewPane:sample-strings:
-     *
-     * Dictionary of sample strings
-     */
-    obj_properties[PROP_SAMPLES] = g_param_spec_boxed("samples",
-                                                      NULL,
-                                                      "Dictionary of sample strings",
-                                                      G_TYPE_HASH_TABLE,
-                                                      G_PARAM_STATIC_STRINGS |
-                                                      G_PARAM_READWRITE);
-
-    /**
      * FontManagerPreviewPane:font:
      *
      * #FontManagerFont to display.
@@ -394,7 +369,9 @@ static gboolean
 font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
 {
     g_return_val_if_fail(self != NULL, G_SOURCE_REMOVE);
-    if (!self->update_required || !font_manager_json_proxy_is_valid(FONT_MANAGER_JSON_PROXY(self->font)))
+    if (!self->font)
+        return G_SOURCE_CONTINUE;
+    if (!self->update_required)
         return G_SOURCE_REMOVE;
     gint index = 0;
     GError *error = NULL;
@@ -472,15 +449,9 @@ font_manager_preview_pane_update (FontManagerPreviewPane *self)
     gtk_widget_add_css_class(menu, menu_sensitive ? "image-button" : FONT_MANAGER_STYLE_CLASS_FLAT);
     gtk_widget_remove_css_class(menu, menu_sensitive ? FONT_MANAGER_STYLE_CLASS_FLAT : "image-button");
     gtk_widget_set_sensitive(menu, menu_sensitive);
-    g_autofree gchar *font = NULL;
-    if (self->font)
-        g_object_get(G_OBJECT(self->font), "description", &font, NULL);
-    gchar *_font_desc = font ? font : FONT_MANAGER_DEFAULT_FONT;
-    g_autoptr(PangoFontDescription) font_desc = pango_font_description_from_string(_font_desc);
-    font_manager_preview_page_set_font_desc(FONT_MANAGER_PREVIEW_PAGE(self->preview), font_desc);
-    font_manager_character_map_set_font_desc(FONT_MANAGER_CHARACTER_MAP(self->character_map), font_desc);
     g_idle_add((GSourceFunc) font_manager_preview_pane_update_metadata, self);
     g_signal_emit(self, signals[CHANGED], 0);
+    gtk_widget_queue_draw(self->preview);
     return G_SOURCE_REMOVE;
 }
 
@@ -585,11 +556,12 @@ font_manager_preview_pane_init (FontManagerPreviewPane *self)
     font_manager_widget_set_expand(GTK_WIDGET(self), TRUE);
     GBindingFlags flags = (G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE);
     g_object_bind_property(self->notebook, "page", self, "page", flags);
+    g_object_bind_property(self->preview, "font", self, "font", flags);
     g_object_bind_property(self->preview, "preview-size", self, "preview-size", flags);
     g_object_bind_property(self->preview, "preview-text", self, "preview-text", flags);
     g_object_bind_property(self->preview, "preview-mode", self, "preview-mode", flags);
-    g_object_bind_property(self->preview, "samples", self, "samples", flags);
     g_object_bind_property(self->preview, "show-line-size", self, "show-line-size", flags);
+    g_object_bind_property(self->character_map, "font", self, "font", flags);
     g_object_bind_property(self->character_map, "preview-size", self, "character-map-preview-size", flags);
     g_signal_connect_swapped(self->notebook, "switch-page", G_CALLBACK(on_page_switch), self);
     g_signal_connect(self, "notify::preview-mode", G_CALLBACK(update_mode), NULL);
@@ -645,14 +617,7 @@ font_manager_preview_pane_show_uri (FontManagerPreviewPane *self,
         return FALSE;
     }
     g_autofree gchar *sample = font_manager_get_sample_string(source);
-    if (sample) {
-        if (!self->samples) {
-            self->samples = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, g_free);
-            g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_SAMPLES]);
-        }
-        const gchar *description = json_object_get_string_member(source, "description");
-        g_hash_table_insert(self->samples, g_strdup(description), g_strdup(sample));
-    }
+    json_object_set_string_member(source, "preview-text", sample);
     g_object_set(font, "source-object", source, NULL);
     font_manager_preview_pane_set_font(self, font);
     self->current_uri = g_strdup(uri);

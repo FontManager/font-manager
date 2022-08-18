@@ -635,16 +635,9 @@ get_fs_type (JsonObject *json_obj, const FT_Face face)
 static void
 ensure_vendor (JsonObject *json_obj, const FT_Face face)
 {
-    if (!json_object_has_member(json_obj, "vendor")) {
+    if (!json_object_has_member(json_obj, "vendor"))
         /* Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid */
         json_object_set_string_member(json_obj, "vendor", N_("Unknown Vendor"));
-        /* XXX : Is this even worth checking for? */
-        BDF_PropertyRec prop;
-        int result = FT_Get_BDF_Property(face, "FOUNDRY", &prop);
-        if (G_UNLIKELY(result == 0 && prop.type == BDF_PROPERTY_TYPE_ATOM)) {
-            json_object_set_string_member(json_obj, "vendor", prop.u.atom);
-        }
-    }
     return;
 }
 

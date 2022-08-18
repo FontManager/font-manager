@@ -73,7 +73,11 @@ namespace FontManager {
                     settings = get_gsettings(application_id);
                     settings.delay();
                     main_window.restore_state(settings);
-                    shutdown.connect(() => { settings.apply(); });
+                    shutdown.connect(() => {
+                        settings.apply();
+                        // XXX : Why is this neeeded?
+                        quit();
+                    });
                 }
                 main_window.present_with_time(Gdk.CURRENT_TIME);
                 main_window.update();

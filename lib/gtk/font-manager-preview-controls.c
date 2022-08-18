@@ -53,7 +53,7 @@ enum
 enum
 {
     PROP_RESERVED,
-    PROP_FONT_DESC,
+    PROP_FONT,
     PROP_JUSTIFICATION,
     PROP_UNDO_AVAILABLE,
     N_PROPERTIES
@@ -105,19 +105,15 @@ font_manager_preview_controls_dispose (GObject *gobject)
     return;
 }
 
-static PangoFontDescription *
-get_font_description (FontManagerPreviewControls *self)
-{
-    const gchar *font = gtk_label_get_text(GTK_LABEL(self->description));
-    return pango_font_description_from_string(font);
-}
-
 static void
-set_font_description (FontManagerPreviewControls *self,
-                      PangoFontDescription       *font_desc)
+set_font (FontManagerPreviewControls *self,
+          FontManagerFont            *font)
 {
-    g_autofree gchar *font = pango_font_description_to_string(font_desc);
-    gtk_label_set_text(GTK_LABEL(self->description), font);
+    if (font) {
+        g_autofree gchar *description = NULL;
+        g_object_get(font, "description", &description, NULL);
+        gtk_label_set_text(GTK_LABEL(self->description), description);
+    }
     return;
 }
 
@@ -130,9 +126,6 @@ font_manager_preview_controls_get_property (GObject    *gobject,
     FontManagerPreviewControls *self = FONT_MANAGER_PREVIEW_CONTROLS(gobject);
     g_return_if_fail(self != NULL);
     switch (property_id) {
-        case PROP_FONT_DESC:
-            g_value_set_boxed(value, get_font_description(self));
-            break;
         case PROP_UNDO_AVAILABLE:
             g_value_set_boolean(value, gtk_widget_get_sensitive(self->undo_button));
             break;
@@ -154,8 +147,8 @@ font_manager_preview_controls_set_property (GObject      *gobject,
     FontManagerPreviewControls *self = FONT_MANAGER_PREVIEW_CONTROLS(gobject);
     g_return_if_fail(self != NULL);
     switch (property_id) {
-        case PROP_FONT_DESC:
-            set_font_description(self, g_value_get_boxed(value));
+        case PROP_FONT:
+            set_font(self, g_value_get_object(value));
             break;
         case PROP_UNDO_AVAILABLE:
             gtk_widget_set_sensitive(self->undo_button, g_value_get_boolean(value));
@@ -187,14 +180,14 @@ font_manager_preview_controls_class_init (FontManagerPreviewControlsClass *klass
     /**
      * FontManagerPreviewControls:description:
      *
-     * #PangoFontDescription for currently displayed font.
+     * #FontManagerFont for currently displayed font.
      */
-    obj_properties[PROP_FONT_DESC] = g_param_spec_boxed("font-desc",
-                                                        NULL,
-                                                        "PangoFontDescription",
-                                                        PANGO_TYPE_FONT_DESCRIPTION,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS);
+    obj_properties[PROP_FONT] = g_param_spec_object("font",
+                                                    NULL,
+                                                    "FontManagerFont",
+                                                    FONT_MANAGER_TYPE_FONT,
+                                                    G_PARAM_WRITABLE |
+                                                    G_PARAM_STATIC_STRINGS);
 
     /**
      * FontManagerPreviewControls:undo-available:
@@ -314,7 +307,7 @@ static void
 set_center_widget (FontManagerPreviewControls *self, GtkCenterLayout *layout)
 {
     g_return_if_fail(self != NULL);
-    self->description = gtk_label_new("<PangoFontDescription>");
+    self->description = gtk_label_new("<FontDescription>");
     gtk_widget_add_css_class(self->description, FONT_MANAGER_STYLE_CLASS_DIM_LABEL);
     gtk_widget_set_parent(self->description, GTK_WIDGET(self));
     gtk_center_layout_set_center_widget(layout, self->description);

@@ -35,7 +35,7 @@ G_DECLARE_FINAL_TYPE(FontManagerCharacterMap, font_manager_character_map, FONT_M
 
 GtkWidget * font_manager_character_map_new (void);
 
-void font_manager_character_map_set_font_desc (FontManagerCharacterMap *self, PangoFontDescription *font_desc);
+void font_manager_character_map_set_font (FontManagerCharacterMap *self, FontManagerFont *font);
 void font_manager_character_map_set_filter (FontManagerCharacterMap *self, GList *filter);
 void font_manager_character_map_restore_state (FontManagerCharacterMap *self, GSettings *settings);
 

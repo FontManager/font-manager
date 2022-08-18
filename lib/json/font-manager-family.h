@@ -29,6 +29,7 @@ static const FontManagerJsonProxyProperty FamilyProperties [] =
     { "n-variations", G_TYPE_INT64, "Number of font variations" },
     { "active", G_TYPE_BOOLEAN, "Whether family is active"},
     { "description", G_TYPE_STRING, "Pango font description" },
+    { "preview-text", G_TYPE_STRING, "Sample text" },
     { FONT_MANAGER_JSON_PROXY_SOURCE, G_TYPE_RESERVED_USER_FIRST, "JsonObject source for this class" },
     { "variations", G_TYPE_BOXED, "JsonArray of JsonObjects" }
 };

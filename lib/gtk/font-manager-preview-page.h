@@ -29,6 +29,7 @@
 #include <json-glib/json-glib.h>
 #include <pango/pango.h>
 
+#include "font-manager-font.h"
 #include "font-manager-font-scale.h"
 #include "font-manager-preview-controls.h"
 #include "font-manager-gtk-utils.h"
@@ -59,17 +60,16 @@ const gchar * font_manager_preview_page_mode_to_translatable_string (FontManager
 GtkWidget * font_manager_preview_page_new (void);
 
 GtkWidget * font_manager_preview_page_get_action_widget (FontManagerPreviewPage *self);
-PangoFontDescription * font_manager_preview_page_get_font_desc (FontManagerPreviewPage *self);
+FontManagerFont * font_manager_preview_page_get_font (FontManagerPreviewPage *self);
 GtkJustification font_manager_preview_page_get_justification (FontManagerPreviewPage *self);
 FontManagerPreviewPageMode font_manager_preview_page_get_preview_mode (FontManagerPreviewPage *self);
 gdouble font_manager_preview_page_get_preview_size (FontManagerPreviewPage *self);
 gchar * font_manager_preview_page_get_preview_text (FontManagerPreviewPage *self);
-void font_manager_preview_page_set_font_desc (FontManagerPreviewPage *self, PangoFontDescription *font_desc);
+void font_manager_preview_page_set_font (FontManagerPreviewPage *self, FontManagerFont *font);
 void font_manager_preview_page_set_justification (FontManagerPreviewPage *self, GtkJustification justification);
 void font_manager_preview_page_set_preview_mode (FontManagerPreviewPage *self, FontManagerPreviewPageMode mode);
 void font_manager_preview_page_set_preview_size (FontManagerPreviewPage *self, gdouble size_points);
 void font_manager_preview_page_set_preview_text (FontManagerPreviewPage *self, const gchar *preview_text);
-void font_manager_preview_page_set_sample_strings (FontManagerPreviewPage *self, GHashTable *samples);
 void font_manager_preview_page_set_waterfall_size (FontManagerPreviewPage *self, gdouble min_size, gdouble max_size, gdouble ratio);
 void font_manager_preview_page_restore_state (FontManagerPreviewPage *self, GSettings *settings);
 

@@ -77,6 +77,7 @@ namespace FontManager {
                                                     Gtk.FileChooserAction.OPEN,
                                                     _("_Open"),
                                                     _("_Cancel")) {
+                                                        modal = true,
                                                         filter = filter,
                                                         select_multiple = true
                                                     };

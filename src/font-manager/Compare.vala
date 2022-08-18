@@ -30,8 +30,8 @@ namespace FontManager {
 
     public class CompareEntry : Object {
 
-        public string? description { get; set; default = null; }
-        public double preview_size { get; set; default = MIN_FONT_SIZE; }
+        public Object item { get; set; default = null; }
+        public double preview_size { get; set; default = LARGE_PREVIEW_SIZE; }
         public Gdk.RGBA foreground_color { get; set; }
         public Gdk.RGBA background_color { get; set; }
         public Pango.FontDescription? font_desc { get; set; default = null; }
@@ -46,12 +46,22 @@ namespace FontManager {
             }
         }
 
+        public string? description {
+            get {
+                Json.Object? source_object = null;
+                item.get(JSON_PROXY_SOURCE, out source_object, null);
+                if (source_object != null)
+                    return source_object.get_string_member("description");
+                return null;
+            }
+        }
+
         string? _preview_text = null;
         string? initial_preview = null;
         string? local_pangram = null;
 
-        public CompareEntry (string description, string preview_text, string default_preview) {
-            Object(description: description, preview_text: preview_text);
+        public CompareEntry (Object item, string preview_text, string default_preview) {
+            Object(item: item, preview_text: preview_text);
             initial_preview = default_preview;
             local_pangram = get_localized_pangram();
             font_desc = Pango.FontDescription.from_string(description);
@@ -139,16 +149,15 @@ namespace FontManager {
     }
 
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-compare-view.ui")]
-    public class Compare : Gtk.Box {
+    public class ComparePane : Gtk.Box {
 
         public signal void color_set ();
 
         public double preview_size { get; set; default = LARGE_PREVIEW_SIZE; }
         public Gdk.RGBA foreground_color { get; set; }
         public Gdk.RGBA background_color { get; set; }
-        public Gtk.Adjustment adjustment { get; set; }
-        public GLib.HashTable <string, string>? samples { get; set; default = null; }
-        public StringSet? selected_fonts { get; set; default = null; }
+        public GenericArray <Object>? selected_items { get; set; default = null; }
+        public StringSet? available_families { get; set; default = null; }
         public CompareModel model { get; set; }
         public PinnedComparisons pinned { get; private set; }
 
@@ -190,7 +199,6 @@ namespace FontManager {
             bind_property("foreground_color", fg_color_button, "rgba", flags);
             bind_property("background_color", bg_color_button, "rgba", flags);
             bind_property("preview-size", fontscale, "value", flags);
-            fontscale.bind_property("adjustment", this, "adjustment", flags);
             set_control_sensitivity(pinned_button, pinned.model.get_n_items() > 0);
             bg_color_button.color_set.connect(() => { color_set(); });
             fg_color_button.color_set.connect(() => { color_set(); });
@@ -199,7 +207,6 @@ namespace FontManager {
             fg_color_button.get_first_child().remove_css_class(STYLE_CLASS_COLOR);
             fg_color_button.get_first_child().add_css_class(STYLE_CLASS_FLAT);
             model.items_changed.connect(on_items_changed);
-            //notify["preview-text"].connect(() => { entry.set_placeholder_text(preview_text); });
             pinned.closed.connect(() => {
                 bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
                 set_control_sensitivity(pinned_button, have_items);
@@ -209,14 +216,10 @@ namespace FontManager {
         }
 
         public void on_items_changed (uint position, uint added, uint removed) {
-            // XXX
-            if (model.get_n_items() > 0) {
-                // add_button.set_relief(Gtk.ReliefStyle.NONE);
+            if (model.get_n_items() > 0)
                 add_button.get_style_context().remove_class(STYLE_CLASS_SUGGESTED_ACTION);
-            } else {
-                // add_button.set_relief(Gtk.ReliefStyle.NORMAL);
+            else
                 add_button.get_style_context().add_class(STYLE_CLASS_SUGGESTED_ACTION);
-            }
             bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
             set_control_sensitivity(pinned_button, have_items);
             return;
@@ -242,59 +245,55 @@ namespace FontManager {
                 }
                 return GLib.Source.REMOVE;
             });
-            // XXX
-            // Idle.add(() => {
-            //     if (samples == null)
-            //         return GLib.Source.CONTINUE;
-            //     add_from_string_array(settings.get_strv("compare-list"));
-            //     return GLib.Source.REMOVE;
-            // });
             settings.bind("compare-preview-text", entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("compare-font-size", this, "preview-size", SettingsBindFlags.DEFAULT);
             return;
         }
 
         public void save_state (GLib.Settings settings) {
-            // XXX
-            // settings.set_strv("compare-list", list_items());
             settings.set_string("compare-foreground-color", foreground_color.to_string());
             settings.set_string("compare-background-color", background_color.to_string());
             return;
         }
 
-        public void add_from_string_set (StringSet additions) {
-            StringSet? checklist = null;
-            // XXX
-            // StringSet? available_families = get_default_application().available_families;
-            // if (available_families != null)
-            //     checklist = available_families.list();
-            foreach (var entry in additions)
-                add_from_string(entry, checklist);
+        void add_entry (Object item) {
+            string? p = null;
+            item.get("preview-text", out p, null);
+            var preview = entry.text_length > 0 ? entry.text : p != null ? p : preview_text;
+            var default_preview = p != null ? p : default_preview_text;
+            var entry = new CompareEntry(item, preview, default_preview);
+            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            bind_property("preview-size", entry, "preview-size", flags);
+            bind_property("preview-text", entry, "preview-text", flags);
+            bind_property("foreground-color", entry, "foreground-color", flags);
+            bind_property("background-color", entry, "background-color", flags);
+            model.add_item(entry);
             return;
         }
 
-        public void add_from_string (string description, StringSet? checklist = null) {
-            Pango.FontDescription _desc = Pango.FontDescription.from_string(description);
-            if (checklist == null || checklist.contains(_desc.get_family())) {
-                var preview = entry.text_length > 0 ? entry.text :
-                              (samples != null && samples.contains(description)) ?
-                              samples.lookup(description) : preview_text;
-                var default_preview = (samples != null && samples.contains(description)) ?
-                                       samples.lookup(description) : default_preview_text;
-                var item = new CompareEntry(description, preview, default_preview);
-                BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
-                bind_property("preview-size", item, "preview-size", flags);
-                bind_property("preview-text", item, "preview-text", flags);
-                bind_property("foreground-color", item, "foreground-color", flags);
-                bind_property("background-color", item, "background-color", flags);
-                model.add_item(item);
+        public void add_items (GenericArray <Object> items) {
+            foreach (Object item in items) {
+                string? family = null;
+                item.get("family", out family, null);
+                if (available_families == null || available_families.contains(family)) {
+                    if (item is Family) {
+                        Json.Array variations = ((Family) item).variations;
+                        variations.foreach_element((a, i, n) => {
+                            var _item = new Font();
+                            _item.source_object = n.get_object();
+                            add_entry(_item);
+                        });
+                    } else {
+                        add_entry(item);
+                    }
+                }
             }
             return;
         }
 
-        public StringSet list_items () {
-            StringSet results = new StringSet();
-            model.items.foreach((item) => { results.add(item.description); });
+        public GenericArray list_items () {
+            var results = new GenericArray <Object> ();
+            model.items.foreach((item) => { results.add(item); });
             return results;
         }
 
@@ -312,7 +311,7 @@ namespace FontManager {
 
         [GtkCallback]
         void on_add_button_clicked () {
-            add_from_string_set(selected_fonts);
+            add_items(selected_items);
             return;
         }
 
@@ -332,7 +331,7 @@ namespace FontManager {
     public class PinnedComparison : Object {
         public string? label { get; set; default = ""; }
         public string? created { get; set; default = new GLib.DateTime.now_local().format("%c"); }
-        public StringSet? items { get; set; default = null; }
+        public GenericArray <Object>? items { get; set; default = null; }
     }
 
     public class PinnedComparisonModel : Object, ListModel {
@@ -381,13 +380,7 @@ namespace FontManager {
         public static PinnedComparisonRow from_item (Object item) {
             var row = new PinnedComparisonRow();
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
-            // XXX : BUG? : WORKAROUND : Entry fails to update placeholder visibility
-            row.label.buffer.notify["length"].connect(() => {
-                row.label.set_placeholder_text(
-                    row.label.buffer.length > 0 ? "" : placeholder_text
-                );
-            });
-            item.bind_property("label", row.label.buffer, "text", flags);
+            item.bind_property("label", row.label, "text", flags);
             item.bind_property("created", row.created, "label", flags);
             return row;
         }
@@ -402,7 +395,7 @@ namespace FontManager {
         [GtkChild] unowned Gtk.Button remove_button;
         [GtkChild] unowned Gtk.Button restore_button;
 
-        public Compare? compare { get; set; default = null; }
+        public ComparePane? compare { get; set; default = null; }
         public PinnedComparisonModel? model { get; set; default = null; }
 
         public override void constructed () {
@@ -428,7 +421,7 @@ namespace FontManager {
 
         static string get_cache_file () {
             string dirpath = get_package_config_directory();
-            string filepath = Path.build_filename(dirpath, "Comparisons.json");
+            string filepath = Path.build_filename(dirpath, "PinnedComparisons.json");
             DirUtils.create_with_parents(dirpath ,0755);
             return filepath;
         }
@@ -442,9 +435,12 @@ namespace FontManager {
                 var item = new PinnedComparison();
                 item.label = obj.get_string_member("label");
                 item.created = obj.get_string_member("created");
-                item.items = new StringSet();
+                item.items = new GenericArray <Object> ();
                 obj.get_array_member("items").foreach_element((a, i, n) => {
-                    item.items.add(a.get_string_element(i));
+                    var o = n.get_object();
+                    var entry = new Font();
+                    entry.source_object = o;
+                    item.items.add(entry);
                 });
                 model.add_item(item);
             });
@@ -475,7 +471,7 @@ namespace FontManager {
                 obj.set_string_member("created", item.created);
                 var _arr = new Json.Array();
                 foreach (var _item in item.items)
-                    _arr.add_string_element(_item);
+                    _arr.add_object_element(((Font) _item).source_object);
                 obj.set_array_member("items", _arr);
                 arr.add_object_element(obj);
             }
@@ -513,7 +509,10 @@ namespace FontManager {
             return_if_fail(compare != null);
             while (compare.model.get_n_items() > 0)
                 compare.model.remove_item(0);
-            compare.add_from_string_set(((PinnedComparison) item).items);
+            var items = new GenericArray <Object> ();
+            foreach (var _item in ((PinnedComparison) item).items)
+                items.add(_item);
+            compare.add_items(items);
             return;
         }
 

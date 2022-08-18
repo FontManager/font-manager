@@ -63,7 +63,7 @@ font_manager_application_window_quit (GtkWidget                *widget,
                                       G_GNUC_UNUSED GVariant   *parameter)
 {
     g_return_if_fail(widget != NULL);
-    gtk_window_close(GTK_WINDOW(widget));
+    gtk_window_destroy(GTK_WINDOW(widget));
     return;
 }
 

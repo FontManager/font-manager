@@ -20,6 +20,50 @@
 
 namespace FontManager {
 
+    public enum SortType {
+        AGE,
+        NAME,
+        SIZE,
+        NONE
+    }
+
+    internal const string SELECT_NON_LATIN_FONTS = """
+    SELECT DISTINCT description, Orthography.sample FROM Fonts
+    JOIN Orthography USING (filepath, findex)
+    WHERE Orthography.sample IS NOT NULL;
+    """;
+
+    internal HashTable get_non_latin_samples () {
+        var result = new HashTable <string, string> (str_hash, str_equal);
+        try {
+            Database db = get_database(DatabaseType.BASE);
+            db.execute_query(SELECT_NON_LATIN_FONTS);
+            foreach (unowned Sqlite.Statement row in db)
+                result.insert(row.column_text(0), row.column_text(1));
+        } catch (DatabaseError e) {
+            message(e.message);
+        }
+        return result;
+    }
+
+    public void update_item_preview_text (Json.Array available_fonts) {
+        HashTable <string, string> samples = get_non_latin_samples();
+        available_fonts.foreach_element((array, index, node) => {
+            Json.Object item = node.get_object();
+            string description = item.get_string_member("description");
+            if (samples.contains(description))
+                item.set_string_member("preview-text", samples.lookup(description));
+            Json.Array variants = item.get_array_member("variations");
+            variants.foreach_element((a, i, n) => {
+                Json.Object v = n.get_object();
+                description = v.get_string_member("description");
+                if (samples.contains(description))
+                    v.set_string_member("preview-text", samples.lookup(description));
+            });
+        });
+        return;
+    }
+
     public void set_control_sensitivity(Gtk.Widget widget, bool sensitive) {
         widget.sensitive = sensitive;
         widget.opacity = sensitive ? 0.9 : 0.45;

@@ -640,7 +640,7 @@ populate_charset (FontManagerUnicodeCharacterMap *self, const PangoFontDescripti
 
 static void
 set_font_desc_internal (FontManagerUnicodeCharacterMap *self,
-                        PangoFontDescription *font_desc /* adopting */)
+                        PangoFontDescription           *font_desc)
 {
     g_return_if_fail(font_desc != NULL);
     if (!self->font_desc || !pango_font_description_equal(font_desc, self->font_desc)){

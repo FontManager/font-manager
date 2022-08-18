@@ -71,6 +71,10 @@ namespace FontManager {
                    "";
         }
 
+        string [] common_styles = { "condensed", "bold", "book", "extra", "expanded",
+                                    "italic", "heavy", "light", "medium", "mono", "monospace",
+                                    "normal", "oblique", "sans", "semi", "serif", "thin" };
+
         bool matches_search_term (Json.Object item) {
             bool item_matches = true;
             if (search_term == null || search_term.strip() == "")
@@ -86,6 +90,16 @@ namespace FontManager {
             } else {
                 string family = item.get_string_member("family").casefold();
                 item_matches = family.contains(search.casefold());
+                if (!item_matches && item.has_member("style")) {
+                    string [] search_terms = search.split_set(" ", 2);
+                    if (search_terms.length > 1 || search_terms[0] in common_styles) {
+                        string style = item.get_string_member("style").casefold();
+                        if (family.contains(search_terms[0].casefold()) && search_terms.length > 1)
+                            item_matches = style.contains(search_terms[1].casefold());
+                        else if (search_terms[0] in common_styles)
+                            item_matches = style.contains(search.casefold());
+                    }
+                }
             }
             return item_matches;
         }
@@ -110,17 +124,21 @@ namespace FontManager {
             if (entries != null) {
                 entries.foreach_element((array, index, node) => {
                     Json.Object item = node.get_object();
-                    if (matches_search_term(item) && matches_filter(item)) {
-                        if (item.has_member("variations")) {
-                            Json.Array variants = item.get_array_member("variations");
-                            int n_matches = 0;
-                            variants.foreach_element((a, i, n) => {
-                                Json.Object v = n.get_object();
-                                if (matches_search_term(v) && matches_filter(v))
-                                    n_matches++;
-                            });
-                            item.set_int_member("n-variations", n_matches);
-                        }
+                    // Iterating through children is necessary to determine if
+                    // the family should be visible at all and also to get an
+                    // accurate count of currently visible variations.
+                    if (item.has_member("variations")) {
+                        Json.Array variants = item.get_array_member("variations");
+                        int n_matches = 0;
+                        variants.foreach_element((a, i, n) => {
+                            Json.Object v = n.get_object();
+                            if (matches_search_term(v) && matches_filter(v))
+                                n_matches++;
+                        });
+                        item.set_int_member("n-variations", n_matches);
+                        if (n_matches > 0)
+                            items.add(item);
+                    } else if (matches_search_term(item) && matches_filter(item)) {
                         items.add(item);
                     }
                 });
@@ -189,10 +207,11 @@ namespace FontManager {
             binding = item.bind_property("active", item_state, "active", flags, null, null);
             item_state.set("sensitive", root, "visible", root, null);
             item_count.visible = root;
-            string family;
-            string description;
-            item.get("family", out family, "description", out description, null);
-            string label = root ? family : description;
+            string f;
+            string d;
+            string? p = null;
+            item.get("family", out f, "description", out d, "preview-text", out p, null);
+            string label = root ? f : p != null ? p : d;
             item_label.set_label(label);
             if (root) {
                 var count = (int) ((Family) item).n_variations;
@@ -200,7 +219,7 @@ namespace FontManager {
                 item_count.set_label(count_label.printf(count));
             } else {
                 item_label.set_halign(Gtk.Align.CENTER);
-                Pango.FontDescription font_desc = Pango.FontDescription.from_string(label);
+                Pango.FontDescription font_desc = Pango.FontDescription.from_string(d);
                 Pango.AttrList attrs = new Pango.AttrList();
                 attrs.insert(Pango.attr_fallback_new(false));
                 attrs.insert(new Pango.AttrFontDesc(font_desc));
@@ -218,7 +237,7 @@ namespace FontManager {
 
         public signal void selection_changed (Object? item);
 
-        public Object? selected_item { get; set; default = null; }
+        public Json.Array? available_fonts { get; set; default = null; }
         public FontListFilter filter { get; set; default = null; }
 
         public BaseFontModel model {
@@ -227,14 +246,11 @@ namespace FontManager {
             }
         }
 
-        public Json.Array? available_fonts {
-            get {
-                return model.entries;
-            }
-            set {
-                model.entries = value;
-            }
-        }
+        // Current selection. This is either the only item selected
+        // or the first selection if multiple items are selected
+        public Object? selected_item { get; set; default = null; }
+        // This array contains all currently selected items
+        public GenericArray <Object>? selected_items { get; set; default = null; }
 
         [GtkChild] unowned Gtk.ListView listview;
         [GtkChild] unowned Gtk.Expander expander;
@@ -245,6 +261,7 @@ namespace FontManager {
         Gtk.MultiSelection selection;
 
         construct {
+            selected_items = new GenericArray <Object> ();
             var fontmodel = new FontModel();
             treemodel = new Gtk.TreeListModel(fontmodel,
                                               false,
@@ -263,6 +280,7 @@ namespace FontManager {
             }
             BindingFlags flags = BindingFlags.SYNC_CREATE;
             bind_property("filter", fontmodel, "filter", flags, null, null);
+            bind_property("available-fonts", model, "entries", flags, null, null);
             search.search_changed.connect(queue_refilter);
             search.activate.connect(next_match);
             search.next_match.connect(next_match);
@@ -292,7 +310,7 @@ namespace FontManager {
             tree_expander.set_list_row(null);
             var row = (FontListBoxRow) tree_expander.get_child();
             Object? item = list_row.get_item();
-            // Setting item triggers update to row widgets
+            // Setting item triggers update to row widget
             row.item = item;
             return_if_fail(item != null);
             bool parent = item is Family;
@@ -348,12 +366,28 @@ namespace FontManager {
         void on_selection_changed (uint position, uint n_items) {
             // The minimum value present in this bitset accurately points
             // to the first currently selected row in the ListView.
+            selected_items = new GenericArray <Object> ();
+            selected_item = null;
             Gtk.Bitset selections = selection.get_selection();
             uint i = selections.get_minimum();
+            assert(selection.is_selected(i));
             var list_row = (Gtk.TreeListRow) treemodel.get_item(i);
             Object? item = list_row.get_item();
             selected_item = item;
             selection_changed(item);
+            selected_items.add(item);
+            uint n = selections.get_maximum();
+            if (n > ++i) {
+                while (i <= n) {
+                    if (selection.is_selected(i)) {
+                        var row = (Gtk.TreeListRow) treemodel.get_item(i);
+                        item = row.get_item();
+                        if (item != null)
+                            selected_items.add(item);
+                    }
+                    i++;
+                }
+            }
             return;
         }
 

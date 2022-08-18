@@ -221,36 +221,6 @@ font_manager_json_proxy_install_properties (FontManagerJsonProxyClass *klass)
 }
 
 /**
- * font_manager_json_proxy_is_valid:
- * @self: (nullable): #FontManagerJsonProxy
- *
- * Returns: %TRUE if proxy is valid
- */
-gboolean
-font_manager_json_proxy_is_valid (FontManagerJsonProxy *self)
-{
-    g_return_val_if_fail(self != NULL, FALSE);
-    FontManagerJsonProxyClass *klass = FONT_MANAGER_JSON_PROXY_GET_CLASS(self);
-    g_autoptr(JsonObject) source = NULL;
-    g_object_get(self, "source-object", &source, NULL);
-    if (source == NULL)
-        return FALSE;
-    for (gint i = 0; i < klass->n_properties; i++) {
-        switch (klass->properties[i].type) {
-            case G_TYPE_RESERVED_GLIB_FIRST:
-            case G_TYPE_RESERVED_USER_FIRST:
-                break;
-            default:
-                if (json_object_has_member(source, klass->properties[i].name))
-                    break;
-                else
-                    return FALSE;
-        }
-    }
-    return TRUE;
-}
-
-/**
  * font_manager_json_proxy_new:
  *
  * Returns: (transfer full): A newly created #FontManagerJsonProxy.

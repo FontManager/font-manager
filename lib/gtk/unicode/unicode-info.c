@@ -549,41 +549,10 @@ font_manager_unicode_unichar_validate (gunichar ch)
 gint
 font_manager_unicode_unichar_to_printable_utf8 (gunichar uc, gchar *outbuf)
 {
-  /* Unicode Standard 3.2, section 2.6, "By convention, diacritical marks
-   * used by the Unicode Standard may be exhibited in (apparent) isolation
-   * by applying them to U+0020 SPACE or to U+00A0 NO BREAK SPACE." */
-
-  /* 17:10 < owen> noah: I'm *not* claiming that what Pango does currently
-   *               is right, but convention isn't a requirement. I think
-   *               it's probably better to do the Uniscribe thing and put
-   *               the lone combining mark on a dummy character and require
-   *               ZWJ
-   * 17:11 < noah> owen: do you mean that i should put a ZWJ in there, or
-   *               that pango will do that?
-   * 17:11 < owen> noah: I mean, you should (assuming some future more
-   *               capable version of Pango) put it in there
-   */
-
   if (! font_manager_unicode_unichar_validate(uc)
       || (! font_manager_unicode_unichar_isgraph(uc)
       && g_unichar_type(uc) != G_UNICODE_PRIVATE_USE))
     return 0;
-  /* XXX : https://github.com/FontManager/font-manager/issues/143 */
-  //else if (g_unichar_type (uc) == G_UNICODE_SPACING_MARK
-      //|| g_unichar_type (uc) == G_UNICODE_ENCLOSING_MARK
-      //|| g_unichar_type (uc) == G_UNICODE_NON_SPACING_MARK)
-    //{
-      //gint x;
-
-      //outbuf[0] = ' ';
-      //outbuf[1] = '\xe2'; /* ZERO */
-      //outbuf[2] = '\x80'; /* WIDTH */
-      //outbuf[3] = '\x8d'; /* JOINER (0x200D) */
-
-      //x = g_unichar_to_utf8 (uc, outbuf + 4);
-
-      //return x + 4;
-    //}
   else
     return g_unichar_to_utf8 (uc, outbuf);
 }

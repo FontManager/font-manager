@@ -38,9 +38,11 @@ namespace FontManager {
 
         [GtkCallback]
         void on_changed_event () {
-            string icon_name = (text_length > 0) ? "edit-clear-symbolic" : "document-edit-symbolic";
+            bool empty = (text_length == 0);
+            string icon_name = !empty ? "edit-clear-symbolic" : "document-edit-symbolic";
             set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, icon_name);
-            set_icon_activatable(Gtk.EntryIconPosition.SECONDARY, (text_length > 0));
+            set_icon_activatable(Gtk.EntryIconPosition.SECONDARY, !empty);
+            set_icon_sensitive(Gtk.EntryIconPosition.SECONDARY, !empty);
             return;
         }
 

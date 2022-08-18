@@ -45,7 +45,7 @@ struct _FontManagerCharacterMap
     GtkWidget   *fontscale;
     GtkWidget   *search;
 
-    PangoFontDescription    *font_desc;
+    FontManagerFont    *font;
 };
 
 G_DEFINE_TYPE(FontManagerCharacterMap, font_manager_character_map, GTK_TYPE_WIDGET)
@@ -53,7 +53,7 @@ G_DEFINE_TYPE(FontManagerCharacterMap, font_manager_character_map, GTK_TYPE_WIDG
 enum
 {
     PROP_RESERVED,
-    PROP_FONT_DESC,
+    PROP_FONT,
     PROP_ACTIVE_CELL,
     PROP_PREVIEW_SIZE,
     PROP_SEARCH_MODE,
@@ -77,7 +77,7 @@ font_manager_character_map_dispose (GObject *gobject)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerCharacterMap *self = FONT_MANAGER_CHARACTER_MAP(gobject);
-    g_clear_pointer(&self->font_desc, pango_font_description_free);
+    g_clear_pointer(&self->font, g_object_unref);
     font_manager_widget_dispose(GTK_WIDGET(self));
     G_OBJECT_CLASS(font_manager_character_map_parent_class)->dispose(gobject);
     return;
@@ -93,8 +93,8 @@ font_manager_character_map_get_property (GObject    *gobject,
     FontManagerCharacterMap *self = FONT_MANAGER_CHARACTER_MAP(gobject);
     GtkWidget *child = NULL;
     switch (property_id) {
-        case PROP_FONT_DESC:
-            g_value_set_boxed(value, self->font_desc);
+        case PROP_FONT:
+            g_value_set_object(value, self->font);
             break;
         case PROP_ACTIVE_CELL:
             g_value_set_int(value, self->active_cell);
@@ -122,8 +122,8 @@ font_manager_character_map_set_property (GObject      *gobject,
     FontManagerCharacterMap *self = FONT_MANAGER_CHARACTER_MAP(gobject);
     GtkWidget *child = NULL;
     switch (property_id) {
-        case PROP_FONT_DESC:
-            font_manager_character_map_set_font_desc(self, g_value_get_boxed(value));
+        case PROP_FONT:
+            font_manager_character_map_set_font(self, g_value_get_object(value));
             break;
         case PROP_ACTIVE_CELL:
             font_manager_character_map_set_active_cell(self, g_value_get_int(value));
@@ -155,16 +155,16 @@ font_manager_character_map_class_init (FontManagerCharacterMapClass *klass)
     gtk_widget_class_set_layout_manager_type(widget_class, GTK_TYPE_BIN_LAYOUT);
 
     /**
-     * FontManagerCharacterMap:font-desc:
+     * FontManagerCharacterMap:font:
      *
-     * #PangoFontDescription
+     * #FontManagerFont
      */
-    obj_properties[PROP_FONT_DESC] = g_param_spec_boxed("font-desc",
-                                                        NULL,
-                                                        "PangoFontDescription",
-                                                        PANGO_TYPE_FONT_DESCRIPTION,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS);
+    obj_properties[PROP_FONT] = g_param_spec_object("font",
+                                                    NULL,
+                                                    "FontManagerFont",
+                                                    FONT_MANAGER_TYPE_FONT,
+                                                    G_PARAM_READWRITE |
+                                                    G_PARAM_STATIC_STRINGS);
 
     /**
      * FontManagerCharacterMap:active-cell:
@@ -261,19 +261,21 @@ font_manager_character_map_init (FontManagerCharacterMap *self)
 }
 
 /**
- * font_manager_character_map_set_font_desc:
+ * font_manager_character_map_set_font:
  * @self:                       #FontManagerCharacterMap
- * @font_desc: (transfer none): #PangoFontDescription
+ * @font: (transfer none):      #FontManagerFont
  */
 void
-font_manager_character_map_set_font_desc (FontManagerCharacterMap *self,
-                                          PangoFontDescription    *font_desc)
+font_manager_character_map_set_font (FontManagerCharacterMap *self,
+                                     FontManagerFont         *font)
 {
     g_return_if_fail(self != NULL);
-    g_clear_pointer(&self->font_desc, pango_font_description_free);
-    self->font_desc = pango_font_description_copy(font_desc);
+    g_set_object(&self->font, font);
     FontManagerUnicodeCharacterMap *charmap = FONT_MANAGER_UNICODE_CHARACTER_MAP(self->character_map);
-    font_manager_unicode_character_map_set_font_desc(charmap, self->font_desc);
+    g_autofree gchar *description = NULL;
+    g_object_get(font, "description", &description, NULL);
+    g_autoptr(PangoFontDescription) font_desc = pango_font_description_from_string(description);
+    font_manager_unicode_character_map_set_font_desc(charmap, font_desc);
     return;
 }
 

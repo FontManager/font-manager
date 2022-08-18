@@ -29,6 +29,7 @@ on_selection_changed (FontManagerFontListView *listview,
                       GObject *object,
                       FontManagerPreviewPane *pane)
 {
+    g_return_if_fail(FONT_MANAGER_IS_PREVIEW_PANE(pane));
     g_autoptr(FontManagerFont) font = NULL;
     if (FONT_MANAGER_IS_FONT(object))
         font = FONT_MANAGER_FONT(g_object_ref(object));
@@ -50,6 +51,7 @@ get_widget (TestApplicationWindow *parent)
     GtkWidget *preview = font_manager_preview_pane_new();
     g_autoptr(JsonObject) available_fonts = font_manager_get_available_fonts(NULL);
     g_autoptr(JsonArray) sorted_font_array = font_manager_sort_json_font_listing(available_fonts);
+    font_manager_update_item_preview_text(sorted_font_array);
     g_object_set(fontlist, "available-fonts", sorted_font_array, NULL);
     g_signal_connect(fontlist, "selection-changed", G_CALLBACK(on_selection_changed), preview);
     GtkWidget *pane = gtk_paned_new(GTK_ORIENTATION_VERTICAL);

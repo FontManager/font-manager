@@ -60,6 +60,7 @@ static gboolean
 on_close_request (TestApplication *application, TestApplicationWindow *window) {
     gtk_application_remove_window(GTK_APPLICATION(application), GTK_WINDOW(window));
     gtk_window_destroy(GTK_WINDOW(window));
+    g_application_quit(G_APPLICATION(application));
     return TRUE;
 };
 

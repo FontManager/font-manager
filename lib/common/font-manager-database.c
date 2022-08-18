@@ -481,6 +481,8 @@ font_manager_database_attach (FontManagerDatabase *self,
     g_return_if_fail(error == NULL || *error == NULL);
     if (sqlite3_open_failed(self, error))
         return;
+    font_manager_database_initialize(self, type, error);
+    g_return_if_fail(error == NULL || *error == NULL);
     const gchar *sql = "ATTACH DATABASE '%s' AS %s;";
     const gchar *type_name = font_manager_database_get_type_name(type);
     g_autofree gchar *filepath = font_manager_database_get_file(type);
@@ -818,6 +820,8 @@ bind_from_properties (sqlite3_stmt *stmt,
                 g_assert(val >= -1 && sqlite3_bind_int(stmt, i, val) == SQLITE_OK);
                 break;
             case G_TYPE_STRING:
+                if (g_strcmp0(properties[i].name, "preview-text") == 0)
+                    break;
                 if (json_object_has_member(json, properties[i].name))
                     str = json_object_get_string_member(json, properties[i].name);
                 g_assert(sqlite3_bind_text(stmt, i, str, -1, SQLITE_STATIC) == SQLITE_OK);

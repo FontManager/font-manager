@@ -41,23 +41,9 @@ namespace FontManager {
         N_CATEGORIES
     }
 
-    public class BaseCategoryListModel : Object, ListModel {
+    public class BaseCategoryListModel : BaseFontListFilterListModel {
 
         public StringSet? available_families { get; set; default = null; }
-        public GenericArray <Category>? items { get; set; default = null; }
-
-        public Type get_item_type () {
-            return typeof(Category);
-        }
-
-        public uint get_n_items () {
-            return items != null ? items.length : 0;
-        }
-
-        public Object? get_item (uint position) {
-            return_val_if_fail(items[position] != null, null);
-            return items[position];
-        }
 
     }
 
@@ -66,7 +52,7 @@ namespace FontManager {
         class ChildCategoryListModel : BaseCategoryListModel {}
 
         public CategoryListModel () {
-            notify["available-families"]. connect_after((pspecc) => {
+            notify["available-families"].connect_after((pspec) => {
                 update_items.begin();
             });
         }

@@ -115,7 +115,6 @@ struct _FontManagerPreviewPage
     GtkWidget   *fontscale;
     GtkWidget   *textview;
     GtkWidget   *menu_button;
-    GHashTable  *samples;
 
     gdouble             waterfall_size_ratio;
     gdouble             min_waterfall_size;
@@ -125,7 +124,7 @@ struct _FontManagerPreviewPage
     gboolean            show_line_size;
     GtkJustification    justification;
     FontManagerPreviewPageMode  mode;
-    PangoFontDescription *font_desc;
+    FontManagerFont *font;
 };
 
 G_DEFINE_TYPE(FontManagerPreviewPage, font_manager_preview_page, GTK_TYPE_BOX)
@@ -136,9 +135,8 @@ enum
     PROP_PREVIEW_MODE,
     PROP_PREVIEW_SIZE,
     PROP_PREVIEW_TEXT,
-    PROP_FONT_DESC,
+    PROP_FONT,
     PROP_JUSTIFICATION,
-    PROP_SAMPLES,
     PROP_WATERFALL_MIN,
     PROP_WATERFALL_MAX,
     PROP_WATERFALL_RATIO,
@@ -161,8 +159,7 @@ font_manager_preview_page_dispose (GObject *gobject)
     g_clear_pointer(&self->preview, g_free);
     g_clear_pointer(&self->default_preview, g_free);
     g_clear_pointer(&self->restore_preview, g_free);
-    g_clear_pointer(&self->font_desc, pango_font_description_free);
-    g_clear_pointer(&self->samples, g_hash_table_unref);
+    g_clear_pointer(&self->font, g_object_unref);
     g_clear_pointer(&self->menu_button, g_object_unref);
     font_manager_widget_dispose(GTK_WIDGET(self));
     G_OBJECT_CLASS(font_manager_preview_page_parent_class)->dispose(gobject);
@@ -187,14 +184,11 @@ font_manager_preview_page_get_property (GObject    *gobject,
         case PROP_PREVIEW_TEXT:
             g_value_set_string(value, self->preview);
             break;
-        case PROP_FONT_DESC:
-            g_value_set_boxed(value, font_manager_preview_page_get_font_desc(self));
+        case PROP_FONT:
+            g_value_set_object(value, self->font);
             break;
         case PROP_JUSTIFICATION:
             g_value_set_enum(value, (gint) font_manager_preview_page_get_justification(self));
-            break;
-        case PROP_SAMPLES:
-            g_value_set_boxed(value, self->samples);
             break;
         case PROP_WATERFALL_MIN:
             g_value_set_double(value, self->min_waterfall_size);
@@ -232,14 +226,11 @@ font_manager_preview_page_set_property (GObject      *gobject,
         case PROP_PREVIEW_TEXT:
             font_manager_preview_page_set_preview_text(self, g_value_get_string(value));
             break;
-        case PROP_FONT_DESC:
-            font_manager_preview_page_set_font_desc(self, g_value_get_boxed(value));
+        case PROP_FONT:
+            font_manager_preview_page_set_font(self, g_value_get_object(value));
             break;
         case PROP_JUSTIFICATION:
             font_manager_preview_page_set_justification(self, (GtkJustification) g_value_get_enum(value));
-            break;
-        case PROP_SAMPLES:
-            font_manager_preview_page_set_sample_strings(self, g_value_get_boxed(value));
             break;
         case PROP_WATERFALL_MIN:
             font_manager_preview_page_set_waterfall_size(self, g_value_get_double(value), -1.0, -1.0);
@@ -313,16 +304,16 @@ font_manager_preview_page_class_init (FontManagerPreviewPageClass *klass)
                                                              G_PARAM_EXPLICIT_NOTIFY);
 
     /**
-     * FontManagerPreviewPage:font-desc:
+     * FontManagerPreviewPage:font:
      *
-     * #PangoFontDescription
+     * #FontManagerFont
      */
-    obj_properties[PROP_FONT_DESC] = g_param_spec_boxed("font-desc",
-                                                        NULL,
-                                                        "PangoFontDescription",
-                                                        PANGO_TYPE_FONT_DESCRIPTION,
-                                                        G_PARAM_READWRITE |
-                                                        G_PARAM_STATIC_STRINGS);
+    obj_properties[PROP_FONT] = g_param_spec_object("font",
+                                                    NULL,
+                                                    "FontManagerFont",
+                                                    FONT_MANAGER_TYPE_FONT,
+                                                    G_PARAM_READWRITE |
+                                                    G_PARAM_STATIC_STRINGS);
 
     /**
      * FontManagerPreviewPage:justification:
@@ -337,19 +328,6 @@ font_manager_preview_page_class_init (FontManagerPreviewPageClass *klass)
                                                             G_PARAM_STATIC_STRINGS |
                                                             G_PARAM_READWRITE |
                                                             G_PARAM_EXPLICIT_NOTIFY);
-
-    /**
-     * FontManagerPreviewPage:sample-strings:
-     *
-     * Dictionary of sample strings
-     */
-    obj_properties[PROP_SAMPLES] = g_param_spec_boxed("samples",
-                                                      NULL,
-                                                      "Dictionary of sample strings",
-                                                      G_TYPE_HASH_TABLE,
-                                                      G_PARAM_STATIC_STRINGS |
-                                                      G_PARAM_READWRITE |
-                                                      G_PARAM_EXPLICIT_NOTIFY);
 
     /**
      * FontManagerPreviewPage:min-waterfall-size:
@@ -461,7 +439,9 @@ generate_waterfall_line (FontManagerPreviewPage *self)
         current_line = self->waterfall_size_ratio > 1.1 ? floor(next) : ceil(next);
     } else
         current_line++;
-    return current_line > self->max_waterfall_size ? G_SOURCE_REMOVE : G_SOURCE_CONTINUE;
+    return self->mode != FONT_MANAGER_PREVIEW_PAGE_MODE_WATERFALL ||
+           current_line > self->max_waterfall_size ?
+           G_SOURCE_REMOVE : G_SOURCE_CONTINUE;
 }
 
 static void
@@ -494,24 +474,20 @@ static void
 update_sample_string (FontManagerPreviewPage *self)
 {
     g_return_if_fail(self != NULL);
-    g_autofree gchar *description = pango_font_description_to_string(self->font_desc);
-    if (self->samples && g_hash_table_contains(self->samples, description)) {
-        const gchar *sample = g_hash_table_lookup(self->samples, description);
-        if (sample) {
-            g_free(self->pangram);
-            self->pangram = g_strdup(sample);
-            if (self->mode == FONT_MANAGER_PREVIEW_PAGE_MODE_PREVIEW
-                && g_strcmp0(self->preview, self->default_preview) == 0) {
-                self->restore_preview = g_strdup(self->preview);
-                font_manager_preview_page_set_preview_text(self, self->pangram);
-            }
-        }
+    if (self->font == NULL)
+        return;
+    g_autofree gchar *preview_text = NULL;
+    g_object_get(self->font, "preview-text", &preview_text, NULL);
+    if (preview_text) {
+        g_clear_pointer(&self->pangram, g_free);
+        self->pangram = g_strdup(preview_text);
+        if (!self->restore_preview)
+            self->restore_preview = g_strdup(self->preview);
+        font_manager_preview_page_set_preview_text(self, preview_text);
     } else {
-        if (g_strcmp0(self->pangram, self->default_pangram) != 0) {
-            g_free(self->pangram);
+        if (self->restore_preview) {
+            g_clear_pointer(&self->pangram, g_free);
             self->pangram = g_strdup(self->default_pangram);
-        }
-        if (self->restore_preview && self->mode == FONT_MANAGER_PREVIEW_PAGE_MODE_PREVIEW) {
             font_manager_preview_page_set_preview_text(self, self->restore_preview);
             g_clear_pointer(&self->restore_preview, g_free);
         }
@@ -524,13 +500,19 @@ update_sample_string (FontManagerPreviewPage *self)
 static void
 update_font_description (FontManagerPreviewPage *self)
 {
-    g_return_if_fail(self != NULL && self->font_desc != NULL);
+    g_return_if_fail(self != NULL);
+    if (self->font == NULL)
+        return;
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(self->textview));
     GtkTextTagTable *tag_table = gtk_text_buffer_get_tag_table(buffer);
     GtkTextTag *font_description = gtk_text_tag_table_lookup(tag_table, "FontDescription");
     g_return_if_fail(font_description != NULL);
+    g_autofree gchar *description = NULL;
+    g_object_get(self->font, "description", &description, NULL);
+    g_return_if_fail(description != NULL);
+    g_autoptr(PangoFontDescription) font_desc = pango_font_description_from_string(description);
     g_object_set(G_OBJECT(font_description),
-                 "font-desc", self->font_desc,
+                 "font-desc", font_desc,
                  "size-points", self->preview_size,
                  "fallback", FALSE,
                  NULL);
@@ -672,7 +654,6 @@ font_manager_preview_page_init (FontManagerPreviewPage *self)
     g_return_if_fail(self != NULL);
     self->allow_edit = FALSE;
     self->show_line_size = TRUE;
-    self->samples = NULL;
     self->restore_preview = NULL;
     self->menu_button = NULL;
     self->min_waterfall_size = MIN_FONT_SIZE + 2;
@@ -707,15 +688,13 @@ font_manager_preview_page_init (FontManagerPreviewPage *self)
     gtk_widget_set_margin_top(self->textview, FONT_MANAGER_DEFAULT_MARGIN * 1.5);
     gtk_widget_set_margin_bottom(self->textview, FONT_MANAGER_DEFAULT_MARGIN * 1.5);
     font_manager_widget_set_expand(scroll, TRUE);
-    g_autoptr(PangoFontDescription) font_desc = pango_font_description_from_string(FONT_MANAGER_DEFAULT_FONT);
-    font_manager_preview_page_set_font_desc(self, font_desc);
     font_manager_preview_page_set_preview_size(self, FONT_MANAGER_DEFAULT_PREVIEW_SIZE);
     font_manager_preview_page_set_preview_mode(self, FONT_MANAGER_PREVIEW_PAGE_MODE_WATERFALL);
     GtkAdjustment *adjustment = font_manager_font_scale_get_adjustment(FONT_MANAGER_FONT_SCALE(fontscale));
     GBindingFlags flags = G_BINDING_BIDIRECTIONAL | G_BINDING_SYNC_CREATE;
     g_object_bind_property(adjustment, "value", self, "preview-size", flags);
     flags = G_BINDING_DEFAULT | G_BINDING_SYNC_CREATE;
-    g_object_bind_property(self, "font-desc", controls, "font-desc", flags);
+    g_object_bind_property(self, "font", controls, "font", flags);
     g_object_bind_property(controls, "justification", self, "justification", flags);
     font_manager_preview_page_set_justification(self, GTK_JUSTIFY_CENTER);
     g_signal_connect_swapped(controls, "edit-toggled", G_CALLBACK(on_edit_toggled), self);
@@ -751,17 +730,17 @@ font_manager_preview_page_get_action_widget (FontManagerPreviewPage *self)
 }
 
 /**
- * font_manager_preview_page_get_font_desc:
+ * font_manager_preview_page_get_font:
  * @self:   #FontManagerPreviewPage
  *
- * Returns:(transfer none) (nullable):#PangoFontDescription which is owned by
+ * Returns:(transfer none) (nullable):#FontManagerFont which is owned by
  * the instance and must not be modified or freed.
  */
-PangoFontDescription *
-font_manager_preview_page_get_font_desc (FontManagerPreviewPage *self)
+FontManagerFont *
+font_manager_preview_page_get_font (FontManagerPreviewPage *self)
 {
     g_return_val_if_fail(self != NULL, NULL);
-    return self->font_desc;
+    return self->font;
 }
 
 /**
@@ -818,24 +797,20 @@ font_manager_preview_page_get_preview_text (FontManagerPreviewPage *self)
 }
 
 /**
- * font_manager_preview_page_set_font_desc:
+ * font_manager_preview_page_set_font:
  * @self:       #FontManagerPreviewPage
- * @font_desc:  #PangoFontDescription
- *
- * See #pango_font_description_from_string() for details on what constitutes a
- * valid font description string.
+ * @font:       #FontManagerFont
  */
 void
-font_manager_preview_page_set_font_desc (FontManagerPreviewPage *self,
-                                         PangoFontDescription   *font_desc)
+font_manager_preview_page_set_font (FontManagerPreviewPage *self,
+                                    FontManagerFont        *font)
 {
     g_return_if_fail(self != NULL);
-    g_clear_pointer(&self->font_desc, pango_font_description_free);
-    self->font_desc = pango_font_description_copy(font_desc);
+    if (g_set_object(&self->font, font))
+        g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_FONT]);
     update_font_description(self);
     update_sample_string(self);
     apply_font_description(self);
-    g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_FONT_DESC]);
     return;
 }
 
@@ -862,7 +837,8 @@ static void
 set_preview_mode_internal (FontManagerPreviewPage     *self,
                            FontManagerPreviewPageMode  mode)
 {
-    g_idle_remove_by_data(self);
+    while (g_idle_remove_by_data(self))
+        g_idle_remove_by_data(self);
     self->mode = mode;
     GtkTextIter start;
     GtkTextBuffer *buffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(self->textview));
@@ -876,10 +852,11 @@ set_preview_mode_internal (FontManagerPreviewPage     *self,
     switch (mode) {
         case FONT_MANAGER_PREVIEW_PAGE_MODE_PREVIEW:
             gtk_text_view_set_top_margin(GTK_TEXT_VIEW(self->textview), FONT_MANAGER_DEFAULT_MARGIN * 6);
-            font_manager_preview_page_set_preview_text(self, NULL);
             gtk_text_view_set_justification(GTK_TEXT_VIEW(self->textview), self->justification);
             gtk_text_view_set_editable(GTK_TEXT_VIEW(self->textview), self->allow_edit);
             gtk_widget_set_can_target(self->textview, self->allow_edit ? TRUE : FALSE);
+            gchar *text = self->preview ? self->preview : self->default_preview;
+            font_manager_preview_page_set_preview_text(self, text);
             break;
         case FONT_MANAGER_PREVIEW_PAGE_MODE_WATERFALL:
             generate_waterfall_preview(self);
@@ -892,7 +869,6 @@ set_preview_mode_internal (FontManagerPreviewPage     *self,
             g_critical("Invalid preview mode : %i", (gint) mode);
             g_return_if_reached();
     }
-    update_sample_string(self);
     apply_font_description(self);
     update_revealer_state(self, mode);
     g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_PREVIEW_MODE]);
@@ -925,7 +901,6 @@ font_manager_preview_page_set_preview_size (FontManagerPreviewPage *self,
     g_return_if_fail(self != NULL);
     self->preview_size = CLAMP(size_points, MIN_FONT_SIZE, MAX_FONT_SIZE);
     update_font_description(self);
-    update_sample_string(self);
     apply_font_description(self);
     g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_PREVIEW_SIZE]);
     return;
@@ -956,27 +931,6 @@ font_manager_preview_page_set_preview_text (FontManagerPreviewPage *self,
     }
     apply_font_description(self);
     g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_PREVIEW_TEXT]);
-    return;
-}
-
-/**
- * font_manager_preview_page_set_sample_strings:
- * @self:           #FontManagerPreviewPage
- * @samples:        #JsonObject containing sample strings
- *
- * @samples is expected to have a dictionary like structure,
- * with the font description as key and sample string as value.
- */
-void
-font_manager_preview_page_set_sample_strings (FontManagerPreviewPage *self,
-                                              GHashTable             *samples)
-{
-    g_return_if_fail(self != NULL);
-    g_clear_pointer(&self->samples, g_hash_table_unref);
-    if (samples)
-        self->samples = g_hash_table_ref(samples);
-    update_sample_string(self);
-    g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_SAMPLES]);
     return;
 }
 
