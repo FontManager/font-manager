@@ -784,6 +784,7 @@ get_context_widget (FontManagerUnicodeCharacterMap *self)
     gtk_widget_set_margin_bottom(separator, FONT_MANAGER_DEFAULT_MARGIN);
     GtkWidget *copy_button = gtk_button_new_with_label(_("Copy"));
     gtk_widget_set_opacity(copy_button, 0.75);
+    gtk_widget_add_css_class(copy_button, "pill");
     gtk_widget_add_css_class(copy_button, "rounded-button");
     font_manager_widget_set_align(copy_button, GTK_ALIGN_CENTER);
     font_manager_widget_set_margin(copy_button, 0);

@@ -109,6 +109,8 @@ namespace FontManager {
                                                Gtk.ButtonsType.NONE,
                                                "%s", title != null ? title : "");
             var progress = new Gtk.ProgressBar();
+            widget_set_expand(progress, true);
+            progress.margin_bottom = 12;
             var box = dialog.get_message_area() as Gtk.Box;
             box.append(progress);
             dialog.set_default_size(475, 125);
