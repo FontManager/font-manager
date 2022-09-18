@@ -193,8 +193,6 @@ namespace FontManager {
             _preview_text = default_preview_text = get_localized_pangram();
             entry.set_placeholder_text(preview_text);
             add_button.get_style_context().add_class(STYLE_CLASS_SUGGESTED_ACTION);
-            foreground_color = fg_color_button.get_rgba();
-            background_color = bg_color_button.get_rgba();
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             bind_property("foreground_color", fg_color_button, "rgba", flags);
             bind_property("background_color", bg_color_button, "rgba", flags);

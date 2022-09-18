@@ -70,6 +70,7 @@ struct _FontManagerUnicodeCharacterMap
     gint    rows;
     gint    columns;
     gint    active_cell;        /* the active cell index */
+    gint    drag_cell;          /* the cell currently being dragged */
     gint    last_cell;          /* charset length */
     gint    min_cell_height;    /* depends on font_desc and size allocation */
     gint    min_cell_width;     /* depends on font_desc and size allocation */
@@ -435,10 +436,9 @@ draw_character (GtkWidget *widget,
                 GtkSnapshot *snapshot,
                 GtkStyleContext *ctx,
                 graphene_rect_t *rect,
-                gint row, gint col)
+                gint cell)
 {
     FontManagerUnicodeCharacterMap *self = FONT_MANAGER_UNICODE_CHARACTER_MAP(widget);
-    guint cell = get_cell_at_rowcol(self, row, col);
     g_autofree gchar *text = get_text_for_cell(self, cell);
     pango_layout_set_text(self->pango_layout, text, -1);
     /* Keep the square empty if the font has no glyph for this cell. */
@@ -455,8 +455,8 @@ draw_character (GtkWidget *widget,
     gint char_width, char_height;
     pango_layout_get_pixel_size(self->pango_layout, &char_width, &char_height);
     gtk_snapshot_render_layout(snapshot, ctx,
-                               rect->origin.x + (rect->size.width - char_width - 2 + 1) / 2,
-                               rect->origin.y + (rect->size.height - char_height - 2 + 1) / 2,
+                               rect->origin.x + (rect->size.width - char_width) / 2,
+                               rect->origin.y + (rect->size.height - char_height) / 2,
                                self->pango_layout);
     gtk_style_context_restore(ctx);
     return;
@@ -467,10 +467,9 @@ draw_square_bg (GtkWidget *widget,
                 GtkSnapshot *snapshot,
                 GtkStyleContext *ctx,
                 graphene_rect_t *rect,
-                gint row, gint col)
+                gint cell)
 {
     FontManagerUnicodeCharacterMap *self = FONT_MANAGER_UNICODE_CHARACTER_MAP(widget);
-    gint cell = (gint) get_cell_at_rowcol(self, row, col);
     gtk_style_context_save(ctx);
     GtkStateFlags _state = GTK_STATE_FLAG_NORMAL;
     if (gtk_widget_has_focus(widget) && cell == self->active_cell)
@@ -479,8 +478,6 @@ draw_square_bg (GtkWidget *widget,
         _state = GTK_STATE_FLAG_SELECTED;
     else if (cell > self->last_cell)
         _state = GTK_STATE_FLAG_INSENSITIVE;
-    else
-        _state = GTK_STATE_FLAG_NORMAL;
     gtk_style_context_set_state(ctx, _state);
     gtk_style_context_add_class(ctx, "CharacterMapCell");
     gtk_snapshot_render_background(snapshot, ctx,
@@ -533,8 +530,9 @@ font_manager_unicode_character_map_snapshot (GtkWidget *widget, GtkSnapshot *sna
                                            get_y_offset(self, row),
                                            column_width(self, col),
                                            row_height(self, row));
-            draw_square_bg(widget, snapshot, ctx, cell_rect, row, col);
-            draw_character(widget, snapshot, ctx, cell_rect, row, col);
+            gint cell = get_cell_at_rowcol(self, row, col);
+            draw_square_bg(widget, snapshot, ctx, cell_rect, cell);
+            draw_character(widget, snapshot, ctx, cell_rect, cell);
             graphene_rect_free(cell_rect);
         }
     }
@@ -866,26 +864,46 @@ on_prepare_drag (GtkDragSource *source, double x, double y, gpointer user_data)
 {
     g_return_val_if_fail(user_data != NULL, NULL);
     FontManagerUnicodeCharacterMap *self = FONT_MANAGER_UNICODE_CHARACTER_MAP(user_data);
-    gint cell = get_cell_at_xy(self, x, y);
-    g_autofree gchar *text = get_text_for_cell(self, cell);
+    self->drag_cell = get_cell_at_xy(self, x, y);
+    g_autofree gchar *text = get_text_for_cell(self, self->drag_cell);
     return gdk_content_provider_new_typed(G_TYPE_STRING, text);
 }
 
 static void
 on_drag_begin (GtkDragSource *source, GdkDrag *drag, gpointer user_data)
 {
-    /* TODO : Set a drag icon that actually represents what is being dragged */
-    gint size = 36;
-    GdkDisplay *display = gtk_widget_get_display(GTK_WIDGET(user_data));
-    GtkIconTheme *icon_theme = gtk_icon_theme_get_for_display(display);
-    GtkIconPaintable *icon = gtk_icon_theme_lookup_icon (icon_theme,
-                                                         "font-x-generic-symbolic",
-                                                         NULL,
-                                                         size, 1,
-                                                         gtk_widget_get_direction(GTK_WIDGET(user_data)),
-                                                         0);
-    gtk_drag_source_set_icon(source, GDK_PAINTABLE(icon), 0, 0);
-    g_object_unref(icon);
+    gint font_size = FONT_MANAGER_LARGE_PREVIEW_SIZE * 1.5;
+    GtkWidget *widget = GTK_WIDGET(user_data);
+    g_autoptr(GtkSnapshot) snapshot = gtk_snapshot_new();
+    GtkStyleContext *ctx = gtk_widget_get_style_context(widget);
+    FontManagerUnicodeCharacterMap *self = FONT_MANAGER_UNICODE_CHARACTER_MAP(user_data);
+    graphene_rect_t *rect = graphene_rect_alloc();
+    rect = graphene_rect_init(rect, 0, 0, font_size * 3, font_size * 3);
+    gtk_style_context_save(ctx);
+    gtk_style_context_set_state(ctx, GTK_STATE_FLAG_FOCUSED | GTK_STATE_FLAG_SELECTED);
+    gtk_style_context_add_class(ctx, "CharacterMapCell");
+    gtk_style_context_add_class(ctx, "CharacterMapGlyph");
+    gtk_snapshot_render_background(snapshot, ctx,
+                                   rect->origin.x, rect->origin.y,
+                                   rect->size.width, rect->size.height);
+    g_autofree gchar *text = get_text_for_cell(self, self->drag_cell);
+    g_autoptr(PangoLayout) layout = gtk_widget_create_pango_layout(widget, text);
+    PangoAttrList *attrs = pango_attr_list_new();
+    PangoAttribute *size = pango_attr_size_new(font_size * PANGO_SCALE);
+    PangoAttribute *font = pango_attr_font_desc_new(self->font_desc);
+    pango_attr_list_insert(attrs, font);
+    pango_attr_list_insert(attrs, size);
+    pango_layout_set_attributes(layout, attrs);
+    gint char_width, char_height;
+    pango_layout_get_pixel_size(layout, &char_width, &char_height);
+    gtk_snapshot_render_layout(snapshot, ctx,
+                               rect->origin.x + (rect->size.width - char_width) / 2,
+                               rect->origin.y + (rect->size.height - char_height) / 2,
+                               layout);
+    gtk_style_context_restore(ctx);
+    graphene_rect_free(rect);
+    pango_attr_list_unref(attrs);
+    gtk_drag_source_set_icon(source, gtk_snapshot_to_paintable(snapshot, NULL), 0, 0);
     return;
 }
 
