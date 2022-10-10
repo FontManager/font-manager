@@ -1,10 +1,11 @@
 # DNSE <kty5663@gmail.com>, 2022.
+# 이정희 <daemul72@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2022-07-12 09:16+0000\n"
-"Last-Translator: DNSE <kty5663@gmail.com>\n"
+"PO-Revision-Date: 2022-10-01 16:16+0000\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/ko/>\n"
 "Language: ko\n"
@@ -12,27 +13,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr ""
+msgstr "이정희 <daemul72@gmail.com>, 2022"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
 msgid "Automatically generated categories"
-msgstr ""
+msgstr "자동으로 생성된 범주"
 
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "범주"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
 msgid "<app>Font Manager</app> automatically categorizes your fonts based on various properties."
-msgstr ""
+msgstr "<app> 글꼴 관리자</app>는 다양한 속성에 따라 글꼴을 자동으로 분류합니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
@@ -42,7 +43,7 @@ msgstr "모두"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr ""
+msgstr "사용 가능한 모든 글꼴입니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
@@ -52,27 +53,28 @@ msgstr "시스템"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr ""
+msgstr "모든 사용자가 사용할 수 있는 글꼴입니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "사용자"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr ""
+msgstr "사용자만 사용할 수 있는 글꼴입니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "글꼴 집합 종류"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
 msgid "Sorted by Family Kind — Requires Panose information to be present in font metadata."
-msgstr ""
+msgstr "글꼴 집합 종류별로 정렬됩니다 — 글꼴 메타데이터에 Panose 정보가 있어야 "
+"합니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -82,7 +84,7 @@ msgstr "폭"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr ""
+msgstr "글꼴 폭 속성별로 정렬됩니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
@@ -92,7 +94,7 @@ msgstr "굵기"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr ""
+msgstr "글꼴 굵기 속성별로 정렬됩니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
@@ -102,7 +104,7 @@ msgstr "기울기"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr ""
+msgstr "글꼴 기울기 속성별로 정렬됩니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
@@ -112,7 +114,7 @@ msgstr "자간"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr ""
+msgstr "글꼴 자간 속성별로 정렬됩니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
@@ -122,47 +124,49 @@ msgstr "라이선스"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
 msgid "Sorted by font license — Requires license information to be present in font metadata."
-msgstr ""
+msgstr "글꼴 라이선스별로 정렬됩니다 — 글꼴 메타데이터에 라이선스 정보가 있어야 "
+"합니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "공급사"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
 msgid "Sorted by font vendor — Requires vendor information to be present in font metadata."
-msgstr ""
+msgstr "글꼴 공급업체 별로 정렬됩니다 — 글꼴 메타데이터에 공급업체 정보가 있어야 "
+"합니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "파일유형"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr ""
+msgstr "파일 형식별로 정렬됩니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "정렬되지 않음"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "어떤 컬렉션에도 나타나지 않는 글꼴입니다."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "비활성화됨"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "현재 비활성화된 글꼴 집합입니다.."
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
