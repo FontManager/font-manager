@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-04-18 00:09+0000\n"
+"PO-Revision-Date: 2022-09-23 12:20+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -365,20 +365,20 @@ msgstr ""
 
 #: lib/common/font-manager-properties-pane.c:80
 msgid "PostScript Name"
-msgstr ""
+msgstr "PostScript での名前"
 
 #: lib/common/font-manager-properties-pane.c:81
 msgid "Family"
-msgstr ""
+msgstr "フォントファミリー"
 
 #: lib/common/font-manager-properties-pane.c:82
 msgid "Style"
-msgstr ""
+msgstr "スタイル"
 
 #: lib/common/font-manager-properties-pane.c:83
 #: src/font-manager/Categories.vala:534
 msgid "Width"
-msgstr ""
+msgstr "幅"
 
 #: lib/common/font-manager-properties-pane.c:84
 #: src/font-manager/Categories.vala:536
@@ -388,42 +388,42 @@ msgstr ""
 #: lib/common/font-manager-properties-pane.c:85
 #: src/font-manager/Categories.vala:535
 msgid "Weight"
-msgstr ""
+msgstr "ウェイト"
 
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:537
 msgid "Spacing"
-msgstr ""
+msgstr "字間"
 
 #: lib/common/font-manager-properties-pane.c:87
 msgid "Version"
-msgstr ""
+msgstr "バージョン"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-properties-pane.c:89
 #: src/font-manager/Categories.vala:543
 msgid "Vendor"
-msgstr ""
+msgstr "作成元"
 
 #: lib/common/font-manager-properties-pane.c:90
 msgid "FileType"
-msgstr ""
+msgstr "ファイルの種類"
 
 #: lib/common/font-manager-properties-pane.c:91
 msgid "Filesize"
-msgstr ""
+msgstr "ファイルサイズ"
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:598
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
-msgstr ""
+msgstr "レギュラー"
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:593
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
-msgstr ""
+msgstr "ノーマル"
 
 #: lib/common/font-manager-source.c:308 lib/common/font-manager-source.c:323
 msgid "Source Unavailable"
@@ -642,19 +642,19 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:551
 msgid "All"
-msgstr ""
+msgstr "すべて"
 
 #: src/font-manager/Categories.vala:551
 msgid "All Fonts"
-msgstr ""
+msgstr "すべてのフォント"
 
 #: src/font-manager/Categories.vala:552
 msgid "System"
-msgstr ""
+msgstr "システム"
 
 #: src/font-manager/Categories.vala:552
 msgid "Fonts available to all users"
-msgstr ""
+msgstr "全ユーザーが利用可能なフォント"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
@@ -697,19 +697,19 @@ msgstr[0] ""
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
-msgstr ""
+msgstr "コレクション名を入力"
 
 #: src/font-manager/Collections.vala:452
 msgid "Copy to…"
-msgstr ""
+msgstr "指定先にコピー…"
 
 #: src/font-manager/Collections.vala:453
 msgid "Compress…"
-msgstr ""
+msgstr "圧縮…"
 
 #: src/font-manager/Collections.vala:454
 msgid "Rename…"
-msgstr ""
+msgstr "名前を変更…"
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
@@ -724,12 +724,12 @@ msgstr ""
 
 #: src/font-manager/Dialogs.vala:60
 msgid "Select executable"
-msgstr ""
+msgstr "実行可能ファイルを選択"
 
 #: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
 #: src/font-manager/UserData.vala:58
 msgid "_Select"
-msgstr ""
+msgstr "選択(_S)"
 
 #: src/font-manager/Dialogs.vala:64 src/font-manager/Dialogs.vala:79
 #: src/font-manager/Dialogs.vala:96 src/font-manager/Dialogs.vala:121
@@ -737,7 +737,7 @@ msgstr ""
 #: src/font-manager/UserData.vala:38 src/font-manager/UserData.vala:49
 #: src/font-manager/UserData.vala:59
 msgid "_Cancel"
-msgstr ""
+msgstr "キャンセル(_C)"
 
 #: src/font-manager/Dialogs.vala:75
 msgid "Select Destination"
@@ -745,11 +745,11 @@ msgstr ""
 
 #: src/font-manager/Dialogs.vala:92
 msgid "Select files to install"
-msgstr ""
+msgstr "インストールするファイルを選択"
 
 #: src/font-manager/Dialogs.vala:95 src/font-manager/Dialogs.vala:120
 msgid "_Open"
-msgstr ""
+msgstr "開く(_O)"
 
 #: src/font-manager/Dialogs.vala:117
 msgid "Select source folders"
@@ -757,25 +757,25 @@ msgstr ""
 
 #: src/font-manager/Dialogs.vala:158 src/font-manager/Dialogs.vala:170
 msgid "Select fonts to remove"
-msgstr ""
+msgstr "削除するフォントを選択"
 
 #: src/font-manager/Dialogs.vala:160 src/font-manager/Dialogs.vala:172
 msgid "_Delete"
-msgstr ""
+msgstr "削除(_D)"
 
 #: src/font-manager/Dialogs.vala:186
 msgid "Fonts installed in your home directory will appear here."
-msgstr ""
+msgstr "ここには、ホームディレクトリにインストールされたフォントが表示されます。"
 
 #: src/font-manager/FontList.vala:43
 msgid "Remove selected font from collection"
-msgstr ""
+msgstr "選択したフォントをコレクションから削除"
 
 #: src/font-manager/FontList.vala:48 src/font-manager/FontList.vala:68
 #: src/font-manager/web/google/FontList.vala:51
 #: src/font-manager/web/google/FontList.vala:65
 msgid "Expand all"
-msgstr ""
+msgstr "すべて表示"
 
 #: src/font-manager/FontList.vala:52
 #: src/font-manager/web/google/FontList.vala:55
@@ -799,46 +799,41 @@ msgstr ""
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:416
-#, fuzzy, c-format
-#| msgid "Install the selected font files"
+#, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "選択した複数のフォントファイルをインストールします"
+msgstr[0] "%i 項目を選択"
 
 #: src/font-manager/FontList.vala:517
 msgid "Copy Location"
-msgstr ""
+msgstr "場所をコピー"
 
 #: src/font-manager/FontList.vala:518
 msgid "Show in Folder"
-msgstr ""
+msgstr "フォルダーで表示"
 
 #: src/font-manager/FontList.vala:583
-#, fuzzy
-#| msgid "Install the selected font files"
 msgid "Enable selected items"
-msgstr "選択した複数のフォントファイルをインストールします"
+msgstr "選択項目を有効化"
 
 #: src/font-manager/FontList.vala:585
-#, fuzzy
-#| msgid "Install the selected font files"
 msgid "Disable selected items"
-msgstr "選択した複数のフォントファイルをインストールします"
+msgstr "選択項目を無効化"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
 msgid "Browse"
-msgstr ""
+msgstr "表示"
 
 #: src/font-manager/MainWindow.vala:56
 #: src/font-manager/ui/font-manager-main-window.ui:136
 msgid "Compare"
-msgstr ""
+msgstr "比較"
 
 #: src/font-manager/MainWindow.vala:58
 #: src/font-manager/ui/font-manager-main-window.ui:149
 msgid "Manage"
-msgstr ""
+msgstr "管理"
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
@@ -1406,84 +1401,84 @@ msgstr ""
 
 #: src/font-manager/Orthography.vala:204
 msgid "Update in progress"
-msgstr ""
+msgstr "更新しています"
 
 #: src/font-manager/TitleBar.vala:62
 msgid "Updating Database — Fonts"
-msgstr ""
+msgstr "データベースを更新しています: フォント"
 
 #: src/font-manager/TitleBar.vala:64
 msgid "Updating Database — Metadata"
-msgstr ""
+msgstr "データベースを更新しています: メタデータ"
 
 #: src/font-manager/TitleBar.vala:66
 msgid "Updating Database — Orthography"
-msgstr ""
+msgstr "データベースを更新しています: グリフ"
 
 #: src/font-manager/TitleBar.vala:83
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "キーボードショートカット"
 
 #: src/font-manager/TitleBar.vala:84
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:19
 msgid "Help"
-msgstr ""
+msgstr "ヘルプ"
 
 #: src/font-manager/TitleBar.vala:85
 msgid "About"
-msgstr ""
+msgstr "フォントマネージャーについて"
 
 #: src/font-manager/TitleBar.vala:103
 msgid "Import"
-msgstr ""
+msgstr "インポート"
 
 #: src/font-manager/TitleBar.vala:104 src/font-manager/UserData.vala:132
 msgid "Export"
-msgstr ""
+msgstr "エクスポート"
 
 #: src/font-manager/TitleBar.vala:111 src/font-manager/UserData.vala:37
 #: src/font-manager/UserData.vala:48
 msgid "User Data"
-msgstr ""
+msgstr "ユーザーデータ"
 
 #. HAVE_WEBKIT
 #: src/font-manager/TitleBar.vala:267
 msgid "Add Fonts"
-msgstr ""
+msgstr "フォントを追加"
 
 #: src/font-manager/TitleBar.vala:268
 msgid "Remove Fonts"
-msgstr ""
+msgstr "フォントを削除"
 
 #: src/font-manager/TitleBar.vala:275
 #: src/font-manager/ui/font-manager-main-window.ui:189
 msgid "Preferences"
-msgstr ""
+msgstr "設定"
 
 #: src/font-manager/UserData.vala:55
 msgid "Select Exported Data"
-msgstr ""
+msgstr "エクスポートしたデータを選択"
 
 #: src/font-manager/Utils.vala:220
 msgid "Copying files…"
-msgstr ""
+msgstr "ファイルをコピーしています…"
 
 #: src/font-manager/filters/Collection.vala:48
 msgid "New Collection"
-msgstr ""
+msgstr "新しいコレクション"
 
 #: src/font-manager/filters/Collection.vala:50
 #, c-format
 msgid "Created : %s"
-msgstr ""
+msgstr "作成日時: %s"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Disabled"
-msgstr ""
+msgstr "無効なフォント"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
-msgstr ""
+msgstr "無効化されたフォント"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
 msgid "Filter based on supported orthographies"

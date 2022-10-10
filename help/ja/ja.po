@@ -1,14 +1,18 @@
+# Ryo Nakano <ryonakaknock3@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-09-23 12:20+0000\n"
+"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -35,7 +39,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "すべて"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
@@ -45,7 +49,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "システム"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
@@ -77,7 +81,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "幅"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
@@ -87,7 +91,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr ""
+msgstr "ウェイト"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
@@ -107,7 +111,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "字間"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
@@ -129,7 +133,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "作成元"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -161,7 +165,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "無効なフォント"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
