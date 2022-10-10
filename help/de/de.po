@@ -1,10 +1,11 @@
 # Milo Ivir <mail@milotype.de>, 2021.
+# Ettore Atalan <atalanttore@googlemail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-12-03 19:53+0000\n"
-"Last-Translator: Milo Ivir <mail@milotype.de>\n"
+"PO-Revision-Date: 2022-10-10 18:02+0000\n"
+"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/de/>\n"
 "Language: de\n"
@@ -12,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -580,7 +581,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-font-removal.page:29
 msgid "To remove fonts you no longer need:"
-msgstr ""
+msgstr "Zum Entfernen von nicht mehr benötigten Schriftarten:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:35
@@ -588,6 +589,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"Klicken Sie auf <gui style=\"button\"> <media type=\"image\" src=\"media"
+"/list-remove-symbolic.svg\"/> </gui> am oberen Rand des Fensters"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:44
@@ -595,11 +598,13 @@ msgid ""
 "Select the families or individual styles you wish to remove from the list "
 "that is displayed"
 msgstr ""
+"Wählen Sie die Familien oder einzelnen Stile, die Sie entfernen möchten, aus "
+"der angezeigten Liste aus"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:50
 msgid "Click <gui style=\"button\">Delete</gui>"
-msgstr ""
+msgstr "Klicken Sie auf <gui style=\"button\">Löschen</gui>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:60
