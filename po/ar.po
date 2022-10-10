@@ -1,19 +1,21 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
+# Shuaib Zahda <shuaib.zahda@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2019-10-03 02:38-0400\n"
-"Last-Translator: Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Language-Team: Arabic\n"
+"PO-Revision-Date: 2022-09-18 23:21+0000\n"
+"Last-Translator: Shuaib Zahda <shuaib.zahda@gmail.com>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Zanata 4.6.2\n"
-"Plural-Forms: nplurals=6; plural= n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -23,7 +25,7 @@ msgstr "مدير الخطوط"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "برنامج إدارة الخطوط المبسط لبيئة Gtk+"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
@@ -44,7 +46,7 @@ msgstr ""
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr ""
+msgstr "إستعرض، قارن ونظم الخطوط"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
@@ -62,7 +64,7 @@ msgstr "عارض الخطوط"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr ""
+msgstr "برنامج لعرض الخطوط لبيئة Gtk+"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
@@ -73,30 +75,30 @@ msgstr ""
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr ""
+msgstr "برنامج استعراض ملفات الخطوط كامل المواصفات"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
 #: src/font-manager/FontList.vala:516
 msgid "Install"
-msgstr ""
+msgstr "تثبيت"
 
 #: extensions/nautilus/font-manager-menu-provider.c:163
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr ""
+msgstr "ثبت ملف الخط المختار"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr ""
+msgstr "ثبت ملفات الخط المختارة"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr ""
+msgstr "خصائص الخط"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:120
@@ -383,7 +385,7 @@ msgstr "الوزن"
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:537
 msgid "Spacing"
-msgstr "التوسع"
+msgstr "المسافة"
 
 #: lib/common/font-manager-properties-pane.c:87
 msgid "Version"
@@ -1499,7 +1501,7 @@ msgstr "الخطوط غير الموجودة في مجموعتي"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr "المستخدم"
+msgstr "مستخدم"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "Fonts available only to you"
@@ -2121,7 +2123,7 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:58
 msgid "Categories"
-msgstr "الفئات"
+msgstr "الاقسام"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:129
 msgid "Collections"
