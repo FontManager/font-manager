@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
-# Quentin PAGÈS <quentinantonin@free.fr>, 2021.
+# Quentin PAGÈS <quentinantonin@free.fr>, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2021-05-30 14:32+0000\n"
+"PO-Revision-Date: 2022-08-07 18:19+0000\n"
 "Last-Translator: Quentin PAGÈS <quentinantonin@free.fr>\n"
 "Language-Team: Occitan <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/oc/>\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.7-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
-msgstr "Gestionari de poliça"
+msgstr "Gestionari de polissa"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
@@ -47,7 +47,7 @@ msgstr ""
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr "Previsualizar, comparar e gerir las poliças"
+msgstr "Previsualizar, comparar e gerir las polissas"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
@@ -89,7 +89,7 @@ msgstr "Installar"
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr "Installar lo fichièr de poliça seleccionat"
+msgstr "Installar lo fichièr de polissa seleccionat"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
@@ -99,7 +99,7 @@ msgstr ""
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr "Proprietats de la poliça"
+msgstr "Proprietats de la polissa"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:120
@@ -810,12 +810,11 @@ msgstr ""
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:416
-#, fuzzy, c-format
-#| msgid "Install the selected font file"
+#, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "Installar lo fichièr de poliça seleccionat"
-msgstr[1] "Installar lo fichièr de poliça seleccionat"
+msgstr[0] "%i element seleccionat"
+msgstr[1] "%i elements seleccionats"
 
 #: src/font-manager/FontList.vala:517
 msgid "Copy Location"
@@ -826,16 +825,12 @@ msgid "Show in Folder"
 msgstr ""
 
 #: src/font-manager/FontList.vala:583
-#, fuzzy
-#| msgid "Install the selected font file"
 msgid "Enable selected items"
-msgstr "Installar lo fichièr de poliça seleccionat"
+msgstr "Activar los elements seleccionats"
 
 #: src/font-manager/FontList.vala:585
-#, fuzzy
-#| msgid "Install the selected font file"
 msgid "Disable selected items"
-msgstr "Installar lo fichièr de poliça seleccionat"
+msgstr "Desactivar los elements seleccionats"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
@@ -1421,7 +1416,7 @@ msgstr "Actualizacion en cors"
 
 #: src/font-manager/TitleBar.vala:62
 msgid "Updating Database — Fonts"
-msgstr "Actualizacion de la basa de donadas — Poliças"
+msgstr "Actualizacion de la basa de donadas — Polissas"
 
 #: src/font-manager/TitleBar.vala:64
 msgid "Updating Database — Metadata"
@@ -1460,11 +1455,11 @@ msgstr "Donadas utilizaire"
 #. HAVE_WEBKIT
 #: src/font-manager/TitleBar.vala:267
 msgid "Add Fonts"
-msgstr "Apondre poliças"
+msgstr "Apondre polissas"
 
 #: src/font-manager/TitleBar.vala:268
 msgid "Remove Fonts"
-msgstr "Suprimir poliças"
+msgstr "Suprimir polissas"
 
 #: src/font-manager/TitleBar.vala:275
 #: src/font-manager/ui/font-manager-main-window.ui:189
@@ -1943,7 +1938,7 @@ msgstr "Installada"
 #: src/font-viewer/MainWindow.vala:177
 #: src/font-viewer/font-viewer-main-window.ui:53
 msgid "Install Font"
-msgstr "Installar la poliça"
+msgstr "Installar la polissa"
 
 #: lib/unicode/ui/unicode-character-map-zoom-window.ui:80
 msgid "Copy"
