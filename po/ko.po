@@ -1,31 +1,33 @@
-# Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
-# Shuaib Zahda <shuaib.zahda@gmail.com>, 2022.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Jerry Casiano
+# This file is distributed under the same license as the font-manager package.
+# DNSE <kty5663@gmail.com>, 2022.
+# 이정희 <daemul72@gmail.com>, 2022.
 msgid ""
 msgstr ""
-"Project-Id-Version: font-manager 0.7.9\n"
+"Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-09-18 23:21+0000\n"
-"Last-Translator: Shuaib Zahda <shuaib.zahda@gmail.com>\n"
-"Language-Team: Arabic <https://hosted.weblate.org/projects/font-manager/"
-"font-manager/ar/>\n"
-"Language: ar\n"
+"PO-Revision-Date: 2022-10-01 16:16+0000\n"
+"Last-Translator: 이정희 <daemul72@gmail.com>\n"
+"Language-Team: Korean <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/ko/>\n"
+"Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 4.14.1\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
-msgstr "مدير الخطوط"
+msgstr "글꼴 관리자"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr "برنامج إدارة الخطوط المبسط لبيئة Gtk+"
+msgstr "GTK+ 데스크톱 환경에서 동작하는 간단한 글꼴 관리 응용 프로그램"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
@@ -42,17 +44,17 @@ msgstr ""
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
-msgstr ""
+msgstr "글꼴 관리자는 전문적인 글꼴 관리 솔루션이 아닙니다."
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
-msgstr "إستعرض، قارن ونظم الخطوط"
+msgstr "글꼴 미리보기, 비교, 관리"
 
 #. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
 #: data/org.gnome.FontManager.desktop.in.in:16
 #: data/org.gnome.FontViewer.desktop.in.in:16
 msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
-msgstr ""
+msgstr "Graphics;Viewer;GNOME;GTK;Publishing;그래픽;뷰어;그놈;출판;"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:9
 #: data/org.gnome.FontViewer.desktop.in.in:5
@@ -60,11 +62,11 @@ msgstr ""
 #: src/font-viewer/Application.vala:98 src/font-viewer/MainWindow.vala:23
 #: src/font-viewer/font-viewer-main-window.ui:39
 msgid "Font Viewer"
-msgstr "عارض الخطوط"
+msgstr "글꼴 뷰어"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr "برنامج لعرض الخطوط لبيئة Gtk+"
+msgstr "GTK+ 데스크톱 환경에서 동작하는 간단한 글꼴 뷰어 프로그램"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
@@ -75,152 +77,152 @@ msgstr ""
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr "برنامج استعراض ملفات الخطوط كامل المواصفات"
+msgstr "모든 기능을 갖춘 글꼴 파일 미리보기 응용 프로그램"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
 #: extensions/thunar/font-manager-menu-provider.c:131
 #: src/font-manager/FontList.vala:516
 msgid "Install"
-msgstr "تثبيت"
+msgstr "설치하기"
 
 #: extensions/nautilus/font-manager-menu-provider.c:163
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr "ثبت ملف الخط المختار"
+msgstr "선택한 글꼴 파일 설치하기"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr "ثبت ملفات الخط المختارة"
+msgstr "선택한 글꼴 파일 설치하기"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr "خصائص الخط"
+msgstr "글꼴 속성"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:120
 msgid "Preview"
-msgstr "عاين"
+msgstr "미리보기"
 
 #: lib/common/font-manager-font-preview.c:87
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
 msgid "Waterfall"
-msgstr "شلال"
+msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:709
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
-msgstr "رفيع"
+msgstr "가는"
 
 #: lib/common/font-manager-fontconfig.c:711
 msgid "Ultra-Light"
-msgstr "خفيف جدا"
+msgstr "아주 얇은"
 
 #: lib/common/font-manager-fontconfig.c:713
 #: lib/common/font-manager-fontconfig.c:1066
 #: src/font-manager/web/google/Weight.vala:69
 msgid "Light"
-msgstr "خفيف"
+msgstr "얇은"
 
 #: lib/common/font-manager-fontconfig.c:715
 msgid "Semi-Light"
-msgstr ""
+msgstr "약간 얇은"
 
 #: lib/common/font-manager-fontconfig.c:717
 msgid "Book"
-msgstr "كتاب"
+msgstr "책"
 
 #: lib/common/font-manager-fontconfig.c:719
 #: lib/common/font-manager-fontconfig.c:1023
 #: src/font-manager/web/google/Weight.vala:73
 msgid "Medium"
-msgstr "وسط"
+msgstr "중간"
 
 #: lib/common/font-manager-fontconfig.c:721
 msgid "Semi-Bold"
-msgstr "شبه ثخين"
+msgstr "약간 굵은"
 
 #: lib/common/font-manager-fontconfig.c:723
 #: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
-msgstr "ثخين"
+msgstr "굵은"
 
 #: lib/common/font-manager-fontconfig.c:725
 msgid "Ultra-Bold"
-msgstr "ثخين جدا"
+msgstr "아주 굵은"
 
 #: lib/common/font-manager-fontconfig.c:727
 msgid "Heavy"
-msgstr "ثقيل"
+msgstr "두꺼운"
 
 #: lib/common/font-manager-fontconfig.c:729
 msgid "Ultra-Heavy"
-msgstr "ثقيل جدا"
+msgstr "아주 두꺼운"
 
 #: lib/common/font-manager-fontconfig.c:804
 #: src/font-manager/web/google/WebFont.vala:156
 msgid "Italic"
-msgstr "مائل"
+msgstr "이탤릭체"
 
 #: lib/common/font-manager-fontconfig.c:806
 msgid "Oblique"
-msgstr "مائل"
+msgstr "기울임꼴"
 
 #: lib/common/font-manager-fontconfig.c:844
 msgid "Ultra-Condensed"
-msgstr "مضغوط جدا"
+msgstr "아주 폭이 좁은"
 
 #: lib/common/font-manager-fontconfig.c:846
 msgid "Extra-Condensed"
-msgstr "مضغوط أكثر"
+msgstr "대단히 폭이 좁은"
 
 #: lib/common/font-manager-fontconfig.c:848
 msgid "Condensed"
-msgstr "مضغوط"
+msgstr "폭이 좁은"
 
 #: lib/common/font-manager-fontconfig.c:850
 msgid "Semi-Condensed"
-msgstr "شبه مضغوط"
+msgstr "약간 폭이 좁은"
 
 #: lib/common/font-manager-fontconfig.c:852
 msgid "Semi-Expanded"
-msgstr "شبه ممدد"
+msgstr "약간 폭이 넓은"
 
 #: lib/common/font-manager-fontconfig.c:854
 msgid "Expanded"
-msgstr "ممدد"
+msgstr "폭이 넓은"
 
 #: lib/common/font-manager-fontconfig.c:856
 msgid "Extra-Expanded"
-msgstr "ممدد كثيرا"
+msgstr "대단히 폭이 넓은"
 
 #: lib/common/font-manager-fontconfig.c:858
 msgid "Ultra-Expanded"
-msgstr "ممدد جدا"
+msgstr "아주 폭이 넓은"
 
 #: lib/common/font-manager-fontconfig.c:927
 msgid "Proportional"
-msgstr "متناسب"
+msgstr "가변폭"
 
 #: lib/common/font-manager-fontconfig.c:929
 msgid "Dual Width"
-msgstr "مزدوج العرض"
+msgstr "이중폭"
 
 #: lib/common/font-manager-fontconfig.c:931
 #: src/font-manager/web/google/ui/google-font-filters.ui:260
 msgid "Monospace"
-msgstr "ثابت العرض"
+msgstr "고정폭"
 
 #: lib/common/font-manager-fontconfig.c:933
 msgid "Charcell"
-msgstr "خلية الحرف"
+msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:972
 msgid "Unknown"
-msgstr "غير معروف"
+msgstr "알 수 없음"
 
 #: lib/common/font-manager-fontconfig.c:974
 msgid "RGB"
@@ -242,184 +244,183 @@ msgstr "VBGR"
 #: lib/common/font-manager-fontconfig.c:1027
 #: lib/common/font-manager-fontconfig.c:1070
 msgid "None"
-msgstr "لا شيء"
+msgstr "없음"
 
 #: lib/common/font-manager-fontconfig.c:1021
 msgid "Slight"
-msgstr "خفيف"
+msgstr "약간"
 
 #: lib/common/font-manager-fontconfig.c:1025
 msgid "Full"
-msgstr "كامل"
+msgstr "전부"
 
 #: lib/common/font-manager-fontconfig.c:1064
 #: src/font-manager/ui/font-manager-main-window.ui:178
 msgid "Default"
-msgstr "المبدئي"
+msgstr "기본값"
 
 #: lib/common/font-manager-fontconfig.c:1068
 msgid "Legacy"
-msgstr "عتيق"
+msgstr "기존"
 
 #: lib/common/font-manager-freetype.c:292
 msgid "Restricted License Embedding"
-msgstr ""
+msgstr "제한된 라이선스 내장글꼴"
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Preview & Print Embedding"
-msgstr ""
+msgstr "내장글꼴 미리보기 및 인쇄하기"
 
 #: lib/common/font-manager-freetype.c:296
 msgid "Editable Embedding"
-msgstr ""
+msgstr "내장글꼴 편집 가능"
 
 #: lib/common/font-manager-freetype.c:298
 msgid "Preview & Print Embedding | No Subsetting"
-msgstr ""
+msgstr "내장글꼴 미리보기 및 인쇄하기 | 하위 설정 없음"
 
 #: lib/common/font-manager-freetype.c:300
 msgid "Editable Embedding | No Subsetting"
-msgstr ""
+msgstr "내장글꼴 편집 가능 | 하위 설정 없음"
 
 #: lib/common/font-manager-freetype.c:302
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "내장글꼴 미리보기 및 인쇄하기 | 비트맵 포함만"
 
 #: lib/common/font-manager-freetype.c:304
 msgid "Editable Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "내장글꼴 편집 가능 | 비트맵 포함만"
 
 #: lib/common/font-manager-freetype.c:306
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr ""
+msgstr "내장글꼴 미리보기 및 인쇄하기 | 하위 설정 없음 | 비트맵 내장글꼴만"
 
 #: lib/common/font-manager-freetype.c:308
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr ""
+msgstr "내장글꼴 편집 가능 | 하위 설정 없음 | 비트맵 내장글꼴만"
 
 #: lib/common/font-manager-freetype.c:310
 msgid "Installable Embedding"
-msgstr ""
+msgstr "내장글꼴 설치 가능"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:702
-#, fuzzy
 msgid "Unknown Vendor"
-msgstr "غير معروف"
+msgstr "알 수 없는 공급사"
 
 #: lib/common/font-manager-license-pane.c:185
 msgid "File does not contain license information."
-msgstr "لا يحتوي الملف على معلومات الترخيص."
+msgstr "파일에 라이센스 정보가 포함되어 있지 않습니다."
 
 #: lib/common/font-manager-preview-controls.c:76
 msgid "Left Aligned"
-msgstr "محاذى إلى اليسار"
+msgstr "왼쪽 정렬됨"
 
 #: lib/common/font-manager-preview-controls.c:82
 msgid "Centered"
-msgstr "مُوسّط"
+msgstr "가운데 정렬됨"
 
 #: lib/common/font-manager-preview-controls.c:88
 msgid "Fill"
-msgstr "مُساوى"
+msgstr "채움"
 
 #: lib/common/font-manager-preview-controls.c:94
 msgid "Right Aligned"
-msgstr "محاذى إلى اليمين"
+msgstr "오른쪽 정렬됨"
 
 #: lib/common/font-manager-preview-controls.c:311
 msgid "Edit preview text"
-msgstr "حرّر نص المعاينة"
+msgstr "미리보기 텍스트 편집하기"
 
 #: lib/common/font-manager-preview-controls.c:312
 msgid "Undo changes"
-msgstr "تراجع عن التغييرات"
+msgstr "변경사항 실행취소"
 
 #: lib/common/font-manager-preview-pane.c:43
 #: lib/common/font-manager-preview-pane.c:572
 msgid "Characters"
-msgstr "المحارف"
+msgstr "문자"
 
 #: lib/common/font-manager-preview-pane.c:45
 #: lib/common/font-manager-preview-pane.c:573
 msgid "Properties"
-msgstr "الخصائص"
+msgstr "속성"
 
 #: lib/common/font-manager-preview-pane.c:47
 #: lib/common/font-manager-preview-pane.c:574
 #: src/font-manager/Categories.vala:541
 msgid "License"
-msgstr "الترخيص"
+msgstr "라이선스"
 
 #: lib/common/font-manager-preview-pane.c:454
 msgid "Search available characters"
-msgstr ""
+msgstr "사용 가능한 문자 검색하기"
 
 #: lib/common/font-manager-properties-pane.c:80
 msgid "PostScript Name"
-msgstr "اسم بوستسكربت"
+msgstr "PostScript 이름"
 
 #: lib/common/font-manager-properties-pane.c:81
 msgid "Family"
-msgstr ""
+msgstr "글꼴 집합"
 
 #: lib/common/font-manager-properties-pane.c:82
 msgid "Style"
-msgstr ""
+msgstr "스타일"
 
 #: lib/common/font-manager-properties-pane.c:83
 #: src/font-manager/Categories.vala:534
 msgid "Width"
-msgstr "العرض"
+msgstr "폭"
 
 #: lib/common/font-manager-properties-pane.c:84
 #: src/font-manager/Categories.vala:536
 msgid "Slant"
-msgstr "الميلان"
+msgstr "기울기"
 
 #: lib/common/font-manager-properties-pane.c:85
 #: src/font-manager/Categories.vala:535
 msgid "Weight"
-msgstr "الوزن"
+msgstr "굵기"
 
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:537
 msgid "Spacing"
-msgstr "المسافة"
+msgstr "자간"
 
 #: lib/common/font-manager-properties-pane.c:87
 msgid "Version"
-msgstr "الإصدارة"
+msgstr "버전"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-properties-pane.c:89
 #: src/font-manager/Categories.vala:543
 msgid "Vendor"
-msgstr "البائع"
+msgstr "공급사"
 
 #: lib/common/font-manager-properties-pane.c:90
 msgid "FileType"
-msgstr ""
+msgstr "파일 유형"
 
 #: lib/common/font-manager-properties-pane.c:91
 msgid "Filesize"
-msgstr ""
+msgstr "파일 크기"
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:598
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
-msgstr "عادي"
+msgstr ""
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:593
 #: src/font-manager/ui/font-manager-title-button-style.ui:42
 msgid "Normal"
-msgstr "طبيعي"
+msgstr ""
 
 #: lib/common/font-manager-source.c:308 lib/common/font-manager-source.c:323
 msgid "Source Unavailable"
-msgstr "المصدر غير متاح"
+msgstr ""
 
 #: lib/unicode/unicode-info.c:191
 msgid "<Non Private Use High Surrogate>"
@@ -571,7 +572,7 @@ msgstr ""
 
 #: src/font-manager/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
-msgstr "إدارة بسيطة للخطوط لبيئات سطح مكتك جتك+"
+msgstr ""
 
 #: src/font-manager/About.vala:35
 msgid ""
@@ -598,88 +599,88 @@ msgstr ""
 #. by a newline character so that they are displayed properly in the interface.
 #: src/font-manager/About.vala:69
 msgid "translator-credits"
-msgstr ""
+msgstr "이정희 <daemul72@gmail.com>"
 
 #: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
-msgstr "مجمّعة حسب عرض الخط"
+msgstr ""
 
 #: src/font-manager/Categories.vala:535
 msgid "Grouped by font weight"
-msgstr "مجمّعة حسب وزن الخط"
+msgstr ""
 
 #: src/font-manager/Categories.vala:536
 msgid "Grouped by font angle"
-msgstr "مجمّعة حسب زاوية الخط"
+msgstr ""
 
 #: src/font-manager/Categories.vala:537
 msgid "Grouped by font spacing"
-msgstr "مجمّعة حسب توسع الخط"
+msgstr ""
 
 #: src/font-manager/Categories.vala:541
 msgid "Grouped by license type"
-msgstr "مجمّعة حسب نوع الترخيص"
+msgstr ""
 
 #: src/font-manager/Categories.vala:543
 msgid "Grouped by vendor"
-msgstr "مجمّعة حسب البائع"
+msgstr "공급사별로 그룹화"
 
 #: src/font-manager/Categories.vala:544
 msgid "Filetype"
-msgstr "نوع الملف"
+msgstr "파일유형"
 
 #: src/font-manager/Categories.vala:544
 msgid "Grouped by filetype"
-msgstr "مجمّعة حسب نوع الملف"
+msgstr ""
 
 #: src/font-manager/Categories.vala:551
 msgid "All"
-msgstr "الكل"
+msgstr "모두"
 
 #: src/font-manager/Categories.vala:551
 msgid "All Fonts"
-msgstr "كل الخطوط"
+msgstr "모든 글꼴"
 
 #: src/font-manager/Categories.vala:552
 msgid "System"
-msgstr "النظام"
+msgstr "시스템"
 
 #: src/font-manager/Categories.vala:552
 msgid "Fonts available to all users"
-msgstr "الخطوط المتاحة لكل المستخدمين"
+msgstr ""
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr "نوع العائلة"
+msgstr "글꼴 집합 종류"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
-msgstr "لن تظهر سوى الخطوط التي تحتوي معلومات Panose."
+msgstr ""
 
 #: src/font-manager/Categories.vala:567
 #: src/font-manager/web/google/ui/google-font-filters.ui:346
 msgid "Any"
-msgstr "أي شيء"
+msgstr ""
 
 #: src/font-manager/Categories.vala:567
 msgid "No Fit"
-msgstr "لا شيء مناسب"
+msgstr ""
 
 #: src/font-manager/Categories.vala:567
 msgid "Text and Display"
-msgstr "النص و العناوين"
+msgstr ""
 
 #: src/font-manager/Categories.vala:567
 msgid "Script"
-msgstr "نظام الكتابة"
+msgstr ""
 
 #: src/font-manager/Categories.vala:567
 msgid "Decorative"
-msgstr "زخرفي"
+msgstr ""
 
 #: src/font-manager/Categories.vala:567
 msgid "Pictorial"
-msgstr "تصويري"
+msgstr ""
 
 #: src/font-manager/CellRenderer.vala:90
 #, c-format
@@ -687,14 +688,10 @@ msgid "%i Variation "
 msgid_plural "%i Variations"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
-msgstr "اكتب اسم المجموعة"
+msgstr ""
 
 #: src/font-manager/Collections.vala:452
 msgid "Copy to…"
@@ -734,7 +731,7 @@ msgstr ""
 #: src/font-manager/UserData.vala:38 src/font-manager/UserData.vala:49
 #: src/font-manager/UserData.vala:59
 msgid "_Cancel"
-msgstr "أ_لغِ"
+msgstr ""
 
 #: src/font-manager/Dialogs.vala:75
 msgid "Select Destination"
@@ -742,23 +739,23 @@ msgstr ""
 
 #: src/font-manager/Dialogs.vala:92
 msgid "Select files to install"
-msgstr "اختر الملفات لتنصيبها"
+msgstr ""
 
 #: src/font-manager/Dialogs.vala:95 src/font-manager/Dialogs.vala:120
 msgid "_Open"
-msgstr "ا_فتح"
+msgstr ""
 
 #: src/font-manager/Dialogs.vala:117
 msgid "Select source folders"
-msgstr "اختر مجلدات المصادر"
+msgstr ""
 
 #: src/font-manager/Dialogs.vala:158 src/font-manager/Dialogs.vala:170
 msgid "Select fonts to remove"
-msgstr "اختر الخطوط لإزالتها"
+msgstr ""
 
 #: src/font-manager/Dialogs.vala:160 src/font-manager/Dialogs.vala:172
 msgid "_Delete"
-msgstr "ا_حذف"
+msgstr ""
 
 #: src/font-manager/Dialogs.vala:186
 msgid "Fonts installed in your home directory will appear here."
@@ -766,18 +763,18 @@ msgstr ""
 
 #: src/font-manager/FontList.vala:43
 msgid "Remove selected font from collection"
-msgstr "احذف الخط المحدد من المجموعة"
+msgstr ""
 
 #: src/font-manager/FontList.vala:48 src/font-manager/FontList.vala:68
 #: src/font-manager/web/google/FontList.vala:51
 #: src/font-manager/web/google/FontList.vala:65
 msgid "Expand all"
-msgstr "مدّد الكل"
+msgstr ""
 
 #: src/font-manager/FontList.vala:52
 #: src/font-manager/web/google/FontList.vala:55
 msgid "Search Families…"
-msgstr "ابحث في العائلات…"
+msgstr ""
 
 #: src/font-manager/FontList.vala:53
 #, c-format
@@ -787,25 +784,24 @@ msgid ""
 "Start search using %s to filter based on filepath.\n"
 "Start search using %s to filter based on characters."
 msgstr ""
+"글꼴 집합 이름의 대소문자를 구분하지 않는 검색입니다.\n"
+"\n"
+"파일경로를 기준으로 필터링하려면 %s를 사용하여 검색을 시작합니다. \n"
+"문자를 기준으로 필터링하려면 %s를 사용하여 검색을 시작합니다."
 
 #: src/font-manager/FontList.vala:68
 #: src/font-manager/web/google/FontList.vala:65
 msgid "Collapse all"
-msgstr "قلّص الكل"
+msgstr ""
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:416
-#, fuzzy, c-format
-#| msgid "No file selected"
+#, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "لا ملفات محددة"
-msgstr[1] "لا ملفات محددة"
-msgstr[2] "لا ملفات محددة"
-msgstr[3] "لا ملفات محددة"
-msgstr[4] "لا ملفات محددة"
-msgstr[5] "لا ملفات محددة"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/font-manager/FontList.vala:517
 msgid "Copy Location"
@@ -820,25 +816,23 @@ msgid "Enable selected items"
 msgstr ""
 
 #: src/font-manager/FontList.vala:585
-#, fuzzy
-#| msgid "No file selected"
 msgid "Disable selected items"
-msgstr "لا ملفات محددة"
+msgstr ""
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
 msgid "Browse"
-msgstr "تصفح"
+msgstr ""
 
 #: src/font-manager/MainWindow.vala:56
 #: src/font-manager/ui/font-manager-main-window.ui:136
 msgid "Compare"
-msgstr "قارن"
+msgstr ""
 
 #: src/font-manager/MainWindow.vala:58
 #: src/font-manager/ui/font-manager-main-window.ui:149
 msgid "Manage"
-msgstr "أدر"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
@@ -990,9 +984,8 @@ msgid "Coptic"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:71
-#, fuzzy
 msgid "Currencies"
-msgstr "التفضيلات"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
@@ -1222,9 +1215,8 @@ msgid "Ol Chiki"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:136
-#, fuzzy
 msgid "Old Italic"
-msgstr "مائل"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
@@ -1373,9 +1365,8 @@ msgid "Vedic Extensions"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:172
-#, fuzzy
 msgid "Venda"
-msgstr "البائع"
+msgstr ""
 
 #: src/font-manager/Orthographies.vala:173
 #: src/font-manager/web/google/Language.vala:60
@@ -1429,11 +1420,11 @@ msgstr ""
 #: src/font-manager/TitleBar.vala:84
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:19
 msgid "Help"
-msgstr "مساعدة"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:85
 msgid "About"
-msgstr "عن"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:103
 msgid "Import"
@@ -1451,16 +1442,16 @@ msgstr ""
 #. HAVE_WEBKIT
 #: src/font-manager/TitleBar.vala:267
 msgid "Add Fonts"
-msgstr "أضف خطوط"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:268
 msgid "Remove Fonts"
-msgstr "احذف الخطوط"
+msgstr ""
 
 #: src/font-manager/TitleBar.vala:275
 #: src/font-manager/ui/font-manager-main-window.ui:189
 msgid "Preferences"
-msgstr "التفضيلات"
+msgstr ""
 
 #: src/font-manager/UserData.vala:55
 msgid "Select Exported Data"
@@ -1472,20 +1463,20 @@ msgstr ""
 
 #: src/font-manager/filters/Collection.vala:48
 msgid "New Collection"
-msgstr "مجموعة جديدة"
+msgstr ""
 
 #: src/font-manager/filters/Collection.vala:50
 #, c-format
 msgid "Created : %s"
-msgstr "تاريخ الإنشاء: %s"
+msgstr ""
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Disabled"
-msgstr "غير مفعّلة"
+msgstr "비활성화됨"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
-msgstr "الخطوط غير المفعّلة"
+msgstr ""
 
 #: src/font-manager/filters/LanguageFilter.vala:28
 msgid "Filter based on supported orthographies"
@@ -1493,19 +1484,19 @@ msgstr ""
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
-msgstr "غير مرتبة"
+msgstr "정렬되지 않음"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
-msgstr "الخطوط غير الموجودة في مجموعتي"
+msgstr ""
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr "مستخدم"
+msgstr "사용자"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "Fonts available only to you"
-msgstr "الخطوط المتاحة لك فقط"
+msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:36
 msgid "Interface Font"
@@ -1566,7 +1557,7 @@ msgstr ""
 #: src/font-manager/preferences/Desktop.vala:90
 #: src/font-manager/preferences/Fontconfig.vala:329
 msgid "Hinting"
-msgstr "التلميح"
+msgstr ""
 
 #: src/font-manager/preferences/Desktop.vala:73
 #: src/font-manager/preferences/Desktop.vala:91
@@ -1592,17 +1583,17 @@ msgstr ""
 #: src/font-manager/preferences/Fontconfig.vala:282
 #: src/font-manager/preferences/Fontconfig.vala:456
 msgid "Settings saved to file."
-msgstr "احفظ الإعدادات إلى ملف."
+msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:208
 #: src/font-manager/preferences/Fontconfig.vala:286
 #: src/font-manager/preferences/Fontconfig.vala:460
 msgid "Removed configuration file."
-msgstr "أزِل ملف الإعدادات."
+msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:235
 msgid "Target DPI"
-msgstr "الميز المستهدف"
+msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:236
 msgid "Scale Factor"
@@ -1610,40 +1601,40 @@ msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:240
 msgid "LCD Filter"
-msgstr "مرشح LCD"
+msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:328
 msgid "Antialias"
-msgstr "التنعيم"
+msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:330
 msgid "Enable Autohinter"
-msgstr "فعّل الملمِّح الآلي"
+msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:339
 msgid "Hinting Style"
-msgstr "أسلوب التلميح"
+msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:340
 msgid "Use Embedded Bitmaps"
-msgstr "استخدم البتمابات المدمجة"
+msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:342
 #: src/font-manager/preferences/Fontconfig.vala:348
 msgid " Size Restrictions "
-msgstr " قيود الحجم "
+msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:346
 msgid " Apply settings to point sizes "
-msgstr " طبّق الإعدادات على المقاسات "
+msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:406
 msgid "Smaller than"
-msgstr "أصغر من"
+msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:407
 msgid "Larger than"
-msgstr "أكبر من"
+msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:427
 msgid "Add alias"
@@ -1659,7 +1650,7 @@ msgstr ""
 
 #: src/font-manager/preferences/Fontconfig.vala:600
 msgid "Easily substitute one font family for another."
-msgstr ""
+msgstr "한 글꼴 모음을 다른 글꼴 모음으로 쉽게 대체할 수 있습니다."
 
 #: src/font-manager/preferences/Fontconfig.vala:601
 msgid "To add a new substitute click the add button in the toolbar."
@@ -1667,7 +1658,7 @@ msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:24
 msgid "Interface"
-msgstr "الواجهة"
+msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:25
 msgid "Desktop"
@@ -1675,7 +1666,7 @@ msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:26
 msgid "Sources"
-msgstr "المصادر"
+msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:27
 msgid "Actions"
@@ -1688,11 +1679,11 @@ msgstr ""
 #: src/font-manager/preferences/Preferences.vala:29
 #: src/font-manager/web/google/ui/google-font-filters.ui:204
 msgid "Display"
-msgstr "العرض"
+msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:30
 msgid "Rendering"
-msgstr "التصيير"
+msgstr ""
 
 #: src/font-manager/preferences/UserActions.vala:198
 msgid ""
@@ -1703,6 +1694,12 @@ msgid ""
 "To control where the filepath is inserted use FILEPATH as a placeholder.\n"
 "If FAMILY or STYLE are found in the argument list they will also be replaced."
 msgstr ""
+"여기에 정의된 작업은 글꼴 목록 컨텍스트 메뉴에 추가됩니다. \n"
+"\n"
+"기본적으로 선택한 글꼴의 파일 경로는 인수 목록 끝에 추가됩니다. \n"
+"파일 경로가 삽입되는 위치를 제어하려면 [파일경로]를 자리 표시자로 "
+"사용합니다. \n"
+"인수 목록에 [글꼴집합] 또는 [스타일]이 있는 경우, 해당 항목도 대체됩니다."
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "User Actions"
@@ -1714,7 +1711,7 @@ msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:203
 msgid "Wide Layout"
-msgstr "تصميم واسع"
+msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:206
 msgid "Only When Maximized"
@@ -1722,7 +1719,7 @@ msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:209
 msgid "Client Side Decorations"
-msgstr "أطر النوافذ التي يرسمها العميل"
+msgstr ""
 
 #: src/font-manager/preferences/UserInterface.vala:213
 msgid "Enable Animations"
@@ -1736,15 +1733,11 @@ msgstr ""
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
-"فُعّلت أطر النوافذ التي يرسمها العميل. سيُطب التغيير في المرة القادمة التي تشغل "
-"فيها البرنامج."
 
 #: src/font-manager/preferences/UserInterface.vala:270
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
-"عُطّلت أطر النوافذ التي يرسمها العميل. سيُطب التغيير في المرة القادمة التي تشغل "
-"فيها البرنامج."
 
 #: src/font-manager/preferences/UserSources.vala:146
 msgid ""
@@ -1759,23 +1752,21 @@ msgstr ""
 #: src/font-manager/preferences/UserSources.vala:162
 #: src/font-manager/ui/font-manager-user-data.ui:131
 msgid "Font Sources"
-msgstr "مصادر الخطوط"
+msgstr ""
 
 #: src/font-manager/preferences/UserSources.vala:163
 msgid "Easily add or preview fonts without actually installing them."
-msgstr "أضف و عاين الخطوط بسهولة دون تنصيبهم."
+msgstr ""
 
 #: src/font-manager/preferences/UserSources.vala:164
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr ""
-"لإضافة خطوط جديدة يمكنك إما سحب المجلد إلى هذه المنطقة أو النقر على زر "
-"الإضافة في شريط الأدوات."
 
 #: src/font-manager/web/google/FontList.vala:56
 msgid "Case insensitive search of family names."
-msgstr ""
+msgstr "글꼴 집합 이름의 대소문자를 구분하지 않는 검색."
 
 #: src/font-manager/web/google/GoogleFonts.vala:129
 msgid "Error procesing data"
@@ -1868,26 +1859,23 @@ msgstr ""
 
 #: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Family"
-msgstr ""
+msgstr "글꼴 집합 업데이트"
 
 #: src/font-manager/web/google/PreviewPane.vala:293
-#, fuzzy
 msgid "Update Font"
-msgstr "أضف خطوط"
+msgstr ""
 
 #: src/font-manager/web/google/PreviewPane.vala:298
-#, fuzzy
 msgid "Remove Family"
-msgstr "احذف الخطوط"
+msgstr "글꼴 집합 제거하기"
 
 #: src/font-manager/web/google/PreviewPane.vala:298
-#, fuzzy
 msgid "Remove Font"
-msgstr "احذف الخطوط"
+msgstr ""
 
 #: src/font-manager/web/google/PreviewPane.vala:303
 msgid "Download Family"
-msgstr ""
+msgstr "글꼴 집합 다운로드"
 
 #: src/font-manager/web/google/PreviewPane.vala:303
 msgid "Download Font"
@@ -1899,25 +1887,18 @@ msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: src/font-manager/web/google/Weight.vala:67
-#, fuzzy
 msgid "ExtraLight"
-msgstr "خفيف جدا"
+msgstr ""
 
 #: src/font-manager/web/google/Weight.vala:75
-#, fuzzy
 msgid "SemiBold"
-msgstr "شبه ثخين"
+msgstr ""
 
 #: src/font-manager/web/google/Weight.vala:79
-#, fuzzy
 msgid "ExtraBold"
-msgstr "ثخين جدا"
+msgstr ""
 
 #: src/font-manager/web/google/Weight.vala:81
 msgid "Black"
@@ -1925,32 +1906,32 @@ msgstr ""
 
 #: src/font-viewer/MainWindow.vala:24
 msgid "Preview font files before installing them."
-msgstr "عاين ملفات الخطوط قبل تنصيبهم"
+msgstr ""
 
 #: src/font-viewer/MainWindow.vala:25
 msgid "To preview a font simply drag it onto this area."
-msgstr "لمعاينة خط يمكنك سحبه إلى هذه المنطقة."
+msgstr ""
 
 #: src/font-viewer/MainWindow.vala:122
 msgid "No file selected"
-msgstr "لا ملفات محددة"
+msgstr ""
 
 #: src/font-viewer/MainWindow.vala:123
 msgid "Or unsupported filetype."
-msgstr "أو نوع الملف غير مدعوم."
+msgstr ""
 
 #: src/font-viewer/MainWindow.vala:172
 msgid "Newer version already installed"
-msgstr "هناك إصدارة أحدث منصّبة"
+msgstr ""
 
 #: src/font-viewer/MainWindow.vala:174
 msgid "Installed"
-msgstr "المنصبة"
+msgstr ""
 
 #: src/font-viewer/MainWindow.vala:177
 #: src/font-viewer/font-viewer-main-window.ui:53
 msgid "Install Font"
-msgstr "نصِّب الخط"
+msgstr ""
 
 #: lib/unicode/ui/unicode-character-map-zoom-window.ui:80
 msgid "Copy"
@@ -1977,10 +1958,8 @@ msgid "Next page"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
-#, fuzzy
-#| msgid "Enter Collection Name"
 msgid "Collection Name"
-msgstr "اكتب اسم المجموعة"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:54
 msgid "_Rename"
@@ -1988,11 +1967,11 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
-msgstr "أضف الخط المحدد إلى المقارنة"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-compare-view.ui:84
 msgid "Remove selected font from comparison"
-msgstr "احذف الخط المحدد من المقارنة"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-compare-view.ui:110
 msgid "Pinned Comparisons"
@@ -2003,7 +1982,7 @@ msgstr ""
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:73
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:76
 msgid "Select background color"
-msgstr "اختر لون الخلفية"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-compare-view.ui:157
 #: src/font-manager/ui/font-manager-compare-view.ui:161
@@ -2014,24 +1993,23 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:12
 msgid "Discard"
-msgstr "ألغِ"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:30
 msgid "Running applications may require a restart to reflect any changes."
-msgstr "تحتاج إعادة تشغيل البرامج المفتوحة لتطبيق التغييرات."
+msgstr ""
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:40
 msgid "Save"
-msgstr "احفظ"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:32
 msgid "Back"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:62
-#, fuzzy
 msgid "Search Orthographies…"
-msgstr "ابحث في العائلات…"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
@@ -2046,24 +2024,20 @@ msgid "Clear selected filter"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:27
-#, fuzzy
 msgid "Created : "
-msgstr "تاريخ الإنشاء: %s"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:32
-#, fuzzy
 msgid "Save current comparison"
-msgstr "احذف الخط المحدد من المقارنة"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:62
-#, fuzzy
 msgid "Remove selected comparison"
-msgstr "احذف الخط المحدد من المقارنة"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:92
-#, fuzzy
 msgid "Restore selected comparison"
-msgstr "احذف الخط المحدد من المقارنة"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:14
 msgid "General"
@@ -2123,31 +2097,31 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:58
 msgid "Categories"
-msgstr "الاقسام"
+msgstr "범주"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:129
 msgid "Collections"
-msgstr "المجموعات"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:175
 msgid "Edit selected category"
-msgstr ""
+msgstr "선택한 범주 편집하기"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:198
 msgid "Add new collection"
-msgstr "أضف مجموعة جديدة"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:221
 msgid "Remove selected collection"
-msgstr "احذف المجموعة المحددة"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-subpixel-geometry.ui:44
 msgid "Subpixel Geometry"
-msgstr "الترتيب التحت بكسلي"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:18
 msgid "Enter target family"
-msgstr ""
+msgstr "대상 글꼴 집합 입력하기"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:32
 msgid "Add substitute"
@@ -2159,19 +2133,19 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-substitute.ui:42
 msgid "Enter substitute family"
-msgstr ""
+msgstr "대체 글꼴 집합 입력하기"
 
 #: src/font-manager/ui/font-manager-substitute.ui:59
 msgid "prefer"
-msgstr "فضّل"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-substitute.ui:60
 msgid "accept"
-msgstr "اقبل"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-substitute.ui:61
 msgid "default"
-msgstr "المبدئي"
+msgstr ""
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:13
 msgid "Titlebar Button Style"
@@ -2251,10 +2225,8 @@ msgid "Up to 192 points (1.4 Common Ratio)"
 msgstr ""
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:100
-#, fuzzy
-#| msgid " Size Restrictions "
 msgid "Custom Size Settings"
-msgstr " قيود الحجم "
+msgstr ""
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:142
 msgid "Minimum Waterfall Preview Point Size"
@@ -2309,50 +2281,13 @@ msgid "Sans Serif"
 msgstr ""
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:232
-#, fuzzy
 msgid "Handwriting"
-msgstr "التلميح"
+msgstr ""
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:282
-#, fuzzy
 msgid "Category"
-msgstr "الفئات"
+msgstr ""
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:434
 msgid "Variations"
 msgstr ""
-
-#~ msgid "_Continue"
-#~ msgstr "_واصل"
-
-#~ msgid "Update Required"
-#~ msgstr "التحديث مطلوب"
-
-#~ msgid ""
-#~ "\n"
-#~ "Font Manager has detected files from a previous installation. Some files "
-#~ "from previous versions are incompatible with this release. Others have "
-#~ "been deprecated or moved.\n"
-#~ "\n"
-#~ "Font Manager will now attempt to migrate your fonts and collections. "
-#~ "Files and settings which are no longer necessary or valid will be "
-#~ "deleted. Any configuration files that could cause a conflict will also be "
-#~ "deleted.\n"
-#~ "\n"
-#~ "It is strongly recommended that you back up any important files before "
-#~ "proceeding.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "اكتشف مدير الخطوط ملفات من تنصيب سابق. بعض الملفات من الإصدارات السابقة "
-#~ "غير متوافقة مع هذه الإصدارة، و البعض الآخر لم يعد مدعومًا أو أزيل.\n"
-#~ "\n"
-#~ "لن يحاول مدير الخطوط ترحيل خطوطك و مجموعاتك. الملفات و الإعدادات التي لم "
-#~ "تعد مطلوبة أو مدعومة ستُحذف، و أي ملفات إعدادات قد تتسبب في أي تعارضات "
-#~ "ستُحذف.\n"
-#~ "\n"
-#~ "ينصح جدًا بأخذ نسخة احتياطية من أي ملفات مهمة قبل المواصلة.\n"
-
-#, fuzzy
-#~| msgid "Remove Fonts"
-#~ msgid "Google Fonts"
-#~ msgstr "احذف الخطوط"

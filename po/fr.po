@@ -5,13 +5,14 @@
 # Julien Humbert <julroy67@gmail.com>, 2020.
 # Laurent DÉRÉDEC <images-ld@gmx.fr>, 2021.
 # Alexandre ZANNI <alexandre.zanni@hotmail.fr>, 2022.
+# Quentin Poterek <quentin.poterek@outlook.fr>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-03-17 11:55+0000\n"
-"Last-Translator: Alexandre ZANNI <alexandre.zanni@hotmail.fr>\n"
+"PO-Revision-Date: 2022-09-23 12:20+0000\n"
+"Last-Translator: Quentin Poterek <quentin.poterek@outlook.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/fr/>\n"
 "Language: fr\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -550,15 +551,15 @@ msgstr "Ponctuation, Tiret"
 
 #: lib/unicode/unicode-info.c:258
 msgid "Punctuation, Close"
-msgstr ""
+msgstr "Ponctation, Fermeture"
 
 #: lib/unicode/unicode-info.c:260
 msgid "Punctuation, Final Quote"
-msgstr ""
+msgstr "Ponctuation, Guillemet fermant"
 
 #: lib/unicode/unicode-info.c:262
 msgid "Punctuation, Initial Quote"
-msgstr ""
+msgstr "Ponctuation, Guillemet ouvrant"
 
 #: lib/unicode/unicode-info.c:264
 msgid "Punctuation, Other"
@@ -574,7 +575,7 @@ msgstr "Symbole, monnaie"
 
 #: lib/unicode/unicode-info.c:270
 msgid "Symbol, Modifier"
-msgstr ""
+msgstr "Symbole, Modificateur"
 
 #: lib/unicode/unicode-info.c:272
 msgid "Symbol, Math"
@@ -598,7 +599,7 @@ msgstr "Séparateur, espace"
 
 #: src/font-manager/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
-msgstr ""
+msgstr "Simple gestionnaire de polices pour les environnements de bureau GTK+"
 
 #: src/font-manager/About.vala:35
 msgid ""
@@ -682,6 +683,8 @@ msgstr "Type de famille"
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
 msgstr ""
+"Seules les polices qui incluent les informations de classification Panose "
+"seront groupées ici."
 
 #: src/font-manager/Categories.vala:567
 #: src/font-manager/web/google/ui/google-font-filters.ui:346
@@ -690,7 +693,7 @@ msgstr "Toutes"
 
 #: src/font-manager/Categories.vala:567
 msgid "No Fit"
-msgstr ""
+msgstr "Aucune correspondance"
 
 #: src/font-manager/Categories.vala:567
 msgid "Text and Display"
@@ -729,7 +732,7 @@ msgstr "Compresser…"
 
 #: src/font-manager/Collections.vala:454
 msgid "Rename…"
-msgstr ""
+msgstr "Renommer…"
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
@@ -813,6 +816,10 @@ msgid ""
 "Start search using %s to filter based on filepath.\n"
 "Start search using %s to filter based on characters."
 msgstr ""
+"Recherche des noms de police, insensible à la casse.\n"
+"\n"
+"Commencer la recherche par %s pour filtrer selon le chemin du fichier.\n"
+"Commencer la recherche par %s pour filtrer selon les caractères."
 
 #: src/font-manager/FontList.vala:68
 #: src/font-manager/web/google/FontList.vala:65
@@ -822,12 +829,11 @@ msgstr "Tout réduire"
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:416
-#, fuzzy, c-format
-#| msgid "Clear selected filter"
+#, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "Effacer le filtre selectionné"
-msgstr[1] "Effacer le filtre selectionné"
+msgstr[0] "%i élément sélectionné"
+msgstr[1] "%i éléments sélectionnés"
 
 #: src/font-manager/FontList.vala:517
 msgid "Copy Location"
@@ -838,16 +844,12 @@ msgid "Show in Folder"
 msgstr "Afficher dans le dossier"
 
 #: src/font-manager/FontList.vala:583
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Enable selected items"
-msgstr "Effacer le filtre selectionné"
+msgstr "Activer les éléments sélectionnés"
 
 #: src/font-manager/FontList.vala:585
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Disable selected items"
-msgstr "Effacer le filtre selectionné"
+msgstr "Désactiver les éléments sélectionnés"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
@@ -866,21 +868,19 @@ msgstr "Gérer"
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrikaans"
 
 #: src/font-manager/Orthographies.vala:32
 msgid "Ahom"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:33
-#, fuzzy
 msgid "Aleut Cyrillic"
-msgstr "cyrillique"
+msgstr "Aléoutien Cyrillique"
 
 #: src/font-manager/Orthographies.vala:34
-#, fuzzy
 msgid "Aleut Latin"
-msgstr "latin"
+msgstr "Aléoutien Latin"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
@@ -893,16 +893,15 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:37
 msgid "Armenian"
-msgstr ""
+msgstr "Arménien"
 
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
-msgstr ""
+msgstr "Astronomie"
 
 #: src/font-manager/Orthographies.vala:39
-#, fuzzy
 msgid "Balinese"
-msgstr "japonais"
+msgstr "Balinais"
 
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
@@ -946,7 +945,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:49
 msgid "Unified Canadian Aboriginal Syllabics"
-msgstr ""
+msgstr "Syllabaire Autochtone Canadien Unifié"
 
 #: src/font-manager/Orthographies.vala:50
 #, fuzzy
@@ -955,7 +954,7 @@ msgstr "Variantes"
 
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
-msgstr ""
+msgstr "Catalan"
 
 #: src/font-manager/Orthographies.vala:52
 msgid "Central European"
@@ -972,44 +971,44 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:55
 #: src/font-manager/web/google/Language.vala:34
 msgid "Cherokee"
-msgstr ""
+msgstr "Cherokee"
 
 #: src/font-manager/Orthographies.vala:56
 msgid "Chess Symbols"
-msgstr ""
+msgstr "Symboles des échecs"
 
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
 msgid "CJK Unified"
-msgstr ""
+msgstr "Sinogrammes unifiés"
 
 #: src/font-manager/Orthographies.vala:60
 msgid "CJK Unified Extension A"
-msgstr ""
+msgstr "Sinogrammes Unifiés Extension A"
 
 #: src/font-manager/Orthographies.vala:61
 msgid "CJK Unified Extension B"
-msgstr ""
+msgstr "Sinogrammes Unifiés Extension B"
 
 #: src/font-manager/Orthographies.vala:62
 msgid "CJK Unified Extension C"
-msgstr ""
+msgstr "Sinogrammes Unifiés Extension C"
 
 #: src/font-manager/Orthographies.vala:63
 msgid "CJK Unified Extension D"
-msgstr ""
+msgstr "Sinogrammes Unifiés Extension D"
 
 #: src/font-manager/Orthographies.vala:64
 msgid "CJK Unified Extension E"
-msgstr ""
+msgstr "Sinogrammes Unifiés Extension E"
 
 #: src/font-manager/Orthographies.vala:65
 msgid "CJK Compatibility Ideographs"
-msgstr ""
+msgstr "Sinogrammes de compatibilité"
 
 #: src/font-manager/Orthographies.vala:66
 msgid "CJK Compatibility Ideographs Supplement"
-msgstr ""
+msgstr "Supplément des sinogrammes de compatibilité"
 
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
@@ -1021,9 +1020,8 @@ msgid "Coptic"
 msgstr ""
 
 #: src/font-manager/Orthographies.vala:71
-#, fuzzy
 msgid "Currencies"
-msgstr "Préférences"
+msgstr "Devises"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"

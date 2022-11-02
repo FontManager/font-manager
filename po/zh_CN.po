@@ -24,13 +24,14 @@
 # Eric <alchemillatruth@purelymail.com>, 2022.
 # joe <ourmicroid@outlook.com>, 2022.
 # poi <erbaotao@outlook.com>, 2022.
+# Jason Clermont <lunme1008@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-03-22 01:24+0000\n"
-"Last-Translator: poi <erbaotao@outlook.com>\n"
+"PO-Revision-Date: 2022-09-04 05:19+0000\n"
+"Last-Translator: Jason Clermont <lunme1008@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -38,7 +39,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.14.1-dev\n"
 
 # Not translate very good, just for use.
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
@@ -56,8 +57,7 @@ msgid ""
 "Font Manager is intended to provide a way for average users to easily manage "
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
-msgstr ""
-"Font Manager旨在为普通用户提供一种轻松管理桌面字体的方法，而无需借助命令行工"
+msgstr "Font Manager 旨在为普通用户提供一种轻松管理桌面字体的方法，而无需借助命令行工"
 "具或手工编辑配置文件。"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
@@ -100,9 +100,8 @@ msgid ""
 "Font Viewer allows previewing font files prior to installation. It features "
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
-msgstr ""
-"字体查看器允许在安装前预览字体文件。它提供了几种预览字体文件以及字符映射的方"
-"法，并显示字体属性和许可证详细信息。"
+msgstr "字体查看器允许在安装前预览字体文件。它提供了几种预览字体文件以及字符映射的方"
+"法，并显示字体属性和许可协议详细信息。"
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
@@ -139,7 +138,7 @@ msgstr "预览"
 #: lib/common/font-manager-font-preview.c:87
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
 msgid "Waterfall"
-msgstr "瀑布"
+msgstr "字号瀑布"
 
 #: lib/common/font-manager-fontconfig.c:709
 #: src/font-manager/web/google/Weight.vala:65
@@ -314,19 +313,19 @@ msgstr "可编辑的嵌入 | 无子集"
 
 #: lib/common/font-manager-freetype.c:302
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
-msgstr "预览和打印嵌入|仅位图嵌入"
+msgstr "预览和打印嵌入 | 仅位图嵌入"
 
 #: lib/common/font-manager-freetype.c:304
 msgid "Editable Embedding | Bitmap Embedding Only"
-msgstr "可编辑的嵌入|仅位图嵌入"
+msgstr "可编辑的嵌入 | 仅位图嵌入"
 
 #: lib/common/font-manager-freetype.c:306
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr "预览和打印嵌入|无子集|仅位图嵌入"
+msgstr "预览和打印嵌入 | 无子集 | 仅位图嵌入"
 
 #: lib/common/font-manager-freetype.c:308
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr "可编辑的嵌入|无子集|仅位图嵌入"
+msgstr "可编辑的嵌入 | 无子集 | 仅位图嵌入"
 
 #: lib/common/font-manager-freetype.c:310
 msgid "Installable Embedding"
@@ -379,7 +378,7 @@ msgstr "属性"
 #: lib/common/font-manager-preview-pane.c:574
 #: src/font-manager/Categories.vala:541
 msgid "License"
-msgstr "许可证"
+msgstr "许可协议"
 
 #: lib/common/font-manager-preview-pane.c:454
 msgid "Search available characters"
@@ -481,123 +480,123 @@ msgstr "<未分配>"
 
 #: lib/unicode/unicode-info.c:222
 msgid "Other, Control"
-msgstr "其他，控制"
+msgstr "其他，C0 与 C1 控制字符"
 
 #: lib/unicode/unicode-info.c:224
 msgid "Other, Format"
-msgstr "其他, 格式"
+msgstr "其他，格式控制符"
 
 #: lib/unicode/unicode-info.c:226
 msgid "Other, Not Assigned"
-msgstr "其他，未指定"
+msgstr "其他，保留码位与非字符"
 
 #: lib/unicode/unicode-info.c:228
 msgid "Other, Private Use"
-msgstr "其他，私人使用"
+msgstr "其他，私人使用字符"
 
 #: lib/unicode/unicode-info.c:230
 msgid "Other, Surrogate"
-msgstr ""
+msgstr "其他，代理对字符"
 
 #: lib/unicode/unicode-info.c:232
 msgid "Letter, Lowercase"
-msgstr ""
+msgstr "字母，小写"
 
 #: lib/unicode/unicode-info.c:234
 msgid "Letter, Modifier"
-msgstr ""
+msgstr "字母，修饰符号"
 
 #: lib/unicode/unicode-info.c:236
 msgid "Letter, Other"
-msgstr ""
+msgstr "字母，其他表音文字与表意文字等"
 
 #: lib/unicode/unicode-info.c:238
 msgid "Letter, Titlecase"
-msgstr ""
+msgstr "字母，第一部分大写的合成符"
 
 #: lib/unicode/unicode-info.c:240
 msgid "Letter, Uppercase"
-msgstr ""
+msgstr "字母，大写"
 
 #: lib/unicode/unicode-info.c:242
 msgid "Mark, Spacing Combining"
-msgstr ""
+msgstr "符号，有间距的组合用附加符号"
 
 #: lib/unicode/unicode-info.c:244
 msgid "Mark, Enclosing"
-msgstr ""
+msgstr "符号，全包围的组合用附加符号"
 
 #: lib/unicode/unicode-info.c:246
 msgid "Mark, Non-Spacing"
-msgstr ""
+msgstr "符号，无间距的组合用附加符号"
 
 #: lib/unicode/unicode-info.c:248
 msgid "Number, Decimal Digit"
-msgstr ""
+msgstr "数字，十进制数字"
 
 #: lib/unicode/unicode-info.c:250
 msgid "Number, Letter"
-msgstr ""
+msgstr "数字，有字母特征的数字"
 
 #: lib/unicode/unicode-info.c:252
 msgid "Number, Other"
-msgstr ""
+msgstr "数字，其他"
 
 #: lib/unicode/unicode-info.c:254
 msgid "Punctuation, Connector"
-msgstr ""
+msgstr "标点符号，连接字符的连线"
 
 #: lib/unicode/unicode-info.c:256
 msgid "Punctuation, Dash"
-msgstr ""
+msgstr "标点符号，破折号、连接号、连字符等记号"
 
 #: lib/unicode/unicode-info.c:258
 msgid "Punctuation, Close"
-msgstr ""
+msgstr "标点符号，成对的符号中表示结尾的那个"
 
 #: lib/unicode/unicode-info.c:260
 msgid "Punctuation, Final Quote"
-msgstr ""
+msgstr "标点符号，后引号"
 
 #: lib/unicode/unicode-info.c:262
 msgid "Punctuation, Initial Quote"
-msgstr ""
+msgstr "标点符号，前引号"
 
 #: lib/unicode/unicode-info.c:264
 msgid "Punctuation, Other"
-msgstr ""
+msgstr "标点符号，其他记号"
 
 #: lib/unicode/unicode-info.c:266
 msgid "Punctuation, Open"
-msgstr ""
+msgstr "标点符号，成对的符号中表示开始的那个"
 
 #: lib/unicode/unicode-info.c:268
 msgid "Symbol, Currency"
-msgstr ""
+msgstr "符号，货币符号"
 
 #: lib/unicode/unicode-info.c:270
 msgid "Symbol, Modifier"
-msgstr ""
+msgstr "符号，无字母特征的修饰符号"
 
 #: lib/unicode/unicode-info.c:272
 msgid "Symbol, Math"
-msgstr ""
+msgstr "符号，数学用"
 
 #: lib/unicode/unicode-info.c:274
 msgid "Symbol, Other"
-msgstr ""
+msgstr "符号，其他"
 
 #: lib/unicode/unicode-info.c:276
 msgid "Separator, Line"
-msgstr ""
+msgstr "间隔符，行分隔"
 
 #: lib/unicode/unicode-info.c:278
 msgid "Separator, Paragraph"
-msgstr ""
+msgstr "间隔符，段分隔"
 
 #: lib/unicode/unicode-info.c:280
 msgid "Separator, Space"
-msgstr ""
+msgstr "间隔符，非零宽空格字符"
 
 #: src/font-manager/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
@@ -745,7 +744,7 @@ msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
 msgstr ""
-"通过单击 + 按钮 \n"
+"通过单击 + 按钮\n"
 "保存当前比较"
 
 #: src/font-manager/Dialogs.vala:60
@@ -840,7 +839,7 @@ msgstr "在文件夹中显示"
 
 #: src/font-manager/FontList.vala:583
 msgid "Enable selected items"
-msgstr "启动所选项目"
+msgstr "启用所选项目"
 
 #: src/font-manager/FontList.vala:585
 msgid "Disable selected items"
@@ -863,24 +862,24 @@ msgstr "管理"
 
 #: src/font-manager/Orthographies.vala:31
 msgid "Afrikaans"
-msgstr "南非荷兰语"
+msgstr "阿非利堪斯语字符"
 
 #: src/font-manager/Orthographies.vala:32
 msgid "Ahom"
-msgstr ""
+msgstr "阿洪姆字母"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Aleut Cyrillic"
-msgstr "西里尔语"
+msgstr "阿留申语西里尔字母"
 
 #: src/font-manager/Orthographies.vala:34
 msgid "Aleut Latin"
-msgstr ""
+msgstr "阿留申拉丁字母"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
 msgid "Arabic"
-msgstr "阿拉伯"
+msgstr "阿拉伯字母"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
@@ -888,7 +887,7 @@ msgstr "古希腊字母"
 
 #: src/font-manager/Orthographies.vala:37
 msgid "Armenian"
-msgstr "亚美尼亚"
+msgstr "亚美尼亚字母"
 
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
@@ -966,7 +965,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:56
 msgid "Chess Symbols"
-msgstr "象棋符号"
+msgstr "国际象棋符号"
 
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
@@ -1043,7 +1042,7 @@ msgstr ""
 #. { "Euro", "Euro" },
 #: src/font-manager/Orthographies.vala:82
 msgid "Farsi"
-msgstr "波斯语"
+msgstr "波斯语字符"
 
 #: src/font-manager/Orthographies.vala:83
 msgid "Food and Drink"
@@ -1149,7 +1148,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:108
 msgid "Lao"
-msgstr "老挝"
+msgstr "老挝语字母"
 
 #: src/font-manager/Orthographies.vala:109
 msgid "Latin Ligatures"
@@ -1235,7 +1234,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:134
 msgid "Ogham"
-msgstr "欧甘文"
+msgstr "欧甘字母"
 
 #: src/font-manager/Orthographies.vala:135
 msgid "Ol Chiki"
@@ -1243,7 +1242,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:136
 msgid "Old Italic"
-msgstr "古意大利文"
+msgstr "古意大利字母"
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
@@ -1393,7 +1392,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:172
 msgid "Venda"
-msgstr "文达语"
+msgstr "文达语字符"
 
 #: src/font-manager/Orthographies.vala:173
 #: src/font-manager/web/google/Language.vala:60
@@ -1511,7 +1510,7 @@ msgstr "根据支持的拼写体系进行过滤"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
-msgstr "未排序"
+msgstr "未分类"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
@@ -1792,7 +1791,7 @@ msgstr "通过拖放到此区域或单击工具栏上的按钮来添加新的字
 
 #: src/font-manager/web/google/FontList.vala:56
 msgid "Case insensitive search of family names."
-msgstr "搜索字体家族名称不区分大小写。"
+msgstr "搜索字体家族名称（不区分大小写）。"
 
 #: src/font-manager/web/google/GoogleFonts.vala:129
 msgid "Error procesing data"
@@ -1813,7 +1812,7 @@ msgstr "客户端错误"
 #: src/font-manager/web/google/GoogleFonts.vala:142
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
-msgstr "尝试重新启动应用程序。如果问题仍然存在，请提交一个 bug。"
+msgstr "尝试重新启动应用程序。如果问题仍然存在，请报告 bug。"
 
 #: src/font-manager/web/google/GoogleFonts.vala:145
 msgid "Server Error"
@@ -2022,7 +2021,7 @@ msgstr "丢弃"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:30
 msgid "Running applications may require a restart to reflect any changes."
-msgstr "任何更改在运行的应用程序中实现，都可能需要重启应用。"
+msgstr "任何更改要想生效，都可能需要重启运行中的应用程序。"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:40
 msgid "Save"
@@ -2114,7 +2113,7 @@ msgstr "切换到标准预览"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:101
 msgid "Switch to Waterfall preview"
-msgstr "切换到瀑布预览"
+msgstr "切换到字号瀑布，预览字体"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:108
 msgid "Switch to Body Text preview"
@@ -2216,39 +2215,39 @@ msgstr "自定义动作"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:25
 msgid "Display line size in Waterfall Preview"
-msgstr ""
+msgstr "在预览瀑布里显示字号"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:74
 msgid "Waterfall Preview Size Settings"
-msgstr "瀑布预览字号的设置"
+msgstr "预览瀑布字号的设置"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:93
 msgid "Up to 48 points (Linear Scaling)"
-msgstr "线性调大至 48 点"
+msgstr "线性增大至 48 点"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:94
 msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr "以 1.1 为公比，等比调大至 72 点"
+msgstr "以 1.1 为公比，等比增大至 72 点"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:95
 msgid "Up to 96 points (Linear Scaling)"
-msgstr "线性调大至 96 点"
+msgstr "线性增大至 96 点"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:96
 msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr "以 1.1 为公比，等比调大至 96 点"
+msgstr "以 1.1 为公比，等比增大至 96 点"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:97
 msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr "以 1.2 为公比，等比调大至 120 点"
+msgstr "以 1.2 为公比，等比增大至 120 点"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:98
 msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr "以 1.3 为公比，等比调大至 144 点"
+msgstr "以 1.3 为公比，等比增大至 144 点"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:99
 msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr "以 1.4 为公比，等比调大至 192 点"
+msgstr "以 1.4 为公比，等比增大至 192 点"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:100
 msgid "Custom Size Settings"
@@ -2256,7 +2255,7 @@ msgstr "自定义尺寸设置"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:142
 msgid "Minimum Waterfall Preview Point Size"
-msgstr "瀑布预览的最小字号"
+msgstr "预览瀑布的最小字号"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:155
 msgid "8.0"
@@ -2264,7 +2263,7 @@ msgstr "8.0"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:174
 msgid "Maximum Waterfall Preview Point Size"
-msgstr "瀑布预览的最大字号"
+msgstr "预览瀑布的最大字号"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:185
 msgid "Higher values may adversely affect performance"
@@ -2276,7 +2275,7 @@ msgstr "48.0"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:207
 msgid "Waterfall Preview Point Size Common Ratio"
-msgstr "瀑布预览字号的公比"
+msgstr "预览瀑布字号的公比"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:220
 msgid "1.0"
@@ -2284,7 +2283,7 @@ msgstr "1.0"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
-msgstr "最新的"
+msgstr "最新"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:54
 msgid "Most Popular"

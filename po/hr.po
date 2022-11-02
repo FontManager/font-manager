@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-02-14 00:56+0000\n"
+"PO-Revision-Date: 2022-08-09 10:17+0000\n"
 "Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hr/>\n"
@@ -35,7 +35,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.14-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -144,7 +144,7 @@ msgstr "Tanki"
 
 #: lib/common/font-manager-fontconfig.c:711
 msgid "Ultra-Light"
-msgstr "Ultra-Svijetli"
+msgstr "Ultra-svijetli"
 
 #: lib/common/font-manager-fontconfig.c:713
 #: lib/common/font-manager-fontconfig.c:1066
@@ -168,7 +168,7 @@ msgstr "Srednji"
 
 #: lib/common/font-manager-fontconfig.c:721
 msgid "Semi-Bold"
-msgstr "Polu-Debeli"
+msgstr "Polu-debeli"
 
 #: lib/common/font-manager-fontconfig.c:723
 #: src/font-manager/web/google/Weight.vala:77
@@ -177,7 +177,7 @@ msgstr "Debeli"
 
 #: lib/common/font-manager-fontconfig.c:725
 msgid "Ultra-Bold"
-msgstr "Ultra-Debeli"
+msgstr "Ultra-debeli"
 
 #: lib/common/font-manager-fontconfig.c:727
 msgid "Heavy"
@@ -185,7 +185,7 @@ msgstr "Masni"
 
 #: lib/common/font-manager-fontconfig.c:729
 msgid "Ultra-Heavy"
-msgstr "Ultra-Masni"
+msgstr "Ultra-masni"
 
 #: lib/common/font-manager-fontconfig.c:804
 #: src/font-manager/web/google/WebFont.vala:156
@@ -198,11 +198,11 @@ msgstr "Ukošeni"
 
 #: lib/common/font-manager-fontconfig.c:844
 msgid "Ultra-Condensed"
-msgstr "Ultra-Uski"
+msgstr "Ultra-uski"
 
 #: lib/common/font-manager-fontconfig.c:846
 msgid "Extra-Condensed"
-msgstr "Jako-Uski"
+msgstr "Jako-uski"
 
 #: lib/common/font-manager-fontconfig.c:848
 msgid "Condensed"
@@ -210,11 +210,11 @@ msgstr "Uski"
 
 #: lib/common/font-manager-fontconfig.c:850
 msgid "Semi-Condensed"
-msgstr "Polu-Uski"
+msgstr "Polu-uski"
 
 #: lib/common/font-manager-fontconfig.c:852
 msgid "Semi-Expanded"
-msgstr "Polu-Široki"
+msgstr "Polu-široki"
 
 #: lib/common/font-manager-fontconfig.c:854
 msgid "Expanded"
@@ -222,11 +222,11 @@ msgstr "Široki"
 
 #: lib/common/font-manager-fontconfig.c:856
 msgid "Extra-Expanded"
-msgstr "Jako-Široki"
+msgstr "Jako-široki"
 
 #: lib/common/font-manager-fontconfig.c:858
 msgid "Ultra-Expanded"
-msgstr "Ultra-Široki"
+msgstr "Ultra-široki"
 
 #: lib/common/font-manager-fontconfig.c:927
 msgid "Proportional"
@@ -379,7 +379,7 @@ msgstr "Licenca"
 
 #: lib/common/font-manager-preview-pane.c:454
 msgid "Search available characters"
-msgstr "Pretraži dostupne znakove"
+msgstr "Traži dostupne znakove"
 
 #: lib/common/font-manager-properties-pane.c:80
 msgid "PostScript Name"
@@ -449,11 +449,11 @@ msgstr "Izvor nije dostupan"
 
 #: lib/unicode/unicode-info.c:191
 msgid "<Non Private Use High Surrogate>"
-msgstr "<Ne-privatna upotreba gornjih zamjenskih znakova>"
+msgstr "<Ne-privatna upotreba, gornji zamjenski znakovi>"
 
 #: lib/unicode/unicode-info.c:193
 msgid "<Private Use High Surrogate>"
-msgstr "<Privatna upotreba gornjih zamjenskih znakova>"
+msgstr "<Privatna upotreba, gornji zamjenski znakovi>"
 
 #: lib/unicode/unicode-info.c:195
 msgid "<Low Surrogate>"
@@ -465,11 +465,11 @@ msgstr "<Privatna upotreba>"
 
 #: lib/unicode/unicode-info.c:199
 msgid "<Plane 15 Private Use>"
-msgstr "<Ploča 15 privatne upotrebe>"
+msgstr "<Ploča 15, privatna upotreba>"
 
 #: lib/unicode/unicode-info.c:201
 msgid "<Plane 16 Private Use>"
-msgstr "<Ploča 16 privatne upotrebe>"
+msgstr "<Ploča 16, privatna upotreba>"
 
 #: lib/unicode/unicode-info.c:205
 msgid "<not assigned>"
