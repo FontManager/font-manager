@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-05-19 09:18+0000\n"
+"PO-Revision-Date: 2022-11-18 11:48+0000\n"
 "Last-Translator: Andreas Klostermaier <andreas.klostermaier@appendx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/de/>\n"
@@ -35,7 +35,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -624,25 +624,25 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"     Dieses Programm ist eine freie Software: Du kannst es weitergeben und/"
-"oder\n"
-"     modifizieren unter den Bedingungen der GNU General Public License, so "
-"wie\n"
-"     von der Free Software Foundation veröffentlicht, entweder Version 3 der "
-"Lizenz,\n"
-"     oder (nach Deiner Wahl) eine neuere Version.\n"
+"    Dieses Programm ist freie Software: es kann unter den Bedingungen der\n"
+"     GNU General Public License – wie von der Free Software Foundation "
+"veröffentlicht –\n"
+"     entweder in Version 3 der Lizenz, oder optional in einer neueren "
+"Version,\n"
+"     verbreitet und verändert werden.\n"
 "\n"
-"     Dieses Programm wird verbreitet, in der Hoffnung, dass es nützlich sein "
-"wird,\n"
-"     jedoch OHNE GARANTIE; auch ohne jegliche implizite Garantie von\n"
-"     MARKTGÄNGIGKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. \n"
-"     Siehe GNU General Public License für weitere Details.\n"
+"     Dieses Programm wird in der Hoffnung vertrieben, dass es sich als "
+"nützlich\n"
+"     erweisen wird, jedoch OHNE JEGLICHE GEWÄHR und ohne Zusicherungen\n"
+"     ALLGEMEINER GEBRAUCHSTAUGLICHKEIT oder EIGNUNG FÜR EINEN BESTIMMTEN "
+"ZWECK. \n"
+"     Weitere Details finden sich in der GNU General Public License.\n"
 "\n"
-"     Zusammen mit diesem Programm, solltest Du eine Kopie der\n"
-"     GNU General Public License erhalten haben.\n"
+"     Eine Kopie der GNU General Public License sollte sich im Lieferumfang\n"
+"     dieses Programms befinden.\n"
 "\n"
 "     Wenn nicht, siehe <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
-"     "
+"    "
 
 #. Translators : Please feel free to add yourself to the list of translators,
 #. but do not modify or remove previous entries. New entries should be separated
@@ -652,7 +652,8 @@ msgid "translator-credits"
 msgstr ""
 "PF4Public\n"
 "Copied by Zanata <copied-by-zanata@zanata.org>\n"
-"Milo Ivir <mail@milotype.de>, 2019, 2020"
+"Milo Ivir <mail@milotype.de>, 2019, 2020\n"
+"Andreas Klostermaier, 2021, 2022"
 
 #: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
@@ -891,14 +892,12 @@ msgid "Manage"
 msgstr "Verwalten"
 
 #: src/font-manager/Orthographies.vala:31
-#, fuzzy
 msgid "Afrikaans"
 msgstr "Afrikaans"
 
 #: src/font-manager/Orthographies.vala:32
-#, fuzzy
 msgid "Ahom"
-msgstr "Ahom"
+msgstr "Ahom-Schrift"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Aleut Cyrillic"
@@ -934,9 +933,8 @@ msgid "Baltic"
 msgstr "Baltisch"
 
 #: src/font-manager/Orthographies.vala:41
-#, fuzzy
 msgid "Bamum"
-msgstr "Bamum"
+msgstr "Bamun-Schrift"
 
 #: src/font-manager/Orthographies.vala:42
 msgid "Basic Cyrillic"
@@ -1048,7 +1046,7 @@ msgstr "Währungen"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
-msgstr ""
+msgstr "Kyprische Schrift"
 
 #: src/font-manager/Orthographies.vala:73
 #: src/font-manager/web/google/Language.vala:40
@@ -1057,7 +1055,7 @@ msgstr "Devanagari"
 
 #: src/font-manager/Orthographies.vala:74
 msgid "Dutch"
-msgstr ""
+msgstr "Holländisch"
 
 #: src/font-manager/Orthographies.vala:75
 msgid "Egyptian Hieroglyphs"
@@ -1075,7 +1073,7 @@ msgstr "Äthiopisch"
 #. { "Euro", "Euro" },
 #: src/font-manager/Orthographies.vala:82
 msgid "Farsi"
-msgstr "Farsi"
+msgstr "Persisch"
 
 #: src/font-manager/Orthographies.vala:83
 msgid "Food and Drink"
@@ -1113,7 +1111,7 @@ msgstr "Koreanisches Alphabet"
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hanunó'o"
-msgstr ""
+msgstr "Hanunó'o-Schrift (Mangyan)"
 
 #: src/font-manager/Orthographies.vala:92
 #: src/font-manager/web/google/Language.vala:45
@@ -1127,7 +1125,7 @@ msgstr "IPA"
 
 #: src/font-manager/Orthographies.vala:94
 msgid "Igbo Onwu"
-msgstr ""
+msgstr "Igbo (Onwu-Alphabet)"
 
 #: src/font-manager/Orthographies.vala:96
 msgid "Korean Jamo"
@@ -1147,7 +1145,7 @@ msgstr "Japanisch Joyo"
 
 #: src/font-manager/Orthographies.vala:100
 msgid "Kaithi"
-msgstr ""
+msgstr "Kaithi-Schrift"
 
 #: src/font-manager/Orthographies.vala:101
 msgid "Japanese Kana"
@@ -1160,7 +1158,7 @@ msgstr "Kannada"
 
 #: src/font-manager/Orthographies.vala:103
 msgid "Kayah Li"
-msgstr ""
+msgstr "Kayah Li"
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kazakh"
@@ -1168,7 +1166,7 @@ msgstr "Kasachisch"
 
 #: src/font-manager/Orthographies.vala:105
 msgid "Kharoshthi"
-msgstr ""
+msgstr "Kharoshthi-Schrift"
 
 #: src/font-manager/Orthographies.vala:106
 #: src/font-manager/web/google/Language.vala:48
@@ -1181,7 +1179,7 @@ msgstr "Japanisch Kokuji"
 
 #: src/font-manager/Orthographies.vala:108
 msgid "Lao"
-msgstr ""
+msgstr "Laotisch"
 
 #: src/font-manager/Orthographies.vala:109
 msgid "Latin Ligatures"
@@ -1189,11 +1187,11 @@ msgstr "Lateinische Ligaturen"
 
 #: src/font-manager/Orthographies.vala:110
 msgid "Lepcha"
-msgstr ""
+msgstr "Lepcha-Schrift"
 
 #: src/font-manager/Orthographies.vala:111
 msgid "Limbu"
-msgstr ""
+msgstr "Limbu-Schrift"
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Ideograms"
@@ -1226,23 +1224,23 @@ msgstr "Mathematische Operatoren"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Meetei Mayak"
-msgstr ""
+msgstr "Meitei"
 
 #: src/font-manager/Orthographies.vala:120
 msgid "Mende Kikakui"
-msgstr ""
+msgstr "Mende-Schrift (Kikakui)"
 
 #: src/font-manager/Orthographies.vala:121
 msgid "MeroiticCursive"
-msgstr ""
+msgstr "Meroitisch-demotisch"
 
 #: src/font-manager/Orthographies.vala:122
 msgid "Meroitic Hieroglyphs"
-msgstr ""
+msgstr "Meroitische Hieroglyphen"
 
 #: src/font-manager/Orthographies.vala:123
 msgid "Miao"
-msgstr ""
+msgstr "Miao-Schriften"
 
 #: src/font-manager/Orthographies.vala:124
 msgid "Mongolian"
@@ -1259,19 +1257,19 @@ msgstr "Myanmar"
 
 #: src/font-manager/Orthographies.vala:132
 msgid "New Tai Lue"
-msgstr ""
+msgstr "Neu Tai Lü"
 
 #: src/font-manager/Orthographies.vala:133
 msgid "N’Ko"
-msgstr ""
+msgstr "N’Ko"
 
 #: src/font-manager/Orthographies.vala:134
 msgid "Ogham"
-msgstr ""
+msgstr "Ogham-Schrift"
 
 #: src/font-manager/Orthographies.vala:135
 msgid "Ol Chiki"
-msgstr ""
+msgstr "Ol Chiki"
 
 #: src/font-manager/Orthographies.vala:136
 msgid "Old Italic"
@@ -1279,7 +1277,7 @@ msgstr "Alte Kursiv"
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
-msgstr ""
+msgstr "Altsüdarabisch"
 
 #: src/font-manager/Orthographies.vala:138
 #: src/font-manager/web/google/Language.vala:54
@@ -1288,23 +1286,23 @@ msgstr "Oriya"
 
 #: src/font-manager/Orthographies.vala:139
 msgid "Osmanya"
-msgstr ""
+msgstr "Osmaniya-Schrift"
 
 #: src/font-manager/Orthographies.vala:140
 msgid "Pan African Latin"
-msgstr ""
+msgstr "Afrikanisches Referenzalphabet"
 
 #: src/font-manager/Orthographies.vala:141
 msgid "Pashto"
-msgstr ""
+msgstr "Paschtunisch"
 
 #: src/font-manager/Orthographies.vala:142
 msgid "Phags Pa"
-msgstr ""
+msgstr "Phagpa-Schrift"
 
 #: src/font-manager/Orthographies.vala:143
 msgid "Pinyin"
-msgstr ""
+msgstr "Pinyin"
 
 #: src/font-manager/Orthographies.vala:144
 msgid "Polynesian"
@@ -1316,7 +1314,7 @@ msgstr "Polytonisch griechisch"
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Rejang"
-msgstr ""
+msgstr "Rejang-Schrift"
 
 #: src/font-manager/Orthographies.vala:147
 msgid "Romanian"
@@ -1328,15 +1326,15 @@ msgstr "Runen"
 
 #: src/font-manager/Orthographies.vala:149
 msgid "Saurashtra"
-msgstr ""
+msgstr "Saurashtri"
 
 #: src/font-manager/Orthographies.vala:150
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "Vereinfachtes Chinesisch"
 
 #: src/font-manager/Orthographies.vala:151
 msgid "Sindhi"
-msgstr ""
+msgstr "Sindhi"
 
 #: src/font-manager/Orthographies.vala:152
 #: src/font-manager/web/google/Language.vala:55
@@ -1345,31 +1343,31 @@ msgstr "Singhalesisch"
 
 #: src/font-manager/Orthographies.vala:153
 msgid "South Korean Hanja"
-msgstr ""
+msgstr "Südkoreanische Han-Schrift"
 
 #: src/font-manager/Orthographies.vala:154
 msgid "Sundanese"
-msgstr ""
+msgstr "Sundanesisch"
 
 #: src/font-manager/Orthographies.vala:155
 msgid "Syloti Nagri"
-msgstr ""
+msgstr "Sylheti Nagari"
 
 #: src/font-manager/Orthographies.vala:156
 msgid "Syriac"
-msgstr ""
+msgstr "Syrisch"
 
 #: src/font-manager/Orthographies.vala:157
 msgid "Tai Le"
-msgstr ""
+msgstr "Tai-Le-Schrift"
 
 #: src/font-manager/Orthographies.vala:158
 msgid "Tai Tham (Lanna)"
-msgstr ""
+msgstr "Lan-Na-Schrift (Tai Tham)"
 
 #: src/font-manager/Orthographies.vala:159
 msgid "Tai Viet"
-msgstr ""
+msgstr "Tai-Viet-Schrift"
 
 #: src/font-manager/Orthographies.vala:160
 #: src/font-manager/web/google/Language.vala:56
@@ -1383,7 +1381,7 @@ msgstr "Telugisch"
 
 #: src/font-manager/Orthographies.vala:162
 msgid "Thaana"
-msgstr ""
+msgstr "Thaana-Alphabet"
 
 #: src/font-manager/Orthographies.vala:163
 #: src/font-manager/web/google/Language.vala:58
@@ -1397,11 +1395,11 @@ msgstr "Tibetisch"
 
 #: src/font-manager/Orthographies.vala:165
 msgid "Tifinagh"
-msgstr ""
+msgstr "Tifinagh-Schrift"
 
 #: src/font-manager/Orthographies.vala:166
 msgid "Traditional Chinese"
-msgstr ""
+msgstr "Traditionelles Chinesisch"
 
 #: src/font-manager/Orthographies.vala:167
 msgid "Turkish"
@@ -1409,19 +1407,19 @@ msgstr "Türkisch"
 
 #: src/font-manager/Orthographies.vala:168
 msgid "Uighur"
-msgstr ""
+msgstr "Uigurisch"
 
 #: src/font-manager/Orthographies.vala:169
 msgid "Urdu"
-msgstr ""
+msgstr "Urdu"
 
 #: src/font-manager/Orthographies.vala:170
 msgid "Vai"
-msgstr ""
+msgstr "Vai-Schrift"
 
 #: src/font-manager/Orthographies.vala:171
 msgid "Vedic Extensions"
-msgstr ""
+msgstr "Vedische Erweiterungen"
 
 #: src/font-manager/Orthographies.vala:172
 msgid "Venda"
@@ -1442,7 +1440,7 @@ msgstr "Yi"
 
 #: src/font-manager/Orthographies.vala:176
 msgid "Chinese Zhuyin Fuhao"
-msgstr ""
+msgstr "Zhuyin Fuhao"
 
 #. Translators : Coverage refers to the amount of support the font provides for an
 #. orthography. This will be displayed as "Coverage : XXX%" in the interface.
@@ -1641,6 +1639,14 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"\"Speichern\" erzeugt eine fontconfig-Konfigurationsdatei mit den oben "
+"aufgeführten Einstellungen.\n"
+"\n"
+"\"Verwerfen\" entfernt die Konfigurationsdatei und stellt die "
+"Grundeinstellungen wieder her.\n"
+"\n"
+"Hinweis: nicht alle Umgebungen und Anwendungen berücksichtigen diese "
+"Einstellungen."
 
 #: src/font-manager/preferences/Fontconfig.vala:204
 #: src/font-manager/preferences/Fontconfig.vala:282
@@ -1759,6 +1765,15 @@ msgid ""
 "To control where the filepath is inserted use FILEPATH as a placeholder.\n"
 "If FAMILY or STYLE are found in the argument list they will also be replaced."
 msgstr ""
+"Die hier angelegten Befehle werden dem Schriftlisten-Kontextmenü hinzugefügt."
+"\n"
+"\n"
+"Der Pfad für die ausgewählte Schrift wird als Vorgabe ans Ende der Parameter-"
+"Liste angefügt.\n"
+"Um den Einfügeort des Pfads zu beinflussen, kann die Variable FILEPATH als "
+"Platzhalter verwendet werden.\n"
+"Die Variablen FAMILY und STYLE in der Parameterliste werden ebenfalls "
+"ausgetauscht."
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "User Actions"
@@ -1811,6 +1826,13 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"Die Schriften aus allen hier aufgeführten Verzeichnissen werden in der "
+"Anwendung zur Verfügung gestellt.\n"
+"\n"
+"Sie sind in anderen Anwendungen nicht sichtbar, solange die Quelle nicht "
+"tatsächlich aktiviert wird. \n"
+"\n"
+"Hinweis: alle Umgebungen und Anwendungen befolgen diese Einstellungen."
 
 #: src/font-manager/preferences/UserSources.vala:162
 #: src/font-manager/ui/font-manager-user-data.ui:131
@@ -1928,6 +1950,8 @@ msgstr "Kein Sprachbeispiel ist für %s verfügbar"
 #: src/font-manager/web/google/Language.vala:83
 msgid "Please file an issue requesting an update to available samples."
 msgstr ""
+"Reichen Sie bitte einen Problembericht ein, in dem sie eine Aktualisierung "
+"auf verfügbare Muster anfragen."
 
 #: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Family"

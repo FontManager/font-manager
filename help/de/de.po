@@ -1,11 +1,12 @@
 # Milo Ivir <mail@milotype.de>, 2021.
 # Ettore Atalan <atalanttore@googlemail.com>, 2022.
+# Andreas Klostermaier <andreas.klostermaier@appendx.de>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2022-10-10 18:02+0000\n"
-"Last-Translator: Ettore Atalan <atalanttore@googlemail.com>\n"
+"PO-Revision-Date: 2023-01-20 14:32+0000\n"
+"Last-Translator: Andreas Klostermaier <andreas.klostermaier@appendx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/de/>\n"
 "Language: de\n"
@@ -13,12 +14,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.15.1\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
 msgstr ""
+"Dank an Übersetzer:\n"
+"Andreas Klostermaier andreas.klostermaier@appendx.de, 2022, 2023"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
@@ -189,7 +192,7 @@ msgstr "Darstellung einzelner Zeichen und ihrer Details"
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
 msgid "Character Map"
-msgstr "Zeichentabelle"
+msgstr "Zeichenübersicht"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
