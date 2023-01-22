@@ -3,13 +3,14 @@
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
 # nzgha <nzghafoss.ldxwe@slmail.me>, 2021.
 # Alberto Cañaveras <acmp@tuta.io>, 2021.
+# gallegonovato <fran-carro@hotmail.es>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2021-12-23 12:51+0000\n"
-"Last-Translator: Alberto Cañaveras <acmp@tuta.io>\n"
+"PO-Revision-Date: 2023-01-05 16:50+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
 "Language: es\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -839,12 +840,11 @@ msgstr "Contraer todo"
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:416
-#, fuzzy, c-format
-#| msgid "Clear selected filter"
+#, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "Borrar el filtro seleccionado"
-msgstr[1] "Borrar el filtro seleccionado"
+msgstr[0] "%i elemento seleccionado"
+msgstr[1] "%i elementos seleccionados"
 
 #: src/font-manager/FontList.vala:517
 msgid "Copy Location"
@@ -855,16 +855,12 @@ msgid "Show in Folder"
 msgstr "Mostrar en la carpeta"
 
 #: src/font-manager/FontList.vala:583
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Enable selected items"
-msgstr "Borrar el filtro seleccionado"
+msgstr "Habilitar elementos seleccionados"
 
 #: src/font-manager/FontList.vala:585
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Disable selected items"
-msgstr "Borrar el filtro seleccionado"
+msgstr "Desactivar elementos seleccionados"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
@@ -1014,14 +1010,12 @@ msgid "CJK Unified Extension E"
 msgstr "CJK Unificado Extensión E"
 
 #: src/font-manager/Orthographies.vala:65
-#, fuzzy
 msgid "CJK Compatibility Ideographs"
-msgstr "Ideogramas de compatibilidad CJK"
+msgstr "Ideogramas compatibles con CJK"
 
 #: src/font-manager/Orthographies.vala:66
-#, fuzzy
 msgid "CJK Compatibility Ideographs Supplement"
-msgstr "Suplemento de ideogramas de compatibilidad CJK"
+msgstr "Suplemento de ideogramas de compatibilidad con CJK"
 
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
@@ -1116,7 +1110,6 @@ msgid "IPA"
 msgstr "AFI"
 
 #: src/font-manager/Orthographies.vala:94
-#, fuzzy
 msgid "Igbo Onwu"
 msgstr "Igbo Onwu"
 
@@ -1129,7 +1122,6 @@ msgid "Javanese"
 msgstr "Javanés"
 
 #: src/font-manager/Orthographies.vala:98
-#, fuzzy
 msgid "Japanese Jinmeiyo"
 msgstr "Jinmeiyo japonés"
 
