@@ -111,6 +111,7 @@ create_value_label (FontManagerPropertiesPane *self, gint property)
 {
     GtkWidget *value = gtk_label_new(NULL);
     gtk_label_set_ellipsize(GTK_LABEL(value), PANGO_ELLIPSIZE_END);
+    gtk_label_set_selectable(GTK_LABEL(value), TRUE);
     gtk_widget_set_halign(value, GTK_ALIGN_START);
     gtk_widget_show(value);
     font_manager_widget_set_margin(value, FONT_MANAGER_DEFAULT_MARGIN);
