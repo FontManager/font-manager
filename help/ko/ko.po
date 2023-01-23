@@ -1,11 +1,12 @@
 # DNSE <kty5663@gmail.com>, 2022.
 # 이정희 <daemul72@gmail.com>, 2022.
+# JiYoung Park <pjiyoung4512@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2022-10-01 16:16+0000\n"
-"Last-Translator: 이정희 <daemul72@gmail.com>\n"
+"PO-Revision-Date: 2022-12-23 13:48+0000\n"
+"Last-Translator: JiYoung Park <pjiyoung4512@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/ko/>\n"
 "Language: ko\n"
@@ -13,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -216,7 +217,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "컬렉션"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12

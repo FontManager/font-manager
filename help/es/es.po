@@ -2,12 +2,13 @@
 # Toni Estevez <toni.estevez@gmail.com>, 2019. #zanata
 # Adolfo Jayme <fitoschido@gmail.com>, 2020. #zanata
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
+# gallegonovato <fran-carro@hotmail.es>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-03-18 09:18+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2023-01-11 17:52+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/es/>\n"
 "Language: es\n"
@@ -15,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.2-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -864,12 +865,12 @@ msgstr "Previsualice los archivos de tipografía de varios modos"
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:23
 msgid "View available font metadata"
-msgstr " Visualice los metadatos disponibles de las tipografías"
+msgstr "Ver metadatos de fuentes disponibles"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:28
 msgid "Install or remove fonts for your use"
-msgstr "Instale o elimine tipografías para su uso."
+msgstr "Instalar o desinstalar fuentes para su uso"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:33
@@ -924,10 +925,9 @@ msgid ""
 "application or this manual, please use the projects <link href=\"https://"
 "github.com/FontManager/master/issues\"> Issue Tracker </link>"
 msgstr ""
-"Para informar de un error o hacer una sugerencia respecto  a la aplicación "
-"<app>Gestor tipográfico</app> o a este manual utilice el <link href="
-"\"https://github.com/FontManager/master/issues\"> seguimiento de problemas </"
-"link> del proyecto"
+"Para informar errores o enviar sugerencias para <app>Font Manager</app> o "
+"este manual, utilice el <link href=\"https://github.com/FontManager/master/"
+"issues\"> sistema de seguimiento de problemas </link>"
 
 #. (itstool) path: info/desc
 #: C/font-manager-license.page:7
