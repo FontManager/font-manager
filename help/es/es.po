@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2023-01-11 17:52+0000\n"
+"PO-Revision-Date: 2023-01-26 01:03+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/es/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -1216,12 +1216,12 @@ msgstr "Formatos de archivo compatibles"
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:14
 msgid "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
-msgstr "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
+msgstr "<link href=\"https://es.wikipedia.org/wiki/TrueType\"> TrueType </link>"
 
 #. (itstool) path: item/title
 #: C/font-manager-supported-formats.page:21
 msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
-msgstr "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
+msgstr "<link href=\"https://es.wikipedia.org/wiki/OpenType\"> OpenType </link>"
 
 #. (itstool) path: info/desc
 #: C/index.page:6
