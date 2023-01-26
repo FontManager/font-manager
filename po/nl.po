@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the font-manager package.
 # Heimen Stoffels <vistausss@outlook.com>, 2021.
 # Heimen Stoffels <vistausss@fastmail.com>, 2021, 2022.
+# Philip Goto <philip.goto@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-02-12 06:55+0000\n"
-"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"PO-Revision-Date: 2023-01-26 01:03+0000\n"
+"Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/nl/>\n"
 "Language: nl\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -27,7 +28,7 @@ msgstr "Lettertypebeheer"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr "Een eenvoudige lettertypebeheertoepassing voor GTK+-werkomgevingen"
+msgstr "Een eenvoudige lettertypebeheer-app voor GTK-werkomgevingen"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
@@ -44,8 +45,8 @@ msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr ""
-"De toepassing in ontworpen voor de GNOME-werkomgeving, maar werkt ook prima "
-"binnen andere GTK+-werkomgevingen."
+"Hoewel de app is ontworpen voor de GNOME-desktopomgeving, werkt deze ook "
+"prima binnen andere GTK-desktopomgevingen."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
@@ -71,7 +72,7 @@ msgstr "Lettertypeweergave"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr "Een lettertypeweergavetoepassing voor GTK+-werkomgevingen"
+msgstr "Een lettertypeweergave-app voor GTK-desktopomgevingen"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
@@ -582,7 +583,7 @@ msgstr "Scheidingsteken, Spatie"
 
 #: src/font-manager/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
-msgstr "Een eenvoudige lettertypebeheertoepassing voor GTK+-werkomgevingen"
+msgstr "Een eenvoudige lettertypebeheer-app voor GTK-werkomgevingen"
 
 #: src/font-manager/About.vala:35
 msgid ""
@@ -1531,7 +1532,7 @@ msgstr "Vormgevingslettertype"
 
 #: src/font-manager/preferences/Desktop.vala:37
 msgid "Font used throughout interface."
-msgstr "Het lettertype dat in de toepassing wordt gebruikt."
+msgstr "Het lettertype dat in de app wordt gebruikt."
 
 #: src/font-manager/preferences/Desktop.vala:42
 msgid "Document Font"
@@ -1613,13 +1614,13 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
-"Klik op 'Opslaan' om een fontconfig-configuratie te genereren op basis van "
+"Klik op ‘Opslaan’ om een fontconfig-configuratie te genereren op basis van "
 "bovenstaande instellingen.\n"
 "\n"
-"Klik op 'Verwerpen' om het configuratiebestand te verwijderen en terug te "
+"Klik op ‘Verwerpen’ om het configuratiebestand te verwijderen en terug te "
 "vallen op de standaardinstellingen.\n"
 "\n"
-"Let op: niet alle werkomgevingen/toepassingen honoreren deze instellingen."
+"Let op: niet alle desktopomgevingen/apps honoreren deze instellingen."
 
 #: src/font-manager/preferences/Fontconfig.vala:204
 #: src/font-manager/preferences/Fontconfig.vala:282
@@ -1791,12 +1792,12 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
-"Lettertypen in de hier opgesomde mappen zijn beschikbaar in de toepassing.\n"
+"Lettertypen in de hier opgesomde mappen zijn beschikbaar in de app.\n"
 "\n"
-"Ze zijn niet beschikbaar in andere toepassingen zolang de bronnen niet zijn "
+"Ze zijn niet beschikbaar in andere apps zolang de bronnen niet zijn "
 "ingeschakeld.\n"
 "\n"
-"Let op: niet alle werkomgevingen/toepassingen honoreren deze instellingen."
+"Let op: niet alle desktopomgevingen/apps honoreren deze instellingen."
 
 #: src/font-manager/preferences/UserSources.vala:162
 #: src/font-manager/ui/font-manager-user-data.ui:131
@@ -1838,9 +1839,7 @@ msgstr "Clientfout"
 #: src/font-manager/web/google/GoogleFonts.vala:142
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
-msgstr ""
-"Herstart de toepassing. Meld het probleem als bug als het probleem zich "
-"blijft voordoen."
+msgstr "Herstart de app. Meld het probleem als deze zich blijft voordoen."
 
 #: src/font-manager/web/google/GoogleFonts.vala:145
 msgid "Server Error"
@@ -2052,7 +2051,7 @@ msgstr "Verwerpen"
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:30
 msgid "Running applications may require a restart to reflect any changes."
-msgstr "Herstart geopende toepassingen om de wijzigingen toe te passen."
+msgstr "Herstart geopende apps om de wijzigingen toe te passen."
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:40
 msgid "Save"
@@ -2116,7 +2115,7 @@ msgstr "Herladen"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:54
 msgid "Quit the application"
-msgstr "Sluit de toepassing af"
+msgstr "Sluit de app af"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:62
 msgid "Mode"
