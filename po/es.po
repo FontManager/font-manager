@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2023-01-05 16:50+0000\n"
+"PO-Revision-Date: 2023-01-24 02:20+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -727,8 +727,8 @@ msgstr "Pictóricas"
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] "%i variación "
-msgstr[1] "%i variaciones "
+msgstr[0] "%i Variación "
+msgstr[1] "%i Variaciones"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1126,17 +1126,14 @@ msgid "Japanese Jinmeiyo"
 msgstr "Jinmeiyo japonés"
 
 #: src/font-manager/Orthographies.vala:99
-#, fuzzy
 msgid "Japanese Joyo"
-msgstr "Joyo japonés"
+msgstr "Joyo japonés (Jōyō kanji)"
 
 #: src/font-manager/Orthographies.vala:100
-#, fuzzy
 msgid "Kaithi"
-msgstr "Kaithi"
+msgstr "Kayathi"
 
 #: src/font-manager/Orthographies.vala:101
-#, fuzzy
 msgid "Japanese Kana"
 msgstr "Kana japonés"
 
@@ -1146,9 +1143,8 @@ msgid "Kannada"
 msgstr "Canarés"
 
 #: src/font-manager/Orthographies.vala:103
-#, fuzzy
 msgid "Kayah Li"
-msgstr "Kayah Li"
+msgstr "Alfabeto Kayah Li"
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kazakh"
@@ -1164,9 +1160,8 @@ msgid "Khmer"
 msgstr "Camboyano"
 
 #: src/font-manager/Orthographies.vala:107
-#, fuzzy
 msgid "Japanese Kokuji"
-msgstr "Kokuji japonés"
+msgstr "Japonés (Los caracteres kokuji)"
 
 #: src/font-manager/Orthographies.vala:108
 msgid "Lao"
@@ -1177,12 +1172,10 @@ msgid "Latin Ligatures"
 msgstr "Ligaduras latinas"
 
 #: src/font-manager/Orthographies.vala:110
-#, fuzzy
 msgid "Lepcha"
-msgstr "Lepcha"
+msgstr "Lepcha (róng)"
 
 #: src/font-manager/Orthographies.vala:111
-#, fuzzy
 msgid "Limbu"
 msgstr "Limbu"
 
@@ -1221,7 +1214,7 @@ msgstr "Manipurí"
 
 #: src/font-manager/Orthographies.vala:120
 msgid "Mende Kikakui"
-msgstr ""
+msgstr "Silabario ki-ka-ku"
 
 #: src/font-manager/Orthographies.vala:121
 msgid "MeroiticCursive"
@@ -1232,9 +1225,8 @@ msgid "Meroitic Hieroglyphs"
 msgstr "Jeroglíficos meroíticos"
 
 #: src/font-manager/Orthographies.vala:123
-#, fuzzy
 msgid "Miao"
-msgstr "Miao"
+msgstr "Hmong"
 
 #: src/font-manager/Orthographies.vala:124
 msgid "Mongolian"
@@ -1255,7 +1247,7 @@ msgstr "Nuevo Tai Lü"
 
 #: src/font-manager/Orthographies.vala:133
 msgid "N’Ko"
-msgstr ""
+msgstr "N’Ko (lengua mandenká o mandingá)"
 
 #: src/font-manager/Orthographies.vala:134
 msgid "Ogham"
@@ -1263,7 +1255,7 @@ msgstr "Ogámico"
 
 #: src/font-manager/Orthographies.vala:135
 msgid "Ol Chiki"
-msgstr ""
+msgstr "Ol Chemetʼ"
 
 #: src/font-manager/Orthographies.vala:136
 msgid "Old Italic"
@@ -1271,16 +1263,16 @@ msgstr "Itálico prerromano"
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
-msgstr ""
+msgstr "Alfabeto árabe meridional (Musnad)"
 
 #: src/font-manager/Orthographies.vala:138
 #: src/font-manager/web/google/Language.vala:54
 msgid "Oriya"
-msgstr ""
+msgstr "Odia"
 
 #: src/font-manager/Orthographies.vala:139
 msgid "Osmanya"
-msgstr ""
+msgstr "Soomaali (escritura de Somalia)"
 
 #: src/font-manager/Orthographies.vala:140
 msgid "Pan African Latin"
@@ -1292,11 +1284,11 @@ msgstr "Pastún"
 
 #: src/font-manager/Orthographies.vala:142
 msgid "Phags Pa"
-msgstr ""
+msgstr "Alfabeto de 'Phags-pa"
 
 #: src/font-manager/Orthographies.vala:143
 msgid "Pinyin"
-msgstr ""
+msgstr "Hànyǔ Pīnyīn"
 
 #: src/font-manager/Orthographies.vala:144
 msgid "Polynesian"
@@ -1308,7 +1300,7 @@ msgstr "Griego politónico"
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Rejang"
-msgstr ""
+msgstr "Redjang"
 
 #: src/font-manager/Orthographies.vala:147
 msgid "Romanian"
@@ -1320,7 +1312,7 @@ msgstr "Rúnico"
 
 #: src/font-manager/Orthographies.vala:149
 msgid "Saurashtra"
-msgstr ""
+msgstr "Saurashtra"
 
 #: src/font-manager/Orthographies.vala:150
 msgid "Simplified Chinese"
@@ -1328,7 +1320,7 @@ msgstr "Chino simplificado"
 
 #: src/font-manager/Orthographies.vala:151
 msgid "Sindhi"
-msgstr ""
+msgstr "Sindi"
 
 #: src/font-manager/Orthographies.vala:152
 #: src/font-manager/web/google/Language.vala:55
@@ -1337,7 +1329,7 @@ msgstr "Cingalés"
 
 #: src/font-manager/Orthographies.vala:153
 msgid "South Korean Hanja"
-msgstr ""
+msgstr "Caracteres sinocoreanos"
 
 #: src/font-manager/Orthographies.vala:154
 msgid "Sundanese"
@@ -1345,7 +1337,7 @@ msgstr "Sondanés"
 
 #: src/font-manager/Orthographies.vala:155
 msgid "Syloti Nagri"
-msgstr ""
+msgstr "Sylhet Nagri"
 
 #: src/font-manager/Orthographies.vala:156
 msgid "Syriac"
@@ -1353,15 +1345,15 @@ msgstr "Siríaco"
 
 #: src/font-manager/Orthographies.vala:157
 msgid "Tai Le"
-msgstr ""
+msgstr "Tai Nüa"
 
 #: src/font-manager/Orthographies.vala:158
 msgid "Tai Tham (Lanna)"
-msgstr ""
+msgstr "Idioma tai septentrional"
 
 #: src/font-manager/Orthographies.vala:159
 msgid "Tai Viet"
-msgstr ""
+msgstr "Tai Viet (bloque Unicode)"
 
 #: src/font-manager/Orthographies.vala:160
 #: src/font-manager/web/google/Language.vala:56
@@ -1375,7 +1367,7 @@ msgstr "Telugu"
 
 #: src/font-manager/Orthographies.vala:162
 msgid "Thaana"
-msgstr ""
+msgstr "Tāna"
 
 #: src/font-manager/Orthographies.vala:163
 #: src/font-manager/web/google/Language.vala:58
@@ -1409,7 +1401,7 @@ msgstr "Urdu"
 
 #: src/font-manager/Orthographies.vala:170
 msgid "Vai"
-msgstr ""
+msgstr "Lengua Vai"
 
 #: src/font-manager/Orthographies.vala:171
 msgid "Vedic Extensions"
@@ -1417,7 +1409,7 @@ msgstr "Ampliaciones védicas"
 
 #: src/font-manager/Orthographies.vala:172
 msgid "Venda"
-msgstr ""
+msgstr "Tshivenda"
 
 #: src/font-manager/Orthographies.vala:173
 #: src/font-manager/web/google/Language.vala:60
@@ -1426,15 +1418,15 @@ msgstr "Vietnamita"
 
 #: src/font-manager/Orthographies.vala:174
 msgid "Western European"
-msgstr ""
+msgstr "Europeo Occidental"
 
 #: src/font-manager/Orthographies.vala:175
 msgid "Yi"
-msgstr ""
+msgstr "Idioma Nuosu"
 
 #: src/font-manager/Orthographies.vala:176
 msgid "Chinese Zhuyin Fuhao"
-msgstr ""
+msgstr "Caracteres fonéticos chinos"
 
 #. Translators : Coverage refers to the amount of support the font provides for an
 #. orthography. This will be displayed as "Coverage : XXX%" in the interface.
@@ -1638,6 +1630,14 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"Seleccione guardar para generar un archivo de configuración fontconfig a "
+"partir de los ajustes anteriores.\n"
+"\n"
+"Seleccione descartar para eliminar el archivo de configuración y volver a la "
+"configuración por defecto.\n"
+"\n"
+"Tenga en cuenta que no todos los entornos/aplicaciones respetarán estos "
+"ajustes."
 
 #: src/font-manager/preferences/Fontconfig.vala:204
 #: src/font-manager/preferences/Fontconfig.vala:282
@@ -1756,6 +1756,15 @@ msgid ""
 "To control where the filepath is inserted use FILEPATH as a placeholder.\n"
 "If FAMILY or STYLE are found in the argument list they will also be replaced."
 msgstr ""
+"Las acciones definidas aquí se añadirán al menú contextual de la lista de "
+"fuentes.\n"
+"\n"
+"Por defecto, la ruta de archivo de la fuente seleccionada se añadirá al "
+"final de la lista de argumentos.\n"
+"Para controlar dónde se inserta la ruta de archivo, utilice FILEPATH como "
+"marcador de posición.\n"
+"Si FAMILY o STYLE se encuentran en la lista de argumentos, también se "
+"sustituirán."
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "User Actions"
@@ -1894,7 +1903,7 @@ msgstr "Cirílico"
 
 #: src/font-manager/web/google/Language.vala:39
 msgid "Cyrillic Extended"
-msgstr ""
+msgstr "Extensión cirílica"
 
 #: src/font-manager/web/google/Language.vala:41
 msgid "Greek"
@@ -1902,7 +1911,7 @@ msgstr "Griego"
 
 #: src/font-manager/web/google/Language.vala:42
 msgid "Greek Extended"
-msgstr ""
+msgstr "Griego extendido"
 
 #: src/font-manager/web/google/Language.vala:46
 msgid "Japanese"
@@ -1918,17 +1927,19 @@ msgstr "Latino"
 
 #: src/font-manager/web/google/Language.vala:51
 msgid "Latin Extended"
-msgstr ""
+msgstr "Latín extendido"
 
 #. TRANSLATORS : The replacement character here refers to a language name
 #: src/font-manager/web/google/Language.vala:81
 #, c-format
 msgid "No sample for %s available"
-msgstr ""
+msgstr "No hay ningún ejemplo disponible para %s"
 
 #: src/font-manager/web/google/Language.vala:83
 msgid "Please file an issue requesting an update to available samples."
 msgstr ""
+"Por favor, presente una incidencia solicitando una actualización de los "
+"ejemplos disponibles."
 
 #: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Family"
@@ -1958,8 +1969,8 @@ msgstr "Descargar tipo de letra"
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] "%i muestra lingüística disponible "
-msgstr[1] "%i muestras lingüísticas disponibles "
+msgstr[0] "%i Muestra de Idioma Disponible "
+msgstr[1] "%i Muestras de Idiomas Disponibles"
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
@@ -2031,13 +2042,12 @@ msgid "Next page"
 msgstr "Página siguiente"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
-#, fuzzy
 msgid "Collection Name"
-msgstr "Escriba el nombre de la colección"
+msgstr "Nombre de la colección"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:54
 msgid "_Rename"
-msgstr ""
+msgstr "_Renombrar"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
@@ -2242,7 +2252,7 @@ msgstr "Comentario"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:47
 msgid "Executable"
-msgstr ""
+msgstr "Ejecutable"
 
 #: src/font-manager/ui/font-manager-user-action-row.ui:63
 msgid "Arguments"
@@ -2266,73 +2276,73 @@ msgstr "Acciones personalizadas"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:25
 msgid "Display line size in Waterfall Preview"
-msgstr ""
+msgstr "Mostrar el tamaño de fuente de la línea en la vista previa en cascada"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:74
 msgid "Waterfall Preview Size Settings"
-msgstr ""
+msgstr "Configuración del tamaño de la vista previa en cascada"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:93
 msgid "Up to 48 points (Linear Scaling)"
-msgstr ""
+msgstr "Hasta 48 puntos (Escalado lineal)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:94
 msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "Hasta 72 puntos (ratio común 1,1)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:95
 msgid "Up to 96 points (Linear Scaling)"
-msgstr ""
+msgstr "Hasta 96 puntos (Escala Lineal)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:96
 msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "Hasta 96 puntos (ratio común 1,1)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:97
 msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr ""
+msgstr "Hasta 120 puntos (1,2 ratio común)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:98
 msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr ""
+msgstr "Hasta 144 puntos (1,3 ratio común)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:99
 msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr ""
+msgstr "Hasta 192 puntos (1,4 ratio común)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:100
-#, fuzzy
-#| msgid "Custom Actions"
 msgid "Custom Size Settings"
-msgstr "Acciones personalizadas"
+msgstr "Ajustes personalizados del tamaño"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:142
 msgid "Minimum Waterfall Preview Point Size"
-msgstr ""
+msgstr "El tamaño de la fuente mínimo en la vista previa en cascada"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:155
 msgid "8.0"
-msgstr ""
+msgstr "8"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:174
 msgid "Maximum Waterfall Preview Point Size"
-msgstr ""
+msgstr "El tamaño máximo de la fuente en la vista previa en cascada"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:185
 msgid "Higher values may adversely affect performance"
-msgstr ""
+msgstr "Los valores más altos pueden afectar negativamente al rendimiento"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:188
 msgid "48.0"
-msgstr ""
+msgstr "48"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:207
 msgid "Waterfall Preview Point Size Common Ratio"
 msgstr ""
+"Obtenga una vista previa de la proporción común del tamaño de fuente en "
+"cascada"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:220
 msgid "1.0"
-msgstr ""
+msgstr "1"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
