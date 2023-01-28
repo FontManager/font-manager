@@ -504,8 +504,7 @@ Note that not all environments/applications will honor these settings.""");
             notify["completion-model"].connect_after(() => {
                 target.completion.set_text_column(0);
             });
-            var entry = (Gtk.Entry) get_bin_child(type);
-            entry.bind_property("text", this, "priority", flags);
+            type.bind_property("active-id", this, "priority", flags);
             target.bind_property("text", this, "family", flags);
             close.clicked.connect(() => {
                 Gtk.Widget parent = this.get_parent();

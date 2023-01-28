@@ -56,9 +56,9 @@
         <property name="has-entry">True</property>
         <property name="active-id">0</property>
         <items>
-          <item id="0" translatable="yes">prefer</item>
-          <item id="1" translatable="yes">accept</item>
-          <item id="2" translatable="yes">default</item>
+          <item id="prefer" translatable="yes">prefer</item>
+          <item id="accept" translatable="yes">accept</item>
+          <item id="default" translatable="yes">default</item>
         </items>
         <child internal-child="entry">
           <object class="GtkEntry">
