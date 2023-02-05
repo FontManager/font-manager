@@ -34,7 +34,12 @@ namespace FontManager {
             foreach (var path in this)
                 _items.add(new Source(File.new_for_path(path)));
             _items.sort((a, b) => { return natural_sort(a.name, b.name); });
-            _items.foreach((item) => { add_item(item); });
+            var active = new Directories();
+            active.load();
+            _items.foreach((item) => { 
+                item.active = (item.path in active);
+                add_item(item); 
+            });
             items_changed.connect(() => {
                 Idle.add(() => { save(); save_active_items(); return GLib.Source.REMOVE; });
             });
@@ -123,6 +128,7 @@ namespace FontManager {
         public static UserSourceRow from_item (Object item) {
             Source source = (Source) item;
             UserSourceRow row = new UserSourceRow();
+            message("%s : %s", source.name, source.active.to_string());
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             source.bind_property("icon-name", row.icon, "icon-name", flags);
             source.bind_property("name", row.title, "label", flags);
