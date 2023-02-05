@@ -8,7 +8,7 @@
 
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{PatchVersion}.%{build_timestamp}
-Release:    7
+Release:    8
 Summary:    A simple font management application for Gtk+ Desktop Environments
 License:    GPLv3+
 Url:        http://fontmanager.github.io/
@@ -132,7 +132,7 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/icons/hicolor/256x256/apps/%{DBusName2}.png
 
 %files -n nautilus-%{name}
-%{_libdir}/nautilus/extensions-3.0/nautilus-%{name}.so
+%{_libdir}/nautilus/extensions*/nautilus-%{name}.so
 
 %files -n nemo-%{name}
 %{_libdir}/nemo/extensions-3.0/nemo-%{name}.so
@@ -141,5 +141,5 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_libdir}/thunarx-3/thunar-%{name}.so
 
 %changelog
-* Sat Feb 4 2023 JerryCasiano <JerryCasiano@gmail.com> 0.8.8-7
+* Sat Feb 4 2023 JerryCasiano <JerryCasiano@gmail.com> 0.8.8-8
 - Refer to https://github.com/FontManager/font-manager/commits/master for changes.
