@@ -11,9 +11,9 @@ nautilus4 = dependency('libnautilus-extension-4', required: false)
 
 if nautilus.found() or nautilus4.found()
 
-    result = run_command(python, '-c', list_sources)
+    result = run_command(python, '-c', list_sources, check: true)
     nautilus_extension_sources = result.stdout().strip().split('\n')
-    result = run_command(python, '-c', list_headers)
+    result = run_command(python, '-c', list_headers, check: true)
     nautilus_extension_headers = result.stdout().strip().split('\n')
 
     if nautilus.found()

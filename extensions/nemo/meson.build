@@ -8,9 +8,9 @@ nemo_info = '''
 
 nemo = dependency('libnemo-extension', not_found_message: nemo_info)
 
-result = run_command(python, '-c', list_sources)
+result = run_command(python, '-c', list_sources, check: true)
 nemo_extension_sources = result.stdout().strip().split('\n')
-result = run_command(python, '-c', list_headers)
+result = run_command(python, '-c', list_headers, check: true)
 nemo_extension_headers = result.stdout().strip().split('\n')
 
 nemo_extension_dir = join_paths(get_option('libdir'), 'nemo', 'extensions-3.0')

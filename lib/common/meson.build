@@ -5,7 +5,7 @@ libfontmanager_gresources = gnome.compile_resources('libfontmanager-gresources',
                                                     libfontmanager_gresource_xml_file)
 
 
-result = run_command(python, '-c', list_sources)
+result = run_command(python, '-c', list_sources, check: true)
 
 common_sources = result.stdout().strip().split('\n')
 common_sources += [
@@ -16,7 +16,7 @@ common_sources += [
     )
 ]
 
-result = run_command(python, '-c', list_headers)
+result = run_command(python, '-c', list_headers, check: true)
 
 common_headers = result.stdout().strip().split('\n')
 

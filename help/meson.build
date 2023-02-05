@@ -33,7 +33,7 @@ if get_option('yelp-doc')
 
     #                                                              #
 
-    result = run_command(python, '-c', file_list_template.format('page'))
+    result = run_command(python, '-c', file_list_template.format('page'), check: true)
 
     help_files = []
 
