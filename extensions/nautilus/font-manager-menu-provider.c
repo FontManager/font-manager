@@ -48,7 +48,11 @@ struct _FontManagerMenuProvider
     GDBusConnection *connection;
 };
 
+#ifdef NAUTILUS_4
+static void font_manager_menu_provider_interface_init (NautilusMenuProviderInterface *iface);
+#else
 static void font_manager_menu_provider_interface_init (NautilusMenuProviderIface *iface);
+#endif
 
 G_DEFINE_DYNAMIC_TYPE_EXTENDED (FontManagerMenuProvider,
                                 font_manager_menu_provider,
@@ -105,7 +109,10 @@ on_install_selected (FontManagerMenuProvider *self, NautilusMenuItem *item)
 
 static GList *
 font_manager_menu_provider_get_file_items (NautilusMenuProvider *provider,
+#ifdef NAUTILUS_4
+#else
                                            G_GNUC_UNUSED GtkWidget *widget,
+#endif
                                            GList *filelist)
 {
     if (filelist == NULL)
@@ -175,7 +182,10 @@ menu:
 
 static GList *
 font_manager_menu_provider_get_background_items (G_GNUC_UNUSED NautilusMenuProvider *provider,
+#ifdef NAUTILUS_4
+#else
                                                  G_GNUC_UNUSED GtkWidget *widget,
+#endif
                                                  G_GNUC_UNUSED NautilusFileInfo *current_folder)
 {
     return NULL;
@@ -199,7 +209,11 @@ font_manager_menu_provider_class_finalize (G_GNUC_UNUSED FontManagerMenuProvider
 }
 
 static void
+#ifdef NAUTILUS_4
+font_manager_menu_provider_interface_init (NautilusMenuProviderInterface *iface)
+#else
 font_manager_menu_provider_interface_init (NautilusMenuProviderIface *iface)
+#endif
 {
     iface->get_file_items = font_manager_menu_provider_get_file_items;
     iface->get_background_items = font_manager_menu_provider_get_background_items;
