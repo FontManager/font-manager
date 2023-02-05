@@ -1,22 +1,23 @@
+# Philip Goto <philip.goto@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-02-06 19:50+0000\n"
-"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/font-"
-"manager-help-docs/nl/>\n"
+"PO-Revision-Date: 2023-02-03 12:39+0000\n"
+"Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Heimen Stoffels, <vistausss@outlook.com>, 2021"
+msgstr "Heimen Stoffels <vistausss@outlook.com>, 2021"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
@@ -227,7 +228,7 @@ msgstr ""
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
 msgid "Drag characters onto other applications to use them."
-msgstr "Sleep tekens naar andere toepassingen om ze te gebruiken."
+msgstr "Sleep tekens naar andere apps om ze te gebruiken."
 
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7
@@ -251,8 +252,8 @@ msgid ""
 "Collections allow you to organize your fonts in a way that makes sense to "
 "you and also make it easier to enable or disable many families at once."
 msgstr ""
-"Met verzamelingen kun je je lettertypen organiseren op jóuw manier en het "
-"makkelijker maken om allerlei families in en uit te schakelen."
+"Met verzamelingen kunt u uw lettertypen organiseren op uw eigen manier en "
+"het makkelijker maken om meerdere families tegelijk in of uit te schakelen."
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:24
@@ -462,9 +463,9 @@ msgid ""
 "immediately, open applications may need to be restarted in order to reflect "
 "those changes."
 msgstr ""
-"Wijzigingen die je aanbrengt met <app>Lettertypebeheer</app> worden in "
-"principe direct toegepast, maar het kan zijn dat je openstaande toepassingen "
-"opnieuw moet starten."
+"Wijzigingen die u aanbrengt met <app>Lettertypebeheer</app> worden in "
+"principe direct toegepast, maar het kan zijn dat u openstaande apps opnieuw "
+"moet starten."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-installation.page:7
@@ -773,8 +774,8 @@ msgid ""
 "While sources are always available within the application they are not "
 "available to other applications until they are enabled."
 msgstr ""
-"Bronnen zijn altijd beschikbaar in de toepassing, maar niet in andere, "
-"tenzij ze expliciet worden ingeschakeld."
+"Bronnen zijn altijd beschikbaar in de app, maar niet in andere, tenzij ze "
+"expliciet worden ingeschakeld."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-sources.page:131
@@ -819,8 +820,7 @@ msgid ""
 "Desktop environments and applications may rely on their own configuration "
 "mechanism."
 msgstr ""
-"Werkomgevingen en toepassingen hebben mogelijk hun eigen "
-"configuratiemechanismen."
+"Desktop-omgevingen en apps hebben mogelijk hun eigen configuratiemechanismen."
 
 #. (itstool) path: info/desc
 #: C/font-manager-introduction.page:5
@@ -1175,8 +1175,8 @@ msgid ""
 "While changes are applied immediately open applications may need to be "
 "restarted."
 msgstr ""
-"Wijzigingen die je aanbrengt worden in principe direct toegepast, maar het "
-"kan zijn dat je openstaande toepassingen opnieuw moet starten."
+"Wijzigingen die u aanbrengt worden in principe direct toegepast, maar het "
+"kan zijn dat u openstaande apps opnieuw moet starten."
 
 #. (itstool) path: info/desc
 #: C/font-manager-supported-formats.page:5
