@@ -6,8 +6,11 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-compare-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-list-view.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-item-list-box-row.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-option-scale.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preview-entry.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preferences.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-source-list.ui</file>
     </gresource>
 </gresources>

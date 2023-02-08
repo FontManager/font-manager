@@ -31,6 +31,7 @@ namespace FontManager {
         public bool active { get; set; default = true; }
         public GenericArray <Collection> children { get; set; }
         public StringSet families { get; set; }
+        public StringSet variations { get; set; }
 
         public override int size {
             get {
@@ -43,6 +44,7 @@ namespace FontManager {
             requires_update = false;
             children = new GenericArray <Collection> ();
             families = new StringSet();
+            variations = new StringSet();
             /* XXX : Translatable string as default argument generates broken vapi ? */
             if (name == null)
                 name = _("New Collection");
@@ -123,6 +125,11 @@ namespace FontManager {
             string family;
             item.get("family", out family, null);
             visible = (family in families);
+            if (!visible && variations.size > 0) {
+                string variation;
+                item.get("description", out variation, null);
+                visible = (variation in variations);
+            }
             return visible;
         }
 

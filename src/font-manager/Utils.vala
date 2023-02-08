@@ -64,6 +64,20 @@ namespace FontManager {
         return;
     }
 
+    public Gtk.Image inline_help_widget (string message) {
+        var help = new Gtk.Image.from_icon_name("dialog-question-symbolic")
+        {
+            pixel_size = 24,
+            opacity = 0.333,
+            hexpand = true,
+            halign = Gtk.Align.END,
+            margin_start = DEFAULT_MARGIN,
+            margin_end = DEFAULT_MARGIN,
+            tooltip_text = message
+        };
+        return help;
+    }
+
     public void set_control_sensitivity(Gtk.Widget widget, bool sensitive) {
         widget.sensitive = sensitive;
         widget.opacity = sensitive ? 0.9 : 0.45;

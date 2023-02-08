@@ -107,12 +107,8 @@ namespace FontManager {
         bool matches_filter (Json.Object item) {
             if (filter == null)
                 return true;
-            Object? object = null;
-            if (item.has_member("filepath"))
-                object = new Font();
-            else
-                object = new Family();
-            object.set(JSON_PROXY_SOURCE, item, null);
+            Type type = item.has_member("filepath") ? typeof(Font) : typeof(Family);
+            Object? object = Object.new(type, JSON_PROXY_SOURCE, item, null);
             return filter.matches(object);
         }
 
@@ -296,24 +292,45 @@ namespace FontManager {
             return factory;
         }
 
-        void setup_list_row (Gtk.ListItem list_item) {
+        Gdk.ContentProvider prepare_drag (Gtk.DragSource source, double x, double y) {
+            message("drag_prepare");
+            Value selections = Value(typeof(string));
+            int fonts = 0;
+            int families = 0;
+            foreach (var obj in selected_items)
+                if (obj is Family)
+                    families++;
+                else
+                    fonts++;
+            message("%i : %i", families, fonts);
+            return new Gdk.ContentProvider.for_value(selections);
+        }
+
+        void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
             var tree_expander = new Gtk.TreeExpander();
             tree_expander.set_child(new FontListBoxRow());
             list_item.set_child(tree_expander);
+            var drag_source = new Gtk.DragSource();
+            tree_expander.add_controller(drag_source);
+            drag_source.prepare.connect(prepare_drag);
+            drag_source.drag_begin.connect(() => { message("drag_begin"); });
+            drag_source.drag_end.connect(() => { message("drag_end"); });
             return;
         }
 
-        void bind_list_row (Gtk.ListItem list_item) {
+        void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
             var list_row = treemodel.get_row(list_item.get_position());
             var tree_expander = (Gtk.TreeExpander) list_item.get_child();
             tree_expander.margin_start = 2;
             tree_expander.set_list_row(null);
             var row = (FontListBoxRow) tree_expander.get_child();
-            Object? item = list_row.get_item();
+            Object? _item = list_row.get_item();
             // Setting item triggers update to row widget
-            row.item = item;
-            return_if_fail(item != null);
-            bool parent = item is Family;
+            row.item = _item;
+            return_if_fail(_item != null);
+            bool parent = _item is Family;
             tree_expander.set_list_row(parent ? list_row : null);
             return;
         }
@@ -364,10 +381,10 @@ namespace FontManager {
         // range appears to be affected by a variety of factors i.e.
         // previous selection, multiple selections, directional changes, etc.
         void on_selection_changed (uint position, uint n_items) {
-            // The minimum value present in this bitset accurately points
-            // to the first currently selected row in the ListView.
             selected_items = new GenericArray <Object> ();
             selected_item = null;
+            // The minimum value present in this bitset accurately points
+            // to the first currently selected row in the ListView.
             Gtk.Bitset selections = selection.get_selection();
             uint i = selections.get_minimum();
             assert(selection.is_selected(i));

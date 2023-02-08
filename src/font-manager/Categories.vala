@@ -205,7 +205,8 @@ namespace FontManager {
             return factory;
         }
 
-        void setup_list_row (Gtk.ListItem list_item) {
+        void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
             var tree_expander = new Gtk.TreeExpander();
             tree_expander.set_indent_for_icon(false);
             var row = new CategoryListBoxRow();
@@ -216,18 +217,19 @@ namespace FontManager {
             return;
         }
 
-        void bind_list_row (Gtk.ListItem list_item) {
+        void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
             var list_row = treemodel.get_row(list_item.get_position());
             var tree_expander = (Gtk.TreeExpander) list_item.get_child();
             tree_expander.margin_start = 2;
             tree_expander.set_list_row(null);
             var row = (CategoryListBoxRow) tree_expander.get_child();
             widget_set_margin(row, 3);
-            Object? item = list_row.get_item();
+            Object? _item = list_row.get_item();
             // Setting item triggers update to row widgets
-            row.item = item;
-            return_if_fail(item != null);
-            var category = ((Category) item);
+            row.item = _item;
+            return_if_fail(_item != null);
+            var category = ((Category) _item);
             tree_expander.set_list_row(category.depth < 1 ? list_row : null);
             list_row.notify["expanded"].connect((pspec) => {
                 category.update.begin(available_families);

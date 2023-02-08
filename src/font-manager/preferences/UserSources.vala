@@ -1,0 +1,239 @@
+/* UserSources.vala
+ *
+ * Copyright (C) 2009-2022 Jerry Casiano
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.
+ *
+ * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
+*/
+
+namespace FontManager {
+
+    public class UserSourceModel : Directories, ListModel {
+
+        public GenericArray <Source> items { get; private set; }
+
+        construct {
+            config_dir = get_package_config_directory();
+            target_element = "source";
+            target_file = "Sources.xml";
+            load();
+            items = new GenericArray <Source> ();
+            var _items = new GenericArray<Source> ();
+            foreach (var path in this)
+                _items.add(new Source(File.new_for_path(path)));
+            _items.sort((a, b) => { return natural_sort(a.name, b.name); });
+            var active = new Directories();
+            active.load();
+            _items.foreach((item) => {
+                item.active = (item.path in active);
+                add_item(item);
+            });
+            items_changed.connect(() => {
+                Idle.add(() => {
+                    save();
+                    save_active_items();
+                    return GLib.Source.REMOVE;
+                });
+            });
+        }
+
+        public Type get_item_type () {
+            return typeof(Source);
+        }
+
+        public uint get_n_items () {
+            return items != null ? items.length : 0;
+        }
+
+        public Object? get_item (uint position) {
+            return items[position];
+        }
+
+        public void add_item (Source item) {
+            add(item.path);
+            items.add(item);
+            uint position = get_n_items() - 1;
+            items_changed(position, 0, 1);
+            item.changed.connect(() => { items_changed(position, 0, 0); });
+            item.notify["active"].connect(() => { items_changed(position, 0, 0); });
+            return;
+        }
+
+        public void remove_item (uint position) {
+            var item = items[position];
+            remove(item.path);
+            items.remove(item);
+            items_changed(position, 1, 0);
+            Idle.add(() => {
+                purge_database_entries.begin(item.path, (obj, res) => {
+                    purge_database_entries.end(res);
+                });
+                return GLib.Source.REMOVE;
+            });
+            return;
+        }
+
+        void save_active_items () {
+            var active = new Directories();
+            items.foreach((item) => {
+                if (item.active)
+                    active.add(item.path);
+            });
+            active.save();
+            return;
+        }
+
+        async void purge_database_entries (string path) {
+            DatabaseType [] types = { DatabaseType.FONT, DatabaseType.METADATA, DatabaseType.ORTHOGRAPHY };
+            try {
+                Database? db = get_database(DatabaseType.BASE);
+                foreach (var type in types) {
+                    var name = Database.get_type_name(type);
+                    db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(name, path));
+                    db.stmt.step();
+                }
+                db = null;
+                foreach (var type in types) {
+                    db = get_database(type);
+                    db.execute_query("VACUUM");
+                    db.stmt.step();
+                    Idle.add(purge_database_entries.callback);
+                    yield;
+                }
+            } catch (DatabaseError e) {
+                if (e.code != 1)
+                    warning(e.message);
+            }
+            return;
+        }
+
+    }
+
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-user-source-list.ui")]
+    public class UserSourceList : Gtk.Box {
+
+        bool refresh_required = false;
+        const string help_text =
+
+_("""Fonts in any folders listed here will be available within the application.
+
+They will not be visible to other applications until the source is actually enabled.
+
+Note that not all environments/applications will honor these settings.""");
+
+        [GtkChild] unowned Gtk.ListBox list;
+        [GtkChild] unowned BaseControls controls;
+
+        public UserSourceModel model { get; set; }
+
+        Gtk.FileChooserNative dialog;
+
+        public UserSourceList () {
+            notify["model"].connect(() => { list.bind_model(model, row_from_item); });
+            model = new UserSourceModel();
+            string w1 = _("Font Sources");
+            string w2 = _("Easily add or preview fonts without actually installing them.");
+            string w3 = _("To add a new source simply drag a folder onto this area or click the add button in the toolbar.");
+            var place_holder = new PlaceHolder(w1, w2, w3, "folder-symbolic");
+            list.set_placeholder(place_holder);
+            set_control_sensitivity(controls.add_button, true);
+            set_control_sensitivity(controls.remove_button, false);
+            Gtk.Widget? ancestor = get_ancestor(typeof(Gtk.Window));
+            var parent = ancestor != null ? (Gtk.Window) ancestor : null;
+            dialog = FileSelector.get_selected_sources(parent);
+            dialog.response.connect(on_file_selections_ready);
+            controls.append(inline_help_widget(help_text));
+            place_holder.show();
+            var drop_target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
+            add_controller(drop_target);
+            drop_target.drop.connect(on_drag_data_received);
+            controls.add_selected.connect(() => {
+                ((Gtk.NativeDialog) dialog).show();
+            });
+            controls.remove_selected.connect(() => {
+                if (list.get_selected_row() == null)
+                    return;
+                uint position = list.get_selected_row().get_index();
+                model.remove_item(position);
+                while (position > 0 && position >= model.get_n_items()) { position--; }
+                list.select_row(list.get_row_at_index((int) position));
+            });
+            model.items_changed.connect(() => { refresh_required = true; });
+            unmap.connect(() => {
+                if (refresh_required) {
+                    Idle.add(() => {
+                        // XXX: FIXME!
+                        //get_default_application().refresh();
+                        refresh_required = false;
+                        return GLib.Source.REMOVE;
+                    });
+                }
+            });
+        }
+
+        Gtk.Widget row_from_item (Object item) {
+            Source source = (Source) item;
+            var control = new Gtk.Switch();
+            var row = new PreferenceRow(source.name, source.path, source.icon_name, control);
+            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            source.bind_property("icon-name", row, "icon-name", flags);
+            source.bind_property("name", row, "title", flags);
+            source.bind_property("active", control, "active", BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE);
+            source.bind_property("available", control, "sensitive", flags);
+            source.notify["available"].connect(() => {
+                row.subtitle = source.get_status_message();
+            });
+            return row;
+        }
+
+        [GtkCallback]
+        void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
+            set_control_sensitivity(controls.remove_button, row != null);
+            return;
+        }
+
+        [CCode (instance_pos = -1)]
+        void on_file_selections_ready (Gtk.NativeDialog dialog, int response_id) {
+            if (response_id != Gtk.ResponseType.ACCEPT)
+                return;
+            ListModel files = ((Gtk.FileChooser) dialog).get_files();
+            for (uint i = 0; i < files.get_n_items(); i++) {
+                var file = (File) files.get_item(i);
+                var source = new Source(file);
+                model.add_item(source);
+            }
+            return;
+        }
+
+        /* XXX : Ugh. Dragging folders is broken...
+         * https://gitlab.gnome.org/GNOME/gtk/-/issues/5348
+         * https://github.com/flatpak/xdg-desktop-portal/issues/911
+         *
+         * 4.10 deprecates NativeDialog
+         */
+        bool on_drag_data_received (Value value, double x, double y) {
+            if (value.holds(typeof(Gdk.FileList))) {
+                GLib.SList <File>* filelist = value.get_boxed();
+                for (int i = 0; i < filelist->length(); i++) {
+                    File* file = filelist->nth_data(i);
+                    message(file->get_uri());
+                }
+            }
+            return true;
+        }
+
+    }
+
+}

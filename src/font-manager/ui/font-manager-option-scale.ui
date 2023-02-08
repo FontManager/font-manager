@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.0"/>
+  <template class="FontManagerOptionScale" parent="GtkBox">
+    <property name="margin-start">18</property>
+    <property name="margin-end">18</property>
+    <property name="margin-top">18</property>
+    <property name="margin-bottom">18</property>
+    <property name="orientation">vertical</property>
+    <property name="spacing">12</property>
+    <child>
+      <object class="GtkLabel" id="label">
+        <property name="hexpand">1</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkScale" id="scale">
+        <property name="focusable">1</property>
+        <property name="hexpand">1</property>
+        <property name="round_digits">1</property>
+        <signal name="value-changed" handler="on_scale_value_changed" swapped="no"/>
+      </object>
+    </child>
+  </template>
+</interface>
