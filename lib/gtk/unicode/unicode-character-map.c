@@ -446,7 +446,7 @@ draw_character (GtkWidget *widget,
         return;
     gtk_style_context_save(ctx);
     GtkStateFlags _state = GTK_STATE_FLAG_NORMAL;
-    if (gtk_widget_has_focus(widget) && (gint) cell == self->active_cell)
+    if (gtk_widget_has_focus(widget) && cell == self->active_cell)
         _state = GTK_STATE_FLAG_SELECTED | GTK_STATE_FLAG_FOCUSED;
     else if ((gint) cell == self->active_cell)
         _state = GTK_STATE_FLAG_INSENSITIVE | GTK_STATE_FLAG_SELECTED;

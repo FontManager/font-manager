@@ -26,7 +26,7 @@
 
 #define FONT_MANAGER_TYPE_PREFERENCE_ROW (font_manager_preference_row_get_type ())
 G_DECLARE_FINAL_TYPE(FontManagerPreferenceRow, font_manager_preference_row,
-                     FONT_MANAGER, PREFERENCE_ROW, GtkListBoxRow)
+                     FONT_MANAGER, PREFERENCE_ROW, GtkWidget)
 
 GtkWidget * font_manager_preference_row_new (const gchar *title,
                                              const gchar *subtitle,

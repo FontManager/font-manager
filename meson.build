@@ -17,6 +17,7 @@ m_dep = cc.find_library('m', required: false)
 fontconfig = dependency('fontconfig', version: '>= 2.12')
 freetype = dependency('freetype2', version: '>= 2.10')
 gio = dependency('gio-2.0', version: '>= 2.7')
+glib = dependency('glib-2.0', version: '>= 2.62')
 gmodule = dependency('gmodule-2.0', version: '>= 2.50')
 gtk = dependency('gtk4', version: '>= 4.0')
 harfbuzz = dependency('harfbuzz', version: '>= 2.5')
@@ -30,12 +31,12 @@ python = import('python').find_installation('python3')
 
 # This dependency cannot be used for vala targets
 base_deps = declare_dependency(
-    dependencies: [ fontconfig, freetype, gmodule, gtk, harfbuzz,
+    dependencies: [ fontconfig, freetype, glib, gmodule, gtk, harfbuzz,
                     json, m_dep, pangoft2, sqlite, xml ]
 )
 
 vala_deps = declare_dependency(
-    dependencies: [ gio, gmodule, gtk, json, sqlite, xml ]
+    dependencies: [ glib, gio, gmodule, gtk, json, m_dep, sqlite, xml ]
 )
 
 includes = [ include_directories('.') ]

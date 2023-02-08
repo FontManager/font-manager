@@ -18,16 +18,44 @@
  * If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 */
 
+.red {
+    margin: 0px;
+    padding: 0px;
+    background-color: #ff0000;
+}
+
+.green {
+    margin: 0px;
+    padding: 0px;
+    background-color: #008000;
+}
+
+.blue {
+    margin: 0px;
+    padding: 0px;
+    background-color: #0000ff;
+}
+
+.gray {
+    margin: 0px;
+    padding: 0px;
+    background-color: #808080;
+}
+
 decoration, window, window.background, dialog.message {
     border-radius: .575em;
     background: #fff;
     outline: 1px solid rgba(0, 0, 0, 0.05);
     outline-offset: -1px;
     box-shadow: 0 1px 3px 3px transparent,
-                0 2px 8px 2px rgba(0, 0, 0, 0.13),
-                0 3px 20px 10px rgba(0, 0, 0, 0.09),
-                0 6px 32px 16px rgba(0, 0, 0, 0.04),
+                0 2px 6px 2px rgba(0, 0, 0, 0.13),
+                0 3px 12px 6px rgba(0, 0, 0, 0.09),
+                0 6px 24px 12px rgba(0, 0, 0, 0.04),
                 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+notebook > header {
+    background-color: shade(@theme_bg_color, 0.9);
 }
 
 .rounded-button {
@@ -57,6 +85,10 @@ row:selected .count {
     background-color: shade(@theme_selected_bg_color, 0.75);
 }
 
+.InlineHelp {
+    background: transparent;
+}
+
 .CharacterMapCell:selected {
     border-radius: 0.333em;
     background-color: alpha(@theme_selected_bg_color, 0.9);
@@ -81,12 +113,40 @@ row:selected .count {
     color: alpha(@borders, 0.5);
 }
 
-.FontManagerCompare row {
-	border-radius: 0.333em;
+.FontManagerSubstituteList list button {
+    border-color: alpha(@borders, 0.75);
 }
 
-.FontManagerComparePreview  {
-	border-radius: 0.25em;
+/* .FontManagerCompare list row, */
+/* .FontManagerComparePreview, */
+/* .FontManagerSubstituteList, */
+/* .FontManagerSubstituteList list row, */
+/* .FontManagerUserActionList row, */
+/* .FontManagerUserSourceList row { */
+/*     border-radius: 0.333em; */
+/* } */
+
+/* .FontManagerCompare list row:selected, */
+/* .FontManagerSubstituteList list row:selected, */
+/* .FontManagerUserActionList row:selected, */
+/* .FontManagerUserSourceList row:selected { */
+/*     background-color: alpha(@theme_selected_bg_color, 0.95); */
+/*     border-radius: 0.333em; */
+/* } */
+
+/* .FontManagerSubstituteList list row:selected button { */
+/*     background-color: @theme_bg_color; */
+/*     border-radius: 0.333em; */
+/* } */
+
+.FontManagerSubstituteList row:hover,
+.FontManagerSubstituteListRow row:hover,
+.FontManagerDesktopPreferences list row:hover {
+    background-color: transparent;
+}
+
+.FontManagerDesktopPreferences list row {
+    padding: 0px;
 }
 
 .FontManagerCategoryListView > row > treeexpander expander {

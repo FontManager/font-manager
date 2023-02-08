@@ -20,7 +20,7 @@ void update_progress_dialog (ProgressData data) {
         metadata = data.processed;
     else if (data.message == "Orthography")
         orthography = data.processed;
-    var progress = new ProgressData("Please wait…",
+    var progress = new ProgressData("Updating font database…",
                                     font + metadata + orthography,
                                     data.total * 3);
     ProgressDialog.update(dialog, progress);
@@ -30,7 +30,7 @@ void update_progress_dialog (ProgressData data) {
 int main () {
     Gtk.init();
     loop = new MainLoop();
-    dialog = ProgressDialog.create(null, "Generating font database");
+    dialog = ProgressDialog.create(null, "Font Manager");
     var db = new DatabaseProxy();
     db.set_progress_callback((data) => {
         data.ref();

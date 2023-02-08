@@ -31,7 +31,7 @@
 
 struct _FontManagerPreferenceRow
 {
-    GtkListBoxRow   parent_instance;
+    GtkWidget   parent_instance;
 
     GtkWidget       *icon;
     GtkWidget       *title;
@@ -41,7 +41,7 @@ struct _FontManagerPreferenceRow
     GtkWidget       *children;
 };
 
-G_DEFINE_TYPE(FontManagerPreferenceRow, font_manager_preference_row, GTK_TYPE_LIST_BOX_ROW)
+G_DEFINE_TYPE(FontManagerPreferenceRow, font_manager_preference_row, GTK_TYPE_WIDGET)
 
 enum
 {
@@ -98,8 +98,7 @@ font_manager_preference_row_get_property (GObject    *gobject,
     g_autofree gchar *icon_name = NULL;
     switch (property_id) {
         case PROP_ICON_NAME:
-            g_object_get(gobject, "icon-name", &icon_name, NULL);
-            g_value_set_string(value, icon_name);
+            g_value_set_string(value, gtk_image_get_icon_name(GTK_IMAGE(self->icon)));
             break;
         case PROP_TITLE:
             g_value_set_string(value, gtk_label_get_text(GTK_LABEL(self->title)));
@@ -154,6 +153,7 @@ font_manager_preference_row_class_init (FontManagerPreferenceRowClass *klass)
     object_class->get_property = font_manager_preference_row_get_property;
     object_class->set_property = font_manager_preference_row_set_property;
     gtk_widget_class_set_css_name(widget_class, "FontManagerPreferenceRow");
+    gtk_widget_class_set_layout_manager_type(widget_class, GTK_TYPE_BOX_LAYOUT);
 
     /**
      * FontManagerPreferenceRow:icon-name:
@@ -284,7 +284,7 @@ font_manager_preference_row_init (FontManagerPreferenceRow *self)
     gtk_box_append(GTK_BOX(inner_container), self->control);
     gtk_box_append(GTK_BOX(container), inner_container);
     gtk_box_append(GTK_BOX(container), self->revealer);
-    gtk_list_box_row_set_child(GTK_LIST_BOX_ROW(self), container);
+    gtk_widget_set_parent(container, GTK_WIDGET(self));
     gtk_widget_set_name(GTK_WIDGET(self), "FontManagerPreferenceRow");
     return;
 }
