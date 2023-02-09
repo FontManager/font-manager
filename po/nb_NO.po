@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
-# Allan Nordhøy <epost@anotheragency.no>, 2020, 2022.
+# Allan Nordhøy <epost@anotheragency.no>, 2020, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-06-01 02:16+0000\n"
+"PO-Revision-Date: 2023-02-09 03:39+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/nb_NO/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -635,7 +635,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:544
 msgid "Filetype"
-msgstr ""
+msgstr "Filtype"
 
 #: src/font-manager/Categories.vala:544
 msgid "Grouped by filetype"
@@ -643,7 +643,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:551
 msgid "All"
-msgstr ""
+msgstr "Alle"
 
 #: src/font-manager/Categories.vala:551
 msgid "All Fonts"
@@ -651,7 +651,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:552
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: src/font-manager/Categories.vala:552
 msgid "Fonts available to all users"
@@ -659,7 +659,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr ""
+msgstr "Familietype"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
@@ -1481,7 +1481,7 @@ msgstr ""
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Disabled"
-msgstr ""
+msgstr "Avskrudd"
 
 #: src/font-manager/filters/Disabled.vala:26
 msgid "Fonts which have been disabled"
@@ -1493,7 +1493,7 @@ msgstr ""
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
-msgstr ""
+msgstr "Usortert"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
@@ -1501,7 +1501,7 @@ msgstr ""
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr ""
+msgstr "Bruker"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "Fonts available only to you"
@@ -1675,7 +1675,7 @@ msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:26
 msgid "Sources"
-msgstr ""
+msgstr "Kilder"
 
 #: src/font-manager/preferences/Preferences.vala:27
 msgid "Actions"
