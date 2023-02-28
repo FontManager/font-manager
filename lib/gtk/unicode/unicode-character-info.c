@@ -1,6 +1,6 @@
 /* unicode-character-info.c
  *
- * Copyright (C) 2020-2022 Jerry Casiano
+ * Copyright (C) 2020-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -156,7 +156,7 @@ font_manager_unicode_character_info_init (FontManagerUnicodeCharacterInfo *self)
     gtk_widget_set_vexpand(center_box, FALSE);
     gtk_widget_set_parent(center_box, GTK_WIDGET(self));
     gtk_widget_add_css_class(self->n_codepoints, "CharacterMapCount");
-    gtk_widget_set_name(GTK_WIDGET(self), "FontManagerUnicodeCharacterInfo");
+    font_manager_widget_set_name(GTK_WIDGET(self), "FontManagerUnicodeCharacterInfo");
     gtk_widget_set_hexpand(GTK_WIDGET(self), TRUE);
     gtk_widget_set_vexpand(GTK_WIDGET(self), FALSE);
     font_manager_widget_set_margin(center_box, 6);

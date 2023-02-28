@@ -1,6 +1,6 @@
 /* font-manager-gtk-utils.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -108,7 +108,8 @@ font_manager_text_tag_table_new (void)
  * Set both halign and valign to the same value.
  */
 void
-font_manager_widget_set_align (GtkWidget *widget, GtkAlign align)
+font_manager_widget_set_align (GtkWidget *widget,
+                               GtkAlign   align)
 {
     g_return_if_fail(GTK_IS_WIDGET(widget));
     gtk_widget_set_halign(GTK_WIDGET(widget), align);
@@ -124,7 +125,8 @@ font_manager_widget_set_align (GtkWidget *widget, GtkAlign align)
  * Set both hexpand and vexpand to the same value.
  */
 void
-font_manager_widget_set_expand (GtkWidget *widget, gboolean expand)
+font_manager_widget_set_expand (GtkWidget *widget,
+                                gboolean   expand)
 {
     g_return_if_fail(GTK_IS_WIDGET(widget));
     gtk_widget_set_hexpand(GTK_WIDGET(widget), expand);
@@ -140,13 +142,37 @@ font_manager_widget_set_expand (GtkWidget *widget, gboolean expand)
  * Set all margin properties to the same value.
  */
 void
-font_manager_widget_set_margin (GtkWidget *widget, gint margin)
+font_manager_widget_set_margin (GtkWidget *widget,
+                                gint       margin)
 {
     g_return_if_fail(GTK_IS_WIDGET(widget));
     gtk_widget_set_margin_start(widget, margin);
     gtk_widget_set_margin_end(widget, margin);
     gtk_widget_set_margin_top(widget, margin);
     gtk_widget_set_margin_bottom(widget, margin);
+    return;
+}
+
+/**
+ * font_manager_widget_set_name:
+ * @widget:           #GtkWidget
+ * @name: (nullable): widget name
+ *
+ * Set widget name and css properties to the same value.
+ */
+void
+font_manager_widget_set_name (GtkWidget   *widget,
+                              const gchar *name)
+{
+    GtkWidgetClass *widget_class = GTK_WIDGET_GET_CLASS(widget);
+
+    if (name)
+        gtk_widget_set_name(widget, name);
+    else
+        name = gtk_widget_get_name(widget);
+
+    gtk_widget_add_css_class(widget, name);
+    gtk_widget_class_set_css_name(widget_class, name);
     return;
 }
 

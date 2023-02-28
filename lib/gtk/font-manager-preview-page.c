@@ -1,6 +1,6 @@
 /* font-manager-preview-page.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -660,8 +660,7 @@ font_manager_preview_page_init (FontManagerPreviewPage *self)
     self->max_waterfall_size = DEFAULT_WATERFALL_MAX_SIZE;
     self->waterfall_size_ratio = 1.1;
     gtk_widget_add_css_class(GTK_WIDGET(self), FONT_MANAGER_STYLE_CLASS_VIEW);
-    gtk_widget_add_css_class(GTK_WIDGET(self), "FontManagerPreviewPage");
-    gtk_widget_set_name(GTK_WIDGET(self), "FontManagerPreviewPage");
+    font_manager_widget_set_name(GTK_WIDGET(self), "FontManagerPreviewPage");
     gtk_orientable_set_orientation(GTK_ORIENTABLE(self), GTK_ORIENTATION_VERTICAL);
     g_autoptr(GtkTextTagTable) tag_table = font_manager_text_tag_table_new();
     self->pangram = font_manager_get_localized_pangram();

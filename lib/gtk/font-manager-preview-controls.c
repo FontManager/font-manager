@@ -1,6 +1,6 @@
 /* font-manager-preview-controls.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -175,7 +175,6 @@ font_manager_preview_controls_class_init (FontManagerPreviewControlsClass *klass
     object_class->get_property = font_manager_preview_controls_get_property;
     object_class->set_property = font_manager_preview_controls_set_property;
     gtk_widget_class_set_layout_manager_type(widget_class, GTK_TYPE_CENTER_LAYOUT);
-    gtk_widget_class_set_css_name(widget_class, "FontManagerPreviewControls");
 
     /**
      * FontManagerPreviewControls:description:
@@ -349,7 +348,7 @@ font_manager_preview_controls_init (FontManagerPreviewControls *self)
     gtk_widget_add_css_class(GTK_WIDGET(self), FONT_MANAGER_STYLE_CLASS_VIEW);
     gtk_widget_set_valign(GTK_WIDGET(self), GTK_ALIGN_START);
     gtk_widget_set_hexpand(GTK_WIDGET(self), TRUE);
-    gtk_widget_set_name(GTK_WIDGET(self), "FontManagerPreviewControls");
+    font_manager_widget_set_name(GTK_WIDGET(self), "FontManagerPreviewControls");
     return;
 }
 

@@ -1,6 +1,6 @@
 /* font-manager-properties-page.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -296,8 +296,7 @@ font_manager_font_properties_page_init (FontManagerPropertiesPage *self)
 {
     g_return_if_fail(self != NULL);
     gtk_widget_add_css_class(GTK_WIDGET(self), FONT_MANAGER_STYLE_CLASS_VIEW);
-    gtk_widget_add_css_class(GTK_WIDGET(self), "FontManagerPropertiesPage");
-    gtk_widget_set_name(GTK_WIDGET(self), "FontManagerPropertiesPage");
+    font_manager_widget_set_name(GTK_WIDGET(self), "FontManagerPropertiesPage");
     GtkWidget *pane = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
     gtk_widget_set_parent(pane, GTK_WIDGET(self));
     font_manager_widget_set_expand(pane, TRUE);

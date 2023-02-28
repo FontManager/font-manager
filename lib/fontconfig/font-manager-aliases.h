@@ -29,6 +29,7 @@
 #include "font-manager-alias.h"
 #include "font-manager-xml-writer.h"
 #include "font-manager-string-set.h"
+#include "font-manager-utils.h"
 
 #define FONT_MANAGER_TYPE_ALIASES (font_manager_aliases_get_type())
 G_DECLARE_FINAL_TYPE(FontManagerAliases, font_manager_aliases, FONT_MANAGER, ALIASES, GObject)

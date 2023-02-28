@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
   <requires lib="gtk" version="4.0"/>
-  <template class="FontManagerUserSourceList" parent="GtkBox">
-    <property name="name">FontManagerUserSourceList</property>
+  <template class="FontManagerPreferenceList" parent="GtkBox">
     <property name="orientation">vertical</property>
+    <signal name="map" handler="on_map" swapped="no"/>
+    <signal name="unmap" handler="on_unmap" swapped="no"/>
     <child>
       <object class="FontManagerBaseControls" id="controls">
-        <property name="visible">True</property>
+        <property name="visible">False</property>
         <property name="can_focus">False</property>
         <property name="valign">start</property>
         <property name="hexpand">True</property>
         <property name="vexpand">False</property>
-        <child>
-          <placeholder/>
-        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparator" id="separator">
+        <style>
+          <class name="thin-separator"/>
+        </style>
       </object>
     </child>
     <child>
@@ -33,9 +38,6 @@
           </object>
         </property>
       </object>
-    </child>
-    <child>
-      <object class="GtkSeparator"/>
     </child>
   </template>
 </interface>

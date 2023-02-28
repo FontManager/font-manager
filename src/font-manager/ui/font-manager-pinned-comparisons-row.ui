@@ -65,20 +65,6 @@
         </layout>
       </object>
     </child>
-    <child>
-      <placeholder />
-    </child>
-    <child>
-      <placeholder />
-    </child>
-    <child>
-      <placeholder />
-    </child>
-    <child>
-      <placeholder />
-    </child>
-    <child>
-      <placeholder />
-    </child>
   </template>
 </interface>
+

@@ -1,6 +1,6 @@
 /* font-manager-properties.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -411,6 +411,80 @@ get_default_for_double_property (int prop_id)
 }
 
 static void
+font_manager_font_properties_load_defaults (FontManagerFontProperties *self)
+{
+    g_return_if_fail(self != NULL);
+    FontManagerFontPropertiesPrivate *priv;
+    priv = font_manager_font_properties_get_instance_private(self);
+
+    /* Get actual values from default pattern, if possible */
+    FcPattern *blank = FcPatternCreate();
+
+    if (blank) {
+
+        FcConfigSubstitute(0, blank, FcMatchPattern);
+        FcDefaultSubstitute(blank);
+
+        FcResult result;
+        FcPattern *system = FcFontMatch(0, blank, &result);
+
+        if (system) {
+
+            gint hintstyle;
+            gint rgba;
+            gint lcdfilter;
+            gdouble scale;
+            gdouble dpi;
+            gboolean antialias;
+            gboolean hinting;
+            gboolean autohint;
+            gboolean embeddedbitmap;
+
+            if (FcPatternGetInteger(system, FC_HINT_STYLE, 0, &hintstyle) == FcResultMatch)
+                priv->hintstyle = hintstyle;
+
+            if (FcPatternGetInteger(system, FC_RGBA, 0, &rgba) == FcResultMatch) {
+                if (rgba != FC_RGBA_NONE)
+                    priv->rgba = rgba;
+            }
+
+            if (FcPatternGetInteger(system, FC_LCD_FILTER, 0, &lcdfilter) == FcResultMatch)
+                priv->lcdfilter = lcdfilter;
+
+            if (FcPatternGetDouble(system, FC_SCALE, 0, &scale) == FcResultMatch)
+                priv->scale = scale;
+
+            if (FcPatternGetDouble(system, FC_DPI, 0, &dpi) == FcResultMatch)
+                priv->dpi = dpi;
+
+            if (FcPatternGetBool(system, FC_ANTIALIAS, 0, &antialias) == FcResultMatch)
+                priv->antialias = antialias;
+
+            if (FcPatternGetBool(system, FC_HINTING, 0, &hinting) == FcResultMatch)
+                priv->hinting = hinting;
+
+            if (FcPatternGetBool(system, FC_AUTOHINT, 0, &autohint) == FcResultMatch)
+                priv->autohint = autohint;
+
+            if (FcPatternGetBool(system, FC_EMBEDDED_BITMAP, 0, &embeddedbitmap) == FcResultMatch)
+                priv->embeddedbitmap = embeddedbitmap;
+
+            FcPatternDestroy(system);
+
+        }
+
+        FcPatternDestroy(blank);
+
+    }
+
+    for (int i = 0; i < N_PROPERTIES; i++)
+        if (obj_properties[i])
+            g_object_notify_by_pspec(G_OBJECT(self), obj_properties[i]);
+
+    return;
+}
+
+static void
 font_manager_font_properties_class_init (FontManagerFontPropertiesClass *klass)
 {
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
@@ -430,8 +504,11 @@ font_manager_font_properties_class_init (FontManagerFontPropertiesClass *klass)
                                                     NULL,
                                                     PROPERTIES[i].desc,
                                                     0,
-                                                    i == PROP_LCDFILTER ? 6 :
-                                                    i == PROP_TYPE ? 1 : 4,
+                                                    i == PROP_LCDFILTER ?
+                                                    FONT_MANAGER_LCD_FILTER_LEGACY :
+                                                    i == PROP_TYPE ?
+                                                    FONT_MANAGER_FONT_PROPERTIES_TYPE_DISPLAY :
+                                                    FONT_MANAGER_SUBPIXEL_ORDER_NONE,
                                                     0,
                                                     DEFAULT_PARAM_FLAGS);
                 break;
@@ -474,10 +551,12 @@ static void
 font_manager_font_properties_init (FontManagerFontProperties *self)
 {
     g_return_if_fail(self != NULL);
-    font_manager_font_properties_reset(self);
     FontManagerFontPropertiesPrivate *priv;
     priv = font_manager_font_properties_get_instance_private(self);
     priv->type = FONT_MANAGER_FONT_PROPERTIES_TYPE_DEFAULT;
+    priv->config_dir = font_manager_get_user_fontconfig_directory();
+    font_manager_font_properties_reset(self);
+    font_manager_font_properties_load_defaults(self);
     return;
 }
 
@@ -492,8 +571,7 @@ font_manager_font_properties_load (FontManagerFontProperties *self)
 {
     g_return_val_if_fail(self != NULL, FALSE);
     g_autofree gchar *filepath = font_manager_font_properties_get_filepath(self);
-    if (filepath == NULL)
-        return FALSE;
+    g_return_val_if_fail(filepath != NULL, FALSE);
 
     g_autoptr(GFile) file = g_file_new_for_path(filepath);
     if (!g_file_query_exists(file, NULL))
@@ -565,6 +643,7 @@ font_manager_font_properties_discard (FontManagerFontProperties *self)
     if (g_file_query_exists(file, NULL))
         result = g_file_delete(file, NULL, NULL);
     font_manager_font_properties_reset(self);
+    font_manager_font_properties_load_defaults(self);
     return result;
 }
 
@@ -598,79 +677,23 @@ font_manager_font_properties_reset (FontManagerFontProperties *self)
     g_return_if_fail(self != NULL);
     FontManagerFontPropertiesPrivate *priv;
     priv = font_manager_font_properties_get_instance_private(self);
-    priv->hintstyle = 0;
+    priv->hintstyle = FONT_MANAGER_HINT_STYLE_NONE;
     /* This is the default, even when not set */
     priv->antialias = TRUE;
     priv->hinting = FALSE;
     priv->autohint = FALSE;
     priv->embeddedbitmap = FALSE;
-    /* Default is none but we don't expose that in the UI, so this is set to unknown */
-    priv->rgba = FC_RGBA_UNKNOWN;
-    priv->lcdfilter = 0;
+    /* Default is none */
+    priv->rgba = FC_RGBA_NONE;
+    priv->lcdfilter = FONT_MANAGER_LCD_FILTER_NONE;
     priv->scale = 1.0;
     priv->dpi = 96.0;
     priv->less = 0.0;
     priv->more = 0.0;
 
-    /* Get actual values from default pattern, if possible */
-    FcPattern *blank = FcPatternCreate();
-
-    if (blank) {
-
-        FcConfigSubstitute(0, blank, FcMatchPattern);
-        FcDefaultSubstitute(blank);
-
-        FcResult result;
-        FcPattern *system = FcFontMatch(0, blank, &result);
-
-        if (system) {
-
-            gint hintstyle;
-            gint rgba;
-            gint lcdfilter;
-            gdouble scale;
-            gdouble dpi;
-            gboolean antialias;
-            gboolean hinting;
-            gboolean autohint;
-            gboolean embeddedbitmap;
-
-            if (FcPatternGetInteger(system, FC_HINT_STYLE, 0, &hintstyle) == FcResultMatch)
-                priv->hintstyle = hintstyle;
-
-            if (FcPatternGetInteger(system, FC_RGBA, 0, &rgba) == FcResultMatch) {
-                if (rgba != FC_RGBA_NONE)
-                    priv->rgba = rgba;
-            }
-
-            if (FcPatternGetInteger(system, FC_LCD_FILTER, 0, &lcdfilter) == FcResultMatch)
-                priv->lcdfilter = lcdfilter;
-
-            if (FcPatternGetDouble(system, FC_SCALE, 0, &scale) == FcResultMatch)
-                priv->scale = scale;
-
-            if (FcPatternGetDouble(system, FC_DPI, 0, &dpi) == FcResultMatch)
-                priv->dpi = dpi;
-
-            if (FcPatternGetBool(system, FC_ANTIALIAS, 0, &antialias) == FcResultMatch)
-                priv->antialias = antialias;
-
-            if (FcPatternGetBool(system, FC_HINTING, 0, &hinting) == FcResultMatch)
-                priv->hinting = hinting;
-
-            if (FcPatternGetBool(system, FC_AUTOHINT, 0, &autohint) == FcResultMatch)
-                priv->autohint = autohint;
-
-            if (FcPatternGetBool(system, FC_EMBEDDED_BITMAP, 0, &embeddedbitmap) == FcResultMatch)
-                priv->embeddedbitmap = embeddedbitmap;
-
-            FcPatternDestroy(system);
-
-        }
-
-        FcPatternDestroy(blank);
-
-    }
+    for (int i = 0; i < N_PROPERTIES; i++)
+        if (obj_properties[i])
+            g_object_notify_by_pspec(G_OBJECT(self), obj_properties[i]);
 
     return;
 }
@@ -686,4 +709,5 @@ font_manager_font_properties_new (void)
 {
     return g_object_new(FONT_MANAGER_TYPE_FONT_PROPERTIES, NULL);
 }
+
 

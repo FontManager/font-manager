@@ -1,6 +1,6 @@
 /* UserSources.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -121,8 +121,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-user-source-list.ui")]
-    public class UserSourceList : Gtk.Box {
+    public class UserSourceList : PreferenceList {
 
         bool refresh_required = false;
         const string help_text =
@@ -131,16 +130,17 @@ _("""Fonts in any folders listed here will be available within the application.
 
 They will not be visible to other applications until the source is actually enabled.
 
-Note that not all environments/applications will honor these settings.""");
+Running applications may require a restart to reflect any changes.
 
-        [GtkChild] unowned Gtk.ListBox list;
-        [GtkChild] unowned BaseControls controls;
+Note that not all environments/applications will honor these settings.""");
 
         public UserSourceModel model { get; set; }
 
-        Gtk.FileChooserNative dialog;
+        Gtk.FileChooserNative? dialog = null;
 
         public UserSourceList () {
+            widget_set_name(this, "FontManagerUserSourceList");
+            controls.visible = true;
             notify["model"].connect(() => { list.bind_model(model, row_from_item); });
             model = new UserSourceModel();
             string w1 = _("Font Sources");
@@ -148,39 +148,44 @@ Note that not all environments/applications will honor these settings.""");
             string w3 = _("To add a new source simply drag a folder onto this area or click the add button in the toolbar.");
             var place_holder = new PlaceHolder(w1, w2, w3, "folder-symbolic");
             list.set_placeholder(place_holder);
-            set_control_sensitivity(controls.add_button, true);
-            set_control_sensitivity(controls.remove_button, false);
-            Gtk.Widget? ancestor = get_ancestor(typeof(Gtk.Window));
-            var parent = ancestor != null ? (Gtk.Window) ancestor : null;
-            dialog = FileSelector.get_selected_sources(parent);
-            dialog.response.connect(on_file_selections_ready);
             controls.append(inline_help_widget(help_text));
             place_holder.show();
             var drop_target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
             add_controller(drop_target);
             drop_target.drop.connect(on_drag_data_received);
-            controls.add_selected.connect(() => {
-                ((Gtk.NativeDialog) dialog).show();
-            });
-            controls.remove_selected.connect(() => {
-                if (list.get_selected_row() == null)
-                    return;
-                uint position = list.get_selected_row().get_index();
-                model.remove_item(position);
-                while (position > 0 && position >= model.get_n_items()) { position--; }
-                list.select_row(list.get_row_at_index((int) position));
-            });
             model.items_changed.connect(() => { refresh_required = true; });
-            unmap.connect(() => {
-                if (refresh_required) {
-                    Idle.add(() => {
-                        // XXX: FIXME!
-                        //get_default_application().refresh();
-                        refresh_required = false;
-                        return GLib.Source.REMOVE;
-                    });
-                }
-            });
+        }
+
+        protected override void on_add_selected () {
+            if (dialog == null) {
+                dialog = FileSelector.get_selected_sources(get_parent_window(this));
+                dialog.response.connect(on_file_selections_ready);
+            }
+            ((Gtk.NativeDialog) dialog).show();
+            return;
+        }
+
+        protected override void on_remove_selected () {
+            if (list.get_selected_row() == null)
+                return;
+            uint position = list.get_selected_row().get_index();
+            model.remove_item(position);
+            while (position > 0 && position >= model.get_n_items()) { position--; }
+            list.select_row(list.get_row_at_index((int) position));
+            return;
+        }
+
+        protected override void on_unmap () {
+            /* XXX: Maybe abuse settings instance for message passing...*/
+            if (refresh_required) {
+                Idle.add(() => {
+                    // XXX: FIXME!
+                    //get_default_application().refresh();
+                    refresh_required = false;
+                    return GLib.Source.REMOVE;
+                });
+            }
+            return;
         }
 
         Gtk.Widget row_from_item (Object item) {
@@ -198,12 +203,6 @@ Note that not all environments/applications will honor these settings.""");
             return row;
         }
 
-        [GtkCallback]
-        void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
-            set_control_sensitivity(controls.remove_button, row != null);
-            return;
-        }
-
         [CCode (instance_pos = -1)]
         void on_file_selections_ready (Gtk.NativeDialog dialog, int response_id) {
             if (response_id != Gtk.ResponseType.ACCEPT)
@@ -214,14 +213,13 @@ Note that not all environments/applications will honor these settings.""");
                 var source = new Source(file);
                 model.add_item(source);
             }
+            dialog = null;
             return;
         }
 
         /* XXX : Ugh. Dragging folders is broken...
          * https://gitlab.gnome.org/GNOME/gtk/-/issues/5348
          * https://github.com/flatpak/xdg-desktop-portal/issues/911
-         *
-         * 4.10 deprecates NativeDialog
          */
         bool on_drag_data_received (Value value, double x, double y) {
             if (value.holds(typeof(Gdk.FileList))) {
@@ -237,3 +235,4 @@ Note that not all environments/applications will honor these settings.""");
     }
 
 }
+

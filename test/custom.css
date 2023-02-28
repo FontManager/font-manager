@@ -39,9 +39,14 @@ notebook > header {
     background-color: shade(@theme_bg_color, 0.9);
 }
 
-.rounded-button {
+.pill-button {
     padding: 0px 18px 0px 18px;
     border-radius: 1em;
+}
+
+.rounded {
+    padding: 4px;
+    border-radius: 1.25em;
 }
 
 row .count {
@@ -119,32 +124,55 @@ row:selected .count {
     border-color: alpha(@borders, 0.75);
 }
 
-/* .FontManagerCompare list row, */
-/* .FontManagerComparePreview, */
-/* .FontManagerSubstituteList, */
-/* .FontManagerSubstituteList list row, */
-/* .FontManagerUserActionList row, */
-/* .FontManagerUserSourceList row { */
-/*     border-radius: 0.333em; */
-/* } */
+.FontManagerCompare list row,
+.FontManagerComparePreview,
+.FontManagerSubstituteList list row,
+.FontManagerUserActionList list row,
+.FontManagerUserSourceList list row {
+    border-radius: 0.333em;
+    margin: 4px;
+}
 
-/* .FontManagerCompare list row:selected, */
-/* .FontManagerSubstituteList list row:selected, */
-/* .FontManagerUserActionList row:selected, */
-/* .FontManagerUserSourceList row:selected { */
-/*     background-color: alpha(@theme_selected_bg_color, 0.95); */
-/*     border-radius: 0.333em; */
-/* } */
+.FontManagerCompare list row:selected,
+.FontManagerSubstituteList list row:selected,
+.FontManagerUserActionList list row:selected,
+.FontManagerUserSourceList list row:selected {
+    /* background-color: alpha(@theme_selected_bg_color, 0.75); */
+    border-radius: 0.333em;
+    margin: 4px;
+}
 
-/* .FontManagerSubstituteList list row:selected button { */
-/*     background-color: @theme_bg_color; */
-/*     border-radius: 0.333em; */
-/* } */
+.FontManagerSubstituteList list row:selected,
+.FontManagerUserActionList list row:selected,
+.FontManagerUserSourceList list row:selected {
+    box-shadow: 0px 1px 1px 0px inset alpha(@borders, 0.75);
+}
 
-.FontManagerSubstituteList row:hover,
-.FontManagerSubstituteListRow row:hover,
-.FontManagerDesktopPreferences list row:hover {
+.FontManagerSubstituteRow list {
+    border-radius: 0.333em;
+}
+
+.FontManagerSubstituteList list row:selected button {
+    background-color: @theme_bg_color;
+    border-radius: 0.333em;
+}
+
+.FontManagerSubstituteRow list row:hover,
+.FontManagerDesktopPreferences list row:hover,
+.FontManagerDisplayPreferences list row:hover,
+.FontManagerRenderingPreferences list row:hover,
+.FontManagerUserInterfacePreferences  list row:hover {
     background-color: transparent;
+}
+
+.FontManagerSubstituteList row:selected list {
+	box-shadow: 0px 1px 1px 1px alpha(@borders, 0.5);
+}
+
+.FontManagerUserActionList list,
+.FontManagerUserSourceList list,
+.FontManagerSubstituteList list {
+    padding: 0px;
 }
 
 .FontManagerDesktopPreferences list row {

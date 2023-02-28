@@ -17,6 +17,7 @@ m_dep = cc.find_library('m', required: false)
 fontconfig = dependency('fontconfig', version: '>= 2.12')
 freetype = dependency('freetype2', version: '>= 2.10')
 gio = dependency('gio-2.0', version: '>= 2.7')
+gio_unix = dependency('gio-unix-2.0', version: '>= 2.7')
 glib = dependency('glib-2.0', version: '>= 2.62')
 gmodule = dependency('gmodule-2.0', version: '>= 2.50')
 gtk = dependency('gtk4', version: '>= 4.0')
@@ -36,7 +37,7 @@ base_deps = declare_dependency(
 )
 
 vala_deps = declare_dependency(
-    dependencies: [ glib, gio, gmodule, gtk, json, m_dep, sqlite, xml ]
+    dependencies: [ glib, gio, gio_unix, gmodule, gtk, json, m_dep, sqlite, xml ]
 )
 
 includes = [ include_directories('.') ]

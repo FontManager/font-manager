@@ -203,9 +203,7 @@ namespace FontManager {
             binding = item.bind_property("active", item_state, "active", flags, null, null);
             item_state.set("sensitive", root, "visible", root, null);
             item_count.visible = root;
-            string f;
-            string d;
-            string? p = null;
+            string f; string d; string? p = null;
             item.get("family", out f, "description", out d, "preview-text", out p, null);
             string label = root ? f : p != null ? p : d;
             item_label.set_label(label);
@@ -221,7 +219,10 @@ namespace FontManager {
                 attrs.insert(new Pango.AttrFontDesc(font_desc));
                 // XXX : REGRESSION : PERFORMANCE
                 // Setting font description appears to be incredibly slow.
-                item_label.set_attributes(attrs);
+                Idle.add(() => {
+                    item_label.set_attributes(attrs);
+                    return GLib.Source.REMOVE;
+                });
             }
             return;
         }

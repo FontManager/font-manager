@@ -1,6 +1,6 @@
 /* Compare.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -184,7 +184,7 @@ namespace FontManager {
         string? default_preview_text = null;
 
         public override void constructed () {
-            name = "FontManagerCompare";
+            widget_set_name(this, "FontManagerCompare");
             notify["model"].connect(() => { list.bind_model(model, CompareRow.from_item); });
             model = new CompareModel();
             pinned = new PinnedComparisons();
@@ -289,9 +289,9 @@ namespace FontManager {
             return;
         }
 
-        public GenericArray list_items () {
-            var results = new GenericArray <Object> ();
-            model.items.foreach((item) => { results.add(item); });
+        public GenericArray <Font> list_items () {
+            var results = new GenericArray <Font> ();
+            model.items.foreach((it) => { results.add((Font) it.item); });
             return results;
         }
 
@@ -366,6 +366,8 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-pinned-comparisons-row.ui")]
     public class PinnedComparisonRow : Gtk.Grid {
 
+        public signal void activated ();
+
         [GtkChild] unowned Gtk.Entry label;
         [GtkChild] unowned Gtk.Label created;
 
@@ -373,6 +375,7 @@ namespace FontManager {
 
         construct {
             label.set_placeholder_text(placeholder_text);
+            ((Gtk.Entry) label).activate.connect(() => { activated(); });
         }
 
         public static PinnedComparisonRow from_item (Object item) {
@@ -381,6 +384,12 @@ namespace FontManager {
             item.bind_property("label", row.label, "text", flags);
             item.bind_property("created", row.created, "label", flags);
             return row;
+        }
+
+        public override bool grab_focus () {
+            base.grab_focus();
+            label.grab_focus();
+            return label.has_focus;
         }
 
     }
@@ -404,12 +413,14 @@ namespace FontManager {
             place_holder.show();
             notify["compare"].connect(() => {
                 if (compare != null)
-                    compare.model.items_changed.connect((p, a, r) => {
-                        set_control_sensitivity(save_button, compare.model.get_n_items() > 0);
+                    compare.model.items_changed.connect((p, r, a) => {
+                        set_control_sensitivity(save_button,
+                                                compare.model.get_n_items() > 0);
                     });
             });
             notify["model"].connect((obj, pspec) => {
                 list.bind_model(model, PinnedComparisonRow.from_item);
+                model.items_changed.connect(on_items_changed);
             });
             model = new PinnedComparisonModel();
             load();
@@ -422,6 +433,17 @@ namespace FontManager {
             string filepath = Path.build_filename(dirpath, "PinnedComparisons.json");
             DirUtils.create_with_parents(dirpath ,0755);
             return filepath;
+        }
+
+        void on_items_changed (uint position, uint removed, uint added) {
+            if (added > 0) {
+                Gtk.ListBoxRow row = list.get_row_at_index((int) position);
+                var widget = (PinnedComparisonRow) row.get_child();
+                list.select_row(row);
+                widget.grab_focus();
+                widget.activated.connect(() => { popdown(); });
+            }
+            return;
         }
 
         public void load () {
@@ -468,8 +490,8 @@ namespace FontManager {
                 obj.set_string_member("label", item.label);
                 obj.set_string_member("created", item.created);
                 var _arr = new Json.Array();
-                foreach (var _item in item.items)
-                    _arr.add_object_element(((Font) _item).source_object);
+                foreach (var it in item.items)
+                    _arr.add_object_element(((Font) it).source_object);
                 obj.set_array_member("items", _arr);
                 arr.add_object_element(obj);
             }
@@ -508,9 +530,10 @@ namespace FontManager {
             while (compare.model.get_n_items() > 0)
                 compare.model.remove_item(0);
             var items = new GenericArray <Object> ();
-            foreach (var _item in ((PinnedComparison) item).items)
-                items.add(_item);
+            foreach (var it in ((PinnedComparison) item).items)
+                items.add(it);
             compare.add_items(items);
+            popdown();
             return;
         }
 

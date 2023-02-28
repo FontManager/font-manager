@@ -42,7 +42,7 @@ namespace FontManager.FontViewer {
 
         public override void constructed () {
             var target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
-            target.on_drop.connect(on_drop);
+            target.drop.connect(on_drop);
             stack.add_controller(target);
             stack.set_visible_child_name("PlaceHolder");
             preview_pane.set_action_widget(action_button, Gtk.PackType.END);

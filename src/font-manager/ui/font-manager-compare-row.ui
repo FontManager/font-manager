@@ -6,18 +6,6 @@
     <property name="hexpand">1</property>
     <property name="vexpand">1</property>
     <child>
-      <object class="GtkSeparator">
-        <property name="opacity">0.5</property>
-        <property name="margin-start">3</property>
-        <property name="margin-end">3</property>
-        <layout>
-          <property name="column">0</property>
-          <property name="row">1</property>
-          <property name="column-span">3</property>
-        </layout>
-      </object>
-    </child>
-    <child>
       <object class="GtkBox">
         <property name="orientation">vertical</property>
         <child>
@@ -60,7 +48,7 @@
         </style>
         <layout>
           <property name="column">0</property>
-          <property name="row">2</property>
+          <property name="row">1</property>
           <property name="column-span">3</property>
           <property name="row-span">2</property>
         </layout>
@@ -68,4 +56,4 @@
     </child>
   </template>
 </interface>
-    
+

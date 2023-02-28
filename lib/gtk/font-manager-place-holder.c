@@ -1,6 +1,6 @@
 /* font-manager-place-holder.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -138,7 +138,6 @@ font_manager_place_holder_class_init (FontManagerPlaceHolderClass *klass)
     object_class->get_property = font_manager_place_holder_get_property;
     object_class->set_property = font_manager_place_holder_set_property;
     gtk_widget_class_set_layout_manager_type(widget_class, GTK_TYPE_BOX_LAYOUT);
-    gtk_widget_class_set_css_name(widget_class, "FontManagerPlaceHolder");
 
     /**
      * FontManagerPlaceHolder:icon-name:
@@ -271,7 +270,7 @@ font_manager_place_holder_init (FontManagerPlaceHolder *self)
     gtk_scrolled_window_set_child(GTK_SCROLLED_WINDOW(scrolled_window), bbox);
     gtk_widget_set_parent(scrolled_window, GTK_WIDGET(self));
     gtk_widget_add_css_class(GTK_WIDGET(self), FONT_MANAGER_STYLE_CLASS_VIEW);
-    gtk_widget_set_name(GTK_WIDGET(self), "FontManagerPlaceHoler");
+    font_manager_widget_set_name(GTK_WIDGET(self), "FontManagerPlaceHoler");
     return;
 }
 

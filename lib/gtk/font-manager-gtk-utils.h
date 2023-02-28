@@ -1,6 +1,6 @@
 /* font-manager-gtk-utils.h
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -126,6 +126,7 @@ void font_manager_clear_pango_cache (PangoContext *ctx);
 void font_manager_widget_set_align (GtkWidget *widget, GtkAlign align);
 void font_manager_widget_set_expand (GtkWidget *widget, gboolean expand);
 void font_manager_widget_set_margin (GtkWidget *widget, gint margin);
+void font_manager_widget_set_name (GtkWidget *widget, const gchar *name);
 void font_manager_widget_dispose (GtkWidget *widget);
 
 gchar * font_manager_get_localized_pangram (void);
@@ -138,5 +139,6 @@ GtkShortcut * font_manager_get_shortcut_for_stateful_action (const gchar *prefix
                                                              const gchar *name,
                                                              const gchar *target,
                                                              const gchar *accel);
+
 
 

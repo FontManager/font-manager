@@ -1,6 +1,6 @@
 /* font-manager-aliases.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -158,6 +158,8 @@ font_manager_aliases_init (FontManagerAliases *self)
 {
     g_return_if_fail(self != NULL);
     FontManagerAliasesPrivate *priv = font_manager_aliases_get_instance_private(self);
+    priv->config_dir = font_manager_get_user_fontconfig_directory();
+    priv->target_file = g_strdup("39-Aliases.conf");
     priv->hash_table = g_hash_table_new_full(g_str_hash,
                                              g_str_equal,
                                              (GDestroyNotify) g_free,

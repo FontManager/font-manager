@@ -1,6 +1,6 @@
 /* Desktop.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,6 +74,12 @@ namespace FontManager {
             "int",
         },
         {
+            "font-hinting",
+            N_("Hinting"),
+            N_("The type of hinting to use when rendering fonts."),
+            "int",
+        },
+        {
             "font-antialiasing",
             N_("Antialiasing"),
             N_("The type of antialiasing to use when rendering fonts."),
@@ -85,21 +91,13 @@ namespace FontManager {
             N_("The order of subpixel elements on an LCD screen; only used when antialiasing is set to rgba."),
             "int",
         },
-        {
-            "font-hinting",
-            N_("Hinting"),
-            N_("The type of hinting to use when rendering fonts."),
-            "int",
-        },
     };
 
-    public class DesktopPreferences : Gtk.Box {
+    public class DesktopPreferences : PreferenceList {
 
+        static bool initialized = false;
         static Settings? interface_settings = null;
         static Settings? x_settings = null;
-        static bool initialized = false;
-        Gtk.ListBox list;
-        Gtk.ScrolledWindow scroll;
 
         public static bool available () {
             if (!initialized) {
@@ -111,22 +109,17 @@ namespace FontManager {
         }
 
         public DesktopPreferences () {
-            Object(name: "FontManagerDesktopPreferences");
-            list = new Gtk.ListBox();
+            widget_set_name(this, "FontManagerDesktopPreferences");
             list.set_selection_mode(Gtk.SelectionMode.NONE);
+            list.add_css_class("rich-list");
             var place_holder = new PlaceHolder(null, null, _("GNOME desktop settings schema not found"), "dialog-warning-symbolic");
             list.set_placeholder(place_holder);
-            place_holder.show();
             if (DesktopPreferences.available())
-                generate_options_list(interface_settings, x_settings);
-            scroll = new Gtk.ScrolledWindow();
-            scroll.set_child(list);
-            append(scroll);
+                generate_options_list();
         }
 
-        void generate_options_list (Settings interface_settings,
-                                    Settings? x_settings) {
-            /* Settings instance to be used below for scale widgets */
+        void generate_options_list () {
+            /* Settings instance to be used below */
             Settings? _settings = interface_settings;
             /* Ensure keys exist since we don't control these schemas and GSettings crashes on any error */
             SettingsSchemaSource default_schemas = SettingsSchemaSource.get_default();
@@ -145,8 +138,9 @@ namespace FontManager {
             /* Newer key not found use deprecated xsettings keys if possible */
             if (x_settings != null)
                 _settings = x_settings;
-            Gtk.Revealer spg_revealer = new Gtk.Revealer();
-            OptionScale? antialias = null;
+            SubpixelGeometry spg = new SubpixelGeometry() { margin_top = DEFAULT_MARGIN * 3};
+            spg.options[SubpixelOrder.UNKNOWN].hide();
+            spg.options[SubpixelOrder.NONE].hide();
             foreach (var setting in DesktopSettings) {
                 if (!(setting.key in interface_keys) && !(setting.key in xsettings_keys))
                     continue;
@@ -161,32 +155,36 @@ namespace FontManager {
                     interface_settings.bind(setting.key, control, "value", SettingsBindFlags.DEFAULT);
                 } else if (setting.type == "int") {
                     if (!(setting.key.contains("rgba-order"))) {
+                        var combo = new Gtk.ComboBoxText();
                         string? [] options = null;
                         if (setting.key.contains("antialiasing"))
-                            options = { "None", "Grayscale", "RGBA" };
+                            options = { _("None"), _("Grayscale"), _("RGBA") };
                         else if (setting.key.contains("hinting"))
-                            options = { "None", "Slight", "Medium", "Full" };
-                        widget = new OptionScale(dgettext(null, setting.name), options);
-                        var scale = widget as OptionScale;
-                        if (setting.key.contains("antialiasing"))
-                            antialias = scale;
-                        scale.value = (double) _settings.get_enum(setting.key);
-                        scale.notify["value"].connect(() => {
-                            _settings.set_enum(setting.key, (int) scale.value);
+                            options = { _("None"), _("Slight"), _("Medium"), _("Full") };
+                        for (int i = 0; i < options.length; i++)
+                            combo.append(i.to_string(), options[i]);
+                        combo.active_id = _settings.get_enum(setting.key).to_string();
+                        combo.notify["active-id"].connect(() => {
+                            _settings.set_enum(setting.key, int.parse(combo.active_id));
                         });
                         _settings.changed.connect((key) => {
                             if (key != setting.key)
                                 return;
-                            var new_value = (double) _settings.get_enum(setting.key);
-                            if (scale.value != new_value)
-                                scale.value = new_value;
+                            var new_value = _settings.get_enum(setting.key).to_string();
+                            if (combo.active_id != new_value)
+                                combo.active_id = new_value;
                         });
+                        widget = new PreferenceRow(dgettext(null, setting.name), null, null, combo);
+                        if (setting.key.contains("antialiasing")) {
+                            var child = new PreferenceRow(_("Subpixel Geometry"), null, null, spg);
+                            var parent = widget as PreferenceRow;
+                            parent.append_child(child);
+                            parent.set_reveal_child(combo.active_id == "2");
+                            combo.notify["active-id"].connect(() => {
+                                parent.set_reveal_child(combo.active_id == "2");
+                            });
+                        }
                     } else {
-                        widget = spg_revealer;
-                        spg_revealer.set_transition_duration(450);
-                        var spg = new SubpixelGeometry();
-                        spg_revealer.set_child(spg);
-                        spg.options[0].hide();
                         spg.rgba = _settings.get_enum(setting.key);
                         spg.notify["rgba"].connect(() => {
                             _settings.set_enum(setting.key, spg.rgba);
@@ -198,21 +196,14 @@ namespace FontManager {
                             if (spg.rgba != new_value)
                                 spg.rgba = new_value;
                         });
+                        var pref_row = spg.get_ancestor(typeof(PreferenceRow));
+                        pref_row.set_tooltip_text(dgettext(null, setting.description));
                     }
-
                 }
                 if (widget == null)
                     continue;
-                var row = new Gtk.ListBoxRow() { activatable = false, selectable = false };
-                row.set_child(widget);
-                list.insert(row, -1);
                 widget.set_tooltip_text(dgettext(null, setting.description));
-            }
-            if (antialias != null) {
-                spg_revealer.set_reveal_child(antialias.value == 2);
-                antialias.notify["value"].connect(() => {
-                    spg_revealer.set_reveal_child(antialias.value == 2);
-                });
+                append_row(widget);
             }
             return;
         }

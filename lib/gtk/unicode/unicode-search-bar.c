@@ -2,7 +2,7 @@
  *
  * Originally a part of Gucharmap
  *
- * Copyright (C) 2017-2022 Jerry Casiano
+ * Copyright (C) 2017-2023 Jerry Casiano
  *
  *
  * Copyright © 2004 Noah Levitt
@@ -630,7 +630,7 @@ font_manager_unicode_search_bar_init (FontManagerUnicodeSearchBar *self)
     gtk_search_bar_set_child(GTK_SEARCH_BAR(search_bar), center_box);
     gtk_search_bar_set_search_mode(GTK_SEARCH_BAR(search_bar), TRUE);
     gtk_widget_set_parent(search_bar, GTK_WIDGET(self));
-    gtk_widget_set_name(GTK_WIDGET(self), "FontManagerUnicodeSearchBar");
+    font_manager_widget_set_name(GTK_WIDGET(self), "FontManagerUnicodeSearchBar");
     gtk_widget_set_opacity(self->prev_button, 0.75);
     gtk_widget_set_opacity(self->next_button, 0.75);
     font_manager_widget_set_expand(GTK_WIDGET(search_bar), TRUE);

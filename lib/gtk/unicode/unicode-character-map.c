@@ -2,7 +2,7 @@
  *
  * Originally a part of Gucharmap
  *
- * Copyright (C) 2017-2022 Jerry Casiano
+ * Copyright (C) 2017-2023 Jerry Casiano
  *
  *
  * Copyright © 2004 Noah Levitt
@@ -782,8 +782,7 @@ get_context_widget (FontManagerUnicodeCharacterMap *self)
     gtk_widget_set_margin_bottom(separator, FONT_MANAGER_DEFAULT_MARGIN);
     GtkWidget *copy_button = gtk_button_new_with_label(_("Copy"));
     gtk_widget_set_opacity(copy_button, 0.75);
-    gtk_widget_add_css_class(copy_button, "pill");
-    gtk_widget_add_css_class(copy_button, "rounded-button");
+    gtk_widget_add_css_class(copy_button, "pill-button");
     font_manager_widget_set_align(copy_button, GTK_ALIGN_CENTER);
     font_manager_widget_set_margin(copy_button, 0);
     gtk_widget_set_focusable(copy_button, FALSE);
@@ -1003,8 +1002,6 @@ font_manager_unicode_character_map_class_init (FontManagerUnicodeCharacterMapCla
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 
-    gtk_widget_class_set_css_name(widget_class, "FontManagerUnicodeCharacterMap");
-
     GTK_DRAWING_AREA_CLASS(widget_class)->resize = font_manager_unicode_character_map_resize;
     widget_class->snapshot = font_manager_unicode_character_map_snapshot;
     object_class->dispose = font_manager_unicode_character_map_dispose;
@@ -1125,7 +1122,7 @@ font_manager_unicode_character_map_init (FontManagerUnicodeCharacterMap *self)
     gtk_widget_set_focusable(widget, TRUE);
     gtk_widget_add_css_class(widget, FONT_MANAGER_STYLE_CLASS_VIEW);
     font_manager_widget_set_expand(widget, TRUE);
-    gtk_widget_set_name(widget, "FontManagerUnicodeCharacterMap");
+    font_manager_widget_set_name(widget, "FontManagerUnicodeCharacterMap");
     g_autoptr(PangoFontDescription) font_desc = pango_font_description_from_string(FONT_MANAGER_DEFAULT_FONT);
     font_manager_unicode_character_map_set_font_desc(self, font_desc);
     g_signal_connect(self, "notify::active-cell", G_CALLBACK(on_selection_changed), self);

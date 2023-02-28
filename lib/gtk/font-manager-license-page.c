@@ -1,6 +1,6 @@
 /* font-manager-license-page.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -125,7 +125,6 @@ font_manager_license_page_class_init (FontManagerLicensePageClass *klass)
     object_class->get_property = font_manager_license_page_get_property;
     object_class->set_property = font_manager_license_page_set_property;
     gtk_widget_class_set_layout_manager_type(widget_class, GTK_TYPE_BOX_LAYOUT);
-    gtk_widget_class_set_css_name(widget_class, "FontManagerLicensePage");
 
     /**
      * FontManagerLicensePage:fstype:
@@ -175,7 +174,7 @@ font_manager_license_page_init (FontManagerLicensePage *self)
 {
     g_return_if_fail(self != NULL);
     gtk_widget_add_css_class(GTK_WIDGET(self), FONT_MANAGER_STYLE_CLASS_VIEW);
-    gtk_widget_set_name(GTK_WIDGET(self), "FontManagerLicensePage");
+    font_manager_widget_set_name(GTK_WIDGET(self), "FontManagerLicensePage");
     self->fsType = gtk_label_new(NULL);
     const gchar *msg = _("File does not contain license information.");
     self->placeholder = font_manager_place_holder_new(NULL, NULL, msg, "dialog-question-symbolic");

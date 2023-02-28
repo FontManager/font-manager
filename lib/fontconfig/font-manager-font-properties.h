@@ -1,6 +1,6 @@
 /* font-manager-properties.h
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@
 #include <fontconfig/fontconfig.h>
 #include <libxml/tree.h>
 
+#include "font-manager-fontconfig.h"
 #include "font-manager-utils.h"
 #include "font-manager-xml-writer.h"
 

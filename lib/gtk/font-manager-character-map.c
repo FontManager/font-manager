@@ -1,6 +1,6 @@
 /* font-manager-character-map.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -151,7 +151,6 @@ font_manager_character_map_class_init (FontManagerCharacterMapClass *klass)
     object_class->dispose = font_manager_character_map_dispose;
     object_class->get_property = font_manager_character_map_get_property;
     object_class->set_property = font_manager_character_map_set_property;
-    gtk_widget_class_set_css_name(widget_class, "FontManagerCharacterMap");
     gtk_widget_class_set_layout_manager_type(widget_class, GTK_TYPE_BIN_LAYOUT);
 
     /**
@@ -228,7 +227,7 @@ static void
 font_manager_character_map_init (FontManagerCharacterMap *self)
 {
     g_return_if_fail(self != NULL);
-    gtk_widget_set_name(GTK_WIDGET(self), "FontManagerCharacterMap");
+    font_manager_widget_set_name(GTK_WIDGET(self), "FontManagerCharacterMap");
     GtkWidget *box = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     self->character_map = font_manager_unicode_character_map_new();
     GtkWidget *info_widget = font_manager_unicode_character_info_new();

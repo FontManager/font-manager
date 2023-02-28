@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.0"/>
+  <template class="FontManagerSubstitute" parent="GtkGrid">
+    <property name="name">FontManagerSubstitute</property>
+    <property name="halign">center</property>
+    <property name="margin-start">6</property>
+    <property name="margin-end">6</property>
+    <property name="margin-top">6</property>
+    <property name="margin-bottom">6</property>
+    <property name="hexpand">1</property>
+    <property name="column-spacing">12</property>
+    <child>
+      <object class="GtkButton" id="close">
+        <property name="focus-on-click">0</property>
+        <property name="receives-default">1</property>
+        <property name="halign">center</property>
+        <property name="valign">center</property>
+        <child>
+          <object class="GtkImage">
+            <property name="icon-name">window-close-symbolic</property>
+            <property name="icon_size">normal</property>
+          </object>
+        </child>
+        <layout>
+          <property name="column">4</property>
+          <property name="row">0</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="GtkEntry" id="target">
+        <property name="focusable">1</property>
+        <property name="primary-icon-tooltip-text" translatable="1">Remove substitute</property>
+        <property name="placeholder-text" translatable="1">Enter substitute family</property>
+        <layout>
+          <property name="column">2</property>
+          <property name="row">0</property>
+          <property name="column-span">2</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="GtkComboBoxText" id="type">
+        <property name="focusable">1</property>
+        <property name="focus-on-click">0</property>
+        <property name="active">0</property>
+        <property name="active-id">0</property>
+        <items>
+          <item id="prefer" translatable="yes">prefer</item>
+          <item id="accept" translatable="yes">accept</item>
+          <item id="default" translatable="yes">default</item>
+        </items>
+        <layout>
+          <property name="column">0</property>
+          <property name="row">0</property>
+          <property name="column-span">2</property>
+        </layout>
+      </object>
+    </child>
+  </template>
+</interface>
+

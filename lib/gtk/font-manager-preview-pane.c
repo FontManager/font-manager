@@ -1,6 +1,6 @@
 /* font-manager-preview-pane.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -531,7 +531,7 @@ static void
 font_manager_preview_pane_init (FontManagerPreviewPane *self)
 {
     g_return_if_fail(self != NULL);
-    gtk_widget_add_css_class(GTK_WIDGET(self), "FontManagerPreviewPane");
+    font_manager_widget_set_name(GTK_WIDGET(self), "FontManagerPreviewPane");
     self->notebook = GTK_NOTEBOOK(gtk_notebook_new());
     GtkWidget *box = gtk_widget_get_first_child(GTK_WIDGET(self->notebook));
     gtk_widget_add_css_class(box, FONT_MANAGER_STYLE_CLASS_BACKGROUND);

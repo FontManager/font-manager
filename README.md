@@ -8,3 +8,5 @@ To build available widgets:
 
 Running the test target will open a small launcher application which lists 
 available widgets and allows running them.
+
+Note : This branch currently requires GTK >= 4.8 and Vala from the git staging branch to build.

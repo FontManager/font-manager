@@ -1,6 +1,6 @@
 /* Utils.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -78,7 +78,14 @@ namespace FontManager {
         return help;
     }
 
-    public void set_control_sensitivity(Gtk.Widget widget, bool sensitive) {
+    public Gtk.Window? get_parent_window (Gtk.Widget widget) {
+        Gtk.Widget? ancestor = widget.get_ancestor(typeof(Gtk.Window));
+        return ancestor != null ? (Gtk.Window) ancestor : null;
+    }
+
+    public void set_control_sensitivity(Gtk.Widget? widget, bool sensitive) {
+        if (widget == null || !(widget is Gtk.Widget))
+            return;
         widget.sensitive = sensitive;
         widget.opacity = sensitive ? 0.9 : 0.45;
         widget.has_tooltip = sensitive;

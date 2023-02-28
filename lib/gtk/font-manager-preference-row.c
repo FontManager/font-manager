@@ -1,6 +1,6 @@
 /* font-manager-preference-row.c
  *
- * Copyright (C) 2020-2022 Jerry Casiano
+ * Copyright (C) 2020-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,6 +54,16 @@ enum
 };
 
 static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
+
+static void
+font_manager_preference_row_dispose (GObject *gobject)
+{
+    FontManagerPreferenceRow *self = FONT_MANAGER_PREFERENCE_ROW(gobject);
+    g_return_if_fail(self != NULL);
+    font_manager_widget_dispose(GTK_WIDGET(gobject));
+    G_OBJECT_CLASS(font_manager_preference_row_parent_class)->dispose(gobject);
+    return;
+}
 
 static void
 font_manager_preference_row_set_label (GtkLabel *_label, const gchar *msg)
@@ -150,9 +160,9 @@ font_manager_preference_row_class_init (FontManagerPreferenceRowClass *klass)
     GObjectClass *object_class = G_OBJECT_CLASS(klass);
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
 
+    object_class->dispose = font_manager_preference_row_dispose;
     object_class->get_property = font_manager_preference_row_get_property;
     object_class->set_property = font_manager_preference_row_set_property;
-    gtk_widget_class_set_css_name(widget_class, "FontManagerPreferenceRow");
     gtk_widget_class_set_layout_manager_type(widget_class, GTK_TYPE_BOX_LAYOUT);
 
     /**
@@ -256,10 +266,14 @@ font_manager_preference_row_init (FontManagerPreferenceRow *self)
     g_return_if_fail(self != NULL);
     GtkWidget *container = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     self->revealer = gtk_revealer_new();
+    gtk_revealer_set_transition_duration(GTK_REVEALER(self->revealer), 500);
     GtkWidget *inner_container = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     self->control = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 0);
     self->children = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
-    font_manager_widget_set_margin(self->children, FONT_MANAGER_DEFAULT_MARGIN * 2);
+    gtk_widget_set_margin_start(self->children, FONT_MANAGER_DEFAULT_MARGIN * 3);
+    gtk_widget_set_margin_end(self->children, FONT_MANAGER_DEFAULT_MARGIN * 3);
+    gtk_widget_set_margin_top(self->children, FONT_MANAGER_DEFAULT_MARGIN);
+    gtk_widget_set_margin_bottom(self->children, 0);
     gtk_revealer_set_child(GTK_REVEALER(self->revealer), self->children);
     self->icon = gtk_image_new();
     gtk_image_set_icon_size(GTK_IMAGE(self->icon),  GTK_ICON_SIZE_LARGE);
@@ -285,7 +299,7 @@ font_manager_preference_row_init (FontManagerPreferenceRow *self)
     gtk_box_append(GTK_BOX(container), inner_container);
     gtk_box_append(GTK_BOX(container), self->revealer);
     gtk_widget_set_parent(container, GTK_WIDGET(self));
-    gtk_widget_set_name(GTK_WIDGET(self), "FontManagerPreferenceRow");
+    font_manager_widget_set_name(GTK_WIDGET(self), "FontManagerPreferenceRow");
     return;
 }
 
@@ -331,7 +345,7 @@ on_state_set (GtkSwitch                *control,
               FontManagerPreferenceRow *self)
 {
     gboolean visible = gtk_switch_get_active(control);
-    font_manager_preference_row_set_child_visible(self, visible);
+    font_manager_preference_row_set_reveal_child(self, visible);
     return;
 }
 
@@ -346,7 +360,7 @@ on_state_set (GtkSwitch                *control,
  * If the action widget set for @parent is a #GtkSwitch then children will
  * be revealed and concealed automatically when the widget is activated.
  *
- * Otherwise use #font_manager_preference_row_set_child_visible to control
+ * Otherwise use #font_manager_preference_row_set_reveal_child to control
  * their visibility.
  */
 void
@@ -356,6 +370,7 @@ font_manager_preference_row_append_child (FontManagerPreferenceRow *parent,
     g_return_if_fail(parent != NULL);
     g_return_if_fail(child != NULL);
     gtk_box_append(GTK_BOX(parent->children), GTK_WIDGET(child));
+    font_manager_widget_set_margin(GTK_WIDGET(child), FONT_MANAGER_DEFAULT_MARGIN);
     GtkWidget *control = font_manager_preference_row_get_action_widget(parent);
     if (control && GTK_IS_SWITCH(control))
         g_signal_connect_after(control, "notify::state", G_CALLBACK(on_state_set), parent);
@@ -363,16 +378,20 @@ font_manager_preference_row_append_child (FontManagerPreferenceRow *parent,
 }
 
 /**
- * font_manager_preference_row_set_child_visible:
+ * font_manager_preference_row_set_reveal_child:
  * @self:       #FontManagerPreferenceRow
  * @visible:    %TRUE to reveal child preferences
  */
 void
-font_manager_preference_row_set_child_visible (FontManagerPreferenceRow *self,
+font_manager_preference_row_set_reveal_child (FontManagerPreferenceRow *self,
                                                gboolean                  visible)
 {
     g_return_if_fail(self != NULL);
     gtk_revealer_set_reveal_child(GTK_REVEALER(self->revealer), visible);
+    if (visible)
+        gtk_widget_set_margin_bottom(GTK_WIDGET(self), 0);
+    else
+        gtk_widget_set_margin_bottom(GTK_WIDGET(self), FONT_MANAGER_DEFAULT_MARGIN * 2);
     return;
 }
 
