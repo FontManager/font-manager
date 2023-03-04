@@ -97,10 +97,11 @@ namespace FontManager {
 
         public Object? item { get; set; default = null; }
 
-        [GtkChild] public unowned Gtk.CheckButton item_state { get; }
-        [GtkChild] public unowned Gtk.Image item_icon { get; }
         [GtkChild] public unowned Gtk.Label item_label { get; }
         [GtkChild] public unowned Gtk.Label item_count { get; }
+        [GtkChild] public unowned Gtk.Image item_icon { get; }
+        [GtkChild] public unowned Gtk.CheckButton item_state { get; }
+        [GtkChild] public unowned Gtk.Inscription item_preview { get; }
 
     }
 

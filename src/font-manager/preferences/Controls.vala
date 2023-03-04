@@ -118,6 +118,15 @@ Note that not all environments/applications will honor these settings.""")
 
     public class SubpixelGeometry : Gtk.Box {
 
+        public string active_id {
+            set {
+                rgba = int.parse(value);
+            }
+            get {
+                return _rgba_;
+            }
+        }
+
         public int rgba {
             get {
                 return _rgba;
@@ -127,6 +136,9 @@ Note that not all environments/applications will honor these settings.""")
                     return;
                 _rgba = value;
                 options[_rgba].active = true;
+                _rgba_ = _rgba.to_string();
+                notify_property("rgba");
+                notify_property("active-id");
             }
         }
 
@@ -134,6 +146,7 @@ Note that not all environments/applications will honor these settings.""")
         public GenericArray <Gtk.CheckButton> options { get; private set; }
 
         int _rgba;
+        string? _rgba_ = null;
 
         public SubpixelGeometry () {
             hexpand = true;

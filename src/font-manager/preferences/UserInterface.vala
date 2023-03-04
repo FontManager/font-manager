@@ -226,6 +226,15 @@ namespace FontManager {
             settings.bind("wide-layout", wide_layout, "active", flags);
             settings.bind("wide-layout-on-maximize", on_maximize, "active", flags);
             settings.bind("enable-animations", enable_animations, "active", flags);
+
+            // XXX : FIXME! :
+            // Here for testing purposes
+            // This probably belongs in our application window class.
+            Gtk.Settings? gtk_settings = Gtk.Settings.get_default();
+            warn_if_fail(gtk_settings != null);
+            const string gtk_prefer_dark = "gtk-application-prefer-dark-theme";
+            settings.bind("prefer-dark-theme", gtk_settings, gtk_prefer_dark, flags);
+
             settings.bind("prefer-dark-theme", prefer_dark_theme, "active", flags);
             settings.bind("title-button-style", button_style, "active-id", flags);
             settings.bind("waterfall-show-line-size", show_line_size, "active", flags);
@@ -239,6 +248,7 @@ namespace FontManager {
                                        PredefinedWaterfallSize.from_setting,
                                        PredefinedWaterfallSize.to_setting,
                                        null, null);
+
             return;
         }
 

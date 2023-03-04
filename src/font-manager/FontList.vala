@@ -1,6 +1,6 @@
 /* FontList.vala
  *
- * Copyright (C) 2020-2022 Jerry Casiano
+ * Copyright (C) 2020-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -188,7 +188,8 @@ namespace FontManager {
                 binding.unbind();
             binding = null;
             item_state.set("active", true, "visible", true, "sensitive", true, null);
-            item_label.set("label", "", "attributes", null, "halign", Gtk.Align.START, null);
+            item_label.set("label", "", "attributes", null, null);
+            item_preview.set("text", "", "attributes", null, "visible", false, null);
             item_count.visible = true;
             item_count.set_label("");
             return;
@@ -206,23 +207,19 @@ namespace FontManager {
             string f; string d; string? p = null;
             item.get("family", out f, "description", out d, "preview-text", out p, null);
             string label = root ? f : p != null ? p : d;
-            item_label.set_label(label);
             if (root) {
                 var count = (int) ((Family) item).n_variations;
                 var count_label = ngettext("%i Variation ", "%i Variations", (ulong) count);
                 item_count.set_label(count_label.printf(count));
+                item_label.set_label(label);
             } else {
-                item_label.set_halign(Gtk.Align.CENTER);
                 Pango.FontDescription font_desc = Pango.FontDescription.from_string(d);
                 Pango.AttrList attrs = new Pango.AttrList();
                 attrs.insert(Pango.attr_fallback_new(false));
                 attrs.insert(new Pango.AttrFontDesc(font_desc));
-                // XXX : REGRESSION : PERFORMANCE
-                // Setting font description appears to be incredibly slow.
-                Idle.add(() => {
-                    item_label.set_attributes(attrs);
-                    return GLib.Source.REMOVE;
-                });
+                item_preview.set_attributes(attrs);
+                item_preview.set_text(label);
+                item_preview.show();
             }
             return;
         }
@@ -409,13 +406,6 @@ namespace FontManager {
             return;
         }
 
-        // XXX : REGRESSION : PERFORMANCE : This may need to be removed...
-        // Expanding all rows can cause significant lag in the interface.
-        // This is very noticeable with all rows expanded during category
-        // selection, even with categories containing as little as a few
-        // dozen entries, with rows collapsed switching categories happens
-        // almost instantly regardless of quantity.
-        // Setting font description appears to be incredibly slow.
         [GtkCallback]
         void on_expander_activated (Gtk.Expander _expander) {
             bool expanded = expander.expanded;

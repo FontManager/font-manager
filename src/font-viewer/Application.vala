@@ -1,6 +1,6 @@
 /* Application.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,13 +71,9 @@ namespace FontManager {
                     main_window = new MainWindow();
                     add_window(main_window);
                     settings = get_gsettings(application_id);
-                    settings.delay();
                     main_window.restore_state(settings);
-                    shutdown.connect(() => {
-                        settings.apply();
-                        // XXX : Why is this neeeded?
-                        quit();
-                    });
+                    // XXX : Why is this needed?
+                    shutdown.connect(() => { quit(); });
                 }
                 main_window.present_with_time(Gdk.CURRENT_TIME);
                 main_window.update();
@@ -143,4 +139,5 @@ namespace FontManager {
     }
 
 }
+
 
