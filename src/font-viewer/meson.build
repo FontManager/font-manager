@@ -16,4 +16,3 @@ executable('font-viewer',
             install_dir: pkglibexec_dir,
             install_rpath: pkglib_dir)
 
-

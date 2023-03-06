@@ -16,4 +16,3 @@ help/* linguist-documentation
 
 # Don't include generated Unicode info files
 lib/data/ucd/* linguist-generated
-

@@ -98,7 +98,7 @@ namespace FontManager {
         async void purge_database_entries (string path) {
             DatabaseType [] types = { DatabaseType.FONT, DatabaseType.METADATA, DatabaseType.ORTHOGRAPHY };
             try {
-                Database? db = get_database(DatabaseType.BASE);
+                Database? db = Database.get_default(DatabaseType.BASE);
                 foreach (var type in types) {
                     var name = Database.get_type_name(type);
                     db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(name, path));
@@ -106,7 +106,7 @@ namespace FontManager {
                 }
                 db = null;
                 foreach (var type in types) {
-                    db = get_database(type);
+                    db = Database.get_default(type);
                     db.execute_query("VACUUM");
                     db.stmt.step();
                     Idle.add(purge_database_entries.callback);

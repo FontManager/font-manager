@@ -1,6 +1,6 @@
 /* Categories.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ namespace FontManager {
             items = new GenericArray <Category> ();
             items_changed(0, n_items, 0);
             try {
-                Database db = get_database(DatabaseType.BASE);
+                Database db = Database.get_default(DatabaseType.BASE);
                 items = get_default_categories(db);
                 items_changed(0, 0, get_n_items());
                 // Preload main categories

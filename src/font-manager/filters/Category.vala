@@ -1,6 +1,6 @@
 /* Category.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@ namespace FontManager {
     public class Category : FontListFilter {
 
         public string? sql { get; set; default = null; }
-        public StringSet descriptions { get; set; }
         public StringSet families { get; set; }
+        public StringSet variations { get; set; }
         public DatabaseType db_type { get; set; default = DatabaseType.BASE; }
 
         public GenericArray <Category> children { get; set; }
@@ -38,7 +38,7 @@ namespace FontManager {
         public Category (string name, string comment, string icon, string? sql, int index) {
             Object(name: name, icon: icon, comment: comment, sql: sql, index: index);
             children = new GenericArray <Category> ();
-            descriptions = new StringSet();
+            variations = new StringSet();
             families = new StringSet();
         }
 
@@ -46,11 +46,11 @@ namespace FontManager {
             if (!requires_update)
                 return;
             families.clear();
-            descriptions.clear();
+            variations.clear();
             try {
                 if (sql != null) {
-                    Database db = get_database(db_type);
-                    get_matching_families_and_fonts(db, families, descriptions, sql);
+                    Database db = Database.get_default(db_type);
+                    get_matching_families_and_fonts(db, families, variations, sql);
                 }
                 if (available_families != null)
                     families.retain_all(available_families);
@@ -69,7 +69,7 @@ namespace FontManager {
             if (item is Family)
                 visible = (((Family) item).family in families);
             else if (item is Font)
-                visible = (((Font) item).description in descriptions);
+                visible = (((Font) item).description in variations);
             return visible;
         }
 

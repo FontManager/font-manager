@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.0"/>
+  <requires lib="gtk" version="4.8"/>
   <template class="FontManagerFontViewerMainWindow" parent="FontManagerApplicationWindow">
     <property name="default-width">600</property>
     <property name="default-height">450</property>

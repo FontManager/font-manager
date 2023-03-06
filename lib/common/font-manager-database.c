@@ -1,6 +1,6 @@
 /* font-manager-database.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1049,7 +1049,7 @@ font_manager_database_add_entry (GFile *file, GError **error)
     gint n_faces = font_manager_get_face_count(path);
     g_autoptr(JsonArray) panose = json_array_new();
     g_autoptr(FontManagerDatabase) db = NULL;
-    db = font_manager_get_database(FONT_MANAGER_DATABASE_TYPE_BASE, error);
+    db = font_manager_database_get_default(FONT_MANAGER_DATABASE_TYPE_BASE, error);
     for (gint i = 0; i < n_faces; i++) {
         g_autoptr(JsonObject) face = NULL;
         face = font_manager_get_attributes_from_filepath(path, i, error);
@@ -1081,7 +1081,7 @@ font_manager_database_remove_entry (GFile *file, GError **error)
     g_return_if_fail(file != NULL);
     g_autoptr(FontManagerDatabase) db = NULL;
     g_autofree gchar *path = g_file_get_path(file);
-    db = font_manager_get_database(FONT_MANAGER_DATABASE_TYPE_BASE, error);
+    db = font_manager_database_get_default(FONT_MANAGER_DATABASE_TYPE_BASE, error);
     g_return_if_fail(error == NULL || *error == NULL);
     font_manager_database_begin_transaction(db, error);
     g_return_if_fail(error == NULL || *error == NULL);
@@ -1301,7 +1301,7 @@ attach_children (FontManagerDatabase *self, GError **error)
 }
 
 /**
- * font_manager_get_database:
+ * font_manager_database_get_default:
  * @type:   #FontManagerDatabaseType
  * @error: (nullable): #GError or %NULL to ignore errors
  *
@@ -1312,7 +1312,7 @@ attach_children (FontManagerDatabase *self, GError **error)
  * Free the returned object using #g_object_unref().
  */
 FontManagerDatabase *
-font_manager_get_database (FontManagerDatabaseType type, GError **error)
+font_manager_database_get_default (FontManagerDatabaseType type, GError **error)
 {
     g_return_val_if_fail((error == NULL || *error == NULL), NULL);
     if (type == FONT_MANAGER_DATABASE_TYPE_BASE && main_database != NULL)

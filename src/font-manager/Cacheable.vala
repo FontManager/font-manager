@@ -1,6 +1,6 @@
 /* Cacheable.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,3 +52,4 @@ namespace FontManager {
     }
 
 }
+

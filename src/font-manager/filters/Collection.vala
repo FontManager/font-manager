@@ -1,6 +1,6 @@
 /* Collection.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -91,7 +91,7 @@ namespace FontManager {
         public StringSet get_filelist () {
             var results = new StringSet();
             try {
-                Database db = get_database(DatabaseType.BASE);
+                Database db = Database.get_default(DatabaseType.BASE);
                 var contents = get_full_contents();
                 foreach (var family in contents) {
                     string sql = "SELECT filepath FROM Fonts WHERE family = \"%s\"";
@@ -184,3 +184,4 @@ namespace FontManager {
     }
 
 }
+

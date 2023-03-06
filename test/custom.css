@@ -189,3 +189,17 @@ row:selected .count {
 	margin: 0px 0px 0px 9px;
 }
 
+.FontManagerFontListDragCount {
+    border-radius: 1.25em;
+    border-color: alpha(@theme_selected_fg_color, 0.75);
+    border-style: solid;
+    border-width: 1px;
+    color: lighter(@theme_selected_fg_color);
+    background-color: alpha(@theme_selected_bg_color, 0.85);
+    font-weight: bold;
+    font-size: larger;
+    padding: 4px;
+    min-width: 20px;
+    min-height: 20px;
+}
+

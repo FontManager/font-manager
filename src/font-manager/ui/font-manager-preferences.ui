@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.0"/>
+  <requires lib="gtk" version="4.8"/>
   <template class="FontManagerPreferences" parent="GtkBox">
     <property name="css-classes">view</property>
     <property name="hexpand">True</property>

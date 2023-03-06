@@ -1,46 +1,42 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.0"/>
+  <requires lib="gtk" version="4.8"/>
   <template class="FontManagerItemListBoxRow" parent="GtkBox">
     <property name="orientation">vertical</property>
+    <property name="hexpand">True</property>
     <child>
-      <object class="GtkBox">
-        <property name="valign">start</property>
-        <child>
-          <object class="GtkCheckButton" id="item_state">
-            <property name="active">True</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkImage" id="item_icon">
-              <property name="visible">False</property>
-              <property name="margin-start">6</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkLabel" id="item_label">
-            <property name="halign">start</property>
+      <object class="GtkCenterBox">
+        <property name="hexpand">True</property>
+        <child type="start">
+          <object class="GtkBox">
             <property name="valign">center</property>
-            <property name="hexpand">True</property>
-            <property name="margin-end">9</property>
-            <property name="margin-start">9</property>
+            <child>
+              <object class="GtkCheckButton" id="item_state">
+                <property name="active">True</property>
+                <property name="valign">center</property>
+                <property name="margin-start">2</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkImage" id="item_icon">
+                <property name="margin-start">6</property>
+                <property name="visible">False</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="item_label">
+                <property name="halign">start</property>
+                <property name="hexpand">True</property>
+                <property name="margin-end">9</property>
+                <property name="margin-start">9</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
           </object>
         </child>
-        <child>
-          <object class="GtkInscription" id="item_preview">
-            <property name="halign">center</property>
-            <property name="hexpand">true</property>
-            <property name="valign">center</property>
-            <property name="xalign">0.0</property>
-            <property name="valign">0.5</property>
-            <property name="min-chars">24</property>
-            <property name="nat-chars">48</property>
-            <property name="nat-lines">1</property>
-            <property name="visible">false</property>
-          </object>
-        </child>
-        <child>
+        <child type="end">
           <object class="GtkLabel" id="item_count">
+            <property name="hexpand">False</property>
             <property name="halign">center</property>
             <property name="margin-end">6</property>
             <property name="margin-start">6</property>
@@ -48,6 +44,22 @@
             <style>
               <class name="count"/>
             </style>
+          </object>
+        </child>
+        <child type="center">
+          <object class="GtkInscription" id="item_preview">
+            <property name="hexpand">true</property>
+            <property name="valign">center</property>
+            <property name="xalign">0.333</property>
+            <property name="valign">0.5</property>
+            <property name="min-chars">24</property>
+            <property name="nat-chars">48</property>
+            <property name="nat-lines">1</property>
+            <property name="visible">false</property>
+            <property name="margin-top">3</property>
+            <property name="margin-bottom">3</property>
+            <property name="margin-start">36</property>
+            <property name="margin-end">36</property>
           </object>
         </child>
       </object>

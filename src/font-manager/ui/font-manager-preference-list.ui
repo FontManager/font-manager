@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.0"/>
+  <requires lib="gtk" version="4.8"/>
   <template class="FontManagerPreferenceList" parent="GtkBox">
     <property name="orientation">vertical</property>
     <signal name="map" handler="on_map" swapped="no"/>

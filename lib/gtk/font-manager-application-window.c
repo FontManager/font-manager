@@ -1,6 +1,6 @@
 /* font-manager-application-window.c
  *
- * Copyright (C) 2022 Jerry Casiano
+ * Copyright (C) 2022-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,16 +57,6 @@ font_manager_application_window_help (GtkWidget                *widget,
     return;
 }
 
-static void
-font_manager_application_window_quit (GtkWidget                *widget,
-                                      G_GNUC_UNUSED const char *action_name,
-                                      G_GNUC_UNUSED GVariant   *parameter)
-{
-    g_return_if_fail(widget != NULL);
-    gtk_window_destroy(GTK_WINDOW(widget));
-    return;
-}
-
 static gboolean
 font_manager_application_window_on_close_request (GtkWindow *window)
 {
@@ -94,6 +84,17 @@ font_manager_application_window_on_close_request (GtkWindow *window)
         g_debug("Settings instance unavailable, failed to save state");
     }
     return GTK_WINDOW_CLASS(font_manager_application_window_parent_class)->close_request(window);
+}
+
+static void
+font_manager_application_window_quit (GtkWidget                *widget,
+                                      G_GNUC_UNUSED const char *action_name,
+                                      G_GNUC_UNUSED GVariant   *parameter)
+{
+    g_return_if_fail(widget != NULL);
+    font_manager_application_window_on_close_request(GTK_WINDOW(widget));
+    gtk_window_destroy(GTK_WINDOW(widget));
+    return;
 }
 
 static void

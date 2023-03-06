@@ -16,3 +16,4 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-action-row.ui</file>
     </gresource>
 </gresources>
+

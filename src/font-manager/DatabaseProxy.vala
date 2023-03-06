@@ -1,6 +1,6 @@
 /* DatabaseProxy.vala
  *
- * Copyright (C) 2020-2022 Jerry Casiano
+ * Copyright (C) 2020-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,8 +27,8 @@ namespace FontManager {
         public signal void update_complete ();
 
         GLib.Cancellable? cancellable = null;
-        GLib.HashTable <DatabaseType, bool>? status = null;
         ProgressCallback? progress = null;
+        GLib.HashTable <DatabaseType, bool>? status = null;
 
         public DatabaseProxy () {
             status = new GLib.HashTable <DatabaseType, bool> (null, null);
@@ -43,7 +43,7 @@ namespace FontManager {
                 update_complete();
             });
             try {
-                get_database(DatabaseType.BASE);
+                Database.get_default(DatabaseType.BASE);
             } catch (Error e) {
                 critical(e.message);
             }
@@ -72,7 +72,7 @@ namespace FontManager {
                 var type = (DatabaseType) i;
                 status.replace(type, false);
                 try {
-                    var child = get_database(type);
+                    var child = Database.get_default(type);
                     update_database.begin(
                         child,
                         type,
@@ -102,3 +102,4 @@ namespace FontManager {
     }
 
 }
+

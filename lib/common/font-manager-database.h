@@ -1,6 +1,6 @@
 /* font-manager-database.h
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -180,7 +180,7 @@ sqlite3_stmt * font_manager_database_iterator_get (FontManagerDatabaseIterator *
 
 /* Related functions */
 
-FontManagerDatabase * font_manager_get_database (FontManagerDatabaseType type, GError **error);
+FontManagerDatabase * font_manager_database_get_default (FontManagerDatabaseType type, GError **error);
 
 gboolean font_manager_update_database_sync (FontManagerDatabase *db,
                                             FontManagerDatabaseType type,

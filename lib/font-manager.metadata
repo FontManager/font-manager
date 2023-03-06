@@ -22,7 +22,7 @@ FontInfo.license_data nullable
 FontInfo.license_url nullable
 
 get_attributes_from_filepath throws = "FontconfigError"
-get_database throws = "DatabaseError"
+Database.get_default throws = "DatabaseError"
 get_installation_target throws = "FreetypeError"
 get_matching_families_and_fonts throws = "DatabaseError"
 get_metadata throws = "FreetypeError"

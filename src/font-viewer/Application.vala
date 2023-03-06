@@ -72,7 +72,7 @@ namespace FontManager {
                     add_window(main_window);
                     settings = get_gsettings(application_id);
                     main_window.restore_state(settings);
-                    // XXX : Why is this needed?
+                    // Why is this needed?
                     shutdown.connect(() => { quit(); });
                 }
                 main_window.present_with_time(Gdk.CURRENT_TIME);
@@ -139,5 +139,4 @@ namespace FontManager {
     }
 
 }
-
 

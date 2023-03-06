@@ -22,3 +22,4 @@ for f in glob("README.*.md"):
 
 # Only useful in Git repository
 remove("org.gnome.FontManager.yaml")
+

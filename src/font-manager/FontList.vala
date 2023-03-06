@@ -281,6 +281,17 @@ namespace FontManager {
             search.previous_match.connect(previous_match);
             search.set_tooltip_text(search_tip.printf(Path.DIR_SEPARATOR_S,
                                                       Path.SEARCHPATH_SEPARATOR_S));
+            Gtk.Gesture right_click = new Gtk.GestureClick() {
+                button = Gdk.BUTTON_SECONDARY
+            };
+            listview.add_controller(right_click);
+            ((Gtk.GestureClick) right_click).pressed.connect(on_show_context_menu);
+            Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
+        }
+
+        void on_show_context_menu (int n_press, double x, double y) {
+            message("Got right click : %s :: %s", x.to_string(), y.to_string());
+            return;
         }
 
         Gtk.SignalListItemFactory get_factory () {
@@ -291,17 +302,27 @@ namespace FontManager {
         }
 
         Gdk.ContentProvider prepare_drag (Gtk.DragSource source, double x, double y) {
-            message("drag_prepare");
             Value selections = Value(typeof(string));
-            int fonts = 0;
-            int families = 0;
-            foreach (var obj in selected_items)
-                if (obj is Family)
-                    families++;
-                else
-                    fonts++;
-            message("%i : %i", families, fonts);
+            // FIXME : Add selections...
             return new Gdk.ContentProvider.for_value(selections);
+        }
+
+        void drag_begin (Gtk.DragSource drag_source, Gdk.Drag drag) {
+            var drag_icon = new Gtk.Overlay();
+            var icon = new Gtk.Image.from_icon_name("font-x-generic");
+            icon.set_pixel_size(64);
+            drag_icon.set_child(icon);
+            var drag_count = new Gtk.Label(null) {
+                opacity = 0.9,
+                halign = Gtk.Align.END,
+                valign = Gtk.Align.START,
+            };
+            widget_set_name(drag_count, "FontManagerFontListDragCount");
+            drag_icon.add_overlay(drag_count);
+            drag_count.set_label(selected_items.length.to_string());
+            var gtk_drag_icon = (Gtk.DragIcon) Gtk.DragIcon.get_for_drag(drag);
+            gtk_drag_icon.set_child(drag_icon);
+            return;
         }
 
         void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
@@ -312,8 +333,7 @@ namespace FontManager {
             var drag_source = new Gtk.DragSource();
             tree_expander.add_controller(drag_source);
             drag_source.prepare.connect(prepare_drag);
-            drag_source.drag_begin.connect(() => { message("drag_begin"); });
-            drag_source.drag_end.connect(() => { message("drag_end"); });
+            drag_source.drag_begin.connect(drag_begin);
             return;
         }
 

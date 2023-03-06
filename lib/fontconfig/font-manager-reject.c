@@ -1,6 +1,6 @@
 /* font-manager-reject.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -85,7 +85,7 @@ font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error)
     g_return_val_if_fail(self != NULL, NULL);
     g_return_val_if_fail((error == NULL || *error == NULL), NULL);
     g_autoptr(FontManagerStringSet) rejected_files = font_manager_string_set_new();
-    g_autoptr(FontManagerDatabase) db = font_manager_get_database(FONT_MANAGER_DATABASE_TYPE_FONT, error);
+    g_autoptr(FontManagerDatabase) db = font_manager_database_get_default(FONT_MANAGER_DATABASE_TYPE_FONT, error);
     g_return_val_if_fail(error == NULL || *error == NULL, NULL);
     guint len_rejected = font_manager_string_set_size(FONT_MANAGER_STRING_SET(self));
     for (guint i = 0; i < len_rejected; i++) {
