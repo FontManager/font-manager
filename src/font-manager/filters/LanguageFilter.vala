@@ -68,12 +68,14 @@ namespace FontManager {
         public void restore_state (GLib.Settings settings) {
             foreach (var entry in settings.get_strv("language-filter-list"))
                 selected.add(entry);
+            coverage = settings.get_double("language-filter-min-coverage");
             update.begin((obj, res) => { update.end(res); });
             return;
         }
 
         public void save_state (GLib.Settings settings) {
             settings.set_strv("language-filter-list", list());
+            settings.set_double("language-filter-min-coverage", coverage);
             return;
         }
 

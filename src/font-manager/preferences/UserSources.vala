@@ -128,7 +128,6 @@ namespace FontManager {
         public static UserSourceRow from_item (Object item) {
             Source source = (Source) item;
             UserSourceRow row = new UserSourceRow();
-            message("%s : %s", source.name, source.active.to_string());
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             source.bind_property("icon-name", row.icon, "icon-name", flags);
             source.bind_property("name", row.title, "label", flags);

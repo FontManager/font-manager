@@ -289,6 +289,13 @@
             <description>Array of string containing language selections.</description>
             <default>[]</default>
         </key>
+        
+        <key name="language-filter-min-coverage" type="d">
+            <range min="1.0" max="100.0"/>
+            <summary>Language Filter list minimum coverage</summary>
+            <description>Minimum coverage for language filter</description>
+            <default>90.0</default>
+        </key>
 
         <key name="google-fonts-preview-mode" enum="org.gnome.FontManager.GoogleFonts.PreviewMode">
             <summary>Google Fonts Preview Mode</summary>
