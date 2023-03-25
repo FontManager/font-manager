@@ -1,6 +1,6 @@
 /* font-manager-freetype.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -411,7 +411,6 @@ get_sfnt_info (JsonObject *json_obj, const FT_Face face)
         if (sname.platform_id != TT_PLATFORM_MICROSOFT)
             continue;
 
-        /* XXX : ? */
         if (sname.string == NULL)
             continue;
 

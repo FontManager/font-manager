@@ -1,6 +1,6 @@
 /* font-manager-selections.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,13 +50,6 @@ enum
     N_PROPERTIES
 };
 
-enum
-{
-    CHANGED,
-    N_SIGNALS
-};
-
-static guint signals[N_SIGNALS];
 static GParamSpec *obj_properties[N_PROPERTIES] = { NULL, };
 
 #define DEFAULT_PARAM_FLAGS (G_PARAM_READWRITE | G_PARAM_STATIC_STRINGS)
@@ -204,18 +197,6 @@ font_manager_selections_class_init (FontManagerSelectionsClass *klass)
     klass->get_selections = font_manager_selections_get_selections;
 
     /**
-     * FontManagerSelections:changed:
-     *
-     * Emitted whenever the underlying configuration file has changed on disk
-     */
-    signals[CHANGED] = g_signal_new(g_intern_static_string("changed"),
-                                    G_TYPE_FROM_CLASS(object_class),
-                                    G_SIGNAL_RUN_LAST,
-                                    G_STRUCT_OFFSET(FontManagerSelectionsClass, changed),
-                                    NULL, NULL, NULL,
-                                    G_TYPE_NONE, 0);
-
-    /**
      * FontManagerSelections:config-dir:
      *
      * Should be set to one of the directories monitored by Fontconfig
@@ -271,7 +252,7 @@ font_manager_selections_emit_changed (G_GNUC_UNUSED GFileMonitor *monitor,
                                       G_GNUC_UNUSED GFileMonitorEvent  event_type,
                                       gpointer user_data)
 {
-    g_signal_emit(FONT_MANAGER_SELECTIONS(user_data), signals[CHANGED], 0);
+    g_signal_emit_by_name(FONT_MANAGER_SELECTIONS(user_data), "changed");
     return;
 }
 

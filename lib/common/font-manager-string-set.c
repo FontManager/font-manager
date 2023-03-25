@@ -1,6 +1,6 @@
 /* font-manager-string-set.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,11 +29,6 @@
  * #FontManagerStringSet provides a convenient way to store and access a set of strings.
  */
 
-struct _FontManagerStringSetClass
-{
-    GObjectClass parent_class;
-};
-
 typedef struct
 {
     GPtrArray *strings;
@@ -48,6 +43,14 @@ enum
     PROP_SIZE,
     N_PROPERTIES
 };
+
+enum
+{
+    CHANGED,
+    NUM_SIGNALS
+};
+
+static guint signals[NUM_SIGNALS];
 
 static void
 font_manager_string_set_dispose (GObject *gobject)
@@ -102,6 +105,18 @@ font_manager_string_set_class_init (FontManagerStringSetClass *klass)
                                                       0, G_MAXUINT, 0,
                                                       G_PARAM_READABLE | G_PARAM_STATIC_STRINGS));
 
+    /**
+     * FontManagerStringSet:changed:
+     *
+     * Emitted whenever the number of strings in set changes
+     */
+    signals[CHANGED] = g_signal_new(g_intern_static_string("changed"),
+                                    G_TYPE_FROM_CLASS(object_class),
+                                    G_SIGNAL_RUN_LAST,
+                                    G_STRUCT_OFFSET(FontManagerStringSetClass, changed),
+                                    NULL, NULL, NULL,
+                                    G_TYPE_NONE, 0);
+
     return;
 }
 
@@ -127,6 +142,7 @@ font_manager_string_set_add (FontManagerStringSet *self, const gchar *str)
     FontManagerStringSetPrivate *priv = font_manager_string_set_get_instance_private(self);
     if (!font_manager_string_set_contains(self, str))
         g_ptr_array_add(priv->strings, g_strdup(str));
+    g_signal_emit(self, signals[CHANGED], 0);
     return;
 }
 
@@ -142,6 +158,7 @@ font_manager_string_set_add_all (FontManagerStringSet *self, FontManagerStringSe
     guint n_strings = font_manager_string_set_size(add);
     for (guint i = 0; i < n_strings; i++)
         font_manager_string_set_add(self, font_manager_string_set_get(add, i));
+    g_signal_emit(self, signals[CHANGED], 0);
     return;
 }
 
@@ -191,6 +208,7 @@ font_manager_string_set_remove (FontManagerStringSet *self, const gchar *str)
     guint index;
     if (g_ptr_array_find_with_equal_func(priv->strings, str, (GEqualFunc) g_str_equal, &index))
         g_ptr_array_remove_index(priv->strings, index);
+    g_signal_emit(self, signals[CHANGED], 0);
     return;
 }
 
@@ -206,6 +224,7 @@ font_manager_string_set_remove_all (FontManagerStringSet *self, FontManagerStrin
     guint n_strings = font_manager_string_set_size(remove);
     for (guint i = 0; i < n_strings; i++)
         font_manager_string_set_remove(self, font_manager_string_set_get(remove, i));
+    g_signal_emit(self, signals[CHANGED], 0);
     return;
 }
 
@@ -231,6 +250,7 @@ font_manager_string_set_retain_all (FontManagerStringSet *self, FontManagerStrin
     }
     g_ptr_array_free(priv->strings, TRUE);
     priv->strings = tmp;
+    g_signal_emit(self, signals[CHANGED], 0);
     return;
 }
 
@@ -297,6 +317,7 @@ font_manager_string_set_clear (FontManagerStringSet *self)
     g_return_if_fail(self != NULL);
     FontManagerStringSetPrivate *priv = font_manager_string_set_get_instance_private(self);
     g_ptr_array_remove_range(priv->strings, 0, priv->strings->len);
+    g_signal_emit(self, signals[CHANGED], 0);
     return;
 }
 
@@ -383,4 +404,5 @@ font_manager_string_set_new_from_strv (GStrv strv)
         font_manager_string_set_add(set, strv[i]);
     return set;
 }
+
 

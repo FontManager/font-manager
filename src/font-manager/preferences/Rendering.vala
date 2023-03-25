@@ -67,7 +67,6 @@ namespace FontManager {
         public RenderingPreferences () {
             widget_set_name(this, "FontManagerRenderingPreferences");
             list.set_selection_mode(Gtk.SelectionMode.NONE);
-            list.add_css_class("rich-list");
             properties = new FontProperties() { target_file = "19-DefaultProperties.conf" };
             antialias = add_preference_switch(_("Antialias"));
             hinting = add_preference_switch(_("Hinting"));

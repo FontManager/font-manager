@@ -49,6 +49,11 @@ notebook > header {
     border-radius: 1.25em;
 }
 
+editablelabel text {
+	padding: 2px 6px 2px 6px;
+	border-radius: .25em;
+}
+
 row .count {
     margin: 1px;
     padding: 0px 9px 0px 9px;
@@ -110,14 +115,14 @@ row:selected .count {
 }
 
 .FontManagerPropertiesPage grid button {
-	border-style: solid;
-	margin: 5px 3px 3px 3px;
-	padding: 0px 9px 0px 9px;
-	border-color: alpha(@borders, 0.5);
+    border-style: solid;
+    margin: 5px 3px 3px 3px;
+    padding: 0px 9px 0px 9px;
+    border-color: alpha(@borders, 0.5);
 }
 
 .FontManagerPropertiesPage grid button:hover {
-	background-color: alpha(lighter(@theme_fg_color), 0.075);
+    background-color: alpha(lighter(@theme_fg_color), 0.075);
 }
 
 .FontManagerSubstituteList list button {
@@ -166,7 +171,7 @@ row:selected .count {
 }
 
 .FontManagerSubstituteList row:selected list {
-	box-shadow: 0px 1px 1px 1px alpha(@borders, 0.5);
+    box-shadow: 0px 1px 1px 1px alpha(@borders, 0.5);
 }
 
 .FontManagerUserActionList list,
@@ -180,16 +185,24 @@ row:selected .count {
 }
 
 .FontManagerCategoryListView > row > treeexpander expander {
-	-gtk-icon-source: -gtk-icontheme('folder-symbolic');
-	margin: 0px 0px 0px 9px;
+    -gtk-icon-source: -gtk-icontheme('folder-symbolic');
+    margin: 0px 0px 0px 9px;
 }
 
 .FontManagerCategoryListView > row > treeexpander expander:checked {
-	-gtk-icon-source: -gtk-icontheme('folder-open-symbolic');
-	margin: 0px 0px 0px 9px;
+    -gtk-icon-source: -gtk-icontheme('folder-open-symbolic');
+    margin: 0px 0px 0px 9px;
 }
 
-.FontManagerFontListDragCount {
+.FontManagerCollectionListView > row > treeexpander expander {
+    -gtk-icon-source: none;
+    -gtk-icon-size: 0px;
+    margin: 0px;
+    min-height: 0px;
+    min-width: 0px;
+}
+
+.FontManagerListDragCount {
     border-radius: 1.25em;
     border-color: alpha(@theme_selected_fg_color, 0.75);
     border-style: solid;
@@ -200,6 +213,18 @@ row:selected .count {
     font-size: larger;
     padding: 4px;
     min-width: 20px;
+    min-height: 20px;
+}
+
+.FontManagerListRowDrag {
+    border-radius: .333em;
+    border-color: alpha(@theme_selected_fg_color, 0.25);
+    border-style: solid;
+    border-width: 1px;
+    color: @theme_selected_fg_color;
+    background-color: alpha(@theme_selected_bg_color, 0.85);
+    padding: 4px 24px 4px 24px;
+    min-width: 24px;
     min-height: 20px;
 }
 

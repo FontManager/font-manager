@@ -4,8 +4,16 @@
         "label" : "Category List"
     },
     {
+        "name" : "collection-list",
+        "label" : "Collection List"
+    },
+    {
         "name" : "category-list-selection",
         "label" : "Category Selection"
+    },
+    {
+        "name" : "collection-list-selection",
+        "label" : "Collection Selection"
     },
     {
         "name" : "character-map",
@@ -34,6 +42,10 @@
     {
         "name" : "license-page",
         "label" : "License Page"
+    },
+    {
+        "name" : "orthography-list",
+        "label" : "Orthography List"
     },
     {
         "name" : "place-holder",

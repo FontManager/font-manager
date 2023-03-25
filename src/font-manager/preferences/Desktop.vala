@@ -111,7 +111,6 @@ namespace FontManager {
         public DesktopPreferences () {
             widget_set_name(this, "FontManagerDesktopPreferences");
             list.set_selection_mode(Gtk.SelectionMode.NONE);
-            list.add_css_class("rich-list");
             var place_holder = new PlaceHolder(null, null, _("GNOME desktop settings schema not found"), "dialog-warning-symbolic");
             list.set_placeholder(place_holder);
             if (DesktopPreferences.available())

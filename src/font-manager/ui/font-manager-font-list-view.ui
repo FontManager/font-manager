@@ -20,18 +20,19 @@
                   <object class="GtkExpander" id="expander">
                     <property name="halign">center</property>
                     <property name="margin-end">2</property>
-                    <property name="margin-start">4</property>
+                    <property name="margin-start">2</property>
                     <property name="tooltip-text">Expand all</property>
                     <property name="valign">center</property>
                     <signal name="activate" handler="on_expander_activated" after="yes"/>
                   </object>
                 </child>
                 <child>
-                  <object class="GtkButton" id="remove">
+                  <object class="GtkButton" id="remove_button">
                     <property name="halign">center</property>
                     <property name="icon-name">list-remove-symbolic</property>
                     <property name="sensitive">false</property>
                     <property name="valign">center</property>
+                    <signal name="clicked" handler="on_remove_clicked" swapped="no"/>
                     <style>
                       <class name="flat"/>
                     </style>
@@ -41,7 +42,11 @@
             </child>
             <child type="end">
               <object class="GtkSearchEntry" id="search">
+                <property name="hexpand">True</property>
+                <property name="halign">end</property>
                 <property name="activates-default">True</property>
+                <property name="margin-bottom">2</property>
+                <property name="margin-top">2</property>
                 <property name="margin-end">4</property>
                 <property name="margin-start">4</property>
                 <property name="placeholder-text" translatable="1">Search Families…</property>
@@ -58,6 +63,7 @@
                 <property name="enable-rubberband">True</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
+                <signal name="activate" handler="on_activate" swapped="no"/>
               </object>
             </child>
           </object>

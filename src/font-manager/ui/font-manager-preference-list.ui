@@ -33,6 +33,9 @@
                 <style>
                     <class name="navigation-sidebar"/>
                 </style>
+                <style>
+                    <class name="rich-list"/>
+                </style>
               </object>
             </property>
           </object>

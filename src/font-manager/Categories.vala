@@ -20,10 +20,6 @@
 
 namespace FontManager {
 
-    public const string SELECT_FROM_FONTS = "SELECT DISTINCT family, description FROM Fonts";
-    public const string SELECT_FROM_METADATA_WHERE = "SELECT DISTINCT Fonts.family, Fonts.description FROM Fonts JOIN Metadata USING (filepath, findex) WHERE";
-    public const string SELECT_FROM_PANOSE_WHERE = "SELECT DISTINCT Fonts.family, Fonts.description FROM Fonts JOIN Panose USING (filepath, findex) WHERE";
-
     public enum CategoryIndex {
         ALL,
         SYSTEM,
@@ -41,15 +37,7 @@ namespace FontManager {
         N_CATEGORIES
     }
 
-    public class BaseCategoryListModel : BaseFontListFilterListModel {
-
-        public StringSet? available_families { get; set; default = null; }
-
-    }
-
-    public class CategoryListModel : BaseCategoryListModel {
-
-        class ChildCategoryListModel : BaseCategoryListModel {}
+    public class CategoryListModel : FontListFilterModel {
 
         public CategoryListModel () {
             notify["available-families"].connect_after((pspec) => {
@@ -57,7 +45,7 @@ namespace FontManager {
             });
         }
 
-        public new async void update_items () {
+        public async void update_items () {
             uint n_items = get_n_items();
             items = null;
             items = new GenericArray <Category> ();
@@ -75,55 +63,23 @@ namespace FontManager {
             return;
         }
 
-        public ListModel? get_child_model (Object item) {
+        public static ListModel? get_child_model (Object item) {
             var category = ((Category) item);
             if (category.children.length < 1)
                 return null;
-            var child = new BaseCategoryListModel();
+            var child = new CategoryListModel();
             child.items = category.children;
             return child;
         }
 
     }
 
-    public class CategoryListBoxRow : ItemListBoxRow {
-
-        public Gtk.TreeExpander? expander { get; set; default = null; }
-        public Gtk.SelectionModel? selection { get; set; default = null; }
+    public class CategoryListRow : TreeListItemRow {
 
         ulong handler_id = 0;
 
-        construct {
-            notify["item"].connect((pspec) => { on_item_set(); });
-            item_state.visible = false;
-            var click = new Gtk.GestureClick();
-            add_controller(click);
-            click.pressed.connect(on_click);
-        }
-
-        void on_click (Gtk.GestureClick click, int n_press, double x, double y) {
-            if (expander == null || selection == null)
-                return;
-            Gtk.TreeListRow? row = expander.get_list_row();
-            if (row == null)
-                return;
-            uint position = row.get_position();
-            if (selection.is_selected(position)) {
-                Gdk.Event event = click.get_current_event();
-                if (event == null || event.triggers_context_menu())
-                    return;
-                bool expanded = row.expanded;
-                Idle.add(() => {
-                    if (row.expandable)
-                        row.expanded = !expanded;
-                    return GLib.Source.REMOVE;
-                });
-            }
-            return;
-        }
-
-        void reset_row () {
-            item_label.set_label("");
+        protected override void reset () {
+            item_label.set_text("");
             item_count.visible = true;
             item_count.set_label("");
             if (handler_id != 0)
@@ -131,85 +87,48 @@ namespace FontManager {
             return;
         }
 
-        public void on_item_set () {
-            reset_row();
+        protected override void on_item_set () {
+            reset();
             if (item == null)
                 return;
             var category = ((Category) item);
             handler_id = category.changed.connect(on_item_set);
-            bool root_node = category.depth < 1;
             int index = category.index;
-            bool show_root_count = (index < CategoryIndex.PANOSE ||
-                                    index > CategoryIndex.FILETYPE);
-            item_label.set_label(category.name);
-            item_count.visible = !root_node || show_root_count;
-            item_icon.visible = !root_node || show_root_count;
-            if (item_icon.visible)
-                item_icon.set_from_icon_name(category.icon);
-            if (item_icon.visible && !root_node)
-                item_icon.margin_start = 12;
-            if (item_count.visible)
-                item_count.set_label(category.size.to_string());
+            bool root_node = category.depth < 1;
+            bool root_count = (index < CategoryIndex.PANOSE || index > CategoryIndex.FILETYPE);
+            item_label.set_text(category.name);
+            item_icon.visible = item_count.visible = !root_node || root_count;
+            item_icon.set_from_icon_name(category.icon);
+            item_count.set_label(category.size.to_string());
+            set_tooltip_text(category.comment != null ? category.comment : category.name);
             return;
         }
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-category-list-view.ui")]
-    public class CategoryListView : Gtk.Box {
+    // TODO :
+    //       - Update Unsorted category
+    //       - Update Disabled category
 
-        public signal void selection_changed (FontListFilter? item);
+    public class CategoryListView : FilterListView {
 
-        public FontListFilter? selected_item { get; set; default = null; }
-
-        // FIXME : Need to handle updates to Unsorted and Disabled categories
         public Reject? reject { get; set; default = null; }
         public StringSet? sorted { get; set; default = null; }
-        public StringSet? available_families { get; set; default = null; }
-
-        public BaseCategoryListModel model {
-            get {
-                return ((BaseCategoryListModel) treemodel.model);
-            }
-        }
-
-        Gtk.TreeListModel treemodel;
-        Gtk.SingleSelection selection;
-        [GtkChild] unowned Gtk.ListView listview;
 
         construct {
-            var _model = new CategoryListModel();
-            treemodel = new Gtk.TreeListModel(_model,
+            widget_set_name(listview, "FontManagerCategoryListView");
+            treemodel = new Gtk.TreeListModel(new CategoryListModel(),
                                               false,
                                               false,
-                                              _model.get_child_model);
+                                              CategoryListModel.get_child_model);
             selection = new Gtk.SingleSelection(treemodel);
-            listview.set_factory(get_factory());
-            listview.set_model(selection);
-            selection.selection_changed.connect(on_selection_changed);
-            BindingFlags flags = BindingFlags.SYNC_CREATE;
-            bind_property("available-families", model, "available-families", flags, null, null);
-            if (Environment.get_variable("G_MESSAGES_DEBUG") != null) {
-                selection_changed.connect(() => {
-                    string? category_name = null;
-                    selected_item.get("name", out category_name, null);
-                    debug("selection_changed : %s", category_name);
-                });
-            }
         }
 
-        Gtk.SignalListItemFactory get_factory () {
-            var factory = new Gtk.SignalListItemFactory();
-            factory.setup.connect(setup_list_row);
-            factory.bind.connect(bind_list_row);
-            return factory;
-        }
-
-        void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+        protected override void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
             var tree_expander = new Gtk.TreeExpander();
             tree_expander.set_indent_for_icon(false);
-            var row = new CategoryListBoxRow();
+            var row = new CategoryListRow();
             row.expander = tree_expander;
             row.selection = selection;
             tree_expander.set_child(row);
@@ -217,68 +136,31 @@ namespace FontManager {
             return;
         }
 
-        void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+        protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
             var list_row = treemodel.get_row(list_item.get_position());
             var tree_expander = (Gtk.TreeExpander) list_item.get_child();
             tree_expander.margin_start = 2;
-            tree_expander.set_list_row(null);
-            var row = (CategoryListBoxRow) tree_expander.get_child();
-            widget_set_margin(row, 3);
+            tree_expander.set_list_row(list_row);
+            var row = (CategoryListRow) tree_expander.get_child();
             Object? _item = list_row.get_item();
             // Setting item triggers update to row widgets
             row.item = _item;
             return_if_fail(_item != null);
             var category = ((Category) _item);
-            tree_expander.set_list_row(category.depth < 1 ? list_row : null);
             list_row.notify["expanded"].connect((pspec) => {
                 category.update.begin(available_families);
             });
             return;
         }
 
-        void collapse_all () {
-            uint n_items = treemodel.get_n_items();
-            for (uint i = 0; i < n_items; i++) {
-                var list_row = (Gtk.TreeListRow) treemodel.get_item(i);
-                if (list_row != null && list_row.expanded)
-                    list_row.set_expanded(false);
-            }
-            return;
-        }
-
-        // NOTE:
-        // @position doesn't necessarily point to the actual selection
-        // within the ListView, the actual selection lies somewhere
-        // between @position + @n_items. The precise location within that
-        // range appears to be affected by a variety of factors i.e.
-        // previous selection, multiple selections, directional changes, etc.
-        void on_selection_changed (uint position, uint n_items) {
-            // The minimum value present in this bitset accurately points
-            // to the first currently selected row in the ListView.
-            Gtk.Bitset selections = selection.get_selection();
-            uint i = selections.get_minimum();
-            var list_row = (Gtk.TreeListRow) treemodel.get_item(i);
-            Object? item = list_row.get_item();
-            Idle.add(() => {
-                var category = ((Category) item);
-                int index = category.index;
-                bool index_in_range = (index > CategoryIndex.USER &&
-                                       index < CategoryIndex.UNSORTED);
-                if (index_in_range && category.depth < 1 ) {
-                    collapse_all();
-                    if (list_row.is_expandable())
-                        list_row.set_expanded(true);
-                } else if (category.depth < 1)
-                    collapse_all();
-                return GLib.Source.REMOVE;
-            });
-            selected_item = (FontListFilter) item;
-            selection_changed((FontListFilter) item);
-            return;
-        }
-
     }
+
+    /*  WARNING : Long lines ahead... */
+
+    public const string SELECT_FROM_FONTS = "SELECT DISTINCT family, description FROM Fonts";
+    public const string SELECT_FROM_METADATA_WHERE = "SELECT DISTINCT Fonts.family, Fonts.description FROM Fonts JOIN Metadata USING (filepath, findex) WHERE";
+    public const string SELECT_FROM_PANOSE_WHERE = "SELECT DISTINCT Fonts.family, Fonts.description FROM Fonts JOIN Panose USING (filepath, findex) WHERE";
 
     internal struct FilterData {
         public int index;
@@ -300,8 +182,6 @@ namespace FontManager {
         { CategoryIndex.VENDOR, N_("Vendor"), N_("Grouped by vendor"), "vendor" },
         { CategoryIndex.FILETYPE, N_("Filetype"), N_("Grouped by filetype"), "filetype" }
     };
-
-    /*  WARNING : Long lines ahead... */
 
     GenericArray <Category> get_default_categories (Database db) {
         var filters = new GenericArray <Category> ();

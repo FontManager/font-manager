@@ -199,7 +199,6 @@ namespace FontManager {
             widget_set_name(this, "FontManagerUserInterfacePreferences");
             default_gtk_settings = Gtk.Settings.get_default();
             list.set_selection_mode(Gtk.SelectionMode.NONE);
-            list.add_css_class("rich-list");
             wide_layout = add_preference_switch(_("Wide Layout"));
             var widget = wide_layout.get_ancestor(typeof(PreferenceRow)) as PreferenceRow;
             on_maximize = new Gtk.CheckButton();

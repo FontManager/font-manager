@@ -166,8 +166,6 @@ matches (gunichar wc, const gchar *search_string_nfd)
     if (!matched)
         matched = found_in_array(font_manager_unicode_get_nameslist_pounds(wc), search_string_nfd);
 
-    /* XXX: other strings */
-
     return matched;
 }
 

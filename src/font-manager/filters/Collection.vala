@@ -31,7 +31,6 @@ namespace FontManager {
         public bool active { get; set; default = true; }
         public GenericArray <Collection> children { get; set; }
         public StringSet families { get; set; }
-        public StringSet variations { get; set; }
 
         public override int size {
             get {
@@ -39,19 +38,22 @@ namespace FontManager {
             }
         }
 
-        public Collection (string? name, string? comment) {
-            Object(name: name, comment: comment);
+        construct {
             requires_update = false;
             children = new GenericArray <Collection> ();
+            notify["families"].connect(() => {
+                families.changed.connect(() => { changed(); });
+            });
             families = new StringSet();
-            variations = new StringSet();
-            /* XXX : Translatable string as default argument generates broken vapi ? */
-            if (name == null)
-                name = _("New Collection");
-            if (comment == null) {
-                string default_comment = _("Created : %s").printf(get_local_time());
-                comment = default_comment;
-            }
+            changed.connect(() => { set_active_from_fonts(null); });
+            notify["active"].connect(() => { update(null); });
+        }
+
+        public Collection (string? name, string? comment) {
+            string default_name = _("New Collection");
+            string default_comment = _("Created : %s").printf(get_local_time());
+            this.name = name != null ? name : default_name;
+            this.comment = comment != null ? comment : default_comment;
         }
 
         public void clear_children () {
@@ -59,6 +61,13 @@ namespace FontManager {
             children = null;
             children = new GenericArray <Collection> ();
             return;
+        }
+
+        public bool contains (Collection collection) {
+            for (uint i = 0; i < children.length; i++)
+                if (children[i].name == collection.name)
+                    return true;
+            return false;
         }
 
         public void set_active_from_fonts (Reject? reject) {
@@ -125,11 +134,6 @@ namespace FontManager {
             string family;
             item.get("family", out family, null);
             visible = (family in families);
-            if (!visible && variations.size > 0) {
-                string variation;
-                item.get("description", out variation, null);
-                visible = (variation in variations);
-            }
             return visible;
         }
 
@@ -184,4 +188,5 @@ namespace FontManager {
     }
 
 }
+
 

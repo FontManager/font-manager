@@ -27,6 +27,9 @@ Start search using %s to filter based on characters.""");
 
 namespace FontManager {
 
+    // TODO:
+    //       - Enable character search
+
     public class BaseFontModel : Object, ListModel {
 
         public Type item_type { get; protected set; default = typeof(Object); }
@@ -71,17 +74,22 @@ namespace FontManager {
                    "";
         }
 
-        string [] common_styles = { "condensed", "bold", "book", "extra", "expanded",
-                                    "italic", "heavy", "light", "medium", "mono", "monospace",
-                                    "normal", "oblique", "sans", "semi", "serif", "thin" };
+        bool array_matches (string [] needles, string style, string description) {
+            foreach (var term in needles)
+                if (style.contains(term) || description.contains(term))
+                    continue;
+                else
+                    return false;
+            return true;
+        }
 
         bool matches_search_term (Json.Object item) {
             bool item_matches = true;
             if (search_term == null || search_term.strip() == "")
                 return item_matches;
-            var search = search_term.strip();
+            var search = search_term.strip().casefold();
             if (search.has_prefix(Path.DIR_SEPARATOR_S)) {
-                string filepath = get_filepath_from_object(item);
+                string filepath = get_filepath_from_object(item).casefold();
                 item_matches = filepath.contains(search);
             } else if (search.has_prefix(Path.SEARCHPATH_SEPARATOR_S)) {
                 // string needle = search.replace(Path.SEARCHPATH_SEPARATOR_S, "");
@@ -89,16 +97,17 @@ namespace FontManager {
                 // XXX : FIXME!
             } else {
                 string family = item.get_string_member("family").casefold();
-                item_matches = family.contains(search.casefold());
+                string description = item.get_string_member("description").casefold();
+                // Best case scenario, searching for a particular family
+                item_matches = family.contains(search);
+                // or the search term directly matches the font description
+                if (!item_matches)
+                    item_matches = description.contains(search);
+                // possible we have multiple search terms
                 if (!item_matches && item.has_member("style")) {
-                    string [] search_terms = search.split_set(" ", 2);
-                    if (search_terms.length > 1 || search_terms[0] in common_styles) {
-                        string style = item.get_string_member("style").casefold();
-                        if (family.contains(search_terms[0].casefold()) && search_terms.length > 1)
-                            item_matches = style.contains(search_terms[1].casefold());
-                        else if (search_terms[0] in common_styles)
-                            item_matches = style.contains(search.casefold());
-                    }
+                    string [] needles = search.split_set(" ", -1);
+                    string style = item.get_string_member("style").casefold();
+                    item_matches = array_matches(needles, style, description);
                 }
             }
             return item_matches;
@@ -138,9 +147,7 @@ namespace FontManager {
                         items.add(item);
                     }
                 });
-                items.sort((a, b) => {
-                    return (int) (GET_INDEX(a) - GET_INDEX(b));
-                });
+                items.sort((a, b) => { return (int) (GET_INDEX(a) - GET_INDEX(b)); });
             }
             items_changed(0, 0, get_n_items());
             return;
@@ -175,19 +182,15 @@ namespace FontManager {
 
     }
 
-    public class FontListBoxRow : ItemListBoxRow {
+    public class FontListRow : ListItemRow {
 
         Binding? binding = null;
 
-        construct {
-            notify["item"].connect(on_item_set);
-        }
-
-        void reset_row () {
+        protected override void reset () {
             if (binding != null)
                 binding.unbind();
             binding = null;
-            item_state.set("active", true, "visible", true, "sensitive", true, null);
+            item_state.set("active", true, "visible", false, "sensitive", true, null);
             item_label.set("label", "", "attributes", null, null);
             item_preview.set("text", "", "attributes", null, "visible", false, null);
             item_count.visible = true;
@@ -195,15 +198,15 @@ namespace FontManager {
             return;
         }
 
-        public void on_item_set (ParamSpec pspec) {
-            reset_row();
+        protected override void on_item_set () {
+            reset();
             if (item == null)
                 return;
             bool root = item is Family;
             BindingFlags flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
             binding = item.bind_property("active", item_state, "active", flags, null, null);
             item_state.set("sensitive", root, "visible", root, null);
-            item_count.visible = root;
+            item_count.visible = drag_area.sensitive = drag_handle.visible = root;
             string f; string d; string? p = null;
             item.get("family", out f, "description", out d, "preview-text", out p, null);
             string label = root ? f : p != null ? p : d;
@@ -211,7 +214,7 @@ namespace FontManager {
                 var count = (int) ((Family) item).n_variations;
                 var count_label = ngettext("%i Variation ", "%i Variations", (ulong) count);
                 item_count.set_label(count_label.printf(count));
-                item_label.set_label(label);
+                item_label.set_text(label);
             } else {
                 Pango.FontDescription font_desc = Pango.FontDescription.from_string(d);
                 Pango.AttrList attrs = new Pango.AttrList();
@@ -225,6 +228,13 @@ namespace FontManager {
         }
 
     }
+
+    // TODO
+    //      - Context menu
+    //          - Toggle multiple fonts
+    //          - Send to collection?
+    //          - Export?
+    //      - Drop support
 
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-font-list-view.ui")]
     public class FontListView : Gtk.Box {
@@ -242,19 +252,24 @@ namespace FontManager {
 
         // Current selection. This is either the only item selected
         // or the first selection if multiple items are selected
+        // this can be either a Family object or a Font object
         public Object? selected_item { get; set; default = null; }
-        // This array contains all currently selected items
+        // This array contains all currently selected Family objects
         public GenericArray <Object>? selected_items { get; set; default = null; }
 
+        [GtkChild] unowned Gtk.Button remove_button;
         [GtkChild] unowned Gtk.ListView listview;
         [GtkChild] unowned Gtk.Expander expander;
         [GtkChild] unowned Gtk.SearchEntry search;
 
+        uint current_selection = 0;
+        GenericArray <uint>? current_selections = null;
         uint search_timeout = 0;
         Gtk.TreeListModel treemodel;
         Gtk.MultiSelection selection;
 
         construct {
+            widget_set_name(listview, "FontManagerFontListView");
             selected_items = new GenericArray <Object> ();
             var fontmodel = new FontModel();
             treemodel = new Gtk.TreeListModel(fontmodel,
@@ -265,13 +280,6 @@ namespace FontManager {
             listview.set_factory(get_factory());
             listview.set_model(selection);
             selection.selection_changed.connect(on_selection_changed);
-            if (Environment.get_variable("G_MESSAGES_DEBUG") != null) {
-                selection_changed.connect(() => {
-                    string? description = null;
-                    selected_item.get("description", out description, null);
-                    debug("selection_changed : %s", description);
-                });
-            }
             BindingFlags flags = BindingFlags.SYNC_CREATE;
             bind_property("filter", fontmodel, "filter", flags, null, null);
             bind_property("available-fonts", model, "entries", flags, null, null);
@@ -284,12 +292,73 @@ namespace FontManager {
             Gtk.Gesture right_click = new Gtk.GestureClick() {
                 button = Gdk.BUTTON_SECONDARY
             };
-            listview.add_controller(right_click);
             ((Gtk.GestureClick) right_click).pressed.connect(on_show_context_menu);
+            listview.add_controller(right_click);
             Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
+            notify["filter"].connect(() => {
+                Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
+                update_remove_sensitivity();
+            });
+            if (Environment.get_variable("G_MESSAGES_DEBUG") != null) {
+                selection_changed.connect(() => {
+                    string? description = null;
+                    selected_item.get("description", out description, null);
+                    debug("%s::selection_changed : %s", listview.name, description);
+                });
+            }
+        }
+
+        // Add slight delay to avoid filtering while search is still changing
+        public void queue_refilter () {
+            if (search_timeout != 0)
+                GLib.Source.remove(search_timeout);
+            search_timeout = Timeout.add(333, refilter);
+            return;
+        }
+
+        public void select_item (uint position) {
+            listview.activate_action("list.select-item", "(ubb)", position, false, false);
+            listview.activate_action("list.scroll-to-item", "u", position);
+            return;
+        }
+
+        [GtkCallback]
+        void on_activate (uint position) {
+            if (selected_items.length < 1)
+                return;
+            selected_items.foreach((i) => { var f = (Family) i; f.active = !f.active; });
+            current_selections.foreach((i) => { treemodel.items_changed(i, 0, 0); });
+            return;
+        }
+
+        [GtkCallback]
+        void on_expander_activated (Gtk.Expander _expander) {
+            bool expanded = expander.expanded;
+            treemodel.set_autoexpand(expanded);
+            expander.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
+            queue_update();
+            return;
+        }
+
+        [GtkCallback]
+        void on_remove_clicked () requires (filter is Collection) {
+            var collection = (Collection) filter;
+            var families = new StringSet();
+            selected_items.foreach((i) => { families.add(((Family) i).family); });
+            uint i = current_selection;
+            while (i > 0 && i >= treemodel.get_n_items() - 1) i--;
+            collection.families.remove_all(families);
+            Idle.add(() => {
+                queue_update(i);
+                update_remove_sensitivity();
+                return GLib.Source.REMOVE;
+            });
+            return;
         }
 
         void on_show_context_menu (int n_press, double x, double y) {
+            if (selected_items.length < 1)
+                return;
             message("Got right click : %s :: %s", x.to_string(), y.to_string());
             return;
         }
@@ -302,8 +371,18 @@ namespace FontManager {
         }
 
         Gdk.ContentProvider prepare_drag (Gtk.DragSource source, double x, double y) {
-            Value selections = Value(typeof(string));
-            // FIXME : Add selections...
+            var selections = new GenericArray <Object> ();
+            var e_type = typeof(Gtk.TreeExpander);
+            var expander = (Gtk.TreeExpander) source.widget.get_ancestor(e_type);
+            var list_row = (Gtk.TreeListRow) expander.get_list_row();
+            // Dragged row is not necessarily the currently selected row
+            if (list_row.item is Family)
+                selections.add(list_row.item);
+            // If we have multiple rows selected we need to add them here
+            if (selected_items.length > 1)
+                foreach (var item in selected_items)
+                    if (item != list_row.item)
+                        selections.add(item);
             return new Gdk.ContentProvider.for_value(selections);
         }
 
@@ -317,7 +396,7 @@ namespace FontManager {
                 halign = Gtk.Align.END,
                 valign = Gtk.Align.START,
             };
-            widget_set_name(drag_count, "FontManagerFontListDragCount");
+            widget_set_name(drag_count, "FontManagerListDragCount");
             drag_icon.add_overlay(drag_count);
             drag_count.set_label(selected_items.length.to_string());
             var gtk_drag_icon = (Gtk.DragIcon) Gtk.DragIcon.get_for_drag(drag);
@@ -328,10 +407,11 @@ namespace FontManager {
         void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
             var tree_expander = new Gtk.TreeExpander();
-            tree_expander.set_child(new FontListBoxRow());
+            var row = new FontListRow();
+            tree_expander.set_child(row);
             list_item.set_child(tree_expander);
             var drag_source = new Gtk.DragSource();
-            tree_expander.add_controller(drag_source);
+            row.drag_area.add_controller(drag_source);
             drag_source.prepare.connect(prepare_drag);
             drag_source.drag_begin.connect(drag_begin);
             return;
@@ -342,39 +422,31 @@ namespace FontManager {
             var list_row = treemodel.get_row(list_item.get_position());
             var tree_expander = (Gtk.TreeExpander) list_item.get_child();
             tree_expander.margin_start = 2;
-            tree_expander.set_list_row(null);
-            var row = (FontListBoxRow) tree_expander.get_child();
+            tree_expander.set_list_row(list_row);
+            var row = (FontListRow) tree_expander.get_child();
             Object? _item = list_row.get_item();
             // Setting item triggers update to row widget
             row.item = _item;
-            return_if_fail(_item != null);
-            bool parent = _item is Family;
-            tree_expander.set_list_row(parent ? list_row : null);
             return;
         }
 
-        void queue_update () {
+        void queue_update (uint position = 0) {
             Idle.add(() => {
                 model.search_term = search.text.strip();
                 model.update_items();
+                select_item(position);
                 return GLib.Source.REMOVE;
             });
             return;
         }
 
-        public void select_item (uint position) {
-            listview.activate_action("list.select-item", "(ubb)", position, false, false);
-            listview.activate_action("list.scroll-to-item", "u", position);
-            return;
-        }
-
         void next_match (Gtk.SearchEntry entry) {
-            select_item(selection.get_selection().get_minimum() + 1);
+            select_item(current_selection + 1);
             return;
         }
 
         void previous_match (Gtk.SearchEntry entry) {
-            select_item(selection.get_selection().get_minimum() - 1);
+            select_item(current_selection - 1);
             return;
         }
 
@@ -384,11 +456,11 @@ namespace FontManager {
             return GLib.Source.REMOVE;
         }
 
-        // Add slight delay to avoid filtering while search is still changing
-        public void queue_refilter () {
-            if (search_timeout != 0)
-                GLib.Source.remove(search_timeout);
-            search_timeout = Timeout.add(333, refilter);
+        void update_remove_sensitivity () {
+            bool remove_available = current_selection != uint.MAX &&
+                                    filter is Collection &&
+                                    ((Collection) filter).families.size > 0;
+            set_control_sensitivity(remove_button, remove_available);
             return;
         }
 
@@ -401,37 +473,35 @@ namespace FontManager {
         void on_selection_changed (uint position, uint n_items) {
             selected_items = new GenericArray <Object> ();
             selected_item = null;
+            current_selection = 0;
+            current_selections = new GenericArray <uint> ();
             // The minimum value present in this bitset accurately points
             // to the first currently selected row in the ListView.
             Gtk.Bitset selections = selection.get_selection();
             uint i = selections.get_minimum();
+            current_selection = i;
+            if (i == uint.MAX)
+                return;
             assert(selection.is_selected(i));
             var list_row = (Gtk.TreeListRow) treemodel.get_item(i);
             Object? item = list_row.get_item();
             selected_item = item;
             selection_changed(item);
-            selected_items.add(item);
             uint n = selections.get_maximum();
-            if (n > ++i) {
+            if (n >= i) {
                 while (i <= n) {
                     if (selection.is_selected(i)) {
                         var row = (Gtk.TreeListRow) treemodel.get_item(i);
                         item = row.get_item();
-                        if (item != null)
+                        if (item != null && item is Family) {
                             selected_items.add(item);
+                            current_selections.add(i);
+                        }
                     }
                     i++;
                 }
             }
-            return;
-        }
-
-        [GtkCallback]
-        void on_expander_activated (Gtk.Expander _expander) {
-            bool expanded = expander.expanded;
-            treemodel.set_autoexpand(expanded);
-            expander.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
-            queue_update();
+            update_remove_sensitivity();
             return;
         }
 

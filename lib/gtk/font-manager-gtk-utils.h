@@ -133,7 +133,6 @@ gchar * font_manager_get_localized_pangram (void);
 gchar * font_manager_get_localized_preview_text (void);
 
 GtkTextTagTable * font_manager_text_tag_table_new (void);
-GtkGesture * font_manager_tree_view_setup_drag_selection (GtkTreeView *treeview);
 
 GtkShortcut * font_manager_get_shortcut_for_stateful_action (const gchar *prefix,
                                                              const gchar *name,

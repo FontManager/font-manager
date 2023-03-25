@@ -61,7 +61,6 @@ namespace FontManager {
         public DisplayPreferences () {
             widget_set_name(this, "FontManagerDisplayPreferences");
             list.set_selection_mode(Gtk.SelectionMode.NONE);
-            list.add_css_class("rich-list");
             properties = new FontProperties () {
                 type = FontPropertiesType.DISPLAY,
                 target_file = "19-DisplayProperties.conf"

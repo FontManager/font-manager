@@ -1,20 +1,28 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.8"/>
-  <template class="FontManagerItemListBoxRow" parent="GtkBox">
+  <requires lib="gtk" version="4.8" />
+  <template class="FontManagerListItemRow" parent="GtkBox">
     <property name="orientation">vertical</property>
     <property name="hexpand">True</property>
     <child>
       <object class="GtkCenterBox">
         <property name="hexpand">True</property>
         <child type="start">
-          <object class="GtkBox">
+          <object class="GtkBox" id="drag_area">
             <property name="valign">center</property>
+            <child>
+              <object class="GtkImage" id="drag_handle">
+                <property name="visible">False</property>
+                <property name="opacity">0.25</property>
+                <property name="icon-name">list-drag-handle-symbolic</property>
+              </object>
+            </child>
             <child>
               <object class="GtkCheckButton" id="item_state">
                 <property name="active">True</property>
                 <property name="valign">center</property>
-                <property name="margin-start">2</property>
+                <property name="margin-start">6</property>
+                <property name="visible">False</property>
               </object>
             </child>
             <child>
@@ -23,6 +31,17 @@
                 <property name="visible">False</property>
               </object>
             </child>
+            <!-- <child> -->
+            <!--   <object class="GtkEditableLabel" id="edit_label"> -->
+            <!--     <property name="hexpand">True</property> -->
+            <!--     <property name="halign">fill</property> -->
+            <!--     <property name="margin-end">9</property> -->
+            <!--     <property name="margin-start">9</property> -->
+            <!--     <property name="vexpand">True</property> -->
+            <!--     <property name="valign">center</property> -->
+            <!--     <property name="visible">False</property> -->
+            <!--   </object> -->
+            <!-- </child> -->
             <child>
               <object class="GtkLabel" id="item_label">
                 <property name="halign">start</property>
@@ -30,6 +49,7 @@
                 <property name="margin-end">9</property>
                 <property name="margin-start">9</property>
                 <property name="valign">center</property>
+                <property name="ellipsize">3</property>
               </object>
             </child>
           </object>
@@ -42,16 +62,15 @@
             <property name="margin-start">6</property>
             <property name="valign">center</property>
             <style>
-              <class name="count"/>
+              <class name="count" />
             </style>
           </object>
         </child>
         <child type="center">
           <object class="GtkInscription" id="item_preview">
-            <property name="hexpand">true</property>
+            <property name="hexpand">True</property>
+            <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="xalign">0.333</property>
-            <property name="valign">0.5</property>
             <property name="min-chars">24</property>
             <property name="nat-chars">48</property>
             <property name="nat-lines">1</property>

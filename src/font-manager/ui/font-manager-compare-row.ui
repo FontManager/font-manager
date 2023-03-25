@@ -34,7 +34,6 @@
         <property name="can-focus">False</property>
         <child>
           <object class="GtkLabel" id="preview">
-            <property name="name">FontManagerComparePreviewLabel</property>
             <property name="margin-start">6</property>
             <property name="margin-end">6</property>
             <property name="margin-top">9</property>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.0"/>
+  <template class="FontManagerOrthographyList" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <signal name="map" handler="on_map_event" swapped="no"/>
+    <signal name="unmap" handler="on_unmap_event" swapped="no"/>
+    <child>
+      <object class="GtkLabel" id="header">
+        <property name="opacity">0.5</property>
+        <property name="margin-start">9</property>
+        <property name="margin-end">9</property>
+        <property name="margin_top">9</property>
+        <property name="margin_bottom">9</property>
+        <attributes>
+          <attribute name="weight" value="bold"></attribute>
+          <attribute name="scale" value="1.2"></attribute>
+        </attributes>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparator"/>
+    </child>
+    <child>
+      <object class="GtkScrolledWindow">
+        <property name="vexpand">1</property>
+        <property name="focusable">1</property>
+        <property name="child">
+          <object class="GtkViewport">
+            <property name="child">
+              <object class="GtkListBox" id="list">
+                <signal name="row-selected" handler="on_list_row_selected" swapped="no"/>
+              </object>
+            </property>
+          </object>
+        </property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparator"/>
+    </child>
+    <child>
+      <object class="GtkRevealer" id="clear_revealer">
+        <property name="margin_start">6</property>
+        <property name="margin_end">6</property>
+        <property name="transition_type">slide-up</property>
+        <property name="child">
+          <object class="GtkButton" id="clear">
+            <property name="label" translatable="1">Clear selected filter</property>
+            <property name="focusable">1</property>
+            <property name="focus_on_click">0</property>
+            <property name="receives_default">1</property>
+            <property name="margin_start">6</property>
+            <property name="margin_end">6</property>
+            <property name="margin_top">7</property>
+            <property name="margin_bottom">7</property>
+            <signal name="clicked" handler="on_clear_clicked" swapped="no"/>
+          </object>
+        </property>
+      </object>
+    </child>
+    <style>
+      <class name="view"/>
+    </style>
+    <style>
+        <class name="rich-list"/>
+    </style>
+  </template>
+</interface>

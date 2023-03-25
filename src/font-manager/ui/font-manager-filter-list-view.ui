@@ -1,8 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
   <requires lib="gtk" version="4.8"/>
-  <template class="FontManagerCategoryListView" parent="GtkBox">
-    <style><class name="view"/></style>
+  <template class="FontManagerFilterListView" parent="GtkBox">
+    <style>
+        <class name="view"/>
+    </style>
     <child>
       <object class="GtkRevealer" id="revealer">
         <property name="hexpand">True</property>
@@ -14,8 +16,6 @@
             <property name="vexpand">True</property>
             <child>
               <object class="GtkListView" id="listview">
-                <property name="css-name">FontManagerCategoryListView</property>
-                <property name="css-classes">FontManagerCategoryListView</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
               </object>

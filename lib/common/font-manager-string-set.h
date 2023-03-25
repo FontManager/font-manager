@@ -1,6 +1,6 @@
 /* font-manager-string-set.h
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,13 @@
 
 #define FONT_MANAGER_TYPE_STRING_SET (font_manager_string_set_get_type())
 G_DECLARE_DERIVABLE_TYPE(FontManagerStringSet, font_manager_string_set, FONT_MANAGER, STRING_SET, GObject)
+
+struct _FontManagerStringSetClass
+{
+    GObjectClass parent_class;
+
+    void (* changed) (FontManagerStringSet *self);
+};
 
 FontManagerStringSet * font_manager_string_set_new (void);
 FontManagerStringSet * font_manager_string_set_new_from_strv (GStrv strv);

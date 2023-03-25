@@ -1,6 +1,6 @@
 /* font-manager-selections.h
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,8 +44,6 @@ G_DECLARE_DERIVABLE_TYPE(FontManagerSelections, font_manager_selections, FONT_MA
 struct _FontManagerSelectionsClass
 {
     GObjectClass parent_class;
-
-    void (* changed) (FontManagerSelections *self);
 
     gboolean (* load) (FontManagerSelections *self);
     gboolean (* save) (FontManagerSelections *self);
