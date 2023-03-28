@@ -299,13 +299,6 @@ namespace FontManager {
                 Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
                 update_remove_sensitivity();
             });
-            if (Environment.get_variable("G_MESSAGES_DEBUG") != null) {
-                selection_changed.connect(() => {
-                    string? description = null;
-                    selected_item.get("description", out description, null);
-                    debug("%s::selection_changed : %s", listview.name, description);
-                });
-            }
         }
 
         // Add slight delay to avoid filtering while search is still changing
@@ -502,6 +495,11 @@ namespace FontManager {
                 }
             }
             update_remove_sensitivity();
+            if (Environment.get_variable("G_MESSAGES_DEBUG") != null) {
+                string? description = null;
+                selected_item.get("description", out description, null);
+                debug("%s::selection_changed : %s", listview.name, description);
+            }
             return;
         }
 

@@ -66,9 +66,9 @@ struct _UnicodeSearchState
     gchar *search_string_nfc;
 };
 
-struct _FontManagerUnicodeSearchBar
+struct _FontManagerUnicodeSearchBarClass
 {
-    GtkWidget parent_instance;
+    GtkWidgetClass  parent_instance;
 
     GtkWidget *entry;
     GtkWidget *next_button;

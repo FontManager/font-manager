@@ -101,13 +101,6 @@ namespace FontManager {
         [GtkChild] protected unowned Gtk.ListView listview;
 
         construct {
-            if (Environment.get_variable("G_MESSAGES_DEBUG") != null) {
-                selection_changed.connect(() => {
-                    string? selected = null;
-                    selected_item.get("name", out selected, null);
-                    debug("%s::selection_changed : %s", listview.name, selected);
-                });
-            }
             Gtk.Gesture right_click = new Gtk.GestureClick() {
                 button = Gdk.BUTTON_SECONDARY
             };
@@ -175,6 +168,7 @@ namespace FontManager {
                 on_row_selected(list_row);
                 return GLib.Source.REMOVE;
             });
+            debug("%s::selection_changed : %s", listview.name, selected_item.name);
             return;
         }
 

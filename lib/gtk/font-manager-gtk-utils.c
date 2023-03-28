@@ -53,10 +53,6 @@ font_manager_set_application_style (void)
     gtk_icon_theme_add_resource_path(icon_theme, icons);
     g_debug("Loading custom css from resource path : %s", css);
     gtk_css_provider_load_from_resource(css_provider, css);
-    if (g_getenv("G_MESSAGES_DEBUG")) {
-        g_autofree gchar *css_data = gtk_css_provider_to_string(css_provider);
-        g_debug("CssProvider data : \n\n%s", css_data);
-    }
     gtk_style_context_add_provider_for_display(default_display,
                                               GTK_STYLE_PROVIDER(css_provider),
                                               GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);

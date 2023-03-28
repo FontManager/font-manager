@@ -4,6 +4,10 @@
   <template class="FontManagerListItemRow" parent="GtkBox">
     <property name="orientation">vertical</property>
     <property name="hexpand">True</property>
+    <property name="margin-top">3</property>
+    <property name="margin-bottom">3</property>
+    <property name="margin-start">3</property>
+    <property name="margin-end">3</property>
     <child>
       <object class="GtkCenterBox">
         <property name="hexpand">True</property>
@@ -56,6 +60,7 @@
         </child>
         <child type="end">
           <object class="GtkLabel" id="item_count">
+            <property name="visible">False</property>
             <property name="hexpand">False</property>
             <property name="halign">center</property>
             <property name="margin-end">6</property>
@@ -85,4 +90,5 @@
     </child>
   </template>
 </interface>
+
 

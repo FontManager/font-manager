@@ -6,6 +6,7 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-filter-list-view.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-font-list-view.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-list-item-row.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-language-filter-settings.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons.ui</file>

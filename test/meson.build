@@ -21,3 +21,9 @@ tests = test_list.stdout().strip().split('\n')
 subdir('application')
 subdir('tests')
 
+selections = executable('selections',
+                        dependencies: [ vala_deps, vapi ],
+                        link_with: vala_test_lib,
+                        include_directories: includes,
+                        sources: [ 'selections.vala' ])
+

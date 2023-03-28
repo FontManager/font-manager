@@ -185,7 +185,8 @@ row:selected .count {
 .FontManagerDesktopPreferences list row:hover,
 .FontManagerDisplayPreferences list row:hover,
 .FontManagerRenderingPreferences list row:hover,
-.FontManagerUserInterfacePreferences  list row:hover {
+.FontManagerUserInterfacePreferences list row:hover,
+.FontManagerLanguageFilterSettings list row:hover {
     background-color: transparent;
 }
 

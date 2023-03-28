@@ -20,18 +20,22 @@
 
 namespace FontManager {
 
-    public class UserSourceModel : Directories, ListModel {
+    public class UserSourceModel : Object, ListModel {
 
         public GenericArray <Source> items { get; private set; }
 
-        construct {
-            config_dir = get_package_config_directory();
-            target_element = "source";
-            target_file = "Sources.xml";
-            load();
+        Directories sources;
+
+        public UserSourceModel () {
+            sources = new Directories() {
+                config_dir = get_package_config_directory(),
+                target_element = "source",
+                target_file = "Sources.xml"
+            };
+            sources.load();
             items = new GenericArray <Source> ();
             var _items = new GenericArray<Source> ();
-            foreach (var path in this)
+            foreach (var path in sources)
                 _items.add(new Source(File.new_for_path(path)));
             _items.sort((a, b) => { return natural_sort(a.name, b.name); });
             var active = new Directories();
@@ -42,7 +46,7 @@ namespace FontManager {
             });
             items_changed.connect(() => {
                 Idle.add(() => {
-                    save();
+                    sources.save();
                     save_active_items();
                     return GLib.Source.REMOVE;
                 });
@@ -62,7 +66,7 @@ namespace FontManager {
         }
 
         public void add_item (Source item) {
-            add(item.path);
+            sources.add(item.path);
             items.add(item);
             uint position = get_n_items() - 1;
             items_changed(position, 0, 1);
@@ -73,7 +77,7 @@ namespace FontManager {
 
         public void remove_item (uint position) {
             var item = items[position];
-            remove(item.path);
+            sources.remove(item.path);
             items.remove(item);
             items_changed(position, 1, 0);
             Idle.add(() => {

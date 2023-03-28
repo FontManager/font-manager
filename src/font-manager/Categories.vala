@@ -34,6 +34,7 @@ namespace FontManager {
         FILETYPE,
         UNSORTED,
         DISABLED,
+        LANGUAGE,
         N_CATEGORIES
     }
 
@@ -195,6 +196,7 @@ namespace FontManager {
             filters.add(construct_info_filter(db, entry));
         filters.add(new Unsorted());
         filters.add(new Disabled());
+        filters.add(new LanguageFilter());
         return filters;
     }
 

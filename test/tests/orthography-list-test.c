@@ -13,7 +13,7 @@ get_widget (TestApplicationWindow *parent)
     font_manager_update_item_preview_text(sorted_font_array);
     g_object_set(fontlist, "available-fonts", sorted_font_array, NULL);
     GtkWidget *pane = gtk_paned_new(GTK_ORIENTATION_HORIZONTAL);
-    gtk_paned_set_position(GTK_PANED(pane), 260);
+    gtk_paned_set_position(GTK_PANED(pane), 250);
     gtk_paned_set_start_child(GTK_PANED(pane), widget);
     gtk_paned_set_end_child(GTK_PANED(pane), fontlist);
     test_dialog_append(dialog, pane);

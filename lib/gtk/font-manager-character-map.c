@@ -32,9 +32,9 @@
  * other details.
  */
 
-struct _FontManagerCharacterMap
+struct _FontManagerCharacterMapClass
 {
-    GtkBox   parent_instance;
+    GtkBoxClass   parent_instance;
 
     gint        active_cell;
     gdouble     preview_size;

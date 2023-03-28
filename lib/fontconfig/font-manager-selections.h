@@ -34,7 +34,6 @@ G_DECLARE_DERIVABLE_TYPE(FontManagerSelections, font_manager_selections, FONT_MA
 
 /**
  * FontManagerSelectionsClass:
- * @changed:            emitted whenever the configuration has changed on disk
  * @load:               load configuration from file
  * @save:               save configuration to file
  * @parse_selections:   parse fontconfig selections
@@ -43,7 +42,7 @@ G_DECLARE_DERIVABLE_TYPE(FontManagerSelections, font_manager_selections, FONT_MA
  */
 struct _FontManagerSelectionsClass
 {
-    GObjectClass parent_class;
+    FontManagerStringSetClass parent_class;
 
     gboolean (* load) (FontManagerSelections *self);
     gboolean (* save) (FontManagerSelections *self);

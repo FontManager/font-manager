@@ -29,9 +29,9 @@
  * Convenience class to allow quickly creating consistent application preference rows.
  */
 
-struct _FontManagerPreferenceRow
+struct _FontManagerPreferenceRowClass
 {
-    GtkWidget   parent_instance;
+    GtkWidgetClass  parent_instance;
 
     GtkWidget       *icon;
     GtkWidget       *title;

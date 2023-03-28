@@ -158,7 +158,6 @@ font_manager_string_set_add_all (FontManagerStringSet *self, FontManagerStringSe
     guint n_strings = font_manager_string_set_size(add);
     for (guint i = 0; i < n_strings; i++)
         font_manager_string_set_add(self, font_manager_string_set_get(add, i));
-    g_signal_emit(self, signals[CHANGED], 0);
     return;
 }
 
@@ -224,7 +223,6 @@ font_manager_string_set_remove_all (FontManagerStringSet *self, FontManagerStrin
     guint n_strings = font_manager_string_set_size(remove);
     for (guint i = 0; i < n_strings; i++)
         font_manager_string_set_remove(self, font_manager_string_set_get(remove, i));
-    g_signal_emit(self, signals[CHANGED], 0);
     return;
 }
 

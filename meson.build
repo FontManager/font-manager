@@ -68,7 +68,7 @@ configure_file(input: 'config.h.meson', output: 'config.h', configuration: confi
 reproducible = get_option('reproducible') ? '-DREPRODUCIBLE' : '-DNOT_REPRODUCIBLE'
 
 add_project_arguments(
-    '-DG_LOG_DOMAIN="@0@"'.format(meson.project_name()),
+    '-DG_LOG_DOMAIN="[@0@]"'.format(meson.project_name()),
     '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
     reproducible,
     language: 'c'
@@ -123,4 +123,5 @@ summary(
     section: '''Directories
     '''
 )
+
 

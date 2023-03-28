@@ -91,7 +91,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-orthography-list-box-row.ui")]
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-orthography-list-row.ui")]
     class OrthographyListRow : Gtk.Grid {
 
         [GtkChild] unowned Gtk.Label C_name;

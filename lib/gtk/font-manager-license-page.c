@@ -29,9 +29,9 @@
  * Widget which displays embedded or detected font licensing data.
  */
 
-struct _FontManagerLicensePage
+struct _FontManagerLicensePageClass
 {
-    GtkWidget   parent_instance;
+    GtkWidgetClass  parent_instance;
 
     gint        _fsType;
     GtkWidget   *fsType;

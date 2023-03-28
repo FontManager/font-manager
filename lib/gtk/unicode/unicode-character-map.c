@@ -63,9 +63,9 @@ enum
     PROP_PREVIEW_SIZE
 };
 
-struct _FontManagerUnicodeCharacterMap
+struct _FontManagerUnicodeCharacterMapClass
 {
-    GtkDrawingArea parent_instance;
+    GtkDrawingAreaClass parent_instance;
 
     gint    rows;
     gint    columns;

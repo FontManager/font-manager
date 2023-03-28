@@ -30,30 +30,11 @@
  * list and match requests as if they didn't exist in the system.
  */
 
-struct _FontManagerReject
-{
-    FontManagerSelections parent_instance;
-};
-
 G_DEFINE_TYPE(FontManagerReject, font_manager_reject, FONT_MANAGER_TYPE_SELECTIONS)
 
 static void
 font_manager_reject_class_init (FontManagerRejectClass *klass)
 {
-    return;
-}
-
-static gboolean
-reload (gpointer self)
-{
-    g_return_val_if_fail(FONT_MANAGER_IS_REJECT(self), FALSE);
-    return !(font_manager_selections_load(FONT_MANAGER_SELECTIONS(self)));
-}
-
-static void
-on_changed (FontManagerReject *self)
-{
-    g_timeout_add_seconds(3, (GSourceFunc) reload, self);
     return;
 }
 
@@ -66,7 +47,6 @@ font_manager_reject_init (FontManagerReject *self)
                  "target-element", "rejectfont",
                  "target-file", "78-Reject.conf",
                  NULL);
-    g_signal_connect(self, "changed", G_CALLBACK(on_changed), self);
     return;
 }
 

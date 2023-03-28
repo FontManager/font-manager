@@ -108,7 +108,6 @@ namespace FontManager {
 
         construct {
             notify["item"].connect((pspec) => { on_item_set(); });
-            widget_set_margin(this, 3);
         }
 
         protected virtual void on_item_set () {}

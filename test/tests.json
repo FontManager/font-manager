@@ -44,6 +44,10 @@
         "label" : "License Page"
     },
     {
+        "name" : "language-filter-settings",
+        "label" : "Language Filter Setttings"
+    },
+    {
         "name" : "orthography-list",
         "label" : "Orthography List"
     },

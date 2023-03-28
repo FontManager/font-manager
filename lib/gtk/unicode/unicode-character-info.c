@@ -31,9 +31,9 @@
  * being displayed in the attached #UnicodeCharacterMap.
  */
 
-struct _FontManagerUnicodeCharacterInfo
+struct _FontManagerUnicodeCharacterInfoClass
 {
-    GtkWidget   parent_instance;
+    GtkWidgetClass  parent_instance;
 
     GtkWidget   *codepoint;
     GtkWidget   *name;

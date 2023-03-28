@@ -35,7 +35,6 @@ typedef struct
     gchar *config_dir;
     gchar *target_file;
     gchar *target_element;
-    GFileMonitor *monitor;
 }
 FontManagerSelectionsPrivate;
 
@@ -63,7 +62,6 @@ font_manager_selections_dispose (GObject *gobject)
     g_clear_pointer(&priv->config_dir, g_free);
     g_clear_pointer(&priv->target_file, g_free);
     g_clear_pointer(&priv->target_element, g_free);
-    g_clear_object(&priv->monitor);
     G_OBJECT_CLASS(font_manager_selections_parent_class)->dispose(gobject);
     return;
 }
@@ -245,17 +243,6 @@ font_manager_selections_init (FontManagerSelections *self)
     return;
 }
 
-static void
-font_manager_selections_emit_changed (G_GNUC_UNUSED GFileMonitor *monitor,
-                                      G_GNUC_UNUSED GFile *file,
-                                      G_GNUC_UNUSED GFile *other_file,
-                                      G_GNUC_UNUSED GFileMonitorEvent  event_type,
-                                      gpointer user_data)
-{
-    g_signal_emit_by_name(FONT_MANAGER_SELECTIONS(user_data), "changed");
-    return;
-}
-
 /**
  * font_manager_selections_load:
  * @self:   #FontManagerSelections
@@ -268,39 +255,25 @@ gboolean
 font_manager_selections_load (FontManagerSelections *self)
 {
     g_return_val_if_fail(self != NULL, FALSE);
-    FontManagerSelectionsPrivate *priv = font_manager_selections_get_instance_private(self);
 
     font_manager_string_set_clear(FONT_MANAGER_STRING_SET(self));
-    if (priv->monitor != NULL)
-        g_clear_object(&priv->monitor);
 
     g_autofree gchar *filepath = font_manager_selections_get_filepath(self);
     if (filepath == NULL || !font_manager_exists(filepath))
         return FALSE;
 
-    g_autoptr(GFile) file = g_file_new_for_path(filepath);
-
-    priv->monitor = g_file_monitor(file, G_FILE_MONITOR_NONE, NULL, NULL);
-    if (priv->monitor != NULL)
-        g_signal_connect(priv->monitor, "changed", G_CALLBACK(font_manager_selections_emit_changed), self);
-    else
-        g_warning(G_STRLOC ": Failed to create file monitor for %s", filepath);
-
-    if (!g_file_query_exists(file, NULL))
-        return FALSE;
-
     xmlDoc *doc = xmlReadFile(filepath, NULL, 0);
 
-    if (doc == NULL) {
-        /* Empty file */
+    /* Empty file */
+    if (doc == NULL)
         return FALSE;
-    }
 
     xmlNode *selections = FONT_MANAGER_SELECTIONS_GET_CLASS(self)->get_selections(self, doc);
     if (selections != NULL)
         FONT_MANAGER_SELECTIONS_GET_CLASS(self)->parse_selections(self, selections);
 
     xmlFreeDoc(doc);
+
     return TRUE;
 }
 

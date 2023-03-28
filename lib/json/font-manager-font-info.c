@@ -1,6 +1,6 @@
 /* font-manager-font-info.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -60,9 +60,9 @@
  * panose is a #JsonArray of integers
  */
 
-struct _FontManagerFontInfo
+struct _FontManagerFontInfoClass
 {
-    GObject parent_instance;
+    FontManagerJsonProxyClass parent_instance;
 };
 
 G_DEFINE_TYPE(FontManagerFontInfo, font_manager_font_info, FONT_MANAGER_TYPE_JSON_PROXY)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.0"/>
+  <requires lib="gtk" version="4.8"/>
   <template class="FontManagerOrthographyList" parent="GtkBox">
     <property name="orientation">vertical</property>
     <signal name="map" handler="on_map_event" swapped="no"/>
@@ -14,12 +14,14 @@
         <property name="margin_bottom">9</property>
         <attributes>
           <attribute name="weight" value="bold"></attribute>
-          <attribute name="scale" value="1.2"></attribute>
+          <attribute name="scale" value="1.1"></attribute>
         </attributes>
       </object>
     </child>
     <child>
-      <object class="GtkSeparator"/>
+      <object class="GtkSeparator">
+          <property name="opacity">0.5</property>
+      </object>
     </child>
     <child>
       <object class="GtkScrolledWindow">
@@ -37,7 +39,9 @@
       </object>
     </child>
     <child>
-      <object class="GtkSeparator"/>
+      <object class="GtkSeparator">
+          <property name="opacity">0.75</property>
+      </object>
     </child>
     <child>
       <object class="GtkRevealer" id="clear_revealer">

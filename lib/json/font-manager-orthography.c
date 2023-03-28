@@ -1,6 +1,6 @@
 /* font-manager-orthography.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,9 +45,9 @@
  * filter is a #JsonArray of available codepoints
  */
 
-struct _FontManagerOrthography
+struct _FontManagerOrthographyClass
 {
-    GObjectClass parent_class;
+    FontManagerJsonProxyClass parent_class;
 };
 
 G_DEFINE_TYPE(FontManagerOrthography, font_manager_orthography, FONT_MANAGER_TYPE_JSON_PROXY)
