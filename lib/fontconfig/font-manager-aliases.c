@@ -32,7 +32,7 @@
 
 struct _FontManagerAliases
 {
-    GObjectClass parent_class;
+    GObject parent;
 };
 
 typedef struct

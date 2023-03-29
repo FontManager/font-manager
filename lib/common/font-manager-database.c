@@ -78,6 +78,14 @@
 #define FONT_PROPERTIES FontProperties
 #define INFO_PROPERTIES InfoProperties
 
+struct _FontManagerDatabase
+{
+    GObject parent;
+
+    sqlite3 *db;
+    sqlite3_stmt *stmt;
+};
+
 typedef struct
 {
     gboolean in_transaction;
@@ -627,6 +635,15 @@ font_manager_database_new (void)
     return g_object_new(FONT_MANAGER_TYPE_DATABASE, NULL);
 }
 
+struct _FontManagerDatabaseIterator
+{
+    GObjectClass parent_class;
+
+    FontManagerDatabase *db;
+};
+
+G_DEFINE_TYPE(FontManagerDatabaseIterator, font_manager_database_iterator, G_TYPE_OBJECT)
+
 /**
  * font_manager_database_iterator:
  * @self:   #FontManagerDatabase
@@ -639,15 +656,6 @@ font_manager_database_iterator (FontManagerDatabase *self)
 {
     return font_manager_database_iterator_new(self);
 }
-
-struct _FontManagerDatabaseIterator
-{
-    GObjectClass parent_class;
-
-    FontManagerDatabase *db;
-};
-
-G_DEFINE_TYPE(FontManagerDatabaseIterator, font_manager_database_iterator, G_TYPE_OBJECT)
 
 static void
 font_manager_database_iterator_dispose (GObject *gobject)

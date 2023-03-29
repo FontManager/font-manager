@@ -76,9 +76,9 @@ font_manager_preview_pane_page_get_type (void)
   return g_define_type_id__volatile;
 }
 
-struct _FontManagerPreviewPaneClass
+struct _FontManagerPreviewPane
 {
-    GtkWidgetClass  parent_instance;
+    GtkWidget parent;
 
     gint                    page;
     gboolean                update_required;

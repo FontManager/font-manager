@@ -31,9 +31,9 @@
  * also displays a description of the current font.
  */
 
-struct _FontManagerPreviewControlsClass
+struct _FontManagerPreviewControls
 {
-    GtkWidgetClass  parent_instance;
+    GtkWidget  parent;
 
     GtkWidget *description;
     GtkWidget *undo_button;

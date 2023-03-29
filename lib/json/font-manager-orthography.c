@@ -45,9 +45,9 @@
  * filter is a #JsonArray of available codepoints
  */
 
-struct _FontManagerOrthographyClass
+struct _FontManagerOrthography
 {
-    FontManagerJsonProxyClass parent_class;
+    FontManagerJsonProxy parent;
 };
 
 G_DEFINE_TYPE(FontManagerOrthography, font_manager_orthography, FONT_MANAGER_TYPE_JSON_PROXY)

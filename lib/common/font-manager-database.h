@@ -126,14 +126,6 @@ FontManagerDatabaseError;
 GType font_manager_database_error_get_type (void);
 #define FONT_MANAGER_TYPE_DATABASE_ERROR (font_manager_database_error_get_type ())
 
-struct _FontManagerDatabase
-{
-    GObjectClass parent_class;
-
-    sqlite3 *db;
-    sqlite3_stmt *stmt;
-};
-
 /**
  * FontManagerDatabaseType:
  * @FONT_MANAGER_DATABASE_TYPE_BASE:        Base database file

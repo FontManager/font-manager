@@ -46,9 +46,9 @@
  *]|
  */
 
-struct _FontManagerFontClass
+struct _FontManagerFont
 {
-    FontManagerJsonProxyClass parent_instance;
+    FontManagerJsonProxy parent;
 };
 
 G_DEFINE_TYPE(FontManagerFont, font_manager_font, FONT_MANAGER_TYPE_JSON_PROXY)

@@ -51,9 +51,9 @@ static const struct {
 
 static void on_zoom (GtkWidget *widget, const gchar *action_name, GVariant *parameter);
 
-struct _FontManagerFontScaleClass
+struct _FontManagerFontScale
 {
-    GtkWidgetClass  parent_instance;
+    GtkWidget  parent;
 
     gdouble         default_size;
     GtkWidget       *min;

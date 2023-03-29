@@ -29,9 +29,9 @@
  * Widget intended to display a message in an empty area.
  */
 
-struct _FontManagerPlaceHolderClass
+struct _FontManagerPlaceHolder
 {
-    GtkWidgetClass  parent_instance;
+    GtkWidget  parent;
 
     GtkWidget   *icon;
     GtkWidget   *title;

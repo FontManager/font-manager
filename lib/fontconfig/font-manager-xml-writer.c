@@ -30,9 +30,9 @@
  * Convenience class for generating fontconfig configuration files.
  */
 
-struct _FontManagerXmlWriterClass
+struct _FontManagerXmlWriter
 {
-    GObjectClass parent_instance;
+    GObject parent;
 
     gchar *filepath;
     xmlTextWriter *writer;

@@ -43,3 +43,4 @@ void font_manager_preference_row_set_reveal_child (FontManagerPreferenceRow *sel
                                                    gboolean                  visible);
 
 GtkWidget * font_manager_preference_row_get_action_widget (FontManagerPreferenceRow *self);
+

@@ -30,9 +30,9 @@
  * including any embedded designer details, copyright and design description.
  */
 
-struct _FontManagerPropertiesPageClass
+struct _FontManagerPropertiesPage
 {
-    GtkWidgetClass  parent_instance;
+    GtkWidget parent;
 
     GtkWidget   *copyright;
     GtkWidget   *description;

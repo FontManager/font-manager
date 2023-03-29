@@ -60,9 +60,9 @@
  * panose is a #JsonArray of integers
  */
 
-struct _FontManagerFontInfoClass
+struct _FontManagerFontInfo
 {
-    FontManagerJsonProxyClass parent_instance;
+    FontManagerJsonProxy parent;
 };
 
 G_DEFINE_TYPE(FontManagerFontInfo, font_manager_font_info, FONT_MANAGER_TYPE_JSON_PROXY)

@@ -102,9 +102,9 @@ font_manager_preview_page_mode_to_translatable_string (FontManagerPreviewPageMod
 
 static void generate_waterfall_preview (FontManagerPreviewPage *self);
 
-struct _FontManagerPreviewPageClass
+struct _FontManagerPreviewPage
 {
-    GtkBoxClass   parent_instance;
+    GtkBox   parent;
 
     gchar       *pangram;
     gchar       *default_pangram;
