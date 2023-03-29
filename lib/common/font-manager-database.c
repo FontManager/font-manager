@@ -78,14 +78,6 @@
 #define FONT_PROPERTIES FontProperties
 #define INFO_PROPERTIES InfoProperties
 
-struct _FontManagerDatabase
-{
-    GObject parent;
-
-    sqlite3 *db;
-    sqlite3_stmt *stmt;
-};
-
 typedef struct
 {
     gboolean in_transaction;

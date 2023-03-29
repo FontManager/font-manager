@@ -41,6 +41,14 @@
 
 #define FONT_MANAGER_CURRENT_DATABASE_VERSION 17
 
+struct _FontManagerDatabase
+{
+    GObject parent;
+
+    sqlite3 *db;
+    sqlite3_stmt *stmt;
+};
+
 #define FONT_MANAGER_TYPE_DATABASE (font_manager_database_get_type ())
 G_DECLARE_FINAL_TYPE(FontManagerDatabase, font_manager_database, FONT_MANAGER, DATABASE, GObject)
 
