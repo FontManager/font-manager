@@ -138,9 +138,9 @@ namespace FontManager {
         }
 
         public override bool deserialize_property (string prop_name,
-                                                      out Value val,
-                                                      ParamSpec pspec,
-                                                      Json.Node node) {
+                                                   out Value val,
+                                                   ParamSpec pspec,
+                                                   Json.Node node) {
             val = Value(pspec.value_type);
             if (pspec.value_type == typeof(GenericArray)) {
                 GenericArray <Collection> res = new GenericArray <Collection> ();
@@ -163,8 +163,8 @@ namespace FontManager {
         }
 
         public override Json.Node serialize_property (string prop_name,
-                                                         Value val,
-                                                         ParamSpec pspec) {
+                                                      Value val,
+                                                      ParamSpec pspec) {
             if (pspec.value_type == typeof(GenericArray)) {
                 var node = new Json.Node(Json.NodeType.OBJECT);
                 var obj = new Json.Object();

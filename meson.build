@@ -27,6 +27,12 @@ pangoft2 = dependency('pangoft2', version: '>= 1.45')
 sqlite = dependency('sqlite3', version: '>= 3.35')
 xml = dependency('libxml-2.0', version: '>= 2.9.10')
 
+if get_option('webkit')
+    soup = dependency('libsoup-3.0', version: '>= 3.2')
+    webkit = dependency('webkitgtk-6.0', version: '>= 2.4')
+    add_global_arguments('-D', 'HAVE_WEBKIT', language: 'vala')
+endif
+
 gnome = import('gnome')
 python = import('python').find_installation('python3')
 

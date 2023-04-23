@@ -54,6 +54,7 @@ enum
 {
     PROP_RESERVED,
     PROP_FONT,
+    PROP_DESCRIPTION,
     PROP_JUSTIFICATION,
     PROP_UNDO_AVAILABLE,
     N_PROPERTIES
@@ -149,6 +150,11 @@ font_manager_preview_controls_set_property (GObject      *gobject,
     switch (property_id) {
         case PROP_FONT:
             set_font(self, g_value_get_object(value));
+            g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_FONT]);
+            break;
+        case PROP_DESCRIPTION:
+            gtk_label_set_text(GTK_LABEL(self->description), g_value_get_string(value));
+            g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_DESCRIPTION]);
             break;
         case PROP_UNDO_AVAILABLE:
             gtk_widget_set_sensitive(self->undo_button, g_value_get_boolean(value));
@@ -158,6 +164,7 @@ font_manager_preview_controls_set_property (GObject      *gobject,
             static const gchar *justify [4] = { "left", "right", "center", "fill" };
             gpointer toggle = g_object_get_data(gobject, justify[(gint) self->justification]);
             gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(toggle), TRUE);
+            g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_JUSTIFICATION]);
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
@@ -177,7 +184,7 @@ font_manager_preview_controls_class_init (FontManagerPreviewControlsClass *klass
     gtk_widget_class_set_layout_manager_type(widget_class, GTK_TYPE_CENTER_LAYOUT);
 
     /**
-     * FontManagerPreviewControls:description:
+     * FontManagerPreviewControls:font:
      *
      * #FontManagerFont for currently displayed font.
      */
@@ -187,6 +194,19 @@ font_manager_preview_controls_class_init (FontManagerPreviewControlsClass *klass
                                                     FONT_MANAGER_TYPE_FONT,
                                                     G_PARAM_WRITABLE |
                                                     G_PARAM_STATIC_STRINGS);
+
+    /**
+     * FontManagerPreviewControls:description:
+     *
+     * Currently displayed font description string
+     */
+    obj_properties[PROP_DESCRIPTION] = g_param_spec_string("description",
+                                                           NULL,
+                                                           "Font description",
+                                                           NULL,
+                                                           G_PARAM_STATIC_STRINGS |
+                                                           G_PARAM_WRITABLE |
+                                                           G_PARAM_EXPLICIT_NOTIFY);
 
     /**
      * FontManagerPreviewControls:undo-available:

@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.8"/>
+  <template class="FontManagerGoogleFontsPreviewPage" parent="GtkBox">
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkCenterBox" id="controls">
+        <child type="start">
+          <object class="GtkBox">
+            <property name="halign">fill</property>
+            <property name="hexpand">True</property>
+            <property name="margin-end">6</property>
+            <property name="margin-start">6</property>
+            <property name="margin-top">4</property>
+            <property name="margin-bottom">4</property>
+            <property name="spacing">2</property>
+            <child>
+              <object class="GtkMenuButton" id="menu_button">
+                <property name="focusable">False</property>
+                <property name="halign">center</property>
+                <property name="has-frame">False</property>
+                <property name="margin-end">2</property>
+                <property name="margin-start">2</property>
+                <property name="opacity">0.75</property>
+                <property name="receives-default">1</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkMenuButton" id="sample_button">
+                <property name="focusable">False</property>
+                <property name="halign">center</property>
+                <property name="has-frame">False</property>
+                <property name="icon-name">preferences-desktop-locale-symbolic</property>
+                <property name="margin-end">2</property>
+                <property name="margin-start">2</property>
+                <property name="opacity">0.75</property>
+                <property name="receives-default">1</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkBox">
+            <property name="spacing">2</property>
+            <property name="margin-top">4</property>
+            <property name="margin-bottom">4</property>
+            <child>
+              <object class="GtkColorButton" id="bg_color_button">
+                <property name="focusable">1</property>
+                <property name="halign">center</property>
+                <property name="name">background</property>
+                <property name="receives-default">1</property>
+                <property name="rgba">rgb(255,255,255)</property>
+                <property name="title" translatable="yes">Select background color</property>
+                <property name="tooltip-text" translatable="yes">Select background color</property>
+                <property name="valign">center</property>
+                <signal name="color-set" handler="on_color_set"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkColorButton" id="fg_color_button">
+                <property name="focusable">1</property>
+                <property name="halign">center</property>
+                <property name="margin-end">4</property>
+                <property name="name">foreground</property>
+                <property name="receives-default">1</property>
+                <property name="rgba">rgb(0,0,0)</property>
+                <property name="title" translatable="yes">Select text color</property>
+                <property name="tooltip-text" translatable="yes">Select text color</property>
+                <property name="valign">center</property>
+                <signal name="color-set" handler="on_color_set"/>
+              </object>
+            </child>
+          </object>
+        </child>
+        <style>
+          <class name="background"/>
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparator">
+        <property name="orientation">vertical</property>
+      </object>
+    </child>
+    <style>
+      <class name="view"/>
+    </style>
+  </template>
+</interface>

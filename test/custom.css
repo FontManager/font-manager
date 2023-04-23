@@ -23,6 +23,13 @@
     background-color: #808080;
 }
 
+accelerator {
+	color: transparent;
+	margin: 0px;
+	min-width: 0px;
+	font-size: 0px;
+}
+
 decoration, window, window.background, dialog.message {
     border-radius: .575em;
     background: #fff;
@@ -142,9 +149,18 @@ row:selected .count {
 .FontManagerSubstituteList list row:selected,
 .FontManagerUserActionList list row:selected,
 .FontManagerUserSourceList list row:selected {
-    /* background-color: alpha(@theme_selected_bg_color, 0.75); */
+    background-color: alpha(@theme_selected_bg_color, 0.9);
     border-radius: 0.333em;
     margin: 4px;
+}
+
+.FontManagerGoogleFontsSampleList list row:selected {
+    background-color: alpha(@theme_selected_bg_color, 0.9);
+    border-radius: 0.333em;
+}
+
+.FontManagerGoogleFontsSampleList list row:hover {
+    border-radius: 0.333em;
 }
 
 .FontManagerSubstituteList list row:selected,
@@ -167,7 +183,8 @@ row:selected .count {
 .FontManagerDisplayPreferences list row:hover,
 .FontManagerRenderingPreferences list row:hover,
 .FontManagerUserInterfacePreferences list row:hover,
-.FontManagerLanguageFilterSettings list row:hover {
+.FontManagerLanguageFilterSettings list row:hover,
+.FontManagerGoogleFontsOrthographies row:hover {
     background-color: transparent;
 }
 
@@ -227,5 +244,11 @@ row:selected .count {
     padding: 4px 24px 4px 24px;
     min-width: 24px;
     min-height: 20px;
+}
+
+.FontManagerGoogleFontsCategories checkbutton label,
+.FontManagerGoogleFontsOrthographies checkbutton label {
+    margin-left: 6px;
+    margin-right: 6px;
 }
 

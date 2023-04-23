@@ -111,7 +111,9 @@ namespace FontManager {
         public DesktopPreferences () {
             widget_set_name(this, "FontManagerDesktopPreferences");
             list.set_selection_mode(Gtk.SelectionMode.NONE);
-            var place_holder = new PlaceHolder(null, null, _("GNOME desktop settings schema not found"), "dialog-warning-symbolic");
+            var place_holder = new PlaceHolder(null, null,
+                                               _("GNOME desktop settings schema not found"),
+                                                 "computer-fail-symbolic");
             list.set_placeholder(place_holder);
             if (DesktopPreferences.available())
                 generate_options_list();
@@ -147,9 +149,9 @@ namespace FontManager {
         }
 
         void generate_options_list () {
-            /* Settings instance to be used below */
+            // Settings instance to be used below
             Settings? _settings = interface_settings;
-            /* Ensure keys exist since we don't control these schemas and GSettings crashes on any error */
+            // Ensure keys exist since we don't control these schemas and GSettings crashes on any error
             SettingsSchemaSource default_schemas = SettingsSchemaSource.get_default();
             SettingsSchema? interface_schema = default_schemas.lookup(GNOME_INTERFACE_ID, true);
             string [] interface_keys = {};
@@ -163,7 +165,7 @@ namespace FontManager {
                 if (xsettings_schema != null)
                     xsettings_keys = xsettings_schema.list_keys();
             }
-            /* Newer key not found use deprecated xsettings keys if possible */
+            // Newer key not found use deprecated xsettings keys if possible
             if (x_settings != null)
                 _settings = x_settings;
             SubpixelGeometry spg = new SubpixelGeometry() { margin_top = DEFAULT_MARGIN * 3};

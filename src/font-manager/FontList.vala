@@ -57,7 +57,8 @@ namespace FontManager {
             return items != null ? items.length : 0;
         }
 
-        public Object? get_item (uint position) {
+        public Object? get_item (uint position)
+        requires (items != null) {
             return_val_if_fail(items[position] != null, null);
             Object retval = Object.new(item_type);
             retval.set("source-object", items[position], null);

@@ -21,12 +21,8 @@
             <property name="halign">center</property>
             <property name="valign">center</property>
             <property name="has-frame">False</property>
+            <property name="icon_name">list-add-symbolic</property>
             <signal name="clicked" handler="on_add_button_clicked" swapped="no" />
-            <child>
-              <object class="GtkImage">
-                <property name="icon_name">list-add-symbolic</property>
-              </object>
-            </child>
           </object>
         </child>
         <child>
@@ -40,12 +36,8 @@
             <property name="valign">center</property>
             <property name="has-frame">False</property>
             <property name="opacity">0.45</property>
+            <property name="icon_name">list-remove-symbolic</property>
             <signal name="clicked" handler="on_remove_button_clicked" swapped="no" />
-            <child>
-              <object class="GtkImage">
-                <property name="icon_name">list-remove-symbolic</property>
-              </object>
-            </child>
           </object>
         </child>
         <child>
@@ -134,9 +126,6 @@
       <object class="FontManagerFontScale" id="fontscale">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
-        <child>
-          <placeholder />
-        </child>
       </object>
     </child>
     <style>
@@ -144,4 +133,5 @@
     </style>
   </template>
 </interface>
+
 

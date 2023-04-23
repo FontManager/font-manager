@@ -272,7 +272,7 @@ font_manager_preference_row_init (FontManagerPreferenceRow *self)
     self->children = gtk_box_new(GTK_ORIENTATION_VERTICAL, 0);
     gtk_widget_set_margin_start(self->children, FONT_MANAGER_DEFAULT_MARGIN * 3);
     gtk_widget_set_margin_end(self->children, FONT_MANAGER_DEFAULT_MARGIN * 3);
-    gtk_widget_set_margin_top(self->children, FONT_MANAGER_DEFAULT_MARGIN);
+    gtk_widget_set_margin_top(self->children, FONT_MANAGER_DEFAULT_MARGIN * 2);
     gtk_widget_set_margin_bottom(self->children, 0);
     gtk_revealer_set_child(GTK_REVEALER(self->revealer), self->children);
     self->icon = gtk_image_new();

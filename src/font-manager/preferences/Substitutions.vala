@@ -141,13 +141,7 @@ namespace FontManager {
             string w3 = _("To add a new substitute click the add button in the toolbar.");
             var place_holder = new PlaceHolder(w1, w2, w3, "edit-find-replace-symbolic");
             list.set_placeholder(place_holder);
-            var help = inline_help_widget(
-
-_("""Running applications may require a restart to reflect any changes.
-
-Note that not all environments/applications will honor these settings.""")
-
-            );
+            var help = inline_help_widget(FONTCONFIG_DISCLAIMER);
             controls.append(help);
         }
 
@@ -188,7 +182,7 @@ Note that not all environments/applications will honor these settings.""")
             var alias_row = (SubstituteRow) get_bin_child(list.get_row_at_index(i));
             while (alias_row != null) {
                 AliasElement? element = alias_row.to_element();
-                /* Empty rows are allowed in the list - don't save one */
+                // Empty rows are allowed in the list - don't save one
                 if (element != null && element.family != null && element.family != "")
                     aliases.add_element(element);
                 i++;
@@ -216,8 +210,7 @@ Note that not all environments/applications will honor these settings.""")
         }
 
         protected override void on_remove_selected () {
-            Gtk.ListBoxRow row = list.get_selected_row();
-            list.remove(row);
+            list.remove(list.get_selected_row());
             return;
         }
 

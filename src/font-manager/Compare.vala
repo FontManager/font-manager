@@ -200,10 +200,8 @@ namespace FontManager {
             set_control_sensitivity(pinned_button, pinned.model.get_n_items() > 0);
             bg_color_button.color_set.connect(() => { color_set(); });
             fg_color_button.color_set.connect(() => { color_set(); });
-            bg_color_button.get_first_child().remove_css_class(STYLE_CLASS_COLOR);
-            bg_color_button.get_first_child().add_css_class(STYLE_CLASS_FLAT);
-            fg_color_button.get_first_child().remove_css_class(STYLE_CLASS_COLOR);
-            fg_color_button.get_first_child().add_css_class(STYLE_CLASS_FLAT);
+            flatten_color_button(bg_color_button);
+            flatten_color_button(fg_color_button);
             model.items_changed.connect(on_items_changed);
             pinned.closed.connect(() => {
                 bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);

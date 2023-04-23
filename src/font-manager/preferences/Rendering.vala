@@ -20,7 +20,7 @@
 
 namespace FontManager {
 
-    internal struct DefaultRenderingSettings {
+    internal struct PreviousRenderingSettings {
 
         int hintstyle;
         bool antialias;
@@ -28,7 +28,7 @@ namespace FontManager {
         bool autohint;
         bool bitmaps;
 
-        public DefaultRenderingSettings (FontProperties properties) {
+        public PreviousRenderingSettings (FontProperties properties) {
             hintstyle = properties.hintstyle;
             antialias = properties.antialias;
             hinting = properties.hinting;
@@ -62,7 +62,7 @@ namespace FontManager {
         Gtk.Switch antialias;
         Gtk.Switch hinting;
         Gtk.Switch bitmaps;
-        DefaultRenderingSettings defaults;
+        PreviousRenderingSettings settings;
 
         public RenderingPreferences () {
             widget_set_name(this, "FontManagerRenderingPreferences");
@@ -81,8 +81,8 @@ namespace FontManager {
             widget.append_child(child);
             bitmaps = add_preference_switch(_("Use Embedded Bitmaps"));
             bind_properties();
-            /* Store property settings at start */
-            defaults = DefaultRenderingSettings(properties);
+            // Store previous settings
+            settings = PreviousRenderingSettings(properties);
             var footer = new FontconfigFooter();
             footer.reset_requested.connect(on_reset);
             append(footer);
@@ -101,7 +101,7 @@ namespace FontManager {
 
         void on_reset () {
             properties.discard();
-            defaults.load(properties);
+            settings.load(properties);
             return;
         }
 
@@ -111,8 +111,8 @@ namespace FontManager {
         }
 
         public override void on_unmap () {
-            /* Avoid saving unless there's been changes to at least one value. */
-            if (defaults.changed(properties))
+            // Avoid saving unless there's been changes to at least one value.
+            if (settings.changed(properties))
                 properties.save();
             return;
         }

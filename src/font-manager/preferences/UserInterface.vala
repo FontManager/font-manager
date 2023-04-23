@@ -73,7 +73,7 @@ namespace FontManager {
             }
         }
 
-        /* GSettingsBind*Mapping functions */
+        // GSettingsBind*Mapping functions
 
         public static Variant to_setting (Value val, VariantType type) {
             switch (val.get_int()) {
@@ -229,10 +229,12 @@ namespace FontManager {
             // XXX : FIXME! :
             // Here for testing purposes
             // This probably belongs in our application window class.
+            // GLib.Settings? settings = get_gsettings(BUS_ID);
             Gtk.Settings? gtk_settings = Gtk.Settings.get_default();
-            warn_if_fail(gtk_settings != null);
             const string gtk_prefer_dark = "gtk-application-prefer-dark-theme";
-            settings.bind("prefer-dark-theme", gtk_settings, gtk_prefer_dark, flags);
+            if (gtk_settings != null)
+                settings.bind("prefer-dark-theme", gtk_settings, gtk_prefer_dark, flags);
+            warn_if_fail(gtk_settings != null);
 
             settings.bind("prefer-dark-theme", prefer_dark_theme, "active", flags);
             settings.bind("title-button-style", button_style, "active-id", flags);

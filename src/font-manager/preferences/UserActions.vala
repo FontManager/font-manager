@@ -30,7 +30,7 @@ namespace FontManager {
 
         construct {
             notify["executable"].connect(() => {
-                /* Try to retrieve application details, if available. */
+                // Try to retrieve application details, if available.
                 var exec = executable.contains("/") ? Path.get_basename(executable) : executable;
                 var desktop_files = GLib.DesktopAppInfo.search(exec);
                 if (desktop_files != null && desktop_files[0] != null) {
@@ -109,8 +109,8 @@ namespace FontManager {
             }
         }
 
-        public new UserAction get (uint index) {
-            assert(index < size);
+        public new UserAction get (uint index)
+        requires (index < size) {
             return ((UserAction) get_item(index));
         }
 

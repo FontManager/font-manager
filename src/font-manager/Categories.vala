@@ -157,7 +157,7 @@ namespace FontManager {
 
     }
 
-    /*  WARNING : Long lines ahead... */
+    //  WARNING : Long lines ahead...
 
     public const string SELECT_FROM_FONTS = "SELECT DISTINCT family, description FROM Fonts";
     public const string SELECT_FROM_METADATA_WHERE = "SELECT DISTINCT Fonts.family, Fonts.description FROM Fonts JOIN Metadata USING (filepath, findex) WHERE";

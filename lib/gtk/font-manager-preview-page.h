@@ -1,6 +1,6 @@
 /* font-manager-preview-page.h
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -72,4 +72,6 @@ void font_manager_preview_page_set_preview_size (FontManagerPreviewPage *self, g
 void font_manager_preview_page_set_preview_text (FontManagerPreviewPage *self, const gchar *preview_text);
 void font_manager_preview_page_set_waterfall_size (FontManagerPreviewPage *self, gdouble min_size, gdouble max_size, gdouble ratio);
 void font_manager_preview_page_restore_state (FontManagerPreviewPage *self, GSettings *settings);
+
+void font_manager_set_preview_page_mode_menu_and_actions (GtkWidget *parent, GtkWidget *menu_button, GCallback  callback);
 

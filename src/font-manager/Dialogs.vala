@@ -113,7 +113,9 @@ namespace FontManager {
             progress.margin_bottom = 12;
             var box = dialog.get_message_area() as Gtk.Box;
             box.append(progress);
+            box.margin_top = 24;
             dialog.set_default_size(475, 125);
+            dialog.decorated = false;
             return dialog;
         }
 

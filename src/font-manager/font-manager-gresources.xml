@@ -9,6 +9,7 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-language-filter-settings.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-orthography-list-row.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-paned.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preview-entry.ui</file>
@@ -17,6 +18,11 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-substitute.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-substitute-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-action-row.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-sidebar.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-font-list-view.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-preview-page.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-sample-row.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">web/google/ui/google-fonts-sample-list.ui</file>
     </gresource>
 </gresources>
 

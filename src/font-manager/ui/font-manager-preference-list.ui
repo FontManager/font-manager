@@ -12,6 +12,8 @@
         <property name="valign">start</property>
         <property name="hexpand">True</property>
         <property name="vexpand">False</property>
+        <signal name="add-selected" handler="on_add_selected" swapped="no"/>
+        <signal name="remove-selected" handler="on_remove_selected" swapped="no"/>
       </object>
     </child>
     <child>

@@ -1,6 +1,6 @@
 /* ArchiveManager.vala
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ interface FileRollerDBusService : Object {
                                        bool use_progress_dialog)
                                        throws DBusError, IOError;
 
-    /* Valid actions -> "create", "create_single_file", "extract" */
+    // Valid actions -> "create", "create_single_file", "extract"
     public abstract HashTable <string, string> []
     get_supported_types (string action)
     throws DBusError, IOError;
@@ -53,11 +53,10 @@ interface FileRollerDBusService : Object {
 
 namespace FontManager {
 
-    /* Mimetypes that are likely to cause an error, unlikely to contain usable fonts.
-     * i.e.
-     * Windows .FON files are classified as "application/x-ms-dos-executable"
-     * but file-roller is unlikely to extract one successfully.
-     */
+    // Mimetypes likely to cause an error, unlikely to contain usable fonts.
+    // i.e.
+    // Windows .FON files are classified as "application/x-ms-dos-executable"
+    // but file-roller is unlikely to extract one successfully.
     const string [] MIMETYPE_IGNORE_LIST = {
         "application/x-ms-dos-executable"
     };

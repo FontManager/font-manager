@@ -20,14 +20,14 @@
 
 namespace FontManager {
 
-    internal struct DefaultDisplaySettings {
+    internal struct PreviousDisplaySettings {
 
         int filter;
         int rgba;
         double dpi;
         double scale;
 
-        public DefaultDisplaySettings (FontProperties properties) {
+        public PreviousDisplaySettings (FontProperties properties) {
             dpi = properties.dpi;
             scale = properties.scale;
             filter = properties.lcdfilter;
@@ -56,7 +56,7 @@ namespace FontManager {
         Gtk.SpinButton scale;
         Gtk.ComboBoxText lcdfilter;
         SubpixelGeometry spg;
-        DefaultDisplaySettings defaults;
+        PreviousDisplaySettings settings;
 
         public DisplayPreferences () {
             widget_set_name(this, "FontManagerDisplayPreferences");
@@ -81,8 +81,8 @@ namespace FontManager {
             spg.get_last_child().margin_end = 0;
             append_row(new PreferenceRow(_("Subpixel Geometry"), null, null, spg));
             bind_properties();
-            /* Store default properties */
-            defaults = DefaultDisplaySettings(properties);
+            // Store previous settings
+            settings = PreviousDisplaySettings(properties);
             var footer = new FontconfigFooter();
             footer.reset_requested.connect(on_reset);
             append(footer);
@@ -101,7 +101,7 @@ namespace FontManager {
 
         void on_reset () {
             properties.discard();
-            defaults.load(properties);
+            settings.load(properties);
             return;
         }
 
@@ -111,8 +111,8 @@ namespace FontManager {
         }
 
         public override void on_unmap () {
-            /* Avoid saving unless there's been changes to at least one value. */
-            if (defaults.changed(properties))
+            // Avoid saving unless there's been changes to at least one value.
+            if (settings.changed(properties))
                 properties.save();
             return;
         }

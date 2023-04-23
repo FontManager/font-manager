@@ -89,6 +89,7 @@ namespace FontManager {
             margin_start = 0;
             item_state.visible = true;
             item_state.active = false;
+            item_count.visible = true;
         }
 
         public override void reset () {
@@ -121,7 +122,7 @@ namespace FontManager {
 
     }
 
-    //TODO :
+    // TODO :
     //      - F2 shortcut to rename collections
     //      - Context menu (base class has virtual method)
 

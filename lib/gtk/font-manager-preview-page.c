@@ -530,20 +530,30 @@ on_edit_toggled (FontManagerPreviewPage *self, gboolean active)
 }
 
 static void
-on_buffer_changed (FontManagerPreviewPage *self, GtkTextBuffer *buffer)
+on_buffer_changed (GtkTextBuffer *buffer, FontManagerPreviewPage *self)
 {
     g_return_if_fail(self != NULL);
+    /* Buffer may be modified by the user in preview mode */
+    if (self->mode != FONT_MANAGER_PREVIEW_PAGE_MODE_PREVIEW)
+        return;
     gboolean undo_available = FALSE;
     GtkWidget *controls = gtk_revealer_get_child(GTK_REVEALER(self->controls));
-    if (self->mode == FONT_MANAGER_PREVIEW_PAGE_MODE_PREVIEW) {
-        GtkTextIter start, end;
-        gtk_text_buffer_get_bounds(buffer, &start, &end);
-        gchar *current_text = gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
-        undo_available = (g_strcmp0(self->default_preview, current_text) != 0);
+    GtkTextIter start, end;
+    gtk_text_buffer_get_bounds(buffer, &start, &end);
+    gchar *current_text = gtk_text_buffer_get_text(buffer, &start, &end, FALSE);
+    /* Restore default preview if we have an empty buffer */
+    if (g_strcmp0(current_text, "") == 0) {
+        g_free(current_text);
+        current_text = g_strdup(self->default_preview);
+    }
+    undo_available = (g_strcmp0(self->default_preview, current_text) != 0);
+    /* Store the buffer contents if they've been modified */
+    if (undo_available && (g_strcmp0(self->preview, current_text) != 0)) {
         g_free(self->preview);
-        self->preview = current_text;
+        self->preview = g_strdup(current_text);
         g_object_notify_by_pspec(G_OBJECT(self), obj_properties[PROP_PREVIEW_TEXT]);
     }
+    g_clear_pointer(&current_text, g_free);
     g_object_set(G_OBJECT(controls), "undo-available", undo_available, NULL);
     return;
 }
@@ -613,42 +623,6 @@ on_swipe_event (FontManagerPreviewPage *self,
 }
 
 static void
-create_menu_and_actions (FontManagerPreviewPage *self)
-{
-    self->menu_button = g_object_ref_sink(gtk_menu_button_new());
-    GMenu *mode_menu = g_menu_new();
-    GVariant *variant = g_variant_new_string("Waterfall");
-    g_autoptr(GSimpleAction) action = g_simple_action_new_stateful("mode", G_VARIANT_TYPE_STRING, variant);
-    g_simple_action_set_enabled(action, TRUE);
-    g_signal_connect(action, "activate", G_CALLBACK(on_mode_action_activated), self);
-    g_action_activate(G_ACTION(action), variant);
-    g_autoptr(GSimpleActionGroup) action_group = g_simple_action_group_new();
-    g_action_map_add_action(G_ACTION_MAP(action_group), G_ACTION(action));
-    gtk_widget_insert_action_group(self->menu_button, "preview", G_ACTION_GROUP(action_group));
-    gtk_widget_insert_action_group(GTK_WIDGET(self), "preview", G_ACTION_GROUP(action_group));
-    GtkEventController *shortcuts = gtk_shortcut_controller_new();
-    gtk_event_controller_set_propagation_phase(shortcuts, GTK_PHASE_BUBBLE);
-    gtk_widget_add_controller(GTK_WIDGET(self), GTK_EVENT_CONTROLLER(shortcuts));
-    gtk_shortcut_controller_set_scope(GTK_SHORTCUT_CONTROLLER(shortcuts), GTK_SHORTCUT_SCOPE_GLOBAL);
-    for (gint i = 0; i <= FONT_MANAGER_PREVIEW_PAGE_MODE_LOREM_IPSUM; i++) {
-        const gchar *action_state = font_manager_preview_page_mode_to_string((FontManagerPreviewPageMode) i);
-        const gchar *display_name = font_manager_preview_page_mode_to_translatable_string((FontManagerPreviewPageMode) i);
-        g_autofree gchar *action_name = g_strdup_printf("preview.mode::%s", action_state);
-        g_autoptr(GMenuItem) item = g_menu_item_new(display_name, action_name);
-        g_autofree gchar *accel = g_strdup_printf("<Alt>%i", i + 1);
-        g_menu_append_item(mode_menu, item);
-        GtkShortcut *shortcut = font_manager_get_shortcut_for_stateful_action("preview", "mode", action_state, accel);
-        gtk_shortcut_controller_add_shortcut(GTK_SHORTCUT_CONTROLLER(shortcuts), shortcut);
-    }
-    gtk_menu_button_set_icon_name(GTK_MENU_BUTTON(self->menu_button), "view-more-symbolic");
-    gtk_menu_button_set_menu_model(GTK_MENU_BUTTON(self->menu_button), G_MENU_MODEL(mode_menu));
-    font_manager_widget_set_margin(self->menu_button, 2);
-    gtk_widget_set_margin_top(self->menu_button, 1);
-    gtk_widget_set_margin_bottom(self->menu_button, 1);
-    return;
-}
-
-static void
 font_manager_preview_page_init (FontManagerPreviewPage *self)
 {
     g_return_if_fail(self != NULL);
@@ -697,7 +671,7 @@ font_manager_preview_page_init (FontManagerPreviewPage *self)
     g_object_bind_property(controls, "justification", self, "justification", flags);
     font_manager_preview_page_set_justification(self, GTK_JUSTIFY_CENTER);
     g_signal_connect_swapped(controls, "edit-toggled", G_CALLBACK(on_edit_toggled), self);
-    g_signal_connect_swapped(buffer, "changed", G_CALLBACK(on_buffer_changed), self);
+    g_signal_connect_after(buffer, "changed", G_CALLBACK(on_buffer_changed), self);
     g_signal_connect_swapped(controls, "undo-clicked", G_CALLBACK(on_undo_clicked), self);
     GtkGesture *zoom = gtk_gesture_zoom_new();
     g_signal_connect_swapped(zoom, "scale-changed", G_CALLBACK(on_zoom_event), self);
@@ -710,7 +684,8 @@ font_manager_preview_page_init (FontManagerPreviewPage *self)
     g_signal_connect_swapped(long_press, "pressed", G_CALLBACK(on_long_press_event), self->textview);
     gtk_widget_add_controller(GTK_WIDGET(self->textview), GTK_EVENT_CONTROLLER(long_press));
     font_manager_preview_page_set_waterfall_size(self, self->min_waterfall_size, DEFAULT_WATERFALL_MAX_SIZE, 1.0);
-    create_menu_and_actions(self);
+    self->menu_button = g_object_ref_sink(gtk_menu_button_new());
+    font_manager_set_preview_page_mode_menu_and_actions(GTK_WIDGET(self), self->menu_button, G_CALLBACK(on_mode_action_activated));
     return;
 }
 
@@ -1002,5 +977,47 @@ GtkWidget *
 font_manager_preview_page_new (void)
 {
     return g_object_new(FONT_MANAGER_TYPE_PREVIEW_PAGE, NULL);
+}
+
+/**
+ * font_manager_set_preview_page_mode_menu_and_actions:
+ * @parent:                     #GtkWidget
+ * @menu_button:                #GtkMenuButton
+ * @callback: (scope forever) : #GCallback for action "activate" signal
+ */
+void
+font_manager_set_preview_page_mode_menu_and_actions (GtkWidget *parent,
+                                                     GtkWidget *menu_button,
+                                                     GCallback  callback)
+{
+    GMenu *mode_menu = g_menu_new();
+    GVariant *variant = g_variant_new_string("Waterfall");
+    g_autoptr(GSimpleAction) action = g_simple_action_new_stateful("mode", G_VARIANT_TYPE_STRING, variant);
+    g_simple_action_set_enabled(action, TRUE);
+    g_signal_connect(action, "activate", callback, parent);
+    g_action_activate(G_ACTION(action), variant);
+    g_autoptr(GSimpleActionGroup) action_group = g_simple_action_group_new();
+    g_action_map_add_action(G_ACTION_MAP(action_group), G_ACTION(action));
+    gtk_widget_insert_action_group(menu_button, "preview", G_ACTION_GROUP(action_group));
+    gtk_widget_insert_action_group(parent, "preview", G_ACTION_GROUP(action_group));
+    GtkEventController *shortcuts = gtk_shortcut_controller_new();
+    gtk_event_controller_set_propagation_phase(shortcuts, GTK_PHASE_BUBBLE);
+    gtk_widget_add_controller(parent, GTK_EVENT_CONTROLLER(shortcuts));
+    gtk_shortcut_controller_set_scope(GTK_SHORTCUT_CONTROLLER(shortcuts), GTK_SHORTCUT_SCOPE_GLOBAL);
+    for (gint i = 0; i <= FONT_MANAGER_PREVIEW_PAGE_MODE_LOREM_IPSUM; i++) {
+        const gchar *action_state = font_manager_preview_page_mode_to_string((FontManagerPreviewPageMode) i);
+        const gchar *display_name = font_manager_preview_page_mode_to_translatable_string((FontManagerPreviewPageMode) i);
+        g_autofree gchar *action_name = g_strdup_printf("preview.mode::%s", action_state);
+        g_autoptr(GMenuItem) item = g_menu_item_new(display_name, action_name);
+        g_autofree gchar *accel = g_strdup_printf("<Alt>%i", i + 1);
+        g_menu_append_item(mode_menu, item);
+        GtkShortcut *shortcut = font_manager_get_shortcut_for_stateful_action("preview", "mode", action_state, accel);
+        gtk_shortcut_controller_add_shortcut(GTK_SHORTCUT_CONTROLLER(shortcuts), shortcut);
+    }
+    gtk_menu_button_set_icon_name(GTK_MENU_BUTTON(menu_button), "view-more-symbolic");
+    gtk_menu_button_set_menu_model(GTK_MENU_BUTTON(menu_button), G_MENU_MODEL(mode_menu));
+    font_manager_widget_set_margin(menu_button, 2);
+    g_object_unref(mode_menu);
+    return;
 }
 

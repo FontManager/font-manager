@@ -21,7 +21,6 @@
 namespace FontManager {
 
     public enum SortType {
-        AGE,
         NAME,
         SIZE,
         NONE
@@ -32,65 +31,6 @@ namespace FontManager {
     JOIN Orthography USING (filepath, findex)
     WHERE Orthography.sample IS NOT NULL;
     """;
-
-    public HashTable get_non_latin_samples () {
-        var result = new HashTable <string, string> (str_hash, str_equal);
-        try {
-            Database db = Database.get_default(DatabaseType.BASE);
-            db.execute_query(SELECT_NON_LATIN_FONTS);
-            foreach (unowned Sqlite.Statement row in db)
-                result.insert(row.column_text(0), row.column_text(1));
-        } catch (DatabaseError e) {
-            message(e.message);
-        }
-        return result;
-    }
-
-    public void update_item_preview_text (Json.Array available_fonts) {
-        HashTable <string, string> samples = get_non_latin_samples();
-        available_fonts.foreach_element((array, index, node) => {
-            Json.Object item = node.get_object();
-            string description = item.get_string_member("description");
-            if (samples.contains(description))
-                item.set_string_member("preview-text", samples.lookup(description));
-            Json.Array variants = item.get_array_member("variations");
-            variants.foreach_element((a, i, n) => {
-                Json.Object v = n.get_object();
-                description = v.get_string_member("description");
-                if (samples.contains(description))
-                    v.set_string_member("preview-text", samples.lookup(description));
-            });
-        });
-        return;
-    }
-
-    public Gtk.Image inline_help_widget (string message) {
-        var help = new Gtk.Image.from_icon_name("dialog-question-symbolic")
-        {
-            pixel_size = 24,
-            opacity = 0.333,
-            hexpand = true,
-            halign = Gtk.Align.END,
-            margin_start = DEFAULT_MARGIN,
-            margin_end = DEFAULT_MARGIN,
-            tooltip_text = message
-        };
-        return help;
-    }
-
-    public Gtk.Window? get_parent_window (Gtk.Widget widget) {
-        Gtk.Widget? ancestor = widget.get_ancestor(typeof(Gtk.Window));
-        return ancestor != null ? (Gtk.Window) ancestor : null;
-    }
-
-    public void set_control_sensitivity(Gtk.Widget? widget, bool sensitive) {
-        if (widget == null || !(widget is Gtk.Widget))
-            return;
-        widget.sensitive = sensitive;
-        widget.opacity = sensitive ? 0.9 : 0.45;
-        widget.has_tooltip = sensitive;
-        return;
-    }
 
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-list-item-row.ui")]
     public class ListItemRow : Gtk.Box {
@@ -153,6 +93,218 @@ namespace FontManager {
             return;
         }
 
+    }
+
+    public HashTable get_non_latin_samples () {
+        var result = new HashTable <string, string> (str_hash, str_equal);
+        try {
+            Database db = Database.get_default(DatabaseType.BASE);
+            db.execute_query(SELECT_NON_LATIN_FONTS);
+            foreach (unowned Sqlite.Statement row in db)
+                result.insert(row.column_text(0), row.column_text(1));
+        } catch (DatabaseError e) {
+            message(e.message);
+        }
+        return result;
+    }
+
+    public void update_item_preview_text (Json.Array available_fonts) {
+        HashTable <string, string> samples = get_non_latin_samples();
+        available_fonts.foreach_element((array, index, node) => {
+            Json.Object item = node.get_object();
+            string description = item.get_string_member("description");
+            if (samples.contains(description))
+                item.set_string_member("preview-text", samples.lookup(description));
+            Json.Array variants = item.get_array_member("variations");
+            variants.foreach_element((a, i, n) => {
+                Json.Object v = n.get_object();
+                description = v.get_string_member("description");
+                if (samples.contains(description))
+                    v.set_string_member("preview-text", samples.lookup(description));
+            });
+        });
+        return;
+    }
+
+    public Gtk.Image inline_help_widget (string message) {
+        var help = new Gtk.Image.from_icon_name("dialog-question-symbolic")
+        {
+            pixel_size = 24,
+            opacity = 0.333,
+            hexpand = true,
+            halign = Gtk.Align.END,
+            margin_start = DEFAULT_MARGIN,
+            margin_end = DEFAULT_MARGIN,
+            tooltip_text = message
+        };
+        return help;
+    }
+
+    public Gtk.Window? get_parent_window (Gtk.Widget widget) {
+        Gtk.Widget? ancestor = widget.get_ancestor(typeof(Gtk.Window));
+        return ancestor != null ? (Gtk.Window) ancestor : null;
+    }
+
+    public void set_control_sensitivity (Gtk.Widget? widget, bool sensitive) {
+        if (widget == null || !(widget is Gtk.Widget))
+            return;
+        widget.sensitive = sensitive;
+        widget.opacity = sensitive ? 0.9 : 0.45;
+        widget.has_tooltip = sensitive;
+        return;
+    }
+
+    public void flatten_color_button (Gtk.ColorButton button) {
+        button.get_first_child().remove_css_class(STYLE_CLASS_COLOR);
+        button.get_first_child().add_css_class(STYLE_CLASS_FLAT);
+        return;
+    }
+
+    // Adds user configured font sources (directories) and rejected fonts to our
+    // FcConfig so that we can render fonts which are not actually "installed".
+    public bool load_user_font_resources (StringSet? files, UserSourceModel? sources) {
+        clear_application_fonts();
+        bool res = true;
+        var legacy_font_dir = Path.build_filename(Environment.get_home_dir(), ".fonts");
+        if (!add_application_font_directory(legacy_font_dir)) {
+            res = false;
+            warning("Failed to add legacy user font directory to configuration!");
+        }
+        if (!add_application_font_directory(get_user_font_directory())) {
+            res = false;
+            critical("Failed to add default user font directory to configuration!");
+        }
+        UserSourceModel? source_model = sources;
+        if (source_model == null)
+            source_model = new UserSourceModel();
+        source_model.items.foreach((source) => {
+            if (source.available && !add_application_font_directory(source.path)) {
+                res = false;
+                warning("Failed to register user font source! : %s", source.path);
+            }
+        });
+        source_model = null;
+        if (files != null)
+            foreach (string path in files)
+                add_application_font(path);
+        return res;
+    }
+
+    public bool remove_directory_tree_if_empty (File dir) {
+        try {
+            var enumerator = dir.enumerate_children(FileAttribute.STANDARD_NAME,
+                                                    FileQueryInfoFlags.NONE);
+            if (enumerator.next_file() != null)
+                return false;
+            File parent = dir.get_parent();
+            dir.delete();
+            if (parent != null)
+                remove_directory_tree_if_empty(parent);
+            return true;
+        } catch (Error e) {
+            warning(e.message);
+        }
+        return false;
+    }
+
+    public bool remove_directory (File dir, bool recursive = true) {
+        try {
+            if (recursive) {
+                FileInfo fileinfo;
+                var enumerator = dir.enumerate_children(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
+                while ((fileinfo = enumerator.next_file ()) != null) {
+                    try {
+                        dir.get_child(fileinfo.get_name()).delete();
+                    } catch (Error e) {
+                        remove_directory(dir.get_child(fileinfo.get_name()), recursive);
+                    }
+                }
+            }
+            dir.delete();
+            return true;
+        } catch (Error e) {
+            warning(e.message);
+        }
+        return false;
+    }
+
+    public async void copy_files (StringSet filelist, File destination, bool show_progress) {
+        assert(destination.query_file_type(FileQueryInfoFlags.NONE) == FileType.DIRECTORY);
+        uint total = filelist.size;
+        uint processed = 0;
+        Gtk.MessageDialog? progress = null;
+        if (show_progress)
+            progress = ProgressDialog.create(null, _("Copying files…"));
+        foreach (string filepath in filelist) {
+            File original = File.new_for_path(filepath);
+            string filename = original.get_basename();
+            string path = Path.build_filename(destination.get_path(), filename);
+            File copy = File.new_for_path(path);
+            try {
+                FileCopyFlags flags = FileCopyFlags.OVERWRITE |
+                                      FileCopyFlags.ALL_METADATA |
+                                      FileCopyFlags.TARGET_DEFAULT_PERMS;
+                original.copy(copy, flags);
+            } catch (Error e) {
+                critical(e.message);
+            }
+            Idle.add(copy_files.callback);
+            if (progress != null) {
+                var progress_data = new ProgressData(filename, ++processed, total);
+                ProgressDialog.update(progress, progress_data);
+            }
+            yield;
+        }
+        if (progress != null)
+            progress.destroy();
+        return;
+    }
+
+    public bool copy_directory (File source, File destination, FileCopyFlags flags) {
+        return_val_if_fail(source.query_exists(), false);
+        return_val_if_fail(source.query_file_type(FileQueryInfoFlags.NONE) == FileType.DIRECTORY, false);
+        bool result = true;
+        try {
+            if (!destination.query_exists())
+                destination.make_directory_with_parents();
+            var enumerator = source.enumerate_children(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
+            FileInfo fileinfo = enumerator.next_file();
+            while (result && fileinfo != null) {
+                var source_type = fileinfo.get_file_type();
+                string name = fileinfo.get_name();
+                if (source_type == GLib.FileType.DIRECTORY) {
+                    string source_path = source.get_path();
+                    string destination_path = destination.get_path();
+                    source.get_child(name).copy_attributes(destination, flags);
+                    File s = File.new_for_path(Path.build_filename(source_path, name));
+                    File d = File.new_for_path(Path.build_filename(destination_path, name));
+                    result = copy_directory(s, d, flags);
+                } else if (source_type == GLib.FileType.REGULAR) {
+                    File original = source.get_child(name);
+                    string outp = Path.build_filename(destination.get_path(), name);
+                    File dest = File.new_for_path(outp);
+                    result = original.copy(dest, flags);
+                }
+                fileinfo = enumerator.next_file();
+            }
+        } catch (Error e) {
+            critical(e.message);
+            result = false;
+        }
+        return result;
+    }
+
+    public StringSet? get_command_line_input (VariantDict options) {
+        Variant argv = options.lookup_value("", VariantType.BYTESTRING_ARRAY);
+        if (argv == null)
+            return null;
+        (unowned string) [] list = argv.get_bytestring_array();
+        if (list.length == 0)
+            return null;
+        var input = new StringSet();
+        foreach (var str in list)
+            input.add(str);
+        return input;
     }
 
 }

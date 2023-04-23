@@ -63,9 +63,9 @@ namespace FontManager {
             null
         };
 
-        /* Translators : Please feel free to add yourself to the list of translators,
-           but do not modify or remove previous entries. New entries should be separated
-           by a newline character so that they are displayed properly in the interface. */
+        // Translators : Please feel free to add yourself to the list of translators,
+        // but do not modify or remove previous entries. New entries should be separated
+        // by a newline character so that they are displayed properly in the interface.
         public const string TRANSLATORS = _("translator-credits");
 
         public void print () {

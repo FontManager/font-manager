@@ -48,6 +48,10 @@
         "label" : "Language Filter Setttings"
     },
     {
+        "name" : "google-font-selection",
+        "label" : "Google Fonts Selection"
+    },
+    {
         "name" : "orthography-list",
         "label" : "Orthography List"
     },

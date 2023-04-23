@@ -27,23 +27,21 @@ namespace FontManager {
         Directories sources;
 
         public UserSourceModel () {
+            items = new GenericArray <Source> ();
             sources = new Directories() {
                 config_dir = get_package_config_directory(),
                 target_element = "source",
                 target_file = "Sources.xml"
             };
             sources.load();
-            items = new GenericArray <Source> ();
-            var _items = new GenericArray<Source> ();
-            foreach (var path in sources)
-                _items.add(new Source(File.new_for_path(path)));
-            _items.sort((a, b) => { return natural_sort(a.name, b.name); });
             var active = new Directories();
             active.load();
-            _items.foreach((item) => {
+            foreach (var path in sources) {
+                var item = new Source(File.new_for_path(path));
                 item.active = (item.path in active);
                 add_item(item);
-            });
+            }
+            items.sort((a, b) => { return natural_sort(a.name, b.name); });
             items_changed.connect(() => {
                 Idle.add(() => {
                     sources.save();
@@ -132,11 +130,7 @@ namespace FontManager {
 
 _("""Fonts in any folders listed here will be available within the application.
 
-They will not be visible to other applications until the source is actually enabled.
-
-Running applications may require a restart to reflect any changes.
-
-Note that not all environments/applications will honor these settings.""");
+They will not be visible to other applications until the source is actually enabled.""");
 
         public UserSourceModel model { get; set; }
 
@@ -152,7 +146,9 @@ Note that not all environments/applications will honor these settings.""");
             string w3 = _("To add a new source simply drag a folder onto this area or click the add button in the toolbar.");
             var place_holder = new PlaceHolder(w1, w2, w3, "folder-symbolic");
             list.set_placeholder(place_holder);
-            controls.append(inline_help_widget(help_text));
+            // ??? : Possible issue for translators?
+            // We're appending one translated string to another here.
+            controls.append(inline_help_widget("%s\n\n%s".printf(help_text, FONTCONFIG_DISCLAIMER)));
             place_holder.show();
             var drop_target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
             add_controller(drop_target);
@@ -221,10 +217,9 @@ Note that not all environments/applications will honor these settings.""");
             return;
         }
 
-        /* XXX : Ugh. Dragging folders is broken...
-         * https://gitlab.gnome.org/GNOME/gtk/-/issues/5348
-         * https://github.com/flatpak/xdg-desktop-portal/issues/911
-         */
+        // XXX : Ugh. Dragging folders is broken...
+        // https://gitlab.gnome.org/GNOME/gtk/-/issues/5348
+        // https://github.com/flatpak/xdg-desktop-portal/issues/911
         bool on_drag_data_received (Value value, double x, double y) {
             if (value.holds(typeof(Gdk.FileList))) {
                 GLib.SList <File>* filelist = value.get_boxed();
@@ -239,4 +234,5 @@ Note that not all environments/applications will honor these settings.""");
     }
 
 }
+
 

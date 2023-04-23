@@ -39,7 +39,7 @@ namespace FontManager {
                                                      Value val,
                                                      ParamSpec pspec) {
             Json.Node node;
-            /* XXX : Value.strdup_contents() is marked unstable */
+            // XXX : Value.strdup_contents() is marked unstable
             if (val.strdup_contents() == "NULL")
                 node = new Json.Node(Json.NodeType.NULL);
             else {

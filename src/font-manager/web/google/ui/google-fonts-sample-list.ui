@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.8"/>
+  <template class="FontManagerGoogleFontsSampleList" parent="GtkPopover">
+    <property name="child">
+      <object class="GtkScrolledWindow">
+        <property name="child">
+          <object class="GtkViewport">
+            <property name="child">
+              <object class="GtkListBox" id="sample_list">
+                <signal name="row-activated" handler="on_row_activated" swapped="no"/>
+              </object>
+            </property>
+          </object>
+        </property>
+        <property name="focusable">1</property>
+        <property name="propagate-natural-height">True</property>
+        <property name="propagate-natural-width">True</property>
+      </object>
+    </property>
+  </template>
+</interface>
+

@@ -1,8 +1,15 @@
 
 gresources = gnome.compile_resources('gresources', 'gresources.xml', c_name: 'test')
 
+dependencies = [ vapi, vala_deps ]
+
+if get_option('webkit')
+    dependencies += soup
+    dependencies += webkit
+endif
+
 updatedb = executable('updatedb',
-                      dependencies: [ vala_deps, vapi ],
+                      dependencies: dependencies,
                       link_with: vala_test_lib,
                       include_directories: includes,
                       sources: [ 'updatedb.vala' ])

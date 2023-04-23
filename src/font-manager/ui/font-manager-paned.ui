@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.8"/>
+  <template class="FontManagerPaned" parent="GtkBox">
+    <child>
+      <object class="GtkOverlay" id="overlay">
+        <child>
+          <object class="GtkPaned" id="main_pane">
+            <child>
+              <object class="GtkBox" id="sidebar_area"/>
+            </child>
+            <child>
+              <object class="GtkPaned" id="content_pane">
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkBox" id="list_area"/>
+                </child>
+                <child>
+                  <object class="GtkBox" id="content_area"/>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
+
