@@ -7,8 +7,8 @@ endif
 
 # There has to be a better way to require a specific vala version, right?
 valac = meson.get_compiler('vala')
-if not valac.version().version_compare('>= 0.50')
-    error('Vala compiler version is @0@ but project requires >= 0.50'.format(valac.version()))
+if not valac.version().version_compare('>= 0.56.3')
+    error('Vala compiler version is @0@ but project requires >= 0.56.3'.format(valac.version()))
 endif
 
 cc = meson.get_compiler('c')
