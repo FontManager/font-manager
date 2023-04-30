@@ -1,9 +1,9 @@
-# Szia Tomi <sziatomi01@gmail.com>, 2022.
+# Szia Tomi <sziatomi01@gmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2022-06-26 19:15+0000\n"
+"PO-Revision-Date: 2023-04-17 21:50+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/hu/>\n"
@@ -12,17 +12,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 4.17\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr "fordítói-elismerések"
+msgstr ""
+"Fordítói elismerések:\n"
+"SziaTomi - sziatomi01@gmail.com -2022, 2023"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
 msgid "Automatically generated categories"
-msgstr "Automatikusan generált kategóriák"
+msgstr "Automatikusan létrehozott kategóriák"
 
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
@@ -33,18 +35,18 @@ msgstr "Kategóriák"
 #: C/font-manager-categories.page:12
 msgid "<app>Font Manager</app> automatically categorizes your fonts based on various properties."
 msgstr ""
-"<app>A Font Manager</app> automatikusan kategórizálja a betűtípusokat "
+"A <app>Betűkészlet-kezelő</app> automatikusan kategórizálja a betűtípusokat "
 "különféle tulajdonságok alapján."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr "Mind"
+msgstr "Összes"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr "Minden elérhető betűtípus."
+msgstr "Az összes elérhető betűtípus."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
@@ -116,7 +118,7 @@ msgstr "Térköz"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr "Betűtávolság szerint rendezve."
+msgstr "A betűtípus térköze szerint rendezve."
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
@@ -155,7 +157,7 @@ msgstr "Fájlformátum szerint rendezve."
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr "Rendezetlen"
+msgstr "Osztályozatlan"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
@@ -170,7 +172,7 @@ msgstr "Letiltott"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr "Jelenleg letiltott betűtípuscsaládok."
+msgstr "A jelenleg letiltott betűtípuscsaládok."
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
@@ -186,7 +188,7 @@ msgstr "Karaktertérkép"
 #: C/font-manager-character-map.page:13
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters\"."
 msgstr ""
-"\"Kezelés\" módban az előnézeti ablak tartalmaz egy \"Karakterek\" feliratú "
+"„Kezelés” módban az előnézeti ablak tartalmaz egy „Karakterek” feliratú "
 "fület."
 
 #. (itstool) path: page/p
@@ -194,7 +196,7 @@ msgstr ""
 msgid "Selecting this tab allows viewing all glyphs contained in the currently selected font."
 msgstr ""
 "Ezt a lapot választva megtekintheti az aktuálisan kiválasztott betűtípusban "
-"található összes karaktert."
+"található összes jelképet."
 
 #. (itstool) path: figure/title
 #: C/font-manager-character-map.page:23
@@ -231,13 +233,14 @@ msgstr "Gyűjtemények"
 #: C/font-manager-collections.page:12
 msgid "<app>Font Manager</app> allows you to define your own collections."
 msgstr ""
-"A <app>Font Manager</app> lehetővé teszi saját gyűjtemények meghatározását."
+"A <app>Betűkészlet-kezelő</app> lehetővé teszi saját gyűjtemények "
+"meghatározását."
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
 msgid "Collections allow you to organize your fonts in a way that makes sense to you and also make it easier to enable or disable many families at once."
 msgstr ""
-"A gyűjtemények lehetővé teszik, hogy a betűtípusokat rendezze és "
+"A gyűjtemények lehetővé teszik, hogy a betűtípusokat rendszerezze és "
 "megkönnyítse több család egyidejű engedélyezését vagy letiltását."
 
 #. (itstool) path: note/p
@@ -350,7 +353,7 @@ msgstr "Betűtípuscsaládok eltávolítása egy gyűjteményből:"
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:122
 msgid "Select the family or families you wish to remove"
-msgstr "Válassza ki az eltávolítani kívánt betűtípuscsaládot vagy családokat"
+msgstr "Válassza ki az eltávolítani kívánt betűtípuscsaládot, vagy családokat"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:127
@@ -382,25 +385,25 @@ msgstr "Nyomja meg az <gui style=\"button\">Enter</gui>-t"
 #. (itstool) path: info/desc
 #: C/font-manager-font-activation.page:8
 msgid "Activating and De-activating font families"
-msgstr "Betűtípuscsaládok engedélyezése és letiltása"
+msgstr "Betűtípuscsaládok aktiválása és deaktiválása"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-activation.page:11
 msgid "Activation"
-msgstr "Engedélyezés"
+msgstr "Aktiválás"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:13
 msgid "<app>Font Manager</app> allows you to activate and de-activate font families."
 msgstr ""
-"A <app>Font Manager</app> lehetővé teszi a betűtípuscsaládok aktiválását és "
-"deaktiválását."
+"A <app>Betűkészlet-kezelő</app> lehetővé teszi a betűtípuscsaládok "
+"aktiválását és deaktiválását."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:18
 msgid "If you have a large number of fonts installed, font selection dialogs and lists in many applications can get very long and become uncomfortable to use, disabling fonts you do not use very often or do not need at the moment helps keep these at a reasonable size."
 msgstr ""
-"Ha sok betűtípus van telepítve, a betűtípus kiválasztó párbeszédpanelek és "
+"Ha sok betűtípus van telepítve, a betűtípus-kiválasztó párbeszédpanelek és "
 "listák sok alkalmazásban nagyon hosszúak lehetnek és kényelmetlenné válhat a "
 "használatuk. A ritkán használt, vagy az éppen nem szükséges betűtípusok "
 "letiltása segít ésszerű méretűvé tenni ezeket."
@@ -428,15 +431,15 @@ msgstr ""
 msgid "<link xref=\"organize#user-collections\">Collections</link> make it easy to enable or disable multiple families at once."
 msgstr ""
 "A <link xref=\"organize#user-collections\">Gyűjtemények</link> megkönnyíti "
-"több család egyidejű engedélyezését vagy letiltását."
+"több család egyidejű engedélyezését, vagy letiltását."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:58
 msgid "While any changes made using <app>Font Manager</app> are applied immediately, open applications may need to be restarted in order to reflect those changes."
 msgstr ""
-"Bár a <app>Font Manager</app> segítségével végrehajtott módosítások azonnal "
-"alkalmazásra kerülnek, előfordulhat, hogy a megnyitott alkalmazásokat újra "
-"kell indítani, hogy tükrözzék ezeket a változtatásokat."
+"Bár a <app>Betűkészlet-kezelő</app> segítségével végrehajtott módosítások "
+"azonnal alkalmazásra kerülnek, előfordulhat, hogy a megnyitott "
+"alkalmazásokat újra kell indítani, hogy tükrözzék ezeket a változtatásokat."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-installation.page:7
@@ -452,8 +455,8 @@ msgstr "Telepítés"
 #: C/font-manager-font-installation.page:12
 msgid "<app>Font Manager</app> supports the most common <link xref=\"supported-formats\">font formats</link>."
 msgstr ""
-"A <app>Font Manager</app> támogatja a leggyakoribb <link xref=\"supported-"
-"formats\">betűformátumokat</link>."
+"A <app>Betűkészlet-kezelő</app> támogatja a leggyakoribb <link xref"
+"=\"supported-formats\">betűformátumokat</link>."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:19
@@ -481,14 +484,14 @@ msgstr ""
 msgid "Drag and drop is also supported. Simply drag files onto the font list to install them."
 msgstr ""
 "A húzás és elengedés támogatott. A telepítéshez egyszerűen húzza a fájlokat "
-"a fontlistára."
+"a betűtípuslistára."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:44
 msgid "You can drag any supported filetype onto the font list. This includes font files, directories and archives."
 msgstr ""
 "Bármilyen támogatott fájltípust áthúzhat a betűtípuslistára. Beleértve a "
-"fontfájlokat, a könyvtárakat és az archívumokat."
+"betűtípusfájlokat, a könyvtárakat és az archívumokat."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:51
@@ -504,8 +507,9 @@ msgstr ""
 #: C/font-manager-font-sources.page:138
 msgid "<app>Font Manager</app> will reload anytime changes require it. This may take a moment depending on number of changes."
 msgstr ""
-"A <app>Font Manager</app> bármikor újra betöltődik, amikor a változtatások "
-"szükségessé teszik. Ez a változtatások számától függően eltarthat egy ideig."
+"A <app>Betűkészlet-kezelő</app> bármikor újra betöltődik, amikor a "
+"változtatások szükségessé teszik. Ez a változtatások számától függően "
+"eltarthat egy ideig."
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-removal.page:8
@@ -521,7 +525,7 @@ msgstr "Eltávolítás"
 #: C/font-manager-font-removal.page:14
 msgid "The only fonts listed in the removal dialog will be those installed in your default font directory."
 msgstr ""
-"Csak az alapértelmezett betűtípus könyvtárba telepített betűtípusok "
+"Csak az alapértelmezett betűtípuskönyvtárba telepített betűtípusok "
 "szerepelnek az eltávolítási párbeszédpanelen."
 
 #. (itstool) path: note/p
@@ -529,8 +533,8 @@ msgstr ""
 msgid "Font files installed system wide are typically installed as part of the operating system, as packages or by the system administrator. <app>Font Manager</app> does not provide for removal of such files at this time."
 msgstr ""
 "A rendszer betűtípusfájlait az operációs rendszer részeként, vagy csomagként "
-"a rendszergazda telepíti. Jelenleg a <app> Font Manager </app> nem teszi "
-"lehetővé az ilyen betűtípusok eltávolítását."
+"a rendszergazda telepíti. Jelenleg a <app> Betűkészlet-kezelő </app> nem "
+"teszi lehetővé az ilyen betűtípusok eltávolítását."
 
 #. (itstool) path: item/title
 #: C/font-manager-font-removal.page:29
@@ -560,15 +564,15 @@ msgstr "Kattintson a <gui style=\"button\">Törlés</gui> lehetőségre"
 #: C/font-manager-font-removal.page:60
 msgid "<app>Font Manager</app> organizes and stores installed fonts in the default user font directory."
 msgstr ""
-"A <app>Font Manager</app> a telepített betűtípusokat a felhasználó "
-"alapértelmezett betűtípus könyvtárában rendezi és tárolja."
+"A <app>Betűkészlet-kezelő</app> a telepített betűtípusokat a felhasználó "
+"alapértelmezett betűtípuskönyvtárában rendezi és tárolja."
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:63
 msgid "Current default user font directory is located at <code><file>~/.local/share/fonts</file></code>"
 msgstr ""
-"Az aktuális alapértelmezett felhasználói betűtípus könyvtár a <code><file> ~/"
-".local/share/fonts </file></code>"
+"Az aktuális alapértelmezett felhasználói betűtípuskönyvtár a <code><file> ~/."
+"local/share/fonts </file></code>"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:69
@@ -592,7 +596,7 @@ msgstr "Források"
 #: C/font-manager-font-sources.page:12
 msgid "<app>Font Manager</app> allows you to add or remove directories to scan for font files. Added directories are scanned recursively."
 msgstr ""
-"A <app>Font Manager</app> lehetővé teszi könyvtárak hozzáadását vagy "
+"A <app>Betűkészlet-kezelő</app> lehetővé teszi könyvtárak hozzáadását vagy "
 "eltávolítását a betűtípusfájlok kereséséhez. A hozzáadott könyvtárakat "
 "rendszeresen átvizsgálja."
 
@@ -600,8 +604,8 @@ msgstr ""
 #: C/font-manager-font-sources.page:17
 msgid "This allows keeping font files somewhere other than your home directory or temporarily \"installing\" a directory of fonts."
 msgstr ""
-"Ez lehetővé teszi, hogy a betűtípusfájlokat ne a home könyvtárban tárolja, "
-"vagy ideiglenesen \"telepítsen\" egy betűtípuskönyvtárat."
+"Ez lehetővé teszi, hogy a betűtípusfájlokat ne a „/home” könyvtárban "
+"tárolja, vagy ideiglenesen telepítsen egy betűtípuskönyvtárat."
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:21
@@ -639,9 +643,9 @@ msgstr ""
 #: C/font-manager-substitutions.page:116
 msgid "Open the <app>Font Manager</app> preferences dialog by clicking <gui> <media type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the top of the window."
 msgstr ""
-"Nyissa meg a <app>Font Manager</app> beállítási párbeszédpanelt az ablak "
-"tetején található <gui> <media type=\"image\" src=\"media/preferences-system-"
-"symbolic.svg\"/> </gui> elemre kattintva."
+"Nyissa meg a <app>Betűkészlet-kezelő</app> beállítási párbeszédpanelt az "
+"ablak tetején található <gui> <media type=\"image\" src=\"media/preferences-"
+"system-symbolic.svg\"/> </gui> elemre kattintva."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:40
@@ -688,9 +692,9 @@ msgstr "Forrás engedélyezése vagy letiltása:"
 #: C/font-manager-font-sources.page:94
 msgid "Open the <app>Font Manager</app> preferences dialog by clicking <gui style=\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the top of the window."
 msgstr ""
-"Nyissa meg a <app>Font Manager</app> beállítások párbeszédpanelt a <gui "
-"style=\"button\"> <media type=\"image\" src=\"media/preferences-system-"
-"symbolic.svg\"/> </gui> lehetőségre kattintva az ablak felső részén."
+"Nyissa meg a <app>Betűkészlet-kezelő</app> beállítások párbeszédpanelt a "
+"<gui style=\"button\"> <media type=\"image\" src=\"media/preferences-system-"
+"symbolic.svg\"/> </gui> elemre kattintva az ablak felső részén."
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:107
@@ -738,7 +742,7 @@ msgstr ""
 #: C/font-manager-fontconfig.page:17
 msgid "See <link href=\"https://www.freedesktop.org/software/fontconfig/fontconfig-user.html\">fonts-conf</link> for more details."
 msgstr ""
-"További részleteket itt találsz: <link href=\"https://www.freedesktop.org/"
+"További részleteket találsz itt: <link href=\"https://www.freedesktop.org/"
 "software/fontconfig/fontconfig-user.html\">fonts-conf</link>."
 
 #. (itstool) path: note/p
@@ -751,12 +755,12 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-introduction.page:5
 msgid "Introduction to <app>Font Manager</app>."
-msgstr "A <app>Font Manager</app> bemutatása."
+msgstr "A <app>Betűkészlet-kezelő</app> bemutatása."
 
 #. (itstool) path: page/p
 #: C/font-manager-introduction.page:10
 msgid "<app>Font Manager</app> allows you to :"
-msgstr "A <app>Font Manager</app> lehetővé teszi a következőket:"
+msgstr "A <app>Betűkészlet-kezelő</app> lehetővé teszi a következőket:"
 
 #. (itstool) path: page/title
 #: C/font-manager-introduction.page:12
@@ -766,7 +770,7 @@ msgstr "Bevezetés"
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:18
 msgid "Preview font files in various ways"
-msgstr "Fontfájlok előnézete különféle módokon"
+msgstr "Betűtípusfájlok előnézete különféle módokon"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:23
@@ -776,7 +780,7 @@ msgstr "Az elérhető betűtípusok metaadatainak megtekintése"
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:28
 msgid "Install or remove fonts for your use"
-msgstr "Betűtípusok saját használatra történő telepítése vagy eltávolítása"
+msgstr "Betűtípusok saját használatra történő telepítése, vagy eltávolítása"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:33
@@ -787,12 +791,13 @@ msgstr "Betűtípusok \"Gyűjtemények\"-be csoportosítása"
 #: C/font-manager-introduction.page:38
 msgid "Enable or disable individual font families or entire collections"
 msgstr ""
-"Egyes betűtípuscsaládok vagy teljes gyűjtemények engedélyezése / letiltása"
+"Egyes betűtípuscsaládok vagy teljes gyűjtemények engedélyezése, vagy "
+"letiltása"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:43
 msgid "Specify different directories to use for fonts"
-msgstr "Megadhatja a betűtípusokhoz használandó különböző könyvtárakat"
+msgstr "Különböző könyvtárakat adhat meg a betűtípusok használatához"
 
 #. (itstool) path: item/p
 #: C/font-manager-introduction.page:48
@@ -802,7 +807,7 @@ msgstr "Betűtípus helyettesítést végezhet"
 #. (itstool) path: figure/title
 #: C/font-manager-introduction.page:55
 msgid "<app>Font Manager</app>"
-msgstr "<app>Font Manager</app>"
+msgstr "<app>Betűkészlet-kezelő</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -819,34 +824,34 @@ msgstr ""
 #: C/font-manager-introduction.page:61
 msgid "For more information about <app>Font Manager</app>, please visit the <link href=\"http://fontmanager.github.io/\"> Homepage </link>"
 msgstr ""
-"További információért a <app>Font Manager</app> alkalmazásról, látogasson el "
-"a <link href=\"http://fontmanager.github.io/\"> Kezdőlapra </link>"
+"További információért a <app>Betűkészlet-kezelő</app> alkalmazásról, "
+"látogasson el a <link href=\"http://fontmanager.github.io/\"> Kezdőlap </"
+"link> oldalra"
 
 #. (itstool) path: note/p
 #: C/font-manager-introduction.page:67
 msgid "To report a bug or make a suggestion regarding the <app>Font Manager</app> application or this manual, please use the projects <link href=\"https://github.com/FontManager/master/issues\"> Issue Tracker </link>"
 msgstr ""
-"Hibajelentéshez, vagy javaslat tételéhez a <app>Font Manager</app> "
+"Hibajelentéshez, vagy javaslat tételéhez a <app>Betűkészlet-kezelő</app> "
 "alkalmazással vagy ezzel a kézikönyvvel kapcsolatban, használja a projekt "
-"<link href=\"https://github.com/FontManager/master/issues\"> Probléma "
-"Követőjét </link>"
+"<link href=\"https://github.com/FontManager/master/issues\"> Problémakövető "
+"</link> oldalát"
 
 #. (itstool) path: info/desc
 #: C/font-manager-license.page:7
 msgid "View license information contained in font files"
-msgstr "A fontfájlokban található licenc információk megtekintése"
+msgstr "A betűtípusfájlokban található licenc információk megtekintése"
 
 #. (itstool) path: page/title
 #: C/font-manager-license.page:10
 msgid "Licensing"
-msgstr "Engedélyezés"
+msgstr "Licencek"
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:12
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
 msgstr ""
-"\"Kezelés\" módban az előnézeti ablakban található egy \"Licensz\" feliratú "
-"fül."
+"„Kezelés” módban az előnézeti ablakban található egy „Licenc” feliratú fül."
 
 #. (itstool) path: page/p
 #: C/font-manager-license.page:16
@@ -878,7 +883,7 @@ msgstr "Nem minden betűtípus fájl tartalmaz licencelési információkat."
 #. (itstool) path: info/desc
 #: C/font-manager-metadata.page:7
 msgid "View metadata embedded in your font files"
-msgstr "A fontfájlokba ágyazott metaadatok megjelenítése"
+msgstr "A betűtípusfájlokba ágyazott metaadatok megjelenítése"
 
 #. (itstool) path: page/title
 #: C/font-manager-metadata.page:10
@@ -889,7 +894,7 @@ msgstr "Metaadat"
 #: C/font-manager-metadata.page:12
 msgid "While in \"Manage\" mode the preview pane contains a tab labeled \"Properties\"."
 msgstr ""
-"\"Kezelés\" módban az előnézeti ablakban található egy \"Tulajdonságok\" "
+"„Kezelés” módban az előnézeti ablakban található egy „Tulajdonságok” "
 "feliratú fül."
 
 #. (itstool) path: page/p
@@ -925,7 +930,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-orthographies.page:8
 msgid "View languages supported and their coverage"
-msgstr "A támogatott nyelvek és lefedettségük megtekintése"
+msgstr "A támogatott nyelvek és a lefedettségük megtekintése"
 
 #. (itstool) path: page/title
 #: C/font-manager-orthographies.page:11
@@ -976,8 +981,8 @@ msgstr "Helyettesítés"
 #: C/font-manager-substitutions.page:12
 msgid "<app>Font Manager</app> allows you to substitute one font family for another."
 msgstr ""
-"A <app>Font Manager</app> lehetővé teszi az egyik betűtípuscsalád másikkal "
-"való helyettesítését."
+"A <app>Betűkészlet-kezelő</app> lehetővé teszi az egyik betűtípuscsalád "
+"másikkal való helyettesítését."
 
 #. (itstool) path: item/title
 #: C/font-manager-substitutions.page:18
@@ -1078,7 +1083,7 @@ msgstr ""
 #. (itstool) path: info/desc
 #: C/font-manager-supported-formats.page:5
 msgid "Font formats supported by <app>Font Manager</app>."
-msgstr "A <app>Font Manager</app> által támogatott betűformátumok."
+msgstr "A <app>Betűkészlet-kezelő</app> által támogatott betűformátumok."
 
 #. (itstool) path: page/title
 #: C/font-manager-supported-formats.page:10
@@ -1098,7 +1103,7 @@ msgstr "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
 #. (itstool) path: info/desc
 #: C/index.page:6
 msgid "Getting started with Font Manager."
-msgstr "A Font Manager használatának megkezdése."
+msgstr "A Betűkészlet-kezelő használatának megkezdése."
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
@@ -1116,13 +1121,13 @@ msgstr ""
 #: C/index.page:10
 msgctxt "link"
 msgid "Font Manager"
-msgstr "Font Manager"
+msgstr "Betűkészlet-kezelő"
 
 #. (itstool) path: info/title
 #: C/index.page:11
 msgctxt "text"
 msgid "Font Manager"
-msgstr "Font Manager"
+msgstr "Betűkészlet-kezelő"
 
 #. (itstool) path: credit/name
 #: C/index.page:14
@@ -1161,7 +1166,7 @@ msgstr ""
 msgid "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font.png\"> Font Manager logo </media> Font Manager"
 msgstr ""
 "<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-font"
-".png\"> Font Manager logó </media> Font Manager"
+".png\"> Betűkészlet-kezelő logó </media> Betűkészlet-kezelő"
 
 #. (itstool) path: section/title
 #: C/index.page:37
@@ -1176,4 +1181,4 @@ msgstr "A betűtípusaid megismerése"
 #. (itstool) path: section/title
 #: C/index.page:45
 msgid "Advanced Features"
-msgstr "Beállítások haladóknak"
+msgstr "Fejlett lehetőségek"
