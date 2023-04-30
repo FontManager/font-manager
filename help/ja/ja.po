@@ -1,10 +1,11 @@
 # Ryo Nakano <ryonakaknock3@gmail.com>, 2022.
+# Pirikan <aonotanin2351@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2022-09-23 12:20+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"PO-Revision-Date: 2023-04-01 14:41+0000\n"
+"Last-Translator: Pirikan <aonotanin2351@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/ja/>\n"
 "Language: ja\n"
@@ -12,29 +13,30 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr ""
+msgstr "翻訳者クレジット"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
 msgid "Automatically generated categories"
-msgstr ""
+msgstr "自動生成されたカテゴリ"
 
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "カテゴリー"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
 msgid ""
 "<app>Font Manager</app> automatically categorizes your fonts based on "
 "various properties."
-msgstr ""
+msgstr "<app>フォントマネージャー</app> "
+"は、様々なプロパティに基づきフォントを自動的に分類します。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
@@ -44,7 +46,7 @@ msgstr "すべて"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
 msgid "All available fonts."
-msgstr ""
+msgstr "使用可能なすべてのフォントです。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
@@ -54,29 +56,30 @@ msgstr "システム"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
 msgid "Fonts available to all users."
-msgstr ""
+msgstr "すべてのユーザーが使用可能なフォントです。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "ユーザー"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
 msgid "Fonts available only to you."
-msgstr ""
+msgstr "あなただけが使用可能なフォントです。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "フォントファミリーの種類"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
 msgid ""
 "Sorted by Family Kind — Requires Panose information to be present in font "
 "metadata."
-msgstr ""
+msgstr "フォントファミリーの種類で並べ替え — "
+"フォントのメタデータ内にPanose（パノース）情報が存在する必要があります。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
@@ -86,49 +89,50 @@ msgstr "幅"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
 msgid "Sorted by font width property."
-msgstr ""
+msgstr "フォントの幅のプロパティで並べ替えます。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr "ウェイト"
+msgstr "太さ"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
 msgid "Sorted by font weight property."
-msgstr ""
+msgstr "フォントの太さのプロパティで並べ替えます。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr ""
+msgstr "傾き"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
 msgid "Sorted by font slant property."
-msgstr ""
+msgstr "フォントの傾きのプロパティで並べ替えます。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr "字間"
+msgstr "文字間隔"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
 msgid "Sorted by font spacing property."
-msgstr ""
+msgstr "フォントの文字間隔のプロパティで並べ替えます。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "ライセンス"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
 msgid ""
 "Sorted by font license — Requires license information to be present in font "
 "metadata."
-msgstr ""
+msgstr "フォントのライセンスで並べ替え — "
+"フォントのメタデータ内にライセンス情報が存在する必要があります。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
@@ -140,27 +144,28 @@ msgstr "作成元"
 msgid ""
 "Sorted by font vendor — Requires vendor information to be present in font "
 "metadata."
-msgstr ""
+msgstr "フォントの作成元で並べ替え — "
+"フォントのメタデータ内に作成元（Vendor）情報が存在する必要があります。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "ファイル形式"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
 msgid "Sorted by file format."
-msgstr ""
+msgstr "ファイル形式別に並べ替えます。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "未分類"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
 msgid "Fonts not present in any of your collections."
-msgstr ""
+msgstr "どのコレクションにも存在しないフォントです。"
 
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
@@ -170,36 +175,38 @@ msgstr "無効なフォント"
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
 msgid "Currrently disabled font families."
-msgstr ""
+msgstr "現在、無効になっているフォントファミリーです。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-character-map.page:8
 msgid "View individual characters and their details"
-msgstr ""
+msgstr "個々の文字とその詳細について表示する"
 
 #. (itstool) path: page/title
 #: C/font-manager-character-map.page:11
 msgid "Character Map"
-msgstr ""
+msgstr "文字一覧"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:13
 msgid ""
 "While in \"Manage\" mode the preview pane contains a tab labeled \"Characters"
 "\"."
-msgstr ""
+msgstr "「管理」モードの間は、プレビュー画面に「収録文字」（Characters）というラベル"
+"の付いたタブが含まれます。"
 
 #. (itstool) path: page/p
 #: C/font-manager-character-map.page:17
 msgid ""
 "Selecting this tab allows viewing all glyphs contained in the currently "
 "selected font."
-msgstr ""
+msgstr "このタブを選択すると、現在選択されているフォントに含まれるすべてのグリフ（字"
+"体）を表示できます。"
 
 #. (itstool) path: figure/title
 #: C/font-manager-character-map.page:23
 msgid "<app>Character Map tab</app>"
-msgstr ""
+msgstr "<app>文字一覧のタブ</app>"
 
 #. (itstool) path: figure/media
 #. This is a reference to an external file such as an image or video. When
@@ -211,48 +218,54 @@ msgctxt "_"
 msgid ""
 "external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 msgstr ""
+"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
 
 #. (itstool) path: note/p
 #: C/font-manager-character-map.page:28
 msgid "Drag characters onto other applications to use them."
-msgstr ""
+msgstr "収録されている文字を他のアプリケーションにドラッグして使用します。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-collections.page:7
 msgid "Organizing Your Fonts"
-msgstr ""
+msgstr "フォントの整理"
 
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "コレクション"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
 msgid "<app>Font Manager</app> allows you to define your own collections."
-msgstr ""
+msgstr "<app>フォントマネージャー</app> "
+"を使用すると、独自のコレクションを定義できます。"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:17
+#, fuzzy
 msgid ""
 "Collections allow you to organize your fonts in a way that makes sense to "
 "you and also make it easier to enable or disable many families at once."
 msgstr ""
+"コレクションを使用すると、自分にとって理にかなった方法でフォントを整理したり"
+"、一度に多くのフォントファミリーを簡単に有効または無効にしたりすることができ"
+"ます。"
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:24
 msgid "Collections do not modify your files in any way."
-msgstr ""
+msgstr "コレクションによってファイルが変更されることはありません。"
 
 #. (itstool) path: note/p
 #: C/font-manager-collections.page:27
 msgid "Feel free to create or delete as many as you like."
-msgstr ""
+msgstr "自分好みに作成または削除をしてください。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:34
 msgid "To create a new collection:"
-msgstr ""
+msgstr "新しいコレクションを作成するには:"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -267,6 +280,8 @@ msgid ""
 "external ref='media/list-add-symbolic.svg' "
 "md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 msgstr ""
+"external ref='media/list-add-symbolic.svg' "
+"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:37
@@ -274,27 +289,30 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
+"コレクション の欄の下部にある <gui> <media type=\"image\" src=\"media/list-"
+"add-symbolic.svg\"/> </gui> をクリックします。"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:46
 msgid "Enter a name for your new collection"
-msgstr ""
+msgstr "新しいコレクションの名前を入力してください"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:51
 msgid "Add fonts by dragging them from the font list to your new collection."
-msgstr ""
+msgstr "フォントの一覧から新しいコレクションにドラッグして、フォントを追加します。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:59
+#, fuzzy
 msgid "To delete a collection:"
-msgstr ""
+msgstr "コレクションを削除するには:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:62 C/font-manager-collections.page:81
 #: C/font-manager-collections.page:99 C/font-manager-collections.page:117
 msgid "Select the collection"
-msgstr ""
+msgstr "コレクションを選択"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -309,6 +327,8 @@ msgid ""
 "external ref='media/list-remove-symbolic.svg' "
 "md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 msgstr ""
+"external ref='media/list-remove-symbolic.svg' "
+"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:67
@@ -316,32 +336,34 @@ msgid ""
 "Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
 "gui> at the bottom of the Collection view."
 msgstr ""
+"コレクション の欄の下部にある <gui> <media type=\"image\" src=\"media/list-"
+"remove-symbolic.svg\"/> </gui> をクリックします。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:78
 msgid "To enable a collection:"
-msgstr ""
+msgstr "コレクションを有効にするには:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:86 C/font-manager-collections.page:104
 #: C/font-manager-font-activation.page:35
 msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
-msgstr ""
+msgstr "<gui style=\"checkbox\">チェックボックス</gui>をクリックします。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:96
 msgid "To disable a collection:"
-msgstr ""
+msgstr "コレクションを無効にするには:"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:114
 msgid "To remove families from a collection:"
-msgstr ""
+msgstr "コレクションからファミリを削除するには:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:122
 msgid "Select the family or families you wish to remove"
-msgstr ""
+msgstr "削除したいフォントファミリーを選択する"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:127
@@ -349,42 +371,45 @@ msgid ""
 "Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
 "> </gui> at the top of the font list."
 msgstr ""
+"フォント一覧の上部にある<gui> <media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/> </gui> をクリックします。"
 
 #. (itstool) path: item/title
 #: C/font-manager-collections.page:138
 msgid "To rename a collection:"
-msgstr ""
+msgstr "コレクションの名前を変更するには:"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:141
 msgid "Select a collection, click it again"
-msgstr ""
+msgstr "コレクションを選択し、もう一度クリックする"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:146
 msgid "Enter a new name"
-msgstr ""
+msgstr "新しい名前を入力"
 
 #. (itstool) path: item/p
 #: C/font-manager-collections.page:151
 msgid "Press <gui style=\"button\">Enter</gui>"
-msgstr ""
+msgstr "<gui style=\"button\">Enter</gui>を押す"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-activation.page:8
 msgid "Activating and De-activating font families"
-msgstr ""
+msgstr "フォントファミリーの有効化と無効化"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-activation.page:11
 msgid "Activation"
-msgstr ""
+msgstr "アクティベーション"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:13
 msgid ""
 "<app>Font Manager</app> allows you to activate and de-activate font families."
-msgstr ""
+msgstr "<app>フォントマネージャー</app> "
+"では、フォントファミリーの有効化および無効化を行うことができます。"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-activation.page:18
@@ -394,16 +419,20 @@ msgid ""
 "use, disabling fonts you do not use very often or do not need at the moment "
 "helps keep these at a reasonable size."
 msgstr ""
+"多くのフォントをインストールしている場合、多くのアプリケーションのフォント選"
+"択ダイアログやリストが非常に長くなり、使い勝手が悪くなることがありますが、あ"
+"まり使用しないフォントや今必要でないフォントを無効にすることで、これらを適度"
+"なサイズに保つことができます。"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-activation.page:27
 msgid "To enable or disable a font family:"
-msgstr ""
+msgstr "フォントファミリーを有効または無効にするには:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-activation.page:30
 msgid "Select the family you wish to enable/disable in the font list"
-msgstr ""
+msgstr "フォント一覧から有効/無効を切り替えたいフォントファミリーを選択する"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:47
@@ -411,6 +440,9 @@ msgid ""
 "You can also double-click, press <gui style=\"button\">Space</gui> or press "
 "<gui style=\"button\">Enter</gui> to toggle the selected font."
 msgstr ""
+"ダブルクリックをするか、<gui style=\"button\">Space</gui> を押すか、<gui "
+"style=\"button\">Enter</gui> "
+"を押して、選択したフォントを切り替えることもできます。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:51
@@ -418,6 +450,8 @@ msgid ""
 "<link xref=\"organize#user-collections\">Collections</link> make it easy to "
 "enable or disable multiple families at once."
 msgstr ""
+"<link xref=\"organize#user-collections\">コレクション</link> では、複数のフォ"
+"ントファミリーの有効または無効にすることを一括して簡単に設定できます。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-activation.page:58
@@ -426,16 +460,19 @@ msgid ""
 "immediately, open applications may need to be restarted in order to reflect "
 "those changes."
 msgstr ""
+"<app>フォントマネージャー</app>を使用して行った変更はすぐに適用されますが、そ"
+"れらの変更を反映するために、開いているアプリケーションを再起動する必要がある"
+"場合があります。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-installation.page:7
 msgid "Adding fonts for your use"
-msgstr ""
+msgstr "使用するフォントを追加する"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-installation.page:10
 msgid "Installation"
-msgstr ""
+msgstr "インストール"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-installation.page:12
@@ -443,11 +480,13 @@ msgid ""
 "<app>Font Manager</app> supports the most common <link xref=\"supported-"
 "formats\">font formats</link>."
 msgstr ""
+"<app>フォントマネージャー</app> は、最も一般的な<link xref=\"supported-"
+"formats\">フォント形式</link> に対応しています。"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
 msgid "While in <gui style=\"button\">Manage</gui> mode"
-msgstr ""
+msgstr "<gui style=\"button\">管理</gui>モードの場合"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:22
@@ -455,6 +494,8 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"ウィンドウ上部の<gui style=\"button\"> <media type=\"image\" src=\"media"
+"/list-add-symbolic.svg\"/> </gui>をクリックします"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-installation.page:31
@@ -462,20 +503,24 @@ msgid ""
 "Select the files you wish to install from the file selector dialog that is "
 "displayed and click <gui style=\"button\">Open</gui>"
 msgstr ""
+"表示されるファイル選択ダイアログからインストールしたいファイルを選択し、<gui "
+"style=\"button\">開く</gui>をクリックします"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:40
 msgid ""
 "Drag and drop is also supported. Simply drag files onto the font list to "
 "install them."
-msgstr ""
+msgstr "ドラッグ＆ドロップにも対応しています。ファイルをフォント一覧にドラッグするだ"
+"けで、インストールできます。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:44
 msgid ""
 "You can drag any supported filetype onto the font list. This includes font "
 "files, directories and archives."
-msgstr ""
+msgstr "対応している任意のファイル形式をフォント一覧にドラッグできます。これには、フ"
+"ォントファイル、ディレクトリ、アーカイブが含まれます。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:51
@@ -484,6 +529,9 @@ msgid ""
 "Apps/FileRoller\">Archive Manager</link>. to enable support for compressed "
 "files."
 msgstr ""
+"<link action=\"install:file-roller\" href=\"https://wiki.gnome.org/Apps/"
+"FileRoller\">アーカイブマネージャ</link>をインストールし、圧縮ファイルのサポ"
+"ートを有効にします。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-installation.page:59 C/font-manager-font-removal.page:76
@@ -491,24 +539,26 @@ msgstr ""
 msgid ""
 "<app>Font Manager</app> will reload anytime changes require it. This may "
 "take a moment depending on number of changes."
-msgstr ""
+msgstr "<app>フォントマネージャー</app>は、変更が必要なときはいつでもリロードします。"
+"変更の数によっては、少し時間がかかる場合があります。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-removal.page:8
 msgid "Getting rid of unwanted fonts"
-msgstr ""
+msgstr "不要なフォントを取り除く"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-removal.page:11
 msgid "Removal"
-msgstr ""
+msgstr "削除"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:14
 msgid ""
 "The only fonts listed in the removal dialog will be those installed in your "
 "default font directory."
-msgstr ""
+msgstr "削除ダイアログに表示されるフォントは、デフォルトのフォントディレクトリにイン"
+"ストールされているフォントのみです。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:18
@@ -517,11 +567,16 @@ msgid ""
 "operating system, as packages or by the system administrator. <app>Font "
 "Manager</app> does not provide for removal of such files at this time."
 msgstr ""
+"システム全体にインストールされるフォントファイルは、通常、オペレーティングシ"
+"ステムの一部として、パッケージとして、"
+"またはシステム管理者によってインストールされます 。 <app>フォントマネージャー"
+"</app>は、現時点でオペレーティングシステムからのフォントファイルの削除を提供"
+"していません。"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-removal.page:29
 msgid "To remove fonts you no longer need:"
-msgstr ""
+msgstr "不要になったフォントを削除するには:"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:35
@@ -529,25 +584,28 @@ msgid ""
 "Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
 "symbolic.svg\"/> </gui> at the top of the window"
 msgstr ""
+"ウィンドウ上部の<gui style=\"button\"> <media type=\"image\" src=\"media"
+"/list-remove-symbolic.svg\"/> </gui>をクリックします"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:44
 msgid ""
 "Select the families or individual styles you wish to remove from the list "
 "that is displayed"
-msgstr ""
+msgstr "表示されるリストから削除するフォントファミリーまたは個々のスタイルを選択する"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-removal.page:50
 msgid "Click <gui style=\"button\">Delete</gui>"
-msgstr ""
+msgstr "<gui style=\"button\">削除</gui>をクリック"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:60
 msgid ""
 "<app>Font Manager</app> organizes and stores installed fonts in the default "
 "user font directory."
-msgstr ""
+msgstr "<app>フォントマネージャー</app>は、インストールされたフォントを整理し、デフォ"
+"ルトのユーザフォントディレクトリに保存します。"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:63
@@ -555,23 +613,26 @@ msgid ""
 "Current default user font directory is located at <code><file>~/.local/share/"
 "fonts</file></code>"
 msgstr ""
+"現在のデフォルトのユーザーフォントディレクトリは <code><file>~/.local/share/"
+"fonts</file></code> にあります"
 
 #. (itstool) path: note/p
 #: C/font-manager-font-removal.page:69
 msgid ""
 "Files are permanently deleted. Before removing any fonts ensure you have "
 "backups if there is a chance you may need them again."
-msgstr ""
+msgstr "ファイルは完全に削除されます。フォントを削除する前に、再び必要になる可能性が"
+"ある場合は、バックアップがあることを確認してください。"
 
 #. (itstool) path: info/desc
 #: C/font-manager-font-sources.page:7
 msgid "Adding and removing font directories"
-msgstr ""
+msgstr "フォントディレクトリの追加と削除"
 
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "ソース"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
@@ -579,23 +640,28 @@ msgid ""
 "<app>Font Manager</app> allows you to add or remove directories to scan for "
 "font files. Added directories are scanned recursively."
 msgstr ""
+"<app>フォントマネージャー</app>では、フォントファイルをスキャンするディレクト"
+"リを追加または削除できます。追加されたディレクトリは再帰的にスキャンされます"
+"。"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:17
+#, fuzzy
 msgid ""
 "This allows keeping font files somewhere other than your home directory or "
 "temporarily \"installing\" a directory of fonts."
-msgstr ""
+msgstr "これにより、フォントファイルをホームディレクトリ以外の場所に保持したり、フォ"
+"ントのディレクトリを一時的に「インストール」したりできます。"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:21
 msgid "It also allows you to organize your font files anyway you like."
-msgstr ""
+msgstr "また、フォントファイルを好きなように整理することもできます。"
 
 #. (itstool) path: item/title
 #: C/font-manager-font-sources.page:27
 msgid "To add a source:"
-msgstr ""
+msgstr "ソースを追加するには:"
 
 #. (itstool) path: gui/media
 #. This is a reference to an external file such as an image or video. When
@@ -610,6 +676,8 @@ msgid ""
 "external ref='media/preferences-system-symbolic.svg' "
 "md5='63ed081f78639fc6ec234a9351cf52e6'"
 msgstr ""
+"external ref='media/preferences-system-symbolic.svg' "
+"md5='63ed081f78639fc6ec234a9351cf52e6'"
 
 #. (itstool) path: item/p
 #: C/font-manager-font-sources.page:30 C/font-manager-font-sources.page:62
