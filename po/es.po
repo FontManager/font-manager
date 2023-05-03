@@ -4,12 +4,13 @@
 # nzgha <nzghafoss.ldxwe@slmail.me>, 2021.
 # Alberto Cañaveras <acmp@tuta.io>, 2021.
 # gallegonovato <fran-carro@hotmail.es>, 2023.
+# Toni Estévez <toni.estevez@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2023-01-24 02:20+0000\n"
+"PO-Revision-Date: 2023-04-01 14:41+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/es/>\n"
@@ -18,13 +19,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
-msgstr "Gestor tipográfico"
+msgstr "Gestor de fuentes"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
@@ -690,7 +691,7 @@ msgstr "Tipos de letra disponibles para todos los usuarios"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr "Clase de familia"
+msgstr "Tipo de familia"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
@@ -1144,7 +1145,7 @@ msgstr "Canarés"
 
 #: src/font-manager/Orthographies.vala:103
 msgid "Kayah Li"
-msgstr "Alfabeto Kayah Li"
+msgstr "Kayah Li"
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kazakh"

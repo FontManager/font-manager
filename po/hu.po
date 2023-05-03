@@ -1,13 +1,13 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
-# Szia Tomi <sziatomi01@gmail.com>, 2022.
+# Szia Tomi <sziatomi01@gmail.com>, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-06-26 19:15+0000\n"
+"PO-Revision-Date: 2023-04-17 21:50+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -16,17 +16,17 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.13.1-dev\n"
+"X-Generator: Weblate 4.17\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
-msgstr "Font Manager"
+msgstr "Betűkészlet-kezelő"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
-msgstr "Egy egyszerű betűkészlet kezelő alkalmazás Gtk+ asztali környezetekhez"
+msgstr "Egy egyszerű betűkészlet-kezelő alkalmazás Gtk+ asztali környezetekhez"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:13
 msgid ""
@@ -34,7 +34,7 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
-"A Font Manager célja, hogy az átlagos felhasználók könnyen kezeljék az "
+"A betűkészlet-kezelő célja, hogy az átlagos felhasználók könnyen kezeljék az "
 "asztali betűtípusokat anélkül, hogy parancssori eszközöket kellene igénybe "
 "venniük, vagy a konfigurációs fájlokat kézzel kellene szerkeszteniük."
 
@@ -49,7 +49,8 @@ msgstr ""
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
 msgstr ""
-"A Font Manager NEM professzionális szintű betűkészlet kezelési megoldás."
+"A „Betűkészlet-kezelő” NEM professzionális szintű betűkészletkezelési "
+"megoldás."
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
@@ -67,11 +68,11 @@ msgstr "Grafika;Néző;GNOME;GTK;Kiadás;"
 #: src/font-viewer/Application.vala:98 src/font-viewer/MainWindow.vala:23
 #: src/font-viewer/font-viewer-main-window.ui:39
 msgid "Font Viewer"
-msgstr "Betűkészlet néző"
+msgstr "Betűkészletnéző"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:10
 msgid "A font viewer application for Gtk+ Desktop Environments"
-msgstr "Egy betűkészlet néző alkalmazás Gtk+ asztali környezetekhez"
+msgstr "Egy betűkészletnéző alkalmazás Gtk+ asztali környezetekhez"
 
 #: data/org.gnome.FontViewer.appdata.xml.in.in:13
 msgid ""
@@ -79,14 +80,14 @@ msgid ""
 "several ways to preview font files along with a character map and displays "
 "font properties and license details."
 msgstr ""
-"A Font Viewer lehetővé teszi a betűtípus fájlok előnézetét a telepítés "
+"A „Betűkészletnéző” lehetővé teszi a betűtípusfájlok előnézetét a telepítés "
 "előtt. Többféle módon is megtekintheti a betűtípusfájlok előnézetét a "
 "karaktertérkép mellett, valamint megjeleníti a betűtípus tulajdonságait és a "
 "licenc részleteit."
 
 #: data/org.gnome.FontViewer.desktop.in.in:7
 msgid "Full featured font file preview application"
-msgstr "Teljes értékű betűtípus fájl előnézeti alkalmazás"
+msgstr "Teljes értékű betűtípusfájl előnézeti alkalmazás"
 
 #: extensions/nautilus/font-manager-menu-provider.c:161
 #: extensions/nemo/font-manager-menu-provider.c:161
@@ -99,13 +100,13 @@ msgstr "Telepít"
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr "Telepíti a kiválasztott betűtípus fájlt"
+msgstr "A kiválasztott betűtípusfájl telepítése"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr "Telepítse a kiválasztott betűtípus fájlokat"
+msgstr "A kiválasztott betűtípusfájlok telepítése"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
@@ -152,7 +153,7 @@ msgstr "Közepes"
 
 #: lib/common/font-manager-fontconfig.c:721
 msgid "Semi-Bold"
-msgstr "Félkövér"
+msgstr "Enyhén kövér"
 
 #: lib/common/font-manager-fontconfig.c:723
 #: src/font-manager/web/google/Weight.vala:77
@@ -194,11 +195,11 @@ msgstr "Keskeny"
 
 #: lib/common/font-manager-fontconfig.c:850
 msgid "Semi-Condensed"
-msgstr "Félkeskeny"
+msgstr "Enyhén keskeny"
 
 #: lib/common/font-manager-fontconfig.c:852
 msgid "Semi-Expanded"
-msgstr "Félszélességű"
+msgstr "Enyhén széles"
 
 #: lib/common/font-manager-fontconfig.c:854
 msgid "Expanded"
@@ -218,7 +219,7 @@ msgstr "Arányos"
 
 #: lib/common/font-manager-fontconfig.c:929
 msgid "Dual Width"
-msgstr "Duplaszéles"
+msgstr "Duplaszélességű"
 
 #: lib/common/font-manager-fontconfig.c:931
 #: src/font-manager/web/google/ui/google-font-filters.ui:260
@@ -274,7 +275,7 @@ msgstr "Örökölt"
 
 #: lib/common/font-manager-freetype.c:292
 msgid "Restricted License Embedding"
-msgstr "Beágyazott Licenc korlátozás"
+msgstr "Beágyazott licenckorlátozás"
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Preview & Print Embedding"
@@ -368,11 +369,11 @@ msgstr "Keressen az elérhető karakterek között"
 
 #: lib/common/font-manager-properties-pane.c:80
 msgid "PostScript Name"
-msgstr "PostScript Név"
+msgstr "PostScriptnév"
 
 #: lib/common/font-manager-properties-pane.c:81
 msgid "Family"
-msgstr "Családtípus"
+msgstr "Család"
 
 #: lib/common/font-manager-properties-pane.c:82
 msgid "Style"
@@ -414,7 +415,7 @@ msgstr "Fájltípus"
 
 #: lib/common/font-manager-properties-pane.c:91
 msgid "Filesize"
-msgstr "Fájl méret"
+msgstr "Fájlméret"
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:598
@@ -502,7 +503,7 @@ msgstr "Betű, Nagybetű"
 
 #: lib/unicode/unicode-info.c:242
 msgid "Mark, Spacing Combining"
-msgstr "Cimke, Szóközök kombinálása"
+msgstr "Cimke, Térközök kombinálása"
 
 #: lib/unicode/unicode-info.c:244
 msgid "Mark, Enclosing"
@@ -510,7 +511,7 @@ msgstr "Cimke, Átfogó"
 
 #: lib/unicode/unicode-info.c:246
 msgid "Mark, Non-Spacing"
-msgstr "Cimke, Nincs szóköz"
+msgstr "Cimke, Nincs térköz"
 
 #: lib/unicode/unicode-info.c:248
 msgid "Number, Decimal Digit"
@@ -578,11 +579,11 @@ msgstr "Elválasztó, Bekezdés"
 
 #: lib/unicode/unicode-info.c:280
 msgid "Separator, Space"
-msgstr "Elválasztó, Szóköz"
+msgstr "Elválasztó, Térköz"
 
 #: src/font-manager/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
-msgstr "Egyszerű betűkészlet kezelő GTK+ asztali környezetekhez"
+msgstr "Egyszerű betűkészlet-kezelő GTK+ asztali környezetekhez"
 
 #: src/font-manager/About.vala:35
 msgid ""
@@ -625,7 +626,9 @@ msgstr ""
 #. by a newline character so that they are displayed properly in the interface.
 #: src/font-manager/About.vala:69
 msgid "translator-credits"
-msgstr "SziaTomi (sziatomi01@gmail.com) -2022-"
+msgstr ""
+"Fordítói elismerések:\n"
+"SziaTomi - sziatomi01@gmail.com - 2022, 2023"
 
 #: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
@@ -637,7 +640,7 @@ msgstr "Vonalvastagság szerint csoportosítva"
 
 #: src/font-manager/Categories.vala:536
 msgid "Grouped by font angle"
-msgstr "Dőlés szerint rendezve"
+msgstr "Dőlés szerint csoportosítva"
 
 #: src/font-manager/Categories.vala:537
 msgid "Grouped by font spacing"
@@ -649,7 +652,7 @@ msgstr "Licenctípus szerint csoportosítva"
 
 #: src/font-manager/Categories.vala:543
 msgid "Grouped by vendor"
-msgstr "Szolgáltató szerint rendezve"
+msgstr "Forgalmazó szerint csoportosítva"
 
 #: src/font-manager/Categories.vala:544
 msgid "Filetype"
@@ -661,11 +664,11 @@ msgstr "Fájltípus szerint csoportosítva"
 
 #: src/font-manager/Categories.vala:551
 msgid "All"
-msgstr "Mind"
+msgstr "Összes"
 
 #: src/font-manager/Categories.vala:551
 msgid "All Fonts"
-msgstr "Minden betűtípus"
+msgstr "Az összes betűtípus"
 
 #: src/font-manager/Categories.vala:552
 msgid "System"
@@ -673,7 +676,7 @@ msgstr "Rendszer"
 
 #: src/font-manager/Categories.vala:552
 msgid "Fonts available to all users"
-msgstr "Minden felhasználó számára elérhető betűtípusok"
+msgstr "Az összes felhasználó számára elérhető betűtípusok"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
@@ -688,7 +691,7 @@ msgstr ""
 #: src/font-manager/Categories.vala:567
 #: src/font-manager/web/google/ui/google-font-filters.ui:346
 msgid "Any"
-msgstr "Minden"
+msgstr "Bármely"
 
 #: src/font-manager/Categories.vala:567
 msgid "No Fit"
@@ -696,7 +699,7 @@ msgstr "Nincs illeszkedés"
 
 #: src/font-manager/Categories.vala:567
 msgid "Text and Display"
-msgstr "Szöveg és Címsor"
+msgstr "Szöveg és címsor"
 
 #: src/font-manager/Categories.vala:567
 msgid "Script"
@@ -715,7 +718,7 @@ msgstr "Képi"
 msgid "%i Variation "
 msgid_plural "%i Variations"
 msgstr[0] "%i Változat "
-msgstr[1] "%i Változatok "
+msgstr[1] "%i Változat"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -723,7 +726,7 @@ msgstr "Írja be a gyűjtemény nevét"
 
 #: src/font-manager/Collections.vala:452
 msgid "Copy to…"
-msgstr "Másold…"
+msgstr "Másolás…"
 
 #: src/font-manager/Collections.vala:453
 msgid "Compress…"
@@ -748,7 +751,7 @@ msgstr ""
 
 #: src/font-manager/Dialogs.vala:60
 msgid "Select executable"
-msgstr "Válassza ki a végrehajtható fájlt"
+msgstr "Végrehajtható fájl kiválasztása"
 
 #: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
 #: src/font-manager/UserData.vala:58
@@ -804,7 +807,7 @@ msgstr "Az összes kibontása"
 #: src/font-manager/FontList.vala:52
 #: src/font-manager/web/google/FontList.vala:55
 msgid "Search Families…"
-msgstr "Betűtípus családok keresése…"
+msgstr "Családok keresése…"
 
 #: src/font-manager/FontList.vala:53
 #, c-format
@@ -822,7 +825,7 @@ msgstr ""
 #: src/font-manager/FontList.vala:68
 #: src/font-manager/web/google/FontList.vala:65
 msgid "Collapse all"
-msgstr "Összes bezárása"
+msgstr "Mindet becsukja"
 
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
@@ -874,11 +877,11 @@ msgstr "Ahom"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Aleut Cyrillic"
-msgstr "Aleut cirill"
+msgstr "Aleut Cirill"
 
 #: src/font-manager/Orthographies.vala:34
 msgid "Aleut Latin"
-msgstr "Aleut latin"
+msgstr "Aleut Latin"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
@@ -887,7 +890,7 @@ msgstr "Arab"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
-msgstr "Archeikus görög betűk"
+msgstr "Görög archaikus betűk"
 
 #: src/font-manager/Orthographies.vala:37
 msgid "Armenian"
@@ -911,15 +914,15 @@ msgstr "Bamum"
 
 #: src/font-manager/Orthographies.vala:42
 msgid "Basic Cyrillic"
-msgstr "Alap cirill"
+msgstr "Cirill (alap)"
 
 #: src/font-manager/Orthographies.vala:43
 msgid "Basic Greek"
-msgstr "Alap görög"
+msgstr "Görög (alap)"
 
 #: src/font-manager/Orthographies.vala:44
 msgid "Basic Latin"
-msgstr "Alap latin"
+msgstr "Latin (alap)"
 
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
@@ -932,7 +935,7 @@ msgstr "Bengáli"
 
 #: src/font-manager/Orthographies.vala:47
 msgid "Brāhmī"
-msgstr "Brāhmī"
+msgstr "Brahmi"
 
 #: src/font-manager/Orthographies.vala:48
 msgid "Buginese"
@@ -940,7 +943,7 @@ msgstr "Buginese"
 
 #: src/font-manager/Orthographies.vala:49
 msgid "Unified Canadian Aboriginal Syllabics"
-msgstr "Egységes kanadai őslakos szótagok"
+msgstr "Egységes kanadaiőslakos-szótagok"
 
 #: src/font-manager/Orthographies.vala:50
 msgid "Carian"
@@ -974,40 +977,40 @@ msgstr "Sakk szimbólumok"
 #. CJK entries added manually
 #: src/font-manager/Orthographies.vala:59
 msgid "CJK Unified"
-msgstr "CJK Unified"
+msgstr "CJK egységesített"
 
 #: src/font-manager/Orthographies.vala:60
 msgid "CJK Unified Extension A"
-msgstr "CJK Unified Extension A"
+msgstr "CJK egységesített bővítmény A"
 
 #: src/font-manager/Orthographies.vala:61
 msgid "CJK Unified Extension B"
-msgstr "CJK Unified Extension B"
+msgstr "CJK egységesített bővítmény B"
 
 #: src/font-manager/Orthographies.vala:62
 msgid "CJK Unified Extension C"
-msgstr "CJK Unified Extension C"
+msgstr "CJK egységesített bővítmény C"
 
 #: src/font-manager/Orthographies.vala:63
 msgid "CJK Unified Extension D"
-msgstr "CJK Unified Extension D"
+msgstr "CJK egységesített bővítmény D"
 
 #: src/font-manager/Orthographies.vala:64
 msgid "CJK Unified Extension E"
-msgstr "CJK Unified Extension E"
+msgstr "CJK egységesített bővítmény E"
 
 #: src/font-manager/Orthographies.vala:65
 msgid "CJK Compatibility Ideographs"
-msgstr "CJK Compatibility Ideographs"
+msgstr "CJK kompatibilitási ideográfok"
 
 #: src/font-manager/Orthographies.vala:66
 msgid "CJK Compatibility Ideographs Supplement"
-msgstr "CJK Compatibility Ideographs Kiegészítés"
+msgstr "CJK kompatibilitási ideográfok kiegészítés"
 
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
 msgid "Claudian Letters"
-msgstr "Claudian Letters"
+msgstr "Claudius betűk"
 
 #: src/font-manager/Orthographies.vala:70
 msgid "Coptic"
@@ -1019,7 +1022,7 @@ msgstr "Pénznemek"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
-msgstr "Ciprusi szótag"
+msgstr "Ciprusi (szótagírás)"
 
 #: src/font-manager/Orthographies.vala:73
 #: src/font-manager/web/google/Language.vala:40
@@ -1054,7 +1057,7 @@ msgstr "Étel és ital"
 
 #: src/font-manager/Orthographies.vala:84
 msgid "Full Cyrillic"
-msgstr "Teljes cirill"
+msgstr "Cirill (teljes)"
 
 #: src/font-manager/Orthographies.vala:85
 msgid "Georgian"
@@ -1080,7 +1083,7 @@ msgstr "Gurmukhi"
 
 #: src/font-manager/Orthographies.vala:90
 msgid "Korean Hangul"
-msgstr "Koreai hangul"
+msgstr "Koreai Hangul"
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hanunó'o"
@@ -1102,7 +1105,7 @@ msgstr "Igbo Onwu"
 
 #: src/font-manager/Orthographies.vala:96
 msgid "Korean Jamo"
-msgstr "Koreai jamo"
+msgstr "Koreai Jamo"
 
 #: src/font-manager/Orthographies.vala:97
 msgid "Javanese"
@@ -1110,11 +1113,11 @@ msgstr "Jávai"
 
 #: src/font-manager/Orthographies.vala:98
 msgid "Japanese Jinmeiyo"
-msgstr "Japán jinmeiyo"
+msgstr "Japán Jinmeiyo"
 
 #: src/font-manager/Orthographies.vala:99
 msgid "Japanese Joyo"
-msgstr "Japán joyo"
+msgstr "Japán Joyo"
 
 #: src/font-manager/Orthographies.vala:100
 msgid "Kaithi"
@@ -1122,7 +1125,7 @@ msgstr "Kaithi"
 
 #: src/font-manager/Orthographies.vala:101
 msgid "Japanese Kana"
-msgstr "Japán kana"
+msgstr "Japán Kana"
 
 #: src/font-manager/Orthographies.vala:102
 #: src/font-manager/web/google/Language.vala:47
@@ -1148,7 +1151,7 @@ msgstr "Khmer"
 
 #: src/font-manager/Orthographies.vala:107
 msgid "Japanese Kokuji"
-msgstr "Japán kokuji"
+msgstr "Japán Kokuji"
 
 #: src/font-manager/Orthographies.vala:108
 msgid "Lao"
@@ -1160,7 +1163,7 @@ msgstr "Latin ligatúrák"
 
 #: src/font-manager/Orthographies.vala:110
 msgid "Lepcha"
-msgstr "Lepcha (tibeti, burmai nyelv)"
+msgstr "Lepcha"
 
 #: src/font-manager/Orthographies.vala:111
 msgid "Limbu"
@@ -1168,11 +1171,11 @@ msgstr "Limbu"
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Ideograms"
-msgstr "Linear B Ideograms"
+msgstr "Lineáris B Ideogrammák"
 
 #: src/font-manager/Orthographies.vala:113
 msgid "Linear B Syllabary"
-msgstr "Linear B Syllabary"
+msgstr "Lineáris B szótagírás"
 
 #: src/font-manager/Orthographies.vala:114
 #: src/font-manager/web/google/Language.vala:52
@@ -1205,7 +1208,7 @@ msgstr "Mende Kikakui"
 
 #: src/font-manager/Orthographies.vala:121
 msgid "MeroiticCursive"
-msgstr "MeroiticCursive"
+msgstr "Meroita kurzív"
 
 #: src/font-manager/Orthographies.vala:122
 msgid "Meroitic Hieroglyphs"
@@ -1230,7 +1233,7 @@ msgstr "Myanmar"
 
 #: src/font-manager/Orthographies.vala:132
 msgid "New Tai Lue"
-msgstr "New Tai Lue"
+msgstr "Új Tai Lue"
 
 #: src/font-manager/Orthographies.vala:133
 msgid "N’Ko"
@@ -1250,7 +1253,7 @@ msgstr "Old Italic"
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
-msgstr "Old South Arabian"
+msgstr "Ó dél-Arab"
 
 #: src/font-manager/Orthographies.vala:138
 #: src/font-manager/web/google/Language.vala:54
@@ -1283,7 +1286,7 @@ msgstr "Polinéziai"
 
 #: src/font-manager/Orthographies.vala:145
 msgid "Polytonic Greek"
-msgstr "Politon görög"
+msgstr "Görög politon"
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Rejang"
@@ -1392,7 +1395,7 @@ msgstr "Vai"
 
 #: src/font-manager/Orthographies.vala:171
 msgid "Vedic Extensions"
-msgstr "Vedic Extensions"
+msgstr "Védikus kiterjesztések"
 
 #: src/font-manager/Orthographies.vala:172
 msgid "Venda"
@@ -1413,13 +1416,13 @@ msgstr "Yi"
 
 #: src/font-manager/Orthographies.vala:176
 msgid "Chinese Zhuyin Fuhao"
-msgstr "Chinese Zhuyin Fuhao"
+msgstr "Kinai Zhuyin Fuhao"
 
 #. Translators : Coverage refers to the amount of support the font provides for an
 #. orthography. This will be displayed as "Coverage : XXX%" in the interface.
 #: src/font-manager/Orthography.vala:124
 msgid "Coverage"
-msgstr "Hatály"
+msgstr "Lefedettség"
 
 #: src/font-manager/Orthography.vala:153
 #: src/font-manager/filters/LanguageFilter.vala:58
@@ -1493,7 +1496,7 @@ msgstr "Fájlok másolása…"
 
 #: src/font-manager/filters/Collection.vala:48
 msgid "New Collection"
-msgstr "Új gyüjtemény"
+msgstr "Új gyűjtemény"
 
 #: src/font-manager/filters/Collection.vala:50
 #, c-format
@@ -1510,15 +1513,15 @@ msgstr "Betűtípusok, amelyek le vannak tiltva"
 
 #: src/font-manager/filters/LanguageFilter.vala:28
 msgid "Filter based on supported orthographies"
-msgstr "Szűrés a támogatott karakterek alapján"
+msgstr "Szűrés a támogatott helyesírások alapján"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
-msgstr "Rendezetlen"
+msgstr "Osztályozatlan"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
-msgstr "Betűtípusok, amelyek nem találhatók egyetlen gyűjteményben sem"
+msgstr "Egyetlen gyűjteményben sem található betűtípusok"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
@@ -1576,7 +1579,7 @@ msgstr "A betűtípusok renderelésekor használandó élsimítás típusa."
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:84
 msgid "RGBA order"
-msgstr "RGBA parancs"
+msgstr "RGBA sorrend"
 
 #: src/font-manager/preferences/Desktop.vala:67
 #: src/font-manager/preferences/Desktop.vala:85
@@ -1612,10 +1615,10 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
-"Válassza a Mentés lehetőséget a fontconfig konfigurációs fájl létrehozásához "
-"a fenti beállításokból.\n"
+"Válassza a „Mentés” lehetőséget a fontconfig konfigurációs fájl "
+"létrehozásához a fenti beállításokból.\n"
 "\n"
-"Válassza az Elvetés lehetőséget a konfigurációs fájl eltávolításához és az "
+"Válassza az „Eldob” lehetőséget a konfigurációs fájl eltávolításához és az "
 "alapértelmezett beállítások visszaállításához.\n"
 "\n"
 "Vegye figyelembe, hogy nem minden környezet/alkalmazás tartja tiszteletben "
@@ -1655,7 +1658,7 @@ msgstr "Automatikus útmutatás engedélyezése"
 
 #: src/font-manager/preferences/Fontconfig.vala:339
 msgid "Hinting Style"
-msgstr "Útmutatás stílus"
+msgstr "Útmutatásstílus"
 
 #: src/font-manager/preferences/Fontconfig.vala:340
 msgid "Use Embedded Bitmaps"
@@ -1741,12 +1744,12 @@ msgstr ""
 "Az itt meghatározott műveletek hozzáadódnak a betűtípuslista helyi menüjéhez."
 "\n"
 "\n"
-"Alapértelmezés szerint a kiválasztott betűtípus fájlútvonala hozzá lesz "
+"Alapértelmezés szerint a kiválasztott betűtípusfájl útvonala hozzá lesz "
 "fűzve az argumentumlista végéhez.\n"
 "A fájlútvonal beillesztési helyének szabályozásához használja a FILEPATH-ot "
 "helyőrzőként.\n"
-"Ha a FAMILY (Betűtípuscsalád) vagy a STYLE (Betűstílus) szerepel az "
-"argumentumlistában, ezek is lecserélődnek."
+"Ha a CSALÁD vagy a STÍLUS szerepel az argumentumlistában, ezek is "
+"lecserélődnek."
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "User Actions"
@@ -1780,14 +1783,14 @@ msgstr "Sötét téma előnyben részesítése"
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
-"CSD (Ügyféloldali dekorációk) engedélyezve. A módosítás az alkalmazás "
+"Ügyféloldali dekorációk (CSD) engedélyezve. A módosítás az alkalmazás "
 "következő indításakor lép életbe."
 
 #: src/font-manager/preferences/UserInterface.vala:270
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
-"CSD (Ügyféloldali dekorációk) letiltva. A módosítás az alkalmazás következő "
+"Ügyféloldali dekorációk (CSD) letiltva. A módosítás az alkalmazás következő "
 "indításakor lép életbe."
 
 #: src/font-manager/preferences/UserSources.vala:146
@@ -1811,7 +1814,7 @@ msgstr ""
 #: src/font-manager/preferences/UserSources.vala:162
 #: src/font-manager/ui/font-manager-user-data.ui:131
 msgid "Font Sources"
-msgstr "Betűtípusok forrásai"
+msgstr "Betűtípusforrások"
 
 #: src/font-manager/preferences/UserSources.vala:163
 msgid "Easily add or preview fonts without actually installing them."
@@ -1829,7 +1832,7 @@ msgstr ""
 
 #: src/font-manager/web/google/FontList.vala:56
 msgid "Case insensitive search of family names."
-msgstr "Keresés a csalánevekben kis- és nagybetűk megkülönböztetése nélkül."
+msgstr "Keresés a csalánevekben, kis- és nagybetűk megkülönböztetése nélkül."
 
 #: src/font-manager/web/google/GoogleFonts.vala:129
 msgid "Error procesing data"
@@ -1951,7 +1954,7 @@ msgstr "Betűtípus letöltése"
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] "%i Nyelvi minta érhető el "
-msgstr[1] "%i Nyelvi minták érhetők el "
+msgstr[1] "%i Nyelvi minták érhetők el"
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
@@ -1959,7 +1962,7 @@ msgstr "Extrakönnyű"
 
 #: src/font-manager/web/google/Weight.vala:75
 msgid "SemiBold"
-msgstr "Félkövér"
+msgstr "Enyhén kövér"
 
 #: src/font-manager/web/google/Weight.vala:79
 msgid "ExtraBold"
@@ -1971,7 +1974,7 @@ msgstr "Vastagított"
 
 #: src/font-viewer/MainWindow.vala:24
 msgid "Preview font files before installing them."
-msgstr "Telepítésük előtt tekintse meg a betűtípus fájlok előnézetét."
+msgstr "Telepítésük előtt tekintse meg a betűtípusfájlok előnézetét."
 
 #: src/font-viewer/MainWindow.vala:25
 msgid "To preview a font simply drag it onto this area."
@@ -2004,7 +2007,7 @@ msgstr "Másolat"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:34
 msgid "List View"
-msgstr "Lista nézet"
+msgstr "Listanézet"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:68
 msgid "Grid View"
@@ -2063,7 +2066,7 @@ msgstr "Eldob"
 #: src/font-manager/ui/font-manager-font-config-controls.ui:30
 msgid "Running applications may require a restart to reflect any changes."
 msgstr ""
-"A futó alkalmazások újraindítást igényelhetnek a változások tükrözéséhez."
+"A futó alkalmazások újraindítást igényelhetnek a változtatások tükrözéséhez."
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:40
 msgid "Save"
@@ -2075,7 +2078,7 @@ msgstr "Vissza"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:62
 msgid "Search Orthographies…"
-msgstr "Keresés a karakterek között…"
+msgstr "Helyesírás keresése…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
@@ -2083,7 +2086,7 @@ msgstr "Törölje az összes kijelölést"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:156
 msgid "Minimum Coverage"
-msgstr "Minimális hatókör"
+msgstr "Minimális lefedettség"
 
 #: src/font-manager/ui/font-manager-orthography-list.ui:86
 msgid "Clear selected filter"
@@ -2244,7 +2247,7 @@ msgstr "Betűtípus beállítása"
 
 #: src/font-manager/ui/font-manager-user-data.ui:102
 msgid "Font Collections"
-msgstr "Betűtípus gyüjtemények"
+msgstr "Betűtípus gyűjtemények"
 
 #: src/font-manager/ui/font-manager-user-data.ui:160
 msgid "Installed Fonts"

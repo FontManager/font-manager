@@ -2,22 +2,23 @@
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
 # Tymofij Lytvynenko <till.svit@gmail.com>, 2021.
+# Veydzher <veydzherDGswift008@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.4\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2021-02-18 21:50+0000\n"
-"Last-Translator: Tymofij Lytvynenko <till.svit@gmail.com>\n"
+"PO-Revision-Date: 2023-03-08 12:38+0000\n"
+"Last-Translator: Veydzher <veydzherDGswift008@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.5\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.16.2-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -35,16 +36,21 @@ msgid ""
 "desktop fonts, without having to resort to command line tools or editing "
 "configuration files by hand."
 msgstr ""
+"Розпорядник шрифтів призначений для того, щоб пересічні користувачі могли "
+"легко керувати шрифтами робочого столу без необхідності вдаватися до "
+"інструментів командного рядка чи редагувати конфігураційні файли вручну."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:18
 msgid ""
 "While designed primarily with the Gnome Desktop Environment in mind, it "
 "should work well with other Gtk+ desktop environments."
 msgstr ""
+"Незважаючи на те, що розроблено в першу чергу для робочого середовища Gnome, "
+"воно має добре працювати з іншими робочими середовищами Gtk+."
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:22
 msgid "Font Manager is NOT a professional-grade font management solution."
-msgstr ""
+msgstr "Розпорядник шрифтів НЕ є професійним рішенням для керування шрифтами."
 
 #: data/org.gnome.FontManager.desktop.in.in:7
 msgid "Preview, Compare and Manage Fonts"
@@ -84,38 +90,38 @@ msgstr ""
 #: extensions/thunar/font-manager-menu-provider.c:131
 #: src/font-manager/FontList.vala:516
 msgid "Install"
-msgstr ""
+msgstr "Установити"
 
 #: extensions/nautilus/font-manager-menu-provider.c:163
 #: extensions/nemo/font-manager-menu-provider.c:163
 #: extensions/thunar/font-manager-menu-provider.c:133
 msgid "Install the selected font file"
-msgstr ""
+msgstr "Установити вибраний файл шрифту"
 
 #: extensions/nautilus/font-manager-menu-provider.c:164
 #: extensions/nemo/font-manager-menu-provider.c:164
 #: extensions/thunar/font-manager-menu-provider.c:134
 msgid "Install the selected font files"
-msgstr ""
+msgstr "Установити вибрані файли шрифтів"
 
 #: extensions/thunar/font-manager-renamer-provider.c:86
 msgid "Font Properties"
-msgstr ""
+msgstr "Властивості шрифту"
 
 #: lib/common/font-manager-font-preview.c:85
 #: src/font-manager/ui/font-manager-main-window.ui:120
 msgid "Preview"
-msgstr ""
+msgstr "Перегляд"
 
 #: lib/common/font-manager-font-preview.c:87
 #: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
 msgid "Waterfall"
-msgstr ""
+msgstr "Водоспад"
 
 #: lib/common/font-manager-fontconfig.c:709
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
-msgstr ""
+msgstr "Тонкий"
 
 #: lib/common/font-manager-fontconfig.c:711
 msgid "Ultra-Light"
@@ -133,7 +139,7 @@ msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:717
 msgid "Book"
-msgstr ""
+msgstr "Книга"
 
 #: lib/common/font-manager-fontconfig.c:719
 #: lib/common/font-manager-fontconfig.c:1023
@@ -148,11 +154,11 @@ msgstr ""
 #: lib/common/font-manager-fontconfig.c:723
 #: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
-msgstr ""
+msgstr "Жирний"
 
 #: lib/common/font-manager-fontconfig.c:725
 msgid "Ultra-Bold"
-msgstr ""
+msgstr "Ультражирний"
 
 #: lib/common/font-manager-fontconfig.c:727
 msgid "Heavy"
@@ -222,42 +228,42 @@ msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:972
 msgid "Unknown"
-msgstr ""
+msgstr "Невідомий"
 
 #: lib/common/font-manager-fontconfig.c:974
 msgid "RGB"
-msgstr ""
+msgstr "RGB"
 
 #: lib/common/font-manager-fontconfig.c:976
 msgid "BGR"
-msgstr ""
+msgstr "BGR"
 
 #: lib/common/font-manager-fontconfig.c:978
 msgid "VRGB"
-msgstr ""
+msgstr "VRGB"
 
 #: lib/common/font-manager-fontconfig.c:980
 msgid "VBGR"
-msgstr ""
+msgstr "VBGR"
 
 #: lib/common/font-manager-fontconfig.c:982
 #: lib/common/font-manager-fontconfig.c:1027
 #: lib/common/font-manager-fontconfig.c:1070
 msgid "None"
-msgstr ""
+msgstr "Немає"
 
 #: lib/common/font-manager-fontconfig.c:1021
 msgid "Slight"
-msgstr ""
+msgstr "Незначний"
 
 #: lib/common/font-manager-fontconfig.c:1025
 msgid "Full"
-msgstr ""
+msgstr "Повний"
 
 #: lib/common/font-manager-fontconfig.c:1064
 #: src/font-manager/ui/font-manager-main-window.ui:178
 msgid "Default"
-msgstr ""
+msgstr "Стандартний"
 
 #: lib/common/font-manager-fontconfig.c:1068
 msgid "Legacy"
@@ -265,7 +271,7 @@ msgstr ""
 
 #: lib/common/font-manager-freetype.c:292
 msgid "Restricted License Embedding"
-msgstr ""
+msgstr "Вбудовування обмеженої ліцензії"
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Preview & Print Embedding"

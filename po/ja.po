@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the font-manager package.
 # Takuro Onoue <kusanaginoturugi@gmail.com>, 2020.
 # Ryo Nakano <ryonakaknock3@gmail.com>, 2022.
+# Pirikan <aonotanin2351@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-09-23 12:20+0000\n"
-"Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
+"PO-Revision-Date: 2023-04-01 14:41+0000\n"
+"Last-Translator: Pirikan <aonotanin2351@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/ja/>\n"
 "Language: ja\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -357,7 +358,7 @@ msgstr ""
 #: lib/common/font-manager-preview-pane.c:574
 #: src/font-manager/Categories.vala:541
 msgid "License"
-msgstr ""
+msgstr "ライセンス"
 
 #: lib/common/font-manager-preview-pane.c:454
 msgid "Search available characters"
@@ -383,17 +384,17 @@ msgstr "幅"
 #: lib/common/font-manager-properties-pane.c:84
 #: src/font-manager/Categories.vala:536
 msgid "Slant"
-msgstr ""
+msgstr "傾き"
 
 #: lib/common/font-manager-properties-pane.c:85
 #: src/font-manager/Categories.vala:535
 msgid "Weight"
-msgstr "ウェイト"
+msgstr "太さ"
 
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:537
 msgid "Spacing"
-msgstr "字間"
+msgstr "文字間隔"
 
 #: lib/common/font-manager-properties-pane.c:87
 msgid "Version"
@@ -634,7 +635,7 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:544
 msgid "Filetype"
-msgstr ""
+msgstr "ファイル形式"
 
 #: src/font-manager/Categories.vala:544
 msgid "Grouped by filetype"
@@ -658,7 +659,7 @@ msgstr "全ユーザーが利用可能なフォント"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr ""
+msgstr "フォントファミリーの種類"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
@@ -1486,7 +1487,7 @@ msgstr ""
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Unsorted"
-msgstr ""
+msgstr "未分類"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
@@ -1494,7 +1495,7 @@ msgstr ""
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
-msgstr ""
+msgstr "ユーザー"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "Fonts available only to you"
@@ -1668,7 +1669,7 @@ msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:26
 msgid "Sources"
-msgstr ""
+msgstr "ソース"
 
 #: src/font-manager/preferences/Preferences.vala:27
 msgid "Actions"
@@ -2092,11 +2093,11 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:58
 msgid "Categories"
-msgstr ""
+msgstr "カテゴリー"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:129
 msgid "Collections"
-msgstr ""
+msgstr "コレクション"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:175
 msgid "Edit selected category"
