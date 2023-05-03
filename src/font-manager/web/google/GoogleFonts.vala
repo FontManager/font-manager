@@ -51,7 +51,7 @@ namespace FontManager.GoogleFonts {
             font_list_pane.filter = filters;
             network_monitor = NetworkMonitor.get_default();
             network_monitor.notify["connectivity"].connect(() => {
-                _connected_ = network_monitor.get_connectivity() != NetworkConnectivity.LOCAL;
+                _connected_ = network_available();
                 update_if_needed();
             });
             filters.sort_order.changed.connect(() => { populate_font_model(); });
@@ -80,11 +80,24 @@ namespace FontManager.GoogleFonts {
                 preview_pane.family = family;
                 preview_pane.font = variant;
             });
-            _connected_ = network_monitor.get_connectivity() != NetworkConnectivity.LOCAL;
+            _connected_ = network_available();
             if (_connected_)
                 Idle.add(() => { check_font_list_cache(); return GLib.Source.REMOVE; });
             base.constructed();
             return;
+        }
+
+        bool network_available () {
+            bool available = (network_monitor.connectivity == NetworkConnectivity.FULL);
+            if (!available && network_monitor.connectivity != NetworkConnectivity.LOCAL) {
+                try {
+                    NetworkAddress google = new NetworkAddress("www.google.com", 80);
+                    available = network_monitor.can_reach(google);
+                } catch (Error e) {
+                    debug("NetworkConnectivity check failed : %s", e.message);
+                }
+            }
+            return available;
         }
 
         void hide_http_status () {
