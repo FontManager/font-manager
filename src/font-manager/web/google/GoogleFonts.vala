@@ -46,6 +46,7 @@ namespace FontManager.GoogleFonts {
         uint http_status = Soup.Status.OK;
         string status_message = "";
         NetworkMonitor network_monitor;
+        GLib.Settings? settings = null;
 
         public override void constructed () {
             font_list_pane.filter = filters;
@@ -83,11 +84,20 @@ namespace FontManager.GoogleFonts {
             _connected_ = network_available();
             if (_connected_)
                 Idle.add(() => { check_font_list_cache(); return GLib.Source.REMOVE; });
+            settings = get_default_application().settings;
+            settings.changed.connect((k) => {
+                if (k == "restrict-network-access") {
+                    _connected_ = network_available();
+                    update_if_needed();
+                }
+            });
             base.constructed();
             return;
         }
 
         bool network_available () {
+            if (settings != null && settings.get_boolean("restrict-network-access"))
+                return false;
             bool available = (network_monitor.connectivity == NetworkConnectivity.FULL);
             if (!available && network_monitor.connectivity != NetworkConnectivity.LOCAL) {
                 try {

@@ -289,12 +289,18 @@
             <description>Array of string containing language selections.</description>
             <default>[]</default>
         </key>
-        
+
         <key name="language-filter-min-coverage" type="d">
             <range min="1.0" max="100.0"/>
             <summary>Language Filter list minimum coverage</summary>
             <description>Minimum coverage for language filter</description>
             <default>90.0</default>
+        </key>
+
+        <key name="restrict-network-access" type="b">
+            <default>false</default>
+            <summary>Whether access to network is restricted by administrator</summary>
+            <description>true to prevent the application from attempting to access the network</description>
         </key>
 
         <key name="google-fonts-preview-mode" enum="org.gnome.FontManager.GoogleFonts.PreviewMode">
