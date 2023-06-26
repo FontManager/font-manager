@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.8\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2023-04-17 21:50+0000\n"
+"PO-Revision-Date: 2023-06-26 04:40+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/hu/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 4.18.1\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -421,7 +421,7 @@ msgstr "Fájlméret"
 #: src/font-manager/Categories.vala:598
 #: src/font-manager/web/google/Weight.vala:71
 msgid "Regular"
-msgstr "Alapértelmezett"
+msgstr "Szabályos"
 
 #: lib/common/font-manager-properties-pane.c:215
 #: src/font-manager/Categories.vala:593
@@ -628,7 +628,7 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 "Fordítói elismerések:\n"
-"SziaTomi - sziatomi01@gmail.com - 2022, 2023"
+"SziaTomi <sziatomi01@gmail.com> 2022, 2023"
 
 #: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
@@ -834,7 +834,7 @@ msgstr "Mindet becsukja"
 msgid "%i selected item"
 msgid_plural "%i selected items"
 msgstr[0] "%i kiválasztott elem"
-msgstr[1] "%i kiválasztott elemek"
+msgstr[1] "%i kiválasztott elem"
 
 #: src/font-manager/FontList.vala:517
 msgid "Copy Location"
@@ -1087,7 +1087,7 @@ msgstr "Koreai Hangul"
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hanunó'o"
-msgstr "Hanunó'o"
+msgstr "Hanunó'o (mangyan ábc)"
 
 #: src/font-manager/Orthographies.vala:92
 #: src/font-manager/web/google/Language.vala:45
@@ -1237,11 +1237,11 @@ msgstr "Új Tai Lue"
 
 #: src/font-manager/Orthographies.vala:133
 msgid "N’Ko"
-msgstr "N’Ko"
+msgstr "N’Ko (mande ábc)"
 
 #: src/font-manager/Orthographies.vala:134
 msgid "Ogham"
-msgstr "Ogham"
+msgstr "Ogham (kelta rovásírás)"
 
 #: src/font-manager/Orthographies.vala:135
 msgid "Ol Chiki"
@@ -1266,7 +1266,7 @@ msgstr "Osmanya"
 
 #: src/font-manager/Orthographies.vala:140
 msgid "Pan African Latin"
-msgstr "Pan African Latin"
+msgstr "Pán-Afrikai latin"
 
 #: src/font-manager/Orthographies.vala:141
 msgid "Pashto"
@@ -1919,7 +1919,7 @@ msgstr "Latin kiterjesztett"
 #: src/font-manager/web/google/Language.vala:81
 #, c-format
 msgid "No sample for %s available"
-msgstr "%s nyelvi minta nem érhető el"
+msgstr "A(z) %s nyelvi minta nem érhető el"
 
 #: src/font-manager/web/google/Language.vala:83
 msgid "Please file an issue requesting an update to available samples."
@@ -1953,8 +1953,8 @@ msgstr "Betűtípus letöltése"
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] "%i Nyelvi minta érhető el "
-msgstr[1] "%i Nyelvi minták érhetők el"
+msgstr[0] "%i nyelvi minta érhető el "
+msgstr[1] "%i nyelvi minta érhető el"
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
@@ -2082,7 +2082,7 @@ msgstr "Helyesírás keresése…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
-msgstr "Törölje az összes kijelölést"
+msgstr "Kijelölés(ek) megszüntetése"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:156
 msgid "Minimum Coverage"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2023-04-17 21:50+0000\n"
+"PO-Revision-Date: 2023-06-04 21:52+0000\n"
 "Last-Translator: Szia Tomi <sziatomi01@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/hu/>\n"
@@ -12,14 +12,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.17\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
 msgid "translator-credits"
-msgstr ""
-"Fordítói elismerések:\n"
-"SziaTomi - sziatomi01@gmail.com -2022, 2023"
+msgstr "SziaTomi <sziatomi01@gmail.com> 2022, 2023"
 
 #. (itstool) path: info/desc
 #: C/font-manager-categories.page:7
@@ -1061,8 +1059,8 @@ msgstr "Az összes helyettesítő eltávolításához:"
 #: C/font-manager-substitutions.page:129
 msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
 msgstr ""
-"Kattintson a <gui style=\"button\"> Elvetés </gui> lehetőségre a "
-"helyettesítések panelen."
+"Kattintson az <gui style=\"button\"> Eldob </gui> lehetőségre a "
+"helyettesítések ablaktáblában."
 
 #. (itstool) path: note/p
 #: C/font-manager-substitutions.page:142
@@ -1147,7 +1145,7 @@ msgstr "Weblate"
 #. (itstool) path: license/p
 #: C/index.page:24
 msgid "GNU General Public License Version 3"
-msgstr "GNU General Public License Version 3"
+msgstr "GNU General Public Licenc, Verzió 3"
 
 #. (itstool) path: title/media
 #. This is a reference to an external file such as an image or video. When
