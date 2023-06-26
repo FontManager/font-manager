@@ -1,14 +1,18 @@
+# Jose Riha <jose1711@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2023-05-06 22:52+0000\n"
+"Last-Translator: Jose Riha <jose1711@gmail.com>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -23,7 +27,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-categories.page:10
 msgid "Categories"
-msgstr ""
+msgstr "Kategórie"
 
 #. (itstool) path: page/p
 #: C/font-manager-categories.page:12
@@ -33,7 +37,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:19
 msgid "All"
-msgstr ""
+msgstr "Všetky"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:20
@@ -43,7 +47,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:25
 msgid "System"
-msgstr ""
+msgstr "Systém"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:26
@@ -53,7 +57,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:31
 msgid "User"
-msgstr ""
+msgstr "Používateľ"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:32
@@ -63,7 +67,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr ""
+msgstr "Typ Rodiny"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
@@ -73,7 +77,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:43
 msgid "Width"
-msgstr ""
+msgstr "Šírka"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:44
@@ -83,7 +87,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:49
 msgid "Weight"
-msgstr ""
+msgstr "Váha"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:50
@@ -93,7 +97,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:55
 msgid "Slant"
-msgstr ""
+msgstr "Sklon"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:56
@@ -103,7 +107,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:61
 msgid "Spacing"
-msgstr ""
+msgstr "Rozstup"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:62
@@ -113,7 +117,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:67
 msgid "License"
-msgstr ""
+msgstr "Licencia"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:68
@@ -123,7 +127,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:73
 msgid "Vendor"
-msgstr ""
+msgstr "Dodávateľ"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:74
@@ -133,7 +137,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:79
 msgid "Filetype"
-msgstr ""
+msgstr "Typ súboru"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:80
@@ -143,7 +147,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:85
 msgid "Unsorted"
-msgstr ""
+msgstr "Netriedené"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:86
@@ -153,7 +157,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:91
 msgid "Disabled"
-msgstr ""
+msgstr "Zakázané"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:92
@@ -208,7 +212,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-collections.page:10
 msgid "Collections"
-msgstr ""
+msgstr "Zbierky"
 
 #. (itstool) path: page/p
 #: C/font-manager-collections.page:12
@@ -509,7 +513,7 @@ msgstr ""
 #. (itstool) path: page/title
 #: C/font-manager-font-sources.page:10
 msgid "Sources"
-msgstr ""
+msgstr "Zdroje"
 
 #. (itstool) path: page/p
 #: C/font-manager-font-sources.page:12
