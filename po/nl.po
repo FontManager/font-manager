@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2023-04-30 10:51+0000\n"
+"PO-Revision-Date: 2023-05-11 20:51+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/nl/>\n"
@@ -676,7 +676,7 @@ msgstr "Lettertypen voor alle gebruikers"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr "Familie"
+msgstr "Familiesoort"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
