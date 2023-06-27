@@ -6,6 +6,9 @@
 %global DBusName2 org.gnome.FontViewer
 %global git_archive https://github.com/FontManager/font-manager/archive/master.tar.gz
 
+%bcond nautilus 1
+%bcond nemo 1
+%bcond thunar 1
 %bcond webkit 1
 
 Name:       font-manager
@@ -35,9 +38,15 @@ BuildRequires: libsoup-devel
 BuildRequires: webkit2gtk3-devel
 %endif
 
+%if %{with nautilus}
 BuildRequires: nautilus-devel
+%endif
+%if %{with nemo}
 BuildRequires: nemo-devel
+%endif
+%if %{with thunar}
 BuildRequires: Thunar-devel
+%endif
 
 Requires: fontconfig
 Requires: %{name}-common
@@ -73,34 +82,43 @@ Requires: %{name}-common >= %{version}
 %description -n font-viewer
 This package contains the font-viewer component of font-manager.
 
+%if %{with nautilus}
 %package -n nautilus-%{name}
 Summary: Nautilus extension for Font Manager
 Requires: font-viewer >= %{version}
 Requires: %{name}-common >= %{version}
 %description -n nautilus-%{name}
 This package provides integration with the Nautilus file manager.
+%endif
 
+%if %{with nemo}
 %package -n nemo-%{name}
 Summary: Nemo extension for Font Manager
 Requires: font-viewer >= %{version}
 Requires: %{name}-common >= %{version}
 %description -n nemo-%{name}
 This package provides integration with the Nemo file manager.
+%endif
 
+%if %{with thunar}
 %package -n thunar-%{name}
 Summary: Thunar extension for Font Manager
 Requires: font-viewer >= %{version}
 Requires: %{name}-common >= %{version}
 %description -n thunar-%{name}
 This package provides integration with the Thunar file manager.
+%endif
 
 %prep
 %autosetup -n %{name}-master
 
 %build
 %meson --buildtype=release \
-    -Dnautilus=true -Dnemo=true -Dthunar=true -Dreproducible=true \
-    -Dwebkit=%{?with_webkit:true}%{!?with_webkit:false}
+    -Dnautilus=%{?with_nautilus:true}%{!?with_nautilus:false} \
+    -Dnemo=%{?with_nemo:true}%{!?with_nemo:false} \
+    -Dthunar=%{?with_thunar:true}%{!?with_thunar:false} \
+    -Dwebkit=%{?with_webkit:true}%{!?with_webkit:false} \
+    -Dreproducible=true
 %meson_build
 
 %install
@@ -139,14 +157,20 @@ appstream-util validate-relax --nonet %{buildroot}/%{_datadir}/metainfo/*.appdat
 %{_datadir}/icons/hicolor/128x128/apps/%{DBusName2}.png
 %{_datadir}/icons/hicolor/256x256/apps/%{DBusName2}.png
 
+%if %{with nautilus}
 %files -n nautilus-%{name}
 %{_libdir}/nautilus/extensions*/nautilus-%{name}.so
+%endif
 
+%if %{with nemo}
 %files -n nemo-%{name}
 %{_libdir}/nemo/extensions-3.0/nemo-%{name}.so
+%endif
 
+%if %{with thunar}
 %files -n thunar-%{name}
 %{_libdir}/thunarx-3/thunar-%{name}.so
+%endif
 
 %changelog
 * Sat Feb 4 2023 JerryCasiano <JerryCasiano@gmail.com> 0.8.8-9
