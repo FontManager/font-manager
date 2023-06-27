@@ -6,6 +6,8 @@
 %global DBusName2 org.gnome.FontViewer
 %global git_archive https://github.com/FontManager/font-manager/archive/master.tar.gz
 
+%bcond webkit 1
+
 Name:       font-manager
 Version:    %{MajorVersion}.%{MinorVersion}.%{PatchVersion}.%{build_timestamp}
 Release:    9
@@ -23,13 +25,15 @@ BuildRequires: gobject-introspection-devel
 BuildRequires: gtk3-devel >= 3.22
 BuildRequires: json-glib-devel
 BuildRequires: libappstream-glib
-BuildRequires: libsoup-devel
 BuildRequires: libxml2-devel
 BuildRequires: pango-devel
 BuildRequires: sqlite-devel
 BuildRequires: vala >= 0.42
-BuildRequires: webkit2gtk3-devel
 BuildRequires: yelp-tools
+%if %{with webkit}
+BuildRequires: libsoup-devel
+BuildRequires: webkit2gtk3-devel
+%endif
 
 BuildRequires: nautilus-devel
 BuildRequires: nemo-devel
@@ -40,10 +44,12 @@ Requires: %{name}-common
 Requires: font-viewer
 Requires: freetype
 Requires: gtk3 >= 3.22
-Requires: libsoup
 Requires: sqlite
-Requires: webkit2gtk3
 Requires: yelp
+%if %{with webkit}
+Requires: libsoup
+Requires: webkit2gtk3
+%endif
 
 %description
 Font Manager is intended to provide a way for average users to easily
@@ -92,7 +98,9 @@ This package provides integration with the Thunar file manager.
 %autosetup -n %{name}-master
 
 %build
-%meson --buildtype=release -Dnautilus=true -Dnemo=true -Dthunar=true -Dreproducible=true
+%meson --buildtype=release \
+    -Dnautilus=true -Dnemo=true -Dthunar=true -Dreproducible=true \
+    -Dwebkit=%{?with_webkit:true}%{!?with_webkit:false}
 %meson_build
 
 %install
