@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2023-02-25 03:38+0000\n"
+"PO-Revision-Date: 2023-10-24 04:10+0000\n"
 "Last-Translator: Fúlvio Alves <fga.fulvio@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/pt_BR/>\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.16-dev\n"
+"X-Generator: Weblate 5.1.1-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
-msgstr "Font Manager"
+msgstr "Gerenciador de Fontes"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
@@ -843,16 +843,12 @@ msgid "Show in Folder"
 msgstr "Mostrar na pasta"
 
 #: src/font-manager/FontList.vala:583
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Enable selected items"
-msgstr "Limpar filtro selecionado"
+msgstr "Ativar itens selecionados"
 
 #: src/font-manager/FontList.vala:585
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Disable selected items"
-msgstr "Limpar filtro selecionado"
+msgstr "Desativar itens selecionados"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
@@ -1918,11 +1914,12 @@ msgstr "Latim estendido"
 #: src/font-manager/web/google/Language.vala:81
 #, c-format
 msgid "No sample for %s available"
-msgstr ""
+msgstr "Nenhuma amostra disponível para %s"
 
 #: src/font-manager/web/google/Language.vala:83
 msgid "Please file an issue requesting an update to available samples."
 msgstr ""
+"Registre um problema solicitando uma atualização das amostras disponíveis."
 
 #: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Family"
@@ -1969,7 +1966,7 @@ msgstr "ExtraNegrito"
 
 #: src/font-manager/web/google/Weight.vala:81
 msgid "Black"
-msgstr ""
+msgstr "Preto"
 
 #: src/font-viewer/MainWindow.vala:24
 msgid "Preview font files before installing them."
@@ -2259,57 +2256,51 @@ msgstr "Ações personalizadas"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:25
 msgid "Display line size in Waterfall Preview"
-msgstr ""
+msgstr "Exibir o tamanho da linha na visualização em cascata"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:74
-#, fuzzy
-#| msgid "Maximum Waterfall Preview Point Size"
 msgid "Waterfall Preview Size Settings"
-msgstr "Tamanho máximo do ponto de visualização em cascata"
+msgstr "Configurações de tamanho da visualização em cascata"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:93
 msgid "Up to 48 points (Linear Scaling)"
-msgstr ""
+msgstr "Até 48 pontos (escala linear)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:94
 msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "Até 72 pontos (proporção comum 1.1)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:95
 msgid "Up to 96 points (Linear Scaling)"
-msgstr ""
+msgstr "Até 96 pontos (escala linear)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:96
 msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "Até 96 pontos (proporção comum 1.1)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:97
 msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr ""
+msgstr "Até 120 pontos (proporção comum 1.2)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:98
 msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr ""
+msgstr "Até 144 pontos (proporção comum 1.3)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:99
 msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr ""
+msgstr "Até 192 pontos (proporção comum 1.4)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:100
-#, fuzzy
-#| msgid "Custom Actions"
 msgid "Custom Size Settings"
-msgstr "Ações personalizadas"
+msgstr "Configurações de tamanho personalizadas"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:142
-#, fuzzy
-#| msgid "Maximum Waterfall Preview Point Size"
 msgid "Minimum Waterfall Preview Point Size"
-msgstr "Tamanho máximo do ponto de visualização em cascata"
+msgstr "Tamanho mínimo do ponto de visualização em cascata"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:155
 msgid "8.0"
-msgstr ""
+msgstr "8.0"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:174
 msgid "Maximum Waterfall Preview Point Size"
@@ -2321,17 +2312,15 @@ msgstr "Valores mais altos podem afetar negativamente o desempenho"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:188
 msgid "48.0"
-msgstr ""
+msgstr "48.0"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:207
-#, fuzzy
-#| msgid "Maximum Waterfall Preview Point Size"
 msgid "Waterfall Preview Point Size Common Ratio"
-msgstr "Tamanho máximo do ponto de visualização em cascata"
+msgstr "Proporção comum do tamanho do ponto de visualização em cascata"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:220
 msgid "1.0"
-msgstr ""
+msgstr "1.0"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
