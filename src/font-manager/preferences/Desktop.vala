@@ -133,9 +133,9 @@ namespace FontManager {
         static bool from_enum_setting (Value v, Variant r, string k) {
             string s = r.get_string();
             string? [] settings = get_enum_values(k);
-            for (int i = 0; i < settings.length; i++) {
+            for (uint i = 0; i < settings.length; i++) {
                 if (s == settings[i]) {
-                    v.set_string(i.to_string());
+                    v.set_uint(i);
                     break;
                 }
             }
@@ -144,8 +144,18 @@ namespace FontManager {
 
         static Variant to_enum_setting (Value v, VariantType t, string k) {
             string? [] settings = get_enum_values(k);
-            string s = settings[int.parse(v.get_string())];
+            string s = settings[(uint) v];
             return new Variant.string(s);
+        }
+
+        static bool from_font_setting (Value v, Variant r, string k) {
+            v.set_boxed(Pango.FontDescription.from_string(r.get_string()));
+            return true;
+        }
+
+        static Variant to_font_setting (Value v, VariantType t, string k) {
+            var font_desc = (Pango.FontDescription) v.get_boxed();
+            return new Variant.string(font_desc.to_string());
         }
 
         void generate_options_list () {
@@ -176,9 +186,14 @@ namespace FontManager {
                     continue;
                 Gtk.Widget? widget = null;
                 if (setting.type == "string") {
-                    var control = new Gtk.FontButton();
+                    var dialog = new Gtk.FontDialog();
+                    var control = new Gtk.FontDialogButton(dialog);
                     widget = new PreferenceRow(dgettext(null, setting.name), null, null, control);
-                    interface_settings.bind(setting.key, control, "font", SettingsBindFlags.DEFAULT);
+                    interface_settings.bind_with_mapping(setting.key, control, "font-desc",
+                                                          SettingsBindFlags.DEFAULT,
+                                                          from_font_setting,
+                                                          to_font_setting,
+                                                          setting.key, null);
                 } else if (setting.type == "double") {
                     var control = new Gtk.SpinButton.with_range(0.5, 3.0, 0.1);
                     widget = new PreferenceRow(dgettext(null, setting.name), null, null, control);
@@ -186,23 +201,22 @@ namespace FontManager {
                 } else if (setting.type == "int") {
                     Object? target = null;
                     if (!(setting.key.contains("rgba-order"))) {
-                        var combo = new Gtk.ComboBoxText();
-                        target = combo;
                         string? [] options = null;
                         if (setting.key.contains("antialiasing"))
                             options = { _("None"), _("Grayscale"), _("RGBA") };
                         else if (setting.key.contains("hinting"))
                             options = { _("None"), _("Slight"), _("Medium"), _("Full") };
-                        for (int i = 0; i < options.length; i++)
-                            combo.append(i.to_string(), options[i]);
+                        var option_list = new Gtk.StringList(options);
+                        var combo = new Gtk.DropDown(option_list, null);
+                        target = combo;
                         widget = new PreferenceRow(dgettext(null, setting.name), null, null, combo);
                         if (setting.key.contains("antialiasing")) {
                             var child = new PreferenceRow(_("Subpixel Geometry"), null, null, spg);
                             var parent = widget as PreferenceRow;
                             parent.append_child(child);
-                            parent.set_reveal_child(combo.active_id == "2");
-                            combo.notify["active-id"].connect(() => {
-                                parent.set_reveal_child(combo.active_id == "2");
+                            parent.set_reveal_child(combo.selected == 2);
+                            combo.notify["selected"].connect(() => {
+                                parent.set_reveal_child(combo.selected == 2);
                             });
                         }
                     } else {
@@ -210,7 +224,7 @@ namespace FontManager {
                         var pref_row = spg.get_ancestor(typeof(PreferenceRow));
                         pref_row.set_tooltip_text(dgettext(null, setting.description));
                     }
-                    _settings.bind_with_mapping(setting.key, target, "active-id",
+                    _settings.bind_with_mapping(setting.key, target, "selected",
                                                 SettingsBindFlags.DEFAULT,
                                                 from_enum_setting,
                                                 to_enum_setting,

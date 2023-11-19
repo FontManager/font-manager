@@ -25,6 +25,8 @@
 #include <gtk/gtk.h>
 #include <json-glib/json-glib.h>
 
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 #define TEST_MODULE_PATH "@TEST_MODULE_PATH@"
 #define TEST_ENTRIES "@TEST_ENTRIES@"
 
@@ -43,3 +45,6 @@ TestDialog * test_dialog_new (TestApplicationWindow *parent, const gchar *title,
 void test_dialog_append (TestDialog *self, GtkWidget *widget);
 void test_dialog_append_control (TestDialog *self, GtkWidget *widget);
 void test_dialog_run (TestDialog *self);
+
+G_GNUC_END_IGNORE_DEPRECATIONS
+

@@ -13,8 +13,10 @@
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-pinned-comparisons-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preview-entry.ui</file>
-        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preferences.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preview-colors.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-preference-list.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-progress-dialog.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-sidebar.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-substitute.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-substitute-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-user-action-row.ui</file>

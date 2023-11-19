@@ -66,6 +66,7 @@ namespace FontManager {
             }
 
             protected override void activate () {
+                register_session = true;
                 set_application_style();
                 if (main_window == null) {
                     main_window = new MainWindow();

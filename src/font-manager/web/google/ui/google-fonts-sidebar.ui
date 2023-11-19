@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.8"/>
+  <requires lib="gtk" version="4.10"/>
   <template class="FontManagerGoogleFontsSidebar" parent="GtkBox">
     <child>
       <object class="GtkScrolledWindow">
@@ -24,26 +24,30 @@
                         <property name="margin-start">6</property>
                         <property name="valign">center</property>
                         <child>
-                          <object class="GtkComboBoxText" id="sort_order">
+                          <object class="GtkDropDown" id="sort_order">
                             <property name="margin-bottom">12</property>
                             <property name="margin-end">24</property>
                             <property name="margin-start">24</property>
                             <property name="margin-top">12</property>
                             <property name="halign">fill</property>
                             <property name="valign">center</property>
-                            <signal name="changed" handler="on_sort_order_changed"/>
-                            <items>
-                              <item id="alpha">Name</item>
-                              <item id="date">Newest</item>
-                              <item id="popularity">Most Popular</item>
-                              <item id="trending">Trending</item>
-                            </items>
+                            <property name="selected">0</property>
+                            <property name = "model">
+                                <object class="GtkStringList">
+                                    <items>
+                                      <item translatable="1">Name</item>
+                                      <item translatable="1">Newest</item>
+                                      <item translatable="1">Most Popular</item>
+                                      <item translatable="1">Trending</item>
+                                    </items>
+                                </object>
+                            </property>
                           </object>
                         </child>
                         <child type="label">
                           <object class="GtkLabel">
                             <property name="halign">center</property>
-                            <property name="label" translatable="yes">Sort Order</property>
+                            <property name="label" translatable="1">Sort Order</property>
                             <property name="margin-bottom">6</property>
                             <property name="margin-end">12</property>
                             <property name="margin-start">12</property>
@@ -109,7 +113,7 @@
                                 <property name="hexpand">1</property>
                                 <property name="name">serif</property>
                                 <property name="vexpand">1</property>
-                                <property name="label" translatable="yes">Serif</property>
+                                <property name="label" translatable="1">Serif</property>
                                 <signal name="toggled" handler="on_category_toggled" swapped="no"/>
                                 <layout>
                                   <property name="column">0</property>
@@ -126,7 +130,7 @@
                                 <property name="hexpand">1</property>
                                 <property name="name">sans-serif</property>
                                 <property name="vexpand">1</property>
-                                <property name="label" translatable="yes">Sans Serif</property>
+                                <property name="label" translatable="1">Sans Serif</property>
                                 <signal name="toggled" handler="on_category_toggled" swapped="no"/>
                                 <layout>
                                   <property name="column">0</property>
@@ -143,7 +147,7 @@
                                 <property name="hexpand">1</property>
                                 <property name="name">display</property>
                                 <property name="vexpand">1</property>
-                                <property name="label" translatable="yes">Display</property>
+                                <property name="label" translatable="1">Display</property>
                                 <signal name="toggled" handler="on_category_toggled" swapped="no"/>
                                 <layout>
                                   <property name="column">0</property>
@@ -160,7 +164,7 @@
                                 <property name="hexpand">1</property>
                                 <property name="name">handwriting</property>
                                 <property name="vexpand">1</property>
-                                <property name="label" translatable="yes">Handwriting</property>
+                                <property name="label" translatable="1">Handwriting</property>
                                 <signal name="toggled" handler="on_category_toggled" swapped="no"/>
                                 <layout>
                                   <property name="column">0</property>
@@ -177,7 +181,7 @@
                                 <property name="hexpand">1</property>
                                 <property name="name">monospace</property>
                                 <property name="vexpand">1</property>
-                                <property name="label" translatable="yes">Monospace</property>
+                                <property name="label" translatable="1">Monospace</property>
                                 <signal name="toggled" handler="on_category_toggled" swapped="no"/>
                                 <layout>
                                   <property name="column">0</property>
@@ -191,7 +195,7 @@
                         <child type="label">
                           <object class="GtkLabel">
                             <property name="halign">center</property>
-                            <property name="label" translatable="yes">Category</property>
+                            <property name="label" translatable="1">Category</property>
                             <property name="margin-bottom">6</property>
                             <property name="margin-end">12</property>
                             <property name="margin-start">12</property>
@@ -255,7 +259,7 @@
                               <object class="GtkToggleButton" id="radiobutton1">
                                 <property name="active">1</property>
                                 <property name="focus-on-click">0</property>
-                                <property name="label" translatable="yes">Any</property>
+                                <property name="label" translatable="1">Any</property>
                                 <property name="name">0</property>
                                 <property name="opacity">0.74901960784313726</property>
                                 <signal name="toggled" handler="on_variations_toggled" swapped="no"/>
@@ -265,7 +269,7 @@
                               <object class="GtkToggleButton">
                                 <property name="focus-on-click">0</property>
                                 <property name="group">radiobutton1</property>
-                                <property name="label">4+</property>
+                                <property name="label" translatable="1">4+</property>
                                 <property name="name">4</property>
                                 <property name="opacity">0.74901960784313726</property>
                                 <signal name="toggled" handler="on_variations_toggled" swapped="no"/>
@@ -275,7 +279,7 @@
                               <object class="GtkToggleButton">
                                 <property name="focus-on-click">0</property>
                                 <property name="group">radiobutton1</property>
-                                <property name="label">8+</property>
+                                <property name="label" translatable="1">8+</property>
                                 <property name="name">8</property>
                                 <property name="opacity">0.74901960784313726</property>
                                 <signal name="toggled" handler="on_variations_toggled" swapped="no"/>
@@ -285,7 +289,7 @@
                               <object class="GtkToggleButton">
                                 <property name="focus-on-click">0</property>
                                 <property name="group">radiobutton1</property>
-                                <property name="label">12+</property>
+                                <property name="label" translatable="1">12+</property>
                                 <property name="name">12</property>
                                 <property name="opacity">0.74901960784313726</property>
                                 <signal name="toggled" handler="on_variations_toggled" swapped="no"/>
@@ -298,7 +302,7 @@
                         </child>
                         <child type="label">
                           <object class="GtkLabel">
-                            <property name="label" translatable="yes">Variations</property>
+                            <property name="label" translatable="1">Variations</property>
                             <property name="margin-bottom">6</property>
                             <property name="margin-end">12</property>
                             <property name="margin-start">12</property>
@@ -355,7 +359,7 @@
                         </child>
                         <child type="label">
                           <object class="GtkLabel">
-                            <property name="label" translatable="yes">Supported Orthographies</property>
+                            <property name="label" translatable="1">Supported Orthographies</property>
                             <property name="margin-bottom">6</property>
                             <property name="margin-end">12</property>
                             <property name="margin-start">12</property>

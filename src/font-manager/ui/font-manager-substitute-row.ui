@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.8"/>
+  <requires lib="gtk" version="4.10"/>
   <template class="FontManagerSubstituteRow" parent="GtkBox">
     <property name="hexpand">True</property>
     <property name="margin-bottom">8</property>
@@ -19,7 +19,7 @@
             <property name="focusable">1</property>
             <property name="halign">start</property>
             <property name="hexpand">1</property>
-            <property name="placeholder-text" translatable="yes">Enter target family</property>
+            <property name="placeholder-text" translatable="1">Enter target family</property>
             <property name="valign">center</property>
             <signal name="changed" handler="on_entry_changed"/>
           </object>
@@ -29,7 +29,7 @@
             <property name="focusable">1</property>
             <property name="halign">end</property>
             <property name="receives-default">1</property>
-            <property name="tooltip-text" translatable="yes">Add substitute</property>
+            <property name="tooltip-text" translatable="1">Add substitute</property>
             <property name="valign">center</property>
             <signal name="clicked" handler="on_add_button_clicked"/>
             <child>

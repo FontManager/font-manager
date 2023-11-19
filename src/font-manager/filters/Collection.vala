@@ -133,7 +133,7 @@ namespace FontManager {
             bool visible = false;
             string family;
             item.get("family", out family, null);
-            visible = (family in families);
+            visible = (family in get_full_contents());
             return visible;
         }
 

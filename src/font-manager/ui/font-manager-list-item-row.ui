@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.8" />
+  <requires lib="gtk" version="4.10" />
   <template class="FontManagerListItemRow" parent="GtkBox">
     <property name="orientation">vertical</property>
     <property name="hexpand">True</property>
@@ -35,6 +35,7 @@
                 <property name="visible">False</property>
               </object>
             </child>
+            <!-- XXX : Causes issues with drag and drop... -->
             <!-- <child> -->
             <!--   <object class="GtkEditableLabel" id="edit_label"> -->
             <!--     <property name="hexpand">True</property> -->
@@ -90,5 +91,4 @@
     </child>
   </template>
 </interface>
-
 

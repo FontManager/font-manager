@@ -92,7 +92,16 @@ namespace FontManager.GoogleFonts {
         }
 
         bool network_available () {
-            return network_monitor.connectivity != NetworkConnectivity.LOCAL;
+            bool available = (network_monitor.connectivity == NetworkConnectivity.FULL);
+            if (!available && network_monitor.connectivity != NetworkConnectivity.LOCAL) {
+                try {
+                    NetworkAddress google = new NetworkAddress("www.google.com", 80);
+                    available = network_monitor.can_reach(google);
+                } catch (Error e) {
+                    debug("NetworkConnectivity check failed : %s", e.message);
+                }
+            }
+            return available;
         }
 
         void set_placeholder_message (string? title,

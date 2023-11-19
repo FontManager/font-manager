@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.8"/>
+  <requires lib="gtk" version="4.10"/>
   <template class="FontManagerFontListView" parent="GtkBox">
     <style>
       <class name="view"/>
@@ -21,7 +21,7 @@
                     <property name="halign">center</property>
                     <property name="margin-end">2</property>
                     <property name="margin-start">2</property>
-                    <property name="tooltip-text">Expand all</property>
+                    <property name="tooltip-text" translatable="1">Expand all</property>
                     <property name="valign">center</property>
                     <signal name="activate" handler="on_expander_activated" after="yes"/>
                   </object>
@@ -32,6 +32,8 @@
                     <property name="icon-name">list-remove-symbolic</property>
                     <property name="sensitive">false</property>
                     <property name="valign">center</property>
+                    <property name="margin-start">4</property>
+                    <property name="tooltip-text" translatable="1">Remove selected item</property>
                     <signal name="clicked" handler="on_remove_clicked" swapped="no"/>
                     <style>
                       <class name="flat"/>

@@ -151,8 +151,6 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-compare-view.ui")]
     public class ComparePane : Gtk.Box {
 
-        public signal void color_set ();
-
         public double preview_size { get; set; default = LARGE_PREVIEW_SIZE; }
         public Gdk.RGBA foreground_color { get; set; }
         public Gdk.RGBA background_color { get; set; }
@@ -170,10 +168,9 @@ namespace FontManager {
             }
         }
 
-        [GtkChild] public unowned PreviewEntry entry { get; }
         [GtkChild] public unowned FontScale fontscale { get; }
-        [GtkChild] public unowned Gtk.ColorButton bg_color_button { get; }
-        [GtkChild] public unowned Gtk.ColorButton fg_color_button { get; }
+        [GtkChild] public unowned PreviewColors preview_colors { get; }
+        [GtkChild] public unowned PreviewEntry entry { get; }
 
         [GtkChild] unowned Gtk.Button add_button;
         [GtkChild] unowned Gtk.Button remove_button;
@@ -192,16 +189,12 @@ namespace FontManager {
             pinned_button.set_popover(pinned);
             _preview_text = default_preview_text = get_localized_pangram();
             entry.set_placeholder_text(preview_text);
-            add_button.get_style_context().add_class(STYLE_CLASS_SUGGESTED_ACTION);
+            add_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
-            bind_property("foreground_color", fg_color_button, "rgba", flags);
-            bind_property("background_color", bg_color_button, "rgba", flags);
+            preview_colors.bind_property("foreground-color", this, "foreground-color", flags);
+            preview_colors.bind_property("background-color", this, "background-color", flags);
             bind_property("preview-size", fontscale, "value", flags);
             set_control_sensitivity(pinned_button, pinned.model.get_n_items() > 0);
-            bg_color_button.color_set.connect(() => { color_set(); });
-            fg_color_button.color_set.connect(() => { color_set(); });
-            flatten_color_button(bg_color_button);
-            flatten_color_button(fg_color_button);
             model.items_changed.connect(on_items_changed);
             pinned.closed.connect(() => {
                 bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
@@ -213,9 +206,9 @@ namespace FontManager {
 
         public void on_items_changed (uint position, uint added, uint removed) {
             if (model.get_n_items() > 0)
-                add_button.get_style_context().remove_class(STYLE_CLASS_SUGGESTED_ACTION);
+                add_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
             else
-                add_button.get_style_context().add_class(STYLE_CLASS_SUGGESTED_ACTION);
+                add_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
             bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
             set_control_sensitivity(pinned_button, have_items);
             return;
@@ -232,12 +225,12 @@ namespace FontManager {
                 if (foreground_set) {
                     if (foreground.alpha == 0.0f)
                         foreground.alpha = 1.0f;
-                    ((Gtk.ColorChooser) fg_color_button).set_rgba(foreground);
+                    preview_colors.foreground_color = foreground;
                 }
                 if (background_set) {
                     if (background.alpha == 0.0f)
                         background.alpha = 1.0f;
-                    ((Gtk.ColorChooser) bg_color_button).set_rgba(background);
+                    preview_colors.background_color = background;
                 }
                 return GLib.Source.REMOVE;
             });

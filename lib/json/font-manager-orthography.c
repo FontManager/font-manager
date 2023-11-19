@@ -74,7 +74,7 @@ font_manager_orthography_init (G_GNUC_UNUSED FontManagerOrthography *self)
 
 /**
  * font_manager_orthography_get_filter:
- * @self: #FontManagerOrthography
+ * @self: (nullable): #FontManagerOrthography
  *
  * Returns: (element-type uint) (transfer container) (nullable): #GList containing codepoints.
  * Free the returned #GList using #g_list_free().
@@ -82,7 +82,8 @@ font_manager_orthography_init (G_GNUC_UNUSED FontManagerOrthography *self)
 GList *
 font_manager_orthography_get_filter (FontManagerOrthography *self)
 {
-    g_return_val_if_fail(self != NULL, NULL);
+    if (self == NULL)
+        return NULL;
     GList *charlist = NULL;
     g_autoptr(JsonObject) source = NULL;
     g_object_get(self, FONT_MANAGER_JSON_PROXY_SOURCE, &source, NULL);

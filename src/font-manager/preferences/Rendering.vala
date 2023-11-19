@@ -58,7 +58,7 @@ namespace FontManager {
         public FontProperties properties { get; private set; }
 
         Gtk.CheckButton hinter;
-        Gtk.ComboBoxText hintstyle;
+        Gtk.DropDown hintstyle;
         Gtk.Switch antialias;
         Gtk.Switch hinting;
         Gtk.Switch bitmaps;
@@ -74,9 +74,11 @@ namespace FontManager {
             hinter = new Gtk.CheckButton();
             var child = new PreferenceRow(_("Enable Autohinter"), null, null, hinter);
             widget.append_child(child);
-            hintstyle = new Gtk.ComboBoxText();
+            var hintstyles = new GLib.Array <string> ();
             for (int i = 0; i <= HintStyle.FULL; i++)
-                hintstyle.append(i.to_string(), ((HintStyle) i).to_string());
+                hintstyles.append_val(((HintStyle) i).to_string());
+            var hintstyle_list = new Gtk.StringList(hintstyles.data);
+            hintstyle = new Gtk.DropDown(hintstyle_list, null);
             child = new PreferenceRow(_("Hinting Style"), null, null, hintstyle);
             widget.append_child(child);
             bitmaps = add_preference_switch(_("Use Embedded Bitmaps"));
@@ -94,9 +96,7 @@ namespace FontManager {
             properties.bind_property("hinting", hinting, "active", flags);
             properties.bind_property("autohint", hinter, "active", flags);
             properties.bind_property("embeddedbitmap", bitmaps, "active", flags);
-            properties.bind_property("hintstyle", hintstyle, "active-id", flags,
-                                     (b, s, ref t) => { t = ((int) s).to_string(); return true; },
-                                     (b, s, ref t) => { t = int.parse((string) s); return true; });
+            properties.bind_property("hintstyle", hintstyle, "selected", flags);
         }
 
         void on_reset () {

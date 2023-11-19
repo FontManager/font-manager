@@ -154,12 +154,6 @@ namespace FontManager {
         return;
     }
 
-    public void flatten_color_button (Gtk.ColorButton button) {
-        button.get_first_child().remove_css_class(STYLE_CLASS_COLOR);
-        button.get_first_child().add_css_class(STYLE_CLASS_FLAT);
-        return;
-    }
-
     // Adds user configured font sources (directories) and rejected fonts to our
     // FcConfig so that we can render fonts which are not actually "installed".
     public bool load_user_font_resources (StringSet? files, UserSourceModel? sources) {
@@ -232,9 +226,9 @@ namespace FontManager {
         assert(destination.query_file_type(FileQueryInfoFlags.NONE) == FileType.DIRECTORY);
         uint total = filelist.size;
         uint processed = 0;
-        Gtk.MessageDialog? progress = null;
+        ProgressDialog? progress = null;
         if (show_progress)
-            progress = ProgressDialog.create(null, _("Copying files…"));
+            progress = new ProgressDialog(_("Copying files…"));
         foreach (string filepath in filelist) {
             File original = File.new_for_path(filepath);
             string filename = original.get_basename();
@@ -251,12 +245,12 @@ namespace FontManager {
             Idle.add(copy_files.callback);
             if (progress != null) {
                 var progress_data = new ProgressData(filename, ++processed, total);
-                ProgressDialog.update(progress, progress_data);
+                progress.update(progress_data);
             }
             yield;
         }
         if (progress != null)
-            progress.destroy();
+            progress = null;
         return;
     }
 

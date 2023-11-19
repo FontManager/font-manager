@@ -20,6 +20,7 @@
 
 namespace FontManager {
 
+    // FIXME !! EntryCompletion is deprecated with no replacement.
     internal Gtk.ListStore? family_completion_model = null;
 
     internal Gtk.ListStore get_family_completion_model () {
@@ -54,13 +55,24 @@ namespace FontManager {
         public string priority { get; set; default = "prefer"; }
 
         [GtkChild] unowned Gtk.Button close;
-        [GtkChild] unowned Gtk.ComboBoxText type;
+        [GtkChild] unowned Gtk.DropDown type;
         [GtkChild] unowned Gtk.Entry target;
+
+        string priorities [3] = { "prefer", "accept", "default" };
 
         public override void constructed () {
             target.set_completion(get_family_completion());
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
-            type.bind_property("active-id", this, "priority", flags);
+            type.bind_property("selected", this, "priority", flags,
+                               (b, s, ref t) => { t = priorities[(uint) s]; return true; },
+                               (b, s, ref t) => {
+                                    for (uint i = 0; i < priorities.length; i++)
+                                        if (priorities[i] == (string)s) {
+                                            t = i;
+                                            return true;
+                                        }
+                                    return false;
+                                });
             target.bind_property("text", this, "family", flags);
             close.clicked.connect(() => {
                 Gtk.ListBox list = (Gtk.ListBox) get_ancestor(typeof(Gtk.ListBox));

@@ -96,9 +96,21 @@ namespace FontManager {
             handler_id = category.changed.connect(on_item_set);
             int index = category.index;
             bool root_node = category.depth < 1;
-            bool root_count = (index < CategoryIndex.PANOSE || index > CategoryIndex.FILETYPE);
+            bool root_count = root_node &&
+                              (index < CategoryIndex.PANOSE ||
+                               index > CategoryIndex.FILETYPE &&
+                               index < CategoryIndex.LANGUAGE);
             item_label.set_text(category.name);
-            item_icon.visible = item_count.visible = !root_node || root_count;
+            item_icon.visible = root_count || root_node && index == CategoryIndex.LANGUAGE;
+            item_count.visible = !root_node || root_count;
+            if (index == CategoryIndex.LANGUAGE)
+                item_label.ellipsize = Pango.EllipsizeMode.NONE;
+            if (root_node &&
+                (index >= CategoryIndex.PANOSE &&
+                 index <= CategoryIndex.FILETYPE))
+                item_label.margin_start = 3;
+            else if (!root_node)
+                item_label.margin_start = 0;
             item_icon.set_from_icon_name(category.icon);
             item_count.set_label(category.size.to_string());
             set_tooltip_text(category.comment != null ? category.comment : category.name);
@@ -230,7 +242,7 @@ namespace FontManager {
                 if (type == null)
                     if (keyword == "slant" || (keyword == "width" && ((Width) val).defined()))
                         type = _("Normal");
-                    /* Ignore random widths and weights */
+                    // Ignore random widths and weights
                     else if (keyword == "width" || (keyword == "weight" && !((Weight) val).defined()))
                         continue;
                     else

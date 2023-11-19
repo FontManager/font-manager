@@ -121,6 +121,7 @@ namespace FontManager {
 
         public Object? selected_item { get; set; default = null; }
         public OrthographyListModel? model { get; set; default = null; }
+        public Orthography? selected_orthography { get; set; default = null; }
 
         bool _visible_ = false;
         bool update_pending = true;
@@ -155,10 +156,10 @@ namespace FontManager {
         [GtkCallback]
         void on_list_row_selected (Gtk.ListBox box, Gtk.ListBoxRow? row) {
             clear_revealer.set_reveal_child(row != null);
-            Orthography? selected_orth = null;
+            selected_orthography = null;
             if (row != null)
-                selected_orth = (Orthography) model.get_item(row.get_index());
-            orthography_selected(selected_orth);
+                selected_orthography = (Orthography) model.get_item(row.get_index());
+            orthography_selected(selected_orthography);
             return;
         }
 

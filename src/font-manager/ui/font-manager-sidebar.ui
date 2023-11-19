@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.10"/>
+  <template class="FontManagerSidebar" parent="GtkBox">
+    <property name="css-classes">view</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkScrolledWindow">
+        <property name="child">
+          <object class="GtkViewport">
+            <property name="child">
+              <object class="GtkListBox">
+                <property name="activate-on-single-click">0</property>
+                <property name="hexpand">1</property>
+                <property name="selection-mode">none</property>
+                <property name="vexpand">1</property>
+                <child>
+                  <object class="GtkListBoxRow">
+                    <property name="activatable">0</property>
+                    <property name="child">
+                      <object class="GtkExpander" id="category_expander">
+                        <property name="expanded">1</property>
+                        <property name="focusable">1</property>
+                        <property name="margin-bottom">2</property>
+                        <property name="margin-end">6</property>
+                        <property name="margin-start">6</property>
+                        <property name="valign">center</property>
+                        <child type="label">
+                          <object class="GtkLabel">
+                            <property name="halign">center</property>
+                            <property name="label" translatable="1">Categories</property>
+                            <property name="margin-bottom">6</property>
+                            <property name="margin-end">12</property>
+                            <property name="margin-start">12</property>
+                            <property name="margin-top">8</property>
+                            <property name="opacity">0.74901960784313726</property>
+                            <attributes>
+                              <attribute name="weight" value="medium"/>
+                              <attribute name="scale" value="1.1000000000000001"/>
+                            </attributes>
+                          </object>
+                        </child>
+                        <child>
+                            <object class="FontManagerCategoryListView" id="categories"/>
+                        </child>
+                      </object>
+                    </property>
+                    <property name="height-request">80</property>
+                    <property name="margin-end">6</property>
+                    <property name="margin-start">6</property>
+                    <property name="selectable">0</property>
+                    <property name="valign">start</property>
+                    <property name="width-request">100</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListBoxRow">
+                    <property name="activatable">0</property>
+                    <property name="child">
+                      <object class="GtkSeparator">
+                        <property name="margin-bottom">6</property>
+                        <property name="margin-end">6</property>
+                        <property name="margin-start">6</property>
+                        <property name="opacity">0.74901960784313726</property>
+                      </object>
+                    </property>
+                    <property name="margin-end">6</property>
+                    <property name="margin-start">6</property>
+                    <property name="selectable">0</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListBoxRow">
+                    <property name="activatable">0</property>
+                    <property name="child">
+                      <object class="GtkExpander">
+                        <property name="expanded">1</property>
+                        <property name="focusable">1</property>
+                        <property name="margin-end">6</property>
+                        <property name="margin-start">6</property>
+                        <property name="valign">center</property>
+                        <child type="label">
+                          <object class="GtkLabel">
+                            <property name="halign">center</property>
+                            <property name="label" translatable="1">Smart Collections</property>
+                            <property name="margin-bottom">6</property>
+                            <property name="margin-end">12</property>
+                            <property name="margin-start">12</property>
+                            <property name="margin-top">6</property>
+                            <property name="opacity">0.74901960784313726</property>
+                            <attributes>
+                              <attribute name="weight" value="medium"/>
+                              <attribute name="scale" value="1.1000000000000001"/>
+                            </attributes>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                    <property name="height-request">80</property>
+                    <property name="margin-end">6</property>
+                    <property name="margin-start">6</property>
+                    <property name="selectable">0</property>
+                    <property name="visible">False</property>
+                    <property name="width-request">100</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListBoxRow">
+                    <property name="activatable">0</property>
+                    <property name="child">
+                      <object class="GtkSeparator">
+                        <property name="margin-bottom">6</property>
+                        <property name="margin-end">6</property>
+                        <property name="margin-start">6</property>
+                        <property name="margin-top">6</property>
+                        <property name="opacity">0.74901960784313726</property>
+                      </object>
+                    </property>
+                    <property name="margin-end">6</property>
+                    <property name="margin-start">6</property>
+                    <property name="selectable">0</property>
+                    <property name="visible">False</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkListBoxRow">
+                    <property name="activatable">0</property>
+                    <property name="child">
+                      <object class="GtkExpander" id="collection_expander">
+                        <property name="expanded">1</property>
+                        <property name="focusable">1</property>
+                        <property name="hexpand">1</property>
+                        <property name="margin-end">6</property>
+                        <property name="margin-start">6</property>
+                        <property name="valign">center</property>
+                        <property name="vexpand">1</property>
+                        <child type="label">
+                          <object class="GtkLabel">
+                            <property name="label" translatable="1">Collections</property>
+                            <property name="margin-bottom">6</property>
+                            <property name="margin-end">12</property>
+                            <property name="margin-start">12</property>
+                            <property name="margin-top">6</property>
+                            <property name="opacity">0.74901960784313726</property>
+                            <attributes>
+                              <attribute name="weight" value="medium"/>
+                              <attribute name="scale" value="1.1000000000000001"/>
+                            </attributes>
+                          </object>
+                        </child>
+                        <child>
+                            <object class="FontManagerCollectionListView" id="collections"/>
+                        </child>
+                      </object>
+                    </property>
+                    <property name="height-request">80</property>
+                    <property name="selectable">0</property>
+                    <property name="margin-end">6</property>
+                    <property name="margin-start">6</property>
+                    <property name="width-request">100</property>
+                  </object>
+                </child>
+              </object>
+            </property>
+            <property name="hexpand">True</property>
+            <property name="vexpand">True</property>
+            <style>
+              <class name="view"/>
+            </style>
+          </object>
+        </property>
+        <property name="focusable">1</property>
+        <property name="hexpand">True</property>
+        <property name="vexpand">True</property>
+        <property name="width-request">275</property>
+      </object>
+    </child>
+  </template>
+</interface>
+

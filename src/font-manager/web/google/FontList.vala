@@ -348,6 +348,12 @@ namespace FontManager.GoogleFonts {
             search.activate.connect(next_match);
             search.next_match.connect(next_match);
             search.previous_match.connect(previous_match);
+            model.items_changed.connect_after(() => {
+                Idle.add(() => {
+                    select_item(0);
+                    return GLib.Source.REMOVE;
+                });
+            });
         }
 
         // Add slight delay to avoid filtering while search is still changing
@@ -396,6 +402,7 @@ namespace FontManager.GoogleFonts {
             uint position = list_item.get_position();
             var list_row = treemodel.get_row(position);
             var tree_expander = (Gtk.TreeExpander) list_item.get_child();
+            tree_expander.margin_start = 2;
             tree_expander.set_list_row(list_row);
             var row = (FontListRow) tree_expander.get_child();
             Object? _item = list_row.get_item();

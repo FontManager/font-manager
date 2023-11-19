@@ -20,15 +20,32 @@
 
 namespace FontManager {
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-preferences.ui")]
-    public class Preferences : Gtk.Box {
+    public class PreferencePane : Paned {
 
-        [GtkChild] public unowned Gtk.Paned paned { get; }
+        Gtk.Stack stack;
+        Gtk.StackSidebar sidebar;
 
-        [GtkChild] unowned Gtk.Stack stack;
+        construct {
+            widget_set_name(this, "FontManagerPreferencePane");
+            list_area.set_size_request(-1, -1);
+            content_area.set_visible(false);
+            stack = new Gtk.Stack();
+            sidebar = new Gtk.StackSidebar();
+            sidebar.set_stack(stack);
+            set_list_widget(stack);
+            set_sidebar_widget(sidebar);
+            add_page(new UserInterfacePreferences(), "Interface", _("Interface"));
+            add_page(new DesktopPreferences(), "Desktop", _("Desktop"));
+            add_page(new UserActionList(), "UserActions", _("Actions"));
+            add_page(new UserSourceList(), "Sources", _("Sources"));
+            add_page(new SubstituteList(), "Substitutions", _("Substitutions"));
+            add_page(new DisplayPreferences(), "Display", _("Display"));
+            add_page(new RenderingPreferences(), "Rendering", _("Rendering"));
+        }
 
         public void add_page (Gtk.Widget widget, string name, string title) {
             Gtk.ScrolledWindow scroll = new Gtk.ScrolledWindow();
+            scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC);
             scroll.set_child(widget);
             stack.add_titled(scroll, name, title);
             return;
@@ -40,17 +57,6 @@ namespace FontManager {
             if (child is Gtk.ScrolledWindow)
                 child = child.get_child();
             return ((child is Gtk.Viewport) ? child.get_child() : child);
-        }
-
-        public Preferences () {
-            add_page(new UserInterfacePreferences(), "Interface", _("Interface"));
-            add_page(new DesktopPreferences(), "Desktop", _("Desktop"));
-            add_page(new UserActionList(), "UserActions", _("Actions"));
-            add_page(new UserSourceList(), "Sources", _("Sources"));
-            add_page(new SubstituteList(), "Substitutions", _("Substitutions"));
-            add_page(new DisplayPreferences(), "Display", _("Display"));
-            add_page(new RenderingPreferences(), "Rendering", _("Rendering"));
-            return;
         }
 
     }
@@ -147,7 +153,7 @@ Note that not all environments/applications will honor these settings."""
 
     public class SubpixelGeometryIcon : Gtk.Box {
 
-        public int preferred_size { get; set; default = 30; }
+        public int preferred_size { get; set; default = 28; }
 
         public SubpixelGeometryIcon (SubpixelOrder rgba) {
 
@@ -205,33 +211,21 @@ Note that not all environments/applications will honor these settings."""
 
     public class SubpixelGeometry : Gtk.Box {
 
-        public string active_id {
-            set {
-                rgba = int.parse(value);
-            }
-            get {
-                return _rgba_;
-            }
-        }
-
-        public int rgba {
+        public uint selected {
             get {
                 return _rgba;
             }
             set {
-                _rgba = value.clamp(0, ((int) options.length));
+                _rgba = value.clamp(0, options.length);
                 options[_rgba].active = true;
-                _rgba_ = _rgba.to_string();
-                notify_property("rgba");
-                notify_property("active-id");
+                notify_property("selected");
             }
         }
 
-        public int preferred_size { get; set; default = 30; }
+        public int preferred_size { get; set; default = 28; }
         public GenericArray <Gtk.CheckButton> options { get; private set; }
 
-        int _rgba;
-        string? _rgba_ = null;
+        uint _rgba;
 
         public SubpixelGeometry () {
             hexpand = true;
@@ -253,7 +247,7 @@ Note that not all environments/applications will honor these settings."""
                     if (button.active) {
                         uint index;
                         options.find(button, out index);
-                        rgba = (int) index;
+                        selected = (int) index;
                     }
                 });
                 append(button);

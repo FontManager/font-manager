@@ -1,3 +1,7 @@
+#include <glib.h>
+
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 #include "test-application.h"
 #include "font-manager-license-page.h"
 
@@ -78,3 +82,6 @@ get_widget (TestApplicationWindow *parent)
     test_dialog_append_control(dialog, control);
     return dialog;
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS
+

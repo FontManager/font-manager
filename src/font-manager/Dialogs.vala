@@ -34,37 +34,30 @@ namespace FontManager {
 
     namespace FileSelector {
 
-        public Gtk.FileChooserNative get_executable (Gtk.Window? parent) {
-            var dialog = new Gtk.FileChooserNative(_("Select executable"),
-                                                    parent,
-                                                    Gtk.FileChooserAction.OPEN,
-                                                    _("_Select"),
-                                                    _("_Cancel")) {
-                                                        modal = true,
-                                                        select_multiple = false
-                                                    };
-            try {
-                dialog.set_current_folder(File.new_for_path("/usr/bin"));
-            } catch (Error e) {
-                critical(e.message);
-            }
+        public Gtk.FileDialog get_executable () {
+            var dialog = new Gtk.FileDialog() {
+                modal = true,
+                accept_label = _("_Select"),
+                title = _("Select executable"),
+            };
+            // FIXME!! This should probably be set to something like @bindir@
+            // But it doesn't matter because it doesn't work anyways...
+            // https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/-/issues/84
+            File bindir = File.new_for_path("/usr/bin/");
+            dialog.set_initial_folder(bindir);
             return dialog;
         }
 
-        public Gtk.FileChooserNative get_target_directory (Gtk.Window? parent) {
-            var dialog = new Gtk.FileChooserNative(_("Select Destination"),
-                                                    parent,
-                                                    Gtk.FileChooserAction.SELECT_FOLDER,
-                                                    _("_Select"),
-                                                    _("_Cancel")) {
-                                                        modal = true,
-                                                        select_multiple = false,
-                                                        create_folders = true
-                                                    };
+        public Gtk.FileDialog get_target_directory () {
+            var dialog = new Gtk.FileDialog() {
+                modal = true,
+                accept_label = _("_Select"),
+                title = _("Select destination"),
+            };
             return dialog;
         }
 
-        public Gtk.FileChooserNative get_selections (Gtk.Window? parent) {
+        public Gtk.FileDialog get_selections () {
             var filter = new Gtk.FileFilter();
             var file_roller = new ArchiveManager();
             if (file_roller.available)
@@ -72,58 +65,40 @@ namespace FontManager {
                     filter.add_mime_type(mimetype);
             foreach (var mimetype in FONT_MIMETYPES)
                 filter.add_mime_type(mimetype);
-            var dialog = new Gtk.FileChooserNative(_("Select files to install"),
-                                                    parent,
-                                                    Gtk.FileChooserAction.OPEN,
-                                                    _("_Open"),
-                                                    _("_Cancel")) {
-                                                        modal = true,
-                                                        filter = filter,
-                                                        select_multiple = true
-                                                    };
+            var dialog = new Gtk.FileDialog() {
+                modal = true,
+                title = _("Select files to install"),
+            };
+            dialog.set_default_filter(filter);
             return dialog;
         }
 
-        public Gtk.FileChooserNative get_selected_sources (Gtk.Window? parent) {
-            var dialog = new Gtk.FileChooserNative(_("Select source folders"),
-                                                    parent,
-                                                    Gtk.FileChooserAction.SELECT_FOLDER,
-                                                    _("_Open"),
-                                                    _("_Cancel")) {
-                                                        modal = true,
-                                                        select_multiple = true
-                                                    };
+        public Gtk.FileDialog get_selected_sources () {
+            var dialog = new Gtk.FileDialog() {
+                modal = true,
+                title = _("Select source folders"),
+            };
             return dialog;
         }
 
     }
 
-    namespace ProgressDialog {
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-progress-dialog.ui")]
+    public class ProgressDialog : Gtk.Window {
 
-        public Gtk.MessageDialog create (Gtk.Window? parent, string? title) {
-            var dialog = new Gtk.MessageDialog(parent,
-                                               Gtk.DialogFlags.MODAL |
-                                               Gtk.DialogFlags.DESTROY_WITH_PARENT |
-                                               Gtk.DialogFlags.USE_HEADER_BAR,
-                                               Gtk.MessageType.INFO,
-                                               Gtk.ButtonsType.NONE,
-                                               "%s", title != null ? title : "");
-            var progress = new Gtk.ProgressBar();
-            widget_set_expand(progress, true);
-            progress.margin_bottom = 12;
-            var box = dialog.get_message_area() as Gtk.Box;
-            box.append(progress);
-            box.margin_top = 24;
-            dialog.set_default_size(475, 125);
-            dialog.decorated = false;
-            return dialog;
+        [GtkChild] public unowned Gtk.Label title_label { get; }
+        [GtkChild] public unowned Gtk.Label message_label { get; }
+        [GtkChild] public unowned Gtk.Overlay overlay { get; }
+        [GtkChild] public unowned Gtk.ProgressBar progress_bar { get; }
+
+        public ProgressDialog (string? title) {
+            widget_set_name(this, "FontManagerProgressDialog");
+            widget_set_expand(progress_bar, true);
+            title_label.set_label(title != null ? title : "");
         }
 
-        public void update (Gtk.MessageDialog dialog, ProgressData data) {
-            var child = dialog.get_message_area().get_last_child();
-            return_if_fail(child is Gtk.ProgressBar);
-            var progress_bar = child as Gtk.ProgressBar;
-            dialog.secondary_text = data.message;
+        public void update (ProgressData data) {
+            message_label.set_label(data.message);
             progress_bar.set_fraction(data.progress);
             return;
         }

@@ -189,7 +189,7 @@ get_last_index (FontManagerUnicodeCharacterMap *self)
     else if (self->filter)
         return g_list_length(self->filter) - 1;
     if (!self->charset)
-        return -1;
+        return 0;
     if (!self->has_regional_indicator_symbols)
         return (gint) g_list_length(self->charset) - 1;
     return (((gint) g_list_length(self->charset)) + N_REGIONAL_INDICATORS) - 1;
@@ -389,6 +389,9 @@ get_y_offset (FontManagerUnicodeCharacterMap *self, gint row)
         y += row_height(self, r);
     return y;
 }
+
+/* FIXME ! */
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
 static void
 draw_character_with_metrics (GtkDrawingArea *widget,
@@ -650,7 +653,7 @@ set_font_desc_internal (FontManagerUnicodeCharacterMap *self,
     }
     self->active_cell = 0;
     self->page_first_cell = 0;
-    self->last_cell = self->charset ? get_last_index(self) : 0;
+    self->last_cell = get_last_index(self);
     clear_pango_layout(self);
     gtk_widget_queue_resize(GTK_WIDGET(self));
     g_object_notify(G_OBJECT(self), "active-cell");
@@ -905,6 +908,8 @@ on_drag_begin (GtkDragSource *source, GdkDrag *drag, gpointer user_data)
     gtk_drag_source_set_icon(source, gtk_snapshot_to_paintable(snapshot, NULL), 0, 0);
     return;
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS
 
 static void
 font_manager_unicode_character_map_dispose (GObject *gobject)
@@ -1238,8 +1243,6 @@ void
 font_manager_unicode_character_map_set_active_cell (FontManagerUnicodeCharacterMap *self,
                                                     gint cell)
 {
-    if (cell == self->active_cell)
-        return;
     GtkWidget *widget = GTK_WIDGET(self);
     cell = CLAMP(cell, 0, self->last_cell);
     int old_active_cell = self->active_cell;
@@ -1276,6 +1279,10 @@ font_manager_unicode_character_map_set_filter (FontManagerUnicodeCharacterMap *s
     g_clear_pointer(&self->filter, g_list_free);
     self->filter = filter;
     self->is_regional_indicator_filter = is_regional_indicator_filter(filter);
+    self->last_cell = get_last_index(self);
+    gtk_widget_queue_resize(GTK_WIDGET(self));
+    gtk_widget_queue_draw(GTK_WIDGET(self));
+    font_manager_unicode_character_map_set_active_cell(self, 0);
     return;
 }
 
@@ -1325,4 +1332,5 @@ font_manager_unicode_character_map_new (void)
 {
     return GTK_WIDGET(g_object_new(FONT_MANAGER_TYPE_UNICODE_CHARACTER_MAP, NULL));
 }
+
 

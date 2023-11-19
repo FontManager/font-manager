@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.8"/>
+  <requires lib="gtk" version="4.10"/>
   <template class="FontManagerUserActionRow" parent="GtkGrid">
     <property name="name">FontManagerUserActionRow</property>
     <child>

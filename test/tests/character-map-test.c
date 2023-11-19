@@ -1,6 +1,10 @@
 
 #include <json-glib/json-glib.h>
 
+#include <glib.h>
+
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 #include "unicode-character-info.h"
 #include "unicode-character-map.h"
 #include "unicode-search-bar.h"
@@ -41,3 +45,6 @@ get_widget (TestApplicationWindow *parent)
     test_dialog_append_control(dialog, font_chooser);
     return dialog;
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS
+

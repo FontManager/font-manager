@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.8"/>
+  <requires lib="gtk" version="4.10"/>
   <template class="FontManagerPreviewEntry" parent="GtkEntry">
     <property name="focusable">1</property>
     <property name="opacity">0.75</property>

@@ -26,9 +26,9 @@
               <object class="FontManagerPlaceHolder" id="welcome">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
-                <property name="title" translatable="true">Font Viewer</property>
-                <property name="subtitle" translatable="true">Preview font files before installing them.</property>
-                <property name="message" translatable="true">To preview a font simply drag it onto this area.</property>
+                <property name="title" translatable="1">Font Viewer</property>
+                <property name="subtitle" translatable="1">Preview font files before installing them.</property>
+                <property name="message" translatable="1">To preview a font simply drag it onto this area.</property>
                 <property name="icon-name">font-x-generic-symbolic</property>
               </object>
             </property>
@@ -44,7 +44,7 @@
             <property name="margin-top">6</property>
             <child>
               <object class="GtkLabel" id="title_label">
-                <property name="label" translatable="yes">No file selected</property>
+                <property name="label" translatable="1">No file selected</property>
                 <style>
                   <class name="title"/>
                 </style>
@@ -52,7 +52,7 @@
             </child>
             <child>
               <object class="GtkLabel" id="subtitle_label">
-                <property name="label" translatable="yes">Or unsupported filetype.</property>
+                <property name="label" translatable="1">Or unsupported filetype.</property>
                 <style>
                   <class name="subtitle"/>
                 </style>
@@ -71,7 +71,7 @@
     </child>
   </template>
   <object class="GtkButton" id="action_button">
-    <property name="label" translatable="yes">Install Font</property>
+    <property name="label" translatable="1">Install Font</property>
     <property name="focusable">1</property>
     <property name="receives-default">1</property>
     <property name="opacity">0.9</property>

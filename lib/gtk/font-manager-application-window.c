@@ -233,7 +233,8 @@ font_manager_application_window_show_help (FontManagerApplicationWindow *self)
 {
     g_return_if_fail(self);
     g_autofree gchar *uri = g_strdup_printf("help:%s", PACKAGE_NAME);
-    gtk_show_uri(GTK_WINDOW(self), uri, GDK_CURRENT_TIME);
+    g_autoptr(GtkUriLauncher) launcher = gtk_uri_launcher_new(uri);
+    gtk_uri_launcher_launch(launcher, GTK_WINDOW(self), NULL, NULL, NULL);
     return;
 }
 

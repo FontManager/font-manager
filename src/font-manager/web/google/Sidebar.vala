@@ -57,9 +57,11 @@ namespace FontManager.GoogleFonts {
         public StringSet categories { get; private set; }
         public StringSet language_support { get; private set; }
 
-        [GtkChild] unowned Gtk.ComboBoxText sort_order;
+        [GtkChild] unowned Gtk.DropDown sort_order;
         [GtkChild] unowned Gtk.Grid category_grid;
         [GtkChild] unowned Gtk.ListBox language_list;
+
+        string sort_options [4] = { "alpha", "date", "popularity", "trending" };
 
         public Sidebar () {
             widget_set_name(category_grid, "FontManagerGoogleFontsCategories");
@@ -82,11 +84,13 @@ namespace FontManager.GoogleFonts {
                 widget = widget.get_next_sibling();
             }
             filter = new Filter();
-            bind_property("n-variations", filter, "n-variations", BindingFlags.SYNC_CREATE);
-            bind_property("categories", filter, "categories", BindingFlags.SYNC_CREATE);
-            bind_property("language-support", filter, "language-support", BindingFlags.SYNC_CREATE);
-            // Setting this property in ui file has no effect
-            sort_order.set_active(0);
+            BindingFlags flags = BindingFlags.SYNC_CREATE;
+            bind_property("n-variations", filter, "n-variations", flags);
+            bind_property("categories", filter, "categories", flags);
+            bind_property("language-support", filter, "language-support", flags);
+            sort_order.notify["selected"].connect(() => {
+                sort_changed(sort_options[sort_order.selected]);
+            });
         }
 
         [GtkCallback]
@@ -105,12 +109,6 @@ namespace FontManager.GoogleFonts {
             else
                 language_support.remove(widget.name);
             filter.changed();
-            return;
-        }
-
-        [GtkCallback]
-        public void on_sort_order_changed (Gtk.ComboBox combo) {
-            sort_changed(sort_order.active_id);
             return;
         }
 

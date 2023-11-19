@@ -64,7 +64,7 @@ namespace FontManager {
                 args.replace("FAMILY", font.family);
                 args.replace("STYLE", font.style);
                 builder.append(args);
-                if (!args.contains(font.filepath)) {
+                if (!args.contains(filepath)) {
                     builder.append(" ");
                     builder.append(filepath);
                 }
@@ -171,8 +171,6 @@ namespace FontManager {
         [GtkChild] unowned Gtk.Entry executable;
         [GtkChild] unowned Gtk.Entry arguments;
 
-        Gtk.FileChooserNative? dialog = null;
-
         public static UserActionRow from_item (Object item) {
             UserAction action = ((UserAction) item);
             UserActionRow row = new UserActionRow();
@@ -185,23 +183,24 @@ namespace FontManager {
             return row;
         }
 
-        [CCode (instance_pos = -1)]
-        void on_file_selections_ready (Gtk.NativeDialog dialog, int response_id) {
-            if (response_id != Gtk.ResponseType.ACCEPT)
-                return;
-            Object? file = ((Gtk.FileChooser) dialog).get_files().get_item(0);
-            executable.set_text(((File) file).get_path());
-            dialog = null;
+        void on_file_selections_ready (Object? obj, AsyncResult res) {
+            return_if_fail(obj != null);
+            try {
+                var dialog = (Gtk.FileDialog) obj;
+                File file = dialog.open.end(res);
+                executable.set_text(file.get_path());
+            } catch (Error e) {
+                warning(e.message);
+            }
             return;
         }
 
         [GtkCallback]
         void on_executable_icon_press (Gtk.Entry entry, Gtk.EntryIconPosition position) {
-            if (dialog == null) {
-                dialog = FileSelector.get_executable(get_parent_window(this));
-                dialog.response.connect(on_file_selections_ready);
-            }
-            ((Gtk.NativeDialog) dialog).show();
+            var dialog = FileSelector.get_executable();
+            dialog.open.begin(get_parent_window(this),
+                              null,
+                              on_file_selections_ready);
             return;
         }
 

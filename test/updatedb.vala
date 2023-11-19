@@ -1,7 +1,7 @@
 using FontManager;
 
 MainLoop loop;
-Gtk.MessageDialog dialog;
+ProgressDialog? dialog = null;
 
 uint font = 0;
 uint metadata = 0;
@@ -23,14 +23,14 @@ void update_progress_dialog (ProgressData data) {
     var progress = new ProgressData("Updating font database…",
                                     font + metadata + orthography,
                                     data.total * 3);
-    ProgressDialog.update(dialog, progress);
+    dialog.update(progress);
     return;
 }
 
 int main () {
     Gtk.init();
     loop = new MainLoop();
-    dialog = ProgressDialog.create(null, "Font Manager");
+    dialog = new ProgressDialog("Font Manager");
     var db = new DatabaseProxy();
     db.set_progress_callback((data) => {
         data.ref();

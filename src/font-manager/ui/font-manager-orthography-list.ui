@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.8"/>
+  <requires lib="gtk" version="4.10"/>
   <template class="FontManagerOrthographyList" parent="GtkBox">
     <property name="orientation">vertical</property>
     <signal name="map" handler="on_map_event" swapped="no"/>
@@ -56,8 +56,8 @@
             <property name="receives_default">1</property>
             <property name="margin_start">6</property>
             <property name="margin_end">6</property>
-            <property name="margin_top">7</property>
-            <property name="margin_bottom">7</property>
+            <property name="margin_top">6</property>
+            <property name="margin_bottom">6</property>
             <signal name="clicked" handler="on_clear_clicked" swapped="no"/>
           </object>
         </property>
@@ -71,3 +71,4 @@
     </style>
   </template>
 </interface>
+

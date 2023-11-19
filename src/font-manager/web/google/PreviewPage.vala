@@ -168,10 +168,9 @@ namespace FontManager.GoogleFonts {
         string default_pangram = "The quick brown fox jumps over the lazy dog.";
 
         [GtkChild] unowned Gtk.CenterBox controls;
-        [GtkChild] unowned Gtk.ColorButton bg_color_button;
-        [GtkChild] unowned Gtk.ColorButton fg_color_button;
         [GtkChild] unowned Gtk.MenuButton menu_button;
         [GtkChild] unowned Gtk.MenuButton sample_button;
+        [GtkChild] unowned PreviewColors preview_colors;
 
         Font? font;
         FontScale fontscale;
@@ -208,8 +207,7 @@ namespace FontManager.GoogleFonts {
             samples = new SampleList();
             sample_button.set_popover(samples);
             set_preview_page_mode_menu_and_actions(this, menu_button, (Callback) on_mode_action_activated);
-            flatten_color_button(bg_color_button);
-            flatten_color_button(fg_color_button);
+            preview_colors.color_set.connect(() => { reload_preview(); });
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             bind_property("preview-size", fontscale, "value", flags);
             bind_property("preview-text", entry, "placeholder-text", flags);
@@ -298,12 +296,6 @@ namespace FontManager.GoogleFonts {
             return;
         }
 
-        [GtkCallback]
-        void on_color_set (Gtk.ColorButton button) {
-            reload_preview();
-            return;
-        }
-
         void on_item_selected () {
             if (selected_item is Family)
                 font = ((Family) selected_item).get_default_variant();
@@ -347,8 +339,8 @@ namespace FontManager.GoogleFonts {
                 }
             }
             return HEADER.printf(dir == Pango.Direction.RTL ? "rtl" : "ltr",
-                                 fg_color_button.get_rgba().to_string(),
-                                 bg_color_button.get_rgba().to_string(),
+                                 preview_colors.foreground_color.to_string(),
+                                 preview_colors.background_color.to_string(),
                                  justify, preview_size,
                                  font.family, font.style, font.weight,
                                  font.to_font_face_rule());

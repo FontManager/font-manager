@@ -54,7 +54,7 @@ namespace FontManager {
 
         Gtk.SpinButton dpi;
         Gtk.SpinButton scale;
-        Gtk.ComboBoxText lcdfilter;
+        Gtk.DropDown lcdfilter;
         SubpixelGeometry spg;
         PreviousDisplaySettings settings;
 
@@ -69,12 +69,15 @@ namespace FontManager {
             append_row(new PreferenceRow(_("Target DPI"), null, null, dpi));
             scale = new Gtk.SpinButton.with_range(0.0, 1000.0, 0.1);
             append_row(new PreferenceRow(_("Scale Factor"), null, null, scale));
-            lcdfilter = new Gtk.ComboBoxText();
+            var filters = new GLib.Array <string> ();
             for (int i = 0; i <= LCDFilter.LEGACY; i++)
-                lcdfilter.append(i.to_string(), ((LCDFilter) i).to_string());
+                filters.append_val(((LCDFilter) i).to_string());
+            var filter_list = new Gtk.StringList(filters.data);
+            lcdfilter = new Gtk.DropDown(filter_list, null);
             append_row(new PreferenceRow(_("LCD Filter"), null, null, lcdfilter));
             spg = new SubpixelGeometry();
             spg.options[SubpixelOrder.UNKNOWN].hide();
+            spg.options[SubpixelOrder.NONE].hide();
             spg.margin_end = 0;
             spg.hexpand = false;
             spg.halign = Gtk.Align.END;
@@ -92,10 +95,8 @@ namespace FontManager {
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             properties.bind_property("dpi", dpi, "value", flags);
             properties.bind_property("scale", scale, "value", flags);
-            properties.bind_property("rgba", spg, "rgba", flags);
-            properties.bind_property("lcdfilter", lcdfilter, "active-id", flags,
-                                     (b, s, ref t) => { t = ((int) s).to_string(); return true; },
-                                     (b, s, ref t) => { t = int.parse((string) s); return true; });
+            properties.bind_property("rgba", spg, "selected", flags);
+            properties.bind_property("lcdfilter", lcdfilter, "selected", flags);
             return;
         }
 
@@ -120,4 +121,5 @@ namespace FontManager {
     }
 
 }
+
 

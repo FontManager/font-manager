@@ -474,7 +474,7 @@ create_search_button (FontManagerPreviewPane *self)
     font_manager_widget_set_margin(search, 2);
     gtk_widget_set_margin_top(search, 1);
     gtk_widget_set_margin_bottom(search, 1);
-    gtk_widget_hide(search);
+    gtk_widget_set_visible(search, FALSE);
     return search;
 }
 

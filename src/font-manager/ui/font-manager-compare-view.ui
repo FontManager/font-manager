@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.8"/>
+  <requires lib="gtk" version="4.10"/>
   <template class="FontManagerComparePane" parent="GtkBox">
     <property name="css-name">FontManagerCompare</property>
     <property name="css-classes">FontManagerCompare</property>
@@ -30,7 +30,6 @@
             <property name="sensitive">0</property>
             <property name="focusable">1</property>
             <property name="focus_on_click">0</property>
-            <property name="receives_default">1</property>
             <property name="tooltip_text" translatable="1">Remove selected font from comparison</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
@@ -43,7 +42,6 @@
         <child>
           <object class="GtkMenuButton" id="pinned_button">
             <property name="focusable">1</property>
-            <property name="receives_default">1</property>
             <property name="tooltip_text" translatable="1">Pinned Comparisons</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
@@ -70,26 +68,9 @@
           </object>
         </child>
         <child>
-          <object class="GtkColorButton" id="bg_color_button">
-            <property name="focusable">1</property>
-            <property name="receives_default">1</property>
-            <property name="tooltip_text" translatable="1">Select background color</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="title" translatable="1">Select background color</property>
-            <property name="rgba">rgb(255,255,255)</property>
-          </object>
-        </child>
-        <child>
-          <object class="GtkColorButton" id="fg_color_button">
+          <object class="FontManagerPreviewColors" id="preview_colors">
             <property name="margin_end">4</property>
             <property name="focusable">1</property>
-            <property name="receives_default">1</property>
-            <property name="tooltip_text" translatable="1">Select text color</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="title" translatable="1">Select text color</property>
-            <property name="rgba">rgb(0,0,0)</property>
           </object>
         </child>
       </object>
@@ -133,5 +114,4 @@
     </style>
   </template>
 </interface>
-
 

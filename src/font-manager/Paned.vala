@@ -63,11 +63,12 @@ namespace FontManager {
         [GtkChild] protected unowned Gtk.Paned main_pane;
         [GtkChild] protected unowned Gtk.Overlay overlay;
 
-        int sidebar_pos = 33;
-        int content_pos = 40;
+        int sidebar_pos = 46;
+        int content_pos = 45;
 
-        public Paned () {
-            list_area.set_size_request(-1, 200);
+        construct {
+            // Necessary to get an acceptable initial size for pane layout
+            list_area.set_size_request(-1, 225);
             map.connect_after(() => {
                 Idle.add(() => {
                     return update_pane_positions();

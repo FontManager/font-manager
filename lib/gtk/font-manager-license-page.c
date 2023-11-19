@@ -217,9 +217,9 @@ font_manager_license_page_init (FontManagerLicensePage *self)
     font_manager_widget_set_margin(self->fsType, FONT_MANAGER_DEFAULT_MARGIN * 1.25);
     gtk_widget_set_margin_start(self->license_data, FONT_MANAGER_DEFAULT_MARGIN * 2);
     gtk_widget_set_margin_end(self->license_data, FONT_MANAGER_DEFAULT_MARGIN * 2);
-    gtk_widget_hide(self->fsType);
-    gtk_widget_hide(self->license_data);
-    gtk_widget_hide(self->license_url);
+    gtk_widget_set_visible(self->fsType, FALSE);
+    gtk_widget_set_visible(self->license_data, FALSE);
+    gtk_widget_set_visible(self->license_url, FALSE);
     return;
 }
 

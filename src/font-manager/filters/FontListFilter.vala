@@ -87,6 +87,7 @@ namespace FontManager {
 
         public signal void selection_changed (FontListFilter? item);
 
+        public uint selected_position { get; set; default = 0; }
         public FontListFilter? selected_item { get; set; default = null; }
         public StringSet? available_families { get; set; default = null; }
         public Gtk.TreeListModel? treemodel { get; protected set; default = null; }
@@ -109,6 +110,10 @@ namespace FontManager {
             notify["selection"].connect_after((pspec) => {
                 listview.set_model(selection);
                 listview.set_factory(get_factory());
+                if (selection == null)
+                    return;
+                selection.set_autoselect(false);
+                selection.set_can_unselect(true);
                 selection.selection_changed.connect(on_selection_changed);
             });
             notify["available-families"].connect_after((pspec) => {
@@ -159,10 +164,13 @@ namespace FontManager {
             // The minimum value present in this bitset accurately points
             // to the first currently selected row in the ListView.
             Gtk.Bitset selections = selection.get_selection();
+            if (selections.get_size() == 0)
+                return;
             uint i = selections.get_minimum();
             var list_row = (Gtk.TreeListRow) treemodel.get_item(i);
             Object? item = list_row.get_item();
             selected_item = (FontListFilter) item;
+            selected_position = i;
             selection_changed((FontListFilter) item);
             Idle.add(() => {
                 on_row_selected(list_row);

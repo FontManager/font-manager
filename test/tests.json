@@ -1,4 +1,7 @@
 [
+    {   "name" : "sidebar",
+        "label" : "Sidebar Test"
+    },
     {
         "name" : "category-list",
         "label" : "Category List"

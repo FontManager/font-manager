@@ -272,7 +272,10 @@ font_manager_character_map_set_font (FontManagerCharacterMap *self,
     g_set_object(&self->font, font);
     FontManagerUnicodeCharacterMap *charmap = FONT_MANAGER_UNICODE_CHARACTER_MAP(self->character_map);
     g_autofree gchar *description = NULL;
-    g_object_get(font, "description", &description, NULL);
+    if (font)
+        g_object_get(font, "description", &description, NULL);
+    else
+        description = g_strdup(FONT_MANAGER_DEFAULT_FONT);
     g_autoptr(PangoFontDescription) font_desc = pango_font_description_from_string(description);
     font_manager_unicode_character_map_set_font_desc(charmap, font_desc);
     return;

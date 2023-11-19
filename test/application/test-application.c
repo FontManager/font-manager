@@ -1,6 +1,6 @@
 /* test_application.c
  *
- * Copyright (C) 2020-2022 Jerry Casiano
+ * Copyright (C) 2020-2023 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@
 */
 
 #include "test-application.h"
+
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
 
 struct _TestApplication
 {
@@ -90,7 +92,7 @@ void
 test_dialog_run (TestDialog *self)
 {
     g_signal_connect(self, "response", G_CALLBACK(quit), NULL);
-    gtk_widget_show(GTK_WIDGET(self));
+    gtk_widget_set_visible(GTK_WIDGET(self), TRUE);
     return;
 }
 
@@ -251,4 +253,6 @@ main (int argc, char *argv[])
     g_application_run(G_APPLICATION(test_application_new()), argc, argv);
     return status;
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS
 

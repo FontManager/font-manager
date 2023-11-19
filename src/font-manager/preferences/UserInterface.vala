@@ -140,12 +140,14 @@ namespace FontManager {
         Gtk.SpinButton min;
         Gtk.SpinButton max;
         Gtk.SpinButton rat;
-        Gtk.ComboBoxText selection;
+        Gtk.DropDown selection;
 
         public WaterfallSize () {
-            selection = new Gtk.ComboBoxText();
+            var selections = new GLib.Array <string> ();
             for (int i = 0; i <= PredefinedWaterfallSize.CUSTOM; i++)
-                selection.append_text(((PredefinedWaterfallSize) i).to_string());
+                selections.append_val(((PredefinedWaterfallSize) i).to_string());
+            var selection_list = new Gtk.StringList(selections.data);
+            selection = new Gtk.DropDown(selection_list, null);
             row = new PreferenceRow(_("Waterfall Preview Size Settings"), null, null, selection);
             min = new Gtk.SpinButton.with_range(6.0, 48.0, 1.0) { value = 8.0 };
             max = new Gtk.SpinButton.with_range(24.0, 192.0, 1.0) {
@@ -159,16 +161,16 @@ namespace FontManager {
             row.append_child(child);
             child = new PreferenceRow(_("Maximum Waterfall Preview Point Size"), null, null, max);
             row.append_child(child);
-            selection.changed.connect(on_selection_changed);
+            selection.notify["selected"].connect(on_selection_changed);
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             bind_property("minimum", min, "value", flags);
             bind_property("maximum", max, "value", flags);
             bind_property("ratio", rat, "value", flags);
-            bind_property("predefined-size", selection, "active", flags);
+            bind_property("predefined-size", selection, "selected", flags);
         }
 
         void on_selection_changed () {
-            var selected_size = ((PredefinedWaterfallSize) selection.active);
+            var selected_size = ((PredefinedWaterfallSize) selection.selected);
             double [] selected = selected_size.to_size_array();
             bool custom = selected[0] == 0.0;
             row.set_reveal_child(custom);
@@ -190,7 +192,7 @@ namespace FontManager {
         Gtk.Switch prefer_dark_theme;
         Gtk.Switch show_line_size;
         Gtk.CheckButton on_maximize;
-        Gtk.ComboBoxText button_style;
+        Gtk.DropDown button_style;
         Gtk.Settings default_gtk_settings;
 
         WaterfallSize waterfall_size;
@@ -207,9 +209,9 @@ namespace FontManager {
             use_csd = add_preference_switch(_("Client Side Decorations"));
             enable_animations = add_preference_switch(_("Enable Animations"));
             prefer_dark_theme = add_preference_switch(_("Prefer Dark Theme"));
-            button_style = new Gtk.ComboBoxText();
-            button_style.append("Normal", _("Raised"));
-            button_style.append("Flat", _("Flat"));
+            string button_styles [2] = { _("Raised"), _("Flat") };
+            var style_list = new Gtk.StringList(button_styles);
+            button_style = new Gtk.DropDown(style_list, null);
             append_row(new PreferenceRow(_("Titlebar Button Style"), null, null, button_style));
             show_line_size = add_preference_switch(_("Display line size in Waterfall Preview"));
             waterfall_size = new WaterfallSize();
@@ -237,11 +239,23 @@ namespace FontManager {
             warn_if_fail(gtk_settings != null);
 
             settings.bind("prefer-dark-theme", prefer_dark_theme, "active", flags);
-            settings.bind("title-button-style", button_style, "active-id", flags);
             settings.bind("waterfall-show-line-size", show_line_size, "active", flags);
             settings.bind("min-waterfall-size", waterfall_size, "minimum", flags);
             settings.bind("max-waterfall-size", waterfall_size, "maximum", flags);
             settings.bind("waterfall-size-ratio", waterfall_size, "ratio", flags);
+            settings.bind_with_mapping("title-button-style",
+                                       button_style,
+                                       "selected",
+                                       flags,
+                                       (val, v) => {
+                                           val.set_uint(((string) v) == "Normal" ? 0 : 1);
+                                           return true;
+                                       },
+                                       (v, t) => {
+                                           string val = v.get_uint() == 0 ? "Normal" : "Flat";
+                                           return new Variant.string(val);
+                                       },
+                                       null, null);
             settings.bind_with_mapping("predefined-waterfall-size",
                                        waterfall_size,
                                        "predefined-size",

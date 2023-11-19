@@ -1,3 +1,7 @@
+#include <glib.h>
+
+G_GNUC_BEGIN_IGNORE_DEPRECATIONS
+
 #include "test-application.h"
 #include "font-manager-preference-row.h"
 
@@ -25,3 +29,6 @@ get_widget (TestApplicationWindow *parent)
     test_dialog_append(TEST_DIALOG(dialog), scroll);
     return dialog;
 }
+
+G_GNUC_END_IGNORE_DEPRECATIONS
+

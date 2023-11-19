@@ -364,7 +364,7 @@ font_manager_preview_page_class_init (FontManagerPreviewPageClass *klass)
      *
      * Waterfall point size common ratio.
      */
-    obj_properties[PROP_WATERFALL_RATIO] = g_param_spec_double("mwaterfall-size-ratio",
+    obj_properties[PROP_WATERFALL_RATIO] = g_param_spec_double("waterfall-size-ratio",
                                                                 NULL,
                                                                 "Waterfall point size common ratio",
                                                                 1.0,

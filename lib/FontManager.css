@@ -131,8 +131,10 @@ row:selected .count {
 
 .CharacterMapCell:selected {
     border-radius: 0.333em;
-    background-color: alpha(@theme_selected_bg_color, 0.9);
+    background-color: alpha(@theme_selected_bg_color, 0.95);
+    border-color: darker(@theme_selected_bg_color);
 }
+
 
 .CharacterMapGlyph:selected {
     color: lighter(@theme_selected_fg_color);
@@ -202,12 +204,9 @@ row:selected .count {
 }
 
 .FontManagerSubstituteRow list row:hover,
-.FontManagerDesktopPreferences list row:hover,
-.FontManagerDisplayPreferences list row:hover,
-.FontManagerRenderingPreferences list row:hover,
-.FontManagerUserInterfacePreferences list row:hover,
+.FontManagerPreferenceList list row:hover,
 .FontManagerLanguageFilterSettings list row:hover,
-.FontManagerGoogleFontsOrthographies row:hover  {
+.FontManagerGoogleFontsOrthographies row:hover {
     background-color: transparent;
 }
 
@@ -241,6 +240,11 @@ row:selected .count {
     margin: 0px;
     min-height: 0px;
     min-width: 0px;
+}
+
+.FontManagerCategoryListView row,
+.FontManagerCollectionListView row {
+    border-radius: 0.25em;
 }
 
 .FontManagerListDragCount {

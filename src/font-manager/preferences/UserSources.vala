@@ -134,8 +134,6 @@ They will not be visible to other applications until the source is actually enab
 
         public UserSourceModel model { get; set; }
 
-        Gtk.FileChooserNative? dialog = null;
-
         public UserSourceList () {
             widget_set_name(this, "FontManagerUserSourceList");
             controls.visible = true;
@@ -156,12 +154,27 @@ They will not be visible to other applications until the source is actually enab
             model.items_changed.connect(() => { refresh_required = true; });
         }
 
-        protected override void on_add_selected () {
-            if (dialog == null) {
-                dialog = FileSelector.get_selected_sources(get_parent_window(this));
-                dialog.response.connect(on_file_selections_ready);
+        void on_file_selections_ready (Object? obj, AsyncResult res) {
+            return_if_fail(obj != null);
+            try {
+                var dialog = (Gtk.FileDialog) obj;
+                ListModel files = dialog.select_multiple_folders.end(res);
+                for (uint i = 0; i < files.get_n_items(); i++) {
+                    var file = (File) files.get_item(i);
+                    var source = new Source(file);
+                    model.add_item(source);
+                }
+            } catch (Error e) {
+                warning(e.message);
             }
-            ((Gtk.NativeDialog) dialog).show();
+            return;
+        }
+
+        protected override void on_add_selected () {
+            var dialog = FileSelector.get_selected_sources();
+            dialog.select_multiple_folders.begin(get_parent_window(this),
+                                                 null,
+                                                 on_file_selections_ready);
             return;
         }
 
@@ -201,20 +214,6 @@ They will not be visible to other applications until the source is actually enab
                 row.subtitle = source.get_status_message();
             });
             return row;
-        }
-
-        [CCode (instance_pos = -1)]
-        void on_file_selections_ready (Gtk.NativeDialog dialog, int response_id) {
-            if (response_id != Gtk.ResponseType.ACCEPT)
-                return;
-            ListModel files = ((Gtk.FileChooser) dialog).get_files();
-            for (uint i = 0; i < files.get_n_items(); i++) {
-                var file = (File) files.get_item(i);
-                var source = new Source(file);
-                model.add_item(source);
-            }
-            dialog = null;
-            return;
         }
 
         // XXX : Ugh. Dragging folders is broken...

@@ -82,7 +82,8 @@ namespace FontManager {
                         cancellable,
                         (obj, res) => {
                             try {
-                                status.replace(type, update_database.end(res));
+                                bool result = update_database.end(res);
+                                status.replace(type, result);
                                 Idle.add(() => {
                                     status_changed();
                                     return GLib.Source.REMOVE;

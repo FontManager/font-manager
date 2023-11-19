@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.8"/>
+  <requires lib="gtk" version="4.10"/>
   <object class="GtkAdjustment" id="coverage_adjustment">
     <property name="page-increment">10</property>
     <property name="step-increment">1</property>
@@ -27,7 +27,7 @@
             <property name="focusable">True</property>
             <property name="halign">center</property>
             <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Back</property>
+            <property name="tooltip-text" translatable="1">Back</property>
             <signal name="clicked" handler="on_back_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage">
@@ -45,7 +45,7 @@
             <property name="hexpand">True</property>
             <property name="margin-end">6</property>
             <property name="margin-start">6</property>
-            <property name="placeholder-text" translatable="yes">Search Orthographies…</property>
+            <property name="placeholder-text" translatable="1">Search Orthographies…</property>
             <signal name="search-changed" handler="on_search_changed" swapped="no"/>
           </object>
         </child>
@@ -55,7 +55,7 @@
             <property name="focusable">True</property>
             <property name="halign">center</property>
             <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="yes">Deselect All</property>
+            <property name="tooltip-text" translatable="1">Deselect All</property>
             <signal name="clicked" handler="on_clear_button_clicked" swapped="no"/>
             <child>
               <object class="GtkImage">
@@ -97,7 +97,7 @@
             <property name="halign">end</property>
             <property name="hexpand">True</property>
             <property name="justify">center</property>
-            <property name="label" translatable="yes">Minimum Coverage</property>
+            <property name="label" translatable="1">Minimum Coverage</property>
             <property name="valign">center</property>
           </object>
         </child>
