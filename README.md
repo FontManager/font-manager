@@ -51,7 +51,7 @@ Please see [Known Issues](https://github.com/FontManager/font-manager/issues/272
 
 #### Arch User Repository
 
-Arch Linux users can install [`font-manager`](https://archlinux.org/packages/community/x86_64/font-manager/) from official repositories:
+Arch Linux users can install [`font-manager`](https://archlinux.org/packages/extra/x86_64/font-manager/) from official repositories:
 
 ```bash
 pacman -S font-manager
