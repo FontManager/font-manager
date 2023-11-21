@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2023-05-11 20:51+0000\n"
+"PO-Revision-Date: 2023-10-01 14:03+0000\n"
 "Last-Translator: Philip Goto <philip.goto@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/nl/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.1-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -174,11 +174,11 @@ msgstr "Zeer, zeer vetgedrukt"
 #: lib/common/font-manager-fontconfig.c:804
 #: src/font-manager/web/google/WebFont.vala:156
 msgid "Italic"
-msgstr "Cursief"
+msgstr "Cursief (italic)"
 
 #: lib/common/font-manager-fontconfig.c:806
 msgid "Oblique"
-msgstr "Cursief"
+msgstr "Cursief (oblique)"
 
 #: lib/common/font-manager-fontconfig.c:844
 msgid "Ultra-Condensed"
@@ -583,7 +583,7 @@ msgstr "Scheidingsteken, Spatie"
 
 #: src/font-manager/About.vala:29
 msgid "Simple font management for GTK+ desktop environments"
-msgstr "Een eenvoudige lettertypebeheer-app voor GTK-werkomgevingen"
+msgstr "Eenvoudige lettertypebeheer-app voor GTK-werkomgevingen"
 
 #: src/font-manager/About.vala:35
 msgid ""

@@ -21,13 +21,14 @@
 # migmedia <coding@migmedia.de>, 2020.
 # Milo Ivir <mail@milotype.de>, 2020, 2021.
 # Andreas Klostermaier <andreas.klostermaier@appendx.de>, 2021, 2022.
+# Stephan Kurz <stephan.kurz@oeaw.ac.at>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-11-18 11:48+0000\n"
-"Last-Translator: Andreas Klostermaier <andreas.klostermaier@appendx.de>\n"
+"PO-Revision-Date: 2023-11-06 18:33+0000\n"
+"Last-Translator: Stephan Kurz <stephan.kurz@oeaw.ac.at>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/de/>\n"
 "Language: de\n"
@@ -35,7 +36,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 5.2-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -482,7 +483,7 @@ msgstr "<nicht zugewiesen>"
 
 #: lib/unicode/unicode-info.c:222
 msgid "Other, Control"
-msgstr "Andere, Kontrolzeichen"
+msgstr "Andere, Kontrollzeichen"
 
 #: lib/unicode/unicode-info.c:224
 msgid "Other, Format"
@@ -494,7 +495,7 @@ msgstr "Andere, nicht zugewiesen"
 
 #: lib/unicode/unicode-info.c:228
 msgid "Other, Private Use"
-msgstr "Andere, private Gebrauch"
+msgstr "Andere, privater Gebrauch"
 
 #: lib/unicode/unicode-info.c:230
 msgid "Other, Surrogate"
@@ -529,6 +530,7 @@ msgid "Mark, Enclosing"
 msgstr "Marke, einschließend"
 
 #: lib/unicode/unicode-info.c:246
+#, fuzzy
 msgid "Mark, Non-Spacing"
 msgstr "Marke, Nicht-Dickte"
 
@@ -769,8 +771,8 @@ msgid ""
 "Save the current comparison\n"
 "by clicking the + button"
 msgstr ""
-"Plus Zeichen drücken, um\n"
-"jetzigen Vergleich zu speichern"
+"Plus-Zeichen (+) drücken, um\n"
+"aktuellen Vergleich zu speichern"
 
 #: src/font-manager/Dialogs.vala:60
 msgid "Select executable"
@@ -779,7 +781,7 @@ msgstr "Ausführbare Datei auswählen"
 #: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
 #: src/font-manager/UserData.vala:58
 msgid "_Select"
-msgstr "Au_swählen"
+msgstr "_Auswählen"
 
 #: src/font-manager/Dialogs.vala:64 src/font-manager/Dialogs.vala:79
 #: src/font-manager/Dialogs.vala:96 src/font-manager/Dialogs.vala:121
@@ -807,7 +809,7 @@ msgstr "Quellverzeichnisse auswählen"
 
 #: src/font-manager/Dialogs.vala:158 src/font-manager/Dialogs.vala:170
 msgid "Select fonts to remove"
-msgstr "Schriften zum entfernen auswählen"
+msgstr "Schriften zum Entfernen auswählen"
 
 #: src/font-manager/Dialogs.vala:160 src/font-manager/Dialogs.vala:172
 msgid "_Delete"
@@ -905,7 +907,7 @@ msgstr "Aleutisch Kyrillisch"
 
 #: src/font-manager/Orthographies.vala:34
 msgid "Aleut Latin"
-msgstr "Aleut Lateinisch"
+msgstr "Aleutisch Lateinisch"
 
 #: src/font-manager/Orthographies.vala:35
 #: src/font-manager/web/google/Language.vala:32
@@ -914,7 +916,7 @@ msgstr "Arabisch"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
-msgstr "Altgriechische Buchstaben"
+msgstr "Archaische griechische Buchstaben"
 
 #: src/font-manager/Orthographies.vala:37
 msgid "Armenian"
@@ -1055,7 +1057,7 @@ msgstr "Devanagari"
 
 #: src/font-manager/Orthographies.vala:74
 msgid "Dutch"
-msgstr "Holländisch"
+msgstr "Niederländisch"
 
 #: src/font-manager/Orthographies.vala:75
 msgid "Egyptian Hieroglyphs"
@@ -1195,11 +1197,11 @@ msgstr "Limbu-Schrift"
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Ideograms"
-msgstr "Lineare B Ideogramme"
+msgstr "Linear B Ideogramme"
 
 #: src/font-manager/Orthographies.vala:113
 msgid "Linear B Syllabary"
-msgstr "Lineare B Silben"
+msgstr "Linear B Silben"
 
 #: src/font-manager/Orthographies.vala:114
 #: src/font-manager/web/google/Language.vala:52
@@ -1545,7 +1547,7 @@ msgstr "Unsortiert"
 
 #: src/font-manager/filters/Unsorted.vala:26
 msgid "Fonts not present in any collection"
-msgstr "Schriften die in keiner Sammlung vorhanden sind"
+msgstr "Schriften, die in keiner Sammlung vorhanden sind"
 
 #: src/font-manager/filters/UserFonts.vala:27
 msgid "User"
@@ -1598,7 +1600,7 @@ msgstr "Antialiasing"
 #: src/font-manager/preferences/Desktop.vala:61
 #: src/font-manager/preferences/Desktop.vala:79
 msgid "The type of antialiasing to use when rendering fonts."
-msgstr "Art des Antialiasing zwecks Wiedergabe von Schriften."
+msgstr "Art des Antialiasing bei der Wiedergabe von Schriften."
 
 #: src/font-manager/preferences/Desktop.vala:66
 #: src/font-manager/preferences/Desktop.vala:84
@@ -1611,7 +1613,7 @@ msgid ""
 "The order of subpixel elements on an LCD screen; only used when antialiasing "
 "is set to rgba."
 msgstr ""
-"Reihenfloge der Teilbildpunkte auf einem LCD Bildschirm; wird nur benutzt, "
+"Reihenfloge der Teilbildpunkte auf einem LCD-Bildschirm; wird nur benutzt, "
 "wenn Antialiasing auf rgba gesetzt ist."
 
 #: src/font-manager/preferences/Desktop.vala:72
@@ -1645,7 +1647,7 @@ msgstr ""
 "\"Verwerfen\" entfernt die Konfigurationsdatei und stellt die "
 "Grundeinstellungen wieder her.\n"
 "\n"
-"Hinweis: nicht alle Umgebungen und Anwendungen berücksichtigen diese "
+"Hinweis: Nicht alle Umgebungen und Anwendungen berücksichtigen diese "
 "Einstellungen."
 
 #: src/font-manager/preferences/Fontconfig.vala:204
@@ -1793,7 +1795,7 @@ msgstr "Nur wenn maximiert"
 
 #: src/font-manager/preferences/UserInterface.vala:209
 msgid "Client Side Decorations"
-msgstr "Optische Funktionen vom Client"
+msgstr "Optische Funktionen des Clients"
 
 #: src/font-manager/preferences/UserInterface.vala:213
 msgid "Enable Animations"
@@ -1801,21 +1803,21 @@ msgstr "Aktiviere Animationen"
 
 #: src/font-manager/preferences/UserInterface.vala:214
 msgid "Prefer Dark Theme"
-msgstr "Dunklem Thema Vorrang geben"
+msgstr "Dunkles Thema bevorzugen"
 
 #: src/font-manager/preferences/UserInterface.vala:268
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
-"Optische Funktionen vom Client sind aktiviert. Änderungen werden erst nach "
+"Optische Funktionen des Clients sind aktiviert. Änderungen werden erst nach "
 "Neustart des Programms sichtbar."
 
 #: src/font-manager/preferences/UserInterface.vala:270
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
-"Optische Funktionen vom Client sind deaktiviert. Änderungen werden erst nach "
-"Neustart des Programms sichtbar."
+"Optische Funktionen des Clients sind deaktiviert. Änderungen werden erst "
+"nach Neustart des Programms sichtbar."
 
 #: src/font-manager/preferences/UserSources.vala:146
 msgid ""
@@ -1832,7 +1834,7 @@ msgstr ""
 "Sie sind in anderen Anwendungen nicht sichtbar, solange die Quelle nicht "
 "tatsächlich aktiviert wird. \n"
 "\n"
-"Hinweis: alle Umgebungen und Anwendungen befolgen diese Einstellungen."
+"Hinweis: Alle Umgebungen und Anwendungen befolgen diese Einstellungen."
 
 #: src/font-manager/preferences/UserSources.vala:162
 #: src/font-manager/ui/font-manager-user-data.ui:131
@@ -1849,13 +1851,13 @@ msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr ""
-"Um eine neue Quelle hinzuzufügen, ziehe einfach einen Ordner in diesen "
-"Bereich oder klicke auf die Schaltfläche zum hinzufügen in der Symbolleiste."
+"Um eine neue Quelle hinzuzufügen, ziehe einen Ordner in diesen Bereich oder "
+"klicke auf die Schaltfläche zum Hinzufügen in der Symbolleiste."
 
 #: src/font-manager/web/google/FontList.vala:56
 msgid "Case insensitive search of family names."
 msgstr ""
-"Suche nach Familiennamen ohne berücksichtigt der Groß-/Kleinschreibung."
+"Suche nach Familiennamen ohne Berücksichtigung der Groß-/Kleinschreibung."
 
 #: src/font-manager/web/google/GoogleFonts.vala:129
 msgid "Error procesing data"
@@ -1948,6 +1950,7 @@ msgid "No sample for %s available"
 msgstr "Kein Sprachbeispiel ist für %s verfügbar"
 
 #: src/font-manager/web/google/Language.vala:83
+#, fuzzy
 msgid "Please file an issue requesting an update to available samples."
 msgstr ""
 "Reichen Sie bitte einen Problembericht ein, in dem sie eine Aktualisierung "
@@ -1998,15 +2001,15 @@ msgstr "Ultrafett"
 
 #: src/font-manager/web/google/Weight.vala:81
 msgid "Black"
-msgstr "Schwarz"
+msgstr "Black"
 
 #: src/font-viewer/MainWindow.vala:24
 msgid "Preview font files before installing them."
-msgstr "Siehe Dir Schriften an, noch bevor Du sie installierst."
+msgstr "Siehe Dir Schriften an, bevor Du sie installierst."
 
 #: src/font-viewer/MainWindow.vala:25
 msgid "To preview a font simply drag it onto this area."
-msgstr "Für eine Schriften-Vorschau, ziehe die Schrift auf dieses Feld."
+msgstr "Für eine Schriften-Vorschau ziehe die Schrift auf dieses Feld."
 
 #: src/font-viewer/MainWindow.vala:122
 msgid "No file selected"
@@ -2018,7 +2021,7 @@ msgstr "Oder nicht unterstützende Dateiarten."
 
 #: src/font-viewer/MainWindow.vala:172
 msgid "Newer version already installed"
-msgstr "Eine neuere Version existiert bereits"
+msgstr "Eine neuere Version ist bereits installiert"
 
 #: src/font-viewer/MainWindow.vala:174
 msgid "Installed"
@@ -2035,7 +2038,7 @@ msgstr "Kopieren"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:34
 msgid "List View"
-msgstr "Listeansicht"
+msgstr "Listenansicht"
 
 #: src/font-manager/ui/font-manager-browse-view.ui:68
 msgid "Grid View"
@@ -2127,7 +2130,7 @@ msgstr "Erstellt : "
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:32
 msgid "Save current comparison"
-msgstr "Gegenwärtigen Vergleich speichern"
+msgstr "Aktuellen Vergleich speichern"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:62
 msgid "Remove selected comparison"
@@ -2235,7 +2238,7 @@ msgstr "Familien-Ersatz eintragen"
 
 #: src/font-manager/ui/font-manager-substitute.ui:59
 msgid "prefer"
-msgstr "Vorrang geben"
+msgstr "bevorzugen"
 
 #: src/font-manager/ui/font-manager-substitute.ui:60
 msgid "accept"
@@ -2296,35 +2299,35 @@ msgstr "Einstellungen der Vorschau beim Wasserfall"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:93
 msgid "Up to 48 points (Linear Scaling)"
-msgstr "Bis 48 Punkten (lineare Skala)"
+msgstr "Bis 48 Punkt (lineare Skala)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:94
 msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr "Bis 72 Punkten (1.1 Quotient)"
+msgstr "Bis 72 Punkt (1.1 Quotient)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:95
 msgid "Up to 96 points (Linear Scaling)"
-msgstr "Bis 96 Punkten (lineare Skala)"
+msgstr "Bis 96 Punkt (lineare Skala)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:96
 msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr "Bis 96 Punkten (1.1 Quotient)"
+msgstr "Bis 96 Punkt (1.1 Quotient)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:97
 msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr "Bis 120 Punkten (1.2 Quotient)"
+msgstr "Bis 120 Punkt (1.2 Quotient)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:98
 msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr "Bis 144 Punkten (1.3 Quotient)"
+msgstr "Bis 144 Punkt (1.3 Quotient)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:99
 msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr "Bis 192 Punkten (1.4 Quotient)"
+msgstr "Bis 192 Punkt (1.4 Quotient)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:100
 msgid "Custom Size Settings"
-msgstr "Benutzerdefinierte Größeeinstellungen"
+msgstr "Benutzerdefinierte Größeneinstellungen"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:142
 msgid "Minimum Waterfall Preview Point Size"
@@ -2356,7 +2359,7 @@ msgstr "1.0"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
-msgstr "Neuste"
+msgstr "Neueste"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:54
 msgid "Most Popular"
@@ -2372,12 +2375,12 @@ msgstr "Anordnen"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:148
 msgid "Serif"
-msgstr "Mit Serife"
+msgstr "Mit Serifen"
 
 # Grotesk?
 #: src/font-manager/web/google/ui/google-font-filters.ui:176
 msgid "Sans Serif"
-msgstr "Ohne Serife"
+msgstr "Ohne Serifen"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:232
 msgid "Handwriting"

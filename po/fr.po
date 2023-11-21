@@ -6,13 +6,14 @@
 # Laurent DÉRÉDEC <images-ld@gmx.fr>, 2021.
 # Alexandre ZANNI <alexandre.zanni@hotmail.fr>, 2022.
 # Quentin Poterek <quentin.poterek@outlook.fr>, 2022.
+# LeJun <lejun@gmx.fr>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-09-23 12:20+0000\n"
-"Last-Translator: Quentin Poterek <quentin.poterek@outlook.fr>\n"
+"PO-Revision-Date: 2023-07-14 22:52+0000\n"
+"Last-Translator: LeJun <lejun@gmx.fr>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/fr/>\n"
 "Language: fr\n"
@@ -20,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -872,7 +873,7 @@ msgstr "Afrikaans"
 
 #: src/font-manager/Orthographies.vala:32
 msgid "Ahom"
-msgstr ""
+msgstr "Âhom"
 
 #: src/font-manager/Orthographies.vala:33
 msgid "Aleut Cyrillic"
@@ -889,7 +890,7 @@ msgstr "arabe"
 
 #: src/font-manager/Orthographies.vala:36
 msgid "Archaic Greek Letters"
-msgstr ""
+msgstr "Lettres grecques archaïques"
 
 #: src/font-manager/Orthographies.vala:37
 msgid "Armenian"
@@ -905,30 +906,27 @@ msgstr "Balinais"
 
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
-msgstr ""
+msgstr "Baltique"
 
 #: src/font-manager/Orthographies.vala:41
 msgid "Bamum"
-msgstr ""
+msgstr "Bamum"
 
 #: src/font-manager/Orthographies.vala:42
-#, fuzzy
 msgid "Basic Cyrillic"
-msgstr "cyrillique"
+msgstr "Cyrillique"
 
 #: src/font-manager/Orthographies.vala:43
-#, fuzzy
 msgid "Basic Greek"
-msgstr "grec"
+msgstr "Grec"
 
 #: src/font-manager/Orthographies.vala:44
-#, fuzzy
 msgid "Basic Latin"
-msgstr "latin"
+msgstr "Latin"
 
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
-msgstr ""
+msgstr "Surat Batak"
 
 #: src/font-manager/Orthographies.vala:46
 #: src/font-manager/web/google/Language.vala:33
@@ -937,20 +935,19 @@ msgstr "bengali"
 
 #: src/font-manager/Orthographies.vala:47
 msgid "Brāhmī"
-msgstr ""
+msgstr "Brahmi"
 
 #: src/font-manager/Orthographies.vala:48
 msgid "Buginese"
-msgstr ""
+msgstr "Bugi"
 
 #: src/font-manager/Orthographies.vala:49
 msgid "Unified Canadian Aboriginal Syllabics"
 msgstr "Syllabaire Autochtone Canadien Unifié"
 
 #: src/font-manager/Orthographies.vala:50
-#, fuzzy
 msgid "Carian"
-msgstr "Variantes"
+msgstr "Carian"
 
 #: src/font-manager/Orthographies.vala:51
 msgid "Catalan"
@@ -958,15 +955,15 @@ msgstr "Catalan"
 
 #: src/font-manager/Orthographies.vala:52
 msgid "Central European"
-msgstr ""
+msgstr "Européen central"
 
 #: src/font-manager/Orthographies.vala:53
 msgid "Chakma"
-msgstr ""
+msgstr "Chakma"
 
 #: src/font-manager/Orthographies.vala:54
 msgid "Cham"
-msgstr ""
+msgstr "Cham"
 
 #: src/font-manager/Orthographies.vala:55
 #: src/font-manager/web/google/Language.vala:34
@@ -1013,11 +1010,11 @@ msgstr "Supplément des sinogrammes de compatibilité"
 #. End CJK entries
 #: src/font-manager/Orthographies.vala:69
 msgid "Claudian Letters"
-msgstr ""
+msgstr "Lettres Claudiennes"
 
 #: src/font-manager/Orthographies.vala:70
 msgid "Coptic"
-msgstr ""
+msgstr "Coptique"
 
 #: src/font-manager/Orthographies.vala:71
 msgid "Currencies"
@@ -1025,7 +1022,7 @@ msgstr "Devises"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
-msgstr ""
+msgstr "Syllabaire chypriote"
 
 #: src/font-manager/Orthographies.vala:73
 #: src/font-manager/web/google/Language.vala:40
@@ -1034,46 +1031,45 @@ msgstr "devanagari"
 
 #: src/font-manager/Orthographies.vala:74
 msgid "Dutch"
-msgstr ""
+msgstr "Néerlandais"
 
 #: src/font-manager/Orthographies.vala:75
 msgid "Egyptian Hieroglyphs"
-msgstr ""
+msgstr "Hiéroglyphes égyptiens"
 
 #: src/font-manager/Orthographies.vala:76
 msgid "Emoticons"
-msgstr ""
+msgstr "Émoticônes"
 
 #: src/font-manager/Orthographies.vala:77
 msgid "Ethiopic"
-msgstr ""
+msgstr "Éthiopien"
 
 #. This "orthography" contains only the euro symbol...
 #. { "Euro", "Euro" },
 #: src/font-manager/Orthographies.vala:82
 msgid "Farsi"
-msgstr ""
+msgstr "Farse"
 
 #: src/font-manager/Orthographies.vala:83
 msgid "Food and Drink"
-msgstr ""
+msgstr "Alimentation"
 
 #: src/font-manager/Orthographies.vala:84
-#, fuzzy
 msgid "Full Cyrillic"
-msgstr "cyrillique"
+msgstr "Cyrillique complet"
 
 #: src/font-manager/Orthographies.vala:85
 msgid "Georgian"
-msgstr ""
+msgstr "Georgien"
 
 #: src/font-manager/Orthographies.vala:86
 msgid "Glagolitic"
-msgstr ""
+msgstr "Glagolitique"
 
 #: src/font-manager/Orthographies.vala:87
 msgid "Gothic"
-msgstr ""
+msgstr "Gothique"
 
 #: src/font-manager/Orthographies.vala:88
 #: src/font-manager/web/google/Language.vala:43
@@ -1086,13 +1082,12 @@ msgid "Gurmukhi"
 msgstr "gurmukhi"
 
 #: src/font-manager/Orthographies.vala:90
-#, fuzzy
 msgid "Korean Hangul"
-msgstr "coréen"
+msgstr "Coréen Hangul"
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hanunó'o"
-msgstr ""
+msgstr "Hanunó'o"
 
 #: src/font-manager/Orthographies.vala:92
 #: src/font-manager/web/google/Language.vala:45
@@ -1102,40 +1097,35 @@ msgstr "hébreu"
 #: src/font-manager/Orthographies.vala:93
 #: src/font-manager/Orthographies.vala:95
 msgid "IPA"
-msgstr ""
+msgstr "API"
 
 #: src/font-manager/Orthographies.vala:94
 msgid "Igbo Onwu"
-msgstr ""
+msgstr "Igbo Onwu"
 
 #: src/font-manager/Orthographies.vala:96
-#, fuzzy
 msgid "Korean Jamo"
-msgstr "coréen"
+msgstr "Coéen Jamo"
 
 #: src/font-manager/Orthographies.vala:97
-#, fuzzy
 msgid "Javanese"
-msgstr "japonais"
+msgstr "Javanais"
 
 #: src/font-manager/Orthographies.vala:98
-#, fuzzy
 msgid "Japanese Jinmeiyo"
-msgstr "japonais"
+msgstr "Japonais Jinmeiyo"
 
 #: src/font-manager/Orthographies.vala:99
-#, fuzzy
 msgid "Japanese Joyo"
-msgstr "japonais"
+msgstr "Japonais Joyo"
 
 #: src/font-manager/Orthographies.vala:100
 msgid "Kaithi"
-msgstr ""
+msgstr "Kaithi"
 
 #: src/font-manager/Orthographies.vala:101
-#, fuzzy
 msgid "Japanese Kana"
-msgstr "japonais"
+msgstr "Japonais Kana"
 
 #: src/font-manager/Orthographies.vala:102
 #: src/font-manager/web/google/Language.vala:47
@@ -1144,15 +1134,15 @@ msgstr "kannada"
 
 #: src/font-manager/Orthographies.vala:103
 msgid "Kayah Li"
-msgstr ""
+msgstr "Kayah Li"
 
 #: src/font-manager/Orthographies.vala:104
 msgid "Kazakh"
-msgstr ""
+msgstr "Kazakh"
 
 #: src/font-manager/Orthographies.vala:105
 msgid "Kharoshthi"
-msgstr ""
+msgstr "Kharoshthi"
 
 #: src/font-manager/Orthographies.vala:106
 #: src/font-manager/web/google/Language.vala:48
@@ -1160,33 +1150,32 @@ msgid "Khmer"
 msgstr "khmer"
 
 #: src/font-manager/Orthographies.vala:107
-#, fuzzy
 msgid "Japanese Kokuji"
-msgstr "japonais"
+msgstr "Japonais Kokuji"
 
 #: src/font-manager/Orthographies.vala:108
 msgid "Lao"
-msgstr ""
+msgstr "Lao"
 
 #: src/font-manager/Orthographies.vala:109
 msgid "Latin Ligatures"
-msgstr ""
+msgstr "Ligatures latines"
 
 #: src/font-manager/Orthographies.vala:110
 msgid "Lepcha"
-msgstr ""
+msgstr "Lepcha"
 
 #: src/font-manager/Orthographies.vala:111
 msgid "Limbu"
-msgstr ""
+msgstr "Limbu"
 
 #: src/font-manager/Orthographies.vala:112
 msgid "Linear B Ideograms"
-msgstr ""
+msgstr "Idéogrammes Linéaire B"
 
 #: src/font-manager/Orthographies.vala:113
 msgid "Linear B Syllabary"
-msgstr ""
+msgstr "Syllabaire Linéaire B"
 
 #: src/font-manager/Orthographies.vala:114
 #: src/font-manager/web/google/Language.vala:52
@@ -1195,43 +1184,43 @@ msgstr "malayalam"
 
 #: src/font-manager/Orthographies.vala:115
 msgid "Mathematical Greek"
-msgstr ""
+msgstr "Grec mathématique"
 
 #: src/font-manager/Orthographies.vala:116
 msgid "Mathematical Latin"
-msgstr ""
+msgstr "Latin mathématique"
 
 #: src/font-manager/Orthographies.vala:117
 msgid "Mathematical Numerals"
-msgstr ""
+msgstr "Nombres mathématiques"
 
 #: src/font-manager/Orthographies.vala:118
 msgid "Mathematical Operators"
-msgstr ""
+msgstr "Opérateurs mathématiques"
 
 #: src/font-manager/Orthographies.vala:119
 msgid "Meetei Mayak"
-msgstr ""
+msgstr "Meetei Mayak"
 
 #: src/font-manager/Orthographies.vala:120
 msgid "Mende Kikakui"
-msgstr ""
+msgstr "Mende Kikakui"
 
 #: src/font-manager/Orthographies.vala:121
 msgid "MeroiticCursive"
-msgstr ""
+msgstr "Cursif méroitique"
 
 #: src/font-manager/Orthographies.vala:122
 msgid "Meroitic Hieroglyphs"
-msgstr ""
+msgstr "Hiéroglyphes méroitiques"
 
 #: src/font-manager/Orthographies.vala:123
 msgid "Miao"
-msgstr ""
+msgstr "Miao"
 
 #: src/font-manager/Orthographies.vala:124
 msgid "Mongolian"
-msgstr ""
+msgstr "Mongole"
 
 #. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
 #. * Contains lots of duplicates, doubt many would find it useful
@@ -1244,28 +1233,27 @@ msgstr "birman"
 
 #: src/font-manager/Orthographies.vala:132
 msgid "New Tai Lue"
-msgstr ""
+msgstr "New Tai Lue"
 
 #: src/font-manager/Orthographies.vala:133
 msgid "N’Ko"
-msgstr ""
+msgstr "N’Ko"
 
 #: src/font-manager/Orthographies.vala:134
 msgid "Ogham"
-msgstr ""
+msgstr "Ogham"
 
 #: src/font-manager/Orthographies.vala:135
 msgid "Ol Chiki"
-msgstr ""
+msgstr "Ol Chiki"
 
 #: src/font-manager/Orthographies.vala:136
-#, fuzzy
 msgid "Old Italic"
-msgstr "Italique"
+msgstr "Ancien italique"
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
-msgstr ""
+msgstr "Vieil Arabe du Sud"
 
 #: src/font-manager/Orthographies.vala:138
 #: src/font-manager/web/google/Language.vala:54
@@ -1274,55 +1262,55 @@ msgstr "odia"
 
 #: src/font-manager/Orthographies.vala:139
 msgid "Osmanya"
-msgstr ""
+msgstr "Osmanien"
 
 #: src/font-manager/Orthographies.vala:140
 msgid "Pan African Latin"
-msgstr ""
+msgstr "Latin Pan Africain"
 
 #: src/font-manager/Orthographies.vala:141
 msgid "Pashto"
-msgstr ""
+msgstr "Pashto"
 
 #: src/font-manager/Orthographies.vala:142
 msgid "Phags Pa"
-msgstr ""
+msgstr "Phags Pa"
 
 #: src/font-manager/Orthographies.vala:143
 msgid "Pinyin"
-msgstr ""
+msgstr "Pinyin"
 
 #: src/font-manager/Orthographies.vala:144
 msgid "Polynesian"
-msgstr ""
+msgstr "Polynésien"
 
 #: src/font-manager/Orthographies.vala:145
 msgid "Polytonic Greek"
-msgstr ""
+msgstr "Grec polytonique"
 
 #: src/font-manager/Orthographies.vala:146
 msgid "Rejang"
-msgstr ""
+msgstr "Rejang"
 
 #: src/font-manager/Orthographies.vala:147
 msgid "Romanian"
-msgstr ""
+msgstr "Roumain"
 
 #: src/font-manager/Orthographies.vala:148
 msgid "Runic"
-msgstr ""
+msgstr "Runique"
 
 #: src/font-manager/Orthographies.vala:149
 msgid "Saurashtra"
-msgstr ""
+msgstr "Saurashtra"
 
 #: src/font-manager/Orthographies.vala:150
 msgid "Simplified Chinese"
-msgstr ""
+msgstr "Chinois simplifié"
 
 #: src/font-manager/Orthographies.vala:151
 msgid "Sindhi"
-msgstr ""
+msgstr "Sindhi"
 
 #: src/font-manager/Orthographies.vala:152
 #: src/font-manager/web/google/Language.vala:55
@@ -1331,23 +1319,23 @@ msgstr "singhalais"
 
 #: src/font-manager/Orthographies.vala:153
 msgid "South Korean Hanja"
-msgstr ""
+msgstr "Coréen du sud Hanja"
 
 #: src/font-manager/Orthographies.vala:154
 msgid "Sundanese"
-msgstr ""
+msgstr "Soudanais"
 
 #: src/font-manager/Orthographies.vala:155
 msgid "Syloti Nagri"
-msgstr ""
+msgstr "Syloti Nagri"
 
 #: src/font-manager/Orthographies.vala:156
 msgid "Syriac"
-msgstr ""
+msgstr "Syrien"
 
 #: src/font-manager/Orthographies.vala:157
 msgid "Tai Le"
-msgstr ""
+msgstr "Tai Le"
 
 #: src/font-manager/Orthographies.vala:158
 msgid "Tai Tham (Lanna)"
@@ -1387,11 +1375,11 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:166
 msgid "Traditional Chinese"
-msgstr ""
+msgstr "Chinois traditionnel"
 
 #: src/font-manager/Orthographies.vala:167
 msgid "Turkish"
-msgstr ""
+msgstr "Turc"
 
 #: src/font-manager/Orthographies.vala:168
 msgid "Uighur"
@@ -1421,7 +1409,7 @@ msgstr "vietnamien"
 
 #: src/font-manager/Orthographies.vala:174
 msgid "Western European"
-msgstr ""
+msgstr "Européen de l'ouest"
 
 #: src/font-manager/Orthographies.vala:175
 msgid "Yi"
@@ -1750,19 +1738,19 @@ msgstr "Actions utilisateur"
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "Custom context menu entries"
-msgstr ""
+msgstr "Personnaliser les éléments du menu contextuel"
 
 #: src/font-manager/preferences/UserInterface.vala:203
 msgid "Wide Layout"
-msgstr ""
+msgstr "Disposition large"
 
 #: src/font-manager/preferences/UserInterface.vala:206
 msgid "Only When Maximized"
-msgstr ""
+msgstr "Seulement lorsque maximisé"
 
 #: src/font-manager/preferences/UserInterface.vala:209
 msgid "Client Side Decorations"
-msgstr ""
+msgstr "Décorations client"
 
 #: src/font-manager/preferences/UserInterface.vala:213
 msgid "Enable Animations"
@@ -1776,11 +1764,14 @@ msgstr "Préférer le thème sombre"
 msgid ""
 "CSD enabled. Change will take effect next time the application is started."
 msgstr ""
+"CSD activé. Les modifications auront lieu au prochain démarrage du programme."
 
 #: src/font-manager/preferences/UserInterface.vala:270
 msgid ""
 "CSD disabled. Change will take effect next time the application is started."
 msgstr ""
+"CSD désactivé. Les modifications auront lieu au prochain démarrage du "
+"programme."
 
 #: src/font-manager/preferences/UserSources.vala:146
 msgid ""
@@ -1791,25 +1782,35 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"Les fontes de tous les répertoires de la liste seront disponibles dans "
+"l'application.\n"
+"\n"
+"Elles ne seront pas visibles par d'autres applications tant que la source "
+"n'est pas activée.\n"
+"\n"
+"Des environnements, et applications pourraient ne pas respecter cette règle."
 
 #: src/font-manager/preferences/UserSources.vala:162
 #: src/font-manager/ui/font-manager-user-data.ui:131
 msgid "Font Sources"
-msgstr ""
+msgstr "Sources de fontes"
 
 #: src/font-manager/preferences/UserSources.vala:163
 msgid "Easily add or preview fonts without actually installing them."
 msgstr ""
+"Facilement ajouter ou prévisualiser des fontes sans avoir à les installer."
 
 #: src/font-manager/preferences/UserSources.vala:164
 msgid ""
 "To add a new source simply drag a folder onto this area or click the add "
 "button in the toolbar."
 msgstr ""
+"Pour ajouter une nouvelle source, glissez un dossier dans cette zone ou "
+"cliquer sur le bouton d'ajout dans la barre d'outils."
 
 #: src/font-manager/web/google/FontList.vala:56
 msgid "Case insensitive search of family names."
-msgstr ""
+msgstr "Recherche de noms de familles insensible à la casse."
 
 #: src/font-manager/web/google/GoogleFonts.vala:129
 msgid "Error procesing data"
@@ -1831,6 +1832,8 @@ msgstr "Erreur du client"
 msgid ""
 "Try restarting the application. If the issue persists, please file a bug."
 msgstr ""
+"Essayez de relancer le programme. Si l'erreur subsiste, veuillez remplir un "
+"ticket."
 
 #: src/font-manager/web/google/GoogleFonts.vala:145
 msgid "Server Error"
@@ -1845,6 +1848,8 @@ msgstr "Réseau hors ligne"
 msgid ""
 "An active internet connection is required to access the Google Fonts catalog"
 msgstr ""
+"Une connexion Internet active est nécessaire pour accéder au catalogue de "
+"fontes Google"
 
 #: src/font-manager/web/google/Language.vala:35
 msgid "Chinese (Hong Kong)"
@@ -1894,11 +1899,13 @@ msgstr "latin étendu"
 #: src/font-manager/web/google/Language.vala:81
 #, c-format
 msgid "No sample for %s available"
-msgstr ""
+msgstr "Aucun échantillon de disponible pour %s"
 
 #: src/font-manager/web/google/Language.vala:83
 msgid "Please file an issue requesting an update to available samples."
 msgstr ""
+"Veuillez remplir un ticket pour demander une mise à jour des échantillons "
+"disponibles."
 
 #: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Family"
@@ -2002,14 +2009,12 @@ msgid "Next page"
 msgstr "Page suivante"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
-#, fuzzy
-#| msgid "Enter Collection Name"
 msgid "Collection Name"
-msgstr "Entrez le nom de la collection"
+msgstr "Nom de la collection"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:54
 msgid "_Rename"
-msgstr ""
+msgstr "_Renommer"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:57
 msgid "Add selected font to comparison"
@@ -2017,11 +2022,11 @@ msgstr "Ajouter la police sélectionnée à la comparaison"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:84
 msgid "Remove selected font from comparison"
-msgstr ""
+msgstr "Retirer les fontes sélectionnées de la comparaison"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:110
 msgid "Pinned Comparisons"
-msgstr ""
+msgstr "Comparaisons épinglées"
 
 #: src/font-manager/ui/font-manager-compare-view.ui:136
 #: src/font-manager/ui/font-manager-compare-view.ui:140
@@ -2044,6 +2049,8 @@ msgstr "Annuler"
 #: src/font-manager/ui/font-manager-font-config-controls.ui:30
 msgid "Running applications may require a restart to reflect any changes."
 msgstr ""
+"Les applications actives pourraient nécessiter un redémarrage pour prendre "
+"en compte les modifications."
 
 #: src/font-manager/ui/font-manager-font-config-controls.ui:40
 msgid "Save"
@@ -2054,9 +2061,8 @@ msgid "Back"
 msgstr "Retour"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:62
-#, fuzzy
 msgid "Search Orthographies…"
-msgstr "Orthographes prises en charge"
+msgstr "Recherche des ortographes…"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:77
 msgid "Deselect All"
@@ -2064,7 +2070,7 @@ msgstr "Tout déselectionner"
 
 #: src/font-manager/ui/font-manager-language-filter-settings.ui:156
 msgid "Minimum Coverage"
-msgstr ""
+msgstr "Couverture minimale"
 
 #: src/font-manager/ui/font-manager-orthography-list.ui:86
 msgid "Clear selected filter"
@@ -2072,19 +2078,19 @@ msgstr "Effacer le filtre selectionné"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:27
 msgid "Created : "
-msgstr ""
+msgstr "Création : "
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:32
 msgid "Save current comparison"
-msgstr ""
+msgstr "Sauvagerder la comparaison actuelle"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:62
 msgid "Remove selected comparison"
-msgstr ""
+msgstr "Supprimer la comparaison sélectionnée"
 
 #: src/font-manager/ui/font-manager-pinned-comparisons.ui:92
 msgid "Restore selected comparison"
-msgstr ""
+msgstr "Restorer la comparaison sélectionner"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:14
 msgid "General"
@@ -2092,15 +2098,15 @@ msgstr "Général"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:26
 msgid "Increase preview size"
-msgstr ""
+msgstr "Augmenter la taille de prévisualisation"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:33
 msgid "Decrease preview size"
-msgstr ""
+msgstr "Diminuer la taille de prévisualisation"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:40
 msgid "Reset preview size"
-msgstr ""
+msgstr "Réinitialiser la taille de prévisualisation"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:47
 msgid "Reload"
@@ -2116,15 +2122,15 @@ msgstr "Mode"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:67
 msgid "Switch to Manage mode"
-msgstr ""
+msgstr "Basculer vers le mode de Gestion"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:74
 msgid "Switch to Browse mode"
-msgstr ""
+msgstr "Basculer vers le mode de Navigation"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:81
 msgid "Switch to Compare mode"
-msgstr ""
+msgstr "Basculer vers le mode de Comparaison"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:89
 msgid "Preview Mode"
@@ -2132,15 +2138,15 @@ msgstr "Mode de prévisualisation"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:94
 msgid "Switch to Standard preview"
-msgstr ""
+msgstr "Basculer vers la prévisualisation Standard"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:101
 msgid "Switch to Waterfall preview"
-msgstr ""
+msgstr "Basculer vers la prévisualisation en Cascade"
 
 #: src/font-manager/ui/font-manager-shortcuts-window.ui:108
 msgid "Switch to Body Text preview"
-msgstr ""
+msgstr "Basculer vers la prévisualisation en Corps de Texte"
 
 #: src/font-manager/ui/font-manager-standard-sidebar.ui:58
 msgid "Categories"
@@ -2164,23 +2170,23 @@ msgstr "Supprimer la collection sélectionnée"
 
 #: src/font-manager/ui/font-manager-subpixel-geometry.ui:44
 msgid "Subpixel Geometry"
-msgstr ""
+msgstr "Géométrie Subpixel"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:18
 msgid "Enter target family"
-msgstr ""
+msgstr "Entrez la famille cible"
 
 #: src/font-manager/ui/font-manager-substitute-row.ui:32
 msgid "Add substitute"
-msgstr ""
+msgstr "Ajouter un substitut"
 
 #: src/font-manager/ui/font-manager-substitute.ui:41
 msgid "Remove substitute"
-msgstr ""
+msgstr "Supprimer un substitut"
 
 #: src/font-manager/ui/font-manager-substitute.ui:42
 msgid "Enter substitute family"
-msgstr ""
+msgstr "Entrer une famille de substitution"
 
 #: src/font-manager/ui/font-manager-substitute.ui:59
 msgid "prefer"
@@ -2196,7 +2202,7 @@ msgstr "par défaut"
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:13
 msgid "Titlebar Button Style"
-msgstr ""
+msgstr "Style de boutons de barre de titre"
 
 #: src/font-manager/ui/font-manager-title-button-style.ui:43
 msgid "Flat"
@@ -2221,61 +2227,59 @@ msgstr "Arguments"
 
 #: src/font-manager/ui/font-manager-user-data.ui:73
 msgid "Font Configuration"
-msgstr ""
+msgstr "Paramètres de fonte"
 
 #: src/font-manager/ui/font-manager-user-data.ui:102
 msgid "Font Collections"
-msgstr ""
+msgstr "Collection de fonte"
 
 #: src/font-manager/ui/font-manager-user-data.ui:160
 msgid "Installed Fonts"
-msgstr ""
+msgstr "Fontes installées"
 
 #: src/font-manager/ui/font-manager-user-data.ui:189
 msgid "Custom Actions"
-msgstr ""
+msgstr "Actions personnalisées"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:25
 msgid "Display line size in Waterfall Preview"
-msgstr ""
+msgstr "Afficher la taille de ligne en affichage Cascade"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:74
 msgid "Waterfall Preview Size Settings"
-msgstr ""
+msgstr "Option de taille de prévisualisation en Cascade"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:93
 msgid "Up to 48 points (Linear Scaling)"
-msgstr ""
+msgstr "Jusqu'à 48 points (Échelle linéaire)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:94
 msgid "Up to 72 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "Jusqu'à 72 point (Ratio commun 1.1)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:95
 msgid "Up to 96 points (Linear Scaling)"
-msgstr ""
+msgstr "Jusqu'à 96 points (Échelle linéaire)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:96
 msgid "Up to 96 points (1.1 Common Ratio)"
-msgstr ""
+msgstr "Jusqu'à 96 points (Ratio commun 1.1)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:97
 msgid "Up to 120 points (1.2 Common Ratio)"
-msgstr ""
+msgstr "Jusqu'à 120 points (Ratio commun 1.2)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:98
 msgid "Up to 144 points (1.3 Common Ratio)"
-msgstr ""
+msgstr "Jusqu'à 144 points (Ratio commun 1.3)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:99
 msgid "Up to 192 points (1.4 Common Ratio)"
-msgstr ""
+msgstr "Jusqu'à 192 points (Ratio commun 1.4)"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:100
-#, fuzzy
-#| msgid "Filter Settings"
 msgid "Custom Size Settings"
-msgstr "Paramètres du filtre"
+msgstr "Paramètres de taille personnalisée"
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:142
 msgid "Minimum Waterfall Preview Point Size"
@@ -2307,7 +2311,7 @@ msgstr ""
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:53
 msgid "Newest"
-msgstr ""
+msgstr "Plus récent"
 
 #: src/font-manager/web/google/ui/google-font-filters.ui:54
 msgid "Most Popular"
