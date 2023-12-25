@@ -4,13 +4,14 @@
 # Fellow Turkish <f3ll0wm4il3r_12@protonmail.com>, 2021.
 # Oğuz Ersen <oguzersen@protonmail.com>, 2021, 2022.
 # Oğuz Ersen <oguz@ersen.moe>, 2022.
+# Sabri Ünal <libreajans@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-03-31 14:10+0000\n"
-"Last-Translator: Oğuz Ersen <oguz@ersen.moe>\n"
+"PO-Revision-Date: 2023-12-25 03:07+0000\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/tr/>\n"
 "Language: tr\n"
@@ -18,13 +19,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
 #: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
 msgid "Font Manager"
-msgstr "Yazı Tipi Yöneticisi"
+msgstr "Yazı Tipi Yönetici"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:10
 msgid "A simple font management application for Gtk+ Desktop Environments"
@@ -684,7 +685,7 @@ msgstr "Tüm kullanıcılar için kullanılabilir yazı tipleri"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr "Aile Tipi"
+msgstr "Aile Türü"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."

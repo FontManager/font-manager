@@ -1,11 +1,12 @@
 # Fellow Turkish <f3ll0wm4il3r_12@protonmail.com>, 2021.
 # Oğuz Ersen <oguzersen@protonmail.com>, 2021.
+# Sabri Ünal <libreajans@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-08-03 18:33+0000\n"
-"Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
+"PO-Revision-Date: 2023-12-25 03:07+0000\n"
+"Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/tr/>\n"
 "Language: tr\n"
@@ -13,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 5.4-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -74,7 +75,7 @@ msgstr "Yalnızca sizin kullanabileceğiniz yazı tipleri."
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr "Aile Tipi"
+msgstr "Aile Türü"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
