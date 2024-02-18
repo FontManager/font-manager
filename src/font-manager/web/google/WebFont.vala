@@ -42,35 +42,30 @@ namespace FontManager.GoogleFonts {
             string filename = font.get_filename();
             string filepath = Path.build_filename(font_dir, filename);
             var message = new Soup.Message(GET, font.url);
-            if (session.send_message(message) == Soup.Status.OK) {
+            try {
+                Bytes? bytes = session.send_and_read(message, null);
+                assert(bytes != null);
+                File font_file = File.new_for_path(filepath);
+                // File.create errors out if file already exists regardless of flags
+                if (font_file.query_exists())
+                    font_file.delete();
+                FileOutputStream stream = font_file.create(FileCreateFlags.PRIVATE);
                 try {
-                    Bytes bytes = message.response_body.flatten().get_as_bytes();
-                    File font_file = File.new_for_path(filepath);
-                    if (font_file.query_exists())
-                        font_file.delete();
-                    FileOutputStream stream = font_file.create(FileCreateFlags.PRIVATE);
-                    stream.write_bytes_async.begin(bytes, Priority.DEFAULT, null, (obj, res) => {
-                        try {
-                            stream.write_bytes_async.end(res);
-                            stream.close();
-                        } catch (Error e) {
-                            warning("Failed to write data for : %s :: %i : %s", filename, e.code, e.message);
-                            retval = false;
-                            return;
-                        }
-                    });
-                    if (!retval)
-                        return false;
+                    stream.write_bytes(bytes);
+                    stream.close();
                 } catch (Error e) {
-                    warning("Failed to write data for : %s :: %i : %s", filename, e.code, e.message);
-                    return false;
+                    retval = false;
+                    warning("Failed to write data to file : %s : %s", filepath, e.message);
                 }
-                Idle.add(download_font_files.callback);
-                yield;
-            } else {
-                warning("Failed to download data for : %s :: %i", filename, (int) message.status_code);
-                return false;
+            } catch (Error e) {
+                retval = false;
+                warning("Failed to read data for : %s :: %i :: %s",
+                        filename,
+                        (int) message.status_code,
+                        e.message);
             }
+            Idle.add(download_font_files.callback);
+            yield;
         }
         return retval;
     }

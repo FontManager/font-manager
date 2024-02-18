@@ -179,35 +179,33 @@ namespace FontManager.GoogleFonts {
             foreach (var entry in order) {
                 string filename = "gfc-%s.json".printf(entry);
                 var message = new Soup.Message(GET, WEBFONTS.printf(GFC_API_KEY, entry));
-                if (session.send_message(message) == Soup.Status.OK) {
+                try {
+                    Bytes? bytes = session.send_and_read(message, null);
+                    assert(bytes != null);
                     string filepath = Path.build_filename(get_package_cache_directory(), filename);
-                    try {
-                        Bytes bytes = message.response_body.flatten().get_as_bytes();
-                        File cache_file = File.new_for_path(filepath);
-                        if (cache_file.query_exists())
-                            cache_file.delete();
-                        FileOutputStream stream = cache_file.create(FileCreateFlags.PRIVATE);
-                        stream.write_bytes_async.begin(bytes, Priority.DEFAULT, null, (obj, res) => {
-                            try {
-                                stream.write_bytes_async.end(res);
-                                stream.close();
-                            } catch (Error e) {
-                                warning("Failed to write data for : %s :: %i : %s", filename, e.code, e.message);
-                                return;
-                            }
-                        });
-                    } catch (Error e) {
-                        warning("Failed to write data for : %s :: %i : %s", filename, e.code, e.message);
-                        return;
-                    }
-                    Idle.add(update_font_list_cache.callback);
-                    yield;
-                } else {
+                    File cache_file = File.new_for_path(filepath);
+                    if (cache_file.query_exists())
+                        cache_file.delete();
+                    FileOutputStream stream = cache_file.create(FileCreateFlags.PRIVATE);
+                    stream.write_bytes_async.begin(bytes, Priority.DEFAULT, null, (obj, res) => {
+                        try {
+                            stream.write_bytes_async.end(res);
+                            stream.close();
+                        } catch (Error e) {
+                            warning("Failed to write data for : %s :: %i : %s", filename, e.code, e.message);
+                            return;
+                        }
+                    });
+                } catch (Error e) {
                     http_status = message.status_code;
                     status_message = message.reason_phrase;
                     warning("Failed to download data for : %s :: %i", filename, (int) message.status_code);
                     return;
                 }
+                http_status = message.status_code;
+                status_message = message.reason_phrase;
+                Idle.add(update_font_list_cache.callback);
+                yield;
             }
         }
 

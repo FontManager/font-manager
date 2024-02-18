@@ -95,7 +95,7 @@ BUILD_DEPENDS = \
 	python3 \
 	python-gi-dev \
 	python3-nautilus \
-	libsoup2.4-dev \
+	libsoup3.0-dev \
 	libwebkit2gtk-4.0-dev \
 	libnautilus-extension-dev \
 	libnemo-extension-dev \

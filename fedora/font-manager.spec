@@ -34,8 +34,8 @@ BuildRequires: sqlite-devel
 BuildRequires: vala >= 0.42
 BuildRequires: yelp-tools
 %if %{with webkit}
-BuildRequires: libsoup-devel
-BuildRequires: webkit2gtk3-devel
+BuildRequires: libsoup3-devel
+BuildRequires: webkit2gtk4.1-devel
 %endif
 
 %if %{with nautilus}
@@ -56,8 +56,8 @@ Requires: gtk3 >= 3.22
 Requires: sqlite
 Requires: yelp
 %if %{with webkit}
-Requires: libsoup
-Requires: webkit2gtk3
+Requires: libsoup3
+Requires: webkit2gtk4.1
 %endif
 
 %description

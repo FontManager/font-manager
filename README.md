@@ -114,8 +114,8 @@ If you wish to also build file manager extensions, you will need corresponding d
 
 If you wish to also build Google Fonts integration, which is enabled by default, the following libraries are required:
 
-- `webkit2gtk3 >= 2.24`
-- `libsoup >= 2.62`
+- `webkit2gtk-4.1 >= 2.42`
+- `libsoup3 >= 3.4`
 
 To build the application:
 

@@ -27,8 +27,8 @@ sqlite = dependency('sqlite3', version: '>= 3.8')
 xml = dependency('libxml-2.0', version: '>= 2.9')
 
 if get_option('webkit')
-    soup = dependency('libsoup-2.4', version: '>= 2.62')
-    webkit = dependency('webkit2gtk-4.0', version: '>= 2.24')
+    soup = dependency('libsoup-3.0', version: '>= 3.4')
+    webkit = dependency('webkit2gtk-4.1', version: '>= 2.42')
     add_global_arguments('-D', 'HAVE_WEBKIT', language: 'vala')
 endif
 
