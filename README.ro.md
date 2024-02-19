@@ -107,7 +107,7 @@ Dacă doriţi să construiţi şi extensiile pentru managerul de fişiere, veţi
 Dacă doriţi să construiţi şi integrare cu Google Fonts, care este activată implicit, următoarele biblioteci sunt necesare:
 
 - `webkit2gtk-4.1 >= 2.42`
-- `libsoup3 >= 3.4`
+- `libsoup3 >= 3.0`
 
 Pentru a construi aplicaţia:
 

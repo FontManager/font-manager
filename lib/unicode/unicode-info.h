@@ -60,7 +60,10 @@ G_BEGIN_DECLS
  * @UNICODE_VERSION_12_0:           Version 12.0
  * @UNICODE_VERSION_12_1:           Version 12.1
  * @UNICODE_VERSION_13_0:           Version 13.0
- * @UNICODE_VERSION_LATEST:         Version 13.0
+ * @UNICODE_VERSION_14_0:           Version 14.0
+ * @UNICODE_VERSION_15_0:           Version 15.0
+ * @UNICODE_VERSION_15_1:           Version 15.1
+ * @UNICODE_VERSION_LATEST:         Version 15.1
  */
 typedef enum {
     UNICODE_VERSION_UNASSIGNED,
@@ -87,8 +90,11 @@ typedef enum {
     UNICODE_VERSION_12_0,
     UNICODE_VERSION_12_1,
     UNICODE_VERSION_13_0,
+    UNICODE_VERSION_14_0,
+    UNICODE_VERSION_15_0,
+    UNICODE_VERSION_15_1,
     /* private, will move forward with each revision */
-    UNICODE_VERSION_LATEST = UNICODE_VERSION_13_0
+    UNICODE_VERSION_LATEST = UNICODE_VERSION_15_1
 } UnicodeStandard;
 
 /* return values are read-only */
