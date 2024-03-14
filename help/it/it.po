@@ -1,10 +1,11 @@
 # Nicola Tudino <tudo75@hotmail.com>, 2021.
+# albanobattistella <albano_battistella@hotmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-07-27 01:35+0000\n"
-"Last-Translator: Nicola Tudino <tudo75@hotmail.com>\n"
+"PO-Revision-Date: 2024-02-22 12:02+0000\n"
+"Last-Translator: albanobattistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager-help-docs/it/>\n"
 "Language: it\n"
@@ -12,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -71,7 +72,7 @@ msgstr "Caratteri disponibili solo per te."
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr "Tipologia di famiglia"
+msgstr "Tipo di famiglia"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
