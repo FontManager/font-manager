@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the font-manager package.
 # Jakub Fabijan <jakubfabijan@tuta.io>, 2021.
 # phlostically <phlostically@mailinator.com>, 2021, 2022.
+# Marcos Leite <m.abner@live.co.uk>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.7\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-04-23 01:09+0000\n"
-"Last-Translator: phlostically <phlostically@mailinator.com>\n"
+"PO-Revision-Date: 2024-03-14 02:22+0000\n"
+"Last-Translator: Marcos Leite <m.abner@live.co.uk>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/eo/>\n"
 "Language: eo\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.12.1-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -717,7 +718,7 @@ msgstr "Bilda"
 msgid "%i Variation "
 msgid_plural "%i Variations"
 msgstr[0] "%i variaĵo "
-msgstr[1] "%i variaĵoj "
+msgstr[1] "%i variaĵoj"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1945,7 +1946,7 @@ msgstr "Elŝuti tiparon"
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] "%i lingva ekzemplo disponeblas "
-msgstr[1] "%i lingvaj ekzemploj disponeblas "
+msgstr[1] "%i lingvaj ekzemploj disponeblas"
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"

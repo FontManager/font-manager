@@ -2,13 +2,14 @@
 # Copyright (C) YEAR Jerry Casiano
 # This file is distributed under the same license as the font-manager package.
 # Fúlvio Alves <fga.fulvio@gmail.com>, 2020, 2021, 2022, 2023.
+# Marcos Leite <m.abner@live.co.uk>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.3\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2023-10-24 04:10+0000\n"
-"Last-Translator: Fúlvio Alves <fga.fulvio@gmail.com>\n"
+"PO-Revision-Date: 2024-03-14 02:22+0000\n"
+"Last-Translator: Marcos Leite <m.abner@live.co.uk>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.1.1-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -276,13 +277,12 @@ msgid "Legacy"
 msgstr "Legado"
 
 #: lib/common/font-manager-freetype.c:292
-#, fuzzy
 msgid "Restricted License Embedding"
-msgstr "Licença de incorporação restrita"
+msgstr "Licença de Incorporação Restrita"
 
 #: lib/common/font-manager-freetype.c:294
 msgid "Preview & Print Embedding"
-msgstr ""
+msgstr "Incorporação de Visualização e Impressão"
 
 #: lib/common/font-manager-freetype.c:296
 msgid "Editable Embedding"
@@ -290,31 +290,34 @@ msgstr "Incorporação Editável"
 
 #: lib/common/font-manager-freetype.c:298
 msgid "Preview & Print Embedding | No Subsetting"
-msgstr ""
+msgstr "Incorporação de Visualização e Impressão | Sem Subconjunto"
 
 #: lib/common/font-manager-freetype.c:300
 msgid "Editable Embedding | No Subsetting"
-msgstr ""
+msgstr "Incorporação Editável | Sem Subconjunto"
 
 #: lib/common/font-manager-freetype.c:302
 msgid "Preview & Print Embedding | Bitmap Embedding Only"
 msgstr ""
+"Incorporação de Visualização e Impressão | Incorporação Apenas de Bitmap"
 
 #: lib/common/font-manager-freetype.c:304
 msgid "Editable Embedding | Bitmap Embedding Only"
-msgstr ""
+msgstr "Incorporação Editável | Incorporação Apenas de Bitmap"
 
 #: lib/common/font-manager-freetype.c:306
 msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
 msgstr ""
+"Incorporação de Visualização e Impressão | Sem Subconjunto | Incorporação "
+"Apenas de Bitmap"
 
 #: lib/common/font-manager-freetype.c:308
 msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
-msgstr ""
+msgstr "Incorporação Editável | Sem Subconjunto | Incorporação Apenas de Bitmap"
 
 #: lib/common/font-manager-freetype.c:310
 msgid "Installable Embedding"
-msgstr ""
+msgstr "Incorporação Instalável"
 
 #. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
 #: lib/common/font-manager-freetype.c:702
@@ -453,11 +456,11 @@ msgstr "<Uso Privado>"
 
 #: lib/unicode/unicode-info.c:199
 msgid "<Plane 15 Private Use>"
-msgstr ""
+msgstr "<Plano 15 Uso Privado>"
 
 #: lib/unicode/unicode-info.c:201
 msgid "<Plane 16 Private Use>"
-msgstr ""
+msgstr "<Plano 16 Uso Privado>"
 
 #: lib/unicode/unicode-info.c:205
 msgid "<not assigned>"
@@ -628,7 +631,9 @@ msgstr ""
 #. by a newline character so that they are displayed properly in the interface.
 #: src/font-manager/About.vala:69
 msgid "translator-credits"
-msgstr "Fúlvio Alves <fga.fulvio@gmail.com>"
+msgstr ""
+"Fúlvio Alves <fga.fulvio@gmail.com>\n"
+"Marcos Leite <marcos.abner.leite@gmail.com>"
 
 #: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
@@ -715,8 +720,8 @@ msgstr "Pictórica"
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] "%i Variação "
-msgstr[1] "%i Variações "
+msgstr[0] "%i Variação"
+msgstr[1] "%i Variações"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1235,7 +1240,7 @@ msgstr "Novo Tai Lue"
 
 #: src/font-manager/Orthographies.vala:133
 msgid "N’Ko"
-msgstr "N’Ko"
+msgstr "N'Ko"
 
 #: src/font-manager/Orthographies.vala:134
 msgid "Ogham"
@@ -1251,7 +1256,7 @@ msgstr "Itálico antigo"
 
 #: src/font-manager/Orthographies.vala:137
 msgid "Old South Arabian"
-msgstr ""
+msgstr "Antiga Arábia do Sul"
 
 #: src/font-manager/Orthographies.vala:138
 #: src/font-manager/web/google/Language.vala:54
@@ -1351,7 +1356,7 @@ msgstr "Tâmil"
 #: src/font-manager/Orthographies.vala:161
 #: src/font-manager/web/google/Language.vala:57
 msgid "Telugu"
-msgstr ""
+msgstr "Telugo"
 
 #: src/font-manager/Orthographies.vala:162
 msgid "Thaana"
@@ -1385,7 +1390,7 @@ msgstr "Uigur"
 
 #: src/font-manager/Orthographies.vala:169
 msgid "Urdu"
-msgstr ""
+msgstr "Urdu"
 
 #: src/font-manager/Orthographies.vala:170
 msgid "Vai"
@@ -1711,7 +1716,7 @@ msgstr "Área de Trabalho"
 
 #: src/font-manager/preferences/Preferences.vala:26
 msgid "Sources"
-msgstr "Origem"
+msgstr "Origens"
 
 #: src/font-manager/preferences/Preferences.vala:27
 msgid "Actions"
@@ -1949,8 +1954,8 @@ msgstr "Baixar fonte"
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] "%i amostra de idioma disponível "
-msgstr[1] "%i amostras de idioma disponíveis "
+msgstr[0] "%i amostra de idioma disponível"
+msgstr[1] "%i amostras de idioma disponíveis"
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
