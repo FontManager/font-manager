@@ -1,12 +1,13 @@
 # Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
+# Marcos Leite <m.abner@live.co.uk>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2021-03-05 12:50+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2024-03-14 02:22+0000\n"
+"Last-Translator: Marcos Leite <m.abner@live.co.uk>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/ca/>\n"
 "Language: ca\n"
@@ -14,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.1-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -690,7 +691,7 @@ msgstr "Pictòriques"
 msgid "%i Variation "
 msgid_plural "%i Variations"
 msgstr[0] "%i variació "
-msgstr[1] "%i variacions "
+msgstr[1] "%i variacions"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1666,7 +1667,7 @@ msgstr ""
 
 #: src/font-manager/preferences/Preferences.vala:24
 msgid "Interface"
-msgstr "Interfície "
+msgstr "Interfície"
 
 #: src/font-manager/preferences/Preferences.vala:25
 msgid "Desktop"

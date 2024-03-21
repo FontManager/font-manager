@@ -1,11 +1,12 @@
 # Alang Hsu <alang.hsu@gmail.com>, 2021.
 # lemon37564 <stonydragon0701@gmail.com>, 2021.
+# D0735 <D0735@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "POT-Creation-Date: 2021-07-26 21:37-0400\n"
-"PO-Revision-Date: 2021-10-21 18:39+0000\n"
-"Last-Translator: lemon37564 <stonydragon0701@gmail.com>\n"
+"PO-Revision-Date: 2024-03-12 17:01+0000\n"
+"Last-Translator: D0735 <D0735@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager-help-docs/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -13,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 msgctxt "_"
@@ -70,7 +71,7 @@ msgstr ""
 #. (itstool) path: item/title
 #: C/font-manager-categories.page:37
 msgid "Family Kind"
-msgstr "字體家族"
+msgstr "字形家族種類"
 
 #. (itstool) path: item/p
 #: C/font-manager-categories.page:38
