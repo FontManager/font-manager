@@ -3,13 +3,15 @@
 # This file is distributed under the same license as the font-manager package.
 # Nicola Tudino <tudo75@gmail.com>, 2021.
 # Nicola Tudino <tudo75@hotmail.com>, 2021.
+# albanobattistella <albano_battistella@hotmail.com>, 2024.
+# Marcos Leite <m.abner@live.co.uk>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2021-07-27 01:35+0000\n"
-"Last-Translator: Nicola Tudino <tudo75@hotmail.com>\n"
+"PO-Revision-Date: 2024-03-14 02:22+0000\n"
+"Last-Translator: Marcos Leite <m.abner@live.co.uk>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/it/>\n"
 "Language: it\n"
@@ -17,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -147,13 +149,13 @@ msgstr ""
 
 #: lib/common/font-manager-fontconfig.c:717
 msgid "Book"
-msgstr ""
+msgstr "Libro"
 
 #: lib/common/font-manager-fontconfig.c:719
 #: lib/common/font-manager-fontconfig.c:1023
 #: src/font-manager/web/google/Weight.vala:73
 msgid "Medium"
-msgstr ""
+msgstr "Medio"
 
 #: lib/common/font-manager-fontconfig.c:721
 msgid "Semi-Bold"
@@ -240,7 +242,7 @@ msgstr "Sconosciuto"
 
 #: lib/common/font-manager-fontconfig.c:974
 msgid "RGB"
-msgstr ""
+msgstr "RGB"
 
 #: lib/common/font-manager-fontconfig.c:976
 msgid "BGR"
@@ -665,7 +667,7 @@ msgstr "Tipi di carattere disponibili per tutti gli utenti"
 
 #: src/font-manager/Categories.vala:566
 msgid "Family Kind"
-msgstr "Tipologia di famiglia"
+msgstr "Tipo di famiglia"
 
 #: src/font-manager/Categories.vala:566
 msgid "Only fonts which include Panose information will be grouped here."
@@ -816,12 +818,11 @@ msgstr "Comprimi tutto"
 #. Translators : Even though singular form is not used yet, it is here
 #. to make for a proper ngettext call. Still it is advisable to translate it.
 #: src/font-manager/FontList.vala:416
-#, fuzzy, c-format
-#| msgid "Clear selected filter"
+#, c-format
 msgid "%i selected item"
 msgid_plural "%i selected items"
-msgstr[0] "Cancella il filtro selezionato"
-msgstr[1] "Cancella il filtro selezionato"
+msgstr[0] "%i elemento selezionato"
+msgstr[1] "%i elementi selezionati"
 
 #: src/font-manager/FontList.vala:517
 msgid "Copy Location"
@@ -832,16 +833,12 @@ msgid "Show in Folder"
 msgstr "Mostra nella cartella"
 
 #: src/font-manager/FontList.vala:583
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Enable selected items"
-msgstr "Cancella il filtro selezionato"
+msgstr "Abilita elementi selezionati"
 
 #: src/font-manager/FontList.vala:585
-#, fuzzy
-#| msgid "Clear selected filter"
 msgid "Disable selected items"
-msgstr "Cancella il filtro selezionato"
+msgstr "Disabilita elementi selezionati"
 
 #: src/font-manager/MainWindow.vala:54
 #: src/font-manager/ui/font-manager-main-window.ui:165
@@ -1952,7 +1949,7 @@ msgstr "Scarica il tipo di carattere"
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] "%i Esempio di lingua disponibile "
-msgstr[1] "%i Esempi di lingua disponibile "
+msgstr[1] "%i Esempi di lingua disponibile"
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"

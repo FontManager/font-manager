@@ -7,13 +7,14 @@
 # Alexandre ZANNI <alexandre.zanni@hotmail.fr>, 2022.
 # Quentin Poterek <quentin.poterek@outlook.fr>, 2022.
 # LeJun <lejun@gmx.fr>, 2023.
+# Marcos Leite <m.abner@live.co.uk>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.0\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2023-07-14 22:52+0000\n"
-"Last-Translator: LeJun <lejun@gmx.fr>\n"
+"PO-Revision-Date: 2024-03-14 02:22+0000\n"
+"Last-Translator: Marcos Leite <m.abner@live.co.uk>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/fr/>\n"
 "Language: fr\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.5-dev\n"
 
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
 #: data/org.gnome.FontManager.desktop.in.in:5
@@ -716,8 +717,8 @@ msgstr "Picturale"
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] "%i variante "
-msgstr[1] "%i variantes "
+msgstr[0] "%i variante"
+msgstr[1] "%i variantes"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -1935,8 +1936,8 @@ msgstr "Télécharger la police"
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] "%i échantillon de langue disponible "
-msgstr[1] "%i échantillons de langue disponibles "
+msgstr[0] "%i échantillon de langue disponible"
+msgstr[1] "%i échantillons de langue disponibles"
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
