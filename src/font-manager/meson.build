@@ -22,5 +22,14 @@ vala_test_lib = shared_library('vala_test',
                                link_with: libfontmanager,
                                install: false)
 
+executable('font-manager',
+            [font_manager_sources, font_manager_gresources, config_vapi],
+            dependencies: dependencies,
+            include_directories: includes,
+            link_with: libfontmanager,
+            install: true,
+            install_dir: pkglibexec_dir,
+            install_rpath: pkglib_dir)
+
 includes += include_directories('.')
 

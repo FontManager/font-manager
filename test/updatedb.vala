@@ -14,23 +14,24 @@ void quit ()
 }
 
 void update_progress_dialog (ProgressData data) {
+    string message = _("Updating Database…");
     if (data.message == "Fonts")
         font = data.processed;
     else if (data.message == "Metadata")
         metadata = data.processed;
     else if (data.message == "Orthography")
         orthography = data.processed;
-    var progress = new ProgressData("Updating font database…",
-                                    font + metadata + orthography,
-                                    data.total * 3);
+    uint processed = font + metadata + orthography;
+    var progress = new ProgressData(message, processed / 3, data.total);
     dialog.update(progress);
     return;
 }
 
 int main () {
     Gtk.init();
+    set_application_style();
     loop = new MainLoop();
-    dialog = new ProgressDialog("Font Manager");
+    dialog = new ProgressDialog(_("Font Manager")) { show_app_icon = true };
     var db = new DatabaseProxy();
     db.set_progress_callback((data) => {
         data.ref();
@@ -50,4 +51,5 @@ int main () {
     loop.run();
     return 0;
 }
+
 

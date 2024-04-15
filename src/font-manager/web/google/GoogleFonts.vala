@@ -1,6 +1,6 @@
 /* GoogleFonts.vala
  *
- * Copyright (C) 2020-2023 Jerry Casiano
+ * Copyright (C) 2020-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,10 +38,12 @@ namespace FontManager.GoogleFonts {
         uint status_code = Soup.Status.NONE;
         string? reason_phrase = null;
         Error? error = null;
+        GLib.Settings? gsettings = null;
         NetworkMonitor network_monitor;
         PlaceHolder placeholder;
 
         public Catalog () {
+            gsettings = get_gsettings(BUS_ID);
             var sidebar = new Sidebar();
             var fontlist = new FontListView();
             var preview = new PreviewPage();
@@ -92,6 +94,8 @@ namespace FontManager.GoogleFonts {
         }
 
         bool network_available () {
+            if (gsettings != null && gsettings.get_boolean("restrict-network-access"))
+                return false;
             bool available = (network_monitor.connectivity == NetworkConnectivity.FULL);
             if (!available && network_monitor.connectivity != NetworkConnectivity.LOCAL) {
                 try {

@@ -185,38 +185,5 @@ namespace FontManager {
 
     }
 
-    public class MainPane : Paned {
-
-        SidebarStack sidebar;
-        FontListView fontlist;
-        PreviewPane preview;
-
-        construct {
-            sidebar = new SidebarStack();
-            fontlist = new FontListView();
-            preview = new PreviewPane();
-            set_sidebar_widget(sidebar);
-            set_list_widget(fontlist);
-            set_content_widget(preview);
-            var fonts = sort_json_font_listing(get_available_fonts(null));
-            update_item_preview_text(fonts);
-            fontlist.available_fonts = fonts;
-            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
-            sidebar.bind_property("filter", fontlist, "filter", flags);
-            fontlist.bind_property("selected-item", sidebar, "selected-item", flags);
-            preview.bind_property("page", sidebar, "mode", flags);
-            sidebar.bind_property("selected-orthography", preview, "orthography", flags);
-            fontlist.selection_changed.connect((item) => {
-                var font = new Font();
-                if (item is Font)
-                    font = ((Font) item);
-                else
-                    font.source_object = ((Family) item).get_default_variant();
-                preview.font = font;
-            });
-        }
-
-    }
-
 }
 

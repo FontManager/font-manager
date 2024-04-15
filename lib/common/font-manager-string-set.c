@@ -1,6 +1,6 @@
 /* font-manager-string-set.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -282,6 +282,7 @@ font_manager_string_set_list (FontManagerStringSet *self)
     GList *result = NULL;
     for (guint i = 0; i < priv->strings->len; i++)
         result = g_list_prepend(result, g_strdup(g_ptr_array_index(priv->strings, i)));
+    result = g_list_reverse(result);
     return result;
 }
 

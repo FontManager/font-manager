@@ -1,6 +1,6 @@
 /* Preferences.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,8 @@ namespace FontManager {
             content_area.set_visible(false);
             stack = new Gtk.Stack();
             sidebar = new Gtk.StackSidebar();
+            //sidebar.add_css_class(STYLE_CLASS_VIEW);
+            sidebar.remove_css_class("sidebar");
             sidebar.set_stack(stack);
             set_list_widget(stack);
             set_sidebar_widget(sidebar);

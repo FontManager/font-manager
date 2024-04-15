@@ -39,12 +39,12 @@ update_progress (FontManagerProgressDialog *dialog)
     return G_SOURCE_CONTINUE;
 }
 
-void
-on_about_clicked (GtkButton *button, GtkWindow *parent)
-{
-    font_manager_show_about_dialog(parent);
-    return;
-}
+/* void */
+/* on_about_clicked (GtkButton *button, GtkWindow *parent) */
+/* { */
+/*     font_manager_show_about_dialog(parent); */
+/*     return; */
+/* } */
 
 void
 on_close_clicked (GtkButton* button, GtkWindow *window)
@@ -160,7 +160,7 @@ get_widget (TestApplicationWindow *parent)
 {
     TestDialog *dialog = test_dialog_new(parent, "Dialog Test", 600, 400);
     GtkWidget *box = gtk_flow_box_new();
-    add_dialog_entry(dialog, "About", GTK_FLOW_BOX(box), G_CALLBACK(on_about_clicked));
+    /* add_dialog_entry(dialog, "About", GTK_FLOW_BOX(box), G_CALLBACK(on_about_clicked)); */
     add_dialog_entry(dialog, "Progress", GTK_FLOW_BOX(box), G_CALLBACK(on_progress_clicked));
     add_dialog_entry(dialog, "Select executable", GTK_FLOW_BOX(box), G_CALLBACK(on_exe_clicked));
     /* add_dialog_entry(dialog, "Select directory", GTK_FLOW_BOX(box), G_CALLBACK(on_dir_clicked)); */

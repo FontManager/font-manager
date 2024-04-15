@@ -1,6 +1,6 @@
 /* FontList.vala
  *
- * Copyright (C) 2020-2023 Jerry Casiano
+ * Copyright (C) 2020-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -348,12 +348,13 @@ namespace FontManager.GoogleFonts {
             search.activate.connect(next_match);
             search.next_match.connect(next_match);
             search.previous_match.connect(previous_match);
-            model.items_changed.connect_after(() => {
-                Idle.add(() => {
-                    select_item(0);
-                    return GLib.Source.REMOVE;
-                });
-            });
+            // Not sure why this was needed but it does reset list on installation...
+            // model.items_changed.connect_after(() => {
+            //     Idle.add(() => {
+            //         select_item(0);
+            //         return GLib.Source.REMOVE;
+            //     });
+            // });
         }
 
         // Add slight delay to avoid filtering while search is still changing

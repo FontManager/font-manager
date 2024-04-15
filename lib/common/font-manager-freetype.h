@@ -1,6 +1,6 @@
 /* font-manager-freetype.h
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,7 +54,7 @@ typedef enum
 }
 FontManagerFreetypeError;
 
-glong font_manager_get_face_count (const gchar * filepath);
+glong font_manager_get_face_count (const gchar * filepath, GError **error);
 
 JsonObject * font_manager_get_metadata (const gchar  *filepath,
                                         gint          index,

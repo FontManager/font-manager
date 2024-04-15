@@ -1,6 +1,6 @@
 /* font-manager-application-window.h
  *
- * Copyright (C) 2022-2023 Jerry Casiano
+ * Copyright (C) 2022-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 #include "config.h"
 
 #include <glib.h>
+#include <glib/gi18n-lib.h>
 #include <glib/gprintf.h>
 #include <gtk/gtk.h>
 
@@ -40,6 +41,8 @@ struct _FontManagerApplicationWindowClass
 };
 
 GtkWidget * font_manager_application_window_new (void);
+
+void font_manager_application_window_show_about (FontManagerApplicationWindow *self);
 
 void font_manager_application_window_show_help (FontManagerApplicationWindow *self);
 

@@ -1,6 +1,6 @@
 /* UserInterface.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -234,8 +234,10 @@ namespace FontManager {
             // GLib.Settings? settings = get_gsettings(BUS_ID);
             Gtk.Settings? gtk_settings = Gtk.Settings.get_default();
             const string gtk_prefer_dark = "gtk-application-prefer-dark-theme";
-            if (gtk_settings != null)
+            if (gtk_settings != null) {
                 settings.bind("prefer-dark-theme", gtk_settings, gtk_prefer_dark, flags);
+                settings.bind("enable-animations", gtk_settings, "gtk-enable-animations", flags);
+            }
             warn_if_fail(gtk_settings != null);
 
             settings.bind("prefer-dark-theme", prefer_dark_theme, "active", flags);

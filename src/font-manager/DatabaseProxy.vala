@@ -1,6 +1,6 @@
 /* DatabaseProxy.vala
  *
- * Copyright (C) 2020-2023 Jerry Casiano
+ * Copyright (C) 2020-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -68,8 +68,8 @@ namespace FontManager {
             var available_files = new StringSet();
             foreach (string path in list_available_font_files())
                 available_files.add(path);
-            for (int i = 1; i <= DatabaseType.ORTHOGRAPHY; i++) {
-                var type = (DatabaseType) i;
+            // for (int i = 1; i <= DatabaseType.ORTHOGRAPHY; i++) {
+                var type = (DatabaseType) 0;
                 status.replace(type, false);
                 try {
                     var child = Database.get_default(type);
@@ -96,7 +96,7 @@ namespace FontManager {
                 } catch (Error e) {
                     critical(e.message);
                 }
-            }
+            // }
             return;
         }
 

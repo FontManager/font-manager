@@ -1,6 +1,6 @@
 /* Paned.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,9 +76,11 @@ namespace FontManager {
             });
             main_pane.notify["position"].connect((obj, pspec) => {
                 sidebar_pos = position_to_percentage(main_pane).clamp(2, 98);
+                notify_property("sidebar-position");
             });
             content_pane.notify["position"].connect((obj, pspec) => {
                 content_pos = position_to_percentage(content_pane).clamp(2, 98);
+                notify_property("content-position");
             });
         }
 

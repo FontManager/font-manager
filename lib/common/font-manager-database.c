@@ -1,6 +1,6 @@
 /* font-manager-database.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -1046,7 +1046,8 @@ font_manager_database_add_entry (GFile *file, GError **error)
 {
     g_return_if_fail(file != NULL);
     g_autofree gchar *path = g_file_get_path(file);
-    gint n_faces = font_manager_get_face_count(path);
+    gint n_faces = font_manager_get_face_count(path, error);
+    g_return_if_fail(error == NULL || *error == NULL);
     g_autoptr(JsonArray) panose = json_array_new();
     g_autoptr(FontManagerDatabase) db = NULL;
     db = font_manager_database_get_default(FONT_MANAGER_DATABASE_TYPE_BASE, error);

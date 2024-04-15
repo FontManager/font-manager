@@ -1,6 +1,6 @@
 /* UserSources.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -216,15 +216,13 @@ They will not be visible to other applications until the source is actually enab
             return row;
         }
 
-        // XXX : Ugh. Dragging folders is broken...
-        // https://gitlab.gnome.org/GNOME/gtk/-/issues/5348
-        // https://github.com/flatpak/xdg-desktop-portal/issues/911
         bool on_drag_data_received (Value value, double x, double y) {
             if (value.holds(typeof(Gdk.FileList))) {
                 GLib.SList <File>* filelist = value.get_boxed();
                 for (int i = 0; i < filelist->length(); i++) {
                     File* file = filelist->nth_data(i);
-                    message(file->get_uri());
+                    var source = new Source(file);
+                    model.add_item(source);
                 }
             }
             return true;

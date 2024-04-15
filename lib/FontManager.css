@@ -1,6 +1,6 @@
 /* FontManager.css
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,13 +43,41 @@
     background-color: #808080;
 }
 
+.icon-shadow {
+    -gtk-icon-shadow: 0 1px 12px rgba(0,0,0,0.05),
+      0 -1px rgba(0,0,0,0.05),
+      1px 0 rgba(0,0,0,0.1),
+      0 1px rgba(0,0,0,0.3),
+      -1px 0 rgba(0,0,0,0.1);
+
+}
+
+/* Some popovers feature squished text and checks for some reason */
+dropdown popover contents box {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+dropdown popover contents image {
+    padding-left: 2em;
+}
+
+menubutton popover contents label {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
 /* Accelerator visibility is inconsistent between otherwise identical popovers */
 /* Disable accelerator visibility in menu popovers everywhere for consistency */
 accelerator {
-	color: transparent;
-	margin: 0px;
-	min-width: 0px;
-	font-size: 0px;
+    color: transparent;
+    margin: 0px;
+    min-width: 0px;
+    font-size: 0px;
 }
 
 /* This somewhat mimics the window style defined in Adwaita */
@@ -58,11 +86,11 @@ decoration, window, window.background, dialog.message {
     background: #fff;
     outline: 1px solid rgba(0, 0, 0, 0.05);
     outline-offset: -1px;
-    box-shadow: 0 1px 3px 3px transparent,
-                0 2px 6px 2px rgba(0, 0, 0, 0.13),
-                0 3px 12px 6px rgba(0, 0, 0, 0.09),
-                0 6px 24px 12px rgba(0, 0, 0, 0.04),
-                0 0 0 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 3px 2px transparent,
+                0 2px 6px 4px rgba(0, 0, 0, 0.1),
+                0 4px 12px 6px rgba(0, 0, 0, 0.075),
+                0 6px 24px 12px rgba(0, 0, 0, 0.05),
+                0 0 0 1px rgba(0, 0, 0, 0.25);
 }
 
 notebook > header {
@@ -80,8 +108,8 @@ notebook > header {
 }
 
 editablelabel text {
-	padding: 2px 6px 2px 6px;
-	border-radius: .25em;
+    padding: 2px 6px 2px 6px;
+    border-radius: .25em;
 }
 
 row .count {

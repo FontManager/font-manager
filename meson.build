@@ -62,6 +62,7 @@ config.set('PACKAGE_BUGREPORT', 'https://github.com/FontManager/master/issues')
 config.set('GETTEXT_PACKAGE', meson.project_name())
 config.set('PKGLIBEXECDIR', pkglibexec_dir)
 config.set('PREFIX', prefix)
+config.set('BINDIR', join_paths(prefix, 'bin'))
 config.set('LOCALEDIR', join_paths(prefix, datadir, 'locale'))
 config.set('SRCDIR', meson.current_build_dir())
 

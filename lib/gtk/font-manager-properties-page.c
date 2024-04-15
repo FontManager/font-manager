@@ -1,6 +1,6 @@
 /* font-manager-properties-page.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -192,6 +192,7 @@ reset (FontManagerPropertiesPage *self)
             gtk_button_set_label(GTK_BUTTON(widget), NULL);
         } else {
             gtk_label_set_label(GTK_LABEL(widget), NULL);
+            gtk_widget_set_tooltip_text(widget, NULL);
         }
     }
     gtk_label_set_text(GTK_LABEL(self->copyright), NULL);
@@ -235,6 +236,7 @@ update (FontManagerPropertiesPage *self)
             gtk_button_set_label(GTK_BUTTON(widget), value);
         } else {
             gtk_label_set_label(GTK_LABEL(widget), value);
+            gtk_widget_set_tooltip_text(widget, value);
         }
 
     }

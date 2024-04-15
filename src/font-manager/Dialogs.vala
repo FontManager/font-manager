@@ -1,6 +1,6 @@
 /* Dialogs.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,10 +40,7 @@ namespace FontManager {
                 accept_label = _("_Select"),
                 title = _("Select executable"),
             };
-            // FIXME!! This should probably be set to something like @bindir@
-            // But it doesn't matter because it doesn't work anyways...
-            // https://gitlab.gnome.org/GNOME/xdg-desktop-portal-gnome/-/issues/84
-            File bindir = File.new_for_path("/usr/bin/");
+            File bindir = File.new_for_path(BINDIR);
             dialog.set_initial_folder(bindir);
             return dialog;
         }
@@ -86,14 +83,26 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-progress-dialog.ui")]
     public class ProgressDialog : Gtk.Window {
 
+        public bool show_app_icon {
+            get {
+                return app_icon.visible;
+            }
+            set {
+                app_icon.set_visible(value);
+            }
+        }
+
         [GtkChild] public unowned Gtk.Label title_label { get; }
         [GtkChild] public unowned Gtk.Label message_label { get; }
         [GtkChild] public unowned Gtk.Overlay overlay { get; }
         [GtkChild] public unowned Gtk.ProgressBar progress_bar { get; }
 
+        [GtkChild] unowned Gtk.Image app_icon;
+
         public ProgressDialog (string? title) {
             widget_set_name(this, "FontManagerProgressDialog");
             widget_set_expand(progress_bar, true);
+            add_css_class("dialog");
             title_label.set_label(title != null ? title : "");
         }
 
