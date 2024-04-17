@@ -1,6 +1,6 @@
 /* Utils.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,39 @@ namespace FontManager {
         NAME,
         SIZE,
         NONE
+    }
+
+    public struct MenuEntry {
+        string action_name;
+        string display_name;
+    }
+
+    public class BaseContextMenu : Object {
+
+        public Gtk.PopoverMenu popover { get; private set; }
+        public Gtk.Label menu_title { get; private set; }
+        public GLib.Menu menu { get; private set; }
+
+        public BaseContextMenu (Gtk.Widget parent) {
+            var root = new GLib.Menu();
+            var title_item = new GLib.MenuItem(null, null);
+            title_item.set_attribute("custom", "s", "menu-title");
+            menu_title = new Gtk.Label("") {
+                margin_start = DEFAULT_MARGIN + MIN_MARGIN,
+                margin_end = DEFAULT_MARGIN + MIN_MARGIN,
+                css_classes = { "heading", "dim-label" }
+            };
+            root.prepend_item(title_item);
+            menu = new GLib.Menu();
+            root.append_section(null, menu);
+            popover = new Gtk.PopoverMenu.from_model(root);
+            popover.set_parent(parent);
+            popover.set_data("menu-title", menu_title);
+            popover.add_child(menu_title, "menu-title");
+            popover.set_offset(0, 6);
+            return;
+        }
+
     }
 
     internal const string SELECT_NON_LATIN_FONTS = """

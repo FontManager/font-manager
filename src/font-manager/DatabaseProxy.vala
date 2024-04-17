@@ -68,8 +68,8 @@ namespace FontManager {
             var available_files = new StringSet();
             foreach (string path in list_available_font_files())
                 available_files.add(path);
-            // for (int i = 1; i <= DatabaseType.ORTHOGRAPHY; i++) {
-                var type = (DatabaseType) 0;
+            for (int i = 1; i <= DatabaseType.ORTHOGRAPHY; i++) {
+                var type = (DatabaseType) i;
                 status.replace(type, false);
                 try {
                     var child = Database.get_default(type);
@@ -96,7 +96,7 @@ namespace FontManager {
                 } catch (Error e) {
                     critical(e.message);
                 }
-            // }
+            }
             return;
         }
 

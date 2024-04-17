@@ -117,22 +117,16 @@ namespace FontManager {
 
     }
 
-    struct MenuEntry {
-        string action_name;
-        string display_name;
-    }
+    const MenuEntry [] app_menu_entries = {
+        { "win.show-help-overlay", N_("Keyboard Shortcuts") },
+        { "help", N_("Help") },
+        { "about",  N_("About")}
+    };
 
     GLib.MenuModel get_app_menu_model () {
-
-        const MenuEntry [] menu_entries = {
-            { "win.show-help-overlay", N_("Keyboard Shortcuts") },
-            { "help", N_("Help") },
-            { "about",  N_("About")}
-        };
-
         var section = new GLib.Menu();
         var standard_entries = new GLib.Menu();
-        foreach (var entry in menu_entries) {
+        foreach (var entry in app_menu_entries) {
             GLib.MenuItem item = new MenuItem(entry.display_name, entry.action_name);
             standard_entries.append_item(item);
         }
@@ -218,7 +212,7 @@ namespace FontManager {
             revealer = new Gtk.Revealer();
             revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_RIGHT);
             manage_controls = new BaseControls() {
-                spacing = 2,
+                spacing = 4,
                 margin_start = 0,
                 margin_end = 0,
                 margin_top = 0,

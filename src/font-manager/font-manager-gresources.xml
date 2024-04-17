@@ -2,6 +2,7 @@
 <gresources>
     <gresource prefix="/org/gnome/FontManager">
         <file compressed="true" preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
+        <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-collection-rename-popover.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-compare-view.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-compare-row.ui</file>
         <file compressed="true" preprocess="xml-stripblanks">ui/font-manager-filter-list-view.ui</file>

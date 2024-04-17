@@ -1,6 +1,6 @@
 /* Collections.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -122,6 +122,33 @@ namespace FontManager {
 
     }
 
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-collection-rename-popover.ui")]
+    class CollectionRenamePopover : Gtk.Popover {
+
+        public signal void renamed (string new_name);
+
+        [GtkChild] public unowned Gtk.Entry name_entry { get; }
+        [GtkChild] public unowned Gtk.Button rename_button { get; }
+
+        public override void constructed () {
+            // rename_button.clicked.connect(() => {
+            //     renamed(name_entry.get_text().strip());
+            //     Idle.add(() => { popdown(); return GLib.Source.REMOVE; });
+            // });
+            // key_press_event.connect((ev) => {
+            //     if (ev.keyval == Gdk.Key.KP_Enter || ev.keyval == Gdk.Key.Return) {
+            //         renamed(name_entry.get_text().strip());
+            //         Idle.add(() => { popdown(); return GLib.Source.REMOVE; });
+            //         return Gdk.EVENT_STOP;
+            //     }
+            //     return Gdk.EVENT_PROPAGATE;
+            // });
+            base.constructed();
+            return;
+        }
+
+    }
+
     // TODO :
     //      - F2 shortcut to rename collections
     //      - Context menu (base class has virtual method)
@@ -129,6 +156,12 @@ namespace FontManager {
     public class CollectionListView : FilterListView {
 
         uint update_timeout = 0;
+
+        Gtk.Label menu_title;
+        Gtk.PopoverMenu context_menu;
+        Gdk.Rectangle clicked_area;
+
+        CollectionRenamePopover? rename_popover = null;
 
         construct {
             widget_set_name(listview, "FontManagerCollectionListView");
@@ -140,6 +173,9 @@ namespace FontManager {
                                               CollectionListModel.get_child_model);
             selection = new Gtk.SingleSelection(treemodel);
             add_drop_target(listview);
+            init_context_menu();
+            selection_changed.connect(update_context_menu);
+            install_action("rename", null, (Gtk.WidgetActionActivateFunc) rename_selected_collection);
         }
 
         ~ CollectionListView () {
@@ -190,6 +226,66 @@ namespace FontManager {
             // Nesting is allowed so we need the entire list refreshed if a
             // single row changes otherwise parent nodes would not update
             row.changed.connect(queue_update);
+            return;
+        }
+
+        const MenuEntry [] collection_menu_entries = {
+            {"copy_to", N_("Copy to…")},
+            {"compress", N_("Compress…")},
+            {"rename", N_("Rename…")}
+        };
+
+        void init_context_menu () {
+            var base_menu = new BaseContextMenu(listview);
+            context_menu = base_menu.popover;
+            menu_title = base_menu.menu_title;
+            var menu = base_menu.menu;
+            foreach (var entry in collection_menu_entries) {
+                var item = new GLib.MenuItem(entry.display_name, entry.action_name);
+                menu.append_item(item);
+            }
+            clicked_area = Gdk.Rectangle();
+            return;
+        }
+
+        void update_context_menu () {
+            menu_title.set_label(selected_item.name);
+            return;
+        }
+
+        protected override void on_show_context_menu (int n_press, double x, double y) {
+            if (selected_item == null)
+                return;
+            clicked_area.x = (int) x;
+            clicked_area.y = (int) y;
+            clicked_area.width = 2;
+            clicked_area.height = 2;
+            context_menu.set_pointing_to(clicked_area);
+            context_menu.popup();
+            return;
+        }
+
+        void rename_selected_collection (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_item != null) {
+            if (rename_popover == null) {
+                rename_popover = new CollectionRenamePopover();
+                rename_popover.set_parent(listview);
+                rename_popover.renamed.connect((new_name) => {
+                    if (new_name == "" || new_name == selected_item.name)
+                        return;
+                    // model.collections.rename_collection(selected_filter, new_name);
+                    // queue_draw();
+                    // menu_header.label = new_name;
+                    // Idle.add(() => {
+                    //     model.collections.save();
+                    //     return GLib.Source.REMOVE;
+                    // });
+                });
+            }
+            rename_popover.name_entry.set_text(selected_item.name);
+            rename_popover.name_entry.grab_focus();
+            rename_popover.set_pointing_to(clicked_area);
+            rename_popover.popup();
             return;
         }
 

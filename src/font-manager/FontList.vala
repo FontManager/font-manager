@@ -1,6 +1,6 @@
 /* FontList.vala
  *
- * Copyright (C) 2020-2023 Jerry Casiano
+ * Copyright (C) 2020-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -269,6 +269,9 @@ namespace FontManager {
         Gtk.TreeListModel treemodel;
         Gtk.MultiSelection selection;
 
+        Gtk.Label menu_title;
+        Gtk.PopoverMenu context_menu;
+
         construct {
             widget_set_name(listview, "FontManagerFontListView");
             selected_items = new GenericArray <Object> ();
@@ -300,6 +303,10 @@ namespace FontManager {
                 Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
                 update_remove_sensitivity();
             });
+            var drop_target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
+            add_controller(drop_target);
+            drop_target.drop.connect(on_drag_data_received);
+            init_context_menu();
         }
 
         // Add slight delay to avoid filtering while search is still changing
@@ -350,10 +357,44 @@ namespace FontManager {
             return;
         }
 
+        const MenuEntry [] fontlist_menu_entries = {
+            {"install", N_("Install")},
+            {"copy-location", N_("Copy Location")},
+            {"show-in-folder",N_("Show in Folder")},
+            {"enable-selected", N_("Enable selected items")},
+            {"disable-selected",N_("Disable selected items")},
+        };
+
+        void init_context_menu () {
+            var base_menu = new BaseContextMenu(listview);
+            context_menu = base_menu.popover;
+            menu_title = base_menu.menu_title;
+            var menu = base_menu.menu;
+            foreach (var entry in fontlist_menu_entries) {
+                var item = new GLib.MenuItem(entry.display_name, entry.action_name);
+                menu.append_item(item);
+            }
+            return;
+        }
+
+        void update_context_menu (string description, int n_items) {
+            if (n_items > 1)
+                // Translators : Even though singular form is not used yet, it is here
+                // to make for a proper ngettext call. Still it is advisable to translate it.
+                menu_title.set_label(ngettext("%i selected item",
+                                              "%i selected items",
+                                              (ulong) n_items).printf((int) n_items));
+            else
+                menu_title.set_label(description);
+            return;
+        }
+
         void on_show_context_menu (int n_press, double x, double y) {
-            if (selected_items.length < 1)
+            if (selected_item == null && selected_items.length < 1)
                 return;
-            message("Got right click : %s :: %s", x.to_string(), y.to_string());
+            var rect = Gdk.Rectangle() {x = (int) x, y = (int) y, width = 2, height = 2};
+            context_menu.set_pointing_to(rect);
+            context_menu.popup();
             return;
         }
 
@@ -396,6 +437,18 @@ namespace FontManager {
             var gtk_drag_icon = (Gtk.DragIcon) Gtk.DragIcon.get_for_drag(drag);
             gtk_drag_icon.set_child(drag_icon);
             return;
+        }
+
+        bool on_drag_data_received (Value value, double x, double y) {
+            if (value.holds(typeof(Gdk.FileList))) {
+                GLib.SList <File>* filelist = value.get_boxed();
+                for (int i = 0; i < filelist->length(); i++) {
+                    File* file = filelist->nth_data(i);
+                    // XXX : Install filelist
+                    message(file->get_uri());
+                }
+            }
+            return true;
         }
 
         void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
@@ -496,11 +549,12 @@ namespace FontManager {
                 }
             }
             update_remove_sensitivity();
-            if (Environment.get_variable("G_MESSAGES_DEBUG") != null) {
-                string? description = null;
-                selected_item.get("description", out description, null);
-                debug("%s::selection_changed : %s", listview.name, description);
-            }
+            string? description = null;
+            string? family = null;
+            selected_item.get("description", out description, "family", out family, null);
+            string title = (selected_item is Family) ? family : description;
+            update_context_menu(title, selected_items.length);
+            debug("%s::selection_changed : %s", listview.name, description);
             return;
         }
 

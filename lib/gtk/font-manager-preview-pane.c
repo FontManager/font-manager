@@ -429,7 +429,7 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
                                               "license-data", NULL, "license-url", NULL, NULL);
     }
     font_manager_font_properties_page_update(FONT_MANAGER_PROPERTIES_PAGE(self->properties), res);
-    g_debug("PreviewPane.update_metadata : %s", font_manager_print_json_object(res, true));
+    //g_debug("PreviewPane.update_metadata : %s", font_manager_print_json_object(res, true));
     self->update_required = FALSE;
     return G_SOURCE_REMOVE;
 }
