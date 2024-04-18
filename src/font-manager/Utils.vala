@@ -42,8 +42,8 @@ namespace FontManager {
             var title_item = new GLib.MenuItem(null, null);
             title_item.set_attribute("custom", "s", "menu-title");
             menu_title = new Gtk.Label("") {
-                margin_start = DEFAULT_MARGIN + MIN_MARGIN,
-                margin_end = DEFAULT_MARGIN + MIN_MARGIN,
+                margin_start = DEFAULT_MARGIN * 2,
+                margin_end = DEFAULT_MARGIN * 2,
                 css_classes = { "heading", "dim-label" }
             };
             root.prepend_item(title_item);
@@ -260,8 +260,10 @@ namespace FontManager {
         uint total = filelist.size;
         uint processed = 0;
         ProgressDialog? progress = null;
-        if (show_progress)
+        if (show_progress) {
             progress = new ProgressDialog(_("Copying files…"));
+            progress.present();
+        }
         foreach (string filepath in filelist) {
             File original = File.new_for_path(filepath);
             string filename = original.get_basename();
@@ -282,8 +284,10 @@ namespace FontManager {
             }
             yield;
         }
-        if (progress != null)
-            progress = null;
+        if (progress != null) {
+            progress.destroy();
+        }
+        progress = null;
         return;
     }
 

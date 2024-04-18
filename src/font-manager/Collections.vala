@@ -131,27 +131,17 @@ namespace FontManager {
         [GtkChild] public unowned Gtk.Button rename_button { get; }
 
         public override void constructed () {
-            // rename_button.clicked.connect(() => {
-            //     renamed(name_entry.get_text().strip());
-            //     Idle.add(() => { popdown(); return GLib.Source.REMOVE; });
-            // });
-            // key_press_event.connect((ev) => {
-            //     if (ev.keyval == Gdk.Key.KP_Enter || ev.keyval == Gdk.Key.Return) {
-            //         renamed(name_entry.get_text().strip());
-            //         Idle.add(() => { popdown(); return GLib.Source.REMOVE; });
-            //         return Gdk.EVENT_STOP;
-            //     }
-            //     return Gdk.EVENT_PROPAGATE;
-            // });
+            name_entry.grab_focus();
+            set_default_widget(rename_button);
+            rename_button.clicked.connect(() => {
+                renamed(name_entry.get_text().strip());
+                Idle.add(() => { popdown(); return GLib.Source.REMOVE; });
+            });
             base.constructed();
             return;
         }
 
     }
-
-    // TODO :
-    //      - F2 shortcut to rename collections
-    //      - Context menu (base class has virtual method)
 
     public class CollectionListView : FilterListView {
 
@@ -162,6 +152,15 @@ namespace FontManager {
         Gdk.Rectangle clicked_area;
 
         CollectionRenamePopover? rename_popover = null;
+
+        static construct {
+            var file_roller = new ArchiveManager();
+            if (file_roller.available)
+                install_action("compress", null, (Gtk.WidgetActionActivateFunc) compress);
+            install_action("copy_to", null, (Gtk.WidgetActionActivateFunc) copy_to);
+            install_action("rename", null, (Gtk.WidgetActionActivateFunc) rename_selected_collection);
+            add_binding_action(Gdk.Key.F2, /* Gdk.ModifierType.NO_MODIFIER_MASK */ 0, "rename", null);
+        }
 
         construct {
             widget_set_name(listview, "FontManagerCollectionListView");
@@ -175,7 +174,12 @@ namespace FontManager {
             add_drop_target(listview);
             init_context_menu();
             selection_changed.connect(update_context_menu);
-            install_action("rename", null, (Gtk.WidgetActionActivateFunc) rename_selected_collection);
+            clicked_area = Gdk.Rectangle();
+            Gtk.Gesture click = new Gtk.GestureClick() {
+                button = Gdk.BUTTON_PRIMARY
+            };
+            ((Gtk.GestureClick) click).pressed.connect(on_click);
+            listview.add_controller(click);
         }
 
         ~ CollectionListView () {
@@ -194,6 +198,15 @@ namespace FontManager {
             if (update_timeout != 0)
                 GLib.Source.remove(update_timeout);
             update_timeout = Timeout.add(333, update);
+            return;
+        }
+
+        void on_click (int n_press, double x, double y) {
+            clicked_area.x = (int) x;
+            clicked_area.y = (int) y;
+            clicked_area.width = 2;
+            clicked_area.height = 2;
+            context_menu.set_pointing_to(clicked_area);
             return;
         }
 
@@ -244,7 +257,6 @@ namespace FontManager {
                 var item = new GLib.MenuItem(entry.display_name, entry.action_name);
                 menu.append_item(item);
             }
-            clicked_area = Gdk.Rectangle();
             return;
         }
 
@@ -256,12 +268,61 @@ namespace FontManager {
         protected override void on_show_context_menu (int n_press, double x, double y) {
             if (selected_item == null)
                 return;
-            clicked_area.x = (int) x;
-            clicked_area.y = (int) y;
-            clicked_area.width = 2;
-            clicked_area.height = 2;
-            context_menu.set_pointing_to(clicked_area);
             context_menu.popup();
+            return;
+        }
+
+        void on_folder_selection_ready (Object? obj, AsyncResult res) {
+            return_if_fail(obj != null);
+            try {
+                var dialog = (Gtk.FileDialog) obj;
+                File target_dir = dialog.select_folder.end(res);
+                string destination = Path.build_filename(target_dir.get_path(), selected_item.name);
+                return_if_fail(DirUtils.create_with_parents(destination, 0755) == 0);
+                File tmp = File.new_for_path(destination);
+                copy_files.begin(((Collection) selected_item).get_filelist(),
+                                 tmp,
+                                 true,
+                                 (obj, res) => {
+                                    copy_files.end(res);
+                                 });
+            } catch (Error e) {
+                warning(e.message);
+            }
+            return;
+        }
+
+        void compress (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_item != null) {
+            var file_roller = new ArchiveManager();
+            return_if_fail(file_roller.available);
+            string temp_dir;
+            try {
+                temp_dir = DirUtils.make_tmp(TMP_TMPL);
+                // XXX: FIXME!
+                // get_default_application().temp_files.add(temp_dir);
+            } catch (Error e) {
+                critical(e.message);
+                return_if_reached();
+            }
+            string tmp_path = Path.build_filename(temp_dir, selected_item.name);
+            assert(DirUtils.create_with_parents(tmp_path, 0755) == 0);
+            File tmp = File.new_for_path(tmp_path);
+            copy_files.begin(((Collection) selected_item).get_filelist(), tmp, false, (obj, res) => {
+                string? [] filelist = { tmp.get_uri(), null };
+                unowned string home = Environment.get_home_dir();
+                string destination = File.new_for_path(home).get_uri();
+                file_roller.compress(filelist, destination);
+            });
+            return;
+        }
+
+        void copy_to (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_item != null) {
+            var dialog = FileSelector.get_target_directory();
+            dialog.select_folder.begin(get_parent_window(this),
+                                       null,
+                                       on_folder_selection_ready);
             return;
         }
 
@@ -273,19 +334,18 @@ namespace FontManager {
                 rename_popover.renamed.connect((new_name) => {
                     if (new_name == "" || new_name == selected_item.name)
                         return;
-                    // model.collections.rename_collection(selected_filter, new_name);
-                    // queue_draw();
-                    // menu_header.label = new_name;
-                    // Idle.add(() => {
-                    //     model.collections.save();
-                    //     return GLib.Source.REMOVE;
-                    // });
+                    selected_item.name = new_name;
+                    selected_item.changed();
+                    Idle.add(() => {
+                        ((CollectionListModel) model).save();
+                        return GLib.Source.REMOVE;
+                    });
                 });
             }
             rename_popover.name_entry.set_text(selected_item.name);
-            rename_popover.name_entry.grab_focus();
             rename_popover.set_pointing_to(clicked_area);
             rename_popover.popup();
+            rename_popover.name_entry.grab_focus();
             return;
         }
 

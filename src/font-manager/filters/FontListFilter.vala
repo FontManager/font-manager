@@ -1,6 +1,6 @@
 /* FontListFilter.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -69,6 +69,10 @@ namespace FontManager {
             items.add(item);
             item.index = (int) get_n_items();
             items_changed(item.index, 0, 1);
+            item.changed.connect(() => {
+                int n_items = (int) items.length;
+                items_changed(0, n_items, n_items);
+            });
             return;
         }
 
