@@ -51,7 +51,6 @@ namespace FontManager {
             root.append_section(null, menu);
             popover = new Gtk.PopoverMenu.from_model(root);
             popover.set_parent(parent);
-            popover.set_data("menu-title", menu_title);
             popover.add_child(menu_title, "menu-title");
             popover.set_offset(0, 6);
             return;
@@ -68,6 +67,8 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-list-item-row.ui")]
     public class ListItemRow : Gtk.Box {
 
+        public signal void item_state_changed (Object? item);
+
         public Object? item { get; set; default = null; }
 
         [GtkChild] public unowned Gtk.Label item_label { get; }
@@ -81,6 +82,7 @@ namespace FontManager {
 
         construct {
             notify["item"].connect((pspec) => { on_item_set(); });
+            item_state.toggled.connect((pspec) => { item_state_changed(item); });
         }
 
         protected virtual void on_item_set () {}
@@ -189,7 +191,7 @@ namespace FontManager {
 
     // Adds user configured font sources (directories) and rejected fonts to our
     // FcConfig so that we can render fonts which are not actually "installed".
-    public bool load_user_font_resources (StringSet? files, UserSourceModel? sources) {
+    public bool load_user_font_resources () {
         clear_application_fonts();
         bool res = true;
         var legacy_font_dir = Path.build_filename(Environment.get_home_dir(), ".fonts");
@@ -201,9 +203,7 @@ namespace FontManager {
             res = false;
             critical("Failed to add default user font directory to configuration!");
         }
-        UserSourceModel? source_model = sources;
-        if (source_model == null)
-            source_model = new UserSourceModel();
+        UserSourceModel? source_model = new UserSourceModel();
         source_model.items.foreach((source) => {
             if (source.available && !add_application_font_directory(source.path)) {
                 res = false;
@@ -211,6 +211,14 @@ namespace FontManager {
             }
         });
         source_model = null;
+        var reject = new Reject();
+        reject.load();
+        StringSet? files = null;
+        try {
+            files = reject.get_rejected_files();
+        } catch (Error e) {
+            warning(e.message);
+        }
         if (files != null)
             foreach (string path in files)
                 add_application_font(path);

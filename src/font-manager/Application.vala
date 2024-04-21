@@ -168,7 +168,7 @@ namespace FontManager {
         }
 
         public string list () throws GLib.DBusError, GLib.IOError {
-            load_user_font_resources(null, null);
+            load_user_font_resources();
             GLib.List <string> families = list_available_font_families();
             assert(families.length() > 0);
             StringBuilder builder = new StringBuilder();
@@ -326,6 +326,9 @@ namespace FontManager {
                 add_window(main_window);
                 BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
                 bind_property("available-fonts", main_window, "available-fonts", flags);
+                enable_user_font_configuration(false);
+                update_font_configuration();
+                load_user_font_resources();
                 var fonts = get_available_fonts(null);
                 var sorted_fonts = sort_json_font_listing(fonts);
                 update_item_preview_text(sorted_fonts);

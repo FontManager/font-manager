@@ -22,6 +22,9 @@ namespace FontManager {
 
     public class PreferencePane : Paned {
 
+        public UserActionModel user_actions { get; private set; }
+        public UserSourceModel user_sources { get; private set; }
+
         Gtk.Stack stack;
         Gtk.StackSidebar sidebar;
 
@@ -31,15 +34,17 @@ namespace FontManager {
             content_area.set_visible(false);
             stack = new Gtk.Stack();
             sidebar = new Gtk.StackSidebar();
-            //sidebar.add_css_class(STYLE_CLASS_VIEW);
-            sidebar.remove_css_class("sidebar");
             sidebar.set_stack(stack);
             set_list_widget(stack);
             set_sidebar_widget(sidebar);
             add_page(new UserInterfacePreferences(), "Interface", _("Interface"));
             add_page(new DesktopPreferences(), "Desktop", _("Desktop"));
-            add_page(new UserActionList(), "UserActions", _("Actions"));
-            add_page(new UserSourceList(), "Sources", _("Sources"));
+            var actions = new UserActionList();
+            user_actions = actions.model;
+            add_page(actions, "UserActions", _("Actions"));
+            var sources = new UserSourceList();
+            user_sources = sources.model;
+            add_page(sources, "Sources", _("Sources"));
             add_page(new SubstituteList(), "Substitutions", _("Substitutions"));
             add_page(new DisplayPreferences(), "Display", _("Display"));
             add_page(new RenderingPreferences(), "Rendering", _("Rendering"));

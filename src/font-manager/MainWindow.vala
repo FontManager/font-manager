@@ -129,6 +129,8 @@ namespace FontManager {
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("mode", main_pane, "mode", flags);
             bind_property("available-fonts", main_pane, "available-fonts", flags);
+            prefs_pane.bind_property("user-actions", main_pane, "user-actions", flags);
+            prefs_pane.bind_property("user-sources", main_pane, "user-sources", flags);
             main_pane.bind_property("sidebar-position", prefs_pane, "sidebar-position", flags);
 #if HAVE_WEBKIT
             main_pane.bind_property("content-position", webfonts, "content-position", flags);

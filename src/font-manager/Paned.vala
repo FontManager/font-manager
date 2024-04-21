@@ -125,8 +125,6 @@ namespace FontManager {
         bool update_pane_positions () {
             int pos_a = percentage_to_position(main_pane, sidebar_position);
             int pos_b = percentage_to_position(content_pane, content_position);
-            if (pos_a == 0 || pos_b == 0)
-                return GLib.Source.CONTINUE;
             main_pane.set_position(pos_a);
             content_pane.set_position(pos_b);
             return GLib.Source.REMOVE;

@@ -27,9 +27,6 @@ Start search using %s to filter based on characters.""");
 
 namespace FontManager {
 
-    // TODO:
-    //       - Enable character search
-
     public class BaseFontModel : Object, ListModel {
 
         public Type item_type { get; protected set; default = typeof(Object); }
@@ -38,6 +35,9 @@ namespace FontManager {
 
         public string? search_term { get; set; default = null; }
         public FontListFilter? filter { get; set; default = null; }
+
+        string? char_search = null;
+        Json.Object? char_support = null;
 
         construct {
             notify["entries"].connect(() => { update_items(); });
@@ -93,9 +93,19 @@ namespace FontManager {
                 string filepath = get_filepath_from_object(item).casefold();
                 item_matches = filepath.contains(search);
             } else if (search.has_prefix(Path.SEARCHPATH_SEPARATOR_S)) {
-                // string needle = search.replace(Path.SEARCHPATH_SEPARATOR_S, "");
-                // string family = item.get_string_member("family");
-                // XXX : FIXME!
+                string needle = search.replace(Path.SEARCHPATH_SEPARATOR_S, "");
+                if (needle == "")
+                    return false;
+                string family = item.get_string_member("family");
+                if (char_search != needle || char_support == null) {
+                    char_search = needle;
+                    char_support = get_available_fonts_for_chars(char_search);
+                }
+                item_matches = char_support.has_member(family);
+                if (item_matches && item.has_member("style")) {
+                    Json.Object family_obj = char_support.get_object_member(family);
+                    item_matches = family_obj.has_member(item.get_string_member("style"));
+                }
             } else {
                 string family = item.get_string_member("family").casefold();
                 string description = item.get_string_member("description").casefold();
@@ -232,7 +242,6 @@ namespace FontManager {
 
     // TODO
     //      - Context menu
-    //          - Toggle multiple fonts
     //          - Send to collection?
     //          - Export?
     //      - Drop support
@@ -243,7 +252,10 @@ namespace FontManager {
         public signal void selection_changed (Object? item);
 
         public Json.Array? available_fonts { get; set; default = null; }
-        public FontListFilter filter { get; set; default = null; }
+        public FontListFilter? filter { get; set; default = null; }
+        public Reject? disabled_families { get; set; default = null; }
+        public UserActionModel? user_actions { get; set; default = null; }
+        public UserSourceModel? user_sources { get; set; default = null; }
 
         public BaseFontModel model {
             get {
@@ -258,6 +270,8 @@ namespace FontManager {
         // This array contains all currently selected Family objects
         public GenericArray <Object>? selected_items { get; set; default = null; }
 
+        GenericArray <Object>? selected_children = null;
+
         [GtkChild] unowned Gtk.Button remove_button;
         [GtkChild] unowned Gtk.ListView listview;
         [GtkChild] unowned Gtk.Expander expander;
@@ -266,11 +280,22 @@ namespace FontManager {
         uint current_selection = 0;
         GenericArray <uint>? current_selections = null;
         uint search_timeout = 0;
+        uint state_change_timeout = 0;
         Gtk.TreeListModel treemodel;
         Gtk.MultiSelection selection;
 
+        bool show_menu = true;
+        GLib.Menu menu;
+        GLib.Array <GLib.MenuItem> menu_items;
         Gtk.Label menu_title;
         Gtk.PopoverMenu context_menu;
+
+        static construct {
+            install_action("copy-location", null, (Gtk.WidgetActionActivateFunc) copy_location);
+            install_action("show-in-folder", null, (Gtk.WidgetActionActivateFunc) show_in_folder);
+            install_action("enable-selected", null, (Gtk.WidgetActionActivateFunc) enable_selected);
+            install_action("disable-selected", null, (Gtk.WidgetActionActivateFunc) disable_selected);
+        }
 
         construct {
             widget_set_name(listview, "FontManagerFontListView");
@@ -307,6 +332,17 @@ namespace FontManager {
             add_controller(drop_target);
             drop_target.drop.connect(on_drag_data_received);
             init_context_menu();
+            disabled_families = new Reject();
+            disabled_families.load();
+        }
+
+        public Font get_selected_font () {
+            Font font = new Font();
+            if (selected_item is Family)
+                font.source_object = ((Family) selected_item).get_default_variant();
+            else
+                font = ((Font) selected_item);
+            return font;
         }
 
         // Add slight delay to avoid filtering while search is still changing
@@ -314,6 +350,30 @@ namespace FontManager {
             if (search_timeout != 0)
                 GLib.Source.remove(search_timeout);
             search_timeout = Timeout.add(333, refilter);
+            return;
+        }
+
+        bool save_item_state_change () {
+            disabled_families.save();
+            return GLib.Source.REMOVE;
+        }
+
+        void on_item_state_changed (Object? item) {
+            var family = ((Family) item);
+            if (family.active)
+                disabled_families.remove(family.family);
+            else
+                disabled_families.add(family.family);
+            // Slight delay in saving selections to file in case
+            // multiple changes are taking place at the same time.
+            queue_item_state_update();
+            return;
+        }
+
+        public void queue_item_state_update () {
+            if (state_change_timeout != 0)
+                GLib.Source.remove(state_change_timeout);
+            state_change_timeout = Timeout.add(333, save_item_state_change);
             return;
         }
 
@@ -357,6 +417,48 @@ namespace FontManager {
             return;
         }
 
+        string get_path_to_selected_item ()
+        requires (selected_item != null) {
+            Font font = get_selected_font();
+            return font.filepath;
+        }
+
+        void set_selected_items_active (bool active) {
+            foreach (var item in selected_items)
+                ((Family) item).active = active;
+            return;
+        }
+
+        void enable_selected (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_items.length > 1) {
+            set_selected_items_active(true);
+            return;
+        }
+
+        void disable_selected (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_items.length > 1) {
+            set_selected_items_active(false);
+            return;
+        }
+
+        void copy_location (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_item != null) {
+            Gdk.Display display = Gdk.Display.get_default();
+            Gdk.Clipboard clipboard = display.get_clipboard();
+            string filepath = get_path_to_selected_item();
+            clipboard.set_text((selected_item is Family) ? Path.get_dirname(filepath) : filepath);
+            return;
+        }
+
+        void show_in_folder (Gtk.Widget widget, string? action, Variant? parameter)
+        requires (selected_item != null) {
+            string directory = GLib.Path.get_dirname(get_path_to_selected_item());
+            File file = File.new_for_path(directory);
+            var launcher = new Gtk.FileLauncher(file);
+            launcher.launch.begin(null, null);
+            return;
+        }
+
         const MenuEntry [] fontlist_menu_entries = {
             {"install", N_("Install")},
             {"copy-location", N_("Copy Location")},
@@ -365,32 +467,108 @@ namespace FontManager {
             {"disable-selected",N_("Disable selected items")},
         };
 
+        enum FontListMenuItem {
+            INSTALL,
+            COPY,
+            SHOW,
+            ENABLE,
+            DISABLE
+        }
+
         void init_context_menu () {
+            menu_items = new GLib.Array <GLib.MenuItem> ();
             var base_menu = new BaseContextMenu(listview);
             context_menu = base_menu.popover;
             menu_title = base_menu.menu_title;
-            var menu = base_menu.menu;
+            menu = base_menu.menu;
             foreach (var entry in fontlist_menu_entries) {
                 var item = new GLib.MenuItem(entry.display_name, entry.action_name);
-                menu.append_item(item);
+                menu_items.append_val(item);
             }
             return;
         }
 
-        void update_context_menu (string description, int n_items) {
-            if (n_items > 1)
+        bool selections_are_sourced () {
+            if (user_sources != null && selected_children.length >= 1) {
+                foreach (var selection in selected_children) {
+                    bool sourced = false;
+                    Font font = ((Font) selection);
+                    foreach (var source in user_sources.items) {
+                        string path = ((Source) source).path;
+                        if (font.filepath.contains(path)) {
+                            sourced = true;
+                            break;
+                        }
+                    }
+                    if (sourced)
+                        continue;
+                    else
+                        return false;
+                }
+                return true;
+            }
+            return false;
+        }
+
+        void update_context_menu () {
+            menu.remove_all();
+            show_menu = true;
+            if (selected_items.length > 1) {
+                int n_items = selected_items.length;
                 // Translators : Even though singular form is not used yet, it is here
                 // to make for a proper ngettext call. Still it is advisable to translate it.
                 menu_title.set_label(ngettext("%i selected item",
                                               "%i selected items",
                                               (ulong) n_items).printf((int) n_items));
-            else
-                menu_title.set_label(description);
+                menu.append_item(menu_items.data[FontListMenuItem.ENABLE]);
+                menu.append_item(menu_items.data[FontListMenuItem.DISABLE]);
+            } else if (selected_children.length > 1) {
+                int n_items = selected_children.length;
+                // Translators : Even though singular form is not used yet, it is here
+                // to make for a proper ngettext call. Still it is advisable to translate it.
+                menu_title.set_label(ngettext("%i selected item",
+                                              "%i selected items",
+                                              (ulong) n_items).printf((int) n_items));
+                if (selections_are_sourced())
+                    menu.append_item(menu_items.data[FontListMenuItem.INSTALL]);
+                else
+                    show_menu = false;
+            } else {
+                string? description = null;
+                string? family = null;
+                selected_item.get("description", out description, "family", out family, null);
+                menu_title.set_label((selected_item is Family) ? family : description);
+                if (selections_are_sourced())
+                    menu.append_item(menu_items.data[FontListMenuItem.INSTALL]);
+                menu.append_item(menu_items.data[FontListMenuItem.COPY]);
+                menu.append_item(menu_items.data[FontListMenuItem.SHOW]);
+                if (user_actions != null && user_actions.get_n_items() > 0) {
+                    var action_menu = new GLib.Menu();
+                    var submenu = new GLib.MenuItem.submenu(_("Actions"), action_menu);
+                    menu.append_item(submenu);
+                    int i = 0;
+                    foreach (var entry in user_actions) {
+                        var item = new GLib.MenuItem(entry.action_name, null);
+                        item.set_attribute("custom", "s", i.to_string());
+                        action_menu.append_item(item);
+                        var widget = new Gtk.Button.with_label(entry.action_name);
+                        widget.remove_css_class("button");
+                        widget.add_css_class("flat");
+                        widget.add_css_class("row");
+                        context_menu.add_child(widget, i.to_string());
+                        var target = get_selected_font();
+                        widget.clicked.connect(() => {
+                            entry.run(target);
+                        });
+                        i++;
+                    }
+                }
+            }
             return;
         }
 
         void on_show_context_menu (int n_press, double x, double y) {
-            if (selected_item == null && selected_items.length < 1)
+            if (!show_menu || selected_item == null && selected_children.length < 1)
                 return;
             var rect = Gdk.Rectangle() {x = (int) x, y = (int) y, width = 2, height = 2};
             context_menu.set_pointing_to(rect);
@@ -474,6 +652,9 @@ namespace FontManager {
             Object? _item = list_row.get_item();
             // Setting item triggers update to row widget
             row.item = _item;
+            if (_item is Family)
+                row.item_state.active = !(((Family) _item).family in disabled_families);
+            row.item_state_changed.connect(on_item_state_changed);
             return;
         }
 
@@ -519,6 +700,7 @@ namespace FontManager {
         // previous selection, multiple selections, directional changes, etc.
         void on_selection_changed (uint position, uint n_items) {
             selected_items = new GenericArray <Object> ();
+            selected_children = new GenericArray <Object> ();
             selected_item = null;
             current_selection = 0;
             current_selections = new GenericArray <uint> ();
@@ -527,9 +709,8 @@ namespace FontManager {
             Gtk.Bitset selections = selection.get_selection();
             uint i = selections.get_minimum();
             current_selection = i;
-            if (i == uint.MAX)
-                return;
-            assert(selection.is_selected(i));
+            if (i == uint.MAX || !selection.is_selected(i))
+                return_if_reached();
             var list_row = (Gtk.TreeListRow) treemodel.get_item(i);
             Object? item = list_row.get_item();
             selected_item = item;
@@ -543,18 +724,20 @@ namespace FontManager {
                         if (item != null && item is Family) {
                             selected_items.add(item);
                             current_selections.add(i);
+                        } else if (item != null) {
+                            selected_children.add(item);
                         }
                     }
                     i++;
                 }
             }
             update_remove_sensitivity();
-            string? description = null;
-            string? family = null;
-            selected_item.get("description", out description, "family", out family, null);
-            string title = (selected_item is Family) ? family : description;
-            update_context_menu(title, selected_items.length);
-            debug("%s::selection_changed : %s", listview.name, description);
+            update_context_menu();
+            if (Environment.get_variable("G_MESSAGES_DEBUG") != null) {
+                string? description = null;
+                selected_item.get("description", out description, null);
+                debug("%s::selection_changed : %s", listview.name, description);
+            }
             return;
         }
 
