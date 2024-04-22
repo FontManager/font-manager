@@ -2025,7 +2025,6 @@ msgstr "Pagina successiva"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
 #, fuzzy
-#| msgid "Enter Collection Name"
 msgid "Collection Name"
 msgstr "Inserisci il nome della collezione"
 
@@ -2296,7 +2295,6 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:100
 #, fuzzy
-#| msgid "Custom Actions"
 msgid "Custom Size Settings"
 msgstr "Azioni personalizzate"
 
