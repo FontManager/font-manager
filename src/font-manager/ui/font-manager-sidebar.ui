@@ -164,9 +164,6 @@
             </property>
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
-            <style>
-              <class name="view"/>
-            </style>
           </object>
         </property>
         <property name="focusable">1</property>

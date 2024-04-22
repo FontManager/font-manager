@@ -353,30 +353,6 @@ namespace FontManager {
             return;
         }
 
-        bool save_item_state_change () {
-            disabled_families.save();
-            return GLib.Source.REMOVE;
-        }
-
-        void on_item_state_changed (Object? item) {
-            var family = ((Family) item);
-            if (family.active)
-                disabled_families.remove(family.family);
-            else
-                disabled_families.add(family.family);
-            // Slight delay in saving selections to file in case
-            // multiple changes are taking place at the same time.
-            queue_item_state_update();
-            return;
-        }
-
-        public void queue_item_state_update () {
-            if (state_change_timeout != 0)
-                GLib.Source.remove(state_change_timeout);
-            state_change_timeout = Timeout.add(333, save_item_state_change);
-            return;
-        }
-
         public void select_item (uint position) {
             listview.activate_action("list.select-item", "(ubb)", position, false, false);
             listview.activate_action("list.scroll-to-item", "u", position);
@@ -552,6 +528,8 @@ namespace FontManager {
                         item.set_attribute("custom", "s", i.to_string());
                         action_menu.append_item(item);
                         var widget = new Gtk.Button.with_label(entry.action_name);
+                        var label = (Gtk.Label) widget.get_child();
+                        label.set_xalign(0.0f);
                         widget.remove_css_class("button");
                         widget.add_css_class("flat");
                         widget.add_css_class("row");
@@ -682,6 +660,30 @@ namespace FontManager {
             queue_update();
             search_timeout = 0;
             return GLib.Source.REMOVE;
+        }
+
+        bool save_item_state_change () {
+            disabled_families.save();
+            return GLib.Source.REMOVE;
+        }
+
+        void queue_item_state_update () {
+            if (state_change_timeout != 0)
+                GLib.Source.remove(state_change_timeout);
+            state_change_timeout = Timeout.add(333, save_item_state_change);
+            return;
+        }
+
+        void on_item_state_changed (Object? item) {
+            var family = ((Family) item);
+            if (family.active)
+                disabled_families.remove(family.family);
+            else
+                disabled_families.add(family.family);
+            // Slight delay in saving selections to file in case
+            // multiple changes are taking place at the same time.
+            queue_item_state_update();
+            return;
         }
 
         void update_remove_sensitivity () {

@@ -105,6 +105,7 @@ namespace FontManager {
         }
 
         construct {
+            settings = get_gsettings(BUS_ID);
             var header = new Gtk.HeaderBar();
             header_widgets = new HeaderBarWidgets();
             header.pack_start(header_widgets.main_menu);
@@ -118,7 +119,7 @@ namespace FontManager {
             main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN_UP);
             main_stack.set_transition_duration(500);
             main_pane = new MainPane();
-            prefs_pane = new PreferencePane();
+            prefs_pane = new PreferencePane(settings);
             main_stack.add_named(main_pane, "Default");
 #if HAVE_WEBKIT
             webfonts = new GoogleFonts.Catalog();
@@ -136,11 +137,27 @@ namespace FontManager {
             main_pane.bind_property("content-position", webfonts, "content-position", flags);
             main_pane.bind_property("sidebar-position", webfonts, "sidebar-position", flags);
 #endif /* HAVE_WEBKIT */
+            restore_state(settings);
+            main_pane.restore_state(settings);
+            bind_settings();
+            connect_signals();
+            Idle.add(() => { update_layout_orientation(); return GLib.Source.REMOVE; });
+        }
+
+        void bind_settings () {
+            settings.changed.connect((key) => {
+                if (key.contains("wide-layout"))
+                    Idle.add(() => { update_layout_orientation(); return GLib.Source.REMOVE; });
+            });
+        }
+
+        void connect_signals () {
             notify["mode"].connect(on_mode_changed);
             notify["show-preferences"].connect(on_stack_page_changed);
 #if HAVE_WEBKIT
             notify["show-webfonts"].connect(on_stack_page_changed);
 #endif /* HAVE_WEBKIT */
+            notify["maximized"].connect(() => { update_layout_orientation(); });
         }
 
         void on_mode_changed (ParamSpec pspec) {
@@ -160,6 +177,21 @@ namespace FontManager {
             else
                 main_stack.set_visible_child_name("Default");
             header_widgets.main_menu.set_sensitive(!show_webfonts);
+            return;
+        }
+
+        void update_layout_orientation () {
+            if (settings == null)
+                return;
+            Gtk.Orientation orientation = Gtk.Orientation.VERTICAL;
+            bool wide_layout = settings.get_boolean("wide-layout");
+            bool only_on_maximize = settings.get_boolean("wide-layout-on-maximize");
+            if (wide_layout && only_on_maximize && maximized || wide_layout && !only_on_maximize)
+                orientation = Gtk.Orientation.HORIZONTAL;
+            main_pane.set_orientation(orientation);
+#if HAVE_WEBKIT
+            webfonts.set_orientation(orientation);
+#endif /* HAVE_WEBKIT */
             return;
         }
 

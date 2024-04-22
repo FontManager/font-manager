@@ -186,6 +186,8 @@ namespace FontManager {
 
     public class UserInterfacePreferences : PreferenceList {
 
+        public GLib.Settings? settings { get; set; default = null; }
+
         Gtk.Switch wide_layout;
         Gtk.Switch use_csd;
         Gtk.Switch enable_animations;
@@ -197,7 +199,8 @@ namespace FontManager {
 
         WaterfallSize waterfall_size;
 
-        public UserInterfacePreferences () {
+        public UserInterfacePreferences (GLib.Settings? settings) {
+            this.settings = settings;
             widget_set_name(this, "FontManagerUserInterfacePreferences");
             default_gtk_settings = Gtk.Settings.get_default();
             list.set_selection_mode(Gtk.SelectionMode.NONE);
@@ -220,7 +223,8 @@ namespace FontManager {
         }
 
         void bind_properties () {
-            GLib.Settings? settings = get_gsettings(BUS_ID);
+            if (settings == null)
+                settings = get_gsettings(BUS_ID);
             return_if_fail(settings != null);
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
             settings.bind("use-csd", use_csd, "active", flags);

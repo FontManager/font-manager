@@ -23,16 +23,24 @@ namespace FontManager {
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-paned.ui")]
     public class Paned : Gtk.Box {
 
+        public GLib.Settings? settings { get; set; default = null; }
+
         public Gtk.Orientation orientation {
             get {
                 return content_pane.orientation;
             }
             set {
+                if (value == content_pane.orientation)
+                    return;
                 content_pane.orientation = value;
+                if (value == Gtk.Orientation.HORIZONTAL)
+                    sidebar_position = sidebar_pos - 10;
+                else
+                    sidebar_position = sidebar_pos + 10;
             }
         }
 
-        public int sidebar_position {
+        public double sidebar_position {
             get {
                 return sidebar_pos;
             }
@@ -44,7 +52,7 @@ namespace FontManager {
             }
         }
 
-        public int content_position {
+        public double content_position {
             get {
                 return content_pos;
             }
@@ -63,13 +71,13 @@ namespace FontManager {
         [GtkChild] protected unowned Gtk.Paned main_pane;
         [GtkChild] protected unowned Gtk.Overlay overlay;
 
-        int sidebar_pos = 46;
-        int content_pos = 45;
+        double sidebar_pos = 36;
+        double content_pos = 45;
 
-        construct {
+        public Paned () {
             // Necessary to get an acceptable initial size for pane layout
             list_area.set_size_request(-1, 225);
-            map.connect_after(() => {
+            map.connect(() => {
                 Idle.add(() => {
                     return update_pane_positions();
                 });
@@ -82,6 +90,20 @@ namespace FontManager {
                 content_pos = position_to_percentage(content_pane).clamp(2, 98);
                 notify_property("content-position");
             });
+        }
+
+        public void restore_state (GLib.Settings? settings) {
+            this.settings = settings;
+            if (settings == null)
+                return;
+            SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
+            settings.bind("sidebar-size", this, "sidebar-position", flags);
+            settings.bind("content-pane-position", this, "content-position", flags);
+            sidebar_position = settings.get_int("sidebar-size");
+            content_position = settings.get_int("content-pane-position");
+            notify_property("sidebar-position");
+            notify_property("content-position");
+            return;
         }
 
         public Gtk.Widget? get_content_widget () {
@@ -122,27 +144,34 @@ namespace FontManager {
             return;
         }
 
-        bool update_pane_positions () {
-            int pos_a = percentage_to_position(main_pane, sidebar_position);
-            int pos_b = percentage_to_position(content_pane, content_position);
+        public bool update_pane_positions () {
+            int pos_a = (int) percentage_to_position(main_pane, sidebar_position);
+            int pos_b = (int) percentage_to_position(content_pane, content_position);
+            if (pos_a == 0 && pos_b == 0)
+                return GLib.Source.REMOVE;
             main_pane.set_position(pos_a);
             content_pane.set_position(pos_b);
             return GLib.Source.REMOVE;
         }
 
-        double get_alloc (Gtk.Paned paned) {
+        int get_alloc (Gtk.Paned paned) {
+            int alloc = paned.max_position;
+            // max_position is more reliable than get_width function
+            // except when it returns the default value of 2147483647
+            if (alloc != 2147483647)
+                return alloc;
+            // get_width regularly returns a smaller than actual value
             return (orientation == Gtk.Orientation.HORIZONTAL) ?
-                          (double) paned.get_allocated_width() :
-                          (double) paned.get_allocated_height();
+                   paned.get_width() : paned.get_height();
         }
 
-        int position_to_percentage (Gtk.Paned paned) {
-            double position = (double) paned.position;
-            return (int) Math.round((position / get_alloc(paned)) * 100.0);
+        double position_to_percentage (Gtk.Paned paned) {
+            int position = paned.position;
+            return ((double) position / (double) get_alloc(paned)) * 100;
         }
 
-        int percentage_to_position (Gtk.Paned paned, int percent) {
-            return (int) Math.round(((double) percent / 100.0) * get_alloc(paned));
+        double percentage_to_position (Gtk.Paned paned, double percent) {
+            return (percent / 100) * (double) get_alloc(paned);
         }
 
     }
