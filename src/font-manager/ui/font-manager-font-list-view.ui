@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
   <requires lib="gtk" version="4.10"/>
-  <template class="FontManagerFontListView" parent="GtkBox">
+  <template class="FontManagerBaseFontListView" parent="GtkBox">
     <style>
       <class name="view"/>
     </style>
@@ -57,6 +57,14 @@
           </object>
         </child>
         <child>
+            <object class="GtkSeparator">
+                <property name="orientation">horizontal</property>
+                <property name="opacity">0.25</property>
+                <property name="margin-start">6</property>
+                <property name="margin-end">6</property>
+            </object>
+        </child>
+        <child>
           <object class="GtkScrolledWindow">
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
@@ -65,6 +73,7 @@
                 <property name="enable-rubberband">True</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
+                <property name="margin-top">1</property>
                 <signal name="activate" handler="on_activate" swapped="no"/>
               </object>
             </child>

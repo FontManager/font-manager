@@ -114,5 +114,62 @@ namespace FontManager {
 
     }
 
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-remove-dialog.ui")]
+    public class RemoveDialog : Gtk.Window {
+
+        public signal void start_removal ();
+        public signal void end_removal ();
+
+        [GtkChild] public unowned Gtk.Button cancel_button { get; }
+        [GtkChild] public unowned Gtk.Button delete_button { get; }
+        [GtkChild] public unowned RemoveListView remove_list { get; }
+
+        public RemoveDialog (Gtk.Window? parent) {
+            set_transient_for(parent);
+            var fonts = get_available_fonts(null);
+            var sorted_fonts = sort_json_font_listing(fonts);
+            sorted_fonts.foreach_element((a, i, n) => {
+                Json.Object family = n.get_object();
+                family.set_boolean_member("active", false);
+                Json.Array variations = family.get_array_member("variations");
+                variations.foreach_element((a, i, n) => {
+                    n.get_object().set_boolean_member("active", false);
+                });
+            });
+            remove_list.available_fonts = sorted_fonts;
+            delete_button.set_sensitive(false);
+            remove_list.changed.connect(() => {
+                bool sensitive = remove_list.selected_files.size > 0;
+                delete_button.set_sensitive(sensitive);
+                if (sensitive) {
+                    cancel_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+                    delete_button.add_css_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
+                } else {
+                    cancel_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+                    delete_button.remove_css_class(STYLE_CLASS_DESTRUCTIVE_ACTION);
+                }
+            });
+        }
+
+        [GtkCallback]
+        void on_cancel_clicked () {
+            destroy();
+            return;
+        }
+
+        [GtkCallback]
+        void on_delete_clicked () {
+            hide();
+            start_removal();
+            Library.remove.begin(remove_list.selected_files,(obj, res) => {
+                Library.remove.end(res);
+                end_removal();
+                destroy();
+            });
+            return;
+        }
+
+    }
+
 }
 

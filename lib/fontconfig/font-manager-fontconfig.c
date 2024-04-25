@@ -1,6 +1,6 @@
 /* font-manager-fontconfig.c
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,6 +74,8 @@ process_fontset (const FcFontSet *fontset, JsonObject *json_obj)
         if (pango >= PANGO_1_44 && is_legacy_format(fontset->fonts[i]))
             continue;
         JsonObject *font_obj = font_manager_get_attributes_from_fontconfig_pattern(fontset->fonts[i]);
+        if (!json_object_has_member(font_obj, "active"))
+            json_object_set_boolean_member(font_obj, "active", TRUE);
         const gchar *family = json_object_get_string_member(font_obj, "family");
         const gchar *style = json_object_get_string_member(font_obj, "style");
         if (!json_object_get_member(json_obj, family))

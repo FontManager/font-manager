@@ -157,8 +157,8 @@ namespace FontManager {
         int get_alloc (Gtk.Paned paned) {
             int alloc = paned.max_position;
             // max_position is more reliable than get_width function
-            // except when it returns the default value of 2147483647
-            if (alloc != 2147483647)
+            // except when it returns the default value of MAX_INT
+            if (alloc != int.MAX)
                 return alloc;
             // get_width regularly returns a smaller than actual value
             return (orientation == Gtk.Orientation.HORIZONTAL) ?

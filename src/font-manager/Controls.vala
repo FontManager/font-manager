@@ -220,6 +220,7 @@ namespace FontManager {
             };
             manage_controls.add_button.has_frame = true;
             manage_controls.remove_button.has_frame = true;
+            set_control_sensitivity(manage_controls.remove_button, true);
             manage_controls.add_button.set_action_name("install");
             manage_controls.remove_button.set_action_name("remove");
 #if HAVE_WEBKIT
@@ -245,6 +246,7 @@ namespace FontManager {
             prefs_toggle.set_icon_name("preferences-system-symbolic");
             prefs_toggle.set_tooltip_text(_("Preferences"));
             prefs_toggle.set_action_name("show-preferences");
+            spinner = new Gtk.Spinner();
             return;
         }
 

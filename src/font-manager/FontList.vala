@@ -240,28 +240,153 @@ namespace FontManager {
 
     }
 
-    // TODO
-    //      - Context menu
-    //          - Send to collection?
-    //          - Export?
-    //      - Drop support
-
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-font-list-view.ui")]
-    public class FontListView : Gtk.Box {
+    public class BaseFontListView : Gtk.Box {
 
         public signal void selection_changed (Object? item);
 
         public Json.Array? available_fonts { get; set; default = null; }
         public FontListFilter? filter { get; set; default = null; }
-        public Reject? disabled_families { get; set; default = null; }
-        public UserActionModel? user_actions { get; set; default = null; }
-        public UserSourceModel? user_sources { get; set; default = null; }
 
         public BaseFontModel model {
             get {
                 return ((BaseFontModel) treemodel.model);
             }
         }
+
+        protected uint current_selection { get; protected set; default = 0; }
+
+        protected Gtk.TreeListModel treemodel;
+        protected Gtk.SelectionModel selection;
+
+        [GtkChild] protected unowned Gtk.Button remove_button;
+        [GtkChild] protected unowned Gtk.ListView listview;
+        [GtkChild] protected unowned Gtk.Expander expander;
+        [GtkChild] protected unowned Gtk.SearchEntry search;
+
+        uint search_timeout = 0;
+
+        construct {
+            var fontmodel = new FontModel();
+            treemodel = new Gtk.TreeListModel(fontmodel,
+                                              false,
+                                              false,
+                                              fontmodel.get_child_model);
+            selection = new Gtk.MultiSelection(treemodel);
+            listview.set_model(selection);
+            listview.set_factory(get_factory());
+            selection.selection_changed.connect(on_selection_changed);
+            BindingFlags flags = BindingFlags.SYNC_CREATE;
+            bind_property("filter", fontmodel, "filter", flags, null, null);
+            bind_property("available-fonts", model, "entries", flags, null, null);
+            search.activate.connect(next_match);
+            search.next_match.connect(next_match);
+            search.previous_match.connect(previous_match);
+            search.search_changed.connect(queue_refilter);
+            search.set_tooltip_text(search_tip.printf(Path.DIR_SEPARATOR_S,
+                                                      Path.SEARCHPATH_SEPARATOR_S));
+        }
+
+        public void select_item (uint position) {
+            listview.activate_action("list.select-item", "(ubb)", position, false, false);
+            listview.activate_action("list.scroll-to-item", "u", position);
+            return;
+        }
+
+        // Add slight delay to avoid filtering while search is still changing
+        public void queue_refilter () {
+            if (search_timeout != 0)
+                GLib.Source.remove(search_timeout);
+            search_timeout = Timeout.add(333, refilter);
+            return;
+        }
+
+        protected void queue_update (uint position = 0) {
+            Idle.add(() => {
+                model.search_term = search.text.strip();
+                model.update_items();
+                select_item(position);
+                return GLib.Source.REMOVE;
+            });
+            return;
+        }
+
+        protected bool refilter () {
+            queue_update();
+            search_timeout = 0;
+            return GLib.Source.REMOVE;
+        }
+
+        [GtkCallback]
+        protected virtual void on_activate (uint position) {}
+
+        [GtkCallback]
+        protected virtual void on_expander_activated (Gtk.Expander expander) {
+            bool expanded = expander.expanded;
+            treemodel.set_autoexpand(expanded);
+            expander.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
+            queue_update();
+            return;
+        }
+
+
+        [GtkCallback]
+        protected virtual void on_remove_clicked () {}
+
+        protected void next_match (Gtk.SearchEntry entry) {
+            select_item(current_selection + 1);
+            return;
+        }
+
+        protected void previous_match (Gtk.SearchEntry entry) {
+            select_item(current_selection - 1);
+            return;
+        }
+
+        protected virtual void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var tree_expander = new Gtk.TreeExpander();
+            var row = new FontListRow();
+            tree_expander.set_child(row);
+            list_item.set_child(tree_expander);
+            return;
+        }
+
+        protected virtual void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var list_row = treemodel.get_row(list_item.get_position());
+            var tree_expander = (Gtk.TreeExpander) list_item.get_child();
+            tree_expander.margin_start = 2;
+            tree_expander.set_list_row(list_row);
+            var row = (FontListRow) tree_expander.get_child();
+            Object? _item = list_row.get_item();
+            // Setting item triggers update to row widget
+            row.item = _item;
+            return;
+        }
+
+        protected virtual void on_selection_changed (uint position, uint n_items) {}
+
+        Gtk.SignalListItemFactory get_factory () {
+            var factory = new Gtk.SignalListItemFactory();
+            factory.setup.connect(setup_list_row);
+            factory.bind.connect(bind_list_row);
+            return factory;
+        }
+
+    }
+
+    // TODO
+    //      - Context menu
+    //          - Send to collection?
+    //          - Export?
+    //      - Drop support
+
+    public class FontListView : BaseFontListView {
+
+        public Reject? disabled_families { get; set; default = null; }
+        public UserActionModel? user_actions { get; set; default = null; }
+        public UserSourceModel? user_sources { get; set; default = null; }
 
         // Current selection. This is either the only item selected
         // or the first selection if multiple items are selected
@@ -272,17 +397,9 @@ namespace FontManager {
 
         GenericArray <Object>? selected_children = null;
 
-        [GtkChild] unowned Gtk.Button remove_button;
-        [GtkChild] unowned Gtk.ListView listview;
-        [GtkChild] unowned Gtk.Expander expander;
-        [GtkChild] unowned Gtk.SearchEntry search;
-
-        uint current_selection = 0;
         GenericArray <uint>? current_selections = null;
-        uint search_timeout = 0;
+
         uint state_change_timeout = 0;
-        Gtk.TreeListModel treemodel;
-        Gtk.MultiSelection selection;
 
         bool show_menu = true;
         GLib.Menu menu;
@@ -300,24 +417,6 @@ namespace FontManager {
         construct {
             widget_set_name(listview, "FontManagerFontListView");
             selected_items = new GenericArray <Object> ();
-            var fontmodel = new FontModel();
-            treemodel = new Gtk.TreeListModel(fontmodel,
-                                              false,
-                                              false,
-                                              fontmodel.get_child_model);
-            selection = new Gtk.MultiSelection(treemodel);
-            listview.set_factory(get_factory());
-            listview.set_model(selection);
-            selection.selection_changed.connect(on_selection_changed);
-            BindingFlags flags = BindingFlags.SYNC_CREATE;
-            bind_property("filter", fontmodel, "filter", flags, null, null);
-            bind_property("available-fonts", model, "entries", flags, null, null);
-            search.search_changed.connect(queue_refilter);
-            search.activate.connect(next_match);
-            search.next_match.connect(next_match);
-            search.previous_match.connect(previous_match);
-            search.set_tooltip_text(search_tip.printf(Path.DIR_SEPARATOR_S,
-                                                      Path.SEARCHPATH_SEPARATOR_S));
             Gtk.Gesture right_click = new Gtk.GestureClick() {
                 button = Gdk.BUTTON_SECONDARY
             };
@@ -345,22 +444,8 @@ namespace FontManager {
             return font;
         }
 
-        // Add slight delay to avoid filtering while search is still changing
-        public void queue_refilter () {
-            if (search_timeout != 0)
-                GLib.Source.remove(search_timeout);
-            search_timeout = Timeout.add(333, refilter);
-            return;
-        }
-
-        public void select_item (uint position) {
-            listview.activate_action("list.select-item", "(ubb)", position, false, false);
-            listview.activate_action("list.scroll-to-item", "u", position);
-            return;
-        }
-
         [GtkCallback]
-        void on_activate (uint position) {
+        protected override void on_activate (uint position) {
             if (selected_items.length < 1)
                 return;
             selected_items.foreach((i) => { var f = (Family) i; f.active = !f.active; });
@@ -369,16 +454,7 @@ namespace FontManager {
         }
 
         [GtkCallback]
-        void on_expander_activated (Gtk.Expander _expander) {
-            bool expanded = expander.expanded;
-            treemodel.set_autoexpand(expanded);
-            expander.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
-            queue_update();
-            return;
-        }
-
-        [GtkCallback]
-        void on_remove_clicked () requires (filter is Collection) {
+        protected override void on_remove_clicked () requires (filter is Collection) {
             var collection = (Collection) filter;
             var families = new StringSet();
             selected_items.foreach((i) => { families.add(((Family) i).family); });
@@ -554,13 +630,6 @@ namespace FontManager {
             return;
         }
 
-        Gtk.SignalListItemFactory get_factory () {
-            var factory = new Gtk.SignalListItemFactory();
-            factory.setup.connect(setup_list_row);
-            factory.bind.connect(bind_list_row);
-            return factory;
-        }
-
         Gdk.ContentProvider prepare_drag (Gtk.DragSource source, double x, double y) {
             var selections = new GenericArray <Object> ();
             var e_type = typeof(Gtk.TreeExpander);
@@ -607,12 +676,10 @@ namespace FontManager {
             return true;
         }
 
-        void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+        protected override void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            base.setup_list_row(factory, item);
             Gtk.ListItem list_item = (Gtk.ListItem) item;
-            var tree_expander = new Gtk.TreeExpander();
-            var row = new FontListRow();
-            tree_expander.set_child(row);
-            list_item.set_child(tree_expander);
+            var row = (FontListRow) ((Gtk.TreeExpander) list_item.get_child()).get_child();
             var drag_source = new Gtk.DragSource();
             row.drag_area.add_controller(drag_source);
             drag_source.prepare.connect(prepare_drag);
@@ -620,46 +687,17 @@ namespace FontManager {
             return;
         }
 
-        void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+        protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            base.bind_list_row(factory, item);
             Gtk.ListItem list_item = (Gtk.ListItem) item;
             var list_row = treemodel.get_row(list_item.get_position());
             var tree_expander = (Gtk.TreeExpander) list_item.get_child();
-            tree_expander.margin_start = 2;
-            tree_expander.set_list_row(list_row);
             var row = (FontListRow) tree_expander.get_child();
             Object? _item = list_row.get_item();
-            // Setting item triggers update to row widget
-            row.item = _item;
             if (_item is Family)
                 row.item_state.active = !(((Family) _item).family in disabled_families);
             row.item_state_changed.connect(on_item_state_changed);
             return;
-        }
-
-        void queue_update (uint position = 0) {
-            Idle.add(() => {
-                model.search_term = search.text.strip();
-                model.update_items();
-                select_item(position);
-                return GLib.Source.REMOVE;
-            });
-            return;
-        }
-
-        void next_match (Gtk.SearchEntry entry) {
-            select_item(current_selection + 1);
-            return;
-        }
-
-        void previous_match (Gtk.SearchEntry entry) {
-            select_item(current_selection - 1);
-            return;
-        }
-
-        bool refilter () {
-            queue_update();
-            search_timeout = 0;
-            return GLib.Source.REMOVE;
         }
 
         bool save_item_state_change () {
@@ -700,7 +738,7 @@ namespace FontManager {
         // between @position + @n_items. The precise location within that
         // range appears to be affected by a variety of factors i.e.
         // previous selection, multiple selections, directional changes, etc.
-        void on_selection_changed (uint position, uint n_items) {
+        protected override void on_selection_changed (uint position, uint n_items) {
             selected_items = new GenericArray <Object> ();
             selected_children = new GenericArray <Object> ();
             selected_item = null;
@@ -740,6 +778,62 @@ namespace FontManager {
                 selected_item.get("description", out description, null);
                 debug("%s::selection_changed : %s", listview.name, description);
             }
+            return;
+        }
+
+    }
+
+    public class RemoveListView : BaseFontListView {
+
+        public signal void changed ();
+
+        public StringSet selected_files { get; set; default = null; }
+
+        construct {
+            widget_set_name(listview, "FontManagerRemoveListView");
+            remove_button.visible = false;
+            expander.visible = false;
+            search.halign = Gtk.Align.CENTER;
+            treemodel.set_autoexpand(true);
+            selected_files = new StringSet();
+            selection = new Gtk.NoSelection(treemodel);
+            listview.set_model(selection);
+            filter = new UserFonts();
+            var families = new StringSet();
+            foreach (var family in list_available_font_families())
+                families.add(family);
+            filter.update.begin(families);
+        }
+
+        protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
+            base.bind_list_row(factory, item);
+            Gtk.ListItem list_item = (Gtk.ListItem) item;
+            var list_row = treemodel.get_row(list_item.get_position());
+            var tree_expander = (Gtk.TreeExpander) list_item.get_child();
+            var row = (FontListRow) tree_expander.get_child();
+            Object? _item = list_row.get_item();
+            row.drag_handle.visible = false;
+            row.drag_area.sensitive = true;
+            row.margin_start = 0;
+            row.margin_end = 22;
+            row.item_state.set("sensitive", true, "visible", !(_item is Family), null);
+            row.item_state.toggled.connect((c) => {
+                on_item_state_changed(list_row);
+            });
+            tree_expander.set_hide_expander(true);
+            return;
+        }
+
+        void on_item_state_changed (Gtk.TreeListRow? row) {
+            Object? item = row.get_item();
+            if (!(item is Font))
+                return;
+            Font font = (Font) item;
+            if (font.active)
+                selected_files.add(font.filepath);
+            else
+                selected_files.remove(font.filepath);
+            changed();
             return;
         }
 

@@ -92,6 +92,8 @@ namespace FontManager {
 #endif /* HAVE_WEBKIT */
 
         static construct {
+            install_action("install", null, (Gtk.WidgetActionActivateFunc) install);
+            install_action("remove", null, (Gtk.WidgetActionActivateFunc) remove);
             install_property_action("mode", "mode");
             install_property_action("show-preferences", "show-preferences");
             install_property_action("show-webfonts", "show-webfonts");
@@ -137,11 +139,11 @@ namespace FontManager {
             main_pane.bind_property("content-position", webfonts, "content-position", flags);
             main_pane.bind_property("sidebar-position", webfonts, "sidebar-position", flags);
 #endif /* HAVE_WEBKIT */
-            restore_state(settings);
-            main_pane.restore_state(settings);
             bind_settings();
             connect_signals();
-            Idle.add(() => { update_layout_orientation(); return GLib.Source.REMOVE; });
+            restore_state(settings);
+            main_pane.restore_state(settings);
+            update_layout_orientation();
         }
 
         void bind_settings () {
@@ -158,6 +160,57 @@ namespace FontManager {
             notify["show-webfonts"].connect(on_stack_page_changed);
 #endif /* HAVE_WEBKIT */
             notify["maximized"].connect(() => { update_layout_orientation(); });
+        }
+
+        StringSet get_file_selections (Object? object, AsyncResult result) {
+            var selections = new StringSet();
+            return_if_fail(object != null);
+            try {
+                var dialog = (Gtk.FileDialog) object;
+                ListModel files = dialog.open_multiple.end(result);
+                for (uint i = 0; i < files.get_n_items(); i++) {
+                    var file = (File) files.get_item(i);
+                    selections.add(file.get_path());
+                }
+            } catch (Error e) {
+                if (e.code == Gtk.DialogError.FAILED)
+                    warning("FileDialog : %s", e.message);
+            }
+            return selections;
+        }
+
+        void install_selections (Object? object, AsyncResult result) {
+            var selections = get_file_selections(object, result);
+            if (selections.size > 0) {
+                header_widgets.installing_files = true;
+                var installer = new Library.Installer();
+                installer.process.begin(selections, (obj, res) => {
+                    installer.process.end(res);
+                    header_widgets.installing_files = false;
+                });
+            }
+            return;
+        }
+
+        void install (Gtk.Widget widget, string? action, Variant? parameter) {
+            var dialog = FileSelector.get_selections();
+            dialog.open_multiple.begin(this, null, install_selections);
+            return;
+        }
+
+        void remove (Gtk.Widget widget, string? action, Variant? parameter) {
+            var dialog = new RemoveDialog(this);
+            int width = (int) (get_width() / 10 * 7);
+            int height = (int) (get_height() / 10 * 7);
+            dialog.set_default_size(width, height);
+            dialog.present();
+            dialog.start_removal.connect(() => {
+                header_widgets.removing_files = true;
+            });
+            dialog.end_removal.connect(() => {
+                header_widgets.removing_files = false;
+            });
+            return;
         }
 
         void on_mode_changed (ParamSpec pspec) {
