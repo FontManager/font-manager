@@ -5,13 +5,14 @@
 # Nicola Tudino <tudo75@hotmail.com>, 2021.
 # albanobattistella <albano_battistella@hotmail.com>, 2024.
 # Marcos Leite <m.abner@live.co.uk>, 2024.
+# Roberto Guido <bob4job@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.8.5\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2024-03-14 02:22+0000\n"
-"Last-Translator: Marcos Leite <m.abner@live.co.uk>\n"
+"PO-Revision-Date: 2024-04-22 17:07+0000\n"
+"Last-Translator: Roberto Guido <bob4job@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/font-manager/"
 "font-manager/it/>\n"
 "Language: it\n"
@@ -131,21 +132,21 @@ msgstr "A cascata"
 #: lib/common/font-manager-fontconfig.c:709
 #: src/font-manager/web/google/Weight.vala:65
 msgid "Thin"
-msgstr ""
+msgstr "Sottile"
 
 #: lib/common/font-manager-fontconfig.c:711
 msgid "Ultra-Light"
-msgstr ""
+msgstr "Ultra Leggero"
 
 #: lib/common/font-manager-fontconfig.c:713
 #: lib/common/font-manager-fontconfig.c:1066
 #: src/font-manager/web/google/Weight.vala:69
 msgid "Light"
-msgstr ""
+msgstr "Leggero"
 
 #: lib/common/font-manager-fontconfig.c:715
 msgid "Semi-Light"
-msgstr ""
+msgstr "Semi Leggero"
 
 #: lib/common/font-manager-fontconfig.c:717
 msgid "Book"
@@ -159,24 +160,24 @@ msgstr "Medio"
 
 #: lib/common/font-manager-fontconfig.c:721
 msgid "Semi-Bold"
-msgstr ""
+msgstr "Semi Grassetto"
 
 #: lib/common/font-manager-fontconfig.c:723
 #: src/font-manager/web/google/Weight.vala:77
 msgid "Bold"
-msgstr ""
+msgstr "Grassetto"
 
 #: lib/common/font-manager-fontconfig.c:725
 msgid "Ultra-Bold"
-msgstr ""
+msgstr "Ultra Grassetto"
 
 #: lib/common/font-manager-fontconfig.c:727
 msgid "Heavy"
-msgstr ""
+msgstr "Pesante"
 
 #: lib/common/font-manager-fontconfig.c:729
 msgid "Ultra-Heavy"
-msgstr ""
+msgstr "Ultra Pesante"
 
 #: lib/common/font-manager-fontconfig.c:804
 #: src/font-manager/web/google/WebFont.vala:156
@@ -189,35 +190,35 @@ msgstr "Obliquo"
 
 #: lib/common/font-manager-fontconfig.c:844
 msgid "Ultra-Condensed"
-msgstr ""
+msgstr "Ultra Condensato"
 
 #: lib/common/font-manager-fontconfig.c:846
 msgid "Extra-Condensed"
-msgstr ""
+msgstr "Extra Condensato"
 
 #: lib/common/font-manager-fontconfig.c:848
 msgid "Condensed"
-msgstr ""
+msgstr "Condensato"
 
 #: lib/common/font-manager-fontconfig.c:850
 msgid "Semi-Condensed"
-msgstr ""
+msgstr "Semi Condensato"
 
 #: lib/common/font-manager-fontconfig.c:852
 msgid "Semi-Expanded"
-msgstr ""
+msgstr "Semi Espanso"
 
 #: lib/common/font-manager-fontconfig.c:854
 msgid "Expanded"
-msgstr ""
+msgstr "Espanso"
 
 #: lib/common/font-manager-fontconfig.c:856
 msgid "Extra-Expanded"
-msgstr ""
+msgstr "Extra Espanso"
 
 #: lib/common/font-manager-fontconfig.c:858
 msgid "Ultra-Expanded"
-msgstr ""
+msgstr "Ultra Espanso"
 
 #: lib/common/font-manager-fontconfig.c:927
 msgid "Proportional"
@@ -225,12 +226,12 @@ msgstr "Proporzionale"
 
 #: lib/common/font-manager-fontconfig.c:929
 msgid "Dual Width"
-msgstr "Doppia larghezza"
+msgstr "Doppia Larghezza"
 
 #: lib/common/font-manager-fontconfig.c:931
 #: src/font-manager/web/google/ui/google-font-filters.ui:260
 msgid "Monospace"
-msgstr ""
+msgstr "Monospazio"
 
 #: lib/common/font-manager-fontconfig.c:933
 msgid "Charcell"
@@ -246,15 +247,15 @@ msgstr "RGB"
 
 #: lib/common/font-manager-fontconfig.c:976
 msgid "BGR"
-msgstr ""
+msgstr "BGR"
 
 #: lib/common/font-manager-fontconfig.c:978
 msgid "VRGB"
-msgstr ""
+msgstr "VRGB"
 
 #: lib/common/font-manager-fontconfig.c:980
 msgid "VBGR"
-msgstr ""
+msgstr "VBGR"
 
 #: lib/common/font-manager-fontconfig.c:982
 #: lib/common/font-manager-fontconfig.c:1027
@@ -264,11 +265,11 @@ msgstr "Nessuno"
 
 #: lib/common/font-manager-fontconfig.c:1021
 msgid "Slight"
-msgstr ""
+msgstr "Lieve"
 
 #: lib/common/font-manager-fontconfig.c:1025
 msgid "Full"
-msgstr ""
+msgstr "Pieno"
 
 #: lib/common/font-manager-fontconfig.c:1064
 #: src/font-manager/ui/font-manager-main-window.ui:178
@@ -694,11 +695,11 @@ msgstr ""
 
 #: src/font-manager/Categories.vala:567
 msgid "Decorative"
-msgstr ""
+msgstr "Decorativo"
 
 #: src/font-manager/Categories.vala:567
 msgid "Pictorial"
-msgstr ""
+msgstr "Pittorico"
 
 #: src/font-manager/CellRenderer.vala:90
 #, c-format
@@ -721,7 +722,7 @@ msgstr "Comprimi…"
 
 #: src/font-manager/Collections.vala:454
 msgid "Rename…"
-msgstr ""
+msgstr "Rinomina…"
 
 #: src/font-manager/Compare.vala:381
 msgid "Saved Comparison"
@@ -2025,7 +2026,6 @@ msgstr "Pagina successiva"
 
 #: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
 #, fuzzy
-#| msgid "Enter Collection Name"
 msgid "Collection Name"
 msgstr "Inserisci il nome della collezione"
 
@@ -2296,7 +2296,6 @@ msgstr ""
 
 #: src/font-manager/ui/font-manager-waterfall-size.ui:100
 #, fuzzy
-#| msgid "Custom Actions"
 msgid "Custom Size Settings"
 msgstr "Azioni personalizzate"
 
