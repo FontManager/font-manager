@@ -393,6 +393,8 @@ namespace FontManager.GoogleFonts {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
             var tree_expander = new Gtk.TreeExpander();
             var row = new FontListRow();
+            row.margin_top = 4;
+            row.margin_bottom = 4;
             tree_expander.set_child(row);
             list_item.set_child(tree_expander);
             return;

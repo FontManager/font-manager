@@ -326,13 +326,7 @@ namespace FontManager {
                 add_window(main_window);
                 BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
                 bind_property("available-fonts", main_window, "available-fonts", flags);
-                enable_user_font_configuration(false);
-                update_font_configuration();
-                load_user_font_resources();
-                var fonts = get_available_fonts(null);
-                var sorted_fonts = sort_json_font_listing(fonts);
-                update_item_preview_text(sorted_fonts);
-                available_fonts = sorted_fonts;
+                available_fonts = get_sorted_font_list();
                 // Why is this needed?
                 shutdown.connect(() => { quit(); });
                 // BindingFlags flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;

@@ -225,6 +225,16 @@ namespace FontManager {
         return res;
     }
 
+    Json.Array get_sorted_font_list () {
+        enable_user_font_configuration(false);
+        update_font_configuration();
+        load_user_font_resources();
+        var fonts = get_available_fonts(null);
+        var sorted_fonts = sort_json_font_listing(fonts);
+        update_item_preview_text(sorted_fonts);
+        return sorted_fonts;
+    }
+
     public bool remove_directory_tree_if_empty (File dir) {
         try {
             var enumerator = dir.enumerate_children(FileAttribute.STANDARD_NAME,

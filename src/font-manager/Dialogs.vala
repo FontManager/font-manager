@@ -136,6 +136,7 @@ namespace FontManager {
                     n.get_object().set_boolean_member("active", false);
                 });
             });
+            update_item_preview_text(sorted_fonts);
             remove_list.available_fonts = sorted_fonts;
             delete_button.set_sensitive(false);
             remove_list.changed.connect(() => {

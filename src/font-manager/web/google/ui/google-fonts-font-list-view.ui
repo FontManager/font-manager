@@ -43,6 +43,14 @@
           </object>
         </child>
         <child>
+          <object class="GtkSeparator">
+            <property name="orientation">horizontal</property>
+            <property name="opacity">0.25</property>
+            <property name="margin-start">6</property>
+            <property name="margin-end">6</property>
+          </object>
+        </child>
+        <child>
           <object class="GtkScrolledWindow">
             <property name="hexpand">True</property>
             <property name="vexpand">True</property>
