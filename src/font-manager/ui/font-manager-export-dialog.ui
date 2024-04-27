@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
   <requires lib="gtk" version="4.12"/>
-  <template class="FontManagerRemoveDialog" parent="GtkWindow">
+  <template class="FontManagerExportDialog" parent="GtkWindow">
     <property name="modal">True</property>
     <property name="titlebar">
       <object class="GtkHeaderBar">
@@ -10,7 +10,7 @@
           <object class="GtkLabel">
             <property name="css-classes">heading</property>
             <property name="justify">center</property>
-            <property name="label" translatable="yes">Select fonts to remove</property>
+            <property name="label" translatable="yes">User Data</property>
             <property name="opacity">0.8</property>
           </object>
         </property>
@@ -21,16 +21,13 @@
           </object>
         </child>
         <child type="end">
-          <object class="GtkButton" id="delete_button">
-            <property name="label" translatable="yes">Delete</property>
-            <signal name="clicked" handler="on_delete_clicked" swapped="no"/>
+          <object class="GtkButton" id="export_button">
+            <property name="label" translatable="yes">Export</property>
+            <signal name="clicked" handler="on_export_clicked" swapped="no"/>
           </object>
         </child>
       </object>
     </property>
-    <child>
-      <object class="FontManagerRemoveListView" id="remove_list"/>
-    </child>
   </template>
 </interface>
 

@@ -232,10 +232,6 @@ namespace FontManager {
             settings.bind("wide-layout-on-maximize", on_maximize, "active", flags);
             settings.bind("enable-animations", enable_animations, "active", flags);
 
-            // XXX : FIXME! :
-            // Here for testing purposes
-            // This probably belongs in our application window class.
-            // GLib.Settings? settings = get_gsettings(BUS_ID);
             Gtk.Settings? gtk_settings = Gtk.Settings.get_default();
             const string gtk_prefer_dark = "gtk-application-prefer-dark-theme";
             if (gtk_settings != null) {

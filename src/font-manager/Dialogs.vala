@@ -80,6 +80,50 @@ namespace FontManager {
 
     }
 
+    public class ExportSettings : PreferenceList {
+
+        public Gtk.Switch settings { get; private set; }
+        public Gtk.Switch collections { get; private set; }
+        public Gtk.Switch sources { get; private set; }
+        public Gtk.Switch fonts { get; private set; }
+        public Gtk.Switch actions { get; private set; }
+
+        public ExportSettings () {
+            controls.set_visible(false);
+            settings = add_preference_switch(_("Font Configuration"));
+            collections = add_preference_switch(_("Font Collections"));
+            sources = add_preference_switch(_("Font Sources"));
+            fonts = add_preference_switch(_("Installed Fonts"));
+            actions = add_preference_switch(_("Custom Actions"));
+        }
+
+    }
+
+    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-export-dialog.ui")]
+    public class ExportDialog : Gtk.Window {
+
+        public ExportSettings export_settings { get; private set; }
+
+        public ExportDialog (Gtk.Window? parent) {
+            set_transient_for(parent);
+            export_settings = new ExportSettings();
+            set_child(export_settings);
+        }
+
+        [GtkCallback]
+        void on_cancel_clicked () {
+            destroy();
+            return;
+        }
+
+        [GtkCallback]
+        void on_export_clicked () {
+            destroy();
+            return;
+        }
+
+    }
+
     [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-progress-dialog.ui")]
     public class ProgressDialog : Gtk.Window {
 

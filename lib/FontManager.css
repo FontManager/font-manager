@@ -64,11 +64,8 @@ dropdown popover contents image {
     padding-left: 2em;
 }
 
-menubutton popover contents label {
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-left: 6px;
-    padding-right: 6px;
+popover contents row:hover {
+    border-radius: 0.25em;
 }
 
 /* Accelerator visibility is inconsistent between otherwise identical popovers */
@@ -272,7 +269,8 @@ row:selected .count {
 
 .FontManagerCategoryListView row,
 .FontManagerCollectionListView row,
-.FontManagerFontListView row {
+.FontManagerFontListView row,
+.FontManagerGoogleFontsFontListView row {
     border-radius: 0.25em;
 }
 

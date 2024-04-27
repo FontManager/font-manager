@@ -94,6 +94,8 @@ namespace FontManager {
         static construct {
             install_action("install", null, (Gtk.WidgetActionActivateFunc) install);
             install_action("remove", null, (Gtk.WidgetActionActivateFunc) remove);
+            install_action("import", null, (Gtk.WidgetActionActivateFunc) import);
+            install_action("export", null, (Gtk.WidgetActionActivateFunc) export);
             install_property_action("mode", "mode");
             install_property_action("show-preferences", "show-preferences");
             install_property_action("show-webfonts", "show-webfonts");
@@ -110,12 +112,10 @@ namespace FontManager {
             settings = get_gsettings(BUS_ID);
             var header = new Gtk.HeaderBar();
             header_widgets = new HeaderBarWidgets();
+            header.pack_start(header_widgets.back_button);
             header.pack_start(header_widgets.main_menu);
-#if HAVE_WEBKIT
             header.pack_start(header_widgets.revealer);
-#endif /* HAVE_WEBKIT */
             header.pack_end(header_widgets.app_menu);
-            header.pack_end(header_widgets.prefs_toggle);
             set_titlebar(header);
             main_stack = new Gtk.Stack();
             main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN_UP);
@@ -151,6 +151,7 @@ namespace FontManager {
                 if (key.contains("wide-layout"))
                     Idle.add(() => { update_layout_orientation(); return GLib.Source.REMOVE; });
             });
+            return;
         }
 
         void connect_signals () {
@@ -160,6 +161,7 @@ namespace FontManager {
             notify["show-webfonts"].connect(on_stack_page_changed);
 #endif /* HAVE_WEBKIT */
             notify["maximized"].connect(() => { update_layout_orientation(); });
+            return;
         }
 
         StringSet get_file_selections (Object? object, AsyncResult result) {
@@ -198,11 +200,17 @@ namespace FontManager {
             return;
         }
 
-        void remove (Gtk.Widget widget, string? action, Variant? parameter) {
-            var dialog = new RemoveDialog(this);
+        // Set dialog size to 70% of current main window size
+        void set_default_dialog_size (Gtk.Window dialog) {
             int width = (int) (get_width() / 10 * 7);
             int height = (int) (get_height() / 10 * 7);
             dialog.set_default_size(width, height);
+            return;
+        }
+
+        void remove (Gtk.Widget widget, string? action, Variant? parameter) {
+            var dialog = new RemoveDialog(this);
+            set_default_dialog_size(dialog);
             dialog.present();
             dialog.start_removal.connect(() => {
                 header_widgets.removing_files = true;
@@ -210,6 +218,19 @@ namespace FontManager {
             dialog.end_removal.connect(() => {
                 header_widgets.removing_files = false;
             });
+            return;
+        }
+
+        void import (Gtk.Widget widget, string? action, Variant? parameter) {
+            message("Import not yet implemented");
+            return;
+        }
+
+        void export (Gtk.Widget widget, string? action, Variant? parameter) {
+            message("Export not yet implemented");
+            var dialog = new ExportDialog(this);
+            set_default_dialog_size(dialog);
+            dialog.present();
             return;
         }
 
@@ -230,6 +251,9 @@ namespace FontManager {
             else
                 main_stack.set_visible_child_name("Default");
             header_widgets.main_menu.set_sensitive(!show_webfonts);
+            header_widgets.main_menu.set_visible(!show_preferences);
+            header_widgets.revealer.set_visible(!show_preferences);
+            header_widgets.back_button.set_visible(show_preferences);
             return;
         }
 

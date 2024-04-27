@@ -30,12 +30,13 @@ namespace FontManager {
 
         construct {
             spacing = DEFAULT_MARGIN;
-            opacity = 0.9;
             margin_start = margin_end = margin_top = margin_bottom = MIN_MARGIN * 2;
             add_button = new Gtk.Button.from_icon_name("list-add-symbolic") {
+                opacity = 0.9,
                 has_frame = false
             };
             remove_button = new Gtk.Button.from_icon_name("list-remove-symbolic") {
+                opacity = 0.9,
                 has_frame = false
             };
             set_control_sensitivity(remove_button, false);
@@ -120,11 +121,22 @@ namespace FontManager {
     const MenuEntry [] app_menu_entries = {
         { "win.show-help-overlay", N_("Keyboard Shortcuts") },
         { "help", N_("Help") },
-        { "about",  N_("About")}
+        { "about",  N_("About Font Manager")}
     };
 
     GLib.MenuModel get_app_menu_model () {
         var section = new GLib.Menu();
+        var preferences = new GLib.Menu();
+        var preferences_menu_item = new GLib.MenuItem(_("Preferences"), "show-preferences");
+        preferences.append_item(preferences_menu_item);
+        section.prepend_section(null, preferences);
+        var user_data = new GLib.Menu();
+        var import_menu_item = new GLib.MenuItem(_("Import"), "import");
+        var export_menu_item = new GLib.MenuItem(_("Export"), "export");
+        user_data.append_item(import_menu_item);
+        user_data.append_item(export_menu_item);
+        var user_data_submenu = new GLib.MenuItem.submenu(_("User Data"), user_data);
+        section.prepend_item(user_data_submenu);
         var standard_entries = new GLib.Menu();
         foreach (var entry in app_menu_entries) {
             GLib.MenuItem item = new MenuItem(entry.display_name, entry.action_name);
@@ -165,7 +177,7 @@ namespace FontManager {
         public Gtk.MenuButton main_menu { get; protected set; }
         public Gtk.MenuButton app_menu { get; protected set; }
         public Gtk.Label main_menu_label { get; set; }
-        public Gtk.ToggleButton prefs_toggle { get; protected set; }
+        public Gtk.Button back_button { get; protected set; }
 
 #if HAVE_WEBKIT
         public Gtk.ToggleButton web_toggle { get; protected set; }
@@ -224,7 +236,9 @@ namespace FontManager {
             manage_controls.add_button.set_action_name("install");
             manage_controls.remove_button.set_action_name("remove");
 #if HAVE_WEBKIT
-            web_toggle = new Gtk.ToggleButton() { opacity = 0.9 };
+            web_toggle = new Gtk.ToggleButton() {
+                opacity = 0.9
+            };
             var g_icon = new Gtk.Label("<b><big> G </big></b>") { use_markup = true, opacity = 0.9 };
             web_toggle.set_child(g_icon);
             manage_controls.append(web_toggle);
@@ -242,10 +256,12 @@ namespace FontManager {
             manage_controls.prepend(separator);
             revealer.set_child(manage_controls);
             revealer.set_reveal_child(true);
-            prefs_toggle = new Gtk.ToggleButton() { opacity = 0.9 };
-            prefs_toggle.set_icon_name("preferences-system-symbolic");
-            prefs_toggle.set_tooltip_text(_("Preferences"));
-            prefs_toggle.set_action_name("show-preferences");
+            back_button = new Gtk.Button.from_icon_name("go-previous-symbolic") {
+                opacity = 0.9,
+                visible = false,
+                tooltip_text = _("Back"),
+                action_name = "show-preferences"
+            };
             spinner = new Gtk.Spinner();
             return;
         }
