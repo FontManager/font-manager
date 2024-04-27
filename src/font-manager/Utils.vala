@@ -263,7 +263,7 @@ namespace FontManager {
                 if (source_type == GLib.FileType.DIRECTORY) {
                     string source_path = source.get_path();
                     string destination_path = destination.get_path();
-                    source.get_child(name).copy_attributes(destination, flags);
+                    //source.get_child(name).copy_attributes(destination, flags);
                     File s = File.new_for_path(Path.build_filename(source_path, name));
                     File d = File.new_for_path(Path.build_filename(destination_path, name));
                     result = copy_directory(s, d, flags);
