@@ -72,8 +72,9 @@ namespace FontManager {
                 return _mode;
             }
             set {
-                if (!show_webfonts)
-                    _mode = value;
+                if (show_webfonts)
+                    return;
+                _mode = value;
                 notify_property("mode");
             }
         }
@@ -200,17 +201,16 @@ namespace FontManager {
             return;
         }
 
-        // Set dialog size to 70% of current main window size
-        void set_default_dialog_size (Gtk.Window dialog) {
-            int width = (int) (get_width() / 10 * 7);
-            int height = (int) (get_height() / 10 * 7);
+        void set_default_dialog_size (Gtk.Window dialog, int w, int h) {
+            int width = (int) (get_width() / 10 * w);
+            int height = (int) (get_height() / 10 * h);
             dialog.set_default_size(width, height);
             return;
         }
 
         void remove (Gtk.Widget widget, string? action, Variant? parameter) {
             var dialog = new RemoveDialog(this);
-            set_default_dialog_size(dialog);
+            set_default_dialog_size(dialog, 7, 7);
             dialog.present();
             dialog.start_removal.connect(() => {
                 header_widgets.removing_files = true;
@@ -227,9 +227,8 @@ namespace FontManager {
         }
 
         void export (Gtk.Widget widget, string? action, Variant? parameter) {
-            message("Export not yet implemented");
             var dialog = new ExportDialog(this);
-            set_default_dialog_size(dialog);
+            set_default_dialog_size(dialog, 6, 7);
             dialog.present();
             return;
         }
@@ -275,3 +274,4 @@ namespace FontManager {
     }
 
 }
+

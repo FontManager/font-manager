@@ -26,8 +26,7 @@ namespace FontManager {
 
         public static string get_cache_file () {
             string dirpath = get_package_config_directory();
-            //  XXX : FIXME!
-            string filepath = Path.build_filename(dirpath, "CollectionsTest.json");
+            string filepath = Path.build_filename(dirpath, "Collections.json");
             DirUtils.create_with_parents(dirpath ,0755);
             return filepath;
         }
@@ -323,6 +322,35 @@ namespace FontManager {
             dialog.select_folder.begin(get_parent_window(this),
                                        null,
                                        on_folder_selection_ready);
+            return;
+        }
+
+        public void add_new_collection () {
+            collapse_all();
+            clicked_area.x = listview.get_width() / 2;
+            clicked_area.y = listview.get_height() / 2;
+            ((CollectionListModel) model).add_item(new Collection(null, null));
+            listview.scroll_to(model.get_n_items() - 1, Gtk.ListScrollFlags.SELECT, null);
+            Idle.add(() => {
+                rename_selected_collection(listview, null, null);
+                return GLib.Source.REMOVE;
+            });
+            return;
+        }
+
+        public void remove_selected_collection () {
+            var list_row = (Gtk.TreeListRow) treemodel.get_item(selected_position);
+            FontListFilterModel target_model = model;
+            Gtk.TreeListRow? parent_row = list_row.get_parent();
+            if (parent_row != null)
+                target_model = ((FontListFilterModel) parent_row.get_children());
+            else
+                parent_row = list_row;
+            target_model.remove_item(selected_item);
+            parent_row.set_expanded((target_model.get_n_items() != 0));
+            ((CollectionListModel) model).save();
+            // Necessary to update parent row count label
+            queue_update();
             return;
         }
 

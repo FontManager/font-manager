@@ -95,6 +95,9 @@ namespace FontManager {
             sources = add_preference_switch(_("Font Sources"));
             fonts = add_preference_switch(_("Installed Fonts"));
             actions = add_preference_switch(_("Custom Actions"));
+            Gtk.Switch [] switches = { settings, collections, sources, fonts, actions };
+            foreach (var widget in switches)
+                widget.set_active(true);
         }
 
     }
@@ -118,7 +121,70 @@ namespace FontManager {
 
         [GtkCallback]
         void on_export_clicked () {
-            destroy();
+            hide();
+            var dialog = FileSelector.get_target_directory();
+            dialog.select_folder.begin(get_transient_for(), null, on_directory_selected);
+            return;
+        }
+
+        void export_to (File target_directory) {
+            FileCopyFlags flags = FileCopyFlags.OVERWRITE |
+                                  FileCopyFlags.ALL_METADATA |
+                                  FileCopyFlags.TARGET_DEFAULT_PERMS;
+            DateTime date = new DateTime.now_local();
+            string dirname = "%s_%s".printf(Config.PACKAGE_NAME, date.format("%F"));
+            string dest = Path.build_filename(target_directory.get_path(), dirname);
+            File destination = File.new_for_path(dest);
+            try {
+                destination.make_directory_with_parents();
+            } catch (Error e) {
+                critical(e.message);
+            }
+            if (export_settings.actions.active)
+                copy_config("Actions.json", destination.get_path(), flags);
+            if (export_settings.sources.active)
+                copy_config("Sources.xml", destination.get_path(), flags);
+            if (export_settings.collections.active) {
+                copy_config("Collections.json", destination.get_path(), flags);
+                copy_config("Comparisons.json", destination.get_path(), flags);
+            }
+            if (export_settings.settings.active) {
+                var settings_dir = get_user_fontconfig_directory();
+                var dest_dir = Path.build_filename(destination.get_path(), "fontconfig", "conf.d");
+                copy_directory(File.new_for_path(settings_dir), File.new_for_path(dest_dir), flags);
+            }
+            if (export_settings.fonts.active) {
+                var font_dir = get_user_font_directory();
+                var dest_dir = Path.build_filename(destination.get_path(), "fonts");
+                copy_directory(File.new_for_path(font_dir), File.new_for_path(dest_dir), flags);
+            }
+            return;
+        }
+
+        void on_directory_selected (Object? object, AsyncResult result) {
+            try {
+                var dialog = (Gtk.FileDialog) object;
+                File? target_directory = dialog.select_folder.end(result);
+                export_to(target_directory);
+            } catch (Error e) {
+                if (e.code == Gtk.DialogError.FAILED)
+                    warning("FileDialog : %s", e.message);
+            }
+            return;
+        }
+
+        void copy_config (string config_name, string destdir, FileCopyFlags flags) {
+            string config_dir = get_package_config_directory();
+            string filepath = Path.build_filename(config_dir, config_name);
+            File config = File.new_for_path(filepath);
+            if (config.query_exists()) {
+                File target = File.new_for_path(Path.build_filename(destdir, config_name));
+                try {
+                    config.copy(target, flags);
+                } catch (Error e) {
+                    critical(e.message);
+                }
+            }
             return;
         }
 

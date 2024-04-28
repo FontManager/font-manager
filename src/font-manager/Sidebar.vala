@@ -108,7 +108,7 @@ namespace FontManager {
         }
 
         void on_add_selected () {
-            message("Add not implemented");
+            collections.add_new_collection();
             return;
         }
 
@@ -118,14 +118,14 @@ namespace FontManager {
         }
 
         void on_remove_selected () {
-            message("Remove not implemented");
+            collections.remove_selected_collection();
             return;
         }
 
         void on_selection_changed (FilterListView view, FontListFilter? item) {
             filter = item;
             view.selection.unselect_item(view.selected_position);
-            bool removable = !(filter is Category);
+            bool removable = (filter is Collection);
             bool language_filter = filter is LanguageFilter;
             controls.removable = removable;
             controls.editable = removable || language_filter;

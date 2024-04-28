@@ -67,7 +67,7 @@ namespace FontManager {
 
         public void add_item (FontListFilter item) {
             items.add(item);
-            item.index = (int) get_n_items();
+            item.index = (int) get_n_items() - 1;
             items_changed(item.index, 0, 1);
             item.changed.connect(() => {
                 int n_items = (int) items.length;
