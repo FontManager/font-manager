@@ -10,6 +10,9 @@ valac = meson.get_compiler('vala')
 if not valac.version().version_compare('>= 0.42')
     error('Vala compiler version is @0@ but project requires >= 0.42'.format(valac.version()))
 endif
+if valac.version().version_compare('>= 0.56.17')
+    add_global_arguments('-D', 'VALA_0_56_17', language: 'vala')
+endif
 m_dep = cc.find_library('m', required: false)
 fontconfig = dependency('fontconfig', version: '>= 2.12')
 freetype = dependency('freetype2', version: '>= 2.5')

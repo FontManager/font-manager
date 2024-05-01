@@ -22,9 +22,13 @@
 interface FileRollerDBusService : Object {
 
     public signal void progress (double percent, string message);
-
+#if VALA_0_56_17
+    public abstract void add_to_archive (string archive, string [] uris, bool use_progress_dialog) throws DBusError, IOError;
+    public abstract void compress (string [] uris, string destination, bool use_progress_dialog) throws DBusError, IOError;
+#else
     public abstract void add_to_archive (string archive, [CCode (array_null_terminated = true)] string? [] uris, bool use_progress_dialog) throws DBusError, IOError;
     public abstract void compress ([CCode (array_null_terminated = true)] string? [] uris, string destination, bool use_progress_dialog) throws DBusError, IOError;
+#endif
     public abstract void extract (string archive, string destination, bool use_progress_dialog) throws DBusError, IOError;
     public abstract void extract_here (string archive, bool use_progress_dialog) throws DBusError, IOError;
     /* Valid actions -> "create", "create_single_file", "extract" */
@@ -90,7 +94,11 @@ namespace FontManager {
             }
         }
 
+#if VALA_0_56_17
+        public bool add_to_archive (string archive, string? [] uris, bool use_progress_dialog = true)
+#else
         public bool add_to_archive (string archive, [CCode (array_null_terminated = true)] string? [] uris, bool use_progress_dialog = true)
+#endif
         requires (file_roller != null) {
             try {
                 file_roller.add_to_archive(archive, uris, use_progress_dialog);
@@ -101,7 +109,12 @@ namespace FontManager {
             return false;
         }
 
+#if VALA_0_56_17
+        public bool compress (string? [] uris, string destination, bool use_progress_dialog = true)
+#else
         public bool compress ([CCode (array_null_terminated = true)] string? [] uris, string destination, bool use_progress_dialog = true)
+#endif
+
         requires (file_roller != null) {
             try {
                 file_roller.compress(uris, destination, use_progress_dialog);
