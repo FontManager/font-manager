@@ -48,7 +48,7 @@ namespace FontManager {
         return widget.get_first_child();
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-substitute.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-substitute.ui")]
     public class Substitute : Gtk.Grid {
 
         public string family { get; set; default = ""; }
@@ -85,7 +85,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-substitute-row.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-substitute-row.ui")]
     public class SubstituteRow : Gtk.Box {
 
         public string? family { get; set; default = null; }

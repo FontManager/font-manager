@@ -48,7 +48,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-preview-entry.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-preview-entry.ui")]
     public class PreviewEntry : Gtk.Entry {
 
         public override void constructed () {
@@ -76,7 +76,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-preview-colors.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-preview-colors.ui")]
     public class PreviewColors : Gtk.Box {
 
         public signal void color_set ();

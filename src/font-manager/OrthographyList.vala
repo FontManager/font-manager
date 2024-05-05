@@ -91,7 +91,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-orthography-list-row.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-orthography-list-row.ui")]
     class OrthographyListRow : Gtk.Grid {
 
         [GtkChild] unowned Gtk.Label C_name;
@@ -114,7 +114,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-orthography-list.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-orthography-list.ui")]
     public class OrthographyList : Gtk.Box {
 
         public signal void orthography_selected (Orthography? orthography);

@@ -140,7 +140,7 @@ namespace FontManager.GoogleFonts {
         return webview;
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-fonts-preview-page.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/web/google/ui/google-fonts-preview-page.ui")]
     public class PreviewPage : Gtk.Box {
 
         public bool show_line_size { get; set; default = true; }
@@ -223,6 +223,16 @@ namespace FontManager.GoogleFonts {
             preview_controls.edit_toggled.connect(on_edit_toggled);
             update_waterfall_body();
             reload_preview();
+        }
+
+        public void restore_state (GLib.Settings? settings) {
+            if (settings == null)
+                return;
+            SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
+            settings.bind("preview-font-size", this, "preview-size", flags);
+            settings.bind("preview-mode", this, "preview-mode", flags);
+            settings.bind("google-fonts-preview-text", this, "preview-text", flags);
+            return;
         }
 
         void on_sample_selected (string sample) {

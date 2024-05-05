@@ -64,7 +64,7 @@ namespace FontManager {
     WHERE Orthography.sample IS NOT NULL;
     """;
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-list-item-row.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-list-item-row.ui")]
     public class ListItemRow : Gtk.Box {
 
         public signal void item_state_changed (Object? item);
@@ -209,6 +209,7 @@ namespace FontManager {
                 res = false;
                 warning("Failed to register user font source! : %s", source.path);
             }
+            debug("Loaded user font resource : %s", source.path);
         });
         source_model = null;
         var reject = new Reject();
@@ -219,16 +220,21 @@ namespace FontManager {
         } catch (Error e) {
             warning(e.message);
         }
-        if (files != null)
-            foreach (string path in files)
+        if (files != null) {
+            foreach (string path in files) {
                 add_application_font(path);
+                debug("Added rejected path to application configuration :%s", path);
+            }
+        }
         return res;
     }
 
-    Json.Array get_sorted_font_list () {
-        enable_user_font_configuration(false);
+    Json.Array get_sorted_font_list (Pango.Context ctx) {
         update_font_configuration();
-        load_user_font_resources();
+        if (load_user_font_resources())
+            clear_pango_cache(ctx);
+        else
+            critical("Failed to load user font resources, will be unable to render properly");;
         var fonts = get_available_fonts(null);
         var sorted_fonts = sort_json_font_listing(fonts);
         update_item_preview_text(sorted_fonts);

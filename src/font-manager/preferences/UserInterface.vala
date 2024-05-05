@@ -189,7 +189,6 @@ namespace FontManager {
         public GLib.Settings? settings { get; set; default = null; }
 
         Gtk.Switch wide_layout;
-        Gtk.Switch use_csd;
         Gtk.Switch enable_animations;
         Gtk.Switch prefer_dark_theme;
         Gtk.Switch show_line_size;
@@ -209,7 +208,6 @@ namespace FontManager {
             on_maximize = new Gtk.CheckButton();
             var child = new PreferenceRow(_("Only When Maximized"), null, null, on_maximize);
             widget.append_child(child);
-            use_csd = add_preference_switch(_("Client Side Decorations"));
             enable_animations = add_preference_switch(_("Enable Animations"));
             prefer_dark_theme = add_preference_switch(_("Prefer Dark Theme"));
             string button_styles [2] = { _("Raised"), _("Flat") };
@@ -227,7 +225,6 @@ namespace FontManager {
                 settings = get_gsettings(BUS_ID);
             return_if_fail(settings != null);
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
-            settings.bind("use-csd", use_csd, "active", flags);
             settings.bind("wide-layout", wide_layout, "active", flags);
             settings.bind("wide-layout-on-maximize", on_maximize, "active", flags);
             settings.bind("enable-animations", enable_animations, "active", flags);

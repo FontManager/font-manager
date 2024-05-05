@@ -162,7 +162,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-user-action-row.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-user-action-row.ui")]
     public class UserActionRow : Gtk.Grid {
 
         [GtkChild] unowned Gtk.Image action_icon;

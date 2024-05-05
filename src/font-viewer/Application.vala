@@ -22,7 +22,7 @@ namespace FontManager {
 
     namespace FontViewer {
 
-        [DBus (name = "org.gnome.FontViewer")]
+        [DBus (name = "com.github.FontManager.FontViewer")]
         public class Application : Gtk.Application {
 
             [DBus (visible = false)]
@@ -76,7 +76,7 @@ namespace FontManager {
                     // Why is this needed?
                     shutdown.connect(() => { quit(); });
                 }
-                main_window.present_with_time(Gdk.CURRENT_TIME);
+                main_window.present();
                 main_window.update();
                 return;
             }

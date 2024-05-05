@@ -26,10 +26,10 @@
 
 #include <gtk/gtk.h>
 
-#define FONT_MANAGER_BUS_ID "org.gnome.FontManager"
-#define FONT_MANAGER_BUS_PATH "/org/gnome/FontManager"
-#define FONT_MANAGER_FONT_VIEWER_BUS_ID "org.gnome.FontViewer"
-#define FONT_MANAGER_FONT_VIEWER_BUS_PATH "/org/gnome/FontViewer"
+#define FONT_MANAGER_BUS_ID "com.github.FontManager.FontManager"
+#define FONT_MANAGER_BUS_PATH "/com/github/FontManager/FontManager"
+#define FONT_MANAGER_FONT_VIEWER_BUS_ID "com.github.FontManager.FontViewer"
+#define FONT_MANAGER_FONT_VIEWER_BUS_PATH "/com/github/FontManager/FontViewer"
 
 #define FONT_MANAGER_STYLE_CLASS_COLOR "color"
 #define FONT_MANAGER_STYLE_CLASS_FLAT "flat"

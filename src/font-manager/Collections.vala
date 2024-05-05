@@ -121,7 +121,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-collection-rename-popover.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-collection-rename-popover.ui")]
     class CollectionRenamePopover : Gtk.Popover {
 
         public signal void renamed (string new_name);
@@ -445,6 +445,7 @@ namespace FontManager {
                 parent_row = list_row;
             target_model.remove_item(dropped_collection);
             parent_row.set_expanded((target_model.get_n_items() != 0));
+            ((CollectionListModel) model).save();
             // Necessary to update parent row count label
             queue_update();
             return;

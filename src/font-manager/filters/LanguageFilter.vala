@@ -143,7 +143,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-language-filter-settings.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-language-filter-settings.ui")]
     public class LanguageFilterSettings : Gtk.Box {
 
         public signal void changed ();

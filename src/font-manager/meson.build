@@ -28,7 +28,6 @@ executable('font-manager',
             include_directories: includes,
             link_with: libfontmanager,
             install: true,
-            install_dir: pkglibexec_dir,
             install_rpath: pkglib_dir)
 
 includes += include_directories('.')

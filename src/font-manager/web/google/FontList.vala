@@ -306,7 +306,7 @@ namespace FontManager.GoogleFonts {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-fonts-font-list-view.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/web/google/ui/google-fonts-font-list-view.ui")]
     public class FontListView : Gtk.Box {
 
         public signal void selection_changed (Object? item);

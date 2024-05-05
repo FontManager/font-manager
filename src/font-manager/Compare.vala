@@ -131,7 +131,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-compare-row.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-compare-row.ui")]
     public class CompareRow : Gtk.Grid {
 
         [GtkChild] unowned Gtk.Label description;
@@ -148,13 +148,14 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-compare-view.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-compare-view.ui")]
     public class ComparePane : Gtk.Box {
 
         public double preview_size { get; set; default = LARGE_PREVIEW_SIZE; }
         public Gdk.RGBA foreground_color { get; set; }
         public Gdk.RGBA background_color { get; set; }
         public GenericArray <Object>? selected_items { get; set; default = null; }
+        public GLib.Settings? settings { get; set; default = null; }
         public StringSet? available_families { get; set; default = null; }
         public CompareModel model { get; set; }
         public PinnedComparisons pinned { get; private set; }
@@ -200,6 +201,8 @@ namespace FontManager {
                 bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
                 set_control_sensitivity(pinned_button, have_items);
             });
+            notify["foreground-color"].connect(() => { save_state(); });
+            notify["background-color"].connect(() => { save_state(); });
             base.constructed();
             return;
         }
@@ -214,7 +217,10 @@ namespace FontManager {
             return;
         }
 
-        public void restore_state (GLib.Settings settings) {
+        public void restore_state (GLib.Settings? settings) {
+            this.settings = settings;
+            if (settings == null)
+                return;
             preview_size = settings.get_double("compare-font-size");
             entry.text = settings.get_string("compare-preview-text");
             Idle.add(() => {
@@ -239,7 +245,9 @@ namespace FontManager {
             return;
         }
 
-        public void save_state (GLib.Settings settings) {
+        public void save_state () {
+            if (settings == null)
+                return;
             settings.set_string("compare-foreground-color", foreground_color.to_string());
             settings.set_string("compare-background-color", background_color.to_string());
             return;
@@ -354,7 +362,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-pinned-comparisons-row.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-pinned-comparisons-row.ui")]
     public class PinnedComparisonRow : Gtk.Grid {
 
         public signal void activated ();
@@ -385,7 +393,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-pinned-comparisons.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-pinned-comparisons.ui")]
     public class PinnedComparisons : Gtk.Popover {
 
         [GtkChild] unowned Gtk.ListBox list;

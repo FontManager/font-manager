@@ -240,7 +240,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-font-list-view.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-font-list-view.ui")]
     public class BaseFontListView : Gtk.Box {
 
         public signal void selection_changed (Object? item);
@@ -820,6 +820,13 @@ namespace FontManager {
             row.item_state.toggled.connect((c) => {
                 on_item_state_changed(list_row);
             });
+            if (_item is Family) {
+                row.item_label.add_css_class("heading");
+                row.item_label.add_css_class("dim-label");
+            } else {
+                row.item_label.remove_css_class("heading");
+                row.item_label.remove_css_class("dim-label");
+            }
             tree_expander.set_hide_expander(true);
             return;
         }

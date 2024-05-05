@@ -20,7 +20,7 @@
 
 namespace FontManager.FontViewer {
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-viewer-main-window.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-viewer-main-window.ui")]
     public class MainWindow : FontManager.ApplicationWindow {
 
         File? current_file;

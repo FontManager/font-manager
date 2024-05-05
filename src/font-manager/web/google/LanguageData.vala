@@ -229,7 +229,7 @@ namespace FontManager.GoogleFonts {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-fonts-sample-row.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/web/google/ui/google-fonts-sample-row.ui")]
     public class SampleRow : Gtk.Box {
 
         [GtkChild] public unowned Gtk.Label label { get; }
@@ -245,7 +245,7 @@ namespace FontManager.GoogleFonts {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-fonts-sample-list.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/web/google/ui/google-fonts-sample-list.ui")]
     public class SampleList : Gtk.Popover {
 
         public signal void row_selected (string sample);

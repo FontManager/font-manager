@@ -68,7 +68,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-preference-list.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-preference-list.ui")]
     public class PreferenceList : Gtk.Box {
 
         [GtkChild] protected unowned Gtk.ListBox list;

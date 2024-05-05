@@ -86,7 +86,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-filter-list-view.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-filter-list-view.ui")]
     public class FilterListView : Gtk.Box {
 
         public signal void selection_changed (FontListFilter? item);

@@ -310,3 +310,9 @@ row:selected .count {
     margin-right: 6px;
 }
 
+.FontManagerFontPreviewTile {
+    border-radius: .333em;
+    box-shadow: 0px 1px 1px @borders,
+    0px 0px 1px 1px alpha(@borders, 0.5);
+}
+

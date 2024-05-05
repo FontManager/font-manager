@@ -20,7 +20,7 @@
 
 namespace FontManager {
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-paned.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-paned.ui")]
     public class Paned : Gtk.Box {
 
         public GLib.Settings? settings { get; set; default = null; }
@@ -46,9 +46,7 @@ namespace FontManager {
             }
             set {
                 sidebar_pos = value;
-                Idle.add(() => {
-                    return update_pane_positions();
-                });
+                update_pane_positions();
             }
         }
 
@@ -58,9 +56,7 @@ namespace FontManager {
             }
             set {
                 content_pos = value;
-                Idle.add(() => {
-                    return update_pane_positions();
-                });
+                update_pane_positions();
             }
         }
 
@@ -71,8 +67,8 @@ namespace FontManager {
         [GtkChild] protected unowned Gtk.Paned main_pane;
         [GtkChild] protected unowned Gtk.Overlay overlay;
 
-        double sidebar_pos = 36;
-        double content_pos = 45;
+        double sidebar_pos = 33;
+        double content_pos = 40;
 
         public Paned () {
             // Necessary to get an acceptable initial size for pane layout
@@ -92,15 +88,15 @@ namespace FontManager {
             });
         }
 
-        public void restore_state (GLib.Settings? settings) {
+        public virtual void restore_state (GLib.Settings? settings) {
             this.settings = settings;
             if (settings == null)
                 return;
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
             settings.bind("sidebar-size", this, "sidebar-position", flags);
             settings.bind("content-pane-position", this, "content-position", flags);
-            sidebar_position = settings.get_int("sidebar-size");
-            content_position = settings.get_int("content-pane-position");
+            sidebar_position = settings.get_double("sidebar-size");
+            content_position = settings.get_double("content-pane-position");
             notify_property("sidebar-position");
             notify_property("content-position");
             return;

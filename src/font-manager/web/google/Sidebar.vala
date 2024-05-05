@@ -47,7 +47,7 @@ namespace FontManager.GoogleFonts {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/web/google/ui/google-fonts-sidebar.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/web/google/ui/google-fonts-sidebar.ui")]
     public class Sidebar : Gtk.Box {
 
         public signal void sort_changed (string order);

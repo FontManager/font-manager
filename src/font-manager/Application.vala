@@ -24,11 +24,7 @@ public const string COMMENT = _("Simple font management for GTK+ desktop environ
 
 namespace FontManager {
 
-    // FontManager.Application get_default_application () {
-    //     return ((FontManager.Application) GLib.Application.get_default());
-    // }
-
-    [DBus (name = "org.gnome.FontManager")]
+    [DBus (name = "com.github.FontManager.FontManager")]
     public class Application: Gtk.Application  {
 
         // [DBus (visible = false)]
@@ -37,18 +33,14 @@ namespace FontManager {
         public GLib.Settings? settings { get; private set; default = null; }
         [DBus (visible = false)]
         public Json.Array? available_fonts { get; set; default = null; }
-        // [DBus (visible = false)]
-        // public FontModel? model { get; set; default = null; }
         [DBus (visible = false)]
         public MainWindow? main_window { get; private set; default = null; }
         // [DBus (visible = false)]
         // public DatabaseProxy? db { get; private set; default = new DatabaseProxy(); }
-        // [DBus (visible = false)]
-        // public Reject? reject { get; private set; default = new Reject(); }
+        [DBus (visible = false)]
+        public Reject? reject { get; private set; default = new Reject(); }
         [DBus (visible = false)]
         public StringSet? temp_files { get; private set; default = new StringSet(); }
-        // [DBus (visible = false)]
-        // public StringSet? available_families { get; private set; default = new StringSet(); }
 
         const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
@@ -75,11 +67,10 @@ namespace FontManager {
 
         public override void startup () {
             base.startup();
-            // reject.load();
-            // Gtk.Settings gtk = Gtk.Settings.get_default();
-            // gtk.gtk_application_prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
-            // gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
-            // gtk.gtk_dialogs_use_header = settings.get_boolean("use-csd");
+            reject.load();
+            Gtk.Settings gtk = Gtk.Settings.get_default();
+            gtk.gtk_application_prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
+            gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
             // db.update_started.connect(() => { update_in_progress = true; });
             // db.update_complete.connect(() => { update_in_progress = false; });
             return;
@@ -178,41 +169,36 @@ namespace FontManager {
         }
 
         public string list_full () throws GLib.DBusError, GLib.IOError {
-            // update_font_configuration();
-            // try {
-            //     load_user_font_resources(reject.get_rejected_files(), null);
-            // } catch (Error e) {
-            //     critical(e.message);
-            // }
-            // Json.Object available_fonts = get_available_fonts(null);
-            // Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
-            // return print_json_array(sorted_fonts, true);
-            return "";
+            update_font_configuration();
+            load_user_font_resources();
+            Json.Object available_fonts = get_available_fonts(null);
+            Json.Array sorted_fonts = sort_json_font_listing(available_fonts);
+            return print_json_array(sorted_fonts, true);
         }
 
-        // public void enable (string [] families) throws GLib.DBusError, GLib.IOError {
-        //     foreach (var family in families)
-        //         if (family in reject)
-        //             reject.remove(family);
-        //     reject.save();
-        //     return;
-        // }
+        public void enable (string [] families) throws GLib.DBusError, GLib.IOError {
+            foreach (var family in families)
+                if (family in reject)
+                    reject.remove(family);
+            reject.save();
+            return;
+        }
 
-        // public void disable (string [] families) throws GLib.DBusError, GLib.IOError {
-        //     foreach (var family in families)
-        //         reject.add(family);
-        //     reject.save();
-        //     return;
-        // }
+        public void disable (string [] families) throws GLib.DBusError, GLib.IOError {
+            foreach (var family in families)
+                reject.add(family);
+            reject.save();
+            return;
+        }
 
-        // public void install (string [] filepaths) throws GLib.DBusError, GLib.IOError {
-        //     StringSet filelist = new StringSet();
-        //     foreach (var path in filepaths)
-        //         filelist.add(path);
-        //     var installer = new Library.Installer();
-        //     installer.process_sync(filelist);
-        //     return;
-        // }
+        public void install (string [] filepaths) throws GLib.DBusError, GLib.IOError {
+            StringSet filelist = new StringSet();
+            foreach (var path in filepaths)
+                filelist.add(path);
+            var installer = new Library.Installer();
+            installer.process_sync(filelist);
+            return;
+        }
 
         public override int handle_local_options (VariantDict options) {
 
@@ -228,30 +214,30 @@ namespace FontManager {
                 return 0;
             }
 
-            if (options.contains("debug")) {
-                Environment.set_variable("G_MESSAGES_DEBUG", "[font-manager]", true);
-                stdout.printf("\n%s %s\n\n", DISPLAY_NAME, Config.PACKAGE_VERSION);
-                print_library_versions();
+            if (options.contains("enable")) {
+                var accept = get_command_line_input(options);
+                return_val_if_fail(accept != null, -1);
+                try {
+                    enable(accept.to_strv());
+                    exit_status = 0;
+                } catch (Error e) {
+                    critical(e.message);
+                    exit_status = 1;
+                }
             }
 
-            // if (options.contains("enable")) {
-            //     var accept = get_command_line_input(options);
-            //     return_val_if_fail(accept != null, -1);
-            //     foreach (var family in accept)
-            //         if (family in reject)
-            //             reject.remove(family);
-            //     reject.save();
-            //     exit_status = 0;
-            // }
-
-            // if (options.contains("disable")) {
-            //     var rejects = get_command_line_input(options);
-            //     return_val_if_fail(rejects != null, -1);
-            //     foreach (var family in rejects)
-            //         reject.add(family);
-            //     reject.save();
-            //     exit_status = 0;
-            // }
+            if (options.contains("disable")) {
+                var rejects = get_command_line_input(options);
+                return_val_if_fail(rejects != null, -1);
+                try {
+                    disable(rejects.to_strv());
+                    exit_status = 0;
+                } catch (Error e) {
+                    critical(e.message);
+                    exit_status = 1;
+                }
+                exit_status = 0;
+            }
 
             if (options.contains("list")) {
                 try {
@@ -320,13 +306,14 @@ namespace FontManager {
 
         protected override void activate () {
             register_session = true;
+            // Adw.init();
             set_application_style();
             if (main_window == null) {
                 main_window = new MainWindow();
                 add_window(main_window);
                 BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
                 bind_property("available-fonts", main_window, "available-fonts", flags);
-                available_fonts = get_sorted_font_list();
+                available_fonts = get_sorted_font_list(main_window.get_pango_context());
                 // Why is this needed?
                 shutdown.connect(() => { quit(); });
                 // BindingFlags flags = BindingFlags.SYNC_CREATE | BindingFlags.BIDIRECTIONAL;
@@ -340,13 +327,13 @@ namespace FontManager {
                 //     return GLib.Source.REMOVE;
                 // });
             }
-            main_window.present_with_time(Gdk.CURRENT_TIME);
+            main_window.present();
             // refresh();
             return;
         }
 
-        [DBus (visible = false)]
-        public new void quit () {
+        // [DBus (visible = false)]
+        // public new void quit () {
             // foreach (string path in temp_files)
             //     remove_directory(File.new_for_path(path));
             // /* Try to prevent noise during memcheck */
@@ -358,23 +345,7 @@ namespace FontManager {
             //     } catch (Error e) {}
             //     main_window = null;
             // }
-            base.quit();
-            return;
-        }
-
-        // [DBus (visible = false)]
-        // public void import () {
-        //     import_user_data();
-        //     Idle.add(() => {
-        //         refresh();
-        //         return GLib.Source.REMOVE;
-        //     });
-        //     return;
-        // }
-
-        // [DBus (visible = false)]
-        // public void export () {
-        //     export_user_data();
+        //     base.quit();
         //     return;
         // }
 
@@ -397,7 +368,20 @@ namespace FontManager {
             return;
         }
 
+        static void set_debug_level (string [] args) {
+            foreach (var arg in args) {
+                if (!arg.contains("debug"))
+                    continue;
+                Environment.set_variable("G_MESSAGES_DEBUG", "[font-manager]", true);
+                stdout.printf("\n%s %s\n\n", DISPLAY_NAME, Config.PACKAGE_VERSION);
+                print_library_versions();
+                break;
+            }
+            return;
+        }
+
         public static int main (string [] args) {
+            set_debug_level(args);
             setup_i18n();
             Environment.set_application_name(DISPLAY_NAME);
             ApplicationFlags FLAGS = (ApplicationFlags.HANDLES_OPEN |

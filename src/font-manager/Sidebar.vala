@@ -78,7 +78,7 @@ namespace FontManager {
 
     }
 
-    [GtkTemplate (ui = "/org/gnome/FontManager/ui/font-manager-sidebar.ui")]
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-sidebar.ui")]
     public class Sidebar : Gtk.Box {
 
         public FontListFilter? filter { get; set; default = null; }
@@ -128,7 +128,14 @@ namespace FontManager {
             bool removable = (filter is Collection);
             bool language_filter = filter is LanguageFilter;
             controls.removable = removable;
-            controls.editable = removable || language_filter;
+            controls.editable = language_filter;
+            if (language_filter) {
+                controls.edit_button.has_frame = true;
+                controls.edit_button.add_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+            } else {
+                controls.edit_button.has_frame = false;
+                controls.edit_button.remove_css_class(STYLE_CLASS_SUGGESTED_ACTION);
+            }
             return;
         }
 
