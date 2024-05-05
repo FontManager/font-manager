@@ -1,3 +1,12 @@
+0.8.8 -> 0.8.9
+
+- Bumps libsoup version to 3.0 - Issue #343
+- Fix build failures with Vala >= 0.56.17 - Issue #355
+- Fix failure during copy of font files on export
+- Fix reversed order of font substitutions - Issue #351
+- Update Unicode data to version 15.1.0 - Issue #345
+- Don't disable Fontconfig home, avoids warnings from library
+
 0.8.7 -> 0.8.8
 
 - Bumps Fontconfig minimum version to 2.12

@@ -266,7 +266,7 @@ namespace FontManager {
             ThreadFunc <bool> run_in_thread = () => {
                 if (main_window != null)
                     Idle.add(() => { model = null; return GLib.Source.REMOVE; });
-                enable_user_font_configuration(false);
+//                enable_user_font_configuration(false);
                 update_font_configuration();
                 try {
                     load_user_font_resources(reject.get_rejected_files(), null);
@@ -288,7 +288,7 @@ namespace FontManager {
                         return GLib.Source.REMOVE;
                     });
                 }
-                enable_user_font_configuration(true);
+//                enable_user_font_configuration(true);
                 return true;
             };
             new Thread <bool> ("refresh_async", (owned) run_in_thread);

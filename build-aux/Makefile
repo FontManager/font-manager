@@ -1,6 +1,6 @@
 
 PACKAGE_NAME = font-manager
-PACKAGE_VERSION = 0.8.8
+PACKAGE_VERSION = 0.8.9
 
 ABS_TOP_SRCDIR = $(shell realpath ../)
 ABS_SRCDIR = $(shell realpath .)

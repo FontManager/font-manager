@@ -11,7 +11,7 @@ Font Manager uses the Meson <http://mesonbuild.com> and Ninja
 run the following commands from the top-level directory of the 
 source code repository:
 
-    meson --prefix=/usr --buildtype=release build
+    meson setup --prefix=/usr --buildtype=release build
     ninja -C build
 
 See the `meson.build` file in the top-level directory for the complete
