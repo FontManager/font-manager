@@ -21,6 +21,7 @@
 #include <libxml/xmlwriter.h>
 
 #include "font-manager-xml-writer.h"
+#include "font-manager-utils.h"
 
 /**
  * SECTION: font-manager-xml-writer
@@ -292,6 +293,13 @@ font_manager_xml_writer_add_assignment (FontManagerXmlWriter *self,
     return;
 }
 
+gchar *
+xml_escaped_text (char *str) {
+    g_autofree gchar *lt = font_manager_str_replace(str, "<", "&lt;");
+    g_autofree gchar *gt = font_manager_str_replace(lt, ">", "&gt;");
+    return font_manager_str_replace(gt, "&", "&amp;");
+}
+
 /**
  * font_manager_xml_writer_add_elements:
  * @self:       an #FontManagerXmlWriter
@@ -310,7 +318,7 @@ font_manager_xml_writer_add_elements (FontManagerXmlWriter *self,
     g_return_if_fail(e_type != NULL);
     GList *iter;
     for (iter = elements; iter != NULL; iter = iter->next) {
-        g_autofree gchar *element = g_markup_escape_text(g_strstrip(iter->data), -1);
+        g_autofree gchar *element = xml_escaped_text(g_strstrip(iter->data));
         xmlTextWriterWriteElement(self->writer, (xmlChar *) e_type, (xmlChar *) element);
     }
     return;
@@ -364,7 +372,7 @@ font_manager_xml_writer_add_selections (FontManagerXmlWriter *self,
     xmlTextWriterStartElement(self->writer, (xmlChar *) selection_type);
     GList *iter;
     for (iter = selections; iter != NULL; iter = iter->next) {
-        g_autofree gchar *element = g_markup_escape_text(iter->data, -1);
+        g_autofree gchar *element = xml_escaped_text(g_strstrip(iter->data));
         font_manager_xml_writer_add_patelt(self, "family", "string", element);
     }
     xmlTextWriterEndElement(self->writer);
