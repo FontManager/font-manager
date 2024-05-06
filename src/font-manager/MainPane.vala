@@ -22,18 +22,18 @@ namespace FontManager {
 
     public class MainPane : Paned {
 
-        public Mode mode { get; set; default = 0; }
         public Json.Array? available_fonts { get; set; default = null; }
 
+        public Mode mode { get; set; default = 0; }
         public UserActionModel user_actions { get; set; }
         public UserSourceModel user_sources { get; set; }
+
+        Gtk.Stack content;
 
         SidebarStack sidebar;
         FontListView fontlist;
         ComparePane compare;
         PreviewPane preview;
-
-        Gtk.Stack content;
 
         construct {
             sidebar = new SidebarStack();
@@ -60,6 +60,15 @@ namespace FontManager {
             sidebar.bind_property("selected-orthography", preview, "orthography", flags);
             notify["mode"].connect(on_mode_changed);
             fontlist.selection_changed.connect(on_selection_changed);
+        }
+
+        public override void restore_state (GLib.Settings? settings) {
+            base.restore_state(settings);
+            if (settings == null)
+                return;
+            preview.restore_state(settings);
+            compare.restore_state(settings);
+            return;
         }
 
         void on_mode_changed (ParamSpec? pspec) {

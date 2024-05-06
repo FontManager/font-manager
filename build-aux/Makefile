@@ -48,7 +48,7 @@ unicode-headers: download-unicode-data
 
 $(PACKAGE_NAME).pot:
 	cd $(ABS_TOP_SRCDIR)  && \
-	meson build && \
+	meson setup build && \
 	ninja -C build font-manager-pot && \
 	ninja -C build help-font-manager-pot && \
 	cd $(ABS_SRCDIR)
@@ -105,7 +105,7 @@ deb:
 	@echo -e '\n*** Need to ensure build dependencies are installed ***\n\n'
 	pkexec apt install $(BUILD_DEPENDS)
 	cd $(ABS_TOP_SRCDIR) || exit && \
-	meson build && \
+	meson setup build && \
 	ninja -C build dist && \
 	cd build/meson-dist/ || exit && \
 	tar -xvf $(PACKAGE_NAME)-$(PACKAGE_VERSION).tar.xz && \

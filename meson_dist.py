@@ -20,6 +20,4 @@ for d in excluded_dirs:
 for f in glob("README.*.md"):
     remove(f)
 
-# Only useful in Git repository
-remove("org.gnome.FontManager.yaml")
 

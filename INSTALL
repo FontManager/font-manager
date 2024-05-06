@@ -1,0 +1,42 @@
+
+Building & Installing Font Manager
+==================================
+
+
+Building
+--------
+
+Font Manager uses the Meson <http://mesonbuild.com> and Ninja
+<https://ninja-build.org> build systems. To build Font Manager, 
+run the following commands from the top-level directory of the 
+source code repository:
+
+    meson setup --prefix=/usr --buildtype=release build
+    ninja -C build
+
+See the `meson.build` file in the top-level directory for the complete
+list of required dependencies and minimum versions.
+
+
+Running
+-------
+
+If you wish to try Font Manager before installing it, you may 
+execute it directly from its build directory:
+
+    build/src/font-manager/font-manager
+
+
+Installation
+------------
+
+After Font Manager has built, install it by invoking the install target:
+
+    ninja -C build install
+
+After installation, it can be uninstalled in the same way:
+
+    ninja -C build uninstall
+
+
+

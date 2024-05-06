@@ -1,6 +1,6 @@
 /* font-manager-xml-writer.h
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,8 @@
 #include <libxml/xmlwriter.h>
 #include <glib.h>
 #include <glib-object.h>
+
+#include "font-manager-utils.h"
 
 #define FONT_MANAGER_TYPE_XML_WRITER (font_manager_xml_writer_get_type())
 G_DECLARE_FINAL_TYPE(FontManagerXmlWriter, font_manager_xml_writer, FONT_MANAGER, XML_WRITER, GObject)

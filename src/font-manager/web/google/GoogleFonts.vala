@@ -41,12 +41,13 @@ namespace FontManager.GoogleFonts {
         GLib.Settings? gsettings = null;
         NetworkMonitor network_monitor;
         PlaceHolder placeholder;
+        PreviewPage preview;
 
         public Catalog () {
             gsettings = get_gsettings(BUS_ID);
             var sidebar = new Sidebar();
             var fontlist = new FontListView();
-            var preview = new PreviewPage();
+            preview = new PreviewPage();
             set_sidebar_widget(sidebar);
             set_list_widget(fontlist);
             set_content_widget(preview);
@@ -63,10 +64,19 @@ namespace FontManager.GoogleFonts {
             sidebar.bind_property("filter", fontlist, "filter", flags);
             fontlist.bind_property("selected-item", preview, "selected-item", flags);
             sidebar.sort_changed.connect(on_sort_changed);
-            on_network_changed(network_available());
+            if (network_available())
+                on_network_changed();
+            else
+                update_placeholder();
         }
 
-        void on_network_changed (bool available) {
+        public override void restore_state (GLib.Settings? settings) {
+            base.restore_state(settings);
+            preview.restore_state(settings);
+            return;
+        }
+
+        void on_network_changed () {
             update_cache.begin((obj, res) => {
                 update_cache.end(res);
                 update_placeholder();
@@ -119,7 +129,11 @@ namespace FontManager.GoogleFonts {
 
         void update_placeholder () {
             placeholder.visible = true;
-            if (!network_available()) {
+            if (gsettings != null && gsettings.get_boolean("restrict-network-access")) {
+                set_placeholder_message(_("Network Access Disabled"),
+                                        _("Contact your system administrator to request access."),
+                                        null, "network-offline-symbolic");
+            } else if (!network_available()) {
                 set_placeholder_message(_("Network Offline"),
                                         // Translators : Avoid translating "Google Fonts" in this message, if possible
                                         _("An active internet connection is required to access the Google Fonts catalog"),

@@ -1,6 +1,6 @@
 /* font-manager-xml-writer.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -290,6 +290,13 @@ font_manager_xml_writer_add_assignment (FontManagerXmlWriter *self,
     return;
 }
 
+gchar *
+xml_escaped_text (char *str) {
+    g_autofree gchar *lt = font_manager_str_replace(str, "<", "&lt;");
+    g_autofree gchar *gt = font_manager_str_replace(lt, ">", "&gt;");
+    return font_manager_str_replace(gt, "&", "&amp;");
+}
+
 /**
  * font_manager_xml_writer_add_elements:
  * @self:       #FontManagerXmlWriter
@@ -308,7 +315,7 @@ font_manager_xml_writer_add_elements (FontManagerXmlWriter *self,
     g_return_if_fail(e_type != NULL);
     GList *iter;
     for (iter = elements; iter != NULL; iter = iter->next) {
-        g_autofree gchar *element = g_markup_escape_text(g_strstrip(iter->data), -1);
+        g_autofree gchar *element = xml_escaped_text(g_strstrip(iter->data));
         xmlTextWriterWriteElement(self->writer, (xmlChar *) e_type, (xmlChar *) element);
     }
     return;
@@ -362,7 +369,7 @@ font_manager_xml_writer_add_selections (FontManagerXmlWriter *self,
     xmlTextWriterStartElement(self->writer, (xmlChar *) selection_type);
     GList *iter;
     for (iter = selections; iter != NULL; iter = iter->next) {
-        g_autofree gchar *element = g_markup_escape_text(iter->data, -1);
+        g_autofree gchar *element = xml_escaped_text(g_strstrip(iter->data));
         font_manager_xml_writer_add_patelt(self, "family", "string", element);
     }
     xmlTextWriterEndElement(self->writer);

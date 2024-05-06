@@ -1,0 +1,33 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="charmap">
+
+    <info>
+        <link type="guide" xref="index#explore"/>
+        <link type="seealso" xref="orthographies"/>
+        <desc>View individual characters and their details</desc>
+    </info>
+
+    <title>Character Map</title>
+
+    <p>
+        While in "Manage" mode the preview pane contains a tab labeled "Characters".
+    </p>
+
+    <p>
+        Selecting this tab allows viewing all glyphs contained in the currently
+        selected font.
+    </p>
+
+    <figure>
+        <title><app>Character Map tab</app></title>
+        <media type="image" src="media/character-map.png"/>
+    </figure>
+
+    <note style="tip">
+        <p>
+            Drag characters onto other applications to use them.
+        </p>
+    </note>
+
+</page>

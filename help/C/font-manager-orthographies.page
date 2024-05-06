@@ -1,0 +1,32 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="orthographies">
+
+    <info>
+        <link type="guide" xref="index#explore"/>
+        <link type="seealso" xref="character-map"/>
+        <desc>View languages supported and their coverage</desc>
+    </info>
+
+    <title>Language Support</title>
+
+    <p>
+        While the character map is in use the sidebar will switch to displaying
+        the orthographies supported by the currently selected font.
+    </p>
+
+    <p>
+        Selecting an orthography from the list will filter the character map so
+        that it only displays relevant characters
+    </p>
+
+    <p>
+
+    </p>
+
+    <figure>
+        <title><app>Supported Orthographies</app></title>
+        <media type="image" src="media/orthographies.png"/>
+    </figure>
+
+</page>

@@ -1,0 +1,1278 @@
+# Jakub Fabijan <jakubfabijan@tuta.io>, 2021.
+# phlostically <phlostically@mailinator.com>, 2021.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-07-26 21:37-0400\n"
+"PO-Revision-Date: 2021-10-26 16:42+0000\n"
+"Last-Translator: phlostically <phlostically@mailinator.com>\n"
+"Language-Team: Esperanto <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/eo/>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.9-dev\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr "JaFan"
+
+#. (itstool) path: info/desc
+#: C/font-manager-categories.page:7
+msgid "Automatically generated categories"
+msgstr "Aŭtomate kreitaj kategorioj"
+
+#. (itstool) path: page/title
+#: C/font-manager-categories.page:10
+msgid "Categories"
+msgstr "Kategorioj"
+
+#. (itstool) path: page/p
+#: C/font-manager-categories.page:12
+msgid ""
+"<app>Font Manager</app> automatically categorizes your fonts based on "
+"various properties."
+msgstr ""
+"<app>Tiparadministrilo</app> aŭtomate klasifikas viajn tiparojn laŭ diversaj "
+"atributoj."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:19
+msgid "All"
+msgstr "Ĉiuj"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:20
+msgid "All available fonts."
+msgstr "Ĉiuj disponeblaj tiparoj."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:25
+msgid "System"
+msgstr "Sistemo"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:26
+msgid "Fonts available to all users."
+msgstr "Tiparoj disponeblaj por ĉiuj uzantoj."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:31
+msgid "User"
+msgstr "Uzanto"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:32
+msgid "Fonts available only to you."
+msgstr "Tiparoj disponeblaj nur por vi."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:37
+msgid "Family Kind"
+msgstr "Speco de familio"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:38
+msgid ""
+"Sorted by Family Kind — Requires Panose information to be present in font "
+"metadata."
+msgstr ""
+"Ordigita laŭ la speco de familio — postulas PANOSE-informojn en tiparaj "
+"metadatenoj."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:43
+msgid "Width"
+msgstr "Larĝo"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:44
+msgid "Sorted by font width property."
+msgstr "Ordigita laŭ la larĝo de tiparoj."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:49
+msgid "Weight"
+msgstr "Diko"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:50
+msgid "Sorted by font weight property."
+msgstr "Ordigita laŭ la diko de tiparoj."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:55
+msgid "Slant"
+msgstr "Oblikvo"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:56
+msgid "Sorted by font slant property."
+msgstr "Ordigita laŭ la oblikvo de tiparoj."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:61
+msgid "Spacing"
+msgstr "Interspaco"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:62
+msgid "Sorted by font spacing property."
+msgstr "Ordigita laŭ la interspaco de tiparoj."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:67
+msgid "License"
+msgstr "Permesilo"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:68
+msgid ""
+"Sorted by font license — Requires license information to be present in font "
+"metadata."
+msgstr ""
+"Ordigita laŭ la permesiloj de tiparoj — postulas informojn pri la permesilo "
+"en tiparaj metadatenoj."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:73
+msgid "Vendor"
+msgstr "Vendinto"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:74
+msgid ""
+"Sorted by font vendor — Requires vendor information to be present in font "
+"metadata."
+msgstr ""
+"Ordigita laŭ la vendintoj de tiparoj — postulas informojn pri la vendinto en "
+"tiparaj metadatenoj."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:79
+msgid "Filetype"
+msgstr "Dosiertipo"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:80
+msgid "Sorted by file format."
+msgstr "Ordigita laŭ dosierformo."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:85
+msgid "Unsorted"
+msgstr "Ne ordigita"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:86
+msgid "Fonts not present in any of your collections."
+msgstr "Tiparoj ekster ĉiuj viaj kolektoj."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:91
+msgid "Disabled"
+msgstr "Malŝaltitaj"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:92
+msgid "Currrently disabled font families."
+msgstr "Aktuale malŝaltitaj tiparfamilioj."
+
+#. (itstool) path: info/desc
+#: C/font-manager-character-map.page:8
+msgid "View individual characters and their details"
+msgstr "Vidi unuope skribsignojn kaj iliajn detalojn"
+
+#. (itstool) path: page/title
+#: C/font-manager-character-map.page:11
+msgid "Character Map"
+msgstr "Signomapo"
+
+#. (itstool) path: page/p
+#: C/font-manager-character-map.page:13
+msgid ""
+"While in \"Manage\" mode the preview pane contains a tab labeled \"Characters"
+"\"."
+msgstr ""
+"En la reĝimo «Administri», la antaŭrigarda panelo enhavas la langeton "
+"«Signoj»."
+
+#. (itstool) path: page/p
+#: C/font-manager-character-map.page:17
+msgid ""
+"Selecting this tab allows viewing all glyphs contained in the currently "
+"selected font."
+msgstr ""
+"Tiu langeto montras ĉiujn signojn, kiujn la aktuale elektita tiparo enhavas."
+
+#. (itstool) path: figure/title
+#: C/font-manager-character-map.page:23
+msgid "<app>Character Map tab</app>"
+msgstr "<app>Langeto Signomapo</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-character-map.page:24
+msgctxt "_"
+msgid ""
+"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
+msgstr ""
+"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
+
+#. (itstool) path: note/p
+#: C/font-manager-character-map.page:28
+msgid "Drag characters onto other applications to use them."
+msgstr "Ŝovu signojn sur aliajn programojn por uzi ilin."
+
+#. (itstool) path: info/desc
+#: C/font-manager-collections.page:7
+msgid "Organizing Your Fonts"
+msgstr "Organizi viajn tiparojn"
+
+#. (itstool) path: page/title
+#: C/font-manager-collections.page:10
+msgid "Collections"
+msgstr "Kolektoj"
+
+#. (itstool) path: page/p
+#: C/font-manager-collections.page:12
+msgid "<app>Font Manager</app> allows you to define your own collections."
+msgstr ""
+"<app>Tiparadministrilo</app> permesas al vi difini viajn proprajn kolektojn."
+
+#. (itstool) path: page/p
+#: C/font-manager-collections.page:17
+msgid ""
+"Collections allow you to organize your fonts in a way that makes sense to "
+"you and also make it easier to enable or disable many families at once."
+msgstr ""
+"Kolektoj ebligas vin organizi viajn tiparojn laŭ viaj preferoj kaj faciligi "
+"amasajn ŝaltadon kaj malŝaltadon de multaj tiparfamilioj."
+
+#. (itstool) path: note/p
+#: C/font-manager-collections.page:24
+msgid "Collections do not modify your files in any way."
+msgstr "Kolektoj ne modifas viajn dosierojn iel ajn."
+
+#. (itstool) path: note/p
+#: C/font-manager-collections.page:27
+msgid "Feel free to create or delete as many as you like."
+msgstr "Libere kreu aŭ forviŝu tiom, kiom vi deziras."
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:34
+msgid "To create a new collection:"
+msgstr "Por krei novan kolekton:"
+
+#. (itstool) path: gui/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-collections.page:40 C/font-manager-font-installation.page:25
+#: C/font-manager-font-sources.page:46 C/font-manager-substitutions.page:37
+#: C/font-manager-substitutions.page:51
+msgctxt "_"
+msgid ""
+"external ref='media/list-add-symbolic.svg' "
+"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
+msgstr ""
+"external ref='media/list-add-symbolic.svg' "
+"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:37
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> at the bottom of the Collection view."
+msgstr ""
+"Alklaku <gui><media type=\"image\" src=\"media/list-add-symbolic.svg\"/></"
+"gui> ĉe la malsupro de la vido de Kolektoj."
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:46
+msgid "Enter a name for your new collection"
+msgstr "Tajpu nomon de via nova kolekto"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:51
+msgid "Add fonts by dragging them from the font list to your new collection."
+msgstr ""
+"Aldonu tiparojn ŝovante ilin de la listo de tiparoj al via nova kolekto."
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:59
+msgid "To delete a collection:"
+msgstr "Por forigi kolekton:"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:62 C/font-manager-collections.page:81
+#: C/font-manager-collections.page:99 C/font-manager-collections.page:117
+msgid "Select the collection"
+msgstr "Elektu la kolekton"
+
+#. (itstool) path: gui/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-collections.page:70 C/font-manager-collections.page:130
+#: C/font-manager-font-removal.page:38 C/font-manager-font-sources.page:84
+#: C/font-manager-substitutions.page:99
+msgctxt "_"
+msgid ""
+"external ref='media/list-remove-symbolic.svg' "
+"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
+msgstr ""
+"external ref='media/list-remove-symbolic.svg' "
+"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:67
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui> at the bottom of the Collection view."
+msgstr ""
+"Alklaku la butonon <gui><media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/></gui> ĉe la malsupro de la Kolekta vido."
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:78
+msgid "To enable a collection:"
+msgstr "Por ŝalti kolekton:"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:86 C/font-manager-collections.page:104
+#: C/font-manager-font-activation.page:35
+msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
+msgstr "Alklaku la <gui style=\"checkbox\">elektobutonon</gui>"
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:96
+msgid "To disable a collection:"
+msgstr "Por malŝalti kolekton:"
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:114
+msgid "To remove families from a collection:"
+msgstr "Por forigi familiojn for de kolekto:"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:122
+msgid "Select the family or families you wish to remove"
+msgstr "Elektu la forigota(j)n tiparo(j)n"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:127
+msgid ""
+"Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
+"> </gui> at the top of the font list."
+msgstr ""
+"Alklaklu la butonon <gui><media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/></gui> ĉe la supro de la listo de tiparoj."
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:138
+msgid "To rename a collection:"
+msgstr "Por ŝanĝi la nomon de kolekto:"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:141
+msgid "Select a collection, click it again"
+msgstr "Elektu kolekton, realklaku ĝin"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:146
+msgid "Enter a new name"
+msgstr "Tajpu novan nomon"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:151
+msgid "Press <gui style=\"button\">Enter</gui>"
+msgstr "Premu la klavon <gui style=\"button\">Enigi</gui>"
+
+#. (itstool) path: info/desc
+#: C/font-manager-font-activation.page:8
+msgid "Activating and De-activating font families"
+msgstr "Aktivigi kaj malaktivigi tiparfamiliojn"
+
+#. (itstool) path: page/title
+#: C/font-manager-font-activation.page:11
+msgid "Activation"
+msgstr "Aktivigo"
+
+#. (itstool) path: page/p
+#: C/font-manager-font-activation.page:13
+msgid ""
+"<app>Font Manager</app> allows you to activate and de-activate font families."
+msgstr ""
+"<app>Tiparadministrilo</app> ebligas vin aktivigi kaj malaktivigi tiparajn "
+"familiojn."
+
+#. (itstool) path: page/p
+#: C/font-manager-font-activation.page:18
+msgid ""
+"If you have a large number of fonts installed, font selection dialogs and "
+"lists in many applications can get very long and become uncomfortable to "
+"use, disabling fonts you do not use very often or do not need at the moment "
+"helps keep these at a reasonable size."
+msgstr ""
+"Se vi havas multe da instalitaj tiparoj, tiparelektaj dialogoj kaj listoj en "
+"programoj povas esti tro longaj kaj malfacilaj. Malŝaltado de tiuj tiparoj, "
+"kiujn vi malofte uzas, helpas faciligi tiujn dialogojn kaj listojn."
+
+#. (itstool) path: item/title
+#: C/font-manager-font-activation.page:27
+msgid "To enable or disable a font family:"
+msgstr "Por ŝalti aŭ malŝalti tiparan familion:"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-activation.page:30
+msgid "Select the family you wish to enable/disable in the font list"
+msgstr "Elektu la (mal)ŝaltotan familion en la tipara listo"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-activation.page:47
+msgid ""
+"You can also double-click, press <gui style=\"button\">Space</gui> or press "
+"<gui style=\"button\">Enter</gui> to toggle the selected font."
+msgstr ""
+"Vi ankaŭ povas duoble alklaki, premi la klavon <gui style=\"button"
+"\">Spaceto</gui> aŭ premi la klavon <gui style=\"button\">Enigi</gui> por "
+"baskuligi la elektitan tiparon."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-activation.page:51
+msgid ""
+"<link xref=\"organize#user-collections\">Collections</link> make it easy to "
+"enable or disable multiple families at once."
+msgstr ""
+"<link xref=\"organize#user-collections\">Kolektoj</link> faciligas amasajn "
+"ŝaltadon kaj malŝaltadon de multaj tiparfamilioj."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-activation.page:58
+msgid ""
+"While any changes made using <app>Font Manager</app> are applied "
+"immediately, open applications may need to be restarted in order to reflect "
+"those changes."
+msgstr ""
+"Dum ŝanĝoj faritaj per <app>Tiparadministrilo</app> tuj efektiviĝos, "
+"ruliĝantaj programoj eble bezonos relanĉon por uzi tiujn ŝanĝojn."
+
+#. (itstool) path: info/desc
+#: C/font-manager-font-installation.page:7
+msgid "Adding fonts for your use"
+msgstr "Aldoni tiparojn por via uzo"
+
+#. (itstool) path: page/title
+#: C/font-manager-font-installation.page:10
+msgid "Installation"
+msgstr "Instalado"
+
+#. (itstool) path: page/p
+#: C/font-manager-font-installation.page:12
+msgid ""
+"<app>Font Manager</app> supports the most common <link xref=\"supported-"
+"formats\">font formats</link>."
+msgstr ""
+"<app>Tipardministrilo</app> subtenas la plej oftajn <link xref=\"supported-"
+"formats\">tiparajn dosierformojn</link>."
+
+#. (itstool) path: item/p
+#: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
+msgid "While in <gui style=\"button\">Manage</gui> mode"
+msgstr "En la reĝimo <gui style=\"button\">Administri</gui>"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-installation.page:22
+msgid ""
+"Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
+"symbolic.svg\"/> </gui> at the top of the window"
+msgstr ""
+"Alklaku la butonon <gui style=\"button\"><media type=\"image\" src=\"media/"
+"list-add-symbolic.svg\"/></gui> ĉe la supro de la fenestro"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-installation.page:31
+msgid ""
+"Select the files you wish to install from the file selector dialog that is "
+"displayed and click <gui style=\"button\">Open</gui>"
+msgstr ""
+"Elektu la instalotajn dosierojn per la dosierelektilo, kaj alklaku la "
+"butonon <gui style=\"button\">Malfermi</gui>"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-installation.page:40
+msgid ""
+"Drag and drop is also supported. Simply drag files onto the font list to "
+"install them."
+msgstr ""
+"Ŝovado ankaŭ estas subtenata. Por instali tiparajn dosierojn, simple ŝovu "
+"ilin en la liston de tiparoj ."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-installation.page:44
+msgid ""
+"You can drag any supported filetype onto the font list. This includes font "
+"files, directories and archives."
+msgstr ""
+"Vi povas ŝovi ajnan subtenatan dosierformon en la liston de tiparoj, "
+"inkluzive de tiparaj dosieroj, dosierujoj kaj arkivoj."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-installation.page:51
+msgid ""
+"Install <link action=\"install:file-roller\" href=\"https://wiki.gnome.org/"
+"Apps/FileRoller\">Archive Manager</link>. to enable support for compressed "
+"files."
+msgstr ""
+"Instalu <link action=\"install:file-roller\" href=\"https://wiki.gnome.org/"
+"Apps/FileRoller\">Administrilon de Arkivoj</link> por subteni densigitajn "
+"dosierojn."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-installation.page:59 C/font-manager-font-removal.page:76
+#: C/font-manager-font-sources.page:138
+msgid ""
+"<app>Font Manager</app> will reload anytime changes require it. This may "
+"take a moment depending on number of changes."
+msgstr ""
+"<app>Tiparadministrilo</app> reŝargos sin tiam, kiam ŝanĝoj postulos "
+"reŝargon. Tio eble daŭros momenton laŭ la kvanto da ŝanĝoj."
+
+#. (itstool) path: info/desc
+#: C/font-manager-font-removal.page:8
+msgid "Getting rid of unwanted fonts"
+msgstr "Forigi nedeziratajn tiparojn"
+
+#. (itstool) path: page/title
+#: C/font-manager-font-removal.page:11
+msgid "Removal"
+msgstr "Forigo"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:14
+msgid ""
+"The only fonts listed in the removal dialog will be those installed in your "
+"default font directory."
+msgstr ""
+"Nur la tiparoj en via implicita tipara dosierujo estos montrataj en la "
+"dialogo pri forigo."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:18
+msgid ""
+"Font files installed system wide are typically installed as part of the "
+"operating system, as packages or by the system administrator. <app>Font "
+"Manager</app> does not provide for removal of such files at this time."
+msgstr ""
+"Tiparaj dosieroj tutsisteme instalitaj estas ordinare instalitaj kiel partoj "
+"de la mastruma sistemo, kiel pakoj aŭ de la sistema administranto. Nuntempe, "
+"<app>Tiparadministrilo</app> ne povas malinstali tiajn dosierojn."
+
+#. (itstool) path: item/title
+#: C/font-manager-font-removal.page:29
+msgid "To remove fonts you no longer need:"
+msgstr "Por forigi tiparojn ne plu deziratajn:"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-removal.page:35
+msgid ""
+"Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/> </gui> at the top of the window"
+msgstr ""
+"Alklaku la butonon <gui style=\"button\"><media type=\"image\" src=\"media/"
+"list-remove-symbolic.svg\"/></gui> ĉe la supro de la fenestro"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-removal.page:44
+msgid ""
+"Select the families or individual styles you wish to remove from the list "
+"that is displayed"
+msgstr "Elektu la forigotajn familiojn aŭ stilojn el la montrata listo"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-removal.page:50
+msgid "Click <gui style=\"button\">Delete</gui>"
+msgstr "Alklaku la butonon <gui style=\"button\">Forigi</gui>"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:60
+msgid ""
+"<app>Font Manager</app> organizes and stores installed fonts in the default "
+"user font directory."
+msgstr ""
+"<app>Tiparadministrilo</app> organizas kaj konservas instalitajn tiparojn en "
+"la implicita tipardosierujo de la uzanto."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:63
+msgid ""
+"Current default user font directory is located at <code><file>~/.local/share/"
+"fonts</file></code>"
+msgstr ""
+"La implicita tipara dosierujo de la uzanto estas <code><file>~/.local/share/"
+"fonts</file></code>"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:69
+msgid ""
+"Files are permanently deleted. Before removing any fonts ensure you have "
+"backups if there is a chance you may need them again."
+msgstr ""
+"Dosieroj estas nemalfareble forviŝotaj. Antaŭ ol forviŝi iujn ajn tiparojn, "
+"certigu, ke vi havas savkopiojn, se vi eble bezonos ilin denove."
+
+#. (itstool) path: info/desc
+#: C/font-manager-font-sources.page:7
+msgid "Adding and removing font directories"
+msgstr "Aldoni kaj forigi tiparajn dosierujojn"
+
+#. (itstool) path: page/title
+#: C/font-manager-font-sources.page:10
+msgid "Sources"
+msgstr "Fontoj"
+
+#. (itstool) path: page/p
+#: C/font-manager-font-sources.page:12
+msgid ""
+"<app>Font Manager</app> allows you to add or remove directories to scan for "
+"font files. Added directories are scanned recursively."
+msgstr ""
+"<app>Tiparadministrilo</app> permesas al vi aldoni aŭ forigi dosierujojn, en "
+"kiuj tiparoj serĉiĝos. Aldonitaj dosieroj estos serĉataj rikure."
+
+#. (itstool) path: page/p
+#: C/font-manager-font-sources.page:17
+msgid ""
+"This allows keeping font files somewhere other than your home directory or "
+"temporarily \"installing\" a directory of fonts."
+msgstr ""
+"Tio permesas konservi tiparajn dosierojn aliloke ol via hejmdosierujo aŭ "
+"provizore kvazaŭ instali dosierujon da tiparoj."
+
+#. (itstool) path: page/p
+#: C/font-manager-font-sources.page:21
+msgid "It also allows you to organize your font files anyway you like."
+msgstr "Ĝi ankaŭ permesas al vi laŭplaĉe organizi viajn tiparajn dosierojn."
+
+#. (itstool) path: item/title
+#: C/font-manager-font-sources.page:27
+msgid "To add a source:"
+msgstr "Por aldoni fonton:"
+
+#. (itstool) path: gui/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-font-sources.page:34 C/font-manager-font-sources.page:66
+#: C/font-manager-font-sources.page:98 C/font-manager-substitutions.page:25
+#: C/font-manager-substitutions.page:82 C/font-manager-substitutions.page:120
+msgctxt "_"
+msgid ""
+"external ref='media/preferences-system-symbolic.svg' "
+"md5='63ed081f78639fc6ec234a9351cf52e6'"
+msgstr ""
+"external ref='media/preferences-system-symbolic.svg' "
+"md5='63ed081f78639fc6ec234a9351cf52e6'"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:30 C/font-manager-font-sources.page:62
+#: C/font-manager-substitutions.page:21 C/font-manager-substitutions.page:78
+#: C/font-manager-substitutions.page:116
+msgid ""
+"Open the <app>Font Manager</app> preferences dialog by clicking <gui> <media "
+"type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the "
+"top of the window."
+msgstr ""
+"Malfermu la dialogon pri agordoj de <app>Tiparadministrilo</app> alklakante "
+"la butonon <gui><media type=\"image\" src=\"media/preferences-system-"
+"symbolic.svg\"/></gui> ĉe la supro de la fenestro."
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:40 C/font-manager-font-sources.page:72
+#: C/font-manager-font-sources.page:104
+msgid "Select \"Sources\" from the sidebar"
+msgstr "Elektu «Fontoj» en la flankpanelo"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:43
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui>"
+msgstr ""
+"Alklaku <gui><media type=\"image\" src=\"media/list-add-symbolic.svg\"/></"
+"gui>"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:51
+msgid ""
+"Select the directory you wish to add from the file selector that is displayed"
+msgstr "Elektu la aldonotan dosierujon el la montrata dosierelektilo"
+
+#. (itstool) path: item/title
+#: C/font-manager-font-sources.page:59
+msgid "To remove a source:"
+msgstr "Por forigi fonton:"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:75
+msgid "Select the directory you wish to remove from the list that is displayed"
+msgstr "Elektu la forigotan dosierujon el la montrata listo"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:81
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui>"
+msgstr ""
+"Alklaku <gui><media type=\"image\" src=\"media/list-remove-symbolic.svg\"/></"
+"gui>"
+
+#. (itstool) path: item/title
+#: C/font-manager-font-sources.page:91
+msgid "To enable or disable a source:"
+msgstr "Por ŝalti aŭ malŝalti fonton:"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:94
+msgid ""
+"Open the <app>Font Manager</app> preferences dialog by clicking <gui style="
+"\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg"
+"\"/> </gui> at the top of the window."
+msgstr ""
+"Malfermu la dialogon pri agordoj de <app>Tiparadministrilo</app> alklakante "
+"la butonon <gui style=\"button\"><media type=\"image\" src=\"media/"
+"preferences-system-symbolic.svg\"/></gui> ĉe la supro de la fenestro."
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:107
+msgid "Select the source you want to enable or disable"
+msgstr "Elektu la (mal)ŝaltotan fonton"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:112
+msgid "Click the <gui> toggle switch </gui>"
+msgstr "Alklaku la <gui>baskulon</gui>"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-sources.page:124
+msgid ""
+"While sources are always available within the application they are not "
+"available to other applications until they are enabled."
+msgstr ""
+"Dum fontoj estas ĉiam disponeblaj al ĉi tiu programo, ili ne disponeblos al "
+"aliaj programoj ĝis ili estos ŝaltitaj."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-sources.page:131
+msgid ""
+"You can avoid having multiple copies of the same files by adding directories "
+"from other filesystems."
+msgstr ""
+"Vi povas eviti plurajn kopiojn de la samaj dosieroj aldonante alilokajn "
+"dosierujojn."
+
+#. (itstool) path: info/desc
+#: C/font-manager-fontconfig.page:7
+msgid "Generate fontconfig configuration files"
+msgstr "Fari agordodosierojn de fontconfig"
+
+#. (itstool) path: page/title
+#: C/font-manager-fontconfig.page:10
+msgid "Display and Rendering Preferences"
+msgstr "Agordoj pri montrado kaj bildigado"
+
+#. (itstool) path: page/p
+#: C/font-manager-fontconfig.page:12
+msgid ""
+"The \"Display\" and \"Rendering\" panes in the preferences dialog generate "
+"valid fontconfig configuration files for the exposed properties."
+msgstr ""
+"La paneloj «Montrado» kaj «Bildigado» en la dialogo pri agordoj faras "
+"validajn agordodosierojn de fontconfig pri la elmontritaj atributoj."
+
+#. (itstool) path: page/p
+#: C/font-manager-fontconfig.page:17
+msgid ""
+"See <link href=\"https://www.freedesktop.org/software/fontconfig/fontconfig-"
+"user.html\">fonts-conf</link> for more details."
+msgstr ""
+"Vidu <link href=\"https://www.freedesktop.org/software/fontconfig/fontconfig-"
+"user.html\">fonts-conf</link> por pliaj detaloj."
+
+#. (itstool) path: note/p
+#: C/font-manager-fontconfig.page:22
+msgid ""
+"Desktop environments and applications may rely on their own configuration "
+"mechanism."
+msgstr ""
+"Komputilaj fasadoj kaj programoj eble povas uzi siajn proprajn tiparagordajn "
+"mekanismojn."
+
+#. (itstool) path: info/desc
+#: C/font-manager-introduction.page:5
+msgid "Introduction to <app>Font Manager</app>."
+msgstr "Enkonduko al <app>Tiparadministrilo</app>."
+
+#. (itstool) path: page/p
+#: C/font-manager-introduction.page:10
+msgid "<app>Font Manager</app> allows you to :"
+msgstr "<app>Tiparadministrilo</app> permesas al vi la jenon:"
+
+#. (itstool) path: page/title
+#: C/font-manager-introduction.page:12
+msgid "Introduction"
+msgstr "Enkonduko"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:18
+msgid "Preview font files in various ways"
+msgstr "Antaŭrigardi tiparajn dosierojn diversmaniere"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:23
+msgid "View available font metadata"
+msgstr "Vidi haveblajn tiparajn metadatenojn"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:28
+msgid "Install or remove fonts for your use"
+msgstr "Instali aŭ malinstali tiparojn por via uzo"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:33
+msgid "Group fonts into \"Collections\""
+msgstr "Grupigi tiparojn en «Kolektojn»"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:38
+msgid "Enable or disable individual font families or entire collections"
+msgstr "Aktivigi aŭ malaktivigi individuajn tiparfamiliojn aŭ kolektojn"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:43
+msgid "Specify different directories to use for fonts"
+msgstr "Specifi aliajn dosierujojn por tiparoj"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:48
+msgid "Perform font substitution"
+msgstr "Anstataŭigi tiparojn"
+
+#. (itstool) path: figure/title
+#: C/font-manager-introduction.page:55
+msgid "<app>Font Manager</app>"
+msgstr "<app>Tiparadministrilo</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-introduction.page:57
+msgctxt "_"
+msgid ""
+"external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
+msgstr ""
+"external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
+
+#. (itstool) path: note/p
+#: C/font-manager-introduction.page:61
+msgid ""
+"For more information about <app>Font Manager</app>, please visit the <link "
+"href=\"http://fontmanager.github.io/\"> Homepage </link>"
+msgstr ""
+"Por pli da informoj pri <app>Tiparadministrilo</app>, bonvolu viziti ĝian "
+"<link href=\"http://fontmanager.github.io/\">retpaĝon</link>"
+
+#. (itstool) path: note/p
+#: C/font-manager-introduction.page:67
+msgid ""
+"To report a bug or make a suggestion regarding the <app>Font Manager</app> "
+"application or this manual, please use the projects <link href=\"https://"
+"github.com/FontManager/master/issues\"> Issue Tracker </link>"
+msgstr ""
+"Por raporti cimon aŭ sugeston pri la programo <app>Tiparadministrilo</app> "
+"aŭ ĉi tiu helpilo, bonvolu uzi la <link href=\"https://github.com/"
+"FontManager/master/issues\">Cimspurilon</link> de la projekto"
+
+#. (itstool) path: info/desc
+#: C/font-manager-license.page:7
+msgid "View license information contained in font files"
+msgstr "Vidi permesilajn informojn en tiparaj dosieroj"
+
+#. (itstool) path: page/title
+#: C/font-manager-license.page:10
+msgid "Licensing"
+msgstr "Permesiloj"
+
+#. (itstool) path: page/p
+#: C/font-manager-license.page:12
+msgid ""
+"While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
+msgstr ""
+"En la reĝimo «Administri», la antaŭrigarda panelo enhavas la langeton "
+"«Permesilo»."
+
+#. (itstool) path: page/p
+#: C/font-manager-license.page:16
+msgid ""
+"Selecting this tab allows viewing any licensing information contained in the "
+"currently selected font."
+msgstr ""
+"Tiu langeto montras permesilajn informojn pri la aktuale elektita tiparo."
+
+#. (itstool) path: figure/title
+#: C/font-manager-license.page:22
+msgid "<app>Font License tab</app>"
+msgstr "<app>Langeto de tiparaj permesiloj</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-license.page:23
+msgctxt "_"
+msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
+msgstr ""
+"external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
+
+#. (itstool) path: note/p
+#: C/font-manager-license.page:27
+msgid "Not all font files contain licensing information."
+msgstr "Informoj pri permesiloj povas manki en kelkaj tipardosieroj."
+
+#. (itstool) path: info/desc
+#: C/font-manager-metadata.page:7
+msgid "View metadata embedded in your font files"
+msgstr "Vidi la metadatenojn en viaj tiparaj dosieroj"
+
+#. (itstool) path: page/title
+#: C/font-manager-metadata.page:10
+msgid "Metadata"
+msgstr "Metadatenoj"
+
+#. (itstool) path: page/p
+#: C/font-manager-metadata.page:12
+msgid ""
+"While in \"Manage\" mode the preview pane contains a tab labeled \"Properties"
+"\"."
+msgstr ""
+"En la reĝimo «Administri», la antaŭrigarda panelo enhavas la langeton "
+"«Atributoj»."
+
+#. (itstool) path: page/p
+#: C/font-manager-metadata.page:16
+msgid ""
+"Selecting this tab allows viewing metadata contained in the currently "
+"selected font."
+msgstr "Tiu langeto montras metadatenojn pri la aktuale elektita tiparo."
+
+#. (itstool) path: figure/title
+#: C/font-manager-metadata.page:22
+msgid "<app>Font Properties tab</app>"
+msgstr "<app>Langeto «Atributoj de tiparo»</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-metadata.page:23
+msgctxt "_"
+msgid ""
+"external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
+msgstr ""
+"external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
+
+#. (itstool) path: note/p
+#: C/font-manager-metadata.page:27
+msgid "Some properties are optional and may not be present in all font files."
+msgstr "Iuj nenepraj atributoj povas manki en kelkaj tipardosieroj."
+
+#. (itstool) path: info/desc
+#: C/font-manager-orthographies.page:8
+msgid "View languages supported and their coverage"
+msgstr "Vidi subtenatajn lingvojn kaj la subtenatajn elcentojn"
+
+#. (itstool) path: page/title
+#: C/font-manager-orthographies.page:11
+msgid "Language Support"
+msgstr "Subteno de lingvoj"
+
+#. (itstool) path: page/p
+#: C/font-manager-orthographies.page:13
+msgid ""
+"While the character map is in use the sidebar will switch to displaying the "
+"orthographies supported by the currently selected font."
+msgstr ""
+"Dum la signomapo estos uzata, la flankpanelo montros tiujn ortografiojn, "
+"kiujn la aktuale elektita tiparo subtenas."
+
+#. (itstool) path: page/p
+#: C/font-manager-orthographies.page:18
+msgid ""
+"Selecting an orthography from the list will filter the character map so that "
+"it only displays relevant characters"
+msgstr ""
+"Elekto de ortografio el la listo filtros la signomapon, montrante nur "
+"ortografie uzatajn signojn"
+
+#. (itstool) path: figure/title
+#: C/font-manager-orthographies.page:28
+msgid "<app>Supported Orthographies</app>"
+msgstr "<app>Subtenataj ortografioj</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-orthographies.page:29
+msgctxt "_"
+msgid ""
+"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
+msgstr ""
+"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
+
+#. (itstool) path: info/desc
+#: C/font-manager-substitutions.page:7
+msgid "Substitute one font family for another"
+msgstr "Anstataŭigi tiparfamilion per alia"
+
+#. (itstool) path: page/title
+#: C/font-manager-substitutions.page:10
+msgid "Substitution"
+msgstr "Anstataŭigo"
+
+#. (itstool) path: page/p
+#: C/font-manager-substitutions.page:12
+msgid ""
+"<app>Font Manager</app> allows you to substitute one font family for another."
+msgstr ""
+"<app>Tiparadministrilo</app> ebligas vin anstataŭigi tiparfamilion per alia."
+
+#. (itstool) path: item/title
+#: C/font-manager-substitutions.page:18
+msgid "To add a substitute:"
+msgstr "Por ebligi novan anstataŭigon:"
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:31 C/font-manager-substitutions.page:88
+#: C/font-manager-substitutions.page:126
+msgid "Select \"Substitutions\" from the sidebar"
+msgstr "Elektu «Anstataŭigoj» en la flankpanelo"
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:34
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> in the substitutions pane."
+msgstr ""
+"Alklaku la butonon <gui><media type=\"image\" src=\"media/list-add-symbolic."
+"svg\"/></gui> en la anstataŭiga panelo."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:43
+msgid "Enter the name of the font family you wish to set up a substitute for."
+msgstr "Tajpu la nomon de la anstataŭigota tiparfamilio."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:48
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> on the right."
+msgstr ""
+"Alklaku la butonon <gui><media type=\"image\" src=\"media/list-add-symbolic."
+"svg\"/></gui> ĉe la dekstro."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:57
+msgid "Enter the name of the substitute family and select the priority level."
+msgstr "Tajpu la nomon de la anstataŭan familion, kaj elektu la prioritaton."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:62
+msgid "Repeat steps 3 – 6 as needed."
+msgstr "Ripetu paŝojn 3–6 laŭbezone."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:67 C/font-manager-substitutions.page:105
+msgid ""
+"Click <gui style=\"button\">Save</gui> to write the configuration file when "
+"done."
+msgstr ""
+"Alklaku la butonon <gui style=\"button\">Konservi</gui> por skribi la "
+"agordodosieron, kiam la agordado finiĝas."
+
+#. (itstool) path: item/title
+#: C/font-manager-substitutions.page:75
+msgid "To remove a substitute:"
+msgstr "Por forigi anstataŭigon:"
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:91
+msgid "Select the entry you wish to remove from the list."
+msgstr "Elektu la forigotaĵon el la listo."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:96
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui> in the substitutions pane."
+msgstr ""
+"Alklaku la butonon <gui><media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/></gui> en la anstataŭiga panelo."
+
+#. (itstool) path: item/title
+#: C/font-manager-substitutions.page:113
+msgid "To remove all substitutes:"
+msgstr "Por forigi ĉiujn anstataŭigojn:"
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:129
+msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
+msgstr ""
+"Alklaku la butonon <gui style=\"button\">Forĵeti</gui> en la anstataŭiga "
+"panelo."
+
+#. (itstool) path: note/p
+#: C/font-manager-substitutions.page:142
+msgid ""
+"Fonts matching the target family are edited to prepend the list of preferred "
+"families before the matching family, append the acceptable families after "
+"the matching family and append the default families to the end of the family "
+"list."
+msgstr ""
+"Tiparoj kongruantaj kun la cela tiparfamilio estos redaktitaj per antaŭmeto "
+"de la listo de preferataj tiparfamilioj antaŭ la kongrua tiparfamilio, "
+"postmeto de la akcepteblaj tiparfamilioj post la kongrua familio kaj "
+"postmeto de la implicitaj tiparfamilioj ĉe la fino de la listo de "
+"tiparfamilioj."
+
+#. (itstool) path: note/p
+#: C/font-manager-substitutions.page:148
+msgid ""
+"While changes are applied immediately open applications may need to be "
+"restarted."
+msgstr ""
+"Dum ŝanĝoj tuj efektiviĝos, ruliĝantaj programoj eble bezonos relanĉon."
+
+#. (itstool) path: info/desc
+#: C/font-manager-supported-formats.page:5
+msgid "Font formats supported by <app>Font Manager</app>."
+msgstr "Tiparformoj subtenataj de <app>Tiparadministrilo</app>."
+
+#. (itstool) path: page/title
+#: C/font-manager-supported-formats.page:10
+msgid "Supported File Formats"
+msgstr "Subtenataj dosierformoj"
+
+#. (itstool) path: item/title
+#: C/font-manager-supported-formats.page:14
+msgid "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
+msgstr "<link href=\"http://eo.wikipedia.org/wiki/TrueType\">TrueType</link>"
+
+#. (itstool) path: item/title
+#: C/font-manager-supported-formats.page:21
+msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
+msgstr "<link href=\"http://eo.wikipedia.org/wiki/OpenType\">OpenType</link>"
+
+#. (itstool) path: info/desc
+#: C/index.page:6
+msgid "Getting started with Font Manager."
+msgstr "Eki pri Tiparadministrilo."
+
+#. (itstool) path: title/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/index.page:8
+msgctxt "_"
+msgid ""
+"external ref='media/preferences-desktop-font-16.png' "
+"md5='4903102ad113c096aa95ef8a5ccaf0c2'"
+msgstr ""
+"external ref='media/preferences-desktop-font-16.png' "
+"md5='4903102ad113c096aa95ef8a5ccaf0c2'"
+
+#. (itstool) path: info/title
+#: C/index.page:10
+msgctxt "link"
+msgid "Font Manager"
+msgstr "Tiparadministrilo"
+
+#. (itstool) path: info/title
+#: C/index.page:11
+msgctxt "text"
+msgid "Font Manager"
+msgstr "Tiparadministrilo"
+
+#. (itstool) path: credit/name
+#: C/index.page:14
+msgid "Jerry Casiano"
+msgstr "Jerry Casiano"
+
+#. (itstool) path: credit/years
+#: C/index.page:16
+msgid "2009–2020"
+msgstr "2009–2020"
+
+#. (itstool) path: credit/name
+#: C/index.page:20
+msgid "Weblate"
+msgstr "Weblate"
+
+#. (itstool) path: license/p
+#: C/index.page:24
+msgid "GNU General Public License Version 3"
+msgstr "Ĝenerala Publika Permesilo de GNU, versio 3"
+
+#. (itstool) path: title/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/index.page:30
+msgctxt "_"
+msgid ""
+"external ref='media/preferences-desktop-font.png' "
+"md5='f9108efe15fb60827b402b9a3a936589'"
+msgstr ""
+"external ref='media/preferences-desktop-font.png' "
+"md5='f9108efe15fb60827b402b9a3a936589'"
+
+#. (itstool) path: page/title
+#: C/index.page:29
+msgid ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
+"font.png\"> Font Manager logo </media> Font Manager"
+msgstr ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
+"font.png\">emblemo de Tiparadministrilo</media> Tiparadministrilo"
+
+#. (itstool) path: section/title
+#: C/index.page:37
+msgid "Managing Your Fonts"
+msgstr "Administri viajn tiparojn"
+
+#. (itstool) path: section/title
+#: C/index.page:41
+msgid "Getting to Know Your Fonts"
+msgstr "Ekkoni viajn tiparojn"
+
+#. (itstool) path: section/title
+#: C/index.page:45
+msgid "Advanced Features"
+msgstr "Altnivelaj funkcioj"

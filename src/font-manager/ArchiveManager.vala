@@ -1,6 +1,6 @@
 /* ArchiveManager.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,41 +22,27 @@
 interface FileRollerDBusService : Object {
 
     public signal void progress (double percent, string message);
-
-    public abstract void add_to_archive (string archive,
-                                         [CCode (array_null_terminated = true)]
-                                         string? [] uris,
-                                         bool use_progress_dialog)
-                                         throws DBusError, IOError;
-
-    public abstract void compress ([CCode (array_null_terminated = true)]
-                                   string? [] uris,
-                                   string destination,
-                                   bool use_progress_dialog)
-                                   throws DBusError, IOError;
-
-    public abstract void extract (string archive,
-                                  string destination,
-                                  bool use_progress_dialog)
-                                  throws DBusError, IOError;
-
-    public abstract void extract_here (string archive,
-                                       bool use_progress_dialog)
-                                       throws DBusError, IOError;
-
-    // Valid actions -> "create", "create_single_file", "extract"
-    public abstract HashTable <string, string> []
-    get_supported_types (string action)
-    throws DBusError, IOError;
+#if VALA_0_56_17
+    public abstract void add_to_archive (string archive, string [] uris, bool use_progress_dialog) throws DBusError, IOError;
+    public abstract void compress (string [] uris, string destination, bool use_progress_dialog) throws DBusError, IOError;
+#else
+    public abstract void add_to_archive (string archive, [CCode (array_null_terminated = true)] string? [] uris, bool use_progress_dialog) throws DBusError, IOError;
+    public abstract void compress ([CCode (array_null_terminated = true)] string? [] uris, string destination, bool use_progress_dialog) throws DBusError, IOError;
+#endif
+    public abstract void extract (string archive, string destination, bool use_progress_dialog) throws DBusError, IOError;
+    public abstract void extract_here (string archive, bool use_progress_dialog) throws DBusError, IOError;
+    /* Valid actions -> "create", "create_single_file", "extract" */
+    public abstract HashTable <string, string> [] get_supported_types (string action) throws DBusError, IOError;
 
 }
 
 namespace FontManager {
 
-    // Mimetypes likely to cause an error, unlikely to contain usable fonts.
-    // i.e.
-    // Windows .FON files are classified as "application/x-ms-dos-executable"
-    // but file-roller is unlikely to extract one successfully.
+    /* Mimetypes that are likely to cause an error, unlikely to contain usable fonts.
+     * i.e.
+     * Windows .FON files are classified as "application/x-ms-dos-executable"
+     * but file-roller is unlikely to extract one successfully.
+     */
     const string [] MIMETYPE_IGNORE_LIST = {
         "application/x-ms-dos-executable"
     };
@@ -85,9 +71,7 @@ namespace FontManager {
             try {
                 if (SERVICE_UNKNOWN)
                     return;
-                service = Bus.get_proxy_sync(BusType.SESSION,
-                                             "org.gnome.ArchiveManager1",
-                                             "/org/gnome/ArchiveManager1");
+                service = Bus.get_proxy_sync(BusType.SESSION, "org.gnome.ArchiveManager1", "/org/gnome/ArchiveManager1");
                 if (service.get_supported_types("extract").length > 0)
                     service.progress.connect((p, m) => { progress(p, m); });
             } catch (Error e) {
@@ -110,11 +94,12 @@ namespace FontManager {
             }
         }
 
-        public bool add_to_archive (string archive,
-                                    [CCode (array_null_terminated = true)]
-                                    string? [] uris,
-                                    bool use_progress_dialog = true)
-                                    requires (file_roller != null) {
+#if VALA_0_56_17
+        public bool add_to_archive (string archive, string? [] uris, bool use_progress_dialog = true)
+#else
+        public bool add_to_archive (string archive, [CCode (array_null_terminated = true)] string? [] uris, bool use_progress_dialog = true)
+#endif
+        requires (file_roller != null) {
             try {
                 file_roller.add_to_archive(archive, uris, use_progress_dialog);
                 return true;
@@ -124,11 +109,13 @@ namespace FontManager {
             return false;
         }
 
-        public bool compress ([CCode (array_null_terminated = true)]
-                              string? [] uris,
-                              string destination,
-                              bool use_progress_dialog = true)
-                              requires (file_roller != null) {
+#if VALA_0_56_17
+        public bool compress (string? [] uris, string destination, bool use_progress_dialog = true)
+#else
+        public bool compress ([CCode (array_null_terminated = true)] string? [] uris, string destination, bool use_progress_dialog = true)
+#endif
+
+        requires (file_roller != null) {
             try {
                 file_roller.compress(uris, destination, use_progress_dialog);
                 return true;
@@ -138,10 +125,8 @@ namespace FontManager {
             return false;
         }
 
-        public bool extract (string archive,
-                             string destination,
-                             bool use_progress_dialog = true)
-                             requires (file_roller != null) {
+        public bool extract (string archive, string destination, bool use_progress_dialog = true)
+        requires (file_roller != null) {
             try {
                 file_roller.extract(archive, destination, use_progress_dialog);
                 return true;
@@ -151,9 +136,8 @@ namespace FontManager {
             return false;
         }
 
-        public bool extract_here (string archive,
-                                  bool use_progress_dialog = true)
-                                  requires (file_roller != null) {
+        public bool extract_here (string archive, bool use_progress_dialog = true)
+        requires (file_roller != null) {
             try {
                 file_roller.extract_here(archive, use_progress_dialog);
                 return true;
@@ -167,8 +151,7 @@ namespace FontManager {
         requires (file_roller != null) {
             var supported_types = new StringSet();
             try {
-                HashTable <string, string> [] array;
-                array = file_roller.get_supported_types(action);
+                HashTable <string, string> [] array = file_roller.get_supported_types(action);
                 foreach (var hashtable in array) {
                     if (hashtable.get("mime-type") in MIMETYPE_IGNORE_LIST)
                         continue;

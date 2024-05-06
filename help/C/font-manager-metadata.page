@@ -1,0 +1,32 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="metadata">
+
+    <info>
+        <link type="guide" xref="index#explore"/>
+        <desc>View metadata embedded in your font files</desc>
+    </info>
+
+    <title>Metadata</title>
+
+    <p>
+        While in "Manage" mode the preview pane contains a tab labeled "Properties".
+    </p>
+
+    <p>
+        Selecting this tab allows viewing metadata contained in the currently
+        selected font.
+    </p>
+
+    <figure>
+        <title><app>Font Properties tab</app></title>
+        <media type="image" src="media/metadata.png"/>
+    </figure>
+
+    <note>
+        <p>
+            Some properties are optional and may not be present in all font files.
+        </p>
+    </note>
+
+</page>

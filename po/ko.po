@@ -1,0 +1,2329 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Jerry Casiano
+# This file is distributed under the same license as the font-manager package.
+# DNSE <kty5663@gmail.com>, 2022.
+# 이정희 <daemul72@gmail.com>, 2022.
+# JiYoung Park <pjiyoung4512@gmail.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: font-manager 0.8.8\n"
+"Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
+"POT-Creation-Date: 2022-02-06 14:56+0300\n"
+"PO-Revision-Date: 2022-12-23 13:48+0000\n"
+"Last-Translator: JiYoung Park <pjiyoung4512@gmail.com>\n"
+"Language-Team: Korean <https://hosted.weblate.org/projects/font-manager/"
+"font-manager/ko/>\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.15.1-dev\n"
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:9
+#: data/org.gnome.FontManager.desktop.in.in:5
+#: data/org.gnome.FontManager.desktop.in.in:6 src/font-manager/About.vala:27
+msgid "Font Manager"
+msgstr "글꼴 관리자"
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:10
+msgid "A simple font management application for Gtk+ Desktop Environments"
+msgstr "GTK+ 데스크톱 환경에서 동작하는 간단한 글꼴 관리 응용 프로그램"
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:13
+msgid ""
+"Font Manager is intended to provide a way for average users to easily manage "
+"desktop fonts, without having to resort to command line tools or editing "
+"configuration files by hand."
+msgstr ""
+"글꼴 관리자는 일반 사용자가 명령 줄 도구에 의존하거나 구성 파일을 손으로 "
+"편집할 필요 없이 데스크톱 글꼴을 쉽게 관리할 수 있는 방법을 제공하기 위한 "
+"것입니다."
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:18
+msgid ""
+"While designed primarily with the Gnome Desktop Environment in mind, it "
+"should work well with other Gtk+ desktop environments."
+msgstr "주로 그놈 데스크톱 환경을 염두에 두고 설계되었지만 다른 Gtk+ 데스크톱 "
+"환경에서도 잘 작동할 것입니다."
+
+#: data/org.gnome.FontManager.appdata.xml.in.in:22
+msgid "Font Manager is NOT a professional-grade font management solution."
+msgstr "글꼴 관리자는 전문적인 글꼴 관리 솔루션이 아닙니다."
+
+#: data/org.gnome.FontManager.desktop.in.in:7
+msgid "Preview, Compare and Manage Fonts"
+msgstr "글꼴 미리보기, 비교, 관리"
+
+#. Translators: Search terms to find this application. Do NOT translate or localize the semicolons! The list MUST also end with a semicolon!
+#: data/org.gnome.FontManager.desktop.in.in:16
+#: data/org.gnome.FontViewer.desktop.in.in:16
+msgid "Graphics;Viewer;GNOME;GTK;Publishing;"
+msgstr "Graphics;Viewer;GNOME;GTK;Publishing;그래픽;뷰어;그놈;출판;"
+
+#: data/org.gnome.FontViewer.appdata.xml.in.in:9
+#: data/org.gnome.FontViewer.desktop.in.in:5
+#: data/org.gnome.FontViewer.desktop.in.in:6
+#: src/font-viewer/Application.vala:98 src/font-viewer/MainWindow.vala:23
+#: src/font-viewer/font-viewer-main-window.ui:39
+msgid "Font Viewer"
+msgstr "글꼴 뷰어"
+
+#: data/org.gnome.FontViewer.appdata.xml.in.in:10
+msgid "A font viewer application for Gtk+ Desktop Environments"
+msgstr "GTK+ 데스크톱 환경에서 동작하는 간단한 글꼴 뷰어 프로그램"
+
+#: data/org.gnome.FontViewer.appdata.xml.in.in:13
+msgid ""
+"Font Viewer allows previewing font files prior to installation. It features "
+"several ways to preview font files along with a character map and displays "
+"font properties and license details."
+msgstr ""
+"글꼴 뷰어를 사용하면 설치 전에 글꼴 파일을 미리 볼 수 있습니다. 문자 맵과 "
+"함께 글꼴 파일을 미리 볼 수 있는 여러 가지 방법이 있으며 글꼴 속성과 "
+"라이센스 세부 정보를 표시합니다."
+
+#: data/org.gnome.FontViewer.desktop.in.in:7
+msgid "Full featured font file preview application"
+msgstr "모든 기능을 갖춘 글꼴 파일 미리보기 응용 프로그램"
+
+#: extensions/nautilus/font-manager-menu-provider.c:161
+#: extensions/nemo/font-manager-menu-provider.c:161
+#: extensions/thunar/font-manager-menu-provider.c:131
+#: src/font-manager/FontList.vala:516
+msgid "Install"
+msgstr "설치하기"
+
+#: extensions/nautilus/font-manager-menu-provider.c:163
+#: extensions/nemo/font-manager-menu-provider.c:163
+#: extensions/thunar/font-manager-menu-provider.c:133
+msgid "Install the selected font file"
+msgstr "선택한 글꼴 파일 설치하기"
+
+#: extensions/nautilus/font-manager-menu-provider.c:164
+#: extensions/nemo/font-manager-menu-provider.c:164
+#: extensions/thunar/font-manager-menu-provider.c:134
+msgid "Install the selected font files"
+msgstr "선택한 글꼴 파일 설치하기"
+
+#: extensions/thunar/font-manager-renamer-provider.c:86
+msgid "Font Properties"
+msgstr "글꼴 속성"
+
+#: lib/common/font-manager-font-preview.c:85
+#: src/font-manager/ui/font-manager-main-window.ui:120
+msgid "Preview"
+msgstr "미리보기"
+
+#: lib/common/font-manager-font-preview.c:87
+#: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:241
+msgid "Waterfall"
+msgstr ""
+
+#: lib/common/font-manager-fontconfig.c:709
+#: src/font-manager/web/google/Weight.vala:65
+msgid "Thin"
+msgstr "가는"
+
+#: lib/common/font-manager-fontconfig.c:711
+msgid "Ultra-Light"
+msgstr "아주 얇은"
+
+#: lib/common/font-manager-fontconfig.c:713
+#: lib/common/font-manager-fontconfig.c:1066
+#: src/font-manager/web/google/Weight.vala:69
+msgid "Light"
+msgstr "얇은"
+
+#: lib/common/font-manager-fontconfig.c:715
+msgid "Semi-Light"
+msgstr "약간 얇은"
+
+#: lib/common/font-manager-fontconfig.c:717
+msgid "Book"
+msgstr "책"
+
+#: lib/common/font-manager-fontconfig.c:719
+#: lib/common/font-manager-fontconfig.c:1023
+#: src/font-manager/web/google/Weight.vala:73
+msgid "Medium"
+msgstr "중간"
+
+#: lib/common/font-manager-fontconfig.c:721
+msgid "Semi-Bold"
+msgstr "약간 굵은"
+
+#: lib/common/font-manager-fontconfig.c:723
+#: src/font-manager/web/google/Weight.vala:77
+msgid "Bold"
+msgstr "굵은"
+
+#: lib/common/font-manager-fontconfig.c:725
+msgid "Ultra-Bold"
+msgstr "아주 굵은"
+
+#: lib/common/font-manager-fontconfig.c:727
+msgid "Heavy"
+msgstr "두꺼운"
+
+#: lib/common/font-manager-fontconfig.c:729
+msgid "Ultra-Heavy"
+msgstr "아주 두꺼운"
+
+#: lib/common/font-manager-fontconfig.c:804
+#: src/font-manager/web/google/WebFont.vala:156
+msgid "Italic"
+msgstr "이탤릭체"
+
+#: lib/common/font-manager-fontconfig.c:806
+msgid "Oblique"
+msgstr "기울임꼴"
+
+#: lib/common/font-manager-fontconfig.c:844
+msgid "Ultra-Condensed"
+msgstr "아주 폭이 좁은"
+
+#: lib/common/font-manager-fontconfig.c:846
+msgid "Extra-Condensed"
+msgstr "대단히 폭이 좁은"
+
+#: lib/common/font-manager-fontconfig.c:848
+msgid "Condensed"
+msgstr "폭이 좁은"
+
+#: lib/common/font-manager-fontconfig.c:850
+msgid "Semi-Condensed"
+msgstr "약간 폭이 좁은"
+
+#: lib/common/font-manager-fontconfig.c:852
+msgid "Semi-Expanded"
+msgstr "약간 폭이 넓은"
+
+#: lib/common/font-manager-fontconfig.c:854
+msgid "Expanded"
+msgstr "폭이 넓은"
+
+#: lib/common/font-manager-fontconfig.c:856
+msgid "Extra-Expanded"
+msgstr "대단히 폭이 넓은"
+
+#: lib/common/font-manager-fontconfig.c:858
+msgid "Ultra-Expanded"
+msgstr "아주 폭이 넓은"
+
+#: lib/common/font-manager-fontconfig.c:927
+msgid "Proportional"
+msgstr "가변폭"
+
+#: lib/common/font-manager-fontconfig.c:929
+msgid "Dual Width"
+msgstr "이중폭"
+
+#: lib/common/font-manager-fontconfig.c:931
+#: src/font-manager/web/google/ui/google-font-filters.ui:260
+msgid "Monospace"
+msgstr "고정폭"
+
+#: lib/common/font-manager-fontconfig.c:933
+msgid "Charcell"
+msgstr ""
+
+#: lib/common/font-manager-fontconfig.c:972
+msgid "Unknown"
+msgstr "알 수 없음"
+
+#: lib/common/font-manager-fontconfig.c:974
+msgid "RGB"
+msgstr "RGB"
+
+#: lib/common/font-manager-fontconfig.c:976
+msgid "BGR"
+msgstr "BGR"
+
+#: lib/common/font-manager-fontconfig.c:978
+msgid "VRGB"
+msgstr "VRGB"
+
+#: lib/common/font-manager-fontconfig.c:980
+msgid "VBGR"
+msgstr "VBGR"
+
+#: lib/common/font-manager-fontconfig.c:982
+#: lib/common/font-manager-fontconfig.c:1027
+#: lib/common/font-manager-fontconfig.c:1070
+msgid "None"
+msgstr "없음"
+
+#: lib/common/font-manager-fontconfig.c:1021
+msgid "Slight"
+msgstr "약간"
+
+#: lib/common/font-manager-fontconfig.c:1025
+msgid "Full"
+msgstr "전부"
+
+#: lib/common/font-manager-fontconfig.c:1064
+#: src/font-manager/ui/font-manager-main-window.ui:178
+msgid "Default"
+msgstr "기본값"
+
+#: lib/common/font-manager-fontconfig.c:1068
+msgid "Legacy"
+msgstr "기존"
+
+#: lib/common/font-manager-freetype.c:292
+msgid "Restricted License Embedding"
+msgstr "제한된 라이선스 내장글꼴"
+
+#: lib/common/font-manager-freetype.c:294
+msgid "Preview & Print Embedding"
+msgstr "내장글꼴 미리보기 및 인쇄하기"
+
+#: lib/common/font-manager-freetype.c:296
+msgid "Editable Embedding"
+msgstr "내장글꼴 편집 가능"
+
+#: lib/common/font-manager-freetype.c:298
+msgid "Preview & Print Embedding | No Subsetting"
+msgstr "내장글꼴 미리보기 및 인쇄하기 | 하위 설정 없음"
+
+#: lib/common/font-manager-freetype.c:300
+msgid "Editable Embedding | No Subsetting"
+msgstr "내장글꼴 편집 가능 | 하위 설정 없음"
+
+#: lib/common/font-manager-freetype.c:302
+msgid "Preview & Print Embedding | Bitmap Embedding Only"
+msgstr "내장글꼴 미리보기 및 인쇄하기 | 비트맵 포함만"
+
+#: lib/common/font-manager-freetype.c:304
+msgid "Editable Embedding | Bitmap Embedding Only"
+msgstr "내장글꼴 편집 가능 | 비트맵 포함만"
+
+#: lib/common/font-manager-freetype.c:306
+msgid "Preview & Print Embedding | No Subsetting | Bitmap Embedding Only"
+msgstr "내장글꼴 미리보기 및 인쇄하기 | 하위 설정 없음 | 비트맵 내장글꼴만"
+
+#: lib/common/font-manager-freetype.c:308
+msgid "Editable Embedding | No Subsetting | Bitmap Embedding Only"
+msgstr "내장글꼴 편집 가능 | 하위 설정 없음 | 비트맵 내장글꼴만"
+
+#: lib/common/font-manager-freetype.c:310
+msgid "Installable Embedding"
+msgstr "내장글꼴 설치 가능"
+
+#. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
+#: lib/common/font-manager-freetype.c:702
+msgid "Unknown Vendor"
+msgstr "알 수 없는 공급사"
+
+#: lib/common/font-manager-license-pane.c:185
+msgid "File does not contain license information."
+msgstr "파일에 라이센스 정보가 포함되어 있지 않습니다."
+
+#: lib/common/font-manager-preview-controls.c:76
+msgid "Left Aligned"
+msgstr "왼쪽 정렬됨"
+
+#: lib/common/font-manager-preview-controls.c:82
+msgid "Centered"
+msgstr "가운데 정렬됨"
+
+#: lib/common/font-manager-preview-controls.c:88
+msgid "Fill"
+msgstr "채움"
+
+#: lib/common/font-manager-preview-controls.c:94
+msgid "Right Aligned"
+msgstr "오른쪽 정렬됨"
+
+#: lib/common/font-manager-preview-controls.c:311
+msgid "Edit preview text"
+msgstr "미리보기 텍스트 편집하기"
+
+#: lib/common/font-manager-preview-controls.c:312
+msgid "Undo changes"
+msgstr "변경사항 실행취소"
+
+#: lib/common/font-manager-preview-pane.c:43
+#: lib/common/font-manager-preview-pane.c:572
+msgid "Characters"
+msgstr "문자"
+
+#: lib/common/font-manager-preview-pane.c:45
+#: lib/common/font-manager-preview-pane.c:573
+msgid "Properties"
+msgstr "속성"
+
+#: lib/common/font-manager-preview-pane.c:47
+#: lib/common/font-manager-preview-pane.c:574
+#: src/font-manager/Categories.vala:541
+msgid "License"
+msgstr "라이선스"
+
+#: lib/common/font-manager-preview-pane.c:454
+msgid "Search available characters"
+msgstr "사용 가능한 문자 검색하기"
+
+#: lib/common/font-manager-properties-pane.c:80
+msgid "PostScript Name"
+msgstr "PostScript 이름"
+
+#: lib/common/font-manager-properties-pane.c:81
+msgid "Family"
+msgstr "글꼴 집합"
+
+#: lib/common/font-manager-properties-pane.c:82
+msgid "Style"
+msgstr "스타일"
+
+#: lib/common/font-manager-properties-pane.c:83
+#: src/font-manager/Categories.vala:534
+msgid "Width"
+msgstr "폭"
+
+#: lib/common/font-manager-properties-pane.c:84
+#: src/font-manager/Categories.vala:536
+msgid "Slant"
+msgstr "기울기"
+
+#: lib/common/font-manager-properties-pane.c:85
+#: src/font-manager/Categories.vala:535
+msgid "Weight"
+msgstr "굵기"
+
+#: lib/common/font-manager-properties-pane.c:86
+#: src/font-manager/Categories.vala:537
+msgid "Spacing"
+msgstr "자간"
+
+#: lib/common/font-manager-properties-pane.c:87
+msgid "Version"
+msgstr "버전"
+
+#. Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid
+#: lib/common/font-manager-properties-pane.c:89
+#: src/font-manager/Categories.vala:543
+msgid "Vendor"
+msgstr "공급사"
+
+#: lib/common/font-manager-properties-pane.c:90
+msgid "FileType"
+msgstr "파일 유형"
+
+#: lib/common/font-manager-properties-pane.c:91
+msgid "Filesize"
+msgstr "파일 크기"
+
+#: lib/common/font-manager-properties-pane.c:215
+#: src/font-manager/Categories.vala:598
+#: src/font-manager/web/google/Weight.vala:71
+msgid "Regular"
+msgstr ""
+
+#: lib/common/font-manager-properties-pane.c:215
+#: src/font-manager/Categories.vala:593
+#: src/font-manager/ui/font-manager-title-button-style.ui:42
+msgid "Normal"
+msgstr ""
+
+#: lib/common/font-manager-source.c:308 lib/common/font-manager-source.c:323
+msgid "Source Unavailable"
+msgstr "소스를 사용할 수 없음"
+
+#: lib/unicode/unicode-info.c:191
+msgid "<Non Private Use High Surrogate>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:193
+msgid "<Private Use High Surrogate>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:195
+msgid "<Low Surrogate>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:197
+msgid "<Private Use>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:199
+msgid "<Plane 15 Private Use>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:201
+msgid "<Plane 16 Private Use>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:205
+msgid "<not assigned>"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:222
+msgid "Other, Control"
+msgstr "기타, 제어"
+
+#: lib/unicode/unicode-info.c:224
+msgid "Other, Format"
+msgstr "기타, 형식"
+
+#: lib/unicode/unicode-info.c:226
+msgid "Other, Not Assigned"
+msgstr "기타, 할당되지 않은"
+
+#: lib/unicode/unicode-info.c:228
+msgid "Other, Private Use"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:230
+msgid "Other, Surrogate"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:232
+msgid "Letter, Lowercase"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:234
+msgid "Letter, Modifier"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:236
+msgid "Letter, Other"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:238
+msgid "Letter, Titlecase"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:240
+msgid "Letter, Uppercase"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:242
+msgid "Mark, Spacing Combining"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:244
+msgid "Mark, Enclosing"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:246
+msgid "Mark, Non-Spacing"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:248
+msgid "Number, Decimal Digit"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:250
+msgid "Number, Letter"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:252
+msgid "Number, Other"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:254
+msgid "Punctuation, Connector"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:256
+msgid "Punctuation, Dash"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:258
+msgid "Punctuation, Close"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:260
+msgid "Punctuation, Final Quote"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:262
+msgid "Punctuation, Initial Quote"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:264
+msgid "Punctuation, Other"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:266
+msgid "Punctuation, Open"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:268
+msgid "Symbol, Currency"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:270
+msgid "Symbol, Modifier"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:272
+msgid "Symbol, Math"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:274
+msgid "Symbol, Other"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:276
+msgid "Separator, Line"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:278
+msgid "Separator, Paragraph"
+msgstr ""
+
+#: lib/unicode/unicode-info.c:280
+msgid "Separator, Space"
+msgstr ""
+
+#: src/font-manager/About.vala:29
+msgid "Simple font management for GTK+ desktop environments"
+msgstr "GTK+ 데스크톱 환경을 위한 간단한 글꼴 관리"
+
+#: src/font-manager/About.vala:35
+msgid ""
+"\n"
+"    This program is free software: you can redistribute it and/or modify\n"
+"    it under the terms of the GNU General Public License as published by\n"
+"    the Free Software Foundation, either version 3 of the License, or\n"
+"    (at your option) any later version.\n"
+"\n"
+"    This program is distributed in the hope that it will be useful,\n"
+"    but WITHOUT ANY WARRANTY; without even the implied warranty of\n"
+"    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n"
+"    GNU General Public License for more details.\n"
+"\n"
+"    You should have received a copy of the GNU General Public License\n"
+"    along with this program.\n"
+"\n"
+"    If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.\n"
+"    "
+msgstr ""
+"\n"
+"    이 프로그램은 자유 소프트웨어입니다. 자유 소프트웨어 재단이 발행한 GNU "
+"일반 공중 사용 허가서의 조건에 따라 라이센스 버전 3 또는 (선택 사항에 따라) "
+"이후 버전으로 재배포 및/또는 수정할 수 있습니다.\n"
+"\n"
+"이 프로그램은 유용할 것이라는 기대 하에 배포되지만, 어떤 보증도 없이, 심지어 "
+"상품성이나 특정 목적에 대한 적합성에 대한 묵시적인 보증도 없이 배포됩니다. "
+"자세한 내용은 GNU General Public License를 참조하십시오.\n"
+"\n"
+"당신은 이 프로그램과 함께 GNU General Public License 사본을 받아야 합니다.\n"
+"\n"
+"그렇지 않은 경우 <http://www.gnu.org/licenses/gpl-3.0.txt>을 참조하십시오.\n"
+"    "
+
+#. Translators : Please feel free to add yourself to the list of translators,
+#. but do not modify or remove previous entries. New entries should be separated
+#. by a newline character so that they are displayed properly in the interface.
+#: src/font-manager/About.vala:69
+msgid "translator-credits"
+msgstr "이정희 <daemul72@gmail.com>"
+
+#: src/font-manager/Categories.vala:534
+msgid "Grouped by font width"
+msgstr "글꼴 너비별로 그룹화됨"
+
+#: src/font-manager/Categories.vala:535
+msgid "Grouped by font weight"
+msgstr "글꼴 굵기별로 그룹화됨"
+
+#: src/font-manager/Categories.vala:536
+msgid "Grouped by font angle"
+msgstr "글꼴 각도별로 그룹화됨"
+
+#: src/font-manager/Categories.vala:537
+msgid "Grouped by font spacing"
+msgstr "글꼴 간격별로 그룹화됨"
+
+#: src/font-manager/Categories.vala:541
+msgid "Grouped by license type"
+msgstr "라이센스 유형별로 그룹화됨"
+
+#: src/font-manager/Categories.vala:543
+msgid "Grouped by vendor"
+msgstr "공급사별로 그룹화됨"
+
+#: src/font-manager/Categories.vala:544
+msgid "Filetype"
+msgstr "파일유형"
+
+#: src/font-manager/Categories.vala:544
+msgid "Grouped by filetype"
+msgstr "파일 형식별로 그룹화됨"
+
+#: src/font-manager/Categories.vala:551
+msgid "All"
+msgstr "모두"
+
+#: src/font-manager/Categories.vala:551
+msgid "All Fonts"
+msgstr "모든 글꼴"
+
+#: src/font-manager/Categories.vala:552
+msgid "System"
+msgstr "시스템"
+
+#: src/font-manager/Categories.vala:552
+msgid "Fonts available to all users"
+msgstr "모든 사용자가 사용할 수 있는 글꼴"
+
+#: src/font-manager/Categories.vala:566
+msgid "Family Kind"
+msgstr "글꼴 집합 종류"
+
+#: src/font-manager/Categories.vala:566
+msgid "Only fonts which include Panose information will be grouped here."
+msgstr "Panose 정보가 포함된 글꼴만 여기에 그룹화됩니다."
+
+#: src/font-manager/Categories.vala:567
+#: src/font-manager/web/google/ui/google-font-filters.ui:346
+msgid "Any"
+msgstr ""
+
+#: src/font-manager/Categories.vala:567
+msgid "No Fit"
+msgstr "적합하지 않음"
+
+#: src/font-manager/Categories.vala:567
+msgid "Text and Display"
+msgstr "텍스트 및 표시"
+
+#: src/font-manager/Categories.vala:567
+msgid "Script"
+msgstr ""
+
+#: src/font-manager/Categories.vala:567
+msgid "Decorative"
+msgstr ""
+
+#: src/font-manager/Categories.vala:567
+msgid "Pictorial"
+msgstr ""
+
+#: src/font-manager/CellRenderer.vala:90
+#, c-format
+msgid "%i Variation "
+msgid_plural "%i Variations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/font-manager/Collections.vala:23
+msgid "Enter Collection Name"
+msgstr "컬렉션 이름을 입력"
+
+#: src/font-manager/Collections.vala:452
+msgid "Copy to…"
+msgstr "복사하기…"
+
+#: src/font-manager/Collections.vala:453
+msgid "Compress…"
+msgstr "압축하기…"
+
+#: src/font-manager/Collections.vala:454
+msgid "Rename…"
+msgstr "이름 바꾸기…"
+
+#: src/font-manager/Compare.vala:381
+msgid "Saved Comparison"
+msgstr "저장된 비교"
+
+#. Translators : Please preserve the newline character somewhere in the middle of the string
+#: src/font-manager/Compare.vala:407
+msgid ""
+"Save the current comparison\n"
+"by clicking the + button"
+msgstr ""
+"+ 버튼을 클릭하여\n"
+"현재 비교 저장"
+
+#: src/font-manager/Dialogs.vala:60
+msgid "Select executable"
+msgstr "실행 파일 선택"
+
+#: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
+#: src/font-manager/UserData.vala:58
+msgid "_Select"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:64 src/font-manager/Dialogs.vala:79
+#: src/font-manager/Dialogs.vala:96 src/font-manager/Dialogs.vala:121
+#: src/font-manager/Dialogs.vala:159 src/font-manager/Dialogs.vala:171
+#: src/font-manager/UserData.vala:38 src/font-manager/UserData.vala:49
+#: src/font-manager/UserData.vala:59
+msgid "_Cancel"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:75
+msgid "Select Destination"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:92
+msgid "Select files to install"
+msgstr "설치할 파일 선택"
+
+#: src/font-manager/Dialogs.vala:95 src/font-manager/Dialogs.vala:120
+msgid "_Open"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:117
+msgid "Select source folders"
+msgstr "원본 폴더 선택"
+
+#: src/font-manager/Dialogs.vala:158 src/font-manager/Dialogs.vala:170
+msgid "Select fonts to remove"
+msgstr "제거할 글꼴 선택"
+
+#: src/font-manager/Dialogs.vala:160 src/font-manager/Dialogs.vala:172
+msgid "_Delete"
+msgstr ""
+
+#: src/font-manager/Dialogs.vala:186
+msgid "Fonts installed in your home directory will appear here."
+msgstr "홈 디렉토리에 설치된 글꼴이 여기에 나타납니다."
+
+#: src/font-manager/FontList.vala:43
+msgid "Remove selected font from collection"
+msgstr "컬렉션에서 선택한 글꼴 제거"
+
+#: src/font-manager/FontList.vala:48 src/font-manager/FontList.vala:68
+#: src/font-manager/web/google/FontList.vala:51
+#: src/font-manager/web/google/FontList.vala:65
+msgid "Expand all"
+msgstr "모두 펼치기"
+
+#: src/font-manager/FontList.vala:52
+#: src/font-manager/web/google/FontList.vala:55
+msgid "Search Families…"
+msgstr "글꼴 모음 검색…"
+
+#: src/font-manager/FontList.vala:53
+#, c-format
+msgid ""
+"Case insensitive search of family names.\n"
+"\n"
+"Start search using %s to filter based on filepath.\n"
+"Start search using %s to filter based on characters."
+msgstr ""
+"글꼴 집합 이름의 대소문자를 구분하지 않는 검색입니다.\n"
+"\n"
+"파일경로를 기준으로 필터링하려면 %s를 사용하여 검색을 시작합니다. \n"
+"문자를 기준으로 필터링하려면 %s를 사용하여 검색을 시작합니다."
+
+#: src/font-manager/FontList.vala:68
+#: src/font-manager/web/google/FontList.vala:65
+msgid "Collapse all"
+msgstr "모두 접기"
+
+#. Translators : Even though singular form is not used yet, it is here
+#. to make for a proper ngettext call. Still it is advisable to translate it.
+#: src/font-manager/FontList.vala:416
+#, c-format
+msgid "%i selected item"
+msgid_plural "%i selected items"
+msgstr[0] "%i 항목을 선택했습니다"
+
+#: src/font-manager/FontList.vala:517
+msgid "Copy Location"
+msgstr "복사 위치"
+
+#: src/font-manager/FontList.vala:518
+msgid "Show in Folder"
+msgstr "폴더에 표시"
+
+#: src/font-manager/FontList.vala:583
+msgid "Enable selected items"
+msgstr "선택한 항목 사용"
+
+#: src/font-manager/FontList.vala:585
+msgid "Disable selected items"
+msgstr "선택한 항목 사용 안 함"
+
+#: src/font-manager/MainWindow.vala:54
+#: src/font-manager/ui/font-manager-main-window.ui:165
+msgid "Browse"
+msgstr "둘러보기"
+
+#: src/font-manager/MainWindow.vala:56
+#: src/font-manager/ui/font-manager-main-window.ui:136
+msgid "Compare"
+msgstr "비교"
+
+#: src/font-manager/MainWindow.vala:58
+#: src/font-manager/ui/font-manager-main-window.ui:149
+msgid "Manage"
+msgstr "관리"
+
+#: src/font-manager/Orthographies.vala:31
+msgid "Afrikaans"
+msgstr "아프리칸스어"
+
+#: src/font-manager/Orthographies.vala:32
+msgid "Ahom"
+msgstr "아홈어"
+
+#: src/font-manager/Orthographies.vala:33
+msgid "Aleut Cyrillic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:34
+msgid "Aleut Latin"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:35
+#: src/font-manager/web/google/Language.vala:32
+msgid "Arabic"
+msgstr "아랍어"
+
+#: src/font-manager/Orthographies.vala:36
+msgid "Archaic Greek Letters"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:37
+msgid "Armenian"
+msgstr "아르메니아어"
+
+#: src/font-manager/Orthographies.vala:38
+msgid "Astronomy"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:39
+msgid "Balinese"
+msgstr "발리어"
+
+#: src/font-manager/Orthographies.vala:40
+msgid "Baltic"
+msgstr "발트어"
+
+#: src/font-manager/Orthographies.vala:41
+msgid "Bamum"
+msgstr "바뭄어"
+
+#: src/font-manager/Orthographies.vala:42
+msgid "Basic Cyrillic"
+msgstr "기본 키릴 문자"
+
+#: src/font-manager/Orthographies.vala:43
+msgid "Basic Greek"
+msgstr "기본 그리스어"
+
+#: src/font-manager/Orthographies.vala:44
+msgid "Basic Latin"
+msgstr "기본 라틴어"
+
+#: src/font-manager/Orthographies.vala:45
+msgid "Surat Batak"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:46
+#: src/font-manager/web/google/Language.vala:33
+msgid "Bengali"
+msgstr "벵골어"
+
+#: src/font-manager/Orthographies.vala:47
+msgid "Brāhmī"
+msgstr "브라흐미 문자"
+
+#: src/font-manager/Orthographies.vala:48
+msgid "Buginese"
+msgstr "부기어"
+
+#: src/font-manager/Orthographies.vala:49
+msgid "Unified Canadian Aboriginal Syllabics"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:50
+msgid "Carian"
+msgstr "카리아어"
+
+#: src/font-manager/Orthographies.vala:51
+msgid "Catalan"
+msgstr "카탈로니아어"
+
+#: src/font-manager/Orthographies.vala:52
+msgid "Central European"
+msgstr "중부 유럽 언어"
+
+#: src/font-manager/Orthographies.vala:53
+msgid "Chakma"
+msgstr "차크마어"
+
+#: src/font-manager/Orthographies.vala:54
+msgid "Cham"
+msgstr "참어"
+
+#: src/font-manager/Orthographies.vala:55
+#: src/font-manager/web/google/Language.vala:34
+msgid "Cherokee"
+msgstr "체로키 문자"
+
+#: src/font-manager/Orthographies.vala:56
+msgid "Chess Symbols"
+msgstr ""
+
+#. CJK entries added manually
+#: src/font-manager/Orthographies.vala:59
+msgid "CJK Unified"
+msgstr "CJK 통합 문자"
+
+#: src/font-manager/Orthographies.vala:60
+msgid "CJK Unified Extension A"
+msgstr "CJK 통합 문자 확장 A"
+
+#: src/font-manager/Orthographies.vala:61
+msgid "CJK Unified Extension B"
+msgstr "CJK 통합 문자 확장 B"
+
+#: src/font-manager/Orthographies.vala:62
+msgid "CJK Unified Extension C"
+msgstr "CJK 통합 문자 확장 C"
+
+#: src/font-manager/Orthographies.vala:63
+msgid "CJK Unified Extension D"
+msgstr "CJK 통합 문자 확장 D"
+
+#: src/font-manager/Orthographies.vala:64
+msgid "CJK Unified Extension E"
+msgstr "CJK 통합 문자 확장 E"
+
+#: src/font-manager/Orthographies.vala:65
+msgid "CJK Compatibility Ideographs"
+msgstr "CJK 호환성 표의문자"
+
+#: src/font-manager/Orthographies.vala:66
+msgid "CJK Compatibility Ideographs Supplement"
+msgstr "CJK 호환성 표의문자 부록"
+
+#. End CJK entries
+#: src/font-manager/Orthographies.vala:69
+msgid "Claudian Letters"
+msgstr "클라우디안 문자"
+
+#: src/font-manager/Orthographies.vala:70
+msgid "Coptic"
+msgstr "콥트어"
+
+#: src/font-manager/Orthographies.vala:71
+msgid "Currencies"
+msgstr "통화"
+
+#: src/font-manager/Orthographies.vala:72
+msgid "Cypriot Syllabary"
+msgstr "키프로스 음절문자"
+
+#: src/font-manager/Orthographies.vala:73
+#: src/font-manager/web/google/Language.vala:40
+msgid "Devanagari"
+msgstr "데바나가리 문자"
+
+#: src/font-manager/Orthographies.vala:74
+msgid "Dutch"
+msgstr "더치어"
+
+#: src/font-manager/Orthographies.vala:75
+msgid "Egyptian Hieroglyphs"
+msgstr "이집트 상형문자"
+
+#: src/font-manager/Orthographies.vala:76
+msgid "Emoticons"
+msgstr "이모티콘"
+
+#: src/font-manager/Orthographies.vala:77
+msgid "Ethiopic"
+msgstr "에티오피아어"
+
+#. This "orthography" contains only the euro symbol...
+#. { "Euro", "Euro" },
+#: src/font-manager/Orthographies.vala:82
+msgid "Farsi"
+msgstr "페르시아어"
+
+#: src/font-manager/Orthographies.vala:83
+msgid "Food and Drink"
+msgstr "음식과 음료"
+
+#: src/font-manager/Orthographies.vala:84
+msgid "Full Cyrillic"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:85
+msgid "Georgian"
+msgstr "그루지야어"
+
+#: src/font-manager/Orthographies.vala:86
+msgid "Glagolitic"
+msgstr "글라골 문자"
+
+#: src/font-manager/Orthographies.vala:87
+msgid "Gothic"
+msgstr "고딕"
+
+#: src/font-manager/Orthographies.vala:88
+#: src/font-manager/web/google/Language.vala:43
+msgid "Gujarati"
+msgstr "구자라트어"
+
+#: src/font-manager/Orthographies.vala:89
+#: src/font-manager/web/google/Language.vala:44
+msgid "Gurmukhi"
+msgstr "구르무키 문자"
+
+#: src/font-manager/Orthographies.vala:90
+msgid "Korean Hangul"
+msgstr "한글"
+
+#: src/font-manager/Orthographies.vala:91
+msgid "Hanunó'o"
+msgstr "하누누 언어"
+
+#: src/font-manager/Orthographies.vala:92
+#: src/font-manager/web/google/Language.vala:45
+msgid "Hebrew"
+msgstr "히브리어"
+
+#: src/font-manager/Orthographies.vala:93
+#: src/font-manager/Orthographies.vala:95
+msgid "IPA"
+msgstr "국제 음성 알파벳"
+
+#: src/font-manager/Orthographies.vala:94
+msgid "Igbo Onwu"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:96
+msgid "Korean Jamo"
+msgstr "한글 자모"
+
+#: src/font-manager/Orthographies.vala:97
+msgid "Javanese"
+msgstr "자바어"
+
+#: src/font-manager/Orthographies.vala:98
+msgid "Japanese Jinmeiyo"
+msgstr "일본어 진메이요 한자"
+
+#: src/font-manager/Orthographies.vala:99
+msgid "Japanese Joyo"
+msgstr "일본어 조요 한자"
+
+#: src/font-manager/Orthographies.vala:100
+msgid "Kaithi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:101
+msgid "Japanese Kana"
+msgstr "일본어 가나"
+
+#: src/font-manager/Orthographies.vala:102
+#: src/font-manager/web/google/Language.vala:47
+msgid "Kannada"
+msgstr "칸나다어"
+
+#: src/font-manager/Orthographies.vala:103
+msgid "Kayah Li"
+msgstr "카야 리 알파벳"
+
+#: src/font-manager/Orthographies.vala:104
+msgid "Kazakh"
+msgstr "카자흐어"
+
+#: src/font-manager/Orthographies.vala:105
+msgid "Kharoshthi"
+msgstr "카로슈티 문자"
+
+#: src/font-manager/Orthographies.vala:106
+#: src/font-manager/web/google/Language.vala:48
+msgid "Khmer"
+msgstr "크메르어"
+
+#: src/font-manager/Orthographies.vala:107
+msgid "Japanese Kokuji"
+msgstr "일본어 국문자"
+
+#: src/font-manager/Orthographies.vala:108
+msgid "Lao"
+msgstr "라오어"
+
+#: src/font-manager/Orthographies.vala:109
+msgid "Latin Ligatures"
+msgstr "라틴어 합자"
+
+#: src/font-manager/Orthographies.vala:110
+msgid "Lepcha"
+msgstr "렙차 언어"
+
+#: src/font-manager/Orthographies.vala:111
+msgid "Limbu"
+msgstr "림부 언어"
+
+#: src/font-manager/Orthographies.vala:112
+msgid "Linear B Ideograms"
+msgstr "선형 B 표의 문자"
+
+#: src/font-manager/Orthographies.vala:113
+msgid "Linear B Syllabary"
+msgstr "선형 B 음절"
+
+#: src/font-manager/Orthographies.vala:114
+#: src/font-manager/web/google/Language.vala:52
+msgid "Malayalam"
+msgstr "말라얄람어"
+
+#: src/font-manager/Orthographies.vala:115
+msgid "Mathematical Greek"
+msgstr "수학 그리스어"
+
+#: src/font-manager/Orthographies.vala:116
+msgid "Mathematical Latin"
+msgstr "수학 라틴어"
+
+#: src/font-manager/Orthographies.vala:117
+msgid "Mathematical Numerals"
+msgstr "수학적 숫자"
+
+#: src/font-manager/Orthographies.vala:118
+msgid "Mathematical Operators"
+msgstr "수학 연산자"
+
+#: src/font-manager/Orthographies.vala:119
+msgid "Meetei Mayak"
+msgstr "미테이 마예크 문자"
+
+#: src/font-manager/Orthographies.vala:120
+msgid "Mende Kikakui"
+msgstr "멘데 키카쿠이 문자"
+
+#: src/font-manager/Orthographies.vala:121
+msgid "MeroiticCursive"
+msgstr "메로이틱필기체"
+
+#: src/font-manager/Orthographies.vala:122
+msgid "Meroitic Hieroglyphs"
+msgstr "메로이트 상형문자"
+
+#: src/font-manager/Orthographies.vala:123
+msgid "Miao"
+msgstr "먀오 문자"
+
+#: src/font-manager/Orthographies.vala:124
+msgid "Mongolian"
+msgstr "몽골어"
+
+#. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
+#. * Contains lots of duplicates, doubt many would find it useful
+#.
+#. { "MUFI 3.0", "MUFI 3.0" },
+#: src/font-manager/Orthographies.vala:131
+#: src/font-manager/web/google/Language.vala:53
+msgid "Myanmar"
+msgstr "미얀마 언어"
+
+#: src/font-manager/Orthographies.vala:132
+msgid "New Tai Lue"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:133
+msgid "N’Ko"
+msgstr "응코 문자"
+
+#: src/font-manager/Orthographies.vala:134
+msgid "Ogham"
+msgstr "오검 문자"
+
+#: src/font-manager/Orthographies.vala:135
+msgid "Ol Chiki"
+msgstr "올 치키 문자"
+
+#: src/font-manager/Orthographies.vala:136
+msgid "Old Italic"
+msgstr "고대 이탈리아어"
+
+#: src/font-manager/Orthographies.vala:137
+msgid "Old South Arabian"
+msgstr "고대 남아라비아어"
+
+#: src/font-manager/Orthographies.vala:138
+#: src/font-manager/web/google/Language.vala:54
+msgid "Oriya"
+msgstr "오리야어"
+
+#: src/font-manager/Orthographies.vala:139
+msgid "Osmanya"
+msgstr "오스만야 문자"
+
+#: src/font-manager/Orthographies.vala:140
+msgid "Pan African Latin"
+msgstr "범아프리카 라틴어"
+
+#: src/font-manager/Orthographies.vala:141
+msgid "Pashto"
+msgstr "파슈토어"
+
+#: src/font-manager/Orthographies.vala:142
+msgid "Phags Pa"
+msgstr "파그파 문자"
+
+#: src/font-manager/Orthographies.vala:143
+msgid "Pinyin"
+msgstr "병음"
+
+#: src/font-manager/Orthographies.vala:144
+msgid "Polynesian"
+msgstr "폴리네시아어"
+
+#: src/font-manager/Orthographies.vala:145
+msgid "Polytonic Greek"
+msgstr "그리스어 분음 부호"
+
+#: src/font-manager/Orthographies.vala:146
+msgid "Rejang"
+msgstr "레장 언어"
+
+#: src/font-manager/Orthographies.vala:147
+msgid "Romanian"
+msgstr "루마니아어"
+
+#: src/font-manager/Orthographies.vala:148
+msgid "Runic"
+msgstr "룬 문자"
+
+#: src/font-manager/Orthographies.vala:149
+msgid "Saurashtra"
+msgstr "사우라슈트라어"
+
+#: src/font-manager/Orthographies.vala:150
+msgid "Simplified Chinese"
+msgstr "중국어 간체자"
+
+#: src/font-manager/Orthographies.vala:151
+msgid "Sindhi"
+msgstr "신디어"
+
+#: src/font-manager/Orthographies.vala:152
+#: src/font-manager/web/google/Language.vala:55
+msgid "Sinhala"
+msgstr "싱할라어"
+
+#: src/font-manager/Orthographies.vala:153
+msgid "South Korean Hanja"
+msgstr "한국 한자"
+
+#: src/font-manager/Orthographies.vala:154
+msgid "Sundanese"
+msgstr "순다어"
+
+#: src/font-manager/Orthographies.vala:155
+msgid "Syloti Nagri"
+msgstr "실로티 나그리 문자"
+
+#: src/font-manager/Orthographies.vala:156
+msgid "Syriac"
+msgstr "시리아어"
+
+#: src/font-manager/Orthographies.vala:157
+msgid "Tai Le"
+msgstr "타이 레 문자"
+
+#: src/font-manager/Orthographies.vala:158
+msgid "Tai Tham (Lanna)"
+msgstr "타이탐 문자 (란나 문자)"
+
+#: src/font-manager/Orthographies.vala:159
+msgid "Tai Viet"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:160
+#: src/font-manager/web/google/Language.vala:56
+msgid "Tamil"
+msgstr "타밀어"
+
+#: src/font-manager/Orthographies.vala:161
+#: src/font-manager/web/google/Language.vala:57
+msgid "Telugu"
+msgstr "텔루구어"
+
+#: src/font-manager/Orthographies.vala:162
+msgid "Thaana"
+msgstr "타나 문자"
+
+#: src/font-manager/Orthographies.vala:163
+#: src/font-manager/web/google/Language.vala:58
+msgid "Thai"
+msgstr "태국어"
+
+#: src/font-manager/Orthographies.vala:164
+#: src/font-manager/web/google/Language.vala:59
+msgid "Tibetan"
+msgstr "티베트어"
+
+#: src/font-manager/Orthographies.vala:165
+msgid "Tifinagh"
+msgstr "티피나그 문자"
+
+#: src/font-manager/Orthographies.vala:166
+msgid "Traditional Chinese"
+msgstr "중국어 번체 문자"
+
+#: src/font-manager/Orthographies.vala:167
+msgid "Turkish"
+msgstr "터키어"
+
+#: src/font-manager/Orthographies.vala:168
+msgid "Uighur"
+msgstr "위구르어"
+
+#: src/font-manager/Orthographies.vala:169
+msgid "Urdu"
+msgstr "우르두어"
+
+#: src/font-manager/Orthographies.vala:170
+msgid "Vai"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:171
+msgid "Vedic Extensions"
+msgstr "베다 확장"
+
+#: src/font-manager/Orthographies.vala:172
+msgid "Venda"
+msgstr "벤다 언어"
+
+#: src/font-manager/Orthographies.vala:173
+#: src/font-manager/web/google/Language.vala:60
+msgid "Vietnamese"
+msgstr "베트남어"
+
+#: src/font-manager/Orthographies.vala:174
+msgid "Western European"
+msgstr "서유럽"
+
+#: src/font-manager/Orthographies.vala:175
+msgid "Yi"
+msgstr ""
+
+#: src/font-manager/Orthographies.vala:176
+msgid "Chinese Zhuyin Fuhao"
+msgstr ""
+
+#. Translators : Coverage refers to the amount of support the font provides for an
+#. orthography. This will be displayed as "Coverage : XXX%" in the interface.
+#: src/font-manager/Orthography.vala:124
+msgid "Coverage"
+msgstr "적용 범위"
+
+#: src/font-manager/Orthography.vala:153
+#: src/font-manager/filters/LanguageFilter.vala:58
+#: src/font-manager/web/google/ui/google-font-filters.ui:503
+msgid "Supported Orthographies"
+msgstr "지원되는 맞춤법"
+
+#: src/font-manager/Orthography.vala:204
+msgid "Update in progress"
+msgstr "업데이트 진행중"
+
+#: src/font-manager/TitleBar.vala:62
+msgid "Updating Database — Fonts"
+msgstr "데이터베이스 업데이트 중 — 글꼴"
+
+#: src/font-manager/TitleBar.vala:64
+msgid "Updating Database — Metadata"
+msgstr "데이터베이스 업데이트 중 - 메타데이터"
+
+#: src/font-manager/TitleBar.vala:66
+msgid "Updating Database — Orthography"
+msgstr "데이터베이스 업데이트 중 - 맞춤법"
+
+#: src/font-manager/TitleBar.vala:83
+msgid "Keyboard Shortcuts"
+msgstr "키보드 단축키"
+
+#: src/font-manager/TitleBar.vala:84
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:19
+msgid "Help"
+msgstr "지원"
+
+#: src/font-manager/TitleBar.vala:85
+msgid "About"
+msgstr ""
+
+#: src/font-manager/TitleBar.vala:103
+msgid "Import"
+msgstr "불러오기"
+
+#: src/font-manager/TitleBar.vala:104 src/font-manager/UserData.vala:132
+msgid "Export"
+msgstr "내보내기"
+
+#: src/font-manager/TitleBar.vala:111 src/font-manager/UserData.vala:37
+#: src/font-manager/UserData.vala:48
+msgid "User Data"
+msgstr "사용자 데이터"
+
+#. HAVE_WEBKIT
+#: src/font-manager/TitleBar.vala:267
+msgid "Add Fonts"
+msgstr "글꼴 추가"
+
+#: src/font-manager/TitleBar.vala:268
+msgid "Remove Fonts"
+msgstr "글꼴 삭제"
+
+#: src/font-manager/TitleBar.vala:275
+#: src/font-manager/ui/font-manager-main-window.ui:189
+msgid "Preferences"
+msgstr ""
+
+#: src/font-manager/UserData.vala:55
+msgid "Select Exported Data"
+msgstr "내보낸 데이터 선택"
+
+#: src/font-manager/Utils.vala:220
+msgid "Copying files…"
+msgstr "파일 복사 중…"
+
+#: src/font-manager/filters/Collection.vala:48
+msgid "New Collection"
+msgstr "새 컬렉션"
+
+#: src/font-manager/filters/Collection.vala:50
+#, c-format
+msgid "Created : %s"
+msgstr "생성됨: %s"
+
+#: src/font-manager/filters/Disabled.vala:26
+msgid "Disabled"
+msgstr "비활성화됨"
+
+#: src/font-manager/filters/Disabled.vala:26
+msgid "Fonts which have been disabled"
+msgstr "비활성화된 글꼴"
+
+#: src/font-manager/filters/LanguageFilter.vala:28
+msgid "Filter based on supported orthographies"
+msgstr "지원되는 맞춤법을 기준으로 필터링"
+
+#: src/font-manager/filters/Unsorted.vala:26
+msgid "Unsorted"
+msgstr "정렬되지 않음"
+
+#: src/font-manager/filters/Unsorted.vala:26
+msgid "Fonts not present in any collection"
+msgstr "어떤 컬렉션에도 글꼴이 없습니다"
+
+#: src/font-manager/filters/UserFonts.vala:27
+msgid "User"
+msgstr "사용자"
+
+#: src/font-manager/filters/UserFonts.vala:27
+msgid "Fonts available only to you"
+msgstr "사용자만 사용할 수 있는 글꼴"
+
+#: src/font-manager/preferences/Desktop.vala:36
+msgid "Interface Font"
+msgstr "인터페이스 글꼴"
+
+#: src/font-manager/preferences/Desktop.vala:37
+msgid "Font used throughout interface."
+msgstr "인터페이스 전체에서 사용되는 글꼴입니다."
+
+#: src/font-manager/preferences/Desktop.vala:42
+msgid "Document Font"
+msgstr "문서 글꼴"
+
+#: src/font-manager/preferences/Desktop.vala:43
+msgid "Font used for reading documents."
+msgstr "문서를 읽는 데 사용되는 글꼴입니다."
+
+#: src/font-manager/preferences/Desktop.vala:48
+msgid "Monospace Font"
+msgstr "단일간격 글꼴"
+
+#: src/font-manager/preferences/Desktop.vala:49
+msgid "Monospaced (fixed-width) font for use in locations such as terminals."
+msgstr "터미널과 같은 위치에서 사용할 수 있는 단일 간격(고정 너비) 글꼴입니다."
+
+#: src/font-manager/preferences/Desktop.vala:54
+msgid "Text Scaling Factor"
+msgstr ""
+
+#: src/font-manager/preferences/Desktop.vala:55
+msgid ""
+"Factor used to enlarge or reduce text display, without changing font size"
+msgstr "글꼴 크기를 변경하지 않고 텍스트 표시를 확대 또는 축소하는 데 사용되는 요인"
+
+#: src/font-manager/preferences/Desktop.vala:60
+#: src/font-manager/preferences/Desktop.vala:78
+msgid "Antialiasing"
+msgstr "안티에일리어싱"
+
+#: src/font-manager/preferences/Desktop.vala:61
+#: src/font-manager/preferences/Desktop.vala:79
+msgid "The type of antialiasing to use when rendering fonts."
+msgstr "글꼴을 렌더링할 때 사용할 안티에일리어싱 유형입니다."
+
+#: src/font-manager/preferences/Desktop.vala:66
+#: src/font-manager/preferences/Desktop.vala:84
+msgid "RGBA order"
+msgstr "RGBA 순서"
+
+#: src/font-manager/preferences/Desktop.vala:67
+#: src/font-manager/preferences/Desktop.vala:85
+msgid ""
+"The order of subpixel elements on an LCD screen; only used when antialiasing "
+"is set to rgba."
+msgstr "LCD 화면의 하위 픽셀 요소 순서; 안티에이리어싱이 rgba로 설정된 경우에만 "
+"사용됩니다."
+
+#: src/font-manager/preferences/Desktop.vala:72
+#: src/font-manager/preferences/Desktop.vala:90
+#: src/font-manager/preferences/Fontconfig.vala:329
+msgid "Hinting"
+msgstr "힌트"
+
+#: src/font-manager/preferences/Desktop.vala:73
+#: src/font-manager/preferences/Desktop.vala:91
+msgid "The type of hinting to use when rendering fonts."
+msgstr "글꼴을 렌더링할 때 사용할 힌트 유형입니다."
+
+#: src/font-manager/preferences/Desktop.vala:116
+msgid "GNOME desktop settings schema not found"
+msgstr "GNOME 데스크톱 설정 스키마를 찾을 수 없습니다"
+
+#: src/font-manager/preferences/Fontconfig.vala:167
+msgid ""
+"Select save to generate a fontconfig configuration file from the above "
+"settings.\n"
+"\n"
+"Select discard to remove the configuration file and revert to the default "
+"settings.\n"
+"\n"
+"Note that not all environments/applications will honor these settings."
+msgstr ""
+"위의 설정에서 글꼴 구성 구성 파일을 생성하려면 저장을 선택하십시오.\n"
+"\n"
+"구성 파일을 제거하고 기본 설정으로 되돌리려면 삭제를 선택합니다.\n"
+"\n"
+"모든 환경/애플리케이션이 이러한 설정을 준수하는 것은 아닙니다."
+
+#: src/font-manager/preferences/Fontconfig.vala:204
+#: src/font-manager/preferences/Fontconfig.vala:282
+#: src/font-manager/preferences/Fontconfig.vala:456
+msgid "Settings saved to file."
+msgstr "설정이 파일에 저장되었습니다."
+
+#: src/font-manager/preferences/Fontconfig.vala:208
+#: src/font-manager/preferences/Fontconfig.vala:286
+#: src/font-manager/preferences/Fontconfig.vala:460
+msgid "Removed configuration file."
+msgstr "구성 파일이 제거되었습니다."
+
+#: src/font-manager/preferences/Fontconfig.vala:235
+msgid "Target DPI"
+msgstr "대상 DPI"
+
+#: src/font-manager/preferences/Fontconfig.vala:236
+msgid "Scale Factor"
+msgstr ""
+
+#: src/font-manager/preferences/Fontconfig.vala:240
+msgid "LCD Filter"
+msgstr "LCD 필터"
+
+#: src/font-manager/preferences/Fontconfig.vala:328
+msgid "Antialias"
+msgstr "안티앨리어스"
+
+#: src/font-manager/preferences/Fontconfig.vala:330
+msgid "Enable Autohinter"
+msgstr ""
+
+#: src/font-manager/preferences/Fontconfig.vala:339
+msgid "Hinting Style"
+msgstr "힌트 스타일"
+
+#: src/font-manager/preferences/Fontconfig.vala:340
+msgid "Use Embedded Bitmaps"
+msgstr "내장 비트맵 사용"
+
+#: src/font-manager/preferences/Fontconfig.vala:342
+#: src/font-manager/preferences/Fontconfig.vala:348
+msgid " Size Restrictions "
+msgstr " 크기 제한 "
+
+#: src/font-manager/preferences/Fontconfig.vala:346
+msgid " Apply settings to point sizes "
+msgstr " 점 크기에 설정 적용 "
+
+#: src/font-manager/preferences/Fontconfig.vala:406
+msgid "Smaller than"
+msgstr "다음보다 작음"
+
+#: src/font-manager/preferences/Fontconfig.vala:407
+msgid "Larger than"
+msgstr "다음보다 큼"
+
+#: src/font-manager/preferences/Fontconfig.vala:427
+msgid "Add alias"
+msgstr "앨리어스 추가"
+
+#: src/font-manager/preferences/Fontconfig.vala:428
+msgid "Remove selected alias"
+msgstr "선택한 앨리어스 제거"
+
+#: src/font-manager/preferences/Fontconfig.vala:599
+msgid "Font Substitutions"
+msgstr "글꼴 대체"
+
+#: src/font-manager/preferences/Fontconfig.vala:600
+msgid "Easily substitute one font family for another."
+msgstr "한 글꼴 모음을 다른 글꼴 모음으로 쉽게 대체할 수 있습니다."
+
+#: src/font-manager/preferences/Fontconfig.vala:601
+msgid "To add a new substitute click the add button in the toolbar."
+msgstr "새 대체품을 추가하려면 도구 모음에서 추가 단추를 클릭합니다."
+
+#: src/font-manager/preferences/Preferences.vala:24
+msgid "Interface"
+msgstr "인터페이스"
+
+#: src/font-manager/preferences/Preferences.vala:25
+msgid "Desktop"
+msgstr "데스크톱"
+
+#: src/font-manager/preferences/Preferences.vala:26
+msgid "Sources"
+msgstr ""
+
+#: src/font-manager/preferences/Preferences.vala:27
+msgid "Actions"
+msgstr "작업"
+
+#: src/font-manager/preferences/Preferences.vala:28
+msgid "Substitutions"
+msgstr ""
+
+#: src/font-manager/preferences/Preferences.vala:29
+#: src/font-manager/web/google/ui/google-font-filters.ui:204
+msgid "Display"
+msgstr "표시"
+
+#: src/font-manager/preferences/Preferences.vala:30
+msgid "Rendering"
+msgstr ""
+
+#: src/font-manager/preferences/UserActions.vala:198
+msgid ""
+"Actions defined here will be added to the font list context menu.\n"
+"\n"
+"By default the filepath for the selected font will be appended to the end of "
+"the argument list.\n"
+"To control where the filepath is inserted use FILEPATH as a placeholder.\n"
+"If FAMILY or STYLE are found in the argument list they will also be replaced."
+msgstr ""
+"여기에 정의된 작업은 글꼴 목록 컨텍스트 메뉴에 추가됩니다. \n"
+"\n"
+"기본적으로 선택한 글꼴의 파일 경로는 인수 목록 끝에 추가됩니다. \n"
+"파일 경로가 삽입되는 위치를 제어하려면 [파일경로]를 자리 표시자로 "
+"사용합니다. \n"
+"인수 목록에 [글꼴집합] 또는 [스타일]이 있는 경우, 해당 항목도 대체됩니다."
+
+#: src/font-manager/preferences/UserActions.vala:214
+msgid "User Actions"
+msgstr "사용자 작업"
+
+#: src/font-manager/preferences/UserActions.vala:214
+msgid "Custom context menu entries"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:203
+msgid "Wide Layout"
+msgstr "넓은 레이아웃"
+
+#: src/font-manager/preferences/UserInterface.vala:206
+msgid "Only When Maximized"
+msgstr "최대화된 경우에만"
+
+#: src/font-manager/preferences/UserInterface.vala:209
+msgid "Client Side Decorations"
+msgstr ""
+
+#: src/font-manager/preferences/UserInterface.vala:213
+msgid "Enable Animations"
+msgstr "애니메이션 사용"
+
+#: src/font-manager/preferences/UserInterface.vala:214
+msgid "Prefer Dark Theme"
+msgstr "어두운 테마 선호"
+
+#: src/font-manager/preferences/UserInterface.vala:268
+msgid ""
+"CSD enabled. Change will take effect next time the application is started."
+msgstr "CSD가 활성화되었습니다. 다음에 응용프로그램을 시작할 때 변경사항이 "
+"적용됩니다."
+
+#: src/font-manager/preferences/UserInterface.vala:270
+msgid ""
+"CSD disabled. Change will take effect next time the application is started."
+msgstr "CSD가 비활성화되었습니다. 다음에 응용프로그램을 시작할 때 변경사항이 "
+"적용됩니다."
+
+#: src/font-manager/preferences/UserSources.vala:146
+msgid ""
+"Fonts in any folders listed here will be available within the application.\n"
+"\n"
+"They will not be visible to other applications until the source is actually "
+"enabled.\n"
+"\n"
+"Note that not all environments/applications will honor these settings."
+msgstr ""
+"여기에 나열된 폴더의 글꼴은 응용프로그램 내에서 사용할 수 있습니다.\n"
+"\n"
+"소스가 실제로 활성화될 때까지 다른 응용프로그램에 표시되지 않습니다.\n"
+"\n"
+"모든 환경/애플리케이션이 이러한 설정을 준수하는 것은 아닙니다."
+
+#: src/font-manager/preferences/UserSources.vala:162
+#: src/font-manager/ui/font-manager-user-data.ui:131
+msgid "Font Sources"
+msgstr "글꼴 소스"
+
+#: src/font-manager/preferences/UserSources.vala:163
+msgid "Easily add or preview fonts without actually installing them."
+msgstr "글꼴을 실제로 설치하지 않고도 글꼴을 쉽게 추가하거나 미리 볼 수 있습니다."
+
+#: src/font-manager/preferences/UserSources.vala:164
+msgid ""
+"To add a new source simply drag a folder onto this area or click the add "
+"button in the toolbar."
+msgstr "새 소스를 추가하려면 폴더를 이 영역으로 끌어다 놓거나 도구 모음에서 추가 "
+"단추를 클릭하십시오."
+
+#: src/font-manager/web/google/FontList.vala:56
+msgid "Case insensitive search of family names."
+msgstr "글꼴 집합 이름의 대소문자를 구분하지 않는 검색."
+
+#: src/font-manager/web/google/GoogleFonts.vala:129
+msgid "Error procesing data"
+msgstr "데이터 처리 중 오류"
+
+#: src/font-manager/web/google/GoogleFonts.vala:138
+msgid "Network Error"
+msgstr "네트워크 오류"
+
+#: src/font-manager/web/google/GoogleFonts.vala:139
+msgid "Please check your network settings"
+msgstr "네트워크 설정을 확인하십시오"
+
+#: src/font-manager/web/google/GoogleFonts.vala:141
+msgid "Client Error"
+msgstr "클라이언트 오류"
+
+#: src/font-manager/web/google/GoogleFonts.vala:142
+msgid ""
+"Try restarting the application. If the issue persists, please file a bug."
+msgstr "응용 프로그램을 다시 시작해 보십시오. 문제가 지속되면 버그를 제출하십시오."
+
+#: src/font-manager/web/google/GoogleFonts.vala:145
+msgid "Server Error"
+msgstr "서버 오류"
+
+#: src/font-manager/web/google/GoogleFonts.vala:215
+msgid "Network Offline"
+msgstr "네트워크 오프라인"
+
+#. Translators : Avoid translating "Google Fonts" in this message, if possible
+#: src/font-manager/web/google/GoogleFonts.vala:217
+msgid ""
+"An active internet connection is required to access the Google Fonts catalog"
+msgstr "Google 글꼴 카탈로그에 액세스하려면 활성 인터넷 연결이 필요합니다"
+
+#: src/font-manager/web/google/Language.vala:35
+msgid "Chinese (Hong Kong)"
+msgstr "중국어(홍콩)"
+
+#: src/font-manager/web/google/Language.vala:36
+msgid "Chinese (Simplified)"
+msgstr "중국어 (간체)"
+
+#: src/font-manager/web/google/Language.vala:37
+msgid "Chinese (Traditional)"
+msgstr "중국어 (번체)"
+
+#: src/font-manager/web/google/Language.vala:38
+msgid "Cyrillic"
+msgstr "키릴 문자"
+
+#: src/font-manager/web/google/Language.vala:39
+msgid "Cyrillic Extended"
+msgstr "키릴 확장"
+
+#: src/font-manager/web/google/Language.vala:41
+msgid "Greek"
+msgstr "그리스어"
+
+#: src/font-manager/web/google/Language.vala:42
+msgid "Greek Extended"
+msgstr "그리스어 확장"
+
+#: src/font-manager/web/google/Language.vala:46
+msgid "Japanese"
+msgstr "일본어"
+
+#: src/font-manager/web/google/Language.vala:49
+msgid "Korean"
+msgstr "한국어"
+
+#: src/font-manager/web/google/Language.vala:50
+msgid "Latin"
+msgstr "라틴어"
+
+#: src/font-manager/web/google/Language.vala:51
+msgid "Latin Extended"
+msgstr "라틴어 확장"
+
+#. TRANSLATORS : The replacement character here refers to a language name
+#: src/font-manager/web/google/Language.vala:81
+#, c-format
+msgid "No sample for %s available"
+msgstr "%s에 대한 샘플이 없습니다"
+
+#: src/font-manager/web/google/Language.vala:83
+msgid "Please file an issue requesting an update to available samples."
+msgstr "사용 가능한 샘플에 대한 업데이트를 요청하는 이슈를 제출하십시오."
+
+#: src/font-manager/web/google/PreviewPane.vala:293
+msgid "Update Family"
+msgstr "글꼴 집합 업데이트"
+
+#: src/font-manager/web/google/PreviewPane.vala:293
+msgid "Update Font"
+msgstr "폰트 업데이트"
+
+#: src/font-manager/web/google/PreviewPane.vala:298
+msgid "Remove Family"
+msgstr "글꼴 집합 제거"
+
+#: src/font-manager/web/google/PreviewPane.vala:298
+msgid "Remove Font"
+msgstr "글꼴 제거"
+
+#: src/font-manager/web/google/PreviewPane.vala:303
+msgid "Download Family"
+msgstr "글꼴 집합 다운로드"
+
+#: src/font-manager/web/google/PreviewPane.vala:303
+msgid "Download Font"
+msgstr "글꼴 다운로드"
+
+#: src/font-manager/web/google/PreviewPane.vala:313
+#, c-format
+msgid "%i Language Sample Available "
+msgid_plural "%i Language Samples Available"
+msgstr[0] "%i 언어 샘플 사용 가능"
+
+#: src/font-manager/web/google/Weight.vala:67
+msgid "ExtraLight"
+msgstr ""
+
+#: src/font-manager/web/google/Weight.vala:75
+msgid "SemiBold"
+msgstr ""
+
+#: src/font-manager/web/google/Weight.vala:79
+msgid "ExtraBold"
+msgstr ""
+
+#: src/font-manager/web/google/Weight.vala:81
+msgid "Black"
+msgstr ""
+
+#: src/font-viewer/MainWindow.vala:24
+msgid "Preview font files before installing them."
+msgstr "글꼴 파일을 설치하기 전에 미리 확인합니다."
+
+#: src/font-viewer/MainWindow.vala:25
+msgid "To preview a font simply drag it onto this area."
+msgstr "글꼴을 미리 보려면 이 영역으로 드래그하면 됩니다."
+
+#: src/font-viewer/MainWindow.vala:122
+msgid "No file selected"
+msgstr "선택한 파일이 없습니다"
+
+#: src/font-viewer/MainWindow.vala:123
+msgid "Or unsupported filetype."
+msgstr "또는 지원되지 않는 파일 형식입니다."
+
+#: src/font-viewer/MainWindow.vala:172
+msgid "Newer version already installed"
+msgstr "새 버전이 이미 설치됨"
+
+#: src/font-viewer/MainWindow.vala:174
+msgid "Installed"
+msgstr "설치됨"
+
+#: src/font-viewer/MainWindow.vala:177
+#: src/font-viewer/font-viewer-main-window.ui:53
+msgid "Install Font"
+msgstr "글꼴 설치"
+
+#: lib/unicode/ui/unicode-character-map-zoom-window.ui:80
+msgid "Copy"
+msgstr "복사하기"
+
+#: src/font-manager/ui/font-manager-browse-view.ui:34
+msgid "List View"
+msgstr "목록 보기"
+
+#: src/font-manager/ui/font-manager-browse-view.ui:68
+msgid "Grid View"
+msgstr "그리드 보기"
+
+#: src/font-manager/ui/font-manager-browse-view.ui:116
+msgid "Enter Preview Text…"
+msgstr "미리보기 텍스트 입력…"
+
+#: src/font-manager/ui/font-manager-browse-view.ui:182
+msgid "Previous page"
+msgstr "이전 페이지"
+
+#: src/font-manager/ui/font-manager-browse-view.ui:210
+msgid "Next page"
+msgstr "다음 페이지"
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
+msgid "Collection Name"
+msgstr "컬렉션 이름"
+
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:54
+msgid "_Rename"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-compare-view.ui:57
+msgid "Add selected font to comparison"
+msgstr "선택한 글꼴을 비교에 추가합니다"
+
+#: src/font-manager/ui/font-manager-compare-view.ui:84
+msgid "Remove selected font from comparison"
+msgstr "비교에서 선택한 글꼴 제거"
+
+#: src/font-manager/ui/font-manager-compare-view.ui:110
+msgid "Pinned Comparisons"
+msgstr "고정 비교"
+
+#: src/font-manager/ui/font-manager-compare-view.ui:136
+#: src/font-manager/ui/font-manager-compare-view.ui:140
+#: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:73
+#: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:76
+msgid "Select background color"
+msgstr "배경색 선택"
+
+#: src/font-manager/ui/font-manager-compare-view.ui:157
+#: src/font-manager/ui/font-manager-compare-view.ui:161
+#: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:90
+#: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:93
+msgid "Select text color"
+msgstr "텍스트 색상 선택"
+
+#: src/font-manager/ui/font-manager-font-config-controls.ui:12
+msgid "Discard"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-font-config-controls.ui:30
+msgid "Running applications may require a restart to reflect any changes."
+msgstr "응용 프로그램을 실행하려면 변경 사항을 반영하기 위해 다시 시작해야 할 수도 "
+"있습니다."
+
+#: src/font-manager/ui/font-manager-font-config-controls.ui:40
+msgid "Save"
+msgstr "저장"
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:32
+msgid "Back"
+msgstr "뒤로가기"
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:62
+msgid "Search Orthographies…"
+msgstr "맞춤법 검색…"
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:77
+msgid "Deselect All"
+msgstr "모두 선택 취소"
+
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:156
+msgid "Minimum Coverage"
+msgstr "최소 적용 범위"
+
+#: src/font-manager/ui/font-manager-orthography-list.ui:86
+msgid "Clear selected filter"
+msgstr "선택한 필터 지우기"
+
+#: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:27
+msgid "Created : "
+msgstr "작성됨: "
+
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:32
+msgid "Save current comparison"
+msgstr "현재 비교 저장"
+
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:62
+msgid "Remove selected comparison"
+msgstr "선택한 비교 제거"
+
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:92
+msgid "Restore selected comparison"
+msgstr "선택한 비교 복원"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:14
+msgid "General"
+msgstr "일반"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:26
+msgid "Increase preview size"
+msgstr "미리보기 크기 증가"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:33
+msgid "Decrease preview size"
+msgstr "미리보기 크기 감소"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:40
+msgid "Reset preview size"
+msgstr "미리보기 크기 재설정"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:47
+msgid "Reload"
+msgstr "재로딩"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:54
+msgid "Quit the application"
+msgstr "응용 프로그램 종료"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:62
+msgid "Mode"
+msgstr "모드"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:67
+msgid "Switch to Manage mode"
+msgstr "관리 모드로 전환"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:74
+msgid "Switch to Browse mode"
+msgstr "브라우저 모드로 전환"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:81
+msgid "Switch to Compare mode"
+msgstr "비교 모드로 전환"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:89
+msgid "Preview Mode"
+msgstr "미리보기 모드"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:94
+msgid "Switch to Standard preview"
+msgstr "표준 미리 보기로 전환"
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:101
+msgid "Switch to Waterfall preview"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:108
+msgid "Switch to Body Text preview"
+msgstr "본문 텍스트 미리 보기로 전환"
+
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:58
+msgid "Categories"
+msgstr "범주"
+
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:129
+msgid "Collections"
+msgstr "컬렉션"
+
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:175
+msgid "Edit selected category"
+msgstr "선택한 범주 편집하기"
+
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:198
+msgid "Add new collection"
+msgstr "새 컬렉션 추가"
+
+#: src/font-manager/ui/font-manager-standard-sidebar.ui:221
+msgid "Remove selected collection"
+msgstr "선택한 컬렉션 제거"
+
+#: src/font-manager/ui/font-manager-subpixel-geometry.ui:44
+msgid "Subpixel Geometry"
+msgstr "하위 픽셀 지오메트리"
+
+#: src/font-manager/ui/font-manager-substitute-row.ui:18
+msgid "Enter target family"
+msgstr "대상 글꼴 집합 입력하기"
+
+#: src/font-manager/ui/font-manager-substitute-row.ui:32
+msgid "Add substitute"
+msgstr "대체 추가"
+
+#: src/font-manager/ui/font-manager-substitute.ui:41
+msgid "Remove substitute"
+msgstr "대체 삭제"
+
+#: src/font-manager/ui/font-manager-substitute.ui:42
+msgid "Enter substitute family"
+msgstr "대체 글꼴 집합 입력하기"
+
+#: src/font-manager/ui/font-manager-substitute.ui:59
+msgid "prefer"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-substitute.ui:60
+msgid "accept"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-substitute.ui:61
+msgid "default"
+msgstr "기본값"
+
+#: src/font-manager/ui/font-manager-title-button-style.ui:13
+msgid "Titlebar Button Style"
+msgstr "제목 표시줄 단추 스타일"
+
+#: src/font-manager/ui/font-manager-title-button-style.ui:43
+msgid "Flat"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:16
+#: src/font-manager/web/google/ui/google-font-filters.ui:52
+msgid "Name"
+msgstr "이름"
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:31
+msgid "Comment"
+msgstr "댓글"
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:47
+msgid "Executable"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-user-action-row.ui:63
+msgid "Arguments"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-user-data.ui:73
+msgid "Font Configuration"
+msgstr "글꼴 구성"
+
+#: src/font-manager/ui/font-manager-user-data.ui:102
+msgid "Font Collections"
+msgstr "글꼴 컬렉션"
+
+#: src/font-manager/ui/font-manager-user-data.ui:160
+msgid "Installed Fonts"
+msgstr "설치된 글꼴"
+
+#: src/font-manager/ui/font-manager-user-data.ui:189
+msgid "Custom Actions"
+msgstr "사용자 지정 작업"
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:25
+msgid "Display line size in Waterfall Preview"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:74
+msgid "Waterfall Preview Size Settings"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:93
+msgid "Up to 48 points (Linear Scaling)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:94
+msgid "Up to 72 points (1.1 Common Ratio)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:95
+msgid "Up to 96 points (Linear Scaling)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:96
+msgid "Up to 96 points (1.1 Common Ratio)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:97
+msgid "Up to 120 points (1.2 Common Ratio)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:98
+msgid "Up to 144 points (1.3 Common Ratio)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:99
+msgid "Up to 192 points (1.4 Common Ratio)"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:100
+msgid "Custom Size Settings"
+msgstr "사용자 지정 크기 설정"
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:142
+msgid "Minimum Waterfall Preview Point Size"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:155
+msgid "8.0"
+msgstr "8.0"
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:174
+msgid "Maximum Waterfall Preview Point Size"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:185
+msgid "Higher values may adversely affect performance"
+msgstr "값이 높을수록 성능에 악영향을 미칠 수 있음"
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:188
+msgid "48.0"
+msgstr "48.0"
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:207
+msgid "Waterfall Preview Point Size Common Ratio"
+msgstr ""
+
+#: src/font-manager/ui/font-manager-waterfall-size.ui:220
+msgid "1.0"
+msgstr "1.0"
+
+#: src/font-manager/web/google/ui/google-font-filters.ui:53
+msgid "Newest"
+msgstr "가장 최신"
+
+#: src/font-manager/web/google/ui/google-font-filters.ui:54
+msgid "Most Popular"
+msgstr "가장 인기"
+
+#: src/font-manager/web/google/ui/google-font-filters.ui:55
+msgid "Trending"
+msgstr "트렌드"
+
+#: src/font-manager/web/google/ui/google-font-filters.ui:69
+msgid "Sort Order"
+msgstr "정렬 순서"
+
+#: src/font-manager/web/google/ui/google-font-filters.ui:148
+msgid "Serif"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-font-filters.ui:176
+msgid "Sans Serif"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-font-filters.ui:232
+msgid "Handwriting"
+msgstr ""
+
+#: src/font-manager/web/google/ui/google-font-filters.ui:282
+msgid "Category"
+msgstr "범주"
+
+#: src/font-manager/web/google/ui/google-font-filters.ui:434
+msgid "Variations"
+msgstr ""

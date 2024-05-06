@@ -10,6 +10,9 @@ valac = meson.get_compiler('vala')
 if not valac.version().version_compare('>= 0.56.3')
     error('Vala compiler version is @0@ but project requires >= 0.56.3'.format(valac.version()))
 endif
+if valac.version().version_compare('>= 0.56.17')
+    add_global_arguments('-D', 'VALA_0_56_17', language: 'vala')
+endif
 
 cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required: false)
@@ -33,6 +36,7 @@ if get_option('webkit')
     add_global_arguments('-D', 'HAVE_WEBKIT', language: 'vala')
 endif
 
+i18n = import('i18n')
 gnome = import('gnome')
 python = import('python').find_installation('python3')
 
@@ -66,10 +70,6 @@ config.set('BINDIR', join_paths(prefix, 'bin'))
 config.set('LOCALEDIR', join_paths(prefix, datadir, 'locale'))
 config.set('SRCDIR', meson.current_build_dir())
 
-# XXX
-config.set('TEST_MODULE_PATH', join_paths(meson.current_build_dir(), 'test', 'tests'))
-config.set('TEST_ENTRIES', join_paths(meson.current_source_dir(), 'test', 'tests.json'))
-
 configure_file(input: 'config.h.meson', output: 'config.h', configuration: config)
 
 reproducible = get_option('reproducible') ? '-DREPRODUCIBLE' : '-DNOT_REPRODUCIBLE'
@@ -89,9 +89,18 @@ endif
 
 subdir('lib')
 subdir('src')
+subdir('extensions')
+subdir('help')
+subdir('data')
+
 subdir('test')
 
 meson.add_dist_script('meson_dist.py')
+meson.add_install_script('meson_post_install.py')
+
+if get_option('enable-nls')
+    subdir('po')
+endif
 
 gnome.post_install(
     glib_compile_schemas: true,

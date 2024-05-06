@@ -1,0 +1,27 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="fontconfig">
+
+    <info>
+        <link type="guide" xref="index#advanced"/>
+        <desc>Generate fontconfig configuration files</desc>
+    </info>
+
+    <title>Display and Rendering Preferences</title>
+
+    <p>
+        The "Display" and "Rendering" panes in the preferences dialog generate
+        valid fontconfig configuration files for the exposed properties.
+    </p>
+
+    <p>
+        See <link href="https://www.freedesktop.org/software/fontconfig/fontconfig-user.html">fonts-conf</link> for more details.
+    </p>
+
+    <note style="important">
+        <p>
+           Desktop environments and applications may rely on their own configuration mechanism.
+        </p>
+    </note>
+
+</page>

@@ -1,0 +1,1330 @@
+# Jerry Casiano <JerryCasiano@gmail.com>, 2019. #zanata
+# Toni Estevez <toni.estevez@gmail.com>, 2019. #zanata
+# Adolfo Jayme <fitoschido@gmail.com>, 2020. #zanata
+# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2021.
+# gallegonovato <fran-carro@hotmail.es>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-07-26 21:37-0400\n"
+"PO-Revision-Date: 2023-04-01 14:41+0000\n"
+"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/font-manager/"
+"font-manager-help-docs/es/>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.17-dev\n"
+
+#. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
+msgctxt "_"
+msgid "translator-credits"
+msgstr ""
+"Toni Estevez <toni.estevez@gmail.com>\n"
+"Adolfo Jayme Barrientos <fitojb@ubuntu.com>"
+
+#. (itstool) path: info/desc
+#: C/font-manager-categories.page:7
+msgid "Automatically generated categories"
+msgstr "Categorías generadas automáticamente"
+
+#. (itstool) path: page/title
+#: C/font-manager-categories.page:10
+msgid "Categories"
+msgstr "Categorías"
+
+#. (itstool) path: page/p
+#: C/font-manager-categories.page:12
+msgid ""
+"<app>Font Manager</app> automatically categorizes your fonts based on "
+"various properties."
+msgstr ""
+"<app>Gestor tipográfico</app> categoriza los tipos de letra según varias "
+"propiedades."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:19
+msgid "All"
+msgstr "Todos"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:20
+msgid "All available fonts."
+msgstr "Todos los tipos de letra disponibles."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:25
+msgid "System"
+msgstr "Sistema"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:26
+msgid "Fonts available to all users."
+msgstr "Tipos de letra disponibles para todos los usuarios."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:31
+msgid "User"
+msgstr "De usuario"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:32
+msgid "Fonts available only to you."
+msgstr "Tipos de letra disponibles solo para el usuario actual."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:37
+msgid "Family Kind"
+msgstr "Tipo de familia"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:38
+msgid ""
+"Sorted by Family Kind — Requires Panose information to be present in font "
+"metadata."
+msgstr ""
+"Ordenadas por la clase de familia: requiere que la información de PANOSE "
+"esté presente en los metadatos del tipo de letra."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:43
+msgid "Width"
+msgstr "Anchura"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:44
+msgid "Sorted by font width property."
+msgstr "Ordenadas por la propiedad de anchura de la letra."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:49
+msgid "Weight"
+msgstr "Peso"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:50
+msgid "Sorted by font weight property."
+msgstr "Ordenadas por la propiedad de peso de la letra."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:55
+msgid "Slant"
+msgstr "Inclinación"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:56
+msgid "Sorted by font slant property."
+msgstr "Ordenadas por la propiedad de inclinación de la letra."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:61
+msgid "Spacing"
+msgstr "Espaciado"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:62
+msgid "Sorted by font spacing property."
+msgstr "Ordenadas por la propiedad de espaciado de la letra."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:67
+msgid "License"
+msgstr "Licencia"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:68
+msgid ""
+"Sorted by font license — Requires license information to be present in font "
+"metadata."
+msgstr ""
+"Ordenadas por licencia del tipo de letra; requiere que la información de la "
+"licencia esté presente en los metadatos del tipo de letra."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:73
+msgid "Vendor"
+msgstr "Distribuidora"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:74
+msgid ""
+"Sorted by font vendor — Requires vendor information to be present in font "
+"metadata."
+msgstr ""
+"Ordenadas por el proveedor del tipo de letra; requiere que la información "
+"del proveedor esté presente en los metadatos del tipo de letra."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:79
+msgid "Filetype"
+msgstr "Tipo de archivo"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:80
+msgid "Sorted by file format."
+msgstr "Ordenadas por el formato del archivo del tipo de letra."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:85
+msgid "Unsorted"
+msgstr "Sin clasificar"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:86
+msgid "Fonts not present in any of your collections."
+msgstr "Los tipos de letra no clasificados en ninguna colección."
+
+#. (itstool) path: item/title
+#: C/font-manager-categories.page:91
+msgid "Disabled"
+msgstr "Desactivados"
+
+#. (itstool) path: item/p
+#: C/font-manager-categories.page:92
+msgid "Currrently disabled font families."
+msgstr "Los tipos de letra actualmente desactivados."
+
+#. (itstool) path: info/desc
+#: C/font-manager-character-map.page:8
+msgid "View individual characters and their details"
+msgstr "Ver los caracteres individuales y sus detalles"
+
+#. (itstool) path: page/title
+#: C/font-manager-character-map.page:11
+msgid "Character Map"
+msgstr "Mapa de caracteres"
+
+#. (itstool) path: page/p
+#: C/font-manager-character-map.page:13
+msgid ""
+"While in \"Manage\" mode the preview pane contains a tab labeled \"Characters"
+"\"."
+msgstr ""
+"Mientras se encuentra en el modo de gestión, el panel de vista previa "
+"contiene una pestaña con la etiqueta «Caracteres»."
+
+#. (itstool) path: page/p
+#: C/font-manager-character-map.page:17
+msgid ""
+"Selecting this tab allows viewing all glyphs contained in the currently "
+"selected font."
+msgstr ""
+"La selección de esta pestaña permite ver todos los glifos contenidos en el "
+"tipo de letra seleccionado."
+
+#. (itstool) path: figure/title
+#: C/font-manager-character-map.page:23
+msgid "<app>Character Map tab</app>"
+msgstr "<app>Pestaña Mapa de caracteres</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-character-map.page:24
+msgctxt "_"
+msgid ""
+"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
+msgstr ""
+"external ref='media/character-map.png' md5='a1ada8b4b96568f37c86137fe1fc6565'"
+
+#. (itstool) path: note/p
+#: C/font-manager-character-map.page:28
+msgid "Drag characters onto other applications to use them."
+msgstr "Arrastre caracteres a otras aplicaciones para usarlos."
+
+#. (itstool) path: info/desc
+#: C/font-manager-collections.page:7
+msgid "Organizing Your Fonts"
+msgstr "Organizar sus tipos de letra"
+
+#. (itstool) path: page/title
+#: C/font-manager-collections.page:10
+msgid "Collections"
+msgstr "Colecciones"
+
+#. (itstool) path: page/p
+#: C/font-manager-collections.page:12
+msgid "<app>Font Manager</app> allows you to define your own collections."
+msgstr ""
+"<app>Gestor tipográfico</app> le permite definir sus propias colecciones."
+
+#. (itstool) path: page/p
+#: C/font-manager-collections.page:17
+msgid ""
+"Collections allow you to organize your fonts in a way that makes sense to "
+"you and also make it easier to enable or disable many families at once."
+msgstr ""
+"Las colecciones le permiten organizar los tipos de letra de un modo que "
+"tenga sentido y también hacer que le sea más fácil activar o desactivar "
+"muchos tipos de letra a la vez."
+
+#. (itstool) path: note/p
+#: C/font-manager-collections.page:24
+msgid "Collections do not modify your files in any way."
+msgstr "Las colecciones no modifican sus archivos de ninguna manera."
+
+#. (itstool) path: note/p
+#: C/font-manager-collections.page:27
+msgid "Feel free to create or delete as many as you like."
+msgstr "Siéntase libre de crear o eliminar tantas como desee."
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:34
+msgid "To create a new collection:"
+msgstr "Para crear una colección nueva:"
+
+#. (itstool) path: gui/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-collections.page:40 C/font-manager-font-installation.page:25
+#: C/font-manager-font-sources.page:46 C/font-manager-substitutions.page:37
+#: C/font-manager-substitutions.page:51
+msgctxt "_"
+msgid ""
+"external ref='media/list-add-symbolic.svg' "
+"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
+msgstr ""
+"external ref='media/list-add-symbolic.svg' "
+"md5='6fdfd8f68e525f86d3eb943ee14fed32'"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:37
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> at the bottom of the Collection view."
+msgstr ""
+"Pulse en <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui>en la parte inferior de la vista de colección."
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:46
+msgid "Enter a name for your new collection"
+msgstr "Escriba un nombre para su nueva colección"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:51
+msgid "Add fonts by dragging them from the font list to your new collection."
+msgstr ""
+"Añada tipos de letra arrastrándolos desde la lista de tipos de letra a su "
+"colección nueva."
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:59
+msgid "To delete a collection:"
+msgstr "Para eliminar una colección:"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:62 C/font-manager-collections.page:81
+#: C/font-manager-collections.page:99 C/font-manager-collections.page:117
+msgid "Select the collection"
+msgstr "Seleccione la colección"
+
+#. (itstool) path: gui/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-collections.page:70 C/font-manager-collections.page:130
+#: C/font-manager-font-removal.page:38 C/font-manager-font-sources.page:84
+#: C/font-manager-substitutions.page:99
+msgctxt "_"
+msgid ""
+"external ref='media/list-remove-symbolic.svg' "
+"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
+msgstr ""
+"external ref='media/list-remove-symbolic.svg' "
+"md5='19b0f1ea55aaa9af1cc99e749fef2a25'"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:67
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui> at the bottom of the Collection view."
+msgstr ""
+"Pulse en <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
+"> </gui> en la parte inferior de la vista de colección."
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:78
+msgid "To enable a collection:"
+msgstr "Para activar una colección:"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:86 C/font-manager-collections.page:104
+#: C/font-manager-font-activation.page:35
+msgid "Click the <gui style=\"checkbox\"> checkbox </gui>"
+msgstr "Pulse en la <gui style=\"checkbox\">casilla de verificación</gui>"
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:96
+msgid "To disable a collection:"
+msgstr "Para desactivar una colección:"
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:114
+msgid "To remove families from a collection:"
+msgstr "Para quitar familias de una colección:"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:122
+msgid "Select the family or families you wish to remove"
+msgstr "Seleccione la familia o familias que quiera eliminar"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:127
+msgid ""
+"Click the <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
+"> </gui> at the top of the font list."
+msgstr ""
+"Pulse en <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
+"> </gui> en la parte superior de la lista de tipos de letra."
+
+#. (itstool) path: item/title
+#: C/font-manager-collections.page:138
+msgid "To rename a collection:"
+msgstr "Para renombrar una colección:"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:141
+msgid "Select a collection, click it again"
+msgstr "Seleccione una colección, pulse otra vez"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:146
+msgid "Enter a new name"
+msgstr "Escriba un nombre nuevo"
+
+#. (itstool) path: item/p
+#: C/font-manager-collections.page:151
+msgid "Press <gui style=\"button\">Enter</gui>"
+msgstr "Pulse <gui style=\"button\">Intro</gui>"
+
+#. (itstool) path: info/desc
+#: C/font-manager-font-activation.page:8
+msgid "Activating and De-activating font families"
+msgstr "Activación y desactivación de familias tipográficas"
+
+#. (itstool) path: page/title
+#: C/font-manager-font-activation.page:11
+msgid "Activation"
+msgstr "Activación"
+
+#. (itstool) path: page/p
+#: C/font-manager-font-activation.page:13
+msgid ""
+"<app>Font Manager</app> allows you to activate and de-activate font families."
+msgstr ""
+"<app>Gestor tipográfico</app> le permite activar y desactivar familias "
+"tipográficas."
+
+#. (itstool) path: page/p
+#: C/font-manager-font-activation.page:18
+msgid ""
+"If you have a large number of fonts installed, font selection dialogs and "
+"lists in many applications can get very long and become uncomfortable to "
+"use, disabling fonts you do not use very often or do not need at the moment "
+"helps keep these at a reasonable size."
+msgstr ""
+"Si tiene una gran cantidad de tipos de letra instalados, los diálogos y las "
+"listas de selección de tipos en muchas aplicaciones pueden volverse muy "
+"extensos e incómodos de usar. Desactivar los tipos de letra que no usa con "
+"frecuencia o que no necesita en un momento dado ayuda a mantenerlos en un "
+"tamaño razonable."
+
+#. (itstool) path: item/title
+#: C/font-manager-font-activation.page:27
+msgid "To enable or disable a font family:"
+msgstr "Para activar o desactivar una familia tipográfica:"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-activation.page:30
+msgid "Select the family you wish to enable/disable in the font list"
+msgstr ""
+"Seleccione la familia tipográfica que quiera activar o desactivar en la "
+"lista de tipos de letra"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-activation.page:47
+msgid ""
+"You can also double-click, press <gui style=\"button\">Space</gui> or press "
+"<gui style=\"button\">Enter</gui> to toggle the selected font."
+msgstr ""
+"También puede pulsar dos veces con el ratón o presionar <gui style=\"button"
+"\">Espacio</gui> o <gui style=\"button\">Intro</gui> para activar o "
+"desactivar el tipo de letra seleccionado."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-activation.page:51
+msgid ""
+"<link xref=\"organize#user-collections\">Collections</link> make it easy to "
+"enable or disable multiple families at once."
+msgstr ""
+"Las <link xref=\"organize#user-collections\">colecciones</link> facilitan la "
+"activación o desactivación de varias familias a la vez."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-activation.page:58
+msgid ""
+"While any changes made using <app>Font Manager</app> are applied "
+"immediately, open applications may need to be restarted in order to reflect "
+"those changes."
+msgstr ""
+"Si bien todos los cambios efectuados con <app>Gestor tipográfico </app> se "
+"aplican de inmediato, puede que sea necesario reiniciar las aplicaciones "
+"abiertas para que surtan efecto."
+
+#. (itstool) path: info/desc
+#: C/font-manager-font-installation.page:7
+msgid "Adding fonts for your use"
+msgstr "Añadir tipos de letra para su uso"
+
+#. (itstool) path: page/title
+#: C/font-manager-font-installation.page:10
+msgid "Installation"
+msgstr "Instalación"
+
+#. (itstool) path: page/p
+#: C/font-manager-font-installation.page:12
+msgid ""
+"<app>Font Manager</app> supports the most common <link xref=\"supported-"
+"formats\">font formats</link>."
+msgstr ""
+"<app>Gestor tipográfico</app> admite los <link xref=\"supported-formats"
+"\">formatos de tipo de letra</link> más habituales."
+
+#. (itstool) path: item/p
+#: C/font-manager-font-installation.page:19 C/font-manager-font-removal.page:32
+msgid "While in <gui style=\"button\">Manage</gui> mode"
+msgstr "En el modo <gui style=\"button\">Gestionar</gui>"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-installation.page:22
+msgid ""
+"Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
+"symbolic.svg\"/> </gui> at the top of the window"
+msgstr ""
+"Pulse en <gui style=\"button\"> <media type=\"image\" src=\"media/list-add-"
+"symbolic.svg\"/> </gui> en la parte superior de la ventana"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-installation.page:31
+msgid ""
+"Select the files you wish to install from the file selector dialog that is "
+"displayed and click <gui style=\"button\">Open</gui>"
+msgstr ""
+"Seleccione los archivos que desea instalar en el diálogo de selección de "
+"archivos que se muestra y pulse en <gui style=\"button\">Abrir</gui>"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-installation.page:40
+msgid ""
+"Drag and drop is also supported. Simply drag files onto the font list to "
+"install them."
+msgstr ""
+"También se admite la técnica de arrastrar y colocar. Simplemente arrastre "
+"los archivos a la lista de tipos de letra para instalarlos."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-installation.page:44
+msgid ""
+"You can drag any supported filetype onto the font list. This includes font "
+"files, directories and archives."
+msgstr ""
+"Puede arrastrar cualquier tipo de archivo admitido a la lista de tipos de "
+"letra. Esto incluye archivos de tipos de letra, carpetas y archivadores."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-installation.page:51
+msgid ""
+"Install <link action=\"install:file-roller\" href=\"https://wiki.gnome.org/"
+"Apps/FileRoller\">Archive Manager</link>. to enable support for compressed "
+"files."
+msgstr ""
+"Instale <link action=\"install:file-roller\" href=\"https://wiki.gnome.org/"
+"Apps/FileRoller\">Gestor de archivadores</link> para activar la "
+"compatibilidad con archivos comprimidos."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-installation.page:59 C/font-manager-font-removal.page:76
+#: C/font-manager-font-sources.page:138
+msgid ""
+"<app>Font Manager</app> will reload anytime changes require it. This may "
+"take a moment depending on number of changes."
+msgstr ""
+"<app>Gestor tipográfico</app> se actualizará siempre que lo requieran las "
+"modificaciones. Esto puede llevar un tiempo en función del número de cambios."
+
+#. (itstool) path: info/desc
+#: C/font-manager-font-removal.page:8
+msgid "Getting rid of unwanted fonts"
+msgstr "Deshacerse de los tipos de letra no deseados"
+
+#. (itstool) path: page/title
+#: C/font-manager-font-removal.page:11
+msgid "Removal"
+msgstr "Eliminación"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:14
+msgid ""
+"The only fonts listed in the removal dialog will be those installed in your "
+"default font directory."
+msgstr ""
+"Los únicos tipos de letra que figurarán en el cuadro de diálogo de "
+"eliminación serán aquellos que se han instalado en su directorio de tipos de "
+"letra predeterminado."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:18
+msgid ""
+"Font files installed system wide are typically installed as part of the "
+"operating system, as packages or by the system administrator. <app>Font "
+"Manager</app> does not provide for removal of such files at this time."
+msgstr ""
+"Los archivos de tipos de letra instalados en el sistema se instalan "
+"generalmente como parte del sistema operativo, como paquetes o por parte del "
+"administrador del sistema. <app>Gestor tipográfico</app> no prevé la "
+"eliminación de dichos archivos en este momento."
+
+#. (itstool) path: item/title
+#: C/font-manager-font-removal.page:29
+msgid "To remove fonts you no longer need:"
+msgstr "Para eliminar los tipos de letra que ya no necesita:"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-removal.page:35
+msgid ""
+"Click <gui style=\"button\"> <media type=\"image\" src=\"media/list-remove-"
+"symbolic.svg\"/> </gui> at the top of the window"
+msgstr ""
+"Pulse en <gui style=\"button\"> <media type=\"image\" src=\"media/list-"
+"remove-symbolic.svg\"/> </gui> en la parte superior de la ventana"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-removal.page:44
+msgid ""
+"Select the families or individual styles you wish to remove from the list "
+"that is displayed"
+msgstr ""
+"Seleccione las familias o los estilos individuales que desee eliminar de la "
+"lista que se muestra"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-removal.page:50
+msgid "Click <gui style=\"button\">Delete</gui>"
+msgstr "Pulse en <gui style=\"button\">Eliminar</gui>"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:60
+msgid ""
+"<app>Font Manager</app> organizes and stores installed fonts in the default "
+"user font directory."
+msgstr ""
+"<app>Gestor tipográfico</app> organiza y almacena los tipos de letra "
+"instalados en la carpeta de tipos de letra de usuario predeterminada."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:63
+msgid ""
+"Current default user font directory is located at <code><file>~/.local/share/"
+"fonts</file></code>"
+msgstr ""
+"La carpeta de tipos de letra de usuario predeterminada se encuentra en "
+"<code><file>~/.local/share/fonts</file></code>"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-removal.page:69
+msgid ""
+"Files are permanently deleted. Before removing any fonts ensure you have "
+"backups if there is a chance you may need them again."
+msgstr ""
+"Los archivos se eliminan permanentemente. Antes de eliminar un tipo de "
+"letra, asegúrese de tener una copia de respaldo si existe la posibilidad de "
+"que lo necesite de nuevo."
+
+#. (itstool) path: info/desc
+#: C/font-manager-font-sources.page:7
+msgid "Adding and removing font directories"
+msgstr "Añadir y eliminar carpetas de tipos de letra"
+
+#. (itstool) path: page/title
+#: C/font-manager-font-sources.page:10
+msgid "Sources"
+msgstr "Orígenes"
+
+#. (itstool) path: page/p
+#: C/font-manager-font-sources.page:12
+msgid ""
+"<app>Font Manager</app> allows you to add or remove directories to scan for "
+"font files. Added directories are scanned recursively."
+msgstr ""
+"<app>Gestor tipográfico</app> le permite añadir o eliminar carpetas para "
+"buscar archivos de tipos de letra. Las carpetas añadidas se exploran de "
+"forma recursiva."
+
+#. (itstool) path: page/p
+#: C/font-manager-font-sources.page:17
+msgid ""
+"This allows keeping font files somewhere other than your home directory or "
+"temporarily \"installing\" a directory of fonts."
+msgstr ""
+"Esto permite mantener los archivos de tipo de letra en una ubicación "
+"distinta de la carpeta personal o «instalar» temporalmente una carpeta de "
+"tipos de letra."
+
+#. (itstool) path: page/p
+#: C/font-manager-font-sources.page:21
+msgid "It also allows you to organize your font files anyway you like."
+msgstr "También le permite organizar sus archivos tipográficos como quiera."
+
+#. (itstool) path: item/title
+#: C/font-manager-font-sources.page:27
+msgid "To add a source:"
+msgstr "Para añadir un origen:"
+
+#. (itstool) path: gui/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-font-sources.page:34 C/font-manager-font-sources.page:66
+#: C/font-manager-font-sources.page:98 C/font-manager-substitutions.page:25
+#: C/font-manager-substitutions.page:82 C/font-manager-substitutions.page:120
+msgctxt "_"
+msgid ""
+"external ref='media/preferences-system-symbolic.svg' "
+"md5='63ed081f78639fc6ec234a9351cf52e6'"
+msgstr ""
+"external ref='media/preferences-system-symbolic.svg' "
+"md5='63ed081f78639fc6ec234a9351cf52e6'"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:30 C/font-manager-font-sources.page:62
+#: C/font-manager-substitutions.page:21 C/font-manager-substitutions.page:78
+#: C/font-manager-substitutions.page:116
+msgid ""
+"Open the <app>Font Manager</app> preferences dialog by clicking <gui> <media "
+"type=\"image\" src=\"media/preferences-system-symbolic.svg\"/> </gui> at the "
+"top of the window."
+msgstr ""
+"Abra el cuadro de diálogo de preferencias de <app>Gestor tipográfico</app> "
+"pulsando en <gui> <media type=\"image\" src=\"media/preferences-system-"
+"symbolic.svg\"/> </gui> en la parte superior de la ventana."
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:40 C/font-manager-font-sources.page:72
+#: C/font-manager-font-sources.page:104
+msgid "Select \"Sources\" from the sidebar"
+msgstr "Seleccione «Orígenes» en la barra lateral"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:43
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui>"
+msgstr ""
+"Pulse en <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui>"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:51
+msgid ""
+"Select the directory you wish to add from the file selector that is displayed"
+msgstr ""
+"Seleccione la carpeta que quiera añadir en el selector de archivos que se "
+"muestra"
+
+#. (itstool) path: item/title
+#: C/font-manager-font-sources.page:59
+msgid "To remove a source:"
+msgstr "Para eliminar un origen:"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:75
+msgid "Select the directory you wish to remove from the list that is displayed"
+msgstr "Seleccione la carpeta que quiere eliminar de la lista que se muestra"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:81
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui>"
+msgstr ""
+"Pulse en <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
+"> </gui>"
+
+#. (itstool) path: item/title
+#: C/font-manager-font-sources.page:91
+msgid "To enable or disable a source:"
+msgstr "Para activar o desactivar un origen:"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:94
+msgid ""
+"Open the <app>Font Manager</app> preferences dialog by clicking <gui style="
+"\"button\"> <media type=\"image\" src=\"media/preferences-system-symbolic.svg"
+"\"/> </gui> at the top of the window."
+msgstr ""
+"Abra el cuadro de diálogo de preferencias de <app>Gestor tipográfico</app> "
+"pulsando en <gui style=\"button\"> <media type=\"image\" src=\"media/"
+"preferences-system-symbolic.svg\"/> </gui> en la parte superior de la "
+"ventana."
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:107
+msgid "Select the source you want to enable or disable"
+msgstr "Seleccione el origen que quiera activar o desactivar"
+
+#. (itstool) path: item/p
+#: C/font-manager-font-sources.page:112
+msgid "Click the <gui> toggle switch </gui>"
+msgstr "Pulse en el <gui>interruptor</gui>"
+
+#. (itstool) path: note/p
+#: C/font-manager-font-sources.page:124
+msgid ""
+"While sources are always available within the application they are not "
+"available to other applications until they are enabled."
+msgstr ""
+"Si bien las ubicaciones siempre están disponibles dentro de la aplicación, "
+"no estarán disponibles para otras aplicaciones hasta que estén activadas."
+
+#. (itstool) path: note/p
+#: C/font-manager-font-sources.page:131
+msgid ""
+"You can avoid having multiple copies of the same files by adding directories "
+"from other filesystems."
+msgstr ""
+"Puede evitar tener varias copias de los mismos archivos añadiendo carpetas "
+"de otros sistemas de archivos."
+
+#. (itstool) path: info/desc
+#: C/font-manager-fontconfig.page:7
+msgid "Generate fontconfig configuration files"
+msgstr "Generar archivos de configuración de fontconfig"
+
+#. (itstool) path: page/title
+#: C/font-manager-fontconfig.page:10
+msgid "Display and Rendering Preferences"
+msgstr "Preferencias de visualización y representación"
+
+#. (itstool) path: page/p
+#: C/font-manager-fontconfig.page:12
+msgid ""
+"The \"Display\" and \"Rendering\" panes in the preferences dialog generate "
+"valid fontconfig configuration files for the exposed properties."
+msgstr ""
+"Los paneles «Visualización» y «Representación» en el diálogo de preferencias "
+"generan archivos de configuración de fontconfig válidos para las propiedades "
+"expuestas."
+
+#. (itstool) path: page/p
+#: C/font-manager-fontconfig.page:17
+msgid ""
+"See <link href=\"https://www.freedesktop.org/software/fontconfig/fontconfig-"
+"user.html\">fonts-conf</link> for more details."
+msgstr ""
+"Consulte <link href=\"https://www.freedesktop.org/software/fontconfig/"
+"fontconfig-user.html\">fonts-conf</link> para más detalles."
+
+#. (itstool) path: note/p
+#: C/font-manager-fontconfig.page:22
+msgid ""
+"Desktop environments and applications may rely on their own configuration "
+"mechanism."
+msgstr ""
+"Los entornos de escritorio y las aplicaciones pueden depender de su propio "
+"mecanismo de configuración."
+
+#. (itstool) path: info/desc
+#: C/font-manager-introduction.page:5
+msgid "Introduction to <app>Font Manager</app>."
+msgstr "Introducción a <app>Gestor tipográfico</app>."
+
+#. (itstool) path: page/p
+#: C/font-manager-introduction.page:10
+msgid "<app>Font Manager</app> allows you to :"
+msgstr "<app>Gestor tipográfico</app> le permite:"
+
+#. (itstool) path: page/title
+#: C/font-manager-introduction.page:12
+msgid "Introduction"
+msgstr "Introducción"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:18
+msgid "Preview font files in various ways"
+msgstr "Previsualice los archivos de tipografía de varios modos"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:23
+msgid "View available font metadata"
+msgstr "Ver metadatos de fuentes disponibles"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:28
+msgid "Install or remove fonts for your use"
+msgstr "Instalar o desinstalar fuentes para su uso"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:33
+msgid "Group fonts into \"Collections\""
+msgstr "Agrupe tipos de letra en «colecciones»"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:38
+msgid "Enable or disable individual font families or entire collections"
+msgstr "Active o desactive tipografías individuales o colecciones completas"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:43
+msgid "Specify different directories to use for fonts"
+msgstr "Especifique diferentes carpetas de tipografías para usar"
+
+#. (itstool) path: item/p
+#: C/font-manager-introduction.page:48
+msgid "Perform font substitution"
+msgstr "Realice sustituciones de tipos de letra"
+
+#. (itstool) path: figure/title
+#: C/font-manager-introduction.page:55
+msgid "<app>Font Manager</app>"
+msgstr "<app>Gestor tipográfico</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-introduction.page:57
+msgctxt "_"
+msgid ""
+"external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
+msgstr ""
+"external ref='media/main-window.png' md5='f845a783f120d087c8a70a949d0caba0'"
+
+#. (itstool) path: note/p
+#: C/font-manager-introduction.page:61
+msgid ""
+"For more information about <app>Font Manager</app>, please visit the <link "
+"href=\"http://fontmanager.github.io/\"> Homepage </link>"
+msgstr ""
+"Para obtener más información acerca de <app>Gestor tipográfico</app>, "
+"consulte <link href=\"http://fontmanager.github.io/\"> Homepage </link>"
+
+#. (itstool) path: note/p
+#: C/font-manager-introduction.page:67
+msgid ""
+"To report a bug or make a suggestion regarding the <app>Font Manager</app> "
+"application or this manual, please use the projects <link href=\"https://"
+"github.com/FontManager/master/issues\"> Issue Tracker </link>"
+msgstr ""
+"Para informar errores o enviar sugerencias para <app>Font Manager</app> o "
+"este manual, utilice el <link href=\"https://github.com/FontManager/master/"
+"issues\"> sistema de seguimiento de problemas </link>"
+
+#. (itstool) path: info/desc
+#: C/font-manager-license.page:7
+msgid "View license information contained in font files"
+msgstr ""
+"Visualice información de la licencia contenida en los archivos de tipografía"
+
+#. (itstool) path: page/title
+#: C/font-manager-license.page:10
+msgid "Licensing"
+msgstr "Licenciamiento"
+
+#. (itstool) path: page/p
+#: C/font-manager-license.page:12
+msgid ""
+"While in \"Manage\" mode the preview pane contains a tab labeled \"License\"."
+msgstr ""
+"Mientras se encuentra en el modo de gestión, el panel de vista previa "
+"contiene una pestaña con la etiqueta «Licencia»."
+
+#. (itstool) path: page/p
+#: C/font-manager-license.page:16
+msgid ""
+"Selecting this tab allows viewing any licensing information contained in the "
+"currently selected font."
+msgstr ""
+"La selección de esta pestaña permite ver información de la licencia que "
+"contiene la tipografías seleccionada."
+
+#. (itstool) path: figure/title
+#: C/font-manager-license.page:22
+msgid "<app>Font License tab</app>"
+msgstr "<app>Pestaña de la licencia de las tipografías</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-license.page:23
+msgctxt "_"
+msgid "external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
+msgstr ""
+"external ref='media/license.png' md5='8024acb1a2fcc1a995d09400c6469a32'"
+
+#. (itstool) path: note/p
+#: C/font-manager-license.page:27
+msgid "Not all font files contain licensing information."
+msgstr ""
+"No todos los archivos de tipografía contienen información de la licencia."
+
+#. (itstool) path: info/desc
+#: C/font-manager-metadata.page:7
+msgid "View metadata embedded in your font files"
+msgstr "Visualice los metadatos incrustados en los archivos de tipografía"
+
+#. (itstool) path: page/title
+#: C/font-manager-metadata.page:10
+msgid "Metadata"
+msgstr "Metadatos"
+
+#. (itstool) path: page/p
+#: C/font-manager-metadata.page:12
+msgid ""
+"While in \"Manage\" mode the preview pane contains a tab labeled \"Properties"
+"\"."
+msgstr ""
+"Mientras se encuentra en el modo de gestión, el panel de vista previa "
+"contiene una pestaña con la etiqueta «Propiedades»."
+
+#. (itstool) path: page/p
+#: C/font-manager-metadata.page:16
+msgid ""
+"Selecting this tab allows viewing metadata contained in the currently "
+"selected font."
+msgstr ""
+"La selección de esta pestaña permite ver los metadatos contenidos en la "
+"tipografía seleccionada."
+
+#. (itstool) path: figure/title
+#: C/font-manager-metadata.page:22
+msgid "<app>Font Properties tab</app>"
+msgstr "<app>Pestaña de las propiedades de las tipografías</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-metadata.page:23
+msgctxt "_"
+msgid ""
+"external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
+msgstr ""
+"external ref='media/metadata.png' md5='3de5a0e94b4f9ef74e1de91ef8b92027'"
+
+#. (itstool) path: note/p
+#: C/font-manager-metadata.page:27
+msgid "Some properties are optional and may not be present in all font files."
+msgstr ""
+"Algunas propiedades son opcionales y puede que no estén presentes en todos "
+"los archivos de tipografía."
+
+#. (itstool) path: info/desc
+#: C/font-manager-orthographies.page:8
+msgid "View languages supported and their coverage"
+msgstr "Visualice los idiomas compatibles y su cobertura"
+
+#. (itstool) path: page/title
+#: C/font-manager-orthographies.page:11
+msgid "Language Support"
+msgstr "Compatibilidad de idiomas"
+
+#. (itstool) path: page/p
+#: C/font-manager-orthographies.page:13
+msgid ""
+"While the character map is in use the sidebar will switch to displaying the "
+"orthographies supported by the currently selected font."
+msgstr ""
+"Mientras el mapa de caracteres esté en uso, la barra lateral cambiará para "
+"mostrar las ortografías compatibles con la tipografía seleccionada."
+
+#. (itstool) path: page/p
+#: C/font-manager-orthographies.page:18
+msgid ""
+"Selecting an orthography from the list will filter the character map so that "
+"it only displays relevant characters"
+msgstr ""
+"La selección de una ortografía de la lista filtrará el mapa de caracteres "
+"para que solo muestre los caracteres relevantes"
+
+#. (itstool) path: figure/title
+#: C/font-manager-orthographies.page:28
+msgid "<app>Supported Orthographies</app>"
+msgstr "<app>Ortografías admitidas</app>"
+
+#. (itstool) path: figure/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/font-manager-orthographies.page:29
+msgctxt "_"
+msgid ""
+"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
+msgstr ""
+"external ref='media/orthographies.png' md5='734d54fac27862dbf32edef0fae4c51c'"
+
+#. (itstool) path: info/desc
+#: C/font-manager-substitutions.page:7
+msgid "Substitute one font family for another"
+msgstr "Sustituya una familia de tipografías por otra"
+
+#. (itstool) path: page/title
+#: C/font-manager-substitutions.page:10
+msgid "Substitution"
+msgstr "Sustitución"
+
+#. (itstool) path: page/p
+#: C/font-manager-substitutions.page:12
+msgid ""
+"<app>Font Manager</app> allows you to substitute one font family for another."
+msgstr ""
+"<app>Gestor tipográfico</app> le permite sustituir una familia por otra."
+
+#. (itstool) path: item/title
+#: C/font-manager-substitutions.page:18
+msgid "To add a substitute:"
+msgstr "Para añadir una sustitución:"
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:31 C/font-manager-substitutions.page:88
+#: C/font-manager-substitutions.page:126
+msgid "Select \"Substitutions\" from the sidebar"
+msgstr "Seleccione «Sustituciones» en la barra lateral"
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:34
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> in the substitutions pane."
+msgstr ""
+"Pulse en <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> en el panel de sustituciones."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:43
+msgid "Enter the name of the font family you wish to set up a substitute for."
+msgstr ""
+"Escriba el nombre de la familia de tipografías para la que quiere configurar "
+"una sustitución."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:48
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> on the right."
+msgstr ""
+"Pulse en <gui> <media type=\"image\" src=\"media/list-add-symbolic.svg\"/> </"
+"gui> a la derecha."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:57
+msgid "Enter the name of the substitute family and select the priority level."
+msgstr ""
+"Escriba el nombre de la familia sustituta y seleccione el nivel de prioridad."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:62
+msgid "Repeat steps 3 – 6 as needed."
+msgstr "Repita los pasos 3 a 6 según sea necesario."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:67 C/font-manager-substitutions.page:105
+msgid ""
+"Click <gui style=\"button\">Save</gui> to write the configuration file when "
+"done."
+msgstr ""
+"Cuando haya terminado, clique en <gui style=\"button\">Save</gui> para "
+"escribir el archivo de configuración."
+
+#. (itstool) path: item/title
+#: C/font-manager-substitutions.page:75
+msgid "To remove a substitute:"
+msgstr "Para eliminar una sustitución:"
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:91
+msgid "Select the entry you wish to remove from the list."
+msgstr "Seleccione la entrada que quiera eliminar de la lista."
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:96
+msgid ""
+"Click <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/> </"
+"gui> in the substitutions pane."
+msgstr ""
+"Pulse en <gui> <media type=\"image\" src=\"media/list-remove-symbolic.svg\"/"
+"> </gui> en el panel de sustituciones."
+
+#. (itstool) path: item/title
+#: C/font-manager-substitutions.page:113
+msgid "To remove all substitutes:"
+msgstr "Para eliminar todas las sustituciones:"
+
+#. (itstool) path: item/p
+#: C/font-manager-substitutions.page:129
+msgid "Click <gui style=\"button\"> Discard </gui> in the substitutions pane."
+msgstr ""
+"Pulse en <gui style=\"button\"> Descartar </gui> en el panel de "
+"sustituciones."
+
+#. (itstool) path: note/p
+#: C/font-manager-substitutions.page:142
+msgid ""
+"Fonts matching the target family are edited to prepend the list of preferred "
+"families before the matching family, append the acceptable families after "
+"the matching family and append the default families to the end of the family "
+"list."
+msgstr ""
+"Los tipos de letra que coinciden con la familia objetivo se editan para "
+"anteponer la lista de familias preferidas a la familia coincidente, añadir "
+"las familias aceptables después de la familia coincidente y añadir las "
+"familias predeterminadas al final de la lista de familias."
+
+#. (itstool) path: note/p
+#: C/font-manager-substitutions.page:148
+msgid ""
+"While changes are applied immediately open applications may need to be "
+"restarted."
+msgstr ""
+"Aunque los cambios se aplican de inmediato, es posible que sea necesario "
+"reiniciar las aplicaciones abiertas."
+
+#. (itstool) path: info/desc
+#: C/font-manager-supported-formats.page:5
+msgid "Font formats supported by <app>Font Manager</app>."
+msgstr ""
+"Formatos de tipografía compatibles con <app>Gestor de tipografías</app>."
+
+#. (itstool) path: page/title
+#: C/font-manager-supported-formats.page:10
+msgid "Supported File Formats"
+msgstr "Formatos de archivo compatibles"
+
+#. (itstool) path: item/title
+#: C/font-manager-supported-formats.page:14
+msgid "<link href=\"http://wikipedia.org/wiki/TrueType\"> TrueType </link>"
+msgstr "<link href=\"https://es.wikipedia.org/wiki/TrueType\"> TrueType </link>"
+
+#. (itstool) path: item/title
+#: C/font-manager-supported-formats.page:21
+msgid "<link href=\"http://wikipedia.org/wiki/OpenType\"> OpenType </link>"
+msgstr "<link href=\"https://es.wikipedia.org/wiki/OpenType\"> OpenType </link>"
+
+#. (itstool) path: info/desc
+#: C/index.page:6
+msgid "Getting started with Font Manager."
+msgstr "Primeros pasos con Gestor tipográfico."
+
+#. (itstool) path: title/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/index.page:8
+msgctxt "_"
+msgid ""
+"external ref='media/preferences-desktop-font-16.png' "
+"md5='4903102ad113c096aa95ef8a5ccaf0c2'"
+msgstr ""
+"external ref='media/preferences-desktop-font-16.png' "
+"md5='4903102ad113c096aa95ef8a5ccaf0c2'"
+
+#. (itstool) path: info/title
+#: C/index.page:10
+msgctxt "link"
+msgid "Font Manager"
+msgstr "Gestor de fuentes"
+
+#. (itstool) path: info/title
+#: C/index.page:11
+msgctxt "text"
+msgid "Font Manager"
+msgstr "Gestor de fuentes"
+
+#. (itstool) path: credit/name
+#: C/index.page:14
+msgid "Jerry Casiano"
+msgstr "Jerry Casiano"
+
+#. (itstool) path: credit/years
+#: C/index.page:16
+msgid "2009–2020"
+msgstr "2009-2020"
+
+#. (itstool) path: credit/name
+#: C/index.page:20
+msgid "Weblate"
+msgstr "Weblate"
+
+#. (itstool) path: license/p
+#: C/index.page:24
+msgid "GNU General Public License Version 3"
+msgstr "Licencia Pública General de GNU versión 3"
+
+#. (itstool) path: title/media
+#. This is a reference to an external file such as an image or video. When
+#. the file changes, the md5 hash will change to let you know you need to
+#. update your localized copy. The msgstr is not used at all. Set it to
+#. whatever you like once you have updated your copy of the file.
+#: C/index.page:30
+msgctxt "_"
+msgid ""
+"external ref='media/preferences-desktop-font.png' "
+"md5='f9108efe15fb60827b402b9a3a936589'"
+msgstr ""
+"external ref='media/preferences-desktop-font.png' "
+"md5='f9108efe15fb60827b402b9a3a936589'"
+
+#. (itstool) path: page/title
+#: C/index.page:29
+msgid ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
+"font.png\"> Font Manager logo </media> Font Manager"
+msgstr ""
+"<media type=\"image\" mime=\"image/png\" src=\"media/preferences-desktop-"
+"font.png\">Logotipo de Gestor de tipografías</media> Gestor de tipografías"
+
+#. (itstool) path: section/title
+#: C/index.page:37
+msgid "Managing Your Fonts"
+msgstr "Gestionar sus tipografías"
+
+#. (itstool) path: section/title
+#: C/index.page:41
+msgid "Getting to Know Your Fonts"
+msgstr "Conocer sus tipografías"
+
+#. (itstool) path: section/title
+#: C/index.page:45
+msgid "Advanced Features"
+msgstr "Funciones avanzadas"
+
+#~ msgid "Select the Collection view at the bottom of the sidebar."
+#~ msgstr ""
+#~ "Seleccione la vista de colección en la parte inferior de la barra lateral."
+
+#~ msgid "Switch back to Category view."
+#~ msgstr "Vuelva a la vista de categoría."
+
+#~ msgid ""
+#~ "Note : The sidebar will automatically switch to collections from "
+#~ "categories while dragging fonts."
+#~ msgstr ""
+#~ "Nota: la barra lateral cambiará automáticamente a las colecciones desde "
+#~ "las categorías mientras arrastra los tipos de letra."
+
+#~ msgid "Zanata"
+#~ msgstr "Zanata"

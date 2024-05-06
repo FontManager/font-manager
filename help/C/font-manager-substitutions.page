@@ -1,0 +1,154 @@
+<page xmlns="http://projectmallard.org/1.0/"
+    xmlns:e="http://projectmallard.org/experimental/"
+    type="topic" style="task" id="substitution">
+
+    <info>
+        <link type="guide" xref="index#advanced"/>
+        <desc>Substitute one font family for another</desc>
+    </info>
+
+    <title>Substitution</title>
+
+    <p>
+        <app>Font Manager</app> allows you to substitute one font family for another.
+    </p>
+
+    <list>
+        <item>
+            <title>To add a substitute:</title>
+            <steps>
+                <item>
+                    <p>
+                    Open the <app>Font Manager</app> preferences dialog
+                    by clicking
+                    <gui>
+                    <media type="image" src="media/preferences-system-symbolic.svg"/>
+                    </gui>
+                    at the top of the window.
+                    </p>
+                </item>
+                <item>
+                    <p>Select "Substitutions" from the sidebar</p>
+                </item>
+                <item>
+                    <p>
+                        Click
+                        <gui>
+                        <media type="image" src="media/list-add-symbolic.svg"/>
+                        </gui>
+                        in the substitutions pane.
+                    </p>
+                </item>
+                <item>
+                    <p>
+                    Enter the name of the font family you wish to set up a substitute for.
+                    </p>
+                </item>
+                <item>
+                    <p>
+                        Click
+                        <gui>
+                        <media type="image" src="media/list-add-symbolic.svg"/>
+                        </gui>
+                        on the right.
+                    </p>
+                </item>
+                <item>
+                    <p>
+                        Enter the name of the substitute family and select the priority level.
+                    </p>
+                </item>
+                <item>
+                    <p>
+                        Repeat steps 3 – 6 as needed.
+                    </p>
+                </item>
+                <item>
+                    <p>
+                        Click <gui style="button">Save</gui> to write the
+                        configuration file when done.
+                    </p>
+                </item>
+            </steps>
+        </item>
+        <item>
+            <title>To remove a substitute:</title>
+            <steps>
+                <item>
+                    <p>
+                    Open the <app>Font Manager</app> preferences dialog
+                    by clicking
+                    <gui>
+                    <media type="image" src="media/preferences-system-symbolic.svg"/>
+                    </gui>
+                    at the top of the window.
+                    </p>
+                </item>
+                <item>
+                    <p>Select "Substitutions" from the sidebar</p>
+                </item>
+                <item>
+                    <p>
+                        Select the entry you wish to remove from the list.
+                    </p>
+                </item>
+                <item>
+                    <p>
+                        Click
+                        <gui>
+                        <media type="image" src="media/list-remove-symbolic.svg"/>
+                        </gui>
+                        in the substitutions pane.
+                    </p>
+                </item>
+                <item>
+                    <p>
+                        Click <gui style="button">Save</gui> to write the
+                        configuration file when done.
+                    </p>
+                </item>
+            </steps>
+        </item>
+        <item>
+            <title>To remove all substitutes:</title>
+            <steps>
+                <item>
+                    <p>
+                    Open the <app>Font Manager</app> preferences dialog
+                    by clicking
+                    <gui>
+                    <media type="image" src="media/preferences-system-symbolic.svg"/>
+                    </gui>
+                    at the top of the window.
+                    </p>
+                </item>
+                <item>
+                    <p>Select "Substitutions" from the sidebar</p>
+                </item>
+                <item>
+                    <p>
+                        Click
+                        <gui style="button">
+                        Discard
+                        </gui>
+                        in the substitutions pane.
+                    </p>
+                </item>
+            </steps>
+        </item>
+    </list>
+
+    <note style="important">
+        <p>
+            Fonts matching the target family are edited to prepend the list of
+            preferred families before the matching family, append the acceptable
+            families after the matching family and append the default families
+            to the end of the family list.
+        </p>
+        <p>
+            While changes are applied immediately open applications may need to
+            be restarted.
+        </p>
+    </note>
+
+</page>

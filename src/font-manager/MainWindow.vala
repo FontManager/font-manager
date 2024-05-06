@@ -23,14 +23,14 @@ namespace FontManager {
     public enum Mode {
 
         MANAGE,
-        BROWSE,
+        // BROWSE,
         COMPARE,
         N_MODES;
 
         public static Mode parse (string mode) {
             switch (mode.down()) {
-                case "browse":
-                    return Mode.BROWSE;
+                // case "browse":
+                //     return Mode.BROWSE;
                 case "compare":
                     return Mode.COMPARE;
                 default:
@@ -40,8 +40,8 @@ namespace FontManager {
 
         public string to_string () {
             switch (this) {
-                case BROWSE:
-                    return "Browse";
+                // case BROWSE:
+                //     return "Browse";
                 case COMPARE:
                     return "Compare";
                 default:
@@ -51,8 +51,8 @@ namespace FontManager {
 
         public string to_translatable_string () {
             switch (this) {
-                case BROWSE:
-                    return _("Browse");
+                // case BROWSE:
+                //     return _("Browse");
                 case COMPARE:
                     return _("Compare");
                 default:
@@ -83,6 +83,7 @@ namespace FontManager {
 
         Gtk.Stack main_stack;
         MainPane main_pane;
+        // BrowsePane browse_pane;
         PreferencePane prefs_pane;
         HeaderBarWidgets header_widgets;
 
@@ -122,8 +123,12 @@ namespace FontManager {
             main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN_UP);
             main_stack.set_transition_duration(500);
             main_pane = new MainPane();
+            // browse_pane = new BrowsePane();
             prefs_pane = new PreferencePane(settings);
-            main_stack.add_named(main_pane, "Default");
+            main_stack.add_named(main_pane, Mode.MANAGE.to_string());
+            // var scrolled_window = new Gtk.ScrolledWindow();
+            // scrolled_window.set_child(browse_pane);
+            // main_stack.add_named(scrolled_window, Mode.BROWSE.to_string());
 #if HAVE_WEBKIT
             webfonts = new GoogleFonts.Catalog();
             main_stack.add_named(webfonts, "WebFonts");
@@ -133,6 +138,7 @@ namespace FontManager {
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("mode", main_pane, "mode", flags);
             bind_property("available-fonts", main_pane, "available-fonts", flags);
+            // bind_property("available-fonts", browse_pane, "available-fonts", flags);
             prefs_pane.bind_property("user-actions", main_pane, "user-actions", flags);
             prefs_pane.bind_property("user-sources", main_pane, "user-sources", flags);
             main_pane.bind_property("sidebar-position", prefs_pane, "sidebar-position", flags);
@@ -143,8 +149,11 @@ namespace FontManager {
             bind_settings();
             connect_signals();
             restore_state(settings);
-            main_pane.restore_state(settings);
             update_layout_orientation();
+            main_pane.restore_state(settings);
+#if HAVE_WEBKIT
+            webfonts.restore_state(settings);
+#endif /* HAVE_WEBKIT */
         }
 
         void bind_settings () {
@@ -167,7 +176,7 @@ namespace FontManager {
 
         StringSet get_file_selections (Object? object, AsyncResult result) {
             var selections = new StringSet();
-            return_if_fail(object != null);
+            return_val_if_fail(object != null, selections);
             try {
                 var dialog = (Gtk.FileDialog) object;
                 ListModel files = dialog.open_multiple.end(result);
@@ -237,6 +246,8 @@ namespace FontManager {
             string markup = "<b>%s</b>".printf(mode.to_translatable_string());
             header_widgets.main_menu_label.set_markup(markup);
             header_widgets.reveal_manage_controls(mode == Mode.MANAGE);
+            if (mode != Mode.COMPARE)
+                main_stack.set_visible_child_name(mode.to_string());
             return;
         }
 
