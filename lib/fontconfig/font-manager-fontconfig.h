@@ -1,6 +1,6 @@
 /* font-manager-fontconfig.h
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -54,19 +54,14 @@ GQuark font_manager_fontconfig_error_quark ();
 void font_manager_clear_application_fonts (void);
 gboolean font_manager_add_application_font (const gchar *filepath);
 gboolean font_manager_add_application_font_directory (const gchar *dir);
-gboolean font_manager_enable_user_font_configuration (gboolean enable);
-gboolean font_manager_load_font_configuration_file (const gchar *filepath);
 gboolean font_manager_update_font_configuration (void);
 GList * font_manager_list_available_font_files (void);
 GList * font_manager_list_available_font_families (void);
-GList * font_manager_list_font_directories (gboolean recursive);
-GList * font_manager_list_user_font_directories (gboolean recursive);
 GList * font_manager_get_langs_from_fontconfig_pattern (FcPattern *pattern);
 JsonObject * font_manager_get_attributes_from_filepath (const gchar *filepath, int index, GError **error);
 JsonObject * font_manager_get_attributes_from_fontconfig_pattern (FcPattern *pattern);
 JsonObject * font_manager_get_available_fonts (const gchar *family_name);
 JsonObject * font_manager_get_available_fonts_for_chars (const gchar *chars);
-JsonObject * font_manager_get_available_fonts_for_lang (const gchar *lang_id);
 JsonArray * font_manager_sort_json_font_listing (JsonObject *json_obj);
 
 /**

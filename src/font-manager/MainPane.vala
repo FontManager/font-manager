@@ -23,6 +23,7 @@ namespace FontManager {
     public class MainPane : Paned {
 
         public Json.Array? available_fonts { get; set; default = null; }
+        public Reject? disabled_families { get; set; default = null; }
 
         public Mode mode { get; set; default = 0; }
         public UserActionModel user_actions { get; set; }
@@ -51,8 +52,11 @@ namespace FontManager {
             set_content_widget(content);
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("available-fonts", fontlist, "available-fonts", flags);
+            bind_property("available-fonts", sidebar, "available-fonts", flags);
             bind_property("user-actions", fontlist, "user-actions", flags);
             bind_property("user-sources", fontlist, "user-sources", flags);
+            bind_property("disabled-families", fontlist, "disabled-families", flags);
+            bind_property("disabled-families", sidebar, "disabled-families", flags);
             sidebar.bind_property("filter", fontlist, "filter", flags);
             fontlist.bind_property("selected-item", sidebar, "selected-item", flags);
             fontlist.bind_property("selected-items", compare, "selected-items", flags);

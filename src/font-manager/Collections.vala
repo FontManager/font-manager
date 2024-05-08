@@ -24,6 +24,8 @@ namespace FontManager {
 
     public class CollectionListModel : FontListFilterModel {
 
+        public signal void changed ();
+
         public static string get_cache_file () {
             string dirpath = get_package_config_directory();
             string filepath = Path.build_filename(dirpath, "Collections.json");
@@ -39,9 +41,17 @@ namespace FontManager {
             return child;
         }
 
+        public StringSet get_full_contents () {
+            var full_contents = new StringSet ();
+            foreach (var entry in items.data)
+                full_contents.add_all(((Collection) entry).get_full_contents());
+            return full_contents;
+        }
+
         void add_from_json_node (Json.Node node) {
             Object collection = Json.gobject_deserialize(typeof(Collection), node);
             add_item((Collection) collection);
+            ((Collection) collection).changed.connect(() => { changed(); });
             return;
         }
 
@@ -144,6 +154,8 @@ namespace FontManager {
 
     public class CollectionListView : FilterListView {
 
+        public signal void changed ();
+
         uint update_timeout = 0;
 
         Gtk.Label menu_title;
@@ -173,6 +185,7 @@ namespace FontManager {
             add_drop_target(listview);
             init_context_menu();
             selection_changed.connect(update_context_menu);
+            collection_model.changed.connect(() => { changed(); });
             clicked_area = Gdk.Rectangle();
             Gtk.Gesture click = new Gtk.GestureClick() {
                 button = Gdk.BUTTON_PRIMARY
@@ -500,6 +513,7 @@ namespace FontManager {
                     collection.families.add(((Family) object).family);
             }
             queue_update();
+            changed();
             return true;
         }
 

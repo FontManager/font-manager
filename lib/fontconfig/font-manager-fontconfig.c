@@ -97,19 +97,6 @@ font_manager_update_font_configuration (void) {
 }
 
 /**
- * font_manager_enable_user_font_configuration:
- * @enable: %TRUE to include configuration files stored in users home directory.
- * %FALSE to exclude configuration files stored in users home directory.
- *
- * Returns: %TRUE on success
- */
-gboolean
-font_manager_enable_user_font_configuration (gboolean enable)
-{
-    return (FcConfigEnableHome(enable), (FcConfigEnableHome(enable) == enable));
-}
-
-/**
  * font_manager_add_application_font:
  * @filepath: full path to font file to add to configuration
  *
@@ -150,20 +137,6 @@ font_manager_clear_application_fonts (void)
 }
 
 /**
- * font_manager_load_font_configuration_file:
- * @filepath: full path to a valid fontconfig configuration file
- *
- * Equivalent to FcConfigParseAndLoad
- *
- * Returns: %TRUE on success
- */
-gboolean
-font_manager_load_font_configuration_file (const gchar *filepath)
-{
-    return FcConfigParseAndLoad(FcConfigGetCurrent(), (FcChar8 *) filepath, FALSE);
-}
-
-/**
  * font_manager_list_available_font_files:
  *
  * Returns: (element-type utf8) (transfer full) (nullable):
@@ -191,80 +164,6 @@ font_manager_list_available_font_files (void)
     FcObjectSetDestroy(objectset);
     FcPatternDestroy(pattern);
     FcFontSetDestroy(fontset);
-    return result;
-}
-
-/**
- * font_manager_list_font_directories:
- * @recursive: whether to include subfolders in listing
- *
- * Returns: (element-type utf8) (transfer full) (nullable):
- * a newly created #GSList containing filepaths or %NULL
- * Free the returned list using #g_slist_free_full(list, #g_free);
- */
-GList *
-font_manager_list_font_directories (gboolean recursive)
-{
-    FcChar8 *directory = NULL;
-    FcStrList *fdlist = NULL;
-    GList *result = NULL;
-
-    fdlist = FcConfigGetFontDirs(FcConfigGetCurrent());
-
-    while ((directory = FcStrListNext(fdlist))) {
-        gboolean subdir = FALSE;
-        if (!recursive) {
-            for (GList *iter = result; iter != NULL; iter = iter->next) {
-                if (g_strrstr((const gchar *) directory, iter->data)) {
-                    subdir = TRUE;
-                    break;
-                }
-            }
-        }
-        if (!subdir)
-            result = g_list_prepend(result, g_strdup_printf("%s", directory));
-    }
-
-    FcStrListDone(fdlist);
-    return result;
-}
-
-/**
- * font_manager_list_user_font_directories:
- * @recursive:  %TRUE to include subdirectories in the results
- *
- * Only returns directories which are writeable by user
- *
- * Returns: (element-type utf8) (transfer full) (nullable):
- * a newly created #GSList containing filepaths or %NULL
- * Free the returned list using #g_slist_free_full(list, #g_free);
- */
-GList *
-font_manager_list_user_font_directories (gboolean recursive)
-{
-    FcChar8 *directory = NULL;
-    FcStrList *fdlist = NULL;
-    GList *result = NULL;
-
-    fdlist = FcConfigGetFontDirs(FcConfigGetCurrent());
-
-    while ((directory = FcStrListNext(fdlist))) {
-        if (font_manager_get_file_owner((const gchar *) directory) == 0) {
-            gboolean subdir = FALSE;
-            if (!recursive) {
-                for (GList *iter = result; iter != NULL; iter = iter->next) {
-                    if (g_strrstr((const gchar *) directory, iter->data)) {
-                        subdir = TRUE;
-                        break;
-                    }
-                }
-            }
-            if (!subdir)
-                result = g_list_prepend(result, g_strdup_printf("%s", directory));
-        }
-    }
-
-    FcStrListDone(fdlist);
     return result;
 }
 
@@ -362,54 +261,6 @@ font_manager_get_available_fonts (const gchar *family_name)
     FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
     JsonObject *result = json_object_new();
     process_fontset(fontset, result);
-    FcObjectSetDestroy(objectset);
-    FcPatternDestroy(pattern);
-    FcFontSetDestroy(fontset);
-    return result;
-}
-
-/**
- * font_manager_get_available_fonts_for_lang:
- * @lang_id: should be of the form Ll-Tt where Ll is a two or three letter
- * language from ISO 639 and Tt is a territory from ISO 3166.
- *
- * See #font_manager_get_available_fonts for a description of the
- * #JsonObject returned by this function.
- *
- * The returned object will contain only those fonts which claim
- * to support @lang_id.
- *
- * Returns: (transfer full): A newly created #JsonObject which should be
- * freed using #json_object_unref() when no longer needed.
- */
-JsonObject *
-font_manager_get_available_fonts_for_lang (const gchar *lang_id)
-{
-    FcPattern *pattern = FcPatternCreate();
-    FcLangSet *langset = FcLangSetCreate();
-    FcChar8 *language = FcLangNormalize((const FcChar8 *) lang_id);
-
-    g_assert(FcLangSetAdd(langset, language));
-    g_assert(FcPatternAddLangSet(pattern, FC_LANG, langset));
-    g_assert(FcPatternAddBool(pattern, FC_VARIABLE, FcFalse));
-
-    FcObjectSet *objectset = FcObjectSetBuild(FC_FILE,
-                                              FC_INDEX,
-                                              FC_FAMILY,
-                                              FC_STYLE,
-                                              FC_SLANT,
-                                              FC_WEIGHT,
-                                              FC_WIDTH,
-                                              FC_SPACING,
-                                              FC_LANG,
-                                              FC_FONTFORMAT,
-                                              NULL);
-
-    FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
-    JsonObject *result = json_object_new();
-    process_fontset(fontset, result);
-    FcStrFree(language);
-    FcLangSetDestroy(langset);
     FcObjectSetDestroy(objectset);
     FcPatternDestroy(pattern);
     FcFontSetDestroy(fontset);

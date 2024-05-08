@@ -208,6 +208,7 @@ font_manager_application_window_class_init (FontManagerApplicationWindowClass *k
 static void
 font_manager_application_window_init (FontManagerApplicationWindow *self)
 {
+    font_manager_set_application_style();
     return;
 }
 

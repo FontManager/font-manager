@@ -1,6 +1,6 @@
 /* Categories.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -119,14 +119,12 @@ namespace FontManager {
 
     }
 
-    // TODO :
-    //       - Update Unsorted category
-    //       - Update Disabled category
-
     public class CategoryListView : FilterListView {
 
-        public Reject? reject { get; set; default = null; }
+        public Reject? disabled_families { get; set; default = null; }
+        public Disabled? disabled { get; set; default = null; }
         public StringSet? sorted { get; set; default = null; }
+        public Unsorted? unsorted { get; set; default = null; }
 
         construct {
             widget_set_name(listview, "FontManagerCategoryListView");
@@ -135,6 +133,23 @@ namespace FontManager {
                                               false,
                                               CategoryListModel.get_child_model);
             selection = new Gtk.SingleSelection(treemodel);
+            notify["disabled"].connect(() => {
+                if (disabled_families != null)
+                    update_disabled();
+            });
+            notify["disabled-families"].connect(() => {
+                if (disabled_families != null) {
+                    disabled_families.changed.connect(() => {
+                        if (disabled != null)
+                            update_disabled();
+                    });
+                    update_disabled();
+                }
+            });
+            notify["sorted"].connect(() => {
+                if (unsorted != null)
+                    update_unsorted();
+            });
         }
 
         protected override void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
@@ -146,6 +161,32 @@ namespace FontManager {
             row.selection = selection;
             tree_expander.set_child(row);
             list_item.set_child(tree_expander);
+            return;
+        }
+
+        void update_disabled ()
+        requires (disabled != null) {
+            disabled.update.begin(disabled_families, disabled_families, (obj, res) => {
+                disabled.update.end(res);
+                model.items_changed(0, 0, 0);
+                if (selected_item is Disabled) {
+                    selection_changed(null);
+                    selection_changed(selected_item);
+                }
+            });
+            return;
+        }
+
+        void update_unsorted ()
+        requires (unsorted != null) {
+            unsorted.update.begin(available_families, sorted, (obj, res) => {
+                unsorted.update.end(res);
+                model.items_changed(0, 0, 0);
+                if (selected_item is Unsorted) {
+                    selection_changed(null);
+                    selection_changed(selected_item);
+                }
+            });
             return;
         }
 
@@ -161,8 +202,20 @@ namespace FontManager {
             row.item = _item;
             return_if_fail(_item != null);
             var category = ((Category) _item);
+            if (category is Disabled)
+                disabled = (Disabled) category;
+            if (category is Unsorted) {
+                unsorted = (Unsorted) category;
+                if (sorted != null)
+                    update_unsorted();
+            }
             list_row.notify["expanded"].connect((pspec) => {
-                category.update.begin(available_families);
+                if (category is Disabled)
+                    update_disabled();
+                else if (category is Unsorted)
+                    update_unsorted();
+                else
+                    category.update.begin(available_families);
             });
             return;
         }

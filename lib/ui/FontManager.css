@@ -90,10 +90,6 @@ decoration, window, window.background, dialog.message {
                 0 0 0 1px rgba(0, 0, 0, 0.25);
 }
 
-notebook > header {
-    background-color: shade(@theme_bg_color, 0.9);
-}
-
 .pill-button {
     padding: 0px 18px 0px 18px;
     border-radius: 1em;

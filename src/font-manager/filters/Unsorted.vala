@@ -1,6 +1,6 @@
 /* Unsorted.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,13 +26,27 @@ namespace FontManager {
             base(_("Unsorted"),
                  _("Fonts not present in any collection"),
                  "dialog-question-symbolic",
-                 "%s;".printf(SELECT_FROM_FONTS),
+                 "%s WHERE family='%s';",
                  CategoryIndex.UNSORTED);
         }
 
         public new async void update (StringSet? available_fonts, StringSet sorted) {
-            yield base.update(available_fonts);
-            families.remove_all(sorted);
+            families.clear();
+            variations.clear();
+            if (available_fonts != null) {
+                try {
+                    Database db = Database.get_default(db_type);
+                    foreach (var family in available_fonts) {
+                        if (family in sorted)
+                            continue;
+                        var query = sql.printf(SELECT_FROM_FONTS, family);
+                        get_matching_families_and_fonts(db, families, variations, query);
+                    }
+                } catch (DatabaseError error) {
+                    warning(error.message);
+                }
+            }
+            changed();
             return;
         }
 

@@ -702,6 +702,7 @@ namespace FontManager {
 
         bool save_item_state_change () {
             disabled_families.save();
+            state_change_timeout = 0;
             return GLib.Source.REMOVE;
         }
 
@@ -847,4 +848,5 @@ namespace FontManager {
     }
 
 }
+
 

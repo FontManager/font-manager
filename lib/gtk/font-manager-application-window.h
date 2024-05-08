@@ -27,6 +27,8 @@
 #include <glib/gprintf.h>
 #include <gtk/gtk.h>
 
+#include "font-manager-gtk-utils.h"
+
 #define FONT_MANAGER_TYPE_APPLICATION_WINDOW (font_manager_application_window_get_type())
 G_DECLARE_DERIVABLE_TYPE(FontManagerApplicationWindow,
                          font_manager_application_window,

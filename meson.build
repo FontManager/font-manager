@@ -17,6 +17,7 @@ endif
 cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required: false)
 
+i18n = import('i18n')
 fontconfig = dependency('fontconfig', version: '>= 2.12')
 freetype = dependency('freetype2', version: '>= 2.10')
 gio = dependency('gio-2.0', version: '>= 2.7')
@@ -27,18 +28,11 @@ gtk = dependency('gtk4', version: '>= 4.10')
 harfbuzz = dependency('harfbuzz', version: '>= 2.5')
 json = dependency('json-glib-1.0', version: '>= 1.5')
 pangoft2 = dependency('pangoft2', version: '>= 1.45')
+python = import('python').find_installation('python3')
 sqlite = dependency('sqlite3', version: '>= 3.35')
 xml = dependency('libxml-2.0', version: '>= 2.9.10')
 
-if get_option('webkit')
-    soup = dependency('libsoup-3.0', version: '>= 3.2')
-    webkit = dependency('webkitgtk-6.0', version: '>= 2.4')
-    add_global_arguments('-D', 'HAVE_WEBKIT', language: 'vala')
-endif
-
-i18n = import('i18n')
 gnome = import('gnome')
-python = import('python').find_installation('python3')
 
 # This dependency cannot be used for vala targets
 base_deps = declare_dependency(
@@ -49,6 +43,12 @@ base_deps = declare_dependency(
 vala_deps = declare_dependency(
     dependencies: [ glib, gio, gio_unix, gmodule, gtk, json, m_dep, sqlite, xml ]
 )
+
+if get_option('webkit')
+    soup = dependency('libsoup-3.0', version: '>= 3.2')
+    webkit = dependency('webkitgtk-6.0', version: '>= 2.4')
+    add_global_arguments('-D', 'HAVE_WEBKIT', language: 'vala')
+endif
 
 includes = [ include_directories('.') ]
 
@@ -82,9 +82,9 @@ add_project_arguments(
 )
 
 if get_option('unihan')
-    add_project_arguments('-DINCLUDE_UNIHAN_DATA=1', language: 'c')
+    add_global_arguments('-DINCLUDE_UNIHAN_DATA=1', language: 'c')
 else
-    add_project_arguments('-DINCLUDE_UNIHAN_DATA=0', language: 'c')
+    add_global_arguments('-DINCLUDE_UNIHAN_DATA=0', language: 'c')
 endif
 
 subdir('lib')
@@ -93,14 +93,13 @@ subdir('extensions')
 subdir('help')
 subdir('data')
 
-subdir('test')
-
-meson.add_dist_script('meson_dist.py')
-meson.add_install_script('meson_post_install.py')
-
 if get_option('enable-nls')
     subdir('po')
 endif
+
+subdir('test')
+
+meson.add_dist_script('meson_dist.py')
 
 gnome.post_install(
     glib_compile_schemas: true,
@@ -139,5 +138,4 @@ summary(
     section: '''Directories
     '''
 )
-
 

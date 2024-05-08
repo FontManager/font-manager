@@ -82,7 +82,9 @@ namespace FontManager {
     public class Sidebar : Gtk.Box {
 
         public FontListFilter? filter { get; set; default = null; }
+        public Json.Array? available_fonts { get; set; default = null; }
         public StringSet? available_families { get; set; default = null; }
+        public Reject? disabled_families { get; set; default = null; }
 
         SidebarControls controls;
 
@@ -99,12 +101,26 @@ namespace FontManager {
             append(controls);
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("available-families", categories, "available-families", flags);
+            bind_property("disabled-families", categories, "disabled-families", flags);
             categories.selection_changed.connect(on_category_changed);
             collections.selection_changed.connect(on_collection_changed);
             controls.add_selected.connect(on_add_selected);
             controls.remove_selected.connect(on_remove_selected);
             controls.edit_selected.connect(on_edit_selected);
             categories.selection.select_item(0, true);
+            categories.sorted = ((CollectionListModel) collections.model).get_full_contents();
+            collections.changed.connect(() => {
+                categories.sorted = ((CollectionListModel) collections.model).get_full_contents();
+            });
+            notify["available-fonts"].connect(() => {
+                if (available_fonts != null) {
+                    var available = new StringSet();
+                    available_fonts.foreach_element((a, i, n) => {
+                        available.add(n.get_object().get_string_member("family"));
+                    });
+                    available_families = available;
+                }
+            });
         }
 
         void on_add_selected () {
@@ -156,7 +172,9 @@ namespace FontManager {
         public Object? selected_item { get; set; default = null; }
 
         public FontListFilter? filter { get; set; default = null; }
+        public Json.Array? available_fonts { get; set; default = null; }
         public StringSet? available_families { get; set; default = null; }
+        public Reject? disabled_families { get; set; default = null; }
         public Orthography? selected_orthography { get; set; default = null; }
 
         public PreviewPanePage mode {
@@ -186,6 +204,8 @@ namespace FontManager {
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             sidebar.bind_property("filter", this, "filter", flags);
             bind_property("available-families", sidebar, "available-families", flags);
+            bind_property("available-fonts", sidebar, "available-fonts", flags);
+            bind_property("disabled-families", sidebar, "disabled-families", flags);
             bind_property("selected-item", orthographies, "selected-item", flags);
             orthographies.bind_property("selected-orthography", this, "selected-orthography", flags);
         }

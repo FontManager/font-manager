@@ -80,6 +80,7 @@ namespace FontManager {
         }
 
         public Json.Array? available_fonts { get; set; default = null; }
+        public Reject? disabled_families { get; set; default = null; }
 
         Gtk.Stack main_stack;
         MainPane main_pane;
@@ -138,6 +139,7 @@ namespace FontManager {
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("mode", main_pane, "mode", flags);
             bind_property("available-fonts", main_pane, "available-fonts", flags);
+            bind_property("disabled-families", main_pane, "disabled-families", flags);
             // bind_property("available-fonts", browse_pane, "available-fonts", flags);
             prefs_pane.bind_property("user-actions", main_pane, "user-actions", flags);
             prefs_pane.bind_property("user-sources", main_pane, "user-sources", flags);

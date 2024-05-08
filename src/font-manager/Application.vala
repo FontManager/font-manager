@@ -38,7 +38,7 @@ namespace FontManager {
         // [DBus (visible = false)]
         // public DatabaseProxy? db { get; private set; default = new DatabaseProxy(); }
         [DBus (visible = false)]
-        public Reject? reject { get; private set; default = new Reject(); }
+        public Reject? disabled_families { get; private set; default = new Reject(); }
         [DBus (visible = false)]
         public StringSet? temp_files { get; private set; default = new StringSet(); }
 
@@ -67,7 +67,7 @@ namespace FontManager {
 
         public override void startup () {
             base.startup();
-            reject.load();
+            disabled_families.load();
             Gtk.Settings gtk = Gtk.Settings.get_default();
             gtk.gtk_application_prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
             gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
@@ -178,16 +178,16 @@ namespace FontManager {
 
         public void enable (string [] families) throws GLib.DBusError, GLib.IOError {
             foreach (var family in families)
-                if (family in reject)
-                    reject.remove(family);
-            reject.save();
+                if (family in disabled_families)
+                    disabled_families.remove(family);
+            disabled_families.save();
             return;
         }
 
         public void disable (string [] families) throws GLib.DBusError, GLib.IOError {
             foreach (var family in families)
-                reject.add(family);
-            reject.save();
+                disabled_families.add(family);
+            disabled_families.save();
             return;
         }
 
@@ -306,13 +306,12 @@ namespace FontManager {
 
         protected override void activate () {
             register_session = true;
-            // Adw.init();
-            set_application_style();
             if (main_window == null) {
                 main_window = new MainWindow();
                 add_window(main_window);
                 BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
                 bind_property("available-fonts", main_window, "available-fonts", flags);
+                bind_property("disabled-families", main_window, "disabled-families", flags);
                 available_fonts = get_sorted_font_list(main_window.get_pango_context());
                 // Why is this needed?
                 shutdown.connect(() => { quit(); });
