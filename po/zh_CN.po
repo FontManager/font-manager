@@ -25,13 +25,14 @@
 # joe <ourmicroid@outlook.com>, 2022.
 # poi <erbaotao@outlook.com>, 2022, 2024.
 # Jason Clermont <lunme1008@gmail.com>, 2022.
+# 复予 <clonewith@qq.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2024-05-08 18:44+0000\n"
-"Last-Translator: poi <erbaotao@outlook.com>\n"
+"PO-Revision-Date: 2024-05-20 01:01+0000\n"
+"Last-Translator: 复予 <clonewith@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -39,7 +40,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.5.4-rc\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 # Not translate very good, just for use.
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
@@ -409,7 +410,7 @@ msgstr "倾斜"
 #: lib/common/font-manager-properties-pane.c:85
 #: src/font-manager/Categories.vala:535
 msgid "Weight"
-msgstr "字体粗细"
+msgstr "字重"
 
 #: lib/common/font-manager-properties-pane.c:86
 #: src/font-manager/Categories.vala:537
@@ -452,27 +453,27 @@ msgstr "源不可用"
 
 #: lib/unicode/unicode-info.c:191
 msgid "<Non Private Use High Surrogate>"
-msgstr "<Non Private Use High Surrogate>"
+msgstr "<非私人使用高代理>"
 
 #: lib/unicode/unicode-info.c:193
 msgid "<Private Use High Surrogate>"
-msgstr "<Private Use High Surrogate>"
+msgstr "<私人使用高代理>"
 
 #: lib/unicode/unicode-info.c:195
 msgid "<Low Surrogate>"
-msgstr "<Low Surrogate>"
+msgstr "<低代理>"
 
 #: lib/unicode/unicode-info.c:197
 msgid "<Private Use>"
-msgstr "<Private Use>"
+msgstr "<私人使用>"
 
 #: lib/unicode/unicode-info.c:199
 msgid "<Plane 15 Private Use>"
-msgstr "<Plane 15 Private Use>"
+msgstr "<Plane 15 私人使用>"
 
 #: lib/unicode/unicode-info.c:201
 msgid "<Plane 16 Private Use>"
-msgstr "<Plane 16 Private Use>"
+msgstr "<Plane 16 私人使用>"
 
 #: lib/unicode/unicode-info.c:205
 msgid "<not assigned>"
@@ -629,7 +630,8 @@ msgstr ""
 msgid "translator-credits"
 msgstr ""
 "玉堂白鹤 <yjwork@qq.com>, 2021\n"
-"匿名 <https://me-qr.com/entry/vcard/Wr2h6tBO>"
+"匿名 <https://me-qr.com/entry/vcard/Wr2h6tBO>\n"
+"复予 <clonewith@qq.com>, 2024"
 
 #: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
@@ -718,7 +720,7 @@ msgstr "图形(Pictorial)"
 #, c-format
 msgid "%i Variation "
 msgid_plural "%i Variations"
-msgstr[0] "%i 种变体 "
+msgstr[0] "%i 种变体"
 
 #: src/font-manager/Collections.vala:23
 msgid "Enter Collection Name"
@@ -817,6 +819,10 @@ msgid ""
 "Start search using %s to filter based on filepath.\n"
 "Start search using %s to filter based on characters."
 msgstr ""
+"搜索字体族名，区分大小写。\n"
+"\n"
+"以 %s 开头来基于文件路径过滤。\n"
+"以 %s 开头来基于字符过滤。"
 
 #: src/font-manager/FontList.vala:68
 #: src/font-manager/web/google/FontList.vala:65
@@ -893,31 +899,31 @@ msgstr "亚美尼亚字母"
 
 #: src/font-manager/Orthographies.vala:38
 msgid "Astronomy"
-msgstr ""
+msgstr "天文学"
 
 #: src/font-manager/Orthographies.vala:39
 msgid "Balinese"
-msgstr ""
+msgstr "巴厘字母"
 
 #: src/font-manager/Orthographies.vala:40
 msgid "Baltic"
-msgstr ""
+msgstr "波罗的海字母"
 
 #: src/font-manager/Orthographies.vala:41
 msgid "Bamum"
-msgstr ""
+msgstr "巴穆姆字母"
 
 #: src/font-manager/Orthographies.vala:42
 msgid "Basic Cyrillic"
-msgstr ""
+msgstr "基本西里尔字母"
 
 #: src/font-manager/Orthographies.vala:43
 msgid "Basic Greek"
-msgstr ""
+msgstr "基本希腊字母"
 
 #: src/font-manager/Orthographies.vala:44
 msgid "Basic Latin"
-msgstr ""
+msgstr "基本拉丁字母"
 
 #: src/font-manager/Orthographies.vala:45
 msgid "Surat Batak"
@@ -1013,24 +1019,24 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:71
 msgid "Currencies"
-msgstr ""
+msgstr "货币"
 
 #: src/font-manager/Orthographies.vala:72
 msgid "Cypriot Syllabary"
-msgstr ""
+msgstr "塞浦路斯音节文字"
 
 #: src/font-manager/Orthographies.vala:73
 #: src/font-manager/web/google/Language.vala:40
 msgid "Devanagari"
-msgstr ""
+msgstr "天成文字符"
 
 #: src/font-manager/Orthographies.vala:74
 msgid "Dutch"
-msgstr ""
+msgstr "荷兰语字符"
 
 #: src/font-manager/Orthographies.vala:75
 msgid "Egyptian Hieroglyphs"
-msgstr ""
+msgstr "埃及象形文字"
 
 #: src/font-manager/Orthographies.vala:76
 msgid "Emoticons"
@@ -1038,7 +1044,7 @@ msgstr "表情符号"
 
 #: src/font-manager/Orthographies.vala:77
 msgid "Ethiopic"
-msgstr ""
+msgstr "埃塞俄比亚语"
 
 #. This "orthography" contains only the euro symbol...
 #. { "Euro", "Euro" },
@@ -1052,42 +1058,42 @@ msgstr "食物和饮料"
 
 #: src/font-manager/Orthographies.vala:84
 msgid "Full Cyrillic"
-msgstr ""
+msgstr "完整西里尔字符"
 
 #: src/font-manager/Orthographies.vala:85
 msgid "Georgian"
-msgstr ""
+msgstr "格鲁吉亚语"
 
 #: src/font-manager/Orthographies.vala:86
 msgid "Glagolitic"
-msgstr ""
+msgstr "格拉高里语"
 
 #: src/font-manager/Orthographies.vala:87
 msgid "Gothic"
-msgstr ""
+msgstr "哥特语"
 
 #: src/font-manager/Orthographies.vala:88
 #: src/font-manager/web/google/Language.vala:43
 msgid "Gujarati"
-msgstr ""
+msgstr "古吉拉特语"
 
 #: src/font-manager/Orthographies.vala:89
 #: src/font-manager/web/google/Language.vala:44
 msgid "Gurmukhi"
-msgstr ""
+msgstr "古木基文"
 
 #: src/font-manager/Orthographies.vala:90
 msgid "Korean Hangul"
-msgstr ""
+msgstr "韩文 (Hangul)"
 
 #: src/font-manager/Orthographies.vala:91
 msgid "Hanunó'o"
-msgstr ""
+msgstr "哈努诺文 (Hanunó'o)"
 
 #: src/font-manager/Orthographies.vala:92
 #: src/font-manager/web/google/Language.vala:45
 msgid "Hebrew"
-msgstr ""
+msgstr "希伯来语"
 
 #: src/font-manager/Orthographies.vala:93
 #: src/font-manager/Orthographies.vala:95
@@ -1100,32 +1106,32 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:96
 msgid "Korean Jamo"
-msgstr ""
+msgstr "韩文 (Jamo)"
 
 #: src/font-manager/Orthographies.vala:97
 msgid "Javanese"
-msgstr ""
+msgstr "爪哇语"
 
 #: src/font-manager/Orthographies.vala:98
 msgid "Japanese Jinmeiyo"
-msgstr ""
+msgstr "日文人名用汉字 (Jinmeiyo)"
 
 #: src/font-manager/Orthographies.vala:99
 msgid "Japanese Joyo"
-msgstr ""
+msgstr "日文常用汉字 (Joyo)"
 
 #: src/font-manager/Orthographies.vala:100
 msgid "Kaithi"
-msgstr ""
+msgstr "凯提文"
 
 #: src/font-manager/Orthographies.vala:101
 msgid "Japanese Kana"
-msgstr ""
+msgstr "日文假名"
 
 #: src/font-manager/Orthographies.vala:102
 #: src/font-manager/web/google/Language.vala:47
 msgid "Kannada"
-msgstr ""
+msgstr "卡纳达语"
 
 #: src/font-manager/Orthographies.vala:103
 msgid "Kayah Li"
@@ -1211,11 +1217,11 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:123
 msgid "Miao"
-msgstr ""
+msgstr "苗语"
 
 #: src/font-manager/Orthographies.vala:124
 msgid "Mongolian"
-msgstr ""
+msgstr "蒙古语"
 
 #. Medieval Unicode Font Initiative - http://folk.uib.no/hnooh/mufi/
 #. * Contains lots of duplicates, doubt many would find it useful
@@ -1273,7 +1279,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:143
 msgid "Pinyin"
-msgstr ""
+msgstr "汉语拼音"
 
 #: src/font-manager/Orthographies.vala:144
 msgid "Polynesian"
@@ -1357,7 +1363,7 @@ msgstr ""
 #: src/font-manager/Orthographies.vala:163
 #: src/font-manager/web/google/Language.vala:58
 msgid "Thai"
-msgstr ""
+msgstr "泰语"
 
 #: src/font-manager/Orthographies.vala:164
 #: src/font-manager/web/google/Language.vala:59
@@ -1390,7 +1396,7 @@ msgstr ""
 
 #: src/font-manager/Orthographies.vala:171
 msgid "Vedic Extensions"
-msgstr ""
+msgstr "吠陀语（扩展）"
 
 #: src/font-manager/Orthographies.vala:172
 msgid "Venda"
@@ -1399,15 +1405,15 @@ msgstr "文达语字符"
 #: src/font-manager/Orthographies.vala:173
 #: src/font-manager/web/google/Language.vala:60
 msgid "Vietnamese"
-msgstr ""
+msgstr "越南语"
 
 #: src/font-manager/Orthographies.vala:174
 msgid "Western European"
-msgstr ""
+msgstr "西欧"
 
 #: src/font-manager/Orthographies.vala:175
 msgid "Yi"
-msgstr ""
+msgstr "彝语"
 
 #: src/font-manager/Orthographies.vala:176
 msgid "Chinese Zhuyin Fuhao"
@@ -1417,7 +1423,7 @@ msgstr "中文注音符号"
 #. orthography. This will be displayed as "Coverage : XXX%" in the interface.
 #: src/font-manager/Orthography.vala:124
 msgid "Coverage"
-msgstr ""
+msgstr "覆盖率"
 
 #: src/font-manager/Orthography.vala:153
 #: src/font-manager/filters/LanguageFilter.vala:58
@@ -1606,6 +1612,11 @@ msgid ""
 "\n"
 "Note that not all environments/applications will honor these settings."
 msgstr ""
+"选择“保存”来使用上述设置生成 fontconfig 配置文件。\n"
+"\n"
+"选择“丢弃”以删除配置文件并恢复默认设置。\n"
+"\n"
+"请注意，并非所有环境/应用都会使用这些设置。"
 
 #: src/font-manager/preferences/Fontconfig.vala:204
 #: src/font-manager/preferences/Fontconfig.vala:282
@@ -1722,6 +1733,11 @@ msgid ""
 "To control where the filepath is inserted use FILEPATH as a placeholder.\n"
 "If FAMILY or STYLE are found in the argument list they will also be replaced."
 msgstr ""
+"此处定义的操作将会被添加到字体列表上下文菜单。\n"
+"\n"
+"默认情况下，所选字体的文件路径会附加到参数列表末尾。\n"
+"要控制文件路径的插入位置，请使用 FILEPATH 作为占位符。\n"
+"如果在参数列表中找到了 FAMILY 或 STYLE，也会将其替换。"
 
 #: src/font-manager/preferences/UserActions.vala:214
 msgid "User Actions"
@@ -1844,45 +1860,45 @@ msgstr "中文（繁体）"
 
 #: src/font-manager/web/google/Language.vala:38
 msgid "Cyrillic"
-msgstr ""
+msgstr "西里尔"
 
 #: src/font-manager/web/google/Language.vala:39
 msgid "Cyrillic Extended"
-msgstr ""
+msgstr "西里尔（扩展）"
 
 #: src/font-manager/web/google/Language.vala:41
 msgid "Greek"
-msgstr ""
+msgstr "希腊"
 
 #: src/font-manager/web/google/Language.vala:42
 msgid "Greek Extended"
-msgstr ""
+msgstr "希腊（扩展）"
 
 #: src/font-manager/web/google/Language.vala:46
 msgid "Japanese"
-msgstr ""
+msgstr "日语"
 
 #: src/font-manager/web/google/Language.vala:49
 msgid "Korean"
-msgstr ""
+msgstr "韩语"
 
 #: src/font-manager/web/google/Language.vala:50
 msgid "Latin"
-msgstr ""
+msgstr "拉丁"
 
 #: src/font-manager/web/google/Language.vala:51
 msgid "Latin Extended"
-msgstr ""
+msgstr "拉丁（扩展）"
 
 #. TRANSLATORS : The replacement character here refers to a language name
 #: src/font-manager/web/google/Language.vala:81
 #, c-format
 msgid "No sample for %s available"
-msgstr ""
+msgstr "没有可用的%s示例"
 
 #: src/font-manager/web/google/Language.vala:83
 msgid "Please file an issue requesting an update to available samples."
-msgstr ""
+msgstr "请创建问题以请求更新可用示例。"
 
 #: src/font-manager/web/google/PreviewPane.vala:293
 msgid "Update Family"
@@ -1912,7 +1928,7 @@ msgstr "下载字体"
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
-msgstr[0] "%i 个可用语言样本 "
+msgstr[0] "%i 个可用语言样本"
 
 #: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
