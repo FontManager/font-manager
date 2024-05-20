@@ -1,6 +1,6 @@
 /* Compare.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -272,7 +272,7 @@ namespace FontManager {
             foreach (Object item in items) {
                 string? family = null;
                 item.get("family", out family, null);
-                if (available_families == null || available_families.contains(family)) {
+                if (available_families == null || family in available_families) {
                     if (item is Family) {
                         Json.Array variations = ((Family) item).variations;
                         variations.foreach_element((a, i, n) => {

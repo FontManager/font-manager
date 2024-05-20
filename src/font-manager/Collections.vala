@@ -24,7 +24,13 @@ namespace FontManager {
 
     public class CollectionListModel : FontListFilterModel {
 
+        public Reject? disabled_families { get; set; default = null; }
+
         public signal void changed ();
+
+        public CollectionListModel () {
+            changed.connect(() => { save(); });
+        }
 
         public static string get_cache_file () {
             string dirpath = get_package_config_directory();
@@ -46,6 +52,13 @@ namespace FontManager {
             foreach (var entry in items.data)
                 full_contents.add_all(((Collection) entry).get_full_contents());
             return full_contents;
+        }
+
+        public override void add_item (FontListFilter item) {
+            base.add_item(item);
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            bind_property("disabled-families", ((Collection) item), "disabled-families", flags);
+            return;
         }
 
         void add_from_json_node (Json.Node node) {
@@ -91,6 +104,7 @@ namespace FontManager {
         public signal void changed ();
 
         ulong change_handler = 0;
+        ulong activate_handler = 0;
         Binding? name_binding = null;
         Binding? state_binding = null;
 
@@ -104,11 +118,14 @@ namespace FontManager {
         public override void reset () {
             if (change_handler != 0)
                 item.disconnect(change_handler);
+            if (activate_handler != 0)
+                item.disconnect(activate_handler);
             if (state_binding != null)
                 state_binding.unbind();
             if (name_binding != null)
                 name_binding.unbind();
             change_handler = 0;
+            activate_handler = 0;
             state_binding = null;
             name_binding = null;
             return;
@@ -123,6 +140,10 @@ namespace FontManager {
                 item_icon.set_from_icon_name(collection.icon);
             item_count.set_label(collection.size.to_string());
             change_handler = collection.changed.connect(() => { changed(); });
+            activate_handler = item_state.toggled.connect(() => {
+                collection.active = item_state.active;
+                collection.on_activate();
+            });
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             name_binding = collection.bind_property("name", item_label, "label", flags);
             state_binding = collection.bind_property("active", item_state, "active", flags);
@@ -156,6 +177,8 @@ namespace FontManager {
 
         public signal void changed ();
 
+        public Reject? disabled_families { get; set; default = null; }
+
         uint update_timeout = 0;
 
         Gtk.Label menu_title;
@@ -163,6 +186,10 @@ namespace FontManager {
         Gdk.Rectangle clicked_area;
 
         CollectionRenamePopover? rename_popover = null;
+
+        ~ CollectionListView () {
+            ((CollectionListModel) model).save();
+        }
 
         static construct {
             var file_roller = new ArchiveManager();
@@ -192,10 +219,8 @@ namespace FontManager {
             };
             ((Gtk.GestureClick) click).pressed.connect(on_click);
             listview.add_controller(click);
-        }
-
-        ~ CollectionListView () {
-            ((CollectionListModel) model).save();
+            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+            bind_property("disabled-families", model, "disabled-families", flags);
         }
 
         bool update () {
@@ -321,6 +346,7 @@ namespace FontManager {
             assert(DirUtils.create_with_parents(tmp_path, 0755) == 0);
             File tmp = File.new_for_path(tmp_path);
             copy_files.begin(((Collection) selected_item).get_filelist(), tmp, false, (obj, res) => {
+                copy_files.end(res);
                 string? [] filelist = { tmp.get_uri(), null };
                 unowned string home = Environment.get_home_dir();
                 string destination = File.new_for_path(home).get_uri();
@@ -512,6 +538,7 @@ namespace FontManager {
                 if (object is Family)
                     collection.families.add(((Family) object).family);
             }
+            ((CollectionListModel) model).save();
             queue_update();
             changed();
             return true;

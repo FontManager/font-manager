@@ -98,26 +98,26 @@ namespace FontManager {
         }
 
         async void purge_database_entries (string path) {
-            DatabaseType [] types = { DatabaseType.FONT, DatabaseType.METADATA, DatabaseType.ORTHOGRAPHY };
-            try {
-                Database? db = Database.get_default(DatabaseType.BASE);
-                foreach (var type in types) {
-                    var name = Database.get_type_name(type);
-                    db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(name, path));
-                    db.stmt.step();
-                }
-                db = null;
-                foreach (var type in types) {
-                    db = Database.get_default(type);
-                    db.execute_query("VACUUM");
-                    db.stmt.step();
-                    Idle.add(purge_database_entries.callback);
-                    yield;
-                }
-            } catch (DatabaseError e) {
-                if (e.code != 1)
-                    warning(e.message);
-            }
+            // DatabaseType [] types = { DatabaseType.FONT, DatabaseType.METADATA, DatabaseType.ORTHOGRAPHY };
+            // try {
+            //     Database? db = Database.get_default(DatabaseType.BASE);
+            //     foreach (var type in types) {
+            //         var name = Database.get_type_name(type);
+            //         db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(name, path));
+            //         db.stmt.step();
+            //     }
+            //     db = null;
+            //     foreach (var type in types) {
+            //         db = Database.get_default(type);
+            //         db.execute_query("VACUUM");
+            //         db.stmt.step();
+            //         Idle.add(purge_database_entries.callback);
+            //         yield;
+            //     }
+            // } catch (DatabaseError e) {
+            //     if (e.code != 1)
+            //         warning(e.message);
+            // }
             return;
         }
 
@@ -189,11 +189,9 @@ They will not be visible to other applications until the source is actually enab
         }
 
         protected override void on_unmap () {
-            /* XXX: Maybe abuse settings instance for message passing...*/
             if (refresh_required) {
                 Idle.add(() => {
-                    // XXX: FIXME!
-                    //get_default_application().refresh();
+                    get_default_application().reload();
                     refresh_required = false;
                     return GLib.Source.REMOVE;
                 });

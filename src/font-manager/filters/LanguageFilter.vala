@@ -1,6 +1,6 @@
 /* LanguageFilter.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,8 +32,8 @@ namespace FontManager {
     public class LanguageFilter : Category {
 
         public double coverage { get; set; default = 90; }
-        public StringSet selections { get; set; }
-        public LanguageFilterSettings settings { get; private set; }
+        public StringSet selections { get; set; default = new StringSet(); }
+        public LanguageFilterSettings settings { get; private set; default = new LanguageFilterSettings(); }
 
         GLib.Settings? gsettings = null;
 
@@ -49,8 +49,6 @@ namespace FontManager {
                  "preferences-desktop-locale-symbolic",
                  SELECT_ON_LANGUAGE,
                  CategoryIndex.LANGUAGE);
-            selections = new StringSet();
-            settings = new LanguageFilterSettings();
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             bind_property("coverage", settings, "coverage", flags);
             bind_property("selections", settings, "selections", flags);
@@ -75,7 +73,7 @@ namespace FontManager {
             foreach (var entry in settings.get_strv("language-filter-list"))
                 selections.add(entry);
             coverage = settings.get_double("language-filter-min-coverage");
-            update.begin(null, (obj, res) => { update.end(res); });
+            update.begin();
             return;
         }
 
@@ -85,25 +83,22 @@ namespace FontManager {
             return;
         }
 
-        public override async void update (StringSet? available_families) {
+        public override async void update () {
             families.clear();
             variations.clear();
             try {
-                Database db = Database.get_default(db_type);
+                Database db = new Database();
                 foreach (string language in selections) {
                     var pref_loc = Intl.setlocale(LocaleCategory.ALL, "");
                     Intl.setlocale(LocaleCategory.ALL, "C");
                     string _sql_ = sql.printf(language, coverage);
                     Intl.setlocale(LocaleCategory.ALL, pref_loc);
                     get_matching_families_and_fonts(db, families, variations, _sql_);
-                    Idle.add(update.callback);
-                    yield;
                 }
-            } catch (DatabaseError error) {
-                warning(error.message);
+                db.close();
+            } catch (Error e) {
+                warning(e.message);
             }
-            if (available_families != null)
-                families.retain_all(available_families);
             // Model update
             changed();
             return;

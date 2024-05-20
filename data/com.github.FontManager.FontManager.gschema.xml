@@ -102,7 +102,7 @@
         <key name="window-size" type="(ii)">
             <summary>Window size</summary>
             <description>Width and height of the main window.</description>
-            <default>(900, 600)</default>
+            <default>(950, 700)</default>
         </key>
 
         <key name="is-maximized" type="b">
@@ -113,14 +113,26 @@
 
         <key name="sidebar-size" type="d">
             <summary>Sidebar size</summary>
-            <description>Size of the sidebar in pixels.</description>
-            <default>33</default>
+            <description>Size of the sidebar as a percentage of window size.</description>
+            <default>33.0</default>
         </key>
 
-        <key name="content-pane-position" type="d">
+        <key name="content-size" type="d">
             <summary>Content area size</summary>
-            <description>Position of the content pane.</description>
-            <default>40</default>
+            <description>Size of the content pane as a percentage of window size.</description>
+            <default>40.0</default>
+        </key>
+
+        <key name="hor-sidebar-size" type="d">
+            <summary>Sidebar size</summary>
+            <description>Size of the sidebar as a percentage of window size.</description>
+            <default>20.0</default>
+        </key>
+
+        <key name="hor-content-size" type="d">
+            <summary>Content area size</summary>
+            <description>Size of the content pane as a percentage of window size.</description>
+            <default>36.0</default>
         </key>
 
         <key name="preview-font-size" type="d">

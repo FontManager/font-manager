@@ -1,6 +1,6 @@
 /* Category.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,11 +23,10 @@ namespace FontManager {
     public class Category : FontListFilter {
 
         public string? sql { get; set; default = null; }
-        public StringSet families { get; set; }
-        public StringSet variations { get; set; }
-        public DatabaseType db_type { get; set; default = DatabaseType.BASE; }
+        public StringSet families { get; set; default = new StringSet(); }
+        public StringSet variations { get; set; default = new StringSet(); }
 
-        public GenericArray <Category> children { get; set; }
+        public GenericArray <Category> children { get; set; default = new GenericArray <Category> (); }
 
         public override int size {
             get {
@@ -37,26 +36,18 @@ namespace FontManager {
 
         public Category (string name, string comment, string icon, string? sql, int index) {
             Object(name: name, icon: icon, comment: comment, sql: sql, index: index);
-            children = new GenericArray <Category> ();
-            variations = new StringSet();
-            families = new StringSet();
         }
 
-        public override async void update (StringSet? available_families) {
-            if (!requires_update)
-                return;
+        public override async void update () {
             families.clear();
             variations.clear();
             try {
                 if (sql != null) {
-                    Database db = Database.get_default(db_type);
+                    Database db = new Database();
                     get_matching_families_and_fonts(db, families, variations, sql);
                 }
-                if (available_families != null)
-                    families.retain_all(available_families);
-                requires_update = false;
                 for (int i = 0; i < children.length; i++)
-                    yield children[i].update(available_families);
+                    yield children[i].update();
             } catch (DatabaseError error) {
                 warning(error.message);
             }
@@ -90,9 +81,6 @@ namespace FontManager {
                 var res = new StringSet();
                 val.set_object(res);
                 return true;
-            } else if (pspec.value_type == typeof(DatabaseType)) {
-                val.set_enum((DatabaseType) ((int) node.get_int()));
-                return true;
             } else {
                 return base.deserialize_property(prop_name, out val, pspec, node);
             }
@@ -113,10 +101,6 @@ namespace FontManager {
                 var node = new Json.Node(Json.NodeType.ARRAY);
                 var arr = new Json.Array();
                 node.set_array(arr);
-                return node;
-            } else if (pspec.value_type == typeof(DatabaseType)) {
-                var node = new Json.Node(Json.NodeType.VALUE);
-                node.set_int((int) val.get_enum());
                 return node;
             } else {
                 return base.serialize_property(prop_name, val, pspec);

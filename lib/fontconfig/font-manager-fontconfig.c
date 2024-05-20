@@ -137,59 +137,28 @@ font_manager_clear_application_fonts (void)
 }
 
 /**
- * font_manager_list_available_font_files:
- *
- * Returns: (element-type utf8) (transfer full) (nullable):
- * a newly created #GSList containing filepaths or %NULL.
- * Free the returned list using #g_slist_free_full(list, #g_free)
- */
-GList *
-font_manager_list_available_font_files (void)
-{
-    FcPattern *pattern = FcPatternBuild(NULL,NULL);
-    FcObjectSet *objectset = FcObjectSetBuild (FC_FILE, FC_FONTFORMAT, NULL);
-    g_assert(FcPatternAddBool(pattern, FC_VARIABLE, FcFalse));
-    FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
-    GList *result = NULL;
-
-    for (int i = 0; i < fontset->nfont; i++) {
-        FcChar8 *file;
-        if (FcPatternGetString(fontset->fonts[i], FC_FILE, 0, &file) == FcResultMatch) {
-            if (pango_version() >= PANGO_1_44 && is_legacy_format(fontset->fonts[i]))
-                continue;
-            result = g_list_prepend(result, g_strdup_printf("%s", file));
-        }
-    }
-
-    FcObjectSetDestroy(objectset);
-    FcPatternDestroy(pattern);
-    FcFontSetDestroy(fontset);
-    return result;
-}
-
-/**
  * font_manager_list_available_font_families:
  *
- * Returns: (element-type utf8) (transfer full) (nullable):
- * a newly created #GSList containing family names or %NULL
- * Free the returned list using #g_slist_free_full(list, #g_free);
+ * Returns: (transfer full) (nullable):
+ * a newly created #FontManagerStringSet containing filepaths or %NULL.
+ * Free the returned object using #g_object_unref
  */
-GList *
+FontManagerStringSet *
 font_manager_list_available_font_families (void)
 {
-    GList *result = NULL;
     FcPattern *pattern = FcPatternBuild(NULL,NULL);
     g_assert(FcPatternAddBool(pattern, FC_VARIABLE, FcFalse));
     FcObjectSet *objectset = FcObjectSetBuild(FC_FAMILY, FC_FONTFORMAT, NULL);
     FcFontSet *fontset = FcFontList(FcConfigGetCurrent(), pattern, objectset);
+
+    FontManagerStringSet * result = font_manager_string_set_new();
 
     for (int i = 0; i < fontset->nfont; i++) {
         FcChar8 *family;
         if (FcPatternGetString(fontset->fonts[i], FC_FAMILY, 0, &family) == FcResultMatch) {
             if (pango_version() >= PANGO_1_44 && is_legacy_format(fontset->fonts[i]))
                 continue;
-            if (g_list_find_custom(result, (const gchar *) family, (GCompareFunc) g_strcmp0) == NULL)
-                result = g_list_prepend(result, g_strdup_printf("%s", family));
+            font_manager_string_set_add(result, (const gchar *) family);
         }
     }
 

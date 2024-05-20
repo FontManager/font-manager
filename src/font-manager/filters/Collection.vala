@@ -1,6 +1,6 @@
 /* Collection.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,7 @@ namespace FontManager {
 
     public class Collection : FontListFilter {
 
+        public Reject? disabled_families { get; set; default = null; }
         public bool active { get; set; default = true; }
         public GenericArray <Collection> children { get; set; }
         public StringSet families { get; set; }
@@ -38,15 +39,14 @@ namespace FontManager {
             }
         }
 
+        bool ignore_activation = false;
+
         construct {
-            requires_update = false;
             children = new GenericArray <Collection> ();
-            notify["families"].connect(() => {
-                families.changed.connect(() => { changed(); });
-            });
             families = new StringSet();
-            changed.connect(() => { set_active_from_fonts(null); });
-            notify["active"].connect(() => { update(null); });
+            notify["disabled-families"].connect(() => {
+                set_active_from_fonts();
+            });
         }
 
         public Collection (string? name, string? comment) {
@@ -70,17 +70,21 @@ namespace FontManager {
             return false;
         }
 
-        public void set_active_from_fonts (Reject? reject) {
-            if (reject == null)
+        public void set_active_from_fonts () {
+            if (disabled_families == null)
                 return;
+            ignore_activation = true;
             active = false;
             foreach (string family in families) {
-                if (!(family in reject)) {
+                if (family in disabled_families)
+                    continue;
+                else {
                     active = true;
                     break;
                 }
             }
-            children.foreach((child) => { child.set_active_from_fonts(reject); });
+            children.foreach((child) => { child.set_active_from_fonts(); });
+            ignore_activation = false;
             return;
         }
 
@@ -100,13 +104,14 @@ namespace FontManager {
         public StringSet get_filelist () {
             var results = new StringSet();
             try {
-                Database db = Database.get_default(DatabaseType.BASE);
+                Database db = new Database();
                 var contents = get_full_contents();
                 foreach (var family in contents) {
                     string sql = "SELECT filepath FROM Fonts WHERE family = \"%s\"";
                     db.execute_query(sql.printf(family));
                     foreach (unowned Sqlite.Statement row in db)
                         results.add(row.column_text(0));
+                    db.end_query();
                 }
             } catch (Error e) {
                 warning(e.message);
@@ -114,18 +119,19 @@ namespace FontManager {
             return results;
         }
 
-        public new void update (Reject? reject) {
-            if (reject == null)
+        public void on_activate () {
+            if (ignore_activation || disabled_families == null)
                 return;
             if (active)
-                reject.remove_all(families);
+                disabled_families.remove_all(families);
             else
-                reject.add_all(families);
-            reject.save();
+                disabled_families.add_all(families);
             children.foreach((child) => {
                 child.active = active;
-                child.update(reject);
+                child.on_activate();
             });
+            disabled_families.save();
+            disabled_families.changed();
             return;
         }
 
@@ -137,6 +143,7 @@ namespace FontManager {
             return visible;
         }
 
+        // XXX: FIXME! : Don't load non-existent families
         public override bool deserialize_property (string prop_name,
                                                    out Value val,
                                                    ParamSpec pspec,
@@ -155,6 +162,10 @@ namespace FontManager {
                 node.get_array().foreach_element((arr, index, node) => {
                     res.add(node.get_string());
                 });
+                val.set_object(res);
+                return true;
+            } else if (pspec.value_type == typeof(Reject)) {
+                var res = new Reject();
                 val.set_object(res);
                 return true;
             } else {
@@ -178,6 +189,11 @@ namespace FontManager {
                 var arr = new Json.Array();
                 foreach (string family in families)
                     arr.add_string_element(family);
+                node.set_array(arr);
+                return node;
+            } else if (pspec.value_type == typeof(Reject)) {
+                var node = new Json.Node(Json.NodeType.ARRAY);
+                var arr = new Json.Array();
                 node.set_array(arr);
                 return node;
             } else {

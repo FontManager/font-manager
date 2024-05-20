@@ -1,4 +1,4 @@
-/* font-manager-reject.h
+/* font-manager-database-iterator.h
  *
  * Copyright (C) 2009-2024 Jerry Casiano
  *
@@ -20,20 +20,20 @@
 
 #pragma once
 
+#include <glib.h>
+#include <glib-object.h>
+#include <sqlite3.h>
+
 #include "font-manager-database.h"
-#include "font-manager-database-iterator.h"
-#include "font-manager-selections.h"
-#include "font-manager-string-set.h"
-#include "font-manager-utils.h"
 
-#define FONT_MANAGER_TYPE_REJECT (font_manager_reject_get_type ())
-G_DECLARE_DERIVABLE_TYPE(FontManagerReject, font_manager_reject, FONT_MANAGER, REJECT, FontManagerSelections)
+#define FONT_MANAGER_TYPE_DATABASE_ITERATOR (font_manager_database_iterator_get_type())
+G_DECLARE_FINAL_TYPE(FontManagerDatabaseIterator, font_manager_database_iterator, FONT_MANAGER, DATABASE_ITERATOR, GObject)
 
-struct _FontManagerRejectClass
-{
-    FontManagerSelectionsClass parent_instance;
-};
+FontManagerDatabaseIterator * font_manager_database_iterator (FontManagerDatabase *db);
 
-FontManagerReject * font_manager_reject_new (void);
-FontManagerStringSet * font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error);
+/* Standard Iterator protocol */
+FontManagerDatabaseIterator * font_manager_database_iterator_new (FontManagerDatabase *db);
+gboolean font_manager_database_iterator_next (FontManagerDatabaseIterator *self);
+sqlite3_stmt * font_manager_database_iterator_get (FontManagerDatabaseIterator *self);
+
 

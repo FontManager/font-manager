@@ -22,29 +22,26 @@ namespace FontManager {
 
     public class Unsorted : Category {
 
+        public StringSet sorted { get; set; default = new StringSet(); }
+
         public Unsorted () {
             base(_("Unsorted"),
                  _("Fonts not present in any collection"),
                  "dialog-question-symbolic",
-                 "%s WHERE family='%s';",
+                 "SELECT DISTINCT family, description FROM Fonts",
                  CategoryIndex.UNSORTED);
         }
 
-        public new async void update (StringSet? available_fonts, StringSet sorted) {
+        public new async void update () {
             families.clear();
             variations.clear();
-            if (available_fonts != null) {
-                try {
-                    Database db = Database.get_default(db_type);
-                    foreach (var family in available_fonts) {
-                        if (family in sorted)
-                            continue;
-                        var query = sql.printf(SELECT_FROM_FONTS, family);
-                        get_matching_families_and_fonts(db, families, variations, query);
-                    }
-                } catch (DatabaseError error) {
-                    warning(error.message);
-                }
+            try {
+                Database db = new Database();
+                get_matching_families_and_fonts(db, families, variations, sql);
+                families.remove_all(sorted);
+                db.close();
+            } catch (Error e) {
+                warning(e.message);
             }
             changed();
             return;
@@ -53,4 +50,5 @@ namespace FontManager {
     }
 
 }
+
 

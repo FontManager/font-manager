@@ -114,7 +114,6 @@ namespace FontManager {
 #else
         public bool compress ([CCode (array_null_terminated = true)] string? [] uris, string destination, bool use_progress_dialog = true)
 #endif
-
         requires (file_roller != null) {
             try {
                 file_roller.compress(uris, destination, use_progress_dialog);

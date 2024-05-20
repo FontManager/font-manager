@@ -67,6 +67,8 @@ namespace FontManager {
         public bool show_preferences { get; set; default = false; }
         public bool show_webfonts { get; set; default = false; }
 
+        public Gtk.ProgressBar progress { get; private set; }
+
         public Mode mode {
             get {
                 return _mode;
@@ -76,6 +78,12 @@ namespace FontManager {
                     return;
                 _mode = value;
                 notify_property("mode");
+            }
+        }
+
+        public CategoryListModel category_model {
+            get {
+                return main_pane.category_model;
             }
         }
 
@@ -112,6 +120,18 @@ namespace FontManager {
         }
 
         construct {
+            var overlay = new Gtk.Overlay();
+            progress = new Gtk.ProgressBar() {
+                halign = Gtk.Align.FILL,
+                valign = Gtk.Align.START,
+                hexpand = true,
+                vexpand = false
+            };
+            progress.add_css_class("osd");
+            main_stack = new Gtk.Stack();
+            overlay.set_child(main_stack);
+            overlay.add_overlay(progress);
+            set_child(overlay);
             settings = get_gsettings(BUS_ID);
             var header = new Gtk.HeaderBar();
             header_widgets = new HeaderBarWidgets();
@@ -120,7 +140,6 @@ namespace FontManager {
             header.pack_start(header_widgets.revealer);
             header.pack_end(header_widgets.app_menu);
             set_titlebar(header);
-            main_stack = new Gtk.Stack();
             main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN_UP);
             main_stack.set_transition_duration(500);
             main_pane = new MainPane();
@@ -135,7 +154,6 @@ namespace FontManager {
             main_stack.add_named(webfonts, "WebFonts");
 #endif /* HAVE_WEBKIT */
             main_stack.add_named(prefs_pane, "Preferences");
-            set_child(main_stack);
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("mode", main_pane, "mode", flags);
             bind_property("available-fonts", main_pane, "available-fonts", flags);
@@ -156,6 +174,23 @@ namespace FontManager {
 #if HAVE_WEBKIT
             webfonts.restore_state(settings);
 #endif /* HAVE_WEBKIT */
+        }
+
+        public bool progress_update (ProgressData data) {
+            data.ref();
+            progress.set_fraction(data.progress);
+            data.unref();
+            return GLib.Source.REMOVE;
+        }
+
+        public void select_first_category () {
+            main_pane.select_first_category();
+            return;
+        }
+
+        public void select_first_font () {
+            main_pane.select_first_font();
+            return;
         }
 
         void bind_settings () {
@@ -287,4 +322,5 @@ namespace FontManager {
     }
 
 }
+
 

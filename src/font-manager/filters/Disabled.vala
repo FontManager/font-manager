@@ -22,27 +22,29 @@ namespace FontManager {
 
     public class Disabled : Category {
 
+        public Reject disabled_families { get; set; default = new Reject(); }
+
         public Disabled () {
             base(_("Disabled"),
                  _("Fonts which have been disabled"),
                  "list-remove-symbolic",
-                 "%s WHERE family='%s';",
+                 "%s WHERE family=\"%s\";",
                  CategoryIndex.DISABLED);
+            disabled_families.load();
         }
 
-        public new async void update (StringSet? available_fonts, StringSet disabled_families) {
+        public override async void update () {
             families.clear();
             variations.clear();
             try {
-                Database db = Database.get_default(db_type);
+                Database db = new Database();
                 foreach (var family in disabled_families) {
-                    if (available_fonts != null || family in available_fonts) {
-                        var query = sql.printf(SELECT_FROM_FONTS, family);
-                        get_matching_families_and_fonts(db, families, variations, query);
-                    }
+                    var query = sql.printf(SELECT_FROM_FONTS, family);
+                    get_matching_families_and_fonts(db, families, variations, query);
                 }
-            } catch (DatabaseError error) {
-                warning(error.message);
+                db.close();
+            } catch (Error e) {
+                warning(e.message);
             }
             changed();
             return;

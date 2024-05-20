@@ -83,8 +83,13 @@ namespace FontManager {
 
         public FontListFilter? filter { get; set; default = null; }
         public Json.Array? available_fonts { get; set; default = null; }
-        public StringSet? available_families { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
+
+        public CategoryListModel category_model {
+            get {
+                return (CategoryListModel) categories.model;
+            }
+        }
 
         SidebarControls controls;
 
@@ -92,16 +97,12 @@ namespace FontManager {
         [GtkChild] unowned CollectionListView collections;
 
         public Sidebar () {
-            var families = new StringSet();
-            foreach (var family in list_available_font_families())
-                families.add(family);
-            available_families = families;
             controls = new SidebarControls();
             controls.valign = Gtk.Align.END;
             append(controls);
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
-            bind_property("available-families", categories, "available-families", flags);
             bind_property("disabled-families", categories, "disabled-families", flags);
+            bind_property("disabled-families", collections, "disabled-families", flags);
             categories.selection_changed.connect(on_category_changed);
             collections.selection_changed.connect(on_collection_changed);
             controls.add_selected.connect(on_add_selected);
@@ -112,15 +113,11 @@ namespace FontManager {
             collections.changed.connect(() => {
                 categories.sorted = ((CollectionListModel) collections.model).get_full_contents();
             });
-            notify["available-fonts"].connect(() => {
-                if (available_fonts != null) {
-                    var available = new StringSet();
-                    available_fonts.foreach_element((a, i, n) => {
-                        available.add(n.get_object().get_string_member("family"));
-                    });
-                    available_families = available;
-                }
-            });
+        }
+
+        public void select_first_row () {
+            categories.select_item(0);
+            return;
         }
 
         void on_add_selected () {
@@ -173,7 +170,6 @@ namespace FontManager {
 
         public FontListFilter? filter { get; set; default = null; }
         public Json.Array? available_fonts { get; set; default = null; }
-        public StringSet? available_families { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
         public Orthography? selected_orthography { get; set; default = null; }
 
@@ -183,6 +179,12 @@ namespace FontManager {
                     stack.set_visible_child(orthographies);
                 else
                     stack.set_visible_child(sidebar);
+            }
+        }
+
+        public CategoryListModel category_model {
+            get {
+                return sidebar.category_model;
             }
         }
 
@@ -203,11 +205,15 @@ namespace FontManager {
             stack.set_visible_child(sidebar);
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             sidebar.bind_property("filter", this, "filter", flags);
-            bind_property("available-families", sidebar, "available-families", flags);
             bind_property("available-fonts", sidebar, "available-fonts", flags);
             bind_property("disabled-families", sidebar, "disabled-families", flags);
             bind_property("selected-item", orthographies, "selected-item", flags);
             orthographies.bind_property("selected-orthography", this, "selected-orthography", flags);
+        }
+
+        public void select_first_category () {
+            sidebar.select_first_row();
+            return;
         }
 
     }

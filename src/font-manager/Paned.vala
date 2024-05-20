@@ -33,30 +33,79 @@ namespace FontManager {
                 if (value == content_pane.orientation)
                     return;
                 content_pane.orientation = value;
-                if (value == Gtk.Orientation.HORIZONTAL)
-                    sidebar_position = sidebar_pos - 10;
-                else
-                    sidebar_position = sidebar_pos + 10;
+                Idle.add(() => {
+                    update_pane_positions();
+                    return GLib.Source.REMOVE;
+                });
             }
         }
 
         public double sidebar_position {
             get {
-                return sidebar_pos;
+                if (orientation == Gtk.Orientation.HORIZONTAL)
+                    return hor_sidebar_pos;
+                else
+                    return sidebar_pos;
             }
             set {
-                sidebar_pos = value;
+                if (orientation == Gtk.Orientation.HORIZONTAL)
+                    hor_sidebar_pos = value;
+                else
+                    sidebar_pos = value;
                 update_pane_positions();
             }
         }
 
         public double content_position {
             get {
+                if (orientation == Gtk.Orientation.HORIZONTAL)
+                    return hor_content_pos;
+                else
+                    return content_pos;
+            }
+            set {
+                if (orientation == Gtk.Orientation.HORIZONTAL)
+                    hor_content_pos = value;
+                else
+                    content_pos = value;
+                update_pane_positions();
+            }
+        }
+
+        // These four properties are only here to make binding to GSettings easier
+        public double content_size {
+            get {
                 return content_pos;
             }
             set {
                 content_pos = value;
-                update_pane_positions();
+            }
+        }
+
+        public double sidebar_size {
+            get {
+                return sidebar_pos;
+            }
+            set {
+                sidebar_pos = value;
+            }
+        }
+
+        public double hor_content_size {
+            get {
+                return hor_content_pos;
+            }
+            set {
+                hor_content_pos = value;
+            }
+        }
+
+        public double hor_sidebar_size {
+            get {
+                return hor_sidebar_pos;
+            }
+            set {
+                hor_sidebar_pos = value;
             }
         }
 
@@ -67,8 +116,10 @@ namespace FontManager {
         [GtkChild] protected unowned Gtk.Paned main_pane;
         [GtkChild] protected unowned Gtk.Overlay overlay;
 
-        double sidebar_pos = 33;
-        double content_pos = 40;
+        double sidebar_pos = 33.0;
+        double content_pos = 40.0;
+        double hor_sidebar_pos = 20.0;
+        double hor_content_pos = 36.0;
 
         public Paned () {
             // Necessary to get an acceptable initial size for pane layout
@@ -79,11 +130,25 @@ namespace FontManager {
                 });
             });
             main_pane.notify["position"].connect((obj, pspec) => {
-                sidebar_pos = position_to_percentage(main_pane).clamp(2, 98);
+                var new_pos = position_to_percentage(main_pane).clamp(2, 98);
+                if (orientation == Gtk.Orientation.HORIZONTAL) {
+                    hor_sidebar_pos = new_pos;
+                    notify_property("hor-sidebar-size");
+                } else {
+                    sidebar_pos = new_pos;
+                    notify_property("sidebar-size");
+                }
                 notify_property("sidebar-position");
             });
             content_pane.notify["position"].connect((obj, pspec) => {
-                content_pos = position_to_percentage(content_pane).clamp(2, 98);
+                var new_pos = position_to_percentage(content_pane).clamp(2, 98);
+                if (orientation == Gtk.Orientation.HORIZONTAL) {
+                    hor_content_pos = new_pos;
+                    notify_property("hor-content-size");
+                } else {
+                    content_pos = new_pos;
+                    notify_property("content-size");
+                }
                 notify_property("content-position");
             });
         }
@@ -93,10 +158,17 @@ namespace FontManager {
             if (settings == null)
                 return;
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
-            settings.bind("sidebar-size", this, "sidebar-position", flags);
-            settings.bind("content-pane-position", this, "content-position", flags);
-            sidebar_position = settings.get_double("sidebar-size");
-            content_position = settings.get_double("content-pane-position");
+            settings.bind("sidebar-size", this, "sidebar-size", flags);
+            settings.bind("content-size", this, "content-size", flags);
+            settings.bind("hor-sidebar-size", this, "hor-sidebar-size", flags);
+            settings.bind("hor-content-size", this, "hor-content-size", flags);
+            if (orientation == Gtk.Orientation.HORIZONTAL) {
+                sidebar_position = settings.get_double("hor-sidebar-size");
+                content_position = settings.get_double("hor-content-size");
+            } else {
+                sidebar_position = settings.get_double("sidebar-size");
+                content_position = settings.get_double("content-size");
+            }
             notify_property("sidebar-position");
             notify_property("content-position");
             return;
@@ -157,8 +229,7 @@ namespace FontManager {
             if (alloc != int.MAX)
                 return alloc;
             // get_width regularly returns a smaller than actual value
-            return (orientation == Gtk.Orientation.HORIZONTAL) ?
-                   paned.get_width() : paned.get_height();
+            return (paned.orientation == Gtk.Orientation.HORIZONTAL) ? paned.get_width() : paned.get_height();
         }
 
         double position_to_percentage (Gtk.Paned paned) {
@@ -173,4 +244,5 @@ namespace FontManager {
     }
 
 }
+
 

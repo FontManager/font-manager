@@ -40,24 +40,15 @@ namespace FontManager {
 
     public class CategoryListModel : FontListFilterModel {
 
-        public CategoryListModel () {
-            notify["available-families"].connect_after((pspec) => {
-                update_items.begin();
-            });
-        }
-
-        public async void update_items () {
+        public void update_items () {
             uint n_items = get_n_items();
             items = null;
             items = new GenericArray <Category> ();
             items_changed(0, n_items, 0);
             try {
-                Database db = Database.get_default(DatabaseType.BASE);
+                Database db = new Database();
                 items = get_default_categories(db);
                 items_changed(0, 0, get_n_items());
-                // Preload main categories
-                for (uint i = 0; i < CategoryIndex.PANOSE; i++)
-                    yield items[i].update(available_families);
             } catch (DatabaseError e) {
                 critical(e.message);
             }
@@ -133,23 +124,19 @@ namespace FontManager {
                                               false,
                                               CategoryListModel.get_child_model);
             selection = new Gtk.SingleSelection(treemodel);
-            notify["disabled"].connect(() => {
+            notify["disabled"].connect_after(() => { update_disabled(); });
+            notify["sorted"].connect_after(() => { update_unsorted(); });
+            notify["disabled-families"].connect_after(() => {
                 if (disabled_families != null)
-                    update_disabled();
+                    disabled_families.changed.connect(() => { update_disabled(); });
+                update_disabled();
             });
-            notify["disabled-families"].connect(() => {
-                if (disabled_families != null) {
-                    disabled_families.changed.connect(() => {
-                        if (disabled != null)
-                            update_disabled();
-                    });
-                    update_disabled();
-                }
-            });
-            notify["sorted"].connect(() => {
-                if (unsorted != null)
-                    update_unsorted();
-            });
+        }
+
+        public void select_item (uint position) {
+            listview.activate_action("list.select-item", "(ubb)", position, false, false);
+            listview.activate_action("list.scroll-to-item", "u", position);
+            return;
         }
 
         protected override void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
@@ -164,9 +151,10 @@ namespace FontManager {
             return;
         }
 
-        void update_disabled ()
-        requires (disabled != null) {
-            disabled.update.begin(disabled_families, disabled_families, (obj, res) => {
+        void update_disabled () {
+            if (disabled == null || disabled_families == null)
+                return;
+            disabled.update.begin((obj, res) => {
                 disabled.update.end(res);
                 model.items_changed(0, 0, 0);
                 if (selected_item is Disabled) {
@@ -177,9 +165,10 @@ namespace FontManager {
             return;
         }
 
-        void update_unsorted ()
-        requires (unsorted != null) {
-            unsorted.update.begin(available_families, sorted, (obj, res) => {
+        void update_unsorted () {
+            if (unsorted == null)
+                return;
+            unsorted.update.begin((obj, res) => {
                 unsorted.update.end(res);
                 model.items_changed(0, 0, 0);
                 if (selected_item is Unsorted) {
@@ -202,12 +191,18 @@ namespace FontManager {
             row.item = _item;
             return_if_fail(_item != null);
             var category = ((Category) _item);
-            if (category is Disabled)
+            if (category.index < CategoryIndex.PANOSE)
+                category.update.begin();
+            else if (category is Disabled) {
                 disabled = (Disabled) category;
-            if (category is Unsorted) {
+                BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+                bind_property("disabled-families", disabled, "disabled-families", flags);
+            }
+            else if (category is Unsorted) {
                 unsorted = (Unsorted) category;
-                if (sorted != null)
-                    update_unsorted();
+                BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+                bind_property("sorted", unsorted, "sorted", flags);
+                update_unsorted();
             }
             list_row.notify["expanded"].connect((pspec) => {
                 if (category is Disabled)
@@ -215,7 +210,7 @@ namespace FontManager {
                 else if (category is Unsorted)
                     update_unsorted();
                 else
-                    category.update.begin(available_families);
+                    category.update.begin();
             });
             return;
         }
@@ -325,4 +320,5 @@ namespace FontManager {
     }
 
 }
+
 

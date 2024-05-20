@@ -64,13 +64,15 @@ namespace FontManager {
             string [] result_set = {};
             var search_term = get_search_term(terms);
             try {
-                Database db = Database.get_default(DatabaseType.BASE);
+                Database db = new Database();
                 db.execute_query(QUERY.printf(search_term));
                 foreach (unowned Sqlite.Statement row in db)
                     result_set += "%s::%i::%s::%s".printf(row.column_text(ID.FILEPATH),
                                                           row.column_int(ID.INDEX),
                                                           row.column_text(ID.FAMILY),
                                                           row.column_text(ID.STYLE));
+                db.end_query();
+                db.close();
             } catch (Error e) {
                 warning(e.message);
             }

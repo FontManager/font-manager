@@ -2,8 +2,7 @@
 namespace FontManager {
 
     public class Database : GLib.Object {
-        public Sqlite.Database db;
-        public Sqlite.Statement stmt;
+        public unowned Sqlite.Statement get_cursor();
     }
 
     public class DatabaseIterator : GLib.Object {

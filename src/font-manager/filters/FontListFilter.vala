@@ -33,9 +33,7 @@ namespace FontManager {
         public virtual int size { get { return 0; } }
         public virtual int depth { get; set; default = 0; }
 
-        public bool requires_update { get; set; default = true; }
-
-        public virtual async void update (StringSet? available_fonts) {}
+        public virtual async void update () {}
 
         public virtual bool matches (Object? item) {
             return item != null ? true : false;
@@ -46,7 +44,6 @@ namespace FontManager {
     public class FontListFilterModel : Object, ListModel {
 
         public GenericArray <FontListFilter>? items { get; set; default = null; }
-        public StringSet? available_families { get; set; default = null; }
 
         construct {
             items = new GenericArray <FontListFilter> ();
@@ -65,7 +62,7 @@ namespace FontManager {
             return items[position];
         }
 
-        public void add_item (FontListFilter item) {
+        public virtual void add_item (FontListFilter item) {
             items.add(item);
             item.index = (int) get_n_items() - 1;
             items_changed(item.index, 0, 1);
@@ -76,7 +73,7 @@ namespace FontManager {
             return;
         }
 
-        public void remove_item (FontListFilter item) {
+        public virtual void remove_item (FontListFilter item) {
             for (uint i = 0; i < items.length; i++)
                 if (items[i] == item)
                     if (items.remove(item))
@@ -93,7 +90,6 @@ namespace FontManager {
 
         public uint selected_position { get; set; default = 0; }
         public FontListFilter? selected_item { get; set; default = null; }
-        public StringSet? available_families { get; set; default = null; }
         public Gtk.TreeListModel? treemodel { get; protected set; default = null; }
         public Gtk.SingleSelection? selection { get; protected set; default = null; }
 
@@ -119,10 +115,7 @@ namespace FontManager {
                 selection.set_autoselect(false);
                 selection.set_can_unselect(true);
                 selection.selection_changed.connect(on_selection_changed);
-            });
-            notify["available-families"].connect_after((pspec) => {
                 BindingFlags flags = BindingFlags.SYNC_CREATE;
-                bind_property("available-families", model, "available-families", flags, null, null);
             });
         }
 

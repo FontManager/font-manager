@@ -133,10 +133,11 @@ namespace FontManager {
     public HashTable get_non_latin_samples () {
         var result = new HashTable <string, string> (str_hash, str_equal);
         try {
-            Database db = Database.get_default(DatabaseType.BASE);
+            Database db = new Database();
             db.execute_query(SELECT_NON_LATIN_FONTS);
             foreach (unowned Sqlite.Statement row in db)
                 result.insert(row.column_text(0), row.column_text(1));
+            db.end_query();
         } catch (DatabaseError e) {
             message(e.message);
         }
@@ -234,7 +235,7 @@ namespace FontManager {
         if (load_user_font_resources())
             clear_pango_cache(ctx);
         else
-            critical("Failed to load user font resources, will be unable to render properly");;
+            critical("Failed to load user font resources, will be unable to render properly");
         var fonts = get_available_fonts(null);
         var sorted_fonts = sort_json_font_listing(fonts);
         update_item_preview_text(sorted_fonts);

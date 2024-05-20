@@ -1,17 +1,12 @@
 * cheader_filename = "font-manager.h"
 FONT_VIEWER_BUS_* name="FONT_VIEWER_(.+)" parent="FontManager.FontViewer"
 
-Database.file nullable
-Database.attach throws = "DatabaseError"
-Database.detach throws = "DatabaseError"
 Database.begin_transaction throws = "DatabaseError"
 Database.commit_transaction throws = "DatabaseError"
 Database.execute_query throws = "DatabaseError"
-Database.get_version throws = "DatabaseError"
 Database.get_object throws = "DatabaseError"
 Database.initialize throws = "DatabaseError"
 Database.open throws = "DatabaseError"
-Database.set_version throws = "DatabaseError"
 Database.vacuum throws = "DatabaseError"
 
 FontInfo.description nullable
@@ -22,7 +17,6 @@ FontInfo.license_data nullable
 FontInfo.license_url nullable
 
 get_attributes_from_filepath throws = "FontconfigError"
-Database.get_default throws = "DatabaseError"
 get_installation_target throws = "FreetypeError"
 get_matching_families_and_fonts throws = "DatabaseError"
 get_metadata throws = "FreetypeError"

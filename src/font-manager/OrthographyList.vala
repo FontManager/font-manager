@@ -1,6 +1,6 @@
 /* OrthographyList.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -177,16 +177,17 @@ namespace FontManager {
         }
 
         Json.Object? parse_json_result (string? json) {
-            return_val_if_fail(json != null, null);
-            try {
-                Json.Parser parser = new Json.Parser();
-                parser.load_from_data(json);
-                Json.Node root = parser.get_root();
-                if (root.get_node_type() == Json.NodeType.OBJECT)
-                    return root.get_object();
-            } catch (Error e) {
-                warning(e.message);
-                return null;
+            if (json != null) {
+                try {
+                    Json.Parser parser = new Json.Parser();
+                    parser.load_from_data(json);
+                    Json.Node root = parser.get_root();
+                    if (root.get_node_type() == Json.NodeType.OBJECT)
+                        return root.get_object();
+                } catch (Error e) {
+                    warning(e.message);
+                    return null;
+                }
             }
             return null;
         }
@@ -209,17 +210,20 @@ namespace FontManager {
                 font = ((Font) selected_item);
             }
             try {
-                Database db = Database.get_default(DatabaseType.BASE);
+                Database db = new Database();
                 string query = GET_ORTH_FOR(font.filepath, (int) font.findex);
                 db.execute_query(query);
-                if (db.stmt.step() == Sqlite.ROW)
-                    model.orthography = parse_json_result(db.stmt.column_text(0));
-                else {
+                if (db.get_cursor().step() == Sqlite.ROW) {
+                    model.orthography = parse_json_result(db.get_cursor().column_text(0));
+                } else {
+                    db.end_query();
                     query = GET_BASE_ORTH_FOR(font.filepath);
                     db.execute_query(query);
-                    if (db.stmt.step() == Sqlite.ROW)
-                        model.orthography = parse_json_result(db.stmt.column_text(0));
+                    if (db.get_cursor().step() == Sqlite.ROW)
+                        model.orthography = parse_json_result(db.get_cursor().column_text(0));
                 }
+                db.end_query();
+                db.close();
                 // No error and no results means this font file is likely broken or empty
                 Idle.add(() => {
                     place_holder.message = _("No valid orthographies for selection");

@@ -29,6 +29,12 @@ namespace FontManager {
         public UserActionModel user_actions { get; set; }
         public UserSourceModel user_sources { get; set; }
 
+        public CategoryListModel category_model {
+            get {
+                return sidebar.category_model;
+            }
+        }
+
         Gtk.Stack content;
 
         SidebarStack sidebar;
@@ -66,6 +72,16 @@ namespace FontManager {
             fontlist.selection_changed.connect(on_selection_changed);
         }
 
+        public void select_first_category () {
+            sidebar.select_first_category();
+            return;
+        }
+
+        public void select_first_font () {
+            fontlist.select_item(0);
+            return;
+        }
+
         public override void restore_state (GLib.Settings? settings) {
             base.restore_state(settings);
             if (settings == null)
@@ -95,4 +111,5 @@ namespace FontManager {
     }
 
 }
+
 

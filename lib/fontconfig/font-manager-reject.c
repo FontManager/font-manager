@@ -1,6 +1,6 @@
 /* font-manager-reject.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,11 +65,11 @@ font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error)
     g_return_val_if_fail(self != NULL, NULL);
     g_return_val_if_fail((error == NULL || *error == NULL), NULL);
     g_autoptr(FontManagerStringSet) rejected_files = font_manager_string_set_new();
-    g_autoptr(FontManagerDatabase) db = font_manager_database_get_default(FONT_MANAGER_DATABASE_TYPE_FONT, error);
+    g_autoptr(FontManagerDatabase) db = font_manager_database_new();
     g_return_val_if_fail(error == NULL || *error == NULL, NULL);
     guint len_rejected = font_manager_string_set_size(FONT_MANAGER_STRING_SET(self));
+    const gchar *_sql = "SELECT DISTINCT filepath FROM Fonts WHERE family = %s";
     for (guint i = 0; i < len_rejected; i++) {
-        const gchar *_sql = "SELECT DISTINCT filepath FROM Fonts WHERE family = %s";
         const gchar *data = font_manager_string_set_get(FONT_MANAGER_STRING_SET(self), i);
         char *family = sqlite3_mprintf("%Q", (char *) data);
         g_autofree gchar *sql = g_strdup_printf(_sql, family);
@@ -84,6 +84,7 @@ font_manager_reject_get_rejected_files (FontManagerReject *self, GError **error)
                 font_manager_string_set_add(rejected_files, path);
         }
     }
+    font_manager_database_end_query(db);
     return g_steal_pointer(&rejected_files);
 }
 

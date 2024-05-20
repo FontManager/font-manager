@@ -377,7 +377,7 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
     GError *error = NULL;
     g_autofree gchar *filepath = NULL;
     g_autoptr(JsonObject) res = NULL;
-    g_autoptr(FontManagerDatabase) db = font_manager_database_get_default(FONT_MANAGER_DATABASE_TYPE_BASE, &error);
+    g_autoptr(FontManagerDatabase) db = font_manager_database_new();
     g_object_get(G_OBJECT(self->font), "filepath", &filepath, "findex", &index, NULL);
     if (error == NULL) {
         const gchar *select = "SELECT * FROM Metadata WHERE filepath = %s AND findex = '%i'";

@@ -125,7 +125,7 @@ namespace FontManager {
         }
 
         bool matches_filter (Json.Object item) {
-            if (filter == null)
+            if (filter == null || filter is Category && filter.index == CategoryIndex.ALL)
                 return true;
             Type type = item.has_member("filepath") ? typeof(Font) : typeof(Family);
             Object? object = Object.new(type, JSON_PROXY_SOURCE, item, null);
@@ -431,8 +431,10 @@ namespace FontManager {
             add_controller(drop_target);
             drop_target.drop.connect(on_drag_data_received);
             init_context_menu();
-            disabled_families = new Reject();
-            disabled_families.load();
+            notify["disabled-families"].connect(() => {
+                if (disabled_families != null)
+                    disabled_families.changed.connect(() => { message("refilter"); refilter(); });
+            });
         }
 
         public Font get_selected_font () {
@@ -456,11 +458,10 @@ namespace FontManager {
         [GtkCallback]
         protected override void on_remove_clicked () requires (filter is Collection) {
             var collection = (Collection) filter;
-            var families = new StringSet();
-            selected_items.foreach((i) => { families.add(((Family) i).family); });
+            selected_items.foreach((i) => { collection.families.remove(((Family) i).family); });
+            collection.changed();
             uint i = current_selection;
             while (i > 0 && i >= treemodel.get_n_items() - 1) i--;
-            collection.families.remove_all(families);
             Idle.add(() => {
                 queue_update(i);
                 update_remove_sensitivity();
@@ -626,6 +627,7 @@ namespace FontManager {
                 return;
             var rect = Gdk.Rectangle() {x = (int) x, y = (int) y, width = 2, height = 2};
             context_menu.set_pointing_to(rect);
+            update_context_menu();
             context_menu.popup();
             return;
         }
@@ -666,12 +668,23 @@ namespace FontManager {
 
         bool on_drag_data_received (Value value, double x, double y) {
             if (value.holds(typeof(Gdk.FileList))) {
+                var selections = new StringSet();
+                var dropped_files = new StringSet();
                 GLib.SList <File>* filelist = value.get_boxed();
                 for (int i = 0; i < filelist->length(); i++) {
                     File* file = filelist->nth_data(i);
-                    // XXX : Install filelist
-                    message(file->get_uri());
+                    selections.add(file->get_path());
                 }
+                if (selections.size > 0) {
+                    var installer = new Library.Installer();
+                    installer.process.begin(selections, (obj, res) => {
+                        installer.process.end(res);
+                    });
+                }
+                Idle.add(() => {
+                    get_default_application().reload();
+                    return GLib.Source.REMOVE;
+                });
             }
             return true;
         }
@@ -773,7 +786,7 @@ namespace FontManager {
                 }
             }
             update_remove_sensitivity();
-            update_context_menu();
+            // update_context_menu();
             if (Environment.get_variable("G_MESSAGES_DEBUG") != null) {
                 string? description = null;
                 selected_item.get("description", out description, null);
@@ -803,7 +816,7 @@ namespace FontManager {
             var families = new StringSet();
             foreach (var family in list_available_font_families())
                 families.add(family);
-            filter.update.begin(families);
+            filter.update.begin();
         }
 
         protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
@@ -816,7 +829,7 @@ namespace FontManager {
             row.drag_handle.visible = false;
             row.drag_area.sensitive = true;
             row.margin_start = 0;
-            row.margin_end = 22;
+            row.margin_end = 12;
             row.item_state.set("sensitive", true, "visible", !(_item is Family), null);
             row.item_state.toggled.connect((c) => {
                 on_item_state_changed(list_row);
