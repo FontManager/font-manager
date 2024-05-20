@@ -97,8 +97,6 @@ if get_option('enable-nls')
     subdir('po')
 endif
 
-subdir('test')
-
 meson.add_dist_script('meson_dist.py')
 
 gnome.post_install(
