@@ -24,7 +24,7 @@ namespace FontManager.GoogleFonts {
 
     const string API_KEY = "QUl6YVN5QTlpUmZqMFlYc184RGhJR1Q1YzNGRDBWNmtSQWV5cFA4";
     const string GET = "GET";
-    const string WEBFONTS = "https://www.googleapis.com/webfonts/v1/webfonts?key=%s&sort=%s";
+    const string GOOGLE_FONTS_API = "https://www.googleapis.com/webfonts/v1/webfonts?key=%s&sort=%s";
     const string [] CACHE_FILES = { "alpha", "date", "popularity", "trending" };
 
     public string get_font_directory () {
@@ -184,7 +184,7 @@ namespace FontManager.GoogleFonts {
                 string filename = "gfc-%s.json".printf(entry);
                 if (have_valid_cache(filename))
                     continue;
-                var message = new Soup.Message(GET, WEBFONTS.printf(GFC_API_KEY, entry));
+                var message = new Soup.Message(GET, GOOGLE_FONTS_API.printf(GFC_API_KEY, entry));
                 try {
                     Bytes? bytes = session.send_and_read(message, null);
                     assert(bytes != null);

@@ -179,10 +179,6 @@ namespace FontManager {
         public Gtk.Label main_menu_label { get; set; }
         public Gtk.Button back_button { get; protected set; }
 
-#if HAVE_WEBKIT
-        public Gtk.ToggleButton web_toggle { get; protected set; }
-#endif /* HAVE_WEBKIT */
-
         public bool installing_files {
             set {
                 toggle_spinner(spinner, manage_controls.add_button,
@@ -235,16 +231,6 @@ namespace FontManager {
             set_control_sensitivity(manage_controls.remove_button, true);
             manage_controls.add_button.set_action_name("install");
             manage_controls.remove_button.set_action_name("remove");
-#if HAVE_WEBKIT
-            web_toggle = new Gtk.ToggleButton() {
-                opacity = 0.9
-            };
-            var g_icon = new Gtk.Label("<b><big> G </big></b>") { use_markup = true, opacity = 0.9 };
-            web_toggle.set_child(g_icon);
-            manage_controls.append(web_toggle);
-            web_toggle.set_tooltip_text("Google Fonts");
-            web_toggle.set_action_name("show-webfonts");
-#endif /* HAVE_WEBKIT */
             manage_controls.add_button.set_tooltip_text(_("Add Fonts"));
             manage_controls.remove_button.set_tooltip_text(_("Remove Fonts"));
             var separator = new Gtk.Separator(Gtk.Orientation.VERTICAL) {

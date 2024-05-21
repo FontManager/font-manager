@@ -25,6 +25,9 @@ namespace FontManager {
         MANAGE,
         // BROWSE,
         COMPARE,
+#if HAVE_WEBKIT
+        GOOGLE_FONTS,
+#endif /* HAVE_WEBKIT */
         N_MODES;
 
         public static Mode parse (string mode) {
@@ -33,6 +36,10 @@ namespace FontManager {
                 //     return Mode.BROWSE;
                 case "compare":
                     return Mode.COMPARE;
+#if HAVE_WEBKIT
+                case "googlefonts":
+                    return Mode.GOOGLE_FONTS;
+#endif /* HAVE_WEBKIT */
                 default:
                     return Mode.MANAGE;
             }
@@ -44,6 +51,10 @@ namespace FontManager {
                 //     return "Browse";
                 case COMPARE:
                     return "Compare";
+#if HAVE_WEBKIT
+                case GOOGLE_FONTS:
+                    return "GoogleFonts";
+#endif /* HAVE_WEBKIT */
                 default:
                     return "Default";
             }
@@ -55,6 +66,10 @@ namespace FontManager {
                 //     return _("Browse");
                 case COMPARE:
                     return _("Compare");
+#if HAVE_WEBKIT
+                case GOOGLE_FONTS:
+                    return _("Google Fonts");
+#endif /* HAVE_WEBKIT */
                 default:
                     return _("Manage");
             }
@@ -65,7 +80,6 @@ namespace FontManager {
     public class MainWindow : ApplicationWindow {
 
         public bool show_preferences { get; set; default = false; }
-        public bool show_webfonts { get; set; default = false; }
 
         public Gtk.ProgressBar progress { get; private set; }
 
@@ -74,8 +88,6 @@ namespace FontManager {
                 return _mode;
             }
             set {
-                if (show_webfonts)
-                    return;
                 _mode = value;
                 notify_property("mode");
             }
@@ -105,7 +117,7 @@ namespace FontManager {
         Mode _mode = Mode.MANAGE;
 
 #if HAVE_WEBKIT
-        GoogleFonts.Catalog webfonts;
+        GoogleFonts.Catalog google_fonts;
 #endif /* HAVE_WEBKIT */
 
         static construct {
@@ -115,7 +127,6 @@ namespace FontManager {
             install_action("export", null, (Gtk.WidgetActionActivateFunc) export);
             install_property_action("mode", "mode");
             install_property_action("show-preferences", "show-preferences");
-            install_property_action("show-webfonts", "show-webfonts");
             uint [] mode_accels = { Gdk.Key.@1, Gdk.Key.@2, Gdk.Key.@3 };
             Gdk.ModifierType mode_mask = Gdk.ModifierType.CONTROL_MASK;
             EnumClass mode_class = ((EnumClass) typeof(Mode).class_ref());
@@ -156,8 +167,8 @@ namespace FontManager {
             // scrolled_window.set_child(browse_pane);
             // main_stack.add_named(scrolled_window, Mode.BROWSE.to_string());
 #if HAVE_WEBKIT
-            webfonts = new GoogleFonts.Catalog();
-            main_stack.add_named(webfonts, "WebFonts");
+            google_fonts = new GoogleFonts.Catalog();
+            main_stack.add_named(google_fonts, "GoogleFonts");
 #endif /* HAVE_WEBKIT */
             main_stack.add_named(prefs_pane, "Preferences");
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
@@ -169,8 +180,8 @@ namespace FontManager {
             prefs_pane.bind_property("user-sources", main_pane, "user-sources", flags);
             main_pane.bind_property("sidebar-position", prefs_pane, "sidebar-position", flags);
 #if HAVE_WEBKIT
-            main_pane.bind_property("content-position", webfonts, "content-position", flags);
-            main_pane.bind_property("sidebar-position", webfonts, "sidebar-position", flags);
+            main_pane.bind_property("content-position", google_fonts, "content-position", flags);
+            main_pane.bind_property("sidebar-position", google_fonts, "sidebar-position", flags);
 #endif /* HAVE_WEBKIT */
             bind_settings();
             connect_signals();
@@ -178,7 +189,7 @@ namespace FontManager {
             update_layout_orientation();
             main_pane.restore_state(settings);
 #if HAVE_WEBKIT
-            webfonts.restore_state(settings);
+            google_fonts.restore_state(settings);
 #endif /* HAVE_WEBKIT */
         }
 
@@ -210,9 +221,6 @@ namespace FontManager {
         void connect_signals () {
             notify["mode"].connect(on_mode_changed);
             notify["show-preferences"].connect(on_stack_page_changed);
-#if HAVE_WEBKIT
-            notify["show-webfonts"].connect(on_stack_page_changed);
-#endif /* HAVE_WEBKIT */
             notify["maximized"].connect(() => { update_layout_orientation(); });
             return;
         }
@@ -289,7 +297,9 @@ namespace FontManager {
             string markup = "<b>%s</b>".printf(mode.to_translatable_string());
             header_widgets.main_menu_label.set_markup(markup);
             header_widgets.reveal_manage_controls(mode == Mode.MANAGE);
-            if (mode != Mode.COMPARE)
+            if (mode == Mode.COMPARE)
+                main_stack.set_visible_child_name("Default");
+            else
                 main_stack.set_visible_child_name(mode.to_string());
             return;
         }
@@ -298,12 +308,11 @@ namespace FontManager {
             if (show_preferences)
                 main_stack.set_visible_child_name("Preferences");
 #if HAVE_WEBKIT
-            else if (show_webfonts)
-                main_stack.set_visible_child_name("WebFonts");
+            else if (mode == Mode.GOOGLE_FONTS)
+                main_stack.set_visible_child_name("GoogleFonts");
 #endif /* HAVE_WEBKIT */
             else
                 main_stack.set_visible_child_name("Default");
-            header_widgets.main_menu.set_sensitive(!show_webfonts);
             header_widgets.main_menu.set_visible(!show_preferences);
             header_widgets.revealer.set_visible(!show_preferences);
             header_widgets.back_button.set_visible(show_preferences);
@@ -320,7 +329,7 @@ namespace FontManager {
                 orientation = Gtk.Orientation.HORIZONTAL;
             main_pane.set_orientation(orientation);
 #if HAVE_WEBKIT
-            webfonts.set_orientation(orientation);
+            google_fonts.set_orientation(orientation);
 #endif /* HAVE_WEBKIT */
             return;
         }

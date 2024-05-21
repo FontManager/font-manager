@@ -26,6 +26,7 @@
         <value nick="Manage" value="0" />
         <!-- <value nick="Browse" value="1" /> -->
         <value nick="Compare" value="2" />
+        <value nick="GoogleFonts" value="3" />
     </enum>
 
     <enum id="com.github.FontManager.FontManager.PreviewPageMode">
