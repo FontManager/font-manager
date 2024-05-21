@@ -87,6 +87,12 @@ namespace FontManager {
             }
         }
 
+        public CollectionListModel collection_model {
+            get {
+                return main_pane.collection_model;
+            }
+        }
+
         public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
 

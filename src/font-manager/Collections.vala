@@ -25,11 +25,20 @@ namespace FontManager {
     public class CollectionListModel : FontListFilterModel {
 
         public Reject? disabled_families { get; set; default = null; }
+        public StringSet? available_families { get; set; default = null; }
 
         public signal void changed ();
 
         public CollectionListModel () {
+            available_families = list_available_font_families();
             changed.connect(() => { save(); });
+        }
+
+        public void update_items () {
+            available_families = list_available_font_families();
+            foreach (var item in items)
+                item.changed();
+            return;
         }
 
         public static string get_cache_file () {
@@ -57,6 +66,7 @@ namespace FontManager {
         public override void add_item (FontListFilter item) {
             base.add_item(item);
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            bind_property("available-families", ((Collection) item), "available-families", flags);
             bind_property("disabled-families", ((Collection) item), "disabled-families", flags);
             return;
         }
@@ -118,16 +128,16 @@ namespace FontManager {
         public override void reset () {
             if (change_handler != 0)
                 item.disconnect(change_handler);
+            change_handler = 0;
             if (activate_handler != 0)
                 item.disconnect(activate_handler);
-            if (state_binding != null)
-                state_binding.unbind();
+            activate_handler = 0;
             if (name_binding != null)
                 name_binding.unbind();
-            change_handler = 0;
-            activate_handler = 0;
-            state_binding = null;
             name_binding = null;
+            if (state_binding != null)
+                state_binding.unbind();
+            state_binding = null;
             return;
         }
 

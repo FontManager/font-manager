@@ -26,6 +26,8 @@ namespace FontManager {
         public StringSet families { get; set; default = new StringSet(); }
         public StringSet variations { get; set; default = new StringSet(); }
 
+        public bool update_required { get; set; default = true; }
+
         public GenericArray <Category> children { get; set; default = new GenericArray <Category> (); }
 
         public override int size {
@@ -39,6 +41,8 @@ namespace FontManager {
         }
 
         public override async void update () {
+            if (!update_required)
+                return;
             families.clear();
             variations.clear();
             try {
@@ -51,11 +55,14 @@ namespace FontManager {
             } catch (DatabaseError error) {
                 warning(error.message);
             }
+            update_required = false;
             changed();
             return;
         }
 
         public override bool matches (Object? item) {
+            if (sql == null)
+                return true;
             bool visible = false;
             if (item is Family)
                 visible = (((Family) item).family in families);

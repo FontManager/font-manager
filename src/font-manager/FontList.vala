@@ -433,7 +433,7 @@ namespace FontManager {
             init_context_menu();
             notify["disabled-families"].connect(() => {
                 if (disabled_families != null)
-                    disabled_families.changed.connect(() => { message("refilter"); refilter(); });
+                    disabled_families.changed.connect(() => { refilter(); });
             });
         }
 
@@ -669,7 +669,6 @@ namespace FontManager {
         bool on_drag_data_received (Value value, double x, double y) {
             if (value.holds(typeof(Gdk.FileList))) {
                 var selections = new StringSet();
-                var dropped_files = new StringSet();
                 GLib.SList <File>* filelist = value.get_boxed();
                 for (int i = 0; i < filelist->length(); i++) {
                     File* file = filelist->nth_data(i);
@@ -813,9 +812,6 @@ namespace FontManager {
             selection = new Gtk.NoSelection(treemodel);
             listview.set_model(selection);
             filter = new UserFonts();
-            var families = new StringSet();
-            foreach (var family in list_available_font_families())
-                families.add(family);
             filter.update.begin();
         }
 

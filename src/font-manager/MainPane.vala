@@ -35,6 +35,12 @@ namespace FontManager {
             }
         }
 
+        public CollectionListModel collection_model {
+            get {
+                return sidebar.collection_model;
+            }
+        }
+
         Gtk.Stack content;
 
         SidebarStack sidebar;

@@ -91,6 +91,12 @@ namespace FontManager {
             }
         }
 
+        public CollectionListModel collection_model {
+            get {
+                return (CollectionListModel) collections.model;
+            }
+        }
+
         SidebarControls controls;
 
         [GtkChild] unowned CategoryListView categories;
@@ -185,6 +191,12 @@ namespace FontManager {
         public CategoryListModel category_model {
             get {
                 return sidebar.category_model;
+            }
+        }
+
+        public CollectionListModel collection_model {
+            get {
+                return sidebar.collection_model;
             }
         }
 

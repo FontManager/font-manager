@@ -40,25 +40,21 @@ namespace FontManager {
 
         public void update (Json.Object available_fonts) {
             update_started();
-            try {
-                var child = new Database();
-                update_database.begin(
-                    child,
-                    available_fonts,
-                    progress,
-                    cancellable,
-                    (obj, res) => {
-                        try {
-                            bool result = update_database.end(res);
-                            update_complete();
-                        } catch (Error e) {
-                            critical(e.message);
-                        }
+            Database db = new Database();
+            update_database.begin(
+                db,
+                available_fonts,
+                progress,
+                cancellable,
+                (obj, res) => {
+                    try {
+                        update_database.end(res);
+                        update_complete();
+                    } catch (Error e) {
+                        critical(e.message);
                     }
-                );
-            } catch (Error e) {
-                critical(e.message);
-            }
+                }
+            );
             return;
         }
 

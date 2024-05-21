@@ -297,6 +297,7 @@ namespace FontManager {
             }
             db.update_complete.connect(() => {
                 main_window.category_model.update_items();
+                main_window.collection_model.update_items();
                 Idle.add(() => {
                     main_window.select_first_category();
                     main_window.select_first_font();

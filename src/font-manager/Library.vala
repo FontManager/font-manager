@@ -51,7 +51,7 @@ namespace FontManager {
                         warning(e.message);
                     }
                 }
-                purge_entries(selections);
+                purge_database_entries(selections);
                 Idle.add((owned) callback);
                 return null;
             };
@@ -220,33 +220,26 @@ namespace FontManager {
             return;
         }
 
-        internal void purge_entries (StringSet selections) {
-            // DatabaseType [] types = { DatabaseType.FONT, DatabaseType.METADATA, DatabaseType.ORTHOGRAPHY };
-            // try {
-            //     Database? db = Database.get_default(DatabaseType.BASE);
-            //     Reject? reject = new Reject();
-            //     reject.load();
-            //     foreach (var path in selections) {
-            //         db.execute_query("SELECT family FROM Fonts WHERE filepath = \"%s\"".printf(path));
-            //         foreach (unowned Sqlite.Statement row in db)
-            //             if (reject != null)
-            //                 reject.remove(row.column_text(0));
-            //         foreach (var type in types) {
-            //             var name = Database.get_type_name(type);
-            //             db.execute_query("DELETE FROM %s WHERE filepath = \"%s\"".printf(name, path));
-            //             db.stmt.step();
-            //         }
-            //     }
-            //     db = null;
-            //     foreach (var type in types) {
-            //         db = Database.get_default(type);
-            //         db.execute_query("VACUUM");
-            //         db.stmt.step();
-            //     }
-            // } catch (DatabaseError e) {
-            //     warning(e.message);
-            // }
-            // return;
+        void purge_database_entries (StringSet selections) {
+            ThreadFunc <void> run_in_thread = () => {
+                try {
+                    Database db = new Database();
+                    string [] tables = { "Metadata", "Orthography", "Panose" };
+                    foreach (string table in tables) {
+                        foreach (var path in selections) {
+                            db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(table, path));
+                            db.get_cursor().step();
+                            db.end_query();
+                        }
+                    }
+                    db.vacuum();
+                    db.close();
+                } catch (Error e) {
+                    warning(e.message);
+                }
+            };
+            new Thread <void> ("purge_database_entries", (owned) run_in_thread);
+            return;
         }
 
         internal bool is_metrics_file (string name) {

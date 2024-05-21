@@ -230,7 +230,7 @@ namespace FontManager {
                     place_holder.icon_name = "action-unavailable-symbolic";
                     return GLib.Source.REMOVE;
                 });
-            } catch (DatabaseError e) {
+            } catch (Error e) {
                 // Most likely cause of an error here is the database is currently being updated
                 model.orthography = get_orthography_results(font.source_object);
             }

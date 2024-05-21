@@ -78,12 +78,7 @@ namespace FontManager {
             sources.remove(item.path);
             items.remove(item);
             items_changed(position, 1, 0);
-            Idle.add(() => {
-                purge_database_entries.begin(item.path, (obj, res) => {
-                    purge_database_entries.end(res);
-                });
-                return GLib.Source.REMOVE;
-            });
+            purge_database_entries(item.path);
             return;
         }
 
@@ -97,27 +92,23 @@ namespace FontManager {
             return;
         }
 
-        async void purge_database_entries (string path) {
-            // DatabaseType [] types = { DatabaseType.FONT, DatabaseType.METADATA, DatabaseType.ORTHOGRAPHY };
-            // try {
-            //     Database? db = Database.get_default(DatabaseType.BASE);
-            //     foreach (var type in types) {
-            //         var name = Database.get_type_name(type);
-            //         db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(name, path));
-            //         db.stmt.step();
-            //     }
-            //     db = null;
-            //     foreach (var type in types) {
-            //         db = Database.get_default(type);
-            //         db.execute_query("VACUUM");
-            //         db.stmt.step();
-            //         Idle.add(purge_database_entries.callback);
-            //         yield;
-            //     }
-            // } catch (DatabaseError e) {
-            //     if (e.code != 1)
-            //         warning(e.message);
-            // }
+        void purge_database_entries (string path) {
+            ThreadFunc <void> run_in_thread = () => {
+                try {
+                    Database db = new Database();
+                    string [] tables = { "Metadata", "Orthography", "Panose" };
+                    foreach (string table in tables) {
+                        db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(table, path));
+                        db.get_cursor().step();
+                        db.end_query();
+                    }
+                    db.vacuum();
+                    db.close();
+                } catch (Error e) {
+                    warning(e.message);
+                }
+            };
+            new Thread <void> ("purge_database_entries", (owned) run_in_thread);
             return;
         }
 
@@ -165,7 +156,10 @@ They will not be visible to other applications until the source is actually enab
                     model.add_item(source);
                 }
             } catch (Error e) {
-                warning(e.message);
+                if (e.code == Gtk.DialogError.FAILED)
+                    warning(e.message);
+                else
+                    debug("UserSources.on_file_selections_ready : %s", e.message);
             }
             return;
         }

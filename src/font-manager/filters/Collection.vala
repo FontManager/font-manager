@@ -20,14 +20,9 @@
 
 namespace FontManager {
 
-    int get_collection_total (Collection root) {
-        int total = (int) root.families.size;
-        root.children.foreach((child) => { total += get_collection_total(child); });
-        return total;
-    }
-
     public class Collection : FontListFilter {
 
+        public StringSet? available_families { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
         public bool active { get; set; default = true; }
         public GenericArray <Collection> children { get; set; }
@@ -35,7 +30,7 @@ namespace FontManager {
 
         public override int size {
             get {
-                return get_collection_total(this);
+                return get_collection_total();
             }
         }
 
@@ -86,6 +81,15 @@ namespace FontManager {
             children.foreach((child) => { child.set_active_from_fonts(); });
             ignore_activation = false;
             return;
+        }
+
+        int get_collection_total () {
+            int total = 0;
+            foreach (var family in families)
+                if (family in available_families)
+                    total++;
+            children.foreach((child) => { total += child.get_collection_total(); });
+            return total;
         }
 
         void add_child_contents (Collection child, StringSet full_contents) {

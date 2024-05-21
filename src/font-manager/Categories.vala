@@ -49,7 +49,8 @@ namespace FontManager {
                 Database db = new Database();
                 items = get_default_categories(db);
                 items_changed(0, 0, get_n_items());
-            } catch (DatabaseError e) {
+                db.close();
+            } catch (Error e) {
                 critical(e.message);
             }
             return;
@@ -204,13 +205,8 @@ namespace FontManager {
                 bind_property("sorted", unsorted, "sorted", flags);
                 update_unsorted();
             }
-            list_row.notify["expanded"].connect((pspec) => {
-                if (category is Disabled)
-                    update_disabled();
-                else if (category is Unsorted)
-                    update_unsorted();
-                else
-                    category.update.begin();
+            list_row.notify["expanded"].connect_after((pspec) => {
+                category.update.begin();
             });
             return;
         }
@@ -297,7 +293,10 @@ namespace FontManager {
                         type = _("Regular");
                 filter.children.add(new Category(type, type, "emblem-documents-symbolic", "%s WHERE %s=\"%i\";".printf(SELECT_FROM_FONTS, keyword, val), data.index));
             }
-        } catch (DatabaseError e) { }
+            db.end_query();
+        } catch (DatabaseError e) {
+            warning(e.message);
+        }
         filter.children.foreach((child) => { child.depth = 1; });
         return filter;
     }
@@ -314,7 +313,10 @@ namespace FontManager {
                 string type = dgettext(null, _type);
                 filter.children.add(new Category(type, type, "emblem-documents", "%s [%s]=\"%s\";".printf(SELECT_FROM_METADATA_WHERE, keyword, _type), data.index));
             }
-        } catch (DatabaseError e) { }
+            db.end_query();
+        } catch (DatabaseError e) {
+            warning(e.message);
+        }
         filter.children.foreach((child) => { child.depth = 1; });
         return filter;
     }

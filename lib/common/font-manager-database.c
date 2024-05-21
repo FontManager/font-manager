@@ -369,7 +369,7 @@ font_manager_database_initialize (FontManagerDatabase *self,
     if (self->db == NULL)
         font_manager_database_open(self, NULL);
     sqlite3_exec(self->db, "PRAGMA journal_mode = WAL;", NULL, 0, 0);
-    sqlite3_exec(self->db, "PRAGMA synchronous = NORMAL", NULL, 0, 0);
+    sqlite3_exec(self->db, "PRAGMA synchronous = NORMAL;", NULL, 0, 0);
     sqlite3_exec(self->db, CREATE_FONTS_TABLE, NULL, 0, 0);
     sqlite3_exec(self->db, CREATE_INFO_TABLE, NULL, 0, 0);
     sqlite3_exec(self->db, CREATE_PANOSE_TABLE, NULL, 0, 0);
