@@ -37,11 +37,11 @@ namespace FontManager {
 
         GLib.Settings? gsettings = null;
 
-        public override int size {
-            get {
-                return ((int) selections.size);
-            }
-        }
+        // public override int size {
+        //     get {
+        //         return ((int) selections.size);
+        //     }
+        // }
 
         public LanguageFilter () {
             base(_("Supported Orthographies"),
@@ -65,7 +65,10 @@ namespace FontManager {
                 save_state(gsettings);
                 return GLib.Source.REMOVE;
             });
-            changed();
+            update.begin((obj, res) => {
+                update.end(res);
+                changed();
+            });
             return;
         }
 
@@ -87,7 +90,7 @@ namespace FontManager {
             families.clear();
             variations.clear();
             try {
-                Database db = new Database();
+                Database db = DatabaseProxy.get_default_db();
                 foreach (string language in selections) {
                     var pref_loc = Intl.setlocale(LocaleCategory.ALL, "");
                     Intl.setlocale(LocaleCategory.ALL, "C");
@@ -95,7 +98,6 @@ namespace FontManager {
                     Intl.setlocale(LocaleCategory.ALL, pref_loc);
                     get_matching_families_and_fonts(db, families, variations, _sql_);
                 }
-                db.close();
             } catch (Error e) {
                 warning(e.message);
             }
@@ -127,7 +129,7 @@ namespace FontManager {
             item_count.add_css_class("dim-label");
             item_count.visible = true;
             item_count.sensitive = true;
-            string markup = "<span size=\"xx-small\" font=\"mono\">%s</span>";
+            string markup = "<span size=\"x-small\" font=\"mono\">%s</span>";
             item_count.set_markup(markup.printf(local_name));
             item_count.ellipsize = Pango.EllipsizeMode.MIDDLE;
             set_tooltip_text(local_name);
@@ -142,18 +144,18 @@ namespace FontManager {
     public class LanguageFilterSettings : Gtk.Box {
 
         public signal void changed ();
-        public signal void close_request ();
 
         public double coverage { get; set; default = 90.0; }
-        public StringSet selections { get; set; }
+        public StringSet selections { get; set; default = new StringSet(); }
+
+        [GtkChild] public unowned Gtk.SearchBar search_bar { get; }
+        [GtkChild] public unowned Gtk.SearchEntry search_entry { get; }
 
         [GtkChild] unowned Gtk.ListBox listbox;
         [GtkChild] unowned Gtk.SpinButton coverage_spin;
-        [GtkChild] unowned Gtk.SearchEntry search_entry;
 
         public LanguageFilterSettings () {
             widget_set_name(this, "FontManagerLanguageFilterSettings");
-            selections = new StringSet();
             listbox.set_filter_func((Gtk.ListBoxFilterFunc) matches_search);
             listbox.set_selection_mode(Gtk.SelectionMode.NONE);
             selections.changed.connect(on_selections_changed);
@@ -167,6 +169,9 @@ namespace FontManager {
                 selections.add(item.orthography);
             else
                 selections.remove(item.orthography);
+            debug("LanguageFilterSettings : %s %s %s selected items",
+                  item.orthography, item.active ? "added" : "removed",
+                  item.active ? "to" : "from");
             return;
         }
 
@@ -194,7 +199,7 @@ namespace FontManager {
 
         void on_selections_changed () {
             string [] selected = selections.to_strv();
-            debug("%s::selection_changed : %s", name, string.joinv(", ", selected));
+            debug("%s::selections changed : %s", name, string.joinv(", ", selected));
             return;
         }
 
@@ -219,12 +224,6 @@ namespace FontManager {
         [GtkCallback]
         void on_search_changed (Gtk.SearchEntry entry) {
             listbox.invalidate_filter();
-            return;
-        }
-
-        [GtkCallback]
-        void on_back_button_clicked (Gtk.Button button) {
-            close_request();
             return;
         }
 
@@ -254,4 +253,5 @@ namespace FontManager {
     }
 
 }
+
 

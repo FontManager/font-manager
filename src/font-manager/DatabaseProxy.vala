@@ -28,6 +28,14 @@ namespace FontManager {
         GLib.Cancellable? cancellable = null;
         ProgressCallback? progress = null;
 
+        static Database? db = null;
+
+        public static unowned Database get_default_db () {
+            if (db == null)
+                db = new Database();
+            return db;
+        }
+
         public void set_cancellable (Cancellable? cancellable) {
             this.cancellable = cancellable;
             return;
@@ -38,7 +46,7 @@ namespace FontManager {
             return;
         }
 
-        public void update (Json.Object available_fonts) {
+        public void update (Json.Array available_fonts) {
             update_started();
             Database db = new Database();
             update_database.begin(
@@ -50,6 +58,7 @@ namespace FontManager {
                     try {
                         update_database.end(res);
                         update_complete();
+                        db.close();
                     } catch (Error e) {
                         critical(e.message);
                     }
@@ -61,4 +70,5 @@ namespace FontManager {
     }
 
 }
+
 

@@ -153,6 +153,7 @@ namespace FontManager {
             activate_handler = item_state.toggled.connect(() => {
                 collection.active = item_state.active;
                 collection.on_activate();
+                changed();
             });
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             name_binding = collection.bind_property("name", item_label, "label", flags);
@@ -285,7 +286,10 @@ namespace FontManager {
             row.item = object;
             // Nesting is allowed so we need the entire list refreshed if a
             // single row changes otherwise parent nodes would not update
-            row.changed.connect(queue_update);
+            row.changed.connect(() => {
+                changed();
+                queue_update();
+            });
             return;
         }
 

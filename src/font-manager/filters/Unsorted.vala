@@ -36,10 +36,9 @@ namespace FontManager {
             families.clear();
             variations.clear();
             try {
-                Database db = new Database();
+                Database db = DatabaseProxy.get_default_db();
                 get_matching_families_and_fonts(db, families, variations, sql);
                 families.remove_all(sorted);
-                db.close();
             } catch (Error e) {
                 warning(e.message);
             }

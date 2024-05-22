@@ -76,6 +76,7 @@ namespace FontManager {
             sidebar.bind_property("selected-orthography", preview, "orthography", flags);
             notify["mode"].connect(on_mode_changed);
             fontlist.selection_changed.connect(on_selection_changed);
+            sidebar.changed.connect(() => { fontlist.queue_refilter(); });
         }
 
         public void select_first_category () {

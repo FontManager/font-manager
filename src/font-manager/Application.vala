@@ -280,7 +280,7 @@ namespace FontManager {
                 return;
             var ctx = main_window.get_pango_context();
             available_fonts = get_sorted_font_list(ctx);
-            db.update(get_available_fonts(null));
+            db.update(available_fonts);
             return;
         }
 
@@ -297,10 +297,13 @@ namespace FontManager {
             }
             db.update_complete.connect(() => {
                 main_window.category_model.update_items();
-                main_window.collection_model.update_items();
+                main_window.select_first_category();
+                ThreadFunc <void> run_in_thread = () => {
+                    update_item_preview_text(available_fonts);
+                };
+                new Thread <void> ("update_item_preview_text", (owned) run_in_thread);
                 Idle.add(() => {
-                    main_window.select_first_category();
-                    main_window.select_first_font();
+                    main_window.collection_model.update_items();
                     return GLib.Source.REMOVE;
                 });
             });

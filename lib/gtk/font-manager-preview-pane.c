@@ -95,6 +95,7 @@ struct _FontManagerPreviewPane
     GtkNotebook             *notebook;
 
     FontManagerFont             *font;
+    FontManagerDatabase         *db;
     FontManagerPreviewPageMode  mode;
 };
 
@@ -132,6 +133,7 @@ font_manager_preview_pane_dispose (GObject *gobject)
     g_return_if_fail(gobject != NULL);
     FontManagerPreviewPane *self = FONT_MANAGER_PREVIEW_PANE(gobject);
     g_clear_object(&self->font);
+    g_clear_object(&self->db);
     g_clear_pointer(&self->preview_text, g_free);
     g_clear_pointer(&self->current_uri, g_free);
     font_manager_clear_application_fonts();
@@ -377,13 +379,14 @@ font_manager_preview_pane_update_metadata (FontManagerPreviewPane *self)
     GError *error = NULL;
     g_autofree gchar *filepath = NULL;
     g_autoptr(JsonObject) res = NULL;
-    g_autoptr(FontManagerDatabase) db = font_manager_database_new();
+    if (!self->db)
+        self->db = font_manager_database_new();
     g_object_get(G_OBJECT(self->font), "filepath", &filepath, "findex", &index, NULL);
     if (error == NULL) {
         const gchar *select = "SELECT * FROM Metadata WHERE filepath = %s AND findex = '%i'";
         char *path = sqlite3_mprintf("%Q", filepath);
         g_autofree gchar *query = g_strdup_printf(select, path, index);
-        res = font_manager_database_get_object(db, query, &error);
+        res = font_manager_database_get_object(self->db, query, &error);
         sqlite3_free(path);
     }
     if (error != NULL) {

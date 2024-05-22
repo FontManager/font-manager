@@ -64,7 +64,7 @@ namespace FontManager {
             string [] result_set = {};
             var search_term = get_search_term(terms);
             try {
-                Database db = new Database();
+                Database db = DatabaseProxy.get_default_db();
                 db.execute_query(QUERY.printf(search_term));
                 foreach (unowned Sqlite.Statement row in db)
                     result_set += "%s::%i::%s::%s".printf(row.column_text(ID.FILEPATH),
@@ -72,7 +72,6 @@ namespace FontManager {
                                                           row.column_text(ID.FAMILY),
                                                           row.column_text(ID.STYLE));
                 db.end_query();
-                db.close();
             } catch (Error e) {
                 warning(e.message);
             }

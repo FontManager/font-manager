@@ -37,12 +37,11 @@ namespace FontManager {
             families.clear();
             variations.clear();
             try {
-                Database db = new Database();
+                Database db = DatabaseProxy.get_default_db();
                 foreach (var family in disabled_families) {
                     var query = sql.printf(SELECT_FROM_FONTS, family);
                     get_matching_families_and_fonts(db, families, variations, query);
                 }
-                db.close();
             } catch (Error e) {
                 warning(e.message);
             }

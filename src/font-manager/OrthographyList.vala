@@ -210,7 +210,7 @@ namespace FontManager {
                 font = ((Font) selected_item);
             }
             try {
-                Database db = new Database();
+                Database db = DatabaseProxy.get_default_db();
                 string query = GET_ORTH_FOR(font.filepath, (int) font.findex);
                 db.execute_query(query);
                 if (db.get_cursor().step() == Sqlite.ROW) {
@@ -223,7 +223,6 @@ namespace FontManager {
                         model.orthography = parse_json_result(db.get_cursor().column_text(0));
                 }
                 db.end_query();
-                db.close();
                 // No error and no results means this font file is likely broken or empty
                 Idle.add(() => {
                     place_holder.message = _("No valid orthographies for selection");

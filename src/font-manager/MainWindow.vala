@@ -194,9 +194,7 @@ namespace FontManager {
         }
 
         public bool progress_update (ProgressData data) {
-            data.ref();
             progress.set_fraction(data.progress);
-            data.unref();
             return GLib.Source.REMOVE;
         }
 
@@ -337,5 +335,6 @@ namespace FontManager {
     }
 
 }
+
 
 

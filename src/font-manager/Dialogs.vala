@@ -190,6 +190,28 @@ namespace FontManager {
 
     }
 
+    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-language-settings-dialog.ui")]
+    public class LanguageSettingsDialog : Gtk.Window {
+
+        public LanguageFilterSettings? settings { get; set; default = null; }
+
+        [GtkChild] unowned Gtk.ToggleButton search_toggle;
+
+        public LanguageSettingsDialog (Gtk.Window? parent, LanguageFilterSettings settings) {
+            Object(settings: settings);
+            set_transient_for(parent);
+            set_child(settings);
+            if (parent != null) {
+                int width = -1;
+                int height = (int) (parent.get_height() / 10 * 7);
+                set_default_size(width, height);
+            }
+            BindingFlags flags = BindingFlags.BIDIRECTIONAL;
+            search_toggle.bind_property("active", settings.search_bar, "search-mode-enabled", flags);
+        }
+
+    }
+
     [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-progress-dialog.ui")]
     public class ProgressDialog : Gtk.Window {
 

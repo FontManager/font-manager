@@ -59,7 +59,7 @@ JsonObject * font_manager_database_get_object (FontManagerDatabase *self, const 
 /* Related functions */
 
 void font_manager_update_database (FontManagerDatabase *db,
-                                   JsonObject *available_fonts,
+                                   JsonArray *available_fonts,
                                    FontManagerProgressCallback progress,
                                    GCancellable *cancellable,
                                    GAsyncReadyCallback callback,

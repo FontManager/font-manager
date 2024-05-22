@@ -223,7 +223,7 @@ namespace FontManager {
         void purge_database_entries (StringSet selections) {
             ThreadFunc <void> run_in_thread = () => {
                 try {
-                    Database db = new Database();
+                    Database db = DatabaseProxy.get_default_db();
                     string [] tables = { "Metadata", "Orthography", "Panose" };
                     foreach (string table in tables) {
                         foreach (var path in selections) {
@@ -233,7 +233,6 @@ namespace FontManager {
                         }
                     }
                     db.vacuum();
-                    db.close();
                 } catch (Error e) {
                     warning(e.message);
                 }

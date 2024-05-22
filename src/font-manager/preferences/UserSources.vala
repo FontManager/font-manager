@@ -95,7 +95,7 @@ namespace FontManager {
         void purge_database_entries (string path) {
             ThreadFunc <void> run_in_thread = () => {
                 try {
-                    Database db = new Database();
+                    Database db = DatabaseProxy.get_default_db();
                     string [] tables = { "Metadata", "Orthography", "Panose" };
                     foreach (string table in tables) {
                         db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(table, path));
@@ -103,7 +103,6 @@ namespace FontManager {
                         db.end_query();
                     }
                     db.vacuum();
-                    db.close();
                 } catch (Error e) {
                     warning(e.message);
                 }

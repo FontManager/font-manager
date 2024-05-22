@@ -108,7 +108,7 @@ namespace FontManager {
         public StringSet get_filelist () {
             var results = new StringSet();
             try {
-                Database db = new Database();
+                Database db = DatabaseProxy.get_default_db();
                 var contents = get_full_contents();
                 foreach (var family in contents) {
                     string sql = "SELECT filepath FROM Fonts WHERE family = \"%s\"";
@@ -147,7 +147,6 @@ namespace FontManager {
             return visible;
         }
 
-        // XXX: FIXME! : Don't load non-existent families
         public override bool deserialize_property (string prop_name,
                                                    out Value val,
                                                    ParamSpec pspec,

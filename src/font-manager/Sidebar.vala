@@ -81,6 +81,8 @@ namespace FontManager {
     [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-sidebar.ui")]
     public class Sidebar : Gtk.Box {
 
+        public signal void changed();
+
         public FontListFilter? filter { get; set; default = null; }
         public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
@@ -117,6 +119,7 @@ namespace FontManager {
             categories.selection.select_item(0, true);
             categories.sorted = ((CollectionListModel) collections.model).get_full_contents();
             collections.changed.connect(() => {
+                changed();
                 categories.sorted = ((CollectionListModel) collections.model).get_full_contents();
             });
         }
@@ -131,8 +134,11 @@ namespace FontManager {
             return;
         }
 
-        void on_edit_selected () {
-            message("Edit not implemented");
+        void on_edit_selected () requires (categories.language_filter != null) {
+            var main_window = get_default_application().main_window;
+            var filter_settings = categories.language_filter.settings;
+            var dialog = new LanguageSettingsDialog(main_window, filter_settings);
+            dialog.present();
             return;
         }
 
@@ -171,6 +177,8 @@ namespace FontManager {
     }
 
     public class SidebarStack : Gtk.Box {
+
+        public signal void changed();
 
         public Object? selected_item { get; set; default = null; }
 
@@ -221,6 +229,7 @@ namespace FontManager {
             bind_property("disabled-families", sidebar, "disabled-families", flags);
             bind_property("selected-item", orthographies, "selected-item", flags);
             orthographies.bind_property("selected-orthography", this, "selected-orthography", flags);
+            sidebar.changed.connect(() => { changed(); });
         }
 
         public void select_first_category () {

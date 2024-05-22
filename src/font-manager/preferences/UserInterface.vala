@@ -210,7 +210,7 @@ namespace FontManager {
             widget.append_child(child);
             enable_animations = add_preference_switch(_("Enable Animations"));
             prefer_dark_theme = add_preference_switch(_("Prefer Dark Theme"));
-            string button_styles [2] = { _("Raised"), _("Flat") };
+            string [] button_styles = { _("Raised"), _("Flat") };
             var style_list = new Gtk.StringList(button_styles);
             button_style = new Gtk.DropDown(style_list, null);
             append_row(new PreferenceRow(_("Titlebar Button Style"), null, null, button_style));

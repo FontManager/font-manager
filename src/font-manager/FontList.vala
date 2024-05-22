@@ -380,7 +380,6 @@ namespace FontManager {
     //      - Context menu
     //          - Send to collection?
     //          - Export?
-    //      - Drop support
 
     public class FontListView : BaseFontListView {
 
@@ -431,10 +430,6 @@ namespace FontManager {
             add_controller(drop_target);
             drop_target.drop.connect(on_drag_data_received);
             init_context_menu();
-            notify["disabled-families"].connect(() => {
-                if (disabled_families != null)
-                    disabled_families.changed.connect(() => { refilter(); });
-            });
         }
 
         public Font get_selected_font () {

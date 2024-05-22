@@ -130,15 +130,23 @@ namespace FontManager {
 
     }
 
-    public HashTable get_non_latin_samples () {
+    public HashTable <string, string> get_non_latin_samples () {
         var result = new HashTable <string, string> (str_hash, str_equal);
         try {
-            Database db = new Database();
+            Database db = DatabaseProxy.get_default_db();
             db.execute_query(SELECT_NON_LATIN_FONTS);
-            foreach (unowned Sqlite.Statement row in db)
-                result.insert(row.column_text(0), row.column_text(1));
+            foreach (unowned Sqlite.Statement row in db) {
+                string? description = row.column_text(0);
+                string? sample = row.column_text(1);
+                // XXX: Why is this a thing during reloads?
+                // This should not happen, our query excludes NULL sample values...
+                // And descriptions are never NULL
+                if (description == null || sample == null)
+                    continue;
+                result.insert(description, sample);
+            }
             db.end_query();
-        } catch (DatabaseError e) {
+        } catch (Error e) {
             message(e.message);
         }
         return result;
@@ -238,7 +246,6 @@ namespace FontManager {
             critical("Failed to load user font resources, will be unable to render properly");
         var fonts = get_available_fonts(null);
         var sorted_fonts = sort_json_font_listing(fonts);
-        update_item_preview_text(sorted_fonts);
         return sorted_fonts;
     }
 

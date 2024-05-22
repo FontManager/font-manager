@@ -13,53 +13,22 @@
     <child>
       <object class="GtkBox">
         <property name="hexpand">True</property>
-        <property name="margin-bottom">3</property>
-        <property name="margin-end">6</property>
-        <property name="margin-start">6</property>
-        <property name="margin-top">3</property>
         <property name="valign">start</property>
         <property name="vexpand">False</property>
         <child>
-          <object class="GtkButton" id="back_button">
-            <property name="hexpand">False</property>
-            <property name="vexpand">False</property>
-            <property name="focus-on-click">False</property>
-            <property name="focusable">True</property>
-            <property name="halign">center</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="1">Back</property>
-            <signal name="clicked" handler="on_back_button_clicked" swapped="no"/>
+          <object class="GtkSearchBar" id="search_bar">
+            <property name="child">search_entry</property>
+            <property name="key-capture-widget">listbox</property>
             <child>
-              <object class="GtkImage">
-                <property name="icon-name">go-previous-symbolic</property>
-              </object>
-            </child>
-            <style>
-              <class name="suggested-action"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkSearchEntry" id="search_entry">
-            <property name="focusable">True</property>
-            <property name="hexpand">True</property>
-            <property name="margin-end">6</property>
-            <property name="margin-start">6</property>
-            <property name="placeholder-text" translatable="1">Search Orthographies…</property>
-            <signal name="search-changed" handler="on_search_changed" swapped="no"/>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="clear_button">
-            <property name="focus-on-click">False</property>
-            <property name="focusable">True</property>
-            <property name="halign">center</property>
-            <property name="receives-default">True</property>
-            <property name="tooltip-text" translatable="1">Deselect All</property>
-            <signal name="clicked" handler="on_clear_button_clicked" swapped="no"/>
-            <child>
-              <object class="GtkImage">
-                <property name="icon-name">list-remove-all-symbolic</property>
+              <object class="GtkSearchEntry" id="search_entry">
+                <property name="focusable">True</property>
+                <property name="halign">center</property>
+                <property name="hexpand">True</property>
+                <property name="margin-end">6</property>
+                <property name="margin-start">6</property>
+                <property name="placeholder-text" translatable="yes">Search Orthographies…</property>
+                <property name="valign">center</property>
+                <signal name="search-changed" handler="on_search_changed"/>
               </object>
             </child>
           </object>
@@ -85,31 +54,56 @@
       </object>
     </child>
     <child>
-      <object class="GtkBox">
-        <property name="margin-bottom">6</property>
-        <property name="margin-end">6</property>
-        <property name="margin-start">6</property>
-        <property name="margin-top">6</property>
-        <property name="spacing">18</property>
-        <property name="valign">center</property>
-        <child>
-          <object class="GtkLabel">
-            <property name="halign">end</property>
-            <property name="hexpand">True</property>
-            <property name="justify">center</property>
-            <property name="label" translatable="1">Minimum Coverage</property>
+      <object class="GtkActionBar">
+        <property name="valign">end</property>
+        <child type="center">
+          <object class="GtkBox">
+            <property name="margin-bottom">2</property>
+            <property name="margin-end">6</property>
+            <property name="margin-start">6</property>
+            <property name="margin-top">2</property>
+            <property name="spacing">18</property>
             <property name="valign">center</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="halign">end</property>
+                <property name="hexpand">True</property>
+                <property name="justify">center</property>
+                <property name="label" translatable="yes">Minimum Coverage</property>
+                <property name="valign">center</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkSpinButton" id="coverage_spin">
+                <property name="adjustment">coverage_adjustment</property>
+                <property name="focusable">True</property>
+                <property name="halign">start</property>
+                <property name="hexpand">True</property>
+                <property name="text">90</property>
+                <property name="value">90</property>
+                <signal name="value-changed" handler="on_coverage_changed"/>
+              </object>
+            </child>
           </object>
         </child>
-        <child>
-          <object class="GtkSpinButton" id="coverage_spin">
-            <property name="adjustment">coverage_adjustment</property>
+        <child type="start">
+          <object class="GtkButton" id="clear_button">
+            <property name="focus-on-click">False</property>
             <property name="focusable">True</property>
-            <property name="halign">start</property>
-            <property name="hexpand">True</property>
-            <property name="text">90</property>
-            <property name="value">90</property>
-            <signal name="value-changed" handler="on_coverage_changed" swapped="no"/>
+            <property name="halign">center</property>
+            <property name="has-frame">False</property>
+            <property name="margin-bottom">2</property>
+            <property name="margin-end">6</property>
+            <property name="margin-start">6</property>
+            <property name="margin-top">2</property>
+            <property name="receives-default">True</property>
+            <property name="tooltip-text" translatable="yes">Deselect All</property>
+            <signal name="clicked" handler="on_clear_button_clicked"/>
+            <child>
+              <object class="GtkImage">
+                <property name="icon-name">list-remove-all-symbolic</property>
+              </object>
+            </child>
           </object>
         </child>
       </object>
@@ -119,4 +113,3 @@
     </style>
   </template>
 </interface>
-

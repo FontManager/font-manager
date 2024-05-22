@@ -152,6 +152,7 @@ font_manager_database_dispose (GObject *gobject)
 {
     g_return_if_fail(gobject != NULL);
     FontManagerDatabase *self = FONT_MANAGER_DATABASE(gobject);
+    font_manager_database_end_query(self);
     font_manager_database_close(self, NULL);
     g_clear_pointer(&self->file, g_free);
     G_OBJECT_CLASS(font_manager_database_parent_class)->dispose(gobject);
@@ -224,7 +225,7 @@ font_manager_database_begin_transaction (FontManagerDatabase *self, GError **err
 }
 
 /**
- * font_manager_database_get_cursor:
+ * font_manager_database_get_cursor: (skip)
  * @self:   #FontManagerDatabase
  *
  * Returns: (transfer none) (nullable): #sqlite3_stmt or %NULL
@@ -448,52 +449,22 @@ font_manager_database_new (void)
 
 /* Related functions */
 
-typedef void (*InsertCallback) (FontManagerDatabase *db, JsonObject *face, gpointer data);
-
-typedef struct
-{
-    JsonObject *available_fonts;
-    FontManagerProgressCallback progress;
-    gpointer data;
-}
-InsertData;
-
-static InsertData *
-insert_data_new (JsonObject *available_fonts,
-                 FontManagerProgressCallback progress,
-                 gpointer data)
-{
-    InsertData *res = g_new0(InsertData, 1);
-    res->available_fonts = json_object_ref(available_fonts);
-    res->progress = progress;
-    res->data = data;
-    return res;
-}
-
-static void
-insert_data_free (InsertData *data)
-{
-    g_clear_pointer(&data->available_fonts, json_object_unref);
-    g_clear_pointer(&data, g_free);
-    return;
-}
-
 typedef struct
 {
     FontManagerDatabase *db;
-    JsonObject *available_fonts;
+    JsonArray *available_fonts;
     FontManagerProgressCallback progress;
 }
 DatabaseSyncData;
 
 static DatabaseSyncData *
 sync_data_new (FontManagerDatabase *db,
-               JsonObject *available_fonts,
+               JsonArray *available_fonts,
                FontManagerProgressCallback progress)
 {
     DatabaseSyncData *sync_data = g_new0(DatabaseSyncData, 1);
     sync_data->db = g_object_ref(db);
-    sync_data->available_fonts = json_object_ref(available_fonts);
+    sync_data->available_fonts = json_array_ref(available_fonts);
     sync_data->progress = progress;
     return sync_data;
 }
@@ -502,7 +473,7 @@ static void
 sync_data_free (DatabaseSyncData *data)
 {
     g_clear_object(&data->db);
-    g_clear_pointer(&data->available_fonts, json_object_unref);
+    g_clear_pointer(&data->available_fonts, json_array_unref);
     g_clear_pointer(&data, g_free);
     return;
 }
@@ -513,10 +484,6 @@ bind_from_properties (sqlite3_stmt *stmt,
                       const FontManagerJsonProxyProperty *properties,
                       gint n_properties)
 {
-    if (g_getenv("G_MESSAGES_DEBUG")) {
-        g_autofree gchar *json_data = font_manager_print_json_object(json, FALSE);
-        g_debug("Database.bind_from_properties : %s", json_data);
-    }
     for (gint i = 0; i < n_properties; i++) {
         const gchar *str = NULL;
         switch (properties[i].type) {
@@ -569,27 +536,25 @@ static const gchar *FONT_MANAGER_SKIP_ORTH_SCAN[] = {
 };
 
 static void
-update_available_fonts (FontManagerDatabase *db,
-                        InsertData *insert,
+update_available_fonts (DatabaseSyncData *data,
                         GCancellable *cancellable,
                         GError **error)
 {
-    g_return_if_fail(FONT_MANAGER_IS_DATABASE(db));
+    g_return_if_fail(FONT_MANAGER_IS_DATABASE(data->db));
     g_return_if_fail(error == NULL || *error == NULL);
 
-    g_autoptr(FontManagerProgressData) progress = NULL;
-    g_autoptr(FontManagerStringSet) known_files = get_known_files(db);
+    FontManagerDatabase *db = FONT_MANAGER_DATABASE(data->db);
 
-    guint processed = 0, total = json_object_get_size(insert->available_fonts);
+    uint processed = 0;
+    uint total = json_array_get_length(data->available_fonts);
+    const gchar *message = _("Updating Database…");
+    g_autoptr(FontManagerStringSet) known_files = get_known_files(db);
+    FontManagerProgressData *progress = font_manager_progress_data_new(message, processed, total);
 
     font_manager_database_begin_transaction(db, error);
     g_return_if_fail(error == NULL || *error == NULL);
 
-    JsonObjectIter f_iter;
-    const gchar *f_name;
-    JsonNode *f_node;
-    json_object_iter_init(&f_iter, insert->available_fonts);
-    while (json_object_iter_next(&f_iter, &f_name, &f_node)) {
+    for (uint i = 0; i < total; i++) {
         if (g_cancellable_is_cancelled(cancellable))
             break;
         /* Stash results periodically so we don't lose everything if closed */
@@ -598,31 +563,16 @@ update_available_fonts (FontManagerDatabase *db,
             g_return_if_fail(error == NULL || *error == NULL);
             font_manager_database_begin_transaction(db, error);
             g_return_if_fail(error == NULL || *error == NULL);
-            /* Previous call frees the prepared statement we were using */
-            /* font_manager_database_execute_query(db, insert->sql, error); */
-            /* g_return_if_fail(error == NULL || *error == NULL); */
         }
-        if (insert->progress) {
-
-            if (!progress)
-                progress = font_manager_progress_data_new(_("Updating Database…"), processed, total);
-
-            g_object_ref(progress);
-            g_object_set(progress, "processed", processed, "total", total, NULL);
-
-            g_main_context_invoke_full(g_main_context_get_thread_default(),
-                                       G_PRIORITY_HIGH_IDLE,
-                                       (GSourceFunc) insert->progress,
-                                       progress,
-                                       (GDestroyNotify) g_object_unref);
-        }
-        JsonObject *family = json_node_get_object(f_node);
-        JsonObjectIter s_iter;
-        const gchar *s_name;
-        JsonNode *s_node;
-        json_object_iter_init(&s_iter, family);
-        while (json_object_iter_next(&s_iter, &s_name, &s_node)) {
-            JsonObject *face = json_node_get_object(s_node);
+        JsonObject *family = json_array_get_object_element(data->available_fonts, i);
+        const gchar *family_name = json_object_get_string_member(family, "family");
+        JsonArray *variations = json_object_get_array_member(family, "variations");
+        uint n_variations = json_array_get_length(variations);
+        for (uint v = 0; v < n_variations; v++) {
+            // g_autofree gchar *json_data = font_manager_print_json_object(json, FALSE);
+            // g_debug("Database.update_available_fonts : processing : %s", json_data);
+            JsonObject *face = json_array_get_object_element(variations, v);
+            int index = json_object_get_int_member(face, "findex");
             const gchar *filepath = json_object_get_string_member(face, "filepath");
             // Font table
             font_manager_database_execute_query(db, INSERT_FONT_ROW, error);
@@ -631,11 +581,12 @@ update_available_fonts (FontManagerDatabase *db,
             g_assert(sqlite3_step_succeeded(db, SQLITE_DONE));
             g_return_if_fail(error == NULL || *error == NULL);
             font_manager_database_end_query(db);
-            if (font_manager_string_set_contains(known_files, filepath))
+            if (font_manager_string_set_contains(known_files, filepath)) {
+                g_debug("Database.update_available_fonts : ignoring known font path : %i : %s", index, filepath);
                 continue;
-            else {
+            } else {
+                g_debug("Database.update_available_fonts : adding new font path : %i : %s", index, filepath);
                 // Metadata table
-                int index = json_object_get_int_member(face, "findex");
                 g_autoptr(JsonObject) _face = font_manager_get_metadata(filepath, index, error);
                 if (error != NULL && *error != NULL) {
                     GError *err = *error;
@@ -665,7 +616,6 @@ update_available_fonts (FontManagerDatabase *db,
                     }
                 }
                 // Orthogaphy table
-                const gchar *family_name = json_object_get_string_member(face, "family");
                 gboolean blank_font = FALSE;
                 if (g_strv_contains(FONT_MANAGER_SKIP_ORTH_SCAN, family_name))
                     blank_font = TRUE;
@@ -682,45 +632,39 @@ update_available_fonts (FontManagerDatabase *db,
             }
         }
         processed++;
+        if (data->progress) {
+            g_object_ref(progress);
+            g_object_set(progress, "processed", processed, "total", total, NULL);
+            g_main_context_invoke_full(g_main_context_get_thread_default(),
+                                       G_PRIORITY_HIGH_IDLE,
+                                       (GSourceFunc) data->progress,
+                                       progress,
+                                       (GDestroyNotify) g_object_unref);
+        }
     }
     font_manager_database_commit_transaction(db, error);
+    g_object_unref(progress);
     return;
 }
 
-/**
- * font_manager_update_database_sync:
- * @db: #FontManagerDatabase instance
- * @available_fonts: #JsonObject returned by #font_manager_list_available_fonts
- * @progress: (scope call) (nullable): #FontManagerProgressCallback
- * @cancellable: (nullable): #GCancellable or %NULL
- * @error: (nullable): #GError or %NULL to ignore errors
- *
- * Update application database as needed.
- *
- * Returns: %TRUE on success
- */
 gboolean
-font_manager_update_database_sync (FontManagerDatabase *self,
-                                    JsonObject *available_fonts,
-                                    FontManagerProgressCallback progress,
-                                    GCancellable *cancellable,
-                                    GError **error)
+font_manager_update_database_sync (DatabaseSyncData *data,
+                                   GCancellable *cancellable,
+                                   GError **error)
 {
-    g_return_val_if_fail(FONT_MANAGER_IS_DATABASE(self), FALSE);
+    g_return_val_if_fail(FONT_MANAGER_IS_DATABASE(data->db), FALSE);
     g_return_val_if_fail((error == NULL || *error == NULL), FALSE);
 
     if (g_cancellable_is_cancelled(cancellable))
         return FALSE;
 
-    if (self->db == NULL)
-        font_manager_database_open(self, NULL);
-    sqlite3_exec(self->db, "DELETE FROM Fonts;", NULL, 0, 0);
-    sqlite3_exec(self->db, CREATE_FONTS_TABLE, NULL, 0, 0);
-    sqlite3_exec(self->db, CREATE_FONT_MATCH_INDEX, NULL, 0, 0);
+    if (data->db->db == NULL)
+        font_manager_database_open(data->db, NULL);
 
-    InsertData *data = insert_data_new(available_fonts, progress, NULL);
-    update_available_fonts(self, data, cancellable, error);
-    insert_data_free(data);
+    sqlite3_exec(data->db->db, "DELETE FROM Fonts;", NULL, 0, 0);
+    sqlite3_exec(data->db->db, CREATE_FONTS_TABLE, NULL, 0, 0);
+    sqlite3_exec(data->db->db, CREATE_FONT_MATCH_INDEX, NULL, 0, 0);
+    update_available_fonts(data, cancellable, error);
     g_return_val_if_fail(error == NULL || *error == NULL, FALSE);
     return TRUE;
 }
@@ -736,8 +680,7 @@ sync_database_thread (GTask *task,
     gboolean result = FALSE;
     DatabaseSyncData *data = task_data;
 
-    result = font_manager_update_database_sync(data->db, data->available_fonts,
-                                               data->progress, cancellable, &error);
+    result = font_manager_update_database_sync(data, cancellable, &error);
 
     if (error == NULL)
         g_task_return_boolean(task, result);
@@ -748,7 +691,7 @@ sync_database_thread (GTask *task,
 /**
  * font_manager_update_database:
  * @db: #FontManagerDatabase instance
- * @available_fonts: #JsonObject returned by #font_manager_list_available_fonts
+ * @available_fonts: #JsonArray returned by #font_manager_sort_json_listing
  * @progress: (scope call) (nullable): #FontManagerProgressCallback
  * @cancellable: (nullable): #GCancellable or %NULL
  * @callback: (nullable) (scope async): #GAsyncReadyCallback or %NULL
@@ -758,7 +701,7 @@ sync_database_thread (GTask *task,
  */
 void
 font_manager_update_database (FontManagerDatabase *db,
-                              JsonObject *available_fonts,
+                              JsonArray *available_fonts,
                               FontManagerProgressCallback progress,
                               GCancellable *cancellable,
                               GAsyncReadyCallback callback,

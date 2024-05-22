@@ -47,13 +47,13 @@ namespace FontManager {
             variations.clear();
             try {
                 if (sql != null) {
-                    Database db = new Database();
+                    Database db = DatabaseProxy.get_default_db();
                     get_matching_families_and_fonts(db, families, variations, sql);
                 }
                 for (int i = 0; i < children.length; i++)
                     yield children[i].update();
-            } catch (DatabaseError error) {
-                warning(error.message);
+            } catch (Error e) {
+                warning(e.message);
             }
             update_required = false;
             changed();

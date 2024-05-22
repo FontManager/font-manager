@@ -45,14 +45,9 @@ namespace FontManager {
             items = null;
             items = new GenericArray <Category> ();
             items_changed(0, n_items, 0);
-            try {
-                Database db = new Database();
-                items = get_default_categories(db);
-                items_changed(0, 0, get_n_items());
-                db.close();
-            } catch (Error e) {
-                critical(e.message);
-            }
+            Database db = DatabaseProxy.get_default_db();
+            items = get_default_categories(db);
+            items_changed(0, 0, get_n_items());
             return;
         }
 
@@ -89,9 +84,7 @@ namespace FontManager {
             int index = category.index;
             bool root_node = category.depth < 1;
             bool root_count = root_node &&
-                              (index < CategoryIndex.PANOSE ||
-                               index > CategoryIndex.FILETYPE &&
-                               index < CategoryIndex.LANGUAGE);
+                              (index < CategoryIndex.PANOSE || index > CategoryIndex.FILETYPE);
             item_label.set_text(category.name);
             item_icon.visible = root_count || root_node && index == CategoryIndex.LANGUAGE;
             item_count.visible = !root_node || root_count;
@@ -117,6 +110,7 @@ namespace FontManager {
         public Disabled? disabled { get; set; default = null; }
         public StringSet? sorted { get; set; default = null; }
         public Unsorted? unsorted { get; set; default = null; }
+        public LanguageFilter language_filter { get; set; default = null; }
 
         construct {
             widget_set_name(listview, "FontManagerCategoryListView");
@@ -204,6 +198,14 @@ namespace FontManager {
                 BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
                 bind_property("sorted", unsorted, "sorted", flags);
                 update_unsorted();
+            } else if (category is LanguageFilter) {
+                language_filter = (LanguageFilter) category;
+                language_filter.changed.connect(() => {
+                    if (selected_item is LanguageFilter) {
+                        selection_changed(null);
+                        selection_changed(selected_item);
+                    }
+                });
             }
             list_row.notify["expanded"].connect_after((pspec) => {
                 category.update.begin();
