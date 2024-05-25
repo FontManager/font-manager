@@ -30,9 +30,10 @@ namespace FontManager {
 
         static Database? db = null;
 
-        public static unowned Database get_default_db () {
+        public static Database get_default_db () {
             if (db == null)
                 db = new Database();
+            db.ref();
             return db;
         }
 
@@ -47,10 +48,12 @@ namespace FontManager {
         }
 
         public void update (Json.Array available_fonts) {
+            if (db != null)
+                db = null;
             update_started();
-            Database db = new Database();
+            Database database = new Database();
             update_database.begin(
-                db,
+                database,
                 available_fonts,
                 progress,
                 cancellable,
@@ -58,7 +61,6 @@ namespace FontManager {
                     try {
                         update_database.end(res);
                         update_complete();
-                        db.close();
                     } catch (Error e) {
                         critical(e.message);
                     }

@@ -22,6 +22,8 @@ namespace FontManager {
 
     public class Collection : FontListFilter {
 
+        public signal void activated (bool active, StringSet families);
+
         public StringSet? available_families { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
         public bool active { get; set; default = true; }
@@ -34,14 +36,23 @@ namespace FontManager {
             }
         }
 
-        bool ignore_activation = false;
-
         construct {
             children = new GenericArray <Collection> ();
             families = new StringSet();
-            notify["disabled-families"].connect(() => {
-                set_active_from_fonts();
+            notify["available-families"].connect(() => {
+                foreach (var child in children) {
+                    BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+                    bind_property("available-families", child, "available-families", flags);
+                }
             });
+            notify["disabled-families"].connect(() => {
+                // set_active_from_fonts();
+                foreach (var child in children) {
+                    BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
+                    bind_property("disabled-families", child, "disabled-families", flags);
+                }
+            });
+            notify["active"].connect(() => { activated(active, families); });
         }
 
         public Collection (string? name, string? comment) {
@@ -58,6 +69,13 @@ namespace FontManager {
             return;
         }
 
+        public void add (StringSet new_families) {
+            families.add_all(new_families);
+            set_active_from_fonts();
+            changed();
+            return;
+        }
+
         public bool contains (Collection collection) {
             for (uint i = 0; i < children.length; i++)
                 if (children[i].name == collection.name)
@@ -66,28 +84,28 @@ namespace FontManager {
         }
 
         public void set_active_from_fonts () {
-            if (disabled_families == null)
+            if (available_families == null || disabled_families == null)
                 return;
-            ignore_activation = true;
             active = false;
-            foreach (string family in families) {
-                if (family in disabled_families)
-                    continue;
-                else {
-                    active = true;
-                    break;
+            if (families.size > 0) {
+                foreach (string family in families) {
+                    if (family in available_families && !(family in disabled_families)) {
+                        active = true;
+                        break;
+                    }
                 }
             }
             children.foreach((child) => { child.set_active_from_fonts(); });
-            ignore_activation = false;
             return;
         }
 
         int get_collection_total () {
-            int total = 0;
-            foreach (var family in families)
-                if (family in available_families)
-                    total++;
+            int total = (int) families.size;
+            if (available_families != null) {
+                foreach (var family in families)
+                    if (!(family.strip() in available_families))
+                        total--;
+            }
             children.foreach((child) => { total += child.get_collection_total(); });
             return total;
         }
@@ -121,22 +139,6 @@ namespace FontManager {
                 warning(e.message);
             }
             return results;
-        }
-
-        public void on_activate () {
-            if (ignore_activation || disabled_families == null)
-                return;
-            if (active)
-                disabled_families.remove_all(families);
-            else
-                disabled_families.add_all(families);
-            children.foreach((child) => {
-                child.active = active;
-                child.on_activate();
-            });
-            disabled_families.save();
-            disabled_families.changed();
-            return;
         }
 
         public override bool matches (Object? item) {
@@ -190,8 +192,9 @@ namespace FontManager {
             } else if (pspec.value_type == typeof(StringSet)) {
                 var node = new Json.Node(Json.NodeType.ARRAY);
                 var arr = new Json.Array();
-                foreach (string family in families)
-                    arr.add_string_element(family);
+                if (prop_name == "families")
+                    foreach (string family in families)
+                        arr.add_string_element(family);
                 node.set_array(arr);
                 return node;
             } else if (pspec.value_type == typeof(Reject)) {

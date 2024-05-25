@@ -41,10 +41,7 @@ namespace FontManager {
     public class CategoryListModel : FontListFilterModel {
 
         public void update_items () {
-            uint n_items = get_n_items();
-            items = null;
-            items = new GenericArray <Category> ();
-            items_changed(0, n_items, 0);
+            clear();
             Database db = DatabaseProxy.get_default_db();
             items = get_default_categories(db);
             items_changed(0, 0, get_n_items());

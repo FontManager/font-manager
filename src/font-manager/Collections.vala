@@ -29,9 +29,15 @@ namespace FontManager {
 
         public signal void changed ();
 
-        public CollectionListModel () {
+        construct {
             available_families = list_available_font_families();
             changed.connect(() => { save(); });
+        }
+
+        public void reload () {
+            clear();
+            load();
+            return;
         }
 
         public void update_items () {
@@ -65,7 +71,7 @@ namespace FontManager {
 
         public override void add_item (FontListFilter item) {
             base.add_item(item);
-            BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
+            BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("available-families", ((Collection) item), "available-families", flags);
             bind_property("disabled-families", ((Collection) item), "disabled-families", flags);
             return;
@@ -113,8 +119,6 @@ namespace FontManager {
 
         public signal void changed ();
 
-        ulong change_handler = 0;
-        ulong activate_handler = 0;
         Binding? name_binding = null;
         Binding? state_binding = null;
 
@@ -126,22 +130,17 @@ namespace FontManager {
         }
 
         public override void reset () {
-            if (change_handler != 0)
-                item.disconnect(change_handler);
-            change_handler = 0;
-            if (activate_handler != 0)
-                item.disconnect(activate_handler);
-            activate_handler = 0;
             if (name_binding != null)
                 name_binding.unbind();
-            name_binding = null;
             if (state_binding != null)
                 state_binding.unbind();
+            name_binding = null;
             state_binding = null;
             return;
         }
 
         protected override void on_item_set () {
+            reset();
             if (item == null)
                 return;
             var collection = (Collection) item;
@@ -149,15 +148,10 @@ namespace FontManager {
             if (item_icon.visible)
                 item_icon.set_from_icon_name(collection.icon);
             item_count.set_label(collection.size.to_string());
-            change_handler = collection.changed.connect(() => { changed(); });
-            activate_handler = item_state.toggled.connect(() => {
-                collection.active = item_state.active;
-                collection.on_activate();
-                changed();
-            });
+            item_state.active = collection.active;
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             name_binding = collection.bind_property("name", item_label, "label", flags);
-            state_binding = collection.bind_property("active", item_state, "active", flags);
+            state_binding = item_state.bind_property("active", collection, "active", BindingFlags.DEFAULT);
             return;
         }
 
@@ -214,7 +208,6 @@ namespace FontManager {
         construct {
             widget_set_name(listview, "FontManagerCollectionListView");
             var collection_model = new CollectionListModel();
-            collection_model.load();
             treemodel = new Gtk.TreeListModel(collection_model,
                                               false,
                                               true,
@@ -282,7 +275,6 @@ namespace FontManager {
             var collection = (Collection) object;
             collection.depth = (int) list_row.get_depth();
             // Setting item triggers update to row widget
-            row.reset();
             row.item = object;
             // Nesting is allowed so we need the entire list refreshed if a
             // single row changes otherwise parent nodes would not update
@@ -290,6 +282,18 @@ namespace FontManager {
                 changed();
                 queue_update();
             });
+            collection.activated.connect(on_collection_activated);
+            return;
+        }
+
+        void on_collection_activated (bool active, StringSet families) {
+            if (active)
+                disabled_families.remove_all(families);
+            else
+                disabled_families.add_all(families);
+            disabled_families.save();
+            ((CollectionListModel) model).save();
+            changed();
             return;
         }
 
@@ -524,6 +528,10 @@ namespace FontManager {
             if (target.widget is CollectionListRow) {
                 Gtk.TreeListRow? list_row = get_list_row_for_widget(target.widget);
                 return_val_if_fail(list_row != null, false);
+                Collection target_collection = ((Collection) list_row.item);
+                // Cancelled drop or dropped in the same position
+                if (target_collection == dropped_collection)
+                    return false;
                 Gtk.TreeListRow? parent_row = list_row.get_parent();
                 while (parent_row != null) {
                     Collection? parent = ((Collection) parent_row.item);
@@ -532,7 +540,6 @@ namespace FontManager {
                         return false;
                     parent_row = parent_row.get_parent();
                 }
-                Collection target_collection = (Collection) list_row.item;
                 // Reject duplicate drops
                 if (target_collection.contains(dropped_collection))
                     return false;
@@ -548,10 +555,12 @@ namespace FontManager {
             Gtk.TreeListRow? list_row = get_list_row_for_widget(target.widget);
             return_val_if_fail(list_row != null, false);
             Collection? collection = ((Collection) list_row.item);
+            StringSet new_families = new StringSet();
             foreach (var object in objects) {
                 if (object is Family)
-                    collection.families.add(((Family) object).family);
+                    new_families.add(((Family) object).family);
             }
+            collection.add(new_families);
             ((CollectionListModel) model).save();
             queue_update();
             changed();

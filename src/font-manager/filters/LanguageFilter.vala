@@ -151,6 +151,7 @@ namespace FontManager {
         [GtkChild] public unowned Gtk.SearchBar search_bar { get; }
         [GtkChild] public unowned Gtk.SearchEntry search_entry { get; }
 
+        [GtkChild] unowned Gtk.Button clear_button;
         [GtkChild] unowned Gtk.ListBox listbox;
         [GtkChild] unowned Gtk.SpinButton coverage_spin;
 
@@ -158,10 +159,10 @@ namespace FontManager {
             widget_set_name(this, "FontManagerLanguageFilterSettings");
             listbox.set_filter_func((Gtk.ListBoxFilterFunc) matches_search);
             listbox.set_selection_mode(Gtk.SelectionMode.NONE);
-            selections.changed.connect(on_selections_changed);
             BindingFlags flags = BindingFlags.BIDIRECTIONAL | BindingFlags.SYNC_CREATE;
             bind_property("coverage", coverage_spin, "value", flags);
             populate_list_box();
+            clear_button.set_sensitive(selections.size > 0);
         }
 
         void on_item_changed (LanguageListRow item) {
@@ -169,6 +170,7 @@ namespace FontManager {
                 selections.add(item.orthography);
             else
                 selections.remove(item.orthography);
+            clear_button.set_sensitive(selections.size > 0);
             debug("LanguageFilterSettings : %s %s %s selected items",
                   item.orthography, item.active ? "added" : "removed",
                   item.active ? "to" : "from");
@@ -194,12 +196,6 @@ namespace FontManager {
                 item.active = (item.orthography in selections);
                 item.changed.connect(on_item_changed);
             }
-            return;
-        }
-
-        void on_selections_changed () {
-            string [] selected = selections.to_strv();
-            debug("%s::selections changed : %s", name, string.joinv(", ", selected));
             return;
         }
 

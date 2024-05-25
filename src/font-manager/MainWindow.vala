@@ -125,6 +125,7 @@ namespace FontManager {
             install_action("remove", null, (Gtk.WidgetActionActivateFunc) remove);
             install_action("import", null, (Gtk.WidgetActionActivateFunc) import);
             install_action("export", null, (Gtk.WidgetActionActivateFunc) export);
+            install_action("reload", null, (Gtk.WidgetActionActivateFunc) reload);
             install_property_action("mode", "mode");
             install_property_action("show-preferences", "show-preferences");
             uint [] mode_accels = { Gdk.Key.@1, Gdk.Key.@2, Gdk.Key.@3 };
@@ -134,6 +135,7 @@ namespace FontManager {
                 string nick = mode_class.get_value(i).value_nick;
                 add_binding_action(mode_accels[i], mode_mask, "mode", "s", nick);
             }
+            add_binding_action(Gdk.Key.R, mode_mask, "reload", null);
         }
 
         construct {
@@ -253,40 +255,37 @@ namespace FontManager {
             return;
         }
 
+        void reload (Gtk.Widget widget, string? action, Variant? parameter) {
+            get_default_application().reload();
+            return;
+        }
+
         void install (Gtk.Widget widget, string? action, Variant? parameter) {
             var dialog = FileSelector.get_selections();
             dialog.open_multiple.begin(this, null, install_selections);
             return;
         }
 
-        void set_default_dialog_size (Gtk.Window dialog, int w, int h) {
-            int width = (int) (get_width() / 10 * w);
-            int height = (int) (get_height() / 10 * h);
-            dialog.set_default_size(width, height);
-            return;
-        }
-
         void remove (Gtk.Widget widget, string? action, Variant? parameter) {
             var dialog = new RemoveDialog(this);
-            set_default_dialog_size(dialog, 7, 7);
-            dialog.present();
             dialog.start_removal.connect(() => {
                 header_widgets.removing_files = true;
             });
             dialog.end_removal.connect(() => {
                 header_widgets.removing_files = false;
             });
+            dialog.present();
             return;
         }
 
         void import (Gtk.Widget widget, string? action, Variant? parameter) {
-            message("Import not yet implemented");
+            var dialog = new UserData.ImportDialog(this);
+            dialog.present();
             return;
         }
 
         void export (Gtk.Widget widget, string? action, Variant? parameter) {
-            var dialog = new ExportDialog(this);
-            set_default_dialog_size(dialog, 6, 7);
+            var dialog = new UserData.ExportDialog(this);
             dialog.present();
             return;
         }
@@ -335,6 +334,7 @@ namespace FontManager {
     }
 
 }
+
 
 
 

@@ -32,13 +32,23 @@ namespace FontManager {
         "font/collection"
     };
 
+    public void set_default_dialog_size (Gtk.Window parent,
+                                         Gtk.Window dialog,
+                                         int w_percentage,
+                                         int h_percentage) {
+        int width = (int) ((parent.get_width() / 10) * (w_percentage / 10));
+        int height = (int) ((parent.get_height() / 10) * (h_percentage / 10));
+        dialog.set_default_size(width, height);
+        return;
+    }
+
     namespace FileSelector {
 
         public Gtk.FileDialog get_executable () {
             var dialog = new Gtk.FileDialog() {
                 modal = true,
                 accept_label = _("_Select"),
-                title = _("Select executable"),
+                title = _("Select Executable"),
             };
             File bindir = File.new_for_path(BINDIR);
             dialog.set_initial_folder(bindir);
@@ -49,7 +59,7 @@ namespace FontManager {
             var dialog = new Gtk.FileDialog() {
                 modal = true,
                 accept_label = _("_Select"),
-                title = _("Select destination"),
+                title = _("Select a Directory"),
             };
             return dialog;
         }
@@ -64,7 +74,7 @@ namespace FontManager {
                 filter.add_mime_type(mimetype);
             var dialog = new Gtk.FileDialog() {
                 modal = true,
-                title = _("Select files to install"),
+                title = _("Select Files to Install"),
             };
             dialog.set_default_filter(filter);
             return dialog;
@@ -73,105 +83,14 @@ namespace FontManager {
         public Gtk.FileDialog get_selected_sources () {
             var dialog = new Gtk.FileDialog() {
                 modal = true,
-                title = _("Select source folders"),
+                title = _("Select Source Directories"),
             };
             return dialog;
         }
 
     }
 
-    public class ExportSettings : PreferenceList {
-
-        public Gtk.Switch settings { get; private set; }
-        public Gtk.Switch collections { get; private set; }
-        public Gtk.Switch sources { get; private set; }
-        public Gtk.Switch fonts { get; private set; }
-        public Gtk.Switch actions { get; private set; }
-
-        public ExportSettings () {
-            controls.set_visible(false);
-            settings = add_preference_switch(_("Font Configuration"));
-            collections = add_preference_switch(_("Font Collections"));
-            sources = add_preference_switch(_("Font Sources"));
-            fonts = add_preference_switch(_("Installed Fonts"));
-            actions = add_preference_switch(_("Custom Actions"));
-            Gtk.Switch [] switches = { settings, collections, sources, fonts, actions };
-            foreach (var widget in switches)
-                widget.set_active(true);
-        }
-
-    }
-
-    [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-export-dialog.ui")]
-    public class ExportDialog : Gtk.Window {
-
-        public ExportSettings export_settings { get; private set; }
-
-        public ExportDialog (Gtk.Window? parent) {
-            set_transient_for(parent);
-            export_settings = new ExportSettings();
-            set_child(export_settings);
-        }
-
-        [GtkCallback]
-        void on_cancel_clicked () {
-            destroy();
-            return;
-        }
-
-        [GtkCallback]
-        void on_export_clicked () {
-            hide();
-            var dialog = FileSelector.get_target_directory();
-            dialog.select_folder.begin(get_transient_for(), null, on_directory_selected);
-            return;
-        }
-
-        void export_to (File target_directory) {
-            FileCopyFlags flags = FileCopyFlags.OVERWRITE |
-                                  FileCopyFlags.ALL_METADATA |
-                                  FileCopyFlags.TARGET_DEFAULT_PERMS;
-            DateTime date = new DateTime.now_local();
-            string dirname = "%s_%s".printf(Config.PACKAGE_NAME, date.format("%F"));
-            string dest = Path.build_filename(target_directory.get_path(), dirname);
-            File destination = File.new_for_path(dest);
-            try {
-                destination.make_directory_with_parents();
-            } catch (Error e) {
-                critical(e.message);
-            }
-            if (export_settings.actions.active)
-                copy_config("Actions.json", destination.get_path(), flags);
-            if (export_settings.sources.active)
-                copy_config("Sources.xml", destination.get_path(), flags);
-            if (export_settings.collections.active) {
-                copy_config("Collections.json", destination.get_path(), flags);
-                copy_config("Comparisons.json", destination.get_path(), flags);
-            }
-            if (export_settings.settings.active) {
-                var settings_dir = get_user_fontconfig_directory();
-                var dest_dir = Path.build_filename(destination.get_path(), "fontconfig", "conf.d");
-                copy_directory(File.new_for_path(settings_dir), File.new_for_path(dest_dir), flags);
-            }
-            if (export_settings.fonts.active) {
-                var font_dir = get_user_font_directory();
-                var dest_dir = Path.build_filename(destination.get_path(), "fonts");
-                copy_directory(File.new_for_path(font_dir), File.new_for_path(dest_dir), flags);
-            }
-            return;
-        }
-
-        void on_directory_selected (Object? object, AsyncResult result) {
-            try {
-                var dialog = (Gtk.FileDialog) object;
-                File? target_directory = dialog.select_folder.end(result);
-                export_to(target_directory);
-            } catch (Error e) {
-                if (e.code == Gtk.DialogError.FAILED)
-                    warning("FileDialog : %s", e.message);
-            }
-            return;
-        }
+    namespace UserData {
 
         void copy_config (string config_name, string destdir, FileCopyFlags flags) {
             string config_dir = get_package_config_directory();
@@ -188,6 +107,181 @@ namespace FontManager {
             return;
         }
 
+        public class ExportSettings : PreferenceList {
+
+            public Gtk.Switch settings { get; private set; }
+            public Gtk.Switch collections { get; private set; }
+            public Gtk.Switch sources { get; private set; }
+            public Gtk.Switch fonts { get; private set; }
+            public Gtk.Switch actions { get; private set; }
+
+            public ExportSettings () {
+                controls.set_visible(false);
+                settings = add_preference_switch(_("Font Configuration"));
+                collections = add_preference_switch(_("Font Collections"));
+                sources = add_preference_switch(_("Font Sources"));
+                fonts = add_preference_switch(_("Installed Fonts"));
+                actions = add_preference_switch(_("Custom Actions"));
+                Gtk.Switch [] switches = { settings, collections, sources, fonts, actions };
+                foreach (var widget in switches)
+                    widget.set_active(true);
+            }
+
+        }
+
+        [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-export-dialog.ui")]
+        public class ExportDialog : Gtk.Window {
+
+            public ExportSettings export_settings { get; private set; }
+
+            public ExportDialog (Gtk.Window? parent) {
+                set_transient_for(parent);
+                set_default_dialog_size(parent, this, 50, 70);
+                export_settings = new ExportSettings();
+                set_child(export_settings);
+            }
+
+            [GtkCallback]
+            void on_cancel_clicked () {
+                destroy();
+                return;
+            }
+
+            [GtkCallback]
+            void on_export_clicked () {
+                hide();
+                var dialog = FileSelector.get_target_directory();
+                dialog.select_folder.begin(get_transient_for(), null, on_directory_selected);
+                return;
+            }
+
+            void export_to (File target_directory) {
+                FileCopyFlags flags = FileCopyFlags.OVERWRITE |
+                                      FileCopyFlags.ALL_METADATA |
+                                      FileCopyFlags.TARGET_DEFAULT_PERMS;
+                DateTime date = new DateTime.now_local();
+                string dirname = "%s_%s".printf(Config.PACKAGE_NAME, date.format("%F"));
+                string dest = Path.build_filename(target_directory.get_path(), dirname);
+                File destination = File.new_for_path(dest);
+                try {
+                    destination.make_directory_with_parents();
+                } catch (Error e) {
+                    critical(e.message);
+                }
+                if (export_settings.actions.active)
+                    copy_config("Actions.json", destination.get_path(), flags);
+                if (export_settings.sources.active)
+                    copy_config("Sources.xml", destination.get_path(), flags);
+                if (export_settings.collections.active) {
+                    copy_config("Collections.json", destination.get_path(), flags);
+                    copy_config("Comparisons.json", destination.get_path(), flags);
+                }
+                if (export_settings.settings.active) {
+                    var settings_dir = get_user_fontconfig_directory();
+                    var dest_dir = Path.build_filename(destination.get_path(), "fontconfig", "conf.d");
+                    copy_directory(File.new_for_path(settings_dir), File.new_for_path(dest_dir), flags);
+                }
+                if (export_settings.fonts.active) {
+                    var font_dir = get_user_font_directory();
+                    var dest_dir = Path.build_filename(destination.get_path(), "fonts");
+                    copy_directory(File.new_for_path(font_dir), File.new_for_path(dest_dir), flags);
+                }
+                return;
+            }
+
+            void on_directory_selected (Object? object, AsyncResult result) {
+                try {
+                    var dialog = (Gtk.FileDialog) object;
+                    File? target_directory = dialog.select_folder.end(result);
+                    export_to(target_directory);
+                } catch (Error e) {
+                    if (e.code == Gtk.DialogError.FAILED)
+                        warning("FileDialog : %s", e.message);
+                }
+                return;
+            }
+
+        }
+
+        public class ImportDialog : Object {
+
+            Gtk.Window? parent;
+            Gtk.FileDialog file_dialog;
+
+            public ImportDialog (Gtk.Window? parent) {
+                file_dialog = FileSelector.get_target_directory();
+                this.parent = parent;
+            }
+
+            public void present () {
+                file_dialog.select_folder(parent, null, on_directory_selected);
+                return;
+            }
+
+            void import_from (File target_directory) {
+                FileCopyFlags flags = FileCopyFlags.OVERWRITE |
+                                      FileCopyFlags.ALL_METADATA |
+                                      FileCopyFlags.TARGET_DEFAULT_PERMS;
+                try {
+                    FileInfo fileinfo;
+                    StringSet? filelist = null;
+                    var enumerator = target_directory.enumerate_children(FileAttribute.STANDARD_NAME, FileQueryInfoFlags.NONE);
+                    string root = target_directory.get_path();
+                    while ((fileinfo = enumerator.next_file()) != null) {
+                        var source_type = fileinfo.get_file_type();
+                        string name = fileinfo.get_name();
+                        if (source_type == GLib.FileType.DIRECTORY) {
+                            if (name == "fontconfig") {
+                                string confd = Path.build_filename(root, name, "conf.d");
+                                File config_files = File.new_for_path(confd);
+                                File config_dir = File.new_for_path(get_user_fontconfig_directory());
+                                copy_directory(config_files, config_dir, flags);
+                            } else if (name == "fonts") {
+                                filelist = new StringSet();
+                                filelist.add(Path.build_filename(root, name));
+                            }
+                        } else if (source_type == GLib.FileType.REGULAR) {
+                            string [] config_files = { "Collections.json", "Comparisons.json", "Sources.xml", "Actions.json" };
+                            if (name in config_files) {
+                                File config = File.new_for_path(Path.build_filename(root, name));
+                                string config_dir = get_package_config_directory();
+                                File target = File.new_for_path(Path.build_filename(config_dir, name));
+                                config.copy(target, flags);
+                            }
+                        }
+                    }
+                    if (filelist != null) {
+                        var installer = new Library.Installer();
+                        installer.process.begin(filelist, (obj, res) => {
+                            installer.process.end(res);
+                            get_default_application().reload();
+                        });
+                    } else {
+                        Timeout.add_seconds(4, () => {
+                            get_default_application().reload();
+                            return GLib.Source.REMOVE;
+                        });
+                    }
+                } catch (Error e) {
+                    critical(e.message);
+                }
+                return;
+            }
+
+            void on_directory_selected (Object? object, AsyncResult result) {
+                try {
+                    var dialog = (Gtk.FileDialog) object;
+                    File? target_directory = dialog.select_folder.end(result);
+                    import_from(target_directory);
+                } catch (Error e) {
+                    if (e.code == Gtk.DialogError.FAILED)
+                        warning("FileDialog : %s", e.message);
+                }
+                return;
+            }
+
+        }
+
     }
 
     [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-language-settings-dialog.ui")]
@@ -201,11 +295,8 @@ namespace FontManager {
             Object(settings: settings);
             set_transient_for(parent);
             set_child(settings);
-            if (parent != null) {
-                int width = -1;
-                int height = (int) (parent.get_height() / 10 * 7);
-                set_default_size(width, height);
-            }
+            if (parent != null)
+                set_default_dialog_size(parent, this, 60, 80);
             BindingFlags flags = BindingFlags.BIDIRECTIONAL;
             search_toggle.bind_property("active", settings.search_bar, "search-mode-enabled", flags);
         }
@@ -231,11 +322,14 @@ namespace FontManager {
 
         [GtkChild] unowned Gtk.Image app_icon;
 
-        public ProgressDialog (string? title) {
+        public ProgressDialog (Gtk.Window? parent, string? title) {
+            set_transient_for(parent);
             widget_set_name(this, "FontManagerProgressDialog");
             widget_set_expand(progress_bar, true);
             add_css_class("dialog");
             title_label.set_label(title != null ? title : "");
+            if (parent != null)
+                set_default_dialog_size(parent, this, 50, 20);
         }
 
         public void update (ProgressData data) {
@@ -258,6 +352,7 @@ namespace FontManager {
 
         public RemoveDialog (Gtk.Window? parent) {
             set_transient_for(parent);
+            set_default_dialog_size(parent, this, 70, 70);
             var fonts = get_available_fonts(null);
             var sorted_fonts = sort_json_font_listing(fonts);
             sorted_fonts.foreach_element((a, i, n) => {

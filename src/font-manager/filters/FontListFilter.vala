@@ -62,6 +62,14 @@ namespace FontManager {
             return items[position];
         }
 
+        public void clear () {
+            uint n_items = get_n_items();
+            items = null;
+            items_changed(0, n_items, 0);
+            items = new GenericArray <FontListFilter> ();
+            return;
+        }
+
         public virtual void add_item (FontListFilter item) {
             items.add(item);
             item.index = (int) get_n_items() - 1;

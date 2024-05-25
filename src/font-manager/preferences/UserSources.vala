@@ -22,12 +22,20 @@ namespace FontManager {
 
     public class UserSourceModel : Object, ListModel {
 
-        public GenericArray <Source> items { get; private set; }
+        public GenericArray <Source> items { get; private set; default = new GenericArray <Source> (); }
 
         Directories sources;
 
-        public UserSourceModel () {
+        public void clear () {
+            uint n_items = get_n_items();
+            items = null;
+            items_changed(0, n_items, 0);
             items = new GenericArray <Source> ();
+            return;
+        }
+
+        public void reload () {
+            clear();
             sources = new Directories() {
                 config_dir = get_package_config_directory(),
                 target_element = "source",
@@ -49,6 +57,7 @@ namespace FontManager {
                     return GLib.Source.REMOVE;
                 });
             });
+            return;
         }
 
         public Type get_item_type () {
@@ -178,6 +187,12 @@ They will not be visible to other applications until the source is actually enab
             model.remove_item(position);
             while (position > 0 && position >= model.get_n_items()) { position--; }
             list.select_row(list.get_row_at_index((int) position));
+            return;
+        }
+
+        protected override void on_map () {
+            model.reload();
+            base.on_map();
             return;
         }
 

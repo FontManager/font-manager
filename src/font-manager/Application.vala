@@ -285,7 +285,7 @@ namespace FontManager {
         }
 
         protected override void activate () {
-            register_session = true;
+            // register_session = true;
             if (main_window == null) {
                 main_window = new MainWindow();
                 add_window(main_window);
@@ -303,7 +303,7 @@ namespace FontManager {
                 };
                 new Thread <void> ("update_item_preview_text", (owned) run_in_thread);
                 Idle.add(() => {
-                    main_window.collection_model.update_items();
+                    main_window.collection_model.reload();
                     return GLib.Source.REMOVE;
                 });
             });
@@ -375,3 +375,5 @@ namespace FontManager {
     }
 
 }
+
+

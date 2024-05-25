@@ -213,6 +213,7 @@ namespace FontManager {
             critical("Failed to add default user font directory to configuration!");
         }
         UserSourceModel? source_model = new UserSourceModel();
+        source_model.reload();
         source_model.items.foreach((source) => {
             if (source.available && !add_application_font_directory(source.path)) {
                 res = false;
@@ -293,7 +294,8 @@ namespace FontManager {
         uint processed = 0;
         ProgressDialog? progress = null;
         if (show_progress) {
-            progress = new ProgressDialog(_("Copying files…"));
+            Gtk.Window? parent = get_default_application().main_window;
+            progress = new ProgressDialog(parent, _("Copying files…"));
             progress.present();
         }
         foreach (string filepath in filelist) {

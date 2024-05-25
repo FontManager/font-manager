@@ -760,7 +760,9 @@ font_manager_get_matching_families_and_fonts (FontManagerDatabase *db,
     g_autoptr(FontManagerDatabaseIterator) iter = font_manager_database_iterator(db);
     while (font_manager_database_iterator_next(iter)) {
         sqlite3_stmt *stmt = font_manager_database_iterator_get(iter);
-        g_assert(sqlite3_column_count(stmt) >= 2);
+        g_warn_if_fail(sqlite3_column_count(stmt) >= 2);
+        if (!(sqlite3_column_count(stmt) >= 2))
+            continue;
         const gchar *family = (const gchar *) sqlite3_column_text(stmt, 0);
         const gchar *font = (const gchar *) sqlite3_column_text(stmt, 1);
         if (family == NULL || font == NULL)

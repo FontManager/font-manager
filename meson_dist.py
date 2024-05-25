@@ -10,14 +10,24 @@ chdir(environ['MESON_DIST_ROOT'])
 excluded_dirs = {
     'build-aux',
     'debian',
-    'fedora'
+    'fedora',
+    '.github'
+}
+
+excluded_files = {
+    '.gitattributes',
+    '.gitignore'
 }
 
 for d in excluded_dirs:
     rmtree(d)
 
+for f in excluded_files:
+    remove(f)
+
 # Remove README translations to minimize archive size
 for f in glob("README.*.md"):
     remove(f)
 
-
+# Only useful in Git repository
+remove("org.gnome.FontManager.yaml")

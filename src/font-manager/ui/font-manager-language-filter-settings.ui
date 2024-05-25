@@ -97,6 +97,7 @@
             <property name="margin-start">6</property>
             <property name="margin-top">2</property>
             <property name="receives-default">True</property>
+            <property name="opacity">0.80</property>
             <property name="tooltip-text" translatable="yes">Deselect All</property>
             <signal name="clicked" handler="on_clear_button_clicked"/>
             <child>

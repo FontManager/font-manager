@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
   <requires lib="gtk" version="4.12"/>
-  <template class="FontManagerExportDialog" parent="GtkWindow">
+  <template class="FontManagerUserDataExportDialog" parent="GtkWindow">
     <property name="modal">True</property>
     <property name="titlebar">
       <object class="GtkHeaderBar">

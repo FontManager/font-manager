@@ -1,6 +1,6 @@
 /* UserActions.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -83,13 +83,7 @@ namespace FontManager {
 
     public class UserActionModel : Object, ListModel {
 
-        public GenericArray <UserAction> items { get; private set; }
-
-        construct {
-            items = new GenericArray <UserAction> ();
-            load();
-            items_changed.connect(() => { save(); });
-        }
+        public GenericArray <UserAction> items { get; private set; default = new GenericArray <UserAction> (); }
 
         public Type get_item_type () {
             return typeof(UserAction);
@@ -148,7 +142,29 @@ namespace FontManager {
             return;
         }
 
+        public void clear () {
+            uint n_items = get_n_items();
+            items = null;
+            items_changed(0, n_items, 0);
+            items = new GenericArray <UserAction> ();
+            return;
+        }
+
+        public void reload () {
+            clear();
+            load();
+            items_changed.connect(() => {
+                Idle.add(() => {
+                    save();
+                    return GLib.Source.REMOVE;
+                });
+            });
+            return;
+        }
+
         public void save () {
+            if (items == null)
+                return;
             Json.Node node = new Json.Node(Json.NodeType.ARRAY);
             Json.Array array = new Json.Array.sized(size);
             items.foreach((item) => {
@@ -229,6 +245,12 @@ If FAMILY or STYLE are found in the argument list they will also be replaced."""
                                                  "open-menu-symbolic");
             list.set_placeholder(place_holder);
             controls.append(inline_help_widget(help_text));
+        }
+
+        public override void on_map () {
+            model.reload();
+            base.on_map();
+            return;
         }
 
         protected override void on_add_selected () {
