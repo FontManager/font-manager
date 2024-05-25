@@ -29,6 +29,7 @@ namespace FontManager {
         Gtk.StackSidebar sidebar;
 
         public PreferencePane (GLib.Settings? settings) {
+            base(settings);
             widget_set_name(this, "FontManagerPreferencePane");
             list_area.set_size_request(-1, -1);
             content_area.set_visible(false);

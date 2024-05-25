@@ -48,6 +48,19 @@ enum
 };
 
 static void
+font_manager_application_window_dispose (GObject *gobject)
+{
+    FontManagerApplicationWindow *self = FONT_MANAGER_APPLICATION_WINDOW(gobject);
+    g_return_if_fail(self != NULL);
+    FontManagerApplicationWindowPrivate *priv;
+    priv = font_manager_application_window_get_instance_private(self);
+    g_clear_object(&priv->settings);
+    font_manager_widget_dispose(GTK_WIDGET(gobject));
+    G_OBJECT_CLASS(font_manager_application_window_parent_class)->dispose(gobject);
+    return;
+}
+
+static void
 font_manager_application_window_about (GtkWidget                *widget,
                                       G_GNUC_UNUSED const char *action_name,
                                       G_GNUC_UNUSED GVariant   *parameter)
@@ -135,9 +148,11 @@ font_manager_application_window_set_property (GObject      *gobject,
 {
     g_return_if_fail(gobject != NULL);
     FontManagerApplicationWindow *self = FONT_MANAGER_APPLICATION_WINDOW(gobject);
+    FontManagerApplicationWindowPrivate *priv;
+    priv = font_manager_application_window_get_instance_private(self);
     switch (property_id) {
         case PROP_SETTINGS:
-            font_manager_application_window_restore_state(self, g_value_get_object(value));
+            g_set_object(&priv->settings, G_SETTINGS(g_value_get_object(value)));
             break;
         default:
             G_OBJECT_WARN_INVALID_PROPERTY_ID(gobject, property_id, pspec);
@@ -152,6 +167,7 @@ font_manager_application_window_class_init (FontManagerApplicationWindowClass *k
     GtkWidgetClass *widget_class = GTK_WIDGET_CLASS(klass);
     GtkWindowClass *window_class = GTK_WINDOW_CLASS(klass);
     window_class->close_request = font_manager_application_window_on_close_request;
+    object_class->dispose = font_manager_application_window_dispose;
     object_class->get_property = font_manager_application_window_get_property;
     object_class->set_property = font_manager_application_window_set_property;
 
@@ -215,20 +231,12 @@ font_manager_application_window_init (FontManagerApplicationWindow *self)
 /**
  * font_manager_application_window_restore_state:
  * @self:       #FontManagerApplicationWindow
- * @settings:   #GSettings instance or #NULL
- *
- * The following keys MUST be present in @settings:
- *
- *  - window-size   : (int, int)
- *  - is-maximized  : boolean
  */
 void
-font_manager_application_window_restore_state (FontManagerApplicationWindow *self,
-                                               GSettings                    *settings)
+font_manager_application_window_restore_state (FontManagerApplicationWindow *self)
 {
     FontManagerApplicationWindowPrivate *priv;
     priv = font_manager_application_window_get_instance_private(self);
-    g_set_object(&priv->settings, settings);
     gint width, height;
     gboolean maximized;
     if (priv->settings) {
@@ -308,9 +316,21 @@ font_manager_application_window_show_help (FontManagerApplicationWindow *self)
     return;
 }
 
+/**
+ * font_manager_application_window_new:
+ * @settings:   #Gsettings instance to use or %NULL
+ *
+ * The following keys MUST be present in @settings:
+ *
+ *  - window-size   : (int, int)
+ *  - is-maximized  : boolean
+ *
+ * Returns: (transfer full): A newly created #FontManagerApplicationWindow
+ * Free the returned object using #g_object_unref().
+ */
 GtkWidget *
-font_manager_application_window_new ()
+font_manager_application_window_new (GSettings *settings)
 {
-    return g_object_new(FONT_MANAGER_TYPE_APPLICATION_WINDOW, NULL);
+    return g_object_new(FONT_MANAGER_TYPE_APPLICATION_WINDOW, "settings", settings, NULL);
 }
 

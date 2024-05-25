@@ -23,7 +23,7 @@ namespace FontManager {
     [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-paned.ui")]
     public class Paned : Gtk.Box {
 
-        public GLib.Settings? settings { get; set; default = null; }
+        public GLib.Settings? settings { get; protected set; default = null; }
 
         public Gtk.Orientation orientation {
             get {
@@ -121,14 +121,10 @@ namespace FontManager {
         double hor_sidebar_pos = 20.0;
         double hor_content_pos = 36.0;
 
-        public Paned () {
+        public Paned (GLib.Settings? settings) {
+            this.settings = settings;
             // Necessary to get an acceptable initial size for pane layout
             list_area.set_size_request(-1, 225);
-            map.connect(() => {
-                Idle.add(() => {
-                    return update_pane_positions();
-                });
-            });
             main_pane.notify["position"].connect((obj, pspec) => {
                 var new_pos = position_to_percentage(main_pane).clamp(2, 98);
                 if (orientation == Gtk.Orientation.HORIZONTAL) {
@@ -153,8 +149,12 @@ namespace FontManager {
             });
         }
 
-        public virtual void restore_state (GLib.Settings? settings) {
-            this.settings = settings;
+        [GtkCallback]
+        public virtual void on_map () {
+            Idle.add(() => {
+                update_pane_positions();
+                return GLib.Source.REMOVE;
+            });
             if (settings == null)
                 return;
             SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
@@ -173,6 +173,9 @@ namespace FontManager {
             notify_property("content-position");
             return;
         }
+
+        [GtkCallback]
+        public virtual void on_unmap () {}
 
         public Gtk.Widget? get_content_widget () {
             return content_area.get_first_child();
@@ -228,7 +231,8 @@ namespace FontManager {
             // except when it returns the default value of MAX_INT
             if (alloc != int.MAX)
                 return alloc;
-            // get_width regularly returns a smaller than actual value
+            // get_width seems to regularly returns a smaller than actual value
+            // which could be due to our use of panes within a pane
             return (paned.orientation == Gtk.Orientation.HORIZONTAL) ? paned.get_width() : paned.get_height();
         }
 

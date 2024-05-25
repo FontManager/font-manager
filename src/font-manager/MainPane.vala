@@ -48,11 +48,12 @@ namespace FontManager {
         ComparePane compare;
         PreviewPane preview;
 
-        construct {
+        public MainPane (GLib.Settings? settings) {
+            base(settings);
             sidebar = new SidebarStack();
             fontlist = new FontListView();
             preview = new PreviewPane();
-            compare = new ComparePane();
+            compare = new ComparePane(settings);
             content = new Gtk.Stack() {
                 transition_type = Gtk.StackTransitionType.CROSSFADE,
                 transition_duration = 420
@@ -77,6 +78,7 @@ namespace FontManager {
             notify["mode"].connect(on_mode_changed);
             fontlist.selection_changed.connect(on_selection_changed);
             sidebar.changed.connect(() => { fontlist.queue_refilter(); });
+            preview.restore_state(settings);
         }
 
         public void select_first_category () {
@@ -86,15 +88,6 @@ namespace FontManager {
 
         public void select_first_font () {
             fontlist.select_item(0);
-            return;
-        }
-
-        public override void restore_state (GLib.Settings? settings) {
-            base.restore_state(settings);
-            if (settings == null)
-                return;
-            preview.restore_state(settings);
-            compare.restore_state(settings);
             return;
         }
 

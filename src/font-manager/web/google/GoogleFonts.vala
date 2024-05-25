@@ -35,16 +35,22 @@ namespace FontManager.GoogleFonts {
 
         public Json.Array? available_families { get; set; default = null; }
 
+        bool initialized = false;
         uint status_code = Soup.Status.NONE;
         string? reason_phrase = null;
         Error? error = null;
-        GLib.Settings? gsettings = null;
         NetworkMonitor network_monitor;
         PlaceHolder placeholder;
         PreviewPage preview;
 
-        public Catalog () {
-            gsettings = get_gsettings(BUS_ID);
+        public Catalog (GLib.Settings? settings) {
+            base(settings);
+        }
+
+        public override void on_map () {
+            base.on_map();
+            if (initialized)
+                return;
             var sidebar = new Sidebar();
             var fontlist = new FontListView();
             preview = new PreviewPage();
@@ -68,11 +74,8 @@ namespace FontManager.GoogleFonts {
                 on_network_changed();
             else
                 update_placeholder();
-        }
-
-        public override void restore_state (GLib.Settings? settings) {
-            base.restore_state(settings);
             preview.restore_state(settings);
+            initialized = true;
             return;
         }
 
@@ -104,7 +107,7 @@ namespace FontManager.GoogleFonts {
         }
 
         bool network_available () {
-            if (gsettings != null && gsettings.get_boolean("restrict-network-access"))
+            if (settings != null && settings.get_boolean("restrict-network-access"))
                 return false;
             bool available = (network_monitor.connectivity == NetworkConnectivity.FULL);
             if (!available && network_monitor.connectivity != NetworkConnectivity.LOCAL) {
@@ -129,7 +132,7 @@ namespace FontManager.GoogleFonts {
 
         void update_placeholder () {
             placeholder.visible = true;
-            if (gsettings != null && gsettings.get_boolean("restrict-network-access")) {
+            if (settings != null && settings.get_boolean("restrict-network-access")) {
                 set_placeholder_message(_("Network Access Disabled"),
                                         _("Contact your system administrator to request access."),
                                         null, "network-offline-symbolic");

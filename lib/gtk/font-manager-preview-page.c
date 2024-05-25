@@ -1,6 +1,6 @@
 /* font-manager-preview-page.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -953,6 +953,10 @@ font_manager_preview_page_set_waterfall_size (FontManagerPreviewPage *self,
  *  - preview-font-size
  *  - preview-mode
  *  - preview-text
+ *  - show-line-size
+ *  - min-waterfall-size
+ *  - max-waterfall-size
+ *  - waterfall-size-ratio
  */
 void
 font_manager_preview_page_restore_state (FontManagerPreviewPage *self,
@@ -964,6 +968,10 @@ font_manager_preview_page_restore_state (FontManagerPreviewPage *self,
     g_settings_bind(settings, "preview-font-size", self, "preview-size", flags);
     g_settings_bind(settings, "preview-mode", self, "preview-mode", flags);
     g_settings_bind(settings, "preview-text", self, "preview-text", flags);
+    g_settings_bind(settings, "waterfall-show-line-size", self, "show-line-size", flags);
+    g_settings_bind(settings, "min-waterfall-size", self, "min-waterfall-size", flags);
+    g_settings_bind(settings, "max-waterfall-size", self, "max-waterfall-size", flags);
+    g_settings_bind(settings, "waterfall-size-ratio", self, "waterfall-size-ratio", flags);
     return;
 }
 

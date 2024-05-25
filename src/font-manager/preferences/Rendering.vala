@@ -1,6 +1,6 @@
 /* Rendering.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,6 +57,7 @@ namespace FontManager {
 
         public FontProperties properties { get; private set; }
 
+        bool initialized = false;
         Gtk.CheckButton hinter;
         Gtk.DropDown hintstyle;
         Gtk.Switch antialias;
@@ -68,6 +69,11 @@ namespace FontManager {
             widget_set_name(this, "FontManagerRenderingPreferences");
             list.set_selection_mode(Gtk.SelectionMode.NONE);
             properties = new FontProperties() { target_file = "19-DefaultProperties.conf" };
+        }
+
+        void generate_options_list () {
+            if (initialized)
+                return;
             antialias = add_preference_switch(_("Antialias"));
             hinting = add_preference_switch(_("Hinting"));
             var widget = hinting.get_ancestor(typeof(PreferenceRow)) as PreferenceRow;
@@ -88,6 +94,8 @@ namespace FontManager {
             var footer = new FontconfigFooter();
             footer.reset_requested.connect(on_reset);
             append(footer);
+            initialized = true;
+            return;
         }
 
         void bind_properties () {
@@ -97,6 +105,7 @@ namespace FontManager {
             properties.bind_property("autohint", hinter, "active", flags);
             properties.bind_property("embeddedbitmap", bitmaps, "active", flags);
             properties.bind_property("hintstyle", hintstyle, "selected", flags);
+            return;
         }
 
         void on_reset () {
@@ -105,12 +114,13 @@ namespace FontManager {
             return;
         }
 
-        public override void on_map () {
+        protected override void on_map () {
+            generate_options_list();
             properties.load();
             return;
         }
 
-        public override void on_unmap () {
+        protected override void on_unmap () {
             // Avoid saving unless there's been changes to at least one value.
             if (settings.changed(properties))
                 properties.save();

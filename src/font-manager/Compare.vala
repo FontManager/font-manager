@@ -178,10 +178,12 @@ namespace FontManager {
         [GtkChild] unowned Gtk.MenuButton pinned_button;
         [GtkChild] unowned Gtk.ListBox list;
 
+        bool initialized = false;
         string? _preview_text = null;
         string? default_preview_text = null;
 
-        public override void constructed () {
+        public ComparePane (GLib.Settings? settings) {
+            Object(settings: settings);
             widget_set_name(this, "FontManagerCompare");
             notify["model"].connect(() => { list.bind_model(model, CompareRow.from_item); });
             model = new CompareModel();
@@ -201,10 +203,6 @@ namespace FontManager {
                 bool have_items = (pinned.model.get_n_items() > 0 || model.get_n_items() > 0);
                 set_control_sensitivity(pinned_button, have_items);
             });
-            notify["foreground-color"].connect(() => { save_state(); });
-            notify["background-color"].connect(() => { save_state(); });
-            base.constructed();
-            return;
         }
 
         public void on_items_changed (uint position, uint added, uint removed) {
@@ -217,8 +215,10 @@ namespace FontManager {
             return;
         }
 
-        public void restore_state (GLib.Settings? settings) {
-            this.settings = settings;
+        [GtkCallback]
+        public void on_map () {
+            if (initialized)
+                return;
             if (settings == null)
                 return;
             preview_size = settings.get_double("compare-font-size");
@@ -242,10 +242,12 @@ namespace FontManager {
             });
             settings.bind("compare-preview-text", entry, "text", SettingsBindFlags.DEFAULT);
             settings.bind("compare-font-size", this, "preview-size", SettingsBindFlags.DEFAULT);
+            initialized = true;
             return;
         }
 
-        public void save_state () {
+        [GtkCallback]
+        public void on_unmap () {
             if (settings == null)
                 return;
             settings.set_string("compare-foreground-color", foreground_color.to_string());

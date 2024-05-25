@@ -40,7 +40,7 @@
         <value nick="Grid" value="1" />
     </enum>
 
-    <enum id="com.github.FontManager.FontManager.TitleButtonStyle">
+    <enum id="com.github.FontManager.FontManager.HeaderBarButtonStyle">
         <value nick="Normal" value="0" />
         <value nick="Flat" value="1" />
     </enum>
@@ -88,9 +88,9 @@
             <description>Whether the application prefers to use a dark theme</description>
         </key>
 
-        <key name="title-button-style" enum="com.github.FontManager.FontManager.TitleButtonStyle">
+        <key name="headerbar-button-style" enum="com.github.FontManager.FontManager.HeaderBarButtonStyle">
             <default>"Normal"</default>
-            <summary>Titlebar button style</summary>
+            <summary>HeaderBar button style</summary>
             <description>Possible modes are Normal and Flat.</description>
         </key>
 

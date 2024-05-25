@@ -5,6 +5,8 @@
     <property name="css-name">FontManagerCompare</property>
     <property name="css-classes">FontManagerCompare</property>
     <property name="orientation">vertical</property>
+    <signal name="map" handler="on_map"/>
+    <signal name="unmap" handler="on_unmap"/>
     <child>
       <object class="GtkBox" id="controls">
         <property name="spacing">2</property>

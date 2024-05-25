@@ -1,6 +1,6 @@
 /* Display.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,6 +52,7 @@ namespace FontManager {
 
         public FontProperties properties { get; private set; }
 
+        bool initialized = false;
         Gtk.SpinButton dpi;
         Gtk.SpinButton scale;
         Gtk.DropDown lcdfilter;
@@ -65,6 +66,11 @@ namespace FontManager {
                 type = FontPropertiesType.DISPLAY,
                 target_file = "19-DisplayProperties.conf"
             };
+        }
+
+        void generate_options_list () {
+            if (initialized)
+                return;
             dpi = new Gtk.SpinButton.with_range(0.0, 1000.0, 1.0);
             append_row(new PreferenceRow(_("Target DPI"), null, null, dpi));
             scale = new Gtk.SpinButton.with_range(0.0, 1000.0, 0.1);
@@ -89,6 +95,8 @@ namespace FontManager {
             var footer = new FontconfigFooter();
             footer.reset_requested.connect(on_reset);
             append(footer);
+            initialized = true;
+            return;
         }
 
         void bind_properties () {
@@ -107,6 +115,7 @@ namespace FontManager {
         }
 
         public override void on_map () {
+            generate_options_list();
             properties.load();
             return;
         }

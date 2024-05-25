@@ -1,6 +1,6 @@
 /* Desktop.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -99,7 +99,7 @@ namespace FontManager {
         static Settings? interface_settings = null;
         static Settings? x_settings = null;
 
-        public static bool available () {
+        static bool available () {
             if (!initialized) {
                 interface_settings = get_gsettings(GNOME_INTERFACE_ID);
                 x_settings = get_gsettings(GNOME_XSETTINGS_ID);
@@ -115,8 +115,14 @@ namespace FontManager {
                                                _("GNOME desktop settings schema not found"),
                                                  "computer-fail-symbolic");
             list.set_placeholder(place_holder);
+        }
+
+        protected override void on_map () {
+            if (initialized)
+                return;
             if (DesktopPreferences.available())
                 generate_options_list();
+            return;
         }
 
         static string? [] get_enum_values (string k) {

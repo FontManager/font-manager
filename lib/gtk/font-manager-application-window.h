@@ -42,12 +42,9 @@ struct _FontManagerApplicationWindowClass
     GtkApplicationWindowClass parent_class;
 };
 
-GtkWidget * font_manager_application_window_new (void);
+GtkWidget * font_manager_application_window_new (GSettings *settings);
 
 void font_manager_application_window_show_about (FontManagerApplicationWindow *self);
-
 void font_manager_application_window_show_help (FontManagerApplicationWindow *self);
-
-void font_manager_application_window_restore_state (FontManagerApplicationWindow *self,
-                                                    GSettings                    *settings);
+void font_manager_application_window_restore_state (FontManagerApplicationWindow *self);
 

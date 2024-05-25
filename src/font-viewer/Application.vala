@@ -68,10 +68,10 @@ namespace FontManager {
             protected override void activate () {
                 register_session = true;
                 if (main_window == null) {
-                    main_window = new MainWindow();
-                    add_window(main_window);
                     settings = get_gsettings(application_id);
-                    main_window.restore_state(settings);
+                    main_window = new MainWindow(settings);
+                    add_window(main_window);
+                    main_window.restore_state();
                     // Why is this needed?
                     shutdown.connect(() => { quit(); });
                 }

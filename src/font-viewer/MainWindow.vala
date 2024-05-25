@@ -1,6 +1,6 @@
 /* MainWindow.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,7 +40,8 @@ namespace FontManager.FontViewer {
             WOULD_DOWNGRADE;
         }
 
-        public override void constructed () {
+        public class MainWindow (GLib.Settings? settings) {
+            Object(settings: settings);
             var target = new Gtk.DropTarget(typeof(Gdk.FileList), Gdk.DragAction.COPY);
             target.drop.connect(on_drop);
             stack.add_controller(target);
@@ -49,8 +50,6 @@ namespace FontManager.FontViewer {
             preview_pane.changed.connect(this.update);
             preview_pane.realize.connect(() => { preview_pane.restore_state(settings); });
             update_action_button();
-            base.constructed();
-            return;
         }
 
         public bool show_uri (string uri, int index = 0) {

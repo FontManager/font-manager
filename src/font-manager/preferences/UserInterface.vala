@@ -188,21 +188,25 @@ namespace FontManager {
 
         public GLib.Settings? settings { get; set; default = null; }
 
+        bool initialized = false;
         Gtk.Switch wide_layout;
         Gtk.Switch enable_animations;
         Gtk.Switch prefer_dark_theme;
         Gtk.Switch show_line_size;
         Gtk.CheckButton on_maximize;
         Gtk.DropDown button_style;
-        Gtk.Settings default_gtk_settings;
 
         WaterfallSize waterfall_size;
 
         public UserInterfacePreferences (GLib.Settings? settings) {
             this.settings = settings;
             widget_set_name(this, "FontManagerUserInterfacePreferences");
-            default_gtk_settings = Gtk.Settings.get_default();
             list.set_selection_mode(Gtk.SelectionMode.NONE);
+        }
+
+        void generate_options_list () {
+            if (initialized)
+                return;
             wide_layout = add_preference_switch(_("Wide Layout"));
             var widget = wide_layout.get_ancestor(typeof(PreferenceRow)) as PreferenceRow;
             on_maximize = new Gtk.CheckButton();
@@ -218,6 +222,13 @@ namespace FontManager {
             waterfall_size = new WaterfallSize();
             append_row(waterfall_size.row);
             bind_properties();
+            initialized = true;
+            return;
+        }
+
+        protected override void on_map () {
+            generate_options_list();
+            return;
         }
 
         void bind_properties () {
@@ -242,7 +253,7 @@ namespace FontManager {
             settings.bind("min-waterfall-size", waterfall_size, "minimum", flags);
             settings.bind("max-waterfall-size", waterfall_size, "maximum", flags);
             settings.bind("waterfall-size-ratio", waterfall_size, "ratio", flags);
-            settings.bind_with_mapping("title-button-style",
+            settings.bind_with_mapping("headerbar-button-style",
                                        button_style,
                                        "selected",
                                        flags,

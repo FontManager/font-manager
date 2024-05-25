@@ -138,7 +138,8 @@ namespace FontManager {
             add_binding_action(Gdk.Key.R, mode_mask, "reload", null);
         }
 
-        construct {
+        public MainWindow (GLib.Settings? settings) {
+            Object(settings: settings);
             var overlay = new Gtk.Overlay();
             progress = new Gtk.ProgressBar() {
                 halign = Gtk.Align.FILL,
@@ -151,9 +152,8 @@ namespace FontManager {
             overlay.set_child(main_stack);
             overlay.add_overlay(progress);
             set_child(overlay);
-            settings = get_gsettings(BUS_ID);
             var header = new Gtk.HeaderBar();
-            header_widgets = new HeaderBarWidgets();
+            header_widgets = new HeaderBarWidgets(settings);
             header.pack_start(header_widgets.back_button);
             header.pack_start(header_widgets.main_menu);
             header.pack_start(header_widgets.revealer);
@@ -161,7 +161,7 @@ namespace FontManager {
             set_titlebar(header);
             main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN_UP);
             main_stack.set_transition_duration(500);
-            main_pane = new MainPane();
+            main_pane = new MainPane(settings);
             // browse_pane = new BrowsePane();
             prefs_pane = new PreferencePane(settings);
             main_stack.add_named(main_pane, Mode.MANAGE.to_string());
@@ -169,7 +169,7 @@ namespace FontManager {
             // scrolled_window.set_child(browse_pane);
             // main_stack.add_named(scrolled_window, Mode.BROWSE.to_string());
 #if HAVE_WEBKIT
-            google_fonts = new GoogleFonts.Catalog();
+            google_fonts = new GoogleFonts.Catalog(settings);
             main_stack.add_named(google_fonts, "GoogleFonts");
 #endif /* HAVE_WEBKIT */
             main_stack.add_named(prefs_pane, "Preferences");
@@ -187,12 +187,8 @@ namespace FontManager {
 #endif /* HAVE_WEBKIT */
             bind_settings();
             connect_signals();
-            restore_state(settings);
+            restore_state();
             update_layout_orientation();
-            main_pane.restore_state(settings);
-#if HAVE_WEBKIT
-            google_fonts.restore_state(settings);
-#endif /* HAVE_WEBKIT */
         }
 
         public bool progress_update (ProgressData data) {

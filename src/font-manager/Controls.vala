@@ -178,6 +178,7 @@ namespace FontManager {
         public Gtk.MenuButton app_menu { get; protected set; }
         public Gtk.Label main_menu_label { get; set; }
         public Gtk.Button back_button { get; protected set; }
+        public GLib.Settings? settings { get; protected set; default = null; }
 
         public bool installing_files {
             set {
@@ -203,7 +204,8 @@ namespace FontManager {
             return;
         }
 
-        construct {
+        public HeaderBarWidgets (GLib.Settings? settings) {
+            Object(settings: settings);
             main_menu = new Gtk.MenuButton() { opacity = 0.9 };
             var main_menu_icon = new Gtk.Image.from_icon_name("view-more-symbolic");
             var main_menu_container = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
@@ -249,6 +251,26 @@ namespace FontManager {
                 action_name = "show-preferences"
             };
             spinner = new Gtk.Spinner();
+            if (settings != null) {
+                set_button_style();
+                settings.changed.connect((key) => {
+                    if (key == "headerbar-button-style")
+                        set_button_style();
+                });
+            }
+            return;
+        }
+
+        void set_button_style () requires (settings != null) {
+            Gtk.Widget [] buttons = { main_menu, app_menu, back_button,
+                                      manage_controls.add_button,
+                                      manage_controls.remove_button };
+            int raised = settings.get_enum("headerbar-button-style");
+            foreach (var button in buttons)
+                if (button is Gtk.MenuButton)
+                    ((Gtk.MenuButton) button).set_has_frame(raised == 0);
+                else
+                    ((Gtk.Button) button).set_has_frame(raised == 0);
             return;
         }
 
