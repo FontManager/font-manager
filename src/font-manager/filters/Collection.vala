@@ -103,7 +103,7 @@ namespace FontManager {
             int total = (int) families.size;
             if (available_families != null) {
                 foreach (var family in families)
-                    if (!(family.strip() in available_families))
+                    if (!(family in available_families))
                         total--;
             }
             children.foreach((child) => { total += child.get_collection_total(); });

@@ -214,7 +214,7 @@ namespace FontManager {
             }
 
             public void present () {
-                file_dialog.select_folder(parent, null, on_directory_selected);
+                file_dialog.select_folder.begin(parent, null, on_directory_selected);
                 return;
             }
 

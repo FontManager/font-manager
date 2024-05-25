@@ -263,6 +263,7 @@ namespace FontManager {
         [GtkChild] protected unowned Gtk.ListView listview;
         [GtkChild] protected unowned Gtk.Expander expander;
         [GtkChild] protected unowned Gtk.SearchEntry search;
+        [GtkChild] protected unowned Gtk.CenterBox controls;
 
         uint search_timeout = 0;
 
@@ -808,6 +809,7 @@ namespace FontManager {
             listview.set_model(selection);
             filter = new UserFonts();
             filter.update.begin();
+            controls.set_visible(filter.size > 20);
         }
 
         protected override void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {

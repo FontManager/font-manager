@@ -325,6 +325,8 @@ namespace FontManager.GoogleFonts {
         [GtkChild] unowned Gtk.Expander expander;
         [GtkChild] unowned Gtk.SearchEntry search;
 
+        bool changed = false;
+        bool initialized = false;
         uint current_selection = 0;
         uint search_timeout = 0;
         Gtk.TreeListModel treemodel;
@@ -332,29 +334,6 @@ namespace FontManager.GoogleFonts {
 
         construct {
             widget_set_name(listview, "FontManagerGoogleFontsFontListView");
-            var fontmodel = new FontModel();
-            treemodel = new Gtk.TreeListModel(fontmodel,
-                                              false,
-                                              false,
-                                              fontmodel.get_child_model);
-            selection = new Gtk.SingleSelection(treemodel);
-            listview.set_factory(get_factory());
-            listview.set_model(selection);
-            selection.selection_changed.connect(on_selection_changed);
-            BindingFlags flags = BindingFlags.SYNC_CREATE;
-            bind_property("filter", fontmodel, "filter", flags, null, null);
-            bind_property("available-families", model, "entries", flags, null, null);
-            search.search_changed.connect(queue_refilter);
-            search.activate.connect(next_match);
-            search.next_match.connect(next_match);
-            search.previous_match.connect(previous_match);
-            // Not sure why this was needed but it does reset list on installation...
-            // model.items_changed.connect_after(() => {
-            //     Idle.add(() => {
-            //         select_item(0);
-            //         return GLib.Source.REMOVE;
-            //     });
-            // });
         }
 
         // Add slight delay to avoid filtering while search is still changing
@@ -379,6 +358,40 @@ namespace FontManager.GoogleFonts {
             treemodel.set_autoexpand(expanded);
             expander.set_tooltip_text(expanded ? _("Collapse all") : _("Expand all"));
             queue_update();
+            return;
+        }
+
+        [GtkCallback]
+        public void on_map () {
+            if (initialized)
+                return;
+            var fontmodel = new FontModel();
+            treemodel = new Gtk.TreeListModel(fontmodel,
+                                              false,
+                                              false,
+                                              fontmodel.get_child_model);
+            selection = new Gtk.SingleSelection(treemodel);
+            listview.set_factory(get_factory());
+            listview.set_model(selection);
+            selection.selection_changed.connect(on_selection_changed);
+            BindingFlags flags = BindingFlags.SYNC_CREATE;
+            bind_property("filter", fontmodel, "filter", flags, null, null);
+            bind_property("available-families", model, "entries", flags, null, null);
+            search.search_changed.connect(queue_refilter);
+            search.activate.connect(next_match);
+            search.next_match.connect(next_match);
+            search.previous_match.connect(previous_match);
+            model.items_changed.connect(() => {
+                changed = true;
+            });
+            initialized = true;
+            return;
+        }
+
+        [GtkCallback]
+        public void on_unmap () {
+            if (changed)
+                get_default_application().reload();
             return;
         }
 

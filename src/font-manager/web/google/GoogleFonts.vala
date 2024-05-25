@@ -80,6 +80,8 @@ namespace FontManager.GoogleFonts {
         }
 
         void on_network_changed () {
+            if (settings != null && settings.get_boolean("restrict-network-access"))
+                return;
             update_cache.begin((obj, res) => {
                 update_cache.end(res);
                 update_placeholder();

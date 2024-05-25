@@ -2,6 +2,8 @@
 <interface domain="font-manager">
   <requires lib="gtk" version="4.10"/>
   <template class="FontManagerGoogleFontsFontListView" parent="GtkBox">
+    <signal name="map" handler="on_map"/>
+    <signal name="unmap" handler="on_unmap"/>
     <style>
       <class name="view"/>
     </style>

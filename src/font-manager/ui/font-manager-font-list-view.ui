@@ -11,7 +11,7 @@
         <property name="margin-start">3</property>
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkCenterBox">
+          <object class="GtkCenterBox" id="controls">
             <property name="margin-bottom">2</property>
             <property name="margin-top">2</property>
             <child type="start">
