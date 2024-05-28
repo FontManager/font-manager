@@ -59,6 +59,7 @@ namespace FontManager {
 
         public Object? get_item (uint position)
         requires (items != null) {
+            return_val_if_fail(get_n_items() > 0, null);
             return_val_if_fail(items[position] != null, null);
             Object retval = Object.new(item_type);
             retval.set("source-object", items[position], null);
@@ -166,18 +167,18 @@ namespace FontManager {
 
     }
 
+    public class VariantModel : BaseFontModel {
+
+        construct {
+            item_type = typeof(Font);
+        }
+
+    }
+
     public class FontModel : BaseFontModel {
 
         construct {
             item_type = typeof(Family);
-        }
-
-        class VariantModel : BaseFontModel {
-
-            construct {
-                item_type = typeof(Font);
-            }
-
         }
 
         public ListModel? get_child_model (Object item) {
@@ -248,7 +249,7 @@ namespace FontManager {
         public Json.Array? available_fonts { get; set; default = null; }
         public FontListFilter? filter { get; set; default = null; }
 
-        public BaseFontModel model {
+        public virtual BaseFontModel model {
             get {
                 return ((BaseFontModel) treemodel.model);
             }
@@ -431,6 +432,11 @@ namespace FontManager {
             add_controller(drop_target);
             drop_target.drop.connect(on_drag_data_received);
             init_context_menu();
+        }
+
+        public void set_search_term (string needle) {
+            ((Gtk.Editable) search).set_text(needle);
+            return;
         }
 
         public Font get_selected_font () {
@@ -781,7 +787,6 @@ namespace FontManager {
                 }
             }
             update_remove_sensitivity();
-            // update_context_menu();
             if (Environment.get_variable("G_MESSAGES_DEBUG") != null) {
                 string? description = null;
                 selected_item.get("description", out description, null);

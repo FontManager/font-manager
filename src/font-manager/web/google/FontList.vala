@@ -204,6 +204,8 @@ namespace FontManager.GoogleFonts {
 
     public class FontListRow : ListItemRow {
 
+        public signal void state_changed ();
+
         public uint position { get; set; default = 0; }
 
         ulong signal_id = 0;
@@ -227,9 +229,7 @@ namespace FontManager.GoogleFonts {
         }
 
         void on_item_state_change (Object item) {
-            if (signal_id != 0)
-                SignalHandler.disconnect(item_state, signal_id);
-            signal_id = 0;
+            state_changed();
             if (item is Family) {
                 var family = ((Family) item);
                 if (item_state.active) {
@@ -381,9 +381,6 @@ namespace FontManager.GoogleFonts {
             search.activate.connect(next_match);
             search.next_match.connect(next_match);
             search.previous_match.connect(previous_match);
-            model.items_changed.connect(() => {
-                changed = true;
-            });
             initialized = true;
             return;
         }
@@ -424,6 +421,7 @@ namespace FontManager.GoogleFonts {
             Object? _item = list_row.get_item();
             // Setting item triggers update to row widget
             row.set("position", position, "item", _item, null);
+            row.state_changed.connect(() => { changed = true; });
             return;
         }
 

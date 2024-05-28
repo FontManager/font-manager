@@ -25,137 +25,87 @@ namespace FontManager {
 
         public Object? item { get; set; default = null; }
 
-        [GtkChild] public unowned Gtk.Label title_label { get; }
-        [GtkChild] public unowned Gtk.ListBox preview_list { get; }
+        // [GtkChild] public unowned Gtk.Label family { get; }
+        // [GtkChild] public unowned Gtk.Label count { get; }
+        [GtkChild] public unowned Gtk.Inscription preview { get; }
 
         construct {
             widget_set_name(this, "FontManagerFontPreviewTile");
             notify["item"].connect((pspec) => { on_item_set(); });
+            set_size_request(128, 128);
         }
 
-        public void on_item_set () {
-            title_label.set_label("");
-            preview_list.remove_all();
-            if (item == null)
-                return;
-            string? f = null;
-            Json.Array? variations = null;
-            item.get("family", out f, "variations", out variations, null);
-            title_label.set_label(f);
-            variations.foreach_element((a, i, n) => {
-                var font = new Font();
-                font.source_object = n.get_object();
-                var preview = new Gtk.Inscription(font.style) {
-                    margin_top = 2,
-                    margin_bottom = 2
-                };
-                preview.set_min_chars(font.style.length + 9);
-                preview.set_xalign(0.5f);
-                preview_list.append(preview);
-                Pango.FontDescription font_desc;
-                font_desc = Pango.FontDescription.from_string(font.description);
-                Pango.AttrList attrs = new Pango.AttrList();
-                attrs.insert(Pango.attr_fallback_new(false));
-                attrs.insert(new Pango.AttrFontDesc(font_desc));
-                preview.set_attributes(attrs);
-            });
+        public void reset () {
+            // family.set_label("");
+            // count.set_label("");
+            preview.set_text(null);
             return;
         }
 
-    }
-
-    public class BrowseListModel : BaseFontModel {
-
-        construct {
-            item_type = typeof(Family);
-            entries = new Json.Array();
+        public void on_item_set () {
+            reset();
+            if (item == null)
+                return;
+            Family f = (Family) item;
+            set_tooltip_text(f.family);
+            // int n_variations = (int) f.n_variations;
+            // family.set_label(f.family);
+            preview.set_text(f.preview_text == null ?
+                             f.family.substring(0, 2).make_valid() :
+                             f.preview_text.substring(0, 2).make_valid());
+            Pango.FontDescription font_desc;
+            font_desc = Pango.FontDescription.from_string(f.description);
+            Pango.AttrList attrs = new Pango.AttrList();
+            attrs.insert(Pango.attr_fallback_new(false));
+            attrs.insert(Pango.AttrSize.new(48 * Pango.SCALE));
+            attrs.insert(new Pango.AttrFontDesc(font_desc));
+            preview.set_attributes(attrs);
+            // count.set_label(n_variations.to_string());
+            return;
         }
 
     }
 
     public class BrowsePane : Gtk.Box {
 
+        public signal void selection_changed (Object? item);
+
         public Json.Array? available_fonts { get; set; default = null; }
 
-        public Gtk.ListView listview { get; private set; }
-        public BrowseListModel model { get; private set; }
+        public virtual BaseFontModel model { get; set; default = new FontModel(); }
+
+        protected Gtk.GridView listview { get; protected set; }
 
         protected Gtk.SelectionModel selection;
 
-        uint increment = 25;
-
         construct {
-            hexpand = true;
-            vexpand = true;
-            model = new BrowseListModel();
-            selection = new Gtk.NoSelection(model);
-            listview = new Gtk.ListView(selection, get_factory()) {
+            listview = new Gtk.GridView(null, null) {
                 hexpand = true,
                 vexpand = true
             };
-            append(listview);
-            listview.map.connect(on_map);
-            notify["available-fonts"].connect(() => {
-                model.entries = new Json.Array();
-                if (listview.get_mapped())
-                    on_map();
-                else
-                    load_initial_entries();
-            });
-            // BindingFlags flags = BindingFlags.SYNC_CREATE;
-            // bind_property("available-fonts", model, "entries", flags, null, null);
-        }
-
-        void load_initial_entries() {
-            uint n_loaded = model.entries.get_length();
-            if (n_loaded > 0)
-                return;
-            for (uint i = 0; i < increment; i++) {
-                var node = available_fonts.dup_element(i);
-                model.entries.add_element(node);
-            }
-            model.update_items();
-            return;
-        }
-
-        bool load_available_fonts () {
-            uint n_available = available_fonts.get_length();
-            uint n_loaded = model.entries.get_length();
-            if (n_loaded >= n_available) {
-                model.update_items();
-                return GLib.Source.REMOVE;
-            }
-            uint remaining = n_available - n_loaded;
-            uint _n_loaded = (n_loaded > 0) ? n_loaded - 1 : 0;
-            uint n_load = (remaining >= increment) ? increment : remaining;
-            uint limit = n_load + n_loaded;
-            for (uint i = _n_loaded; i < limit; i++) {
-                var node = available_fonts.dup_element(i);
-                model.entries.add_element(node);
-            }
-            uint current = model.entries.get_length();
-            if (current == increment)
-                model.update_items();
-            return GLib.Source.CONTINUE;
-        }
-
-        void on_map () {
-            Timeout.add(500, load_available_fonts);
-            return;
+            listview.add_css_class("rich-list");
+            var scrolled_window = new Gtk.ScrolledWindow();
+            scrolled_window.set_child(listview);
+            append(scrolled_window);
+            selection = new Gtk.SingleSelection(model);
+            listview.set_model(selection);
+            listview.set_factory(get_factory());
+            BindingFlags flags = BindingFlags.DEFAULT;
+            bind_property("available-fonts", model, "entries", flags, null, null);
         }
 
         protected virtual void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
-            var tile = new FontPreviewTile();
-            list_item.set_child(tile);
+            list_item.set_child(new FontPreviewTile());
             return;
         }
 
         protected virtual void bind_list_row (Gtk.SignalListItemFactory factory, Object item) {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
-            var real_item = list_item.get_item();
-            var tile = (FontPreviewTile) list_item.get_child();
-            tile.item = real_item;
+            var row = (FontPreviewTile) list_item.get_child();
+            Object? _item = list_item.get_item();
+            // Setting item triggers update to row widget
+            row.item = _item;
             return;
         }
 

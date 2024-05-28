@@ -30,7 +30,7 @@ namespace FontManager {
 
         construct {
             spacing = DEFAULT_MARGIN;
-            margin_start = margin_end = margin_top = margin_bottom = MIN_MARGIN * 2;
+            widget_set_margin(this, MIN_MARGIN * 2);
             add_button = new Gtk.Button.from_icon_name("list-add-symbolic") {
                 opacity = 0.9,
                 has_frame = false
@@ -221,13 +221,8 @@ namespace FontManager {
             app_menu.set_icon_name("open-menu-symbolic");
             revealer = new Gtk.Revealer();
             revealer.set_transition_type(Gtk.RevealerTransitionType.SLIDE_RIGHT);
-            manage_controls = new BaseControls() {
-                spacing = 4,
-                margin_start = 0,
-                margin_end = 0,
-                margin_top = 0,
-                margin_bottom = 0
-            };
+            manage_controls = new BaseControls() { spacing = 4 };
+            widget_set_margin(manage_controls, 0);
             manage_controls.add_button.has_frame = true;
             manage_controls.remove_button.has_frame = true;
             set_control_sensitivity(manage_controls.remove_button, true);

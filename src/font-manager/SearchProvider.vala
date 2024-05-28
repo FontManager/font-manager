@@ -135,28 +135,21 @@ namespace FontManager {
 
         public void launch_search (string [] terms, uint32 timestamp)
         throws GLib.DBusError, GLib.IOError {
-            message("launch_search not implemented yet");
-            // var application = get_default_application();
-            // application.activate();
-            // string search_term = get_search_term(terms);
-            // /* XXX : FIXME */
-            // Timeout.add(1000, () => {
-            //     MainWindow? main_window = get_default_application().main_window;
-            //     return_val_if_fail(main_window != null, GLib.Source.REMOVE);
-            //     var categories = main_window.sidebar.standard.category_tree;
-            //     if (application.update_in_progress || categories.update_in_progress)
-            //         return GLib.Source.CONTINUE;
-            //     Idle.add(() => {
-            //         main_window.mode = Mode.MANAGE;
-            //         main_window.sidebar.mode = "Standard";
-            //         categories.select_first_row();
-            //         main_window.fontlist_pane.controls.entry.set_text(search_term);
-            //         if (!categories.get_selection().path_is_selected(new Gtk.TreePath.first()))
-            //             return GLib.Source.CONTINUE;
-            //         return GLib.Source.REMOVE;
-            //     });
-            //     return GLib.Source.REMOVE;
-            // });
+            string search_term = get_search_term(terms);
+            try {
+                DBusConnection conn = Bus.get_sync(BusType.SESSION);
+                conn.call_sync(BUS_ID,
+                               BUS_PATH,
+                               BUS_ID,
+                               "Search",
+                               new Variant("s", search_term),
+                               null,
+                               DBusCallFlags.NONE,
+                               -1,
+                               null);
+            } catch (Error e) {
+                critical("Method call to %s failed : %s", BUS_ID, e.message);
+            }
             return;
         }
 

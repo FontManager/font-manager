@@ -197,7 +197,10 @@ They will not be visible to other applications until the source is actually enab
         }
 
         protected override void on_unmap () {
-            get_default_application().reload();
+            Idle.add(() => {
+                get_default_application().reload();
+                return GLib.Source.REMOVE;
+            });
             return;
         }
 

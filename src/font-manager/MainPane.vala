@@ -81,6 +81,15 @@ namespace FontManager {
             preview.restore_state(settings);
         }
 
+        public void search (string needle) {
+            mode = Mode.MANAGE;
+            preview.page = PreviewPanePage.PREVIEW;
+            select_first_category();
+            select_first_font();
+            fontlist.set_search_term(needle);
+            return;
+        }
+
         public void select_first_category () {
             sidebar.select_first_category();
             return;

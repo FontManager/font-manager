@@ -205,6 +205,13 @@ namespace FontManager {
             return;
         }
 
+        public void search (string needle) throws GLib.DBusError, GLib.IOError {
+            if (main_window == null || !main_window.is_visible())
+                activate();
+            main_window.search(needle);
+            return;
+        }
+
         public override int handle_local_options (VariantDict options) {
 
             int exit_status = -1;

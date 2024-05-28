@@ -51,7 +51,7 @@ namespace FontManager {
         construct {
             opacity = 0.9;
             spacing = DEFAULT_MARGIN;
-            margin_start = margin_end = margin_top = margin_bottom = MIN_MARGIN * 2;
+            widget_set_margin(this, MIN_MARGIN * 2);
             add_button = new Gtk.Button.from_icon_name("list-add-symbolic") {
                 has_frame = false,
                 tooltip_text = _("Add new collection")

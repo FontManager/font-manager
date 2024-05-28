@@ -110,7 +110,7 @@ namespace FontManager {
 
         Gtk.Stack main_stack;
         MainPane main_pane;
-        // BrowsePane browse_pane;
+        BrowsePane browse_pane;
         PreferencePane prefs_pane;
         HeaderBarWidgets header_widgets;
 
@@ -165,9 +165,7 @@ namespace FontManager {
             // browse_pane = new BrowsePane();
             prefs_pane = new PreferencePane(settings);
             main_stack.add_named(main_pane, Mode.MANAGE.to_string());
-            // var scrolled_window = new Gtk.ScrolledWindow();
-            // scrolled_window.set_child(browse_pane);
-            // main_stack.add_named(scrolled_window, Mode.BROWSE.to_string());
+            // main_stack.add_named(browse_pane, Mode.BROWSE.to_string());
 #if HAVE_WEBKIT
             google_fonts = new GoogleFonts.Catalog(settings);
             main_stack.add_named(google_fonts, "GoogleFonts");
@@ -189,6 +187,11 @@ namespace FontManager {
             connect_signals();
             restore_state();
             update_layout_orientation();
+        }
+
+        public void search (string needle) {
+            main_pane.search(needle);
+            return;
         }
 
         public bool progress_update (ProgressData data) {
