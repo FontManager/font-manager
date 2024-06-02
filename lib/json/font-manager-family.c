@@ -1,6 +1,6 @@
 /* font-manager-family.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,6 +74,31 @@ font_manager_family_init (FontManagerFamily *self)
 }
 
 /**
+ * font_manager_family_get_default_index:
+ * @self:   #FontManagerFamily
+ *
+ * Returns: index of default variant or 0
+ */
+gint
+font_manager_family_get_default_index (FontManagerFamily *self)
+{
+    g_return_val_if_fail(self != NULL, 0);
+    g_autoptr(JsonObject) source = NULL;
+    g_object_get(self, "source-object", &source, NULL);
+    const gchar *family_desc = json_object_get_string_member(source, "description");
+    JsonArray *arr = json_object_get_array_member(source, "variations");
+    guint i, arr_length = json_array_get_length(arr);
+    for (i = 0; i < arr_length; i++) {
+        JsonObject *font = json_array_get_object_element(arr, i);
+        const gchar *font_desc = json_object_get_string_member(font, "description");
+        if (g_strcmp0(family_desc, font_desc) == 0)
+            return i;
+    }
+    g_return_val_if_reached(0);
+}
+
+
+/**
  * font_manager_family_get_default_variant:
  * @self:   #FontManagerFamily
  *
@@ -85,16 +110,8 @@ font_manager_family_get_default_variant (FontManagerFamily *self)
     g_return_val_if_fail(self != NULL, NULL);
     g_autoptr(JsonObject) source = NULL;
     g_object_get(self, "source-object", &source, NULL);
-    const gchar *family_desc = json_object_get_string_member(source, "description");
     JsonArray *arr = json_object_get_array_member(source, "variations");
-    guint i, arr_length = json_array_get_length(arr);
-    for (i = 0; i < arr_length; i++) {
-        JsonObject *font = json_array_get_object_element(arr, i);
-        const gchar *font_desc = json_object_get_string_member(font, "description");
-        if (g_strcmp0(family_desc, font_desc) == 0)
-            return font;
-    }
-    g_return_val_if_reached(json_array_get_object_element(arr, 0));
+    return json_array_get_object_element(arr, font_manager_family_get_default_index(self));
 }
 
 /**

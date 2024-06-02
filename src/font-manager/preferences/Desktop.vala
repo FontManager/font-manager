@@ -185,8 +185,8 @@ namespace FontManager {
             if (x_settings != null)
                 _settings = x_settings;
             SubpixelGeometry spg = new SubpixelGeometry() { margin_top = DEFAULT_MARGIN * 3};
-            spg.options[SubpixelOrder.UNKNOWN].hide();
-            spg.options[SubpixelOrder.NONE].hide();
+            spg.options[SubpixelOrder.UNKNOWN].set_visible(false);
+            spg.options[SubpixelOrder.NONE].set_visible(false);
             foreach (var setting in DesktopSettings) {
                 if (!(setting.key in interface_keys) && !(setting.key in xsettings_keys))
                     continue;

@@ -411,7 +411,6 @@ namespace FontManager {
             var place_holder_text = _("Save the current comparison\nby clicking the + button");
             var place_holder = new PlaceHolder(null, null, place_holder_text, "view-pin-symbolic");
             list.set_placeholder(place_holder);
-            place_holder.show();
             notify["compare"].connect(() => {
                 if (compare != null)
                     compare.model.items_changed.connect((p, r, a) => {

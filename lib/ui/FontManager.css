@@ -156,9 +156,41 @@ row:selected .count {
     border-color: darker(@theme_selected_bg_color);
 }
 
-
 .CharacterMapGlyph:selected {
     color: lighter(@theme_selected_fg_color);
+}
+
+.BrowsePaneCharacterMap .CharacterMapSeparator {
+    color: transparent;
+}
+
+.BrowsePaneCharacterMap .CharacterMapCell {
+    background-color: transparent;
+}
+
+
+.BrowsePaneCharacterMap .CharacterMapGlyph {
+    color: @theme_text_color;
+}
+
+.BrowsePaneGlyphCount {
+    padding: 2px 8px 2px 8px;
+    border-style: groove;
+    border-width: 1px;
+    border-radius: 1em;
+    font-size: small;
+    font-weight: 700;
+    color: lighter(@theme_base_color);
+    border-color: alpha(@theme_text_color, 0.85);
+    background-color: alpha(@theme_text_color, 0.65);
+}
+
+.FontManagerBrowsePane expander {
+    -gtk-icon-source: none;
+    -gtk-icon-size: 0px;
+    margin: 0px;
+    min-height: 0px;
+    min-width: 0px;
 }
 
 .FontManagerPropertiesPage separator {
@@ -306,9 +338,32 @@ row:selected .count {
     margin-right: 6px;
 }
 
-.FontManagerFontPreviewTile {
+gridview :not(selected) FontManagerFontPreviewTile {
     border-radius: .333em;
-    box-shadow: 0px 1px 1px @borders,
-    0px 0px 1px 1px alpha(@borders, 0.5);
+    border-color: alpha(@theme_border_color, 0.250);
+    border-style: solid;
+    border-width: .25px;
+    box-shadow: 0 1px 2px 1px transparent,
+                0 2px 4px 2px alpha(@borders, 0.85),
+                0 0 0 1px alpha(@borders, 0.75);
 }
+
+gridview :selected {
+    background-color: transparent;
+}
+
+gridview :selected FontManagerFontPreviewTile {
+    color: @theme_selected_bg_color;
+    border-color: @theme_selected_bg_color;
+    box-shadow: 0 1px 2px 1px transparent,
+                0 2px 4px 2px alpha(@theme_selected_bg_color, 0.25),
+                0 0 0 1px alpha(@theme_selected_bg_color, 0.5);
+}
+
+gridview :hover FontManagerFontPreviewTile {
+    box-shadow: 0 1px 2px 1px transparent,
+                0 2px 4px 2px alpha(@theme_selected_bg_color, 0.25),
+                0 0 0 1px alpha(@theme_selected_bg_color, 0.5);
+}
+
 

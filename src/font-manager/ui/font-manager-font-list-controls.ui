@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.14"/>
+  <template class="FontManagerFontListControls" parent="GtkBox">
+    <property name="valign">start</property>
+    <child>
+      <object class="GtkCenterBox">
+        <property name="hexpand">True</property>
+        <property name="margin-bottom">2</property>
+        <property name="margin-top">2</property>
+        <property name="valign">start</property>
+        <child type="start">
+          <object class="GtkBox">
+            <child>
+              <object class="GtkExpander" id="expander">
+                <property name="halign">center</property>
+                <property name="margin-end">2</property>
+                <property name="margin-start">2</property>
+                <property name="tooltip-text" translatable="yes">Expand all</property>
+                <property name="valign">center</property>
+                <signal name="activate" handler="on_expander_activated" after="yes"/>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="remove_button">
+                <property name="halign">center</property>
+                <property name="icon-name">list-remove-symbolic</property>
+                <property name="margin-start">4</property>
+                <property name="sensitive">false</property>
+                <property name="tooltip-text" translatable="yes">Remove selected item</property>
+                <property name="valign">center</property>
+                <signal name="clicked" handler="on_remove_clicked"/>
+                <style>
+                  <class name="flat"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="end">
+          <object class="GtkSearchEntry" id="search">
+            <property name="activates-default">True</property>
+            <property name="halign">end</property>
+            <property name="hexpand">True</property>
+            <property name="margin-bottom">2</property>
+            <property name="margin-end">4</property>
+            <property name="margin-start">4</property>
+            <property name="margin-top">2</property>
+            <property name="placeholder-text" translatable="yes">Search Families…</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

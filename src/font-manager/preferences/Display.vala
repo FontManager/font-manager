@@ -82,8 +82,8 @@ namespace FontManager {
             lcdfilter = new Gtk.DropDown(filter_list, null);
             append_row(new PreferenceRow(_("LCD Filter"), null, null, lcdfilter));
             spg = new SubpixelGeometry();
-            spg.options[SubpixelOrder.UNKNOWN].hide();
-            spg.options[SubpixelOrder.NONE].hide();
+            spg.options[SubpixelOrder.UNKNOWN].set_visible(false);
+            spg.options[SubpixelOrder.NONE].set_visible(false);
             spg.margin_end = 0;
             spg.hexpand = false;
             spg.halign = Gtk.Align.END;

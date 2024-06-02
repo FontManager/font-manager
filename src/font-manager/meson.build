@@ -14,14 +14,6 @@ if get_option('webkit')
     dependencies += webkit
 endif
 
-vala_test_lib = shared_library('vala_test',
-                               [ font_manager_sources, font_manager_gresources, config_vapi ],
-                               vala_header: 'vala_test.h',
-                               dependencies: dependencies,
-                               include_directories: includes,
-                               link_with: libfontmanager,
-                               install: false)
-
 executable('font-manager',
             [font_manager_sources, font_manager_gresources, config_vapi],
             dependencies: dependencies,

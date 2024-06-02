@@ -1,6 +1,6 @@
 /* font-manager-family.h
  *
- * Copyright (C) 2009-2022 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,5 +38,6 @@ static const FontManagerJsonProxyProperty FamilyProperties [] =
 G_DECLARE_FINAL_TYPE(FontManagerFamily, font_manager_family, FONT_MANAGER, FAMILY, FontManagerJsonProxy)
 
 FontManagerFamily * font_manager_family_new (void);
+gint font_manager_family_get_default_index (FontManagerFamily *self);
 JsonObject * font_manager_family_get_default_variant (FontManagerFamily *self);
 

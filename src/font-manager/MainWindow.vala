@@ -23,7 +23,7 @@ namespace FontManager {
     public enum Mode {
 
         MANAGE,
-        // BROWSE,
+        BROWSE,
         COMPARE,
 #if HAVE_WEBKIT
         GOOGLE_FONTS,
@@ -32,12 +32,15 @@ namespace FontManager {
 
         public static Mode parse (string mode) {
             switch (mode.down()) {
-                // case "browse":
-                //     return Mode.BROWSE;
+                case "browse":
+                case "1":
+                    return Mode.BROWSE;
                 case "compare":
+                case "2":
                     return Mode.COMPARE;
 #if HAVE_WEBKIT
                 case "googlefonts":
+                case "3":
                     return Mode.GOOGLE_FONTS;
 #endif /* HAVE_WEBKIT */
                 default:
@@ -47,8 +50,8 @@ namespace FontManager {
 
         public string to_string () {
             switch (this) {
-                // case BROWSE:
-                //     return "Browse";
+                case BROWSE:
+                    return "Browse";
                 case COMPARE:
                     return "Compare";
 #if HAVE_WEBKIT
@@ -62,8 +65,8 @@ namespace FontManager {
 
         public string to_translatable_string () {
             switch (this) {
-                // case BROWSE:
-                //     return _("Browse");
+                case BROWSE:
+                    return _("Browse");
                 case COMPARE:
                     return _("Compare");
 #if HAVE_WEBKIT
@@ -110,7 +113,7 @@ namespace FontManager {
 
         Gtk.Stack main_stack;
         MainPane main_pane;
-        BrowsePane browse_pane;
+        public BrowsePane browse_pane { get; set; default = null; }
         PreferencePane prefs_pane;
         HeaderBarWidgets header_widgets;
 
@@ -128,7 +131,7 @@ namespace FontManager {
             install_action("reload", null, (Gtk.WidgetActionActivateFunc) reload);
             install_property_action("mode", "mode");
             install_property_action("show-preferences", "show-preferences");
-            uint [] mode_accels = { Gdk.Key.@1, Gdk.Key.@2, Gdk.Key.@3 };
+            uint [] mode_accels = { Gdk.Key.@1, Gdk.Key.@2, Gdk.Key.@3, Gdk.Key.@4 };
             Gdk.ModifierType mode_mask = Gdk.ModifierType.CONTROL_MASK;
             EnumClass mode_class = ((EnumClass) typeof(Mode).class_ref());
             for (int i = 0; i < Mode.N_MODES; i++) {
@@ -162,10 +165,10 @@ namespace FontManager {
             main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN_UP);
             main_stack.set_transition_duration(500);
             main_pane = new MainPane(settings);
-            // browse_pane = new BrowsePane();
+            browse_pane = new BrowsePane();
             prefs_pane = new PreferencePane(settings);
             main_stack.add_named(main_pane, Mode.MANAGE.to_string());
-            // main_stack.add_named(browse_pane, Mode.BROWSE.to_string());
+            main_stack.add_named(browse_pane, Mode.BROWSE.to_string());
 #if HAVE_WEBKIT
             google_fonts = new GoogleFonts.Catalog(settings);
             main_stack.add_named(google_fonts, "GoogleFonts");
@@ -175,7 +178,8 @@ namespace FontManager {
             bind_property("mode", main_pane, "mode", flags);
             bind_property("available-fonts", main_pane, "available-fonts", flags);
             bind_property("disabled-families", main_pane, "disabled-families", flags);
-            // bind_property("available-fonts", browse_pane, "available-fonts", flags);
+            bind_property("available-fonts", browse_pane, "available-fonts", flags);
+            bind_property("disabled-families", browse_pane, "disabled-families", flags);
             prefs_pane.bind_property("user-actions", main_pane, "user-actions", flags);
             prefs_pane.bind_property("user-sources", main_pane, "user-sources", flags);
             main_pane.bind_property("sidebar-position", prefs_pane, "sidebar-position", flags);
@@ -187,6 +191,8 @@ namespace FontManager {
             connect_signals();
             restore_state();
             update_layout_orientation();
+            if (settings != null)
+                mode = (Mode) settings.get_enum("mode");
         }
 
         public void search (string needle) {
@@ -210,10 +216,13 @@ namespace FontManager {
         }
 
         void bind_settings () {
+            if (settings == null)
+                return;
             settings.changed.connect((key) => {
                 if (key.contains("wide-layout"))
                     Idle.add(() => { update_layout_orientation(); return GLib.Source.REMOVE; });
             });
+            settings.bind("mode", this, "mode", SettingsBindFlags.DEFAULT);
             return;
         }
 
@@ -303,12 +312,10 @@ namespace FontManager {
         void on_stack_page_changed (ParamSpec pspec) {
             if (show_preferences)
                 main_stack.set_visible_child_name("Preferences");
-#if HAVE_WEBKIT
-            else if (mode == Mode.GOOGLE_FONTS)
-                main_stack.set_visible_child_name("GoogleFonts");
-#endif /* HAVE_WEBKIT */
-            else
+            else if (mode == Mode.COMPARE)
                 main_stack.set_visible_child_name("Default");
+            else
+                main_stack.set_visible_child_name(mode.to_string());
             header_widgets.main_menu.set_visible(!show_preferences);
             header_widgets.revealer.set_visible(!show_preferences);
             header_widgets.back_button.set_visible(show_preferences);

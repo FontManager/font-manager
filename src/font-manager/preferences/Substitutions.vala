@@ -1,6 +1,6 @@
 /* Substitutions.vala
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -174,7 +174,6 @@ namespace FontManager {
             foreach (AliasElement element in aliases.list()) {
                 var row = new SubstituteRow.from_element(element);
                 list.insert(row, -1);
-                row.show();
             }
             list.set_sort_func((row1, row2) => {
                 var a = (SubstituteRow) get_bin_child(row1);

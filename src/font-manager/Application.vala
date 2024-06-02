@@ -66,16 +66,18 @@ namespace FontManager {
         public Application (string app_id, ApplicationFlags app_flags) {
             Object(application_id : app_id, flags : app_flags);
             add_main_option_entries(options);
-            settings = get_gsettings(app_id);
-            notify["update-in-progress"].connect(progress_visible);
         }
 
         public override void startup () {
             base.startup();
             disabled_families.load();
-            Gtk.Settings gtk = Gtk.Settings.get_default();
-            gtk.gtk_application_prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
-            gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
+            settings = get_gsettings(application_id);
+            if (settings != null) {
+                Gtk.Settings gtk = Gtk.Settings.get_default();
+                gtk.gtk_application_prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
+                gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
+            }
+            notify["update-in-progress"].connect(progress_visible);
             db.update_started.connect(() => { update_in_progress = true; });
             db.update_complete.connect(() => { update_in_progress = false; });
             return;
@@ -307,6 +309,7 @@ namespace FontManager {
                 main_window.select_first_category();
                 ThreadFunc <void> run_in_thread = () => {
                     update_item_preview_text(available_fonts);
+                    main_window.browse_pane.queue_update();
                 };
                 new Thread <void> ("update_item_preview_text", (owned) run_in_thread);
                 Idle.add(() => {

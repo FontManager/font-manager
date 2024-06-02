@@ -23,21 +23,16 @@
 <schemalist>
 
     <enum id="com.github.FontManager.FontManager.Mode">
-        <value nick="Manage" value="0" />
-        <!-- <value nick="Browse" value="1" /> -->
-        <value nick="Compare" value="2" />
-        <value nick="GoogleFonts" value="3" />
+        <value nick="manage" value="0" />
+        <value nick="browse" value="1" />
+        <value nick="compare" value="2" />
+        <value nick="googlefonts" value="3" />
     </enum>
 
     <enum id="com.github.FontManager.FontManager.PreviewPageMode">
         <value nick="preview" value="0" />
         <value nick="waterfall" value="1" />
         <value nick="lorem-ipsum" value="2" />
-    </enum>
-
-    <enum id="com.github.FontManager.FontManager.BrowseMode">
-        <value nick="List" value="0" />
-        <value nick="Grid" value="1" />
     </enum>
 
     <enum id="com.github.FontManager.FontManager.HeaderBarButtonStyle">
@@ -59,7 +54,7 @@
     <schema id="com.github.FontManager.FontManager" path="/com/github/FontManager/FontManager/">
 
         <key name="mode" enum="com.github.FontManager.FontManager.Mode">
-            <default>"Manage"</default>
+            <default>"browse"</default>
             <summary>Mode</summary>
             <description>Possible modes are Manage, Browse and Compare.</description>
         </key>
@@ -165,12 +160,6 @@
     1234567890.:,;(*!?')
 
     "</default>
-        </key>
-
-        <key name="browse-mode" enum="com.github.FontManager.FontManager.BrowseMode">
-            <summary>Browse Mode</summary>
-            <description>Possible modes are List and Grid.</description>
-            <default>"Grid"</default>
         </key>
 
         <key name="browse-font-size" type="d">

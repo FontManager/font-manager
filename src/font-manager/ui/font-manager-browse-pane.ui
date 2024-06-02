@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<interface domain="font-manager">
+  <requires lib="gtk" version="4.12"/>
+  <template class="FontManagerBrowsePane" parent="GtkBox">
+    <property name="name">FontManagerBrowsePane</property>
+    <property name="orientation">vertical</property>
+    <child>
+      <object class="GtkSearchBar" id="search_bar">
+        <property name="child">
+          <object class="GtkSearchEntry" id="search_entry"/>
+        </property>
+        <property name="key-capture-widget">main_container</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox" id="main_container">
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="GtkBox">
+                <child>
+                  <object class="GtkPaned" id="paned">
+                    <child>
+                      <object class="GtkScrolledWindow" id="gridview_container"/>
+                    </child>
+                    <child>
+                      <object class="GtkRevealer" id="panel_revealer">
+                        <property name="transition-type">slide-left</property>
+                        <property name="visible">False</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkActionBar">
+                <property name="valign">end</property>
+                <child type="start">
+                  <object class="GtkToggleButton" id="search_toggle">
+                    <property name="has-frame">False</property>
+                    <property name="icon-name">edit-find-symbolic</property>
+                  </object>
+                </child>
+                <child type="end">
+                  <object class="GtkToggleButton" id="panel_toggle">
+                    <property name="has-frame">False</property>
+                    <property name="icon-name">panel-right-symbolic</property>
+                  </object>
+                </child>
+                <child type="center">
+                  <object class="GtkCenterBox">
+                    <property name="halign">center</property>
+                    <property name="hexpand">True</property>
+                    <child type="end">
+                      <object class="GtkButton">
+                        <property name="has-frame">False</property>
+                        <property name="icon-name">zoom-in-symbolic</property>
+                        <property name="opacity">0.75</property>
+                        <signal name="clicked" handler="on_increase_size"/>
+                      </object>
+                    </child>
+                    <child type="start">
+                      <object class="GtkButton">
+                        <property name="has-frame">False</property>
+                        <property name="icon-name">zoom-out-symbolic</property>
+                        <property name="opacity">0.75</property>
+                        <signal name="clicked" handler="on_decrease_size"/>
+                      </object>
+                    </child>
+                    <child type="center">
+                      <object class="GtkScale">
+                        <property name="adjustment">
+                          <object class="GtkAdjustment" id="icon_size_adjustment">
+                            <property name="page-increment">1.0</property>
+                            <property name="page-size">1.0</property>
+                            <property name="step-increment">1.0</property>
+                            <property name="upper">5.0</property>
+                          </object>
+                        </property>
+                        <property name="digits">0</property>
+                        <property name="fill-level">0.0</property>
+                        <property name="has-origin">False</property>
+                        <property name="hexpand">True</property>
+                        <property name="margin-end">12</property>
+                        <property name="margin-start">12</property>
+                        <property name="restrict-to-fill-level">False</property>
+                        <property name="valign">center</property>
+                        <property name="value-pos">bottom</property>
+                        <property name="width-request">196</property>
+                        <signal name="value-changed" handler="on_scale_changed"/>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
+
