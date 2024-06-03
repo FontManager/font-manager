@@ -35,6 +35,7 @@
                 <child type="start">
                   <object class="GtkLabel">
                     <property name="label">Active</property>
+                    <property name="margin-start">6</property>
                     <property name="opacity">0.75</property>
                     <style>
                       <class name="heading"/>
@@ -218,15 +219,15 @@
                     </child>
                   </object>
                 </property>
-                <style>
-                  <class name="view"/>
-                </style>
               </object>
             </property>
             <property name="focusable">1</property>
             <property name="width-request">275</property>
           </object>
         </child>
+        <style>
+          <class name="view"/>
+        </style>
       </object>
     </child>
   </template>

@@ -340,9 +340,6 @@ namespace FontManager {
 
     }
 
-    // TODO : percentage based sizing on pane
-    // Paned has a specific layout which doesn't work here so cant be re-used
-    // At least not as-is
     [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-browse-pane.ui")]
     public class BrowsePane : Gtk.Box {
 
@@ -351,6 +348,8 @@ namespace FontManager {
         public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
         public PreviewTileSize size { get; set; default = PreviewTileSize.LARGE; }
+
+        public double pane_position { get; set; default = 55.0f; }
 
         [GtkChild] unowned Gtk.SearchBar search_bar;
         [GtkChild] unowned Gtk.SearchEntry search_entry;
@@ -391,12 +390,33 @@ namespace FontManager {
             panel_toggle.bind_property("active", panel_revealer, "reveal-child", flags);
             search_toggle.bind_property("active", search_bar, "search-mode-enabled", flags);
             icon_size_adjustment.set_value(size.to_double());
-            if (settings != null)
-                settings.bind("browse-pane-position", paned, "position", SettingsBindFlags.DEFAULT);
+            paned.notify["position"].connect(() => {
+                double new_position = position_to_percentage();
+                if (pane_position != new_position)
+                    pane_position = new_position;
+            });
+            notify["pane-position"].connect(() => {
+                double current_position = position_to_percentage();
+                if (pane_position != current_position)
+                    paned.position = percentage_to_position(pane_position);
+            });
+            gridview.activated.connect(() => {
+                panel_toggle.set_active(!panel_toggle.active);
+            });
             map.connect_after(on_map);
         }
 
         public void on_map () {
+            Idle.add(() => {
+                if (settings != null) {
+                    pane_position = settings.get_double("browse-pane-position");
+                    panel_toggle.set_active(settings.get_boolean("browse-preview-visible"));
+                    settings.bind("browse-pane-position", this, "pane-position", SettingsBindFlags.DEFAULT);
+                    settings.bind("browse-preview-visible"\, panel_toggle, "active", SettingsBindFlags.DEFAULT);
+                }
+                paned.set_position(percentage_to_position(pane_position));
+                return GLib.Source.REMOVE;
+            });
         }
 
         public void queue_update () {
@@ -426,6 +446,14 @@ namespace FontManager {
             range.set_value(Math.round(range.adjustment.get_value()));
             size = PreviewTileSize.from_double(range.get_value());
             return;
+        }
+
+        double position_to_percentage () {
+            return ((double) paned.position / (double) get_width()) * 100;
+        }
+
+        int percentage_to_position (double percent) {
+            return (int) ((percent / 100) * (double) get_width());
         }
 
     }

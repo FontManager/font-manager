@@ -74,6 +74,7 @@ namespace FontManager {
 
     public class FontListBase : Gtk.Box {
 
+        public signal void activated (uint position);
         public signal void selection_changed (Object? item);
 
         public Json.Array? available_fonts { get; set; default = null; }
@@ -104,10 +105,13 @@ namespace FontManager {
         construct {
             orientation = Gtk.Orientation.VERTICAL;
             notify["list"].connect(() => {
-                if (list is Gtk.ListView)
+                if (list is Gtk.ListView) {
                     ((Gtk.ListView) list).set_factory(get_factory());
-                else if (list is Gtk.GridView)
+                    ((Gtk.ListView) list).activate.connect((position) => { activated(position); });
+                } else if (list is Gtk.GridView) {
                     ((Gtk.GridView) list).set_factory(get_factory());
+                    ((Gtk.GridView) list).activate.connect((position) => { activated(position); });
+                }
             });
             notify["selection"].connect(() => {
                 selection.selection_changed.connect(on_selection_changed);
@@ -754,6 +758,7 @@ namespace FontManager {
     }
 
 }
+
 
 
 
