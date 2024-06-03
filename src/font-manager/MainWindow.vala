@@ -165,7 +165,7 @@ namespace FontManager {
             main_stack.set_transition_type(Gtk.StackTransitionType.OVER_DOWN_UP);
             main_stack.set_transition_duration(500);
             main_pane = new MainPane(settings);
-            browse_pane = new BrowsePane();
+            browse_pane = new BrowsePane(settings);
             prefs_pane = new PreferencePane(settings);
             main_stack.add_named(main_pane, Mode.MANAGE.to_string());
             main_stack.add_named(browse_pane, Mode.BROWSE.to_string());

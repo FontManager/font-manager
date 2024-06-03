@@ -107,6 +107,12 @@
             <description>Whether window is maximized</description>
         </key>
 
+        <key name="browse-pane-position" type="i">
+            <summary>Browse pane position</summary>
+            <description>Size of the browse grid as a percentage of window size.</description>
+            <default>600</default>
+        </key>
+
         <key name="sidebar-size" type="d">
             <summary>Sidebar size</summary>
             <description>Size of the sidebar as a percentage of window size.</description>

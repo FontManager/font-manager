@@ -346,6 +346,8 @@ namespace FontManager {
     [GtkTemplate (ui = "/com/github/FontManager/FontManager/ui/font-manager-browse-pane.ui")]
     public class BrowsePane : Gtk.Box {
 
+        public GLib.Settings? settings { get; protected set; default = null; }
+
         public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
         public PreviewTileSize size { get; set; default = PreviewTileSize.LARGE; }
@@ -368,7 +370,8 @@ namespace FontManager {
             add_binding_action(Gdk.Key.F, mode_mask, "toggle-search", null);
         }
 
-        public BrowsePane () {
+        public BrowsePane (GLib.Settings? settings) {
+            Object(settings: settings);
             widget_set_name(this, "FontManagerBrowsePane");
             gridview = new FontGridView(gridview_container);
             gridview.set_search_entry(search_entry);
@@ -388,6 +391,12 @@ namespace FontManager {
             panel_toggle.bind_property("active", panel_revealer, "reveal-child", flags);
             search_toggle.bind_property("active", search_bar, "search-mode-enabled", flags);
             icon_size_adjustment.set_value(size.to_double());
+            if (settings != null)
+                settings.bind("browse-pane-position", paned, "position", SettingsBindFlags.DEFAULT);
+            map.connect_after(on_map);
+        }
+
+        public void on_map () {
         }
 
         public void queue_update () {
