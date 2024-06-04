@@ -225,7 +225,7 @@ namespace FontManager {
                 button.has_frame = false;
             character_map = new UnicodeCharacterMap() { hexpand = true, vexpand = true };
             character_map.add_css_class("BrowsePaneCharacterMap");
-            widget_set_name(n_glyphs, "BrowsePaneGlyphCount");
+            widget_set_name(n_glyphs, "CharacterMapCount");
             character_map_scroll.set_child(character_map);
             character_map_scroll.set_size_request(-1, 360);
             preview_page = new PreviewPage() { hexpand = true, vexpand = true, show_line_size = false };
@@ -412,7 +412,7 @@ namespace FontManager {
                     pane_position = settings.get_double("browse-pane-position");
                     panel_toggle.set_active(settings.get_boolean("browse-preview-visible"));
                     settings.bind("browse-pane-position", this, "pane-position", SettingsBindFlags.DEFAULT);
-                    settings.bind("browse-preview-visible"\, panel_toggle, "active", SettingsBindFlags.DEFAULT);
+                    settings.bind("browse-preview-visible", panel_toggle, "active", SettingsBindFlags.DEFAULT);
                 }
                 paned.set_position(percentage_to_position(pane_position));
                 return GLib.Source.REMOVE;

@@ -44,6 +44,11 @@ vala_deps = declare_dependency(
     dependencies: [ glib, gio, gio_unix, gmodule, gtk, json, m_dep, sqlite, xml ]
 )
 
+if get_option('adwaita')
+    adwaita = dependency('libadwaita-1')
+    add_global_arguments('-D', 'HAVE_ADWAITA', language: 'vala')
+endif
+
 if get_option('webkit')
     soup = dependency('libsoup-3.0', version: '>= 3.2')
     webkit = dependency('webkitgtk-6.0', version: '>= 2.4')
@@ -111,6 +116,7 @@ summary(
         ' Font Viewer ': get_option('viewer'),
         ' Help Documents ': get_option('yelp-doc'),
         ' GNOME search provider ': get_option('search-provider'),
+        ' Use Adwaita stylesheet ': get_option('adwaita'),
         ' Google Fonts Integration ': get_option('webkit'),
         ' Nautilus extension ': get_option('nautilus'),
         ' Nemo extension ': get_option('nemo'),

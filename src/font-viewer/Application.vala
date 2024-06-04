@@ -68,7 +68,7 @@ namespace FontManager {
             protected override void activate () {
                 register_session = true;
                 if (main_window == null) {
-                    settings = get_gsettings(application_id);
+                    settings = get_gsettings(BUS_ID);
                     main_window = new MainWindow(settings);
                     add_window(main_window);
                     main_window.restore_state();
@@ -129,6 +129,12 @@ namespace FontManager {
             public static int main (string [] args) {
                 setup_i18n();
                 Environment.set_application_name(_("Font Viewer"));
+#if HAVE_ADWAITA
+            var settings = get_gsettings(FontManager.BUS_ID);
+            if (settings != null)
+                if (settings.get_boolean("use-adwaita-stylesheet"))
+                    Adw.init();
+#endif
                 ApplicationFlags FLAGS = (ApplicationFlags.HANDLES_COMMAND_LINE |
                                           ApplicationFlags.HANDLES_OPEN);
                 return new Application(FontViewer.BUS_ID, FLAGS).run(args);

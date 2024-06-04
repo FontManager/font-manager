@@ -22,68 +22,18 @@
 
 <schemalist>
 
-    <enum id="com.github.FontManager.FontViewer.PreviewPagemode">
-        <value nick="preview" value="0" />
-        <value nick="waterfall" value="1" />
-        <value nick="lorem-ipsum" value="2" />
-    </enum>
-
     <schema id="com.github.FontManager.FontViewer" path="/com/github/FontManager/FontViewer/">
-
-        <key name='window-position' type='(ii)'>
-            <summary>Window position</summary>
-            <description>On screen position of the main window. (x, y)</description>
-            <default>(-1, -1)</default>
-        </key>
 
         <key name='window-size' type='(ii)'>
             <summary>Window size</summary>
             <description>Width and height of the main window.</description>
-            <default>(600, 400)</default>
+            <default>(675, 500)</default>
         </key>
 
         <key name="is-maximized" type="b">
             <default>false</default>
             <summary>Window state</summary>
             <description>Whether window is maximized</description>
-        </key>
-
-        <key name="preview-font-size" type="d">
-            <range min="6.0" max="96.0"/>
-            <summary>Preview font size</summary>
-            <description>Size point to use in the preview area.</description>
-            <default>10.0</default>
-        </key>
-
-        <key name="preview-text" type="s">
-            <summary>Preview text</summary>
-            <description>Last preview text used</description>
-            <default>"    The quick brown fox jumps over the lazy dog.
-
-    ABCDEFGHIJKLMNOPQRSTUVWXYZ
-    abcdefghijklmnopqrstuvwxyz
-    1234567890.:,;(*!?')
-
-    "</default>
-        </key>
-
-        <key name="preview-mode" enum="com.github.FontManager.FontViewer.PreviewPagemode">
-            <summary>Preview Mode</summary>
-            <description>Possible modes are Preview, Waterfall and Lorem Ipsum.</description>
-            <default>"waterfall"</default>
-        </key>
-
-        <key name="preview-page" type="i">
-            <summary>Selected preview page</summary>
-            <description>Last selected preview page</description>
-            <default>0</default>
-        </key>
-
-        <key name="charmap-font-size" type="d">
-            <range min="6.0" max="96.0"/>
-            <summary>Character Map font size</summary>
-            <description>Size point to use in Character Map Mode.</description>
-            <default>16.0</default>
         </key>
 
     </schema>

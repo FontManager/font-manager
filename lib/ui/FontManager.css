@@ -173,26 +173,6 @@ row:selected .count {
     color: @theme_text_color;
 }
 
-.BrowsePaneGlyphCount {
-    padding: 2px 8px 2px 8px;
-    border-style: groove;
-    border-width: 1px;
-    border-radius: 1em;
-    font-size: small;
-    font-weight: 700;
-    color: lighter(@theme_base_color);
-    border-color: alpha(@theme_text_color, 0.85);
-    background-color: alpha(@theme_text_color, 0.65);
-}
-
-.FontManagerBrowsePane expander {
-    -gtk-icon-source: none;
-    -gtk-icon-size: 0px;
-    margin: 0px;
-    min-height: 0px;
-    min-width: 0px;
-}
-
 .FontManagerPropertiesPage separator {
     padding: 0px;
     margin: 12px 6px 12px 0px;
@@ -227,7 +207,7 @@ row:selected .count {
 .FontManagerSubstituteList list row:selected,
 .FontManagerUserActionList list row:selected,
 .FontManagerUserSourceList list row:selected {
-    background-color: alpha(@theme_selected_bg_color, 0.9);
+    /* background-color: alpha(@theme_selected_bg_color, 0.9); */
     border-radius: 0.333em;
     margin: 4px;
 }
@@ -257,6 +237,7 @@ row:selected .count {
 }
 
 .FontManagerSubstituteRow list row:hover,
+.FontManagerSubstituteRow list row list row:hover,
 .FontManagerPreferenceList list row:hover,
 .FontManagerLanguageFilterSettings list row:hover,
 .FontManagerGoogleFontsOrthographies row:hover {
@@ -287,6 +268,7 @@ row:selected .count {
     margin: 0px 0px 0px 9px;
 }
 
+.FontManagerBrowsePane expander,
 .FontManagerCollectionListView > row > treeexpander expander {
     -gtk-icon-source: none;
     -gtk-icon-size: 0px;

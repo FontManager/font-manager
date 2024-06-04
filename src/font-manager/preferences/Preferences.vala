@@ -35,6 +35,7 @@ namespace FontManager {
             content_area.set_visible(false);
             stack = new Gtk.Stack();
             sidebar = new Gtk.StackSidebar();
+            sidebar.add_css_class("view");
             sidebar.set_stack(stack);
             set_list_widget(stack);
             set_sidebar_widget(sidebar);

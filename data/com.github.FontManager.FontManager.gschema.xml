@@ -26,7 +26,7 @@
         <value nick="manage" value="0" />
         <value nick="browse" value="1" />
         <value nick="compare" value="2" />
-        <value nick="googlefonts" value="3" />
+        <value nick="google-fonts" value="3" />
     </enum>
 
     <enum id="com.github.FontManager.FontManager.PreviewPageMode">
@@ -89,10 +89,10 @@
             <description>Possible modes are Normal and Flat.</description>
         </key>
 
-        <key name="window-position" type="(ii)">
-            <summary>Window position</summary>
-            <description>On screen position of the main window. (x, y)</description>
-            <default>(-1, -1)</default>
+        <key name="use-adwaita-stylesheet" type="b">
+            <default>false</default>
+            <summary>Whether to use the Adwaita stylesheet when available</summary>
+            <description>true to use the Adwaita stylesheet</description>
         </key>
 
         <key name="window-size" type="(ii)">

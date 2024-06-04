@@ -1,6 +1,7 @@
 option('manager', type: 'boolean', value: true, description: 'Install font-manager')
 option('viewer', type: 'boolean', value: true, description: 'Install font-viewer')
 option('search-provider', type: 'boolean', value: true, description: 'Install GNOME shell search provider')
+option('adwaita', type: 'boolean', value: false, description: 'Use Adwaita stylesheet')
 option('webkit', type: 'boolean', value: true, description: 'Google Fonts Integration')
 option('yelp-doc', type: 'boolean', value: true, description: 'Install help documents')
 option('enable-nls', type: 'boolean', value: true, description: 'Install translations')

@@ -51,5 +51,8 @@
         </child>
       </object>
     </child>
+    <style>
+      <class name="view"/>
+    </style>
   </template>
 </interface>

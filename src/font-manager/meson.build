@@ -9,6 +9,10 @@ font_manager_sources = result.stdout().strip().split('\n')
 
 dependencies = [ vapi, vala_deps ]
 
+if get_option('adwaita')
+    dependencies += adwaita
+endif
+
 if get_option('webkit')
     dependencies += soup
     dependencies += webkit

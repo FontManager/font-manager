@@ -74,7 +74,19 @@ namespace FontManager {
             settings = get_gsettings(application_id);
             if (settings != null) {
                 Gtk.Settings gtk = Gtk.Settings.get_default();
-                gtk.gtk_application_prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
+                bool prefer_dark_theme = settings.get_boolean("prefer-dark-theme");
+#if HAVE_ADWAITA
+                if (settings.get_boolean("use-adwaita-stylesheet")) {
+                    Adw.StyleManager style_manager = Adw.StyleManager.get_default();
+                    Adw.ColorScheme color_scheme = prefer_dark_theme ?
+                                                   Adw.ColorScheme.PREFER_DARK :
+                                                   Adw.ColorScheme.PREFER_LIGHT;
+                    style_manager.set_color_scheme(color_scheme);
+                } else
+                    gtk.gtk_application_prefer_dark_theme = prefer_dark_theme;
+#else
+                gtk.gtk_application_prefer_dark_theme = prefer_dark_theme;
+#endif
                 gtk.gtk_enable_animations = settings.get_boolean("enable-animations");
             }
             notify["update-in-progress"].connect(progress_visible);
@@ -377,6 +389,12 @@ namespace FontManager {
             set_debug_level(args);
             setup_i18n();
             Environment.set_application_name(DISPLAY_NAME);
+#if HAVE_ADWAITA
+            var settings = get_gsettings(BUS_ID);
+            if (settings != null)
+                if (settings.get_boolean("use-adwaita-stylesheet"))
+                    Adw.init();
+#endif
             ApplicationFlags FLAGS = (ApplicationFlags.HANDLES_OPEN |
                                       ApplicationFlags.HANDLES_COMMAND_LINE);
             return new Application(BUS_ID, FLAGS).run(args);

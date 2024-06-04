@@ -192,6 +192,9 @@ namespace FontManager {
         Gtk.Switch wide_layout;
         Gtk.Switch enable_animations;
         Gtk.Switch prefer_dark_theme;
+#if HAVE_ADWAITA
+        Gtk.Switch use_adwaita_stylesheet;
+#endif
         Gtk.Switch show_line_size;
         Gtk.CheckButton on_maximize;
         Gtk.DropDown button_style;
@@ -214,6 +217,9 @@ namespace FontManager {
             widget.append_child(child);
             enable_animations = add_preference_switch(_("Enable Animations"));
             prefer_dark_theme = add_preference_switch(_("Prefer Dark Theme"));
+#if HAVE_ADWAITA
+            use_adwaita_stylesheet = add_preference_switch(_("Use Adwaita Stylesheet"));
+#endif
             string [] button_styles = { _("Raised"), _("Flat") };
             var style_list = new Gtk.StringList(button_styles);
             button_style = new Gtk.DropDown(style_list, null);
@@ -243,12 +249,28 @@ namespace FontManager {
             Gtk.Settings? gtk_settings = Gtk.Settings.get_default();
             const string gtk_prefer_dark = "gtk-application-prefer-dark-theme";
             if (gtk_settings != null) {
+#if HAVE_ADWAITA
+                if (settings.get_boolean("use-adwaita-stylesheet")) {
+                    prefer_dark_theme.notify["active"].connect(() => {
+                        Adw.StyleManager style_manager = Adw.StyleManager.get_default();
+                        Adw.ColorScheme color_scheme = prefer_dark_theme.active ?
+                                                       Adw.ColorScheme.PREFER_DARK :
+                                                       Adw.ColorScheme.PREFER_LIGHT;
+                        style_manager.set_color_scheme(color_scheme);
+                    });
+                } else
+                    settings.bind("prefer-dark-theme", gtk_settings, gtk_prefer_dark, flags);
+#else
                 settings.bind("prefer-dark-theme", gtk_settings, gtk_prefer_dark, flags);
+#endif
                 settings.bind("enable-animations", gtk_settings, "gtk-enable-animations", flags);
             }
             warn_if_fail(gtk_settings != null);
 
             settings.bind("prefer-dark-theme", prefer_dark_theme, "active", flags);
+#if HAVE_ADWAITA
+            settings.bind("use-adwaita-stylesheet", use_adwaita_stylesheet, "active", flags);
+#endif
             settings.bind("waterfall-show-line-size", show_line_size, "active", flags);
             settings.bind("min-waterfall-size", waterfall_size, "minimum", flags);
             settings.bind("max-waterfall-size", waterfall_size, "maximum", flags);
