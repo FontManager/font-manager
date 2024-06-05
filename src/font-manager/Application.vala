@@ -1,7 +1,7 @@
 /* Application.vala */
-
+public const string DISPLAY_NAME = _("Font Manager");
+public const string COMMENT = _("Simple font management for GTK+ desktop environments");
 public const string COPYRIGHT = "Copyright © 2009-2024 Jerry Casiano";
-
 public const string LICENSE = _("""
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,9 +18,6 @@ public const string LICENSE = _("""
 
     If not, see <http://www.gnu.org/licenses/gpl-3.0.txt>.
 """);
-
-public const string DISPLAY_NAME = _("Font Manager");
-public const string COMMENT = _("Simple font management for GTK+ desktop environments");
 
 namespace FontManager {
 
@@ -43,8 +40,8 @@ namespace FontManager {
         public DatabaseProxy? db { get; private set; default = new DatabaseProxy(); }
         [DBus (visible = false)]
         public Reject? disabled_families { get; private set; default = new Reject(); }
-        // [DBus (visible = false)]
-        // public StringSet? temp_files { get; private set; default = new StringSet(); }
+        [DBus (visible = false)]
+        public StringSet? temp_files { get; private set; default = new StringSet(); }
 
         const OptionEntry[] options = {
             { "about", 'a', 0, OptionArg.NONE, null, "About the application", null },
@@ -121,51 +118,32 @@ namespace FontManager {
             StringSet? filelist = get_command_line_files(cl);
 
             if (options.contains("install") || options.contains("update")) {
-                // if (options.contains("install") && filelist != null) {
-                //     if (main_window != null) {
-                //         main_window.install_fonts(filelist);
-                //     } else {
-                //         var installer = new Library.Installer();
-                //         installer.progress.connect((m, p, t) => {
-                //             var data = new ProgressData(m, p, t);
-                //             data.print();
-                //         });
-                //         stdout.printf("Installing Font Files\n");
-                //         installer.process_sync(filelist);
-                //         stdout.printf("\n");
-                //     }
-                // }
-                // if (main_window != null) {
-                //     refresh();
-                // } else {
-                //     update_font_configuration();
-                //     try {
-                //         load_user_font_resources(reject.get_rejected_files(), null);
-                //     } catch (Error e) {
-                //         critical(e.message);
-                //     }
-                //     DatabaseType [] db_types = {
-                //         DatabaseType.FONT,
-                //         DatabaseType.METADATA,
-                //         DatabaseType.ORTHOGRAPHY
-                //     };
-                //     Json.Object available_fonts = get_available_fonts(null);
-                //     var available_files = new StringSet();
-                //     foreach (string path in list_available_font_files())
-                //         available_files.add(path);
-                //     foreach (var type in db_types) {
-                //         try {
-                //             stdout.printf("Updating Database - %s\n", Database.get_type_name(type));
-                //             update_database_sync(get_database(type), type,
-                //                                  available_fonts, available_files,
-                //                                  ProgressData.print, null);
-                //             stdout.printf("\n");
-                //         } catch (Error e) {
-                //             critical(e.message);
-                //             return e.code;
-                //         }
-                //     }
-                // }
+                if (options.contains("install") && filelist != null) {
+                    if (main_window != null) {
+                        main_window.install_selections(filelist);
+                    } else {
+                        var installer = new Library.Installer();
+                        installer.progress.connect((m, p, t) => {
+                            var data = new ProgressData(m, p, t);
+                            data.print();
+                        });
+                        stdout.printf("Installing Font Files\n");
+                        installer.process_sync(filelist);
+                        stdout.printf("\n");
+                    }
+                }
+                if (main_window != null) {
+                    reload();
+                } else {
+                    update_font_configuration();
+                    load_user_font_resources();
+                    available_fonts = get_sorted_font_list(null);
+                    db.update_started.connect(() => { hold(); });
+                    db.update_complete.connect(() => { GLib.stdout.printf("\n"); release(); });
+                    db.set_progress_callback(ProgressData.print);
+                    GLib.stdout.printf("%s\n", _("Updating Database…"));
+                    db.update(available_fonts);
+                }
             } else if (filelist != null) {
                 File [] files = { File.new_for_path(filelist[0]) };
                 open(files, "0");
@@ -337,22 +315,15 @@ namespace FontManager {
             return;
         }
 
-        // [DBus (visible = false)]
-        // public new void quit () {
-            // foreach (string path in temp_files)
-            //     remove_directory(File.new_for_path(path));
-            // /* Try to prevent noise during memcheck */
-            // {
-            //     clear_application_fonts();
-            //     try {
-            //         Database main = get_database(DatabaseType.BASE);
-            //         main.unref();
-            //     } catch (Error e) {}
-            //     main_window = null;
-            // }
-        //     base.quit();
-        //     return;
-        // }
+        [DBus (visible = false)]
+        public new void quit () {
+            foreach (string path in temp_files)
+                remove_directory(File.new_for_path(path));
+            /* Try to prevent noise during memcheck */
+            clear_application_fonts();
+            base.quit();
+            return;
+        }
 
         public override bool dbus_register (DBusConnection conn, string path) throws Error {
             bool result = base.dbus_register(conn, path);

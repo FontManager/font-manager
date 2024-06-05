@@ -155,7 +155,9 @@ namespace FontManager {
         }
 
         static bool from_font_setting (Value v, Variant r, string k) {
-            v.set_boxed(Pango.FontDescription.from_string(r.get_string()));
+            // ??? : Not using a variable here results in leaking the description?
+            Pango.FontDescription font_desc = Pango.FontDescription.from_string(r.get_string());
+            v.set_boxed(font_desc);
             return true;
         }
 

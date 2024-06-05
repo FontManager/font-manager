@@ -117,6 +117,8 @@ namespace FontManager {
             attrs.insert(Pango.AttrSize.new(size.to_preview_size() * Pango.SCALE));
             attrs.insert(new Pango.AttrFontDesc(font_desc));
             preview.set_attributes(attrs);
+            // ??? : Without this unref attrs is leaked?
+            attrs.unref();
             return;
         }
 

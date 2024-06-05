@@ -354,8 +354,7 @@ namespace FontManager {
             string temp_dir;
             try {
                 temp_dir = DirUtils.make_tmp(TMP_TMPL);
-                // XXX: FIXME!
-                // get_default_application().temp_files.add(temp_dir);
+                get_default_application().temp_files.add(temp_dir);
             } catch (Error e) {
                 critical(e.message);
                 return_if_reached();

@@ -1,6 +1,6 @@
 /* font-manager-aliases.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -176,7 +176,7 @@ _xml_writer_add_alias_element(FontManagerXmlWriter *writer,
     font_manager_xml_writer_start_element(writer, type);
     font_manager_xml_writer_add_elements(writer, "family", families);
     font_manager_xml_writer_end_element(writer);
-    g_list_free(families);
+    g_list_free_full(families, g_free);
     return;
 }
 

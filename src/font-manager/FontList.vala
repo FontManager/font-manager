@@ -32,6 +32,8 @@ namespace FontManager {
         protected override void reset () {
             if (binding != null)
                 binding.unbind();
+            while (binding is Binding)
+                binding.unref();
             binding = null;
             item_state.set("active", true, "visible", false, "sensitive", true, null);
             item_label.set("label", "", "attributes", null, null);
@@ -66,6 +68,8 @@ namespace FontManager {
                 item_preview.set_attributes(attrs);
                 item_preview.set_text(label);
                 item_preview.set_visible(true);
+                // ??? : Without this unref attrs is leaked?
+                attrs = null;
             }
             return;
         }

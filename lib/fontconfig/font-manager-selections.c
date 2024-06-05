@@ -1,6 +1,6 @@
 /* font-manager-selections.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -154,7 +154,7 @@ font_manager_selections_write_selections (FontManagerSelections *self,
     FontManagerSelectionsPrivate *priv = font_manager_selections_get_instance_private(self);
     GList *selections = font_manager_string_set_list(FONT_MANAGER_STRING_SET(self));
     font_manager_xml_writer_add_selections(writer, priv->target_element, selections);
-    g_list_free(selections);
+    g_list_free_full(selections, g_free);
     return;
 }
 

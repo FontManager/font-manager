@@ -250,16 +250,19 @@ namespace FontManager {
             return selections;
         }
 
-        void install_selections (Object? object, AsyncResult result) {
+        public void install_selections (StringSet selections) {
+            header_widgets.installing_files = true;
+            var installer = new Library.Installer();
+            installer.process.begin(selections, (obj, res) => {
+                installer.process.end(res);
+                header_widgets.installing_files = false;
+            });
+            return;
+        }
+
+        void install_selected_files (Object? object, AsyncResult result) {
             var selections = get_file_selections(object, result);
-            if (selections.size > 0) {
-                header_widgets.installing_files = true;
-                var installer = new Library.Installer();
-                installer.process.begin(selections, (obj, res) => {
-                    installer.process.end(res);
-                    header_widgets.installing_files = false;
-                });
-            }
+            install_selections(selections);
             return;
         }
 
@@ -270,7 +273,7 @@ namespace FontManager {
 
         void install (Gtk.Widget widget, string? action, Variant? parameter) {
             var dialog = FileSelector.get_selections();
-            dialog.open_multiple.begin(this, null, install_selections);
+            dialog.open_multiple.begin(this, null, install_selected_files);
             return;
         }
 

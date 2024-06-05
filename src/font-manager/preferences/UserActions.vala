@@ -46,6 +46,10 @@ namespace FontManager {
                     }
                     app_info = null;
                 }
+                // ??? : Without this we leak this array?
+                foreach (var arr in desktop_files)
+                    GLib.strfreev(arr);
+                desktop_files = null;
             });
             notify.connect(() => { changed(); });
         }
@@ -134,8 +138,9 @@ namespace FontManager {
             if (node != null) {
                 node.get_array().foreach_element(
                     (arr, index, node) => {
-                        var item = Json.gobject_deserialize(typeof(UserAction), node);
-                        add_item((UserAction) item);
+                        //
+                        UserAction item = (UserAction) Json.gobject_deserialize(typeof(UserAction), node);
+                        add_item(item);
                     }
                 );
             }

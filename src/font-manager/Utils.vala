@@ -239,11 +239,12 @@ namespace FontManager {
         return res;
     }
 
-    Json.Array get_sorted_font_list (Pango.Context ctx) {
+    Json.Array get_sorted_font_list (Pango.Context? ctx) {
         update_font_configuration();
-        if (load_user_font_resources())
-            clear_pango_cache(ctx);
-        else
+        if (load_user_font_resources()) {
+            if (ctx != null)
+                clear_pango_cache(ctx);
+        } else
             critical("Failed to load user font resources, will be unable to render properly");
         var fonts = get_available_fonts(null);
         var sorted_fonts = sort_json_font_listing(fonts);
