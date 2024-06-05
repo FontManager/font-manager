@@ -26,15 +26,16 @@ foreach path: service
     endif
     install_data('@0@.gschema.xml'.format(path), install_dir: schema_dir)
 
-    icons = [ 'com.github.FontManager.FontManager.svg',
-    	      'com.github.FontManager.FontManager.Devel.svg' ]
+    icons = [ 'com.github.FontManager.FontManager.svg' ]
     foreach icon: icons
         icon_dir = join_paths(datadir, 'icons', 'hicolor', 'scalable', 'apps')
-        install_data(icon, install_dir: icon_dir)
+        install_data(icon, install_dir: icon_dir, rename: '@0@.svg'.format(path))
     endforeach
-    symbolic_icon = 'com.github.FontManager.FontManager-symbolic.svg'
-    symbolic_icon_dir = join_paths(datadir, 'icons', 'hicolor', 'symbolic', 'apps')
-    install_data(symbolic_icon, install_dir: symbolic_icon_dir)
+    symbolic_icons = [ 'com.github.FontManager.FontManager-symbolic.svg' ]
+    foreach icon: symbolic_icons
+        symbolic_icon_dir = join_paths(datadir, 'icons', 'hicolor', 'symbolic', 'apps')
+        install_data(icon, install_dir: symbolic_icon_dir, rename: '@0@.svg'.format(path))
+    endforeach
 
     i18n.merge_file(
         input: configure_file(
