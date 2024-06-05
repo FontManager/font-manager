@@ -20,14 +20,27 @@ excluded_files = {
 }
 
 for d in excluded_dirs:
-    rmtree(d)
+    try:
+        rmtree(d)
+    except FileNotFoundError:
+        pass
 
 for f in excluded_files:
-    remove(f)
+    try:
+        remove(f)
+    except FileNotFoundError:
+        pass
 
 # Remove README translations to minimize archive size
 for f in glob("README.*.md"):
-    remove(f)
+    try:
+        remove(f)
+    except FileNotFoundError:
+        pass
 
 # Only useful in Git repository
-remove("org.gnome.FontManager.yaml")
+try:
+    remove("org.gnome.FontManager.yaml")
+except FileNotFoundError:
+    pass
+
