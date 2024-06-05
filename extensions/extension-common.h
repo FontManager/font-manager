@@ -1,6 +1,6 @@
 /* extension-common.h
  *
- * Copyright (C) 2022 Jerry Casiano
+ * Copyright (C) 2022-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 
 #define N_MIMETYPES 7
 
-static const gchar *MIMETYPES [N_MIMETYPES] = {
+static const char *MIMETYPES [N_MIMETYPES] = {
     "font/ttf",
     "font/ttc",
     "font/otf",
