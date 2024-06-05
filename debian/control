@@ -1,0 +1,103 @@
+Source: font-manager
+Priority: optional
+Maintainer: Jerry Casiano <JerryCasiano@gmail.com>
+Build-Depends:
+ debhelper (>= 12~),
+ valac (>= 0.42),
+ meson (>= 0.46),
+ libxml2-dev,
+ libfreetype6-dev,
+ libfontconfig1-dev (>= 2.12),
+ libglib2.0-dev (>= 2.44),
+ libjson-glib-dev,
+ libcairo2-dev,
+ libgtk-3-dev (>= 3.22),
+ libpango1.0-dev,
+ libsqlite3-dev,
+ libgirepository1.0-dev,
+ libnautilus-extension-dev,
+ libnemo-extension-dev,
+ libthunarx-3-dev,
+ libwebkit2gtk-4.1-dev,
+ libsoup-3.0-dev,
+ yelp-tools
+Standards-Version: 4.3.0
+Section: graphics
+Homepage: http://fontmanager.github.io/
+
+Package: font-manager
+Architecture: any
+Depends:
+ font-manager-common,
+ font-viewer,
+ yelp,
+ file-roller,
+ ${misc:Depends},
+ ${shlibs:Depends}
+Suggests: nautilus-font-manager
+Description: Simple font management application for Gtk+ Desktop Environments
+ Font Manager is intended to provide a way for average users to easily manage
+ desktop fonts, without having to resort to command line tools or editing
+ configuration files by hand. While designed primarily with the GNOME Desktop
+ Environment in mind, it should work well with other Gtk+ desktop environments.
+ .
+ Font Manager is NOT a professional-grade font management solution.
+
+Package: font-manager-common
+Architecture: any
+Multi-Arch: same
+Pre-Depends:
+ ${misc:Pre-Depends}
+Depends:
+ ${shlibs:Depends},
+ ${misc:Depends}
+Description: Common files required by font-manager and font-viewer
+ .
+ This package provides common files such as libraries, translations,
+ help files, etc.
+
+Package: font-viewer
+Architecture: any
+Multi-Arch: foreign
+Depends:
+ font-manager-common,
+ ${shlibs:Depends},
+ ${misc:Depends}
+Description: Full featured font file preview application for GTK+ Desktop Environments
+ .
+ This package provides the font-viewer component of font-manager.
+
+
+Package: nautilus-font-manager
+Architecture: any
+Depends:
+ font-viewer,
+ nautilus (>= 3.0),
+ libnautilus-extension1a,
+ ${misc:Depends}
+Description: Nautilus extension for Font Manager
+ .
+ This package provides integration with the Nautilus file manager.
+
+Package: nemo-font-manager
+Architecture: any
+Depends:
+ font-viewer,
+ nemo (>= 3.0),
+ libnemo-extension1,
+ ${misc:Depends}
+Description: Nemo extension for Font Manager
+ .
+ This package provides integration with the Nemo file manager.
+
+
+Package: thunar-font-manager
+Architecture: any
+Depends:
+ font-viewer,
+ thunar (>= 1.8),
+ libthunarx-3-0,
+ ${misc:Depends}
+Description: Thunar extension for Font Manager
+ .
+ This package provides integration with the Thunar file manager.

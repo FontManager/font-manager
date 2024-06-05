@@ -1,0 +1,15 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		--buildtype=release \
+		-Dnautilus=true \
+		-Dnemo=true \
+		-Dthunar=true \
+		-Dreproducible=true
