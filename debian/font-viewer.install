@@ -1,7 +1,7 @@
 usr/libexec/font-manager/font-viewer
-usr/share/metainfo/com.github.FontManager.FontManager.appdata.xml
-usr/share/applications/com.github.FontManager.FontManager.desktop
-usr/share/dbus-1/services/com.github.FontManager.FontManager.service
-usr/share/glib-2.0/schemas/com.github.FontManager.FontManager.gschema.xml
-usr/share/icons/hicolor/scalable/apps/com.github.FontManager.FontManager.svg
-usr/share/icons/hicolor/symbolic/apps/com.github.FontManager.FontManager.svg
+usr/share/metainfo/com.github.FontManager.FontViewer.appdata.xml
+usr/share/applications/com.github.FontManager.FontViewer.desktop
+usr/share/dbus-1/services/com.github.FontManager.FontViewer.service
+usr/share/glib-2.0/schemas/com.github.FontManager.FontViewer.gschema.xml
+usr/share/icons/hicolor/scalable/apps/com.github.FontManager.FontViewer.svg
+usr/share/icons/hicolor/symbolic/apps/com.github.FontManager.FontViewer.svg
