@@ -65,7 +65,7 @@ gresources_xml_file = files('gresources.xml')
 
 gresources = gnome.compile_resources('libfontmanager-gresources', gresources_xml_file)
 
-libfontmanager = shared_library('font-manager',
+libfontmanager = shared_library('fontmanager',
                                 sources: [ sources, headers, gresources ],
                                 include_directories: includes,
                                 version: meson.project_version(),
