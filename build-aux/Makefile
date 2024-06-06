@@ -82,12 +82,12 @@ BUILD_DEPENDS = \
 	valac \
 	meson \
 	libxml2-dev \
-	libfreetype6-dev \
+	libfreetype-dev \
 	libfontconfig1-dev \
 	libglib2.0-dev \
 	libjson-glib-dev \
 	libcairo2-dev \
-	libgtk-3-dev \
+	libgtk-4-dev \
 	libpango1.0-dev \
 	libsqlite3-dev \
 	libgirepository1.0-dev \
@@ -96,7 +96,7 @@ BUILD_DEPENDS = \
 	python-gi-dev \
 	python3-nautilus \
 	libsoup2.4-dev \
-	libwebkit2gtk-4.0-dev \
+	libwebkitgtk-6.0-dev \
 	libnautilus-extension-dev \
 	libnemo-extension-dev \
 	libthunarx-3-dev
