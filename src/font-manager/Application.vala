@@ -294,12 +294,11 @@ namespace FontManager {
                 shutdown.connect(() => { quit(); });
             }
             db.update_complete.connect(() => {
-                main_window.category_model.update_items();
-                main_window.select_first_category();
                 update_item_preview_text(available_fonts);
-                Idle.add(() => {
+                if (main_window.mode == Mode.BROWSE)
                     main_window.browse_pane.queue_update();
-                    main_window.collection_model.reload();
+                Idle.add(() => {
+                    main_window.category_model.update_items();
                     return GLib.Source.REMOVE;
                 });
             });
@@ -368,5 +367,6 @@ namespace FontManager {
     }
 
 }
+
 
 

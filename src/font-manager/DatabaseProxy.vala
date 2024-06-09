@@ -54,8 +54,6 @@ namespace FontManager {
         }
 
         public void update (Json.Array available_fonts) {
-            if (db != null)
-                db = null;
             update_started();
             Database database = new Database();
             update_database.begin(
@@ -67,6 +65,8 @@ namespace FontManager {
                     try {
                         update_database.end(res);
                         update_complete();
+                        if (db != null)
+                            db = new Database();
                     } catch (Error e) {
                         critical(e.message);
                     }

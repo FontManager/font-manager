@@ -124,7 +124,8 @@ namespace FontManager {
         public Paned (GLib.Settings? settings) {
             this.settings = settings;
             // Necessary to get an acceptable initial size for pane layout
-            list_area.set_size_request(-1, 225);
+            sidebar_area.set_size_request(-1, 250);
+            list_area.set_size_request(-1, 250);
             main_pane.notify["position"].connect((obj, pspec) => {
                 var new_pos = position_to_percentage(main_pane).clamp(2, 98);
                 if (orientation == Gtk.Orientation.HORIZONTAL) {
@@ -151,26 +152,27 @@ namespace FontManager {
 
         [GtkCallback]
         public virtual void on_map () {
+            if (settings != null) {
+                SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
+                settings.bind("sidebar-size", this, "sidebar-size", flags);
+                settings.bind("content-size", this, "content-size", flags);
+                settings.bind("hor-sidebar-size", this, "hor-sidebar-size", flags);
+                settings.bind("hor-content-size", this, "hor-content-size", flags);
+                if (orientation == Gtk.Orientation.HORIZONTAL) {
+                    sidebar_position = settings.get_double("hor-sidebar-size");
+                    content_position = settings.get_double("hor-content-size");
+                } else {
+                    sidebar_position = settings.get_double("sidebar-size");
+                    content_position = settings.get_double("content-size");
+                }
+            }
             Idle.add(() => {
                 update_pane_positions();
                 return GLib.Source.REMOVE;
             });
-            if (settings == null)
-                return;
-            SettingsBindFlags flags = SettingsBindFlags.DEFAULT;
-            settings.bind("sidebar-size", this, "sidebar-size", flags);
-            settings.bind("content-size", this, "content-size", flags);
-            settings.bind("hor-sidebar-size", this, "hor-sidebar-size", flags);
-            settings.bind("hor-content-size", this, "hor-content-size", flags);
-            if (orientation == Gtk.Orientation.HORIZONTAL) {
-                sidebar_position = settings.get_double("hor-sidebar-size");
-                content_position = settings.get_double("hor-content-size");
-            } else {
-                sidebar_position = settings.get_double("sidebar-size");
-                content_position = settings.get_double("content-size");
-            }
             notify_property("sidebar-position");
             notify_property("content-position");
+
             return;
         }
 

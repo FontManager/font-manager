@@ -40,15 +40,32 @@ namespace FontManager {
 
     public class CategoryListModel : FontListFilterModel {
 
-        construct {
-            update_items();
+        public CategoryListModel () {
+            items = get_base_categories();
+            items_changed(0, 0, get_n_items());
+        }
+
+        static void on_categories_updated (Object? source, GLib.Task task) {
+            return_if_fail(source is CategoryListModel);
+            var model = (CategoryListModel) source;
+            var result = GLib.Value(typeof(GenericArray));
+            try {
+                task.propagate_value(out result);
+            } catch (Error e) {
+                critical("Failed to generate default categories : %s", e.message);
+                return_if_reached();
+            }
+            uint n_items = model.get_n_items();
+            model.items = null;
+            model.items_changed(0, n_items, 0);
+            model.items = (GenericArray <Category>) result.get_boxed();
+            model.items_changed(0, 0, model.get_n_items());
+            return;
         }
 
         public void update_items () {
-            clear();
-            Database db = DatabaseProxy.get_default_db();
-            items = get_default_categories(db);
-            items_changed(0, 0, get_n_items());
+            var task = new GLib.Task(this, null, on_categories_updated);
+            task.run_in_thread(get_default_categories);
             return;
         }
 
@@ -135,6 +152,17 @@ namespace FontManager {
             return;
         }
 
+        protected override void on_selection_changed (uint position, uint n_items)
+        requires (selection != null && treemodel != null) {
+            base.on_selection_changed(position, n_items);
+            if (selected_item == null)
+                return;
+            var category = (Category) selected_item;
+            if (category.index >= CategoryIndex.PANOSE || category.index <= CategoryIndex.FILETYPE)
+                category.update.begin();
+            return;
+        }
+
         protected override void setup_list_row (Gtk.SignalListItemFactory factory, Object item) {
             Gtk.ListItem list_item = (Gtk.ListItem) item;
             var tree_expander = new Gtk.TreeExpander();
@@ -208,9 +236,6 @@ namespace FontManager {
                     }
                 });
             }
-            list_row.notify["expanded"].connect_after((pspec) => {
-                category.update.begin();
-            });
             return;
         }
 
@@ -222,32 +247,38 @@ namespace FontManager {
     public const string SELECT_FROM_METADATA_WHERE = "SELECT DISTINCT Fonts.family, Fonts.description FROM Fonts JOIN Metadata USING (filepath, findex) WHERE";
     public const string SELECT_FROM_PANOSE_WHERE = "SELECT DISTINCT Fonts.family, Fonts.description FROM Fonts JOIN Panose USING (filepath, findex) WHERE";
 
-    internal struct FilterData {
+    struct FilterData {
         public int index;
         public string name;
         public string comment;
         public string column;
     }
 
-    internal const FilterData [] attributes = {
+    const FilterData [] attributes = {
         { CategoryIndex.WIDTH, N_("Width"), N_("Grouped by font width"), "width" },
         { CategoryIndex.WEIGHT, N_("Weight"), N_("Grouped by font weight"), "weight" },
         { CategoryIndex.SLANT, N_("Slant"), N_("Grouped by font angle"), "slant" },
         { CategoryIndex.SPACING, N_("Spacing"), N_("Grouped by font spacing"), "spacing" }
     };
 
-    internal const FilterData [] metadata = {
+    const FilterData [] metadata = {
         { CategoryIndex.LICENSE, N_("License"), N_("Grouped by license type"), "license-type" },
         /* Translators : For context see https://docs.microsoft.com/en-us/typography/opentype/spec/os2#achvendid */
         { CategoryIndex.VENDOR, N_("Vendor"), N_("Grouped by vendor"), "vendor" },
         { CategoryIndex.FILETYPE, N_("Filetype"), N_("Grouped by filetype"), "filetype" }
     };
 
-    GenericArray <Category> get_default_categories (Database db) {
+    GenericArray <Category> get_base_categories () {
         var filters = new GenericArray <Category> ();
         filters.add(new Category(_("All"), _("All Fonts"), "system-users-symbolic", "%s;".printf(SELECT_FROM_FONTS), CategoryIndex.ALL));
         filters.add(new Category(_("System"), _("Fonts available to all users"), "computer-symbolic", "%s owner!=0 AND filepath LIKE '/usr%';".printf(SELECT_FROM_METADATA_WHERE), CategoryIndex.SYSTEM));
         filters.add(new UserFonts());
+        return filters;
+    }
+
+    void get_default_categories (Task task, Object source, void *data, Cancellable? cancellable = null) {
+        Database db = DatabaseProxy.get_default_db();
+        var filters = get_base_categories();
         filters.add(construct_panose_filter());
         foreach (var entry in attributes)
             filters.add(construct_attribute_filter(db, entry));
@@ -256,7 +287,10 @@ namespace FontManager {
         filters.add(new Unsorted());
         filters.add(new Disabled());
         filters.add(new LanguageFilter());
-        return filters;
+        var return_val = GLib.Value(typeof(GenericArray));
+        return_val.set_boxed(filters);
+        task.return_value(return_val);
+        return;
     }
 
     Category construct_panose_filter () {

@@ -149,6 +149,9 @@ namespace FontManager {
                 if (disabled_families != null)
                     disabled_families.changed.connect(() => { update(current_selection); });
             });
+            notify["filter"].connect_after(() => {
+                Idle.add(() => { select_item(0); return GLib.Source.REMOVE; });
+            });
         }
 
         public void select_item (uint position) {

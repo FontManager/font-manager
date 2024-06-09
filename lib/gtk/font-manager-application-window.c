@@ -286,7 +286,7 @@ font_manager_application_window_show_about (FontManagerApplicationWindow *self)
 
     gtk_show_about_dialog(GTK_WINDOW(self),
                           "program-name", _("Font Manager"),
-                          "logo-icon-name", "com.github.FontManager.FontManager",
+                          "logo-icon-name", "com.github.FontManager.FontManager-symbolic",
                           "version", PACKAGE_VERSION,
                           "copyright", "Copyright © 2009-2024 Jerry Casiano",
                           "comments",  _("Simple font management for GTK+ desktop environments"),

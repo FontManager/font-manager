@@ -1,6 +1,6 @@
 /* font-manager-gtk-utils.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,6 +44,7 @@ font_manager_set_application_style (void)
     g_autofree gchar *icons = g_build_path(G_DIR_SEPARATOR_S,
                                            FONT_MANAGER_BUS_PATH,
                                            "icons",
+                                           G_DIR_SEPARATOR_S,
                                            NULL);
 
     GdkDisplay *default_display = gdk_display_get_default();

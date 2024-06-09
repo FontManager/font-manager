@@ -251,7 +251,7 @@ font_manager_place_holder_init (FontManagerPlaceHolder *self)
     set_message_attributes(self->message);
     gtk_widget_set_halign(GTK_WIDGET(self->icon), GTK_ALIGN_CENTER);
     gtk_widget_set_valign(GTK_WIDGET(self->icon), GTK_ALIGN_END);
-    gtk_widget_set_opacity(self->icon, 0.25);
+    gtk_widget_set_opacity(self->icon, 0.75);
     gtk_widget_set_sensitive(self->icon, FALSE);
     GtkWidget *scrolled_window = gtk_scrolled_window_new();
     GtkWidget *bbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, FONT_MANAGER_DEFAULT_MARGIN * 3);

@@ -31,6 +31,7 @@ namespace FontManager {
 
         construct {
             available_families = list_available_font_families();
+            load();
             changed.connect(() => { save(); });
         }
 
@@ -215,7 +216,7 @@ namespace FontManager {
             selection = new Gtk.SingleSelection(treemodel);
             add_drop_target(listview);
             init_context_menu();
-            selection_changed.connect(update_context_menu);
+            selection_changed.connect_after(update_context_menu);
             collection_model.changed.connect(() => { changed(); });
             clicked_area = Gdk.Rectangle();
             Gtk.Gesture click = new Gtk.GestureClick() {
@@ -225,6 +226,7 @@ namespace FontManager {
             listview.add_controller(click);
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("disabled-families", model, "disabled-families", flags);
+            selection.set_selected(Gtk.INVALID_LIST_POSITION);
         }
 
         bool update () {

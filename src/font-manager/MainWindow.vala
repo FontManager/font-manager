@@ -167,11 +167,6 @@ namespace FontManager {
             main_pane = new MainPane(settings);
             browse_pane = new BrowsePane(settings);
             prefs_pane = new PreferencePane(settings);
-            // TODO : Figure out why this happens. If it happens because we are loading widgets
-            // on demand using map events, so be it. If not then what are we doing to cause it?
-            // This empty stack page is a hack to force an "expose" event when mode is set.
-            // Otherwise we end up with panes set to position 0 when run from launcher but panes
-            // with their position set correctly when run from the command line or vice versa.
             string symbolic_icon = "com.github.FontManager.FontManager-symbolic";
             var blank = new PlaceHolder(null, null, null, symbolic_icon) { hexpand = true, vexpand = true };
             main_stack.add_named(blank, "Blank");
@@ -179,7 +174,7 @@ namespace FontManager {
             main_stack.add_named(browse_pane, Mode.BROWSE.to_string());
 #if HAVE_WEBKIT
             google_fonts = new GoogleFonts.Catalog(settings);
-            main_stack.add_named(google_fonts, "GoogleFonts");
+            main_stack.add_named(google_fonts, Mode.GOOGLE_FONTS.to_string());
 #endif /* HAVE_WEBKIT */
             main_stack.add_named(prefs_pane, "Preferences");
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
