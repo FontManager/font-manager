@@ -78,8 +78,8 @@ namespace FontManager {
 
         public Object? item { get; set; default = null; }
         public PreviewTileSize size { get; set; default = PreviewTileSize.LARGE; }
-
-        public Gtk.Inscription preview { get; protected set; }
+        public Pango.AttrList? attrs { get; protected set; default = new Pango.AttrList(); }
+        public Gtk.Inscription? preview { get; protected set; default = null; }
 
         public FontPreviewTile () {
             widget_set_name(this, "FontManagerFontPreviewTile");
@@ -92,12 +92,19 @@ namespace FontManager {
                 hexpand = true,
                 vexpand = true
             };
+            attrs = new Pango.AttrList();
+            attrs.insert(Pango.attr_fallback_new(false));
+            attrs.insert(Pango.AttrSize.new(size.to_preview_size() * Pango.SCALE));
+            Pango.FontDescription font_desc = Pango.FontDescription.from_string("Sans");
+            attrs.insert(new Pango.AttrFontDesc(font_desc));
+            preview.set_attributes(attrs);
             set_child(preview);
             notify["item"].connect((pspec) => { on_item_set(); });
         }
 
         public void reset () {
             preview.set_text(null);
+            set_tooltip_text(null);
             set_size_request(size, size);
             return;
         }
@@ -112,13 +119,7 @@ namespace FontManager {
             preview.set_text(preview_text);
             Pango.FontDescription font_desc;
             font_desc = Pango.FontDescription.from_string(f.description);
-            Pango.AttrList attrs = new Pango.AttrList();
-            attrs.insert(Pango.attr_fallback_new(false));
-            attrs.insert(Pango.AttrSize.new(size.to_preview_size() * Pango.SCALE));
-            attrs.insert(new Pango.AttrFontDesc(font_desc));
-            preview.set_attributes(attrs);
-            // ??? : Without this unref attrs is leaked?
-            attrs.unref();
+            attrs.change(new Pango.AttrFontDesc(font_desc));
             return;
         }
 
@@ -150,7 +151,7 @@ namespace FontManager {
             if (container.visible)
                 container.set_visible(false);
             list = new Gtk.GridView(null, null) { hexpand = true, vexpand = true };
-            selection = new Gtk.SingleSelection(model) { autoselect = false };
+    selection = new Gtk.SingleSelection(model) { autoselect = false };
             container.set_child(list);
             container.set_visible(true);
             if (model.get_n_items() > 0)
@@ -461,5 +462,7 @@ namespace FontManager {
     }
 
 }
+
+
 
 

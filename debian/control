@@ -7,11 +7,12 @@ Build-Depends:
  meson (>= 0.46),
  libxml2-dev,
  libfreetype-dev,
- libfontconfig1-dev (>= 2.12),
+ libfontconfig-dev (>= 2.12),
  libglib2.0-dev (>= 2.62),
  libjson-glib-dev,
  libcairo2-dev,
  libgtk-4-dev (>= 4.12),
+ libadwaita-1-dev,
  libpango1.0-dev (>= 1.45),
  libsqlite3-dev,
  libgirepository1.0-dev,
@@ -28,12 +29,11 @@ Homepage: http://fontmanager.github.io/
 Package: font-manager
 Architecture: any
 Depends:
- font-manager-common,
- font-viewer,
- yelp,
- file-roller,
  ${misc:Depends},
- ${shlibs:Depends}
+ ${shlibs:Depends},
+ font-viewer,
+ file-roller,
+ yelp
 Suggests: nautilus-font-manager
 Description: Simple font management application for Gtk+ Desktop Environments
  Font Manager is intended to provide a way for average users to easily manage
@@ -45,7 +45,7 @@ Description: Simple font management application for Gtk+ Desktop Environments
 
 Package: font-manager-common
 Architecture: any
-Multi-Arch: same
+Multi-Arch: no
 Pre-Depends:
  ${misc:Pre-Depends}
 Depends:
@@ -58,9 +58,7 @@ Description: Common files required by font-manager and font-viewer
 
 Package: font-viewer
 Architecture: any
-Multi-Arch: foreign
 Depends:
- font-manager-common,
  ${shlibs:Depends},
  ${misc:Depends}
 Description: Full featured font file preview application for GTK+ Desktop Environments
@@ -72,8 +70,7 @@ Package: nautilus-font-manager
 Architecture: any
 Depends:
  font-viewer,
- nautilus (>= 3.0),
- libnautilus-extension1a,
+ ${shlibs:Depends},
  ${misc:Depends}
 Description: Nautilus extension for Font Manager
  .
@@ -83,8 +80,7 @@ Package: nemo-font-manager
 Architecture: any
 Depends:
  font-viewer,
- nemo (>= 3.0),
- libnemo-extension1,
+ ${shlibs:Depends},
  ${misc:Depends}
 Description: Nemo extension for Font Manager
  .
@@ -95,8 +91,7 @@ Package: thunar-font-manager
 Architecture: any
 Depends:
  font-viewer,
- thunar (>= 1.8),
- libthunarx-3-0,
+ ${shlibs:Depends},
  ${misc:Depends}
 Description: Thunar extension for Font Manager
  .

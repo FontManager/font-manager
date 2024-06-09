@@ -74,6 +74,7 @@ config.set('PREFIX', prefix)
 config.set('BINDIR', join_paths(prefix, 'bin'))
 config.set('LOCALEDIR', join_paths(prefix, datadir, 'locale'))
 config.set('SRCDIR', meson.current_build_dir())
+config.set('SYSCONFDIR', get_option('sysconfdir'))
 
 configure_file(input: 'config.h.meson', output: 'config.h', configuration: config)
 
@@ -124,7 +125,8 @@ summary(
         ' Translations ': get_option('enable-nls'),
         ' Unihan data ' : get_option('unihan'),
         ' API Documentation ': get_option('gtk-doc'),
-        ' Reproducible build ': get_option('reproducible')
+        ' Reproducible build ': get_option('reproducible'),
+        ' AppArmor Profile (unconfined) ' : get_option('app-armor')
     },
     section: '''Project options
     ''',
@@ -137,7 +139,8 @@ summary(
         ' bindir ': join_paths(prefix, get_option('bindir')),
         ' libdir ': join_paths(prefix, get_option('libdir'), meson.project_name()),
         ' libexecdir ': join_paths(prefix, get_option('libexecdir'), meson.project_name()),
-        ' datadir ': join_paths(prefix, datadir)
+        ' datadir ': join_paths(prefix, datadir),
+        ' sysconfdir ' : join_paths('/', get_option('sysconfdir'))
     },
     section: '''Directories
     '''

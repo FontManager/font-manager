@@ -127,7 +127,7 @@ namespace FontManager {
                             var data = new ProgressData(m, p, t);
                             data.print();
                         });
-                        stdout.printf("Installing Font Files\n");
+                        GLib.stdout.printf("%s\n", _("Installing Font Files…"));
                         installer.process_sync(filelist);
                         stdout.printf("\n");
                     }
@@ -284,7 +284,6 @@ namespace FontManager {
         }
 
         protected override void activate () {
-            // register_session = true;
             if (main_window == null) {
                 main_window = new MainWindow(settings);
                 add_window(main_window);
@@ -297,12 +296,9 @@ namespace FontManager {
             db.update_complete.connect(() => {
                 main_window.category_model.update_items();
                 main_window.select_first_category();
-                ThreadFunc <void> run_in_thread = () => {
-                    update_item_preview_text(available_fonts);
-                    main_window.browse_pane.queue_update();
-                };
-                new Thread <void> ("update_item_preview_text", (owned) run_in_thread);
+                update_item_preview_text(available_fonts);
                 Idle.add(() => {
+                    main_window.browse_pane.queue_update();
                     main_window.collection_model.reload();
                     return GLib.Source.REMOVE;
                 });
@@ -319,8 +315,6 @@ namespace FontManager {
         public new void quit () {
             foreach (string path in temp_files)
                 remove_directory(File.new_for_path(path));
-            /* Try to prevent noise during memcheck */
-            clear_application_fonts();
             base.quit();
             return;
         }

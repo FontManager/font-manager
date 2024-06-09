@@ -21,9 +21,11 @@ set -e
 case "$1" in
     configure)
         glib-compile-schemas /usr/share/glib-2.0/schemas
+        apparmor_parser -r /etc/apparmor.d/font-manager
     ;;
     abort-upgrade|abort-remove|abort-deconfigure)
         glib-compile-schemas /usr/share/glib-2.0/schemas
+        apparmor_parser -r /etc/apparmor.d/font-manager
     ;;
     *)
         echo "postinst called with unknown argument \`$1'" >&2

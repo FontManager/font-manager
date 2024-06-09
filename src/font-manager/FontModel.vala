@@ -27,9 +27,9 @@ namespace FontManager {
         public signal void items_updated ();
 
         public Type item_type { get; protected set; default = typeof(Object); }
+        public uint n_items { get { return get_n_items(); } }
         public Json.Array? entries { get; set; default = null; }
         public GenericArray <unowned Json.Object>? items { get; protected set; default = null; }
-
         public string? search_term { get; set; default = null; }
         public FontListFilter? filter { get; set; default = null; }
 
@@ -58,8 +58,9 @@ namespace FontManager {
         }
 
         public Object? get_item (uint position) {
-            if (items == null || get_n_items() < 1 || items[position] == null)
+            if (items == null || get_n_items() < 1 || position >= get_n_items())
                 return null;
+            return_val_if_fail(items[position] != null, null);
             Object retval = Object.new(item_type);
             retval.set("source-object", items[position], null);
             return retval;
@@ -136,7 +137,8 @@ namespace FontManager {
             uint n_items = get_n_items();
             items = null;
             items = new GenericArray <unowned Json.Object> ();
-            items_changed(0, n_items, 0);
+            if (n_items > 0)
+                items_changed(0, n_items, 0);
             if (entries != null) {
                 entries.foreach_element((array, index, node) => {
                     Json.Object item = node.get_object();

@@ -29,15 +29,25 @@ namespace FontManager {
 
         Binding? binding = null;
 
+        Pango.AttrList? attrs = null;
+
+        construct {
+            attrs = new Pango.AttrList();
+            attrs.insert(Pango.attr_fallback_new(false));
+            Pango.FontDescription font_desc = Pango.FontDescription.from_string("Sans");
+            attrs.insert(new Pango.AttrFontDesc(font_desc));
+            item_preview.set_attributes(attrs);
+        }
+
         protected override void reset () {
             if (binding != null)
                 binding.unbind();
-            while (binding is Binding)
+            if (binding is Binding)
                 binding.unref();
             binding = null;
             item_state.set("active", true, "visible", false, "sensitive", true, null);
             item_label.set("label", "", "attributes", null, null);
-            item_preview.set("text", "", "attributes", null, "visible", false, null);
+            item_preview.set("text", "", "visible", false, null);
             item_count.visible = true;
             item_count.set_label("");
             return;
@@ -62,14 +72,9 @@ namespace FontManager {
                 item_label.set_text(label);
             } else {
                 Pango.FontDescription font_desc = Pango.FontDescription.from_string(d);
-                Pango.AttrList attrs = new Pango.AttrList();
-                attrs.insert(Pango.attr_fallback_new(false));
-                attrs.insert(new Pango.AttrFontDesc(font_desc));
-                item_preview.set_attributes(attrs);
+                attrs.change(new Pango.AttrFontDesc(font_desc));
                 item_preview.set_text(label);
                 item_preview.set_visible(true);
-                // ??? : Without this unref attrs is leaked?
-                attrs = null;
             }
             return;
         }

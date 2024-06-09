@@ -286,7 +286,7 @@ font_manager_application_window_show_about (FontManagerApplicationWindow *self)
 
     gtk_show_about_dialog(GTK_WINDOW(self),
                           "program-name", _("Font Manager"),
-                          "logo-icon-name", "font-x-generic",
+                          "logo-icon-name", "com.github.FontManager.FontManager",
                           "version", PACKAGE_VERSION,
                           "copyright", "Copyright © 2009-2024 Jerry Casiano",
                           "comments",  _("Simple font management for GTK+ desktop environments"),
@@ -333,4 +333,5 @@ font_manager_application_window_new (GSettings *settings)
 {
     return g_object_new(FONT_MANAGER_TYPE_APPLICATION_WINDOW, "settings", settings, NULL);
 }
+
 

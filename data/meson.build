@@ -31,11 +31,6 @@ foreach path: service
         icon_dir = join_paths(datadir, 'icons', 'hicolor', 'scalable', 'apps')
         install_data(icon, install_dir: icon_dir, rename: '@0@.svg'.format(path))
     endforeach
-    symbolic_icons = [ 'com.github.FontManager.FontManager-symbolic.svg' ]
-    foreach icon: symbolic_icons
-        symbolic_icon_dir = join_paths(datadir, 'icons', 'hicolor', 'symbolic', 'apps')
-        install_data(icon, install_dir: symbolic_icon_dir, rename: '@0@.svg'.format(path))
-    endforeach
 
     i18n.merge_file(
         input: configure_file(
@@ -97,6 +92,13 @@ if get_option('manager')
         install_data('com.github.FontManager.FontManager.SearchProvider.ini',
         	     install_dir: search_provider_dir)
     endif
+
+    if get_option('app-armor')
+    	aa_config_dir = join_paths(get_option('sysconfdir'), 'apparmor.d')
+    	aa_profile = join_paths(meson.current_build_dir(), 'font-manager.aap')
+    	configure_file(input: 'font-manager.aap.in', output: 'font-manager.aap', configuration: config)
+		install_data(aa_profile, install_dir: aa_config_dir, rename: 'font-manager')
+	endif
 
 endif
 

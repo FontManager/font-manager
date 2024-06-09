@@ -9,7 +9,25 @@ DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
 override_dh_auto_configure:
 	dh_auto_configure -- \
 		--buildtype=release \
+		-Dapp-armor=true \
+		-Dadwaita=true \
 		-Dnautilus=true \
 		-Dnemo=true \
 		-Dthunar=true \
 		-Dreproducible=true
+
+override_dh_shlibdeps:
+	dh_installdeb
+	dpkg-shlibdeps -Tdebian/font-manager-common.substvars \
+		debian/font-manager-common/usr/lib/*/font-manager/*
+	dpkg-shlibdeps -Tdebian/font-manager.substvars \
+		debian/font-manager/usr/bin/font-manager
+	dpkg-shlibdeps -Tdebian/font-viewer.substvars \
+		debian/font-viewer/usr/libexec/font-manager/font-viewer
+	dpkg-shlibdeps -Tdebian/nautilus-font-manager.substvars \
+		debian/nautilus-font-manager/usr/lib/*/nautilus/extensions*/*
+	dpkg-shlibdeps -Tdebian/nemo-font-manager.substvars \
+		debian/nemo-font-manager/usr/lib/*/nemo/extensions*/*
+	dpkg-shlibdeps -Tdebian/thunar-font-manager.substvars \
+		debian/thunar-font-manager/usr/lib/*/thunar*/*
+

@@ -1,6 +1,6 @@
 /* font-manager-place-holder.c
  *
- * Copyright (C) 2009-2023 Jerry Casiano
+ * Copyright (C) 2009-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -242,7 +242,7 @@ font_manager_place_holder_init (FontManagerPlaceHolder *self)
     g_return_if_fail(self != NULL);
     gtk_widget_set_opacity(GTK_WIDGET(self), 0.75);
     self->icon = gtk_image_new();
-    gtk_image_set_pixel_size(GTK_IMAGE(self->icon), 96);
+    gtk_image_set_pixel_size(GTK_IMAGE(self->icon), 128);
     self->title = gtk_label_new(NULL);
     set_title_attributes(self->title);
     self->subtitle = gtk_label_new(NULL);

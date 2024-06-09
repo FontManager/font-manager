@@ -83,11 +83,12 @@ BUILD_DEPENDS = \
 	meson \
 	libxml2-dev \
 	libfreetype-dev \
-	libfontconfig1-dev \
+	libfontconfig-dev \
 	libglib2.0-dev \
 	libjson-glib-dev \
 	libcairo2-dev \
 	libgtk-4-dev \
+	libadwaita-1-dev \
 	libpango1.0-dev \
 	libsqlite3-dev \
 	libgirepository1.0-dev \
