@@ -122,7 +122,7 @@ namespace FontManager {
         double hor_content_pos = 36.0;
 
         public Paned (GLib.Settings? settings) {
-            this.settings = settings;
+            Object(settings: settings);
             // Necessary to get an acceptable initial size for pane layout
             sidebar_area.set_size_request(-1, 250);
             list_area.set_size_request(-1, 250);

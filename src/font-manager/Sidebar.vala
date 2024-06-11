@@ -86,6 +86,7 @@ namespace FontManager {
         public FontListFilter? filter { get; set; default = null; }
         public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
+        public SortType sort_type { get; set; default = SortType.NONE; }
 
         public CategoryListModel category_model {
             get {
@@ -103,6 +104,11 @@ namespace FontManager {
 
         [GtkChild] unowned CategoryListView categories;
         [GtkChild] unowned CollectionListView collections;
+        [GtkChild] unowned Gtk.MenuButton collection_sort_type;
+
+        static construct {
+            install_property_action("sort-type", "sort-type");
+        }
 
         public Sidebar () {
             controls = new SidebarControls();
@@ -111,12 +117,14 @@ namespace FontManager {
             BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
             bind_property("disabled-families", categories, "disabled-families", flags);
             bind_property("disabled-families", collections, "disabled-families", flags);
+            bind_property("sort-type", collection_model, "sort-type", BindingFlags.BIDIRECTIONAL);
             categories.selection_changed.connect(on_category_changed);
             collections.selection_changed.connect(on_collection_changed);
             controls.add_selected.connect(on_add_selected);
             controls.remove_selected.connect(on_remove_selected);
             controls.edit_selected.connect(on_edit_selected);
             categories.selection.select_item(0, true);
+            collection_sort_type.set_menu_model(get_sort_type_menu_model());
             categories.sorted = ((CollectionListModel) collections.model).get_full_contents();
             collections.changed.connect(() => {
                 changed();
@@ -126,6 +134,11 @@ namespace FontManager {
 
         public void select_first_row () {
             categories.select_item(0);
+            return;
+        }
+
+        public void update_collections () {
+            collections.queue_update();
             return;
         }
 
@@ -181,7 +194,7 @@ namespace FontManager {
         public signal void changed();
 
         public Object? selected_item { get; set; default = null; }
-
+        public GLib.Settings? settings { get; protected set; default = null; }
         public FontListFilter? filter { get; set; default = null; }
         public Json.Array? available_fonts { get; set; default = null; }
         public Reject? disabled_families { get; set; default = null; }
@@ -212,7 +225,8 @@ namespace FontManager {
         Sidebar sidebar;
         OrthographyList orthographies;
 
-        public SidebarStack () {
+        public SidebarStack (GLib.Settings? settings) {
+            Object(settings: settings);
             stack = new Gtk.Stack() {
                 transition_duration = 500,
                 transition_type = Gtk.StackTransitionType.OVER_RIGHT_LEFT
@@ -230,10 +244,17 @@ namespace FontManager {
             bind_property("selected-item", orthographies, "selected-item", flags);
             orthographies.bind_property("selected-orthography", this, "selected-orthography", flags);
             sidebar.changed.connect(() => { changed(); });
+            if (settings != null)
+                settings.bind("sort-type", collection_model, "sort-type", SettingsBindFlags.DEFAULT);
         }
 
         public void select_first_category () {
             sidebar.select_first_row();
+            return;
+        }
+
+        public void update_collections () {
+            sidebar.update_collections();
             return;
         }
 

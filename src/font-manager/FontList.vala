@@ -351,6 +351,8 @@ namespace FontManager {
 
     public class FontListView : BaseFontListView {
 
+        public signal void collection_changed ();
+
         public UserActionModel? user_actions { get; set; default = null; }
         public UserSourceModel? user_sources { get; set; default = null; }
 
@@ -371,6 +373,7 @@ namespace FontManager {
 
         construct {
             widget_set_name(list, "FontManagerFontListView");
+            ((Gtk.ListView) list).set_enable_rubberband(true);
             selected_items = new GenericArray <Object> ();
             Gtk.Gesture right_click = new Gtk.GestureClick() {
                 button = Gdk.BUTTON_SECONDARY
@@ -414,8 +417,7 @@ namespace FontManager {
 
         protected void on_remove_clicked () requires (filter is Collection) {
             var collection = (Collection) filter;
-            selected_items.foreach((i) => { collection.families.remove(((Family) i).family); });
-            collection.changed();
+            selected_items.foreach((i) => { collection.remove(((Family) i).family); });
             uint i = current_selection;
             while (i > 0 && i >= treemodel.get_n_items() - 1) i--;
             Idle.add(() => {
@@ -423,6 +425,7 @@ namespace FontManager {
                 update_remove_sensitivity();
                 return GLib.Source.REMOVE;
             });
+            collection_changed();
             return;
         }
 

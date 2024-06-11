@@ -20,12 +20,6 @@
 
 namespace FontManager {
 
-    public enum SortType {
-        NAME,
-        SIZE,
-        NONE
-    }
-
     public struct MenuEntry {
         string action_name;
         string display_name;

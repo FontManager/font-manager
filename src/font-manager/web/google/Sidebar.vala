@@ -1,6 +1,6 @@
 /* Sidebar.vala
  *
- * Copyright (C) 2020-2023 Jerry Casiano
+ * Copyright (C) 2020-2024 Jerry Casiano
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,7 +57,7 @@ namespace FontManager.GoogleFonts {
         public StringSet categories { get; private set; }
         public StringSet language_support { get; private set; }
 
-        [GtkChild] unowned Gtk.DropDown sort_order;
+        [GtkChild] unowned Gtk.DropDown sort_type;
         [GtkChild] unowned Gtk.Grid category_grid;
         [GtkChild] unowned Gtk.ListBox language_list;
 
@@ -88,8 +88,8 @@ namespace FontManager.GoogleFonts {
             bind_property("n-variations", filter, "n-variations", flags);
             bind_property("categories", filter, "categories", flags);
             bind_property("language-support", filter, "language-support", flags);
-            sort_order.notify["selected"].connect(() => {
-                sort_changed(sort_options[sort_order.selected]);
+            sort_type.notify["selected"].connect(() => {
+                sort_changed(sort_options[sort_type.selected]);
             });
         }
 

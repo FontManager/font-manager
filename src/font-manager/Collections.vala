@@ -24,27 +24,37 @@ namespace FontManager {
 
     public class CollectionListModel : FontListFilterModel {
 
+        public signal void changed ();
+
+        public SortType sort_type { get; set; default = SortType.NONE; }
         public Reject? disabled_families { get; set; default = null; }
         public StringSet? available_families { get; set; default = null; }
-
-        public signal void changed ();
 
         construct {
             available_families = list_available_font_families();
             load();
-            changed.connect(() => { save(); });
+            notify["sort-type"].connect_after(() => {
+                Idle.add(() => { on_sort_type_changed(); return GLib.Source.REMOVE; });
+            });
         }
 
-        public void reload () {
+        void on_sort_type_changed () {
+            if (items == null)
+                return;
+            var tmp = items;
             clear();
-            load();
-            return;
-        }
-
-        public void update_items () {
-            available_families = list_available_font_families();
-            foreach (var item in items)
-                item.changed();
+            if (sort_type == SortType.NAME)
+                tmp.sort_with_data((a, b) => { return natural_sort(a.name, b.name); });
+            else if (sort_type == SortType.SIZE)
+                tmp.sort_with_data((a, b) => {
+                    int a_size = a.size;
+                    int b_size = b.size;
+                    return a_size == b_size ? 0 : a_size < b_size ? 1 : -1;
+                });
+            else
+                tmp.sort_with_data((a, b) => { return filter_sort(a, b); });
+            items = tmp;
+            items_changed(0, 0, get_n_items());
             return;
         }
 
@@ -81,7 +91,7 @@ namespace FontManager {
         void add_from_json_node (Json.Node node) {
             Object collection = Json.gobject_deserialize(typeof(Collection), node);
             add_item((Collection) collection);
-            ((Collection) collection).changed.connect(() => { changed(); });
+            ((Collection) collection).changed.connect(() => { save(); changed(); });
             return;
         }
 
@@ -193,10 +203,6 @@ namespace FontManager {
 
         CollectionRenamePopover? rename_popover = null;
 
-        ~ CollectionListView () {
-            ((CollectionListModel) model).save();
-        }
-
         static construct {
             var file_roller = new ArchiveManager();
             if (file_roller.available)
@@ -217,7 +223,7 @@ namespace FontManager {
             add_drop_target(listview);
             init_context_menu();
             selection_changed.connect_after(update_context_menu);
-            collection_model.changed.connect(() => { changed(); });
+            collection_model.changed.connect(() => { changed(); queue_update(); });
             clicked_area = Gdk.Rectangle();
             Gtk.Gesture click = new Gtk.GestureClick() {
                 button = Gdk.BUTTON_PRIMARY
@@ -562,9 +568,11 @@ namespace FontManager {
                     new_families.add(((Family) object).family);
             }
             collection.add(new_families);
-            ((CollectionListModel) model).save();
-            queue_update();
-            changed();
+            Idle.add(() => {
+                changed();
+                queue_update();
+                return GLib.Source.REMOVE;
+            });
             return true;
         }
 

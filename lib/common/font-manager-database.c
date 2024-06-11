@@ -586,7 +586,7 @@ update_available_fonts (DatabaseSyncData *data,
             g_return_if_fail(error == NULL || *error == NULL);
             font_manager_database_end_query(db);
             if (font_manager_string_set_contains(known_files, filepath)) {
-                g_debug("Database.update_available_fonts : ignoring known font path : %i : %s", index, filepath);
+                /* g_debug("Database.update_available_fonts : ignoring known font path : %i : %s", index, filepath); */
                 continue;
             } else {
                 g_debug("Database.update_available_fonts : adding new font path : %i : %s", index, filepath);

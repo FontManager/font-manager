@@ -50,7 +50,7 @@ namespace FontManager {
 
         public MainPane (GLib.Settings? settings) {
             base(settings);
-            sidebar = new SidebarStack();
+            sidebar = new SidebarStack(settings);
             fontlist = new FontListView();
             preview = new PreviewPane();
             compare = new ComparePane(settings);
@@ -78,6 +78,7 @@ namespace FontManager {
             notify["mode"].connect(on_mode_changed);
             fontlist.selection_changed.connect(on_selection_changed);
             sidebar.changed.connect(() => { fontlist.queue_update(); });
+            fontlist.collection_changed.connect(() => { sidebar.update_collections(); });
             preview.restore_state(settings);
         }
 

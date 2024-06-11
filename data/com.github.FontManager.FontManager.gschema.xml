@@ -29,6 +29,12 @@
         <value nick="google-fonts" value="3" />
     </enum>
 
+    <enum id="com.github.FontManager.FontManager.SortType">
+        <value nick="name" value="0" />
+        <value nick="size" value="1" />
+        <value nick="none" value="2" />
+    </enum>
+
     <enum id="com.github.FontManager.FontManager.PreviewPageMode">
         <value nick="preview" value="0" />
         <value nick="waterfall" value="1" />
@@ -57,6 +63,12 @@
             <default>"browse"</default>
             <summary>Mode</summary>
             <description>Possible modes are Manage, Browse and Compare.</description>
+        </key>
+
+        <key name="sort-type" enum="com.github.FontManager.FontManager.SortType">
+            <default>"none"</default>
+            <summary>Sort Type</summary>
+            <description>Default sort type. Only applied to collections at this time.</description>
         </key>
 
         <key name="wide-layout" type="b">

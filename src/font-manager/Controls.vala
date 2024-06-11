@@ -158,6 +158,49 @@ namespace FontManager {
         return (GLib.MenuModel) section;
     }
 
+    public enum SortType {
+
+        NAME,
+        SIZE,
+        NONE,
+        N_SORT_OPTIONS;
+
+        public string to_translatable_string () {
+            switch (this) {
+                case NAME:
+                    return _("Name");
+                case SIZE:
+                    return _("Size");
+                default:
+                    return _("None");
+            }
+        }
+
+        public string to_string () {
+            switch (this) {
+                case NAME:
+                    return "name";
+                case SIZE:
+                    return "size";
+                default:
+                    return "none";
+            }
+        }
+
+    }
+
+    GLib.MenuModel get_sort_type_menu_model () {
+        var section = new GLib.Menu();
+        EnumClass mode_class = ((EnumClass) typeof(SortType).class_ref());
+        for (int i = 0; i < SortType.N_SORT_OPTIONS; i++) {
+            string nick = mode_class.get_value(i).value_nick;
+            var item = new MenuItem(((SortType) i).to_translatable_string(), null);
+            item.set_action_and_target("sort-type", "s", nick);
+            section.append_item(item);
+        }
+        return (GLib.MenuModel) section;
+    }
+
     void toggle_spinner (Gtk.Spinner spinner, Gtk.Button button, string? icon_name = null) {
         if (icon_name == null) {
             spinner.start();

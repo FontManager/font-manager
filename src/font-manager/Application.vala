@@ -306,7 +306,7 @@ namespace FontManager {
                 return get_default_application().main_window.progress_update(data);
             });
             main_window.present();
-            reload();
+            Idle.add(() => { reload(); return GLib.Source.REMOVE; });
             return;
         }
 

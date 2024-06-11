@@ -296,6 +296,7 @@ namespace FontManager {
             uint child_size = child_model.get_n_items();
             style_drop_down.set_model(child_model);
             style_drop_down.set_show_arrow(child_size > 1);
+            style_drop_down.set_sensitive(child_size > 1);
             // Index of default variant may be out of range due to filtering. Select the first
             // available option if index is larger than model it *should* be the right one.
             style_drop_down.set_selected(default_index < child_size ? default_index : 0);

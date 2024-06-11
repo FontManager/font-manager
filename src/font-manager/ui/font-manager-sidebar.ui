@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
   <requires lib="gtk" version="4.10"/>
+  <requires lib="gio" version="2.0"/>
   <template class="FontManagerSidebar" parent="GtkBox">
     <property name="css-classes">view</property>
     <property name="orientation">vertical</property>
@@ -25,10 +26,13 @@
                         <property name="margin-end">6</property>
                         <property name="margin-start">6</property>
                         <property name="valign">center</property>
+                        <child>
+                          <object class="FontManagerCategoryListView" id="categories"/>
+                        </child>
                         <child type="label">
                           <object class="GtkLabel">
                             <property name="halign">center</property>
-                            <property name="label" translatable="1">Categories</property>
+                            <property name="label" translatable="yes">Categories</property>
                             <property name="margin-bottom">6</property>
                             <property name="margin-end">12</property>
                             <property name="margin-start">12</property>
@@ -39,9 +43,6 @@
                               <attribute name="scale" value="1.1000000000000001"/>
                             </attributes>
                           </object>
-                        </child>
-                        <child>
-                            <object class="FontManagerCategoryListView" id="categories"/>
                         </child>
                       </object>
                     </property>
@@ -82,7 +83,7 @@
                         <child type="label">
                           <object class="GtkLabel">
                             <property name="halign">center</property>
-                            <property name="label" translatable="1">Smart Collections</property>
+                            <property name="label" translatable="yes">Smart Collections</property>
                             <property name="margin-bottom">6</property>
                             <property name="margin-end">12</property>
                             <property name="margin-start">12</property>
@@ -130,33 +131,47 @@
                         <property name="expanded">1</property>
                         <property name="focusable">1</property>
                         <property name="hexpand">1</property>
+                        <property name="label-widget">
+                          <object class="GtkCenterBox">
+                            <property name="hexpand">True</property>
+                            <child type="end">
+                              <object class="GtkMenuButton" id="collection_sort_type">
+                                <property name="has-frame">False</property>
+                                <property name="icon-name">view-sort-descending-symbolic</property>
+                                <style>
+                                  <class name="dim-label"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child type="start">
+                              <object class="GtkLabel">
+                                <property name="label" translatable="yes">Collections</property>
+                                <property name="margin-bottom">6</property>
+                                <property name="margin-end">12</property>
+                                <property name="margin-start">12</property>
+                                <property name="margin-top">6</property>
+                                <property name="opacity">0.74901960784313726</property>
+                                <attributes>
+                                  <attribute name="weight" value="medium"/>
+                                  <attribute name="scale" value="1.1000000000000001"/>
+                                </attributes>
+                              </object>
+                            </child>
+                          </object>
+                        </property>
                         <property name="margin-end">6</property>
                         <property name="margin-start">6</property>
                         <property name="valign">center</property>
                         <property name="vexpand">1</property>
-                        <child type="label">
-                          <object class="GtkLabel">
-                            <property name="label" translatable="1">Collections</property>
-                            <property name="margin-bottom">6</property>
-                            <property name="margin-end">12</property>
-                            <property name="margin-start">12</property>
-                            <property name="margin-top">6</property>
-                            <property name="opacity">0.74901960784313726</property>
-                            <attributes>
-                              <attribute name="weight" value="medium"/>
-                              <attribute name="scale" value="1.1000000000000001"/>
-                            </attributes>
-                          </object>
-                        </child>
                         <child>
-                            <object class="FontManagerCollectionListView" id="collections"/>
+                          <object class="FontManagerCollectionListView" id="collections"/>
                         </child>
                       </object>
                     </property>
                     <property name="height-request">80</property>
-                    <property name="selectable">0</property>
                     <property name="margin-end">6</property>
                     <property name="margin-start">6</property>
+                    <property name="selectable">0</property>
                     <property name="width-request">100</property>
                   </object>
                 </child>
@@ -174,4 +189,3 @@
     </child>
   </template>
 </interface>
-

@@ -46,7 +46,6 @@ namespace FontManager {
                 }
             });
             notify["disabled-families"].connect(() => {
-                // set_active_from_fonts();
                 foreach (var child in children) {
                     BindingFlags flags = BindingFlags.DEFAULT | BindingFlags.SYNC_CREATE;
                     bind_property("disabled-families", child, "disabled-families", flags);
@@ -69,6 +68,13 @@ namespace FontManager {
             return;
         }
 
+        public void remove (string family) {
+            families.remove(family);
+            set_active_from_fonts();
+            changed();
+            return;
+        }
+
         public void add (StringSet new_families) {
             families.add_all(new_families);
             set_active_from_fonts();
@@ -84,17 +90,7 @@ namespace FontManager {
         }
 
         public void set_active_from_fonts () {
-            if (available_families == null || disabled_families == null)
-                return;
-            active = false;
-            if (families.size > 0) {
-                foreach (string family in families) {
-                    if (family in available_families && !(family in disabled_families)) {
-                        active = true;
-                        break;
-                    }
-                }
-            }
+            active = (families.size > 0);
             children.foreach((child) => { child.set_active_from_fonts(); });
             return;
         }
