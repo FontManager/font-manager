@@ -28,19 +28,20 @@ namespace FontManager {
         GLib.Cancellable? cancellable = null;
         ProgressCallback? progress = null;
 
-        static Database? db = null;
+        // static Database? db = null;
 
-        ~ DatabaseProxy () {
-            while (db is Database)
-                db.unref();
-            db = null;
-        }
+        // ~ DatabaseProxy () {
+        //     while (db is Database)
+        //         db.unref();
+        //     db = null;
+        // }
 
         public static Database get_default_db () {
-            if (db == null)
-                db = new Database();
-            db.ref();
-            return db;
+            // if (db == null)
+            //     db = new Database();
+            // db.ref();
+            // return db;
+            return new Database();
         }
 
         public void set_cancellable (Cancellable? cancellable) {
@@ -65,8 +66,8 @@ namespace FontManager {
                     try {
                         update_database.end(res);
                         update_complete();
-                        if (db != null)
-                            db = new Database();
+                        // if (db != null)
+                        //     db = new Database();
                     } catch (Error e) {
                         critical(e.message);
                     }

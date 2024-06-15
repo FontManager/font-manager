@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.14"/>
+  <requires lib="gtk" version="4.12"/>
   <template class="FontManagerFontListControls" parent="GtkBox">
     <property name="valign">start</property>
     <child>

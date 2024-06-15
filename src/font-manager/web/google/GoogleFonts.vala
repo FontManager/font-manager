@@ -42,6 +42,13 @@ namespace FontManager.GoogleFonts {
         NetworkMonitor network_monitor;
         PlaceHolder placeholder;
         PreviewPage preview;
+        FontListView fontlist;
+
+        static construct {
+            install_action("focus-search", null, (Gtk.WidgetActionActivateFunc) focus_search_entry);
+            Gdk.ModifierType mode_mask = Gdk.ModifierType.CONTROL_MASK;
+            add_binding_action(Gdk.Key.F, mode_mask, "focus-search", null);
+        }
 
         public Catalog (GLib.Settings? settings) {
             base(settings);
@@ -52,7 +59,7 @@ namespace FontManager.GoogleFonts {
             if (initialized)
                 return;
             var sidebar = new Sidebar();
-            var fontlist = new FontListView();
+            fontlist = new FontListView();
             preview = new PreviewPage();
             set_sidebar_widget(sidebar);
             set_list_widget(fontlist);
@@ -76,6 +83,16 @@ namespace FontManager.GoogleFonts {
                 update_placeholder();
             preview.restore_state(settings);
             initialized = true;
+            return;
+        }
+
+        void focus_search_entry (Gtk.Widget widget, string? action, Variant? parameter) {
+            fontlist.focus_search_entry();
+            return;
+        }
+
+        public void select_first_font () {
+            fontlist.select_item(0);
             return;
         }
 

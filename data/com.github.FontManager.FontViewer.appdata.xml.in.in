@@ -2,7 +2,8 @@
 <!-- Copyright (C) 2009-2024 Jerry Casiano -->
 <component type="desktop-application">
 
-    <id>com.github.FontManager.FontViewer</id>
+    <id>com.github.FontManager.FontViewer</id>v
+    <developer_name>Font Manager project</developer_name>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0+</project_license>
     <update_contact>JerryCasiano_AT_gmail.com</update_contact>
@@ -21,11 +22,6 @@
         <kudo>ModernToolkit</kudo>
     </kudos>
 
-    <!--
-    XXX : Specification conflicts with validation ?
-    <icon type="stock">preferences-desktop-font</icon>
-    -->
-
     <launchable type="desktop-id">com.github.FontManager.FontViewer.desktop</launchable>
 
     <categories>
@@ -36,7 +32,7 @@
 
     <provides>
         <binary>font-viewer</binary>
-        <dbus>org.github.FontManager.font-viewer</dbus>
+        <dbus>com.github.FontManager.FontViewer</dbus>
     </provides>
 
     <screenshots>

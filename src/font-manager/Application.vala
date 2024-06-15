@@ -299,6 +299,7 @@ namespace FontManager {
                     main_window.browse_pane.queue_update();
                 Idle.add(() => {
                     main_window.category_model.update_items();
+                    main_window.select_first_font();
                     return GLib.Source.REMOVE;
                 });
             });

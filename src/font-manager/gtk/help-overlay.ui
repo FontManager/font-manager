@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface>
-  <requires lib="gtk+" version="3.22"/>
+  <requires lib="gtk+" version="4.12"/>
   <object class="GtkShortcutsWindow" id="help_overlay">
     <property name="modal">1</property>
     <child>
@@ -40,6 +40,13 @@
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;f</property>
+                <property name="title" translatable="yes">Focus search entry</property>
+                <property name="visible">1</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;Ctrl&gt;r</property>
                 <property name="title" translatable="yes">Reload</property>
                 <property name="visible">1</property>
@@ -48,6 +55,13 @@
             <child>
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;Ctrl&gt;q</property>
+                <property name="title" translatable="yes">Quit the application</property>
+                <property name="visible">1</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;w</property>
                 <property name="title" translatable="yes">Quit the application</property>
                 <property name="visible">1</property>
               </object>
@@ -76,6 +90,13 @@
               <object class="GtkShortcutsShortcut">
                 <property name="accelerator">&lt;Ctrl&gt;3</property>
                 <property name="title" translatable="yes">Switch to Compare mode</property>
+                <property name="visible">1</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="accelerator">&lt;Ctrl&gt;4</property>
+                <property name="title" translatable="yes">Switch to Google Fonts mode</property>
                 <property name="visible">1</property>
               </object>
             </child>

@@ -1,0 +1,268 @@
+0.8.9 -> 0.9.0
+- Port to GTK 4
+- Add option to sort collections by name or size - Issue #297
+- Improve search to include variations and partial matches - Issue #316
+- Add editable preview mode to Google Fonts preview pane - Issue #250
+- Update vendor list
+
+0.8.8 -> 0.8.9
+
+- Bumps libsoup version to 3.0 - Issue #343
+- Fix build failures with Vala >= 0.56.17 - Issue #355
+- Fix failure during copy of font files on export
+- Fix reversed order of font substitutions - Issue #351
+- Update Unicode data to version 15.1.0 - Issue #345
+- Don't disable Fontconfig home, avoids warnings from library
+
+0.8.7 -> 0.8.8
+
+- Bumps Fontconfig minimum version to 2.12
+- Adds options for Waterfall display and sizing - Issue #230
+- Enables basic support for Emoji flag sequences - Issue #109
+- Fixes build failure with GCC 11 - Issue #240
+- Fixes warnings generated when double clicking an item in the fontlist - Issue #248
+- Fixes warnings generated when an unknown language is encountered - Google Fonts Catalog - Issue #249
+- Allows toggling the state of multiple families in the fontlist - Issue #261
+- Updates vendor list
+- Includes latest translation updates
+
+0.8.6 -> 0.8.7
+
+- Fixes rendering issues with Pango > 1.47 - Issue #213
+- Fixes missing desktop settings with GNOME 40 - Issue #215
+- Fixes missing substitution target family names - Issue #216
+- Restore font list positions when switching filters and after drag and drop - Issue #220
+- Adds a "rename" entry to collections context menu - Suggested in Issue #220
+- Switches to using symbolic icons in sidebar for consistency
+- Limits Waterfall preview to 48pt to improve application responsiveness with large font collections
+- Adds a preference to allow setting maximum Waterfall preview point size
+- Update vendor list
+- Include latest translation updates
+
+0.8.5 -> 0.8.6
+
+- Fix GSettings crash with GNOME 40 due to missing "antialias" setting
+
+0.8.4 -> 0.8.5
+
+- Fix FTBFS with Vala >= 0.52
+
+0.8.3 -> 0.8.4
+
+- Fix a bug where most categories fail to load on first run.
+- Move to a more traditional sidebar layout - Issue #59
+- Make insensitive controls more consistent across different areas
+- Fix dbus method signature in file manager extensions
+- Fix infinite loop triggered by listing contents of collections which contain children
+- Save / Restore state for Google Fonts preview pane
+- Fix initial preview text in Font Viewer schema
+- Add all currently selected fonts to comparison when add button is clicked - Issue #170
+
+0.8.2 -> 0.8.3
+
+- Fixes an issue where if a network connection is not available at startup
+  Google Fonts information will never be updated. Flatpak builds hit this issue
+  everytime. Regular installations can simply restart to work around this bug.
+
+0.8.1 -> 0.8.2
+
+- Revert change incompatible with older Vala versions
+- Include latest translation updates
+
+0.8.0 -> 0.8.1
+
+- Make WebKit and libsoup optional - #137
+
+- Fix issue when building with --buildtype=release - #136
+
+- Fix GF preview issue due to use of localized values in html - #135 / #138
+
+- Fix crash when downloading fonts - #151
+
+- Translation updates and bugfixes thanks to @PF4Public - #144
+
+0.7.9 -> 0.8.0
+
+- Fix FTBFS with Vala 0.50+ - #134
+
+- Adds Google Fonts integration - #54
+
+- Requires WebKitGtk and libsoup
+
+- Allow saving compare lists contents
+
+- Add GNOME Shell search provider
+
+- Update Unicode data to 13.0
+
+- Update vendor data
+
+0.7.8 -> 0.7.9
+
+- Fixes build failures with Vala 0.50
+
+- Restore Thunar extension - #94
+
+- Added Dutch translation - thanks to @Vistaus
+
+- Closes #48 - Allow users to create custom actions
+
+- Adds install menu item to extensions
+
+0.7.7 -> 0.7.8
+
+- Closes #122 - Various changes related to Flatpak packaging.
+
+- Fix incorrect font being added to comparison - #124
+
+- Filter out legacy fonts which are no longer suported by newer Pango versions.
+
+- Updates / fixes to translations ( #105, #117 )
+
+- Build system improvements
+
+0.7.6 -> 0.7.7
+
+- Fix file manager crash caused by extensions
+
+0.7.5 -> 0.7.6
+
+- Add search to character map
+
+- Add zoom window to character map on right click
+
+- Add fsType information to license pane
+
+- Add grid view to browse mode
+
+- Add context info / help to preference panes
+
+- Display progress during database updates
+
+- Update unicode data to version 12.0.0
+
+- Update translations
+
+- Drop use of Python for file manager extensions
+
+- Closes Issue # 96
+
+    Fix build failure / crash with newer versions of Vala
+
+- Closes Issue # 75
+
+    Prefer family and style from name table and properly deal with their encoding
+
+- Addresses Issue # 99
+
+    Add Import / Export for user data
+
+- Addresses Issue # 102
+
+    Searches starting with : will filter based on character
+
+
+0.7.4 -> 0.7.5
+
+- Require Vala >= 0.42
+
+- Switch to Meson build system
+
+- Use GtkBuilder templates as much as possible
+
+- Fix inoperative desktop font preference controls
+
+- Add language filter to default categories
+
+
+0.7.3 -> 0.7.4
+
+- Drop dependency on gucharmap library.
+
+    Gucharmap is no longer in active development, and while the developers
+    were receptive to changes, our changes are so invasive that they wouldn't
+    make much sense upstream.
+
+- Drop dependency on Gee library
+
+- Drop Intltool
+
+- Determine whether file-roller is available at runtime.
+
+    --with-file-roller flag dropped.
+
+- Fixed a crash that occurred when non font files were dropped onto preview areas.
+
+- Added filetype to property pane
+
+- Added designer/designer url to property pane
+
+- Added orthography recognition based on the work done for Fontaine by Edward H. Trager
+
+- Searches starting with / will filter based on filepath
+
+- Added preference pane for Gnome desktop settings
+
+- Added GtkShortcutsWindow
+
+- Updated vendor list
+
+- Added option to enable/disable GTK+ animations
+
+- Added option to prefer dark theme variant if available
+
+- Added custom preview entry to Browse mode
+
+- Added custom preview entry to Compare mode
+
+- Closes Issue #12
+
+    Added font substitution preference pane.
+
+- Closes Issue #14
+
+    Added some help documentation.
+
+- Closes Issue #16
+
+    Character map now only displays those codepoints which are present in selected font.
+    For fonts which do not support Latin, use a preview string based on best supported
+    orthography or generate a random preview based on available glyphs.
+
+- Addresses Issue #31
+
+    Make headerbar area more consistent with other Gtk+ applications.
+
+- Closes Issue #40
+
+- Closes Issue #42 - Partially addresses Issue #48
+
+    Added "Copy Location" and "Show in Folder" entries to the font list context menu.
+
+- Partially addresses Issue #48
+
+    Added "Copy to.." and "Compress..." entries to the collection list context menu.
+
+- Addresses Issue #50
+
+    Force sidebar content to stay in place rather than slide out of view.
+
+- Closes Issue #51
+
+    Hide non-matching search results.
+
+- Closes Issue #52
+
+    Enable "next-match", "previous-match" and "activate" signals for search.
+
+- Closes Issue #53
+
+    Match search term anywhere in family name.
+
+- Closes Issue #57
+
+    No longer applies to current design.
+
+- Closes Issue #64
+
+    Ensure "C" locale is used when saving double values to configuration files.

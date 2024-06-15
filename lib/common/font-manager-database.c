@@ -352,10 +352,6 @@ font_manager_database_initialize (FontManagerDatabase *self,
     g_return_if_fail(FONT_MANAGER_IS_DATABASE(self));
     g_return_if_fail(error == NULL || *error == NULL);
 
-    sqlite3_shutdown();
-    g_warn_if_fail(sqlite3_config(SQLITE_CONFIG_SERIALIZED) == SQLITE_OK);
-    sqlite3_initialize();
-
     bool db_exists = font_manager_exists(self->file);
     int CURRENT_VERSION = FONT_MANAGER_CURRENT_DATABASE_VERSION;
 

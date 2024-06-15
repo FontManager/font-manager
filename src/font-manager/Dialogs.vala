@@ -24,11 +24,9 @@ namespace FontManager {
         "application/x-font-ttf",
         "application/x-font-ttc",
         "application/x-font-otf",
-        "application/x-font-type1",
         "font/ttf",
         "font/ttc",
         "font/otf",
-        "font/type1",
         "font/collection"
     };
 
@@ -251,11 +249,7 @@ namespace FontManager {
                         }
                     }
                     if (filelist != null) {
-                        var installer = new Library.Installer();
-                        installer.process.begin(filelist, (obj, res) => {
-                            installer.process.end(res);
-                            get_default_application().reload();
-                        });
+                        get_default_application().main_window.install_selections(filelist);
                     } else {
                         Timeout.add_seconds(4, () => {
                             get_default_application().reload();
@@ -385,15 +379,70 @@ namespace FontManager {
             return;
         }
 
+        static void purge_selections (Task task, Object source, void* data, Cancellable? cancellable = null) {
+            assert(source is RemoveDialog);
+            bool return_val = true;
+            StringSet selections = ((RemoveDialog) source).remove_list.selected_files;
+            StringSet removed = new StringSet();
+            foreach (var path in selections) {
+                try {
+                    File file = File.new_for_path(path);
+                    if (!file.query_exists())
+                        continue;
+                    File parent = file.get_parent();
+                    if (!file.delete()) {
+                        warning("Failed to remove %s", path);
+                        return_val = false;
+                    }
+                    remove_directory_tree_if_empty(parent);
+                    removed.add(path);
+                } catch (Error e) {
+                    warning(e.message);
+                }
+            }
+            try {
+                Database db = DatabaseProxy.get_default_db();
+                string [] tables = { "Fonts", "Metadata", "Orthography", "Panose" };
+                foreach (string table in tables) {
+                    foreach (var path in removed) {
+                        db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(table, path));
+                        db.get_cursor().step();
+                        db.end_query();
+                    }
+                }
+                db.vacuum();
+            } catch (Error e) {
+                warning(e.message);
+            }
+            selections.remove_all(removed);
+            task.return_boolean(return_val);
+            return;
+        }
+
+        static void on_remove_finished (Object? source, GLib.Task task) {
+            return_if_fail(source is RemoveDialog);
+            RemoveDialog self = (RemoveDialog) source;
+            bool removed = false;
+            try {
+                removed = task.propagate_boolean();
+            } catch (Error e) {
+                warning("Library.remove : Failed to complete task : %s", e.message);
+            }
+            self.end_removal();
+            self.destroy();
+            get_default_application().reload();
+            if (!removed)
+                foreach (string path in self.remove_list.selected_files)
+                    warning("Failed to remove : %s", path);
+            return;
+        }
+
         [GtkCallback]
         void on_delete_clicked () {
             hide();
             start_removal();
-            Library.remove.begin(remove_list.selected_files,(obj, res) => {
-                Library.remove.end(res);
-                end_removal();
-                destroy();
-            });
+            GLib.Task task = new GLib.Task(this, null, on_remove_finished);
+            task.run_in_thread(purge_selections);
             return;
         }
 

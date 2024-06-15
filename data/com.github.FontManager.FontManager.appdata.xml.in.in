@@ -3,6 +3,7 @@
 <component type="desktop-application">
 
     <id>com.github.FontManager.FontManager</id>
+    <developer_name>Font Manager project</developer_name>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0+</project_license>
     <update_contact>JerryCasiano_AT_gmail.com</update_contact>
@@ -29,11 +30,6 @@
         <kudo>SearchProvider</kudo>
         <kudo>UserDocs</kudo>
     </kudos>
-
-    <!--
-    XXX : Specification conflicts with validation ?
-    <icon type="stock">preferences-desktop-font</icon>
-    -->
 
     <launchable type="desktop-id">com.github.FontManager.FontManager.desktop</launchable>
 

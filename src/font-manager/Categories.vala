@@ -144,6 +144,7 @@ namespace FontManager {
                     disabled_families.changed.connect(() => { update_disabled(); });
                 update_disabled();
             });
+            selection.set_selected(Gtk.INVALID_LIST_POSITION);
         }
 
         public void select_item (uint position) {
@@ -276,7 +277,7 @@ namespace FontManager {
         return filters;
     }
 
-    void get_default_categories (Task task, Object source, void *data, Cancellable? cancellable = null) {
+    void get_default_categories (Task task, Object source, void* data, Cancellable? cancellable = null) {
         Database db = DatabaseProxy.get_default_db();
         var filters = get_base_categories();
         filters.add(construct_panose_filter());

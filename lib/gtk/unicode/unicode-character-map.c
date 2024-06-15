@@ -2,7 +2,7 @@
  *
  * Originally a part of Gucharmap
  *
- * Copyright (C) 2017-2023 Jerry Casiano
+ * Copyright (C) 2017-2024 Jerry Casiano
  *
  *
  * Copyright © 2004 Noah Levitt
@@ -906,6 +906,9 @@ on_drag_begin (GtkDragSource *source, GdkDrag *drag, gpointer user_data)
     graphene_rect_free(rect);
     pango_attr_list_unref(attrs);
     gtk_drag_source_set_icon(source, gtk_snapshot_to_paintable(snapshot, NULL), 0, 0);
+    gdk_drag_set_hotspot(drag,
+                         rect->origin.x - ((rect->size.width / 2)),
+                         rect->origin.y - ((rect->size.height / 2)) - 12);
     return;
 }
 

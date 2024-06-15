@@ -260,9 +260,9 @@ namespace FontManager {
         public void install_selections (StringSet selections) {
             header_widgets.installing_files = true;
             var installer = new Library.Installer();
-            installer.process.begin(selections, (obj, res) => {
-                installer.process.end(res);
+            installer.process(selections, (object, task) => {
                 header_widgets.installing_files = false;
+                get_default_application().reload();
             });
             return;
         }
@@ -312,10 +312,17 @@ namespace FontManager {
             string markup = "<b>%s</b>".printf(mode.to_translatable_string());
             header_widgets.main_menu_label.set_markup(markup);
             header_widgets.reveal_manage_controls(mode == Mode.MANAGE);
-            if (mode == Mode.COMPARE)
-                main_stack.set_visible_child_name("Default");
-            else
-                main_stack.set_visible_child_name(mode.to_string());
+            // Special case as Compare "mode" is part of the default pane
+            string visible_child = (mode == Mode.COMPARE) ? "Default" : mode.to_string();
+            main_stack.set_visible_child_name(visible_child);
+            if (mode == Mode.MANAGE || mode == Mode.COMPARE)
+                main_pane.select_first_font();
+            else if (mode == Mode.BROWSE)
+                browse_pane.select_first_font();
+#if HAVE_WEBKIT
+            else if (mode == Mode.GOOGLE_FONTS)
+                google_fonts.select_first_font();
+#endif /* HAVE_WEBKIT */
             return;
         }
 

@@ -344,6 +344,11 @@ namespace FontManager.GoogleFonts {
             return;
         }
 
+        public void focus_search_entry () {
+            search.grab_focus();
+            return;
+        }
+
         public void select_item (uint position) {
             listview.activate_action("list.select-item", "(ubb)", position, false, false);
             listview.activate_action("list.scroll-to-item", "u", position);

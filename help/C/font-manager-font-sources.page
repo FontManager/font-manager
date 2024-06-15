@@ -31,9 +31,9 @@
                     Open the <app>Font Manager</app> preferences dialog
                     by clicking
                     <gui>
-                    <media type="image" src="media/preferences-system-symbolic.svg"/>
+                    <media type="image" src="media/open-menu.svg"/>
                     </gui>
-                    at the top of the window.
+                    at the top of the window and selecting Preferences from the menu.
                     </p>
                 </item>
                 <item>
@@ -63,9 +63,9 @@
                     Open the <app>Font Manager</app> preferences dialog
                     by clicking
                     <gui>
-                    <media type="image" src="media/preferences-system-symbolic.svg"/>
+                    <media type="image" src="media/open-menu.svg"/>
                     </gui>
-                    at the top of the window.
+                    at the top of the window and selecting Preferences from the menu.
                     </p>
                 </item>
                 <item>
@@ -94,10 +94,10 @@
                     <p>
                     Open the <app>Font Manager</app> preferences dialog
                     by clicking
-                    <gui style="button">
-                    <media type="image" src="media/preferences-system-symbolic.svg"/>
+                    <gui>
+                    <media type="image" src="media/open-menu.svg"/>
                     </gui>
-                    at the top of the window.
+                    at the top of the window and selecting Preferences from the menu.
                     </p>
                 </item>
                 <item>

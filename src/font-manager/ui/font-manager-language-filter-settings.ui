@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.10"/>
+  <requires lib="gtk" version="4.12"/>
   <object class="GtkAdjustment" id="coverage_adjustment">
     <property name="page-increment">10</property>
     <property name="step-increment">1</property>

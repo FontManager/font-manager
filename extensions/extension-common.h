@@ -20,8 +20,8 @@
 
 #pragma once
 
-#define FONT_VIEWER_BUS_ID "org.gnome.FontViewer"
-#define FONT_VIEWER_BUS_PATH "/com/github/FontManager/FontManagerViewer"
+#define FONT_VIEWER_BUS_ID "com.github.FontManager.FontViewer"
+#define FONT_VIEWER_BUS_PATH "/com/github/FontManager/FontViewer"
 
 #define N_MIMETYPES 7
 

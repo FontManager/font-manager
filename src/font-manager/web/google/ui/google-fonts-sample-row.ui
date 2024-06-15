@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.10"/>
+  <requires lib="gtk" version="4.12"/>
   <template class="FontManagerGoogleFontsSampleRow" parent="GtkBox">
     <property name="height-request">0</property>
     <property name="hexpand">True</property>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <interface domain="font-manager">
-  <requires lib="gtk" version="4.10"/>
+  <requires lib="gtk" version="4.12"/>
   <requires lib="gio" version="2.0"/>
   <template class="FontManagerSidebar" parent="GtkBox">
     <property name="css-classes">view</property>
@@ -138,6 +138,7 @@
                               <object class="GtkMenuButton" id="collection_sort_type">
                                 <property name="has-frame">False</property>
                                 <property name="icon-name">view-sort-descending-symbolic</property>
+                                <property name="opacity">0.95</property>
                                 <style>
                                   <class name="dim-label"/>
                                 </style>

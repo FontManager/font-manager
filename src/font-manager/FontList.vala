@@ -284,10 +284,15 @@ namespace FontManager {
             append(scroll);
             prepend(controls);
             search_entry = controls.search;
+            search_entry.set_key_capture_widget(this);
             controls.expander_activated.connect(on_expander_activated);
         }
 
-        [GtkCallback]
+        public void focus_search_entry () {
+            search_entry.grab_focus();
+            return;
+        }
+
         protected virtual void on_activate (uint position) {}
 
         protected virtual void on_expander_activated (bool expanded) {
@@ -406,7 +411,6 @@ namespace FontManager {
             return font;
         }
 
-        [GtkCallback]
         protected override void on_activate (uint position) {
             if (selected_items.length < 1)
                 return;
@@ -500,24 +504,38 @@ namespace FontManager {
             return;
         }
 
+        bool is_sourced (Font font) {
+            foreach (var source in user_sources.items) {
+                string path = ((Source) source).path;
+                if (font.filepath.contains(path))
+                    return true;
+            }
+            return false;
+        }
+
         bool selections_are_sourced () {
-            if (user_sources != null && selected_children.length >= 1) {
+            return_val_if_fail(user_sources != null, false);
+            if (selected_children.length >= 1) {
                 foreach (var selection in selected_children) {
-                    bool sourced = false;
-                    Font font = ((Font) selection);
-                    foreach (var source in user_sources.items) {
-                        string path = ((Source) source).path;
-                        if (font.filepath.contains(path)) {
-                            sourced = true;
-                            break;
-                        }
-                    }
-                    if (sourced)
+                    if (is_sourced((Font) selection))
                         continue;
-                    else
-                        return false;
+                    return false;
                 }
                 return true;
+            } else if (selected_item != null) {
+                if (selected_item is Font) {
+                    return is_sourced((Font) selected_item);
+                } else {
+                    Json.Array array = ((Family) selected_item).variations;
+                    for (uint i = 0; i < array.get_length(); i++) {
+                        var font = new Font();
+                        font.source_object = array.get_object_element(i);
+                        if (is_sourced(font))
+                            continue;
+                        return false;
+                    }
+                    return true;
+                }
             }
             return false;
         }
@@ -634,10 +652,7 @@ namespace FontManager {
                     selections.add(file->get_path());
                 }
                 if (selections.size > 0) {
-                    var installer = new Library.Installer();
-                    installer.process.begin(selections, (obj, res) => {
-                        installer.process.end(res);
-                    });
+                    get_default_application().main_window.install_selections(selections);
                 }
                 Idle.add(() => {
                     get_default_application().reload();

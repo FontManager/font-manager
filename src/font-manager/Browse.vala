@@ -74,6 +74,7 @@ namespace FontManager {
 
     }
 
+    // TODO : Overlay information such as number of variations and state
     public class FontPreviewTile : Gtk.Frame {
 
         public Object? item { get; set; default = null; }
@@ -151,7 +152,7 @@ namespace FontManager {
             if (container.visible)
                 container.set_visible(false);
             list = new Gtk.GridView(null, null) { hexpand = true, vexpand = true };
-    selection = new Gtk.SingleSelection(model) { autoselect = false };
+            selection = new Gtk.SingleSelection(model) { autoselect = false };
             container.set_child(list);
             container.set_visible(true);
             if (model.get_n_items() > 0)
@@ -410,7 +411,7 @@ namespace FontManager {
             map.connect_after(on_map);
         }
 
-        public void on_map () {
+        void on_map () {
             if (settings != null) {
                 pane_position = settings.get_double("browse-pane-position");
                 panel_toggle.set_active(settings.get_boolean("browse-preview-visible"));
@@ -421,6 +422,11 @@ namespace FontManager {
                 paned.set_position(percentage_to_position(pane_position));
                 return GLib.Source.REMOVE;
             });
+        }
+
+        public void select_first_font () {
+            gridview.select_item(0);
+            return;
         }
 
         public void queue_update () {

@@ -26,6 +26,10 @@ namespace FontManager {
 
         Directories sources;
 
+        construct {
+            reload();
+        }
+
         public void clear () {
             uint n_items = get_n_items();
             items = null;
@@ -87,7 +91,9 @@ namespace FontManager {
             sources.remove(item.path);
             items.remove(item);
             items_changed(position, 1, 0);
-            purge_database_entries(item.path);
+            GLib.Task task = new GLib.Task(this, null, on_database_purged);
+            task.set_task_data(item.path, null);
+            task.run_in_thread(purge_database_entries);
             return;
         }
 
@@ -101,22 +107,27 @@ namespace FontManager {
             return;
         }
 
-        void purge_database_entries (string path) {
-            ThreadFunc <void> run_in_thread = () => {
-                try {
-                    Database db = DatabaseProxy.get_default_db();
-                    string [] tables = { "Metadata", "Orthography", "Panose" };
-                    foreach (string table in tables) {
-                        db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(table, path));
-                        db.get_cursor().step();
-                        db.end_query();
-                    }
-                    db.vacuum();
-                } catch (Error e) {
-                    warning(e.message);
+        // Error reporting happens in TaskThreadFunc
+        // This only exists to silence warning about null callback when creating Task
+        void on_database_purged (Object? unused_object, Task unused_task) {}
+
+        static void purge_database_entries (Task task,
+                                            Object unused_source,
+                                            void* data,
+                                            Cancellable? cancellable = null) {
+            string path = (string) data;
+            try {
+                Database db = DatabaseProxy.get_default_db();
+                string [] tables = { "Fonts", "Metadata", "Orthography", "Panose" };
+                foreach (string table in tables) {
+                    db.execute_query("DELETE FROM %s WHERE filepath LIKE \"%%s%\"".printf(table, path));
+                    db.get_cursor().step();
+                    db.end_query();
                 }
-            };
-            new Thread <void> ("purge_database_entries", (owned) run_in_thread);
+                db.vacuum();
+            } catch (Error e) {
+                warning("Failed to remove database entries for %s : %s", path, e.message);
+            }
             return;
         }
 
