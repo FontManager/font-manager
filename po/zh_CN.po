@@ -23,15 +23,15 @@
 # Eric <spice2wolf@gmail.com>, 2021.
 # Eric <alchemillatruth@purelymail.com>, 2022.
 # joe <ourmicroid@outlook.com>, 2022.
-# poi <erbaotao@outlook.com>, 2022.
+# poi <erbaotao@outlook.com>, 2022, 2024.
 # Jason Clermont <lunme1008@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: font-manager 0.7.9\n"
 "Report-Msgid-Bugs-To: https://github.com/FontManager/master/issues\n"
 "POT-Creation-Date: 2022-02-06 14:56+0300\n"
-"PO-Revision-Date: 2022-09-04 05:19+0000\n"
-"Last-Translator: Jason Clermont <lunme1008@gmail.com>\n"
+"PO-Revision-Date: 2024-05-08 18:44+0000\n"
+"Last-Translator: poi <erbaotao@outlook.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "font-manager/font-manager/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -39,7 +39,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 5.5.4-rc\n"
 
 # Not translate very good, just for use.
 #: data/org.gnome.FontManager.appdata.xml.in.in:9
@@ -627,7 +627,9 @@ msgstr ""
 #. by a newline character so that they are displayed properly in the interface.
 #: src/font-manager/About.vala:69
 msgid "translator-credits"
-msgstr "玉堂白鹤 <yjwork@qq.com>, 2021"
+msgstr ""
+"玉堂白鹤 <yjwork@qq.com>, 2021\n"
+"匿名 <https://me-qr.com/entry/vcard/Wr2h6tBO>"
 
 #: src/font-manager/Categories.vala:534
 msgid "Grouped by font width"
