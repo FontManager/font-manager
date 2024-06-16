@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright (C) 2009-2022 Jerry Casiano -->
+<!-- Copyright (C) 2009-2024 Jerry Casiano -->
 <component type="desktop-application">
 
     <id>org.gnome.FontViewer</id>
@@ -63,7 +63,9 @@
     </screenshots>
 
     <releases>
-        <release version="@PACKAGE_VERSION@" date="2021-07-26"/>
+        <release version="@PACKAGE_VERSION@" date="2024-05-22"/>
+        <release version="0.8.8" date="2022-02-13"/>
+        <release version="0.8.7" date="2021-07-21"/>
         <release version="0.8.6" date="2021-04-09"/>
         <release version="0.8.5" date="2021-03-22"/>
         <release version="0.8.4-1" date="2021-02-02"/>
