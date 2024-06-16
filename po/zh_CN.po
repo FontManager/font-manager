@@ -774,72 +774,16 @@ msgstr ""
 "通过单击 + 按钮\n"
 "保存当前比较"
 
-#: src/font-manager/Controls.vala:100
-#: src/font-manager/ui/font-manager-preview-colors.ui:8
-msgid "Select background color"
-msgstr "选择背景颜色"
+==== BASE ====
+#: src/font-manager/Dialogs.vala:60
+msgid "Select executable"
+msgstr "选择可执行文件"
+==== BASE ====
 
-#: src/font-manager/Controls.vala:103
-#: src/font-manager/ui/font-manager-preview-colors.ui:16
-msgid "Select text color"
-msgstr "选择文本颜色"
-
-#: src/font-manager/Controls.vala:122
-msgid "Keyboard Shortcuts"
-msgstr "键盘快捷键"
-
-#: src/font-manager/Controls.vala:123 src/font-manager/gtk/help-overlay.ui:16
-msgid "Help"
-msgstr "帮助"
-
-# Not translate very good, just for use.
-#: src/font-manager/Controls.vala:124
-#, fuzzy
-#| msgid "Font Manager"
-msgid "About Font Manager"
-msgstr "字体管理器"
-
-#: src/font-manager/Controls.vala:130
-msgid "Preferences"
-msgstr "首选项"
-
-#: src/font-manager/Controls.vala:134
-msgid "Import"
-msgstr "导入"
-
-#: src/font-manager/Controls.vala:135
-#: src/font-manager/ui/font-manager-export-dialog.ui:25
-msgid "Export"
-msgstr "导出"
-
-#: src/font-manager/Controls.vala:138
-#: src/font-manager/ui/font-manager-export-dialog.ui:13
-msgid "User Data"
-msgstr "用户数据"
-
-#: src/font-manager/Controls.vala:171
-#: src/font-manager/ui/font-manager-user-action-row.ui:13
-#: src/font-manager/web/google/ui/google-fonts-sidebar.ui:38
-msgid "Name"
-msgstr "名称"
-
-#: src/font-manager/Controls.vala:173
-msgid "Size"
-msgstr ""
-
-#: src/font-manager/Controls.vala:280
-msgid "Add Fonts"
-msgstr "添加字体"
-
-#: src/font-manager/Controls.vala:281
-msgid "Remove Fonts"
-msgstr "删除字体"
-
-#: src/font-manager/Controls.vala:294
-msgid "Back"
-msgstr "回退"
-
-#: src/font-manager/Dialogs.vala:48 src/font-manager/Dialogs.vala:59
+==== BASE ====
+#: src/font-manager/Dialogs.vala:63 src/font-manager/Dialogs.vala:78
+#: src/font-manager/UserData.vala:58
+==== BASE ====
 msgid "_Select"
 msgstr "选择(_S)"
 
@@ -1727,11 +1671,6 @@ msgstr ""
 #: src/font-manager/preferences/Desktop.vala:214
 msgid "Grayscale"
 msgstr ""
-"选择“保存”来使用上述设置生成 fontconfig 配置文件。\n"
-"\n"
-"选择“丢弃”以删除配置文件并恢复默认设置。\n"
-"\n"
-"请注意，并非所有环境/应用都会使用这些设置。"
 
 #: src/font-manager/preferences/Desktop.vala:214
 msgid "RGBA"
@@ -2013,46 +1952,17 @@ msgstr "服务器错误"
 msgid "Adlam"
 msgstr ""
 
-#: src/font-manager/web/google/LanguageData.vala:34
-#, fuzzy
-#| msgid "Egyptian Hieroglyphs"
-msgid "Anatolian Hieroglyphs"
-msgstr "埃及象形文字"
+==== BASE ====
+#. Translators : Avoid translating "Google Fonts" in this message, if possible
+#: src/font-manager/web/google/GoogleFonts.vala:217
+msgid ""
+"An active internet connection is required to access the Google Fonts catalog"
+msgstr "需要有效的互联网连接才能访问 Google 字体目录"
+==== BASE ====
 
-#: src/font-manager/web/google/LanguageData.vala:37
-msgid "Avestan"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:40
-msgid "Bassa Vah"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:41
-msgid "Batak"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:43
-msgid "Bhaiksuki"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:44
-msgid "Brahmi"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:45
-msgid "Braille"
-msgstr ""
-
-#. { N_("Buhid"), "buhid", "" },
-#: src/font-manager/web/google/LanguageData.vala:48
-msgid "Caucasian Albanian"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:49
-msgid "Canadian Aboriginal"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:54
+==== BASE ====
+#: src/font-manager/web/google/Language.vala:35
+==== BASE ====
 msgid "Chinese (Hong Kong)"
 msgstr "中文（香港）"
 
@@ -2118,321 +2028,314 @@ msgstr "希腊"
 msgid "Greek Extended"
 msgstr "希腊（扩展）"
 
-#: src/font-manager/web/google/LanguageData.vala:78
-msgid "Gunjala Gondi"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:80
-msgid "Hanifi Rohingya"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:81
-#, fuzzy
-#| msgid "Hanunó'o"
-msgid "Hanunoo"
-msgstr "哈努诺文 (Hanunó'o)"
-
-#: src/font-manager/web/google/LanguageData.vala:82
-msgid "Hatran"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:84
-msgid "Imperial Aramaic"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:85
-msgid "Indic Siyaq Numbers"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:86
-msgid "Inscriptional Pahlavi"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:87
-msgid "Inscriptional Parthian"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:88
+==== BASE ====
+#: src/font-manager/web/google/Language.vala:46
 msgid "Japanese"
 msgstr "日语"
+==== BASE ====
 
-#: src/font-manager/web/google/LanguageData.vala:93
-msgid "Kawi"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:96
-msgid "Khojki"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:97
-msgid "Khudawadi"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:98
+==== BASE ====
+#: src/font-manager/web/google/Language.vala:49
 msgid "Korean"
 msgstr "韩语"
+==== BASE ====
 
-#: src/font-manager/web/google/LanguageData.vala:101
+==== BASE ====
+#: src/font-manager/web/google/Language.vala:50
 msgid "Latin"
 msgstr "拉丁"
+==== BASE ====
 
-#: src/font-manager/web/google/LanguageData.vala:102
+==== BASE ====
+#: src/font-manager/web/google/Language.vala:51
 msgid "Latin Extended"
 msgstr "拉丁（扩展）"
+==== BASE ====
 
-#: src/font-manager/web/google/LanguageData.vala:104
-msgid "Linear A"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:105
-msgid "Linear B"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:106
-msgid "Lisu"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:107
-msgid "Lycian"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:108
-msgid "Lydian"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:109
-msgid "Mahajani"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:111
-msgid "Mandaic"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:112
-msgid "Manichaean"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:113
-msgid "Math"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:114
-msgid "Marchen"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:115
-msgid "Masaram Gondi"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:116
-msgid "Mayan Numerals"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:117
-msgid "Medefaidrin"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:118
-msgid "Meetei Mayek"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:120
-msgid "Meroitic"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:124
-msgid "Modi"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:126
-msgid "Mro"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:127
-msgid "Multani"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:128
-msgid "Music"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:130
-msgid "Nabataean"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:131
-msgid "Nag Mundari"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:132
-#, fuzzy
-#| msgid "Devanagari"
-msgid "Nandinagari"
-msgstr "天成文字符"
-
-#: src/font-manager/web/google/LanguageData.vala:134
-msgid "Newa"
-msgstr ""
-
-#. { N_(""), "nko", "" },
-#: src/font-manager/web/google/LanguageData.vala:136
-msgid "Nüshu"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:139
-msgid "Old Hungarian"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:141
-msgid "Old North Arabian"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:142
-#, fuzzy
-#| msgid "Old Italic"
-msgid "Old Permic"
-msgstr "古意大利字母"
-
-#: src/font-manager/web/google/LanguageData.vala:143
-msgid "Old Persian"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:144
-msgid "Old Sogdian"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:146
-#, fuzzy
-#| msgid "Old Italic"
-msgid "Old Turkic"
-msgstr "古意大利字母"
-
-#: src/font-manager/web/google/LanguageData.vala:147
-msgid "Osage"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:150
-msgid "Pahawh Hmong"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:151
-msgid "Palmyrene"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:152
-msgid "Pau Cin Hau"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:154
-msgid "Phoenician"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:155
-msgid "Psalter Pahlavi"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:158
-msgid "Samaritan"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:160
-msgid "Sharada"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:161
-msgid "Shavian"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:162
-msgid "Siddham"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:163
-#, fuzzy
-#| msgid "Hinting"
-msgid "SignWriting"
-msgstr "字体微调"
-
-#: src/font-manager/web/google/LanguageData.vala:165
-msgid "Sogdian"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:166
-msgid "Sora Sompeng"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:167
-msgid "Soyombo"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:172
-msgid "Tagalog"
-msgstr ""
-
-#: src/font-manager/web/google/LanguageData.vala:173
-msgid "Tagbanwa"
-msgstr ""
-
-#. TRANSLATORS : The replacement character here refers to a language name.
-#: src/font-manager/web/google/LanguageData.vala:190
+==== BASE ====
+#. TRANSLATORS : The replacement character here refers to a language name
+#: src/font-manager/web/google/Language.vala:81
 #, c-format
 msgid "No sample for %s available"
 msgstr "没有可用的%s示例"
+==== BASE ====
 
-#: src/font-manager/web/google/LanguageData.vala:192
+==== BASE ====
+#: src/font-manager/web/google/Language.vala:83
 msgid "Please file an issue requesting an update to available samples."
 msgstr "请创建问题以请求更新可用示例。"
+==== BASE ====
 
-#: src/font-manager/web/google/PreviewPage.vala:317
+==== BASE ====
+#: src/font-manager/web/google/PreviewPane.vala:293
+msgid "Update Family"
+msgstr "更新字体家族"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/web/google/PreviewPane.vala:293
+msgid "Update Font"
+msgstr "更新字体"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/web/google/PreviewPane.vala:298
+msgid "Remove Family"
+msgstr "删除字体家族"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/web/google/PreviewPane.vala:298
+msgid "Remove Font"
+msgstr "删除字体"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/web/google/PreviewPane.vala:303
+msgid "Download Family"
+msgstr "下载字体家族"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/web/google/PreviewPane.vala:303
+msgid "Download Font"
+msgstr "下载字体"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/web/google/PreviewPane.vala:313
 #, c-format
 msgid "%i Language Sample Available "
 msgid_plural "%i Language Samples Available"
 msgstr[0] "%i 个可用语言样本"
+==== BASE ====
 
-#: src/font-manager/web/google/WebFont.vala:141
+==== BASE ====
+#: src/font-manager/web/google/Weight.vala:67
 msgid "ExtraLight"
 msgstr "特细(ExtraLight)"
+==== BASE ====
 
-#: src/font-manager/web/google/WebFont.vala:149
+==== BASE ====
+#: src/font-manager/web/google/Weight.vala:75
 msgid "SemiBold"
 msgstr "半粗(SemiBold)"
+==== BASE ====
 
-#: src/font-manager/web/google/WebFont.vala:153
+==== BASE ====
+#: src/font-manager/web/google/Weight.vala:79
 msgid "ExtraBold"
 msgstr "特粗(ExtraBold)"
+==== BASE ====
 
-#: src/font-manager/web/google/WebFont.vala:155
+==== BASE ====
+#: src/font-manager/web/google/Weight.vala:81
 msgid "Black"
 msgstr "黑"
+==== BASE ====
 
-#: src/font-viewer/MainWindow.vala:83
-#: src/font-viewer/font-viewer-main-window.ui:47
+==== BASE ====
+#: src/font-viewer/MainWindow.vala:24
+msgid "Preview font files before installing them."
+msgstr "安装前预览字体文件。"
+==== BASE ====
+
+==== BASE ====
+#: src/font-viewer/MainWindow.vala:25
+msgid "To preview a font simply drag it onto this area."
+msgstr "要预览字体，只需将其拖动到此区域。"
+==== BASE ====
+
+==== BASE ====
+#: src/font-viewer/MainWindow.vala:122
 msgid "No file selected"
 msgstr "未选择文件"
+==== BASE ====
 
-#: src/font-viewer/MainWindow.vala:84
-#: src/font-viewer/font-viewer-main-window.ui:55
+==== BASE ====
+#: src/font-viewer/MainWindow.vala:123
 msgid "Or unsupported filetype."
 msgstr "或不支持该文件类型。"
+==== BASE ====
 
-#: src/font-viewer/MainWindow.vala:125
+==== BASE ====
+#: src/font-viewer/MainWindow.vala:172
 msgid "Newer version already installed"
 msgstr "新版本已安装"
+==== BASE ====
 
-#: src/font-viewer/MainWindow.vala:127
-msgid "Click to overwrite"
-msgstr ""
+==== BASE ====
+#: src/font-viewer/MainWindow.vala:174
+msgid "Installed"
+msgstr "已安装"
+==== BASE ====
 
-#: src/font-viewer/MainWindow.vala:130
-msgid "Remove Font"
-msgstr "删除字体"
-
-#: src/font-viewer/MainWindow.vala:134
-#: src/font-viewer/font-viewer-main-window.ui:74
+==== BASE ====
+#: src/font-viewer/MainWindow.vala:177
+#: src/font-viewer/font-viewer-main-window.ui:53
 msgid "Install Font"
 msgstr "安装字体"
+==== BASE ====
 
-#: src/font-manager/gtk/help-overlay.ui:11
+==== BASE ====
+#: lib/unicode/ui/unicode-character-map-zoom-window.ui:80
+msgid "Copy"
+msgstr "复制"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-browse-view.ui:34
+msgid "List View"
+msgstr "列表视图"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-browse-view.ui:68
+msgid "Grid View"
+msgstr "网格视图"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-browse-view.ui:116
+msgid "Enter Preview Text…"
+msgstr "输入预览文本…"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-browse-view.ui:182
+msgid "Previous page"
+msgstr "上一页"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-browse-view.ui:210
+msgid "Next page"
+msgstr "下一页"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:25
+msgid "Collection Name"
+msgstr "集锦名称"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-collection-rename-popover.ui:54
+msgid "_Rename"
+msgstr "重命名(_R)"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-compare-view.ui:57
+msgid "Add selected font to comparison"
+msgstr "添加选中的字体进行比较"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-compare-view.ui:84
+msgid "Remove selected font from comparison"
+msgstr "删除比较组中选中的字体"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-compare-view.ui:110
+msgid "Pinned Comparisons"
+msgstr "固定比较"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-compare-view.ui:136
+#: src/font-manager/ui/font-manager-compare-view.ui:140
+#: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:73
+#: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:76
+msgid "Select background color"
+msgstr "选择背景颜色"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-compare-view.ui:157
+#: src/font-manager/ui/font-manager-compare-view.ui:161
+#: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:90
+#: src/font-manager/web/google/ui/google-fonts-preview-pane.ui:93
+msgid "Select text color"
+msgstr "选择文本颜色"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-font-config-controls.ui:12
+msgid "Discard"
+msgstr "丢弃"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-font-config-controls.ui:30
+msgid "Running applications may require a restart to reflect any changes."
+msgstr "任何更改要想生效，都可能需要重启运行中的应用程序。"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-font-config-controls.ui:40
+msgid "Save"
+msgstr "保存"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:32
+msgid "Back"
+msgstr "回退"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:62
+msgid "Search Orthographies…"
+msgstr "搜索拼写体系…"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:77
+msgid "Deselect All"
+msgstr "全部不选"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-language-filter-settings.ui:156
+msgid "Minimum Coverage"
+msgstr "最小覆盖"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-orthography-list.ui:86
+msgid "Clear selected filter"
+msgstr "清除所选过滤器"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-pinned-comparisons-row.ui:27
+msgid "Created : "
+msgstr "创建: "
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:32
+msgid "Save current comparison"
+msgstr "保存当前比较"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:62
+msgid "Remove selected comparison"
+msgstr "删除所选比较"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-pinned-comparisons.ui:92
+msgid "Restore selected comparison"
+msgstr "还原所选比较"
+==== BASE ====
+
+==== BASE ====
+#: src/font-manager/ui/font-manager-shortcuts-window.ui:14
+==== BASE ====
 msgid "General"
 msgstr "常规(_G)"
 
