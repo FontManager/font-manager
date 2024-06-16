@@ -915,17 +915,8 @@ msgid ""
 "Start search using %s to filter based on filepath.\n"
 "Start search using %s to filter based on characters."
 msgstr ""
-"搜索字体族名，区分大小写。\n"
-"\n"
-"以 %s 开头来基于文件路径过滤。\n"
-"以 %s 开头来基于字符过滤。"
-
-#: src/font-manager/FontList.vala:70
-#: src/font-manager/web/google/FontList.vala:283
-#, c-format
-msgid "%i Variation "
-msgid_plural "%i Variations"
-msgstr[0] "%i 种变体"
+==== BASE ====
+==== BASE ====
 
 #: src/font-manager/FontList.vala:261
 #: src/font-manager/web/google/FontList.vala:364
@@ -1736,6 +1727,11 @@ msgstr ""
 #: src/font-manager/preferences/Desktop.vala:214
 msgid "Grayscale"
 msgstr ""
+"选择“保存”来使用上述设置生成 fontconfig 配置文件。\n"
+"\n"
+"选择“丢弃”以删除配置文件并恢复默认设置。\n"
+"\n"
+"请注意，并非所有环境/应用都会使用这些设置。"
 
 #: src/font-manager/preferences/Desktop.vala:214
 msgid "RGBA"
