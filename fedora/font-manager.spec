@@ -34,6 +34,12 @@ BuildRequires: pango-devel >= 1.45
 BuildRequires: sqlite-devel >= 3.35
 BuildRequires: vala >= 0.42
 BuildRequires: yelp-tools
+BuildRequires: desktop-file-utils
+
+%if %{with adwaita}
+BuildRequires: libadwaita-devel
+%endif
+
 %if %{with webkit}
 BuildRequires: libsoup3-devel >= 3.2
 BuildRequires: webkitgtk6.0-devel >= 2.4
@@ -42,9 +48,11 @@ BuildRequires: webkitgtk6.0-devel >= 2.4
 %if %{with nautilus}
 BuildRequires: nautilus-devel
 %endif
+
 %if %{with nemo}
 BuildRequires: nemo-devel
 %endif
+
 %if %{with thunar}
 BuildRequires: Thunar-devel
 %endif
@@ -56,6 +64,11 @@ Requires: freetype
 Requires: gtk4 >= 4.12
 Requires: sqlite
 Requires: yelp
+
+%if %{with adwaita}
+Requires: libadwaita
+%endif
+
 %if %{with webkit}
 Requires: libsoup3
 Requires: webkitgtk6.0

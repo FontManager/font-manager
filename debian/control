@@ -21,7 +21,8 @@ Build-Depends:
  libthunarx-3-dev,
  libwebkitgtk-6.0-dev,
  libsoup-3.0-dev,
- yelp-tools
+ yelp-tools,
+ desktop-file-utils
 Standards-Version: 4.3.0
 Section: graphics
 Homepage: http://fontmanager.github.io/
